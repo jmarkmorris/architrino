@@ -18,7 +18,7 @@ The app shows a prescribed coincident-midpoint orthogonal-axis Noether braid who
 1. the geometry of the flattened braid envelope,
 2. the relative-time readout,
 3. the relative-length readout,
-4. the normalized center-of-mass energy and mass-equivalent ledger.
+4. the normalized moving-frame total energy and mass-equivalent ledger (labelled `CM` in the app).
 
 The central visual point is that the Lorentz factor is not only a formula on a panel. In the app’s zero-extra-scale display rule, the prescribed oblate envelope is assigned the aspect ratio
 $$
@@ -55,11 +55,11 @@ This is a visualization hypothesis, not a completed theorem. The app makes the p
 
 ## Geometry Dictionary
 
-The displayed oblate spheroidal envelope uses:
+The displayed oblate spheroidal envelope uses the nonnegative slider domain $0\leq\beta_f<1$ for finite Lorentz quantities. The endpoint $\beta_f=1$ is a degenerate limit: zero longitudinal extent and infinite Lorentz factor, not an invertible frame transformation. This lesson uses a primitive wake-speed comparison; identifying it with an effective observer channel requires the separate clock, ruler, and signal map described in Lorentz Kinematics.
 
 | App quantity | Meaning |
 | --- | --- |
-| $\beta_f=v/c_f$ | Velocity fraction shown by the slider, measured against the field-speed reference. |
+| $\beta_f=v/c_f$ | Velocity fraction shown by the slider, measured against the wake-speed reference. |
 | $\gamma_f=1/\sqrt{1-\beta_f^2}$ | Relative-time factor and transverse-to-longitudinal aspect ratio. |
 | $\xi=1/\gamma_f=\sqrt{1-\beta_f^2}$ | Length-contraction and oblate-envelope flattening factor. |
 | $R_{\perp}$ | Transverse radius of the reference orbit envelope. |
@@ -103,7 +103,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ba7e98758f16c775)
 
-If a later lesson exposes a separate scale channel $\lambda$, then
+If a later lesson exposes a positive separate scale channel $\lambda(v)$ normalized by $\lambda(0)=1$, then
 $$
 R_{\perp}=\lambda R_0
 \qquad
@@ -136,7 +136,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-65e4a107534883e6)
 
-This does not mean a small object contains an infinitely long literal path inside it. Time dilation is a comparison between cycle counts in two frames. As $\beta_f$ approaches $1$, the moving cycle must spend more and more of the causal budget keeping up with the translated assembly, leaving less closing capacity for the internal return cycle. In the ideal Lorentz formula, the outside-frame period therefore grows without bound:
+Here $\Delta\tau$ is the proper-cycle interval and $\Delta t$ the comparison-frame interval between the same two cycle events in the prescribed Lorentz chart, at constant velocity. Neither symbol is automatically the substrate absolute time $T$. The claim that translation leaves less internal closing capacity is a speed-budget heuristic for an admitted prescribed family, not a derivation from delayed braid dynamics. The displayed period ratio is assigned by the Lorentz formula; it grows without bound:
 $$
 \gamma_f\to\infty
 \quad\text{as}\quad
@@ -156,7 +156,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3ed9b193ea8ec081)
 
-With that normalization:
+The symbol $E_{\text{CM}}$ below preserves the app’s existing label, but denotes total energy in a frame where the assembly moves. The actual center-of-mass-frame energy is the rest energy $E_0=m_0c_f^2$. These are effective Lorentz comparison formulas, not an independently recovered substrate energy account. With that normalization:
 $$
 E_0=m_0c_f^2=1
 \qquad
@@ -167,14 +167,14 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d45064b82d93f10b)
 
-The app also shows the center-of-mass mass-equivalent form
+The app also shows the moving-frame mass-equivalent form
 $$
 \frac{E_{\text{CM}}}{c_f^2}=\gamma_f m_0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d85359bc0986a7f5)
 
-That readout is not saying that invariant rest mass changes. It is showing observer-facing center-of-mass energy expressed in mass-equivalent units. The invariant rest mass remains $m_0$; the center-of-mass energy and its mass equivalent grow with $\gamma_f$.
+That readout is not saying that invariant rest mass changes. The invariant rest mass remains $m_0$; moving-frame total energy and its mass equivalent grow with $\gamma_f$.
 
 The earlier ratio
 $$
@@ -187,7 +187,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7a0f3dda2d2a2e6b)
 
-falls in lockstep with the length-contraction factor because the denominator is total center-of-mass energy while the numerator is the fixed rest mass.
+is proportional to the length-contraction factor at fixed $c_f$. It has units of inverse speed squared; the dimensionless rest-energy fraction is $m_0c_f^2/E_{\text{CM}}=\xi$. Their numerical values coincide in the declared normalized units.
 
 ## Control Meanings
 
@@ -196,7 +196,7 @@ falls in lockstep with the length-contraction factor because the denominator is 
 | `Paths` | Toggles visible orbit paths and charge traces. |
 | `Surface` | Toggles a live display-only delayed-potential preview over the prescribed oblate envelope. The preview uses prescribed-path analysis and its own status line; it is not a retained EOM-solver branch or a proof. |
 | `Axes` | Toggles momentum-frame guides: a short bulk-motion contraction guide along $\hat{\mathbf{n}}$ plus two transverse axes perpendicular to it. |
-| `Pause` / `Resume` | Pauses or resumes the animation. |
+| `Pause` / `Play` | Pauses or resumes the animation. |
 | Home icon | Returns from the standalone lesson to the main webapp. |
 | `Geometry` | Selects the authored geometry record. The current shipped menu contains the coincident-midpoint orthogonal-axis braid geometry. |
 | `Reference orbit` | Sets the reference transverse scale and rescales the displayed orthogonal-axis three-binary braid from that reference. |
@@ -217,7 +217,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4f63d4f370cb6da4)
 
-The path-speed ratio row divides that path speed by the app's field-speed reference. In the current normalized display, the source record declares binary 2 as the reference channel and sets $c_f$ to its current path speed, so binary 2 reads $1.00$ by definition while the values for binaries 1 and 3 are derived from their radii and frequencies. This is a display normalization, not a taxonomy-assigned role.
+The path-speed ratio row divides that path speed by the app's field-speed reference. In the current normalized display, the source record declares binary 2 as the reference channel and uses its current path speed as the display speed unit, so binary 2 reads $1.00$ by definition while the values for binaries 1 and 3 are derived from their radii and frequencies. In those rescaled units $c_f=1$; changing the reference radius changes the raw display unit, not the physical primitive wake speed. This is a display normalization, not a taxonomy-assigned role.
 
 ## Claim Level
 

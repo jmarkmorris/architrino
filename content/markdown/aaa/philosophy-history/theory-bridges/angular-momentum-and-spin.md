@@ -3,7 +3,7 @@
 This bridge explains how angular momentum, spin, helicity, and the constants $h$ and $\hbar$ should be read across standard quantum theory and $\mathbb{A}\mathbb{A}\mathbb{A}$. The central claim is level-specific:
 
 - At the primitive architrino level, neither angular momentum nor spin is an additional substance or intrinsic property.
-- Angular momentum becomes a conserved history functional when architrino motion is organized inside the rotationally symmetric Euclidean void.
+- Angular momentum is the rotational history account whose independent conservation law must be derived from the complete motion, wake, and boundary dynamics. Rotational symmetry of the Euclidean void identifies the target but does not by itself prove conservation.
 - Spin becomes an effective transformation class of stable assemblies, especially ordered orthogonal-axis three-binary, coincident-axis three-binary braid, and planar vector-channel structures.
 
 The result is not that angular momentum and spin are unreal. Their ontological status is emergent: they are indispensable higher-level ledgers and measurement labels, but the fundamental ontology still consists of architrinos, polarity, position, velocity, absolute time, Euclidean void, causal wakes, and path history. The distinction separates two questions that ordinary language often blends. The primitive object does not carry an intrinsic spin axis. Organized motion in a rotationally symmetric world can produce conserved angular momentum, spin-like detector responses, and helicity labels only after the motion, wake history, and assembly orientation are specified. The point is not to demote spin; it is to put the burden in the right place.
@@ -56,15 +56,15 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3c05c41ec6403f8b)
 
-For the classical electron radius $r_e=e^2/(4\pi\epsilon_0 m_e c^2)$ and $S\sim\hbar$, this is of order hundreds of times $c$. If $R$ is enlarged enough to keep $v_{\mathrm{surf}}<c$, the electron is no longer a small localized charged constituent on atomic scales; if $R\to0$, the rigid-body angular momentum vanishes. The experimental lesson is therefore not that electron spin is unreal. It is that the magnetic moment, Stern-Gerlach response, anomalous Zeeman structure, and spin-$\tfrac{1}{2}$ label must be recovered from an internal transformation and response ledger, not from a literal rotating point or sphere.
+For the classical electron radius $r_e=e^2/(4\pi\epsilon_0 m_e c^2)$ and $S\sim\hbar$, this is of order hundreds of times $c$. Keeping $v_{\mathrm{surf}}<c$ requires $R>S/(\alpha m_e c)$, a Compton-scale lower bound that can still be smaller than an atomic radius; this estimate alone does not exclude every subatomic size. At fixed mass and bounded surface speed, $S=\alpha m_e Rv_{\mathrm{surf}}$ vanishes as $R\to0$. Holding nonzero $S$ fixed instead makes the required surface speed diverge. The experimental lesson is therefore not that electron spin is unreal. It is that the magnetic moment, Stern-Gerlach response, anomalous Zeeman structure, and spin-$\tfrac{1}{2}$ label must be recovered from an internal transformation and response ledger, not from a literal rotating point or sphere.
 
-The important qualification is that angular momentum still becomes mandatory once the dynamics are studied as an isolated rotationally symmetric system. The Euclidean void is invariant under spatial rotations. For the action-derived delayed model, rotational symmetry gives a conserved angular-momentum functional. That functional is not a new substance; it is the Noether ledger associated with organized motion and in-flight causal-wake history.
+An isolated rotationally symmetric model owes a corresponding angular-momentum account. A compatible variational action with rotation symmetry and controlled boundary terms would supply a Noether charge; an independent constructive wake-balance law is another possible route. Neither route follows merely from isotropy. The current [Causal Action Functional](../../dynamics/causal-action-functional.md#reduced-branch-certificate-targets) distinguishes a scalar history statistic from a derived action and independent conservation theorem.
 
-A useful analogy is bookkeeping rather than an added component. Angular momentum is not an extra part tucked inside the architrino. It is the conserved account kept by a whole isolated motion-plus-wake history when that history respects rotational symmetry. Spin is still a further step: a stable assembly must expose the right orientation and measurement-response ledger so that Physical Observers see the standard spin class.
+A useful analogy is bookkeeping rather than an added component. Angular momentum is not an extra part tucked inside the architrino. It is the account to be constructed for a whole isolated motion-plus-wake history, with conservation established independently of a compensating definition. Spin is still a further step: a stable assembly must expose the right orientation and measurement-response ledger so that Physical Observers see the standard spin class.
 
 ## Angular Momentum as a History Ledger
 
-In ordinary local mechanics, angular momentum is often written as a particle-only snapshot. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that is incomplete because delayed interactions break the instantaneous equal-and-opposite picture. A source emits at one time, a receiver responds later, and the apparent missing momentum or angular momentum is carried by the active causal-wake history.
+In ordinary local mechanics, angular momentum is often written as a particle-only snapshot. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that is incomplete because delayed interactions break the instantaneous equal-and-opposite picture. A source emits at one time and a receiver responds later. A conserved account must identify the corresponding motion, active wake, and boundary terms; attributing the apparent imbalance to wake history is the construction target.
 
 With the universal force/energy bookkeeping constant $\mu_{\text{arch}}$, the mechanical part is
 
@@ -90,7 +90,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e19adadccdc5ea4e)
 
-where $\mathbf{F}_i=\mu_{\text{arch}}\mathbf{a}_i$ is only a bookkeeping force corresponding to the acceleration-first law. The conserved total ledger is
+where $\mathbf{F}_i=\mu_{\text{arch}}\mathbf{a}_i$ is only a bookkeeping force corresponding to the acceleration-first law. The corresponding total bookkeeping ledger is
 
 $$
 \mathbf{L}_{\text{tot}}(T)
@@ -100,11 +100,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8b3fff18c6143341)
 
-For exact isolated solutions of the symmetry-preserving delayed action, $\mathbf{L}_{\text{tot}}$ is conserved. In regularized numerical models, conservation of $\mathbf{L}_{\text{tot}}$ is a validation condition: the chosen regularization must preserve the same rotation symmetry before exact conservation can be claimed.
+Differentiating these definitions gives $d\mathbf L_{\mathrm{mech}}/dT=\sum_i\mathbf X_i\times\mu_{\mathrm{arch}}\mathbf A_i$ and its negative for the defined wake integral. Their sum is constant for any sufficiently regular supplied path, even without rotational symmetry. This is a derived bookkeeping identity, not an independent conservation test. A physical conserved total requires a separately constructed wake state or compatible action, including boundary terms; numerical validation must compare against that independent construction rather than reintegrate the same torque.
 
 This is the safest ontology statement:
 
-> Angular momentum is not a primitive property of an isolated architrino. It is the conserved rotational ledger of an isolated motion-plus-wake history.
+> Angular momentum is not a primitive property of an isolated architrino. It is an assembly-level rotational history account; its conservation requires an independent motion-plus-wake balance law.
 
 ## Four Regimes
 
@@ -112,10 +112,10 @@ The meaning of angular momentum and spin changes sharply as one moves from free 
 
 | Regime | What exists at the substrate level | Angular momentum reading | Spin reading |
 | --- | --- | --- | --- |
-| Opposite-polarity architrinos passing in an empty void | Two persistent architrino worldlines, unlike polarities, mutual attractive delayed partner hits, and their emitted causal wakes. | A scattering impact-parameter ledger exists for the two-body history. The mechanical part can bend during delayed attraction, while $\mathbf{L}_{\text{wake}}$ carries the in-flight balance. There is no quantized orbital label unless the interaction locks into a periodic assembly. | None at the primitive level. A single architrino has no internal axis, and a flyby pair has not formed an ordered assembly. |
-| Same-polarity architrinos passing in an empty void | Two persistent architrino worldlines, like polarities, mutual repulsive delayed partner hits, and their emitted causal wakes. | The same total ledger exists, but the radial sign is repulsive. The encounter is normally a deflection rather than a capture route. Any self-hit contribution requires suitable curved super-field-speed history; it is not implied by same polarity alone. | None at the primitive level. Same polarity changes the force sign, not the ontological inventory. |
+| Opposite-polarity architrinos passing in an empty void | Two persistent architrino worldlines, unlike polarities, mutual attractive delayed partner hits, and their emitted causal wakes. | A scattering impact parameter describes the prescribed two-body history. Mechanical angular momentum can change; a separately constructed wake and boundary law must establish the total balance. Periodicity alone does not quantize angular momentum, and effective scattering states can have angular quantum labels without capture. | None at the primitive level. A single architrino has no internal axis, and a flyby pair has not formed an ordered assembly. |
+| Same-polarity architrinos passing in an empty void | Two persistent architrino worldlines, like polarities, mutual repulsive delayed partner hits, and their emitted causal wakes. | The same rotational-account target applies, with the opposite delayed radial sign. A repulsive hit does not by itself determine the complete encounter outcome. Any self-hit contribution requires suitable history reaching field speed; it is not implied by same polarity alone. | None at the primitive level. Same polarity changes the acceleration sign, not the ontological inventory. |
 | Spiraling opposite-polarity binary | A bound or capturing electrino:positrino pair with partner-hit delay, positive tangential drive in the sub-field-speed circular benchmark, and possible transition toward self-hit. | Angular momentum becomes assembly-relevant. The binary has orbital-plane circulation, a phase variable, and an action-angle ledger. The particle-only circular expression is not enough because delayed partner hits and later self-hits exchange angular momentum with wake history. | Not standard spin. A planar binary can have a circulation sign relative to its plane normal, but it is still a planar orbital-like datum, not a spinor representation. |
-| Maximum-curvature binary | A candidate tight binary near the null-separatrix / Jacobian-wall regime. Self-hit supplies an outward barrier; the complete signed ledger must supply centripetal and tangential closure. | If a stable maximum-curvature binary exists, it supplies a reproducible internal rotational-action standard. Its angular momentum is internal circulation plus self-wake history, not a primitive point property. | Still not fermion spin-$\tfrac{1}{2}$. It can supply a planar angular-momentum sign or helicity-like boundary datum only after a normal or propagation axis is specified. |
+| Maximum-curvature binary | A candidate tight binary near the null-separatrix / Jacobian-wall regime. The circular self-hit benchmark has an outward radial contribution; an actual barrier and retained assembly require the complete acceleration and history balance. | If a stable maximum-curvature binary exists, it supplies a reproducible internal rotational-action standard. Its angular momentum is internal circulation plus self-wake history, not a primitive point property. | Still not fermion spin-$\tfrac{1}{2}$. It can supply a planar angular-momentum sign or helicity-like boundary datum only after a normal or propagation axis is specified. |
 
 The table shows why the answer cannot be simply "angular momentum exists" or "spin exists." The primitive two-body law contains only delayed radial hits. Angular momentum appears when the entire isolated history is organized under rotational symmetry. Spin appears only after an assembly has enough internal orientation structure to transform like a standard spin representation.
 
@@ -172,13 +172,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c897089d83dd889e)
 
-An opposite-polarity flyby can therefore convert transverse motion into a capture or spiral if the delay geometry and impact parameter place the pair inside the relevant basin. A same-polarity flyby normally does the opposite: it pushes the paths apart. In both cases the spin statement remains the same. A flyby pair has no intrinsic spin variable. It has only motion, causal wakes, and the total angular-momentum ledger of that motion-plus-wake history.
+A capture or spiral is a candidate outcome only if the full delayed dynamics exhibits that basin; the radial power identity alone does not establish capture. A same-polarity partner hit reverses the delayed radial acceleration sign. Capture or escape remains a full-history dynamical question. In both cases the spin statement remains the same. A flyby pair has no intrinsic spin variable. It has only motion, causal wakes, and the total angular-momentum ledger of that motion-plus-wake history.
 
 ## Spiraling Binary
 
 An opposite-polarity binary introduces the first genuinely assembly-like use of angular momentum. In the sub-field-speed partner-only circular benchmark, the delayed attraction is not central in the instantaneous Newtonian sense. The partner's past position creates a tangential component, and that component is positive in the direction of motion. The result is anti-damped circular instability rather than stable circular motion. An inward spiral is a separate non-circular branch claim, not a consequence of the principal circular sign alone.
 
-The binary's useful variables are not only position and velocity. A reduced circular chart uses radius $R$, angular speed $\omega$, speed $s=R\omega$, phase angle, branch roots, and a plane normal. For a full cycle, the relevant action-angle relation is
+The binary's useful variables are not only position and velocity. A reduced circular chart uses radius $R$, angular speed $\omega$, speed $s=R\omega$, phase angle, branch roots, and a plane normal. If a closed effective canonical phase-space cycle has been derived, its action-angle relation is
 
 $$
 A_{\text{cycle}}
@@ -226,7 +226,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-32cf291b3105f5f4)
 
-The principal self branch turns on only for $s > 1$. Its Jacobian is
+This displayed sine form describes the principal branch $0<\delta_s<2\pi$; the full circular distance equation uses $2s|\sin(\delta_s/2)|$. The principal positive root exists only for $s > 1$. Its Jacobian is
 
 $$
 J_s
@@ -248,19 +248,19 @@ If a stable maximum-curvature binary exists, it may define a fundamental length 
 
 ### The Exact Kinematic Ledger of the Prescribed Co-Rotating Coincident-Axis Braid
 
-All six architrinos co-rotate at one common frequency $\omega$ about one shared axis $\hat{\mathbf z}$. Each indexed binary $a\in\{1,2,3\}$ is an antipodal pair with independently assignable axial coordinate $h_a$ and axis offset $\rho_a$. The kinematic angular momentum is then exact at every instant, not cycle-averaged and not approximate:
+All six architrinos co-rotate at one common signed frequency $\omega$ about one shared axis $\hat{\mathbf z}$. Relative to the braid center, the endpoints of binary $a$ are $\pm\mathbf d_a$, where $\mathbf d_a=h_a\hat{\mathbf z}+\rho_a\mathbf e_a(T)$ and $\mathbf e_a(T)=(\cos(\omega T+\phi_a),\sin(\omega T+\phi_a),0)$. Thus $\dot{\mathbf d}_a=\rho_a\omega\hat{\mathbf z}\times\mathbf e_a$. The cross product of position and weighted velocity gives the exact kinematic angular momentum:
 
 $$
 \mathbf J_{\mathrm{kin}}(T)
 =
-\sum_{a=1}^{3} J_a\,\hat{\mathbf z},
+\sum_{a=1}^{3}\left[J_a\,\hat{\mathbf z}-2\mu_{\text{arch}}\omega h_a\rho_a\mathbf e_a(T)\right],
 \qquad
 J_a=2\mu_{\text{arch}}\rho_a^2\,\omega
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-94ce20f3e0e34977)
 
-Every binary normal coincides with the spin axis, $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf z}$: the ledger is a **rank-one spine** carrying the indexed spin magnitudes $J_a$. The kinematic linear momentum vanishes exactly at rest because each binary is antipodal and is exactly axial under axial group velocity. The coincident-axis three-binary braid transport state therefore reduces to the two scalars $P_\parallel$ and $J_\parallel$, with the origin-independent helicity $\mathbf J\cdot\mathbf P$ as the combined label. Claim level: derived from the prescribed coincident-axis three-binary braid kinematics.
+The orbital-plane normals coincide, but an axially separated binary has a rotating transverse angular-momentum component about the braid center. The total is purely axial only when $\sum_a h_a\rho_a e^{i\phi_a}=0$; its full-cycle average is axial without that extra restriction. The $J_a$ are axial components, not generally the magnitudes of the individual vectors. Antipodality makes the kinematic linear momentum vanish at rest and align with an axial group velocity. The product $\mathbf J\cdot\mathbf P$ is invariant under a common origin shift because $(\mathbf b\times\mathbf P)\cdot\mathbf P=0$; standard dimensionless helicity further divides by $|\mathbf P|\hbar$ when $\mathbf P\ne0$. Claim grade: derived kinematics of the stated prescribed paths, not dynamical retention.
 
 The axis sector has an equally clean kinematic reduction. Take as slow coordinates the per-binary plane inclinations about two transverse axes, $\eta_a^{x}$ and $\eta_a^{y}$. The cycle-averaged tilt inertia of a layer about a transverse axis through the braid center is
 
@@ -270,21 +270,21 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-69031b23d7d36eec)
 
-so a binary with small $\rho_a$ can still carry full-scale tilt inertia through $h_a$ while carrying little spin. The two coordinate types therefore separate the spin ledger from the tilt-inertia ledger, which makes the axis sector a gyroscopic problem rather than a quasi-static one. Claim level: exact kinematics of prescribed fixed-coordinate coincident-axis three-binary braid (the tilt inertia is the cycle-averaged fixed-coordinate binary reduction); $\mu_{\text{arch}}$ is the numerical site weight of the working models, not a primitive mass.
+so a binary with small $\rho_a$ can still carry full-scale tilt inertia through $h_a$ while carrying little spin. The two coordinate types therefore separate the spin ledger from the tilt-inertia ledger, which makes the axis sector a gyroscopic problem rather than a quasi-static one. Claim grade: derived cycle-averaged geometric inertia for prescribed fixed-coordinate paths; its use as a dynamical inertia requires the reduced action or balance law. $\mu_{\text{arch}}$ is the numerical site weight of the working models, not a primitive mass.
 
 ### The Wake Ledger and the Causal-Delay Asymmetry
 
-The total rotational ledger is the kinematic spine plus the same branch-resolved wake term as in the boxed three-binary total of the functional scaffold below. coincident-axis three-binary braid adds a clean indexed row structure for posing the wake questions (claim level for this subsection: symmetry and structural arguments on prescribed fixed-coordinate coincident-axis three-binary braid; no measured wake rows are carried):
+The total rotational account is the full kinematic vector plus the same branch-resolved wake term as in the boxed three-binary total of the functional scaffold below. coincident-axis three-binary braid adds a clean indexed row structure for posing the wake questions (claim level for this subsection: symmetry and structural arguments on prescribed fixed-coordinate coincident-axis three-binary braid; no measured wake rows are carried):
 
-- The per-binary transverse (tilt) wake torques vanish at the untilted configuration — tilt equilibrium is automatic, by reflection symmetry of the fixed-coordinate family.
+- A complete co-rotating history in an isotropic environment has cycle-averaged transverse torque zero by rotation covariance over a full period. Instantaneous transverse torque need not vanish, and this average does not establish radial, axial, or tangential acceleration balance. Arbitrary phases and axial offsets do not supply a reflection symmetry that fixes each binary.
 - Whether the per-binary axial wake torques close binary by binary — and, if not, which binaries carry a standing tangential surplus that must be transacted into the outgoing wake — is the first wake measurement the validated engine must supply for this family. No per-binary closure values are carried here.
-- The tilt stiffness block $K$ — the matrix of cycle-averaged transverse-torque responses to per-binary tilts — is **not required to be symmetric, and any asymmetry would be physics rather than error**. Its rows must sum to zero (a global tilt is a symmetry of the isotropic delayed law, so the global mode is an exact null), but its columns need not: in an instantaneous-interaction theory internal torques cancel pairwise and no column imbalance can exist, while in a causal-delay theory the field in flight carries angular momentum, and a column imbalance is exactly a tilt-sector posting to the wake ledger. Measuring $K$ is an open target for the validated engine.
+- The tilt response block $K$ need not be symmetric in a delayed reduced model, but an observed asymmetry needs validation of coordinate, torque, averaging, and wake conventions before a physical interpretation. Rotation covariance gives a global-tilt null for the complete equilibrium residual derivative, including transported baseline torques; it need not give zero row sums for a raw torque block alone. Column imbalance is not by itself a measured wake transfer. Measuring and validating these blocks remains open.
 
 How the transacted half of the wake ledger behaves under axial group velocity — whether the wake angular impulse per accepted transaction is invariant or runs with group speed — is likewise open; it is the comparison consumed by the $h$ and $\hbar$ convention section of this bridge and by closure target 17 below.
 
 ### The Iso-Frequency Partition Map
 
-The coincident-midpoint orthogonal-axis braid partition targets allocate an accepted increment across three per-binary frequencies. On coincident-axis three-binary braid that chart collapses, and the partition becomes a constrained allocation map through geometry at a single cadence. From the exact kinematic ledger, an accepted transaction that shifts the axis offsets, axial coordinates, common cadence, binary inclinations, and wake books its axial and transverse increments as
+The coincident-midpoint orthogonal-axis braid partition targets allocate an accepted increment across three per-binary frequencies. On coincident-axis three-binary braid that chart collapses, and the partition becomes a constrained allocation map through geometry at a single cadence. From the exact kinematic ledger, a small transaction has the following first-order axial increment. The transverse row applies to the cycle-averaged axial components, with $\Delta\boldsymbol\eta_a$ denoting the transverse change of the unit axis; an instantaneous map must also differentiate the transverse term in $\mathbf J_{\mathrm{kin}}$ above:
 
 $$
 \Delta J_z
@@ -308,17 +308,17 @@ with the axial cost of a binary inclination only second order — tilting stores
 
 1. **One cadence.** The coincident-midpoint orthogonal-axis braid frame's three independent frequency increments collapse to a single $\Delta\omega$ shared by every coincident-axis three-binary braid binary. Binary-resolved allocation freedom lives entirely in the geometry — axis offsets, axial coordinates, and inclinations — not in per-binary frequency retuning.
 2. **The cadence is an open coordinate.** Nothing established fixes $\Delta\omega$. Whether any mechanism holds a coincident-axis three-binary braid member at a fixed cadence or speed budget is an open question for the validated engine; until one is established, $\Delta\omega$ enters the partition map as a free coordinate.
-3. **One energy price.** In the reduced action-angle chart the orthogonal-axis three-binary companion ledger reads $\Delta E=\sum_{a=1}^{3}\omega_a\Delta I_a+\Delta E_{\text{wake}}$, so the energy cost of an accepted increment can depend on which indexed binary receives it. At one cadence that dependence vanishes: $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ at first order, however the allocation falls. For the accepted quantum $\Delta I=\hbar$ this is $\Delta E=\hbar\omega$ appearing as a ledger identity of coincident-axis three-binary braid rather than an imported relation. The actual allocation must therefore be decided by the constraint structure, stiffness spectrum, and causal-root admissibility.
+3. **Conditional energy price.** In a derived canonical action-angle chart with energy $E(I_1,I_2,I_3;\xi)$, $\omega_a=\partial E/\partial I_a$ and $dE=\sum_a\omega_a dI_a$ only at fixed additional parameters $\xi$. Equal frequencies then give $dE=\omega\,dI_{\text{core}}$. Geometry changes, wake exchange, and noncanonical variables require their own terms. A common prescribed cadence alone derives neither this energy law nor the quantum increment $\hbar$. The allocation remains a dynamics problem.
 
-The tilts are the map's distinctive channel — transverse storage at zero first-order axial cost — and therefore the natural candidate storage channel for accepted increments; whether the coupled relative-tilt modes are in fact soft is a stiffness measurement the validated engine has yet to supply. As in the orthogonal-axis three-binary case, writing the map is not solving it: the partition among radii, tilts, cadence, and wake remains a dynamics problem in conservation, admissibility, phase locking, and branch stability. Claim level: the increment identities are exact kinematics of the prescribed fixed-coordinate family; the energy-price statement is a reduced action-angle statement at the same grade as the orthogonal-axis three-binary companion ledger; the allocation dynamics — and any cadence- or speed-holding mechanism — is open.
+The tilts are the map's distinctive channel — transverse storage at zero first-order axial cost — and therefore the natural candidate storage channel for accepted increments; whether the coupled relative-tilt modes are in fact soft is a stiffness measurement the validated engine has yet to supply. As in the orthogonal-axis three-binary case, writing the map is not solving it: the partition among radii, tilts, cadence, and wake remains a dynamics problem in conservation, admissibility, phase locking, and branch stability. Claim level: the increment formulas are first-order expansions, with the transverse formula restricted to the averaged or transverse-canceling reduction; the energy-price statement is a reduced action-angle statement at the same grade as the orthogonal-axis three-binary companion ledger; the allocation dynamics — and any cadence- or speed-holding mechanism — is open.
 
 ### Quotient-Spectrum Discipline
 
-The exact global-tilt null is a gift and a trap, and it fixes a method rule for the campaigns to come. Because the void is isotropic, a global tilt of the braid costs nothing: the stiffness block annihilates $(1,1,1)$ identically, and the residual of that null is a built-in validation row for any instrument that measures $K$. But the same null pollutes any symmetric-part eigenvalue bound. **Every stability or spectrum claim in the axis sector must therefore deflate the exact global-tilt null first and read the quotient spectrum** — the relative-tilt modes are the claim-bearing objects. In the dynamical linearization the null survives exactly only when the linearization carries the spin transport of the baseline axial torques; there the deflation is again exact, and the paired validation row is that the cross-block row sums reproduce the baseline torques binary by binary.
+The exact global-tilt null is a gift and a trap, and it fixes a method rule for the campaigns to come. Once an actual equilibrium or relative equilibrium and an equivariant residual are established, a global rotation produces a neutral direction of that complete residual. This supplies a validation row for its derivative, with baseline torque transport included. It does not require a raw $K$ block to annihilate $(1,1,1)$ independently. But the same null pollutes any symmetric-part eigenvalue bound. **Every stability or spectrum claim in the axis sector must therefore deflate the exact global-tilt null first and read the quotient spectrum** — the relative-tilt modes are the claim-bearing objects. In the dynamical linearization the null survives exactly only when the linearization carries the spin transport of the baseline axial torques; there the deflation is again exact, and the paired validation row is that the cross-block row sums reproduce the baseline torques binary by binary.
 
 ### The Ordered Frame and the Helicity-Polarity Lock
 
-The spinor program of this bridge needs an ordered frame: a locked triple of oriented structures whose transport around closed histories can be interrogated for $2\pi/4\pi$ behavior. Prescribed coincident-axis three-binary braid supplies the spin axis $\hat{\mathbf z}$ exactly. An axial polarity dipole is an additional coincident-axis three-binary braid subset condition, not a consequence of the common axis alone. If the members of binary $a$ have axial signs $s_a$ and azimuthal phases $\phi_a$, transverse cancellation requires
+The spinor program of this bridge needs an ordered frame: a locked triple of oriented structures whose transport around closed histories can be interrogated for $2\pi/4\pi$ behavior. Prescribed coincident-axis three-binary braid supplies the common rotation axis $\hat{\mathbf z}$ exactly; it is the instantaneous total kinematic angular-momentum axis only on the transverse-canceling subset, and otherwise the cycle-averaged axis. An axial polarity dipole is an additional coincident-axis three-binary braid subset condition, not a consequence of the common axis alone. If the members of binary $a$ have axial signs $s_a$ and azimuthal phases $\phi_a$, transverse cancellation requires
 
 $$
 \sum_{a=1}^{3}s_a\rho_a e^{i\phi_a}=0.
@@ -326,11 +326,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-76a653275e26c9e7)
 
-On that subset, the axis, axial polarity dipole, and a declared azimuthal reference form a fixed-coordinate locked triple. The handedness label is the pseudoscalar pairing of dipole and spin. Claim level: derived kinematics for the stated coincident-axis three-binary braid subset; the $2\pi/4\pi$ transport response and any group-velocity orientation preference remain open.
+On that subset, provided the axial dipole is nonzero, the axis, axial polarity dipole, and a declared azimuthal reference form a fixed-coordinate locked triple. This polarity cancellation is independent of the angular-momentum condition $\sum_a h_a\rho_a e^{i\phi_a}=0$. The handedness label is the pseudoscalar pairing of dipole and spin. Claim level: derived kinematics for the stated coincident-axis three-binary braid subset; the $2\pi/4\pi$ transport response and any group-velocity orientation preference remain open.
 
 ### Gyroscopic-Circulatory Axis Dynamics
 
-The quasi-static tilt block is necessary but not sufficient: the binaries carry spin angular momentum, so the true linearized axis dynamics about any candidate configuration is a quadratic eigenvalue problem, not a static stiffness test. With the tilt coordinates $q=(\eta_1^x,\eta_2^x,\eta_3^x,\eta_1^y,\eta_2^y,\eta_3^y)$, indexed inertia $m_a$ and spin $J_a$ from the kinematic ledger above, baseline axial torques $\tau_a$, and the tilt block $K$, the binary equations
+A quasi-static tilt block is insufficient for stability. First establish that the full history satisfies all acceleration-balance equations as an equilibrium, periodic orbit, or relative equilibrium. A prescribed unbalanced path has no stability spectrum describing a retained assembly. After a controlled cycle-averaged finite-dimensional reduction, a possible gyroscopic chart is the following quadratic eigenvalue problem; the exact delayed linearization generally retains memory and has a frequency-dependent characteristic operator. With the tilt coordinates $q=(\eta_1^x,\eta_2^x,\eta_3^x,\eta_1^y,\eta_2^y,\eta_3^y)$, indexed inertia $m_a$ and spin $J_a$ from the kinematic ledger above, baseline axial torques $\tau_a$, and the tilt block $K$, the binary equations
 
 $$
 m_a\ddot\eta_a^{x}+J_a\dot\eta_a^{y}+\tau_a\eta_a^{y}=T_a^{x}(q),
@@ -350,7 +350,7 @@ $$
 
 with $M$ the diagonal tilt-inertia matrix, $G$ the gyroscopic (spin) block, and $\Gamma$ the spin-transport block of the baseline axial torques, required for the exact global null of $K-\Gamma$ and hence for the quotient discipline. The eigenvector components pair into complex tilt amplitudes $\zeta_a=\eta_a^x+i\eta_a^y$, so each quotient eigenvalue is a whirl mode: a rotating precession pattern with growth rate $\operatorname{Re}\lambda$ and whirl frequency $\operatorname{Im}\lambda$.
 
-Everything beyond this chart is open. $M$ and $G$ follow from the exact kinematics; $K$, $\Gamma$, and any delay-memory (tilt-rate) contribution are measurements the validated engine has yet to supply. Whether coincident-axis three-binary braid holds its axis, whether an axis-sector surplus exists that must be absorbed, and whether group velocity changes the answer are questions for direct EOM-solver evolution, subject to the quotient discipline above. A causal-root fold crossing lies outside any cycle-averaged linearization, so no pencil alone can close the axis sector. Claim level: the pencil is the standard fixed-coordinate binary linearization chart; every block beyond $M$ and $G$, and every stability statement, is an open measurement.
+Everything beyond this chart is open. $M$ is the displayed cycle-averaged geometric inertia and $G$ uses the axial spin components in this reduced chart; their sufficiency requires control of transverse angular momentum and discarded modes. $K$, $\Gamma$, and delay-memory contributions remain to be derived or measured on a dynamically admissible baseline. Whether coincident-axis three-binary braid holds its axis, whether an axis-sector surplus exists that must be absorbed, and whether group velocity changes the answer are questions for direct EOM-solver evolution, subject to the quotient discipline above. A causal-root fold crossing lies outside any cycle-averaged linearization, so no pencil alone can close the axis sector. Claim level: the pencil is a proposed finite-dimensional reduction; its validity for the delayed dynamics, the baseline balance, and every stability conclusion remain open.
 
 ## Coincident-Midpoint Orthogonal-Axis Braid Spin Scaffold
 
@@ -535,7 +535,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-af44ecf68c4a2f38)
 
-An active branch must satisfy the causal-root equation and the relevant phase window,
+Every active branch satisfies the causal-root equation. A selected phase-locked assembly imposes the additional phase condition
 
 $$
 \Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
@@ -544,7 +544,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-eec10bbb7ad502d4)
 
-inside the tolerance of the regularized chart.
+inside the tolerance of its reduced chart. Phase mismatch does not remove an otherwise admitted hit from the master equation.
 
 The self-hit history is the diagonal subset
 
@@ -657,7 +657,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-52afb9048abb309e)
 
-For isolated solutions of a symmetry-preserving delayed action, this total is the conserved rotational ledger. In regularized working models, conservation of this quantity is a validation target.
+With the compensating wake integral as defined above, this total is constant by construction. An independently derived wake and boundary functional is required before its numerical constancy can test physical conservation.
 
 For a small transition, the layer increment is
 
@@ -747,21 +747,17 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b022f0146df43615)
 
-The wake functional supplies the complementary in-flight ledger:
+For an open source-to-core transaction, define a separate physical wake increment from the independently constructed wake and boundary account:
 
 $$
 \Delta\mathbf L_{\text{wake}}^{\text{core}}
-=
--
-\int_{T_i}^{T_f}
-\sum_{\ell\in\{1,2,3\}}\mathbf T_\ell(T')\,dT'
-+
+\equiv
 \Delta\mathbf L_{\text{wake},\partial}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2a6083ebefc84bad)
 
-Here $\Delta\mathbf L_{\text{wake},\partial}$ denotes angular momentum still carried across the boundary of the chosen core subsystem at the end of the transition window. For a completely isolated core-plus-source system this boundary term is balanced by source-channel recoil. For a reduced core-only ledger it is the retained wake channel that appears as $\Delta\mathbf L_{\text{wake}}$ in the bridge equations.
+Here $\Delta\mathbf L_{\text{wake},\partial}$ denotes the net change of the retained wake and boundary angular-momentum account, including emission-to-reception endpoints and outgoing flux, in the declared source-core system. It is not defined as minus the same core torque integral: doing that would cancel the mechanical increment by construction and would count it again in the transaction equation below. Its physical value and the combined conservation law remain independent derivation targets.
 
 Let the incoming source channel lose angular momentum
 
@@ -881,12 +877,12 @@ $$
 
 where $n_1$ is the number of self-hit-selected role substeps retained by the branch. The four-substep certificate sets $n_1=2$ and then imposes the additional symmetry choice $a=b=\eta_2$ with $w=0$. More general branches must solve for $a$, $b$, $w$, and any transverse recoil terms from the torque integrals rather than assigning them by symmetry.
 
-The geometry of the partition is visible in the normal decomposition
+The geometry of the scalar partition is visible in the transaction-axis decomposition
 
 $$
 \Delta\mathbf L_{\text{mech},\ell}
 =
-\Delta I_\ell\hat{\mathbf n}_\ell
+\Delta I_\ell\hat{\mathbf a}
 +
 \Delta\mathbf L_{\ell,\perp},
 \qquad
@@ -930,7 +926,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-17ee4a1dd400542a)
 
-when $\hat{\mathbf n}_\ell$ is fixed during the projected step. Each binary then contributes one mechanical retune equation. For the worked branch below only, declare binary $1$ to be self-hit-selected, binary $2$ to be fold-selected, and binary $3$ to be externally exposed. These are measured branch roles, not coincident-midpoint orthogonal-axis braid identities. The branch-specific side conditions are:
+when $\hat{\mathbf n}_\ell=\hat{\mathbf a}$ is fixed during the step. At a general fixed angle, multiply the right side by $\hat{\mathbf a}\cdot\hat{\mathbf n}_\ell$; changing normals additionally contribute $I_\ell\hat{\mathbf a}\cdot\Delta\hat{\mathbf n}_\ell$. The scalar action increments used in an energy chart and the transaction-axis projections are different quantities unless these conditions identify them. Each binary then contributes one mechanical retune equation. For the worked branch below only, assign binary $1$ the self-hit-selected role, binary $2$ the fold-selected role, and binary $3$ the externally exposed role. These are hypotheses for the example, not measured branch roles or binary identities. The label fold-selected here uses a speed-threshold surrogate: $R_2\omega_2=c_f$ does not itself establish a causal fold, which requires $D_t=0$ and the appropriate nondegeneracy conditions. The branch-specific side conditions are:
 
 $$
 R_3^+\omega_3^+ < c_f,
@@ -970,8 +966,6 @@ $$
 \Delta E_\ell
 \approx
 \bar\omega_\ell\Delta I_\ell
-+
-\bar I_\ell\Delta\omega_\ell
 +
 \Delta E_{\ell,\text{root}}
 $$
@@ -1123,7 +1117,7 @@ $$
 
 The external-exposure phase-lock and coupling geometry determine $a$ and the allowed pair $(\Delta R_3,\Delta\omega_3)$. In the general ledger, those are open branch equations rather than assigned values.
 
-For the fold-selected role, impose the simplified post-transaction fold condition
+For the fold-selected role, impose the simplified post-transaction speed-threshold constraint
 
 $$
 R_2^+\omega_2^+=c_f
@@ -1131,7 +1125,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2f484c4881996cc0)
 
-Linearizing gives
+Assuming the initial state satisfies the same speed constraint, linearizing gives
 
 $$
 \frac{\Delta\omega_2}{\omega_2^-}
@@ -1181,7 +1175,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-44512e61db12779e-2)
 
-On raw simple-root charts, a separator crossing must also respect
+For a generic interior fold with fixed delay endpoints and no other root event, the simple-root counts on its two sides obey
 
 $$
 \Delta N_{\text{self}}\in2\mathbb Z,
@@ -1191,7 +1185,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4d148c6dff9a23f5)
 
-These self-hit equations decide which two-substep branch update is admissible and how much of the accepted increment can remain in the self-hit-selected binary as $2b\hbar$ instead of being returned through the wake ledger.
+These equations constrain root admissibility. They do not determine the number of temporal substeps or their action shares; the torque and energy dynamics must supply that connection.
 
 The energy ledger for the same isolated transaction is
 
@@ -1239,14 +1233,12 @@ $$
 \approx
 \bar\omega_\ell\Delta I_\ell
 +
-\bar I_\ell\Delta\omega_\ell
-+
 \Delta E_{\ell,\text{root}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b03884c6e268a4c1-2)
 
-where $\Delta E_{\ell,\text{root}}$ records the causal-root and self-hit branch change not captured by the smooth action-angle part. The fold-selected channel closes the energy balance:
+Here the action-angle term assumes $\omega_\ell=\partial E_\ell/\partial I_\ell$ at fixed other parameters; $\Delta E_{\ell,\text{root}}$ also retains geometry, parameter, and branch contributions omitted by that approximation. Differentiating an assumed product $I_\ell\omega_\ell$ would add $I_\ell d\omega_\ell$, but that product is not the general canonical energy. The projected $\Delta I_\ell$ is identified with canonical action only in the aligned chart. The fold-selected channel closes the energy balance:
 
 $$
 \Delta E_2
@@ -1264,7 +1256,7 @@ $$
 
 ### Solved Minimal Four-Substep Branch
 
-The minimal solved branch adds four simplifying assumptions to the separated-scale chart:
+The minimal algebraic example adds four simplifying assumptions to the separated-scale chart. Its aligned normals place it at a common-axis boundary, not at the orthogonal-axis endpoint:
 
 1. the transaction axis is aligned with the projected binary normals, so $\hat{\mathbf n}_1\cdot\hat{\mathbf a}=\hat{\mathbf n}_2\cdot\hat{\mathbf a}=\hat{\mathbf n}_3\cdot\hat{\mathbf a}=1$ during the linearized step;
 2. $\Delta\mathbf L_{\text{tr}}=\mathbf 0$;
@@ -1346,7 +1338,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7530f7cc7ee10769)
 
-For binary $2$, preserve the fold condition $R_2\omega_2=c_f$ through the linearized retune. Since $\Delta I_2=\hbar/4$,
+For binary $2$, preserve the speed-threshold constraint $R_2\omega_2=c_f$ through the linearized retune. Since $\Delta I_2=\hbar/4$,
 
 $$
 \Delta R_2
@@ -1371,7 +1363,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d01fc5fa1ce77a95)
 
-so binary $2$ stays on the $v=c_f$ fold condition to first order.
+so binary $2$ stays on the $v=c_f$ speed threshold to first order.
 
 For the self-hit-selected binary, use a fixed-radius retune across the two equal self-hit substeps:
 
@@ -1412,7 +1404,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cde7171831fb8235)
 
-On a raw simple-root separator chart, the two self-hit-selected substeps correspond to the minimal admissible even jump
+Independently of the assumed two temporal substeps, a generic interior root-pair creation would have
 
 $$
 \Delta N_{\text{self}}=+2,
@@ -1422,7 +1414,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-39f52c68e13d1941)
 
-provided the active roots stay simple through the regularized transition.
+with simple roots on either side and a non-simple root at the fold itself. A count change cannot occur while all roots remain simple and stay away from the delay endpoints. The principal circular self onset at zero delay is an excluded-endpoint event, not this interior-fold theorem.
 
 The energy admissibility condition is explicit. In the first action-angle approximation with no retained wake energy and no residual root-energy term, the source channel must satisfy
 
@@ -1489,8 +1481,6 @@ $$
 +
 \sum_{\ell}\Delta\mathbf L_{\mathrm{mech},\ell}^{B}
 +
-\Delta\mathbf L_{\mathrm{tr}}^{B}
-+
 \Delta\mathbf J_{\mathrm{wake},B}^{(\eta)}
 \right\|
 }{
@@ -1500,7 +1490,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-abab1e026e44f08a)
 
-The first proof step is to differentiate $\mathbf J_{\mathrm{mech}}^B+\mathbf J_{\mathrm{wake}}^B$ on $W$ and match the torque sum to the wake-history boundary increment derived from the same accepted motion-plus-wake update. If any term is evaluated on a different retained row set, endpoint convention, or update, the scalar $\hbar$ partition is only a diagnostic partition, not a conserved angular-momentum certificate.
+The layer mechanical increments in this residual are the full worldline increments and already include the transport terms; a decomposition into circular pieces must add transport exactly once. The first proof step is to differentiate $\mathbf J_{\mathrm{mech}}^B+\mathbf J_{\mathrm{wake}}^B$ on $W$ and match the torque sum to the wake-history boundary increment derived from the same accepted motion-plus-wake update. If any term is evaluated on a different retained row set, endpoint convention, or update, the scalar $\hbar$ partition is only a diagnostic partition, not a conserved angular-momentum certificate.
 
 The conservation result for this branch is therefore explicit:
 
@@ -1714,7 +1704,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-881d7438511a111d)
 
-where $\hat{\boldsymbol\jmath}$ is the exact spin axis from the rank-one kinematic spine, $\hat{\mathbf d}$ is the polarity-dipole direction on the transverse-canceling coincident-axis three-binary braid subset defined above, $\theta_3$ is a declared azimuthal reference, and $\mathcal R$ is the causal-root and self-hit ledger. On that subset the handedness label is the pseudoscalar pairing $h=\hat{\mathbf d}\cdot\hat{\boldsymbol\jmath}$. The prescribed coincident-axis three-binary braid coordinate lock keeps the triple's relative orientation fixed around the entire cycle. Claim level: derived for the stated transverse-canceling subset; no axial dipole is asserted for general coincident-axis three-binary braid.
+where $\hat{\boldsymbol\jmath}$ is the cycle-averaged kinematic angular-momentum axis, or the instantaneous axis on the additional transverse-angular-momentum-canceling subset, $\hat{\mathbf d}$ is the polarity-dipole direction on the transverse-canceling coincident-axis three-binary braid subset defined above, $\theta_3$ is a declared azimuthal reference, and $\mathcal R$ is the causal-root and self-hit ledger. On that subset the handedness label is the pseudoscalar pairing $h=\hat{\mathbf d}\cdot\hat{\boldsymbol\jmath}$. The prescribed coincident-axis three-binary braid coordinate lock keeps the triple's relative orientation fixed around the entire cycle. Claim level: derived for the stated transverse-canceling subset; no axial dipole is asserted for general coincident-axis three-binary braid.
 
 The discrete-symmetry structure of the label follows from coincident-axis three-binary braid's results at their stated claim level. Polarity conjugation $C$ reverses $\hat{\mathbf d}$ while preserving $\hat{\boldsymbol\jmath}$, so it flips $h$: a braid and its polarity-conjugate braid are the exactly degenerate glove pair at fixed worldline order. A true mirror reverses the ordered orientation and flips $h$ again. The combined $CP$ operation restores $h$. The pro/anti ordered-orientation sign is therefore not the same object as the polarity-conjugation sign; their product supplies the polarity-weighted handedness $h$. Consequently the gauge quotient on the coincident-axis three-binary braid frame must not remove polarity assignment, ordered-orientation reversal, or causal-root branch change — exactly the discipline stated for the coincident-midpoint orthogonal-axis braid chart below.
 
@@ -1826,7 +1816,7 @@ with the physical requirement:
 - a $2\pi$ spatial rotation returns the coarse orientation but changes the internal phase/sign branch;
 - a $4\pi$ rotation restores the full ordered-frame configuration.
 
-A support row for that requirement has to be a retained active-root datum, not merely the visible $SO(3)$ loop. For a retained row $r$ in a branch chart, the local parity test has the form
+A support row for the proposed history-based route has to be a retained active-root datum, not merely the visible $SO(3)$ loop. A parity sign is only a necessary diagnostic for that route: a spinor representation also needs a continuous lifted rotation action, composition and homotopy compatibility, and the two-dimensional unitary response that selects spin $\tfrac12$. For a retained row $r$ in a branch chart, the local parity test has the form
 
 $$
 \epsilon_{r}^{2\pi}
@@ -2000,7 +1990,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-29f70a22a046426b)
 
-This is ordinary $SO(3)$ closure, not spinor support. The proof is just the parity sum: when every retained non-gauge row returns identically, the visible normal-triad loop has no history-sheet change to pull back into the ordered frame. Therefore a proposed spinor proof that assigns nontrivial $2\pi$ lift to this return-identical table has imported the $SU(2)\to SO(3)$ comparison rather than deriving the lift from delayed causal-root transport.
+The parity sum is zero for this retained table, so the table does not supply the proposed spinor-support datum. This is a no-go for that extractor on those retained variables, not a proof that every possible lift or omitted physical holonomy is trivial. A nontrivial lift requires additional physical transport data and cannot be inferred from the visible frame loop alone.
 
 The first non-null support condition is consequently narrow:
 
@@ -2103,7 +2093,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8d75129a61db1fb5)
 
-The fermionic exchange sign is therefore not an independent assignment:
+The fermionic exchange relation below is a separate spin-statistics target. A one-assembly rotation loop and a two-assembly exchange loop live in different configuration spaces until an admissible many-assembly construction relates them. A row parity alone cannot prove their identification:
 
 $$
 \epsilon_{\mathrm{ex}}(r_\star)
@@ -2176,7 +2166,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ce27de844e0c85c7)
 
-whose spatial-rotation subgroup restricts to the $SU(2)$ lift above. This does not make $SL(2,\mathbb C)$ a primitive substrate symmetry of the Euclidean void. It states the recovery burden: boosts, rotations, spinor phase, helicity comparison, and fermion matter records in the effective relativistic observer sector must be describable by one lifted ordered-frame response after clock, ruler, and Noether sea metric closure are already in place.
+whose spatial-rotation subgroup restricts to the $SU(2)$ lift above. An odd sign under $2\pi$ alone permits every half-integer spin representation; selecting spin $\tfrac12$ also requires the two-dimensional irreducible rotation response and the measured generator algebra. This does not make $SL(2,\mathbb C)$ a primitive substrate symmetry of the Euclidean void. It states the recovery burden: boosts, rotations, spinor phase, helicity comparison, and fermion matter records in the effective relativistic observer sector must be describable by one lifted ordered-frame response after clock, ruler, and Noether sea metric closure are already in place.
 
 Standard orbital quantization supplies the contrast case. For an effective orbital azimuthal mode,
 
@@ -2241,7 +2231,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a41fdad1445dc7e1)
 
-where $\Lambda_{\mathrm{cm}}$ is the reduced coincident-midpoint orthogonal-axis braid closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. The effective maps must first close as comparison operations:
+where $\Lambda_{\mathrm{cm}}$ is the reduced coincident-midpoint orthogonal-axis braid closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. On observer records or rays, which discard an overall complex phase, the effective maps must first close as comparison operations:
 $$
 C_{\mathrm{eff}}^2
 =
@@ -2258,7 +2248,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e9f853584a11995f)
 
-They must then satisfy the observer-record residual
+These record identities do not imply the same identities on spinor vectors. In the standard spin-$\tfrac12$ comparison, antiunitary time reversal can be represented by $T=i\sigma_y K$, where $K$ is complex conjugation, and $T^2=-\mathbf1$. That sign disappears on rays but must survive in the lifted symmetry algebra. They must then satisfy the observer-record residual
 $$
 \mathcal{R}_{\mathrm{CPT}}(A;\theta)
 =
@@ -2283,12 +2273,12 @@ The component action table makes the proof obligation explicit:
 
 | Record component | $C_{\mathrm{eff}}$ | $P_{\mathrm{eff}}$ | $T_{\mathrm{eff}}$ | Combined benchmark |
 | --- | --- | --- | --- | --- |
-| $\Lambda_{\mathrm{cm}}$ | map to the pro/anti-conjugate closure label | reverse the observer-facing orientation chart | reverse phase-flow order in the comparison chart | return an admissible closure label |
+| $\Lambda_{\mathrm{cm}}$ | conjugate polarity while preserving pro/anti ordered orientation | reverse the observer-facing orientation chart | reverse phase-flow order in the comparison chart | return an admissible closure label |
 | $\mathcal{A}_{\mathrm{ax}}$ | swap effective polarity inventory while preserving axial-site admissibility | reflect the axial frame relative to the observer chart | reverse cycle orientation and phase ordering | preserve the allowed axial inventory class |
 | $q_{\mathrm{eff}}$ | $q_{\mathrm{eff}}\mapsto-q_{\mathrm{eff}}$ | unchanged | unchanged | match the antiparticle charge record |
 | $\mathbf{p}_{\mathrm{eff}}$ | unchanged as a charge-conjugation datum | $\mathbf{p}_{\mathrm{eff}}\mapsto-\mathbf{p}_{\mathrm{eff}}$ | $\mathbf{p}_{\mathrm{eff}}\mapsto-\mathbf{p}_{\mathrm{eff}}$ | recover the same mass-shell comparison branch |
 | $\mathbf{S}_{\mathrm{eff}}$ | preserve spin comparison data while conjugating the carrier record | treat spin as axial under spatial reflection | reverse the motion-coupled comparison orientation | preserve spin magnitude and $4\pi$ closure class |
-| $h_{\mathrm{eff}}$ | map to the antiparticle helicity comparison | flip helicity when momentum is reflected | flip helicity when motion is reversed | restore the allowed helicity comparison after the combined operation |
+| $h_{\mathrm{eff}}$ | map to the antiparticle helicity comparison | flip helicity when momentum is reflected | preserve helicity because both spin and momentum reverse | restore the allowed helicity comparison after the combined operation |
 | $\Pi_{\mathrm{weak}}$ | map particles to antiparticles without inventing right-handed charged-current coupling | expose the parity-violating weak-sector mismatch as an effective violation | expose allowed T or CP violations as flavor-sector residuals | leave $(CPT)_{\mathrm{eff}}$ compatible with validated weak data |
 | $\mathsf{s}_{\mathrm{sh}}$ | preserve generation shielding class unless the reaction ledger changes it | preserve generation shielding class | preserve generation shielding class | commute with $T_{\mathrm{gen}}$ up to the generation residual |
 | $\mathcal{P}$ | conjugate source and product provenance rows | reverse the observer chart, not the substrate history | compare the reversed effective process with the admissible history record | keep energy, $\mathbf{p}$, $\mathbf{J}$, polarity, and remnant rows balanced |
@@ -2328,18 +2318,17 @@ $$
 
 with the associated angular-momentum residuals below tolerance on the same branch record. This is a reuse rule, not a new ontology: weak exposure, exchange statistics, and fermion metric compatibility may consume spin/helicity only from the retained row that also carries the causal-writhe parity, quotient, doubled-path, gauge-control, and angular-momentum data.
 
-This is a theorem target, not a completed proof. The causal-action functional adds a promising topological handle through causal writhe,
+This is a theorem target, not a completed proof. The [Causal Action Functional](../../dynamics/causal-action-functional.md#causal-writhe-and-topological-use) defines a projected causal-crossing statistic,
 
 $$
-Wr_c[\gamma]
+Wr_c(\mathfrak B)
 =
-\iint_{\mathcal{L}_{\text{causal}}}
-\mathrm{sign}\!\big(\mathbf V(T)\times\mathbf V(T')\cdot\mathbf r\big)\,dT\,dT'
+\sum_{e\in\mathcal E(\mathfrak B)}\operatorname{sgn}(e)\,\chi_{\mathrm{causal}}(e)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cf097a84a6b8c913)
 
-which measures handedness of the self-interaction pattern. The open problem is to lift that kind of causal-locus invariant from one worldline or branch family to the full ordered coincident-midpoint orthogonal-axis braid frame and then prove the $4\pi$ return behavior.
+where $\mathcal E(\mathfrak B)$ is a finite set of transverse crossing events in a declared three-dimensional realization and oriented projection, and $\chi_{\mathrm{causal}}$ selects admitted events. It is a dimensionless diagram statistic, not automatically invariant under projection or framing changes. The row quantity $W_r$ above needs its own integer-valued definition, gauge invariance, and transport proof before a parity can support a $4\pi$ claim.
 
 ## The $h$ and $\hbar$ Convention
 
@@ -2413,13 +2402,13 @@ $$
 \max\left(
 \left|\{I_a,I_b\}_{\mathcal{Q},W,T_W}\right|,
 \left|\{\theta_a,\theta_b\}_{\mathcal{Q},W,T_W}\right|,
-\left|\{I_a,\theta_b\}_{\mathcal{Q},W,T_W}-\delta_{ab}\right|
+\left|\{\theta_a,I_b\}_{\mathcal{Q},W,T_W}-\delta_{ab}\right|
 \right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-063b21052327fd8b)
 
-Here $\{\cdot,\cdot\}_{\mathcal{Q},W,T_W}$ is the effective bracket induced by the retained coarse-graining on the same record window used for the basin-measure claim. The chart is admissible for action-cell comparison only when $\epsilon_{\mathrm{can}}\le\varepsilon_{\mathrm{can}}$ and the variables are fixed by Master-Equation closure, root-ledger admissibility, and apparatus recordability rather than by a representation chosen to produce a desired count.
+Use the usual canonical sign $\{\theta_a,I_b\}=\delta_{ab}$, so $\dot\theta_a=\{\theta_a,E\}=\partial E/\partial I_a$. Scale actions and bracket residuals by fixed declared units before combining them into one tolerance. Here $\{\cdot,\cdot\}_{\mathcal{Q},W,T_W}$ is the effective bracket to be derived from the retained coarse-graining on the same record window used for the basin-measure claim. The chart is admissible for action-cell comparison only when $\epsilon_{\mathrm{can}}\le\varepsilon_{\mathrm{can}}$ and the variables are fixed by Master-Equation closure, root-ledger admissibility, and apparatus recordability rather than by a representation chosen to produce a desired count.
 
 The corresponding state-count residual should compare physical basin records with action cells in a declared record domain $D$:
 $$
@@ -2434,7 +2423,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-38301fcabf165a95)
 
-Here $N_{\mathrm{basin}}(D)$ counts independently recordable basin alternatives derived from the delayed dynamics, while $N_{\mathrm{cell}}(D)$ counts the $h^n$ action cells that remain after quotienting inaccessible root-ledger and apparatus-equivalent variables. A small $\Delta_{\mathrm{cell}}$ supports an effective action-cell comparison; it does not by itself promote the chart to substrate ontology.
+Here $N_{\mathrm{basin}}(D)$ counts independently recordable basin alternatives derived from the delayed dynamics, while $N_{\mathrm{cell}}(D)$ counts the $h^n$ action cells that remain after quotienting inaccessible root-ledger and apparatus-equivalent variables. A small $\Delta_{\mathrm{cell}}$ supports an effective action-cell comparison. Equal cell volumes do not imply equal basin probabilities or a positive minimum probability without a separately controlled measure density, and an empty comparison domain provides no state-count evidence.
 
 The action-angle chart should therefore be treated as a comparison chart selected after the recordable basin family has been fixed, not as a free quantization rule. In ordinary Bohr-Sommerfeld language one counts integral action leaves. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure route, the corresponding count is accepted only when the same Master-Equation branch record, root-ledger admissibility, and apparatus channel already identify the leaves as independently recordable alternatives. A singular or representation-dependent action-angle chart that changes the count without changing those physical records is a failed effective chart, not a new state sector.
 
@@ -2458,9 +2447,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-276a8da88a64bb4a-2)
 
-and, in the primary iso-frequency chart, the same total allocated through the coincident-axis three-binary braid scaffold's partition map (radii, tilts, shared cadence, wake) at the single energy price $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ — in either chart only after choosing the relevant projected action-angle channel. That scalar statement should not be mistaken for the full vector conservation law.
+and, in the primary iso-frequency chart, the same total allocated through the coincident-axis three-binary braid scaffold's partition map (radii, tilts, shared cadence, wake) with the conditional first-order energy price $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ only where a canonical energy derivative has been derived and additional parameter work is controlled. That scalar statement should not be mistaken for the full vector conservation law.
 
-Whether the transacted unit is constant under group velocity has not been established. The comparison that decides it — the $J_z$-conserving trajectory against the closure-optimal trajectory on a retained family — is an open EOM-solver calculation (closure target 17 below). Coincidence would derive Planck-constant constancy from the family's dynamics; divergence would convert observed constancy into a selection constraint on which family members can be dressed into matter.
+Whether the transacted unit is constant under group velocity has not been established. The comparison that decides it — the $J_z$-conserving trajectory against the closure-optimal trajectory on a retained family — is an open EOM-solver calculation (closure target 17 below). Coincidence would support only the declared family and comparison window. Deriving a universal Planck constant additionally requires the action-unit calibration and its universality across assemblies, channels, and observer maps; a kinematic $J_z$ comparison alone does not establish those facts.
 
 ## Foundation-Up Closure Route
 
@@ -2486,7 +2475,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-463d6f4b60b93432)
 
-Here $a$ labels the self-hit-selected, fold-selected, and externally exposed binary layers, $\Phi_a^{\text{root}}(P_{\mathrm{cyc}})$ records the phase contribution of the active self-hit, partner-hit, and cross-binary causal-root branches during the closure period, and $\Phi_a^{\text{frame}}(P_{\mathrm{cyc}})$ records phase accumulated by transport of the binary-plane frame. The important claim is integer phase winding over a stable closed cycle, not that each instantaneous frequency must be an integer by itself.
+Here $a$ labels the persistent binary identities; self-hit selection, fold proximity, and external exposure are separate branch diagnostics. $\Phi_a^{\text{root}}(P_{\mathrm{cyc}})$ records the phase contribution of the active self-hit, partner-hit, and cross-binary causal-root branches during the closure period, and $\Phi_a^{\text{frame}}(P_{\mathrm{cyc}})$ records phase accumulated by transport of the binary-plane frame. The important claim is integer phase winding over a stable closed cycle, not that each instantaneous frequency must be an integer by itself.
 
 Inter-binary phase locks add relative closure equations. For a branch with integer weights $p_a,p_b$,
 
@@ -2548,7 +2537,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b65fcd570f7f6b55)
 
-gives the positive branch
+gives the positive branch for fixed $\mathbf d$, $\|\mathbf V_{\mathrm{cm}}\|<c_\star$, and nonzero separation
 
 $$
 \Delta_{\mathbf V}
@@ -2577,7 +2566,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-54a2a3fe1699f66d)
 
-this makes some rest-branch closures inadmissible at high velocity, drives oblate causal-wake envelopes, changes shielding exposure, and can force precession or planar alignment. The primitive wake speed remains $c_f$ in the branch equation; $c_\star$ must be declared before using the result, because primitive wake-intersection, Noether sea dressed clock/ruler comparison, and photon-channel synchronization are different closure tests.
+these kinematics constrain candidate moving closures. Oblateness, shielding changes, precession, and alignment require a retained dynamical solution; they do not follow from the delay formula alone. For a rotating internal displacement, $\mathbf d$ depends on the unknown emission time, so the displayed formula is an implicit relation rather than a solved delay. The primitive wake speed remains $c_f$ in the branch equation; $c_\star$ must be declared before using the result, because primitive wake-intersection, Noether sea dressed clock/ruler comparison, and photon-channel synchronization are different closure tests.
 
 At larger scale, the emitted causal-wake pattern of such a closed core should have an effective far-zone angular decomposition. A schematic recovery target is
 
@@ -2610,7 +2599,7 @@ $$
 
 This route strengthens the distinction rather than weakening it. The internal coincident-midpoint orthogonal-axis braid spinor closure still targets $4\pi$ fermion behavior, while the atomic orbital envelope still targets $2\pi$ observer-level angular closure. The possible unification is that both are selected by geometry, phase closure, and causal-root admissibility at different levels of description.
 
-The failure modes are part of the proof program. The route is disciplined or falsified if no candidate closure class has a positive non-symmetry Floquet gap, if root ledgers change continuously rather than through branch or fold events, if the ordered frame has trivial $2\pi$ holonomy where spinor closure is required, if the proposed lift fails to restore after $4\pi$, if group-velocity anisotropy behaves like dissipative drag in stable atoms, if far-zone coefficients fail to converge or fail to recover the spherical-harmonic central limit, or if a derivation conflates internal coincident-midpoint orthogonal-axis braid rotational action with observer-level atomic orbital angular momentum.
+Neutral stability remains a distinct possibility and does not require an attracting gap. Root locations and weights may vary smoothly while discrete counts remain fixed. The failure modes are part of the proof program. The route is disciplined or falsified if an attracting-branch claim has no positive non-symmetry Floquet gap under its stated sign convention, if discrete root counts change without a fold or declared boundary event, if the ordered frame has trivial $2\pi$ holonomy where spinor closure is required, if the proposed lift fails to restore after $4\pi$, if group-velocity anisotropy behaves like dissipative drag in stable atoms, if far-zone coefficients fail to converge or fail to recover the spherical-harmonic central limit, or if a derivation conflates internal coincident-midpoint orthogonal-axis braid rotational action with observer-level atomic orbital angular momentum.
 
 ## Bridge to Standard Quantum Mechanics
 
@@ -2730,7 +2719,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1a5dbd93da81f2ad)
 
-whose envelope residual and internal-ledger separation rows pass in the declared chart. If the angular part separates as $\Psi_{\mathrm{env}}(r,\theta,\phi)=R(r)Y(\theta,\phi)$, and $Y$ is a regular single-valued function on $S^2$ in the domain of the self-adjoint angular operator, then
+whose envelope residual and internal-ledger separation rows pass in the declared chart. Choose a nonzero simultaneous eigenfunction of the angular Laplacian and $L_z$; a general vector in a degenerate Laplacian eigenspace need not have a definite $m$. If the angular part separates as $\Psi_{\mathrm{env}}(r,\theta,\phi)=R(r)Y(\theta,\phi)$, and $Y$ is a regular single-valued function on $S^2$ in the domain of the self-adjoint angular operator, then
 
 $$
 -\Delta_{S^2}Y=\lambda Y,
@@ -2838,7 +2827,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b9afd172690f4de5)
 
-where the terms are the photon-side polarity-conjugate planar-pair and photon-carried wake contributions. Source remnant, recoil, material handoff, and unrelated medium rows belong to the event ledger, not inside the photon-only helicity vector. The helicity residual is
+where the terms are the photon-side polarity-conjugate planar-pair and photon-carried wake contributions. The helicity comparison uses intrinsic angular momentum about a declared centroid after separating center-of-motion and orbital angular momentum; a general beam carrying orbital angular momentum is not constrained to this pure-helicity vector. Source remnant, recoil, material handoff, and unrelated medium rows belong to the event ledger, not inside the photon-only helicity vector. The helicity residual is
 
 $$
 \Delta_{\mathrm{hel}}^\gamma
@@ -2908,7 +2897,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-025fb36040a2f615)
 
-and suppose the substrate row has no transverse spin leakage. If $\mathbf B_{\gamma}^{0}=\mathbf 0$, projecting along $\hat{\mathbf k}$ gives
+and suppose a separate spin-response derivation has established that the row is a helicity eigenmode with $\lambda_{\mathrm{hel}}=\pm1$ and no transverse spin leakage. Balance alone does not quantize this projection. If $\mathbf B_{\gamma}^{0}=\mathbf 0$, projecting along $\hat{\mathbf k}$ gives
 
 $$
 \lambda_{\mathrm{hel}}
@@ -3042,7 +3031,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6112f3cf8278b6df)
 
-The native capture measure is therefore the normalized positive action fraction
+The proposed capture measure is the normalized positive action fraction, for nonzero $\mathcal I_\perp$. Positivity and a projector determine this fraction but do not establish that event frequencies equal it; that is the separate material-measure target below
 
 $$
 \mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp)
@@ -3208,7 +3197,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-12d15ed6cdc75a5c)
 
-with $H(0)=0$. Conditioned on a successful material record, $G_{\text{mat}}=1$, the unresolved analyzer variables give
+with $H(0)=0$. Take $d\nu_{\hat{\mathbf a}}$ here to be the measure conditioned on the declared preparation and successful material record, and require the uniform pushforward under that conditional measure. Selection by a record gate need not preserve a uniform unconditioned distribution. On this conditioned space $G_{\text{mat}}=1$, so the unresolved analyzer variables give
 
 $$
 \int_{\Theta_{\hat{\mathbf a}}}
@@ -3302,7 +3291,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-49d7befc617ee677)
 
-or, equivalently for typical calibrated analyzer histories,
+and, only if the selected measure is ergodic and the initial histories are typical for it,
 
 $$
 \int_{\Theta_{\hat{\mathbf a}}} f\,d\nu_{\hat{\mathbf a}}
@@ -3315,7 +3304,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ad85475d319fcbdd)
 
-Thus $d\nu_{\hat{\mathbf a}}$ is not a quantum postulate. It is the reduced invariant measure of a stable material assembly under repeated local capture attempts.
+Thus $d\nu_{\hat{\mathbf a}}$ is a proposed preparation measure to derive from repeated material dynamics. Stability alone establishes neither its existence, uniqueness, ergodicity, nor sampling by calibrated preparations. Invariance is a sufficient stationary construction, not necessary for the elementary threshold integral, which needs only a normalized measure with the stated pushforward.
 
 The channel coordinate $\eta_{\hat{\mathbf a}}$ is derived from the pass-basin filtration of that same material dynamics. For each accepted positive-action fraction $\rho\in[0,1]$, let
 
@@ -3362,7 +3351,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-04a4bc707e8dbafd)
 
-outside measure-zero separatrix cases. The uniform pushforward
+when the filtration is right-continuous in the required measure sense and the threshold boundary has zero measure for the declared preparation. Monotonicity alone does not make threshold atoms vanish. The uniform pushforward
 
 $$
 (\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta
@@ -3393,7 +3382,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-35adb4cf54286d14)
 
-is a detector-bias or failed-calibration diagnostic, not a new photon law.
+is a discrepancy to attribute by independent analyzer and source calibration; it cannot be assigned to detector bias by definition.
 
 This is the reduced substrate-origin scaffold. The quantity being measured is still the native accepted positive action fraction, so the $\cos^2\theta$ result appears only after the material projector $A^a{}_{b}$ and the linear-polarization ledger $a_\perp^a=\hat e_\gamma^a$ have been derived. The remaining substrate burden is to compute $\mathcal{P}_{\hat{\mathbf a}}$, the equivalence relation $\sim_{\hat{\mathbf a}}$, the return map $T_s$, and the basin filtration $\mathcal{B}_{\text{pass}}(\rho;\hat{\mathbf a})$ from a concrete analyzer assembly simulation and then prove or bound $\Delta_{\text{pol}}(\rho)$.
 
@@ -3409,7 +3398,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fb958c2ac3a009a3)
 
-inside the free transverse plane. Conditioned on a successful pass record and a zero handoff residual, the outgoing ledger is
+inside the free transverse plane. Conditioned on a successful pass record of nonzero probability and a zero handoff residual, the outgoing ledger is
 
 $$
 a_{k,+}^{a}
@@ -3427,7 +3416,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d87502fc195e72a5)
 
-If the rejected channel emits a free outgoing transverse branch rather than absorbing or scattering locally, the rejected ledger is
+If the rejected channel emits a free outgoing transverse branch rather than absorbing or scattering locally, the rejected ledger, when its normalization denominator is nonzero, is
 
 $$
 a_{k,-}^{a}
@@ -3443,7 +3432,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-871d6c793b432066)
 
-For a pass-only cascade through analyzer axes $\hat{\mathbf a}_1,\ldots,\hat{\mathbf a}_N$, induction over the local threshold-pullback events gives
+The conditional material measure at each stage must retain the stated threshold pushforward after conditioning on all earlier outcomes; local marginal calibration alone does not guarantee this when apparatus histories are correlated. For a pass-only cascade through analyzer axes $\hat{\mathbf a}_1,\ldots,\hat{\mathbf a}_N$, induction over the local threshold-pullback events gives
 
 $$
 P(+_1,\ldots,+_N\mid a_0)
@@ -3562,7 +3551,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-93fa120bcbdfad1f)
 
-denote the reduced state containing the core spin ledger, the apparatus channel state, and the local causal-wake background. A Stern-Gerlach-like measurement is successful only when the coupled flow crosses an axis-indexed separatrix
+denote the reduced state containing the core spin ledger, the apparatus channel state, and the local causal-wake background. The proposed basin model uses an apparatus-driven reduced threshold. A true invariant basin boundary of a unique autonomous full-state flow cannot be crossed by that flow; the crossing language here concerns a changing apparatus parameter, a moving reduced threshold, or loss of basin stability. Denote the threshold by
 
 $$
 \Sigma_{\hat{\mathbf{m}}}\!\left(Z_{\hat{\mathbf{m}}}(T)\right)=0
@@ -3570,7 +3559,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0db182641eb856a9)
 
-and then settles into one of two record-forming basins
+and requires a persistent record in one of two basins. An initial state already in the selected basin need not cross the separatrix:
 
 $$
 B_{+}(\hat{\mathbf{m}}),
@@ -3609,7 +3598,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4426b92f8b55085f)
 
-where $\Phi^{\hat{\mathbf{m}}}_{T_{\text{int}}}$ is the finite-time flow generated by the target, apparatus, and local Noether sea state. This is already a derived deterministic kernel at the reduced-flow level: it is the pullback of the record-forming basins through the actual apparatus-coupled dynamics.
+where $\Phi^{\hat{\mathbf{m}}}_{T_{\text{int}}}$ is the finite-time flow generated by the target, apparatus, and local Noether sea state. This is a definition-level pullback conditional on a well-defined reduced flow and measurable record basins. The listed reduced state need not determine a unique trajectory unless retained history and a closed reduction are supplied; the formula does not by itself derive that flow or its basins.
 
 For calculation, this exact pullback can be rewritten near the separatrix as a signed threshold functional. Choose the signed coordinate
 
@@ -3665,7 +3654,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b2d49d277c9c012c)
 
-in the mollified apparatus-potential chart.
+in a reduced apparatus-potential chart whose gradient representation has been independently established. Mollifying a delayed interaction alone does not make it the gradient of an instantaneous potential.
 
 The Master-Equation origin of this impulse is the constituent causal-hit sum. Let $\mathscr A_{\hat{\mathbf{m}}}$ be the set of apparatus transmitter architrinos whose organized wake envelope defines the Stern-Gerlach gradient. For target constituent $i\in C$ and apparatus constituent $a\in\mathscr A_{\hat{\mathbf{m}}}$, define the apparatus cross-root set
 
@@ -3744,7 +3733,7 @@ $$
 =
 \kappa
 \sum_{a\in\mathscr A_{\hat{\mathbf{m}}}}
-\sigma_{ia}|q_iq_a|
+\sigma_{ia}|q_iq_a|c_f
 \int_{T-h}^{T}
 \frac{\widehat{\mathbf r}_{ia}(T,T')}
 {r_{ia}^2(T,T')+\epsilon_c^2}
@@ -3753,7 +3742,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b1f9e7b0712f8563)
 
-The apparatus angular impulse entering the reduced response is therefore not an imported spin torque. It is the braid-centered torque of these delayed radial hits, plus the wake part required by the delayed Noether ledger:
+Here $\delta_\eta$ is normalized in its distance argument, so the explicit $c_f$ restores the canonical simple-root weight $c_f/|D_t|$; numerical instantiations use $c_f=1$. The apparatus angular impulse entering the reduced response is therefore not an imported spin torque. It is the braid-centered torque of these delayed radial hits, plus the wake part required by the delayed Noether ledger:
 
 $$
 \boxed{
@@ -3824,7 +3813,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8b226fa7d9a1c37a)
 
-The record gate is
+The first-order sign predicts the full response only where a bound on neglected terms is smaller than $|\mathcal Q_{\hat{\mathbf m}}|$; near zero, higher-order dynamics must decide. The record gate is
 
 $$
 G_{\text{rec}}(Z_{\text{in}})
@@ -3832,12 +3821,12 @@ G_{\text{rec}}(Z_{\text{in}})
 H\!\left(
 \left|R(A(T_{\text{rec}}))-R(A_{\text{pre}})\right|-R_*
 \right)
-H\!\left(\tau_{\text{persist}}-T_{\text{rec}}\right)
+H\!\left(\tau_{\text{persist}}-\tau_{\text{min}}\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-aae9aa0f712473a6)
 
-with the project convention $H(0)=0$. The derived first-order Stern-Gerlach kernels are therefore
+where $\tau_{\text{persist}}$ is the observed persistence duration and $\tau_{\text{min}}>0$ is a declared minimum duration; the absolute epoch $T_{\text{rec}}$ is not compared with a duration. With $H(0)=0$, the first-order response chart gives
 
 $$
 \boxed{
@@ -3871,7 +3860,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4ab30c664464539c)
 
-If $G_{\text{rec}}=0$, the event is a failed record formation. If $\mathcal{Q}_{\hat{\mathbf{m}}}=0$ exactly, the state remains on the reduced separatrix in this first-order chart; that measure-zero case is not a third spin value and must be resolved by higher-order terms, environmental perturbation, or apparatus redesign.
+If $G_{\text{rec}}=0$, the event is a failed record formation. If $\mathcal{Q}_{\hat{\mathbf{m}}}=0$ exactly, the state remains on the reduced separatrix in this first-order chart; that case is not a third spin value; it has measure zero only under a separately justified non-atomic transverse preparation measure, and must be resolved by higher-order terms, environmental perturbation, or apparatus redesign.
 
 The observer-level probabilities are obtained only after coarse-graining over the unresolved incoming ledger:
 
@@ -3971,7 +3960,7 @@ $$
 
 This phase is not an additional spin value. It is the unresolved position of the coupled target-apparatus trajectory along the record-forming cycle.
 
-This measure also descends from the Master Equation. After record formation, each successful channel contains a stable apparatus record cycle $\Gamma_{\text{rec}}^{\pm}$ inside the full apparatus phase space. Let
+A possible origin for this measure is a record-cycle reduction of the Master Equation. Assume each successful channel contains a stable apparatus record cycle $\Gamma_{\text{rec}}^{\pm}$ inside the full apparatus phase space. Let
 
 $$
 \Theta_{\text{rec}}:\Gamma_{\text{rec}}^{\pm}\to S^1
@@ -4007,7 +3996,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0cf34344fbcfe9a5)
 
-Hence
+For a smooth phase speed bounded strictly above zero, the normalized stationary density is
 
 $$
 d\nu_{\text{rec}}
@@ -4026,7 +4015,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-180eeb923714e4b2)
 
-Here $P_{\mathrm{rec}}$ is the apparatus record-cycle period, distinct from the record-formation time and the persistence duration used by the capture gate. The uniform measure $d\theta_{\text{rec}}/(2\pi)$ is the calibrated limit in which the successful record cycle has constant phase speed, or in which $\theta_{\text{rec}}$ is chosen as the normalized time-of-flight phase on the cycle. If the Master-Equation record cycle has nonconstant phase speed or channel-dependent efficiency, the basin integral must use $d\nu_{\text{rec}}$ above rather than the uniform idealization.
+Here $P_{\mathrm{rec}}$ is the apparatus record-cycle period, distinct from the record-formation time and the persistence duration used by the capture gate. The measure on a post-record cycle does not by itself determine the incoming basin-selection measure; a preparation-to-record map must establish their relation without conditioning on the outcome being explained. The uniform measure $d\theta_{\text{rec}}/(2\pi)$ is the calibrated limit in which the successful record cycle has constant phase speed, or in which $\theta_{\text{rec}}$ is chosen as the normalized time-of-flight phase on the cycle. If the Master-Equation record cycle has nonconstant phase speed or channel-dependent efficiency, the basin integral must use $d\nu_{\text{rec}}$ above rather than the uniform idealization.
 
 The reduced half-angle arithmetic needs a measure coordinate, not a raw uniform phase. Define
 
@@ -4103,7 +4092,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7d4fc45549afab5a)
 
-with the boundary assigned measure zero by $H(0)=0$. The corresponding ideal reduced kernels are
+with the boundary of measure zero under the conditional non-atomic uniform pushforward at fixed preparation. Choosing $H(0)=0$ does not itself assign a set zero measure. The corresponding ideal reduced kernels are
 
 $$
 K_{+}^{\text{SG,red}}
@@ -4191,7 +4180,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-64a1b496b2d6c6e4)
 
-This closes the single-assembly basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $d\mathbf J_{C}^{\text{app}}/dT$ is the angular impulse rate generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, derive the conditional record measure and physical separatrix from the apparatus dynamics, and evaluate the branch-sum impulse for a concrete Noether braid apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved braid phases, that dependence belongs inside $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$ rather than inside a separate post-measurement probability rule.
+This proves the conditional basin-volume arithmetic for the assumed spinor-record chart and identifies proposed Master-Equation constructions for its other ingredients: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $d\mathbf J_{C}^{\text{app}}/dT$ is the angular impulse rate generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, derive the conditional record measure and physical separatrix from the apparatus dynamics, and evaluate the branch-sum impulse for a concrete Noether braid apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved braid phases, that dependence belongs inside $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$ rather than inside a separate post-measurement probability rule.
 
 Bell-pair tests require one more layer: the pair-provenance ledger and both local apparatus couplings must be included before comparing to the singlet correlation. A response that reduces to a sharp classical basin boundary over a preassigned local axis remains the known linear-correlation failure mode, not a successful spin-measurement model.
 
@@ -4268,7 +4257,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-67eb29f5f5ea406b)
 
-Any completed $\mathbb{A}\mathbb{A}\mathbb{A}$ account that reproduces experiments must fail this factorized Bell-local form while preserving no-signaling and measurement independence. The failure cannot be asserted by slogan. It must be shown by deriving the pair-provenance ledger and the two local apparatus-response maps, then proving that their observer-level compression does not fit Bell's factorized model.
+Any completed $\mathbb{A}\mathbb{A}\mathbb{A}$ account that reproduces experiments must fail this factorized Bell-local form while preserving no-signaling and measurement independence. The failure must occur in the completed dynamics conditioned on a complete pre-setting hidden state, not merely in a coarse description with omitted common causes. Two local deterministic maps of local settings and a shared setting-independent history remain Bell-local, regardless of the size of that history.
 
 The no-signaling requirement is equally strict:
 
@@ -4280,7 +4269,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-522dd780086ba55b)
 
-independent of $\hat{\mathbf{m}}_B$, and similarly on the other side. No usable signal, energy transfer, or causal wake may pass between spacelike-separated detectors during the measurement. The Bell burden is therefore not solved by adding a faster-than-$c_f$ influence.
+independent of $\hat{\mathbf{m}}_B$, and similarly on the other side. The provisional [Ontology route](../../foundations/ontology.md#bell-nonlocality-placement) retains measurement independence and observer no-signaling while proposing a live $c_f$-mediated coupled response gated by pair provenance. It requires $c_f>c_0$ to span an interval outside the effective photon cone, where $c_0$ is the calibrated photon speed; it permits no influence faster than $c_f$. Such a channel is unproved and must address the Bancal finite-speed obstruction with one consistent multipartite probability law and an explicit account of which premise changes. Shared provenance or bipartite marginal agreement alone does not resolve that obstruction.
 
 For simulation and proof packets, this final gate should be reported with three residuals rather than with a single success label:
 
@@ -4339,6 +4328,10 @@ The correct development order is:
 
 Bell's theorem remains the hard final gate. It should not be used to define spin before the lower-level ledger exists. It should be used to test whether the lower-level ledger and measurement response are strong enough.
 
+## Comparison Source
+
+David Tong, [*Topics in Quantum Mechanics*, §§1.2.3–1.2.4](https://www.damtp.cam.ac.uk/user/tong/aqm/topics1.pdf), supplies the standard antiunitary time-reversal comparison and half-integer-spin square. This is an observer-level recovery constraint, not a substrate law.
+
 ## Terminology Rules
 
 The following usage should be preferred across the corpus:
@@ -4375,6 +4368,6 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 14. Map observer-level orbital angular momentum, such as atomic $\ell$, to assembly-level internal rotational action without conflating the two.
 15. Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, and basin-measure law.
 16. Settle the coincident-axis three-binary braid axis sector with the EOM solver: measure the tilt block $K$, the spin-transport block $\Gamma$, and any delay-memory contribution, deflate the exact global-tilt null, read the gyroscopic-circulatory quotient spectrum, and confirm any linear indication by direct evolution under the master equation; determine whether the realization holds its axis and, if a surplus exists, what channel absorbs it, including any discrete transaction at a causal-root fold. No stability verdict or worked coincident-axis three-binary braid transaction is currently established.
-17. Execute the $J_z$-conserving-trajectory versus closure-optimal-trajectory comparison on a surviving family, feeding the $h$ and $\hbar$ convention section: coincidence derives Planck-constant constancy; divergence converts observed constancy into a selection constraint on dressable family members.
+17. Execute the $J_z$-conserving-trajectory versus closure-optimal-trajectory comparison on a surviving family, feeding the $h$ and $\hbar$ convention section: coincidence supports only the tested family and window, while universal Planck-constant constancy additionally requires a derived action-unit calibration and cross-channel universality; divergence constrains that candidate family.
 
 Until those targets are closed, this document should be read as a disciplined bridge. It is strong enough to say that angular momentum and spin are not primitive architrino properties, strong enough to prevent $h/\hbar$ drift, and strong enough to route Bell's theorem to the correct prerequisite. It is not yet a proof that standard spin and all Bell correlations have been derived from the master equation.

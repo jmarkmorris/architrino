@@ -6,6 +6,8 @@
 
 This document defines the modern ontological network above $\mathbb{A}\mathbb{A}\mathbb{A}$, assuming $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct at substrate level.
 
+This premise licenses conditional ontological classification, not a claim that the required substrate derivations have been completed. Scientific-standing labels are broad editorial classifications of the named formulations, not a survey of practitioner opinion; a historical supersession is distinguished below from an experimentally excluded prediction.
+
 It is the catalog companion to [Theory Mapping](theory-mapping.md), [Theory Inheritance Discipline](theory-inheritance-discipline.md), [Crisis in Physics](crisis-in-physics.md), [Solving the Crisis](solving-the-crisis.md), [Parameter Ledger](../validation/parameter-ledger.md), and [No-Go Theorems](../validation/no-go-theorems.md).
 
 Its purpose is differential classification, not sociological ranking. The chapter is meant to function as a reference catalog: each entry makes the stack placement, retained strength, and limiting tension explicit even when the prose remains more schematic than in the longer overview chapters. Each entry is judged by layer placement, ontological commitments, empirical carryover, and reclassification outcome under $\mathbb{A}\mathbb{A}\mathbb{A}$.
@@ -97,7 +99,7 @@ In this chapter, any unification proposal must be tested against at least three 
 
 This matters because many ambitious frameworks succeed first as containers. They show that several sectors can be written inside one algebra, bundle, or symmetry group. That can be mathematically illuminating and historically useful. But container success is weaker than mechanism success. If chirality, flavor, and quantitative fit remain external inputs, then the framework has organized known content without yet explaining why that content has the form it does.
 
-Exceptional-group and grand-unified programs sharpen this rule. Embeddings based on groups such as $SO(10)$, $E_7$, or $E_8$ can reveal real mathematical regularities, including compact representation packaging, spinor structure, and possible threefold family organization. Their durable value for this corpus is as comparison pressure: can a deeper account recover the same gauge representations, chirality asymmetry, generation structure, and CPT-compatible fermion bookkeeping while also explaining the absence of mirror matter, proton-instability channels, superpartners, and extra low-energy gauge modes? If those absences are supplied by disconnected suppressions, the proposal remains a symmetry container rather than a closure mechanism.
+Exceptional-group and grand-unified programs sharpen this rule. Embeddings based on groups such as $SO(10)$, $E_7$, or $E_8$ can reveal real mathematical regularities, including compact representation packaging, spinor structure, and possible threefold family organization. Their durable value for this corpus is as comparison pressure: can a deeper account recover the same gauge representations, chirality asymmetry, generation structure, and CPT-compatible fermion bookkeeping while also accounting for experimental bounds on mirror matter, proton-instability channels, superpartners and extra low-energy gauge modes in their tested mass, lifetime and coupling domains? If those absences are supplied by disconnected suppressions, the proposal remains a symmetry container rather than a closure mechanism.
 
 The same rule applies when assessing whether $\mathbb{A}\mathbb{A}\mathbb{A}$ has actually improved on a prior unification attempt. Replacing a Lie-algebra container with an assembly-and-medium ontology only counts as progress if the new ontology closes the same hard gates rather than merely moving them.
 
@@ -163,6 +165,8 @@ The relation taxonomy is:
 The most easily confused relation labels should be interpreted as follows:
 
 - **Effective-Limit Recovery Target**: the concept supplies tested equations, observables, or consistency conditions that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover in a declared domain. The label states an obligation, not an accomplished derivation. Promotion to a recovered result requires a substrate-to-effective map, an independent reference, a residual and tolerance, and a validated domain of agreement.
+- **Partially Recovered**: an achieved result only when the entry names the recovered component, its derivation, domain and independent reference. Structural similarity or a proposed implementation is insufficient.
+- **Recoverable Only After Reinterpretation**: a conditional placement or comparison; reinterpretation is necessary within the assumed architecture but does not prove recoverability or make an unconfirmed sector mandatory.
 - **Mislocated Ontology**: the concept is tracking something real, but at the wrong level of the ontological stack. Its equations or patterns may remain useful, but they are being mistaken for substrate-fundamental structure when they are better understood as effective, bulk, assembly-level, or observer-level descriptions.
 - **Observationally Over-Inferred**: the underlying observations may be sound, but the concept adds interpretive claims that do not strictly follow from the data. The measurements may survive in a $\mathbb{A}\mathbb{A}\mathbb{A}$ reframing even if the standard ontology, mechanism, or narrative built from them does not.
 - **Deeply Incompatible**: the concept contains core ontological or dynamical commitments that cannot be retained within $\mathbb{A}\mathbb{A}\mathbb{A}$ even after reinterpretation, relocation in the stack, or effective reformulation. The conflict is substantive, not merely terminological.
@@ -213,7 +217,7 @@ Concepts are grouped by scientific role rather than chronology. The inventory is
 
 **Surviving result.** The observed particle spectrum, gauge-mediated reaction channels, flavor structure, and precision electroweak records form a non-negotiable benchmark package.
 
-**Limiting tension.** Its fields, representations, masses, mixings, and couplings are fitted effective inputs rather than a derived assembly inventory.
+**Limiting tension.** Its field and representation choices specify the model, while masses, mixings and couplings include measured inputs; together they do not supply a derived architrino assembly inventory.
 
 **Recovery or comparison test.** Recover particle identities, reaction rates, masses, mixings, and precision observables from common assembly records without channel-specific retuning.
 
@@ -252,7 +256,7 @@ $$
 
 **Surviving result.** Color algebra, asymptotic freedom, jets, hadron spectra, and lattice observables constrain any account of strong interactions.
 
-**Limiting tension.** Primitive color fields and quarks do not explain why finite assemblies confine or acquire the observed hadron spectrum.
+**Limiting tension.** QCD supplies nonperturbative calculations of hadron spectra and confinement observables within its own framework; [Dürr and collaborators’ light-hadron calculation](https://arxiv.org/abs/0906.3599) illustrates continuum extrapolation with controlled uncertainties and specified inputs. It does not thereby derive the different architrino assembly implementation hypothesized here.
 
 **Recovery or comparison test.** Recover running coupling, confinement, color-neutral composites, jet observables, and hadron masses from one branch and reaction ledger.
 
@@ -298,11 +302,11 @@ $$
 
 ### Grand Unified Theories - GUT
 
-**Concept Type:** Theory **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** high-energy unification **Short Name:** GUT **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Empirically Useful Placeholder
+**Concept Type:** Theory **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** high-energy unification **Short Name:** GUT **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation; Empirically Useful Placeholder
 
 **Surviving result.** Charge organization, representation unification, and coupling-convergence tests expose relations a deeper particle account may need to explain.
 
-**Limiting tension.** No observed proton reaction or unique unification scale currently establishes a grand-unified ontology.
+**Limiting tension.** Ordinary proton reactions do not establish grand unification; the relevant additional tests concern baryon-number-violating proton decay and a consistent unification pattern, neither supplied by a group embedding alone.
 
 **Recovery or comparison test.** Treat group unification as comparison pressure; promote it only if one assembly genealogy predicts the charge pattern, coupling relation, and proton-stability outcome.
 
@@ -328,7 +332,7 @@ $$
 
 ### Technicolor / Composite Higgs - Composite Higgs
 
-**Concept Type:** Theory **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** electroweak compositeness **Short Name:** Composite Higgs **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** electroweak compositeness **Short Name:** Composite Higgs **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Composite symmetry breaking correctly asks whether the Higgs-like sector can arise from bound dynamics rather than an elementary scalar.
 
@@ -338,9 +342,9 @@ $$
 
 ### Axion Theory / Peccei-Quinn Mechanism - Axion / PQ
 
-**Concept Type:** Theory **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** strong CP repair **Short Name:** Axion / PQ **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** strong CP repair **Short Name:** Axion / PQ **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Recoverable Only After Reinterpretation
 
-**Surviving result.** The neutron electric-dipole bound and the small strong-CP phase define a genuine precision problem.
+**Surviving result.** Neutron electric-dipole limits constrain the effective strong-CP phase through a declared hadronic calculation and assumptions about other contributions; the resulting small-phase problem motivates the Peccei–Quinn comparison.
 
 **Limiting tension.** A Peccei-Quinn field and axion particle remain candidate repairs, not observed ontology.
 
@@ -362,7 +366,7 @@ $$
 
 **Surviving result.** Thermal-relic calculations and direct, indirect, and collider searches form a mature exclusion framework.
 
-**Limiting tension.** Repeated null searches weaken generic WIMP ontology and leave a broad adjustable parameter space.
+**Limiting tension.** Null searches constrain tested WIMP mass and interaction ranges under their detector, nuclear-response and halo assumptions; they do not exclude the entire WIMP model family.
 
 **Recovery or comparison test.** Use WIMP searches as constraints on any massive dark assembly; do not add a WIMP sector without a native mass, coupling, and abundance prediction.
 
@@ -430,7 +434,7 @@ $$
 
 ### de Broglie-Bohm Theory - dBB
 
-**Concept Type:** Theory **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** hidden-variable dynamics **Short Name:** dBB **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level records, inference, and probability **Assessed At:** Stable Assembly Dynamics **Comparative Stack Placement:** Substrate ontology **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Stable Assembly Dynamics **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** hidden-variable dynamics **Short Name:** dBB **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level records, inference, and probability **Assessed At:** Stable Assembly Dynamics **Comparative Stack Placement:** Substrate ontology **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Stable Assembly Dynamics **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Its guidance-flow and continuity equation demonstrate that deterministic nonlocal quantum recovery is mathematically coherent.
 
@@ -470,7 +474,7 @@ $$
 
 ### Decoherence Program - Decoherence
 
-**Concept Type:** Program **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** environment-induced classicality **Short Name:** Decoherence **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level records, inference, and probability **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** environment-induced classicality **Short Name:** Decoherence **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level records, inference, and probability **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Environment-induced suppression of interference identifies robust pointer records and effective classical sectors.
 
@@ -495,7 +499,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8fa7e41e818e3476)
 
-under the stated locality and measurement-independence assumptions.
+for two settings per wing and outcomes bounded in magnitude by one, under locality and a normalized setting-independent hidden-variable measure. Experimental no-signaling is tested within uncertainty, not established exactly by a finite sample.
 
 **Limiting tension.** Bell constrains causal factorization; it neither supplies an ontology nor licenses pair provenance followed by independent local readout.
 
@@ -567,7 +571,7 @@ $$
 
 ### Scalar-Tensor Gravity
 
-**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** Scalar-Tensor **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** Scalar-Tensor **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Scalar-tensor models expose how a variable effective gravitational response would alter cosmology and post-Newtonian observables.
 
@@ -577,7 +581,7 @@ $$
 
 ### Brans-Dicke Theory
 
-**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** foundational framework **Short Name:** Brans-Dicke **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** foundational framework **Short Name:** Brans-Dicke **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** The Brans-Dicke parameter supplies a clean quantitative bridge between variable gravitational coupling and the GR limit.
 
@@ -587,7 +591,7 @@ $$
 
 ### $f(R)$ Gravity
 
-**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** $f(R)$ **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** $f(R)$ **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Curvature corrections provide a controlled way to test departures from Einstein dynamics across scales.
 
@@ -597,7 +601,7 @@ $$
 
 ### Einstein-Cartan Theory
 
-**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** foundational framework **Short Name:** Einstein-Cartan **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** foundational framework **Short Name:** Einstein-Cartan **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Spin-torsion coupling supplies a precise comparison for how intrinsic angular momentum could modify dense gravitational matter.
 
@@ -607,7 +611,7 @@ $$
 
 ### Massive Gravity
 
-**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** Massive Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** Massive Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Massive-gravity programs expose the vDVZ, ghost, screening, and extra-polarization constraints on modified propagation.
 
@@ -617,7 +621,7 @@ $$
 
 ### Bimetric Gravity
 
-**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** Bimetric Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** Bimetric Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Bimetric models make interaction between two metric sectors mathematically explicit and testable.
 
@@ -627,7 +631,7 @@ $$
 
 ### Modified Newtonian Dynamics - MOND
 
-**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** low-acceleration gravity **Short Name:** MOND **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Observationally Over-Inferred
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** low-acceleration gravity **Short Name:** MOND **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation; Observationally Over-Inferred
 
 **Surviving result.** The acceleration scale and baryonic regularities in galaxy rotation are important empirical compression targets.
 
@@ -637,7 +641,7 @@ $$
 
 ### Tensor-Vector-Scalar Gravity - TeVeS
 
-**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** covariant modified gravity **Short Name:** TeVeS **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Observationally Over-Inferred
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** covariant modified gravity **Short Name:** TeVeS **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation; Observationally Over-Inferred
 
 **Surviving result.** TeVeS shows how relativistic fields can extend MOND-like phenomenology to lensing and cosmology.
 
@@ -647,7 +651,7 @@ $$
 
 ### Emergent Gravity
 
-**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** induced gravity **Short Name:** Emergent Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** induced gravity **Short Name:** Emergent Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Emergent-gravity programs correctly demand that metric and gravitational response arise from deeper collective degrees of freedom.
 
@@ -657,7 +661,7 @@ $$
 
 ### Unimodular Gravity
 
-**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** Unimodular Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** Unimodular Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Separating volume measure from trace-free metric dynamics clarifies how a cosmological constant can appear as an integration constant.
 
@@ -687,7 +691,7 @@ $$
 
 ### Causal Set Theory - CST
 
-**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** discrete causal order **Short Name:** CST **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** discrete causal order **Short Name:** CST **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Causal-order primacy and local finiteness sharpen the question of which event relations a discrete substrate must preserve.
 
@@ -697,7 +701,7 @@ $$
 
 ### Causal Dynamical Triangulations - CDT
 
-**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** discrete geometry **Short Name:** CDT **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** discrete geometry **Short Name:** CDT **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** CDT demonstrates that constrained sums over discrete histories can generate nontrivial large-scale dimensional behavior.
 
@@ -709,7 +713,7 @@ $$
 
 **Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** ultraviolet closure **Short Name:** AS **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
-**Surviving result.** A nontrivial ultraviolet fixed point would make gravitational effective theory predictive with finitely many relevant parameters.
+**Surviving result.** A suitable ultraviolet fixed point with a finite-dimensional relevant critical surface could make the continuum theory predictive after its consistency and observable limits are established; nontriviality alone does not guarantee finitely many relevant directions.
 
 **Limiting tension.** Evidence for the fixed point is method-dependent and does not identify microscopic ontology.
 
@@ -719,7 +723,7 @@ $$
 
 **Concept Type:** Framework **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** duality and boundary encoding **Short Name:** Holography / AdS-CFT **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
-**Surviving result.** Holographic dualities establish exact relations between certain boundary and bulk descriptions and constrain entropy scaling.
+**Surviving result.** Holographic duality proposes exact relations between specified boundary and bulk descriptions and has extensive controlled checks; exact results within those examples are distinct from a general proof of the full correspondence. [Maldacena’s original proposal](https://arxiv.org/abs/hep-th/9711200) states the duality as a conjecture.
 
 **Limiting tension.** Controlled AdS dualities do not establish that the observed universe is holographic or that geometry is fundamentally information.
 
@@ -739,7 +743,7 @@ $$
 
 ### Inflationary Cosmology
 
-**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** early-universe smoothing **Short Name:** Inflation **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Recoverable Only After Reinterpretation
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** early-universe smoothing **Short Name:** Inflation **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Inflation supplies quantitative perturbation spectra and a mechanism for horizon and flatness regularities.
 
@@ -769,7 +773,7 @@ $$
 
 ### Baryogenesis / Leptogenesis
 
-**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** matter asymmetry **Short Name:** Baryogenesis / Leptogenesis **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** matter asymmetry **Short Name:** Baryogenesis / Leptogenesis **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Observed matter dominance requires a quantitative asymmetry ledger and motivates tests of symmetry violation and nonequilibrium dynamics.
 
@@ -789,7 +793,7 @@ $$
 
 ### Primordial Black Hole Dark Matter
 
-**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** dark matter ontology **Short Name:** PBH Dark Matter **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** dark matter ontology **Short Name:** PBH Dark Matter **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** PBH models connect early density fluctuations with compact-object abundance and multi-messenger constraints.
 
@@ -885,7 +889,7 @@ $$
 
 **Limiting tension.** Selection effects do not dynamically derive parameters or provide substrate ontology.
 
-**Recovery or comparison test.** Use anthropic reasoning only as a posterior consistency audit after the assembly and cosmological parameters have been independently derived.
+**Recovery or comparison test.** Use observer conditioning with a declared joint model, reference class, prior or preparation measure and nonzero conditioning probability. It can constrain still-unknown parameters; it does not replace a dynamical derivation or authorize a measure chosen after the desired answer.
 
 ## Statistical, Thermal, and Bulk Descriptions
 
@@ -957,7 +961,7 @@ $$
 
 **Limiting tension.** Its pressure, sound speed, and homogeneous background are coarse-grained assumptions.
 
-**Recovery or comparison test.** Recover the dispersion relation and instability scale from assembly populations and Noether sea response, including finite-domain corrections.
+**Recovery or comparison test.** Recover the dispersion relation and instability scale from a background that first satisfies the declared dynamics or a controlled cosmological background model, including finite-domain corrections. Any homogeneous Jeans background subtraction must be explicit; linearizing an unsupported nonequilibrium state does not establish a physical stability spectrum.
 
 ### Halo Model of Structure Formation
 
@@ -983,11 +987,11 @@ $$
 
 ### Lorentz Ether Theory - LET
 
-**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** medium-relative kinematics **Short Name:** LET **Concept Status:** Historically Rejected **Maturity:** Historical Rejection **Claims At:** Historical mechanism or ontology **Assessed At:** Observation and Inference **Comparative Stack Placement:** Historical contrast only **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure; Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** medium-relative kinematics **Short Name:** LET **Concept Status:** Historically Rejected **Maturity:** Historical Rejection **Claims At:** Historical mechanism or ontology **Assessed At:** Observation and Inference **Comparative Stack Placement:** Historical contrast only **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure; Recoverable Only After Reinterpretation
 
 **Surviving result.** Lorentz's dynamical contraction and local-time machinery show how preferred-substrate dynamics can mimic relativistic kinematics.
 
-**Limiting tension.** Without a deeper constitutive derivation it is empirically equivalent to SR and risks adding undetectable structure.
+**Limiting tension.** A fully Lorentz-covariant ether interpretation can be empirically equivalent to SR in the same tested domain; equivalence depends on its complete dynamics, not on the absence of a constitutive derivation. Here Historical Rejection denotes supersession of the historical program, not experimental exclusion of every empirically equivalent preferred-frame interpretation. [Lorentz’s 1904 model](https://pages.jh.edu/rrynasi1/PhysicalPrinciples/literature/Lorentz1904ElectromagneticPhenomenaInASystemMovingWithAnyVelocitySmallerThanThatOfLight.pdf) uses explicit contraction and corresponding-state hypotheses.
 
 **Recovery or comparison test.** Derive clock, ruler, and signal transformations from assemblies and identify a bounded leakage test rather than stipulating contraction.
 
@@ -1071,11 +1075,11 @@ $$
 
 **Limiting tension.** Flexible vacua plus observer selection can trade prediction for post hoc accommodation.
 
-**Recovery or comparison test.** Require a unique measure and discriminating probability assignment; otherwise retain the program only as an inference warning.
+**Recovery or comparison test.** Require a justified normalized measure or controlled family of measures, with sensitivity analysis and discriminating probabilities; mathematical uniqueness is not required for a bounded inference.
 
 ### Digital Physics
 
-**Concept Type:** Program **Ontological Area:** Methodology / Inference Framework **Sub-Ontological Area:** discrete computational ontology **Short Name:** Digital Physics **Concept Status:** Fringe **Maturity:** Fringe Comparison **Claims At:** Speculative ontology or comparison program **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Good Mathematics, Wrong Primitives
+**Concept Type:** Program **Ontological Area:** Methodology / Inference Framework **Sub-Ontological Area:** discrete computational ontology **Short Name:** Digital Physics **Concept Status:** Fringe **Maturity:** Fringe Comparison **Claims At:** Speculative ontology or comparison program **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation; Good Mathematics, Wrong Primitives
 
 **Surviving result.** Discrete update models show that simple rules can generate complex effective behavior.
 
@@ -1147,7 +1151,7 @@ $$
 
 ### Entropic Gravity
 
-**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** statistical gravity interpretation **Short Name:** Entropic Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** statistical gravity interpretation **Short Name:** Entropic Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Entropic-gravity arguments connect gravitational equations with thermodynamic and information identities.
 
@@ -1157,7 +1161,7 @@ $$
 
 ### Einstein-Aether Theory
 
-**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** preferred-frame gravity **Short Name:** Einstein-Aether **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** preferred-frame gravity **Short Name:** Einstein-Aether **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Einstein-aether models parameterize preferred-frame dynamics and make post-Newtonian leakage testable.
 
@@ -1193,7 +1197,7 @@ $$
 
 **Limiting tension.** Unobservable domains, initial-condition sensitivity, and measure ambiguity prevent robust probability assignments.
 
-**Recovery or comparison test.** Treat self-reproduction as a comparison only; require a normalized measure and an observable unavailable to finite single-history cosmology.
+**Recovery or comparison test.** Treat self-reproduction as a comparison only; require a justified normalized measure and different testable probability assignments relative to a specified competing single-history model. An observation need not be impossible under the alternative to discriminate between models.
 
 ### Vacuum Landscape / String Landscape
 
@@ -1235,7 +1239,7 @@ $$
 
 **Limiting tension.** A conservation label is not a substrate derivation: delayed path history requires the same-record wake, branch, event, and boundary contributions, while Lorentzian field symmetries cannot be assumed at the Euclidean-void layer.
 
-**Recovery or comparison test.** Derive translation and rotation identities from an accepted native action or directly from realized trajectories, include all delayed and boundary terms, and recover observer-level energy, momentum, and angular momentum from the same record.
+**Recovery or comparison test.** Derive translation and rotation charges from an accepted symmetry-preserving action with the required delayed boundary terms. An independent conservation proof directly from the dynamics is also possible in principle, but a compensating history integral defined along one realized trajectory is not a Noether derivation. Recover observer-level energy, momentum and angular momentum from the same independently closed record.
 
 ## Cross-Cutting Concepts To Differentially Map
 
@@ -1253,7 +1257,7 @@ $$
 
 **Concept Type:** Quantity **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** state counting and irreversibility **Short Name:** Entropy **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Bulk statistical or thermodynamic behavior **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
-**Surviving result.** Entropy measures multiplicity, missing detail, and irreversible record growth across statistical and information domains.
+**Surviving result.** Declared entropy functionals quantify multiplicity or uncertainty under specified state measures and partitions. Irreversible entropy growth is an additional regime-dependent statement; fine-grained entropy need not grow under reversible measure-preserving dynamics.
 
 **Limiting tension.** Its value depends on state partition, coarse-graining, and observer access; it is not a primitive substance.
 
@@ -1347,4 +1351,4 @@ $$
 
 **Limiting tension.** A probability measure is not a causal mechanism, and an arbitrary prior can absorb model failure.
 
-**Recovery or comparison test.** Derive the relevant invariant measure from deterministic basin dynamics and apparatus sampling, then pass calibration and independence tests.
+**Recovery or comparison test.** Justify the relevant preparation or inference measure and its propagation through the apparatus map, then pass calibration and independence tests. Invariance is required only when stationarity or an equilibrium claim demands it; time-dependent preparation and epistemic priors need not be invariant measures of the substrate flow.

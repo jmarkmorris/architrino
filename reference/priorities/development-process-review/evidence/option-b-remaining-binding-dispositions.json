@@ -66,6 +66,17 @@
           "selection": "Original retained module and unchanged budget ledger",
           "consumer": "Generator and built-in budget preset selector",
           "independentCheck": "Original public-preset equality, unchanged Node crypto and ledger controls"
+        },
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
         }
       ]
     },
@@ -85,6 +96,17 @@
           "selection": "Explicit runtime family and authored JSON",
           "consumer": "Synchronous Borg budget module and captured F5 loader",
           "independentCheck": "Generator freshness, captured data equality and isolated published-module checks"
+        },
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
         }
       ]
     },
@@ -104,6 +126,17 @@
           "selection": "Reviewed exact-value transport, not scientific reacceptance",
           "consumer": "Budget module, generator and captured F5 admission",
           "independentCheck": "Known malformed/duplicate/applicability controls and original API equality"
+        },
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
         }
       ]
     },
@@ -123,6 +156,17 @@
           "selection": "Explicit canonical data path and ignored runtime output",
           "consumer": "Runtime asset preparation and F5 selected source inventory",
           "independentCheck": "Missing/stale/substitution controls and source-only reconstruction"
+        },
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
         }
       ]
     },
@@ -142,6 +186,17 @@
           "selection": "Hand-authored positive and rejection cases; original retained expectations",
           "consumer": "Required runtime-contract gate",
           "independentCheck": "Unchanged independent crypto/ledger controls and separate read-only review"
+        },
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
         }
       ]
     },
@@ -160,6 +215,17 @@
           "selection": "Original pre-transfer catalogue entries, preserved in order",
           "consumer": "scripts/borg/build-assembly-record-catalog.mjs and canonical-data taxonomy inspection",
           "independentCheck": "Known-case-checked original entry comparison, unchanged record-byte identity checks and taxonomy controls"
+        },
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
         }
       ]
     },
@@ -178,6 +244,17 @@
           "selection": "Explicit runtime family and canonical JSON; no independent value refresh",
           "consumer": "src/apps/borg/BorgAssemblyRecordCatalog.js and static deployment",
           "independentCheck": "Generator check, source-only reconstruction and published-module exact equality/immutability"
+        },
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
         }
       ]
     },
@@ -196,6 +273,17 @@
           "selection": "The existing catalogue construction contract plus explicit external-data decoding",
           "consumer": "Borg catalogue wrapper, generator and taxonomy checker",
           "independentCheck": "Hand-authored positive and malformed-data controls, original public API regression"
+        },
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
         }
       ]
     },
@@ -214,6 +302,17 @@
           "selection": "Explicit source/output paths and write/check modes",
           "consumer": "scripts/prepare-runtime-assets.mjs, Pages builds and benchmark fingerprint inventory",
           "independentCheck": "Known rendering cases, missing/stale/invalid source rejection, idempotence and source-only build"
+        },
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
         }
       ]
     },
@@ -232,6 +331,17 @@
           "selection": "Hand-authored parser/rendering controls before actual catalogue use",
           "consumer": "Required generated-runtime contract test step",
           "independentCheck": "Positive and negative test results plus independent source review"
+        },
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
         }
       ]
     },
@@ -2092,6 +2202,158 @@
           "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
           "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
           "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
+        }
+      ]
+    },
+    {
+      "path": "scripts/borg/selected-runtime-admission.mjs",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Borg runtime graph integration",
+      "reason": "Selected source-only admission and final generated/copied payload checks using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
+        }
+      ]
+    },
+    {
+      "path": "tests/option-b-borg-runtime-admission.test.mjs",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Borg runtime graph integration",
+      "reason": "Selected source-only admission and final generated/copied payload checks using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Borg runtime graph integration",
+      "reason": "Selected source-only admission and final generated/copied payload checks using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-outputs.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Borg runtime graph integration",
+      "reason": "Selected source-only admission and final generated/copied payload checks using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Borg runtime graph integration",
+      "reason": "Selected source-only admission and final generated/copied payload checks using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Borg runtime graph integration",
+      "reason": "Selected source-only admission and final generated/copied payload checks using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Borg runtime graph integration",
+      "reason": "Selected source-only admission and final generated/copied payload checks using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-borg-runtime-transfer.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Borg runtime graph integration",
+      "reason": "Selected source-only admission and final generated/copied payload checks using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected Borg source and deferred-output graphs",
+          "targets": [
+            "scripts/prepare-runtime-assets.mjs",
+            "scripts/build-static-site.mjs"
+          ],
+          "meaning": "Preserve original catalogue, budget identities and applicability, synchronous browser APIs and existing F5 acceptance; standalone scientific launch admission remains separately scoped.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-selection.json; empty predecessor eligibility grants no refresh.",
+          "consumer": "Supported runtime preparation and default Pages final copied-payload verification.",
+          "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
         }
       ]
     }

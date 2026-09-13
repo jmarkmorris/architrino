@@ -471,7 +471,7 @@ Relevant files:
 - [GitHub presence and community note](github-presence-and-community.md)
 - [Repository home and purpose](github-presence-and-community.md#repository-home)
 - [Discussions community](github-presence-and-community.md#discussions-community)
-- [AI-assisted participation](github-presence-and-community.md#ai-assisted-participation)
+- [AI-assisted participation](about-architrino.md#ai-assisted-research-and-review)
 
 The core idea is that GitHub serves as a public theory-workshop layer alongside the reader-facing webapp. It provides a durable place for versioned documents, issue tracking, structured discussion, and AI-supported refinement. That makes it possible to compare ideas in public, route them into the right workflow, and build a community that is both critical and constructive around the theory.
 

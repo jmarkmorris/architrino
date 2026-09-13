@@ -81,7 +81,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 | README.md | 220 | `36a303599a5a3c02` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 323 | `ef8775daa2513ad2` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 323 | `2051bfc98f2f067d` |
 | [reference/op/brainstorming.md](brainstorming.md) | 380 | `a64f54974e729b23` |
 | [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 208 | `328459c22faedf60` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
@@ -103,8 +103,8 @@ A changed hash means a startup source was edited after the last regeneration. It
 | [reference/office-of-research/cto/prompts/core-geometry-theorem-reviewer.md](../office-of-research/cto/prompts/core-geometry-theorem-reviewer.md) | 52 | `27a2322538682261` |
 | [reference/office-of-research/cto/prompts/priority-lane-resume.md](../office-of-research/cto/prompts/priority-lane-resume.md) | 61 | `a94d1c0f61b9db95` |
 | [content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md) | 79 | `bab0a2cbe3a73eab` |
-| [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 518 | `f7e80e2b9436568f` |
-| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 364 | `9b6b4c319d1db052` |
-| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 152 | `f59f1ec26799f091` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 612 | `cf27413335ffea6b` |
-| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 183 | `e2bf223eb6a854bf` |
+| [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 518 | `d2a048e3902023dd` |
+| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 368 | `b467b09a2793d2bf` |
+| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 152 | `c11973d85706ac66` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 612 | `04d08cc13faa1d10` |
+| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 183 | `37bc5d3b91870f98` |

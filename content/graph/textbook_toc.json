@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1666
+      "sections": 1677
     }
   },
   "tocRoot": {
@@ -8856,6 +8856,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Sources",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Sources",
+                "sectionKey": "sources",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Related Chapters",
                 "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
                 "markdownSection": "Related Chapters",
@@ -9025,6 +9033,14 @@
                 "markdownSection": "Failure Modes",
                 "sectionKey": "failure modes",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sources",
+                "markdownPath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+                "markdownSection": "Sources",
+                "sectionKey": "sources",
+                "headingLevel": 2
               }
             ]
           },
@@ -9042,6 +9058,14 @@
                 "markdownPath": "content/markdown/aaa/validation/constraint-ledger.md",
                 "markdownSection": "Experimental Constraint Ledger and Falsification Criteria",
                 "sectionKey": "experimental constraint ledger and falsification criteria",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sources",
+                "markdownPath": "content/markdown/aaa/validation/constraint-ledger.md",
+                "markdownSection": "Sources",
+                "sectionKey": "sources",
                 "headingLevel": 2
               }
             ]
@@ -9109,6 +9133,14 @@
                 "markdownSection": "Critical Stop Conditions",
                 "sectionKey": "critical stop conditions",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sources",
+                "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
+                "markdownSection": "Sources",
+                "sectionKey": "sources",
+                "headingLevel": 2
               }
             ]
           },
@@ -9142,6 +9174,14 @@
                 "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
                 "markdownSection": "Use in Validation",
                 "sectionKey": "use in validation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sources",
+                "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
+                "markdownSection": "Sources",
+                "sectionKey": "sources",
                 "headingLevel": 2
               }
             ]
@@ -9204,6 +9244,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Sources",
+                "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
+                "markdownSection": "Sources",
+                "sectionKey": "sources",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Related Chapters",
                 "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
                 "markdownSection": "Related Chapters",
@@ -9230,10 +9278,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Experiment-two-component circular configurationslassification",
+                "title": "Experiment-Family Classification",
                 "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
-                "markdownSection": "Experiment-two-component circular configurationslassification",
-                "sectionKey": "experiment two component circular configurationslassification",
+                "markdownSection": "Experiment-Family Classification",
+                "sectionKey": "experiment family classification",
                 "headingLevel": 2
               },
               {
@@ -9298,6 +9346,14 @@
                 "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
                 "markdownSection": "Simulation Target",
                 "sectionKey": "simulation target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sources",
+                "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+                "markdownSection": "Sources",
+                "sectionKey": "sources",
                 "headingLevel": 2
               }
             ]
@@ -9834,6 +9890,14 @@
                         "markdownPath": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
                         "markdownSection": "Acceptance Boundary",
                         "sectionKey": "acceptance boundary",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Sources",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+                        "markdownSection": "Sources",
+                        "sectionKey": "sources",
                         "headingLevel": 2
                       }
                     ]
@@ -12683,6 +12747,14 @@
                       },
                       {
                         "kind": "markdown-section",
+                        "title": "Comparison Source",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Comparison Source",
+                        "sectionKey": "comparison source",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
                         "title": "Terminology Rules",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
                         "markdownSection": "Terminology Rules",
@@ -12762,6 +12834,14 @@
                         "markdownSection": "Closure Program Integration (quantum chain)",
                         "sectionKey": "closure program integration quantum chain",
                         "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Source Notes",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+                        "markdownSection": "Source Notes",
+                        "sectionKey": "source notes",
+                        "headingLevel": 2
                       }
                     ]
                   },
@@ -12835,6 +12915,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
                         "markdownSection": "Observables and Falsifiability",
                         "sectionKey": "observables and falsifiability",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Source Notes",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+                        "markdownSection": "Source Notes",
+                        "sectionKey": "source notes",
                         "headingLevel": 2
                       }
                     ]
@@ -14127,10 +14215,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Chen Ning Yang (1922–) and Robert Mills (1927–1999) — Non-Abelian Gauge Structure",
+                    "title": "Chen Ning Yang (1922–2025) and Robert Mills (1927–1999) — Non-Abelian Gauge Structure",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Chen Ning Yang (1922–) and Robert Mills (1927–1999) — Non-Abelian Gauge Structure",
-                    "sectionKey": "chen ning yang 1922 and robert mills 1927 1999 non abelian gauge structure",
+                    "markdownSection": "Chen Ning Yang (1922–2025) and Robert Mills (1927–1999) — Non-Abelian Gauge Structure",
+                    "sectionKey": "chen ning yang 1922 2025 and robert mills 1927 1999 non abelian gauge structure",
                     "headingLevel": 3
                   },
                   {

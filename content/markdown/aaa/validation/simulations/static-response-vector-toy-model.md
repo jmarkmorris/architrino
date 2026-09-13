@@ -1,5 +1,7 @@
 # Static Response Vector Toy Model
 
+The Noether sea is the ambient population of Noether braid assemblies. Its local cadence-stretch factor $\Gamma_N$ is the reference cadence divided by the local cadence; its reciprocal is the corresponding normalized clock-rate factor on the declared shared clock branch. The parameterized post-Newtonian (PPN) framework supplies an observer-level weak-gravity comparison.
+
 This protocol documents the first replay fixture for the weak static response vector used in the $\Gamma_N$ geometry extraction target. It is a small arithmetic gate for the endpoint row in [Proper Time and Time Dilation](../../spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target) and the Shapiro-delay coefficient in [PPN Parameters](../../spacetime/ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
 The fixture is not an empirical PPN fit. It keeps the clock cadence row, the clock-rate row, and the signal-delay coefficient separate while the $\mathbb{A}\mathbb{A}\mathbb{A}$ constitutive response is still being derived.
@@ -22,18 +24,18 @@ and emits one result row per scenario.
 
 ## Replay Equations
 
-For a weak static endpoint cell, write
+Use the stationary, isotropic, nondispersive, zero-shift comparison branch and fixed standard PPN chart of the linked PPN owner, with common asymptotic clock and ruler calibration. Let $U=-\Phi_N>0$ have speed-squared units, $c_0=c_{\mathrm{eff}}(\infty)$, and $u=U/c_0^2\ll1$. Normalize the positive density ratio $n$ and envelope scale $\lambda$ to one in the reference cell; take $R_{\mathrm{braid},0}>0$ and $\chi_{\mathrm{sea},0}=c_f/c_0>0$, which need not equal one. Numerical instantiations use $c_f=1$ without identifying it with $c_0$. For a weak static endpoint cell, write
 
 $$
 \ln n=a_n\frac{U}{c_0^2},\qquad
-\ln\chi_{\text{sea}}=a_\chi\frac{U}{c_0^2},\qquad
+\ln\frac{\chi_{\text{sea}}}{\chi_{\mathrm{sea},0}}=a_\chi\frac{U}{c_0^2},\qquad
 \ln\lambda=a_\lambda\frac{U}{c_0^2},\qquad
 \ln\frac{R_{\text{braid}}}{R_{\text{braid},0}}=a_R\frac{U}{c_0^2}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-de1046c46595692a)
 
-The cadence-stretch row must satisfy
+These are first-order expansions with an omitted $O(u^2)$ remainder in each component. The four-component response is a vector of dimensionless scalar feature derivatives, not a spatial vector or acceleration. This four-feature specialization holds the shape contribution zero at the retained order; isotropy alone does not establish that restriction. The cadence-stretch row, as a weak-redshift recovery target rather than a derived constitutive law, must satisfy
 
 $$
 b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1
@@ -57,7 +59,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1c43cb618b3469c0)
 
-for $i\in\{n,\chi,\lambda,R\}$.
+for $i\in\{n,\chi,\lambda,R\}$. Coefficient inversion enforces reciprocal clock and cadence response throughout the declared four-dimensional feature domain. The two endpoint dot products alone only imply $(\mathbf b+\boldsymbol\omega)\cdot\mathbf a=0$ along one response direction; they do not determine all four coefficients.
 
 The Shapiro-delay neighbor supplies
 
@@ -77,9 +79,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-aaed5ebd81e127ec)
 
-The branch is shared-delay closed only when $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$ within the declared tolerance.
+The supplied coefficients satisfy the shared-delay arithmetic only when $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$ within the declared tolerance.
 
-The same arithmetic also exposes the lensing/dynamics equality burden used by dark-sector comparisons. In the weak static row, the signal-deflection channel is closed only when the spatial-compliance response gives
+In the same weak static metric comparison with a common independently calibrated source potential, the GR-matching signal-deflection target is
 
 $$
 \gamma_{\mathrm{PPN}}=1,
@@ -89,7 +91,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-002feaffad73d597)
 
-while the clock/dynamical endpoint row still satisfies the cadence and inverse-clock equations below. A response vector that changes the dynamical acceleration but leaves $a_\chi^{\mathrm{sig}}\neq2$ is a split clock/signal branch: it may fit rotation curves or hydrostatic motion, but it cannot yet claim the lensing mass equality required by cluster and galaxy-galaxy weak-lensing tests.
+while the clock endpoint must separately satisfy the cadence and inverse-clock equations above. A value $a_\chi^{\mathrm{sig}}\neq2$ misses that GR-matching coefficient under these assumptions; it is not by itself a clock/signal split, which is diagnosed by $\Delta_\chi^{\mathrm{clk\text{-}sig}}$. The fixture contains no orbital, hydrostatic, ray-tracing, or mass-inference calculation and establishes no galaxy or cluster lensing/dynamics equality.
 
 ## Minimal Shared-Delay Packet
 
@@ -101,7 +103,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-15c18a8f6475836f)
 
-The minimal response vector is
+Assume $A_\chi\neq0$; at $\gamma_{\mathrm{PPN}}=-1$ the proposed pure-delay vector vanishes and cannot satisfy the endpoint target. The minimal response vector is
 
 $$
 \left(
@@ -165,7 +167,7 @@ For the GR-matching branch, this gives $A_\chi=2$, $a_\chi=2$, $b_\chi=1/2$, and
 
 ## Pressure Bridge
 
-Pressure-response packets can feed the same fixture after their anisotropic terms are separated from the isotropic static projection. For a pressure row $r$, the bridge uses
+Pressure-response packets can feed the same fixture after their anisotropic terms are separated from the isotropic static projection. Here $\delta\ln q$ denotes the logarithm of a ratio of positive endpoint values, with $R=R_{\mathrm{braid}}$. A fixed local coefficient row predicts these increments to first order; for a nonlinear constitutive map the neglected remainder is $O(\|\delta\mathbf g^P\|^2)$ and requires a separate bound. The script evaluates the linear ansatz exactly and does not estimate that remainder. For a pressure row $r$, the bridge uses
 
 $$
 \delta\mathbf{g}_r^{P}
@@ -230,9 +232,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d8828178bd959776)
 
-This normalization makes pressure rows replayable by the same endpoint arithmetic, but it does not convert pressure loading into a gravitational PPN branch. The `gamma_eff_sweep` diagnostic is only an algebraic comparison against $a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}$; a pressure-normalized value that closes for some formal $\gamma_{\mathrm{PPN}}$ is not a solar-system Shapiro result.
+This normalization requires nonzero $\delta\ln\Gamma_N$ and becomes ill-conditioned near zero relative to measurement uncertainty. With the same row it makes the normalized endpoint condition an algebraic rescaling of the pressure cadence condition, not an independent test. This normalization makes pressure rows replayable by the same endpoint arithmetic, but it does not convert pressure loading into a gravitational PPN branch. The `gamma_eff_sweep` diagnostic is only an algebraic comparison against $a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}$; a pressure-normalized value that closes for some formal $\gamma_{\mathrm{PPN}}$ is not a solar-system Shapiro result.
 
-Anisotropic pressure entries, such as $\Delta\Pi^{\parallel-\perp}$ or deviatoric strain, must be either projected out before the isotropic static row is evaluated or carried in `anisotropic_residuals`. The isotropic $\Gamma_N$ row must not absorb directional pressure response as a hidden scalar coefficient.
+Anisotropic pressure entries, such as $\Delta\Pi^{\parallel-\perp}$ or deviatoric strain, must be either projected out before the isotropic static row is evaluated or carried in `anisotropic_residuals`. The isotropic $\Gamma_N$ row must not absorb directional pressure response as a hidden scalar coefficient. The script carries `anisotropic_residuals` as metadata; it does not perform a tensor projection or check its correctness.
 
 ## Input Packet
 
@@ -246,7 +248,7 @@ Each scenario supplies:
 | `pressure_bridge` | optional pressure row used to derive a normalized static-equivalent response vector |
 | `cadence_row` | cadence-stretch coefficients $(b_n,b_\chi,b_\lambda,b_R)$ for $\ln\Gamma_N$ |
 | `clock_rate_row` | inverse clock-rate coefficients $(\omega_n,\omega_\chi,\omega_\lambda,\omega_R)$ |
-| `expect_shared_delay` | whether the scenario is expected to satisfy $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$ |
+| `expect_shared_delay` | defaults to requiring shared delay; `false` waives this requirement rather than asserting a nonzero residual |
 | `tolerance` | optional scenario-level residual tolerance |
 
 ## Output Diagnostics
@@ -265,7 +267,9 @@ The fixture reports:
 | `diagnostics.row_inverse_residuals` | coefficient-by-coefficient residuals $b_i+\omega_i$ |
 | `diagnostics.pressure_bridge` | optional pressure-row replay of $\mathcal{R}_{\Gamma}^{P}$, $\mathcal{R}_{C}^{P}$, and effective-speed identity |
 
-These diagnostics turn the first-order response vector into an executable closure object. A later constitutive simulation can replace the mock response values with measured $(a_n,a_\chi,a_\lambda,a_R)$ rows while keeping the same gate.
+These diagnostics test supplied arithmetic. In the current script, omitted cadence or clock rows produce null residuals with passing flags; missing coefficients within a supplied row default to zero. An omitted speed-identity observation also passes without evaluation. An explicit `response` takes precedence over pressure-derived normalization without a consistency check between the two. `gamma_eff_sweep` and anisotropic metadata do not determine scenario status. The command exits successfully even when result rows fail, so consumers must inspect both record completeness and the JSON statuses.
+
+The effective-speed check, when both observations exist, evaluates $\delta\ln\chi_{\mathrm{sea}}+\delta\ln(c_{\mathrm{eff}}/c_f)=0$, an identity for a consistently defined delay factor at fixed $c_f$. It does not derive a constitutive speed law. Use finite numerical inputs and a nonnegative dimensionless tolerance; the script does not enforce positivity of underlying physical records, schema identity, or nonnegativity of the tolerance. A later measured response requires independent instrument provenance, uncertainty and truncation bounds, common branch calibration, and complete required rows before these arithmetic diagnostics can support physical comparison.
 
 ## Expected Mock Behavior
 
@@ -388,6 +392,8 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-794a88ddcbadfd48)
 
-The current validation status is therefore conditional. Nonzero static endpoint coefficients $a_n$, $a_\lambda$, and $a_R$ are not required by the endpoint row itself. They become necessary only if an independent branch record, such as hydrogen spectral refinement or pressure-response replay, supplies non-$\chi_{\text{sea}}$ response that must share the same $\Gamma_N$ row. The next proof obligation is to replace the toy nonzero entries with branch-derived density, envelope-scale, or $R_{\text{braid}}$ response rather than treating them as fit parameters.
+The incompatibility is conditional on these two pure-delay response vectors and one common coefficient row. The pure-delay pressure vector fixes $b_\chi=5/3$; retaining the static value $a_\chi=2$ would then require the sum of non-delay static contributions to equal $1-10/3=-7/3$. It does not require each such component to be nonzero. More generally, a pressure response with non-delay components does not require non-delay static responses: $\mathbf a^G=(0,2,0,0)$, $\mathbf a^P=(0,0.6,0.7,0)$ and $\mathbf b=(0,0.5,1,0)$ satisfy both dot products with target one.
+
+For several normalized response records, a shared row exists exactly when the linear system whose rows are the response vectors and whose target entries are one is consistent; the row is unique only when those records span the four-dimensional feature space. The mock scenarios choose their rows separately and do not establish one universal coefficient row. Branch-derived responses and a justified common constitutive domain are needed to promote any component split beyond these algebraic witnesses.
 
 The hydrogen spectral toy scan may replay this compensated row as a scaffold, but that replay is not evidence that the gravitational endpoint has acquired nonzero $a_n$, $a_\lambda$, or $a_R$. Those entries become promotable only when the hydrogen branch or another declared branch derives the same component split for the same Noether sea cell.

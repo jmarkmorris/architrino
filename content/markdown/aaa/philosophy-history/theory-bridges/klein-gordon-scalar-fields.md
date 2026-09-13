@@ -31,9 +31,9 @@ $$
 
 usually with $K=\mathbb{R}$ or $\mathbb{C}$. It assigns one scalar value to each point of the domain and carries no intrinsic direction, orientation, or tensor index.
 
-Here scalar primarily means Lorentz scalar: the field has no spacetime vector or tensor index. Within spin-0 sectors, an ordinary scalar is parity-even, while a pseudoscalar is parity-odd. Axions and pion-like modes are standard pseudoscalar examples.
+Here scalar primarily means Lorentz scalar: the field transforms as a scalar under the declared effective Lorentz chart. Having one component or no displayed index does not establish that transformation law. A density per coordinate volume, for example, need not be a Lorentz scalar; a proposed Noether sea amplitude requires its own observer transformation map. Within spin-0 sectors, an ordinary scalar is parity-even, while a pseudoscalar is parity-odd. Axions and pion-like modes are standard pseudoscalar examples.
 
-The Standard Model Higgs is Lorentz-scalar in spacetime, but the full Higgs field also carries electroweak gauge structure before symmetry breaking. Singular or distributional sources, such as Dirac deltas, are generalized scalar objects rather than ordinary finite-valued scalar fields; regularized versions recover ordinary scalar profiles.
+The Standard Model Higgs is Lorentz-scalar in spacetime, but the full Higgs field also carries electroweak gauge structure before symmetry breaking. Singular or distributional sources, such as Dirac deltas, are generalized scalar objects rather than ordinary finite-valued scalar fields; regularized versions give ordinary profiles on their declared chart; scalar covariance additionally requires the correct volume measure and transformation law.
 
 ## Klein-Gordon Role
 
@@ -52,23 +52,27 @@ A real scalar field describes a neutral scalar sector, while a complex scalar fi
 
 ## Mode Dictionary
 
-In second-quantized language, a scalar field is expanded into modes with creation and annihilation operators,
+For a free neutral real scalar field, the self-adjoint quantum field has the mode expansion below, with mode normalization and boundary conditions fixed. The sum denotes discrete modes or the corresponding continuum integral:
 $$
 \hat{\phi}(x)=\sum_k\left(a_k u_k(x)+a_k^\dagger u_k^*(x)\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f335692d7c6a20a1)
 
+For a complex charged field, the negative-frequency term instead contains an independent antiparticle creation operator $b_k^\dagger$; the field is not self-adjoint. In curved backgrounds a positive-frequency splitting and particle interpretation require a declared state and mode choice; a stationary stable region can supply a preferred time generator, while a generic time-dependent geometry need not supply a unique vacuum.
+
 Under $\mathbb{A}\mathbb{A}\mathbb{A}$, this should be read as effective bookkeeping for stable mode contributions from Noether braid clusters, not as literal creation or destruction of substrate entities.
 
-The oscillator-to-field route is useful because it separates three levels. First, a continuum field can be decomposed into normal modes $u_k$ with mode coordinates $Q_k(t)$. Second, each mode behaves like a harmonic oscillator with frequency $\omega_k$. Third, quantization replaces continuous mode energy with an occupation ladder,
+The oscillator-to-field route is useful because it separates three levels. First, a continuum field can be decomposed into normal modes $u_k$ with mode coordinates $Q_k(t)$. Second, for a stable free quadratic theory with a self-adjoint spatial fluctuation operator on specified boundaries, positive-frequency modes behave as harmonic oscillators with frequencies $\omega_k>0$. Zero modes and unstable modes need separate treatment. Third, standard quantization gives an occupation ladder,
 $$
 E_{n,k}\approx\hbar\omega_k\left(n+\frac12\right).
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-94b22f2b391f37cf)
 
-In standard QFT, one increment of that ladder is called one particle of the corresponding field. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this is retained as observer-level occupation bookkeeping. The native burden is to derive the mode basis, frequency gap, and stable increments from Noether sea and assembly dynamics before particle-count language is promoted beyond an effective chart.
+For a free oscillator this ladder is exact; the approximation sign allows an effective harmonic regime. Discrete energy and occupation do not make the mode coordinate $Q_k$ discrete: its usual oscillator operator has continuous spectrum. In standard QFT, one increment of that ladder is called one particle of the corresponding field. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this is retained as observer-level occupation bookkeeping. The native burden is to derive the mode basis, frequency gap, and stable increments from Noether sea and assembly dynamics before particle-count language is promoted beyond an effective chart.
+
+The following dictionary is proposed correspondence, not an established derivation of the operator algebra or occupation measure.
 
 | QFT language | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
 | --- | --- |
@@ -106,14 +110,14 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7cea5c0ab5a24a4d)
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ bridge reads this as a continuum-limit target. A mature derivation should show when linearization around a homogeneous Noether sea background yields a dispersion relation of the form
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ bridge reads this as a continuum-limit target. A mature derivation should show when linearization around an independently established homogeneous equilibrium of the retained Noether sea dynamics yields a dispersion relation of the form
 $$
 \omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-860dbe5d6c96bbfb)
 
-with $\omega_0$ supplying the Klein-Gordon-like mode gap.
+with real wave number in the admitted long-wavelength window, positive kinetic normalization and $c_{\mathrm{eff}}^2>0$, and $\omega_0^2\ge0$ supplying a stable Klein-Gordon-like gap. The gapless case is allowed. The coefficients here use the effective observer clock and ruler chart; conversion from absolute $T$ requires the same calibrated map.
 
 In the standard relativistic comparison, the same dispersion relation becomes the particle dictionary when $c_{\mathrm{eff}}\to c$ and one assigns
 $$
@@ -137,7 +141,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is a recovery equation, not an ontolo
 
 ## Curved-Spacetime Equation
 
-The curved-spacetime scalar-field standard comparison form with optional curvature coupling is
+The free real curved-spacetime scalar-field comparison, with optional curvature coupling and the same mostly-plus convention, is
 $$
 \left(\nabla^\mu\nabla_\mu - \frac{m^2c^2}{\hbar^2} - \xi R\right)\phi = 0
 $$
@@ -159,9 +163,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0f1dafd58efeb705)
 
-When coupled to general relativity, this scalar action contributes an effective stress-energy tensor,
+Varying this action with fixed boundary data gives the preceding free equation only when $V'(\phi)=0$. For a nonconstant additional potential its equation is $(\nabla^\mu\nabla_\mu-m^2c^2/\hbar^2-\xi R)\phi-V'(\phi)=0$. The quadratic mass term already written separately must not be counted again in $V$. The action uses coordinates $x^0=ct$ and a field normalization for which the bracket has action per four-volume units; the stress tensor requires the matching physical normalization.
+
+When coupled to general relativity, this scalar action contributes an effective stress-energy tensor. With physical energy-density units and no cosmological-constant term in this displayed comparison,
 $$
-G_{\mu\nu}=8\pi G\left(T_{\mu\nu}^{\mathrm{matter}}+T_{\mu\nu}^{(\phi)}\right)
+G_{\mu\nu}=\frac{8\pi G}{c^4}\left(T_{\mu\nu}^{\mathrm{matter}}+T_{\mu\nu}^{(\phi)}\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7f9a29c430d6ae13)
@@ -170,11 +176,11 @@ so scalar-field energy density, pressure, and gradients can affect curvature. Th
 
 Operationally, the metric background used in this equation is normally reconstructed through signal-mediated observations: clock synchronization, radar distance, redshift, lensing, null-cone timing, and later multi-messenger channels. The Klein-Gordon field need not itself be electromagnetic, but its spacetime stage is usually calibrated through Physical Observer readout.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, this places Klein-Gordon-like scalar behavior in the effective continuum layer. The $\mathbb{U}_{\text{now}}$ universe-state perspective would track the underlying architrino positions, velocities, and causal wake intersections directly, while Physical Observers infer scalar propagation on an emergent metric.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, this places Klein-Gordon-like scalar behavior in the effective continuum layer. The $\mathbb{U}_{\text{now}}$ universe-state perspective would track the admitted architrino histories, current positions and velocities, environment, and causal wake intersections directly, while Physical Observers infer scalar propagation on an emergent metric.
 
 ## Cosmological Scalar Comparison
 
-Quintessence is the standard scalar-field comparison for dynamical dark energy. Its useful sequence is narrow: choose a scalar amplitude $\phi$, assign a potential $V(\phi)$, let the homogeneous branch roll slowly enough that its stress-energy has $w \approx -1$, and test whether the resulting distance, CMB, lensing, and growth records outperform a pure cosmological constant. That sequence is retained as a comparison chart, not as a substrate claim.
+Quintessence is the standard scalar-field comparison for dynamical dark energy. Its useful sequence is narrow: choose a scalar amplitude $\phi$, assign a potential $V(\phi)$, in the canonical minimally coupled homogeneous positive-energy regime let the kinetic density be small relative to a positive potential so its stress-energy has $w \approx -1$, and test whether the resulting distance, CMB, lensing, and growth records outperform a pure cosmological constant. That sequence is retained as a comparison chart, not as a substrate claim.
 
 The particle-physics pressure on this chart is also useful. A dark-energy scalar with Hubble-scale mass is extraordinarily light, and generic couplings would mediate fifth forces or drift in Standard Model constants. Approximate shift symmetry,
 
@@ -184,7 +190,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9a328c49b63f0a03)
 
-is the usual route to make such small masses and couplings technically natural. In pseudo-Nambu-Goldstone-boson versions, the allowed pseudoscalar coupling
+uses $c$ here as a constant field shift, not a signal speed. Approximate shift symmetry can protect small potential-breaking terms, but does not by itself suppress every derivative or topological coupling. This is a model-dependent naturalness argument, not a guarantee of observational viability. In pseudo-Nambu-Goldstone-boson versions, the allowed pseudoscalar coupling
 
 $$
 \phi\,\mathbf{E}\cdot\mathbf{B}
@@ -192,22 +198,22 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-27a759c16c10e45c)
 
-can rotate the polarization angle of distant light. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is a clean observational recovery target: any Noether sea scalar-response analogue that claims the same role must preserve the polarization-rotation, CMB, lensing, redshift, and growth records without importing a continuous scalar field as ontology.
+can rotate the polarization angle of distant light when its normalized coupling and a suitable spacetime-varying field are present; a constant coefficient of the corresponding topological term does not alone produce bulk rotation. See [Carroll, Quintessence and the Rest of the World](https://arxiv.org/abs/astro-ph/9806099). For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is an optional comparison rather than a prerequisite for every scalar bridge: any Noether sea scalar-response analogue that claims the same role must preserve the polarization-rotation, CMB, lensing, redshift, and growth records without importing a continuous scalar field as ontology.
 
 ## Source Terms
 
-With a source term, the same equation can be written schematically as
+In the free limit $V'(\phi)=0$, with a source term whose sign is defined by the right-hand side, the same equation can be written schematically as
 $$
 \left(\nabla^\mu\nabla_\mu - \frac{m^2c^2}{\hbar^2} - \xi R\right)\phi = J
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bec0df384c482eb7)
 
-Here $J$ may be an ordinary transmitter-emission density, a distributional point or surface source, or a regularized source $J_\eta$ used for calculation. This distinction matters because a Dirac delta is not an infinite-valued ordinary scalar field; it is a distributional source whose mollified version becomes an ordinary finite scalar profile.
+Here $J$ must be a scalar source in this effective chart with the units of the wave operator acting on $\phi$. It may be a mapped transmitter-emission density, a distributional point or surface source, or a regularized source $J_\eta$ used for calculation. This distinction matters because a Dirac delta is not an infinite-valued ordinary scalar field; it is a distributional source whose mollified version becomes an ordinary finite scalar profile.
 
 ## Variational Scalar Closure Benchmark
 
-The statistical-field-theory comparison gives a concrete continuum test: if a coarse scalar mode is legitimate, it should have a controlled quadratic fluctuation operator around a saddle of an effective free-energy or action functional. In native $\mathbb{A}\mathbb{A}\mathbb{A}$ notation the bridge target can be stated on an absolute slice as
+The statistical-field-theory comparison gives a concrete continuum test: a candidate conservative local scalar reduction can be tested through a controlled quadratic fluctuation operator about an actual stationary background of an effective functional. A generic dissipative or memory-dependent scalar response need not possess this form. In native $\mathbb{A}\mathbb{A}\mathbb{A}$ notation the bridge target can be stated on an absolute slice as
 $$
 \mathcal{F}_{\mathrm{eff}}[\phi]
 =
@@ -241,7 +247,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bc8cf8cceece744c)
 
-Linearizing gives
+The stationary condition above is necessary within the proposed functional; it does not establish a retained equilibrium of the full delayed dynamics. A spatial free-energy functional alone gives no time-evolution law. To obtain the displayed second-order comparison, additionally assume a justified local conservative kinetic action $S_{\mathrm{loc}}=\int dT[\int_{\Sigma_T}\chi_\phi(\partial_T\phi)^2/2\,dV-\mathcal F_{\mathrm{eff}}]$, with constant $\chi_\phi>0$ and $K_\phi>0$ on the balanced branch. Suppressing memory, damping, anisotropy and higher derivatives requires independent error control. Linearizing that conditional action gives
 $$
 \partial_T^2\delta\phi
 \approx
@@ -253,7 +259,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4c74c07ccbfb543c)
 
-which is the bridge route to the Klein-Gordon dispersion target.
+Here $c_{\mathrm{eff}}^2=K_\phi/\chi_\phi$ in the absolute-time chart of this subsection and $\omega_0^2=V_{\mathrm{eff}}''(\phi_\ast)/\chi_\phi$. The ratios have units of speed squared and inverse time squared. Matching them to the earlier observer coefficients requires the clock/ruler conversion; neither is automatically the primitive wake speed. Stability requires the retained self-adjoint fluctuation operator to be nonnegative; a negative eigenvalue gives an exponentially growing mode. This is a conditional route to the dispersion target, not a derivation from the spatial functional alone.
 
 The same benchmark supplies a defect test. If
 $$
@@ -271,7 +277,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7c77ff35d6d63c73)
 
-then a one-dimensional interface profile should satisfy the saddle equation
+then a static finite-energy one-dimensional interface on the infinite line can exist only under additional conditions, including equal vacuum potential values and admissible boundary decay. Its saddle equation is
 $$
 K_\phi\frac{d^2\phi}{dx^2}
 =
@@ -297,13 +303,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-192ee8e572204d28)
 
-with the appropriate branch value subtracted on each side. For this bridge, such domain-wall or kink-like profiles are comparison diagnostics for coarse scalar closure; they are not evidence that the underlying architrino ontology is a continuous scalar field.
+with the same common vacuum value subtracted on both sides. Multiplying the saddle equation by $d\phi/dx$ gives the first integral $K_\phi(\phi')^2/2-V_{\mathrm{eff}}(\phi)=\text{constant}$. Vanishing endpoint gradients therefore require $V_{\mathrm{eff}}(\phi_-)=V_{\mathrm{eff}}(\phi_+)$. Piecewise subtraction of unequal vacuum energies cannot repair the missing static solution. Degeneracy is necessary, not sufficient: existence, integrability and stability still depend on the potential, boundaries and retained dynamics. For this bridge, such domain-wall or kink-like profiles are comparison diagnostics for coarse scalar closure; they are not evidence that the underlying architrino ontology is a continuous scalar field.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Reading
 
 $\phi$ should be treated as a coarse-grained scalar amplitude of Noether sea density, compression, or radial-breathing response, not as a fundamental continuous substance.
 
-The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether sea. Particle rest mass itself remains the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling.
+The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether sea. The proposed particle-mass map still requires an independently calibrated energy/action scale, observer response, and accepted assembly branch; a frequency gap alone is not a measured rest mass.
 
 The metric wave operator $\nabla^\mu\nabla_\mu$ belongs to emergent metric closure, not to the substrate-level Euclidean void. The curvature-coupling term $\xi R\phi^2$ is therefore read as a bridge term: scalar-mode behavior changes with effective medium curvature, density, or stress.
 
@@ -325,12 +331,12 @@ To promote this bridge from mapping to derivation, the following targets must cl
 
 1. Derive a coarse-grained scalar amplitude $\phi$ from Noether sea density, compression, or radial breathing modes.
 2. Derive normal coordinates $Q_k(T)$ for Noether braid cluster modes so that $\phi(\mathbf X,T)\approx\sum_k Q_k(T)u_k(\mathbf X)$ in the continuum limit.
-3. Show how stable discrete increments of $Q_k$ produce the effective occupation-count behavior encoded by $a_k^\dagger$, $a_k$, and $N_k$.
-4. Show when linearization around a homogeneous Noether sea background yields $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$.
+3. Derive the operator/occupation map and stable discrete energy or action increments, without assuming that $Q_k$ itself has discrete spectrum, to recover the effective occupation-count behavior encoded by $a_k^\dagger$, $a_k$, and $N_k$.
+4. Establish the underlying equilibrium and a controlled kinetic/memory reduction, then show when linearization yields $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$.
 5. Relate the effective mass parameter $m$ to assembly stiffness, confinement energy, or radial restoring dynamics rather than treating it as primitive.
 6. Determine whether effective curvature coupling $\xi R\phi^2$ emerges from medium-density gradients, strain response, or scalar-tensor leakage in the emergent metric closure.
-7. Derive an effective functional $\mathcal{F}_{\mathrm{eff}}[\phi]$ with a positive fluctuation operator on the retained branch, and identify any zero modes as symmetry or collective-coordinate directions rather than as unstable scalar modes.
-8. If multiple scalar branches exist, compute the interface profile and interface cost $\sigma_\phi$ as a defect benchmark, then test whether such interfaces are stable, proliferate, or are excluded by the underlying delayed dynamics.
+7. Derive an effective functional $\mathcal{F}_{\mathrm{eff}}[\phi]$ with a positive fluctuation operator on the retained branch, and determine the origin of zero modes rather than assuming all are symmetry modes; accidental or critical zero modes require higher-order analysis.
+8. Where multiple branches admit a static finite-energy interface with equal vacuum values, compute the interface profile and interface cost $\sigma_\phi$ as a defect benchmark, then test whether such interfaces are stable, proliferate, or are excluded by the underlying delayed dynamics.
 
 ## Summary Commitment
 

@@ -1,0 +1,13 @@
+{
+  "schema": "reviewed-current-source-transition/v1",
+  "predecessorSha256": "cc3ce68803f752d21788992007081c6b3c111991754e264dc59e2782986b20de",
+  "reviewReference": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#borg-runtime-graph-integration",
+  "profiles": [
+    {
+      "name": "borg-runtime-sources",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-sources.jsonld",
+      "sha256": "15cb1d2d887c8b8249c188ebcf8bd768d02ba1faa4d36c588e7d4ce436e29332",
+      "changes": []
+    }
+  ]
+}

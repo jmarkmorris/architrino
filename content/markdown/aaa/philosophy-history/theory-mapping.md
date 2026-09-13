@@ -12,6 +12,8 @@ This chapter provides a compact but disciplined map of major physical theories a
 
 **Use:** This chapter is not a neutral encyclopedia and it is not a full historical narrative. It is a structured comparison document for readers who need to know what each major theory claims, what domain it governs well, and how it is retained, reduced, or reclassified within a substrate-first architecture.
 
+**Claim levels:** The inherited equations below are comparison formulas on their stated domains, never premises for architrino dynamics. Ontological relocations express the project’s proposed interpretation; a change of labels does not derive the corresponding effective law. Assembly stability, response coefficients, conserved charges and observer probabilities require the technical owners’ independent closure results. Optional programs are comparison tools, not additional mandatory sectors.
+
 **Observation Stack:** Many inherited spacetime and field variables are calibrated through Physical Observer readout (often photon-mediated historically, and now also neutrino- and gravitational-wave-mediated where applicable). In $\mathbb{A}\mathbb{A}\mathbb{A}$, this does not invalidate the theories; it locates their coordinate, metric, and field variables in an observer-facing effective layer rather than directly in the substrate ledger available to the $\mathbb{U}_{\text{now}}$ universe-state perspective.
 
 **Regime-Capture Warning:** Modern physics has achieved extraordinary precision inside bounded regions of empirical regime space. That precision fixes demanding recovery targets, but it does not by itself decide ontology. Equations such as the Schrödinger equation, perturbative quantum field models, weak-field GR, and cosmological parameter fits are powerful closures over declared conditions rather than direct access to substrate reality. The methodological risk is that regime-bound success can become a standard of admissible explanation before the associated variables have earned substrate status. Renormalization-group running and effective-theory matching can connect neighboring resolution regimes while the active variables, symmetry realization, and named carriers change between them. That connected tower is a major mathematical achievement, but it is not yet one unified theory of nature unless a common retained history projects into every regime without changing constituent ontology or privately retuning each theory. [One Nature, Many Theories](one-nature-many-theories.md) develops that bridge-network distinction and its exact common-history tests. From the $\mathbb{A}\mathbb{A}\mathbb{A}$ standpoint, inherited theories must therefore be recovered in their tested regimes while their ontological interpretations and cross-scale constituent continuity remain separately auditable.
@@ -22,8 +24,8 @@ One compact way to read this chapter is as a set of ontological relocations. The
 
 | Inherited package | What remains valid | Relocation in $\mathbb{A}\mathbb{A}\mathbb{A}$ |
 | --- | --- | --- |
-| General Relativity | Metric, geodesic, lensing, gravitational-wave, and weak/strong-field benchmark calculations remain recovery targets. | The effective metric is reconstructed from Noether sea response, clock/ruler retuning, and signal-structure; the Euclidean void itself does not curve. |
-| Quantum Mechanics | Born weights, interference records, measurement statistics, and Hilbert-space calculation remain benchmark outputs. | The complete state evolves deterministically, while record-limited observers see basin weights, multistability, and unresolved path history as effective probability. |
+| General Relativity | Metric, geodesic, lensing, gravitational-wave, and weak/strong-field benchmark calculations remain recovery targets. | The effective metric is a recovery target to be reconstructed from Noether sea response, clock/ruler retuning, and signal-structure; the Euclidean void itself does not curve. |
+| Quantum Mechanics | Born weights, interference records, measurement statistics, and Hilbert-space calculation remain benchmark outputs. | The complete-state dynamics are intended to be deterministic on a well-posed history domain; recovering observed probabilities from basin weights and finite records remains a separate measure and apparatus-map target. |
 | $\Lambda\mathrm{CDM}$, Big Bang, and inflationary chronology | Redshift, CMB, BBN, growth, lensing, and parameter-fit data products remain hard comparison constraints. | Expansion variables are observer-level summaries of source/release history, Noether sea evolution, transport, and clock-rate comparison in a fixed Euclidean void. |
 | Quantum Field Theory | Effective actions, perturbation theory, detector-event reconstruction, renormalized summaries, and field symmetries remain indispensable. | Fields and particle-number changes are effective descriptions of assembly association, dissociation, normal-mode changes, causal wakes, and source-history transport. |
 
@@ -69,13 +71,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0f26ac532d582dcc)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $G_{\mathrm{SM}}$ is an *effective symmetry* of Noether braid assemblies and their axial patterns. Color, weak isospin, and hypercharge correspond to discrete topological/phase labels on Noether braid assemblies and to symmetries of their internal motion. The SM is the continuum, field-theoretic summary of discrete architrino assemblies and their interaction graph, not a fundamental layer.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $G_{\mathrm{SM}}$ is a proposed effective symmetry to be recovered from Noether braid assemblies and their axial patterns. Color, weak isospin and hypercharge require an independently derived continuous representation and dynamics, not just discrete labels. [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md) retains this recovery burden; the continuum summary is a target, not an established consequence of assembly geometry.
 
 **What Still Works:** Standard Model (SM) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Essential during transition: its particle classifications, cross sections, decay channels, and precision fits are mandatory recovery benchmarks. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 **Geometric proof targets:**
-- Classify Noether braid axial-pattern permutations and show the resulting symmetry factors match $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$.
-- Prove three stable assembly families arise from distinct phase-winding classes.
+- Classify axial-pattern permutations, then derive the continuous generators, representations and compatible effective dynamics needed to recover $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$.
+- Determine whether the admitted dynamics select exactly three stable observed families; assigning three phase labels alone does not establish existence, stability or exclusion of extra families.
 
 ---
 ### Quantum Field Theory (QFT)
@@ -84,9 +86,9 @@ $$
 
 **Summary:** Particles are excitations of underlying fields; interactions are field couplings.
 
-**Conceptual View:** Quantum mechanics plus special relativity demands fields defined at every spacetime point. Particle creation/annihilation emerges from field operators.
+**Conceptual View:** Relativistic quantum field theory combines quantum dynamics with relativistic locality and field/operator structure; quantum mechanics and special relativity alone do not uniquely specify a field theory. Particle creation/annihilation emerges from field operators.
 
-**Key Equation:** Action for a scalar field:
+**Key Equation:** Action for a real scalar field in observer natural units, with metric signature $(+---)$ and $V$ denoting interactions beyond the separately written mass term:
 $$
 S=\int d^4x\; \left(\frac{1}{2}\partial_\mu\phi\,\partial^\mu\phi
 -\frac{1}{2}m^2\phi^2 - V(\phi)\right)
@@ -131,7 +133,7 @@ $$
 
 **Geometric proof targets:**
 - Derive a coarse-grained scalar amplitude $\phi$ from Noether sea density, compression, or radial breathing modes.
-- Show when linearization around a homogeneous Noether sea background yields a dispersion relation of the form $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$, with $\omega_0$ supplying the Klein-Gordon-like mode gap.
+- Show when linearization around a homogeneous Noether sea background first verified to satisfy the dynamics yields a dispersion relation of the form $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$, with $\omega_0$ supplying the Klein-Gordon-like mode gap.
 - Relate the effective mass parameter $m$ to assembly stiffness, confinement energy, or radial restoring dynamics rather than treating it as primitive.
 - Determine whether effective curvature coupling $\xi R\phi^2$ emerges from medium-density gradients, strain response, or scalar-tensor leakage in emergent metric closure.
 
@@ -154,12 +156,12 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-285b072f7c68edc6)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Quarks are specific charged Noether braid assemblies; color labels are discrete topological/phase states on subsets of their polar sites. Gluons are vortices between binaries that shuttle these labels between Noether braid assemblies. Confinement reflects the energetics and topology of architrino flux routing: isolated color charges are dynamically unstable, so only color-neutral composite assemblies are long-lived. The main repo interfaces for this are [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** In the proposed quark map, quarks are charged Noether braid assemblies; color labels are discrete topological/phase states on subsets of their polar sites. Gluons are proposed color-corridor events routing axis exceptionality, tube strain and recoil through the Noether sea. Coupled vortices are a candidate implementation, not a derived carrier. Confinement and the stability of color-neutral composites remain dynamical targets rather than consequences of labeling the routing. The main repo interfaces for this are [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
 
 **What Still Works:** Quantum Chromodynamics (QCD) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Essential for hadron spectra, confinement observables, scattering, lattice benchmarks, and running-coupling recovery; its continuum color-field ontology remains subject to reduction. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 **Geometric proof targets:**
-- Derive linear energy growth with separation from lattice stretching of flux-routing paths.
+- Recover the appropriate confining potential regime from a derived flux-corridor response, including string breaking where dynamical quark production screens the long-distance potential; indefinite linear growth is not the full-QCD target.
 - Show color-neutral composites minimize curvature/torque while isolated color charges are unstable.
 
 ---
@@ -236,12 +238,12 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-526536515b630a7d)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The U(1) gauge symmetry encodes invariance under a global phase associated with architrino polarity and net charge routing. $A_\mu$ is the effective continuum potential generated by architrino wakes; photons are coaxial contra-rotating polarity-conjugate planar pairs whose mode trains mediate interaction between charged Noether braids (electrons/positrons). The concrete repo-side treatment lives in [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md). Historically, the Liénard-Wiechert moving-source potentials already pointed in this direction by showing that electromagnetic potentials depend on source motion and causal delay. In the present program they matter as an early effective hint that $A_\mu$ should be read as a compressed summary of source-history transport rather than as a primitive object detached from the moving charges that generate it.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The effective QED target includes local $U(1)$ gauge covariance, which requires a compensating connection under position-dependent phase changes. A global phase symmetry alone supplies neither that connection nor the full gauge dynamics; its charge theorem also requires a compatible action and boundary conditions. $A_\mu$ is a target continuum potential to be derived from source histories and the effective response map; the current photon candidate is a coaxial contra-rotating polarity-conjugate planar pair whose stability, transport and interaction map remain open. The concrete repo-side treatment lives in [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md). Historically, the Liénard-Wiechert moving-source potentials already pointed in this direction by showing that electromagnetic potentials depend on source motion and causal delay. In the present program they matter as an early effective hint that $A_\mu$ should be read as a compressed summary of source-history transport rather than as a primitive object detached from the moving charges that generate it.
 
 **What Still Works:** Quantum Electrodynamics (QED) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Essential because its precision amplitudes, radiative corrections, bound-state shifts, and scattering records are non-negotiable recovery benchmarks. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 **Geometric proof targets:**
-- Show global polarity-phase invariance implies a conserved U(1)-like charge.
+- Derive an effective phase action and its conserved charge under declared symmetry and boundary assumptions, then separately recover local gauge covariance and the connection; fixed primitive polarity is not itself a continuous phase symmetry.
 - Derive the effective field potential as a coarse-grained summary of causal wakes from Noether braid motion.
 
 ---
@@ -261,7 +263,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c7e54957e084317b)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform Noether braid configuration in the Noether sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling. Electroweak symmetry breaking is a recovery target for a preferred phase/orientation pattern in the Noether sea that distinguishes massive vector assemblies (W, Z) from the massless photon channel. The current photon candidate is a coaxial contra-rotating polarity-conjugate planar pair, and its stability and effective field map remain under closure. See [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](theory-bridges/weak-mixing-ckm.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field is proposed to correspond to an effective account of how a dense, nearly-uniform Noether braid configuration in the Noether sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling. Electroweak symmetry breaking is a recovery target for a preferred phase/orientation pattern in the Noether sea that distinguishes massive vector assemblies (W, Z) from the massless photon channel. The current photon candidate is a coaxial contra-rotating polarity-conjugate planar pair, and its stability and effective field map remain under closure. See [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](theory-bridges/weak-mixing-ckm.md).
 
 **What Still Works:** Electroweak Theory (EW) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Essential for weak-decay rates, gauge relations, symmetry-breaking observables, and W, Z, photon, and Higgs records; the underlying field ontology is not automatically retained. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
@@ -278,14 +280,14 @@ $$
 
 **Conceptual View:** Flavor states are superpositions of mass eigenstates, leading to interference and oscillatory transition probabilities.
 
-**Key Equation:** Mixing relation:
+**Key Equation:** Mixing relation, defining $U$ here as the state-expansion matrix (the complex conjugate of the convention often used in the charged-current field relation):
 $$
 |\nu_\alpha\rangle = \sum_i U_{\alpha i} |\nu_i\rangle
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f92c8d39d0f33719)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Neutrinos are nearly neutral Noether braid assemblies with weakly exposed axial layers and several long-lived internal vibration modes. Mass eigenstates are different internal mode patterns; flavor labels reflect how those modes couple to other assemblies, for example in `beta reaction` (SM label: `beta decay`). The PMNS matrix is the change of basis between interaction-defined modes and the natural normal modes of the underlying Noether braid geometry. The current repo-side bridge is [Neutrinos](../assemblies/fermions/neutrinos.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** In the proposed neutrino map, neutrinos are nearly neutral Noether braid assemblies with weakly exposed axial layers and several long-lived internal vibration modes. Mass eigenstates are different internal mode patterns; flavor labels reflect how those modes couple to other assemblies, for example in `beta reaction` (SM label: `beta decay`). Recovering the PMNS matrix as a change of basis between interaction-defined and propagation modes of a stable assembly is a target; neither the modes nor their mixing parameters follow from naming the geometry. The current repo-side bridge is [Neutrinos](../assemblies/fermions/neutrinos.md).
 
 **What Still Works:** Neutrino Oscillations (PMNS Framework) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** High for oscillation phases, mixing angles, baseline and energy dependence, and flavor-transition records, while any specific substrate implementation remains open. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
@@ -308,7 +310,7 @@ $$
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An axion-like field can be modeled as a long-wavelength phase or handedness-sensitive mode of a particular architrino/Noether braid sub-sector (a quasi-Goldstone of an approximate assembly symmetry). Whether a strong-CP problem exists at the $\mathbb{A}\mathbb{A}\mathbb{A}$ level depends on how QCD emerges from the underlying assembly symmetries; PQ-like dynamics may be an effective stand-in for deeper alignment mechanisms in the Noether sea.
 
-**What Still Works:** The Peccei-Quinn mechanism is a mathematically explicit response to the strong-CP problem, and axion searches define valuable laboratory, astrophysical, and cosmological comparison surfaces. No axion has been established, so the program supplies mechanism and search pressure rather than an empirical framework that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover as ontology. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Limited to a well-defined mechanism and search comparison: strong-CP suppression and axion bounds matter, but no axion sector is an inherited recovery requirement. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
+**What Still Works:** The Peccei-Quinn mechanism is a mathematically explicit response to the strong-CP problem, and axion searches define valuable laboratory, astrophysical, and cosmological comparison surfaces. No axion has been established, so the program supplies mechanism and search pressure rather than an empirical framework that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover as ontology. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Limited to a well-defined mechanism and search comparison: strong-CP suppression and axion bounds matter, but no axion sector is an inherited recovery requirement. **Long-Term Relevance:** Long-term relevance is as an optional effective comparison, conditional on an independently supported sector; its unconfirmed additional structure is not a mandatory recovery.
 
 ---
 
@@ -327,9 +329,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0d03d34fb0602144)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally relates fermionic 3D oblate spheroidal envelope configurations and bosonic 2D planar Noether braid configurations of similar topological content. A full SUSY algebra would correspond to an approximate symmetry exchanging these geometric realizations of assemblies. Whether exact SUSY emerges depends on additional symmetry structure in the architrino dynamics; $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require it but can mimic SUSY-like pairings as approximate assembly symmetries.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** A proposed geometric analogy relates fermionic 3D oblate spheroidal envelope configurations and bosonic 2D planar Noether braid configurations of similar topological content. A full SUSY algebra would correspond to an approximate symmetry exchanging these geometric realizations of assemblies. Whether exact SUSY emerges depends on additional symmetry structure in the architrino dynamics; $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require it, and geometric pairings alone do not derive the graded superalgebra.
 
-**What Still Works:** Supersymmetry supplies a controlled symmetry framework, useful ultraviolet cancellations, and concrete unification and dark-sector model classes. Because no superpartner spectrum has been established, SUSY remains an optional comparison program rather than an empirically mandatory effective limit. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Transition relevance is limited but useful: SUSY supplies explicit symmetry and cancellation comparisons, but no established superpartner sector must be carried as part of the empirical transition stack. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
+**What Still Works:** Supersymmetry supplies a controlled symmetry framework, useful ultraviolet cancellations, and concrete unification and dark-sector model classes. Because no superpartner spectrum has been established, SUSY remains an optional comparison program rather than an empirically mandatory effective limit. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Transition relevance is limited but useful: SUSY supplies explicit symmetry and cancellation comparisons, but no established superpartner sector must be carried as part of the empirical transition stack. **Long-Term Relevance:** Long-term relevance is as an optional effective comparison, conditional on an independently supported sector; its unconfirmed additional structure is not a mandatory recovery.
 
 ---
 
@@ -337,20 +339,20 @@ $$
 
 **Theory Name:** Technicolor / Composite Higgs. **Short Name:** Technicolor Composite Higgs. **Layer Bucket:** Assembly Layer (Noether Braid).
 
-**Summary:** The Higgs is not elementary; it is a bound state of new dynamics.
+**Summary:** Technicolor proposes dynamical electroweak breaking through a new strong condensate; composite-Higgs models instead realize the Higgs as a composite mode, often a pseudo-Goldstone boson. These are related but distinct model families.
 
 **Conceptual View:** A new strong sector generates electroweak symmetry breaking without a fundamental scalar.
 
-**Key Equation:** Dynamical symmetry breaking (schematic):
+**Key Equation:** Dynamical symmetry breaking (schematic), conditional on a condensate in a representation and orientation that breaks electroweak symmetry; a gauge-singlet condensate alone would not imply the arrow:
 $$
 \langle \bar\Psi \Psi \rangle \neq 0 \Rightarrow \text{EW breaking}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6967be17192c458a)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** This is natural in $\mathbb{A}\mathbb{A}\mathbb{A}$: the Higgs is interpreted as a composite pattern in the Noether sea, not a fundamental scalar. “New strong sector” corresponds to dense, self-coupled architrino assemblies whose collective behavior generates the effective Higgs condensate and associated symmetry breaking.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** A composite Higgs-like pattern is a possible comparison for Noether sea response, not an established identification. The required scalar spectrum, effective electroweak transformation law and symmetry-breaking response must be derived from retained assembly dynamics before a new-strong-sector analogy has physical content.
 
-**What Still Works:** Technicolor and composite-Higgs programs keep the physical question of dynamical electroweak symmetry breaking explicit and provide concrete collider and precision-observable targets. Their proposed new strong sectors have not been established, so their value is comparative rather than a recovery obligation. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Limited comparison value: compositeness and dynamical symmetry breaking sharpen Higgs-sector tests, but the excluded and unconfirmed model inventory need not survive. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
+**What Still Works:** Technicolor and composite-Higgs programs keep the physical question of dynamical electroweak symmetry breaking explicit and provide concrete collider and precision-observable targets. Their proposed new strong sectors have not been established, so their value is comparative rather than a recovery obligation. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Limited comparison value: compositeness and dynamical symmetry breaking sharpen Higgs-sector tests, but the excluded and unconfirmed model inventory need not survive. **Long-Term Relevance:** Long-term relevance is as an optional effective comparison, conditional on an independently supported sector; its unconfirmed additional structure is not a mandatory recovery.
 ## Spacetime / Gravity (Emergent Metric)
 
 These are theories of spacetime structure and gravitational dynamics. In the architrino view, they are emergent descriptions of how the Noether sea modulates signal speeds, clock rates, and effective geometry.
@@ -370,13 +372,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d3f26fe43095b453)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $g_{\mu\nu}$ is an effective metric functional of the local state of the Noether sea: its density, internal oscillation rate, delay factor, and anisotropy. Architrino and Noether braid trajectories in Euclidean 3D with absolute time project to geodesics in this emergent metric only after coarse-graining over clock/ruler and signal behavior. $G_{\mu\nu}$ encodes how inhomogeneities in the Noether sea redirect propagation, while $\Lambda$ represents a baseline energy-density summary of the Noether sea state.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $g_{\mu\nu}$ is an effective metric functional of the local state of the Noether sea: its density, internal oscillation rate, delay factor, and anisotropy. Projecting assembly trajectories to effective geodesics requires a derived matter-response and variational map, not coarse-graining alone. $G_{\mu\nu}$ is constructed from that candidate metric; relating it to sea stress and a $\Lambda$-like term is an additional field-equation recovery target.
 
 **What Still Works:** General Relativity (GR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate. **Transition Relevance:** Essential for weak- and strong-field predictions, lensing, timing, orbital dynamics, and gravitational-wave records; metric ontology itself remains the reduction target. **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 **Geometric proof targets:**
 - Derive an effective metric from assembly density/oscillation fields.
-- Show geodesic motion emerges from straight-line motion in the Noether sea with variable signal speed.
+- Derive compatible null and timelike geodesic behavior from the clock, ruler, signal and matter-response maps on one Noether sea record, including universality and the required metric coefficients; variable signal speed alone is insufficient.
 
 ---
 ### Perturbative Quantum Gravity / General Relativity Effective Field Theory
@@ -414,7 +416,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3b2dc157eb2354d5)
 
-Equivalent invariant relation (mass shell):
+Related momentum-space invariant, with four-momentum defined as $p^\mu=m u^\mu$ for a free massive particle (and its massless limit); it is not the spacetime interval itself:
 $$
 E^2 = (pc)^2 + (mc^2)^2
 $$
@@ -445,12 +447,12 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-aa3e2de1253e25c5)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Newtonian mechanics is the low-speed, weak-field limit of architrino/assembly dynamics in Euclidean 3D with absolute time. The effective $1/r^2$ gravitational potential arises from long-range patterns in the Noether sea’s density and its influence on the causal wake geometry; “gravitational force” is an emergent shorthand for small deviations from straight-line motion within the Noether sea.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Newtonian mechanics is a required low-speed, weak-field recovery of architrino/assembly dynamics in Euclidean 3D with absolute time. The isolated-source potential must scale as $-1/r$ and its acceleration magnitude as $1/r^2$, with the coefficient and universal matter response derived from the same Noether sea record; “gravitational force” is an emergent shorthand for small deviations from straight-line motion within the Noether sea.
 
 **What Still Works:** Newtonian Mechanics and Gravity remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate. **Transition Relevance:** Essential in its low-speed, weak-field domain because mechanics, orbital limits, and engineering calculations must emerge with controlled residuals. **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 **Geometric proof targets:**
-- Derive the 1/r^2 falloff from isotropic wake/flux dilution in 3D.
+- Derive the inverse-square effective gravitational acceleration, its coefficient and source/receiver mass map; geometric dilution alone does not establish the gravitational law.
 - Show Newtonian limit as the small-curvature expansion of the emergent metric.
 
 ---
@@ -462,7 +464,7 @@ $$
 
 **Conceptual View:** Explains galaxy rotation curves without dark matter by altering the force law below a threshold $a_0^{\mathrm{MOND}}$ (written with the superscript to keep the galactic acceleration threshold distinct from the rest-attractor length scale $a_0$ used in the Lorentz-kinematics chapters).
 
-**Key Equation:** MOND interpolation:
+**Key Equation:** MOND interpolation, an algebraic relation valid in symmetric settings or as a phenomenological prescription; it is not the general nonsymmetric field equation of MOND or TeVeS:
 $$
 \mu\left(\frac{a}{a_0^{\mathrm{MOND}}}\right) a = a_N
 $$
@@ -513,7 +515,7 @@ $$
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ starts from a continuous Euclidean void and discrete architrinos. Any apparent discreteness of area/volume would be emergent, arising from quantized, stable patterns of Noether braid assemblies in the Noether sea and selection rules on their configurations. Spin networks can be viewed as effective graphs summarizing how these assemblies connect and exchange architrinos, not as a fundamental replacement of the Euclidean container.
 
-The most useful comparison is therefore reconstructive. LQG area and volume labels should be treated as observer-geometry readouts that a successful Noether sea branch would have to reproduce in the appropriate limit, not as proof that the Euclidean void itself is granular. Spin-network and spin-foam graphs can remain valuable as comparison graphs for adjacency, boundary data, and coarse geometric spectra while the underlying carrier remains architrino assemblies and Noether sea state.
+The most useful comparison is therefore reconstructive. LQG area and volume labels can be studied as optional observer-geometry comparisons; a Noether sea branch is not required to reproduce an unconfirmed spectrum. Neither the spectrum nor its labels prove that the Euclidean void itself is granular. Spin-network and spin-foam graphs can remain valuable as comparison graphs for adjacency, boundary data, and coarse geometric spectra while the underlying carrier remains architrino assemblies and Noether sea state.
 
 **What Still Works:** Loop quantum gravity provides a technically developed nonperturbative quantization program, discrete geometric operators, and useful strong-field comparison models. It has not acquired decisive empirical confirmation, so its spectra and bounce constructions are directional comparison targets rather than mandatory recovered laws. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate. **Bounce Boundary:** LQG bounce and black-hole-to-white-hole proposals should be retained as strong-field local comparison tests, not promoted into global cosmology doctrine. The native question is whether a maximum-curvature branch supplies finite boundary data, release-channel accounting, and exterior effective-metric recovery without requiring the whole universe to pass through a single bounce. **Transition Relevance:** Limited but useful for background independence, discrete-geometry methods, continuum-limit pressure, and the problem of time; its geometric quanta are not inherited ontology. **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -550,7 +552,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1e048252b610b5c4)
 
-The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation treats the same row as an effective observer projection:
+The standard row uses observer units with light speed one, $\rho$ as energy density, and consistent curvature/scale-factor normalization. The following layer-explicit row is a conditional effective recovery ansatz in the same units, not an equation derived merely by renaming its variables:
 $$
 H_{\mathrm{eff}}^2(t_{\mathrm{eff}})
 =
@@ -566,7 +568,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9e0c257800d9ebf2)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The effective scale factor $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ summarizes large-scale evolution of the Noether sea’s density and energy content. Dark matter corresponds to additional, weakly-coupled architrino assemblies; $\Lambda$ reflects baseline energy of the Noether sea. Friedmann dynamics are effective equations for averaged assembly densities and their equation of state, not direct statements about the underlying Euclidean container.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The effective scale factor $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ summarizes large-scale evolution of the Noether sea’s density and energy content. Additional weakly coupled assemblies and a baseline sea-stress contribution are proposed interpretations of fitted dark sectors. A Friedmann-like evolution law, effective stress and observer-distance map remain joint derivation targets; they are not established by averaging density alone.
 
 **What Still Works:** Lambda-CDM (Big Bang Cosmology) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Essential as the current joint inference framework for expansion history, abundances, acoustic structure, lensing, and growth, even where its fitted sectors are reinterpreted. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
@@ -580,7 +582,7 @@ $$
 
 **Conceptual View:** A scalar field with nearly constant potential energy drives an accelerated expansion; quantum fluctuations seed structure.
 
-**Key Equation (standard comparison form):** Slow-roll condition and expansion:
+**Key Equation (standard comparison form):** Accelerated expansion and the potential slow-roll parameter for a canonical minimally coupled scalar in observer natural units; $M_P$ is the reduced Planck mass here, unlike the unreduced Planck-energy comparison below. Small potential slope alone is not sufficient: curvature and initial kinetic energy must also allow slow roll:
 $$
 \ddot a > 0, \quad \epsilon = \frac{M_P^2}{2}\left(\frac{V'}{V}\right)^2 \ll 1
 $$
@@ -616,7 +618,7 @@ $$
 
 **Conceptual View:** Photon-baryon oscillations imprint a harmonic series of peaks in the angular power spectrum.
 
-**Key Equation:** Power spectrum expansion:
+**Key Equation:** Ensemble angular power per mode under statistical isotropy, where $a_{\ell m}$ are harmonic coefficients of the declared sky field. A finite-sky estimate and its noise/mask covariance are separate:
 $$
 C_\ell = \langle |a_{\ell m}|^2 \rangle
 $$
@@ -637,7 +639,7 @@ $$
 
 **Conceptual View:** Nuclear reaction networks freeze out as the universe cools, predicting H, He, D, and Li abundances.
 
-**Key Equation (standard comparison form):** Reaction-rate balance (schematic):
+**Key Equation (standard comparison form):** Local collision contribution for two-body reactions in a fixed physical volume, written schematically. A cosmological physical-density equation also has dilution $3Hn_i$ on the left, plus decay, inverse-reaction and identical-particle factors as appropriate; the display alone is not a complete BBN network:
 $$
 \frac{dn_i}{dt} = \sum_{j,k} \langle \sigma v \rangle_{jk\to i}\, n_j n_k
  - \sum_{l} \langle \sigma v \rangle_{i l}\, n_i n_l
@@ -645,7 +647,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-987454000461b4f4)
 
-The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation keeps this as an effective abundance ledger:
+The layer-explicit translation below keeps only the same local collision contribution in an effective abundance ledger. Transport or volume change must be added under its declared observer map; reaction cross sections are assembly-level effective targets, not primitive architrino cross sections:
 $$
 \frac{dn_{i,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 =
@@ -660,7 +662,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3d85c13810d59e94)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** BBN is the period when Noether braid-based nucleon assemblies combine into light nuclear assemblies (e.g., deuteron, helium) at rates set by their architrino-level interaction cross sections and the cooling history of the Noether sea. The standard reaction network remains valid, but each “species” corresponds to a distinct architrino assembly topology.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The proposed abundance-recovery map treats BBN-like nucleosynthesis as a period when Noether braid-based nucleon assemblies combine into light nuclear assemblies (e.g., deuteron, helium) at rates to be recovered from effective assembly reaction cross sections and the cooling history of the Noether sea. The standard reaction network supplies tested comparison rates and abundance constraints; identifying its species with stable assembly branches and recovering their rates remains open.
 
 **What Still Works:** Big Bang Nucleosynthesis (BBN) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Essential: light-element abundances and their dependence on thermal, reaction, and expansion histories are quantitative recovery benchmarks. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
@@ -672,7 +674,7 @@ $$
 
 **Summary:** Matter-antimatter asymmetry arises from early-universe processes.
 
-**Conceptual View:** Requires baryon number violation, C/CP violation, and departure from equilibrium.
+**Conceptual View:** Under the usual initially symmetric, CPT-preserving setting, generating a baryon asymmetry requires baryon-number violation, C and CP violation, and departure from equilibrium. The schematic list below abbreviates these assumptions; alternative settings require their own audit.
 
 **Key Equation:** Sakharov conditions (schematic):
 $$
@@ -723,7 +725,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7897cc6e34c515a6)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** PBH-like objects correspond to regions where Noether braid assemblies in the Noether sea reach maximum-curvature, high-density configurations (Planck-core-like defects) rather than true singularities. Their formation is governed by when and where the architrino medium crosses stability thresholds, with $M_{\mathrm{PBH}}$ set by the local assembly density and self-hit regime rather than geometric singularities in a fundamental metric.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** PBH-like objects are proposed to correspond to regions where Noether braid assemblies in the Noether sea reach maximum-curvature, high-density configurations (Planck-core-like defects) rather than true singularities. Their formation would require a derivation of when and where the architrino medium crosses stability thresholds, with $M_{\mathrm{PBH}}$ set by the local assembly density and self-hit regime rather than geometric singularities in a fundamental metric.
 
 **What Still Works:** Primordial-black-hole dark-matter models provide explicit formation histories and mass-dependent lensing, accretion, merger, and abundance constraints. They remain a constrained candidate contribution, not an indispensable dark-matter framework. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Limited and mass-window dependent: compact-object bounds and possible dark-matter fractions are useful tests, but PBHs are not a required dark-sector explanation. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
@@ -737,14 +739,14 @@ $$
 
 **Conceptual View:** Could be a cosmological constant, quintessence as the standard dynamical-scalar-field option, or modified gravity on large scales.
 
-**Key Equation:** Equation of state:
+**Key Equation:** Equation of state with $\rho$ defined as energy density, so pressure has the same units:
 $$
 w = \frac{p}{\rho}, \quad w=-1
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d7d0646476c9e9ba)
 
-For a cosmological constant, $w=-1$. **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark-energy-like behavior arises from the residual energy density and stress of the Noether sea itself, or in bridge prose the spacetime medium. Its effective equation of state $w$ reflects how the Noether sea responds to expansion—whether it behaves like a quasi-constant tension, quintessence-like behavior, or a more complex assembly phase. In this view, quintessence-like dynamics are an effective large-scale Noether sea response, described in bridge prose as a spacetime-medium response, not a fundamental scalar ontology.
+For a cosmological constant, $w=-1$. **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark-energy-like behavior is proposed to arise from the residual energy density and stress of the Noether sea itself, or in bridge prose the spacetime medium. Its candidate effective equation of state $w$ would describe changes in the reconstructed large-scale state, not expansion of the Euclidean void—whether it behaves like a quasi-constant tension, quintessence-like behavior, or a more complex assembly phase. In this view, quintessence-like dynamics are an effective large-scale Noether sea response, described in bridge prose as a spacetime-medium response, not a fundamental scalar ontology.
 
 **What Still Works:** Dynamical dark-energy models expose how departures from a constant effective stress would affect distance, growth, and clustering records. The late-acceleration data are mandatory targets; a new scalar field or other beyond-$\Lambda$ sector is not established. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** High for the measured late-time distance and growth record and for time-dependent equation-of-state tests; no particular dynamical-dark-energy field is mandatory. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
@@ -758,14 +760,14 @@ For a cosmological constant, $w=-1$. **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** 
 
 **Conceptual View:** Uses holographic bounds to relate vacuum energy to the size of the observable universe.
 
-**Key Equation:** Density scaling:
+**Key Equation:** Density scaling in observer natural units, following [Li’s holographic-dark-energy model](https://arxiv.org/abs/hep-th/0403127). Here $c$ is the dimensionless model parameter, not either light speed or primitive wake speed; $M_P$ is the reduced Planck mass and $L$ the declared infrared horizon cutoff:
 $$
 \rho_{\mathrm{DE}} \sim \frac{3 c^2 M_P^2}{L^2}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3b36a70696526986)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** In $\mathbb{A}\mathbb{A}\mathbb{A}$, such a scaling would signal a relationship between large-scale boundary conditions on the Noether sea (set by an effective horizon scale $L$) and the average energy density stored in its assemblies. Holographic bounds capture how much information/structure architrino assemblies can support within a region, not a separate dark-energy microphysics.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** In $\mathbb{A}\mathbb{A}\mathbb{A}$, such a scaling would signal a relationship between large-scale boundary conditions on the Noether sea (set by an effective horizon scale $L$) and the average energy density stored in its assemblies. A matching holographic bound would require a derived capacity and state-measure account for assemblies within a region, not a separate dark-energy microphysics.
 
 **What Still Works:** Holographic dark-energy models provide a compact comparison between infrared cosmology and horizon-scale bookkeeping. Their value is exploratory and formal; they do not own an independently confirmed empirical sector. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Limited to formal comparison between horizon bookkeeping and infrared cosmology; it does not own an independently established empirical sector. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
@@ -786,7 +788,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-07f55a205840824c)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** A truly steady large-scale state would require ongoing generation of new Noether braid assemblies from architrino-level processes to offset dilution. Any effective $T^{(C)}_{\mu\nu}$ would summarize net creation of assemblies from underlying architrino dynamics, possibly tied to self-hit-driven instabilities in high-curvature regions.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** A steady density in an effectively expanding volume would require an assembly source term to offset dilution; a fixed physical volume with no dilution does not require such a source. Assembly formation must preserve the primitive inventory. Any effective $T^{(C)}_{\mu\nu}$ would summarize net creation of assemblies from underlying architrino dynamics, possibly tied to self-hit-driven instabilities in high-curvature regions.
 
 The durable lesson is source provenance. A creation or recycling term is not explanatory merely because it balances an effective density equation. It must identify the source population, release rate, thermalization route, and observer-facing residuals that would let CMB blackbody quality, element yields, structure growth, and redshift-distance data face the same medium record.
 
@@ -804,16 +806,16 @@ The durable lesson is source provenance. A creation or recycling term is not exp
 
 The current Turok--Boyle CPT-symmetric cosmology line should be tracked separately from this older Steinhardt--Turok ekpyrotic/cyclic entry. Its useful pressure is boundary-condition discipline: can a cosmology state a symmetric continuation, entropy-arrow account, particle-sector content, and CMB/BBN/growth residuals with fewer adjustable interpretive commitments? For $\mathbb{A}\mathbb{A}\mathbb{A}$, that is a comparison question rather than an import of CPT-mirror ontology or a right-handed-neutrino dark sector by default.
 
-The source-mined update sharpens the comparison: the live Turok--Boyle line tries to trade speculative inventory for concrete particle-sector consequences, especially a stable right-handed-neutrino dark-matter candidate and an exactly massless light-neutrino consequence. Those are not $\mathbb{A}\mathbb{A}\mathbb{A}$ claims; they are useful examples of a cosmology making its ontology answerable to a finite residual rather than only to narrative simplicity.
+The [Boyle–Finn–Turok CPT-symmetric proposal](https://arxiv.org/abs/1803.08928) sharpens the comparison: this model tries to trade speculative inventory for concrete particle-sector consequences, especially a stable right-handed-neutrino dark-matter candidate and an exactly massless light-neutrino consequence. Those are not $\mathbb{A}\mathbb{A}\mathbb{A}$ claims; they are useful examples of a cosmology making its ontology answerable to a finite residual rather than only to narrative simplicity.
 
-**Key Equation:** Contracting equation-of-state:
+**Key Equation:** Spatially flat constant-$w$ perfect-fluid GR comparison with no other dominant component, on the contracting branch $t_{\mathrm{std}}<0$:
 $$
-w \gg 1 \Rightarrow a_{\mathrm{std}}(t_{\mathrm{std}}) \propto (-t_{\mathrm{std}})^{2/3(1+w)}
+w \gg 1 \Rightarrow a_{\mathrm{std}}(t_{\mathrm{std}}) \propto (-t_{\mathrm{std}})^{2/[3(1+w)]}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-87c1f8b343a7ce9f)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Cyclic behavior is possible if the Noether sea admits global attractor cycles: contraction into dense, high self-hit regimes followed by deflation/relaxation into expansion. The ekpyrotic $w \gg 1$ phase reflects an effective equation of state for dense assembly configurations approaching their maximal-curvature limits before bouncing.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Cyclic behavior is possible if the Noether sea admits global attractor cycles: contraction into dense, high self-hit regimes followed by deflation/relaxation into expansion. An ekpyrotic $w \gg 1$ phase would require an independently derived effective equation of state for dense assembly configurations approaching their maximal-curvature limits before bouncing.
 
 **What Still Works:** Ekpyrotic and cyclic models provide mathematically explicit alternatives for smoothing, perturbation generation, and singularity avoidance. They supply discriminating comparison targets, not an empirically established cosmic history. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Limited comparison value: smoothing, bounce matching, stability, and perturbation transfer are useful tests, but the cyclic history is not established. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
@@ -827,14 +829,14 @@ $$
 
 **Conceptual View:** Modified gravity or quantum effects avoid a singularity and reverse collapse into expansion.
 
-**Key Equation:** Non-singular bounce condition:
+**Key Equation:** Local strict bounce condition for a smooth positive finite effective scale factor; finiteness of the other geometric quantities and dynamical continuation must be checked separately:
 $$
 H = 0,\quad \dot H > 0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9e247c8b27f3f9bb)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally replaces singularities with maximum-curvature Noether braid scaffolds. A cosmological bounce would correspond to the point where further contraction of the Noether braid assembly network becomes dynamically forbidden (due to self-hit limits or assembly instability), triggering a re-expansion phase; $H=0$, $\dot H>0$ is the effective description of this Noether sea-level transition.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Maximum-curvature Noether braid scaffolds are proposed nonsingular candidates; neither a curvature bound nor a bounce has been proved merely by positing them. A cosmological bounce would correspond to the point where further contraction of the Noether braid assembly network becomes dynamically forbidden (due to self-hit limits or assembly instability), triggering a re-expansion phase; $H=0$, $\dot H>0$ is the effective description of this Noether sea-level transition.
 
 **What Still Works:** Bounce cosmologies make finite continuation, matching conditions, stability, and perturbation transfer explicit. Those are valuable strong-field proof obligations, but a cosmic bounce is not an established event that every theory must recover. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Limited to strong-field continuation, stability, and perturbation-transfer tests; a cosmic bounce is not a required recovered event. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
@@ -943,7 +945,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-01d597626d5557bd)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $|\psi\rangle$ compactly encodes ensemble information about many possible architrino/assembly microstates and their phases. In its ordinary non-relativistic, fixed-particle-number use, the Schrödinger equation is an effective, linear approximation to the underlying nonlinear, history-dependent architrino dynamics in regimes where coherent superpositions of a limited set of assembly configurations dominate.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $|\psi\rangle$ compactly encodes ensemble information about many possible architrino/assembly microstates and their phases. In its ordinary non-relativistic, fixed-particle-number use, the Schrödinger equation is a target effective, linear approximation to the underlying nonlinear, history-dependent architrino dynamics in regimes where coherent superpositions of a limited set of assembly configurations dominate.
 
 **What Still Works:** Quantum Mechanics (QM) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics. **Transition Relevance:** Essential because state preparation, interference, spectra, transition probabilities, and measurement statistics are mandatory observer-level recovery targets. **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
 
@@ -962,14 +964,14 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-607e96a5e0109112)
 
-This is not merely a verbal condition. The equation is obtained by taking the low-speed expansion of relativistic energy,
+The kinetic operator can be motivated within inherited quantum theory by the low-speed expansion of relativistic energy, together with the quantum momentum-operator rule; the energy expansion alone does not derive wavefunction dynamics or Born probabilities:
 $$
 E = mc^2 + \frac{p^2}{2m} - \frac{p^4}{8m^3c^2}+\cdots
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c806980714a16c35)
 
-The term $mc^2$ is the rest energy of a particle of mass $m$. For a fixed particle species in non-relativistic quantum mechanics, this term shifts every energy by the same constant and contributes only a uniform phase to the wavefunction, so it is normally removed. The Schrödinger Hamiltonian then keeps the leading kinetic term $\frac{p^2}{2m}$ and neglects the relativistic correction terms that follow it. Relative to the speed of light, the practical velocity scale is:
+The term $mc^2$ is the rest energy of a particle of mass $m$. For a fixed particle species in non-relativistic quantum mechanics, this term shifts every energy by the same constant and contributes only a uniform phase to the wavefunction, so it is normally removed. The Schrödinger Hamiltonian then keeps the leading kinetic term $\frac{p^2}{2m}$ and neglects the relativistic correction terms that follow it. The following velocity scales are illustrative observer comparisons, not universal accuracy thresholds. Acceptability depends on the observable and error tolerance; precision spectroscopy can require relativistic corrections even at much smaller speeds:
 
 | Regime | Characteristic speed | Meaning |
 | --- | --- | --- |
@@ -1037,7 +1039,7 @@ This comparison explains where Schrödinger applications sit on a universal ener
 | Proton at $0.1c$ | $4.73\ \mathrm{MeV}$ kinetic | $3.9\times10^{-22}E_{\mathrm{P}}$ |
 | Proton at $0.3c$ | $45.3\ \mathrm{MeV}$ kinetic | $3.7\times10^{-21}E_{\mathrm{P}}$ |
 
-In Planck units, the characteristic energy scales of standard Schrödinger applications usually sit around $10^{-29}E_{\mathrm{P}}$ to $10^{-22}E_{\mathrm{P}}$. That statement says only that atomic and low-energy nuclear energy scales are extremely small compared with $E_{\mathrm{P}}$. The validity decision is still made by comparing the modeled kinetic or binding energy with the rest energy of the particle involved. For an electron, $mc^2 \approx 511\ \mathrm{keV}$; eV-scale atomic energies therefore satisfy $K/mc^2 \ll 1$, while tens to hundreds of keV correspond to speeds that are a significant fraction of $c$. For a proton, $mc^2 \approx 938\ \mathrm{MeV}$; MeV-scale motion can remain approximately non-relativistic, but higher-energy nuclear or particle collisions require relativistic theory. The equation also fails once the process can create or annihilate particles, because ordinary Schrödinger quantum mechanics uses a wavefunction for a fixed set of particles.
+In Planck units, the atomic and low-energy examples selected here span roughly $10^{-29}E_{\mathrm{P}}$ to $10^{-22}E_{\mathrm{P}}$. That statement says only that atomic and low-energy nuclear energy scales are extremely small compared with $E_{\mathrm{P}}$. The validity decision is still made by comparing the modeled kinetic or binding energy with the rest energy of the particle involved. For an electron, $mc^2 \approx 511\ \mathrm{keV}$; eV-scale atomic energies therefore satisfy $K/mc^2 \ll 1$, while tens to hundreds of keV correspond to speeds that are a significant fraction of $c$. For a proton, $mc^2 \approx 938\ \mathrm{MeV}$; MeV-scale motion can remain approximately non-relativistic, but higher-energy nuclear or particle collisions require relativistic theory. The equation also fails once the process can create or annihilate particles, because ordinary Schrödinger quantum mechanics uses a wavefunction for a fixed set of particles.
 
 The main breakdown points are therefore specific: the characteristic speed is not small compared with $c$; the kinetic or binding energy is not small compared with $mc^2$; particle creation or annihilation becomes possible; spin-relativistic effects matter strongly; electromagnetic fields must be quantized rather than treated as external backgrounds; massless particles such as photons are involved; or gravity and spacetime curvature are strong enough that non-relativistic flat-space assumptions fail. The equation does not fail merely because a quoted energy is large or small compared with Planck energy. It fails when the modeled system leaves the non-relativistic, fixed-particle-number, weak-field regime.
 
@@ -1069,7 +1071,7 @@ $$
 
 **Summary:** Spin is the intrinsic angular-momentum-like label carried by quantum states and fields. It is not ordinary spatial rotation of a small object; it is a representation property that determines how a state transforms under rotations and Lorentz transformations. This entry maps the low-spin equations most relevant to ordinary quantum mechanics and field theory, stopping at spin $1$.
 
-**Conceptual View:** Spin enters the theory stack through different equations depending on whether the model is non-relativistic or relativistic. The table below uses natural units, $c=1$ and $\hbar=1$, as is standard in particle physics. The equations are representative free-field or source-free forms; interactions, gauge choices, and background potentials add further structure. The plain Schrödinger equation is listed in the spin-$0$ row because its basic single-component wavefunction has no spin index; it is a spinless scalar model, not a claim that every Schrödinger application involves a physically spin-$0$ particle. Non-relativistic spin-$1/2$ particles, such as electrons, require the Pauli equation or an equivalent Schrödinger theory with spinor degrees of freedom added.
+**Conceptual View:** Spin enters the theory stack through different equations depending on whether the model is non-relativistic or relativistic. The table below uses observer natural units, $c=1$ and $\hbar=1$, and metric signature $(+---)$, so $\partial^2=\partial_t^2-\nabla^2$ is the negative of the earlier Klein-Gordon entry’s $\Box$. These are comparison conventions, not an identification of the observer light speed with $c_f$. The equations are representative free-field or source-free forms, except that the Pauli row includes an external magnetic coupling with vanishing scalar potential and Dirac value $g=2$; anomalous magnetic moment and other interactions add further structure. The plain Schrödinger equation is listed in the spin-$0$ row because its basic single-component wavefunction has no spin index; it is a spinless scalar model, not a claim that every Schrödinger application involves a physically spin-$0$ particle. Non-relativistic spin-$1/2$ particles, such as electrons, require the Pauli equation or an equivalent Schrödinger theory with spinor degrees of freedom added.
 
 | Spin | Regime | Equation / Representative Form |
 | --- | --- | --- |
@@ -1088,7 +1090,7 @@ The inverse map from spin value to familiar particle sectors is:
 | $1/2$ | Electron, muon, tau; quarks; neutrinos | Matter fermions; Pauli and Dirac sectors |
 | $1$ | Photon; gluons; W and Z bosons | Gauge or vector bosons; Maxwell, Yang-Mills, and Proca-like sectors |
 
-The examples are not all elementary in the same sense. The Higgs excitation is elementary in the Standard Model, while pions are composite QCD modes. Gluons are massless spin-$1$ fields but belong to non-abelian Yang-Mills theory rather than ordinary Maxwell theory; in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, they are closer to axial coupling behavior between binaries in nearby Noether braids than to independent assemblies. The W and Z bosons are massive spin-$1$ electroweak bosons whose low-energy massive-vector behavior is Proca-like after electroweak symmetry breaking.
+The examples are not all elementary in the same sense. The Higgs excitation is elementary in the Standard Model, while pions are composite QCD modes. Gluons are massless spin-$1$ fields but belong to non-abelian Yang-Mills theory rather than ordinary Maxwell theory; the proposed substrate map is a color-corridor response in the Noether sea, whose spin representation and dynamics remain to be derived. The W and Z bosons are massive spin-$1$ electroweak bosons whose low-energy massive-vector behavior is Proca-like after electroweak symmetry breaking.
 
 Symbol guide: $\psi$, $\phi$, and $A^\nu$ are the wavefunctions or fields being acted on; $m$ is mass; $\partial_\mu$ and $\nabla^2$ are spacetime and spatial derivative operators; $\gamma^\mu$ are Dirac matrices for relativistic spin-$1/2$ fields; $F^{\mu\nu}$ is the electromagnetic field tensor; and $\vec{\sigma}$ are the Pauli matrices used for non-relativistic spin-$1/2$ behavior. In Maxwell theory, the displayed source-free equation is paired with the homogeneous Maxwell identity, usually written in tensor form as $\partial_{[\alpha}F_{\beta\gamma]}=0$.
 
@@ -1101,7 +1103,7 @@ $$
 
 This term shows how non-relativistic spin-$1/2$ behavior enters ordinary Schrödinger dynamics through a two-component spinor and magnetic coupling.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Spin labels should be treated as effective symmetry and transformation classes of stable assembly behavior, not as primitive miniature rotation. The table is therefore a mapping target: $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover why scalar modes behave as spin $0$, why spin-$1/2$ maps to the precessing-axis structure of fermionic assemblies, and why spin-$1$ maps to axial-lock behavior at field speed in photon, W, and Z sectors. Gluons remain spin-$1$ in the inherited classification, but in $\mathbb{A}\mathbb{A}\mathbb{A}$ they are better read as axial coupling between binaries in nearby Noether braids: an assembly behavior rather than a standalone assembly of the same kind. The Pauli and Dirac equations mark especially important bridges because they expose how spin, magnetic response, and relativistic structure enter after the spinless Schrödinger envelope has been exceeded.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Spin labels should be treated as effective symmetry and transformation classes of stable assembly behavior, not as primitive miniature rotation. The table is therefore a mapping target: $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover why scalar modes behave as spin $0$, why spin-$1/2$ maps to the precessing-axis structure of fermionic assemblies, and whether the proposed axial-lock mechanisms recover spin-$1$ transformation laws in the photon, W and Z sectors; a common primitive-speed motion is not implied, especially for massive W/Z modes. Gluons remain spin-$1$ in the inherited classification; the proposed color-corridor map must recover that representation and its dynamics, rather than infer spin from an axial direction. The Pauli and Dirac equations mark especially important bridges because they expose how spin, magnetic response, and relativistic structure enter after the spinless Schrödinger envelope has been exceeded.
 
 The Dirac case also sharpens the recovery target. At the effective level, the four free Dirac solutions are not optional decoration: they are a benchmark sector count. $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover two spin projections for a fermion record and two corresponding charge-conjugate records with the same mass-shell comparison, all pulled from the same ordered-frame, polarity, and provenance data rather than assigned as independent field labels.
 
@@ -1124,7 +1126,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-05fbb6ac3119a004)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Microstates are detailed architrino trajectories and assembly configurations; macrostates describe coarse-grained properties of large collections of assemblies (densities, energies, fluxes). Entropy counts the number of assembly-level configurations compatible with macroscopic constraints, and thermodynamic laws emerge from typical behavior in the Noether sea ensemble.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Microstates are detailed architrino trajectories and assembly configurations; macrostates describe coarse-grained properties of large collections of assemblies (densities, energies, fluxes). The displayed count entropy applies to a finite equiprobable set of compatible microhistories, or a dimensionless phase-space volume with declared reference measure. General distributions require their probability weights. Deriving the measure, typicality and thermodynamic laws from a Noether sea ensemble remains open; counting realized hits or merely naming an ensemble does not supply it.
 
 **What Still Works:** Statistical Mechanics / Thermodynamics remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics. **Transition Relevance:** Essential for ensemble laws, equations of state, transport, fluctuation behavior, and thermodynamic limits derived from substrate dynamics. **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
 
@@ -1138,14 +1140,14 @@ $$
 
 **Conceptual View:** Classical measuring devices are external to the quantum system; the cut is pragmatic, not fundamental.
 
-**Key Equation:** Projection postulate:
+**Key Equation:** Selective ideal projective update for an orthogonal outcome projector with nonzero Born probability; mixed states, nonselective updates and general instruments require the corresponding density-operator rules:
 $$
 |\psi\rangle \to \frac{P_a |\psi\rangle}{\|P_a |\psi\rangle\|}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f37ded5a32fad4c0)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Collapse represents an update in an observer-assembly’s description after it becomes entangled with and then coarse-grains over many architrino degrees of freedom. At the underlying level, architrino and Noether braid dynamics remain continuous and deterministic; “projection” is an effective rule for resetting descriptions when assembly correlations become effectively irreversible.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The proposed collapse reading is an update in an observer-assembly’s description after it becomes entangled with and then coarse-grains over many architrino degrees of freedom. At the underlying level, architrino and Noether braid dynamics remain continuous and deterministic; recovering the selective projection probabilities and record persistence requires an apparatus and basin-measure derivation; loss of coherence alone does not select an outcome.
 
 **What Still Works:** Copenhagen-style practice preserves the operational discipline of preparation, observable, and outcome and uses the shared quantum formalism with extraordinary success. Those predictions and laboratory rules are recovery targets; the interpretation's collapse and anti-ontological commitments are not separately confirmed empirical results. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics. **Transition Relevance:** Operationally useful but ontologically limited: preparation, context, and outcome discipline survive, while observer-centered finality does not. **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
 
@@ -1188,7 +1190,7 @@ where $d\hat C_{\mathrm{stoch}}$ denotes the model-specific localization and nor
 
 **Conceptual View:** Its strongest comparative point is the distinction between ordinary correlating interaction and an interaction that is eligible to become a record. In that sense it presses on the same question as the measurement problem: what physical condition turns a formal branch, correlation, or amplitude into an outcome-bearing event?
 
-**Key Equation:** In standard notation, the comparison target is the projection-like record object
+**Key Equation:** For a normalized outcome state, the comparison target is the rank-one projector
 $$
 P_a=|a\rangle\langle a|
 $$
@@ -1216,7 +1218,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-01d597626d5557bd-2)
 
-with no collapse postulate. **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the no-special-collapse pressure but not literal branch ontology. It keeps a single underlying architrino reality. Decoherence corresponds to practical loss of phase information between different assembly histories as they become entangled with many unobserved degrees of freedom. Many-worlds language can be re-interpreted as a way to track effectively non-interfering subsets of architrino trajectories, not as literal branching of the underlying Euclidean container.
+with no collapse postulate. **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the no-special-collapse pressure but not literal branch ontology. It keeps a single underlying architrino reality. The proposed decoherence correspondence concerns reduced access to relative phases when assembly histories correlate with unobserved degrees of freedom. Recovering the reduced-state dynamics, Born weights and definite records remains an independent task. Many-worlds language can be re-interpreted as a way to track effectively non-interfering subsets of architrino trajectories, not as literal branching of the underlying Euclidean container.
 
 **What Still Works:** Everettian theory preserves unitary quantum evolution and sharpens the problems of decoherent branch structure and Born weighting. Its empirical predictions are those of the underlying quantum formalism, so literal many-worlds ontology is an interpretive comparison rather than a separately confirmed benchmark. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics. **Transition Relevance:** Limited to comparison on unitary dynamics, decoherence, and probability; proliferating branch ontology is not a recovery requirement. **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
 
@@ -1230,7 +1232,7 @@ with no collapse postulate. **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{
 
 **Conceptual View:** Deterministic trajectories with a guiding equation. Apparent quantum randomness reflects ignorance of initial conditions.
 
-**Key Equation:** Guiding equation:
+**Key Equation:** Spinless single-particle guiding equation without a vector potential, away from wavefunction nodes. Many-particle configurations, spin and gauge coupling require the corresponding current divided by density:
 $$
 \frac{dx_{\mathrm{std}}^i}{dt_{\mathrm{std}}}
 =
@@ -1239,6 +1241,6 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3bb027b107b9f118)
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** This is particularly close to the $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. Architrinos and assemblies follow definite trajectories, while their path-history wake (self-hit plus interactions with all other architrinos) acts as a deterministic guiding “field.” The Bohmian guiding equation is an effective law summarizing how these causal wakes steer assemblies in appropriate limits; $\psi$ is a compact encoding of the relevant wake/phase information.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** This is particularly close to the $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. Architrinos and assemblies follow definite trajectories, while their path-history wake (self-hit plus interactions with all other architrinos) acts as a deterministic guiding “field.” Recovering the Bohmian guiding equation as an effective current law would require the independent phase/current and transported-measure construction; resemblance to causal wake guidance does not establish it. The meaning of $\psi$ as a wake/phase summary remains part of that mapping target.
 
 **What Still Works:** Pilot-wave theory demonstrates that definite trajectories and deterministic dynamics can reproduce nonrelativistic quantum statistics under a declared equilibrium measure. Its distinct ontology is not independently confirmed, so it supplies a constructive comparison and proof burden rather than an indispensable empirical framework. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics. **Transition Relevance:** High as a comparator for deterministic flow, transported measure, nonlocality, and record formation, but its separate guiding-wave ontology is not inherited. **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.

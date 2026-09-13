@@ -64,7 +64,7 @@ Sphere labels may also use more than one text row when the scene author provides
 
 - Click or tap a sphere to descend.
 - Drag to pan.
-- Wheel or pinch to zoom.
+- Hold `Ctrl` while scrolling the wheel, or pinch, to zoom the scene.
 
 ## Interface Controls
 
@@ -75,14 +75,14 @@ Sphere labels may also use more than one text row when the scene author provides
 - `Glossary` (documents): open the comparative glossary
 - `TOC`: open the textbook table of contents
 - `Open full document` (document): open the complete source behind the current section
-- `Save markdown as PDF`: export the open reading surface
+- `Save markdown as PDF`: open the browser print dialog for the reading surface, then choose its PDF destination
 - Textbook previous/next: move between adjacent textbook pages when that route is active
 
 ## Markdown Panel
 
-- Toggle layout (1/2 column): layout icon in the global document controls
-- Open full document from section/index: document icon in the global document controls
-- Export the open reading surface: PDF icon in the global document controls
+- Toggle single-column or configured multi-column layout: layout icon in the document panel header
+- Open full document from section/index: document icon in the document panel header
+- Export the open reading surface: PDF icon in the document panel header
 - Close the panel: `Close` (×) icon at the right of the panel header. When the document is the whole scene, closing returns to the scene that opened it; a directly opened document returns Home. When a document overlays a scene with other content, closing reveals that scene in place.
 - In two-column mode, read down the left column and then the right column; the next two-column spread continues below, using ordinary vertical scrolling.
 

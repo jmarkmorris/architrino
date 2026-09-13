@@ -2,6 +2,10 @@
 
 This ledger records how reaction channels account for constituent architrinos, Noether braids, axial layers, energy, momentum, charge, polarity, and path-history provenance. It retains Standard Model reaction notation while stating what an $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must conserve before a reaction map can be treated as more than a provisional diagram.
 
+An [architrino](../foundations/architrino.md) is a persistent point transceiver with fixed polarity and a continuous path history in absolute time $T$. An assembly is an organized set of those histories; a [Noether braid](../noether-braid/noether-braid.md) is a neutral braided scaffold, and an axial layer is the candidate material attached at its polar sites. The [Noether sea](../spacetime/noether-sea.md) is the proposed ambient assembly population. A causal wake is the transmitter-tagged family of expanding causal surfaces that carries delayed interaction. Provenance records which constituent follows which history, rather than merely matching particle labels or totals.
+
+Fixed primitive identities and polarities imply inventory conservation for a fully accounted event. They do not supply physical energy, momentum, angular momentum, spin, or an observer charge map. Those require the independent assembly and response constructions in [Energy](../dynamics/energy.md) and [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md); the balances below are recovery requirements on such constructions. Numerical substrate instantiations use $c_f=1$.
+
 For radiative channels, use this ledger together with [Radiation](../reactions/radiation.md#radiation-event-record-schema). For cosmology-facing radiation and thermalization channels, use it together with [Reaction-Cosmology Provenance Ledger](reaction-cosmology-provenance-ledger.md).
 
 ## Scope and Status
@@ -15,7 +19,7 @@ The conservative status is:
 - W, Z, photon, and pair-production language may be retained at observer level, while the substrate map must identify the transient assembly, exchanged payload, or planar-mode nucleation event being invoked.
 - Radiative, photon-capture, and sub-threshold shedding entries must attach the shared radiation event-record schema: source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status.
 - Any weak-channel ledger that depends on chirality, axial-frame orientation, CKM/PMNS mixing, or antineutrino routing remains provisional until the corresponding geometry is derived.
-- Any charged-fermion generation change must route the scaffold-count difference $\Delta N_{\mathrm{scaffold}}=-2\,\Delta g$: each adjacent heavier step releases one neutral two-architrino support binary, and each adjacent lighter step recruits one. The source or destination Noether sea row must be explicit; see [Quantum Number Mapping](../assemblies/fermions/quantum-number-mapping.md#generation-step-scaffold-ledger).
+- Within the charged-fermion scaffold hypothesis, a generation change must route the scaffold-count difference $\Delta N_{\mathrm{scaffold}}=-2\,\Delta g$: each adjacent heavier-generation step releases one neutral two-architrino support binary, and each adjacent lighter-generation step recruits one. Here $g\in\{1,2,3\}$ is the generation index and $\Delta g$ is final minus initial; the count follows from the proposed $N_{\mathrm{scaffold}}(g)=8-2g$, not from primitive ontology alone. The source or destination Noether sea row must be explicit; see [Quantum Number Mapping](../assemblies/fermions/quantum-number-mapping.md#generation-step-scaffold-ledger).
 - Any reaction-level spin, helicity, polarization, or vector-channel angular-momentum entry is a downstream consumer of the angular-momentum and spin workstream. It should record what must close, not function as a local proof of that closure.
 
 Charge-changing reaction notation is assembly-level shorthand. A weak or high-energy event may change an outgoing assembly's observer-level net charge, but the primitive polarity inventory does not mutate. The ledger must derive the before/after charge from conserved $\epsilon_+/\epsilon_-$ counts, the effective calibration target $|e|=6\epsilon$ where applicable, shielding-state changes, Noether sea participation, and outgoing assembly routing. A reaction map that changes a particle label without this constituent and exposure accounting remains an observer-level placeholder.
@@ -70,9 +74,11 @@ $$
 
 where the first set ranges over the resolved incoming assemblies and the second set ranges over resolved outgoing or remnant assemblies. This is not a new conservation law. It is a collision-specific refinement of the same event record: shielding loss, shielding gain, dissociation, association, recoil, photon output, medium excitation, Noether sea update, detector-facing products, and any re-shielded remnant must all be named inside the same $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)$ balance. If the calculation exposes internal energy from an incoming assembly without routing it to one of those named terms, the reaction remains a provisional map rather than a closed provenance record.
 
+Here $\mathsf e$ labels the event, $Y_{\mathsf e}$ its output record, $E_{\mathrm{work}}^{\mathrm{in}}$ the declared external work, and $\mathcal S_A^-$ and $\mathcal S_B^+$ the incoming and outgoing assembly states. The fraction $\zeta$ denotes probe-facing exposure of a physical internal-energy account, as in [Particle Masses](../assemblies/particle-masses.md); it is not raw far-field cancellation. Source depletion, exposed energy, recoil, and remnant terms must partition the account without counting the same energy twice. Beam kinetic energy already included in the incoming account is not added again as external work.
+
 ### Hadronization Spin-Correlation Records
 
-High-energy collision records that claim to recover nonperturbative strong-sector behavior must preserve spin and provenance through hadronization, not only through charge and energy balance. The $\Lambda\bar{\Lambda}$ spin-correlation measurement is a useful template because the inferred record passes through several layers: a short-distance $s\bar{s}$ source, confinement into color-singlet hyperons, feed-down from higher-mass states, weak decay of each hyperon, detector reconstruction of daughter tracks, and a correlation comparison against long-range pairs and scalar-control channels.
+High-energy collision records that claim to recover nonperturbative strong-sector behavior must preserve spin and provenance through hadronization, the observer-level formation of composite hadrons from quark and gluon degrees of freedom. The [STAR hyperon-pair measurement](https://pmc.ncbi.nlm.nih.gov/articles/PMC12872435/) supplies a dated detector comparison. Its strange quark-pair origin is an interpretation; the measured quantity is a decay-angular correlation after reconstruction, background, and acceptance corrections. Feed-down means production through decay of a heavier particle and must be included in the response model. None of these observer-level mechanisms is a substrate premise.
 
 A native record for such a channel should therefore add a spin-correlation readout to the collision event:
 
@@ -102,6 +108,8 @@ $$
 
 without changing the source, hadronization, or detector-response record between the two bins. If the short-range signal is matched only by assigning an independent spin label after hadronization, the strong-sector map has fit a detector statistic while failing provenance closure.
 
+Here $P$ is the dimensionless relative-polarization coefficient in STAR's corrected decay-angle distribution, not a probability or a single-event spin label. The separation $\Delta R=\sqrt{(\Delta y)^2+(\Delta\phi)^2}$ uses rapidity difference along the beam and azimuthal-angle difference around it. STAR's short/long comparison uses separate cuts in those two coordinates, not a single radial cutoff: short range has $|\Delta y|<0.5$ and $|\Delta\phi|<\pi/3$; long range has $0.5<|\Delta y|<2.0$ and/or $\pi/3<|\Delta\phi|<\pi$. The displayed signs summarize the measured trend; the long-range result is compatible with zero within uncertainty, not an exact zero. Quantitative recovery must use the same selection, decay-analyser convention, uncertainty model, and bin-dependent acceptance under one response law. Independently specified kinematic variation across bins is legitimate.
+
 ## Residual-Routing Event-Ledger Contract
 
 Residual-routing material enters this ledger only as a theorem-target contract. It does not by itself prove that any weak, radiative, pair-production, nuclear, or cosmology-facing reaction channel has closed. The common target is:
@@ -117,6 +125,8 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-60630e8821df770c)
 
 Here $\mathcal{R}$ is the replayable residual computed from the local assembly state, path-history ledger, Noether braid density, Noether sea delay factor, and any named sector variables. The set $\{B_i\}$ is the finite list of admissible output channels, such as retuning, bound excitation, radiation, recoil, medium heating, weak or nuclear reaction, record formation, release channel, or branch transition. The event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the balance object that must close after all selected outputs are named.
+
+The local state is denoted $\Gamma$, its required retained histories $\mathcal H$, the density $\rho_{\text{NS}}$, and the effective delay factor $\chi_{\text{sea}}$. The residual and admissible channels must be derived on a declared history domain; naming them neither constructs a unique evolution nor proves that the chosen reduced state contains all information needed for replay.
 
 For a reaction attempt, the input state should be recorded as:
 
@@ -173,6 +183,8 @@ $$
 
 componentwise across the tuple. Nonzero physical recoil, medium heating, remnant excitation, outgoing product energy, or photon output is allowed only as a named term inside $Y_{\mathsf e}$; it is not allowed as an implicit loss.
 
+Each $\Delta$ is a discrepancy between independently specified input and output accounts, not the physical amount of that channel. The first three are energy, momentum, and angular-momentum balance defects; polarity and architrino defects compare primitive inventories. Path, medium, and remnant defects require declared record-comparison maps with a specified zero. Unlike counts, a path history is not a conserved scalar. Uncomputed or missing entries are unknown, never zero. A finite numerical record uses predeclared component tolerances, uncertainty bounds, and refinement tests; exact equality is the analytical target. Defining a missing output as the residual would make the check tautological.
+
 A reaction record should also state how the surviving assemblies restabilize after work is done. The compact restabilization record is
 $$
 \Theta_{\mathrm{restab}}
@@ -191,7 +203,9 @@ $$
 
 Here $B_{\mathrm{pre}}$ and $B_{\mathrm{post}}$ are the retained branch records before and after the interaction, $W_{\mathrm{in}}$ is the applied work or incoming excitation, $\Delta\mathcal A$ is the branch-action change, $\tau_{\mathrm{return}}$ is the return or relaxation time when a stable branch is recovered, and $\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{post}}$ is the post-event balance. This prevents a reaction map from closing only by label replacement while leaving the outgoing assemblies dynamically unsettled.
 
-The stronger event-balance target bundles energy, momentum, and angular momentum instead of checking photon polarization separately from the source ledger. For $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$, define source depletion by
+An action change requires an independently justified action functional; a scalar path statistic alone does not supply it. The return time must identify its clock convention and return criterion, and remain unresolved if the trajectory never returns. Dissociation or escape can be valid outgoing channels without a recovered bound branch.
+
+The stronger event-balance target bundles energy, momentum, and angular momentum instead of checking photon polarization separately from the source ledger. All terms must use one event window, coordinate frame, unit map, and angular-momentum origin. Source internal depletion excludes separately recorded recoil; medium, wake, handoff, and remnant accounts are disjoint signed net gains, with boundary influx negative. A remnant already included in the final source account is not added again. For $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$, define source depletion by
 
 $$
 \Delta\mathcal Q_{\mathrm{src}}^{0}
@@ -256,7 +270,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2506d93e03bb04f0)
 
-The Gate B angular-momentum row is the $\mathcal Q=\mathbf J$ projection of this same identity. Let the event window be labeled by superscript $0$, and let $\mathbf J_{\mathrm{src}}^-$ and $\mathbf J_{\mathrm{src}}^+$ be the source angular-momentum ledger before and after the event. Define
+For the normalized residual, $\varepsilon_{\mathcal Q}>0$ is a fixed reference scale with the same units as $\mathcal Q$; the norm is absolute value for energy and the declared Euclidean norm for vectors. This makes each summand dimensionless and nonnegative, including zero-depletion cases. The scales and acceptance tolerances must be fixed independently of the result. A small value tests the declared accounts, not the existence or correctness of their physical extraction.
+
+The Gate B angular-momentum row is the $\mathcal Q=\mathbf J$ projection of this same identity. Gate B denotes the photon spin, polarization, and capture-response requirements inherited from the photon program. Let the event window be labeled by superscript $0$, and let $\mathbf J_{\mathrm{src}}^-$ and $\mathbf J_{\mathrm{src}}^+$ be the source angular-momentum ledger before and after the event. Define
 
 $$
 \Delta\mathbf J_{\mathrm{src}}^{0}
@@ -310,9 +326,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9c4e96401d520bed)
 
-For a Gate B-admissible photon row, helicity is the projection
-
-In this observer-level normalization, $\hbar$ is the recovered action benchmark from the shared action-alignment map. It is not an independent substrate parameter or an event-local fit.
+For a Gate B-admissible photon helicity eigenstate, the following is an observer-level recovery target. Here $\hat{\mathbf k}$ is a unit propagation direction, and $\mathbf J_{\gamma}^{\mathrm{sub}}$ is the candidate substrate-derived angular account whose intrinsic longitudinal projection must be matched to photon spin. The two-valued outcome is not implied by conservation. A polarization superposition or ensemble need not have mean helicity $\pm1$. In this normalization, $\hbar>0$ is the action benchmark to be recovered by the shared action-alignment map, not an established output or an event-local fit.
 
 $$
 \lambda_{\mathrm{hel}}
@@ -324,7 +338,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-30eced4a51e02da5)
 
-and the event balance bounds the projection error:
+The event balance bounds the projection error by the Euclidean Cauchy–Schwarz inequality $|\hat{\mathbf k}\cdot\mathbf B|\le\|\mathbf B\|$:
 
 $$
 \left|
@@ -381,7 +395,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-16c9cd66b736dd8e)
 
-The denominator is understood in the normalized angular-momentum units of the event ledger. Missing source, recoil, medium, wake, handoff, or remnant rows keep the photon record provisional even when the outgoing photon substrate ledger is algebraically clean.
+This last ratio uses dimensionless angular-momentum coordinates: divide every angular quantity by the same fixed positive reference action before evaluating it. In dimensional coordinates it is equivalently $\|\mathbf B_{\gamma}^{0}\|/(J_*+\|\Delta\mathbf J_{\mathrm{src}}^0\|)$ with reference action $J_*>0$; the numeral one cannot be added to a dimensional action. Missing source, recoil, medium, wake, handoff, or remnant rows keep the photon record provisional even when the outgoing photon substrate ledger is algebraically clean.
 
 ### Provenance-Preserving Polarity Inventory
 
@@ -394,7 +408,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8909242d8a237edc)
 
-such that, for every routed identity $a$,
+For global ontic identity labels, expand both sides to include every participating reservoir and boundary-crossing constituent. The resulting sets must be equal, and $\Pi_{\mathsf e}(a)=a$: the same architrino continues along its own worldline while its assembly membership may change. If endpoint records use local labels, supply their maps to the global labels and require the composed route to preserve the global identity. A same-polarity permutation without worldline provenance does not meet this condition. In particular, for every routed identity $a$,
 $$
 q_{\Pi_{\mathsf e}(a)}=q_a,\qquad
 q_a=\sigma_a\epsilon,\qquad
@@ -403,7 +417,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c4fd41e2c372412c)
 
-Equivalently, the polarity inventory vector
+As a necessary consequence, the polarity inventory vector, with each count restricted to the appropriate finite participating input or output set,
 $$
 \mathbf{N}_{\mathsf e}
 =
@@ -415,7 +429,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-dbe4751658e9ad74)
 
-must agree before and after the event once all named reservoir terms are included. Photon assemblies, causal wakes, and corridor payloads may carry energy, momentum, angular momentum, phase, and path-history data, but they do not create new elements of $\mathcal{A}$. If a pair-production, weak, charged-pair relock, bremsstrahlung, synchrotron, or scattering record lacks $\Pi_{\mathsf e}$ or an equivalent identity-routing statement, the record remains provisional even when its net observer-level charge balances.
+must agree before and after the event once all named reservoir terms are included. Equal counts alone are insufficient: replacing one positive identity with a different positive identity preserves the vector while losing provenance. Causal wakes are history records, not additional architrinos; assigning them energy or angular momentum still requires the physical account above. Photon assemblies and corridor payloads do not create new elements of $\mathcal A$. If a pair-production, weak, charged-pair relock, bremsstrahlung, synchrotron, or scattering record lacks $\Pi_{\mathsf e}$ or an equivalent identity-routing statement, the record remains provisional even when its net observer-level charge balances.
 
 The contract for each serious channel is:
 
@@ -448,14 +462,14 @@ This is a promotion criterion, not a completed theorem. Worked sector cases rema
 | Boundary failure | A resolved event occurs while every required $g_i(X,\mathcal{R})<0$, or two mutually exclusive selected channels demand incompatible output assignments. |
 | Ledger residual failure | After all sector-required rows are included, $\Delta_E\ne0$, $\Delta_{\mathbf{p}}\ne\mathbf{0}$, or $\Delta_{\mathbf{J}}\ne\mathbf{0}$. |
 | Inventory or provenance failure | $\Delta_{\mathrm{pol}}\ne0$, $\Delta_{\mathrm{arch}}\ne0$, or $\Delta_{\mathrm{path}}\ne0$ after the claimed Noether sea, corridor, transmitter-identity, emission-time, causal-root, and branch-Jacobian records are included. |
-| Identity-routing failure | No bijection $\Pi_{\mathsf e}$, or equivalent identity route, maps participating input architrinos to participating output architrinos after named Noether sea reservoir terms are included. |
+| Identity-routing failure | No worldline-supported $\Pi_{\mathsf e}$, or equivalent route preserving global identities, maps participating input architrinos to participating output architrinos after named Noether sea reservoir and boundary terms are included. Equal polarity counts or an arbitrary same-polarity bijection do not suffice. |
 | Medium or remnant failure | $\Delta_{\mathrm{med}}\ne0$ or $\Delta_{\mathrm{rem}}\ne0$, meaning the route used medium heating, recoil, retained excitation, or remnant deformation as an implicit loss term. |
-| Retuning failure | The same benchmark family can be recovered only by changing the residual definition, the channel boundary, or the Noether sea state variables between sector cases. |
+| Retuning failure | The same benchmark family can be recovered only by changing the residual law, channel-boundary law, or fitted medium inputs after seeing each result. Independently specified or dynamically predicted Noether sea state variation under one fixed law is legitimate. |
 | Cross-sector failure | The local route succeeds only by violating another required sector acceptance gate. |
 
 ## Weak-Corridor Provenance Gate
 
-Weak reactions require an explicit corridor-provenance stance. The corpus supports two live possibilities:
+Weak reactions require an explicit corridor-provenance stance. Two proposed bookkeeping alternatives are:
 
 1. **Transaction-payload corridor:** $W^\pm$ carries the charged triad payload and phase relation, while final-state pro/anti Noether braid material is supplied by the local Noether sea or by explicitly identified incoming assemblies.
 2. **Provenance-carrying corridor:** $W^\pm$ carries not only the charged transaction payload but also enough pro/anti Noether braid provenance to seed some final-state lepton or antilepton braid content.
@@ -482,7 +496,7 @@ $$
 
 Native status: provisional weak-reaction provenance map.
 
-The active quark change is an axial-layer reconfiguration. In the assembly catalog, the top-to-bottom transition is represented as a shift from the top axial pattern to the bottom axial pattern:
+In the candidate assembly catalog, the active quark change is modeled as an axial-layer reconfiguration from the top axial pattern to the bottom axial pattern:
 
 $$
 (5\epsilon_+ + 1\epsilon_-)_{\text{axial}} \to (2\epsilon_+ + 4\epsilon_-)_{\text{axial}}
@@ -491,6 +505,8 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-d69b17996828fffc)
 
 Equivalently, the active quark sector requires a $+3\epsilon_-,-3\epsilon_+$ axial-inventory change. In observer language this is the $W^+$ channel. In substrate language it is a transient payload and coupling event whose geometry, chirality selection, and energy routing still need closure.
+
+This is exchange of fixed-polarity constituents, never conversion of an individual polarity. The quark's signed inventory changes by $-6\epsilon$, balanced by the opposite corridor/reservoir change under the declared charge map. Both quarks are generation III, so this proposed transition has $\Delta g=0$ and no scaffold-count change; that arithmetic does not source the positron and neutrino material.
 
 The lepton products cannot be asserted as creation from nothing. Their braid and axial-layer material must be drawn from a local Noether sea reservoir or from explicitly identified incoming assemblies. The provisional ledger target is:
 
@@ -522,9 +538,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e1c1de79d984acfb)
 
-Native label: free-neutron beta reaction.
+Native interpretation: one down-like constituent assembly changes its axial occupancy while the outgoing proton, electron, and antineutrino accounts are assembled. The quark-level $W^-$ notation is an internal weak-interaction comparison, not an emitted on-shell W boson in free-neutron decay or proof of a propagating substrate corridor.
 
-The spectator structure is straightforward: one $u$ and one $d$ in the neutron pass through the reaction unchanged. The active channel is the second down-like assembly reconfiguring into an up-like assembly.
+The proposed spectator assignment keeps one $u$ and one $d$ constituent identity through the reaction. Spectator identity does not require unchanged motion, binding, or wake history as the neutron becomes a proton. The active channel is the other down-like assembly reconfiguring into an up-like assembly.
 
 The axial-layer comparison is:
 
@@ -540,6 +556,8 @@ So the active quark assembly has a three-unit decrease in negative-polarity axia
 
 The controlled beta channel has a first finite-state exposure operator in [Weak-Mixing CKM](../philosophy-history/theory-bridges/weak-mixing-ckm.md). The ledger record for this channel should use that operator as the geometry gate before any rate or provenance claim is made.
 
+The operator is a conditional test model. Its left/right handedness labels and blocked channel are supplied assumptions until the same retained geometry derives the selection; they are not independent evidence for chirality. CKM and PMNS denote observer-level flavor-mixing matrices; $V_{ud}$ is the up/down CKM amplitude, requiring an independently defined pair of bases before a geometric overlap is predictive.
+
 This gate inherits the unresolved spinor/helicity proof in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md). The blocked right-handed branch, antineutrino orientation, and weak-channel angular-momentum balance remain provisional until the weak-coupling-triad exposure geometry and the reaction-level angular-momentum ledger are derived from the same substrate proof.
 
 | Gate field | Beta-reaction record |
@@ -550,7 +568,7 @@ This gate inherits the unresolved spinor/helicity proof in [Angular Momentum and
 | Gate condition | Left-handed charged-current docking with $\lvert\Sigma_{\mathrm{WCT}}^{(L)}\rvert=3$ and active inventory $3\epsilon_-$ |
 | Blocked condition | Right-handed $d$ channel has no charged-corridor docking in the finite-state model |
 | Quark-side action | $A_{\Sigma}=3\epsilon_-\to3\epsilon_+$, with shielded inventory $A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-)$ unchanged |
-| Corridor payload | $W^-$ carries the opposite transaction $\Delta A_W=3(\epsilon_- - \epsilon_+)$, net charge $-e$ |
+| Corridor payload | Proposed $W^-$ transaction $\Delta A_W=3(\epsilon_- - \epsilon_+)$, signed net change $-6\epsilon=-|e|$ under the declared charge normalization; a signed inventory difference is not a list of six physical payload constituents |
 | CKM weight | $V_{ud}$, interpreted as the same-tier weak-basis to shielding-eigenstate overlap |
 | Provenance stance | Transaction-payload corridor unless a later derivation proves provenance-carrying corridor content is required |
 
@@ -570,7 +588,7 @@ This map supports a strong but bounded claim: beta reaction charge bookkeeping c
 
 ### Method-Resolved Lifetime Benchmark
 
-The lifetime benchmark should not be reduced to a single scalar until the experimental comparison channel is declared. The PDG neutron listing averages ultracold-neutron storage measurements at $\tau_n^{\mathrm{UCN}}=878.4\pm0.5\,\mathrm{s}$, while the in-beam trapped-proton result `YUE 13` reports $\tau_n^{\mathrm{beam}}=887.7\pm1.2_{\mathrm{stat}}\pm1.9_{\mathrm{syst}}\,\mathrm{s}$. The review does not use the beam row in the main average and treats the beam/storage split as a long-standing disagreement. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is a method-resolved weak-reaction benchmark, not evidence by itself for a hidden reaction channel.
+The lifetime benchmark should not be reduced to a single scalar until the experimental comparison channel is declared. The [PDG 2024 neutron listing, mean-life section](https://pdg.lbl.gov/2024/listings/rpp2024-list-n.pdf) averages ultracold-neutron storage measurements at $\tau_n^{\mathrm{UCN}}=878.4\pm0.5\,\mathrm{s}$, while the in-beam trapped-proton result `YUE 13` reports $\tau_n^{\mathrm{beam}}=887.7\pm1.2_{\mathrm{stat}}\pm1.9_{\mathrm{syst}}\,\mathrm{s}$. That edition excludes the beam row from its main average and includes a scale factor of 1.8 in the quoted storage uncertainty. These are dated comparison rows, not a claim about the latest average. Storage counts surviving neutrons; the beam method counts decay protons relative to neutron flux. Their disagreement alone does not establish a hidden reaction channel.
 
 A native closure attempt should therefore publish two readouts from the same free-neutron beta-reaction record:
 
@@ -586,6 +604,8 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-a1d64e6af84992a8)
 
 Here $\tau_n^{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the storage-style survival lifetime predicted by the branch record, while $\tau_{n,p}^{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the proton-counting readout in a beam geometry. The two entries must share the same weak-coupling-triad exposure, $V_{ud}$ overlap, lepton-provenance, recoil, and Noether sea rows. If the method residual remains nonzero after known detector, trap, wall-loss, and normalization systematics are represented at observer level, the residual stays an unresolved comparison pressure; it should not be promoted to hidden-channel ontology without explicit reaction provenance and null-result closure.
+
+For this dated diagnostic, $\sigma_{\mathrm{UCN}}=0.5\,\mathrm{s}$ and $\sigma_{\mathrm{beam}}=\sqrt{1.2^2+1.9^2}\,\mathrm{s}$ only under independent statistical/systematic quadrature. Both denominators must be positive. Prediction uncertainty, common calibration covariance, and method-specific nuisance parameters must enter a quantitative likelihood; these two normalized discrepancies are not automatically independent significance scores. Nonzero noisy residuals are expected and are judged against a predeclared uncertainty model, not exact zero. The shared record means one common reaction law with independently specified experimental environments and response maps, not identical trap and beam states.
 
 ## Closure Targets
 

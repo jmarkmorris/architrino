@@ -16,7 +16,7 @@ The strongest safe use is therefore not "this maps to $\mathbb{A}\mathbb{A}\math
 4. define the residual that would count as recovery,
 5. name the failure mode that would show the mapping has overreached.
 
-The inherited theory can tell the program what must be recovered, but it cannot tell the program what the world is made of.
+Tested observables and applicable mathematical consistency conditions constrain what must be recovered. An optional inherited model is a comparison unless such a constraint requires its result; its ontology does not thereby become a substrate premise.
 
 ## Transfer Record
 
@@ -65,7 +65,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5ea8979e8bfcf120)
 
-Here $\theta$ is the candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record, $d_C$ is the comparison metric appropriate to the inherited concept, and $B_C^{\mathrm{obs}}$ is the validated observer-level benchmark.
+In the transfer tuple, $B_C$ names the benchmark specification and record; when used as the operator $B_C(\cdot)$ in the residual, it denotes the extraction prescribed by that specification. This extraction maps the projected prediction into the same observable coordinates and units as the benchmark, and is fixed before comparison. Here $\theta$ is the candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record, $d_C$ is the comparison metric appropriate to the inherited concept, and $B_C^{\mathrm{obs}}$ is the validated observer-level benchmark. The metric must declare its domain, units or normalization, tolerances, and treatment of prediction uncertainty and shared covariance; covariance-weighted discrepancies require a positive-definite covariance on the retained comparison space.
 
 The important burden is the origin of both $\theta$ and the projection map. If either is selected after seeing the benchmark, the result is benchmark fitting. For a disciplined comparison, the projection is fixed on a calibration record $D_C^{\mathrm{cal}}$ that is disjoint from the recovery benchmark. The following expression states the calibration rule.
 
@@ -80,7 +80,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-21a383726edb6b76)
 
-The frozen map $\Pi_C^\star$ must then be shared across every benchmark family that claims the same observer channel. A separate map for each clock type, spectral line, lensing observable, or detector family is hidden retuning, not recovery. If $\theta$ is generated from the Master EOM, assembly closure, Noether sea response, and declared record channel before comparison, and if $\Pi_C^\star$ is calibrated independently and frozen before the benchmark is opened, then a small $\mathcal{R}_C$ can become evidence of implementation closure.
+The displayed argmin denotes a selected minimizing map only if the minimum is attained and a unique solution or a selection rule fixed before comparison is supplied. Otherwise the calibration must declare an approximate optimization tolerance and selection rule, or report failure to obtain a map. Disjointness means no reused record identities; it does not imply statistical independence. Shared measurements, instruments, preprocessing, and calibration errors require an explicit dependence model, as in the [Parameter Ledger](../validation/parameter-ledger.md).
+
+The frozen map $\Pi_C^\star$ must then implement one shared observer model across every benchmark family that claims the same channel. It may take declared apparatus properties and independently fixed calibration coefficients as inputs: different clock constructions need not have identical raw readouts. Choosing those coefficients or the common law separately to fit held-out outcomes is hidden retuning. If $\theta$ is generated from the Master EOM, assembly closure, Noether sea response, and declared record channel before comparison, and if $\Pi_C^\star$ is calibrated and frozen without benchmark leakage, then a small $\mathcal{R}_C$ is evidence for that generated prediction within the tested domain and uncertainty model. It is not, by itself, implementation closure or a theorem over untested states.
 
 ## Transfer Classes
 
@@ -112,7 +114,7 @@ The mechanical audit requires verification before advancement: a lower-layer cla
 
 ## Canonical Direct-Use Audit
 
-The current corpus uses prior-theory concepts directly only in controlled ways. This list is the canonical audit level for the present corpus; individual chapters still own their local details.
+The following table states the intended direct-use discipline for the named concept families. It is not evidence that every corpus passage complies; individual chapters own their local claims and derivations.
 
 | Inherited concept family | Current corpus use | Transfer class | Ontology placement | Mathematical-use status | Scope discipline |
 | --- | --- | --- | --- | --- | --- |
@@ -121,7 +123,7 @@ The current corpus uses prior-theory concepts directly only in controlled ways. 
 | Distributional causal surfaces | Delta functions, Heaviside support, mollification, branch integrals, and weak limits | Direct mathematical tool | Formal only | Distributional representation | The distribution is a formal representation of causal wake support, not a continuum field substance |
 | Jacobian and branch analysis | Causal-root weights, transversality floors, caustic handling, and multi-root bookkeeping | Direct mathematical tool | Formal only | Branch-analysis tool | A root ledger records admissible delayed channels; it is not itself an acceleration law or stability proof |
 | Inverse-square surface dilution | Causal wake density over expanding surfaces | Native substrate commitment | Substrate-native | Native dynamics | It supplies the microscopic kernel but still owes effective recovery of observer-level field laws |
-| Conservation language | Energy, momentum, angular momentum, polarity inventory, and event ledgers | Validated benchmark record | Assembly and observer target | Native bookkeeping target | Observer-level conservation laws must be traced to event records rather than inserted as standalone axioms |
+| Conservation language | Energy, momentum, angular momentum, polarity inventory, and event ledgers | Validated benchmark record | Assembly and observer target | Native bookkeeping target | Observer-level conservation laws require independently established balance or symmetry identities over motion, wake, and boundary records; the existence of a ledger alone does not prove them |
 | Standard Model labels | Electric charge, color, weak isospin, hypercharge, chirality, generation, CKM/PMNS rows, and anomaly checks | Validated benchmark record | Observer classification | Assembly-dictionary target | Labels may organize the assembly dictionary, but the gauge dynamics and couplings remain derivation targets |
 | QED/QCD/EW precision formalisms | Loop-sensitive observables, confinement benchmarks, electroweak rates, branching ratios, and null-result bounds | Validated benchmark record | Observer inference | Precision-recovery target | Perturbative and lattice successes fix recovery pressure; they do not establish virtual particles, continuum fields, or gauge primitives as substrate ontology |
 | Lorentz and SR behavior | Time dilation, length contraction, invariant signal speed, two-way synchronization, and preferred-frame leakage bounds | Effective-limit concept | Observer-effective | Shared projection target | The closure target is moving-assembly deformation and clock/ruler retuning from causal-root dynamics, not a Lorentz postulate |
@@ -129,7 +131,7 @@ The current corpus uses prior-theory concepts directly only in controlled ways. 
 | Quantum state language | Wavefunction, Born weights, uncertainty, operators, spin, entanglement, no-signaling, and Bell/CHSH benchmarks | Effective-limit concept | Observer-effective | Statistical reconstruction target | The effective chart must derive basin measures, record formation, and apparatus kernels from deterministic path-history dynamics |
 | Thermodynamics and statistical mechanics | Entropy, temperature, heat, irreversibility, kinetic theory, virial behavior, and ensemble closures | Effective-limit concept | Bulk-effective | Coarse-grained reconstruction | The regime must declare the coarse-graining, access window, boundary flux, and measure; global cosmological extrapolation is not automatic |
 | Radiation and reaction formulas | Larmor/Lienard, bremsstrahlung, synchrotron, Compton-like rows, pair thresholds, blackbody and polarization constraints | Validated benchmark record | Observer record | Event-ledger target | Formulas are target limits for event ledgers with photon output, recoil, remnant, heat, reaction, and medium-update rows |
-| Cosmology variables | $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, redshift, CMB spectra, BAO rulers, BBN abundances, growth, $S_8$, and $\Omega$ summaries | Validated benchmark record | Observer inference | Shared survey-projection target | These variables describe Noether sea evolution, transport, and clock-rate comparison; the Euclidean void does not expand |
+| Cosmology variables | $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, redshift, CMB spectra, BAO rulers, BBN abundances, growth, $S_8$, and $\Omega$ summaries | Validated benchmark record | Observer inference | Shared survey-projection target | Their proposed reconstruction uses Noether sea evolution, transport, and clock-rate comparison; the Euclidean void does not expand |
 | Information and computation | State distinction, encoding, measurement records, reset cost, algorithmic scaling, and simulation discipline | Directional comparison | Methodological comparison | Record-analysis language | Useful for records and models, but not a substrate ontology |
 | Holography, AdS/CFT, islands, MOND-like fits, string/LQG/SUSY/inflationary programs | Comparison pressure, candidate analogies, and boundary checks | Directional comparison | Comparison only | Heuristic or formal analogy | They may sharpen constraints, but they are not closure targets unless a tested observable or hard consistency condition requires them |
 
@@ -160,11 +162,11 @@ This example instantiates the seven-field record as a closure specification, not
 | $M_C$ | The dimensionless clock-rate curve $\Delta\tau/\Delta t=\sqrt{1-v^2/c_\gamma^2}$ and its low-speed expansion |
 | $B_C$ | Withheld observer-level clock-comparison records from at least two independent clock constructions, with synchronization and environmental corrections included in their published uncertainty models |
 | $\Pi_C^{\mathbb{A}\mathbb{A}\mathbb{A}}$ | One frozen map from assembly cycle counts, apparatus motion, signal exchange, and sampled Noether sea state to operational elapsed-time and speed records |
-| $\mathcal{R}_C$ | A covariance-weighted residual over all withheld clock families, evaluated with one branch generator and no clock-specific parameter changes |
+| $\mathcal{R}_C$ | A covariance-weighted residual over all withheld clock families, evaluated with one branch generator and independently fixed apparatus calibrations |
 | $P_C$ | Effective-limit concept: Lorentz clock behavior is a validated observer-level regularity and a recovery target, not substrate geometry |
-| $F_C$ | Failure occurs if different clock types require different projection maps, if the same map misses the shared rate curve beyond declared uncertainty, or if the construction imports a Lorentzian metric or proper-time law into the substrate dynamics |
+| $F_C$ | Failure occurs if clock types require outcome-fitted changes to the shared projection law or its declared calibrations, if the same map misses the shared rate curve beyond declared uncertainty, or if the construction imports a Lorentzian metric or proper-time law into the substrate dynamics |
 
-The substrate prohibition is explicit: neither the Lorentz transformation nor a Minkowski metric may generate the architrino or assembly trajectory. The native generator must first produce moving-assembly and signal records. The projection is calibrated on stationary clock correspondences and frozen before the moving-clock benchmarks are opened. The benchmark is independent only when its moving-clock measurements, analysis pipeline, and uncertainty model were not used to choose the branch record or projection. Passing one clock family and failing another leaves the inheritance open even if a pooled fit looks good.
+The substrate prohibition is explicit: neither the Lorentz transformation nor a Minkowski metric may generate the architrino or assembly trajectory. The native generator must first produce moving-assembly and signal records. The projection is calibrated on stationary clock correspondences and frozen before the moving-clock benchmarks are opened. Stationary calibration alone does not identify the velocity dependence: candidate maps can agree at rest and differ in motion. The moving-clock comparison therefore tests the independently specified continuation of the model. Avoiding use of its outcomes in selecting the branch or projection prevents fitting leakage; statistical independence additionally requires control of shared calibration and analysis errors. Passing one clock family and failing another leaves the inheritance open even if a pooled fit looks good.
 
 ## Foundational Formula Audit
 
@@ -183,8 +185,8 @@ The important correction is the status of the familiar $1/r$ potential. The acce
 | Causal-root set | $F_{ij}(T,T_t)=\lVert\mathbf X_i(T)-\mathbf X_j(T_t)\rVert-c_f(T-T_t)$ and $\mathcal{C}_{ij}(T)=\{\,T_t<T:F_{ij}(T,T_t)=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
 | Causal surface density | $\rho(T,\mathbf X)=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
 | Heaviside endpoint rule | $H(0)=0$ and $T_0<T$ in the causal-root set | Native endpoint convention | Instantaneous self-kick or zero-delay self-acceleration |
-| Root Jacobian and transversality | $D_{t,ij}=c_f-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}$ with positive branch floor | Direct transmitter-side branch-analysis tool in the native law | Replacing branch strength by transmitter-side data alone, speed magnitude, or ignoring caustic/fold regimes |
-| Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{acc}}}{r_{ij}^2}\hat{\mathbf{r}}_{ij}$ with $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, transmitter-side-only branch strength, or a mass-based force ontology |
+| Root Jacobian and transversality | $D_{t,ij}=c_f-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}$ with positive branch floor | Direct transmitter-side branch-analysis tool in the native law | Replacing receiver-to-emitter separation and direction by transmitter data alone, using speed magnitude in place of its directional projection, or ignoring caustic/fold regimes |
+| Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{acc}}}{r_{ij}^2}\hat{\mathbf{r}}_{ij}$ with $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, omission of receiver-position geometry, an added receiver-velocity strength factor, or a mass-based force ontology |
 | Total acceleration | $\dfrac{d^2\mathbf X_i}{dT^2}=\sum_j\sum_{T_t\in\mathcal{C}_{ij}(T)}\mathbf A_{ij}(T;T_t)$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
 | Superposition | Source contributions add linearly on the declared branch chart | Native source-addition rule and effective reconstruction tool | Wake-wake interaction as an independent substance law |
 | Regularized wake surface | $\delta(r-c_f\tau)\to\delta_\eta(r-c_f\tau)$, with optional core scale $\epsilon_c$ in proof models | Formal regularization and simulation/proof tool | A new substrate substance, a hidden fit parameter, or a completed $\eta\to0$ proof |
@@ -215,7 +217,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6dd1a98c25f53a45)
 
-The pure scalar $1/r$ action scaffold is not yet an unconditional foundation because its variation leaves a receiver-side constraint residual on generic branches unless a stationarity condition or invariant counterterm closes the Euler derivative. That failure does not demote the Master EOM. It demotes the claim that the scalar $1/r$ scaffold alone explains the Master EOM.
+The pure scalar $1/r$ action scaffold is not yet an unconditional foundation because its variation leaves a receiver-side constraint residual on generic branches. The [Master Equation](../dynamics/master-equation.md) excludes cancellation by finite same-support local scalar or delta-jet counterterms that preserve canonical branch strength, and obstructs per-branch stationarity on the terminal common-center inter-layer chart. Branch-summed residual closure or a different action remains a separate derivation target; stationarity is not implied by the accepted acceleration law. That failure does not demote the Master EOM. It demotes the claim that the scalar $1/r$ scaffold alone explains the Master EOM.
 
 ### Reliance-Risk Rating
 
@@ -248,7 +250,7 @@ Risk scores:
 | Potential reconstruction | 4 | Potential notation can smuggle in static-field ontology or source-position-only dependence | Treat $\Phi_{\text{net}}$ and $U$ as fixed-history diagnostics unless a stronger action proof is supplied |
 | Potential-gradient bookkeeping identity | 4 | The identity is conditional and can incorrectly replace the receiver-local Master Equation or introduce substrate force language | Use only as optional assembly-level bookkeeping on mollified, fixed-history channels with declared normalization |
 | Work and kinetic bookkeeping | 4 | Primitive mass and quadratic kinetic energy are not native; energy bookkeeping depends on the chosen kinetic proxy and wake term | Declare $K$, $\mu_K$, or $\mu_{\text{arch}}$ and keep observer mass as an assembly-level recovery |
-| $1/r$ potential/action scaffold | 5 | It is useful for calibration and variational scaffolding, but the scalar scaffold alone does not generically derive the Master EOM | Treat it as conditional until the receiver-side residual, counterterm, or stationarity condition closes |
+| $1/r$ potential/action scaffold | 5 | It is useful for calibration and variational scaffolding, but the scalar scaffold alone does not generically derive the Master EOM | Require a complete action derivation with receiver-side residual closure; respect the excluded local counterterm class and chart-specific stationarity obstruction |
 
 The highest-risk rows are not rejected. They are the rows where the formula is too valuable to use casually. The correct response is narrower authority: branch certificates for root formulas, convergence controls for sums, finite-regulator labels for regularized claims, and explicit diagnostic status for potential and action scaffolds.
 
@@ -256,7 +258,7 @@ The highest-risk rows are not rejected. They are the rows where the formula is t
 
 The corpus should read inherited accuracy by regime, not by reputation.
 
-A historical audit of prize-recognized discoveries reinforces the same rule: middle-scale instruments and effective records may remain almost entirely valid, while the smallest and largest regimes carry the strongest pressure to separate benchmark success from substrate ontology.
+The chart separates tested records from proposed substrate interpretations by regime. It is a qualitative comparison, not a quantified historical audit of discoveries or a ranking of their validity.
 
 | Regime or scale | Inherited framework with high accuracy | What $\mathbb{A}\mathbb{A}\mathbb{A}$ should inherit | What it must not inherit |
 | --- | --- | --- | --- |
@@ -274,7 +276,7 @@ A historical audit of prize-recognized discoveries reinforces the same rule: mid
 
 **Lemma (methodological):** A mapping from an inherited concept $C$ to an $\mathbb{A}\mathbb{A}\mathbb{A}$ descriptor $A_C$ does not reduce the proof burden unless the same branch record $\theta$ also supplies the implementation map $\Pi_C^{\mathbb{A}\mathbb{A}\mathbb{A}}$, keeps $\mathcal{R}_C(\theta)$ below the declared tolerance in $D_C$, and avoids the known failure mode $F_C$ with a reasoning provenance $P_C$ appropriate to the claim level.
 
-Proof route: a verbal or diagrammatic mapping establishes only a relation between labels. Benchmark recovery requires an output comparison. Implementation closure requires a generator. If the generator is not declared, the concept still sits at the comparison layer. If the generator changes between benchmark families, the result is hidden tuning. If the generator is native and shared across the relevant sectors, then the inherited concept has been recovered as an effective limit rather than merely named.
+Proof route: a verbal or diagrammatic mapping establishes only a relation between labels. Benchmark recovery requires an output comparison. Implementation closure requires a generator. If the generator is not declared, the concept still sits at the comparison layer. If the governing generator is changed to fit each benchmark family, the result is hidden tuning; different declared preparation or apparatus inputs to one law are allowed. A native shared generator is necessary for the claimed common implementation, but is not sufficient for recovery. Controlled comparisons establish only their stated domain and uncertainty; an effective-limit theorem additionally requires the limiting construction and error control over that domain.
 
 A map is not a mechanism. A mechanism is a native record that keeps working after the comparison target changes.
 
@@ -297,7 +299,7 @@ The central question is therefore not merely "does this equation map?" The centr
 | --- | --- | --- |
 | Native definition or postulate | It is part of the declared substrate ontology or Master EOM and survives internal consistency checks | It conflicts with the ontology, event bookkeeping, or another accepted native equation |
 | Exact branch derivation | It follows from one declared causal-root chart with admissible roots, transversality control, and a shared branch record | A missing branch, caustic, branch-switching ambiguity, or hidden parameter change is needed |
-| Individual assembly law | It predicts an assembly observable from that assembly's path history and event ledger | It only works after averaging over assemblies or after importing a bulk variable |
+| Individual assembly law | It predicts an assembly observable from its admissible path history and event ledger together with the required environment and boundary data | It only works after averaging over assemblies or after importing a bulk variable |
 | Finite assembly family law | It is stable over a declared family, boundary condition, and access window | It changes when the family membership, boundary flux, or causal-root support changes |
 | Bulk or statistical law | It follows from an explicit coarse-graining map, measure, and residual tolerance | It is applied to one assembly without proving that the projection preserves the relevant observable |
 | Observer-inference formula | It correctly relates projected records to detector or survey data products | It is treated as substrate dynamics rather than an inference layer |
@@ -321,7 +323,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1a5f21ab71b6e120)
 
-Here $\rho_{\text{NS}}$ is the Noether sea state sampled by the same window. In residuals below, $\Gamma(T)$ abbreviates the full sampled collection of assembly states, path histories, and Noether sea state.
+Here $\rho_{\text{NS}}$ denotes the declared Noether sea state variables sampled by the same window, not necessarily a sufficient scalar density. The projection must also retain or prescribe relevant external histories and boundary fluxes. In residuals below, $\Gamma(T)$ abbreviates the full sampled collection of assembly states, path histories, and Noether sea state.
 
 A proposed bulk equation may have the following form.
 
@@ -333,7 +335,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2cf1f1125281cee5)
 
-Its credibility remains at the bulk level until the following projection residual is controlled.
+This autonomous form is a closure hypothesis: the retained variables must determine their projected derivative, or the approximation must quantify the discarded memory, external driving, and boundary dependence. Equal projected states need not have equal derivatives. Its credibility remains at the bulk level until the following projection residual is controlled.
 
 $$
 \mathcal{R}_{\mathrm{bulk}}
@@ -347,7 +349,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-eca6c7207590acf8)
 
-It becomes credible as an individual-assembly guide only after the following separate assembly-level residual is controlled.
+The norm must declare scales for heterogeneous components; without nondimensionalization this defect has units of observable per absolute time. A small derivative defect over a finite window does not itself bound trajectory error: initial error, elapsed time, and stability of the proposed evolution also matter. It becomes credible as an individual-assembly guide only after the following separate assembly-level residual is controlled.
 
 $$
 \mathcal{R}_{\mathrm{assembly}}
@@ -362,7 +364,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c5c02e4d173b2fab)
 
-Here $\varphi_t$ is the native evolution of the assembly record, $\Pi_A$ is the assembly-level observable projection, and $\Pi_A^{\mathrm{bulk}}$ is the individual-assembly value inferred from the bulk equation. If $\mathcal{R}_{\mathrm{bulk}}$ is small while $\mathcal{R}_{\mathrm{assembly}}$ is large, the formula remains a population law. If both residuals are small in the declared regime, the bulk equation may serve as an effective assembly-level guide, but only in that regime.
+Here $t$ is the elapsed absolute-time coordinate used for both predictions, with the same initial reference time as $T$. The arguments of $\varphi_t$ abbreviate the full admissible initial history and the prescribed environment and boundary data required for assembly evolution, not an isolated instantaneous assembly state. Existence and uniqueness are conditional on the compatible-history and continuation assumptions of the [Master Equation](../dynamics/master-equation.md). Thus $\varphi_t$ is the native evolution on that declared domain, $\Pi_A$ is the assembly-level observable projection, and $\Pi_A^{\mathrm{bulk}}$ is the individual-assembly value inferred from the bulk equation. If $\mathcal{R}_{\mathrm{bulk}}$ is small while $\mathcal{R}_{\mathrm{assembly}}$ is large, the formula remains a population law. If both residuals are small in the declared regime, the bulk equation may serve as an effective assembly-level guide, but only for the histories, observables, and time window actually controlled. A finite sampled family does not establish a uniform bound over unsampled histories.
 
 This distinction is why virial, thermodynamic, hydrodynamic, cosmological, and detector-level formulas need special care. They may be accurate descriptions of records after projection while still being incomplete descriptions of the assembly behavior that produced those records.
 

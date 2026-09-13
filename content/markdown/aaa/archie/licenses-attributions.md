@@ -41,7 +41,7 @@ This page provides general information, not legal advice or blanket permission. 
 
 - Black-hole and observatory images: NASA, ESO, ESA/Hubble, and other source-specific credits are recorded per asset in the [image manifest](../../../assets/images/images.json). Preserve the exact manifest credit line and source URL whenever one of these images is copied or redistributed.
 
-- Standard Model of Elementary Particles diagram: current version by Cush; original version by MissMJ, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/); [Wikimedia Commons source](https://commons.wikimedia.org/wiki/File:Standard_Model_of_Elementary_Particles.svg). Full catalog entry: [image manifest](../../../assets/images/images.json).
+- Standard Model of Elementary Particles diagram: current version by Cush, identified as public domain by its author; original version by MissMJ under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/); [Wikimedia Commons source](https://commons.wikimedia.org/wiki/File:Standard_Model_of_Elementary_Particles.svg). Full catalog entry: [image manifest](../../../assets/images/images.json).
 
 - Electromagnetic Spectrum, Extended To The Planck Scale diagram: created by the Architrino project, 2026; project-owned; [local asset](../../../assets/images/physics/electromagnetic-spectrum-planck-scale.svg). Full catalog entry: [image manifest](../../../assets/images/images.json).
 
@@ -49,7 +49,7 @@ This page provides general information, not legal advice or blanket permission. 
 
 - Comics: created by the Architrino project, 2026; project-owned. Full catalog entries: [image manifest](../../../assets/images/images.json).
 
-- Three.js runtime, including `three.module.js` and the co-bundled `CSS2DRenderer.js`: MIT License, Copyright (c) 2010-2023 three.js authors; see the header in [vendor/three/three.module.js](../../../../vendor/three/three.module.js) and the [upstream r152 license](https://github.com/mrdoob/three.js/blob/r152/LICENSE).
+- Three.js runtime, including `three.module.js` and the co-bundled `CSS2DRenderer.js`: MIT License. The bundled [three.module.js](../../../../vendor/three/three.module.js) declares revision 161 and carries Copyright (c) 2010-2023 Three.js Authors; the [upstream r161 license](https://github.com/mrdoob/three.js/blob/r161/LICENSE) carries Copyright © 2010-2024 three.js authors.
 
 - `markdown-it` runtime: MIT license (see header in [vendor/markdown-it/markdown-it.min.js](../../../../vendor/markdown-it/markdown-it.min.js)).
 

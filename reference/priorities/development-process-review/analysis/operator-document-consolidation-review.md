@@ -12,6 +12,8 @@ The current owner and overlap assessment uses direct reads of the collection REA
 
 Two concrete overlap defects were observed by direct text reads in this snapshot. The collection README says its current recovery account does not archive the task, while the archive-readiness review explicitly records the September 9 operator-authorized archive; the README should link to that disposition. The Git index describes bounded report-only B integration and deferred wider adoption, while the current priorities and Redux handoff route active full-B continuation to the accepted architecture; that index summary should follow the live owner. Re-reading those exact passages after another task updates them can overturn either freshness finding.
 
+The September 13 closeout check found a third status discrepancy by direct reads: the [process checklist's rollout table](../processes-git-codex-claude.md#3-rollout-and-integration-plan) still lists B-REM-2 through B-REM-5 as remaining, while the [work queue](../work-queue.md#operator-selected-option-b-work) records all five finite packages complete and keeps full-B continuation separately open. Updating that summary is part of the proposed current-status consolidation; it does not reopen the finite packages. The same check found no incoming reference to this inventory under `reference/` with `rg -n -F 'operator-document-consolidation-review' reference --glob '*.md'`; the collection README now supplies that discovery link. These two small capture edits do not implement the broader consolidation proposals below. Re-reading the named checklist and queue after correction can overturn the status discrepancy.
+
 ## Recommended consolidation
 
 The rows below are proposals. They are not added executable tasks.

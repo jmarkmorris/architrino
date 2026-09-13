@@ -175,7 +175,7 @@ Clarity is the objective. Repetition is neither required nor forbidden: it is a 
 
 The asymmetry justifies erring toward explanation. A reader who already knows a term loses one skipped line. A reader who does not know it loses the passage. Omission costs comprehension; redundancy costs a scan. Once a reader has internalized a term they read straight past its definition, and that skipping is cheap and automatic. So when the judgment is close, explain.
 
-**Symbols are a solved case.** Corpus prose carries `View →` links into the equation viewer, which holds each symbol's full definition. A symbol therefore needs only to be named in words where it is used; re-glossing every symbol at every recurrence is padding.
+**Symbol reference support.** Corpus prose carries `View →` links into the equation viewer, which provides source-context definitions or explicitly inferred notation guidance. A symbol therefore needs only to be named in words where it is used; re-glossing every symbol at every recurrence is padding.
 
 **Concepts are reintroduced twice over: at first use in a document, and again wherever the argument turns on them.**
 

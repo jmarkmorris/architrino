@@ -69,7 +69,7 @@ The canonical paths are:
 - `src/runtime/`, `src/services/`, and `src/domain/`: shared rendering, service, and domain responsibilities
 - `content/markdown/aaa/`: authored reader-facing corpus
 - `content/scenes/`: authored scene hierarchy and application index
-- `content/graph/` and `content/generated/`: generated consumers, never hand-authored sources
+- `content/graph/scene_graph.json`, `content/graph/textbook_toc.json`, and `content/generated/`: generated consumers, never hand-authored sources; `content/graph/runtime_routes.json` is authored routing configuration consumed by the graph builder
 - `src/eom/`: the EOM solver, the sole forward production solver target
 - `tests/`: runtime, content, solver, and contract verification
 

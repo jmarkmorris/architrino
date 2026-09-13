@@ -1,33 +1,33 @@
 # Quantum Operator Mapping
 
-The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document states a candidate mapping between abstract quantum operators and assembly-level rotational response in candidate Noether braids, bounded by the causal-delay master equation. The qubit proposal does not assign a braid-taxonomy member.
+The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is proposed as an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document states a candidate mapping between abstract quantum operators and assembly-level rotational response in candidate Noether braids, bounded by the causal-delay master equation. The qubit proposal does not assign a braid-taxonomy member.
 
-The reader should treat an operator as a recovered record-channel map unless the local derivation says otherwise. Hilbert-space algebra is the target language that experiments already validate; the implementation question is which branch records, apparatus kernels, path-history ledgers, and coarse-grainings make that algebra emerge.
+The reader should treat an operator as a candidate record-channel map until a local derivation establishes recovery on a specified domain. Hilbert-space algebra is the target language that experiments already validate; the implementation question is which branch records, apparatus kernels, path-history ledgers, and coarse-grainings make that algebra emerge.
 
 ## Candidate Noether-Braid Qubit and Phase Space
 
 A physical qubit is provisionally mapped to stable orientational states of a candidate Noether-braid assembly. Let $\hat{\mathbf{n}}_1$, $\hat{\mathbf{n}}_2$, and $\hat{\mathbf{n}}_3$ denote the orbital-plane normals of its persistently indexed binaries. The reduced source record considered here assigns the speed classes $v_1>c_f$, $v_2=c_f$, and $v_3<c_f$; those assignments are record constraints, not meanings carried by the indices and not evidence for coincident-midpoint orthogonal-axis braid or another taxonomy member.
 
-The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_1$ and $\hat{\mathbf{n}}_3$ relative to the source record's binary-2 reference normal $\hat{\mathbf{n}}_2$.
+The computational basis states $|0\rangle$ and $|1\rangle$ are proposed to correspond to two metastable orientational alignments of $\hat{\mathbf{n}}_1$ and $\hat{\mathbf{n}}_3$ relative to the source record's binary-2 reference normal $\hat{\mathbf{n}}_2$. The existence of these states, their stability, any energy-minimizing property, and the two-dimensional quantum chart remain to be derived; two classical orientations alone do not define a qubit.
 
-The abstract Hilbert space $\mathcal{H}$ serves as an effective description of the continuous non-Markovian phase space $\Gamma$. The dynamics of the constituent architrinos are governed by the delayed, line-of-action, receiver-side causal-root sum defined in [Master Equation](../../dynamics/master-equation.md). This page uses that law as the substrate dynamics and treats Hilbert operators as recovered record-channel maps, not as primitive generators.
+The abstract Hilbert space $\mathcal{H}$ serves as an effective description of the continuous non-Markovian phase space $\Gamma$. The dynamics of the constituent architrinos are governed by the delayed, line-of-action, receiver-side causal-root sum defined in [Master Equation](../../dynamics/master-equation.md). This page uses that law as the substrate dynamics and treats Hilbert operators as candidate record-channel maps, not as primitive generators.
 
-Superposition is not a linear combination of independent ontological branches. It is a bounded, precessional limit cycle in $\Gamma$. During superposition, the assembly continuously emits polarized potential along its causal wake, exploring multiple stable path-histories simultaneously without settling into a singular orientational attractor.
+The proposed superposition mechanism is a bounded precessional motion in $\Gamma$, rather than independent ontological branches. A definite substrate trajectory has one retained history; alternative histories enter the preparation ensemble or reduced description. A precessional cycle and its emitted wakes do not alone derive complex amplitudes, interference, or unitary evolution.
 
 ## Functional Bounds and Well-Posedness
 
-To legitimately map to unitary evolution, the delay integro-differential system must exhibit global existence and uniqueness without finite-time blow-up.
+A finite-window unitary comparison requires well-defined substrate evolution on the retained compatible-history domain and interval. Global existence and uniqueness without finite-time blow-up is an additional burden only for an unrestricted-time claim.
 
 This is a regularity and domain-of-validity gate, not a claim that every future reachability question is algorithmically decidable. The useful comparison with fluid regularity problems is the discipline of separating a well-posed evolution law, finite-window observable control, and possible global pathologies. A quantum-operator chart may be valid on the retained interval even while a stronger unbounded prediction problem remains outside the chart's authority.
 
-Unitary evolution in $\mathcal{H}$ can be recovered only if the effective phase space $\Gamma_{\text{eff}}$ carries an approximately measure-preserving flow. A plausible closure route is to prove that the interaction kernel satisfies a uniform Lipschitz bound over the relevant path-history interval. The $1/r^2$ singularity may be regularized by the maximal-curvature radius $R_{\text{min}}$ if stable binaries impose the lower bound
+A measure-preserving invertible classical flow can induce a unitary composition operator on square-integrable functions, but that fact does not derive quantum states, Born probabilities, or the required observable algebra. A nonstationary preparation measure is also legitimate. A plausible regularity route is to prove the needed Lipschitz and compatible-history conditions over the retained interval; those are not a quantum-recovery theorem. The $1/r^2$ singularity may be regularized by the maximal-curvature radius $R_{\text{min}}$ if stable binaries impose the lower bound
 $$
 \|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\|^2 \ge 4R_{\text{min}}^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1607b0adf8ad16b2)
 
-Under that bounded-geometry condition, $\mathbf{a}_i(t)$ remains bounded on the modeled interval. This supports, but does not by itself prove, the well-posedness needed for continuous orientational transformations.
+This separation floor controls only the inverse-square denominator. Bounding $\mathbf{a}_i(t)$ also requires a uniform nonzero causal-root Jacobian floor, controlled charges and couplings, a bounded number of active roots or summability estimates, and admissible history and boundary data. Stable binary radii do not by themselves establish the displayed bound for every delayed inter-assembly separation. This supports, but does not by itself prove, the well-posedness needed for continuous orientational transformations.
 
 ## QFT Locality Residual
 
@@ -45,7 +45,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4c17d5570f9505f6)
 
-Here $\varepsilon_{\mathrm{op}}>0$ prevents division by a null record channel and is taken small only after both observables have nonzero calibration norms. The QFT locality recovery condition is
+The norm here is an operator norm for bounded calibrated observables. Smearing a field does not in general make it bounded: an unbounded observable needs an explicit common invariant domain and a declared energy-restricted norm or bounded detector function. Observable scales are fixed before comparison, and $\varepsilon_{\mathrm{op}}$ has the same units as the product of the two norms. Here $\varepsilon_{\mathrm{op}}>0$ prevents division by a null record channel and is taken small only after both observables have nonzero calibration norms. The QFT locality recovery condition is
 
 $$
 \Delta_{\mathrm{loc}}(A,B;I)\le\epsilon_{\mathrm{loc}}
@@ -63,7 +63,7 @@ The operator reconstruction also inherits the restartability test from [Wavefunc
 
 The effective operator map must also recover the scattering-amplitude contract of QFT where that contract has been experimentally validated. This is not a substrate claim that Feynman diagrams or continuum fields are fundamental. It is a benchmark on the observer-level $S$-matrix extracted from finite event windows.
 
-For a declared scattering chart $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$, let $S_\theta=1+iT_\theta$ be the effective operator that maps calibrated incoming records to outgoing records after external-state extraction. Write the corresponding $n$-record amplitude as $\mathcal{A}_{n,\theta}$. If a physical channel $I$ carries intermediate invariant $P_I^2$ and accepted transient channel $h$, the standard pole-factorization comparison is
+For a declared scattering chart $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$, let $S_\theta=1+iT_\theta$ be the effective operator that maps calibrated incoming records to outgoing records after external-state extraction. Write the corresponding $n$-record amplitude as $\mathcal{A}_{n,\theta}$. For an isolated stable one-particle pole of fixed mass in a declared analytic scattering domain, let $P_I^2$ be its channel invariant. In the following displays, $m_h$ denotes that same fixed mass throughout the sum, while $h$ sums only the polarizations or degenerate states at that pole. The standard comparison, with external-state normalization and phases fixed, is
 $$
 \mathcal{A}_{n,\theta}
 \xrightarrow{P_I^2\to m_h^2}
@@ -76,7 +76,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4a3ebae4fb30cf4c)
 
-The corresponding residual should remove the pole before taking the boundary limit:
+The corresponding residual removes the pole on the analytic continuation before approaching it. The $i0$ boundary prescription means that its positive regulator is removed away from the pole before this residue limit; taking the pole limit first at fixed regulator gives a different result. Thresholds, massless infrared singularities, and unstable resonances are outside this simple stable-pole comparison. Resonances require their complex-pole or line-shape treatment, not the real-mass $i0$ formula.
 $$
 \mathcal{R}_{\mathrm{amp}}(I;\theta)
 =
@@ -100,9 +100,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-dda5b82ddc37ac4c)
 
-The chart passes this guardrail only if $\mathcal{R}_{\mathrm{amp}}(I;\theta)\le\epsilon_{\mathrm{amp}}$ for the declared physical channels. The residue must be generated by the same deterministic event-window flow, transient assembly record, causal-wake path history, and final-state density used for the cross-section or reaction-rate comparison. If the factorization appears only after replacing the branch ledger with a separate amplitude ansatz, the operator map has reproduced the standard calculation but has not closed the reduction.
+The chart passes this guardrail only if $\mathcal{R}_{\mathrm{amp}}(I;\theta)\le\epsilon_{\mathrm{amp}}$ for the declared physical channels. The residue must be generated by the same deterministic event-window flow, stable intermediate-state extraction, causal-wake path history, and final-state density used for the cross-section or reaction-rate comparison. If the factorization appears only after replacing the branch ledger with a separate amplitude ansatz, the operator map has reproduced the standard calculation but has not closed the reduction.
 
-Positive-geometry and on-shell-diagram methods sharpen the same test. When an auxiliary positive-coordinate representation is used, its canonical form may be accepted only as a comparison object whose physical boundary residues match the factorized channel records:
+A finite event window alone does not define an asymptotic scattering amplitude or its analytic pole; extraction and window limits are additional requirements. The denominator regulator has residue units, the norms use fixed amplitude conventions, and a channel with vanishing calibrated residue cannot be certified by a regulator-dominated ratio.
+
+Positive-geometry and on-shell-diagram methods provide an optional comparison where such a representation exists. When an auxiliary positive-coordinate representation is used, its canonical form may be accepted only as a comparison object whose physical boundary residues match the factorized channel records:
 $$
 \operatorname{Res}_{\partial_I}\Omega_\theta
 =
@@ -111,7 +113,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d6c7e4edc13176f7)
 
-Any pole attached to an internal cell boundary rather than a physical branch boundary must cancel in the summed record. A compact spurious-boundary residual is
+The displayed wedge identity assumes a declared oriented product boundary and fixed intermediate channel; required channel sums and orientation signs belong to that representation. It is not a universal factorization theorem for every positive geometry. Any pole attached to an internal cell boundary rather than a physical branch boundary must cancel in the summed record. A compact spurious-boundary residual is
 $$
 \mathcal{R}_{\mathrm{spur}}(\theta)
 =
@@ -152,7 +154,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-040c78ac66a91c2c)
 
-unless the apparatus kernel, preparation record, or retained boundary data have physically changed. Here $\Pi_{\mathrm{ont}}$ denotes the proposed mapping from the effective Hilbert description back to the underlying assembly, causal-wake, and record-channel content. If two unitarily related descriptions yield different substrate claims while predicting the same records, the proposal has reified a coordinate choice in Hilbert space rather than identifying a $\mathbb{A}\mathbb{A}\mathbb{A}$ object.
+unless the apparatus kernel, preparation record, or retained boundary data have physically changed. Here $\Pi_{\mathrm{ont}}$ denotes a proposed identifiable invariant descriptor (or the same admissible set of substrate descriptions), not an assumed unique inverse of observational coarse-graining. It denotes the proposed mapping from the effective Hilbert description back to the underlying assembly, causal-wake, and record-channel content. If two unitarily related descriptions yield different substrate claims while predicting the same records, the proposal has reified a coordinate choice in Hilbert space rather than identifying a $\mathbb{A}\mathbb{A}\mathbb{A}$ object.
 
 This guardrail is especially important for superposition claims. A state vector may be expanded in many bases, so a statement that a superposition has formed becomes physically meaningful only after the record channel has fixed the effective coordinates being tested. The ontology-side claim must be expressed in terms of assembly state, causal-wake history, apparatus kernel, and record-autonomy criteria, not in terms of an unqualified Hilbert-basis expansion.
 
@@ -169,7 +171,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-30f212eb54d1eee2)
 
-where $\mathcal{R}_\theta$ is the calibrated record family for the apparatus channel. If $\Delta_{\mathrm{repr}}(D,D';\theta)\le\varepsilon_{\mathrm{repr}}$, then a zero amplitude or missing component in one representation is not a substrate-existence claim. It becomes an admissible branch removal only when the shared basin measure and record filter also give
+where each $R\in\mathcal{R}_\theta$ indexes a calibrated record-valued experiment and $P_D(R\mid\theta)$ denotes its full probability law. Total variation compares those laws, not two scalar event probabilities. If $\Delta_{\mathrm{repr}}(D,D';\theta)\le\varepsilon_{\mathrm{repr}}$, then a zero amplitude or missing component in one representation is not a substrate-existence claim. It becomes an admissible branch removal only when the shared basin measure and record filter also give
 $$
 \mu_{*,T_W}(B_i)\mathbf{1}_{\mathrm{rec}}(i;\theta)
 \le
@@ -178,11 +180,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fef6f55da6f01755)
 
-Otherwise the effective chart has hidden a record-bearing basin behind a coordinate choice.
+The basin filter must be measurable and fixed, and the bound licenses only omission below the declared probability tolerance; it does not prove ontic nonexistence. Aggregate omitted weight must also be bounded. Otherwise the effective chart has hidden a record-bearing basin behind a coordinate choice.
 
 ## Transition-Record Matrix Recovery
 
-Heisenberg-style matrix mechanics is retained here as a record-channel lesson, not as substrate ontology. A matrix entry should be read as a transition record between calibrated effective states under a declared apparatus channel. The underlying object remains the deterministic assembly, causal-wake, apparatus, and Noether sea flow; the matrix is the observer-level compression that survives after the basins, access region, and record window have been fixed.
+Heisenberg-style matrix mechanics is retained here as a record-channel lesson, not as substrate ontology. Quantum matrix elements are generally complex amplitudes or observable components. Transition probabilities constrain them but do not determine their phases or composition law. The following matrix records probabilities only. The underlying object remains the deterministic assembly, causal-wake, apparatus, and Noether sea flow; the matrix is the observer-level compression that survives after the basins, access region, and record window have been fixed.
 
 For a declared setup $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$, let $\{B_m\}_{m\in\mathcal I_\theta}$ be the recordable basin family in the retained coarse state space, and let $R_{mn}$ be the calibrated transition record that reports a move from basin $B_m$ at $t_0$ to basin $B_n$ at $t_1\in T_W$. The transition-record matrix is
 $$
@@ -197,7 +199,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6666e7afa518e6d1)
 
-with $\widehat M_\theta=(M^\theta_{mn})_{m,n\in\mathcal I_\theta}$. This is not a primitive probability table. It is the pushed-forward finite-window basin measure for the same apparatus kernel, retained path-history data, and record-autonomy criteria used elsewhere in this chapter.
+with $\widehat M_\theta=(M^\theta_{mn})_{m,n\in\mathcal I_\theta}$. For a normalized measure and disjoint record basins, these entries are nonnegative joint probabilities, with total at most one if some histories leave no recorded transition. A conditional transition matrix additionally divides each row by its nonzero initial-basin probability and accounts for missing outcomes. It is a derived probability table, not a complex Heisenberg operator matrix. It is the pushed-forward finite-window basin measure for the same apparatus kernel, retained path-history data, and record-autonomy criteria used elsewhere in this chapter.
 
 Sequential noncommutativity is then an order-dependence claim about physical record channels. For two calibrated apparatus operations $A$ and $B$, define
 $$
@@ -212,13 +214,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e767643d2ae87e7f)
 
-where $M^\theta_{B\circ A}$ is extracted from the same substrate flow after the apparatus kernel for $A$ is applied and recorded before $B$, and $M^\theta_{A\circ B}$ reverses that sequence. A nonzero residual can recover the effective meaning of noncommuting observables: the two sequences couple to different basin boundaries, path-history records, or apparatus recoil channels. If this residual vanishes in a benchmark where standard quantum mechanics requires order dependence, the operator reconstruction has compressed away physically relevant record-channel structure.
+where $M^\theta_{B\circ A}$ is extracted from the same substrate flow after the apparatus kernel for $A$ is applied and recorded before $B$, and $M^\theta_{A\circ B}$ reverses that sequence. A nonzero residual establishes operational order dependence, which classical channels can also exhibit; it does not establish the quantum commutator or interference law. In a candidate physical account, the two sequences couple to different basin boundaries, path-history records, or apparatus recoil channels. If this residual vanishes in a benchmark where standard quantum mechanics requires order dependence, the operator reconstruction has compressed away physically relevant record-channel structure.
 
-This recovery target connects to the locality, representation, quantization-domain, and apparatus-context residuals above. It does not add a separate validation bureaucracy; it states the mathematical object that must be extracted before a Heisenberg-style matrix is treated as a valid effective operator rather than as an assumed formal layer.
+This recovery target connects to the locality, representation, quantization-domain, and apparatus-context residuals above. It does not add a separate validation bureaucracy; it states one probability object that must be extracted. Complex amplitudes, their relative phases, linear composition, adjoints, and the observable algebra require additional independent reconstruction.
 
 ## Born-Jordan Commutator Bridge
 
-Born and Jordan's 1925 formalization is useful because it shows how the canonical commutator entered as a recovery from transition-record algebra, not as an unexplained first axiom. Heisenberg's indexed transition quantities already carried the Ritz-style composition rule. Born recognized that the product was matrix multiplication, rewrote the old action rule in Hamiltonian variables, and found the diagonal part of the matrix difference $PQ-QP$. Jordan then proved the missing off-diagonal claim by showing that the relevant matrix is constant and therefore diagonal in the transition-energy chart. In modern notation the result is
+[Born and Jordan's 1925 paper](https://neo-classical-physics.info/uploads/3/4/3/6/34363841/born_and_jordan_-_qm_1.pdf) develops Heisenberg's complex transition quantities using matrix multiplication and a quantum condition related to the old action rule. Its commutator argument uses the equations of motion and transition-frequency assumptions; it is not a derivation from nonnegative transition probabilities alone. Constancy makes a matrix diagonal only with the relevant nonzero off-diagonal transition frequencies, or after handling degenerate blocks. In modern comparison notation the target is
 
 $$
 [\widehat P_\theta,\widehat Q_\theta]
@@ -228,7 +230,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-26b26dd749307877)
 
-for the declared effective chart $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$.
+for the declared effective chart $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$. It cannot hold with arbitrarily small uniform operator-norm error on an entire finite-dimensional space: the trace of a commutator is zero, whereas the target has nonzero trace. An oscillator implementation must use an infinite-dimensional common domain or a stated low-energy subspace with controlled truncation error.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is narrow and important. The commutator is not promoted to a substrate object. It is the effective algebra that must be recovered when the same finite-window branch record supplies calibrated transition frequencies, transition amplitudes, action-cycle closure, and apparatus access. In sequence form, the recovery target is
 
@@ -246,7 +248,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-981a0a7ff6e00344)
 
-where every arrow is conditional on the same retained path-history and record window. If the commutator is inserted without deriving the transition matrix and action-cycle record from the substrate branch, the bridge has imported matrix mechanics as formal doctrine rather than recovered it as an observer-level compression.
+Here the arrow through $\widehat M_\theta$ marks probability evidence requiring an additional complex-amplitude reconstruction; it is not a direct identification with the matrix defined above. Every arrow is conditional on the same retained path-history and record window. If the commutator is inserted without deriving the transition matrix and action-cycle record from the substrate branch, the bridge has imported matrix mechanics as formal doctrine rather than recovered it as an observer-level compression.
 
 ## Born-Kramers Rule And Action-Angle Recovery
 
@@ -266,11 +268,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-04a8fd98ad5c2288)
 
+Here $I=\oint p\,dq$ is the full-cycle action and the conjugate angle has period one, so $\partial H/\partial I$ is cyclic frequency. With the reduced action $I/(2\pi)$ the derivative is angular frequency and the corresponding energy divisor is $\hbar$, not $h$. The large-action finite-difference correspondence is asymptotic and harmonic-index dependent, not an exact identity for arbitrary finite transitions. As above, probabilities require further phase reconstruction before becoming operator components.
+
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a license to quantize every classical variable. It is a domain-limited bridge: the action chart must first be admitted by the same retained branch record, the emitted or absorbed frequency must be a calibrated transition record, and the finite-difference step must preserve the same apparatus-accessible quantities that later become matrix entries. If the derivative-to-difference move is applied outside that declared record domain, the rule has become a formal analogy rather than an operator recovery.
 
 ## Dirac's 1925 Poisson-Bracket Bridge
 
-Dirac's first quantum-mechanics result is useful here because it shows the correct historical direction of the operator bridge. He did not start from already-known canonical commutation relations and then generalize by analogy. He started from Heisenberg's noncommutative product of indexed transition quantities, worked backward through the correspondence limit to action-angle variables, and recognized the Poisson bracket as the classical object shadowed by the quantum commutator. In modern comparison language, the sequence is
+[Dirac's 1925 paper](https://www.informationphilosopher.com/solutions/scientists/dirac/Fund_QM_1925.pdf) develops the operator bridge from Heisenberg products and their classical correspondence. He did not start from already-known canonical commutation relations and then generalize by analogy. He started from Heisenberg's noncommutative product of indexed transition quantities, worked backward through the correspondence limit to action-angle variables, and recognized the Poisson bracket as the classical object shadowed by the quantum commutator. In modern comparison language, the sequence is
 
 $$
 \text{transition-product data}
@@ -284,9 +288,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bbe8a74b19d8196d)
 
-for a declared chart $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$ whose effective observables $f,g$ are actually recordable in that chart. The last arrow is a consequence inside the admitted canonical subdomain, not the historical starting axiom and not a global quantization license.
+for a declared chart $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$ whose effective observables $f,g$ are actually recordable in that chart. Dirac motivates the relation in the large-quantum-number correspondence limit and then adopts its exact extension as a fundamental assumption; this is not a derivation from observed transition probabilities. The last arrow is a consequence inside the admitted canonical subdomain after that algebra is supplied, not a global quantization license.
 
-The same route gives the Heisenberg equation only after an effective Hamiltonian record has been admitted:
+The same route gives the following Heisenberg equation after an effective Hamiltonian and common operator domain are admitted, for an observable with no explicit time dependence in the Schrödinger picture:
 
 $$
 i\hbar\,\frac{d\widehat O_f}{dt}
@@ -296,7 +300,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9c204ab8717683d6)
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target for reduced observer-level charts. A local Hamiltonian, Poisson bracket, or commutator is accepted only when the retained assembly branch, causal-wake history, apparatus kernel, and record window preserve enough path-history structure for the bracket residual below to be small. Otherwise Dirac's bridge has been used as a calculation recipe rather than recovered as an effective algebra of physical records.
+Explicit time dependence adds $i\hbar(\partial_t\widehat O_f)_{\mathrm{explicit}}$ to the right-hand side. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target for reduced observer-level charts. A local Hamiltonian, Poisson bracket, or commutator is accepted only when the retained assembly branch, causal-wake history, apparatus kernel, and record window preserve enough path-history structure for the bracket residual below to be small. Otherwise Dirac's bridge has been used as a calculation recipe rather than recovered as an effective algebra of physical records.
 
 ## Subsystem-Partition Guardrail
 
@@ -322,7 +326,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-26a364ff049a43ea)
 
-where $\mu_{*,T_W}$ is the finite-window basin or metastable measure used by the same measurement packet, and $\mathcal{E}_{K_A,K_B}$ denotes the selected observer-level entanglement functional after the apparatus kernels are fixed.
+where $\mu_{*,T_W}$ is the finite-window basin or metastable measure used by the same measurement packet, and $\mathcal{E}_{K_A,K_B}$ denotes a specified witness or state-reconstruction functional using sufficiently many calibrated measurement contexts. A single classical joint outcome distribution does not certify entanglement: it can be realized as a mixture of product record states. The record spaces must therefore include the context-indexed data and the declared reconstruction assumptions needed by that functional.
 
 If a second observer or mode split uses $\mathcal{P}_{A'B'}^{(O',W')}$ and gives a different value, the first question is whether the projections, access regions, and kernels are different. Such a disagreement may be a real observer-level reconstruction effect while the underlying $\mathbb{U}_{\text{now}}$ state remains one definite substrate history. It becomes an ontology claim only if the proposed projection is replayable through the same preparation, apparatus, no-signaling, Bell, and record-autonomy constraints.
 
@@ -344,7 +348,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c102952d61b93387)
 
-This is a topology-preservation guardrail, not a claim that probability language is useless. If two states are far apart by the calibrated record geometry but arbitrarily close as probability lists, the probability representation may still be a convenient scaffold, but it cannot by itself carry the $\mathbb{A}\mathbb{A}\mathbb{A}$ operator closure. The missing structure must be supplied by the apparatus kernel, retained path-history data, basin family, and record-autonomy criteria.
+With nonzero additive tolerance this is a finite-resolution separation bound, not a proof of topological equivalence or injectivity. Such a theorem would additionally need zero-tolerance separation and continuity control in both directions on the declared domain. If two states are far apart by the calibrated record geometry but arbitrarily close as probability lists, the probability representation may still be a convenient scaffold, but it cannot by itself carry the $\mathbb{A}\mathbb{A}\mathbb{A}$ operator closure. The missing structure must be supplied by the apparatus kernel, retained path-history data, basin family, and record-autonomy criteria.
 
 ## Admissible Quantization-Domain Guardrail
 
@@ -356,7 +360,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c30a3d5060f095e4)
 
-be the admissible effective observables whose records are physically calibrated by that setup. For $f,g\in\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T_W}$, define
+be the admissible effective observables whose records are physically calibrated by that setup. The chart must specify its Poisson structure; each tested bracket must be defined and included in the operator map. The supremum below is over a fixed normalized test family with declared unit scales and finite norms on a common invariant domain, not arbitrarily scaled smooth functions. The additive regulator carries product-norm units. For $f,g\in\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T_W}$, define
 $$
 \Delta_{\mathrm{qmap}}(\mathcal{Q},\mathcal{K},W,T_W)
 =
@@ -421,7 +425,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f99fbf4d1948ac22)
 
-with the approximation evaluated in the declared record norm. A successful chart should recover a lower-bounded state family $\{\,|n\rangle_\theta\,\}_{n\in\mathbb{N}_0}$ such that
+Here $[X_\theta,P_\theta]\approx iI_\theta$ is the dimensionless target. For finite truncations the approximation is evaluated on a declared low-energy subspace away from the upper truncation boundary, not in operator norm over the entire truncated space. The family indexed by all nonnegative integers is the ideal comparison; only a stated finite portion is tested numerically. A successful chart should recover a lower-bounded state family $\{\,|n\rangle_\theta\,\}_{n\in\mathbb{N}_0}$ such that
 $$
 N_\theta|n\rangle_\theta=n|n\rangle_\theta,
 \qquad
@@ -449,7 +453,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5fa2af5774ca1f97)
 
-with the approximation evaluated in the same record norm used for the operator map. Thus the chart may assign a simultaneous effective record to $(L^\theta)^2$ and one chosen component, but not to all three components at once.
+with the approximation evaluated in the same record norm used for the operator map. Thus the chart may assign a simultaneous effective record to $(L^\theta)^2$ and one chosen component, but generally not sharp values of all three components at once; the zero-angular-momentum sector is a trivial exception.
 
 The ladder operators are
 $$
@@ -628,9 +632,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-60dffc4191c995d4)
 
-on a declared half-integer-spin benchmark. Failure of this residual means the operator map has not recovered the tested antiunitary symmetry, even if it reproduces some energy levels.
+on a declared time-reversal-invariant sector with $\Theta^2=-I$, normalized states and discrete paired eigenlevels, with any gap and truncation requirements stated. An even number of half-integer constituents need not give this antiunitary square, and explicit time-reversal breaking is outside this benchmark. Each denominator is a positive tolerance with the units of its numerator. Failure of this residual means the operator map has not recovered the tested antiunitary symmetry, even if it reproduces some energy levels.
 
-Adiabatic evolution adds a holonomy benchmark. For a slowly varied effective Hamiltonian $H_\theta(\lambda)$ with non-degenerate state $|n(\lambda)\rangle$, the comparison Berry connection and curvature are
+Adiabatic evolution adds a holonomy benchmark. For a slowly varied effective Hamiltonian $H_\theta(\lambda)$ with a smooth normalized non-degenerate eigenstate $|n(\lambda)\rangle$ separated by a gap along the path, the comparison Berry connection and curvature are
 $$
 A_i^{(n)}(\lambda)
 =
@@ -659,7 +663,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-81de25ec6d126d1f)
 
-for closed parameter surfaces where the effective bundle is defined. The native closure packet must identify the slow assembly controls, the avoided-crossing gap, and the record channel that reads the phase. A Berry phase inserted only as an abstract Hilbert-space phase is a comparison annotation, not an operator recovery.
+for closed oriented parameter surfaces on which the isolated eigenspaces form a smooth complex line bundle. The connection is local in gauge patches; a loop crossing patches includes their transition phases. A global smooth eigenvector is not assumed when the Chern number is nonzero. The native closure packet must identify the slow assembly controls, the avoided-crossing gap, and the record channel that reads the phase. A Berry phase inserted only as an abstract Hilbert-space phase is a comparison annotation, not an operator recovery.
 
 ## Supersymmetric Index Comparison
 
@@ -672,7 +676,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b3d6fd9ed99a5b1a)
 
-forces non-negative energy, pairs positive-energy bosonic and fermionic states, and leaves unpaired zero modes counted by the Witten index
+on a common invariant Hilbert domain with a grading that anticommutes with the supercharges, forces non-negative energy and pairs positive-energy bosonic and fermionic states, and leaves unpaired zero modes counted by the Witten index
 $$
 I_W=\operatorname{Tr}\left((-1)^F e^{-\beta H}\right)
 =
@@ -681,7 +685,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-21280b1f82b90286)
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not an imported supersymmetric ontology. It is a model for how an effective operator chart can carry a robust integer invariant while individual paired states move under parameter changes.
+The trace formula requires a trace-class heat operator or a separately justified index regularization, finite zero-mode multiplicities, and control of continuum or boundary contributions. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an optional comparison, not an imported supersymmetric ontology or mandatory recovery sector. It is a model for how an effective operator chart can carry a robust integer invariant while individual paired states move under parameter changes.
 
 If a future branch chart uses a supercharge-like factorization or Morse-theory analogy, it should report an index residual
 $$
@@ -697,46 +701,46 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8ffb75d14d87d8bc)
 
-Here $X$ ranges over declared critical assemblies or branch critical points and $\mu(X)$ is the Morse index of the retained effective Hessian. Instanton or tunneling terms may lift paired approximate ground states, but they must do so through a declared Morse-Witten differential rather than through an unexplained deletion of records. This comparison is high value because it separates robust topological counting from ordinary spectral fitting.
+The Morse comparison assumes a specified smooth compact configuration manifold and a Morse function with nondegenerate critical points (or an explicit boundary/noncompact extension); the index identification and differential must be established. A Hessian stability claim additionally requires that the reference assembly satisfies its dynamics, not merely that an unrelated scalar is critical. Here $X$ ranges over declared critical assemblies or branch critical points and $\mu(X)$ is the Morse index of the retained effective Hessian. Instanton or tunneling terms may lift paired approximate ground states, but they must do so through a declared Morse-Witten differential rather than through an unexplained deletion of records. This comparison is high value because it separates robust topological counting from ordinary spectral fitting.
 
 ## Unitary Evolution and Topological Torques
 
-Quantum gates are hypothesized to correspond to continuous, energy-conserving assembly rotations applied to the candidate braid's orbital planes.
+Quantum gates are hypothesized to correspond to controlled assembly rotations applied to the candidate braid's orbital planes. Unitarity preserves norm, not generally the target's energy; drive, apparatus, and medium exchange need a separate conservation account.
 
 * **Pauli Operators ($X, Y, Z$):** These are candidate maps to discrete $\pi$-rotations of the braid orientation axes. An assembly-level rotational response is supplied by external causal wakes, smoothly rotating $\hat{\mathbf{n}}_1$ and $\hat{\mathbf{n}}_3$ while source-record binary 2 remains on its declared $v_2=c_f$ threshold row. The response must ultimately be derived from the acceleration-first master equation rather than inserted as a primitive force law.
 * **Hadamard Operator ($H$):** This operation is modeled as a critical bifurcation. The applied torque should drive the assembly into a controlled neighborhood of the saddle separating the $|0\rangle$ and $|1\rangle$ attractors, with an equiprobable meta-stable precessional state as the closure target rather than an assumed result.
 
-To prevent ionization or irreversible symmetry breaking during these operations, the candidate effective action $S = \int (T - V) dt$ must remain bounded. We define an ionization threshold $\Delta S_{\text{ionize}}$; any gate operation must satisfy $\Delta S \ll \Delta S_{\text{ionize}}$ to maintain the factorization of the candidate braid structure. This is an effective assembly target, not an architrino-level premise.
+A bounded candidate effective action $S = \int (T - V) dt$ does not prevent escape or ionization; here $T$ in the integrand denotes an effective kinetic term, not absolute time. A proposed threshold $\Delta S_{\text{ionize}}$ and criterion $\Delta S \ll \Delta S_{\text{ionize}}$ would require an independently derived relation to confinement or dissociation. Retained braid structure instead requires direct trajectory, stability, and exchange control on the gate interval. The action is an optional effective assembly diagnostic, not an architrino-level premise.
 
 ## Entanglement via Path-History Potentials
 
-Entanglement-like behavior must separate newly established causal coupling from correlations inherited from a shared preparation event. New gates and near-range phase-locking require delayed causal-wake exchange. Ordinary separated Bell-pair tests instead use a pair-provenance ledger that was fixed at preparation and later read out by local apparatus interactions. There is no instantaneous action at a distance and no newly transmitted setting information during spacelike-separated measurement.
+Entanglement-like behavior must separate newly established causal coupling from correlations inherited from a shared preparation event. New gates and near-range phase-locking require delayed causal-wake exchange. Shared preparation alone does not recover Bell violation if the complete retained state gives measurement-independent local response laws. The [selected ontology route](../../foundations/ontology.md#bell-nonlocality-placement) instead proposes a live $c_f$-mediated coordination channel gated by pair provenance, outside the effective photon cone; this requires $c_f>c_0$ for calibrated photon speed $c_0$. Effective spacelike separation is therefore distinguished from absence of substrate causal contact. The route is provisional and retains observer no-signaling, measurement independence, and the unresolved multipartite finite-speed obstruction recorded in [No-Go Theorems](../../validation/no-go-theorems.md).
 
-* **Causal phase-locking:** As the causal wakes of nearby or deliberately coupled assemblies intersect, the continuous $1/r^2$ path-history potentials can force their orbital phases into coupled attractors. This is a finite-speed interaction and must obey the latency and fidelity bounds below.
-* **Controlled-NOT (CNOT) Gate:** This represents conditional logic where the target assembly's allowable phase space is dynamically bounded by the causal wake of the control assembly. Source-record binary 2 of the target assembly, on its declared $v_2=c_f$ row, acts as a resonant receiver and permits a bit-flip torque only if the control assembly's wake possesses the specific polarization geometry of the $|1\rangle$ state.
-* **Bell-pair preparation:** Bell-state language is observer-level shorthand for a nonseparable pair-provenance record produced by a shared preparation event. After the pair is separated beyond causal contact for the measurement window, the Bell gate is not maintained by continuous bidirectional flux between detectors. The closure target is to derive the pair-provenance measure and the two local apparatus-response maps, then show that their compression reproduces the tested Bell correlations while preserving no-signaling and measurement independence.
+* **Causal phase-locking:** As the causal wakes of nearby or deliberately coupled assemblies intersect, the delayed inverse-square acceleration contributions are proposed to drive their orbital phases into coupled attractors. This is a finite-speed interaction and must obey the latency and fidelity bounds below.
+* **Controlled-NOT (CNOT) Gate:** This is proposed as conditional logic where the target assembly's allowable phase space is dynamically bounded by the causal wake of the control assembly. Source-record binary 2 of the target assembly, on its declared $v_2=c_f$ row, acts as a resonant receiver and permits a bit-flip torque only if the control assembly's wake possesses the specific polarization geometry of the $|1\rangle$ state.
+* **Bell-pair preparation:** A shared preparation supplies pair provenance but does not itself derive Bell correlations. Under the selected route it gates the proposed live nonfactorizable apparatus coupling. If substrate causal contact is absent and the outcomes reduce to local functions of their settings and a measurement-independent complete shared record, the CHSH bound applies and the target violation cannot follow. The outstanding task is a consistent joint response law with the required correlations and no-signaling marginals, including the multipartite obstruction; a shared-history description is not a solution.
 
 ## Measurement and Dynamical Collapse
 
-Wavefunction collapse is formalized as a deterministic, non-linear relaxation process rather than a probabilistic axiom.
+Wavefunction collapse is proposed to arise from a deterministic, non-linear relaxation process rather than a probabilistic axiom.
 
-The measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the Noether braid assembly undergoes attractor relaxation, deterministically entering a completed record basin. The effective eigenstate label is licensed only after the apparatus kernel maps that basin to a stable record channel.
+In this candidate mechanism the measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the Noether braid assembly undergoes attractor relaxation, deterministically entering a completed record basin. The effective eigenstate label is licensed only after the apparatus kernel maps that basin to a stable record channel.
 
-Decoherence is the continuous loss of path-history coherence due to unresolved fluctuations in the local Noether sea state. It is an artifact of treating the observer-level vacuum as empty or structureless rather than as the effective quiet limit of a dense medium whose assemblies are still dynamically active.
+Unresolved Noether sea fluctuations are proposed as one contribution to loss of the selected coherence observable. Decoherence is not an artifact of an empty-vacuum assumption: ordinary effective quantum models can lose reduced coherence through coupling to an environment. The additional medium contribution and its relation to those established effective channels require derivation.
 
 ## Falsifiability and Observables
 
 * **Gate Latency Scaling:** Because any newly established causal-wake coupling is limited by $c_f$, a two-qubit gate such as CNOT should acquire a distance-dependent setup or fidelity timescale with a lower bound of order $\Delta t \ge d/c_f$. Existing correlations inherited from a shared preparation event are a separate case and should not be described as newly transmitted during the gate.
 * **QFT Locality Residual:** In any regime claimed to recover local QFT, the normalized commutator residual $\Delta_{\mathrm{loc}}(A,B;I)$ must remain below $\epsilon_{\mathrm{loc}}$ for calibrated record regions outside the recovered effective causal cone. Passing this test is an effective-algebra result, not a promotion of continuum-field ontology.
-* **Transition-Record Matrix Recovery:** A Heisenberg-style matrix $\widehat M_\theta$ is admissible only when its entries are recovered as finite-window basin measures for calibrated transition records. The sequence residual $\Delta_{\mathrm{seq}}(A,B;\theta)$ should reproduce order dependence for benchmark noncommuting observables without importing matrix ontology as a primitive layer.
+* **Transition-Record Matrix Recovery:** The matrix $\widehat M_\theta$ records joint probabilities when its entries are recovered as finite-window basin measures; a Heisenberg-style amplitude matrix requires additional phase and algebra reconstruction. The sequence residual $\Delta_{\mathrm{seq}}(A,B;\theta)$ should reproduce order dependence for benchmark noncommuting observables without importing matrix ontology as a primitive layer.
 * **Quantization-Domain Residual:** In any regime claimed to recover quantum operators from a classical or coarse-grained chart, the admissible observable set $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T_W}$ and residual $\Delta_{\mathrm{qmap}}$ must be reported. A global bracket-to-commutator claim over all smooth functions is rejected by the no-go ledger rather than treated as an open $\mathbb{A}\mathbb{A}\mathbb{A}$ obligation.
 * **Observable-Domain Residual:** When two effective descriptions are claimed to be equivalent, the declared observable set and residual $\Delta_{\mathrm{obs}}$ must be reported. A small value licenses only record-channel equivalence on that apparatus window, not a substrate claim about auxiliary dimensions or continuum field objects.
-* **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the physical Noether braid density variable $\rho_{\text{NS}}(\mathbf X,T)$ or normalized density $n(\mathbf X,T)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
+* **Coherence Limits:** The model proposes a medium-dependent contribution to coherence loss, scaling with the physical Noether braid density variable $\rho_{\text{NS}}(\mathbf X,T)$ or normalized density $n(\mathbf X,T)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ## Statistical Measure and the Born Rule Emergence
 While the trajectory of a single Noether braid under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether sea.
 
-* **Local Finite-Time Invariant Measure Target:** For a fixed preparation class, apparatus calibration, local Noether sea band, and record window $T_W$, the closure target is a local measure $\mu_{*,T_W}$ on the relevant record-window section $\Gamma_{\text{eff}}^{(T_W)}$, not a global measure over every physically possible state. If $\Phi_{T_W}$ is the finite-time apparatus-target flow, the required recovery is approximate invariance on that retained window:
+* **Local Finite-Time Invariant Measure Target:** For a fixed preparation class, apparatus calibration, local Noether sea band, and record window $T_W$, the closure target is a normalized preparation-conditioned local measure $\mu_{*,T_W}$ on the relevant record-window section $\Gamma_{\text{eff}}^{(T_W)}$, not a global measure over every physically possible state. If $\Phi_{T_W}$ is the finite-time apparatus-target flow, the following approximate invariance is an optional stationary-preparation specialization, meaningful only on the same measurable state space with retained mass and boundaries controlled:
 $$
 d_{\mathrm{TV}}\!\left((\Phi_{T_W})_*\mu_{*,T_W},\,\mu_{*,T_W}\right)\le\varepsilon_\mu,
 \qquad
@@ -752,7 +756,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-aec9d9561b775cff)
 
-* **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the calibrated limit of these weighted finite-time basin volumes. When the Noether braid's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the theory must show that microstate sensitivity plus the finite-time apparatus flow recover $\mu_{*,T_W}$ and push it through the record basins with $P_k(T_W)\to |\psi_k|^2$ in the relevant operating regime. This is a local invariant-measure recovery target, not an assumption of global ergodicity.
+* **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the calibrated limit of these weighted finite-time basin volumes. When the Noether braid's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the theory must show that microstate sensitivity plus the finite-time apparatus flow recover $\mu_{*,T_W}$ and push it through the record basins with $P_k(T_W)\to |\psi_k|^2$ in the relevant operating regime. This is a preparation-measure recovery target; neither invariance nor global ergodicity is required for an evolving preparation. The basins must be measurable and mutually exclusive, and exhaustive or supplemented by explicit unresolved outcomes.
 * **Thermodynamic Ensemble Consistency Target:** The same $\mu_{*,T_W}$ must also support the thermodynamic summaries used to describe apparatus irreversibility and decoherence. For a declared coarse-graining $\mathcal{Q}$, access region $W$, record window $T_W$, and thermodynamic projection $\pi_{\mathrm{th}}:\Gamma_{\text{eff}}^{(T_W)}\to\mathcal{Y}_{\mathrm{th}}$, define
 $$
 \Delta_{\mathrm{ens}}(\mathcal{Q},W,T_W)
@@ -785,7 +789,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c871f495157e2289)
 
-with $H_2(x)=-x\log x-(1-x)\log(1-x)$ in the chosen log base. The orthogonal case $p_{ij}=0$ is the record-level mutual-exclusivity limit: the equal mixture carries one full binary alternative when base-$2$ logs are used. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a new probability postulate. It is a consistency target on $\mu_{*,T_W}$: the same finite-window measure that supplies the basin weights must also push forward to mixture entropies with this two-state behavior. Otherwise $\Delta_{\mathrm{Born}}$ and $\Delta_{\mathrm{ens}}$ are being tuned independently rather than recovered from one preparation class, apparatus calibration, and record window.
+with $H_2(x)=-x\log x-(1-x)\log(1-x)$ in the chosen log base. The orthogonal case $p_{ij}=0$ is the record-level mutual-exclusivity limit: the equal mixture carries one full binary alternative when base-$2$ logs are used. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a new probability postulate. It is a consistency target on $\mu_{*,T_W}$: the same preparation model must reconstruct the density operators and their spectrum with this two-state behavior. This is not the Shannon entropy of classical preparation labels or an automatic pushforward of basin weights; nonorthogonal mixtures require the overlap information from calibrated quantum-state reconstruction. Otherwise $\Delta_{\mathrm{Born}}$ and $\Delta_{\mathrm{ens}}$ are being tuned independently rather than recovered from one preparation class, apparatus calibration, and record window.
 
 The same derived weights must also support ordinary empirical use. For a repeated preparation class and a fixed apparatus record channel, let $D_N=\{N_k\}$ be $N$ recorded outcomes and $\widehat f_k=N_k/N$ the observed frequencies. The inference-facing residual is
 $$
@@ -808,14 +812,14 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-06eb30d7974b0b6a)
 
-This is the native $\mathbb{A}\mathbb{A}\mathbb{A}$ version of the scientific-inference burden: once a record channel is declared, the derived $P_k(T_W)$ must be usable for confirmation and falsification in the same way the Born weights are used in laboratory quantum mechanics, without importing agent-centered rationality assumptions as substrate physics.
+In this probability bound, the measure subscript abbreviates a declared joint law for the entire sequence of preparations and outcomes, extending the one-trial marginal. Independence or another quantified dependence condition sufficient for concentration must be established; identical one-trial weights alone do not imply frequency convergence. This is the native $\mathbb{A}\mathbb{A}\mathbb{A}$ version of the scientific-inference burden: once a record channel is declared, the derived $P_k(T_W)$ must be usable for confirmation and falsification in the same way the Born weights are used in laboratory quantum mechanics, without importing agent-centered rationality assumptions as substrate physics.
 
 ## Kinetic Limits and Decoherence
 The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether sea, or in bridge prose the spacetime medium.
 
-* **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether sea, the Noether braid orientation evolves according to an effective Fokker-Planck equation.
-* **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor. 
-* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether sea state and the spatial density variables $\rho_{\text{NS}}(\mathbf X,T)$ or $n(\mathbf X,T)$. It is not an intrinsic property of the Noether braid, but a measure of the local Noether sea entropy production rate during the operation.
+* **Fokker-Planck Dynamics:** A Fokker-Planck limit is a candidate only after a justified scale separation, small-increment limit, effective Markov closure, and boundary conditions. Coarse-graining the deterministic delayed law alone does not imply it; retained memory may require a different transport description.
+* **Diffusion and Drift:** Controlled rotational response is a proposed contribution to drift; an independently derived increment covariance must supply a positive-semidefinite diffusion tensor. Neither coefficient follows from the names assigned to the two channels.
+* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether sea state and the spatial density variables $\rho_{\text{NS}}(\mathbf X,T)$ or $n(\mathbf X,T)$. The selected coherence observable, preparation, coupling, and window must be stated. A decay time is not an entropy-production rate or a Lyapunov exponent; relating them requires a separate response calculation, with possible nonexponential decay.
 
 ## Statistical Falsifiability and Observables
 * **Finite-Time Born Rule Deviations:** If the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires the local invariant-measure approximation to settle over the apparatus record window, ultra-fast sequential measurements approaching the local path-history delay timescale $d/c_f$ become the natural place to search for deviations from standard $|\psi|^2$ statistics.
