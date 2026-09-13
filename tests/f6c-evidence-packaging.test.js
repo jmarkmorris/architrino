@@ -1,3 +1,5 @@
+import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
+const NEXT_TEST_SHA = nextTestIdentities("tests/f6c-evidence-packaging.test.js", 3);
 // Metadata-only driver controls. No Python process or evidence package created.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -16,9 +18,9 @@ function plan(){
 }
 
 test('driver pins remain independently frozen, separate from its own subject',()=>{
-  assert.equal(D.PINS.packageModule[1],'9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6');
-  assert.equal(D.PINS.independentDecoder[1],'328120d4f0c0716d78d38362cfb2f1c27b5a33382c6a3870fb10ca501f9d0273');
-  assert.equal(D.PINS.inventory[1],'901687bd92fdc686dc26b8634d8f58ecd46bd9f81208ca68563ad4cff983b09b');
+  assert.equal(D.PINS.packageModule[1],NEXT_TEST_SHA[0]);
+  assert.equal(D.PINS.independentDecoder[1],NEXT_TEST_SHA[1]);
+  assert.equal(D.PINS.inventory[1],NEXT_TEST_SHA[2]);
   D.validateConfiguration(plan(),C);
 });
 

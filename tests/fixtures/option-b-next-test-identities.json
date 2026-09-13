@@ -1,0 +1,173 @@
+{
+  "schema": "option-b-next-test-identities/v1",
+  "authority": "operator-directed-exact-expectation-transfer",
+  "originCommit": "2490eb54aef24bf6d9a49cbc7ba62f1e54553305",
+  "claimBoundary": "Exact original test expectations only; no scientific acceptance, transitive test-closure claim or permission to refresh values from subjects.",
+  "consumers": {
+    "tests/f6c-acceleration-pilot.test.js": {
+      "sourceSha256": "b4ec5354e5874fe63ebff327465676134184521ecd5dde9b6840f85982113964",
+      "expectations": [
+        {
+          "role": "fixed-scientific-source",
+          "meaning": "Independently fixed range comparison checker identity (E.CHECKER_SHA)",
+          "sha256": "a0c546124828b5879a2e163b0f965d37b90c251d327301eaa72e031261824e53"
+        }
+      ]
+    },
+    "tests/f6c-evidence-packaging.test.js": {
+      "sourceSha256": "727bbee42059180e9c915740bd0420c6bddb9f7e34d77f14066e09671844e0d5",
+      "expectations": [
+        {
+          "role": "fixed-scientific-source",
+          "meaning": "Unchanged evidence package implementation",
+          "sha256": "9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6"
+        },
+        {
+          "role": "fixed-scientific-source",
+          "meaning": "Independent package decoder identity",
+          "sha256": "328120d4f0c0716d78d38362cfb2f1c27b5a33382c6a3870fb10ca501f9d0273"
+        },
+        {
+          "role": "fixed-contract",
+          "meaning": "Fixed package inventory expectation",
+          "sha256": "901687bd92fdc686dc26b8634d8f58ecd46bd9f81208ca68563ad4cff983b09b"
+        }
+      ]
+    },
+    "tests/f6c-bounded-operation-closure.test.js": {
+      "sourceSha256": "a01885b905f72d1f1a933c6d5282d684c702a2d42378f4f02eb3e6e3f3499c56",
+      "expectations": [
+        {
+          "role": "historical-fixture",
+          "meaning": "Literal retained coordinator identity in non-scientific synthetic v1 closure fixture",
+          "sha256": "e100a96f0771d82664fa62b66865cbf5924cced1216588c631836ed361d6a252"
+        }
+      ]
+    },
+    "tests/f6c-streamed-leaf-diagnostic.test.js": {
+      "sourceSha256": "7a63cddd4812553e25d6dcf4dc666adc5ace1bd5e52aa7d2e16ac2e0720c8431",
+      "expectations": [
+        {
+          "role": "fixed-scientific-source",
+          "meaning": "Separately accepted fresh parent batch closure instrument",
+          "sha256": "3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223"
+        },
+        {
+          "role": "fixed-scientific-control",
+          "meaning": "Independent fresh closure controls",
+          "sha256": "f45ccfb0ff9609fe267f25c1ba2521ec58134f9caf7d128b09e0adfde9e6a979"
+        },
+        {
+          "role": "fixed-contract",
+          "meaning": "Fresh closure expectations contract",
+          "sha256": "7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed"
+        },
+        {
+          "role": "historical-fixture",
+          "meaning": "Retained original parent-two producer identity, not selection of current source",
+          "sha256": "ff488499f2737860034602ce9559c3ebc817aa8413b827007fb31027815679d2"
+        },
+        {
+          "role": "historical-fixture",
+          "meaning": "Retained original parent-two producer controls identity, not selection of current source",
+          "sha256": "517cc307251611177ec19cc5d71938a4086806f48583bcf8e3f2d04e9afb8d9f"
+        },
+        {
+          "role": "historical-fixture",
+          "meaning": "Retained original parent-two verifier identity, not selection of current source",
+          "sha256": "53595cc12589ab56c73a1613922bba2739704cbc78465e3d646d5ae6a43813db"
+        },
+        {
+          "role": "historical-fixture",
+          "meaning": "Retained original parent-two verifier controls identity, not selection of current source",
+          "sha256": "889d8721d2b51520c0fef78f6a954f9b510cbb46fdf9019205199dfa3658b5a9"
+        },
+        {
+          "role": "historical-fixture",
+          "meaning": "Retained original parent-two operational entry identity, not selection of current source",
+          "sha256": "462247cf723339dbdc9ce9b4b897720cd4edcedc9b85c22b70694c41663f5c1b"
+        },
+        {
+          "role": "historical-fixture",
+          "meaning": "Retained original parent-two operational controls identity, not selection of current source",
+          "sha256": "dd88eae5729d8ecc5947a27966edb215074d12687f3b5cd0bfc3be69d0400bc1"
+        },
+        {
+          "role": "historical-fixture",
+          "meaning": "Retained original parent-two original launch plan identity, not selection of current source",
+          "sha256": "928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e"
+        }
+      ]
+    },
+    "tests/option-b-circular-admission.test.mjs": {
+      "sourceSha256": "5cafb81be6e8103d00488c797d5ed5ddc86063665c5f3b49094062e96606bfbd",
+      "expectations": [
+        {
+          "role": "known-answer",
+          "meaning": "Published SHA-256 abc answer",
+          "sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        },
+        {
+          "role": "known-answer",
+          "meaning": "Same published abc answer in original stage-binding identity control",
+          "sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        }
+      ]
+    },
+    "tests/option-b-f6c-coordinator-process.test.mjs": {
+      "sourceSha256": "2cea4c0287bca6c194d8374c099cae95efc6c050722a658979162ab9aedcb539",
+      "expectations": [
+        {
+          "role": "known-answer",
+          "meaning": "Published SHA-256 abc answer",
+          "sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        },
+        {
+          "role": "fixed-operational-control",
+          "meaning": "Independently reviewed frozen operational closure checker",
+          "sha256": "9887632e2900efb1feecf0dfe24ae5f138e46ba7ab870c56eede66a522e84609"
+        }
+      ]
+    },
+    "tests/option-b-f6c-family-admission.test.mjs": {
+      "sourceSha256": "689aa3e30ea09becb53e99bb1c427a84a9ef840605b36c16feb46e60dd77838c",
+      "expectations": [
+        {
+          "role": "fixed-embedded-bridge",
+          "meaning": "Unchanged streamed Python bridge string",
+          "sha256": "68f762ba2e1b3aae9ae885bd80372a402b623a8e14deec29069c959d89fc7145"
+        },
+        {
+          "role": "fixed-embedded-bridge",
+          "meaning": "Unchanged parent Python bootstrap string",
+          "sha256": "61d12312b4021b9a73e3d6d12e79d686ec2bbb8a7064a5807ad11c416eece95b"
+        },
+        {
+          "role": "fixed-embedded-bridge",
+          "meaning": "Unchanged packaging Python bridge string",
+          "sha256": "e973e63d21594850ff7b6aefe46abe8717159f105e51a1a372ac7cdec50fa6cb"
+        }
+      ]
+    },
+    "tests/option-b-f6c-streamed-preparation.test.mjs": {
+      "sourceSha256": "71c68602b06781fbdfc82134fc5ae7724fd3ffc224c1c934282566bd143e038d",
+      "expectations": [
+        {
+          "role": "known-answer",
+          "meaning": "Published SHA-256 abc answer in preparation known control",
+          "sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        }
+      ]
+    },
+    "tests/subfield-circular-root-pilot.test.js": {
+      "sourceSha256": "ddd239dd6d2d96d0e18a8405dcd0ffd3787e3a289cec9e57aabc799e7028f2a9",
+      "expectations": [
+        {
+          "role": "fixed-scientific-source",
+          "meaning": "Circular history proof verifier identity in synthetic proof receipt",
+          "sha256": "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38"
+        }
+      ]
+    }
+  }
+}

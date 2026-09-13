@@ -7,6 +7,11 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
+fixture_spec = importlib.util.spec_from_file_location('f6c_acceleration_fixture_records', ROOT/'tests/option_b_fixture_records.py')
+fixture_records = importlib.util.module_from_spec(fixture_spec)
+fixture_spec.loader.exec_module(fixture_records)
+ABC_SHA = fixture_records.known_sha256(ROOT)
+ORIGINAL_VERIFIER_SHA, ORIGINAL_DECLARATION_SHA, REJECTED_CURRENT_VERIFIER_SHA = fixture_records.acceleration_prior(ROOT)
 def current_execution_plan(plan):
     """Copy the retained example into a current synthetic control, without changing its provenance."""
     plan=copy.deepcopy(plan)
@@ -58,7 +63,7 @@ class Transport(unittest.TestCase):
         # Independently known SHA-256 abc is checked before using other captures.
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp).resolve();p=root/'input';p.write_bytes(b'abc')
-            digest='ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'
+            digest=ABC_SHA
             with s.Capture(p,digest,capture=True) as captured:
                 self.assertEqual(captured.data,b'abc');captured.recheck()
                 replacement=root/'replacement';replacement.write_bytes(b'abc');replacement.replace(p)
@@ -87,13 +92,13 @@ class CurrentContract(unittest.TestCase):
         _,manifest,_,_,fixed,_=fixture_module.mapping_fixture()
         docs=fixture_module.prior_fixture(fixed,manifest)
         contract=docs['priorPlan']['comparisonContract']
-        contract.update(verifierSha256='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132',declarationSha256='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4')
+        contract.update(verifierSha256=ORIGINAL_VERIFIER_SHA,declarationSha256=ORIGINAL_DECLARATION_SHA)
         docs['comparison']['verifier']['sha256']=contract['verifierSha256']
         s.authenticate_original_prior(fixture_module.s,docs,fixed)
         for group,key,value in [('comparison','accepted',False),('admission','processesClosed',False)]:
             bad=copy.deepcopy(docs);bad[group][key]=value
             with self.assertRaises(ValueError):s.authenticate_original_prior(fixture_module.s,bad,fixed)
-        bad=copy.deepcopy(docs);bad['priorPlan']['comparisonContract']['verifierSha256']='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'
+        bad=copy.deepcopy(docs);bad['priorPlan']['comparisonContract']['verifierSha256']=REJECTED_CURRENT_VERIFIER_SHA
         with self.assertRaises(ValueError):s.authenticate_original_prior(fixture_module.s,bad,fixed)
 
     def test_real_v2_metadata_projects_to_both_unchanged_contracts(self):

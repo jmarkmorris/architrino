@@ -1,3 +1,5 @@
+import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
+const NEXT_TEST_SHA = nextTestIdentities("tests/option-b-f6c-family-admission.test.mjs", 3);
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -41,9 +43,9 @@ test('current family reuses the common selection without changing scientific or 
   for(const k of['NAMED','DEPENDENCIES','ORIGINAL','PACKAGE_PINS','GENERIC_PINS','FRESH_CLOSURE_PINS'])if(row[k])assert.deepEqual(M[k],row[k],filename+' '+k);
   if(M!==Parent){const pins=structuredClone(row.PINS);if(M===Stream)for(const k of Object.keys(Stream.OPERATIONS))delete pins[k];assert.deepEqual(M.PINS,pins);}
  }
- assert.equal(hash(Stream.PYTHON),'68f762ba2e1b3aae9ae885bd80372a402b623a8e14deec29069c959d89fc7145');
- assert.equal(hash(Parent.PYTHON_BOOTSTRAP),'61d12312b4021b9a73e3d6d12e79d686ec2bbb8a7064a5807ad11c416eece95b');
- assert.equal(hash(Packaging.PYTHON),'e973e63d21594850ff7b6aefe46abe8717159f105e51a1a372ac7cdec50fa6cb');
+ assert.equal(hash(Stream.PYTHON),NEXT_TEST_SHA[0]);
+ assert.equal(hash(Parent.PYTHON_BOOTSTRAP),NEXT_TEST_SHA[1]);
+ assert.equal(hash(Packaging.PYTHON),NEXT_TEST_SHA[2]);
 });
 test('parent and packaging reject omitted map, helper, reader, changed map and missing external selection',async t=>{
  for(const M of[Parent,Packaging])for(const p of[C.SOURCE_MAP,reader,...Object.values(C.DEPENDENCIES)]){

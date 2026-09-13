@@ -1,3 +1,5 @@
+import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
+const NEXT_TEST_SHA = nextTestIdentities("tests/f6c-acceleration-pilot.test.js", 1);
 // Synthetic metadata/process controls only. No accepted history or range is evaluated.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -31,7 +33,7 @@ function planFixture(){return {historicalInputs:E.HISTORICAL.map(([role,original
 test('all scientific implementation/control pins remain the separately accepted source generation',()=>{
   for(const p of [E.CONSUMER,E.CONSUMER_TESTS,E.BRIDGE,E.CHECKER,E.CHECKER_TESTS,E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
     assert.equal(hash(readFileSync(p)),E.SOURCE_BINDINGS[p],p);
-  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'a0c546124828b5879a2e163b0f965d37b90c251d327301eaa72e031261824e53');
+  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,NEXT_TEST_SHA[0]);
 });
 test('closed plan has no invented runtime/default fields and exact operational closure',()=>{
   const plan=planFixture();

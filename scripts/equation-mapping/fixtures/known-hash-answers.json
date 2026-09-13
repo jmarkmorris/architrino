@@ -17,7 +17,11 @@
   "additionalConsumers": [
     "scripts/equation-mapping/dependency-map-reader.mjs",
     "tests/option-b-current-source-transition.test.mjs",
-    "tests/option-b-mathematical-acceptance.test.mjs"
+    "tests/option-b-mathematical-acceptance.test.mjs",
+    "tests/test_f5_current_handoff.py",
+    "tests/test_f6c_retained_history_export.py",
+    "tests/test_f6c_acceleration_execution.py",
+    "tests/option_b_fixture_records.py"
   ],
   "origin": "Published SHA-256 abc test vector, preserved from the independently checked inline expectations; never derive an expected value with the implementation under test.",
   "sha256": {

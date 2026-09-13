@@ -16,7 +16,12 @@ import tempfile
 import unittest
 
 
-SCRIPT = Path(__file__).resolve().parents[1] / "scripts/eom/export-f6c-retained-history.py"
+ROOT = Path(__file__).resolve().parents[1]
+FIXTURE_SPEC = importlib.util.spec_from_file_location("f6c_export_fixture_records", ROOT / "tests/option_b_fixture_records.py")
+fixture_records = importlib.util.module_from_spec(FIXTURE_SPEC)
+FIXTURE_SPEC.loader.exec_module(fixture_records)
+ABC_SHA = fixture_records.known_sha256(ROOT)
+SCRIPT = ROOT / "scripts/eom/export-f6c-retained-history.py"
 SPEC = importlib.util.spec_from_file_location("f6c_data_export", SCRIPT)
 exporter = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(exporter)
@@ -155,12 +160,12 @@ class FileBoundaryControls(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "source"
             path.write_bytes(b"abc")
-            raw, binding = exporter.read_bound(path, "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad")
+            raw, binding = exporter.read_bound(path, ABC_SHA)
             self.assertEqual(raw, b"abc")
             self.assertEqual(binding["bytes"], 3)
             path.write_bytes(b"abc\n")
             with self.assertRaises(exporter.ExportError):
-                exporter.read_bound(path, "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad")
+                exporter.read_bound(path, ABC_SHA)
 
     def test_output_is_create_exclusive_and_protected_inputs_unchanged(self):
         with tempfile.TemporaryDirectory() as directory:

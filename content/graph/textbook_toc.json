@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1658
+      "sections": 1660
     }
   },
   "tocRoot": {
@@ -7073,6 +7073,14 @@
                 "markdownSection": "Switch and Decider as Future Capability",
                 "sectionKey": "switch and decider as future capability",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Comparison Sources",
+                "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
+                "markdownSection": "Comparison Sources",
+                "sectionKey": "comparison sources",
+                "headingLevel": 2
               }
             ]
           },
@@ -7382,6 +7390,14 @@
                 "markdownPath": "content/markdown/aaa/quantum/algorithmic-resonance.md",
                 "markdownSection": "Closure Targets",
                 "sectionKey": "closure targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sources and Comparison Roles",
+                "markdownPath": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+                "markdownSection": "Sources and Comparison Roles",
+                "sectionKey": "sources and comparison roles",
                 "headingLevel": 2
               },
               {

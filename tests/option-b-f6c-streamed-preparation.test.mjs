@@ -1,3 +1,5 @@
+import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
+const NEXT_TEST_SHA = nextTestIdentities("tests/option-b-f6c-streamed-preparation.test.mjs", 1);
 // Data-only fixture preparation. No scientific target, histories or Python
 // scientific modules execute; only the existing Python runtime inventory runs.
 import test from 'node:test';
@@ -39,7 +41,7 @@ async function observed(fn){
 }
 test('known replacement fixture is exact before constructing current metadata fixtures',()=>{
  assert.equal(replacePins('before\nexport const PINS=Object.freeze({\n old:1\n});\nafter',{new:2}),'before\nexport const PINS=Object.freeze({"new":2});\nafter');
- assert.equal(sha('abc'),'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+ assert.equal(sha('abc'),NEXT_TEST_SHA[0]);
  const dir=mkdtempSync(path.join(tmpdir(),'f6c-known-replacement-'));
  try{const p=path.join(dir,'known');put(p,'abc');replaceSameBytes(p);assert.equal(readFileSync(p,'utf8'),'abc');}finally{rmSync(dir,{recursive:true,force:true});}
 });

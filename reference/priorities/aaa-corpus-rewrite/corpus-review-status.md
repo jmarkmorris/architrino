@@ -6,11 +6,6 @@ This file is the authoritative priority-ordered document board for the 199-file 
 
 | Status | Priority | Document | State | Finding IDs or next action |
 | --- | ---: | --- | --- | --- |
-| ○ | 53 | [Quantum Summary](../../../content/markdown/aaa/quantum/quantum-summary.md) | Unread backlog document | Not yet reviewed |
-| ○ | 54 | [Reality Quantum Causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md) | Unread backlog document | Not yet reviewed |
-| ○ | 55 | [Wavefunction Ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md) | Unread backlog document | Not yet reviewed |
-| ○ | 56 | [Measurement Ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | Unread backlog document | Not yet reviewed |
-| ○ | 57 | [Algorithmic Resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md) | Unread backlog document | Not yet reviewed |
 | ○ | 58 | [Fermi-Dirac and Bose-Einstein Statistics](../../../content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md) | Unread backlog document | Not yet reviewed |
 | ○ | 59 | [Cosmology Ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md) | Unread backlog document | Not yet reviewed |
 | ○ | 60 | [Cosmology Reconstruction](../../../content/markdown/aaa/cosmology/cosmology-reconstruction.md) | Unread backlog document | Not yet reviewed |
@@ -124,7 +119,7 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ○ | 168 | [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) | Unread backlog document | Not yet reviewed |
 | ○ | 18 | [Well-posedness and regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Unread backlog document; action-energy directory held until the end | Not yet reviewed |
 
-**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 117 unopened documents. The next action is the first ○ row in the recorded phase order, Quantum Summary; the remaining action-energy file is intentionally last.
+**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 112 unopened documents. The next action is the first ○ row in the recorded phase order, Fermi-Dirac and Bose-Einstein Statistics; the remaining action-energy file is intentionally last.
 
 ## Completed audit appendix
 
@@ -212,5 +207,10 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ● | 80 | [Atomic Transition Radiation](../../../content/markdown/aaa/reactions/atomic-transition-radiation.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-atomic-transition-radiation-review-2026-09-12.md) | ATR-01–ATR-11 |
 | ● | 81 | [Bremsstrahlung](../../../content/markdown/aaa/reactions/bremsstrahlung.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-bremsstrahlung-review-2026-09-12.md) | BR-01–BR-15 |
 | ● | 82 | [Synchrotron](../../../content/markdown/aaa/reactions/synchrotron.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-synchrotron-review-2026-09-12.md) | SYN-01–SYN-18 |
+| ● | 83 | [Quantum Summary](../../../content/markdown/aaa/quantum/quantum-summary.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-quantum-summary-review-2026-09-12.md) | QS-01–QS-10 |
+| ● | 84 | [Reality Quantum Causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-reality-quantum-causality-review-2026-09-12.md) | RQC-01–RQC-18 |
+| ● | 85 | [Wavefunction Ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-wavefunction-ontology-review-2026-09-12.md) | WO-01–WO-19 |
+| ● | 86 | [Measurement Ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-measurement-ontology-review-2026-09-12.md) | MO-01–MO-18 |
+| ● | 87 | [Algorithmic Resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-algorithmic-resonance-review-2026-09-12.md) | AR-01–AR-13 |
 
-Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 82 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 117 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.
+Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 87 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 112 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.
