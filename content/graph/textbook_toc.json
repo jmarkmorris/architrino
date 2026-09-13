@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1665
+      "sections": 1666
     }
   },
   "tocRoot": {
@@ -8746,6 +8746,14 @@
                 "markdownPath": "content/markdown/aaa/validation/architrino-si-base-units.md",
                 "markdownSection": "Philosophical Payoff",
                 "sectionKey": "philosophical payoff",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sources",
+                "markdownPath": "content/markdown/aaa/validation/architrino-si-base-units.md",
+                "markdownSection": "Sources",
+                "sectionKey": "sources",
                 "headingLevel": 2
               }
             ]

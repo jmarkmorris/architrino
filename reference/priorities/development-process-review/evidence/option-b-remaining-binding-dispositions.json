@@ -295,7 +295,7 @@
       "path": "tests/fixtures/option-b-next-test-identities.json",
       "disposition": "retained",
       "owner": "Option B Node test identity records",
-      "reason": "Twenty-four original Node test literals move unchanged into role-labeled data with exact original consumer source identities.",
+      "reason": "Twenty-four original Node test literals move unchanged into role-labeled data with exact original consumer source identities. The current selected-graph continuation and verification are recorded in analysis/option-b-repository-reconciliation.md#node-test-identity-graph-integration.",
       "roles": [
         {
           "binding": "Known-answer, historical fixture, fixed scientific/control/contract and embedded-bridge test expectations",
@@ -314,6 +314,18 @@
           "selection": "Named consumer and exact count from authored data; original values and originCommit retained",
           "consumer": "tests/support/option-b-next-test-identities.mjs and the nine named tests",
           "independentCheck": "Known parser controls, exact original-source reconstruction and affected-consumer tests"
+        },
+        {
+          "binding": "Explicit B graph selection for immutable Node test expectations",
+          "targets": [
+            "tests/fixtures/option-b-next-test-identities.json",
+            "tests/support/option-b-next-test-identities.mjs",
+            "tests/option-b-next-test-identities.test.mjs"
+          ],
+          "meaning": "Preserve all original expectation roles and values; admit the payload and all nine unchanged consumer sources through the existing graph mechanism before returning frozen strings.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-next-test-selection.json selects exact checkpoint and zero-change transition; no refresh eligibility is granted.",
+          "consumer": "The nine declared Node consumers via nextTestIdentities; Content Integrity already requires tests/option-b-next-test-identities.test.mjs.",
+          "independentCheck": "Exact original payload, nine consumer files and shape-validator function against recorded Git; known positive before actual consumer and graph-negative cases; standard graph-library impact query."
         }
       ]
     },
@@ -321,7 +333,7 @@
       "path": "tests/support/option-b-next-test-identities.mjs",
       "disposition": "retained",
       "owner": "Option B Node test fixture loading",
-      "reason": "Captures fixture bytes and returns frozen primitive expectations with closed record and consumer-count checks.",
+      "reason": "Captures fixture bytes and returns frozen primitive expectations with closed record and consumer-count checks. The current selected-graph continuation and verification are recorded in analysis/option-b-repository-reconciliation.md#node-test-identity-graph-integration.",
       "roles": [
         {
           "binding": "Authored next-test identities record and unchanged JSON decoder",
@@ -332,6 +344,18 @@
           "selection": "Explicit fixture path and consumer/count arguments",
           "consumer": "Nine migrated Node test modules declared in the data record",
           "independentCheck": "tests/option-b-next-test-identities.test.mjs"
+        },
+        {
+          "binding": "Explicit B graph selection for immutable Node test expectations",
+          "targets": [
+            "tests/fixtures/option-b-next-test-identities.json",
+            "tests/support/option-b-next-test-identities.mjs",
+            "tests/option-b-next-test-identities.test.mjs"
+          ],
+          "meaning": "Preserve all original expectation roles and values; admit the payload and all nine unchanged consumer sources through the existing graph mechanism before returning frozen strings.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-next-test-selection.json selects exact checkpoint and zero-change transition; no refresh eligibility is granted.",
+          "consumer": "The nine declared Node consumers via nextTestIdentities; Content Integrity already requires tests/option-b-next-test-identities.test.mjs.",
+          "independentCheck": "Exact original payload, nine consumer files and shape-validator function against recorded Git; known positive before actual consumer and graph-negative cases; standard graph-library impact query."
         }
       ]
     },
@@ -339,7 +363,7 @@
       "path": "tests/option-b-next-test-identities.test.mjs",
       "disposition": "retained",
       "owner": "Option B Node fixture-reader controls",
-      "reason": "Known field-selection and malformed actual-consumer cases verify the new data boundary without importing scientific subjects as an oracle.",
+      "reason": "Known field-selection and malformed actual-consumer cases verify the new data boundary without importing scientific subjects as an oracle. The current selected-graph continuation and verification are recorded in analysis/option-b-repository-reconciliation.md#node-test-identity-graph-integration.",
       "roles": [
         {
           "binding": "Hand-authored closed-record cases and isolated closure-consumer fixture",
@@ -351,6 +375,18 @@
           "selection": "Synthetic shape controls and actual externally selected fixture",
           "consumer": "Node test runner",
           "independentCheck": "Manually stated known values plus actual consumer success before malformed-file rejection"
+        },
+        {
+          "binding": "Explicit B graph selection for immutable Node test expectations",
+          "targets": [
+            "tests/fixtures/option-b-next-test-identities.json",
+            "tests/support/option-b-next-test-identities.mjs",
+            "tests/option-b-next-test-identities.test.mjs"
+          ],
+          "meaning": "Preserve all original expectation roles and values; admit the payload and all nine unchanged consumer sources through the existing graph mechanism before returning frozen strings.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-next-test-selection.json selects exact checkpoint and zero-change transition; no refresh eligibility is granted.",
+          "consumer": "The nine declared Node consumers via nextTestIdentities; Content Integrity already requires tests/option-b-next-test-identities.test.mjs.",
+          "independentCheck": "Exact original payload, nine consumer files and shape-validator function against recorded Git; known positive before actual consumer and graph-negative cases; standard graph-library impact query."
         }
       ]
     },
@@ -575,6 +611,18 @@
           "selection": "Canonical external B fixture, algorithm and consumer named per record",
           "consumer": "Explicit JSON imports with primitive capture or frozen selected values and malformed-value rejection",
           "independentCheck": "One-time original literal comparison; actual vendor assets/package and independently selected assembly spec are still checked"
+        },
+        {
+          "binding": "Selected B graph for retained mixed-role Node expectations",
+          "targets": [
+            "tests/fixtures/option-b-retained-test-identities.json",
+            "tests/support/option-b-retained-test-identities.mjs",
+            "tests/option-b-retained-test-identities.test.mjs"
+          ],
+          "meaning": "Original payload bytes preserve vendor, historical, scientific, fixed-output and synthetic-fixture meanings; all thirteen consumers retain assertions and use admitted loading.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-retained-test-selection.json selects the exact initial checkpoint and zero-change transition with no refresh eligibility.",
+          "consumer": "All thirteen payload consumers through retainedTestIdentities; required Content Integrity reader controls.",
+          "independentCheck": "Exact Git payload and inverse import-only consumer comparison, known schema and actual consumer positives before negative admission, graph change and removed-edge propagation."
         }
       ]
     },
@@ -1560,6 +1608,246 @@
           "selection": "contracts/option-b-f6c-test-selection.json selects exact accepted checkpoint and zero-change transition; no operational refresh eligibility.",
           "consumer": "tests/support/option-b-f6c-test-identities.mjs and required tests/option-b-f6c-test-identities.test.mjs",
           "independentCheck": "Exact original Git source reconstruction and retained original string evaluation; existing operational and scientific/reference checks remain unchanged. See analysis/option-b-repository-reconciliation.md#f6c-test-expectation-transfer."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-next-test-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Node test identity graph integration",
+      "reason": "Graph governance of the unchanged Node expectation payload and real reader/consumer closure; no scientific renewal or future source refresh authority.",
+      "roles": [
+        {
+          "binding": "Explicit B graph selection for immutable Node test expectations",
+          "targets": [
+            "tests/fixtures/option-b-next-test-identities.json",
+            "tests/support/option-b-next-test-identities.mjs",
+            "tests/option-b-next-test-identities.test.mjs"
+          ],
+          "meaning": "Preserve all original expectation roles and values; admit the payload and all nine unchanged consumer sources through the existing graph mechanism before returning frozen strings.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-next-test-selection.json selects exact checkpoint and zero-change transition; no refresh eligibility is granted.",
+          "consumer": "The nine declared Node consumers via nextTestIdentities; Content Integrity already requires tests/option-b-next-test-identities.test.mjs.",
+          "independentCheck": "Exact original payload, nine consumer files and shape-validator function against recorded Git; known positive before actual consumer and graph-negative cases; standard graph-library impact query."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-next-test-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Node test identity graph integration",
+      "reason": "Graph governance of the unchanged Node expectation payload and real reader/consumer closure; no scientific renewal or future source refresh authority.",
+      "roles": [
+        {
+          "binding": "Explicit B graph selection for immutable Node test expectations",
+          "targets": [
+            "tests/fixtures/option-b-next-test-identities.json",
+            "tests/support/option-b-next-test-identities.mjs",
+            "tests/option-b-next-test-identities.test.mjs"
+          ],
+          "meaning": "Preserve all original expectation roles and values; admit the payload and all nine unchanged consumer sources through the existing graph mechanism before returning frozen strings.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-next-test-selection.json selects exact checkpoint and zero-change transition; no refresh eligibility is granted.",
+          "consumer": "The nine declared Node consumers via nextTestIdentities; Content Integrity already requires tests/option-b-next-test-identities.test.mjs.",
+          "independentCheck": "Exact original payload, nine consumer files and shape-validator function against recorded Git; known positive before actual consumer and graph-negative cases; standard graph-library impact query."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-next-test-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Node test identity graph integration",
+      "reason": "Graph governance of the unchanged Node expectation payload and real reader/consumer closure; no scientific renewal or future source refresh authority.",
+      "roles": [
+        {
+          "binding": "Explicit B graph selection for immutable Node test expectations",
+          "targets": [
+            "tests/fixtures/option-b-next-test-identities.json",
+            "tests/support/option-b-next-test-identities.mjs",
+            "tests/option-b-next-test-identities.test.mjs"
+          ],
+          "meaning": "Preserve all original expectation roles and values; admit the payload and all nine unchanged consumer sources through the existing graph mechanism before returning frozen strings.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-next-test-selection.json selects exact checkpoint and zero-change transition; no refresh eligibility is granted.",
+          "consumer": "The nine declared Node consumers via nextTestIdentities; Content Integrity already requires tests/option-b-next-test-identities.test.mjs.",
+          "independentCheck": "Exact original payload, nine consumer files and shape-validator function against recorded Git; known positive before actual consumer and graph-negative cases; standard graph-library impact query."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-next-test-selection.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Node test identity graph integration",
+      "reason": "Graph governance of the unchanged Node expectation payload and real reader/consumer closure; no scientific renewal or future source refresh authority.",
+      "roles": [
+        {
+          "binding": "Explicit B graph selection for immutable Node test expectations",
+          "targets": [
+            "tests/fixtures/option-b-next-test-identities.json",
+            "tests/support/option-b-next-test-identities.mjs",
+            "tests/option-b-next-test-identities.test.mjs"
+          ],
+          "meaning": "Preserve all original expectation roles and values; admit the payload and all nine unchanged consumer sources through the existing graph mechanism before returning frozen strings.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-next-test-selection.json selects exact checkpoint and zero-change transition; no refresh eligibility is granted.",
+          "consumer": "The nine declared Node consumers via nextTestIdentities; Content Integrity already requires tests/option-b-next-test-identities.test.mjs.",
+          "independentCheck": "Exact original payload, nine consumer files and shape-validator function against recorded Git; known positive before actual consumer and graph-negative cases; standard graph-library impact query."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-next-test-graph-transfer.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Node test identity graph integration",
+      "reason": "Graph governance of the unchanged Node expectation payload and real reader/consumer closure; no scientific renewal or future source refresh authority.",
+      "roles": [
+        {
+          "binding": "Explicit B graph selection for immutable Node test expectations",
+          "targets": [
+            "tests/fixtures/option-b-next-test-identities.json",
+            "tests/support/option-b-next-test-identities.mjs",
+            "tests/option-b-next-test-identities.test.mjs"
+          ],
+          "meaning": "Preserve all original expectation roles and values; admit the payload and all nine unchanged consumer sources through the existing graph mechanism before returning frozen strings.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-next-test-selection.json selects exact checkpoint and zero-change transition; no refresh eligibility is granted.",
+          "consumer": "The nine declared Node consumers via nextTestIdentities; Content Integrity already requires tests/option-b-next-test-identities.test.mjs.",
+          "independentCheck": "Exact original payload, nine consumer files and shape-validator function against recorded Git; known positive before actual consumer and graph-negative cases; standard graph-library impact query."
+        }
+      ]
+    },
+    {
+      "path": "tests/support/option-b-retained-test-identities.mjs",
+      "disposition": "retained",
+      "owner": "OptionB-Redux retained test identity graph integration",
+      "reason": "Mandatory graph admission of existing external expectations without changing their values or scientific meaning.",
+      "roles": [
+        {
+          "binding": "Selected B graph for retained mixed-role Node expectations",
+          "targets": [
+            "tests/fixtures/option-b-retained-test-identities.json",
+            "tests/support/option-b-retained-test-identities.mjs",
+            "tests/option-b-retained-test-identities.test.mjs"
+          ],
+          "meaning": "Original payload bytes preserve vendor, historical, scientific, fixed-output and synthetic-fixture meanings; all thirteen consumers retain assertions and use admitted loading.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-retained-test-selection.json selects the exact initial checkpoint and zero-change transition with no refresh eligibility.",
+          "consumer": "All thirteen payload consumers through retainedTestIdentities; required Content Integrity reader controls.",
+          "independentCheck": "Exact Git payload and inverse import-only consumer comparison, known schema and actual consumer positives before negative admission, graph change and removed-edge propagation."
+        }
+      ]
+    },
+    {
+      "path": "tests/option-b-retained-test-identities.test.mjs",
+      "disposition": "retained",
+      "owner": "OptionB-Redux retained test identity graph integration",
+      "reason": "Mandatory graph admission of existing external expectations without changing their values or scientific meaning.",
+      "roles": [
+        {
+          "binding": "Selected B graph for retained mixed-role Node expectations",
+          "targets": [
+            "tests/fixtures/option-b-retained-test-identities.json",
+            "tests/support/option-b-retained-test-identities.mjs",
+            "tests/option-b-retained-test-identities.test.mjs"
+          ],
+          "meaning": "Original payload bytes preserve vendor, historical, scientific, fixed-output and synthetic-fixture meanings; all thirteen consumers retain assertions and use admitted loading.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-retained-test-selection.json selects the exact initial checkpoint and zero-change transition with no refresh eligibility.",
+          "consumer": "All thirteen payload consumers through retainedTestIdentities; required Content Integrity reader controls.",
+          "independentCheck": "Exact Git payload and inverse import-only consumer comparison, known schema and actual consumer positives before negative admission, graph change and removed-edge propagation."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-retained-test-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux retained test identity graph integration",
+      "reason": "Mandatory graph admission of existing external expectations without changing their values or scientific meaning.",
+      "roles": [
+        {
+          "binding": "Selected B graph for retained mixed-role Node expectations",
+          "targets": [
+            "tests/fixtures/option-b-retained-test-identities.json",
+            "tests/support/option-b-retained-test-identities.mjs",
+            "tests/option-b-retained-test-identities.test.mjs"
+          ],
+          "meaning": "Original payload bytes preserve vendor, historical, scientific, fixed-output and synthetic-fixture meanings; all thirteen consumers retain assertions and use admitted loading.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-retained-test-selection.json selects the exact initial checkpoint and zero-change transition with no refresh eligibility.",
+          "consumer": "All thirteen payload consumers through retainedTestIdentities; required Content Integrity reader controls.",
+          "independentCheck": "Exact Git payload and inverse import-only consumer comparison, known schema and actual consumer positives before negative admission, graph change and removed-edge propagation."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-retained-test-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux retained test identity graph integration",
+      "reason": "Mandatory graph admission of existing external expectations without changing their values or scientific meaning.",
+      "roles": [
+        {
+          "binding": "Selected B graph for retained mixed-role Node expectations",
+          "targets": [
+            "tests/fixtures/option-b-retained-test-identities.json",
+            "tests/support/option-b-retained-test-identities.mjs",
+            "tests/option-b-retained-test-identities.test.mjs"
+          ],
+          "meaning": "Original payload bytes preserve vendor, historical, scientific, fixed-output and synthetic-fixture meanings; all thirteen consumers retain assertions and use admitted loading.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-retained-test-selection.json selects the exact initial checkpoint and zero-change transition with no refresh eligibility.",
+          "consumer": "All thirteen payload consumers through retainedTestIdentities; required Content Integrity reader controls.",
+          "independentCheck": "Exact Git payload and inverse import-only consumer comparison, known schema and actual consumer positives before negative admission, graph change and removed-edge propagation."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-retained-test-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux retained test identity graph integration",
+      "reason": "Mandatory graph admission of existing external expectations without changing their values or scientific meaning.",
+      "roles": [
+        {
+          "binding": "Selected B graph for retained mixed-role Node expectations",
+          "targets": [
+            "tests/fixtures/option-b-retained-test-identities.json",
+            "tests/support/option-b-retained-test-identities.mjs",
+            "tests/option-b-retained-test-identities.test.mjs"
+          ],
+          "meaning": "Original payload bytes preserve vendor, historical, scientific, fixed-output and synthetic-fixture meanings; all thirteen consumers retain assertions and use admitted loading.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-retained-test-selection.json selects the exact initial checkpoint and zero-change transition with no refresh eligibility.",
+          "consumer": "All thirteen payload consumers through retainedTestIdentities; required Content Integrity reader controls.",
+          "independentCheck": "Exact Git payload and inverse import-only consumer comparison, known schema and actual consumer positives before negative admission, graph change and removed-edge propagation."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-retained-test-selection.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux retained test identity graph integration",
+      "reason": "Mandatory graph admission of existing external expectations without changing their values or scientific meaning.",
+      "roles": [
+        {
+          "binding": "Selected B graph for retained mixed-role Node expectations",
+          "targets": [
+            "tests/fixtures/option-b-retained-test-identities.json",
+            "tests/support/option-b-retained-test-identities.mjs",
+            "tests/option-b-retained-test-identities.test.mjs"
+          ],
+          "meaning": "Original payload bytes preserve vendor, historical, scientific, fixed-output and synthetic-fixture meanings; all thirteen consumers retain assertions and use admitted loading.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-retained-test-selection.json selects the exact initial checkpoint and zero-change transition with no refresh eligibility.",
+          "consumer": "All thirteen payload consumers through retainedTestIdentities; required Content Integrity reader controls.",
+          "independentCheck": "Exact Git payload and inverse import-only consumer comparison, known schema and actual consumer positives before negative admission, graph change and removed-edge propagation."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-retained-test-graph-transfer.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux retained test identity graph integration",
+      "reason": "Mandatory graph admission of existing external expectations without changing their values or scientific meaning.",
+      "roles": [
+        {
+          "binding": "Selected B graph for retained mixed-role Node expectations",
+          "targets": [
+            "tests/fixtures/option-b-retained-test-identities.json",
+            "tests/support/option-b-retained-test-identities.mjs",
+            "tests/option-b-retained-test-identities.test.mjs"
+          ],
+          "meaning": "Original payload bytes preserve vendor, historical, scientific, fixed-output and synthetic-fixture meanings; all thirteen consumers retain assertions and use admitted loading.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-retained-test-selection.json selects the exact initial checkpoint and zero-change transition with no refresh eligibility.",
+          "consumer": "All thirteen payload consumers through retainedTestIdentities; required Content Integrity reader controls.",
+          "independentCheck": "Exact Git payload and inverse import-only consumer comparison, known schema and actual consumer positives before negative admission, graph change and removed-edge propagation."
         }
       ]
     }

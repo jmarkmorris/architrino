@@ -60,7 +60,34 @@ The final report at `final-bundle/report.json` was measured with `wc` and `shasu
 
 Sender session ID: `01a09847-3746-7073-826f-f1081eef056f`; receiver session ID: `01a098aa-46bd-7940-876e-2a28fd5341b4`. The corresponding September 12 local session files start `rollout-2026-09-12T20-59-59-` and `rollout-2026-09-12T22-48-11-`, respectively. Session metadata reports Codex Desktop version `0.154.0-alpha.6.2`. Full native plaintext verification requires host-supported sender/receiver byte receipts or accessible canonical plaintext records tied to a dispatch ID. This is a prepared instrumentation request; no external report was submitted and no provider corruption is alleged.
 
-## Expanded regression and gate evidence
+## Host receipt capability investigation and request
+
+Status: **◐ Partial — blocked on a host-supported interface.** The operator requested obtaining sender/receiver byte receipts. Searching this session's exposed tool names and descriptions found no byte-receipt, raw app-server RPC or feedback-upload tool. The installed CLI package reports version `0.116.0` in its `package.json`; `codex app-server --help` fails with `ENOENT` while spawning its Darwin ARM64 executable. This CLI package is distinct from the recorded Desktop host version. No installation or host configuration was changed.
+
+The [official app-server documentation](https://learn.chatgpt.com/docs/app-server), fetched for this investigation, documents `thread/read`, full item-history retrieval and `feedback/upload`. It does not establish paired native collaboration plaintext byte receipts; page searches for `receipt` and `collab` returned no matches. A documented interface is not necessarily exposed to this task or supported by its installed host. A callable host interface returning independently computed sender and receiver identities would overturn the current availability finding. No receipt capability has been obtained, and no feedback submission has been made.
+
+### Submission-ready instrumentation request
+
+**Subject:** Expose paired plaintext byte receipts for Codex native multi-agent messages.
+
+Please provide a supported way to retrieve host-generated sender and receiver identities for a native collaboration message, correlated by a stable message or dispatch ID. Our original incident was a coordinator-authored truncated hash before dispatch; we are not reporting demonstrated provider corruption. We repaired local construction and validation, but cannot independently observe both transport boundaries for future attribution because the native message content is encrypted in retained records. Direct app-server input to a native v2 subagent was rejected by the host. Reading a shared file verifies that file's delivery to the worker, but does not measure the collaboration transport.
+
+The required receipt contract is:
+
+- Sender measurement over the exact UTF-8 message content accepted by the host, after argument decoding and before transport encryption or routing.
+- Receiver measurement computed independently over the corresponding decoded message content admitted to the receiver, before model execution; it must not copy the sender's digest or use a model-authored echo.
+- Stable host message ID, caller dispatch ID when supported, sender/receiver session IDs, measurement boundary, byte count, SHA-256, timestamp, host version and receipt-schema version at each side.
+- Explicit encoding, multipart framing and normalization rules. If the host adds routing text or transforms content, separately identify the original payload and transformation; compare equivalent boundaries rather than ciphertext, tokens or rendered text.
+- Separate accepted, queued, delivered, rejected and unavailable outcomes. Retained receipts must be queryable after restart, with defined retention and duplicate/retry semantics; missing receiver evidence must not imply successful delivery.
+- No requirement to expose prompt plaintext or disable encryption. Digests and byte counts suffice for equality checks; optional raw diagnostic capture should remain separately controlled.
+
+Please identify an existing supported endpoint and exact compatible Desktop version if this already exists. Otherwise, treat this as an instrumentation feature request. The local investigation retains host version, correlation IDs, the exact rejection and a controlled retained-file handoff; private session logs are not attached to this request.
+
+### Acceptance before closing this item
+
+With the actual host interface available, send a machine-generated synthetic message through native collaboration and compare the prepared payload with both independently measured host receipts. Cover ASCII, multibyte Unicode, newlines and boundary-sized messages. In a host-supported test harness, inject truncation, insertion and same-length substitution between the two measurement points; require differing receipts and failed verification. Exercise rejection, missing receipt, duplicate delivery, wrong receiver and restart retention. Keep this item open until a live native handoff supplies both receipts. Local fake-host tests, shared-file receipts and a feedback-upload acknowledgement do not satisfy that requirement.
+
+## Expanded regression and gate evidence (implementation run)
 
 Measured with `node --test --test-concurrency=1 tests/agent-dispatch.test.mjs tests/agent-dispatch-session.test.mjs tests/content-integrity-reporting.test.js`: **37 tests passed, zero failures or skips**. The [session suite](../../../../tests/agent-dispatch-session.test.mjs) adds truncation, insertion, substitution, Unicode byte changes, missing/duplicate messages, incomplete JSONL, invalid UTF-8, mixed opaque content, host rejection, wrong receiver, log replacement and same-inode rewrite, late admission, source mismatch detail retention, and resumed command output. Parser controls run on known records, and `Aé🧪` has an independently hand-counted seven-byte UTF-8 expectation. Injected host controls establish adapter behavior, not live provider reliability. Independent receiver review identified opaque-content and log-continuity weaknesses that were corrected before the final test run.
 

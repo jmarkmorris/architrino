@@ -1,0 +1,6 @@
+{
+  "acceptedBaseline": "reference/priorities/development-process-review/contracts/option-b-next-test-accepted-b.json",
+  "acceptedBaselineSha256": "1427fbb4c44f30c0c75c5630e92eca9093f016323dcbe5b917d7e433e83870c2",
+  "transition": "reference/priorities/development-process-review/contracts/option-b-next-test-transition.json",
+  "transitionSha256": "85a67087466a2f91dba1d3a14427fbc2e16e9dc8da022db97b3ea4b8e6f88ec1"
+}

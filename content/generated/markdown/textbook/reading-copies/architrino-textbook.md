@@ -62016,23 +62016,23 @@ Structure formation supplies a coupled recovery problem for matter clustering, m
 
 ### Hubble and S8 Tensions
 
-This note frames the $H_0$ and $S_8$ problems as coupled symptoms inside one Noether sea cosmology story rather than as unrelated anomalies. Its purpose is to give the reader a single conceptual entry point before the detailed growth and expansion modules are considered separately.
+The Hubble constant $H_0$ describes the present expansion rate in standard cosmology, while $S_8$ summarizes the amplitude of matter clustering. Different observations infer these quantities through different models and calibrations. This chapter examines the hypothesis that discrepancies between selected inferences share a cause in the evolution of the Noether sea, the ambient population of neutral architrino assemblies described in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md). It supplies comparison definitions and consistency tests; it does not establish that relaxation explains either discrepancy.
 
 The coupled reconstruction is developed through [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), [Structure Formation](../../../../markdown/aaa/cosmology/structure-formation.md), [CMB](../../../../markdown/aaa/cosmology/CMB.md), [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md), and [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md).
 
 #### Tension Meanings
 
-- **$H_0$ tension:** disagreement between early-inferred and local-inferred expansion-rate or corrected photon-frequency-transfer-slope estimates.
-- **$S_8$ tension:** disagreement between early-inferred and late-inferred structure-growth amplitude.
+- **$H_0$ tension:** disagreement between estimates of the present expansion rate, such as a prediction from cosmic microwave background (CMB) observations under a specified cosmological model and a locally calibrated distance ladder. The early-inferred quantity is a present-epoch prediction, not the expansion rate at the epoch of CMB emission. A corrected photon-transfer slope in this chapter is a proposed alternative interpretation whose relation to those estimates must be derived.
+- **$S_8$ tension:** a dataset- and model-dependent discrepancy in the inferred present clustering combination $S_8=\sigma_8\sqrt{\Omega_m/0.3}$. Here $\sigma_8$ is the root-mean-square linear matter-density contrast averaged within a spherical top-hat of effective comoving radius $8h^{-1}\,\mathrm{Mpc}$, $h=H_0/(100\,\mathrm{km\,s^{-1}\,Mpc^{-1}})$, and $\Omega_m$ is the present matter-density fraction in that comparison model. A lower central value alone does not establish a statistically significant inconsistency.
 
 #### $\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation
 
 - $H_0$ is read through inhomogeneous medium evolution and region-dependent effective histories.
 - $S_8$ is read through growth behavior in baryonic and neutral assembly sectors with medium-coupled dynamics.
 
-Operationally, $H_0$ is the present local slope of the corrected redshift-distance transfer map defined in [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md#distance-and-effective-hubble-coefficient). It remains a useful comparison coefficient, but in this ontology it measures redshift per Euclidean distance after source, motion, clock-cadence, and path-history corrections, not literal expansion of the Euclidean void.
+The proposed transfer coefficient follows [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md#distance-and-effective-hubble-coefficient). It measures corrected log-redshift per Euclidean path distance, multiplied by an observer speed calibration. The [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) is the fixed spatial container, and [absolute time](../../../../markdown/aaa/foundations/absolute-time.md) is its universal evolution parameter $T$; physical clock readings and luminosity distances require assembly and signal maps. Consequently this spatial slope is not automatically $a_{\mathrm{eff}}^{-1}da_{\mathrm{eff}}/dt_{\mathrm{eff}}$, the temporal rate of an effective scale $a_{\mathrm{eff}}$ in an observer chart with time $t_{\mathrm{eff}}$.
 
-The Sunyaev-Zeldovich family sharpens why this correction is mandatory. CMB photon frequencies can be shifted by intervening energetic or moving electron populations, so a line-of-sight frequency ratio is not a pure scale-factor readout by itself. The low-redshift slope should therefore be computed from the signed propagation residual
+The Sunyaev-Zeldovich effects illustrate one observational complication: scattering by hot or moving electrons changes the CMB spectrum or its directional temperature signal. Spectral redistribution by scattering is not in general a single coherent frequency multiplier and does not establish a Noether sea redshift mechanism. For a channel in which a scalar frequency-transfer description is valid, define the signed propagation slope by
 
 $$
 H_{\mathrm{eff},X}(D,\hat{\mathbf{k}})
@@ -62043,34 +62043,34 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e55662180c01fb8b)
 
-after endpoint cadence, source-branch changes, and launch geometry are removed, where $D$ is Euclidean path distance and $R$ remains reserved for the reception event. A net positive $\partial_D Z_{\mathrm{prop},X}$ is redward path accumulation; a net negative value is blueward path boosting. Either sign is allowed only when the same Noether sea and photon-exchange ledger also passes the distance, flux, time-dilation, and spectral-coherence checks.
+Here $X$ labels a specified source spectral channel, $\hat{\mathbf k}$ points from source to receiver, $D$ is Euclidean path length, and $R$ denotes a fixed reception event. The derivative compares a smooth family of paths ending at $R$, with source, endpoint-clock, and motion corrections declared. The dimensionless $Z_{\mathrm{prop},X}$ is defined below. The positive speed $c_0$ is an observer calibration, distinct from the primitive wake speed $c_f$ and photon transport speed $c_\gamma$. Positive and negative slopes represent redward and blueward residual accumulation, respectively. Either physical interpretation requires compatible flux, arrival-time dilation, angular distance, and spectral predictions.
 
-The sharper local object is the directional transfer coefficient
+The present local coefficient is the zero-distance limit of this function:
 
 $$
-H_{\mathrm{eff},X}(D,\hat{\mathbf{k}})
+H_{0,\mathrm{eff},X}(R,\hat{\mathbf{k}})
 =
-c_0\,\alpha_{D,X}(\hat{\mathbf{k}})
+c_0\,\alpha_{R,X}(\hat{\mathbf{k}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bb0591aa65cf2fba)
 
-with the next correction governed by the local curvature $\mathcal{K}_X(D,\hat{\mathbf{k}})$ of the corrected log-redshift curve. The $H_0$ tension is therefore not only a disagreement between two scalar estimates. In this ontology it is a question about whether early-inferred and late-inferred pipelines are sampling the same local transfer coefficient, the same higher-order redshift curvature, and the same environment-conditioned Noether sea state record.
+The coefficient $\alpha_{R,X}=\partial_D Z_{\mathrm{prop},X}|_{D=0}$ has inverse-length units. For $Z_{\mathrm{prop},X}(0)=0$ and a smooth curve, $Z_{\mathrm{prop},X}=\alpha_{R,X}D+\mathcal K_XD^2/2+O(D^3)$, where $\mathcal K_X=\partial_D^2Z_{\mathrm{prop},X}|_{D=0}$ has inverse-length-squared units. A finite-distance derivative is $\alpha_{R,X}+\mathcal K_XD+O(D^2)$, whereas a secant fit gives $Z_{\mathrm{prop},X}/D=\alpha_{R,X}+\mathcal K_XD/2+O(D^2)$. Different survey depths can therefore produce different fitted slopes even for one curve. Comparing pipelines requires the same distance definition, epoch, and declared curvature treatment.
 
 The environment-conditioned version should remain directional until the data justify an isotropic scalar:
 $$
-H_{\mathrm{eff},X}^{E}(D,\hat{\mathbf{k}})
+H_{\mathrm{eff},X}^{\mathcal E}(D,\hat{\mathbf{k}})
 =
-c_0\,\partial_D Z_{\mathrm{prop},X}^{E}(D,\hat{\mathbf{k}}).
+c_0\,\partial_D Z_{\mathrm{prop},X}^{\mathcal E}(D,\hat{\mathbf{k}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-77f839463513e38c)
 
-Here $E$ denotes the source, host, line-of-sight, and observer-environment class after catalogue corrections. A local ladder can be promoted to a universal $H_0$ coefficient only after the residual scatter in $H_{\mathrm{eff},X}^{E}$ is either bounded or derived from the same Noether sea density, delay, flow, and calibration record used by CMB, BAO, and growth.
+Here $\mathcal E$ denotes a source, host, line-of-sight, and observer-environment class; $E$ below remains the emission event. The class definition, sampling weights, and selection corrections are held fixed or modeled when differentiating. Baryon acoustic oscillations (BAO) supply a distance-to-ruler comparison, while CMB and growth observations constrain other projections of the same sea history. Deriving nonzero environmental scatter does not make a coefficient universal. A scalar summary needs a specified averaging measure and uncertainty, or a bound showing that directional and environmental differences are negligible for the stated application.
 
-Gravitational-wave standard sirens add an independent distance channel, but not an ontology shortcut. A GWTC-style $H_0$ estimate combines luminosity distances inferred from calibrated strain with redshift information inferred from host association, an electromagnetic counterpart, or population features such as the mass spectrum. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is valuable because photon-ladder calibration is not the only distance route. The comparison still belongs to the same corrected transfer problem: gravitational-wave propagation, detector calibration, host or population redshift inference, photon redshift correction, and the Noether sea state must be carried together before a discrepancy is read as physical $H_0$ structure.
+Gravitational-wave standard sirens infer distance from a modeled wave amplitude and supply a different instrumental channel from a photon distance ladder. A gravitational-wave transient catalogue (GWTC) analysis combines calibrated strain with redshift information from a counterpart, host association, or a source-population model. Its distance depends on waveform physics, source orientation, selection, and gravitational-wave propagation; shared hosts and redshifts can correlate it with other channels. The corresponding amplitude, detector, and propagation recovery remains an additional obligation in $\mathbb{A}\mathbb{A}\mathbb{A}$. No independent sea distance measurement follows merely from naming this technique.
 
-For diagnostic use, raw measured redshift should first be converted into the propagation residual
+For the factorization in Expansion Mechanism, let $\Gamma_{N,E}$ and $\Gamma_{N,R}$ be positive inverse sea-cadence factors at emission and reception, normalized to one common reference. Let $B_X(E)$ be the positive source-transition frequency ratio after cadence normalization, and let $D_v$ be the positive launch-motion frequency factor; an approaching source has $D_v>1$ in the weak-motion comparison. Let $\mathcal P_{E\to R}$ be the inverse frequency-transfer factor along the path. Assuming $1+z_X=(\Gamma_{N,E}/\Gamma_{N,R})\mathcal P_{E\to R}/[B_X(E)D_v]$ gives
 
 $$
 Z_{\mathrm{prop},X}
@@ -62084,18 +62084,18 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-806551d1c46982f5)
 
-so that endpoint cadence, source-branch shifts, and launch motion are not folded into a single apparent $H_0$ offset. Only then should local and early-inferred transfer slopes be compared.
+Thus $Z_{\mathrm{prop},X}=\ln\mathcal P_{E\to R}$ under the stated factorization; the signs follow by taking its logarithm. The extraction of matter-clock factors from sea cadence is a constitutive requirement, not a definition of a physical clock. Source, endpoint, motion, and path terms are not individually identifiable from one measured redshift: multiplying $B_X$ and $\mathcal P$ by the same positive factor leaves $z_X$ unchanged. Independent calibration or a jointly constrained forward model is therefore required, with correction uncertainty propagated into the slope.
 
-This is conceptually adjacent to inhomogeneous/timescape interpretations, but implemented here through explicit Noether sea state variables and module couplings.
+The comparison with inhomogeneous or timescape interpretations concerns environment-dependent clock calibration. It does not import those models' field equations or establish their recovery from the Noether sea.
 
 #### Unified Mechanism
 
-Both tensions are treated as different projections of one process: non-uniform relaxation of the Noether sea.
+The proposed common process is non-uniform Noether sea relaxation, meaning evolution of its density, delay, flow, and assembly response. Its cosmological effect requires constitutive laws connecting that history to measured signals and clustering.
 
 For $H_0$:
 
-- early-universe inference samples a comparatively constrained, less-relaxed Noether sea state,
-- local ladders sample more relaxed pockets with different clock-rate environments.
+- early-data inference constrains a history and predicts a present-epoch coefficient;
+- local ladders sample sources and paths in late environments whose relaxation and clock responses must be derived from that same history.
 
 This mechanism has a required sign, not merely a tunable magnitude. Define
 
@@ -62104,33 +62104,33 @@ $$
 \equiv
 H_{\mathrm{eff,local}}
 -
-H_{\mathrm{eff,early}}.
+H_{\mathrm{eff,early}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-50fbceb5fbf52932)
 
-To address the observed direction of the $H_0$ tension, the constitutive and clock map must derive $\Delta H_{\mathrm{relax}}>0$. A branch that gives $\Delta H_{\mathrm{relax}}\le0$ fails as an explanation even if it produces environment-dependent scatter.
+Both terms denote the present coefficients returned by the specified local and early-data inference procedures, using matched calibrations; the second is not $H$ at last scattering. For the historical Planck–SH0ES comparison below, a relaxation-only account needs a positive total offset of the observed magnitude within the joint uncertainty. A nonpositive offset fails that particular explanation, while a positive but arbitrarily small value is insufficient. If relaxation is one of several physical contributions, its sign alone does not decide the total prediction.
 
 For $S_8$:
 
 - baryonic and neutral-assembly sectors do not need to co-evolve identically at late times,
-- mild dark-sector drag and partial coupling can suppress growth amplitude without changing the same degree of early-time background history.
+- positive drag can suppress a growing mode in a specified effective perturbation equation with otherwise matched coefficients and initial data; the needed coefficient, momentum/energy exchange, and background response still require derivation.
 
-So background and growth are connected through shared Noether sea state evolution rather than separate ad hoc corrections.
+Shared sea evolution connects background and growth only through such response laws. The neutral assembly population, its persistence, and the resulting matter and lensing transfers remain physical hypotheses here.
 
 ##### Chronometer, BAO, and Supernova Discriminator
 
-Differential-age cosmic chronometers provide a comparison route with different calibration sensitivity from BAO rulers and supernova luminosity distances:
+Differential-age cosmic chronometers compare stellar ages in selected galaxy populations. Their standard estimator has different calibration sensitivity from BAO rulers and supernova (SN) luminosity distances:
 
 $$
 H_{\mathrm{chron}}^{\mathrm{obs}}(z)
 =
--\frac{1}{1+z}\frac{dz}{dt_{\mathrm{age}}}.
+-\frac{1}{1+z}\frac{dz}{dt_{\mathrm{age}}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cc7ebc4b1fe74e78)
 
-The stellar-aging interval is local to the source population, but both its population-synthesis calibration and the measured redshift remain photon-mediated. Chronometers are therefore not a path-free measurement. Their value is as a cross-pipeline discriminator. For one shared record, retain
+Here $t_{\mathrm{age}}$ is inferred stellar age, not absolute time. In the standard comparison, $1+z=a_{\mathrm{eff}}(t_{\mathrm{eff,obs}})/a_{\mathrm{eff}}(t_{\mathrm{eff,emit}})$ and matched formation times imply $dt_{\mathrm{age}}=dt_{\mathrm{eff,emit}}$, yielding $H_{\mathrm{chron}}=H(t_{\mathrm{eff,emit}})$. More generally, if $dt_{\mathrm{age}}=A_{\mathrm{age}}\,dT_{\mathrm{emit}}$, then $H_{\mathrm{chron}}=-A_{\mathrm{age}}^{-1}d\ln(1+z)/dT_{\mathrm{emit}}$ along the selected source family at fixed observation event. Age calibration, population selection, formation-time differences, endpoint clocks, and path transfer all enter this derivative. For one shared history $\theta$, retain the three predicted estimator outputs
 
 $$
 \mathbf H^\theta(z)
@@ -62144,7 +62144,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-771efd562842152a)
 
-and predict the pairwise residual pattern after each pipeline's source, clock, and photon-transfer terms are declared. A branch that explains only one component by changing the Noether sea history has not explained the tension.
+and their joint uncertainty. These outputs need explicit calibrations: radial BAO primarily measures $D_H/r_d$, with $r_d$ the acoustic ruler at baryon drag, while uncalibrated SN fluxes determine relative luminosity distances and have an absolute-luminosity degeneracy with $H_0$. Recovering an $H_{\mathrm{BAO}}$ or $H_{\mathrm{SN}}$ therefore requires ruler or luminosity calibration and a distance/clock model. The three numbers are not automatically direct measurements of one temporal rate. Their predicted residual pattern tests the shared interpretation only after these dependencies and correlations are included.
 
 #### Coupled Interpretation Channels
 
@@ -62152,8 +62152,8 @@ For $H_0$:
 
 - local Noether sea state inhomogeneity (including void-like environments) can bias local-ladder inference relative to early-time inference,
 - late-time medium transition channels can shift low-$z$ inference without reintroducing ontology splits.
-- a non-zero environment-conditioned scatter in local $H$ inference is expected if Noether sea state gradients are physically relevant.
-- a diagnostic expectation is correlation between local inferred-$H$ scatter and bulk-flow/environment anisotropy indicators along the same sightlines.
+- environment-conditioned scatter is predicted only when the derived transfer response retains the relevant gradients after averaging and calibration.
+- correlation between local inferred-$H$ scatter and bulk-flow/environment indicators is a candidate discriminator whose amplitude and angular pattern require a specific response model.
 - the CMB-frame correction used in local-ladder and supernova pipelines must be tested against matter-dipole and bulk-flow residuals rather than assumed to erase all direction dependence.
 - the quadratic term in the local redshift-transfer curve should be fitted or bounded before a local distance-ladder slope is promoted to a universal coefficient.
 
@@ -62164,9 +62164,9 @@ For $S_8$:
 
 #### BAO Data-Product Gate
 
-DESI-style BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. These are data-product signals, not ontology claims. Every comparison packet must name its public release, likelihood or chain provenance, covariance, tracer bins, and combination rule. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth. The operational release and covariance requirements live in [Cosmology Shared Residual Fit](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md).
+The Dark Energy Spectroscopic Instrument (DESI) measures BAO from spatial correlations of tracers. Its DR2 analysis reports a preference for a time-dependent dark-energy equation of state in specified BAO+CMB and BAO+CMB+SN combinations; the significance depends on the SN sample. This is an observer-model fit comparison. The common parameterization is $w(a_{\mathrm{eff}})=w_0+w_a(1-a_{\mathrm{eff}})$, where $w$ is effective pressure divided by energy density. It supplies neither a substrate law nor an automatic resolution of the Hubble tension. Each comparison must identify the release, likelihood, covariance, tracer bins, and combination rule, keeping weak-lensing and redshift-space distortion (RSD) growth measurements distinct. RSD uses the anisotropy introduced by peculiar velocities in redshift-derived positions and commonly constrains $f\sigma_8$. The operational requirements live in [Cosmology Shared Residual Fit](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md).
 
-Within that packet, Hubble-tension proposals split into two comparison routes. Late-time routes alter the inferred distance to last scattering, but BAO rows anchored by galaxy correlations tend to follow the CMB-inferred expansion record rather than the local ladder. Early-time routes shrink the physical sound horizon through early-dark-energy-like injection, but CMB and galaxy-survey scrutiny has narrowed the allowed model space. A DESI/DES $w(a)$ improvement that leaves $\Lambda\mathrm{CDM}$ acceptable, or that has no clear connection to the Hubble tension, should therefore remain a model-dependent fit comparison rather than a solved expansion mechanism. The neutrino-mass side belongs to the same discipline: DESI-era bounds on $\sum_i m_i$ constrain the joint matter inventory and growth fit, so they must be read with the same BAO, CMB, growth, and source-history record rather than as an isolated neutral-lepton ontology change.
+Two useful comparison routes are changes to late-time distance evolution and changes to the acoustic ruler inferred from early physics. Neither describes every proposed resolution. In the standard acoustic interpretation, the CMB angular scale is approximately $r_*/D_M(z_*)$, where $r_*$ is the sound horizon at photon last scattering; the BAO ruler $r_d$ is evaluated at the distinct baryon-drag epoch. A candidate may change both rulers and the distance map, provided one history predicts them jointly. Incompatible independent calibrations constitute a failure; changing two compatible outputs does not. Neutrino-mass limits likewise depend on the specified cosmological model and data combination and cannot by themselves identify a neutral architrino assembly. The source note below identifies the DESI DR2 comparison supporting these observational qualifications.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ question is whether one Noether sea history can satisfy
 $$
@@ -62184,19 +62184,19 @@ $$
 
 without assigning separate Noether sea states to each inference pipeline. If the preferred $w(a)$ trend requires one state for distance data and another for growth, the cosmology branch has only hidden the tension.
 
-This is the local form of the shared calibration gate in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates). The sets $\mathcal{C}_{H_0}$, $\mathcal{C}_{S_8}$, $\mathcal{C}_{\mathrm{BAO/SN/CMB}}$, and $\mathcal{C}_{\mathrm{growth}}$ should be read as constraints on projections of one $\theta_{\mathrm{sea}}$, not as independent fit islands. A low distance residual paired with an incompatible growth projection is therefore not a win for the Noether sea relaxation interpretation; it is evidence that the interpretation has not yet closed.
+This is the local form of the shared calibration gate in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates). Each $\mathcal C$ is a preimage in one common admissible history-and-calibration space: $\mathcal C_i=\{\theta:\Pi_i(\theta)\in A_i\}$, where $\Pi_i$ predicts the corresponding data and $A_i$ is its declared acceptance region. The shared part $\theta_{\mathrm{sea}}$ describes the sea history; instrument nuisance parameters remain instrument-specific with their stated priors. Nonempty intersection is a necessary compatibility condition, not a proof of a physical branch or a calibrated joint goodness of fit. Correlated observations and model flexibility must be assessed jointly.
 
-The current benchmark family can be summarized as a residual-contract table:
+The following historical benchmarks specify the comparison rather than asserting a timeless consensus:
 
 | Observable pressure | Typical data-product comparison | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
 | --- | --- | --- |
-| Early CMB inference | Planck-like base-LambdaCDM inference gives $H_0$ near $67.4\ \mathrm{km\,s^{-1}\,Mpc^{-1}}$ and $\sigma_8$ near $0.81$; ACT DR6 supplies an independent high-resolution spectra and lensing comparison. | The CMB row constrains the effective acoustic, thermalization, damping, and lensing transfer map, not a primitive expanding void. |
-| Local distance ladder | SH0ES/Pantheon+-style Cepheid/SN ladders give a local coefficient near $73\ \mathrm{km\,s^{-1}\,Mpc^{-1}}$ with about percent-level uncertainty. | The local coefficient is $H_{\mathrm{eff,ladder}}$, the slope of the corrected redshift-transfer map after source, endpoint, launch, calibration, and path-history terms are separated. |
-| BAO standard ruler | DESI BAO rows report $D_M/r_d$, $D_H/r_d$, or $D_V/r_d$ by tracer and effective redshift, with CMB, SN, and weak-lensing combinations testing $w_0w_a$-style extensions. | BAO constrains the joint pair $(D^\theta(z),r_d^\theta)$; changing the sound-ruler calibration for CMB while changing the propagation map for BAO is a shared-state failure. |
-| Late growth | DES Year-3 3$\times$2pt weak-lensing and clustering analyses give an $S_8$ value below the Planck-inferred value, while RSD and lensing rows probe $f\sigma_8$ and growth response. | $S_8$ is a growth projection of $\theta_{\mathrm{sea}}$. It must remain compatible with CMB lensing and BAO distances, not merely lower the late-time amplitude. |
-| Euclid readiness | Euclid quick releases (Q1, Q2) are public but are not cosmology releases; major public cosmology products depend on the later staged data releases. | Current Euclid use is packet-readiness: masks, catalogues, spectroscopy, photo-$z$, and future covariance shape. It is not yet a public $S_8$ or BAO residual row. |
+| Early CMB inference | Planck 2018 base-$\Lambda\mathrm{CDM}$ inference gives $H_0=67.4\pm0.5\ \mathrm{km\,s^{-1}\,Mpc^{-1}}$ and $\sigma_8=0.811\pm0.006$ at 68% confidence; with its matter fraction the central $S_8$ is about $0.83$, not $0.81$. | CMB spectra and lensing constrain acoustic, thermalization, damping, and lensing transfers. A comparison with another CMB instrument must account for shared sky signal and calibration dependence. |
+| Local distance ladder | Riess and collaborators' 2022 SH0ES Cepheid/SN analysis with Pantheon+ gives $H_0=73.04\pm1.04\ \mathrm{km\,s^{-1}\,Mpc^{-1}}$, including its systematic error treatment. | Relating this fitted coefficient to $H_{0,\mathrm{eff},X}$ requires a derived luminosity-distance map and independently constrained source, endpoint, motion, and path corrections. |
+| BAO standard ruler | DESI BAO reports dimensionless $D_M/r_d$, $D_H/r_d$, or $D_V/r_d$ by tracer and effective redshift. $D_M$ is transverse comoving distance, $D_H=c_0/H$ is the radial distance scale in the standard effective chart, and $D_V=[zD_M^2D_H]^{1/3}$ is its isotropic combination. | BAO constrains distances jointly with $r_d$. CMB and BAO use the same underlying history but distinct last-scattering and drag-epoch rulers. Their compatible simultaneous change is allowed. |
+| Late growth | DES Year-3 3$\times$2pt combines image-shear correlations, galaxy clustering, and their cross-correlation. Its flat-$\Lambda\mathrm{CDM}$ fit gives $S_8=0.776\pm0.017$ and reports consistency with Planck at probability-to-exceed $p=0.13$–$0.48$ under its tests. | A lower central value is a comparison pressure whose significance depends on the full fit. Lensing also depends on distance kernels, intrinsic alignments, and the matter-to-lensing-potential map. |
+| Euclid readiness | Q1 (2025) and Q2 (2026) are quick data releases; Q2 concerns the Galactic Bulge Survey. Release documentation, rather than catalogue availability, determines whether a cosmological likelihood is supplied. | These quick releases do not supply an $S_8$ or BAO likelihood for this comparison. An additional cosmology result requires its own sample, calibration, and covariance before inclusion. |
 
-This table fixes the claim level. The benchmark values are observer-level comparison coordinates in LambdaCDM-era pipelines. They are useful because they force the medium-relaxation proposal to match early spectra, low-redshift slopes, standard rulers, and late growth with one shared state; they are not direct measurements of substrate expansion.
+The benchmark values are observer-level inferences in specified $\Lambda\mathrm{CDM}$-era models, where $\Lambda$ represents a cosmological constant and CDM cold dark matter. They are not raw data to impose unchanged on an alternative transfer law. A Noether sea comparison requires forward predictions for the relevant spectra, fluxes, angular correlations, and calibration observations through the same likelihoods. All quoted dimensional measurements retain their original observer units; any new substrate numerical calculation uses $c_f=1$ without equating it to $c_0$.
 
 The corresponding DESI-era distance-growth score should keep the BAO ruler visible:
 
@@ -62220,7 +62220,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-44567cb1d0a3d6fa)
 
-Here $\mathbf b_{\mathrm{BAO}}(z_i)$ contains the reported subset of $D_M/r_d$, $D_H/r_d$, and $D_V/r_d$ for each tracer bin. The last term is not optional bookkeeping. It prevents a branch from fitting a DESI-like distance trend, a Planck-like CMB anchor, and a DES-like growth amplitude by using three incompatible Noether sea projections.
+Here $\mathbf b_{\mathrm{BAO}}(z_i)$ contains the reported distance ratios and $\mathbf C_{\mathrm{BAO},i}$ their positive-definite covariance. The displayed sum applies only to independent data blocks with fixed covariance; correlated bins, overlapping surveys, and reused CMB or SN information require one joint likelihood. For a Gaussian residual vector $\mathbf r=\mathbf y^\theta-\mathbf y^{\mathrm{obs}}$, the quadratic term is $\mathbf r^\mathsf{T}\mathbf C^{-1}\mathbf r$ with the full covariance; a parameter-dependent covariance also requires its log-determinant term relative to a fixed reference. Derived $H_0$, $S_8$, or $f\sigma_8$ summaries must not be counted again as independent data when their source observations are already used.
+
+All $\mathcal R$ terms are dimensionless, and the nonnegative weight $\lambda_{\mathrm{split}}$ and dimensionless compatibility discrepancy $\mathcal P_{\mathrm{proj}}$ must be specified before fitting. A finite penalty can discourage inconsistent independently fitted histories but cannot forbid them. The accepted model must enforce one shared history and equality of any duplicated physical quantities, exactly or within a declared numerical tolerance. With one history and compatible forward maps, the compatibility discrepancy is identically zero. These scores define tests; no fitted score is reported here.
 
 #### Dipole and Bulk-Flow Diagnostic
 
@@ -62238,7 +62240,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f85ad00ecc193c9a)
 
-Here $\delta H(z,\hat{\mathbf{n}})$ is the directional departure from an isotropic inferred transfer slope, and $\Delta_{\mathrm{dip}}^{X}$ is the source-catalogue dipole residual defined in [CMB](../../../../markdown/aaa/cosmology/CMB.md). Operationally, the Hubble residual should be computed from corrected propagation slopes, for example
+Here $\delta H(z,\hat{\mathbf n})$ is the directional departure from the survey-weighted mean slope, and $\hat{\mathbf n}$ points from observer to source, opposite to photon propagation for a straight ray. The vector $\Delta_{\mathrm{dip}}^X$ is the source-catalogue dipole residual after its stated kinematic and selection subtraction, as defined in [CMB](../../../../markdown/aaa/cosmology/CMB.md); in this diagnostic the channel label $X$ also identifies the matched tracer selection. The correlation uses a common sky mask and specified weights and is defined only when both weighted variances are nonzero. Sampling errors, shared velocity corrections, shot noise, and calibration covariance enter its uncertainty. Compute the Hubble residual from corrected propagation slopes, for example
 
 $$
 \delta H_X(z,\hat{\mathbf{n}})
@@ -62252,13 +62254,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1e0fcf7134fab90b)
 
-after source, endpoint, and launch factors have been removed. The expected sign and scale of $\mathcal{R}_{H,D}$ must come from the same Noether sea density, delay, and flow variables used by the expansion and growth modules. If the correlation is absent after known survey systematics are controlled, the local-environment explanation for $H_0$ loses support. If the correlation exists but requires a different Noether sea state from the one used for CMB, BAO, or growth, the cosmology branch has split its ontology and fails the shared-closure requirement.
+Here $\alpha_{\mathcal E,X}(z,\hat{\mathbf n})$ is the environment-conditioned mean of the corrected slope, evaluated through the declared redshift/path map; $\bar\alpha_X(z)$ is its mean over the same survey weighting. Neither an emitter-to-receiver direction nor a weighting rule may be changed between the two terms. The sign, magnitude, and angular structure of the correlation require the same sea response used for distance and growth. A statistically adequate null test rejects a model that predicts a detectable dipole correlation, but not every environment-dependent model: an isotropically weighted quadrupolar Hubble residual has zero correlation with a dipole despite nonzero angular variation. Conversely, correlation alone does not identify the sea mechanism. Incompatible shared physical parameters across distance, CMB, BAO, and growth invalidate the proposed common history.
 
 The operational version of this diagnostic is the frame-split packet in [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md#frame-split-measurement-recipe), where local $H_0$ scatter is tested beside CMB, matter-dipole, supernova, and BAO directional rows.
 
 #### Distance-Growth Coupling Residual
 
-The $H_0$ and $S_8$ tests should share the same effective distance and growth coefficients. For the low-redshift distance side, retain the expansion
+The $H_0$ and $S_8$ tests require compatible distance and growth maps from one history. Define luminosity distance by $F=L/(4\pi d_L^2)$ for source bolometric luminosity $L$ and received bolometric flux $F$. For a smooth local relation with $d_L(0)=0$ and positive derivative, write
 $$
 d_L(z)
 =
@@ -62270,19 +62272,23 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3cf237f25239d2e6)
 
-where $H_{0,\mathrm{eff}}$ and $q_{0,\mathrm{eff}}$ are coefficients of the corrected redshift-transfer map. For the growth side, retain
+This defines $H_{0,\mathrm{eff}}=c_0/d_L'(0)$ and $q_{0,\mathrm{eff}}=1-d_L''(0)/d_L'(0)$ as luminosity-distance coefficients. Identifying the first with the corrected Euclidean transfer slope requires, in particular, $d_L/D\to1$ and vanishing endpoint residuals in the same local calibration. The quadratic coefficient also depends on flux and arrival-rate transfer, not just redshift curvature. Only after an effective homogeneous metric and distance reciprocity are recovered does $q_{0,\mathrm{eff}}$ acquire the usual temporal meaning $-a_{\mathrm{eff}}\ddot a_{\mathrm{eff}}/\dot a_{\mathrm{eff}}^2$, with dots denoting $t_{\mathrm{eff}}$ derivatives.
+
+For scale-independent linear growth, let $D_g(z)$ be the dimensionless growing-mode amplitude with a fixed normalization; the subscript distinguishes it from path distance $D$. Then the observer-level growth summary is
 $$
-f\sigma_8(z,k)
+f(z)\sigma_8(z)
 =
-\frac{d\ln D(z,k)}{d\ln a_{\mathrm{eff}}}\,
-\sigma_8(z,k),
+\frac{d\ln D_g(z)}{d\ln a_{\mathrm{eff}}}\,
+\sigma_8(z),
 \qquad
-S_8=\sigma_8\sqrt{\Omega_m/0.3}
+S_8=\sigma_8(0)\sqrt{\Omega_{m,0}/0.3}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-39420ac076bfa912)
 
-A compact shared-state diagnostic is
+The derivative follows the declared monotone effective scale history; it is not a derivative along an arbitrary line of sight. The variance is an integral over modes: $\sigma_8^2(z)=(2\pi^2)^{-1}\int_0^\infty k^2P_m(k,z)W^2(kR_8)\,dk$, where $P_m$ is the linear matter power spectrum, $R_8=8h^{-1}\,\mathrm{Mpc}$, and $W(x)=3(\sin x-x\cos x)/x^3$ with $W(0)=1$. It therefore has no independent wave-number argument. If growth is scale dependent, use $D_g(k,z)$ and the survey's full velocity, bias, lensing, and window prediction; a single $f\sigma_8$ summary then needs a justified compression. Changing $h$ also changes the smoothing radius, and $\Omega_{m,0}$ must use the same matter inventory and reference-density convention.
+
+A compact shared-state diagnostic, under the independent-block assumption already stated, is
 $$
 \mathcal{R}_{H_0S_8}(\theta_{\mathrm{sea}})
 =
@@ -62297,24 +62303,24 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-abbb0cbc57720547)
 
-A distance improvement that raises the shared-state penalty or worsens $f\sigma_8$ is therefore not a resolution of the tension pair. It is a sign that the fit has separated the background and growth projections.
+Here $\Pi_{\mathrm{dist}}$ and $\Pi_{\mathrm{growth}}$ supply different observable predictions. The function $d_{\mathrm{shared}}$ compares only duplicated physical quantities after mapping them into a common space and dividing by declared positive scales; subtracting a distance prediction from a growth prediction has no meaning. The nonnegative $\lambda_{\mathrm{shared}}$ is a diagnostic weight. A deterioration in one data residual can occur within a valid joint fit and does not prove that histories were split. Resolution requires compatible physical maps and acceptable joint residuals with the observed uncertainty and model complexity accounted for; neither improvement in one component nor a soft penalty establishes it.
 
 #### Low-Acceleration Scale Coupling
 
-MOND-like comparison models often expose a numerical proximity between a galaxy acceleration scale and an effective Hubble scale. In this ontology that proximity is not a derivation. It becomes useful only when it is tested as a shared Noether sea projection connecting distance transfer, growth, and nonlinear dark-sector response.
+Modified Newtonian dynamics (MOND) comparison models introduce an acceleration scale below which the relation between baryonic matter and acceleration differs from the Newtonian comparison. An association between such a scale and $c_0H_0$ is a proposed dimensional comparison, not a derivation. It becomes predictive only when the proportionality and environmental response follow from a constrained model rather than an independently adjustable coefficient for every sample.
 
-Let $a_\star(E)$ denote the observer-level acceleration transition extracted from environment class $E$, such as disc galaxies or clusters. Let $H_{\mathrm{eff}}^\theta(t_{\mathrm{eff}})$ be the corrected redshift-transfer coefficient from the same Noether sea state record. A minimal coupling diagnostic is
+Let $a_\star(\mathcal E)>0$ denote an observer-level acceleration transition extracted from environment class $\mathcal E$, such as disc galaxies or clusters, with its uncertainty and inference model. Let $H_{\mathrm{eff}}^\theta(t_{\mathrm{eff},\mathcal E})$ be a specified directional or averaged transfer coefficient at the class's effective epoch. A comparison restricted to positive $H_{\mathrm{eff}}^\theta$ and a positive dimensionless coefficient $\alpha_{\mathcal E}$ is
 
 $$
 \mathcal{R}_{aH}(\theta_{\mathrm{sea}})
 =
-\sum_E
+\sum_{\mathcal E}
 \left|
-\log
+\ln
 \frac{
-a_\star(E)
+a_\star(\mathcal E)
 }{
-\alpha_E c_0 H_{\mathrm{eff}}^\theta(t_E)
+\alpha_{\mathcal E} c_0 H_{\mathrm{eff}}^\theta(t_{\mathrm{eff},\mathcal E})
 }
 \right|
 +
@@ -62325,7 +62331,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a4bbdba477cf3dde)
 
-where $\alpha_E$ is a declared comparison coefficient rather than a fitted afterthought. The cluster-versus-galaxy term $\mathcal{R}_{\mathrm{cl/gal}}$ records whether the same Noether sea state explains any required difference between galaxy-scale and cluster-scale acceleration thresholds. A branch that fits galaxy rotation curves with one $a_\star$, cluster gas with another, and the $H_0/S_8$ pair with a third effective history has not linked the tensions; it has split the Noether sea record.
+The logarithm acts on a dimensionless positive ratio because $c_0H_{\mathrm{eff}}$ has acceleration units. Zero or negative $H_{\mathrm{eff}}$ lies outside this positive-scale comparison; taking an absolute value inside the logarithm would impose a different hypothesis. The sum is a dimensionless discrepancy, not a calibrated likelihood. A statistical test needs the uncertainties and covariance of the logarithmic ratios, and the nonnegative weights $\lambda_H$ and $\lambda_{\mathrm{cl}}$ must be declared.
+
+The coefficient $\alpha_{\mathcal E}$ must be derived or constrained independently of the same acceleration measurements: a free coefficient per class can set every logarithmic term to zero. The dimensionless $\mathcal R_{\mathrm{cl/gal}}$ tests the predicted relation between galaxy and cluster responses. Distinct thresholds are allowed when the same history and response law predict the difference. Inconsistency arises when each environment needs an incompatible law or independently chosen history, not merely because its measured threshold differs.
 
 #### Cross-Module Interface
 
@@ -62338,15 +62346,19 @@ In the modular cosmology map, this document is the coupling layer between:
 
 #### Coherent Reading
 
-$H_0$ and $S_8$ are not separate anomalies requiring separate ontologies; they are proposed as two observer-level projections of one medium-relaxation and coupling history in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+The common-history interpretation proposes that selected $H_0$ and $S_8$ discrepancies are linked observer-level outputs of medium relaxation and coupling in $\mathbb{A}\mathbb{A}\mathbb{A}$. The definitions and conditional identities above make that proposal testable. A physical sea population, its constitutive evolution, photon and gravitational-wave transfer, clock and luminosity calibration, and a joint distance–growth fit remain unestablished here.
 
 For a broader diagnosis of anomaly clustering versus ontology splitting, compare [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md).
+
+Source note: the historical comparison table uses Planck Collaboration, *Planck 2018 results. VI. Cosmological parameters* (2020), [arXiv:1807.06209](https://arxiv.org/abs/1807.06209), for the base-model present-epoch parameters; Riess and collaborators, *A Comprehensive Measurement of the Local Value of the Hubble Constant* (2022), [arXiv:2112.04510](https://arxiv.org/abs/2112.04510), for the calibrated SH0ES result; and DES Collaboration, *Dark Energy Survey Year 3 Results: Cosmological Constraints from Galaxy Clustering and Weak Lensing* (2022), [arXiv:2105.13549](https://arxiv.org/abs/2105.13549), for the 3$\times$2pt amplitude and its Planck consistency assessment. DESI Collaboration, *DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints* (2025), [arXiv:2503.14738](https://arxiv.org/abs/2503.14738), supports the release-specific distance and equation-of-state comparison. The [ESA Euclid release timeline](https://www.cosmos.esa.int/web/euclid/timeline) and [Euclid Consortium Q2 description](https://www.euclid-ec.org/science/q2/) identify the quick-release scope. These sources constrain observer-level comparisons; none establishes the Noether sea interpretation.
 
 ## Validation
 
 ### Validation Protocols
 
-Validation is the accountability layer of $\mathbb{A}\mathbb{A}\mathbb{A}$. It states which observer-level records the theory must recover, which native histories may support those records, and which failures reject a branch or the theory. A visual resemblance, a deterministic replay, or agreement between two implementations of the same rule is not enough: a correctness claim needs an independent closed form, theorem, analytically known case, or separately authored instrument.
+Validation connects claims in Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$, to evidence that can support or overturn them. An observer-level record is a physical measurement, such as a frequency ratio or detector count. A native history describes the underlying paths of [architrinos](../../../../markdown/aaa/foundations/architrino.md), the polarity-bearing point entities whose delayed interactions determine acceleration through the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). A branch is a specified family of candidate histories. Validation asks whether those histories obey the dynamics and whether their predicted measurements meet the applicable empirical constraints.
+
+A visual resemblance, a deterministic replay, or agreement between two implementations of the same rule is not enough: a correctness claim needs an independent closed form, theorem, analytically known case, or separately authored instrument. A demonstrated contradiction rejects the claim and domain to which it applies. Missing evidence leaves verification incomplete; rejecting a tested candidate does not establish that every admissible branch fails.
 
 The chapter proceeds in scene order from unit and parameter declarations to event provenance, empirical constraints, formal failure logic, no-go results, unresolved tensions, dedicated massive-superposition tests, executable simulation protocols, and the closure scorecard.
 
@@ -62362,66 +62374,77 @@ The chapter proceeds in scene order from unit and parameter declarations to even
 8. [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md) collects unresolved recovery burdens without treating them as solved mechanisms.
 9. [Massive-Superposition Gravity](../../../../markdown/aaa/validation/massive-superposition-gravity.md) defines a focused observer-level discriminator for gravity-linked record formation.
 10. [Simulation Protocols](../../../../markdown/aaa/validation/simulations/README.md) owns executable packet schemas, convergence tests, negative controls, synthetic observables, and branch-specific fixtures.
-11. [Closure Scorecard](../../../../markdown/aaa/validation/closure-scorecard.md) summarizes accepted closure only; candidate, diagnostic, and fixture-level progress does not raise the score.
+11. [Closure Scorecard](../../../../markdown/aaa/validation/closure-scorecard.md) distinguishes validated closure from readiness under its declared assessment rubric. Diagnostics and fixtures can support category-specific readiness credit, but do not by themselves establish recovered coefficients, fixed parameters, or empirical agreement. Adding a document does not automatically change a score.
 
-This map is normative for reading order, not a substitute for the owning documents. Each parameter, tuple, residual, gate, and failure code should be defined by one owner and cited elsewhere.
+This map follows the chapter reading order; the linked documents supply the detailed definitions. A residual measures a mismatch between a claim's prediction and its required result, while an acceptance condition specifies how small that mismatch must be and which evidence must accompany it. Definitions of parameters, records, residuals, acceptance conditions, and failure codes belong with their respective subject documents.
 
 #### Promotion Standard
 
-A validation claim is promotable only when all of the following are tied to one declared record:
+A validation claim states its grade, premises, tested domain, and falsifier: the observation or counterexample that would overturn it. A derived claim supplies its reasoning; a measured claim names its instrument and reach; an inferred claim identifies the additional inference; and a guessed claim remains a hypothesis. A mathematical lemma can be established without an observer map, while an instrument check can be established without a physical assembly. Neither result alone establishes an observable or a persistent physical branch.
 
-- the native worldline and causal-root provenance needed to reproduce the result;
-- the observer map that turns native quantities into the tested observable;
-- tolerances fixed before the run;
-- convergence under the relevant temporal, history, regulator, and spatial refinements;
+For a simulation-backed physical recovery claim, the applicable evidence must refer to one declared history, or to a matched family of histories when several preparations or experiments are compared:
+
+- the worldlines, meaning paths parameterized by absolute time, and causal roots, meaning past emission times whose expanding wakes reach a receiver, together with the retained history, boundary conditions, and identities needed to reproduce the result;
+- the observer map that turns native quantities into the tested measurement through the declared apparatus, calibration, and reference channel;
+- the parameter and unit declarations, tested time window, comparison statistic, uncertainty treatment, and tolerances fixed before evaluating the test result;
+- convergence under the relevant temporal, history, regulator, and spatial refinements, with remaining numerical uncertainty small enough to resolve the claimed tolerance;
 - an independent correctness reference when correctness is claimed;
-- a negative control that fails for the intended reason;
-- an explicit failure code when any required entry is absent or unstable.
+- controls that establish the instrument's reach before it is used on the target: a known valid case and a negative control that fails for the intended reason, including a known nonzero signal when a null result is interpreted;
+- an explicit verification outcome and the applicable reason or failure code when a required condition cannot be established.
+
+New numerical instantiations use normalized wake-speed units with $c_f=1$, where $c_f$ is the primitive wake propagation speed. The mapping to laboratory units is a separate declaration, not a derivation of a measured constant. An inapplicable check requires a scope reason; an unperformed required check cannot be treated as passed. A finite simulation also declares its spatial domain and history coverage: it does not contain the complete universe state.
+
+Verification is incomplete when a required record or calculation is unavailable, and failed when a completed check supplies a contradiction or a resolved tolerance miss. An unresolved refinement sequence leaves the limit claim incomplete; an established divergent limit refutes a claim requiring that limit. Both incomplete and failed verification leave the dependent claim Not advanced. The [failure criteria](../../../../markdown/aaa/validation/failure-criteria.md) distinguish these dispositions from a proof that no admissible shared record can satisfy the required constraints.
 
 Cross-integrator agreement is implementation-parity evidence. A replay of a saved record proves deterministic reproduction. Neither is an independent oracle for the mathematical rule being implemented.
 
 #### Preferred-Frame Leakage as One Protocol Family
 
-The absolute-frame question is one important family inside the broader validation chapter. The substrate uses absolute time and the Euclidean void, while Physical Observers must recover Lorentz-compatible clock, ruler, and signal behavior to the measured precision.
+The absolute-frame question is one important family inside the broader validation chapter. [Absolute time](../../../../markdown/aaa/foundations/absolute-time.md) supplies a universal ordering parameter, and the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) supplies fixed three-dimensional geometry. A [Physical Observer](../../../../markdown/aaa/spacetime/observer-framework.md) is an apparatus built from assemblies, accessing measurements through its own clocks, rulers, and signals. Lorentz recovery means deriving the tested special-relativistic comparisons of moving clocks, lengths, and signal timing from those assemblies. Preferred-frame leakage is an observable dependence on motion relative to the substrate rest frame beyond the applicable experimental bound. The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the ambient population of neutral assemblies; its flow is distinct from the rest frame of the fixed container.
 
 ##### Complete-State and Observational Proxies
 
-- **Complete-state diagnostic:** The $\mathbb{U}_{\text{now}}$ universe-state perspective can use the transmitter-tagged wake-concentricity diagnostic in [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md). This is complete-state bookkeeping, not an operational laboratory protocol for Physical Observers.
-- **CMB rest-frame proxy:** The CMB dipole-free frame is an empirical large-scale proxy for Noether sea rest. It is not an identification of the Euclidean-void rest frame.
-- **Protocol:** Compare simulation outputs with CMB-frame summaries only as a large-scale consistency check for the declared Noether sea state and cosmological transport record.
+- **Complete-state diagnostic:** The $\mathbb{U}_{\text{now}}$ universe state includes the histories required for delayed evolution. With transmitter identity, emission times, and sufficiently resolved wake geometry, the diagnostic in [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md) reconstructs emission centers and tests their concentricity, meaning whether the centers coincide. Its data assumptions belong to complete-state bookkeeping; they are not supplied by ordinary laboratory measurements.
+- **CMB rest-frame proxy:** The cosmic microwave background (CMB) supplies an observer-level radiation-frame comparison through its dipole, the leading opposite-direction temperature variation. Interpreting the dipole-free frame as Noether sea rest is a hypothesis requiring a source, transport, and observer-response map. It identifies neither local sea flow nor the Euclidean-void rest frame by itself; the [CMB frame-consistency discussion](../../../../markdown/aaa/cosmology/CMB.md#cmb-dipole-and-matter-dipole-gate) states the additional burden.
+- **Protocol:** Compare synthetic observer records with CMB-frame summaries only through that declared map and its uncertainties. Agreement supports the tested large-scale consistency claim, not an independent measurement of the substrate or sea rest frame.
 
 ##### Null Tests for Absolute-Frame Group velocity
 
-- **Protocol:** Run a simulated Michelson-Morley or resonator experiment through a declared Noether sea state.
-- **Success criterion:** The observer-level interference or frequency record remains invariant, within the predeclared leakage bound, as the apparatus rotates relative to the Euclidean-void frame.
-- **Mechanism target:** Verify whether the retained assembly branch produces the required $\gamma^{-1}$ ruler deformation and matching clock-rate response. The contraction is not assumed merely because the target has Lorentz form.
-- **Failure condition:** A residual orientation or boost dependence above the applicable bound rejects the proposed hiding mechanism.
+- **Protocol:** A Michelson-Morley comparison measures interference between light sent along differently oriented round trips; a resonator comparison measures frequencies selected by physical cavities. Simulate a matched family with a fixed preparation rule, apparatus definition, calibration, and model of nuisance effects such as temperature changes. Declare the apparatus center used to define group velocity, the velocity relative to the Euclidean-void frame, and the local Noether sea flow. Rotations are compared with a physical direction such as nonzero group velocity or medium anisotropy, not with arbitrarily labeled coordinate axes. Different group velocities require a separate boost comparison; a rotation test alone does not cover it.
+- **Success criterion:** The declared round-trip phase difference or frequency ratio has no excess orientation or boost dependence beyond the predeclared bound, with numerical and measurement uncertainty resolved. A benchmark must identify the observable, reference channel, experimental source, regime, and uncertainty convention; a bound on inferred propagation anisotropy is not automatically a bound on every frequency record.
+- **Mechanism target:** In a homogeneous reference cell, [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) requires the longitudinal ruler response relative to its rest reference and the normalized clock-rate response to approach $1/\gamma_{\mathrm{eff}}$. Here $\gamma_{\mathrm{eff}}=(1-\beta_{\mathrm{eff}}^2)^{-1/2}$ and $\beta_{\mathrm{eff}}=v/c_{\mathrm{eff}}$, with $v$ the declared assembly group speed relative to the reference medium and $c_{\mathrm{eff}}$ its dressed clock-and-ruler channel speed, for $0\le v<c_{\mathrm{eff}}$. The clock rate is $d\tau/dt_{\mathrm{eff}}$, where $\tau$ is a physical clock readout and $t_{\mathrm{eff}}$ is the calibrated observer coordinate time. The substrate-to-observer map, rest normalization, and relation of medium flow to the absolute frame must be stated. The same history must also supply photon transport; equality of its speed with $c_{\mathrm{eff}}$ is a recovery condition. These are conditional targets, not deformations inserted into prescribed trajectories as evidence.
+- **Failure condition:** A resolved excess residual rejects the proposed hiding mechanism for the tested family and conditions. Missing apparatus response or insufficient sensitivity leaves its verification incomplete. Neither outcome alone proves a universal rejection across untested branches.
 
 ##### Precision Atomic Comparison
 
-- **Protocol:** Compare the derived hydrogen $1S$-$2S$ observer record for apparatus histories with different orientations and group velocities relative to the Euclidean-void frame.
-- **Success criterion:** The same unit map, photon branch, assembly deformation, and clock channel keep sidereal variation below the bound recorded in the [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md).
-- **Failure condition:** Per-run retuning of the Noether sea state, line map, or clock calibration is a hidden-tuning failure rather than a successful null result.
+- **Protocol:** Use the hydrogen $1S$-$2S$ transition, a frequency associated with the ground and first excited S states, as an observer-level recovery target. For matched apparatus histories with different orientations and group velocities, derive its measured frequency relative to a declared reference clock or transition. The hydrogen and reference-channel responses both belong to the prediction; calling the line derived does not supply either response.
+- **Success criterion:** The same unit map, photon transport, assembly response, and calibration rule keep the predicted frequency-ratio modulation within the applicable bound. Sidereal variation means modulation over Earth's rotation relative to the stars. The [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) routes the comparison, but its generic clock bound is not automatically a hydrogen $1S$-$2S$ limit: the actual reference, source, protocol, and sensitivity must match. A missing channel-specific comparison leaves this test unevaluated.
+- **Failure condition:** Independently adjusting sea response, line mapping, or calibration after inspecting each residual is hidden tuning. State changes predicted by one fixed constitutive law, or measured environmental inputs handled by a predeclared nuisance model, are legitimate variations and must retain their provenance. A fit used to set a parameter is reported as calibration, not as independent validation of that parameter's prediction.
 
 #### Reading a Null Result
 
-A null result constrains a declared observable map; it does not show that the underlying absolute frame is absent. Conversely, naming a Noether sea mechanism does not explain the null result until the same retained record produces the clock, ruler, propagation, and apparatus response within tolerance. The decisive object is therefore the shared record and its falsifiable residual, not the verbal compatibility of two pictures.
+A null result constrains a declared observable map only at demonstrated sensitivity. An instrument that always returns zero also returns a null result, which is why a known nonzero control must establish that the analysis can detect the excluded signal. For statistical records, compare the declared distributions or estimators with their uncertainty treatment: equality of means alone does not establish equality of distributions, and two individual outcomes do not establish either. A central residual near zero with an uncertainty interval wider than the claimed bound does not resolve that bound.
+
+Such a result does not show that the underlying absolute frame is absent. Conversely, naming a Noether sea mechanism does not explain a null result until one common dynamical and calibration account produces the clock, ruler, propagation, and apparatus responses within tolerance across the matched histories. A complete-state reconstruction, an analytical benchmark, a simulation check, and empirical recovery each retain their own scope; none confers the others by implication.
 
 ### Architrino SI Base Units
 
-This chapter examines how the modern SI system interfaces with $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to ask which defining constants might be derivable, which remain primitive, and what kinds of constant-relations the theory should eventually explain if its geometric closure program succeeds.
+This chapter examines how the International System of Units (SI) interfaces with Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$. It distinguishes choosing the numerical size of a unit from deriving a physical relationship. A theory can predict a ratio of spectral frequencies after its dynamics are fixed; it cannot determine that a human-defined second must contain a particular chosen number of periods.
+
+The substrate consists of architrinos, point entities carrying polarity and interacting through expanding causal wakes determined by their past paths. They move in the Euclidean void, a fixed three-dimensional space, in absolute time $T$. An assembly is an organized collection of architrinos; the Noether sea is the ambient population of neutral assemblies. Physical clocks and rulers are assembly-level instruments whose readings require a map from this substrate description. These distinctions are developed in [Ontology](../../../../markdown/aaa/foundations/ontology.md).
 
 The required parameter, action, mass, scale, and spectroscopy interfaces are developed in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md), [Energy](../../../../markdown/aaa/dynamics/energy.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md).
 
 #### Executive Summary
 
-The **2019 revision of the SI** redefined all seven base units in terms of **fixed fundamental constants**, eliminating physical artifacts. This is structurally aligned with the goal of $\mathbb{A}\mathbb{A}\mathbb{A}$: deriving observable physics from a minimal set of substrate postulates (Euclidean void, absolute time, primitive architrino polarity-unit magnitude $\epsilon$, field speed $c_f$). The relation $\epsilon\leftrightarrow|e|/6$ is an observer-level calibration target, not a substrate premise.
+The SI revision effective on 20 May 2019 expressed all seven base-unit definitions through seven defining constants and removed the kilogram prototype from the definition of mass. Four units received new defining foundations: the kilogram, ampere, kelvin, and mole. This metrological choice does not assert that all seven constants are ontologically primitive. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is to derive observable relationships from the substrate and its acceleration law, including its coupling $\kappa$. The relation $\epsilon\leftrightarrow|e|/6$ is an observer-level calibration target. The definitions below follow the BIPM's [SI Brochure](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9.pdf), ninth edition, §2.3.1.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ program can potentially:
-1. **Derive** the numerical values of SI-defining constants from architrino geometry
-2. **Explain** why certain constants are fundamental while others are emergent
-3. **Predict** relationships between constants that appear independent in the Standard Model
-4. **Replace** several SI constants with a smaller set of architrino parameters
+
+1. Derive physical frequency, action, charge, and energy relationships after declaring their conversion to observer units.
+2. Distinguish primitive dynamical inputs, assembly outputs, medium-state dependence, and unit conventions.
+3. Predict dimensionless relationships using the same dynamics and calibrations across observables.
+4. Determine whether fewer independent physical inputs suffice; this does not replace the SI's conventional definitions.
 
 ---
 
@@ -62431,7 +62454,7 @@ The **new SI** defines all units via **exact values** of seven constants:
 
 | Constant | Symbol | Exact Value (by definition) | Defines Unit |
 |----------|--------|----------------------------|--------------|
-| Hyperfine transition of Cs-133 | $\Delta \nu_{\text{Cs}}$ | 9,192,631,770 Hz | second (s) |
+| Unperturbed ground-state hyperfine frequency of Cs-133 | $\Delta \nu_{\text{Cs}}$ | 9,192,631,770 Hz | second (s) |
 | Speed of light in vacuum | $c$ | 299,792,458 m/s | meter (m) |
 | Planck constant | $h$ | $6.62607015 \times 10^{-34}$ J·s | kilogram (kg) |
 | Elementary charge | $e$ | $1.602176634 \times 10^{-19}$ C | ampere (A) |
@@ -62447,12 +62470,12 @@ The 2022 CODATA constants tables add a second layer to the SI discussion. Exact 
 
 | Class | Examples | How $\mathbb{A}\mathbb{A}\mathbb{A}$ should use it |
 | --- | --- | --- |
-| Exact SI definitions | $c$, $h$, $e$, $k_B$, $N_A$, $\Delta\nu_{\mathrm{Cs}}$ | Treat as unit conventions and observer-level target scales. A derivation must recover why the same convention is stable across clocks, rulers, charges, action records, and thermodynamic records. |
+| Exact SI definitions | $c$, $h$, $e$, $k_B$, $N_A$, $\Delta\nu_{\mathrm{Cs}}$, $K_{\text{cd}}$ | Treat as unit conventions. Test the physical relationships and repeatable realizations that connect clocks, rulers, charges, action records, and thermodynamic records under those conventions. |
 | Adjusted dimensionless or near-direct benchmarks | $\alpha$, $\alpha^{-1}$, $m_p/m_e$, magnetic-moment ratios | Use as high-pressure residual rows because they are mostly independent of arbitrary unit scale. |
 | Adjusted dimensional benchmarks | $G$, $m_e c^2$, $m_p c^2$, $m_n c^2$, $m_\mu c^2$, $R_\infty$ | Use only after the substrate-to-observer unit map is declared. These rows test mass, gravity, and spectral closure, but they cannot be inserted as primitive inputs. |
 | Derived conversion factors | $\ell_P$, $m_P$, $t_P$, electron volt relationships, atomic-mass relationships | Use as consistency checks, not independent constraints, because their uncertainties inherit the constants used to construct them. |
 
-The current numerical anchors are severe in different ways. The fine-structure constant is
+For the stated CODATA 2022 comparison, the fine-structure constant, the dimensionless electromagnetic coupling, is
 $$
 \alpha=7.2973525643\times10^{-3},
 \qquad
@@ -62470,7 +62493,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3ba8046cca4fb71f)
 
-Thus $\alpha$ is a much sharper dimensionless target than $G$, while Planck-unit rows such as $\ell_P$, $m_P$, and $t_P$ inherit roughly half of the relative uncertainty of $G$ through square-root dependence. A Planck-alignment claim should therefore not over-read the apparent precision of derived Planck-unit numbers.
+Here $u_r(X)=u(X)/|X|$ is relative standard uncertainty and $u(X)$ is the quoted standard uncertainty. The displayed approximations use the rounded uncertainties $u(\alpha)=1.1\times10^{-12}$ and $u(G)=1.5\times10^{-15}\,\mathrm{m^3\,kg^{-1}\,s^{-2}}$ from the [CODATA 2022 table](https://physics.nist.gov/cuu/pdf/wall_2022.pdf). Thus $\alpha$ is a much sharper relative-precision target; $G$ is dimensional and additionally requires a unit map. The Planck length $\ell_P$, mass $m_P$, and time $t_P$ depend on $G$ to powers $1/2$, $-1/2$, and $1/2$. Their relative standard uncertainties are approximately $u_r(G)/2$, since $h$ and $c$ are exact in SI. These derived quantities do not add independent evidence to the constants from which they are calculated.
 
 The standard uncertainty convention matters for scoring. For a measured or adjusted row $X$, use
 $$
@@ -62481,7 +62504,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8086133e73d9fc7c)
 
-when the same observable has been derived from the same record. For exact SI rows, do not form a false zero-uncertainty residual; instead test whether the unit map and the adjusted rows that depend on it close simultaneously.
+when the same observable and unit map have been specified. This is a residual measured in benchmark uncertainty units, not automatically a statistical significance. It is a standard-score comparison only when prediction uncertainty is negligible and the benchmark was not used to tune the prediction. Otherwise the variance of the difference is $u_{\mathrm{pred}}^2+u_{\mathrm{bench}}^2-2\operatorname{Cov}(X_{\mathrm{pred}},X_{\mathrm{bench}})$, with prediction and benchmark covariance declared; correlated benchmark sets require a joint covariance treatment. For exact SI rows, do not divide by zero uncertainty. Test the adjusted observables under the same unit map instead.
 
 ---
 
@@ -62490,36 +62513,39 @@ when the same observable has been derived from the same record. For exact SI row
 In this framework, the candidate substrate-level quantities are:
 
 ##### Category A: Ontological Substrate
-- **Euclidean void** (no intrinsic structure)
-- **Absolute time** $t$ (linear, forward-only parameter)
-- **Field propagation speed** $c_f$ (primitive propagation speed for causal wakes)
+
+- **Euclidean void**, with its fixed Euclidean metric and no material contents supplied by the container itself
+- **Absolute time** $T$ (continuous, oriented parameter)
+- **Wake propagation speed** $c_f$ (primitive propagation speed relative to the Euclidean-void rest frame)
 
 ##### Category B: Fundamental Entity
+
 - **Architrino polarity-unit magnitude** $\epsilon$, with observer calibration target $|e|=6\epsilon$
-- **Causal wake interaction kernel** (inverse-square line-of-action weighting modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}$ over causal wake surfaces, with regularized coincidence handling)
+- **Causal wake acceleration kernel**, with coupling $\kappa>0$, inverse-square line-of-action weighting, and dimensionless transmitter-side weight $W^{\mathrm{acc}}=c_f/|D_t|$, where $D_t$ measures emission-root transversality. It applies to admitted delayed roots at positive separation; a regularization does not by itself supply physical continuation through coincidence. The [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) owns that boundary.
 
 ##### Category C: Assembly Geometry (Emergent but Calculable)
 
-In this section `coincident-midpoint orthogonal-axis braid` means only the prescribed orthogonal-axis three-binary member with persistent binary indices, independently assignable positive radii and frequencies, mutually orthogonal axes at the near-rest endpoint, and axes that converge toward the group-translation direction along $\lambda_A$. Axial half-separations, transverse orbit radii, phases, and circulation remain explicit binary coordinates. None of the unit, particle, quantization, stability, or retention claims below follows from that definition; each remains a derivation target and fails if the same evolved record does not retain the declared coordinates and required ledger rows.
+In this section a coincident-midpoint orthogonal-axis braid is a prescribed six-worldline configuration in three neutral binaries with a common midpoint, zero axial half-separations, mutually orthogonal axes at the declared reference endpoint, and persistent binary indices. Its positive radii and frequencies, phases, and circulation are explicit coordinates. A deformation toward aligned axes requires a declared flattening operator; the label does not establish that such a deformation occurs dynamically. No radius ordering, particle identity, quantization, stability, or persistence follows from the label; the [braid taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md) distinguishes prescribed coordinates from physical realization.
 
 - **coincident-midpoint orthogonal-axis braid indexed radius tuple** $(R_1,R_2,R_3)$, with no radius order encoded by the indices
-- **Maximum curvature binary radius** $r_{\text{max-curv}}$ (where $v \gg c_f$)
-- **Reference Noether braid density** $\rho_{\text{NS},0}$ (the normalization scale for $n(\mathbf X,T)$)
+- **Candidate maximum-curvature binary radius** $r_{\text{max-curv}}$, defined only if a specified branch and curvature diagnostic select it; super-wake-speed motion alone selects no radius or stable branch
+- **Reference Noether braid number density** $\rho_{\text{NS},0}$, with units of inverse volume, used to normalize $n(\mathbf X,T)=\rho_{\text{NS}}(\mathbf X,T)/\rho_{\text{NS},0}$; this is a state normalization, not a universal geometric constant
 
-**Everything else** (masses, coupling constants, cosmological parameters) should be **derivable** from these via:
+Masses, effective couplings, and cosmological observables require additional derivations from declared histories and medium conditions through:
+
 - Self-hit dynamics (non-Markovian evolution)
-- coincident-midpoint orthogonal-axis braid stability conditions (quantization)
+- Assembly existence and stability analysis, followed separately by an action and statistics recovery
 - Noether sea coupling (emergent metric, inertia)
 
 ##### Primitive-to-Derived Measure Ladder
 
 For the units program, it is useful to distinguish primitive measures from derived ones rather than treating the SI list as a flat catalog.
 
-- **Primitive substrate inputs:** field speed $c_f$, architrino polarity-unit magnitude $\epsilon$, absolute time ordering, and the geometric closure scales that belong to stable assemblies. The effective charge convention $|e|=6\epsilon$ belongs to the later observer map.
-- **First-order derived measures:** characteristic time, length, action, and energy scales attached to a single stable closure problem.
-- **Second-order derived measures:** area, volume, velocity ratios, densities, currents, and transport coefficients built from the first-order scales.
+- **Primitive dynamics and scale conventions:** $c_f$, $\epsilon$, the coupling $\kappa$, absolute time, and the Euclidean metric. The [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md#layer-i-two-body-scale-closure) gives $[\kappa]=\mathrm L^3\mathrm T^{-2}\mathrm Q^{-2}$ for polarity dimension $\mathrm Q$, so $R_*=\kappa\epsilon^2/c_f^2$ and $T_*=R_*/c_f$ are natural length and time units. These are dimensional scales, not established bound-orbit radii or periods.
+- **Conditional assembly measures:** a realized branch can supply dimensionless radii, periods, and specific-action coefficients in those units. Multiplication by a declared conversion $\mu_{\text{arch}}$ supplies conventional mass-based action or energy units without assigning mass to a primitive architrino.
+- **Compound measures:** area, volume, velocity ratios, densities, and currents can be expressed in the resulting units. Transport coefficients require constitutive dynamics as well as dimensional bookkeeping.
 
-This ladder matters because it fixes the order of derivation. The program should first identify the minimal closure scales of the substrate and only then build compound observer-level units from them. On this reading, many SI constants are not peers inside the ontology; they are bookkeeping conventions sitting at different heights in the derivation tree.
+The dimensionally derived scales fix the units in which a branch problem can be posed; they do not solve that problem. Boundary histories and the Noether sea state remain inputs to any claimed assembly result. All new substrate numerical work uses normalized wake-speed units $c_f=1$. Exact SI values quoted here belong to observer metrology and do not assign an SI numerical value to $c_f$.
 
 ---
 
@@ -62527,7 +62553,7 @@ This ladder matters because it fixes the order of derivation. The program should
 
 ##### The Second (Time Unit) — $\Delta \nu_{\text{Cs}}$
 
-**SI Definition:** The second is defined by the hyperfine transition frequency of Cesium-133:
+**SI Definition:** The second uses the unperturbed ground-state hyperfine transition frequency of caesium-133. Hyperfine splitting is the small separation between atomic energy levels associated with nuclear and electronic magnetic coupling:
 $$
 1 \text{ s} = \frac{9,192,631,770}{\Delta \nu_{\text{Cs}}}
 $$
@@ -62536,29 +62562,33 @@ $$
 
 **Architrino Interpretation:**
 
-The hyperfine transition is caused by:
-- Interaction between the **electron assembly's candidate braid scaffold** and the nucleus; the source record used here assigns the magnetic-moment row to binary 2 at $v_2 \approx c_f$, but neither the electron identity nor this role follows from the taxonomy
-- The **nuclear spin** (magnetic moment from proton/neutron records with an explicitly assigned binary-2 channel)
+The observer-level magnetic coupling must be recovered from the complete atomic assembly and its environment. A proposed allocation assigns an electronic magnetic-moment contribution to binary 2 near the wake speed and a nuclear contribution to constituent assemblies. No specific evolved Cs source record is supplied here, so this allocation remains a hypothesis. An index does not determine a magnetic moment.
 
 This is an atomic-clock validation target, not a closed spin derivation. The electron magnetic moment, nuclear spin ledger, and hyperfine coupling must inherit [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), and [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md) before $\Delta \nu_{\text{Cs}}$ can be claimed from first principles.
 
 **What we must derive:**
 $$
-\Delta \nu_{\text{Cs}} = f(\text{candidate indexed braid geometry, } c_f, \epsilon, \text{ Noether sea coupling})
+\Delta \nu_{\text{Cs}}
+\stackrel{\text{target}}{=}
+\frac{\widehat{\nu}_{\mathrm{Cs}}(\mathcal H_{\mathrm{Cs}},\theta_{\mathrm{sea}})}{a_{\mathrm{clk}}T_*}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d7d54a608eba2015)
 
-**Challenge:** The frequency is determined by:
-- The source record's binary-2 orbital frequency (sets the candidate magnetic-moment row)
-- The coupling strength between electron and atomic nucleus (mediated by Noether sea response, with photon exchange as the observer-level channel)
-- The nuclear configuration (133 nucleons = complex assembly)
+Here $\mathcal H_{\mathrm{Cs}}$ denotes a specified dimensionless atomic path history, $\theta_{\mathrm{sea}}$ its fixed medium conditions, and $\widehat{\nu}_{\mathrm{Cs}}$ the derived number of transition cycles per duration $T_*$. The locally constant clock factor $a_{\mathrm{clk}}=d\tau/dT>0$ converts absolute time to a physical clock readout $\tau$. For a varying clock factor, periods require integrating $d\tau=a_{\mathrm{clk}}(T)\,dT$. Neither the transition frequency nor that clock map is supplied by naming the geometry.
+
+**Challenge:** A derivation must determine:
+
+- The complete electronic magnetic response, rather than one prescribed orbital frequency alone
+- The effective coupling between electronic and nuclear assemblies
+- The full neutral atom: its 55 electrons and its Cs-133 nucleus containing 55 protons and 78 neutrons
 
 **Pathway:**
-1. Calculate the electron source record's binary-2 orbital frequency $\omega_2$ for the Cs ground state
-2. Calculate the effective comparison magnetic moment $\mu = \frac{\epsilon\omega_2r_2^2}{2}$ for the declared circular-current analogue
-3. Calculate the nuclear spin coupling via Noether sea-mediated potential exchange
-4. Derive the splitting frequency
+
+1. Specify an atomic candidate and derive its electronic and nuclear response.
+2. For a standard circular-current comparison only, a signed effective charge $Q$ moving at angular frequency $\omega_{\mathrm{eff}}$ on radius $r_{\mathrm{eff}}$ has axial moment $\mu_{\mathrm{loop}}=Q\omega_{\mathrm{eff}}r_{\mathrm{eff}}^2/2$: current $Q\omega_{\mathrm{eff}}/(2\pi)$ times loop area $\pi r_{\mathrm{eff}}^2$. A composite moment needs the signed sum of its contributions and the map to these effective variables. The formula does not turn a primitive polarity into a measured magnetic moment.
+3. Derive the hyperfine energy separation and its spectral readout under the same action and clock maps.
+4. Compare a frequency ratio to another transition after calibration; reproducing the defining Cs number in Cs-defined seconds is not an independent test.
 
 ---
 
@@ -62566,7 +62596,7 @@ $$
 
 **SI Definition:**
 $$
-1 \text{ m} = \frac{c}{299,792,458} \text{ seconds}
+1 \mathrm{m} = \frac{c}{299\,792\,458}\,\mathrm{s}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f61b3d6b23fd83d3)
@@ -62575,9 +62605,9 @@ where $c$ is the speed of light.
 
 **Architrino Interpretation:**
 
-The speed of light $c$ is **not fundamental**. It is the low-gradient operational speed of photon assemblies, modeled as coaxial contra-rotating polarity-conjugate planar pairs, propagating through the Noether sea.
+The SI constant $c$ belongs to the operational light channel. The substrate has a separately defined wake speed $c_f$. The proposed photon carrier is a coaxial contra-rotating polarity-conjugate planar pair propagating through the Noether sea; its existence and photon behavior require dynamical and observational recovery.
 
-**Key relation:**
+**Conditional photon-channel parameterization:**
 $$
 c_\gamma(\mathbf X,T)=\frac{c_f}{\chi_\gamma(\mathbf X,T)},
 \qquad
@@ -62586,21 +62616,28 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1a2f168d268128da)
 
-In the low-energy limit (flat spacetime, weak Noether sea gradients):
+Here $c_\gamma$ is the candidate group speed measured in Euclidean distance per absolute time, and $\chi_\gamma>0$ is a dimensionless response factor. The function $f_\gamma$ is undetermined; density and normalized density are related, not independent inputs. Weak spatial gradients alone do not imply $\chi_\gamma=1$: a spatially constant factor of 2 would still give $c_\gamma=c_f/2$.
+
+If the medium response tends to unity and the clock/ruler maps identify the speed scales, the proposed weak-homogeneous matching is
 $$
-c \approx c_f \quad (\text{small corrections from Noether sea refraction})
+c_{\mathrm{eff}}=c
+\stackrel{\text{target}}{\approx}c_f
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-aaa74c94b6bb625d)
 
+Here $c_{\mathrm{eff}}$ denotes the photon speed after mapping to physical clocks and rulers. Locally in one direction, write $dx_{\mathrm{eff}}=b_{\mathrm{rul}}\,dX$ and $d\tau=a_{\mathrm{clk}}\,dT$ with positive ruler and clock factors. Then $c_{\mathrm{eff}}=(b_{\mathrm{rul}}/a_{\mathrm{clk}})c_\gamma$. A comparison of $c$ with $c_f$ therefore requires these factors as well as photon dynamics.
+
 **What we must show:**
-- Photons are coaxial contra-rotating polarity-conjugate planar pairs whose bosonic/statistical behavior is recovered as a downstream closure target
-- Their propagation through the Noether sea is **not instantaneous** but limited by $c_f$
-- The effective speed $c$ measured by operational observers (made of assemblies) matches $c_f$ within experimental precision (~$10^{-17}$ for Lorentz tests)
+
+- The candidate planar pair exists as an assembly and recovers photon propagation, polarization, and statistics.
+- Any photon speed bound follows from its dynamics and the declared response. The parameterization bounds $c_\gamma\le c_f$ only with the additional condition $\chi_\gamma\ge1$.
+- Predicted clock and signal comparisons satisfy a specified experiment's observable and uncertainty. Lorentz tests constrain particular orientation, boost, dispersion, or clock effects; an unspecified $10^{-17}$ bound cannot be assigned to $|c/c_f-1|$.
 
 **Candidate deviation channels:**
-- In strong gravitational fields (dense Noether sea): $c_\gamma < c_f$ in the photon channel (gravitational lensing, Shapiro delay)
-- At Planck scales (Noether sea microstructure resolves): $c_\gamma \neq c_f$ in the photon channel (Lorentz violation signatures)
+
+- In gravitational environments, changes in the Noether sea and clock/ruler maps are candidate sources of altered path bending and travel time. Deriving them requires constitutive response, not density alone.
+- Microscopic dispersion is a possible test of a derived medium scale. No equality between that scale and the Planck length, nor any observable Lorentz violation, follows from the unit definitions.
 
 ---
 
@@ -62613,13 +62650,15 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-31393e5ede6a895d)
 
-via the Kibble balance (relating mechanical power to electromagnetic power).
+One realization uses a Kibble balance, which compares mechanical and electrical power. The defining relation is independent of that particular instrument.
 
 **Architrino Interpretation:**
 
 The Planck constant $h$ is the observer-level benchmark for a quantum of **closed-cycle action**. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation target is to recover this scale from coincident-midpoint orthogonal-axis braid geometry and the lower recordable basin-measure scale, not to assume it as a primitive input. Because the Master Equation is acceleration-first, a branch calculation first produces a specific-action scale. The optional universal bookkeeping constant $\mu_{\text{arch}}$ converts that scale to action units without assigning primitive mass to an architrino:
 $$
-\mu_{\text{arch}}I_3=n\hbar=n\frac{h}{2\pi}.
+\mu_{\text{arch}}I_3
+\stackrel{\text{target}}{=}
+N_3\hbar=N_3\frac{h}{2\pi}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-781f2ac09c5affe0)
@@ -62637,12 +62676,15 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-30d92a90f0b0e032)
 
-where $\kappa\epsilon^2/c_f$ has units of specific action and $\mathcal J_3$ is a dimensionless branch output built from the declared indexed geometry and causal-root record. The normalization $\mu_{\text{arch}}$ must be fixed before comparison with $h$. This is a candidate internal braid action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state. The particle assignment and action role are source-record hypotheses, not meanings of index 3 or of a coincident-midpoint orthogonal-axis braid taxonomy label.
+Here $I_3$ is a candidate specific action per radian, with dimensions $\mathrm L^2\mathrm T^{-1}$, and $N_3$ is a proposed nonnegative integer excitation label, distinct from the normalized sea density $n$. The factor $\kappa\epsilon^2/c_f$ has the same specific-action dimensions. In the hypothesis for $\hbar$, $\mathcal J_3$ denotes the dimensionless action increment per excitation; for a state with $N_3$ increments, $I_3=N_3(\kappa\epsilon^2/c_f)\mathcal J_3$. A branch-dependent action value is not automatically a universal quantum.
+
+The conversion $\mu_{\text{arch}}$ has mass dimensions and must be fixed before testing independent action-sensitive observables. Choosing it to match $h$ calibrates the action unit and cannot also count as predicting $h$. The internal label $N_3$ is not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state. The particle assignment and action role remain hypotheses.
 
 **Derivation pathway:**
-1. Compute $\mathcal J_3$ from the retained hydrogen source record, including its indexed geometry, acceleration-moment integral, and wake-boundary contribution.
-2. Show that closed-cycle action quantization ($\oint p\,dq = n h$) and the equivalent radian-normalized relation ($I=n\hbar$) arise from geometric quantization of the internal binary orbit.
-3. Declare $\mu_{\text{arch}}$ and the units of every action-ledger channel before comparing the resulting observer-level action with $h$.
+
+1. Establish a hydrogen-like assembly record and derive an action functional compatible with its dynamics, including any necessary history and wake-boundary contributions.
+2. Define the specific radian action by $I_3=(2\pi)^{-1}\oint p_{\mathrm{sp},3}\,dq_3$ only when a valid reduced canonical description exists; $q_3$ is its generalized coordinate and $p_{\mathrm{sp},3}$ its specific conjugate momentum. Then cycle action is $2\pi\mu_{\text{arch}}I_3$. The condition that it take integer multiples of $h$ is a quantization target, not a consequence of periodic motion or stability.
+3. Derive a universal increment $\mathcal J_3$ and test it across independently selected states. Quantum comparison rules can contain boundary or phase offsets; an unqualified integer-cycle formula is not a universal quantum theorem.
 
 **Target relation:**
 $$
@@ -62661,14 +62703,14 @@ $$
 
 **SI Definition:**
 $$
-1 \text{ A} = \frac{e}{1.602176634 \times 10^{-19}} \text{ C/s}
+1 \mathrm{A} = \frac{e}{1.602176634 \times 10^{-19}}\,\mathrm{s}^{-1}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0ea5b1cad3404774)
 
 **Architrino Interpretation:**
 
-The elementary charge magnitude is recovered in the observer-level bookkeeping convention:
+The positive elementary charge $e$ sets the SI charge unit. The proposed observer charge calibration is
 $$
 |e| = 6\epsilon
 $$
@@ -62676,9 +62718,10 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-2672169532aa37cf)
 
 **What we must explain:**
-- Why only integer multiples of $\epsilon$ appear in stable observer-level electric-charge inventories (charge quantization)
-- Why we observe $0, \pm |e|/3, \pm 2|e|/3, \pm |e|$ in nature, never an isolated $\pm\epsilon$ polarity unit
-- Candidate answer: **confinement or dynamical suppression**. The working particle map binds the $\epsilon$ polarity units in candidate quark or lepton braid scaffolds. Isolated $\pm\epsilon$ polarity units are not observed as stable observer-level particles, so the braid assignment and suppression mechanism remain closure targets rather than completed theorems.
+
+- Why the proposed polarity inventory maps to the observed charge spectrum under one common calibration.
+- Why quark charge assignments are $\pm e/3$ or $\pm2e/3$ within confined systems, while familiar isolated charged particles and ions carry integer multiples of $e$, including multiples greater than one. Fractional quark charges are not a catalog of isolated particles.
+- How dynamical binding or suppression excludes stable isolated $e/6$ carriers in the declared observational regime. Integer polarity counting alone permits such a carrier; choosing $e=6\epsilon$ neither establishes the observed spectrum nor derives confinement.
 
 ---
 
@@ -62695,14 +62738,14 @@ $$
 
 Boltzmann's constant $k_B$ is the conversion factor between **energy** and **temperature**. In $\mathbb{A}\mathbb{A}\mathbb{A}$, temperature is not the internal energy of one Noether braid or the total energy stored in the Noether sea. It is an effective ensemble variable admitted when a declared coarse-graining supplies an accessible energy ledger, a measure over retained states, a fixed inventory or access variable, and a local equilibrium or thermalization condition. The general rule is the same-record entropy relation developed in [Entropy](../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable).
 
-**Thermalized-ensemble limit:** In a thermalized Noether sea or material ensemble whose accessible degrees of freedom are quadratic, the standard equipartition comparison should be recovered:
+**Thermalized-ensemble limit:** In the classical equilibrium comparison, each independent accessible quadratic energy term has the mean
 $$
-\langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T_{\mathrm{temp}}
+\langle E_{\mathrm{quad},j} \rangle = \frac{1}{2} k_B T_{\mathrm{temp}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-727378deccb8f892)
 
-For a neutral Noether braid assembly in the Noether sea, a six-channel comparison is available only after the three translational and three rotational channels have been shown to be accessible thermalized modes of the retained ensemble. In that special limit,
+Here $j$ indexes one quadratic term, not the total kinetic energy of an assembly. The comparison requires a normalizable equilibrium measure and negligible quantum freezing of the selected modes. For a neutral Noether braid assembly in the Noether sea, a six-channel comparison is available only after the three translational and three rotational channels have been shown to be independent accessible thermalized modes. In that special limit,
 
 $$
 \langle E_{\mathrm{acc}} \rangle = 3 k_B T_{\mathrm{temp}}
@@ -62710,16 +62753,23 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7feeee8f66e8b549)
 
-This is a recovery target, not the general definition of temperature. If the energy is shielded, stored as configuration energy, or confined to a non-equilibrium branch, it does not enter the scalar temperature until the declared ensemble measure exposes it.
+Here $E_{\mathrm{acc}}$ is the sum of those six accessible quadratic terms, measured relative to their reference energy. This is a recovery target, not the general definition of temperature. Configuration energy can contribute to equilibrium thermodynamics when it belongs to the accessible ensemble; only energy excluded by the stated measure or unable to equilibrate within the declared window lies outside this temperature account.
 
-**What we must derive:**
+**What we must derive:** The physical energy-temperature relation, under a declared entropy convention, has the effective equilibrium target
 $$
-k_B = f(\text{thermalized ensemble measure, accessible mode energy, } c_f, \theta_{\text{sea}})
+k_B T_{\mathrm{temp}}
+=
+\left[
+\left(\frac{\partial S_*}{\partial E_{\mathrm{acc}}}\right)_{\mathcal V,N_{\mathrm{ent}}}
+\right]^{-1}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-053769453c128364)
 
+Here $S_*=S/k_B$ is dimensionless entropy, $\mathcal V$ is fixed ensemble volume, and $N_{\mathrm{ent}}$ is fixed accessible entity count; all belong to one declared ensemble. The derivative has inverse-energy units and is assumed nonzero. This relation supplies a thermal energy scale. The exact numerical value assigned to $k_B$ fixes the kelvin convention and cannot be derived from a mass and speed alone: those can produce energy, but contain no independent temperature-unit dimension.
+
 **Pathway:**
+
 1. Derive the effective assembly mass or accessible mode-energy scale from coincident-midpoint orthogonal-axis braid dynamics.
 2. Declare the thermalized ensemble window, retained measure, and Noether sea state.
 3. Show that the accessible velocity or mode distribution recovers the Maxwell-Boltzmann or equipartition limit inside that window.
@@ -62727,14 +62777,14 @@ $$
 
 **Derivation target:**
 $$
-\langle \|\mathbf v\|^2\rangle
+\left\langle \|\mathbf v_{\mathrm{eff}}-\mathbf u_{\mathrm{eff}}\|^2\right\rangle
 =
 \frac{3k_B T_{\mathrm{temp}}}{m_{\mathrm{eff}}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-df39b3f7358076e5)
 
-where $m_{\mathrm{eff}}$ is an observer-level effective assembly mass or mode inertia supplied by the same retained record, not a primitive architrino mass.
+Here $\mathbf v_{\mathrm{eff}}$ is the assembly velocity and $\mathbf u_{\mathrm{eff}}=\langle\mathbf v_{\mathrm{eff}}\rangle$ the ensemble's mean group velocity in the same observer chart. Subtracting that mean excludes coherent motion from thermal variance. The relation assumes three classical translational quadratic modes with scalar inertia $m_{\mathrm{eff}}>0$, an observer-level effective assembly mass supplied by the same record, not a primitive architrino mass.
 
 ---
 
@@ -62742,14 +62792,14 @@ where $m_{\mathrm{eff}}$ is an observer-level effective assembly mass or mode in
 
 **SI Definition:**
 $$
-1 \text{ mol} = \frac{N_A}{6.02214076 \times 10^{23}} \text{ entities}
+1 \mathrm{mol} = \frac{6.02214076 \times 10^{23}}{N_A}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6eb9f380eafc80fe)
 
 **Architrino Interpretation:**
 
-Avogadro's constant is **not fundamental**. It's a **unit conversion factor** between atomic mass units (amu) and grams.
+Avogadro's constant converts a dimensionless count of specified entities to amount of substance: $n_{\mathrm{mol}}=N_{\mathrm{ent}}/N_A$. The amount $n_{\mathrm{mol}}$ is distinct from the normalized sea density $n$. A mole of atoms and a mole of molecules contain the same number of their respective specified entities, irrespective of their masses.
 
 **Relation:**
 $$
@@ -62760,10 +62810,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4b4a0af04b5029f5)
 
-where $m_u$ is the unified atomic mass constant and $M_u$ is the molar-mass constant. The proton mass is not one twelfth of the carbon-12 mass.
+Here $m_u$ is the unified atomic mass constant, defined from an unbound carbon-12 atom at rest in its ground state, and $M_u=N_A m_u$ is the molar-mass constant. Since $N_A$ is exact but $m_u$ expressed in kilograms is measured, $M_u$ is measured and is no longer exactly $10^{-3}\,\mathrm{kg\,mol^{-1}}$. The ratio above is a conversion identity, not a derivation of $N_A$ from particle masses. The proton mass is not one twelfth of the carbon-12 mass.
 
 **What we must derive:**
-- The proton mass $m_p$ from candidate braid-based assembly geometry (3 candidate quark scaffolds + gluon wake structure + Noether sea coupling)
+
+- Assembly and atomic masses, including binding contributions, under a fixed mass map. This tests physical mass ratios and molar masses after choosing the mole convention. A proton-mass derivation alone neither fixes the carbon-12 atomic mass nor selects the Avogadro number.
 
 ---
 
@@ -62771,23 +62822,22 @@ where $m_u$ is the unified atomic mass constant and $M_u$ is the molar-mass cons
 
 **SI Definition:**
 $$
-1 \text{ cd} = \frac{683}{K_{\text{cd}}} \text{ lm/W at 540 THz}
+1 \mathrm{cd} = \frac{K_{\text{cd}}}{683}\,\mathrm{W\,sr^{-1}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cf962aafd06dee6e)
 
 **Architrino Interpretation:**
 
-This is a **psychophysical constant**, not a physical one. It relates:
-- Physical power (photons/second)
-- Human perception (brightness)
+At the defining frequency, $K_{\text{cd}}$ relates radiant intensity, power per solid angle in $\mathrm{W\,sr^{-1}}$, to luminous intensity in candelas. A lumen is $\mathrm{cd\,sr}$; the steradian labels solid angle. Thus a monochromatic radiant intensity of $(1/683)\,\mathrm{W\,sr^{-1}}$ corresponds to one candela.
 
-The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), where the human eye is most sensitive.
+Radiant power is energy per time, not photons per time. For monochromatic radiation the standard observer-level relation is $P_{\mathrm{rad}}=h\nu\dot N_\gamma$, where $\nu$ is frequency and $\dot N_\gamma$ is the photon count rate. Photon-energy recovery is an additional assembly-level obligation. The SI wavelength at 540 THz is $c/\nu\approx555.17\,\mathrm{nm}$ in vacuum. Photometry uses a standardized visual response; it does not identify the brightness experienced by each individual observer.
 
 **What we can say:**
-- Photons at 540 THz are planar-mode phase records with $\omega = 2\pi \times 540 \times 10^{12}$ rad/s; assigning that frequency to a specific indexed binary is still a derivation target.
-- The human retina's photoreceptors (assemblies themselves) couple resonantly to this frequency
-- The constant 683 lm/W is **arbitrary**—it's a choice of units based on human biology
+
+- Radiation at 540 THz has observer angular frequency $\omega_{\mathrm{eff}}=2\pi\times540\times10^{12}\,\mathrm{rad\,s^{-1}}$. Assigning that frequency to an internal planar-mode phase or a specific binary requires the clock map and a photon derivation.
+- A retinal-response explanation would require a separate biological and molecular account; the SI definition does not establish resonant coupling to one selected frequency.
+- The exact value 683 fixes a photometric convention with a specified visual-response basis and historical continuity. It is not a new primitive dynamical parameter or a number to derive from braid geometry.
 
 ---
 
@@ -62795,83 +62845,81 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 
 | SI Constant | Status in $\mathbb{A}\mathbb{A}\mathbb{A}$ | Derivation Pathway |
 |-------------|-------------------------------|-------------------|
-| $\Delta \nu_{\text{Cs}}$ | **Derivation target (open)** | Hyperfine splitting from source-record binary-2 magnetic-moment rows |
-| $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_\gamma$ |
-| $h$ | **Derivation target (open)** | Closed-cycle action quantization; source-record binary-3 rotational-action increments in units of $\hbar$; lower recordable basin-measure scale after quantum closure |
-| $e$ | **Recovered observer benchmark** | $|e|=6\epsilon$ after choosing the observer-level electric bookkeeping normalization |
-| $k_B$ | **Derivation target (open)** | Noether sea thermal equilibrium + assembly mass |
-| $N_A$ | **Emergent** | Follows from proton mass derivation |
-| $K_{\text{cd}}$ | **Anthropic** | Human biology; not fundamental physics |
+| $\Delta \nu_{\text{Cs}}$ | **Exact second convention; spectral recovery open** | Full atomic response and clock conversion; binary-2 moment allocation remains a hypothesis |
+| $c$ | **Exact SI convention; propagation recovery open** | Photon dynamics, $\chi_\gamma$, and clock/ruler maps must jointly recover operational speed |
+| $h$ | **Exact action-unit convention; quantization recovery open** | Derive universal action increments and quantum records; the binary-3 allocation remains a hypothesis |
+| $e$ | **Exact SI convention; charge-spectrum recovery open** | $e=6\epsilon$ is a calibration target; realized charge inventories require dynamics |
+| $k_B$ | **Exact temperature-unit convention** | Derive ensemble thermodynamics and thermal energy scales under that convention |
+| $N_A$ | **Exact amount-unit convention** | Converts specified entity count to amount; masses are independent physical targets |
+| $K_{\text{cd}}$ | **Exact photometric convention** | Converts reference radiant intensity to luminous intensity; biological response is a separate subject |
 
 ---
 
 #### Implications: Reducing the SI to Architrino Postulates
 
-If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the seven SI-defining constants with:
+Reduction of physical inputs means deriving more independent observables from fewer specified dynamical quantities. It does not mean deriving the arbitrary sizes of the SI units. The relevant dimensional and physical roles are:
 
 ##### Candidate Substrate Inputs (Architrino SI)
-1. **Architrino polarity-unit magnitude** $\epsilon$ (with observer charge-calibration target $|e|=6\epsilon$)
-2. **Field speed** $c_f$ (replaces $c$)
-3. **coincident-midpoint orthogonal-axis braid geometry parameter** (for example, source-record radius $r_3$ or the maximum-curvature radius) (replaces $h$)
-4. **Neutral Noether braid assembly mass** $m_{\text{NS}}$ (replaces $k_B$ when combined with $c_f$)
 
-**Everything else is intended to be derived after closure:**
-- $|e| = 6\epsilon$
-- $c_{\text{eff}}\to c_f$ in the low-gradient Noether sea limit
-- $h \stackrel{\text{target}}{=} 2\pi\mu_{\text{arch}}(\kappa\epsilon^2/c_f)\mathcal J_3$ for the declared source record after the action-closure derivation, not by definition
-- $k_B = f(m_{\text{NS}}, c_f)$
-- $N_A = f(m_p / m_{\text{NS}})$
-- $\Delta \nu_{\text{Cs}} = f(\text{candidate Cs braid geometry})$
+1. Polarity magnitude $\epsilon$ supplies the substrate polarity unit, subject to a derived observer charge map.
+2. Wake speed $c_f$ and coupling $\kappa$ supply the dimensional scales $R_*$ and $T_*$. Their role in the observer map follows the [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
+3. Dimensionless radii, action increments, and frequency ratios are prospective branch outputs. They cannot be counted as derived while also chosen freely to fit observations.
+4. Neutral-assembly effective mass and medium response are additional outputs to derive. They do not replace $k_B$ or determine the mole convention.
 
-**Result target:** If the closure program succeeds, the seven SI constants reduce to **3-4 fundamental parameters**, with the rest emergent.
+The physical targets are the charge spectrum, operational signal propagation, action increments, thermal response, mass ratios, and spectral ratios. The candidate relation $h \stackrel{\text{target}}{=} 2\pi\mu_{\text{arch}}(\kappa\epsilon^2/c_f)\mathcal J_3$ must distinguish a chosen action calibration from an independently derived increment. Likewise, $\Delta\nu_{\text{Cs}}$ requires a full atomic history and clock conversion, not a geometry label alone.
+
+No count of three or four independent physical parameters is established here. Such a count must include or derive the coupling, constitutive functions, state and boundary conditions, and observer conversions. The dimensional span of $(c_f,\kappa,\epsilon)$ establishes a choice of substrate units, not universal parameter closure.
 
 ---
 
 #### Closure Priorities
 
 ##### Tier 1 (Must Answer)
+
 1. **Derive $h$ from coincident-midpoint orthogonal-axis braid geometry**
-   - Show that the declared binary-3 row yields $\mu_{\text{arch}}I_3=n\hbar$ with $\mu_{\text{arch}}$ fixed before the run.
+   - Establish the proposed binary-3 relation $\mu_{\text{arch}}I_3=N_3\hbar$ with $\mu_{\text{arch}}$ fixed before testing.
    - Compute $\mathcal J_3$ for the hydrogen $1s$ source record.
    - Test the same unit map against adjusted action-sensitive rows such as $\alpha$ and $R_\infty$; the exact SI value of $h$ defines the comparison unit and does not supply a zero-uncertainty physical residual.
 
-2. **Confirm $c = c_f$ within bounds**
-   - Show photon propagation through the Noether sea matches $c$ to $<10^{-17}$
-   - Identify where/how deviations appear (Planck scale, strong gravity)
+2. **Test the photon and observer speed maps**
+   - Derive $c_\gamma$, $\chi_\gamma$, and the clock/ruler conversions for one declared medium state.
+   - Compare predicted observable deviations with a named experiment and its uncertainty, without assigning a universal Lorentz-test bound to $c/c_f$.
 
 3. **Derive particle masses**
-   - First derive the calibration-free $A_0$ reference-attractor packet described in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#reference-attractor-gate).
-   - Use that packet to extract $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, and the baseline $\mathcal{M}_{\text{sea}}^{ab}$ response map before using electron, proton, or charged-lepton data as benchmarks.
+   - Establish an independently supported reference assembly before assigning observed particle masses. The $A_0$ criterion in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#reference-attractor-gate) describes a required reference-attractor result, not an existing assembly.
+   - Derive its internal energy $E_{\text{internal}}(A_0)$, probe-facing exposure fraction $\zeta(A_0)$, and Noether sea response tensor $\mathcal{M}_{\text{sea}}^{ab}$ before using electron, proton, or charged-lepton data as tests.
    - Only after the mass-map gate is fixed, test downstream predictions such as $m_e$, $m_p$, and $m_p/m_e \approx 1836$.
 
 ##### Tier 2 (High Priority)
+
 4. **Calculate $\Delta \nu_{\text{Cs}}$ from first principles**
    - Map Cs atomic structure to Noether braid assemblies
    - Derive hyperfine coupling strength
    - Show that the derived clock row is consistent with adjusted atomic benchmarks under the same second realization; $9{,}192{,}631{,}770\,\mathrm{Hz}$ is the exact SI definition, not an independent fitted datum
 
-5. **Derive $k_B$ from Noether sea thermodynamics**
+5. **Derive thermodynamics under the chosen kelvin convention**
    - Calculate neutral Noether braid assembly effective mass
-   - Show thermal equilibrium reproduces Maxwell-Boltzmann
+   - Recover the Maxwell-Boltzmann distribution in its classical dilute regime; equilibrium alone does not select it for every ensemble.
    - Recover dimensionless and adjusted thermodynamic benchmark rows under the same temperature map; the exact SI value of $k_B$ fixes the kelvin convention
 
 ##### Tier 3 (Refinement)
+
 6. **Map all SM particles to family/member assembly recipes**
    - Create "particle cookbook" (analogous to chemical formulas)
    - Show charge, spin, statistics all emerge from geometry
 
 7. **Explain fine-structure constant $\alpha$**
-   - $\alpha = \frac{e^2}{4\pi \epsilon_0 \hbar c} \approx 1/137$
+   - The standard SI electromagnetic relation is $\alpha=e^2/(4\pi\epsilon_0\hbar c)\approx1/137$, where $\epsilon_0$ is vacuum electric permittivity. In the present SI, $e$, $h$, and $c$ are exact while $\epsilon_0$ inherits experimental uncertainty. Calculating $\epsilon_0$ from an input $\alpha$ and substituting it back does not predict $\alpha$.
    - The low-energy benchmark is a declared observer-level anchor, not a primitive substrate constant:
      $$
      \alpha_{\mathrm{ref}}
      =
-     \alpha(\mu_0;\theta_{\mathrm{sea}})
+     \alpha(\mu_{\mathrm{ref}};\theta_{\mathrm{sea}})
      $$
 
      [View →](../../../../../equation-mapping.html#corpus-equation-3760e7503aee13bf)
 
-     where $\mu_0$ is the reference probe scale and $\theta_{\mathrm{sea}}$ denotes the fixed Noether sea record for the comparison window.
+     Here $\mu_{\mathrm{ref}}$ is the reference probe energy scale and $\theta_{\mathrm{sea}}$ denotes the fixed Noether sea record for the comparison window. The subscript distinguishes this scale from vacuum magnetic permeability.
    - Running with probe scale must be recovered as an effective electromagnetic response:
      $$
      \alpha(\mu;\theta_{\mathrm{sea}})
@@ -62882,31 +62930,23 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 
      [View →](../../../../../equation-mapping.html#corpus-equation-f87315c0fab0a87f)
 
-     where $\mathcal K_{\mathrm{EM}}$ carries wake dressing, shielding exposure, and vacuum-polarization-like response, while $I_\mu$ records the charged thresholds visible at scale $\mu$.
-   - In architrino terms, the fixed part of the low-energy anchor must be derived from $\epsilon$, the geometry-derived action period $h_\vartheta$, the photon-channel speed $c_\gamma$, and the declared Noether sea record; the scale-dependent part belongs in $\mathcal K_{\mathrm{EM}}$ and $I_\mu$, not in hidden retuning of $c_f$, $h_\vartheta$, the observer charge convention, or the Noether sea state.
+     Here $\mu$ is probe energy, $\mathcal K_{\mathrm{EM}}$ is the proposed dimensionless electromagnetic response, and $I_\mu$ records the charged thresholds visible at that scale. The anchor requires $\mathcal K_{\mathrm{EM}}(\mu_{\mathrm{ref}};\theta_{\mathrm{sea}},I_{\mu_{\mathrm{ref}}})=1$. This factorization predicts running only when the response is derived independently; an unspecified function can reproduce any chosen running curve.
+   - In architrino terms, the fixed part of the low-energy anchor requires a derived effective electromagnetic response from $\epsilon$, a candidate action increment $h_\vartheta$, the photon-channel speed $c_\gamma$, and the declared Noether sea record. Here $h_\vartheta$ is an action quantity, not a time period. The scale-dependent part belongs in $\mathcal K_{\mathrm{EM}}$ and $I_\mu$, with the underlying state and conversions held fixed.
    - Derive numerically; explain why $\alpha_{\mathrm{ref}}\ll 1$ and why $\alpha(\mu)$ runs with energy without changing the primitive wake speed or the action-period carrier.
 
 ---
 
 #### Philosophical Payoff
 
-If we succeed, the **2019 SI revision** will be seen as a **halfway house**:
-- It eliminated physical artifacts (kilogram prototype)
-- But it enshrined **7 constants** as fundamental
+The SI provides reproducible conventions without settling the ontology of the quantities measured. A successful substrate theory would explain why different physical realizations agree and predict relationships that remain after arbitrary choices of units are removed.
 
-The **architrino revision** completes the journey:
-- It eliminates **ontological constants** (replacing them with geometric consequences)
-- It reduces the foundation to **3-4 substrate parameters**
-- It makes all measurements traceable to **void geometry + absolute time**
+Lengths measured relative to $R_*$, absolute durations relative to $T_*$, and polarity relative to $\epsilon$ provide a coherent starting description. Mass-based action units, temperatures, amounts, and luminous intensities additionally require their stated observer or metrological conventions. Reducing the independent physical assumptions is an open derivation problem; retaining kilograms, kelvins, and moles for communication does not add primitive substances to the ontology.
 
-**The ultimate goal:** A measurement system where every quantity is expressed in terms of:
-- **Lengths** (in units of $c_f \cdot t$)
-- **Times** (in absolute time units)
-- **Polarity units** (in units of primitive $\epsilon$, with observer calibration target $|e|=6\epsilon$)
+#### Sources
 
-No kilograms, no kelvins, no moles—just **geometry, time, and polarity bookkeeping**, with observer units recovered above that layer.
+The BIPM's *The International System of Units (SI)*, ninth edition (2019), version 4.01 (June 2026), [DOI: 10.59161/AUEZ1291](https://doi.org/10.59161/AUEZ1291), §§2.2–2.3.2, supplies the unit definitions, their conventional status, and the mole and candela interpretations. The chapter paraphrases these definitions and rearranges their quantity equations.
 
-That would be a substrate-level measurement framework, with observer units recovered as derived conventions.
+NIST's [CODATA Recommended Values of the Fundamental Physical Constants: 2022](https://physics.nist.gov/cuu/pdf/wall_2022.pdf) supplies the numerical electromagnetic and gravitational comparison values. They are observer-level benchmarks, not substrate inputs.
 
 ### Parameter Ledger
 

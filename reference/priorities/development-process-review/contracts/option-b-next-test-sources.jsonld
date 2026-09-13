@@ -1,0 +1,703 @@
+{
+  "@context": {
+    "@vocab": "https://architrino.com/knowledge/current-source/",
+    "from": {
+      "@type": "@id"
+    },
+    "to": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "current-source-manifest/v1",
+  "scope": "next-test-identities",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "baseline": {
+    "commit": "c7a00b8116b24f6d70d081c24a503e0aba3366f4",
+    "entry": "tests/support/option-b-next-test-identities.mjs",
+    "authority": "operator-directed-existing-A-transfer"
+  },
+  "revisionId": "initial-graph-transfer",
+  "@graph": [
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "admission",
+      "binding": {
+        "path": "tests/support/option-b-next-test-identities.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "5573a55b3a59d2f821bf2055474d6e8e781543642b9cc967eda9b0c42f92fc4c"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/fixtures/option-b-next-test-identities.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "8cf15a8b478152e5e4a4f67b719e3d41cf16660fad3b679379e8da3363e44b13"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-acceleration-pilot.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f6c-acceleration-pilot.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "87d305f8ed342b9f1ac58ecd82d81441a7f64fdb0bc74809059c3dde3b4cde63"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-evidence-packaging.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f6c-evidence-packaging.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "f3bfc7f0edf552cb34e0b29737e41e5d5f2d87d59f89b7e0db65e1ee4a5048e8"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-bounded-operation-closure.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f6c-bounded-operation-closure.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "24917e11d527b7bce22599b8b1dd4bdb0c79366501a730a8933e03751a5bbf35"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-streamed-leaf-diagnostic.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f6c-streamed-leaf-diagnostic.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "7ce8beece1546bd303fd4f3ae5f808917a9aa39e40b3ca39e7cf99b9569539a9"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-circular-admission.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option-b-circular-admission.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "89e28bab6139e4a75a7086e1d39d3605ec2722748e8865f7bdf3e0ff4dd0b9de"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-f6c-coordinator-process.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option-b-f6c-coordinator-process.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "ead94071d18ecf19683d21648876a9684c854799c9c8302ef440172b2ffea86d"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-f6c-family-admission.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option-b-f6c-family-admission.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "aa9d37d5d9054338d9574bb7f15d5b68a415569c2faa18bd4bf8d3ba6feea58e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-f6c-streamed-preparation.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option-b-f6c-streamed-preparation.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "7de69de681c69584d7834f948f1dc5a0fc5ac56e810b94ebc728955b7fbc33bd"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsubfield-circular-root-pilot.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/subfield-circular-root-pilot.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "3039092eb332b5732d5c95975fe0e80650f082a0f303010c8626b20832fd349e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-next-test-identities.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option-b-next-test-identities.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "4c3d557ebd34ef40ad16395a2af2799812ba7851d190f5aee3cc312805982446"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-manifest.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9097ef3fd3fb2040b48c601d81c184188e8a992aa4464694860d05d0bf76a56e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-transition.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "5ab045757df6c7df7d364f39ba2ac62ec90666e092581b5b3faa08d232dda039"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-impact.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "739ebb899d68378bad5da6571b7774d0641e9f5674cb2a876fdb9dda07e9b31b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/scripts%2Feom%2Fverify-f6c-bounded-operation-closure.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/verify-f6c-bounded-operation-closure.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9887632e2900efb1feecf0dfe24ae5f138e46ba7ab870c56eede66a522e84609"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/package.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "package.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "27bcd57ac634c6c27eb6322201caa0667ac1eae443c02ee2f7998918da054ed7"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/package-lock.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "package-lock.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "f332c4307976378ed0c3d658b0b6bfa02164945cb0570526625e8b912e1798c4"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/tests%2Ff6c-acceleration-pilot.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-acceleration-pilot.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/tests%2Ff6c-evidence-packaging.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-evidence-packaging.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/tests%2Ff6c-bounded-operation-closure.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-bounded-operation-closure.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/tests%2Ff6c-streamed-leaf-diagnostic.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-streamed-leaf-diagnostic.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/tests%2Foption-b-circular-admission.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-circular-admission.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/tests%2Foption-b-f6c-coordinator-process.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-f6c-coordinator-process.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/tests%2Foption-b-f6c-family-admission.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-f6c-family-admission.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/tests%2Foption-b-f6c-streamed-preparation.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-f6c-streamed-preparation.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/tests%2Fsubfield-circular-root-pilot.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsubfield-circular-root-pilot.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/tests%2Foption-b-next-test-identities.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-next-test-identities.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/scripts%2Feom%2Fverify-f6c-bounded-operation-closure.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/scripts%2Feom%2Fverify-f6c-bounded-operation-closure.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/package.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/package.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/checks/tests%2Fsupport%2Foption-b-next-test-identities.mjs/package-lock.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/package-lock.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Fsupport%2Foption-b-next-test-identities.mjs/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Ff6c-acceleration-pilot.test.js/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-acceleration-pilot.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Ff6c-acceleration-pilot.test.js/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-acceleration-pilot.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Ff6c-evidence-packaging.test.js/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-evidence-packaging.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Ff6c-evidence-packaging.test.js/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-evidence-packaging.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Ff6c-bounded-operation-closure.test.js/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-bounded-operation-closure.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Ff6c-bounded-operation-closure.test.js/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-bounded-operation-closure.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Ff6c-streamed-leaf-diagnostic.test.js/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-streamed-leaf-diagnostic.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Ff6c-streamed-leaf-diagnostic.test.js/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Ff6c-streamed-leaf-diagnostic.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Foption-b-circular-admission.test.mjs/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-circular-admission.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Foption-b-circular-admission.test.mjs/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-circular-admission.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Foption-b-f6c-coordinator-process.test.mjs/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-f6c-coordinator-process.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Foption-b-f6c-coordinator-process.test.mjs/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-f6c-coordinator-process.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Foption-b-f6c-family-admission.test.mjs/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-f6c-family-admission.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Foption-b-f6c-family-admission.test.mjs/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-f6c-family-admission.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Foption-b-f6c-streamed-preparation.test.mjs/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-f6c-streamed-preparation.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Foption-b-f6c-streamed-preparation.test.mjs/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Foption-b-f6c-streamed-preparation.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Fsubfield-circular-root-pilot.test.js/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsubfield-circular-root-pilot.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Ffixtures%2Foption-b-next-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Fsubfield-circular-root-pilot.test.js/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsubfield-circular-root-pilot.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Fsupport%2Foption-b-next-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Fsupport%2Foption-b-next-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/next-test/dependsOn/tests%2Fsupport%2Foption-b-next-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/next-test/tests%2Fsupport%2Foption-b-next-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/next-test/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    }
+  ]
+}

@@ -10,6 +10,12 @@ This file records dated planning, implementation status, validation evidence, fa
 
 ## Log Entries
 
+### 2026-09-12 — Platonic face and vertex classification derivation
+
+Added [Why there are five Platonic solids](manuscript.md#811-why-there-are-five-platonic-solids) after the stacking definitions, preserving the later subsection numbers and links. The operator's follow-up identified the explanatory need: derive the face/vertex relation from the class prerequisites instead of splitting five known examples into separate formulas. The treatment defines congruent regular faces, uniform vertex incidence, convexity, and actual facets; derives the convex-corner inequality, enumerates its five integer pairs, explains Euler's relation through a planar spanning tree, and obtains one common formula for vertices, edges, and faces. It also explains total angular deficit, duality, the six-vertex octahedron, and the equal-polarity population counts. These are derived geometric statements, with no new dynamics or app acceptance claim.
+
+Validation: the existing scratch link checker passed its known-case controls before checking the manuscript's five links, including three local targets with zero missing targets. An in-session Node/KaTeX check passed known inline/display extraction and invalid-command rejection before rendering the manuscript expressions with errors enabled. Scoped `git diff --check` passed for the manuscript. This is an editorial and algebraic self-review, not a separately authored mathematical review; the previously frozen fidelity report remains scoped to its recorded snapshot.
+
 ### 2026-09-12 — Two-polarity polyhedron manuscript expansion
 
 Integrated the operator-supplied Claude discussion, titled “Regular Polyhedra in Periodic 3D Lattices,” into [manuscript chapter 8](manuscript.md#8-regular-polyhedra-with-two-vertex-polarities), and moved the prior extension chapter to chapter 9. The supplied discussion is provenance and review input, not an independent mathematical authority. The earlier frozen manuscript fidelity review and coverage record apply to their recorded snapshot and have not been extended into an independent review of this addition.

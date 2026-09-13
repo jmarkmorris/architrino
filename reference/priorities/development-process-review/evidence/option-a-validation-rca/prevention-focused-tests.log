@@ -1,0 +1,104 @@
+✔ known abc, fixed source census and explicit check coverage (4.7665ms)
+✔ malformed, ambiguous, wrong selectors, missing coverage and changed relationships fail closed (1.021458ms)
+✔ hand graph old/new closure preserves deleted, added and changed dependencies (467.774ms)
+✔ FIRST known literal abc checkpoint and independently stated operational replacement pass (12.201083ms)
+✔ later generic profile and B-to-B-to-B checkpoint need no A history execution (7.131542ms)
+✔ external selection omissions, wrong digests and predecessor substitution reject (4.273084ms)
+✔ reviewed source revision updates require current relationship endpoints (4.519334ms)
+✔ closed records, duplicate profiles, dangling checks and widened authority reject (4.900166ms)
+✔ candidate and edited transition cannot approve themselves under original selections (3.650333ms)
+✔ protected role cannot refresh even in selected transition: row 3 (3.98775ms)
+✔ protected role cannot refresh even in selected transition: row 4 (3.875542ms)
+✔ protected role cannot refresh even in selected transition: row 5 (2.995917ms)
+✔ protected role cannot refresh even in selected transition: row 6 (2.171834ms)
+✔ protected role cannot refresh even in selected transition: row 7 (2.326208ms)
+✔ hash changes and relationship endpoint changes cannot reuse revisions (3.432041ms)
+✔ eligibility defaults deny current-source hashes and revision-only changes (6.004416ms)
+✔ eligibility is closed, unique, predecessor-resolved and cannot grant protected roles (4.937458ms)
+✔ changed checkpoint eligibility fails under original selection before missing target is read (2.389208ms)
+✔ transition record cannot introduce eligibility (2.163ms)
+✔ reject role reclassification (2.198959ms)
+✔ reject worker substitution (2.595ms)
+✔ reject stage substitution (3.034875ms)
+✔ reject scope (2.472958ms)
+✔ reject historical ancestry (2.190625ms)
+✔ reject edge deletion (2.264125ms)
+✔ reject source deletion (2.266125ms)
+✔ reject source addition (2.196084ms)
+✔ reject edge role change (3.076375ms)
+✔ exact profile census and path cannot be narrowed by either external record (4.023375ms)
+✔ stale source, extraneous change, duplicate JSON and symlink reject (4.155583ms)
+✔ final check rejects original same-byte replacement: accepted.json (2.630625ms)
+✔ final check rejects original same-byte replacement: transition.json (3.075542ms)
+✔ final check rejects original same-byte replacement: history.json (3.946583ms)
+✔ final check rejects original same-byte replacement: map.json (2.696791ms)
+✔ final check rejects original same-byte replacement: entry.mjs (2.711375ms)
+✔ final check rejects original same-byte replacement: worker.mjs (2.671583ms)
+✔ CLI has no ambient selection or refresh fallback (209.076375ms)
+✔ FIFO capture rejects without waiting for a writer, under a bounded child timeout (73.198584ms)
+✔ actual inherited current-source scientific obligation remains fixed: reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md (65.126542ms)
+✔ actual inherited current-source scientific obligation remains fixed: reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md (38.584584ms)
+✔ required admission coverage retains exactly the five original profiles (1.244125ms)
+✔ prescribed-response: B preserves the accepted source census and fixed evidence (27.395625ms)
+✔ prescribed-response: captured entry admits B and worker recheck rejects changed manifest bytes (73.45325ms)
+✔ prescribed-response: stale source, missing source, reader substitution and wrong digest cannot initialize (21.45175ms)
+✔ prescribed-response: graph changes cannot inherit either launch or reviewed B transition identity (18.825667ms)
+✔ prescribed-response: actual launch and stage CLIs reject untrusted map before process/scientific dispatch (299.976917ms)
+✔ prescribed-response: manifests selected for every other profile cannot authorize this entry (27.21925ms)
+✔ f6c-acceleration: B preserves the accepted source census and fixed evidence (21.851417ms)
+✔ f6c-acceleration: captured entry admits B and worker recheck rejects changed manifest bytes (67.28575ms)
+✔ f6c-acceleration: stale source, missing source, reader substitution and wrong digest cannot initialize (23.543625ms)
+✔ f6c-acceleration: graph changes cannot inherit either launch or reviewed B transition identity (21.297458ms)
+✔ f6c-acceleration: actual launch and stage CLIs reject untrusted map before process/scientific dispatch (293.112083ms)
+✔ f6c-acceleration: manifests selected for every other profile cannot authorize this entry (32.4375ms)
+✔ root-cover: B preserves the accepted source census and fixed evidence (19.200167ms)
+✔ root-cover: captured entry admits B and worker recheck rejects changed manifest bytes (60.822042ms)
+✔ root-cover: stale source, missing source, reader substitution and wrong digest cannot initialize (19.949375ms)
+✔ root-cover: graph changes cannot inherit either launch or reviewed B transition identity (21.16125ms)
+✔ root-cover: actual launch and stage CLIs reject untrusted map before process/scientific dispatch (285.34525ms)
+✔ root-cover: manifests selected for every other profile cannot authorize this entry (37.418292ms)
+✔ cached-root-cover: B preserves the accepted source census and fixed evidence (19.525042ms)
+✔ cached-root-cover: captured entry admits B and worker recheck rejects changed manifest bytes (64.852958ms)
+✔ cached-root-cover: stale source, missing source, reader substitution and wrong digest cannot initialize (18.675834ms)
+✔ cached-root-cover: graph changes cannot inherit either launch or reviewed B transition identity (22.757542ms)
+✔ cached-root-cover: actual launch and stage CLIs reject untrusted map before process/scientific dispatch (287.732ms)
+✔ cached-root-cover: manifests selected for every other profile cannot authorize this entry (46.341833ms)
+✔ cached-root-cover-full: B preserves the accepted source census and fixed evidence (19.730459ms)
+✔ cached-root-cover-full: captured entry admits B and worker recheck rejects changed manifest bytes (62.438ms)
+✔ cached-root-cover-full: stale source, missing source, reader substitution and wrong digest cannot initialize (20.321667ms)
+✔ cached-root-cover-full: graph changes cannot inherit either launch or reviewed B transition identity (27.587041ms)
+✔ cached-root-cover-full: actual launch and stage CLIs reject untrusted map before process/scientific dispatch (291.691ms)
+✔ cached-root-cover-full: manifests selected for every other profile cannot authorize this entry (58.7585ms)
+✔ full profile retains its saved pilot plan as historical evidence regardless of directory (1.907875ms)
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[pr-validation] REPORT-ONLY error: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[pr-validation] REPORT-ONLY error: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+✔ validation receipt verifies only the exact staged and overlay state (313.202541ms)
+✔ publication validation refuses partially staged files before running checks (108.279459ms)
+✔ a matching snapshot cannot authorize an untested staged version (162.062084ms)
+✔ validation receipt invalidates when the comparison base moves (148.598917ms)
+✔ validation receipt does not cross branch identity (158.409542ms)
+✔ validation receipt rejects schema and contract mismatch (151.280375ms)
+✔ validation runner writes only when repository state stays fixed (306.335583ms)
+✔ validation state comparison names the first mismatched field (0.841542ms)
+✔ report-only B errors stay visible and do not change the required A command policy (1.407667ms)
+✔ publication receipt preserves B error explicitly alongside successful required checks (248.888208ms)
+✔ a zero-exit B invocation with no new report cannot reuse an old success (2.091958ms)
+ℹ tests 83
+ℹ suites 0
+ℹ pass 83
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5751.232417

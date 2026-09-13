@@ -1,0 +1,891 @@
+{
+  "@context": {
+    "@vocab": "https://architrino.com/knowledge/current-source/",
+    "from": {
+      "@type": "@id"
+    },
+    "to": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "current-source-manifest/v1",
+  "scope": "retained-test-identities",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "baseline": {
+    "commit": "c7a00b8116b24f6d70d081c24a503e0aba3366f4",
+    "entry": "tests/support/option-b-retained-test-identities.mjs",
+    "authority": "operator-directed-existing-A-transfer"
+  },
+  "revisionId": "initial-graph-transfer",
+  "@graph": [
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "admission",
+      "binding": {
+        "path": "tests/support/option-b-retained-test-identities.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "0b98c6441649fe68e44a8658dff5b6b5750530826c60be98348316e9833f488f"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/fixtures/option-b-retained-test-identities.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "b2b073c666eefabe0fc8b229b502b999bde1ab9fb1cfae7a7e3e5156def719f0"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fmermaid-markdown-runtime.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/mermaid-markdown-runtime.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "5005a0b59a48356357896048252b8e9fab2b624d433a3838da9c54da729ad011"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Forthogonal-plane-weave-balance.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/orthogonal-plane-weave-balance.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "051791a2f77690e0afae57185ce085d6bed7c2d62da6c96223e8dc4e5b0c088c"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-independent-interpolation-enclosure.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f5-independent-interpolation-enclosure.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "fd50618bbfe8b9780b6b6b8cb5b80a6146f682e13335f81b6c1448c0fdc357ac"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/coincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "321a190c8208bfb628d7df66807b081e344d2b5df1941a1597be9968ef346e86"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/coincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "3337863945fea5c3ce6e4516810a28d1fc25001f47e4c86d2c2c2843c6b272d5"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/coincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "144956c356e4e38758db48858ceb71df5143f08ff27842f025502176c0231301"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/coincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "99d15c63f15bb0b920f5209743c2b2fe536dd3e958c46b9c7f29019175cdec28"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "7744b02fb6bbf738a48d80a532061d6e3c9a4ccbd0ee8832dbcf4fcb4358f631"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-axis-three-binary-streaming-reductions.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/coincident-axis-three-binary-streaming-reductions.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "f57f6468f55ce4b6016aa9443659f251d74b2d7ee3df576300aa0de9a49c33c5"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff6c-parent-refinement-batch-preparation.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f6c-parent-refinement-batch-preparation.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "1265bc115367067caea19c352feeb4998bbb82ad98b116d05de16db1b813f1d5"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fborg-assembly-view-session.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/borg-assembly-view-session.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "01b1fef0ea7efcce06311d05d6fb87fd0f8ed2e487191c37d147e0fa5fbd16da"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-phase-varying-campaign-spec.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f5-phase-varying-campaign-spec.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "b2085312f8d85db92179fb310181c4c8c4120338fe4b23dd61cabc2b987e89e6"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff6c-parent-emission-refinement-pilot.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f6c-parent-emission-refinement-pilot.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "c65c0536cd3c8503d43230652f6c2f27157593e2e47fbbbfe16fda1b7b620d12"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Foption-b-retained-test-identities.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option-b-retained-test-identities.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "95c8eed0615150ecf13f1e88a6bbc1a42ec5541f9728a4fa6462d24b18af8a8f"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-manifest.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9097ef3fd3fb2040b48c601d81c184188e8a992aa4464694860d05d0bf76a56e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-transition.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "5ab045757df6c7df7d364f39ba2ac62ec90666e092581b5b3faa08d232dda039"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-impact.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "739ebb899d68378bad5da6571b7774d0641e9f5674cb2a876fdb9dda07e9b31b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/src%2Fruntime%2FMermaidMarkdownRuntime.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "src/runtime/MermaidMarkdownRuntime.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "8ed1f6612970e55bc5698cad353198e69e67c9acb0f2b2ff701343861a31796f"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/package.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "package.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "27bcd57ac634c6c27eb6322201caa0667ac1eae443c02ee2f7998918da054ed7"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/package-lock.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "package-lock.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "f332c4307976378ed0c3d658b0b6bfa02164945cb0570526625e8b912e1798c4"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fmermaid-markdown-runtime.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fmermaid-markdown-runtime.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Forthogonal-plane-weave-balance.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Forthogonal-plane-weave-balance.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Ff5-independent-interpolation-enclosure.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-independent-interpolation-enclosure.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fcoincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fcoincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fcoincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fcoincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fcoincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fcoincident-axis-three-binary-streaming-reductions.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-axis-three-binary-streaming-reductions.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Ff6c-parent-refinement-batch-preparation.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff6c-parent-refinement-batch-preparation.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fborg-assembly-view-session.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fborg-assembly-view-session.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Ff5-phase-varying-campaign-spec.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-phase-varying-campaign-spec.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Ff6c-parent-emission-refinement-pilot.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff6c-parent-emission-refinement-pilot.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Foption-b-retained-test-identities.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Foption-b-retained-test-identities.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/src%2Fruntime%2FMermaidMarkdownRuntime.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/src%2Fruntime%2FMermaidMarkdownRuntime.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/package.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/package.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/package-lock.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/package-lock.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fmermaid-markdown-runtime.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fmermaid-markdown-runtime.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fmermaid-markdown-runtime.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fmermaid-markdown-runtime.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Forthogonal-plane-weave-balance.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Forthogonal-plane-weave-balance.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Forthogonal-plane-weave-balance.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Forthogonal-plane-weave-balance.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff5-independent-interpolation-enclosure.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-independent-interpolation-enclosure.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff5-independent-interpolation-enclosure.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-independent-interpolation-enclosure.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-outer-radius-band-expansion.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-outer-radius-band-expansion.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-axis-three-binary-streaming-reductions.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-axis-three-binary-streaming-reductions.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-axis-three-binary-streaming-reductions.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-axis-three-binary-streaming-reductions.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff6c-parent-refinement-batch-preparation.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff6c-parent-refinement-batch-preparation.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff6c-parent-refinement-batch-preparation.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff6c-parent-refinement-batch-preparation.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fborg-assembly-view-session.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fborg-assembly-view-session.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fborg-assembly-view-session.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fborg-assembly-view-session.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff5-phase-varying-campaign-spec.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-phase-varying-campaign-spec.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff5-phase-varying-campaign-spec.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-phase-varying-campaign-spec.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff6c-parent-emission-refinement-pilot.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff6c-parent-emission-refinement-pilot.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff6c-parent-emission-refinement-pilot.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff6c-parent-emission-refinement-pilot.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    }
+  ]
+}

@@ -1069,6 +1069,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - **Ch 10.2.6** [Implications: Reducing the SI to Architrino Postulates](../../../markdown/aaa/validation/architrino-si-base-units.md?section=Implications%3A+Reducing+the+SI+to+Architrino+Postulates)
     - **Ch 10.2.7** [Closure Priorities](../../../markdown/aaa/validation/architrino-si-base-units.md?section=Closure+Priorities)
     - **Ch 10.2.8** [Philosophical Payoff](../../../markdown/aaa/validation/architrino-si-base-units.md?section=Philosophical+Payoff)
+    - **Ch 10.2.9** [Sources](../../../markdown/aaa/validation/architrino-si-base-units.md?section=Sources)
   - **Ch 10.3** [Parameter Ledger](../../../scenes/validation/parameter_ledger.json)
     - **Ch 10.3.1** [Purpose](../../../markdown/aaa/validation/parameter-ledger.md?section=Purpose)
     - **Ch 10.3.2** [Status Classes](../../../markdown/aaa/validation/parameter-ledger.md?section=Status+Classes)

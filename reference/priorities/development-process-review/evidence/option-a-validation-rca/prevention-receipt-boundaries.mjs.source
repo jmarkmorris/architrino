@@ -1,0 +1,89 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { execFileSync, spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { runValidationAndWriteReceipt, verifyValidationReceipt, runValidationCommands } from '../../scripts/pr-validation-receipt.mjs';
+
+const scratch = path.dirname(fileURLToPath(import.meta.url));
+const gitVariables = ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_PREFIX', 'GIT_COMMON_DIR', 'GIT_OBJECT_DIRECTORY', 'GIT_ALTERNATE_OBJECT_DIRECTORIES', 'GIT_NAMESPACE'];
+const cleanEnv = Object.fromEntries(Object.entries(process.env).filter(([key]) => !gitVariables.includes(key)));
+const git = (cwd, ...args) => execFileSync('git', args, { cwd, env: cleanEnv, encoding: 'utf8' }).trim();
+const roots = [];
+function repository(label) {
+  const cwd = fs.mkdtempSync(path.join(scratch, label)); roots.push(cwd);
+  git(cwd, 'init', '-q');
+  git(cwd, 'config', 'user.name', 'Isolated receipt control');
+  git(cwd, 'config', 'user.email', 'receipt-control@example.invalid');
+  git(cwd, 'config', 'core.hooksPath', '/dev/null');
+  fs.writeFileSync(path.join(cwd, '.gitignore'), '/.local-data/\n');
+  fs.writeFileSync(path.join(cwd, 'dependency.txt'), 'old');
+  fs.writeFileSync(path.join(cwd, 'requirement.txt'), 'old');
+  git(cwd, 'add', '.gitignore', 'dependency.txt', 'requirement.txt');
+  git(cwd, 'commit', '-qm', 'Isolated baseline');
+  git(cwd, 'update-ref', 'refs/remotes/origin/main', git(cwd, 'rev-parse', 'HEAD'));
+  return cwd;
+}
+function actualConsumer(cwd) {
+  const child = spawnSync(process.execPath, ['--input-type=module', '-e', "import fs from 'node:fs'; import assert from 'node:assert/strict'; assert.equal(fs.readFileSync('dependency.txt','utf8'),fs.readFileSync('requirement.txt','utf8'));"], { cwd, env: cleanEnv, encoding: 'utf8', timeout: 3000 });
+  assert.equal(child.status, 0, child.stderr);
+}
+const report = { instrument: '.tmp/option-a-prevention-review/receipt-boundaries.mjs', scope: 'Actual receipt API with an independently stated synthetic two-file consumer; no full publication gate or scientific work.', controls: [], observations: [] };
+try {
+  const positive = repository('positive-');
+  runValidationAndWriteReceipt({ cwd: positive, runCommands: () => actualConsumer(positive) });
+  assert.equal(verifyValidationReceipt({ cwd: positive }).valid, true);
+  assert.equal(git(positive, 'show', ':requirement.txt'), git(positive, 'show', ':dependency.txt'));
+  report.controls.push('Known coherent index and working files: actual consumer passes and receipt verifies.');
+  console.log('KNOWN CONTROL PASSED: coherent index and working files.');
+
+  const partial = repository('partial-');
+  fs.writeFileSync(path.join(partial, 'requirement.txt'), 'new'); git(partial, 'add', 'requirement.txt');
+  fs.writeFileSync(path.join(partial, 'requirement.txt'), 'old');
+  let invoked = false;
+  assert.throws(() => runValidationAndWriteReceipt({ cwd: partial, runCommands: () => { invoked = true; } }), /staged files differ/);
+  assert.equal(invoked, false);
+  report.controls.push('Known partial staging rejects before the consumer runs.');
+  console.log('KNOWN CONTROL PASSED: partial staging rejected.');
+
+  const overlay = repository('overlay-');
+  fs.writeFileSync(path.join(overlay, 'requirement.txt'), 'new'); git(overlay, 'add', 'requirement.txt');
+  fs.writeFileSync(path.join(overlay, 'dependency.txt'), 'new');
+  runValidationAndWriteReceipt({ cwd: overlay, runCommands: () => actualConsumer(overlay) });
+  const verified = verifyValidationReceipt({ cwd: overlay });
+  assert.equal(verified.valid, true);
+  assert.equal(git(overlay, 'show', ':requirement.txt'), 'new');
+  assert.equal(git(overlay, 'show', ':dependency.txt'), 'old');
+  report.observations.push({ boundary: 'Stable unstaged dependency', receiptValid: verified.valid, workingConsumer: 'pass', stagedRequirement: 'new', stagedDependency: 'old', indexConsumerWouldReject: true, meaning: 'Receipt identity covers the working overlay; partial-path rejection alone does not establish index-only consumer equivalence. This is not a full gate pass.' });
+  console.log('BOUNDARY OBSERVED: stable unstaged dependency permits this receipt, while indexed inputs disagree.');
+
+  const sentinel = repository('sentinel-'), fixture = repository('child-');
+  const before = fs.readFileSync(path.join(sentinel, '.git/config'));
+  const probe = (env) => {
+    const result = spawnSync(process.execPath, ['--input-type=module', '-e', "import {execFileSync} from 'node:child_process'; process.stdout.write(execFileSync('git',['rev-parse','--absolute-git-dir'],{encoding:'utf8'}));"], { cwd: fixture, env, encoding: 'utf8', timeout: 3000 });
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(fs.realpathSync(result.stdout.trim()), fs.realpathSync(path.join(fixture, '.git')));
+  };
+  probe(cleanEnv);
+  console.log('KNOWN CONTROL PASSED: clean child Git selects its fixture.');
+  report.controls.push('Clean-environment Git child resolves its own fixture Git directory.');
+  const saved = Object.fromEntries(gitVariables.map(key => [key, process.env[key]]));
+  const values = { GIT_DIR: path.join(sentinel,'.git'), GIT_WORK_TREE: sentinel, GIT_INDEX_FILE: path.join(sentinel,'.git/index'), GIT_PREFIX: 'sentinel/', GIT_COMMON_DIR: path.join(sentinel,'.git'), GIT_OBJECT_DIRECTORY: path.join(sentinel,'.git/objects'), GIT_ALTERNATE_OBJECT_DIRECTORIES: path.join(sentinel,'.git/objects'), GIT_NAMESPACE: 'sentinel' };
+  const calls = [];
+  try {
+    Object.assign(process.env, values);
+    runValidationCommands({ cwd: fixture, spawn: (_node, args, options) => {
+      for (const key of gitVariables) assert.equal(Object.hasOwn(options.env,key), false, key);
+      probe(options.env); calls.push(args[0]);
+      if (args[0].includes('check-moving-single-root-map')) {
+        fs.mkdirSync(path.join(fixture,'.local-data/option-b-trial'), { recursive: true });
+        fs.writeFileSync(path.join(fixture,'.local-data/option-b-trial/report.json'), JSON.stringify({status:'pass'}));
+      }
+      return { status: 0 };
+    }});
+  } finally { for (const key of gitVariables) if(saved[key] === undefined) delete process.env[key]; else process.env[key] = saved[key]; }
+  assert.deepEqual(fs.readFileSync(path.join(sentinel,'.git/config')), before);
+  report.observations.push({ boundary: 'Inherited Git environment', strippedVariables: gitVariables, childCommandsChecked: calls, sentinelConfigUnchanged: true, meaning: 'Actual runner spawn environment removes the eight variables; each real Git child selects its isolated fixture. Validator workloads were replaced by the diagnostic child.' });
+  console.log('BOUNDARY PASSED: eight inherited Git variables removed for all five child invocations; sentinel config unchanged.');
+  fs.writeFileSync(path.join(scratch,'receipt-boundaries.json'), JSON.stringify(report,null,2)+'\n');
+} finally { for (const cwd of roots) fs.rmSync(cwd,{recursive:true,force:true}); }

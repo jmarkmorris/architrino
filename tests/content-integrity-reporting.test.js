@@ -33,6 +33,7 @@ test("all remaining Option B admission and finite-disposition controls are requi
   assert.ok(admission && !admission.reporting && !admission.skipWhen);
   assert.ok(admission.args.includes("tests/option-b-root-cover-admission.test.mjs"));
   assert.ok(admission.args.includes("tests/option-b-next-test-identities.test.mjs"));
+  assert.ok(admission.args.includes("tests/option-b-retained-test-identities.test.mjs"));
   assert.ok(admission.args.includes("tests/option-b-f6c-test-identities.test.mjs"));
   assert.equal(selectedChecks({ AAA_CONTENT_MAINTENANCE: "run" }).some(row=>row.args.includes("tests/current-launch-bindings.test.js")),false);
   for (const file of ["tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-f5-budget-transition.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-disposition-coverage.test.mjs"]) assert.ok(admission.args.includes(file), file);
