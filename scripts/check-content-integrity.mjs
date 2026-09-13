@@ -84,7 +84,7 @@ const REQUIRED_CHECKS = [
   },
   {
     name: "Test Option B current-source admission and dependency controls",
-    args: ["--test", "--test-concurrency=1", "tests/current-source-manifest.test.mjs", "tests/option-b-next-test-identities.test.mjs", "tests/option-b-retained-test-identities.test.mjs", "tests/option-b-f6c-test-identities.test.mjs", "tests/option-b-root-cover-admission.test.mjs", "tests/option-b-f6c-coordinator-admission.test.mjs", "tests/option-b-f6c-paired-admission.test.mjs", "tests/option-b-f6c-family-admission.test.mjs", "tests/f6c-bounded-operation-current-closure.test.js", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-f5-budget-transition.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-disposition-coverage.test.mjs"],
+    args: ["--test", "--test-concurrency=1", "tests/current-source-manifest.test.mjs", "tests/option-b-next-test-identities.test.mjs", "tests/option-b-retained-test-identities.test.mjs", "tests/option-b-controlled-fixture-records.test.mjs", "tests/option-b-f6c-test-identities.test.mjs", "tests/option-b-root-cover-admission.test.mjs", "tests/option-b-f6c-coordinator-admission.test.mjs", "tests/option-b-f6c-paired-admission.test.mjs", "tests/option-b-f6c-family-admission.test.mjs", "tests/f6c-bounded-operation-current-closure.test.js", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-f5-budget-transition.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-disposition-coverage.test.mjs"],
   },
   {
     name: "Verify Option B profiles against the accepted B checkpoint and reviewed transition",
@@ -199,7 +199,7 @@ const MAINTENANCE_CHECKS = [
   { name: "Validate large machine-artifact retention", args: ["scripts/validate-machine-artifact-retention.mjs"] },
 ];
 
-export const MAC_DEPENDENT_TESTS = "^(current Python handoff retains real runtime inventory with external admission and no scientific data|Python admission rejects wrong Node capability, omitted census and same-byte Node replacement)$";
+export const MAC_DEPENDENT_TESTS = "^(current Python handoff retains real runtime inventory with external admission and no scientific data|Python admission rejects wrong Node capability, omitted census and same-byte Node replacement|shared-venv Python fixture consumers reject before scientific subject loading)$";
 
 export function selectedChecks(env = process.env, profile = "local") {
   if (!["local", "github"].includes(profile)) throw new Error("Unknown validation profile");
@@ -317,6 +317,6 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   if (args.length > 1 || (args.length && !["--profile=local", "--profile=github"].includes(args[0]))) throw new Error("Usage: check-content-integrity.mjs [--profile=local|--profile=github]");
   const profile = args[0]?.split("=")[1] ?? "local";
   console.log(`[content-integrity] profile: ${profile}`);
-  if (profile === "github") console.log("[content-integrity] Two shared-venv Python admission tests are assigned to mandatory local PR validation, not certified by this run.");
+  if (profile === "github") console.log("[content-integrity] Three shared-venv Python admission tests are assigned to mandatory local PR validation, not certified by this run.");
   process.exitCode = runChecks({ checks: selectedChecks(process.env, profile) }).exitCode;
 }

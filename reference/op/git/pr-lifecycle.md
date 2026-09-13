@@ -111,7 +111,7 @@ The runner derives the explicit staging paths from that reviewed inventory, vali
 - Define PR scope from the committed branch-tip diff and the operator's active directions, not from which agent made a commit or whether commits from several workstreams interleave.
 - A combined PR is acceptable when its included workstreams can be stated plainly, its complete diff is reviewable together, and validation covers the resulting exact state. A coordinator should write that combined scope into the PR body.
 - Do not ask for approval, require branch surgery, or propose a split merely because the branch contains coordinated lattice, theory, documentation, application, or mechanical-maintenance work.
-- Preserve unrelated ambient edits by keeping them out of the candidate branch-tip scope. Stop only when ownership or overlap cannot be determined, when an edit would be overwritten or endangered, or when resolving it would require a substantive decision.
+- Preserve unrelated ambient edits by keeping them out of the candidate branch-tip scope. Inspection may continue while they remain. Before receipt creation or reuse, all indexed sources must match the working files and no non-ignored untracked files may remain; the aggregate checks do not declare a complete narrower input boundary. If excluded work prevents this alignment, preserve it and wait for its owner to finish or resolve its disposition. Do not stage unrelated work, discard it, or broaden ignore rules merely to make the gate pass.
 
 ### Routine authority after Op invocation
 
@@ -291,6 +291,7 @@ node scripts/build-textbook-md-pdf.mjs --write
 - Do not use unscoped `git add -A` or `git add .` in the shared checkout; newly appearing files must not silently expand the reviewed candidate.
 - After any generator write, inspect and stage the intended generated outputs before running the exact-state gate.
 - The staging area is part of the validation identity. Any later staging change invalidates the receipt and requires the gate again.
+- Complete the combined candidate before running checks: an unchanged indexed dependency with different working bytes is just as disqualifying as a partially staged edited file. Resolve excluded source work through the shared-checkout coordination rule above.
 
 Commands:
 
@@ -300,7 +301,7 @@ git add path/to/file1 path/to/file2
 
 ### 4. Run the exact-state PR gate
 
-Local and GitHub validation have explicit responsibilities. The exact-state receipt invokes Content Integrity with `--profile=local`, including the two F5 Python admission tests that require the approved shared Mac venv. An unavailable shared venv fails local publication; do not substitute system Python. GitHub invokes `--profile=github`, which assigns only those two named tests to local validation while retaining portable admission, source-map, content, fresh-checkout reconstruction, and Pages build checks. GitHub installs locked JavaScript dependencies and ripgrep before validation. A GitHub pass does not certify the assigned local tests, and a local pass does not replace the required GitHub checks.
+Local and GitHub validation have explicit responsibilities. The exact-state receipt invokes Content Integrity with `--profile=local`, including the two F5 Python admission tests and the controlled-fixture actual-Python-consumer admission test that require the approved shared Mac venv. An unavailable shared venv fails local publication; do not substitute system Python. GitHub invokes `--profile=github`, which assigns only those three named tests to local validation while retaining portable admission, source-map, content, fresh-checkout reconstruction, and Pages build checks. GitHub installs locked JavaScript dependencies and ripgrep before validation. A GitHub pass does not certify the assigned local tests, and a local pass does not replace the required GitHub checks.
 
 This gate is mandatory after final staging and before commit. It runs:
 
@@ -314,7 +315,11 @@ Command:
 node scripts/pr-validation-receipt.mjs run --base origin/main
 ```
 
-The runner captures the repository state before and after validation and refuses to write a receipt if the state changes during the checks. The local receipt records:
+The receipt runner requires the working files to match the complete indexed candidate before validation, after validation, after receipt writing, and on reuse. It compares raw file contents against indexed Git blob identities and checks executable modes, symlink type and target bytes, and indexed path presence. This comparison does not trust Git diff suppression through index flags, stat caching, clean filters or file-mode configuration. Unmerged entries and unsupported index modes, including gitlinks, reject. Non-ignored untracked files also reject because their contribution to the aggregate checks is not bounded. Paths deleted from either `HEAD` or the comparison base must be absent even when ignored; a file replaced by an indexed directory is allowed. Checking base deletions retains this protection after the candidate has been committed.
+
+This precondition changes publication receipt eligibility, not ordinary development or file ownership. A rejection leaves source files intact and identifies the mismatched or extra path. Keep writers paused under the shared-checkout rule. The precondition does not make validation hermetic: ignored reconstructed runtime assets, installed packages, the shared venv and external symlink targets retain their existing preparation and validation contracts. Before/after comparisons cannot exclude a transient edit that is restored between observations. A valid receipt establishes the named checks and these measured repository boundaries; it is not proof that every external input has been captured.
+
+The runner also captures the repository state before and after validation and refuses to write a receipt if the state changes during the checks. The local receipt records:
 
 - a hash of every staged index entry;
 - a hash of the complete unstaged binary diff and every non-ignored untracked file;
@@ -325,7 +330,7 @@ The runner captures the repository state before and after validation and refuses
 
 The receipt is local runtime state under `.local-data/pr-validation/receipt.v1.json` and is ignored by Git. It is evidence only that this exact local state already passed the named checks; it does not add evidence authority to any theory or computation.
 
-The pre-commit and pre-push hooks verify all receipt fields. An exact match reuses the result. A missing, unreadable, mismatched, or stale receipt runs the complete gate and replaces the receipt only after success.
+The pre-commit and pre-push hooks verify all receipt fields and repeat the working-file/index alignment check. An exact match reuses the result only when that check passes. A missing, unreadable, mismatched, or stale receipt runs the complete gate and replaces the receipt only after success. The strengthened alignment rule changes the validation contract hash, so receipts issued under the earlier partial-staging rule cannot be reused.
 
 The pre-push hook may bypass both receipt verification and the full gate only when its separate policy requiring verification for advancement classifier proves that every ref update is one of these no-content cases:
 
@@ -444,7 +449,7 @@ Interpretation:
 
 - if the current branch is `main`, stop and create or switch to a working branch first;
 - if any PR-owned file has uncommitted work, or the staging area contains unrelated work, stop and resolve that scope before PR work;
-- unrelated ambient files do not fail this gate by themselves when the branch-owned diff and staging scope can be verified independently and no later checkout would endanger them;
+- unrelated ambient files do not by themselves prevent this branch-tip inspection when the branch-owned diff and staging scope can be verified independently and no later checkout would endanger them; receipt creation and reuse still require the full alignment precondition in preparation step 4;
 - if the two SHAs do not match, stop and push the branch tip you actually want reviewed before touching the PR.
 - if `git rev-list --count origin/main..HEAD` is `0`, the branch currently has no commits beyond the base branch, so there is nothing to publish yet;
 - if `git rev-list --count origin/main..HEAD` is greater than `0`, the branch contains reviewable work relative to base even if it is already pushed cleanly.
@@ -512,7 +517,7 @@ This check should happen even if you believe you are "just updating the PR," bec
   - the full local validation set that mirrors current hooks and repo CI passed, including `node scripts/smoke-option3.mjs`;
   - the branch tip intended for review is committed and pushed;
   - the PR-owned files are committed and the staging area contains no unrelated work;
-  - any remaining ambient edits are outside PR scope and will not be endangered by the remaining branch operations;
+  - any remaining ambient files are outside PR scope and will not be endangered by the remaining branch operations; they do not waive the receipt alignment precondition or the pause on ordinary development;
   - the branch is mergeable into the current base branch;
   - the diff represents one coherent reviewable unit; it may contain multiple coordinated workstreams when the PR body states them plainly;
   - the PR title and body are intentionally written rather than left to default autofill;
@@ -826,7 +831,7 @@ Stop and check the missing precondition rather than pushing ahead if any of thes
 - `git fetch origin` succeeded and you are treating that as synchronization, without having fast-forwarded and verified local `main`,
 - or the next branch would depend on unmerged work that is not meant to stay coupled.
 
-A check that comes back bad usually names a pause-boundary condition: unresolved candidate scope or endangered ambient edits are `Scope ambiguity`, an unsynchronized `main` is `Base divergence`, a tip that differs from the reviewed `headRefOid` is `Branch identity mismatch`. Unrelated dirty files alone do not establish a stop condition. Resolve an actual failure under its condition's rule.
+A check that comes back bad usually names a pause-boundary condition: unresolved candidate scope or endangered ambient edits are `Scope ambiguity`, an unsynchronized `main` is `Base divergence`, a tip that differs from the reviewed `headRefOid` is `Branch identity mismatch`. Unrelated dirty files alone do not prohibit inspection. A working-file/index mismatch or non-ignored untracked input prevents receipt creation and reuse even when its ownership is known; preserve the work and resolve candidate readiness under the shared-checkout rule. Resolve other actual failures under their condition's rule.
 
 ## Final Response Requirements
 

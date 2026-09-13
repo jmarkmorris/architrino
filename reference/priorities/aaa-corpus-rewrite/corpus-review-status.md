@@ -6,9 +6,6 @@ This file is the authoritative priority-ordered document board for the 199-file 
 
 | Status | Priority | Document | State | Finding IDs or next action |
 | --- | ---: | --- | --- | --- |
-| ○ | 68 | [Hubble and $S_8$ Tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | Unread backlog document | Not yet reviewed |
-| ○ | 69 | [Validation Protocols](../../../content/markdown/aaa/validation/validation-protocols.md) | Unread backlog document | Not yet reviewed |
-| ○ | 70 | [$\mathbb{A}\mathbb{A}\mathbb{A}$ and SI Base Units: Deep Intersection Analysis](../../../content/markdown/aaa/validation/architrino-si-base-units.md) | Unread backlog document | Not yet reviewed |
 | ○ | 71 | [Parameter Ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) | Unread backlog document | Not yet reviewed |
 | ○ | 72 | [Reaction Ledger: Architrino Provenance](../../../content/markdown/aaa/validation/reaction-ledger.md) | Unread backlog document | Not yet reviewed |
 | ○ | 73 | [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Unread backlog document | Not yet reviewed |
@@ -109,7 +106,7 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ○ | 168 | [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) | Unread backlog document | Not yet reviewed |
 | ○ | 18 | [Well-posedness and regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Unread backlog document; action-energy directory held until the end | Not yet reviewed |
 
-**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 102 unopened documents. The next action is the first ○ row in the recorded phase order, Hubble and $S_8$ Tensions; the remaining action-energy file is intentionally last.
+**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 99 unopened documents. The next action is the first ○ row in the recorded phase order, Parameter Ledger; the remaining action-energy file is intentionally last.
 
 ## Completed audit appendix
 
@@ -212,5 +209,8 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ● | 95 | [Dark Matter in $\mathbb{A}\mathbb{A}\mathbb{A}$](../../../content/markdown/aaa/cosmology/dark-matter.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-dark-matter-review-2026-09-12.md) | DM-01–DM-24 |
 | ● | 96 | [Dark Energy in the Architrino Assembly Architecture](../../../content/markdown/aaa/cosmology/dark-energy.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-dark-energy-review-2026-09-12.md) | DE-01–DE-22 |
 | ● | 97 | [Structure Formation](../../../content/markdown/aaa/cosmology/structure-formation.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-structure-formation-review-2026-09-12.md) | SF-01–SF-22 |
+| ● | 98 | [Hubble and $S_8$ Tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-hubble-s8-tensions-review-2026-09-12.md) | HS-01–HS-22 |
+| ● | 99 | [Validation Protocols](../../../content/markdown/aaa/validation/validation-protocols.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-validation-protocols-review-2026-09-12.md) | VP-01–VP-11 |
+| ● | 100 | [$\mathbb{A}\mathbb{A}\mathbb{A}$ and SI Base Units: Deep Intersection Analysis](../../../content/markdown/aaa/validation/architrino-si-base-units.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-architrino-si-base-units-review-2026-09-12.md) | SI-01–SI-23 |
 
-Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 97 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 102 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.
+Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 100 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 99 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.

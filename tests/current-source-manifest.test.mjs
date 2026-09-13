@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { CONTEXT, NS, sha256, decode, validate, admit } from '../scripts/equation-mapping/current-source-manifest.mjs';
 import { compareSourceManifests } from '../scripts/equation-mapping/current-source-impact.mjs';
-import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };
+import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';
+const knownHashes = admittedKnownHashAnswers("tests/current-source-manifest.test.mjs");
 const ABC_SHA = knownHashes.sha256.abc;
 assert.match(ABC_SHA, /^[a-f0-9]{64}$/u);
 

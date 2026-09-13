@@ -3,11 +3,13 @@ import assert from "node:assert/strict";
 import { runChecks, selectedChecks, MAC_DEPENDENT_TESTS } from "../scripts/check-content-integrity.mjs";
 import optionBSelection from "../reference/priorities/development-process-review/contracts/option-b-five-profile-selection.json" with { type: "json" };
 
-test("GitHub assigns exactly two Python tests locally without weakening the local gate", () => {
+test("GitHub assigns exactly three Python tests locally without weakening the local gate", () => {
   const pattern = new RegExp(MAC_DEPENDENT_TESTS);
   assert.ok(pattern.test("current Python handoff retains real runtime inventory with external admission and no scientific data"));
   assert.ok(pattern.test("Python admission rejects wrong Node capability, omitted census and same-byte Node replacement"));
   assert.equal(pattern.test("captured file worker admits known build metadata, then rejects omitted map and substituted gates"), false);
+  assert.ok(pattern.test("shared-venv Python fixture consumers reject before scientific subject loading"));
+  assert.equal(pattern.test("actual Node fixture consumer rejects altered records and selection before controls"), false);
   const local = selectedChecks({ GITHUB_ACTIONS: "true" });
   const github = selectedChecks({}, "github");
   assert.equal(local.length, github.length);
@@ -34,6 +36,7 @@ test("all remaining Option B admission and finite-disposition controls are requi
   assert.ok(admission.args.includes("tests/option-b-root-cover-admission.test.mjs"));
   assert.ok(admission.args.includes("tests/option-b-next-test-identities.test.mjs"));
   assert.ok(admission.args.includes("tests/option-b-retained-test-identities.test.mjs"));
+  assert.ok(admission.args.includes("tests/option-b-controlled-fixture-records.test.mjs"));
   assert.ok(admission.args.includes("tests/option-b-f6c-test-identities.test.mjs"));
   assert.equal(selectedChecks({ AAA_CONTENT_MAINTENANCE: "run" }).some(row=>row.args.includes("tests/current-launch-bindings.test.js")),false);
   for (const file of ["tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-f5-budget-transition.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-disposition-coverage.test.mjs"]) assert.ok(admission.args.includes(file), file);

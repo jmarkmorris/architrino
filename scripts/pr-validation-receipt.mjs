@@ -121,7 +121,7 @@ export function validationContractHash() {
       schema: RECEIPT_SCHEMA,
       commands: VALIDATION_COMMANDS,
       fingerprint:
-        "staged-index+unstaged-binary-diff+untracked-content+base+toolchain+reject-partially-staged-paths",
+        "staged-index+unstaged-binary-diff+untracked-content+base+toolchain+raw-index-alignment+reject-untracked+absent-head-and-base-deletions.v1",
     }),
   ]);
 }
@@ -163,11 +163,79 @@ export function captureValidationState({
   };
 }
 
-export function assertStagedFilesMatchWorktree({ cwd = process.cwd() } = {}) {
+// Git diff can suppress changes through index flags, stat caching, file-mode
+// settings, or clean filters. Compare the bytes actually read by checks with
+// Git's indexed blob identity instead of trusting those optimizations.
+function indexedFileBlob(absolutePath, mode, objectFormat, buffer) {
+  const before = fs.lstatSync(absolutePath, { bigint: true });
+  const unchanged = after => ["dev", "ino", "mode", "size", "mtimeNs", "ctimeNs"].every(key => before[key] === after[key]);
+  const hash = crypto.createHash(objectFormat);
+  if (mode === "120000") {
+    if (!before.isSymbolicLink()) throw new Error("expected an indexed symlink");
+    const target = fs.readlinkSync(absolutePath, { encoding: "buffer" });
+    hash.update(`blob ${target.length}\0`);
+    hash.update(target);
+  } else {
+    if (!before.isFile()) throw new Error("expected an indexed regular file");
+    const actualMode = (before.mode & 0o111n) !== 0n ? "100755" : "100644";
+    if (actualMode !== mode) throw new Error("executable mode differs from index");
+    const fd = fs.openSync(absolutePath, fs.constants.O_RDONLY | fs.constants.O_NOFOLLOW | fs.constants.O_NONBLOCK);
+    try {
+      if (!unchanged(fs.fstatSync(fd, { bigint: true }))) throw new Error("file changed while opening");
+      hash.update(`blob ${before.size}\0`);
+      let total = 0n;
+      for (let count; (count = fs.readSync(fd, buffer, 0, buffer.length, null)) > 0;) {
+        total += BigInt(count);
+        hash.update(buffer.subarray(0, count));
+      }
+      if (total !== before.size || !unchanged(fs.fstatSync(fd, { bigint: true }))) throw new Error("file changed while reading");
+    } finally {
+      fs.closeSync(fd);
+    }
+  }
+  if (!unchanged(fs.lstatSync(absolutePath, { bigint: true }))) throw new Error("file changed while reading");
+  return hash.digest("hex");
+}
+
+export function assertWorktreeMatchesIndex({ cwd = process.cwd(), baseRef = "origin/main" } = {}) {
   const names = args => String(runGit(args, { cwd })).split("\0").filter(Boolean);
-  const staged = new Set(names(["diff", "--cached", "--no-ext-diff", "--no-renames", "--name-only", "-z", "--"]));
-  const partial = names(["diff", "--no-ext-diff", "--no-renames", "--name-only", "-z", "--"]).filter(name => staged.has(name));
-  if (partial.length) throw new Error(`staged files differ from tested working files: ${partial.join(", ")}`);
+  const untracked = names(["ls-files", "--others", "--exclude-standard", "-z"]);
+  if (untracked.length) throw new Error(`non-ignored untracked files are outside the indexed candidate: ${untracked.join(", ")}`);
+  const root = fs.realpathSync(cwd);
+  const objectFormat = String(runGit(["rev-parse", "--show-object-format"], { cwd })).trim();
+  if (!["sha1", "sha256"].includes(objectFormat)) throw new Error(`unsupported index object format: ${objectFormat}`);
+  const buffer = Buffer.allocUnsafe(1024 * 1024);
+  const indexedPaths = new Set();
+  for (const entry of names(["ls-files", "--stage", "-z"])) {
+    const parsed = /^([0-7]{6}) ([a-f0-9]+) ([0-3])\t([\s\S]+)$/.exec(entry);
+    if (!parsed) throw new Error(`malformed index entry: ${entry}`);
+    const [, mode, oid, stage, relativePath] = parsed;
+    indexedPaths.add(relativePath);
+    try {
+      if (stage !== "0") throw new Error("unmerged index entry");
+      if (!["100644", "100755", "120000"].includes(mode)) throw new Error(`unsupported index mode ${mode}`);
+      const absolutePath = resolveInsideRoot(root, relativePath);
+      if (fs.realpathSync(path.dirname(absolutePath)) !== path.dirname(absolutePath)) throw new Error("indexed path has a symlinked parent");
+      if (indexedFileBlob(absolutePath, mode, objectFormat, buffer) !== oid) throw new Error("raw working bytes differ from indexed blob");
+    } catch (error) {
+      throw new Error(`working files differ from indexed candidate at ${relativePath}: ${error.message}`);
+    }
+  }
+  // Ignored copies of removed inputs can still be consumed. Include the base
+  // comparison because HEAD has advanced when the pre-push hook reuses a receipt.
+  const deleted = new Set(["HEAD", baseRef].flatMap(ref => names(["diff", "--cached", "--no-ext-diff", "--no-renames", "--diff-filter=D", "--name-only", "-z", ref, "--"])));
+  for (const relativePath of deleted) {
+    // An indexed file or symlink may intentionally replace a former directory.
+    // Its bytes/target have already been checked; former children are no longer
+    // independent candidate paths (and lstat below could otherwise hit ENOTDIR).
+    let ancestor = path.posix.dirname(relativePath);
+    while (ancestor !== "." && !indexedPaths.has(ancestor)) ancestor = path.posix.dirname(ancestor);
+    if (indexedPaths.has(ancestor)) continue;
+    const stat = fs.lstatSync(resolveInsideRoot(root, relativePath), { throwIfNoEntry: false });
+    // A staged file-to-directory replacement legitimately retains a directory.
+    if (stat?.isDirectory() && [...indexedPaths].some(name => name.startsWith(`${relativePath}/`))) continue;
+    if (stat) throw new Error(`deleted indexed candidate path still exists in working files: ${relativePath}`);
+  }
 }
 
 export function compareValidationStates(expected, actual) {
@@ -262,7 +330,7 @@ export function verifyValidationReceipt({
     };
   }
   try {
-    assertStagedFilesMatchWorktree({ cwd });
+    assertWorktreeMatchesIndex({ cwd, baseRef });
   } catch (error) {
     return { valid: false, reason: error.message, receipt, current };
   }
@@ -326,7 +394,7 @@ export function runValidationAndWriteReceipt({
   runCommands = runValidationCommands,
 } = {}) {
   removeValidationReceipt({ cwd, receiptPath });
-  assertStagedFilesMatchWorktree({ cwd });
+  assertWorktreeMatchesIndex({ cwd, baseRef });
   const before = captureState({ cwd, baseRef });
   const reportOnly = runCommands({ cwd, baseRef }) ?? [];
   const after = captureState({ cwd, baseRef });
@@ -337,18 +405,17 @@ export function runValidationAndWriteReceipt({
     );
   }
 
-  assertStagedFilesMatchWorktree({ cwd });
+  assertWorktreeMatchesIndex({ cwd, baseRef });
   writeValidationReceipt({ cwd, receiptPath, state: after, reportOnly });
-  const finalState = captureState({ cwd, baseRef });
-  const stableAfterWrite = compareValidationStates(after, finalState);
-  if (!stableAfterWrite.equal) {
-    removeValidationReceipt({ cwd, receiptPath });
-    throw new Error(
-      `repository state changed while writing receipt: ${stableAfterWrite.mismatch}`
-    );
-  }
   try {
-    assertStagedFilesMatchWorktree({ cwd });
+    const finalState = captureState({ cwd, baseRef });
+    const stableAfterWrite = compareValidationStates(after, finalState);
+    if (!stableAfterWrite.equal) {
+      throw new Error(
+        `repository state changed while writing receipt: ${stableAfterWrite.mismatch}`
+      );
+    }
+    assertWorktreeMatchesIndex({ cwd, baseRef });
   } catch (error) {
     removeValidationReceipt({ cwd, receiptPath });
     throw error;

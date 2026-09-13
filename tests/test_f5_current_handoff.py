@@ -16,7 +16,7 @@ def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path)
     m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 fixture_records=load('f5_test_fixture_records',ROOT/'tests/option_b_fixture_records.py')
-ABC_SHA=fixture_records.known_sha256(ROOT)
+ABC_SHA=fixture_records.known_sha256(ROOT, "tests/test_f5_current_handoff.py")
 bridge=load('current_f5_transport',ROOT/'scripts/eom/execute-f5-prehistory-handoff.py')
 controls=load('independent_f5_host_controls',ROOT/'tests/test_f5_prehistory_handoff.py')
 

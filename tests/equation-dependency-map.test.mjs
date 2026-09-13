@@ -1,3 +1,4 @@
+import { copyControlledFixtureTree } from './support/option-b-controlled-fixture-tree.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -130,6 +131,7 @@ test('actual CLI rejects wrong display after science and stale or duplicate sele
   for (const name of new Set([...sourcePaths(baseline), ...extra])) {
     fs.mkdirSync(path.dirname(path.join(fixture, name)), { recursive: true }); fs.copyFileSync(path.join(root, name), path.join(fixture, name));
   }
+  copyControlledFixtureTree(root, fixture);
   const name = 'content/markdown/aaa/dynamics/master-equation.md', original = files.get(name).toString();
   const display = 'Across five step refinements, the largest component residual was $2.12\\times10^{-12}$';
   assert.equal(original.split(display).length, 2);

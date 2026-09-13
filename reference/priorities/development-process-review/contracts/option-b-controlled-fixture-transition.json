@@ -1,0 +1,13 @@
+{
+  "schema": "reviewed-current-source-transition/v1",
+  "predecessorSha256": "b20b41513ff1bc3ae7e09bfb43fd0e5a83b95d7adfacfac8d7aeecdbbb108b5c",
+  "reviewReference": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#python-and-known-answer-graph-integration",
+  "profiles": [
+    {
+      "name": "controlled-fixture-records",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-sources.jsonld",
+      "sha256": "5dd32631f4535352f1f26c58fbae9a963e8a8fe9de9e4f44d9ddfec5a454beff",
+      "changes": []
+    }
+  ]
+}

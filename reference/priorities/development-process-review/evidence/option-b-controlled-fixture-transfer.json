@@ -1,0 +1,282 @@
+{
+  "schema": "option-b-controlled-fixture-transfer/v1",
+  "originCommit": "a9fc8e1d906e5942061f79f2f834e5978c688b08",
+  "originalBindings": [
+    {
+      "path": "tests/agent-dispatch-session.test.mjs",
+      "sha256": "efcf52d02bf1edd601ca843eeb78ecb65f23f4ca2638bd887821a4a67547f2ee",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "scripts/equation-mapping/check-moving-single-root-map.mjs",
+      "sha256": "f76ce4903cb077f78b53cc6bbc1b40da5653aafa38c1d380266712acb0190d72",
+      "incomingDigestHits": [
+        "./reference/priorities/development-process-review/evidence/option-b-remaining-binding-dispositions.md"
+      ]
+    },
+    {
+      "path": "tests/test_f5_current_handoff.py",
+      "sha256": "2d31d93ab989da88df0fd42b5f1bbe52ab42365fae739612c0043e8a105d8427",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/source-replay.test.js",
+      "sha256": "8b6d34f7d52622928130c58a2f3455c2c2a9e5d6b85541df310062183a2f14a9",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/equation-dependency-map.test.mjs",
+      "sha256": "85917ddf275bfe0aaf0648390635afa58685b627f5ceb5f7bf1f644b2c1a3811",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "scripts/equation-mapping/fixtures/known-hash-answers.json",
+      "sha256": "c95f34944cf5ee2cac3c3e747241e4cc39a10099259b8f2f34c1415b1eec3a94",
+      "incomingDigestHits": [
+        "./reference/priorities/development-process-review/analysis/agent-dispatch-integrity.md"
+      ]
+    },
+    {
+      "path": "tests/option-b-mathematical-acceptance.test.mjs",
+      "sha256": "c99685826c483ddb87e5fc98c5ed4aba14e2b54370a2bad7fbe71f14f9736f2f",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "scripts/equation-mapping/dependency-map-reader.mjs",
+      "sha256": "98279ad3225be87ca85d8eb51f5358b8496c6abf36e84ebb2b7436149db48bbd",
+      "incomingDigestHits": [
+        "./reference/priorities/development-process-review/evidence/option-b-remaining-binding-dispositions.md"
+      ]
+    },
+    {
+      "path": "tests/f5-current-handoff.test.js",
+      "sha256": "975dd021a28bddbe3f1a020825462694c4d2084e830729407b1bbe1a43cc5a57",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/subfield-circular-current-prior.test.js",
+      "sha256": "b15d918fa30a9d75f2987779a4b80fbae591fbc03ea1ce95d820d6fc2e1a3e33",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/test_f6c_acceleration_execution.py",
+      "sha256": "ccdb1ef73952a34c3b965d65b934934f3d5e35500757a3e1864946ef61062095",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/fixtures/option-b-python-transport-identities.json",
+      "sha256": "69b53712021469945127d0564bc72c662f3cd0345fc5a87d6b85fcb4dc7bc47b",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/test_option_b_fixture_records.py",
+      "sha256": "42e62070e06cdcbf942aae504d17122f0cf4d85101f101ccaeb25d75a1264a3c",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/f5-current-build-admission.test.js",
+      "sha256": "de420061e4af08203cd80b06551354ad3e62d43c9fe48cc047d9fb30953cf76c",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/subfield-circular-current-context.test.js",
+      "sha256": "124efce1e91a7e884c901cd571470d7ef9eb6c7961dea996d04d9854afad43d1",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/agent-dispatch.test.mjs",
+      "sha256": "36bcc5b23538996f79a7efba64c86df3d066c2a2937c52f5b1176e402571aeab",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/analytical-campaign-pipeline-benchmark.test.js",
+      "sha256": "7d2c76db90243d659127420f71ec19f5d3d2b2fbadc44e5dae02d80c959d3b8b",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/current-source-manifest.test.mjs",
+      "sha256": "431a1df7b2f67fc6d8ec490fc67ed1a290c7e3d9c39455a1b5b7174f021d5beb",
+      "incomingDigestHits": [
+        "./reference/priorities/development-process-review/evidence/option-a-validation-rca/prevention-selected-before.sha256"
+      ]
+    },
+    {
+      "path": "tests/option-b-current-source-transition.test.mjs",
+      "sha256": "be1d2f773b68a68b8a4accbdc36fc6ecfda92d2a6f47b757a2ee106ff99da388",
+      "incomingDigestHits": [
+        "./reference/priorities/development-process-review/contracts/option-b-current-source-transition.md",
+        "./reference/priorities/development-process-review/evidence/option-b-remaining-binding-dispositions.md",
+        "./reference/priorities/development-process-review/evidence/option-a-validation-rca/prevention-selected-before.sha256"
+      ]
+    },
+    {
+      "path": "tests/test_f6c_retained_history_export.py",
+      "sha256": "65e28c8a787816baa66c59055703d1c4a7a7e2399d4cf9f3f498d511783e74d0",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/option_b_fixture_records.py",
+      "sha256": "3a48fbfe219b3ec9df3294808e5b462938b20db892154bdc014f083719d0cfce",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/f5-original-input-tree.test.js",
+      "sha256": "236c72e131c64c6d5d59ade44b0b1651c8f606d224e07319848922b74b9889d0",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "scripts/check-content-integrity.mjs",
+      "sha256": "a549dc9ef27a5551e0bc4b68bff558d4ba71239497fcc64a67078f9e8c25de6b",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/content-integrity-reporting.test.js",
+      "sha256": "63b4cb105a911c6ea3919aa61874f9af5a96a1ea2047b7bd41cf12499f25951f",
+      "incomingDigestHits": []
+    }
+  ],
+  "authority": "operator-directed-graph-integration-of-unchanged-expectations",
+  "claimBoundary": "Both payloads stay byte-exact. Import-only consumers retain all other source bytes. Mathematical comparison and isolated-copy plumbing gain the selected fixture closure; independent equations and expected results remain unchanged.",
+  "consumers": [
+    "tests/agent-dispatch-session.test.mjs",
+    "tests/source-replay.test.js",
+    "tests/option-b-mathematical-acceptance.test.mjs",
+    "scripts/equation-mapping/dependency-map-reader.mjs",
+    "tests/f5-current-handoff.test.js",
+    "tests/subfield-circular-current-prior.test.js",
+    "tests/f5-current-build-admission.test.js",
+    "tests/subfield-circular-current-context.test.js",
+    "tests/agent-dispatch.test.mjs",
+    "tests/analytical-campaign-pipeline-benchmark.test.js",
+    "tests/current-source-manifest.test.mjs",
+    "tests/option-b-current-source-transition.test.mjs",
+    "tests/f5-original-input-tree.test.js",
+    "tests/test_f5_current_handoff.py",
+    "tests/test_f6c_acceleration_execution.py",
+    "tests/test_f6c_retained_history_export.py"
+  ],
+  "importOnlyConsumers": [
+    "tests/agent-dispatch-session.test.mjs",
+    "tests/source-replay.test.js",
+    "scripts/equation-mapping/dependency-map-reader.mjs",
+    "tests/f5-current-handoff.test.js",
+    "tests/subfield-circular-current-prior.test.js",
+    "tests/f5-current-build-admission.test.js",
+    "tests/subfield-circular-current-context.test.js",
+    "tests/agent-dispatch.test.mjs",
+    "tests/analytical-campaign-pipeline-benchmark.test.js",
+    "tests/current-source-manifest.test.mjs",
+    "tests/option-b-current-source-transition.test.mjs",
+    "tests/f5-original-input-tree.test.js",
+    "tests/test_f5_current_handoff.py",
+    "tests/test_f6c_acceleration_execution.py",
+    "tests/test_f6c_retained_history_export.py"
+  ],
+  "replacements": [
+    {
+      "path": "tests/agent-dispatch-session.test.mjs",
+      "before": "JSON.parse(fs.readFileSync(new URL('../scripts/equation-mapping/fixtures/known-hash-answers.json', import.meta.url)))",
+      "after": "admittedKnownHashAnswers(\"tests/agent-dispatch-session.test.mjs\")"
+    },
+    {
+      "path": "tests/agent-dispatch-session.test.mjs",
+      "before": "import test from 'node:test';",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';\nimport test from 'node:test';"
+    },
+    {
+      "path": "tests/source-replay.test.js",
+      "before": "import knownHashes from \"../scripts/equation-mapping/fixtures/known-hash-answers.json\" with { type: \"json\" };",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';\nconst knownHashes = admittedKnownHashAnswers(\"tests/source-replay.test.js\");"
+    },
+    {
+      "path": "tests/option-b-mathematical-acceptance.test.mjs",
+      "before": "import knownAnswers from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with {type:'json'};",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';\nconst knownAnswers = admittedKnownHashAnswers(\"tests/option-b-mathematical-acceptance.test.mjs\");"
+    },
+    {
+      "path": "scripts/equation-mapping/dependency-map-reader.mjs",
+      "before": "import knownHashAnswers from './fixtures/known-hash-answers.json' with { type: 'json' };",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from './controlled-fixture-records.mjs';\nconst knownHashAnswers = admittedKnownHashAnswers(\"scripts/equation-mapping/dependency-map-reader.mjs\");"
+    },
+    {
+      "path": "tests/f5-current-handoff.test.js",
+      "before": "import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';\nconst knownHashes = admittedKnownHashAnswers(\"tests/f5-current-handoff.test.js\");"
+    },
+    {
+      "path": "tests/subfield-circular-current-prior.test.js",
+      "before": "import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';\nconst knownHashes = admittedKnownHashAnswers(\"tests/subfield-circular-current-prior.test.js\");"
+    },
+    {
+      "path": "tests/f5-current-build-admission.test.js",
+      "before": "import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';\nconst knownHashes = admittedKnownHashAnswers(\"tests/f5-current-build-admission.test.js\");"
+    },
+    {
+      "path": "tests/subfield-circular-current-context.test.js",
+      "before": "import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';\nconst knownHashes = admittedKnownHashAnswers(\"tests/subfield-circular-current-context.test.js\");"
+    },
+    {
+      "path": "tests/agent-dispatch.test.mjs",
+      "before": "JSON.parse(fs.readFileSync(new URL('../scripts/equation-mapping/fixtures/known-hash-answers.json', import.meta.url)))",
+      "after": "admittedKnownHashAnswers(\"tests/agent-dispatch.test.mjs\")"
+    },
+    {
+      "path": "tests/agent-dispatch.test.mjs",
+      "before": "import test from 'node:test';",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';\nimport test from 'node:test';"
+    },
+    {
+      "path": "tests/analytical-campaign-pipeline-benchmark.test.js",
+      "before": "JSON.parse(readFileSync(new URL(\"../scripts/equation-mapping/fixtures/known-hash-answers.json\", import.meta.url)))",
+      "after": "admittedKnownHashAnswers(\"tests/analytical-campaign-pipeline-benchmark.test.js\")"
+    },
+    {
+      "path": "tests/analytical-campaign-pipeline-benchmark.test.js",
+      "before": "import assert from \"node:assert/strict\";",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';\nimport assert from \"node:assert/strict\";"
+    },
+    {
+      "path": "tests/current-source-manifest.test.mjs",
+      "before": "import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';\nconst knownHashes = admittedKnownHashAnswers(\"tests/current-source-manifest.test.mjs\");"
+    },
+    {
+      "path": "tests/option-b-current-source-transition.test.mjs",
+      "before": "JSON.parse(fs.readFileSync(new URL('../scripts/equation-mapping/fixtures/known-hash-answers.json', import.meta.url)))",
+      "after": "admittedKnownHashAnswers(\"tests/option-b-current-source-transition.test.mjs\")"
+    },
+    {
+      "path": "tests/option-b-current-source-transition.test.mjs",
+      "before": "import test from 'node:test';",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';\nimport test from 'node:test';"
+    },
+    {
+      "path": "tests/f5-original-input-tree.test.js",
+      "before": "import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };",
+      "after": "import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';\nconst knownHashes = admittedKnownHashAnswers(\"tests/f5-original-input-tree.test.js\");"
+    },
+    {
+      "path": "tests/test_f5_current_handoff.py",
+      "before": "fixture_records.known_sha256(ROOT)",
+      "after": "fixture_records.known_sha256(ROOT, \"tests/test_f5_current_handoff.py\")"
+    },
+    {
+      "path": "tests/test_f6c_acceleration_execution.py",
+      "before": "fixture_records.known_sha256(ROOT)",
+      "after": "fixture_records.known_sha256(ROOT, \"tests/test_f6c_acceleration_execution.py\")"
+    },
+    {
+      "path": "tests/test_f6c_acceleration_execution.py",
+      "before": "fixture_records.acceleration_prior(ROOT)",
+      "after": "fixture_records.acceleration_prior(ROOT, \"tests/test_f6c_acceleration_execution.py\")"
+    },
+    {
+      "path": "tests/test_f6c_retained_history_export.py",
+      "before": "fixture_records.known_sha256(ROOT)",
+      "after": "fixture_records.known_sha256(ROOT, \"tests/test_f6c_retained_history_export.py\")"
+    }
+  ]
+}

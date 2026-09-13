@@ -1,3 +1,4 @@
+import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -176,7 +177,7 @@ test('source mismatch evidence retains actual digest and byte count', async t =>
   const f = setup(t); const r = json(f.requestPath); r.sources[0].expectedSha256 = '0'.repeat(64); fs.writeFileSync(f.requestPath, JSON.stringify(r));
   const report = await dispatchThroughCodex({ tools: toolsFor(f), ...f, waitMs: 0 }); assert.equal(report.verified, false);
   const saved = json(path.join(f.bundlePath, 'report.json'));
-  const known = JSON.parse(fs.readFileSync(new URL('../scripts/equation-mapping/fixtures/known-hash-answers.json', import.meta.url))).sha256.abc;
+  const known = admittedKnownHashAnswers("tests/agent-dispatch-session.test.mjs").sha256.abc;
   assert.equal(saved.details.actualSha256, known); assert.equal(saved.details.actualBytes, 3); assert.equal(saved.details.expectedSha256, '0'.repeat(64));
 });
 test('resumed tool output is assembled exactly before calling sender', async t => {

@@ -1,3 +1,4 @@
+import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync, unlinkSync } from "node:fs";
@@ -35,7 +36,7 @@ test("implementation inventory preserves catalogue data dependencies and detects
     writeFileSync(target, "abc");
   }
   // Independently published known answer, not calculated by the inventory.
-  const known = JSON.parse(readFileSync(new URL("../scripts/equation-mapping/fixtures/known-hash-answers.json", import.meta.url))).sha256.abc;
+  const known = admittedKnownHashAnswers("tests/analytical-campaign-pipeline-benchmark.test.js").sha256.abc;
   const baseline = computeImplementationInventory(directory);
   assert.equal(baseline.files.length, COMPUTE_IMPLEMENTATION_FILES.length);
   for (const row of baseline.files) {

@@ -250,6 +250,21 @@
           "selection": "Exact source literals at the record's originCommit, loaded through the test-only fixture reader",
           "consumer": "tests/option_b_fixture_records.py and the acceleration transport tests",
           "independentCheck": "Original Git-literal comparison, malformed-record controls and unchanged scientific authentication predicates"
+        },
+        {
+          "binding": "Selected cross-language graph for independent known answers and historical acceleration expectations",
+          "targets": [
+            "scripts/equation-mapping/fixtures/known-hash-answers.json",
+            "tests/fixtures/option-b-python-transport-identities.json",
+            "tests/option_b_fixture_records.py",
+            "scripts/equation-mapping/controlled-fixture-records.mjs",
+            "tests/option-b-controlled-fixture-records.test.mjs",
+            "tests/support/option-b-controlled-fixture-tree.mjs"
+          ],
+          "meaning": "Preserve original values, roles and applicability. Python parses the captured bytes returned by the existing Node admission engine; real Node and Python consumers retain their assertions.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
+          "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
+          "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
         }
       ]
     },
@@ -270,6 +285,21 @@
           "selection": "Explicit fixture paths; no inferred subject digest or default expected value",
           "consumer": "The three named Python transport test modules",
           "independentCheck": "tests/test_option_b_fixture_records.py known field-selection and rejection controls before target use"
+        },
+        {
+          "binding": "Selected cross-language graph for independent known answers and historical acceleration expectations",
+          "targets": [
+            "scripts/equation-mapping/fixtures/known-hash-answers.json",
+            "tests/fixtures/option-b-python-transport-identities.json",
+            "tests/option_b_fixture_records.py",
+            "scripts/equation-mapping/controlled-fixture-records.mjs",
+            "tests/option-b-controlled-fixture-records.test.mjs",
+            "tests/support/option-b-controlled-fixture-tree.mjs"
+          ],
+          "meaning": "Preserve original values, roles and applicability. Python parses the captured bytes returned by the existing Node admission engine; real Node and Python consumers retain their assertions.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
+          "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
+          "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
         }
       ]
     },
@@ -288,6 +318,21 @@
           "selection": "Hand-authored positive and negative cases",
           "consumer": "Shared-venv unittest discovery",
           "independentCheck": "Explicit expected strings and tuple order, malformed schema/role/encoding/digest/duplicate rejection"
+        },
+        {
+          "binding": "Selected cross-language graph for independent known answers and historical acceleration expectations",
+          "targets": [
+            "scripts/equation-mapping/fixtures/known-hash-answers.json",
+            "tests/fixtures/option-b-python-transport-identities.json",
+            "tests/option_b_fixture_records.py",
+            "scripts/equation-mapping/controlled-fixture-records.mjs",
+            "tests/option-b-controlled-fixture-records.test.mjs",
+            "tests/support/option-b-controlled-fixture-tree.mjs"
+          ],
+          "meaning": "Preserve original values, roles and applicability. Python parses the captured bytes returned by the existing Node admission engine; real Node and Python consumers retain their assertions.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
+          "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
+          "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
         }
       ]
     },
@@ -581,6 +626,21 @@
           "selection": "Canonical external B fixture; exact original literal retained from the recorded source generation",
           "consumer": "Explicit JavaScript JSON imports and the Python test-only fixture reader",
           "independentCheck": "Published SHA test vector and one-time exact-literal comparison with the retained Git source; known-answer failures remain test failures"
+        },
+        {
+          "binding": "Selected cross-language graph for independent known answers and historical acceleration expectations",
+          "targets": [
+            "scripts/equation-mapping/fixtures/known-hash-answers.json",
+            "tests/fixtures/option-b-python-transport-identities.json",
+            "tests/option_b_fixture_records.py",
+            "scripts/equation-mapping/controlled-fixture-records.mjs",
+            "tests/option-b-controlled-fixture-records.test.mjs",
+            "tests/support/option-b-controlled-fixture-tree.mjs"
+          ],
+          "meaning": "Preserve original values, roles and applicability. Python parses the captured bytes returned by the existing Node admission engine; real Node and Python consumers retain their assertions.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
+          "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
+          "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
         }
       ]
     },
@@ -1848,6 +1908,190 @@
           "selection": "reference/priorities/development-process-review/contracts/option-b-retained-test-selection.json selects the exact initial checkpoint and zero-change transition with no refresh eligibility.",
           "consumer": "All thirteen payload consumers through retainedTestIdentities; required Content Integrity reader controls.",
           "independentCheck": "Exact Git payload and inverse import-only consumer comparison, known schema and actual consumer positives before negative admission, graph change and removed-edge propagation."
+        }
+      ]
+    },
+    {
+      "path": "scripts/equation-mapping/controlled-fixture-records.mjs",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Python and known-answer graph integration",
+      "reason": "Preserve the original expectation role and enforce final selected bindings through actual consumers using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected cross-language graph for independent known answers and historical acceleration expectations",
+          "targets": [
+            "scripts/equation-mapping/fixtures/known-hash-answers.json",
+            "tests/fixtures/option-b-python-transport-identities.json",
+            "tests/option_b_fixture_records.py",
+            "scripts/equation-mapping/controlled-fixture-records.mjs",
+            "tests/option-b-controlled-fixture-records.test.mjs",
+            "tests/support/option-b-controlled-fixture-tree.mjs"
+          ],
+          "meaning": "Preserve original values, roles and applicability. Python parses the captured bytes returned by the existing Node admission engine; real Node and Python consumers retain their assertions.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
+          "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
+          "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
+        }
+      ]
+    },
+    {
+      "path": "tests/option-b-controlled-fixture-records.test.mjs",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Python and known-answer graph integration",
+      "reason": "Preserve the original expectation role and enforce final selected bindings through actual consumers using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected cross-language graph for independent known answers and historical acceleration expectations",
+          "targets": [
+            "scripts/equation-mapping/fixtures/known-hash-answers.json",
+            "tests/fixtures/option-b-python-transport-identities.json",
+            "tests/option_b_fixture_records.py",
+            "scripts/equation-mapping/controlled-fixture-records.mjs",
+            "tests/option-b-controlled-fixture-records.test.mjs",
+            "tests/support/option-b-controlled-fixture-tree.mjs"
+          ],
+          "meaning": "Preserve original values, roles and applicability. Python parses the captured bytes returned by the existing Node admission engine; real Node and Python consumers retain their assertions.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
+          "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
+          "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
+        }
+      ]
+    },
+    {
+      "path": "tests/support/option-b-controlled-fixture-tree.mjs",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Python and known-answer graph integration",
+      "reason": "Preserve the original expectation role and enforce final selected bindings through actual consumers using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected cross-language graph for independent known answers and historical acceleration expectations",
+          "targets": [
+            "scripts/equation-mapping/fixtures/known-hash-answers.json",
+            "tests/fixtures/option-b-python-transport-identities.json",
+            "tests/option_b_fixture_records.py",
+            "scripts/equation-mapping/controlled-fixture-records.mjs",
+            "tests/option-b-controlled-fixture-records.test.mjs",
+            "tests/support/option-b-controlled-fixture-tree.mjs"
+          ],
+          "meaning": "Preserve original values, roles and applicability. Python parses the captured bytes returned by the existing Node admission engine; real Node and Python consumers retain their assertions.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
+          "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
+          "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Python and known-answer graph integration",
+      "reason": "Preserve the original expectation role and enforce final selected bindings through actual consumers using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected cross-language graph for independent known answers and historical acceleration expectations",
+          "targets": [
+            "scripts/equation-mapping/fixtures/known-hash-answers.json",
+            "tests/fixtures/option-b-python-transport-identities.json",
+            "tests/option_b_fixture_records.py",
+            "scripts/equation-mapping/controlled-fixture-records.mjs",
+            "tests/option-b-controlled-fixture-records.test.mjs",
+            "tests/support/option-b-controlled-fixture-tree.mjs"
+          ],
+          "meaning": "Preserve original values, roles and applicability. Python parses the captured bytes returned by the existing Node admission engine; real Node and Python consumers retain their assertions.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
+          "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
+          "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Python and known-answer graph integration",
+      "reason": "Preserve the original expectation role and enforce final selected bindings through actual consumers using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected cross-language graph for independent known answers and historical acceleration expectations",
+          "targets": [
+            "scripts/equation-mapping/fixtures/known-hash-answers.json",
+            "tests/fixtures/option-b-python-transport-identities.json",
+            "tests/option_b_fixture_records.py",
+            "scripts/equation-mapping/controlled-fixture-records.mjs",
+            "tests/option-b-controlled-fixture-records.test.mjs",
+            "tests/support/option-b-controlled-fixture-tree.mjs"
+          ],
+          "meaning": "Preserve original values, roles and applicability. Python parses the captured bytes returned by the existing Node admission engine; real Node and Python consumers retain their assertions.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
+          "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
+          "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Python and known-answer graph integration",
+      "reason": "Preserve the original expectation role and enforce final selected bindings through actual consumers using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected cross-language graph for independent known answers and historical acceleration expectations",
+          "targets": [
+            "scripts/equation-mapping/fixtures/known-hash-answers.json",
+            "tests/fixtures/option-b-python-transport-identities.json",
+            "tests/option_b_fixture_records.py",
+            "scripts/equation-mapping/controlled-fixture-records.mjs",
+            "tests/option-b-controlled-fixture-records.test.mjs",
+            "tests/support/option-b-controlled-fixture-tree.mjs"
+          ],
+          "meaning": "Preserve original values, roles and applicability. Python parses the captured bytes returned by the existing Node admission engine; real Node and Python consumers retain their assertions.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
+          "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
+          "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Python and known-answer graph integration",
+      "reason": "Preserve the original expectation role and enforce final selected bindings through actual consumers using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected cross-language graph for independent known answers and historical acceleration expectations",
+          "targets": [
+            "scripts/equation-mapping/fixtures/known-hash-answers.json",
+            "tests/fixtures/option-b-python-transport-identities.json",
+            "tests/option_b_fixture_records.py",
+            "scripts/equation-mapping/controlled-fixture-records.mjs",
+            "tests/option-b-controlled-fixture-records.test.mjs",
+            "tests/support/option-b-controlled-fixture-tree.mjs"
+          ],
+          "meaning": "Preserve original values, roles and applicability. Python parses the captured bytes returned by the existing Node admission engine; real Node and Python consumers retain their assertions.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
+          "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
+          "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-controlled-fixture-transfer.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux Python and known-answer graph integration",
+      "reason": "Preserve the original expectation role and enforce final selected bindings through actual consumers using the existing B engine.",
+      "roles": [
+        {
+          "binding": "Selected cross-language graph for independent known answers and historical acceleration expectations",
+          "targets": [
+            "scripts/equation-mapping/fixtures/known-hash-answers.json",
+            "tests/fixtures/option-b-python-transport-identities.json",
+            "tests/option_b_fixture_records.py",
+            "scripts/equation-mapping/controlled-fixture-records.mjs",
+            "tests/option-b-controlled-fixture-records.test.mjs",
+            "tests/support/option-b-controlled-fixture-tree.mjs"
+          ],
+          "meaning": "Preserve original values, roles and applicability. Python parses the captured bytes returned by the existing Node admission engine; real Node and Python consumers retain their assertions.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-selection.json selects an initial checkpoint and zero-change transition. Empty predecessor eligibility grants no refresh; protected and ungranted successors remain denied.",
+          "consumer": "Sixteen migrated Node/Python consuming paths, mathematical comparison retained-input closure, Python parser and required admission controls.",
+          "independentCheck": "Byte-exact original payloads and inverse import-only source reconstruction against retained Git; published abc and hand-authored tuple; actual consumer positive before missing/altered selection negatives; valid successor graph rejected for protected or ungranted role; complete scoped regressions."
         }
       ]
     }

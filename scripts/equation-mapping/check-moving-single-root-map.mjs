@@ -6,6 +6,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import { decode } from './current-source-manifest.mjs';
+import { controlledFixturePaths, loadControlledFixture, FIXTURE_SELECTION } from './controlled-fixture-records.mjs';
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const hash = value => crypto.createHash('sha256').update(value).digest('hex');
 const CODE_PATHS = ['scripts/equation-mapping/dependency-map-reader.mjs', 'scripts/equation-mapping/check-moving-single-root-map.mjs', 'package.json', 'package-lock.json', 'scripts/equation-mapping/current-source-manifest.mjs', 'scripts/equation-mapping/fixtures/known-hash-answers.json', 'scripts/equation-mapping/fixtures/mathematical-acceptance-selection.json'];
@@ -113,13 +114,15 @@ export async function runTrial({ cwd = ROOT, outputDirectory = path.join(cwd, '.
   fs.rmSync(path.join(outputDirectory, 'review-manifest.json'), { force: true });
   const report = { schema: 'option-b-trial-report/v1', authority: 'report-only B-to-B comparison; unchanged scientific checks; no production or scientific approval', status: 'error', approval: 'not-granted', startedAt: new Date().toISOString(), environment: { node: process.version, platform: process.platform, architecture: process.arch }, executedChecks: [] };
   try {
+    loadControlledFixture({root:cwd, selection:decode(fs.readFileSync(path.join(cwd,FIXTURE_SELECTION))), consumer:CODE_PATHS[0]});
+    const fixturePaths = controlledFixturePaths(cwd);
     const reader = await import('./dependency-map-reader.mjs');
     report.preflight = await reader.preflight(); console.log(`[option-b-trial] known controls ${report.preflight}`);
     const accepted = loadAcceptedMathematicalMaps({cwd,acceptanceSha256}), capture = inputCapture(cwd);
     report.baseline = {commit:accepted.acceptance.reviewedCommit,scopeAcceptance:'operator-accepted; exact report-only predecessors',
       acceptance:accepted.selection,maps:accepted.acceptance.maps};
     const executing = inputCapture(ROOT);
-    for (const name of [CODE_PATHS[0],CODE_PATHS[1],CODE_PATHS[4],CODE_PATHS[5]]) requireValue(
+    for (const name of [CODE_PATHS[0],CODE_PATHS[1],CODE_PATHS[4],CODE_PATHS[5],...fixturePaths]) requireValue(
       executing.read(name).equals(capture.read(name)), 'Executing comparison instrument differs from observed input');
     const baseline = accepted.maps.get(MOVING_MAP), finiteBaseline = accepted.maps.get(FINITE_MAP);
     const selectedMapPath = mapPath ?? reader.MAP_PATH; reader.safePath(selectedMapPath);
@@ -130,7 +133,7 @@ export async function runTrial({ cwd = ROOT, outputDirectory = path.join(cwd, '.
     report.candidate = { head: git(cwd, ['rev-parse', 'HEAD']).toString().trim(), mapPath: selectedMapPath, mapSha256: hash(mapRaw), inputs: {} };
     const baseFiles = new Map(reader.sourcePaths(baseline).map(name => [name, accepted.files.get(name)]));
     const finiteBaseFiles = new Map(reader.sourcePaths(finiteBaseline).map(name => [name, accepted.files.get(name)]));
-    const paths = [...new Set([...reader.sourcePaths(baseline), ...reader.sourcePaths(finiteBaseline), ...reader.sourcePaths(current), ...reader.sourcePaths(finite), ...CODE_PATHS, ...REVIEW_PATHS, selectedMapPath, finiteMapPath])];
+    const paths = [...new Set([...reader.sourcePaths(baseline), ...reader.sourcePaths(finiteBaseline), ...reader.sourcePaths(current), ...reader.sourcePaths(finite), ...CODE_PATHS, ...fixturePaths, ...REVIEW_PATHS, selectedMapPath, finiteMapPath])];
     const before = new Map(paths.map(name => [name, capture.read(name)]));
     report.candidate.inputs = {...Object.fromEntries([...before].map(([name, raw]) => [name, hash(raw)])),...accepted.inputs};
     const currentFiles = new Map([...new Set([...reader.sourcePaths(baseline), ...reader.sourcePaths(current)])].map(name => [name, before.get(name)]));

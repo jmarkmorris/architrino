@@ -1,0 +1,65 @@
+✔ GitHub assigns exactly three Python tests locally without weakening the local gate (2.223625ms)
+✔ default gate excludes opt-in maintenance checks (0.094417ms)
+✔ all remaining Option B admission and finite-disposition controls are required (0.154125ms)
+✔ agent dispatch evidence regression is mandatory locally and on GitHub (0.445416ms)
+✔ passing required checks do not imply that skipped coverage ran (0.206959ms)
+✔ reporting failure remains visible with successful required checks (0.190291ms)
+✔ independent failures accumulate without guessing a root cause (0.187042ms)
+✔ failed prerequisite preserves its exit code and names unexecuted dependents (0.131209ms)
+✔ startup failure is gating even for a reporting-only command (0.138333ms)
+✔ signal termination is a failure with its signal preserved (0.15ms)
+✔ known controls precede retained map; unchanged selected set is empty (31.852875ms)
+✔ stale sign rejects before query; refreshed sign keeps both obligations (104.722042ms)
+✔ deleted sign dependency retains old downstream impact (70.034416ms)
+✔ deleted result coverage cannot remove its own review obligation (60.426042ms)
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[option-b-trial] known controls passed: SHA, byte selector, hand closure, deleted dependency/coverage, stale binding, displayed match/wrong/missing/duplicate
+[option-b-trial] REPORT-ONLY review-required: required; /var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/option-b-dispatch-eepJOg/.local-data/option-b-trial/report.json
+[pr-validation] REPORT-ONLY review-required: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+✔ unsupported scalar dependency remains visible for human semantic review (61.729792ms)
+✔ outside-selector source edit retains conservative source review (26.268375ms)
+✔ displayed match, wrong, missing and duplicate result controls (0.212583ms)
+✔ unknown contexts, fields, duplicate IDs, paths, endpoints and revision reuse reject (39.0465ms)
+✔ actual CLI writes bounded execution evidence and replaces success on missing map (1730.597458ms)
+✔ actual publication command dispatcher executes B after unchanged repository validation commands (939.391666ms)
+✔ actual CLI rejects wrong display after science and stale or duplicate selectors before query (2274.605041ms)
+✔ corrected prose coverage names fresh output and binds actual Node source (0.200708ms)
+✔ finite-ledger scope has no fabricated baseline; old/new controls retain review (108.231959ms)
+✔ PR procedure executable blocks preserve commands required for advancement verification (1.614875ms)
+✔ PR procedure, pre-push hook, and CI share the aggregate gate (0.55625ms)
+✔ routine PR validation excludes on-demand iOS package freshness without dropping web checks (0.411875ms)
+✔ routine notation validation ignores a saved iOS snapshot but rejects authored notation drift (157.718708ms)
+✔ children's-book pilot exports stay local and optional during routine PRs (2.636834ms)
+✔ PR procedure retains permission diagnostics without obsolete acceptance obligations (0.839959ms)
+✔ pre-push parser does not advance on empty or malformed input (1.5585ms)
+✔ pre-push policy skips one or more pure ref deletions (0.1225ms)
+✔ pre-push policy skips a new codex branch at exact origin/main (0.0765ms)
+✔ pre-push policy runs for content-bearing, existing, or non-codex refs (0.109333ms)
+✔ pre-push policy runs for mixed deletion and successor creation (0.06875ms)
+✔ pre-push policy runs when origin/main cannot be verified (0.052541ms)
+✔ runtime manifest enumerates Borg catalogue and budget identities before records and all three derived indexes (2.405209ms)
+✔ static build includes deployable generated assets but never local service indexes, ignored extras, or git metadata (63.898209ms)
+✔ site build refuses destructive or nonempty output targets (2.353041ms)
+✔ Pages excludes PowerPoint originals, preserves PDFs, and leaves repository files intact (57.807667ms)
+✔ Pages excludes the internal solver GPU harness while preserving its local sources (54.866917ms)
+✔ Pages excludes Archie-service protocol code, tests, records, and local source indexes (60.185708ms)
+✔ Pages excludes iOS and design sources but preserves all shared KaTeX assets and public artwork (61.192792ms)
+✔ site build rejects oversized payloads before copying any publication files (26.266584ms)
+✔ artifact-only equation build rejects missing source links without editing the source (5.665625ms)
+✔ local, CI, service, and Pages entrypoints explicitly prepare runtime outputs (1.353833ms)
+✔ Pages opt-in gates the entire deployment job, not builds or validation (0.182709ms)
+✔ Pages deployment expression rejects default/off settings, PRs and non-main refs (4.997375ms)
+✔ Pages publishing-source preflight fails closed on legacy, missing metadata or API failure (26.546375ms)
+✔ PR Pages check has no deployment job and both workflows use the same build (0.406791ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7135.530959

@@ -10,8 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 fixture_spec = importlib.util.spec_from_file_location('f6c_acceleration_fixture_records', ROOT/'tests/option_b_fixture_records.py')
 fixture_records = importlib.util.module_from_spec(fixture_spec)
 fixture_spec.loader.exec_module(fixture_records)
-ABC_SHA = fixture_records.known_sha256(ROOT)
-ORIGINAL_VERIFIER_SHA, ORIGINAL_DECLARATION_SHA, REJECTED_CURRENT_VERIFIER_SHA = fixture_records.acceleration_prior(ROOT)
+ABC_SHA = fixture_records.known_sha256(ROOT, "tests/test_f6c_acceleration_execution.py")
+ORIGINAL_VERIFIER_SHA, ORIGINAL_DECLARATION_SHA, REJECTED_CURRENT_VERIFIER_SHA = fixture_records.acceleration_prior(ROOT, "tests/test_f6c_acceleration_execution.py")
 def current_execution_plan(plan):
     """Copy the retained example into a current synthetic control, without changing its provenance."""
     plan=copy.deepcopy(plan)

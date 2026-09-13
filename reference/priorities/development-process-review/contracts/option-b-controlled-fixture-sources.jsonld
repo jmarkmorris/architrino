@@ -1,0 +1,1322 @@
+{
+  "@context": {
+    "@vocab": "https://architrino.com/knowledge/current-source/",
+    "from": {
+      "@type": "@id"
+    },
+    "to": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "current-source-manifest/v1",
+  "scope": "controlled-fixture-records",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "baseline": {
+    "commit": "a9fc8e1d906e5942061f79f2f834e5978c688b08",
+    "entry": "scripts/equation-mapping/controlled-fixture-records.mjs",
+    "authority": "operator-directed-existing-A-transfer"
+  },
+  "revisionId": "initial-graph-transfer",
+  "@graph": [
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "admission",
+      "binding": {
+        "path": "scripts/equation-mapping/controlled-fixture-records.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "98cbc218040325a349a4cc142d1218cbcf8482e0aafc7e70b3a1d9cb8000f9bd"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "scripts/equation-mapping/fixtures/known-hash-answers.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "c95f34944cf5ee2cac3c3e747241e4cc39a10099259b8f2f34c1415b1eec3a94"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fagent-dispatch-session.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/agent-dispatch-session.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9406aec540479ed7501da9025f735ed28f34e19601ec0e08e201db6241e00e90"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsource-replay.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/source-replay.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "96a4eff0b90af63454b78e952605b404e4e704798d245f5ea62c48728e1d3b94"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption-b-mathematical-acceptance.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option-b-mathematical-acceptance.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9a1f36f5a9a36ba36136c89cd320c0a7f959492f242398daae1f60129332f34c"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fdependency-map-reader.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "scripts/equation-mapping/dependency-map-reader.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "c220fcd2b1b31818a69a1bc7ee60f15021cfe4cb8ef7d6fb22014ad0518215de"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ff5-current-handoff.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f5-current-handoff.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9be2500598a035ad5a4f534d623805a0232185f8d634fbf2a95688156bc4f04e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsubfield-circular-current-prior.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/subfield-circular-current-prior.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "7f27fd8fda5e12a34b9c51ba28d8de99f1f579443ae82c6e1de32338dd6e3878"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ff5-current-build-admission.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f5-current-build-admission.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "bece91d95abca0e0f392ac1ff4be88009b9bd24e5463fdd42f02aa426cfc9fca"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsubfield-circular-current-context.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/subfield-circular-current-context.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "80fbe07ce7a3a1c6f0559b8e40dc0a7d5dfe6e85574679bf7ee223c170d4ec08"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fagent-dispatch.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/agent-dispatch.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "a56c098f9218dce3c44f222bf60e770de8436eabfe8356d29a386947a3acde20"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fanalytical-campaign-pipeline-benchmark.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/analytical-campaign-pipeline-benchmark.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "44f7f07f556e7b734b0e03f091dc1b2db104221d782351a3f5efa5771572e86b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fcurrent-source-manifest.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/current-source-manifest.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "26306f543c4000470051c0b96cfa41033b4ce4335c7b4c247cc4cc1e9a4d7c0c"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption-b-current-source-transition.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option-b-current-source-transition.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e5c7bcdc707aee9a79fd35f12be05a924e15f7437e7fdf9c6756f2afcab0482c"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ff5-original-input-tree.test.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f5-original-input-tree.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "b7a4bcd5251f88fd514dcf7afd0e6cf4d3c6328f02d551ae169090ace466459f"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f5_current_handoff.py",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/test_f5_current_handoff.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e1ba1b1b2a2aaeed75cbb972f5f8e1219ac690fa841be8185000fa4a0c2b67b2"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f6c_acceleration_execution.py",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/test_f6c_acceleration_execution.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "bfbc96fcb2453b7fa54b1c87b23331f7f4b79cf0aca93632ff512ff54d85c424"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f6c_retained_history_export.py",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/test_f6c_retained_history_export.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "1168a629b4a2b562d602ee9e5a15a2d4aedb720ee5d22501e71b6fedde5cb799"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ffixtures%2Foption-b-python-transport-identities.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/fixtures/option-b-python-transport-identities.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "69b53712021469945127d0564bc72c662f3cd0345fc5a87d6b85fcb4dc7bc47b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption_b_fixture_records.py",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option_b_fixture_records.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "adbeace24be92e929f3fb0c2f741ed9838945745b821fd24f9ef35e6fae77ce6"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_option_b_fixture_records.py",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/test_option_b_fixture_records.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "c82cd9185984e7d73f97b484011a75f4128af832613abb16cc502819e19367d8"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption-b-controlled-fixture-records.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option-b-controlled-fixture-records.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "8a23bb8b93d7024991801dd00c952ec987f3e2842c797d9e3e61f431cc328375"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsupport%2Foption-b-controlled-fixture-tree.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/support/option-b-controlled-fixture-tree.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e09d29e21a5bf566ece6a8d4f394e23999d9dcc1703aa754250c871bf2c0f74a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fequation-dependency-map.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/equation-dependency-map.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "5a73ba97fa86d7a8184e8a1ebe2f048789fd3d622de5ecd568a1e40498118c98"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcheck-moving-single-root-map.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/equation-mapping/check-moving-single-root-map.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "c14af8f42230636d6b92e2bc1fe498e48d4e9149d6bfe422f95a7d0605e5783b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-manifest.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9097ef3fd3fb2040b48c601d81c184188e8a992aa4464694860d05d0bf76a56e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-transition.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "5ab045757df6c7df7d364f39ba2ac62ec90666e092581b5b3faa08d232dda039"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-impact.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "739ebb899d68378bad5da6571b7774d0641e9f5674cb2a876fdb9dda07e9b31b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/package.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "package.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "27bcd57ac634c6c27eb6322201caa0667ac1eae443c02ee2f7998918da054ed7"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/package-lock.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "package-lock.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "f332c4307976378ed0c3d658b0b6bfa02164945cb0570526625e8b912e1798c4"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Fagent-dispatch-session.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fagent-dispatch-session.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Fsource-replay.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsource-replay.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Foption-b-mathematical-acceptance.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption-b-mathematical-acceptance.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/scripts%2Fequation-mapping%2Fdependency-map-reader.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fdependency-map-reader.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Ff5-current-handoff.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ff5-current-handoff.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Fsubfield-circular-current-prior.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsubfield-circular-current-prior.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Ff5-current-build-admission.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ff5-current-build-admission.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Fsubfield-circular-current-context.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsubfield-circular-current-context.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Fagent-dispatch.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fagent-dispatch.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Fanalytical-campaign-pipeline-benchmark.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fanalytical-campaign-pipeline-benchmark.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Fcurrent-source-manifest.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fcurrent-source-manifest.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Foption-b-current-source-transition.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption-b-current-source-transition.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Ff5-original-input-tree.test.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ff5-original-input-tree.test.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Ftest_f5_current_handoff.py",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f5_current_handoff.py",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Ftest_f6c_acceleration_execution.py",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f6c_acceleration_execution.py",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Ftest_f6c_retained_history_export.py",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f6c_retained_history_export.py",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Ffixtures%2Foption-b-python-transport-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ffixtures%2Foption-b-python-transport-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Foption_b_fixture_records.py",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption_b_fixture_records.py",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Ftest_option_b_fixture_records.py",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_option_b_fixture_records.py",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Foption-b-controlled-fixture-records.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption-b-controlled-fixture-records.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Fsupport%2Foption-b-controlled-fixture-tree.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsupport%2Foption-b-controlled-fixture-tree.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Fequation-dependency-map.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fequation-dependency-map.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/scripts%2Fequation-mapping%2Fcheck-moving-single-root-map.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcheck-moving-single-root-map.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/package.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/package.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/checks/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/package-lock.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/package-lock.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fagent-dispatch-session.test.mjs/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fagent-dispatch-session.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fagent-dispatch-session.test.mjs/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fagent-dispatch-session.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fsource-replay.test.js/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsource-replay.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fsource-replay.test.js/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsource-replay.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Foption-b-mathematical-acceptance.test.mjs/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption-b-mathematical-acceptance.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Foption-b-mathematical-acceptance.test.mjs/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption-b-mathematical-acceptance.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/scripts%2Fequation-mapping%2Fdependency-map-reader.mjs/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fdependency-map-reader.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/scripts%2Fequation-mapping%2Fdependency-map-reader.mjs/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fdependency-map-reader.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ff5-current-handoff.test.js/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ff5-current-handoff.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ff5-current-handoff.test.js/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ff5-current-handoff.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fsubfield-circular-current-prior.test.js/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsubfield-circular-current-prior.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fsubfield-circular-current-prior.test.js/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsubfield-circular-current-prior.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ff5-current-build-admission.test.js/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ff5-current-build-admission.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ff5-current-build-admission.test.js/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ff5-current-build-admission.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fsubfield-circular-current-context.test.js/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsubfield-circular-current-context.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fsubfield-circular-current-context.test.js/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsubfield-circular-current-context.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fagent-dispatch.test.mjs/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fagent-dispatch.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fagent-dispatch.test.mjs/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fagent-dispatch.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fanalytical-campaign-pipeline-benchmark.test.js/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fanalytical-campaign-pipeline-benchmark.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fanalytical-campaign-pipeline-benchmark.test.js/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fanalytical-campaign-pipeline-benchmark.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fcurrent-source-manifest.test.mjs/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fcurrent-source-manifest.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fcurrent-source-manifest.test.mjs/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fcurrent-source-manifest.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Foption-b-current-source-transition.test.mjs/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption-b-current-source-transition.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Foption-b-current-source-transition.test.mjs/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption-b-current-source-transition.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ff5-original-input-tree.test.js/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ff5-original-input-tree.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ff5-original-input-tree.test.js/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ff5-original-input-tree.test.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ftest_f5_current_handoff.py/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f5_current_handoff.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ftest_f5_current_handoff.py/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f5_current_handoff.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ftest_f6c_acceleration_execution.py/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f6c_acceleration_execution.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ftest_f6c_acceleration_execution.py/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f6c_acceleration_execution.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ftest_f6c_retained_history_export.py/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f6c_retained_history_export.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ftest_f6c_retained_history_export.py/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f6c_retained_history_export.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ftest_f6c_acceleration_execution.py/tests%2Ffixtures%2Foption-b-python-transport-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f6c_acceleration_execution.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ffixtures%2Foption-b-python-transport-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/tests%2Ffixtures%2Foption-b-python-transport-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ffixtures%2Foption-b-python-transport-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Foption_b_fixture_records.py/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption_b_fixture_records.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Foption_b_fixture_records.py/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption_b_fixture_records.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Ffixtures%2Fknown-hash-answers.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Foption_b_fixture_records.py/tests%2Ffixtures%2Foption-b-python-transport-identities.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption_b_fixture_records.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ffixtures%2Foption-b-python-transport-identities.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ftest_f5_current_handoff.py/tests%2Foption_b_fixture_records.py",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f5_current_handoff.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption_b_fixture_records.py",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ftest_f6c_acceleration_execution.py/tests%2Foption_b_fixture_records.py",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f6c_acceleration_execution.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption_b_fixture_records.py",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Ftest_f6c_retained_history_export.py/tests%2Foption_b_fixture_records.py",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Ftest_f6c_retained_history_export.py",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption_b_fixture_records.py",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/scripts%2Fequation-mapping%2Fcheck-moving-single-root-map.mjs/scripts%2Fequation-mapping%2Fdependency-map-reader.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcheck-moving-single-root-map.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fdependency-map-reader.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/scripts%2Fequation-mapping%2Fcheck-moving-single-root-map.mjs/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcheck-moving-single-root-map.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fsupport%2Foption-b-controlled-fixture-tree.mjs/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsupport%2Foption-b-controlled-fixture-tree.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fequation-dependency-map.test.mjs/scripts%2Fequation-mapping%2Fdependency-map-reader.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fequation-dependency-map.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fdependency-map-reader.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Fequation-dependency-map.test.mjs/tests%2Fsupport%2Foption-b-controlled-fixture-tree.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fequation-dependency-map.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsupport%2Foption-b-controlled-fixture-tree.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Foption-b-mathematical-acceptance.test.mjs/scripts%2Fequation-mapping%2Fcheck-moving-single-root-map.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption-b-mathematical-acceptance.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcheck-moving-single-root-map.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/tests%2Foption-b-mathematical-acceptance.test.mjs/tests%2Fsupport%2Foption-b-controlled-fixture-tree.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Foption-b-mathematical-acceptance.test.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/tests%2Fsupport%2Foption-b-controlled-fixture-tree.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/controlled-fixture/dependsOn/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcontrolled-fixture-records.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/controlled-fixture/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "test-expectation-dependency"
+    }
+  ]
+}

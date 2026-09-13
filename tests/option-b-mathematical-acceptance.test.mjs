@@ -1,3 +1,4 @@
+import { copyControlledFixtureTree } from './support/option-b-controlled-fixture-tree.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -5,7 +6,8 @@ import path from 'node:path';
 import os from 'node:os';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import knownAnswers from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with {type:'json'};
+import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';
+const knownAnswers = admittedKnownHashAnswers("tests/option-b-mathematical-acceptance.test.mjs");
 import acceptanceSelection from '../scripts/equation-mapping/fixtures/mathematical-acceptance-selection.json' with {type:'json'};
 import {preflight} from '../scripts/equation-mapping/dependency-map-reader.mjs';
 import {ACCEPTANCE_PATH,loadAcceptedMathematicalMaps,runTrial} from '../scripts/equation-mapping/check-moving-single-root-map.mjs';
@@ -37,6 +39,7 @@ function fixture(t) {
     'scripts/equation-mapping/fixtures/mathematical-acceptance-selection.json'])) {
     const filename=path.join(directory,name);fs.mkdirSync(path.dirname(filename),{recursive:true});fs.copyFileSync(path.join(root,name),filename);
   }
+  copyControlledFixtureTree(root, directory);
   return {directory,write(name,value){const raw=Buffer.from(JSON.stringify(value)+'\n');fs.writeFileSync(path.join(directory,name),raw);return sha(raw);}};
 }
 
