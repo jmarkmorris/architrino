@@ -1,3 +1,6 @@
+import optionBIdentities from './fixtures/option-b-retained-test-identities.json' with { type: 'json' };
+const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/f6c-parent-refinement-batch-preparation.test.js"].sha256]);
+if (RETAINED_HASHES.length !== 2 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 // Author transport controls only. Independent expectations/instruments remain
 // separately frozen; no numerical provider or actual retained history executes.
 import test from 'node:test';
@@ -52,10 +55,10 @@ test('closed source/configuration/identity/schema/census mutations reject',()=>{
  for(const mutate of mutations){const f=fixture();mutate(f);assert.throws(()=>P.derivePlans(f));}
 });
 test('only actually consumed exact historical document routes admit',()=>{
- const f=fixture(),original=bind(path.join(root,'reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md'),'46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021),physical={...original,path:'/synthetic/archived-resource.md.source'};
+ const f=fixture(),original=bind(path.join(root,'reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md'),RETAINED_HASHES[0],13021),physical={...original,path:'/synthetic/archived-resource.md.source'};
  const prior=f.admission.sourceBindings[0];f.admission.sourceBindings[0]=original;f.configuration.sources=f.configuration.sources.filter(b=>b.path!==prior.path);delete f.configuration.sourceIdentities[prior.path];f.configuration.sources.push(physical);f.configuration.sourceIdentities[physical.path]='1:999:13021:3:4';f.configuration.historicalDocumentRoutes=[{original,physical}];
  assert.equal(P.derivePlans(f).batch.configuration.parents.length,3);
- const unused={original:bind(path.join(root,'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md'),'daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b',10021),physical:bind('/synthetic/2026-08-27-f6c-cached-root-cover-full-resource-plan.md.source','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b',10021)};
+ const unused={original:bind(path.join(root,'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md'),RETAINED_HASHES[1],10021),physical:bind('/synthetic/2026-08-27-f6c-cached-root-cover-full-resource-plan.md.source',RETAINED_HASHES[1],10021)};
  f.configuration.historicalDocumentRoutes.push(unused);f.configuration.sources.push(unused.physical);f.configuration.sourceIdentities[unused.physical.path]='1:998:10021:3:4';assert.throws(()=>P.derivePlans(f));
 });
 test('expanded runtime cannot exceed downstream one-MiB plan consumer bound',()=>{

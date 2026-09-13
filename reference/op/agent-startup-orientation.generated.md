@@ -81,11 +81,11 @@ A changed hash means a startup source was edited after the last regeneration. It
 | README.md | 220 | `36a303599a5a3c02` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 310 | `752ef83823c17a08` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 319 | `76e219eef8f44c33` |
 | [reference/op/brainstorming.md](brainstorming.md) | 380 | `a64f54974e729b23` |
 | [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 208 | `328459c22faedf60` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
-| [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 101 | `ff8827802d4bd427` |
+| [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 126 | `83428ce7c3f5d557` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6e7d85fadab80fc0` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `aea014967bca3b04` |

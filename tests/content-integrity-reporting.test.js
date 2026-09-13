@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { runChecks, selectedChecks, MAC_DEPENDENT_TESTS } from "../scripts/check-content-integrity.mjs";
+import optionBSelection from "../reference/priorities/development-process-review/contracts/option-b-five-profile-selection.json" with { type: "json" };
 
 test("GitHub assigns exactly two Python tests locally without weakening the local gate", () => {
   const pattern = new RegExp(MAC_DEPENDENT_TESTS);
@@ -30,9 +31,19 @@ test("all remaining Option B admission and finite-disposition controls are requi
   const checks = selectedChecks({});
   const admission = checks.find(row => row.name === "Test Option B current-source admission and dependency controls");
   assert.ok(admission && !admission.reporting && !admission.skipWhen);
-  for (const file of ["tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-operational-successor.test.mjs", "tests/option-b-disposition-coverage.test.mjs"]) assert.ok(admission.args.includes(file), file);
+  assert.ok(admission.args.includes("tests/option-b-root-cover-admission.test.mjs"));
+  assert.ok(admission.args.includes("tests/option-b-next-test-identities.test.mjs"));
+  assert.equal(selectedChecks({ AAA_CONTENT_MAINTENANCE: "run" }).some(row=>row.args.includes("tests/current-launch-bindings.test.js")),false);
+  for (const file of ["tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-f5-budget-transition.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-disposition-coverage.test.mjs"]) assert.ok(admission.args.includes(file), file);
+  assert.equal(admission.args.includes("tests/option-b-operational-successor.test.mjs"), false);
+  const selectedB = checks.find(row => row.args[0] === "scripts/equation-mapping/check-current-source-maps.mjs");
+  assert.ok(selectedB && !selectedB.reporting && !selectedB.skipWhen);
+  assert.deepEqual(selectedB.args.slice(1), ["--accepted-baseline", optionBSelection.acceptedBaseline, "--accepted-baseline-sha256", optionBSelection.acceptedBaselineSha256, "--transition", optionBSelection.transition, "--transition-sha256", optionBSelection.transitionSha256]);
   const census = checks.find(row => row.args[0] === "scripts/equation-mapping/check-current-source-dispositions.mjs");
   assert.ok(census && !census.reporting && !census.skipWhen);
+  const runtime = checks.find(row => row.name === "Test generated runtime storage and deployment contracts");
+  assert.ok(runtime && !runtime.reporting && !runtime.skipWhen);
+  for (const file of ["tests/borg-assembly-record-catalog-generator.test.js", "tests/borg-assembly-record-catalog.test.js", "tests/borg-certified-budget-identities.test.js", "tests/borg-eom-migration.test.js", "tests/analytical-campaign-pipeline-benchmark.test.js", "tests/braid-taxonomy-terminology.test.js"]) assert.ok(runtime.args.includes(file), file);
 });
 
 function scenario(checks, results) {

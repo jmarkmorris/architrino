@@ -1,3 +1,5 @@
+import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };
+const ABC_SHA = knownHashes.sha256.abc;
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
@@ -9,7 +11,7 @@ test('binding instrument accepts known SHA256 abc and rejects changed bytes', ()
   const root = mkdtempSync(path.join(os.tmpdir(), 'f5-admission-'));
   try {
     writeFileSync(path.join(root, 'known'), 'abc');
-    const binding = { path: 'known', sha256: 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', bytes: 3 };
+    const binding = { path: 'known', sha256: ABC_SHA, bytes: 3 };
     assert.equal(checkBinding(binding, root).path, path.join(root, 'known'));
     writeFileSync(path.join(root, 'known'), 'abd');
     assert.throws(() => checkBinding(binding, root), /changed/);

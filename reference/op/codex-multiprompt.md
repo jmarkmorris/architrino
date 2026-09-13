@@ -44,6 +44,31 @@ Before launching worker threads:
 
 ## Worker Prompt Skeleton
 
+### Machine-bound source baselines
+
+For every worker dispatch that asserts source hashes, use [the dispatch helper](../../scripts/agent-dispatch.mjs). Do not transcribe measured hashes into assignment arrays or prompt prose. The helper reads source bytes, constructs the baseline block, checks optional externally supplied expectations, and measures the complete outgoing UTF-8 message. A source hash is a byte-identity check, not ownership or scientific acceptance. This helper is an agent-coordination consumer, not a competing A/B source-admission authority.
+
+Prepare a request with `root` (absolute repository path), `body` (the worker instructions, without a separately authored hash block), and `sources` (a nonempty array of objects containing repository-relative `path`). An optional `expectedSha256` must come directly from the applicable machine-readable record and is checked strictly; do not copy it through model-authored text. Keep request and packet files in the existing ignored `.local-data/agent-dispatch/` directory, creating that directory as needed. Packets retain full prompts and should be treated as local diagnostic evidence, not published automatically.
+
+```bash
+node scripts/agent-dispatch.mjs prepare .local-data/agent-dispatch/request.json .local-data/agent-dispatch/packet.json
+node scripts/agent-dispatch.mjs verify .local-data/agent-dispatch/packet.json
+```
+
+Preparation refuses to overwrite an existing packet. Verification recomputes the sources and rejects malformed hashes, changed files, altered messages and inconsistent byte counts. An empty, short, long or nonhexadecimal expected hash is rejected; a syntactically valid hash that differs from the file is also rejected. The local outgoing-message ceiling is 1 MiB of UTF-8, not a claim about provider capacity. The output is one JSON object; parse it programmatically and pass its `message` property directly to the host's authorized agent tool. Never reconstruct, summarize, trim or retype that property. Reject a failed command, truncated tool output or JSON parse error before sending. The worker must check the retained source identities before its first edit; a concurrent edit after dispatch remains possible.
+
+In a Node-capable host adapter, use `sendDispatch(packet, message => hostSend({ message }))` from the helper. It revalidates immediately before invoking the sender and gives the callback the verified immutable string. Where host tools and filesystem access occupy separate runtimes, run the CLI `verify` immediately before sending and parse its complete stdout in the orchestration runtime; do not copy the returned message through a model response. A host that cannot transfer the result programmatically must stop that dispatch rather than fall back to hand transcription. This procedure does not authorize an agent launch that the task or host otherwise forbids.
+
+The packet records exact message and source byte counts, message SHA-256, source SHA-256 values and the complete message. Retain the sender tool-call ID and receiver task ID alongside the packet when the host returns them. A successful send is not proof of receipt equality. For an observed discrepancy, extract the actual incoming message field from the receiver's raw session log to a UTF-8 file without adding a newline, retaining log path, line and timestamp. Compare it with:
+
+```bash
+node scripts/agent-dispatch.mjs compare .local-data/agent-dispatch/packet.json .local-data/agent-dispatch/received.txt
+```
+
+Comparison reports both byte counts and digests, equality, and the zero-based first differing byte and values; it exits nonzero on mismatch. It uses the retained payload rather than current source files so historical investigation remains possible. Retain the prepared packet, actual sender arguments, receiver message, command outcomes, host/tool versions when available, and correlation IDs for a bug report. A difference between packet and sender localizes a preparation/adapter defect; equal sender and receiver messages do not support transport corruption. Missing receiver evidence leaves transport unverified. Packet digests detect inconsistency, not malicious replacement of both payload and digest or proof of delivery. Do not attach private prompts or source content to an external report without operator authorization.
+
+The maintained regression command is `node --test tests/agent-dispatch.test.mjs`. Its callback tests cover the local send boundary; its CLI tests cover file/stdout handling. Neither claims live provider boundary coverage. See the [September 12 incident and validation record](../priorities/development-process-review/analysis/agent-dispatch-integrity.md) for the motivating evidence.
+
 Start each worker prompt with a concrete closure goal:
 
 ```text

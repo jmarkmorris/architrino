@@ -1,3 +1,5 @@
+import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
+const NEXT_TEST_SHA = nextTestIdentities("tests/option-b-f6c-coordinator-process.test.mjs", 2);
 // Host-dependent synthetic operational controls. No numerical producer or oracle.
 // Retain runtime records under the ignored evidence owner for external inspection.
 import test from 'node:test';
@@ -34,7 +36,7 @@ test('known literal synthetic hook accepts only its declared completion',async()
  writeFileSync(stdout,'{"completed":true,"synthetic":false}\n');
  await assert.rejects(module.fileOperation(job),/synthetic completion mismatch/);
  assert.equal(canonical({z:[true,null],a:1}),' {"a":1,"z":[true,null]}'.trim());
- assert.equal(hash('abc'),'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+ assert.equal(hash('abc'),NEXT_TEST_SHA[0]);
 });
 
 test('current serial coordinator closes through the independently selected observer',async t=>{
@@ -54,7 +56,7 @@ test('current serial coordinator closes through the independently selected obser
  const planPath=path.join(dir,'plan.json');writeFileSync(planPath,canonical(plan)+'\n',{flag:'wx'});
  const observer=bind(path.join(root,'scripts/eom/observe-parent-batch.mjs'));
  const checker=bind(path.join(root,'scripts/eom/verify-f6c-bounded-operation-closure.mjs'));
- assert.equal(checker.sha256,'9887632e2900efb1feecf0dfe24ae5f138e46ba7ab870c56eede66a522e84609','independently reviewed frozen checker');
+ assert.equal(checker.sha256,NEXT_TEST_SHA[1],'independently reviewed frozen checker');
  const coordinator=bind(path.join(root,C.SELF)),out=path.join(dir,'observer');
  const args=['--control','--plan',planPath,'--plan-sha256',bind(planPath).sha256,
   '--self-sha256',observer.sha256,'--checker-sha256',checker.sha256,'--coordinator-sha256',coordinator.sha256,

@@ -9,6 +9,8 @@ tmp/
 node_modules/
 
 # Reproducible runtime payloads: build during setup and deployment; never track.
+/content/generated/borg/assembly-record-catalog.v2.js
+/content/generated/borg/certified-budget-identities.v1.js
 /content/assets/borg/records/
 /content/generated/equation-mapping/corpus-equations.json
 /content/generated/source-index/local-full-corpus-snapshot.v1.json

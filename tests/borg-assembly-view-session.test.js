@@ -1,3 +1,6 @@
+import optionBIdentities from './fixtures/option-b-retained-test-identities.json' with { type: 'json' };
+const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/borg-assembly-view-session.test.js"].sha256]);
+if (RETAINED_HASHES.length !== 2 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 import assert from "node:assert/strict";
 import test from "node:test";
 
@@ -43,7 +46,7 @@ function record(runId, overrides = {}) {
     schema: "assembly-view-record.v0",
     sourceId: overrides.sourceId ?? runId,
     assemblyId: overrides.assemblyId ?? "asm-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    modelRevisionSha256: overrides.modelRevisionSha256 ?? "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    modelRevisionSha256: overrides.modelRevisionSha256 ?? RETAINED_HASHES[0],
     permutationCanonicalKey: overrides.permutationCanonicalKey,
     provenance: {
       engineId: "eom-solver",
@@ -149,7 +152,7 @@ test("comparison uses declared time and unit transforms and reports canonical ov
 test("external collection manifest preserves declared source order and exact identities", () => {
   const second = record("second", {
     assemblyId: "asm-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-    modelRevisionSha256: "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    modelRevisionSha256: RETAINED_HASHES[1],
   });
   const first = record("first");
   const manifest = {

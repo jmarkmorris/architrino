@@ -1,3 +1,5 @@
+import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
+const NEXT_TEST_SHA = nextTestIdentities("tests/f6c-streamed-leaf-diagnostic.test.js", 10);
 // Synthetic transport/lifecycle controls plus an explicit genuine stationary
 // adapter/driver bridge. No original histories or actual-data numerical work.
 // Every whole-process fixture uses the unchanged owned supervisor with a hard
@@ -63,9 +65,9 @@ const conditionalCompletion=done=>{
 test('fresh closure authority is the separately accepted pure checker generation',()=>{
  const prefix='.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/';
  assert.deepEqual(C.FRESH_CLOSURE_PINS,{
-  instrument:[prefix+'independent_parent_batch_closure.py','3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223'],
-  controls:[prefix+'independent_parent_batch_closure_controls.py','f45ccfb0ff9609fe267f25c1ba2521ec58134f9caf7d128b09e0adfde9e6a979'],
-  contract:[prefix+'fresh-parent-batch-closure-validator-expectations.md','7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed'],
+  instrument:[prefix+'independent_parent_batch_closure.py',NEXT_TEST_SHA[0]],
+  controls:[prefix+'independent_parent_batch_closure_controls.py',NEXT_TEST_SHA[1]],
+  contract:[prefix+'fresh-parent-batch-closure-validator-expectations.md',NEXT_TEST_SHA[2]],
  });
 });
 
@@ -604,19 +606,19 @@ test('package selection preserves logical descriptors and removes only admitted 
 });
 test('parent-two historical wrapper routes require the exact original plan and six literal tuples',async()=>{
  const expected={
-  producer:['scripts/eom/prepare-f6c-parent-emission-refinement.py','ff488499f2737860034602ce9559c3ebc817aa8413b827007fb31027815679d2',58397],
-  producerControls:['tests/test_f6c_parent_emission_refinement_preparation.py','517cc307251611177ec19cc5d71938a4086806f48583bcf8e3f2d04e9afb8d9f',43836],
-  verifier:['scripts/eom/verify-f6c-parent-emission-refinement.py','53595cc12589ab56c73a1613922bba2739704cbc78465e3d646d5ae6a43813db',46615],
-  verifierControls:['tests/test_f6c_parent_emission_refinement_verification.py','889d8721d2b51520c0fef78f6a954f9b510cbb46fdf9019205199dfa3658b5a9',42419],
-  operationalEntry:['scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','462247cf723339dbdc9ce9b4b897720cd4edcedc9b85c22b70694c41663f5c1b',56022],
-  operationalControls:['tests/f6c-parent-emission-refinement-pilot.test.js','dd88eae5729d8ecc5947a27966edb215074d12687f3b5cd0bfc3be69d0400bc1',33303]
+  producer:['scripts/eom/prepare-f6c-parent-emission-refinement.py',NEXT_TEST_SHA[3],58397],
+  producerControls:['tests/test_f6c_parent_emission_refinement_preparation.py',NEXT_TEST_SHA[4],43836],
+  verifier:['scripts/eom/verify-f6c-parent-emission-refinement.py',NEXT_TEST_SHA[5],46615],
+  verifierControls:['tests/test_f6c_parent_emission_refinement_verification.py',NEXT_TEST_SHA[6],42419],
+  operationalEntry:['scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs',NEXT_TEST_SHA[7],56022],
+  operationalControls:['tests/f6c-parent-emission-refinement-pilot.test.js',NEXT_TEST_SHA[8],33303]
  };
  assert.deepEqual(C.PARENT_TWO_ARCHIVE_SOURCES,expected);
  const f=fixture();try{
   const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
   const b=(name,h='a'.repeat(64),bytes=1)=>({path:path.join(f.dir,'declared',name),sha256:h,bytes});
   const d={parent_index:2};for(const role of ['plan','manifest','comparison','operation','launcher_log','resource_log'])d[role]=b(role);
-  d.plan={path:path.join(f.dir,'reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json'),sha256:'928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e',bytes:51509};
+  d.plan={path:path.join(f.dir,'reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json'),sha256:NEXT_TEST_SHA[9],bytes:51509};
   d.closure={owner:f.spec.bindings.readiness,operation:d.operation,original_caller_session:'12345',final_completion_chunk:'abc123',exit_code:0,elapsed_seconds:'3.125',processes_closed:true,independent_audit_accepted:true,authority:'attributed-versioned-acceptance-owner-not-fresh-process-observation'};
   d.archived_sources=Object.entries(expected).map(([role,[p,h,n]])=>({role,original:{path:path.join(f.dir,p),sha256:h,bytes:n},archive:b('parent2-'+role,h,n)}));
   const spec={...structuredClone(f.spec),parentRefinements:[d]},before=JSON.stringify(spec);

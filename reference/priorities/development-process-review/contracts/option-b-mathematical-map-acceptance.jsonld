@@ -1,0 +1,42 @@
+{
+  "@context": { "@vocab": "https://architrino.com/knowledge/acceptance/" },
+  "@id": "https://architrino.com/knowledge/acceptance/mathematical-maps-20260912",
+  "@type": "ScopeAcceptance",
+  "schemaVersion": "option-b-map-scope-acceptance/v1",
+  "status": "operator-accepted",
+  "scope": "report-only change comparison for the two exact reviewed mathematical dependency maps",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "reviewedCommit": "859f2b07cb17889ca2c239d82fd61455c2ba903c",
+  "operatorDirection": "the goal is B takes over all A functionality and that hashes are removed from source files; if 1 and 2 are inline with that direction, then do them.",
+  "decisionOwner": "reference/priorities/development-process-review/processes-git-codex-claude.md#current-map-scope-acceptance--september-12",
+  "acceptanceRoute": "Explicit operator instruction in the current task after the exact-map independent review and its linked manifest were presented. No GitHub review, signature, publication or merge is fabricated by this record.",
+  "maps": [
+    {
+      "path": "reference/priorities/master-equation-closure/contracts/moving-single-root-dependencies.jsonld",
+      "sha256": "645361eca22899e2dccc3c48cb47d2616b8d584e83ae906e053e67739c3dfb75",
+      "scope": "moving-single-root-only"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/contracts/finite-ledger-dependencies.jsonld",
+      "sha256": "fb0d1c65cb377829284ac096beb1784f828e3ac0105afa9a84e8c9c5c6af66c8",
+      "scope": "finite-ledger-superposition-only"
+    }
+  ],
+  "reviewManifest": {
+    "path": "reference/priorities/development-process-review/evidence/option-b-current-map-review-manifest.json",
+    "sha256": "0deb1a97f13a7c3e06ed1f90634bc591ac0f58cb5d7e0f61e7cf2267fe2b50d6"
+  },
+  "executionReport": {
+    "path": "reference/priorities/development-process-review/evidence/option-b-current-map-review-report.json",
+    "sha256": "30d880864ea9c4d57ae1ed7e9e2e1f58011b5e8b11a9239442f2bc742d2cfe1f"
+  },
+  "verification": "Known abc digest passed before all review-manifest inputs were compared with both the exact Git commit and live files. All matched before the acceptance documentation was added. Independent review authenticated the prior four passing trial checks and exact maps.",
+  "loaderState": "Scope acceptance is recorded; the existing comparison loader has not been advanced. Earlier execution records retain their original not-granted fields because they preceded this decision.",
+  "nonclaims": [
+    "No approval of different map bytes or arbitrary successor sources",
+    "No dependency-completeness or global mathematical claim",
+    "No production enforcement or replacement of scientific validation",
+    "No automatic acceptance inferred from a current map digest",
+    "No completed full takeover of A or completed source-hash removal"
+  ]
+}

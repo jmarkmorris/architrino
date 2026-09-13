@@ -1,3 +1,5 @@
+import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };
+const ABC_SHA = knownHashes.sha256.abc;
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash, randomUUID } from 'node:crypto';
@@ -16,7 +18,7 @@ test('regular-byte capture passes a known byte and digest control before real in
     writeFileSync(filename, 'abc');
     const bytes = readF5RegularBytes(filename);
     assert.deepEqual(bytes, Buffer.from('abc'));
-    assert.equal(createHash('sha256').update(bytes).digest('hex'), 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), ABC_SHA);
     symlinkSync(filename, path.join(dir, 'alias'));
     assert.throws(() => readF5RegularBytes(path.join(dir, 'alias')), /symlinked input/);
     assert.throws(() => readF5RegularBytes(dir), /regular file/);

@@ -5,14 +5,16 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { sha256 } from '../scripts/equation-mapping/current-source-manifest.mjs';
-import { inspectTransfer, PROFILES, ROOT } from '../scripts/equation-mapping/check-current-source-maps.mjs';
-import { extractRoleBindings } from '../scripts/equation-mapping/legacy-role-bindings.mjs';
-// Known extraction control precedes every target profile in this test module.
-const legacyControl = `const base="data/";\nexport const EXTRA="extra";\nexport const FIXED=Object.freeze([\n ["evidence",base+"record","${'1'.repeat(64)}"],\n].map(Object.freeze));\nexport const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),\n [EXTRA]:"${'2'.repeat(64)}",\n});`;
-assert.deepEqual(extractRoleBindings(legacyControl,'FIXED'),{'data/record':'1'.repeat(64),extra:'2'.repeat(64)});
-test('known role-table extraction rejects unknown constants and malformed rows',()=>{
-  assert.throws(()=>extractRoleBindings(legacyControl.replace('base+','unknown+'),'FIXED'));
-  assert.throws(()=>extractRoleBindings(legacyControl.replace('["evidence",','["evidence",extra,'),'FIXED'));
+import { inspectCurrentSources, PROFILES, ROOT } from '../scripts/equation-mapping/check-current-source-maps.mjs';
+import selection from '../reference/priorities/development-process-review/contracts/option-b-five-profile-selection.json' with { type: 'json' };
+const {schema,...B_SELECTION}=selection;
+assert.equal(schema,'current-source-acceptance-selection/v1');
+const acceptedRaw=fs.readFileSync(path.join(ROOT,B_SELECTION.acceptedBaseline));
+assert.equal(sha256(acceptedRaw),B_SELECTION.acceptedBaselineSha256);
+const ACCEPTED=JSON.parse(acceptedRaw);
+const inspectB=(root=ROOT)=>inspectCurrentSources({root,...B_SELECTION,requiredProfiles:Object.keys(PROFILES)});
+test('required admission coverage retains exactly the five original profiles',()=>{
+  assert.deepEqual(Object.keys(PROFILES).sort(),['cached-root-cover','cached-root-cover-full','f6c-acceleration','prescribed-response','root-cover']);
 });
 for (const [profile, selected] of Object.entries(PROFILES)) {
 const R = await import('../' + selected.entry), { runFileWorker } = await import('../' + (profile === 'f6c-acceleration' ? 'scripts/eom/launch-prescribed-response-pilot.mjs' : selected.launcher));
@@ -22,13 +24,13 @@ const expectedEvidence = ['cached-root-cover-full','f6c-acceleration'].includes(
 const scenario = (name, fn) => test(profile + ': ' + name, fn);
 
 const raw = fs.readFileSync(path.join(ROOT, MANIFEST)), digest = sha256(raw), map = JSON.parse(raw);
-scenario('B covers all retained A current-source bindings and keeps fixed evidence', async () => {
-  const report = inspectTransfer({ profile }); assert.equal(report.transferred, expectedSources - 3); assert.equal(report.retainedEvidence, expectedEvidence);
+scenario('B preserves the accepted source census and fixed evidence', async () => {
+  const report = inspectB().profiles[profile]; assert.equal(report.sources, expectedSources);
   const admitted = await R.initializeSourceBindings(ROOT, digest);
   assert.equal(admitted.sources.length, expectedSources); assert.equal(admitted.sourceMap.sha256, digest);
   assert.equal(Object.keys(R.EVIDENCE_PINS).length, expectedEvidence);
-  const baseline = JSON.parse(fs.readFileSync(path.join(ROOT, selected.baseline)));
-  const retained = baseline.bindings.filter(b => b.category !== 'current-repository-binding-transfer');
+  const retained = ACCEPTED.profiles.find(row=>row.name===profile).historicalEvidenceBindings;
+  assert.equal(retained.length,expectedEvidence);
   assert.deepEqual(R.EVIDENCE_PINS, Object.fromEntries(retained.map(b => [b.path, b.sha256])));
   assert.equal(Object.hasOwn(R, 'PINS'), false);
   const plan = { resourcePlan: { path: R.RESOURCE_PLAN, sha256: R.SOURCE_BINDINGS[R.RESOURCE_PLAN] }, comparisonContract: { subjectSourceBindings: [], runtimeBindings: [] }, operationalBindings: [], controlBindings: [] };
@@ -47,7 +49,9 @@ scenario('B covers all retained A current-source bindings and keeps fixed eviden
 function fixture(t) {
   const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'option-b-admission-')));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  for (const p of [MANIFEST, ...map['@graph'].filter(r => r.binding).map(r => r.binding.path)]) {
+  const paths=new Set([B_SELECTION.acceptedBaseline,B_SELECTION.transition,ACCEPTED.historicalProof.path]);
+  for(const selectedProfile of ACCEPTED.profiles){paths.add(selectedProfile.manifestPath);for(const row of JSON.parse(selectedProfile.manifestRaw)['@graph'])if(row.binding)paths.add(row.binding.path);}
+  for (const p of paths) {
     fs.mkdirSync(path.dirname(path.join(root, p)), { recursive: true }); fs.copyFileSync(path.join(ROOT, p), path.join(root, p));
   }
   return root;
@@ -72,7 +76,7 @@ scenario('stale source, missing source, reader substitution and wrong digest can
   }
   assert.equal(R.SOURCE_BINDINGS, undefined, 'failed initialization cannot reuse prior bindings');
 });
-scenario('graph changes cannot inherit the supplied manifest identity; transfer checker retains old obligations', async t => {
+scenario('graph changes cannot inherit either launch or reviewed B transition identity', async t => {
   const root = fixture(t);
   for (const mutate of [m => m['@graph'].pop(), m => m['@graph'][0].role = 'scientific-control', m => m['@graph'].push(m['@graph'][0]), m => m['@graph'][0].binding.selector.kind = 'literal']) {
     const changed = structuredClone(map); mutate(changed); const candidate = Buffer.from(JSON.stringify(changed));
@@ -80,7 +84,8 @@ scenario('graph changes cannot inherit the supplied manifest identity; transfer 
     await assert.rejects(R.initializeSourceBindings(root, digest), /hash differs|generation\/hash differs|changed input\/hash/);
   }
   const changed = structuredClone(map); changed['@graph'][0].binding.sha256 = '0'.repeat(64);
-  assert.throws(() => inspectTransfer({ profile, manifestRaw: Buffer.from(JSON.stringify(changed)) }), /Transfer changes/);
+  fs.writeFileSync(path.join(root,MANIFEST),JSON.stringify(changed));
+  assert.throws(() => inspectB(root), /Stale binding/);
 });
 scenario('actual launch and stage CLIs reject untrusted map before process/scientific dispatch', () => {
   const hashes = p => sha256(fs.readFileSync(path.join(ROOT, p)));
@@ -106,18 +111,22 @@ scenario('manifests selected for every other profile cannot authorize this entry
   const otherRaw = fs.readFileSync(path.join(ROOT, other.manifest));
   fs.writeFileSync(path.join(root, MANIFEST), otherRaw);
   await assert.rejects(R.initializeSourceBindings(root, sha256(otherRaw)), /Wrong manifest scope/);
-  assert.throws(() => inspectTransfer({ profile, manifestRaw: otherRaw }), /scope|profile|equal/i);
+  assert.throws(() => inspectB(root), /Stale binding/);
   }
 });
 }
 
-test('full profile retains its saved pilot plan as historical evidence regardless of directory', () => {
+test('full profile retains its saved pilot plan as historical evidence regardless of directory', t => {
   const selected = PROFILES['cached-root-cover-full'];
-  const baseline = JSON.parse(fs.readFileSync(path.join(ROOT, selected.baseline)));
+  const baseline = ACCEPTED.profiles.find(row=>row.name==='cached-root-cover-full');
   const map = JSON.parse(fs.readFileSync(path.join(ROOT, selected.manifest)));
   const savedPlan = 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json';
-  assert.equal(baseline.bindings.find(b => b.path === savedPlan).category, 'historical-evidence-retained');
+  assert.equal(baseline.historicalEvidenceBindings.find(b => b.path === savedPlan).category, 'historical-evidence-retained');
   assert.equal(map['@graph'].some(r => r.binding?.path === savedPlan), false);
-  baseline.bindings.find(b => b.path === savedPlan).category = 'current-repository-binding-transfer';
-  assert.throws(() => inspectTransfer({ profile: 'cached-root-cover-full', baseline }), /Incorrect binding disposition/);
+  const root=fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(),'b-retained-evidence-')));
+  t.after(()=>fs.rmSync(root,{recursive:true,force:true}));
+  const changed=structuredClone(ACCEPTED);
+  changed.profiles.find(row=>row.name==='cached-root-cover-full').historicalEvidenceBindings.find(b=>b.path===savedPlan).category='current-repository-binding-transfer';
+  const target=path.join(root,B_SELECTION.acceptedBaseline);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,JSON.stringify(changed));
+  assert.throws(()=>inspectB(root),/Stale binding/);
 });

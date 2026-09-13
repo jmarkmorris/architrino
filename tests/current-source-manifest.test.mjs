@@ -2,14 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { CONTEXT, NS, sha256, decode, validate, admit } from '../scripts/equation-mapping/current-source-manifest.mjs';
 import { compareSourceManifests } from '../scripts/equation-mapping/current-source-impact.mjs';
+import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };
+const ABC_SHA = knownHashes.sha256.abc;
+assert.match(ABC_SHA, /^[a-f0-9]{64}$/u);
 
 export function knownManifest() {
-  const source = (id, role) => ({ '@id': NS + id, '@type': 'Source', revisionId: '1', role, binding: { path: id + '.txt', selector: { kind: 'whole' }, contract: 'fixed-byte-selection/v1', sha256: 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad' } });
+  const source = (id, role) => ({ '@id': NS + id, '@type': 'Source', revisionId: '1', role, binding: { path: id + '.txt', selector: { kind: 'whole' }, contract: 'fixed-byte-selection/v1', sha256: ABC_SHA } });
   const edge = (kind, from, to) => ({ '@id': NS + kind + '-' + from + '-' + to, '@type': 'Relationship', revisionId: '1', kind, from: NS + from, fromRevision: '1', to: NS + to, toRevision: '1', role: 'known dependency' });
   return { '@context': CONTEXT, schemaVersion: 'current-source-manifest/v1', scope: 'known', repository: 'https://github.com/jmarkmorris/architrino.git', baseline: { commit: '1'.repeat(40), entry: 'check.txt', authority: 'operator-directed-existing-A-transfer' }, revisionId: '1', '@graph': [source('check', 'admission'), source('a', 'current-source'), source('b', 'independent-reference'), edge('dependsOn', 'a', 'b'), edge('checks', 'check', 'a'), edge('checks', 'check', 'b')] };
 }
 test('known abc, fixed source census and explicit check coverage', () => {
-  assert.equal(sha256('abc'), 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+  assert.equal(sha256('abc'), ABC_SHA);
   const m = knownManifest(), raw = Buffer.from(JSON.stringify(m));
   assert.deepEqual(decode(raw), m); assert.equal(validate(m).sources.size, 3);
   const visited = [];

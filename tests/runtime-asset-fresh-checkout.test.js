@@ -3,7 +3,8 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
+import { pathToFileURL } from "node:url";
 import { createHash } from "node:crypto";
 import { buildStaticSite, isPagesDeploymentExcluded, WEB_KATEX_DIRECTORY, PAGES_MAX_BYTES } from "../scripts/build-static-site.mjs";
 import { runtimeAssetPaths, isGeneratedRuntimeAsset, readRuntimeAssetFamilies } from "../scripts/prepare-runtime-assets.mjs";
@@ -30,6 +31,20 @@ test("source-only checkout reconstructs all runtime outputs and a complete Pages
     fs.copyFileSync(path.join(root, name), target, fs.constants.COPYFILE_FICLONE);
   }
   for (const name of runtimeAssetPaths()) assert.equal(fs.existsSync(path.join(sourceRoot, name)), false);
+  const catalogModule = "src/apps/borg/BorgAssemblyRecordCatalog.js";
+  const missingProjection = spawnSync(process.execPath, ["--input-type=module", "-e",
+    `await import(${JSON.stringify(pathToFileURL(path.join(sourceRoot, catalogModule)).href)});`],
+    { cwd: sourceRoot, encoding: "utf8" });
+  assert.equal(missingProjection.status, 1, missingProjection.stdout + missingProjection.stderr);
+  assert.match(missingProjection.stderr, /ERR_MODULE_NOT_FOUND/);
+  assert.match(missingProjection.stderr, /assembly-record-catalog\.v2\.js/);
+  const budgetModule = "src/apps/borg/BorgCertifiedBudgets.js";
+  const missingBudgetProjection = spawnSync(process.execPath, ["--input-type=module", "-e",
+    `await import(${JSON.stringify(pathToFileURL(path.join(sourceRoot, budgetModule)).href)});`],
+    { cwd: sourceRoot, encoding: "utf8" });
+  assert.equal(missingBudgetProjection.status, 1, missingBudgetProjection.stdout + missingBudgetProjection.stderr);
+  assert.match(missingBudgetProjection.stderr, /ERR_MODULE_NOT_FOUND/);
+  assert.match(missingBudgetProjection.stderr, /certified-budget-identities\.v1\.js/);
   const sourceHashes = new Map(paths.map((name) => [name, hash(path.join(sourceRoot, name))]));
   console.log("[fresh-runtime] source-only export ready; generating ignored assets");
   execFileSync(process.execPath, ["scripts/prepare-runtime-assets.mjs", "--write"], { cwd: sourceRoot, stdio: "inherit" });
@@ -47,6 +62,34 @@ test("source-only checkout reconstructs all runtime outputs and a complete Pages
     else assert.equal(hash(path.join(sourceRoot, name)), hash(path.join(result.outputDir, name)));
   }
   assert.ok(fs.existsSync(path.join(result.outputDir, "borg.html")));
+  // Import only the published module graph: no source checkout or JSON-import
+  // browser extension is needed, and catalogue/budget initialization performs no fetch.
+  execFileSync(process.execPath, ["--input-type=module", "-e", `
+    import assert from "node:assert/strict";
+    import fs from "node:fs";
+    globalThis.fetch = () => { throw new Error("Borg data initialization must be synchronous"); };
+    const { BORG_ASSEMBLY_RECORD_CATALOG: catalog } = await import(${JSON.stringify(pathToFileURL(path.join(result.outputDir, catalogModule)).href)});
+    const canonical = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(result.outputDir, "src/apps/borg/data/assembly-record-catalog.v2.json"))}, "utf8"));
+    assert.deepEqual(catalog.entries, canonical.entries);
+    assert.ok(Object.isFrozen(catalog));
+    assert.ok(Object.isFrozen(catalog.entries));
+    assert.ok(catalog.entries.every(Object.isFrozen));
+    const budgets = await import(${JSON.stringify(pathToFileURL(path.join(result.outputDir, budgetModule)).href)});
+    const identities = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(result.outputDir, "src/apps/borg/data/certified-budget-identities.v1.json"))}, "utf8"));
+    assert.equal(budgets.BORG_DEFAULT_CERTIFIED_BUDGET_ID, "research-certified-v1");
+    assert.deepEqual(budgets.BORG_CERTIFIED_BUDGET_PRESETS.map(preset => preset.id), Object.keys(identities.presets));
+    assert.ok(Object.isFrozen(budgets.BORG_CERTIFIED_BUDGET_PRESETS));
+    for (const preset of budgets.BORG_CERTIFIED_BUDGET_PRESETS) {
+      assert.equal(preset.allocationHash, identities.presets[preset.id].allocationHash);
+      assert.equal(preset.allocationCanonicalJson, identities.presets[preset.id].allocationCanonicalJson);
+      assert.deepEqual(preset.allocations, JSON.parse(identities.presets[preset.id].allocationCanonicalJson));
+      assert.equal(budgets.getBorgCertifiedBudgetPreset(preset.id), preset);
+      assert.equal(budgets.validateBorgCertifiedBudgetPreset(preset), preset);
+      assert.ok(Object.isFrozen(preset));
+      assert.ok(Object.isFrozen(preset.allocations));
+      assert.ok(Object.isFrozen(preset.allocations.finiteWidth.rowFractions));
+    }
+  `], { cwd: result.outputDir, stdio: "inherit" });
   assert.ok(fs.existsSync(path.join(result.outputDir, "equation-mapping.html")));
   assert.equal(fs.existsSync(path.join(result.outputDir, ".git")), false);
   assert.equal(fs.existsSync(path.join(result.outputDir, ".local-data")), false);

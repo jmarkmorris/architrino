@@ -1,0 +1,31 @@
+{
+  "schema": "known-hash-answers/v1",
+  "role": "independent-known-answer-control",
+  "algorithm": "SHA-256",
+  "inputEncoding": "UTF-8",
+  "outputEncoding": "lowercase hexadecimal",
+  "originCommit": "859f2b07cb17889ca2c239d82fd61455c2ba903c",
+  "consumers": [
+    "tests/current-source-manifest.test.mjs",
+    "tests/source-replay.test.js",
+    "tests/f5-current-handoff.test.js",
+    "tests/f5-original-input-tree.test.js",
+    "tests/f5-current-build-admission.test.js",
+    "tests/subfield-circular-current-prior.test.js",
+    "tests/subfield-circular-current-context.test.js"
+  ],
+  "additionalConsumers": [
+    "tests/analytical-campaign-pipeline-benchmark.test.js",
+    "scripts/equation-mapping/dependency-map-reader.mjs",
+    "tests/option-b-current-source-transition.test.mjs",
+    "tests/option-b-mathematical-acceptance.test.mjs",
+    "tests/test_f5_current_handoff.py",
+    "tests/test_f6c_retained_history_export.py",
+    "tests/test_f6c_acceleration_execution.py",
+    "tests/option_b_fixture_records.py"
+  ],
+  "origin": "Published SHA-256 abc test vector, preserved from the independently checked inline expectations; never derive an expected value with the implementation under test.",
+  "sha256": {
+    "abc": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+  }
+}

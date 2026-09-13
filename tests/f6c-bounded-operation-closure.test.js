@@ -1,3 +1,5 @@
+import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
+const NEXT_TEST_SHA = nextTestIdentities("tests/f6c-bounded-operation-closure.test.js", 1);
 // Independent literal protocol controls. No coordinator or producer imports.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -9,7 +11,7 @@ import {verifyClosure,capture,parseProcessTable} from '../scripts/eom/verify-f6c
 const h=raw=>createHash('sha256').update(raw).digest('hex');
 const bind=(p,raw=Buffer.from('x'))=>({path:p,sha256:h(raw),bytes:raw.length});
 export function fixture(){
- const coordinator={path:'/repo/scripts/eom/f6c-bounded-operation.mjs',sha256:'e100a96f0771d82664fa62b66865cbf5924cced1216588c631836ed361d6a252',bytes:81416};
+ const coordinator={path:'/repo/scripts/eom/f6c-bounded-operation.mjs',sha256:NEXT_TEST_SHA[0],bytes:81416};
  const invocation={schema:'braid-program/observed-bounded-invocation.v1',root:'/repo',coordinator,node:bind('/node'),plan:bind('/plan'),control:true};
  const lease={status:'completed',exitCode:0,exitSignal:null,processGroupClosed:true,error:null,stopReason:null,cwd:'/repo',command:'/node',args:[coordinator.path,'--control-plan','/plan','--plan-sha256',invocation.plan.sha256,'--self-sha256',coordinator.sha256],targetIdentity:{pid:10,pgid:10,started:'Mon Sep 7 01:00:00 2026'}};
  const runtime=[invocation.node],log=bind('/repo/operation/stage-stdout.log');

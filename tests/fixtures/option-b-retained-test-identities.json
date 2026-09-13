@@ -1,0 +1,123 @@
+{
+  "schema": "option-b-retained-test-identities/v1",
+  "authority": "operator-directed-exact-expectation-transfer",
+  "roleOwner": "reference/priorities/development-process-review/evidence/option-b-remaining-binding-dispositions.json",
+  "originCommit": "859f2b07cb17889ca2c239d82fd61455c2ba903c",
+  "claimBoundary": "Expected identities are transferred unchanged; this record grants no scientific acceptance or permission to refresh expectations from their subjects.",
+  "f5PreparationSelection": {
+    "consumer": "tests/f5-independent-interpolation-enclosure.test.js",
+    "path": "reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld",
+    "sha256": "49401d8519c23147b6dd0926290e1be256e1fa97d00d7fe3a89d8e1e87dc2a45",
+    "role": "externally selected accepted B original-input-tree transport; independent instrument and result expectations remain unchanged",
+    "acceptanceReference": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#authorized-borg-budget-transfer-and-generated-repair"
+  },
+  "mermaid": {
+    "consumer": "tests/mermaid-markdown-runtime.test.js",
+    "role": "fixed vendor runtime, license and package-integrity expectations",
+    "runtimeSha256": "32f3c1c5cdb397f83f21665b9e741ca68eca908ca689f25ed27435edde72d073",
+    "licenseSha256": "ec9fb67dcb25eccc416ed56e1aab819222c805a2a4bfe4cb19e7556bf2ffde80",
+    "packageIntegrity": "sha512-V6K3C8EBdEsPFZXSKMJe6ppQOENxuHARr9GvHX4hh47lAbhMRD9qf4oEK7LoaRQxULMa80/qt5gHO73aCleBBg=="
+  },
+  "orthogonalWeave": {
+    "consumer": "tests/orthogonal-plane-weave-balance.test.js",
+    "role": "fixed prescribed assembly seed identity; numerical balance assertions remain separate",
+    "modelRevisionSha256": "b7fdeb1b3f9aa074cacbab3c593a227332178e7b97f50409f759f420cec4cb34"
+  },
+  "byConsumer": {
+    "tests/coincident-midpoint-common-frequency-outer-radius-band-expansion.test.js": {
+      "role": "Fixed regression output",
+      "algorithm": "SHA-256",
+      "encoding": "lowercase hexadecimal",
+      "sha256": [
+        "a68b1f12cf3e79fe40e55f5b1b4fc750b00991ba2b4ac4b94a45d6d81f07c95e"
+      ]
+    },
+    "tests/coincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js": {
+      "role": "Fixed regression output",
+      "algorithm": "SHA-256",
+      "encoding": "lowercase hexadecimal",
+      "sha256": [
+        "55d64d083a315446c6ce4d7c107e2ff953a3ca8a407f887c59d0e75045adc80a",
+        "a8e521ac0743c406ab4ec233957f5e170338808736ce7815ac9250d15857680e"
+      ]
+    },
+    "tests/coincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js": {
+      "role": "Fixed protocol input",
+      "algorithm": "SHA-256",
+      "encoding": "lowercase hexadecimal",
+      "sha256": [
+        "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6"
+      ]
+    },
+    "tests/coincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js": {
+      "role": "Fixed regression output and prerequisite linkage",
+      "algorithm": "SHA-256",
+      "encoding": "lowercase hexadecimal",
+      "sha256": [
+        "89b3f68c47bec47f92e4faf0f8acb41dc7381e76f9893d3892af96662ea5aa11",
+        "71015bcb1a5c83e850b17ea122b196bf2910f1cd9c2457c28b167c665fa55424"
+      ]
+    },
+    "tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js": {
+      "role": "Fixed input fixture",
+      "algorithm": "SHA-256",
+      "encoding": "lowercase hexadecimal",
+      "sha256": [
+        "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6"
+      ]
+    },
+    "tests/coincident-axis-three-binary-streaming-reductions.test.js": {
+      "role": "Fixed scientific protocol fixture",
+      "algorithm": "SHA-256",
+      "encoding": "lowercase hexadecimal",
+      "sha256": [
+        "02d73c88ccf8244e6873d2ee2cd58973dc35d2475df102173726563210a39c27"
+      ]
+    },
+    "tests/f6c-parent-refinement-batch-preparation.test.js": {
+      "role": "Historical preparation fixture",
+      "algorithm": "SHA-256",
+      "encoding": "lowercase hexadecimal",
+      "sha256": [
+        "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef",
+        "daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b"
+      ]
+    },
+    "tests/borg-assembly-view-session.test.js": {
+      "role": "Fixture content identity, not current source selection",
+      "algorithm": "SHA-256",
+      "encoding": "lowercase hexadecimal",
+      "sha256": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ]
+    },
+    "tests/f5-phase-varying-campaign-spec.test.js": {
+      "role": "Fixed scientific input tuple",
+      "algorithm": "SHA-256",
+      "encoding": "lowercase hexadecimal",
+      "sha256": [
+        "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344"
+      ]
+    },
+    "tests/f5-independent-interpolation-enclosure.test.js": {
+      "role": "Historical scientific instrument/output identity",
+      "algorithm": "SHA-256",
+      "encoding": "lowercase hexadecimal",
+      "sha256": [
+        "f07ee01d7f253ae757b23fe1edb269b706f2da587f36d8fdb83dc653372d19a9",
+        "c59190e94c196e78b5f4e53ee0cca7f4e8395fedf66e92d0c5dd4efb544d95f1",
+        "2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9"
+      ]
+    },
+    "tests/f6c-parent-emission-refinement-pilot.test.js": {
+      "role": "Historical authorization inputs",
+      "algorithm": "SHA-256",
+      "encoding": "lowercase hexadecimal",
+      "sha256": [
+        "daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b",
+        "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef"
+      ]
+    }
+  }
+}

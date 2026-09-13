@@ -4,8 +4,10 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { materializeSourceReplay, SOURCE_REPLAY_SCHEMA } from "../scripts/dev/materialize-source-replay.mjs";
+import knownHashes from "../scripts/equation-mapping/fixtures/known-hash-answers.json" with { type: "json" };
 
-const ABC_SHA = "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad";
+const ABC_SHA = knownHashes.sha256.abc;
+assert.match(ABC_SHA, /^[a-f0-9]{64}$/u);
 
 test("source replay verifies the known abc bytes before materializing an exclusive tree", (t) => {
   const root = realpathSync(mkdtempSync(path.join(tmpdir(), "source-replay-known-")));

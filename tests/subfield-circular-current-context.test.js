@@ -1,3 +1,5 @@
+import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };
+const ABC_SHA = knownHashes.sha256.abc;
 import assert from "node:assert/strict";
 import {mkdtempSync, readFileSync, rmSync, writeFileSync} from "node:fs";
 import {tmpdir} from "node:os";
@@ -6,7 +8,7 @@ import test from "node:test";
 import {prepareSubfieldCircularPhaseLedgerContext, subfieldCircularSha256} from "../src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs";
 
 test("SHA control precedes recorded current-context checks", () => {
-  assert.equal(subfieldCircularSha256(Buffer.from("abc")), "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
+  assert.equal(subfieldCircularSha256(Buffer.from("abc")), ABC_SHA);
 });
 
 test("recorded current build and original proof enter phase context; substituted inputs reject", {skip: !process.env.AAA_CIRCULAR_CURRENT_CONTEXT}, async () => {

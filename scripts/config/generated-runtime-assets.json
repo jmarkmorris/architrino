@@ -2,6 +2,16 @@
   "schema": "architrino/generated-runtime-assets.v1",
   "families": [
     {
+      "id": "borg-catalog",
+      "path": "content/generated/borg/assembly-record-catalog.v2.js",
+      "command": ["scripts/borg/build-assembly-record-catalog.mjs", "--write"]
+    },
+    {
+      "id": "borg-budget-identities",
+      "path": "content/generated/borg/certified-budget-identities.v1.js",
+      "command": ["scripts/borg/build-certified-budget-identities.mjs", "--write"]
+    },
+    {
       "id": "borg-records",
       "directory": "content/assets/borg/records",
       "command": ["scripts/eom/generate-prescribed-braid-record.mjs", "--all", "--write"]

@@ -15,6 +15,8 @@ ROOT=Path(__file__).resolve().parents[1]
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path)
     m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+fixture_records=load('f5_test_fixture_records',ROOT/'tests/option_b_fixture_records.py')
+ABC_SHA=fixture_records.known_sha256(ROOT)
 bridge=load('current_f5_transport',ROOT/'scripts/eom/execute-f5-prehistory-handoff.py')
 controls=load('independent_f5_host_controls',ROOT/'tests/test_f5_prehistory_handoff.py')
 
@@ -35,7 +37,7 @@ class CurrentHandoff(unittest.TestCase):
             self.assertNotIn(filename.resolve(),bridge.runtime_paths())
 
     def test_capture_sha_known_answer_then_replacement_rejection(self):
-        digest='ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'
+        digest=ABC_SHA
         with tempfile.TemporaryDirectory() as directory:
             p=Path(directory).resolve()/'known';p.write_bytes(b'abc')
             with bridge.Bound(p,digest) as b:

@@ -12,7 +12,7 @@ import { PRESCRIBED_ASSEMBLY_TARGETS } from "../scripts/eom/generate-prescribed-
 
 const root = path.resolve(import.meta.dirname, "..");
 const read = (name) => fs.readFileSync(path.join(root, name), "utf8");
-const expectedRuntimeAssetCount = PRESCRIBED_ASSEMBLY_TARGETS.length + 3;
+const expectedRuntimeAssetCount = PRESCRIBED_ASSEMBLY_TARGETS.length + 5;
 
 function fixture(t) {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), "runtime-site-"));
@@ -30,12 +30,20 @@ function fixture(t) {
   return { source, output: path.join(temp, "site"), write };
 }
 
-test("runtime manifest enumerates all Borg records and all three derived indexes", () => {
+test("runtime manifest enumerates Borg catalogue and budget identities before records and all three derived indexes", () => {
   const paths = runtimeAssetPaths();
   assert.equal(paths.length, expectedRuntimeAssetCount);
   assert.equal(new Set(paths).size, paths.length);
   assert.ok(paths.every((name) => !name.includes("..")));
-  assert.equal(readRuntimeAssetFamilies().length, 4);
+  const families = readRuntimeAssetFamilies();
+  assert.equal(families.length, 6);
+  assert.equal(families[0].id, "borg-catalog");
+  assert.equal(families[0].path, "content/generated/borg/assembly-record-catalog.v2.js");
+  assert.deepEqual(families[0].command, ["scripts/borg/build-assembly-record-catalog.mjs", "--write"]);
+  assert.equal(families[1].id, "borg-budget-identities");
+  assert.equal(families[1].path, "content/generated/borg/certified-budget-identities.v1.js");
+  assert.deepEqual(families[1].command, ["scripts/borg/build-certified-budget-identities.mjs", "--write"]);
+  assert.ok(families.findIndex(family => family.id === "borg-records") > 1);
 });
 
 test("static build includes deployable generated assets but never local service indexes, ignored extras, or git metadata", (t) => {

@@ -1,3 +1,6 @@
+import optionBIdentities from './fixtures/option-b-retained-test-identities.json' with { type: 'json' };
+const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/coincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js"].sha256]);
+if (RETAINED_HASHES.length !== 2 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
@@ -177,11 +180,11 @@ test("extended history adjudicates the remaining outer slice", () => {
   assert.equal(summary.status.score, null);
   assert.equal(
     result.resultHash,
-    "89b3f68c47bec47f92e4faf0f8acb41dc7381e76f9893d3892af96662ea5aa11",
+    RETAINED_HASHES[0],
   );
   assert.equal(
     summary.summaryHash,
-    "71015bcb1a5c83e850b17ea122b196bf2910f1cd9c2457c28b167c665fa55424",
+    RETAINED_HASHES[1],
   );
 });
 

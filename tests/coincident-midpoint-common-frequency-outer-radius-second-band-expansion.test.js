@@ -1,3 +1,6 @@
+import optionBIdentities from './fixtures/option-b-retained-test-identities.json' with { type: 'json' };
+const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/coincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js"].sha256]);
+if (RETAINED_HASHES.length !== 2 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
@@ -154,11 +157,11 @@ test("second strip stops at the exact outer-self history-edge topology boundary"
   assert.equal(summary.status.score, null);
   assert.equal(
     result.resultHash,
-    "55d64d083a315446c6ce4d7c107e2ff953a3ca8a407f887c59d0e75045adc80a",
+    RETAINED_HASHES[0],
   );
   assert.equal(
     summary.summaryHash,
-    "a8e521ac0743c406ab4ec233957f5e170338808736ce7815ac9250d15857680e",
+    RETAINED_HASHES[1],
   );
 });
 

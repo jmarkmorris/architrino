@@ -3,6 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { parseBorgAssemblyRecordCatalogData } from "../src/apps/borg/BorgAssemblyRecordCatalogContract.js";
 
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 
@@ -456,11 +457,11 @@ export function scanBorgReaderFacingValue(value, relativePath, field) {
 export function scanBorgPrescribedTaxonomyTerminology({ rootDir = ROOT_DIR } = {}) {
   const files = [];
   const findings = [];
-  const catalogPath = "src/apps/borg/BorgAssemblyRecordCatalog.js";
-  const catalogSource = fs.readFileSync(path.join(rootDir, catalogPath), "utf8");
+  const catalogPath = "src/apps/borg/data/assembly-record-catalog.v2.json";
+  const catalog = parseBorgAssemblyRecordCatalogData(fs.readFileSync(path.join(rootDir, catalogPath), "utf8"));
   files.push(catalogPath);
-  for (const match of catalogSource.matchAll(/\blabel:\s*"([^"]+)"/g)) {
-    findings.push(...scanBorgReaderFacingValue(match[1], catalogPath, "catalog label"));
+  for (const entry of catalog.entries) {
+    findings.push(...scanBorgReaderFacingValue(entry.label, catalogPath, "catalog label"));
   }
 
   const configDirectory = path.join(rootDir, BORG_PRESCRIBED_CONFIG_DIRECTORY);

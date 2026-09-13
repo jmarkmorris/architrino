@@ -4,6 +4,16 @@ import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { performance } from "node:perf_hooks";
 import { fileURLToPath } from "node:url";
+import optionBSelection from "../reference/priorities/development-process-review/contracts/option-b-five-profile-selection.json" with { type: "json" };
+
+// This authored selection is reviewed with the check configuration. Never
+// derive these expected digests from the candidate maps at execution time.
+const optionBSelectionArgs = [
+  "--accepted-baseline", optionBSelection.acceptedBaseline,
+  "--accepted-baseline-sha256", optionBSelection.acceptedBaselineSha256,
+  "--transition", optionBSelection.transition,
+  "--transition-sha256", optionBSelection.transitionSha256,
+];
 
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 
@@ -74,11 +84,11 @@ const REQUIRED_CHECKS = [
   },
   {
     name: "Test Option B current-source admission and dependency controls",
-    args: ["--test", "--test-concurrency=1", "tests/current-source-manifest.test.mjs", "tests/option-b-root-cover-admission.test.mjs", "tests/option-b-f6c-coordinator-admission.test.mjs", "tests/option-b-f6c-paired-admission.test.mjs", "tests/option-b-f6c-family-admission.test.mjs", "tests/f6c-bounded-operation-current-closure.test.js", "tests/option-b-operational-successor.test.mjs", "tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-disposition-coverage.test.mjs"],
+    args: ["--test", "--test-concurrency=1", "tests/current-source-manifest.test.mjs", "tests/option-b-next-test-identities.test.mjs", "tests/option-b-root-cover-admission.test.mjs", "tests/option-b-f6c-coordinator-admission.test.mjs", "tests/option-b-f6c-paired-admission.test.mjs", "tests/option-b-f6c-family-admission.test.mjs", "tests/f6c-bounded-operation-current-closure.test.js", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-f5-budget-transition.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-disposition-coverage.test.mjs"],
   },
   {
-    name: "Verify Option B root-cover profile transfers against retained A baselines",
-    args: ["scripts/equation-mapping/check-current-source-maps.mjs"],
+    name: "Verify Option B profiles against the accepted B checkpoint and reviewed transition",
+    args: ["scripts/equation-mapping/check-current-source-maps.mjs", ...optionBSelectionArgs],
   },
   {
     name: "Verify Option B finite migration binding dispositions",
@@ -106,7 +116,7 @@ const REQUIRED_CHECKS = [
   },
   {
     name: "Test generated runtime storage and deployment contracts",
-    args: ["--test", "tests/machine-artifact-retention.test.js", "tests/runtime-asset-build.test.js"],
+    args: ["--test", "--test-concurrency=1", "tests/machine-artifact-retention.test.js", "tests/runtime-asset-build.test.js", "tests/borg-assembly-record-catalog-generator.test.js", "tests/borg-assembly-record-catalog.test.js", "tests/borg-certified-budget-identities.test.js", "tests/borg-eom-migration.test.js", "tests/analytical-campaign-pipeline-benchmark.test.js", "tests/braid-taxonomy-terminology.test.js"],
   },
   {
     name: "Test private MCP secure-tunnel deployment safety",
@@ -183,7 +193,6 @@ const MAINTENANCE_CHECKS = [
   { name: "Validate generated Claude pre-read floor", args: ["scripts/build-claude-bootstrap-floor.mjs", "--check"] },
   { name: "Validate generated textbook reading copies", args: ["scripts/build-textbook-md-pdf.mjs", "--check"] },
   { name: "Validate large machine-artifact retention", args: ["scripts/validate-machine-artifact-retention.mjs"] },
-  { name: "Check supported launch profiles' current repository bindings", args: ["--test", "tests/current-launch-bindings.test.js"] },
 ];
 
 export const MAC_DEPENDENT_TESTS = "^(current Python handoff retains real runtime inventory with external admission and no scientific data|Python admission rejects wrong Node capability, omitted census and same-byte Node replacement)$";

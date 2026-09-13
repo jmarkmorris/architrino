@@ -3,6 +3,7 @@ import test from "node:test";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import identities from "./fixtures/option-b-retained-test-identities.json" with { type: "json" };
 import {
   createMermaidMarkdownRuntime,
   isMermaidSvgSafe,
@@ -10,6 +11,9 @@ import {
 } from "../src/runtime/MermaidMarkdownRuntime.js";
 
 const repoRoot = fileURLToPath(new URL("../", import.meta.url));
+Object.freeze(identities.mermaid);
+for (const name of ["runtimeSha256", "licenseSha256"]) assert.match(identities.mermaid[name], /^[a-f0-9]{64}$/u);
+assert.match(identities.mermaid.packageIntegrity, /^sha512-[A-Za-z0-9+/]{86}==$/u);
 
 function createClassList() {
   const classes = new Set();
@@ -167,20 +171,14 @@ test("the shipped Mermaid dependency, browser asset, and license share one pinne
   assert.equal(packageLock.packages["node_modules/mermaid"].version, "11.17.2");
   assert.equal(
     packageLock.packages["node_modules/mermaid"].integrity,
-    "sha512-V6K3C8EBdEsPFZXSKMJe6ppQOENxuHARr9GvHX4hh47lAbhMRD9qf4oEK7LoaRQxULMa80/qt5gHO73aCleBBg=="
+    identities.mermaid.packageIntegrity
   );
   assert.match(mermaidAsset, /11\.17\.2/u);
   assert.match(mermaidLicense, /Copyright \(c\) 2014 - 2022 Knut Sveidqvist/u);
-  assert.match(
-    mermaidSource,
-    /sha512-V6K3C8EBdEsPFZXSKMJe6ppQOENxuHARr9GvHX4hh47lAbhMRD9qf4oEK7LoaRQxULMa80\/qt5gHO73aCleBBg==/u
-  );
-  assert.match(
-    mermaidSource,
-    /32f3c1c5cdb397f83f21665b9e741ca68eca908ca689f25ed27435edde72d073/u
-  );
-  assert.equal(runtimeSha256, "32f3c1c5cdb397f83f21665b9e741ca68eca908ca689f25ed27435edde72d073");
-  assert.equal(licenseSha256, "ec9fb67dcb25eccc416ed56e1aab819222c805a2a4bfe4cb19e7556bf2ffde80");
+  assert.ok(mermaidSource.includes(identities.mermaid.packageIntegrity));
+  assert.ok(mermaidSource.includes(identities.mermaid.runtimeSha256));
+  assert.equal(runtimeSha256, identities.mermaid.runtimeSha256);
+  assert.equal(licenseSha256, identities.mermaid.licenseSha256);
   assert.match(technologyAcknowledgement, /Mermaid for rendering diagrams authored in fenced Mermaid blocks/u);
   assert.match(licenseAttribution, /Mermaid 11\.17\.2 diagram runtime: MIT License/u);
   assert.match(licenseAttribution, /vendor\/mermaid\/SOURCE\.md/u);

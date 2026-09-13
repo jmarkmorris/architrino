@@ -1,3 +1,7 @@
+import budgetIdentities from "../../../content/generated/borg/certified-budget-identities.v1.js";
+import { canonicalStringify, selectBorgCertifiedBudgetIdentity } from "./BorgCertifiedBudgetIdentityContract.js";
+export { canonicalStringify } from "./BorgCertifiedBudgetIdentityContract.js";
+
 export const BORG_CERTIFIED_BUDGET_SCHEMA = "borg_certified_budget/v1";
 
 export const BORG_INTERACTIVE_CERTIFIED_BUDGET_ID =
@@ -135,7 +139,9 @@ const PRESETS = deepFreeze({
       "Ratified watching candidate with wider declared acceleration and event enclosures.",
     allocations: INTERACTIVE_ALLOCATIONS,
     allocationCanonicalJson: canonicalStringify(INTERACTIVE_ALLOCATIONS),
-    allocationHash: "bb4b8b72e01b2d038e2b760a3677a67e92e35d12c5d587f0a98d2079bce8d319",
+    allocationHash: selectBorgCertifiedBudgetIdentity(
+      budgetIdentities, BORG_INTERACTIVE_CERTIFIED_BUDGET_ID, canonicalStringify(INTERACTIVE_ALLOCATIONS),
+    ).allocationHash,
   },
   [BORG_RESEARCH_CERTIFIED_BUDGET_ID]: {
     id: BORG_RESEARCH_CERTIFIED_BUDGET_ID,
@@ -144,7 +150,9 @@ const PRESETS = deepFreeze({
       "Ratified tighter allocation retained as the default until parity acceptance passes.",
     allocations: RESEARCH_ALLOCATIONS,
     allocationCanonicalJson: canonicalStringify(RESEARCH_ALLOCATIONS),
-    allocationHash: "74919ee63dc27d0aa7c43453e1762f380da886a63377912905f8f8070d3b9b3d",
+    allocationHash: selectBorgCertifiedBudgetIdentity(
+      budgetIdentities, BORG_RESEARCH_CERTIFIED_BUDGET_ID, canonicalStringify(RESEARCH_ALLOCATIONS),
+    ).allocationHash,
   },
 });
 
@@ -203,17 +211,6 @@ export function validateBorgCertifiedBudgetPreset(preset) {
   return preset;
 }
 
-export function canonicalStringify(value) {
-  if (Array.isArray(value)) {
-    return `[${value.map(canonicalStringify).join(",")}]`;
-  }
-  if (value && typeof value === "object") {
-    return `{${Object.keys(value).sort().map((key) =>
-      `${JSON.stringify(key)}:${canonicalStringify(value[key])}`
-    ).join(",")}}`;
-  }
-  return JSON.stringify(value);
-}
 
 function deepFreeze(value) {
   if (!value || typeof value !== "object" || Object.isFrozen(value)) {

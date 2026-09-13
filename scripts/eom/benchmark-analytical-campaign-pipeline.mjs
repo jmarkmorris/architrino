@@ -51,10 +51,14 @@ const HARNESS_VERSION =
 const DEFAULT_WORK_ROOT =
   "/private/tmp/architrino-analytical-campaign-pipeline-benchmarks";
 const REPOSITORY_ROOT = path.resolve(import.meta.dirname, "../..");
-const COMPUTE_IMPLEMENTATION_FILES = Object.freeze([
+export const COMPUTE_IMPLEMENTATION_FILES = Object.freeze([
   "scripts/eom/benchmark-analytical-campaign-pipeline.mjs",
   "scripts/eom/generate-prescribed-braid-record.mjs",
   "src/apps/borg/BorgAssemblyRecordCatalog.js",
+  "src/apps/borg/BorgAssemblyRecordCatalogContract.js",
+  "src/apps/borg/data/assembly-record-catalog.v2.json",
+  "content/generated/borg/assembly-record-catalog.v2.js",
+  "scripts/borg/build-assembly-record-catalog.mjs",
   "src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs",
   "src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs",
   "src/prescribed-path-analysis/CoincidentAxisThreeBinaryCompleteCycleProbeProtocol.mjs",
@@ -2679,9 +2683,9 @@ function expectedRawArtifactCount(protocol, includeSensitivity) {
   return baseArtifactCount + sensitivityArtifactCount;
 }
 
-function computeImplementationInventory() {
+export function computeImplementationInventory(repositoryRoot = REPOSITORY_ROOT) {
   const files = COMPUTE_IMPLEMENTATION_FILES.map((relativePath) => {
-    const bytes = readFileSync(path.join(REPOSITORY_ROOT, relativePath));
+    const bytes = readFileSync(path.join(repositoryRoot, relativePath));
     return {
       path: relativePath,
       sha256: sha256(bytes),

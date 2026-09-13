@@ -5,6 +5,7 @@ import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
+import acceptanceSelection from '../scripts/equation-mapping/fixtures/mathematical-acceptance-selection.json' with {type:'json'};
 import { preflight, validate, compare, compareDisplayedResult, sourcePaths, bindingsOf, select, sha256, MAP_PATH, NS } from '../scripts/equation-mapping/dependency-map-reader.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 // No real target is read before the hand-specified positive and negative controls.
@@ -79,13 +80,13 @@ test('unknown contexts, fields, duplicate IDs, paths, endpoints and revision reu
 test('actual CLI writes bounded execution evidence and replaces success on missing map', t => {
   const output = fs.mkdtempSync(path.join(os.tmpdir(), 'option-b-entrypoint-')); t.after(() => fs.rmSync(output, { recursive: true, force: true }));
   const cli = path.join(root, 'scripts/equation-mapping/check-moving-single-root-map.mjs');
-  const run = extra => spawnSync(process.execPath, [cli, '--repo', root, '--output-dir', output, ...extra], { encoding: 'utf8', timeout: 120000 });
+  const run = extra => spawnSync(process.execPath, [cli, '--repo', root, '--output-dir', output, '--acceptance-sha256', acceptanceSelection.acceptance.sha256, ...extra], { encoding: 'utf8', timeout: 120000 });
   const good = run([]); assert.equal(good.status, 0, good.stdout + good.stderr);
   let report = JSON.parse(fs.readFileSync(path.join(output, 'report.json'))); assert.equal(report.status, 'review-required');
   assert.deepEqual(report.executedChecks.map(r => r.label), ['scientific-check', 'prose-check', 'existing-scientific-test', 'finite-ledger-polynomial-check']);
   for (const item of report.executedChecks) assert.equal(item.status, 'pass');
-  assert.equal(report.chains['finite-ledger-superposition'].baseline, 'not-established');
-  assert.equal(report.chains['finite-ledger-superposition'].review, 'required');
+  assert.equal(report.chains['finite-ledger-superposition'].baseline, 'operator-accepted-exact-predecessor');
+  assert.equal(report.chains['finite-ledger-superposition'].review, 'unchanged-relative-to-selected-baseline');
   const manifestRaw = fs.readFileSync(path.join(output, 'review-manifest.json'));
   assert.equal(sha256(manifestRaw), report.reviewManifest.sha256);
   const manifest = JSON.parse(manifestRaw); assert.equal(manifest.approval, 'not-granted');
@@ -96,18 +97,19 @@ test('actual CLI writes bounded execution evidence and replaces success on missi
   report = JSON.parse(fs.readFileSync(path.join(output, 'report.json'))); assert.equal(report.status, 'error'); assert.equal(report.executedChecks.length, 0);
   assert.equal(fs.existsSync(path.join(output, 'review-manifest.json')), false);
 });
-test("actual publication command dispatcher executes B after the unchanged A commands", async t => {
+test("actual publication command dispatcher executes B after unchanged repository validation commands", async t => {
   const { runValidationCommands } = await import('../scripts/pr-validation-receipt.mjs');
   const { spawnSync } = await import('node:child_process');
   const repo = path.resolve(import.meta.dirname, '..');
   const output = fs.mkdtempSync(path.join(os.tmpdir(), 'option-b-dispatch-'));
   t.after(() => fs.rmSync(output, { recursive: true, force: true }));
   let executed = false;
-  // The A tools are not repeated by this focused integration test. B runs for real.
+  // Other repository validation tools are not repeated here. B runs for real.
   const outcomes = runValidationCommands({ cwd: output, spawn: (node, args, options) => {
     if (!args[0].includes('check-moving-single-root-map')) return { status: 0 };
     executed = true;
-    return spawnSync(node, [path.join(repo, args[0]), '--repo', repo, '--output-dir', path.join(output, '.local-data/option-b-trial')], options);
+    assert.deepEqual(args.slice(1),['--acceptance-sha256',acceptanceSelection.acceptance.sha256]);
+    return spawnSync(node, [path.join(repo, args[0]), ...args.slice(1), '--repo', repo, '--output-dir', path.join(output, '.local-data/option-b-trial')], options);
   } });
   assert.equal(executed, true); assert.equal(outcomes[0].status, 'review-required'); assert.match(outcomes[0].reportSha256, /^[a-f0-9]{64}$/);
 });
@@ -119,6 +121,12 @@ test('actual CLI rejects wrong display after science and stale or duplicate sele
   fs.symlinkSync(path.join(root, '.git'), path.join(fixture, '.git'));
   fs.symlinkSync(path.join(root, 'node_modules'), path.join(fixture, 'node_modules'));
   const extra = ['reference/priorities/development-process-review/analysis/option-b-first-chain-baseline-review.md', 'reference/priorities/master-equation-closure/contracts/finite-ledger-dependencies.jsonld', 'reference/priorities/master-equation-closure/contracts/moving-single-root-dependency-map.md', 'reference/priorities/master-equation-closure/contracts/finite-ledger-dependency-map.md', 'scripts/equation-mapping/verify-finite-ledger-superposition.mjs', 'tests/equation-dependency-map.test.mjs', 'tests/pr-validation-receipt.test.js', 'scripts/pr-validation-receipt.mjs', '.github/workflows/option-b-trial.yml', 'package.json', 'package-lock.json', 'scripts/equation-mapping/check-moving-single-root-map.mjs', 'scripts/equation-mapping/dependency-map-reader.mjs', 'reference/priorities/development-process-review/evidence/option-b-corrected-candidate/result_record_check.py'];
+  extra.push(acceptanceSelection.acceptance.path,
+    'reference/priorities/development-process-review/evidence/option-b-current-map-review-manifest.json',
+    'reference/priorities/development-process-review/evidence/option-b-current-map-review-report.json',
+    'scripts/equation-mapping/current-source-manifest.mjs',
+    'scripts/equation-mapping/fixtures/known-hash-answers.json',
+    'scripts/equation-mapping/fixtures/mathematical-acceptance-selection.json');
   for (const name of new Set([...sourcePaths(baseline), ...extra])) {
     fs.mkdirSync(path.dirname(path.join(fixture, name)), { recursive: true }); fs.copyFileSync(path.join(root, name), path.join(fixture, name));
   }
@@ -134,7 +142,7 @@ test('actual CLI rejects wrong display after science and stale or duplicate sele
     }
     fs.writeFileSync(path.join(fixture, name), changed); fs.writeFileSync(path.join(fixture, MAP_PATH), JSON.stringify(map, null, 2) + '\n');
     const output = path.join(fixture, 'outputs', label);
-    const result = spawnSync(process.execPath, [path.join(fixture, 'scripts/equation-mapping/check-moving-single-root-map.mjs'), '--repo', fixture, '--output-dir', output], { encoding: 'utf8', timeout: 120000 });
+    const result = spawnSync(process.execPath, [path.join(fixture, 'scripts/equation-mapping/check-moving-single-root-map.mjs'), '--repo', fixture, '--output-dir', output, '--acceptance-sha256',acceptanceSelection.acceptance.sha256], { encoding: 'utf8', timeout: 120000 });
     assert.equal(result.status, 1, result.stdout + result.stderr);
     const report = JSON.parse(fs.readFileSync(path.join(output, 'report.json'))); assert.equal(report.status, 'error');
     if (label === 'wrong-display') {

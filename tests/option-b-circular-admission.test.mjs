@@ -1,3 +1,5 @@
+import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
+const NEXT_TEST_SHA = nextTestIdentities("tests/option-b-circular-admission.test.mjs", 2);
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -28,7 +30,7 @@ function fixture(t) {
 }
 
 test('known SHA and explicit copied-family fixture admit before rejection probes',async t=>{
-  assert.equal(sha('abc'),'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+  assert.equal(sha('abc'),NEXT_TEST_SHA[0]);
   const f=fixture(t), module=await f.loader(), state=await module.loadCircularSourceMap(f.directory,f.digest);
   assert.equal(state.sources.length,22);assert.equal(state.bindings.length,23);state.recheck();
   assert.equal(state.sourceMap.sha256,f.digest);
@@ -70,7 +72,7 @@ test('stage binding admits literal good first then rejects same-byte directory a
     const parent=path.join(directory,mode),filename=path.join(parent,'source.mjs');
     mkdirSync(parent);writeFileSync(filename,'abc');
     const original=identity(fs.lstatSync(filename)),record={path:filename,
-      sha256:'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',bytes:3,identity:original};
+      sha256:NEXT_TEST_SHA[1],bytes:3,identity:original};
     const inspect=()=>pilotFileOperation({kind:'files',root:directory,files:[record]});
     assert.deepEqual(inspect(),[{path:filename,realPath:filename,sha256:record.sha256,bytes:3}]);
     t.diagnostic(mode+': literal abc binding passed before replacement control');

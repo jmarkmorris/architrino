@@ -1,3 +1,5 @@
+import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
+const NEXT_TEST_SHA = nextTestIdentities("tests/subfield-circular-root-pilot.test.js", 1);
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -71,7 +73,7 @@ test("failure dispositions retain accepted phases, mark attempted unaccepted row
 function syntheticProof() {
   const expected = pilotSchedule()[0], manifest = { path: "/synthetic/manifest", sha256: "a".repeat(64) };
   const proofPath = "scripts/eom/verify-subfield-circular-history.mjs";
-  const bindings = [{ path: proofPath, sha256: "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38" },
+  const bindings = [{ path: proofPath, sha256: NEXT_TEST_SHA[0] },
     { path: "src/prescribed-path-analysis/CircularHistoryConformance.mjs", sha256: "c".repeat(64) },
     { path: "scripts/eom/derive-subfield-circular-root-reference.mjs", sha256: "d".repeat(64) }];
   return { expected, manifest, proof: { ...expected, schema: "braid-program/subfield-circular-history-conformance.v1",
