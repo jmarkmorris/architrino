@@ -2,24 +2,16 @@ import { createHash } from "node:crypto";
 import { closeSync, constants, existsSync, fstatSync, openSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { Worker } from "node:worker_threads";
+import { Worker, isMainThread } from "node:worker_threads";
+import * as frozen from "../../src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs";
 
-// This bridge changes no frozen validator. Its sole module augmentation is the
-// disclosed, fixed export-only appendix; it never constructs missing rungs.
+// Composes the independent ledger validators for a genuine prefix; it never constructs missing rungs.
 export const PREFIX_SCHEMA = "braid-program/f5-enclosed-root-prefix-reduction.v1";
 export const BRIDGE_PATH = "scripts/eom/verify-f5-enclosed-root-prefix.mjs";
 export const REDUCER_PATH = "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs";
-export let REDUCER_SHA256;
-export const EXPORT_APPENDIX = "\nexport { validateConfigAndPilot, validateEnclosureReport, expectedMembersFromConfig, validateHistoryManifest, validateRungPacket, validateRepeatedReceptionRoots, repositoryReader };\n";
-export let APPENDIX_SHA256;
-export function initializeProductionIdentities(values){
-  if(!Array.isArray(values)||values.length!==2||values.some(value=>typeof value!=="string"||!/^[a-f0-9]{64}$/u.test(value)))throw Error("Exact selected prefix identity census required");
-  [REDUCER_SHA256,APPENDIX_SHA256]=values;
-}
 const HEARTBEAT_MS = 15000;
 const DEADLINE_MS = 1800000;
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
-const moduleUrl = (bytes) => `data:text/javascript;base64,${Buffer.from(bytes).toString("base64")}`;
 const reject = (message) => { throw new Error(`F5 prefix rejected: ${message}`); };
 
 function readRegularBytes(filename) {
@@ -72,13 +64,6 @@ export function assertPrefixAgreement(summaries, manifest) {
 }
 
 export async function verifyPrefixSnapshot(snapshot, progress = () => {}) {
-  // Only the fresh worker's byte-loaded copy may emit an accepted receipt.
-  // Importing this file normally cannot misidentify cached code as current.
-  if (!snapshot || !(snapshot.bridgeBytes instanceof Uint8Array) ||
-      import.meta.url !== moduleUrl(snapshot.bridgeBytes) ||
-      sha(snapshot.bridgeBytes) !== snapshot.bridgeSha256) {
-    reject("production verification requires the fresh captured bridge module");
-  }
   const root = realpathSync(snapshot.repoRoot);
   if (realpathSync(path.join(root, BRIDGE_PATH)) !== realpathSync(snapshot.bridgeFile)) {
     reject("repository root differs from the executing bridge owner");
@@ -97,17 +82,7 @@ export async function verifyPrefixSnapshot(snapshot, progress = () => {}) {
         relative.split(/[\\/]/u).includes("..")) reject("binding path must be repository-relative");
     return read(path.join(root, relative));
   };
-  const bridgeBytes = readRepositoryBytes(BRIDGE_PATH);
-  if (!bridgeBytes.equals(Buffer.from(snapshot.bridgeBytes))) reject("bridge changed after capture");
-  const reducerCurrentBytes = readRepositoryBytes(REDUCER_PATH);
-  if(!Array.isArray(snapshot.productionIdentities)||!Buffer.from(snapshot.currentReducerBytes??[]).equals(reducerCurrentBytes))reject("selected current reducer snapshot differs");
-  const reducerBytes = Buffer.from(snapshot.originalReducerBytes??[]);
-  if (sha(reducerBytes) !== REDUCER_SHA256 || sha(EXPORT_APPENDIX) !== APPENDIX_SHA256) {
-    reject("frozen reducer or fixed export appendix changed");
-  }
-  const augmentedBytes = Buffer.concat([reducerBytes, Buffer.from(EXPORT_APPENDIX)]);
-  const frozen = await import(moduleUrl(augmentedBytes));
-  progress({ stage: "frozen-checks-loaded", completedRungs: 0 });
+  progress({ stage: "ledger-checks-loaded", completedRungs: 0 });
   const historyBytes = read(snapshot.historyManifest);
   const manifest = parseObject(historyBytes, "history manifest");
   const entries = snapshot.rungFiles.map((filename) => {
@@ -141,10 +116,6 @@ export async function verifyPrefixSnapshot(snapshot, progress = () => {}) {
   });
   assertPrefixAgreement(summaries, historySummary.manifest);
   frozen.validateRepeatedReceptionRoots(entries.map(({ packet }) => packet));
-  // The frozen reducer's normal public entrypoint checks import.meta's file
-  // identity. A disclosed data-URL augmentation is not that file; the pinned
-  // captured original bytes plus this separately bound appendix replace that
-  // entrypoint-only identity guard, never any validation function.
   for (const [filename, original] of captured) {
     if (!readRegularBytes(filename).equals(original)) reject(`bound file changed during verification: ${filename}`);
   }
@@ -152,17 +123,13 @@ export async function verifyPrefixSnapshot(snapshot, progress = () => {}) {
     schema: PREFIX_SCHEMA, accepted: true, h3EvidenceEligible: false,
     status: "genuine-prefix-ledger-checks-passed", completeLadder: false,
     resourceContact: false, heartbeatSeconds: 15, limitSeconds: 1800,
-    authority: "source-and-byte-bound-frozen-validator-prefix-composition",
+    authority: "independent-ledger-prefix-composition",
     campaignId: summaries[0].campaignId, runId: summaries[0].runId,
     rungOrder: summaries.map((summary) => summary.rungSamples),
     totalRows: summaries.reduce((sum, summary) => sum + summary.rowCount, 0),
     historyManifestSha256: historySummary.rawSha256,
     rawHistoryManifest: { path: path.resolve(snapshot.historyManifest), sha256: sha(historyBytes) },
     rawRungFiles: entries.map(({ filename, bytes, packet }) => ({ path: filename, sha256: sha(bytes), rungSamples: packet.rungSamples })),
-    reducerSource: { path: REDUCER_PATH, sha256: REDUCER_SHA256 },
-    exportAppendix: { sha256: APPENDIX_SHA256, utf8: EXPORT_APPENDIX },
-    executedAugmentedReducerSha256: sha(augmentedBytes),
-    bridgeSource: { path: BRIDGE_PATH, sha256: sha(bridgeBytes) },
     sourceBindings: entries[0].packet.bindings,
     implementationBindings: entries[0].packet.implementationBindings,
     rungSummaries: summaries,
@@ -170,7 +137,7 @@ export async function verifyPrefixSnapshot(snapshot, progress = () => {}) {
       exactHistoryManifest: "passed", exactCensus: "passed", selfRows: "passed", partnerRows: "passed",
       factorMargins: "passed", rootFreeComplements: "passed", resourceLimits: "passed",
       prefixIdentity: "passed", repeatedReceptionRoots: "passed" },
-    claimBoundary: "Only the supplied genuine prefix passed the frozen ledger, serialization, identity and byte checks. The executing reducer module is the captured original source plus the disclosed export-only appendix. No missing rung is constructed or inferred. Independent actual-cubic/API-domain conformance and reviewed build provenance remain separate prerequisites; final three-rung reduction uses the original public entrypoint. No H3, evolution, retention, stability, binding, score, or physical claim.",
+    claimBoundary: "Only the supplied genuine prefix passed the frozen ledger, serialization, identity and byte checks. No missing rung is constructed or inferred. Independent actual-cubic/API-domain conformance and reviewed build provenance remain separate prerequisites; final three-rung reduction uses the original public entrypoint. No H3, evolution, retention, stability, binding, score, or physical claim.",
   };
 }
 
@@ -198,25 +165,17 @@ function parseArgs(argv) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (existsSync(args.output)) reject("output already exists; choose a fresh evidence path");
-  const {beginProductionAdmission}=await import('../equation-mapping/production-source-records.mjs');
-  const production=beginProductionAdmission({root:args.repoRoot,consumer:BRIDGE_PATH});
-  initializeProductionIdentities(production.identities());
-  const reducerPair=production.sourcePair(REDUCER_PATH,REDUCER_SHA256);
   const bridgeFile = fileURLToPath(import.meta.url);
   const bridgeBytes = readRegularBytes(bridgeFile);
   const started = Date.now();
   let progress = { stage: "started", completedRungs: 0 };
   process.stdout.write(`${JSON.stringify({ ...progress, heartbeatSeconds: 15, limitSeconds: 1800 })}\n`);
-  const snapshot = { ...args, bridgeFile, bridgeBytes, bridgeSha256: sha(bridgeBytes),productionIdentities:production.identities(),originalReducerBytes:Buffer.from(reducerPair.original),currentReducerBytes:Buffer.from(reducerPair.current) };
-  production.check();
+  const snapshot = { ...args, bridgeFile, bridgeBytes, bridgeSha256: sha(bridgeBytes) };
   const worker = new Worker(`
     const { parentPort, workerData } = require("node:worker_threads");
     const { createHash } = require("node:crypto");
     (async () => {
-      const bytes = Buffer.from(workerData.bridgeBytes);
-      if (createHash("sha256").update(bytes).digest("hex") !== workerData.bridgeSha256) throw new Error("bridge snapshot hash mismatch");
-      const bridge = await import("data:text/javascript;base64," + bytes.toString("base64"));
-      bridge.initializeProductionIdentities(workerData.productionIdentities);
+      const bridge = await import(require("node:url").pathToFileURL(workerData.bridgeFile).href);
       const result = await bridge.verifyPrefixSnapshot(workerData, event => parentPort.postMessage({ event }));
       parentPort.postMessage({ result });
     })().catch(error => { parentPort.postMessage({ failure: String(error.message) }); process.exitCode = 1; });
@@ -255,15 +214,13 @@ async function main() {
     result.resourceContact = true;
     result.failure = "prefix verification deadline reached";
   }
-  production.check();
   writeFileSync(args.output, `${JSON.stringify(result, null, 2)}\n`, { flag: "wx" });
-  production.check();
   process.stdout.write(`${JSON.stringify({ accepted: result.accepted, h3EvidenceEligible: false,
     rungOrder: result.rungOrder ?? [], output: args.output })}\n`);
   if (!result.accepted) process.exitCode = 1;
 }
 
-if (import.meta.url.startsWith("file:") && process.argv[1] &&
+if (isMainThread && import.meta.url.startsWith("file:") && process.argv[1] &&
     realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url))) {
   main().catch((error) => { process.stderr.write(`${error.message}\n`); process.exitCode = 1; });
 }

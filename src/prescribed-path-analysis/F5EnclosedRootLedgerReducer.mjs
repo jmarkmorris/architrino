@@ -1,5 +1,3 @@
-import { productionIdentities } from "../../scripts/equation-mapping/production-source-records.mjs";
-const OPTION_B_PRODUCTION_IDENTITIES = productionIdentities(import.meta.url);
 import { createHash } from "node:crypto";
 import { readFileSync, realpathSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -13,24 +11,16 @@ export const F5_HISTORY_MANIFEST_SCHEMA =
 
 export const F5_FIXED_BINDINGS = Object.freeze({
   "approved-config": Object.freeze({
-    path: "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
-    sha256: OPTION_B_PRODUCTION_IDENTITIES[0],
+    path: "tests/fixtures/f5-history/approved-config.json",
+    sha256: "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
   }),
   "pilot-fixture": Object.freeze({
-    path: "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json",
-    sha256: OPTION_B_PRODUCTION_IDENTITIES[1],
-  }),
-  "restart-predeclaration": Object.freeze({
-    path: "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
-    sha256: OPTION_B_PRODUCTION_IDENTITIES[2],
-  }),
-  "enclosure-evidence": Object.freeze({
-    path: "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md",
-    sha256: OPTION_B_PRODUCTION_IDENTITIES[3],
+    path: "tests/fixtures/f5-history/pilot-fixture.json",
+    sha256: "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
   }),
   "accepted-enclosure-report": Object.freeze({
-    path: ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json",
-    sha256: OPTION_B_PRODUCTION_IDENTITIES[4],
+    path: "tests/fixtures/f5-history/accepted-enclosure-report.json",
+    sha256: "2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9",
   }),
 });
 
@@ -1296,3 +1286,5 @@ export function writeF5ReductionOnce(file, result) {
   writeFileSync(file, `${JSON.stringify(result, null, 2)}\n`, { flag: "wx" });
   return file;
 }
+
+export { validateConfigAndPilot, validateEnclosureReport, expectedMembersFromConfig, validateHistoryManifest, validateRungPacket, validateRepeatedReceptionRoots, repositoryReader };

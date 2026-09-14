@@ -56,8 +56,8 @@ test("catalog data rejects malformed schema, identities, URLs, duplicate rows an
 });
 
 function fixture(t) {
-  fs.mkdirSync(path.join(root, ".tmp/option-b-borg-catalog"), { recursive: true });
-  const dir = fs.mkdtempSync(path.join(root, ".tmp/option-b-borg-catalog/test-"));
+  fs.mkdirSync(path.join(root, ".tmp/borg-catalog-tests"), { recursive: true });
+  const dir = fs.mkdtempSync(path.join(root, ".tmp/borg-catalog-tests/test-"));
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   const source = path.join(dir, CATALOG_SOURCE_PATH);
   const projection = path.join(dir, CATALOG_PROJECTION_PATH);

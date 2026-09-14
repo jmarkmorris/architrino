@@ -30,7 +30,7 @@ def _require(value, message):
 
 def _integer_text(value, limit):
     """Exact bounded decimal serialization, without changing interpreter limits."""
-    _require(type(value) is int and value.bit_length() <= 4 * limit, 'integer text bound')
+    _require((type(value) is int) and (value.bit_length() <= 4 * limit), 'integer text bound')
     sign = '-' if value < 0 else ''
     value = abs(value)
     parts = []
@@ -56,13 +56,13 @@ def to_wire(value):
     def visit(v, depth):
         nonlocal nodes
         nodes += 1
-        _require(nodes <= MAX_NODES and depth <= MAX_DEPTH, 'wire structure limit')
+        _require((nodes <= MAX_NODES) and (depth <= MAX_DEPTH), 'wire structure limit')
         kind = type(v)
         if v is None or kind in (str, int, bool):
             if kind is str:
-                _require(len(v) <= MAX_STRING_BYTES and len(v.encode('utf-8')) <= MAX_STRING_BYTES, 'wire string bound')
+                _require((len(v) <= MAX_STRING_BYTES) and (len(v.encode('utf-8')) <= MAX_STRING_BYTES), 'wire string bound')
             if kind is int:
-                _require(v.bit_length() <= 3402 and len(_integer_text(v, 1025).lstrip('-')) <= 1024, 'wire integer bound')
+                _require((v.bit_length() <= 3402) and (len(_integer_text(v, 1025).lstrip('-')) <= 1024), 'wire integer bound')
             charge(len(json.dumps(v, ensure_ascii=True, allow_nan=False).encode('ascii')))
             return v
         if kind is Fraction:
@@ -85,7 +85,7 @@ def to_wire(value):
             result = {}
             names = tuple(f.name for f in fields(v)) if record else v.keys()
             for key in names:
-                _require(type(key) is str and len(key.encode('utf-8')) <= 4096, 'wire key bound')
+                _require((type(key) is str) and (len(key.encode('utf-8')) <= 4096), 'wire key bound')
                 visit(key, depth + 1)
                 charge(1)
                 result[key] = visit(getattr(v, key) if record else v[key], depth + 1)
@@ -123,14 +123,13 @@ class StreamedLeafSession:
         self._completed = 0
         self._inherited = 0
         try:
-            _require(callable(sink) and (live is None or callable(live)), 'sink and optional live callbacks')
-            _require(type(byte_limit) is int and 0 < byte_limit <= MAX_BYTES, 'aggregate byte limit')
-            _require(type(metadata) is dict and set(metadata) == set(METADATA_KEYS), 'closed transport metadata')
+            _require((callable(sink)) and (live is None or callable(live)), 'sink and optional live callbacks')
+            _require((type(byte_limit) is int) and (0 < byte_limit <= MAX_BYTES), 'aggregate byte limit')
+            _require((type(metadata) is dict) and (set(metadata) == set(METADATA_KEYS)), 'closed transport metadata')
             metadata = to_wire(metadata)
             for name in ('scope', 'pythonBodySha256', 'publicationRequires'):
-                _require(type(metadata[name]) is str and metadata[name], 'transport string metadata')
-            _require(type(metadata['spec']) is dict and type(metadata['sourceBindings']) is dict
-                     and type(metadata['runtimeBindings']) is list and type(metadata['clockTransfer']) is dict,
+                _require((type(metadata[name]) is str) and (metadata[name]), 'transport string metadata')
+            _require((type(metadata['spec']) is dict) and (type(metadata['sourceBindings']) is dict) and (type(metadata['runtimeBindings']) is list) and (type(metadata['clockTransfer']) is dict),
                      'transport metadata shapes')
             self._adapter, self._sink, self._live = adapter, sink, live
             self._context, self._provenance = adapter.context, tuple(adapter.provenance)
@@ -184,28 +183,25 @@ class StreamedLeafSession:
 
     def _counters(self):
         calls, geometry = self._adapter.call_counts, self._adapter.geometry_accounting
-        _require(set(calls) in (set(COUNTERS), set(COUNTERS) | {'coverage_cache_entries'})
-                 and set(geometry) == set(GEOMETRY), 'closed actual counters')
+        _require((set(calls) in (set(COUNTERS), set(COUNTERS) | {'coverage_cache_entries'})) and (set(geometry) == set(GEOMETRY)), 'closed actual counters')
         result = tuple(calls[k] for k in COUNTERS), tuple(geometry[k] for k in GEOMETRY)
         _require(all(type(n) is int and n >= 0 for row in result for n in row), 'exact actual counters')
         return result
 
     def _cache_count(self):
         value = self._adapter.call_counts.get('coverage_cache_entries', 0)
-        _require(type(value) is int and value >= 0, 'exact coverage cache count')
+        _require((type(value) is int) and (value >= 0), 'exact coverage cache count')
         return value
 
     def _observe(self):
         _require(self._phase != 'failed', 'poisoned streamed session')
         a, s = self._adapter, self._session
-        _require(a.context is self._context and tuple(a.provenance) == self._provenance
-                 and a.frames is self._frames and a.parents is self._parents, 'same adapter generation')
-        _require(s.state is self._state and s.integral_reference is self._ref
-                 and s.gk_protocol is self._protocol, 'same owned state and references')
+        _require((a.context is self._context) and (tuple(a.provenance) == self._provenance) and (a.frames is self._frames) and (a.parents is self._parents), 'same adapter generation')
+        _require((s.state is self._state) and (s.integral_reference is self._ref) and (s.gk_protocol is self._protocol), 'same owned state and references')
         counts = self._counters()
         cache = self._cache_count()
         if not self._providing:
-            _require(counts == self._expected and cache == self._expected_cache, 'intervening adapter work')
+            _require((counts == self._expected) and (cache == self._expected_cache), 'intervening adapter work')
         return counts, cache
 
     def _external(self, callback, *args):
@@ -229,7 +225,7 @@ class StreamedLeafSession:
         self._observe()
 
     def _write(self, line):
-        _require(type(line) is bytes and line.endswith(b'\n'), 'immutable complete wire line')
+        _require((type(line) is bytes) and (line.endswith(b'\n')), 'immutable complete wire line')
         self._observe()
         _require(not self._callback, 'reentrant callback')
         self._callback = True
@@ -252,7 +248,7 @@ class StreamedLeafSession:
 
     def _claims(self):
         claims = to_wire(self._ref.Claims())
-        _require(type(claims) is dict and claims and all(v is False for v in claims.values()), 'no scientific authority')
+        _require((type(claims) is dict) and (claims) and (all(v is False for v in claims.values())), 'no scientific authority')
         return claims
 
     def _summary(self):
@@ -282,7 +278,7 @@ class StreamedLeafSession:
             counts = self._counters()
             n = self._completed + 1
             deltas = provision.history_state_evaluations
-            _require(type(deltas) is tuple and len(deltas) == 4 and all(type(x) is int and x > 0 for x in deltas), 'four observed geometry deltas')
+            _require((type(deltas) is tuple) and (len(deltas) == 4) and (all(type(x) is int and x > 0 for x in deltas)), 'four observed geometry deltas')
             _require(counts == ((4*n, 4*n, 8*n, 0, 0), (4*n, 4*n, self._expected[1][2] + sum(deltas), 4*n)), 'exact genuine provision work')
             _require(provision.response.request is request, 'original provision request')
             self._expected = counts
@@ -291,9 +287,9 @@ class StreamedLeafSession:
             self._encoder.provision(self._completed, to_wire(provision))
             self._tick()
             state = self._session.advance(provision)
-            _require(state is self._session.state and len(state.evaluations) == len(old.evaluations) + 1, 'one actual evaluation appended')
+            _require((state is self._session.state) and (len(state.evaluations) == len(old.evaluations) + 1), 'one actual evaluation appended')
             evaluation = state.evaluations[-1]
-            _require(evaluation.response is provision.response and evaluation.response.request is request, 'actual consumed evaluation identity')
+            _require((evaluation.response is provision.response) and (evaluation.response.request is request), 'actual consumed evaluation identity')
             self._state = state
             self._tick()
             summary = self._summary()

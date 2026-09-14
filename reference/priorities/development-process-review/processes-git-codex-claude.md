@@ -1,8 +1,10 @@
 # Development-process campaign: rollout and completion checklist
 
+The [September 14 architecture decision](../../op/git/git-backed-knowledge-architecture.md) records why both A/B source-pinning schemes and their migration records were removed. The concise lesson and original scientific evidence remain.
+
 This document tracks remaining work, completed decisions, and supporting recovery context. The explanatory chapters now live under the operational Git documentation:
 
-- [Git-backed knowledge architecture](../../op/git/git-backed-knowledge-architecture.md) — former section 1, including options A/B/C and the bounded report-only B integration.
+- [Git-backed knowledge architecture](../../op/git/git-backed-knowledge-architecture.md) — the accepted retirement decision and its rationale.
 - [Git and GitHub operating guide](../../op/git/git-github-operating-guide.md) — former section 2, including credential routing and current versus deferred workflows.
 
 Veronica’s operational recovery is a separate workstream, tracked in the [recovery queue](work-queue.md) and [closeout review](analysis/recovery-closeout-review.md). Its completion is not a prerequisite for closing this process campaign. Shared-checkout publication may require coordinating writer pauses, which does not merge the two scopes.
@@ -11,7 +13,7 @@ Veronica’s operational recovery is a separate workstream, tracked in the [reco
 
 ## 3. Rollout and integration plan
 
-**Status key:** ✓ Done, ◐ Partial, ○ Not done. Deferred and Blocked describe why unfinished work is not executable now. Standing rules are not completion tasks. The appendix preserves historical explanation; it is not an additional backlog.
+**Status key:** ✓ Done, ◐ Partial, ○ Not done. Deferred and Blocked describe why unfinished work is not executable now. Standing rules are not completion tasks.
 
 ### Campaign checklist
 
@@ -19,7 +21,6 @@ The finite current package is checklist reconciliation and the authorized Pages 
 
 | Status | Current package or decision | Evidence and exact remaining condition |
 | --- | --- | --- |
-| ◐ Partial — full takeover active | Complete B integration and A retirement | The four [current closure batches](analysis/option-b-repository-reconciliation.md#consolidated-full-b-closure-plan--september-13) cover remaining source expectations, real consumers, retirement and integrated acceptance. All finite B-REM packages are complete at their historical scopes. |
 | ✓ Done — bounded reconciliation | Reconcile this campaign with the adopted four-guide layout and item-level evidence | Sections 3.1–3.8 retain detailed dispositions; completed migrations are removed from the unfinished summary. Scoped file-link and conformance checks are recorded in the dated work log. |
 | ✓ Done — local implementation and checks | Separate PR Pages validation from main deployment | [PR workflow](../../../.github/workflows/pages.yml), [main workflow](../../../.github/workflows/pages-deploy.yml), and [shared build action](../../../.github/actions/build-pages/action.yml) preserve real build validation. Local validation and dated evidence are recorded in section 3.9; actual GitHub execution follows an independently authorized publication. |
 | ◐ Partial — Awaiting verification | Resolve the remaining public participation clarifications | [OPS-026 review](analysis/public-community-guidance-review.md) is complete and the approved AI-assessment sentence deletion, actionable discussion-to-issue wording and coherent PR contribution guidance are applied; optional checkpoint-tag advice is removed. Equal-standing human/AI collaboration and substantive cross/adversarial review are approved and applied, with links to existing development/review explanations. The earlier audience sentence is superseded by this discovery adjustment; audience relevance does not require promoting operating machinery into the theory teaching sequence. Verification remains. |
@@ -27,7 +28,6 @@ The finite current package is checklist reconciliation and the authorized Pages 
 
 ### Completed migration record
 
-The operator accepted the exact current mathematical maps for report-only comparison in [the September 12 decision](#current-map-scope-acceptance--september-12). The [comparison-loader continuation](analysis/option-b-repository-reconciliation.md#b-to-b-continuation) now consumes that acceptance as an externally selected B predecessor. Full B takeover remains unfinished; neither another request to accept those same map bytes nor automatic approval of later candidate changes is appropriate.
 
 | Status | Completed scope | Evidence and retained limit |
 | --- | --- | --- |
@@ -37,14 +37,12 @@ The operator accepted the exact current mathematical maps for report-only compar
 | ✓ Done | Ordinary merge commits and guarded successor lifecycle | [Section 3.8](#38-ordinary-merge-adoption-evidence); successful cases do not establish every failure path. |
 | ✓ Done | Three per-candidate PR modes and mandatory rendered description display | [Section 3.3](#33-delegated-pr-review-and-merge); Codex PR264/265 exercise full delegation, Claude's first delegated merge remains deferred. |
 | ✓ Done | Circular branch-registry bootstrap correction | [Live bootstrap procedure](../../op/git/pr-lifecycle.md#new-series-registry-bootstrap). Six existing conformance tests passed in the recorded prior check; a future series transition supplies its next actual use. |
-| ✓ Done | Four operational guides and retirement of obsolete procedures | [Section 3.2](#32-proposed-documentation-destination-and-consolidation); migration records remain here. |
-| ✓ Done | Bounded Option B implementation and representative dependency trace | [Section 3.6](#36-migration-to-b--full-takeover-active). Both chains ran report-only in PR265; source, controls, historical Python/RDFLib records and current JavaScript implementation remain distinct. [Current exact-map scope acceptance](#current-map-scope-acceptance--september-12) is recorded separately from the older PR265 identities. |
+| ✓ Done | Four operational guides and retirement of obsolete procedures | [Section 3.2](#32-proposed-documentation-destination-and-consolidation). |
 
 ### Deferred and rejected work; standing practice
 
 | Status | Preserved item | Revisit condition and owner |
 | --- | --- | --- |
-| ○ Not done — Deferred | Select broader knowledge protections/retrieval requirements and reassess provisional option scores | Before broader B/C adoption, review the [architecture objectives](../../op/git/git-backed-knowledge-architecture.md#12-proposed-integrity-objectives-to-discuss) and [cooperation requirements](../../op/git/git-github-operating-guide.md#22-the-arrangement-we-are-trying-to-achieve). These design questions do not block the bounded current workflow. |
 | ◐ Partial — Deferred | Automate publication coordination across active editors | Manual coordination has real publication evidence; [section 3.5](#35-coordinated-publication-migration) retains implementation and failure-case verification. Revisit when the operator selects automation. |
 | ○ Not done — Rejected; decision complete | Adopt additional linked worktrees or run a teaching/evaluation experiment | Operator rejects temporary/task-managed, permanent and toy teaching worktrees. The [decision](../../op/git/git-github-operating-guide.md#283-how-we-would-evaluate-a-worktree-workflow) supersedes evaluation permission; the [lesson](analysis/worktree-learning-and-experiment.md) preserves the rejected design. Use the existing checkout; no implementation task remains. |
 | ○ Not done — Deferred | Verify Claude's first delegated merge | At its next suitable explicitly delegated real candidate; do not create a throwaway PR. |
@@ -144,21 +142,6 @@ Closure covers the current supported workflow: dedicated command routes, success
 
 This plan authorizes documenting the future workflow. Building the protocol, changing hooks or permissions, starting a publication, and delegating merge authority are separate implementation or execution steps.
 
-### 3.6. Migration to B — full takeover active
-
-The [consolidated full-B plan](analysis/option-b-repository-reconciliation.md#consolidated-full-b-closure-plan--september-13) and [live queue](work-queue.md#operator-selected-option-b-work) now own the active broader migration; the historical milestones below do not defer that accepted work. The operator authorized the bounded trial after the earlier design-only phase. Two mathematical chains run in local publication validation and a separate report-only GitHub job. The September 12 instruction separately authorizes establishing the current-source baseline and implementing the first root-cover launch profile. The [first-profile record](analysis/option-b-current-source-cutover-inventory.md) and separately requested [cached-profile transfer](analysis/option-b-cached-root-cover-cutover.md) document the identity-preserving A/B comparisons and bounded replacements. The subsequent full and [paired prescribed-response/acceleration transfers](analysis/option-b-prescribed-response-and-acceleration-cutover.md) complete all five original admission profiles. Other operational families and scientific bridges retain their existing obligations under the [remaining migration plan](analysis/option-b-remaining-migration-plan.md); mathematical-map approval stays separate. The earlier Option B task's archival does not disable its checks or accept its maps as baselines.
-
-| Status | Phase | Current result and remaining boundary |
-| --- | --- | --- |
-| ✓ Done — two bounded chains | Inventory and map | Moving-single-root and finite-ledger maps have source explanations and retained change/deletion controls in the [candidate review](analysis/option-b-first-chain-baseline-review.md). No repository-wide completeness claim. |
-| ✓ Done | Supported stack | Pinned jsonld, N3 and Comunica libraries run in Node; Python/RDFLib remains the historical prototype, not the current runtime requirement. |
-| ✓ Done — report-only | Implement and exercise chains | Retained focused logs show 36 tests passing on Node22 and Node26. Actual PR265 artifact inspection found all four executions passing and both chains consistent but review-required. |
-| ◐ Partial | Review and publication integration | Local receipt invocation and remote artifact retention are exercised. Exact published-map acceptance and baseline advancement remain open; merge alone is not approval of the graph's scientific scope. |
-| ◐ Partial — full B active | Expand or replace responsibilities | All original profiles and five finite B-REM packages are complete at their recorded scopes. Four [consolidated closure batches](analysis/option-b-repository-reconciliation.md#consolidated-full-b-closure-plan--september-13) now cover remaining records, scientific consumers, A retirement and integrated acceptance. |
-| ✓ Done for implementation capture; ◐ Partial for baseline acceptance | Document and park | Candidate/source/control records remain in this campaign and contracts. Task archived; checks stay enabled. |
-
-[PR265](https://github.com/jmarkmorris/architrino/pull/265) B run `34299711800` completed its controls, real trial, summary and artifact upload successfully. The downloaded report explicitly records `review-required`, not baseline approval. Its first-chain comparison retains changed/deleted relationships, and the second chain reports no accepted predecessor. The independent scientific checks retain their own narrower claims.
-
 ### 3.7. Credential verification evidence
 
 | Tool context | Repository | Credential boundary | Migration status |
@@ -199,82 +182,3 @@ Pre-edit `rg` across workflows, scripts, tests and operational Git documentation
 The assigned Codex–Architrino `gh api repos/jmarkmorris/architrino/rules/branches/main` read returned the active merge/deletion/non-fast-forward rules and no required-status rule. The separate classic required-status-check endpoint returned HTTP 403; no inference of absence is made for that inaccessible surface. The PR job stays `build`, and the procedural requirements for Content Integrity and Pages build remain unchanged. No settings or branch rules were altered.
 
 ○ Not done — Awaiting actual GitHub use: after an independently authorized publication, verify the PR has a successful build and no deployment job, and main has a successful same-run build/deployment under the hosting owner's existing byte/app acceptance. That remote evidence cannot be produced by local tests or this nonpublication assignment. It does not delay development after verified cleanup.
-
-### 3.10. Exact B-map decision ready for review
-
-This subsection preserves the earlier PR265 decision candidate. It is superseded as current decision status by [the accepted current maps](#current-map-scope-acceptance--september-12); the older moving-map digest below is not the accepted current version.
-
-The comparison below records the earlier PR265 bytes. The September 12 moving-single-root [selector repair](analysis/option-b-current-source-cutover-inventory.md#mathematical-map-repair) changes that current map, so its historical digest below is not its present identity. Neither the repair nor the separate operational source transfer grants mathematical-map approval.
-
-The Codex–Architrino `gh pr view 265 --json state,mergeCommit,headRefOid` read confirmed merged PR265, reviewed head `025fab4eb41cc889743261b56e3afb9967bf246c`, and merge `6efafe15b4f120638fe6938aa65c817eb293e4a8`. Local `git show -s --format='%H %P'` confirms that head is the merge's second parent. A Node SHA-256 comparison first passed the known `abc` digest, then compared both map files obtained by `git show` at those two commits and the live files with the [integration manifest](evidence/option-b-stage-two/integration-manifest.json). Both match:
-
-| Published scope | Exact map SHA-256 | Decision |
-| --- | --- | --- |
-| Moving-single-root corrected dependency map | `d040d275054d1e422c81837119aaf6f50ca72ac2c3a207b24993c4246ed822ce` | ○ Not done — Blocked on operator acceptance |
-| Finite-ledger-superposition dependency map | `fb0d1c65cb377829284ac096beb1784f828e3ac0105afa9a84e8c9c5c6af66c8` | ○ Not done — Blocked on operator acceptance |
-
-The retained integration manifest has SHA-256 `cdae04816b6f144a3bc4729b428362b8247fce7039c2722032f478ef045d0388`; its older observed-head field remains historical and is not relabeled. The comparison above establishes publication of the two map bytes, not acceptance of every manifest input or scientific completeness. A mismatching `git show` digest at either named commit would overturn this identity statement. The [source review](analysis/option-b-first-chain-baseline-review.md) supplies the mathematical/coverage assessment; its prepublication readiness paragraphs describe the earlier state and are superseded only as to these now-published identities.
-
-Concrete decision for Betty/operator: accept the two exact maps above at the reviewed PR265 head for bounded report-only B comparison, preserving A's enforcement authority and all recorded scientific limitations; or explicitly defer acceptance and keep both review-required. Recommended: review and accept only that bounded comparison scope. Any baseline-loader change follows the recorded acceptance and its existing controls; none has been performed here. Wider migration is not part of this decision.
-
-### Current map scope acceptance — September 12
-
-✓ Done — the operator's instruction to do the two recommended items, after clarifying full B takeover and removal of hashes from source files, accepts the exact reviewed maps for report-only change comparison. The [authored acceptance record](contracts/option-b-mathematical-map-acceptance.jsonld) binds commit `859f2b07cb17889ca2c239d82fd61455c2ba903c`, moving-single-root map `645361eca22899e2dccc3c48cb47d2616b8d584e83ae906e053e67739c3dfb75` and finite-ledger map `fb0d1c65cb377829284ac096beb1784f828e3ac0105afa9a84e8c9c5c6af66c8`. This is operator-attributed scope acceptance in this task, not a fabricated GitHub review, signing event or merge.
-
-The retained [review manifest](evidence/option-b-current-map-review-manifest.json), digest `0deb1a97f13a7c3e06ed1f90634bc591ac0f58cb5d7e0f61e7cf2267fe2b50d6`, and [execution report](evidence/option-b-current-map-review-report.json), digest `30d880864ea9c4d57ae1ed7e9e2e1f58011b5e8b11a9239442f2bc742d2cfe1f`, are exact copies of the artifacts presented before this decision. Their original `not-granted` fields remain truthful pre-decision history. A literal `abc` digest control passed before every manifest input was compared with both `git show` at the exact recorded commit and the live file; all matched before this acceptance documentation was added. These are not automatically refreshed current-file selectors.
-
-The independent review found no blocking defect in the inspected meanings, source selectors or declared coverage. The moving-root identity is conditional on fixed reception/history, differentiable root selection, positive separation, fixed coupling and continuous nonzero transmitter factor on a connected chart. Finite-ledger differentiation requires a fixed finite collection of differentiable row scalars on a common chart, with each row identity already established. The existing [source-based derivations](analysis/option-b-first-chain-baseline-review.md#independent-mathematical-and-coverage-review) supply the mathematical reference; graph consistency and numerical agreement do not prove those premises. The independently inspected trial completed four passing checks and both graph inspections under run `0611c548-cc01-4e5a-9dfb-ea378ef9eb13`, exit zero with closed process group in 1.435 seconds.
-
-✓ Done — the comparison loader now consumes this exact acceptance through an external selection record. It authenticates the two maps, preserved review artifacts and all 23 reviewed predecessor inputs, then compares them with separately inspected current candidates. Acceptance of the predecessor does not approve a changed candidate: the real trial reports four passing checks while retaining `review-required` and `approval: not-granted`. The [continuation record](analysis/option-b-repository-reconciliation.md#b-to-b-continuation) supplies current-generation validation and independent review. Embedded expected hashes have left the runner and reader; no scientific instrument or accepted map was changed. No complete dependency census, global scalar, singular continuation, scientific-run acceptance or production enforcement is granted. Full B takeover remains the [accepted unfinished target](../../op/git/git-backed-knowledge-architecture.md#accepted-full-b-end-state).
-
-## 4. Appendix — Background on checks, Git history, and provenance
-
-### 4.1. Why add checks when Git already keeps history?
-
-The immediate motivation for a dependency pin is to prevent silent substitution during current work. Git answers “what was committed at that point?” A pin-enforcing consumer answers “may I run using these particular inputs?” These are different questions. If a calculation was assessed against one mathematical specification, silently changing its input specification could leave the old assessment attached to a different calculation. Refusing changed input can expose that inconsistency before a result is accepted.
-
-For this concrete family, `git log --reverse -S test_frozen_mathematical_dependencies_remain_identical -- tests/test_eom_continuous_reception_roots.py` locates the test's first appearance in retained history at commit `0fb575921`. Reading that commit's test with `git show` establishes that it required exact identities for two helper modules and the enclosure theorem document. Reading the oracle's opening docstring at the same commit establishes that it described an unchanged reference generation and identified the theorem supporting it. These are measured statements about the retained source. The inferred design motivation is to keep that checker tied to a particular mathematical dependency set; the source does not establish the author's full deliberation, the operator's approval of the strategy, or why the practice later expanded. An earlier retained implementation or an explicit design discussion with a different purpose would revise this account.
-
-Dependency pinning is an established practice for selecting external software. For example, GitHub recommends immutable commit identities for third-party Actions in its [secure-use guidance](https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions). That addresses code selection and supply-chain risk. It does not establish that whole-file pins on evolving internal theory documents are a standard default, or that our chain of such checks is the right design.
-
-For ordinary software tests, a contrasting established principle is to test required behavior without unnecessarily coupling the test to implementation details. Google's [testing guidance on behavior and implementation](https://testing.googleblog.com/2013/08/testing-on-toilet-test-behavior-not.html) explains why an implementation change that preserves behavior should generally leave behavioral expectations intact, while recognizing exceptions. A file-identity check can be a legitimate additional control when exact identity is itself the requirement. Its failure is not evidence that behavior changed.
-
-The local tradeoff follows directly. A whole-file pin detects an equation change, but also a comma change, and it cannot distinguish them. It may be useful to guard a bounded comparison that deliberately holds its reference fixed. Applying that same restriction to continually evolving theory documents can create maintenance that Git history and ordinary review would avoid. The existence of a legitimate use does not establish that every use in this repository is justified.
-
-For each binding, establish the selected input, the dependent claim, the event that runs the check, and the response to a mismatch. Then judge whether fixed identity protects a requirement that ordinary history, dependency review, or behavioral testing does not adequately cover. This evaluates a concrete mechanism against the motivation without requiring a complete reconstruction of every past design decision.
-
-### 4.2. How Git history and scientific integrity became connected here
-
-The recovery history illustrates why identity and meaning need separate treatment. Provenance connects a statement or result to its source version, derivation, assumptions, and relevant review or calculation. That connection helps determine what remains useful after a theory revision; it does not require the earlier version to remain current. The evidence below concerns how a particular binding behaved, rather than the drafting history of this guide.
-
-The relationship can be understood in layers. Git retains committed versions so an earlier equation can be retrieved. Review examines whether an equation change is intentional and justified. A dependency check can alert a calculation that a selected supporting file no longer matches the version it expected. A validation receipt can connect checks to the candidate being published. These functions can cooperate, but each additional function needs to address a gap that matters to current work. They are not all alternative ways of storing the same history.
-
-For the particular enclosure family, the available history supports this limited sequence:
-
-| Stage | What the retained evidence establishes | What it does not establish |
-| --- | --- | --- |
-| A checker was connected to exact mathematical inputs | The original test and docstring inspected with `git show`, as described above, identify the theorem and helper versions selected by that checker. | The complete discussion that led to the design, or a general operator decision to freeze evolving documents. |
-| The theorem document changed while an expectation stayed old | The [cross-report assessment](analysis/cross-report-findings.md#independently-inspected-findings) records `git log --follow`, source digest comparisons, and `git diff` attributing one mismatch to terminology replacements. | That the mathematical content became wrong, or that every later failure had this same cause. |
-| Repairs encountered several kinds of binding | The [source recovery analysis](analysis/source-recovery-and-binding-repair.md) records source reconstruction and dependency comparisons distinguishing current execution selections from historical evidence identities. | That all pin updates were appropriate, or that every original source state had been committed. |
-| The present review separates purpose from implementation | This guide distinguishes source history, equation integrity, dependency selection, and checked publication state. | A completed redesign, approval to add more controls, or authorization to remove existing evidence. |
-
-One plausible explanation is that a useful local precaution grew into a more elaborate dependency system as additional consumers were connected. That remains an inference, not a recovered design history. The current evidence shows a specific fixed-input check and later repair interactions; it does not yet show every decision by which the wider system developed. Establishing that broader chronology would require a separately scoped investigation of actual changes and decision records.
-
-The implementation must support two outcomes together: a revised equation must not silently inherit unsupported confidence from its predecessor, and a deliberate improvement must remain practical to make. An exact-content alarm can contribute to the first outcome but cannot classify the change or guarantee the second. The alternatives must therefore be compared as working arrangements, including their review and maintenance requirements.
-
-### 4.3. Optional calculation execution with DVC
-
-DVC remains a possible execution layer for calculation families under A, B, or C. Its [pipeline model](https://doc.dvc.org/user-guide/pipelines/defining-pipelines) describes executable stages, declared file dependencies, and outputs as an acyclic graph. That is narrower than the changing network of equations, terminology, assumptions, derivations, and unresolved ideas. DVC can manage declared reruns but does not provide that conceptual model by installation.
-
-
-A **pipeline** describes a calculation as connected steps: prepare inputs, run a calculation, check its output, and produce a report. A **stage** is one such step. A **dependency graph** records which stages rely on which inputs or earlier outputs. These names describe the workflow, not a new scientific method.
-
-DVC stores stage definitions and records the state of their declared dependencies. A **lock file** records particular commands, parameters, and content identities for that state; “lock” here does not mean that it prevents another agent from editing files. A **cache** stores reusable content or previous stage results. Retrieving a cached result means reusing an earlier output; it is not evidence that the calculation was freshly executed. The official [pipeline execution guide](https://doc.dvc.org/user-guide/pipelines/running-pipelines) explains changed-stage selection and reuse.
-
-In our example, if the theory document is explicitly declared as an input to a stage, a comma edit can still make that stage out of date. The tool can manage downstream consequences, but it still does not know that the comma is irrelevant to the mathematics. If the document is not declared as a dependency, editing it will not by itself alert that stage. Choosing complete and useful dependencies remains an engineering responsibility.
-
-For an equation change that affects the calculation, the relevant implementation and checks must be updated through review. A pipeline can then identify affected declared steps and organize execution or reuse. It cannot derive the changed equation, determine whether a verifier is independent, or ensure that the declared dependency list is complete. A successful run means the selected commands completed under their checks, not that the theory is proved.
-
-An **execution environment** includes the interpreter or compiler, libraries, and operating-system capabilities needed to run the steps. Recording a pipeline does not supply missing software or reproduce every host characteristic. Likewise, declaring stored data does not guarantee permanent availability: storage and retention remain explicit responsibilities.
-
-The decision about adding DVC to any arrangement is whether managing connected calculations is difficult enough to justify this additional tool. It can be useful for repeatable current workflows even when retaining every past result is unnecessary. It does not require turning ordinary theory prose into a permanently frozen dependency, and adopting it solely because it is capable of extensive tracking would repeat the mistake of choosing machinery before its purpose.

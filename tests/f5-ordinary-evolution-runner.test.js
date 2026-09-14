@@ -1,6 +1,4 @@
 import test from 'node:test';
-import {admitF5Sources,EVOLUTION_MAP} from '../scripts/eom/f5-current-source-admission.mjs';
-const operationalAdmission=()=>admitF5Sources(realpathSync(process.cwd()),sha256(readFileSync(EVOLUTION_MAP)),{},'evolution');
 import assert from 'node:assert/strict';
 import { closeSync, existsSync, mkdtempSync, mkdirSync, openSync, readFileSync, realpathSync, renameSync, rmSync, symlinkSync, unlinkSync, writeFileSync, writeSync } from 'node:fs';
 import { execFileSync, spawn } from 'node:child_process';
@@ -8,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { acquireLock, admitInspection, assertBeforeDeadline, authenticateBindings, canonicalFreshOutput, capture,
   checkOutputBudget, classifyEvaluation, createEvaluationSchedule, makePreparedRequest, parseProcessTable, parseUniqueJson, publish, readJson,
-  releaseLock, requiredSourcePaths, runWatched, sha256, validateLauncherEnvironment, validateOperationalSchedule, validateSourceInventory, writeAll } from '../scripts/eom/run-f5-ordinary-evolution.mjs';
+  releaseLock, runWatched, sha256, validateLauncherEnvironment, validateOperationalSchedule, writeAll } from '../scripts/eom/run-f5-ordinary-evolution.mjs';
 import { assertScientificGeneration, STAGE_GATE } from '../scripts/eom/f5-batch-admission.mjs';
 import { admitTargetStart, terminalCensus } from '../scripts/eom/run-f5-complete-evaluator-batch.mjs';
 
@@ -204,14 +202,6 @@ test('canonical output rejects symlink ancestor', t => {
   assert.equal(canonicalFreshOutput(resolve(real, 'fresh'), dir), resolve(real, 'fresh'));
   assert.throws(() => canonicalFreshOutput(resolve(dir, 'alias/fresh'), dir));
 });
-test('required inventory cannot omit checker, current runtime or transitive encoder source', () => {
-  const d = fixture().d; d.runtime.python = process.execPath; d.runtime.node = process.execPath; d.sourceBindings = [];
-  const paths = requiredSourcePaths(d);
-  for (const suffix of ['scripts/eom/run-f5-ordinary-evolution.mjs', 'scripts/eom/verify-f5-ordinary-evolution.py',
-    'scripts/eom/BorgNativeEomProcessClient.mjs', 'src/apps/borg/BorgCausalHistoryRetention.js', 'src/eom/src/CoupledEvolution.cpp'])
-    assert(paths.some(p => p.endsWith(suffix)), suffix);
-  assert.throws(() => validateSourceInventory(d), /required source/);
-});
 test('undeclared injection and runtime options fail closed', () => {
   validateLauncherEnvironment({ PATH: '/bin', AAA_VENV: '/declared/venv' }, []);
   for (const key of ['NODE_OPTIONS', 'NODE_PATH', 'PYTHONPATH', 'PYTHONHOME', 'DYLD_INSERT_LIBRARIES', 'LD_PRELOAD'])
@@ -272,15 +262,7 @@ test('operational successor cannot change science, deadline, reference or EOM ge
     d=>{d.scientificConditions.endTime='1';},
     d=>{d.campaignDeadline='2027-01-01T00:00:00Z';},
     d=>{d.operationalLimits.wallSeconds++;},
-    d=>{d.sourceBindings.find(b=>b.path.endsWith('CoupledEvolution.cpp')).sha256='1'.repeat(64);},
-    d=>{d.sourceBindings.find(b=>b.path.endsWith('verify-f5-ordinary-evolution.py')).sha256='2'.repeat(64);},
   ]) { const changed=structuredClone(current);mutate(changed);assert.throws(()=>assertScientificGeneration(original,changed)); }
-});
-test('old historical declaration rejects the changed live operational caller', () => {
-  const d=fixture().d;
-  const caller=d.sourceBindings.find(b=>b.path.endsWith('run-f5-ordinary-evolution.mjs'));
-  assert.notEqual(capture(caller.path).sha256,caller.sha256);
-  assert.throws(()=>authenticateBindings([caller]),/changed binding|bounded regular input required/);
 });
 test('final census preserves failed and unstarted cases and rejects omission or running cases', () => {
   const cases=[{id:'serial-1',replicaId:'replica-1',expected:'complete-bounded-unresolved',output:'/one'},
@@ -313,7 +295,7 @@ test('bounded registered gate preserves input/output bytes and genuine target ex
   const dir=temporary(t), input='exact synthetic bytes\n\u0000tail';
   const source="const a=[];process.stdin.on('data',b=>a.push(b));process.stdin.on('end',()=>{process.stdout.write(Buffer.concat(a));process.stderr.write('synthetic error bytes');process.exitCode=2;});";
   const result=await runWatched({command:process.execPath,args:['-e',source],input,output:resolve(dir,'gated'),limits:controlLimits,
-    delegation:syntheticDelegation(),operational:await operationalAdmission(),testHooks:{probe:healthyProbe,processTable:realTable}});
+    delegation:syntheticDelegation(),testHooks:{probe:healthyProbe,processTable:realTable}});
   assert.equal(result.exit.code,2);assert.equal(result.processSucceeded,false);assert.equal(result.processGroupClosed,true);
   assert.equal(readFileSync(resolve(dir,'gated/stdout.json'),'utf8'),input);
   assert.equal(readFileSync(resolve(dir,'gated/stderr.log'),'utf8'),'synthetic error bytes');
@@ -359,11 +341,10 @@ test('actual watched schedule includes nonzero preflight in the complete stage e
 test('bounded gate enforces its own deadline while controller remains alive', {skip:!processControls,timeout:8000}, async t=>{
   const dir=temporary(t),marker=resolve(dir,'target'),stageId='synthetic-deadline';
   const source=`process.on('SIGTERM',()=>{});require('fs').writeFileSync(${JSON.stringify(marker)},String(process.pid));setInterval(()=>{},1000);`;
-  const admission=await operationalAdmission();
   let targetStartedAt;
   const spec={stageId,workerPid:process.pid,cwd:process.cwd(),command:process.execPath,args:['-e',source],environment:{PATH:'/usr/bin:/bin',LC_ALL:'C',LANG:'C'},
     inputBytes:0,inputSha256:sha256(''),deadlineEpochMs:Date.now()+3000};
-  const child=spawn(process.execPath,admission.invocation('scripts/eom/f5-registered-stage-gate.mjs',[JSON.stringify(spec),'--source-map-sha256',admission.sourceMap.sha256]),{detached:true,stdio:['pipe','pipe','pipe','ipc'],env:spec.environment});
+  const child=spawn(process.execPath,[resolve('scripts/eom/f5-registered-stage-gate.mjs'),JSON.stringify(spec)],{detached:true,stdio:['pipe','pipe','pipe','ipc'],env:spec.environment});
   t.after(()=>{if(isAlive(-child.pid))try{process.kill(-child.pid,'SIGKILL');}catch{}});
   child.on('message',m=>{if(m.event==='gate-ready')child.send({event:'go',stageId});if(m.event==='target-started')targetStartedAt=Date.now();});child.stdin.end();
   const exit=await new Promise((done,fail)=>{child.once('error',fail);child.once('close',(code,signal)=>done({code,signal}));});

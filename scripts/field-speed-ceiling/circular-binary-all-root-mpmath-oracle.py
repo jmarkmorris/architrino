@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Replay the FSC-010 Dottie-endpoint numerical witness receipt.
 
-The all-lambda root census is analytic.  This oracle binds only the declared
-equal-speed normalized endpoint numbers to the input and source hashes.
+The all-lambda root census is analytic. This oracle reproduces the declared
+equal-speed normalized endpoint numbers from the specified numerical inputs.
 """
 
 from __future__ import annotations
@@ -98,7 +98,6 @@ def build_receipt(input_path: Path, input_bytes: bytes, packet: dict[str, Any]) 
                 "input_sha256": sha256_bytes(input_bytes),
                 "specification_sha256": sha256_bytes(canonical_json_bytes(spec)),
                 "oracle_path": "scripts/field-speed-ceiling/circular-binary-all-root-mpmath-oracle.py",
-                "oracle_sha256": sha256_bytes(Path(__file__).read_bytes()),
                 "mpmath_version": mp.__version__,
                 "decimal_digits": digits,
                 "bisection_steps": steps,

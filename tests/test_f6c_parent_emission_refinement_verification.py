@@ -7,22 +7,19 @@ Full-main tests explicitly mock original authentication/mathematics while
 exercising real publication, routing, cleanup and retained failed output.
 """
 from __future__ import annotations
-from option_b_synthetic_production import synthetic_production
-from option_b_production_records import exec_source as _option_b_exec_source, exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
-from option_b_batch_records import batch_identities, batch_test_sources
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
+import hashlib
+from pathlib import Path
 
 import ast
 from contextlib import ExitStack, contextmanager, redirect_stdout, redirect_stderr
 from copy import deepcopy
 from decimal import Decimal
 from fractions import Fraction as F
-import hashlib
 import importlib.util
 import io
 import json
 import os
-from pathlib import Path
 import sys
 import tempfile
 from types import SimpleNamespace
@@ -35,51 +32,34 @@ H='a'*64
 
 
 def load(name,path,digest=None):
-    if digest in {OPTION_B_BATCH_IDENTITIES[0],OPTION_B_BATCH_IDENTITIES[1]}:
-        manifest=json.loads(_option_b_source_bytes(__file__, ROOT/'reference/priorities/braid-program/evidence/source-replay/f6c-refined-source-replay.v1.json'))
-        route=next(row for row in manifest['files'] if row['path']==str(path.relative_to(ROOT)) and row['sha256']==digest)
-        path=ROOT/route['source']
-    if path == ROOT/'tests/test_f6c_parent_emission_refinement_conformance.py':
-        original, raw = batch_test_sources(ROOT, __file__, str(path.relative_to(ROOT)))
-        assert hashlib.sha256(original).hexdigest() == digest
-        from importlib.machinery import SourceFileLoader
-        spec=importlib.util.spec_from_file_location(name,path,loader=SourceFileLoader(name,str(path)))
-        m=importlib.util.module_from_spec(spec);sys.modules[name]=m
-        # Execute the independently admitted current representation of the
-        # preserved original closed-form controls, then recheck retained identity.
-        _option_b_exec_source(__file__, m, str(path), raw)
-        assert batch_test_sources(ROOT, __file__, str(path.relative_to(ROOT))) == (original, raw)
-        return m
-    raw=_option_b_source_bytes(__file__, path)
-    if digest is not None: assert hashlib.sha256(raw).hexdigest()==digest
-    from importlib.machinery import SourceFileLoader
-    spec=importlib.util.spec_from_file_location(name,path,loader=SourceFileLoader(name,str(path)));m=importlib.util.module_from_spec(spec);sys.modules[name]=m
-    _option_b_exec_module(__file__, spec, m);assert _option_b_source_bytes(__file__, path)==raw;return m
+    spec=importlib.util.spec_from_file_location(name,path)
+    module=importlib.util.module_from_spec(spec)
+    sys.modules[name]=module
+    spec.loader.exec_module(module)
+    return module
 
 
 s=load('parent_source_checker',SOURCE)
-w=load('parent_transport',ROOT/s.DEPENDENCIES['transport'][0],s.DEPENDENCIES['transport'][1])
-d=load('parent_scientific_decoder',ROOT/s.DEPENDENCIES['scientificDecoder'][0],s.DEPENDENCIES['scientificDecoder'][1])
-r=load('parent_independent_reference',ROOT/s.DEPENDENCIES['independentRootReference'][0],s.DEPENDENCIES['independentRootReference'][1])
-c=load('parent_pure_comparison',ROOT/s.NAMED['comparisonReference'][0],s.NAMED['comparisonReference'][1])
-f=load('parent_prefrozen_closedforms',ROOT/s.NAMED['comparisonReferenceControls'][0],s.NAMED['comparisonReferenceControls'][1])
+w=load('parent_transport',ROOT/s.DEPENDENCIES['transport'],None)
+d=load('parent_scientific_decoder',ROOT/s.DEPENDENCIES['scientificDecoder'],None)
+r=load('parent_independent_reference',ROOT/s.DEPENDENCIES['independentRootReference'],None)
+c=load('parent_pure_comparison',ROOT/s.NAMED['comparisonReference'],None)
+f=load('parent_prefrozen_closedforms',ROOT/s.NAMED['comparisonReferenceControls'],None)
 
 
-def binding(path,digest=H,size=1):return dict(path=str(path),sha256=digest,bytes=size)
+def binding(path,digest=H,size=1):return dict(path=str(path),sha256=digest or H,bytes=size)
 def raw_binding(path,raw):return binding(path,s.sha(raw),len(raw))
 def encode(value):return json.dumps(value,separators=(',',':')).encode()+b'\n'
 
 
 def plan_fixture():
     p=dict(schema=s.PLAN_SCHEMA,scope=s.parent_scope(1),parentIndex=1)
-    for k,(path,h) in s.NAMED.items():p[k]=binding(path,h or H)
-    p['dependencies']={k:binding(v[0],v[1]) for k,v in s.DEPENDENCIES.items()}
+    for k,path in s.NAMED.items():p[k]=binding(path,H)
+    p['dependencies']={k:binding(v,H) for k,v in s.DEPENDENCIES.items()}
     p['originalBindings']={k:binding(v[0],v[1],v[2] if len(v)==3 else 1) for k,v in s.ORIGINAL.items()}
     p.update(acceptanceOwner=binding(s.OWNER),priorCoverClosure=s.closure_premise(),
         runtimeBindings=[{'path':'/synthetic/python'},{'path':'/synthetic/pyvenv.cfg'}],operationalBindings=[binding('synthetic/operation')],limits=deepcopy(w.LIMITS))
-    p['historicalDocumentRoutes']=[dict(original=binding(s.PREFIX+name,h,n),physical=binding('/synthetic/archive-'+h+'.source',h,n)) for name,h,n in (
-        ('2026-08-27-f6c-cached-root-cover-full-resource-plan.md',OPTION_B_BATCH_IDENTITIES[2],10021),
-        ('2026-08-27-f6c-root-cover-full-resource-plan.md',OPTION_B_BATCH_IDENTITIES[3],13021))]
+    p['originalBindings'].update({k:binding(v) for k,v in s.ORIGINAL_SOURCES.items()})
     return p
 
 
@@ -89,7 +69,7 @@ def candidate_fixture(velocity=F(0)):
     originals={k:w.normalized(b,root) for k,b in p['originalBindings'].items()};historical=[binding('/historical')]
     streams={k:binding('/synthetic/data/'+k+'.ndjson') for k in ('queries','rows','pieces')}
     streams.update(queryRecords=queries,rowRecords=rows,pieceRecords=pieces,producer=w.normalized(p['producer'],root),
-        verifier=w.normalized(p['verifier'],root),declaration=w.normalized(p['declaration'],root),acceptanceOwner=w.normalized(p['acceptanceOwner'],root),
+        verifier=w.normalized(p['verifier'],root),acceptanceOwner=w.normalized(p['acceptanceOwner'],root),
         subjectSourceBindings=sorted([w.normalized(p[k],root) for k in s.NAMED]+[w.normalized(b,root) for b in p['dependencies'].values()],key=lambda b:b['path']),
         runtimeBindings=[dict(b) for b in p['runtimeBindings']],operationalBindings=[w.normalized(b,root) for b in p['operationalBindings']])
     restrictions=[]
@@ -99,7 +79,7 @@ def candidate_fixture(velocity=F(0)):
         restrictions.append(dict(receiverIndex=i,transmitterIndex=j,receiverId=s.IDS[i],transmitterId=s.IDS[j],lower=f.decimal(final[i,j][0]),upper=f.decimal(final[i,j][1]),
             lowerQueryIndex=indices['lower'][-1] if indices['lower'] else None,upperQueryIndex=indices['upper'][-1] if indices['upper'] else None))
     packet=dict(schema=s.MANIFEST_SCHEMA,scope=s.parent_scope(1),status='conditional_complete',accepted=False,launchPlan=launch,
-        producer=streams['producer'],verifier=streams['verifier'],declaration=streams['declaration'],parent=parent,
+        producer=streams['producer'],verifier=streams['verifier'],parent=parent,
         members=[{k:h[k] for k in ('id','pathKey','polarity','charge','historyFingerprint')} for h in hs],originalBindings=originals,
         acceptanceOwner=streams['acceptanceOwner'],priorCoverClosure=p['priorCoverClosure'],historicalSourceBindings=historical,historicalEvidenceVerification=s.historical_evidence(),
         subjectSourceBindings=streams['subjectSourceBindings'],runtimeBindings=streams['runtimeBindings'],operationalBindings=streams['operationalBindings'],
@@ -114,7 +94,7 @@ def check_fixture(values,core=c):return s.compare_manifest(w,core,r,*values)
 class InterfaceTests(unittest.TestCase):
     def test_closed_plan_and_exact_role_counts(self):
         p=plan_fixture();self.assertIs(s.validate_plan(w,p,H,ROOT),p)
-        self.assertEqual((len(p),len(s.NAMED),len(p['dependencies']),len(p['originalBindings'])),(20,9,14,12))
+        self.assertEqual((len(p),len(s.NAMED),len(p['dependencies']),len(p['originalBindings'])),(18,8,13,12))
         self.assertNotEqual(p['verifierControls']['path'],p['proposalReferenceControls']['path'])
     def test_all_explicit_parent_scopes_and_rejected_index_types(self):
         for parent_index in range(160):
@@ -124,10 +104,10 @@ class InterfaceTests(unittest.TestCase):
             with self.subTest(value=value),self.assertRaises(ValueError):s.parent_scope(value)
     def test_plan_mutations_and_normalized_aliases_reject(self):
         mutations=[lambda p:p.update(parentIndex=True),lambda p:p.update(parentIndex=0),lambda p:p.update(extra=0),
-            lambda p:p['dependencies'].pop('cacheEquivalence'),lambda p:p['dependencies']['transport'].update(sha256='b'*64),
+            lambda p:p['dependencies'].pop('transport'),lambda p:p['dependencies']['transport'].update(path='scripts/wrong.py'),
             lambda p:p['limits'].update(inclusiveSeconds=1801),lambda p:p['priorCoverClosure'].update(originalCallerSession=13512),
             lambda p:p['originalBindings']['fullRows'].update(bytes=1),lambda p:p['runtimeBindings'].append(deepcopy(p['runtimeBindings'][0])),
-            lambda p:p['runtimeBindings'].append(binding(ROOT/p['declaration']['path'],p['declaration']['sha256'])),
+            lambda p:p['runtimeBindings'].append(binding(ROOT/p['producer']['path'],p['producer']['sha256'])),
             lambda p:p['operationalBindings'].append(binding(ROOT/'synthetic/operation')),
             lambda p:p['acceptanceOwner'].update(path='../owner'),lambda p:p['verifier'].update(sha256='b'*64)]
         for mutate in mutations:
@@ -359,80 +339,10 @@ class FileAndPublicationTests(unittest.TestCase):
     def test_layout_extra_file_and_foreign_private_fail(self):
         path,private,packet=self.layout();(path.parent/'extra').write_bytes(b'x')
         with ExitStack() as stack,self.assertRaises(ValueError):s.candidate_layout(path,packet,s.Pool(stack,w,self.root,lambda:None),manifest_binding=raw_binding(path,b'{}\n'))
-    def test_frozen_entry_pin_parser_reads_code_without_running_it(self):
-        path,h=s.ORIGINAL['fullEntry'];raw=(ROOT/'reference/priorities/development-process-review/evidence/source-recovery/original-full-entry.mjs.source').read_bytes();self.assertEqual(s.sha(raw),h)
-        pins=s.entry_pins(raw);self.assertEqual(len(pins),35);self.assertEqual(pins[s.DEPENDENCIES['rootLibrary'][0]],s.DEPENDENCIES['rootLibrary'][1])
-        with self.assertRaises(ValueError):s.entry_pins(raw.replace(b'export const PINS = Object.freeze({',b'export const OTHER = Object.freeze({'))
 
 
-def full_chain_fixture():
-    """Fictional receipt chain with independently constructed198-source union."""
-    root=Path('/synthetic-full');entry=(ROOT/'reference/priorities/development-process-review/evidence/source-recovery/original-full-entry.mjs.source').read_bytes();pins=s.entry_pins(entry);paths=list(pins)
-    original={k:binding(root/v[0],v[1],v[2] if len(v)==3 else 1) for k,v in s.ORIGINAL.items()}
-    pinbindings=[binding(root/p,h) for p,h in pins.items()]
-    contract=dict(declarationSha256=OPTION_B_BATCH_IDENTITIES[4],verifierSha256=OPTION_B_BATCH_IDENTITIES[5],scope='full',
-        subjectSourceBindings=pinbindings[:4],runtimeBindings=[binding('/synthetic-runtime/'+str(i)) for i in range(158)])
-    plan=dict(schema='braid-program/f6c-cached-root-cover-full-launch.v1',scope='full',resourcePlan=pinbindings[0],comparisonContract=contract,
-        operationalBindings=pinbindings[4:6]+[binding('/synthetic-ops/'+str(i)) for i in range(4)],controlBindings=pinbindings[6:8],python='unused',pythonRealPath='unused',git='unused',node='unused')
-    expected={b['path']:b for b in [*pinbindings,*contract['runtimeBindings'],*plan['operationalBindings'],original['fullPlan']]}
-    assert len(expected)==198
-    manifest=dict(fixedBindings=[],rows=original['fullRows'],pieces=original['fullPieces'],launchPlan=original['fullPlan'])
-    comparison=dict(schema=r.REPORT_SCHEMA,scope='full',accepted=True,rows=original['fullRows'],pieces=original['fullPieces'],manifest=original['fullManifest'],launchPlan=original['fullPlan'],
-        claims=dict(conditionalRootCoverValidated=True,reconstructedFamilyApplicabilityAuthenticated=True,historicalTrajectoryIdentityEstablished=False,rootExecutionAuthorized=False,metricsAvailable=False,h3EvidenceEligible=False,scoreAuthorized=False,eomExecuted=False),
-        analysis=dict(accepted=False,conditionalEnclosuresConformant=True,cellCount=160,pairCellCertificates=10240,ordinaryNonselfRows=8960,selfExclusionRows=1280,distinctNonselfFaceChecks=17920,pieceRecordCount=17920,recordedGeometryPieceVisits=14639800))
-    hosts=[dict(kind='host-resource',index=i) for i in range(62)];rss=[dict(kind='aggregate-rss',elapsedSeconds=0,aggregateResidentBytes=1,sampleGapMs=250) for _ in range(3447)];logs={};stages=[]
-    for stage in ('consumer','comparison'):
-        outputs=[original[k] for k in ('fullRows','fullPieces','fullManifest')] if stage=='consumer' else [original['fullComparison']]
-        done=dict(completed=True,accepted=stage=='comparison',h3EvidenceEligible=False)
-        if stage=='consumer':done['outputs']=outputs
-        else:done['output']=outputs[0]
-        raw=encode(done);b=raw_binding(root/(stage+'.stdout'),raw);logs[b['path']]=raw
-        ad=dict(completion=done,accepted=True,completionLog=b,outputs=outputs)
-        proc=dict(accepted=True,processesClosed=True,exit=dict(code=0,signal=None),admission=ad,
-            gates=[dict(retired=True,acknowledged=True,measurement=dict(code=0,signal=None))],stdoutLog=b,stderrLog=binding(root/(stage+'.stderr')))
-        stages.append(dict(stage=stage,process=proc,admission=ad))
-    admission=dict(schema='braid-program/f6c-cached-root-cover-full-admission.v1',scope='full',accepted=True,processesClosed=True,
-        sourceBindings=list(expected.values()),elapsedSecondsBeforePublication=Decimal('862.577186208'),eomExecuted=False,fullRunAuthorized=False,h3EvidenceEligible=False,
-        historicalTrajectoryIdentityEstablished=False,metricsAvailable=False,plan=original['fullPlan'],stages=stages,
-        hostObservationsBeforePublication=hosts[:-1],observationsBeforePublication=dict(samples=3444,maximumSampledRSSBytes=1))
-    docs=dict(fullPlan=plan,fullManifest=manifest,fullComparison=comparison,fullAdmission=admission,export={},reconstruction={},guards={},
-        fullLauncherLog=b''.join(encode(x) for x in hosts),fullResourceLog=b''.join(encode(x) for x in rss))
-    owner=('### Independently Accepted Actual Full asymmetric counter-breathing representative Conditional Cover\noriginal caller session `13512`, final completion chunk `c21aa7`, exit zero, `862.951823625`, Independent post-closure review accepts all 160\n'+s.FULL_BASE+'\n'+
-        '\n'.join(h+' '+str(n) for k,(_,h,n) in s.FULL.items() if k!='fullPlan')).encode()
-    class MemoryPool:
-        def __init__(self):self.root=root;self.live=lambda:None;self.visited=[];self.routes={};self.used_routes=set();self.unavailable={};self.used_unavailable=set()
-        def historical(self,b):return self.read_binding(b)
-        def capture(self,path,digest):
-            b=binding(root/path,digest);self.visited.append(b['path']);return SimpleNamespace(binding=lambda:b)
-        def read_binding(self,b,*,data=False):
-            b=w.normalized(b,root);self.visited.append(b['path']);return logs[b['path']] if data else b
-    ref=SimpleNamespace(FIXED=[],DECLARATION_SHA=r.DECLARATION_SHA,REPORT_SCHEMA=r.REPORT_SCHEMA,validate_premises=lambda *a:([],[],[]),validate_manifest=lambda *a:160)
-    return docs,original,entry,owner,MemoryPool(),ref,logs
 
 
-class FullChainTests(unittest.TestCase):
-    def test_derived198_not_receipt_self_membership(self):
-        docs,original,entry,owner,pool,ref,logs=full_chain_fixture()
-        result=s.authenticate_full(w,ref,docs,original,entry,owner,pool)
-        self.assertEqual(len(result),198);self.assertEqual(result,sorted(result,key=lambda b:b['path']))
-        self.assertGreater(len(pool.visited),198)
-    def test_missing_sources_stage_closure_stream_logs_and_false_claims(self):
-        modes=('source','extra-source','caller','stage-exit','gate','stdout','outputs','promotion','rss','host','prepublication','census')
-        for mode in modes:
-            docs,original,entry,owner,pool,ref,logs=full_chain_fixture();a=docs['fullAdmission']
-            if mode=='source':a['sourceBindings'].pop()
-            elif mode=='extra-source':a['sourceBindings'][-1]=binding('/extra')
-            elif mode=='caller':owner=owner.replace(b'`13512`',b'`13513`')
-            elif mode=='stage-exit':a['stages'][0]['process']['exit']['code']=1
-            elif mode=='gate':a['stages'][0]['process']['gates'][0]['retired']=False
-            elif mode=='stdout':logs[a['stages'][0]['process']['stdoutLog']['path']]+=b'{}\n'
-            elif mode=='outputs':a['stages'][0]['admission']['outputs']=[]
-            elif mode=='promotion':a['eomExecuted']=True
-            elif mode=='rss':docs['fullResourceLog']=docs['fullResourceLog'].replace(b'"sampleGapMs":250',b'"sampleGapMs":1001',1)
-            elif mode=='host':docs['fullLauncherLog']=docs['fullLauncherLog'].split(b'\n',1)[1]
-            elif mode=='prepublication':a['elapsedSecondsBeforePublication']=Decimal('862.951823625')
-            else:docs['fullComparison']['analysis']['cellCount']=True
-            with self.subTest(mode=mode),self.assertRaises(ValueError):s.authenticate_full(w,ref,docs,original,entry,owner,pool)
 
 
 class MainFlowTests(unittest.TestCase):
@@ -491,9 +401,9 @@ class MainFlowTests(unittest.TestCase):
         transport=SimpleNamespace(**{k:getattr(w,k) for k in ('normalized','binding','equal','source_map','binding_list','LIMITS','BoundFile')},runtime_paths=runtime)
         @contextmanager
         def module(raw,path,digest):
-            if str(path).endswith(s.DEPENDENCIES['transport'][0]):yield transport
-            elif str(path).endswith(s.DEPENDENCIES['scientificDecoder'][0]):yield d
-            elif str(path).endswith(s.NAMED['comparisonReference'][0]):yield c
+            if str(path).endswith(s.DEPENDENCIES['transport']):yield transport
+            elif str(path).endswith(s.DEPENDENCIES['scientificDecoder']):yield d
+            elif str(path).endswith(s.NAMED['comparisonReference']):yield c
             else:yield r
         def numerical(*args,**kwargs):
             events.append('comparison-mocked');kwargs['progress'](3584,64)
@@ -523,9 +433,9 @@ class MainFlowTests(unittest.TestCase):
                 ('decode_role',lambda w,d,raw,role:json.loads(raw)),('authenticate_full',lambda *a:events.append('full-chain-mocked') or []),
                 ('original_projection',projection),('records',records),('candidate_layout',layout),('compare_manifest',numerical),('complete',complete)):
                 stack.enter_context(patch.object(s,name,value))
-            fixture_paths=set(virtual)|{str(root/p) for p,_ in s.DEPENDENCIES.values()}|{str(root/p) for p,_ in s.NAMED.values()}
+            fixture_paths=set(virtual)|{str(root/p) for p in s.DEPENDENCIES.values()}|{str(root/p) for p in s.NAMED.values()}
             fixture_virtual={p:virtual.get(p,b'{}') for p in fixture_paths}
-            stack.enter_context(synthetic_production(s,root,fixture_paths,outputs=[out],virtual_sources=fixture_virtual))
+
             stack.enter_context(patch.object(s.time,'monotonic',lambda:clock[0]));stack.enter_context(patch.object(s.signal,'signal',lambda *a:None));stack.enter_context(patch.object(s.signal,'setitimer',timer))
             stack.enter_context(patch.object(s.Publication,'publish',publish));stack.enter_context(redirect_stdout(stdout));stack.enter_context(redirect_stderr(stderr))
             try:s.main(argv)

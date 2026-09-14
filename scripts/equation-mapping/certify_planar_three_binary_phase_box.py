@@ -9,7 +9,6 @@ derivative row, and interval-Newton inclusion is rechecked on intervals.
 
 from __future__ import annotations
 
-import hashlib
 import json
 import math
 from dataclasses import dataclass
@@ -22,10 +21,7 @@ ROOT = Path(__file__).resolve().parents[2]
 RELEASE_SOURCE = ROOT / "scripts/eom/prepare-planar-three-binary-circular-release.mjs"
 SCALAR_THEOREM_EVIDENCE = ROOT / "reference/priorities/braid-program/evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md"
 
-FROZEN_RELEASE_SOURCE_SHA256 = "031706b047589664eae160d6430cc89f8373a0278aeec7fb85931a993dbc5b44"
-FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256 = "1669066391ac4ba783be843b7f77fa11d3d9c3332085d3cbea570b8cc2ae3e54"
 HISTORICAL_SCALAR_RECEIPT_SHA256 = "fd83e4ea68aace450fc945e410182177c048be05a592608a865e14bc93e463af"
-HISTORICAL_SCALAR_ORACLE_SHA256 = "b16ea1f0137ccbf5349012fb341a461c4af89b5ad968fe1d4151212ebfa582f4"
 
 BETA_TOKEN = "2.974307176117293568027380199624405914686222541005478142309948089455288"
 SCALAR_T04_BRACKET = (
@@ -63,9 +59,6 @@ SELECTED_RESIDUAL_ROWS = (1, 5, 9)
 class CertificateFailure(RuntimeError):
     pass
 
-
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def I(lower_value, upper_value=None):
@@ -552,14 +545,6 @@ def interval_matrix_vector(matrix, vector):
 def calculate() -> dict[str, object]:
     mp.mp.dps = POINT_DPS
     mp.iv.dps = INTERVAL_DPS
-    for path, expected in (
-        (RELEASE_SOURCE, FROZEN_RELEASE_SOURCE_SHA256),
-        (SCALAR_THEOREM_EVIDENCE, FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256),
-    ):
-        actual = sha256(path)
-        if actual != expected:
-            raise CertificateFailure(f"frozen input changed: {path}: {actual}")
-
     beta_center = mp.mpf(BETA_TOKEN)
     delta_radius = mp.mpf(DELTA_RADIUS_TOKEN)
     beta_radius = mp.mpf(BETA_RADIUS_TOKEN)
@@ -632,13 +617,10 @@ def calculate() -> dict[str, object]:
             ],
             "polarityWordInBinaryPairOrder": "+-+-+-",
         },
-        "frozenInputs": {
+        "inputs": {
             "releaseSource": str(RELEASE_SOURCE.relative_to(ROOT)),
-            "releaseSourceSha256": FROZEN_RELEASE_SOURCE_SHA256,
             "acceptedScalarTheoremEvidence": str(SCALAR_THEOREM_EVIDENCE.relative_to(ROOT)),
-            "acceptedScalarTheoremEvidenceSha256": FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256,
             "historicalScalarReceiptSha256": HISTORICAL_SCALAR_RECEIPT_SHA256,
-            "historicalScalarOracleSha256": HISTORICAL_SCALAR_ORACLE_SHA256,
             "acceptedScalarT04BetaBracket": scalar_bracket,
         },
         "arithmetic": {

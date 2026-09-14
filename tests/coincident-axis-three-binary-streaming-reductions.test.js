@@ -1,6 +1,4 @@
-import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';
-const optionBIdentities = retainedTestIdentities("tests/coincident-axis-three-binary-streaming-reductions.test.js");
-const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/coincident-axis-three-binary-streaming-reductions.test.js"].sha256]);
+const RETAINED_HASHES = Object.freeze(["02d73c88ccf8244e6873d2ee2cd58973dc35d2475df102173726563210a39c27"]);
 if (RETAINED_HASHES.length !== 1 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 import fs from "node:fs";
 import test from "node:test";

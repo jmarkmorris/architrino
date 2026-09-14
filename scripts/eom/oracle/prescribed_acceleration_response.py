@@ -16,12 +16,12 @@ dyadics by integer arithmetic before directed 90-digit interval conversion.
 The complete consumer output schema is declared in OUTER_FIELDS below. All
 fields are mandatory, additional fields rejected by its future consumer. The
 outer bindings are original-byte {role,path,sha256,bytes}; roles, in order, are
-every INPUT_PINS role, then predeclaration,reference,referenceTests,consumer,
-consumerTests,pythonExecutable, then the literal paths in FROZEN_IMPORTS and
-FORMULA_OWNERS. The path is a captured original regular-file path; sha256 is
+every SCIENCE role, then reference,referenceTests,consumer,
+consumerTests,pythonExecutable, then the literal paths in IMPORTS and
+FORMULAS. The path is a captured original regular-file path; sha256 is
 64 lowercase hex digits and bytes is its exact nonnegative integer size.
-Reference/tests/consumer/executable hashes are independently reviewed supplied
-pins, never inferred from an untrusted result. Subject is exactly
+Runtime bindings identify the files captured for this invocation; scientific
+artifact digests identify the actual evidence supplied to the consumer. Subject is exactly
 {scope,campaignId,runId,receptionTime,quantity,fieldSpeed,symbolicStrength}, with
 values f5-release, f5-enclosed-root-restart-20260826-v1, prepared-20260827-v1,
 "0", "G_i", "1", and "K=kappa*q0^2". Execution is exactly
@@ -69,7 +69,6 @@ MAX_MEMBERS = 12
 NATIVE_SCHEMA = 'eom_native_exact_pair_certificate/v1'
 REFERENCE_SCHEMA = 'braid-program/prescribed-acceleration-response-reference.v1'
 OUTER_SCHEMA = 'braid-program/prescribed-acceleration-response.v1'
-PREDECLARATION_SHA = 'c08d7f53616fc2843b3a192f7e3c10229f9a9fe7abc1a8670ddb1706d95756ef'
 INPUT_PINS = (
     ('rootPacket', 'a430d035d41ad32c89224f1a068c0a2a7947b9e44849f76280e1aa43a86b9052'),
     ('rootLedger', '37b934854075b500239a733df1b5e70a7ff355f0e56bbdc382adad952288a3a5'),
@@ -79,15 +78,6 @@ INPUT_PINS = (
     ('reviewedBuild', '5c8a9c36804b8bfed45b7f98834c0c104e758465ca0d19402bf0c328d81f9710'),
     ('approvedSource', 'e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb'),
     ('scientificFixture', 'bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344'),
-)
-FROZEN_IMPORTS = (
-    ('scripts/eom/oracle/decimal_interval.py', 'fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
-    ('scripts/eom/oracle/certified_history.py', 'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
-    ('scripts/eom/oracle/continuous_reception_roots.py', 'f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c'),
-)
-FORMULA_OWNERS = (
-    ('scripts/eom/oracle/reference_kernel.py', 'a3b94301b2994c29e1107de44d627db9566abe9cda60ec8e00b89d9351a275f6'),
-    ('scripts/eom/oracle/certified_acceleration.py', '62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83'),
 )
 FALSE_CLAIMS = ('physicalStrengthChosen', 'eomExecuted', 'evolutionAuthorized',
                 'braidMetricsComputed', 'scoreAuthorized', 'retentionEstablished',

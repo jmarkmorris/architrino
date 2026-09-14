@@ -319,7 +319,7 @@ test("Borg reader-facing fields reject retired candidate labels in every control
 });
 
 test("Borg taxonomy reads canonical JSON labels without requiring generated modules", (t) => {
-  const scratch = path.resolve(".tmp/option-b-borg-catalog");
+  const scratch = path.resolve(".tmp/borg-catalog-tests");
   fs.mkdirSync(scratch, { recursive: true });
   const rootDir = fs.mkdtempSync(path.join(scratch, "taxonomy-"));
   t.after(() => fs.rmSync(rootDir, { recursive: true, force: true }));

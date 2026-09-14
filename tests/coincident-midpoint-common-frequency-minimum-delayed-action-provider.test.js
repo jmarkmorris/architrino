@@ -1,6 +1,4 @@
-import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';
-const optionBIdentities = retainedTestIdentities("tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js");
-const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js"].sha256]);
+const RETAINED_HASHES = Object.freeze(["2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6"]);
 if (RETAINED_HASHES.length !== 1 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 import test from "node:test";
 import assert from "node:assert/strict";

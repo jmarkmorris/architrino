@@ -1,5 +1,4 @@
 """Portable codec controls; no ignored evidence, driver or numeric imports."""
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 import copy
 import hashlib
@@ -12,7 +11,7 @@ import unittest
 PATH = Path(__file__).resolve().parents[1]/'scripts/eom/f6c_leaf_evidence_codec.py'
 SPEC = importlib.util.spec_from_file_location('f6c_codec_controls_subject', PATH)
 codec = importlib.util.module_from_spec(SPEC)
-_option_b_exec_module(__file__, SPEC, codec)
+SPEC.loader.exec_module(codec)
 
 
 def wire(v):

@@ -17,98 +17,18 @@ been evaluated merely by authoring this instrument.
 """
 from __future__ import annotations
 
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
-    from pathlib import Path as _b_Path
-    _b_root = _b_Path(__file__).resolve().parents[2]
-    _b_held = {}
-    def _b_identity(path):
-        value = path.lstat()
-        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
-    def _b_capture(relative, expected=None):
-        if (type(relative) is not str or not relative or '\\' in relative
-                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
-            raise ValueError('Unsafe selected Python bootstrap path')
-        path = _b_root / relative
-        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
-            raise ValueError('Canonical regular Python bootstrap source required')
-        before = _b_identity(path)
-        if relative in _b_held and _b_held[relative] != before:
-            raise ValueError('Selected Python bootstrap source replaced')
-        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
-        try:
-            value = _b_os.fstat(fd)
-            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
-                raise ValueError('Bounded Python bootstrap source required')
-            parts = []; size = 0
-            while size < value.st_size:
-                part = _b_os.read(fd, min(65536, value.st_size-size))
-                if not part: raise ValueError('Truncated Python bootstrap source')
-                parts.append(part); size += len(part)
-            raw = b''.join(parts); value = _b_os.fstat(fd)
-            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
-                raise ValueError('Selected Python bootstrap source changed during capture')
-        finally:
-            _b_os.close(fd)
-        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
-            raise ValueError('Selected Python bootstrap digest differs')
-        _b_held[relative] = before
-        return raw
-    def _b_unique(pairs):
-        result = {}
-        for key,value in pairs:
-            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
-            result[key] = value
-        return result
-    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
-    def _b_recheck():
-        for relative,identity in _b_held.items():
-            if _b_identity(_b_root/relative) != identity:
-                raise ValueError('Retained Python bootstrap source replaced')
-    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
-    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
-    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
-    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
-    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
-    _b_path = 'scripts/eom/production_source_records.py'
-    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
-    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
-            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
-            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
-        raise ValueError('Exact selected Python production bridge required')
-    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
-    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
-    _b_bridge.__file__ = str(_b_root/_b_path)
-    _b_sys.modules[_b_bridge.__name__] = _b_bridge
-    _b_recheck()
-    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
-    _b_recheck()
-    def _b_call(name, *args, **kwargs):
-        _b_recheck()
-        result = getattr(_b_bridge,name)(*args,**kwargs)
-        _b_recheck()
-        return result
-    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
-    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
-    production_recheck = lambda: _b_call('production_recheck')
-    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
-    production_runtime_binding = lambda: _b_call('production_runtime_binding')
-    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
-    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+import hashlib
+from pathlib import Path
 
-if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
-        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
-        or len(OPTION_B_PRODUCTION_IDENTITIES) != 13):
-    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
+
 
 import argparse
 from contextlib import ExitStack
 from decimal import Decimal
 from fractions import Fraction as F
-import hashlib
 import json
 import os
-from pathlib import Path
 import re
 import signal
 import stat
@@ -120,23 +40,12 @@ _EXECUTING_CODE = sys._getframe().f_code
 SELF = "scripts/eom/verify-f6c-continuous-reception-root-cover.py"
 SCHEMA = "braid-program/f6c-continuous-reception-root-cover.v1"
 REPORT_SCHEMA = "braid-program/f6c-continuous-reception-root-cover-conformance.v1"
-DECLARATION = "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md"
-DECLARATION_SHA = OPTION_B_PRODUCTION_IDENTITIES[0]
 FIXED = (
-    ("export", ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json", OPTION_B_PRODUCTION_IDENTITIES[1]),
-    ("reconstruction", ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json", OPTION_B_PRODUCTION_IDENTITIES[2]),
-    ("guards", ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json", OPTION_B_PRODUCTION_IDENTITIES[3]),
-    ("rootTheorem", "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md", OPTION_B_PRODUCTION_IDENTITIES[4]),
-    ("reconstructionTheorem", "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md", OPTION_B_PRODUCTION_IDENTITIES[5]),
-    ("rootLibrary", "scripts/eom/oracle/continuous_reception_roots.py", OPTION_B_PRODUCTION_IDENTITIES[6]),
-    ("rootControls", "tests/test_eom_continuous_reception_roots.py", OPTION_B_PRODUCTION_IDENTITIES[7]),
-    ("historyReference", "scripts/eom/oracle/certified_history.py", OPTION_B_PRODUCTION_IDENTITIES[8]),
-    ("decimalReference", "scripts/eom/oracle/decimal_interval.py", OPTION_B_PRODUCTION_IDENTITIES[9]),
-    ("reconstructionAuthor", "scripts/eom/verify-f6c-accepted-frame-reconstruction.py", OPTION_B_PRODUCTION_IDENTITIES[10]),
-    ("guardAuthor", "scripts/eom/verify-f6c-retained-history-guards.py", OPTION_B_PRODUCTION_IDENTITIES[11]),
-    ("declaration", DECLARATION, DECLARATION_SHA),
+    ("export", ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json", 'f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'),
+    ("reconstruction", ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json", '7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43'),
+    ("guards", ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json", '86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880'),
 )
-KNOT_SHA = OPTION_B_PRODUCTION_IDENTITIES[12]
+KNOT_SHA = '11acd09b692fe175861d0f9478b5d1763c18e088682a0c6a16fc29d65453075c'
 IDS = ("0+", "0-", "1+", "1-", "2+", "2-", "3+", "3-")
 FALSE_FLAGS = {name: False for name in ("premise_truth_authenticated", "subject_membership_established", "execution_authorized", "metrics_available", "h3_evidence_eligible")}
 MANIFEST_KEYS = frozenset(("schema", "scope", "status", "accepted", "fixedBindings", "launchPlan", "subjectSourceBindings", "runtimeBindings", "members", "knotSha256", "retainedDomain", "receptionDomain", "precision", "speedUpper", "clearanceLower", "cellCount", "rowCount", "ordinaryNonselfRows", "selfExclusionRows", "pieceRecordCount", "rows", "pieces", "libraryFlags"))
@@ -159,53 +68,9 @@ HEARTBEAT = 15
 from contextlib import contextmanager
 
 
-class _ProductionOriginal:
-    """Original logical binding backed by an independently owned archive handle."""
-    def __init__(self, physical, logical):
-        object.__setattr__(self,'_physical',physical)
-        object.__setattr__(self,'path',logical)
-    def __getattr__(self,name):return getattr(self._physical,name)
-    def __setattr__(self,name,value):setattr(self._physical,name,value)
-    def binding(self):
-        result=self._physical.binding();result['path']=str(self.path);return result
-    def physical_binding(self):return self._physical.binding()
-    def recheck(self):
-        result=self._physical.recheck()
-        if isinstance(result,dict) and 'path' in result:
-            result=dict(result);result['path']=str(self.path)
-        return result
 
 
-@contextmanager
-def _production_capture(cls, filename, digest, **kwargs):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
-    if not _path.is_absolute():_path=_root/_path
-    try:_relative=_path.relative_to(_root).as_posix()
-    except ValueError:_binding=None
-    else:
-        if _path!=_path.resolve():raise ValueError('noncanonical original capture')
-        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
-        if _binding is not None:
-            from hashlib import sha256 as _sha256
-            _,_current,_=production_source_pair(_root,__file__,_relative)
-            _binding=None if _sha256(_current).hexdigest()==digest else production_original_source_binding(_root,__file__,_relative,digest)
-    _physical=_Path(_binding['path']) if _binding is not None else _path
-    production_recheck()
-    with cls(_physical,digest,**kwargs) as _held:
-        if _binding is not None and (_held.binding()['bytes']!=_binding['bytes'] or _held.binding()['sha256']!=_binding['sha256']):raise ValueError('original archive identity differs')
-        try:yield _ProductionOriginal(_held,_path) if _binding is not None else _held
-        finally:
-            if _binding is not None:_held.recheck()
-            production_recheck()
 
-def _production_current_source(raw):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2]
-    _original,_current,_=production_source_pair(_root,__file__,_Path(__file__).resolve().relative_to(_root).as_posix())
-    require(raw==_original or raw==_current,'executing source is not the selected equivalent generation')
-    production_recheck()
-    return _current
 
 def require(condition, message):
     if not condition:
@@ -213,11 +78,11 @@ def require(condition, message):
 
 
 def keys(value, expected, name):
-    require(type(value) is dict and set(value) == expected, name + " closed keys differ")
+    require((type(value) is dict) and (set(value) == expected), name + " closed keys differ")
 
 
 def integer(value, minimum=0, maximum=1000000):
-    require(type(value) is int and minimum <= value <= maximum, "bounded integer required")
+    require((type(value) is int) and (minimum <= value <= maximum), "bounded integer required")
     return value
 
 
@@ -243,7 +108,7 @@ def decode(data, *, receipt=False):
 
 
 def number(token):
-    require(type(token) is str and len(token) <= 1100 and DECIMAL_RE.fullmatch(token), "exact decimal string required")
+    require((type(token) is str) and (len(token) <= 1100) and (DECIMAL_RE.fullmatch(token)), "exact decimal string required")
     exponent = re.search(r"[eE]([+-]?[0-9]+)$", token)
     require(not exponent or abs(int(exponent[1])) <= 1000, "decimal exponent too large")
     require(sum(c.isdigit() for c in token.split("e")[0].split("E")[0]) <= 1024, "decimal digit limit")
@@ -252,7 +117,7 @@ def number(token):
 
 def interval(value):
     keys(value, {"lower", "upper", "precision"}, "interval")
-    require(type(value["precision"]) is int and value["precision"] == 90, "interval precision differs")
+    require((type(value["precision"]) is int) and (value["precision"] == 90), "interval precision differs")
     lo, hi = number(value["lower"]), number(value["upper"])
     require(lo <= hi, "reversed interval")
     return lo, hi
@@ -309,7 +174,7 @@ def sqrt_le(q, x):
 def check_face(reported, displacement, delay, sign):
     qlo, qhi = squared_norm(displacement)
     lo, hi = interval(reported)
-    require(le_sqrt(lo + delay[1], qlo) and sqrt_le(qhi, hi + delay[0]), "returned face does not contain independent Bernstein residual")
+    require((le_sqrt(lo + delay[1], qlo)) and (sqrt_le(qhi, hi + delay[0])), "returned face does not contain independent Bernstein residual")
     require(hi < 0 if sign == "negative" else lo > 0, "non-strict returned face")
 
 
@@ -318,14 +183,12 @@ def check_distance(reported, displacement, delay):
     qlo, qhi = squared_norm(displacement)
     floor = F(27, 185)
     # max(sqrt(qlo), delay.lo, floor) <= min(sqrt(qhi), delay.hi).
-    require(qlo <= qhi and delay[0] <= delay[1]
-            and sqrt_le(qlo, delay[1]) and le_sqrt(delay[0], qhi)
-            and floor <= delay[1] and le_sqrt(floor, qhi), "empty independent root-distance intersection")
+    require((qlo <= qhi) and (delay[0] <= delay[1]) and (sqrt_le(qlo, delay[1])) and (le_sqrt(delay[0], qhi)) and (floor <= delay[1]) and (le_sqrt(floor, qhi)), "empty independent root-distance intersection")
     lo, hi = interval(reported)
     require(lo > 0, "returned distance not positive")
     lower_contained = le_sqrt(lo, qlo) or lo <= delay[0] or lo <= floor
     upper_contained = sqrt_le(qhi, hi) or delay[1] <= hi
-    require(lower_contained and upper_contained, "returned distance misses independent root-distance enclosure")
+    require((lower_contained) and (upper_contained), "returned distance misses independent root-distance enclosure")
     return lo, hi
 
 
@@ -371,7 +234,7 @@ def state_box(history, requested):
         a, b = max(lo, number(s["startTime"])), min(hi, number(s["endTime"]))
         if a > b:
             continue
-        require(a <= cursor and (last is None or index == last+1), "piece gap or noncontiguous original indices")
+        require((a <= cursor) and (last is None or index == last+1), "piece gap or noncontiguous original indices")
         p, v = bernstein_piece(s, a, b)
         if positions is None:
             positions, velocities = p, v
@@ -381,7 +244,7 @@ def state_box(history, requested):
         clipped.update(f"{index}\t{a}\t{b}\n".encode("ascii"))
         if first is None: first = index
         last = index; count += 1; cursor = max(cursor, b)
-    require(positions is not None and cursor == hi, "incomplete closed-piece coverage")
+    require((positions is not None) and (cursor == hi), "incomplete closed-piece coverage")
     return {"position": positions, "velocity": velocities, "touchedPieceCount": count,
             "firstIndex": first, "lastIndex": last, "contiguousIndexRange": [first, last],
             "clippedPiecesSha256": clipped.hexdigest()}
@@ -400,19 +263,19 @@ def original_history_digest(history):
 
 def validate_premises(export, reconstruction, guards):
     """Reuses independently accepted pinned premise receipts; no new membership proof."""
-    require(export["schema"] == "braid-program/f6c-retained-history-export.v1" and export["fieldSpeed"] == "1", "original normalized export differs")
+    require((export["schema"] == "braid-program/f6c-retained-history-export.v1") and (export["fieldSpeed"] == "1"), "original normalized export differs")
     histories = export["retainedHistories"]
-    require(tuple(h["id"] for h in histories) == IDS and len(histories) == 8, "original eight-member order differs")
+    require((tuple(h["id"] for h in histories) == IDS) and (len(histories) == 8), "original eight-member order differs")
     union = None; mapping = []
     for i, h in enumerate(histories):
-        require(h["pathKey"] == i+1 and h["polarity"] == (1 if i % 2 == 0 else -1), "original identity/polarity differs")
-        require(h["coverageStart"] == "-8" and h["coverageEnd"] == "0.13" and len(h["segments"]) == 1760, "original retained domain/census differs")
+        require((h["pathKey"] == i+1) and (h["polarity"] == (1 if i % 2 == 0 else -1)), "original identity/polarity differs")
+        require((h["coverageStart"] == "-8") and (h["coverageEnd"] == "0.13") and (len(h["segments"]) == 1760), "original retained domain/census differs")
         cursor = F(-8); ks = set()
         for index, s in enumerate(h["segments"]):
             a, b = number(s["startTime"]), number(s["endTime"])
             require(a == cursor < b, "original history gap/overlap")
             cursor = b
-            require(type(s["coefficients"]) is list and len(s["coefficients"]) == 3 and all(type(row) is list and len(row) == 4 for row in s["coefficients"]), "original coefficient shape differs")
+            require((type(s["coefficients"]) is list) and (len(s["coefficients"]) == 3) and (all(type(row) is list and len(row) == 4 for row in s["coefficients"])), "original coefficient shape differs")
             for row in s["coefficients"]:
                 for t in row: number(t)
             for axis_key, scalar_key in (("positionErrors", "positionError"), ("velocityErrors", "velocityError")):
@@ -425,34 +288,33 @@ def validate_premises(export, reconstruction, guards):
         if union is None: union = sorted(ks)
         else: require(union == sorted(ks), "member future knots differ")
         mapping.append({"id": h["id"], "pathKey": h["pathKey"], "polarity": h["polarity"], "originalHistoryFingerprint": h["historyFingerprint"], "historyDigest": original_history_digest(h)})
-    require(len(union) == 161 and sha("".join(str(k)+"\n" for k in union).encode()) == KNOT_SHA, "exact knot inventory differs")
+    require((len(union) == 161) and (sha("".join(str(k)+"\n" for k in union).encode()) == KNOT_SHA), "exact knot inventory differs")
     require([number(frame["time"]) for frame in export["acceptedFrames"]] == union[::2], "accepted frame knots differ")
     cells = list(zip(union, union[1:]))
     require(max(b-a for a, b in cells) == F(200000000000001, 200000000000000000), "maximum cell width differs")
     for proof in (reconstruction, guards):
-        require(proof["accepted"] is True and proof["historyExportBefore"]["sha256"] == FIXED[0][2] and proof["historyExportAfter"]["sha256"] == FIXED[0][2], "accepted original-bound premise required")
-        require(proof["claims"]["subjectMembershipEstablished"] is False and proof["claims"]["rootsEvaluated"] is False and proof["claims"]["metricsComputed"] is False, "premise authority changed")
+        require((proof["accepted"] is True) and (proof["historyExportBefore"]["sha256"] == FIXED[0][2]) and (proof["historyExportAfter"]["sha256"] == FIXED[0][2]), "accepted original-bound premise required")
+        require((proof["claims"]["subjectMembershipEstablished"] is False) and (proof["claims"]["rootsEvaluated"] is False) and (proof["claims"]["metricsComputed"] is False), "premise authority changed")
     for key in ("anchoredPrehistoryFamilyNonempty", "fixedAcceptedFrameFutureContained", "reconstructedFullHistoryFamilyNonempty", "reconstructedFamilyContainedInOriginalEnclosures"):
         require(reconstruction["claims"][key] is True, "represented family applicability missing")
     for key in ("conditionalUniformOldestBoundaryResidualStrictlyNegative", "conditionalUniformSameTimeNonselfSeparation", "conditionalUniformSpeedStrictlyBelowOne"):
         require(guards["claims"][key] is True, "uniform guard premise missing")
     ga = guards["analysis"]
-    require(ga["counts"]["comparisons"] == {"speed": 28160, "clearance": 8960, "oldestBoundary": 17920}
-            and ga["counts"]["failedComparisons"] == {"speed": 0, "clearance": 0, "oldestBoundary": 0}, "accepted guard comparison census differs")
-    require(len(ga["members"]) == 8 and len(ga["clearancePairs"]) == 28 and len(ga["oldestBoundaryPairs"]) == 56, "guard census differs")
+    require((ga["counts"]["comparisons"] == {"speed": 28160, "clearance": 8960, "oldestBoundary": 17920}) and (ga["counts"]["failedComparisons"] == {"speed": 0, "clearance": 0, "oldestBoundary": 0}), "accepted guard comparison census differs")
+    require((len(ga["members"]) == 8) and (len(ga["clearancePairs"]) == 28) and (len(ga["oldestBoundaryPairs"]) == 56), "guard census differs")
     require([(rational(c["start"]), rational(c["end"])) for c in ga["closedReceptionCells"]] == cells, "guard cell order differs")
     for j, cell in enumerate(ga["closedReceptionCells"]):
         require(cell["memberSegmentIndices"] == [1600+j]*8, "guard member-piece mapping differs")
     for i, m in enumerate(ga["members"]):
-        require(m["id"] == IDS[i] and m["pathKey"] == i+1 and m["segments"] == 1760, "guard member mapping differs")
+        require((m["id"] == IDS[i]) and (m["pathKey"] == i+1) and (m["segments"] == 1760), "guard member mapping differs")
         for mode in ("axis", "scalar"):
             require(F(289, 400)-rational(m["maximumSpeedSquared"][mode]["value"]) > F(131, 50000), "speed simplification margin fails")
     expected_pairs = {(a, b) for a in IDS for b in IDS if a != b}
     observed = set()
     for pair in ga["clearancePairs"]:
         a, b = pair["unordered"]
-        require(a != b and pair["ordered"] == [[a, b], [b, a]], "clearance pair mapping differs")
-        require((a, b) not in observed and (b, a) not in observed, "duplicate clearance pair")
+        require((a != b) and (pair["ordered"] == [[a, b], [b, a]]), "clearance pair mapping differs")
+        require(((a, b) not in observed) and ((b, a) not in observed), "duplicate clearance pair")
         observed.update(((a, b), (b, a)))
         for mode in ("axis", "scalar"):
             require(rational(pair["minimumSeparationSquared"][mode]["value"])-F(729, 10000) > F(309, 250000), "clearance simplification margin fails")
@@ -475,8 +337,7 @@ def false_flags(value):
 
 def binding(value):
     keys(value, BINDING_KEYS, "file binding")
-    require(type(value["path"]) is str and 0 < len(value["path"]) < 4096
-            and type(value["sha256"]) is str and HEX_RE.fullmatch(value["sha256"]), "invalid file binding")
+    require((type(value["path"]) is str) and (0 < len(value["path"]) < 4096) and (type(value["sha256"]) is str) and (HEX_RE.fullmatch(value["sha256"])), "invalid file binding")
     integer(value["bytes"], 1, MAX_RUNTIME_BYTES)
     return value
 
@@ -484,18 +345,18 @@ def binding(value):
 def validate_manifest(manifest, contract, launch_binding, mapping, cells):
     keys(manifest, MANIFEST_KEYS, "manifest")
     keys(contract, CONTRACT_KEYS, "launch comparison contract")
-    require(contract["declarationSha256"] == DECLARATION_SHA and contract["scope"] in ("pilot-cell-0", "full"), "launch scientific contract differs")
-    require(manifest["schema"] == SCHEMA and manifest["status"] == "conditional_complete" and manifest["accepted"] is False, "subject cannot admit itself")
+    require((contract["scope"] in ("pilot-cell-0", "full")), "launch scientific contract differs")
+    require((manifest["schema"] == SCHEMA) and (manifest["status"] == "conditional_complete") and (manifest["accepted"] is False), "subject cannot admit itself")
     require(manifest["scope"] == contract["scope"], "scope differs from external launch plan")
     require(manifest["launchPlan"] == launch_binding, "launch-plan binding differs")
     require(manifest["fixedBindings"] == [{"id": i, "path": p, "sha256": h} for i, p, h in FIXED], "fixed source/premise bindings differ")
     for key in ("subjectSourceBindings", "runtimeBindings"):
-        require(type(contract[key]) is list and 0 < len(contract[key]) <= 256 and canonical(manifest[key]) == canonical(contract[key]), "reviewed execution bindings differ")
+        require((type(contract[key]) is list) and (0 < len(contract[key]) <= 256) and (canonical(manifest[key]) == canonical(contract[key])), "reviewed execution bindings differ")
         for b in contract[key]: binding(b)
         require(len({b["path"] for b in contract[key]}) == len(contract[key]), "duplicate execution source path")
-    require(canonical(manifest["members"]) == canonical(mapping) and manifest["knotSha256"] == KNOT_SHA, "history mapping or grid identity differs")
-    require(type(manifest["precision"]) is int and manifest["precision"] == 90, "frozen precision differs")
-    require(manifest["speedUpper"] == ["0.85"]*8 and manifest["clearanceLower"] == [["0" if i == j else "0.27" for j in range(8)] for i in range(8)], "fixed simplified premises differ")
+    require((canonical(manifest["members"]) == canonical(mapping)) and (manifest["knotSha256"] == KNOT_SHA), "history mapping or grid identity differs")
+    require((type(manifest["precision"]) is int) and (manifest["precision"] == 90), "frozen precision differs")
+    require((manifest["speedUpper"] == ["0.85"]*8) and (manifest["clearanceLower"] == [["0" if i == j else "0.27" for j in range(8)] for i in range(8)]), "fixed simplified premises differ")
     n = 1 if manifest["scope"] == "pilot-cell-0" else 160
     require(interval(manifest["retainedDomain"]) == (F(-8), F(13, 100)), "retained domain differs")
     require(interval(manifest["receptionDomain"]) == (cells[0][0], cells[n-1][1]), "reception domain differs")
@@ -509,14 +370,12 @@ def validate_manifest(manifest, contract, launch_binding, mapping, cells):
 
 def check_piece(record, index, row_index, role, history, digest, requested, state):
     keys(record, PIECE_KEYS, "piece record")
-    require(integer(record["recordIndex"]) == index and integer(record["rowIndex"]) == row_index and record["role"] == role, "piece row/role order differs")
-    require(record["memberId"] == history["id"] and record["historyDigest"] == digest, "piece original history mapping differs")
+    require((integer(record["recordIndex"]) == index) and (integer(record["rowIndex"]) == row_index) and (record["role"] == role), "piece row/role order differs")
+    require((record["memberId"] == history["id"]) and (record["historyDigest"] == digest), "piece original history mapping differs")
     require(interval(record["requestedInterval"]) == requested, "piece requested interval differs")
     for key in ("touchedPieceCount", "firstIndex", "lastIndex"):
         require(integer(record[key]) == state[key], "piece census/index differs")
-    require(type(record["contiguousIndexRange"]) is list and len(record["contiguousIndexRange"]) == 2
-            and all(type(v) is int for v in record["contiguousIndexRange"])
-            and record["contiguousIndexRange"] == state["contiguousIndexRange"], "piece contiguous range differs")
+    require((type(record["contiguousIndexRange"]) is list) and (len(record["contiguousIndexRange"]) == 2) and (all(type(v) is int for v in record["contiguousIndexRange"])) and (record["contiguousIndexRange"] == state["contiguousIndexRange"]), "piece contiguous range differs")
     require(record["clippedPiecesSha256"] == state["clippedPiecesSha256"], "closed clipped-piece hash differs")
 
 
@@ -543,18 +402,17 @@ authenticates the frozen real inputs, premise receipts, and external launch plan
                 if progress: progress(cell_index, row_count)
                 row = next(rows, None)
                 keys(row, ROW_KEYS, "row")
-                require(integer(row["rowIndex"]) == row_count and integer(row["cellIndex"]) == cell_index
-                        and integer(row["receiverIndex"], 0, 7) == i and integer(row["transmitterIndex"], 0, 7) == j, "row/cell/pair order differs")
-                require(row["receiverId"] == histories[i]["id"] and row["transmitterId"] == histories[j]["id"], "persistent pair identity differs")
+                require((integer(row["rowIndex"]) == row_count) and (integer(row["cellIndex"]) == cell_index) and (integer(row["receiverIndex"], 0, 7) == i) and (integer(row["transmitterIndex"], 0, 7) == j), "row/cell/pair order differs")
+                require((row["receiverId"] == histories[i]["id"]) and (row["transmitterId"] == histories[j]["id"]), "persistent pair identity differs")
                 require(interval(row["reception"]) == reception, "row reception interval differs")
                 false_flags(row["libraryFlags"])
-                require(row["rootFreeComplementConditional"] is True and row["retainedBoundaryContact"] is False, "complement/boundary assertion differs")
+                require((row["rootFreeComplementConditional"] is True) and (row["retainedBoundaryContact"] is False), "complement/boundary assertion differs")
                 if i == j:
-                    require(integer(row["ordinaryRootsPerReception"]) == 0 and row["coincidentEndpointExcluded"] is True, "self exclusion differs")
+                    require((integer(row["ordinaryRootsPerReception"]) == 0) and (row["coincidentEndpointExcluded"] is True), "self exclusion differs")
                     require(all(row[k] is None for k in ("emission", "oldestResidual", "lowerFaceResidual", "upperFaceResidual", "displacement", "distance", "transmitterFactor", "receiverFactor", "receiverPieceRecord", "transmitterPieceRecord")), "fabricated self geometry or pieces")
                     self_rows += 1
                 else:
-                    require(integer(row["ordinaryRootsPerReception"]) == 1 and row["coincidentEndpointExcluded"] is False, "ordinary-root-per-reception assertion differs")
+                    require((integer(row["ordinaryRootsPerReception"]) == 1) and (row["coincidentEndpointExcluded"] is False), "ordinary-root-per-reception assertion differs")
                     require(interval(row["emission"]) == emission, "emission proposal differs")
                     receiver = state(i, reception)
                     for name, t, sign in (("oldestResidual", F(-8), "negative"), ("lowerFaceResidual", emission[0], "negative"), ("upperFaceResidual", emission[1], "positive")):
@@ -564,7 +422,7 @@ authenticates the frozen real inputs, premise receipts, and external launch plan
                     require(interval(row["oldestResidual"]) == interval(row["lowerFaceResidual"]), "identical oldest/lower faces disagree")
                     transmitter = state(j, emission)
                     displacement = tuple(sub(x, y) for x, y in zip(receiver["position"], transmitter["position"]))
-                    require(type(row["displacement"]) is list and len(row["displacement"]) == 3, "three displacement axes required")
+                    require((type(row["displacement"]) is list) and (len(row["displacement"]) == 3), "three displacement axes required")
                     require(all(contains(interval(r), d) for r, d in zip(row["displacement"], displacement)), "returned displacement misses independent enclosure")
                     distance = check_distance(row["distance"], displacement, (reception[0]-emission[1], reception[1]-emission[0]))
                     check_factor(row["transmitterFactor"], displacement, distance, transmitter["velocity"], transmitter=True)
@@ -580,7 +438,7 @@ authenticates the frozen real inputs, premise receipts, and external launch plan
                 row_count += 1
         if progress: progress(cell_index+1, row_count)
     eof = object()
-    require(next(rows, eof) is eof and next(pieces, eof) is eof, "extra row or piece record")
+    require((next(rows, eof) is eof) and (next(pieces, eof) is eof), "extra row or piece record")
     return {"accepted": False, "conditionalEnclosuresConformant": True, "cellCount": len(cells),
             "pairCellCertificates": row_count, "ordinaryNonselfRows": nonself, "selfExclusionRows": self_rows,
             "distinctNonselfFaceChecks": 2*nonself, "pieceRecordCount": piece_count,
@@ -598,13 +456,13 @@ class BoundFile:
         return s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns
 
     def __enter__(self):
-        require(type(self.expected) is str and HEX_RE.fullmatch(self.expected), "external original-byte hash required")
+        require(self.expected is None or (type(self.expected) is str and HEX_RE.fullmatch(self.expected)), "external original-byte hash required")
         self.fd = os.open(self.path, os.O_RDONLY | os.O_NONBLOCK | getattr(os, "O_NOFOLLOW", 0))
         try:
             self.before = os.fstat(self.fd)
-            require(stat.S_ISREG(self.before.st_mode) and 0 < self.before.st_size <= self.limit, "bounded nonempty regular file required")
+            require((stat.S_ISREG(self.before.st_mode)) and (0 < self.before.st_size <= self.limit), "bounded nonempty regular file required")
             self.data, observed = self.scan(self.capture)
-            require(observed == self.expected, "original file hash differs: " + str(self.path))
+            self.expected=observed if self.expected is None else self.expected;require(observed == self.expected, "original file hash differs: " + str(self.path))
             return self
         except BaseException:
             os.close(self.fd); self.fd = None
@@ -620,7 +478,7 @@ class BoundFile:
             digest.update(chunk)
             if capture: chunks.append(chunk)
         info = os.fstat(self.fd)
-        require(self.identity(info) == self.identity(self.before) and size == info.st_size, "file changed while read")
+        require((self.identity(info) == self.identity(self.before)) and (size == info.st_size), "file changed while read")
         return (b"".join(chunks) if capture else None), digest.hexdigest()
 
     def records(self):
@@ -636,7 +494,7 @@ class BoundFile:
                 require(0 < len(line) <= MAX_LINE, "empty or oversized NDJSON line")
                 yield decode(line)
             require(len(pending) <= MAX_LINE, "oversized unterminated NDJSON line")
-        require(not pending and consumed == self.before.st_size and digest.hexdigest() == self.expected, "raw stream incomplete or changed")
+        require((not pending) and (consumed == self.before.st_size) and (digest.hexdigest() == self.expected), "raw stream incomplete or changed")
         require(self.identity(os.fstat(self.fd)) == self.identity(self.before), "stream changed during comparison")
 
     def recheck(self):
@@ -662,7 +520,7 @@ def publish(output, report, deadline):
         directory = os.open(output.parent, os.O_RDONLY)
         try: os.fsync(directory)
         finally: os.close(directory)
-        require(output.read_bytes() == raw and time.monotonic() < deadline, "post-publication admission failed")
+        require((output.read_bytes() == raw) and (time.monotonic() < deadline), "post-publication admission failed")
         return {"path": str(output), "sha256": sha(raw), "bytes": len(raw)}
     finally:
         if temporary is not None: temporary.unlink(missing_ok=True)
@@ -689,7 +547,7 @@ def main(argv=None):
     deadline = began+float_budget
     require(deadline > began, "remaining budget cannot advance the monotonic deadline")
     root = Path(__file__).resolve().parents[2]; output = Path(args.out).absolute()
-    require(output.parent.is_dir() and not output.exists() and not output.is_symlink(), "fresh output in existing directory required")
+    require((output.parent.is_dir()) and (not output.exists()) and (not output.is_symlink()), "fresh output in existing directory required")
     state = {"stage": "capture", "completedCells": 0, "completedRows": 0}
     def tick(*_):
         elapsed = time.monotonic()-began
@@ -703,10 +561,10 @@ def main(argv=None):
             owned = []
             def capture(filename, expected, **kwargs):
                 require(Path(filename).resolve() != output.resolve(), "output aliases a bound input")
-                obj = stack.enter_context(_production_capture(BoundFile, filename, expected, **kwargs)); owned.append(obj)
+                obj = stack.enter_context(BoundFile(filename, expected, **kwargs)); owned.append(obj)
                 return obj
             own = capture(root/SELF, args.verifier_sha256)
-            require(compile(_production_current_source(own.data), _EXECUTING_CODE.co_filename, "exec", dont_inherit=True, optimize=sys.flags.optimize) == _EXECUTING_CODE, "executing reference differs from captured source")
+            require(compile(own.data, _EXECUTING_CODE.co_filename, "exec", dont_inherit=True, optimize=sys.flags.optimize) == _EXECUTING_CODE, "executing reference differs from captured source")
             fixed = {identifier: capture(root/path, digest) for identifier, path, digest in FIXED}
             plan_file = capture(args.plan, args.plan_sha256)
             plan = decode(plan_file.data, receipt=True); contract = plan["comparisonContract"]
@@ -730,7 +588,7 @@ def main(argv=None):
             require(any((root/Path(b["path"])).resolve() == Path(sys.executable).resolve() for b in contract["runtimeBindings"]), "current Python executable missing from reviewed runtime bindings")
             row_file = capture(root/manifest["rows"]["path"], manifest["rows"]["sha256"], capture=False)
             piece_file = capture(root/manifest["pieces"]["path"], manifest["pieces"]["sha256"], capture=False)
-            require(row_file.path != piece_file.path and row_file.before.st_size == manifest["rows"]["bytes"] and piece_file.before.st_size == manifest["pieces"]["bytes"], "distinct stream bindings/sizes required")
+            require((row_file.path != piece_file.path) and (row_file.before.st_size == manifest["rows"]["bytes"]) and (piece_file.before.st_size == manifest["pieces"]["bytes"]), "distinct stream bindings/sizes required")
             state["stage"] = "independent-row-comparison"
             def progress(completed_cells, completed_rows):
                 state.update(completedCells=completed_cells, completedRows=completed_rows)

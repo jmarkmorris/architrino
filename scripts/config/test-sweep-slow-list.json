@@ -10,15 +10,11 @@
   },
   "instrument": "node --test <file>, one file per process, wall time measured around the process; 2026-09-06 figures are from a four-core Linux sandbox without the shared Python venv and are upper bounds for the operator's machine.",
   "entries": [
-    { "path": "tests/eq21-halo-cluster-transfer-child-residual.test.js", "measuredMs": 100008, "note": "hit a 100 s cap; true duration unmeasured", "measuredOn": "2026-09-06" },
-    { "path": "tests/eq21-nonlinear-transfer-child-residual.test.js", "measuredMs": 100007, "note": "hit a 100 s cap; true duration unmeasured", "measuredOn": "2026-09-06" },
     { "path": "tests/coincident-axis-three-binary-streaming-reductions.test.js", "measuredMs": 84259, "measuredOn": "2026-09-06" },
     { "path": "tests/runtime-asset-fresh-checkout.test.js", "measuredMs": 72850, "measuredOn": "2026-09-06" },
     { "path": "tests/prescribed-braid-record.test.js", "measuredMs": 42950, "measuredOn": "2026-09-06" },
     { "path": "tests/archie-service-full-corpus-source-index.test.js", "measuredMs": 32985, "measuredOn": "2026-09-06" },
-    { "path": "tests/eq21-shear-rsd-transfer-child-residual.test.js", "measuredMs": 26331, "measuredOn": "2026-09-06" },
     { "path": "tests/subfield-circular-root-launcher.test.js", "measuredMs": 18902, "measuredOn": "2026-09-06" },
-    { "path": "tests/topo-sampled-field-contours.test.js", "measuredMs": 15580, "measuredOn": "2026-09-06" },
-    { "path": "tests/coincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js", "measuredMs": 11696, "measuredOn": "2026-09-06" }
+    { "path": "tests/topo-sampled-field-contours.test.js", "measuredMs": 15580, "measuredOn": "2026-09-06" }
   ]
 }

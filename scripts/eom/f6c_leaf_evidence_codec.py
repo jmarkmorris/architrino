@@ -48,7 +48,7 @@ def _require(ok, message):
 
 
 def _keys(value, names):
-    _require(type(value) is dict and set(value) == set(names), 'closed fields differ')
+    _require((type(value) is dict) and (set(value) == set(names)), 'closed fields differ')
 
 
 def _json(value):
@@ -75,7 +75,7 @@ def _snapshot(value):
     def visit(v, depth):
         nonlocal count, size
         count += 1
-        _require(count <= MAX_NODES and depth <= MAX_DEPTH, 'expanded structure bound')
+        _require((count <= MAX_NODES) and (depth <= MAX_DEPTH), 'expanded structure bound')
         t = type(v)
         if v is None or t in (bool, int, str):
             if t is int:
@@ -91,7 +91,7 @@ def _snapshot(value):
             _require(size <= MAX_BYTES, 'expanded byte bound')
             return v
         _require(t in (list, dict), 'inert JSON tree required; floats are unsupported')
-        _require(id(v) not in active and len(v) <= MAX_ITEMS, 'cycle/container bound')
+        _require((id(v) not in active) and (len(v) <= MAX_ITEMS), 'cycle/container bound')
         active.add(id(v))
         size += 2 + max(0, len(v) - 1)
         try:
@@ -100,7 +100,7 @@ def _snapshot(value):
             else:
                 result = {}
                 for k, x in v.items():
-                    _require(type(k) is str and len(k) <= 4096, 'object key bound')
+                    _require((type(k) is str) and (len(k) <= 4096), 'object key bound')
                     visit(k, depth + 1)
                     size += 1
                     result[k] = visit(x, depth + 1)
@@ -119,8 +119,8 @@ def _shared(value):
 
 
 def _claims(value):
-    _require(type(value) is dict and value and all(type(k) is str and v is False
-             for k, v in value.items()), 'all authority claims must remain false')
+    _require((type(value) is dict) and (value) and (all(type(k) is str and v is False
+             for k, v in value.items())), 'all authority claims must remain false')
 
 
 def _globals_match(value, shared):
@@ -141,15 +141,14 @@ def _provision(value, shared):
     _require(all(_equal(value[k], shared[k]) for k in SHARED_KEYS), 'provision globals differ')
     _keys(value['response'], ('request', 'members'))
     _keys(value['response']['request'], REQUEST_KEYS)
-    _require(type(value['response']['members']) is list and len(value['response']['members']) == 8,
+    _require((type(value['response']['members']) is list) and (len(value['response']['members']) == 8),
              'eight response members required')
-    _require(type(value['ranges']) is list and len(value['ranges']) == 4, 'four complete ranges required')
+    _require((type(value['ranges']) is list) and (len(value['ranges']) == 4), 'four complete ranges required')
     for item in value['ranges']:
         _keys(item, ('cell', 'ranges'))
         for key in ('cell', 'ranges'):
-            _require(type(item[key]) is dict and type(item[key].get('rows')) is list
-                     and len(item[key]['rows']) == 64, 'complete64-row range evidence required')
-    _require(type(value['correlated_residuals']) is list and len(value['correlated_residuals']) == 8,
+            _require((type(item[key]) is dict) and (type(item[key].get('rows')) is list) and (len(item[key]['rows']) == 64), 'complete64-row range evidence required')
+    _require((type(value['correlated_residuals']) is list) and (len(value['correlated_residuals']) == 8),
              'eight complete residuals required')
     _claims(value['claims'])
     _globals_match(value, shared)
@@ -208,8 +207,8 @@ def decode_dag(record, shared=None):
     globals_ = {} if shared is None else _shared(shared)
     _keys(record, ('nodes', 'root'))
     nodes, root = record['nodes'], record['root']
-    _require(type(nodes) is list and 0 < len(nodes) <= MAX_ITEMS, 'DAG nodes')
-    _require(type(root) is int and 0 <= root < len(nodes), 'DAG root')
+    _require((type(nodes) is list) and (0 < len(nodes) <= MAX_ITEMS), 'DAG nodes')
+    _require((type(root) is int) and (0 <= root < len(nodes)), 'DAG root')
     costs = []
     edges = []
 
@@ -230,7 +229,7 @@ def decode_dag(record, shared=None):
 
     global_costs = {name: stats(v) for name, v in globals_.items()}
     for index, node in enumerate(nodes):
-        _require(type(node) is list and node and type(node[0]) is str, 'DAG node shape')
+        _require((type(node) is list) and (node) and (type(node[0]) is str), 'DAG node shape')
         tag = node[0]
         refs = []
         if tag == 'n':
@@ -243,23 +242,20 @@ def decode_dag(record, shared=None):
                 _require(type(value) is bool, 'boolean type')
                 cost = (4 if value else 5, 1, 0)
             elif tag == 'i':
-                _require(type(value) is str and len(value.lstrip('-')) <= 1024
-                         and INTEGER.fullmatch(value), 'canonical integer string')
+                _require((type(value) is str) and (len(value.lstrip('-')) <= 1024) and (INTEGER.fullmatch(value)), 'canonical integer string')
                 cost = (len(value), 1, 0)
             elif tag == 's':
                 _require(type(value) is str, 'literal string type')
                 cost = (len(_json(value)), 1, 0)
             else:
-                _require(type(value) is str and value in globals_, 'unavailable global')
+                _require((type(value) is str) and (value in globals_), 'unavailable global')
                 cost = global_costs[value]
         else:
-            _require(tag in ('a', 'o') and len(node) == 2
-                     and type(node[1]) is list and len(node[1]) <= MAX_ITEMS, 'container shape')
+            _require((tag in ('a', 'o')) and (len(node) == 2) and (type(node[1]) is list) and (len(node[1]) <= MAX_ITEMS), 'container shape')
             keys = []
             if tag == 'o':
                 for pair in node[1]:
-                    _require(type(pair) is list and len(pair) == 2 and type(pair[0]) is str
-                             and len(pair[0]) <= 4096 and pair[0] not in keys, 'unique object keys')
+                    _require((type(pair) is list) and (len(pair) == 2) and (type(pair[0]) is str) and (len(pair[0]) <= 4096) and (pair[0] not in keys), 'unique object keys')
                     keys.append(pair[0])
                     refs.append(pair[1])
             else:
@@ -270,7 +266,7 @@ def decode_dag(record, shared=None):
                     + (sum(len(_json(k))+1 for k in keys) if tag == 'o' else 0),
                     1 + len(keys) + sum(c[1] for c in children),
                     max([1 if keys else 0] + [1+c[2] for c in children]))
-        _require(cost[0] <= MAX_BYTES and cost[1] <= MAX_NODES and cost[2] <= MAX_DEPTH,
+        _require((cost[0] <= MAX_BYTES) and (cost[1] <= MAX_NODES) and (cost[2] <= MAX_DEPTH),
                  'expanded DAG byte/node/depth bound')
         costs.append(cost)
         edges.append(refs)
@@ -309,8 +305,7 @@ def _line(record, remaining):
 
 
 def _decode_line(line):
-    _require(type(line) is bytes and 0 < len(line) <= MAX_BYTES and line.endswith(b'\n')
-             and line.count(b'\n') == 1, 'one complete bounded NDJSON line')
+    _require((type(line) is bytes) and (0 < len(line) <= MAX_BYTES) and (line.endswith(b'\n')) and (line.count(b'\n') == 1), 'one complete bounded NDJSON line')
 
     def pairs(items):
         result = {}
@@ -340,7 +335,7 @@ def _decode_line(line):
 
 class _Lifecycle:
     def _initialize(self, byte_limit, live):
-        _require(type(byte_limit) is int and 0 < byte_limit <= MAX_BYTES, 'byte limit cannot expand')
+        _require((type(byte_limit) is int) and (0 < byte_limit <= MAX_BYTES), 'byte limit cannot expand')
         _require(live is None or callable(live), 'live callback')
         self._limit = byte_limit
         self._live = live if live is not None else lambda: None
@@ -417,7 +412,7 @@ class StreamEncoder(_Lifecycle):
     def provision(self, index, value):
         self._enter()
         try:
-            _require(self._phase == 'ready' and type(index) is int and index == self._pairs,
+            _require((self._phase == 'ready') and (type(index) is int) and (index == self._pairs),
                      'next provision required')
             value = _snapshot(value)
             _provision(value, self._shared)
@@ -433,14 +428,13 @@ class StreamEncoder(_Lifecycle):
     def transition(self, index, value):
         self._enter()
         try:
-            _require(self._phase == 'pending' and type(index) is int and index == self._pairs,
+            _require((self._phase == 'pending') and (type(index) is int) and (index == self._pairs),
                      'matching transition required')
             value = _snapshot(value)
             _keys(value, ('evaluation', 'state_after'))
             _keys(value['evaluation'], EVALUATION_KEYS)
             _globals_match(value, self._shared)
-            _require(type(value['evaluation']) is dict and 'response' in value['evaluation']
-                     and _equal(value['evaluation']['response'], self._response), 'pending response differs')
+            _require((type(value['evaluation']) is dict) and ('response' in value['evaluation']) and (_equal(value['evaluation']['response'], self._response)), 'pending response differs')
             self._emit(dict(kind='transition', index=index, dag=_encode(value, self._shared)))
             self._response = None
             self._pairs += 1
@@ -481,7 +475,7 @@ class StreamDecoder(_Lifecycle):
         self._enter()
         try:
             _require(self._phase not in ('footer', 'finished'), 'record after footer/EOF')
-            _require(type(line) is bytes and len(line) <= self._limit-self._bytes,
+            _require((type(line) is bytes) and (len(line) <= self._limit-self._bytes),
                      'aggregate stream byte limit')
             self._check()
             record = _decode_line(line)
@@ -489,7 +483,7 @@ class StreamDecoder(_Lifecycle):
             kind = record.get('kind')
             if kind == 'header':
                 _keys(record, ('kind', 'schema', 'shared', 'header'))
-                _require(self._phase == 'new' and record['schema'] == SCHEMA, 'one initial header')
+                _require((self._phase == 'new') and (record['schema'] == SCHEMA), 'one initial header')
                 self._shared = _shared(decode_dag(record['shared']))
                 value = decode_dag(record['header'], self._shared)
                 _keys(value, HEADER_KEYS)
@@ -500,7 +494,7 @@ class StreamDecoder(_Lifecycle):
                 next_phase = 'ready'
             elif kind in ('provision', 'transition'):
                 _keys(record, ('kind', 'index', 'dag'))
-                _require(type(record['index']) is int and record['index'] == self._pairs, 'sequential record index')
+                _require((type(record['index']) is int) and (record['index'] == self._pairs), 'sequential record index')
                 value = decode_dag(record['dag'], self._shared)
                 _globals_match(value, self._shared)
                 if kind == 'provision':
@@ -512,8 +506,7 @@ class StreamDecoder(_Lifecycle):
                     _require(self._phase == 'pending', 'transition without provision')
                     _keys(value, ('evaluation', 'state_after'))
                     _keys(value['evaluation'], EVALUATION_KEYS)
-                    _require(type(value['evaluation']) is dict and 'response' in value['evaluation']
-                             and _equal(value['evaluation']['response'], self._response), 'pending response differs')
+                    _require((type(value['evaluation']) is dict) and ('response' in value['evaluation']) and (_equal(value['evaluation']['response'], self._response)), 'pending response differs')
                     self._response = None
                     self._pairs += 1
                     next_phase = 'ready'
@@ -521,12 +514,10 @@ class StreamDecoder(_Lifecycle):
             elif kind == 'footer':
                 _keys(record, ('kind', 'complete', 'accepted', 'provisions', 'transitions',
                                'prefix_bytes', 'prefix_sha256', 'summary'))
-                _require(self._phase == 'ready' and record['complete'] is True
-                         and record['accepted'] is False, 'footer disposition')
+                _require((self._phase == 'ready') and (record['complete'] is True) and (record['accepted'] is False), 'footer disposition')
                 _require(all(type(record[k]) is int and record[k] == self._pairs
                              for k in ('provisions', 'transitions')), 'footer record census')
-                _require(type(record['prefix_bytes']) is int and record['prefix_bytes'] == self._bytes
-                         and record['prefix_sha256'] == self._hash.hexdigest(), 'footer prefix identity')
+                _require((type(record['prefix_bytes']) is int) and (record['prefix_bytes'] == self._bytes) and (record['prefix_sha256'] == self._hash.hexdigest()), 'footer prefix identity')
                 summary = decode_dag(record['summary'], self._shared)
                 _keys(summary, SUMMARY_KEYS)
                 _claims(summary['claims'])

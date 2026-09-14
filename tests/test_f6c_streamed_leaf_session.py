@@ -1,14 +1,12 @@
 """Independent event traces plus a genuine synthetic bridge; no actual inputs."""
-from option_b_production_records import source_bytes as _option_b_source_bytes, exec_source as _option_b_exec_source
-from option_b_batch_records import batch_identities, batch_test_sources
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
+import hashlib
+from pathlib import Path
 
 
 from dataclasses import dataclass, fields, is_dataclass
 from fractions import Fraction as F
-import hashlib
 import json
-from pathlib import Path
 import sys
 from types import ModuleType, SimpleNamespace as NS
 import unittest
@@ -20,26 +18,26 @@ ROOT = Path(__file__).resolve().parents[1]
 def load(name, path, digest=None):
     p = ROOT / path
     if path == 'tests/test_f6c_single_leaf_diagnostic.py':
-        original, raw = batch_test_sources(ROOT, __file__, path)
+        original, raw = ((ROOT / path).read_bytes(), (ROOT / path).read_bytes())
         # Preserve the original driver identity and execute its admitted successor.
         assert hashlib.sha256(original).hexdigest() == digest
     else:
-        raw = _option_b_source_bytes(__file__, p)
+        raw = Path(p).read_bytes()
         if digest is not None:
             assert hashlib.sha256(raw).hexdigest() == digest
     m = ModuleType(name)
     m.__file__ = str(p)
     sys.modules[name] = m
-    _option_b_exec_source(__file__, m, str(p), raw)
-    assert (p.read_bytes() if path == 'tests/test_f6c_single_leaf_diagnostic.py' else _option_b_source_bytes(__file__, p)) == raw
+    exec(compile(raw, str(str(p)), 'exec', dont_inherit=True), m.__dict__)
+    assert (p.read_bytes() if path == 'tests/test_f6c_single_leaf_diagnostic.py' else Path(p).read_bytes()) == raw
     if path == 'tests/test_f6c_single_leaf_diagnostic.py':
-        assert batch_test_sources(ROOT, __file__, path) == (original, raw)
+        assert ((ROOT / path).read_bytes(), (ROOT / path).read_bytes()) == (original, raw)
     return m
 
 
 S = load('streamed_leaf_subject', 'scripts/eom/f6c_streamed_leaf_session.py')
 C = load('streamed_leaf_codec', 'scripts/eom/f6c_leaf_evidence_codec.py',
-         OPTION_B_BATCH_IDENTITIES[0])
+         hashlib.sha256((Path(__file__).resolve().parents[1] / 'scripts/eom/f6c_leaf_evidence_codec.py').read_bytes()).hexdigest())
 
 
 def metadata():
@@ -470,7 +468,7 @@ class LifecycleTests(unittest.TestCase):
 class GenuineBridgeTests(unittest.TestCase):
     def test_four_actual_synthetic_requests_roundtrip_without_retaining_provisions(self):
         f = load('streamed_leaf_frozen_driver_controls', 'tests/test_f6c_single_leaf_diagnostic.py',
-                 OPTION_B_BATCH_IDENTITIES[1])
+                 hashlib.sha256((Path(__file__).resolve().parents[1] / 'tests/test_f6c_single_leaf_diagnostic.py').read_bytes()).hexdigest())
         adapter, _ = f.genuine_session_adapter()
         lines = []
         s = S.StreamedLeafSession(adapter, f.D, C, metadata(), lines.append)

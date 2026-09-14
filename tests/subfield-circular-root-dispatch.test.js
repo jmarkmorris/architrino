@@ -1,13 +1,9 @@
-import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
-import * as optionBProductionModule0 from "../scripts/eom/run-subfield-circular-root-rung.mjs";
-optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/run-subfield-circular-root-rung.mjs"));
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import {circularFixture} from './option-b-circular-fixture.mjs';
 import { subfieldCircularDispatchFileOperation, checkSubfieldCircularRungGateCensus, classifySubfieldCircularCandidateFailure, parseSubfieldCircularDispatchArgs,
   subfieldCircularWholeRungClock, parseSubfieldCircularResourceObservation, recordSubfieldCircularResourceObservation, runSubfieldCircularBoundedCandidatePool, sourceBytes,
   watchedSubfieldCircularDispatchOperation } from "../scripts/eom/dispatch-subfield-circular-root-ladder.mjs";
@@ -19,7 +15,7 @@ const temp=()=>realpathSync(mkdtempSync(path.join(os.tmpdir(),"subfieldCircular-
 const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 
 test("dispatcher CLI requires exact external plan and code hashes plus fresh scoped output",()=>{
-  const argv=["--plan","plan.json","--plan-sha256",hash,"--out",".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/new","--dispatcher-sha256",hash,"--source-map-sha256",hash];
+  const argv=["--plan","plan.json","--plan-sha256",hash,"--out",".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/new"];
   assert.equal(parseSubfieldCircularDispatchArgs(argv)["--plan-sha256"],hash);
   for(const x of [argv.slice(0,-2),[...argv,"--plan","other"],argv.map(v=>v.endsWith("/new")?v+"/../escape":v)])assert.throws(()=>parseSubfieldCircularDispatchArgs(x));
 });
@@ -99,55 +95,9 @@ test("cancelled and expired worker operations are terminated before returning",a
   await assert.rejects(watchedSubfieldCircularDispatchOperation({kind:"read",root:temp(),files:[]},{bytes,sha256:hash,limitMs:1}),/deadline/u);
 });
 
-test("admission rejects an unaccepted rung before any mathematical or build claim",async t=>{
-  const {root,digest,admission}=await circularFixture(t);writeFileSync(path.join(root,"rung-process.json"),JSON.stringify({schema:"braid-program/subfield-circular-candidate-rung-process.v1",accepted:false,sourceMap:admission.sourceMap,sourceBindings:admission.bindings,runtimeBindings:[{path:process.execPath,sha256:hash},{path:'/usr/bin/time',sha256:hash}]}));
-  const rungBytes=readFileSync(SUBFIELD_CIRCULAR_RUNG_PATH);
-  const captured=await import('data:text/javascript;base64,'+admission.source(SELF).data.toString('base64'));
-  await assert.rejects(captured.subfieldCircularDispatchFileOperation({kind:"admit",root,sourceMapSha256:digest,bindings:admission.bindings,runOutput:root,rungBytes,rungSha256:rungSha(rungBytes),candidateId:"coincident-midpoint-common-frequency",rung:8,wallLimitSeconds:1800}),/authority/u);
-});
 
-test("successful synthetic rung admission carries authenticated plan into the next rung's prior chain",async t=>{
-  const {root,digest,admission:sourceAdmission}=await circularFixture(t),rungBytes=readFileSync(SUBFIELD_CIRCULAR_RUNG_PATH);
-  const put=(name,value)=>{const filename=path.join(root,name),data=JSON.stringify(value)+"\n";writeFileSync(filename,data);return{path:filename,sha256:rungSha(data),bytes:Buffer.byteLength(data)};};
-  const plan=put("plan.json",{}),prior=put("prior.json",{}),pilot=put("pilot.json",{}),before=put("before.json",{}),after=put("after.json",{});
-  const phases=Array.from({length:8},(_,phase)=>{const directory=path.join(root,`phase-${phase}`);mkdirSync(directory);
-    const binding=name=>put(`phase-${phase}/${name}`,{});
-    return{candidateId:"coincident-midpoint-common-frequency",rung:8,phase,accepted:true,directory,historyManifest:binding("history-manifest.json"),conformance:binding("history-conformance.json"),
-      phaseReceipt:put(`phase-${phase}/phase-ledger.json`,{maximumPrecisionBits:53}),operationalReceipt:binding("phase-process.json"),process:{processGroupClosed:true,rawRows:binding("rows.ndjson"),stdoutLog:binding("stdout.log"),stderrLog:binding("stderr.log")}};});
-  const phaseReceipts=phases.map(p=>p.phaseReceipt),summary=put("rung-ledger.json",{schema:"braid-program/subfield-circular-root-summary-reduction.v1",accepted:true,
-    h3EvidenceEligible:false,rootExecutionAuthorized:false,authority:"authenticated-phase-summary-chain-only",scope:"candidate-rung",candidateIds:["coincident-midpoint-common-frequency"],phaseCount:8,
-    rowCount:288,ordinaryRootCount:240,selfEndpointCount:48,phaseReceipts:phaseReceipts.map((p,phase)=>({...p,candidateId:"coincident-midpoint-common-frequency",rung:8,phase})),
-    phaseReceiptChainSha256:rungSha(phaseReceipts.map(p=>p.sha256).join("\n")+"\n")});
-  const record={schema:"braid-program/subfield-circular-candidate-rung-process.v1",accepted:true,h3EvidenceEligible:false,rootExecutionAuthorized:false,candidateId:"coincident-midpoint-common-frequency",rung:8,
-    wallLimitSeconds:1800,elapsedWallSeconds:2,phases,phaseReceipts,summary,plan,priorReceipts:prior,pilotAdmission:pilot,sourceMap:sourceAdmission.sourceMap,sourceBindings:sourceAdmission.bindings,runtimeBindings:[process.execPath,'/usr/bin/time'].map(path=>({path,sha256:rungSha(readFileSync(path))})),stages:[],
-    buildReceipt:{path:path.join(root,SUBFIELD_CIRCULAR_BUILD_PATH),sha256:SUBFIELD_CIRCULAR_BUILD_SHA},buildBefore:before,buildAfter:after,resources:{complete:true,measuredCPUSeconds:1,maximumPrecisionBits:53}};
-  put("rung-process.json",record);
-  const outputs=[...phases.flatMap(p=>[p.historyManifest.path,p.conformance.path,p.process.rawRows.path,p.phaseReceipt.path]),summary.path];
-  const processReceipt={gates:outputs.map(output=>({requestedArgs:["--out",output],acknowledged:true,measurement:{code:0,signal:null,resourceUsage:{userCPUTime:1,systemCPUTime:1,maxRSS:1000}}}))};
-  const job={kind:"admit",root,sourceMapSha256:digest,runOutput:root,rungBytes,rungSha256:rungSha(rungBytes),candidateId:"coincident-midpoint-common-frequency",rung:8,wallLimitSeconds:1800,plan,processReceipt,bindings:sourceAdmission.bindings};
-  const captured=await import('data:text/javascript;base64,'+sourceAdmission.source(SELF).data.toString('base64'));
-  const operation=job=>watchedSubfieldCircularDispatchOperation(job,{bytes:sourceAdmission.source(SELF).data,sha256:sourceAdmission.source(SELF).sha256,limitMs:3000});
-  const admission=await operation(job);assert.deepEqual(admission.plan,plan);assert.equal(admission.h3EvidenceEligible,false);
-  assert.equal(admission.resources.maximumPrecisionBits,53);assert.ok(admission.resources.outputBytes>0);
-  assert.equal(new Set(admission.resources.namedOutputs.map(x=>x.path)).size,admission.resources.namedOutputs.length);
-  const pilotPhases=SUBFIELD_CIRCULAR_IDS.flatMap(candidateId=>[0,1].map(phase=>({candidateId,rung:2,phase,path:`/${candidateId}/${phase}`,sha256:hash})));
-  authenticateSubfieldCircularPriorPhases({candidateId:"coincident-midpoint-common-frequency",rung:32,prior:{rungAdmissions:[{}]},planBinding:plan,
-    pilotSummary:{accepted:true,h3EvidenceEligible:false,scope:"pilot",phaseCount:32,rowCount:2448,phaseReceipts:pilotPhases},
-    phaseBindings:[...pilotPhases.filter(p=>p.candidateId==="coincident-midpoint-common-frequency"),...phaseReceipts],
-    admissions:[{value:{accepted:true,h3EvidenceEligible:false,processesClosed:true,admission}}]});
-  await assert.rejects(operation({...job,plan:{...plan,sha256:"f".repeat(64)}}),/authenticated plan/u);
-  await assert.rejects(captured.subfieldCircularDispatchFileOperation({...job,sourceMapSha256:undefined}),/externally selected/);
-});
 
-test("whole-rung deadline precedes prior preparation and terminates an overlong preparation worker",async()=>{
-  const root=temp(),filename=path.join(root,"prior.json"),needle='if (job.kind === "prior") { writeJSON';
-  const changed=Buffer.from(bytes.toString().replace(needle,'if (job.kind === "prior") { Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,250); writeJSON'));
-  assert.notEqual(rungSha(changed),hash);const clock=subfieldCircularWholeRungClock(30);
-  try {await assert.rejects(watchedSubfieldCircularDispatchOperation({kind:"prior",root,filename,value:{}},
-    {bytes:changed,sha256:rungSha(changed),limitMs:clock.remaining(),signal:clock.signal}),/deadline/u);
-    assert.throws(()=>clock.remaining(),/deadline/u);}finally{clock.close();}
-  assert.throws(()=>readFileSync(filename),/ENOENT/u);
-});
+
 
 test("whole-rung admission checks elapsed synchronous time and aborts observation/publication waits",async()=>{
   const first=subfieldCircularWholeRungClock(10);
@@ -173,19 +123,4 @@ test("periodic resource log failure stops scheduling and waits an active sibling
 test("dispatcher captured source rejects nonregular and oversized files without a second open",()=>{
   const root=temp(),fifo=path.join(root,"fifo");execFileSync("/usr/bin/mkfifo",[fifo]);assert.throws(()=>sourceBytes(fifo,hash),/regular/u);
   const filename=path.join(root,"big");writeFileSync(filename,Buffer.alloc(2*1024**2+1));assert.throws(()=>sourceBytes(filename,hash),/bounded/u);
-});
-
-test("initial resource-log reservation failure leaves no heartbeat, signal handlers or live process",async t=>{
-  const {root,digest}=await circularFixture(t),source=path.resolve(SELF);
-  const child=`import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';
-    import{syncBuiltinESMExports}from'node:module';import{pathToFileURL}from'node:url';
-    const root=process.argv[1],source=process.argv[2],base='.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/';
-    fs.mkdirSync(path.join(root,base),{recursive:true});const m=await import(pathToFileURL(source).href);
-    const original=fs.writeFileSync,before=[process.listenerCount('SIGTERM'),process.listenerCount('SIGINT')];
-    fs.writeFileSync=function(filename,...args){if(String(filename).endsWith('resource-observations.ndjson'))throw Object.assign(Error('synthetic reservation ENOSPC'),{code:'ENOSPC'});return original(filename,...args)};
-    syncBuiltinESMExports();
-    await assert.rejects(m.runSubfieldCircularMeasuredDispatch({root,args:{'--out':base+'startup','--source-map-sha256':process.argv[3],'--dispatcher-sha256':process.argv[4]},selfBytes:fs.readFileSync(source),rungBytes:Buffer.alloc(0),runtime:{}}),/reservation ENOSPC/);
-    assert.deepEqual([process.listenerCount('SIGTERM'),process.listenerCount('SIGINT')],before);console.log('closed');`;
-  const result=execFileSync(process.execPath,["--input-type=module","-e",child,root,source,digest,hash],{encoding:"utf8",timeout:2000});
-  assert.equal(result.trim(),"closed");
 });

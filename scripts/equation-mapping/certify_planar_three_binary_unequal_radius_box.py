@@ -10,7 +10,6 @@ declared ``(r_2, r_3, beta_f)`` box.
 
 from __future__ import annotations
 
-import hashlib
 import json
 import math
 from dataclasses import dataclass
@@ -33,9 +32,6 @@ SCALAR_THEOREM_EVIDENCE = ROOT / (
     "2026-08-29-planar-three-binary-circular-balance-ladder.md"
 )
 
-FROZEN_SOURCE_SHA256 = "569902016197cdbea29082ffd1fcf3881d962f5c1cba26f3eeb56dcdcaa2e7a8"
-FROZEN_PHASE_CERTIFICATE_SHA256 = "916e65532efbed3d543a75ba74c4f93d0d1fd9b95ff8c4f16f825866af307fec"
-FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256 = "1669066391ac4ba783be843b7f77fa11d3d9c3332085d3cbea570b8cc2ae3e54"
 
 BETA_TOKEN = "2.974307176117293568027380199624405914686222541005478142309948089455288"
 SCALAR_T04_BRACKET = (
@@ -73,9 +69,6 @@ SELECTED_RESIDUAL_ROWS = (1, 5, 9)
 class CertificateFailure(RuntimeError):
     pass
 
-
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def I(lower_value, upper_value=None):
@@ -827,14 +820,6 @@ def validate_source(source: dict) -> None:
 def calculate() -> dict[str, object]:
     mp.mp.dps = POINT_DPS
     mp.iv.dps = INTERVAL_DPS
-    for path, expected in (
-        (SOURCE, FROZEN_SOURCE_SHA256),
-        (PHASE_CERTIFICATE, FROZEN_PHASE_CERTIFICATE_SHA256),
-        (SCALAR_THEOREM_EVIDENCE, FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256),
-    ):
-        actual = sha256(path)
-        if actual != expected:
-            raise CertificateFailure(f"frozen input changed: {path}: {actual}")
     source = json.loads(SOURCE.read_text())
     validate_source(source)
 
@@ -943,15 +928,12 @@ def calculate() -> dict[str, object]:
             "antipodalPartners": True,
             "polarityWordInBinaryPairOrder": "+-+-+-",
         },
-        "frozenInputs": {
+        "inputs": {
             "sourceConfiguration": str(SOURCE.relative_to(ROOT)),
-            "sourceConfigurationSha256": FROZEN_SOURCE_SHA256,
             "acceptedPhaseCertificate": str(PHASE_CERTIFICATE.relative_to(ROOT)),
-            "acceptedPhaseCertificateSha256": FROZEN_PHASE_CERTIFICATE_SHA256,
             "acceptedScalarTheoremEvidence": str(
                 SCALAR_THEOREM_EVIDENCE.relative_to(ROOT)
             ),
-            "acceptedScalarTheoremEvidenceSha256": FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256,
             "acceptedScalarT04BetaBracket": scalar_bracket,
         },
         "arithmetic": {

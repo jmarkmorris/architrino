@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-import { productionIdentities } from "../equation-mapping/production-source-records.mjs";
-const OPTION_B_PRODUCTION_IDENTITIES = productionIdentities(import.meta.url);
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
@@ -15,13 +13,10 @@ if (args.length !== 2 || args[0] !== "--out" || !args[1]) {
   );
 }
 const outputPath = path.resolve(root, args[1]);
-const configPath = path.resolve(root, "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json");
+const configPath = path.resolve(root, "tests/fixtures/f5-history/approved-config.json");
 
 const bindings = [
-  ["f5-approved-row", "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json", OPTION_B_PRODUCTION_IDENTITIES[0]],
-  ["f5-h3-predeclaration", "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md", OPTION_B_PRODUCTION_IDENTITIES[1]],
-  ["f5-independent-guard", "scripts/eom/analyze-f5-phase-varying-guard-margin.mjs", OPTION_B_PRODUCTION_IDENTITIES[2]],
-  ["f5-production-operator", "src/prescribed-geometry/PrescribedWorldlineOperators.mjs", OPTION_B_PRODUCTION_IDENTITIES[3]],
+  ["f5-approved-row", "tests/fixtures/f5-history/approved-config.json", "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb"],
 ];
 
 function sha256(filePath) {

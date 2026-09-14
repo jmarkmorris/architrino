@@ -1,4 +1,3 @@
-import { borgConsumerAdmission } from '../borg/selected-runtime-admission.mjs';
 import { retainBorgExecutable } from './BorgExecutableAdmission.mjs';
 import { createHash } from "node:crypto";
 import { spawn, spawnSync } from "node:child_process";
@@ -71,15 +70,14 @@ export function createBorgNativeEomProcessClient({
       "Borg EOM exact-history storage requires a temporary root and a limit no larger than one TiB.",
     );
   }
-  const admission=borgConsumerAdmission(import.meta.url);
   const executableAdmission=retainBorgExecutable({binaryPath,executableBinding});
-  const checkAdmission=()=>{admission.check();executableAdmission.check();};
-  checkAdmission();
+  const checkExecutable=()=>executableAdmission.check();
+  checkExecutable();
   historyTempRoot = historyTempRoot ?? createOwnedHistoryTempRoot();
   cleanHistoryTempRoot();
-  checkAdmission();
+  checkExecutable();
   const binaryProtocolMagic = queryBorgNativeEomProtocolMagic(binaryPath);
-  checkAdmission();
+  checkExecutable();
   if (binaryProtocolMagic !== BORG_NATIVE_EOM_PROTOCOL_MAGIC) {
     throw new Error(
       "Borg EOM protocol mismatch: " +
@@ -119,7 +117,7 @@ export function createBorgNativeEomProcessClient({
       const requestGeneration = cancellationGeneration;
       let requestTransport = null;
       const execute = () => {
-        checkAdmission();
+        checkExecutable();
         if (requestGeneration !== cancellationGeneration) {
           throw new Error("EOM worker request was cancelled before execution.");
         }
@@ -135,7 +133,7 @@ export function createBorgNativeEomProcessClient({
         () => undefined,
       );
       const response = await responsePromise;
-      checkAdmission();
+      checkExecutable();
       const responseMemoryEstimate = Number(response?.memoryEstimateBytes);
       if (Number.isSafeInteger(responseMemoryEstimate) &&
           responseMemoryEstimate >= 0) {
@@ -194,7 +192,7 @@ export function createBorgNativeEomProcessClient({
         wireHistoryCacheGeneration = 0;
         wireHistoryCacheToken = null;
       }
-      checkAdmission();
+      checkExecutable();
       if (returnDisplayHistoryExtensions && request.runGrade === "display") {
         return Object.freeze({
           ...response,
@@ -223,7 +221,7 @@ export function createBorgNativeEomProcessClient({
   return client;
 
   function ensureWorker() {
-    checkAdmission();
+    checkExecutable();
     if (worker && worker.exitCode == null && !worker.killed) return;
     const generation = ++workerGeneration;
     wireHistoryCache = null;
@@ -241,7 +239,7 @@ export function createBorgNativeEomProcessClient({
       `--history-temp-root=${historyTempRoot}`,
       `--history-disk-limit-bytes=${historyDiskLimitBytes}`,
     ];
-    checkAdmission();
+    checkExecutable();
     worker = spawn(binaryPath, ["borg-shadow-server-v0", ...effectiveBinaryArgs], {
       stdio: ["pipe", "pipe", "pipe"],
     });
@@ -316,7 +314,7 @@ export function createBorgNativeEomProcessClient({
     activeRequest = null;
     clearTimeout(pending.timeout);
     try {
-      checkAdmission();
+      checkExecutable();
       pending.resolve(JSON.parse(line));
     } catch (error) {
       terminateWorker(

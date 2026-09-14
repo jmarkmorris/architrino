@@ -1,5 +1,4 @@
 """Portable independent rational controls; no actual F6c data or root jobs."""
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 from dataclasses import FrozenInstanceError, replace
 from decimal import Decimal, localcontext
@@ -14,7 +13,7 @@ PATH = Path(__file__).resolve().parents[1] / 'scripts/eom/oracle/f6c_residual_in
 SPEC = importlib.util.spec_from_file_location('tested_residual_integral_supremum', PATH)
 M = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = M
-_option_b_exec_module(__file__, SPEC, M)
+SPEC.loader.exec_module(M)
 
 
 def bounds(lo, hi=None):

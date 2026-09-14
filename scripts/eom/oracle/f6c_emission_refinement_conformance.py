@@ -28,12 +28,12 @@ helpers and callbacks. A callback cannot change the compared input generation.
 """
 from __future__ import annotations
 
+import hashlib
+
 from dataclasses import dataclass
 from fractions import Fraction
 from types import MappingProxyType
 
-REQUIRED_REFERENCE_SHA=OPTION_B_PRODUCTION_IDENTITIES[0]
-DECLARATION_SHA=OPTION_B_PRODUCTION_IDENTITIES[1]
 IDS=('0+','0-','1+','1-','2+','2-','3+','3-')
 A,B=Fraction(-8),Fraction(-1,20)
 RECEPTION=(Fraction(0),Fraction(1,1000))
@@ -85,8 +85,6 @@ class RefinementComparison:
     geometry_piece_visits:int
     restrictions:tuple[PairRestriction,...]
     claims:tuple[tuple[str,bool],...]
-    reference_required_sha256:str=REQUIRED_REFERENCE_SHA
-    declaration_required_sha256:str=DECLARATION_SHA
 
 
 def _require(value,message):
@@ -99,18 +97,18 @@ def _sequence(value,count=None,maximum=None):
 
 
 def _integer(value,expected):
-    _require(type(value) is int and value==expected,'exact integer/order differs')
+    _require((type(value) is int) and (value==expected),'exact integer/order differs')
 
 
 def _closed(value,names):
-    _require(type(value) in (dict,MappingProxyType) and set(value)==set(names),'closed record fields differ')
+    _require((type(value) in (dict,MappingProxyType)) and (set(value)==set(names)),'closed record fields differ')
 
 
 def _freeze(value,depth=0):
     """Copy inert exact JSON leaves; no retained mutable input aliases."""
     _require(depth<=8,'record depth bound')
     if type(value) is dict:
-        _require(len(value)<=40 and all(type(k) is str and len(k)<=128 for k in value),'record key bound')
+        _require((len(value)<=40) and (all(type(k) is str and len(k)<=128 for k in value)),'record key bound')
         return MappingProxyType({k:_freeze(v,depth+1) for k,v in value.items()})
     if type(value) in (list,tuple):
         _require(len(value)<=16,'record array bound')
@@ -135,7 +133,7 @@ def exact_time_token(value):
     while d%2==0:d//=2;twos+=1
     while d%5==0:d//=5;fives+=1
     places=max(twos,fives)
-    _require(d==1 and places<=34 and A<=value<=B,'time outside finite refinement domain')
+    _require((d==1) and (places<=34) and (A<=value<=B),'time outside finite refinement domain')
     scaled=abs(value.numerator)*(10**places//value.denominator)
     whole,tail=divmod(scaled,10**places)
     return ('-' if value<0 else '')+str(whole)+(('.'+str(tail).zfill(places).rstrip('0')) if tail else '')
@@ -146,11 +144,10 @@ def _histories(reference,histories):
     for i,h in enumerate(histories):
         _require(type(h) is dict,'history object required')
         _integer(h['pathKey'],i+1);_integer(h['polarity'],1 if i%2==0 else -1)
-        _require(type(h['id']) is str and h['id']==IDS[i],'member identity differs')
-        _require(type(h['charge']) is str and h['charge']==('' if i%2==0 else '-')+CHARGE,'original signed charge differs')
-        _require(type(h['coverageStart']) is str and type(h['coverageEnd']) is str and
-                 h['coverageStart']=='-8' and h['coverageEnd']=='0.13','fixed retained domain required')
-        _require(type(h['historyFingerprint']) is str and 0<len(h['historyFingerprint'])<=256,'original fingerprint required')
+        _require((type(h['id']) is str) and (h['id']==IDS[i]),'member identity differs')
+        _require((type(h['charge']) is str) and (h['charge']==('' if i%2==0 else '-')+CHARGE),'original signed charge differs')
+        _require((type(h['coverageStart']) is str) and (type(h['coverageEnd']) is str) and (h['coverageStart']=='-8') and (h['coverageEnd']=='0.13'),'fixed retained domain required')
+        _require((type(h['historyFingerprint']) is str) and (0<len(h['historyFingerprint'])<=256),'original fingerprint required')
         _sequence(h['segments'],maximum=1760);segments=[];cursor=A
         for original in h['segments']:
             _closed(original,SEGMENT_FIELDS);s=_freeze(original)
@@ -176,7 +173,7 @@ def _query_interval(reference,receiver,transmitter,reception,midpoint,reported):
     displacement=tuple(reference.sub(x,y) for x,y in zip(receiver['position'],source['position']))
     qlo,qhi=reference.squared_norm(displacement)
     lo,hi=reference.interval(_plain(reported))
-    _require(reference.le_sqrt(lo+reception[1]-midpoint,qlo) and reference.sqrt_le(qhi,hi+reception[0]-midpoint),
+    _require((reference.le_sqrt(lo+reception[1]-midpoint,qlo)) and (reference.sqrt_le(qhi,hi+reception[0]-midpoint)),
              'query misses independent whole-face Bernstein enclosure')
     return lo,hi
 
@@ -193,7 +190,7 @@ def _replay(reference,histories,queries,state,progress):
                 for ordinal in range(32):
                     index=state['queries'];q=queries[index];_closed(q,QUERY_FIELDS)
                     for key,value in [('queryIndex',index),('receiverIndex',i),('transmitterIndex',j),('ordinal',ordinal)]:_integer(q[key],value)
-                    _require(q['receiverId']==IDS[i] and q['transmitterId']==IDS[j] and q['side']==side,'query ownership/search order differs')
+                    _require((q['receiverId']==IDS[i]) and (q['transmitterId']==IDS[j]) and (q['side']==side),'query ownership/search order differs')
                     _require(reference.interval(_plain(q['exploratory']))==(lo,hi),'exploratory state differs')
                     midpoint=(lo+hi)/2
                     _require(q['midpoint']==exact_time_token(midpoint),'exact canonical midpoint differs')
@@ -204,7 +201,7 @@ def _replay(reference,histories,queries,state,progress):
                     else:
                         if gl>0:face=hi=midpoint;proof=index;decision='retain-positive'
                         else:lo=midpoint;decision='explore-upper-half'
-                    _require(q['decision']==decision and q['retainedFace']==exact_time_token(face),'branch or certified face differs')
+                    _require((q['decision']==decision) and (q['retainedFace']==exact_time_token(face)),'branch or certified face differs')
                     state['queries']+=1
                     if progress:progress(state['queries'],state['rows'])
                 retained[side]=face;proofs[side]=proof
@@ -220,10 +217,10 @@ def _final_cover(reference,histories,rows,pieces,restrictions,receivers,state,pr
     for n,frozen in enumerate(rows):
         row=_plain(frozen);_closed(row,reference.ROW_KEYS);i,j=divmod(n,8)
         for key,value in [('rowIndex',n),('cellIndex',0),('receiverIndex',i),('transmitterIndex',j)]:_integer(row[key],value)
-        _require(row['receiverId']==IDS[i] and row['transmitterId']==IDS[j],'final pair identity differs')
+        _require((row['receiverId']==IDS[i]) and (row['transmitterId']==IDS[j]),'final pair identity differs')
         _require(reference.interval(row['reception'])==RECEPTION,'fixed reception cell differs')
         reference.false_flags(row['libraryFlags'])
-        _require(row['rootFreeComplementConditional'] is True and row['retainedBoundaryContact'] is False,'final complement/boundary differs')
+        _require((row['rootFreeComplementConditional'] is True) and (row['retainedBoundaryContact'] is False),'final complement/boundary differs')
         if i==j:
             _integer(row['ordinaryRootsPerReception'],0)
             _require(row['coincidentEndpointExcluded'] is True,'self endpoint exclusion absent')
@@ -279,7 +276,7 @@ def compare_refinement(reference,histories,queries,rows,pieces,*,progress=None):
         piece_snapshot=tuple(_freeze(p) for p in pieces)
         if progress:progress(0,0)
         restrictions,receivers=_replay(reference,snapshot,query_snapshot,state,progress)
-        _require(state['queries']==3584 and len(restrictions)==56,'complete query census required')
+        _require((state['queries']==3584) and (len(restrictions)==56),'complete query census required')
         visits=_final_cover(reference,snapshot,row_snapshot,piece_snapshot,restrictions,receivers,state,progress)
         _require(state['rows']==64,'complete final row census required')
         return RefinementComparison(False,True,True,3584,56,64,56,8,112,112,56,visits,restrictions,FALSE_CLAIMS)

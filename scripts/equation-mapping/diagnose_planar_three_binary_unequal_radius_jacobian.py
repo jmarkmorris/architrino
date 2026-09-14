@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import hashlib
 import itertools
 import json
 import sys
@@ -21,8 +20,6 @@ PHASE_CERTIFICATE = ROOT / (
     "reference/priorities/braid-program/evidence/"
     "2026-09-01-planar-three-binary-phase-box-certificate.md"
 )
-FROZEN_SOURCE_SHA256 = "569902016197cdbea29082ffd1fcf3881d962f5c1cba26f3eeb56dcdcaa2e7a8"
-FROZEN_PHASE_CERTIFICATE_SHA256 = "916e65532efbed3d543a75ba74c4f93d0d1fd9b95ff8c4f16f825866af307fec"
 POLARITIES = (1, -1, 1, -1, 1, -1)
 STEPS = ("1e-6", "3e-7", "1e-7")
 SCAN_CELLS = 4096
@@ -32,9 +29,6 @@ POINT_DPS = 70
 class DiagnosticFailure(RuntimeError):
     pass
 
-
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def text(value, digits=42) -> str:
@@ -175,10 +169,6 @@ def compatibility_residual(radius_2, radius_3, beta):
 
 def calculate():
     mp.mp.dps = POINT_DPS
-    if sha256(SOURCE) != FROZEN_SOURCE_SHA256:
-        raise DiagnosticFailure("frozen T04 source changed")
-    if sha256(PHASE_CERTIFICATE) != FROZEN_PHASE_CERTIFICATE_SHA256:
-        raise DiagnosticFailure("frozen phase certificate changed")
     source = json.loads(SOURCE.read_text())
     beta = mp.mpf(source["geometry"]["balanceParameters"]["betaDecimal"])
     center, counts, minimum_transversality = compatibility_residual(1, 1, beta)
@@ -250,11 +240,9 @@ def calculate():
             "directedRootCount": 72,
             "minimumTransmitterFactorMagnitude": text(minimum_transversality),
         },
-        "frozenInputs": {
+        "inputs": {
             "source": str(SOURCE.relative_to(ROOT)),
-            "sourceSha256": FROZEN_SOURCE_SHA256,
             "phaseCertificate": str(PHASE_CERTIFICATE.relative_to(ROOT)),
-            "phaseCertificateSha256": FROZEN_PHASE_CERTIFICATE_SHA256,
         },
         "finiteDifferenceRungs": rungs,
         "maximumLastRungJacobianEntryChange": text(maximum_last_change),

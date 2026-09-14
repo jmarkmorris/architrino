@@ -1,6 +1,0 @@
-{
-  "acceptedBaseline": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-batch-test-accepted-b.json",
-  "acceptedBaselineSha256": "5cafbc4125e5e2fd0a5086023e26e20a20ff13ba1d2b3850e12785a731eb156e",
-  "transition": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-batch-test-transition.json",
-  "transitionSha256": "ac601f90e1bf677b29352a1977786cc71b60fb85cd29869bad900490f741259d"
-}

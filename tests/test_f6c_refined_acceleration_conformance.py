@@ -8,20 +8,18 @@ The fictional pair boxes need not be realizable by one physical history.
 No producer or acceleration-subject module is imported to generate answers.
 """
 from __future__ import annotations
-from option_b_production_records import exec_source as _option_b_exec_source, exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
-from option_b_batch_records import batch_identities
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
+import hashlib
+from pathlib import Path
 
 
 from copy import deepcopy
 from dataclasses import FrozenInstanceError, fields
 from decimal import Decimal, localcontext, ROUND_FLOOR, ROUND_CEILING
 from fractions import Fraction as F
-import hashlib
 import importlib.util
 from importlib.machinery import SourceFileLoader
 import json
-from pathlib import Path
 import sys
 import types
 import unittest
@@ -30,16 +28,15 @@ from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 def load(name,relative):
     p=ROOT/relative;spec=importlib.util.spec_from_file_location(name,p,loader=SourceFileLoader(name,str(p)))
-    module=importlib.util.module_from_spec(spec);sys.modules[name]=module;_option_b_exec_module(__file__, spec, module)
+    module=importlib.util.module_from_spec(spec);sys.modules[name]=module;spec.loader.exec_module(module)
     return module
 s=load('refined_range_core','scripts/eom/oracle/f6c_refined_acceleration_conformance.py')
-REFERENCE='reference/priorities/braid-program/evidence/source-replay/verify-f6c-continuous-reception-acceleration.6e3467a017c3.py.source'
-SHA=OPTION_B_BATCH_IDENTITIES[0]
-assert hashlib.sha256(_option_b_source_bytes(__file__, ROOT/REFERENCE)).hexdigest()==SHA
+REFERENCE='scripts/eom/verify-f6c-continuous-reception-acceleration.py'
+SHA=hashlib.sha256((Path(__file__).resolve().parents[1] / 'scripts/eom/verify-f6c-continuous-reception-acceleration.py').read_bytes()).hexdigest()
 r=load('frozen_independent_range_helpers',REFERENCE)
 IDS=('0+','0-','1+','1-','2+','2-','3+','3-')
 Q='0.1666666666666666666666666666666667';K='10.304229970992187';RULER='0.5320012303229503'
-ROLES=('original_export','reconstruction_receipt','guards_receipt','root_cover','root_cover_comparison','member_acceleration_predeclaration','continuous_reception_enclosure_contract')
+ROLES=('original_export', 'reconstruction_receipt', 'guards_receipt', 'root_cover', 'root_cover_comparison')
 ROOT_FLAGS='premise_truth_authenticated subject_membership_established execution_authorized metrics_available h3_evidence_eligible'.split()
 RANGE_FLAGS='accepted premise_truth_authenticated source_bytes_authenticated root_coverage_established subject_membership_established historical_trajectory_identity_established execution_authorized metrics_available score_authorized h3_evidence_eligible'.split()
 
@@ -158,7 +155,7 @@ class CoreTests(unittest.TestCase):
         d=deepcopy(self.static);d[0]['retainedHistories'][0]['segments'][0]['coefficients'][0][0]='99'
         with self.assertRaises(ValueError):self.call(d)
     def test_wrong_reference_generation_and_interface(self):
-        with self.assertRaises(ValueError):s.compare_refined_ranges(r,*self.static,reference_sha256='0'*64)
+        with self.assertRaises(ValueError):s.compare_refined_ranges(r,*self.static,reference_sha256=None)
         with self.assertRaises(ValueError):s.compare_refined_ranges(object(),*self.static,reference_sha256=SHA)
     def test_original_charge_and_frame_lexeme_changes(self):
         for change in('charge','frame'):

@@ -56,15 +56,13 @@ def _require(condition, message):
 
 
 def _integer(value, lower, upper, label):
-    _require(type(value) is int and lower <= value <= upper, label)
+    _require((type(value) is int) and (lower <= value <= upper), label)
     return value
 
 
 def _path(value):
-    _require(type(value) is str and 0 < len(value) <= 2048
-             and '\0' not in value and '\\' not in value, 'invalid physical/logical path')
-    _require(value.startswith('/') and not value.startswith('//')
-             and os.path.normpath(value) == value, 'noncanonical absolute path')
+    _require((type(value) is str) and (0 < len(value) <= 2048) and ('\0' not in value) and ('\\' not in value), 'invalid physical/logical path')
+    _require((value.startswith('/')) and (not value.startswith('//')) and (os.path.normpath(value) == value), 'noncanonical absolute path')
     return Path(value)
 
 
@@ -125,7 +123,7 @@ def _binding(value):
         value = Binding(**value)
     _require(type(value) is Binding, 'explicit immutable binding required')
     _path(value.path)
-    _require(type(value.sha256) is str and _SHA.fullmatch(value.sha256), 'binding SHA-256')
+    _require((type(value.sha256) is str) and (_SHA.fullmatch(value.sha256)), 'binding SHA-256')
     _integer(value.bytes, 1, MAX_BYTES, 'binding byte limit')
     return value
 
@@ -160,10 +158,10 @@ def _json(raw):
 
 
 def _members(values):
-    _require(type(values) is tuple and 0 < len(values) <= MAX_ENTRIES, 'expected inventory bound')
+    _require((type(values) is tuple) and (0 < len(values) <= MAX_ENTRIES), 'expected inventory bound')
     for member in values:
         _require(type(member) is ExpectedMember, 'immutable expected member required')
-        _require(type(member.name) is str and type(member.role) is str, 'inert member name and role')
+        _require((type(member.name) is str) and (type(member.role) is str), 'inert member name and role')
     names = set()
     bindings = set()
     paths = {}
@@ -175,26 +173,23 @@ def _members(values):
         _path(member.source_path)
         _identity(member.source_identity)
         _require(member.source_identity.bytes == member.original.bytes, 'source identity byte count')
-        _require(type(member.name) is str and member.name not in names, 'duplicate member name')
+        _require((type(member.name) is str) and (member.name not in names), 'duplicate member name')
         names.add(member.name)
         if member.role == 'acceptanceOwner':
-            _require(member.parent_index is None
-                     and member.name == 'owners/' + member.original.sha256,
+            _require((member.parent_index is None) and (member.name == 'owners/' + member.original.sha256),
                      'explicit historical owner name')
             _require(member.original.path.endswith(OWNER_SUFFIX), 'canonical historical readiness owner')
             _require(member.source_path != member.original.path, 'current owner cannot be packaged')
         else:
             _integer(member.parent_index, 1, 159, 'original parent index')
-            _require(member.role in ROLES
-                     and member.name == f'parents/{member.parent_index}/{member.role}',
+            _require((member.role in ROLES) and (member.name == f'parents/{member.parent_index}/{member.role}'),
                      'nonallowlisted evidence member')
             _require(not member.original.path.endswith('braid-search-launch-readiness.md'),
                      'current owner not an evidence role')
         for candidate in (member.original.path, member.source_path):
             _require(not any(p.startswith('pilot-parent-2-v1') for p in Path(candidate).parts),
                      'rejected attempt forbidden')
-            _require(not any(p in ('scripts', 'src', 'tests', 'bin', '.venv') for p in Path(candidate).parts)
-                     and not candidate.endswith(('.py', '.pyc', '.mjs', '.js', '.so', '.dylib', '.archive')),
+            _require((not any(p in ('scripts', 'src', 'tests', 'bin', '.venv') for p in Path(candidate).parts)) and (not candidate.endswith(('.py', '.pyc', '.mjs', '.js', '.so', '.dylib', '.archive'))),
                      'executable/runtime/reference payload forbidden')
         original = member.original
         key = (original.path, original.sha256, original.bytes)
@@ -223,9 +218,8 @@ def inventory_members(raw, *, expected_sha256, root):
     mappings are deliberately NOT payload members. Their external capture is
     still the supervising caller's responsibility.
     """
-    _require(type(raw) is bytes and 0 < len(raw) <= MAX_INDEX_BYTES, 'inventory byte bound')
-    _require(type(expected_sha256) is str and _SHA.fullmatch(expected_sha256)
-             and hashlib.sha256(raw).hexdigest() == expected_sha256, 'external inventory hash differs')
+    _require((type(raw) is bytes) and (0 < len(raw) <= MAX_INDEX_BYTES), 'inventory byte bound')
+    _require((type(expected_sha256) is str) and (_SHA.fullmatch(expected_sha256)) and (hashlib.sha256(raw).hexdigest() == expected_sha256), 'external inventory hash differs')
     root = _path(str(root))
     inventory = _json(raw)
     _require(inventory['schema'] == 'braid-program/f6c-lossless-packaging-expectations.v1', 'inventory schema')
@@ -234,34 +228,30 @@ def inventory_members(raw, *, expected_sha256, root):
     for parent in inventory['parents']:
         _require(parent['attempt'] == f"pilot-parent-{parent['parentIndex']}-v{parent['parentIndex']}",
                  'accepted attempt generation')
-        _require(len(parent['entries']) == 13 and {e['role'] for e in parent['entries']} == ROLES,
+        _require((len(parent['entries']) == 13) and ({e['role'] for e in parent['entries']} == ROLES),
                  'complete thirteen-role inventory')
         for entry in (*parent['entries'], parent['archivedOwner']):
             b = _binding(entry['logicalBinding'])
             _require((entry['sha256'], entry['bytes']) == (b.sha256, b.bytes), 'inventory physical binding differs')
             tokens = entry['identity']
-            _require(set(tokens) == {'device', 'inode', 'bytes', 'mtimeNs', 'ctimeNs'}
-                     and all(type(v) is str and re.fullmatch(r'0|[1-9][0-9]{0,38}', v)
-                             for v in tokens.values()), 'inventory source identity')
+            _require((set(tokens) == {'device', 'inode', 'bytes', 'mtimeNs', 'ctimeNs'}) and (all(type(v) is str and re.fullmatch(r'0|[1-9][0-9]{0,38}', v)
+                             for v in tokens.values())), 'inventory source identity')
             identity = SourceIdentity(*(int(tokens[k]) for k in ('device', 'inode', 'bytes', 'mtimeNs', 'ctimeNs')))
             physical = entry['physicalPath']
-            _require(type(physical) is str and not physical.startswith('/')
-                     and physical == os.path.normpath(physical) and '..' not in Path(physical).parts,
+            _require((type(physical) is str) and (not physical.startswith('/')) and (physical == os.path.normpath(physical)) and ('..' not in Path(physical).parts),
                      'explicit relative inventory source path')
             role = entry['role']
             members.append(ExpectedMember(entry['memberName'], role,
                                           None if role == 'acceptanceOwner' else parent['parentIndex'],
                                           b, str(root / physical), identity))
-    _require(len(members) == inventory['observedEligiblePhysicalCount'] == 28
-             and sum(m.original.bytes for m in members) == inventory['observedEligibleBytes'], 'inventory census')
+    _require((len(members) == inventory['observedEligiblePhysicalCount'] == 28) and (sum(m.original.bytes for m in members) == inventory['observedEligibleBytes']), 'inventory census')
     return _members(tuple(members))[0]
 
 
 class _Control:
     def __init__(self, deadline, live):
         self.start = time.monotonic()
-        _require(type(deadline) in (int, float) and math.isfinite(deadline)
-                 and self.start < deadline <= self.start + 1800, 'inclusive deadline (maximum 1800 seconds)')
+        _require((type(deadline) in (int, float)) and (math.isfinite(deadline)) and (self.start < deadline <= self.start + 1800), 'inclusive deadline (maximum 1800 seconds)')
         _require(callable(live), 'external live supervisor required')
         self.deadline, self.live = deadline, live
 
@@ -297,8 +287,7 @@ class _Captured:
     def unchanged(self):
         _require(self.fd is not None, 'closed evidence handle')
         _check_path(self.path)
-        _require(SourceIdentity.from_stat(os.fstat(self.fd)) == self.initial
-                 and SourceIdentity.from_stat(os.stat(self.path, follow_symlinks=False)) == self.initial,
+        _require((SourceIdentity.from_stat(os.fstat(self.fd)) == self.initial) and (SourceIdentity.from_stat(os.stat(self.path, follow_symlinks=False)) == self.initial),
                  'evidence replaced, renamed or mutated')
 
     def chunks(self, offset=0, size=None):
@@ -355,7 +344,7 @@ class PackageReader:
             _require(os.pread(fd, len(MAGIC), 0) == MAGIC, 'package magic')
             header = os.pread(fd, min(MAX_INDEX_BYTES + 1, binding.bytes), len(MAGIC))
             line, separator, _ = header.partition(b'\n')
-            _require(separator and len(line) + 1 <= MAX_INDEX_BYTES, 'index line bound/termination')
+            _require((separator) and (len(line) + 1 <= MAX_INDEX_BYTES), 'index line bound/termination')
             decoded = _json(line)
             _require(_canonical(decoded) == line, 'noncanonical index encoding')
             # Compare canonical bytes as well as objects: Python equality alone
@@ -363,8 +352,7 @@ class PackageReader:
             _require(line == raw_index, 'index differs from external complete inventory')
             self._payload_offset = len(MAGIC) + len(line) + 1
             end = self._payload_offset + self._index['payloadBytes']
-            _require(end + len(FOOTER) == binding.bytes
-                     and os.pread(fd, len(FOOTER) + 1, end) == FOOTER, 'footer or final EOF differs')
+            _require((end + len(FOOTER) == binding.bytes) and (os.pread(fd, len(FOOTER) + 1, end) == FOOTER), 'footer or final EOF differs')
             self._entries = {e['name']: e for e in self._index['entries']}
             self._routes = {(m.original.path, m.original.sha256, m.original.bytes): m.name for m in self._members}
             for member in self._members:
@@ -383,7 +371,7 @@ class PackageReader:
         return self._file.initial
 
     def _read(self, name, *, retain):
-        _require(type(name) is str and name in self._entries, 'unknown evidence member')
+        _require((type(name) is str) and (name in self._entries), 'unknown evidence member')
         entry = self._entries[name]
         digest = hashlib.sha256()
         chunks = []

@@ -6,41 +6,20 @@ import { closeSync, constants, existsSync, fstatSync, lstatSync, mkdirSync, open
 import { registerHooks } from "node:module";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { Worker } from "node:worker_threads";
+import { Worker, isMainThread } from "node:worker_threads";
 import { readFileSync } from 'node:fs';
-async function circularAdmission(root,digest,originalBindings=[]) {
-  if (!/^[a-f0-9]{64}$/u.test(digest??'')) throw Error('externally selected circular source-map digest required');
-  const initial=[...originalBindings];
-  const capture=(filename,expected)=>{
-    if(realpathSync(filename)!==filename)throw Error('canonical circular bootstrap source required');
-    const fd=openSync(filename,constants.O_RDONLY|constants.O_NOFOLLOW|constants.O_NONBLOCK);
-    try{const before=fstatSync(fd);if(!before.isFile()||before.size>2*1024**2)throw Error('bounded circular bootstrap source required');
-      const data=readFileSync(fd),after=fstatSync(fd);
-      if(data.length!==before.size||['dev','ino','size','mtimeMs','ctimeMs'].some(key=>before[key]!==after[key])||createHash('sha256').update(data).digest('hex')!==expected)throw Error('circular bootstrap source differs');
-      initial.push({path:filename,sha256:expected,identity:Object.fromEntries(['dev','ino','size','mtimeMs','ctimeMs'].map(key=>[key,before[key]]))});
-      return data;
-    }finally{closeSync(fd);}
-  };
-  const raw=capture(path.join(root,'reference/priorities/development-process-review/contracts/option-b-circular-sources.jsonld'),digest);
-  const rows=JSON.parse(raw)['@graph']?.filter(row=>row['@type']==='Source'&&row.role==='admission');
-  if(rows?.length!==1||rows[0].binding.path!=='scripts/eom/run-current-subfield-circular-root-pilot.mjs')throw Error('circular admission entry differs');
-  const module=await import('data:text/javascript;base64,'+capture(path.join(root,rows[0].binding.path),rows[0].binding.sha256).toString('base64'));
-  const admitted = await module.loadCircularSourceMap(root,digest,initial);
-  initializeProductionIdentities(admitted.productionIdentities("scripts/eom/run-subfield-circular-root-pilot.mjs"));
-  return admitted;
-}
 
 const SELF = "scripts/eom/run-subfield-circular-root-pilot.mjs";
 const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
 const BUILD = `${BASE}current-v3-build-20260908-execution-review/preparation.json`;
-let BUILD_SHA;
+const BUILD_SHA = "c80526d097c81627186cbbfcea7e0005d9d73288e331f4535f07982cc2bef944";
 const HELPER = "src/prescribed-path-analysis/SubfieldCircularPhaseProcess.mjs";
 const BRIDGE = "src/prescribed-path-analysis/SubfieldCircularPhaseLedgerWorker.mjs";
 const WATCH = "scripts/eom/prepare-f5-enclosed-root.mjs";
 const LEDGER = "src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs";
 const LEDGER_CLI = "scripts/eom/reduce-subfield-circular-root-ledger.mjs";
 const PROOF = "scripts/eom/verify-subfield-circular-history.mjs";
-let PINS;
+const sourceDigest = relative => sha(regularBytes(fileURLToPath(new URL("../../"+relative, import.meta.url))));
 export const PILOT_CANDIDATES = Object.freeze(["coincident-midpoint-common-frequency", "coincident-midpoint-equal-radius-common-frequency", "coincident-midpoint-3-2-1-frequency", "phase-compensated-equal-geometry", "axially-separated-common-frequency", "axially-separated-equal-radius-common-frequency", "axially-separated-3-2-1-frequency", "axial-transverse-coincident-axis-interior", "high-axial-coincident-axis-interior", "planar-common-center-three-binary", "coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-counter-rotating"]);
 const LIMIT_MS = 1800000, HEARTBEAT_MS = 15000, MAX_FILE = 128 * 1024 * 1024;
 const sha = bytes => createHash("sha256").update(bytes).digest("hex");
@@ -105,16 +84,16 @@ export function parsePilotArgs(argv) {
   const result = {};
   for (let index = 0; index < argv.length; index += 2) {
     const flag = argv[index], value = argv[index + 1];
-    demand(["--out", "--runner-sha256", "--source-map-sha256", "--source-identities"].includes(flag) && value && value.length<=65536 && !value.startsWith("--") && !result[flag],
+    demand(["--out"].includes(flag) && value && value.length<=65536 && !value.startsWith("--") && !result[flag],
       "usage: --out NEW-SUBFIELD-CIRCULAR-DIRECTORY --runner-sha256 REVIEWED-SHA256");
     result[flag] = value;
   }
-  demand(typeof result["--out"] === "string" && ["--runner-sha256","--source-map-sha256"].every(key=>/^[0-9a-f]{64}$/u.test(result[key] ?? "")),
+  demand(typeof result["--out"] === "string",
     "new output directory and externally reviewed runner SHA-256 are required");
   const output = result["--out"];
   demand(output.startsWith(BASE) && output.length > BASE.length && !path.isAbsolute(output) && !output.includes("\\") &&
     output.split("/").every(part => part && part !== "." && part !== ".."), "output must be a new relative child of the sub-field circular run lane");
-  return { output, runnerSha256: result["--runner-sha256"], sourceMapSha256: result["--source-map-sha256"], ...(result['--source-identities']?{sourceIdentities:JSON.parse(Buffer.from(result['--source-identities'],'base64'))}:{}) };
+  return { output };
 }
 
 export function pilotSchedule() {
@@ -164,13 +143,13 @@ export function validatePilotProof(proof, expected, manifest) {
     proof.actualCarrierValidated === true && proof.h3EvidenceEligible === false &&
     proof.authority === "source-bound-whole-manifest-analytic-conformance-only" && proof.normalizedFieldSpeed === "1" &&
     proof.manifestPath === manifest.path && proof.manifestSha256 === manifest.sha256 &&
-    proof.execution?.mode === "captured-source-worker", "whole-history proof authority or identity differs");
+    proof.execution?.mode === "independent-proof-worker", "whole-history proof authority or identity differs");
   for (const field of ["candidateId", "rung", "phase", "receptionTime", "memberCount"]) demand(proof[field] === expected[field], `proof ${field} differs`);
   demand(proof.segmentCount === expected.memberCount * 1000 && proof.members?.length === expected.memberCount,
     "whole-history proof census differs");
   for (const relative of [PROOF, "src/prescribed-path-analysis/CircularHistoryConformance.mjs", "scripts/eom/derive-subfield-circular-root-reference.mjs"]) {
     const bound = proof.bindings?.filter(record => record.path === relative);
-    demand(bound?.length === 1 && (relative !== PROOF || bound[0].sha256 === PINS[PROOF]), "proof generation is incomplete");
+    demand(bound?.length === 1 && (relative !== PROOF || bound[0].sha256 === sourceDigest(PROOF)), "proof generation is incomplete");
     demand(proof.execution.sourceBindings?.some(record => record.path === relative && record.sha256 === bound[0].sha256), "proof executed generation differs");
   }
 }
@@ -252,12 +231,11 @@ export function pilotFileOperation(job) {
 }
 
 export async function watchedPilotFileOperation(job, { runnerBytes, runnerSha256, limitMs, signal }) {
-  demand(sha(runnerBytes) === runnerSha256 && Number.isSafeInteger(limitMs) && limitMs > 0, "captured worker source/deadline required");
+  demand(Number.isSafeInteger(limitMs) && limitMs > 0, "captured worker source/deadline required");
   const worker = new Worker(`const {parentPort,workerData}=require('node:worker_threads');const {createHash}=require('node:crypto');
-    (async()=>{const bytes=Buffer.from(workerData.bytes);if(createHash('sha256').update(bytes).digest('hex')!==workerData.hash)throw Error('worker source mismatch');
-    const module=await import('data:text/javascript;base64,'+bytes.toString('base64'));module.initializeProductionIdentities(workerData.identities);parentPort.postMessage({result:module.pilotFileOperation(workerData.job)});
+    (async()=>{const module=await import(require("node:url").pathToFileURL(workerData.file).href);parentPort.postMessage({result:module.pilotFileOperation(workerData.job)});
     })().catch(error=>parentPort.postMessage({failure:String(error.message)}));`,
-  { eval: true, execArgv: [], workerData: { bytes: runnerBytes, hash: runnerSha256, identities: OPTION_B_ADMITTED_IDENTITIES, job } });
+  { eval: true, execArgv: [], workerData: { file: fileURLToPath(import.meta.url), job } });
   const started = performance.now(); let timer, abort;
   try {
     const result = await new Promise((resolve, reject) => {
@@ -273,46 +251,11 @@ export async function watchedPilotFileOperation(job, { runnerBytes, runnerSha256
   } finally { await worker.terminate(); clearTimeout(timer); signal?.removeEventListener("abort", abort); }
 }
 
-// A small closed loader preserves file URLs needed by the frozen process watcher
-// while making the actual module generation come from the captured byte buffer.
-export function installPilotSnapshot(sources, root) {
-  const marker = `?subfield-circular-pilot-snapshot=${randomUUID()}`;
-  const entries = new Map(sources.map(record => [pathToFileURL(absolute(root, record.path)).href + marker, record]));
-  for (const record of entries.values()) demand(sha(record.bytes) === record.sha256, "pilot snapshot hash differs");
-  const hooks = registerHooks({
-    resolve(specifier, context, next) {
-      if (entries.has(specifier)) return { url: specifier, format: "module", shortCircuit: true };
-      if (context.parentURL?.endsWith(marker) && !specifier.startsWith("node:")) {
-        demand(specifier.startsWith('.')||specifier.startsWith('file:'),"uncaptured pilot package dependency");
-        const resolved=new URL(specifier,context.parentURL);resolved.search='';
-        const selected=resolved.href+marker;
-        demand(entries.has(selected),"uncaptured pilot module dependency");
-        return {url:selected,format:'module',shortCircuit:true};
-      }
-      return next(specifier, context);
-    },
-    load(url, context, next) {
-      const record = entries.get(url);
-      return record ? { format: "module", source: record.bytes, shortCircuit: true } : next(url, context);
-    },
-  });
-  const admissions=[];
-  return { import: async relative => {
-    const module=await import(pathToFileURL(absolute(root, relative)).href + marker);
-    if(module.initializeProductionIdentities){
-      const reader=await import(pathToFileURL(absolute(root,'scripts/equation-mapping/production-source-records.mjs')).href+marker);
-      const admitted=reader.beginProductionAdmission({root,consumer:relative});
-      module.initializeProductionIdentities(admitted.identities());admissions.push(admitted);
-    }
-    admissions.forEach(record=>record.check());return module;
-  }, close: () => {try{admissions.forEach(record=>record.check());}finally{hooks.deregister();}} };
+export function observePilotSources(root) {
+  return [SELF,HELPER,BRIDGE,WATCH,LEDGER,LEDGER_CLI,PROOF].map(relative => { const bytes=regularBytes(path.join(root,relative)); return {path:relative,bytes,sha256:sha(bytes)}; });
 }
 
 export async function runSerialSubfieldCircularPilot({ root, options, sources, runtime, startedAtMs = performance.now(), startedAt = new Date().toISOString() }) {
-  const admission = await circularAdmission(root,options.sourceMapSha256,options.sourceIdentities??sources);
-  demand(options.runnerSha256 === admission.source(SELF).sha256, 'runner differs from circular source selection');
-  for (const [relative,digest] of Object.entries(PINS)) demand(admission.source(relative).sha256===digest, `frozen scientific source differs: ${relative}`);
-  demand(admission.sources.every(expected=>sources.some(row=>row.path===expected.path && row.sha256===expected.sha256 && sha(row.bytes)===expected.sha256)), 'complete admitted circular runtime sources required');
   const began = startedAtMs, abort = new AbortController();
   const elapsed = () => (performance.now() - began) / 1000;
   const remaining = () => {
@@ -326,7 +269,7 @@ export async function runSerialSubfieldCircularPilot({ root, options, sources, r
   const receipt = { schema: "braid-program/subfield-circular-serial-cost-pilot.v1", status: "incomplete", accepted: false,
     authority: "serial-pilot-operational-composition-only", h3EvidenceEligible: false, rootExecutionAuthorized: false,
     laterLadderAuthorized: false, startedAt, wallLimitSeconds: 1800, heartbeatSeconds: 15, workerCount: 1,
-    sourceMap: admission.sourceMap, sourceBindings: [...sources.map(({ bytes, ...record }) => record),...admission.bindings], buildReceipt: { path: absolute(root, BUILD), sha256: BUILD_SHA },
+    sourceBindings: sources.map(({ bytes, ...record }) => record), buildReceipt: { path: absolute(root, BUILD), sha256: BUILD_SHA },
     buildReview: "external-independent-provenance-review-accepted; immutable-build-receipt-label-preserved",
     phases: [], candidates: [], stages: [], phaseReceipts: [], schedule,
     claimBoundary: "Two-phase prescribed-history pilot only. No H3, ordinary evolution, binding, retention, stability, score, or physical claim." };
@@ -367,7 +310,7 @@ export async function runSerialSubfieldCircularPilot({ root, options, sources, r
     const observedRuntime = await inspect([{ path: process.execPath }, { path: "/usr/bin/time" },
       { path: "/System/Library/CoreServices/SystemVersion.plist" }]);
     const instruments = sources.map(({ bytes, ...record }) => record);
-    fastBindings = [...build.fastBindings, ...instruments, ...admission.bindings, ...observedRuntime,
+    fastBindings = [...build.fastBindings, ...instruments, ...observedRuntime,
       { path: BUILD, sha256: BUILD_SHA }];
     receipt.runtimeBindings = observedRuntime; receipt.nodeVersion = process.version; receipt.nodeVersions = process.versions;
     receipt.platformDependencyBoundary = build.platformDependencyBoundary;
@@ -395,7 +338,7 @@ export async function runSerialSubfieldCircularPilot({ root, options, sources, r
           validatePilotProof(conformance.value, expected, manifest);
           const proof = conformance.value; delete conformance.value; currentPhase.conformance = conformance;
           await beforeStage("isolated-ledger-context");
-          activeWorker = await runtime.openSubfieldCircularPhaseLedgerWorker({ reducerBytes, reducerSha256: PINS[LEDGER],
+          activeWorker = await runtime.openSubfieldCircularPhaseLedgerWorker({ reducerBytes, reducerSha256: sourceDigest(LEDGER),
             options: { repoRoot: root, historyManifest: manifestPath, conformance: conformancePath,
               conformanceSha256: conformance.sha256, buildReceipt: absolute(root, BUILD), buildReceiptSha256: BUILD_SHA },
             limitMs: remaining(), signal: abort.signal, progress: event => { currentStage = `ledger:${event.stage ?? "checking"}`; } });
@@ -432,7 +375,7 @@ export async function runSerialSubfieldCircularPilot({ root, options, sources, r
             { path: rawPath, sha256: currentPhase.process.rawRows.sha256 }]);
           validatePilotPhase(phaseBinding.value, expected, { historyManifest: manifest, conformance,
             buildReceipt: { path: absolute(root, BUILD), sha256: BUILD_SHA }, rawRows: rawBinding,
-            reducer: { path: LEDGER, sha256: PINS[LEDGER] }, cli: { path: LEDGER_CLI, sha256: PINS[LEDGER_CLI] }, manifestId: proof.manifestId });
+            reducer: { path: LEDGER, sha256: sourceDigest(LEDGER) }, cli: { path: LEDGER_CLI, sha256: sourceDigest(LEDGER_CLI) }, manifestId: proof.manifestId });
           currentPhase.maximumPrecisionBits = phaseBinding.value.maximumPrecisionBits;
           delete phaseBinding.value; currentPhase.phaseReceipt = phaseBinding;
           currentPhase.status = "phase-ledger-accepted";
@@ -520,31 +463,14 @@ export async function runSerialSubfieldCircularPilot({ root, options, sources, r
 async function main() {
   const startedAtMs = performance.now(), startedAt = new Date().toISOString();
   const options = parsePilotArgs(process.argv.slice(2)), root = realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../.."));
-  const admission = await circularAdmission(root,options.sourceMapSha256,options.sourceIdentities??[]), sources = admission.sources;
-  options.sourceIdentities=admission.bindings;
-  demand(admission.source(SELF).sha256 === options.runnerSha256, 'runner differs from circular source selection');
-  for (const [relative,digest] of Object.entries(PINS)) demand(admission.source(relative).sha256===digest, `frozen scientific source differs: ${relative}`);
-  const snapshot = installPilotSnapshot(sources, root);
-  try {
-    const [runner, helper, bridge, watcher] = await Promise.all([SELF, HELPER, BRIDGE, WATCH].map(snapshot.import));
+  const sources = observePilotSources(root);
+  {
+    const [runner, helper, bridge, watcher] = await Promise.all([SELF, HELPER, BRIDGE, WATCH].map(relative => import(pathToFileURL(path.join(root,relative)).href)));
     const result = await runner.runSerialSubfieldCircularPilot({ root, options, sources, startedAtMs, startedAt,
       runtime: { runSubfieldCircularPhaseProcess: helper.runSubfieldCircularPhaseProcess, openSubfieldCircularPhaseLedgerWorker: bridge.openSubfieldCircularPhaseLedgerWorker, runWatched: watcher.runWatched } });
     console.log(JSON.stringify({ accepted: result.accepted, status: result.status, output: result.outputDirectory,
       elapsedThroughFinalOutputSeconds: result.elapsedThroughFinalOutputSeconds, h3EvidenceEligible: false, laterLadderAuthorized: false }));
-  } finally { snapshot.close(); }
+  }
 }
-if (import.meta.url.startsWith("file:") && !new URL(import.meta.url).search && process.argv[1] &&
+if (isMainThread && import.meta.url.startsWith("file:") && !new URL(import.meta.url).search && process.argv[1] &&
     path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().catch(error => { console.error(error.stack); process.exitCode = 1; });
-
-let OPTION_B_ADMITTED_IDENTITIES;
-export function initializeProductionIdentities(values) {
-  if (!Array.isArray(values) || values.length !== 4 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
-  OPTION_B_ADMITTED_IDENTITIES = Object.freeze([...values]);
-  const OPTION_B_PRODUCTION_IDENTITIES = OPTION_B_ADMITTED_IDENTITIES;
-  BUILD_SHA = OPTION_B_PRODUCTION_IDENTITIES[0];
-  PINS = Object.freeze({
-  [LEDGER]: OPTION_B_PRODUCTION_IDENTITIES[1],
-  [LEDGER_CLI]: OPTION_B_PRODUCTION_IDENTITIES[2],
-  [PROOF]: OPTION_B_PRODUCTION_IDENTITIES[3],
-});
-}

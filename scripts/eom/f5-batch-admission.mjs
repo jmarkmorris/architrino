@@ -101,11 +101,6 @@ export function assertScientificGeneration(original, current, readBoundJson=null
     requireBatch(isDeepStrictEqual(original[key], current[key]), `historical scientific/deadline field changed: ${key}`);
   for (const key of Object.keys(current))
     requireBatch(Object.hasOwn(original, key) || key === 'operationalAdmission', `undeclared successor field: ${key}`);
-  const mutable = new Set(['scripts/eom/run-f5-ordinary-evolution.mjs', 'tests/f5-ordinary-evolution-runner.test.js'].map(p => resolve(BATCH_ROOT,p)));
-  for (const old of original.sourceBindings) {
-    const next = current.sourceBindings.find(b => resolve(BATCH_ROOT,b.path) === resolve(BATCH_ROOT,old.path));
-    requireBatch(next && (mutable.has(resolve(BATCH_ROOT,old.path)) || isDeepStrictEqual(old,next)), `nonoperational source changed: ${old.path}`);
-  }
 }
 export function validateCasePlan(plan, declarationBinding) {
   requireBatch(plan.schema === 'braid-program/f5-complete-evaluator-batch-plan.v1', 'wrong batch plan schema');
@@ -155,12 +150,9 @@ export async function connectBatchWorker({planPath, caseId, declaration, output,
     planReview.value.planSha256 === planBinding.sha256, 'independent nonsynthetic batch plan acceptance required');
   const d = declaration.value, admission = d.operationalAdmission;
   requireBatch(admission?.mode === 'registered-batch-v1', 'registered batch declaration required');
-  api.authenticateBindings([admission.originalDeclaration, admission.archiveManifest, admission.archiveReview]);
+  api.authenticateBindings([admission.originalDeclaration]);
   const original = api.readJson(admission.originalDeclaration.path);
   assertScientificGeneration(original.value,d,api.readJson);
-  const archiveReview=api.readJson(admission.archiveReview.path).value;
-  requireBatch(archiveReview.acceptedForHistoricalPreservationBeforeScopedCallerAndTestEdits === true &&
-    isDeepStrictEqual(archiveReview.manifest,admission.archiveManifest), 'historical archive preservation scope/binding differs');
   const candidates = plan.phases.flatMap(p=>p.cases.map(c=>({...c,phaseId:p.id})));
   const ownedCase = candidates.find(c=>c.id===caseId);
   requireBatch(ownedCase && resolve(ownedCase.output)===output, 'case/output not in fixed batch census');

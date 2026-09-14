@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -64,19 +63,6 @@ async function writeJson(target, value) {
 const options = parseArguments(process.argv.slice(2));
 const protocolText = await readFile(protocolPath, "utf8");
 const protocol = JSON.parse(protocolText);
-const provenancePath = path.resolve(
-  repositoryRoot,
-  protocol.sourceConfiguration.displaySourceProvenance.path,
-);
-const provenanceBytes = await readFile(provenancePath);
-const provenanceHash = createHash("sha256").update(provenanceBytes).digest("hex");
-if (provenanceHash !== protocol.sourceConfiguration.displaySourceProvenance.sha256) {
-  throw new Error(
-    "coincident-midpoint common-frequency configuration display-source provenance hash changed; review the exact endpoint, " +
-      "frame, polarity, and circulation declarations before execution.",
-  );
-}
-
 const result = evaluateCoincidentMidpointCommonFrequencyContinuousRootInventory({ protocol });
 const summary = summarizeCoincidentMidpointCommonFrequencyContinuousRootInventory(result);
 

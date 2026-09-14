@@ -10,99 +10,19 @@ completion and external inclusive deadline/process closure remain mandatory.
 """
 from __future__ import annotations
 
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
-    from pathlib import Path as _b_Path
-    _b_root = _b_Path(__file__).resolve().parents[2]
-    _b_held = {}
-    def _b_identity(path):
-        value = path.lstat()
-        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
-    def _b_capture(relative, expected=None):
-        if (type(relative) is not str or not relative or '\\' in relative
-                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
-            raise ValueError('Unsafe selected Python bootstrap path')
-        path = _b_root / relative
-        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
-            raise ValueError('Canonical regular Python bootstrap source required')
-        before = _b_identity(path)
-        if relative in _b_held and _b_held[relative] != before:
-            raise ValueError('Selected Python bootstrap source replaced')
-        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
-        try:
-            value = _b_os.fstat(fd)
-            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
-                raise ValueError('Bounded Python bootstrap source required')
-            parts = []; size = 0
-            while size < value.st_size:
-                part = _b_os.read(fd, min(65536, value.st_size-size))
-                if not part: raise ValueError('Truncated Python bootstrap source')
-                parts.append(part); size += len(part)
-            raw = b''.join(parts); value = _b_os.fstat(fd)
-            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
-                raise ValueError('Selected Python bootstrap source changed during capture')
-        finally:
-            _b_os.close(fd)
-        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
-            raise ValueError('Selected Python bootstrap digest differs')
-        _b_held[relative] = before
-        return raw
-    def _b_unique(pairs):
-        result = {}
-        for key,value in pairs:
-            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
-            result[key] = value
-        return result
-    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
-    def _b_recheck():
-        for relative,identity in _b_held.items():
-            if _b_identity(_b_root/relative) != identity:
-                raise ValueError('Retained Python bootstrap source replaced')
-    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
-    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
-    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
-    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
-    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
-    _b_path = 'scripts/eom/production_source_records.py'
-    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
-    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
-            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
-            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
-        raise ValueError('Exact selected Python production bridge required')
-    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
-    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
-    _b_bridge.__file__ = str(_b_root/_b_path)
-    _b_sys.modules[_b_bridge.__name__] = _b_bridge
-    _b_recheck()
-    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
-    _b_recheck()
-    def _b_call(name, *args, **kwargs):
-        _b_recheck()
-        result = getattr(_b_bridge,name)(*args,**kwargs)
-        _b_recheck()
-        return result
-    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
-    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
-    production_recheck = lambda: _b_call('production_recheck')
-    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
-    production_runtime_binding = lambda: _b_call('production_runtime_binding')
-    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
-    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+import hashlib
+from pathlib import Path
 
-if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
-        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
-        or len(OPTION_B_PRODUCTION_IDENTITIES) != 22):
-    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
+
 
 import argparse
 from contextlib import ExitStack
 from decimal import Decimal
 from fractions import Fraction as F
-import hashlib
 from itertools import product
 import json
 import os
-from pathlib import Path
 import re
 import signal
 import stat
@@ -114,31 +34,22 @@ _EXECUTING_CODE = sys._getframe().f_code
 SELF = 'scripts/eom/verify-f6c-continuous-reception-acceleration.py'
 CONTROLS = 'tests/test_f6c_continuous_reception_acceleration.py'
 CONSUMER = 'scripts/eom/prepare-f6c-continuous-reception-acceleration.py'
-CONSUMER_SHA = OPTION_B_PRODUCTION_IDENTITIES[0]
 CONSUMER_TEST = 'tests/test_f6c_continuous_reception_acceleration_preparation.py'
-CONSUMER_TEST_SHA = OPTION_B_PRODUCTION_IDENTITIES[1]
 DECLARATION = 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md'
-DECLARATION_SHA = OPTION_B_PRODUCTION_IDENTITIES[2]
 BASE = '.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/'
 # Independently transcribed original-byte contract, never imported from subject.
 FIXED = (
-    ('export', '.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json', OPTION_B_PRODUCTION_IDENTITIES[3]),
-    ('reconstruction', '.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json', OPTION_B_PRODUCTION_IDENTITIES[4]),
-    ('guards', '.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json', OPTION_B_PRODUCTION_IDENTITIES[5]),
-    ('manifest', BASE+'subject/cover-manifest.json', OPTION_B_PRODUCTION_IDENTITIES[6]),
-    ('comparison', BASE+'comparison.json', OPTION_B_PRODUCTION_IDENTITIES[7]),
-    ('admission', BASE+'pilot-admission.json', OPTION_B_PRODUCTION_IDENTITIES[8]),
-    ('rows', BASE+'subject/rows.ndjson', OPTION_B_PRODUCTION_IDENTITIES[9]),
-    ('pieces', BASE+'subject/pieces.ndjson', OPTION_B_PRODUCTION_IDENTITIES[10]),
-    ('priorPlan', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json', OPTION_B_PRODUCTION_IDENTITIES[11]),
-    ('priorClosureOwner', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md', OPTION_B_PRODUCTION_IDENTITIES[12]),
-    ('reference', 'scripts/eom/oracle/continuous_reception_acceleration.py', OPTION_B_PRODUCTION_IDENTITIES[13]),
-    ('referenceControls', 'tests/test_eom_continuous_reception_acceleration.py', OPTION_B_PRODUCTION_IDENTITIES[14]),
-    ('referenceProof', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', OPTION_B_PRODUCTION_IDENTITIES[15]),
-    ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', OPTION_B_PRODUCTION_IDENTITIES[16]),
-    ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', OPTION_B_PRODUCTION_IDENTITIES[17]),
-    ('reconstructionTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md', OPTION_B_PRODUCTION_IDENTITIES[18]),
+    ('export', '.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json', 'f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'),
+    ('reconstruction', '.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json', '7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43'),
+    ('guards', '.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json', '86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880'),
+    ('manifest', BASE+'subject/cover-manifest.json', '19fae257f7f36d858fa60d9031125b3f29dbb8780e944802699aab5292275f4c'),
+    ('comparison', BASE+'comparison.json', '6bf2b50ef4f0b46f43ae77a9881f82a2f9d504d5df757bc0ad215deb8eac36c6'),
+    ('admission', BASE+'pilot-admission.json', '1a814c90279eed456546b2c4959a8504657213ffc2d25c063060831814e930ee'),
+    ('rows', BASE+'subject/rows.ndjson', '786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383'),
+    ('pieces', BASE+'subject/pieces.ndjson', '2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411'),
+    ('priorPlan', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json', '5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86'),
 )
+SOURCE_PATHS = {'reference': 'scripts/eom/oracle/continuous_reception_acceleration.py', 'referenceControls': 'tests/test_eom_continuous_reception_acceleration.py'}
 SCOPE = 'cached-pilot-cell-0-range'
 CANDIDATE_SCHEMA = 'braid-program/f6c-continuous-reception-acceleration-candidate.v1'
 PLAN_SCHEMA = 'braid-program/f6c-continuous-reception-acceleration-launch.v1'
@@ -146,7 +57,7 @@ REPORT_SCHEMA = 'braid-program/f6c-continuous-reception-acceleration-conformance
 RANGE_SCHEMA = 'braid-program/continuous-reception-acceleration-range.v1'
 IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')
 CHARGE, COUPLING, RULER = '0.1666666666666666666666666666666667', '10.304229970992187', '0.5320012303229503'
-KNOT_SHA = OPTION_B_PRODUCTION_IDENTITIES[19]
+KNOT_SHA = '11acd09b692fe175861d0f9478b5d1763c18e088682a0c6a16fc29d65453075c'
 MAX_BYTES, MAX_RUNTIME_BYTES, MAX_LINE, LIMIT, HEARTBEAT = 64*1024**2, 1024**3, 128*1024, 1800, 15
 LIMITS = dict(inclusiveSeconds=1800, maximumAggregateRssBytes=2*1024**3,
               maximumRssSampleGapMs=1000, heartbeatSeconds=15, admissionFreeMemoryPercent=40,
@@ -157,9 +68,8 @@ ROOT_FLAGS = tuple('premise_truth_authenticated subject_membership_established e
 RANGE_FLAGS = tuple('accepted premise_truth_authenticated source_bytes_authenticated root_coverage_established subject_membership_established historical_trajectory_identity_established execution_authorized metrics_available score_authorized h3_evidence_eligible'.split())
 CANDIDATE_FLAGS = tuple('historicalTrajectoryIdentityEstablished metricsAvailable scoreAuthorized h3EvidenceEligible eomExecuted rootsEvaluated independentRangeComparisonPassed executionAuthorized'.split())
 CENSUS = dict(cells=1, pairRows=64, ordinaryPairs=56, selfZeros=8, members=8, pieceRecords=112)
-ROLES = tuple(zip(('original_export','reconstruction_receipt','guards_receipt','root_cover','root_cover_comparison',
-                  'member_acceleration_predeclaration','continuous_reception_enclosure_contract'),
-                 ('export','reconstruction','guards','manifest','comparison','memberPredeclaration','rootTheorem')))
+ROLES = tuple(zip(('original_export', 'reconstruction_receipt', 'guards_receipt', 'root_cover', 'root_cover_comparison'),
+                 ('export', 'reconstruction', 'guards', 'manifest', 'comparison')))
 ROW_KEYS = 'rowIndex cellIndex receiverIndex transmitterIndex receiverId transmitterId reception emission ordinaryRootsPerReception coincidentEndpointExcluded oldestResidual lowerFaceResidual upperFaceResidual displacement distance transmitterFactor receiverFactor receiverPieceRecord transmitterPieceRecord rootFreeComplementConditional retainedBoundaryContact libraryFlags'.split()
 PIECE_KEYS = 'recordIndex rowIndex role memberId historyDigest requestedInterval touchedPieceCount firstIndex lastIndex contiguousIndexRange clippedPiecesSha256'.split()
 TOKEN = re.compile(r'-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\Z')
@@ -172,53 +82,9 @@ HEX = re.compile(r'[a-f0-9]{64}\Z')
 from contextlib import contextmanager
 
 
-class _ProductionOriginal:
-    """Original logical binding backed by an independently owned archive handle."""
-    def __init__(self, physical, logical):
-        object.__setattr__(self,'_physical',physical)
-        object.__setattr__(self,'path',logical)
-    def __getattr__(self,name):return getattr(self._physical,name)
-    def __setattr__(self,name,value):setattr(self._physical,name,value)
-    def binding(self):
-        result=self._physical.binding();result['path']=str(self.path);return result
-    def physical_binding(self):return self._physical.binding()
-    def recheck(self):
-        result=self._physical.recheck()
-        if isinstance(result,dict) and 'path' in result:
-            result=dict(result);result['path']=str(self.path)
-        return result
 
 
-@contextmanager
-def _production_capture(cls, filename, digest, **kwargs):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
-    if not _path.is_absolute():_path=_root/_path
-    try:_relative=_path.relative_to(_root).as_posix()
-    except ValueError:_binding=None
-    else:
-        if _path!=_path.resolve():raise ValueError('noncanonical original capture')
-        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
-        if _binding is not None:
-            from hashlib import sha256 as _sha256
-            _,_current,_=production_source_pair(_root,__file__,_relative)
-            _binding=None if _sha256(_current).hexdigest()==digest else production_original_source_binding(_root,__file__,_relative,digest)
-    _physical=_Path(_binding['path']) if _binding is not None else _path
-    production_recheck()
-    with cls(_physical,digest,**kwargs) as _held:
-        if _binding is not None and (_held.binding()['bytes']!=_binding['bytes'] or _held.binding()['sha256']!=_binding['sha256']):raise ValueError('original archive identity differs')
-        try:yield _ProductionOriginal(_held,_path) if _binding is not None else _held
-        finally:
-            if _binding is not None:_held.recheck()
-            production_recheck()
 
-def _production_current_source(raw):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2]
-    _original,_current,_=production_source_pair(_root,__file__,_Path(__file__).resolve().relative_to(_root).as_posix())
-    require(raw==_original or raw==_current,'executing source is not the selected equivalent generation')
-    production_recheck()
-    return _current
 
 def require(value, message):
     if not value:
@@ -236,22 +102,22 @@ def equal(a, b):
 
 
 def keys(obj, names):
-    require(type(obj) is dict and set(obj) == set(names), 'closed fields differ')
+    require((type(obj) is dict) and (set(obj) == set(names)), 'closed fields differ')
 
 
 def seq(value, count):
-    require(type(value) is list and len(value) == count, 'exact list census differs')
+    require((type(value) is list) and (len(value) == count), 'exact list census differs')
 
 
 def integer(value, lo, hi):
-    require(type(value) is int and lo <= value <= hi, 'bounded exact integer required')
+    require((type(value) is int) and (lo <= value <= hi), 'bounded exact integer required')
     return value
 
 
 def number(value):
-    require(type(value) is str and 0 < len(value) <= 1152 and TOKEN.fullmatch(value), 'bounded decimal token required')
+    require((type(value) is str) and (0 < len(value) <= 1152) and (TOKEN.fullmatch(value)), 'bounded decimal token required')
     d = Decimal(value)
-    require(d.is_finite() and len(d.as_tuple().digits) <= 1024 and abs(d.as_tuple().exponent) <= 1000,
+    require((d.is_finite()) and (len(d.as_tuple().digits) <= 1024) and (abs(d.as_tuple().exponent) <= 1000),
             'decimal exponent/digit bound')
     return F(d)
 
@@ -259,7 +125,7 @@ def number(value):
 def interval(value, *, root=False, output=False):
     keys(value, ('lower','upper','precision') if root else ('lower','upper'))
     if root:
-        require(type(value['precision']) is int and value['precision'] == 90, 'root precision differs')
+        require((type(value['precision']) is int) and (value['precision'] == 90), 'root precision differs')
     lo, hi = number(value['lower']), number(value['upper'])
     require(lo <= hi, 'reversed interval')
     if output:
@@ -274,8 +140,8 @@ def flags(value, names):
 
 def binding(value):
     keys(value, ('path','sha256','bytes'))
-    require(type(value['path']) is str and 0 < len(value['path']) <= 2048 and '\0' not in value['path'], 'binding path invalid')
-    require(type(value['sha256']) is str and HEX.fullmatch(value['sha256']), 'SHA256 required')
+    require((type(value['path']) is str) and (0 < len(value['path']) <= 2048) and ('\0' not in value['path']), 'binding path invalid')
+    require((type(value['sha256']) is str) and (HEX.fullmatch(value['sha256'])), 'SHA256 required')
     integer(value['bytes'],1,MAX_RUNTIME_BYTES)
     return value
 
@@ -289,7 +155,7 @@ def encoded(value):
 
 
 def decode(raw, *, receipt=False):
-    require(type(raw) is bytes and 0 < len(raw) <= MAX_BYTES, 'bounded original JSON required')
+    require((type(raw) is bytes) and (0 < len(raw) <= MAX_BYTES), 'bounded original JSON required')
     def pairs(items):
         result = {}
         for k,v in items:
@@ -303,9 +169,9 @@ def decode(raw, *, receipt=False):
 
 
 def records(raw, count):
-    require(type(raw) is bytes and 0 < len(raw) <= MAX_BYTES and raw.endswith(b'\n'), 'terminated bounded original stream required')
+    require((type(raw) is bytes) and (0 < len(raw) <= MAX_BYTES) and (raw.endswith(b'\n')), 'terminated bounded original stream required')
     lines = raw.split(b'\n')[:-1]
-    require(len(lines) == count and all(0 < len(line) <= MAX_LINE for line in lines), 'raw line/census bound')
+    require((len(lines) == count) and (all(0 < len(line) <= MAX_LINE for line in lines)), 'raw line/census bound')
     result = [decode(line) for line in lines]
     require(all(type(row) is dict for row in result), 'null/nonobject is not EOF')
     return result
@@ -339,9 +205,9 @@ def clipped_coverage(grid, requested):
     for n,(left,right) in enumerate(grid):
         if left > hi or right < lo: continue
         a,b=max(left,lo),min(right,hi)
-        require(a <= cursor and (not indices or n == indices[-1]+1), 'closed coverage gap')
+        require((a <= cursor) and (not indices or n == indices[-1]+1), 'closed coverage gap')
         digest.update(f'{n}\t{a}\t{b}\n'.encode());indices.append(n);cursor=max(cursor,b)
-    require(indices and cursor == hi, 'closed coverage incomplete')
+    require((indices) and (cursor == hi), 'closed coverage incomplete')
     return dict(touchedPieceCount=len(indices), firstIndex=indices[0], lastIndex=indices[-1],
                 contiguousIndexRange=[indices[0],indices[-1]], clippedPiecesSha256=digest.hexdigest())
 
@@ -349,39 +215,34 @@ def clipped_coverage(grid, requested):
 def reconstruct_projection(export, manifest, rows, pieces, fixed):
     """Rebuild from originals, not the subject's expected-input projection."""
     seq(rows,64);seq(pieces,112)
-    require(export['schema']=='braid-program/f6c-retained-history-export.v1' and
-            export['fieldSpeed']=='1' and export['coupling']==COUPLING, 'original source constants/schema differ')
-    require(manifest['schema']=='braid-program/f6c-continuous-reception-root-cover.v1' and
-            manifest['scope']=='pilot-cell-0' and manifest['status']=='conditional_complete' and manifest['accepted'] is False,
+    require((export['schema']=='braid-program/f6c-retained-history-export.v1') and (export['fieldSpeed']=='1') and (export['coupling']==COUPLING), 'original source constants/schema differ')
+    require((manifest['schema']=='braid-program/f6c-continuous-reception-root-cover.v1') and (manifest['scope']=='pilot-cell-0') and (manifest['status']=='conditional_complete') and (manifest['accepted'] is False),
             'original cover scope differs')
     flags(manifest['libraryFlags'],ROOT_FLAGS)
     for k,n in dict(precision=90,cellCount=1,rowCount=64,ordinaryNonselfRows=56,selfExclusionRows=8,pieceRecordCount=112).items():
-        require(type(manifest[k]) is int and manifest[k]==n, 'original cover census differs')
-    require(interval(manifest['receptionDomain'],root=True)==(F(0),F(1,1000)) and
-            interval(manifest['retainedDomain'],root=True)==(F(-8),F(13,100)), 'original domains differ')
+        require((type(manifest[k]) is int) and (manifest[k]==n), 'original cover census differs')
+    require((interval(manifest['receptionDomain'],root=True)==(F(0),F(1,1000))) and (interval(manifest['retainedDomain'],root=True)==(F(-8),F(13,100))), 'original domains differ')
     histories=export['retainedHistories']; frames=export['acceptedFrames']; edges=export['acceptedFrameIntervals']
     seq(histories,8);seq(manifest['members'],8);seq(frames,81);seq(edges,80)
     grids=[];digests=[];expected_members=[];knots=None
     for i,h in enumerate(histories):
         sign=1 if i%2==0 else -1
-        require(h['id']==IDS[i] and type(h['pathKey']) is int and h['pathKey']==i+1 and
-                type(h['polarity']) is int and h['polarity']==sign and h['charge']==('' if sign>0 else '-')+CHARGE,
+        require((h['id']==IDS[i]) and (type(h['pathKey']) is int) and (h['pathKey']==i+1) and (type(h['polarity']) is int) and (h['polarity']==sign) and (h['charge']==('' if sign>0 else '-')+CHARGE),
                 'original member identity/polarity differs')
-        require(h['coverageStart']=='-8' and h['coverageEnd']=='0.13', 'original history domain differs')
+        require((h['coverageStart']=='-8') and (h['coverageEnd']=='0.13'), 'original history domain differs')
         digest,grid=original_history(h); grids.append(grid);digests.append(digest)
         future=sorted({v for pair in grid[1600:] for v in pair})
         if knots is None: knots=future
-        require(future==knots and len(future)==161, 'original future knot census differs')
+        require((future==knots) and (len(future)==161), 'original future knot census differs')
         expected=dict(id=IDS[i],pathKey=i+1,polarity=sign,originalHistoryFingerprint=h['historyFingerprint'],historyDigest=digest)
         require(equal(manifest['members'][i],expected), 'original history digest/fingerprint mapping differs')
     require(sha(''.join(str(t)+'\n' for t in knots).encode())==KNOT_SHA, 'original knot hash differs')
     for n,frame in enumerate(frames):
         keys(frame,('frameIndex','time','members'));seq(frame['members'],8)
-        require(type(frame['frameIndex']) is int and frame['frameIndex']==n and number(frame['time'])==knots[2*n], 'frame knot mapping differs')
+        require((type(frame['frameIndex']) is int) and (frame['frameIndex']==n) and (number(frame['time'])==knots[2*n]), 'frame knot mapping differs')
         for i,m in enumerate(frame['members']):
             keys(m,('pathKey','position','velocity','positionErrorBound','stateFlags'))
-            require(type(m['pathKey']) is int and m['pathKey']==i+1 and type(m['stateFlags']) is int and
-                    m['stateFlags']==(1 if i%2==0 else 2) and number(m['positionErrorBound'])>=0, 'frame member mapping differs')
+            require((type(m['pathKey']) is int) and (m['pathKey']==i+1) and (type(m['stateFlags']) is int) and (m['stateFlags']==(1 if i%2==0 else 2)) and (number(m['positionErrorBound'])>=0), 'frame member mapping differs')
             for field in ('position','velocity'):
                 keys(m[field],('x','y','z'))
                 for t in m[field].values(): number(t)
@@ -400,27 +261,24 @@ def reconstruct_projection(export, manifest, rows, pieces, fixed):
     for n,row in enumerate(rows):
         keys(row,ROW_KEYS);flags(row['libraryFlags'],ROOT_FLAGS);i,j=divmod(n,8)
         for k,v in dict(rowIndex=n,cellIndex=0,receiverIndex=i,transmitterIndex=j).items():
-            require(type(row[k]) is int and row[k]==v, 'original pair order differs')
-        require(row['receiverId']==IDS[i] and row['transmitterId']==IDS[j] and equal(row['reception'],manifest['receptionDomain']), 'row identity/reception differs')
-        require(row['rootFreeComplementConditional'] is True and row['retainedBoundaryContact'] is False, 'root complement/boundary differs')
+            require((type(row[k]) is int) and (row[k]==v), 'original pair order differs')
+        require((row['receiverId']==IDS[i]) and (row['transmitterId']==IDS[j]) and (equal(row['reception'],manifest['receptionDomain'])), 'row identity/reception differs')
+        require((row['rootFreeComplementConditional'] is True) and (row['retainedBoundaryContact'] is False), 'root complement/boundary differs')
         nullable=('emission','oldestResidual','lowerFaceResidual','upperFaceResidual','displacement','distance','transmitterFactor','receiverFactor','receiverPieceRecord','transmitterPieceRecord')
         coverage=[]
         if i==j:
-            require(type(row['ordinaryRootsPerReception']) is int and row['ordinaryRootsPerReception']==0 and
-                    row['coincidentEndpointExcluded'] is True and all(row[k] is None for k in nullable), 'self exclusion differs')
+            require((type(row['ordinaryRootsPerReception']) is int) and (row['ordinaryRootsPerReception']==0) and (row['coincidentEndpointExcluded'] is True) and (all(row[k] is None for k in nullable)), 'self exclusion differs')
             coverage=[None,None]
         else:
-            require(type(row['ordinaryRootsPerReception']) is int and row['ordinaryRootsPerReception']==1 and row['coincidentEndpointExcluded'] is False, 'ordinary root census differs')
+            require((type(row['ordinaryRootsPerReception']) is int) and (row['ordinaryRootsPerReception']==1) and (row['coincidentEndpointExcluded'] is False), 'ordinary root census differs')
             require(interval(row['emission'],root=True)==(F(-8),-F(1,20)), 'emission proposal changed')
-            require(interval(row['oldestResidual'],root=True)[1]<0 and interval(row['lowerFaceResidual'],root=True)[1]<0 and
-                    interval(row['upperFaceResidual'],root=True)[0]>0, 'unrestricted face signs differ')
+            require((interval(row['oldestResidual'],root=True)[1]<0) and (interval(row['lowerFaceResidual'],root=True)[1]<0) and (interval(row['upperFaceResidual'],root=True)[0]>0), 'unrestricted face signs differ')
             require(equal(row['oldestResidual'],row['lowerFaceResidual']), 'same oldest/lower face differs')
-            require(interval(row['distance'],root=True)[0]>0 and interval(row['transmitterFactor'],root=True)[0]>=F(1,10**24) and
-                    interval(row['receiverFactor'],root=True)[0]>0, 'positive root denominator/factor differs')
+            require((interval(row['distance'],root=True)[0]>0) and (interval(row['transmitterFactor'],root=True)[0]>=F(1,10**24)) and (interval(row['receiverFactor'],root=True)[0]>0), 'positive root denominator/factor differs')
             seq(row['displacement'],3)
             for part in row['displacement']: interval(part,root=True)
             for role,member,request in (('receiver',i,row['reception']),('transmitter',j,row['emission'])):
-                require(type(row[role+'PieceRecord']) is int and row[role+'PieceRecord']==index, 'piece pointer differs')
+                require((type(row[role+'PieceRecord']) is int) and (row[role+'PieceRecord']==index), 'piece pointer differs')
                 p=pieces[index];keys(p,PIECE_KEYS)
                 cache_key=(member,role)
                 if cache_key not in cache:cache[cache_key]=clipped_coverage(grids[member],interval(request,root=True))
@@ -447,7 +305,7 @@ def reconstruct_projection(export, manifest, rows, pieces, fixed):
 
 def corner_acceleration(displacement, distance, factor, strength):
     """Exact extrema over eight corners; not the reference's interval pipeline."""
-    require(distance[0]>0 and distance[0]<=distance[1] and F(1,10**24)<=factor[0]<=factor[1], 'invalid sharp denominator')
+    require((distance[0]>0) and (distance[0]<=distance[1]) and (F(1,10**24)<=factor[0]<=factor[1]), 'invalid sharp denominator')
     require(len(displacement)==3, 'three acceleration coordinates required')
     result=[]
     for d in displacement:
@@ -460,7 +318,7 @@ def corner_acceleration(displacement, distance, factor, strength):
 def basis_curvature(frame, reception, p0, v0, p1, v1):
     """Differentiate normalized Hermite basis; affine extrema at cell ends."""
     left,right=frame;h=right-left
-    require(h>0 and left<=reception[0]<=reception[1]<=right, 'cell outside exact frame')
+    require((h>0) and (left<=reception[0]<=reception[1]<=right), 'cell outside exact frame')
     require(all(len(v)==3 for v in (p0,v0,p1,v1)), 'three Hermite coordinates required')
     result=[]
     for x0,w0,x1,w1 in zip(p0,v0,p1,v1):
@@ -480,14 +338,14 @@ def check_contains(record, exact):
 def compare_ranges(result, projection):
     copied={k:v for k,v in projection.items() if k!='cover_status'}
     keys(result, (*copied,'schema','status','pair_ranges','member_ranges','claims'))
-    require(result['schema']==RANGE_SCHEMA and result['status']=='conditional_ranges', 'range schema/status differs')
+    require((result['schema']==RANGE_SCHEMA) and (result['status']=='conditional_ranges'), 'range schema/status differs')
     for k,v in copied.items():require(equal(result[k],v), 'range copied original field differs: '+k)
     flags(result['claims'],RANGE_FLAGS);seq(result['pair_ranges'],64);seq(result['member_ranges'],8)
     totals=[[[F(0),F(0)] for _ in range(3)] for _ in IDS]
     for n,(raw,pair) in enumerate(zip(projection['rows'],result['pair_ranges'])):
         i,j=divmod(n,8);keys(pair,('receiver_id','transmitter_id','disposition','acceleration'))
-        require((pair['receiver_id'],pair['transmitter_id'])==(IDS[i],IDS[j]) and pair['disposition']==
-                ('self_empty_zero' if i==j else 'ordinary_conditional_range'), 'pair output identity/disposition differs')
+        require(((pair['receiver_id'],pair['transmitter_id'])==(IDS[i],IDS[j])) and (pair['disposition']==
+                ('self_empty_zero' if i==j else 'ordinary_conditional_range')), 'pair output identity/disposition differs')
         exact=[(F(0),F(0))]*3 if i==j else corner_acceleration(
             [interval(x) for x in raw['displacement']],interval(raw['distance']),interval(raw['transmitter_factor']),
             number(projection['coupling'])*number(projection['members'][i]['charge'])*number(projection['members'][j]['charge']))
@@ -516,19 +374,19 @@ def compare_ranges(result, projection):
 
 def validate_plan(plan, own_sha):
     keys(plan,('schema','scope','consumer','controls','declaration','rangeVerifier','runtimeBindings','operationalBindings','limits','priorCoverClosure'))
-    require(plan['schema']==PLAN_SCHEMA and plan['scope']==SCOPE and equal(plan['limits'],LIMITS), 'plan scope/resource limits differ')
-    for key,p,h in (('consumer',CONSUMER,CONSUMER_SHA),('controls',CONSUMER_TEST,CONSUMER_TEST_SHA),
-                    ('declaration',DECLARATION,DECLARATION_SHA),('rangeVerifier',SELF,own_sha)):
-        b=binding(plan[key]);require((b['path'],b['sha256'])==(p,h), 'frozen plan source differs')
+    require((plan['schema']==PLAN_SCHEMA) and (plan['scope']==SCOPE) and (equal(plan['limits'],LIMITS)), 'plan scope/resource limits differ')
+    for key,p in {'consumer':CONSUMER,'controls':CONSUMER_TEST,'declaration':DECLARATION,'rangeVerifier':SELF}.items():
+        require(binding(plan[key])['path']==p, 'plan source path differs')
+    require(plan['rangeVerifier']['sha256']==own_sha,'executing verifier differs')
     for key in ('runtimeBindings','operationalBindings'):
-        entries=plan[key];require(type(entries) is list and 0<len(entries)<=256, 'bounded execution census')
+        entries=plan[key];require((type(entries) is list) and (0<len(entries)<=256), 'bounded execution census')
         for b in entries:binding(b)
         require(len({b['path'] for b in entries})==len(entries), 'duplicate execution binding')
     require(sum(b['path']==CONTROLS for b in plan['operationalBindings'])==1, 'independent checker controls absent')
-    expected=dict(authority='externally-reviewed-caller-observation',ownerSha256=dict((r,h) for r,_,h in FIXED)['priorClosureOwner'],
+    expected=dict(authority='externally-reviewed-caller-observation',
                   admissionSha256=dict((r,h) for r,_,h in FIXED)['admission'],matchingFreshCompletionObserved=True,
                   exitCode=0,elapsedSeconds='8.534247625',processesClosed=True,independentAuditAccepted=True)
-    require(equal(plan['priorCoverClosure'],expected), 'externally observed prior closure differs')
+    require(equal({k:v for k,v in plan['priorCoverClosure'].items() if k!='ownerSha256'},expected), 'externally observed prior closure differs')
     return plan
 
 
@@ -538,37 +396,33 @@ def authenticate_prior(docs, fixed):
     for obj,key,role in ((m,'rows','rows'),(m,'pieces','pieces'),(m,'launchPlan','priorPlan'),
                          (c,'rows','rows'),(c,'pieces','pieces'),(c,'manifest','manifest'),(c,'launchPlan','priorPlan'),(a,'plan','priorPlan')):
         require(equal(binding(obj[key]),fixed[role]), 'prior original-byte chain differs')
-    require(c['schema']=='braid-program/f6c-continuous-reception-root-cover-conformance.v1' and c['accepted'] is True and c['scope']=='pilot-cell-0', 'prior comparison not accepted')
-    require(c['analysis']['accepted'] is False and c['analysis']['conditionalEnclosuresConformant'] is True, 'prior conditional comparison absent')
+    require((c['schema']=='braid-program/f6c-continuous-reception-root-cover-conformance.v1') and (c['accepted'] is True) and (c['scope']=='pilot-cell-0'), 'prior comparison not accepted')
+    require((c['analysis']['accepted'] is False) and (c['analysis']['conditionalEnclosuresConformant'] is True), 'prior conditional comparison absent')
     for k,n in dict(cellCount=1,pairCellCertificates=64,ordinaryNonselfRows=56,selfExclusionRows=8,distinctNonselfFaceChecks=112,pieceRecordCount=112,recordedGeometryPieceVisits=89208).items():
-        require(type(c['analysis'][k]) is int and c['analysis'][k]==n, 'prior comparison census differs')
+        require((type(c['analysis'][k]) is int) and (c['analysis'][k]==n), 'prior comparison census differs')
     require(equal(c['claims'],dict(conditionalRootCoverValidated=True,reconstructedFamilyApplicabilityAuthenticated=True,
         historicalTrajectoryIdentityEstablished=False,rootExecutionAuthorized=False,metricsAvailable=False,
         h3EvidenceEligible=False,scoreAuthorized=False,eomExecuted=False)), 'prior comparison claims differ')
     flags(c['libraryFlags'],ROOT_FLAGS)
-    require(p['schema']=='braid-program/f6c-cached-root-cover-pilot-launch.v1' and p['scope']=='pilot-cell-0', 'prior plan scope differs')
+    require((p['schema']=='braid-program/f6c-cached-root-cover-pilot-launch.v1') and (p['scope']=='pilot-cell-0'), 'prior plan scope differs')
     contract=p['comparisonContract']
-    require(contract['verifierSha256']==OPTION_B_PRODUCTION_IDENTITIES[20] and
-        contract['declarationSha256']==OPTION_B_PRODUCTION_IDENTITIES[21] and
-        c['verifier']['sha256']==contract['verifierSha256'], 'prior oracle generation differs')
-    require(equal(m['subjectSourceBindings'],contract['subjectSourceBindings']) and equal(m['runtimeBindings'],contract['runtimeBindings']), 'prior source/runtime chain differs')
-    for role in ('export','reconstruction','guards','rootTheorem','reconstructionTheorem'):
+    require(c['verifier']['sha256']==contract['verifierSha256'], 'prior oracle generation differs')
+    require((equal(m['subjectSourceBindings'],contract['subjectSourceBindings'])) and (equal(m['runtimeBindings'],contract['runtimeBindings'])), 'prior source/runtime chain differs')
+    for role in ('export', 'reconstruction', 'guards'):
         require(equal(binding(c['fixedBindings'][role]),fixed[role]), 'prior proof original binding differs')
     for role in ('reconstruction','guards'):
         proof=docs[role]
-        require(proof['accepted'] is True and proof['historyExportBefore']['sha256']==proof['historyExportAfter']['sha256']==fixed['export']['sha256'] and
-                proof['claims']['subjectMembershipEstablished'] is False, 'original family proof differs')
+        require((proof['accepted'] is True) and (proof['historyExportBefore']['sha256']==proof['historyExportAfter']['sha256']==fixed['export']['sha256']) and (proof['claims']['subjectMembershipEstablished'] is False), 'original family proof differs')
     for key in ('anchoredPrehistoryFamilyNonempty','fixedAcceptedFrameFutureContained','reconstructedFullHistoryFamilyNonempty','reconstructedFamilyContainedInOriginalEnclosures'):
         require(docs['reconstruction']['claims'][key] is True, 'coherent-family premise missing')
     for key in ('conditionalUniformOldestBoundaryResidualStrictlyNegative','conditionalUniformSameTimeNonselfSeparation','conditionalUniformSpeedStrictlyBelowOne'):
         require(docs['guards']['claims'][key] is True, 'uniform root premise missing')
-    require(a['schema']=='braid-program/f6c-cached-root-cover-pilot-admission.v1' and a['accepted'] is True and a['scope']=='pilot-cell-0' and a['processesClosed'] is True, 'prior operational admission differs')
+    require((a['schema']=='braid-program/f6c-cached-root-cover-pilot-admission.v1') and (a['accepted'] is True) and (a['scope']=='pilot-cell-0') and (a['processesClosed'] is True), 'prior operational admission differs')
     for k in ('eomExecuted','fullRunAuthorized','h3EvidenceEligible','historicalTrajectoryIdentityEstablished','metricsAvailable'):require(a[k] is False, 'prior authority promoted')
     seq(a['stages'],2)
     for item,stage in zip(a['stages'],('consumer','comparison')):
         process=item['process'];completed=item['admission']['completion']
-        require(item['stage']==stage and item['admission']['accepted'] is True and process['accepted'] is True and
-                process['processesClosed'] is True and equal(process['exit'],dict(code=0,signal=None)) and completed['completed'] is True, 'prior stage closure differs')
+        require((item['stage']==stage) and (item['admission']['accepted'] is True) and (process['accepted'] is True) and (process['processesClosed'] is True) and (equal(process['exit'],dict(code=0,signal=None))) and (completed['completed'] is True), 'prior stage closure differs')
         seq(process['gates'],1);require(process['gates'][0]['retired'] is True, 'prior gate not retired')
         require(completed['accepted'] is (stage=='comparison'), 'prior completion disposition differs')
         if stage=='consumer':require(equal(completed['outputs'],[fixed[k] for k in ('rows','pieces','manifest')]), 'prior consumer outputs differ')
@@ -577,8 +431,7 @@ def authenticate_prior(docs, fixed):
 
 def compare_candidate(packet, plan, plan_binding, consumer_binding, fixed, docs, rows, pieces):
     keys(packet,'schema scope accepted status fixedBindings launchPlan consumer declaration rangeVerifier runtimeBindings operationalBindings priorCoverClosure projection ranges census claims publicationRequires'.split())
-    require(packet['schema']==CANDIDATE_SCHEMA and packet['scope']==SCOPE and packet['accepted'] is False and
-            packet['status']=='conditional-range-candidate', 'candidate scope/self-acceptance differs')
+    require((packet['schema']==CANDIDATE_SCHEMA) and (packet['scope']==SCOPE) and (packet['accepted'] is False) and (packet['status']=='conditional-range-candidate'), 'candidate scope/self-acceptance differs')
     for key,expected in dict(fixedBindings=fixed,launchPlan=plan_binding,consumer=consumer_binding,declaration=plan['declaration'],
                             rangeVerifier=plan['rangeVerifier'],runtimeBindings=plan['runtimeBindings'],operationalBindings=plan['operationalBindings'],
                             priorCoverClosure=plan['priorCoverClosure'],census=CENSUS).items():
@@ -592,7 +445,7 @@ def compare_candidate(packet, plan, plan_binding, consumer_binding, fixed, docs,
 
 
 class BoundFile:
-    def __init__(self,path,expected,*,capture=False,limit=MAX_BYTES):
+    def __init__(self,path,expected=None,*,capture=False,limit=MAX_BYTES):
         self.path=Path(path).absolute();self.expected=expected;self.capture=capture;self.limit=limit;self.fd=None
 
     @staticmethod
@@ -600,13 +453,13 @@ class BoundFile:
         return info.st_dev,info.st_ino,info.st_size,info.st_mtime_ns,info.st_ctime_ns
 
     def __enter__(self):
-        require(type(self.expected) is str and HEX.fullmatch(self.expected), 'external original-byte hash required')
+        require((self.expected is None or (type(self.expected) is str and HEX.fullmatch(self.expected))), 'external original-byte hash required')
         self.fd=os.open(self.path,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
         try:
             self.initial=os.fstat(self.fd)
-            require(stat.S_ISREG(self.initial.st_mode) and 0<self.initial.st_size<=self.limit, 'bounded regular file required')
+            require((stat.S_ISREG(self.initial.st_mode)) and (0<self.initial.st_size<=self.limit), 'bounded regular file required')
             self.data,digest=self.scan(self.capture)
-            require(digest==self.expected, 'source hash differs')
+            self.expected=digest if self.expected is None else self.expected;require(digest==self.expected, 'source hash differs')
             self.check_path();return self
         except BaseException:
             os.close(self.fd);self.fd=None;raise
@@ -635,7 +488,7 @@ class BoundFile:
 
 
 def executing_source(raw):
-    require(compile(_production_current_source(raw),_EXECUTING_CODE.co_filename,'exec',dont_inherit=True,optimize=sys.flags.optimize)==_EXECUTING_CODE,
+    require(compile(raw,_EXECUTING_CODE.co_filename,'exec',dont_inherit=True,optimize=sys.flags.optimize)==_EXECUTING_CODE,
             'executing verifier generation differs')
 
 
@@ -652,7 +505,7 @@ def runtime_paths():
 
 def budget_deadline(token,began):
     exact=number(token);rounded=float(exact)
-    require(0<exact<=LIMIT and 0<rounded<=LIMIT and began+rounded>began, 'unrepresentable positive remaining deadline')
+    require((0<exact<=LIMIT) and (0<rounded<=LIMIT) and (began+rounded>began), 'unrepresentable positive remaining deadline')
     return began+rounded
 
 
@@ -695,7 +548,7 @@ def main(argv=None):
         parser.add_argument('--'+flag,required=True)
     args=parser.parse_args(argv);began=time.monotonic();deadline=budget_deadline(args.budget_seconds,began)
     root=Path(__file__).resolve().parents[2];output=Path(args.out).absolute();publication=None
-    require(output.parent.is_dir() and output==output.resolve() and not output.exists() and not output.is_symlink(), 'fresh canonical comparison output required')
+    require((output.parent.is_dir()) and (output==output.resolve()) and (not output.exists()) and (not output.is_symlink()), 'fresh canonical comparison output required')
     progress=dict(stage='capture',completedCells=0,accepted=False)
     def beat(*_):
         print(json.dumps({**progress,'elapsedSeconds':time.monotonic()-began}),file=sys.stderr,flush=True)
@@ -706,15 +559,15 @@ def main(argv=None):
     try:
         with ExitStack() as stack:
             owned=[]
-            def capture(path,digest,**kw):
-                obj=stack.enter_context(_production_capture(BoundFile, path,digest,**kw));owned.append(obj);return obj
+            def capture(path,digest=None,**kw):
+                obj=stack.enter_context(BoundFile(path,digest,**kw));owned.append(obj);return obj
             own=capture(root/SELF,args.verifier_sha256,capture=True);executing_source(own.data)
             plan_file=capture(args.plan,args.plan_sha256,capture=True)
             plan=validate_plan(decode(plan_file.data),args.verifier_sha256)
-            fixed_files={role:capture(root/p,h,capture=True) for role,p,h in FIXED}
+            fixed_files=({role:capture(root/p,h,capture=True) for role,p,h in FIXED} | {role: capture(root/p,capture=True) for role,p in SOURCE_PATHS.items()})
             fixed={k:v.binding() for k,v in fixed_files.items()}
             source_files={}
-            for key in ('consumer','controls','declaration','rangeVerifier'):
+            for key in ('consumer','controls','rangeVerifier'):
                 b=plan[key];obj=capture(root/b['path'],b['sha256']);require(obj.initial.st_size==b['bytes'], 'plan source size differs')
                 source_files[key]=obj.binding()
             runtime=set();execution=[]

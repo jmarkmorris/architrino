@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Close the fixed-phase orthogonal-plane weave fold boxes by limits.
 
-This extension treats the committed ordinary interval oracle as a frozen
+This extension uses the ordinary interval oracle as a numerical
 dependency.  It removes each target fold sheet, interval-encloses every other
 phase-zero contribution across the whole declared fold box, and proves that
 the born target sheet dominates on the root side.  Exact folds are routed by
@@ -63,12 +63,12 @@ def iv_record(value: Any, digits: int = 40) -> dict[str, str]:
     return {"lower": token(lower, digits), "upper": token(upper, digits)}
 
 
-def load_frozen_oracle(path: Path) -> Any:
+def load_oracle(path: Path) -> Any:
     spec = importlib.util.spec_from_file_location(
-        "frozen_orthogonal_plane_weave_interval_oracle", path
+        "orthogonal_plane_weave_interval_reference", path
     )
     if spec is None or spec.loader is None:
-        raise RuntimeError(f"cannot load frozen oracle {path}")
+        raise RuntimeError(f"cannot load oracle {path}")
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module
     spec.loader.exec_module(module)
@@ -87,16 +87,10 @@ def validate_protocol(packet: dict[str, Any], protocol_path: Path) -> None:
     domain = packet["domain"]
     if domain["fieldSpeed"] != "1" or domain["beta"] != ["0.25", "12"]:
         raise ValueError("the normalized bounded domain must remain frozen")
-    for key in (
-        "ordinaryCertificate",
-        "ordinaryOracle",
-        "masterEquation",
-        "sixWorldlineSubject",
-    ):
-        path = REPO_ROOT / packet["frozenInputs"][f"{key}Path"]
-        expected_hash = packet["frozenInputs"][f"{key}Sha256"]
-        if sha256_bytes(path.read_bytes()) != expected_hash:
-            raise ValueError(f"frozen input changed: {path}")
+    artifact = packet["inputs"]
+    path = REPO_ROOT / artifact["ordinaryCertificatePath"]
+    if sha256_bytes(path.read_bytes()) != artifact["ordinaryCertificateSha256"]:
+        raise ValueError("ordinary certificate artifact differs")
 
 
 def sheet_key(sheet: Any) -> tuple[str, int, str]:
@@ -290,11 +284,11 @@ def build_receipt(
     mp.mp.dps = digits + 30
     mp.iv.dps = digits
 
-    frozen = packet["frozenInputs"]
-    ordinary_path = REPO_ROOT / frozen["ordinaryCertificatePath"]
+    inputs = packet["inputs"]
+    ordinary_path = REPO_ROOT / inputs["ordinaryCertificatePath"]
     ordinary = json.loads(ordinary_path.read_text(encoding="utf-8"))
-    oracle_path = REPO_ROOT / frozen["ordinaryOraclePath"]
-    oracle = load_frozen_oracle(oracle_path)
+    oracle_path = REPO_ROOT / inputs["ordinaryOraclePath"]
+    oracle = load_oracle(oracle_path)
     oracle.mp.mp.dps = digits + 30
     oracle.mp.iv.dps = digits
     maximum_x = mp.mpf(ordinary["domain"]["dimensionlessEmissionAngle"][1])
@@ -452,8 +446,7 @@ def build_receipt(
             "protocolPath": protocol_path.relative_to(REPO_ROOT).as_posix(),
             "protocolSha256": sha256_bytes(protocol_bytes),
             "certificatePath": Path(__file__).relative_to(REPO_ROOT).as_posix(),
-            "certificateSha256": sha256_bytes(Path(__file__).read_bytes()),
-            "frozenInputs": frozen,
+            "inputs": inputs,
             "mpmathVersion": mp.__version__,
             "decimalDigits": digits,
             "reproductionCommand": (

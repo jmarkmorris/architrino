@@ -6,6 +6,8 @@ The caller must separately admit this one scientific process on the shared host.
 """
 from __future__ import annotations
 
+from pathlib import Path
+
 import argparse
 from datetime import datetime, timezone
 from decimal import Decimal, localcontext
@@ -14,34 +16,19 @@ from hashlib import sha256
 import json
 import math
 import os
-from pathlib import Path
 import resource
 import signal
 import stat
 import sys
 import time
-import types
 
 ROOT = Path(__file__).resolve().parents[2]
+if not __package__:
+    sys.path.insert(0, str(ROOT))
 PRECISION = 80
 OUTPUT_LIMIT = 64 * 1024 * 1024
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import importlib.util as _option_b_importlib
-    from pathlib import Path as _OptionBPath
-    _option_b_root = _OptionBPath(__file__).resolve().parents[2]
-    _option_b_spec = _option_b_importlib.spec_from_file_location("_option_b_production_source_records", _option_b_root / "scripts/eom/production_source_records.py")
-    _option_b_bridge = _option_b_importlib.module_from_spec(_option_b_spec)
-    _option_b_spec.loader.exec_module(_option_b_bridge)
-    OPTION_B_PRODUCTION_IDENTITIES = _option_b_bridge.production_identities(__file__)
 
-HANDOFF_SHA = OPTION_B_PRODUCTION_IDENTITIES[0]
-ORACLE_HASHES = {
-    "__init__": OPTION_B_PRODUCTION_IDENTITIES[1],
-    "decimal_interval": OPTION_B_PRODUCTION_IDENTITIES[2],
-    "certified_history": OPTION_B_PRODUCTION_IDENTITIES[3],
-    "certified_acceleration": OPTION_B_PRODUCTION_IDENTITIES[4],
-    "certified_evolution": OPTION_B_PRODUCTION_IDENTITIES[5],
-}
+HANDOFF_SHA = '4e0696a848a0d36ccbe5948295e71738c933b7ea120e9aee00e2effdd6ecc149'
 
 
 def capture(path, limit=128 * 1024 * 1024):
@@ -67,27 +54,6 @@ def capture(path, limit=128 * 1024 * 1024):
         return data, {"path": str(path), "sha256": sha256(data).hexdigest(), "bytes": len(data)}
     finally:
         os.close(fd)
-
-
-def load_frozen_oracle(root=ROOT):
-    """Compile verified bytes under a fresh namespace, avoiding cached imports."""
-    captures = {}
-    for name, expected in ORACLE_HASHES.items():
-        data, binding = capture(root / "scripts/eom/oracle" / (name + ".py"))
-        if binding["sha256"] != expected:
-            raise ValueError("frozen oracle changed: " + name)
-        captures[name] = (data, binding)
-    package = "_f5_dynamics_frozen_" + str(time.monotonic_ns())
-    for name, (data, binding) in captures.items():
-        full_name = package if name == "__init__" else package + "." + name
-        module = types.ModuleType(full_name)
-        module.__file__ = binding["path"]
-        module.__package__ = package
-        if name == "__init__":
-            module.__path__ = []
-        sys.modules[full_name] = module
-        exec(compile(data, binding["path"], "exec"), module.__dict__)
-    return sys.modules[package + ".certified_evolution"], [item[1] for item in captures.values()]
 
 
 def decimal(value):
@@ -442,9 +408,7 @@ def main(argv=None):
         require_equal(declaration["history"]["sha256"], HANDOFF_SHA, "declared handoff hash")
         report["bindings"].append(binding)
         request, rung = validate_contract(declaration, inputs["request"], inputs["response"], json.loads(handoff_bytes))
-        oracle, bindings = load_frozen_oracle()
-        report["bindings"].extend(bindings)
-        report["bindings"].append(capture(__file__)[1])
+        from scripts.eom.oracle import certified_evolution as oracle
         report["rung"] = rung["id"]
         initial = {h["pathId"]: make_history(oracle, h["pathId"], h["segments"]) for h in request["histories"]}
         actual = {h["pathId"]: make_history(oracle, h["pathId"], h["segments"] + extension["segments"])

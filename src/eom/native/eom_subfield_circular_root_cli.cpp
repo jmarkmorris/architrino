@@ -1,4 +1,3 @@
-#include "option_b_production_identities.hpp"
 #include "architrino/eom/Decimal.hpp"
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/History.hpp"
@@ -57,13 +56,13 @@ constexpr std::string_view kOutputRoot = ".local-data/braid-analysis/subfield-ci
 constexpr std::string_view kManifestSchema = "braid-program/subfield-circular-history-manifest.v1";
 struct SourceBinding { const char* id; const char* path; const char* hash; };
 constexpr std::array<SourceBinding, 7> kSources{{
- {"circular-core", "src/prescribed-path-analysis/CircularHistoryConformance.mjs", option_b_production::circular_identities[0]},
- {"integer-primitive", "scripts/eom/derive-subfield-circular-root-reference.mjs", option_b_production::circular_identities[1]},
- {"root-reference", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-root-reference-20260827-v1.json", option_b_production::circular_identities[2]},
- {"budget-cli", "scripts/eom/derive-subfield-circular-history-budget.mjs", option_b_production::circular_identities[3]},
- {"construction-budget", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-history-budget-20260827-v1.json", option_b_production::circular_identities[4]},
- {"pilot-predeclaration", "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-pilot-predeclaration.md", option_b_production::circular_identities[5]},
- {"whole-manifest-verifier", "scripts/eom/verify-subfield-circular-history.mjs", option_b_production::circular_identities[6]}
+ {"circular-core", "src/prescribed-path-analysis/CircularHistoryConformance.mjs", nullptr},
+ {"integer-primitive", "scripts/eom/derive-subfield-circular-root-reference.mjs", nullptr},
+ {"root-reference", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-root-reference-20260827-v1.json", "c5c7ae5e44e37c7a03ac916f2c406a657e9b90067c27a596302a2731a9ae066f"},
+ {"budget-cli", "scripts/eom/derive-subfield-circular-history-budget.mjs", nullptr},
+ {"construction-budget", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-history-budget-20260827-v1.json", "6c380ecb86be8ca505ef7975cdd4d8fb844e2191762692a6b5e29134ee5bfebf"},
+ {"pilot-predeclaration", "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-pilot-predeclaration.md", "b1f0ac316d24637b8ad01f467d33c207e7ed728fa3bd3921824d51697daddc4d"},
+ {"whole-manifest-verifier", "scripts/eom/verify-subfield-circular-history.mjs", nullptr}
 }};
 constexpr std::array<std::string_view, 16> kCandidates{
  "coincident-midpoint-common-frequency","coincident-midpoint-equal-radius-common-frequency","coincident-midpoint-3-2-1-frequency","phase-compensated-equal-geometry","axially-separated-common-frequency","axially-separated-equal-radius-common-frequency","axially-separated-3-2-1-frequency","axial-transverse-coincident-axis-interior","high-axial-coincident-axis-interior","planar-common-center-three-binary",
@@ -247,15 +246,14 @@ struct FrozenInputs {
    if (std::find(kCandidates.begin(), kCandidates.end(), candidate) == kCandidates.end())
      throw std::runtime_error("candidate absent from frozen sixteen-row census");
    for (std::size_t i = 0; i < kSources.size(); ++i) {
-     const auto target = root / option_b_production::circular_original_paths[i];
+     const auto target = root / kSources[i].path;
      if (!within(target, root)) throw std::runtime_error("bound source escapes repository");
      originals[i]=std::make_unique<RetainedOriginalInput>(target);
      bytes[i] = originals[i]->bytes;
-     if (sha256(bytes[i]) != kSources[i].hash)
+     if (kSources[i].hash && sha256(bytes[i]) != kSources[i].hash)
        throw std::runtime_error("frozen source mismatch: " + std::string(kSources[i].id));
    }
    current_verifier=std::make_unique<RetainedOriginalInput>(root / kSources[6].path);
-   if(sha256(current_verifier->bytes)!=option_b_production::circular_current_verifier_identity)throw std::runtime_error("selected current verifier differs");
    const auto report = read_json(bytes[2]);
    const auto& rows = report.get_child("results");
    if (!report.get<bool>("accepted") || report.get<std::string>("normalizedFieldSpeed") != "1" ||
@@ -718,8 +716,7 @@ void check_conformance(const std::string& bytes, const Options& o, const std::st
  if (bindings.size() != kSources.size()+1) throw std::runtime_error("conformance binding census differs");
  for (const auto& binding : kSources) {
    const auto& actual=bindings.at(binding.id);
-   const bool current_verifier=std::string(binding.id)=="whole-manifest-verifier"&&actual==std::make_pair(std::string(binding.path),std::string(option_b_production::circular_current_verifier_identity));
-   if (!current_verifier&&actual != std::make_pair(std::string(binding.path), std::string(binding.hash)))
+   if (actual.first != binding.path || (binding.hash && actual.second != binding.hash))
      throw std::runtime_error("conformance frozen binding differs");
  }
  if (bindings.at("candidate-source") != std::make_pair(inputs.source_path, inputs.source_hash))

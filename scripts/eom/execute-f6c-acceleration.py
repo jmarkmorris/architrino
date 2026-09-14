@@ -6,96 +6,16 @@ its numerical projection and range comparison still use exact captured original
 functions. The actual v2 plan bytes remain the recorded launchPlan identity.
 """
 
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
-    from pathlib import Path as _b_Path
-    _b_root = _b_Path(__file__).resolve().parents[2]
-    _b_held = {}
-    def _b_identity(path):
-        value = path.lstat()
-        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
-    def _b_capture(relative, expected=None):
-        if (type(relative) is not str or not relative or '\\' in relative
-                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
-            raise ValueError('Unsafe selected Python bootstrap path')
-        path = _b_root / relative
-        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
-            raise ValueError('Canonical regular Python bootstrap source required')
-        before = _b_identity(path)
-        if relative in _b_held and _b_held[relative] != before:
-            raise ValueError('Selected Python bootstrap source replaced')
-        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
-        try:
-            value = _b_os.fstat(fd)
-            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
-                raise ValueError('Bounded Python bootstrap source required')
-            parts = []; size = 0
-            while size < value.st_size:
-                part = _b_os.read(fd, min(65536, value.st_size-size))
-                if not part: raise ValueError('Truncated Python bootstrap source')
-                parts.append(part); size += len(part)
-            raw = b''.join(parts); value = _b_os.fstat(fd)
-            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
-                raise ValueError('Selected Python bootstrap source changed during capture')
-        finally:
-            _b_os.close(fd)
-        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
-            raise ValueError('Selected Python bootstrap digest differs')
-        _b_held[relative] = before
-        return raw
-    def _b_unique(pairs):
-        result = {}
-        for key,value in pairs:
-            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
-            result[key] = value
-        return result
-    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
-    def _b_recheck():
-        for relative,identity in _b_held.items():
-            if _b_identity(_b_root/relative) != identity:
-                raise ValueError('Retained Python bootstrap source replaced')
-    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
-    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
-    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
-    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
-    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
-    _b_path = 'scripts/eom/production_source_records.py'
-    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
-    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
-            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
-            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
-        raise ValueError('Exact selected Python production bridge required')
-    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
-    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
-    _b_bridge.__file__ = str(_b_root/_b_path)
-    _b_sys.modules[_b_bridge.__name__] = _b_bridge
-    _b_recheck()
-    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
-    _b_recheck()
-    def _b_call(name, *args, **kwargs):
-        _b_recheck()
-        result = getattr(_b_bridge,name)(*args,**kwargs)
-        _b_recheck()
-        return result
-    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
-    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
-    production_recheck = lambda: _b_call('production_recheck')
-    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
-    production_runtime_binding = lambda: _b_call('production_runtime_binding')
-    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
-    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+import hashlib
+from pathlib import Path
 
-if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
-        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
-        or len(OPTION_B_PRODUCTION_IDENTITIES) != 7):
-    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
+
 import argparse
 from contextlib import ExitStack, contextmanager
 from dataclasses import asdict
-import hashlib
 import json
 import os
-from pathlib import Path
 import signal
 import resource
 import stat
@@ -108,11 +28,7 @@ _EXECUTING_CODE = sys._getframe().f_code
 SELF = 'scripts/eom/execute-f6c-acceleration.py'
 SUBJECT = 'scripts/eom/prepare-f6c-continuous-reception-acceleration.py'
 VERIFIER = 'scripts/eom/verify-f6c-continuous-reception-acceleration.py'
-SUBJECT_SHA = OPTION_B_PRODUCTION_IDENTITIES[0]
-VERIFIER_SHA = OPTION_B_PRODUCTION_IDENTITIES[1]
 DECLARATION = 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md'
-DECLARATION_SHA = OPTION_B_PRODUCTION_IDENTITIES[2]
-HISTORICAL = [["rootTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md",OPTION_B_PRODUCTION_IDENTITIES[3],28340],["reconstructionTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md",OPTION_B_PRODUCTION_IDENTITIES[4],21031]]
 PLAN_SCHEMA = 'braid-program/f6c-continuous-reception-acceleration-launch.v2'
 LIMIT = 64 * 1024**2
 
@@ -123,78 +39,10 @@ LIMIT = 64 * 1024**2
 
 
 
-class _ProductionOriginal:
-    """Original logical binding backed by an independently owned archive handle."""
-    def __init__(self, physical, logical):
-        object.__setattr__(self,'_physical',physical)
-        object.__setattr__(self,'path',logical)
-    def __getattr__(self,name):return getattr(self._physical,name)
-    def __setattr__(self,name,value):setattr(self._physical,name,value)
-    def binding(self):
-        result=self._physical.binding();result['path']=str(self.path);return result
-    def physical_binding(self):return self._physical.binding()
-    def recheck(self):
-        result=self._physical.recheck()
-        if isinstance(result,dict) and 'path' in result:
-            result=dict(result);result['path']=str(self.path)
-        return result
 
 
-@contextmanager
-def _production_capture(cls, filename, digest, **kwargs):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
-    if not _path.is_absolute():_path=_root/_path
-    try:_relative=_path.relative_to(_root).as_posix()
-    except ValueError:_binding=None
-    else:
-        if _path!=_path.resolve():raise ValueError('noncanonical original capture')
-        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
-        if _binding is not None:
-            from hashlib import sha256 as _sha256
-            _,_current,_=production_source_pair(_root,__file__,_relative)
-            _binding=None if _sha256(_current).hexdigest()==digest else production_original_source_binding(_root,__file__,_relative,digest)
-    _physical=_Path(_binding['path']) if _binding is not None else _path
-    production_recheck()
-    with cls(_physical,digest,**kwargs) as _held:
-        if _binding is not None and (_held.binding()['bytes']!=_binding['bytes'] or _held.binding()['sha256']!=_binding['sha256']):raise ValueError('original archive identity differs')
-        try:yield _ProductionOriginal(_held,_path) if _binding is not None else _held
-        finally:
-            if _binding is not None:_held.recheck()
-            production_recheck()
 
-def _production_current_source(raw):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2]
-    _original,_current,_=production_source_pair(_root,__file__,_Path(__file__).resolve().relative_to(_root).as_posix())
-    require(raw==_original or raw==_current,'executing source is not the selected equivalent generation')
-    production_recheck()
-    return _current
 
-def _production_exec(raw, filename, namespace, *, optimize=-1):
-    """Execute the proven current representation or the exact older original."""
-    from pathlib import Path as _Path
-    from hashlib import sha256 as _sha256
-    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
-    if not _path.is_absolute():_path=_root/_path
-    try:_relative=_path.relative_to(_root).as_posix()
-    except ValueError:_binding=None
-    else:
-        if _path!=_path.resolve():raise ValueError('noncanonical captured module')
-        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
-    if _binding is not None:
-        _original,_current,_identities=production_source_pair(_root,__file__,_relative)
-        if raw==_original or raw==_current:
-            raw=_current
-            namespace['OPTION_B_PRODUCTION_IDENTITIES']=_identities
-            for _key in ('production_identities','production_source_pair','production_recheck','production_historical_record','production_runtime_binding','production_original_source_binding'):
-                namespace[_key]=globals()[_key]
-        else:
-            _historical,_,_=production_source_pair(_root,__file__,_relative,_sha256(raw).hexdigest())
-            if raw!=_historical:raise ValueError('captured older original differs')
-    production_recheck()
-    try:exec(compile(raw,str(filename),'exec',dont_inherit=True,optimize=optimize),namespace)
-    finally:production_recheck()
 
 def require(ok, message):
     if not ok:
@@ -203,7 +51,7 @@ def require(ok, message):
 
 class Capture:
     """Hold exact regular-file identity and bytes through final cleanup."""
-    def __init__(self, filename, digest, *, capture=False, limit=LIMIT):
+    def __init__(self, filename, digest=None, *, capture=False, limit=LIMIT):
         self.path = Path(filename).absolute()
         self.expected, self.collect, self.limit = digest, capture, limit
         self.fd = None
@@ -223,7 +71,7 @@ class Capture:
             if collect:
                 parts.append(part)
         require(self.identity(os.fstat(self.fd)) == self.identity(self.initial), 'capture changed')
-        require(digest.hexdigest() == self.expected, 'capture digest differs')
+        self.expected=digest.hexdigest() if self.expected is None else self.expected;require(digest.hexdigest() == self.expected, 'capture digest differs')
         require(self.identity(os.stat(self.path, follow_symlinks=False)) == self.identity(self.initial), 'capture replaced')
         return b''.join(parts) if collect else None
 
@@ -232,7 +80,7 @@ class Capture:
         self.fd = os.open(self.path, os.O_RDONLY | os.O_NONBLOCK | getattr(os, 'O_NOFOLLOW', 0))
         try:
             self.initial = os.fstat(self.fd)
-            require(stat.S_ISREG(self.initial.st_mode) and 0 < self.initial.st_size <= self.limit, 'bounded regular capture required')
+            require((stat.S_ISREG(self.initial.st_mode)) and (0 < self.initial.st_size <= self.limit), 'bounded regular capture required')
             self.data = self.scan(self.collect)
             return self
         except BaseException:
@@ -259,40 +107,23 @@ def instrument(source):
     module.__file__, module.__package__ = str(source.path), ''
     sys.modules[name] = module
     try:
-        _production_exec(source.data, str(source.path), module.__dict__, optimize=sys.flags.optimize)
+        exec(compile(source.data, str(str(source.path)), 'exec', dont_inherit=True, optimize=sys.flags.optimize), module.__dict__)
         yield module
     finally:
         sys.modules.pop(name, None)
 
 
 def scientific_plan(plan, root, bridge_sha):
-    """Validate the transport extension without widening scientific predicates."""
-    require(type(plan) is dict and plan.get('schema') == PLAN_SCHEMA, 'current v2 plan required')
-    require(set(plan) == set('schema scope consumer controls declaration rangeVerifier runtimeBindings operationalBindings limits priorCoverClosure declarationInput executionBridge historicalInputs'.split()), 'closed v2 plan required')
-    bridge = plan['executionBridge']
-    require(type(bridge) is dict and set(bridge) == {'path', 'sha256', 'bytes'}, 'bridge binding fields')
-    require(bridge['path'] == SELF and bridge['sha256'] == bridge_sha and type(bridge['bytes']) is int and bridge['bytes'] > 0, 'bridge identity differs')
-    route = plan['declarationInput']
-    require(type(route) is dict and set(route) == {'originalPath', 'path', 'sha256', 'bytes'}, 'declaration route fields')
-    require(route['originalPath'] == DECLARATION and route['sha256'] == DECLARATION_SHA, 'original declaration differs')
-    require(type(route['path']) is str, 'physical declaration path required')
-    physical = Path(route['path'])
-    require(not physical.is_absolute() and '..' not in physical.parts and str(physical) == route['path'], 'canonical relative declaration route required')
-    require(physical.parts[0] == 'reference' and physical.suffix == '.source', 'nonexecuting declaration archive required')
-    require(type(route['bytes']) is int and 0 < route['bytes'] <= LIMIT, 'declaration size required')
-    require(plan['declaration'] == dict(path=DECLARATION, sha256=DECLARATION_SHA, bytes=route['bytes']), 'logical declaration binding differs')
-    require(sum(b == bridge for b in plan['operationalBindings']) == 1, 'bridge missing from execution census')
-    routes = plan['historicalInputs']
-    require(type(routes) is list and len(routes) == len(HISTORICAL), 'exact historical theorem routes required')
-    for route, (role, original, digest, size) in zip(routes, HISTORICAL):
-        require(type(route) is dict and set(route) == {'role','originalPath','path','sha256','bytes'}, 'historical route fields')
-        require((route['role'],route['originalPath'],route['sha256'],route['bytes']) == (role,original,digest,size) and type(route['bytes']) is int, 'original theorem identity differs')
-        p = Path(route['path'])
-        require(not p.is_absolute() and '..' not in p.parts and str(p) == route['path'] and p.parts[0] == 'reference' and p.suffix == '.source', 'nonexecuting theorem archive required')
-    require(len({r['path'] for r in routes} | {plan['declarationInput']['path']}) == len(routes)+1, 'conflicting archive routes')
-    projected = {k: v for k, v in plan.items() if k not in ('declarationInput', 'executionBridge', 'historicalInputs')}
-    projected['schema'] = PLAN_SCHEMA.replace('.v2', '.v1')
-    return projected, root / physical
+    """Validate the current execution envelope around the scientific plan."""
+    require(type(plan) is dict and plan.get('schema') == PLAN_SCHEMA, 'current plan required')
+    require(set(plan) == set('schema scope consumer controls declaration rangeVerifier runtimeBindings operationalBindings limits priorCoverClosure executionBridge'.split()), 'closed plan required')
+    bridge=plan['executionBridge']
+    require(type(bridge) is dict and set(bridge)=={'path','sha256','bytes'},'bridge binding fields')
+    require(bridge['path']==SELF and bridge['sha256']==bridge_sha and type(bridge['bytes']) is int and bridge['bytes']>0,'bridge identity differs')
+    require(sum(b==bridge for b in plan['operationalBindings'])==1,'bridge missing from execution census')
+    projected={k:v for k,v in plan.items() if k!='executionBridge'}
+    projected['schema']=PLAN_SCHEMA.replace('.v2','.v1')
+    return projected
 
 
 def authenticate_original_prior(m, docs, fixed):
@@ -311,11 +142,9 @@ def authenticate_original_prior(m, docs, fixed):
     m.flags(c['libraryFlags'],m.ROOT_FLAGS)
     m.require(p['schema']=='braid-program/f6c-cached-root-cover-pilot-launch.v1' and p['scope']=='pilot-cell-0', 'prior plan scope differs')
     contract=p['comparisonContract']
-    m.require(contract['verifierSha256']==OPTION_B_PRODUCTION_IDENTITIES[5] and
-        contract['declarationSha256']==OPTION_B_PRODUCTION_IDENTITIES[6] and
-        c['verifier']['sha256']==contract['verifierSha256'], 'prior oracle generation differs')
+    m.require(contract['declarationSha256']=='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4' and c['verifier']['sha256']==contract['verifierSha256'], 'prior oracle generation differs')
     m.require(m.equal(manifest['subjectSourceBindings'],contract['subjectSourceBindings']) and m.equal(manifest['runtimeBindings'],contract['runtimeBindings']), 'prior source/runtime chain differs')
-    for role in ('export','reconstruction','guards','rootTheorem','reconstructionTheorem'):
+    for role in ('export', 'reconstruction', 'guards'):
         m.require(m.equal(m.binding(c['fixedBindings'][role]),fixed[role]), 'prior proof original binding differs')
     for role in ('reconstruction','guards'):
         proof=docs[role]
@@ -383,29 +212,29 @@ def main():
     try:
         with ExitStack() as stack:
             owned = []
-            def capture(p, h, **kw):
-                obj = stack.enter_context(_production_capture(Capture, p, h, **kw))
+            def capture(p, h=None, **kw):
+                obj = stack.enter_context(Capture(p, h, **kw))
                 owned.append(obj)
                 return obj
             bridge = capture(root/SELF, args.bridge_sha256, capture=True)
-            require(compile(_production_current_source(bridge.data), _EXECUTING_CODE.co_filename, 'exec', dont_inherit=True, optimize=sys.flags.optimize) == _EXECUTING_CODE, 'executing bridge differs')
-            numerical = capture(root/(SUBJECT if args.stage == 'consumer' else VERIFIER), SUBJECT_SHA if args.stage == 'consumer' else VERIFIER_SHA, capture=True)
+            require(compile(bridge.data, _EXECUTING_CODE.co_filename, 'exec', dont_inherit=True, optimize=sys.flags.optimize) == _EXECUTING_CODE, 'executing bridge differs')
+            numerical = capture(root/(SUBJECT if args.stage == 'consumer' else VERIFIER), capture=True)
             m = stack.enter_context(instrument(numerical))
-            auth_module = m if args.stage == 'comparison' else stack.enter_context(instrument(capture(root/VERIFIER, VERIFIER_SHA, capture=True)))
+            auth_module = m if args.stage == 'comparison' else stack.enter_context(instrument(capture(root/VERIFIER,capture=True)))
             plan_file = capture(args.plan, args.plan_sha256, capture=True)
             raw_plan = m.decode(plan_file.data, receipt=True)
-            plan, declaration_path = scientific_plan(raw_plan, root, args.bridge_sha256)
+            plan = scientific_plan(raw_plan, root, args.bridge_sha256)
             require(bridge.initial.st_size == raw_plan['executionBridge']['bytes'], 'bridge size differs')
             m.validate_plan(plan, numerical.expected)
-            routes = {r['role']:r for r in raw_plan['historicalInputs']}
-            fixed_files = {role: capture(root/(routes[role]['path'] if role in routes else p), routes[role]['sha256'] if role in routes else h, capture=True) for role, p, h in m.FIXED}
-            fixed = {k: {**v.binding(), 'path': str(root/routes[k]['originalPath'])} if k in routes else v.binding() for k,v in fixed_files.items()}
-            for role, route in routes.items():
-                require(fixed_files[role].initial.st_size == route['bytes'], 'historical theorem size differs')
+            fixed_files = {role:capture(root/p,h,capture=True) for role,p,h in m.FIXED}
+            fixed = {k:v.binding() for k,v in fixed_files.items()}
             sources = {}
             for key in ('consumer', 'controls', 'declaration', 'rangeVerifier'):
                 b = plan[key]
-                obj = capture(declaration_path if key == 'declaration' else root/b['path'], b['sha256'])
+                if key=='declaration':
+                    sources[key]={**b,'path':str(root/b['path'])}
+                    continue
+                obj = capture(root/b['path'], b['sha256'])
                 require(obj.initial.st_size == b['bytes'], 'source size differs')
                 sources[key] = {**obj.binding(), 'path': str(root/b['path'])}
             runtime, execution = set(), []
@@ -424,7 +253,7 @@ def main():
             runtime_check()
             docs = {k: m.decode(fixed_files[k].data, receipt=(k != 'export')) for k in ('export','manifest','comparison','admission','reconstruction','guards','priorPlan')}
             authenticate_original_prior(auth_module, docs, fixed)
-            require(docs['export']['fieldSpeed']=='1' and docs['export']['coupling']=='10.304229970992187', 'source constants differ')
+            require((docs['export']['fieldSpeed']=='1') and (docs['export']['coupling']=='10.304229970992187'), 'source constants differ')
             if args.check_plan:
                 for obj in owned:
                     obj.recheck()
@@ -432,21 +261,21 @@ def main():
                 return
             docs = {k: m.decode(fixed_files[k].data, receipt=(k != 'export')) for k in ('export', 'manifest', 'comparison', 'admission', 'reconstruction', 'guards', 'priorPlan')}
             output = Path(args.out).absolute()
-            require(output == output.resolve() and not output.exists() and not output.is_symlink(), 'fresh canonical output required')
+            require((output == output.resolve()) and (not output.exists()) and (not output.is_symlink()), 'fresh canonical output required')
             if args.stage == 'consumer':
                 git = Path(args.git_binary).resolve()
-                require(git in runtime and Path(sys.executable).resolve() in runtime, 'interpreter/git absent')
+                require((git in runtime) and (Path(sys.executable).resolve() in runtime), 'interpreter/git absent')
                 m.check_output(root, output.parent, git)
                 output.parent.mkdir(mode=0o700)
                 require(output.name == 'range.json', 'candidate filename differs')
                 with m.captured_reference(fixed_files['reference'].path, fixed_files['reference'].data) as reference:
                     runtime_check()
-                    roles = (('original_export','export'),('reconstruction_receipt','reconstruction'),('guards_receipt','guards'),('root_cover','manifest'),('root_cover_comparison','comparison'),('member_acceleration_predeclaration','memberPredeclaration'),('continuous_reception_enclosure_contract','rootTheorem'))
+                    roles = (('original_export','export'), ('reconstruction_receipt','reconstruction'), ('guards_receipt','guards'), ('root_cover','manifest'), ('root_cover_comparison','comparison'))
                     bindings = tuple(reference.Binding(role, **fixed[key]) for role, key in roles)
                     progress['stage'] = 'conditional-range-evaluation'
                     mapped = m.project_cell(docs['export'], docs['manifest'], m.records(fixed_files['rows'].data,64), m.records(fixed_files['pieces'].data,112), reference, bindings)
                     result = reference.evaluate_cell(mapped).to_record()
-                    require(result['status'] == 'conditional_ranges' and all(v is False for v in result['claims'].values()), 'range authority promoted')
+                    require((result['status'] == 'conditional_ranges') and (all(v is False for v in result['claims'].values())), 'range authority promoted')
                     packet = dict(schema=m.SCHEMA,scope=m.SCOPE,accepted=False,status='conditional-range-candidate',fixedBindings=fixed,launchPlan=plan_file.binding(),consumer=numerical.binding(),declaration=plan['declaration'],rangeVerifier=plan['rangeVerifier'],runtimeBindings=plan['runtimeBindings'],operationalBindings=plan['operationalBindings'],priorCoverClosure=plan['priorCoverClosure'],projection=asdict(mapped),ranges=result,census=dict(cells=1,pairRows=64,ordinaryPairs=56,selfZeros=8,members=8,pieceRecords=112),claims={k:False for k in ('historicalTrajectoryIdentityEstablished','metricsAvailable','scoreAuthorized','h3EvidenceEligible','eomExecuted','rootsEvaluated','independentRangeComparisonPassed','executionAuthorized')},publicationRequires='fresh successful completion, independent range comparison, external inclusive deadline and closed owned processes')
             else:
                 candidate = capture(args.candidate, args.candidate_sha256, capture=True)

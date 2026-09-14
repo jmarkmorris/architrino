@@ -4,42 +4,21 @@ import { createHash } from "node:crypto";
 import { closeSync, constants, existsSync, fstatSync, mkdirSync, openSync, readSync, realpathSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { Worker } from "node:worker_threads";
+import { Worker, isMainThread } from "node:worker_threads";
 import { readFileSync } from 'node:fs';
-async function circularAdmission(root,digest,originalBindings=[]) {
-  if (!/^[a-f0-9]{64}$/u.test(digest??'')) throw Error('externally selected circular source-map digest required');
-  const initial=[...originalBindings];
-  const capture=(filename,expected)=>{
-    if(realpathSync(filename)!==filename)throw Error('canonical circular bootstrap source required');
-    const fd=openSync(filename,constants.O_RDONLY|constants.O_NOFOLLOW|constants.O_NONBLOCK);
-    try{const before=fstatSync(fd);if(!before.isFile()||before.size>2*1024**2)throw Error('bounded circular bootstrap source required');
-      const data=readFileSync(fd),after=fstatSync(fd);
-      if(data.length!==before.size||['dev','ino','size','mtimeMs','ctimeMs'].some(key=>before[key]!==after[key])||createHash('sha256').update(data).digest('hex')!==expected)throw Error('circular bootstrap source differs');
-      initial.push({path:filename,sha256:expected,identity:Object.fromEntries(['dev','ino','size','mtimeMs','ctimeMs'].map(key=>[key,before[key]]))});
-      return data;
-    }finally{closeSync(fd);}
-  };
-  const raw=capture(path.join(root,'reference/priorities/development-process-review/contracts/option-b-circular-sources.jsonld'),digest);
-  const rows=JSON.parse(raw)['@graph']?.filter(row=>row['@type']==='Source'&&row.role==='admission');
-  if(rows?.length!==1||rows[0].binding.path!=='scripts/eom/run-current-subfield-circular-root-pilot.mjs')throw Error('circular admission entry differs');
-  const module=await import('data:text/javascript;base64,'+capture(path.join(root,rows[0].binding.path),rows[0].binding.sha256).toString('base64'));
-  const admitted = await module.loadCircularSourceMap(root,digest,initial);
-  initializeProductionIdentities(admitted.productionIdentities("scripts/eom/run-subfield-circular-root-rung.mjs"));
-  return admitted;
-}
 
 export const SUBFIELD_CIRCULAR_RUNG_PATH = "scripts/eom/run-subfield-circular-root-rung.mjs";
 export const SUBFIELD_CIRCULAR_DISPATCH_PATH = "scripts/eom/dispatch-subfield-circular-root-ladder.mjs";
 export const SUBFIELD_CIRCULAR_RUN_BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
 export const SUBFIELD_CIRCULAR_BUILD_PATH = `${SUBFIELD_CIRCULAR_RUN_BASE}current-v3-build-20260908-execution-review/preparation.json`;
-export let SUBFIELD_CIRCULAR_BUILD_SHA;
+export const SUBFIELD_CIRCULAR_BUILD_SHA = "c80526d097c81627186cbbfcea7e0005d9d73288e331f4535f07982cc2bef944";
 export const SUBFIELD_CIRCULAR_RUNTIME_PATHS = Object.freeze({
   pilot: "scripts/eom/run-subfield-circular-root-pilot.mjs", outer: "scripts/eom/launch-subfield-circular-root-pilot.mjs",
   helper: "src/prescribed-path-analysis/SubfieldCircularPhaseProcess.mjs", bridge: "src/prescribed-path-analysis/SubfieldCircularPhaseLedgerWorker.mjs",
   watch: "scripts/eom/prepare-f5-enclosed-root.mjs", reducer: "src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs",
   cli: "scripts/eom/reduce-subfield-circular-root-ledger.mjs", proof: "scripts/eom/verify-subfield-circular-history.mjs",
 });
-export let SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES;
+
 export const SUBFIELD_CIRCULAR_IDS = Object.freeze(["coincident-midpoint-common-frequency", "coincident-midpoint-equal-radius-common-frequency", "coincident-midpoint-3-2-1-frequency", "phase-compensated-equal-geometry", "axially-separated-common-frequency", "axially-separated-equal-radius-common-frequency", "axially-separated-3-2-1-frequency", "axial-transverse-coincident-axis-interior", "high-axial-coincident-axis-interior", "planar-common-center-three-binary", "coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-counter-rotating"]);
 export const SUBFIELD_CIRCULAR_RESOURCE_OBSERVATION = Object.freeze({ cadenceSeconds: 15, commandTimeoutMs: 2000,
   memoryPressureCommand: "/usr/bin/memory_pressure", minimumSystemFreePercent: 20,
@@ -51,7 +30,7 @@ export const rungSha = bytes => createHash("sha256").update(bytes).digest("hex")
 const check = (ok, message, code = "CANDIDATE_LOCAL_FAILURE") => { if (!ok) throw Object.assign(new Error(message), { failureCode: code }); };
 const writeJSON = (filename, value) => writeFileSync(filename, JSON.stringify(value) + "\n", { flag: "wx" });
 const digestToken = value => typeof value === "string" && /^[0-9a-f]{64}$/u.test(value);
-export let SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW;
+
 export function acceptCurrentCircularPilot(jointBinding, reviewBinding, selection) {
   const joint=jointBinding.value, review=reviewBinding.value;
   check(digestToken(selection?.sha256) && typeof selection.path==='string' && reviewBinding.sha256===selection.sha256 &&
@@ -188,11 +167,11 @@ export async function watchedSubfieldCircularRepeatedPhases({ current, prior, so
   check(runner && reducer && rungSha(runner.bytes) === runner.sha256 && rungSha(reducer.bytes) === reducer.sha256,
     "captured scheduling guard generation required", "SHARED_BINDING_DRIFT");
   const worker = new Worker(`const{parentPort,workerData:d}=require('node:worker_threads');(async()=>{
-    const r=await import('data:text/javascript;base64,'+Buffer.from(d.runner).toString('base64'));
-    const x=await import('data:text/javascript;base64,'+Buffer.from(d.reducer).toString('base64'));
+    const r=await import(d.runnerUrl);
+    const x=await import(d.reducerUrl);
     for(const p of d.prior)r.checkRepeatedSubfieldCircularPhase(d.current,p,x.subfieldCircularExactDecimal);
     parentPort.postMessage({ok:true});})().catch(e=>parentPort.postMessage({error:e.message,failureCode:e.failureCode}));`,
-  { eval: true, execArgv: [], workerData: { runner: runner.bytes, reducer: reducer.bytes, current, prior } });
+  { eval: true, execArgv: [], workerData: { runnerUrl: import.meta.url, reducerUrl: new URL("../../src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs", import.meta.url).href, current, prior } });
   let timer, onAbort;
   try { await new Promise((resolve, reject) => {
     onAbort = () => reject(signal?.reason ?? new Error("repeat guard interrupted"));
@@ -220,23 +199,19 @@ export function validateSubfieldCircularRungSummary(summary, expected, phaseRece
 }
 
 export function parseSubfieldCircularRungArgs(argv) {
-  const names = ["--plan", "--plan-sha256", "--candidate", "--rung", "--prior-phase-receipts", "--prior-phase-receipts-sha256", "--out", "--runner-sha256", "--source-map-sha256"], result = {};
+  const names = ["--plan", "--plan-sha256", "--candidate", "--rung", "--prior-phase-receipts", "--prior-phase-receipts-sha256", "--out"], result = {};
   for (let at = 0; at < argv.length; at += 2) {
-    check((names.includes(argv[at]) || argv[at]==='--source-identities') && argv[at + 1] && argv[at+1].length<=65536 && !result[argv[at]], "unknown, missing or duplicate rung argument", "PLAN_REJECTED");
+    check((names.includes(argv[at])) && argv[at + 1] && argv[at+1].length<=65536 && !result[argv[at]], "unknown, missing or duplicate rung argument", "PLAN_REJECTED");
     result[argv[at]] = argv[at + 1];
   }
   check(names.every(name => result[name]) && [8, 32, 128].includes(Number(result["--rung"])) && SUBFIELD_CIRCULAR_IDS.includes(result["--candidate"]) &&
-    ["--plan-sha256", "--prior-phase-receipts-sha256", "--runner-sha256", "--source-map-sha256"].every(name => digestToken(result[name])), "complete authenticated rung arguments required", "PLAN_REJECTED");
+    ["--plan-sha256", "--prior-phase-receipts-sha256"].every(name => digestToken(result[name])), "complete authenticated rung arguments required", "PLAN_REJECTED");
   const out = result["--out"];
   check(out.startsWith(SUBFIELD_CIRCULAR_RUN_BASE) && out.length > SUBFIELD_CIRCULAR_RUN_BASE.length && !out.includes("\\") && out.split("/").every(part => part && part !== "." && part !== ".."), "fresh scoped output required", "PLAN_REJECTED");
   return result;
 }
 
 export async function runSubfieldCircularCandidateRung({ root, args, sources, runtime, began = performance.now() }) {
-  const admission = await circularAdmission(root,args['--source-map-sha256'],args['--source-identities']?JSON.parse(Buffer.from(args['--source-identities'],'base64')):sources);
-  check(admission.source(SUBFIELD_CIRCULAR_RUNG_PATH).sha256===args['--runner-sha256'], 'rung differs from selected circular map');
-  for (const [role,digest] of Object.entries(SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES)){const pair=admission.productionSourcePair(SUBFIELD_CIRCULAR_RUNTIME_PATHS[role],digest);check(rungSha(Buffer.from(pair.original))===digest&&admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS[role]).sha256===rungSha(Buffer.from(pair.current)),'exact original and selected current circular source differ');}
-  check(admission.sources.every(expected=>sources.some(row=>row.path===expected.path && row.sha256===expected.sha256 && rungSha(row.bytes)===expected.sha256)), 'complete admitted circular runtime sources required');
   const candidateId = args["--candidate"], rung = Number(args["--rung"]), schedule = candidateRungSchedule(candidateId, rung);
   const output = path.resolve(root, args["--out"]), abort = new AbortController();
   let wallLimitSeconds = 1800;
@@ -245,7 +220,7 @@ export async function runSubfieldCircularCandidateRung({ root, args, sources, ru
   check(!existsSync(output), "rung output already exists"); mkdirSync(output);
   const receipt = { schema: "braid-program/subfield-circular-candidate-rung-process.v1", accepted: false, h3EvidenceEligible: false,
     rootExecutionAuthorized: false, candidateId, rung, wallLimitSeconds: 1800, startedAt: new Date().toISOString(),
-    phases: [], phaseReceipts: [], stages: [], sourceMap:admission.sourceMap, sourceBindings: [...sources.map(({ bytes, ...binding }) => binding),...admission.bindings],
+    phases: [], phaseReceipts: [], stages: [], sourceBindings: sources.map(({ bytes, ...binding }) => binding),
     buildReceipt: { path: path.join(root, SUBFIELD_CIRCULAR_BUILD_PATH), sha256: SUBFIELD_CIRCULAR_BUILD_SHA }, plan: { path: path.resolve(args["--plan"]), sha256: args["--plan-sha256"] },
     priorReceipts: { path: path.resolve(args["--prior-phase-receipts"]), sha256: args["--prior-phase-receipts-sha256"] },
     terminalAdmissionRequired: true, claimBoundary: "Prescribed candidate/rung only; independent complete-scope ledger remains required. No H3 promotion, evolution, retention, stability, score, or physical claim." };
@@ -280,7 +255,7 @@ export async function runSubfieldCircularCandidateRung({ root, args, sources, ru
       !process.env.LD_PRELOAD && !process.env.LD_LIBRARY_PATH, "measured clean macOS environment required", "SHARED_RUNTIME_REJECTED");
     const [planBinding, priorBinding] = await inspect([{ ...receipt.plan, json: true }, { ...receipt.priorReceipts, json: true }]);
     const plan = validateSubfieldCircularResourcePlan(planBinding.value), prior = priorBinding.value;
-    check(plan.candidates.includes(candidateId) && plan.runnerSha256 === args["--runner-sha256"] &&
+    check(plan.candidates.includes(candidateId) &&
       prior.candidateId === candidateId && Array.isArray(prior.phaseReceipts), "candidate/runner/prior authorization differs", "PLAN_REJECTED");
     const cohort = plan.cohorts.find(row => row.candidates.includes(candidateId));
     if (cohort.resourceReturn) await inspect([cohort.resourceReturn]);
@@ -325,8 +300,7 @@ export async function runSubfieldCircularCandidateRung({ root, args, sources, ru
       const [proof] = await inspect([{ path: proofPath, json: true }]); runtime.pilot.validatePilotProof(proof.value, expected, phase.historyManifest);
       const manifestId = proof.value.manifestId; delete proof.value; phase.conformance = proof;
       await recheckShared();
-      const production=runtime.reducer.captureSubfieldCircularReducerProduction(admission,root,receipt.buildReceipt.path,SUBFIELD_CIRCULAR_BUILD_SHA);
-      activeWorker = await runtime.bridge.openSubfieldCircularPhaseLedgerWorker({ production, reducerBytes: reducerSource.bytes, reducerSha256: reducerSource.sha256,
+      activeWorker = await runtime.bridge.openSubfieldCircularPhaseLedgerWorker({ reducerBytes: reducerSource.bytes, reducerSha256: reducerSource.sha256,
         options: { repoRoot: root, historyManifest: manifestPath, conformance: proofPath, conformanceSha256: proof.sha256,
           buildReceipt: receipt.buildReceipt.path, buildReceiptSha256: SUBFIELD_CIRCULAR_BUILD_SHA }, limitMs: remaining(), signal: abort.signal,
         progress: event => { stageName = `ledger:${event.stage ?? "checking"}`; } });
@@ -349,8 +323,8 @@ export async function runSubfieldCircularCandidateRung({ root, args, sources, ru
         "--build-receipt", receipt.buildReceipt.path, "--build-receipt-sha256", SUBFIELD_CIRCULAR_BUILD_SHA, "--out", ledgerPath], directory);
       const [ledger, raw] = await inspect([{ path: ledgerPath, json: true }, { ...phase.process.rawRows }]);
       runtime.pilot.validatePilotPhase(ledger.value, expected, { historyManifest: phase.historyManifest, conformance: proof,
-        buildReceipt: receipt.buildReceipt, rawRows: raw, reducer: { path: SUBFIELD_CIRCULAR_RUNTIME_PATHS.reducer, sha256: admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS.reducer).sha256 },
-        cli: { path: SUBFIELD_CIRCULAR_RUNTIME_PATHS.cli, sha256: admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS.cli).sha256 }, manifestId });
+        buildReceipt: receipt.buildReceipt, rawRows: raw, reducer: { path: SUBFIELD_CIRCULAR_RUNTIME_PATHS.reducer, sha256: sources.find(row => row.path === SUBFIELD_CIRCULAR_RUNTIME_PATHS.reducer).sha256 },
+        cli: { path: SUBFIELD_CIRCULAR_RUNTIME_PATHS.cli, sha256: sources.find(row => row.path === SUBFIELD_CIRCULAR_RUNTIME_PATHS.cli).sha256 }, manifestId });
       await watchedSubfieldCircularRepeatedPhases({ current: ledger.value, prior: repeated.map(old => old.value), sources,
         limitMs: remaining(), signal: abort.signal });
       phase.maximumPrecisionBits = ledger.value.maximumPrecisionBits; delete ledger.value; phase.phaseReceipt = ledger;
@@ -395,11 +369,8 @@ export async function runSubfieldCircularCandidateRung({ root, args, sources, ru
   return receipt;
 }
 
-export async function captureSubfieldCircularRungSources(root, runnerSha256, sourceMapSha256,originalBindings=[]) {
-  const admission = await circularAdmission(root,sourceMapSha256,originalBindings);
-  check(admission.source(SUBFIELD_CIRCULAR_RUNG_PATH).sha256===runnerSha256,'selected rung differs');
-  for (const [role,digest] of Object.entries(SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES)){const pair=admission.productionSourcePair(SUBFIELD_CIRCULAR_RUNTIME_PATHS[role],digest);check(rungSha(Buffer.from(pair.original))===digest&&admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS[role]).sha256===rungSha(Buffer.from(pair.current)),'exact original and selected current circular source differ');}
-  return admission.sources;
+export async function observeSubfieldCircularRungSources(root) {
+  return [SUBFIELD_CIRCULAR_RUNG_PATH,...Object.values(SUBFIELD_CIRCULAR_RUNTIME_PATHS)].map(relative => {const bytes=readFileSync(path.join(root,relative));return {path:relative,bytes,sha256:rungSha(bytes)};});
 }
 
 export function captureSubfieldCircularRungSource(filename, expected, io = { read: readSync, stat: fstatSync }) {
@@ -421,30 +392,10 @@ export function captureSubfieldCircularRungSource(filename, expected, io = { rea
 async function main() {
   const began = performance.now(), args = parseSubfieldCircularRungArgs(process.argv.slice(2));
   const root = realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../.."));
-  const originalBindings=args['--source-identities']?JSON.parse(Buffer.from(args['--source-identities'],'base64')):[];
-  const admission = await circularAdmission(root,args['--source-map-sha256'],originalBindings);
-  const sources = await captureSubfieldCircularRungSources(root, args["--runner-sha256"], args['--source-map-sha256'],admission.bindings), pilotSource = sources.find(row => row.path === SUBFIELD_CIRCULAR_RUNTIME_PATHS.pilot);
-  args['--source-identities']=admission.identityArgs[1];
-  const pilot = await import("data:text/javascript;base64," + pilotSource.bytes.toString("base64"));
-  const snapshot = pilot.installPilotSnapshot(sources, root);
-  try {
-    const runner = await snapshot.import(SUBFIELD_CIRCULAR_RUNG_PATH), runtime = {};
-    for (const key of ["pilot", "helper", "bridge", "watch", "reducer"]) runtime[key] = await snapshot.import(SUBFIELD_CIRCULAR_RUNTIME_PATHS[key]);
-    const result = await runner.runSubfieldCircularCandidateRung({ root, args, sources, runtime, began });
-    console.log(JSON.stringify({ accepted: result.accepted, candidateId: result.candidateId, rung: result.rung, h3EvidenceEligible: false }));
-  } finally { snapshot.close(); }
+  const sources = await observeSubfieldCircularRungSources(root), runtime = {};
+  for (const key of ["pilot", "helper", "bridge", "watch", "reducer"]) runtime[key] = await import(new URL("../../"+SUBFIELD_CIRCULAR_RUNTIME_PATHS[key],import.meta.url));
+  const result = await runSubfieldCircularCandidateRung({ root, args, sources, runtime, began });
+  console.log(JSON.stringify({ accepted: result.accepted, candidateId: result.candidateId, rung: result.rung, h3EvidenceEligible: false }));
 }
-if (import.meta.url.startsWith("file:") && !new URL(import.meta.url).search && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
+if (isMainThread && import.meta.url.startsWith("file:") && !new URL(import.meta.url).search && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
   main().catch(error => { console.error(error.stack); process.exitCode = 1; });
-
-export function initializeProductionIdentities(values) {
-  if (!Array.isArray(values) || values.length !== 5 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
-  const OPTION_B_PRODUCTION_IDENTITIES = values;
-  SUBFIELD_CIRCULAR_BUILD_SHA = OPTION_B_PRODUCTION_IDENTITIES[0];
-  SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES = Object.freeze({
-  reducer: OPTION_B_PRODUCTION_IDENTITIES[1],
-  cli: OPTION_B_PRODUCTION_IDENTITIES[2],
-  proof: OPTION_B_PRODUCTION_IDENTITIES[3],
-});
-  SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW = Object.freeze({path:"reference/priorities/development-process-review/evidence/circular-current-execution/current-pilot-independent-review.json",sha256:OPTION_B_PRODUCTION_IDENTITIES[4]});
-}

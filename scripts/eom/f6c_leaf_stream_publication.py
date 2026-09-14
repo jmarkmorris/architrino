@@ -19,12 +19,13 @@ later failure, including failed completion flushing. Only owned public inodes
 are removed; the private prefix always remains. No restart/resume is offered.
 """
 
+import hashlib
+from pathlib import Path
+
 from contextlib import contextmanager
 from dataclasses import dataclass
-import hashlib
 import math
 import os
-from pathlib import Path
 import stat
 import tempfile
 import time
@@ -33,7 +34,6 @@ import time
 MAX_BYTES = 64 * 1024 * 1024
 NAME = 'leaf-evidence.ndjson'
 PRIVATE_PREFIX = '.leaf-stream-private-'
-CODEC_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[0]
 
 
 class PublicationError(ValueError):
@@ -84,14 +84,14 @@ class LeafStreamPublication:
         self._durable = self._durable_bytes = 0
         self._hash = hashlib.sha256()
         self._sealed = self._sealed_identity = None
-        _require(type(deadline) in (int, float) and math.isfinite(deadline), 'finite original deadline')
-        _require(type(byte_limit) is int and 0 < byte_limit <= MAX_BYTES, 'nonexpanding byte limit')
+        _require((type(deadline) in (int, float)) and (math.isfinite(deadline)), 'finite original deadline')
+        _require((type(byte_limit) is int) and (0 < byte_limit <= MAX_BYTES), 'nonexpanding byte limit')
         _require(live is None or callable(live), 'optional live callback')
         _require(callable(getattr(codec, 'StreamDecoder', None)), 'injected codec decoder')
         _require(type(output) in (str, type(Path())), 'plain output path')
         path = Path(output)
-        _require(path.is_absolute() and str(path) == str(output) and path == path.resolve(), 'canonical absolute output')
-        _require(path.parent != path and path.name not in ('', '.', '..'), 'bounded output target')
+        _require((path.is_absolute()) and (str(path) == str(output)) and (path == path.resolve()), 'canonical absolute output')
+        _require((path.parent != path) and (path.name not in ('', '.', '..')), 'bounded output target')
         parent = path.parent.stat()
         _require(stat.S_ISDIR(parent.st_mode), 'existing output parent')
         self._output, self._parent_identity = path, (parent.st_dev, parent.st_ino)
@@ -149,9 +149,9 @@ class LeafStreamPublication:
                                      self._file is None)
 
     def _tick(self):
-        _require(self._phase != 'failed' and time.monotonic() < self._deadline, 'failed or expired publication')
+        _require((self._phase != 'failed') and (time.monotonic() < self._deadline), 'failed or expired publication')
         self._live()
-        _require(self._phase != 'failed' and time.monotonic() < self._deadline, 'failed or expired publication')
+        _require((self._phase != 'failed') and (time.monotonic() < self._deadline), 'failed or expired publication')
 
     @contextmanager
     def _operation(self, phases):
@@ -184,8 +184,7 @@ class LeafStreamPublication:
                                (self._output, self._output_identity),
                                (self._private, self._private_identity)):
             s = path.lstat()
-            _require(path == path.resolve() and stat.S_ISDIR(s.st_mode)
-                     and (s.st_dev, s.st_ino) == expected, 'directory identity changed')
+            _require((path == path.resolve()) and (stat.S_ISDIR(s.st_mode)) and ((s.st_dev, s.st_ino) == expected), 'directory identity changed')
 
     def _layout(self, published):
         self._directories()
@@ -193,30 +192,24 @@ class LeafStreamPublication:
         expected = {self._private.name, NAME} if published else {self._private.name}
         _require({p.name for p in self._output.iterdir()} == expected, 'output file census')
         private = self._path.lstat()
-        _require(stat.S_ISREG(private.st_mode) and (private.st_dev, private.st_ino) == self._inode
-                 and private.st_nlink == (2 if published else 1)
-                 and private.st_size <= self._limit, 'owned private inode or quota changed')
+        _require((stat.S_ISREG(private.st_mode)) and ((private.st_dev, private.st_ino) == self._inode) and (private.st_nlink == (2 if published else 1)) and (private.st_size <= self._limit), 'owned private inode or quota changed')
         if published:
             public = self.public_path.lstat()
-            _require(stat.S_ISREG(public.st_mode) and public.st_nlink == 2
-                     and _identity(private) == _identity(public)
-                     and (public.st_dev, public.st_ino) == self._owned, 'public/private owned alias differs')
+            _require((stat.S_ISREG(public.st_mode)) and (public.st_nlink == 2) and (_identity(private) == _identity(public)) and ((public.st_dev, public.st_ino) == self._owned), 'public/private owned alias differs')
 
     def write(self, line):
         """Durable exact-byte sink; no parsing, re-encoding or hidden retry."""
         with self._operation(('writing',)):
-            _require(type(line) is bytes and 0 < len(line) <= self._limit
-                     and line.endswith(b'\n') and line.count(b'\n') == 1, 'one exact LF-ended record')
+            _require((type(line) is bytes) and (0 < len(line) <= self._limit) and (line.endswith(b'\n')) and (line.count(b'\n') == 1), 'one exact LF-ended record')
             self._layout(False)
             s = os.fstat(self._file.fileno())
-            _require(_identity(s) == _identity(self._path.lstat()) and s.st_size == self._written
-                     and self._written + len(line) <= self._limit, 'stream size or aggregate quota')
+            _require((_identity(s) == _identity(self._path.lstat())) and (s.st_size == self._written) and (self._written + len(line) <= self._limit), 'stream size or aggregate quota')
             self._attempted += 1
             self._attempted_bytes += len(line)
             n = self._file.write(line)
             if type(n) is int and n > 0:
                 self._written += n
-            _require(type(n) is int and n == len(line), 'short stream write')
+            _require((type(n) is int) and (n == len(line)), 'short stream write')
             self._file.flush()
             os.fsync(self._file.fileno())
             self._durable += 1
@@ -226,8 +219,7 @@ class LeafStreamPublication:
             # Durable bytes exist even if this post-fsync guard withholds ACK.
             self._tick()
             self._layout(False)
-            _require(written_identity[2] == self._written
-                     and _identity(os.fstat(self._file.fileno())) == written_identity,
+            _require((written_identity[2] == self._written) and (_identity(os.fstat(self._file.fileno())) == written_identity),
                      'postwrite identity changed')
         return None
 
@@ -236,8 +228,7 @@ class LeafStreamPublication:
         fd = os.open(path, os.O_RDONLY | os.O_NONBLOCK | getattr(os, 'O_NOFOLLOW', 0))
         try:
             before = os.fstat(fd)
-            _require(stat.S_ISREG(before.st_mode) and 0 < before.st_size <= self._limit
-                     and _identity(before) == expected_identity, 'original stream identity changed')
+            _require((stat.S_ISREG(before.st_mode)) and (0 < before.st_size <= self._limit) and (_identity(before) == expected_identity), 'original stream identity changed')
             digest = hashlib.sha256()
             decoder = self._codec.StreamDecoder(byte_limit=self._limit, live=self._tick) if decode else None
             count = total = 0
@@ -245,7 +236,7 @@ class LeafStreamPublication:
                 while total < before.st_size:
                     self._tick()
                     line = reader.readline(before.st_size - total + 1)
-                    _require(line and len(line) <= before.st_size - total, 'stream growth or truncation')
+                    _require((line) and (len(line) <= before.st_size - total), 'stream growth or truncation')
                     total += len(line)
                     count += 1
                     digest.update(line)
@@ -253,14 +244,10 @@ class LeafStreamPublication:
                 _require(not reader.read(1), 'stream trailing bytes')
             result = decoder.finish() if decoder is not None else None
             self._tick()
-            _require(_identity(os.fstat(fd)) == expected_identity and path == path.resolve()
-                     and _identity(path.lstat()) == expected_identity, 'stream changed during validation')
-            _require(total == self._durable_bytes and digest.hexdigest() == self._hash.hexdigest()
-                     and count == self._durable, 'durable prefix differs')
+            _require((_identity(os.fstat(fd)) == expected_identity) and (path == path.resolve()) and (_identity(path.lstat()) == expected_identity), 'stream changed during validation')
+            _require((total == self._durable_bytes) and (digest.hexdigest() == self._hash.hexdigest()) and (count == self._durable), 'durable prefix differs')
             if result is not None:
-                _require(result['complete'] is True and result['accepted'] is False
-                         and type(result['pairs']) is int and count == 2 * result['pairs'] + 2
-                         and result['bytes'] == total and result['sha256'] == digest.hexdigest(), 'codec EOF receipt differs')
+                _require((result['complete'] is True) and (result['accepted'] is False) and (type(result['pairs']) is int) and (count == 2 * result['pairs'] + 2) and (result['bytes'] == total) and (result['sha256'] == digest.hexdigest()), 'codec EOF receipt differs')
             pairs = result['pairs'] if result is not None else self._sealed.pairs
             return StreamBinding(str(path), digest.hexdigest(), total, pairs, count)
         finally:

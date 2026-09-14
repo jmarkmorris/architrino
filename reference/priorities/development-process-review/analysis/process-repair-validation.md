@@ -2,7 +2,7 @@
 
 Date: 2026-09-07. The operator authorized both the normal-completion/cancellation repair and the consequential repair audit. The [audit](consequential-repair-audit.md) records the separate historical-binding findings and remaining source-generation blocker.
 
-Legend: ✓ Done, ◐ Partial, ○ Not done. **✓ Done — this bounded process repair.** Subsequent [source recovery and archive/coordinator work](source-recovery-and-binding-repair.md) resolve the preparation and parent-contract follow-ups recorded below. **✓ Done — bounded startup-deadline repair** is recorded in [supervision follow-through](supervision-and-omitted-coverage.md); **◐ Partial — the separate historical lost-supervisor recurrence** remains open there. The dated measurements and earlier blocker statements below are historical, not the current action list.
+Legend: ✓ Done, ◐ Partial, ○ Not done. **✓ Done — this bounded process repair.** Subsequent source recovery and archive/coordinator work (retired migration record) resolve the preparation and parent-contract follow-ups recorded below. **✓ Done — bounded startup-deadline repair** is recorded in [supervision follow-through](supervision-and-omitted-coverage.md); **◐ Partial — the separate historical lost-supervisor recurrence** remains open there. The dated measurements and earlier blocker statements below are historical, not the current action list.
 
 ## Result and contract
 
@@ -36,7 +36,7 @@ Monitor loss may be observed first by the outer resource monitor or the register
 
 ## Historical blocker: preparation pin
 
-**Subsequent recovery, 2026-09-07:** the [source recovery investigation](source-recovery-and-binding-repair.md) reconstructs the exact expected intermediate edit, repairs the current composition, and identifies the distinct remaining historical archive gap. The paragraphs below preserve what was known at the preceding repair handoff; the preparation version is no longer unrecovered.
+**Subsequent recovery, 2026-09-07:** the source recovery investigation (retired migration record) reconstructs the exact expected intermediate edit, repairs the current composition, and identifies the distinct remaining historical archive gap. The paragraphs below preserve what was known at the preceding repair handoff; the preparation version is no longer unrecovered.
 
 The refined-acceleration source-generation test still fails because `run-f6c-refined-acceleration-pilot.mjs` pins its preparation script at `738c716f…52842c`. Before this repair, `git show HEAD:scripts/eom/prepare-f6c-refined-acceleration.py | shasum -a 256` gives `6786bcda…b9d7c4c`, already different. The current preparation script differs from those baseline bytes only in reviewed operational hashes, but that does not establish what the older expected generation contained.
 

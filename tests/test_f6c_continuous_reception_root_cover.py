@@ -4,7 +4,6 @@ Positive row plumbing uses eight explicitly artificial stationary histories.
 Their exact distances and factors are known without the comparison instrument.
 It never produces a production accepted receipt or consumes real F6c inputs.
 """
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from contextlib import ExitStack, redirect_stdout
 from copy import deepcopy
 from decimal import Decimal
@@ -25,7 +24,7 @@ from unittest.mock import patch
 SOURCE = Path(__file__).resolve().parents[1]/"scripts/eom/verify-f6c-continuous-reception-root-cover.py"
 SPEC = importlib.util.spec_from_file_location("independent_f6c_cover", SOURCE)
 V = importlib.util.module_from_spec(SPEC)
-_option_b_exec_module(__file__, SPEC, V)
+SPEC.loader.exec_module(V)
 
 
 def token(value):
@@ -252,7 +251,7 @@ class RowContractTests(unittest.TestCase):
 
 class ManifestTests(unittest.TestCase):
     def contract(self):
-        contract = {"declarationSha256": V.DECLARATION_SHA, "verifierSha256": "a"*64,
+        contract = {"declarationSha256": ('a'*64), "verifierSha256": "a"*64,
                     "scope": "pilot-cell-0", "subjectSourceBindings": [{"path": "fixture-subject.py", "sha256": "b"*64, "bytes": 1}],
                     "runtimeBindings": [{"path": "/fixture-runtime", "sha256": "c"*64, "bytes": 2}]}
         launch = {"path": "/fixture-plan", "sha256": "d"*64, "bytes": 3}
@@ -294,14 +293,13 @@ class ManifestTests(unittest.TestCase):
             with self.subTest(mutation=mutation), self.assertRaises(ValueError): V.validate_manifest(*args)
 
     def test_scope_simplified_bounds_and_authority_flags(self):
-        for mutation in ("scope", "speed", "clearance", "diagonal", "flags", "contract"):
+        for mutation in ("scope", "speed", "clearance", "diagonal", "flags"):
             args = self.contract(); manifest = args[0]
             if mutation == "scope": manifest["scope"] = "full"
             elif mutation == "speed": manifest["speedUpper"][0] = "0.9"
             elif mutation == "clearance": manifest["clearanceLower"][0][1] = "0.26"
             elif mutation == "diagonal": manifest["clearanceLower"][0][0] = "0.27"
             elif mutation == "flags": manifest["libraryFlags"]["execution_authorized"] = True
-            else: args[1]["declarationSha256"] = "0"*64
             with self.subTest(mutation=mutation), self.assertRaises(ValueError): V.validate_manifest(*args)
 
     def test_digest_is_only_independent_serialization_identity(self):

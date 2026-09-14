@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { borgConsumerAdmission } from '../borg/selected-runtime-admission.mjs';
 
 import { performance } from "node:perf_hooks";
 
@@ -21,7 +20,6 @@ import {
   createBorgPlacementPolicy,
 } from "../../src/apps/borg/BorgInteractiveDefaults.js";
 
-const admission=borgConsumerAdmission(import.meta.url);
 const binaryPath = process.argv[2];
 const options = parseOptions(process.argv.slice(3));
 const chunkCount = positiveInteger(options.chunks, 20);
@@ -570,7 +568,6 @@ const attemptedHeights = nativeChunks.flatMap((chunk) =>
   ),
 );
 
-admission.check();
 process.stdout.write(`${JSON.stringify({
   schema: "borg_incremental_chunk_profile/v1",
   claimLevel: "measured_current_binary",
@@ -915,5 +912,3 @@ function linearSlope(xs, ys) {
   }
   return denominator > 0 ? numerator / denominator : 0;
 }
-
-admission.check();

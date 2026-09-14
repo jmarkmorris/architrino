@@ -179,8 +179,7 @@ def _prepare_response(adapter, progress, *, restricted, request, geometry_expect
         if restricted:
             projection = adapter.project_restricted(request.frame_index, a.Bounds(interval.lower, interval.upper))
             observed = _geometry_counts(adapter)
-            _require((observed[0], observed[1], observed[3]) == (4 * child_index + index + 1,) * 3
-                     and observed[2] > geometry_expected[2], 'one complete restricted projection per interval')
+            _require(((observed[0], observed[1], observed[3]) == (4 * child_index + index + 1,) * 3) and (observed[2] > geometry_expected[2]), 'one complete restricted projection per interval')
             _require(projection.geometry_inherited_unchanged is False, 'explicit restricted geometry required')
             state_deltas.append(observed[2] - geometry_expected[2])
             geometry_expected = observed
@@ -191,11 +190,9 @@ def _prepare_response(adapter, progress, *, restricted, request, geometry_expect
         value = adapter.evaluate(projection)
         _require(value.projection is projection, 'evaluation must retain its issued projection')
         result = value.ranges
-        _require(result.frame_index == request.frame_index and result.reception == projection.cell.reception
-                 and (result.reception.lower, result.reception.upper) == (interval.lower, interval.upper),
+        _require((result.frame_index == request.frame_index) and (result.reception == projection.cell.reception) and ((result.reception.lower, result.reception.upper) == (interval.lower, interval.upper)),
                  'exact requested frame and interval required')
-        _require(type(result.member_ranges) is tuple and len(result.member_ranges) == 8
-                 and tuple(member.label for member in result.member_ranges) == LABELS,
+        _require((type(result.member_ranges) is tuple) and (len(result.member_ranges) == 8) and (tuple(member.label for member in result.member_ranges) == LABELS),
                  'complete ordered member ranges required')
         evaluated.append(value)
         snapshots.append(RangeSnapshot(projection.cell, result))
@@ -207,8 +204,7 @@ def _prepare_response(adapter, progress, *, restricted, request, geometry_expect
             progress('range', index + 1 if progress_local else 4 * child_index + index + 1,
                      4 if progress_local else 4 * child_count)
             if restricted:
-                _require(_counts(adapter) == (4 * child_index + index + 1, 4 * child_index + index + 1, 8 * child_index, 0, 0)
-                         and _geometry_counts(adapter) == geometry_expected, 'progress must not perform numerical work')
+                _require((_counts(adapter) == (4 * child_index + index + 1, 4 * child_index + index + 1, 8 * child_index, 0, 0)) and (_geometry_counts(adapter) == geometry_expected), 'progress must not perform numerical work')
             if identity_check is not None:
                 identity_check()
 
@@ -231,8 +227,7 @@ def _prepare_response(adapter, progress, *, restricted, request, geometry_expect
             progress('residual', index + 1 if progress_local else 8 * child_index + index + 1,
                      8 if progress_local else 8 * child_count)
             if restricted:
-                _require(_counts(adapter) == (4 * (child_index + 1), 4 * (child_index + 1), 8 * child_index + index + 1, 0, 0)
-                         and _geometry_counts(adapter) == geometry_expected, 'progress must not perform numerical work')
+                _require((_counts(adapter) == (4 * (child_index + 1), 4 * (child_index + 1), 8 * child_index + index + 1, 0, 0)) and (_geometry_counts(adapter) == geometry_expected), 'progress must not perform numerical work')
             if identity_check is not None:
                 identity_check()
 
@@ -269,15 +264,14 @@ def _leaf(adapter, progress, *, restricted, request, geometry_expected,
 
 
 def _q(token):
-    _require(type(token) is str and 0 < len(token) <= 1152, 'bounded decimal token required')
+    _require((type(token) is str) and (0 < len(token) <= 1152), 'bounded decimal token required')
     _require(re.fullmatch(r'[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?', token) is not None,
              'literal decimal token required')
     try:
         value = Decimal(token)
     except InvalidOperation:
         raise ValueError('finite decimal token required') from None
-    _require(value.is_finite() and len(value.as_tuple().digits) <= 1024
-             and abs(value.as_tuple().exponent) <= 1000, 'bounded finite decimal required')
+    _require((value.is_finite()) and (len(value.as_tuple().digits) <= 1024) and (abs(value.as_tuple().exponent) <= 1000), 'bounded finite decimal required')
     return F(value)
 
 
@@ -289,22 +283,19 @@ def _partition_metadata(adapter):
     to a second refinement-admission policy in this composition layer.
     """
     frames, parents = adapter.frames, adapter.parents
-    _require(type(frames) is tuple and len(frames) == 81
-             and type(parents) is tuple and len(parents) == 160, 'complete original metadata required')
+    _require((type(frames) is tuple) and (len(frames) == 81) and (type(parents) is tuple) and (len(parents) == 160), 'complete original metadata required')
     times = tuple(frame.time for frame in frames)
     values = tuple(_q(token) for token in times)
-    _require(values[0] == 0 and values[-1] == F(13, 100)
-             and all(a < b for a, b in zip(values, values[1:])), 'ordered original frames required')
+    _require((values[0] == 0) and (values[-1] == F(13, 100)) and (all(a < b for a, b in zip(values, values[1:]))), 'ordered original frames required')
     intervals, cursor, frame_index = [], F(0), 0
     cuts = [[] for _ in range(80)]
     for index, parent in enumerate(parents):
-        _require(type(parent.index) is int and parent.index == index
-                 and type(parent.refined) is bool and (index != 0 or parent.refined is True),
+        _require((type(parent.index) is int) and (parent.index == index) and (type(parent.refined) is bool) and (index != 0 or parent.refined is True),
                  'original parent index/refined ownership required')
         lo, hi = _q(parent.reception.lower), _q(parent.reception.upper)
         while frame_index < 79 and lo >= values[frame_index + 1]:
             frame_index += 1
-        _require(lo == cursor < hi and values[frame_index] <= lo < hi <= values[frame_index + 1],
+        _require((lo == cursor < hi) and (values[frame_index] <= lo < hi <= values[frame_index + 1]),
                  'gap-free frame-contained parent partition required')
         intervals.append((parent.reception.lower, parent.reception.upper))
         if hi < values[frame_index + 1]:
@@ -318,7 +309,7 @@ def _partition_metadata(adapter):
 
 def _bisected_metadata(adapter):
     times, intervals, all_cuts, refined_flags = _partition_metadata(adapter)
-    _require(_q(times[1]) == F(1, 500) and intervals[0] == ('0', '0.001'),
+    _require((_q(times[1]) == F(1, 500)) and (intervals[0] == ('0', '0.001')),
              'fixed first refined parent and frame required')
     mandatory = all_cuts[0]
     _require(tuple(map(_q, mandatory)) == (F(1, 1000),), 'complete first-frame mandatory cut required')
@@ -331,19 +322,18 @@ def _local_summary(ref, children):
     peak_lo, peak_hi = F(0), F(0)
     exact_width = F(0)
     for child in children:
-        _require(type(child.leaf.integral_width) is F and child.leaf.integral_width >= 0,
+        _require((type(child.leaf.integral_width) is F) and (child.leaf.integral_width >= 0),
                  'exact nonnegative leaf width required')
         exact_width += child.leaf.integral_width
     for index, label in enumerate(LABELS):
         lo = hi = F(0)
         for child in children:
             member = child.leaf.cell.members[index]
-            _require(member.label == label and len(member.validated_integrals) == 1,
+            _require((member.label == label) and (len(member.validated_integrals) == 1),
                      'one complete child integral per member')
             integral = member.validated_integrals[0]
             key = integral.key
-            _require(key.context == child.context and key.label == label and key.frame_index == 0
-                     and key.domain == child.request.domain, 'same child integral key required')
+            _require((key.context == child.context) and (key.label == label) and (key.frame_index == 0) and (key.domain == child.request.domain), 'same child integral key required')
             lower, upper = _q(integral.bounds.lower), _q(integral.bounds.upper)
             _require(0 <= lower <= upper, 'nonnegative child integral required')
             lo += lower
@@ -356,9 +346,7 @@ def _local_summary(ref, children):
         total_hi += hi
     for child in children:
         for witness in child.leaf.witnesses:
-            _require(witness.context == child.context and witness.frame_index == 0
-                     and witness.label in LABELS
-                     and _q(child.request.domain.lower) <= _q(witness.time) <= _q(child.request.domain.upper),
+            _require((witness.context == child.context) and (witness.frame_index == 0) and (witness.label in LABELS) and (_q(child.request.domain.lower) <= _q(witness.time) <= _q(child.request.domain.upper)),
                      'same family and closed child witness required')
             value = _q(witness.squared_lower)
             member_index = LABELS.index(witness.label)
@@ -366,7 +354,7 @@ def _local_summary(ref, children):
             applicable = tuple(_q(other.leaf.cell.members[member_index].squared_norm.upper)
                                for other in children
                                if _q(other.request.domain.lower) <= time <= _q(other.request.domain.upper))
-            _require(applicable and 0 <= value <= min(applicable),
+            _require((applicable) and (0 <= value <= min(applicable)),
                      'uniform witness must fit every applicable closed same-member cell')
             peak_lo = max(peak_lo, value)
     _require(exact_width <= total_hi - total_lo, 'serialized outward width must enclose exact leaf widths')
@@ -377,8 +365,7 @@ def _local_summary(ref, children):
 def measure_bisected_restricted(adapter, progress=None):
     """Two fixed children only; local reserved IDs, never a running GK State."""
     _require(progress is None or callable(progress), 'optional progress callback required')
-    _require(_counts(adapter) == (0, 0, 0, 0, 0)
-             and _geometry_counts(adapter) == (0, 0, 0, 0), 'fresh unmeasured geometry adapter required')
+    _require((_counts(adapter) == (0, 0, 0, 0, 0)) and (_geometry_counts(adapter) == (0, 0, 0, 0)), 'fresh unmeasured geometry adapter required')
     metadata = _bisected_metadata(adapter)
     context, provenance = adapter.context, tuple(adapter.provenance)
     frames, parents = adapter.frames, adapter.parents
@@ -386,14 +373,10 @@ def measure_bisected_restricted(adapter, progress=None):
     ref, gk = adapter.integral_reference, adapter.gk_protocol
     _require(gk.MAX_SPLITS_PER_FRAME == 20, 'unchanged shared original-frame split budget required')
     def identity_check(projection=None):
-        _require(adapter.context is context and tuple(adapter.provenance) == provenance
-                 and adapter.frames is frames and adapter.parents is parents
-                 and _bisected_metadata(adapter) == metadata, 'same captured source/frame/parent generation required')
+        _require((adapter.context is context) and (tuple(adapter.provenance) == provenance) and (adapter.frames is frames) and (adapter.parents is parents) and (_bisected_metadata(adapter) == metadata), 'same captured source/frame/parent generation required')
         if projection is not None:
             cell = projection.cell
-            _require(projection.context is context and cell.frame_index == 0 and cell.cell_index == parent.index
-                     and projection.parent_reception == parent.reception and cell.bindings == parent.bindings
-                     and (cell.frame_domain.lower, cell.frame_domain.upper) == (frames[0].time, frames[1].time),
+            _require((projection.context is context) and (cell.frame_index == 0) and (cell.cell_index == parent.index) and (projection.parent_reception == parent.reception) and (cell.bindings == parent.bindings) and ((cell.frame_domain.lower, cell.frame_domain.upper) == (frames[0].time, frames[1].time)),
                      'genuine first-parent projection and original frame required')
     children, deltas, geometry = [], [], (0, 0, 0, 0)
     for index, endpoints in enumerate((('0', '0.0005'), ('0.0005', '0.001'))):
@@ -405,13 +388,11 @@ def measure_bisected_restricted(adapter, progress=None):
         children.append(child)
         deltas.extend(observed)
     children = tuple(children)
-    _require(children[0].request.domain.upper == children[1].request.domain.lower
-             and children[0].request.domain.lower == parent.reception.lower
-             and children[1].request.domain.upper == parent.reception.upper,
+    _require((children[0].request.domain.upper == children[1].request.domain.lower) and (children[0].request.domain.lower == parent.reception.lower) and (children[1].request.domain.upper == parent.reception.upper),
              'two closed children exactly cover first parent')
     summary = _local_summary(ref, children)
     identity_check()
-    _require(_counts(adapter) == (8, 8, 16, 0, 0) and _geometry_counts(adapter) == geometry,
+    _require((_counts(adapter) == (8, 8, 16, 0, 0)) and (_geometry_counts(adapter) == geometry),
              'fixed two-child final call census')
     cuts = len(metadata[2])
     return BisectedRestrictedDiagnostic('braid-program/f6c-bisected-restricted-diagnostic.v1',
@@ -459,8 +440,7 @@ class LeafResponseSession:
 
     def __init__(self, adapter, *, continuation=None, prefix=None):
         _require((continuation is None) == (prefix is None), 'complete optional continuation seam')
-        _require(_counts(adapter) == (0, 0, 0, 0, 0)
-                 and _geometry_counts(adapter) == (0, 0, 0, 0), 'fresh unmeasured geometry adapter required')
+        _require((_counts(adapter) == (0, 0, 0, 0, 0)) and (_geometry_counts(adapter) == (0, 0, 0, 0)), 'fresh unmeasured geometry adapter required')
         # Retain these exact proxies: frozen respond checks reference identity.
         ref, gk = ((adapter.integral_reference, adapter.gk_protocol) if prefix is None else
                    continuation.references(prefix, adapter))
@@ -468,9 +448,8 @@ class LeafResponseSession:
         metadata = _partition_metadata(adapter)
         frames = tuple(ref.Frame(n, ref.Bounds(lo, hi))
                        for n, (lo, hi) in enumerate(zip(metadata[0], metadata[0][1:])))
-        _require(gk.MAX_SPLITS_PER_FRAME == 20 and gk.ROOT_REFINEMENT_LIMIT == 0
-                 and gk.EMISSION_REFINEMENT_LIMIT == 0, 'unchanged frozen budget contract required')
-        plan = gk.ProtocolInput(adapter.context, frames, metadata[2], gk.REFERENCE_SHA256)
+        _require((gk.MAX_SPLITS_PER_FRAME == 20) and (gk.ROOT_REFINEMENT_LIMIT == 0) and (gk.EMISSION_REFINEMENT_LIMIT == 0), 'unchanged frozen budget contract required')
+        plan = gk.ProtocolInput(adapter.context, frames, metadata[2], adapter.integral_reference_sha256)
         for name, value in (
             ('_adapter', adapter), ('_ref', ref), ('_gk', gk), ('_a', a),
             ('_context', adapter.context), ('_provenance', tuple(adapter.provenance)),
@@ -482,15 +461,14 @@ class LeafResponseSession:
         try:
             state = gk.start(ref, plan)
             self._check()
-            _require(type(state) is gk.State and state.plan is plan, 'genuine initial frozen state required')
+            _require((type(state) is gk.State) and (state.plan is plan), 'genuine initial frozen state required')
             _require(len(state.leaves) == len(adapter.parents), 'initial partition differs from original parents')
             for leaf, endpoints in zip(state.leaves, metadata[1]):
                 _require((leaf.request.domain.lower, leaf.request.domain.upper) == endpoints,
                          'initial request must preserve exact parent endpoint tokens')
             if prefix is not None:
                 state, inherited = continuation.consume(prefix, adapter, ref, gk, plan)
-                _require(type(state) is gk.State and 0 < len(state.evaluations) <= gk.MAX_EVALUATED_LEAVES
-                         and inherited['inheritedPairs'] == len(state.evaluations), 'genuine bounded replay prefix')
+                _require((type(state) is gk.State) and (0 < len(state.evaluations) <= gk.MAX_EVALUATED_LEAVES) and (inherited['inheritedPairs'] == len(state.evaluations)), 'genuine bounded replay prefix')
                 object.__setattr__(self, '_plan', state.plan)
                 object.__setattr__(self, '_inherited', len(state.evaluations))
                 object.__setattr__(self, '_continuation', inherited)
@@ -507,9 +485,7 @@ class LeafResponseSession:
             adapter = self._adapter
             # These public counters also check the captured adapter deadline/lifetime.
             _counts(adapter)
-            _require(adapter.context is self._context and tuple(adapter.provenance) == self._provenance
-                     and adapter.frames is self._frames and adapter.parents is self._parents
-                     and _partition_metadata(adapter) == self._metadata,
+            _require((adapter.context is self._context) and (tuple(adapter.provenance) == self._provenance) and (adapter.frames is self._frames) and (adapter.parents is self._parents) and (_partition_metadata(adapter) == self._metadata),
                      'same live captured source/frame/parent generation required')
         except BaseException:
             object.__setattr__(self, '_phase', 'failed')
@@ -517,8 +493,7 @@ class LeafResponseSession:
 
     def _check(self):
         self._generation_check()
-        _require(_counts(self._adapter) == self._expected_counts
-                 and _geometry_counts(self._adapter) == self._expected_geometry,
+        _require((_counts(self._adapter) == self._expected_counts) and (_geometry_counts(self._adapter) == self._expected_geometry),
                  'no intervening external numerical or geometry work')
 
     @property
@@ -569,23 +544,19 @@ class LeafResponseSession:
             object.__setattr__(self, '_phase', 'providing')
 
             def identity_check(projection=None):
-                _require(self._phase == 'providing' and self._state is state
-                         and self._gk.request(state) is request, 'consumed outstanding request changed or reentered')
+                _require((self._phase == 'providing') and (self._state is state) and (self._gk.request(state) is request), 'consumed outstanding request changed or reentered')
                 self._generation_check()
                 if projection is not None:
                     cell = projection.cell
                     frame = self._plan.frames[request.frame_index].domain
-                    _require(projection.context is self._context and cell.frame_index == request.frame_index
-                             and cell.cell_index == parent.index and projection.parent_reception == parent.reception
-                             and cell.bindings == parent.bindings
-                             and (cell.frame_domain.lower, cell.frame_domain.upper) == (frame.lower, frame.upper),
+                    _require((projection.context is self._context) and (cell.frame_index == request.frame_index) and (cell.cell_index == parent.index) and (projection.parent_reception == parent.reception) and (cell.bindings == parent.bindings) and ((cell.frame_domain.lower, cell.frame_domain.upper) == (frame.lower, frame.upper)),
                              'issued projection must retain the requested original frame and parent')
 
             response, ranges, residuals, geometry, deltas = _prepare_response(
                 self._adapter, progress, restricted=True, request=request,
                 geometry_expected=self._expected_geometry, child_index=self._completed,
                 identity_check=identity_check, references=(self._a, self._ref, self._gk), progress_local=True)
-            _require(response.request is request and self._phase == 'providing',
+            _require((response.request is request) and (self._phase == 'providing'),
                      'same consumed request required after provision')
             counts = (4*(self._completed+1), 4*(self._completed+1), 8*(self._completed+1), 0, 0)
             object.__setattr__(self, '_expected_counts', counts)
@@ -607,7 +578,7 @@ class LeafResponseSession:
     def advance(self, provision):
         """Explicit caller-controlled transition: frozen respond evaluates ONCE."""
         try:
-            _require(self._phase == 'provided' and provision is self._provision,
+            _require((self._phase == 'provided') and (provision is self._provision),
                      'only the original unconsumed provision can advance')
             self._check()
             state = self._state
@@ -615,8 +586,7 @@ class LeafResponseSession:
             object.__setattr__(self, '_phase', 'advancing')
             next_state = self._gk.respond(self._ref, state, provision.response)
             self._check()
-            _require(self._phase == 'advancing' and type(next_state) is self._gk.State
-                     and next_state.plan is self._plan, 'genuine frozen transition required')
+            _require((self._phase == 'advancing') and (type(next_state) is self._gk.State) and (next_state.plan is self._plan), 'genuine frozen transition required')
             object.__setattr__(self, '_state', next_state)
             object.__setattr__(self, '_completed', self._completed + 1)
             object.__setattr__(self, '_provision', None)

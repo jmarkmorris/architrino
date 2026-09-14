@@ -56,57 +56,21 @@ export const ORIGINALS = Object.freeze([
   ['nominalConformance',restart+'prepared-20260827-v1/nominal-history-conformance.json','f862a7148a0a00b3bde5fbb0d164156fce2dbfc161597b0cdaa182457f3741e0'],
   ['apiConformance',restart+'prepared-20260827-v1/api-domain-conformance.json','440deb996eaeb646b7863e9276fb937f9897c11fdbd56fed11a32efb269fe746'],
   ['reviewedBuild',restart+'root-ladder-20260827-v2/reviewed-build.json','5c8a9c36804b8bfed45b7f98834c0c104e758465ca0d19402bf0c328d81f9710'],
-  ['approvedSource','reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json','e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb'],
-  ['scientificFixture','reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json','bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344'],
-  ['predeclaration','reference/priorities/braid-program/evidence/2026-08-27-prescribed-acceleration-response-predeclaration.md','c08d7f53616fc2843b3a192f7e3c10229f9a9fe7abc1a8670ddb1706d95756ef'],
-  ['reference','scripts/eom/oracle/prescribed_acceleration_response.py','e630c2f4c48c9fcfc56866166e8b5977d70ab83c6ca3f2b08ad9ea4f3f5e910c'],
-  ['referenceTests','tests/test_prescribed_acceleration_response.py','4b0e66feb308544aa6294b126a05f6a3c9fbb403580e8193d3140a7b52c370f1'],
-  ['consumer',CONSUMER,'e5b6ce3274f0cfdef107c03a966508896f8e7874372c4735fcd8ad55a339cd16'],
-  ['consumerTests','tests/test_prescribed_acceleration_response_consumer.py','eeb85745d0175fabc3306e3a00e5b6dc3df3418b29fe40df9b89b765ac468875'],
-  ['pythonExecutable',null,null],
-  ['scripts/eom/oracle/decimal_interval.py','scripts/eom/oracle/decimal_interval.py','fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'],
-  ['scripts/eom/oracle/certified_history.py','scripts/eom/oracle/certified_history.py','ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'],
-  ['scripts/eom/oracle/continuous_reception_roots.py','scripts/eom/oracle/continuous_reception_roots.py','f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c'],
-  ['scripts/eom/oracle/reference_kernel.py','scripts/eom/oracle/reference_kernel.py','a3b94301b2994c29e1107de44d627db9566abe9cda60ec8e00b89d9351a275f6'],
-  ['scripts/eom/oracle/certified_acceleration.py','scripts/eom/oracle/certified_acceleration.py','62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83'],
+  ['approvedSource','tests/fixtures/f5-history/approved-config.json','e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb'],
+  ['scientificFixture','tests/fixtures/f5-history/pilot-fixture.json','bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344'],
 ].map(row=>Object.freeze(row)));
-export const SOURCE_MAP = "reference/priorities/development-process-review/contracts/option-b-prescribed-response-sources.jsonld";
-const SOURCE_READER = "scripts/equation-mapping/current-source-manifest.mjs";
-export const EVIDENCE_PINS = Object.freeze({
-  ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/root-ladder-20260827-v2/rung-8.json": "a430d035d41ad32c89224f1a068c0a2a7947b9e44849f76280e1aa43a86b9052",
-  ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/root-ladder-20260827-v2/ledger-reduction.json": "37b934854075b500239a733df1b5e70a7ff355f0e56bbdc382adad952288a3a5",
-  ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/prepared-20260827-v1/history-manifest.json": "5c665fcd7eee92a105fd958929ee443e4eeaea6afc0222935739aad2622a1725",
-  ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/prepared-20260827-v1/nominal-history-conformance.json": "f862a7148a0a00b3bde5fbb0d164156fce2dbfc161597b0cdaa182457f3741e0",
-  ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/prepared-20260827-v1/api-domain-conformance.json": "440deb996eaeb646b7863e9276fb937f9897c11fdbd56fed11a32efb269fe746",
-  ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/root-ladder-20260827-v2/reviewed-build.json": "5c8a9c36804b8bfed45b7f98834c0c104e758465ca0d19402bf0c328d81f9710",
-  "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
-  "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
-  "reference/priorities/braid-program/evidence/2026-08-27-prescribed-acceleration-response-predeclaration.md": "c08d7f53616fc2843b3a192f7e3c10229f9a9fe7abc1a8670ddb1706d95756ef"
-});
-export let SOURCE_BINDINGS;
-let sourceRecords, sourceMapBinding;
-export async function initializeSourceBindings(root, expectedMapDigest) {
-  SOURCE_BINDINGS = undefined; sourceRecords = undefined; sourceMapBinding = undefined;
-  check(hash(expectedMapDigest), "externally selected source-map digest required");
-  check(realpathSync(root) === root, "canonical Option B repository root required");
-  const readSource = (filename,...args) => {check(realpathSync(filename) === filename,"source symlink or path escape");return readBound(filename,...args);};
-  const captured = readSource(path.join(root, SOURCE_MAP), expectedMapDigest, true, 1024**2);
-  const metadata = JSON.parse(captured.data);
-  const readers = metadata["@graph"]?.filter(row => row.role === "manifest-reader" && row.binding?.path === SOURCE_READER);
-  check(readers?.length === 1 && hash(readers[0].binding.sha256), "exact manifest reader identity required");
-  const reader = readSource(path.join(root, SOURCE_READER), readers[0].binding.sha256, true, 1024**2);
-  const module = await import("data:text/javascript;base64," + reader.data.toString("base64"));
-  const admitted = module.admit(captured.data, {root, readBound:readSource, scope:"prescribed-response-pilot-current-source"});
-  // Capture-to-use closure: reject a manifest or reader replaced while validating.
-  checkBindings([clean(captured), clean(reader), ...admitted.bindings]);
-  sourceRecords = admitted.bindings; sourceMapBinding = clean(captured);
-  SOURCE_BINDINGS = Object.freeze({...admitted.pins, ...EVIDENCE_PINS});
-  return {sourceMap:sourceMapBinding, sources:sourceRecords};
+export function originalInputPaths(root,pythonRealPath) {
+  return {
+    ...Object.fromEntries(ORIGINALS.map(([role,file])=>[role,path.join(root,file)])),
+    reference:path.join(root,'scripts/eom/oracle/prescribed_acceleration_response.py'),
+    referenceTests:path.join(root,'tests/test_prescribed_acceleration_response.py'),
+    consumer:path.join(root,CONSUMER),
+    consumerTests:path.join(root,'tests/test_prescribed_acceleration_response_consumer.py'),
+    pythonExecutable:pythonRealPath,
+    ...Object.fromEntries(['decimal_interval','certified_history','continuous_reception_roots','reference_kernel','certified_acceleration']
+      .map(name=>{const file='scripts/eom/oracle/'+name+'.py';return [file,path.join(root,file)];})),
+  };
 }
-function requireSourceBindings() {
-  check(SOURCE_BINDINGS && sourceRecords && sourceMapBinding, "Option B source admission required");
-}
-
 export const check = (ok,message)=>{if(!ok)throw new Error(message);};
 export const sha = bytes=>createHash('sha256').update(bytes).digest('hex');
 export const clean = ({data,...binding})=>binding;
@@ -162,44 +126,50 @@ function binding(row,role=false){closed(row,role?['role','path','originalPath','
   check(typeof row.path==='string'&&path.isAbsolute(row.path)&&path.resolve(row.path)===row.path&&hash(row.sha256)&&positive(row.bytes,1024**3),'exact bounded binding');}
 function bindingList(rows,role=false){check(Array.isArray(rows)&&rows.length>0&&rows.length<=4096,'bounded binding list');for(const b of rows)binding(b,role);check(new Set(rows.map(b=>b.path)).size===rows.length,'duplicate binding path');}
 export function validatePlan(plan,root,launcherSha,entrySha) {
-  requireSourceBindings();
   closed(plan,['schema','scope','originalBindings','operationalBindings','runtimeBindings','python','pythonRealPath','node','limits','platformTrust'],'machine plan');
   check(plan.schema==='braid-program/prescribed-response-pilot-launch.v2'&&plan.scope==='f5-release'&&equal(plan.limits,LIMITS),'current first-pilot scope/limits');
   check(plan.platformTrust==='host OS and macOS shared-cache libraries; explicitly listed file-backed runtime dependencies only','explicit platform trust required');
   check(realpathSync(root)===root&&hash(launcherSha)&&hash(entrySha),'canonical reviewed composition required');
   for(const key of ['python','pythonRealPath','node'])check(typeof plan[key]==='string'&&path.isAbsolute(plan[key])&&path.resolve(plan[key])===plan[key],'absolute runtime path');
   check(realpathSync(plan.python)===plan.pythonRealPath&&realpathSync(plan.node)===plan.node&&plan.node===realpathSync(process.execPath),'runtime invocation differs');
-  bindingList(plan.originalBindings,true);check(plan.originalBindings.length===19,'exact nineteen original bindings');
-  ORIGINALS.forEach(([role,file,digest],i)=>{const b=plan.originalBindings[i];check(b.role===role&&b.originalPath===(file?path.join(root,file):plan.pythonRealPath)&&(!digest||b.sha256===digest)&&b.bytes<=FILE_LIMIT,'frozen original role/path/hash differs');
-    if(b.path!==b.originalPath)check(['approvedSource','scientificFixture','predeclaration'].includes(role)&&b.path.startsWith(path.join(root,'reference')+path.sep)&&b.path.endsWith('.source'),'only declared original data may select a preserved source');});
+  bindingList(plan.originalBindings,true);
+  const inputs=Object.entries(originalInputPaths(root,plan.pythonRealPath));
+  check(plan.originalBindings.length===inputs.length,'complete original bindings required');
+  inputs.forEach(([role,file],i)=>{const b=plan.originalBindings[i];
+    check(b.role===role&&b.originalPath===file&&b.bytes<=FILE_LIMIT,'original role/path differs');
+    check(b.path===b.originalPath,'input uses its declared path');});
+  for(const [role,,digest] of ORIGINALS)check(plan.originalBindings.find(b=>b.role===role).sha256===digest,'scientific artifact hash differs');
   check(plan.originalBindings.slice(0,8).reduce((n,b)=>n+b.bytes,0)<=256*1024**2,'scientific input total bound');
   bindingList(plan.runtimeBindings);bindingList(plan.operationalBindings);
-  const python=plan.originalBindings[13],cfg=path.join(path.dirname(path.dirname(plan.python)),'pyvenv.cfg');
+  const python=plan.originalBindings.find(b=>b.role==='pythonExecutable'),cfg=path.join(path.dirname(path.dirname(plan.python)),'pyvenv.cfg');
   check(plan.runtimeBindings.some(b=>equal(b,cleanRole(python)))&&plan.runtimeBindings.some(b=>b.path===cfg),'shared venv binary/config missing');
   const ops=[ENTRY,ENTRY_TESTS,LAUNCH_TESTS,PROCESS_TESTS,LAUNCHER,OUTER,PUBLISHER,'tests/test_prescribed_acceleration_response_publication.py'].map(p=>path.join(root,p)).concat([plan.node,'/bin/ps','/usr/bin/memory_pressure']);
   check(equal(plan.operationalBindings.map(b=>b.path).sort(),ops.sort()),'operational source closure differs');
-  for(const b of plan.operationalBindings){const local=path.relative(root,b.path),expected=local===ENTRY?entrySha:local===LAUNCHER?launcherSha:SOURCE_BINDINGS[local];if(expected)check(b.sha256===expected,'operational source hash differs');}
+  for(const b of plan.operationalBindings){const local=path.relative(root,b.path),expected=local===ENTRY?entrySha:local===LAUNCHER?launcherSha:undefined;if(expected)check(b.sha256===expected,'operational source hash differs');}
   return plan;
 }
 const cleanRole = ({role,originalPath,...b})=>b;
 export function planBindings(plan,root) {
-  requireSourceBindings();
-  const map=new Map();for(const row of [sourceMapBinding,...sourceRecords,...plan.originalBindings.map(cleanRole),...plan.operationalBindings,...plan.runtimeBindings]){
+  const map=new Map();for(const row of [...plan.originalBindings.map(cleanRole),...plan.operationalBindings,...plan.runtimeBindings]){
     const prev=map.get(row.path);check(!prev||equal(prev,row),'conflicting repeated source binding');map.set(row.path,row);}
   return [...map.values()];
 }
 export function remainingSeconds(deadline) {const ns=BigInt(deadline)-process.hrtime.bigint();check(ns>0n&&ns<=1800000000000n,'remaining stage deadline');return `${ns/1000000000n}.${String(ns%1000000000n).padStart(9,'0')}`;}
 function outputLane(root,output){check(path.dirname(output)===path.join(root,LANE)&&/^prescribed-response-[A-Za-z0-9][A-Za-z0-9._-]*$/u.test(path.basename(output))&&realpathSync(path.dirname(output))===path.dirname(output),'direct canonical data lane required');return output+'-outer';}
+function executionDigest(plan,root,relative) {
+  const binding=[...plan.originalBindings,...plan.operationalBindings].find(row=>row.path===path.join(root,relative));
+  check(binding&&hash(binding.sha256),'execution input missing: '+relative);
+  return binding.sha256;
+}
 export function stageSpec({stage,plan,root,output,budget,publicationJob,launcherSha256}) {
-  requireSourceBindings();
   check(stage==='compute'||stage==='publisher','unknown response stage');outputLane(root,output);
   check(typeof budget==='string'&&/^(?:0|[1-9]\d*)(?:\.\d+)?$/u.test(budget)&&Number(budget)>0&&Number(budget)<=1800,'positive bounded stage budget');
   check(hash(launcherSha256),'reviewed watcher hash required');
   const args=['-I','-B',path.join(root,stage==='compute'?CONSUMER:PUBLISHER),'--repo-root',root,'--watcher-sha256',launcherSha256];
-  if(stage==='compute')args.push('--consumer-sha256',SOURCE_BINDINGS[CONSUMER],'--consumer-tests-sha256',SOURCE_BINDINGS['tests/test_prescribed_acceleration_response_consumer.py'],
-    '--python-sha256',plan.originalBindings[13].sha256,'--out-dir',output,'--original-bindings',JSON.stringify(plan.originalBindings));
+  if(stage==='compute')args.push('--consumer-sha256',executionDigest(plan,root,CONSUMER),'--consumer-tests-sha256',executionDigest(plan,root,'tests/test_prescribed_acceleration_response_consumer.py'),
+    '--python-sha256',plan.originalBindings.find(b=>b.role==='pythonExecutable').sha256,'--out-dir',output,'--original-bindings',JSON.stringify(plan.originalBindings));
   else{binding(publicationJob);check(publicationJob.path===output+'-outer/publisher-job.json','original publisher job required');
-    args.push('--publisher-sha256',SOURCE_BINDINGS[PUBLISHER],'--job',publicationJob.path,'--job-sha256',publicationJob.sha256);}
+    args.push('--publisher-sha256',executionDigest(plan,root,PUBLISHER),'--job',publicationJob.path,'--job-sha256',publicationJob.sha256);}
   args.push('--budget-seconds',budget);return {command:plan.python,args};
 }
 export async function runSingleStage(spec,{root=process.cwd(),out=process.stdout,err=process.stderr,spawnImpl=spawn}={}) {
@@ -222,7 +192,7 @@ function referenceMetadata(reference){check(reference?.schema==='braid-program/p
   equal(reference.claims,Object.fromEntries(FALSE_CLAIMS.map(k=>[k,false])))&&
   equal(reference.census,{members:12,segments:12384,orderedPairs:144,ordinaryRoots:132,selfExclusions:12})&&
   equal(reference.interpretations,['source-decimal','frozen-binary64'])&&
-  equal(reference.sourceHashes,ORIGINALS.slice(0,8).map(([role,,sha256])=>({role,sha256})))&&
+  equal(reference.sourceHashes,ORIGINALS.map(([role,,sha256])=>({role,sha256})))&&
   reference.members?.length===12&&reference.contributions?.length===132&&reference.selfExclusions?.length===12&&reference.responses?.length===12,'complete conditional reference metadata required');}
 function candidateData(b,job,live){binding(b);check(b.path===path.join(job.output,'private-candidate.json')&&b.bytes<=OUTPUT_LIMIT,'fixed private candidate path');
   const raw=readBound(b.path,b.sha256,true,OUTPUT_LIMIT,live);check(raw.bytes===b.bytes,'candidate bytes differ');const candidate=decode(raw.data,OUTPUT_LIMIT);
@@ -312,9 +282,8 @@ export function fileOperation(job){const live=()=>check(process.hrtime.bigint()<
   throw new Error('unknown file operation');
 }
 export async function stageMain(argv){const values={};for(let i=0;i<argv.length;i+=2){check(argv[i+1]&&!Object.hasOwn(values,argv[i]),'unique paired stage arguments');values[argv[i]]=argv[i+1];}
-  check(equal(Object.keys(values).sort(),['--source-map-sha256','--plan','--plan-sha256','--entry-sha256','--launcher-sha256','--stage','--out','--deadline-ns','--publication-job-sha256'].sort()),'closed stage arguments');
+  check(equal(Object.keys(values).sort(),['--plan','--plan-sha256','--entry-sha256','--launcher-sha256','--stage','--out','--deadline-ns','--publication-job-sha256'].sort()),'closed stage arguments');
   const root=process.cwd(),own=readBound(path.join(root,ENTRY),values['--entry-sha256'],true,1024**2);check(import.meta.url===url(own.data),'captured operational entry required');
-  await initializeSourceBindings(root,values['--source-map-sha256']);
   const p=readBound(values['--plan'],values['--plan-sha256'],true,1024**2),plan=decode(p.data,1024**2);validatePlan(plan,root,values['--launcher-sha256'],values['--entry-sha256']);
   const output=values['--out'],stage=values['--stage'];outputLane(root,output);const sources=[...planBindings(plan,root),clean(p)];
   checkBindings(sources,()=>remainingSeconds(values['--deadline-ns']));

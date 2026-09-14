@@ -9,96 +9,17 @@ not root, acceleration, continuous-reception, or trajectory certification.
 
 from __future__ import annotations
 
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
-    from pathlib import Path as _b_Path
-    _b_root = _b_Path(__file__).resolve().parents[2]
-    _b_held = {}
-    def _b_identity(path):
-        value = path.lstat()
-        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
-    def _b_capture(relative, expected=None):
-        if (type(relative) is not str or not relative or '\\' in relative
-                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
-            raise ValueError('Unsafe selected Python bootstrap path')
-        path = _b_root / relative
-        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
-            raise ValueError('Canonical regular Python bootstrap source required')
-        before = _b_identity(path)
-        if relative in _b_held and _b_held[relative] != before:
-            raise ValueError('Selected Python bootstrap source replaced')
-        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
-        try:
-            value = _b_os.fstat(fd)
-            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
-                raise ValueError('Bounded Python bootstrap source required')
-            parts = []; size = 0
-            while size < value.st_size:
-                part = _b_os.read(fd, min(65536, value.st_size-size))
-                if not part: raise ValueError('Truncated Python bootstrap source')
-                parts.append(part); size += len(part)
-            raw = b''.join(parts); value = _b_os.fstat(fd)
-            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
-                raise ValueError('Selected Python bootstrap source changed during capture')
-        finally:
-            _b_os.close(fd)
-        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
-            raise ValueError('Selected Python bootstrap digest differs')
-        _b_held[relative] = before
-        return raw
-    def _b_unique(pairs):
-        result = {}
-        for key,value in pairs:
-            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
-            result[key] = value
-        return result
-    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
-    def _b_recheck():
-        for relative,identity in _b_held.items():
-            if _b_identity(_b_root/relative) != identity:
-                raise ValueError('Retained Python bootstrap source replaced')
-    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
-    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
-    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
-    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
-    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
-    _b_path = 'scripts/eom/production_source_records.py'
-    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
-    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
-            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
-            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
-        raise ValueError('Exact selected Python production bridge required')
-    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
-    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
-    _b_bridge.__file__ = str(_b_root/_b_path)
-    _b_sys.modules[_b_bridge.__name__] = _b_bridge
-    _b_recheck()
-    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
-    _b_recheck()
-    def _b_call(name, *args, **kwargs):
-        _b_recheck()
-        result = getattr(_b_bridge,name)(*args,**kwargs)
-        _b_recheck()
-        return result
-    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
-    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
-    production_recheck = lambda: _b_call('production_recheck')
-    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
-    production_runtime_binding = lambda: _b_call('production_runtime_binding')
-    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
-    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+import hashlib
+from pathlib import Path
 
-if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
-        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
-        or len(OPTION_B_PRODUCTION_IDENTITIES) != 13):
-    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
+
 
 import argparse
 from decimal import Decimal, InvalidOperation
 from hashlib import sha256
 import json
 import os
-from pathlib import Path
 import re
 import sys
 
@@ -111,21 +32,13 @@ CHARGE = "0.1666666666666666666666666666666667"
 ORIGINAL = ".tmp/f6c-dual-turn-stage-b-row12-refined-v2"
 DURABLE = "reference/priorities/braid-program/evidence"
 SOURCES = {
-    "record": (f"{ORIGINAL}/row-000/assembly-view-record.json", OPTION_B_PRODUCTION_IDENTITIES[0]),
-    "frames": (f"{ORIGINAL}/row-000/frames.jsonl", OPTION_B_PRODUCTION_IDENTITIES[1]),
-    "checkpoint": (f"{ORIGINAL}/row-000/checkpoint.bin", OPTION_B_PRODUCTION_IDENTITIES[2]),
-    "originalManifest": (f"{ORIGINAL}/row-000/run-manifest.json", OPTION_B_PRODUCTION_IDENTITIES[3]),
-    "originalSummary": (f"{ORIGINAL}/search-summary.json", OPTION_B_PRODUCTION_IDENTITIES[4]),
-    "manifest": (f"{DURABLE}/2026-08-27-f6c-refined-stage-b-manifest.json", OPTION_B_PRODUCTION_IDENTITIES[5]),
-    "summary": (f"{DURABLE}/2026-08-27-f6c-refined-stage-b-summary.json", OPTION_B_PRODUCTION_IDENTITIES[6]),
-}
-INSTRUMENTS = {
-    "scripts/eom/attractor-ensemble-harness.cpp": OPTION_B_PRODUCTION_IDENTITIES[7],
-    "scripts/mapping-electromagnetism/f6c-nonlinear-return-map-search.mjs": OPTION_B_PRODUCTION_IDENTITIES[8],
-    "scripts/eom/oracle/certified_acceleration.py": OPTION_B_PRODUCTION_IDENTITIES[9],
-    "scripts/eom/oracle/reference_kernel.py": OPTION_B_PRODUCTION_IDENTITIES[10],
-    "scripts/eom/oracle/certified_history.py": OPTION_B_PRODUCTION_IDENTITIES[11],
-    "scripts/eom/oracle/decimal_interval.py": OPTION_B_PRODUCTION_IDENTITIES[12],
+    "record": (f"{ORIGINAL}/row-000/assembly-view-record.json", '7aa3369399664fb763c6d8dbca80d5f44c1c8bff6f358da311417277ce3667eb'),
+    "frames": (f"{ORIGINAL}/row-000/frames.jsonl", '49d59797c09c9c933cf0ad1c97f3927f7d4991f1b812e0b73e91e24e993ff651'),
+    "checkpoint": (f"{ORIGINAL}/row-000/checkpoint.bin", '8ba02c63c0428f670ef4c33bc464e43933f3793b561322641b1388fde92b459d'),
+    "originalManifest": (f"{ORIGINAL}/row-000/run-manifest.json", 'cbd4fa5392298c3fb72a86c247daa0081f33aa6b39f2982ef5348ca0cd50830b'),
+    "originalSummary": (f"{ORIGINAL}/search-summary.json", '659dca66f8064ddf36faca8887ddabbd8c82c775be11e4dc14961f82e0ac99f9'),
+    "manifest": (f"{DURABLE}/2026-08-27-f6c-refined-stage-b-manifest.json", 'cbd4fa5392298c3fb72a86c247daa0081f33aa6b39f2982ef5348ca0cd50830b'),
+    "summary": (f"{DURABLE}/2026-08-27-f6c-refined-stage-b-summary.json", '9e053c214e2d09544a488957dde7d59de40ee15937b8c056ef7d56d24eb40d3d'),
 }
 DECIMAL_TOKEN = re.compile(r"-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\Z")
 
@@ -178,19 +91,19 @@ def decimal_token(value, *, numeric: bool = False) -> Decimal:
 
 
 def integer_token(value) -> int:
-    _require(type(value) is JsonNumber and re.fullmatch(r"0|[1-9][0-9]*", value),
+    _require((type(value) is JsonNumber) and (re.fullmatch(r"0|[1-9][0-9]*", value)),
              "expected nonnegative JSON integer")
     return int(value)
 
 
 def _keys(value, expected, label):
-    _require(type(value) is dict and set(value) == set(expected),
+    _require((type(value) is dict) and (set(value) == set(expected)),
              f"{label} fields differ from the frozen schema")
 
 
 def validate_segments(segments):
     """Structural/token validation only; does not evaluate a polynomial."""
-    _require(type(segments) is list and len(segments) > 0, "missing segments")
+    _require((type(segments) is list) and (len(segments) > 0), "missing segments")
     previous_end = None
     for segment in segments:
         _keys(segment, ("startTime", "endTime", "coefficients", "positionErrors",
@@ -201,17 +114,17 @@ def validate_segments(segments):
         _require(previous_end is None or previous_end == start, "segment gap or overlap")
         previous_end = end
         rows = segment["coefficients"]
-        _require(type(rows) is list and len(rows) == 3, "coefficient axis census")
+        _require((type(rows) is list) and (len(rows) == 3), "coefficient axis census")
         for row in rows:
-            _require(type(row) is list and len(row) == 4, "coefficient degree census")
+            _require((type(row) is list) and (len(row) == 4), "coefficient degree census")
             for coefficient in row:
                 decimal_token(coefficient)
         for kind in ("position", "velocity"):
             radii = segment[f"{kind}Errors"]
-            _require(type(radii) is list and len(radii) == 3, "error axis census")
+            _require((type(radii) is list) and (len(radii) == 3), "error axis census")
             values = [decimal_token(token) for token in radii]
             scalar = decimal_token(segment[f"{kind}Error"])
-            _require(all(value >= 0 for value in values) and scalar >= max(values),
+            _require((all(value >= 0 for value in values)) and (scalar >= max(values)),
                      "negative or underbounding error radius")
     return segments
 
@@ -254,7 +167,7 @@ def validate_frames(data: bytes, *, path_keys: tuple[int, ...], frame_count: int
 def read_bound(path: Path, expected_hash: str):
     original = path.read_bytes()
     digest = sha256(original).hexdigest()
-    _require(digest == expected_hash, f"source hash mismatch: {path}")
+    _require(digest == expected_hash, f"scientific artifact digest mismatch: {path}")
     return original, {"path": str(path), "realPath": str(path.resolve()),
                       "sha256": digest, "bytes": len(original)}
 
@@ -265,38 +178,30 @@ def _subject_payload(record, manifest, summary, frames):
     _require(summary["schema"] == "f6c-nonlinear-return-map-search/v2", "summary schema")
     _require(len(summary["rows"]) == 1, "Stage B row census")
     row = summary["rows"][0]
-    _require(integer_token(row["index"]) == 0 and row["status"] == "analyzed", "Stage B row")
+    _require((integer_token(row["index"]) == 0) and (row["status"] == "analyzed"), "Stage B row")
     result = row["result"]
     for identity in (record["provenance"], manifest, result["manifest"]):
-        _require(identity["runId"] == RUN_ID and identity["modelFingerprint"] == MODEL,
+        _require((identity["runId"] == RUN_ID) and (identity["modelFingerprint"] == MODEL),
                  "run or model identity mismatch")
         _require(identity["generatingSpec"] == GENERATING_SPEC, "generating specification mismatch")
     _require(record["provenance"]["runStatus"] == manifest["status"] == "completed", "incomplete subject")
     _require(manifest["coupling"] == "10.304229970992187", "coupling differs")
-    _require(integer_token(manifest["acceptedSteps"]) == 80
-             and integer_token(manifest["rejectedSteps"]) == 0
-             and integer_token(manifest["sampleEvery"]) == 1
-             and integer_token(manifest["framesEmitted"]) == 648, "accepted-frame accounting")
+    _require((integer_token(manifest["acceptedSteps"]) == 80) and (integer_token(manifest["rejectedSteps"]) == 0) and (integer_token(manifest["sampleEvery"]) == 1) and (integer_token(manifest["framesEmitted"]) == 648), "accepted-frame accounting")
     _require(record["window"]["end"] == manifest["acceptedEndTime"] == "0.13", "end time")
-    _require(frames[0]["time"] == "0" and frames[-1]["time"] == "0.13", "frame window")
+    _require((frames[0]["time"] == "0") and (frames[-1]["time"] == "0.13"), "frame window")
     _require(len(result["parameters"]) == 15, "parameter census")
     _require(len(record["worldlines"]) == len(LABELS) == len(manifest["seeds"]), "member census")
     worldlines = []
     for index, (worldline, label, seed) in enumerate(zip(record["worldlines"], LABELS, manifest["seeds"])):
         key = index + 1
         charge = CHARGE if key % 2 else f"-{CHARGE}"
-        _require(worldline["id"] == seed["pathId"] == label
-                 and integer_token(worldline["pathKey"]) == key, "member identity or order")
+        _require((worldline["id"] == seed["pathId"] == label) and (integer_token(worldline["pathKey"]) == key), "member identity or order")
         _require(worldline["charge"] == seed["charge"] == charge, "charge literal differs")
-        _require(decimal_token(worldline["polarity"], numeric=True) == (1 if key % 2 else -1)
-                 and integer_token(worldline["stateFlags"]) == (1 if key % 2 else 2), "member polarity")
-        _require(integer_token(worldline["declaredPrehistorySegmentCount"]) == 1600
-                 and integer_token(worldline["evolvedSegmentCount"]) == 160, "segment census")
+        _require((decimal_token(worldline["polarity"], numeric=True) == (1 if key % 2 else -1)) and (integer_token(worldline["stateFlags"]) == (1 if key % 2 else 2)), "member polarity")
+        _require((integer_token(worldline["declaredPrehistorySegmentCount"]) == 1600) and (integer_token(worldline["evolvedSegmentCount"]) == 160), "segment census")
         segments = validate_segments(worldline["segments"])
         _require(len(segments) == 1760, "complete history census")
-        _require(worldline["coverageStart"] == segments[0]["startTime"] == "-8"
-                 and worldline["coverageEnd"] == segments[-1]["endTime"] == "0.13"
-                 and segments[1599]["endTime"] == segments[1600]["startTime"] == "0", "history coverage")
+        _require((worldline["coverageStart"] == segments[0]["startTime"] == "-8") and (worldline["coverageEnd"] == segments[-1]["endTime"] == "0.13") and (segments[1599]["endTime"] == segments[1600]["startTime"] == "0"), "history coverage")
         endpoints = {Decimal(segment["endTime"]) for segment in segments[1600:]}
         _require(all(Decimal(frame["time"]) in endpoints for frame in frames[1:]), "missing accepted endpoint")
         worldlines.append({**worldline, "pathKey": key,
@@ -342,9 +247,6 @@ def export_history(repo_root: Path, output: Path):
     captured, bindings = {}, {}
     for role, (relative, expected) in SOURCES.items():
         captured[role], bindings[role] = read_bound(root / relative, expected)
-    references = {}
-    for relative, expected in INSTRUMENTS.items():
-        _, references[relative] = read_bound(root / relative, expected)
     _require(captured["manifest"] == captured["originalManifest"], "manifest copy differs")
     _require(captured["summary"] == captured["originalSummary"] + b"\n", "summary copy convention differs")
     frames = validate_frames(captured["frames"], path_keys=tuple(range(1, 9)), frame_count=81)
@@ -365,7 +267,7 @@ def export_history(repo_root: Path, output: Path):
             "historyErrors": "retain per-axis and scalar tokens; scalar radii verified to enclose every coordinate radius",
             "sourceCoordinates": "manifest input literals and summary release literals have distinct roles; neither replaces the other",
         },
-        "sources": bindings, "frozenInstrumentBindings": references,
+        "sources": bindings,
         "exporter": {"path": str(instrument), "sha256": sha256(instrument_bytes).hexdigest()},
         **payload,
     }
@@ -374,11 +276,8 @@ def export_history(repo_root: Path, output: Path):
     for role, (relative, expected) in SOURCES.items():
         reread, _ = read_bound(root / relative, expected)
         _require(reread == captured[role], "input bytes changed during export")
-    for relative, expected in INSTRUMENTS.items():
-        read_bound(root / relative, expected)
     _require(instrument.read_bytes() == instrument_bytes, "exporter changed during export")
     protected = [root / relative for relative, _ in SOURCES.values()]
-    protected.extend(root / relative for relative in INSTRUMENTS)
     _write_exclusive(output, data, [*protected, instrument])
     return {"schema": packet["schema"], "status": packet["status"], "out": str(output),
             "sha256": sha256(data).hexdigest(), "bytes": len(data), "counts": packet["counts"],

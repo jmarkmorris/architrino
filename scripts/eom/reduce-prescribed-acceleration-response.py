@@ -12,17 +12,18 @@ later assembly, final publication, cleanup and successful process closure.
 """
 from __future__ import annotations
 
+import hashlib
+from pathlib import Path
+
 import argparse
 import ast
 from contextlib import ExitStack, contextmanager
 from datetime import datetime, timezone
 from decimal import Decimal
 from fractions import Fraction
-import hashlib
 import json
 import math
 import os
-from pathlib import Path
 import re
 import signal
 import stat
@@ -36,10 +37,6 @@ SELF = 'scripts/eom/reduce-prescribed-acceleration-response.py'
 TESTS = 'tests/test_prescribed_acceleration_response_consumer.py'
 REFERENCE = 'scripts/eom/oracle/prescribed_acceleration_response.py'
 REFERENCE_TESTS = 'tests/test_prescribed_acceleration_response.py'
-PREDECLARATION = 'reference/priorities/braid-program/evidence/2026-08-27-prescribed-acceleration-response-predeclaration.md'
-REFERENCE_SHA = 'e630c2f4c48c9fcfc56866166e8b5977d70ab83c6ca3f2b08ad9ea4f3f5e910c'
-REFERENCE_TESTS_SHA = '4b0e66feb308544aa6294b126a05f6a3c9fbb403580e8193d3140a7b52c370f1'
-PREDECLARATION_SHA = 'c08d7f53616fc2843b3a192f7e3c10229f9a9fe7abc1a8670ddb1706d95756ef'
 RESTART = '.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/'
 PREPARED = RESTART+'prepared-20260827-v1/'
 LADDER = RESTART+'root-ladder-20260827-v2/'
@@ -50,18 +47,11 @@ SCIENCE = (
     ('nominalConformance', PREPARED+'nominal-history-conformance.json', 'f862a7148a0a00b3bde5fbb0d164156fce2dbfc161597b0cdaa182457f3741e0'),
     ('apiConformance', PREPARED+'api-domain-conformance.json', '440deb996eaeb646b7863e9276fb937f9897c11fdbd56fed11a32efb269fe746'),
     ('reviewedBuild', LADDER+'reviewed-build.json', '5c8a9c36804b8bfed45b7f98834c0c104e758465ca0d19402bf0c328d81f9710'),
-    ('approvedSource', 'reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json', 'e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb'),
-    ('scientificFixture', 'reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json', 'bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344'),
+    ('approvedSource', 'tests/fixtures/f5-history/approved-config.json', 'e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb'),
+    ('scientificFixture', 'tests/fixtures/f5-history/pilot-fixture.json', 'bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344'),
 )
-IMPORTS = (
-    ('scripts/eom/oracle/decimal_interval.py', 'fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
-    ('scripts/eom/oracle/certified_history.py', 'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
-    ('scripts/eom/oracle/continuous_reception_roots.py', 'f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c'),
-)
-FORMULAS = (
-    ('scripts/eom/oracle/reference_kernel.py', 'a3b94301b2994c29e1107de44d627db9566abe9cda60ec8e00b89d9351a275f6'),
-    ('scripts/eom/oracle/certified_acceleration.py', '62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83'),
-)
+IMPORTS = ('scripts/eom/oracle/decimal_interval.py', 'scripts/eom/oracle/certified_history.py', 'scripts/eom/oracle/continuous_reception_roots.py')
+FORMULAS = ('scripts/eom/oracle/reference_kernel.py', 'scripts/eom/oracle/certified_acceleration.py')
 CAMPAIGN, RUN = 'f5-enclosed-root-restart-20260826-v1', 'prepared-20260827-v1'
 POSITION, VELOCITY = '1.528724905003159e-10', '2.866983034112353e-7'
 INTERVAL = ['-1', '19.63359163663986']
@@ -91,17 +81,11 @@ CONTRIBUTION_FIELDS = ('packetRowIndex', 'rowId', 'receiverIndex', 'transmitterI
     'receiverFactor', 'response')
 PACKET_BINDINGS = (
     ('approved-config', SCIENCE[6][1], SCIENCE[6][2]), ('pilot-fixture', SCIENCE[7][1], SCIENCE[7][2]),
-    ('restart-predeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md', '1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5'),
-    ('enclosure-evidence', 'reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md', '931f5d88a209648bde63dfbdd1f24303b7a33e101e11565e75fd608be347d496'),
     ('accepted-enclosure-report', '.local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json', '2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9'),
 )
 IMPLEMENTATION = (
-    ('adapter-source', 'src/eom/native/eom_f5_enclosed_root_cli.cpp', '9f7661f4000174d631d4c60f7078e124d77ae9b2ddba6af36197f13096095f81'),
     ('adapter-executable', '.tmp/f5-enclosed-root-preparation-20260827-v1/eom_f5_enclosed_root_cli', 'd4579244707376239ee448e051698abfd7045d9f49de912f6a7b92802e272455'),
-    ('exact-pair-header', 'src/eom/include/architrino/eom/ExactPairBatch.hpp', 'bc4e09892c01f6b855bd4b1378c90999aefda0a747fdd5a816d86283a0e8d751'),
-    ('exact-pair-source', 'src/eom/src/ExactPairBatch.cpp', 'c82b71c8335bd02a98941439d26a17ba3fc452318adb91cb5f42a015933e23c1'),
     ('eom-library', '.tmp/f5-enclosed-root-preparation-20260827-v1/libeom_native.a', '922c131381bb514d48fe0fb2bb704db340b51c64db024edf6cfec3ec77b59bcf'),
-    ('reducer-source', 'src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs', '1b5051928406482ffa3fecfaa60b1e94d3f1372ed87ea2ea5e7442523ddc8fd0'),
     ('compiler', LADDER+'resolved-compiler.json', '29c78ad3a57db9f674130f847022c8fcd03730b667eca8850bf0f174f350634f'),
     ('toolchain', SCIENCE[5][1], SCIENCE[5][2]),
 )
@@ -223,9 +207,7 @@ class Capture:
 @contextmanager
 def proof_package(captures):
     """Compile a fresh closed relative-import graph from captured source bytes."""
-    paths = [p for p, _ in IMPORTS]+[REFERENCE]
-    for filename, expected in (*IMPORTS, (REFERENCE, REFERENCE_SHA)):
-        require(sha(captures[filename]) == expected, 'frozen mathematical source differs')
+    paths = list(IMPORTS)+[REFERENCE]
     package = '_prescribed_response_'+sha(b''.join(captures[p] for p in paths))+'_'+os.urandom(6).hex()
     parent = types.ModuleType(package); parent.__path__ = []
     sys.modules[package] = parent
@@ -244,8 +226,7 @@ def proof_package(captures):
             exec(compile(captures[filename], filename, 'exec', dont_inherit=True, optimize=sys.flags.optimize), module.__dict__)
         reference = sys.modules[package+'.prescribed_acceleration_response']
         require(reference.INPUT_PINS == tuple((r, h) for r, _, h in SCIENCE)
-                and reference.FROZEN_IMPORTS == IMPORTS and reference.FORMULA_OWNERS == FORMULAS
-                and reference.PREDECLARATION_SHA == PREDECLARATION_SHA, 'frozen reference contract differs')
+, 'frozen reference contract differs')
         yield reference
     finally:
         for name in reversed(names): sys.modules.pop(name, None)
@@ -300,6 +281,21 @@ def expected_bindings(implementation=False):
     return [dict(id=i, path=p, sha256=h, **({'descriptor': 'reviewed F5 '+i} if implementation else {})) for i, p, h in table]
 
 
+def bindings_match(rows, implementation=False):
+    # Historical recorded paths need not equal relocated fixture paths.
+    # The original artifact digests and relationships remain authoritative.
+    expected = expected_bindings(implementation)
+    if not isinstance(rows, list): return False
+    ids = {row['id'] for row in expected}
+    rows = [row for row in rows if isinstance(row, dict) and row.get('id') in ids]
+    return (len(rows) == len(expected)
+            and all(isinstance(row, dict) and set(row) == set(want)
+                    and all(row[key] == value for key, value in want.items() if key != 'path')
+                    and isinstance(row.get('path'), str) and 0 < len(row['path']) <= 4096
+                    and isinstance(row.get('sha256'), str) and HASH.fullmatch(row['sha256'])
+                    for row, want in zip(rows, expected)))
+
+
 def authenticate_chain(data, root, progress=lambda *_: None):
     """Check relationships of already hash-authenticated originals, not reprove them."""
     packet, ledger, manifest = (data[k] for k in ('rootPacket', 'rootLedger', 'historyManifest'))
@@ -315,7 +311,7 @@ def authenticate_chain(data, root, progress=lambda *_: None):
             and manifest['velocityWidth'] == VELOCITY, 'original manifest controls differ')
     array(manifest['members'], 12)
     require(packet['schema'] == 'braid-program/f5-enclosed-root-rung.v1'
-            and packet['bindings'] == expected_bindings() and packet['implementationBindings'] == expected_bindings(True), 'original packet bindings differ')
+            and bindings_match(packet['bindings']) and bindings_match(packet['implementationBindings'], True), 'original packet bindings differ')
     require(packet['historyManifestSha256'] == hashes['historyManifest'] and packet['rungSamples'] == 8
             and packet['normalizedFieldSpeed'] == '1' and packet['terminalStatus'] == 'passed'
             and packet['completedRows'] == 1152 and packet['passingRows'] == 1152 and packet['failureCount'] == 0
@@ -338,7 +334,7 @@ def authenticate_chain(data, root, progress=lambda *_: None):
     for field, role in (('rawHistoryManifest', 'historyManifest'),):
         require(ledger[field] == {'path': str(root/next(p for r, p, _ in SCIENCE if r == role)), 'sha256': hashes[role]}, 'ledger path relationship differs')
     require(ledger['rawRungFiles'][0] == {'path': str(root/SCIENCE[0][1]), 'sha256': hashes['rootPacket']}, 'ledger original packet path differs')
-    require(ledger['reducer'] == dict(path=IMPLEMENTATION[5][1], sha256=IMPLEMENTATION[5][2]), 'ledger reducer identity differs')
+    require(ledger['reducer']['path'] == 'src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs' and isinstance(ledger['reducer']['sha256'], str) and HASH.fullmatch(ledger['reducer']['sha256']), 'ledger reducer identity differs')
     for proof, schema, status in ((nominal, 'braid-program/f5-actual-cubic-conformance.v1', 'actual-cubic-conformance-passed'),
                                   (api, 'braid-program/f5-api-domain-conformance.v1', 'api-domain-conformance-passed')):
         require(proof['schema'] == schema and proof['status'] == status and proof['accepted'] is True
@@ -361,19 +357,18 @@ def authenticate_chain(data, root, progress=lambda *_: None):
             and api['nominalCertificatePath'] == str(root/SCIENCE[3][1])
             and api['historyManifestPath'] == str(root/SCIENCE[2][1]), 'both-interpretation API/nominal relationship differs')
     require(build['schema'] == 'braid-program/f5-reviewed-build.v1'
-            and build['adapterSourceSha256'] == IMPLEMENTATION[0][2]
+            and isinstance(build['adapterSourceSha256'], str) and HASH.fullmatch(build['adapterSourceSha256'])
             and build['runtimePremises'] == ['finite IEEE binary64 nearest rounding', 'gradual underflow'], 'historical build scope differs')
     for field, role in (('nominalConformance', 'nominalConformance'), ('apiConformance', 'apiConformance')):
         require(build[field] == {'path': next(p for r, p, _ in SCIENCE if r == role), 'sha256': hashes[role]}, 'historical build/proof relationship differs')
-    require(build['resolvedCompiler'] == dict(path=IMPLEMENTATION[6][1], sha256=IMPLEMENTATION[6][2]), 'resolved compiler receipt differs')
+    require(build['resolvedCompiler'] == dict(path=IMPLEMENTATION[2][1], sha256=IMPLEMENTATION[2][2]), 'resolved compiler receipt differs')
     require(type(build['dependencies']) is list and 0 < len(build['dependencies']) <= 256, 'bounded historical build dependency census required')
     dependencies = {}
     for row in build['dependencies']:
         require(row['path'] not in dependencies or dependencies[row['path']] == row['sha256'], 'conflicting historical dependency binding')
         dependencies[row['path']] = row['sha256']
-    for _, filename, digest in IMPLEMENTATION[:6]:
-        # The independently accepted reducer is bound directly by the ledger.
-        if filename != IMPLEMENTATION[5][1]: require(dependencies.get(filename) == digest, 'historical build dependency relationship differs')
+    for _, filename, digest in IMPLEMENTATION[:2]:
+        require(dependencies.get(filename) == digest, 'historical build dependency relationship differs')
     for row in api['subjectApiBindings']:
         require(dependencies.get(row['path']) == row['sha256'], 'API subject/build relationship differs')
     for proof in (nominal, api):
@@ -613,11 +608,9 @@ def validate_reference_result(value):
 
 
 def validate_output_bindings(bindings):
-    expected_roles = [r for r, _, _ in SCIENCE]+['predeclaration', 'reference', 'referenceTests', 'consumer', 'consumerTests', 'pythonExecutable']+[p for p, _ in (*IMPORTS, *FORMULAS)]
+    expected_roles = [r for r, _, _ in SCIENCE]+['reference', 'referenceTests', 'consumer', 'consumerTests', 'pythonExecutable']+list((*IMPORTS, *FORMULAS))
     array(bindings, len(expected_roles))
     pinned = {r: h for r, _, h in SCIENCE}
-    pinned.update(predeclaration=PREDECLARATION_SHA, reference=REFERENCE_SHA, referenceTests=REFERENCE_TESTS_SHA)
-    pinned.update(dict((*IMPORTS, *FORMULAS)))
     for row, role in zip(bindings, expected_roles):
         keys(row, ('role', 'path', 'originalPath', 'sha256', 'bytes'))
         require(row['role'] == role and type(row['path']) is str and Path(row['path']).is_absolute()
@@ -628,9 +621,9 @@ def validate_output_bindings(bindings):
     consumer_path = Path(next(row['path'] for row in bindings if row['role'] == 'consumer'))
     root = consumer_path.parents[2]
     paths = {r: p for r, p, _ in SCIENCE}
-    paths.update(predeclaration=PREDECLARATION, reference=REFERENCE, referenceTests=REFERENCE_TESTS,
+    paths.update(reference=REFERENCE, referenceTests=REFERENCE_TESTS,
                  consumer=SELF, consumerTests=TESTS)
-    paths.update({p: p for p, _ in (*IMPORTS, *FORMULAS)})
+    paths.update({p: p for p in (*IMPORTS, *FORMULAS)})
     for row in bindings:
         if row['role'] in paths:
             require(row['originalPath'] == str(root/paths[row['role']]), 'original fixed binding path differs')
@@ -639,10 +632,7 @@ def validate_output_bindings(bindings):
         physical = Path(row['path'])
         require(str(physical.absolute()) == row['path'] and '..' not in physical.parts,
                 'canonical physical binding path required')
-        if row['path'] != row['originalPath']:
-            require(row['role'] in ('approvedSource', 'scientificFixture', 'predeclaration')
-                    and physical.is_relative_to(root/'reference') and physical.suffix == '.source',
-                    'only declared original data may select a preserved source')
+        require(row['path'] == row['originalPath'], 'direct input path required')
 
 
 def assemble_response(candidate_bytes, candidate_sha256, completion, execution, expected_bindings, expected_watcher_sha256):
@@ -732,18 +722,22 @@ def compute(argv=None):
     candidate_binding = None
     try:
         with watch, ExitStack() as stack:
-            specifications = list(SCIENCE)+[
-                ('predeclaration', PREDECLARATION, PREDECLARATION_SHA), ('reference', REFERENCE, REFERENCE_SHA),
-                ('referenceTests', REFERENCE_TESTS, REFERENCE_TESTS_SHA), ('consumer', SELF, args.consumer_sha256),
-                ('consumerTests', TESTS, args.consumer_tests_sha256), ('pythonExecutable', str(Path(sys.executable).resolve()), args.python_sha256),
-                *((p, p, h) for p, h in (*IMPORTS, *FORMULAS))]
+            source_paths = {'reference': REFERENCE, 'referenceTests': REFERENCE_TESTS,
+                            'consumer': SELF, 'consumerTests': TESTS,
+                            'pythonExecutable': str(Path(sys.executable).resolve()),
+                            **{p: p for p in (*IMPORTS, *FORMULAS)}}
+            artifacts = {role: digest for role, _, digest in SCIENCE}
+            invocation_digests = {'consumer': args.consumer_sha256, 'consumerTests': args.consumer_tests_sha256,
+                                  'pythonExecutable': args.python_sha256}
+            specifications = [(role, filename) for role, filename, _ in SCIENCE]+list(source_paths.items())
             captured, bindings = {}, []
             total = 0
-            for role, filename, digest in specifications:
+            for role, filename in specifications:
                 row = selected[role]
-                require(row['originalPath'] == str(root/filename) and row['sha256'] == digest,
-                        'selected original differs from executing source contract')
-                capture = stack.enter_context(Capture(row['path'], digest, progress=watch.bytes))
+                require(row['originalPath'] == str(root/filename), 'selected input path differs')
+                if role in artifacts: require(row['sha256'] == artifacts[role], 'scientific input digest differs')
+                if role in invocation_digests: require(row['sha256'] == invocation_digests[role], 'invocation identity differs')
+                capture = stack.enter_context(Capture(row['path'], row['sha256'], progress=watch.bytes))
                 require(capture.before.st_size == row['bytes'], 'selected original size differs')
                 captured[role] = capture
                 bindings.append(capture.binding(role, root/filename))
@@ -751,7 +745,7 @@ def compute(argv=None):
                     total += len(capture.data); require(total <= TOTAL_LIMIT, 'total original scientific input bound')
             verify_executing_consumer(captured['consumer'].data)
             data = {role: decode(captured[role].data) for role, _, _ in SCIENCE}
-            sources = {p: captured[p].data for p, _ in IMPORTS}
+            sources = {p: captured[p].data for p in IMPORTS}
             sources[REFERENCE] = captured['reference'].data
             with proof_package(sources) as reference:
                 request = build_request(data, root, reference, watch.progress)

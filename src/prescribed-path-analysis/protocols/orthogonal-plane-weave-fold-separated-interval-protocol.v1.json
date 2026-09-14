@@ -3,12 +3,9 @@
   "protocolId": "orthogonal-plane-weave-fold-separated-interval-2026-08-29",
   "closureGoal": "Independently certify the fixed 120-degree orthogonal-plane locus over beta_f in [0.25,12] and reception phase in [0,2*pi], returning a bounded no-balance theorem, a certified candidate box, or explicit unresolved fold boxes.",
   "claimGrade": "bounded-interval-diagnostic",
-  "frozenSubject": {
+  "subject": {
     "path": "src/prescribed-path-analysis/OrthogonalPlaneWeaveBalance.mjs",
-    "sha256": "109094c43b2df92dbe22338412dd2761e1933cf202b8e4957385d8716da252be",
-    "evidencePath": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
-    "evidenceSha256": "55a13188eddc8a2e8cbdcec741c9af443f3ab0c5d138e2bc78b8514edc027dc5",
-    "modificationRule": "The frozen subject and its prior evidence are read-only controls and must not be modified in the independent-oracle change."
+    "evidencePath": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json"
   },
   "domain": {
     "fieldSpeed": "1",

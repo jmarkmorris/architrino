@@ -1,12 +1,16 @@
+import {mkdtempSync,writeFileSync,rmSync} from "node:fs";
+import {tmpdir} from "node:os";
+import path from "node:path";
+import {pathToFileURL} from "node:url";
+import {after} from "node:test";
 import test from "node:test";
 import assert from "node:assert/strict";
 import {createHash} from "node:crypto";
 import {execFileSync} from "node:child_process";
 import {openSubfieldCircularPhaseLedgerWorker} from "../src/prescribed-path-analysis/SubfieldCircularPhaseLedgerWorker.mjs";
 
-const production={identities:Array(13).fill("a".repeat(64)),protectedSources:[],currentSources:[]};
+
 const mock = String.raw`
-export function initializeProductionIdentities(values){if(values.length!==13)throw Error("fixture identity count");}
 export const subfieldCircularSha256=()=>"test-only";
 export async function prepareSubfieldCircularPhaseLedgerContext(options) {
  if(options.hangPrepare) while(true){}
@@ -16,9 +20,11 @@ export async function prepareSubfieldCircularPhaseLedgerContext(options) {
    checkRowBytes(bytes){if(options.hangRow)while(true){}; if(bytes.toString()!=="valid")throw Error("bad row");count++;
      return {rowConformant:true,accepted:false,h3EvidenceEligible:false};}};
 }`;
+const mockDir=mkdtempSync(path.join(tmpdir(),"circular-worker-test-"));
+const mockFile=path.join(mockDir,"ledger.mjs");writeFileSync(mockFile,mock);after(()=>rmSync(mockDir,{recursive:true,force:true}));
 function open(options={},limitMs=2000,signal) {
  const reducerBytes=Buffer.from(mock),reducerSha256=createHash("sha256").update(reducerBytes).digest("hex");
- return openSubfieldCircularPhaseLedgerWorker({production,reducerBytes,reducerSha256,options,limitMs,signal});
+ return openSubfieldCircularPhaseLedgerWorker({reducerUrl:pathToFileURL(mockFile).href,reducerBytes,reducerSha256,options,limitMs,signal});
 }
 test("isolated scheduling checker requires each exact row and final census",async()=>{
  const w=await open();try{assert.equal(await w.checkRowBytes(Buffer.from("valid")),true);await w.recheck(1);}finally{await w.close();}
@@ -48,16 +54,16 @@ test("final source recheck failure remains a rejection",async()=>{
  const w=await open({failRecheck:true});try{await assert.rejects(w.recheck(0),/drift/);}finally{await w.close();}
 });
 test("captured byte mismatch is refused before worker launch",async()=>{
- await assert.rejects(openSubfieldCircularPhaseLedgerWorker({production,reducerBytes:Buffer.from(mock),reducerSha256:"0".repeat(64),options:{}}),/captured/);
+ await assert.rejects(openSubfieldCircularPhaseLedgerWorker({reducerBytes:Buffer.from(mock),reducerSha256:"0".repeat(64),options:{}}),/captured/);
 });
 test("module-mode parent flags do not change the captured worker loader",()=>{
  const url=new URL("../src/prescribed-path-analysis/SubfieldCircularPhaseLedgerWorker.mjs",import.meta.url).href;
  const source=`import {openSubfieldCircularPhaseLedgerWorker} from ${JSON.stringify(url)};
  import {createHash} from 'node:crypto';
- const production=${JSON.stringify(production)};
+
  const reducerBytes=Buffer.from(${JSON.stringify(mock)});
  const reducerSha256=createHash('sha256').update(reducerBytes).digest('hex');
- const w=await openSubfieldCircularPhaseLedgerWorker({production,reducerBytes,reducerSha256,options:{}});
+ const w=await openSubfieldCircularPhaseLedgerWorker({reducerUrl:${JSON.stringify(pathToFileURL(mockFile).href)},reducerBytes,reducerSha256,options:{}});
  try{await w.checkRowBytes(Buffer.from('valid'));await w.recheck(1);}finally{await w.close();}`;
  execFileSync(process.execPath,["--input-type=module","-e",source],{timeout:3000});
 });

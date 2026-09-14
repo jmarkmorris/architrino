@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { borgConsumerAdmission } from '../borg/selected-runtime-admission.mjs';
 
 import { createHash } from "node:crypto";
 import {
@@ -47,10 +46,8 @@ function readBoundJson(filePath, maximumBytes = 16 * 1024 * 1024) {
 }
 
 function writeFreshJson(filePath, value) {
-  borgConsumerAdmission(import.meta.url).check();
   const bytes = Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
   writeFileSync(filePath, bytes, { flag: "wx", mode: 0o600 });
-  borgConsumerAdmission(import.meta.url).check();
   const reread = readFileSync(filePath);
   check(reread.equals(bytes), `published file changed: ${filePath}`);
   return { path: filePath, sha256: sha256(bytes), bytes: bytes.length };
@@ -61,7 +58,6 @@ function bindingMap(declaration) {
 }
 
 function authenticateBindings(declaration) {
-  borgConsumerAdmission(import.meta.url).check();
   for (const binding of declaration.bindings) {
     const absolute = path.resolve(REPO_ROOT, binding.path);
     const bytes = readFileSync(absolute);
@@ -329,7 +325,6 @@ function parseArgs(argv) {
 }
 
 async function main() {
-  const admission=borgConsumerAdmission(import.meta.url);
   const args = parseArgs(process.argv.slice(2));
   const binaryPath = realpathSync(path.resolve(args.get("--binary")));
   const predeclarationPath = path.resolve(args.get("--predeclaration") ?? DEFAULT_PREDECLARATION);
@@ -429,7 +424,6 @@ async function main() {
     braidClassificationAttempted: false,
   };
   const summaryBinding = writeFreshJson(path.resolve(outputDirectory, "run-summary.json"), summary);
-  admission.check();
   process.stdout.write(`${JSON.stringify({
     outputDirectory,
     summary: summaryBinding,

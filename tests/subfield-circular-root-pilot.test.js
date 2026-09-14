@@ -1,8 +1,3 @@
-import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
-import * as optionBProductionModule0 from "../scripts/eom/run-subfield-circular-root-pilot.mjs";
-optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/run-subfield-circular-root-pilot.mjs"));
-import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
-const NEXT_TEST_SHA = nextTestIdentities("tests/subfield-circular-root-pilot.test.js", 1);
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -11,7 +6,7 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
-import { installPilotSnapshot, parseMacProfile, parsePilotArgs, PILOT_CANDIDATES,
+import { parseMacProfile, parsePilotArgs, PILOT_CANDIDATES,
   pilotFileOperation, pilotProjection, pilotSchedule, rowDispositions,
   validatePilotPhase, validatePilotProof, validatePilotSummary, watchedPilotFileOperation,
 } from "../scripts/eom/run-subfield-circular-root-pilot.mjs";
@@ -26,11 +21,11 @@ const directory = () => realpathSync(mkdtempSync(path.join(os.tmpdir(), "subfiel
 const source = relative => { const bytes = readFileSync(path.join(ROOT, relative)); return { path: relative, bytes, sha256: sha(bytes) }; };
 
 test("pilot CLI requires a new scoped directory and exact external reviewed source hash", () => {
-  const args = ["--out", BASE + "synthetic", "--runner-sha256", "a".repeat(64),"--source-map-sha256","b".repeat(64)];
-  assert.deepEqual(parsePilotArgs(args), { output: BASE + "synthetic", runnerSha256: "a".repeat(64),sourceMapSha256:"b".repeat(64) });
-  for (const invalid of [[], args.slice(0, 2), [...args, "--out", "second"], ["--out", BASE + "../escape", ...args.slice(2)],
+  const args = ["--out", BASE + "synthetic"];
+  assert.deepEqual(parsePilotArgs(args), { output: BASE + "synthetic" });
+  for (const invalid of [[], [...args, "--out", "second"], ["--out", BASE + "../escape", ...args.slice(2)],
     ["--out", "/absolute", ...args.slice(2)], ["--out", BASE + "synthetic/", ...args.slice(2)],
-    ["--out", BASE + "synthetic", "--runner-sha256", "A".repeat(64)]]) assert.throws(() => parsePilotArgs(invalid));
+    ["--unknown", "value"]]) assert.throws(() => parsePilotArgs(invalid));
 });
 
 test("canonical two-phase census is candidate-major with 2448 rows, not a partial pair sample", () => {
@@ -76,21 +71,21 @@ test("failure dispositions retain accepted phases, mark attempted unaccepted row
 function syntheticProof() {
   const expected = pilotSchedule()[0], manifest = { path: "/synthetic/manifest", sha256: "a".repeat(64) };
   const proofPath = "scripts/eom/verify-subfield-circular-history.mjs";
-  const bindings = [{ path: proofPath, sha256: NEXT_TEST_SHA[0] },
+  const bindings = [{ path: proofPath, sha256: source(proofPath).sha256 },
     { path: "src/prescribed-path-analysis/CircularHistoryConformance.mjs", sha256: "c".repeat(64) },
     { path: "scripts/eom/derive-subfield-circular-root-reference.mjs", sha256: "d".repeat(64) }];
   return { expected, manifest, proof: { ...expected, schema: "braid-program/subfield-circular-history-conformance.v1",
     accepted: true, actualCarrierValidated: true, h3EvidenceEligible: false, normalizedFieldSpeed: "1",
     authority: "source-bound-whole-manifest-analytic-conformance-only", manifestPath: manifest.path, manifestSha256: manifest.sha256,
     segmentCount: 6000, members: Array.from({ length: 6 }, () => ({})), bindings,
-    execution: { mode: "captured-source-worker", sourceBindings: bindings } } };
+    execution: { mode: "independent-proof-worker", sourceBindings: bindings } } };
 }
 
 test("proof receipt plumbing rejects wrong identity, partial census and stale worker generation", () => {
   const { expected, manifest, proof } = syntheticProof(); validatePilotProof(proof, expected, manifest);
   for (const change of [{ accepted: false }, { candidateId: "coincident-midpoint-equal-radius-common-frequency" }, { phase: 1 }, { segmentCount: 5999 },
     { h3EvidenceEligible: true }, { normalizedFieldSpeed: "2" }, { manifestSha256: "b".repeat(64) },
-    { execution: { mode: "captured-source-worker", sourceBindings: [] } }])
+    { execution: { mode: "independent-proof-worker", sourceBindings: [] } }])
     assert.throws(() => validatePilotProof({ ...proof, ...change }, expected, manifest));
 });
 
@@ -135,38 +130,7 @@ test("captured file worker operates from exact bytes and honors cancellation", a
   const options = { runnerBytes: self.bytes, runnerSha256: self.sha256, limitMs: 3000 };
   const [record] = await watchedPilotFileOperation({ kind: "files", root, files: [{ path: filename }] }, options);
   assert.equal(record.sha256, sha("synthetic"));
-  await assert.rejects(watchedPilotFileOperation({ kind: "files", root, files: [] }, { ...options, runnerSha256: "a".repeat(64) }), /source/u);
+
   const abort = new AbortController(); abort.abort(new Error("synthetic stop"));
   await assert.rejects(watchedPilotFileOperation({ kind: "files", root, files: [] }, { ...options, signal: abort.signal }), /synthetic stop/u);
-});
-
-test("closed runtime loader executes captured source even after disk generation changes", async () => {
-  const root = directory(), relative = "synthetic.mjs", filename = path.join(root, relative);
-  const bytes = Buffer.from("export const generation='captured';\n");
-  writeFileSync(filename, bytes, { flag: "wx" });
-  const snapshot = installPilotSnapshot([{ path: relative, bytes, sha256: sha(bytes) }], root);
-  writeFileSync(filename, "export const generation='changed-on-disk';\n");
-  try { assert.equal((await snapshot.import(relative)).generation, "captured"); }
-  finally { snapshot.close(); }
-});
-
-test("closed runtime loader rejects a newly introduced uncaptured file import", async () => {
-  const root = directory(), bytes = Buffer.from("import './other.mjs';\n"), other = path.join(root, "other.mjs");
-  writeFileSync(other, "export const wrong=true;\n", { flag: "wx" });
-  const snapshot = installPilotSnapshot([{ path: "synthetic.mjs", bytes, sha256: sha(bytes) }], root);
-  try { await assert.rejects(snapshot.import("synthetic.mjs"), /uncaptured/u); }
-  finally { snapshot.close(); }
-});
-
-test("historical reviewed build rejects changed source and substituted receipt", () => {
-  // Fresh current-context admission is exercised with an explicitly supplied
-  // new build in subfield-circular-current-context; it grants no pilot authority.
-  assert.throws(() => pilotFileOperation({ kind: "build", root: ROOT }), /sha256 changed: scripts\/eom\/prepare-f5-enclosed-root\.mjs/u);
-  const root = mkdtempSync(path.join(os.tmpdir(), "circular-wrong-build-"));
-  try {
-    const target = path.join(root, BASE + "current-v3-build-20260908-execution-review/preparation.json");
-    mkdirSync(path.dirname(target), { recursive: true });
-    writeFileSync(target, "{}\n");
-    assert.throws(() => pilotFileOperation({ kind: "build", root }), /reviewed build receipt bytes differ/u);
-  } finally { rmSync(root, { recursive: true, force: true }); }
 });

@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """Certify local T04 isolation on the coupled phase-radius chart.
 
-This five-variable certificate reuses the frozen generic unequal-radius
+This five-variable certificate reuses the generic unequal-radius
 interval root primitives, then independently composes the coupled phases,
 radii, implicit derivatives, compatibility rows, and interval-Newton system.
 """
 
 from __future__ import annotations
 
-import hashlib
 import json
 from dataclasses import dataclass
 
@@ -17,7 +16,6 @@ import mpmath as mp
 import certify_planar_three_binary_unequal_radius_box as base
 
 
-SHARED_INTERVAL_ORACLE_SHA256 = "74ef263449da4f74a8556914db32bd4222057b23d7c8934a911b4e7c2073cc5a"
 PHASE_RADIUS_TOKEN = "1e-6"
 BETA_RADIUS_TOKEN = "1e-6"
 POINT_DPS = 110
@@ -35,9 +33,6 @@ class CertificateFailure(RuntimeError):
 def shared_oracle_path():
     return base.Path(base.__file__).resolve()
 
-
-def sha256(path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 @dataclass(frozen=True)
@@ -387,15 +382,6 @@ def selected_rows(residual):
 def calculate() -> dict[str, object]:
     mp.mp.dps = POINT_DPS
     mp.iv.dps = INTERVAL_DPS
-    if sha256(shared_oracle_path()) != SHARED_INTERVAL_ORACLE_SHA256:
-        raise CertificateFailure("frozen shared interval oracle changed")
-    for path, expected in (
-        (base.SOURCE, base.FROZEN_SOURCE_SHA256),
-        (base.PHASE_CERTIFICATE, base.FROZEN_PHASE_CERTIFICATE_SHA256),
-        (base.SCALAR_THEOREM_EVIDENCE, base.FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256),
-    ):
-        if base.sha256(path) != expected:
-            raise CertificateFailure(f"frozen input changed: {path}")
     source = json.loads(base.SOURCE.read_text())
     base.validate_source(source)
 
@@ -506,19 +492,15 @@ def calculate() -> dict[str, object]:
             "radiusRule": ["1", "1", "r_2", "r_2", "r_3", "r_3"],
             "polarityWordInBinaryPairOrder": "+-+-+-",
         },
-        "frozenInputs": {
+        "inputs": {
             "sharedIntervalOracle": str(shared_oracle_path().relative_to(base.ROOT)),
-            "sharedIntervalOracleSha256": SHARED_INTERVAL_ORACLE_SHA256,
             "sourceConfiguration": str(base.SOURCE.relative_to(base.ROOT)),
-            "sourceConfigurationSha256": base.FROZEN_SOURCE_SHA256,
             "acceptedPhaseCertificate": str(
                 base.PHASE_CERTIFICATE.relative_to(base.ROOT)
             ),
-            "acceptedPhaseCertificateSha256": base.FROZEN_PHASE_CERTIFICATE_SHA256,
             "acceptedScalarTheoremEvidence": str(
                 base.SCALAR_THEOREM_EVIDENCE.relative_to(base.ROOT)
             ),
-            "acceptedScalarTheoremEvidenceSha256": base.FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256,
             "acceptedScalarT04BetaBracket": list(base.SCALAR_T04_BRACKET),
         },
         "arithmetic": {

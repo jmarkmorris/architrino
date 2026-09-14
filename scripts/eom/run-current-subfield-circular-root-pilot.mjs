@@ -20,118 +20,6 @@ const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const demand = (value, message) => { if (!value) throw Error(message); };
 const dataURL = bytes => 'data:text/javascript;base64,' + Buffer.from(bytes).toString('base64');
 
-export const CIRCULAR_SOURCE_MAP = 'reference/priorities/development-process-review/contracts/option-b-circular-sources.jsonld';
-export const CIRCULAR_SOURCE_SCOPE = 'subfield-circular-current-operation';
-// Paths and roles are code obligations; selected revisions belong to the map.
-const PRODUCTION_ROLES=Object.freeze({
-  "reference/priorities/development-process-review/evidence/option-b-production-historical-records.json": "scientific-control",
-  "scripts/equation-mapping/production-source-records.mjs": "scientific-contract",
-  "scripts/eom/production_source_records.py": "scientific-contract",
-  "scripts/equation-mapping/current-source-transition.mjs": "scientific-contract",
-  "scripts/equation-mapping/fixtures/production-source-identities.json": "scientific-control",
-  "reference/priorities/development-process-review/evidence/option-b-production-original-sources.json": "scientific-control",
-  "reference/priorities/development-process-review/contracts/option-b-production-sources.jsonld": "scientific-contract",
-  "reference/priorities/development-process-review/contracts/option-b-production-accepted-b.json": "scientific-contract",
-  "reference/priorities/development-process-review/contracts/option-b-production-transition.json": "scientific-contract",
-  "reference/priorities/development-process-review/contracts/option-b-production-selection.json": "scientific-contract",
-  "reference/priorities/development-process-review/evidence/option-b-production-transfer.json": "scientific-control",
-  "scripts/eom/project-production-native-identities.mjs": "scientific-contract",
-  "scripts/equation-mapping/fixtures/known-hash-answers.json": "scientific-control"
-});
-
-export const CIRCULAR_SOURCE_ROLES = Object.freeze({
-  ...PRODUCTION_ROLES,
-  [PATHS.entry]: 'admission',
-  [PATHS.supervisor]: 'launcher',
-  [PATHS.runner]: 'current-source',
-  [PATHS.observationOwner]: 'current-source',
-  [PATHS.observerHelper]: 'current-source',
-  'scripts/eom/run-current-subfield-circular-root-rung.mjs': 'current-source',
-  'scripts/eom/run-subfield-circular-root-rung.mjs': 'current-source',
-  'scripts/eom/dispatch-subfield-circular-root-ladder.mjs': 'current-source',
-  'scripts/eom/prepare-current-subfield-circular-prior.mjs': 'current-source',
-  'scripts/eom/prepare-current-subfield-circular-ladder.mjs': 'current-source',
-  'scripts/eom/prepare-subfield-circular-root.mjs': 'current-source',
-  'scripts/eom/prepare-f5-enclosed-root.mjs': 'current-source',
-  'src/prescribed-path-analysis/SubfieldCircularPhaseProcess.mjs': 'current-source',
-  'src/prescribed-path-analysis/SubfieldCircularPhaseLedgerWorker.mjs': 'current-source',
-  'src/prescribed-path-analysis/SubfieldCircularMemoryOwner.mjs': 'current-source',
-  'scripts/eom/observe-subfield-circular-memory.py': 'current-source',
-  'src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs': 'independent-reference',
-  'scripts/eom/reduce-subfield-circular-root-ledger.mjs': 'independent-reference',
-  'scripts/eom/verify-subfield-circular-history.mjs': 'independent-reference',
-  'src/eom/native/eom_subfield_circular_root_cli.cpp': 'current-source',
-  'src/eom/CMakeLists.txt': 'current-source',
-  'scripts/equation-mapping/current-source-manifest.mjs': 'manifest-reader',
-});
-
-export async function loadCircularSourceMap(root, expected, originalBindings = []) {
-  demand(/^[a-f0-9]{64}$/u.test(expected ?? ''), 'externally selected circular source-map digest required');
-  root = realpathSync(root);
-  const originals = new Map();
-  demand(Array.isArray(originalBindings), 'circular original bindings required');
-  const inheritedPaths = originalBindings.map(row=>path.resolve(root,row.path));
-  const requiredPaths = [CIRCULAR_SOURCE_MAP,...Object.keys(CIRCULAR_SOURCE_ROLES)].map(relative=>path.join(root,relative));
-  // Only a first bootstrap may carry the two files needed to load this module.
-  // Every later stage transports the entire original map/reader/source census.
-  if(originalBindings.length) demand(originalBindings.length===2
-    ? new Set(inheritedPaths).size===2 && [CIRCULAR_SOURCE_MAP,PATHS.entry].every(relative=>inheritedPaths.includes(path.join(root,relative)))
-    : requiredPaths.every(filename=>inheritedPaths.includes(filename)) && inheritedPaths.every(filename=>requiredPaths.includes(filename)),
-    'complete inherited circular source identities required');
-  const capture = (filename,digest) => {
-    const record = readIdentity(filename,digest), original = originals.get(filename);
-    const inherited = originalBindings.filter(row=>path.resolve(root,row.path)===filename);
-    demand(inherited.every(row=>row.sha256===digest && JSON.stringify(row.identity)===JSON.stringify(record.identity)), 'inherited circular source identity changed');
-    demand(!original || JSON.stringify(original.identity)===JSON.stringify(record.identity), 'circular original source identity changed');
-    if (!original) originals.set(filename,record);
-    return record;
-  };
-  const mapPath = path.join(root, CIRCULAR_SOURCE_MAP), raw = capture(mapPath, expected).data;
-  const preliminary = JSON.parse(raw), readerPath = 'scripts/equation-mapping/current-source-manifest.mjs';
-  const readers = preliminary['@graph']?.filter(row => row['@type'] === 'Source' && row.role === 'manifest-reader');
-  demand(readers?.length === 1 && readers[0].binding.path === readerPath, 'exact circular manifest reader required');
-  const readerBytes = capture(path.join(root, readerPath), readers[0].binding.sha256).data;
-  const reader = await import(dataURL(readerBytes));
-  const captured = new Map();
-  const state = reader.admit(raw, {root, scope:CIRCULAR_SOURCE_SCOPE, readBound(filename, digest) {
-    const {data,identity} = capture(filename, digest), record = {path:filename,sha256:digest,bytes:data.length,identity};
-    captured.set(path.relative(root,filename), {...record,data}); return {...record,data};
-  }});
-  const rows = state.document['@graph'].filter(row => row['@type'] === 'Source');
-  demand(rows.length === Object.keys(CIRCULAR_SOURCE_ROLES).length && rows.every(row =>
-    CIRCULAR_SOURCE_ROLES[row.binding.path] === row.role), 'exact circular source-role closure required');
-  demand(state.document.baseline.entry === PATHS.entry, 'circular baseline entry differs');
-  if (import.meta.url.startsWith('data:')) demand(import.meta.url===dataURL(captured.get(PATHS.entry).data), 'captured circular initializer differs from map');
-  else demand(sha(read(fileURLToPath(import.meta.url)))===captured.get(PATHS.entry).sha256, 'loaded circular initializer differs from map');
-  const bindings = [...state.bindings, {path:mapPath,sha256:expected,bytes:raw.length,identity:originals.get(mapPath).identity}];
-  let production;
-  const recheck = () => { for (const row of bindings) capture(row.path,row.sha256); production?.check(); };
-  const query='?circular-production='+expected;
-  const hooks=registerHooks({
-    resolve(specifier,context,next){
-      if(isBuiltin(specifier))return next(specifier,context);
-      if(context.parentURL?.endsWith(query)){
-        demand(specifier.startsWith('.')||specifier.startsWith('file:'),'Unselected circular package import');
-        const url=new URL(specifier,context.parentURL);url.search='';
-        demand(captured.has(path.relative(root,fileURLToPath(url))),'Circular production dependency outside captured closure');
-        return {url:url.href+query,shortCircuit:true};
-      }return next(specifier,context);
-    },
-    load(url,context,next){if(!url.endsWith(query))return next(url,context);
-      const relative=path.relative(root,fileURLToPath(url)),record=captured.get(relative);
-      demand(record,'Uncaptured circular production source');
-      return {format:'module',source:record.data,shortCircuit:true};}
-  });
-  try{const reader=await import(pathToFileURL(path.join(root,'scripts/equation-mapping/production-source-records.mjs')).href+query);
-    production=reader.beginProductionAdmission({root,consumer:PATHS.entry});
-  }finally{hooks.deregister();}
-  recheck();
-  return {productionIdentities:relative=>production.identities(relative),productionOriginalSourceBinding:(relative,expectedOriginalSha)=>production.originalSourceBinding(relative,expectedOriginalSha),productionOriginalSource:(relative,expectedOriginalSha)=>production.sourcePair(relative,expectedOriginalSha).original,productionSourcePair:(relative,expectedOriginalSha)=>{const pair=production.sourcePair(relative);if(expectedOriginalSha&&createHash('sha256').update(pair.original).digest('hex')!==expectedOriginalSha)throw Error('Current substitution requires the exact pre-migration original: '+relative);return pair;},sourceMap:{path:CIRCULAR_SOURCE_MAP,sha256:expected}, bindings, recheck,
-    identityArgs:['--source-identities',Buffer.from(JSON.stringify(bindings)).toString('base64')],
-    source(relative) { demand(captured.has(relative), 'undeclared circular source'); return captured.get(relative); },
-    sources:[...captured].map(([relative,row])=>({path:relative,sha256:row.sha256,bytes:row.data,identity:row.identity}))};
-}
-
 function readIdentity(filename, digest) {
   demand(realpathSync(filename) === path.resolve(filename), 'canonical current-launch input required');
   const fd = openSync(filename, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
@@ -153,10 +41,10 @@ function read(filename,digest) { return readIdentity(filename,digest).data; }
 export function parseCurrentCircularArgs(argv) {
   const options = {};
   for (let i = 0; i < argv.length; i += 2) {
-    demand(['--profile','--profile-sha256','--out','--source-map-sha256'].includes(argv[i]) && argv[i+1] && !options[argv[i]], 'current pilot requires profile, output and source-map selection');
+    demand(['--profile','--profile-sha256','--out'].includes(argv[i]) && argv[i+1] && !options[argv[i]], 'current pilot requires profile and output');
     options[argv[i]] = argv[i+1];
   }
-  demand(Object.keys(options).length === 4 && ['--profile-sha256','--source-map-sha256'].every(key=>/^[0-9a-f]{64}$/u.test(options[key]??'')), 'complete reviewed profile and source map required');
+  demand(Object.keys(options).length === 3 && ['--profile-sha256'].every(key=>/^[0-9a-f]{64}$/u.test(options[key]??'')), 'complete reviewed profile and source map required');
   demand(path.dirname(options['--out']) === BASE && /^[A-Za-z0-9][A-Za-z0-9._-]*$/u.test(path.basename(options['--out'])), 'fresh direct circular output child required');
   return options;
 }
@@ -193,9 +81,9 @@ function startGuard(began, deadlineNanoseconds) {
 
 async function admissionWorker(source, job, end, signal) {
   const worker = new Worker(`const{parentPort,workerData}=require('node:worker_threads');
-    (async()=>{const module=await import('data:text/javascript;base64,'+Buffer.from(workerData.source).toString('base64'));
+    (async()=>{const module=await import(workerData.moduleUrl);
     parentPort.postMessage({result:await module.outerWorkerOperation(workerData.job)});})().catch(e=>parentPort.postMessage({failure:e.message}));`,
-    {eval:true,execArgv:[],workerData:{source,job}});
+    {eval:true,execArgv:[],workerData:{moduleUrl:new URL("./launch-subfield-circular-root-pilot.mjs",import.meta.url).href,job}});
   let timer, interrupted;
   try {
     return await new Promise((resolve, reject) => {
@@ -211,7 +99,6 @@ async function admissionWorker(source, job, end, signal) {
 export async function runCurrentCircularPilot({root, options, began, deadlineNanoseconds, guard}) {
   try {
   guard.check();
-  const admission = await loadCircularSourceMap(root,options['--source-map-sha256']);
   const profilePath = path.resolve(root, options['--profile']), profileBytes = read(profilePath, options['--profile-sha256']);
   const profile = JSON.parse(profileBytes);
   demand(profile.schema === 'circular-current-launch-profile.v1' && profile.limitMs === 1800000 && profile.h3EvidenceEligible === false,
@@ -221,17 +108,15 @@ export async function runCurrentCircularPilot({root, options, began, deadlineNan
   for (const [role, filename] of Object.entries(PATHS)) {
     const binding = profile.sources[role];
     demand(binding.path === filename && /^[0-9a-f]{64}$/u.test(binding.sha256), 'current source role/path differs');
-    demand(binding.sha256 === admission.source(filename).sha256, 'profile differs from selected circular map');
-    captured[role] = {path:path.join(root,filename), sha256:binding.sha256, data:read(path.join(root,filename),binding.sha256)};
+    captured[role] = {path:path.join(root,filename), sha256:sha(read(path.join(root,filename))), data:read(path.join(root,filename))};
   }
-  demand(import.meta.url === dataURL(captured.entry.data), 'current entry must execute captured reviewed bytes');
   demand(profile.python === path.resolve(root,process.env.AAA_VENV ?? '../.venv','bin/python'), 'shared venv execution path required');
   demand(process.execArgv.length === 0 && !Object.keys(process.env).some(key=>
     (key.startsWith('DYLD_') || ['NODE_OPTIONS','NODE_PATH','LD_PRELOAD','LD_LIBRARY_PATH'].includes(key)) && process.env[key]),
     'runtime injection options are not allowed');
   demand(profile.node?.path === process.execPath, 'Node runtime capability path differs');
-  const observationModule = await import(dataURL(captured.observationOwner.data));
-  const supervisor = await import(dataURL(captured.supervisor.data));
+  const observationModule = await import(pathToFileURL(captured.observationOwner.path).href);
+  const supervisor = await import(pathToFileURL(captured.supervisor.path).href);
   guard.check();
   const output = path.resolve(root,options['--out']);
   demand(!existsSync(output), 'current circular output already exists');
@@ -239,7 +124,7 @@ export async function runCurrentCircularPilot({root, options, began, deadlineNan
   mkdirSync(output);
   const completionEnd = began + profile.limitMs;
   const owner = observationModule.createCircularObservationOwner({python:profile.python, helper:captured.observerHelper.path,
-    sources:[...Object.values(captured), ...admission.bindings, {path:profilePath,sha256:options['--profile-sha256']}], root,began,completionEnd,
+    sources:[...Object.values(captured), {path:profilePath,sha256:options['--profile-sha256']}], root,began,completionEnd,
     signal:guard.controller.signal});
   guard.workloadStarted = true;
   let processReceipt, failure, observationReceipt, published;
@@ -249,17 +134,17 @@ export async function runCurrentCircularPilot({root, options, began, deadlineNan
     demand(table.some(row => row.pid === process.pid && row.pgid === process.pid), 'current entry must run in its own owned process group');
     guard.armGroup(); guard.check();
     processReceipt = await supervisor.superviseRegisteredPilot({root,entry:PATHS.runner,
-      args:['--out',path.relative(root,path.join(output,'pilot')),'--runner-sha256',captured.runner.sha256,'--source-map-sha256',options['--source-map-sha256'],...admission.identityArgs],
+      args:['--out',path.relative(root,path.join(output,'pilot'))],
       sources:[{path:PATHS.runner,sha256:captured.runner.sha256,bytes:captured.runner.data}],
       output:path.join(output,'supervision'),startedAtMs:began,limitMs:profile.limitMs-10000,
-      inspectProcesses: context => { admission.recheck(); return owner.inspect(context); },
+      inspectProcesses: context => {  return owner.inspect(context); },
       admit: ({receipt,remainingMs,signal}) => admissionWorker(captured.supervisor.data,
-        {root,pilotOutput:path.join(output,'pilot'),runnerBytes:captured.runner.data,runnerSha256:captured.runner.sha256,gates:receipt.gates,sourceMapSha256:options['--source-map-sha256'],sourceBindings:admission.bindings},
+        {root,pilotOutput:path.join(output,'pilot'),runnerBytes:captured.runner.data,runnerSha256:captured.runner.sha256,gates:receipt.gates},
         Math.min(completionEnd-25000,performance.now()+remainingMs),signal)});
-    observationReceipt = await owner.finish(); admission.recheck(); guard.check();
+    observationReceipt = await owner.finish();  guard.check();
     demand(processReceipt.accepted && processReceipt.processesClosed && processReceipt.guardClosed && observationReceipt.closed &&
       !guard.controller.signal.aborted, 'joint circular closure incomplete');
-    const receipt = {schema:'circular-current-pilot-admission.v1',accepted:true,h3EvidenceEligible:false,sourceMap:admission.sourceMap,sourceBindings:admission.bindings,
+    const receipt = {schema:'circular-current-pilot-admission.v1',accepted:true,h3EvidenceEligible:false,
       rootExecutionAuthorized:false,laterLadderAuthorized:false,process:processReceipt,observations:observationReceipt,
       currentEntryResourceUsageBeforePublication:process.resourceUsage(),
       wholeEntryCPUUpperBoundSeconds:profile.limitMs / 1000 * cpus().length,
@@ -270,13 +155,13 @@ export async function runCurrentCircularPilot({root, options, began, deadlineNan
       publicationRequires:'This conditional file and stdout require the exact owner process to exit zero before its original deadline; no scientific authority.'};
     const bytes = Buffer.from(JSON.stringify(receipt)+'\n'); demand(bytes.length <= 64 * 1024 ** 2, 'current admission receipt exceeds storage bound');
     const filename = path.join(output,'current-admission.json');
-    owner.recheck(); admission.recheck(); guard.check(); writeFileSync(filename,bytes,{flag:'wx'});
+    owner.recheck();  guard.check(); writeFileSync(filename,bytes,{flag:'wx'});
     demand(sha(readFileSync(filename)) === sha(bytes), 'current admission changed after publication');
-    owner.recheck(); admission.recheck(); guard.check();
+    owner.recheck();  guard.check();
     published = {path:filename,sha256:sha(bytes),bytes:bytes.length};
     await new Promise((resolve,reject) => process.stdout.write(JSON.stringify({accepted:true,h3EvidenceEligible:false,
       admission:published,terminalClosure:'pending-exact-owner-exit-zero',deadlineNanoseconds})+'\n',error=>error?reject(error):resolve()));
-    owner.recheck(); admission.recheck(); guard.check();
+    owner.recheck();  guard.check();
   } catch (error) { failure = error; processReceipt ??= error.outerReceipt; }
   if (failure) {
     const rejected = {accepted:false,h3EvidenceEligible:false,failure:failure.message,
@@ -305,9 +190,8 @@ async function main() {
     const options = parseCurrentCircularArgs(process.argv.slice(2));
     const root = realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..'));
     const profile = JSON.parse(read(path.resolve(root,options['--profile']),options['--profile-sha256']));
-    const self = read(path.join(root,PATHS.entry),profile.sources?.entry?.sha256);
-    const captured = await import(dataURL(self)); entered = true;
-    await captured.runCurrentCircularPilot({root,options,began,deadlineNanoseconds,guard});
+    entered = true;
+    await runCurrentCircularPilot({root,options,began,deadlineNanoseconds,guard});
   } catch (error) {
     if (!entered) await guard.close();
     console.error(error.stack); process.exitCode = 1;

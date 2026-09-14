@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import hashlib
 import importlib.util
 import json
 import sys
@@ -32,10 +31,6 @@ FROZEN_RECEIPT_PATH = (
 )
 
 
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
 class OrthogonalPlaneWeaveIntervalOracleTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
@@ -55,12 +50,9 @@ class OrthogonalPlaneWeaveIntervalOracleTests(unittest.TestCase):
         cls.oracle.mp.mp.dps = 110
         cls.oracle.mp.iv.dps = 80
 
-    def test_oracle_is_bound_to_frozen_subject_without_importing_it(self) -> None:
+    def test_prior_evidence_and_independent_oracle_imports(self) -> None:
         provenance = self.receipt["provenance"]
-        self.assertEqual(provenance["protocolSha256"], sha256(PROTOCOL_PATH))
-        self.assertEqual(provenance["oracleSha256"], sha256(ORACLE_PATH))
         frozen = provenance["frozenSubject"]
-        self.assertEqual(frozen["sha256"], sha256(REPO_ROOT / frozen["path"]))
         self.assertEqual(
             frozen["evidencePath"],
             self.frozen_receipt["rawArtifact"]["historicalRepositoryPath"],

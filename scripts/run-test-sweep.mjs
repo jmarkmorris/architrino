@@ -5,6 +5,8 @@
 // on the declared slow list; `--slow` runs only the slow list; `--list`
 // prints the selected files without running them. The exit status is the
 // `node --test` exit status, so the caller decides whether it gates.
+// Explicit-use suites use .manual.js and are excluded from both selections
+// and Node's default discovery; see aaa-operations/manuscript.md section 7.3.4.
 // Files run serially: process fixtures exercise host-wide exclusion guards,
 // so overlapping files can reject one another before reaching their assertions.
 //
@@ -13,8 +15,8 @@
 // process tests, waiting on a venv Python that a GitHub runner does not have,
 // held both PR #260 jobs for 92 minutes until cancelled. The default bound is
 // 120 s outside the slow list, twelve times the 10 s threshold above which a
-// file must move to the slow list; the slow list gets 600 s, six times the
-// 100 s cap its two unmeasured entries hit. `--test-timeout=<ms>` overrides
+// file must move to the slow list; the slow list gets 600 s.
+// `--test-timeout=<ms>` overrides
 // either. The timeout is per test, as `node --test` applies it, not per file.
 
 import { spawnSync } from "node:child_process";

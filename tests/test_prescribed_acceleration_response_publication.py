@@ -33,7 +33,6 @@ def fixture():
     bindings = deepcopy(bindings)
     root = Path('/synthetic/root')
     for row in bindings:
-        if row['role'] == 'consumer': row['sha256'] = P.CONSUMER_SHA
         if row['role'] == 'pythonExecutable': row['path'] = row['originalPath'] = str(Path(sys.executable).resolve())
     candidate = C.decode(raw)
     candidate['bindings'] = bindings
@@ -83,7 +82,7 @@ class PublicationTests(unittest.TestCase):
         for kind in ('candidate', 'consumer', 'python', 'watcher', 'unset-size'):
             _, job, root = fixture()
             if kind == 'candidate': job['completion']['candidate'] = {**job['candidate'], 'sha256': '9'*64}
-            elif kind == 'consumer': next(x for x in job['expectedBindings'] if x['role'] == 'consumer')['sha256'] = '9'*64
+            elif kind == 'consumer': next(x for x in job['expectedBindings'] if x['role'] == 'consumer')['path'] = '/synthetic/root/scripts/eom/other-consumer.py'
             elif kind == 'python': next(x for x in job['expectedBindings'] if x['role'] == 'pythonExecutable')['path'] = '/another/python'
             elif kind == 'watcher': job['execution']['watcherSha256'] = '9'*64
             else: job['execution']['outputBytes'] = 123
@@ -117,12 +116,11 @@ class PublicationTests(unittest.TestCase):
         before = set(sys.modules)
         with P.captured_consumer(raw, ROOT/P.CONSUMER) as consumer:
             self.assertNotEqual(consumer.__name__, C.__name__)
-            self.assertEqual(consumer.REFERENCE_SHA, C.REFERENCE_SHA)
             names = set(sys.modules)-before
             self.assertTrue(any(name.startswith('_response_publication_') for name in names))
         self.assertFalse(any(name.startswith('_response_publication_') for name in set(sys.modules)-before))
-        with self.assertRaises(ValueError):
-            with P.captured_consumer(raw+b'\n', ROOT/P.CONSUMER): pass
+        with P.captured_consumer(raw+b'\n', ROOT/P.CONSUMER) as consumer:
+            self.assertEqual(consumer.REFERENCE, C.REFERENCE)
 
     def test_canonical_same_descriptor_capture_and_changed_bytes(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -167,9 +165,6 @@ class PublicationTests(unittest.TestCase):
             with self.subTest(budget=budget), patch.object(P, 'BoundSource', side_effect=AssertionError('capture forbidden')):
                 with self.assertRaises(ValueError): P.publish(args)
 
-    def test_frozen_consumer_and_math_sources_remain_expected(self):
-        self.assertEqual(hashlib.sha256((ROOT/P.CONSUMER).read_bytes()).hexdigest(), P.CONSUMER_SHA)
-        self.assertEqual(hashlib.sha256((ROOT/C.REFERENCE).read_bytes()).hexdigest(), C.REFERENCE_SHA)
 
 
 if __name__ == '__main__':

@@ -21,15 +21,15 @@ and callbacks. A failed prefix is never a positive partial comparison.
 """
 from __future__ import annotations
 
+import hashlib
+
 from dataclasses import dataclass
 from fractions import Fraction
-import hashlib
 import json
 import re
 from types import MappingProxyType
 
-REQUIRED_REFERENCE_SHA = OPTION_B_PRODUCTION_IDENTITIES[0]
-PROOF_REQUIRED_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[1]
+PROOF_REQUIRED_SHA256 = 'c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'
 PARENT_SCHEMA = 'braid-program/f6c-original-parent-refinement-input.v1'
 IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')
 A, END = Fraction(-8), Fraction(13, 100)
@@ -87,7 +87,6 @@ class ParentRefinementComparison:
     geometry_piece_visits: int
     restrictions: tuple[PairRestriction, ...]
     claims: tuple[tuple[str, bool], ...]
-    reference_required_sha256: str = REQUIRED_REFERENCE_SHA
     proof_required_sha256: str = PROOF_REQUIRED_SHA256
 
 
@@ -98,27 +97,26 @@ def _require(value, message):
 
 def _sequence(value, count=None, maximum=None):
     _require(type(value) in (list, tuple), 'bounded exact list/tuple required')
-    _require((count is None or len(value) == count) and
-             (maximum is None or 0 < len(value) <= maximum), 'bounded container census differs')
+    _require((count is None or len(value) == count) and (maximum is None or 0 < len(value) <= maximum), 'bounded container census differs')
 
 
 def _integer(value, expected):
-    _require(type(value) is int and value == expected, 'exact integer/order differs')
+    _require((type(value) is int) and (value == expected), 'exact integer/order differs')
 
 
 def _closed(value, names):
-    _require(type(value) is MappingProxyType and set(value) == set(names), 'closed record fields differ')
+    _require((type(value) is MappingProxyType) and (set(value) == set(names)), 'closed record fields differ')
 
 
 def _freeze(value, budget, depth=0, location=()):
     """Aggregate limits apply jointly to parent, histories and all three streams."""
     budget[0] += 1
-    _require(budget[0] <= MAX_VALUE_NODES and depth <= 12, 'aggregate node/depth bound')
+    _require((budget[0] <= MAX_VALUE_NODES) and (depth <= 12), 'aggregate node/depth bound')
     if type(value) is dict:
         _require(len(value) <= 32, 'record field bound')
         result = {}
         for key, item in value.items():
-            _require(type(key) is str and len(key) <= 128, 'record key bound')
+            _require((type(key) is str) and (len(key) <= 128), 'record key bound')
             budget[1] += len(key.encode('utf-8'))
             _require(budget[1] <= MAX_STRING_BYTES, 'aggregate string payload bound')
             result[key] = _freeze(item, budget, depth+1, location+(key,))
@@ -158,7 +156,7 @@ def _places(value):
 
 def _original_time(reference, token):
     value = reference.number(token)
-    _require(abs(value) <= 8 and _places(value) <= 19, 'original time scale/magnitude bound')
+    _require((abs(value) <= 8) and (_places(value) <= 19), 'original time scale/magnitude bound')
     return value
 
 
@@ -172,7 +170,7 @@ def _original_box(reference, value):
 
 def exact_time_token(value):
     """Canonical exact finite time; fixedpoint, no rounding or binary floats."""
-    _require(type(value) is Fraction and abs(value) <= 8, 'bounded exact Fraction time required')
+    _require((type(value) is Fraction) and (abs(value) <= 8), 'bounded exact Fraction time required')
     places = _places(value)
     _require(places <= 51, 'derived time scale exceeds halving bound')
     scaled = abs(value.numerator) * (10**places // value.denominator)
@@ -196,8 +194,8 @@ def _histories(reference, histories):
         _integer(history['pathKey'], i+1); _integer(history['polarity'], 1 if i % 2 == 0 else -1)
         _require(history['id'] == IDS[i], 'original member identity differs')
         _require(history['charge'] == ('' if i % 2 == 0 else '-')+CHARGE, 'original signed charge differs')
-        _require(history['coverageStart'] == '-8' and history['coverageEnd'] == '0.13', 'fixed retained domain required')
-        _require(type(history['historyFingerprint']) is str and 0 < len(history['historyFingerprint']) <= 256,
+        _require((history['coverageStart'] == '-8') and (history['coverageEnd'] == '0.13'), 'fixed retained domain required')
+        _require((type(history['historyFingerprint']) is str) and (0 < len(history['historyFingerprint']) <= 256),
                  'original fingerprint required')
         _sequence(history['segments'], maximum=1760)
         cursor = A
@@ -224,16 +222,15 @@ def _parent(reference, parent, generation):
     _closed(parent, PARENT_FIELDS)
     _require(parent['schema'] == PARENT_SCHEMA, 'original parent schema differs')
     for key, upper in (('parentIndex', 159), ('frameIndex', 79)):
-        _require(type(parent[key]) is int and 0 <= parent[key] <= upper, 'bounded original index required')
+        _require((type(parent[key]) is int) and (0 <= parent[key] <= upper), 'bounded original index required')
     frame = _original_box(reference, parent['frame']); reception = _original_box(reference, parent['reception'])
     _require(0 <= frame[0] <= reception[0] < reception[1] <= frame[1] <= END, 'positive reception inside original frame required')
     _require(parent['oldestTime'] == '-8', 'oldest boundary must remain -8')
-    _require(type(parent['historyGenerationSha256']) is str and HEX.fullmatch(parent['historyGenerationSha256']) and
-             parent['historyGenerationSha256'] == generation, 'complete original history generation differs')
+    _require((type(parent['historyGenerationSha256']) is str) and (HEX.fullmatch(parent['historyGenerationSha256'])) and (parent['historyGenerationSha256'] == generation), 'complete original history generation differs')
     binding = parent['originalCoverBinding']; _closed(binding, ('path', 'sha256', 'bytes'))
-    _require(type(binding['path']) is str and 0 < len(binding['path']) <= 1024 and '\0' not in binding['path'], 'bounded cover path required')
-    _require(type(binding['sha256']) is str and HEX.fullmatch(binding['sha256']), 'cover SHA256 required')
-    _require(type(binding['bytes']) is int and 1 <= binding['bytes'] <= 64*1024*1024, 'bounded cover byte count required')
+    _require((type(binding['path']) is str) and (0 < len(binding['path']) <= 1024) and ('\0' not in binding['path']), 'bounded cover path required')
+    _require((type(binding['sha256']) is str) and (HEX.fullmatch(binding['sha256'])), 'cover SHA256 required')
+    _require((type(binding['bytes']) is int) and (1 <= binding['bytes'] <= 64*1024*1024), 'bounded cover byte count required')
     _sequence(parent['originalEmissions'], 56)
     intervals = {}; index = 0
     for i in range(8):
@@ -242,7 +239,7 @@ def _parent(reference, parent, generation):
                 continue
             record = parent['originalEmissions'][index]; _closed(record, EMISSION_FIELDS)
             _integer(record['receiverIndex'], i); _integer(record['transmitterIndex'], j)
-            _require(record['receiverId'] == IDS[i] and record['transmitterId'] == IDS[j], 'original emission pair ownership differs')
+            _require((record['receiverId'] == IDS[i]) and (record['transmitterId'] == IDS[j]), 'original emission pair ownership differs')
             lo, hi = _original_box(reference, record['emission'])
             _require(A <= lo < hi < reception[0], 'original emission must strictly precede reception')
             intervals[i, j] = lo, hi; index += 1
@@ -255,8 +252,7 @@ def _query_interval(reference, receiver, transmitter, reception, midpoint, repor
     displacement = tuple(reference.sub(x, y) for x, y in zip(receiver['position'], source['position']))
     qlo, qhi = reference.squared_norm(displacement)
     lo, hi = reference.interval(_plain(reported))
-    _require(reference.le_sqrt(lo+reception[1]-midpoint, qlo) and
-             reference.sqrt_le(qhi, hi+reception[0]-midpoint), 'query misses independent whole-face Bernstein enclosure')
+    _require((reference.le_sqrt(lo+reception[1]-midpoint, qlo)) and (reference.sqrt_le(qhi, hi+reception[0]-midpoint)), 'query misses independent whole-face Bernstein enclosure')
     return lo, hi
 
 
@@ -274,7 +270,7 @@ def _replay(reference, histories, reception, originals, queries, state, progress
                     index = state['queries']; query = queries[index]; _closed(query, QUERY_FIELDS)
                     for key, expected in (('queryIndex', index), ('receiverIndex', i), ('transmitterIndex', j), ('ordinal', ordinal)):
                         _integer(query[key], expected)
-                    _require(query['receiverId'] == IDS[i] and query['transmitterId'] == IDS[j] and query['side'] == side,
+                    _require((query['receiverId'] == IDS[i]) and (query['transmitterId'] == IDS[j]) and (query['side'] == side),
                              'query ownership/search order differs')
                     _require(reference.interval(_plain(query['exploratory'])) == (lo, hi), 'exploratory search state differs')
                     midpoint = (lo+hi)/2
@@ -290,7 +286,7 @@ def _replay(reference, histories, reception, originals, queries, state, progress
                             face = hi = midpoint; proof = index; decision = 'retain-positive'
                         else:
                             lo = midpoint; decision = 'explore-upper-half'
-                    _require(query['decision'] == decision and query['retainedFace'] == exact_time_token(face),
+                    _require((query['decision'] == decision) and (query['retainedFace'] == exact_time_token(face)),
                              'branch or certified face differs')
                     state['queries'] += 1
                     if progress:
@@ -310,12 +306,12 @@ def _final_cover(reference, histories, parent, reception, rows, pieces, restrict
         _closed(frozen, reference.ROW_KEYS); row = _plain(frozen); i, j = divmod(n, 8)
         for key, expected in (('rowIndex', n), ('cellIndex', parent['parentIndex']), ('receiverIndex', i), ('transmitterIndex', j)):
             _integer(row[key], expected)
-        _require(row['receiverId'] == IDS[i] and row['transmitterId'] == IDS[j], 'final pair identity differs')
+        _require((row['receiverId'] == IDS[i]) and (row['transmitterId'] == IDS[j]), 'final pair identity differs')
         _require(row['reception'] == _plain(parent['reception']), 'original reception token identity differs')
         # Equality must not let bool/float precision fields masquerade as90.
         _require(reference.interval(row['reception']) == reception, 'final reception interval differs')
         reference.false_flags(row['libraryFlags'])
-        _require(row['rootFreeComplementConditional'] is True and row['retainedBoundaryContact'] is False, 'final complement/boundary differs')
+        _require((row['rootFreeComplementConditional'] is True) and (row['retainedBoundaryContact'] is False), 'final complement/boundary differs')
         if i == j:
             _integer(row['ordinaryRootsPerReception'], 0)
             _require(row['coincidentEndpointExcluded'] is True, 'self endpoint exclusion absent')
@@ -325,7 +321,7 @@ def _final_cover(reference, histories, parent, reception, rows, pieces, restrict
             _integer(row['ordinaryRootsPerReception'], 1)
             _require(row['coincidentEndpointExcluded'] is False, 'ordinary pair exclusion differs')
             restriction = by_pair[i, j]; emission = restriction.lower, restriction.upper
-            _require(row['emission'] == _exact_box(emission) and reference.interval(row['emission']) == emission,
+            _require((row['emission'] == _exact_box(emission)) and (reference.interval(row['emission']) == emission),
                      'final emission not exact replay-derived canonical interval')
             receiver = receivers[i]
             for name, t, sign in (('oldestResidual', A, 'negative'), ('lowerFaceResidual', emission[0], 'negative'),
@@ -370,7 +366,7 @@ def compare_parent_refinement(reference, histories, parent, queries, rows, piece
         if progress:
             progress(0, 0)
         restrictions, receivers = _replay(reference, histories, reception, originals, queries, state, progress)
-        _require(state['queries'] == 3584 and len(restrictions) == 56, 'complete query census required')
+        _require((state['queries'] == 3584) and (len(restrictions) == 56), 'complete query census required')
         visits = _final_cover(reference, histories, parent, reception, rows, pieces, restrictions, receivers, state, progress)
         _require(state['rows'] == 64, 'complete final row census required')
         return ParentRefinementComparison(False, parent, True, True, 3584, 56, 64, 56, 8, 112, 112, 56, visits, restrictions, FALSE_CLAIMS)

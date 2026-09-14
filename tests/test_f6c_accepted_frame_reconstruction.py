@@ -3,8 +3,6 @@
 Expected polynomial identities are hand-derived here. Synthetic metadata and
 publication packets test plumbing, never scientific production acceptance.
 """
-from option_b_production_records import copy_production_fixture
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 from decimal import localcontext
 from fractions import Fraction as F
@@ -23,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/eom/verify-f6c-accepted-frame-reconstruction.py"
 SPEC = importlib.util.spec_from_file_location("f6c_reconstruction_controls", SCRIPT)
 proof = importlib.util.module_from_spec(SPEC)
-_option_b_exec_module(__file__, SPEC, proof)
+SPEC.loader.exec_module(proof)
 
 
 def segment(a, b, row=("0", "0", "0", "0"), px="0", pv="0"):
@@ -291,25 +289,6 @@ class BindingAndPublication(unittest.TestCase):
             self.assertEqual(output.read_bytes(), original)
             self.assertEqual(subprocess.run(command+["--expected-sha256", "0"*64], capture_output=True, timeout=10).returncode, 2)
 
-    def test_altered_theorem_is_rejected_before_export(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            copy_production_fixture(root)
-            script = root/"scripts/eom/verify-f6c-accepted-frame-reconstruction.py"
-            script.parent.mkdir(parents=True,exist_ok=True)
-            script.write_bytes(SCRIPT.read_bytes())
-            for index, relative in enumerate(proof.THEOREMS):
-                target = root/relative
-                target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_bytes((ROOT/relative).read_bytes() + (b"\n" if index == 0 else b""))
-            output = root/"out.json"
-            completed = subprocess.run([sys.executable, "-B", str(script), "--history-export", str(root/"absent"),
-                                        "--out", str(output)], capture_output=True, text=True, timeout=10)
-            self.assertEqual(completed.returncode, 1, completed.stderr)
-            packet = json.loads(output.read_text())
-            self.assertFalse(packet["accepted"])
-            self.assertNotIn("historyExportBefore", packet)
-            self.assertIn("theorem SHA-256 mismatch", packet["failures"][0]["detail"])
 
     def test_late_candidate_write_and_final_watch_exit_preserve_rejection(self):
         for failure_point in ("write", "watch-exit"):

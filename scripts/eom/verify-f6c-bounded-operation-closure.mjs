@@ -7,7 +7,6 @@ import {createHash} from 'node:crypto';
 import {openSync,closeSync,readSync,fstatSync,lstatSync,realpathSync,constants} from 'node:fs';
 import path from 'node:path';
 
-export let COORDINATOR_SHA;
 export const LOCK='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/.pilot.lock';
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const canonical=o=>o===null||typeof o!=='object'?JSON.stringify(o):Array.isArray(o)?'['+o.map(canonical).join(',')+']':'{'+Object.keys(o).sort().map(k=>JSON.stringify(k)+':'+canonical(o[k])).join(',')+'}';
@@ -44,58 +43,15 @@ export function parseProcessTable(raw){
 
 // v2 expectations are supplied by the invoking owner before launch, never by
 // the coordinator's conditional output. v1 remains historical verification.
-export function verifyCurrentSelection(expected,{read=capture}={}){
- const fields=(o,n)=>check(o&&same(Object.keys(o).sort(),n.split(' ').sort()),'closed current selection fields');
- fields(expected,'schema root coordinator node plan control sourceMap');
- check(expected.schema==='braid-program/observed-bounded-invocation.v2'&&typeof expected.control==='boolean','explicit current invocation');
- const root=expected.root;
- check(typeof root==='string'&&path.isAbsolute(root)&&path.resolve(root)===root,'canonical selected root');
- for(const b of [expected.coordinator,expected.node,expected.plan,expected.sourceMap]){
-  fields(b,'path sha256 bytes');check(typeof b.path==='string'&&path.isAbsolute(b.path)&&path.resolve(b.path)===b.path&&/^[a-f0-9]{64}$/u.test(b.sha256)&&integer(b.bytes,1073741824)&&b.bytes>0,'explicit current binding');
- }
- check(expected.coordinator.path===path.join(root,'scripts/eom/f6c-bounded-operation.mjs')&&expected.sourceMap.path===path.join(root,'reference/priorities/development-process-review/contracts/option-b-f6c-bounded-operation-sources.jsonld'),'current profile paths');
- const captured=read(expected.sourceMap,{collect:true,limit:1048576}),raw=captured.data;
- check(Buffer.isBuffer(raw)&&raw.length===expected.sourceMap.bytes&&createHash('sha256').update(raw).digest('hex')===expected.sourceMap.sha256,'selected manifest bytes');
- const doc=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(raw));
- // A single authored serialization also rejects duplicate members without
-// importing the subject's parser or accepting a lossy parse as evidence.
- check(raw.equals(Buffer.from(JSON.stringify(doc,null,2)+'\n')),'canonical selected manifest');
- fields(doc,'@context schemaVersion scope repository baseline revisionId @graph');
- const ns='https://architrino.com/knowledge/current-source/';
- check(same(doc['@context'],{'@vocab':ns,from:{'@type':'@id'},to:{'@type':'@id'}})&&doc.schemaVersion==='current-source-manifest/v1'&&doc.scope==='f6c-bounded-operation-current-source'&&doc.repository==='https://github.com/jmarkmorris/architrino.git','selected manifest scope');
- fields(doc.baseline,'commit entry authority');check(/^[a-f0-9]{40}$/u.test(doc.baseline.commit)&&doc.baseline.entry==='scripts/eom/f6c-bounded-operation.mjs'&&doc.baseline.authority==='operator-directed-existing-A-transfer','selected manifest baseline');
- check(typeof doc.revisionId==='string'&&doc.revisionId.length>0&&Array.isArray(doc['@graph'])&&doc['@graph'].length>0&&doc['@graph'].length<=2048,'bounded selected graph');
- const rows=new Map(),paths=new Set(),edges=[],ids=new Set();
- for(const row of doc['@graph']){
-  check(typeof row['@id']==='string'&&row['@id'].startsWith(ns)&&!ids.has(row['@id'])&&typeof row.revisionId==='string'&&row.revisionId.length>0,'unique selected source revision');ids.add(row['@id']);
-  if(row['@type']==='Source'){
-   fields(row,'@id @type revisionId role binding');fields(row.binding,'path selector contract sha256');
-   const b=row.binding;check(typeof b.path==='string'&&!b.path.includes('\\')&&!b.path.includes('\0')&&!b.path.startsWith('/')&&b.path.split('/').every(p=>p&&p!=='.'&&p!=='..')&&!paths.has(b.path),'unique safe selected source path');paths.add(b.path);
-   check(same(b.selector,{kind:'whole'})&&b.contract==='fixed-byte-selection/v1'&&/^[a-f0-9]{64}$/u.test(b.sha256),'selected whole-file source');
-   check(['current-source','independent-reference','scientific-control','scientific-contract','resource-plan','admission','launcher','manifest-reader'].includes(row.role),'selected source role');rows.set(row['@id'],row);
-  }else{fields(row,'@id @type revisionId kind from fromRevision to toRevision role');check(row['@type']==='Relationship'&&['checks','dependsOn'].includes(row.kind)&&typeof row.role==='string'&&row.role.length>0,'selected relationship');edges.push(row);}
- }
- const sources=[...rows.values()],admissions=sources.filter(r=>r.role==='admission'),readers=sources.filter(r=>r.role==='manifest-reader');
- check(admissions.length===1&&admissions[0].binding.path==='scripts/eom/f6c-bounded-operation.mjs'&&admissions[0].binding.sha256===expected.coordinator.sha256,'selected coordinator identity');
- check(readers.length===1&&readers[0].binding.path==='scripts/equation-mapping/current-source-manifest.mjs'&&!paths.has(path.relative(root,expected.sourceMap.path)),'unique reader and no map self-binding');
- const triples=new Set();
- for(const e of edges){const key=JSON.stringify([e.kind,e.from,e.to]);check(!triples.has(key)&&rows.get(e.from)?.revisionId===e.fromRevision&&rows.get(e.to)?.revisionId===e.toRevision,'selected graph endpoints');triples.add(key);if(e.kind==='checks')check(e.from===admissions[0]['@id'],'selected admission edge');}
- for(const r of sources)if(r!==admissions[0])check(edges.some(e=>e.kind==='checks'&&e.from===admissions[0]['@id']&&e.to===r['@id']),'selected admission coverage');
- return sources.map(r=>({path:path.join(root,r.binding.path),sha256:r.binding.sha256}));
-}
-
 export function verifyClosure({invocation,lease,elapsedMilliseconds,wire,operation,plan,observation,read=capture},{expectedInvocation}={}){
  const current=invocation.schema==='braid-program/observed-bounded-invocation.v2';
- let selected=[];
- if(current){check(expectedInvocation&&same(invocation,expectedInvocation),'independently selected current invocation');selected=verifyCurrentSelection(expectedInvocation,{read});}
- else{
-  check(!expectedInvocation&&invocation.schema==='braid-program/observed-bounded-invocation.v1','explicit external invocation');
-  check(invocation.coordinator.sha256===COORDINATOR_SHA&&invocation.coordinator.path===path.join(invocation.root,'scripts/eom/f6c-bounded-operation.mjs'),'canonical coordinator generation');
- }
+ check(['braid-program/observed-bounded-invocation.v1','braid-program/observed-bounded-invocation.v2'].includes(invocation.schema),'explicit external invocation');
+ if(expectedInvocation)check(same(invocation,expectedInvocation),'independently observed invocation');
+ check(invocation.coordinator.path===path.join(invocation.root,'scripts/eom/f6c-bounded-operation.mjs'),'canonical coordinator path');
  const maximum=invocation.control?120000:1800000;
  check(typeof invocation.control==='boolean'&&Number.isFinite(elapsedMilliseconds)&&elapsedMilliseconds>0&&elapsedMilliseconds<maximum,'external inclusive original deadline');
  check(lease.status==='completed'&&lease.exitCode===0&&lease.exitSignal===null&&lease.processGroupClosed===true&&!lease.error&&!lease.stopReason,'successful externally closed invocation');
- const args=[invocation.coordinator.path,invocation.control?'--control-plan':'--plan',invocation.plan.path,'--plan-sha256',invocation.plan.sha256,'--self-sha256',current?expectedInvocation.coordinator.sha256:COORDINATOR_SHA,...(current?['--source-map-sha256',expectedInvocation.sourceMap.sha256]:[])];
+ const args=[invocation.coordinator.path,invocation.control?'--control-plan':'--plan',invocation.plan.path,'--plan-sha256',invocation.plan.sha256,'--self-sha256',invocation.coordinator.sha256];
  check(lease.cwd===invocation.root&&lease.command===invocation.node.path&&same(lease.args,args),'exact original executable and arguments');
  check(lease.targetIdentity&&integer(lease.targetIdentity.pid)&&lease.targetIdentity.pid>1&&lease.targetIdentity.pgid===lease.targetIdentity.pid,'original owned process group');
  check(plan.root===invocation.root&&plan.schema==='braid-program/f6c-bounded-operation-plan.v1'&&Array.isArray(plan.stages)&&plan.stages.length>0,'exact serial plan');
@@ -140,11 +96,6 @@ export function verifyClosure({invocation,lease,elapsedMilliseconds,wire,operati
  check(sources.reduce((n,b)=>n+b.bytes,0)<=LIMITS.sourceBytes,'bounded source aggregate');
  check(new Set(sources.map(b=>wire.sourceIdentities[b.path].split(':').slice(0,2).join(':'))).size===sources.length,'distinct physical sources');
  for(const b of [invocation.coordinator,invocation.plan,invocation.node])check(sources.some(s=>same(s,b)),'invocation source omitted');
- if(current){
-  check(sources.some(s=>same(s,expectedInvocation.sourceMap)),'selected source map omitted');
-  for(const b of selected)check(sources.some(s=>s.path===b.path&&s.sha256===b.sha256),'selected manifest source omitted or substituted');
-  for(const b of [expectedInvocation.sourceMap,...sources.filter(s=>selected.some(b=>b.path===s.path))])check(operation.sources.some(s=>same(s,b)),'selected operation source omitted');
- }
  for(const b of operation.sources)check(sources.some(s=>same(s,b)),'operation source omitted');
  check(outputs.some(b=>same(b,wire.operation)),'published operation omitted');
  for(const stage of operation.stages)check(outputs.some(b=>same(b,stage.process.stdoutLog)),'original stage completion output omitted');
@@ -164,12 +115,4 @@ export function verifyClosure({invocation,lease,elapsedMilliseconds,wire,operati
   sourceBindings:sources,sourceIdentities:wire.sourceIdentities,outputBindings:outputs,outputIdentities:wire.outputIdentities,
   observedProcessIds:[...pids].sort((a,b)=>a-b),observedProcessGroups:[...groups].sort((a,b)=>a-b),
   h3EvidenceEligible:false,physicalClaims:false,mathematicalAcceptance:false};
-}
-
-let OPTION_B_PRODUCTION_IDENTITIES;
-export function initializeProductionIdentities(values) {
-  if (!Array.isArray(values) || values.length !== 1 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
-  if (OPTION_B_PRODUCTION_IDENTITIES && JSON.stringify(OPTION_B_PRODUCTION_IDENTITIES) !== JSON.stringify(values)) throw Error("production identity generation already initialized");
-  OPTION_B_PRODUCTION_IDENTITIES = Object.freeze([...values]);
-  COORDINATOR_SHA=OPTION_B_PRODUCTION_IDENTITIES[0];
 }

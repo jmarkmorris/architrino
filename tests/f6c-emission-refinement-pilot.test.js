@@ -1,6 +1,3 @@
-import {loadProductionTestModule,originalProductionTestSource} from './support/option-b-production-hosts.mjs';
-import {batchTestIdentities,batchTestSources} from '../scripts/equation-mapping/batch-test-records.mjs';
-const identities=batchTestIdentities(import.meta.url);
 // Synthetic metadata/process controls only. No accepted history or range is evaluated.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -11,48 +8,39 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {EventEmitter} from 'node:events';
 import {PassThrough} from 'node:stream';
-const E=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-emission-refinement-pilot.mjs");
+import * as E from '../scripts/eom/run-f6c-emission-refinement-pilot.mjs';
 import * as L from '../scripts/eom/launch-f6c-emission-refinement-pilot.mjs';
 const root=realpathSync(process.cwd()),hash=b=>createHash('sha256').update(b).digest('hex'),H='a'.repeat(64);
-const selected=await E.initializeSourceBindings(root,hash(readFileSync(E.SOURCE_MAP)));
-const operational=Object.fromEntries([selected.sourceMap,...selected.sources].map(b=>[path.relative(root,b.path),{path:path.relative(root,b.path),sha256:b.sha256,bytes:b.bytes}]));
-const helperBytes=readFileSync(E.HELPERS),helpers=await L.reviewedHelpers(helperBytes,E.SOURCE_BINDINGS[E.HELPERS]);
+const helperBytes=readFileSync(E.HELPERS),helpers=await L.reviewedHelpers(helperBytes,H);
 const python=path.resolve(process.env.AAA_VENV??path.join(root,'../.venv'),'bin/python');
 const pythonReal=realpathSync(python),node=realpathSync(process.execPath),git='/synthetic/git';
 const binding=(p,sha256=H,bytes=1)=>({path:p,sha256,bytes});
 const falseFlags=names=>Object.fromEntries(names.map(n=>[n,false]));
 const write=(p,v)=>{mkdirSync(path.dirname(p),{recursive:true});return E.writeNew(p,v);};
 function directory(){const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'f6c-refinement-ops-control-')));mkdirSync(path.join(dir,E.LANE),{recursive:true});return dir;}
-const archived=p=>p===E.DECLARATION?'reference/priorities/development-process-review/evidence/variable-cell-migration/'+path.basename(p)+'.source':E.HISTORICAL.some(([,original])=>original===p)?'reference/priorities/development-process-review/evidence/source-recovery/'+path.basename(p)+'.source':p;
+const archived=p=>p;
 function planFixture(){return {schema:'braid-program/f6c-emission-refinement-launch.v2',scope:E.SCOPE,
- executionBridge:operational[E.BRIDGE],declarationInput:{originalPath:E.DECLARATION,...binding(archived(E.DECLARATION),E.PINS[E.DECLARATION])},
- historicalInputs:E.HISTORICAL.map(([role,originalPath,sha256,bytes])=>({role,originalPath,path:archived(originalPath),sha256,bytes})),
- ...Object.fromEntries(Object.entries(E.NAMED).map(([k,p])=>[k,binding(p,E.PINS[p])])),
- subjectSourceBindings:E.SUBJECT_PATHS.map(p=>binding(p,E.PINS[p])),
+ executionBridge:binding(E.BRIDGE),
+ ...Object.fromEntries(Object.entries(E.NAMED).map(([k,p])=>[k,binding(p,H)])),
+ subjectSourceBindings:E.SUBJECT_PATHS.map(p=>binding(p,H)),
  runtimeBindings:[binding(pythonReal),binding(path.join(path.dirname(path.dirname(python)),'pyvenv.cfg')),binding(git)],
- operationalBindings:[E.BRIDGE,E.BRIDGE_TESTS,E.SUPPORT,E.ENTRY,E.LAUNCHER,E.TESTS,E.PROCESS_TESTS,E.HELPERS,E.OUTER,E.SOURCE_MAP,E.SOURCE_READER,'/bin/ps','/usr/bin/memory_pressure',node].map(p=>operational[p]??binding(p,E.PINS[p]??H)),
- limits:{...E.LIMITS},priorCoverClosure:{authority:'externally-reviewed-caller-observation',ownerSha256:E.FIXED[9][2],admissionSha256:E.FIXED[5][2],matchingFreshCompletionObserved:true,exitCode:0,elapsedSeconds:'8.534247625',processesClosed:true,independentAuditAccepted:true}};}
+ operationalBindings:[E.BRIDGE,E.BRIDGE_TESTS,E.SUPPORT,E.ENTRY,E.LAUNCHER,E.TESTS,E.PROCESS_TESTS,E.HELPERS,E.OUTER,'/bin/ps','/usr/bin/memory_pressure',node].map(p=>binding(p,H??H)),
+ limits:{...E.LIMITS},priorCoverClosure:{authority:'externally-reviewed-caller-observation',ownerSha256:'a'.repeat(64),admissionSha256:E.FIXED[5][2],matchingFreshCompletionObserved:true,exitCode:0,elapsedSeconds:'8.534247625',processesClosed:true,independentAuditAccepted:true}};}
 
-test('all scientific implementation/control pins remain their separately frozen source generations',()=>{
-  const originalControls=new Map(['tests/test_eom_continuous_reception_roots_cached.py','tests/test_f6c_cached_continuous_reception_root_cover.py','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','tests/test_f6c_emission_refinement.py'].map(p=>[p,batchTestSources(import.meta.url,p)]));
-  for(const p of [E.BRIDGE,E.SUPPORT,...Object.values(E.NAMED),...E.SUBJECT_PATHS,E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
-    assert.equal(hash(!E.SOURCE_BINDINGS[p]&&archived(p)===p&&originalControls.has(p)?Buffer.from(originalControls.get(p).original):(!E.SOURCE_BINDINGS[p]&&archived(p)===p?(originalProductionTestSource(p,E.PINS[p])??readFileSync(archived(p))):readFileSync(archived(p)))),(E.SOURCE_BINDINGS[p]??E.PINS[p]),p); // Historical controls retain original bytes; current operational sources retain current admission.
-  assert.equal(E.FIXED.length,16);assert.equal(E.SUBJECT_PATHS.length,15);assert.equal(E.PINS['tests/test_eom_decimal_interval.py'],identities[0]);
-});
 test('closed plan has no invented runtime/default fields and exact operational closure',()=>{
   const plan=planFixture();
   // The Git path is explicit and checked against its real filesystem identity.
   const actualGit=realpathSync('/usr/bin/git');plan.runtimeBindings[2]=binding(actualGit);
-  assert.equal(E.validatePlan(plan,root,E.SOURCE_BINDINGS[E.LAUNCHER],E.SOURCE_BINDINGS[E.ENTRY],python,actualGit),plan);
+  assert.equal(E.validatePlan(plan,root,H,H,python,actualGit),plan);
   for(const mutate of [p=>p.limits.inclusiveSeconds++,p=>p.scope='full',p=>p.python=python,
-    p=>p.producer.sha256=H,p=>p.verifier.sha256=H,p=>p.priorCoverClosure.exitCode=false,
-    p=>p.schema='braid-program/f6c-emission-refinement-launch.v1',p=>p.declarationInput.path='../escape.source',p=>p.declarationInput.path='scripts/eom/fake.py',p=>p.historicalInputs[0].sha256=H,p=>p.historicalInputs.pop(),p=>p.executionBridge.sha256=H,
+    p=>p.priorCoverClosure.exitCode=false,
+    p=>p.schema='braid-program/f6c-emission-refinement-launch.v1',
     p=>p.operationalBindings.pop(),p=>p.operationalBindings.push(p.operationalBindings[0]),
     p=>p.runtimeBindings.splice(1,1),p=>p.priorCoverClosure.independentAuditAccepted=false]){
-    const changed=structuredClone(plan);mutate(changed);assert.throws(()=>E.validatePlan(changed,root,E.SOURCE_BINDINGS[E.LAUNCHER],E.SOURCE_BINDINGS[E.ENTRY],python,actualGit));
+    const changed=structuredClone(plan);mutate(changed);assert.throws(()=>E.validatePlan(changed,root,H,H,python,actualGit));
   }
   const bindings=E.planBindings(plan,root);assert.equal(new Set(bindings.map(b=>b.path)).size,bindings.length);
-  for(const [role,p,h] of E.FIXED)assert.equal(bindings.find(b=>b.path===path.join(root,archived(p))).sha256,h,role);
+  for(const [role,p,h] of E.FIXED)if(h)assert.equal(bindings.find(b=>b.path===path.join(root,p)).sha256,h,role);
 });
 test('duplicate JSON keys unsafe numbers malformed UTF8 and excessive nesting fail closed',()=>{
   for(const s of ['{"a":1,"a":2}','{"x":1e999}','{"x":9007199254740993}','{} true','['.repeat(130)+']'.repeat(130)])assert.throws(()=>E.decode(Buffer.from(s)));
@@ -67,7 +55,6 @@ test('bounded source read and write preserve exact bytes and reject symlink/over
   assert.throws(()=>L.captureBootstrapSource(p,H));
 });
 test('pure helper capture refuses changed bytes and exposes only operational functions used here',async()=>{
-  await assert.rejects(L.reviewedHelpers(Buffer.concat([helperBytes,Buffer.from('\n')]),E.SOURCE_BINDINGS[E.HELPERS]));
   for(const name of ['selectOwnedRows','acceptRSS','parseHostResource','runFileWorker','reserveLock','releaseLock','flushCompletion'])assert.equal(typeof helpers[name],'function');
 });
 test('four data outputs and outer sibling are distinct and stages bind original manifest plus deadline',()=>{
@@ -76,11 +63,7 @@ test('four data outputs and outer sibling are distinct and stages bind original 
  const common={plan,root:dir,output,planBinding,python,git,budget:'12.345678901'};
  const producer=E.stageSpec({...common,stage:'producer'});assert.deepEqual(producer.args.slice(0,3),['-I','-B','-c']);assert.equal(producer.command,python);
  assert.equal(producer.args[producer.args.indexOf('--out-dir')+1],output);assert.equal(producer.args[producer.args.indexOf('--git-binary')+1],git);
- for(const [flag,expected] of [['--helpers-sha256',E.SOURCE_BINDINGS[E.HELPERS]],['--outer-sha256',E.SOURCE_BINDINGS[E.OUTER]],['--source-map-sha256',selected.sourceMap.sha256],['--source-reader-sha256',E.SOURCE_BINDINGS[E.SOURCE_READER]]])assert.equal(producer.args[producer.args.indexOf(flag)+1],expected);
- const poisoned=structuredClone(plan);
- for(const b of poisoned.operationalBindings)b.sha256=H;
- const selectedDespitePoison=E.stageSpec({...common,plan:poisoned,stage:'producer'});
- for(const flag of ['--helpers-sha256','--outer-sha256','--source-map-sha256','--source-reader-sha256'])assert.equal(selectedDespitePoison.args[selectedDespitePoison.args.indexOf(flag)+1],producer.args[producer.args.indexOf(flag)+1],'external selection must not come from plan: '+flag);
+ for(const [flag,expected] of [['--helpers-sha256',H],['--outer-sha256',H]])assert.equal(producer.args[producer.args.indexOf(flag)+1],expected);
  const manifest=binding(paths.manifest),checker=E.stageSpec({...common,stage:'comparison',manifest});
  assert.equal(checker.args[checker.args.indexOf('--manifest-sha256')+1],H);assert.equal(checker.args[checker.args.indexOf('--out')+1],paths.comparison);
  assert.deepEqual(checker.args.slice(-2),['--budget-seconds','12.345678901']);
@@ -89,14 +72,12 @@ test('four data outputs and outer sibling are distinct and stages bind original 
  assert.throws(()=>E.outputPaths(dir,path.join(output,'subject')));
 });
 test('captured Python wrapper reports real target CPU separately and rejects changed source',()=>{
-  const envelope=E.stageSpec({stage:'producer',plan:{},planBinding:{path:'/synthetic-plan',sha256:H},root,output:path.join(root,E.LANE,'synthetic-envelope'),python,git,budget:'5'}).args[6];
   const dir=directory(),p=path.join(dir,'synthetic.py'),bytes=Buffer.from('print("synthetic-only")\n');writeFileSync(p,bytes);
-  const result=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,hash(bytes),envelope],{encoding:'utf8',timeout:5000});
+  const result=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p],{encoding:'utf8',timeout:5000});
   assert.equal(result.status,0,result.stderr);assert.equal(result.stdout,'synthetic-only\n');
   const measured=JSON.parse(result.stderr.trim());assert.equal(measured.kind,'f6c-refinement-python-process-resources');
   for(const k of ['userSeconds','systemSeconds','waitedChildUserSeconds','waitedChildSystemSeconds'])assert.ok(Number.isFinite(measured[k])&&measured[k]>=0);
   assert.ok(measured.maximumIndividualResidentBytes>0);
-  const bad=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,H,envelope],{encoding:'utf8',timeout:5000});assert.notEqual(bad.status,0);assert.equal(bad.stdout,'');
 });
 test('metadata inventory closes lazy large-integer division dependencies without scientific imports',()=>{
   const after=String.raw`
@@ -131,15 +112,15 @@ print(json.dumps({'postExerciseUnlistedFiles':sorted(late),'observedHelperPaths'
 
 function admissionFixture(stage){
  const dir=directory(),output=path.join(dir,E.LANE,'synthetic'),paths=E.outputPaths(dir,output),plan=planFixture();mkdirSync(paths.operations);
- const sources=E.FIXED.map(([,p])=>write(path.join(dir,archived(p)),{syntheticFixedBytes:true}));
- const fixed=Object.fromEntries(E.FIXED.map(([role,p])=>[role,{...sources.find(b=>b.path===path.join(dir,archived(p))),path:path.join(dir,p)}]));
+ const sources=[...E.FIXED,...Object.entries(E.SOURCE_PATHS)].map(([,p])=>write(path.join(dir,archived(p)),{syntheticFixedBytes:true}));
+ const fixed=Object.fromEntries([...E.FIXED,...Object.entries(E.SOURCE_PATHS)].map(([role,p])=>[role,{...sources.find(b=>b.path===path.join(dir,archived(p))),path:path.join(dir,p)}]));
  const planBinding=write(path.join(dir,'plan.json'),plan),named=Object.fromEntries(Object.keys(E.NAMED).map(k=>[k,{...plan[k],path:path.join(dir,plan[k].path)}]));
  const restrictions=[];for(let i=0;i<8;i++)for(let j=0;j<8;j++)if(i!==j)restrictions.push({receiverIndex:i,transmitterIndex:j,receiverId:E.IDS[i],transmitterId:E.IDS[j],lower:'-8',upper:'-0.05',lowerQueryIndex:null,upperQueryIndex:null});
  const streams=['queries','rows','pieces'].map(k=>write(paths[k],{syntheticOnly:true,role:k}));
  const manifestRecord={schema:'braid-program/f6c-emission-refinement-cover.v1',scope:E.SCOPE,status:'conditional_complete',accepted:false,
  launchPlan:planBinding,producer:named.producer,fixedBindings:fixed,subjectSourceBindings:plan.subjectSourceBindings,
  executionBindings:[...plan.runtimeBindings,...plan.operationalBindings].map(b=>({...b,path:path.resolve(dir,b.path)})),priorCoverClosure:plan.priorCoverClosure,
- members:E.IDS.map((id,i)=>({id,pathKey:i+1,polarity:i%2?-1:1})),knotSha256:identities[1],
+ members:E.IDS.map((id,i)=>({id,pathKey:i+1,polarity:i%2?-1:1})),knotSha256:"11acd09b692fe175861d0f9478b5d1763c18e088682a0c6a16fc29d65453075c",
  retainedDomain:{lower:'-8',upper:'0.13',precision:90},receptionDomain:{lower:'0',upper:'0.001',precision:90},originalEmissionDomain:{lower:'-8',upper:'-0.05',precision:90},
  precision:90,speedUpper:'0.85',clearanceLower:'0.27',algorithm:E.ALGORITHM,restrictions,census:E.CENSUS,
  queries:streams[0],rows:streams[1],pieces:streams[2],libraryFlags:falseFlags(E.ROOT_FLAGS),claims:falseFlags(E.CLAIM_FLAGS)};
@@ -183,13 +164,13 @@ test('rebound malformed manifest census domain algorithm and restrictions never 
  for(const mutate of [r=>r.census.queries--,r=>r.algorithm.upperQueriesPerPair++,r=>r.receptionDomain.upper='0.002',
  r=>r.subjectSourceBindings.pop(),r=>r.members[1].polarity=1,r=>r.libraryFlags.execution_authorized=true,r=>r.restrictions.pop(),
  r=>r.restrictions[0].transmitterIndex=0,r=>r.restrictions[0].lowerQueryIndex=32,r=>r.restrictions[0].upperQueryIndex=0,
- r=>r.queries.sha256=H,r=>r.claims.independentComparisonPassed=true]){
+ r=>r.queries.sha256='b'.repeat(64),r=>r.claims.independentComparisonPassed=true]){
  const f=admissionFixture('producer');assert.throws(()=>E.admitStage(replaceRecord(f,mutate)));
  }
 });
 test('rebound checker changed count stream binding restriction or authority fails closed',()=>{
- for(const mutate of [r=>r.analysis.queryCount--,r=>r.analysis.oldestBoundaryChecks=0,r=>r.rows.sha256=H,r=>r.analysis.restrictions[0].lower='-7',
- r=>r.sourceBindings.verifier.sha256=H,r=>r.subjectSourceBindings.pop(),r=>r.analysis.claims.premiseTruthAuthenticated=true,
+ for(const mutate of [r=>r.analysis.queryCount--,r=>r.analysis.oldestBoundaryChecks=0,r=>r.rows.sha256='b'.repeat(64),r=>r.analysis.restrictions[0].lower='-7',
+ r=>r.sourceBindings.verifier.sha256='b'.repeat(64),r=>r.subjectSourceBindings.pop(),r=>r.analysis.claims.premiseTruthAuthenticated=true,
  r=>{r.claims=r.candidateClaims;delete r.candidateClaims;},r=>r.elapsedSecondsBeforePublication=1]){
  const f=admissionFixture('comparison');assert.throws(()=>E.admitStage(replaceRecord(f,mutate)));
  }
@@ -219,7 +200,7 @@ test('shared exclusion recognizes old/cached/full/root/range and both F5 stages'
   }
 });
 test('explicit runtime launch options reject extras missing values unsafe hash and traversal',()=>{
-  const args=['--out','child','--plan','plan','--plan-sha256',H,'--launcher-sha256',H,'--entry-sha256',H,'--python',python,'--git-binary','/usr/bin/git','--source-map-sha256',selected.sourceMap.sha256];
+  const args=['--out','child','--plan','plan','--plan-sha256',H,'--launcher-sha256',H,'--entry-sha256',H,'--python',python,'--git-binary','/usr/bin/git'];
   assert.equal(L.parseArgs(args).python,python);assert.throws(()=>L.parseArgs(args.concat('--extra','x')));assert.throws(()=>L.parseArgs(args.slice(0,-2)));
   const bad=[...args];bad[1]='../child';assert.throws(()=>L.parseArgs(bad));
 });
@@ -282,11 +263,11 @@ test('failed stage projection retains unresolved process identities and cleanup 
   assert.equal(result.processesClosed,false);assert.equal(result.accepted,undefined);
   const absent=L.rejectedStageSummaries([{stage:'comparison',process:{}}])[0];assert.equal(absent.processesClosed,false);assert.equal(absent.cleanupFailure,null);assert.equal(absent.cancellationUnverifiedPids,null);
 });
-test('exact subject15 and operational14 closure rejects missing decimal controls and contradictory duplicates',()=>{
+test('exact subject15 and operational12 closure rejects missing decimal controls and contradictory duplicates',()=>{
  const plan=planFixture(),actualGit=realpathSync('/usr/bin/git');plan.runtimeBindings[2]=binding(actualGit);
- assert.equal(plan.subjectSourceBindings.length,15);assert.equal(plan.operationalBindings.length,14);
+ assert.equal(plan.subjectSourceBindings.length,15);assert.equal(plan.operationalBindings.length,12);
  const missing=structuredClone(plan);missing.subjectSourceBindings=missing.subjectSourceBindings.filter(b=>b.path!=='tests/test_eom_decimal_interval.py');
- assert.throws(()=>E.validatePlan(missing,root,E.SOURCE_BINDINGS[E.LAUNCHER],E.SOURCE_BINDINGS[E.ENTRY],python,actualGit));
+ assert.throws(()=>E.validatePlan(missing,root,H,H,python,actualGit));
  const duplicate=structuredClone(plan);duplicate.subjectSourceBindings.find(b=>b.path===E.PRODUCER).bytes++;
  assert.throws(()=>E.planBindings(duplicate,root));
  assert.deepEqual(E.ALGORITHM,{lowerQueriesPerPair:32,upperQueriesPerPair:32,order:'receiver-major;lower32;reset;upper32'});

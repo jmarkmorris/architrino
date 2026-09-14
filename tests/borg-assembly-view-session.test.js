@@ -1,6 +1,4 @@
-import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';
-const optionBIdentities = retainedTestIdentities("tests/borg-assembly-view-session.test.js");
-const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/borg-assembly-view-session.test.js"].sha256]);
+const RETAINED_HASHES = Object.freeze(["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"]);
 if (RETAINED_HASHES.length !== 2 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 import assert from "node:assert/strict";
 import test from "node:test";

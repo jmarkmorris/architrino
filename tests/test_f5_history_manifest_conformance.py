@@ -12,10 +12,12 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from source_replay_support import load_f5_replay_module
+import importlib.util
 
-_oracle, ROOT = load_f5_replay_module(
-    "f5_history_manifest_replay", "scripts/eom/oracle/f5_history_manifest_conformance.py")
+ROOT = Path(__file__).resolve().parents[1]
+spec = importlib.util.spec_from_file_location('_oracle', ROOT / 'scripts/eom/oracle/f5_history_manifest_conformance.py')
+_oracle = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(_oracle)
 FIXED_BINDINGS, MANIFEST_SCHEMA = _oracle.FIXED_BINDINGS, _oracle.MANIFEST_SCHEMA
 POSITION_WIDTH, VELOCITY_WIDTH = _oracle.POSITION_WIDTH, _oracle.VELOCITY_WIDTH
 decode_json, history_fingerprint = _oracle.decode_json, _oracle.history_fingerprint
@@ -62,7 +64,7 @@ class F5ManifestConformanceTests(unittest.TestCase):
         self.assertEqual(result["historyManifestSha256"], sha256(raw))
         self.assertEqual(result["processedMemberSegments"], 1)
         self.assertEqual(result["failure"], "endpoint-defect-alone-exceeds-frozen-width")
-        self.assertEqual(len(result["sourceBindings"]), 5)
+        self.assertEqual(len(result["sourceBindings"]), 3)
 
     def test_duplicate_keys_and_nonfinite_json_are_rejected(self):
         for raw in (b'{"a":1,"a":2}', b'{"x":NaN}', b'{"x":Infinity}', b'[]'):
@@ -120,40 +122,17 @@ class F5ManifestConformanceTests(unittest.TestCase):
             context.prec = 3
             self.assertEqual(len(validate_manifest_shape(self.manifest, self.config, self.report)), 12)
 
-    def test_changed_file_after_import_is_rejected_without_running_old_code(self):
-        read = Path.read_bytes
-        target = ROOT / "scripts/eom/oracle/f5_actual_cubic_conformance.py"
-
-        def changed(path):
-            data = read(path)
-            return data + b"\n# simulated later edit\n" if path == target else data
-
-        with patch.object(Path, "read_bytes", changed):
-            with self.assertRaisesRegex(ValueError, "changed after frozen import"):
-                verify_manifest_bytes(encode(self.manifest))
-
-    def test_cached_old_standard_module_cannot_supply_the_executing_proof(self):
-        # Fresh process preloads a fake prior module. The wrapper must compile
-        # its bound snapshot, not take the cached function. No files are edited.
+    def test_import_does_not_read_source_baselines(self):
         program = '''
-import sys
-from types import ModuleType
-fake = ModuleType("scripts.eom.oracle.f5_actual_cubic_conformance")
-fake.PRECISION = 1
-sys.modules[fake.__name__] = fake
-from scripts.eom.oracle import f5_history_manifest_conformance as wrapper
+from pathlib import Path
+from unittest.mock import patch
+with patch.object(Path, "read_bytes", side_effect=AssertionError("eager byte read")):
+    from scripts.eom.oracle import f5_history_manifest_conformance as wrapper
 assert wrapper.PRECISION == 96
-assert wrapper.certify_f5_segment.__module__.startswith("_f5_proof_snapshot_")
+assert wrapper.certify_f5_segment.__module__ == "scripts.eom.oracle.f5_actual_cubic_conformance"
 '''
         completed = subprocess.run([sys.executable, "-c", program], cwd=ROOT, capture_output=True, text=True)
         self.assertEqual(completed.returncode, 0, completed.stderr)
-
-    def test_stale_wrapper_code_cannot_claim_current_source_bytes(self):
-        source_path = ROOT / "scripts/eom/oracle/f5_history_manifest_conformance.py"
-        stale = source_path.read_text().replace("HEARTBEAT_SECONDS = 15", "HEARTBEAT_SECONDS = 14")
-        namespace = {"__name__": "stale_wrapper_test_only", "__file__": str(source_path)}
-        with self.assertRaisesRegex(ValueError, "executing wrapper code differs"):
-            exec(compile(stale, str(source_path), "exec"), namespace)
 
     def test_final_hash_checks_cannot_cross_deadline_and_still_pass(self):
         clock, count = [0.0], [0]

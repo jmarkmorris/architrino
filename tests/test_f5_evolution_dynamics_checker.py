@@ -18,21 +18,8 @@ spec.loader.exec_module(checker)
 class F5DynamicsWrapperTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.oracle, cls.bindings = checker.load_frozen_oracle()
-
-    def test_source_bindings_cover_frozen_transitive_math(self):
-        self.assertEqual(len(self.bindings), 5)
-        again, _ = checker.load_frozen_oracle()
-        self.assertIsNot(again, self.oracle)
-
-    def test_loader_rejects_modified_reference_before_import(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
-            folder = root / "scripts/eom/oracle"
-            folder.mkdir(parents=True)
-            (folder / "__init__.py").write_text("raise AssertionError('must not execute')\n")
-            with self.assertRaisesRegex(ValueError, "frozen oracle changed"):
-                checker.load_frozen_oracle(root)
+        from scripts.eom.oracle import certified_evolution
+        cls.oracle = certified_evolution
 
     def test_conservative_scalar_axis_radius(self):
         value = checker.radius(["0.1", "0.02", "0.03"])

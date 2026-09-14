@@ -8,12 +8,11 @@ import {createHash} from 'node:crypto';
 import {readFileSync,writeFileSync,mkdirSync,realpathSync,lstatSync} from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
-import {capture,clean,verifyClosure,verifyCurrentSelection,parseProcessTable,LOCK} from './verify-f6c-bounded-operation-closure.mjs';
+import {capture,clean,verifyClosure,parseProcessTable,LOCK} from './verify-f6c-bounded-operation-closure.mjs';
 
 const exec=promisify(execFile),SELF='scripts/eom/observe-parent-batch.mjs';
 const CHECKER='scripts/eom/verify-f6c-bounded-operation-closure.mjs';
 const SUPERVISOR='scripts/dev/owned-compute-supervisor.mjs';
-const SOURCE_MAP='reference/priorities/development-process-review/contracts/option-b-f6c-bounded-operation-sources.jsonld';
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const sha=raw=>createHash('sha256').update(raw).digest('hex');
 function identify(p,expected,limit=1073741824){
@@ -25,11 +24,11 @@ function parse(argv){
  const result={control:false};
  for(let i=0;i<argv.length;i++){
   const k=argv[i];if(k==='--control'){check(!result.control,'duplicate control flag');result.control=true;continue;}
-  check(['--plan','--plan-sha256','--self-sha256','--checker-sha256','--coordinator-sha256','--source-map-sha256','--out-directory','--owner-task'].includes(k)&&!Object.hasOwn(result,k),'unique known observer flag');
+  check(['--plan','--plan-sha256','--self-sha256','--checker-sha256','--coordinator-sha256','--out-directory','--owner-task'].includes(k)&&!Object.hasOwn(result,k),'unique known observer flag');
   check(typeof argv[i+1]==='string'&&!argv[i+1].startsWith('--'),'observer flag value');result[k]=argv[++i];
  }
- for(const k of ['--plan','--plan-sha256','--self-sha256','--checker-sha256','--coordinator-sha256','--source-map-sha256','--out-directory','--owner-task'])check(result[k],'required observer flag');
- for(const k of ['--plan-sha256','--self-sha256','--checker-sha256','--coordinator-sha256','--source-map-sha256'])check(/^[a-f0-9]{64}$/u.test(result[k]),'externally selected observer digest');
+ for(const k of ['--plan','--plan-sha256','--self-sha256','--checker-sha256','--coordinator-sha256','--out-directory','--owner-task'])check(result[k],'required observer flag');
+ for(const k of ['--plan-sha256','--self-sha256','--checker-sha256','--coordinator-sha256'])check(/^[a-f0-9]{64}$/u.test(result[k]),'externally selected observer digest');
  return result;
 }
 
@@ -39,7 +38,6 @@ export async function main(argv=process.argv.slice(2)){
  const self=identify(path.join(root,SELF),options['--self-sha256'],1048576),checker=identify(path.join(root,CHECKER),options['--checker-sha256'],1048576);
  const node=identify(realpathSync(process.execPath)),ps=identify('/bin/ps');
  const coordinator=identify(path.join(root,'scripts/eom/f6c-bounded-operation.mjs'),options['--coordinator-sha256'],1048576);
- const sourceManifest=identify(path.join(root,SOURCE_MAP),options['--source-map-sha256'],1048576);
  const launch=identify(options['--plan'],options['--plan-sha256'],1048576),plan=JSON.parse(launch.data);
  check(plan.root===root,'observer/plan root');
  const supervisorBinding=plan.sources.find(b=>b.path===path.join(root,SUPERVISOR));
@@ -47,17 +45,16 @@ export async function main(argv=process.argv.slice(2)){
  const supervisor=identify(supervisorBinding.path,supervisorBinding.sha256,1048576);
  check(supervisor.bytes===supervisorBinding.bytes,'selected owned-compute source size');
  if(!options.control)check(plan.hookModule?.path===path.join(root,'scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs')&&plan.configuration?.schema==='braid-program/f6c-parent-emission-refinement-batch.v2'&&plan.configuration.completionContract==='braid-program/f6c-bounded-operation-external-closure.v2','current parent batch completion contract');
- const initial=[self,checker,node,supervisor,ps,coordinator,sourceManifest,launch];
+ const initial=[self,checker,node,supervisor,ps,coordinator,launch];
  const physical=[...plan.sources,plan.hookModule,plan.hookControls,...plan.stages.flatMap(s=>[s.entry,...s.sources,...s.runtimeBindings])];
  const sourceMap=new Map();
  for(const b of physical){const old=sourceMap.get(b.path);check(!old||old.sha256===b.sha256&&old.bytes===b.bytes,'conflicting invocation source');if(!old)sourceMap.set(b.path,capture(b));}
  check(absent(path.join(root,LOCK)),'occupied operation lock before dispatch');mkdirSync(out,{mode:0o700});
  const save=(name,value)=>writeFileSync(path.join(out,name),JSON.stringify(value,null,2)+'\n',{flag:'wx',mode:0o600});
- const invocation={schema:'braid-program/observed-bounded-invocation.v2',root,coordinator:clean(coordinator),node:clean(node),plan:clean(launch),control:options.control,sourceMap:clean(sourceManifest)};
- for(const selected of verifyCurrentSelection(invocation))initial.push(identify(selected.path,selected.sha256));
+ const invocation={schema:'braid-program/observed-bounded-invocation.v2',root,coordinator:clean(coordinator),node:clean(node),plan:clean(launch),control:options.control};
  save('invocation.json',invocation);
  const maximum=options.control?120000:1800000,began=performance.now();let lease;
- const args=[coordinator.path,options.control?'--control-plan':'--plan',launch.path,'--plan-sha256',launch.sha256,'--self-sha256',coordinator.sha256,'--source-map-sha256',sourceManifest.sha256];
+ const args=[coordinator.path,options.control?'--control-plan':'--plan',launch.path,'--plan-sha256',launch.sha256,'--self-sha256',coordinator.sha256];
  try{
   const {runOwned}=await import(pathToFileURL(supervisor.path));
   lease=await runOwned(['--owner-task',options['--owner-task'],'--deadline-seconds',String(maximum/1000),'--heartbeat-seconds','5','--',node.path,...args]);

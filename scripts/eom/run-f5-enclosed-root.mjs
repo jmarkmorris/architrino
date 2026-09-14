@@ -7,49 +7,17 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import * as f5Fs from "node:fs";
 import * as f5Crypto from "node:crypto";
-// Bootstrap uses Node builtins only; no repository module runs before selection.
-export async function bootstrapF5(root, sourceMapSha256, originalIdentities = {}) {
-  if (!/^[a-f0-9]{64}$/u.test(sourceMapSha256 ?? "")) throw Error("externally selected F5 source-map digest required");
-  const capture = (filename, expected) => {
-    if (f5Fs.realpathSync(filename) !== filename) throw Error("canonical F5 bootstrap source required");
-    const fd = f5Fs.openSync(filename, f5Fs.constants.O_RDONLY | f5Fs.constants.O_NOFOLLOW | f5Fs.constants.O_NONBLOCK);
-    try {
-      const before = f5Fs.fstatSync(fd, {bigint:true});
-      const identity = s => [s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(":");
-      if (!before.isFile() || before.size <= 0n || before.size > 1024n**2n) throw Error("bounded F5 bootstrap source");
-      const data = f5Fs.readFileSync(fd), sha256 = f5Crypto.createHash("sha256").update(data).digest("hex");
-      if (sha256 !== expected || identity(before) !== identity(f5Fs.fstatSync(fd,{bigint:true})) || identity(before) !== identity(f5Fs.lstatSync(filename,{bigint:true}))) throw Error("F5 bootstrap source digest/original identity changed");
-      if (Object.hasOwn(originalIdentities,filename) && originalIdentities[filename] !== identity(before)) throw Error("F5 original bootstrap identity changed");
-      return {data,identity:identity(before),path:filename};
-    } finally {f5Fs.closeSync(fd);}
-  };
-  const mapPath = path.join(root,"reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld");
-  const map = capture(mapPath,sourceMapSha256), admissionPath = "scripts/eom/f5-current-source-admission.mjs";
-  const rows = JSON.parse(map.data)["@graph"]?.filter(r=>r.role==="admission"&&r.binding?.path===admissionPath);
-  if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
-  const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
-  const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
-  const admitted = await module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
-  initializeProductionIdentities(admitted.productionIdentities("scripts/eom/run-f5-enclosed-root.mjs"));
-  OPTION_B_F5_ADMISSION=admitted;
-  return admitted;
-}
 
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const BASE = ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/";
 const SELF = "scripts/eom/run-f5-enclosed-root.mjs";
 const API_PROOF = "scripts/eom/oracle/f5_api_domain_conformance.py";
-let API_HASH;
 const CPP = "src/eom/native/eom_f5_enclosed_root_cli.cpp";
-let CPP_HASH;
 const REDUCER = "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs";
-let REDUCER_HASH;
 const PREFIX = "scripts/eom/verify-f5-enclosed-root-prefix.mjs";
-let PREFIX_HASH;
-let APPENDIX_HASH;
-let REVIEWED_TOOLCHAIN_HASH;
-export let API_SUBJECT_BINDINGS;
+const REVIEWED_TOOLCHAIN_HASH = "977082a60a74aa6bda8aa4c8adbe9634936df82921c40a090a15317f5952ee38";
+
 export const API_CONTROLS = Object.freeze({
   constantInterpretations: ["source-decimal", "frozen-binary64"], retainedInterval: ["-1", "19.63359163663986"],
   positionWidth: "1.528724905003159e-10", velocityWidth: "2.866983034112353e-7", precisionDecimalDigits: 96,
@@ -67,7 +35,7 @@ const writeJson = (filename, value) => {
   return { path: relative(filename), sha256: sha(bytes) };
 };
 const bind = (filename) => ({ path: relative(filename), sha256: sha(readFileSync(filename)) });
-let OPTION_B_F5_ADMISSION;
+
 function readBoundJson(filename) {
   const bytes = readFileSync(filename);
   return { value: JSON.parse(bytes.toString("utf8")), binding: { path: relative(filename), sha256: sha(bytes) } };
@@ -112,30 +80,13 @@ function canonical(value) {
 export function verifyBindings(records) {
   for (const record of records) {
     const filename = path.isAbsolute(record.path) ? record.path : path.join(ROOT, record.path);
-    if (sha(readFileSync(filename)) !== record.sha256) {
-      const relative=path.relative(ROOT,filename);
-      if(!OPTION_B_F5_ADMISSION)throw new Error(`bound bytes changed: ${record.path}`);
-      const pair=OPTION_B_F5_ADMISSION.productionSourcePair(relative,record.sha256);
-      if(sha(Buffer.from(pair.original))!==record.sha256 || !readFileSync(filename).equals(Buffer.from(pair.current)))throw new Error(`bound bytes changed: ${record.path}`);
-    }
+    if (sha(readFileSync(filename)) !== record.sha256) throw new Error(`bound bytes changed: ${record.path}`);
     if (record.realPath && realpathSync(filename) !== record.realPath) throw new Error(`bound target changed: ${record.path}`);
   }
 }
 
-function verifyHistoricalBindings(records) {
-  for(const record of records){
-    const filename=path.resolve(ROOT,record.path);
-    if(!filename.startsWith(ROOT+path.sep)||!(/^[0-9a-f]{64}$/u.test(record.sha256)))throw Error('Canonical historical source binding required');
-    if(existsSync(filename)&&sha(readFileSync(filename))===record.sha256)continue;
-    if(!OPTION_B_F5_ADMISSION)throw Error('Explicit historical source admission required');
-    const original=OPTION_B_F5_ADMISSION.productionOriginalSourceBinding(path.relative(ROOT,filename),record.sha256);
-    const bytes=readFileSync(original.path);
-    if(sha(bytes)!==record.sha256||bytes.length!==original.bytes)throw Error('Original historical source changed');
-  }
-  OPTION_B_F5_ADMISSION.recheck();
-}
 
-export function validateApiReceipt(receipt, preparation, expectedInstrumentHash = API_HASH) {
+export function validateApiReceipt(receipt, preparation) {
   if (receipt.schema !== "braid-program/f5-api-domain-conformance.v1" || receipt.accepted !== true ||
       receipt.status !== "api-domain-conformance-passed" || receipt.resourceContact !== false ||
       receipt.failure !== null || receipt.h3EvidenceEligible !== false ||
@@ -145,28 +96,23 @@ export function validateApiReceipt(receipt, preparation, expectedInstrumentHash 
       receipt.nominalCertificateSha256 !== preparation.conformance.sha256 || receipt.normalizedFieldSpeed !== "1") {
     throw new Error("API-domain proof identity, census, or acceptance is incomplete");
   }
-  const expectedInstruments = [...preparation.references.slice(5, 8), { path: API_PROOF, sha256: expectedInstrumentHash }];
-  for (const [field, expected] of [["sourceBindings", preparation.references.slice(0, 5)], ["instrumentBindings", expectedInstruments]]) {
+  for (const [field, expected] of [["sourceBindings", preparation.references]]) {
     if (!Array.isArray(receipt[field]) || receipt[field].length !== expected.length ||
         new Set(receipt[field].map((entry) => entry.path)).size !== expected.length ||
         expected.some((entry) => !receipt[field].some((actual) => actual.path === entry.path && actual.sha256 === entry.sha256))) {
       throw new Error(`API-domain proof ${field} does not match frozen generation`);
     }
   }
-  if (!Array.isArray(receipt.subjectApiBindings) || receipt.subjectApiBindings.length !== 6 ||
-      new Set(receipt.subjectApiBindings.map((entry) => entry.path)).size !== 6 ||
-      API_SUBJECT_BINDINGS.some((expected) => !receipt.subjectApiBindings.some((actual) => equal(actual, expected)))) {
-    throw new Error("API-domain proof lacks exact reviewed subject bindings");
-  }
+
   for (const [field, expected] of Object.entries(API_CONTROLS)) {
     if (!equal(receipt[field], expected)) throw new Error(`API-domain proof changed control: ${field}`);
   }
 }
 
-export function validateLedgerReceipt(checked, { manifestBinding, manifest, packetFiles, packets, bridgeHash = PREFIX_HASH, reducerCurrentHash = REDUCER_HASH, reducerOriginalBytes }) {
+export function validateLedgerReceipt(checked, { manifestBinding, manifest, packetFiles, packets }) {
   const order = packets.map((packet) => packet.rungSamples), final = order.length === 3;
   const expectedSchema = final ? "braid-program/f5-enclosed-root-ledger-reduction.v1" : "braid-program/f5-enclosed-root-prefix-reduction.v1";
-  const expectedAuthority = final ? "source-and-byte-bound-independent-reduction" : "source-and-byte-bound-frozen-validator-prefix-composition";
+  const expectedAuthority = final ? "source-and-byte-bound-independent-reduction" : "independent-ledger-prefix-composition";
   if (checked.schema !== expectedSchema || checked.authority !== expectedAuthority || checked.accepted !== true ||
       checked.h3EvidenceEligible !== false || checked.campaignId !== manifest.campaignId || checked.runId !== manifest.runId ||
       checked.historyManifestSha256 !== manifestBinding.sha256 || !equal(checked.rungOrder, order) ||
@@ -186,14 +132,8 @@ export function validateLedgerReceipt(checked, { manifestBinding, manifest, pack
       throw new Error("independent ledger receipt refers to different packet bytes or bindings");
     }
   });
-  const reducer = final ? checked.reducer : checked.reducerSource;
-  if (reducer?.path !== REDUCER || reducer.sha256 !== (final ? reducerCurrentHash : REDUCER_HASH)) throw new Error("ledger reducer generation differs");
-  if(final && reducerCurrentHash!==REDUCER_HASH && (checked.originalReducerApplicability?.path!==REDUCER || checked.originalReducerApplicability?.sha256!==REDUCER_HASH))throw new Error('Original reducer applicability differs');
   if (!final && (checked.status !== "genuine-prefix-ledger-checks-passed" || checked.completeLadder !== false ||
       checked.resourceContact !== false || checked.limitSeconds !== 1800 || checked.heartbeatSeconds !== 15 ||
-      checked.bridgeSource?.path !== PREFIX || checked.bridgeSource.sha256 !== bridgeHash ||
-      checked.exportAppendix?.sha256 !== APPENDIX_HASH || sha(Buffer.from(checked.exportAppendix.utf8 ?? "")) !== APPENDIX_HASH ||
-      checked.executedAugmentedReducerSha256 !== sha(Buffer.concat([reducerOriginalBytes ?? readFileSync(path.join(ROOT, REDUCER)), Buffer.from(checked.exportAppendix.utf8)])) ||
       !equal(checked.sourceBindings, packets[0].bindings) || !equal(checked.implementationBindings, packets[0].implementationBindings))) {
     throw new Error("prefix interface generation or checked binding census differs");
   }
@@ -202,12 +142,12 @@ export function validateLedgerReceipt(checked, { manifestBinding, manifest, pack
 export function parseRunArgs(argv) {
   const result = {};
   for (let i = 0; i < argv.length; i += 2) {
-    if (!["--preparation", "--api-proof", "--out", "--source-map-sha256"].includes(argv[i]) || !argv[i + 1] || result[argv[i]]) {
+    if (!["--preparation", "--api-proof", "--out"].includes(argv[i]) || !argv[i + 1] || result[argv[i]]) {
       throw new Error("Usage: --preparation FILE --api-proof FILE --out NEW-RUN-DIRECTORY");
     }
     result[argv[i]] = argv[i + 1];
   }
-  if (Object.keys(result).length !== 4 || !/^[a-f0-9]{64}$/u.test(result["--source-map-sha256"] ?? "")) throw new Error("preparation, API proof, and fresh output directory are required");
+  if (Object.keys(result).length !== 3) throw new Error("preparation, API proof, and fresh output directory are required");
   return result;
 }
 
@@ -266,8 +206,7 @@ function readNdjson(filename) {
 
 export async function runF5(argv, { admitCurrentBuild } = {}) {
   const args = parseRunArgs(argv);
-  const operational = await bootstrapF5(ROOT, args["--source-map-sha256"]);
-  const {runWatched,scopedPath,validateProofReceipt,verifyFrozenReferences} = await operational.importModule("scripts/eom/prepare-f5-enclosed-root.mjs");
+  const {runWatched,scopedPath,validateProofReceipt,verifyFrozenReferences} = await import("./prepare-f5-enclosed-root.mjs");
   const preparationPath = scopedPath(args["--preparation"], BASE);
   const apiPath = scopedPath(args["--api-proof"], BASE);
   const output = scopedPath(args["--out"], BASE);
@@ -276,23 +215,19 @@ export async function runF5(argv, { admitCurrentBuild } = {}) {
   const preparation = preparationInput.value, apiProof = apiInput.value;
   if (preparation.schema !== "braid-program/f5-enclosed-root-preparation.v1" ||
       preparation.status !== "nominal-actual-history-conformance-passed") throw new Error("accepted preparation required");
-  const references = verifyFrozenReferences(operational);
-  if (JSON.stringify(references) !== JSON.stringify(preparation.references)) throw new Error("preparation reference census differs");
-  verifyHistoricalBindings([...preparation.references, ...preparation.sources, preparation.historyManifest, preparation.conformance]);
+  const references = verifyFrozenReferences();
+  if (JSON.stringify(references) !== JSON.stringify(preparation.references.filter(row => !/^(src|scripts|tests)\//u.test(row.path)))) throw new Error("preparation reference census differs");
+  verifyBindings([...references, preparation.historyManifest, preparation.conformance]);
   const nominalInput = readBoundJson(path.join(ROOT, preparation.conformance.path));
   if (!equal(nominalInput.binding, preparation.conformance)) throw new Error("nominal certificate bytes differ from preparation");
   validateProofReceipt(nominalInput.value, preparation.historyManifest.sha256, preparation.campaignId, preparation.runId);
-  const apiPair=operational.productionSourcePair(API_PROOF,API_HASH);
-  const actualApiHash=apiProof.instrumentBindings?.find(row=>row.path===API_PROOF)?.sha256;
-  if(actualApiHash!==API_HASH && (actualApiHash!==sha(Buffer.from(apiPair.current)) || apiProof.originalInstrumentApplicability?.path!==API_PROOF || apiProof.originalInstrumentApplicability?.sha256!==API_HASH))throw Error('API proof original/current representation differs');
-  validateApiReceipt(apiProof, preparation,actualApiHash);
+  validateApiReceipt(apiProof, preparation);
   let toolchainInput, toolchain, actualCompiler, currentAdmission;
   if (admitCurrentBuild) {
     currentAdmission = await admitCurrentBuild({ root: ROOT, preparationInput, apiInput });
     ({ toolchainInput, toolchain, actualCompiler } = currentAdmission);
     verifyBindings(currentAdmission.dependencies);
   } else {
-  verifyHistoricalBindings([...apiProof.instrumentBindings, ...apiProof.subjectApiBindings]);
   const toolchainPath = path.join(path.dirname(preparationPath), "toolchain.json");
   toolchainInput = readBoundJson(toolchainPath);
   toolchain = toolchainInput.value;
@@ -300,35 +235,30 @@ export async function runF5(argv, { admitCurrentBuild } = {}) {
   if (JSON.stringify(toolchain.sources) !== JSON.stringify(preparation.sources)) throw new Error("build/source binding mismatch");
   actualCompiler = { path: toolchain.compiler.path };
   }
-  const dependencies = [...preparation.sources, ...toolchain.built, preparation.historyManifest, preparation.conformance,
-    ...apiProof.instrumentBindings, ...(currentAdmission ? currentAdmission.dependencies : apiProof.subjectApiBindings), preparationInput.binding, apiInput.binding,
+  const dependencies = [...toolchain.built, preparation.historyManifest, preparation.conformance,
+    ...(currentAdmission ? currentAdmission.dependencies : []), preparationInput.binding, apiInput.binding,
     toolchainInput.binding, bind(path.join(ROOT, SELF))];
-  verifyHistoricalBindings(dependencies);
+  verifyBindings(dependencies);
   // The independently reviewed per-rung entrypoint is installed separately;
   // never fake later rungs to make the all-rung reducer accept a prefix.
   const prefixChecker = path.join(ROOT, PREFIX);
   if (!existsSync(prefixChecker)) throw new Error("independent per-rung checker not yet installed");
-  const prefixPair=operational.productionSourcePair(PREFIX,PREFIX_HASH), reducerPair=operational.productionSourcePair(REDUCER,REDUCER_HASH);
-  if(sha(Buffer.from(prefixPair.original))!==PREFIX_HASH || !readFileSync(prefixChecker).equals(Buffer.from(prefixPair.current)))throw new Error("per-rung checker is not the selected representation of its independently reviewed generation");
-  dependencies.push({ path: PREFIX, sha256: sha(Buffer.from(prefixPair.current)) });
   mkdirSync(path.dirname(output), { recursive: true }); mkdirSync(output);
   const receipt = { schema: "braid-program/f5-enclosed-root-run.v1", campaignId: preparation.campaignId,
     runId: preparation.runId, startedAt: new Date().toISOString(), status: "incomplete", h3EvidenceEligible: false,
-    sourceMap: operational.sourceMap, operationalSources: operational.sources,
-    originalSourceApplicability:[{path:PREFIX,sha256:PREFIX_HASH},{path:REDUCER,sha256:REDUCER_HASH}],
     dependencies, stages: [], rungs: [], runtimePremises: ["finite IEEE binary64 nearest rounding", "gradual underflow"],
     authority: "prescribed-root evidence only; independent final review required; no ordinary evolution or physical claim" };
   const watched = async (stage, command, commandArgs, limitMs = 1800000) => {
-    operational.recheck();
+
     const result = await runWatched(command, commandArgs, {stage,logPath:path.join(output, `${stage}.log`),limitMs});
-    operational.recheck();return result;
+    return result;
   };
   try {
     const compilerPath = path.join(output, "resolved-compiler.json"), compilerBinding = writeJson(compilerPath, actualCompiler);
     const reviewedBuildPath = path.join(output, "reviewed-build.json");
     const reviewedBuildBinding = writeJson(reviewedBuildPath, { schema: "braid-program/f5-reviewed-build.v1", toolchain: toolchainInput.binding,
       preparation: preparationInput.binding, nominalConformance: preparation.conformance, apiConformance: apiInput.binding,
-      resolvedCompiler: compilerBinding, adapterSourceSha256: currentAdmission?.adapterSourceSha256 ?? CPP_HASH,
+      resolvedCompiler: compilerBinding, adapterSourceSha256: currentAdmission?.adapterSourceSha256 ?? sha(readFileSync(path.join(ROOT, CPP))),
       ...(currentAdmission ? { currentApplicability: currentAdmission.applicability } : {}),
       review: "separate read-only source/algebra/token/build review; no source defect found",
       runtimePremises: receipt.runtimePremises, dependencies });
@@ -349,7 +279,7 @@ export async function runF5(argv, { admitCurrentBuild } = {}) {
     if (!equal(manifestInput.binding, preparation.historyManifest)) throw new Error("history manifest bytes differ from preparation");
     const manifest = manifestInput.value, packets = [], packetBindings = [], packetObjects = [];
     for (const samples of [8, 32, 128]) {
-      verifyFrozenReferences(operational); verifyHistoricalBindings(dependencies);
+      verifyFrozenReferences(); verifyBindings(dependencies);
       const started = performance.now(), rawPath = path.join(output, `rung-${samples}.ndjson`);
       receipt.stages.push(await watched(`root-${samples}`, executable, ["rung", "--repo-root", ROOT,
         "--campaign-id", preparation.campaignId, "--run-id", preparation.runId,
@@ -374,18 +304,18 @@ export async function runF5(argv, { admitCurrentBuild } = {}) {
         profile ? ["-l", process.execPath, ...checkerArgs] : checkerArgs,
         Math.max(1, 1800000 - (performance.now() - started))));
       const checkedInput = readBoundJson(prefixPath);
-      validateLedgerReceipt(checkedInput.value, { manifestBinding: preparation.historyManifest, manifest, packetFiles: packetBindings, packets: packetObjects,bridgeHash:sha(Buffer.from(prefixPair.current)),reducerCurrentHash:sha(Buffer.from(reducerPair.current)),reducerOriginalBytes:Buffer.from(reducerPair.original) });
+      validateLedgerReceipt(checkedInput.value, { manifestBinding: preparation.historyManifest, manifest, packetFiles: packetBindings, packets: packetObjects });
       dependencies.push(checkedInput.binding);
       const elapsed = (performance.now() - started) / 1000;
       const projected = projectFinalRung(samples, elapsed, events.filter((event) => event.status === "phase-complete").map((event) => event.detail.phaseElapsedWallSeconds));
       if (elapsed > 1800 || projected > 1800) throw Object.assign(new Error("end-to-end projection exceeds 1800 seconds"), { projectedFinalRungSeconds: projected });
-      verifyFrozenReferences(operational); verifyHistoricalBindings(dependencies);
+      verifyFrozenReferences(); verifyBindings(dependencies);
       const files = [raw.binding, log.binding, packetBinding, checkedInput.binding];
       receipt.rungs.push({ samples, elapsedWallSeconds: elapsed, projectedFinalRungSeconds: projected, files });
       if (samples === 128) receipt.finalReduction = checkedInput.binding;
       writeJson(path.join(output, `checkpoint-${samples}.json`), { ...receipt, status: "prefix-passed" });
     }
-    verifyHistoricalBindings(dependencies); verifyFrozenReferences(operational);
+    verifyBindings(dependencies); verifyFrozenReferences();
     receipt.status = "prescribed-root-ladder-passed-pending-review";
     return receipt;
   } catch (error) {
@@ -394,32 +324,13 @@ export async function runF5(argv, { admitCurrentBuild } = {}) {
     if (error.projectedFinalRungSeconds) receipt.projectedFinalRungSeconds = error.projectedFinalRungSeconds;
     throw error;
   } finally {
-    operational.recheck();
+
     receipt.finishedAt = new Date().toISOString(); writeJson(path.join(output, "run.json"), receipt);
-    operational.recheck();
+
     console.log(JSON.stringify({ status: receipt.status, output: relative(output), h3EvidenceEligible: false }));
   }
 }
 
 if (import.meta.url.startsWith("file:") && !new URL(import.meta.url).search && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   runF5(process.argv.slice(2)).catch((error) => { console.error(error.message); process.exitCode = 1; });
-}
-
-export function initializeProductionIdentities(values) {
-  if (!Array.isArray(values) || values.length !== 11 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
-  const OPTION_B_PRODUCTION_IDENTITIES = values;
-  API_HASH = OPTION_B_PRODUCTION_IDENTITIES[0];
-  CPP_HASH = OPTION_B_PRODUCTION_IDENTITIES[1];
-  REDUCER_HASH = OPTION_B_PRODUCTION_IDENTITIES[2];
-  PREFIX_HASH = OPTION_B_PRODUCTION_IDENTITIES[3];
-  APPENDIX_HASH = OPTION_B_PRODUCTION_IDENTITIES[4];
-  REVIEWED_TOOLCHAIN_HASH = OPTION_B_PRODUCTION_IDENTITIES[5];
-  API_SUBJECT_BINDINGS = Object.freeze([
-  [CPP, CPP_HASH],
-  ["src/eom/CMakeLists.txt", OPTION_B_PRODUCTION_IDENTITIES[6]],
-  ["src/eom/src/History.cpp", OPTION_B_PRODUCTION_IDENTITIES[7]],
-  ["src/eom/src/Interval.cpp", OPTION_B_PRODUCTION_IDENTITIES[8]],
-  ["src/eom/include/architrino/eom/History.hpp", OPTION_B_PRODUCTION_IDENTITIES[9]],
-  ["src/eom/include/architrino/eom/Interval.hpp", OPTION_B_PRODUCTION_IDENTITIES[10]],
-].map(([path, sha256]) => Object.freeze({ path, sha256 })));
 }

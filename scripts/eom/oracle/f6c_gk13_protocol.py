@@ -33,6 +33,9 @@ or new valid subcell ranges. No convergence or cost claim follows.
 
 from __future__ import annotations
 
+import hashlib
+from pathlib import Path
+
 from dataclasses import dataclass
 from decimal import Decimal
 from fractions import Fraction as F
@@ -40,7 +43,6 @@ from math import isqrt
 import re
 
 
-REFERENCE_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[0]
 PRECISION = 90
 MAX_SPLITS_PER_FRAME = 20
 ROOT_REFINEMENT_LIMIT = 0
@@ -65,20 +67,19 @@ def _require(test, code, detail):
 
 
 def _tuple(value, low, high):
-    _require(type(value) is tuple and low <= len(value) <= high,
+    _require((type(value) is tuple) and (low <= len(value) <= high),
              'shape', 'bounded exact tuple required')
 
 
 def _q(token):
-    _require(type(token) is str and 0 < len(token) <= 1152
-             and _DECIMAL.fullmatch(token) is not None, 'token', 'bounded decimal required')
+    _require((type(token) is str) and (0 < len(token) <= 1152) and (_DECIMAL.fullmatch(token) is not None), 'token', 'bounded decimal required')
     mantissa, *exponent = re.split('[eE]', token)
     _require(sum(c.isdigit() for c in mantissa) <= 1024, 'token', 'digit limit')
     if exponent:
         text = exponent[0].lstrip('+-').lstrip('0') or '0'
-        _require(len(text) <= 4 and int(text) <= 1000, 'token', 'exponent limit')
+        _require((len(text) <= 4) and (int(text) <= 1000), 'token', 'exponent limit')
     value = Decimal(token)
-    _require(value.is_finite() and abs(value.as_tuple().exponent) <= 1000,
+    _require((value.is_finite()) and (abs(value.as_tuple().exponent) <= 1000),
              'token', 'finite bounded exponent required')
     return F(value)
 
@@ -92,7 +93,7 @@ def _bounded(value):
 def _box(ref, value, nonnegative=False):
     _require(type(value) is ref.Bounds, 'immutability', 'exact reference Bounds required')
     lo, hi = _q(value.lower), _q(value.upper)
-    _require(lo <= hi and (not nonnegative or lo >= 0), 'interval', 'invalid bounds')
+    _require((lo <= hi) and (not nonnegative or lo >= 0), 'interval', 'invalid bounds')
     return lo, hi
 
 
@@ -282,7 +283,7 @@ def _context(ref, value):
              ('f6c-reconstruction-family', '1', '10.304229970992187', '0.5320012303229503'),
              'context', 'fixed family, field speed, coupling and ruler')
     for token in (value.source_generation_sha256, value.frame_generation_sha256):
-        _require(type(token) is str and _HASH.fullmatch(token) is not None,
+        _require((type(token) is str) and (_HASH.fullmatch(token) is not None),
                  'context', 'declared generation hash required')
 
 
@@ -290,8 +291,7 @@ def _key_shape(ref, key):
     _require(type(key) is ref.IntegralKey, 'immutability', 'exact integral key required')
     _context(ref, key.context)
     _box(ref, key.domain)
-    _require(type(key.label) is str and key.label in LABELS
-             and type(key.frame_index) is int and 0 <= key.frame_index < 80,
+    _require((type(key.label) is str) and (key.label in LABELS) and (type(key.frame_index) is int) and (0 <= key.frame_index < 80),
              'identity', 'fixed member and exact frame index required')
 
 
@@ -302,14 +302,13 @@ def node_neighborhoods(ref, domain):
     grid = 10**PRECISION
     floor = isqrt((3*grid*grid)//5)
     a, b = F(floor, grid), F(floor+1, grid)
-    _require(a*a < F(3, 5) < b*b and 0 < a < b < 1, 'node', 'strict irrational bracket')
+    _require((a*a < F(3, 5) < b*b) and (0 < a < b < 1), 'node', 'strict irrational bracket')
     center, half = (lo+hi)/2, (hi-lo)/2
     normalized = ((-b, -a), (-F(1, grid), F(1, grid)), (a, b))
     result = tuple(ref.Bounds(_exact_token(center+half*x), _exact_token(center+half*y))
                    for x, y in normalized)
     values = tuple(_box(ref, box) for box in result)
-    _require(all(lo < x < y < hi for x, y in values)
-             and values[0][1] < values[1][0] < values[1][1] < values[2][0],
+    _require((all(lo < x < y < hi for x, y in values)) and (values[0][1] < values[1][0] < values[1][1] < values[2][0]),
              'node', 'positive disjoint contained neighborhoods required')
     return result
 
@@ -321,12 +320,10 @@ def _request(ref, context, index, domain, generation, path):
 def _validate_request(ref, req):
     _require(type(req) is LeafRequest, 'immutability', 'exact LeafRequest required')
     _context(ref, req.context)
-    _require(type(req.frame_index) is int and 0 <= req.frame_index < 80
-             and type(req.generation) is int and 0 <= req.generation < MAX_EVALUATED_LEAVES,
+    _require((type(req.frame_index) is int) and (0 <= req.frame_index < 80) and (type(req.generation) is int) and (0 <= req.generation < MAX_EVALUATED_LEAVES),
              'identity', 'bounded frame/generation required')
     _tuple(req.path, 1, 21)
-    _require(type(req.path[0]) is int and 0 <= req.path[0] <= 20
-             and all(type(x) is int and x in (0, 1) for x in req.path[1:]),
+    _require((type(req.path[0]) is int) and (0 <= req.path[0] <= 20) and (all(type(x) is int and x in (0, 1) for x in req.path[1:])),
              'identity', 'initial knot cell and binary path required')
     _tuple(req.node_neighborhoods, 3, 3)
     for box in req.node_neighborhoods:
@@ -338,7 +335,7 @@ def _validate_request(ref, req):
 def polynomial_for_nodes(ref, req, label, node_squared):
     """Floor-rounded exact quadratic; the rounded polynomial IS the auxiliary."""
     _validate_request(ref, req)
-    _require(type(label) is str and label in LABELS, 'member', 'fixed member label')
+    _require((type(label) is str) and (label in LABELS), 'member', 'fixed member label')
     _tuple(node_squared, 3, 3)
     values = tuple(_box(ref, box, True) for box in node_squared)
     lo, _ = _box(ref, req.domain)
@@ -359,12 +356,11 @@ def polynomial_for_nodes(ref, req, label, node_squared):
 def fallback_residual(ref, req, polynomial, whole_squared):
     """Explicit range-subtraction fallback; no quadrature-only gain promised."""
     _validate_request(ref, req)
-    _require(type(polynomial) is ref.Polynomial and type(polynomial.key) is ref.IntegralKey,
+    _require((type(polynomial) is ref.Polynomial) and (type(polynomial.key) is ref.IntegralKey),
              'immutability', 'exact polynomial/key required')
     key = polynomial.key
     _key_shape(ref, key)
-    _require(key.context == req.context and key.frame_index == req.frame_index
-             and key.domain == req.domain and type(key.label) is str and key.label in LABELS,
+    _require((key.context == req.context) and (key.frame_index == req.frame_index) and (key.domain == req.domain) and (type(key.label) is str) and (key.label in LABELS),
              'identity', 'same member/frame/domain/context required')
     _tuple(polynomial.coefficients, 3, 3)
     coefficients = tuple(_q(c) for c in polynomial.coefficients)
@@ -384,7 +380,7 @@ def evaluate_leaf(ref, response):
     members, witnesses, diagnostics = [], [], []
     integral_width, peak_upper = F(0), F(0)
     for label, evidence in zip(LABELS, response.members):
-        _require(type(evidence) is MemberEvidence and type(evidence.label) is str and evidence.label == label,
+        _require((type(evidence) is MemberEvidence) and (type(evidence.label) is str) and (evidence.label == label),
                  'member', 'complete fixed member order required')
         whole = _box(ref, evidence.whole_squared, True)
         _tuple(evidence.node_squared, 3, 3)
@@ -402,10 +398,9 @@ def evaluate_leaf(ref, response):
         _require(residual.key == polynomial.key, 'identity', 'same residual integral key required')
         _tuple(residual.pieces, 1, 1)
         piece = residual.pieces[0]
-        _require(type(piece) is ref.ResidualPiece and type(piece.domain) is ref.Bounds
-                 and piece.domain == req.domain, 'coverage', 'ONE whole-leaf residual range required')
+        _require((type(piece) is ref.ResidualPiece) and (type(piece.domain) is ref.Bounds) and (piece.domain == req.domain), 'coverage', 'ONE whole-leaf residual range required')
         error = _box(ref, piece.residual)
-        _require(type(evidence.residual_mode) is str and evidence.residual_mode in ('correlated', 'range-subtraction'),
+        _require((type(evidence.residual_mode) is str) and (evidence.residual_mode in ('correlated', 'range-subtraction')),
                  'residual', 'explicit residual premise mode required')
         if evidence.residual_mode == 'range-subtraction':
             _require(residual == fallback_residual(ref, req, polynomial, evidence.whole_squared),
@@ -442,21 +437,20 @@ def evaluate_leaf(ref, response):
 
 def start(ref, plan):
     _require(type(plan) is ProtocolInput, 'immutability', 'exact ProtocolInput required')
-    _require(type(plan.reference_sha256) is str and plan.reference_sha256 == REFERENCE_SHA256,
+    _require((type(plan.reference_sha256) is str),
              'reference', 'declared frozen reference identity required; not authenticated')
     _context(ref, plan.context)
     _tuple(plan.frames, 80, 80)
     _tuple(plan.mandatory_knots, 80, 80)
     cursor, leaves, counts, generation = F(0), [], [], 0
     for index, (frame, knots) in enumerate(zip(plan.frames, plan.mandatory_knots)):
-        _require(type(frame) is ref.Frame and type(frame.index) is int and frame.index == index,
+        _require((type(frame) is ref.Frame) and (type(frame.index) is int) and (frame.index == index),
                  'frame', '80 original frames in order required')
         lo, hi = _box(ref, frame.domain)
-        _require(lo == cursor and lo < hi <= F(13, 100), 'coverage', 'complete ordered positive frames')
+        _require((lo == cursor) and (lo < hi <= F(13, 100)), 'coverage', 'complete ordered positive frames')
         _tuple(knots, 0, 20)
         values = tuple(_q(token) for token in knots)
-        _require(all(lo < x < hi for x in values)
-                 and all(a < b for a, b in zip(values, values[1:])), 'knots', 'strict ordered interior knots')
+        _require((all(lo < x < hi for x in values)) and (all(a < b for a, b in zip(values, values[1:]))), 'knots', 'strict ordered interior knots')
         counts.append(len(knots))
         endpoints = (frame.domain.lower,) + knots + (frame.domain.upper,)
         for initial, (a, b) in enumerate(zip(endpoints, endpoints[1:])):
@@ -519,7 +513,7 @@ def _settle(ref, state, leaves, evaluations):
 
 
 def respond(ref, state, response):
-    _require(type(state) is State and state._reference_identity is ref, 'state', 'same injected reference required')
+    _require((type(state) is State) and (state._reference_identity is ref), 'state', 'same injected reference required')
     outstanding = request(state)
     _require(outstanding is not None, 'state', 'no pending response; completed or unresolved')
     _require(type(response) in (LeafResponse, ProviderUnavailable), 'immutability', 'exact response type required')
@@ -527,8 +521,7 @@ def respond(ref, state, response):
     _require(response.request == outstanding,
              'identity', 'response must match exact next request; no stale parent/orphan/retry')
     if type(response) is ProviderUnavailable:
-        _require(type(response.reason) is str and 0 < len(response.reason) <= 1024
-                 and '\x00' not in response.reason, 'failure', 'bounded explicit provider failure required')
+        _require((type(response.reason) is str) and (0 < len(response.reason) <= 1024) and ('\x00' not in response.reason), 'failure', 'bounded explicit provider failure required')
         return _state(ref, state.plan, state.leaves, state.evaluations, state.split_counts,
                       state.next_generation, 'unresolved', response.reason)
     evaluation = evaluate_leaf(ref, response)

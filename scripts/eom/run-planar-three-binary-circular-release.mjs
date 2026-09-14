@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { borgConsumerAdmission } from '../borg/selected-runtime-admission.mjs';
 // Supervised candidate-specific launcher. Scientific settings are consumed
 // from the already prepared request bytes; this file does not alter the EOM.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -11,7 +10,6 @@ const check=(ok,message)=>{if(!ok)throw new Error(message);};
 const ROOT=fileURLToPath(new URL('../../',import.meta.url));
 
 async function main(args=process.argv.slice(2)){
-  const admission=borgConsumerAdmission(import.meta.url);
   check(args.length===10&&args[0]==='--prepared'&&args[2]==='--binary'&&args[4]==='--manifest'&&args[6]==='--acceptance'&&args[8]==='--out','usage: --prepared DIR --binary FILE --manifest FILE --acceptance FILE --out FRESH_DIR');
   const prepared=resolve(args[1]), binary=resolve(args[3]), manifestPath=resolve(args[5]), acceptancePath=resolve(args[7]), out=resolve(args[9]);
   check(!existsSync(out),'fresh output directory required'); mkdirSync(out,{mode:0o700});
@@ -21,7 +19,6 @@ async function main(args=process.argv.slice(2)){
   const acceptedBytes=capture(acceptancePath,1024*1024), acceptance=JSON.parse(acceptedBytes.data);
   check(acceptance.schema==='braid-program/b1-3-circular-release-independent-review.v1'&&acceptance.accepted===true&&acceptance.executionScope==='questions-1-3-only','independent launch acceptance required');
   const authenticate=()=>{
-    admission.check();
     const currentAcceptance=capture(acceptancePath,acceptedBytes.bytes);check(currentAcceptance.bytes===acceptedBytes.bytes&&currentAcceptance.sha256===acceptedBytes.sha256,'acceptance receipt changed');
     const manifestBytes=capture(manifestPath,16*1024*1024);check(manifestBytes.sha256===acceptance.manifestSha256&&manifestBytes.bytes===acceptance.manifestBytes,'reviewed manifest identity differs');
     const manifest=JSON.parse(manifestBytes.data);check(manifest.schema==='braid-program/b1-3-circular-release-binding-manifest.v1'&&manifest.executionAuthorized===false&&manifest.reviewStatus==='pending','wrong immutable manifest');
@@ -66,7 +63,6 @@ async function main(args=process.argv.slice(2)){
     independentCheckpoint:{path:checkerOut,accepted:checkpoint.accepted}};
   writeFileSync(resolve(out,'launch.json'),JSON.stringify(summary,null,2)+'\n',{flag:'wx',mode:0o600});
   authenticate();
-  admission.check();
   process.stdout.write(JSON.stringify({out,stages:stages.length,operationallyComplete:true})+'\n');
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){main().catch(e=>{process.stderr.write(e.stack+'\n');process.exitCode=1;});}

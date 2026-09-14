@@ -1,13 +1,10 @@
-import {productionTestAdmission} from './support/option-b-production-hosts.mjs';
-import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';
-const knownHashes = admittedKnownHashAnswers("tests/subfield-circular-current-context.test.js");
-const ABC_SHA = knownHashes.sha256.abc;
+const ABC_SHA = "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad";
 import assert from "node:assert/strict";
 import {mkdtempSync, realpathSync, readFileSync, rmSync, writeFileSync} from "node:fs";
 import {tmpdir} from "node:os";
 import path from "node:path";
 import test from "node:test";
-import {initializeProductionIdentities,captureSubfieldCircularReducerProduction,prepareSubfieldCircularPhaseLedgerContext, subfieldCircularSha256} from "../src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs";
+import {prepareSubfieldCircularPhaseLedgerContext, subfieldCircularSha256} from "../src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs";
 
 test("SHA control precedes recorded current-context checks", () => {
   assert.equal(subfieldCircularSha256(Buffer.from("abc")), ABC_SHA);
@@ -26,9 +23,6 @@ test("recorded current build and original proof enter phase context; substituted
     buildReceipt,
     buildReceiptSha256: subfieldCircularSha256(readFileSync(buildReceipt)),
   };
-  const admitted=productionTestAdmission();
-  const snapshot=captureSubfieldCircularReducerProduction({productionIdentities:target=>admitted.identities(target),productionOriginalSourceBinding:(target,sha)=>admitted.originalSourceBinding(target,sha),productionSourcePair:(target,sha)=>admitted.sourcePair(target,sha)},root,buildReceipt,options.buildReceiptSha256);
-  initializeProductionIdentities(snapshot.identities,snapshot.protectedSources,snapshot.currentSources);
   const directory = realpathSync(mkdtempSync(path.join(tmpdir(), "circular-current-context-")));
   try {
     await assert.rejects(prepareSubfieldCircularPhaseLedgerContext({...options, buildReceiptSha256: "0".repeat(64)}), /build receipt original-byte hash mismatch/);
@@ -56,6 +50,6 @@ test("recorded current build and original proof enter phase context; substituted
     writeFileSync(substituted, bytes);
     await assert.rejects(prepareSubfieldCircularPhaseLedgerContext({...options, conformance: substituted, conformanceSha256: subfieldCircularSha256(bytes)}), /conformance instrument bindings differ/);
   } finally {
-    admitted.check();rmSync(directory, {recursive:true, force:true});
+    rmSync(directory, {recursive:true, force:true});
   }
 });

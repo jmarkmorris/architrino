@@ -1,6 +1,0 @@
-{
-  "acceptedBaseline": "reference/priorities/development-process-review/contracts/option-b-production-accepted-b.json",
-  "acceptedBaselineSha256": "54519a55efef839a34e9bdbfa102320f83ebdeb0ecd621bf022e2564867c7d2a",
-  "transition": "reference/priorities/development-process-review/contracts/option-b-production-transition.json",
-  "transitionSha256": "9d6909918d4a7eafea5a3fcec1a656ed219ad7891c2d95a59d5f884df9ec69be"
-}

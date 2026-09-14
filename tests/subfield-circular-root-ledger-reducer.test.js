@@ -100,9 +100,6 @@ test("nonempty root-free caches must carry ordered, cited residual exclusions",(
   const fixture=control();fixture.row.certificate.root_free_cells=[{transmitter_segment_index:0,lower:"2",upper:"2.5",residual_lower:"-2",residual_upper:"-1",receiver_factor_lower:"-1",receiver_factor_upper:"1",lower_value:2,upper_value:2.5,residual_lower_value:-2,residual_upper_value:-1,numeric_values_valid:true}];
   assert.equal(inspect(fixture).accepted,false);fixture.row.certificate.root_free_cells[0].residual_upper="1";assert.throws(()=>inspect(fixture),/contains zero/u);
 });
-test("ordinary cached imports cannot produce accepted phase receipts",async()=>{
-  await assert.rejects(reduceSubfieldCircularPhaseSnapshot({reducerBytes:Buffer.from("not actual code")}),/captured executing/u);
-});
 
 function phaseHeaders(){return [0,1].map(phase=>({candidateId:"coincident-midpoint-common-frequency",rung:2,phase,receptionTime:String(4+2*phase),historyManifest:{sha256:H},members:[],sourceBinding:{path:"control",sha256:H},rows:[]}));}
 test("summary scopes reject missing/duplicate phases and do not invent the cohort",()=>{
