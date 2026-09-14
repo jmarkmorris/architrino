@@ -6,6 +6,9 @@ frozen controls. Mocked comparison tests below are expressly interface plumbing.
 No future producer is supplied or reported as executed by these tests.
 """
 from __future__ import annotations
+from option_b_synthetic_production import synthetic_production
+from option_b_production_records import copy_production_fixture
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 from contextlib import contextmanager, redirect_stdout, redirect_stderr, ExitStack
 from copy import deepcopy
@@ -26,7 +29,7 @@ from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path);module=importlib.util.module_from_spec(spec)
-    sys.modules[name]=module;spec.loader.exec_module(module);return module
+    sys.modules[name]=module;_option_b_exec_module(__file__, spec, module);return module
 s=load('refined_acceleration_wrapper',ROOT/'scripts/eom/verify-f6c-refined-acceleration.py')
 core=load('frozen_refined_core_for_wrapper_controls',ROOT/s.CORE)
 H='a'*64
@@ -212,12 +215,13 @@ class CapturePublicationTests(unittest.TestCase):
             with self.assertRaises((ValueError,OverflowError)):s.budget_deadline(token,1000)
         self.assertEqual(s.budget_deadline('1.25',1000),1001.25)
     def test_actual_cli_capture_failure_is_nonzero_and_no_publication(self):
-        # Real isolated CLI, synthetic wrong self hash; never reaches source data.
+        # Real isolated CLI; an unknown original self generation rejects before source data.
+        # Direct BoundFile hash negatives separately preserve the original transport check.
         base=ROOT/s.LANE
         with tempfile.TemporaryDirectory(prefix='refined-wrapper-cli-',dir=ROOT/'.tmp')as temp:
-            tr=Path(temp).resolve();source=tr/s.SELF;source.parent.mkdir(parents=True);source.write_bytes((ROOT/s.SELF).read_bytes());d=tr/s.LANE/'synthetic';d.mkdir(parents=True);o=Path(str(d)+'-outer');o.mkdir();candidate=d/'range.json';candidate.write_bytes(b'{}');plan=tr/'plan.json';plan.write_bytes(b'{}')
+            tr=Path(temp).resolve();copy_production_fixture(tr);source=tr/s.SELF;source.parent.mkdir(parents=True,exist_ok=True);source.write_bytes((ROOT/s.SELF).read_bytes());d=tr/s.LANE/'synthetic';d.mkdir(parents=True);o=Path(str(d)+'-outer');o.mkdir();candidate=d/'range.json';candidate.write_bytes(b'{}');plan=tr/'plan.json';plan.write_bytes(b'{}')
             result=subprocess.run([sys.executable,'-I','-B',str(source),'--candidate',str(candidate),'--candidate-sha256',s.sha(b'{}'),'--plan',str(plan),'--plan-sha256',s.sha(b'{}'),'--verifier-sha256',H,'--out',str(o/'comparison.json'),'--budget-seconds','5','--repo-root',str(tr)],capture_output=True,timeout=10)
-            self.assertEqual(result.returncode,1);self.assertEqual(result.stdout,b'');self.assertIn(b'input hash differs',result.stderr);self.assertFalse((o/'comparison.json').exists())
+            self.assertEqual(result.returncode,1);self.assertEqual(result.stdout,b'');self.assertIn(b'Selected original generation missing',result.stderr);self.assertFalse((o/'comparison.json').exists())
 
 
 class InterfaceTests(unittest.TestCase):
@@ -388,6 +392,16 @@ class MainFlowTests(unittest.TestCase):
         argv=['--candidate',str(candidate),'--candidate-sha256',H,'--plan',str(plan_path),'--plan-sha256',H,'--verifier-sha256',H,'--out',str(out),'--budget-seconds','1800','--repo-root',str(root)]
         with ExitStack()as st:
             for name,value in [('__file__',str(root/s.SELF)),('BoundFile',Transport),('executing_source',lambda *_:events.append('executing-code-mocked')),('captured_references',references),('runtime_paths',runtime),('compare_candidate',numerical),('REFINED',tuple((k,str(Path(v['path']).relative_to(root)),v['sha256'])for k,v in refined.items())),('PRIOR_OPERATIONS',fake_prior_ops),('complete',complete)]:st.enter_context(patch.object(s,name,value))
+            def declared_paths(value):
+                if isinstance(value,dict):
+                    return ({str(root/value['path'])} if isinstance(value.get('path'),str) else set()).union(*(declared_paths(v) for v in value.values()))
+                if isinstance(value,(list,tuple)):
+                    return set().union(*(declared_paths(v) for v in value))
+                return set()
+            fixture_paths=declared_paths((docs,old,plan))|set(virtual)|{v['path'] for v in old.values()}|{str(root/p) for p,_ in s.NAMED.values()}|{str(root/p) for _,p,_ in s.REFINED}|{str(root/p) for _,p,_,_ in s.PRIOR_OPERATIONS}|{str(root/s.CONTROLS)}
+            fixture_paths={p for p in fixture_paths if Path(p).is_relative_to(root) and Path(p)!=out}
+            fixture_virtual={p:virtual.get(p,b'x') for p in fixture_paths}
+            st.enter_context(synthetic_production(s,root,fixture_paths,outputs=[out],virtual_sources=fixture_virtual))
             st.enter_context(patch.object(s.time,'monotonic',lambda:clock[0]));st.enter_context(patch.object(s.signal,'signal',lambda *_:None));st.enter_context(patch.object(s.signal,'setitimer',timer));st.enter_context(patch.object(s.Publication,'publish',publish));st.enter_context(redirect_stdout(stdout));st.enter_context(redirect_stderr(stderr))
             try:s.main(argv)
             except BaseException as exc:error=exc

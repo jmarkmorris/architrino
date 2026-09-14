@@ -1,4 +1,5 @@
 """Synthetic exact-answer controls; no actual histories, roots or range jobs."""
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 from dataclasses import FrozenInstanceError, asdict, replace
 from decimal import Decimal, localcontext
@@ -17,7 +18,7 @@ def load(name, filename):
     spec = importlib.util.spec_from_file_location(name, ROOT / 'scripts/eom/oracle' / filename)
     module = importlib.util.module_from_spec(spec)
     sys.modules[name] = module
-    spec.loader.exec_module(module)
+    _option_b_exec_module(__file__, spec, module)
     return module
 
 

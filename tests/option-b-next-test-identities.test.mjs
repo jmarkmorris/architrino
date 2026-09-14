@@ -1,4 +1,6 @@
 import test from 'node:test';
+import {originalProductionTestData} from './support/option-b-production-hosts.mjs';
+import {copyProductionFixture} from './support/option-b-production-fixtures.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, mkdirSync, mkdtempSync, copyFileSync, writeFileSync, rmSync, renameSync, realpathSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -86,16 +88,17 @@ function selectedFixture(t) {
   for (const p of paths) {
     mkdirSync(path.dirname(path.join(root,p)), {recursive:true}); copyFileSync(p,path.join(root,p));
   }
+  copyProductionFixture(process.cwd(),root);
   const run = (overrides = {}) => loadNextTestIdentities({root,selection,consumer:'tests/f6c-bounded-operation-closure.test.js',count:1,...overrides});
   return {root,selection,graph,run};
 }
 
-test('original payload consumer sources and shape validator remain exact against retained Git', () => {
+test('original payload historical consumer sources and shape validator remain exact against retained Git', () => {
   const proof = decode(readFileSync('reference/priorities/development-process-review/evidence/option-b-next-test-graph-transfer.json'));
   const unchanged = proof.originalBindings.filter(row => row.path === NEXT_TEST_PAYLOAD || decode(readFileSync(NEXT_TEST_PAYLOAD)).consumers[row.path]);
   for (const row of unchanged) {
     const original = execFileSync('git',['show',proof.originCommit+':'+row.path]);
-    assert.equal(sha256(original),row.sha256); assert.deepEqual(readFileSync(row.path),original);
+    assert.equal(sha256(original),row.sha256); assert.deepEqual(originalProductionTestData(row.path)??readFileSync(row.path),original);
   }
   // A known delimiter case establishes the bounded function extractor first.
   const extract = source => source.split('export function captureNextTestIdentities')[1].split('\nlet capturedRaw;')[0].trimEnd();

@@ -1,6 +1,12 @@
+import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
+import * as optionBProductionModule0 from "../scripts/eom/prepare-f5-enclosed-root-build.mjs";
+optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/prepare-f5-enclosed-root-build.mjs"));
+import * as optionBProductionModule1 from "../scripts/eom/prepare-f5-prehistory-handoff-build.mjs";
+optionBProductionModule1.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/prepare-f5-prehistory-handoff-build.mjs"));
 import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';
 const identities=batchTestIdentities(import.meta.url);
 import test from 'node:test';
+import {copyProductionFixture} from './support/option-b-production-fixtures.mjs';
 import {spawnSync} from 'node:child_process';
 import {Worker} from 'node:worker_threads';
 import {writeNew,admitBuild} from '../scripts/eom/launch-f5-prehistory-handoff-build.mjs';
@@ -18,6 +24,7 @@ const put=(p,b)=>{mkdirSync(path.dirname(p),{recursive:true});writeFileSync(p,b)
 function fixture(){
  const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'option-b-f5-')));
  for(const p of [SOURCE_MAP,...Object.keys(ROLES)])put(path.join(dir,p),readFileSync(path.join(root,p)));
+ copyProductionFixture(root,dir);
  const doc=JSON.parse(readFileSync(path.join(dir,SOURCE_MAP)));
  const save=()=>{const b=Buffer.from(JSON.stringify(doc,null,2)+'\n');put(path.join(dir,SOURCE_MAP),b);return sha(b);};
  return {dir,doc,save,close:()=>rmSync(dir,{recursive:true,force:true})};
@@ -140,7 +147,7 @@ test('Python admission rejects wrong Node capability, omitted census and same-by
   const invoke=(node,hash,size)=>spawnSync(python,['-I','-B',entry,'--runtime-inventory','--node',node,'--node-sha256',hash,'--node-bytes',String(size),'--source-map-sha256',digest],{cwd:root,encoding:'utf8',timeout:15000});
   const node=realpathSync(process.execPath),wrong=invoke(node,'0'.repeat(64),statSync(node).size);
   assert.equal(wrong.status,1);assert.equal(wrong.stdout,'');assert.match(wrong.stderr,/capture hash differs/);
-  const omitted=path.join(dir,'empty-node');put(omitted,"#!/bin/sh\nprintf '%s' '{\"sources\":[],\"identities\":{}}'\n");chmodSync(omitted,0o700);
+  const omitted=path.join(dir,'empty-node');put(omitted,"#!/bin/sh\nprintf '%s' '{\"sources\":[],\"identities\":{},\"productionIdentities\":[],\"productionPairs\":{},\"productionSources\":[]}'\n");chmodSync(omitted,0o700);
   const empty=invoke(omitted,sha(readFileSync(omitted)),statSync(omitted).size);
   assert.equal(empty.status,1);assert.equal(empty.stdout,'');assert.match(empty.stderr,/omits independent operational census/);
   const replaced=path.join(dir,'replaced-node');

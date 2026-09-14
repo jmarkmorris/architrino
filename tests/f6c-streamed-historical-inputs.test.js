@@ -1,7 +1,8 @@
+import {loadProductionTestModule} from './support/option-b-production-hosts.mjs';
 // Literal transport controls. The adapter independently owns historical truth.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {historicalEvidenceInputs,historicalInvocationVersion} from '../scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs';
+const {historicalEvidenceInputs,historicalInvocationVersion}=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs");
 const binding=(path,sha256='a'.repeat(64),bytes=3)=>({path,sha256,bytes});
 function fixture(){
  const original=binding('/repo/old.py'),physical=binding('/repo/evidence/old.py.source');

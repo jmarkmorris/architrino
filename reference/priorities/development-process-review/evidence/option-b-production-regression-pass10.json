@@ -1,0 +1,12 @@
+{
+  "schema": "option-b-production-regression-review/v1",
+  "scope": "Publication mechanical repair: remove one trailing ASCII space outside a string on line35; no semantic, runtime limit, source role, refresh eligibility or scientific acceptance change. Prior repair evidence remains immutable.",
+  "changes": [
+    {
+      "path": "scripts/eom/project-production-native-identities.mjs",
+      "before": "467785d4a833b5611f8b944a5c01847b82107ff2f96154846a51a35a495bc39e",
+      "after": "aee715d3e81524f5c599961753e710fe4f000955c4b90684b6e9f18bdf54c3b8",
+      "patch": "diff --git a/.tmp/option-b-close2/regression-pass10/scripts__eom__project-production-native-identities.mjs.before b/scripts/eom/project-production-native-identities.mjs\nindex 89c18221e..820c9623e 100644\n--- a/.tmp/option-b-close2/regression-pass10/scripts__eom__project-production-native-identities.mjs.before\n+++ b/scripts/eom/project-production-native-identities.mjs\n@@ -32,7 +32,7 @@ export function projectProductionNativeIdentities({root=ROOT,selection,output})\n   });\n   const verifier=admitted[1].sourcePair(CIRCULAR_PATHS[6]);\n   assert.equal(createHash('sha256').update(Buffer.from(verifier.original)).digest('hex'),values[1][6],'Exact current verifier applicability required');\n-  const text=renderProductionNativeIdentities(...values,circularPaths,createHash('sha256').update(Buffer.from(verifier.current)).digest('hex')); \n+  const text=renderProductionNativeIdentities(...values,circularPaths,createHash('sha256').update(Buffer.from(verifier.current)).digest('hex'));\n   admitted.forEach(x=>x.check());\n   fs.mkdirSync(path.dirname(output),{recursive:true});\n   if(fs.existsSync(output)) assert.equal(fs.readFileSync(output,'utf8'),text,'Existing native projection differs; use a fresh build directory');\n"
+    }
+  ]
+}

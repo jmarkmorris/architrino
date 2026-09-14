@@ -7,6 +7,8 @@ Full-main tests explicitly mock original authentication/mathematics while
 exercising real publication, routing, cleanup and retained failed output.
 """
 from __future__ import annotations
+from option_b_synthetic_production import synthetic_production
+from option_b_production_records import exec_source as _option_b_exec_source, exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities, batch_test_sources
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -34,7 +36,7 @@ H='a'*64
 
 def load(name,path,digest=None):
     if digest in {OPTION_B_BATCH_IDENTITIES[0],OPTION_B_BATCH_IDENTITIES[1]}:
-        manifest=json.loads((ROOT/'reference/priorities/braid-program/evidence/source-replay/f6c-refined-source-replay.v1.json').read_bytes())
+        manifest=json.loads(_option_b_source_bytes(__file__, ROOT/'reference/priorities/braid-program/evidence/source-replay/f6c-refined-source-replay.v1.json'))
         route=next(row for row in manifest['files'] if row['path']==str(path.relative_to(ROOT)) and row['sha256']==digest)
         path=ROOT/route['source']
     if path == ROOT/'tests/test_f6c_parent_emission_refinement_conformance.py':
@@ -45,14 +47,14 @@ def load(name,path,digest=None):
         m=importlib.util.module_from_spec(spec);sys.modules[name]=m
         # Execute the independently admitted current representation of the
         # preserved original closed-form controls, then recheck retained identity.
-        exec(compile(raw, str(path), 'exec'), m.__dict__)
+        _option_b_exec_source(__file__, m, str(path), raw)
         assert batch_test_sources(ROOT, __file__, str(path.relative_to(ROOT))) == (original, raw)
         return m
-    raw=path.read_bytes()
+    raw=_option_b_source_bytes(__file__, path)
     if digest is not None: assert hashlib.sha256(raw).hexdigest()==digest
     from importlib.machinery import SourceFileLoader
     spec=importlib.util.spec_from_file_location(name,path,loader=SourceFileLoader(name,str(path)));m=importlib.util.module_from_spec(spec);sys.modules[name]=m
-    spec.loader.exec_module(m);assert path.read_bytes()==raw;return m
+    _option_b_exec_module(__file__, spec, m);assert _option_b_source_bytes(__file__, path)==raw;return m
 
 
 s=load('parent_source_checker',SOURCE)
@@ -521,6 +523,9 @@ class MainFlowTests(unittest.TestCase):
                 ('decode_role',lambda w,d,raw,role:json.loads(raw)),('authenticate_full',lambda *a:events.append('full-chain-mocked') or []),
                 ('original_projection',projection),('records',records),('candidate_layout',layout),('compare_manifest',numerical),('complete',complete)):
                 stack.enter_context(patch.object(s,name,value))
+            fixture_paths=set(virtual)|{str(root/p) for p,_ in s.DEPENDENCIES.values()}|{str(root/p) for p,_ in s.NAMED.values()}
+            fixture_virtual={p:virtual.get(p,b'{}') for p in fixture_paths}
+            stack.enter_context(synthetic_production(s,root,fixture_paths,outputs=[out],virtual_sources=fixture_virtual))
             stack.enter_context(patch.object(s.time,'monotonic',lambda:clock[0]));stack.enter_context(patch.object(s.signal,'signal',lambda *a:None));stack.enter_context(patch.object(s.signal,'setitimer',timer))
             stack.enter_context(patch.object(s.Publication,'publish',publish));stack.enter_context(redirect_stdout(stdout));stack.enter_context(redirect_stderr(stderr))
             try:s.main(argv)

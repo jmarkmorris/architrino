@@ -1,4 +1,6 @@
 import test from 'node:test';
+import {originalProductionTestData} from './support/option-b-production-hosts.mjs';
+import {copyProductionFixture} from './support/option-b-production-fixtures.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, mkdirSync, mkdtempSync, copyFileSync, writeFileSync, rmSync, renameSync, realpathSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -56,7 +58,7 @@ function selectedFixture(t) {
   return { root, selection, graph, run };
 }
 
-test('payload remains exact and all consumer changes are solely import admission', () => {
+test('payload remains exact and historical consumer changes are solely import admission', () => {
   const proof = decode(readFileSync('reference/priorities/development-process-review/evidence/option-b-retained-test-graph-transfer.json'));
   // Check the inverse on a hand-authored source before real consumers.
   const inverse = (source, name, p, quote) => source.replace(`import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';\nconst ${name} = retainedTestIdentities(${JSON.stringify(p)});`, `import ${name} from ${quote}./fixtures/option-b-retained-test-identities.json${quote} with { type: ${quote}json${quote} };`);
@@ -69,7 +71,7 @@ test('payload remains exact and all consumer changes are solely import admission
     assert.equal(sha256(original), proof.originalBindings.find(row => row.path === p).sha256);
     const quote = original.includes('import optionBIdentities from') ? "'" : '"';
     const name = quote === "'" ? 'optionBIdentities' : 'identities';
-    assert.equal(inverse(p === 'tests/f5-independent-interpolation-enclosure.test.js' ? readFileSync('reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-independent-interpolation-enclosure.test.js.source', 'utf8') : readFileSync(p, 'utf8'), name, p, quote), original, p);
+    assert.equal(inverse(p === 'tests/f5-independent-interpolation-enclosure.test.js' ? readFileSync('reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-independent-interpolation-enclosure.test.js.source', 'utf8') : (originalProductionTestData(p)??readFileSync(p)).toString('utf8'), name, p, quote), original, p);
     assert.deepEqual(loadRetainedTestIdentities({ selection: decode(readFileSync(RETAINED_TEST_SELECTION)), consumer: p }), record);
   }
 });

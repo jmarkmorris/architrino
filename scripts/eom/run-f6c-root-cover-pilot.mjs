@@ -16,18 +16,26 @@ export const LANE = ".local-data/braid-analysis/f6c-continuous-reception-root-co
 export const LIMIT_MS = 1800000, LOG_LIMIT = 16*1024**2, FILE_LIMIT = 64*1024**2;
 export const SOURCE_MAP = "reference/priorities/development-process-review/contracts/option-b-root-cover-sources.jsonld";
 const SOURCE_READER = "scripts/equation-mapping/current-source-manifest.mjs";
-export const EVIDENCE_PINS = Object.freeze({
-  ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1",
-  ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43",
-  ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880"
-});
+export let EVIDENCE_PINS;
 export let SOURCE_BINDINGS;
 let sourceRecords, sourceMapBinding;
+let productionAdmission;
 export async function initializeSourceBindings(root, expectedMapDigest) {
+ const heldIdentities=new Map();
+ const fileIdentity=p=>{const v=lstatSync(p,{bigint:true});return [v.dev,v.ino,v.size,v.mtimeNs,v.ctimeNs].join(':');};
+ const checkReadIdentities=()=>{for(const [p,expected] of heldIdentities)check(fileIdentity(p)===expected,'selected production source replaced: '+p);};
+ const readSelected=(p,...args)=>{
+   check(realpathSync(p)===p,'canonical production source required');
+   const before=fileIdentity(p);
+   check(!heldIdentities.has(p)||heldIdentities.get(p)===before,'selected production source replaced: '+p);
+   heldIdentities.set(p,before);const value=readBound(p,...args);
+   check(fileIdentity(p)===before,'selected production source replaced during capture: '+p);return value;
+ };
+
   SOURCE_BINDINGS = undefined; sourceRecords = undefined; sourceMapBinding = undefined;
   check(hex(expectedMapDigest), "externally selected source-map digest required");
   check(realpathSync(root) === root, "canonical Option B repository root required");
-  const readSource = (filename,...args) => {check(realpathSync(filename) === filename,"source symlink or path escape");return readBound(filename,...args);};
+  const readSource = (filename,...args) => {check(realpathSync(filename) === filename,"source symlink or path escape");return readSelected(filename,...args);};
   const captured = readSource(path.join(root, SOURCE_MAP), expectedMapDigest, true, 1024**2);
   const metadata = JSON.parse(captured.data);
   const readers = metadata["@graph"]?.filter(row => row.role === "manifest-reader" && row.binding?.path === SOURCE_READER);
@@ -35,6 +43,16 @@ export async function initializeSourceBindings(root, expectedMapDigest) {
   const reader = readSource(path.join(root, SOURCE_READER), readers[0].binding.sha256, true, 1024**2);
   const module = await import("data:text/javascript;base64," + reader.data.toString("base64"));
   const admitted = module.admit(captured.data, {root, readBound:readSource, scope:"f6c-root-cover-pilot-current-source"});
+
+ const productionPath='scripts/eom/f6c-production-admission.mjs';
+ const productionBinding=admitted.bindings.find(b=>path.resolve(b.path)===path.join(root,productionPath));
+ check(productionBinding,'selected F6c production admission helper required');
+ const productionCapture=readSelected(productionBinding.path,productionBinding.sha256,true,1024**2);
+ const productionModule=await import('data:text/javascript;base64,'+productionCapture.data.toString('base64'));
+ productionAdmission=await productionModule.admitF6cProduction({root,consumer:ENTRY,bindings:admitted.bindings,
+   readBound:(p,h,collect)=>readSelected(p,h,collect,1024**3),
+   check:()=> (checkReadIdentities(),checkOperationalBindings([clean(captured),clean(reader),clean(productionCapture),...admitted.bindings]))});
+ initializeProductionIdentities(productionAdmission.identities(ENTRY));
   // Capture-to-use closure: reject a manifest or reader replaced while validating.
   checkBindings([clean(captured), clean(reader), ...admitted.bindings]);
   sourceRecords = admitted.bindings; sourceMapBinding = clean(captured);
@@ -125,13 +143,26 @@ export function planBindings(plan,root) {
   for(const b of all){const key=path.resolve(root,b.path),old=map.get(key);check(!old||old.sha256===b.sha256,"conflicting source binding");map.set(key,{...old,...b,path:key});}
   return [...map.values()];
 }
-export function checkBindings(records) {
+function checkOperationalBindings(records) {
   return records.map(b=>{const actual=readBound(b.path,b.sha256,false,b.path.endsWith(".json")?FILE_LIMIT:1024**3);
     check(b.bytes===undefined||actual.bytes===b.bytes,"binding byte count differs");return clean(actual);});
 }
 // The Python bootstrap is itself captured as part of this operational entry.
 // It executes only hash-checked regular source bytes, never a cached .pyc.
 export const PYTHON_BOOTSTRAP = String.raw`import os,sys,stat,hashlib,resource as _f6c_resource,json as _f6c_json
+import base64 as _production_base64,types as _production_types
+_production_envelope=__import__('json').loads(sys.argv[3]);sys.argv.pop(3)
+assert set(_production_envelope)=={'root','target','identities','bridgePath','bridgeSha256','bridgeSource'}
+_production_bridge_raw=_production_base64.b64decode(_production_envelope['bridgeSource'],validate=True)
+assert hashlib.sha256(_production_bridge_raw).hexdigest()==_production_envelope['bridgeSha256']
+_production_bridge=_production_types.ModuleType('_f6c_admitted_production_bridge')
+_production_bridge.__file__=os.path.join(_production_envelope['root'],_production_envelope['bridgePath'])
+sys.modules[_production_bridge.__name__]=_production_bridge
+exec(compile(_production_bridge_raw,_production_bridge.__file__,'exec',dont_inherit=True),_production_bridge.__dict__)
+OPTION_B_PRODUCTION_IDENTITIES=tuple(_production_envelope['identities'])
+for _production_name in ('production_identities','production_source_pair','production_recheck','production_historical_record','production_runtime_binding','production_original_source_binding'):
+ globals()[_production_name]=getattr(_production_bridge,_production_name)
+assert production_identities(os.path.join(_production_envelope['root'],_production_envelope['target']))==OPTION_B_PRODUCTION_IDENTITIES
 filename,expected=sys.argv[1:3];sys.argv=[filename,*sys.argv[3:]]
 fd=os.open(filename,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
 try:
@@ -170,7 +201,7 @@ export function stageSpec({stage,plan,planBinding,root,output,manifest,budget}) 
   check(stage==="consumer"||stage==="comparison","unknown stage");
   check(typeof budget==="string"&&/^(?:0|[1-9]\d*)(?:\.\d+)?$/u.test(budget)&&Number(budget)>0&&Number(budget)<=1800,"bounded stage budget");
   const source=stage==="consumer"?CONSUMER:COMPARISON;
-  const args=["-I","-B","-c",PYTHON_BOOTSTRAP,path.join(root,source),SOURCE_BINDINGS[source],
+  const args=["-I","-B","-c",PYTHON_BOOTSTRAP,path.join(root,source),SOURCE_BINDINGS[source],productionAdmission.pythonEnvelope(source),
     "--plan",planBinding.path,"--plan-sha256",planBinding.sha256,
     stage==="consumer"?"--consumer-sha256":"--verifier-sha256",SOURCE_BINDINGS[source]];
   if(stage==="consumer")args.push("--scope","pilot-cell-0","--out-dir",path.join(output,"subject"),"--git-binary",plan.git);
@@ -296,3 +327,17 @@ async function main(argv) {
 }
 if(import.meta.url.startsWith("file:")&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))
   main(process.argv.slice(2)).catch(error=>{console.error(JSON.stringify({completed:false,accepted:false,failure:error.message}));process.exitCode=1;});
+
+let OPTION_B_PRODUCTION_IDENTITIES;
+export function initializeProductionIdentities(values) {
+  if (!Array.isArray(values) || values.length !== 3 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
+  if (OPTION_B_PRODUCTION_IDENTITIES && JSON.stringify(OPTION_B_PRODUCTION_IDENTITIES) !== JSON.stringify(values)) throw Error("production identity generation already initialized");
+  OPTION_B_PRODUCTION_IDENTITIES = Object.freeze([...values]);
+  EVIDENCE_PINS = Object.freeze({
+  ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": OPTION_B_PRODUCTION_IDENTITIES[0],
+  ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": OPTION_B_PRODUCTION_IDENTITIES[1],
+  ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": OPTION_B_PRODUCTION_IDENTITIES[2]
+});
+}
+
+export function checkBindings(...args){productionAdmission?.check();return checkOperationalBindings(...args);}

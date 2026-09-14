@@ -8,6 +8,90 @@ and external inclusive resource/process closure remain mandatory. No range,
 EOM evolution, score, or historical-trajectory authority is supplied.
 """
 from __future__ import annotations
+
+if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
+    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
+    from pathlib import Path as _b_Path
+    _b_root = _b_Path(__file__).resolve().parents[2]
+    _b_held = {}
+    def _b_identity(path):
+        value = path.lstat()
+        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
+    def _b_capture(relative, expected=None):
+        if (type(relative) is not str or not relative or '\\' in relative
+                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
+            raise ValueError('Unsafe selected Python bootstrap path')
+        path = _b_root / relative
+        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
+            raise ValueError('Canonical regular Python bootstrap source required')
+        before = _b_identity(path)
+        if relative in _b_held and _b_held[relative] != before:
+            raise ValueError('Selected Python bootstrap source replaced')
+        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
+        try:
+            value = _b_os.fstat(fd)
+            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
+                raise ValueError('Bounded Python bootstrap source required')
+            parts = []; size = 0
+            while size < value.st_size:
+                part = _b_os.read(fd, min(65536, value.st_size-size))
+                if not part: raise ValueError('Truncated Python bootstrap source')
+                parts.append(part); size += len(part)
+            raw = b''.join(parts); value = _b_os.fstat(fd)
+            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
+                raise ValueError('Selected Python bootstrap source changed during capture')
+        finally:
+            _b_os.close(fd)
+        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
+            raise ValueError('Selected Python bootstrap digest differs')
+        _b_held[relative] = before
+        return raw
+    def _b_unique(pairs):
+        result = {}
+        for key,value in pairs:
+            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
+            result[key] = value
+        return result
+    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
+    def _b_recheck():
+        for relative,identity in _b_held.items():
+            if _b_identity(_b_root/relative) != identity:
+                raise ValueError('Retained Python bootstrap source replaced')
+    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
+    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
+    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
+    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
+    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
+    _b_path = 'scripts/eom/production_source_records.py'
+    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
+    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
+            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
+            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
+        raise ValueError('Exact selected Python production bridge required')
+    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
+    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
+    _b_bridge.__file__ = str(_b_root/_b_path)
+    _b_sys.modules[_b_bridge.__name__] = _b_bridge
+    _b_recheck()
+    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
+    _b_recheck()
+    def _b_call(name, *args, **kwargs):
+        _b_recheck()
+        result = getattr(_b_bridge,name)(*args,**kwargs)
+        _b_recheck()
+        return result
+    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
+    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
+    production_recheck = lambda: _b_call('production_recheck')
+    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
+    production_runtime_binding = lambda: _b_call('production_runtime_binding')
+    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
+    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+
+if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
+        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
+        or len(OPTION_B_PRODUCTION_IDENTITIES) != 32):
+    raise RuntimeError('Admitted production host must supply the original identity tuple')
 import argparse
 from contextlib import ExitStack, contextmanager
 from decimal import Decimal
@@ -30,34 +114,34 @@ CONTROLS='tests/test_f6c_emission_refinement.py'
 PRODUCER='scripts/eom/prepare-f6c-emission-refinement.py'
 PRODUCER_CONTROLS='tests/test_f6c_emission_refinement_preparation.py'
 DECLARATION='reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-predeclaration.md'
-DECLARATION_SHA='53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037'
+DECLARATION_SHA=OPTION_B_PRODUCTION_IDENTITIES[0]
 PURE='scripts/eom/oracle/f6c_emission_refinement_conformance.py'
-PURE_SHA='0f21d676f4f50702e8375f7ba9c1f362cca82ad3d636316e7121ab819a2dbc7b'
+PURE_SHA=OPTION_B_PRODUCTION_IDENTITIES[1]
 PURE_CONTROLS='tests/test_f6c_emission_refinement_conformance.py'
-PURE_CONTROLS_SHA='bac7357186fb05c5b7ea35154c5564e7527075a9a94177a8b600f9a02119adb5'
+PURE_CONTROLS_SHA=OPTION_B_PRODUCTION_IDENTITIES[2]
 HELPER='scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py'
-HELPER_SHA='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'
+HELPER_SHA=OPTION_B_PRODUCTION_IDENTITIES[3]
 HELPER_CONTROLS='tests/test_f6c_cached_continuous_reception_root_cover.py'
-HELPER_CONTROLS_SHA='09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3'
+HELPER_CONTROLS_SHA=OPTION_B_PRODUCTION_IDENTITIES[4]
 BASE = '.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/'
 # Independently transcribed original-byte contract, never imported from subject.
 FIXED = (
-    ('export', '.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json', 'f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'),
-    ('reconstruction', '.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json', '7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43'),
-    ('guards', '.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json', '86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880'),
-    ('manifest', BASE+'subject/cover-manifest.json', '19fae257f7f36d858fa60d9031125b3f29dbb8780e944802699aab5292275f4c'),
-    ('comparison', BASE+'comparison.json', '6bf2b50ef4f0b46f43ae77a9881f82a2f9d504d5df757bc0ad215deb8eac36c6'),
-    ('admission', BASE+'pilot-admission.json', '1a814c90279eed456546b2c4959a8504657213ffc2d25c063060831814e930ee'),
-    ('rows', BASE+'subject/rows.ndjson', '786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383'),
-    ('pieces', BASE+'subject/pieces.ndjson', '2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411'),
-    ('priorPlan', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json', '5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86'),
-    ('priorClosureOwner', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md', '8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378'),
-    ('reference', 'scripts/eom/oracle/continuous_reception_acceleration.py', 'abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'),
-    ('referenceControls', 'tests/test_eom_continuous_reception_acceleration.py', '26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
-    ('referenceProof', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', '8d2c7819962db6bac0e1ea0939292992145dbe342a28b51928efb81e74478179'),
-    ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', '7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc'),
-    ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', 'db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'),
-    ('reconstructionTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md', '710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b'),
+    ('export', '.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json', OPTION_B_PRODUCTION_IDENTITIES[5]),
+    ('reconstruction', '.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json', OPTION_B_PRODUCTION_IDENTITIES[6]),
+    ('guards', '.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json', OPTION_B_PRODUCTION_IDENTITIES[7]),
+    ('manifest', BASE+'subject/cover-manifest.json', OPTION_B_PRODUCTION_IDENTITIES[8]),
+    ('comparison', BASE+'comparison.json', OPTION_B_PRODUCTION_IDENTITIES[9]),
+    ('admission', BASE+'pilot-admission.json', OPTION_B_PRODUCTION_IDENTITIES[10]),
+    ('rows', BASE+'subject/rows.ndjson', OPTION_B_PRODUCTION_IDENTITIES[11]),
+    ('pieces', BASE+'subject/pieces.ndjson', OPTION_B_PRODUCTION_IDENTITIES[12]),
+    ('priorPlan', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json', OPTION_B_PRODUCTION_IDENTITIES[13]),
+    ('priorClosureOwner', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md', OPTION_B_PRODUCTION_IDENTITIES[14]),
+    ('reference', 'scripts/eom/oracle/continuous_reception_acceleration.py', OPTION_B_PRODUCTION_IDENTITIES[15]),
+    ('referenceControls', 'tests/test_eom_continuous_reception_acceleration.py', OPTION_B_PRODUCTION_IDENTITIES[16]),
+    ('referenceProof', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', OPTION_B_PRODUCTION_IDENTITIES[17]),
+    ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', OPTION_B_PRODUCTION_IDENTITIES[18]),
+    ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', OPTION_B_PRODUCTION_IDENTITIES[19]),
+    ('reconstructionTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md', OPTION_B_PRODUCTION_IDENTITIES[20]),
 )
 
 SCOPE='pilot-cell-0-emission-refinement'
@@ -68,7 +152,7 @@ LANE='.local-data/braid-analysis/f6c-emission-refinement-20260827'
 IDS=('0+','0-','1+','1-','2+','2-','3+','3-')
 CHARGE='0.1666666666666666666666666666666667'
 COUPLING='10.304229970992187'
-KNOT_SHA='11acd09b692fe175861d0f9478b5d1763c18e088682a0c6a16fc29d65453075c'
+KNOT_SHA=OPTION_B_PRODUCTION_IDENTITIES[21]
 MAX_BYTES,MAX_RUNTIME_BYTES,MAX_LINE,LIMIT,HEARTBEAT=64*1024**2,1024**3,128*1024,1800,15
 LIMITS=dict(inclusiveSeconds=1800,maximumAggregateRssBytes=2*1024**3,maximumRssSampleGapMs=1000,
     heartbeatSeconds=15,admissionFreeMemoryPercent=40,admissionDiskBytes=64*1024**3,
@@ -88,16 +172,95 @@ HEX=re.compile(r'[a-f0-9]{64}\Z')
 # producer/control generation. The other thirteen are frozen dependencies.
 FROZEN_SUBJECT=(
  (DECLARATION,DECLARATION_SHA),
- ('scripts/eom/oracle/continuous_reception_roots_cached.py','daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'),
- ('tests/test_eom_continuous_reception_roots_cached.py','a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb'),
- ('scripts/eom/oracle/certified_history.py','ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
- ('scripts/eom/oracle/decimal_interval.py','fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
- ('tests/test_eom_decimal_interval.py','22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44'),
+ ('scripts/eom/oracle/continuous_reception_roots_cached.py',OPTION_B_PRODUCTION_IDENTITIES[22]),
+ ('tests/test_eom_continuous_reception_roots_cached.py',OPTION_B_PRODUCTION_IDENTITIES[23]),
+ ('scripts/eom/oracle/certified_history.py',OPTION_B_PRODUCTION_IDENTITIES[24]),
+ ('scripts/eom/oracle/decimal_interval.py',OPTION_B_PRODUCTION_IDENTITIES[25]),
+ ('tests/test_eom_decimal_interval.py',OPTION_B_PRODUCTION_IDENTITIES[26]),
  (HELPER,HELPER_SHA),(HELPER_CONTROLS,HELPER_CONTROLS_SHA),(PURE,PURE_SHA),(PURE_CONTROLS,PURE_CONTROLS_SHA),
- ('reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md','a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d'),
- ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841'),
- ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2'))
+ ('reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md',OPTION_B_PRODUCTION_IDENTITIES[27]),
+ ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py',OPTION_B_PRODUCTION_IDENTITIES[28]),
+ ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py',OPTION_B_PRODUCTION_IDENTITIES[29]))
 SOURCE_PLAN_KEYS=('declaration','producer','producerControls','verifier','verifierControls','comparisonReference','comparisonReferenceControls')
+
+
+
+
+
+
+
+class _ProductionOriginal:
+    """Original logical binding backed by an independently owned archive handle."""
+    def __init__(self, physical, logical):
+        object.__setattr__(self,'_physical',physical)
+        object.__setattr__(self,'path',logical)
+    def __getattr__(self,name):return getattr(self._physical,name)
+    def __setattr__(self,name,value):setattr(self._physical,name,value)
+    def binding(self):
+        result=self._physical.binding();result['path']=str(self.path);return result
+    def physical_binding(self):return self._physical.binding()
+    def recheck(self):
+        result=self._physical.recheck()
+        if isinstance(result,dict) and 'path' in result:
+            result=dict(result);result['path']=str(self.path)
+        return result
+
+
+@contextmanager
+def _production_capture(cls, filename, digest, **kwargs):
+    from pathlib import Path as _Path
+    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
+    if not _path.is_absolute():_path=_root/_path
+    try:_relative=_path.relative_to(_root).as_posix()
+    except ValueError:_binding=None
+    else:
+        if _path!=_path.resolve():raise ValueError('noncanonical original capture')
+        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
+        if _binding is not None:
+            from hashlib import sha256 as _sha256
+            _,_current,_=production_source_pair(_root,__file__,_relative)
+            _binding=None if _sha256(_current).hexdigest()==digest else production_original_source_binding(_root,__file__,_relative,digest)
+    _physical=_Path(_binding['path']) if _binding is not None else _path
+    production_recheck()
+    with cls(_physical,digest,**kwargs) as _held:
+        if _binding is not None and (_held.binding()['bytes']!=_binding['bytes'] or _held.binding()['sha256']!=_binding['sha256']):raise ValueError('original archive identity differs')
+        try:yield _ProductionOriginal(_held,_path) if _binding is not None else _held
+        finally:
+            if _binding is not None:_held.recheck()
+            production_recheck()
+
+def _production_current_source(raw):
+    from pathlib import Path as _Path
+    _root=_Path(__file__).resolve().parents[2]
+    _original,_current,_=production_source_pair(_root,__file__,_Path(__file__).resolve().relative_to(_root).as_posix())
+    require(raw==_original or raw==_current,'executing source is not the selected equivalent generation')
+    production_recheck()
+    return _current
+
+def _production_exec(raw, filename, namespace, *, optimize=-1):
+    """Execute the proven current representation or the exact older original."""
+    from pathlib import Path as _Path
+    from hashlib import sha256 as _sha256
+    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
+    if not _path.is_absolute():_path=_root/_path
+    try:_relative=_path.relative_to(_root).as_posix()
+    except ValueError:_binding=None
+    else:
+        if _path!=_path.resolve():raise ValueError('noncanonical captured module')
+        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
+    if _binding is not None:
+        _original,_current,_identities=production_source_pair(_root,__file__,_relative)
+        if raw==_original or raw==_current:
+            raw=_current
+            namespace['OPTION_B_PRODUCTION_IDENTITIES']=_identities
+            for _key in ('production_identities','production_source_pair','production_recheck','production_historical_record','production_runtime_binding','production_original_source_binding'):
+                namespace[_key]=globals()[_key]
+        else:
+            _historical,_,_=production_source_pair(_root,__file__,_relative,_sha256(raw).hexdigest())
+            if raw!=_historical:raise ValueError('captured older original differs')
+    production_recheck()
+    try:exec(compile(raw,str(filename),'exec',dont_inherit=True,optimize=optimize),namespace)
+    finally:production_recheck()
 
 def prior_closure():
     hashes={role:h for role,_,h in FIXED}
@@ -155,7 +318,7 @@ def captured_comparators(root,pure_bytes,helper_bytes):
             name=package.__name__+'.'+suffix;module=ModuleType(name)
             module.__file__=str(root/path);module.__package__=package.__name__
             names[name]=module;sys.modules[name]=module
-            exec(compile(raw,module.__file__,'exec',dont_inherit=True,optimize=sys.flags.optimize),module.__dict__)
+            _production_exec(raw, module.__file__, module.__dict__, optimize=sys.flags.optimize)
             loaded.append(module)
         yield loaded[1],loaded[0]
     finally:
@@ -350,8 +513,8 @@ def authenticate_prior(docs, fixed):
     flags(c['libraryFlags'],ROOT_FLAGS)
     require(p['schema']=='braid-program/f6c-cached-root-cover-pilot-launch.v1' and p['scope']=='pilot-cell-0', 'prior plan scope differs')
     contract=p['comparisonContract']
-    require(contract['verifierSha256']=='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7' and
-        contract['declarationSha256']=='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba' and
+    require(contract['verifierSha256']==OPTION_B_PRODUCTION_IDENTITIES[30] and
+        contract['declarationSha256']==OPTION_B_PRODUCTION_IDENTITIES[31] and
         c['verifier']['sha256']==contract['verifierSha256'], 'prior oracle generation differs')
     require(equal(m['subjectSourceBindings'],contract['subjectSourceBindings']) and equal(m['runtimeBindings'],contract['runtimeBindings']), 'prior source/runtime chain differs')
     for role in ('export','reconstruction','guards','rootTheorem','reconstructionTheorem'):
@@ -421,7 +584,7 @@ class BoundFile:
 
 
 def executing_source(raw):
-    require(compile(raw,_EXECUTING_CODE.co_filename,'exec',dont_inherit=True,optimize=sys.flags.optimize)==_EXECUTING_CODE,
+    require(compile(_production_current_source(raw),_EXECUTING_CODE.co_filename,'exec',dont_inherit=True,optimize=sys.flags.optimize)==_EXECUTING_CODE,
             'executing verifier generation differs')
 
 
@@ -502,7 +665,7 @@ def main(argv=None):
                     obj=by_path[path]
                     require(obj.expected==digest and (not capture or obj.data is not None),'conflicting capture generation')
                     return obj
-                obj=stack.enter_context(BoundFile(path,digest,capture=capture,limit=limit))
+                obj=stack.enter_context(_production_capture(BoundFile, path,digest,capture=capture,limit=limit))
                 owned.append(obj);by_path[path]=obj;return obj
             own=capture(root/SELF,args.verifier_sha256,capture=True);executing_source(own.data)
             plan_file=capture(args.plan,args.plan_sha256,capture=True)

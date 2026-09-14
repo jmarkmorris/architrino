@@ -1,3 +1,4 @@
+import {loadProductionTestModule} from './support/option-b-production-hosts.mjs';
 import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
 const NEXT_TEST_SHA = nextTestIdentities("tests/f6c-acceleration-pilot.test.js", 1);
 // Synthetic metadata/process controls only. No accepted history or range is evaluated.
@@ -10,7 +11,7 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {EventEmitter} from 'node:events';
 import {PassThrough} from 'node:stream';
-import * as E from '../scripts/eom/run-f6c-acceleration-pilot.mjs';
+const E=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-acceleration-pilot.mjs");
 import * as L from '../scripts/eom/launch-f6c-acceleration-pilot.mjs';
 const root=realpathSync(process.cwd()),hash=b=>createHash('sha256').update(b).digest('hex'),H='a'.repeat(64);
 const sourceMapSha256=hash(readFileSync(E.SOURCE_MAP));
@@ -25,7 +26,7 @@ const write=(p,v)=>{mkdirSync(path.dirname(p),{recursive:true});return E.writeNe
 function directory(){const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'f6c-range-ops-control-')));mkdirSync(path.join(dir,E.LANE),{recursive:true});return dir;}
 function planFixture(){return {historicalInputs:E.HISTORICAL.map(([role,originalPath,sha256,bytes])=>({role,originalPath,sha256,bytes,path:'reference/'+role+'.source'})),schema:'braid-program/f6c-continuous-reception-acceleration-launch.v2',executionBridge:binding(E.BRIDGE,E.SOURCE_BINDINGS[E.BRIDGE]),declarationInput:{originalPath:E.DECLARATION,path:'reference/synthetic.source',sha256:E.SOURCE_BINDINGS[E.DECLARATION],bytes:1},scope:E.SCOPE,
   consumer:binding(E.CONSUMER,E.SOURCE_BINDINGS[E.CONSUMER]),controls:binding(E.CONSUMER_TESTS,E.SOURCE_BINDINGS[E.CONSUMER_TESTS]),
-  declaration:binding(E.DECLARATION,E.SOURCE_BINDINGS[E.DECLARATION]),rangeVerifier:binding(E.CHECKER,E.CHECKER_SHA),
+  declaration:binding(E.DECLARATION,E.SOURCE_BINDINGS[E.DECLARATION]),rangeVerifier:binding(E.CHECKER,E.SOURCE_BINDINGS[E.CHECKER]),
   runtimeBindings:[binding(pythonReal),binding(path.join(path.dirname(path.dirname(python)),'pyvenv.cfg')),binding(git)],
   operationalBindings:[E.BRIDGE,E.BRIDGE_TESTS,E.ENTRY,E.LAUNCHER,E.TESTS,E.PROCESS_TESTS,E.HELPERS,E.OUTER,E.CHECKER_TESTS,'/bin/ps','/usr/bin/memory_pressure',node].map(p=>binding(p,E.SOURCE_BINDINGS[p]??H)),
   limits:{...E.LIMITS},priorCoverClosure:{authority:'externally-reviewed-caller-observation',ownerSha256:E.FIXED[9][2],admissionSha256:E.FIXED[5][2],matchingFreshCompletionObserved:true,exitCode:0,elapsedSeconds:'8.534247625',processesClosed:true,independentAuditAccepted:true}};}
@@ -82,12 +83,13 @@ test('data/outer siblings are distinct and stage CLI preserves original candidat
 });
 test('captured Python wrapper reports real target CPU separately and rejects changed source',()=>{
   const dir=directory(),p=path.join(dir,'synthetic.py'),bytes=Buffer.from('print("synthetic-only")\n');writeFileSync(p,bytes);
-  const result=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,hash(bytes)],{encoding:'utf8',timeout:5000});
+  const envelope=E.stageSpec({stage:'consumer',plan:planFixture(),planBinding:binding('/fixture/plan'),root:dir,output:path.join(dir,E.LANE,'fixture'),python,git,budget:'1'}).args[6];
+  const result=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,hash(bytes),envelope],{encoding:'utf8',timeout:5000});
   assert.equal(result.status,0,result.stderr);assert.equal(result.stdout,'synthetic-only\n');
   const measured=JSON.parse(result.stderr.trim());assert.equal(measured.kind,'f6c-range-python-process-resources');
   for(const k of ['userSeconds','systemSeconds','waitedChildUserSeconds','waitedChildSystemSeconds'])assert.ok(Number.isFinite(measured[k])&&measured[k]>=0);
   assert.ok(measured.maximumIndividualResidentBytes>0);
-  const bad=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,H],{encoding:'utf8',timeout:5000});assert.notEqual(bad.status,0);assert.equal(bad.stdout,'');
+  const bad=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,H,envelope],{encoding:'utf8',timeout:5000});assert.notEqual(bad.status,0);assert.equal(bad.stdout,'');
 });
 test('metadata inventory closes lazy large-integer division dependencies without scientific imports',()=>{
   const after=String.raw`

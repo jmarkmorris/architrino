@@ -1,3 +1,7 @@
+import {copyProductionFixture} from './support/option-b-production-fixtures.mjs';
+import {selectSyntheticProductionFixture} from './support/option-b-synthetic-production-fixtures.mjs';
+import {productionTestIdentities} from './support/option-b-production-hosts.mjs';
+import {loadProductionTestModule} from './support/option-b-production-hosts.mjs';
 import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
 const NEXT_TEST_SHA = nextTestIdentities("tests/option-b-f6c-streamed-preparation.test.mjs", 1);
 // Data-only fixture preparation. No scientific target, histories or Python
@@ -10,7 +14,7 @@ import {createHash} from 'node:crypto';
 import {existsSync,lstatSync,mkdirSync,mkdtempSync,readFileSync,realpathSync,renameSync,rmSync,writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
-import * as C from '../scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs';
+const C=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs");
 import {prepare,admitPreparationSources,parseArgs} from '../scripts/eom/prepare-f6c-streamed-leaf-invocation.mjs';
 const root=realpathSync(process.cwd()),sha=b=>createHash('sha256').update(b).digest('hex');
 const python=path.resolve(process.env.AAA_VENV??path.join(root,'../.venv'),'bin/python');
@@ -24,11 +28,15 @@ function replaceSameBytes(filename){
 function replacePins(source,pins){const begin=source.indexOf('export const PINS=Object.freeze('),end=source.indexOf('\n});',begin);assert(begin>=0&&end>begin);return source.slice(0,begin)+'export const PINS=Object.freeze('+JSON.stringify(pins)+');'+source.slice(end+4);}
 function fixture(){
  const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'f6c-v6-preparation-'))),pins={};
+ copyProductionFixture(root,dir);
  for(const [role,[p]]of Object.entries(C.PINS)){const bytes=Buffer.from('deliberately nonexecutable scientific fixture '+role+'\n');put(path.join(dir,p),bytes);pins[role]=[p,role==='readiness'?null:sha(bytes)];}
- const raw=replacePins(readFileSync(path.join(root,C.SELF),'utf8'),pins);
+ const raw=readFileSync(path.join(root,C.SELF),'utf8')+'\n// Disposable fixture module namespace '+JSON.stringify(dir)+'\n';
  put(path.join(dir,C.SELF),raw);put(path.join(dir,C.CONTROL),'inert streamed control fixture\n');
  const doc=JSON.parse(readFileSync(path.join(root,C.SOURCE_MAP)));
  for(const row of doc['@graph'].filter(r=>r['@type']==='Source')){const bytes=readFileSync(path.join(root,row.binding.path));put(path.join(dir,row.binding.path),bytes);row.binding.sha256=sha(bytes);}
+ const values=[...productionTestIdentities(C.SELF)];let pinIndex=0;for(const[role,[p,h]]of Object.entries(pins))if(role!=='readiness')values[pinIndex++]=h;
+ selectSyntheticProductionFixture(dir,{changedPaths:[C.SELF,C.CONTROL,...Object.values(pins).map(v=>v[0]).filter(p=>p.startsWith('scripts/')||p.startsWith('tests/'))],originalTargets:Object.entries(pins).filter(([k])=>k!=='readiness').map(([,v])=>v[0]),identities:{[C.SELF]:values}});
+ for(const row of doc['@graph'].filter(r=>r['@type']==='Source'))row.binding.sha256=sha(readFileSync(path.join(dir,row.binding.path)));
  const saveMap=()=>{const bytes=Buffer.from(JSON.stringify(doc,null,2)+'\n');put(path.join(dir,C.SOURCE_MAP),bytes);return sha(bytes);};
  const options={root:dir,coordinatorSha256:sha(raw),sourceMapSha256:saveMap(),python,descriptors:[],readinessSha256:sha(readFileSync(path.join(dir,C.PINS.readiness[0]))),output:path.join(dir,C.LANE,'metadata-only'),maxAdvances:1};
  mkdirSync(path.dirname(options.output),{recursive:true});
@@ -93,7 +101,7 @@ test('source map changed during runtime inventory is rejected by final source ch
  const f=fixture(),original=cp.spawnSync;let calls=0;
  try{
   cp.spawnSync=(...args)=>{calls++;const result=original(...args);put(path.join(f.dir,C.SOURCE_MAP),'changed after source admission');return result;};syncBuiltinESMExports();
-  await assert.rejects(prepare(f.options),/changed source/);assert.equal(calls,1);assert.equal(existsSync(f.options.output),false);
+  await assert.rejects(prepare(f.options),/changed source|source changed/);assert.equal(calls,1);assert.equal(existsSync(f.options.output),false);
  }finally{cp.spawnSync=original;syncBuiltinESMExports();f.close();}
 });
 function cliArgs(f){
@@ -119,7 +127,7 @@ for(const [role,relative]of [['map',C.SOURCE_MAP],['streamed module',C.SELF]])te
    assert.equal(command,python);assert.deepEqual(args,['-I','-B','-c',C.PYTHON_RUNTIME_INVENTORY]);calls++;
    const result=original(command,args,...rest);replaceSameBytes(path.join(f.dir,relative));return result;
   };syncBuiltinESMExports();
-  await assert.rejects(prepare(f.options),/source bytes\/original identity/);
+  await assert.rejects(prepare(f.options),/source (?:bytes|size)\/original identity|Original identity replaced/);
   assert.equal(calls,1);assert.equal(existsSync(f.options.output),false);
  }finally{cp.spawnSync=original;syncBuiltinESMExports();f.close();}
  // Exercise the real CLI both before publication and inside the write-once
@@ -144,7 +152,7 @@ const open=fs.openSync;fs.openSync=(filename,...rest)=>{const fd=open(filename,.
 syncBuiltinESMExports();`;
    const result=cp.spawnSync(process.execPath,['--import','data:text/javascript;base64,'+Buffer.from(preload).toString('base64'),path.join(root,'scripts/eom/prepare-f6c-streamed-leaf-invocation.mjs'),...args],{encoding:'utf8',timeout:15000});
    assert.equal(result.status,1,result.stderr.slice(-2000));assert.equal(result.stdout,'');
-   assert.match(result.stderr,/same-byte replacement verified/);assert.match(result.stderr,/source bytes\/original identity/);
+   assert.match(result.stderr,/same-byte replacement verified/);assert.match(result.stderr,/source (?:bytes|size)\/original identity|Original identity replaced/);
    assert.equal(existsSync(out),seam==='publication');assert.equal(existsSync(g.options.output),false);
   }finally{g.close();}
  }

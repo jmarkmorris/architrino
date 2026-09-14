@@ -55,6 +55,90 @@ inherited emission width can prevent useful node/leaf contraction.
 
 from __future__ import annotations
 
+if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
+    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
+    from pathlib import Path as _b_Path
+    _b_root = _b_Path(__file__).resolve().parents[2]
+    _b_held = {}
+    def _b_identity(path):
+        value = path.lstat()
+        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
+    def _b_capture(relative, expected=None):
+        if (type(relative) is not str or not relative or '\\' in relative
+                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
+            raise ValueError('Unsafe selected Python bootstrap path')
+        path = _b_root / relative
+        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
+            raise ValueError('Canonical regular Python bootstrap source required')
+        before = _b_identity(path)
+        if relative in _b_held and _b_held[relative] != before:
+            raise ValueError('Selected Python bootstrap source replaced')
+        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
+        try:
+            value = _b_os.fstat(fd)
+            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
+                raise ValueError('Bounded Python bootstrap source required')
+            parts = []; size = 0
+            while size < value.st_size:
+                part = _b_os.read(fd, min(65536, value.st_size-size))
+                if not part: raise ValueError('Truncated Python bootstrap source')
+                parts.append(part); size += len(part)
+            raw = b''.join(parts); value = _b_os.fstat(fd)
+            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
+                raise ValueError('Selected Python bootstrap source changed during capture')
+        finally:
+            _b_os.close(fd)
+        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
+            raise ValueError('Selected Python bootstrap digest differs')
+        _b_held[relative] = before
+        return raw
+    def _b_unique(pairs):
+        result = {}
+        for key,value in pairs:
+            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
+            result[key] = value
+        return result
+    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
+    def _b_recheck():
+        for relative,identity in _b_held.items():
+            if _b_identity(_b_root/relative) != identity:
+                raise ValueError('Retained Python bootstrap source replaced')
+    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
+    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
+    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
+    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
+    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
+    _b_path = 'scripts/eom/production_source_records.py'
+    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
+    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
+            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
+            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
+        raise ValueError('Exact selected Python production bridge required')
+    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
+    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
+    _b_bridge.__file__ = str(_b_root/_b_path)
+    _b_sys.modules[_b_bridge.__name__] = _b_bridge
+    _b_recheck()
+    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
+    _b_recheck()
+    def _b_call(name, *args, **kwargs):
+        _b_recheck()
+        result = getattr(_b_bridge,name)(*args,**kwargs)
+        _b_recheck()
+        return result
+    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
+    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
+    production_recheck = lambda: _b_call('production_recheck')
+    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
+    production_runtime_binding = lambda: _b_call('production_runtime_binding')
+    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
+    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+
+if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
+        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
+        or len(OPTION_B_PRODUCTION_IDENTITIES) != 137):
+    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
 from contextlib import ExitStack, contextmanager
 from dataclasses import asdict, dataclass, replace
 from decimal import Decimal
@@ -78,227 +162,227 @@ OWNER = 'reference/priorities/braid-program/evidence/2026-08-27-braid-search-lau
 PREFIX = 'reference/priorities/braid-program/evidence/'
 FULL_BASE = '.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/'
 FULL = (
- ('rows',FULL_BASE+'subject/rows.ndjson','28491edb2f1faec7adf248f535d29a1600b8bd69f5a46706fd26dbb3eb848b5c',22585784),
- ('pieces',FULL_BASE+'subject/pieces.ndjson','b3a2ddf2c8cd5b586ef7b374eee94afc395f63496c849ec574e71bf1f487a9ab',7505144),
- ('manifest',FULL_BASE+'subject/cover-manifest.json','61b0cdfad85696a0b5ead7df838119c9005a28656e9ac3daa26df139054410e2',42922),
- ('comparison',FULL_BASE+'comparison.json','1c423aece2009a2d7d0852e9558c16464c640abbc5bea3743211af3805b6eed2',43377),
- ('admission',FULL_BASE+'full-admission.json','8fe8f0f9651fd8de15467a69f0534f08bbe19e0e3fdb64a86c6422be857eb77f',332567),
- ('launcherLog',FULL_BASE+'launcher-stderr.log','b976d8deb556d8faba5a3aff73a09b77ec26c6da84e42726167eec4ec7a43314',30969),
- ('resourceLog',FULL_BASE+'resource-observations.ndjson','66eb0cfa1811d0a834d18d3bd8e749a941e1964f7276898b80a4e12136d69d03',1710278),
- ('plan',PREFIX+'2026-08-27-f6c-cached-root-cover-full-launch.v1.json','5dd7e27084a2e8e5b2c3ed8daf8cf66248a437108710ce91281977e728197ddc',45282),
+ ('rows',FULL_BASE+'subject/rows.ndjson',OPTION_B_PRODUCTION_IDENTITIES[0],22585784),
+ ('pieces',FULL_BASE+'subject/pieces.ndjson',OPTION_B_PRODUCTION_IDENTITIES[1],7505144),
+ ('manifest',FULL_BASE+'subject/cover-manifest.json',OPTION_B_PRODUCTION_IDENTITIES[2],42922),
+ ('comparison',FULL_BASE+'comparison.json',OPTION_B_PRODUCTION_IDENTITIES[3],43377),
+ ('admission',FULL_BASE+'full-admission.json',OPTION_B_PRODUCTION_IDENTITIES[4],332567),
+ ('launcherLog',FULL_BASE+'launcher-stderr.log',OPTION_B_PRODUCTION_IDENTITIES[5],30969),
+ ('resourceLog',FULL_BASE+'resource-observations.ndjson',OPTION_B_PRODUCTION_IDENTITIES[6],1710278),
+ ('plan',PREFIX+'2026-08-27-f6c-cached-root-cover-full-launch.v1.json',OPTION_B_PRODUCTION_IDENTITIES[7],45282),
 )
 PARENT_BASE='.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/'
 # This is the separately accepted original-parent1 invocation, not authority to
 # select arbitrary output from the general mathematical refinement library.
 PARENT_ONE=(
- ('plan',PREFIX+'2026-08-27-f6c-parent-emission-refinement-launch.v1.json','2ef79411d22b646136352b83a92dfb18b42e2d01733aec6dff828ab258dc68d4',51509),
- ('manifest',PARENT_BASE+'pilot-parent-1-v1/cover-manifest.json','952aa6a5951407af57b68478a3f19381d81dd2a970a82d3f3475bdd075936df6',113112),
- ('comparison',PARENT_BASE+'pilot-parent-1-v1-outer/comparison.json','8015590d0c2a39557411e1f3e3e3e6892565afc2a0b7741a225952c2e79f13f7',127948),
- ('operation',PARENT_BASE+'pilot-parent-1-v1-outer/operation.json','d912a2b1daeddf0f6bafe852a876fde517b9d1da49260a557144ecacfb925029',657555),
- ('launcher_log',PARENT_BASE+'pilot-parent-1-v1-outer/launcher-stderr.log','4e5f4ca8c305b409a27bab70339dc1aed2f0a1b6962843b0e340118538dd6a71',7488),
- ('resource_log',PARENT_BASE+'pilot-parent-1-v1-outer/resource-observations.ndjson','ccc61d5b04f22baf85fe3981db293903c446b788e77ae852ca6b41311dc27dda',520798),
- ('queries',PARENT_BASE+'pilot-parent-1-v1/queries.ndjson','cf4a6c7464f773782c5450d562a999543c60c2d906bf2fa91dc5f6207564db77',2003114),
- ('rows',PARENT_BASE+'pilot-parent-1-v1/rows.ndjson','ad9734afd944cf92994852f3cfbb3c3b64ebcecf090e243cbf7a37ab5c019624',161022),
- ('pieces',PARENT_BASE+'pilot-parent-1-v1/pieces.ndjson','928a7d56104e528170b50f971c3217f157f5ba462a815cd646afba73fd354e46',48578),
+ ('plan',PREFIX+'2026-08-27-f6c-parent-emission-refinement-launch.v1.json',OPTION_B_PRODUCTION_IDENTITIES[8],51509),
+ ('manifest',PARENT_BASE+'pilot-parent-1-v1/cover-manifest.json',OPTION_B_PRODUCTION_IDENTITIES[9],113112),
+ ('comparison',PARENT_BASE+'pilot-parent-1-v1-outer/comparison.json',OPTION_B_PRODUCTION_IDENTITIES[10],127948),
+ ('operation',PARENT_BASE+'pilot-parent-1-v1-outer/operation.json',OPTION_B_PRODUCTION_IDENTITIES[11],657555),
+ ('launcher_log',PARENT_BASE+'pilot-parent-1-v1-outer/launcher-stderr.log',OPTION_B_PRODUCTION_IDENTITIES[12],7488),
+ ('resource_log',PARENT_BASE+'pilot-parent-1-v1-outer/resource-observations.ndjson',OPTION_B_PRODUCTION_IDENTITIES[13],520798),
+ ('queries',PARENT_BASE+'pilot-parent-1-v1/queries.ndjson',OPTION_B_PRODUCTION_IDENTITIES[14],2003114),
+ ('rows',PARENT_BASE+'pilot-parent-1-v1/rows.ndjson',OPTION_B_PRODUCTION_IDENTITIES[15],161022),
+ ('pieces',PARENT_BASE+'pilot-parent-1-v1/pieces.ndjson',OPTION_B_PRODUCTION_IDENTITIES[16],48578),
 )
 # These separately accepted parent wrapper generations may be archived.
 # The current adapter, numerical references and runtime are never remappable.
 PARENT_ARCHIVE_SOURCES=(
- ('producer','scripts/eom/prepare-f6c-parent-emission-refinement.py','492882b63f074fd46253ee92974524c4fd6b43ae6190db23797c307251ed8544',57641),
- ('producerControls','tests/test_f6c_parent_emission_refinement_preparation.py','06cd99bc1f74c3b7dead6089ef20f468f7be8af41ae6702f45ec85d83a1a36ab',40808),
- ('verifier','scripts/eom/verify-f6c-parent-emission-refinement.py','0bb16c232736c895c4f3e38a75e2a0562084710ffdba2503b3ab4457216127fc',46134),
- ('verifierControls','tests/test_f6c_parent_emission_refinement_verification.py','92da2b09c629ecbc0fdcdddac9de69353da0e29795e0b1d3bf2d23a05a9a26f7',39696),
- ('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','398d604f9e5f8a5d85247df0d619c23726c727980881d185d3cc61545df563f6',48579),
- ('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js','231427f4a98561b8a4377a0a4894e7f7be31ffa8d5f77966d86f77daada4a3e0',20889),
+ ('producer','scripts/eom/prepare-f6c-parent-emission-refinement.py',OPTION_B_PRODUCTION_IDENTITIES[17],57641),
+ ('producerControls','tests/test_f6c_parent_emission_refinement_preparation.py',OPTION_B_PRODUCTION_IDENTITIES[18],40808),
+ ('verifier','scripts/eom/verify-f6c-parent-emission-refinement.py',OPTION_B_PRODUCTION_IDENTITIES[19],46134),
+ ('verifierControls','tests/test_f6c_parent_emission_refinement_verification.py',OPTION_B_PRODUCTION_IDENTITIES[20],39696),
+ ('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs',OPTION_B_PRODUCTION_IDENTITIES[21],48579),
+ ('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js',OPTION_B_PRODUCTION_IDENTITIES[22],20889),
 )
 # Exact second accepted parent generation, read only as historical metadata.
 # Selection also requires its original plan tuple; parent number alone is not
 # authority to route a different wrapper generation.
 PARENT_TWO_ARCHIVE_PLAN=(PREFIX+'2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json',
- '928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e',51509)
+ OPTION_B_PRODUCTION_IDENTITIES[23],51509)
 PARENT_TWO_ARCHIVE_SOURCES=(
- ('producer','scripts/eom/prepare-f6c-parent-emission-refinement.py','ff488499f2737860034602ce9559c3ebc817aa8413b827007fb31027815679d2',58397),
- ('producerControls','tests/test_f6c_parent_emission_refinement_preparation.py','517cc307251611177ec19cc5d71938a4086806f48583bcf8e3f2d04e9afb8d9f',43836),
- ('verifier','scripts/eom/verify-f6c-parent-emission-refinement.py','53595cc12589ab56c73a1613922bba2739704cbc78465e3d646d5ae6a43813db',46615),
- ('verifierControls','tests/test_f6c_parent_emission_refinement_verification.py','889d8721d2b51520c0fef78f6a954f9b510cbb46fdf9019205199dfa3658b5a9',42419),
- ('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','462247cf723339dbdc9ce9b4b897720cd4edcedc9b85c22b70694c41663f5c1b',56022),
- ('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js','dd88eae5729d8ecc5947a27966edb215074d12687f3b5cd0bfc3be69d0400bc1',33303),
+ ('producer','scripts/eom/prepare-f6c-parent-emission-refinement.py',OPTION_B_PRODUCTION_IDENTITIES[24],58397),
+ ('producerControls','tests/test_f6c_parent_emission_refinement_preparation.py',OPTION_B_PRODUCTION_IDENTITIES[25],43836),
+ ('verifier','scripts/eom/verify-f6c-parent-emission-refinement.py',OPTION_B_PRODUCTION_IDENTITIES[26],46615),
+ ('verifierControls','tests/test_f6c_parent_emission_refinement_verification.py',OPTION_B_PRODUCTION_IDENTITIES[27],42419),
+ ('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs',OPTION_B_PRODUCTION_IDENTITIES[28],56022),
+ ('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js',OPTION_B_PRODUCTION_IDENTITIES[29],33303),
 )
 # Exact historical nonexecuting documents changed only by later link edits.
 # Their original mathematical/source identities remain the consumed identities.
 ANCESTRY_ARCHIVE_SOURCES=(
- ('memberPredeclaration',PREFIX+'2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc',16985),
- ('fullResourcePlan',PREFIX+'2026-08-27-f6c-root-cover-full-resource-plan.md','2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40',13021),
+ ('memberPredeclaration',PREFIX+'2026-08-26-f6c-normalized-member-acceleration-predeclaration.md',OPTION_B_PRODUCTION_IDENTITIES[30],16985),
+ ('fullResourcePlan',PREFIX+'2026-08-27-f6c-root-cover-full-resource-plan.md',OPTION_B_PRODUCTION_IDENTITIES[31],13021),
 )
 # Storage code and literal accepted inventory are separately captured, never
 # taken from a package's index. This initial inventory covers parents1/2 only.
 PACKAGE_SOURCES=(
- ('reader','scripts/eom/f6c_evidence_package.py','9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6'),
- ('readerControls','tests/test_f6c_evidence_package.py','f2c52fd510cad3da99f65ab2497dde754f8842d18004c3e1ae98d1bbdcb6d3d8'),
- ('inventory','tests/fixtures/f6c-lossless-packaging-expectations.v1.json','901687bd92fdc686dc26b8634d8f58ecd46bd9f81208ca68563ad4cff983b09b'),
+ ('reader','scripts/eom/f6c_evidence_package.py',OPTION_B_PRODUCTION_IDENTITIES[32]),
+ ('readerControls','tests/test_f6c_evidence_package.py',OPTION_B_PRODUCTION_IDENTITIES[33]),
+ ('inventory','tests/fixtures/f6c-lossless-packaging-expectations.v1.json',OPTION_B_PRODUCTION_IDENTITIES[34]),
 )
 # The pure v2 parser has independently frozen semantic expectations. Fresh
 # operation authority is a separate, explicitly pinned captured instrument.
 PARENT_INVENTORY_SOURCES=(
- ('parser','scripts/eom/f6c_parent_evidence_inventory.py','d69db22ad20881a94a950102e70d438792493fa52efde666575bc53100bd784b'),
- ('parserControls','tests/test_f6c_parent_evidence_inventory.py','369091d5a0996fb547a70ba8e9aa8b3fe5570cf046863872bfaeb491bd0cf551'),
- ('schema','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/generic-inventory-v2-closed-schema-expectations.md','856c05077241bf9c28d75c21fcb50beac0afd23546c4bbbad9be7abd5d0f6710'),
+ ('parser','scripts/eom/f6c_parent_evidence_inventory.py',OPTION_B_PRODUCTION_IDENTITIES[35]),
+ ('parserControls','tests/test_f6c_parent_evidence_inventory.py',OPTION_B_PRODUCTION_IDENTITIES[36]),
+ ('schema','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/generic-inventory-v2-closed-schema-expectations.md',OPTION_B_PRODUCTION_IDENTITIES[37]),
 )
 # Independently accepted pure checker; an inventory cannot name its own authority.
 # These pins do not admit an unobserved batch or the separate I/O issuer.
 FRESH_CLOSURE_SOURCES=(
- ('instrument','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure.py','3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223'),
- ('controls','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure_controls.py','f45ccfb0ff9609fe267f25c1ba2521ec58134f9caf7d128b09e0adfde9e6a979'),
- ('contract','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/fresh-parent-batch-closure-validator-expectations.md','7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed'),
+ ('instrument','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure.py',OPTION_B_PRODUCTION_IDENTITIES[38]),
+ ('controls','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure_controls.py',OPTION_B_PRODUCTION_IDENTITIES[39]),
+ ('contract','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/fresh-parent-batch-closure-validator-expectations.md',OPTION_B_PRODUCTION_IDENTITIES[40]),
 )
 FRESH_NUMERICAL_SETTINGS=(
  '.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/three-request-independent-expectations.v1.json',
- 'ebd03873e7b57d6f59508b36d3ef1f1f797071524d1ed9cf7ceee33cdc431d51',6116,
+ OPTION_B_PRODUCTION_IDENTITIES[41],6116,
 )
 PARENT_FIXED=(
- ('declaration',PREFIX+'2026-08-27-f6c-parent-emission-refinement-reference.md','c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'),
- ('proposalReference','scripts/eom/f6c_parent_emission_refinement.py','d2653fd0dc74c7515ee7eccdd59c0f487903a481c6294cabce43e58b633c1406'),
- ('proposalReferenceControls','tests/test_f6c_parent_emission_refinement.py','f1650b5e73a06ecd7ed05bff10ba97949b42aa5330e84fb3514c2f868eff0fc2'),
- ('comparisonReference','scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py','9bca879b94386d033597bb9d1e3a4ceeb9943925615c916299feb91e482391ad'),
- ('comparisonReferenceControls','tests/test_f6c_parent_emission_refinement_conformance.py','2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb'),
+ ('declaration',PREFIX+'2026-08-27-f6c-parent-emission-refinement-reference.md',OPTION_B_PRODUCTION_IDENTITIES[42]),
+ ('proposalReference','scripts/eom/f6c_parent_emission_refinement.py',OPTION_B_PRODUCTION_IDENTITIES[43]),
+ ('proposalReferenceControls','tests/test_f6c_parent_emission_refinement.py',OPTION_B_PRODUCTION_IDENTITIES[44]),
+ ('comparisonReference','scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[45]),
+ ('comparisonReferenceControls','tests/test_f6c_parent_emission_refinement_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[46]),
 )
 SOURCES = (
- ('transport','scripts/eom/verify-f6c-refined-acceleration.py','e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae'),
- ('transportControls','tests/test_f6c_refined_acceleration.py','d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd'),
- ('mapping','scripts/eom/verify-f6c-continuous-reception-acceleration.py','6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83'),
- ('mappingControls','tests/test_f6c_continuous_reception_acceleration.py','13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed'),
- ('decoder','scripts/eom/oracle/f6c_refined_acceleration_conformance.py','7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'),
- ('decoderControls','tests/test_f6c_refined_acceleration_conformance.py','147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921'),
- ('rootComparison','scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'),
- ('rootControls','tests/test_f6c_cached_continuous_reception_root_cover.py','09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3'),
- ('acceleration','scripts/eom/oracle/continuous_reception_acceleration.py','abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'),
- ('accelerationControls','tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
- ('accelerationProof',PREFIX+'2026-08-27-f6c-continuous-reception-acceleration-reference.md','8d2c7819962db6bac0e1ea0939292992145dbe342a28b51928efb81e74478179'),
- ('integral','scripts/eom/oracle/f6c_residual_integral_supremum.py','fc170a91b2747923bda89ef00b58d529c98bf96b01cc7b2c05c035042fc79c5a'),
- ('integralControls','tests/test_f6c_residual_integral_supremum.py','d80ca8bab38bface925fbdee1530f43919c83b331a878f004ef1601b2cf09b24'),
- ('integralProof',PREFIX+'2026-08-27-f6c-residual-integral-supremum-enclosure.md','945441097fdd2934434dd2ff6d9dd6f06a77898752db6bcac90745a76420eb4b'),
- ('correlated','scripts/eom/oracle/f6c_correlated_residual_enclosure.py','b86907236e849124f3fa9c6bcad0f65492ecc6fbeb1b51a27438655c45b037b1'),
- ('correlatedControls','tests/test_f6c_correlated_residual_enclosure.py','327b1be489baa06d5785de9c306c06ffbe2f5c825700abfd87ac18345a9ac9ff'),
- ('correlatedProof',PREFIX+'2026-08-27-f6c-correlated-residual-box-envelope.md','4180faad5d631af4bdbaf9ebd11500b0cc158b50da6ccc81295cf4d84a82bd41'),
- ('gk','scripts/eom/oracle/f6c_gk13_protocol.py','a70a15481f793e913440628068f9c53bab611fe9d92f36206a401c01e91478eb'),
- ('gkControls','tests/test_f6c_gk13_protocol.py','4b53d57f19de401348830b809600f01a9ae0c0c88d19d406a6a85e5ac8c5a241'),
- ('gkProof',PREFIX+'2026-08-27-f6c-gk13-execution-protocol.md','66ec97315dd8caf08d0628e2b23326044ac0a2f5b86b29d7c2f5542dc879cc85'),
- ('refinedClosure',PREFIX+'2026-08-27-f6c-refined-cover-acceleration-projection.md','c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d'),
- ('fullEntry','scripts/eom/run-f6c-cached-root-cover-full.mjs','1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b'),
- ('geometry','scripts/eom/f6c_reception_geometry_restriction.py','e4bc1ff8bd23346f58a934ace429dbf65b11d0b2bb71ebc55dc34036ab9c51e7'),
- ('geometryControls','tests/test_f6c_reception_geometry_restriction.py','b6c4b4e6a82a11b4ee84c782bf208df4b141860bb8d01f1ad2b2a1ca749a6c7b'),
- ('captureHelper','scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841'),
- ('captureHelperControls','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2'),
- ('geometryHistory','scripts/eom/oracle/certified_history.py','ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
- ('geometryRoots','scripts/eom/oracle/continuous_reception_roots_cached.py','daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'),
- ('geometryRootsControls','tests/test_eom_continuous_reception_roots_cached.py','a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb'),
- ('geometryIntervals','scripts/eom/oracle/decimal_interval.py','fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
- ('geometryIntervalControls','tests/test_eom_decimal_interval.py','22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44'),
+ ('transport','scripts/eom/verify-f6c-refined-acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[47]),
+ ('transportControls','tests/test_f6c_refined_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[48]),
+ ('mapping','scripts/eom/verify-f6c-continuous-reception-acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[49]),
+ ('mappingControls','tests/test_f6c_continuous_reception_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[50]),
+ ('decoder','scripts/eom/oracle/f6c_refined_acceleration_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[51]),
+ ('decoderControls','tests/test_f6c_refined_acceleration_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[52]),
+ ('rootComparison','scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py',OPTION_B_PRODUCTION_IDENTITIES[53]),
+ ('rootControls','tests/test_f6c_cached_continuous_reception_root_cover.py',OPTION_B_PRODUCTION_IDENTITIES[54]),
+ ('acceleration','scripts/eom/oracle/continuous_reception_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[55]),
+ ('accelerationControls','tests/test_eom_continuous_reception_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[56]),
+ ('accelerationProof',PREFIX+'2026-08-27-f6c-continuous-reception-acceleration-reference.md',OPTION_B_PRODUCTION_IDENTITIES[57]),
+ ('integral','scripts/eom/oracle/f6c_residual_integral_supremum.py',OPTION_B_PRODUCTION_IDENTITIES[58]),
+ ('integralControls','tests/test_f6c_residual_integral_supremum.py',OPTION_B_PRODUCTION_IDENTITIES[59]),
+ ('integralProof',PREFIX+'2026-08-27-f6c-residual-integral-supremum-enclosure.md',OPTION_B_PRODUCTION_IDENTITIES[60]),
+ ('correlated','scripts/eom/oracle/f6c_correlated_residual_enclosure.py',OPTION_B_PRODUCTION_IDENTITIES[61]),
+ ('correlatedControls','tests/test_f6c_correlated_residual_enclosure.py',OPTION_B_PRODUCTION_IDENTITIES[62]),
+ ('correlatedProof',PREFIX+'2026-08-27-f6c-correlated-residual-box-envelope.md',OPTION_B_PRODUCTION_IDENTITIES[63]),
+ ('gk','scripts/eom/oracle/f6c_gk13_protocol.py',OPTION_B_PRODUCTION_IDENTITIES[64]),
+ ('gkControls','tests/test_f6c_gk13_protocol.py',OPTION_B_PRODUCTION_IDENTITIES[65]),
+ ('gkProof',PREFIX+'2026-08-27-f6c-gk13-execution-protocol.md',OPTION_B_PRODUCTION_IDENTITIES[66]),
+ ('refinedClosure',PREFIX+'2026-08-27-f6c-refined-cover-acceleration-projection.md',OPTION_B_PRODUCTION_IDENTITIES[67]),
+ ('fullEntry','scripts/eom/run-f6c-cached-root-cover-full.mjs',OPTION_B_PRODUCTION_IDENTITIES[68]),
+ ('geometry','scripts/eom/f6c_reception_geometry_restriction.py',OPTION_B_PRODUCTION_IDENTITIES[69]),
+ ('geometryControls','tests/test_f6c_reception_geometry_restriction.py',OPTION_B_PRODUCTION_IDENTITIES[70]),
+ ('captureHelper','scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py',OPTION_B_PRODUCTION_IDENTITIES[71]),
+ ('captureHelperControls','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py',OPTION_B_PRODUCTION_IDENTITIES[72]),
+ ('geometryHistory','scripts/eom/oracle/certified_history.py',OPTION_B_PRODUCTION_IDENTITIES[73]),
+ ('geometryRoots','scripts/eom/oracle/continuous_reception_roots_cached.py',OPTION_B_PRODUCTION_IDENTITIES[74]),
+ ('geometryRootsControls','tests/test_eom_continuous_reception_roots_cached.py',OPTION_B_PRODUCTION_IDENTITIES[75]),
+ ('geometryIntervals','scripts/eom/oracle/decimal_interval.py',OPTION_B_PRODUCTION_IDENTITIES[76]),
+ ('geometryIntervalControls','tests/test_eom_decimal_interval.py',OPTION_B_PRODUCTION_IDENTITIES[77]),
 )
 HISTORICAL_ARCHIVES = {
  "scripts/eom/launch-abc-enclosed-root-pilot.mjs": [
-  "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
+  OPTION_B_PRODUCTION_IDENTITIES[78],
   39465
  ],
  "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": [
-  "af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386",
+  OPTION_B_PRODUCTION_IDENTITIES[79],
   38160
  ],
  "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py": [
-  "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132",
+  OPTION_B_PRODUCTION_IDENTITIES[80],
   41336
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md": [
-  "daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b",
+  OPTION_B_PRODUCTION_IDENTITIES[81],
   10021
  ],
  "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": [
-  "9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427",
+  OPTION_B_PRODUCTION_IDENTITIES[82],
   11113
  ],
  "tests/test_f6c_cached_continuous_reception_root_cover.py": [
-  "2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117",
+  OPTION_B_PRODUCTION_IDENTITIES[83],
   11096
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md": [
-  "7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4",
+  OPTION_B_PRODUCTION_IDENTITIES[84],
   12103
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md": [
-  "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+  OPTION_B_PRODUCTION_IDENTITIES[85],
   28340
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md": [
-  "6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",
+  OPTION_B_PRODUCTION_IDENTITIES[86],
   21031
  ],
  "tests/test_eom_continuous_reception_roots.py": [
-  "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144",
+  OPTION_B_PRODUCTION_IDENTITIES[87],
   32501
  ],
  "scripts/eom/verify-f6c-accepted-frame-reconstruction.py": [
-  "80a96ebd0b306148b3eb96cb12e797c5cf80942e52ea457a8c6a72d58e8618a0",
+  OPTION_B_PRODUCTION_IDENTITIES[88],
   31153
  ],
  "scripts/eom/verify-f6c-retained-history-guards.py": [
-  "efaed33a6d6e55be5788ffb7e4e6f596fbc0381466a8308154dbd550743896b9",
+  OPTION_B_PRODUCTION_IDENTITIES[89],
   31651
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md": [
-  "765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079",
+  OPTION_B_PRODUCTION_IDENTITIES[90],
   25546
  ],
  "scripts/eom/verify-f6c-continuous-reception-root-cover.py": [
-  "2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd",
+  OPTION_B_PRODUCTION_IDENTITIES[91],
   39929
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md": [
-  "798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3",
+  OPTION_B_PRODUCTION_IDENTITIES[92],
   10933
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md": [
-  "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef",
+  OPTION_B_PRODUCTION_IDENTITIES[93],
   13021
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md": [
-  "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4",
+  OPTION_B_PRODUCTION_IDENTITIES[94],
   6754
  ],
  "scripts/eom/run-f6c-cached-root-cover-full.mjs": [
-  "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+  OPTION_B_PRODUCTION_IDENTITIES[95],
   27166
  ],
  "scripts/eom/launch-f6c-cached-root-cover-full.mjs": [
-  "0f11fe5e51ef52f95c02605b776fe6b94c72a67a4a5f2b69671870f5f548ae17",
+  OPTION_B_PRODUCTION_IDENTITIES[96],
   26659
  ]
 }
-HISTORICAL_ARCHIVES.update({'reference/priorities/braid-program/evidence/2026-08-27-f6c-residual-integral-supremum-enclosure.md': ['945441097fdd2934434dd2ff6d9dd6f06a77898752db6bcac90745a76420eb4b', 27167], 'reference/priorities/braid-program/evidence/2026-08-27-f6c-correlated-residual-box-envelope.md': ['4180faad5d631af4bdbaf9ebd11500b0cc158b50da6ccc81295cf4d84a82bd41', 16640], 'reference/priorities/braid-program/evidence/2026-08-27-f6c-gk13-execution-protocol.md': ['66ec97315dd8caf08d0628e2b23326044ac0a2f5b86b29d7c2f5542dc879cc85', 18601], 'reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md': ['c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d', 30139]})
-REFINED_ARCHIVES = {('reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'): ['c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',
+HISTORICAL_ARCHIVES.update({'reference/priorities/braid-program/evidence/2026-08-27-f6c-residual-integral-supremum-enclosure.md': [OPTION_B_PRODUCTION_IDENTITIES[97], 27167], 'reference/priorities/braid-program/evidence/2026-08-27-f6c-correlated-residual-box-envelope.md': [OPTION_B_PRODUCTION_IDENTITIES[98], 16640], 'reference/priorities/braid-program/evidence/2026-08-27-f6c-gk13-execution-protocol.md': [OPTION_B_PRODUCTION_IDENTITIES[99], 18601], 'reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md': [OPTION_B_PRODUCTION_IDENTITIES[100], 30139]})
+REFINED_ARCHIVES = {('reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', OPTION_B_PRODUCTION_IDENTITIES[101]): [OPTION_B_PRODUCTION_IDENTITIES[102],
                                                                                                                                                                                        16985],
- ('reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', 'c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'): ['c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f',
+ ('reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', OPTION_B_PRODUCTION_IDENTITIES[103]): [OPTION_B_PRODUCTION_IDENTITIES[104],
                                                                                                                                                                                      17211],
- ('reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-predeclaration.md', '53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037'): ['53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037',
+ ('reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-predeclaration.md', OPTION_B_PRODUCTION_IDENTITIES[105]): [OPTION_B_PRODUCTION_IDENTITIES[106],
                                                                                                                                                                             21345],
- ('scripts/eom/launch-f6c-cached-root-cover-pilot.mjs', '03ef68dbdc9e578402771490c274ab246f02688c443f8ecba8d3006f3d35a5ec'): ['03ef68dbdc9e578402771490c274ab246f02688c443f8ecba8d3006f3d35a5ec',
+ ('scripts/eom/launch-f6c-cached-root-cover-pilot.mjs', OPTION_B_PRODUCTION_IDENTITIES[107]): [OPTION_B_PRODUCTION_IDENTITIES[108],
                                                                                                                               26639],
- ('scripts/eom/launch-f6c-emission-refinement-pilot.mjs', '89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944'): ['89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944',
+ ('scripts/eom/launch-f6c-emission-refinement-pilot.mjs', OPTION_B_PRODUCTION_IDENTITIES[109]): [OPTION_B_PRODUCTION_IDENTITIES[110],
                                                                                                                                 24893],
- ('scripts/eom/launch-prescribed-response-pilot.mjs', 'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9'): ['a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
+ ('scripts/eom/launch-prescribed-response-pilot.mjs', OPTION_B_PRODUCTION_IDENTITIES[111]): [OPTION_B_PRODUCTION_IDENTITIES[112],
                                                                                                                             28305],
- ('scripts/eom/oracle/f6c_emission_refinement_conformance.py', 'ec0eaaeae3da4ffb597ac92ff3ac1a5700a8cf88916144a7d994912270c4157a'): ['ec0eaaeae3da4ffb597ac92ff3ac1a5700a8cf88916144a7d994912270c4157a',
+ ('scripts/eom/oracle/f6c_emission_refinement_conformance.py', OPTION_B_PRODUCTION_IDENTITIES[113]): [OPTION_B_PRODUCTION_IDENTITIES[114],
                                                                                                                                      16703],
- ('scripts/eom/prepare-f6c-emission-refinement.py', 'bb9e1a287552483f7ad0fc1431162c1fbdb2da84fd862bc9b1c4799eef993600'): ['bb9e1a287552483f7ad0fc1431162c1fbdb2da84fd862bc9b1c4799eef993600',
+ ('scripts/eom/prepare-f6c-emission-refinement.py', OPTION_B_PRODUCTION_IDENTITIES[115]): [OPTION_B_PRODUCTION_IDENTITIES[116],
                                                                                                                           39849],
- ('scripts/eom/run-f6c-cached-root-cover-pilot.mjs', '51cd543f9f28d87299a59614805cdbf949dceabcabad1a64a701b0b2b8ea6c57'): ['51cd543f9f28d87299a59614805cdbf949dceabcabad1a64a701b0b2b8ea6c57',
+ ('scripts/eom/run-f6c-cached-root-cover-pilot.mjs', OPTION_B_PRODUCTION_IDENTITIES[117]): [OPTION_B_PRODUCTION_IDENTITIES[118],
                                                                                                                            25508],
- ('scripts/eom/run-f6c-emission-refinement-pilot.mjs', '20466a4540dc972c248d30b8dd1987a19b00ca59a4f883752ec1c7c8b96d68ac'): ['20466a4540dc972c248d30b8dd1987a19b00ca59a4f883752ec1c7c8b96d68ac',
+ ('scripts/eom/run-f6c-emission-refinement-pilot.mjs', OPTION_B_PRODUCTION_IDENTITIES[119]): [OPTION_B_PRODUCTION_IDENTITIES[120],
                                                                                                                              36995],
- ('scripts/eom/verify-f6c-emission-refinement.py', '1b3e39eea14c2a21be76ab2a3fe2bdbcc055b5a73325d03de9734c79a8017c33'): ['1b3e39eea14c2a21be76ab2a3fe2bdbcc055b5a73325d03de9734c79a8017c33',
+ ('scripts/eom/verify-f6c-emission-refinement.py', OPTION_B_PRODUCTION_IDENTITIES[121]): [OPTION_B_PRODUCTION_IDENTITIES[122],
                                                                                                                          38678],
- ('tests/f6c-emission-refinement-pilot-process.test.js', 'ee3f86b5fd29a2547a13dde7733c38ed3bcf4a95ffcbb9d17019fc94f4ee287e'): ['ee3f86b5fd29a2547a13dde7733c38ed3bcf4a95ffcbb9d17019fc94f4ee287e',
+ ('tests/f6c-emission-refinement-pilot-process.test.js', OPTION_B_PRODUCTION_IDENTITIES[123]): [OPTION_B_PRODUCTION_IDENTITIES[124],
                                                                                                                                18422],
- ('tests/test_f6c_emission_refinement.py', '1d3af80d89834b31968cfe5dd7fb016bb0ac4eee6ce77fbabaeea21a9a905bc7'): ['1d3af80d89834b31968cfe5dd7fb016bb0ac4eee6ce77fbabaeea21a9a905bc7',
+ ('tests/test_f6c_emission_refinement.py', OPTION_B_PRODUCTION_IDENTITIES[125]): [OPTION_B_PRODUCTION_IDENTITIES[126],
                                                                                                                  31668]}
 LABELS=('0+','0-','1+','1-','2+','2-','3+','3-')
 CHARGE='0.1666666666666666666666666666666667'
@@ -804,19 +888,41 @@ def make_synthetic_adapter(acceleration,integral,correlated,export,parents,*,
                   geometry_references=geometry_references,geometry_guards=geometry_guards)
 
 
+def _execution_source(raw,path):
+    root=Path(__file__).resolve().parents[2];path=Path(path)
+    require(path.is_absolute()and path==path.resolve(),'canonical module source')
+    try:relative=path.relative_to(root).as_posix()
+    except ValueError:return raw,None
+    binding=production_original_source_binding(root,__file__,relative,optional=True)
+    if binding is None:return raw,None
+    original,current,identities=production_source_pair(root,__file__,relative)
+    if raw==original or raw==current:return current,identities
+    # An older protected version is original evidence, not an equivalence proof.
+    historical,_,_=production_source_pair(root,__file__,relative,_hash(raw))
+    require(raw==historical,'captured historical module differs')
+    return raw,None
+
+
 @contextmanager
 def _module(raw,path):
     """Execute only already captured bytes, in a fresh private module namespace."""
+    raw,identities=_execution_source(raw,path)
     module=ModuleType('_f6c_variable_'+_hash(raw)+'_'+str(id(raw)))
     module.__file__=str(path);module.__package__='';name=module.__name__
     require(name not in sys.modules,'private module collision')
     sys.modules[name]=module
+    if identities is not None:
+        module.OPTION_B_PRODUCTION_IDENTITIES=identities
+        for key in ('production_identities','production_source_pair','production_recheck','production_historical_record','production_runtime_binding','production_original_source_binding'):
+            module.__dict__[key]=globals()[key]
     try:
+        production_recheck()
         exec(compile(raw,str(path),'exec',dont_inherit=True),module.__dict__)
         yield module
     finally:
         require(sys.modules.get(name)is module,'private module generation replaced')
         del sys.modules[name]
+        production_recheck()
 
 
 @contextmanager
@@ -828,6 +934,11 @@ def _bootstrap(path,digest,live):
     """
     require(type(digest)is str and _SHA.fullmatch(digest),'bootstrap expected hash')
     path=Path(path);require(path.is_absolute()and path==path.resolve(),'canonical bootstrap')
+    root=Path(__file__).resolve().parents[2]
+    try:relative=path.relative_to(root).as_posix()
+    except ValueError:archive=None
+    else:archive=production_original_source_binding(root,__file__,relative,digest,optional=True)
+    if archive is not None:path=Path(archive['path'])
     fd=os.open(path,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
     try:
         before=os.fstat(fd)
@@ -874,7 +985,16 @@ class _Pool:
         found=self.files.get(key)
         if found is None:
             require(len(self.files)<512,'source file census bound')
-            found=self.stack.enter_context(self.w.BoundFile(path,digest,capture=data,limit=MAX_BYTES if data else 1024**3,live=self.live))
+            try:
+                found=self.stack.enter_context(self.w.BoundFile(path,digest,capture=data,limit=MAX_BYTES if data else 1024**3,live=self.live))
+            except ValueError as error:
+                if str(error)!='input hash differs':raise
+                try:relative=path.relative_to(self.root).as_posix()
+                except ValueError:raise error
+                archive=production_original_source_binding(self.root,__file__,relative,digest,optional=True)
+                if archive is None:raise error
+                physical=self.capture(archive['path'],digest,data=data,size=size)
+                return _LogicalFile(physical,SourceBinding(str(path),digest,physical.initial.st_size))
             inode=(found.initial.st_dev,found.initial.st_ino)
             require(inode not in self.inodes,'hardlink source alias')
             self.inodes[inode]=key;self.files[key]=found;self.bytes+=found.initial.st_size
@@ -900,6 +1020,7 @@ class _Pool:
         self.note(physical)
     def recheck(self):
         for f in self.files.values():self.live();f.recheck()
+        production_recheck()
         self.live()
 
 
@@ -910,6 +1031,8 @@ class _LogicalFile:
         self.initial=physical.initial;self._original=original
     @property
     def data(self):return self._physical.data
+    @property
+    def fd(self):return self._physical.fd
     def binding(self):return asdict(self._original)
 
 
@@ -1335,7 +1458,7 @@ def _refinement_descriptors(values,root,owner_sha):
             if relation.role=='acceptanceOwner':
                 require(old['path']==str(root/OWNER),'historical owner canonical path')
                 require(old!=asdict(closure.owner),'current acceptance owner is not historical')
-                if legacy:require(old['sha256']=='7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c'
+                if legacy:require(old['sha256']==OPTION_B_PRODUCTION_IDENTITIES[127]
                     and old['bytes']==318717,'exact historical owner original tuple')
             else:
                 expected={r:dict(path=str(root/p),sha256=h,bytes=n)for r,p,h,n in _historical_parent_sources(value,root)+ANCESTRY_ARCHIVE_SOURCES}
@@ -1462,7 +1585,7 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
         historyReference='geometryHistory',decimalReference='geometryIntervals',decimalControls='geometryIntervalControls',
         rootLibrary='geometryRoots',rootControls='geometryRootsControls',independentRootReference='rootComparison',independentRootControls='rootControls')
     expected_deps={role:next((path,digest)for r,path,digest in SOURCES if r==alias)for role,alias in aliases.items()}
-    expected_deps['cacheEquivalence']=(PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md','a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d')
+    expected_deps['cacheEquivalence']=(PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md',OPTION_B_PRODUCTION_IDENTITIES[128])
     require(set(p['dependencies'])==set(expected_deps),'closed parent dependency roles')
     for role,(path,digest)in expected_deps.items():
         require(p['dependencies'][role]['path']==str(pool.root/path)and p['dependencies'][role]['sha256']==digest,'parent frozen dependency')
@@ -1502,7 +1625,7 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
         'parent publication boundary differs')
     for key in ('accelerationEvaluated','eomExecuted','wholeHistoryMetrics'):require(op[key]is False,'parent numerical authority promoted')
     expected_original={k:ancestry[k]for k in ('export','reconstruction','guards')}
-    expected_original['fullEntry']=pool.capture('scripts/eom/run-f6c-cached-root-cover-full.mjs','1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b',size=27166).binding()
+    expected_original['fullEntry']=pool.capture('scripts/eom/run-f6c-cached-root-cover-full.mjs',OPTION_B_PRODUCTION_IDENTITIES[129],size=27166).binding()
     expected_original.update(('full'+k[0].upper()+k[1:],v)for k,v in full.items())
     require(w.equal(w.source_map(p['originalBindings'].values(),pool.root),w.source_map(expected_original.values(),pool.root))
         and set(p['originalBindings'])==set(expected_original),'parent exact original sources')
@@ -1663,7 +1786,7 @@ def _authenticate_fresh_parents(w,core,pool,owner,ancestry,full,fdocs,export,par
     context=dict(family=integral.FAMILY,source_generation_sha256=ancestry['export']['sha256'],
         frame_generation_sha256=_hash(_encoded(export['acceptedFrames'])),field_speed='1',coupling=COUPLING,ruler=RULER)
     original={k:ancestry[k]for k in ('export','reconstruction','guards')}
-    original['fullEntry']=pool.capture('scripts/eom/run-f6c-cached-root-cover-full.mjs','1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b',size=27166).binding()
+    original['fullEntry']=pool.capture('scripts/eom/run-f6c-cached-root-cover-full.mjs',OPTION_B_PRODUCTION_IDENTITIES[130],size=27166).binding()
     original.update(('full'+k[0].upper()+k[1:],v)for k,v in full.items())
     expected_full=tuple(fdocs['admission']['sourceBindings'])
     selected=[];archives=[]
@@ -1727,20 +1850,12 @@ def _owner_declaration(raw):
 
 
 def _entry_pins(raw):
-    text=raw.decode('utf-8',errors='strict')
-    block=text.split('export const PINS = Object.freeze({',1)[1].split('\n});',1)[0]
-    result={}
-    for line in block.splitlines():
-        if not line.strip():continue
-        match=re.fullmatch(r'\s*(?:"([^"]+)"|\[([A-Z_]+)\]): "([a-f0-9]{64})",',line)
-        require(match is not None,'frozen entry binding syntax differs')
-        path,name,digest=match.groups()
-        if name:
-            matches=re.findall(r'export const '+re.escape(name)+r' = "([^"]+)";',text)
-            require(len(matches)==1,'entry binding constant');path=matches[0]
-        require(path not in result,'duplicate entry pin');result[path]=digest
-    require(len(result)==35,'full fixed entry pin census')
-    return result
+    record = production_historical_record(__file__, 'f6c-original-full')
+    require(hashlib.sha256(raw).hexdigest() == record['sourceEntry']['sha256']
+            and len(raw) == record['sourceEntry']['bytes'], 'original full entry bytes differ')
+    require(len(record['pins']) == 35 and len(record['membership']) == 198,
+            'original full historical membership census differs')
+    return dict(record['pins'])
 
 
 def _authenticate_historical_prior(reference,docs,ancestry):
@@ -1750,12 +1865,12 @@ def _authenticate_historical_prior(reference,docs,ancestry):
     records and the logical ancestry are never rewritten or re-hashed.
     """
     contract=docs['priorPlan']['comparisonContract'];comparison=docs['comparison']
-    require(contract['verifierSha256']=='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'
-        and contract['declarationSha256']=='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4'
+    require(contract['verifierSha256']==OPTION_B_PRODUCTION_IDENTITIES[131]
+        and contract['declarationSha256']==OPTION_B_PRODUCTION_IDENTITIES[132]
         and comparison['verifier']['sha256']==contract['verifierSha256'],'original prior oracle generation')
-    current_verifier='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'
+    current_verifier=OPTION_B_PRODUCTION_IDENTITIES[133]
     view=dict(docs,priorPlan=dict(docs['priorPlan'],comparisonContract=dict(contract,
-        verifierSha256=current_verifier,declarationSha256='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba')),
+        verifierSha256=current_verifier,declarationSha256=OPTION_B_PRODUCTION_IDENTITIES[134])),
         comparison=dict(comparison,verifier=dict(comparison['verifier'],sha256=current_verifier)))
     reference.authenticate_prior(view,ancestry)
 
@@ -1779,8 +1894,8 @@ def _full_chain(w,core,docs,bound,entry_raw,pool,owner_raw):
     _keys(p,('schema','scope','resourcePlan','comparisonContract','operationalBindings','controlBindings','python','pythonRealPath','git','node'))
     require(p['schema']=='braid-program/f6c-cached-root-cover-full-launch.v1'and p['scope']=='full','full plan identity')
     contract=p['comparisonContract'];_keys(contract,('declarationSha256','verifierSha256','scope','subjectSourceBindings','runtimeBindings'))
-    require(contract['scope']=='full'and contract['verifierSha256']=='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'
-        and contract['declarationSha256']=='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4','full comparison contract')
+    require(contract['scope']=='full'and contract['verifierSha256']==OPTION_B_PRODUCTION_IDENTITIES[135]
+        and contract['declarationSha256']==OPTION_B_PRODUCTION_IDENTITIES[136],'full comparison contract')
     expected=[]
     for path,digest in _entry_pins(entry_raw).items():
         expected.append(pool.capture(path,digest).binding())
@@ -1909,7 +2024,7 @@ def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256
         with _module(raw,root/transport_path)as w,ExitStack()as stack:
             pool=_Pool(stack,w,root,live);physical_pool=pool;fresh_consumed={}
             own=pool.capture(SELF,adapter_sha256,data=True)
-            require(compile(own.data,_EXECUTING_CODE.co_filename,'exec',dont_inherit=True)==_EXECUTING_CODE,'executing adapter bytes differ')
+            require(compile(_execution_source(own.data,own.path)[0],_EXECUTING_CODE.co_filename,'exec',dont_inherit=True)==_EXECUTING_CODE,'executing adapter bytes differ')
             pool.capture(CONTROLS,controls_sha256)
             if evidence_package is not None:pool=_packaged_pool(pool,evidence_package,parent_refinements,deadline)
             ancestry_roles={r for r,_,_,_ in ANCESTRY_ARCHIVE_SOURCES}

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { borgConsumerAdmission } from '../borg/selected-runtime-admission.mjs';
 
 import { createHash } from "node:crypto";
 import { performance } from "node:perf_hooks";
@@ -18,6 +19,7 @@ import {
   createBorgSeededInitialConditionRows,
 } from "../../src/apps/borg/BorgInitialConditions.js";
 
+const admission=borgConsumerAdmission(import.meta.url);
 const binaryPath = process.argv[2];
 if (!binaryPath) {
   throw new Error(
@@ -176,6 +178,7 @@ const strictControlPassed =
   threadParity &&
   persistentWorker;
 
+admission.check();
 process.stdout.write(`${JSON.stringify({
   schema: "eom_borg_refinement_ladder_evidence/v1",
   authority: pathCount === manifest.population.architrinoCount
@@ -279,3 +282,5 @@ function boundedPathCount(value, maximum) {
   }
   return number;
 }
+
+admission.check();

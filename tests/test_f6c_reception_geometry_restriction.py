@@ -4,6 +4,7 @@ Stationary and affine expectations are direct rational formulas. The frozen
 19c57 checker uses independent Bernstein conversion and square-root endpoint
 inequalities, not the subject's Horner interval state calculation.
 """
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from dataclasses import asdict, replace, FrozenInstanceError
 from decimal import Decimal, localcontext
 from fractions import Fraction as F
@@ -27,7 +28,7 @@ spec = importlib.util.spec_from_file_location('_restriction_independent19c57',
     ROOT/'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py')
 oracle = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = oracle
-spec.loader.exec_module(oracle)
+_option_b_exec_module(__file__, spec, oracle)
 REFS = s.References(h, roots, di, a)
 GUARDS = s.Guards('1', ('0.85',)*8,
     tuple(tuple('0' if i == j else '0.27' for j in range(8)) for i in range(8)))

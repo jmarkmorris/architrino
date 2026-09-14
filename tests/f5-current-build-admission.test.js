@@ -1,3 +1,8 @@
+import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
+import * as optionBProductionModule0 from "../scripts/eom/run-current-f5-enclosed-root.mjs";
+optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/run-current-f5-enclosed-root.mjs"));
+import * as optionBProductionModule1 from "../scripts/eom/run-f5-enclosed-root.mjs";
+optionBProductionModule1.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/run-f5-enclosed-root.mjs"));
 import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';
 const knownHashes = admittedKnownHashAnswers("tests/f5-current-build-admission.test.js");
 const ABC_SHA = knownHashes.sha256.abc;

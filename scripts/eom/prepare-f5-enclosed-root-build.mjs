@@ -27,7 +27,9 @@ export async function bootstrapF5(root, sourceMapSha256, originalIdentities = {}
   if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
   const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
   const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
-  return module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
+  const admitted = await module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
+  initializeProductionIdentities(admitted.productionIdentities("scripts/eom/prepare-f5-enclosed-root-build.mjs"));
+  return admitted;
 }
 
 function fileBinding(filename) {
@@ -46,17 +48,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..")
 const SELF = "scripts/eom/prepare-f5-enclosed-root-build.mjs";
 const ADAPTER = "src/eom/native/eom_f5_enclosed_root_cli.cpp";
 const BASE = ".local-data/braid-analysis/f5-enclosed-root-current-build/";
-export const SOURCE_OWNERS = Object.freeze({
-  "src/eom/native/eom_f5_enclosed_root_cli.cpp": "16a067847d77348b4c4d809dbaece8a4a80b91a6e9568198603b0338407d38f6",
-  "src/eom/src/History.cpp": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5",
-  "src/eom/src/Interval.cpp": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5",
-  "src/eom/include/architrino/eom/History.hpp": "0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3",
-  "src/eom/include/architrino/eom/Interval.hpp": "880a98273244c65f85ebcce2e08026a177c4af633633b8e29078948b54143dd9",
-});
-const PINNED = Object.freeze({
-  ...SOURCE_OWNERS,
-  "src/eom/CMakeLists.txt": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
-});
+export let SOURCE_OWNERS;
+let PINNED;
 const OPERATIONAL = ["scripts/eom/prepare-subfield-circular-root.mjs", "scripts/eom/prepare-f5-enclosed-root.mjs"];
 const absolute = (value) => path.isAbsolute(value) ? value : path.join(ROOT, value);
 export function minimalBinding(filename) {
@@ -105,9 +98,16 @@ export function snapshot(builderSha, admission) {
   };
   visit("src/eom/src"); visit("src/eom/include");
   const records = [...files].sort().map(fileBinding);
-  for (const [filename, expected] of Object.entries({ ...PINNED, ...operational, [SELF]: builderSha }))
-    if (records.find((record) => record.path === filename)?.sha256 !== expected)
+  for (const [filename, expected] of Object.entries({ ...PINNED, ...operational, [SELF]: builderSha })) {
+    let actualExpected=expected;
+    if(Object.hasOwn(PINNED,filename)&&expected===PINNED[filename]&&records.find(record=>record.path===filename)?.sha256!==expected){
+      const pair=admission.productionSourcePair(filename,expected);
+      if(f5Crypto.createHash('sha256').update(pair.original).digest('hex')!==expected)throw Error('Original build applicability differs: '+filename);
+      actualExpected=f5Crypto.createHash('sha256').update(pair.current).digest('hex');
+    }
+    if (records.find((record) => record.path === filename)?.sha256 !== actualExpected)
       throw new Error(`reviewed source drift: ${filename}`);
+  }
   return records;
 }
 function resolveTool(name) {
@@ -148,10 +148,15 @@ export async function prepare(argv) {
   mkdirSync(path.dirname(output), { recursive: true }); mkdirSync(output);
   const build = path.join(output, "build"), dependencies = path.join(output, "dependencies");
   mkdirSync(build); mkdirSync(dependencies);
+  const projector=await admission.importModule('scripts/eom/project-production-native-identities.mjs');
+  const productionProjection=projector.projectProductionNativeIdentities({root:ROOT,output:path.join(build,'option-b-production/option_b_production_identities.hpp')});
+  receipt.productionIdentityProjection=productionProjection;
   const watched = async (stage, command, args, cwd = ROOT) => {
+    productionProjection.check();
     admission.recheck();
     const log = path.join(output, `${stage}.log`);
     const result = await runWatched(command, args, { cwd, stage, logPath: log, limitMs: remaining(), heartbeatMs: 15000 });
+      productionProjection.check();
     admission.recheck();
     syncFile(log);
     receipt.stages.push({ ...result, cwd, log: fileBinding(log) });
@@ -245,6 +250,7 @@ export async function prepare(argv) {
       }
     }
     await watched("help-control", executable, ["--help"]);
+    productionProjection.check();
     receipt.sourcesAfter = snapshot(sha, admission);
     receipt.toolsAfter = receipt.toolsBefore.map((record) => ({ path: record.path }));
     receipt.headerDependenciesAfter = headerPaths.filter((filename) => filename.startsWith(`${ROOT}/src/eom/`)).map(fileBinding);
@@ -277,3 +283,19 @@ export async function prepare(argv) {
 
 if (import.meta.url.startsWith("file:") && !new URL(import.meta.url).search && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
   prepare(process.argv.slice(2)).catch((error) => { console.error(error.message); process.exitCode = 1; });
+
+export function initializeProductionIdentities(values) {
+  if (!Array.isArray(values) || values.length !== 6 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
+  const OPTION_B_PRODUCTION_IDENTITIES = values;
+  SOURCE_OWNERS = Object.freeze({
+  "src/eom/native/eom_f5_enclosed_root_cli.cpp": OPTION_B_PRODUCTION_IDENTITIES[0],
+  "src/eom/src/History.cpp": OPTION_B_PRODUCTION_IDENTITIES[1],
+  "src/eom/src/Interval.cpp": OPTION_B_PRODUCTION_IDENTITIES[2],
+  "src/eom/include/architrino/eom/History.hpp": OPTION_B_PRODUCTION_IDENTITIES[3],
+  "src/eom/include/architrino/eom/Interval.hpp": OPTION_B_PRODUCTION_IDENTITIES[4],
+});
+  PINNED = Object.freeze({
+  ...SOURCE_OWNERS,
+  "src/eom/CMakeLists.txt": OPTION_B_PRODUCTION_IDENTITIES[5],
+});
+}

@@ -5,6 +5,8 @@ synthetic; stationary exact answers below are derived by Fraction arithmetic,
 not by a checker or the production range evaluator. The latter is the subject.
 """
 from __future__ import annotations
+from option_b_synthetic_production import synthetic_capture
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -31,7 +33,7 @@ SOURCE = ROOT/'scripts/eom/prepare-f6c-refined-acceleration.py'
 spec = importlib.util.spec_from_file_location('f6c_refined_preparation_test_subject', SOURCE)
 subject = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = subject
-spec.loader.exec_module(subject)
+_option_b_exec_module(__file__, spec, subject)
 REFERENCE_BYTES = (ROOT/subject.REFERENCE).read_bytes()
 H = 'a'*64
 
@@ -802,6 +804,12 @@ class MainWiringControls(unittest.TestCase):
             stack.enter_context(patch.object(subject.time,'monotonic',side_effect=lambda:now[0]))
             stack.enter_context(patch.object(subject.signal,'signal',return_value=None))
             stack.enter_context(patch.object(subject.signal,'setitimer',side_effect=timer))
+            fixture_paths=set(data)|{str(ROOT/subject.CONTROLS)}|{str(ROOT/p) for p in subject.OPERATIONS if not p.startswith('/')}|{str(p) for p in (Path(sys.executable).resolve(),Path(sys.executable).absolute().parent.parent/'pyvenv.cfg',Path('/synthetic/git'))}
+            fixture_paths.update(str(ROOT/v['path']) for v in plan.values() if isinstance(v,dict) and 'path' in v)
+            fixture_paths.update(str(ROOT/v['path']) for key in ('runtimeBindings','operationalBindings') for v in plan[key])
+            fixture_paths.add('/synthetic/old-source')
+            fixture_paths.add(str(Path(tmp).resolve()/'new'/'range.json'))
+            stack.enter_context(synthetic_capture(subject,Capture,fixture_paths))
             stdout=stack.enter_context(redirect_stdout(io.StringIO()));stack.enter_context(redirect_stderr(io.StringIO()))
             args=['--plan',str(plan_path),'--plan-sha256',subject.sha(data[str(plan_path)]),
                 '--consumer-sha256',own_sha,'--out-dir',str(Path(tmp).resolve()/'new'),

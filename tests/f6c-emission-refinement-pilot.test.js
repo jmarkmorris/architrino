@@ -1,3 +1,4 @@
+import {loadProductionTestModule,originalProductionTestSource} from './support/option-b-production-hosts.mjs';
 import {batchTestIdentities,batchTestSources} from '../scripts/equation-mapping/batch-test-records.mjs';
 const identities=batchTestIdentities(import.meta.url);
 // Synthetic metadata/process controls only. No accepted history or range is evaluated.
@@ -10,7 +11,7 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {EventEmitter} from 'node:events';
 import {PassThrough} from 'node:stream';
-import * as E from '../scripts/eom/run-f6c-emission-refinement-pilot.mjs';
+const E=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-emission-refinement-pilot.mjs");
 import * as L from '../scripts/eom/launch-f6c-emission-refinement-pilot.mjs';
 const root=realpathSync(process.cwd()),hash=b=>createHash('sha256').update(b).digest('hex'),H='a'.repeat(64);
 const selected=await E.initializeSourceBindings(root,hash(readFileSync(E.SOURCE_MAP)));
@@ -35,7 +36,7 @@ function planFixture(){return {schema:'braid-program/f6c-emission-refinement-lau
 test('all scientific implementation/control pins remain their separately frozen source generations',()=>{
   const originalControls=new Map(['tests/test_eom_continuous_reception_roots_cached.py','tests/test_f6c_cached_continuous_reception_root_cover.py','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','tests/test_f6c_emission_refinement.py'].map(p=>[p,batchTestSources(import.meta.url,p)]));
   for(const p of [E.BRIDGE,E.SUPPORT,...Object.values(E.NAMED),...E.SUBJECT_PATHS,E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
-    assert.equal(hash(!E.SOURCE_BINDINGS[p]&&archived(p)===p&&originalControls.has(p)?Buffer.from(originalControls.get(p).original):readFileSync(archived(p))),(E.SOURCE_BINDINGS[p]??E.PINS[p]),p); // Historical controls retain original bytes; current operational sources retain current admission.
+    assert.equal(hash(!E.SOURCE_BINDINGS[p]&&archived(p)===p&&originalControls.has(p)?Buffer.from(originalControls.get(p).original):(!E.SOURCE_BINDINGS[p]&&archived(p)===p?(originalProductionTestSource(p,E.PINS[p])??readFileSync(archived(p))):readFileSync(archived(p)))),(E.SOURCE_BINDINGS[p]??E.PINS[p]),p); // Historical controls retain original bytes; current operational sources retain current admission.
   assert.equal(E.FIXED.length,16);assert.equal(E.SUBJECT_PATHS.length,15);assert.equal(E.PINS['tests/test_eom_decimal_interval.py'],identities[0]);
 });
 test('closed plan has no invented runtime/default fields and exact operational closure',()=>{
@@ -88,13 +89,14 @@ test('four data outputs and outer sibling are distinct and stages bind original 
  assert.throws(()=>E.outputPaths(dir,path.join(output,'subject')));
 });
 test('captured Python wrapper reports real target CPU separately and rejects changed source',()=>{
+  const envelope=E.stageSpec({stage:'producer',plan:{},planBinding:{path:'/synthetic-plan',sha256:H},root,output:path.join(root,E.LANE,'synthetic-envelope'),python,git,budget:'5'}).args[6];
   const dir=directory(),p=path.join(dir,'synthetic.py'),bytes=Buffer.from('print("synthetic-only")\n');writeFileSync(p,bytes);
-  const result=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,hash(bytes)],{encoding:'utf8',timeout:5000});
+  const result=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,hash(bytes),envelope],{encoding:'utf8',timeout:5000});
   assert.equal(result.status,0,result.stderr);assert.equal(result.stdout,'synthetic-only\n');
   const measured=JSON.parse(result.stderr.trim());assert.equal(measured.kind,'f6c-refinement-python-process-resources');
   for(const k of ['userSeconds','systemSeconds','waitedChildUserSeconds','waitedChildSystemSeconds'])assert.ok(Number.isFinite(measured[k])&&measured[k]>=0);
   assert.ok(measured.maximumIndividualResidentBytes>0);
-  const bad=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,H],{encoding:'utf8',timeout:5000});assert.notEqual(bad.status,0);assert.equal(bad.stdout,'');
+  const bad=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,H,envelope],{encoding:'utf8',timeout:5000});assert.notEqual(bad.status,0);assert.equal(bad.stdout,'');
 });
 test('metadata inventory closes lazy large-integer division dependencies without scientific imports',()=>{
   const after=String.raw`
@@ -311,7 +313,7 @@ test('private four-file publication monitor rejects repeat folders foreign files
 test('source capture and shutdown algorithms retain the accepted range generation',()=>{
  const current=readFileSync(E.ENTRY,'utf8'),old=readFileSync('scripts/eom/run-f6c-acceleration-pilot.mjs','utf8');
  const section=(text,from,to)=>text.slice(text.indexOf(from),text.indexOf(to));
- for(const [start,end] of [['export function readBound','export function checkBindings'],['export function checkBindings','export function writeNew'],['export function writeNew','function binding']])
+ for(const [start,end] of [['export function readBound','function checkOperationalBindings'],['function checkOperationalBindings','export function writeNew'],['export function writeNew','function binding']])
   assert.equal(section(current,start,end),section(old,start,end));
  assert.equal(section(current,'export async function runSingleStage','function resourceEvents'),section(old,'export async function runSingleStage','const falseClaims'));
  const a=readFileSync(E.LAUNCHER,'utf8'),b=readFileSync('scripts/eom/launch-f6c-acceleration-pilot.mjs','utf8');

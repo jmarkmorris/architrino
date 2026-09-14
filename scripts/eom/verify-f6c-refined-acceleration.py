@@ -33,6 +33,90 @@ unchanged frozen core data decoder. There is no retry or filename exception.
 """
 from __future__ import annotations
 
+if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
+    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
+    from pathlib import Path as _b_Path
+    _b_root = _b_Path(__file__).resolve().parents[2]
+    _b_held = {}
+    def _b_identity(path):
+        value = path.lstat()
+        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
+    def _b_capture(relative, expected=None):
+        if (type(relative) is not str or not relative or '\\' in relative
+                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
+            raise ValueError('Unsafe selected Python bootstrap path')
+        path = _b_root / relative
+        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
+            raise ValueError('Canonical regular Python bootstrap source required')
+        before = _b_identity(path)
+        if relative in _b_held and _b_held[relative] != before:
+            raise ValueError('Selected Python bootstrap source replaced')
+        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
+        try:
+            value = _b_os.fstat(fd)
+            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
+                raise ValueError('Bounded Python bootstrap source required')
+            parts = []; size = 0
+            while size < value.st_size:
+                part = _b_os.read(fd, min(65536, value.st_size-size))
+                if not part: raise ValueError('Truncated Python bootstrap source')
+                parts.append(part); size += len(part)
+            raw = b''.join(parts); value = _b_os.fstat(fd)
+            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
+                raise ValueError('Selected Python bootstrap source changed during capture')
+        finally:
+            _b_os.close(fd)
+        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
+            raise ValueError('Selected Python bootstrap digest differs')
+        _b_held[relative] = before
+        return raw
+    def _b_unique(pairs):
+        result = {}
+        for key,value in pairs:
+            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
+            result[key] = value
+        return result
+    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
+    def _b_recheck():
+        for relative,identity in _b_held.items():
+            if _b_identity(_b_root/relative) != identity:
+                raise ValueError('Retained Python bootstrap source replaced')
+    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
+    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
+    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
+    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
+    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
+    _b_path = 'scripts/eom/production_source_records.py'
+    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
+    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
+            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
+            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
+        raise ValueError('Exact selected Python production bridge required')
+    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
+    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
+    _b_bridge.__file__ = str(_b_root/_b_path)
+    _b_sys.modules[_b_bridge.__name__] = _b_bridge
+    _b_recheck()
+    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
+    _b_recheck()
+    def _b_call(name, *args, **kwargs):
+        _b_recheck()
+        result = getattr(_b_bridge,name)(*args,**kwargs)
+        _b_recheck()
+        return result
+    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
+    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
+    production_recheck = lambda: _b_call('production_recheck')
+    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
+    production_runtime_binding = lambda: _b_call('production_runtime_binding')
+    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
+    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+
+if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
+        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
+        or len(OPTION_B_PRODUCTION_IDENTITIES) != 18):
+    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
 import argparse
 from contextlib import ExitStack, contextmanager
 from dataclasses import asdict
@@ -56,33 +140,33 @@ CONTROLS='tests/test_f6c_refined_acceleration.py'
 CONSUMER='scripts/eom/prepare-f6c-refined-acceleration.py'
 CONSUMER_CONTROLS='tests/test_f6c_refined_acceleration_preparation.py'
 DECLARATION='reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md'
-DECLARATION_SHA='a9d871a35e6e9f00e96ba07182798cb87f546eabe0664e7f170b67c820bb43fc'
+DECLARATION_SHA=OPTION_B_PRODUCTION_IDENTITIES[0]
 CORE='scripts/eom/oracle/f6c_refined_acceleration_conformance.py'
-CORE_SHA='7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'
+CORE_SHA=OPTION_B_PRODUCTION_IDENTITIES[1]
 REFERENCE='scripts/eom/verify-f6c-continuous-reception-acceleration.py'
-REFERENCE_SHA='23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d'
+REFERENCE_SHA=OPTION_B_PRODUCTION_IDENTITIES[2]
 NAMED={
  'consumer':(CONSUMER,None),'consumerControls':(CONSUMER_CONTROLS,None),
  'verifier':(SELF,None),'verifierControls':(CONTROLS,None),
  'declaration':(DECLARATION,DECLARATION_SHA),
  'comparisonCore':(CORE,CORE_SHA),
- 'comparisonCoreControls':('tests/test_f6c_refined_acceleration_conformance.py','147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921'),
- 'rangeReference':('scripts/eom/oracle/continuous_reception_acceleration.py','abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'),
- 'rangeReferenceControls':('tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
+ 'comparisonCoreControls':('tests/test_f6c_refined_acceleration_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[3]),
+ 'rangeReference':('scripts/eom/oracle/continuous_reception_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[4]),
+ 'rangeReferenceControls':('tests/test_eom_continuous_reception_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[5]),
  'rangeComparison':(REFERENCE,REFERENCE_SHA),
- 'rangeComparisonControls':('tests/test_f6c_continuous_reception_acceleration.py','13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed')}
+ 'rangeComparisonControls':('tests/test_f6c_continuous_reception_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[6])}
 PRIOR_BASE='.local-data/braid-analysis/f6c-emission-refinement-20260827/pilot-cell-0-v2'
 REFINED=(
- ('queries',PRIOR_BASE+'/queries.ndjson','44d59ae62f8d7d9a9e7afd1d684e8ee15b8aeadf4dc92d489a787e5e224029fa'),
- ('rows',PRIOR_BASE+'/rows.ndjson','b6309b3c90f75590ba8270ea6cea1644be46727692a19be6aa364163e108035f'),
- ('pieces',PRIOR_BASE+'/pieces.ndjson','075007966aa14b3d0c9ff896d5cb752d06e410f1002dc2bc39a8e7d8db55340a'),
- ('manifest',PRIOR_BASE+'/cover-manifest.json','d4ec0d60631dd46cf2872ace941677dfd980af6f8cdbe540347b5252d336ebb6'),
- ('comparison',PRIOR_BASE+'-outer/comparison.json','eed41550c3c743df419efab8d0f9ad6094b43fa1efe3f4949365e731c1f7c63e'),
- ('admission',PRIOR_BASE+'-outer/pilot-admission.json','51f0b3774bfb489bbab4fddd7f7612c6d4132f2654a36aa4091e5445eca9b51c'),
- ('plan','reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-launch.v2.json','295d1d8a8366942c4aa3f0c586e028faae08e2ac64517c837f0fe73a6b8b8a88'))
+ ('queries',PRIOR_BASE+'/queries.ndjson',OPTION_B_PRODUCTION_IDENTITIES[7]),
+ ('rows',PRIOR_BASE+'/rows.ndjson',OPTION_B_PRODUCTION_IDENTITIES[8]),
+ ('pieces',PRIOR_BASE+'/pieces.ndjson',OPTION_B_PRODUCTION_IDENTITIES[9]),
+ ('manifest',PRIOR_BASE+'/cover-manifest.json',OPTION_B_PRODUCTION_IDENTITIES[10]),
+ ('comparison',PRIOR_BASE+'-outer/comparison.json',OPTION_B_PRODUCTION_IDENTITIES[11]),
+ ('admission',PRIOR_BASE+'-outer/pilot-admission.json',OPTION_B_PRODUCTION_IDENTITIES[12]),
+ ('plan','reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-launch.v2.json',OPTION_B_PRODUCTION_IDENTITIES[13]))
 PRIOR_OPERATIONS=(
- ('launcherLog',PRIOR_BASE+'-outer/launcher-stderr.log','7f5b04faec494c248dc2d8f468b29d4dfaf953de063752995c3a3517ed9d2abb',8671),
- ('resourceLog',PRIOR_BASE+'-outer/resource-observations.ndjson','e8af4c71f7cd0278b8df5c831738bd5d3f0f4cfd872ebf887a6cbd3396dc4313',471433))
+ ('launcherLog',PRIOR_BASE+'-outer/launcher-stderr.log',OPTION_B_PRODUCTION_IDENTITIES[14],8671),
+ ('resourceLog',PRIOR_BASE+'-outer/resource-observations.ndjson',OPTION_B_PRODUCTION_IDENTITIES[15],471433))
 PRIOR_NAMED=tuple('declaration producer producerControls verifier verifierControls comparisonReference comparisonReferenceControls'.split())
 PRIOR_SUBJECT_PATHS=(
  'scripts/eom/prepare-f6c-emission-refinement.py','tests/test_f6c_emission_refinement_preparation.py',
@@ -112,8 +196,8 @@ OPERATIONS=('scripts/eom/run-f6c-refined-acceleration-pilot.mjs',
  'tests/f6c-refined-acceleration-pilot.test.js','tests/f6c-refined-acceleration-pilot-process.test.js',
  'scripts/eom/launch-prescribed-response-pilot.mjs','scripts/eom/launch-subfield-circular-root-pilot.mjs',
  '/bin/ps','/usr/bin/memory_pressure')
-OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31',
- 'scripts/eom/launch-subfield-circular-root-pilot.mjs':'35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826',
+OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':OPTION_B_PRODUCTION_IDENTITIES[16],
+ 'scripts/eom/launch-subfield-circular-root-pilot.mjs':OPTION_B_PRODUCTION_IDENTITIES[17],
 }
 PLAN_KEYS=('schema','scope',*NAMED,'runtimeBindings','operationalBindings','limits','priorRefinementClosure')
 CANDIDATE_KEYS=tuple('schema scope status accepted launchPlan consumer declaration verifier sourceBindings ancestryBindings refinementBindings runtimeBindings operationalBindings priorRefinementClosure projection ranges census claims publicationRequires'.split())
@@ -126,6 +210,85 @@ METADATA_TOKEN=re.compile(r'-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?
 SCIENTIFIC_DOCUMENT_ROLES=frozenset(('export','manifest','priorPlan','plan','candidate'))
 METADATA_DOCUMENT_ROLES=frozenset(('comparison','reconstruction','guards','completion','launcherLog','resourceLog'))
 
+
+
+
+
+
+
+
+class _ProductionOriginal:
+    """Original logical binding backed by an independently owned archive handle."""
+    def __init__(self, physical, logical):
+        object.__setattr__(self,'_physical',physical)
+        object.__setattr__(self,'path',logical)
+    def __getattr__(self,name):return getattr(self._physical,name)
+    def __setattr__(self,name,value):setattr(self._physical,name,value)
+    def binding(self):
+        result=self._physical.binding();result['path']=str(self.path);return result
+    def physical_binding(self):return self._physical.binding()
+    def recheck(self):
+        result=self._physical.recheck()
+        if isinstance(result,dict) and 'path' in result:
+            result=dict(result);result['path']=str(self.path)
+        return result
+
+
+@contextmanager
+def _production_capture(cls, filename, digest, **kwargs):
+    from pathlib import Path as _Path
+    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
+    if not _path.is_absolute():_path=_root/_path
+    try:_relative=_path.relative_to(_root).as_posix()
+    except ValueError:_binding=None
+    else:
+        if _path!=_path.resolve():raise ValueError('noncanonical original capture')
+        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
+        if _binding is not None:
+            from hashlib import sha256 as _sha256
+            _,_current,_=production_source_pair(_root,__file__,_relative)
+            _binding=None if _sha256(_current).hexdigest()==digest else production_original_source_binding(_root,__file__,_relative,digest)
+    _physical=_Path(_binding['path']) if _binding is not None else _path
+    production_recheck()
+    with cls(_physical,digest,**kwargs) as _held:
+        if _binding is not None and (_held.binding()['bytes']!=_binding['bytes'] or _held.binding()['sha256']!=_binding['sha256']):raise ValueError('original archive identity differs')
+        try:yield _ProductionOriginal(_held,_path) if _binding is not None else _held
+        finally:
+            if _binding is not None:_held.recheck()
+            production_recheck()
+
+def _production_current_source(raw):
+    from pathlib import Path as _Path
+    _root=_Path(__file__).resolve().parents[2]
+    _original,_current,_=production_source_pair(_root,__file__,_Path(__file__).resolve().relative_to(_root).as_posix())
+    require(raw==_original or raw==_current,'executing source is not the selected equivalent generation')
+    production_recheck()
+    return _current
+
+def _production_exec(raw, filename, namespace, *, optimize=-1):
+    """Execute the proven current representation or the exact older original."""
+    from pathlib import Path as _Path
+    from hashlib import sha256 as _sha256
+    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
+    if not _path.is_absolute():_path=_root/_path
+    try:_relative=_path.relative_to(_root).as_posix()
+    except ValueError:_binding=None
+    else:
+        if _path!=_path.resolve():raise ValueError('noncanonical captured module')
+        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
+    if _binding is not None:
+        _original,_current,_identities=production_source_pair(_root,__file__,_relative)
+        if raw==_original or raw==_current:
+            raw=_current
+            namespace['OPTION_B_PRODUCTION_IDENTITIES']=_identities
+            for _key in ('production_identities','production_source_pair','production_recheck','production_historical_record','production_runtime_binding','production_original_source_binding'):
+                namespace[_key]=globals()[_key]
+        else:
+            _historical,_,_=production_source_pair(_root,__file__,_relative,_sha256(raw).hexdigest())
+            if raw!=_historical:raise ValueError('captured older original differs')
+    production_recheck()
+    try:exec(compile(raw,str(filename),'exec',dont_inherit=True,optimize=optimize),namespace)
+    finally:production_recheck()
 
 def require(ok,message):
     if not ok:raise ValueError(message)
@@ -274,7 +437,7 @@ class BoundFile:
 
 
 def executing_source(raw):
-    require(compile(raw,_EXECUTING_CODE.co_filename,'exec',dont_inherit=True,optimize=sys.flags.optimize)==_EXECUTING_CODE,'executing source differs')
+    require(compile(_production_current_source(raw),_EXECUTING_CODE.co_filename,'exec',dont_inherit=True,optimize=sys.flags.optimize)==_EXECUTING_CODE,'executing source differs')
 
 
 @contextmanager
@@ -285,7 +448,7 @@ def captured_references(core_bytes,reference_bytes):
         for kind,raw,filename in (('comparison',reference_bytes,REFERENCE),('core',core_bytes,CORE)):
             name='_f6c_refined_'+kind+'_'+str(id(raw));require(name not in sys.modules,'private module collision')
             module=ModuleType(name);module.__file__=str(Path(__file__).resolve().parents[2]/filename);sys.modules[name]=module;modules.append(module)
-            exec(compile(raw,module.__file__,'exec',dont_inherit=True),module.__dict__)
+            _production_exec(raw, module.__file__, module.__dict__)
         yield modules[1],modules[0]
     finally:
         for module in reversed(modules):sys.modules.pop(module.__name__,None)
@@ -489,7 +652,7 @@ def main(argv=None):
             owned={}
             def capture(path,digest,*,data=False,limit=MAX_BYTES):
                 key=str(Path(path).absolute());obj=owned.get(key)
-                if obj is None:obj=stack.enter_context(BoundFile(key,digest,capture=data,limit=limit,live=live));owned[key]=obj
+                if obj is None:obj=stack.enter_context(_production_capture(BoundFile, key,digest,capture=data,limit=limit,live=live));owned[key]=obj
                 else:
                     require(obj.digest==digest and obj.initial.st_size<=limit,'conflicting captured generation')
                     if data and obj.data is None:obj.data,h=obj.scan(True);require(h==digest,'changed later capture')

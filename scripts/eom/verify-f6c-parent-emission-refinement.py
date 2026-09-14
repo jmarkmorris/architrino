@@ -15,6 +15,90 @@ No root search, EOM, acceleration, metric or physical authority is provided.
 """
 from __future__ import annotations
 
+if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
+    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
+    from pathlib import Path as _b_Path
+    _b_root = _b_Path(__file__).resolve().parents[2]
+    _b_held = {}
+    def _b_identity(path):
+        value = path.lstat()
+        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
+    def _b_capture(relative, expected=None):
+        if (type(relative) is not str or not relative or '\\' in relative
+                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
+            raise ValueError('Unsafe selected Python bootstrap path')
+        path = _b_root / relative
+        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
+            raise ValueError('Canonical regular Python bootstrap source required')
+        before = _b_identity(path)
+        if relative in _b_held and _b_held[relative] != before:
+            raise ValueError('Selected Python bootstrap source replaced')
+        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
+        try:
+            value = _b_os.fstat(fd)
+            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
+                raise ValueError('Bounded Python bootstrap source required')
+            parts = []; size = 0
+            while size < value.st_size:
+                part = _b_os.read(fd, min(65536, value.st_size-size))
+                if not part: raise ValueError('Truncated Python bootstrap source')
+                parts.append(part); size += len(part)
+            raw = b''.join(parts); value = _b_os.fstat(fd)
+            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
+                raise ValueError('Selected Python bootstrap source changed during capture')
+        finally:
+            _b_os.close(fd)
+        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
+            raise ValueError('Selected Python bootstrap digest differs')
+        _b_held[relative] = before
+        return raw
+    def _b_unique(pairs):
+        result = {}
+        for key,value in pairs:
+            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
+            result[key] = value
+        return result
+    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
+    def _b_recheck():
+        for relative,identity in _b_held.items():
+            if _b_identity(_b_root/relative) != identity:
+                raise ValueError('Retained Python bootstrap source replaced')
+    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
+    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
+    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
+    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
+    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
+    _b_path = 'scripts/eom/production_source_records.py'
+    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
+    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
+            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
+            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
+        raise ValueError('Exact selected Python production bridge required')
+    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
+    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
+    _b_bridge.__file__ = str(_b_root/_b_path)
+    _b_sys.modules[_b_bridge.__name__] = _b_bridge
+    _b_recheck()
+    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
+    _b_recheck()
+    def _b_call(name, *args, **kwargs):
+        _b_recheck()
+        result = getattr(_b_bridge,name)(*args,**kwargs)
+        _b_recheck()
+        return result
+    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
+    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
+    production_recheck = lambda: _b_call('production_recheck')
+    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
+    production_runtime_binding = lambda: _b_call('production_runtime_binding')
+    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
+    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+
+if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
+        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
+        or len(OPTION_B_PRODUCTION_IDENTITIES) != 52):
+    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
 import argparse
 from contextlib import ExitStack, contextmanager
 from dataclasses import fields, is_dataclass
@@ -46,47 +130,47 @@ MAX_SOURCE_BYTES = 1024**3
 MAX_LINE = 131072
 IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')
 NAMED = {
- 'declaration': (PREFIX+'2026-08-27-f6c-parent-emission-refinement-reference.md','c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'),
+ 'declaration': (PREFIX+'2026-08-27-f6c-parent-emission-refinement-reference.md',OPTION_B_PRODUCTION_IDENTITIES[0]),
  'producer': ('scripts/eom/prepare-f6c-parent-emission-refinement.py',None),
  'producerControls': ('tests/test_f6c_parent_emission_refinement_preparation.py',None),
- 'proposalReference': ('scripts/eom/f6c_parent_emission_refinement.py','d2653fd0dc74c7515ee7eccdd59c0f487903a481c6294cabce43e58b633c1406'),
- 'proposalReferenceControls': ('tests/test_f6c_parent_emission_refinement.py','f1650b5e73a06ecd7ed05bff10ba97949b42aa5330e84fb3514c2f868eff0fc2'),
+ 'proposalReference': ('scripts/eom/f6c_parent_emission_refinement.py',OPTION_B_PRODUCTION_IDENTITIES[1]),
+ 'proposalReferenceControls': ('tests/test_f6c_parent_emission_refinement.py',OPTION_B_PRODUCTION_IDENTITIES[2]),
  'verifier': (SELF,None), 'verifierControls': (CONTROLS,None),
- 'comparisonReference': ('scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py','9bca879b94386d033597bb9d1e3a4ceeb9943925615c916299feb91e482391ad'),
- 'comparisonReferenceControls': ('tests/test_f6c_parent_emission_refinement_conformance.py','2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb'),
+ 'comparisonReference': ('scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[3]),
+ 'comparisonReferenceControls': ('tests/test_f6c_parent_emission_refinement_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[4]),
 }
 DEPENDENCIES = {
- 'transport': ('scripts/eom/verify-f6c-refined-acceleration.py','e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae'),
- 'transportControls': ('tests/test_f6c_refined_acceleration.py','d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd'),
- 'scientificDecoder': ('scripts/eom/oracle/f6c_refined_acceleration_conformance.py','7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'),
- 'scientificDecoderControls': ('tests/test_f6c_refined_acceleration_conformance.py','147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921'),
- 'productionHelper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841'),
- 'productionHelperControls': ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2'),
- 'historyReference': ('scripts/eom/oracle/certified_history.py','ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
- 'decimalReference': ('scripts/eom/oracle/decimal_interval.py','fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
- 'decimalControls': ('tests/test_eom_decimal_interval.py','22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44'),
- 'rootLibrary': ('scripts/eom/oracle/continuous_reception_roots_cached.py','daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'),
- 'rootControls': ('tests/test_eom_continuous_reception_roots_cached.py','a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb'),
- 'independentRootReference': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'),
- 'independentRootControls': ('tests/test_f6c_cached_continuous_reception_root_cover.py','09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3'),
- 'cacheEquivalence': (PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md','a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d'),
+ 'transport': ('scripts/eom/verify-f6c-refined-acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[5]),
+ 'transportControls': ('tests/test_f6c_refined_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[6]),
+ 'scientificDecoder': ('scripts/eom/oracle/f6c_refined_acceleration_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[7]),
+ 'scientificDecoderControls': ('tests/test_f6c_refined_acceleration_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[8]),
+ 'productionHelper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py',OPTION_B_PRODUCTION_IDENTITIES[9]),
+ 'productionHelperControls': ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py',OPTION_B_PRODUCTION_IDENTITIES[10]),
+ 'historyReference': ('scripts/eom/oracle/certified_history.py',OPTION_B_PRODUCTION_IDENTITIES[11]),
+ 'decimalReference': ('scripts/eom/oracle/decimal_interval.py',OPTION_B_PRODUCTION_IDENTITIES[12]),
+ 'decimalControls': ('tests/test_eom_decimal_interval.py',OPTION_B_PRODUCTION_IDENTITIES[13]),
+ 'rootLibrary': ('scripts/eom/oracle/continuous_reception_roots_cached.py',OPTION_B_PRODUCTION_IDENTITIES[14]),
+ 'rootControls': ('tests/test_eom_continuous_reception_roots_cached.py',OPTION_B_PRODUCTION_IDENTITIES[15]),
+ 'independentRootReference': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py',OPTION_B_PRODUCTION_IDENTITIES[16]),
+ 'independentRootControls': ('tests/test_f6c_cached_continuous_reception_root_cover.py',OPTION_B_PRODUCTION_IDENTITIES[17]),
+ 'cacheEquivalence': (PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md',OPTION_B_PRODUCTION_IDENTITIES[18]),
 }
 FULL_BASE = '.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/'
 FULL = {
- 'fullRows': (FULL_BASE+'subject/rows.ndjson','28491edb2f1faec7adf248f535d29a1600b8bd69f5a46706fd26dbb3eb848b5c',22585784),
- 'fullPieces': (FULL_BASE+'subject/pieces.ndjson','b3a2ddf2c8cd5b586ef7b374eee94afc395f63496c849ec574e71bf1f487a9ab',7505144),
- 'fullManifest': (FULL_BASE+'subject/cover-manifest.json','61b0cdfad85696a0b5ead7df838119c9005a28656e9ac3daa26df139054410e2',42922),
- 'fullComparison': (FULL_BASE+'comparison.json','1c423aece2009a2d7d0852e9558c16464c640abbc5bea3743211af3805b6eed2',43377),
- 'fullAdmission': (FULL_BASE+'full-admission.json','8fe8f0f9651fd8de15467a69f0534f08bbe19e0e3fdb64a86c6422be857eb77f',332567),
- 'fullLauncherLog': (FULL_BASE+'launcher-stderr.log','b976d8deb556d8faba5a3aff73a09b77ec26c6da84e42726167eec4ec7a43314',30969),
- 'fullResourceLog': (FULL_BASE+'resource-observations.ndjson','66eb0cfa1811d0a834d18d3bd8e749a941e1964f7276898b80a4e12136d69d03',1710278),
- 'fullPlan': (PREFIX+'2026-08-27-f6c-cached-root-cover-full-launch.v1.json','5dd7e27084a2e8e5b2c3ed8daf8cf66248a437108710ce91281977e728197ddc',45282),
+ 'fullRows': (FULL_BASE+'subject/rows.ndjson',OPTION_B_PRODUCTION_IDENTITIES[19],22585784),
+ 'fullPieces': (FULL_BASE+'subject/pieces.ndjson',OPTION_B_PRODUCTION_IDENTITIES[20],7505144),
+ 'fullManifest': (FULL_BASE+'subject/cover-manifest.json',OPTION_B_PRODUCTION_IDENTITIES[21],42922),
+ 'fullComparison': (FULL_BASE+'comparison.json',OPTION_B_PRODUCTION_IDENTITIES[22],43377),
+ 'fullAdmission': (FULL_BASE+'full-admission.json',OPTION_B_PRODUCTION_IDENTITIES[23],332567),
+ 'fullLauncherLog': (FULL_BASE+'launcher-stderr.log',OPTION_B_PRODUCTION_IDENTITIES[24],30969),
+ 'fullResourceLog': (FULL_BASE+'resource-observations.ndjson',OPTION_B_PRODUCTION_IDENTITIES[25],1710278),
+ 'fullPlan': (PREFIX+'2026-08-27-f6c-cached-root-cover-full-launch.v1.json',OPTION_B_PRODUCTION_IDENTITIES[26],45282),
 }
 ORIGINAL = {
- 'export': ('.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json','f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'),
- 'reconstruction': ('.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json','7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43'),
- 'guards': ('.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json','86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880'),
- 'fullEntry': ('scripts/eom/run-f6c-cached-root-cover-full.mjs','1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b'),
+ 'export': ('.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json',OPTION_B_PRODUCTION_IDENTITIES[27]),
+ 'reconstruction': ('.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json',OPTION_B_PRODUCTION_IDENTITIES[28]),
+ 'guards': ('.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json',OPTION_B_PRODUCTION_IDENTITIES[29]),
+ 'fullEntry': ('scripts/eom/run-f6c-cached-root-cover-full.mjs',OPTION_B_PRODUCTION_IDENTITIES[30]),
  **FULL,
 }
 PLAN_KEYS = ('schema','scope','parentIndex',*NAMED,'dependencies','originalBindings','acceptanceOwner','priorCoverClosure','runtimeBindings','operationalBindings','historicalDocumentRoutes','limits')
@@ -103,6 +187,86 @@ ALGORITHM = dict(lowerQueriesPerPair=32,upperQueriesPerPair=32,upperSearchRestar
 PUBLICATION_REQUIRES = 'fresh successful completion, independent parent refinement comparison, external inclusive deadline and closed owned processes'
 HEX = re.compile(r'[a-f0-9]{64}\Z')
 
+
+
+
+
+
+
+
+class _ProductionOriginal:
+    """Original logical binding backed by an independently owned archive handle."""
+    def __init__(self, physical, logical):
+        object.__setattr__(self,'_physical',physical)
+        object.__setattr__(self,'path',logical)
+    def __getattr__(self,name):return getattr(self._physical,name)
+    def __setattr__(self,name,value):setattr(self._physical,name,value)
+    def binding(self):
+        result=self._physical.binding();result['path']=str(self.path);return result
+    def physical_binding(self):return self._physical.binding()
+    def recheck(self):
+        result=self._physical.recheck()
+        if isinstance(result,dict) and 'path' in result:
+            result=dict(result);result['path']=str(self.path)
+        return result
+
+
+@contextmanager
+def _production_capture(cls, filename, digest, **kwargs):
+    from pathlib import Path as _Path
+    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
+    if not _path.is_absolute():_path=_root/_path
+    try:_relative=_path.relative_to(_root).as_posix()
+    except ValueError:_binding=None
+    else:
+        if _path!=_path.resolve():raise ValueError('noncanonical original capture')
+        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
+        if _binding is not None:
+            from hashlib import sha256 as _sha256
+            _,_current,_=production_source_pair(_root,__file__,_relative)
+            _binding=None if _sha256(_current).hexdigest()==digest else production_original_source_binding(_root,__file__,_relative,digest)
+    _physical=_Path(_binding['path']) if _binding is not None else _path
+    production_recheck()
+    with cls(_physical,digest,**kwargs) as _held:
+        if _binding is not None and (_held.binding()['bytes']!=_binding['bytes'] or _held.binding()['sha256']!=_binding['sha256']):raise ValueError('original archive identity differs')
+        try:yield _ProductionOriginal(_held,_path) if _binding is not None else _held
+        finally:
+            if _binding is not None:_held.recheck()
+            production_recheck()
+
+
+def _production_current_source(raw):
+    from pathlib import Path as _Path
+    _root=_Path(__file__).resolve().parents[2]
+    _original,_current,_=production_source_pair(_root,__file__,_Path(__file__).resolve().relative_to(_root).as_posix())
+    require(raw==_original or raw==_current,'executing source is not the selected equivalent generation')
+    production_recheck()
+    return _current
+
+def _production_exec(raw, filename, namespace, *, optimize=-1):
+    """Execute the proven current representation or the exact older original."""
+    from pathlib import Path as _Path
+    from hashlib import sha256 as _sha256
+    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
+    if not _path.is_absolute():_path=_root/_path
+    try:_relative=_path.relative_to(_root).as_posix()
+    except ValueError:_binding=None
+    else:
+        if _path!=_path.resolve():raise ValueError('noncanonical captured module')
+        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
+    if _binding is not None:
+        _original,_current,_identities=production_source_pair(_root,__file__,_relative)
+        if raw==_original or raw==_current:
+            raw=_current
+            namespace['OPTION_B_PRODUCTION_IDENTITIES']=_identities
+            for _key in ('production_identities','production_source_pair','production_recheck','production_historical_record','production_runtime_binding','production_original_source_binding'):
+                namespace[_key]=globals()[_key]
+        else:
+            _historical,_,_=production_source_pair(_root,__file__,_relative,_sha256(raw).hexdigest())
+            if raw!=_historical:raise ValueError('captured older original differs')
+    production_recheck()
+    try:exec(compile(raw,str(filename),'exec',dont_inherit=True,optimize=optimize),namespace)
+    finally:production_recheck()
 
 def require(value, message):
     if not value: raise ValueError(message)
@@ -159,79 +323,79 @@ def validate_plan(w, plan, own_sha, root):
 # Exact nonexecuting archives recovered against the original pinned admission.
 HISTORICAL_ARCHIVES = {
  "scripts/eom/launch-abc-enclosed-root-pilot.mjs": [
-  "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
+  OPTION_B_PRODUCTION_IDENTITIES[31],
   39465
  ],
  "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": [
-  "af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386",
+  OPTION_B_PRODUCTION_IDENTITIES[32],
   38160
  ],
  "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py": [
-  "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132",
+  OPTION_B_PRODUCTION_IDENTITIES[33],
   41336
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md": [
-  "daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b",
+  OPTION_B_PRODUCTION_IDENTITIES[34],
   10021
  ],
  "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": [
-  "9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427",
+  OPTION_B_PRODUCTION_IDENTITIES[35],
   11113
  ],
  "tests/test_f6c_cached_continuous_reception_root_cover.py": [
-  "2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117",
+  OPTION_B_PRODUCTION_IDENTITIES[36],
   11096
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md": [
-  "7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4",
+  OPTION_B_PRODUCTION_IDENTITIES[37],
   12103
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md": [
-  "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+  OPTION_B_PRODUCTION_IDENTITIES[38],
   28340
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md": [
-  "6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",
+  OPTION_B_PRODUCTION_IDENTITIES[39],
   21031
  ],
  "tests/test_eom_continuous_reception_roots.py": [
-  "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144",
+  OPTION_B_PRODUCTION_IDENTITIES[40],
   32501
  ],
  "scripts/eom/verify-f6c-accepted-frame-reconstruction.py": [
-  "80a96ebd0b306148b3eb96cb12e797c5cf80942e52ea457a8c6a72d58e8618a0",
+  OPTION_B_PRODUCTION_IDENTITIES[41],
   31153
  ],
  "scripts/eom/verify-f6c-retained-history-guards.py": [
-  "efaed33a6d6e55be5788ffb7e4e6f596fbc0381466a8308154dbd550743896b9",
+  OPTION_B_PRODUCTION_IDENTITIES[42],
   31651
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md": [
-  "765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079",
+  OPTION_B_PRODUCTION_IDENTITIES[43],
   25546
  ],
  "scripts/eom/verify-f6c-continuous-reception-root-cover.py": [
-  "2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd",
+  OPTION_B_PRODUCTION_IDENTITIES[44],
   39929
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md": [
-  "798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3",
+  OPTION_B_PRODUCTION_IDENTITIES[45],
   10933
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md": [
-  "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef",
+  OPTION_B_PRODUCTION_IDENTITIES[46],
   13021
  ],
  "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md": [
-  "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4",
+  OPTION_B_PRODUCTION_IDENTITIES[47],
   6754
  ],
  "scripts/eom/run-f6c-cached-root-cover-full.mjs": [
-  "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+  OPTION_B_PRODUCTION_IDENTITIES[48],
   27166
  ],
  "scripts/eom/launch-f6c-cached-root-cover-full.mjs": [
-  "0f11fe5e51ef52f95c02605b776fe6b94c72a67a4a5f2b69671870f5f548ae17",
+  OPTION_B_PRODUCTION_IDENTITIES[49],
   26659
  ]
 }
@@ -260,6 +424,11 @@ def bootstrap(path, digest, live):
     """Same-FD bounded capture of transport before any captured helper executes."""
     path=Path(path);require(path.is_absolute() and path==path.resolve(),'bootstrap canonical path')
     require(type(digest) is str and HEX.fullmatch(digest),'bootstrap expected SHA')
+    root=Path(__file__).resolve().parents[2]
+    try:relative=path.relative_to(root).as_posix()
+    except ValueError:archive=None
+    else:archive=production_original_source_binding(root,__file__,relative,digest,optional=True)
+    if archive is not None:path=Path(archive['path'])
     live();fd=os.open(path,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
     def identity(s): return s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns
     try:
@@ -283,7 +452,7 @@ def captured_module(raw, filename, digest):
     name='_parent1_'+digest[:12]+'_'+str(id(raw));require(name not in sys.modules,'private name collision')
     module=ModuleType(name);module.__file__=str(filename);sys.modules[name]=module
     try:
-        exec(compile(raw,str(filename),'exec',dont_inherit=True),module.__dict__)
+        _production_exec(raw, str(filename), module.__dict__)
         yield module
     finally: sys.modules.pop(name,None)
 
@@ -303,7 +472,7 @@ class Pool:
                 raw,h=obj.scan(True);obj.check_path();require(h==digest,'late capture hash');obj.data=raw
             return obj
         require(len(self.files)<512,'source file census bound')
-        obj=self.stack.enter_context(self.w.BoundFile(path,digest,capture=data,limit=limit,live=self.live))
+        obj=self.stack.enter_context(_production_capture(self.w.BoundFile,path,digest,capture=data,limit=limit,live=self.live))
         identity=(obj.initial.st_dev,obj.initial.st_ino)
         require(identity not in self.inodes,'hardlink source alias')
         self.total+=obj.initial.st_size;require(self.total<=MAX_SOURCE_BYTES,'aggregate bound source bytes')
@@ -316,7 +485,7 @@ class Pool:
         for obj in tuple(self.files.values()): obj.recheck()
     def bindings(self): return [self.files[k].binding() for k in sorted(self.files)]
     def identities(self):
-        return [(self.files[k].binding(),self.w.BoundFile.identity(self.files[k].initial)) for k in sorted(self.files)]
+        return [((self.files[k].physical_binding() if isinstance(self.files[k],_ProductionOriginal) else self.files[k].binding()),self.w.BoundFile.identity(self.files[k].initial)) for k in sorted(self.files)]
     def historical_file(self,b,*,data=False):
         old=self.w.normalized(b,self.root)
         route=self.routes.get(old['path'])
@@ -381,16 +550,12 @@ def records(raw, decode, count, *, live=lambda:None):
 
 
 def entry_pins(raw):
-    text=raw.decode('utf-8',errors='strict');marker='export const PINS = Object.freeze({'
-    require(text.count(marker)==1,'unique frozen PINS block');block=text.split(marker,1)[1].split('\n});',1)[0];pins={}
-    for line in block.splitlines():
-        if not line.strip(): continue
-        match=re.fullmatch(r'\s*(?:"([^"]+)"|\[([A-Z_]+)\]): "([a-f0-9]{64})",',line)
-        require(match is not None,'frozen PINS syntax');path,name,digest=match.groups()
-        if name:
-            values=re.findall(r'export const '+re.escape(name)+r' = "([^"]+)";',text);require(len(values)==1,'frozen PINS constant');path=values[0]
-        require(path not in pins,'duplicate entry PIN');pins[path]=digest
-    require(len(pins)==35,'full entry35 PINS');return pins
+    record = production_historical_record(__file__, 'f6c-original-full')
+    require(hashlib.sha256(raw).hexdigest() == record['sourceEntry']['sha256']
+            and len(raw) == record['sourceEntry']['bytes'], 'original full entry bytes differ')
+    require(len(record['pins']) == 35 and len(record['membership']) == 198,
+            'original full historical membership census differs')
+    return dict(record['pins'])
 
 
 def authenticate_owner(raw):
@@ -409,7 +574,7 @@ def authenticate_full(w, ref, docs, originals, entry_raw, owner_raw, pool):
     keys(p,('schema','scope','resourcePlan','comparisonContract','operationalBindings','controlBindings','python','pythonRealPath','git','node'))
     require(p['schema']=='braid-program/f6c-cached-root-cover-full-launch.v1' and p['scope']=='full','original full plan')
     contract=p['comparisonContract'];keys(contract,('declarationSha256','verifierSha256','scope','subjectSourceBindings','runtimeBindings'))
-    require(contract['scope']=='full' and contract['verifierSha256']=='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132' and contract['declarationSha256']=='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4','original comparison contract')
+    require(contract['scope']=='full' and contract['verifierSha256']==OPTION_B_PRODUCTION_IDENTITIES[50] and contract['declarationSha256']==OPTION_B_PRODUCTION_IDENTITIES[51],'original comparison contract')
     claimed=w.source_map(a['sourceBindings'],pool.root)
     expected=[]
     for path,digest in entry_pins(entry_raw).items():
@@ -658,7 +823,7 @@ def main(argv=None):
         transport_path,transport_sha=DEPENDENCIES['transport']
         with bootstrap(root/transport_path,transport_sha,live) as raw, captured_module(raw,root/transport_path,transport_sha) as w, ExitStack() as stack:
             pool=Pool(stack,w,root,live);own=pool.capture(SELF,args.verifier_sha256,data=True,limit=MAX_BYTES)
-            require(compile(own.data,_EXECUTING_CODE.co_filename,'exec',dont_inherit=True,optimize=sys.flags.optimize)==_EXECUTING_CODE,'executing verifier source differs')
+            require(compile(_production_current_source(own.data),_EXECUTING_CODE.co_filename,'exec',dont_inherit=True,optimize=sys.flags.optimize)==_EXECUTING_CODE,'executing verifier source differs')
             loaded={}
             for role in ('scientificDecoder','comparisonReference','independentRootReference'):
                 p,h=(NAMED if role in NAMED else DEPENDENCIES)[role];f=pool.capture(p,h,data=True,limit=MAX_BYTES);loaded[role]=stack.enter_context(captured_module(f.data,root/p,h))

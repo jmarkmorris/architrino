@@ -4,6 +4,7 @@ Stationary answers below follow g(T,s)=|Xi-Xj|-T+s and the signed sharp
 kernel. Hermite controls are independently differentiated polynomials. File
 controls exercise transport/closure, not a new physical acceptance instrument.
 """
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -33,7 +34,8 @@ import f6c_evidence_package as storage
 import f6c_reception_geometry_restriction as geometry
 from oracle import continuous_reception_acceleration as a
 from oracle import f6c_residual_integral_supremum as integral
-from oracle import f6c_correlated_residual_enclosure as correlated
+from option_b_production_records import load_named_module
+correlated = load_named_module(__file__, '_variable_test_correlated', ROOT/'scripts/eom/oracle/f6c_correlated_residual_enclosure.py')
 from oracle import certified_history as geometry_history
 from oracle import continuous_reception_roots_cached as geometry_roots
 from oracle import decimal_interval as geometry_intervals
@@ -41,7 +43,7 @@ from oracle import decimal_interval as geometry_intervals
 
 def load(path,name):
     spec=importlib.util.spec_from_file_location(name,ROOT/path);module=importlib.util.module_from_spec(spec)
-    sys.modules[name]=module;spec.loader.exec_module(module);return module
+    sys.modules[name]=module;_option_b_exec_module(__file__, spec, module);return module
 
 
 w=load('scripts/eom/verify-f6c-refined-acceleration.py','_variable_test_transport')

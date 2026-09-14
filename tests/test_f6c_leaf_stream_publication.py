@@ -1,4 +1,5 @@
 """Portable filesystem/transport controls; no histories or numerical imports."""
+from option_b_production_records import captured_source as _option_b_capture, exec_source as _option_b_exec_source, exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -29,11 +30,11 @@ def load(name, path):
     spec = importlib.util.spec_from_file_location(name, path)
     module = importlib.util.module_from_spec(spec)
     sys.modules[name] = module
-    spec.loader.exec_module(module)
+    _option_b_exec_module(__file__, spec, module)
     return module
 
 
-assert hashlib.sha256(CODEC.read_bytes()).hexdigest() == CODEC_SHA
+assert hashlib.sha256(_option_b_source_bytes(__file__, CODEC)).hexdigest() == CODEC_SHA
 codec = load('leaf_publication_frozen_codec', CODEC)
 subject = load('leaf_publication_subject', SUBJECT)
 
@@ -454,8 +455,9 @@ class PublicationTests(unittest.TestCase):
             self.assertFalse(q.public_path.exists())
 
     def test_import_has_no_filesystem_side_effect_or_numeric_dependency(self):
-        raw = SUBJECT.read_bytes()
+        original, raw, identities = _option_b_capture(__file__, SUBJECT)
         module = types.ModuleType('publication_import_tripwire')
+        module.OPTION_B_PRODUCTION_IDENTITIES = identities
         sys.modules[module.__name__] = module
         try:
             with mock.patch('os.open', side_effect=AssertionError('I/O at import')), \

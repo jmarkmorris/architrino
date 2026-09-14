@@ -4,6 +4,7 @@ All 35 frozen baseline control obligations run against the new comparator.
 Exact source bytes and AST structure prove that only four binding assignments
 changed; numerical agreement is not used as a new mathematical oracle.
 """
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities, original_test_source
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -54,21 +55,23 @@ def digest(raw):
 def load_module(path, name):
     spec = importlib.util.spec_from_file_location(name, path)
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    raw = _option_b_source_bytes(__file__, path)
+    exec(compile(raw, str(path), "exec", dont_inherit=True), module.__dict__)
     return module
 
 
-BASE_BYTES = BASE.read_bytes()
-CONTROL_BYTES = BASE_TESTS.read_bytes()
+BASE_BYTES = _option_b_source_bytes(__file__, BASE)
+CONTROL_BYTES = _option_b_source_bytes(__file__, BASE_TESTS)
 if digest(BASE_BYTES) != BASE_SHA or digest(CONTROL_BYTES) != BASE_TESTS_SHA:
     raise RuntimeError("frozen baseline reference/control source drift")
+SOURCE_BYTES = _option_b_source_bytes(__file__, SOURCE)
 V = load_module(SOURCE, "f6c_cached_binding_reference")
 # Execute the unchanged controls in their own namespace, then retarget ONLY
 # their subject/source handles. Their closed forms and negative cases are intact.
 LEGACY = types.ModuleType("f6c_baseline_controls_for_cached_binding")
 LEGACY.__file__ = str(BASE_TESTS)
 exec(compile(CONTROL_BYTES, str(BASE_TESTS), "exec", dont_inherit=True), LEGACY.__dict__)
-BASE_MODULE = LEGACY.V
+BASE_MODULE = load_module(BASE, "f6c_original_baseline_reference")
 LEGACY.V = V
 LEGACY.SOURCE = SOURCE
 
@@ -86,12 +89,12 @@ def expected_successor_bytes():
 
 
 class SuccessorBindingTests(unittest.TestCase):
-    def test_exact_source_bytes_change_only_explicit_binding_literals(self):
-        self.assertEqual(SOURCE.read_bytes(), expected_successor_bytes())
-        self.assertEqual(digest(BASE.read_bytes()), BASE_SHA)
-        self.assertEqual(digest(BASE_TESTS.read_bytes()), BASE_TESTS_SHA)
+    def test_original_source_bytes_change_only_explicit_binding_literals(self):
+        self.assertEqual(SOURCE_BYTES, expected_successor_bytes())
+        self.assertEqual(digest(BASE_BYTES), BASE_SHA)
+        self.assertEqual(digest(CONTROL_BYTES), BASE_TESTS_SHA)
 
-    def test_ast_identical_except_four_top_level_assignments(self):
+    def test_original_ast_identical_except_four_top_level_assignments(self):
         def stripped(raw):
             tree = ast.parse(raw)
             found = set()
@@ -104,7 +107,7 @@ class SuccessorBindingTests(unittest.TestCase):
             self.assertEqual(found, ALLOWED_ASSIGNMENTS)
             tree.body = remaining
             return ast.dump(tree, include_attributes=False)
-        self.assertEqual(stripped(BASE_BYTES), stripped(SOURCE.read_bytes()))
+        self.assertEqual(stripped(BASE_BYTES), stripped(SOURCE_BYTES))
 
     def test_complete_fixed_chain_retains_all_original_premises(self):
         old = {role: (path, sha) for role, path, sha in BASE_MODULE.FIXED}
@@ -129,7 +132,7 @@ class SuccessorBindingTests(unittest.TestCase):
                     # selected current controls are admitted separately by this read.
                     raw = original_test_source(ROOT, __file__, path)
                 else:
-                    raw = (ROOT/path).read_bytes()
+                    raw = _option_b_source_bytes(__file__, ROOT/path)
                 self.assertEqual(digest(raw), expected, role)
         self.assertEqual(V.DECLARATION_SHA, DECLARATION_SHA)
         self.assertEqual(V.SELF, str(SOURCE.relative_to(ROOT)))

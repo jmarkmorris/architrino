@@ -3,6 +3,7 @@
 The separate frozen inventory/decoder provide independent accepted-data
 expectations. This test suite never creates a package of actual evidence.
 """
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -24,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location('f6c_evidence_package', ROOT / 'scripts/eom/f6c_evidence_package.py')
 PACKAGE = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = PACKAGE
-SPEC.loader.exec_module(PACKAGE)
+_option_b_exec_module(__file__, SPEC, PACKAGE)
 
 
 def sha(raw):

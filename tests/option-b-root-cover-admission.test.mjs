@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {copyProductionFixture} from './support/option-b-production-fixtures.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -19,7 +20,7 @@ test('required admission coverage retains exactly the five original profiles',()
 for (const [profile, selected] of Object.entries(PROFILES)) {
 const R = await import('../' + selected.entry), { runFileWorker } = await import('../' + (profile === 'f6c-acceleration' ? 'scripts/eom/launch-prescribed-response-pilot.mjs' : selected.launcher));
 const MANIFEST = selected.manifest;
-const expectedSources = { 'root-cover': 28, 'cached-root-cover': 35, 'cached-root-cover-full': 36, 'prescribed-response': 15, 'f6c-acceleration': 26 }[profile];
+const expectedSources = { 'root-cover': 42, 'cached-root-cover': 49, 'cached-root-cover-full': 50, 'prescribed-response': 15, 'f6c-acceleration': 40 }[profile];
 const expectedEvidence = ['cached-root-cover-full','f6c-acceleration'].includes(profile) ? 11 : profile === 'prescribed-response' ? 9 : 3;
 const scenario = (name, fn) => test(profile + ': ' + name, fn);
 
@@ -54,6 +55,7 @@ function fixture(t) {
   for (const p of paths) {
     fs.mkdirSync(path.dirname(path.join(root, p)), { recursive: true }); fs.copyFileSync(path.join(ROOT, p), path.join(root, p));
   }
+  copyProductionFixture(ROOT,root);
   return root;
 }
 scenario('captured entry admits B and worker recheck rejects changed manifest bytes', async t => {

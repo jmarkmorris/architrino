@@ -8,7 +8,11 @@ This is the current execution ledger for deployment, hosting, cost, reliability,
 2. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: Queued.
 3. `operator_explanation_standard_review` — [OPS-029](#ops-029--operator-explanation-standard-review). Status: Queued.
 4. `option_b_report_only_stale_binding_review` — [OPS-030](#ops-030--option-b-report-only-stale-binding-review). Priority: Medium; status: Queued.
-5. `periodic_project_skill_maintenance` — [OPS-027](#ops-027--periodic-project-skill-maintenance). Status: Recurring; next pass due 2026-11-10.
+5. ○ `periodic_priority_assets_scan` — [OPS-032](#ops-032--periodic-priority-assets-scan). Status: Recurring; first status scan due 2026-09-20; first substantive sample due 2026-10-13.
+6. ○ `periodic_reader_facing_corpus_scan` — [OPS-031](#ops-031--periodic-reader-facing-corpus-scan). Status: Recurring; first priority-ordered batch due 2026-09-20; first Foundations/Dynamics cycle due 2026-10-13.
+7. `periodic_project_skill_maintenance` — [OPS-027](#ops-027--periodic-project-skill-maintenance). Status: Recurring; next pass due 2026-11-10.
+
+8. ○ `periodic_retention_review` — [OPS-033](#ops-033--periodic-retention-review). Status: Recurring; first pass due 2026-10-14.
 
 ## In progress
 
@@ -84,6 +88,38 @@ This is the current execution ledger for deployment, hosting, cost, reliability,
 No rows.
 
 ## Recurring
+
+### OPS-033 — Periodic retention review
+
+- **Priority object:** `periodic_retention_review`.
+- **Status:** ○ Recurring; scheduled, first pass not started.
+- **Scheduler:** Active task heartbeat `architrino-retention-review`, titled “Architrino retention review”; monthly on the 14th at 09:00 app-local time.
+- **Cadence and next due:** First pass 2026-10-14; monthly thereafter. Assess cadence after three completed passes.
+- **Request:** Follow the [retention review procedure](../../op/machine-artifact-retention.md#recurring-retention-review): measure budget compliance and allocation, inspect three bounded families for current consumers, reproduction and recovery obligations, and propose keep/archive/rebuild/delete dispositions. Preserve the circular-root pilot detailed-review deferral until an operator-selected milestone.
+- **Acceptance per pass:** Record exact coverage, instruments/results and limits, current consumers, proposed dispositions, recovery gaps, deferred/uncovered families, coverage cursor and next due date in the work log and existing subject owners. No automatic deletion, movement, compaction, history maintenance, budget change, authored regeneration or publication.
+- **Owner:** operations coordinates with artifact and research owners; scientific acceptance remains with those owners.
+
+### OPS-031 — Periodic reader-facing corpus scan
+
+- **Priority object:** `periodic_reader_facing_corpus_scan`.
+- **Status:** ○ Recurring; scheduled, first pass not started.
+- **Scheduler:** Active shared task heartbeat `ops-031-corpus-review-cycles`, titled “Architrino corpus and priority review cycles”; daily 09:00 app-local check-in executes only due batches/checks. Scheduled coverage starts 2026-09-20. OPS-031 and OPS-032 retain separate coverage records.
+- **Request:** Scan reader-facing corpus claims and explanations for demonstrated errors, missed propagation and useful evidence-backed improvements under the [periodic review procedure](../../op/periodic-document-review.md). Retain valid no-change dispositions and route substantive repairs to their existing owner.
+- **Cadence and next due:** Establish the ordered due list by the [four review priorities](../../op/periodic-document-review.md#corpus-review-priorities). Review all 15 Foundations/Dynamics chapters monthly, the 46 core-theory chapters quarterly, 95 supporting chapters every six months, and 43 validation/simulation chapters annually. These are current inventory counts, not immutable quotas. First ordered batch: 2026-09-20, starting Ontology and Architrino; first early-chapter cycle due 2026-10-13. Material changes trigger affected-dependency review earlier. Cadence/coverage evaluation due 2026-12-12; no automatic rewrite; the shared scheduled check-in advances due review work.
+- **Baseline:** The [CRW-005 supplementary closeout](../aaa-corpus-rewrite/evidence/crw-005-claude-sixteen-closure-verification-2026-09-13.md#final-sixteen-chapter-integration) supplies dated review evidence; recheck actual bytes and owners at launch.
+- **Acceptance per pass:** Record priority assignments, ordered due paths/versions, completed whole-chapter coverage, remaining cycle cursor and next batch, independent support and dispositions for findings, verification of accepted repairs, previous-repair/no-change follow-up, confirmed regressions and measured review burden. Update the next due date and record the pass under OPS-031 in the work log. Samples do not establish corpus-wide correctness.
+- **Owner:** operations coordinates; corpus review and applicable scientific owners adjudicate and integrate. Preserve CRW-005 history and separate scientific obligations.
+
+### OPS-032 — Periodic priority-assets scan
+
+- **Priority object:** `periodic_priority_assets_scan`.
+- **Status:** ○ Recurring; scheduled, first pass not started.
+- **Scheduler:** Active shared task heartbeat `ops-031-corpus-review-cycles`, titled “Architrino corpus and priority review cycles”; daily 09:00 app-local check-in executes only due batches/checks. Scheduled coverage starts 2026-09-20. OPS-031 and OPS-032 retain separate coverage records.
+- **Request:** Check live priority control surfaces for status, ownership and evidence consistency, and sample substantive manuscripts, analyses, contracts and their supporting assets under the [periodic review procedure](../../op/periodic-document-review.md). Review non-Markdown evidence through its declared consumer; preserve historical bytes and dormant status.
+- **Cadence and next due:** Weekly changed-control-surface scan plus one rotating unchanged directory, first 2026-09-20; monthly substantive sample of three workstreams, first 2026-10-13. Material owner/claim transitions trigger focused review earlier. Cadence/coverage evaluation due 2026-12-12.
+- **Coordination:** Reuse current OPS-028 coverage and active-owner findings rather than restart that traversal. Guidance/skills and binding incidents retain OPS-014/OPS-027 and their existing incident owners.
+- **Acceptance per pass:** Record exact directories/files inspected, live owner and evidence-backed dispositions, stale or contradictory claims, accepted follow-up owners, repair verification and next due dates in the OPS-032 work-log entry. No blanket asset certification, dormant reactivation or automatic scientific promotion.
+- **Owner:** operations coordinates with each priority workstream's live owner.
 
 ### OPS-014 — Periodic review of agent guidance
 

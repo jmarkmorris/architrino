@@ -1,3 +1,7 @@
+const OPTION_B_PROOF_WORKER = !isMainThread && workerData?.task === "subfield-circular-whole-manifest-proof";
+const OPTION_B_PRODUCTION_ADMISSION = OPTION_B_PROOF_WORKER ? null : await captureProductionAdmission(path.resolve(path.dirname(fileURLToPath(import.meta.url)),"../.."),"scripts/eom/verify-subfield-circular-history.mjs");
+const OPTION_B_PRODUCTION_IDENTITIES = OPTION_B_PROOF_WORKER ? workerData.snapshot.productionIdentities : OPTION_B_PRODUCTION_ADMISSION.identities();
+if(!Array.isArray(OPTION_B_PRODUCTION_IDENTITIES)||OPTION_B_PRODUCTION_IDENTITIES.length!==6||OPTION_B_PRODUCTION_IDENTITIES.some(value=>!(/^[0-9a-f]{64}$/u.test(value))))throw Error("Invalid admitted proof identities");
 import { createHash, randomUUID } from "node:crypto";
 import { closeSync, constants, fstatSync, fsyncSync, openSync, readSync, writeFileSync } from "node:fs";
 import { registerHooks } from "node:module";
@@ -9,12 +13,12 @@ import { isMainThread, parentPort, Worker, workerData } from "node:worker_thread
 export const SUBFIELD_CIRCULAR_HISTORY_SCHEMA = "braid-program/subfield-circular-history-manifest.v1";
 export const SUBFIELD_CIRCULAR_PROOF_SCHEMA = "braid-program/subfield-circular-history-conformance.v1";
 export const SUBFIELD_CIRCULAR_FROZEN_BINDINGS = Object.freeze([
-  { id: "circular-core", path: "src/prescribed-path-analysis/CircularHistoryConformance.mjs", sha256: "e06080cc2e7d62af546bb51e60b65e157905c7d765e9f2d5b8c44f71ce3f22f8" },
-  { id: "integer-primitive", path: "scripts/eom/derive-subfield-circular-root-reference.mjs", sha256: "45f27a7aea84b110aa3cfa0583fb869782c2189af6b003aba4ab2215b40ac003" },
-  { id: "root-reference", path: ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-root-reference-20260827-v1.json", sha256: "c5c7ae5e44e37c7a03ac916f2c406a657e9b90067c27a596302a2731a9ae066f" },
-  { id: "budget-cli", path: "scripts/eom/derive-subfield-circular-history-budget.mjs", sha256: "5e4aff33e4a82444df5d29b29c2dbd509c935668e262816e1ec0c2128d6732bc" },
-  { id: "construction-budget", path: ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-history-budget-20260827-v1.json", sha256: "6c380ecb86be8ca505ef7975cdd4d8fb844e2191762692a6b5e29134ee5bfebf" },
-  { id: "pilot-predeclaration", path: "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-pilot-predeclaration.md", sha256: "b1f0ac316d24637b8ad01f467d33c207e7ed728fa3bd3921824d51697daddc4d" },
+  { id: "circular-core", path: "src/prescribed-path-analysis/CircularHistoryConformance.mjs", sha256: OPTION_B_PRODUCTION_IDENTITIES[0] },
+  { id: "integer-primitive", path: "scripts/eom/derive-subfield-circular-root-reference.mjs", sha256: OPTION_B_PRODUCTION_IDENTITIES[1] },
+  { id: "root-reference", path: ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-root-reference-20260827-v1.json", sha256: OPTION_B_PRODUCTION_IDENTITIES[2] },
+  { id: "budget-cli", path: "scripts/eom/derive-subfield-circular-history-budget.mjs", sha256: OPTION_B_PRODUCTION_IDENTITIES[3] },
+  { id: "construction-budget", path: ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-history-budget-20260827-v1.json", sha256: OPTION_B_PRODUCTION_IDENTITIES[4] },
+  { id: "pilot-predeclaration", path: "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-pilot-predeclaration.md", sha256: OPTION_B_PRODUCTION_IDENTITIES[5] },
 ].map(Object.freeze));
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const SELF = "scripts/eom/verify-subfield-circular-history.mjs";
@@ -54,17 +58,26 @@ function readRegularBytes(filename) {
 }
 
 function captureProofSnapshot() {
+  const productionPairs=Object.fromEntries(SUBFIELD_CIRCULAR_FROZEN_BINDINGS.filter(binding=>["integer-primitive","budget-cli"].includes(binding.id)).map(binding=>{
+    const pair=OPTION_B_PRODUCTION_ADMISSION.sourcePair(binding.path);
+    if(sha(Buffer.from(pair.original))!==binding.sha256)reject("proof reference is not the pre-migration original");
+    return [binding.path,{original:pair.original,current:pair.current}];
+  }));
   const sources = [
     ...SUBFIELD_CIRCULAR_FROZEN_BINDINGS.filter((binding) => ["circular-core", "integer-primitive"].includes(binding.id)),
     { id: "whole-manifest-verifier", path: SELF },
   ].map((binding) => {
     const url = pathToFileURL(path.join(ROOT, binding.path)).href;
-    const bytes = readRegularBytes(fileURLToPath(url));
+    const currentBytes = readRegularBytes(fileURLToPath(url));
+    const pair=productionPairs[binding.path];
+    if(pair&&!currentBytes.equals(Buffer.from(pair.current)))reject("proof source current bytes differ");
+    const bytes=pair?Buffer.from(pair.original):currentBytes;
     const digest = sha(bytes);
     if (binding.sha256 && digest !== binding.sha256) reject(`bound bytes changed: ${binding.id}`);
     return { ...binding, sha256: digest, url, bytes };
   });
-  return { sources, nonce: randomUUID(), entryUrl: pathToFileURL(path.join(ROOT, SELF)).href };
+  OPTION_B_PRODUCTION_ADMISSION.check();
+  return { sources, productionPairs, productionIdentities:OPTION_B_PRODUCTION_IDENTITIES, nonce: randomUUID(), entryUrl: pathToFileURL(path.join(ROOT, SELF)).href };
 }
 
 // This function is also executed verbatim by the fresh worker's tiny loader.
@@ -125,6 +138,11 @@ function validateSnapshot(snapshot) {
         sha(entry.bytes) !== entry.sha256 || (binding.sha256 && entry.sha256 !== binding.sha256)) {
       reject("proof source snapshot differs from its declared frozen generation");
     }
+  }
+  if(!snapshot.productionPairs||Object.keys(snapshot.productionPairs).length!==2)reject("proof original/current pair census differs");
+  for(const binding of SUBFIELD_CIRCULAR_FROZEN_BINDINGS.filter(binding=>["integer-primitive","budget-cli"].includes(binding.id))){
+    const pair=snapshot.productionPairs[binding.path];
+    if(!pair||typeof pair.original!=="string"||typeof pair.current!=="string"||Buffer.byteLength(pair.original)>MAX_BYTES||Buffer.byteLength(pair.current)>MAX_BYTES||sha(Buffer.from(pair.original))!==binding.sha256)reject("proof original source pair differs");
   }
   return snapshot;
 }
@@ -200,7 +218,11 @@ function originalJson(bytes, exactNumbers = false) {
 
 function readBound(binding) {
   const bytes = readRegularBytes(path.join(ROOT, binding.path));
-  if (sha(bytes) !== binding.sha256) reject(`bound bytes changed: ${binding.id ?? binding.path}`);
+  if (sha(bytes) !== binding.sha256) {
+    const pair=PROOF_SNAPSHOT.productionPairs[binding.path];
+    if(!pair||sha(Buffer.from(pair.original))!==binding.sha256||!bytes.equals(Buffer.from(pair.current)))reject(`bound bytes changed: ${binding.id ?? binding.path}`);
+    return Buffer.from(pair.original);
+  }
   return bytes;
 }
 
@@ -458,9 +480,11 @@ async function cli() {
     process.exitCode = 1;
   }
   try {
+    OPTION_B_PRODUCTION_ADMISSION.check();
     result.supervisedWallSeconds = (performance.now() - began) / 1000;
     writeFileSync(fd, `${JSON.stringify(result, null, 2)}\n`);
     fsyncSync(fd);
+    OPTION_B_PRODUCTION_ADMISSION.check();
   } finally { closeSync(fd); }
   process.stdout.write(`${JSON.stringify({ accepted: result.accepted, actualCarrierValidated: result.actualCarrierValidated,
     h3EvidenceEligible: false, output: args.output, error: result.error })}\n`);
@@ -476,4 +500,27 @@ if (!isMainThread && workerData?.task === "subfield-circular-whole-manifest-proo
   } catch (error) { parentPort.postMessage({ type: "failure", message: error.message }); }
 } else if (isMainThread && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   cli().catch((error) => { process.stderr.write(`${error.message}\n`); process.exitCode = 1; });
+}
+
+async function captureProductionAdmission(root,consumer) {
+  const fs=await import('node:fs'),p=await import('node:path'),u=await import('node:url'),m=await import('node:module'),crypto=await import('node:crypto');
+  const digest=b=>crypto.createHash('sha256').update(b).digest('hex'),retained=new Map();
+  const identity=s=>[s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].map(String);
+  const capture=(relative,expected)=>{
+    if(typeof relative!=='string'||p.isAbsolute(relative)||relative.split(/[\\/]/u).some(x=>!x||x==='.'||x==='..'))throw Error('Canonical bootstrap relative path required');
+    const file=p.join(root,relative);if(fs.realpathSync(file)!==file)throw Error('Canonical bootstrap file required');
+    const fd=fs.openSync(file,fs.constants.O_RDONLY|fs.constants.O_NOFOLLOW|fs.constants.O_NONBLOCK);
+    try{const before=fs.fstatSync(fd,{bigint:true});if(!before.isFile()||before.size>1048576n)throw Error('Bounded regular bootstrap file required');const bytes=fs.readFileSync(fd),key=identity(before);if(BigInt(bytes.length)!==before.size||JSON.stringify(identity(fs.fstatSync(fd,{bigint:true})))!==JSON.stringify(key)||JSON.stringify(identity(fs.lstatSync(file,{bigint:true})))!==JSON.stringify(key))throw Error('Bootstrap changed during capture');if(expected&&digest(bytes)!==expected)throw Error('Authenticated bootstrap bytes differ');const old=retained.get(relative);if(old&&(old.sha256!==digest(bytes)||JSON.stringify(old.identity)!==JSON.stringify(key)))throw Error('Retained bootstrap source replaced');retained.set(relative,{identity:key,sha256:digest(bytes)});return bytes;}finally{fs.closeSync(fd);}
+  };
+  const selection=JSON.parse(capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'));
+  if(Object.keys(selection).sort().join(' ')!=='acceptedBaseline acceptedBaselineSha256 transition transitionSha256'||! /^[a-f0-9]{64}$/u.test(selection.acceptedBaselineSha256))throw Error('External production selection required');
+  const accepted=JSON.parse(capture(selection.acceptedBaseline,selection.acceptedBaselineSha256));
+  const profiles=accepted.profiles.filter(row=>row.name==='production-source-records');if(profiles.length!==1)throw Error('Unique accepted production bootstrap profile required');
+  const moduleTag='?productionCapture='+crypto.randomUUID();
+  const graph=JSON.parse(profiles[0].manifestRaw)['@graph'];const sources=new Map();
+  for(const[relative,role]of [['scripts/equation-mapping/production-source-records.mjs','admission'],['scripts/equation-mapping/current-source-manifest.mjs','manifest-reader'],['scripts/equation-mapping/current-source-transition.mjs','manifest-reader']]){const rows=graph.filter(row=>row['@type']==='Source'&&row.binding?.path===relative);if(rows.length!==1||rows[0].role!==role||JSON.stringify(rows[0].binding.selector)!=='{"kind":"whole"}'||rows[0].binding.contract!=='fixed-byte-selection/v1'||! /^[a-f0-9]{64}$/u.test(rows[0].binding.sha256))throw Error('Exact protected bootstrap row required');sources.set(u.pathToFileURL(p.join(root,relative)).href+moduleTag,capture(relative,rows[0].binding.sha256).toString('utf8'));}
+  const hooks=m.registerHooks({resolve(specifier,context,next){if(m.isBuiltin(specifier))return next(specifier,context);const resolved=new URL(specifier,context.parentURL);resolved.search=moduleTag;const url=resolved.href;if(!sources.has(url))throw Error('Uncaptured production bootstrap import');return{url,shortCircuit:true};},load(url,context,next){if(m.isBuiltin(url))return next(url,context);if(!sources.has(url))throw Error('Uncaptured production bootstrap source');return{format:'module',source:sources.get(url),shortCircuit:true};}});
+  let admission;try{const module=await import(u.pathToFileURL(p.join(root,'scripts/equation-mapping/production-source-records.mjs')).href+moduleTag);admission=module.beginProductionAdmission({root,consumer});}finally{hooks.deregister();}
+  const check=()=>{for(const[relative,row]of retained)capture(relative,row.sha256);admission.check();};check();
+  return Object.freeze({...admission,check});
 }

@@ -766,11 +766,9 @@ test("reducer output is create-exclusive", () => {
   assert.throws(() => writeF5ReductionOnce(output, result), /EEXIST/u);
 });
 
-test("reducer has no adapter, operator, EOM, or enclosure-instrument imports", () => {
-  const source = readFileSync(new URL(
-    "../src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs",
-    import.meta.url,
-  ), "utf8");
+test("executed original reducer has no adapter, operator, EOM, or enclosure-instrument imports", () => {
+  const source = readFileSync(path.join(replay.rootDir,
+    "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs"), "utf8");
   const imports = [...source.matchAll(/^import .*$/gmu)].map((match) => match[0]);
   assert.deepEqual(imports, [
     'import { createHash } from "node:crypto";',

@@ -23,21 +23,51 @@ SELF = 'scripts/eom/execute-f5-prehistory-handoff.py'
 SUBJECT = 'scripts/eom/prepare-f5-prehistory-handoff.py'
 REFERENCE = 'scripts/eom/verify-f5-prehistory-handoff.py'
 INSPECTOR = 'src/eom/native/eom_f5_prehistory_inspector.cpp'
-PINS = {SUBJECT: '4c9a5d724cb4d0e24fa35dd3cefed661448d0ff69077171f9d6adc869f8a079c',
-        REFERENCE: '6c94b0ca16dfe20bed4841a547adca349f2f36cdd5ec04211341d6b060032a68',
-        INSPECTOR: 'b9aeb71f6ca48d77e6b22e2ba06b0adb91884b4569399d4c6fc1acd642298b36'}
-CURRENT = {'src/eom/src/History.cpp': 'cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5',
- 'src/eom/src/Interval.cpp': '5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5',
- 'src/eom/include/architrino/eom/Decimal.hpp': '8126e685d9be5a2d4935d29eaa12d1aa995822781c198d48d809c0f0b6ddad7f',
- 'src/eom/include/architrino/eom/History.hpp': '0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3',
- 'src/eom/src/CoupledEvolution.cpp': '6fa61e458ec337982932a7882090a875ff045e0da10b405c221bc671a68a4d0d'}
-PREFIX = '8d14aa3bc5e0788f06c8b79e788a55df82e8db83736e2413c9800a78af63111b'
-RESTRICTION = '5a2e9158bf26c34a7a9755e53ea1337cc006765727d9afe1ef1304c3fcd140b0'
+PINS = CURRENT = PREFIX = RESTRICTION = None
+_PRODUCTION_PAIRS = {}
+_PRODUCTION_ORIGINALS = []
+
+
+def initialize_production_identities(values):
+    global PINS, CURRENT, PREFIX, RESTRICTION
+    if not isinstance(values, (list, tuple)) or len(values) != 10 or any(
+            not isinstance(value, str) or len(value) != 64 or any(c not in '0123456789abcdef' for c in value)
+            for value in values):
+        raise ValueError('Exact admitted F5 production identity census required')
+    OPTION_B_PRODUCTION_IDENTITIES = tuple(values)
+    PINS = {SUBJECT: OPTION_B_PRODUCTION_IDENTITIES[0],
+            REFERENCE: OPTION_B_PRODUCTION_IDENTITIES[1],
+            INSPECTOR: OPTION_B_PRODUCTION_IDENTITIES[2]}
+    CURRENT = {'src/eom/src/History.cpp': OPTION_B_PRODUCTION_IDENTITIES[3],
+     'src/eom/src/Interval.cpp': OPTION_B_PRODUCTION_IDENTITIES[4],
+     'src/eom/include/architrino/eom/Decimal.hpp': OPTION_B_PRODUCTION_IDENTITIES[5],
+     'src/eom/include/architrino/eom/History.hpp': OPTION_B_PRODUCTION_IDENTITIES[6],
+     'src/eom/src/CoupledEvolution.cpp': OPTION_B_PRODUCTION_IDENTITIES[7]}
+    PREFIX = OPTION_B_PRODUCTION_IDENTITIES[8]
+    RESTRICTION = OPTION_B_PRODUCTION_IDENTITIES[9]
+
+
+if 'OPTION_B_PRODUCTION_IDENTITIES' in globals():
+    initialize_production_identities(OPTION_B_PRODUCTION_IDENTITIES)
+
 SCHEMA = 'braid-program/f5-current-handoff-plan.v1'
 HANDOFF = 'braid-program/f5-prehistory-handoff.v2'
 LIMIT = 8*1024**2
 RUNTIME_LIMIT = 256*1024**2
 OPERATIONAL_ROLES = {
+    "reference/priorities/development-process-review/evidence/option-b-production-historical-records.json": "scientific-control",
+    "scripts/equation-mapping/production-source-records.mjs": "scientific-contract",
+    "scripts/eom/production_source_records.py": "scientific-contract",
+    "scripts/equation-mapping/current-source-transition.mjs": "scientific-contract",
+    "scripts/equation-mapping/fixtures/production-source-identities.json": "scientific-control",
+    "reference/priorities/development-process-review/evidence/option-b-production-original-sources.json": "scientific-control",
+    "reference/priorities/development-process-review/contracts/option-b-production-sources.jsonld": "scientific-contract",
+    "reference/priorities/development-process-review/contracts/option-b-production-accepted-b.json": "scientific-contract",
+    "reference/priorities/development-process-review/contracts/option-b-production-transition.json": "scientific-contract",
+    "reference/priorities/development-process-review/contracts/option-b-production-selection.json": "scientific-contract",
+    "reference/priorities/development-process-review/evidence/option-b-production-transfer.json": "scientific-control",
+    "scripts/eom/project-production-native-identities.mjs": "scientific-contract",
+    "scripts/equation-mapping/fixtures/known-hash-answers.json": "scientific-control",
     "scripts/equation-mapping/batch-test-records.mjs": "scientific-contract",
     "scripts/equation-mapping/current-source-transition.mjs": "scientific-contract",
     "tests/option_b_batch_records.py": "scientific-contract",
@@ -124,10 +154,14 @@ class Bound:
 
 @contextmanager
 def tool(bound):
+    recheck_operational_originals([])
     module = ModuleType('_f5_current_'+bound.digest)
     module.__file__ = str(bound.path)
     sys.modules[module.__name__] = module
     try:
+        relative = bound.path.relative_to(ROOT).as_posix()
+        if relative in _PRODUCTION_PAIRS:
+            module.OPTION_B_PRODUCTION_IDENTITIES = tuple(_PRODUCTION_PAIRS[relative]['identities'])
         exec(compile(bound.data, str(bound.path), 'exec', dont_inherit=True), module.__dict__)
         yield module
     finally:
@@ -136,6 +170,9 @@ def tool(bound):
 
 def admit_operational_sources(args, stack, captures):
     """Execute only the externally selected Node admission/reader generation."""
+    global _PRODUCTION_PAIRS, _PRODUCTION_ORIGINALS
+    if _PRODUCTION_ORIGINALS:
+        recheck_operational_originals([])
     map_path = ROOT/'reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld'
     digest = getattr(args, 'source_map_sha256', None)
     require(type(digest) is str and len(digest) == 64 and all(c in '0123456789abcdef' for c in digest), 'externally selected F5 source-map digest required')
@@ -176,23 +213,44 @@ def admit_operational_sources(args, stack, captures):
 const input=JSON.parse(fs.readFileSync(0,'utf8'));
 const M=await import(input.module);
 const a=await M.admitF5Sources(input.root,input.digest,input.identities);
-a.recheck();console.log(JSON.stringify({sources:a.sources,identities:a.identities}));"""
+const productionPairs=Object.fromEntries(['scripts/eom/prepare-f5-prehistory-handoff.py','scripts/eom/verify-f5-prehistory-handoff.py'].map(p=>[p,a.productionSourcePair(p)]));
+a.recheck();console.log(JSON.stringify({sources:a.sources,identities:a.identities,productionIdentities:a.productionIdentities('scripts/eom/execute-f5-prehistory-handoff.py'),productionPairs,productionSources:a.productionSourceInventory()}));"""
     originals = {filename: ':'.join(map(str,b.initial)) for filename,b in expected.items()}
     for b in captures.values(): b.scan()
     result = subprocess.run([str(node),'--input-type=module','-e',script], input=json.dumps(dict(module=source_url,root=str(ROOT),digest=digest,identities=originals)).encode(),
                             stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=15,check=False)
     require(result.returncode == 0 and len(result.stdout) <= LIMIT, 'F5 captured source admission rejected: '+result.stderr[-2000:].decode(errors='replace'))
     admission = decode(result.stdout)
-    require(type(admission) is dict and set(admission) == {'sources','identities'} and type(admission['sources']) is list and type(admission['identities']) is dict, 'closed Node admission result required')
+    require(type(admission) is dict and set(admission) == {'sources','identities','productionIdentities','productionPairs','productionSources'} and type(admission['sources']) is list and type(admission['identities']) is dict, 'closed Node admission result required')
     require(len(admission['sources']) == len(expected) and {r.get('path') for r in admission['sources']} == set(expected) and set(admission['identities']) == set(expected), 'Node result omits independent operational census')
     for r in admission['sources']:
         b = expected[r['path']]
         require(b.binding() == r and ':'.join(map(str,b.initial)) == admission['identities'][r['path']], 'F5 operational original identity differs')
+    initialize_production_identities(admission['productionIdentities'])
+    pairs = admission['productionPairs']
+    require(type(pairs) is dict and set(pairs) == {SUBJECT, REFERENCE}, 'Exact F5 production pair census required')
+    for relative, pair in pairs.items():
+        require(type(pair) is dict and set(pair) == {'original', 'current', 'identities'} and
+                isinstance(pair['original'], str) and isinstance(pair['current'], str), 'Closed F5 production source pair required')
+        require(sha256(pair['original'].encode()).hexdigest() == PINS[relative], 'Original F5 source applicability differs')
+    production_rows = admission['productionSources']
+    require(type(production_rows) is list and len(production_rows) > 0, 'Production source lifetime census required')
+    production_map = decode((ROOT/'reference/priorities/development-process-review/contracts/option-b-production-sources.jsonld').read_bytes())
+    expected_production = {str(ROOT/r['binding']['path']):r['binding']['sha256'] for r in production_map['@graph'] if r.get('@type') == 'Source'}
+    require(len(production_rows) == len(expected_production) and {r.get('path') for r in production_rows} == set(expected_production), 'Independent production source census differs')
+    retained=[]
+    for record in production_rows:
+        require(type(record) is dict and set(record)=={'path','sha256','bytes','identity'} and record['sha256']==expected_production[record['path']], 'Closed production lifetime source required')
+        with Bound(record['path'],record['sha256'],False) as bound:
+            require(bound.initial[2]==record['bytes'] and ':'.join(map(str,bound.initial))==record['identity'], 'Original production file identity differs')
+            retained.append((bound.binding(),bound.initial))
+    _PRODUCTION_PAIRS = pairs
+    _PRODUCTION_ORIGINALS = retained
     for b in captures.values(): b.scan()
 
 
 def recheck_operational_originals(originals):
-    for binding, identity in originals:
+    for binding, identity in [*originals, *_PRODUCTION_ORIGINALS]:
         with Bound(binding['path'],binding['sha256'],False,RUNTIME_LIMIT) as b:
             require(b.binding() == binding and b.initial == identity, 'F5 operational original identity changed before completion')
 
@@ -220,7 +278,11 @@ def validate_build(plan, build, review, admission):
     require(all(build[k] is False for k in ('dataLoaded','eomExecuted','evolutionAuthorized','h3EvidenceEligible')) and build['rootCalls'] == 0, 'build grants data/evolution authority')
     require(same_file(build['built']['executable'], plan['executable']), 'build executable differs')
     for role, path in (('wrapper', SUBJECT), ('inspector', INSPECTOR)):
-        require(build['producerSources'][role]['sha256'] == PINS[path] and Path(build['producerSources'][role]['path']).absolute() == ROOT/path, 'producer source identity differs')
+        actual_expected = sha256(_PRODUCTION_PAIRS[path]['current'].encode()).hexdigest() if path in _PRODUCTION_PAIRS else PINS[path]
+        require(build['producerSources'][role]['sha256'] == actual_expected and Path(build['producerSources'][role]['path']).absolute() == ROOT/path, 'current producer source identity differs')
+        original = build.get('originalProducerApplicability', {}).get(role)
+        expected_bytes = len(_PRODUCTION_PAIRS[path]['original'].encode()) if path in _PRODUCTION_PAIRS else build['producerSources'][role]['bytes']
+        require(original == {'path': path, 'sha256': PINS[path], 'bytes': expected_bytes}, 'original producer applicability differs')
     require(review['authority']['concreteBuildReviewed'] is True and same_file(review['preparation'], plan['buildReceipt']) and
             same_file(review['executable'], plan['executable']), 'independent build review differs')
     require(same_file(review['outerAdmission'], plan['buildAdmission']), 'review/admission identity differs')
@@ -296,7 +358,9 @@ def runtime_inventory(args):
         captures = {}
         admit_operational_sources(args,stack,captures)
         for filename in (SUBJECT,REFERENCE):
-            b = stack.enter_context(Bound(ROOT/filename,PINS[filename]))
+            pair = _PRODUCTION_PAIRS[filename]
+            b = stack.enter_context(Bound(ROOT/filename,sha256(pair['current'].encode()).hexdigest()))
+            require(b.data == pair['current'].encode(), 'Captured current F5 source differs')
             stack.enter_context(tool(b))
         files = sorted(runtime_paths() | {captures['nodeRuntime'].path})
         for b in captures.values(): b.scan()
@@ -330,12 +394,14 @@ def execute(args, started=None):
         build,review,admission = [decode(captures[r].data) for r in ('buildReceipt','buildReview','buildAdmission')]
         validate_build(plan,build,review,admission)
         for role,p in (('subject',SUBJECT),('reference',REFERENCE),('inspector',INSPECTOR)):
-            capture(role,ROOT/p,PINS[p])
+            digest = sha256(_PRODUCTION_PAIRS[p]['current'].encode()).hexdigest() if p in _PRODUCTION_PAIRS else PINS[p]
+            capture(role,ROOT/p,digest)
         for r in build['sourcesAfter']:
             b = capture('source:'+r['path'],r.get('realPath',r['path']),r['sha256'],False)
             require(b.initial[2] == r['bytes'], 'build source size differs')
         def check_runtime():
             deadline_check(started)
+            recheck_operational_originals([])
         check_runtime()
         for p,digest in CURRENT.items():
             require(any(Path(r.get('realPath',r['path'])).absolute() == ROOT/p and r['sha256'] == digest for r in build['sourcesAfter']), 'current owner absent from build')
@@ -367,7 +433,8 @@ def execute(args, started=None):
                 packet = {'schema':'braid-program/f5-current-handoff-stage.v1','stage':args.stage,'completed':True,'accepted':False,
                     'privateUntilExternalAdmission':True,
                     'requiresFreshExternalCompletion':True,'h3EvidenceEligible':False,'evolutionAuthorized':False,
-                    'plan':plan_file.binding(),'bindings':{role:b.binding() for role,b in captures.items()},**result}
+                    'plan':plan_file.binding(),'bindings':{role:b.binding() for role,b in captures.items()},
+                    'originalSourceApplicability':{relative:{'sha256':PINS[relative],'bytes':len(pair['original'].encode())} for relative,pair in _PRODUCTION_PAIRS.items()},**result}
                 private_record = producer.write_new(output/'.pending-stage.json',producer.json_bytes(packet))
                 for b in captures.values(): b.scan()
                 watch.check(); check_runtime()

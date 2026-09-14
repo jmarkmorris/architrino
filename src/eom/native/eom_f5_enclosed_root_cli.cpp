@@ -1,3 +1,4 @@
+#include "option_b_production_identities.hpp"
 #include "architrino/eom/Decimal.hpp"
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/History.hpp"
@@ -68,19 +69,19 @@ struct SourceBinding { const char* id; const char* path; const char* hash; };
 constexpr std::array<SourceBinding, 5> kSources{{
     {"approved-config",
      "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
-     "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb"},
+     option_b_production::f5_identities[0]},
     {"pilot-fixture",
      "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json",
-     "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344"},
+     option_b_production::f5_identities[1]},
     {"restart-predeclaration",
      "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
-     "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5"},
+     option_b_production::f5_identities[2]},
     {"enclosure-evidence",
      "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md",
-     "931f5d88a209648bde63dfbdd1f24303b7a33e101e11565e75fd608be347d496"},
+     option_b_production::f5_identities[3]},
     {"accepted-enclosure-report",
      ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json",
-     "2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9"},
+     option_b_production::f5_identities[4]},
 }};
 
 // SHA-256 is used only for byte identity. The input digest is never supplied
@@ -880,8 +881,8 @@ int main(int argc, char** argv) {
   std::unique_ptr<Progress> progress;
   try {
     const auto args = options(argc, argv);
-    if (sha256("") != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" ||
-        sha256("abc") != "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad")
+    if (sha256("") != option_b_production::f5_identities[5] ||
+        sha256("abc") != option_b_production::f5_identities[6])
       throw std::runtime_error("SHA-256 known-answer control failed");
     inputs = std::make_unique<FrozenInputs>(args.repository);
     progress = std::make_unique<Progress>(*inputs);

@@ -5,6 +5,7 @@ Mocked CLI plumbing is explicitly NOT mathematical evidence. No saved F6c data
 is opened, and no root, acceleration or historical numerical job is run here.
 """
 from __future__ import annotations
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -33,7 +34,7 @@ SOURCE=ROOT/'scripts/eom/prepare-f6c-parent-emission-refinement.py'
 
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path);module=importlib.util.module_from_spec(spec)
-    sys.modules[name]=module;spec.loader.exec_module(module);return module
+    sys.modules[name]=module;_option_b_exec_module(__file__, spec, module);return module
 
 
 s=load('parent_preparation_under_test',SOURCE)
@@ -319,8 +320,10 @@ class CaptureTests(unittest.TestCase):
     def test_captured_package_real_public_history_generation_cleanup(self):
         # Definitions only. No history/root method is called.
         plan=plan_fixture(ROOT)
-        for k,(path,dg) in s.DEPENDENCIES.items():plan['dependencies'][k]=dict(path=path,sha256=dg,bytes=(ROOT/path).stat().st_size)
-        path,expected=s.NAMED['proposalReference'];raw=(ROOT/path).read_bytes();self.assertEqual(digest(raw),expected)
+        for k,(path,dg) in s.DEPENDENCIES.items():
+            archive=s.production_original_source_binding(ROOT,s.__file__,path,dg,optional=True) if k in ('productionHelper','historyReference','decimalReference','rootLibrary') else None
+            plan['dependencies'][k]=dict(path=path,sha256=dg,bytes=archive['bytes'] if archive else (ROOT/path).stat().st_size)
+        path,expected=s.NAMED['proposalReference'];raw=_option_b_source_bytes(__file__,ROOT/path);self.assertEqual(digest(raw),expected)
         plan['proposalReference']=dict(path=str(ROOT/path),sha256=expected,bytes=len(raw))
         before=set(sys.modules)
         with ExitStack() as stack:

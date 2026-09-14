@@ -1,3 +1,6 @@
+import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
+import * as optionBProductionModule0 from "../scripts/eom/run-subfield-circular-root-pilot.mjs";
+optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/run-subfield-circular-root-pilot.mjs"));
 import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
 const NEXT_TEST_SHA = nextTestIdentities("tests/subfield-circular-root-pilot.test.js", 1);
 import assert from "node:assert/strict";

@@ -7,7 +7,7 @@ import {createHash} from 'node:crypto';
 import {openSync,closeSync,readSync,fstatSync,lstatSync,realpathSync,constants} from 'node:fs';
 import path from 'node:path';
 
-export const COORDINATOR_SHA='e100a96f0771d82664fa62b66865cbf5924cced1216588c631836ed361d6a252';
+export let COORDINATOR_SHA;
 export const LOCK='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/.pilot.lock';
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const canonical=o=>o===null||typeof o!=='object'?JSON.stringify(o):Array.isArray(o)?'['+o.map(canonical).join(',')+']':'{'+Object.keys(o).sort().map(k=>JSON.stringify(k)+':'+canonical(o[k])).join(',')+'}';
@@ -164,4 +164,12 @@ export function verifyClosure({invocation,lease,elapsedMilliseconds,wire,operati
   sourceBindings:sources,sourceIdentities:wire.sourceIdentities,outputBindings:outputs,outputIdentities:wire.outputIdentities,
   observedProcessIds:[...pids].sort((a,b)=>a-b),observedProcessGroups:[...groups].sort((a,b)=>a-b),
   h3EvidenceEligible:false,physicalClaims:false,mathematicalAcceptance:false};
+}
+
+let OPTION_B_PRODUCTION_IDENTITIES;
+export function initializeProductionIdentities(values) {
+  if (!Array.isArray(values) || values.length !== 1 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
+  if (OPTION_B_PRODUCTION_IDENTITIES && JSON.stringify(OPTION_B_PRODUCTION_IDENTITIES) !== JSON.stringify(values)) throw Error("production identity generation already initialized");
+  OPTION_B_PRODUCTION_IDENTITIES = Object.freeze([...values]);
+  COORDINATOR_SHA=OPTION_B_PRODUCTION_IDENTITIES[0];
 }

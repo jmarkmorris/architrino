@@ -1,10 +1,11 @@
+import {loadProductionTestModule} from './support/option-b-production-hosts.mjs';
 import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
 const NEXT_TEST_SHA = nextTestIdentities("tests/f6c-evidence-packaging.test.js", 3);
 // Metadata-only driver controls. No Python process or evidence package created.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
-import * as D from '../scripts/eom/run-f6c-evidence-packaging.mjs';
+const D=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-evidence-packaging.mjs");
 import * as C from '../scripts/eom/f6c-bounded-operation.mjs';
 
 const root='/private/tmp/synthetic-package-driver';

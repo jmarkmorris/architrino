@@ -1,3 +1,4 @@
+import {loadProductionTestModule} from './support/option-b-production-hosts.mjs';
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -8,7 +9,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { PassThrough, Writable } from "node:stream";
 import { execFileSync } from "node:child_process";
-import * as R from "../scripts/eom/run-f6c-root-cover-pilot.mjs";
+const R=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-root-cover-pilot.mjs");
 import * as L from "../scripts/eom/launch-f6c-root-cover-pilot.mjs";
 import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const root=process.cwd(),digest=x=>createHash("sha256").update(x).digest("hex");
@@ -58,9 +59,10 @@ test("stage controls retain exact hash/manifest and one-cell-only arguments",()=
 });
 test("captured Python bootstrap executes a synthetic byte-bound program and measures CPU",()=>{
   const dir=temp(),p=path.join(dir,"fixture.py"),raw="print('{\"synthetic\":true,\"accepted\":false}')\n";writeFileSync(p,raw);
-  const output=execFileSync(plan().python,["-I","-B","-c",R.PYTHON_BOOTSTRAP,p,digest(raw)],{encoding:"utf8",timeout:2000,stdio:["ignore","pipe","pipe"]});
+  const envelope=R.stageSpec({stage:"consumer",plan:plan(),planBinding:binding("/fixture/plan"),root,output:dir,budget:"1"}).args[6];
+  const output=execFileSync(plan().python,["-I","-B","-c",R.PYTHON_BOOTSTRAP,p,digest(raw),envelope],{encoding:"utf8",timeout:2000,stdio:["ignore","pipe","pipe"]});
   assert.deepEqual(JSON.parse(output),{synthetic:true,accepted:false});
-  assert.throws(()=>execFileSync(plan().python,["-I","-B","-c",R.PYTHON_BOOTSTRAP,p,"0".repeat(64)],{timeout:2000,stdio:"pipe"}));
+  assert.throws(()=>execFileSync(plan().python,["-I","-B","-c",R.PYTHON_BOOTSTRAP,p,"0".repeat(64),envelope],{timeout:2000,stdio:"pipe"}));
 });
 function admissionFixture() {
   const output=temp(),p=plan(),pb=binding(path.join(output,"plan")),stage="consumer";mkdirSync(path.join(output,"subject"));mkdirSync(path.join(output,stage+"-process"));

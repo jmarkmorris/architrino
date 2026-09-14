@@ -1,6 +1,1 @@
-{
-  "acceptedBaseline": "reference/priorities/development-process-review/contracts/option-b-next-test-accepted-b.json",
-  "acceptedBaselineSha256": "1427fbb4c44f30c0c75c5630e92eca9093f016323dcbe5b917d7e433e83870c2",
-  "transition": "reference/priorities/development-process-review/contracts/option-b-next-test-transition.json",
-  "transitionSha256": "85a67087466a2f91dba1d3a14427fbc2e16e9dc8da022db97b3ea4b8e6f88ec1"
-}
+{"acceptedBaseline":"reference/priorities/development-process-review/contracts/option-b-next-test-production-accepted-b.json","acceptedBaselineSha256":"0f8a8254ecc17f7e0eaebb4a55f1377fee195630c2becfb66394f8e62124dc5c","transition":"reference/priorities/development-process-review/contracts/option-b-next-test-production-transition.json","transitionSha256":"a4406a7481b97691e6c2d8309038d233ee0f460e2e07915b3051c54e096f3d4a"}

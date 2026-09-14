@@ -3,6 +3,7 @@
 Expected tokens and bounds below are independent literals/exact Fractions.
 No fixture is an accepted F6c history or a fabricated scientific certificate.
 """
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 import copy
 from decimal import localcontext
@@ -19,12 +20,12 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_SPEC = importlib.util.spec_from_file_location("f6c_export_fixture_records", ROOT / "tests/option_b_fixture_records.py")
 fixture_records = importlib.util.module_from_spec(FIXTURE_SPEC)
-FIXTURE_SPEC.loader.exec_module(fixture_records)
+_option_b_exec_module(__file__, FIXTURE_SPEC, fixture_records)
 ABC_SHA = fixture_records.known_sha256(ROOT, "tests/test_f6c_retained_history_export.py")
 SCRIPT = ROOT / "scripts/eom/export-f6c-retained-history.py"
 SPEC = importlib.util.spec_from_file_location("f6c_data_export", SCRIPT)
 exporter = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(exporter)
+_option_b_exec_module(__file__, SPEC, exporter)
 
 SEGMENT = {
     "startTime": "-1.000", "endTime": "0.000",

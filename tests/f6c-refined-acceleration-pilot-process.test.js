@@ -1,3 +1,5 @@
+import {copyProductionFixture,rebindProductionFixture} from './support/option-b-production-fixtures.mjs';
+import {loadProductionTestModule} from './support/option-b-production-hosts.mjs';
 // Complete synthetic operational composition. Real captured Python wrapper and
 // registered groups run, but mathematical admission/targets are explicitly fake.
 import test from 'node:test';
@@ -10,7 +12,7 @@ import {syncBuiltinESMExports} from 'node:module';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
-import * as Admission from '../scripts/eom/run-f6c-refined-acceleration-pilot.mjs';
+const Admission=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-refined-acceleration-pilot.mjs");
 const root=realpathSync(process.cwd()),hash=b=>createHash('sha256').update(b).digest('hex');
 const outer=readFileSync('scripts/eom/launch-subfield-circular-root-pilot.mjs');
 const helper=readFileSync('scripts/eom/launch-prescribed-response-pilot.mjs');
@@ -69,12 +71,14 @@ function entrySource(mode,program,digest){return Buffer.from([
   "if(import.meta.url.startsWith('file:')&&process.argv[1]===fileURLToPath(import.meta.url)){",
   " const args=process.argv.slice(2),get=k=>args[args.indexOf(k)+1];",
   " await U.initializeSourceBindings(realpathSync(process.cwd()),get('--source-map-sha256'));",
-  ' await U.runSingleStage({command:'+JSON.stringify(python)+",args:['-I','-B','-c',U.PYTHON_BOOTSTRAP,"+JSON.stringify(program)+','+JSON.stringify(digest)+",get('--out'),get('--stage'),"+JSON.stringify(mode)+']});',
+  " const envelope=U.stageSpec({stage:'consumer',plan:{},planBinding:{path:'/synthetic-plan',sha256:'a'.repeat(64)},root:realpathSync(process.cwd()),output:get('--out'),python:'/explicit/python',git:'/usr/bin/git',budget:'5'}).args[6];",
+  ' await U.runSingleStage({command:'+JSON.stringify(python)+",args:['-I','-B','-c',U.PYTHON_BOOTSTRAP,"+JSON.stringify(program)+','+JSON.stringify(digest)+",envelope,get('--out'),get('--stage'),"+JSON.stringify(mode)+']});',
   " console.error(JSON.stringify({kind:'f6c-refined-range-entry-process-resources',resourceUsage:process.resourceUsage()}));}",
 ].join('\n'));}
 async function runFixture(mode){
   const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'f6c-refinement-registered-control-')));
   mkdirSync(path.join(dir,lane),{recursive:true});mkdirSync(path.join(dir,lockLane),{recursive:true});mkdirSync(path.join(dir,'scripts/eom'),{recursive:true});
+  copyProductionFixture(root,dir);
   const program=path.join(dir,'synthetic.py'),programBytes=pythonSource();writeFileSync(program,programBytes);
   const entry=entrySource(mode,program,hash(programBytes));writeFileSync(path.join(dir,entryPath),entry);
   const map=JSON.parse(readFileSync(Admission.SOURCE_MAP));
@@ -82,6 +86,8 @@ async function runFixture(mode){
     const p=row.binding.path,filename=path.join(dir,p);mkdirSync(path.dirname(filename),{recursive:true});
     const bytes=p===entryPath?entry:readFileSync(path.join(root,p));writeFileSync(filename,bytes);row.binding.sha256=hash(bytes);
   }
+  rebindProductionFixture(dir,[entryPath]);
+  for(const row of map['@graph'].filter(r=>r['@type']==='Source'))row.binding.sha256=hash(readFileSync(path.join(dir,row.binding.path)));
   const mapPath=path.join(dir,Admission.SOURCE_MAP),mapBytes=Buffer.from(JSON.stringify(map,null,2)+'\n');
   mkdirSync(path.dirname(mapPath),{recursive:true});writeFileSync(mapPath,mapBytes);
   const original=cp.execFile,originalWrite=fs.writeSync;let psCalls=0,diagnosticTimer;
@@ -169,6 +175,7 @@ test('real unread diagnostics close on early failure without a success completio
 });
 test('real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion',async()=>{
  const program=[
+  'import {copyProductionFixture,rebindProductionFixture} from '+JSON.stringify(pathToFileURL(path.join(root,'tests/support/option-b-production-fixtures.mjs')).href)+';',
   "import assert from 'node:assert/strict';import cp from 'node:child_process';import fs from 'node:fs';",
   "import{createHash}from'node:crypto';import{existsSync,mkdirSync,mkdtempSync,readFileSync,realpathSync,writeFileSync}from'node:fs';",
   "import{syncBuiltinESMExports}from'node:module';import{tmpdir}from'node:os';import path from'node:path';import{pathToFileURL}from'node:url';",

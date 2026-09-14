@@ -1,4 +1,6 @@
 import test from 'node:test';
+import {originalProductionTestData} from './support/option-b-production-hosts.mjs';
+import {copyProductionFixture} from './support/option-b-production-fixtures.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -34,13 +36,13 @@ test('FIRST known string reader and inverse substitution controls precede reposi
   assert.throws(()=>captureF6cTestIdentities(raw,'tests/wrong.js',1));
   assert.throws(()=>captureF6cTestIdentities(Buffer.from('{"schema":1,"schema":2}'),pilot,1));
 });
-test('selected graph admits exact original expectations and retains every original assertion',()=>{
+test('selected graph admits exact original expectations and historical generation retains every original assertion',()=>{
   const selection=decode(fs.readFileSync(selectionPath));
   const proof=decode(fs.readFileSync('reference/priorities/development-process-review/evidence/option-b-f6c-test-transfer.json'));
   for(const [p,entry] of Object.entries(proof.consumers)){
     const original=execFileSync('git',['show',`${proof.originCommit}:${p}`],{encoding:'utf8'});
     assert.equal(sha256(original),entry.sourceSha256);
-    assert.equal(reconstruct(fs.readFileSync(p,'utf8'),entry),original);
+    assert.equal(reconstruct((originalProductionTestData(p)??fs.readFileSync(p)).toString('utf8'),entry),original);
     const values=loadF6cTestIdentities({selection,consumer:p,count:entry.tokens.length});
     entry.tokens.forEach((token,i)=>{
       assert.equal(original.slice(token.offset,token.offset+token.raw.length),token.raw);

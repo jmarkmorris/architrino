@@ -20,12 +20,28 @@ const BATCH_TEST_ROLES=Object.freeze({
   "reference/priorities/development-process-review/evidence/option-b-batch-test-transfer.json": "scientific-control"
 });
 
+const PRODUCTION_ROLES=Object.freeze({
+  "reference/priorities/development-process-review/evidence/option-b-production-historical-records.json": "scientific-control",
+  "scripts/equation-mapping/production-source-records.mjs": "scientific-contract",
+  "scripts/eom/production_source_records.py": "scientific-contract",
+  "scripts/equation-mapping/current-source-transition.mjs": "scientific-contract",
+  "scripts/equation-mapping/fixtures/production-source-identities.json": "scientific-control",
+  "reference/priorities/development-process-review/evidence/option-b-production-original-sources.json": "scientific-control",
+  "reference/priorities/development-process-review/contracts/option-b-production-sources.jsonld": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-production-accepted-b.json": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-production-transition.json": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-production-selection.json": "scientific-contract",
+  "reference/priorities/development-process-review/evidence/option-b-production-transfer.json": "scientific-control",
+  "scripts/eom/project-production-native-identities.mjs": "scientific-contract",
+  "scripts/equation-mapping/fixtures/known-hash-answers.json": "scientific-control"
+});
+
 export const SOURCE_MAP='reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld';
 export const READER='scripts/equation-mapping/current-source-manifest.mjs';
 export const SELF='scripts/eom/f5-current-source-admission.mjs';
 export const SCOPE='f5-current-execution-build';
 export const ROLES=Object.freeze({
- ...BATCH_TEST_ROLES,
+ ...BATCH_TEST_ROLES, ...PRODUCTION_ROLES,
  [SELF]:'admission',[READER]:'manifest-reader',
  'scripts/eom/launch-f5-prehistory-handoff-build.mjs':'launcher',
  'scripts/eom/prepare-f5-enclosed-root-build.mjs':'current-source',
@@ -49,6 +65,9 @@ export const BUDGET_IDENTITY_SOURCES=Object.freeze([
  'scripts/borg/build-certified-budget-identities.mjs',
 ]);
 export const EVOLUTION_ROLES=Object.freeze({
+ ...PRODUCTION_ROLES,
+ "scripts/borg/selected-runtime-admission.mjs":"scientific-contract",
+ "scripts/eom/BorgExecutableAdmission.mjs":"scientific-contract",
   "scripts/eom/f5-current-source-admission.mjs": "admission",
   "scripts/equation-mapping/current-source-manifest.mjs": "manifest-reader",
   "scripts/eom/run-f5-complete-evaluator-batch.mjs": "launcher",
@@ -116,7 +135,8 @@ export async function admitF5Sources(root,expectedMapDigest,originalIdentities={
  const rows=admitted.document['@graph'].filter(r=>r['@type']==='Source');
  demand(rows.length===Object.keys(selectedRoles).length&&rows.every(r=>selectedRoles[r.binding.path]===r.role),'exact F5 operational source/role census required');
  const sources=Object.freeze([...captured.values()].map(clean));
- const recheck=()=>{for(const b of captured.values())read(b.path,b.sha256);};
+ let production;
+ const recheck=()=>{for(const b of captured.values())read(b.path,b.sha256);production?.check();};
  const source=p=>{const b=captured.get(path.join(root,p));demand(b,'F5 source outside admitted closure: '+p);return clean(b);};
  const bytes=p=>{const b=source(p);return read(b.path,b.sha256,true).data;};
  const importModule=async relative=>{
@@ -142,8 +162,17 @@ export async function admitF5Sources(root,expectedMapDigest,originalIdentities={
     return next(url,context);
    }
   });
-  try{const M=await import(pathToFileURL(selected.path).href+query);recheck();return M;}
+  try{const M=await import(pathToFileURL(selected.path).href+query);if(M.initializeProductionIdentities){demand(production,"production admission must precede deferred module initialization");M.initializeProductionIdentities(production.identities(relative));}recheck();return M;}
   finally{hook.deregister();}
+ };
+ const productionSourceInventory=()=>{
+  recheck();
+  const document=JSON.parse(bytes('reference/priorities/development-process-review/contracts/option-b-production-sources.jsonld'));
+  const inventory=document['@graph'].filter(row=>row['@type']==='Source').map(row=>{
+    const record=capture(path.join(root,row.binding.path),row.binding.sha256,false);
+    return {...clean(record),identity:record.identity};
+  });
+  recheck();return inventory;
  };
  const requireBindings=bindings=>{
   demand(Array.isArray(bindings),'F5 declaration operational bindings required');recheck();
@@ -157,6 +186,8 @@ export async function admitF5Sources(root,expectedMapDigest,originalIdentities={
   const code="const d=JSON.parse(Buffer.from(process.argv[1],'base64'));const m=await import('data:text/javascript;base64,'+d.helper);const a=await m.admitF5Sources(d.root,d.digest,d.identities,'evolution');process.execArgv=[];process.argv=[process.execPath,d.root+'/'+d.entry,...d.args];const entry=await a.importModule(d.entry);a.recheck();await entry.main(d.args,null,a);a.recheck();";
   return ['--input-type=module','-e',code,Buffer.from(JSON.stringify(payload)).toString('base64')];
  };
+ const productionReader=await importModule('scripts/equation-mapping/production-source-records.mjs');
+ production=productionReader.beginProductionAdmission({root,consumer:SELF});
  if(profile==='evolution'){
   // Authored expectation data and its exact projection are part of the selected
   // scientific contract, not an operational hash-refresh allowance. Import only
@@ -168,6 +199,6 @@ export async function admitF5Sources(root,expectedMapDigest,originalIdentities={
   demand(typeof rendered==='string'&&Buffer.from(rendered).equals(bytes('content/generated/borg/certified-budget-identities.v1.js')),'F5 budget identity projection differs from captured authored data');
  }
  recheck();
- return {requireBindings,invocation,root,sourceMap:clean(map),sources,source,bytes,recheck,importModule,identities:Object.fromEntries([...captured.values()].map(b=>[b.path,b.identity])),
+ return {productionSourceInventory,productionIdentities:relative=>production.identities(relative),productionOriginalSourceBinding:(relative,expectedOriginalSha)=>production.originalSourceBinding(relative,expectedOriginalSha),productionOriginalSource:(relative,expectedOriginalSha)=>production.sourcePair(relative,expectedOriginalSha).original,productionSourcePair:(relative,expectedOriginalSha)=>{const pair=production.sourcePair(relative);if(expectedOriginalSha&&createHash('sha256').update(pair.original).digest('hex')!==expectedOriginalSha)throw Error('Current substitution requires the exact pre-migration original: '+relative);return pair;},requireBindings,invocation,root,sourceMap:clean(map),sources,source,bytes,recheck,importModule,identities:Object.fromEntries([...captured.values()].map(b=>[b.path,b.identity])),
   pins:Object.freeze(Object.fromEntries(rows.map(r=>[r.binding.path,r.binding.sha256])))};
 }

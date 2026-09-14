@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {copyProductionFixture} from './support/option-b-production-fixtures.mjs';
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
@@ -9,7 +10,7 @@ import {admitF5Sources,EVOLUTION_MAP,EVOLUTION_ROLES,BUDGET_IDENTITY_SOURCES} fr
 const root=realpathSync(process.cwd()),sha=b=>createHash('sha256').update(b).digest('hex');
 const selected=()=>sha(readFileSync(path.join(root,EVOLUTION_MAP)));
 const put=(p,b)=>{mkdirSync(path.dirname(p),{recursive:true});writeFileSync(p,b);};
-function fixture(){const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'f5-evolution-map-')));for(const p of [EVOLUTION_MAP,...Object.keys(EVOLUTION_ROLES)])put(path.join(dir,p),readFileSync(path.join(root,p)));return {dir,close:()=>rmSync(dir,{recursive:true,force:true})};}
+function fixture(){const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'f5-evolution-map-')));for(const p of [EVOLUTION_MAP,...Object.keys(EVOLUTION_ROLES)])put(path.join(dir,p),readFileSync(path.join(root,p)));copyProductionFixture(root,dir);return {dir,close:()=>rmSync(dir,{recursive:true,force:true})};}
 test('known captured evolution metadata retains the original scientific predicate before controls',async()=>{
  const a=await admitF5Sources(root,selected(),{},'evolution');a.requireBindings(a.sources);
  const B=await a.importModule('scripts/eom/f5-batch-admission.mjs');

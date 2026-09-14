@@ -1401,7 +1401,7 @@ test("Borg native client rejects protocol skew with a restart instruction", () =
     );
     chmodSync(fixtureBinary, 0o755);
     assert.throws(
-      () => createBorgNativeEomProcessClient({ binaryPath: fixtureBinary }),
+      () => createBorgNativeEomProcessClient({ binaryPath: fixtureBinary, executableBinding: {path:fixtureBinary,sha256:createHash("sha256").update(readFileSync(fixtureBinary)).digest("hex")} }),
       (error) => {
         assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V11/u);
         assert.match(error.message, /binary parser=EOM_BORG_NATIVE_V999/u);
@@ -1481,9 +1481,9 @@ process.stdin.on("data", (chunk) => {
       startTime: 10,
       endTime: 10.1,
     });
-    firstClient = createBorgNativeEomProcessClient({ binaryPath: fixtureBinary });
+    firstClient = createBorgNativeEomProcessClient({ binaryPath: fixtureBinary, executableBinding: {path:fixtureBinary,sha256:createHash("sha256").update(readFileSync(fixtureBinary)).digest("hex")} });
     const first = await firstClient.evolveRetainedHistories(request);
-    secondClient = createBorgNativeEomProcessClient({ binaryPath: fixtureBinary });
+    secondClient = createBorgNativeEomProcessClient({ binaryPath: fixtureBinary, executableBinding: {path:fixtureBinary,sha256:createHash("sha256").update(readFileSync(fixtureBinary)).digest("hex")} });
     const second = await secondClient.evolveRetainedHistories({
       ...request,
       requestId: "history-owner-second",
@@ -1505,7 +1505,7 @@ process.stdin.on("data", (chunk) => {
   }
 });
 
-test("Borg native client restarts a persistent worker when its executable changes", async () => {
+test("Borg native client rejects a changed persistent-worker executable", async () => {
   const fixtureDirectory = mkdtempSync(join(tmpdir(), "borg-eom-binary-refresh-"));
   const fixtureBinary = join(fixtureDirectory, "refreshable-eom-binary.mjs");
   const fixtureSource = (marker) => `#!/usr/bin/env node
@@ -1557,14 +1557,14 @@ process.stdin.on("data", (chunk) => {
       startTime: 10,
       endTime: 10.1,
     });
-    const client = createBorgNativeEomProcessClient({ binaryPath: fixtureBinary });
+    const client = createBorgNativeEomProcessClient({ binaryPath: fixtureBinary, executableBinding: {path:fixtureBinary,sha256:createHash("sha256").update(readFileSync(fixtureBinary)).digest("hex")} });
     const first = await client.evolveRetainedHistories(request);
     writeFileSync(fixtureBinary, fixtureSource("replacement"), "utf8");
     chmodSync(fixtureBinary, 0o755);
-    const replacement = await client.evolveRetainedHistories(request);
+    await assert.rejects(client.evolveRetainedHistories(request), /Stale binding|Original identity replaced/u);
 
     assert.equal(first.binaryMarker, "first");
-    assert.equal(replacement.binaryMarker, "replacement");
+
     await client.dispose();
   } finally {
     rmSync(fixtureDirectory, { recursive: true, force: true });
@@ -1642,7 +1642,7 @@ process.stdin.on("data", (chunk) => {
       endTime: 10.1,
     });
     const client = createBorgNativeEomProcessClient({
-      binaryPath: fixtureBinary,
+      binaryPath: fixtureBinary, executableBinding: {path:fixtureBinary,sha256:createHash("sha256").update(readFileSync(fixtureBinary)).digest("hex")},
     });
     const first = await client.evolveRetainedHistories(firstRequest);
     const secondRequest = createBorgEomShadowRequest({
@@ -1720,7 +1720,7 @@ process.stdin.on("data", (chunk) => {
       runGrade: "display",
     });
     const client = createBorgNativeEomProcessClient({
-      binaryPath: fixtureBinary,
+      binaryPath: fixtureBinary, executableBinding: {path:fixtureBinary,sha256:createHash("sha256").update(readFileSync(fixtureBinary)).digest("hex")},
       returnDisplayHistoryExtensions: true,
       workerResidentMemoryReader: (pid) => pid == null ? 0 : 128 * 1024 ** 2,
     });

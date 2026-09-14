@@ -1,4 +1,8 @@
+import {productionTestAdmission} from './support/option-b-production-hosts.mjs';
+import {Worker} from 'node:worker_threads';
+import {pathToFileURL} from 'node:url';
 import assert from "node:assert/strict";
+const proofRecords=productionTestAdmission();
 import { createHash } from "node:crypto";
 import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -206,7 +210,13 @@ function copiedProofTree(directory) {
   const files = ["scripts/eom/verify-subfield-circular-history.mjs",
     ...SUBFIELD_CIRCULAR_FROZEN_BINDINGS.filter((binding) => ["circular-core", "integer-primitive", "budget-cli"].includes(binding.id))
       .map((binding) => binding.path)];
-  for (const relative of files) copyFileSync(path.join(ROOT, relative), path.join(root, relative));
+  // These destructive generation controls retain the original independent proof implementation.
+  for (const relative of files) {
+    const binding=proofRecords.originalSourceBindingIfPresent(relative);
+    const bytes=binding?Buffer.from(proofRecords.sourcePair(relative).original):readFileSync(path.join(ROOT,relative));
+    writeFileSync(path.join(root,relative),bytes);
+  }
+  proofRecords.check();
   return { root, cli: path.join(root, "scripts/eom/verify-subfield-circular-history.mjs"),
     generationFiles: files.filter((relative) => !relative.endsWith("derive-subfield-circular-history-budget.mjs"))
       .map((relative) => path.join(root, relative)) };
@@ -268,4 +278,24 @@ test("changed core bytes are rejected before their top-level code executes", () 
     assert.match(result.stderr, /bound bytes changed: circular-core/);
     assert.doesNotMatch(result.stderr, /UNVERIFIED_CORE_EXECUTED/);
   } finally { rmSync(directory, { recursive: true }); }
+});
+
+// Current representation transport: execute the selected captured wrapper with
+// the original independent primitive and no uncaptured module dependencies.
+test("selected current proof worker loads its closed original-reference snapshot", async () => {
+  const directory=mkdtempSync(path.join(tmpdir(),"subfield-current-proof-worker-"));
+  let worker;
+  try {
+    const manifestPath=path.join(directory,"invalid-manifest.json");writeFileSync(manifestPath,"{}\n");
+    const self="scripts/eom/verify-subfield-circular-history.mjs";
+    const productionPairs=Object.fromEntries(SUBFIELD_CIRCULAR_FROZEN_BINDINGS.filter(b=>["integer-primitive","budget-cli"].includes(b.id)).map(b=>{const pair=proofRecords.sourcePair(b.path);assert.equal(sha(Buffer.from(pair.original)),b.sha256);return[b.path,{original:pair.original,current:pair.current}];}));
+    const sources=[...SUBFIELD_CIRCULAR_FROZEN_BINDINGS.filter(b=>["circular-core","integer-primitive"].includes(b.id)),{id:"whole-manifest-verifier",path:self}].map(b=>{const bytes=productionPairs[b.path]?Buffer.from(productionPairs[b.path].original):readFileSync(path.join(ROOT,b.path));return {...b,bytes,sha256:sha(bytes),url:pathToFileURL(path.join(ROOT,b.path)).href};});
+    const snapshot={sources,productionPairs,productionIdentities:proofRecords.identities(self),nonce:"12345678-1234-1234-1234-123456789abc",entryUrl:pathToFileURL(path.join(ROOT,self)).href};
+    proofRecords.check();
+    const loader=`const{workerData,parentPort}=require('node:worker_threads');const{registerHooks}=require('node:module');const entries=new Map(workerData.snapshot.sources.map(e=>[e.url,e]));registerHooks({resolve(s,c,next){let u;try{u=new URL(s,c.parentURL).href}catch{}if(entries.has(u))return{url:u,shortCircuit:true};if(u?.startsWith('file:'))throw Error('uncaptured test dependency');return next(s,c)},load(u,c,next){if(entries.has(u))return{format:'module',source:Buffer.from(entries.get(u).bytes),shortCircuit:true};return next(u,c)}});import(workerData.snapshot.entryUrl).catch(e=>parentPort.postMessage({type:'failure',message:e.message}));`;
+    worker=new Worker(loader,{eval:true,execArgv:[],workerData:{task:"subfield-circular-whole-manifest-proof",snapshot,manifestPath,rung:2,phase:0}});
+    let loaded=false;
+    const failure=await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error("captured current proof timeout")),10000);worker.on("message",message=>{if(message.type==="progress"&&message.value.stage==="snapshot-loaded"){loaded=true;assert.equal(message.value.execution.sourceBindings.find(b=>b.id==="whole-manifest-verifier").sha256,sha(readFileSync(CLI)));}if(message.type==="failure"){clearTimeout(timer);resolve(message.message)}});worker.on("error",reject);});
+    assert.equal(loaded,true);assert.match(failure,/manifest|fields|schema/);proofRecords.check();
+  } finally {if(worker)await worker.terminate();rmSync(directory,{recursive:true,force:true});}
 });

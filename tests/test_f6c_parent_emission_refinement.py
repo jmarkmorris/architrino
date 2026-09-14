@@ -5,6 +5,7 @@ affine roots use exact rational grid inequalities, not the proposer as oracle.
 The separately frozen comparator remains unchanged and is never a subject import.
 """
 from __future__ import annotations
+from option_b_production_records import exec_source as _option_b_exec_source, exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities, original_test_source
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -44,7 +45,7 @@ def load(name, path):
     from importlib.machinery import SourceFileLoader
     spec = importlib.util.spec_from_file_location(name, path, loader=SourceFileLoader(name,str(path)))
     module = importlib.util.module_from_spec(spec); sys.modules[name] = module
-    spec.loader.exec_module(module)
+    _option_b_exec_module(__file__, spec, module)
     return module
 
 
@@ -52,7 +53,7 @@ def pinned(name):
     path, digest = PINS[name]
     if name == 'oldSubject': path = 'reference/priorities/braid-program/evidence/source-replay/scripts__eom__prepare-f6c-emission-refinement.py.source'
     raw = (original_test_source(ROOT, __file__, path) if name == 'comparisonControls'
-           else (ROOT/path).read_bytes())
+           else _option_b_source_bytes(__file__, ROOT/path))
     assert hashlib.sha256(raw).hexdigest() == digest
     return ROOT/path, raw, digest
 

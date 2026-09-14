@@ -1,4 +1,5 @@
 """Transport-only controls; no historical scientific dataset is evaluated."""
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 import copy
 import hashlib
 import importlib.util
@@ -9,18 +10,23 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 fixture_spec = importlib.util.spec_from_file_location('f6c_acceleration_fixture_records', ROOT/'tests/option_b_fixture_records.py')
 fixture_records = importlib.util.module_from_spec(fixture_spec)
-fixture_spec.loader.exec_module(fixture_records)
+_option_b_exec_module(__file__, fixture_spec, fixture_records)
 ABC_SHA = fixture_records.known_sha256(ROOT, "tests/test_f6c_acceleration_execution.py")
 ORIGINAL_VERIFIER_SHA, ORIGINAL_DECLARATION_SHA, REJECTED_CURRENT_VERIFIER_SHA = fixture_records.acceleration_prior(ROOT, "tests/test_f6c_acceleration_execution.py")
 def current_execution_plan(plan):
     """Copy the retained example into a current synthetic control, without changing its provenance."""
     plan=copy.deepcopy(plan)
+    original_control=dict(plan['controls'])
     keys=('consumer','controls','rangeVerifier','producer','producerControls','verifier','verifierControls','executionBridge')
     rows=[plan[k] for k in keys if k in plan]
     rows += plan['operationalBindings'] + plan.get('subjectSourceBindings',[])
     for b in rows:
         if b['path'].startswith(('scripts/','tests/')):
-            raw=(ROOT/b['path']).read_bytes()
+            if b['path']==original_control['path']:
+                raw=_option_b_original_source(__file__,ROOT/b['path'],expected_digest=original_control['sha256'])
+                assert len(raw)==original_control['bytes']
+            else:
+                raw=(ROOT/b['path']).read_bytes() if b['path']=='scripts/eom/execute-f6c-acceleration.py' else _option_b_source_bytes(__file__,ROOT/b['path'])
             b.update(sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))
     return plan
 
@@ -28,7 +34,7 @@ def current_execution_plan(plan):
 
 spec = importlib.util.spec_from_file_location('acceleration_execution', ROOT/'scripts/eom/execute-f6c-acceleration.py')
 s = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(s)
+_option_b_exec_module(__file__, spec, s)
 H = 'a'*64
 
 
@@ -76,7 +82,7 @@ class Transport(unittest.TestCase):
 
     def test_unchanged_numerical_sources_load_without_running_main(self):
         for path,digest in [(s.SUBJECT,s.SUBJECT_SHA),(s.VERIFIER,s.VERIFIER_SHA)]:
-            with s.Capture(ROOT/path,digest,capture=True) as captured:
+            with s._production_capture(s.Capture,ROOT/path,digest,capture=True) as captured:
                 with s.instrument(captured) as module:
                     self.assertTrue(callable(module.validate_plan))
                     self.assertEqual(hashlib.sha256(captured.data).hexdigest(),digest)
@@ -88,7 +94,7 @@ class CurrentContract(unittest.TestCase):
     def test_original_receipt_authentication_known_cases(self):
         import sys
         spec=importlib.util.spec_from_file_location('prior_fixture_controls',ROOT/'tests/test_f6c_continuous_reception_acceleration.py')
-        fixture_module=importlib.util.module_from_spec(spec);sys.modules[spec.name]=fixture_module;spec.loader.exec_module(fixture_module)
+        fixture_module=importlib.util.module_from_spec(spec);sys.modules[spec.name]=fixture_module;_option_b_exec_module(__file__, spec, fixture_module)
         _,manifest,_,_,fixed,_=fixture_module.mapping_fixture()
         docs=fixture_module.prior_fixture(fixed,manifest)
         contract=docs['priorPlan']['comparisonContract']
@@ -107,7 +113,7 @@ class CurrentContract(unittest.TestCase):
         plan=current_execution_plan(json.loads(plan_path.read_text()))
         projected,_=s.scientific_plan(plan,ROOT,plan['executionBridge']['sha256'])
         for path,digest in [(s.SUBJECT,s.SUBJECT_SHA),(s.VERIFIER,s.VERIFIER_SHA)]:
-            with s.Capture(ROOT/path,digest,capture=True) as captured:
+            with s._production_capture(s.Capture,ROOT/path,digest,capture=True) as captured:
                 with s.instrument(captured) as module:
                     self.assertEqual(module.validate_plan(projected,digest),projected)
                     for key in ('scope','priorCoverClosure','declaration'):

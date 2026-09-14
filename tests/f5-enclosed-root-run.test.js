@@ -1,3 +1,6 @@
+import {productionTestAdmission,productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
+import * as optionBProductionModule0 from "../scripts/eom/run-f5-enclosed-root.mjs";
+optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/run-f5-enclosed-root.mjs"));
 import assert from "node:assert/strict";
 import test from "node:test";
 import { mkdtempSync, readFileSync } from "node:fs";
@@ -102,11 +105,12 @@ test("prefix receipt admission binds exact original packets and executed interfa
   const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
   const reducerPath = "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs";
   const appendix = "\nexport { validateConfigAndPilot, validateEnclosureReport, expectedMembersFromConfig, validateHistoryManifest, validateRungPacket, validateRepeatedReceptionRoots, repositoryReader };\n";
-  const reducerBytes = readFileSync(reducerPath);
+  const reducerPair=productionTestAdmission().sourcePair(reducerPath);
+  const reducerBytes = Buffer.from(reducerPair.original);
   const packet = assembleRung(fixture());
   const manifestBinding = { path: ".local-data/control-only-manifest.json", sha256: "a".repeat(64) };
   const file = { path: ".local-data/control-only-packet.json", sha256: "b".repeat(64) };
-  const context = { manifestBinding, manifest: fixture().manifest, packetFiles: [file], packets: [packet], bridgeHash: "control-only" };
+  const context = { manifestBinding, manifest: fixture().manifest, packetFiles: [file], packets: [packet], bridgeHash: "control-only", reducerOriginalBytes:reducerBytes };
   const summary = { campaignId: packet.campaignId, runId: packet.runId, rawSha256: file.sha256, rungSamples: 8,
     rowCount: 1152, bindingSetSha256: hash("[]"), implementationBindingSetSha256: hash("[]") };
   const receipt = {
@@ -133,6 +137,7 @@ test("prefix receipt admission binds exact original packets and executed interfa
     (x) => { x.rungSummaries[0].rawSha256 = "other"; },
     (x) => { x.rungSummaries[0].bindingSetSha256 = "other"; },
     (x) => { x.reducerSource.sha256 = "other"; },
+    (x) => { x.reducerSource.sha256 = hash(Buffer.from(reducerPair.current)); },
     (x) => { x.bridgeSource.sha256 = "other"; },
     (x) => { x.exportAppendix.utf8 += " "; },
     (x) => { x.executedAugmentedReducerSha256 = "other"; },

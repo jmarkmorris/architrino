@@ -32,8 +32,8 @@ from dataclasses import dataclass
 from fractions import Fraction
 from types import MappingProxyType
 
-REQUIRED_REFERENCE_SHA='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'
-DECLARATION_SHA='53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037'
+REQUIRED_REFERENCE_SHA=OPTION_B_PRODUCTION_IDENTITIES[0]
+DECLARATION_SHA=OPTION_B_PRODUCTION_IDENTITIES[1]
 IDS=('0+','0-','1+','1-','2+','2-','3+','3-')
 A,B=Fraction(-8),Fraction(-1,20)
 RECEPTION=(Fraction(0),Fraction(1,1000))

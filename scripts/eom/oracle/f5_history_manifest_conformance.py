@@ -28,26 +28,35 @@ VELOCITY_WIDTH = "2.866983034112353e-7"
 SEGMENT_COUNT = 1032
 LIMIT_SECONDS = 1800
 HEARTBEAT_SECONDS = 15
+if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
+    import importlib.util as _option_b_importlib
+    from pathlib import Path as _OptionBPath
+    _option_b_root = _OptionBPath(__file__).resolve().parents[3]
+    _option_b_spec = _option_b_importlib.spec_from_file_location("_option_b_production_source_records", _option_b_root / "scripts/eom/production_source_records.py")
+    _option_b_bridge = _option_b_importlib.module_from_spec(_option_b_spec)
+    _option_b_spec.loader.exec_module(_option_b_bridge)
+    OPTION_B_PRODUCTION_IDENTITIES = _option_b_bridge.production_identities(__file__)
+
 FIXED_BINDINGS = {
     "approved-config": (
         "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
-        "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+        OPTION_B_PRODUCTION_IDENTITIES[0],
     ),
     "pilot-fixture": (
         "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json",
-        "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
+        OPTION_B_PRODUCTION_IDENTITIES[1],
     ),
     "restart-predeclaration": (
         "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
-        "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5",
+        OPTION_B_PRODUCTION_IDENTITIES[2],
     ),
     "enclosure-evidence": (
         "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md",
-        "931f5d88a209648bde63dfbdd1f24303b7a33e101e11565e75fd608be347d496",
+        OPTION_B_PRODUCTION_IDENTITIES[3],
     ),
     "accepted-enclosure-report": (
         ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json",
-        "2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9",
+        OPTION_B_PRODUCTION_IDENTITIES[4],
     ),
 }
 INSTRUMENT_PATHS = (

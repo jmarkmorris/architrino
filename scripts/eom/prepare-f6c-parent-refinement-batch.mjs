@@ -10,7 +10,7 @@ import {fileURLToPath} from 'node:url';
 export const SELF='scripts/eom/prepare-f6c-parent-refinement-batch.mjs';
 export const CONTROLS='tests/f6c-parent-refinement-batch-preparation.test.js';
 export const COORDINATOR='scripts/eom/f6c-bounded-operation.mjs';
-export const EXPECTATIONS=['reference/priorities/development-process-review/contracts/streamed-leaf-historical-invocation-v5.md','576fade32f3f923b88c5490fb44f4411b6a744199857ddea872a70e55c378ccc'];
+export let EXPECTATIONS;
 export const OBSERVER='scripts/eom/observe-parent-batch.mjs';
 export const CLOSURE_CHECKER='scripts/eom/verify-f6c-bounded-operation-closure.mjs';
 export const CLOSURE_CONTROLS='tests/f6c-bounded-operation-closure.test.js';
@@ -110,14 +110,15 @@ export class Publication{
 export async function prepare({options,self,coordinator,began,deadline}){
  check(import.meta.url===url(self.data),'captured preparation generation');let maximumRSSBytes=0,publication;const root=realpathSync(process.cwd());
  const live=()=>{check(performance.now()<deadline,'original preparation deadline');const rss=process.memoryUsage().rss;maximumRSSBytes=Math.max(maximumRSSBytes,rss);check(rss<=LIMITS.rssBytes,'preparation RSS');};live();
- const C=await import(url(coordinator.data));
+ const C=await import(url(coordinator.data)+'#root='+encodeURIComponent(root));
  const sourceAdmission=await C.initializeSourceBindings(root,options.sourceMapSha256,live);
+ initializeProductionIdentities(sourceAdmission.production.identities(SELF));
  check(sourceAdmission.sources.some(b=>canonical(b)===canonical(clean(coordinator))),'bootstrap coordinator matches selected manifest');
  const input=C.readBound(options.configurationPath,options.configurationSha256,true,1048576,live),c=JSON.parse(input.data.toString('utf8'));
  check(input.data.equals(Buffer.from(canonical(c)+'\n')),'canonical closed configuration bytes');validateConfiguration(c,C,root,sourceAdmission);
  const first=C.originalIdentities([self,coordinator,input]);for(const[p,id]of Object.entries(c.sourceIdentities)){check(!first[p]||first[p]===id,'original source generation conflict');first[p]=id;}
  const sources=C.sourceUnion([...c.sources,clean(self),clean(input)]);C.captureUnion(sources,first,live);
- const subject=C.readBound(c.composition.path,c.composition.sha256,true,1048576,live);check(subject.bytes===c.composition.bytes&&subject.identity===first[subject.path],'captured composition original identity');const B=await import(url(subject.data));
+ const subject=C.readBound(c.composition.path,c.composition.sha256,true,1048576,live);check(subject.bytes===c.composition.bytes&&subject.identity===first[subject.path],'captured composition original identity');const B=await import(url(subject.data));B.initializeProductionIdentities(sourceAdmission.production.identities(path.relative(root,subject.path)));
  const read=b=>{const f=C.readBound(b.path,b.sha256,true,67108864,live);check(f.bytes===b.bytes&&f.identity===first[f.path],'original metadata identity');return B.parseJSON(f.data);};
  const template=read(c.template),originals=Object.fromEntries(Object.entries(template.originalBindings).map(([k,b])=>[k,B.binding(b,root)]));
  const result=derivePlans({configuration:c,template,admission:read(originals.fullAdmission),exported:read(originals.export),self:clean(self),configurationBinding:clean(input),outDirectory:options.outDirectory,C,B,sourceAdmission});
@@ -143,4 +144,12 @@ export async function runPreparation(options){
 }
 if(import.meta.url.startsWith('file:')&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  Promise.resolve().then(()=>runPreparation(parseArguments(process.argv.slice(2)))).then(result=>{process.stdout.write(canonical(result)+'\n');},e=>{process.stderr.write(canonical({prepared:false,scientificCalls:0,retainedOutputs:true,failure:String(e.message).slice(0,4096)})+'\n');process.exitCode=1;});
+}
+
+let OPTION_B_PRODUCTION_IDENTITIES;
+export function initializeProductionIdentities(values) {
+  if (!Array.isArray(values) || values.length !== 1 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
+  if (OPTION_B_PRODUCTION_IDENTITIES && JSON.stringify(OPTION_B_PRODUCTION_IDENTITIES) !== JSON.stringify(values)) throw Error("production identity generation already initialized");
+  OPTION_B_PRODUCTION_IDENTITIES = Object.freeze([...values]);
+  EXPECTATIONS=['reference/priorities/development-process-review/contracts/streamed-leaf-historical-invocation-v5.md',OPTION_B_PRODUCTION_IDENTITIES[0]];
 }

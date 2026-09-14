@@ -1,3 +1,6 @@
+import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
+import * as optionBProductionModule0 from "../scripts/eom/run-subfield-circular-root-rung.mjs";
+optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/run-subfield-circular-root-rung.mjs"));
 import assert from "node:assert/strict";
 import { fstatSync, mkdtempSync, readFileSync, readSync, realpathSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -99,16 +102,15 @@ test("complete rung summary needs exact scope,census,phase order and hash chain"
 });
 
 test("captured selected runtime import exposes exact APIs and preserves scientific selections",async t=>{
-  const {admission}=await circularFixture(t);
+  const {root:fixtureRoot,admission}=await circularFixture(t);
   const api={outer:["processTable","superviseRegisteredPilot","outerWorkerOperation"],pilot:["installPilotSnapshot","watchedPilotFileOperation","validatePilotPhase","validatePilotProof"],
     helper:["runSubfieldCircularPhaseProcess"],bridge:["openSubfieldCircularPhaseLedgerWorker"],watch:["runWatched"],reducer:["subfieldCircularExactDecimal"]};
   for(const[key,names]of Object.entries(api)){const bytes=readFileSync(SUBFIELD_CIRCULAR_RUNTIME_PATHS[key]);assert.equal(rungSha(bytes),admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS[key]).sha256);
-    if(SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES[key])assert.equal(rungSha(bytes),SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES[key]);
+    if(SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES[key]){const pair=admission.productionSourcePair(SUBFIELD_CIRCULAR_RUNTIME_PATHS[key],SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES[key]);assert.equal(rungSha(Buffer.from(pair.original)),SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES[key]);assert.equal(rungSha(Buffer.from(pair.current)),rungSha(bytes));}
     if(key==="watch")continue; // This module needs its original file URL; covered by the frozen snapshot control below.
     const m=await import("data:text/javascript;base64,"+bytes.toString("base64"));for(const name of names)assert.equal(typeof m[name],"function",`${key}.${name}`);}
-  const sources=[{path:SUBFIELD_CIRCULAR_RUNG_PATH,bytes:readFileSync(SUBFIELD_CIRCULAR_RUNG_PATH)},...Object.values(SUBFIELD_CIRCULAR_RUNTIME_PATHS).map(path=>({path,bytes:readFileSync(path)}))]
-    .map(row=>({...row,sha256:rungSha(row.bytes)}));
-  const p=await import("data:text/javascript;base64,"+readFileSync(SUBFIELD_CIRCULAR_RUNTIME_PATHS.pilot).toString("base64")),snapshot=p.installPilotSnapshot(sources,realpathSync("."));
+  const sources=admission.sources;
+  const p=await import("data:text/javascript;base64,"+readFileSync(SUBFIELD_CIRCULAR_RUNTIME_PATHS.pilot).toString("base64")),snapshot=p.installPilotSnapshot(sources,fixtureRoot);
   try {assert.equal(typeof(await snapshot.import(SUBFIELD_CIRCULAR_RUNG_PATH)).runSubfieldCircularCandidateRung,"function");
     assert.equal(typeof(await snapshot.import(SUBFIELD_CIRCULAR_RUNTIME_PATHS.watch)).runWatched,"function");}finally{snapshot.close();}
 });

@@ -9,6 +9,90 @@ not root, acceleration, continuous-reception, or trajectory certification.
 
 from __future__ import annotations
 
+if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
+    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
+    from pathlib import Path as _b_Path
+    _b_root = _b_Path(__file__).resolve().parents[2]
+    _b_held = {}
+    def _b_identity(path):
+        value = path.lstat()
+        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
+    def _b_capture(relative, expected=None):
+        if (type(relative) is not str or not relative or '\\' in relative
+                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
+            raise ValueError('Unsafe selected Python bootstrap path')
+        path = _b_root / relative
+        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
+            raise ValueError('Canonical regular Python bootstrap source required')
+        before = _b_identity(path)
+        if relative in _b_held and _b_held[relative] != before:
+            raise ValueError('Selected Python bootstrap source replaced')
+        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
+        try:
+            value = _b_os.fstat(fd)
+            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
+                raise ValueError('Bounded Python bootstrap source required')
+            parts = []; size = 0
+            while size < value.st_size:
+                part = _b_os.read(fd, min(65536, value.st_size-size))
+                if not part: raise ValueError('Truncated Python bootstrap source')
+                parts.append(part); size += len(part)
+            raw = b''.join(parts); value = _b_os.fstat(fd)
+            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
+                raise ValueError('Selected Python bootstrap source changed during capture')
+        finally:
+            _b_os.close(fd)
+        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
+            raise ValueError('Selected Python bootstrap digest differs')
+        _b_held[relative] = before
+        return raw
+    def _b_unique(pairs):
+        result = {}
+        for key,value in pairs:
+            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
+            result[key] = value
+        return result
+    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
+    def _b_recheck():
+        for relative,identity in _b_held.items():
+            if _b_identity(_b_root/relative) != identity:
+                raise ValueError('Retained Python bootstrap source replaced')
+    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
+    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
+    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
+    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
+    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
+    _b_path = 'scripts/eom/production_source_records.py'
+    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
+    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
+            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
+            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
+        raise ValueError('Exact selected Python production bridge required')
+    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
+    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
+    _b_bridge.__file__ = str(_b_root/_b_path)
+    _b_sys.modules[_b_bridge.__name__] = _b_bridge
+    _b_recheck()
+    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
+    _b_recheck()
+    def _b_call(name, *args, **kwargs):
+        _b_recheck()
+        result = getattr(_b_bridge,name)(*args,**kwargs)
+        _b_recheck()
+        return result
+    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
+    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
+    production_recheck = lambda: _b_call('production_recheck')
+    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
+    production_runtime_binding = lambda: _b_call('production_runtime_binding')
+    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
+    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+
+if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
+        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
+        or len(OPTION_B_PRODUCTION_IDENTITIES) != 13):
+    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
 import argparse
 from decimal import Decimal, InvalidOperation
 from hashlib import sha256
@@ -27,21 +111,21 @@ CHARGE = "0.1666666666666666666666666666666667"
 ORIGINAL = ".tmp/f6c-dual-turn-stage-b-row12-refined-v2"
 DURABLE = "reference/priorities/braid-program/evidence"
 SOURCES = {
-    "record": (f"{ORIGINAL}/row-000/assembly-view-record.json", "7aa3369399664fb763c6d8dbca80d5f44c1c8bff6f358da311417277ce3667eb"),
-    "frames": (f"{ORIGINAL}/row-000/frames.jsonl", "49d59797c09c9c933cf0ad1c97f3927f7d4991f1b812e0b73e91e24e993ff651"),
-    "checkpoint": (f"{ORIGINAL}/row-000/checkpoint.bin", "8ba02c63c0428f670ef4c33bc464e43933f3793b561322641b1388fde92b459d"),
-    "originalManifest": (f"{ORIGINAL}/row-000/run-manifest.json", "cbd4fa5392298c3fb72a86c247daa0081f33aa6b39f2982ef5348ca0cd50830b"),
-    "originalSummary": (f"{ORIGINAL}/search-summary.json", "659dca66f8064ddf36faca8887ddabbd8c82c775be11e4dc14961f82e0ac99f9"),
-    "manifest": (f"{DURABLE}/2026-08-27-f6c-refined-stage-b-manifest.json", "cbd4fa5392298c3fb72a86c247daa0081f33aa6b39f2982ef5348ca0cd50830b"),
-    "summary": (f"{DURABLE}/2026-08-27-f6c-refined-stage-b-summary.json", "9e053c214e2d09544a488957dde7d59de40ee15937b8c056ef7d56d24eb40d3d"),
+    "record": (f"{ORIGINAL}/row-000/assembly-view-record.json", OPTION_B_PRODUCTION_IDENTITIES[0]),
+    "frames": (f"{ORIGINAL}/row-000/frames.jsonl", OPTION_B_PRODUCTION_IDENTITIES[1]),
+    "checkpoint": (f"{ORIGINAL}/row-000/checkpoint.bin", OPTION_B_PRODUCTION_IDENTITIES[2]),
+    "originalManifest": (f"{ORIGINAL}/row-000/run-manifest.json", OPTION_B_PRODUCTION_IDENTITIES[3]),
+    "originalSummary": (f"{ORIGINAL}/search-summary.json", OPTION_B_PRODUCTION_IDENTITIES[4]),
+    "manifest": (f"{DURABLE}/2026-08-27-f6c-refined-stage-b-manifest.json", OPTION_B_PRODUCTION_IDENTITIES[5]),
+    "summary": (f"{DURABLE}/2026-08-27-f6c-refined-stage-b-summary.json", OPTION_B_PRODUCTION_IDENTITIES[6]),
 }
 INSTRUMENTS = {
-    "scripts/eom/attractor-ensemble-harness.cpp": "5100c4d555646e3d8a64a9282c22537ea0f4a72934b88f7be9b892c9328bc87a",
-    "scripts/mapping-electromagnetism/f6c-nonlinear-return-map-search.mjs": "5ecf2d80fa301b65d0460948269e698e903fbc2acc68d06bef4165b7d728f001",
-    "scripts/eom/oracle/certified_acceleration.py": "62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83",
-    "scripts/eom/oracle/reference_kernel.py": "a3b94301b2994c29e1107de44d627db9566abe9cda60ec8e00b89d9351a275f6",
-    "scripts/eom/oracle/certified_history.py": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7",
-    "scripts/eom/oracle/decimal_interval.py": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
+    "scripts/eom/attractor-ensemble-harness.cpp": OPTION_B_PRODUCTION_IDENTITIES[7],
+    "scripts/mapping-electromagnetism/f6c-nonlinear-return-map-search.mjs": OPTION_B_PRODUCTION_IDENTITIES[8],
+    "scripts/eom/oracle/certified_acceleration.py": OPTION_B_PRODUCTION_IDENTITIES[9],
+    "scripts/eom/oracle/reference_kernel.py": OPTION_B_PRODUCTION_IDENTITIES[10],
+    "scripts/eom/oracle/certified_history.py": OPTION_B_PRODUCTION_IDENTITIES[11],
+    "scripts/eom/oracle/decimal_interval.py": OPTION_B_PRODUCTION_IDENTITIES[12],
 }
 DECIMAL_TOKEN = re.compile(r"-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\Z")
 

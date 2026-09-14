@@ -359,12 +359,13 @@ test('actual watched schedule includes nonzero preflight in the complete stage e
 test('bounded gate enforces its own deadline while controller remains alive', {skip:!processControls,timeout:8000}, async t=>{
   const dir=temporary(t),marker=resolve(dir,'target'),stageId='synthetic-deadline';
   const source=`process.on('SIGTERM',()=>{});require('fs').writeFileSync(${JSON.stringify(marker)},String(process.pid));setInterval(()=>{},1000);`;
-  const spec={stageId,workerPid:process.pid,cwd:process.cwd(),command:process.execPath,args:['-e',source],environment:{PATH:'/usr/bin:/bin',LC_ALL:'C',LANG:'C'},
-    inputBytes:0,inputSha256:sha256(''),deadlineEpochMs:Date.now()+800};
   const admission=await operationalAdmission();
+  let targetStartedAt;
+  const spec={stageId,workerPid:process.pid,cwd:process.cwd(),command:process.execPath,args:['-e',source],environment:{PATH:'/usr/bin:/bin',LC_ALL:'C',LANG:'C'},
+    inputBytes:0,inputSha256:sha256(''),deadlineEpochMs:Date.now()+3000};
   const child=spawn(process.execPath,admission.invocation('scripts/eom/f5-registered-stage-gate.mjs',[JSON.stringify(spec),'--source-map-sha256',admission.sourceMap.sha256]),{detached:true,stdio:['pipe','pipe','pipe','ipc'],env:spec.environment});
   t.after(()=>{if(isAlive(-child.pid))try{process.kill(-child.pid,'SIGKILL');}catch{}});
-  child.on('message',m=>{if(m.event==='gate-ready')child.send({event:'go',stageId});});child.stdin.end();
+  child.on('message',m=>{if(m.event==='gate-ready')child.send({event:'go',stageId});if(m.event==='target-started')targetStartedAt=Date.now();});child.stdin.end();
   const exit=await new Promise((done,fail)=>{child.once('error',fail);child.once('close',(code,signal)=>done({code,signal}));});
-  assert.equal(exit.signal,'SIGKILL');assert(existsSync(marker));assert(!isAlive(Number(readFileSync(marker))));assert(!isAlive(-child.pid));
+  assert.equal(exit.signal,'SIGKILL');assert(Number.isFinite(targetStartedAt)&&targetStartedAt<spec.deadlineEpochMs,'target must start before its unchanged deadline');assert(existsSync(marker));assert(!isAlive(Number(readFileSync(marker))));assert(!isAlive(-child.pid));
 });

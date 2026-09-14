@@ -23,7 +23,9 @@ async function circularAdmission(root,digest,originalBindings=[]) {
   const rows=JSON.parse(raw)['@graph']?.filter(row=>row['@type']==='Source'&&row.role==='admission');
   if(rows?.length!==1||rows[0].binding.path!=='scripts/eom/run-current-subfield-circular-root-pilot.mjs')throw Error('circular admission entry differs');
   const module=await import('data:text/javascript;base64,'+capture(path.join(root,rows[0].binding.path),rows[0].binding.sha256).toString('base64'));
-  return module.loadCircularSourceMap(root,digest,initial);
+  const admitted = await module.loadCircularSourceMap(root,digest,initial);
+  initializeProductionIdentities(admitted.productionIdentities("scripts/eom/prepare-subfield-circular-root.mjs"));
+  return admitted;
 }
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -31,10 +33,7 @@ const SELF = "scripts/eom/prepare-subfield-circular-root.mjs";
 const SUPERVISOR = "scripts/eom/prepare-f5-enclosed-root.mjs";
 const SUBJECT = "src/eom/native/eom_subfield_circular_root_cli.cpp";
 const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
-const PINNED = Object.freeze({
-  [SUBJECT]: "a06246ca3aac60d500981b19fcffabb9612dc3a4085fc4fb3c441e8839726b7a",
-  "src/eom/CMakeLists.txt": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
-});
+let PINNED;
 const CANDIDATES = ["coincident-midpoint-common-frequency", "coincident-midpoint-equal-radius-common-frequency", "coincident-midpoint-3-2-1-frequency", "phase-compensated-equal-geometry", "axially-separated-common-frequency", "axially-separated-equal-radius-common-frequency", "axially-separated-3-2-1-frequency", "axial-transverse-coincident-axis-interior", "high-axial-coincident-axis-interior", "planar-common-center-three-binary", "coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-counter-rotating"];
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const absolute = (filename) => path.isAbsolute(filename) ? filename : path.join(ROOT, filename);
@@ -67,7 +66,8 @@ export function requireSameBindings(before, after, label) {
   if (JSON.stringify(before) !== JSON.stringify(after)) throw new Error(`${label} changed across build`);
 }
 
-export function sourceSnapshot() {
+export function sourceSnapshot(admission) {
+  if(!admission?.productionSourcePair)throw Error("Explicit circular production source admission required");
   const files = [SELF, SUPERVISOR, SUBJECT, "src/eom/CMakeLists.txt"];
   function visit(relative) {
     for (const entry of readdirSync(path.join(ROOT, relative), { withFileTypes: true })) {
@@ -81,13 +81,15 @@ export function sourceSnapshot() {
   visit("src/eom/src"); visit("src/eom/include");
   const records = files.sort().map(fileBinding);
   for (const [filename, digest] of Object.entries(PINNED)) {
-    if (records.find((record) => record.path === filename)?.sha256 !== digest) throw new Error(`reviewed source drift: ${filename}`);
+    const pair=admission.productionSourcePair(filename,digest);
+    if(hash(Buffer.from(pair.original))!==digest || records.find((record) => record.path === filename)?.sha256 !== hash(Buffer.from(pair.current))) throw new Error(`reviewed source drift: ${filename}`);
   }
   return records;
 }
 
-export function referenceSnapshot() {
-  const subject = readFileSync(path.join(ROOT, SUBJECT), "utf8");
+export function referenceSnapshot(admission) {
+  if(!admission?.productionSourcePair)throw Error("Explicit circular production source admission required");
+  const subject = admission.productionSourcePair(SUBJECT,PINNED[SUBJECT]).original;
   if (hash(Buffer.from(subject)) !== PINNED[SUBJECT]) throw new Error("reviewed adapter drift");
   // Extract only the literal binding table from the independently reviewed,
   // hash-pinned carrier. No reference module or proof formula is executed.
@@ -96,7 +98,13 @@ export function referenceSnapshot() {
   if (rows.length !== 7) throw new Error("frozen adapter reference table differs");
   const records = rows.map(([, id, filename, digest]) => {
     const record = fileBinding(filename);
-    if (record.sha256 !== digest) throw new Error(`frozen reference drift: ${filename}`);
+    let expected=digest;
+    if(["scripts/eom/check-f5-evolution-dynamics.py","scripts/eom/derive-f5-independent-interpolation-enclosure.mjs","scripts/eom/derive-subfield-circular-history-budget.mjs","scripts/eom/derive-subfield-circular-root-reference.mjs","scripts/eom/execute-f5-prehistory-handoff.py","scripts/eom/oracle/f5_api_domain_conformance.py","scripts/eom/oracle/f5_history_manifest_conformance.py","scripts/eom/prepare-f5-enclosed-root-build.mjs","scripts/eom/prepare-f5-enclosed-root.mjs","scripts/eom/prepare-f5-original-input-tree.mjs","scripts/eom/prepare-f5-prehistory-handoff-build.mjs","scripts/eom/prepare-f5-prehistory-handoff.py","scripts/eom/prepare-f5-prehistory-restriction.mjs","scripts/eom/prepare-subfield-circular-root.mjs","scripts/eom/run-current-f5-enclosed-root.mjs","scripts/eom/run-f5-enclosed-root.mjs","scripts/eom/run-subfield-circular-root-pilot.mjs","scripts/eom/run-subfield-circular-root-rung.mjs","scripts/eom/verify-f5-enclosed-root-prefix.mjs","scripts/eom/verify-f5-ordinary-evolution.py","scripts/eom/verify-f5-prehistory-handoff.py","scripts/eom/verify-f5-prehistory-restriction.py","scripts/eom/verify-subfield-circular-history.mjs","src/eom/native/eom_f5_enclosed_root_cli.cpp","src/eom/native/eom_subfield_circular_root_cli.cpp","src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs","src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs","src/eom/CMakeLists.txt"].includes(filename)){
+      const pair=admission.productionSourcePair(filename,digest);
+      if(hash(Buffer.from(pair.original))!==digest)throw Error('Original circular reference applicability differs: '+filename);
+      expected=hash(Buffer.from(pair.current));
+    }
+    if (record.sha256 !== expected) throw new Error(`frozen reference drift: ${filename}`);
     return { id, ...record };
   });
   const reference = JSON.parse(readFileSync(absolute(records.find((record) => record.id === "root-reference").path)));
@@ -218,12 +226,13 @@ export async function prepareSubfieldCircular(argv, captured) {
   const began = captured?.began ?? performance.now();
   const output = parsePrepareSubfieldCircularArgs(argv);
   const admission=captured?.admission ?? await circularAdmission(ROOT,argv[argv.indexOf('--source-map-sha256')+1]);
+  initializeProductionIdentities(admission.productionIdentities(SELF));
   if(admission.source(SELF).sha256!==argv[argv.indexOf('--self-sha256')+1])throw Error('selected circular build entry differs');
   if(!captured){
     const pilot=await import('data:text/javascript;base64,'+admission.source('scripts/eom/run-subfield-circular-root-pilot.mjs').data.toString('base64'));
     const snapshot=pilot.installPilotSnapshot(admission.sources,ROOT);
-    try { const runner=await snapshot.import(SELF), watcher=await snapshot.import(SUPERVISOR);
-      return await runner.prepareSubfieldCircular(argv,{admission,began,runWatched:watcher.runWatched});
+    try { const runner=await snapshot.import(SELF), watcher=await snapshot.import(SUPERVISOR), projector=await snapshot.import('scripts/eom/project-production-native-identities.mjs');
+      return await runner.prepareSubfieldCircular(argv,{admission,began,runWatched:watcher.runWatched,projector});
     } finally {snapshot.close();}
   }
   if(!new URL(import.meta.url).search.startsWith('?subfield-circular-pilot-snapshot='))throw Error('captured circular build entry required');
@@ -238,20 +247,27 @@ export async function prepareSubfieldCircular(argv, captured) {
     h3EvidenceEligible: false, historiesPrepared: false, rootCalls: 0,
     startedAt: new Date().toISOString(), outputDirectory: path.relative(ROOT, output),
     sourceIdentityScope: "observed-before-and-after-build-bytes; operational JavaScript is not a mathematical oracle",
-    sourceMap:admission.sourceMap,operationalBindings:admission.bindings,sourcesBefore: sourceSnapshot(), referencesBefore: referenceSnapshot(), stages: [] };
+    sourceMap:admission.sourceMap,operationalBindings:admission.bindings,sourcesBefore: sourceSnapshot(admission), referencesBefore: referenceSnapshot(admission), stages: [] };
   mkdirSync(path.dirname(output), { recursive: true }); mkdirSync(output);
   const build = path.join(output, "build"), dependencies = path.join(output, "dependencies");
   mkdirSync(build); mkdirSync(dependencies);
+  if(!captured.projector?.projectProductionNativeIdentities)throw Error('captured production projector required');
+  const productionProjection=captured.projector.projectProductionNativeIdentities({root:ROOT,output:path.join(build,'option-b-production/option_b_production_identities.hpp')});
+  receipt.productionIdentityProjection=productionProjection;
+  productionProjection.check();
+  admission.recheck();
   const remaining = () => {
     const value = 1_800_000 - (performance.now() - began);
     if (value <= 0) throw new Error("end-to-end build preparation deadline exceeded");
     return value;
   };
   const watched = async (stage, command, args, cwd = ROOT) => {
+    productionProjection.check();
     admission.recheck();
     const logPath = path.join(output, `${stage}.log`), startedAt = new Date().toISOString();
     try {
       const result = await runWatched(command, args, { cwd, stage, logPath, limitMs: remaining(), heartbeatMs: 15000 });
+      productionProjection.check();
       syncLog(logPath);
       const record = { ...result, cwd, startedAt, finishedAt: new Date().toISOString(), log: fileBinding(logPath) };
       receipt.stages.push(record); return readFileSync(logPath, "utf8").trim();
@@ -299,7 +315,7 @@ export async function prepareSubfieldCircular(argv, captured) {
     const expectedSources = receipt.sourcesBefore.filter((record) => record.path.startsWith("src/eom/src/") && record.path.endsWith(".cpp"));
     if (compile.length !== expectedSources.length || new Set(compile.map((entry) => entry.source)).size !== compile.length ||
         expectedSources.some((record) => !compile.some((entry) => entry.source === absolute(record.path)))) throw new Error("compile command source census differs");
-    const manualArgs = [...compile[0].args];
+    const manualArgs = [...compile[0].args, `-I${path.join(build,"option-b-production")}`];
     if (!manualArgs.includes(`-I${mpfrInclude}`)) manualArgs.push(`-I${mpfrInclude}`);
     const subject = { source: path.join(ROOT, SUBJECT), directory: ROOT, args: manualArgs };
     const units = [...compile, subject];
@@ -315,8 +331,8 @@ export async function prepareSubfieldCircular(argv, captured) {
     const headerPaths = [...new Set(receipt.dependencyUnits.flatMap((unit) => unit.files))].sort();
     receipt.headerDependenciesBefore = headerPaths.filter((filename) => filename.startsWith(`${ROOT}/src/eom/`)).map(fileBinding);
     const configured = [cacheFile, commandsFile].map(fileBinding);
-    requireSameBindings(receipt.sourcesBefore, sourceSnapshot(), "source snapshot before compilation");
-    requireSameBindings(receipt.referencesBefore, referenceSnapshot(), "reference snapshot before compilation");
+    requireSameBindings(receipt.sourcesBefore, sourceSnapshot(admission), "source snapshot before compilation");
+    requireSameBindings(receipt.referencesBefore, referenceSnapshot(admission), "reference snapshot before compilation");
     await watched("librarybuild", cmake, ["--build", build, "--target", "eom_native", "--parallel", "2", "--verbose"]);
     const executable = path.join(build, "eom_subfield_circular_root_cli"), library = path.join(build, "libeom_native.a");
     const manualDependencyFile = path.join(dependencies, "adapter-actual.d");
@@ -351,7 +367,8 @@ export async function prepareSubfieldCircular(argv, captured) {
       }
     }
     await watched("help-control", executable, ["--help"]);
-    receipt.sourcesAfter = sourceSnapshot(); receipt.referencesAfter = referenceSnapshot();
+    productionProjection.check();
+    receipt.sourcesAfter = sourceSnapshot(admission); receipt.referencesAfter = referenceSnapshot(admission);
     receipt.toolsAfter = receipt.toolsBefore.map((record) => ({ path: record.path }));
     receipt.headerDependenciesAfter = headerPaths.filter((filename) => filename.startsWith(`${ROOT}/src/eom/`)).map(fileBinding);
     receipt.externalLibrariesAfter = externalPaths.map(capabilityPath);
@@ -378,4 +395,13 @@ export async function prepareSubfieldCircular(argv, captured) {
 
 if (!new URL(import.meta.url).search && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   prepareSubfieldCircular(process.argv.slice(2)).catch((error) => { console.error(error.message); process.exitCode = 1; });
+}
+
+export function initializeProductionIdentities(values) {
+  if (!Array.isArray(values) || values.length !== 2 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
+  const OPTION_B_PRODUCTION_IDENTITIES = values;
+  PINNED = Object.freeze({
+  [SUBJECT]: OPTION_B_PRODUCTION_IDENTITIES[0],
+  "src/eom/CMakeLists.txt": OPTION_B_PRODUCTION_IDENTITIES[1],
+});
 }

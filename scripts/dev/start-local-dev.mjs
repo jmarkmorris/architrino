@@ -1,3 +1,4 @@
+import { prepareBorgNativeBinary } from '../eom/prepare-borg-native-binary.mjs';
 import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { dirname, extname, join, normalize, resolve } from "node:path";
@@ -120,31 +121,7 @@ function sendNotFound(response) {
 }
 
 function prepareEomBorgNativeBinary() {
-  const cmakeExecutable = resolveExecutable("cmake", [
-    "/opt/homebrew/bin/cmake",
-    "/usr/local/bin/cmake",
-  ]);
-  const configure = spawnSync(
-    cmakeExecutable,
-    ["-S", resolve(REPO_ROOT, "src/eom"), "-B", EOM_BUILD_DIR, "-DCMAKE_BUILD_TYPE=Release"],
-    { cwd: REPO_ROOT, encoding: "utf8" },
-  );
-  if (configure.status !== 0) {
-    throw new Error(
-      `EOM configure failed: ${configure.error?.message || configure.stderr || configure.stdout || "unknown error"}`,
-    );
-  }
-  const build = spawnSync(
-    cmakeExecutable,
-    ["--build", EOM_BUILD_DIR, "--target", "eom_borg_shadow_cli", "--parallel", "8"],
-    { cwd: REPO_ROOT, encoding: "utf8" },
-  );
-  if (build.status !== 0) {
-    throw new Error(
-      `EOM build failed: ${build.error?.message || build.stderr || build.stdout || "unknown error"}`,
-    );
-  }
-  return resolve(EOM_BUILD_DIR, "eom_borg_shadow_cli");
+  return prepareBorgNativeBinary({buildDirectory:EOM_BUILD_DIR});
 }
 
 function readJsonRequest(request, maximumBytes = 64 * 1024 * 1024) {

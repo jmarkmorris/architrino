@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { borgConsumerAdmission } from '../borg/selected-runtime-admission.mjs';
 // Candidate-specific data preparation only. The production EOM and the frozen
 // prescribed circular evaluators remain unchanged.
 import { createHash } from 'node:crypto';
@@ -80,6 +81,7 @@ function cubic(a, b, s0, s1) {
   });
 }
 export function buildHandoff() {
+  borgConsumerAdmission(import.meta.url).check();
   const start=Number(B13_RELEASE.historyStart), end=0, count=B13_RELEASE.historySegmentsPerMember, h=(end-start)/count;
   const members=B13_RELEASE.phases.map((phaseToken,index) => {
     const phase=Number(phaseToken), segments=[];
@@ -93,6 +95,7 @@ export function buildHandoff() {
     return { pathId:`b13-${index}`, sourceHistoryId:`b13-circular-prehistory/${index}`, sourceFingerprint:`sha256:${sha256(material)}`,
       polarity:B13_RELEASE.polarities[index], phaseAtRelease:phaseToken, segments };
   });
+  borgConsumerAdmission(import.meta.url).check();
   return { schema:'braid-program/b1-3-circular-prehistory-handoff.v1', declaration:B13_RELEASE, members };
 }
 
@@ -108,6 +111,7 @@ function allocationsFor(rung) {
     resources:{rootMaximumDepth:256,rootMaximumCells:100000,quadratureMaximumDepth:16,quadratureMaximumCells:10000,eventMaximumDepth:16,eventMaximumCells:10000,correctionIterations:16,maximumStepAttempts:4096,maximumRejectedSteps:128,workerThreads:8,requestMemoryBytes:1073741824} };
 }
 export function makePrepared(handoff, rung) {
+  borgConsumerAdmission(import.meta.url).check();
   const allocations=allocationsFor(rung);
   // Remove explanatory-only undefined keys before canonical validation.
   allocations.finiteWidth=JSON.parse(JSON.stringify(allocations.finiteWidth));
@@ -122,6 +126,7 @@ export function makePrepared(handoff, rung) {
 }
 
 function main(args=process.argv.slice(2)) {
+  const admission=borgConsumerAdmission(import.meta.url);
   check(args.length===2&&args[0]==='--out', 'usage: --out FRESH_DIRECTORY');
   const out=resolve(args[1]); mkdirSync(out,{recursive:false,mode:0o700});
   const handoff=buildHandoff();
@@ -130,6 +135,7 @@ function main(args=process.argv.slice(2)) {
   for(const rung of B13_RELEASE.rungs){ const prepared=makePrepared(handoff,rung); writeFileSync(resolve(out,`${rung.id}-request.json`),JSON.stringify(prepared,null,2)+'\n',{flag:'wx',mode:0o600}); }
   const receipt={schema:'braid-program/planar-three-binary-circular-release-preparation.v1',accepted:false,eomExecuted:false,handoff:{sha256:sha256(handoffBytes),bytes:handoffBytes.length},declaration:B13_RELEASE};
   writeFileSync(resolve(out,'preparation.json'),JSON.stringify(receipt,null,2)+'\n',{flag:'wx',mode:0o600});
+  admission.check();
   process.stdout.write(JSON.stringify({out,handoff:receipt.handoff,segments:handoff.members.length*B13_RELEASE.historySegmentsPerMember})+'\n');
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){try{main();}catch(e){process.stderr.write(e.message+'\n');process.exitCode=1;}}

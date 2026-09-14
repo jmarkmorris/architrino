@@ -1,3 +1,4 @@
+import {copyProductionFixture} from './support/option-b-production-fixtures.mjs';
 // External source selection for synthetic operational controls, not evidence.
 import {createHash} from 'node:crypto';
 import {copyFileSync,mkdirSync,mkdtempSync,readFileSync,realpathSync,rmSync,writeFileSync} from 'node:fs';
@@ -10,6 +11,7 @@ const sha=raw=>createHash('sha256').update(raw).digest('hex');
 export async function circularFixture(t) {
   const root=realpathSync(mkdtempSync(path.join(tmpdir(),'circular-admitted-control-')));
   t.after(()=>rmSync(root,{recursive:true,force:true}));
+  copyProductionFixture(repo,root);
   const map=JSON.parse(readFileSync(path.join(repo,CIRCULAR_SOURCE_MAP)));
   for(const row of map['@graph'].filter(row=>row['@type']==='Source')) {
     const filename=path.join(root,row.binding.path);mkdirSync(path.dirname(filename),{recursive:true});

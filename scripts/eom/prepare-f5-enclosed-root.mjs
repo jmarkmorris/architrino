@@ -1,3 +1,5 @@
+import { productionIdentities } from "../equation-mapping/production-source-records.mjs";
+const OPTION_B_PRODUCTION_IDENTITIES = productionIdentities(import.meta.url);
 // Subject-side orchestration only. Mathematical acceptance is delegated to the
 // separately authored, byte-frozen F5 manifest oracle; this file is not an oracle.
 import { spawn } from "node:child_process";
@@ -15,16 +17,16 @@ const BUILD_BASE = ".tmp/";
 const SELF = "scripts/eom/prepare-f5-enclosed-root.mjs";
 const TARGET = "eom_f5_enclosed_root_cli";
 const FROZEN = Object.freeze({
-  "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
-  "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
-  "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md": "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5",
-  "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md": "931f5d88a209648bde63dfbdd1f24303b7a33e101e11565e75fd608be347d496",
-  ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json": "2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9",
-  "scripts/eom/oracle/decimal_interval.py": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
-  "scripts/eom/oracle/f5_actual_cubic_conformance.py": "4a90227cd79a4acfe319c723a05b711df1947953cc229f87114c4bc7babf6e09",
-  "scripts/eom/oracle/f5_history_manifest_conformance.py": "c34cd3f368398fd1ecd3a227c8026508efd319e9219b0ae8819eb4dfab646c74",
-  "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs": "1b5051928406482ffa3fecfaa60b1e94d3f1372ed87ea2ea5e7442523ddc8fd0",
-  "scripts/eom/reduce-f5-enclosed-root-ledger.mjs": "9c4d5730613597d7931b59c37d77c405bcf928de2421d55d3c76f78b7228a73a",
+  "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json": OPTION_B_PRODUCTION_IDENTITIES[0],
+  "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json": OPTION_B_PRODUCTION_IDENTITIES[1],
+  "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md": OPTION_B_PRODUCTION_IDENTITIES[2],
+  "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md": OPTION_B_PRODUCTION_IDENTITIES[3],
+  ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json": OPTION_B_PRODUCTION_IDENTITIES[4],
+  "scripts/eom/oracle/decimal_interval.py": OPTION_B_PRODUCTION_IDENTITIES[5],
+  "scripts/eom/oracle/f5_actual_cubic_conformance.py": OPTION_B_PRODUCTION_IDENTITIES[6],
+  "scripts/eom/oracle/f5_history_manifest_conformance.py": OPTION_B_PRODUCTION_IDENTITIES[7],
+  "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs": OPTION_B_PRODUCTION_IDENTITIES[8],
+  "scripts/eom/reduce-f5-enclosed-root-ledger.mjs": OPTION_B_PRODUCTION_IDENTITIES[9],
 });
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const binding = (relative) => ({ path: relative, sha256: sha(readFileSync(path.join(ROOT, relative))) });
@@ -42,10 +44,17 @@ export function scopedPath(value, prefix) {
   return absolute;
 }
 
-export function verifyFrozenReferences() {
+export function verifyFrozenReferences(admission) {
   const records = Object.entries(FROZEN).map(([relative, expected]) => {
     const actual = binding(relative);
-    if (actual.sha256 !== expected) throw new Error(`frozen reference drift: ${relative}`);
+    if (actual.sha256 !== expected) {
+      if(!admission?.productionSourcePair)throw new Error(`frozen reference drift: ${relative}`);
+      const pair=admission.productionSourcePair(relative,expected);
+      if(sha(Buffer.from(pair.original))!==expected || sha(Buffer.from(pair.current))!==actual.sha256)throw new Error(`frozen reference drift: ${relative}`);
+      // These rows describe the retained preparation's original applicability.
+      // Current execution identities are carried separately by sourceMap.
+      return {path:relative,sha256:expected};
+    }
     return actual;
   });
   return records;

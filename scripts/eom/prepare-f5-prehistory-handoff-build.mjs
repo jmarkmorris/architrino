@@ -27,7 +27,9 @@ export async function bootstrapF5(root, sourceMapSha256, originalIdentities = {}
   if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
   const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
   const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
-  return module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
+  const admitted = await module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
+  initializeProductionIdentities(admitted.productionIdentities("scripts/eom/prepare-f5-prehistory-handoff-build.mjs"));
+  return admitted;
 }
 
 function fileBinding(filename) {
@@ -47,22 +49,8 @@ const SELF = "scripts/eom/prepare-f5-prehistory-handoff-build.mjs";
 const WRAPPER = "scripts/eom/prepare-f5-prehistory-handoff.py";
 const INSPECTOR = "src/eom/native/eom_f5_prehistory_inspector.cpp";
 const BASE = ".local-data/braid-analysis/f5-prehistory-handoff-build-20260827/";
-export const SOURCE_OWNERS = Object.freeze({
-  "src/eom/src/History.cpp": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5",
-  "src/eom/src/Interval.cpp": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5",
-  "src/eom/include/architrino/eom/Decimal.hpp": "8126e685d9be5a2d4935d29eaa12d1aa995822781c198d48d809c0f0b6ddad7f",
-  "src/eom/include/architrino/eom/History.hpp": "0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3",
-  "src/eom/src/CoupledEvolution.cpp": "6fa61e458ec337982932a7882090a875ff045e0da10b405c221bc671a68a4d0d",
-});
-const PINNED = Object.freeze({
-  ...SOURCE_OWNERS,
-  [WRAPPER]: "4c9a5d724cb4d0e24fa35dd3cefed661448d0ff69077171f9d6adc869f8a079c",
-  [INSPECTOR]: "b9aeb71f6ca48d77e6b22e2ba06b0adb91884b4569399d4c6fc1acd642298b36",
-  "tests/test_f5_prehistory_handoff_producer.py": "ec1d99b6919fd2c666dd1dd157388f9577f054070744db3e38a4cc4b56062770",
-  "scripts/eom/verify-f5-prehistory-handoff.py": "6c94b0ca16dfe20bed4841a547adca349f2f36cdd5ec04211341d6b060032a68",
-  "tests/test_f5_prehistory_handoff.py": "111e828c8ea3c26996ce51c83496ff7850d48b52cf7e874982c67e882ad6cadf",
-  "src/eom/CMakeLists.txt": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
-});
+export let SOURCE_OWNERS;
+let PINNED;
 const OPERATIONAL = ["scripts/eom/prepare-subfield-circular-root.mjs", "scripts/eom/prepare-f5-enclosed-root.mjs"];
 const absolute = (value) => path.isAbsolute(value) ? value : path.join(ROOT, value);
 export function minimalBinding(filename) {
@@ -111,9 +99,16 @@ export function snapshot(builderSha, admission) {
   };
   visit("src/eom/src"); visit("src/eom/include");
   const records = [...files].sort().map(fileBinding);
-  for (const [filename, expected] of Object.entries({ ...PINNED, ...operational, [SELF]: builderSha }))
-    if (records.find((record) => record.path === filename)?.sha256 !== expected)
+  for (const [filename, expected] of Object.entries({ ...PINNED, ...operational, [SELF]: builderSha })) {
+    let actualExpected=expected;
+    if(Object.hasOwn(PINNED,filename)&&expected===PINNED[filename]&&records.find(record=>record.path===filename)?.sha256!==expected){
+      const pair=admission.productionSourcePair(filename,expected);
+      if(f5Crypto.createHash('sha256').update(pair.original).digest('hex')!==expected)throw Error('Original build applicability differs: '+filename);
+      actualExpected=f5Crypto.createHash('sha256').update(pair.current).digest('hex');
+    }
+    if (records.find((record) => record.path === filename)?.sha256 !== actualExpected)
       throw new Error(`reviewed source drift: ${filename}`);
+  }
   return records;
 }
 function resolveTool(name) {
@@ -227,6 +222,8 @@ export async function prepare(argv) {
     }
     requireSameBindings(configured, [cachePath, commandsPath].map(fileBinding), "configured build commands");
     receipt.producerSources = { wrapper: minimalBinding(WRAPPER), inspector: minimalBinding(INSPECTOR) };
+    const originalWrapper=admission.productionSourcePair(WRAPPER,PINNED[WRAPPER]);
+    receipt.originalProducerApplicability={wrapper:{path:WRAPPER,sha256:PINNED[WRAPPER],bytes:Buffer.byteLength(originalWrapper.original)},inspector:{path:INSPECTOR,sha256:PINNED[INSPECTOR],bytes:receipt.producerSources.inspector.bytes}};
     receipt.built = { executable: minimalBinding(executable), library: minimalBinding(library),
       cmakeCache: minimalBinding(cachePath), compileCommands: minimalBinding(commandsPath), inspectorDependencyFile: minimalBinding(inspectorDep) };
     receipt.runtimeDependencies = [];
@@ -280,3 +277,24 @@ export async function prepare(argv) {
 
 if (import.meta.url.startsWith("file:") && !new URL(import.meta.url).search && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
   prepare(process.argv.slice(2)).catch((error) => { console.error(error.message); process.exitCode = 1; });
+
+export function initializeProductionIdentities(values) {
+  if (!Array.isArray(values) || values.length !== 11 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
+  const OPTION_B_PRODUCTION_IDENTITIES = values;
+  SOURCE_OWNERS = Object.freeze({
+  "src/eom/src/History.cpp": OPTION_B_PRODUCTION_IDENTITIES[0],
+  "src/eom/src/Interval.cpp": OPTION_B_PRODUCTION_IDENTITIES[1],
+  "src/eom/include/architrino/eom/Decimal.hpp": OPTION_B_PRODUCTION_IDENTITIES[2],
+  "src/eom/include/architrino/eom/History.hpp": OPTION_B_PRODUCTION_IDENTITIES[3],
+  "src/eom/src/CoupledEvolution.cpp": OPTION_B_PRODUCTION_IDENTITIES[4],
+});
+  PINNED = Object.freeze({
+  ...SOURCE_OWNERS,
+  [WRAPPER]: OPTION_B_PRODUCTION_IDENTITIES[5],
+  [INSPECTOR]: OPTION_B_PRODUCTION_IDENTITIES[6],
+  "tests/test_f5_prehistory_handoff_producer.py": OPTION_B_PRODUCTION_IDENTITIES[7],
+  "scripts/eom/verify-f5-prehistory-handoff.py": OPTION_B_PRODUCTION_IDENTITIES[8],
+  "tests/test_f5_prehistory_handoff.py": OPTION_B_PRODUCTION_IDENTITIES[9],
+  "src/eom/CMakeLists.txt": OPTION_B_PRODUCTION_IDENTITIES[10],
+});
+}

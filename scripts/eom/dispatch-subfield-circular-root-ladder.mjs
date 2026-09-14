@@ -173,6 +173,7 @@ export async function subfieldCircularDispatchFileOperation(job) {
   check(sha(rungBytes) === job.rungSha256, "captured rung source differs");
   check(admission.source(RUNG).sha256===job.rungSha256,'rung differs from circular map');
   const rung = await import("data:text/javascript;base64," + rungBytes.toString("base64"));
+  rung.initializeProductionIdentities(admission.productionIdentities(RUNG));
   if (job.kind === "shared") {
     for (const binding of job.bindings) readBound(path.resolve(job.root, binding.path), binding.sha256);
     const pilotBytes = admission.source(rung.SUBFIELD_CIRCULAR_RUNTIME_PATHS.pilot).data;

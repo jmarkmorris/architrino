@@ -1,3 +1,5 @@
+import { borgConsumerAdmission } from '../borg/selected-runtime-admission.mjs';
+import { retainBorgExecutable } from './BorgExecutableAdmission.mjs';
 import { createHash } from "node:crypto";
 import { spawn, spawnSync } from "node:child_process";
 import {
@@ -5,7 +7,6 @@ import {
   mkdtempSync,
   readdirSync,
   rmSync,
-  statSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -41,6 +42,7 @@ const BORG_HISTORY_TEMP_PARENT = join(
 
 export function createBorgNativeEomProcessClient({
   binaryPath,
+  executableBinding,
   binaryArgs = [],
   timeoutMs = 120000,
   returnDisplayHistoryExtensions = false,
@@ -69,9 +71,15 @@ export function createBorgNativeEomProcessClient({
       "Borg EOM exact-history storage requires a temporary root and a limit no larger than one TiB.",
     );
   }
+  const admission=borgConsumerAdmission(import.meta.url);
+  const executableAdmission=retainBorgExecutable({binaryPath,executableBinding});
+  const checkAdmission=()=>{admission.check();executableAdmission.check();};
+  checkAdmission();
   historyTempRoot = historyTempRoot ?? createOwnedHistoryTempRoot();
   cleanHistoryTempRoot();
+  checkAdmission();
   const binaryProtocolMagic = queryBorgNativeEomProtocolMagic(binaryPath);
+  checkAdmission();
   if (binaryProtocolMagic !== BORG_NATIVE_EOM_PROTOCOL_MAGIC) {
     throw new Error(
       "Borg EOM protocol mismatch: " +
@@ -92,7 +100,6 @@ export function createBorgNativeEomProcessClient({
   let wireHistoryCacheGeneration = 0;
   let wireHistoryCacheRevision = 0;
   let wireHistoryCacheToken = null;
-  let workerBinarySignature = null;
   let lastMemoryEstimateBytes = 0;
 
   const client = Object.freeze({
@@ -112,6 +119,7 @@ export function createBorgNativeEomProcessClient({
       const requestGeneration = cancellationGeneration;
       let requestTransport = null;
       const execute = () => {
+        checkAdmission();
         if (requestGeneration !== cancellationGeneration) {
           throw new Error("EOM worker request was cancelled before execution.");
         }
@@ -127,6 +135,7 @@ export function createBorgNativeEomProcessClient({
         () => undefined,
       );
       const response = await responsePromise;
+      checkAdmission();
       const responseMemoryEstimate = Number(response?.memoryEstimateBytes);
       if (Number.isSafeInteger(responseMemoryEstimate) &&
           responseMemoryEstimate >= 0) {
@@ -185,6 +194,7 @@ export function createBorgNativeEomProcessClient({
         wireHistoryCacheGeneration = 0;
         wireHistoryCacheToken = null;
       }
+      checkAdmission();
       if (returnDisplayHistoryExtensions && request.runGrade === "display") {
         return Object.freeze({
           ...response,
@@ -213,15 +223,8 @@ export function createBorgNativeEomProcessClient({
   return client;
 
   function ensureWorker() {
-    if (worker && worker.exitCode == null && !worker.killed) {
-      const currentBinarySignature = readBinarySignature(binaryPath);
-      if (currentBinarySignature === workerBinarySignature) {
-        return;
-      }
-      terminateWorker(
-        new Error("EOM worker executable changed; restarting current binary."),
-      );
-    }
+    checkAdmission();
+    if (worker && worker.exitCode == null && !worker.killed) return;
     const generation = ++workerGeneration;
     wireHistoryCache = null;
     wireHistoryCacheGeneration = 0;
@@ -229,7 +232,6 @@ export function createBorgNativeEomProcessClient({
     lastMemoryEstimateBytes = 0;
     responseBuffer = "";
     errorBuffer = "";
-    workerBinarySignature = readBinarySignature(binaryPath);
     cleanHistoryTempRoot();
     mkdirSync(historyTempRoot, { recursive: true });
     const effectiveBinaryArgs = [
@@ -239,6 +241,7 @@ export function createBorgNativeEomProcessClient({
       `--history-temp-root=${historyTempRoot}`,
       `--history-disk-limit-bytes=${historyDiskLimitBytes}`,
     ];
+    checkAdmission();
     worker = spawn(binaryPath, ["borg-shadow-server-v0", ...effectiveBinaryArgs], {
       stdio: ["pipe", "pipe", "pipe"],
     });
@@ -313,6 +316,7 @@ export function createBorgNativeEomProcessClient({
     activeRequest = null;
     clearTimeout(pending.timeout);
     try {
+      checkAdmission();
       pending.resolve(JSON.parse(line));
     } catch (error) {
       terminateWorker(
@@ -329,7 +333,6 @@ export function createBorgNativeEomProcessClient({
     const pending = activeRequest;
     activeRequest = null;
     worker = null;
-    workerBinarySignature = null;
     wireHistoryCache = null;
     wireHistoryCacheGeneration = 0;
     wireHistoryCacheToken = null;
@@ -346,7 +349,6 @@ export function createBorgNativeEomProcessClient({
     activeRequest = null;
     const current = worker;
     worker = null;
-    workerBinarySignature = null;
     wireHistoryCache = null;
     wireHistoryCacheGeneration = 0;
     wireHistoryCacheToken = null;
@@ -407,11 +409,6 @@ function isLiveProcess(pid) {
   } catch (error) {
     return error?.code === "EPERM";
   }
-}
-
-function readBinarySignature(binaryPath) {
-  const stats = statSync(binaryPath);
-  return `${stats.dev}:${stats.ino}:${stats.size}:${stats.mtimeMs}`;
 }
 
 function readWorkerResidentBytes(pid) {

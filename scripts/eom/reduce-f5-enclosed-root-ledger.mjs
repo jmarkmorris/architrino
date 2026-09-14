@@ -53,7 +53,9 @@ function parseArgs(argv) {
   return result;
 }
 
+import {productionAdmission} from '../equation-mapping/production-source-records.mjs';
 function main() {
+  const production=productionAdmission(import.meta.url);
   const args = parseArgs(process.argv.slice(2));
   const entries = args.rungFiles.map((file) => {
     const bytes = readFileSync(file);
@@ -70,7 +72,10 @@ function main() {
   const reducerBinding = entries[0].packet.implementationBindings.find(
     (binding) => binding.id === "reducer-source",
   );
+  const pair=production.sourcePair('src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs');
+  if(sha256Bytes(Buffer.from(pair.current))!==reducerBinding.sha256)throw Error('Actual reducer binding differs from selected current bytes');
   result.reducer = { path: reducerBinding.path, sha256: reducerBinding.sha256 };
+  result.originalReducerApplicability={path:reducerBinding.path,sha256:sha256Bytes(Buffer.from(pair.original)),bytes:Buffer.byteLength(pair.original)};
   result.rawHistoryManifest = {
     path: args.historyManifest,
     sha256: sha256Bytes(historyBytes),
@@ -79,7 +84,9 @@ function main() {
     path: file,
     sha256: sha256Bytes(entries[index].bytes),
   }));
+  production.check();
   writeF5ReductionOnce(args.output, result);
+  production.check();
   process.stdout.write(`${JSON.stringify({
     accepted: result.accepted,
     h3EvidenceEligible: result.h3EvidenceEligible,

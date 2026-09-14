@@ -27,11 +27,13 @@ export async function bootstrapF5(root, sourceMapSha256, originalIdentities = {}
   if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
   const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
   const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
-  return module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
+  const admitted = await module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
+  initializeProductionIdentities(admitted.productionIdentities("scripts/eom/run-current-f5-enclosed-root.mjs"));
+  return admitted;
 }
 
 // Historical API applicability, not a current execution selector.
-const API_SUBJECT_BINDINGS = [{"path":"src/eom/native/eom_f5_enclosed_root_cli.cpp","sha256":"9f7661f4000174d631d4c60f7078e124d77ae9b2ddba6af36197f13096095f81"},{"path":"src/eom/CMakeLists.txt","sha256":"e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd"},{"path":"src/eom/src/History.cpp","sha256":"cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5"},{"path":"src/eom/src/Interval.cpp","sha256":"5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5"},{"path":"src/eom/include/architrino/eom/History.hpp","sha256":"0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3"},{"path":"src/eom/include/architrino/eom/Interval.hpp","sha256":"880a98273244c65f85ebcce2e08026a177c4af633633b8e29078948b54143dd9"}];
+let API_SUBJECT_BINDINGS;
 
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
@@ -144,3 +146,9 @@ export async function main(argv) {
 }
 if (import.meta.url.startsWith("file:") && !new URL(import.meta.url).search && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
   main(process.argv.slice(2)).catch(error => { console.error(error.message); process.exitCode = 1; });
+
+export function initializeProductionIdentities(values) {
+  if (!Array.isArray(values) || values.length !== 6 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
+  const OPTION_B_PRODUCTION_IDENTITIES = values;
+  API_SUBJECT_BINDINGS = [{"path":"src/eom/native/eom_f5_enclosed_root_cli.cpp","sha256":OPTION_B_PRODUCTION_IDENTITIES[0]},{"path":"src/eom/CMakeLists.txt","sha256":OPTION_B_PRODUCTION_IDENTITIES[1]},{"path":"src/eom/src/History.cpp","sha256":OPTION_B_PRODUCTION_IDENTITIES[2]},{"path":"src/eom/src/Interval.cpp","sha256":OPTION_B_PRODUCTION_IDENTITIES[3]},{"path":"src/eom/include/architrino/eom/History.hpp","sha256":OPTION_B_PRODUCTION_IDENTITIES[4]},{"path":"src/eom/include/architrino/eom/Interval.hpp","sha256":OPTION_B_PRODUCTION_IDENTITIES[5]}];
+}

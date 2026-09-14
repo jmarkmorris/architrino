@@ -17,11 +17,30 @@ def create_source_replay(manifest):
     _REPLAYS.append(temporary)
     atexit.register(temporary.cleanup)
     root = Path(temporary.name) / "root"
+    input_root = _ROOT
+    if manifest == "reference/priorities/braid-program/evidence/source-replay/f5-source-replay.v1.json":
+        import hashlib
+        import json
+        import option_b_production_records as production_records
+        input_root = Path(temporary.name) / "inputs"
+        input_root.mkdir()
+        document = json.loads((_ROOT / manifest).read_text())
+        for row in document["files"]:
+            relative = row["source"]
+            original = production_records.production_original_source_binding(
+                _ROOT, production_records.__file__, relative, row["sha256"], optional=True)
+            raw = (Path(original["path"]) if original else _ROOT / relative).read_bytes()
+            production_records.production_recheck()
+            if hashlib.sha256(raw).hexdigest() != row["sha256"]:
+                raise ValueError("Original F5 replay source differs: " + relative)
+            target = input_root / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(raw)
     subprocess.run([
-        "node", "scripts/dev/materialize-source-replay.mjs", "--manifest",
-        manifest,
+        "node", str(_ROOT / "scripts/dev/materialize-source-replay.mjs"), "--manifest",
+        str(_ROOT / manifest),
         "--out", str(root),
-    ], cwd=_ROOT, check=True, capture_output=True, text=True, timeout=30)
+    ], cwd=input_root, check=True, capture_output=True, text=True, timeout=30)
     return root
 
 

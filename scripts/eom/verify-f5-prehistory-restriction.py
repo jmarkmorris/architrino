@@ -35,11 +35,20 @@ _EXECUTING_CODE = sys._getframe().f_code
 SELF = "scripts/eom/verify-f5-prehistory-restriction.py"
 BASE = ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/prepared-20260827-v1/"
 FULL_PATH = BASE + "history-manifest.json"
-FULL_SHA = "5c665fcd7eee92a105fd958929ee443e4eeaea6afc0222935739aad2622a1725"
+if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
+    import importlib.util as _option_b_importlib
+    from pathlib import Path as _OptionBPath
+    _option_b_root = _OptionBPath(__file__).resolve().parents[2]
+    _option_b_spec = _option_b_importlib.spec_from_file_location("_option_b_production_source_records", _option_b_root / "scripts/eom/production_source_records.py")
+    _option_b_bridge = _option_b_importlib.module_from_spec(_option_b_spec)
+    _option_b_spec.loader.exec_module(_option_b_bridge)
+    OPTION_B_PRODUCTION_IDENTITIES = _option_b_bridge.production_identities(__file__)
+
+FULL_SHA = OPTION_B_PRODUCTION_IDENTITIES[0]
 NOMINAL_PATH = BASE + "nominal-history-conformance.json"
-NOMINAL_SHA = "f862a7148a0a00b3bde5fbb0d164156fce2dbfc161597b0cdaa182457f3741e0"
+NOMINAL_SHA = OPTION_B_PRODUCTION_IDENTITIES[1]
 API_PATH = BASE + "api-domain-conformance.json"
-API_SHA = "440deb996eaeb646b7863e9276fb937f9897c11fdbd56fed11a32efb269fe746"
+API_SHA = OPTION_B_PRODUCTION_IDENTITIES[2]
 SCHEMA = "braid-program/f5-prehistory-restriction.v1"
 REPORT_SCHEMA = "braid-program/f5-prehistory-restriction-conformance.v1"
 TOP_KEYS = frozenset(("schema", "sourceFullManifest", "normalizedFieldSpeed", "retainedInterval",

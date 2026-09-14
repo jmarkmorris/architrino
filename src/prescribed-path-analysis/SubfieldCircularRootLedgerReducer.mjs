@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { closeSync, constants, fstatSync, openSync, readFileSync, readSync, realpathSync } from "node:fs";
+import { closeSync, constants, fstatSync, lstatSync, openSync, readFileSync, readSync, realpathSync } from "node:fs";
 import path from "node:path";
 
 export const SUBFIELD_CIRCULAR_PHASE_SCHEMA = "braid-program/subfield-circular-root-phase-reduction.v1";
@@ -7,24 +7,36 @@ export const SUBFIELD_CIRCULAR_SUMMARY_SCHEMA = "braid-program/subfield-circular
 export const SUBFIELD_CIRCULAR_REDUCER_PATH = "src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs";
 export const SUBFIELD_CIRCULAR_CLI_PATH = "scripts/eom/reduce-subfield-circular-root-ledger.mjs";
 export const SUBFIELD_CIRCULAR_CANDIDATES = Object.freeze(["coincident-midpoint-common-frequency", "coincident-midpoint-equal-radius-common-frequency", "coincident-midpoint-3-2-1-frequency", "phase-compensated-equal-geometry", "axially-separated-common-frequency", "axially-separated-equal-radius-common-frequency", "axially-separated-3-2-1-frequency", "axial-transverse-coincident-axis-interior", "high-axial-coincident-axis-interior", "planar-common-center-three-binary", "coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-counter-rotating"]);
-export const SUBFIELD_CIRCULAR_REFERENCES = Object.freeze([
-  ["circular-core", "src/prescribed-path-analysis/CircularHistoryConformance.mjs", "e06080cc2e7d62af546bb51e60b65e157905c7d765e9f2d5b8c44f71ce3f22f8"],
-  ["integer-primitive", "scripts/eom/derive-subfield-circular-root-reference.mjs", "45f27a7aea84b110aa3cfa0583fb869782c2189af6b003aba4ab2215b40ac003"],
-  ["root-reference", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-root-reference-20260827-v1.json", "c5c7ae5e44e37c7a03ac916f2c406a657e9b90067c27a596302a2731a9ae066f"],
-  ["budget-cli", "scripts/eom/derive-subfield-circular-history-budget.mjs", "5e4aff33e4a82444df5d29b29c2dbd509c935668e262816e1ec0c2128d6732bc"],
-  ["construction-budget", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-history-budget-20260827-v1.json", "6c380ecb86be8ca505ef7975cdd4d8fb844e2191762692a6b5e29134ee5bfebf"],
-  ["pilot-predeclaration", "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-pilot-predeclaration.md", "b1f0ac316d24637b8ad01f467d33c207e7ed728fa3bd3921824d51697daddc4d"],
-  ["whole-manifest-verifier", "scripts/eom/verify-subfield-circular-history.mjs", "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38"],
-].map(([id, relative, sha256]) => Object.freeze({ id, path: relative, sha256 })));
+export let SUBFIELD_CIRCULAR_REFERENCES;
+let SUBJECT_SHA,CMAKE_SHA,API_PINS;
 const SUBJECT_PATH = "src/eom/native/eom_subfield_circular_root_cli.cpp";
-const SUBJECT_SHA = "a06246ca3aac60d500981b19fcffabb9612dc3a4085fc4fb3c441e8839726b7a";
-const CMAKE_SHA = "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4";
-const API_PINS = Object.freeze({
-  "src/eom/src/History.cpp": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5",
-  "src/eom/src/Interval.cpp": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5",
-  "src/eom/include/architrino/eom/History.hpp": "0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3",
-  "src/eom/include/architrino/eom/Interval.hpp": "880a98273244c65f85ebcce2e08026a177c4af633633b8e29078948b54143dd9",
+let productionSnapshot;
+export function initializeProductionIdentities(values,protectedSources=[],currentSources=[]) {
+ if(!Array.isArray(values)||values.length!==13||values.some(v=>typeof v!=='string'||! /^[a-f0-9]{64}$/u.test(v)))throw Error('Exact admitted reducer identity census required');
+ if(!Array.isArray(protectedSources))throw Error('Protected historical source bindings required');
+ const next={identities:[...values],protectedSources:structuredClone(protectedSources),currentSources:structuredClone(currentSources)};
+ if(productionSnapshot&&JSON.stringify(productionSnapshot)!==JSON.stringify(next))throw Error('Reducer production selection changed');
+ productionSnapshot=Object.freeze(next);
+ const OPTION_B_PRODUCTION_IDENTITIES=Object.freeze([...values]);
+SUBFIELD_CIRCULAR_REFERENCES = Object.freeze([
+  ["circular-core", "src/prescribed-path-analysis/CircularHistoryConformance.mjs", OPTION_B_PRODUCTION_IDENTITIES[0]],
+  ["integer-primitive", "scripts/eom/derive-subfield-circular-root-reference.mjs", OPTION_B_PRODUCTION_IDENTITIES[1]],
+  ["root-reference", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-root-reference-20260827-v1.json", OPTION_B_PRODUCTION_IDENTITIES[2]],
+  ["budget-cli", "scripts/eom/derive-subfield-circular-history-budget.mjs", OPTION_B_PRODUCTION_IDENTITIES[3]],
+  ["construction-budget", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-history-budget-20260827-v1.json", OPTION_B_PRODUCTION_IDENTITIES[4]],
+  ["pilot-predeclaration", "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-pilot-predeclaration.md", OPTION_B_PRODUCTION_IDENTITIES[5]],
+  ["whole-manifest-verifier", "scripts/eom/verify-subfield-circular-history.mjs", OPTION_B_PRODUCTION_IDENTITIES[6]],
+].map(([id, relative, sha256]) => Object.freeze({ id, path: relative, sha256 })));
+SUBJECT_SHA = OPTION_B_PRODUCTION_IDENTITIES[7];
+CMAKE_SHA = OPTION_B_PRODUCTION_IDENTITIES[8];
+API_PINS = Object.freeze({
+  "src/eom/src/History.cpp": OPTION_B_PRODUCTION_IDENTITIES[9],
+  "src/eom/src/Interval.cpp": OPTION_B_PRODUCTION_IDENTITIES[10],
+  "src/eom/include/architrino/eom/History.hpp": OPTION_B_PRODUCTION_IDENTITIES[11],
+  "src/eom/include/architrino/eom/Interval.hpp": OPTION_B_PRODUCTION_IDENTITIES[12],
 });
+
+}
 const PX = "0.0000000000072759576141834259033203125", PV = "0.0000002384185791015625";
 const Q = 10n ** 60n, U_DEN = 2n ** 53n;
 const abs = (n) => n < 0n ? -n : n;
@@ -174,14 +186,20 @@ function fingerprint(segments) {
 }
 
 function fileContext(repoRoot) {
-  const root = realpathSync(repoRoot), captured = new Map();
-  const capture=(filename,identity)=>{const absolute=path.resolve(filename);if(captured.has(absolute)&&!same(captured.get(absolute),identity))fail(`bound bytes changed: ${filename}`);captured.set(absolute,identity);};
-  const read = (filename) => {const bytes=regularBytes(filename);capture(filename,{sha256:subfieldCircularSha256(bytes),bytes:bytes.length});return bytes;};
-  const inspect=(filename)=>{const identity=hashRegular(filename);capture(filename,identity);return identity;};
+  if(!productionSnapshot)fail('admitted reducer identities required before file context');
+  const root = realpathSync(repoRoot), captured = new Map(), physical = new Map();
+  const inode=filename=>{const st=lstatSync(filename,{bigint:true});if(!st.isFile()||realpathSync(filename)!==filename)fail('canonical regular protected source required');return [st.dev,st.ino,st.size,st.mtimeNs,st.ctimeNs].map(String);};
+  const protectedSource=(relative,sha256)=>productionSnapshot.protectedSources.find(b=>b.logicalPath===relative&&b.sha256===sha256);
+  const substitutions=[];
+  for(const b of productionSnapshot.protectedSources){if(!b||typeof b.logicalPath!=='string'||!hashToken(b.sha256)||!path.isAbsolute(b.path)||!Number.isSafeInteger(b.bytes))fail('invalid protected historical binding');}
+  const capture=(filename,identity)=>{const absolute=path.resolve(filename),observed=inode(absolute);if(physical.has(absolute)&&!same(physical.get(absolute),observed))fail('retained source inode changed');physical.set(absolute,observed);if(captured.has(absolute)&&!same(captured.get(absolute),identity))fail(`bound bytes changed: ${filename}`);captured.set(absolute,identity);};
+  const startCapture=filename=>{const absolute=path.resolve(filename),observed=inode(absolute);if(physical.has(absolute)&&!same(physical.get(absolute),observed))fail('retained source inode changed');physical.set(absolute,observed);};
+  const read = (filename) => {startCapture(filename);const bytes=regularBytes(filename);capture(filename,{sha256:subfieldCircularSha256(bytes),bytes:bytes.length});return bytes;};
+  const inspect=(filename)=>{startCapture(filename);const identity=hashRegular(filename);capture(filename,identity);return identity;};
   const relative = (name) => { if (typeof name !== "string" || path.isAbsolute(name) || name.split(/[\\/]/u).includes("..")) fail("repository-relative path required"); return path.join(root, name); };
-  const bound = (binding) => { if (!hashToken(binding.sha256)) fail("invalid binding hash"); const bytes = read(relative(binding.path)); if (subfieldCircularSha256(bytes) !== binding.sha256) fail(`bound bytes changed: ${binding.path}`); return bytes; };
-  const recheck = () => { for (const [filename, original] of captured) if (!same(hashRegular(filename),original)) fail(`input changed during ledger check: ${filename}`); };
-  return { root, read, inspect, relative, bound, recheck, captured };
+  const bound = (binding) => { if (!hashToken(binding.sha256)) fail("invalid binding hash"); const archive=protectedSource(binding.path,binding.sha256);const bytes = read(archive?archive.path:relative(binding.path));if(archive){if(bytes.length!==archive.bytes)fail('protected historical source size differs');substitutions.push({logicalPath:binding.path,path:archive.path,sha256:archive.sha256,bytes:archive.bytes});} if (subfieldCircularSha256(bytes) !== binding.sha256) fail(`bound bytes changed: ${binding.path}`); return bytes; };
+  const recheck = () => { for(const[filename,identity]of physical)if(!same(inode(filename),identity))fail('retained source inode changed');for (const [filename, original] of captured) if (!same(hashRegular(filename),original)) fail(`input changed during ledger check: ${filename}`); };
+  return { root, read, inspect, relative, bound, recheck, captured, protectedSource, substitutions };
 }
 
 function verifyBuild(bytes, expectedHash, files) {
@@ -194,8 +212,11 @@ function verifyBuild(bytes, expectedHash, files) {
   function verify(binding) {
     if (!isObject(binding) || typeof binding.path !== "string" || !hashToken(binding.sha256) || !Number.isSafeInteger(binding.bytes) || binding.bytes < 0) fail("invalid build file binding");
     const filename = path.isAbsolute(binding.path) ? binding.path : files.relative(binding.path);
-    const current = files.inspect(filename);
-    if (realpathSync(filename) !== binding.realPath || current.bytes !== binding.bytes || current.sha256 !== binding.sha256) fail(`build file changed: ${binding.path}`);
+    const relative=path.relative(files.root,filename).split(path.sep).join('/');
+    const archive=files.protectedSource(relative,binding.sha256);
+    const actual=archive?archive.path:filename,current = files.inspect(actual);
+    if(archive){if(binding.realPath!==filename||current.bytes!==archive.bytes)fail('historical build source mapping differs');files.substitutions.push({logicalPath:relative,path:archive.path,sha256:archive.sha256,bytes:archive.bytes});}
+    if ((!archive&&realpathSync(filename) !== binding.realPath) || current.bytes !== binding.bytes || current.sha256 !== binding.sha256) fail(`build file changed: ${binding.path}`);
     if (all.has(binding.realPath) && all.get(binding.realPath).sha256 !== binding.sha256) fail("conflicting build file bindings");
     all.set(binding.realPath, binding);
   }
@@ -224,7 +245,9 @@ function verifyBuild(bytes, expectedHash, files) {
   for (const [relative, expected] of Object.entries({ [SUBJECT_PATH]: SUBJECT_SHA,
     "src/eom/CMakeLists.txt": CMAKE_SHA, ...API_PINS })) {
     const binding = all.get(realpathSync(files.relative(relative)));
-    if (!binding || binding.sha256 !== expected) fail(`build misses frozen source ${relative}`);
+    const selected=productionSnapshot.currentSources.find(row=>row.path===relative&&row.originalSha256===expected);
+    if (!binding || (binding.sha256 !== expected && (!selected||binding.sha256!==selected.sha256))) fail(`build misses frozen source ${relative}`);
+    if(selected&&subfieldCircularSha256(files.read(files.relative(relative)))!==selected.sha256)fail(`current build source changed: ${relative}`);
   }
   for (const required of ["src/eom/include/architrino/eom/ExactPairBatch.hpp", "src/eom/src/ExactPairBatch.cpp"]) if (!all.has(realpathSync(files.relative(required)))) fail("build misses exact pair API");
   return build;
@@ -258,8 +281,14 @@ export async function prepareSubfieldCircularPhaseLedgerContext(options, progres
   if (proof.schema !== "braid-program/subfield-circular-history-conformance.v1" || proof.accepted !== true || proof.actualCarrierValidated !== true || proof.h3EvidenceEligible !== false ||
       proof.authority !== "source-bound-whole-manifest-analytic-conformance-only" || proof.manifestSha256 !== subfieldCircularSha256(manifestBytes) || proof.manifestId !== manifestId ||
       proof.candidateId !== manifest.candidateId || proof.receptionTime !== reception || proof.normalizedFieldSpeed !== "1" || !same(proof.retainedInterval, manifest.retainedInterval)) fail("conformance does not accept exact manifest");
-  const verifierBinding = SUBFIELD_CIRCULAR_REFERENCES.find(binding => binding.id === "whole-manifest-verifier");
-  const bindings = [...SUBFIELD_CIRCULAR_REFERENCES.filter(binding => binding !== verifierBinding), sourceBinding, verifierBinding];
+  const originalVerifierBinding = SUBFIELD_CIRCULAR_REFERENCES.find(binding => binding.id === "whole-manifest-verifier");
+  const selectedVerifier=productionSnapshot.currentSources.find(row=>row.path===originalVerifierBinding.path&&row.originalSha256===originalVerifierBinding.sha256);
+  if(!selectedVerifier||subfieldCircularSha256(files.read(files.relative(selectedVerifier.path)))!==selectedVerifier.sha256)fail('actual admitted current proof verifier differs');
+  const recordedVerifier=proof.bindings?.find(binding=>binding.id==='whole-manifest-verifier');
+  const usesOriginalVerifier=recordedVerifier?.sha256===originalVerifierBinding.sha256;
+  if(usesOriginalVerifier)files.bound(originalVerifierBinding);
+  const verifierBinding={...originalVerifierBinding,sha256:usesOriginalVerifier?originalVerifierBinding.sha256:selectedVerifier.sha256};
+  const bindings = [...SUBFIELD_CIRCULAR_REFERENCES.filter(binding => binding !== originalVerifierBinding), sourceBinding, verifierBinding];
   if (!same(proof.bindings, bindings) || proof.execution?.mode !== "captured-source-worker" ||
       !same(proof.execution.sourceBindings, [SUBFIELD_CIRCULAR_REFERENCES[0], SUBFIELD_CIRCULAR_REFERENCES[1], verifierBinding])) fail("conformance instrument bindings differ");
   const order = source.relationships?.sourceOrder;
@@ -436,6 +465,7 @@ export async function reduceSubfieldCircularPhaseSnapshot(snapshot,progress=()=>
     buildReview:"separate-independent-review-required",rootExecutionAuthorized:false,
     reducer:{path:SUBFIELD_CIRCULAR_REDUCER_PATH,sha256:subfieldCircularSha256(snapshot.reducerBytes)},cli:{path:SUBFIELD_CIRCULAR_CLI_PATH,sha256:subfieldCircularSha256(snapshot.cliBytes)},
     sourceBinding:context.manifest.sourceBinding,referenceBindings:SUBFIELD_CIRCULAR_REFERENCES,
+    sourceArchiveSubstitutions:context.files.substitutions,currentSourceBindings:productionSnapshot.currentSources,
     rawRows,memberCount:context.manifest.members.length,rowCount:rows.length,
     members:context.manifest.members.map(({segments,...member})=>member),independentApiSpeedBounds:context.speedBounds,
     ordinaryRootCount:rows.reduce((sum,row)=>sum+row.roots.length,0),selfEndpointCount:context.manifest.members.length,
@@ -504,4 +534,27 @@ export async function reduceSubfieldCircularSummarySnapshot(snapshot,progress=()
     phaseReceiptChainSha256:subfieldCircularSha256(Buffer.from(inputIdentities.map(identity=>identity.sha256).join("\n")+"\n")),
     buildReceipt:receipts[0].buildReceipt,reducer:{path:SUBFIELD_CIRCULAR_REDUCER_PATH,sha256:reducerSha},cli:{path:SUBFIELD_CIRCULAR_CLI_PATH,sha256:cliSha},
     repeatedReceptions:"identical-original-carriers-and-overlapping-roots",claimBoundary:"Only the explicitly named complete phase scope and byte-bound summary chain are accepted. Raw certificates remain in their original NDJSON files. No H3 promotion, resource approval, evolution, retention, stability, score or physical claim."};
+}
+
+export function captureSubfieldCircularReducerProduction(admission,repoRoot,buildReceipt,buildReceiptSha256) {
+ const identities=admission.productionIdentities(SUBFIELD_CIRCULAR_REDUCER_PATH);
+ const OPTION_B_PRODUCTION_IDENTITIES=identities;const references = Object.freeze([
+  ["circular-core", "src/prescribed-path-analysis/CircularHistoryConformance.mjs", OPTION_B_PRODUCTION_IDENTITIES[0]],
+  ["integer-primitive", "scripts/eom/derive-subfield-circular-root-reference.mjs", OPTION_B_PRODUCTION_IDENTITIES[1]],
+  ["root-reference", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-root-reference-20260827-v1.json", OPTION_B_PRODUCTION_IDENTITIES[2]],
+  ["budget-cli", "scripts/eom/derive-subfield-circular-history-budget.mjs", OPTION_B_PRODUCTION_IDENTITIES[3]],
+  ["construction-budget", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-history-budget-20260827-v1.json", OPTION_B_PRODUCTION_IDENTITIES[4]],
+  ["pilot-predeclaration", "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-pilot-predeclaration.md", OPTION_B_PRODUCTION_IDENTITIES[5]],
+  ["whole-manifest-verifier", "scripts/eom/verify-subfield-circular-history.mjs", OPTION_B_PRODUCTION_IDENTITIES[6]],
+].map(([id, relative, sha256]) => Object.freeze({ id, path: relative, sha256 })));
+ const bindings=[...references];
+ if(buildReceipt){const raw=regularBytes(buildReceipt);if(subfieldCircularSha256(raw)!==buildReceiptSha256)fail('build original identity required before source selection');const build=subfieldCircularOriginalJson(raw);for(const group of ['sourcesBefore','referencesBefore','headerDependenciesBefore'])for(const b of build[group]??[])bindings.push({...b,path:path.isAbsolute(b.path)?path.relative(repoRoot,b.path).split(path.sep).join('/'):b.path});}
+ const protectedSources=[];const seen=new Set();
+ for(const b of bindings){if(!/^(src|scripts|tests)\//u.test(b.path))continue;const key=b.path+'@'+b.sha256;if(seen.has(key))continue;seen.add(key);const live=regularBytes(path.join(repoRoot,b.path));if(subfieldCircularSha256(live)===b.sha256)continue;const archive=admission.productionOriginalSourceBinding(b.path,b.sha256);if(subfieldCircularSha256(regularBytes(archive.path))!==b.sha256)fail('protected archive differs');protectedSources.push({logicalPath:b.path,...archive});}
+ const verifier=references.find(b=>b.id==='whole-manifest-verifier'),pair=admission.productionSourcePair(verifier.path,verifier.sha256);
+ if(subfieldCircularSha256(Buffer.from(pair.original))!==verifier.sha256)fail('proof verifier original generation differs');
+ const currentSources=[{path:verifier.path,originalSha256:verifier.sha256,sha256:subfieldCircularSha256(Buffer.from(pair.current))}];
+ const buildSources=[[SUBJECT_PATH,identities[7]],['src/eom/CMakeLists.txt',identities[8]],['src/eom/src/History.cpp',identities[9]],['src/eom/src/Interval.cpp',identities[10]],['src/eom/include/architrino/eom/History.hpp',identities[11]],['src/eom/include/architrino/eom/Interval.hpp',identities[12]]];
+ for(const [relative,originalSha256]of buildSources){const current=regularBytes(path.join(repoRoot,relative));if(subfieldCircularSha256(current)===originalSha256)continue;const pair=admission.productionSourcePair(relative,originalSha256);if(subfieldCircularSha256(Buffer.from(pair.original))!==originalSha256||subfieldCircularSha256(Buffer.from(pair.current))!==subfieldCircularSha256(current))fail('exact current build source applicability differs');currentSources.push({path:relative,originalSha256,sha256:subfieldCircularSha256(current)});}
+ return {identities,protectedSources,currentSources};
 }

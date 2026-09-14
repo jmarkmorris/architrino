@@ -1,3 +1,5 @@
+import { productionIdentities } from "../equation-mapping/production-source-records.mjs";
+const OPTION_B_PRODUCTION_IDENTITIES = productionIdentities(import.meta.url);
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -10,22 +12,22 @@ const S = 10n ** 12n;
 const N = 4096n;
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const SOURCE_BINDINGS = Object.freeze([
-  ["coincident-midpoint-common-frequency", "three-axis-circular-coincident-midpoints-common-frequency.v3.json", "92ddbd4c1e84c6d4e79042e8883331d832b16ab60c47da05c0c892da39a5de4c"],
-  ["coincident-midpoint-equal-radius-common-frequency", "three-axis-circular-coincident-midpoints-equal-radius-common-frequency.v3.json", "101322087af98a8ec4cb4220f4edf44e85fbe288ac5c0c39b6c7808a9114726c"],
-  ["coincident-midpoint-3-2-1-frequency", "three-axis-circular-coincident-midpoints-3-2-1-frequency.v3.json", "b902c55d8b017343231b9a42d652f02b65e94d0a9be23cb54210e75521e6f421"],
-  ["phase-compensated-equal-geometry", "three-axis-circular-phase-compensated-symmetric.v3.json", "d134a93f18dbeca695f19612b0b38f110e8c8792b203b84763860b17e0f04779"],
-  ["axially-separated-common-frequency", "three-axis-circular-axially-separated-common-frequency.v3.json", "ca053e0cbd52b36faebb462f0de7d68039496670019c8aa7571c64070b9e7745"],
-  ["axially-separated-equal-radius-common-frequency", "three-axis-circular-axially-separated-equal-radius-common-frequency.v3.json", "a133444b64c6783400f5da3400514cc3c64d96ec650996b656f1f532a09fcb58"],
-  ["axially-separated-3-2-1-frequency", "three-axis-circular-axially-separated-3-2-1-frequency.v3.json", "857036cad78931d7b8d6cfb83a330ae81176838a352eafff00218f77bae0b780"],
-  ["axial-transverse-coincident-axis-interior", "axial-transverse-three-binary-interior.v3.json", "d3f7e77ec8cd4c49e857ab4cb788330e8ac47b452ad01da468fe96e3e49db30c"],
-  ["high-axial-coincident-axis-interior", "high-axial-three-binary-interior.v3.json", "2b9455a1be23b2d68c8e3938cf0e4420a473501ec89e0f5d36faa5b68f7f0b17"],
-  ["planar-common-center-three-binary", "planar-three-binary-common-center-reference.v3.json", "ac59dcee4d5e6835f31dc11f1d3d04c508b19a323d36db080f3bb9efcbf633b5"],
-  ["coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-co-rotating.v3.json", "436971bc0944d57b3fc0e82432175369fd7a2b0ba62aef6c979485ade8215df7"],
-  ["coincident-center-two-component-circular-counter-rotating", "coincident-center-two-component-circular-counter-rotating.v3.json", "58089a29820c8c085a8f25a9dc1f77d4d302f832eff5d5436b23a7227735df14"],
-  ["coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-co-rotating.v3.json", "6f5a054684791c8b21b75744b41561e83a491e4d0fa515f1d314dab32c5727e1"],
-  ["coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-counter-rotating.v3.json", "e1e5b2db5761021bcd51acd8316991ec9bfc9a84e259767976acaf898c81b391"],
-  ["coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-co-rotating.v3.json", "8a10bcd5c63f5aedb217a930f92856f1a394a18d206b352c44c826590f6b5295"],
-  ["coaxial-separated-two-planar-braid-counter-rotating", "coaxial-separated-two-planar-braid-counter-rotating.v3.json", "3a8eb45f411e0789818ea20a5cb8fb9295801945fcaab1b539f594e2e8e722d8"],
+  ["coincident-midpoint-common-frequency", "three-axis-circular-coincident-midpoints-common-frequency.v3.json", OPTION_B_PRODUCTION_IDENTITIES[0]],
+  ["coincident-midpoint-equal-radius-common-frequency", "three-axis-circular-coincident-midpoints-equal-radius-common-frequency.v3.json", OPTION_B_PRODUCTION_IDENTITIES[1]],
+  ["coincident-midpoint-3-2-1-frequency", "three-axis-circular-coincident-midpoints-3-2-1-frequency.v3.json", OPTION_B_PRODUCTION_IDENTITIES[2]],
+  ["phase-compensated-equal-geometry", "three-axis-circular-phase-compensated-symmetric.v3.json", OPTION_B_PRODUCTION_IDENTITIES[3]],
+  ["axially-separated-common-frequency", "three-axis-circular-axially-separated-common-frequency.v3.json", OPTION_B_PRODUCTION_IDENTITIES[4]],
+  ["axially-separated-equal-radius-common-frequency", "three-axis-circular-axially-separated-equal-radius-common-frequency.v3.json", OPTION_B_PRODUCTION_IDENTITIES[5]],
+  ["axially-separated-3-2-1-frequency", "three-axis-circular-axially-separated-3-2-1-frequency.v3.json", OPTION_B_PRODUCTION_IDENTITIES[6]],
+  ["axial-transverse-coincident-axis-interior", "axial-transverse-three-binary-interior.v3.json", OPTION_B_PRODUCTION_IDENTITIES[7]],
+  ["high-axial-coincident-axis-interior", "high-axial-three-binary-interior.v3.json", OPTION_B_PRODUCTION_IDENTITIES[8]],
+  ["planar-common-center-three-binary", "planar-three-binary-common-center-reference.v3.json", OPTION_B_PRODUCTION_IDENTITIES[9]],
+  ["coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-co-rotating.v3.json", OPTION_B_PRODUCTION_IDENTITIES[10]],
+  ["coincident-center-two-component-circular-counter-rotating", "coincident-center-two-component-circular-counter-rotating.v3.json", OPTION_B_PRODUCTION_IDENTITIES[11]],
+  ["coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-co-rotating.v3.json", OPTION_B_PRODUCTION_IDENTITIES[12]],
+  ["coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-counter-rotating.v3.json", OPTION_B_PRODUCTION_IDENTITIES[13]],
+  ["coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-co-rotating.v3.json", OPTION_B_PRODUCTION_IDENTITIES[14]],
+  ["coaxial-separated-two-planar-braid-counter-rotating", "coaxial-separated-two-planar-braid-counter-rotating.v3.json", OPTION_B_PRODUCTION_IDENTITIES[15]],
 ].map(([id, filename, sha256]) => Object.freeze({ id, path: `reference/priorities/braid-program/configurations/${filename}`, sha256 })));
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const abs = (x) => x < 0n ? -x : x;

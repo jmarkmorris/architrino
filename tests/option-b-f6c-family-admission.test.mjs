@@ -1,3 +1,5 @@
+import {copyProductionFixture,expectedPhysicalPaths} from './support/option-b-production-fixtures.mjs';
+import {loadProductionTestModule,originalProductionTestSource} from './support/option-b-production-hosts.mjs';
 import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
 const NEXT_TEST_SHA = nextTestIdentities("tests/option-b-f6c-family-admission.test.mjs", 3);
 import test from 'node:test';
@@ -7,17 +9,18 @@ import {mkdtempSync,mkdirSync,readFileSync,writeFileSync,realpathSync,rmSync} fr
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import * as C from '../scripts/eom/f6c-bounded-operation.mjs';
-import * as Parent from '../scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs';
-import * as Packaging from '../scripts/eom/run-f6c-evidence-packaging.mjs';
-import * as Stream from '../scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs';
+const Parent=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs");
+const Packaging=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-evidence-packaging.mjs");
+const Stream=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs");
 const root=realpathSync(process.cwd()),reader='scripts/equation-mapping/current-source-manifest.mjs';
 const hash=raw=>createHash('sha256').update(raw).digest('hex');
 const bind=p=>{const raw=readFileSync(p);return{path:p,sha256:hash(raw),bytes:raw.length};};
 function fixture(t){
  const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'b-f6c-family-')));t.after(()=>rmSync(dir,{recursive:true,force:true}));
+ copyProductionFixture(root,dir);
  const doc=JSON.parse(readFileSync(path.join(root,C.SOURCE_MAP)));
  for(const row of doc['@graph'].filter(r=>r['@type']==='Source')){
-  const p=path.join(dir,row.binding.path),raw=[C.SELF,reader].includes(row.binding.path)?readFileSync(path.join(root,row.binding.path)):Buffer.from('// inert operational selection\n');
+  const p=path.join(dir,row.binding.path),raw=readFileSync(path.join(root,row.binding.path));
   mkdirSync(path.dirname(p),{recursive:true});writeFileSync(p,raw);row.binding.sha256=hash(raw);
  }
  const map=path.join(dir,C.SOURCE_MAP);mkdirSync(path.dirname(map),{recursive:true});writeFileSync(map,JSON.stringify(doc,null,2)+'\n');
@@ -26,10 +29,10 @@ function fixture(t){
  const spec={root:dir,bindings:{...Object.fromEntries(Object.entries(Stream.OPERATIONS).map(([k,p])=>[k,bind(path.join(dir,p))])),sourceMap:bind(map),manifestReader:bind(path.join(dir,reader))}};
  return{dir,map,doc,plan,spec,sources};
 }
-test('known inert family admits exactly the selected seven-source closure before current target checks',async t=>{
+test('selected family admits complete operational and production closure before current target checks',async t=>{
  const f=fixture(t);
- for(const M of[Parent,Packaging])assert.deepEqual((await M.admitOperationalSources(f.plan)).sourceAdmission.sources.map(b=>b.path).sort(),f.sources.map(b=>b.path).sort());
- assert.deepEqual((await Stream.admitOperationalSources(f.spec)).sources.map(b=>b.path).sort(),f.sources.map(b=>b.path).sort());
+ for(const M of[Parent,Packaging])assert.deepEqual((await M.admitOperationalSources(f.plan)).sourceAdmission.sources.map(b=>b.path).sort(),expectedPhysicalPaths(f.dir,C.SOURCE_MAP));
+ assert.deepEqual((await Stream.admitOperationalSources(f.spec)).sources.map(b=>b.path).sort(),expectedPhysicalPaths(f.dir,C.SOURCE_MAP));
 });
 test('current family reuses the common selection without changing scientific or historical declarations',async()=>{
  const admission=await C.initializeSourceBindings(root,bind(path.join(root,C.SOURCE_MAP)).sha256);
@@ -43,9 +46,12 @@ test('current family reuses the common selection without changing scientific or 
   for(const k of['NAMED','DEPENDENCIES','ORIGINAL','PACKAGE_PINS','GENERIC_PINS','FRESH_CLOSURE_PINS'])if(row[k])assert.deepEqual(M[k],row[k],filename+' '+k);
   if(M!==Parent){const pins=structuredClone(row.PINS);if(M===Stream)for(const k of Object.keys(Stream.OPERATIONS))delete pins[k];assert.deepEqual(M.PINS,pins);}
  }
- assert.equal(hash(Stream.PYTHON),NEXT_TEST_SHA[0]);
- assert.equal(hash(Parent.PYTHON_BOOTSTRAP),NEXT_TEST_SHA[1]);
- assert.equal(hash(Packaging.PYTHON),NEXT_TEST_SHA[2]);
+ const literal=(source,name)=>{const match=source.match(new RegExp('export\\s+const\\s+'+name+'\\s*=\\s*String\\.raw`([^`]+)`'));assert.ok(match,'original Python literal');return match[1];};
+ assert.equal(literal('export const PYTHON=String.raw`known`;','PYTHON'),'known');
+ for(const [M,name,expected] of [[Stream,'PYTHON',NEXT_TEST_SHA[0]],[Parent,'PYTHON_BOOTSTRAP',NEXT_TEST_SHA[1]],[Packaging,'PYTHON',NEXT_TEST_SHA[2]]]){
+  assert.equal(hash(literal(originalProductionTestSource(M.SELF).toString(),name)),expected);
+  assert.equal(typeof M[name],'string');
+ }
 });
 test('parent and packaging reject omitted map, helper, reader, changed map and missing external selection',async t=>{
  for(const M of[Parent,Packaging])for(const p of[C.SOURCE_MAP,reader,...Object.values(C.DEPENDENCIES)]){

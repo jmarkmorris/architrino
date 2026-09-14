@@ -1,4 +1,5 @@
 """Synthetic composition controls; no actual adapter, history or root calls."""
+from option_b_production_records import source_bytes as _option_b_source_bytes, exec_source as _option_b_exec_source
 from option_b_batch_records import batch_identities, batch_test_sources
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -23,13 +24,13 @@ def load(name, relative, expected=None):
         # Preserve the original helper identity and execute its admitted successor.
         assert hashlib.sha256(original).hexdigest() == expected
     else:
-        raw = path.read_bytes()
+        raw = _option_b_source_bytes(__file__, path)
         if expected is not None:
             assert hashlib.sha256(raw).hexdigest() == expected
     module = ModuleType(name)
     module.__file__ = str(path)
     sys.modules[name] = module
-    exec(compile(raw, str(path), 'exec'), module.__dict__)
+    _option_b_exec_source(__file__, module, str(path), raw)
     if relative == 'tests/test_f6c_variable_cell_adapter.py':
         assert batch_test_sources(ROOT, __file__, relative) == (original, raw)
     return module
@@ -608,7 +609,7 @@ class BisectedTests(unittest.TestCase):
         self.assertEqual(F(summary.serialized_integral_width), F(8, 10**100))
 
     def test_source_and_numeric_references_remain_the_frozen_contract(self):
-        self.assertEqual(hashlib.sha256((ROOT/'scripts/eom/f6c_variable_cell_adapter.py').read_bytes()).hexdigest(),
+        self.assertEqual(hashlib.sha256(_option_b_source_bytes(__file__, ROOT/'scripts/eom/f6c_variable_cell_adapter.py')).hexdigest(),
                          OPTION_B_BATCH_IDENTITIES[4])
         for key in ('rms', 'aggregate', 'full_run_authorized'):
             self.assertNotIn(key, D.BisectedRestrictedDiagnostic.__dataclass_fields__)

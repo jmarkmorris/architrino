@@ -1,3 +1,4 @@
+import {loadProductionTestModule} from './support/option-b-production-hosts.mjs';
 import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
 const NEXT_TEST_SHA = nextTestIdentities("tests/f6c-bounded-operation-closure.test.js", 1);
 // Independent literal protocol controls. No coordinator or producer imports.
@@ -7,7 +8,7 @@ import {createHash} from 'node:crypto';
 import {mkdtempSync,writeFileSync,renameSync,rmSync,realpathSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
-import {verifyClosure,capture,parseProcessTable} from '../scripts/eom/verify-f6c-bounded-operation-closure.mjs';
+const {verifyClosure,capture,parseProcessTable}=await loadProductionTestModule(import.meta.url,"scripts/eom/verify-f6c-bounded-operation-closure.mjs");
 const h=raw=>createHash('sha256').update(raw).digest('hex');
 const bind=(p,raw=Buffer.from('x'))=>({path:p,sha256:h(raw),bytes:raw.length});
 export function fixture(){
