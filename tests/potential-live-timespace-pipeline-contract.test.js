@@ -1,3 +1,5 @@
+import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';
+const identities=batchTestIdentities(import.meta.url);
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -86,7 +88,7 @@ test("an identical duplicate is idempotent but a changed duplicate is rejected",
 
   const conflicting = applyPipelineFixtureMutation(positive, {
     path: "events.5.contentSha256",
-    value: "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    value: identities[0],
   });
   assert.throws(() => simulatePotentialLivePipeline(conflicting), /conflicting_duplicate/u);
 });

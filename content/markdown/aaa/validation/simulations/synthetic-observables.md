@@ -15,7 +15,7 @@ A $\mathbb{U}_{\text{now}}$ log is produced by an array of **$\mathbb{U}_{\text{
   - Local gradient $\nabla_{\mathbf X}\Phi(\mathbf X_k,T)$ (a potential-gradient channel, read as an acceleration proxy only under the declared calibration; the substrate acceleration is the per-hit sum of the [Master Equation](../../dynamics/master-equation.md#the-master-equation-canonical-form), which enters the log through the provenance table's contribution strength and the retained worldlines in $S(T)$)
   - Optional local Noether sea state variables (e.g., the Noether braid density $\rho_{\text{NS}}$, alignment/orientation metrics)
   - Causal wake surface provenance/event tags: for each received contribution at $(\mathbf X_k,T_r)$, record `transmitter_id` together with the emission time $T_t$, satisfying $\| \mathbf X_k - \mathbf X_{\text{transmitter}}(T_t)\| = c_f (T_r - T_t)$, the causal-time condition that the wake surface emitted at $T_t$ has expanded exactly to the sensor by the reception time $T_r$; each such $T_t$ is a causal root of that reception event
-  - Photon packet provenance when a radiation channel is declared: transmitter event, path segment, before/after frequency, recoil or medium-energy exchange, remnant entry, and signed exchange residual
+  - Photon packet provenance when a radiation channel is declared: transmitter event, path segment, before/after frequency, target internal-energy, medium-energy and recoil changes, remnant entry, and signed exchange residual
   - Optional finite-window operator diagnostics for declared reconstructed channels $\mathbf{Y}_\eta$, including the Gauss, Stokes, and wake-surface normalization residuals defined under the validation checks below
 
 ### Minimal synthetic products
@@ -26,7 +26,7 @@ A $\mathbb{U}_{\text{now}}$ log is produced by an array of **$\mathbb{U}_{\text{
 - Coarse kinetic moments when a continuum reduction is claimed: density, current, momentum-current tensor, energy-flux vector, and memory-current residuals derived from the same event-root records, meaning the per-hit records of solved causal roots
 - Stochastic summaries when a noise model is claimed: drift vector, diffusion tensor, first two distribution moments, and direct ensemble comparison against event-root histories
 - Reaction-diffusion probes when pattern or front language is claimed: front speed, unstable-mode band, selected wavelength, and conservation or source ledger for each reaction term
-- Jet/outflow source products when a collimated release or working surface is claimed: beam radius, head radius, bow-shock speed, Mach number, jet-to-ambient density ratio, knot spacing, cooling ratio, synthetic line map, synthetic synchrotron map, inverse-Compton map, polarization fraction, and polarization angle
+- Jet/outflow source products when a collimated release or working surface is claimed: beam radius, head radius, separately tracked head and bow-shock speeds, Mach number, jet-to-ambient density ratio, knot spacing, cooling ratio, synthetic line map, synthetic synchrotron map, inverse-Compton map, polarization fraction, and polarization angle
 - Cosmology-facing photon products when redshift is inferred: total $Z_X$, endpoint/source/launch/path decomposition, signed path-frequency exchange $Y_{X,\mathrm{path}}$, packet-cadence stretch, flux factors, and image-sharpness diagnostics, in the logarithmic redshift-budget convention of the [Redshift-Budget Toy Model](redshift-budget-toy-model.md#replay-equation)
 
 ### Mapping: $\mathbb{U}_{\text{now}}$ data → Physical observables
@@ -59,7 +59,7 @@ Synthetic observables are envelope-limited: each is valid only within the scope 
 
   [View →](../../../../../equation-mapping.html#corpus-equation-7ac22ecc1b685464)
 
-  Here $\theta_m$ is the emission time minus the reception time of record $m$ in units of the step, so a legal hit has $\theta_m<0$ and a positive value would mean a wake received before it was emitted. Pass if fraction with $\theta_m>10^{-9}$ is $\le 10^{-6}$. A record with $\theta_m=0$ within the same tolerance is a coincident-time root, which the convention $H(0)=0$ of the [Master Equation](../../dynamics/master-equation.md#conventions-and-exclusions) excludes; such records are reported as excluded rather than counted as passing hits.
+  Here $\theta_m$ is the emission time minus the reception time of record $m$ in units of the step, so a legal hit has $\theta_m<0$. Report the numerical ordering diagnostic: the fraction with $\theta_m>10^{-9}$ must be $\le10^{-6}$. That tolerance does not decide causal admission. Admit a hit only when its certified timing interval is strictly negative; a certified positive value is a rejected acausal record. Exact $T_{t,m}=T_m$ is excluded by $H(0)=0$ in the [Master Equation](../../dynamics/master-equation.md#conventions-and-exclusions). An interval containing zero is unresolved until refined or analytically classified, and cannot be counted as a passing hit. A strictly negative certified interval remains admissible even within the numerical diagnostic tolerance. Outputs that depend on an unresolved record require an error bound for its possible contribution before promotion.
 
 - **Cross-integrator parity:** For any channel $Y$ logged by two integrators $A$ and $B$ at matched resolution, use a predeclared floor $\varepsilon_{0,Y}$ with the same units as the norm of $Y$:
   $$
@@ -83,13 +83,13 @@ Synthetic observables are envelope-limited: each is valid only within the scope 
   and
   $$
   R_S[S,T;\mathbf{Y}_\eta]\equiv
-  \frac{\left|\oint_{\partial S}\mathbf{Y}_\eta\!\cdot dX^i-\int_S(\nabla_{\mathbf X}\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\,dS\right|}
-  {\oint_{\partial S}\left|\mathbf{Y}_\eta\!\cdot dX^i\right|+\int_S\left|(\nabla_{\mathbf X}\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\right|\,dS+\varepsilon_S}
+  \frac{\left|\oint_{\partial S}\mathbf{Y}_\eta\!\cdot d\mathbf X-\int_S(\nabla_{\mathbf X}\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\,dS\right|}
+  {\oint_{\partial S}\left|\mathbf{Y}_\eta\!\cdot d\mathbf X\right|+\int_S\left|(\nabla_{\mathbf X}\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\right|\,dS+\varepsilon_S}
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-71bcfdb75185b2f8)
 
-  Here $V$ is a declared volume with closed boundary surface $\partial V$, $S$ a declared surface with boundary loop $\partial S$, $\hat{\mathbf n}$ the unit normal (outward on $\partial V$, oriented consistently with the traversal of $\partial S$ on $S$), $dS$ and $dV$ the surface and volume elements, and the line element of $R_S$ is $dX^i$ contracted with the components of $\mathbf Y_\eta$. Gauss's theorem states that the outward flux of a smooth vector field through a closed surface equals the volume integral of its divergence, and Stokes's theorem states that the circulation of a smooth field around a closed loop equals the flux of its curl through any spanning surface; both hold exactly on the flat slice $\Sigma_T$, so each numerator vanishes for the continuum channel and a nonzero residual measures the discretization or reconstruction defect. $\varepsilon_G$ and $\varepsilon_S$ are predeclared floors with the units of their respective integral channels. Pass if both residuals are $\le 2\times10^{-2}$ on resolved windows and decrease under spatial refinement. These are diagnostics on reconstructed continuum channels, not claims that the channel is substrate ontology.
+  Here $V$ is a declared volume with closed boundary surface $\partial V$, $S$ a declared surface with boundary loop $\partial S$, $\hat{\mathbf n}$ the unit normal (outward on $\partial V$, oriented consistently with the traversal of $\partial S$ on $S$), $dS$ and $dV$ the surface and volume elements, and the vector line element of $R_S$ is $d\mathbf X$, with $\mathbf Y_\eta\cdot d\mathbf X=\sum_iY_\eta^i\,dX^i$ in the Cartesian chart. Gauss's theorem states that the outward flux of a smooth vector field through a closed surface equals the volume integral of its divergence, and Stokes's theorem states that the circulation of a smooth field around a closed loop equals the flux of its curl through any spanning surface; both hold exactly on the flat slice $\Sigma_T$, so each numerator vanishes for the continuum channel and a nonzero residual measures the discretization or reconstruction defect. $\varepsilon_G$ and $\varepsilon_S$ are predeclared floors with the units of their respective integral channels. Pass if both residuals are $\le 2\times10^{-2}$ on resolved windows and decrease under spatial refinement. These are diagnostics on reconstructed continuum channels, not claims that the channel is substrate ontology.
 
 - **Distributional wake-surface normalization:** for emitted wake surface $m$ with source strength $q_m$, causal delay $\Delta_m=T-T_{t,m}$, and radial annulus $R_-\le r_m\le R_+$ around the emission point, use
   $$
@@ -110,13 +110,14 @@ Synthetic observables are envelope-limited: each is valid only within the scope 
 
   Here $r_m$ is the distance from the emission point, $\delta_\eta$ is the Gaussian mollifier of width $\eta$, $H$ is the Heaviside step with $H(0)=0$, and $\rho_{m,\eta}(T,\mathbf X)=q_m\,\delta_\eta(r_m-c_f\Delta_m)H(\Delta_m)/(4\pi r_m^2)$ is the mollified wake-surface density of the [mathematics style guide](../../archie/mathematics-style-guide.md#distributions-and-regularization-causal-wake-surfaces). The check holds because the $1/(4\pi r_m^2)$ surface density cancels the shell volume element $4\pi r_m^2\,dr_m$, so the volume integral of the continuum density over any annulus equals $Q^{\mathrm{ann}}_{m,\eta}$ exactly, whether or not the annulus contains the whole surface; a nonzero residual therefore measures the discretized reconstruction, not the definition. $\varepsilon_q$ is a predeclared source-strength floor with the same units as $q_m$. Pass if at least $99.9\%$ of emitted wake surfaces satisfy $R_{N,m}\le 10^{-2}$ and the maximum resolved-window residual is $\le 5\times10^{-2}$.
 
-- **Photon-frequency exchange closure:** when a photon packet changes frequency during transport, the logged before/after frequencies must close with medium, recoil, and remnant entries:
+- **Photon-frequency exchange closure:** when a photon packet changes frequency during transport, the logged before/after frequencies must close with disjoint target internal-energy, medium, recoil, and remnant entries:
   $$
   R_{\nu\text{-}\mathrm{ex},m}
   =
   \frac{
   \left|
   E_\gamma(\nu_m^{+})-E_\gamma(\nu_m^{-})
+  +\Delta E_{\mathrm{target},m}
   +\Delta E_{\mathrm{med},m}
   +\Delta E_{\mathrm{recoil},m}
   +\Delta E_{\mathrm{rem},m}
@@ -127,7 +128,7 @@ Synthetic observables are envelope-limited: each is valid only within the scope 
 
   [View →](../../../../../equation-mapping.html#corpus-equation-052bcc73fc3ef5ff)
 
-  Here $E_\gamma(\nu)$ is the declared photon-channel energy map, $\nu_m^{-}$ and $\nu_m^{+}$ are the logged frequencies before and after exchange event $m$, each $\Delta E$ is the energy gained by the named reservoir (the intervening medium, the recoiling assembly, and the remnant), so the bracketed sum vanishes exactly when the exchange conserves energy, and $\varepsilon_{\nu\text{-}\mathrm{ex}}>0$ is a predeclared photon-exchange tolerance with units of energy, the tolerance the toy model writes $E_{\mathrm{tol}}$; it is distinct from the normalized energy-drift observable $\epsilon_E$ in [Convergence Tests](convergence-tests.md). Pass if $R_{\nu\text{-}\mathrm{ex},m}\le1$. The medium, recoil, and remnant entries use the same signed balance equation and outcome-neutral ledger convention defined in the [Redshift-Budget Toy Model](redshift-budget-toy-model.md#replay-equation). The observer-level comparison $E_\gamma=h\nu$ may be used only as a labeled recovery calibration after the $\mathbb{A}\mathbb{A}\mathbb{A}$ map is declared; it is not an architrino-level premise. A cosmology-facing redshift or blueshift product may consume this entry only after the residual is reported with the same photon provenance used for arrival-time, flux, and image-sharpness outputs.
+  Here $E_\gamma(\nu)$ is the declared photon-channel energy map, $\nu_m^{-}$ and $\nu_m^{+}$ are the logged frequencies before and after exchange event $m$, each $\Delta E$ is the energy gained by the named reservoir (target internal excitation, intervening medium including the Noether sea, target recoil, and the separately retained remnant), so the bracketed sum vanishes exactly when the exchange conserves energy, and $\varepsilon_{\nu\text{-}\mathrm{ex}}>0$ is a predeclared photon-exchange tolerance with units of energy, the tolerance the toy model writes $E_{\mathrm{tol}}$; it is distinct from the normalized energy-drift observable $\epsilon_E$ in [Convergence Tests](convergence-tests.md). Pass if $R_{\nu\text{-}\mathrm{ex},m}\le1$. Both photon frequencies and all energy accounts use the same local clock, frame, and energy calibration. Target internal excitation, recoil, and remnant gains are disjoint, as the full [Radiation exchange balance](../../reactions/radiation.md#path-frequency-exchange) requires. A reduced replay may omit the target term only when it vanishes within tolerance or is explicitly included in a disjoint combined account. The reduced entries use the outcome-neutral sign convention of the [Redshift-Budget Toy Model](redshift-budget-toy-model.md#replay-equation). The observer-level comparison $E_\gamma=h\nu$ may be used only as a labeled recovery calibration after the $\mathbb{A}\mathbb{A}\mathbb{A}$ map is declared; it is not an architrino-level premise. A cosmology-facing redshift or blueshift product may consume this entry only after the residual is reported with the same photon provenance used for arrival-time, flux, and image-sharpness outputs.
 
 - **Operator consistency across PDE and event-root runs:** when the same reconstructed channel is produced both by a partial-differential-equation (PDE) reduction on a grid and by direct event-root evaluation, resample the event-root reconstruction onto the PDE grid and define
   $$
@@ -197,20 +198,20 @@ Synthetic observables are envelope-limited: each is valid only within the scope 
 
   where $Y$ ranges over the retained density, current, momentum-current, and energy-flux channels, $Y_{\mathrm{cg}}$ is the reduced continuum channel, and $R(Y_{\mathrm{dir}})$ is the direct moment resampled onto its grid. Pass if $R_{\mathrm{mom}}\le0.05$ and the omitted memory-current residual, the contribution of unresolved path history that the reduced moment equations drop, decreases under refinement.
 
-- **Drift-diffusion reconstruction:** if a Fokker-Planck or Langevin surrogate is emitted, a reduced description in which unresolved architrino history enters a reduced variable $z$ as noise, estimate drift and diffusion from increments over a declared coarse-graining interval $\Delta T_{\mathrm{cg}}$,
+- **Drift-diffusion reconstruction:** if a Fokker-Planck or Langevin surrogate is emitted, a reduced description in which unresolved architrino history enters a reduced variable $z$ as noise, form finite-lag estimates over a declared coarse-graining interval $h=\Delta T_{\mathrm{cg}}>0$,
   $$
-  u^a(z)
+  \widehat u_h^a(z)
   =
-  \frac{\langle\Delta z^a\rangle_z}{\Delta T_{\mathrm{cg}}},
+  \frac{\langle\Delta z^a\rangle_z}{h},
   \qquad
-  D^{ab}(z)
+  \widehat D_h^{ab}(z)
   =
-  \frac{\langle\Delta z^a\Delta z^b\rangle_z}{2\Delta T_{\mathrm{cg}}}
+  \frac{\left\langle(\Delta z^a-\langle\Delta z^a\rangle_z)(\Delta z^b-\langle\Delta z^b\rangle_z)\right\rangle_z}{2h}
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-fd952a25a000734c)
 
-  Here $\Delta z$ is the increment of $z$ over $\Delta T_{\mathrm{cg}}$ and $\langle\cdot\rangle_z$ is the average over direct event-root histories passing through $z$. The interval cannot be sent to zero: the substrate increments are deterministic and smooth, so $\Delta z$ scales as the interval and the second-moment quotient vanishes linearly with it; diffusion is a property of the coarse-grained description and exists only for $\Delta T_{\mathrm{cg}}$ longer than the correlation time of the unresolved history and shorter than the evolution time of $z$. The packet declares that interval and reports the estimates as stable across a declared range of it. The synthetic distribution must match direct event-root ensembles in $\langle z\rangle$ and $\operatorname{Cov}(z)$ before higher stochastic claims are trusted. Higher cumulants may differ from the surrogate unless a separate closure entry has been declared.
+  Here $h$ denotes only this absolute-time lag, not the Planck action unit used in the photon comparison. $\Delta z$ is the increment of $z$ over $h$ and $\langle\cdot\rangle_z$ is the conditional ensemble average over direct event-root histories starting at $z$, with finite conditioning bins and sampling uncertainty declared. Centering removes the product of the conditional mean increments: for a constant-drift diffusion comparison with drift $u$ and diffusion $D$, the raw quotient is $D+u^2h/2$ whereas the centered quotient is $D$. This comparison checks the estimator; it is not a substrate stochastic law. The interval cannot be sent to zero: the substrate increments are deterministic and smooth, so $\Delta z$ scales as the interval and the second-moment quotient vanishes linearly with it; diffusion is a property of the coarse-grained description and exists only for $\Delta T_{\mathrm{cg}}$ longer than the correlation time of the unresolved history and shorter than the evolution time of $z$. The packet declares this range and reports the estimates, conditioning error, sampling uncertainty, and finite-lag bias bounds relative to the proposed surrogate coefficients $u^a(z)$ and $D^{ab}(z)$. Centering alone does not remove bias from state-dependent coefficients or correlated increments. For example, require $\|\widehat D_h-D\|\le B_D(h)$ and an analogous drift bound, with a separately derived analytic reference or controlled error analysis supplying the bounds; both must meet predeclared tolerances across the admissible range. A flat refinement trend alone cannot bound a common bias. Without this control the quantities remain finite-lag descriptive moments, not identified Fokker-Planck coefficients. The synthetic distribution must match direct event-root ensembles in $\langle z\rangle$ and $\operatorname{Cov}(z)$ before higher stochastic claims are trusted. Higher cumulants may differ from the surrogate unless a separate closure entry has been declared.
 
 - **Reaction-diffusion and pattern probes:** when a reduced scalar or multi-channel field $y$ obeys
   $$
@@ -227,7 +228,7 @@ Synthetic observables are envelope-limited: each is valid only within the scope 
 
   with $y^a$ the reduced channels, $D^{ab}$ their diffusion matrix, $\nabla^2$ the Euclidean Laplacian on $\Sigma_T$, $F^a(y)$ the local reaction term, and $R_{\mathrm{rd}}^a$ the residual the reduction leaves unmodeled, the packet must report the fixed points, the linearized growth matrix, the unstable wavenumber band if one exists, and the front-speed estimate if a traveling-front claim is made. For two-channel pattern claims, the Turing-style gate, a diffusion-driven instability, is that the homogeneous fixed point is stable before diffusion and that the diffusion-shifted linear operator has a declared finite unstable band. Without those entries, visual pattern formation is not a validated synthetic observable.
 
-- **Jet/outflow head and radiation probes:** when a simulation claims an astrophysical jet, outflow, knot chain, or working surface, the synthetic packet must compare the logged event-root dynamics to the observer-level jet-head and radiation benchmarks of [Synchrotron](../../reactions/synchrotron.md#jet-and-outflow-source-benchmarks). For a supersonic head with jet speed $v_j$, beam radius $R_j$, head radius $R_h$, density ratio $\eta_j=\rho_j/\rho_a$ (the jet-to-ambient mass-density ratio, unrelated to the regularization width $\eta$), and $a_h=(R_j/R_h)^2$, the bow-shock speed target is
+- **Jet/outflow head and radiation probes:** when a simulation claims an astrophysical jet, outflow, knot chain, or working surface, the synthetic packet must compare the logged event-root dynamics to the observer-level jet-head and radiation benchmarks of [Synchrotron](../../reactions/synchrotron.md#jet-and-outflow-source-benchmarks). In the cold, nonrelativistic, quasi-steady ram-pressure comparison, neglecting thermal and magnetic stresses, a supersonic head with jet speed $v_j$, beam radius $R_j$, head radius $R_h$, density ratio $\eta_j=\rho_j/\rho_a$ (the jet-to-ambient mass-density ratio, unrelated to the regularization width $\eta$), and $a_h=(R_j/R_h)^2$ has the head-advance speed target
   $$
   v_{\mathrm{bs,std}}
   =
@@ -239,7 +240,7 @@ Synthetic observables are envelope-limited: each is valid only within the scope 
 
   [View →](../../../../../equation-mapping.html#corpus-equation-0dedd040f9d66e89)
 
-  This is the advance speed of the jet head, the working surface at which the beam's ram pressure balances the ambient medium's, obtained by solving that balance, $\rho_j(v_j-v_{\mathrm{bs,std}})^2R_j^2=\rho_a v_{\mathrm{bs,std}}^2R_h^2$, for the head speed: a light jet with $\eta_ja_h\ll1$ advances slowly and a heavy one at nearly $v_j$. The bow shock itself runs ahead of that surface by a shock-jump factor, so the mapped speed $v_{\mathrm{bs,map}}$ must be measured as the same head-advance speed, and the packet states which surface it tracks. The head residual is
+  This is the advance speed of the jet head, the working surface at which the beam's ram pressure balances the ambient medium's, obtained by solving that balance, $\rho_j(v_j-v_{\mathrm{bs,std}})^2R_j^2=\rho_a v_{\mathrm{bs,std}}^2R_h^2$, for the head speed: a light jet with $\eta_ja_h\ll1$ advances slowly and a heavy one at nearly $v_j$. The notation $v_{\mathrm{bs,std}}$ here denotes this head-advance comparison; $v_{\mathrm{bs,map}}$ must track the same surface. The bow shock is a separate surface ahead of the contact. At constant stand-off distance it travels at the same speed as the head; a changing stand-off distance changes their speed difference. Shock jump conditions relate upstream and downstream flow states and do not supply a universal head-to-front speed multiplier. Report which surface each speed measures. The head residual is
   $$
   R_{\mathrm{head}}
   =
@@ -279,7 +280,7 @@ Synthetic observables are envelope-limited: each is valid only within the scope 
 - **Convergence triad:** must pass temporal/history/spatial gates from [convergence-tests.md](./convergence-tests.md), including null-test failure.
 
 ### Failure mode
-If any of the quantitative checks above fail (or if the null test does not fail), treat $\mathbb{U}_{\text{now}}$ outputs as numerically unreliable for any promoted claim, including claims about self-hit, an architrino's encounter with its own earlier wake, until thresholds are met.
+A failed check blocks the outputs that depend on its tested channel, assumptions, or implementation. Failures of shared causal-root, history, or refinement requirements block every dependent trajectory and synthetic observable, including self-hit claims. A failed conditional PDE, drift-diffusion, or jet comparison blocks that reduced-model or jet claim; it does not by itself invalidate an independently checked direct-root trajectory or an unrelated output. Record each promoted output's applicable checks and propagate failures through those dependencies. An insensitive negative control blocks the claims that relied on that control until its discriminating test is restored.
 
 
 ### $\mathbb{U}_{\text{now}}$ as Standard Probe

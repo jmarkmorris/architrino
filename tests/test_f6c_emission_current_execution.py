@@ -1,4 +1,7 @@
 """Synthetic transport controls; these do not establish scientific acceptance."""
+from option_b_batch_records import batch_identities, original_test_source
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 import copy
 import hashlib
 import importlib.util
@@ -8,6 +11,11 @@ import unittest
 from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
+HISTORICAL_CONTROL_PATHS = {
+    'tests/test_eom_continuous_reception_roots_cached.py',
+    'tests/test_f6c_cached_continuous_reception_root_cover.py',
+    'tests/test_f6c_cached_continuous_reception_root_cover_preparation.py',
+}
 def current_execution_plan(plan):
     """Copy the retained example into a current synthetic control, without changing its provenance."""
     plan=copy.deepcopy(plan)
@@ -19,8 +27,14 @@ def current_execution_plan(plan):
     rows += plan['operationalBindings'] + plan.get('subjectSourceBindings',[])
     for b in rows:
         if b['path'].startswith(('scripts/','tests/')):
-            raw=(ROOT/b['path']).read_bytes()
-            b.update(sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))
+            if b['path'] in HISTORICAL_CONTROL_PATHS:
+                raw=original_test_source(ROOT, __file__, b['path'])
+                expected=dict(m.FROZEN_SUBJECT)[b['path']]
+                assert hashlib.sha256(raw).hexdigest() == expected
+                b.update(sha256=expected, bytes=len(raw))
+            else:
+                raw=(ROOT/b['path']).read_bytes()
+                b.update(sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))
     return plan
 
 
@@ -66,7 +80,7 @@ def plan_fixture():
         binding('scripts/eom/launch-prescribed-response-pilot.mjs'),
         binding('scripts/eom/launch-subfield-circular-root-pilot.mjs'),
         binding(bridge.OPERATIONAL_SELECTION['source-map']), binding(bridge.OPERATIONAL_SELECTION['source-reader']),
-        binding('/bin/ps'), binding('/usr/bin/memory_pressure', 'ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da'),
+        binding('/bin/ps'), binding('/usr/bin/memory_pressure', OPTION_B_BATCH_IDENTITIES[0]),
         binding('/synthetic/node')]
     return p
 
@@ -224,6 +238,12 @@ class PublicationLifecycle(unittest.TestCase):
         def controlled_support(root):
             with original_support(root) as common:
                 original_instrument = common.instrument
+                original_capture = common.Capture
+                def capture(filename, expected, **kwargs):
+                    # Keep actual digest/descriptor/late-recheck capture over the
+                    # preserved historical control bytes in this synthetic fixture.
+                    physical = retained_controls.get((Path(filename), expected), Path(filename))
+                    return original_capture(physical, expected, **kwargs)
                 @contextmanager
                 def instrument(captured):
                     with original_instrument(captured) as mod:
@@ -243,10 +263,15 @@ class PublicationLifecycle(unittest.TestCase):
                                 if fail: raise ValueError('synthetic post-write failure')
                                 return result
                             with patch.object(mod,'runtime_paths',return_value=set()), patch.object(mod.Publication,'publish',publish): yield mod
-                with patch.object(common,'instrument',instrument): yield common
+                with patch.object(common,'instrument',instrument), patch.object(common,'Capture',capture): yield common
         lane = ROOT/'.local-data/braid-analysis/f6c-emission-refinement-20260827'
         with tempfile.TemporaryDirectory(dir=lane,prefix='synthetic-current-') as tmp:
             base = Path(tmp).resolve(); p=base/'plan.json'; raw=json.dumps(plan).encode(); p.write_bytes(raw)
+            retained_controls = {}
+            for relative in sorted(HISTORICAL_CONTROL_PATHS):
+                retained = base / Path(relative).name
+                retained.write_bytes(original_test_source(ROOT, __file__, relative))
+                retained_controls[(ROOT/relative, dict(m.FROZEN_SUBJECT)[relative])] = retained
             common=['--bridge-sha256',plan['executionBridge']['sha256'],'--plan',str(p),'--plan-sha256',hashlib.sha256(raw).hexdigest(),'--budget-seconds','30']
             ops={b['path']:b for b in plan['operationalBindings']}
             common+=sum((['--'+role+'-sha256',ops[filename]['sha256']] for role,filename in bridge.OPERATIONAL_SELECTION.items()),[])
@@ -255,7 +280,12 @@ class PublicationLifecycle(unittest.TestCase):
             def run(args):
                 stream=io.StringIO()
                 with controlled_support(ROOT) as controlled, patch.object(bridge,'support',lambda _:controlled_context(controlled)), redirect_stdout(stream):
-                    bridge.main(common+args)
+                    try:
+                        bridge.main(common+args)
+                    finally:
+                        for relative in sorted(HISTORICAL_CONTROL_PATHS):
+                            self.assertEqual(original_test_source(ROOT, __file__, relative),
+                                             retained_controls[(ROOT/relative, dict(m.FROZEN_SUBJECT)[relative])].read_bytes())
                 return json.loads(stream.getvalue())
             @contextmanager
             def controlled_context(value): yield value

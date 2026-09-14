@@ -16,7 +16,7 @@
     "entry": "scripts/eom/run-f6c-cached-root-cover-full.mjs",
     "authority": "operator-directed-existing-A-transfer"
   },
-  "revisionId": "b-rem-5/v1",
+  "revisionId": "b-close-1-controls/v1",
   "@graph": [
     {
       "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
@@ -77,7 +77,7 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover_preparation.py",
       "@type": "Source",
-      "revisionId": "existing-A-transfer/v1",
+      "revisionId": "b-close-1-controls/v1",
       "role": "scientific-control",
       "binding": {
         "path": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
@@ -85,13 +85,13 @@
           "kind": "whole"
         },
         "contract": "fixed-byte-selection/v1",
-        "sha256": "5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2"
+        "sha256": "ce9547d554c8bfb5964c489e879ab431e829e7dd863bee0cdd44b88f0c109e11"
       }
     },
     {
       "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover.py",
       "@type": "Source",
-      "revisionId": "existing-A-transfer/v1",
+      "revisionId": "b-close-1-controls/v1",
       "role": "scientific-control",
       "binding": {
         "path": "tests/test_f6c_cached_continuous_reception_root_cover.py",
@@ -99,7 +99,7 @@
           "kind": "whole"
         },
         "contract": "fixed-byte-selection/v1",
-        "sha256": "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3"
+        "sha256": "125fbf6d00493e1b91198cbafa4382832bfa03c818b55acdb6147c790729514e"
       }
     },
     {
@@ -189,7 +189,7 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots.py",
       "@type": "Source",
-      "revisionId": "transfer/v1",
+      "revisionId": "b-close-1-controls/v1",
       "role": "scientific-control",
       "binding": {
         "path": "tests/test_eom_continuous_reception_roots.py",
@@ -197,7 +197,7 @@
           "kind": "whole"
         },
         "contract": "fixed-byte-selection/v1",
-        "sha256": "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac"
+        "sha256": "79c3e20568f7f0b08b74b220ba9be336f2845e39e499225e2016bfd0ad71941c"
       }
     },
     {
@@ -231,7 +231,7 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots_cached.py",
       "@type": "Source",
-      "revisionId": "existing-A-transfer/v1",
+      "revisionId": "b-close-1-controls/v1",
       "role": "scientific-control",
       "binding": {
         "path": "tests/test_eom_continuous_reception_roots_cached.py",
@@ -239,7 +239,7 @@
           "kind": "whole"
         },
         "contract": "fixed-byte-selection/v1",
-        "sha256": "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb"
+        "sha256": "10fc0feae510735784448d8a825de0977248142be71686adce757d11914e4e66"
       }
     },
     {
@@ -429,23 +429,23 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%3Atests%2Ftest_f6c_cached_continuous_reception_root_cover_preparation.py",
       "@type": "Relationship",
-      "revisionId": "option-b-cutover/v1",
+      "revisionId": "b-close-1-controls/v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
       "fromRevision": "option-b-cutover/v1",
       "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover_preparation.py",
-      "toRevision": "existing-A-transfer/v1",
+      "toRevision": "b-close-1-controls/v1",
       "role": "exact source admission"
     },
     {
       "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%3Atests%2Ftest_f6c_cached_continuous_reception_root_cover.py",
       "@type": "Relationship",
-      "revisionId": "option-b-cutover/v1",
+      "revisionId": "b-close-1-controls/v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
       "fromRevision": "option-b-cutover/v1",
       "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover.py",
-      "toRevision": "existing-A-transfer/v1",
+      "toRevision": "b-close-1-controls/v1",
       "role": "exact source admission"
     },
     {
@@ -517,12 +517,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%3Atests%2Ftest_eom_continuous_reception_roots.py",
       "@type": "Relationship",
-      "revisionId": "option-b-cutover/v1",
+      "revisionId": "b-close-1-controls/v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
       "fromRevision": "option-b-cutover/v1",
       "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots.py",
-      "toRevision": "transfer/v1",
+      "toRevision": "b-close-1-controls/v1",
       "role": "exact source admission"
     },
     {
@@ -550,12 +550,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%3Atests%2Ftest_eom_continuous_reception_roots_cached.py",
       "@type": "Relationship",
-      "revisionId": "option-b-cutover/v1",
+      "revisionId": "b-close-1-controls/v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
       "fromRevision": "option-b-cutover/v1",
       "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots_cached.py",
-      "toRevision": "existing-A-transfer/v1",
+      "toRevision": "b-close-1-controls/v1",
       "role": "exact source admission"
     },
     {
@@ -737,23 +737,23 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%3Atests%2Ftest_f6c_cached_continuous_reception_root_cover_preparation.py",
       "@type": "Relationship",
-      "revisionId": "option-b-cutover/v1",
+      "revisionId": "b-close-1-controls/v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
       "fromRevision": "option-b-cutover/v1",
       "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover_preparation.py",
-      "toRevision": "existing-A-transfer/v1",
+      "toRevision": "b-close-1-controls/v1",
       "role": "inherited source admission obligation"
     },
     {
       "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%3Atests%2Ftest_f6c_cached_continuous_reception_root_cover.py",
       "@type": "Relationship",
-      "revisionId": "option-b-cutover/v1",
+      "revisionId": "b-close-1-controls/v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
       "fromRevision": "option-b-cutover/v1",
       "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover.py",
-      "toRevision": "existing-A-transfer/v1",
+      "toRevision": "b-close-1-controls/v1",
       "role": "inherited source admission obligation"
     },
     {
@@ -825,12 +825,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%3Atests%2Ftest_eom_continuous_reception_roots.py",
       "@type": "Relationship",
-      "revisionId": "option-b-cutover/v1",
+      "revisionId": "b-close-1-controls/v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
       "fromRevision": "option-b-cutover/v1",
       "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots.py",
-      "toRevision": "transfer/v1",
+      "toRevision": "b-close-1-controls/v1",
       "role": "inherited source admission obligation"
     },
     {
@@ -858,12 +858,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%3Atests%2Ftest_eom_continuous_reception_roots_cached.py",
       "@type": "Relationship",
-      "revisionId": "option-b-cutover/v1",
+      "revisionId": "b-close-1-controls/v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
       "fromRevision": "option-b-cutover/v1",
       "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots_cached.py",
-      "toRevision": "existing-A-transfer/v1",
+      "toRevision": "b-close-1-controls/v1",
       "role": "inherited source admission obligation"
     },
     {
@@ -942,6 +942,520 @@
       "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-root-cover-pilot-resource-plan.md",
       "toRevision": "transfer/v1",
       "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "@type": "Source",
+      "revisionId": "b-close-1-controls/v1",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/batch-test-records.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "dc76d8661b7f7550d10fd306afa34a0dd1ff7e282f32a0947630edef908f5f89"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Source",
+      "revisionId": "b-close-1-controls/v1",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-transition.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "5ab045757df6c7df7d364f39ba2ac62ec90666e092581b5b3faa08d232dda039"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Foption_b_batch_records.py",
+      "@type": "Source",
+      "revisionId": "b-close-1-controls/v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option_b_batch_records.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "aced5fbf483700fe701767235acc1c1a0ff73c6a15bf89cb813dd9cac4147f29"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Ffixtures%2Foption-b-batch-test-identities.json",
+      "@type": "Source",
+      "revisionId": "b-close-1-controls/v1",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "tests/fixtures/option-b-batch-test-identities.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "5da593ad7e133ec95a8ac636381737a7f972639c0e1ee83c6449096c997e4cad"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Ffixtures%2Foption-b-batch-test-original-sources.json",
+      "@type": "Source",
+      "revisionId": "b-close-1-controls/v1",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "tests/fixtures/option-b-batch-test-original-sources.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "ab1172d01ff434f9f8a783c339d55b1a42d73fc6062b03a970fc63149a84a3b4"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-sources.jsonld",
+      "@type": "Source",
+      "revisionId": "b-close-1-controls/v1",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "reference/priorities/development-process-review/contracts/option-b-batch-test-sources.jsonld",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "58adef567f5051be4b9d65b03012a175512427a4e64bb1cc226d97171b7dfc3f"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-accepted-b.json",
+      "@type": "Source",
+      "revisionId": "b-close-1-controls/v1",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "reference/priorities/development-process-review/contracts/option-b-batch-test-accepted-b.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "52ad8df4f250be9e898825bd0dc790955ccd8070a05b24e3618c3d0e68da3daf"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-transition.json",
+      "@type": "Source",
+      "revisionId": "b-close-1-controls/v1",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "reference/priorities/development-process-review/contracts/option-b-batch-test-transition.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "fb73266622f7f343fc501f386df345d13187d5d20ba56d80f43c443717831537"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-selection.json",
+      "@type": "Source",
+      "revisionId": "b-close-1-controls/v1",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "6a994d36ab95e780fca4795c2f383d5e749a54d279b10fb2b2ef3e8b95d70779"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-transfer.json",
+      "@type": "Source",
+      "revisionId": "b-close-1-controls/v1",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-transfer.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "bc82d68a2781a53088fc31c911e53b745b980f8233deb09fef66a95c092a2f63"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2Fchecks%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Fscripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Fscripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2Fchecks%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Fscripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Fscripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2Fchecks%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Ftests%2Foption_b_batch_records.py",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Foption_b_batch_records.py",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Ftests%2Foption_b_batch_records.py",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Foption_b_batch_records.py",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2Fchecks%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Ftests%2Ffixtures%2Foption-b-batch-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Ffixtures%2Foption-b-batch-test-identities.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Ftests%2Ffixtures%2Foption-b-batch-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Ffixtures%2Foption-b-batch-test-identities.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2Fchecks%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Ftests%2Ffixtures%2Foption-b-batch-test-original-sources.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Ffixtures%2Foption-b-batch-test-original-sources.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Ftests%2Ffixtures%2Foption-b-batch-test-original-sources.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Ffixtures%2Foption-b-batch-test-original-sources.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2Fchecks%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-sources.jsonld",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-sources.jsonld",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-sources.jsonld",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-sources.jsonld",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2Fchecks%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-accepted-b.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-accepted-b.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-accepted-b.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-accepted-b.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2Fchecks%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-transition.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-transition.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-transition.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-transition.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2Fchecks%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-selection.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-selection.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-selection.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-selection.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2Fchecks%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-transfer.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-transfer.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-transfer.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-transfer.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Ftests%2Ftest_f6c_cached_continuous_reception_root_cover_preparation.py%2Ftests%2Foption_b_batch_records.py",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Foption_b_batch_records.py",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Ftests%2Ftest_f6c_cached_continuous_reception_root_cover.py%2Ftests%2Foption_b_batch_records.py",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover.py",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Foption_b_batch_records.py",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Ftests%2Ftest_eom_continuous_reception_roots.py%2Ftests%2Foption_b_batch_records.py",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots.py",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Foption_b_batch_records.py",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Ftests%2Ftest_eom_continuous_reception_roots_cached.py%2Ftests%2Foption_b_batch_records.py",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots_cached.py",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Foption_b_batch_records.py",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Ftests%2Foption_b_batch_records.py%2Fscripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Foption_b_batch_records.py",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Fequation-mapping%2Fbatch-test-records.mjs%2Fscripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Fequation-mapping%2Fbatch-test-records.mjs%2Fscripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "cutover/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Fequation-mapping%2Fbatch-test-records.mjs%2Ftests%2Ffixtures%2Foption-b-batch-test-identities.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Ffixtures%2Foption-b-batch-test-identities.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Fequation-mapping%2Fbatch-test-records.mjs%2Ftests%2Ffixtures%2Foption-b-batch-test-original-sources.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/tests%2Ffixtures%2Foption-b-batch-test-original-sources.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Fequation-mapping%2Fbatch-test-records.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-sources.jsonld",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-sources.jsonld",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Fequation-mapping%2Fbatch-test-records.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-accepted-b.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-accepted-b.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Fequation-mapping%2Fbatch-test-records.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-transition.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-transition.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Fequation-mapping%2Fbatch-test-records.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-selection.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-selection.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/batch-control-dependency/f6c-cached-root-cover-full-current-source%2FdependsOn%2Fscripts%2Fequation-mapping%2Fbatch-test-records.mjs%2Freference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-transfer.json",
+      "@type": "Relationship",
+      "revisionId": "b-close-1-controls/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/batch-control-dependency/scripts%2Fequation-mapping%2Fbatch-test-records.mjs",
+      "fromRevision": "b-close-1-controls/v1",
+      "to": "https://architrino.com/knowledge/current-source/batch-control-dependency/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-transfer.json",
+      "toRevision": "b-close-1-controls/v1",
+      "role": "preserved control identity and selected current representation"
     }
   ]
 }

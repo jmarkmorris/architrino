@@ -1,7 +1,7 @@
 {
   "schema": "current-source-acceptance-selection/v1",
-  "acceptedBaseline": "reference/priorities/development-process-review/contracts/option-b-five-profile-accepted-b.json",
-  "acceptedBaselineSha256": "fa46cb15e63e86d599be8e3ef3f8ca764890ccaf863e05b368afaefc03edc373",
-  "transition": "reference/priorities/development-process-review/contracts/option-b-five-profile-transition.json",
-  "transitionSha256": "f0f66a8076e9cc60d75fd2ef27850eb6ab4568fa6c00b90bbef2b70837935dfb"
+  "acceptedBaseline": "reference/priorities/development-process-review/contracts/option-b-five-profile-batch-test-accepted-b.json",
+  "acceptedBaselineSha256": "3cc7385bcfcdf4e5fb0d59b5ce46f3e37c35eb9a501444c722d8efc70236f149",
+  "transition": "reference/priorities/development-process-review/contracts/option-b-five-profile-batch-test-transition.json",
+  "transitionSha256": "feb957da6a841db4a7d71b25be2c39d4673f67f447da2eca659568c27a4d4906"
 }

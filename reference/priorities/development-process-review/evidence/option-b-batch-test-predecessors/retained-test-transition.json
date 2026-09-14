@@ -1,0 +1,13 @@
+{
+  "schema": "reviewed-current-source-transition/v1",
+  "predecessorSha256": "f25318061d6b36ce8b1b6fc40a7d12685732b92e877bed0ce065cec924837755",
+  "reviewReference": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#retained-test-identity-graph-integration",
+  "profiles": [
+    {
+      "name": "retained-test-identities",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-retained-test-sources.jsonld",
+      "sha256": "bd63ee576deb3a1f8bc456e06bbde68247323896cb68bb3ab2aab9b302e717a0",
+      "changes": []
+    }
+  ]
+}

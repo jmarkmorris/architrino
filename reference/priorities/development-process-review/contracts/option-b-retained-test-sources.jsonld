@@ -16,12 +16,12 @@
     "entry": "tests/support/option-b-retained-test-identities.mjs",
     "authority": "operator-directed-existing-A-transfer"
   },
-  "revisionId": "initial-graph-transfer",
+  "revisionId": "batch-test-consumer-transfer-v1",
   "@graph": [
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Source",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "role": "admission",
       "binding": {
         "path": "tests/support/option-b-retained-test-identities.mjs",
@@ -29,7 +29,7 @@
           "kind": "whole"
         },
         "contract": "fixed-byte-selection/v1",
-        "sha256": "0b98c6441649fe68e44a8658dff5b6b5750530826c60be98348316e9833f488f"
+        "sha256": "f65e355214bde62e4f8c8a3490bc0057c218e84ba2ff5e81d6d7edb35e008b5d"
       }
     },
     {
@@ -77,7 +77,7 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-independent-interpolation-enclosure.test.js",
       "@type": "Source",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "role": "scientific-control",
       "binding": {
         "path": "tests/f5-independent-interpolation-enclosure.test.js",
@@ -85,7 +85,7 @@
           "kind": "whole"
         },
         "contract": "fixed-byte-selection/v1",
-        "sha256": "fd50618bbfe8b9780b6b6b8cb5b80a6146f682e13335f81b6c1448c0fdc357ac"
+        "sha256": "e1afff62dced7988ea947d2fe672a4da9aaf054a8fc91c3fc5e8b87ca296e140"
       }
     },
     {
@@ -231,7 +231,7 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/tests%2Foption-b-retained-test-identities.test.mjs",
       "@type": "Source",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "role": "scientific-control",
       "binding": {
         "path": "tests/option-b-retained-test-identities.test.mjs",
@@ -239,7 +239,7 @@
           "kind": "whole"
         },
         "contract": "fixed-byte-selection/v1",
-        "sha256": "95c8eed0615150ecf13f1e88a6bbc1a42ec5541f9728a4fa6462d24b18af8a8f"
+        "sha256": "9cbb7b83374dd580f93fe8feb5012ba85c9ec9e349913d6eeee1ce45c21a6a24"
       }
     },
     {
@@ -329,10 +329,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -340,10 +340,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fmermaid-markdown-runtime.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fmermaid-markdown-runtime.test.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -351,10 +351,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Forthogonal-plane-weave-balance.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Forthogonal-plane-weave-balance.test.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -362,21 +362,21 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Ff5-independent-interpolation-enclosure.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-independent-interpolation-enclosure.test.js",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "exact-selected-byte-admission"
     },
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fcoincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -384,10 +384,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fcoincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -395,10 +395,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fcoincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -406,10 +406,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fcoincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -417,10 +417,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fcoincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -428,10 +428,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fcoincident-axis-three-binary-streaming-reductions.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-axis-three-binary-streaming-reductions.test.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -439,10 +439,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Ff6c-parent-refinement-batch-preparation.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff6c-parent-refinement-batch-preparation.test.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -450,10 +450,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Fborg-assembly-view-session.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fborg-assembly-view-session.test.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -461,10 +461,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Ff5-phase-varying-campaign-spec.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-phase-varying-campaign-spec.test.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -472,10 +472,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Ff6c-parent-emission-refinement-pilot.test.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff6c-parent-emission-refinement-pilot.test.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -483,21 +483,21 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Foption-b-retained-test-identities.test.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Foption-b-retained-test-identities.test.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "exact-selected-byte-admission"
     },
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -505,10 +505,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -516,10 +516,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -527,10 +527,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/src%2Fruntime%2FMermaidMarkdownRuntime.js",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/src%2Fruntime%2FMermaidMarkdownRuntime.js",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -538,10 +538,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/package.json",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/package.json",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -549,10 +549,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/package-lock.json",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/package-lock.json",
       "toRevision": "initial-graph-transfer",
       "role": "exact-selected-byte-admission"
@@ -560,10 +560,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
       "toRevision": "initial-graph-transfer",
       "role": "test-expectation-dependency"
@@ -582,12 +582,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fmermaid-markdown-runtime.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fmermaid-markdown-runtime.test.js",
       "fromRevision": "initial-graph-transfer",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
@@ -604,21 +604,21 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Forthogonal-plane-weave-balance.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Forthogonal-plane-weave-balance.test.js",
       "fromRevision": "initial-graph-transfer",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff5-independent-interpolation-enclosure.test.js/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-independent-interpolation-enclosure.test.js",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ffixtures%2Foption-b-retained-test-identities.json",
       "toRevision": "initial-graph-transfer",
       "role": "test-expectation-dependency"
@@ -626,12 +626,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff5-independent-interpolation-enclosure.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-independent-interpolation-enclosure.test.js",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
@@ -648,12 +648,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-outer-radius-band-expansion.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
       "fromRevision": "initial-graph-transfer",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
@@ -670,12 +670,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
       "fromRevision": "initial-graph-transfer",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
@@ -692,12 +692,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
       "fromRevision": "initial-graph-transfer",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
@@ -714,12 +714,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
       "fromRevision": "initial-graph-transfer",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
@@ -736,12 +736,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
       "fromRevision": "initial-graph-transfer",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
@@ -758,12 +758,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fcoincident-axis-three-binary-streaming-reductions.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fcoincident-axis-three-binary-streaming-reductions.test.js",
       "fromRevision": "initial-graph-transfer",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
@@ -780,12 +780,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff6c-parent-refinement-batch-preparation.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff6c-parent-refinement-batch-preparation.test.js",
       "fromRevision": "initial-graph-transfer",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
@@ -802,12 +802,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fborg-assembly-view-session.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fborg-assembly-view-session.test.js",
       "fromRevision": "initial-graph-transfer",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
@@ -824,12 +824,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff5-phase-varying-campaign-spec.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-phase-varying-campaign-spec.test.js",
       "fromRevision": "initial-graph-transfer",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
@@ -846,21 +846,21 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Ff6c-parent-emission-refinement-pilot.test.js/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff6c-parent-emission-refinement-pilot.test.js",
       "fromRevision": "initial-graph-transfer",
       "to": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "toRevision": "initial-graph-transfer",
+      "toRevision": "batch-test-consumer-transfer-v1",
       "role": "test-expectation-dependency"
     },
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
       "toRevision": "initial-graph-transfer",
       "role": "test-expectation-dependency"
@@ -868,10 +868,10 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
       "toRevision": "initial-graph-transfer",
       "role": "test-expectation-dependency"
@@ -879,13 +879,215 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/retained-test/dependsOn/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
       "@type": "Relationship",
-      "revisionId": "initial-graph-transfer",
+      "revisionId": "batch-test-consumer-transfer-v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
-      "fromRevision": "initial-graph-transfer",
+      "fromRevision": "batch-test-consumer-transfer-v1",
       "to": "https://architrino.com/knowledge/current-source/retained-test/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
       "toRevision": "initial-graph-transfer",
       "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/tests%2Foption-b-f5-budget-transition.test.mjs",
+      "@type": "Source",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option-b-f5-budget-transition.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "0935a4f6eda1ef4bb4313c088a98da8c138cbb24b9648703a9bec26b12e0a82a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-operational-selection.json",
+      "@type": "Source",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "reference/priorities/development-process-review/contracts/option-b-batch-test-operational-selection.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "19777004d9c78f552d7b92b46ad9f9cc485e01af946e28eee546a49effe15588"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-operational-sources.jsonld",
+      "@type": "Source",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-operational-sources.jsonld",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "49401d8519c23147b6dd0926290e1be256e1fa97d00d7fe3a89d8e1e87dc2a45"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-evolution-sources.jsonld",
+      "@type": "Source",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-evolution-sources.jsonld",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "319701b260508909938fdb423aa001c179ab760a05c2303dd72fc190b5df5ea5"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-independent-interpolation-enclosure.test.js.source",
+      "@type": "Source",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-independent-interpolation-enclosure.test.js.source",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "fd50618bbfe8b9780b6b6b8cb5b80a6146f682e13335f81b6c1448c0fdc357ac"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/tests%2Foption-b-f5-budget-transition.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "batch-test-consumer-transfer-v1",
+      "to": "https://architrino.com/knowledge/current-source/retained-batch/tests%2Foption-b-f5-budget-transition.test.mjs",
+      "toRevision": "batch-test-consumer-transfer-v1",
+      "role": "selected-operational-and-historical-comparison"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-operational-selection.json",
+      "@type": "Relationship",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "batch-test-consumer-transfer-v1",
+      "to": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-operational-selection.json",
+      "toRevision": "batch-test-consumer-transfer-v1",
+      "role": "selected-operational-and-historical-comparison"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-operational-sources.jsonld",
+      "@type": "Relationship",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "batch-test-consumer-transfer-v1",
+      "to": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-operational-sources.jsonld",
+      "toRevision": "batch-test-consumer-transfer-v1",
+      "role": "selected-operational-and-historical-comparison"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-evolution-sources.jsonld",
+      "@type": "Relationship",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "batch-test-consumer-transfer-v1",
+      "to": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-evolution-sources.jsonld",
+      "toRevision": "batch-test-consumer-transfer-v1",
+      "role": "selected-operational-and-historical-comparison"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/checks/tests%2Fsupport%2Foption-b-retained-test-identities.mjs/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-independent-interpolation-enclosure.test.js.source",
+      "@type": "Relationship",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Fsupport%2Foption-b-retained-test-identities.mjs",
+      "fromRevision": "batch-test-consumer-transfer-v1",
+      "to": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-independent-interpolation-enclosure.test.js.source",
+      "toRevision": "batch-test-consumer-transfer-v1",
+      "role": "selected-operational-and-historical-comparison"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/dependsOn/tests%2Ff5-independent-interpolation-enclosure.test.js/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-operational-selection.json",
+      "@type": "Relationship",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-independent-interpolation-enclosure.test.js",
+      "fromRevision": "batch-test-consumer-transfer-v1",
+      "to": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-operational-selection.json",
+      "toRevision": "batch-test-consumer-transfer-v1",
+      "role": "selected-operational-and-historical-comparison"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/dependsOn/tests%2Ff5-independent-interpolation-enclosure.test.js/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-operational-sources.jsonld",
+      "@type": "Relationship",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-independent-interpolation-enclosure.test.js",
+      "fromRevision": "batch-test-consumer-transfer-v1",
+      "to": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-operational-sources.jsonld",
+      "toRevision": "batch-test-consumer-transfer-v1",
+      "role": "selected-operational-and-historical-comparison"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/dependsOn/tests%2Ff5-independent-interpolation-enclosure.test.js/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-evolution-sources.jsonld",
+      "@type": "Relationship",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Ff5-independent-interpolation-enclosure.test.js",
+      "fromRevision": "batch-test-consumer-transfer-v1",
+      "to": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-evolution-sources.jsonld",
+      "toRevision": "batch-test-consumer-transfer-v1",
+      "role": "selected-operational-and-historical-comparison"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/dependsOn/tests%2Foption-b-f5-budget-transition.test.mjs/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-operational-selection.json",
+      "@type": "Relationship",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-batch/tests%2Foption-b-f5-budget-transition.test.mjs",
+      "fromRevision": "batch-test-consumer-transfer-v1",
+      "to": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fcontracts%2Foption-b-batch-test-operational-selection.json",
+      "toRevision": "batch-test-consumer-transfer-v1",
+      "role": "selected-operational-and-historical-comparison"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/dependsOn/tests%2Foption-b-f5-budget-transition.test.mjs/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-operational-sources.jsonld",
+      "@type": "Relationship",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-batch/tests%2Foption-b-f5-budget-transition.test.mjs",
+      "fromRevision": "batch-test-consumer-transfer-v1",
+      "to": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-operational-sources.jsonld",
+      "toRevision": "batch-test-consumer-transfer-v1",
+      "role": "selected-operational-and-historical-comparison"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/dependsOn/tests%2Foption-b-f5-budget-transition.test.mjs/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-evolution-sources.jsonld",
+      "@type": "Relationship",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-batch/tests%2Foption-b-f5-budget-transition.test.mjs",
+      "fromRevision": "batch-test-consumer-transfer-v1",
+      "to": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-evolution-sources.jsonld",
+      "toRevision": "batch-test-consumer-transfer-v1",
+      "role": "selected-operational-and-historical-comparison"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/retained-batch/dependsOn/tests%2Foption-b-retained-test-identities.test.mjs/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-independent-interpolation-enclosure.test.js.source",
+      "@type": "Relationship",
+      "revisionId": "batch-test-consumer-transfer-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/retained-test/tests%2Foption-b-retained-test-identities.test.mjs",
+      "fromRevision": "batch-test-consumer-transfer-v1",
+      "to": "https://architrino.com/knowledge/current-source/retained-batch/reference%2Fpriorities%2Fdevelopment-process-review%2Fevidence%2Foption-b-batch-test-predecessors%2Ff5-independent-interpolation-enclosure.test.js.source",
+      "toRevision": "batch-test-consumer-transfer-v1",
+      "role": "selected-operational-and-historical-comparison"
     }
   ]
 }

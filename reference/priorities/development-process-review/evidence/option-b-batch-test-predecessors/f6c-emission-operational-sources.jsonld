@@ -1,0 +1,324 @@
+{
+  "@context": {
+    "@vocab": "https://architrino.com/knowledge/current-source/",
+    "from": {
+      "@type": "@id"
+    },
+    "to": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "current-source-manifest/v1",
+  "scope": "f6c-emission-operational-current-source",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "baseline": {
+    "commit": "ab3ed93a59e69a5807397c24cefcfcb3a9642487",
+    "entry": "scripts/eom/run-f6c-emission-refinement-pilot.mjs",
+    "authority": "operator-directed-existing-A-transfer"
+  },
+  "revisionId": "b-rem-4/v2",
+  "@graph": [
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "b-rem-4/v1",
+      "role": "admission",
+      "binding": {
+        "path": "scripts/eom/run-f6c-emission-refinement-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "7395ed6d0a8a472a03bb0bb0159ee9fe06292edd401463444cb34fc27d91f155"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-f6c-emission-refinement-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "launcher",
+      "binding": {
+        "path": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "37fc8aab3e33229878ba1bd50182d7b6eb75b41cdbe171817ece7fcf7b0309e7"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/tests%2Ff6c-emission-refinement-pilot.test.js",
+      "@type": "Source",
+      "revisionId": "b-rem-4/v2",
+      "role": "current-source",
+      "binding": {
+        "path": "tests/f6c-emission-refinement-pilot.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9ce6e7d224ef84d4ff584f5f0632919a6ebd0c4da2aa0ded09e7fdec8894a2ce"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/tests%2Ff6c-emission-refinement-pilot-process.test.js",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "current-source",
+      "binding": {
+        "path": "tests/f6c-emission-refinement-pilot-process.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "c37575eaf55bc40aa1bfb2481e6ef4a73c2ab95595f92f158241624ab1e2a367"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-prescribed-response-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "fc758e8ffc1feaa566cc8e1849f73a0c8907f5ad7567e43fffd151eeceac30a1"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "b-rem-4/v2",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e55cc27ca8e7d6bc0141b72cd65e1b2dce26d0c13d47d92427e68887d4de4e8a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-manifest.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9097ef3fd3fb2040b48c601d81c184188e8a992aa4464694860d05d0bf76a56e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/emission/checks/0",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-f6c-emission-refinement-pilot.mjs",
+      "toRevision": "cutover/v1",
+      "role": "operational-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/emission/dependsOn/0",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-f6c-emission-refinement-pilot.mjs",
+      "toRevision": "cutover/v1",
+      "role": "operational-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/emission/checks/1",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v2",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ff6c-emission-refinement-pilot.test.js",
+      "toRevision": "b-rem-4/v2",
+      "role": "operational-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/emission/dependsOn/1",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v2",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ff6c-emission-refinement-pilot.test.js",
+      "toRevision": "b-rem-4/v2",
+      "role": "operational-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/emission/checks/2",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ff6c-emission-refinement-pilot-process.test.js",
+      "toRevision": "cutover/v1",
+      "role": "operational-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/emission/dependsOn/2",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ff6c-emission-refinement-pilot-process.test.js",
+      "toRevision": "cutover/v1",
+      "role": "operational-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/emission/checks/3",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-prescribed-response-pilot.mjs",
+      "toRevision": "cutover/v1",
+      "role": "operational-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/emission/dependsOn/3",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-prescribed-response-pilot.mjs",
+      "toRevision": "cutover/v1",
+      "role": "operational-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/emission/checks/4",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v2",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "toRevision": "b-rem-4/v2",
+      "role": "operational-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/emission/dependsOn/4",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v2",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "toRevision": "b-rem-4/v2",
+      "role": "operational-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/emission/checks/5",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "cutover/v1",
+      "role": "operational-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/emission/dependsOn/5",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "cutover/v1",
+      "role": "operational-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fexecute-f6c-emission-refinement.py",
+      "@type": "Source",
+      "revisionId": "b-rem-4/v2",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/execute-f6c-emission-refinement.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "78272d8d45a79c49e01ecaa39e4460feb20cf0ff880dee94805a44378d875fe7"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn-emission-scripts%2Feom%2Fexecute-f6c-emission-refinement.py",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v2",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fexecute-f6c-emission-refinement.py",
+      "toRevision": "b-rem-4/v2",
+      "role": "current operational bridge selection"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks-emission-scripts%2Feom%2Fexecute-f6c-emission-refinement.py",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v2",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fexecute-f6c-emission-refinement.py",
+      "toRevision": "b-rem-4/v2",
+      "role": "current operational bridge selection"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_emission_current_execution.py",
+      "@type": "Source",
+      "revisionId": "b-rem-4/v1",
+      "role": "current-source",
+      "binding": {
+        "path": "tests/test_f6c_emission_current_execution.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "1ca78494361b99e291a9e343870ec7ed03f4fe94c250fc984780904551a18f39"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn-emission-tests%2Ftest_f6c_emission_current_execution.py",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_emission_current_execution.py",
+      "toRevision": "b-rem-4/v1",
+      "role": "current operational bridge selection"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks-emission-tests%2Ftest_f6c_emission_current_execution.py",
+      "@type": "Relationship",
+      "revisionId": "b-rem-4/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-emission-refinement-pilot.mjs",
+      "fromRevision": "b-rem-4/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_emission_current_execution.py",
+      "toRevision": "b-rem-4/v1",
+      "role": "current operational bridge selection"
+    }
+  ]
+}

@@ -1,4 +1,7 @@
 """Synthetic composition controls; no actual adapter, history or root calls."""
+from option_b_batch_records import batch_identities, batch_test_sources
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 
 from dataclasses import asdict, FrozenInstanceError
 from decimal import Decimal, localcontext
@@ -15,25 +18,32 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def load(name, relative, expected=None):
     path = ROOT / relative
-    raw = path.read_bytes()
-    if expected is not None:
-        assert hashlib.sha256(raw).hexdigest() == expected
+    if relative == 'tests/test_f6c_variable_cell_adapter.py':
+        original, raw = batch_test_sources(ROOT, __file__, relative)
+        # Preserve the original helper identity and execute its admitted successor.
+        assert hashlib.sha256(original).hexdigest() == expected
+    else:
+        raw = path.read_bytes()
+        if expected is not None:
+            assert hashlib.sha256(raw).hexdigest() == expected
     module = ModuleType(name)
     module.__file__ = str(path)
     sys.modules[name] = module
     exec(compile(raw, str(path), 'exec'), module.__dict__)
+    if relative == 'tests/test_f6c_variable_cell_adapter.py':
+        assert batch_test_sources(ROOT, __file__, relative) == (original, raw)
     return module
 
 
 D = load('single_leaf_subject', 'scripts/eom/f6c_single_leaf_diagnostic.py')
 A = load('single_leaf_acceleration', 'scripts/eom/oracle/continuous_reception_acceleration.py',
-         'abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8')
+         OPTION_B_BATCH_IDENTITIES[0])
 I = load('single_leaf_integral', 'scripts/eom/oracle/f6c_residual_integral_supremum.py',
-         'fc170a91b2747923bda89ef00b58d529c98bf96b01cc7b2c05c035042fc79c5a')
+         OPTION_B_BATCH_IDENTITIES[1])
 C = load('single_leaf_correlated', 'scripts/eom/oracle/f6c_correlated_residual_enclosure.py',
-         'b86907236e849124f3fa9c6bcad0f65492ecc6fbeb1b51a27438655c45b037b1')
+         OPTION_B_BATCH_IDENTITIES[2])
 G = load('single_leaf_gk', 'scripts/eom/oracle/f6c_gk13_protocol.py',
-         'a70a15481f793e913440628068f9c53bab611fe9d92f36206a401c01e91478eb')
+         OPTION_B_BATCH_IDENTITIES[3])
 RULER = F('0.5320012303229503')
 
 
@@ -599,7 +609,7 @@ class BisectedTests(unittest.TestCase):
 
     def test_source_and_numeric_references_remain_the_frozen_contract(self):
         self.assertEqual(hashlib.sha256((ROOT/'scripts/eom/f6c_variable_cell_adapter.py').read_bytes()).hexdigest(),
-                         '8431df6a2dbf6716330d6bc0319cc1e4ad8dd19c0140553dd1e75294eb8cbe80')
+                         OPTION_B_BATCH_IDENTITIES[4])
         for key in ('rms', 'aggregate', 'full_run_authorized'):
             self.assertNotIn(key, D.BisectedRestrictedDiagnostic.__dataclass_fields__)
 
@@ -685,7 +695,7 @@ class SessionSyntheticAdapter(BisectedSyntheticAdapter):
 def genuine_session_adapter(*, refined_indices=(0,)):
     """Independent stationary family, using the genuine frozen adapter methods."""
     V = load('provider_adapter_fixture_helpers', 'tests/test_f6c_variable_cell_adapter.py',
-             '94a2a80a1dd0d8f06dde78a11a3eba220a1d86a92dd9888b99e02f2598dc1e63')
+             OPTION_B_BATCH_IDENTITIES[5])
     metadata = SessionSyntheticAdapter()
     times = tuple(frame.time for frame in metadata.frames)
     grid_tokens = ('-8', '-1', metadata.parents[0].reception.lower) + tuple(p.reception.upper for p in metadata.parents)

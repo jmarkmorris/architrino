@@ -7,6 +7,9 @@ Full-main tests explicitly mock original authentication/mathematics while
 exercising real publication, routing, cleanup and retained failed output.
 """
 from __future__ import annotations
+from option_b_batch_records import batch_identities, batch_test_sources
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 import ast
 from contextlib import ExitStack, contextmanager, redirect_stdout, redirect_stderr
 from copy import deepcopy
@@ -30,10 +33,21 @@ H='a'*64
 
 
 def load(name,path,digest=None):
-    if digest in {'e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae','7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'}:
+    if digest in {OPTION_B_BATCH_IDENTITIES[0],OPTION_B_BATCH_IDENTITIES[1]}:
         manifest=json.loads((ROOT/'reference/priorities/braid-program/evidence/source-replay/f6c-refined-source-replay.v1.json').read_bytes())
         route=next(row for row in manifest['files'] if row['path']==str(path.relative_to(ROOT)) and row['sha256']==digest)
         path=ROOT/route['source']
+    if path == ROOT/'tests/test_f6c_parent_emission_refinement_conformance.py':
+        original, raw = batch_test_sources(ROOT, __file__, str(path.relative_to(ROOT)))
+        assert hashlib.sha256(original).hexdigest() == digest
+        from importlib.machinery import SourceFileLoader
+        spec=importlib.util.spec_from_file_location(name,path,loader=SourceFileLoader(name,str(path)))
+        m=importlib.util.module_from_spec(spec);sys.modules[name]=m
+        # Execute the independently admitted current representation of the
+        # preserved original closed-form controls, then recheck retained identity.
+        exec(compile(raw, str(path), 'exec'), m.__dict__)
+        assert batch_test_sources(ROOT, __file__, str(path.relative_to(ROOT))) == (original, raw)
+        return m
     raw=path.read_bytes()
     if digest is not None: assert hashlib.sha256(raw).hexdigest()==digest
     from importlib.machinery import SourceFileLoader
@@ -62,8 +76,8 @@ def plan_fixture():
     p.update(acceptanceOwner=binding(s.OWNER),priorCoverClosure=s.closure_premise(),
         runtimeBindings=[{'path':'/synthetic/python'},{'path':'/synthetic/pyvenv.cfg'}],operationalBindings=[binding('synthetic/operation')],limits=deepcopy(w.LIMITS))
     p['historicalDocumentRoutes']=[dict(original=binding(s.PREFIX+name,h,n),physical=binding('/synthetic/archive-'+h+'.source',h,n)) for name,h,n in (
-        ('2026-08-27-f6c-cached-root-cover-full-resource-plan.md','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b',10021),
-        ('2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021))]
+        ('2026-08-27-f6c-cached-root-cover-full-resource-plan.md',OPTION_B_BATCH_IDENTITIES[2],10021),
+        ('2026-08-27-f6c-root-cover-full-resource-plan.md',OPTION_B_BATCH_IDENTITIES[3],13021))]
     return p
 
 
@@ -354,7 +368,7 @@ def full_chain_fixture():
     root=Path('/synthetic-full');entry=(ROOT/'reference/priorities/development-process-review/evidence/source-recovery/original-full-entry.mjs.source').read_bytes();pins=s.entry_pins(entry);paths=list(pins)
     original={k:binding(root/v[0],v[1],v[2] if len(v)==3 else 1) for k,v in s.ORIGINAL.items()}
     pinbindings=[binding(root/p,h) for p,h in pins.items()]
-    contract=dict(declarationSha256='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4',verifierSha256='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132',scope='full',
+    contract=dict(declarationSha256=OPTION_B_BATCH_IDENTITIES[4],verifierSha256=OPTION_B_BATCH_IDENTITIES[5],scope='full',
         subjectSourceBindings=pinbindings[:4],runtimeBindings=[binding('/synthetic-runtime/'+str(i)) for i in range(158)])
     plan=dict(schema='braid-program/f6c-cached-root-cover-full-launch.v1',scope='full',resourcePlan=pinbindings[0],comparisonContract=contract,
         operationalBindings=pinbindings[4:6]+[binding('/synthetic-ops/'+str(i)) for i in range(4)],controlBindings=pinbindings[6:8],python='unused',pythonRealPath='unused',git='unused',node='unused')

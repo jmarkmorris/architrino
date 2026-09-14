@@ -1,0 +1,13 @@
+{
+  "schema": "reviewed-current-source-transition/v1",
+  "predecessorSha256": "52ad8df4f250be9e898825bd0dc790955ccd8070a05b24e3618c3d0e68da3daf",
+  "reviewReference": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#b-close-1-shared-controls-and-record-conformance",
+  "profiles": [
+    {
+      "name": "batch-test-records",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-batch-test-sources.jsonld",
+      "sha256": "58adef567f5051be4b9d65b03012a175512427a4e64bb1cc226d97171b7dfc3f",
+      "changes": []
+    }
+  ]
+}

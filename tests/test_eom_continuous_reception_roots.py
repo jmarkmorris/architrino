@@ -1,4 +1,7 @@
 """Synthetic and analytic controls; no F6c record, roots, or metrics are run."""
+from option_b_batch_records import batch_identities
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 
 from collections.abc import Sequence
 from dataclasses import FrozenInstanceError, replace
@@ -577,10 +580,10 @@ class NoSamplingProofControls(unittest.TestCase):
     def test_frozen_mathematical_dependencies_remain_identical(self):
         root = Path(__file__).resolve().parents[1]
         for name, expected in {
-            "scripts/eom/oracle/certified_history.py": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7",
-            "scripts/eom/oracle/decimal_interval.py": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
+            "scripts/eom/oracle/certified_history.py": OPTION_B_BATCH_IDENTITIES[0],
+            "scripts/eom/oracle/decimal_interval.py": OPTION_B_BATCH_IDENTITIES[1],
             "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md":
-                "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc",
+                OPTION_B_BATCH_IDENTITIES[2],
         }.items():
             self.assertEqual(sha256((root / name).read_bytes()).hexdigest(), expected)
 

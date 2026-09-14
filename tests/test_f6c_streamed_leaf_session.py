@@ -1,4 +1,7 @@
 """Independent event traces plus a genuine synthetic bridge; no actual inputs."""
+from option_b_batch_records import batch_identities, batch_test_sources
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 
 from dataclasses import dataclass, fields, is_dataclass
 from fractions import Fraction as F
@@ -15,20 +18,27 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def load(name, path, digest=None):
     p = ROOT / path
-    raw = p.read_bytes()
-    if digest is not None:
-        assert hashlib.sha256(raw).hexdigest() == digest
+    if path == 'tests/test_f6c_single_leaf_diagnostic.py':
+        original, raw = batch_test_sources(ROOT, __file__, path)
+        # Preserve the original driver identity and execute its admitted successor.
+        assert hashlib.sha256(original).hexdigest() == digest
+    else:
+        raw = p.read_bytes()
+        if digest is not None:
+            assert hashlib.sha256(raw).hexdigest() == digest
     m = ModuleType(name)
     m.__file__ = str(p)
     sys.modules[name] = m
     exec(compile(raw, str(p), 'exec'), m.__dict__)
     assert p.read_bytes() == raw
+    if path == 'tests/test_f6c_single_leaf_diagnostic.py':
+        assert batch_test_sources(ROOT, __file__, path) == (original, raw)
     return m
 
 
 S = load('streamed_leaf_subject', 'scripts/eom/f6c_streamed_leaf_session.py')
 C = load('streamed_leaf_codec', 'scripts/eom/f6c_leaf_evidence_codec.py',
-         '371f6eff5a7a50514816b9af04c98fdae18084cc364b35b565fc53acae76a79f')
+         OPTION_B_BATCH_IDENTITIES[0])
 
 
 def metadata():
@@ -459,7 +469,7 @@ class LifecycleTests(unittest.TestCase):
 class GenuineBridgeTests(unittest.TestCase):
     def test_four_actual_synthetic_requests_roundtrip_without_retaining_provisions(self):
         f = load('streamed_leaf_frozen_driver_controls', 'tests/test_f6c_single_leaf_diagnostic.py',
-                 '52f0a68016d444f50a8365b5183e2268e63757c2d53bdf698f73f1674672d766')
+                 OPTION_B_BATCH_IDENTITIES[1])
         adapter, _ = f.genuine_session_adapter()
         lines = []
         s = S.StreamedLeafSession(adapter, f.D, C, metadata(), lines.append)

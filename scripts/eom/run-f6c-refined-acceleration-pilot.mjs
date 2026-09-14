@@ -99,6 +99,21 @@ export const CANDIDATE_KEYS=Object.freeze('schema scope status accepted launchPl
 export const CANDIDATE_PUBLICATION='fresh successful completion, independent range comparison, external inclusive deadline and closed owned processes';
 
 
+
+// Selected dependencies of transferred controls; no scientific acceptance is granted.
+const BATCH_TEST_ROLES=Object.freeze({
+  "scripts/equation-mapping/batch-test-records.mjs": "scientific-contract",
+  "scripts/equation-mapping/current-source-transition.mjs": "scientific-contract",
+  "tests/option_b_batch_records.py": "scientific-contract",
+  "tests/fixtures/option-b-batch-test-identities.json": "scientific-control",
+  "tests/fixtures/option-b-batch-test-original-sources.json": "scientific-control",
+  "reference/priorities/development-process-review/contracts/option-b-batch-test-sources.jsonld": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-batch-test-accepted-b.json": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-batch-test-transition.json": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json": "scientific-contract",
+  "reference/priorities/development-process-review/evidence/option-b-batch-test-transfer.json": "scientific-control"
+});
+
 export const SOURCE_MAP='reference/priorities/development-process-review/contracts/option-b-f6c-refined-operational-sources.jsonld';
 const SOURCE_READER='scripts/equation-mapping/current-source-manifest.mjs';
 export let SOURCE_BINDINGS;
@@ -113,7 +128,7 @@ export async function initializeSourceBindings(root,expectedMapDigest,live=()=>{
  const reader=readBound(path.join(root,SOURCE_READER),readers[0].binding.sha256,true,1024**2,live);
  const M=await import('data:text/javascript;base64,'+reader.data.toString('base64'));
  const admitted=M.admit(captured.data,{root,scope:'f6c-refined-operational-current-source',readBound:(...args)=>{live();return readBound(...args);}});
- const roles=new Map([[ENTRY,'admission'],[LAUNCHER,'launcher'],[SOURCE_READER,'manifest-reader'],[TESTS,'current-source'],[PROCESS_TESTS,'current-source'],[HELPERS,'current-source'],[OUTER,'current-source']]);
+ const roles=new Map([...Object.entries(BATCH_TEST_ROLES),[ENTRY,'admission'],[LAUNCHER,'launcher'],[SOURCE_READER,'manifest-reader'],[TESTS,'current-source'],[PROCESS_TESTS,'current-source'],[HELPERS,'current-source'],[OUTER,'current-source']]);
  const rows=admitted.document['@graph'].filter(r=>r['@type']==='Source');
  check(rows.length===roles.size&&rows.every(r=>roles.get(r.binding.path)===r.role),'exact operational source roles required');
  const pins=Object.fromEntries(rows.map(r=>[r.binding.path,r.binding.sha256]));

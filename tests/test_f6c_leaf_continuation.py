@@ -4,6 +4,9 @@ The independent mathematical answer used here is integral(1)=duration and
 peak_squared=1, with zero correlated residual. Frozen GK supplies the unchanged
 transition protocol; equality of replay alone is not independent physics proof.
 """
+from option_b_batch_records import batch_identities
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 from dataclasses import dataclass, replace
 from fractions import Fraction as F
 import hashlib
@@ -26,9 +29,9 @@ def load(name,relative,expected=None):
 R=load('continuation_subject','scripts/eom/f6c_leaf_continuation.py')
 D=load('continuation_diagnostic','scripts/eom/f6c_single_leaf_diagnostic.py')
 S=load('continuation_streamed','scripts/eom/f6c_streamed_leaf_session.py')
-C=load('continuation_codec','scripts/eom/f6c_leaf_evidence_codec.py','371f6eff5a7a50514816b9af04c98fdae18084cc364b35b565fc53acae76a79f')
-I=load('continuation_integral','scripts/eom/oracle/f6c_residual_integral_supremum.py','fc170a91b2747923bda89ef00b58d529c98bf96b01cc7b2c05c035042fc79c5a')
-G=load('continuation_protocol','scripts/eom/oracle/f6c_gk13_protocol.py','a70a15481f793e913440628068f9c53bab611fe9d92f36206a401c01e91478eb')
+C=load('continuation_codec','scripts/eom/f6c_leaf_evidence_codec.py',OPTION_B_BATCH_IDENTITIES[0])
+I=load('continuation_integral','scripts/eom/oracle/f6c_residual_integral_supremum.py',OPTION_B_BATCH_IDENTITIES[1])
+G=load('continuation_protocol','scripts/eom/oracle/f6c_gk13_protocol.py',OPTION_B_BATCH_IDENTITIES[2])
 
 
 def token(n):

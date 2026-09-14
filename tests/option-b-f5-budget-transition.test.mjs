@@ -1,3 +1,5 @@
+import { retainedSelectedBytes } from './support/option-b-retained-test-identities.mjs';
+import { decode as decodeOperationalSelection } from '../scripts/equation-mapping/current-source-manifest.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdirSync,mkdtempSync,writeFileSync,realpathSync,rmSync} from 'node:fs';
@@ -9,6 +11,20 @@ import {decode,validate} from '../scripts/equation-mapping/current-source-manife
 
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const recordPath='reference/priorities/development-process-review/contracts/option-b-f5-budget-transition.json';
+
+const OPERATIONAL_CONSUMER="tests/option-b-f5-budget-transition.test.mjs";
+const operationalSelection=decodeOperationalSelection(retainedSelectedBytes(OPERATIONAL_CONSUMER,"reference/priorities/development-process-review/contracts/option-b-batch-test-operational-selection.json"));
+assert.equal(operationalSelection.schema,'option-b-batch-test-operational-selection/v1');
+assert.ok(Array.isArray(operationalSelection.profiles));
+const operationalProfile=name=>{
+  const rows=operationalSelection.profiles.filter(row=>row.name===name);
+  assert.equal(rows.length,1,'exact selected operational profile');
+  const selected=rows[0];
+  assert.match(selected.sha256,/^[a-f0-9]{64}$/u);
+  assert.match(selected.predecessor.sha256,/^[a-f0-9]{64}$/u);
+  return selected;
+};
+
 const budgetPaths=[
  'src/apps/borg/data/certified-budget-identities.v1.json',
  'src/apps/borg/BorgCertifiedBudgetIdentityContract.js',
@@ -42,7 +58,10 @@ test('reviewed family record binds exact predecessor copies, successor maps and 
  assert.equal(record.operationalEligibilityGranted,false);
  assert.deepEqual(record.maps.map(m=>m.profile),['build','evolution']);
  for(const m of record.maps){
-  const beforeRaw=readFileSync(m.predecessor.retainedPath),afterRaw=readFileSync(m.successor.path);
+  const selected=operationalProfile(m.profile==='build'?'f5-build':'f5-evolution');
+  assert.equal(selected.manifestPath,m.successor.path);
+  assert.equal(selected.predecessor.sha256,m.successor.sha256);
+  const beforeRaw=readFileSync(m.predecessor.retainedPath),afterRaw=retainedSelectedBytes(OPERATIONAL_CONSUMER,selected.predecessor.path);
   assert.equal(sha(beforeRaw),m.predecessor.sha256);assert.equal(sha(afterRaw),m.successor.sha256);
   const before=decode(beforeRaw),after=decode(afterRaw);validate(before);validate(after);
   for(const key of Object.keys(before).filter(k=>!['@graph','revisionId'].includes(k)))assert.deepEqual(after[key],before[key]);

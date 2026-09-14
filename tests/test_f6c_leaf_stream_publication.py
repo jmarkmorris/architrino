@@ -1,4 +1,7 @@
 """Portable filesystem/transport controls; no histories or numerical imports."""
+from option_b_batch_records import batch_identities
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 
 import copy
 from dataclasses import FrozenInstanceError
@@ -19,7 +22,7 @@ from unittest import mock
 ROOT = Path(__file__).resolve().parents[1]
 SUBJECT = ROOT / 'scripts/eom/f6c_leaf_stream_publication.py'
 CODEC = ROOT / 'scripts/eom/f6c_leaf_evidence_codec.py'
-CODEC_SHA = '371f6eff5a7a50514816b9af04c98fdae18084cc364b35b565fc53acae76a79f'
+CODEC_SHA = OPTION_B_BATCH_IDENTITIES[0]
 
 
 def load(name, path):

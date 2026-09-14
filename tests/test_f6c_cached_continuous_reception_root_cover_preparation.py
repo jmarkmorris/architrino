@@ -7,6 +7,9 @@ implementation. No import by that alias may select an on-disk or cached module.
 Exact source-byte and AST checks constrain this batch to six binding assignments.
 No actual export, guard, reconstruction, pilot or root-cover data is read here.
 """
+from option_b_batch_records import batch_identities, original_test_source
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 import ast
 import hashlib
 from pathlib import Path
@@ -20,17 +23,21 @@ BASE = ROOT/"scripts/eom/prepare-f6c-continuous-reception-root-cover.py"
 BASE_TESTS = ROOT/"tests/test_f6c_continuous_reception_root_cover_preparation.py"
 SOURCE = ROOT/"scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py"
 REFERENCE = ROOT/"scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py"
-BASE_SHA = "9da7863fe51777de48ee44e0d9dab73cb9844039768b6742310ead3d60702d82"
-BASE_TESTS_SHA = "68a940c40b2e3b463555b95858031f96796e2ac94963a86b3a9ae6fd74dc3742"
-REFERENCE_SHA = "3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7"
-REFERENCE_TESTS_SHA = "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3"
-DECLARATION_SHA = "520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba"
-CACHED_SHA = "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf"
+BASE_SHA = OPTION_B_BATCH_IDENTITIES[0]
+BASE_TESTS_SHA = OPTION_B_BATCH_IDENTITIES[1]
+REFERENCE_SHA = OPTION_B_BATCH_IDENTITIES[2]
+REFERENCE_TESTS_SHA = OPTION_B_BATCH_IDENTITIES[3]
+DECLARATION_SHA = OPTION_B_BATCH_IDENTITIES[4]
+CACHED_SHA = OPTION_B_BATCH_IDENTITIES[5]
 ALLOWED = {"SELF", "REFERENCE", "REFERENCE_SHA", "DECLARATION", "DECLARATION_SHA", "FIXED"}
 
 
 def pinned(path, expected):
-    raw = path.read_bytes()
+    relative = path.relative_to(ROOT).as_posix()
+    if relative in {"tests/test_f6c_cached_continuous_reception_root_cover.py", "tests/test_eom_continuous_reception_roots_cached.py"}:
+        raw = original_test_source(ROOT, __file__, relative)
+    else:
+        raw = path.read_bytes()
     if hashlib.sha256(raw).hexdigest() != expected:
         raise AssertionError("frozen source changed: "+str(path))
     return raw
@@ -51,8 +58,8 @@ CONTROL_BYTES = pinned(BASE_TESTS, BASE_TESTS_SHA)
 REFERENCE_BYTES = pinned(REFERENCE, REFERENCE_SHA)
 pinned(ROOT/"tests/test_f6c_cached_continuous_reception_root_cover.py", REFERENCE_TESTS_SHA)
 pinned(ROOT/"scripts/eom/oracle/continuous_reception_roots_cached.py", CACHED_SHA)
-pinned(ROOT/"tests/test_eom_continuous_reception_roots_cached.py", "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb")
-pinned(ROOT/"scripts/eom/verify-f6c-continuous-reception-root-cover.py", "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36")
+pinned(ROOT/"tests/test_eom_continuous_reception_roots_cached.py", OPTION_B_BATCH_IDENTITIES[6])
+pinned(ROOT/"scripts/eom/verify-f6c-continuous-reception-root-cover.py", OPTION_B_BATCH_IDENTITIES[7])
 pinned(ROOT/"reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md", DECLARATION_SHA)
 S = captured_module("synthetic_cached_f6c_cover_subject", SOURCE, SOURCE.read_bytes())
 V = captured_module("frozen_cached_f6c_cover_reference", REFERENCE, REFERENCE_BYTES)

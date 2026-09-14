@@ -1,0 +1,13 @@
+{
+  "schema": "reviewed-current-source-transition/v1",
+  "predecessorSha256": "5cafbc4125e5e2fd0a5086023e26e20a20ff13ba1d2b3850e12785a731eb156e",
+  "reviewReference": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#b-close-1-shared-controls-and-record-conformance",
+  "profiles": [
+    {
+      "name": "borg-runtime-sources",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-sources.jsonld",
+      "sha256": "b7918d68dd2b79dbf1b756f794b2b88fe250457952bfb68ed1cfda0c4768f5e4",
+      "changes": []
+    }
+  ]
+}

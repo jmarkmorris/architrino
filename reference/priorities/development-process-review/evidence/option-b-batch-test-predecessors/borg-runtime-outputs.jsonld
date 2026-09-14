@@ -1,0 +1,1321 @@
+{
+  "@context": {
+    "@vocab": "https://architrino.com/knowledge/current-source/",
+    "from": {
+      "@type": "@id"
+    },
+    "to": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "current-source-manifest/v1",
+  "scope": "borg-runtime-outputs",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "baseline": {
+    "commit": "06fc05899fa972f5b43bf5e1d58e16e6b8f9ac95",
+    "entry": "scripts/borg/selected-runtime-admission.mjs",
+    "authority": "operator-directed-existing-A-transfer"
+  },
+  "revisionId": "initial-graph-transfer",
+  "@graph": [
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "admission",
+      "binding": {
+        "path": "scripts/borg/selected-runtime-admission.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "27110288ebd2e664d89b71566b85a38c5c0af2ad92a690f933002b459a96d9d3"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2Fdata%2Fassembly-record-catalog.v2.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "src/apps/borg/data/assembly-record-catalog.v2.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "29f894bc99eaa80eaaa8d4a0b507e974cb00bd5bde14700b7b6a75ce7cea114a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2Fdata%2Fcertified-budget-identities.v1.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "src/apps/borg/data/certified-budget-identities.v1.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "874e728e8d9bc6dd9077602f2fe724033e7e8cfbe319855441e17d1ff87b9fef"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-assembly-record-catalog.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/borg/build-assembly-record-catalog.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "fea5d8256d975f1727e717b305c4861bba34e52d5b8e1acc9f51ec06f6936802"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-certified-budget-identities.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/borg/build-certified-budget-identities.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "960579e82d62d3826d6677f445f1f4fbdc40d100fca2a01fbe4dec8b19144d62"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalogContract.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "src/apps/borg/BorgAssemblyRecordCatalogContract.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "39cbea75ae75f869fe38fe7df34d74c17ef82000ffb7d211f6bc882b7f141e07"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgetIdentityContract.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "src/apps/borg/BorgCertifiedBudgetIdentityContract.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "1ef6ced3f439a49299e1e34eb552fba60992839ab1755b7af3d3ba9067c4b3a3"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "src/apps/borg/BorgAssemblyRecordCatalog.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "008375e01ccd5173ffa5f59ce6986760abd7f4fe5c12536ad43a0d64e5628b4b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "src/apps/borg/BorgCertifiedBudgets.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "81800deeafbdf0bdacd0c79a49dcc9c07deab26bcc51682141b0bb1ac271bc67"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fcheck-borg-scientific-status-projection.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/check-borg-scientific-status-projection.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "7a6c271cb7d5fd4d9bdb985fa4d93724bef523e46cef5b29237e69c47d1fb932"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgBootstrap.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "src/apps/borg/BorgBootstrap.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "6d7f31055d6464b01c9f72261b438b9caf5956b8225edb3b24c2d5f39b1c70c4"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgEomShadowRunner.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "src/apps/borg/BorgEomShadowRunner.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "bf5abe9feb947687609a7adeb005ef71cb7b5fed5739b1e4df15c751d7d0215a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAppRuntime.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "src/apps/borg/BorgAppRuntime.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "6373e2fa283792d591a81528d3d4e53a434e8a5a836e593d518a10d6ac82809a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgRuntimeRunSession.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "src/apps/borg/BorgRuntimeRunSession.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "1c9987f4d875698f60a5b511d37202ebe8b0aa33834d5e2fe1be31708aa8ef58"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgPrescribedDisplayBranch.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "src/apps/borg/BorgPrescribedDisplayBranch.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "7d2139c0798caa81b26673345f1e931a2e59263ae898d943c5a8d95ca85612f2"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyViewSession.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "src/apps/borg/BorgAssemblyViewSession.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "622edca589c4f2faede090ea5fddaccea9ae0a2e35ff7833728d7d53f58a0db9"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fverify-assembly-record-byte-identity.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/borg/verify-assembly-record-byte-identity.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "a0192d2350b46226fa1ed3e0f9ee875c252f6a7b11ed517c218d449acd37d847"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-assembly-registry.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/borg/build-assembly-registry.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "2eb8c8825c75cdd61235f66d08112731d39f97dc214653bd1724061c1fbb9934"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2FBorgNativeEomProcessClient.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/BorgNativeEomProcessClient.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "c9de2b85839257621f7371097501219b8a59c67b8a63b21f1aa8d3997826e787"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Frun-stella-octangula-short-release.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/run-stella-octangula-short-release.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "4b3044cd163cbdc368234d9199100e89ed340b777836dea8028ff263ae5b936b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Frun-borg-eom-refinement-ladder.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/run-borg-eom-refinement-ladder.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "b981d919f6b4f302ed451a97bbeed0b3ab8aecdc5b7f790fb7c0abb947e440ed"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fprescribed-path-analysis%2FAllCandidateAnalyticalCampaign.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "1ee89d30dfc5f62e99c1092166f75dee9548a611bec307655449ee24ec40d41c"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Fprofile-borg-incremental-chunks.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/profile-borg-incremental-chunks.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "0159683a9cc1959ce2ea028e0aeaf67d026afa695f97d4c6aec1b0304f812ad4"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Fprepare-ordinary-evolution-request.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/prepare-ordinary-evolution-request.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "b641292c3597baacb558c1c48db471dfc038d1260ddd79ec32b80b037f72f5f4"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Fprepare-planar-three-binary-circular-release.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/prepare-planar-three-binary-circular-release.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "031706b047589664eae160d6430cc89f8373a0278aeec7fb85931a993dbc5b44"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fprepare-runtime-assets.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/prepare-runtime-assets.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "368fd7f5c433b6eac2652ff3dbd233bed615688fd08b202d26e9753aba1c8166"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fbuild-static-site.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/build-static-site.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "ea6d1cd751606e1cde68957f3a6e85fdc6b820b27c026e5e22df864b5f0f16d9"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fdev%2Fstart-local-dev.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "launcher",
+      "binding": {
+        "path": "scripts/dev/start-local-dev.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "3253779bb29a77100a412115de2a90bd0136f0774202ce0f328b27468ac84924"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fconfig%2Fgenerated-runtime-assets.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "scripts/config/generated-runtime-assets.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "7535cd48af3cf3e2b44d62cd14767eb3e22663a5ae1c253f54b0fdd87ee6383f"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/package.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "package.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "27bcd57ac634c6c27eb6322201caa0667ac1eae443c02ee2f7998918da054ed7"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/package-lock.json",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "package-lock.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "f332c4307976378ed0c3d658b0b6bfa02164945cb0570526625e8b912e1798c4"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-manifest.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9097ef3fd3fb2040b48c601d81c184188e8a992aa4464694860d05d0bf76a56e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-transition.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "5ab045757df6c7df7d364f39ba2ac62ec90666e092581b5b3faa08d232dda039"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-impact.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "739ebb899d68378bad5da6571b7774d0641e9f5674cb2a876fdb9dda07e9b31b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/tests%2Foption-b-borg-runtime-admission.test.mjs",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option-b-borg-runtime-admission.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "8a5d5de415e0ccc646b3a311eabdd3f2932984edee63c1d947c77084dd37202f"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/content%2Fgenerated%2Fborg%2Fassembly-record-catalog.v2.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "content/generated/borg/assembly-record-catalog.v2.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "3673a9279b68ae486fc5a1b2b5acc5ff5045613b34ff08b3ed842eda133044a6"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/content%2Fgenerated%2Fborg%2Fcertified-budget-identities.v1.js",
+      "@type": "Source",
+      "revisionId": "initial-graph-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "content/generated/borg/certified-budget-identities.v1.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "23e41b21984627c9723e4ca3dd494dcec1b96b1bb144d0a85f9678bf494a5047"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fapps%2Fborg%2Fdata%2Fassembly-record-catalog.v2.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2Fdata%2Fassembly-record-catalog.v2.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fapps%2Fborg%2Fdata%2Fcertified-budget-identities.v1.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2Fdata%2Fcertified-budget-identities.v1.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fborg%2Fbuild-assembly-record-catalog.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-assembly-record-catalog.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fborg%2Fbuild-certified-budget-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-certified-budget-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalogContract.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalogContract.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fapps%2Fborg%2FBorgCertifiedBudgetIdentityContract.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgetIdentityContract.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fcheck-borg-scientific-status-projection.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fcheck-borg-scientific-status-projection.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fapps%2Fborg%2FBorgBootstrap.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgBootstrap.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fapps%2Fborg%2FBorgEomShadowRunner.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgEomShadowRunner.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fapps%2Fborg%2FBorgAppRuntime.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAppRuntime.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fapps%2Fborg%2FBorgRuntimeRunSession.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgRuntimeRunSession.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fapps%2Fborg%2FBorgPrescribedDisplayBranch.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgPrescribedDisplayBranch.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fapps%2Fborg%2FBorgAssemblyViewSession.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyViewSession.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fborg%2Fverify-assembly-record-byte-identity.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fverify-assembly-record-byte-identity.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fborg%2Fbuild-assembly-registry.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-assembly-registry.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Feom%2FBorgNativeEomProcessClient.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2FBorgNativeEomProcessClient.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Feom%2Frun-stella-octangula-short-release.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Frun-stella-octangula-short-release.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Feom%2Frun-borg-eom-refinement-ladder.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Frun-borg-eom-refinement-ladder.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/src%2Fprescribed-path-analysis%2FAllCandidateAnalyticalCampaign.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fprescribed-path-analysis%2FAllCandidateAnalyticalCampaign.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Feom%2Fprofile-borg-incremental-chunks.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Fprofile-borg-incremental-chunks.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Feom%2Fprepare-ordinary-evolution-request.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Fprepare-ordinary-evolution-request.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Feom%2Fprepare-planar-three-binary-circular-release.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Fprepare-planar-three-binary-circular-release.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fprepare-runtime-assets.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fprepare-runtime-assets.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fbuild-static-site.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fbuild-static-site.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fdev%2Fstart-local-dev.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fdev%2Fstart-local-dev.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fconfig%2Fgenerated-runtime-assets.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fconfig%2Fgenerated-runtime-assets.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/package.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/package.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/package-lock.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/package-lock.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/tests%2Foption-b-borg-runtime-admission.test.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/tests%2Foption-b-borg-runtime-admission.test.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/content%2Fgenerated%2Fborg%2Fassembly-record-catalog.v2.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/content%2Fgenerated%2Fborg%2Fassembly-record-catalog.v2.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/checks/scripts%2Fborg%2Fselected-runtime-admission.mjs/content%2Fgenerated%2Fborg%2Fcertified-budget-identities.v1.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/content%2Fgenerated%2Fborg%2Fcertified-budget-identities.v1.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fcheck-borg-scientific-status-projection.mjs/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fcheck-borg-scientific-status-projection.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/src%2Fapps%2Fborg%2FBorgBootstrap.js/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgBootstrap.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/src%2Fapps%2Fborg%2FBorgBootstrap.js/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgBootstrap.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/src%2Fapps%2Fborg%2FBorgEomShadowRunner.js/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgEomShadowRunner.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/src%2Fapps%2Fborg%2FBorgAppRuntime.js/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAppRuntime.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/src%2Fapps%2Fborg%2FBorgRuntimeRunSession.js/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgRuntimeRunSession.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/src%2Fapps%2Fborg%2FBorgPrescribedDisplayBranch.js/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgPrescribedDisplayBranch.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/src%2Fapps%2Fborg%2FBorgAssemblyViewSession.js/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyViewSession.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fborg%2Fverify-assembly-record-byte-identity.mjs/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fverify-assembly-record-byte-identity.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fborg%2Fbuild-assembly-registry.mjs/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-assembly-registry.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Feom%2FBorgNativeEomProcessClient.mjs/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2FBorgNativeEomProcessClient.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Feom%2Frun-stella-octangula-short-release.mjs/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Frun-stella-octangula-short-release.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Feom%2Frun-borg-eom-refinement-ladder.mjs/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Frun-borg-eom-refinement-ladder.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/src%2Fprescribed-path-analysis%2FAllCandidateAnalyticalCampaign.mjs/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fprescribed-path-analysis%2FAllCandidateAnalyticalCampaign.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Feom%2Fprofile-borg-incremental-chunks.mjs/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Fprofile-borg-incremental-chunks.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Feom%2Fprepare-ordinary-evolution-request.mjs/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Fprepare-ordinary-evolution-request.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Feom%2Fprepare-planar-three-binary-circular-release.mjs/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Feom%2Fprepare-planar-three-binary-circular-release.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fborg%2Fbuild-assembly-record-catalog.mjs/src%2Fapps%2Fborg%2Fdata%2Fassembly-record-catalog.v2.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-assembly-record-catalog.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2Fdata%2Fassembly-record-catalog.v2.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fborg%2Fbuild-assembly-record-catalog.mjs/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalogContract.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-assembly-record-catalog.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalogContract.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalogContract.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalogContract.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fborg%2Fbuild-certified-budget-identities.mjs/src%2Fapps%2Fborg%2Fdata%2Fcertified-budget-identities.v1.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-certified-budget-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2Fdata%2Fcertified-budget-identities.v1.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fborg%2Fbuild-certified-budget-identities.mjs/src%2Fapps%2Fborg%2FBorgCertifiedBudgetIdentityContract.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-certified-budget-identities.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgetIdentityContract.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js/src%2Fapps%2Fborg%2FBorgCertifiedBudgetIdentityContract.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgetIdentityContract.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fprepare-runtime-assets.mjs/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fprepare-runtime-assets.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fbuild-static-site.mjs/scripts%2Fprepare-runtime-assets.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fbuild-static-site.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fprepare-runtime-assets.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fdev%2Fstart-local-dev.mjs/scripts%2Fprepare-runtime-assets.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fdev%2Fstart-local-dev.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fprepare-runtime-assets.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fequation-mapping%2Fcurrent-source-transition.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/scripts%2Fborg%2Fselected-runtime-admission.mjs/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fselected-runtime-admission.mjs",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fequation-mapping%2Fcurrent-source-impact.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/content%2Fgenerated%2Fborg%2Fassembly-record-catalog.v2.js/src%2Fapps%2Fborg%2Fdata%2Fassembly-record-catalog.v2.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/content%2Fgenerated%2Fborg%2Fassembly-record-catalog.v2.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2Fdata%2Fassembly-record-catalog.v2.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/content%2Fgenerated%2Fborg%2Fassembly-record-catalog.v2.js/scripts%2Fborg%2Fbuild-assembly-record-catalog.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/content%2Fgenerated%2Fborg%2Fassembly-record-catalog.v2.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-assembly-record-catalog.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js/content%2Fgenerated%2Fborg%2Fassembly-record-catalog.v2.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgAssemblyRecordCatalog.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/content%2Fgenerated%2Fborg%2Fassembly-record-catalog.v2.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/content%2Fgenerated%2Fborg%2Fcertified-budget-identities.v1.js/src%2Fapps%2Fborg%2Fdata%2Fcertified-budget-identities.v1.json",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/content%2Fgenerated%2Fborg%2Fcertified-budget-identities.v1.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2Fdata%2Fcertified-budget-identities.v1.json",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/content%2Fgenerated%2Fborg%2Fcertified-budget-identities.v1.js/scripts%2Fborg%2Fbuild-certified-budget-identities.mjs",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/content%2Fgenerated%2Fborg%2Fcertified-budget-identities.v1.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/scripts%2Fborg%2Fbuild-certified-budget-identities.mjs",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/borg-runtime/dependsOn/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js/content%2Fgenerated%2Fborg%2Fcertified-budget-identities.v1.js",
+      "@type": "Relationship",
+      "revisionId": "initial-graph-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/borg-runtime/src%2Fapps%2Fborg%2FBorgCertifiedBudgets.js",
+      "fromRevision": "initial-graph-transfer",
+      "to": "https://architrino.com/knowledge/current-source/borg-runtime/content%2Fgenerated%2Fborg%2Fcertified-budget-identities.v1.js",
+      "toRevision": "initial-graph-transfer",
+      "role": "runtime-data-dependency"
+    }
+  ]
+}

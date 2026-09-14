@@ -55,7 +55,7 @@ export const RETAINED_TEST_PAYLOAD = 'tests/fixtures/option-b-retained-test-iden
 export const RETAINED_TEST_SELECTION = 'reference/priorities/development-process-review/contracts/option-b-retained-test-selection.json';
 const repositoryRoot = fileURLToPath(new URL('../../', import.meta.url));
 
-export function loadRetainedTestIdentities({ root = repositoryRoot, selection, consumer, beforeFinalCheck } = {}) {
+export function loadRetainedTestIdentities({ root = repositoryRoot, selection, consumer, recordPath, beforeFinalCheck } = {}) {
   fields(selection, 'acceptedBaseline acceptedBaselineSha256 transition transitionSha256');
   let values;
   inspectCurrentSources({ root, ...selection, requiredProfiles: [RETAINED_TEST_PROFILE], beforeFinalCheck: () => {
@@ -70,7 +70,16 @@ export function loadRetainedTestIdentities({ root = repositoryRoot, selection, c
     const payload = sources.find(row => row.binding.path === RETAINED_TEST_PAYLOAD);
     assert.equal(payload?.role, 'scientific-control', 'Protected expectation payload required');
     assert.ok(sources.some(row => row.binding.path === consumer && row.role === 'scientific-control'), 'Selected consumer source required');
-    values = captureRetainedTestIdentities(captures.capture(RETAINED_TEST_PAYLOAD, payload.binding.sha256), consumer);
+    if (recordPath === undefined) {
+      values = captureRetainedTestIdentities(captures.capture(RETAINED_TEST_PAYLOAD, payload.binding.sha256), consumer);
+    } else {
+      safePath(recordPath);
+      const record = sources.find(row => row.binding.path === recordPath);
+      const caller = sources.find(row => row.binding.path === consumer);
+      assert.ok(record && ['scientific-control', 'scientific-contract'].includes(record.role), 'Protected selected record required');
+      assert.ok(graph.edges.some(edge => edge.kind === 'dependsOn' && edge.from === caller['@id'] && edge.to === record['@id']), 'Selected record dependency required');
+      values = captures.capture(recordPath, record.binding.sha256);
+    }
     beforeFinalCheck?.();
     captures.check();
   } });
@@ -83,4 +92,9 @@ export function retainedTestIdentities(consumer) {
   // expected digest from candidate bytes or adopt a later edited selection.
   selected ??= decode(readFileSync(new URL('../../' + RETAINED_TEST_SELECTION, import.meta.url)));
   return loadRetainedTestIdentities({ selection: selected, consumer });
+}
+
+export function retainedSelectedBytes(consumer, recordPath) {
+  selected ??= decode(readFileSync(new URL('../../' + RETAINED_TEST_SELECTION, import.meta.url)));
+  return loadRetainedTestIdentities({selection: selected, consumer, recordPath});
 }

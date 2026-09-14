@@ -1,3 +1,5 @@
+import {batchTestIdentities,batchTestSources} from '../scripts/equation-mapping/batch-test-records.mjs';
+const identities=batchTestIdentities(import.meta.url);
 // Synthetic metadata/process controls only. No accepted history or range is evaluated.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -31,9 +33,10 @@ function planFixture(){return {schema:'braid-program/f6c-emission-refinement-lau
  limits:{...E.LIMITS},priorCoverClosure:{authority:'externally-reviewed-caller-observation',ownerSha256:E.FIXED[9][2],admissionSha256:E.FIXED[5][2],matchingFreshCompletionObserved:true,exitCode:0,elapsedSeconds:'8.534247625',processesClosed:true,independentAuditAccepted:true}};}
 
 test('all scientific implementation/control pins remain their separately frozen source generations',()=>{
+  const originalControls=new Map(['tests/test_eom_continuous_reception_roots_cached.py','tests/test_f6c_cached_continuous_reception_root_cover.py','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','tests/test_f6c_emission_refinement.py'].map(p=>[p,batchTestSources(import.meta.url,p)]));
   for(const p of [E.BRIDGE,E.SUPPORT,...Object.values(E.NAMED),...E.SUBJECT_PATHS,E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
-    assert.equal(hash(readFileSync(archived(p))),(E.SOURCE_BINDINGS[p]??E.PINS[p]),p);
-  assert.equal(E.FIXED.length,16);assert.equal(E.SUBJECT_PATHS.length,15);assert.equal(E.PINS['tests/test_eom_decimal_interval.py'],'22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44');
+    assert.equal(hash(!E.SOURCE_BINDINGS[p]&&archived(p)===p&&originalControls.has(p)?Buffer.from(originalControls.get(p).original):readFileSync(archived(p))),(E.SOURCE_BINDINGS[p]??E.PINS[p]),p); // Historical controls retain original bytes; current operational sources retain current admission.
+  assert.equal(E.FIXED.length,16);assert.equal(E.SUBJECT_PATHS.length,15);assert.equal(E.PINS['tests/test_eom_decimal_interval.py'],identities[0]);
 });
 test('closed plan has no invented runtime/default fields and exact operational closure',()=>{
   const plan=planFixture();
@@ -134,7 +137,7 @@ function admissionFixture(stage){
  const manifestRecord={schema:'braid-program/f6c-emission-refinement-cover.v1',scope:E.SCOPE,status:'conditional_complete',accepted:false,
  launchPlan:planBinding,producer:named.producer,fixedBindings:fixed,subjectSourceBindings:plan.subjectSourceBindings,
  executionBindings:[...plan.runtimeBindings,...plan.operationalBindings].map(b=>({...b,path:path.resolve(dir,b.path)})),priorCoverClosure:plan.priorCoverClosure,
- members:E.IDS.map((id,i)=>({id,pathKey:i+1,polarity:i%2?-1:1})),knotSha256:'11acd09b692fe175861d0f9478b5d1763c18e088682a0c6a16fc29d65453075c',
+ members:E.IDS.map((id,i)=>({id,pathKey:i+1,polarity:i%2?-1:1})),knotSha256:identities[1],
  retainedDomain:{lower:'-8',upper:'0.13',precision:90},receptionDomain:{lower:'0',upper:'0.001',precision:90},originalEmissionDomain:{lower:'-8',upper:'-0.05',precision:90},
  precision:90,speedUpper:'0.85',clearanceLower:'0.27',algorithm:E.ALGORITHM,restrictions,census:E.CENSUS,
  queries:streams[0],rows:streams[1],pieces:streams[2],libraryFlags:falseFlags(E.ROOT_FLAGS),claims:falseFlags(E.CLAIM_FLAGS)};

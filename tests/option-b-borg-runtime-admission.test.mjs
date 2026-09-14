@@ -19,9 +19,10 @@ function fixture(t){
  return{dir,selection,run:()=>beginBorgRuntimeAdmission({root:dir,selection})};
 }
 
-test('original data generators contracts browser APIs and F5 selection remain exact',()=>{
+test('original data generators contracts browser APIs and historical F5 selections remain exact',()=>{
  const proof=decode(fs.readFileSync(proofPath));
- for(const row of proof.unchanged){const original=execFileSync('git',['show',proof.originCommit+':'+row.path]);assert.equal(sha256(original),row.sha256);assert.deepEqual(fs.readFileSync(row.path),original,row.path);}
+ const retainedF5=new Map([['reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld','reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-operational-sources.jsonld'],['reference/priorities/development-process-review/contracts/option-b-f5-evolution-sources.jsonld','reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-evolution-sources.jsonld']]);
+ for(const row of proof.unchanged){const original=execFileSync('git',['show',proof.originCommit+':'+row.path]);assert.equal(sha256(original),row.sha256);assert.deepEqual(fs.readFileSync(retainedF5.get(row.path)??row.path),original,row.path);} // Original F5 selections stay historical; current operational selections have separate admission.
  for(const row of proof.projections)assert.equal(sha256(fs.readFileSync(row.path)),row.sha256);
 });
 

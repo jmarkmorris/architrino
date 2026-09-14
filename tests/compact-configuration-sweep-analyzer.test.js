@@ -1,3 +1,5 @@
+import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';
+const identities=batchTestIdentities(import.meta.url);
 import assert from "node:assert/strict";
 import { mkdtempSync, writeFileSync } from "node:fs";
 import os from "node:os";
@@ -15,7 +17,7 @@ const CAMPAIGN_SCHEMA =
 const CASE_SCHEMA =
   "prescribed-path-analysis/compact-monte-carlo-case.v2";
 const TEST_MODEL_REVISION_SHA256 =
-  "0153fdc7276d1a064d8794a423bd775b24140e8dd8353e4afe44695a0e973911";
+  identities[0];
 const TEST_ASSEMBLY_ID = `asm-${TEST_MODEL_REVISION_SHA256.slice(0, 32)}`;
 const TEST_SOURCE_SLUG = "three-axis-circular-coincident-midpoints";
 

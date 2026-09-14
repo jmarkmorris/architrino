@@ -1,3 +1,5 @@
+import { retainedSelectedBytes } from './support/option-b-retained-test-identities.mjs';
+import { decode as decodeOperationalSelection } from '../scripts/equation-mapping/current-source-manifest.mjs';
 import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';
 const optionBIdentities = retainedTestIdentities("tests/f5-independent-interpolation-enclosure.test.js");
 const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/f5-independent-interpolation-enclosure.test.js"].sha256]);
@@ -12,7 +14,25 @@ import assert from "node:assert/strict";
 import { prepareF5OriginalInputTree, verifyF5OriginalInputTree } from '../scripts/eom/prepare-f5-original-input-tree.mjs';
 
 const INSTRUMENT = "scripts/eom/derive-f5-independent-interpolation-enclosure.mjs";
-const SOURCE_MAP_SHA = optionBIdentities.f5PreparationSelection.sha256;
+
+const OPERATIONAL_CONSUMER="tests/f5-independent-interpolation-enclosure.test.js";
+const operationalSelection=decodeOperationalSelection(retainedSelectedBytes(OPERATIONAL_CONSUMER,"reference/priorities/development-process-review/contracts/option-b-batch-test-operational-selection.json"));
+assert.equal(operationalSelection.schema,'option-b-batch-test-operational-selection/v1');
+assert.ok(Array.isArray(operationalSelection.profiles));
+const operationalProfile=name=>{
+  const rows=operationalSelection.profiles.filter(row=>row.name===name);
+  assert.equal(rows.length,1,'exact selected operational profile');
+  const selected=rows[0];
+  assert.match(selected.sha256,/^[a-f0-9]{64}$/u);
+  assert.match(selected.predecessor.sha256,/^[a-f0-9]{64}$/u);
+  return selected;
+};
+
+const currentPreparation=operationalProfile('f5-build');
+assert.equal(currentPreparation.manifestPath,optionBIdentities.f5PreparationSelection.path);
+assert.equal(currentPreparation.predecessor.sha256,optionBIdentities.f5PreparationSelection.sha256);
+assert.equal(sha256(retainedSelectedBytes(OPERATIONAL_CONSUMER,currentPreparation.predecessor.path)),optionBIdentities.f5PreparationSelection.sha256);
+const SOURCE_MAP_SHA = currentPreparation.sha256;
 if (!/^[a-f0-9]{64}$/u.test(SOURCE_MAP_SHA ?? '')) throw new Error('Malformed F5 preparation selection');
 let executionRoot;
 before(async () => {
