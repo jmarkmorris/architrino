@@ -1,3 +1,4 @@
+import {loadProductionTestModule,originalProductionTestSource} from './support/option-b-production-hosts.mjs';
 import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';
 const optionBIdentities = retainedTestIdentities("tests/f6c-parent-emission-refinement-pilot.test.js");
 const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/f6c-parent-emission-refinement-pilot.test.js"].sha256]);
@@ -10,7 +11,7 @@ import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,linkSync,renameSync,rea
 import {createHash} from 'node:crypto';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
-import * as B from '../scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs';
+const B=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs");
 import * as C from '../scripts/eom/f6c-bounded-operation.mjs';
 const root=realpathSync(process.cwd());
 const sha=b=>createHash('sha256').update(b).digest('hex');
@@ -26,7 +27,7 @@ test('fixed math census/limits and source pins remain unchanged',()=>{
  assert.equal(B.LIMIT,1800000);assert.equal(B.FILE,67108864);assert.equal(B.LOG,16777216);
  assert.deepEqual(B.CENSUS,{cells:1,members:8,queries:3584,pairRows:64,ordinaryPairs:56,selfZeros:8,pieceRecords:112});
  assert.deepEqual(B.ALGORITHM,{lowerQueriesPerPair:32,upperQueriesPerPair:32,upperSearchRestartsFromOriginal:true,receptionSubdivision:false,automaticRetry:false});
- for(const name of ['proposalReference','comparisonReference']){const[p,h]=B.NAMED[name];assert.equal(sha(readFileSync(path.join(root,p))),h);}
+ for(const name of ['proposalReference','comparisonReference']){const[p,h]=B.NAMED[name];assert.equal(sha(originalProductionTestSource(p,h)??readFileSync(path.join(root,p))),h);}
  const selected=JSON.parse(readFileSync(path.join(root,'reference/priorities/development-process-review/contracts/option-b-f6c-bounded-operation-sources.jsonld')))['@graph'].find(r=>r.role==='admission').binding;
  assert.equal(B.COORDINATOR,selected.path);assert.equal(sha(readFileSync(path.join(root,B.COORDINATOR))),selected.sha256);
  assert.ok(Object.values(B.CLAIMS).every(v=>v===false));

@@ -1,3 +1,6 @@
+import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
+import * as optionBProductionModule0 from "../scripts/eom/prepare-f5-enclosed-root-build.mjs";
+optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/prepare-f5-enclosed-root-build.mjs"));
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -36,8 +39,13 @@ test("source snapshot binds fresh builder, whole EOM owners and frozen reference
   const admission = await admitF5Sources(root,sourceMapSha256);
   const records = snapshot(digest, admission);
   assert.equal(records.find((r) => r.path === self).sha256, digest);
-  for (const [filename, expected] of Object.entries(SOURCE_OWNERS))
-    assert.equal(records.find((r) => r.path === filename).sha256, expected);
+  for (const [filename, expected] of Object.entries(SOURCE_OWNERS)) {
+    if(filename==='src/eom/native/eom_f5_enclosed_root_cli.cpp'){
+      const pair=admission.productionSourcePair(filename,expected);
+      assert.equal(createHash('sha256').update(pair.original).digest('hex'),expected);
+      assert.equal(records.find((r)=>r.path===filename).sha256,createHash('sha256').update(pair.current).digest('hex'));
+    }else assert.equal(records.find((r) => r.path === filename).sha256, expected);
+  }
   assert.ok(records.some((r) => r.path === "src/eom/native/eom_f5_enclosed_root_cli.cpp"));
   assert.equal(new Set(records.map((r) => r.path)).size, records.length);
   assert.throws(() => snapshot("0".repeat(64), admission), /admission\/builder/);

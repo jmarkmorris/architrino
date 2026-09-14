@@ -1,3 +1,6 @@
+import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
+import * as optionBProductionModule0 from "../scripts/eom/run-subfield-circular-root-rung.mjs";
+optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/run-subfield-circular-root-rung.mjs"));
 import test from 'node:test';import assert from 'node:assert/strict';
 import {currentCircularDispositions} from '../scripts/eom/prepare-current-subfield-circular-ladder.mjs';
 import {acceptCurrentCircularPilot,SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW} from '../scripts/eom/run-subfield-circular-root-rung.mjs';

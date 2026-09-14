@@ -4,6 +4,7 @@ The independent mathematical answer used here is integral(1)=duration and
 peak_squared=1, with zero correlated residual. Frozen GK supplies the unchanged
 transition protocol; equality of replay alone is not independent physics proof.
 """
+from option_b_production_records import source_bytes as _option_b_source_bytes, exec_source as _option_b_exec_source
 from option_b_batch_records import batch_identities
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -20,10 +21,10 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def load(name,relative,expected=None):
-    raw=(ROOT/relative).read_bytes()
+    raw=_option_b_source_bytes(__file__, ROOT/relative)
     if expected: assert hashlib.sha256(raw).hexdigest()==expected
     m=ModuleType(name);m.__file__=str(ROOT/relative);sys.modules[name]=m
-    exec(compile(raw,m.__file__,'exec'),m.__dict__);return m
+    _option_b_exec_source(__file__, m, m.__file__, raw);return m
 
 
 R=load('continuation_subject','scripts/eom/f6c_leaf_continuation.py')

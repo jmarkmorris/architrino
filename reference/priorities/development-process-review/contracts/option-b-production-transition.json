@@ -1,0 +1,13 @@
+{
+  "schema": "reviewed-current-source-transition/v1",
+  "predecessorSha256": "54519a55efef839a34e9bdbfa102320f83ebdeb0ecd621bf022e2564867c7d2a",
+  "reviewReference": "reference/priorities/development-process-review/analysis/option-b-redux-handoff.md#b-close-2-active-integration-checkpoint",
+  "profiles": [
+    {
+      "name": "production-source-records",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-production-sources.jsonld",
+      "sha256": "361ce874eb3a5a69332858b8ebf7749ba1197d03d12ce908be46cf8a3a50d26e",
+      "changes": []
+    }
+  ]
+}

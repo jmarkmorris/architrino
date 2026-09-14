@@ -1,3 +1,6 @@
+import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
+import * as optionBProductionModule0 from "../scripts/eom/prepare-f5-original-input-tree.mjs";
+optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/prepare-f5-original-input-tree.mjs"));
 import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';
 const knownHashes = admittedKnownHashAnswers("tests/f5-original-input-tree.test.js");
 const ABC_SHA = knownHashes.sha256.abc;

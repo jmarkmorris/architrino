@@ -35,7 +35,13 @@ export function captureSet(root) {
       return raw;
     } finally { fs.closeSync(fd); }
   }
-  return { capture, check: () => { for (const [p, record] of captured) capture(p, record.expected); } };
+  // Read-only reporting of the exact already-retained generation. No I/O and
+  // no authority to renew, replace, or mutate the capture engine's identities.
+  const snapshot = () => Object.freeze([...captured].map(([relative, record]) => Object.freeze({
+    path: path.join(root, relative), sha256: record.expected,
+    bytes: Number(record.identity[2]), identity: record.identity.join(':')
+  })));
+  return { capture, snapshot, check: () => { for (const [p, record] of captured) capture(p, record.expected); } };
 }
 
 // Only scalar replacements are supported. No implicit adds, deletes, moves,

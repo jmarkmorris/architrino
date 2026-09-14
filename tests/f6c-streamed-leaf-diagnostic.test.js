@@ -1,3 +1,8 @@
+import {copyProductionFixture} from './support/option-b-production-fixtures.mjs';
+import {selectSyntheticProductionFixture} from './support/option-b-synthetic-production-fixtures.mjs';
+import {productionTestAdmission,productionTestIdentities} from './support/option-b-production-hosts.mjs';
+import {beginProductionAdmission} from '../scripts/equation-mapping/production-source-records.mjs';
+import {loadProductionTestModule} from './support/option-b-production-hosts.mjs';
 import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
 const NEXT_TEST_SHA = nextTestIdentities("tests/f6c-streamed-leaf-diagnostic.test.js", 10);
 // Synthetic transport/lifecycle controls plus an explicit genuine stationary
@@ -15,7 +20,7 @@ import os from 'node:os';
 import {pathToFileURL} from 'node:url';
 import path from 'node:path';
 import {Writable} from 'node:stream';
-import * as C from '../scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs';
+const C=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs");
 const root=realpathSync(process.cwd()),python=path.resolve(process.env.AAA_VENV??path.join(root,'../.venv'),'bin/python');
 const hash=x=>createHash('sha256').update(x).digest('hex');
 const bind=p=>({path:p,sha256:hash(readFileSync(p)),bytes:statSync(p).size});
@@ -23,9 +28,9 @@ const load=async([p,h])=>{const raw=readFileSync(path.join(root,p));assert.equal
 const Common=await import('../scripts/eom/f6c-bounded-operation.mjs');
 const currentAdmission=await Common.initializeSourceBindings(root,bind(path.join(root,Common.SOURCE_MAP)).sha256);
 const operationPins=Object.fromEntries(Object.entries(C.OPERATIONS).map(([k,p])=>[k,[p,currentAdmission.sources.find(b=>b.path===path.join(root,p)).sha256]]));
-const H=await load(operationPins.helpers),D=await load(operationPins.diagnostics);
+const H=await load(operationPins.helpers),D=await load(operationPins.diagnostics),O=await load(operationPins.outer);
 const transportArchive='reference/priorities/braid-program/evidence/source-replay/f6c-verify-f6c-refined-acceleration.py.source';
-const dependencyBytes=(key,rel)=>readFileSync(path.join(root,key==='transport'?transportArchive:rel));
+const dependencyBytes=(key,rel)=>Object.hasOwn(C.PINS,key)&&C.PINS[key][1]?Buffer.from(productionTestAdmission().sourcePair(rel,C.PINS[key][1]).original):readFileSync(path.join(root,rel));
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 const absent=pid=>{try{process.kill(pid,0);return false;}catch(e){return e.code==='ESRCH';}};
 
@@ -261,15 +266,23 @@ class LeafResponseSession:
   return self.state
 `;
 function fixtureAdmission(dir){
+ const values=[...productionTestIdentities(C.SELF)];let pinIndex=0;const targets=[];
+ for(const[role,[p]]of Object.entries(C.PINS))if(role!=='readiness'){values[pinIndex++]=bind(path.join(dir,p)).sha256;targets.push(p);}
+ const graph=JSON.parse(readFileSync(path.join(dir,'reference/priorities/development-process-review/contracts/option-b-production-sources.jsonld')));
+ const changed=graph['@graph'].filter(r=>r['@type']==='Source'&&/^(scripts|tests)\//u.test(r.binding.path)).map(r=>r.binding.path);
+ selectSyntheticProductionFixture(dir,{changedPaths:changed,originalTargets:targets,identities:{[C.SELF]:values}});
+ const production=beginProductionAdmission({root:dir,consumer:C.SELF});
  const map=JSON.parse(readFileSync(path.join(root,C.SOURCE_MAP)));
  const readerRelative='scripts/equation-mapping/current-source-manifest.mjs',readerPath=path.join(dir,readerRelative);
  mkdirSync(path.dirname(readerPath),{recursive:true});if(!existsSync(readerPath))writeFileSync(readerPath,readFileSync(path.join(root,readerRelative)));
  for(const row of map['@graph'].filter(r=>r['@type']==='Source'))row.binding.sha256=bind(path.join(dir,row.binding.path)).sha256;
  const mapPath=path.join(dir,C.SOURCE_MAP);mkdirSync(path.dirname(mapPath),{recursive:true});writeFileSync(mapPath,JSON.stringify(map,null,2)+'\n');
- return{sourceMap:bind(mapPath),sources:[...map['@graph'].filter(r=>r['@type']==='Source').map(r=>bind(path.join(dir,r.binding.path))),bind(mapPath)]};
+ return{production,sourceMap:bind(mapPath),sources:[...map['@graph'].filter(r=>r['@type']==='Source').map(r=>bind(path.join(dir,r.binding.path))),bind(mapPath)]};
 }
 function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64n*1024n**3n,runDisk=64n*1024n**3n}={}){
  const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-stream-'))),output=path.join(dir,C.LANE,'synthetic');
+ copyProductionFixture(root,dir);
+ for(const row of JSON.parse(readFileSync(path.join(root,C.SOURCE_MAP)))['@graph'].filter(r=>r['@type']==='Source')){const filename=path.join(dir,row.binding.path);mkdirSync(path.dirname(filename),{recursive:true});writeFileSync(filename,readFileSync(path.join(root,row.binding.path)));}
  const supervisor=path.join(dir,'scripts/dev/owned-compute-supervisor.mjs');mkdirSync(path.dirname(supervisor),{recursive:true});writeFileSync(supervisor,readFileSync(path.join(root,'scripts/dev/owned-compute-supervisor.mjs')));
  mkdirSync(path.dirname(output),{recursive:true});mkdirSync(path.dirname(path.join(dir,C.LOCK)),{recursive:true});
  const entry=path.join(dir,C.SELF),controls=path.join(dir,C.CONTROL);mkdirSync(path.dirname(entry),{recursive:true});mkdirSync(path.dirname(controls),{recursive:true});writeFileSync(controls,'synthetic controls\n');
@@ -307,10 +320,7 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
   }
   writeFileSync(filename,raw);pins[key]=[rel,hash(raw)];
  }
- let source=readFileSync(path.join(root,C.SELF),'utf8').replace(/export const PINS=Object.freeze\([\s\S]*?\n\);/u,'export const PINS=Object.freeze('+JSON.stringify(Object.fromEntries(Object.entries(pins).filter(([k])=>Object.hasOwn(C.PINS,k))))+');');
- // Formatting is intentionally robust to a one-line closing brace.
- if(source.includes(C.PINS.adapter[1]))source=source.replace(/export const PINS=Object.freeze\([\s\S]*?\n\}\);/u,'export const PINS=Object.freeze('+JSON.stringify(Object.fromEntries(Object.entries(pins).filter(([k])=>Object.hasOwn(C.PINS,k))))+');');
- assert(!source.includes(C.PINS.adapter[1]),'fixture source pins replaced');
+ let source=readFileSync(path.join(root,C.SELF),'utf8')+'\n// Disposable fixture module namespace '+JSON.stringify(dir)+'\n';
  if(mode==='postpublish')source=source.replace("after_close_recheck();publication.verify();publication.close();live()","after_close_recheck();publication.verify();publication.close();live()\n  bad=pathlib.Path(bindings['diagnostic']['path']);replacement=bad.with_suffix('.swap');replacement.write_bytes(bad.read_bytes());replacement.replace(bad)");
  if(mode==='module-cleanup')source=source.replace("finally:require(sys.modules.get(name)is m,'module identity');del sys.modules[name]","finally:\n   require(sys.modules.get(name)is m,'module identity');del sys.modules[name]\n   if b['path'].endswith('f6c_single_leaf_diagnostic.py'):\n    bad=pathlib.Path(b['path']);other=bad.with_suffix('.swap');other.write_bytes(bad.read_bytes());other.replace(bad)");
  if(mode==='trailing')source=source.replace('framing=session.finish();sealed=publication.seal();','framing=session.finish();publication.private_path.open(\'ab\').write(b\'{}\\n\');sealed=publication.seal();');
@@ -362,8 +372,8 @@ function packageFixture(mode='package'){
   const p=path.join(f.dir,rel);mkdirSync(path.dirname(p),{recursive:true});writeFileSync(p,k==='inventory'?JSON.stringify(inventory)+'\n':'# synthetic package metadata\n');selection[k]=bind(p);pins[k]=[rel,selection[k].sha256];
  }
  const packagePath=path.join(f.dir,C.LANE,'synthetic-inert-package');writeFileSync(packagePath,'synthetic adapter transport only\n');selection.package=bind(packagePath);
- f.source=f.source.replace(/export const PACKAGE_PINS=Object.freeze\([\s\S]*?\n\}\);/u,'export const PACKAGE_PINS=Object.freeze('+JSON.stringify(pins)+');');
- assert(!f.source.includes(C.PACKAGE_PINS.inventory[1]),'synthetic independent inventory pins');writeFileSync(f.entry,f.source);
+ f.source=f.source.replace(/  PACKAGE_PINS=Object.freeze\([\s\S]*?\n\}\);/u,'  PACKAGE_PINS=Object.freeze('+JSON.stringify(pins)+');');
+ assert(f.source.includes(JSON.stringify(pins)), 'synthetic independent inventory pins');writeFileSync(f.entry,f.source);f.admission=fixtureAdmission(f.dir);f.spec.bindings.sourceMap=f.admission.sourceMap;
  f.spec.bindings.coordinator=bind(f.entry);f.selfSha=f.spec.bindings.coordinator.sha256;f.spec.parentRefinements=descriptors;f.spec.evidencePackage=selection;
  writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');f.specSha=bind(f.specPath).sha256;return f;
 }
@@ -383,9 +393,69 @@ function enrollObserved(rows,rootPid,known){
 const observeTable=()=>new Promise((resolve,reject)=>execFile('/bin/ps',['-axo','pid=,ppid=,pgid=,lstart=,stat=,comm='],{encoding:'utf8',timeout:1000,maxBuffer:8*1024**2,env:{...process.env,LC_ALL:'C'}},(error,raw)=>{
  if(error){reject(error);return;}try{resolve(raw.trim().split('\n').map(line=>{const m=/^\s*(\d+)\s+(\d+)\s+(\d+)\s+(.{24})\s+(\S+)\s+(.+)$/u.exec(line);assert(m,'complete external process row');return{pid:Number(m[1]),ppid:Number(m[2]),pgid:Number(m[3]),started:m[4].replace(/\s+/gu,' '),command:m[6]};}));}catch(e){reject(e);}
 }));
+
+async function resumeOriginalStoppedGates(f,observed,controls={spawnSync,realpathSync,absent,pause,writeFileSync,signal:(pid,value)=>process.kill(pid,value)}){
+ const {spawnSync,realpathSync,absent,pause,writeFileSync,signal}=controls;
+ const ids=[...observed.keys()];if(!ids.length)return;
+ const read=()=>{const r=spawnSync('/bin/ps',['-ww','-p',ids.join(','),'-o','pid=,ppid=,pgid=,lstart=,stat=,command='],{encoding:'utf8',maxBuffer:32*1024**2,timeout:2000});assert([0,1].includes(r.status));return r.stdout.trim();};
+ const parse=raw=>raw?raw.split('\n').map(line=>{const m=/^\s*(\d+)\s+(\d+)\s+(\d+)\s+(.{24})\s+(\S+)\s+(.+)$/u.exec(line);assert(m,'complete retained cleanup row');return{pid:+m[1],ppid:+m[2],pgid:+m[3],started:m[4].replace(/\s+/gu,' '),state:m[5],command:m[6]};}):[];
+ assert.deepEqual(parse('10 1 10 Mon Sep 14 02:15:58 2026 T node x')[0],{pid:10,ppid:1,pgid:10,started:'Mon Sep 14 02:15:58 2026',state:'T',command:'node x'});
+ const raw=read(),rows=parse(raw);if(!rows.length)return;
+ for(const row of rows){const original=observed.get(row.pid);assert(original&&original.started===row.started&&original.pgid===row.pgid,'original cleanup birth and group');}
+ const gates=rows.filter(row=>row.pid===row.pgid&&row.state.includes('T')&&row.command.includes(' -e '));
+ assert(gates.length,'remaining processes lack an original stopped gate');
+ for(const gate of gates){
+  const marker=gate.command.indexOf(' -e '),encoded=gate.command.slice(gate.command.lastIndexOf(' ')+1),code=gate.command.slice(marker+4,gate.command.lastIndexOf(' '));
+  assert.equal(realpathSync(gate.command.slice(0,marker)),realpathSync(process.execPath));
+  assert.equal(code,O.SUBFIELD_CIRCULAR_GATE_SOURCE.replace(/\n/gu,' '),'exact admitted gate code');
+  const payload=JSON.parse(Buffer.from(encoded,'base64').toString());
+  assert.deepEqual(Object.keys(payload).sort(),['args','command','cwd','gateSha256','port','registrationLimitMs','secret']);
+  assert(Number.isSafeInteger(payload.port)&&payload.port>0&&payload.port<=65535);assert(typeof payload.secret==='string'&&payload.secret.length>0);assert(Number.isSafeInteger(payload.registrationLimitMs)&&payload.registrationLimitMs>0&&payload.registrationLimitMs<=10000);
+  assert.equal(payload.gateSha256,hash(O.SUBFIELD_CIRCULAR_GATE_SOURCE));assert.equal(payload.command,python);assert.equal(payload.cwd,f.dir);
+  assert.equal(payload.args.length,11);assert(payload.args.every(x=>typeof x==='string'));assert.deepEqual(payload.args.slice(0,6),['-I','-B','-c',C.PYTHON,f.specPath,f.specSha]);assert(payload.args.slice(6,8).every(x=>/^\d+$/u.test(x)));assert.equal(payload.args[8],hash(C.PYTHON));
+  const envelope=JSON.parse(payload.args[9]);assert.equal(envelope.target,C.SELF);assert.equal(typeof JSON.parse(payload.args[10]),'object');
+  assert(rows.some(row=>row.ppid===gate.pid&&row.pgid===gate.pgid),'original enrolled gate descendant');
+ }
+ assert.equal(read(),raw,'full original rows unchanged before gate resumption');
+ for(const gate of gates)signal(gate.pid,'SIGCONT');
+ for(let n=0;n<100&&ids.some(pid=>!absent(pid));n++)await pause(50);
+ assert(ids.every(pid=>absent(pid)),'original descendants absent after gate control-loss cleanup');
+ writeFileSync(path.join(f.dir,'failed-fixture-closure.json'),JSON.stringify({resumedGates:gates.map(({pid,pgid,started})=>({pid,pgid,started})),allOriginallyObservedAbsent:true,originalFailurePreserved:true})+'\n');
+}
+
+
+test('failed fixture cleanup authenticates original stopped gate before existing control-loss resumption',async()=>{
+ const f={dir:'/known-fixture',specPath:'/known-fixture/invocation.json',specSha:'a'.repeat(64)},born='Mon Sep 14 02:15:58 2026';
+ const payload={port:1234,secret:'known',registrationLimitMs:1000,gateSha256:hash(O.SUBFIELD_CIRCULAR_GATE_SOURCE),command:python,cwd:f.dir,args:['-I','-B','-c',C.PYTHON,f.specPath,f.specSha,'10000','1000',hash(C.PYTHON),JSON.stringify({target:C.SELF}),'{}']};
+ const command=process.execPath+' -e '+O.SUBFIELD_CIRCULAR_GATE_SOURCE.replace(/\n/gu,' ')+' '+Buffer.from(JSON.stringify(payload)).toString('base64');
+ const raw='10 1 10 '+born+' T '+command+'\n11 10 10 '+born+' T '+python+' '+f.specPath+'\n';
+ const known=new Map([[10,{pid:10,pgid:10,started:born}],[11,{pid:11,pgid:10,started:born}]]);
+ for(const bad of[false,'birth','payload','code','literal-whitespace','extra-key','replacement']){
+  let signaled=false,calls=0,receipt;
+  const source=bad==='payload'?raw.replace(Buffer.from(JSON.stringify(payload)).toString('base64'),Buffer.from(JSON.stringify({...payload,cwd:'/foreign'})).toString('base64')):bad==='code'?raw.replace('const cp=','const xx='):bad==='literal-whitespace'?raw.replace("'node:child_process'","'node:child_process '"):bad==='extra-key'?raw.replace(Buffer.from(JSON.stringify(payload)).toString('base64'),Buffer.from(JSON.stringify({...payload,extra:true})).toString('base64')):raw;
+  const controls={spawnSync:()=>({status:0,stdout:++calls>1&&bad==='replacement'?source.replace(' T ',' S '):source}),realpathSync:x=>x,absent:()=>signaled,pause:async()=>{},writeFileSync:(_p,x)=>{receipt=JSON.parse(x);},signal:(pid,value)=>{assert.equal(pid,10);assert.equal(value,'SIGCONT');signaled=true;}};
+  const selected=new Map(known);if(bad==='birth')selected.set(10,{...known.get(10),started:'changed'});
+  if(bad){await assert.rejects(resumeOriginalStoppedGates(f,selected,controls));assert.equal(signaled,false);}
+  else{await resumeOriginalStoppedGates(f,selected,controls);assert.equal(signaled,true);assert.equal(receipt.originalFailurePreserved,true);}
+ }
+});
+
 async function runFixture(f,{interrupt=false,epipe=false}={}){
  try{
- // A separate, unchanged owner bounds the complete coordinator process group.
+ if(epipe){
+  const closed=path.join(f.dir,'stderr-closed'),observed=path.join(f.dir,'epipe-observed.json');
+  alterWholeFixture(f,source=>{
+   source=replaceOnce(source,'import {closeSync,constants,','import {writeFileSync,closeSync,constants,','EPIPE witness import');
+   return replaceOnce(source,'installLifetimeStderr(s);s.diagnostics=',
+    'installLifetimeStderr(s);{const trigger=setInterval(()=>{if(existsSync('+JSON.stringify(closed)+')){clearInterval(trigger);process.stderr.write("synthetic EPIPE control\\n",error=>writeFileSync('+JSON.stringify(observed)+',JSON.stringify({code:error?.code??null})));}},10);trigger.unref();}s.diagnostics=',
+    'one diagnostic write after externally witnessed pipe closure');
+  });
+ }
+
+ // The test harness allows startup/teardown margin under full-suite load.
+ // Production control/work/K deadlines (120/90/75 seconds), 1-second
+ // observation bound, resource limits, and 1-second termination grace remain unchanged.
+ // A separate owner bounds the complete coordinator process group.
  // The adapter and registered guards retain their own stronger obligations.
  const {runOwned}=await import(pathToFileURL(path.join(f.dir,'scripts/dev/owned-compute-supervisor.mjs')));
  const hostText=await new Promise((resolve,reject)=>execFile('/usr/bin/memory_pressure',[],{encoding:'utf8',timeout:2000,maxBuffer:1024**2},(e,out)=>e?reject(e):resolve(out)));
@@ -398,12 +468,13 @@ async function runFixture(f,{interrupt=false,epipe=false}={}){
  writeFileSync(${JSON.stringify(pidPath)},String(child.pid));
  child.stdout.pipe(process.stdout);child.stderr.pipe(process.stderr);
  child.on('close',(code,signal)=>{process.exitCode=code??1;});
- ${interrupt||epipe?`const timer=setInterval(()=>{if(existsSync(${JSON.stringify(f.pidfile)})){clearInterval(timer);${epipe?"child.stderr.destroy();":"child.kill('SIGTERM');"}}else if(child.exitCode!==null)clearInterval(timer);},10);`:''}
+ ${interrupt||epipe?`const timer=setInterval(()=>{if(existsSync(${JSON.stringify(f.pidfile)})){clearInterval(timer);${epipe?"child.stderr.destroy();writeFileSync("+JSON.stringify(path.join(f.dir,'stderr-closed'))+",'closed');":"child.kill('SIGTERM');"}}else if(child.exitCode!==null)clearInterval(timer);},10);`:''}
  `);
  f.started=true;
  const observed=new Map();let observing=true,observationFailure;
  const observer=(async()=>{try{while(observing){if(existsSync(pidPath))enrollObserved(await observeTable(),Number(readFileSync(pidPath,'utf8')),observed);await pause(50);}}catch(e){observationFailure=e;}})();
- let lease;try{lease=await runOwned(['--owner-task',process.env.CODEX_SESSION_ID??'streamed-fixture','--deadline-seconds','15','--termination-grace-seconds','1','--heartbeat-seconds','5','--',process.execPath,wrapper]);}finally{observing=false;await observer;}
+ let lease,ownerFailure;try{lease=await runOwned(['--owner-task',process.env.CODEX_SESSION_ID??'streamed-fixture','--deadline-seconds','30','--termination-grace-seconds','1','--heartbeat-seconds','5','--',process.execPath,wrapper]);}catch(error){ownerFailure=error;}finally{observing=false;await observer;}
+ if(ownerFailure){try{assert(absent(Number(readFileSync(pidPath,'utf8'))),'coordinator control owner absent before resuming original gate');await resumeOriginalStoppedGates(f,observed);}catch(cleanupError){writeFileSync(path.join(f.dir,'failed-fixture-cleanup-error.txt'),String(cleanupError.stack));console.error('FAILED FIXTURE CLEANUP '+f.dir+' '+cleanupError.stack);}throw ownerFailure;}
  if(observationFailure)throw observationFailure;
  const out=readFileSync(lease.stdoutPath,'utf8'),err=readFileSync(lease.stderrPath,'utf8');
  assert.equal(lease.processGroupClosed,true,'external owner must observe group closure');
@@ -426,7 +497,7 @@ async function runFixture(f,{interrupt=false,epipe=false}={}){
 function cleanup(f){assert(!f.started||f.closed,'unresolved fixture retained for investigation: '+f.dir+'; original failure: '+(f.failure?.stack??'not recorded'));if(process.env.AAA_RETAIN_FIXTURES!=='1')rmSync(f.dir,{recursive:true,force:true});}
 function alterFixture(f,change){
  const before=readFileSync(f.entry,'utf8'),after=change(before);assert.notEqual(after,before,'specific bounded injection applied');
- writeFileSync(f.entry,after);f.spec.bindings.coordinator=bind(f.entry);writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');
+ writeFileSync(f.entry,after);f.spec.bindings.coordinator=bind(f.entry);f.admission=fixtureAdmission(f.dir);f.spec.bindings.sourceMap=f.admission.sourceMap;writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');
  f.source=after;f.selfSha=f.spec.bindings.coordinator.sha256;f.specSha=bind(f.specPath).sha256;
 }
 function alterWholeFixture(f,change){
@@ -444,11 +515,12 @@ test('reviewed dependencies remain byte-exact',()=>{
 });
 test('genuine two-refined-parent provider connects to frozen stream and codec',()=>{
  const script=String.raw`import hashlib,json,pathlib,sys,types
-root=pathlib.Path(sys.argv[1]);pins=json.loads(sys.argv[2])
+root=pathlib.Path(sys.argv[1]);pins=json.loads(sys.argv[2]);payloads=json.loads(sys.argv[3])
+sys.path.insert(0,str(root/'tests'))
 def load(name,role):
- rel,digest=pins[role];p=root/rel;raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==digest
+ rel,digest=pins[role];p=root/rel;original=bytes.fromhex(payloads[role]['original']);raw=bytes.fromhex(payloads[role]['current']);assert hashlib.sha256(original).hexdigest()==digest
  m=types.ModuleType(name);m.__file__=str(p);sys.modules[name]=m;exec(compile(raw,str(p),'exec'),m.__dict__)
- assert p.read_bytes()==raw;return m
+ return m
 f=load('genuine_stream_driver_fixture','diagnosticControls')
 s=load('genuine_stream_session','stream');c=load('genuine_stream_codec','codec')
 adapter,_=f.genuine_session_adapter(refined_indices=(0,1))
@@ -471,8 +543,8 @@ assert adapter.call_counts['root_queries']==adapter.call_counts['emission_refine
 assert summary['aggregate_is_none'] is True
 print(json.dumps(dict(completedPairs=2,evaluations=8,residuals=16,originalData=False)))
 `;
- const result=spawnSync(python,['-I','-B','-c',script,root,JSON.stringify(C.PINS)],{cwd:root,encoding:'utf8',timeout:30000,maxBuffer:1024**2});
- assert.equal(result.status,0,result.stderr.slice(-3000));assert.deepEqual(JSON.parse(result.stdout),{completedPairs:2,evaluations:8,residuals:16,originalData:false});
+ const result=spawnSync(python,['-I','-B','-c',script,root,JSON.stringify(C.PINS),JSON.stringify(Object.fromEntries(['diagnosticControls','stream','codec'].map(role=>{const pair=productionTestAdmission().sourcePair(C.PINS[role][0],C.PINS[role][1]);return [role,{original:Buffer.from(pair.original).toString('hex'),current:Buffer.from(pair.current).toString('hex')}];})))],{cwd:root,encoding:'utf8',timeout:30000,maxBuffer:1024**2});
+ productionTestAdmission().check();assert.equal(result.status,0,result.stderr.slice(-3000));assert.deepEqual(JSON.parse(result.stdout),{completedPairs:2,evaluations:8,residuals:16,originalData:false});
 });
 test('original-clock duration rejects renewal and exhaustion',()=>{
  assert.equal(C.remainingDuration('2000000000',1000000000n).remainingNanoseconds,'1000000000');
@@ -496,9 +568,10 @@ test('read identity catches byte-identical path replacement',()=>{
 });
 test('closed spec caps and parent selection reject before target creation',()=>{
  const f=fixture();try{
-  const ModuleSource=f.source.replace(/if\(import.meta.url.startsWith\('file:'\)[\s\S]*$/u,'');
+  const ModuleSource=f.source;
   // Pure validator imported from its captured source; no CLI starts.
   return import('data:text/javascript;base64,'+Buffer.from(ModuleSource).toString('base64')).then(M=>{
+   M.initializeProductionIdentities(f.admission.production.identities(C.SELF));
    M.validateSpec(f.spec,f.selfSha,f.admission);
    for(const mutate of[
     s=>s.maxAdvances=0,s=>s.maxAdvances=3281,s=>s.maxAdvances=1.5,s=>s.maxAdvances=true,
@@ -588,6 +661,7 @@ test('every late publication callback preserves original identity and foreign ev
 test('package selection preserves logical descriptors and removes only admitted physical inputs',async()=>{
  const f=packageFixture();try{
   const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
+  M.initializeProductionIdentities(f.admission.production.identities(C.SELF));
   const original=JSON.stringify(f.spec.parentRefinements),sources=M.validateSpec(f.spec,f.selfSha,f.admission),routes=M.packageInputs(f.spec).routes;
   assert.equal(routes.size,28);assert.equal(JSON.stringify(f.spec.parentRefinements),original);
   for(const p of routes.keys())assert(!sources.some(b=>b.path===p),'loose payload not recaptured');
@@ -616,6 +690,7 @@ test('parent-two historical wrapper routes require the exact original plan and s
  assert.deepEqual(C.PARENT_TWO_ARCHIVE_SOURCES,expected);
  const f=fixture();try{
   const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
+  M.initializeProductionIdentities(f.admission.production.identities(C.SELF));
   const b=(name,h='a'.repeat(64),bytes=1)=>({path:path.join(f.dir,'declared',name),sha256:h,bytes});
   const d={parent_index:2};for(const role of ['plan','manifest','comparison','operation','launcher_log','resource_log'])d[role]=b(role);
   d.plan={path:path.join(f.dir,'reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json'),sha256:NEXT_TEST_SHA[9],bytes:51509};
@@ -632,6 +707,7 @@ test('parent-two historical wrapper routes require the exact original plan and s
 test('generic descriptors preserve exact archives, derived inventory and invocation-bound readiness',async()=>{
  const f=fixture();try{
   const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
+  M.initializeProductionIdentities(f.admission.production.identities(C.SELF));
   const b=(name,h='a'.repeat(64),bytes=1)=>({path:path.join(f.dir,'declared',name),sha256:h,bytes});
   const make=index=>{
    const d={parent_index:index};for(const role of ['plan','manifest','comparison','operation','launcher_log','resource_log'])d[role]=b(index+'-'+role);
@@ -647,7 +723,9 @@ test('generic descriptors preserve exact archives, derived inventory and invocat
   }
   const spec=structuredClone(f.spec);spec.parentRefinements=[first,second,last];
   const observed=M.validateSpec(spec,f.selfSha,f.admission),relations=M.archiveRelations(spec);
-  assert.equal(relations.length,8);assert.equal(observed.length,Object.keys(spec.bindings).length+spec.runtimeBindings.length+18+8);
+  assert.equal(relations.length,8);
+  const expectedPhysical=[...Object.values(spec.bindings),...spec.runtimeBindings,...f.admission.sources,...spec.parentRefinements.flatMap(d=>['plan','manifest','comparison','operation','launcher_log','resource_log'].map(k=>d[k])),...relations.map(r=>r.archive)];
+  assert.deepEqual(observed.map(b=>b.path).sort(),[...new Set(expectedPhysical.map(b=>b.path))].sort());
   assert.deepEqual(relations,[...first.archived_sources,second.archived_sources[0]]);
   for(const r of relations){assert(observed.some(b=>b.path===r.archive.path));if(r.role!=='acceptanceOwner')assert(!observed.some(b=>b.path===r.original.path));}
   const before=JSON.stringify(spec);M.validateSpec(spec,f.selfSha,f.admission);assert.equal(JSON.stringify(spec),before);
@@ -691,6 +769,7 @@ test('fresh metadata inventory includes existing lazy integer helper without sci
 test('two explicit nonexecuting ancestry documents retain exact historical tuples',async()=>{
  const f=fixture('archives');try{
   const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
+  M.initializeProductionIdentities(f.admission.production.identities(C.SELF));
   const spec=structuredClone(f.spec),d=spec.parentRefinements[0];
   for(const[role,[p,h,n]]of Object.entries(C.ANCESTRY_ARCHIVE_SOURCES)){
    d.archived_sources.push({role,original:{path:path.join(f.dir,p),sha256:h,bytes:n},archive:{path:path.join(f.dir,'document-'+role),sha256:h,bytes:n}});
@@ -796,7 +875,7 @@ test('late final stdout callback cannot accept an expired observation',async()=>
 test('worker expires before reading source and admission requires closed target',()=>{
  assert.throws(()=>C.fileOperation({kind:'recheck',sources:[],deadlineNanoseconds:'1'}),/deadline/);
  for(const proc of[{accepted:true},{accepted:false,processesClosed:false},{accepted:false,processesClosed:true,exit:{code:1,signal:null}}])
-  assert.throws(()=>C.fileOperation({kind:'admit',processReceipt:proc,deadlineNanoseconds:String(process.hrtime.bigint()+1000000000n)}));
+  assert.throws(()=>C.fileOperation({kind:'admit',productionIdentities:productionTestIdentities(C.SELF),processReceipt:proc,deadlineNanoseconds:String(process.hrtime.bigint()+1000000000n)}),/closed registered target/);
 });
 for(const mode of['normal','exhausted','archives','multi-occupant-archives']){
  test('actual captured Python + frozen stream/codec/publication: '+mode,async()=>{
@@ -821,7 +900,7 @@ with pathlib.Path(sys.argv[3]).open('rb')as source:
  for line in source:d.feed(line)
 d.finish();h=first['header'];print(json.dumps(dict(spec=h['spec'],archives=h['sourceBindings']['historicalOwnerArchives'],accepted=h['accepted'])))
 `;
-    const result=spawnSync(python,['-I','-B','-c',decode,path.join(root,C.PINS.codec[0]),C.PINS.codec[1],stream],{encoding:'utf8',timeout:3000,maxBuffer:1024**2});
+    const result=spawnSync(python,['-I','-B','-c',decode,productionTestAdmission().originalSourceBinding(C.PINS.codec[0],C.PINS.codec[1]).path,C.PINS.codec[1],stream],{encoding:'utf8',timeout:3000,maxBuffer:1024**2});
     assert.equal(result.status,0,result.stderr);const header=JSON.parse(result.stdout);
     assert.deepEqual(header.spec,{binding:bind(f.specPath),maxAdvances:f.spec.maxAdvances,parentRefinements:f.spec.parentRefinements,evidencePackage:f.spec.evidencePackage,acceptedParentEvidence:f.spec.acceptedParentEvidence,historicalEvidence:f.spec.historicalEvidence});
     assert.deepEqual(header.archives,C.archiveRelations(f.spec));assert.equal(header.archives.length,1);assert.equal(header.accepted,false);
@@ -891,6 +970,7 @@ for(const epipe of[false,true]){
  test('active stubborn synthetic target is reaped after '+(epipe?'diagnostic EPIPE':'cancellation'),async()=>{
   const f=fixture('stubborn');try{
    const r=await runFixture(f,{interrupt:!epipe,epipe});rejectedExit(r);assert.equal(r.out,'');
+   if(epipe)assert.equal(JSON.parse(readFileSync(path.join(f.dir,'epipe-observed.json'))).code,'EPIPE','actual post-close diagnostic write failed with EPIPE');
    const pid=Number(readFileSync(f.pidfile,'utf8'));assert(absent(pid),'owned target absent before fixture cleanup');
    assert.equal(existsSync(path.join(f.dir,C.LOCK)),epipe,'failed diagnostic closure retains the exact lock');assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));assert(absent(r.childPid));
   }finally{cleanup(f);}
@@ -934,9 +1014,12 @@ for(const mode of ['monitor','private-growth']){
    if(mode==='monitor')alterWholeFixture(f,s=>replaceOnce(s,'async function lifetimeTable(s,phase=s.phase,context=null){',
     'async function lifetimeTable(s,phase=s.phase,context=null){if(phase===\'work\'&&existsSync('+JSON.stringify(f.pidfile)+"))throw Error('synthetic active monitor failure');",'active ordinary observer failure'));
    else{
-    const p=f.spec.bindings.diagnostic.path,old=f.spec.bindings.diagnostic.sha256;
+    const p=f.spec.bindings.diagnostic.path;
     const source=readFileSync(p,'utf8').replace("if MODE=='stubborn':","if MODE=='stubborn':\n   target=next(pathlib.Path("+JSON.stringify(f.output)+").glob('.leaf-stream-private-*/leaf-evidence.ndjson'))\n   with target.open('r+b')as file:file.truncate(67108865)");
-    writeFileSync(p,source);f.spec.bindings.diagnostic=bind(p);alterFixture(f,s=>s.replaceAll(old,f.spec.bindings.diagnostic.sha256));
+    assert.notEqual(source,readFileSync(p,'utf8'),'specific private-growth injection applied');
+    writeFileSync(p,source);f.spec.bindings.diagnostic=bind(p);
+    f.admission=fixtureAdmission(f.dir);f.spec.bindings.sourceMap=f.admission.sourceMap;
+    writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');f.specSha=bind(f.specPath).sha256;
    }
    const r=await runFixture(f);rejectedExit(r);assert.equal(r.out,'');
    assert(existsSync(f.pidfile),r.err.slice(-2000));const pid=Number(readFileSync(f.pidfile,'utf8'));assert(absent(pid));assert(absent(-pid));assert(absent(r.childPid));
@@ -989,7 +1072,7 @@ d.finish();h=first['header'];assert h['accepted']is False
 assert h['sourceBindings']['historicalEvidenceVerification']=={'schema':'synthetic-retained-verification','retainedScientificBytesVerified':True,'recordedProvenanceVerified':True}
 assert h['spec']['historicalEvidence']==json.loads(pathlib.Path(sys.argv[4]).read_text())['historicalEvidence']
 `;
-  const result=spawnSync(python,['-I','-B','-c',checkHeader,path.join(root,C.PINS.codec[0]),C.PINS.codec[1],path.join(f.output,'leaf-evidence.ndjson'),f.specPath],{encoding:'utf8',timeout:3000,maxBuffer:1024**2});assert.equal(result.status,0,result.stderr);
+  const result=spawnSync(python,['-I','-B','-c',checkHeader,productionTestAdmission().originalSourceBinding(C.PINS.codec[0],C.PINS.codec[1]).path,C.PINS.codec[1],path.join(f.output,'leaf-evidence.ndjson'),f.specPath],{encoding:'utf8',timeout:3000,maxBuffer:1024**2});assert.equal(result.status,0,result.stderr);
  }finally{cleanup(f);}
 });
 test('unconsumed retained physical source rejects before first provider call',async()=>{
@@ -997,4 +1080,32 @@ test('unconsumed retained physical source rejects before first provider call',as
   const r=await runFixture(f);rejectedExit(r);assert.equal(r.out,'');assert(!existsSync(f.events));
   assert.match(readFileSync(path.join(f.output+'-outer','process','runner-stderr.log'),'utf8'),/exact retained physical source union/);
  }finally{cleanup(f);}
+});
+
+test('registered production arguments preserve exact bridge tuple and original source identity',async()=>{
+ const source=Buffer.from(productionTestAdmission().sourcePair(C.SELF).current);
+ const carrier=await import('data:text/javascript;base64,'+source.toString('base64')+'#synthetic-argument-control');
+ const values=Array(44).fill('0'.repeat(64));carrier.initializeProductionIdentities(values);
+ const M=await import('data:text/javascript;base64,'+source.toString('base64')+'#fresh-argument-worker');
+ const directory=realpathSync(mkdtempSync(path.join(os.tmpdir(),'streamed-argument-control-')));
+ const bridgePath='scripts/eom/production_source_records.py',bridgeAbsolute=path.join(directory,bridgePath);
+ mkdirSync(path.dirname(bridgeAbsolute),{recursive:true});writeFileSync(bridgeAbsolute,'known bridge fixture');
+ try{
+  const bridge=M.readBound(bridgeAbsolute,hash('known bridge fixture'),true);
+  const envelope=JSON.stringify({root:directory,target:M.SELF,identities:values,bridgePath,bridgeSha256:bridge.sha256,bridgeSource:bridge.data.toString('base64'),operationalSources:[]});
+  const deadline=String(process.hrtime.bigint()+10000000000n),specBinding={path:directory+'/spec.json',sha256:'1'.repeat(64),bytes:1},python='/synthetic/python';
+  const args=['-I','-B','-c',M.PYTHON,specBinding.path,specBinding.sha256,deadline,'1000000000',hash(M.PYTHON),envelope,JSON.stringify(carrier.PINS)];
+  const gate={retired:true,acknowledged:true,measurement:{code:0,signal:null},target:{},requestedCommand:python,requestedArgs:args};
+  const job={kind:'admit',productionIdentities:values,productionOperationalSources:[],deadlineNanoseconds:deadline,spec:{root:directory,python},specBinding,sources:[M.clean(bridge)],sourceIdentities:{[bridge.path]:bridge.identity},stdout:{path:directory+'/missing-stdout',sha256:'2'.repeat(64)},processReceipt:{accepted:false,processesClosed:true,exit:{code:0,signal:null},gates:[gate]}};
+  // The exact argument control reaches the independently absent stdout boundary.
+  const missing=structuredClone(job);delete missing.productionIdentities;assert.throws(()=>M.fileOperation(missing),/exact admitted production identity census/);
+  assert.throws(()=>M.fileOperation(job),/ENOENT.*missing-stdout/);
+  const wrong=structuredClone(job);wrong.productionIdentities[0]='3'.repeat(64);assert.throws(()=>M.fileOperation(wrong),/production identity generation already initialized/);
+  for(const index of[0,4,6,8,9,10]){
+   const bad=structuredClone(job);bad.processReceipt.gates[0].requestedArgs[index]+='tampered';
+   assert.throws(()=>M.fileOperation(bad),/captured target identity|bounded Node deadline/);
+  }
+  renameSync(bridgeAbsolute,bridgeAbsolute+'.original');writeFileSync(bridgeAbsolute,'known bridge fixture');
+  assert.throws(()=>M.fileOperation(job),/original admitted production bridge/);
+ }finally{productionTestAdmission().check();rmSync(directory,{recursive:true,force:true});}
 });

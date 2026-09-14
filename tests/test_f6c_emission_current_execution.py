@@ -1,4 +1,5 @@
 """Synthetic transport controls; these do not establish scientific acceptance."""
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities, original_test_source
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -33,7 +34,7 @@ def current_execution_plan(plan):
                 assert hashlib.sha256(raw).hexdigest() == expected
                 b.update(sha256=expected, bytes=len(raw))
             else:
-                raw=(ROOT/b['path']).read_bytes()
+                raw=(ROOT/b['path']).read_bytes() if b['path']==bridge.SELF else _option_b_source_bytes(__file__,ROOT/b['path'])
                 b.update(sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))
     return plan
 
@@ -44,7 +45,7 @@ def current_execution_plan(plan):
 def load(name, relative):
     spec = importlib.util.spec_from_file_location(name, ROOT / relative)
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    _option_b_exec_module(__file__, spec, module)
     return module
 
 

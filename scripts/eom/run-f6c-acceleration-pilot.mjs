@@ -11,7 +11,7 @@ import { closeSync, constants, existsSync, fstatSync, fsyncSync, lstatSync, open
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export const HISTORICAL=[["rootTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md","f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",28340],["reconstructionTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md","6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",21031]];
+export let HISTORICAL;
 export const BRIDGE='scripts/eom/execute-f6c-acceleration.py';
 export const BRIDGE_TESTS='tests/test_f6c_acceleration_execution.py';
 export const ENTRY='scripts/eom/run-f6c-acceleration-pilot.mjs';
@@ -27,8 +27,8 @@ export const CHECKER='scripts/eom/verify-f6c-continuous-reception-acceleration.p
 export const CHECKER_TESTS='tests/test_f6c_continuous_reception_acceleration.py';
 // Separately authored checker and controls, independently accepted before this
 // operational generation. No subject or mathematical reference is altered.
-export const CHECKER_SHA='a0c546124828b5879a2e163b0f965d37b90c251d327301eaa72e031261824e53';
-export const CHECKER_TESTS_SHA='13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed';
+export let CHECKER_SHA;
+export let CHECKER_TESTS_SHA;
 export const LANE='.local-data/braid-analysis/f6c-continuous-reception-acceleration-20260827';
 export const SHARED_LOCK_LANE='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827';
 export const SCOPE='cached-pilot-cell-0-range';
@@ -46,46 +46,29 @@ export const RANGE_FLAGS=Object.freeze(['accepted','premise_truth_authenticated'
 export const CANDIDATE_FLAGS=Object.freeze(['historicalTrajectoryIdentityEstablished','metricsAvailable','scoreAuthorized',
   'h3EvidenceEligible','eomExecuted','rootsEvaluated','independentRangeComparisonPassed','executionAuthorized']);
 const base='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/';
-export const FIXED=Object.freeze([
-  ['export','.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json','f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'],
-  ['reconstruction','.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json','7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43'],
-  ['guards','.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json','86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880'],
-  ['manifest',base+'subject/cover-manifest.json','19fae257f7f36d858fa60d9031125b3f29dbb8780e944802699aab5292275f4c'],
-  ['comparison',base+'comparison.json','6bf2b50ef4f0b46f43ae77a9881f82a2f9d504d5df757bc0ad215deb8eac36c6'],
-  ['admission',base+'pilot-admission.json','1a814c90279eed456546b2c4959a8504657213ffc2d25c063060831814e930ee'],
-  ['rows',base+'subject/rows.ndjson','786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383'],
-  ['pieces',base+'subject/pieces.ndjson','2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411'],
-  ['priorPlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json','5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86'],
-  ['priorClosureOwner','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md','8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378'],
-  ['reference','scripts/eom/oracle/continuous_reception_acceleration.py','abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'],
-  ['referenceControls','tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'],
-  ['referenceProof','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md','8d2c7819962db6bac0e1ea0939292992145dbe342a28b51928efb81e74478179'],
-  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc'],
-  ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'],
-  ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b'],
-].map(Object.freeze));
+export let FIXED;
 export const SOURCE_MAP = "reference/priorities/development-process-review/contracts/option-b-f6c-acceleration-sources.jsonld";
 const SOURCE_READER = "scripts/equation-mapping/current-source-manifest.mjs";
-export const EVIDENCE_PINS = Object.freeze({
-  ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1",
-  ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43",
-  ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880",
-  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/cover-manifest.json": "19fae257f7f36d858fa60d9031125b3f29dbb8780e944802699aab5292275f4c",
-  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/comparison.json": "6bf2b50ef4f0b46f43ae77a9881f82a2f9d504d5df757bc0ad215deb8eac36c6",
-  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/pilot-admission.json": "1a814c90279eed456546b2c4959a8504657213ffc2d25c063060831814e930ee",
-  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/rows.ndjson": "786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383",
-  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/pieces.ndjson": "2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json": "5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md": "8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md": "3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e"
-});
+export let EVIDENCE_PINS;
 export let SOURCE_BINDINGS;
 let sourceRecords, sourceMapBinding;
+let productionAdmission;
 export async function initializeSourceBindings(root, expectedMapDigest) {
+ const heldIdentities=new Map();
+ const fileIdentity=p=>{const v=lstatSync(p,{bigint:true});return [v.dev,v.ino,v.size,v.mtimeNs,v.ctimeNs].join(':');};
+ const checkReadIdentities=()=>{for(const [p,expected] of heldIdentities)check(fileIdentity(p)===expected,'selected production source replaced: '+p);};
+ const readSelected=(p,...args)=>{
+   check(realpathSync(p)===p,'canonical production source required');
+   const before=fileIdentity(p);
+   check(!heldIdentities.has(p)||heldIdentities.get(p)===before,'selected production source replaced: '+p);
+   heldIdentities.set(p,before);const value=readBound(p,...args);
+   check(fileIdentity(p)===before,'selected production source replaced during capture: '+p);return value;
+ };
+
   SOURCE_BINDINGS = undefined; sourceRecords = undefined; sourceMapBinding = undefined;
   check(hash(expectedMapDigest), "externally selected source-map digest required");
   check(realpathSync(root) === root, "canonical Option B repository root required");
-  const readSource = (filename,...args) => {check(realpathSync(filename) === filename,"source symlink or path escape");return readBound(filename,...args);};
+  const readSource = (filename,...args) => {check(realpathSync(filename) === filename,"source symlink or path escape");return readSelected(filename,...args);};
   const captured = readSource(path.join(root, SOURCE_MAP), expectedMapDigest, true, 1024**2);
   const metadata = JSON.parse(captured.data);
   const readers = metadata["@graph"]?.filter(row => row.role === "manifest-reader" && row.binding?.path === SOURCE_READER);
@@ -93,6 +76,16 @@ export async function initializeSourceBindings(root, expectedMapDigest) {
   const reader = readSource(path.join(root, SOURCE_READER), readers[0].binding.sha256, true, 1024**2);
   const module = await import("data:text/javascript;base64," + reader.data.toString("base64"));
   const admitted = module.admit(captured.data, {root, readBound:readSource, scope:"f6c-acceleration-pilot-current-source"});
+
+ const productionPath='scripts/eom/f6c-production-admission.mjs';
+ const productionBinding=admitted.bindings.find(b=>path.resolve(b.path)===path.join(root,productionPath));
+ check(productionBinding,'selected F6c production admission helper required');
+ const productionCapture=readSelected(productionBinding.path,productionBinding.sha256,true,1024**2);
+ const productionModule=await import('data:text/javascript;base64,'+productionCapture.data.toString('base64'));
+ productionAdmission=await productionModule.admitF6cProduction({root,consumer:ENTRY,bindings:admitted.bindings,
+   readBound:(p,h,collect)=>readSelected(p,h,collect,1024**3),
+   check:()=> (checkReadIdentities(),checkOperationalBindings([clean(captured),clean(reader),clean(productionCapture),...admitted.bindings]))});
+ initializeProductionIdentities(productionAdmission.identities(ENTRY));
   // Capture-to-use closure: reject a manifest or reader replaced while validating.
   checkBindings([clean(captured), clean(reader), ...admitted.bindings]);
   sourceRecords = admitted.bindings; sourceMapBinding = clean(captured);
@@ -138,7 +131,7 @@ export function readBound(filename,expected,collect=false,limit=collect?FILE_LIM
     return {path:filename,sha256:value,bytes:count,...(collect?{data:Buffer.concat(chunks)}:{})};
   }finally{closeSync(fd);}
 }
-export function checkBindings(items,live=()=>{}) {return items.map(b=>{const actual=readBound(b.path,b.sha256,false,b.path.endsWith('.json')||b.path.endsWith('.ndjson')?FILE_LIMIT:1024**3,live);check(b.bytes===undefined||actual.bytes===b.bytes,'binding byte count');return clean(actual);});}
+function checkOperationalBindings(items,live=()=>{}) {return items.map(b=>{const actual=readBound(b.path,b.sha256,false,b.path.endsWith('.json')||b.path.endsWith('.ndjson')?FILE_LIMIT:1024**3,live);check(b.bytes===undefined||actual.bytes===b.bytes,'binding byte count');return clean(actual);});}
 export function writeNew(filename,value,limit=FILE_LIMIT,live=()=>{}) {
   live();check(realpathSync(path.dirname(filename))===path.dirname(filename),'canonical output parent');const bytes=Buffer.from(JSON.stringify(value)+'\n');check(bytes.length<=limit,'output byte limit');
   const fd=openSync(filename,'wx',0o600);try{let at=0;while(at<bytes.length){live();const n=writeSync(fd,bytes,at);check(n>0,'short output write');at+=n;}fsyncSync(fd);}finally{closeSync(fd);}
@@ -183,6 +176,19 @@ export function planBindings(plan,root) {
 export function remainingSeconds(deadline){const ns=BigInt(deadline)-process.hrtime.bigint();check(ns>0n&&ns<=1800000000000n,'remaining inclusive deadline');return `${ns/1000000000n}.${String(ns%1000000000n).padStart(9,'0')}`;}
 export function outputPaths(root,output){check(path.dirname(output)===path.join(root,LANE)&&realpathSync(path.dirname(output))===path.dirname(output),'canonical direct output child');return {candidate:path.join(output,'range.json'),operations:output+'-outer',comparison:path.join(output+'-outer','comparison.json')};}
 export const PYTHON_BOOTSTRAP=String.raw`import os,sys,stat,hashlib,resource as _accounting,json as _json
+import base64 as _production_base64,types as _production_types
+_production_envelope=__import__('json').loads(sys.argv[3]);sys.argv.pop(3)
+assert set(_production_envelope)=={'root','target','identities','bridgePath','bridgeSha256','bridgeSource'}
+_production_bridge_raw=_production_base64.b64decode(_production_envelope['bridgeSource'],validate=True)
+assert hashlib.sha256(_production_bridge_raw).hexdigest()==_production_envelope['bridgeSha256']
+_production_bridge=_production_types.ModuleType('_f6c_admitted_production_bridge')
+_production_bridge.__file__=os.path.join(_production_envelope['root'],_production_envelope['bridgePath'])
+sys.modules[_production_bridge.__name__]=_production_bridge
+exec(compile(_production_bridge_raw,_production_bridge.__file__,'exec',dont_inherit=True),_production_bridge.__dict__)
+OPTION_B_PRODUCTION_IDENTITIES=tuple(_production_envelope['identities'])
+for _production_name in ('production_identities','production_source_pair','production_recheck','production_historical_record','production_runtime_binding','production_original_source_binding'):
+ globals()[_production_name]=getattr(_production_bridge,_production_name)
+assert production_identities(os.path.join(_production_envelope['root'],_production_envelope['target']))==OPTION_B_PRODUCTION_IDENTITIES
 filename,expected=sys.argv[1:3];sys.argv=[filename,*sys.argv[3:]]
 fd=os.open(filename,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
 try:
@@ -217,7 +223,7 @@ export function stageSpec({stage,plan,planBinding,root,output,python,git,candida
   requireSourceBindings();
   check(stage==='consumer'||stage==='comparison','unknown stage');check(typeof budget==='string'&&/^(?:0|[1-9]\d*)(?:\.\d+)?$/u.test(budget)&&Number(budget)>0&&Number(budget)<=1800,'positive stage budget');
   const paths=outputPaths(root,output);
-  const args=['-I','-B','-c',PYTHON_BOOTSTRAP,path.join(root,BRIDGE),SOURCE_BINDINGS[BRIDGE],'--stage',stage,'--bridge-sha256',SOURCE_BINDINGS[BRIDGE],'--plan',planBinding.path,'--plan-sha256',planBinding.sha256,'--out',stage==='consumer'?paths.candidate:paths.comparison];
+  const args=['-I','-B','-c',PYTHON_BOOTSTRAP,path.join(root,BRIDGE),SOURCE_BINDINGS[BRIDGE],productionAdmission.pythonEnvelope(BRIDGE),'--stage',stage,'--bridge-sha256',SOURCE_BINDINGS[BRIDGE],'--plan',planBinding.path,'--plan-sha256',planBinding.sha256,'--out',stage==='consumer'?paths.candidate:paths.comparison];
   if(stage==='consumer')args.push('--git-binary',git);
   else{binding(candidate);check(candidate.path===paths.candidate,'preceding exact candidate required');args.push('--candidate',candidate.path,'--candidate-sha256',candidate.sha256);}
   args.push('--budget-seconds',budget);return {command:python,args};
@@ -297,3 +303,46 @@ async function main(argv){
   checkBindings(sources);remainingSeconds(v['--deadline-ns']);console.error(JSON.stringify({kind:'f6c-range-entry-process-resources',resourceUsage:process.resourceUsage()}));
 }
 if(import.meta.url.startsWith('file:')&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))main(process.argv.slice(2)).catch(error=>{console.error(JSON.stringify({completed:false,accepted:false,failure:error.message}));process.exitCode=1;});
+
+let OPTION_B_PRODUCTION_IDENTITIES;
+export function initializeProductionIdentities(values) {
+  if (!Array.isArray(values) || values.length !== 31 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
+  if (OPTION_B_PRODUCTION_IDENTITIES && JSON.stringify(OPTION_B_PRODUCTION_IDENTITIES) !== JSON.stringify(values)) throw Error("production identity generation already initialized");
+  OPTION_B_PRODUCTION_IDENTITIES = Object.freeze([...values]);
+  HISTORICAL=[["rootTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md",OPTION_B_PRODUCTION_IDENTITIES[0],28340],["reconstructionTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md",OPTION_B_PRODUCTION_IDENTITIES[1],21031]];
+  CHECKER_SHA=OPTION_B_PRODUCTION_IDENTITIES[2];
+  CHECKER_TESTS_SHA=OPTION_B_PRODUCTION_IDENTITIES[3];
+  FIXED=Object.freeze([
+  ['export','.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json',OPTION_B_PRODUCTION_IDENTITIES[4]],
+  ['reconstruction','.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json',OPTION_B_PRODUCTION_IDENTITIES[5]],
+  ['guards','.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json',OPTION_B_PRODUCTION_IDENTITIES[6]],
+  ['manifest',base+'subject/cover-manifest.json',OPTION_B_PRODUCTION_IDENTITIES[7]],
+  ['comparison',base+'comparison.json',OPTION_B_PRODUCTION_IDENTITIES[8]],
+  ['admission',base+'pilot-admission.json',OPTION_B_PRODUCTION_IDENTITIES[9]],
+  ['rows',base+'subject/rows.ndjson',OPTION_B_PRODUCTION_IDENTITIES[10]],
+  ['pieces',base+'subject/pieces.ndjson',OPTION_B_PRODUCTION_IDENTITIES[11]],
+  ['priorPlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json',OPTION_B_PRODUCTION_IDENTITIES[12]],
+  ['priorClosureOwner','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md',OPTION_B_PRODUCTION_IDENTITIES[13]],
+  ['reference','scripts/eom/oracle/continuous_reception_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[14]],
+  ['referenceControls','tests/test_eom_continuous_reception_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[15]],
+  ['referenceProof','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md',OPTION_B_PRODUCTION_IDENTITIES[16]],
+  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md',OPTION_B_PRODUCTION_IDENTITIES[17]],
+  ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md',OPTION_B_PRODUCTION_IDENTITIES[18]],
+  ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md',OPTION_B_PRODUCTION_IDENTITIES[19]],
+].map(Object.freeze));
+  EVIDENCE_PINS = Object.freeze({
+  ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": OPTION_B_PRODUCTION_IDENTITIES[20],
+  ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": OPTION_B_PRODUCTION_IDENTITIES[21],
+  ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": OPTION_B_PRODUCTION_IDENTITIES[22],
+  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/cover-manifest.json": OPTION_B_PRODUCTION_IDENTITIES[23],
+  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/comparison.json": OPTION_B_PRODUCTION_IDENTITIES[24],
+  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/pilot-admission.json": OPTION_B_PRODUCTION_IDENTITIES[25],
+  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/rows.ndjson": OPTION_B_PRODUCTION_IDENTITIES[26],
+  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/pieces.ndjson": OPTION_B_PRODUCTION_IDENTITIES[27],
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json": OPTION_B_PRODUCTION_IDENTITIES[28],
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md": OPTION_B_PRODUCTION_IDENTITIES[29],
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md": OPTION_B_PRODUCTION_IDENTITIES[30]
+});
+}
+
+export function checkBindings(...args){productionAdmission?.check();return checkOperationalBindings(...args);}

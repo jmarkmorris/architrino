@@ -8,6 +8,7 @@ The fictional pair boxes need not be realizable by one physical history.
 No producer or acceleration-subject module is imported to generate answers.
 """
 from __future__ import annotations
+from option_b_production_records import exec_source as _option_b_exec_source, exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -29,12 +30,12 @@ from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 def load(name,relative):
     p=ROOT/relative;spec=importlib.util.spec_from_file_location(name,p,loader=SourceFileLoader(name,str(p)))
-    module=importlib.util.module_from_spec(spec);sys.modules[name]=module;spec.loader.exec_module(module)
+    module=importlib.util.module_from_spec(spec);sys.modules[name]=module;_option_b_exec_module(__file__, spec, module)
     return module
 s=load('refined_range_core','scripts/eom/oracle/f6c_refined_acceleration_conformance.py')
 REFERENCE='reference/priorities/braid-program/evidence/source-replay/verify-f6c-continuous-reception-acceleration.6e3467a017c3.py.source'
 SHA=OPTION_B_BATCH_IDENTITIES[0]
-assert hashlib.sha256((ROOT/REFERENCE).read_bytes()).hexdigest()==SHA
+assert hashlib.sha256(_option_b_source_bytes(__file__, ROOT/REFERENCE)).hexdigest()==SHA
 r=load('frozen_independent_range_helpers',REFERENCE)
 IDS=('0+','0-','1+','1-','2+','2-','3+','3-')
 Q='0.1666666666666666666666666666666667';K='10.304229970992187';RULER='0.5320012303229503'

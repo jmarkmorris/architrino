@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { productionIdentities } from "../equation-mapping/production-source-records.mjs";
+const OPTION_B_PRODUCTION_IDENTITIES = productionIdentities(import.meta.url);
 /** Data-only restriction of one frozen F5 manifest. No EOM request or proof. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -7,7 +9,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 export const SOURCE_PATH = '.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/prepared-20260827-v1/history-manifest.json';
-export const SOURCE_SHA256 = '5c665fcd7eee92a105fd958929ee443e4eeaea6afc0222935739aad2622a1725';
+export const SOURCE_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[0];
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const MAX_SOURCE_BYTES = 128 * 1024 * 1024;
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');

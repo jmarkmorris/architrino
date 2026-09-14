@@ -14,7 +14,11 @@ from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path)
-    m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+    m=importlib.util.module_from_spec(spec)
+    from option_b_production_records import is_production_target, load_current_module
+    if is_production_target(path):
+        return load_current_module(__file__, m, path)
+    spec.loader.exec_module(m);return m
 fixture_records=load('f5_test_fixture_records',ROOT/'tests/option_b_fixture_records.py')
 ABC_SHA=fixture_records.known_sha256(ROOT, "tests/test_f5_current_handoff.py")
 bridge=load('current_f5_transport',ROOT/'scripts/eom/execute-f5-prehistory-handoff.py')
@@ -90,6 +94,9 @@ class CurrentHandoff(unittest.TestCase):
     def test_build_identity_census_and_review_negative_controls(self):
         # No synthetic receipt here grants production admission: these are only
         # predicate controls, independent of actual build and stage execution.
+        from option_b_production_records import captured_source
+        original,current,_=captured_source(__file__,ROOT/bridge.SUBJECT)
+        production_pairs={bridge.SUBJECT:{'original':original.decode(),'current':current.decode()}}
         rec=lambda name:dict(path=str(ROOT/name),sha256='a'*64,bytes=1)
         plan={'executable':rec('exe'),'buildReceipt':rec('build'),'buildAdmission':rec('admit')}
         row=dict(path='source',realPath=str(ROOT/'source'),sha256='b'*64,bytes=1)
@@ -98,20 +105,44 @@ class CurrentHandoff(unittest.TestCase):
             'evolutionAuthorized':False,'h3EvidenceEligible':False,'rootCalls':0,'built':{'executable':plan['executable']},
             'producerSources':{role:dict(path=str(ROOT/p),sha256=bridge.PINS[p],bytes=1) for role,p in [('wrapper',bridge.SUBJECT),('inspector',bridge.INSPECTOR)]},
             'sourcesBefore':[row],'sourcesAfter':[row], 'stages':[dict(code=0,signal=None,processGroupClosed=True,timedOut=False,interrupted=False,descendantsAfterClose=False)]}
+        build['producerSources']['wrapper']['sha256']=sha256(current).hexdigest()
+        build['producerSources']['wrapper']['bytes']=len(current)
+        build['originalProducerApplicability']={
+            'wrapper':dict(path=bridge.SUBJECT,sha256=bridge.PINS[bridge.SUBJECT],bytes=len(original)),
+            'inspector':dict(path=bridge.INSPECTOR,sha256=bridge.PINS[bridge.INSPECTOR],bytes=1)}
         for group in ('tools','headerDependencies','externalLibraries'):build[group+'Before']=[];build[group+'After']=[]
         review={'authority':{'concreteBuildReviewed':True},'preparation':plan['buildReceipt'],'executable':plan['executable'],
             'outerAdmission':plan['buildAdmission'],'sourceChecks':[dict(path='source',expected='b'*64,current='b'*64)]}
         admission={'accepted':True,'processesClosed':True,'admission':{'accepted':True,'buildReceipt':plan['buildReceipt']}}
-        with patch.object(bridge,'source_census',return_value={'source'}):
+        with patch.object(bridge,'_PRODUCTION_PAIRS',production_pairs),patch.object(bridge,'source_census',return_value={'source'}):
             bridge.validate_build(plan,build,review,admission)
-        for change in ('source','executable','review','census','consistent-census','closure'):
+        for change in ('source','executable','review','census','consistent-census','original-missing','original-digest','original-size','current-as-original','closure'):
             b,r,a=copy.deepcopy((build,review,admission))
             if change=='source':b['sourceOwners']={}
             elif change=='executable':b['built']['executable']['sha256']='c'*64
             elif change=='review':r['preparation']['sha256']='c'*64
             elif change=='census':b['sourcesBefore']=[];b['sourcesAfter']=[]
             elif change=='consistent-census':b['sourcesBefore']=[];b['sourcesAfter']=[];r['sourceChecks']=[]
+            elif change=='original-missing':b['originalProducerApplicability']={}
+            elif change=='original-digest':b['originalProducerApplicability']['wrapper']['sha256']='c'*64
+            elif change=='original-size':b['originalProducerApplicability']['wrapper']['bytes']+=1
+            elif change=='current-as-original':b['originalProducerApplicability']['wrapper']['sha256']=sha256(current).hexdigest()
             else:a['processesClosed']=False
-            with self.subTest(change=change),patch.object(bridge,'source_census',return_value={'source'}),self.assertRaises(ValueError):bridge.validate_build(plan,b,r,a)
+            with self.subTest(change=change),patch.object(bridge,'_PRODUCTION_PAIRS',production_pairs),patch.object(bridge,'source_census',return_value={'source'}),self.assertRaises(ValueError):bridge.validate_build(plan,b,r,a)
+
+class OriginalApiSourceTransport(unittest.TestCase):
+    def test_current_api_uses_original_oracle_and_preserves_mutation_guard(self):
+        module=load('selected_current_api_transport',ROOT/'scripts/eom/oracle/f5_api_domain_conformance.py')
+        self.assertNotEqual(module.ROOT,ROOT)
+        module._verify_snapshot()
+        self.assertEqual(module.SOURCE_SNAPSHOT[module.SELF_PATH],(ROOT/module.SELF_PATH).read_bytes())
+        for relative,expected in module.SUBJECT_API_HASHES.items():
+            self.assertEqual(module.sha256((module.ROOT/relative).read_bytes()),expected)
+        target=module.ROOT/'scripts/eom/oracle/f5_history_manifest_conformance.py'
+        target.write_bytes(target.read_bytes()+b'\n# disposable original-tree mutation control\n')
+        with self.assertRaisesRegex(ValueError,'instrument changed since fresh snapshot'):
+            module._verify_snapshot()
+        module._OPTION_B_API_TREE.cleanup()
+
 
 if __name__=='__main__':unittest.main()

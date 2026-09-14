@@ -84,7 +84,16 @@ find_path(F5_ADAPTER_BOOST_INCLUDE_DIR boost/property_tree/json_parser.hpp
   HINTS ${MPFR_INCLUDE_DIR} REQUIRED
 )
 add_executable(eom_f5_enclosed_root_cli native/eom_f5_enclosed_root_cli.cpp)
-target_include_directories(eom_f5_enclosed_root_cli PRIVATE ${F5_ADAPTER_BOOST_INCLUDE_DIR})
+find_program(OPTION_B_NODE_EXECUTABLE node REQUIRED)
+set(OPTION_B_PRODUCTION_HEADER_DIR "${CMAKE_CURRENT_BINARY_DIR}/option-b-production")
+add_custom_target(option_b_production_native_identities
+  COMMAND "${OPTION_B_NODE_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/../../scripts/eom/project-production-native-identities.mjs"
+    --out "${OPTION_B_PRODUCTION_HEADER_DIR}/option_b_production_identities.hpp"
+  BYPRODUCTS "${OPTION_B_PRODUCTION_HEADER_DIR}/option_b_production_identities.hpp"
+  VERBATIM
+)
+add_dependencies(eom_f5_enclosed_root_cli option_b_production_native_identities)
+target_include_directories(eom_f5_enclosed_root_cli PRIVATE ${F5_ADAPTER_BOOST_INCLUDE_DIR} "${OPTION_B_PRODUCTION_HEADER_DIR}")
 target_link_libraries(eom_f5_enclosed_root_cli PRIVATE eom_native)
 target_compile_options(eom_f5_enclosed_root_cli
   PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off

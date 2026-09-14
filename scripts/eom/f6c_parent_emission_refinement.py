@@ -32,12 +32,12 @@ from types import MappingProxyType
 
 
 PARENT_SCHEMA = 'braid-program/f6c-original-parent-refinement-input.v1'
-PROOF_SHA256 = 'c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'
+PROOF_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[0]
 REQUIRED_SOURCES = (
-    ('helper', 'd627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841'),
-    ('history', 'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
-    ('intervals', 'fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
-    ('roots', 'daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'),
+    ('helper', OPTION_B_PRODUCTION_IDENTITIES[1]),
+    ('history', OPTION_B_PRODUCTION_IDENTITIES[2]),
+    ('intervals', OPTION_B_PRODUCTION_IDENTITIES[3]),
+    ('roots', OPTION_B_PRODUCTION_IDENTITIES[4]),
 )
 IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')
 CHARGE = '0.1666666666666666666666666666666667'

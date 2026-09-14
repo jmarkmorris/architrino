@@ -1,3 +1,4 @@
+import {loadProductionTestModule,originalProductionTestSource,originalProductionTestData} from './support/option-b-production-hosts.mjs';
 import { f6cTestIdentities } from './support/option-b-f6c-test-identities.mjs';
 const F6C_IDENTITIES = f6cTestIdentities('tests/f6c-cached-root-cover-full.test.js', 25);
 import test from "node:test";
@@ -10,7 +11,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { PassThrough, Writable } from "node:stream";
 import { execFileSync } from "node:child_process";
-import * as R from "../scripts/eom/run-f6c-cached-root-cover-full.mjs";
+const R=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-cached-root-cover-full.mjs");
 import * as L from "../scripts/eom/launch-f6c-cached-root-cover-full.mjs";
 import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const root=process.cwd(),digest=x=>createHash("sha256").update(x).digest("hex");
@@ -61,9 +62,10 @@ test("stage controls retain exact hash/manifest and full-only arguments",()=>{
 });
 test("captured Python bootstrap executes a synthetic byte-bound program and measures CPU",()=>{
   const dir=temp(),p=path.join(dir,"fixture.py"),raw="print('{\"synthetic\":true,\"accepted\":false}')\n";writeFileSync(p,raw);
-  const output=execFileSync(plan().python,["-I","-B","-c",R.PYTHON_BOOTSTRAP,p,digest(raw)],{encoding:"utf8",timeout:2000,stdio:["ignore","pipe","pipe"]});
+  const envelope=R.stageSpec({stage:"consumer",plan:plan(),planBinding:binding("/fixture/plan"),root,output:dir,budget:"1"}).args[6];
+  const output=execFileSync(plan().python,["-I","-B","-c",R.PYTHON_BOOTSTRAP,p,digest(raw),envelope],{encoding:"utf8",timeout:2000,stdio:["ignore","pipe","pipe"]});
   assert.deepEqual(JSON.parse(output),{synthetic:true,accepted:false});
-  assert.throws(()=>execFileSync(plan().python,["-I","-B","-c",R.PYTHON_BOOTSTRAP,p,"0".repeat(64)],{timeout:2000,stdio:"pipe"}));
+  assert.throws(()=>execFileSync(plan().python,["-I","-B","-c",R.PYTHON_BOOTSTRAP,p,"0".repeat(64),envelope],{timeout:2000,stdio:"pipe"}));
 });
 function admissionFixture() {
   const output=temp(),p=plan(),pb=binding(path.join(output,"plan")),stage="consumer";mkdirSync(path.join(output,"subject"));mkdirSync(path.join(output,stage+"-process"));
@@ -323,8 +325,10 @@ test("full machine plan refuses pilot scope and prior resource plan without rela
   assert.equal(R.LIMIT_MS,1800000);assert.equal(R.LOG_LIMIT,16*1024**2);assert.equal(R.FILE_LIMIT,64*1024**2);
   assert.equal(R.SOURCE_BINDINGS["reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md"],
     F6C_IDENTITIES[1]);
-  assert.equal(R.SOURCE_BINDINGS[R.CONSUMER],F6C_IDENTITIES[2]);
-  assert.equal(R.SOURCE_BINDINGS[R.COMPARISON],F6C_IDENTITIES[3]);
+  assert.equal(digest(originalProductionTestSource(R.CONSUMER,F6C_IDENTITIES[2])),F6C_IDENTITIES[2]);
+  assert.equal(R.SOURCE_BINDINGS[R.CONSUMER],digest(readFileSync(R.CONSUMER)));
+  assert.equal(digest(originalProductionTestSource(R.COMPARISON,F6C_IDENTITIES[3])),F6C_IDENTITIES[3]);
+  assert.equal(R.SOURCE_BINDINGS[R.COMPARISON],digest(readFileSync(R.COMPARISON)));
 });
 
 const FULL_COMMON_REPLACEMENTS=[

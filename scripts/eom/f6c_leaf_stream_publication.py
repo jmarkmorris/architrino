@@ -33,7 +33,7 @@ import time
 MAX_BYTES = 64 * 1024 * 1024
 NAME = 'leaf-evidence.ndjson'
 PRIVATE_PREFIX = '.leaf-stream-private-'
-CODEC_SHA256 = '371f6eff5a7a50514816b9af04c98fdae18084cc364b35b565fc53acae76a79f'
+CODEC_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[0]
 
 
 class PublicationError(ValueError):

@@ -4,6 +4,7 @@ Hand-authored paths are mathematical examples, never production receipts.
 The full-size header fixture checks structure only, not scientific acceptance.
 Expected Hermite values/controls below are independently specified Fractions.
 """
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 from decimal import localcontext
 from fractions import Fraction as F
@@ -22,7 +23,7 @@ from unittest.mock import patch
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts/eom/verify-f6c-retained-history-compatibility.py"
 SPEC = importlib.util.spec_from_file_location("f6c_compatibility_controls", SCRIPT)
 checker = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(checker)
+_option_b_exec_module(__file__, SPEC, checker)
 
 
 def segment(start="0", end="1", *, center="0", velocity="0", position="0", radius="0"):

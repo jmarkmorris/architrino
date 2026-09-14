@@ -6,6 +6,7 @@ control; original1760/source/premise authentication is separately exercised.
 No producer is imported or executed.
 """
 from __future__ import annotations
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -30,7 +31,7 @@ ROOT=Path(__file__).resolve().parents[1]
 SOURCE=ROOT/'scripts/eom/verify-f6c-emission-refinement.py'
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path)
-    module=importlib.util.module_from_spec(spec);sys.modules[name]=module;spec.loader.exec_module(module);return module
+    module=importlib.util.module_from_spec(spec);sys.modules[name]=module;_option_b_exec_module(__file__, spec, module);return module
 s=load('independent_emission_wrapper_subject',SOURCE)
 H='a'*64
 def digest(raw):return hashlib.sha256(raw).hexdigest()
@@ -101,7 +102,7 @@ def cli_fixture():
             return bind(str(path.relative_to(root)),digest(raw),len(raw))
         own=create(s.SELF,SOURCE.read_bytes())
         # Actual frozen source bytes are loaded; no actual scientific documents.
-        pure=create(s.PURE,(ROOT/s.PURE).read_bytes());helper=create(s.HELPER,(ROOT/s.HELPER).read_bytes())
+        pure=create(s.PURE,_option_b_source_bytes(__file__,ROOT/s.PURE));helper=create(s.HELPER,_option_b_source_bytes(__file__,ROOT/s.HELPER))
         test=create(s.CONTROLS,b'fictional independent wrapper controls')
         producer=create(s.PRODUCER,b'raise AssertionError("producer must never be imported")')
         pc=create(s.PRODUCER_CONTROLS,b'fictional producer controls')
@@ -184,12 +185,12 @@ class OriginalMappingAndSchema(unittest.TestCase):
     def test_captured_pure_knownanswer_integration_and_manifest_restrictions(self):
         # Previously independently authored static known answers; no proposer.
         controls=load('frozen_pure_controls_for_wrapper',(ROOT/s.PURE_CONTROLS))
-        self.assertEqual(digest((ROOT/s.PURE_CONTROLS).read_bytes()),s.PURE_CONTROLS_SHA)
+        self.assertEqual(digest(_option_b_source_bytes(__file__,ROOT/s.PURE_CONTROLS)),s.PURE_CONTROLS_SHA)
         hs,queries,rows,pieces=controls.fixture();plan=plan_fixture()
         fixed={k:bind('/fictional/'+k) for k,_,_ in s.FIXED};docs=prior_fixture(fixed,{})
         raw={role:(bind('/fictional/'+role,digest(b''.join(s.encoded(x) for x in values)),len(b''.join(s.encoded(x) for x in values))),
                    b''.join(s.encoded(x) for x in values)) for role,values in (('queries',queries),('rows',rows),('pieces',pieces))}
-        with s.captured_comparators(ROOT,(ROOT/s.PURE).read_bytes(),(ROOT/s.HELPER).read_bytes()) as (pure,helper):
+        with s.captured_comparators(ROOT,_option_b_source_bytes(__file__,ROOT/s.PURE),_option_b_source_bytes(__file__,ROOT/s.HELPER)) as (pure,helper):
             result=pure.compare_refinement(helper,hs,queries,rows,pieces)
             packet=packet_fixture(plan,fixed,[],raw,s.restriction_records(result))
             with patch.object(s,'original_mapping',return_value=(hs,[])):
@@ -361,7 +362,7 @@ class PlanAndCapturedGeneration(unittest.TestCase):
             capture.assert_not_called();timer.assert_not_called()
 
     def test_captured_generation_not_cached_or_later_disk_bytes(self):
-        raw=(ROOT/s.PURE).read_bytes();helper=(ROOT/s.HELPER).read_bytes()
+        raw=_option_b_source_bytes(__file__,ROOT/s.PURE);helper=_option_b_source_bytes(__file__,ROOT/s.HELPER)
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp)
             for path in (s.PURE,s.HELPER):
@@ -381,7 +382,7 @@ class PlanAndCapturedGeneration(unittest.TestCase):
         imports=[n.module if isinstance(n,ast.ImportFrom) else a.name for n in ast.walk(tree)
             if isinstance(n,(ast.Import,ast.ImportFrom)) for a in (n.names if isinstance(n,ast.Import) else [None])]
         self.assertTrue(set(imports)<=set('__future__ argparse contextlib decimal fractions hashlib json os pathlib re signal stat sys tempfile time types'.split()))
-        with s.captured_comparators(ROOT,(ROOT/s.PURE).read_bytes(),(ROOT/s.HELPER).read_bytes()) as (pure,ref):
+        with s.captured_comparators(ROOT,_option_b_source_bytes(__file__,ROOT/s.PURE),_option_b_source_bytes(__file__,ROOT/s.HELPER)) as (pure,ref):
             self.assertNotIn(s.PRODUCER,[getattr(m,'__file__',None) for m in sys.modules.values()])
 
     def test_layout_only_canonical_direct_child_and_sibling_output(self):

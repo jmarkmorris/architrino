@@ -6,6 +6,8 @@ The frozen reference is used for its immutable input classes, never as a
 numerical oracle. The main-path control substitutes an explicitly fake result.
 """
 from __future__ import annotations
+from option_b_synthetic_production import synthetic_capture
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -32,7 +34,7 @@ SOURCE = ROOT/'scripts/eom/prepare-f6c-continuous-reception-acceleration.py'
 spec = importlib.util.spec_from_file_location('f6c_range_preparation_test_subject', SOURCE)
 subject = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = subject
-spec.loader.exec_module(subject)
+_option_b_exec_module(__file__, spec, subject)
 REFERENCE_BYTES = (ROOT/subject.REFERENCE).read_bytes()
 H = 'a'*64
 
@@ -475,6 +477,12 @@ class MainWiringControl(unittest.TestCase):
                     stack.enter_context(patch.object(subject,name,replacement))
                 stack.enter_context(patch.object(subject.signal,'signal',return_value=None))
                 stack.enter_context(patch.object(subject.signal,'setitimer'))
+                fixture_paths=set(data)|{str(ROOT/subject.CONTROLS)}|{str(p) for p in (Path(sys.executable).resolve(),Path('/synthetic/git'))}
+                fixture_paths.update(str(ROOT/v['path']) for v in plan.values() if isinstance(v,dict) and 'path' in v)
+                fixture_paths.update(str(ROOT/v['path']) for key in ('runtimeBindings','operationalBindings') for v in plan[key])
+                fixture_paths.add('/synthetic/old-source')
+                fixture_paths.add(str(out/'range.json'))
+                stack.enter_context(synthetic_capture(subject,Capture,fixture_paths))
                 stdout=stack.enter_context(redirect_stdout(io.StringIO()))
                 stack.enter_context(redirect_stderr(io.StringIO()))
                 subject.main(['--plan',str(plan_path),'--plan-sha256',subject.sha(data[str(plan_path)]),

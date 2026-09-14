@@ -1,4 +1,5 @@
 """Pure transport controls using the independently frozen 2/10 known answer."""
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from option_b_batch_records import batch_identities
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -18,7 +19,7 @@ FIXTURE_SHA = OPTION_B_BATCH_IDENTITIES[0]
 def load(name, path):
     spec = importlib.util.spec_from_file_location(name, ROOT / path)
     module = importlib.util.module_from_spec(spec); sys.modules[name] = module
-    spec.loader.exec_module(module)
+    _option_b_exec_module(__file__, spec, module)
     return module
 
 

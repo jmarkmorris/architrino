@@ -70,9 +70,13 @@ function prepareCaptured({root,coordinatorSha256,python,descriptors,readinessSha
  requireValue(typeof python==='string'&&path.isAbsolute(python)&&path.resolve(python)===python,'explicit absolute Python invocation required');
  const bind=(p,h)=>C.clean(C.readBound(p,h));
  bindings.controls=bind(path.join(root,C.CONTROL));
- // PINS retains scientific selections only. Never substitute current bytes for
- // a frozen scientific pin, and never infer an archive to make a pin pass.
- for(const [role,[p,h]]of Object.entries(C.PINS))bindings[role]=bind(path.join(root,p),role==='readiness'?readinessSha256:h);
+ // The exact default predecessor permits this selected representation transfer;
+ // older scientific generations retain their explicitly protected archive bytes.
+ for(const [role,[p,h]]of Object.entries(C.PINS)){
+  if(role==='readiness'){bindings[role]=bind(path.join(root,p),readinessSha256);continue;}
+  const pair=admitted.production.sourcePair(p);
+  bindings[role]=sha(Buffer.from(pair.original))===h?bind(path.join(root,p),sha(Buffer.from(pair.current))):admitted.production.originalSourceBinding(p,h);
+ }
  requireValue(Array.isArray(descriptors),'explicit descriptor array');
  const parentRefinements=structuredClone(descriptors);
  for(const d of parentRefinements)requireValue(d.closure.owner.sha256===readinessSha256,'descriptor must bind current owner explicitly');

@@ -121,7 +121,21 @@ export function validatePlan(plan,root){
   return sources;
 }
 
+const productionAdmissions=new Set();
 export function captureUnion(bindings,identities={},live=()=>{}){
+  const retained=[],original={...identities};
+  for(const production of productionAdmissions){
+    production.check();
+    for(const row of production.capturedSources()){
+      check(!Object.hasOwn(original,row.path)||original[row.path]===row.identity,'production original identity cannot change');
+      original[row.path]=row.identity;retained.push(clean(row));
+    }
+  }
+  const result=captureUnionRaw([...bindings,...retained],original,live);
+  for(const production of productionAdmissions)production.check();
+  return result;
+}
+function captureUnionRaw(bindings,identities={},live=()=>{}){
   const sources=sourceUnion(bindings),seen=new Set(),captured=[];
   for(const b of sources){const c=readBound(b.path,b.sha256,false,LIMITS.sourceBytes,live);check(c.bytes===b.bytes&&(!identities[b.path]||identities[b.path]===c.identity),'source size/original identity');const inode=c.identity.split(':').slice(0,2).join(':');check(!seen.has(inode),'physical source hardlink alias');seen.add(inode);captured.push(c);}
   return {sources:captured.map(clean),identities:Object.fromEntries(captured.map(b=>[b.path,b.identity]))};
@@ -142,11 +156,26 @@ export async function initializeSourceBindings(root,expectedMapDigest,live=()=>{
   const M=await import(url(reader.data));live();
   const admitted=M.admit(map.data,{root,scope:'f6c-bounded-operation-current-source',readBound:(p,h,collect)=>readBound(p,h,collect,LIMITS.sourceBytes,live)});
   const rows=admitted.document['@graph'].filter(r=>r['@type']==='Source');
-  const expectedRoles={...BATCH_TEST_ROLES,[SELF]:'admission',[SOURCE_READER]:'manifest-reader',[CONTROLS]:'current-source',...Object.fromEntries(Object.values(DEPENDENCIES).map(p=>[p,'current-source']))};
+  const helperPath='scripts/eom/f6c-production-admission.mjs';
+  const helperBinding=admitted.bindings.find(b=>b.path===path.join(root,helperPath));
+  check(helperBinding,'Selected production composition helper required');
+  const helperRaw=readBound(helperBinding.path,helperBinding.sha256,true,1048576,live);
+  const helper=await import(url(helperRaw.data));
+  const expectedRoles={...BATCH_TEST_ROLES,...helper.PRODUCTION_ROLES,[SELF]:'admission',[SOURCE_READER]:'manifest-reader',[CONTROLS]:'current-source',...Object.fromEntries(Object.values(DEPENDENCIES).map(p=>[p,'current-source']))};
   check(rows.length===Object.keys(expectedRoles).length&&rows.every(r=>expectedRoles[r.binding.path]===r.role),'exact operational source composition');
   const captured=[map,reader,...admitted.bindings],identities=originalIdentities(captured),sources=sourceUnion(captured.map(clean));
-  captureUnion(sources,identities,live);live();
-  return{sourceMap:clean(map),sources,identities,dependencies:Object.fromEntries(Object.entries(DEPENDENCIES).map(([k,p])=>[k,[p,admitted.pins[p]]]))};
+  captureUnionRaw(sources,identities,live);live();
+  const production=await helper.admitF6cProduction({root,consumer:SELF,bindings:admitted.bindings,readBound:(p,h,collect)=>readBound(p,h,collect,LIMITS.sourceBytes,live),check:()=>captureUnionRaw(sources,identities,live)});
+  const complete=helper.accountProductionSources(captured,production.capturedSources());
+  captureUnionRaw(complete.sources,complete.identities,live);
+  // Retain all physical admission reads, including operational-only helpers
+  // and the map itself, even when a metadata job declares a smaller subset.
+  const retainedAdmission=Object.freeze({
+    check(){production.check();captureUnionRaw(complete.sources,complete.identities,live);},
+    capturedSources(){return complete.sources.map(b=>Object.freeze({...b,identity:complete.identities[b.path]}));}
+  });
+  productionAdmissions.add(retainedAdmission);retainedAdmission.check();
+  return{production,sourceMap:clean(map),operationalSources:sources,sources:complete.sources,identities:complete.identities,dependencies:Object.fromEntries(Object.entries(DEPENDENCIES).map(([k,p])=>[k,[p,admitted.pins[p]]]))};
 }
 
 export async function admitPlanSourceBindings(plan,live=()=>{}){
@@ -154,7 +183,10 @@ export async function admitPlanSourceBindings(plan,live=()=>{}){
   const admitted=await initializeSourceBindings(plan.root,map.sha256,live);
   check(equal(admitted.sourceMap,map),'selected plan map size');
   const declared=sourceUnion([...plan.sources,plan.hookModule,plan.hookControls,...plan.stages.flatMap(s=>[s.entry,...s.sources,...s.runtimeBindings])]);
-  for(const b of admitted.sources)check(declared.some(s=>equal(s,b)),'selected operational source missing from plan');
+  for(const b of admitted.operationalSources)check(declared.some(s=>equal(s,b)),'selected operational source missing from plan');
+  // Selected transitive reader captures join the same physical limit and
+  // retained-identity union without changing the original plan membership.
+  captureUnion([...declared,...admitted.sources],admitted.identities,live);
   return admitted;
 }
 
@@ -296,6 +328,11 @@ export async function closeUnexpectedProcesses({lifetime}){
 export async function fileOperation(job){
   const live=()=>check(process.hrtime.bigint()<BigInt(job.deadlineNanoseconds),'original operation deadline');
   live();
+  const selectedMap=job.sources?.find(b=>b.path.endsWith('/'+SOURCE_MAP));
+  check(selectedMap,'Worker requires selected operational map');
+  const root=selectedMap.path.slice(0,-SOURCE_MAP.length-1);
+  const sourceAdmission=await initializeSourceBindings(root,selectedMap.sha256,live);
+  sourceAdmission.production.check();
   if(job.kind==='capture')return captureUnion(job.sources,job.identities,live);
   if(job.kind==='publish'){
     captureUnion(job.sources,job.identities,live);
@@ -310,7 +347,16 @@ export async function fileOperation(job){
       binding(job.stdout);check(job.stdout.path===path.join(job.plan.operationDirectory,'stages',job.payload.stageId,'runner-stdout.log'),'exact worker-captured admission stdout');
       completion=readBound(job.stdout.path,job.stdout.sha256,false,LIMITS.combinedLogBytes,live);check(completion.bytes===job.stdout.bytes,'admission stdout byte count');
     }
-    const result=await pureHook(async()=>{const hook=await import(url(c.data));check(typeof hook.fileOperation==='function','pure source-bound hook entry');return hook.fileOperation({...job.payload,...(completion?{stdoutLog:clean(completion)}:{}),plan:job.plan,deadlineNanoseconds:job.deadlineNanoseconds});});
+    // The captured coordinator owns process supervision, so load its admitted
+    // root-scoped namespace before a pure hook resolves the same module. The
+    // hook restrictions still reject every direct process/worker import.
+    const coordinatorBinding=sourceAdmission.sources.find(b=>b.path===path.join(root,SELF));
+    check(coordinatorBinding,'selected coordinator required before hook');
+    const coordinator=readBound(coordinatorBinding.path,coordinatorBinding.sha256,true,1024**2,live);
+    check(coordinator.bytes===coordinatorBinding.bytes&&coordinator.identity===sourceAdmission.identities[coordinator.path],'original coordinator capture before hook');
+    await import(url(coordinator.data)+'#root='+encodeURIComponent(root));
+    captureUnion(job.sources,job.identities,live);
+    const result=await pureHook(async()=>{const hook=await import(url(c.data));if(hook.initializeProductionIdentities)hook.initializeProductionIdentities(sourceAdmission.production.identities(path.relative(root,c.path)));check(typeof hook.fileOperation==='function','pure source-bound hook entry');return hook.fileOperation({...job.payload,...(completion?{stdoutLog:clean(completion)}:{}),plan:job.plan,deadlineNanoseconds:job.deadlineNanoseconds});});
     check(result?.accepted===true&&result?.h3EvidenceEligible===false,'hook did not accept bounded operation');
     captureUnion(job.sources,job.identities,live);
     if(completion){checkOutputs([completion],live);check(!Object.hasOwn(result,'completionLog')&&!Object.hasOwn(result,'completionLogIdentity'),'reserved completion binding fields');return {...result,completionLog:clean(completion),completionLogIdentity:completion.identity};}
@@ -586,18 +632,20 @@ async function lifetimeHost(s,launch){
   lifetimeLog(s,{kind:'host-resource',...record});return record;
 }
 
-async function initializeLifetime(s,selfSha,sourceMapSha256){
+async function initializeLifetime(s,selfSha,sourceMapSha256,early=[]){
   s.live();hashToken(selfSha);check(realpathSync(s.root)===s.root&&import.meta.url===pathToFileURL(path.join(s.root,SELF)).href,'one canonical file-C owner');
   s.self=readBound(path.join(s.root,SELF),selfSha,true,1048576,()=>s.live());
   const admitted=await s.bounded(()=>initializeSourceBindings(s.root,sourceMapSha256,()=>s.live()),'source manifest admission');
   check(admitted.sources.some(b=>equal(b,clean(s.self))),'externally selected coordinator agrees with map');
+  s.production=admitted.production;
   s.sourceAdmission=Object.freeze({root:s.root,sourceMapSha256:admitted.sourceMap.sha256});
-  bindLifetimeSources(s,{sources:admitted.sources,identities:admitted.identities});
+  bindLifetimeSources(s,{sources:[...admitted.sources,...early.map(clean)],identities:{...admitted.identities,...originalIdentities(early)}});
   s.deps=Object.fromEntries(Object.entries(admitted.dependencies).map(([k,[p,h]])=>[k,readBound(path.join(s.root,p),h,true,1048576,()=>s.live())]));
   s.H=await s.bounded(()=>import(url(s.deps.helpers.data)),'captured helper import');
   s.outer=await s.bounded(()=>import(url(s.deps.outer.data)),'captured K import');
   s.D=await s.bounded(()=>import(url(s.deps.diagnostics.data)),'captured diagnostics import');
   installLifetimeStderr(s);s.diagnostics=s.D.diagnosticGuard();s.diagnostics.bind(s.fail);
+  if(early.length)await lifetimeTable(s);
   const captured=[s.self,...Object.values(s.deps)];bindLifetimeSources(s,{sources:captured.map(clean),identities:originalIdentities(captured)});
 }
 
@@ -962,14 +1010,31 @@ async function wholeAttemptMain(){
   let s;
   try{
     s=makeLifetime(began,deadlineNanoseconds,control);await s.ready();
-    const options=parseWholeArguments(process.argv.slice(2));check(Boolean(options.control)===control,'unchanged first-token budget selection');s.mode=options.mode;await initializeLifetime(s,options.selfSha256,options.sourceMapSha256);
-    if(options.mode==='plan')await runBoundedOperation({...options,began,deadlineNanoseconds,lifetime:s.capability});
-    else{
+    const options=parseWholeArguments(process.argv.slice(2));check(Boolean(options.control)===control,'unchanged first-token budget selection');s.mode=options.mode;
+    let streamed;
+    if(options.mode==='streamed'){
       s.live();const caller=readBound(path.join(s.root,STREAMED),options.callerSha,true,1048576,()=>s.live());
       const spec=readBound(options.specPath,options.specSha,true,1048576,()=>s.live()),decoded=JSON.parse(spec.data.toString());
       check(decoded.root===s.root&&equal(decoded.bindings?.coordinator,clean(caller)),'external caller binding agrees with invocation');
-      s.caller=caller;s.streamSpec=spec;bindLifetimeSources(s,{sources:[clean(caller),clean(spec)],identities:originalIdentities([caller,spec])});
+      check(Array.isArray(decoded.runtimeBindings)&&decoded.runtimeBindings.length>0&&decoded.runtimeBindings.length<=256,'bounded initial observer runtime declaration');
+      const earlyObserverRows=decoded.runtimeBindings.filter(b=>b?.path==='/bin/ps');
+      check(earlyObserverRows.length===1,'one explicitly declared initial ps runtime');
+      const earlyObserverBinding=binding(earlyObserverRows[0]);
+      const earlyObserver=readBound(earlyObserverBinding.path,earlyObserverBinding.sha256,false,LIMITS.sourceBytes,()=>s.live());
+      check(earlyObserver.bytes===earlyObserverBinding.bytes,'initial ps runtime byte count');
+      streamed={caller,spec,earlyObserver};
+    }
+    await initializeLifetime(s,options.selfSha256,options.sourceMapSha256,streamed?[streamed.caller,streamed.spec,streamed.earlyObserver]:[]);
+    if(options.mode==='plan')await runBoundedOperation({...options,began,deadlineNanoseconds,lifetime:s.capability});
+    else{
+      const {caller,spec,earlyObserver}=streamed;
+      s.caller=caller;s.streamSpec=spec;bindLifetimeSources(s,{sources:[clean(caller),clean(spec),clean(earlyObserver)],identities:originalIdentities([caller,spec,earlyObserver])});
+      // Observe the unchanged whole-attempt clock before further source admission.
+      await lifetimeTable(s);
       const module=await s.bounded(()=>import(url(caller.data)),'captured fixed streamed caller import');
+      if(module.initializeProductionIdentities)module.initializeProductionIdentities(s.production.identities(STREAMED));
+      s.production.check();
+      await lifetimeTable(s);
       check(typeof module.coordinate==='function','fixed streamed orchestration entry');
       await module.coordinate({specPath:options.specPath,specSha:options.specSha,selfSha:options.callerSha,self:caller,began,deadlineNanoseconds,lifetime:s.capability});
       check(s.finished&&s.guardExited&&s.lockReleased,'caller returned without shared final closure');

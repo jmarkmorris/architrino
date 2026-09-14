@@ -1,3 +1,7 @@
+import {copyProductionFixture} from './support/option-b-production-fixtures.mjs';
+import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
+import * as optionBProductionModule0 from "../scripts/eom/run-subfield-circular-root-pilot.mjs";
+optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/run-subfield-circular-root-pilot.mjs"));
 import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
 const NEXT_TEST_SHA = nextTestIdentities("tests/option-b-circular-admission.test.mjs", 2);
 import test from 'node:test';
@@ -18,6 +22,7 @@ const url=bytes=>'data:text/javascript;base64,'+bytes.toString('base64');
 function fixture(t) {
   const directory=realpathSync(mkdtempSync(path.join(tmpdir(),'option-b-circular-')));
   t.after(()=>rmSync(directory,{recursive:true,force:true}));
+  copyProductionFixture(root,directory);
   const map=JSON.parse(readFileSync(path.join(root,CIRCULAR_SOURCE_MAP)));
   for(const row of map['@graph'].filter(row=>row['@type']==='Source')) {
     const filename=path.join(directory,row.binding.path);mkdirSync(path.dirname(filename),{recursive:true});
@@ -32,7 +37,7 @@ function fixture(t) {
 test('known SHA and explicit copied-family fixture admit before rejection probes',async t=>{
   assert.equal(sha('abc'),NEXT_TEST_SHA[0]);
   const f=fixture(t), module=await f.loader(), state=await module.loadCircularSourceMap(f.directory,f.digest);
-  assert.equal(state.sources.length,22);assert.equal(state.bindings.length,23);state.recheck();
+  assert.equal(state.sources.length,Object.keys(CIRCULAR_SOURCE_ROLES).length);assert.equal(state.bindings.length,Object.keys(CIRCULAR_SOURCE_ROLES).length+1);state.recheck();
   assert.equal(state.sourceMap.sha256,f.digest);
   for(const row of state.sources) assert.ok(Buffer.isBuffer(row.bytes));
   for(const row of state.bindings) assert.deepEqual(Object.keys(row.identity),['dev','ino','size','mtimeMs','ctimeMs']);
@@ -43,7 +48,7 @@ test('actual repository manifest admits without fixture hash refresh',async()=>{
   const module=await import(url(readFileSync(path.join(root,'scripts/eom/run-current-subfield-circular-root-pilot.mjs'))));
   const digest=sha(readFileSync(path.join(root,CIRCULAR_SOURCE_MAP)));
   const state=await module.loadCircularSourceMap(root,digest);
-  assert.equal(state.sources.length,22);assert.equal(state.bindings.length,23);state.recheck();
+  assert.equal(state.sources.length,Object.keys(CIRCULAR_SOURCE_ROLES).length);assert.equal(state.bindings.length,Object.keys(CIRCULAR_SOURCE_ROLES).length+1);state.recheck();
 });
 
 test('fresh capture rejects same-byte rename before admission returns',async t=>{

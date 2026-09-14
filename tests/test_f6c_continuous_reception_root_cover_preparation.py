@@ -4,6 +4,7 @@ The positive cell is checked against closed-form distances/factors and the
 unchanged, previously frozen rational comparison. No real F6c data is loaded,
 no accepted production receipt is generated, and no EOM solver is called.
 """
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from contextlib import ExitStack, redirect_stdout
 from copy import deepcopy
 from dataclasses import replace
@@ -30,7 +31,7 @@ SOURCE = ROOT/"scripts/eom/prepare-f6c-continuous-reception-root-cover.py"
 def load(name, source):
     spec = importlib.util.spec_from_file_location(name, source)
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    _option_b_exec_module(__file__, spec, module)
     return module
 
 
@@ -245,7 +246,7 @@ class ContractTests(unittest.TestCase):
                 "runtimeBindings": [{"path": "/fixture/python", "sha256": "2"*64, "bytes": 3}]}}, own
 
     def test_frozen_reference_and_all_library_source_bindings(self):
-        self.assertEqual(hashlib.sha256((ROOT/S.REFERENCE).read_bytes()).hexdigest(), S.REFERENCE_SHA)
+        self.assertEqual(hashlib.sha256(_option_b_source_bytes(__file__, ROOT/S.REFERENCE)).hexdigest(), S.REFERENCE_SHA)
         self.assertEqual(S.FIXED, V.FIXED)
         self.assertEqual(S.SCHEMA, V.SCHEMA)
         self.assertEqual(S.FALSE_FLAGS, V.FALSE_FLAGS)

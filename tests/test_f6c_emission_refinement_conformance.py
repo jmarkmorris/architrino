@@ -6,6 +6,7 @@ affine closed forms; final static restrictions also have an independent integer
 grid-index formula. No root library or proposed producer is imported.
 """
 from __future__ import annotations
+from option_b_production_records import exec_source as _option_b_exec_source, exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 from copy import deepcopy
 from dataclasses import FrozenInstanceError
@@ -24,11 +25,11 @@ REFERENCE=ROOT/'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py
 
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path)
-    module=importlib.util.module_from_spec(spec);sys.modules[name]=module;spec.loader.exec_module(module);return module
+    module=importlib.util.module_from_spec(spec);sys.modules[name]=module;_option_b_exec_module(__file__, spec, module);return module
 
 
 s=load('emission_refinement_subject',SOURCE)
-assert hashlib.sha256(REFERENCE.read_bytes()).hexdigest()==s.REQUIRED_REFERENCE_SHA
+assert hashlib.sha256(_option_b_source_bytes(__file__, REFERENCE)).hexdigest()==s.REQUIRED_REFERENCE_SHA
 r=load('frozen_independent_bernstein_reference',REFERENCE)
 IDS=('0+','0-','1+','1-','2+','2-','3+','3-')
 A,B=F(-8),F(-1,20)

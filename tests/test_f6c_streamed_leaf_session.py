@@ -1,4 +1,5 @@
 """Independent event traces plus a genuine synthetic bridge; no actual inputs."""
+from option_b_production_records import source_bytes as _option_b_source_bytes, exec_source as _option_b_exec_source
 from option_b_batch_records import batch_identities, batch_test_sources
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -23,14 +24,14 @@ def load(name, path, digest=None):
         # Preserve the original driver identity and execute its admitted successor.
         assert hashlib.sha256(original).hexdigest() == digest
     else:
-        raw = p.read_bytes()
+        raw = _option_b_source_bytes(__file__, p)
         if digest is not None:
             assert hashlib.sha256(raw).hexdigest() == digest
     m = ModuleType(name)
     m.__file__ = str(p)
     sys.modules[name] = m
-    exec(compile(raw, str(p), 'exec'), m.__dict__)
-    assert p.read_bytes() == raw
+    _option_b_exec_source(__file__, m, str(p), raw)
+    assert (p.read_bytes() if path == 'tests/test_f6c_single_leaf_diagnostic.py' else _option_b_source_bytes(__file__, p)) == raw
     if path == 'tests/test_f6c_single_leaf_diagnostic.py':
         assert batch_test_sources(ROOT, __file__, path) == (original, raw)
     return m

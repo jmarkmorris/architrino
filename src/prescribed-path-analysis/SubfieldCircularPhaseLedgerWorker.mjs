@@ -11,6 +11,7 @@ const {createHash}=require("node:crypto");
   const bytes=Buffer.from(workerData.reducerBytes);
   if(createHash("sha256").update(bytes).digest("hex")!==workerData.reducerSha256) throw Error("captured ledger hash differs");
   const ledger=await import("data:text/javascript;base64,"+bytes.toString("base64"));
+  ledger.initializeProductionIdentities(workerData.production.identities,workerData.production.protectedSources,workerData.production.currentSources);
   const context=await ledger.prepareSubfieldCircularPhaseLedgerContext(workerData.options,event=>parentPort.postMessage({event}));
   parentPort.postMessage({id:0,ready:true,identity:{candidateId:context.manifest.candidateId,
     rung:context.rung,phase:context.phase,manifestId:context.manifestId,
@@ -32,8 +33,9 @@ const {createHash}=require("node:crypto");
 })().catch(error=>{parentPort.postMessage({failure:String(error.message)});parentPort.close();});
 `;
 
-export async function openSubfieldCircularPhaseLedgerWorker({ reducerBytes, reducerSha256, options,
+export async function openSubfieldCircularPhaseLedgerWorker({ reducerBytes, reducerSha256, options, production,
   limitMs = 1800000, progress = () => {}, signal }) {
+  if(!production||!Array.isArray(production.identities)||production.identities.length!==13||!Array.isArray(production.protectedSources))throw Error('Admitted reducer production snapshot required');
   if (!(reducerBytes instanceof Uint8Array) || sha(reducerBytes) !== reducerSha256 ||
       !Number.isSafeInteger(limitMs) || limitMs <= 0 || typeof progress !== "function") {
     throw new Error("captured ledger bytes and positive deadline required");
@@ -41,7 +43,7 @@ export async function openSubfieldCircularPhaseLedgerWorker({ reducerBytes, redu
   // The loader is deliberately CommonJS. Do not inherit --input-type=module,
   // preload modules, or other caller CLI hooks into this captured execution.
   const worker = new Worker(LOADER, { eval: true, execArgv: [],
-    workerData: { reducerBytes, reducerSha256, options } });
+    workerData: { reducerBytes, reducerSha256, options, production } });
   const began = performance.now();
   let next = 1, pending, stopped = false, terminalError, timer, closePromise, onAbort;
   const stop = (reason = new Error("ledger worker closed")) => {

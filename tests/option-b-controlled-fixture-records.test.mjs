@@ -1,4 +1,6 @@
 import test from 'node:test';
+import {originalProductionTestData} from './support/option-b-production-hosts.mjs';
+import {copyProductionFixture} from './support/option-b-production-fixtures.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -13,12 +15,13 @@ const proofPath='reference/priorities/development-process-review/evidence/option
 function fixture(t){
  const directory=fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(),'controlled-fixture-')));t.after(()=>fs.rmSync(directory,{recursive:true,force:true}));
  copyControlledFixtureTree(root,directory);
+ copyProductionFixture(root,directory);
  const selection=decode(fs.readFileSync(path.join(directory,FIXTURE_SELECTION)));
  const run=(overrides={})=>loadControlledFixture({root:directory,selection,consumer:'tests/source-replay.test.js',...overrides});
  return{directory,selection,run};
 }
 
-test('original known answer historical tuple and import-only consumers remain exact',()=>{
+test('original known answer and historical import-only consumer generation remain exact',()=>{
  const proof=decode(fs.readFileSync(proofPath));
  for(const p of [KNOWN_PAYLOAD,PRIOR_PAYLOAD])assert.deepEqual(fs.readFileSync(p),execFileSync('git',['show',proof.originCommit+':'+p]));
  const inverse=(source,rows)=>rows.toReversed().reduce((value,row)=>{assert.equal(value.split(row.after).length,2,row.path);return value.replace(row.after,row.before);},source);
@@ -26,7 +29,7 @@ test('original known answer historical tuple and import-only consumers remain ex
  for(const p of proof.importOnlyConsumers){
   const before=execFileSync('git',['show',proof.originCommit+':'+p]);
   assert.equal(sha256(before),proof.originalBindings.find(row=>row.path===p).sha256);
-  assert.equal(inverse(fs.readFileSync(p,'utf8'),proof.replacements.filter(row=>row.path===p)),before.toString(),p);
+  assert.equal(inverse((originalProductionTestData(p)??fs.readFileSync(p)).toString('utf8'),proof.replacements.filter(row=>row.path===p)),before.toString(),p);
  }
  // Published expectation is read independently from preserved data, never
  // manufactured from the implementation being checked.
@@ -56,7 +59,7 @@ function actualBoundary(t,includePython){
  if(includePython) for(const filename of ['test_f5_current_handoff.py','test_f6c_acceleration_execution.py','test_f6c_retained_history_export.py']) {
   // On the positive case stop at the first scientific import; admission has
   // already executed. Complete subject regressions run separately.
-  const actual=`import importlib.util,sys\nfrom pathlib import Path\nr=Path.cwd()\noriginal=importlib.util.spec_from_file_location\ndef boundary(name,location,*args,**kwargs):\n if Path(location).is_relative_to(r/'scripts/eom'):\n  print('ADMITTED_CONTROL');sys.exit(0)\n return original(name,location,*args,**kwargs)\nimportlib.util.spec_from_file_location=boundary\ns=original('actual_consumer',r/'tests/${filename}')\nm=importlib.util.module_from_spec(s);s.loader.exec_module(m)\nraise AssertionError('Expected subject boundary not reached')\n`;
+  const actual=`import importlib.util,sys\nfrom pathlib import Path\nr=Path.cwd()\nsys.path.insert(0,str(r/'tests'))\nimport option_b_production_records as production_test_host\ndef admitted_production_boundary(*args,**kwargs):\n print('ADMITTED_CONTROL');sys.exit(0)\nproduction_test_host.load_current_module=admitted_production_boundary\noriginal=importlib.util.spec_from_file_location\ndef boundary(name,location,*args,**kwargs):\n if Path(location).is_relative_to(r/'scripts/eom'):\n  print('ADMITTED_CONTROL');sys.exit(0)\n return original(name,location,*args,**kwargs)\nimportlib.util.spec_from_file_location=boundary\ns=original('actual_consumer',r/'tests/${filename}')\nm=importlib.util.module_from_spec(s);s.loader.exec_module(m)\nraise AssertionError('Expected subject boundary not reached')\n`;
   commands.push([python,['-c',actual]]);
  }
  for(const [command,args] of commands){

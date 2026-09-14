@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 // Preparation only. Never construct the process client or execute an EOM binary.
+import { productionIdentities } from '../equation-mapping/production-source-records.mjs';
+import { borgConsumerAdmission } from '../borg/selected-runtime-admission.mjs';
 import { createHash } from 'node:crypto';
 import { constants, openSync, fstatSync, readSync, closeSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -10,8 +12,8 @@ import { canonicalStringify, validateBorgCertifiedBudgetPreset } from '../../src
 export const SCHEMA = 'braid-program/ordinary-evolution-request-preparation.v1';
 export const INPUT_LIMIT_BYTES = 16 * 1024 * 1024;
 export const F5_HISTORY_EVIDENCE = Object.freeze([
-  Object.freeze({ role: 'past-only-handoff', path: '.local-data/braid-analysis/f5-prehistory-handoff-20260827-v1/handoff.json', sha256: '4e0696a848a0d36ccbe5948295e71738c933b7ea120e9aee00e2effdd6ecc149' }),
-  Object.freeze({ role: 'handoff-conformance', path: '.local-data/braid-analysis/f5-prehistory-handoff-20260827-v1/handoff-conformance.json', sha256: '5b7ddc53d47a97f81383bd043c37e93daa80fe5a9b595d400faddd4c9724b622' }),
+  Object.freeze({ role: 'past-only-handoff', path: '.local-data/braid-analysis/f5-prehistory-handoff-20260827-v1/handoff.json', sha256: productionIdentities(import.meta.url)[0] }),
+  Object.freeze({ role: 'handoff-conformance', path: '.local-data/braid-analysis/f5-prehistory-handoff-20260827-v1/handoff-conformance.json', sha256: productionIdentities(import.meta.url)[1] }),
 ]);
 const CONTROL_KEYS = ['initialStep', 'minimumStep', 'maximumStep', 'useAdaptiveStepGrowth', 'rootTolerance', 'accelerationTolerance', 'farFieldEnclosureFraction', 'positionTolerance', 'velocityTolerance', 'correctionTolerance', 'threadCount'];
 const LIMIT_KEYS = ['wallSeconds', 'heartbeatSeconds', 'aggregateRssBytes', 'rssSampleIntervalSeconds', 'logBytes', 'outputBytes', 'diskMinimumBytes'];
@@ -167,6 +169,7 @@ function checkSettings(settings) {
 }
 
 export function prepareOrdinaryEvolutionRequest(input) {
+  const admission=borgConsumerAdmission(import.meta.url);
   object(input, ['candidateId', 'releaseTime', 'historyCoverageStart', 'historyEvidence', 'histories', 'settings'], 'input');
   text(input.candidateId, 'candidateId');
   object(input.settings, ['runId', 'endTime', 'strength', 'numericalControls', 'coreScale', 'certifiedBudget', 'operationalLimits'], 'settings');
@@ -205,7 +208,7 @@ export function prepareOrdinaryEvolutionRequest(input) {
     canonicalBudgetGate: 'not-checked', transportRequest: null, wire: null,
     laterObligations: ['authenticate history/proof/source/build bytes and actual endpoint/fingerprint mapping', 'explicit scientific settings and launch predeclaration', 'independent generated-history acceptance', 'inclusive resource supervision and process closure'],
   };
-  if (missing.length) return preparation;
+  if (missing.length) { admission.check(); return preparation; }
   checkSettings(s); text(s.runId, 'runId');
   if (compare(decimal(s.endTime, 'endTime'), decimal(input.releaseTime, 'releaseTime')) <= 0n || !(Number(s.endTime) > Number(input.releaseTime))) throw new RangeError('endTime must be strictly after release');
   const magnitude = s.strength.chargeMagnitude;
@@ -223,6 +226,7 @@ export function prepareOrdinaryEvolutionRequest(input) {
   preparation.canonicalBudgetGate = 'canonical-validator-and-encoder-passed-not-EOM-validation';
   preparation.transportRequest = request;
   preparation.wire = { utf8: wire, sha256: sha(wire), bytes: Buffer.byteLength(wire) };
+  admission.check();
   return preparation;
 }
 
@@ -254,7 +258,9 @@ export function main(argv = process.argv.slice(2)) {
   }
   const bytes = Buffer.from(`${JSON.stringify(result, null, 2)}\n`);
   if (bytes.length > 8 * INPUT_LIMIT_BYTES) throw new RangeError('preparation output exceeds byte limit');
+  borgConsumerAdmission(import.meta.url).check();
   writeFileSync(output, bytes, { flag: 'wx', mode: 0o600 });
+  borgConsumerAdmission(import.meta.url).check();
   if (!readBoundInput(output, 8 * INPUT_LIMIT_BYTES).bytes.equals(bytes)) throw new Error('preparation output changed after publication');
   if (captured && readBoundInput(resolve(argv[1])).sha256 !== captured.sha256) throw new Error('input changed after publication; preparation has no authority');
   process.stdout.write(`${JSON.stringify({ schema: SCHEMA, accepted: false, executionAuthorized: false, eomExecuted: false, status: result.status, output, sha256: sha(bytes), bytes: bytes.length })}\n`);

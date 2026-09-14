@@ -23,25 +23,23 @@ async function circularAdmission(root,digest,originalBindings=[]) {
   const rows=JSON.parse(raw)['@graph']?.filter(row=>row['@type']==='Source'&&row.role==='admission');
   if(rows?.length!==1||rows[0].binding.path!=='scripts/eom/run-current-subfield-circular-root-pilot.mjs')throw Error('circular admission entry differs');
   const module=await import('data:text/javascript;base64,'+capture(path.join(root,rows[0].binding.path),rows[0].binding.sha256).toString('base64'));
-  return module.loadCircularSourceMap(root,digest,initial);
+  const admitted = await module.loadCircularSourceMap(root,digest,initial);
+  initializeProductionIdentities(admitted.productionIdentities("scripts/eom/run-subfield-circular-root-rung.mjs"));
+  return admitted;
 }
 
 export const SUBFIELD_CIRCULAR_RUNG_PATH = "scripts/eom/run-subfield-circular-root-rung.mjs";
 export const SUBFIELD_CIRCULAR_DISPATCH_PATH = "scripts/eom/dispatch-subfield-circular-root-ladder.mjs";
 export const SUBFIELD_CIRCULAR_RUN_BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
 export const SUBFIELD_CIRCULAR_BUILD_PATH = `${SUBFIELD_CIRCULAR_RUN_BASE}current-v3-build-20260908-execution-review/preparation.json`;
-export const SUBFIELD_CIRCULAR_BUILD_SHA = "c80526d097c81627186cbbfcea7e0005d9d73288e331f4535f07982cc2bef944";
+export let SUBFIELD_CIRCULAR_BUILD_SHA;
 export const SUBFIELD_CIRCULAR_RUNTIME_PATHS = Object.freeze({
   pilot: "scripts/eom/run-subfield-circular-root-pilot.mjs", outer: "scripts/eom/launch-subfield-circular-root-pilot.mjs",
   helper: "src/prescribed-path-analysis/SubfieldCircularPhaseProcess.mjs", bridge: "src/prescribed-path-analysis/SubfieldCircularPhaseLedgerWorker.mjs",
   watch: "scripts/eom/prepare-f5-enclosed-root.mjs", reducer: "src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs",
   cli: "scripts/eom/reduce-subfield-circular-root-ledger.mjs", proof: "scripts/eom/verify-subfield-circular-history.mjs",
 });
-export const SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES = Object.freeze({
-  reducer: "6dabe54a991ccd7a8c1ca5da41139c0669e62f521d17fff4c9a0c52b51b2dda9",
-  cli: "2b3eb236b561c1901e6dfc58603f97f1104fc045e79d2d7a10d8879da02fd60a",
-  proof: "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38",
-});
+export let SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES;
 export const SUBFIELD_CIRCULAR_IDS = Object.freeze(["coincident-midpoint-common-frequency", "coincident-midpoint-equal-radius-common-frequency", "coincident-midpoint-3-2-1-frequency", "phase-compensated-equal-geometry", "axially-separated-common-frequency", "axially-separated-equal-radius-common-frequency", "axially-separated-3-2-1-frequency", "axial-transverse-coincident-axis-interior", "high-axial-coincident-axis-interior", "planar-common-center-three-binary", "coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-counter-rotating"]);
 export const SUBFIELD_CIRCULAR_RESOURCE_OBSERVATION = Object.freeze({ cadenceSeconds: 15, commandTimeoutMs: 2000,
   memoryPressureCommand: "/usr/bin/memory_pressure", minimumSystemFreePercent: 20,
@@ -53,7 +51,7 @@ export const rungSha = bytes => createHash("sha256").update(bytes).digest("hex")
 const check = (ok, message, code = "CANDIDATE_LOCAL_FAILURE") => { if (!ok) throw Object.assign(new Error(message), { failureCode: code }); };
 const writeJSON = (filename, value) => writeFileSync(filename, JSON.stringify(value) + "\n", { flag: "wx" });
 const digestToken = value => typeof value === "string" && /^[0-9a-f]{64}$/u.test(value);
-export const SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW = Object.freeze({path:"reference/priorities/development-process-review/evidence/circular-current-execution/current-pilot-independent-review.json",sha256:"ea4a5ee965295fdbb59610b95dbdef6ea0181b307b2e1f020266ca8350e4a999"});
+export let SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW;
 export function acceptCurrentCircularPilot(jointBinding, reviewBinding, selection) {
   const joint=jointBinding.value, review=reviewBinding.value;
   check(digestToken(selection?.sha256) && typeof selection.path==='string' && reviewBinding.sha256===selection.sha256 &&
@@ -237,7 +235,7 @@ export function parseSubfieldCircularRungArgs(argv) {
 export async function runSubfieldCircularCandidateRung({ root, args, sources, runtime, began = performance.now() }) {
   const admission = await circularAdmission(root,args['--source-map-sha256'],args['--source-identities']?JSON.parse(Buffer.from(args['--source-identities'],'base64')):sources);
   check(admission.source(SUBFIELD_CIRCULAR_RUNG_PATH).sha256===args['--runner-sha256'], 'rung differs from selected circular map');
-  for (const [role,digest] of Object.entries(SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES)) check(admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS[role]).sha256===digest,'frozen circular scientific source differs');
+  for (const [role,digest] of Object.entries(SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES)){const pair=admission.productionSourcePair(SUBFIELD_CIRCULAR_RUNTIME_PATHS[role],digest);check(rungSha(Buffer.from(pair.original))===digest&&admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS[role]).sha256===rungSha(Buffer.from(pair.current)),'exact original and selected current circular source differ');}
   check(admission.sources.every(expected=>sources.some(row=>row.path===expected.path && row.sha256===expected.sha256 && rungSha(row.bytes)===expected.sha256)), 'complete admitted circular runtime sources required');
   const candidateId = args["--candidate"], rung = Number(args["--rung"]), schedule = candidateRungSchedule(candidateId, rung);
   const output = path.resolve(root, args["--out"]), abort = new AbortController();
@@ -327,7 +325,8 @@ export async function runSubfieldCircularCandidateRung({ root, args, sources, ru
       const [proof] = await inspect([{ path: proofPath, json: true }]); runtime.pilot.validatePilotProof(proof.value, expected, phase.historyManifest);
       const manifestId = proof.value.manifestId; delete proof.value; phase.conformance = proof;
       await recheckShared();
-      activeWorker = await runtime.bridge.openSubfieldCircularPhaseLedgerWorker({ reducerBytes: reducerSource.bytes, reducerSha256: reducerSource.sha256,
+      const production=runtime.reducer.captureSubfieldCircularReducerProduction(admission,root,receipt.buildReceipt.path,SUBFIELD_CIRCULAR_BUILD_SHA);
+      activeWorker = await runtime.bridge.openSubfieldCircularPhaseLedgerWorker({ production, reducerBytes: reducerSource.bytes, reducerSha256: reducerSource.sha256,
         options: { repoRoot: root, historyManifest: manifestPath, conformance: proofPath, conformanceSha256: proof.sha256,
           buildReceipt: receipt.buildReceipt.path, buildReceiptSha256: SUBFIELD_CIRCULAR_BUILD_SHA }, limitMs: remaining(), signal: abort.signal,
         progress: event => { stageName = `ledger:${event.stage ?? "checking"}`; } });
@@ -350,8 +349,8 @@ export async function runSubfieldCircularCandidateRung({ root, args, sources, ru
         "--build-receipt", receipt.buildReceipt.path, "--build-receipt-sha256", SUBFIELD_CIRCULAR_BUILD_SHA, "--out", ledgerPath], directory);
       const [ledger, raw] = await inspect([{ path: ledgerPath, json: true }, { ...phase.process.rawRows }]);
       runtime.pilot.validatePilotPhase(ledger.value, expected, { historyManifest: phase.historyManifest, conformance: proof,
-        buildReceipt: receipt.buildReceipt, rawRows: raw, reducer: { path: SUBFIELD_CIRCULAR_RUNTIME_PATHS.reducer, sha256: SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES.reducer },
-        cli: { path: SUBFIELD_CIRCULAR_RUNTIME_PATHS.cli, sha256: SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES.cli }, manifestId });
+        buildReceipt: receipt.buildReceipt, rawRows: raw, reducer: { path: SUBFIELD_CIRCULAR_RUNTIME_PATHS.reducer, sha256: admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS.reducer).sha256 },
+        cli: { path: SUBFIELD_CIRCULAR_RUNTIME_PATHS.cli, sha256: admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS.cli).sha256 }, manifestId });
       await watchedSubfieldCircularRepeatedPhases({ current: ledger.value, prior: repeated.map(old => old.value), sources,
         limitMs: remaining(), signal: abort.signal });
       phase.maximumPrecisionBits = ledger.value.maximumPrecisionBits; delete ledger.value; phase.phaseReceipt = ledger;
@@ -399,7 +398,7 @@ export async function runSubfieldCircularCandidateRung({ root, args, sources, ru
 export async function captureSubfieldCircularRungSources(root, runnerSha256, sourceMapSha256,originalBindings=[]) {
   const admission = await circularAdmission(root,sourceMapSha256,originalBindings);
   check(admission.source(SUBFIELD_CIRCULAR_RUNG_PATH).sha256===runnerSha256,'selected rung differs');
-  for (const [role,digest] of Object.entries(SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES)) check(admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS[role]).sha256===digest,'frozen circular scientific source differs');
+  for (const [role,digest] of Object.entries(SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES)){const pair=admission.productionSourcePair(SUBFIELD_CIRCULAR_RUNTIME_PATHS[role],digest);check(rungSha(Buffer.from(pair.original))===digest&&admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS[role]).sha256===rungSha(Buffer.from(pair.current)),'exact original and selected current circular source differ');}
   return admission.sources;
 }
 
@@ -437,3 +436,15 @@ async function main() {
 }
 if (import.meta.url.startsWith("file:") && !new URL(import.meta.url).search && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
   main().catch(error => { console.error(error.stack); process.exitCode = 1; });
+
+export function initializeProductionIdentities(values) {
+  if (!Array.isArray(values) || values.length !== 5 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
+  const OPTION_B_PRODUCTION_IDENTITIES = values;
+  SUBFIELD_CIRCULAR_BUILD_SHA = OPTION_B_PRODUCTION_IDENTITIES[0];
+  SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES = Object.freeze({
+  reducer: OPTION_B_PRODUCTION_IDENTITIES[1],
+  cli: OPTION_B_PRODUCTION_IDENTITIES[2],
+  proof: OPTION_B_PRODUCTION_IDENTITIES[3],
+});
+  SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW = Object.freeze({path:"reference/priorities/development-process-review/evidence/circular-current-execution/current-pilot-independent-review.json",sha256:OPTION_B_PRODUCTION_IDENTITIES[4]});
+}

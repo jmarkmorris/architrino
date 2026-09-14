@@ -3,6 +3,8 @@
 Expected polynomial identities are hand-derived here. Synthetic metadata and
 publication packets test plumbing, never scientific production acceptance.
 """
+from option_b_production_records import copy_production_fixture
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 from decimal import localcontext
 from fractions import Fraction as F
@@ -21,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/eom/verify-f6c-accepted-frame-reconstruction.py"
 SPEC = importlib.util.spec_from_file_location("f6c_reconstruction_controls", SCRIPT)
 proof = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(proof)
+_option_b_exec_module(__file__, SPEC, proof)
 
 
 def segment(a, b, row=("0", "0", "0", "0"), px="0", pv="0"):
@@ -292,8 +294,9 @@ class BindingAndPublication(unittest.TestCase):
     def test_altered_theorem_is_rejected_before_export(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
+            copy_production_fixture(root)
             script = root/"scripts/eom/verify-f6c-accepted-frame-reconstruction.py"
-            script.parent.mkdir(parents=True)
+            script.parent.mkdir(parents=True,exist_ok=True)
             script.write_bytes(SCRIPT.read_bytes())
             for index, relative in enumerate(proof.THEOREMS):
                 target = root/relative

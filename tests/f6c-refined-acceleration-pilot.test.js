@@ -1,3 +1,4 @@
+import {loadProductionTestModule,originalProductionTestSource} from './support/option-b-production-hosts.mjs';
 import {batchTestIdentities,batchTestSources} from '../scripts/equation-mapping/batch-test-records.mjs';
 const identities=batchTestIdentities(import.meta.url);
 // Synthetic metadata/process controls only. No accepted history or range is evaluated.
@@ -10,7 +11,7 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {EventEmitter} from 'node:events';
 import {PassThrough} from 'node:stream';
-import * as E from '../scripts/eom/run-f6c-refined-acceleration-pilot.mjs';
+const E=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-refined-acceleration-pilot.mjs");
 import * as L from '../scripts/eom/launch-f6c-refined-acceleration-pilot.mjs';
 import {materializeSourceReplay} from '../scripts/dev/materialize-source-replay.mjs';
 const root=realpathSync(process.cwd()),hash=b=>createHash('sha256').update(b).digest('hex'),H='a'.repeat(64);
@@ -93,13 +94,14 @@ test('data/outer siblings are distinct and stage CLI preserves original candidat
   assert.throws(()=>E.outputPaths(dir,path.join(output,'subject')));
 });
 test('captured Python wrapper reports real target CPU separately and rejects changed source',()=>{
+  const envelope=E.stageSpec({stage:'consumer',plan:{},planBinding:{path:'/synthetic-plan',sha256:H},root,output:path.join(root,E.LANE,'synthetic-envelope'),python,git,budget:'5'}).args[6];
   const dir=directory(),p=path.join(dir,'synthetic.py'),bytes=Buffer.from('print("synthetic-only")\n');writeFileSync(p,bytes);
-  const result=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,hash(bytes)],{encoding:'utf8',timeout:5000});
+  const result=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,hash(bytes),envelope],{encoding:'utf8',timeout:5000});
   assert.equal(result.status,0,result.stderr);assert.equal(result.stdout,'synthetic-only\n');
   const measured=JSON.parse(result.stderr.trim());assert.equal(measured.kind,'f6c-refined-range-python-process-resources');
   for(const k of ['userSeconds','systemSeconds','waitedChildUserSeconds','waitedChildSystemSeconds'])assert.ok(Number.isFinite(measured[k])&&measured[k]>=0);
   assert.ok(measured.maximumIndividualResidentBytes>0);
-  const bad=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,H],{encoding:'utf8',timeout:5000});assert.notEqual(bad.status,0);assert.equal(bad.stdout,'');
+  const bad=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,H,envelope],{encoding:'utf8',timeout:5000});assert.notEqual(bad.status,0);assert.equal(bad.stdout,'');
 });
 test('metadata inventory source keeps the public lazy-dependency exercise without executing science',()=>{
  assert.match(E.PYTHON_RUNTIME_INVENTORY,/import __future__/);assert.match(E.PYTHON_RUNTIME_INVENTORY,/\(10\*\*20000\+1\)\/\/\(10\*\*15000\+3\)/);assert.match(E.PYTHON_RUNTIME_INVENTORY,/scientificDataLoaded.*False/);
@@ -222,7 +224,7 @@ test('diagnostic lifetime and failed-cleanup helper sections preserve the frozen
  assert.equal(section(current,'export async function drainDiagnostics','export async function launchCaptured'),section(old,'export async function drainDiagnostics','export async function launchCaptured'));
  assert.ok(current.includes('accelerationEvaluated:true,rootsEvaluated:false'));
  const entry=readFileSync(E.ENTRY,'utf8'),oldEntry=readFileSync('scripts/eom/run-f6c-acceleration-pilot.mjs','utf8');
- assert.equal(section(entry,'export function readBound','export function checkBindings'),section(oldEntry,'export function readBound','export function checkBindings'));
+ assert.equal(section(entry,'export function readBound','function checkOperationalBindings'),section(oldEntry,'export function readBound','function checkOperationalBindings'));
 });
 test('stage piping uses one detached registered target and rejects failure and log overflow',async()=>{
   for(const mode of ['fail','overflow']){let called=0,killed=false;

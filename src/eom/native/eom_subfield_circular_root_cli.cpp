@@ -1,3 +1,4 @@
+#include "option_b_production_identities.hpp"
 #include "architrino/eom/Decimal.hpp"
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/History.hpp"
@@ -56,13 +57,13 @@ constexpr std::string_view kOutputRoot = ".local-data/braid-analysis/subfield-ci
 constexpr std::string_view kManifestSchema = "braid-program/subfield-circular-history-manifest.v1";
 struct SourceBinding { const char* id; const char* path; const char* hash; };
 constexpr std::array<SourceBinding, 7> kSources{{
- {"circular-core", "src/prescribed-path-analysis/CircularHistoryConformance.mjs", "e06080cc2e7d62af546bb51e60b65e157905c7d765e9f2d5b8c44f71ce3f22f8"},
- {"integer-primitive", "scripts/eom/derive-subfield-circular-root-reference.mjs", "45f27a7aea84b110aa3cfa0583fb869782c2189af6b003aba4ab2215b40ac003"},
- {"root-reference", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-root-reference-20260827-v1.json", "c5c7ae5e44e37c7a03ac916f2c406a657e9b90067c27a596302a2731a9ae066f"},
- {"budget-cli", "scripts/eom/derive-subfield-circular-history-budget.mjs", "5e4aff33e4a82444df5d29b29c2dbd509c935668e262816e1ec0c2128d6732bc"},
- {"construction-budget", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-history-budget-20260827-v1.json", "6c380ecb86be8ca505ef7975cdd4d8fb844e2191762692a6b5e29134ee5bfebf"},
- {"pilot-predeclaration", "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-pilot-predeclaration.md", "b1f0ac316d24637b8ad01f467d33c207e7ed728fa3bd3921824d51697daddc4d"},
- {"whole-manifest-verifier", "scripts/eom/verify-subfield-circular-history.mjs", "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38"}
+ {"circular-core", "src/prescribed-path-analysis/CircularHistoryConformance.mjs", option_b_production::circular_identities[0]},
+ {"integer-primitive", "scripts/eom/derive-subfield-circular-root-reference.mjs", option_b_production::circular_identities[1]},
+ {"root-reference", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-root-reference-20260827-v1.json", option_b_production::circular_identities[2]},
+ {"budget-cli", "scripts/eom/derive-subfield-circular-history-budget.mjs", option_b_production::circular_identities[3]},
+ {"construction-budget", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-history-budget-20260827-v1.json", option_b_production::circular_identities[4]},
+ {"pilot-predeclaration", "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-pilot-predeclaration.md", option_b_production::circular_identities[5]},
+ {"whole-manifest-verifier", "scripts/eom/verify-subfield-circular-history.mjs", option_b_production::circular_identities[6]}
 }};
 constexpr std::array<std::string_view, 16> kCandidates{
  "coincident-midpoint-common-frequency","coincident-midpoint-equal-radius-common-frequency","coincident-midpoint-3-2-1-frequency","phase-compensated-equal-geometry","axially-separated-common-frequency","axially-separated-equal-radius-common-frequency","axially-separated-3-2-1-frequency","axial-transverse-coincident-axis-interior","high-axial-coincident-axis-interior","planar-common-center-three-binary",
@@ -185,6 +186,50 @@ std::string read_bytes(const fs::path& path) {
    throw std::runtime_error("input changed during read");
  return bytes;
 }
+// Physical original-source archives retain their first descriptor and identity.
+// Logical reference names and the numerical implementation remain unchanged.
+class RetainedOriginalInput {
+ fs::path path_;
+ int fd_=-1;
+ struct stat initial_{};
+ static bool same(const struct stat& a,const struct stat& b) {
+#ifdef __APPLE__
+  const bool times=a.st_mtimespec.tv_sec==b.st_mtimespec.tv_sec&&a.st_mtimespec.tv_nsec==b.st_mtimespec.tv_nsec&&a.st_ctimespec.tv_sec==b.st_ctimespec.tv_sec&&a.st_ctimespec.tv_nsec==b.st_ctimespec.tv_nsec;
+#else
+  const bool times=a.st_mtim.tv_sec==b.st_mtim.tv_sec&&a.st_mtim.tv_nsec==b.st_mtim.tv_nsec&&a.st_ctim.tv_sec==b.st_ctim.tv_sec&&a.st_ctim.tv_nsec==b.st_ctim.tv_nsec;
+#endif
+  return S_ISREG(a.st_mode)&&S_ISREG(b.st_mode)&&a.st_dev==b.st_dev&&a.st_ino==b.st_ino&&a.st_size==b.st_size&&times;
+ }
+ void identity()const {
+  struct stat descriptor{},named{};
+  if(::fstat(fd_,&descriptor)||::lstat(path_.c_str(),&named)||!same(initial_,descriptor)||!same(initial_,named)||fs::canonical(path_)!=path_)
+   throw std::runtime_error("original input identity replaced");
+ }
+ std::string snapshot()const {
+  identity();std::string result;std::array<char,65536> chunk{};
+  for(;;){const auto count=::pread(fd_,chunk.data(),chunk.size(),static_cast<off_t>(result.size()));
+   if(count<0&&errno==EINTR)continue;
+   if(count<0)throw std::runtime_error("original input read failed");
+   if(count==0)break;
+   result.append(chunk.data(),static_cast<std::size_t>(count));
+   if(result.size()>64*1024*1024)throw std::runtime_error("original input exceeded bound");}
+  identity();if(result.size()!=static_cast<std::uintmax_t>(initial_.st_size))throw std::runtime_error("original input size changed");return result;
+ }
+ public:
+ std::string bytes;
+ explicit RetainedOriginalInput(const fs::path& path):path_(path) {
+  if(fs::canonical(path_)!=path_)throw std::runtime_error("canonical original input required");
+  fd_=::open(path_.c_str(),O_RDONLY|O_NONBLOCK|O_NOFOLLOW);
+  if(fd_<0)throw std::runtime_error("cannot open original input");
+  try{if(::fstat(fd_,&initial_)||!S_ISREG(initial_.st_mode)||initial_.st_size<0||static_cast<std::uintmax_t>(initial_.st_size)>64*1024*1024)throw std::runtime_error("original input must be bounded regular file");bytes=snapshot();}
+  catch(...){::close(fd_);fd_=-1;throw;}
+ }
+ RetainedOriginalInput(const RetainedOriginalInput&)=delete;
+ RetainedOriginalInput& operator=(const RetainedOriginalInput&)=delete;
+ ~RetainedOriginalInput(){if(fd_>=0)::close(fd_);}
+ void recheck()const{if(snapshot()!=bytes)throw std::runtime_error("original input bytes changed");}
+};
+
 Tree read_json(const std::string& bytes) {
  Tree tree; std::istringstream input(bytes);
  boost::property_tree::read_json(input, tree);
@@ -193,6 +238,8 @@ Tree read_json(const std::string& bytes) {
 struct FrozenInputs {
  fs::path root;
  std::array<std::string, kSources.size()> bytes;
+ std::array<std::unique_ptr<RetainedOriginalInput>, kSources.size()> originals;
+ std::unique_ptr<RetainedOriginalInput> candidate_original, current_verifier;
  std::string source_path, source_hash, source_bytes, speed_upper;
  std::size_t member_count;
  explicit FrozenInputs(const fs::path& requested, const std::string& candidate)
@@ -200,12 +247,15 @@ struct FrozenInputs {
    if (std::find(kCandidates.begin(), kCandidates.end(), candidate) == kCandidates.end())
      throw std::runtime_error("candidate absent from frozen sixteen-row census");
    for (std::size_t i = 0; i < kSources.size(); ++i) {
-     const auto target = fs::canonical(root / kSources[i].path);
+     const auto target = root / option_b_production::circular_original_paths[i];
      if (!within(target, root)) throw std::runtime_error("bound source escapes repository");
-     bytes[i] = read_bytes(target);
+     originals[i]=std::make_unique<RetainedOriginalInput>(target);
+     bytes[i] = originals[i]->bytes;
      if (sha256(bytes[i]) != kSources[i].hash)
        throw std::runtime_error("frozen source mismatch: " + std::string(kSources[i].id));
    }
+   current_verifier=std::make_unique<RetainedOriginalInput>(root / kSources[6].path);
+   if(sha256(current_verifier->bytes)!=option_b_production::circular_current_verifier_identity)throw std::runtime_error("selected current verifier differs");
    const auto report = read_json(bytes[2]);
    const auto& rows = report.get_child("results");
    if (!report.get<bool>("accepted") || report.get<std::string>("normalizedFieldSpeed") != "1" ||
@@ -223,16 +273,15 @@ struct FrozenInputs {
      }
    }
    if (member_count != 6 && member_count != 12) throw std::runtime_error("wrong member count");
-   const auto target = fs::canonical(root / source_path);
+   const auto target = root / source_path;
    if (!within(target, root)) throw std::runtime_error("candidate source escapes repository");
-   source_bytes = read_bytes(target);
+   candidate_original=std::make_unique<RetainedOriginalInput>(target);
+   source_bytes = candidate_original->bytes;
    if (sha256(source_bytes) != source_hash) throw std::runtime_error("candidate source hash mismatch");
  }
  void recheck() const {
-   for (std::size_t i = 0; i < kSources.size(); ++i)
-     if (read_bytes(root / kSources[i].path) != bytes[i])
-       throw std::runtime_error("frozen source changed: " + std::string(kSources[i].id));
-   if (read_bytes(root / source_path) != source_bytes) throw std::runtime_error("candidate source changed");
+   for (const auto& original:originals)original->recheck();
+   candidate_original->recheck();current_verifier->recheck();
  }
  std::string binding_json() const {
    Object out; out.string("path", source_path); out.string("sha256", source_hash); return out.finish();
@@ -667,9 +716,12 @@ void check_conformance(const std::string& bytes, const Options& o, const std::st
      throw std::runtime_error("duplicate conformance binding");
  }
  if (bindings.size() != kSources.size()+1) throw std::runtime_error("conformance binding census differs");
- for (const auto& binding : kSources)
-   if (bindings.at(binding.id) != std::make_pair(std::string(binding.path), std::string(binding.hash)))
+ for (const auto& binding : kSources) {
+   const auto& actual=bindings.at(binding.id);
+   const bool current_verifier=std::string(binding.id)=="whole-manifest-verifier"&&actual==std::make_pair(std::string(binding.path),std::string(option_b_production::circular_current_verifier_identity));
+   if (!current_verifier&&actual != std::make_pair(std::string(binding.path), std::string(binding.hash)))
      throw std::runtime_error("conformance frozen binding differs");
+ }
  if (bindings.at("candidate-source") != std::make_pair(inputs.source_path, inputs.source_hash))
    throw std::runtime_error("conformance candidate binding differs");
  // The coordinator authenticates the actual verifier process/build and receipt

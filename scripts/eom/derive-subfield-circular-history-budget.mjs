@@ -1,3 +1,6 @@
+import { productionAdmission } from "../equation-mapping/production-source-records.mjs";
+const production = productionAdmission(import.meta.url);
+const OPTION_B_PRODUCTION_IDENTITIES = production.identities();
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -6,9 +9,9 @@ import { CIRCULAR_ERROR_CONTRACT, circularConstructionBudget } from "../../src/p
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const REFERENCE = ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-root-reference-20260827-v1.json";
-const REFERENCE_SHA = "c5c7ae5e44e37c7a03ac916f2c406a657e9b90067c27a596302a2731a9ae066f";
+const REFERENCE_SHA = OPTION_B_PRODUCTION_IDENTITIES[0];
 const PRIMITIVE = "scripts/eom/derive-subfield-circular-root-reference.mjs";
-const PRIMITIVE_SHA = "45f27a7aea84b110aa3cfa0583fb869782c2189af6b003aba4ab2215b40ac003";
+const PRIMITIVE_SHA = OPTION_B_PRODUCTION_IDENTITIES[1];
 const sha = (data) => createHash("sha256").update(data).digest("hex");
 
 try {
@@ -16,7 +19,8 @@ try {
   const output = process.argv[3];
   if (existsSync(output)) throw new Error("output already exists; use a new report path");
   const referenceBytes = readFileSync(path.join(ROOT, REFERENCE));
-  if (sha(referenceBytes) !== REFERENCE_SHA || sha(readFileSync(path.join(ROOT, PRIMITIVE))) !== PRIMITIVE_SHA) throw new Error("frozen reference drift");
+  const primitivePair=production.sourcePair(PRIMITIVE);
+  if (sha(referenceBytes) !== REFERENCE_SHA || sha(Buffer.from(primitivePair.original)) !== PRIMITIVE_SHA || !readFileSync(path.join(ROOT, PRIMITIVE)).equals(Buffer.from(primitivePair.current))) throw new Error("frozen reference drift");
   const reference = JSON.parse(referenceBytes);
   if (!reference.accepted || reference.results.length !== 16 || reference.results.some((row) => !row.passed)) throw new Error("incomplete root-reference census");
   const instrumentPaths = ["scripts/eom/derive-subfield-circular-history-budget.mjs", "src/prescribed-path-analysis/CircularHistoryConformance.mjs", PRIMITIVE];
@@ -41,8 +45,10 @@ try {
   const result = { schema: "braid-program/subfield-circular-history-construction-budget.v1", accepted: results.every((row) => row.accepted),
     authority: "conditional-construction-budget-only", actualCarrierValidated: false, h3EvidenceEligible: false,
     normalizedFieldSpeed: "1", contract: CIRCULAR_ERROR_CONTRACT, referencePath: REFERENCE, referenceSha256: REFERENCE_SHA,
-    instrumentBindings, results };
+    instrumentBindings, originalPrimitiveApplicability:{path:PRIMITIVE,sha256:PRIMITIVE_SHA,bytes:Buffer.byteLength(primitivePair.original)}, results };
+  production.check();
   writeFileSync(output, `${JSON.stringify(result, null, 2)}\n`, { flag: "wx" });
+  production.check();
   console.log(JSON.stringify({ accepted: result.accepted, candidates: results.length,
     members: results.reduce((total, row) => total + row.members.length, 0), actualCarrierValidated: false }));
   if (!result.accepted) process.exitCode = 1;

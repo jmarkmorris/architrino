@@ -1,3 +1,4 @@
+import {originalProductionTestData} from './support/option-b-production-hosts.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -22,7 +23,7 @@ function fixture(t){
 test('original data generators contracts browser APIs and historical F5 selections remain exact',()=>{
  const proof=decode(fs.readFileSync(proofPath));
  const retainedF5=new Map([['reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld','reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-operational-sources.jsonld'],['reference/priorities/development-process-review/contracts/option-b-f5-evolution-sources.jsonld','reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-evolution-sources.jsonld']]);
- for(const row of proof.unchanged){const original=execFileSync('git',['show',proof.originCommit+':'+row.path]);assert.equal(sha256(original),row.sha256);assert.deepEqual(fs.readFileSync(retainedF5.get(row.path)??row.path),original,row.path);} // Original F5 selections stay historical; current operational selections have separate admission.
+ for(const row of proof.unchanged){const original=execFileSync('git',['show',proof.originCommit+':'+row.path]);assert.equal(sha256(original),row.sha256);assert.deepEqual((retainedF5.has(row.path)?fs.readFileSync(retainedF5.get(row.path)):originalProductionTestData(row.path)??fs.readFileSync(row.path)),original,row.path);} // Original F5 selections stay historical; current operational selections have separate admission.
  for(const row of proof.projections)assert.equal(sha256(fs.readFileSync(row.path)),row.sha256);
 });
 

@@ -24,13 +24,27 @@ export async function compareSourceManifests(previous, current) {
     else { seeds.add(row.from); seeds.add(row.to); }
   }
   const affected = new Set(seeds), engine = new QueryEngine();
-  for (const graph of [old, now]) for (const seed of seeds) {
-    // N3 terms serialize fixed validated source IDs; no user-written query text.
-    if (!/^https:\/\/[^\s<>"{}|^`\\]+$/u.test(seed)) throw Error('Unsafe query identity');
-    const results = await engine.queryBindings(`SELECT DISTINCT ?x WHERE { ?x <${NS}input>+ <${seed}> }`, { sources: [graph.impact] });
-    for (const row of await results.toArray()) affected.add(row.get('x').value);
-  }
+  for (const graph of [old, now]) for (const id of await queryDeclaredImpact(engine, graph.impact, seeds)) affected.add(id);
   const checks = new Set([...old.edges, ...now.edges].filter(e => e.kind === 'checks' && affected.has(e.to)).map(e => e.from));
   for (const source of [...old.sources.values(), ...now.sources.values()]) if (source.role === 'admission' && affected.has(source['@id'])) checks.add(source['@id']);
   return { status: changed.length || metadataChanged ? 'review-required' : 'unchanged', metadataChanged, changed: changed.sort(), removed: [...a.keys()].filter(k => !b.has(k)).sort(), added: [...b.keys()].filter(k => !a.has(k)).sort(), affected: [...affected].sort(), selectedChecks: [...checks].sort(), authority: 'declared-dependency-impact-only' };
+}
+
+// A finite visited frontier avoids recursive property-path iterator stalls on
+// cyclic dependency graphs. Every expansion remains a fixed local SPARQL query.
+export async function queryDeclaredImpact(engine, impact, seeds) {
+  const visited = new Set(seeds);
+  let frontier = [...visited];
+  while (frontier.length) {
+    for (const id of frontier) if (!/^https:\/\/[^\s<>"{}|^`\\]+$/u.test(id)) throw Error('Unsafe query identity');
+    const values = frontier.map(id => '<' + id + '>').join(' ');
+    const results = await engine.queryBindings(`SELECT DISTINCT ?x WHERE { VALUES ?target { ${values} } ?x <${NS}input> ?target }`, { sources: [impact] });
+    const next = [];
+    for (const row of await results.toArray()) {
+      const id = row.get('x').value;
+      if (!visited.has(id)) { visited.add(id); next.push(id); }
+    }
+    frontier = next;
+  }
+  return visited;
 }

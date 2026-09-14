@@ -7,6 +7,7 @@ implementation. No import by that alias may select an on-disk or cached module.
 Exact source-byte and AST checks constrain this batch to six binding assignments.
 No actual export, guard, reconstruction, pilot or root-cover data is read here.
 """
+from option_b_production_records import source_bytes as _option_b_source_bytes, exec_source as _option_b_exec_source
 from option_b_batch_records import batch_identities, original_test_source
 OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
@@ -37,7 +38,7 @@ def pinned(path, expected):
     if relative in {"tests/test_f6c_cached_continuous_reception_root_cover.py", "tests/test_eom_continuous_reception_roots_cached.py"}:
         raw = original_test_source(ROOT, __file__, relative)
     else:
-        raw = path.read_bytes()
+        raw = _option_b_source_bytes(__file__, path)
     if hashlib.sha256(raw).hexdigest() != expected:
         raise AssertionError("frozen source changed: "+str(path))
     return raw
@@ -61,13 +62,23 @@ pinned(ROOT/"scripts/eom/oracle/continuous_reception_roots_cached.py", CACHED_SH
 pinned(ROOT/"tests/test_eom_continuous_reception_roots_cached.py", OPTION_B_BATCH_IDENTITIES[6])
 pinned(ROOT/"scripts/eom/verify-f6c-continuous-reception-root-cover.py", OPTION_B_BATCH_IDENTITIES[7])
 pinned(ROOT/"reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md", DECLARATION_SHA)
-S = captured_module("synthetic_cached_f6c_cover_subject", SOURCE, SOURCE.read_bytes())
+SOURCE_BYTES = _option_b_source_bytes(__file__, SOURCE)
+S = captured_module("synthetic_cached_f6c_cover_subject", SOURCE, SOURCE_BYTES)
 V = captured_module("frozen_cached_f6c_cover_reference", REFERENCE, REFERENCE_BYTES)
 LEGACY = captured_module("original_f6c_subject_controls_for_cached_successor", BASE_TESTS, CONTROL_BYTES)
-BASE_MODULE = LEGACY.S
+BASE_MODULE = captured_module("original_uncached_f6c_cover_subject", BASE, BASE_BYTES)
 # Preserve every original test function and synthetic fixture. Retarget only
 # its subject/reference handles and negative-CLI subject path.
 LEGACY.S, LEGACY.V, LEGACY.SOURCE = S, V, SOURCE
+# Original test bodies retain logical repository paths while code-byte reads
+# resolve through the authenticated original generation. Temporary outputs and
+# scientific data paths keep ordinary filesystem behavior.
+class OriginalCodePath(type(ROOT)):
+    def read_bytes(self):
+        if self.is_relative_to(ROOT) and self.relative_to(ROOT).parts[0] in ("scripts", "tests"):
+            return _option_b_source_bytes(__file__, Path(self))
+        return super().read_bytes()
+LEGACY.ROOT = OriginalCodePath(ROOT)
 
 
 def assignments(raw):
@@ -106,23 +117,23 @@ def require_exact_successor(raw):
 
 
 class CachedBindingTests(unittest.TestCase):
-    def test_exact_source_bytes_only_six_binding_assignments_changed(self):
-        require_exact_successor(SOURCE.read_bytes())
+    def test_original_source_bytes_only_six_binding_assignments_changed(self):
+        require_exact_successor(SOURCE_BYTES)
         self.assertEqual(pinned(BASE, BASE_SHA), BASE_BYTES)
         self.assertEqual(pinned(BASE_TESTS, BASE_TESTS_SHA), CONTROL_BYTES)
 
-    def test_ast_and_every_function_body_unchanged(self):
+    def test_original_ast_and_every_function_body_unchanged(self):
         def stripped(raw):
             tree = ast.parse(raw)
             tree.body = [node for node in tree.body if not (
                 isinstance(node, ast.Assign) and len(node.targets) == 1
                 and isinstance(node.targets[0], ast.Name) and node.targets[0].id in ALLOWED)]
             return ast.dump(tree, include_attributes=False)
-        self.assertEqual(set(assignments(SOURCE.read_bytes())), ALLOWED)
-        self.assertEqual(stripped(BASE_BYTES), stripped(SOURCE.read_bytes()))
+        self.assertEqual(set(assignments(SOURCE_BYTES)), ALLOWED)
+        self.assertEqual(stripped(BASE_BYTES), stripped(SOURCE_BYTES))
 
     def test_source_delta_guard_rejects_math_limits_alias_and_binding_edits(self):
-        raw = SOURCE.read_bytes()
+        raw = SOURCE_BYTES
         for before, after in ((b'LIMIT = 1800', b'LIMIT = 1801'),
                               (b'row.distance.lower > 0', b'row.distance.lower >= 0'),
                               (b'("continuous_reception_roots", "rootLibrary")', b'("continuous_reception_roots_cached", "rootLibrary")'),

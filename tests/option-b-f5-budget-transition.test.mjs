@@ -1,3 +1,4 @@
+import {productionTestAdmission} from './support/option-b-production-hosts.mjs';
 import { retainedSelectedBytes } from './support/option-b-retained-test-identities.mjs';
 import { decode as decodeOperationalSelection } from '../scripts/equation-mapping/current-source-manifest.mjs';
 import test from 'node:test';
@@ -96,7 +97,7 @@ test('reviewed family record binds exact predecessor copies, successor maps and 
   const bindings=old[['sourceBindings','bindings'][index]];
   assert.ok(bindings.some(b=>b.path.endsWith('src/apps/borg/BorgCertifiedBudgets.js')&&b.sha256===oldBudget.binding.sha256));
  }
- assert.equal(sha(readFileSync(record.circularReleaseInventory.path)),record.circularReleaseInventory.afterSha256);
+ assert.equal(sha(productionTestAdmission().sourcePair(record.circularReleaseInventory.path,record.circularReleaseInventory.afterSha256).original),record.circularReleaseInventory.afterSha256);
  assert.deepEqual(record.circularReleaseInventory.addedScientificSources,budgetPaths);
 });
 
@@ -104,7 +105,10 @@ test('circular release metadata inventories all four budget sources and rejects 
  const root=realpathSync(mkdtempSync(path.join(tmpdir(),'f5-budget-release-')));t.after(()=>rmSync(root,{recursive:true,force:true}));
  const put=(p,data)=>{mkdirSync(path.dirname(path.join(root,p)),{recursive:true});writeFileSync(path.join(root,p),data);};
  const freezer='scripts/eom/freeze-planar-three-binary-circular-release-bindings.mjs';
- put(freezer,readFileSync(freezer));
+ const recorded=decode(readFileSync(recordPath)).circularReleaseInventory;
+ assert.equal(recorded.path,freezer);
+ const original=productionTestAdmission().sourcePair(freezer,recorded.afterSha256).original;
+ assert.equal(sha(original),recorded.afterSha256);put(freezer,original);
  for(const p of ['scripts/eom/prepare-planar-three-binary-circular-release.mjs','scripts/eom/run-planar-three-binary-circular-release.mjs',
   'scripts/eom/check-planar-three-binary-circular-release.py','scripts/eom/prepare-ordinary-evolution-request.mjs',
   'scripts/eom/BorgNativeEomProcessClient.mjs','src/apps/borg/BorgCertifiedBudgets.js',...budgetPaths,'src/eom/synthetic.txt'])put(p,'synthetic metadata only\n');
@@ -112,6 +116,7 @@ test('circular release metadata inventories all four budget sources and rejects 
  for(const rung of ['coarse','medium','fine'])put('prepared/'+rung+'-request.json',JSON.stringify({transportRequest:{runId:'b1-3-circular-'+rung+'-v1'},wire:{utf8:'synthetic',sha256:sha('synthetic'),bytes:9}}));
  const run=out=>spawnSync(process.execPath,[path.join(root,freezer),'--prepared',path.join(root,'prepared'),'--binary',path.join(root,'binary'),'--out',path.join(root,out)],{cwd:root,encoding:'utf8',timeout:5000});
  const good=run('positive.json');assert.equal(good.status,0,good.stderr);
+ productionTestAdmission().check();
  const captured=JSON.parse(readFileSync(path.join(root,'positive.json')));assert.equal(captured.executionAuthorized,false);
  for(const p of budgetPaths)assert.equal(captured.bindings.filter(b=>b.path===path.join(root,p)&&b.role==='scientific-source').length,1);
  for(const p of budgetPaths){rmSync(path.join(root,p));const bad=run('missing.json');assert.equal(bad.status,1);assert.match(bad.stderr,/ENOENT/);put(p,'synthetic metadata only\n');}

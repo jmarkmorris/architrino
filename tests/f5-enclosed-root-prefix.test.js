@@ -1,3 +1,6 @@
+import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
+import * as optionBProductionModule0 from "../scripts/eom/verify-f5-enclosed-root-prefix.mjs";
+optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/verify-f5-enclosed-root-prefix.mjs"));
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";

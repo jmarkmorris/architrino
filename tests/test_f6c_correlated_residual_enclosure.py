@@ -1,4 +1,5 @@
 """Exact known-answer box-envelope controls; no actual-data evaluation."""
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 from dataclasses import FrozenInstanceError, asdict, replace
 from decimal import localcontext
@@ -16,7 +17,7 @@ def load(name, relative):
     spec = importlib.util.spec_from_file_location(name, ROOT / relative)
     module = importlib.util.module_from_spec(spec)
     sys.modules[name] = module
-    spec.loader.exec_module(module)
+    _option_b_exec_module(__file__, spec, module)
     return module
 
 

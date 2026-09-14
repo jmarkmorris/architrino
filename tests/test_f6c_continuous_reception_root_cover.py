@@ -4,6 +4,7 @@ Positive row plumbing uses eight explicitly artificial stationary histories.
 Their exact distances and factors are known without the comparison instrument.
 It never produces a production accepted receipt or consumes real F6c inputs.
 """
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from contextlib import ExitStack, redirect_stdout
 from copy import deepcopy
 from decimal import Decimal
@@ -24,7 +25,7 @@ from unittest.mock import patch
 SOURCE = Path(__file__).resolve().parents[1]/"scripts/eom/verify-f6c-continuous-reception-root-cover.py"
 SPEC = importlib.util.spec_from_file_location("independent_f6c_cover", SOURCE)
 V = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(V)
+_option_b_exec_module(__file__, SPEC, V)
 
 
 def token(value):

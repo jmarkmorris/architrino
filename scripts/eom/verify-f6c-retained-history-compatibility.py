@@ -9,6 +9,90 @@ witness with the represented EOM subject or certifies dynamics or metrics.
 
 from __future__ import annotations
 
+if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
+    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
+    from pathlib import Path as _b_Path
+    _b_root = _b_Path(__file__).resolve().parents[2]
+    _b_held = {}
+    def _b_identity(path):
+        value = path.lstat()
+        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
+    def _b_capture(relative, expected=None):
+        if (type(relative) is not str or not relative or '\\' in relative
+                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
+            raise ValueError('Unsafe selected Python bootstrap path')
+        path = _b_root / relative
+        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
+            raise ValueError('Canonical regular Python bootstrap source required')
+        before = _b_identity(path)
+        if relative in _b_held and _b_held[relative] != before:
+            raise ValueError('Selected Python bootstrap source replaced')
+        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
+        try:
+            value = _b_os.fstat(fd)
+            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
+                raise ValueError('Bounded Python bootstrap source required')
+            parts = []; size = 0
+            while size < value.st_size:
+                part = _b_os.read(fd, min(65536, value.st_size-size))
+                if not part: raise ValueError('Truncated Python bootstrap source')
+                parts.append(part); size += len(part)
+            raw = b''.join(parts); value = _b_os.fstat(fd)
+            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
+                raise ValueError('Selected Python bootstrap source changed during capture')
+        finally:
+            _b_os.close(fd)
+        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
+            raise ValueError('Selected Python bootstrap digest differs')
+        _b_held[relative] = before
+        return raw
+    def _b_unique(pairs):
+        result = {}
+        for key,value in pairs:
+            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
+            result[key] = value
+        return result
+    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
+    def _b_recheck():
+        for relative,identity in _b_held.items():
+            if _b_identity(_b_root/relative) != identity:
+                raise ValueError('Retained Python bootstrap source replaced')
+    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
+    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
+    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
+    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
+    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
+    _b_path = 'scripts/eom/production_source_records.py'
+    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
+    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
+            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
+            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
+        raise ValueError('Exact selected Python production bridge required')
+    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
+    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
+    _b_bridge.__file__ = str(_b_root/_b_path)
+    _b_sys.modules[_b_bridge.__name__] = _b_bridge
+    _b_recheck()
+    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
+    _b_recheck()
+    def _b_call(name, *args, **kwargs):
+        _b_recheck()
+        result = getattr(_b_bridge,name)(*args,**kwargs)
+        _b_recheck()
+        return result
+    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
+    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
+    production_recheck = lambda: _b_call('production_recheck')
+    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
+    production_runtime_binding = lambda: _b_call('production_runtime_binding')
+    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
+    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+
+if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
+        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
+        or len(OPTION_B_PRODUCTION_IDENTITIES) != 1):
+    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
 import argparse
 from contextlib import ExitStack
 from fractions import Fraction
@@ -25,7 +109,7 @@ import time
 
 
 _EXECUTING_CODE = sys._getframe().f_code
-EXPORT_SHA256 = "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1"
+EXPORT_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[0]
 SCHEMA = "braid-program/f6c-retained-history-compatibility.v1"
 RUN_ID = "f6c-balanced-tetrahedral-p0.678-n1.25-th3.36-br0.787-cp1.76-hp0.0771-hm-0.147-rp0.0463-rm-0.134-tp0.116-tm-0.254-hhp4.82-hhm2.21-hrp6-hrm3.44-v1"
 LABELS = ("0+", "0-", "1+", "1-", "2+", "2-", "3+", "3-")
@@ -40,6 +124,57 @@ DECIMAL_TOKEN = re.compile(r"-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE]([+-]?[0-9]+
 SEGMENT_KEYS = {"startTime", "endTime", "coefficients", "positionErrors",
                 "velocityErrors", "positionError", "velocityError"}
 
+
+
+
+
+from contextlib import contextmanager
+
+
+class _ProductionOriginal:
+    """Original logical binding backed by an independently owned archive handle."""
+    def __init__(self, physical, logical):
+        object.__setattr__(self,'_physical',physical)
+        object.__setattr__(self,'path',logical)
+    def __getattr__(self,name):return getattr(self._physical,name)
+    def __setattr__(self,name,value):setattr(self._physical,name,value)
+    def binding(self):
+        result=self._physical.binding();result['path']=str(self.path);return result
+    def physical_binding(self):return self._physical.binding()
+    def recheck(self):
+        result=self._physical.recheck()
+        if isinstance(result,dict) and 'path' in result:
+            result=dict(result);result['path']=str(self.path)
+        return result
+
+
+@contextmanager
+def _production_capture(cls, filename, limit, **kwargs):
+    from pathlib import Path as _Path
+    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
+    if not _path.is_absolute():_path=_root/_path
+    try:_relative=_path.relative_to(_root).as_posix()
+    except ValueError:_binding=None
+    else:
+        if _path!=_path.resolve():raise ValueError('noncanonical original capture')
+        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
+
+    _physical=_Path(_binding['path']) if _binding is not None else _path
+    production_recheck()
+    with cls(_physical,limit,**kwargs) as _held:
+        if _binding is not None and (_held.binding()['bytes']!=_binding['bytes'] or _held.binding()['sha256']!=_binding['sha256']):raise ValueError('original archive identity differs')
+        try:yield _ProductionOriginal(_held,_path) if _binding is not None else _held
+        finally:
+            if _binding is not None:_held.recheck()
+            production_recheck()
+
+def _production_current_source(raw):
+    from pathlib import Path as _Path
+    _root=_Path(__file__).resolve().parents[2]
+    _original,_current,_=production_source_pair(_root,__file__,_Path(__file__).resolve().relative_to(_root).as_posix())
+    require(raw==_original or raw==_current,'executing instrument differs from captured source')
+    production_recheck()
+    return _current
 
 class CompatibilityError(ValueError):
     pass
@@ -340,7 +475,7 @@ class BoundFile:
 
 
 def verify_executing_source(data):
-    require(compile(data, _EXECUTING_CODE.co_filename, "exec", dont_inherit=True,
+    require(compile(_production_current_source(data), _EXECUTING_CODE.co_filename, "exec", dont_inherit=True,
                     optimize=sys.flags.optimize) == _EXECUTING_CODE,
             "executing instrument differs from captured source")
 
@@ -515,12 +650,12 @@ def _verify_export_watched(history_export, output, watch):
     with ExitStack() as stack:
         bound = []
         try:
-            instrument = stack.enter_context(BoundFile(__file__, MAX_SOURCE_BYTES))
+            instrument = stack.enter_context(_production_capture(BoundFile, __file__, MAX_SOURCE_BYTES))
             bound.append(("instrument", instrument))
             packet["instrumentBefore"] = instrument.binding()
             verify_executing_source(instrument.data)
             packet["executingCodeBinding"] = "captured-source compilation equals executing module code object"
-            source = stack.enter_context(BoundFile(history_export, MAX_INPUT_BYTES))
+            source = stack.enter_context(_production_capture(BoundFile, history_export, MAX_INPUT_BYTES))
             bound.append(("historyExport", source))
             packet["historyExportBefore"] = source.binding()
             require(source.digest == EXPORT_SHA256, "frozen original export SHA-256 mismatch")

@@ -25,13 +25,22 @@ import types
 ROOT = Path(__file__).resolve().parents[2]
 PRECISION = 80
 OUTPUT_LIMIT = 64 * 1024 * 1024
-HANDOFF_SHA = "4e0696a848a0d36ccbe5948295e71738c933b7ea120e9aee00e2effdd6ecc149"
+if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
+    import importlib.util as _option_b_importlib
+    from pathlib import Path as _OptionBPath
+    _option_b_root = _OptionBPath(__file__).resolve().parents[2]
+    _option_b_spec = _option_b_importlib.spec_from_file_location("_option_b_production_source_records", _option_b_root / "scripts/eom/production_source_records.py")
+    _option_b_bridge = _option_b_importlib.module_from_spec(_option_b_spec)
+    _option_b_spec.loader.exec_module(_option_b_bridge)
+    OPTION_B_PRODUCTION_IDENTITIES = _option_b_bridge.production_identities(__file__)
+
+HANDOFF_SHA = OPTION_B_PRODUCTION_IDENTITIES[0]
 ORACLE_HASHES = {
-    "__init__": "de6f7aeb0acfc97c996d601059ad243b886d9381247fbf9541acacc74bac3ae1",
-    "decimal_interval": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
-    "certified_history": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7",
-    "certified_acceleration": "62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83",
-    "certified_evolution": "00567dfef3163d40634dd5790d5eeb667cff8698394831130e8cb91937ddc80a",
+    "__init__": OPTION_B_PRODUCTION_IDENTITIES[1],
+    "decimal_interval": OPTION_B_PRODUCTION_IDENTITIES[2],
+    "certified_history": OPTION_B_PRODUCTION_IDENTITIES[3],
+    "certified_acceleration": OPTION_B_PRODUCTION_IDENTITIES[4],
+    "certified_evolution": OPTION_B_PRODUCTION_IDENTITIES[5],
 }
 
 

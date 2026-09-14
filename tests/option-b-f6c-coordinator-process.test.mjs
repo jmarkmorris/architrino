@@ -1,3 +1,4 @@
+import {loadProductionTestModule,productionTestAdmission} from './support/option-b-production-hosts.mjs';
 import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
 const NEXT_TEST_SHA = nextTestIdentities("tests/option-b-f6c-coordinator-process.test.mjs", 2);
 // Host-dependent synthetic operational controls. No numerical producer or oracle.
@@ -10,7 +11,7 @@ import {createHash} from 'node:crypto';
 import {mkdtempSync,mkdirSync,readFileSync,writeFileSync,realpathSync,statSync,existsSync} from 'node:fs';
 import path from 'node:path';
 import * as C from '../scripts/eom/f6c-bounded-operation.mjs';
-import {LOCK} from '../scripts/eom/verify-f6c-bounded-operation-closure.mjs';
+const {LOCK}=await loadProductionTestModule(import.meta.url,"scripts/eom/verify-f6c-bounded-operation-closure.mjs");
 const exec=promisify(execFile),root=realpathSync(process.cwd());
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const bind=p=>({path:p,sha256:hash(readFileSync(p)),bytes:statSync(p).size});
@@ -56,7 +57,9 @@ test('current serial coordinator closes through the independently selected obser
  const planPath=path.join(dir,'plan.json');writeFileSync(planPath,canonical(plan)+'\n',{flag:'wx'});
  const observer=bind(path.join(root,'scripts/eom/observe-parent-batch.mjs'));
  const checker=bind(path.join(root,'scripts/eom/verify-f6c-bounded-operation-closure.mjs'));
- assert.equal(checker.sha256,NEXT_TEST_SHA[1],'independently reviewed frozen checker');
+ const checkerPair=productionTestAdmission().sourcePair('scripts/eom/verify-f6c-bounded-operation-closure.mjs');
+ assert.equal(hash(checkerPair.original),NEXT_TEST_SHA[1],'independently reviewed original checker');
+ assert.equal(checker.sha256,hash(checkerPair.current),'authenticated current checker');
  const coordinator=bind(path.join(root,C.SELF)),out=path.join(dir,'observer');
  const args=['--control','--plan',planPath,'--plan-sha256',bind(planPath).sha256,
   '--self-sha256',observer.sha256,'--checker-sha256',checker.sha256,'--coordinator-sha256',coordinator.sha256,

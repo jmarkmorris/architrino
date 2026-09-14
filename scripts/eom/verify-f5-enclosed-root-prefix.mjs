@@ -9,9 +9,13 @@ import { Worker } from "node:worker_threads";
 export const PREFIX_SCHEMA = "braid-program/f5-enclosed-root-prefix-reduction.v1";
 export const BRIDGE_PATH = "scripts/eom/verify-f5-enclosed-root-prefix.mjs";
 export const REDUCER_PATH = "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs";
-export const REDUCER_SHA256 = "1b5051928406482ffa3fecfaa60b1e94d3f1372ed87ea2ea5e7442523ddc8fd0";
+export let REDUCER_SHA256;
 export const EXPORT_APPENDIX = "\nexport { validateConfigAndPilot, validateEnclosureReport, expectedMembersFromConfig, validateHistoryManifest, validateRungPacket, validateRepeatedReceptionRoots, repositoryReader };\n";
-export const APPENDIX_SHA256 = "1399ee788e554642ac53a31635c2e91cc51de966089fa5a6e8ce85aaf458d786";
+export let APPENDIX_SHA256;
+export function initializeProductionIdentities(values){
+  if(!Array.isArray(values)||values.length!==2||values.some(value=>typeof value!=="string"||!/^[a-f0-9]{64}$/u.test(value)))throw Error("Exact selected prefix identity census required");
+  [REDUCER_SHA256,APPENDIX_SHA256]=values;
+}
 const HEARTBEAT_MS = 15000;
 const DEADLINE_MS = 1800000;
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -95,7 +99,9 @@ export async function verifyPrefixSnapshot(snapshot, progress = () => {}) {
   };
   const bridgeBytes = readRepositoryBytes(BRIDGE_PATH);
   if (!bridgeBytes.equals(Buffer.from(snapshot.bridgeBytes))) reject("bridge changed after capture");
-  const reducerBytes = readRepositoryBytes(REDUCER_PATH);
+  const reducerCurrentBytes = readRepositoryBytes(REDUCER_PATH);
+  if(!Array.isArray(snapshot.productionIdentities)||!Buffer.from(snapshot.currentReducerBytes??[]).equals(reducerCurrentBytes))reject("selected current reducer snapshot differs");
+  const reducerBytes = Buffer.from(snapshot.originalReducerBytes??[]);
   if (sha(reducerBytes) !== REDUCER_SHA256 || sha(EXPORT_APPENDIX) !== APPENDIX_SHA256) {
     reject("frozen reducer or fixed export appendix changed");
   }
@@ -192,12 +198,17 @@ function parseArgs(argv) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (existsSync(args.output)) reject("output already exists; choose a fresh evidence path");
+  const {beginProductionAdmission}=await import('../equation-mapping/production-source-records.mjs');
+  const production=beginProductionAdmission({root:args.repoRoot,consumer:BRIDGE_PATH});
+  initializeProductionIdentities(production.identities());
+  const reducerPair=production.sourcePair(REDUCER_PATH,REDUCER_SHA256);
   const bridgeFile = fileURLToPath(import.meta.url);
   const bridgeBytes = readRegularBytes(bridgeFile);
   const started = Date.now();
   let progress = { stage: "started", completedRungs: 0 };
   process.stdout.write(`${JSON.stringify({ ...progress, heartbeatSeconds: 15, limitSeconds: 1800 })}\n`);
-  const snapshot = { ...args, bridgeFile, bridgeBytes, bridgeSha256: sha(bridgeBytes) };
+  const snapshot = { ...args, bridgeFile, bridgeBytes, bridgeSha256: sha(bridgeBytes),productionIdentities:production.identities(),originalReducerBytes:Buffer.from(reducerPair.original),currentReducerBytes:Buffer.from(reducerPair.current) };
+  production.check();
   const worker = new Worker(`
     const { parentPort, workerData } = require("node:worker_threads");
     const { createHash } = require("node:crypto");
@@ -205,6 +216,7 @@ async function main() {
       const bytes = Buffer.from(workerData.bridgeBytes);
       if (createHash("sha256").update(bytes).digest("hex") !== workerData.bridgeSha256) throw new Error("bridge snapshot hash mismatch");
       const bridge = await import("data:text/javascript;base64," + bytes.toString("base64"));
+      bridge.initializeProductionIdentities(workerData.productionIdentities);
       const result = await bridge.verifyPrefixSnapshot(workerData, event => parentPort.postMessage({ event }));
       parentPort.postMessage({ result });
     })().catch(error => { parentPort.postMessage({ failure: String(error.message) }); process.exitCode = 1; });
@@ -243,7 +255,9 @@ async function main() {
     result.resourceContact = true;
     result.failure = "prefix verification deadline reached";
   }
+  production.check();
   writeFileSync(args.output, `${JSON.stringify(result, null, 2)}\n`, { flag: "wx" });
+  production.check();
   process.stdout.write(`${JSON.stringify({ accepted: result.accepted, h3EvidenceEligible: false,
     rungOrder: result.rungOrder ?? [], output: args.output })}\n`);
   if (!result.accepted) process.exitCode = 1;

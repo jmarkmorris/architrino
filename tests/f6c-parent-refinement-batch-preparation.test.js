@@ -1,3 +1,4 @@
+import {loadProductionTestModule} from './support/option-b-production-hosts.mjs';
 import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';
 const optionBIdentities = retainedTestIdentities("tests/f6c-parent-refinement-batch-preparation.test.js");
 const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/f6c-parent-refinement-batch-preparation.test.js"].sha256]);
@@ -12,24 +13,30 @@ import {tmpdir} from 'node:os';
 import fs from 'node:fs';
 import {syncBuiltinESMExports} from 'node:module';
 import path from 'node:path';
-import * as P from '../scripts/eom/prepare-f6c-parent-refinement-batch.mjs';
+const P=await loadProductionTestModule(import.meta.url,"scripts/eom/prepare-f6c-parent-refinement-batch.mjs");
 import * as C from '../scripts/eom/f6c-bounded-operation.mjs';
-import * as B from '../scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs';
+const B=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs");
 const root=realpathSync(process.cwd()),sha=raw=>createHash('sha256').update(raw).digest('hex');
-const bind=(p,h='a'.repeat(64),bytes=1)=>({path:p,sha256:h,bytes});
+const bind=(p,h,bytes=1)=>{const selected=sourceAdmission.sources.find(b=>b.path===path.resolve(root,p));return h===undefined&&selected?structuredClone(selected):{path:p,sha256:h??'a'.repeat(64),bytes};};
+const originalBind=(p,h,bytes)=>{const selected=sourceAdmission.sources.find(b=>b.path===path.resolve(root,p));if(selected&&selected.sha256!==h){const archive=sourceAdmission.production.originalSourceBinding(p,h);return bind(p,h,archive.bytes);}return bind(p,h,bytes??selected?.bytes??1);};
 const abs=b=>({...b,path:path.resolve(root,b.path)});
 const sourceAdmission=await C.initializeSourceBindings(root,sha(readFileSync(path.join(root,C.SOURCE_MAP))));
 function fixture(){
  const pythonCommand=path.resolve(root,process.env.AAA_VENV??'../.venv','bin/python'),git=realpathSync('/usr/bin/git');
  const runtimeBindings=[bind(realpathSync(pythonCommand)),bind(path.resolve(path.dirname(pythonCommand),'../pyvenv.cfg')),bind(git)];
  const operationalBindings=[B.SELF,B.CONTROL,...B.OPERATIONAL_PATHS,realpathSync(process.execPath),'/bin/ps','/usr/bin/memory_pressure'].map(p=>structuredClone(sourceAdmission.sources.find(b=>b.path===path.resolve(root,p))??bind(path.resolve(root,p),'a'.repeat(64))));
- const originalBindings=Object.fromEntries(Object.entries(B.ORIGINAL).map(([k,[p,h,n]])=>[k,bind(p,h,n??1)]));
- const template={schema:'braid-program/f6c-parent-emission-refinement-launch.v1',scope:B.parentScope(2),parentIndex:2,...Object.fromEntries(Object.entries(B.NAMED).map(([k,[p,h]])=>[k,bind(p,h??'a'.repeat(64))])),dependencies:Object.fromEntries(Object.entries(B.DEPENDENCIES).map(([k,[p,h]])=>[k,bind(p,h)])),originalBindings,acceptanceOwner:bind('reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md'),priorCoverClosure:{authority:'versioned-acceptance-owner-declaration-not-fresh-observation',originalCallerSession:'13512',finalCompletionChunk:'c21aa7',exitCode:0,elapsedSeconds:'862.951823625',processesClosed:true,independentAuditAccepted:true},runtimeBindings,operationalBindings,limits:structuredClone(B.LIMITS)};
+ const originalBindings=Object.fromEntries(Object.entries(B.ORIGINAL).map(([k,[p,h,n]])=>[k,originalBind(p,h,n??B.HISTORICAL_ARCHIVES[p]?.[1])]));
+ const template={schema:'braid-program/f6c-parent-emission-refinement-launch.v1',scope:B.parentScope(2),parentIndex:2,...Object.fromEntries(Object.entries(B.NAMED).map(([k,[p,h]])=>[k,h?originalBind(p,h):bind(p,'a'.repeat(64))])),dependencies:Object.fromEntries(Object.entries(B.DEPENDENCIES).map(([k,[p,h]])=>[k,originalBind(p,h)])),originalBindings,acceptanceOwner:bind('reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md'),priorCoverClosure:{authority:'versioned-acceptance-owner-declaration-not-fresh-observation',originalCallerSession:'13512',finalCompletionChunk:'c21aa7',exitCode:0,elapsedSeconds:'862.951823625',processesClosed:true,independentAuditAccepted:true},runtimeBindings,operationalBindings,limits:structuredClone(B.LIMITS)};
  const c={schema:'braid-program/f6c-parent-refinement-batch-preparation.v3',root,template:bind('/synthetic/template.json'),coordinator:structuredClone(sourceAdmission.sources.find(b=>b.path===path.join(root,P.COORDINATOR))),sourceMap:structuredClone(sourceAdmission.sourceMap),composition:operationalBindings[0],compositionControls:operationalBindings[1],preparationControls:bind(path.join(root,P.CONTROLS)),observer:bind(path.join(root,P.OBSERVER)),closureChecker:bind(path.join(root,P.CLOSURE_CHECKER)),closureControls:bind(path.join(root,P.CLOSURE_CONTROLS)),ownerTask:'synthetic-owner',expectations:bind(path.join(root,P.EXPECTATIONS[0]),P.EXPECTATIONS[1]),sources:[],sourceIdentities:{},runtimeBindings,operationalBindings,acceptanceOwner:abs(template.acceptanceOwner),historicalDocumentRoutes:[],pythonCommand,git,operationDirectory:path.join(root,'.local-data/braid-analysis/synthetic-batch-operation'),parents:[3,4,5].map(parentIndex=>({parentIndex,output:path.join(root,B.LANE,'pilot-parent-'+parentIndex+'-synthetic-preparation'),producerMaximumBytes:8388608,comparisonMaximumBytes:4194304})),closureReserveBytes:4194304};
+ const originalEntry=abs(originalBindings.fullEntry),archive=sourceAdmission.production.originalSourceBinding(B.ORIGINAL.fullEntry[0],originalEntry.sha256);
+ c.historicalDocumentRoutes=[{original:originalEntry,physical:archive}];
  const historical=Array.from({length:198},(_,i)=>bind('/synthetic/historical-'+i)),logs=Array.from({length:4},(_,i)=>bind('/synthetic/log-'+i));
+ // Synthetic ancestry shares 128 already captured sources; all 198 rows remain unique.
+ historical.splice(1,128,...structuredClone(sourceAdmission.sources.filter(b=>b.path!==originalEntry.path).slice(0,128)));
+ historical[197]=originalEntry;
  const admission={schema:'braid-program/f6c-cached-root-cover-full-admission.v1',scope:'full',accepted:true,processesClosed:true,sourceBindings:historical,stages:['consumer','comparison'].map((stage,i)=>({stage,process:{accepted:true,processesClosed:true,stdoutLog:logs[2*i],stderrLog:logs[2*i+1]}}))};
- const named=Object.keys(B.NAMED).map(k=>abs(template[k])),dependencies=Object.values(template.dependencies).map(abs),originals=Object.values(originalBindings).map(abs);
- c.sources=C.sourceUnion([...structuredClone(sourceAdmission.sources),bind(path.join(root,P.SUPERVISOR)),c.template,c.coordinator,c.composition,c.compositionControls,c.preparationControls,c.observer,c.closureChecker,c.closureControls,c.expectations,c.acceptanceOwner,...named,...dependencies,...originals,...runtimeBindings,...operationalBindings,...historical,...logs]);
+ const named=Object.keys(B.NAMED).map(k=>['producer','producerControls','verifier','verifierControls'].includes(k)?bind(path.resolve(root,B.NAMED[k][0])):B.subjectPhysicalSource(abs(template[k]),root,sourceAdmission)),dependencies=Object.values(template.dependencies).map(b=>B.subjectPhysicalSource(abs(b),root,sourceAdmission)),originals=Object.values(originalBindings).map(b=>B.physicalSource(abs(b),c));
+ c.sources=C.sourceUnion([...structuredClone(sourceAdmission.sources),bind(path.join(root,P.SUPERVISOR)),c.template,c.coordinator,c.composition,c.compositionControls,c.preparationControls,c.observer,c.closureChecker,c.closureControls,c.expectations,c.acceptanceOwner,...named,...dependencies,...originals,...runtimeBindings,...operationalBindings,...B.historicalPhysicalSources(historical,c),...logs]);
  c.sourceIdentities=Object.fromEntries(c.sources.map((b,i)=>[b.path,'1:'+(i+1)+':'+b.bytes+':3:4']));
  const times=Array.from({length:161},(_,n)=>String(n/1000));times[3]='0.0030000000000000001';
  const segments=[...Array(1600).fill(null),...times.slice(0,-1).map((startTime,i)=>({startTime,endTime:times[i+1]}))];
@@ -39,6 +46,14 @@ function fixture(){
 test('exact CLI flags and hashes; captured imports do not execute CLI',()=>{
  const a=['--configuration','/a','--configuration-sha256','a'.repeat(64),'--self-sha256','b'.repeat(64),'--out-directory','/b','--coordinator-sha256','c'.repeat(64),'--source-map-sha256','d'.repeat(64)];assert.equal(P.parseArguments(a).outDirectory,'/b');
  for(const v of [a.slice(2),[...a,'--other','x'],a.map(x=>x==='/a'?'/a/../b':x),a.map(x=>x==='a'.repeat(64)?undefined:x)])assert.throws(()=>P.parseArguments(v));
+});
+test('subject archive routing preserves logical identities and rejects mislabeled bytes',()=>{
+ const logical={path:'/known/source.py',sha256:'a'.repeat(64),bytes:3},current={...logical,sha256:'b'.repeat(64),bytes:4};
+ const physical={...logical,path:'/known/archive.source'},calls=[];
+ const admission={sources:[current],production:{originalSourceBinding:(p,h)=>{calls.push([p,h]);return physical;}}};
+ assert.deepEqual(B.subjectPhysicalSource(logical,'/known',admission),physical);assert.deepEqual(calls,[['source.py',logical.sha256]]);
+ assert.deepEqual(B.subjectPhysicalSource(current,'/known',admission),current);assert.equal(calls.length,1);
+ for(const bad of [{...physical,bytes:4},{...physical,sha256:current.sha256}])assert.throws(()=>B.subjectPhysicalSource(logical,'/known',{sources:[current],production:{originalSourceBinding:()=>bad}}),/Exact original subject archive/);
 });
 test('pure plan preparation yields original3/4/5 tokens and40MiB commitment',()=>{
  const f=fixture(),before=structuredClone(f.configuration),r=P.derivePlans(f);assert.deepEqual(f.configuration,before);
@@ -57,7 +72,7 @@ test('closed source/configuration/identity/schema/census mutations reject',()=>{
 });
 test('only actually consumed exact historical document routes admit',()=>{
  const f=fixture(),original=bind(path.join(root,'reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md'),RETAINED_HASHES[0],13021),physical={...original,path:'/synthetic/archived-resource.md.source'};
- const prior=f.admission.sourceBindings[0];f.admission.sourceBindings[0]=original;f.configuration.sources=f.configuration.sources.filter(b=>b.path!==prior.path);delete f.configuration.sourceIdentities[prior.path];f.configuration.sources.push(physical);f.configuration.sourceIdentities[physical.path]='1:999:13021:3:4';f.configuration.historicalDocumentRoutes=[{original,physical}];
+ const prior=f.admission.sourceBindings[0];f.admission.sourceBindings[0]=original;f.configuration.sources=f.configuration.sources.filter(b=>b.path!==prior.path);delete f.configuration.sourceIdentities[prior.path];f.configuration.sources.push(physical);f.configuration.sourceIdentities[physical.path]='1:999:13021:3:4';f.configuration.historicalDocumentRoutes.push({original,physical});
  assert.equal(P.derivePlans(f).batch.configuration.parents.length,3);
  const unused={original:bind(path.join(root,'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md'),RETAINED_HASHES[1],10021),physical:bind('/synthetic/2026-08-27-f6c-cached-root-cover-full-resource-plan.md.source',RETAINED_HASHES[1],10021)};
  f.configuration.historicalDocumentRoutes.push(unused);f.configuration.sources.push(unused.physical);f.configuration.sourceIdentities[unused.physical.path]='1:998:10021:3:4';assert.throws(()=>P.derivePlans(f));

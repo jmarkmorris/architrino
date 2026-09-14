@@ -39,18 +39,27 @@ import time
 _EXECUTING_CODE = sys._getframe().f_code
 ROOT = Path(__file__).resolve().parents[2]
 INSPECTOR = 'src/eom/native/eom_f5_prehistory_inspector.cpp'
-PREFIX_SHA = '8d14aa3bc5e0788f06c8b79e788a55df82e8db83736e2413c9800a78af63111b'
-RESTRICTION_SHA = '5a2e9158bf26c34a7a9755e53ea1337cc006765727d9afe1ef1304c3fcd140b0'
+if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
+    import importlib.util as _option_b_importlib
+    from pathlib import Path as _OptionBPath
+    _option_b_root = _OptionBPath(__file__).resolve().parents[2]
+    _option_b_spec = _option_b_importlib.spec_from_file_location("_option_b_production_source_records", _option_b_root / "scripts/eom/production_source_records.py")
+    _option_b_bridge = _option_b_importlib.module_from_spec(_option_b_spec)
+    _option_b_spec.loader.exec_module(_option_b_bridge)
+    OPTION_B_PRODUCTION_IDENTITIES = _option_b_bridge.production_identities(__file__)
+
+PREFIX_SHA = OPTION_B_PRODUCTION_IDENTITIES[0]
+RESTRICTION_SHA = OPTION_B_PRODUCTION_IDENTITIES[1]
 REFERENCES = {
-    'scripts/eom/verify-f5-prehistory-handoff.py': '6c94b0ca16dfe20bed4841a547adca349f2f36cdd5ec04211341d6b060032a68',
-    'tests/test_f5_prehistory_handoff.py': '111e828c8ea3c26996ce51c83496ff7850d48b52cf7e874982c67e882ad6cadf',
+    'scripts/eom/verify-f5-prehistory-handoff.py': OPTION_B_PRODUCTION_IDENTITIES[2],
+    'tests/test_f5_prehistory_handoff.py': OPTION_B_PRODUCTION_IDENTITIES[3],
 }
 SOURCE_OWNERS = {
-    'src/eom/src/History.cpp': 'cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5',
-    'src/eom/src/Interval.cpp': '5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5',
-    'src/eom/include/architrino/eom/Decimal.hpp': '8126e685d9be5a2d4935d29eaa12d1aa995822781c198d48d809c0f0b6ddad7f',
-    'src/eom/include/architrino/eom/History.hpp': '0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3',
-    'src/eom/src/CoupledEvolution.cpp': '88935fa4410f626d25200597a2fb5ba1ad4cb7a8c68324cf452affd4643c9194',
+    'src/eom/src/History.cpp': OPTION_B_PRODUCTION_IDENTITIES[4],
+    'src/eom/src/Interval.cpp': OPTION_B_PRODUCTION_IDENTITIES[5],
+    'src/eom/include/architrino/eom/Decimal.hpp': OPTION_B_PRODUCTION_IDENTITIES[6],
+    'src/eom/include/architrino/eom/History.hpp': OPTION_B_PRODUCTION_IDENTITIES[7],
+    'src/eom/src/CoupledEvolution.cpp': OPTION_B_PRODUCTION_IDENTITIES[8],
 }
 FALSE_CLAIMS = {name: False for name in (
     'couplingChosen', 'chargeMagnitudeChosen', 'futureSupplied', 'requestValidated',

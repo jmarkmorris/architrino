@@ -1,6 +1,1 @@
-{
-  "acceptedBaseline": "reference/priorities/development-process-review/contracts/option-b-f6c-test-batch-accepted-b.json",
-  "acceptedBaselineSha256": "e9920bfca96f2fdd758543f60985eaed087df537c8df8f9a0a562304950f0a5e",
-  "transition": "reference/priorities/development-process-review/contracts/option-b-f6c-test-batch-transition.json",
-  "transitionSha256": "6f5cf9a345247d12ca5ea19449b86b4797530a04d76820216591f64502dfd61a"
-}
+{"acceptedBaseline":"reference/priorities/development-process-review/contracts/option-b-f6c-test-production-accepted-b.json","acceptedBaselineSha256":"a2986cd5c7d3401fe5206cd71e46f508bc1f9feb6a839f2c34ad545984b5a15b","transition":"reference/priorities/development-process-review/contracts/option-b-f6c-test-production-transition.json","transitionSha256":"0b736ec4ad8c2cd3f6138c146627cc00c58f194cdb2f1cbc2c914842e61ca190"}

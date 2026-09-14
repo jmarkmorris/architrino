@@ -3,7 +3,8 @@
 import {createHash} from 'node:crypto';
 import {closeSync, constants, existsSync, fstatSync, lstatSync, mkdirSync, openSync, readFileSync, realpathSync, writeFileSync} from 'node:fs';
 import path from 'node:path';
-import {fileURLToPath} from 'node:url';
+import {fileURLToPath,pathToFileURL} from 'node:url';
+import {registerHooks,isBuiltin} from 'node:module';
 import {Worker} from 'node:worker_threads';
 import {cpus} from 'node:os';
 
@@ -22,7 +23,24 @@ const dataURL = bytes => 'data:text/javascript;base64,' + Buffer.from(bytes).toS
 export const CIRCULAR_SOURCE_MAP = 'reference/priorities/development-process-review/contracts/option-b-circular-sources.jsonld';
 export const CIRCULAR_SOURCE_SCOPE = 'subfield-circular-current-operation';
 // Paths and roles are code obligations; selected revisions belong to the map.
+const PRODUCTION_ROLES=Object.freeze({
+  "reference/priorities/development-process-review/evidence/option-b-production-historical-records.json": "scientific-control",
+  "scripts/equation-mapping/production-source-records.mjs": "scientific-contract",
+  "scripts/eom/production_source_records.py": "scientific-contract",
+  "scripts/equation-mapping/current-source-transition.mjs": "scientific-contract",
+  "scripts/equation-mapping/fixtures/production-source-identities.json": "scientific-control",
+  "reference/priorities/development-process-review/evidence/option-b-production-original-sources.json": "scientific-control",
+  "reference/priorities/development-process-review/contracts/option-b-production-sources.jsonld": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-production-accepted-b.json": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-production-transition.json": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-production-selection.json": "scientific-contract",
+  "reference/priorities/development-process-review/evidence/option-b-production-transfer.json": "scientific-control",
+  "scripts/eom/project-production-native-identities.mjs": "scientific-contract",
+  "scripts/equation-mapping/fixtures/known-hash-answers.json": "scientific-control"
+});
+
 export const CIRCULAR_SOURCE_ROLES = Object.freeze({
+  ...PRODUCTION_ROLES,
   [PATHS.entry]: 'admission',
   [PATHS.supervisor]: 'launcher',
   [PATHS.runner]: 'current-source',
@@ -86,9 +104,29 @@ export async function loadCircularSourceMap(root, expected, originalBindings = [
   if (import.meta.url.startsWith('data:')) demand(import.meta.url===dataURL(captured.get(PATHS.entry).data), 'captured circular initializer differs from map');
   else demand(sha(read(fileURLToPath(import.meta.url)))===captured.get(PATHS.entry).sha256, 'loaded circular initializer differs from map');
   const bindings = [...state.bindings, {path:mapPath,sha256:expected,bytes:raw.length,identity:originals.get(mapPath).identity}];
-  const recheck = () => { for (const row of bindings) capture(row.path,row.sha256); };
+  let production;
+  const recheck = () => { for (const row of bindings) capture(row.path,row.sha256); production?.check(); };
+  const query='?circular-production='+expected;
+  const hooks=registerHooks({
+    resolve(specifier,context,next){
+      if(isBuiltin(specifier))return next(specifier,context);
+      if(context.parentURL?.endsWith(query)){
+        demand(specifier.startsWith('.')||specifier.startsWith('file:'),'Unselected circular package import');
+        const url=new URL(specifier,context.parentURL);url.search='';
+        demand(captured.has(path.relative(root,fileURLToPath(url))),'Circular production dependency outside captured closure');
+        return {url:url.href+query,shortCircuit:true};
+      }return next(specifier,context);
+    },
+    load(url,context,next){if(!url.endsWith(query))return next(url,context);
+      const relative=path.relative(root,fileURLToPath(url)),record=captured.get(relative);
+      demand(record,'Uncaptured circular production source');
+      return {format:'module',source:record.data,shortCircuit:true};}
+  });
+  try{const reader=await import(pathToFileURL(path.join(root,'scripts/equation-mapping/production-source-records.mjs')).href+query);
+    production=reader.beginProductionAdmission({root,consumer:PATHS.entry});
+  }finally{hooks.deregister();}
   recheck();
-  return {sourceMap:{path:CIRCULAR_SOURCE_MAP,sha256:expected}, bindings, recheck,
+  return {productionIdentities:relative=>production.identities(relative),productionOriginalSourceBinding:(relative,expectedOriginalSha)=>production.originalSourceBinding(relative,expectedOriginalSha),productionOriginalSource:(relative,expectedOriginalSha)=>production.sourcePair(relative,expectedOriginalSha).original,productionSourcePair:(relative,expectedOriginalSha)=>{const pair=production.sourcePair(relative);if(expectedOriginalSha&&createHash('sha256').update(pair.original).digest('hex')!==expectedOriginalSha)throw Error('Current substitution requires the exact pre-migration original: '+relative);return pair;},sourceMap:{path:CIRCULAR_SOURCE_MAP,sha256:expected}, bindings, recheck,
     identityArgs:['--source-identities',Buffer.from(JSON.stringify(bindings)).toString('base64')],
     source(relative) { demand(captured.has(relative), 'undeclared circular source'); return captured.get(relative); },
     sources:[...captured].map(([relative,row])=>({path:relative,sha256:row.sha256,bytes:row.data,identity:row.identity}))};

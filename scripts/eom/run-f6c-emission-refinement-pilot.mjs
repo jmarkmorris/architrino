@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 export const BRIDGE='scripts/eom/execute-f6c-emission-refinement.py';
 export const BRIDGE_TESTS='tests/test_f6c_emission_current_execution.py';
 export const SUPPORT='scripts/eom/execute-f6c-acceleration.py';
-export const HISTORICAL=[["rootTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md","f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",28340],["reconstructionTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md","6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",21031]];
+export let HISTORICAL;
 export const ENTRY='scripts/eom/run-f6c-emission-refinement-pilot.mjs';
 export const LAUNCHER='scripts/eom/launch-f6c-emission-refinement-pilot.mjs';
 export const TESTS='tests/f6c-emission-refinement-pilot.test.js';
@@ -45,24 +45,7 @@ export const PURE_FLAGS=Object.freeze(['accepted','referenceGenerationAuthentica
 export const NAMED=Object.freeze({declaration:DECLARATION,producer:PRODUCER,producerControls:PRODUCER_TESTS,
  verifier:CHECKER,verifierControls:CHECKER_TESTS,comparisonReference:COMPARISON,comparisonReferenceControls:COMPARISON_TESTS});
 const base='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/';
-export const FIXED=Object.freeze([
-  ['export','.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json','f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'],
-  ['reconstruction','.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json','7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43'],
-  ['guards','.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json','86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880'],
-  ['manifest',base+'subject/cover-manifest.json','19fae257f7f36d858fa60d9031125b3f29dbb8780e944802699aab5292275f4c'],
-  ['comparison',base+'comparison.json','6bf2b50ef4f0b46f43ae77a9881f82a2f9d504d5df757bc0ad215deb8eac36c6'],
-  ['admission',base+'pilot-admission.json','1a814c90279eed456546b2c4959a8504657213ffc2d25c063060831814e930ee'],
-  ['rows',base+'subject/rows.ndjson','786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383'],
-  ['pieces',base+'subject/pieces.ndjson','2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411'],
-  ['priorPlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json','5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86'],
-  ['priorClosureOwner','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md','8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378'],
-  ['reference','scripts/eom/oracle/continuous_reception_acceleration.py','abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'],
-  ['referenceControls','tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'],
-  ['referenceProof','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md','8d2c7819962db6bac0e1ea0939292992145dbe342a28b51928efb81e74478179'],
-  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc'],
-  ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68'],
-  ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936'],
-].map(Object.freeze));
+export let FIXED;
 
 export const SUBJECT_PATHS=Object.freeze([PRODUCER,PRODUCER_TESTS,DECLARATION,
  'scripts/eom/oracle/continuous_reception_roots_cached.py','tests/test_eom_continuous_reception_roots_cached.py',
@@ -70,28 +53,7 @@ export const SUBJECT_PATHS=Object.freeze([PRODUCER,PRODUCER_TESTS,DECLARATION,
  'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','tests/test_f6c_cached_continuous_reception_root_cover.py',
  COMPARISON,COMPARISON_TESTS,'reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md',
  'scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py']);
-export const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
-
- [SUPPORT]:'02b1b58eed0fda3cba96df90117a03095297fd9e38bfaf95a81788e3d28549ac',
- // Separately authored frozen generations; actual launch requires independent review.
- [PRODUCER]:'2e4b020647a6ecbb5843df13667f672c809c65ac504bb6801e2b7249a8356618',
- [PRODUCER_TESTS]:'c238f49b3316e43244ee0db3fdf3263b2390b4f6f91a67f6a6b7133ccfff000b',
- [CHECKER]:'42b5cee3bbaf42dc417c868d54078a70070a9769e27668ba0c6f7ea6a4e34709',
- [CHECKER_TESTS]:'f0f788018cc801949596bdd1556fe70399c49e8cbcea9152519485d6d8e35558',
- [DECLARATION]:'53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037',
- [COMPARISON]:'0f21d676f4f50702e8375f7ba9c1f362cca82ad3d636316e7121ab819a2dbc7b',
- [COMPARISON_TESTS]:'bac7357186fb05c5b7ea35154c5564e7527075a9a94177a8b600f9a02119adb5',
- 'scripts/eom/oracle/continuous_reception_roots_cached.py':'daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf',
- 'tests/test_eom_continuous_reception_roots_cached.py':'a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb',
- 'scripts/eom/oracle/certified_history.py':'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7',
- 'scripts/eom/oracle/decimal_interval.py':'fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a',
- 'tests/test_eom_decimal_interval.py':'22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44',
- 'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py':'3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7',
- 'tests/test_f6c_cached_continuous_reception_root_cover.py':'09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3',
- 'reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md':'a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d',
- 'scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py':'d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841',
- 'tests/test_f6c_cached_continuous_reception_root_cover_preparation.py':'5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2',
-});
+export let PINS;
 
 
 // Selected dependencies of transferred controls; no scientific acceptance is granted.
@@ -112,17 +74,39 @@ export const SOURCE_MAP='reference/priorities/development-process-review/contrac
 export const SOURCE_READER='scripts/equation-mapping/current-source-manifest.mjs';
 export let SOURCE_BINDINGS;
 let sourceRecords,sourceMapBinding;
+let productionAdmission;
 export async function initializeSourceBindings(root,expectedMapDigest,live=()=>{}) {
+ const heldIdentities=new Map();
+ const fileIdentity=p=>{const v=lstatSync(p,{bigint:true});return [v.dev,v.ino,v.size,v.mtimeNs,v.ctimeNs].join(':');};
+ const checkReadIdentities=()=>{for(const [p,expected] of heldIdentities)check(fileIdentity(p)===expected,'selected production source replaced: '+p);};
+ const readSelected=(p,...args)=>{
+   check(realpathSync(p)===p,'canonical production source required');
+   const before=fileIdentity(p);
+   check(!heldIdentities.has(p)||heldIdentities.get(p)===before,'selected production source replaced: '+p);
+   heldIdentities.set(p,before);const value=readBound(p,...args);
+   check(fileIdentity(p)===before,'selected production source replaced during capture: '+p);return value;
+ };
+
  SOURCE_BINDINGS=undefined;sourceRecords=undefined;sourceMapBinding=undefined;
  check(hash(expectedMapDigest),'externally selected source-map digest required');
  check(realpathSync(root)===root,'canonical Option B repository root required');
- const captured=readBound(path.join(root,SOURCE_MAP),expectedMapDigest,true,1024**2,live);
+ const captured=readSelected(path.join(root,SOURCE_MAP),expectedMapDigest,true,1024**2,live);
  const metadata=decode(captured.data,1024**2),readers=metadata['@graph']?.filter(r=>r.role==='manifest-reader'&&r.binding?.path===SOURCE_READER);
  check(readers?.length===1&&hash(readers[0].binding.sha256),'exact manifest reader identity required');
- const reader=readBound(path.join(root,SOURCE_READER),readers[0].binding.sha256,true,1024**2,live);
+ const reader=readSelected(path.join(root,SOURCE_READER),readers[0].binding.sha256,true,1024**2,live);
  const M=await import('data:text/javascript;base64,'+reader.data.toString('base64'));
- const admitted=M.admit(captured.data,{root,scope:'f6c-emission-operational-current-source',readBound:(...args)=>{live();return readBound(...args);}});
- const roles=new Map([...Object.entries(BATCH_TEST_ROLES),[ENTRY,'admission'],[LAUNCHER,'launcher'],[SOURCE_READER,'manifest-reader'],[TESTS,'current-source'],[PROCESS_TESTS,'current-source'],[HELPERS,'current-source'],[OUTER,'current-source'],[BRIDGE,'current-source'],[BRIDGE_TESTS,'current-source']]);
+ const admitted=M.admit(captured.data,{root,scope:'f6c-emission-operational-current-source',readBound:(...args)=>{live();return readSelected(...args);}});
+
+ const productionPath='scripts/eom/f6c-production-admission.mjs';
+ const productionBinding=admitted.bindings.find(b=>path.resolve(b.path)===path.join(root,productionPath));
+ check(productionBinding,'selected F6c production admission helper required');
+ const productionCapture=readSelected(productionBinding.path,productionBinding.sha256,true,1024**2,live);
+ const productionModule=await import('data:text/javascript;base64,'+productionCapture.data.toString('base64'));
+ productionAdmission=await productionModule.admitF6cProduction({root,consumer:ENTRY,bindings:admitted.bindings,
+   readBound:(p,h,collect)=>readSelected(p,h,collect,1024**3,live),
+   check:()=> (checkReadIdentities(),checkOperationalBindings([clean(captured),clean(reader),clean(productionCapture),...admitted.bindings],live))});
+ initializeProductionIdentities(productionAdmission.identities(ENTRY));
+ const roles=new Map([...Object.entries(BATCH_TEST_ROLES),...Object.entries(productionModule.PRODUCTION_ROLES),[ENTRY,'admission'],[LAUNCHER,'launcher'],[SOURCE_READER,'manifest-reader'],[TESTS,'current-source'],[PROCESS_TESTS,'current-source'],[HELPERS,'current-source'],[OUTER,'current-source'],[BRIDGE,'current-source'],[BRIDGE_TESTS,'current-source']]);
  const rows=admitted.document['@graph'].filter(r=>r['@type']==='Source');
  check(rows.length===roles.size&&rows.every(r=>roles.get(r.binding.path)===r.role),'exact operational source roles required');
  const pins=Object.fromEntries(rows.map(r=>[r.binding.path,r.binding.sha256]));
@@ -168,7 +152,7 @@ export function readBound(filename,expected,collect=false,limit=collect?FILE_LIM
     return {path:filename,sha256:value,bytes:count,...(collect?{data:Buffer.concat(chunks)}:{})};
   }finally{closeSync(fd);}
 }
-export function checkBindings(items,live=()=>{}) {return items.map(b=>{const actual=readBound(b.path,b.sha256,false,b.path.endsWith('.json')||b.path.endsWith('.ndjson')?FILE_LIMIT:1024**3,live);check(b.bytes===undefined||actual.bytes===b.bytes,'binding byte count');return clean(actual);});}
+function checkOperationalBindings(items,live=()=>{}) {return items.map(b=>{const actual=readBound(b.path,b.sha256,false,b.path.endsWith('.json')||b.path.endsWith('.ndjson')?FILE_LIMIT:1024**3,live);check(b.bytes===undefined||actual.bytes===b.bytes,'binding byte count');return clean(actual);});}
 export function writeNew(filename,value,limit=FILE_LIMIT,live=()=>{}) {
   live();check(realpathSync(path.dirname(filename))===path.dirname(filename),'canonical output parent');const bytes=Buffer.from(JSON.stringify(value)+'\n');check(bytes.length<=limit,'output byte limit');
   const fd=openSync(filename,'wx',0o600);try{let at=0;while(at<bytes.length){live();const n=writeSync(fd,bytes,at);check(n>0,'short output write');at+=n;}fsyncSync(fd);}finally{closeSync(fd);}
@@ -222,7 +206,7 @@ export function stageSpec({stage,plan,planBinding,root,output,python,git,manifes
  requireSourceBindings();
  check(stage==='producer'||stage==='comparison','unknown stage');check(typeof budget==='string'&&/^(?:0|[1-9]\d*)(?:\.\d+)?$/u.test(budget)&&Number(budget)>0&&Number(budget)<=1800,'positive stage budget');
  const paths=outputPaths(root,output),source=BRIDGE,digest=SOURCE_BINDINGS[BRIDGE];
- const args=['-I','-B','-c',PYTHON_BOOTSTRAP,path.join(root,source),digest,'--stage',stage,'--bridge-sha256',digest,'--plan',planBinding.path,'--plan-sha256',planBinding.sha256,
+ const args=['-I','-B','-c',PYTHON_BOOTSTRAP,path.join(root,source),digest,productionAdmission.pythonEnvelope(source),'--stage',stage,'--bridge-sha256',digest,'--plan',planBinding.path,'--plan-sha256',planBinding.sha256,
   '--helpers-sha256',SOURCE_BINDINGS[HELPERS],'--outer-sha256',SOURCE_BINDINGS[OUTER],
   '--source-map-sha256',sourceMapBinding.sha256,'--source-reader-sha256',SOURCE_BINDINGS[SOURCE_READER]];
  if(stage==='producer')args.push('--out-dir',output,'--git-binary',git);
@@ -230,6 +214,19 @@ export function stageSpec({stage,plan,planBinding,root,output,python,git,manifes
  args.push('--budget-seconds',budget);return {command:python,args};
 }
 export const PYTHON_BOOTSTRAP=String.raw`import os,sys,stat,hashlib,resource as _accounting,json as _json
+import base64 as _production_base64,types as _production_types
+_production_envelope=__import__('json').loads(sys.argv[3]);sys.argv.pop(3)
+assert set(_production_envelope)=={'root','target','identities','bridgePath','bridgeSha256','bridgeSource'}
+_production_bridge_raw=_production_base64.b64decode(_production_envelope['bridgeSource'],validate=True)
+assert hashlib.sha256(_production_bridge_raw).hexdigest()==_production_envelope['bridgeSha256']
+_production_bridge=_production_types.ModuleType('_f6c_admitted_production_bridge')
+_production_bridge.__file__=os.path.join(_production_envelope['root'],_production_envelope['bridgePath'])
+sys.modules[_production_bridge.__name__]=_production_bridge
+exec(compile(_production_bridge_raw,_production_bridge.__file__,'exec',dont_inherit=True),_production_bridge.__dict__)
+OPTION_B_PRODUCTION_IDENTITIES=tuple(_production_envelope['identities'])
+for _production_name in ('production_identities','production_source_pair','production_recheck','production_historical_record','production_runtime_binding','production_original_source_binding'):
+ globals()[_production_name]=getattr(_production_bridge,_production_name)
+assert production_identities(os.path.join(_production_envelope['root'],_production_envelope['target']))==OPTION_B_PRODUCTION_IDENTITIES
 filename,expected=sys.argv[1:3];sys.argv=[filename,*sys.argv[3:]]
 fd=os.open(filename,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
 try:
@@ -299,7 +296,7 @@ function manifestRecord(job,raw){
  const {root,plan,planBinding}=job,record=decode(raw.data);closed(record,MANIFEST_KEYS,'manifest');
  check(record.schema==='braid-program/f6c-emission-refinement-cover.v1'&&record.scope===SCOPE&&record.status==='conditional_complete'&&record.accepted===false,'conditional cover manifest');
  check(equal(record.launchPlan,planBinding)&&equal(record.producer,absolute(plan.producer,root))&&equal(record.fixedBindings,sourceMap(job))&&equal(record.subjectSourceBindings,plan.subjectSourceBindings)&&equal(record.executionBindings,[...plan.runtimeBindings,...plan.operationalBindings].map(b=>absolute(b,root)))&&equal(record.priorCoverClosure,plan.priorCoverClosure),'manifest source chain');
- check(equal(record.census,CENSUS)&&equal(record.algorithm,ALGORITHM)&&record.precision===90&&record.speedUpper==='0.85'&&record.clearanceLower==='0.27'&&record.knotSha256==='11acd09b692fe175861d0f9478b5d1763c18e088682a0c6a16fc29d65453075c','fixed cover controls');
+ check(equal(record.census,CENSUS)&&equal(record.algorithm,ALGORITHM)&&record.precision===90&&record.speedUpper==='0.85'&&record.clearanceLower==='0.27'&&record.knotSha256===OPTION_B_PRODUCTION_IDENTITIES[36],'fixed cover controls');
  for(const [key,lower,upper] of [['retainedDomain','-8','0.13'],['receptionDomain','0','0.001'],['originalEmissionDomain','-8','-0.05']])
   check(equal(record[key],{lower,upper,precision:90}),'unchanged domain');
  check(Array.isArray(record.members)&&record.members.length===8&&record.members.every((m,i)=>m.id===IDS[i]&&m.pathKey===i+1&&m.polarity===(i%2?-1:1)),'original member identity census');
@@ -380,3 +377,53 @@ async function main(argv){
  checkBindings(sources);remainingSeconds(v['--deadline-ns']);console.error(JSON.stringify({kind:'f6c-refinement-entry-process-resources',resourceUsage:process.resourceUsage()}));
 }
 if(import.meta.url.startsWith('file:')&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))main(process.argv.slice(2)).catch(error=>{console.error(JSON.stringify({completed:false,accepted:false,failure:error.message}));process.exitCode=1;});
+
+let OPTION_B_PRODUCTION_IDENTITIES;
+export function initializeProductionIdentities(values) {
+  if (!Array.isArray(values) || values.length !== 37 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
+  if (OPTION_B_PRODUCTION_IDENTITIES && JSON.stringify(OPTION_B_PRODUCTION_IDENTITIES) !== JSON.stringify(values)) throw Error("production identity generation already initialized");
+  OPTION_B_PRODUCTION_IDENTITIES = Object.freeze([...values]);
+  HISTORICAL=[["rootTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md",OPTION_B_PRODUCTION_IDENTITIES[0],28340],["reconstructionTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md",OPTION_B_PRODUCTION_IDENTITIES[1],21031]];
+  FIXED=Object.freeze([
+  ['export','.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json',OPTION_B_PRODUCTION_IDENTITIES[2]],
+  ['reconstruction','.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json',OPTION_B_PRODUCTION_IDENTITIES[3]],
+  ['guards','.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json',OPTION_B_PRODUCTION_IDENTITIES[4]],
+  ['manifest',base+'subject/cover-manifest.json',OPTION_B_PRODUCTION_IDENTITIES[5]],
+  ['comparison',base+'comparison.json',OPTION_B_PRODUCTION_IDENTITIES[6]],
+  ['admission',base+'pilot-admission.json',OPTION_B_PRODUCTION_IDENTITIES[7]],
+  ['rows',base+'subject/rows.ndjson',OPTION_B_PRODUCTION_IDENTITIES[8]],
+  ['pieces',base+'subject/pieces.ndjson',OPTION_B_PRODUCTION_IDENTITIES[9]],
+  ['priorPlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json',OPTION_B_PRODUCTION_IDENTITIES[10]],
+  ['priorClosureOwner','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md',OPTION_B_PRODUCTION_IDENTITIES[11]],
+  ['reference','scripts/eom/oracle/continuous_reception_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[12]],
+  ['referenceControls','tests/test_eom_continuous_reception_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[13]],
+  ['referenceProof','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md',OPTION_B_PRODUCTION_IDENTITIES[14]],
+  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md',OPTION_B_PRODUCTION_IDENTITIES[15]],
+  ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md',OPTION_B_PRODUCTION_IDENTITIES[16]],
+  ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md',OPTION_B_PRODUCTION_IDENTITIES[17]],
+].map(Object.freeze));
+  PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
+
+ [SUPPORT]:OPTION_B_PRODUCTION_IDENTITIES[18],
+ // Separately authored frozen generations; actual launch requires independent review.
+ [PRODUCER]:OPTION_B_PRODUCTION_IDENTITIES[19],
+ [PRODUCER_TESTS]:OPTION_B_PRODUCTION_IDENTITIES[20],
+ [CHECKER]:OPTION_B_PRODUCTION_IDENTITIES[21],
+ [CHECKER_TESTS]:OPTION_B_PRODUCTION_IDENTITIES[22],
+ [DECLARATION]:OPTION_B_PRODUCTION_IDENTITIES[23],
+ [COMPARISON]:OPTION_B_PRODUCTION_IDENTITIES[24],
+ [COMPARISON_TESTS]:OPTION_B_PRODUCTION_IDENTITIES[25],
+ 'scripts/eom/oracle/continuous_reception_roots_cached.py':OPTION_B_PRODUCTION_IDENTITIES[26],
+ 'tests/test_eom_continuous_reception_roots_cached.py':OPTION_B_PRODUCTION_IDENTITIES[27],
+ 'scripts/eom/oracle/certified_history.py':OPTION_B_PRODUCTION_IDENTITIES[28],
+ 'scripts/eom/oracle/decimal_interval.py':OPTION_B_PRODUCTION_IDENTITIES[29],
+ 'tests/test_eom_decimal_interval.py':OPTION_B_PRODUCTION_IDENTITIES[30],
+ 'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py':OPTION_B_PRODUCTION_IDENTITIES[31],
+ 'tests/test_f6c_cached_continuous_reception_root_cover.py':OPTION_B_PRODUCTION_IDENTITIES[32],
+ 'reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md':OPTION_B_PRODUCTION_IDENTITIES[33],
+ 'scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py':OPTION_B_PRODUCTION_IDENTITIES[34],
+ 'tests/test_f6c_cached_continuous_reception_root_cover_preparation.py':OPTION_B_PRODUCTION_IDENTITIES[35],
+});
+}
+
+export function checkBindings(...args){productionAdmission?.check();return checkOperationalBindings(...args);}

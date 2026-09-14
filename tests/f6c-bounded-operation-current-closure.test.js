@@ -1,9 +1,10 @@
+import {loadProductionTestModule} from './support/option-b-production-hosts.mjs';
 // Literal protocol construction; no coordinator, manifest reader or producer import.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {fixture} from './f6c-bounded-operation-closure.test.js';
-import {verifyClosure,verifyCurrentSelection} from '../scripts/eom/verify-f6c-bounded-operation-closure.mjs';
+const {verifyClosure,verifyCurrentSelection}=await loadProductionTestModule(import.meta.url,"scripts/eom/verify-f6c-bounded-operation-closure.mjs");
 const sha=raw=>createHash('sha256').update(raw).digest('hex');
 const bind=(path,raw)=>({path,sha256:sha(raw),bytes:raw.length});
 const ns='https://architrino.com/knowledge/current-source/';

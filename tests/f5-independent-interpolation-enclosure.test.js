@@ -1,3 +1,6 @@
+import {productionTestAdmission,productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
+import * as optionBProductionModule0 from "../scripts/eom/prepare-f5-original-input-tree.mjs";
+optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/prepare-f5-original-input-tree.mjs"));
 import { retainedSelectedBytes } from './support/option-b-retained-test-identities.mjs';
 import { decode as decodeOperationalSelection } from '../scripts/equation-mapping/current-source-manifest.mjs';
 import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';
@@ -14,6 +17,7 @@ import assert from "node:assert/strict";
 import { prepareF5OriginalInputTree, verifyF5OriginalInputTree } from '../scripts/eom/prepare-f5-original-input-tree.mjs';
 
 const INSTRUMENT = "scripts/eom/derive-f5-independent-interpolation-enclosure.mjs";
+const instrumentPair=productionTestAdmission().sourcePair(INSTRUMENT);
 
 const OPERATIONAL_CONSUMER="tests/f5-independent-interpolation-enclosure.test.js";
 const operationalSelection=decodeOperationalSelection(retainedSelectedBytes(OPERATIONAL_CONSUMER,"reference/priorities/development-process-review/contracts/option-b-batch-test-operational-selection.json"));
@@ -46,7 +50,7 @@ function sha256(bytes) {
 
 test("F5 instrument reproduces the original enclosure with disclosed current source metadata", async () => {
   assert.equal(
-    sha256(readFileSync(INSTRUMENT)),
+    sha256(Buffer.from(instrumentPair.original)),
     RETAINED_HASHES[0],
   );
   const directory = mkdtempSync(path.join(tmpdir(), "f5-independent-enclosure-"));
@@ -60,7 +64,8 @@ test("F5 instrument reproduces the original enclosure with disclosed current sou
   const bytes = readFileSync(output);
   const report = JSON.parse(bytes);
   await verifyF5OriginalInputTree(executionRoot, process.cwd(), SOURCE_MAP_SHA);
-  assert.equal(report.instrument.sha256, RETAINED_HASHES[0]);
+  assert.equal(report.instrument.sha256, sha256(Buffer.from(instrumentPair.current)));
+  assert.deepEqual(readFileSync(INSTRUMENT),Buffer.from(instrumentPair.current));
   assert.equal(report.sourceChecks[0].path, 'reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json');
   // Only the instrument's recorded identity and config logical name changed.
   // This private comparison projection never rewrites the produced receipt.

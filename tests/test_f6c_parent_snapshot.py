@@ -1,4 +1,5 @@
 """Pure synthetic author controls; not the separately authored acceptance oracle."""
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 import copy
 import hashlib
 import importlib.util
@@ -14,7 +15,7 @@ SPEC = importlib.util.spec_from_file_location(
     Path(__file__).resolve().parents[1] / 'scripts/eom/f6c_parent_snapshot.py')
 S = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = S
-SPEC.loader.exec_module(S)
+_option_b_exec_module(__file__, SPEC, S)
 
 
 def declared_bytes(value):

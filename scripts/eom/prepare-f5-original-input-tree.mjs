@@ -28,20 +28,16 @@ export async function bootstrapF5(root, sourceMapSha256, originalIdentities = {}
   if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
   const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
   const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
-  return module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
+  const admitted = await module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
+  initializeProductionIdentities(admitted.productionIdentities("scripts/eom/prepare-f5-original-input-tree.mjs"));
+  return admitted;
 }
 
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const SELF = 'scripts/eom/prepare-f5-original-input-tree.mjs';
 const ROUTES = 'reference/priorities/development-process-review/evidence/final-validation/f5-original-input-availability.json';
-const INPUTS = Object.freeze([
-  ['reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json', 'e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb'],
-  ['reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json', 'bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344'],
-  ['reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md', '1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5'],
-  ['reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md', '931f5d88a209648bde63dfbdd1f24303b7a33e101e11565e75fd608be347d496'],
-  ['.local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json', '2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9'],
-]);
+let INPUTS;
 export const F5_INPUT_TREE_TESTS = Object.freeze([
   'tests/f5-enclosed-root-preparation.test.js',
   'tests/f5-enclosed-root-prefix.test.js',
@@ -99,7 +95,8 @@ export function captureF5OriginalInputs(root, routes) {
   });
 }
 function sourceFiles(root, operational) {
-  const files = [...FILES, ...operational.sources.map(b=>path.relative(root,b.path))];
+  const files = [...FILES, ...operational.sources.map(b=>path.relative(root,b.path)),
+    ...operational.productionSourceInventory().map(b=>path.relative(root,b.path))];
   function visit(relative) {
     for (const row of readdirSync(path.join(root, relative), { withFileTypes: true })) {
       const next = `${relative}/${row.name}`;
@@ -176,4 +173,16 @@ if (import.meta.url.startsWith('file:') && !new URL(import.meta.url).search && p
     const record = process.argv[2] === '--out-root' ? await prepareF5OriginalInputTree(process.argv[3],ROOT,process.argv[5]) : await verifyF5OriginalInputTree(process.argv[3],ROOT,process.argv[5]);
     console.log(JSON.stringify({ executionRoot: record.executionRoot, files: record.files.length, inputTreeChecked: process.argv[2] === '--check-root', accepted: false, scientificAcceptance: false }));
   } catch (error) { console.error(error.message); process.exitCode = 1; }
+}
+
+export function initializeProductionIdentities(values) {
+  if (!Array.isArray(values) || values.length !== 5 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
+  const OPTION_B_PRODUCTION_IDENTITIES = values;
+  INPUTS = Object.freeze([
+  ['reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json', OPTION_B_PRODUCTION_IDENTITIES[0]],
+  ['reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json', OPTION_B_PRODUCTION_IDENTITIES[1]],
+  ['reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md', OPTION_B_PRODUCTION_IDENTITIES[2]],
+  ['reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md', OPTION_B_PRODUCTION_IDENTITIES[3]],
+  ['.local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json', OPTION_B_PRODUCTION_IDENTITIES[4]],
+]);
 }

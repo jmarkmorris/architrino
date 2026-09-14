@@ -1,3 +1,4 @@
+import {loadProductionTestModule} from './support/option-b-production-hosts.mjs';
 // Host-supervised captured-worker routing; no scientific stage or shared lock.
 // The common coordinator's full serial lifecycle has its separate process suite.
 import test from 'node:test';
@@ -8,9 +9,9 @@ import {createHash} from 'node:crypto';
 import {mkdtempSync,mkdirSync,readFileSync,writeFileSync,realpathSync,existsSync} from 'node:fs';
 import path from 'node:path';
 import * as C from '../scripts/eom/f6c-bounded-operation.mjs';
-import {LOCK} from '../scripts/eom/verify-f6c-bounded-operation-closure.mjs';
-import * as Parent from '../scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs';
-import * as Packaging from '../scripts/eom/run-f6c-evidence-packaging.mjs';
+const {LOCK}=await loadProductionTestModule(import.meta.url,"scripts/eom/verify-f6c-bounded-operation-closure.mjs");
+const Parent=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs");
+const Packaging=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-evidence-packaging.mjs");
 import {runFileWorker} from '../scripts/eom/launch-prescribed-response-pilot.mjs';
 const root=realpathSync(process.cwd()),hash=raw=>createHash('sha256').update(raw).digest('hex');
 const bind=p=>{const raw=readFileSync(p);return{path:p,sha256:hash(raw),bytes:raw.length};};

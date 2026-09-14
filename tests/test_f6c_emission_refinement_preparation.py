@@ -1,4 +1,6 @@
 """Synthetic controls only: no original F6c data or real campaign is loaded."""
+from option_b_synthetic_production import synthetic_capture
+from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from contextlib import contextmanager, ExitStack, redirect_stdout, redirect_stderr
 from decimal import Decimal, localcontext, getcontext
 from fractions import Fraction as F
@@ -19,7 +21,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 PATH = ROOT/"scripts/eom/prepare-f6c-emission-refinement.py"
 spec = importlib.util.spec_from_file_location("emission_subject_controls", PATH)
-p = importlib.util.module_from_spec(spec); sys.modules[spec.name] = p; spec.loader.exec_module(p)
+p = importlib.util.module_from_spec(spec); sys.modules[spec.name] = p; _option_b_exec_module(__file__, spec, p)
 
 
 class Box:
@@ -73,7 +75,7 @@ class Controls(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.stack = ExitStack()
-        source = cls.stack.enter_context(p.BoundFile(ROOT/p.HELPER,p.HELPER_SHA,collect=True))
+        source = cls.stack.enter_context(p._production_capture(p.BoundFile,ROOT/p.HELPER,p.HELPER_SHA,collect=True))
         cls.helper = cls.stack.enter_context(p.captured_helper(source))
     @classmethod
     def tearDownClass(cls): cls.stack.close()
@@ -220,7 +222,7 @@ class Controls(unittest.TestCase):
             with self.assertRaises(OSError):p.BoundFile(link,p.sha(b"modified")).__enter__()
 
     def test_helper_uses_captured_bytes_not_sysmodule_alias(self):
-        with p.BoundFile(ROOT/p.HELPER,p.HELPER_SHA,collect=True) as source:
+        with p._production_capture(p.BoundFile,ROOT/p.HELPER,p.HELPER_SHA,collect=True) as source:
             with p.captured_helper(source) as helper:
                 self.assertIsNot(helper,self.helper)
                 name=helper.__name__;self.assertIn(name,sys.modules)
@@ -398,7 +400,11 @@ class Controls(unittest.TestCase):
             argv=["--repo-root",str(ROOT),"--plan",str(plan_path),"--plan-sha256",plan_sha,
                 "--producer-sha256",own_sha,"--out-dir",str(output),"--budget-seconds","10","--git-binary",str(git)]
             stdout,stderr=io.StringIO(),io.StringIO();before=signal.getsignal(signal.SIGALRM)
-            with patch.object(p,"BoundFile",FixtureBound),patch.object(p,"captured_helper",captured),\
+            fixture_paths={str(x) for x in data_by_path}|{str(ROOT/path) for _,path,_ in p.FIXED}
+            fixture_paths.update(str(ROOT/v['path']) for v in plan.values() if isinstance(v,dict) and 'path' in v)
+            fixture_paths.update(str(ROOT/v['path']) for key in ('runtimeBindings','operationalBindings','subjectSourceBindings') for v in plan[key])
+            fixture_paths.update(str(output/name) for name in ('queries.ndjson','rows.ndjson','pieces.ndjson','cover-manifest.json'))
+            with synthetic_capture(p,FixtureBound,fixture_paths),patch.object(p,"BoundFile",FixtureBound),patch.object(p,"captured_helper",captured),\
                  patch.object(p,"authenticate_prior"),patch.object(p,"check_output"),\
                  patch.object(p,"propose",proposal),patch.object(p,"emit_cover",cover),\
                  patch.object(p,"admit_completion",completion),redirect_stdout(stdout),redirect_stderr(stderr):

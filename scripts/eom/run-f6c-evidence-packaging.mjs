@@ -20,19 +20,8 @@ import {pathToFileURL} from 'node:url';
 
 export const SELF='scripts/eom/run-f6c-evidence-packaging.mjs';
 export const CONTROL='tests/f6c-evidence-packaging.test.js';
-export const PINS=Object.freeze({
-  inventory:['tests/fixtures/f6c-lossless-packaging-expectations.v1.json','901687bd92fdc686dc26b8634d8f58ecd46bd9f81208ca68563ad4cff983b09b'],
-  contract:['reference/priorities/braid-program/evidence/2026-08-28-f6c-lossless-packaging-expectations.md','75177ad5b16b34fd1f387689ec7ef2db77ed7196c5995c5621a54799539460cf'],
-  packageModule:['scripts/eom/f6c_evidence_package.py','9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6'],
-  packageControls:['tests/test_f6c_evidence_package.py','f2c52fd510cad3da99f65ab2497dde754f8842d18004c3e1ae98d1bbdcb6d3d8'],
-  independentDecoder:['.local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/independent-package-review.mjs','328120d4f0c0716d78d38362cfb2f1c27b5a33382c6a3870fb10ca501f9d0273'],
-});
-export const GENERIC_PINS=Object.freeze({
-  inventoryParser:['scripts/eom/f6c_parent_evidence_inventory.py','d69db22ad20881a94a950102e70d438792493fa52efde666575bc53100bd784b'],
-  inventoryParserControls:['tests/test_f6c_parent_evidence_inventory.py','369091d5a0996fb547a70ba8e9aa8b3fe5570cf046863872bfaeb491bd0cf551'],
-  inventoryContract:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/generic-inventory-v2-closed-schema-expectations.md','856c05077241bf9c28d75c21fcb50beac0afd23546c4bbbad9be7abd5d0f6710'],
-  genericIndependentReader:['.local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/independent-generic-package-review.mjs','693da598db446dbe6045d07ab4bbd13175c54fc2cd5da3b4b110e2bd94ea763f'],
-});
+export let PINS;
+export let GENERIC_PINS;
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const sha=raw=>createHash('sha256').update(raw).digest('hex');
 const url=raw=>'data:text/javascript;base64,'+Buffer.from(raw).toString('base64');
@@ -47,18 +36,28 @@ function capabilityPath(b){
   check(b&&typeof b.path==='string'&&path.isAbsolute(b.path)&&path.resolve(b.path)===b.path,'runtime capability path');
   return b.path;
 }
+let productionAdmission;
 export async function admitOperationalSources(plan,live=()=>{}){
-  live();const b=plan.sources.find(b=>b.path===path.join(plan.root,'scripts/eom/f6c-bounded-operation.mjs'));check(b,'explicit coordinator source');const C=await import(url(tiny(b)));live();const sourceAdmission=await C.admitPlanSourceBindings(plan,live);live();return{C,sourceAdmission};
+  live();const b=plan.sources.find(b=>b.path===path.join(plan.root,'scripts/eom/f6c-bounded-operation.mjs'));check(b,'explicit coordinator source');const C=await import(url(tiny(b))+'#root='+encodeURIComponent(plan.root));live();const sourceAdmission=await C.admitPlanSourceBindings(plan,live);initializeProductionIdentities(sourceAdmission.production.identities(SELF));productionAdmission=sourceAdmission.production;live();return{C,sourceAdmission};
 }
 export function declaredSources(plan,C){return C.sourceUnion([...plan.sources,plan.hookModule,plan.hookControls,...plan.stages.flatMap(s=>[s.entry,...s.sources])]);}
+function fixedControl(binding,relative,expected,root){
+  if(binding.path!==path.join(root,relative))return false;
+  if(binding.sha256===expected)return true;
+  // These two files are historical control references, never executable stages.
+  // Authenticate their original archive and the separately declared current file.
+  if(!['tests/test_f6c_evidence_package.py','tests/test_f6c_parent_evidence_inventory.py'].includes(relative)||!productionAdmission)return false;
+  const pair=productionAdmission.sourcePair(relative,expected);
+  return sha(pair.original)===expected&&sha(pair.current)===binding.sha256&&Buffer.byteLength(pair.current)===binding.bytes;
+}
 export function validateConfiguration(plan,C){
   const c=plan.configuration;
   const generic=c?.inventoryVersion===2,fields=['inventory','contract','packageModule','packageControls','independentDecoder','pythonCommand','python','pythonVenvConfig','pythonRuntimeBindings','outputPath'];
   if(generic)fields.push('inventoryVersion','inventoryParser','inventoryParserControls','inventoryContract','admittedClosures','expectedAuthority','expectedMembers','genericIndependentReader');
   check(c&&Object.keys(c).sort().join('|')===fields.sort().join('|'),'closed packaging configuration');
-  for(const [key,[p,h]] of Object.entries(PINS)){C.binding(c[key]);if(generic&&key==='inventory')continue;check(c[key].path===path.join(plan.root,p)&&c[key].sha256===h,'frozen '+key+' differs');}
+  for(const [key,[p,h]] of Object.entries(PINS)){C.binding(c[key]);if(generic&&key==='inventory')continue;check(fixedControl(c[key],p,h,plan.root),'frozen '+key+' differs');}
   if(generic){
-    for(const[key,[p,h]]of Object.entries(GENERIC_PINS)){C.binding(c[key]);check(h!==null&&c[key].path===path.join(plan.root,p)&&c[key].sha256===h,'reviewed generic '+key+' differs');}
+    for(const[key,[p,h]]of Object.entries(GENERIC_PINS)){C.binding(c[key]);check(h!==null&&fixedControl(c[key],p,h,plan.root),'reviewed generic '+key+' differs');}
     check(Array.isArray(c.expectedMembers)&&c.expectedMembers.length>0&&c.expectedMembers.length<=4096,'independently fixed member table');
     check(Array.isArray(c.admittedClosures)&&c.admittedClosures.length>0&&c.admittedClosures.length<=159&&Array.isArray(c.expectedAuthority)&&c.expectedAuthority.length>0&&c.expectedAuthority.length<=159,'independent closure and authority inputs');
     c.expectedAuthority.forEach(C.binding);const seen=new Set();for(const x of c.admittedClosures){check(x&&Object.keys(x).sort().join('|')==='binding|expectedInstrument','closed admitted snapshot');C.binding(x.binding);C.binding(x.expectedInstrument);check(c.expectedAuthority.some(b=>same(b,x.expectedInstrument))&&!seen.has(x.binding.path),'explicit unique admitted authority');seen.add(x.binding.path);}
@@ -257,4 +256,24 @@ export async function registered(stageId,planBinding,deadlineNanoseconds,prior){
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href){
   const v=process.argv.slice(2);check(v.length===8&&v[0]==='--registered'&&v[2]==='--operation-deadline-ns'&&v[4]==='--operation-prior-stdout'&&v[6]==='--operation-plan-binding','registered packaging CLI only');
   await registered(v[1],JSON.parse(v[7]),v[3],JSON.parse(v[5]));
+}
+
+let OPTION_B_PRODUCTION_IDENTITIES;
+export function initializeProductionIdentities(values) {
+  if (!Array.isArray(values) || values.length !== 9 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
+  if (OPTION_B_PRODUCTION_IDENTITIES && JSON.stringify(OPTION_B_PRODUCTION_IDENTITIES) !== JSON.stringify(values)) throw Error("production identity generation already initialized");
+  OPTION_B_PRODUCTION_IDENTITIES = Object.freeze([...values]);
+  PINS=Object.freeze({
+  inventory:['tests/fixtures/f6c-lossless-packaging-expectations.v1.json',OPTION_B_PRODUCTION_IDENTITIES[0]],
+  contract:['reference/priorities/braid-program/evidence/2026-08-28-f6c-lossless-packaging-expectations.md',OPTION_B_PRODUCTION_IDENTITIES[1]],
+  packageModule:['scripts/eom/f6c_evidence_package.py',OPTION_B_PRODUCTION_IDENTITIES[2]],
+  packageControls:['tests/test_f6c_evidence_package.py',OPTION_B_PRODUCTION_IDENTITIES[3]],
+  independentDecoder:['.local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/independent-package-review.mjs',OPTION_B_PRODUCTION_IDENTITIES[4]],
+});
+  GENERIC_PINS=Object.freeze({
+  inventoryParser:['scripts/eom/f6c_parent_evidence_inventory.py',OPTION_B_PRODUCTION_IDENTITIES[5]],
+  inventoryParserControls:['tests/test_f6c_parent_evidence_inventory.py',OPTION_B_PRODUCTION_IDENTITIES[6]],
+  inventoryContract:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/generic-inventory-v2-closed-schema-expectations.md',OPTION_B_PRODUCTION_IDENTITIES[7]],
+  genericIndependentReader:['.local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/independent-generic-package-review.mjs',OPTION_B_PRODUCTION_IDENTITIES[8]],
+});
 }
