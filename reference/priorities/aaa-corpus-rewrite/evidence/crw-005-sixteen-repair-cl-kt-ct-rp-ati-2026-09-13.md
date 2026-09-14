@@ -1,0 +1,63 @@
+# CRW-005: CL, KT, CT, RP and ATI supplementary repair receipt
+
+The operator's accepted repair recommendation authorizes the five chapter edits below. Integration follows `architrino-review` and its live integrator-reviewer procedure. This receipt records editorial resolution of the accepted findings in the [supplementary verification](crw-005-claude-sixteen-closure-verification-2026-09-13.md), not physical or theoretical closure. Original review receipts remain historical records; shared campaign records and the supplementary report are coordinator-owned.
+
+## Guards and binding inventory
+
+Before editing, `shasum -a 256` on the five exact chapter paths matched the original receipts: CL `77194af05a92f030ca96fa79ac29ebfb7f396a8e53e5ed76ac496fa386ad0721`; KT `00d480533a6ee61239ef245b92ef2fa614c5257834b8827d1278f5eb8faf0a55`; CT `d3002bdf2e499ea3779ee4dbc6d05f60add85e66077cf1b26371d376e4197f76`; RP `45272360345ede2e6d0f261e678204da376fddad9fbba44a6e96503a1a7d5888`; ATI `decccf1d32623f9229c62f44398bde4958dcbe30772c1f5152fb8811da0a4660`. Exact-text replacement guards protected the subsequent local edits. Two initial in-memory replacement attempts stopped on a missing exact match before writing; corrected literal handling was then used.
+
+The pre-edit basename search with `rg -l` under `scripts`, `tests`, `src`, `content/generated`, `content/graph`, `content/markdown/markdown_index.json`, and the campaign directory found Markdown index, graph/TOC, generated reading copies, the source-index test snapshot and historical receipts/shared records. Original receipt inventories additionally identify equation registry, reference-surface and source-index bindings. This is a bounded inventory, not a global no-consumers claim. Those binders, original receipts, runtime, canon and shared records were not edited by this worker.
+
+## Resolutions
+
+| Chapter / accepted finding | Repair and evidence boundary |
+| --- | --- |
+| CL-03 | The Lorentz row distinguishes the resonator observable from signal-speed and ruler contributions. A first-order cavity fractional frequency change measures fractional speed change minus fractional length change; equal speed/length changes cancel. It therefore does not independently bound the ruler residual. Lorentz Kinematics remains the owner of the joint response. |
+| CL-13 | The ledger introduction and vocabulary separate measured bounds from proposed requirements and declared comparison thresholds. A requirement is not promoted to a measurement. |
+| CL-16 | The noise covariance inverse has a positive-definite finite-bandwidth readout domain; singular cases require a declared supported subspace or regularization. The matrix with every entry one is singular despite being a valid positive-semidefinite covariance. |
+| CL additional clock and dispersion precision | The inherited clock scale is explicitly an unsupported provisional benchmark requiring its own source-verified comparison, not a measured rejection bound. Nonzero dispersion fails only outside the allocated/calibrated tolerance; constant group speed was not required by the cited finite bound. |
+| KT-05 | Observed lifetime receives a distinct symbol and a declared comparison clock/estimator. Trigger, coherence and record times are not identified merely by notation. Measurement Ontology owns those distinctions. |
+| KT additional quark claim | Quarks is identified as a candidate inventory with conditional representation identities. The assembly map, retained branch, stability, response and mass derivations remain open. |
+| CT-06 | Position/velocity interpolation comparison declares fixed dimensional scaling or dimensioned component weights; polarity is exact. Wake speed normalization alone does not nondimensionalize position. |
+| CT-05 | The retained lambda identifier now denotes dimensionless time-averaged active self-root multiplicity, computed with reception-time quadrature. Birth/loss counts remain separate. Temporal and spatial gates use the same definition and near-zero rule. A persistent root has multiplicity one at both four and eight reception samples, whereas unweighted hit counts double. |
+| CT-03 | Shared bin width alone is not an uncertainty guarantee. The chapter requires an uncertainty-qualified JSD comparison and unresolved disposition when uncertainty straddles the threshold. Two arbitrarily close points on opposite bin sides still give JSD one. Controlled smoothing remains permitted with error control. |
+| CT-07 | The nominal eta divided by wake speed is a comparison time scale, distinct from local reception width eta divided by the absolute receiver derivative; zero derivative requires higher-order event geometry. |
+| CT minor leverage wording | The non-strict displayed bound forbids more than half, not equality at half. |
+| RP-07 | Position regularity is separated from whole-state regularity. A Lipschitz position has velocity almost everywhere, not necessarily a pointwise or one-sided velocity at every evaluation. The continuous evaluable position/velocity EOM contract and the conditional nonsmooth extension remain distinct. |
+| RP-04 | Required observed order must be finite and strictly positive before division. Nonpositive/nonfinite order fails; floor-limited estimates remain unresolved. Nonsmooth inapplicability requires its transition diagnostic. |
+| RP-12 | The timing residual uses calibrated positive transport-time sensitivity, a declared detector-clock intrinsic lag, a controlled zero-mismatch baseline and higher-order error. Luminosity distance divided by speed is not generally a flight time. Static common-path timing is derived separately; cosmological/evolving paths require their own sensitivity integral. |
+| RP additional angular-momentum gate | The normalized vector includes conditional angular-momentum residual D_J for spin/recoil claims. Inapplicable rows are excluded explicitly; missing/nonfinite required residuals fail. Thus an angular defect above tolerance cannot disappear from an otherwise passing maximum. |
+| ATI-04 | The first circular self-root approaches an excluded coincident grazing endpoint, not a generic interior fold. The endpoint requires its own error and regularization control. Binary Dynamics is the unchanged analytic reference. |
+| ATI-09 receipt adjudication | The repaired protocol already uses P1/P2 and P2/P3 period ratios. Full symbols for amplitude, history, relative phase and normalized separation are distinct; blanket renaming is rejected. No extra identifier or schema renames were made. This is adjudication of the historical receipt, not a new source defect. |
+
+All other original IDs retain the prior review's resolved disposition; this receipt does not repeat them as new repairs. Full chapter self-review used the earlier complete chapter/owner reads, fresh changed passages and surrounding context, and the scoped diff. This is author self-review; independent final-byte cross-review remains a separate coordinator gate.
+
+## Independent mathematical checks
+
+For the endpoint, write f(delta,s)=2s sin(delta/2)-delta. At (0,1), its first and second delta derivatives vanish, while its third derivative is negative one quarter. The expansion is (s-1)delta minus s delta cubed divided by 24 plus higher terms; the nonzero branch has delta squared approximately 24(s-1)/s. This independently explains the square-root branch at a degenerate zero-delay endpoint without the nonzero second derivative required for an interior fold.
+
+For a static common path, photon time minus gravitational-wave time equals (D/c_gamma) delta/(1+delta); the derivative at zero is D/c_gamma. Hence the calibrated residual is first-order in the fractional speed mismatch, with a nonzero higher-order remainder. In an expanding chart luminosity distance, comoving distance and travel-time integrals differ, as independently checked in Hogg's distance-measures note during the review; this comparison is observer-level, not an imported substrate law.
+
+A fresh Node inline check first verified each custom instrument's known case: the math extractor returned exactly one inline and one display formula while skipping inline/fenced code; strict KaTeX accepted a valid formula and rejected an invalid command; unit observed order returned 0.8; constant multiplicity two returned two; identical distributions gave JSD zero; identity covariance had determinant one. Only then were target formulas and chapters evaluated. The target witnesses passed: negative, zero, nonfinite and insufficient order reject; quadrature multiplicity stays one under sample doubling; opposite bins give JSD one; the all-ones covariance is singular; equal cavity speed/length changes cancel; normalized state components are invariant under a length-unit change; a required angular ratio of two fails the maximum; static timing agrees with delta/(1+delta). These are closed-form mathematical counterexamples and consistency checks, not simulations or implementation certification.
+
+## Validation and final bytes
+
+The fresh inline Node extractor plus installed KaTeX with `throwOnError: true` and `strict: 'error'` passed 739 math spans before the final owner propagation: CL 148, KT 96, CT 159, RP 226, ATI 110. The subsequent focused CL run passed 147 spans, giving 738 across the final five source versions. This is syntax validation, not rendered visual review or correctness of all mathematics. `git diff --check --` followed by the five exact chapter paths passed with no diagnostics. No broad suite, solver execution, generator check/write, site render or publication ran.
+
+The two intentionally changed display bodies are RP's timing denominator at viewer anchor `corpus-equation-fe7e80122ceb6452` and its normalized diagnostic vector at `corpus-equation-a66d4ddde2fba4f7`. Existing viewer links were retained; other repairs are prose or inline mathematics. This is expected generated-content impact, not freshly measured complete generated drift.
+
+Final source SHA-256 values measured by Node crypto after the last edits:
+
+| Source under content/markdown/aaa/validation | SHA-256 |
+| --- | --- |
+| constraint-ledger.md | `c7bf881b19a04ab0ea4cd870bc0ab668e6f3d8b0ff59234b2330fa8253af876a` |
+| known-tensions.md | `6557662f556269bd64a11c3ce6ddf082f28a1ba38299415645f66ac5ec686079` |
+| simulations/convergence-tests.md | `6ec531b20aa7356d7ecbceefe78a2767d40d197d457c40367102361fe48f3b86` |
+| simulations/run-protocols.md | `a4656e686fcadef1a083ac3b578aff49fe30a66e3da411062a7920a955ed7c4a` |
+| simulations/a0-tier0-result-interpretation.md | `b707bdd34a4cffe04df34ec7f454d7d76c779564503710d924c46ce599aaf28e` |
+
+A changed hash falsifies applicability to those exact bytes. Authorized regeneration/publication should use live owners, including `node scripts/build-equation-mapping-corpus.mjs --write`, the applicable source-index generation such as `node scripts/archie-service/build-source-index.mjs --write`, followed by the corresponding checks and dependent updates. These commands were not executed. Scientific recovery, calibrated observer comparisons, EOM nonsmooth admission and endpoint control remain open at their stated grades. Editing stops for independent cross-review and coordinator integration.
+
+## Final owner propagation after peer review
+
+The coordinator authorized the accepted Massive-Superposition Gravity conditions to propagate into CL's massive-superposition passage. The threshold, mediated target and failure condition now require an independently calibrated information-to-visibility relation on the same unconditioned ensemble and coherence window. A later record or postselection is not an exception. Record claims use a reduced response threshold or driven boundary and require persistence/autonomy, not crossing an invariant autonomous basin boundary. The covariance qualification is preserved and now explicitly requires treating null-direction signals; the quadratic distance alone proves neither accessible information nor lost interference. Live references were Measurement Ontology lines 28 and 1272–1280 and Massive-Superposition Gravity's acceptance conditions. Independent rationale: covariance specifies a second moment, not a likelihood or visibility law; flow invariance precludes a trajectory crossing its own invariant basin boundary. These are calibrated-interpretation restrictions, not a new constitutive result. A guarded edit checked the preceding CL hash before writing. A fresh known-case-first extractor/strict KaTeX check passed all 147 final CL mathematical spans; the exact source-path diff check passed. The final CL hash in the table supersedes its earlier byte record; the other four sources remain frozen.

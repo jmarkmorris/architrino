@@ -1,0 +1,13 @@
+{
+  "schema": "reviewed-current-source-transition/v1",
+  "predecessorSha256": "e9920bfca96f2fdd758543f60985eaed087df537c8df8f9a0a562304950f0a5e",
+  "reviewReference": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#b-close-1-shared-controls-and-record-conformance",
+  "profiles": [
+    {
+      "name": "f6c-cached-test-identities",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-f6c-test-sources.jsonld",
+      "sha256": "2406c47bf4d1192d888a247ef0aa6ca3e946faf0e216ade1c3885eb7cb5ab36c",
+      "changes": []
+    }
+  ]
+}

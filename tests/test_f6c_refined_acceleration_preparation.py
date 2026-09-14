@@ -5,6 +5,9 @@ synthetic; stationary exact answers below are derived by Fraction arithmetic,
 not by a checker or the production range evaluator. The latter is the subject.
 """
 from __future__ import annotations
+from option_b_batch_records import batch_identities
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 
 from contextlib import contextmanager, ExitStack, redirect_stderr, redirect_stdout
 from copy import deepcopy
@@ -123,8 +126,8 @@ def plan_fixture(own_sha=H):
 
 def receipt_fixture(bindings):
     export,manifest,rows,pieces=broad_fixture()
-    contract={'verifierSha256':'3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7',
-        'declarationSha256':'520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba',
+    contract={'verifierSha256':OPTION_B_BATCH_IDENTITIES[0],
+        'declarationSha256':OPTION_B_BATCH_IDENTITIES[1],
         'subjectSourceBindings':[bound('/fixture/source')],'runtimeBindings':[bound('/fixture/runtime')]}
     prior_plan={'schema':'braid-program/f6c-cached-root-cover-pilot-launch.v1',
                 'scope':'pilot-cell-0','comparisonContract':contract}

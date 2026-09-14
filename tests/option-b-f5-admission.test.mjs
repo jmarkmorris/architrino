@@ -1,3 +1,5 @@
+import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';
+const identities=batchTestIdentities(import.meta.url);
 import test from 'node:test';
 import {spawnSync} from 'node:child_process';
 import {Worker} from 'node:worker_threads';
@@ -22,7 +24,7 @@ function fixture(){
 }
 test('known abc source capture before admission targets',()=>{
  const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'f5-known-')));
- try{const p=path.join(dir,'known');put(p,'abc');assert.equal(capture(p,'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad').bytes,3);}
+ try{const p=path.join(dir,'known');put(p,'abc');assert.equal(capture(p,identities[0]).bytes,3);}
  finally{rmSync(dir,{recursive:true,force:true});}
 });
 test('selected current F5 map preserves supported build snapshots and captured worker admission',async()=>{

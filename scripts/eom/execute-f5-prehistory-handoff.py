@@ -38,6 +38,16 @@ HANDOFF = 'braid-program/f5-prehistory-handoff.v2'
 LIMIT = 8*1024**2
 RUNTIME_LIMIT = 256*1024**2
 OPERATIONAL_ROLES = {
+    "scripts/equation-mapping/batch-test-records.mjs": "scientific-contract",
+    "scripts/equation-mapping/current-source-transition.mjs": "scientific-contract",
+    "tests/option_b_batch_records.py": "scientific-contract",
+    "tests/fixtures/option-b-batch-test-identities.json": "scientific-control",
+    "tests/fixtures/option-b-batch-test-original-sources.json": "scientific-control",
+    "reference/priorities/development-process-review/contracts/option-b-batch-test-sources.jsonld": "scientific-contract",
+    "reference/priorities/development-process-review/contracts/option-b-batch-test-accepted-b.json": "scientific-contract",
+    "reference/priorities/development-process-review/contracts/option-b-batch-test-transition.json": "scientific-contract",
+    "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json": "scientific-contract",
+    "reference/priorities/development-process-review/evidence/option-b-batch-test-transfer.json": "scientific-control",
     "scripts/eom/f5-current-source-admission.mjs": "admission",
     "scripts/equation-mapping/current-source-manifest.mjs": "manifest-reader",
     "scripts/eom/launch-f5-prehistory-handoff-build.mjs": "launcher",

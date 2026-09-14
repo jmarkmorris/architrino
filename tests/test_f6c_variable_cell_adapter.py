@@ -4,6 +4,9 @@ Stationary answers below follow g(T,s)=|Xi-Xj|-T+s and the signed sharp
 kernel. Hermite controls are independently differentiated polynomials. File
 controls exercise transport/closure, not a new physical acceptance instrument.
 """
+from option_b_batch_records import batch_identities
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 from contextlib import ExitStack,contextmanager
 from copy import deepcopy
 from dataclasses import asdict,replace
@@ -764,9 +767,9 @@ class FreshEvidenceRoutingTests(unittest.TestCase):
     def test_independently_fixed_fresh_checker_roles_and_inert_selection(self):
         prefix='.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/'
         expected=(
-            ('instrument',prefix+'independent_parent_batch_closure.py','3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223'),
-            ('controls',prefix+'independent_parent_batch_closure_controls.py','f45ccfb0ff9609fe267f25c1ba2521ec58134f9caf7d128b09e0adfde9e6a979'),
-            ('contract',prefix+'fresh-parent-batch-closure-validator-expectations.md','7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed'),
+            ('instrument',prefix+'independent_parent_batch_closure.py',OPTION_B_BATCH_IDENTITIES[0]),
+            ('controls',prefix+'independent_parent_batch_closure_controls.py',OPTION_B_BATCH_IDENTITIES[1]),
+            ('contract',prefix+'fresh-parent-batch-closure-validator-expectations.md',OPTION_B_BATCH_IDENTITIES[2]),
         )
         self.assertEqual(subject.FRESH_CLOSURE_SOURCES,expected)
         instrument=subject.SourceBinding(str(ROOT/expected[0][1]),expected[0][2],53770)
@@ -1058,8 +1061,8 @@ class CaptureTests(unittest.TestCase):
         pins=subject._entry_pins(raw)
         # This parser reads the original full-run entry, whose comparison source
         # predates the current execution interface in subject.SOURCES.
-        self.assertEqual(hsh(raw),'1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b')
-        self.assertEqual(pins['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py'],'19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132')
+        self.assertEqual(hsh(raw),OPTION_B_BATCH_IDENTITIES[3])
+        self.assertEqual(pins['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py'],OPTION_B_BATCH_IDENTITIES[4])
 
     def full_metadata_fixture(self):
         """Independent structural fixture, not an actual full-run attestation."""
@@ -1071,8 +1074,8 @@ class CaptureTests(unittest.TestCase):
         ops=pinned[:2]+[record('synthetic-ops/'+str(n))for n in range(4)]
         resource=next(b for b in pinned if b['path'].endswith('2026-08-27-f6c-cached-root-cover-full-resource-plan.md'))
         bound={role:record(p,h,n)for role,p,h,n in subject.FULL}
-        contract=dict(scope='full',verifierSha256='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132',
-            declarationSha256='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4',
+        contract=dict(scope='full',verifierSha256=OPTION_B_BATCH_IDENTITIES[5],
+            declarationSha256=OPTION_B_BATCH_IDENTITIES[6],
             subjectSourceBindings=pinned[:4],runtimeBindings=runtime)
         plan=dict(schema='braid-program/f6c-cached-root-cover-full-launch.v1',scope='full',resourcePlan=resource,
             comparisonContract=contract,operationalBindings=ops,controlBindings=pinned[4:6],python='synthetic',pythonRealPath='synthetic',git='synthetic',node='synthetic')
@@ -1118,8 +1121,8 @@ class CaptureTests(unittest.TestCase):
 
     def test_full_chain_source_stage_census_and_time_fail_closed(self):
         docs,bound,entry,pool,owner=self.full_metadata_fixture()
-        mutations=(lambda d:d['plan']['comparisonContract'].update(verifierSha256='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'),
-            lambda d:d['plan']['comparisonContract'].update(declarationSha256='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba'),
+        mutations=(lambda d:d['plan']['comparisonContract'].update(verifierSha256=OPTION_B_BATCH_IDENTITIES[7]),
+            lambda d:d['plan']['comparisonContract'].update(declarationSha256=OPTION_B_BATCH_IDENTITIES[8]),
             lambda d:d['admission']['sourceBindings'].pop(),lambda d:d['comparison']['analysis'].update(pairCellCertificates=10239),
             lambda d:d['admission']['stages'][0]['process'].update(processesClosed=False),
             lambda d:d['admission']['stages'][0]['process']['gates'][0].update(retired=False),
@@ -1281,13 +1284,13 @@ class ParentRefinementTests(unittest.TestCase):
         for field in ('original_caller_session','final_completion_chunk','elapsed_seconds','authority'):
             with self.assertRaises(ValueError):
                 subject._refinement_descriptors((replace(value,closure=replace(value.closure,**{field:Foreign()})),),ROOT,'c'*64)
-        old=subject.SourceBinding(str(ROOT/subject.OWNER),'7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c',318717)
+        old=subject.SourceBinding(str(ROOT/subject.OWNER),OPTION_B_BATCH_IDENTITIES[9],318717)
         relation=subject.ArchivedSource(Foreign(),old,replace(old,path=str(ROOT/'archive')))
         with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=(relation,)),),ROOT,'c'*64)
 
     def test_exact_archive_descriptor_only(self):
         value=self.descriptor()
-        old=subject.SourceBinding(str(ROOT/subject.OWNER),'7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c',318717)
+        old=subject.SourceBinding(str(ROOT/subject.OWNER),OPTION_B_BATCH_IDENTITIES[10],318717)
         archive=replace(old,path=str(ROOT/'synthetic-owner-archive'))
         relation=subject.ArchivedSource('acceptanceOwner',old,archive)
         good=replace(value,archived_sources=(relation,))
@@ -1556,7 +1559,7 @@ class GenericParentTests(unittest.TestCase):
             productionHelper='captureHelper',productionHelperControls='captureHelperControls',historyReference='geometryHistory',decimalReference='geometryIntervals',
             decimalControls='geometryIntervalControls',rootLibrary='geometryRoots',rootControls='geometryRootsControls',independentRootReference='rootComparison',independentRootControls='rootControls')
         deps={role:record(*next((p,h)for r,p,h in subject.SOURCES if r==alias))for role,alias in aliases.items()}
-        deps['cacheEquivalence']=record(subject.PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md','a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d')
+        deps['cacheEquivalence']=record(subject.PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md',OPTION_B_BATCH_IDENTITIES[11])
         closure=dict(authority='versioned-acceptance-owner-declaration-not-fresh-observation',originalCallerSession='13512',finalCompletionChunk='c21aa7',exitCode=0,
             elapsedSeconds='862.951823625',processesClosed=True,independentAuditAccepted=True)
         scope=f'original-parent-{index}-emission-refinement'
@@ -1649,17 +1652,17 @@ class ExactParentTwoArchiveTests(unittest.TestCase):
     descriptor=ParentRefinementTests.descriptor
     generic=GenericParentTests.generic
     EXPECTED=(
-        ('producer','scripts/eom/prepare-f6c-parent-emission-refinement.py','ff488499f2737860034602ce9559c3ebc817aa8413b827007fb31027815679d2',58397),
-        ('producerControls','tests/test_f6c_parent_emission_refinement_preparation.py','517cc307251611177ec19cc5d71938a4086806f48583bcf8e3f2d04e9afb8d9f',43836),
-        ('verifier','scripts/eom/verify-f6c-parent-emission-refinement.py','53595cc12589ab56c73a1613922bba2739704cbc78465e3d646d5ae6a43813db',46615),
-        ('verifierControls','tests/test_f6c_parent_emission_refinement_verification.py','889d8721d2b51520c0fef78f6a954f9b510cbb46fdf9019205199dfa3658b5a9',42419),
-        ('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','462247cf723339dbdc9ce9b4b897720cd4edcedc9b85c22b70694c41663f5c1b',56022),
-        ('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js','dd88eae5729d8ecc5947a27966edb215074d12687f3b5cd0bfc3be69d0400bc1',33303),
+        ('producer','scripts/eom/prepare-f6c-parent-emission-refinement.py',OPTION_B_BATCH_IDENTITIES[12],58397),
+        ('producerControls','tests/test_f6c_parent_emission_refinement_preparation.py',OPTION_B_BATCH_IDENTITIES[13],43836),
+        ('verifier','scripts/eom/verify-f6c-parent-emission-refinement.py',OPTION_B_BATCH_IDENTITIES[14],46615),
+        ('verifierControls','tests/test_f6c_parent_emission_refinement_verification.py',OPTION_B_BATCH_IDENTITIES[15],42419),
+        ('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs',OPTION_B_BATCH_IDENTITIES[16],56022),
+        ('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js',OPTION_B_BATCH_IDENTITIES[17],33303),
     )
 
     def selection(self):
         plan=subject.SourceBinding(str(ROOT/'reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json'),
-            '928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e',51509)
+            OPTION_B_BATCH_IDENTITIES[18],51509)
         rows=[]
         for role,path,digest,size in self.EXPECTED:
             old=subject.SourceBinding(str(ROOT/path),digest,size)
@@ -1672,8 +1675,8 @@ class ExactParentTwoArchiveTests(unittest.TestCase):
         old=subject.SourceBinding(str(ROOT/subject.OWNER),'b'*64,10)
         extra=[subject.ArchivedSource('acceptanceOwner',old,replace(old,path=str(ROOT/'synthetic-parent2-archives/owner')))]
         for role,path,digest,size in (
-            ('memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc',16985),
-            ('fullResourcePlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md','2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40',13021)):
+            ('memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md',OPTION_B_BATCH_IDENTITIES[19],16985),
+            ('fullResourcePlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md',OPTION_B_BATCH_IDENTITIES[20],13021)):
             old=subject.SourceBinding(str(ROOT/path),digest,size)
             extra.append(subject.ArchivedSource(role,old,replace(old,path=str(ROOT/'synthetic-parent2-archives'/role))))
         value=replace(value,archived_sources=value.archived_sources+tuple(extra))

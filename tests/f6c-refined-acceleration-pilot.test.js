@@ -1,3 +1,5 @@
+import {batchTestIdentities,batchTestSources} from '../scripts/equation-mapping/batch-test-records.mjs';
+const identities=batchTestIdentities(import.meta.url);
 // Synthetic metadata/process controls only. No accepted history or range is evaluated.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -31,11 +33,19 @@ test('historical scientific implementation/control pins retain their exact sourc
   const parent=realpathSync(mkdtempSync(path.join(tmpdir(),'f6c-source-replay-')));
   const replay=path.join(parent,'root');
   try {
-  materializeSourceReplay({rootDir:root,manifest:JSON.parse(readFileSync('reference/priorities/braid-program/evidence/source-replay/f6c-refined-source-replay.v1.json','utf8')),outputDir:replay});
+  const selectedSource=batchTestSources(import.meta.url,'tests/test_f6c_continuous_reception_acceleration.py');
+  const manifest=JSON.parse(readFileSync('reference/priorities/braid-program/evidence/source-replay/f6c-refined-source-replay.v1.json','utf8'));
+  const inputs=path.join(parent,'inputs');mkdirSync(inputs);
+  for(const row of manifest.files){
+    const raw=row.source==='tests/test_f6c_continuous_reception_acceleration.py'?Buffer.from(selectedSource.original):readFileSync(path.join(root,row.source));
+    const target=path.join(inputs,row.source);mkdirSync(path.dirname(target),{recursive:true});writeFileSync(target,raw);
+  }
+  // The original manifest still authenticates every original byte and destination.
+  materializeSourceReplay({rootDir:inputs,manifest,outputDir:replay});
   for(const p of [...Object.values(E.NAMED),...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
     assert.equal(hash(readFileSync(path.join(replay,p))),(E.SOURCE_BINDINGS[p]??E.PINS[p]),p);
-  for(const [p,h]of [[E.HELPERS,'f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31'],[E.OUTER,'35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826']])assert.equal(hash(readFileSync(path.join(replay,p))),h,'retained historical helper '+p);
-  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae');
+  for(const [p,h]of [[E.HELPERS,identities[0]],[E.OUTER,identities[1]]])assert.equal(hash(readFileSync(path.join(replay,p))),h,'retained historical helper '+p);
+  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,identities[2]);
   } finally {rmSync(parent,{recursive:true,force:true});}
 });
 test('closed plan has no invented runtime/default fields and exact operational closure',()=>{

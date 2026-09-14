@@ -1,4 +1,7 @@
 """Pure transport controls using the independently frozen 2/10 known answer."""
+from option_b_batch_records import batch_identities
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 import copy
 import hashlib
 import importlib.util
@@ -9,7 +12,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / '.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent-generic-inventory-known-answer.json'
-FIXTURE_SHA = '41e3bdbd07e4551ea0b8afa4c26eff2f52a938a7f5430e228648a94e0aaaf1cd'
+FIXTURE_SHA = OPTION_B_BATCH_IDENTITIES[0]
 
 
 def load(name, path):

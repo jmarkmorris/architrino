@@ -1,3 +1,5 @@
+import {batchTestIdentities} from '../../scripts/equation-mapping/batch-test-records.mjs';
+const identities=batchTestIdentities(import.meta.url);
 import {
   COMPACT_MONTE_CARLO_CAMPAIGN_SCHEMA,
   COMPACT_MONTE_CARLO_CASE_SCHEMA,
@@ -158,7 +160,7 @@ export function buildTestCompactMonteCarloCampaign() {
       caseId: "candidate-coincident-midpoint-common-frequency/sample-0",
       assemblyId: "asm-2a289a6fe32f64922ab71bae973acc80",
       modelRevisionSha256:
-        "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6",
+        identities[0],
       sourceSlug: "three-axis-circular-coincident-midpoints-common-frequency",
       sampleOrdinal: 0,
       evaluated: true,
@@ -171,7 +173,7 @@ export function buildTestCompactMonteCarloCampaign() {
       caseId: "candidate-axial-transverse-three-binary-interior/sample-1",
       assemblyId: "asm-3e9d646d95041634d7ee5fe7eed862d6",
       modelRevisionSha256:
-        "3e9d646d95041634d7ee5fe7eed862d679c8f9f93518ebca7c98f549d352ec8f",
+        identities[1],
       sourceSlug: "axial-transverse-three-binary-interior",
       sampleOrdinal: 1,
       evaluated: false,
@@ -184,7 +186,7 @@ export function buildTestCompactMonteCarloCampaign() {
       caseId: "candidate-coaxial-two-planar-braid-co-rotating/sample-2",
       assemblyId: "asm-ebc963eea7e9104f8f826e86dd4287bc",
       modelRevisionSha256:
-        "ebc963eea7e9104f8f826e86dd4287bce8818c853a7c3315deafce7729c10807",
+        identities[2],
       sourceSlug: "coaxial-separated-two-planar-braid-co-rotating",
       sampleOrdinal: 2,
       evaluated: true,

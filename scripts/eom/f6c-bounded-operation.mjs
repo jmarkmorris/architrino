@@ -39,6 +39,21 @@ export const LIMITS=Object.freeze({inclusiveMilliseconds:1800000,aggregateRSSByt
   outputFiles:512,serialWorkers:1,startFreePercent:40,startDiskBytes:68719476736,
   stopFreePercent:20,stopDiskBytes:17179869184});
 export const DEPENDENCIES=Object.freeze({helpers:'scripts/eom/launch-prescribed-response-pilot.mjs',outer:'scripts/eom/launch-subfield-circular-root-pilot.mjs',diagnostics:'scripts/eom/launch-f6c-emission-refinement-pilot.mjs'});
+
+// Selected dependencies of transferred controls; no scientific acceptance is granted.
+const BATCH_TEST_ROLES=Object.freeze({
+  "scripts/equation-mapping/batch-test-records.mjs": "scientific-contract",
+  "scripts/equation-mapping/current-source-transition.mjs": "scientific-contract",
+  "tests/option_b_batch_records.py": "scientific-contract",
+  "tests/fixtures/option-b-batch-test-identities.json": "scientific-control",
+  "tests/fixtures/option-b-batch-test-original-sources.json": "scientific-control",
+  "reference/priorities/development-process-review/contracts/option-b-batch-test-sources.jsonld": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-batch-test-accepted-b.json": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-batch-test-transition.json": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json": "scientific-contract",
+  "reference/priorities/development-process-review/evidence/option-b-batch-test-transfer.json": "scientific-control"
+});
+
 export const SOURCE_MAP='reference/priorities/development-process-review/contracts/option-b-f6c-bounded-operation-sources.jsonld';
 const SOURCE_READER='scripts/equation-mapping/current-source-manifest.mjs';
 const check=(ok,message)=>{if(!ok)throw Error(message);};
@@ -127,7 +142,7 @@ export async function initializeSourceBindings(root,expectedMapDigest,live=()=>{
   const M=await import(url(reader.data));live();
   const admitted=M.admit(map.data,{root,scope:'f6c-bounded-operation-current-source',readBound:(p,h,collect)=>readBound(p,h,collect,LIMITS.sourceBytes,live)});
   const rows=admitted.document['@graph'].filter(r=>r['@type']==='Source');
-  const expectedRoles={[SELF]:'admission',[SOURCE_READER]:'manifest-reader',[CONTROLS]:'current-source',...Object.fromEntries(Object.values(DEPENDENCIES).map(p=>[p,'current-source']))};
+  const expectedRoles={...BATCH_TEST_ROLES,[SELF]:'admission',[SOURCE_READER]:'manifest-reader',[CONTROLS]:'current-source',...Object.fromEntries(Object.values(DEPENDENCIES).map(p=>[p,'current-source']))};
   check(rows.length===Object.keys(expectedRoles).length&&rows.every(r=>expectedRoles[r.binding.path]===r.role),'exact operational source composition');
   const captured=[map,reader,...admitted.bindings],identities=originalIdentities(captured),sources=sourceUnion(captured.map(clean));
   captureUnion(sources,identities,live);live();

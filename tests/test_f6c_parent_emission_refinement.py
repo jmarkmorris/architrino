@@ -5,6 +5,9 @@ affine roots use exact rational grid inequalities, not the proposer as oracle.
 The separately frozen comparator remains unchanged and is never a subject import.
 """
 from __future__ import annotations
+from option_b_batch_records import batch_identities, original_test_source
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 
 import ast
 from contextlib import ExitStack
@@ -25,15 +28,15 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 SUBJECT = ROOT/'scripts/eom/f6c_parent_emission_refinement.py'
 PINS = {
-    'helper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py', 'd627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841'),
-    'certified_history': ('scripts/eom/oracle/certified_history.py', 'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
-    'decimal_interval': ('scripts/eom/oracle/decimal_interval.py', 'fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
-    'continuous_reception_roots': ('scripts/eom/oracle/continuous_reception_roots_cached.py', 'daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'),
-    'comparison': ('scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py', '9bca879b94386d033597bb9d1e3a4ceeb9943925615c916299feb91e482391ad'),
-    'comparisonControls': ('tests/test_f6c_parent_emission_refinement_conformance.py', '2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb'),
-    'geometry': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py', '3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'),
-    'proof': ('reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md', 'c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'),
-    'oldSubject': ('scripts/eom/prepare-f6c-emission-refinement.py', 'ec254ad004fb38612d3e895f5c150d8e5bec8fe53142739a50b15e073bd9783d'),
+    'helper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py', OPTION_B_BATCH_IDENTITIES[0]),
+    'certified_history': ('scripts/eom/oracle/certified_history.py', OPTION_B_BATCH_IDENTITIES[1]),
+    'decimal_interval': ('scripts/eom/oracle/decimal_interval.py', OPTION_B_BATCH_IDENTITIES[2]),
+    'continuous_reception_roots': ('scripts/eom/oracle/continuous_reception_roots_cached.py', OPTION_B_BATCH_IDENTITIES[3]),
+    'comparison': ('scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py', OPTION_B_BATCH_IDENTITIES[4]),
+    'comparisonControls': ('tests/test_f6c_parent_emission_refinement_conformance.py', OPTION_B_BATCH_IDENTITIES[5]),
+    'geometry': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py', OPTION_B_BATCH_IDENTITIES[6]),
+    'proof': ('reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md', OPTION_B_BATCH_IDENTITIES[7]),
+    'oldSubject': ('scripts/eom/prepare-f6c-emission-refinement.py', OPTION_B_BATCH_IDENTITIES[8]),
 }
 
 
@@ -48,7 +51,8 @@ def load(name, path):
 def pinned(name):
     path, digest = PINS[name]
     if name == 'oldSubject': path = 'reference/priorities/braid-program/evidence/source-replay/scripts__eom__prepare-f6c-emission-refinement.py.source'
-    raw = (ROOT/path).read_bytes()
+    raw = (original_test_source(ROOT, __file__, path) if name == 'comparisonControls'
+           else (ROOT/path).read_bytes())
     assert hashlib.sha256(raw).hexdigest() == digest
     return ROOT/path, raw, digest
 

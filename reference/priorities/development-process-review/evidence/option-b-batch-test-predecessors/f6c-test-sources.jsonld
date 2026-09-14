@@ -1,0 +1,465 @@
+{
+  "@context": {
+    "@vocab": "https://architrino.com/knowledge/current-source/",
+    "from": {
+      "@type": "@id"
+    },
+    "to": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "current-source-manifest/v1",
+  "scope": "f6c-cached-test-identities",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "baseline": {
+    "commit": "5549583a1fa498a72e90aa1a170f26bec10dbd54",
+    "entry": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+    "authority": "operator-directed-existing-A-transfer"
+  },
+  "revisionId": "initial-transfer",
+  "@graph": [
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "@type": "Source",
+      "revisionId": "initial-transfer",
+      "role": "admission",
+      "binding": {
+        "path": "tests/support/option-b-f6c-test-identities.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "2033c018df3c3c22fb4b20fa5d2661a2ac511bbf5058a5fc63272d46a3d997ba"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-1",
+      "@type": "Source",
+      "revisionId": "initial-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/fixtures/option-b-f6c-test-identities.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e5b43651546fcaf3b472596880af2b0377a336fcfed3c7dfcbc6c105c5e7a85a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-2",
+      "@type": "Source",
+      "revisionId": "initial-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "34f07df26c16845b772e2a41fb8dfe5e526078e904a9ca6e5dcab5fa8ae3f52f"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-3",
+      "@type": "Source",
+      "revisionId": "initial-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f6c-cached-root-cover-full.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "0d8b6db89ad1bdd637804ed7c3d3b135f58b813dbdad2bf733dddc50c4c8109b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-4",
+      "@type": "Source",
+      "revisionId": "initial-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f6c-cached-root-cover-pilot-process.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "66e544a1f25fce660d2020341befb3ab7dfce4436723b1a171fd8d5b7787afe5"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-5",
+      "@type": "Source",
+      "revisionId": "initial-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/f6c-cached-root-cover-full-process.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "1424ea322a9fe65984f229276b835ec5240c6b11c24c798006987d3f8c4f235c"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-6",
+      "@type": "Source",
+      "revisionId": "initial-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/option-b-f6c-test-identities.test.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "421336e02c0990dee01cfb8e8ad8074b73ddeb1cd9b3c528617dca63cb1e0e01"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-7",
+      "@type": "Source",
+      "revisionId": "initial-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-manifest.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9097ef3fd3fb2040b48c601d81c184188e8a992aa4464694860d05d0bf76a56e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-8",
+      "@type": "Source",
+      "revisionId": "initial-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-transition.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "5ab045757df6c7df7d364f39ba2ac62ec90666e092581b5b3faa08d232dda039"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-9",
+      "@type": "Source",
+      "revisionId": "initial-transfer",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-impact.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "739ebb899d68378bad5da6571b7774d0641e9f5674cb2a876fdb9dda07e9b31b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-10",
+      "@type": "Source",
+      "revisionId": "initial-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "reference/priorities/development-process-review/evidence/option-b-f6c-test-transfer.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "c8840cd1ea87d37c99651b101a3c282e73cc926a488af98f227159d5d860187b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-checks-0-1",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-1",
+      "toRevision": "initial-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-checks-0-2",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-2",
+      "toRevision": "initial-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-checks-0-3",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-3",
+      "toRevision": "initial-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-checks-0-4",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-4",
+      "toRevision": "initial-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-checks-0-5",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-5",
+      "toRevision": "initial-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-checks-0-6",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-6",
+      "toRevision": "initial-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-checks-0-7",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-7",
+      "toRevision": "initial-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-checks-0-8",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-8",
+      "toRevision": "initial-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-checks-0-9",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-9",
+      "toRevision": "initial-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-checks-0-10",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-10",
+      "toRevision": "initial-transfer",
+      "role": "exact-selected-byte-admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-2-0",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-2",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-2-1",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-2",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-1",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-3-0",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-3",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-3-1",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-3",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-1",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-0-1",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-1",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-0-7",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-7",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-0-8",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-8",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-6-0",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-6",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-6-1",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-6",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-1",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-6-2",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-6",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-2",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-6-3",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-6",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-3",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-6-9",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-6",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-9",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-dependsOn-6-10",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-6",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-10",
+      "toRevision": "initial-transfer",
+      "role": "test-expectation-dependency"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-launch-selection",
+      "@type": "Source",
+      "revisionId": "initial-transfer",
+      "role": "scientific-control",
+      "binding": {
+        "path": "reference/priorities/development-process-review/contracts/option-b-five-profile-selection.json",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e251b94094f071db11563336f2fec39252190fc301939e193190cc4d935d97ef"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-launch-selection-checks",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-launch-selection",
+      "toRevision": "initial-transfer",
+      "role": "existing-five-profile-selection"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/f6c-test-launch-selection-dependsOn",
+      "@type": "Relationship",
+      "revisionId": "initial-transfer",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/f6c-test-0",
+      "fromRevision": "initial-transfer",
+      "to": "https://architrino.com/knowledge/current-source/f6c-test-launch-selection",
+      "toRevision": "initial-transfer",
+      "role": "existing-five-profile-selection"
+    }
+  ]
+}

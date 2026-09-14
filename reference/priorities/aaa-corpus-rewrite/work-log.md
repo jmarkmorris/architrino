@@ -4,6 +4,16 @@ This is the chronological completion log for the CRW-005 assurance campaign. The
 
 ## Completed milestones
 
+### 2026-09-13 — Supplementary sixteen-chapter repairs integrated
+
+The operator's accepted bounded corrections are complete in all sixteen chapters, with necessary stationary-surrogate propagation to Master Equation. Three disjoint editing groups supplied new repair receipts; a different reviewer checked each group against the independent references and counterexamples, including the final CL calibration propagation. The [integration record](evidence/crw-005-claude-sixteen-closure-verification-2026-09-13.md#final-sixteen-chapter-integration) retains all sixteen final source hashes, receipt links, peer scopes and the coordinator dependency hash. Original receipts remain historical evidence.
+
+A known-case-first Node board audit measured 199 unique completed rows, zero active or unopened rows, and exact equality to the 199 live corpus Markdown paths. Final source hashes match all sixteen new receipts. Strict KaTeX passed for all changed chapters; joined `node scripts/validate-content.mjs --check --strict` passed for 1833 repository Markdown files, 199 corpus files and 391 scenes, with zero errors, zero warnings and 30 notes. The equation-link validator passed its 23 registered links. Expected equation-registry source drift remains for authorized regeneration/publication; no generated assets or runtime were edited. Scientific and runtime obligations retain their existing scopes.
+
+### 2026-09-13 — Supplementary sixteen-chapter repairs accepted
+
+The operator accepted recommendation 1 from the [supplementary verification](evidence/crw-005-claude-sixteen-closure-verification-2026-09-13.md): repair the bounded findings and verify each against its counterexample or independent reference. Three workers own disjoint chapter sets; the coordinator owns shared integration and the stationary-surrogate correction in Master Equation required by the Perspective finding. A known-case-first board transform moved sixteen existing rows into the active queue, leaving 183 completed and no unopened documents; the 199-path inventory is unchanged. No original receipt is overwritten, no scientific obligation is silently promoted, and no runtime implementation or generated artifact is edited under this authorization.
+
 ### 2026-09-13 — Final corpus review disposition
 
 The known-case-first board counter measured 199 completed rows, zero active rows and zero unopened rows after final integration. An independent read-only Node audit immediately before that integration compared 199 unique board paths with 199 live corpus Markdown files and found no missing, extra or duplicate path; final integration moved the existing last row without changing its path. That audit also matched all 24 direct Archie guide/hub sources and One Nature, Many Theories against their latest receipts. The dated Master Equation DDE propagation receipt supersedes its older source hash. The last chapter source is `ac7c3706d43a6007e59b92a95d26d1a1d341c16caa0ed1cc1aeb75aaa9caf8a4`, with its [WP-01–09 receipt](evidence/crw-005-well-posedness-and-regularization-review-2026-09-13.md).

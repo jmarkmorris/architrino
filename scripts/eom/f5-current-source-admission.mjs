@@ -5,11 +5,27 @@ import {closeSync,constants,fstatSync,lstatSync,openSync,readSync,realpathSync} 
 import path from 'node:path';
 import {registerHooks,isBuiltin} from 'node:module';
 import {pathToFileURL,fileURLToPath} from 'node:url';
+
+// Selected dependencies of transferred controls; no scientific acceptance is granted.
+const BATCH_TEST_ROLES=Object.freeze({
+  "scripts/equation-mapping/batch-test-records.mjs": "scientific-contract",
+  "scripts/equation-mapping/current-source-transition.mjs": "scientific-contract",
+  "tests/option_b_batch_records.py": "scientific-contract",
+  "tests/fixtures/option-b-batch-test-identities.json": "scientific-control",
+  "tests/fixtures/option-b-batch-test-original-sources.json": "scientific-control",
+  "reference/priorities/development-process-review/contracts/option-b-batch-test-sources.jsonld": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-batch-test-accepted-b.json": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-batch-test-transition.json": "scientific-contract",
+  "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json": "scientific-contract",
+  "reference/priorities/development-process-review/evidence/option-b-batch-test-transfer.json": "scientific-control"
+});
+
 export const SOURCE_MAP='reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld';
 export const READER='scripts/equation-mapping/current-source-manifest.mjs';
 export const SELF='scripts/eom/f5-current-source-admission.mjs';
 export const SCOPE='f5-current-execution-build';
 export const ROLES=Object.freeze({
+ ...BATCH_TEST_ROLES,
  [SELF]:'admission',[READER]:'manifest-reader',
  'scripts/eom/launch-f5-prehistory-handoff-build.mjs':'launcher',
  'scripts/eom/prepare-f5-enclosed-root-build.mjs':'current-source',

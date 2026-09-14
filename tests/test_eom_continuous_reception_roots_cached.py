@@ -3,6 +3,9 @@
 Affine/root closed forms are the independent mathematics. Baseline byte parity
 is explicitly an implementation-equivalence check, not an independent oracle.
 """
+from option_b_batch_records import batch_identities
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 
 import ast
 from collections.abc import Sequence
@@ -21,7 +24,7 @@ from scripts.eom.oracle.certified_history import CubicHistorySegment, PiecewiseP
 from scripts.eom.oracle.decimal_interval import DecimalInterval as I
 
 
-BASELINE_SHA = "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c"
+BASELINE_SHA = OPTION_B_BATCH_IDENTITIES[0]
 
 
 def interval(lo, hi=None, precision=90):

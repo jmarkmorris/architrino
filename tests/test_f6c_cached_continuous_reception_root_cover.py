@@ -4,6 +4,9 @@ All 35 frozen baseline control obligations run against the new comparator.
 Exact source bytes and AST structure prove that only four binding assignments
 changed; numerical agreement is not used as a new mathematical oracle.
 """
+from option_b_batch_records import batch_identities, original_test_source
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 import ast
 from copy import deepcopy
 import hashlib
@@ -16,9 +19,9 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT/"scripts/eom/verify-f6c-continuous-reception-root-cover.py"
 BASE_TESTS = ROOT/"tests/test_f6c_continuous_reception_root_cover.py"
 SOURCE = ROOT/"scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py"
-BASE_SHA = "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36"
-BASE_TESTS_SHA = "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5"
-DECLARATION_SHA = "520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba"
+BASE_SHA = OPTION_B_BATCH_IDENTITIES[0]
+BASE_TESTS_SHA = OPTION_B_BATCH_IDENTITIES[1]
+DECLARATION_SHA = OPTION_B_BATCH_IDENTITIES[2]
 ALLOWED_ASSIGNMENTS = {"SELF", "DECLARATION", "DECLARATION_SHA", "FIXED"}
 REPLACEMENTS = [
     [
@@ -30,27 +33,19 @@ REPLACEMENTS = [
         "DECLARATION = \"reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md\""
     ],
     [
-        "DECLARATION_SHA = \"3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578\"",
-        "DECLARATION_SHA = \"520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba\""
+        ('DECLARATION_SHA = "' + OPTION_B_BATCH_IDENTITIES[3] + '"'),
+        ('DECLARATION_SHA = "' + OPTION_B_BATCH_IDENTITIES[4] + '"')
     ],
     [
-        "(\"rootLibrary\", \"scripts/eom/oracle/continuous_reception_roots.py\", \"f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c\")",
-        "(\"rootLibrary\", \"scripts/eom/oracle/continuous_reception_roots_cached.py\", \"daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf\")"
+        ('("rootLibrary", "scripts/eom/oracle/continuous_reception_roots.py", "' + OPTION_B_BATCH_IDENTITIES[5] + '")'),
+        ('("rootLibrary", "scripts/eom/oracle/continuous_reception_roots_cached.py", "' + OPTION_B_BATCH_IDENTITIES[6] + '")')
     ],
     [
-        "(\"rootControls\", \"tests/test_eom_continuous_reception_roots.py\", \"81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac\")",
-        "(\"rootControls\", \"tests/test_eom_continuous_reception_roots_cached.py\", \"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\")"
+        ('("rootControls", "tests/test_eom_continuous_reception_roots.py", "' + OPTION_B_BATCH_IDENTITIES[7] + '")'),
+        ('("rootControls", "tests/test_eom_continuous_reception_roots_cached.py", "' + OPTION_B_BATCH_IDENTITIES[8] + '")')
     ]
 ]
-EXTRA_FIXED_LINES = """    ("governingDeclaration", "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md", "3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578"),
-    ("baselineRootLibrary", "scripts/eom/oracle/continuous_reception_roots.py", "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c"),
-    ("baselineRootControls", "tests/test_eom_continuous_reception_roots.py", "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac"),
-    ("baselineComparator", "scripts/eom/verify-f6c-continuous-reception-root-cover.py", "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36"),
-    ("baselineComparatorControls", "tests/test_f6c_continuous_reception_root_cover.py", "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5"),
-    ("cacheEquivalence", "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md", "a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d"),
-    ("governingResourcePlan", "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md", "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d"),
-    ("priorResourceReturn", "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md", "2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40"),
-"""
+EXTRA_FIXED_LINES = ('    ("governingDeclaration", "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md", "' + OPTION_B_BATCH_IDENTITIES[9] + '"),\n    ("baselineRootLibrary", "scripts/eom/oracle/continuous_reception_roots.py", "' + OPTION_B_BATCH_IDENTITIES[10] + '"),\n    ("baselineRootControls", "tests/test_eom_continuous_reception_roots.py", "' + OPTION_B_BATCH_IDENTITIES[11] + '"),\n    ("baselineComparator", "scripts/eom/verify-f6c-continuous-reception-root-cover.py", "' + OPTION_B_BATCH_IDENTITIES[12] + '"),\n    ("baselineComparatorControls", "tests/test_f6c_continuous_reception_root_cover.py", "' + OPTION_B_BATCH_IDENTITIES[13] + '"),\n    ("cacheEquivalence", "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md", "' + OPTION_B_BATCH_IDENTITIES[14] + '"),\n    ("governingResourcePlan", "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md", "' + OPTION_B_BATCH_IDENTITIES[15] + '"),\n    ("priorResourceReturn", "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md", "' + OPTION_B_BATCH_IDENTITIES[16] + '"),\n')
 
 def digest(raw):
     return hashlib.sha256(raw).hexdigest()
@@ -120,8 +115,8 @@ class SuccessorBindingTests(unittest.TestCase):
         for role, expected in old.items():
             if role not in {"rootLibrary", "rootControls", "declaration"}:
                 self.assertEqual(new[role], expected)
-        self.assertEqual(new["rootLibrary"], ("scripts/eom/oracle/continuous_reception_roots_cached.py", "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf"))
-        self.assertEqual(new["rootControls"], ("tests/test_eom_continuous_reception_roots_cached.py", "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb"))
+        self.assertEqual(new["rootLibrary"], ("scripts/eom/oracle/continuous_reception_roots_cached.py", OPTION_B_BATCH_IDENTITIES[17]))
+        self.assertEqual(new["rootControls"], ("tests/test_eom_continuous_reception_roots_cached.py", OPTION_B_BATCH_IDENTITIES[18]))
         for source, retained in [("rootLibrary", "baselineRootLibrary"), ("rootControls", "baselineRootControls"), ("declaration", "governingDeclaration")]:
             self.assertEqual(new[retained], old[source])
         self.assertEqual(new["baselineComparator"], (str(BASE.relative_to(ROOT)), BASE_SHA))
@@ -129,7 +124,13 @@ class SuccessorBindingTests(unittest.TestCase):
         # Read code/protocol bytes only; never load the three actual data files.
         for role, path, expected in V.FIXED:
             if role not in {"export", "reconstruction", "guards"}:
-                self.assertEqual(digest((ROOT/path).read_bytes()), expected, role)
+                if path in {"tests/test_eom_continuous_reception_roots.py", "tests/test_eom_continuous_reception_roots_cached.py"}:
+                    # The production table retains original control identities;
+                    # selected current controls are admitted separately by this read.
+                    raw = original_test_source(ROOT, __file__, path)
+                else:
+                    raw = (ROOT/path).read_bytes()
+                self.assertEqual(digest(raw), expected, role)
         self.assertEqual(V.DECLARATION_SHA, DECLARATION_SHA)
         self.assertEqual(V.SELF, str(SOURCE.relative_to(ROOT)))
 

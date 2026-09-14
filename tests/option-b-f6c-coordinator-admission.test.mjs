@@ -20,15 +20,15 @@ function fixture(t){
  const save=()=>{const raw=Buffer.from(JSON.stringify(doc,null,2)+'\n');writeFileSync(map,raw);return hash(raw);};
  return{dir,doc,map,save,digest:save()};
 }
-test('known inert six-source fixture admits seven physical bindings without importing helpers',async t=>{
+test('known inert sixteen-source fixture admits seventeen physical bindings without importing helpers',async t=>{
  const f=fixture(t),r=await C.initializeSourceBindings(f.dir,f.digest);
- assert.equal(r.sources.length,7);assert.equal(Object.keys(r.dependencies).length,3);assert.equal(r.sourceMap.sha256,f.digest);
+ assert.equal(r.sources.length,17);assert.equal(Object.keys(r.dependencies).length,3);assert.equal(r.sourceMap.sha256,f.digest);
 });
 test('current coordinator graph and independent selector agree on actual selected source coverage',async()=>{
  const raw=readFileSync(path.join(root,C.SOURCE_MAP)),r=await C.initializeSourceBindings(root,hash(raw));
  const b=p=>r.sources.find(b=>b.path===path.join(root,p));
  const invocation={schema:'braid-program/observed-bounded-invocation.v2',root,coordinator:b(C.SELF),node:{path:'/selected/node',sha256:'a'.repeat(64),bytes:1},plan:{path:'/selected/plan',sha256:'b'.repeat(64),bytes:1},control:true,sourceMap:r.sourceMap};
- const selected=verifyCurrentSelection(invocation);assert.equal(selected.length,6);assert.equal(r.sources.length,7);
+ const selected=verifyCurrentSelection(invocation);assert.equal(selected.length,16);assert.equal(r.sources.length,17);
  assert.equal(Object.hasOwn(C,'PINS'),false);
 });
 test('missing external digest, source-byte mutation, map-byte mutation and changed reader reject',async t=>{

@@ -25,7 +25,7 @@ Different laboratory proposals enter this packet at different levels. The classi
 | BEC, solid, nanoparticle, nanodiamond, membrane, or cantilever massive-superposition tests | branch mass histories $\rho_1,\rho_2$, visibility $\mathcal{V}(T_W)$, the finite measurement time $\tau_{\text{meas}}$, the gravitational self-energy scale $\Delta E_G$ of the branch mass difference defined in [Measurement Ontology](../quantum/measurement-ontology.md#external-penrose-diosi-benchmark), and $\mathcal{D}_{\mathrm{grav}}$ | active branch-mass-history benchmark | Tests whether finite-time threshold resolution, ordinary decoherence, and Penrose-Diosi-like collapse scales remain quantitatively distinguishable. |
 | two-probe gravitationally induced entanglement tests | cross-branch phase $\Delta\Phi_{\mathrm{ent}}$, entanglement witness $C_{\mathrm{obs}}$, and non-gravitational residual $\mathcal{R}_{\mathrm{nongrav}}$ | mediated-entanglement benchmark | Tests the shared gravity-side constitutive record without importing fundamental graviton ontology or a quantum-metric substrate. |
 
-The packet should classify a run by the strongest observable it actually carries. A passive phase benchmark may constrain $\theta$ for later active-mass tests, but it cannot be used as evidence that gravity has or has not selected a branch. Conversely, an active branch-mass run that loses visibility must still show a record-forming separatrix crossing, meaning that the apparatus state crosses the boundary between basins that resolve to different durable records as defined in [Measurement Ontology](../quantum/measurement-ontology.md#minimal-dynamical-model), before the loss is interpreted as measurement rather than uncontrolled environmental decoherence.
+The packet should classify a run by the strongest observable it actually carries. A passive phase benchmark may constrain $\theta$ for later active-mass tests, but it cannot be used as evidence that gravity has or has not selected a branch. Conversely, an active branch-mass run that loses visibility must still satisfy the record and persistence criteria. A claimed separatrix crossing refers to a driven or reduced threshold between record outcomes; an invariant basin boundary of a complete autonomous flow is not crossed by that flow. The relevant threshold and retained state must be specified consistently with [Measurement Ontology](../quantum/measurement-ontology.md#minimal-dynamical-model), before the loss is interpreted as measurement rather than uncontrolled environmental decoherence.
 
 ## Observable Target
 
@@ -93,7 +93,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4fd6fbfe6f73ce2f)
 
-Let $G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)$ be the detector response kernel implied by the same effective-metric constitutive record used for the classical weak-field benchmarks developed in [General Relativity](../spacetime/general-relativity.md) and [PPN Parameters](../spacetime/ppn-parameters.md): gravitational redshift (the clock-rate shift between different depths in a potential), Shapiro delay (the extra travel time of a signal passing near a mass), lensing (the bending of light paths near a mass), gravitational-wave speed, and, when the record is extrapolated to compact sources, horizon-scale ring/shadow imaging. The kernel gives the channel-$A$ readout at time $t_{\mathrm{eff}}$ produced by a unit of mass density at $x_{\mathrm{eff}}^i$ at the earlier time $t'_{\mathrm{eff}}$. The branch response is
+Let $G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)$ be the detector response kernel implied by the same effective-metric constitutive record used for the classical weak-field benchmarks developed in [General Relativity](../spacetime/general-relativity.md) and [PPN Parameters](../spacetime/ppn-parameters.md): gravitational redshift (the clock-rate shift between different depths in a potential), Shapiro delay (the extra travel time of a signal passing near a mass), lensing (the bending of light paths near a mass), gravitational-wave speed, and, when the record is extrapolated to compact sources, horizon-scale ring/shadow imaging. The kernel gives the channel-$A$ readout at time $t_{\mathrm{eff}}$ produced by a unit of mass density at $x_{\mathrm{eff}}^i$ at the earlier time $t'_{\mathrm{eff}}$. The following branch response is the contribution after the run origin. It assumes zero initial response, or subtraction of a common prehistory response. Any branch-dependent prehistory or initial detector response must instead be included in $h_A$ and its difference before evaluating distinguishability. Under that convention the branch response is
 $$
 h_A(t_{\mathrm{eff}};\rho_k,\theta)
 =
@@ -194,7 +194,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a2fd3ef591382d1e)
 
-This is the concurrence of the ideal four-branch state. For equal amplitudes the state is separable exactly when $\Delta\Phi_{\mathrm{ent}}$ is a multiple of $2\pi$, and the concurrence of a pure two-qubit state with amplitudes $c_{ab}$ is $2|c_{++}c_{--}-c_{+-}c_{-+}|$, which evaluates to the displayed sine. A measured witness $C_{\mathrm{obs}}$ lower-bounds the entanglement actually present, which is why the acceptance test below is one-sided. This formula is an observer-level benchmark. It does not say that the [Euclidean void](../foundations/euclidean-void.md) is quantized, that the [effective metric](../spacetime/emergent-metric.md) is fundamental, or that a graviton field is the native substrate. It says that the same gravity-side constitutive record must produce the branch phase that standard low-energy descriptions would attribute to gravitational mediation.
+This is the concurrence of the ideal four-branch state. For equal amplitudes the state is separable exactly when $\Delta\Phi_{\mathrm{ent}}$ is a multiple of $2\pi$, and the concurrence of a pure two-qubit state with amplitudes $c_{ab}$ is $2|c_{++}c_{--}-c_{+-}c_{-+}|$, which evaluates to the displayed sine. Here $C_{\mathrm{obs}}$ denotes a calibrated numerical lower bound on concurrence inferred from the measured witness, not an arbitrary witness value. The one-sided test below is a necessary consistency screen; agreement with the measured joint probabilities and their uncertainties is additionally required to validate the predicted correlations. This formula is an observer-level benchmark. It does not say that the [Euclidean void](../foundations/euclidean-void.md) is quantized, that the [effective metric](../spacetime/emergent-metric.md) is fundamental, or that a graviton field is the native substrate. It says that the same gravity-side constitutive record must produce the branch phase that standard low-energy descriptions would attribute to gravitational mediation.
 
 The comparison is meaningful only when the non-gravitational residual is bounded. Let $\mathcal{R}_{\mathrm{nongrav}}$ collect calibrated electromagnetic, spin-spin, Casimir, thermal, vibration, and apparatus cross-talk contributions to the same entanglement witness. A run can be used as a gravity-side validation target only if
 $$
@@ -221,8 +221,8 @@ The packet is evaluated on an explicit run record:
 | non-gravitational residual | $\mathcal{R}_{\mathrm{nongrav}}$ | calibrated bound on non-gravity channels that could create the observed correlation |
 | covariance decomposition | $N_{AB}$ | detector noise, unresolved boundary-wake terms, environmental residuals, and calibration residuals |
 | visibility data | $\mathcal{V}(T_W)$ | observed or predicted interference visibility over the run |
-| entanglement data | $C_{\mathrm{obs}}$ | measured or predicted two-probe entanglement witness in the retained readout basis |
-| record criteria | $R,\Sigma,T_{\text{rec}}$ | Physical Observer record variable (the coarse apparatus readout that stores the outcome), separatrix (the basin boundary the apparatus state must cross for a record to form), and persistence threshold, as defined in [Measurement Ontology](../quantum/measurement-ontology.md#what-makes-an-interaction-a-record) |
+| entanglement data | $C_{\mathrm{obs}}$ | calibrated concurrence lower bound from the two-probe witness in the retained readout basis |
+| record criteria | $R,\Sigma,T_{\text{rec}}$ | Physical Observer record variable (the coarse apparatus readout that stores the outcome), separatrix (a specified driven or reduced record threshold, not a crossed invariant autonomous basin boundary), and persistence threshold, as defined in [Measurement Ontology](../quantum/measurement-ontology.md#what-makes-an-interaction-a-record) |
 
 No row may be filled by changing the weak-field metric record after the positive gravity benchmarks have already been fit. The same $\theta$ must be replayable through redshift, Shapiro delay, lensing, PPN, gravitational-wave speed, compact-source ring/shadow extrapolations, and this massive-superposition packet.
 
@@ -230,20 +230,20 @@ No row may be filled by changing the weak-field metric record after the positive
 
 1. **Normalize the branch histories.** Verify $\int_{\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}}\rho_k(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,d^3x_{\mathrm{eff}}=m$ for each branch and each resolved time slice, or record the known mass exchange with the apparatus ledger.
 2. **Compute the response difference.** Use one kernel $G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)$ to compute $h_A(t_{\mathrm{eff}};\rho_1,\theta)$, $h_A(t_{\mathrm{eff}};\rho_2,\theta)$, and $\Delta h_A(t_{\mathrm{eff}})$.
-3. **Assemble the covariance.** Build $N_{AB}=N^{\mathrm{det}}_{AB}+N^{\mathrm{env}}_{AB}+N^{\mathrm{bw}}_{AB}+N^{\mathrm{cal}}_{AB}$, where $N^{\mathrm{bw}}_{AB}$ is the boundary-wake covariance defined in [Observer Framework](../spacetime/observer-framework.md#boundary-wake-covariance-scaffold), with each term either derived from the apparatus model or bounded by calibration data. The additive form holds only when the cross-kernels between the boundary-wake, detector, and environment residuals vanish under the same joint conditional law; otherwise those cross-kernels are retained, as that owner requires.
+3. **Assemble the covariance.** Build $N_{AB}=N^{\mathrm{det}}_{AB}+N^{\mathrm{env}}_{AB}+N^{\mathrm{bw}}_{AB}+N^{\mathrm{cal}}_{AB}$, where $N^{\mathrm{bw}}_{AB}$ is the boundary-wake covariance defined in [Observer Framework](../spacetime/observer-framework.md#boundary-wake-covariance-scaffold), with each term either derived from the apparatus model or bounded by calibration data. The additive form holds only when the cross-kernels between all four boundary-wake, detector, environment, and calibration residuals vanish under the same joint conditional law; otherwise those cross-kernels are retained, as that owner requires.
 4. **Evaluate distinguishability.** Compute $\mathcal{D}_{\mathrm{grav}}(T_W;\theta)$ and compare it with $\varepsilon_{\mathrm{wp}}$.
 5. **Evaluate record formation.** Compute $\tau_{\text{meas}}$, $\Delta_{\mathrm{rec}}$, and the persistence window from the measurement chapter's record criteria.
 6. **Evaluate mediated entanglement when present.** If the run is a two-probe mediated-entanglement experiment, compute $\Delta\Phi_{\mathrm{ent}}$, $C_{\mathrm{GIE}}$, and $\mathcal{R}_{\mathrm{nongrav}}$ from the same run record.
-7. **Classify the run.** Use the same output record to assign one of four statuses:
+7. **Classify the run.** Use the same output record to evaluate the following nonexclusive flags:
 
 | Status | Conditions | Interpretation |
 | --- | --- | --- |
 | weak-probe | $\mathcal{D}_{\mathrm{grav}}\le\varepsilon_{\mathrm{wp}}$ and no durable record forms | gravitational response is too weak to act as a which-path record |
-| mediated-entangling | $C_{\mathrm{GIE}}\ge C_{\mathrm{obs}}-\varepsilon_C$, $\mathcal{R}_{\mathrm{nongrav}}\le\varepsilon_{\mathrm{iso}}$, $\mathcal{D}_{\mathrm{grav}}\le\varepsilon_{\mathrm{wp}}$, and no durable which-path record forms | the branch phase is strong enough to account for the entanglement witness while the gravity-side readout remains below record threshold |
+| mediated-entangling | a positive calibrated entanglement detection, $C_{\mathrm{obs}}>\varepsilon_C$, $C_{\mathrm{GIE}}\ge C_{\mathrm{obs}}-\varepsilon_C$, agreement with the measured correlation data within uncertainty, $\mathcal{R}_{\mathrm{nongrav}}\le\varepsilon_{\mathrm{iso}}$, $\mathcal{D}_{\mathrm{grav}}\le\varepsilon_{\mathrm{wp}}$, and no durable which-path record forms | the branch phase is strong enough to account for the entanglement witness while the gravity-side readout remains below record threshold |
 | record-forming | $\mathcal{D}_{\mathrm{grav}} > \varepsilon_{\mathrm{wp}}$, $\tau_{\text{meas}} < T_W$, and $\Delta_{\mathrm{rec}}$ stays below threshold through $T_{\text{rec}}$ | the apparatus/environment has formed an autonomous record |
 | falsifying | $\mathcal{D}_{\mathrm{grav}}\gg1$ while visibility remains high, no record-autonomy criterion is met, and the independently calibrated information-to-visibility relation of [Measurement Ontology](../quantum/measurement-ontology.md#external-gravitational-which-path-benchmark) predicts visibility suppression at that $\mathcal{D}_{\mathrm{grav}}$ | the effective-metric response overproduces observable which-path information |
 
-The four rows are not exhaustive. A run with $\mathcal{D}_{\mathrm{grav}}>\varepsilon_{\mathrm{wp}}$ that forms no durable record and does not meet the falsifying conditions is indeterminate: the quadratic diagnostic by itself proves neither record formation nor loss of interference, so such a run counts as evidence on neither side until the calibrated relation is supplied.
+The weak-probe and mediated-entangling flags can both hold; no unique classification is implied. The four rows are not exhaustive. A run with $\mathcal{D}_{\mathrm{grav}}>\varepsilon_{\mathrm{wp}}$ that forms no durable record and does not meet the falsifying conditions is indeterminate: the quadratic diagnostic by itself proves neither record formation nor loss of interference, so such a run counts as evidence on neither side until the calibrated relation is supplied.
 
 For a white-noise readout approximation, $N_{AB}(t_{\mathrm{eff}},t'_{\mathrm{eff}})=S_{AB}\delta(t_{\mathrm{eff}}-t'_{\mathrm{eff}})$, the distinguishability reduces to
 $$
@@ -261,20 +261,20 @@ This special case is the first numerical target because it turns the validation 
 
 ## Worked Acceleration Bound
 
-A first sanity bound can use a single acceleration readout channel before introducing a full detector geometry. Suppose the branch displacement is bounded by $\|d_{\mathrm{eff}}^i(t_{\mathrm{eff}})\|\le d_0$, the detector is at effective-chart distance $R_{\mathrm{eff}}$ from the branch center with $d_0\ll R_{\mathrm{eff}}$, and the weak-field map satisfies $G_{\mathrm{eff}}(\theta)\to G$, Newton's gravitational constant, in the tested regime. Write $M$ for the branch mass, the $m$ of the response model. The branch acceleration difference is bounded by
+A first sanity bound can use a single acceleration readout channel before introducing a full detector geometry. Suppose the branch displacement is bounded by $\|d_{\mathrm{eff}}^i(t_{\mathrm{eff}})\|\le d_0$, the detector is at effective-chart distance $R_{\mathrm{eff}}$ from the branch center with $d_0\ll R_{\mathrm{eff}}$, and the weak-field map satisfies $G_{\mathrm{eff}}(\theta)\to G$, Newton's gravitational constant, in the tested regime. Write $M$ for the branch mass, the $m$ of the response model. For this bound, the two branch distributions must be translations of the same nonnegative mass profile by at most $d_0$, with no changing multipoles or mass exchange. Let $R_{\min}>0$ be a lower bound on every detector-to-source distance along every straight displacement segment connecting corresponding mass elements over the run. A compact packet within radius $b$ of each symmetrically displaced center admits $R_{\min}=R_{\mathrm{eff}}-d_0/2-b>0$. An untruncated Gaussian has no such support bound; it needs a separately bounded tail contribution. In the static Newtonian comparison with spatially constant positive $G_{\mathrm{eff}}(\theta)$ and a unit-gain acceleration readout, the branch acceleration difference is bounded by
 $$
 |\Delta h(t_{\mathrm{eff}})|
 \le
-\frac{2G_{\mathrm{eff}}(\theta)M d_0}{R_{\mathrm{eff}}^3}
+\frac{2G_{\mathrm{eff}}(\theta)M d_0}{R_{\min}^3}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5f1d153305299ef6)
 
-The bound follows from differentiating the comparison acceleration $G_{\mathrm{eff}}(\theta)M/R_{\mathrm{eff}}^2$ with respect to the source position: displacing the mass by $d_0$ along the line of sight changes the acceleration at the detector by $2G_{\mathrm{eff}}(\theta)Md_0/R_{\mathrm{eff}}^3$ to leading order in $d_0/R_{\mathrm{eff}}$, a transverse displacement changes it by half as much, and the radial coefficient $2$ is therefore the largest over displacement directions. For a white acceleration readout covariance $N(t_{\mathrm{eff}},t'_{\mathrm{eff}})=S_a\delta(t_{\mathrm{eff}}-t'_{\mathrm{eff}})$, the distinguishability obeys
+The spatial derivative of the Newtonian acceleration vector has radial eigenvalue magnitude $2G_{\mathrm{eff}}M/r^3$ and two transverse eigenvalue magnitudes $G_{\mathrm{eff}}M/r^3$, so its operator norm is $2G_{\mathrm{eff}}M/r^3$. Integrating that derivative along each displacement segment and then over the common nonnegative profile gives the bound with $R_{\min}$. Replacing $R_{\min}$ by the center distance $R_{\mathrm{eff}}$ is only the leading-order small-packet, small-displacement estimate. For a white acceleration readout covariance $N(t_{\mathrm{eff}},t'_{\mathrm{eff}})=S_a\delta(t_{\mathrm{eff}}-t'_{\mathrm{eff}})$, the distinguishability obeys
 $$
 \mathcal{D}_{\mathrm{grav}}(T_W;\theta)
 \le
-\frac{4G_{\mathrm{eff}}^2(\theta)M^2d_0^2T_W}{R_{\mathrm{eff}}^6S_a}
+\frac{4G_{\mathrm{eff}}^2(\theta)M^2d_0^2T_W}{R_{\min}^6S_a}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-574ade487f4f363b)
@@ -296,7 +296,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7830ae65acb464c1)
 
-the bound, evaluated with $G=6.674\times10^{-11}\,\mathrm{m^{3}\,kg^{-1}\,s^{-2}}$, is
+the leading-order estimate, evaluated with $G=6.674\times10^{-11}\,\mathrm{m^{3}\,kg^{-1}\,s^{-2}}$, is
 $$
 \mathcal{D}_{\mathrm{grav}}
 \lesssim
@@ -312,17 +312,17 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-966cd853ccca3102)
 
-For a which-path threshold of order unity, this run is deep in the weak-probe class. Solving the same bound for the mass needed to reach $\mathcal{D}_{\mathrm{grav}}\sim\varepsilon_{\mathrm{wp}}$ gives
+For compact point-like packets the rigorous ceiling differs from this estimate by $(R_{\mathrm{eff}}/R_{\min})^6$; the stated radial point-packet geometry has $R_{\min}=R_{\mathrm{eff}}-d_0/2$ and a factor below $1.004$. Thus its ceiling remains far below an order-unity which-path threshold. Inverting that ceiling gives a necessary mass scale for threshold reachability, not a sufficient detection threshold: $M<M_{\mathrm{crit}}$ excludes reaching the threshold within this comparison, whereas $M\ge M_{\mathrm{crit}}$ does not guarantee it. The scale is
 $$
 M_{\mathrm{crit}}
-\approx
-\frac{R_{\mathrm{eff}}^3}{2G_{\mathrm{eff}}(\theta)d_0}
+=
+\frac{R_{\min}^3}{2G_{\mathrm{eff}}(\theta)d_0}
 \sqrt{\frac{\varepsilon_{\mathrm{wp}}S_a}{T_W}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-67400247e859d41c)
 
-or, in the same benchmark geometry,
+or, to leading order in the same compact benchmark geometry,
 $$
 M_{\mathrm{crit}}
 \approx
@@ -342,7 +342,7 @@ This is not a new ontology or an experimental forecast. It is a scale check: for
 
 ## Acceptance Criteria
 
-For an interference-preserving run, the metric or gravity-side readout must satisfy
+For an interference-preserving run whose independently calibrated information-to-visibility map on the same ensemble requires the weak-probe threshold, the metric or gravity-side readout must satisfy
 $$
 \mathcal{D}_{\mathrm{grav}}(T_W;\theta)
 \le
@@ -351,7 +351,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-baf70e8bcbab6b6a)
 
-For a mediated-entanglement run, the same record must also satisfy
+For a mediated-entanglement run with a positive calibrated concurrence lower bound, the same record must also satisfy the necessary screen
 $$
 C_{\mathrm{GIE}}(T_W;\theta)
 \ge
@@ -364,7 +364,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f6c04406d9dbf53e)
 
-This combined gate preserves the observable without overclaiming the interpretation: the run tests whether the retained gravity-side constitutive record can generate the observed branch correlation while avoiding premature which-path record formation.
+This one-sided screen is supplemented by agreement with the measured correlation data and its uncertainty; a larger predicted concurrence alone does not establish that agreement. With the same-ensemble visibility calibration, the run tests whether the retained gravity-side constitutive record can generate the observed branch correlation while avoiding premature which-path record formation.
 
 If a which-path record is claimed instead, the measurement chapter's record criteria must also hold:
 $$
@@ -405,7 +405,7 @@ $$
 
 The inputs are the branch mass scale, packet width, separation history, coherence window, detector response kernel, covariance decomposition, record variable, separatrix, and two-probe branch histories when present. The outputs are the gravitational distinguishability, interference visibility, entangling phase, mediated-entanglement witness, finite measurement time, and record-autonomy residual.
 
-The worked acceleration bound supplies the first analytic $\mathcal{D}_{\mathrm{grav}}$ estimate. The mediated-entanglement comparison supplies the first branch-phase target. Full packet closure still requires one numerical or analytic instance that computes the retained outputs from a shared constitutive record and reports whether the branch pair is weak-probe, mediated-entangling, record-forming, or falsifying.
+The worked acceleration bound supplies the first analytic $\mathcal{D}_{\mathrm{grav}}$ estimate. The mediated-entanglement comparison supplies the first branch-phase target. Full packet closure still requires one numerical or analytic instance that computes the retained outputs from a shared constitutive record and reports its applicable weak-probe, mediated-entangling, record-forming or falsifying flags, or an indeterminate result.
 
 ## Sources
 

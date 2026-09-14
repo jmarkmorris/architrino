@@ -6,6 +6,9 @@ Strict grid-neighbor formulas independently check the fixture's binary replay.
 The hash-pinned independent Bernstein instrument is the sole injected helper.
 """
 from __future__ import annotations
+from option_b_batch_records import batch_identities
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 
 import ast
 from copy import deepcopy
@@ -24,9 +27,9 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT/'scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py'
 REFERENCE = ROOT/'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py'
-REFERENCE_SHA = '3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'
+REFERENCE_SHA = OPTION_B_BATCH_IDENTITIES[0]
 PROOF = ROOT/'reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md'
-PROOF_SHA = 'c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'
+PROOF_SHA = OPTION_B_BATCH_IDENTITIES[1]
 
 
 def load(name, path):

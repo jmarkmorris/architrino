@@ -15,7 +15,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
   - Each causal hit is directed along $\hat{\mathbf{r}}$ from the transmitter's emission point to the receiver, with received magnitude weighted by $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, where $D_t=c_f-\mathbf V_t(T_t)\cdot\hat{\mathbf r}$ is the transmitter-side wake-spacing factor and $D_r=c_f-\mathbf V_r(T_r)\cdot\hat{\mathbf r}$ is the receiver-side root-playback factor, $\mathbf V_t(T_t)$ being the transmitter velocity at emission and $\mathbf V_r(T_r)$ the receiver velocity at reception.
 
 - Why it matters:
-  - Gauss-like behavior follows immediately ($1/r^2$ on causal wake fronts): the surface density falls as the inverse square of the distance while the surface area grows as its square, so the total emission crossing any sphere about the emission point is the same at every radius, which is the property that Gauss's law states for a static charge in classical electrostatics.
+  - Gauss-like behavior follows immediately ($1/r^2$ on causal wake fronts): the surface density falls as the inverse square of the distance while the surface area grows as its square, so the total emission crossing any sphere about the emission point is the same at every radius, a shell-normalization comparison with the static electrostatic Gauss law, not a derivation of its general flux constraint for delayed fields.
   - Moving histories can generate tangential components relative to an assembly-centered chart because the line of action points to the transmitter’s past position. Transmitter motion changes $D_t$, while receiver motion changes $D_r$ and future geometry.
 
 - Closure target:
@@ -60,7 +60,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
   - We use a narrow Gaussian causal wake surface $\delta_\eta$ when continuous-time derivatives are needed.
 
 - Why it matters:
-  - Locality: inverse-square geometric weighting together with finite-speed branch selection makes nearby coherent roots dominant, but infinite populations still require an explicit cutoff, screening rule, cancellation estimate, sampled mean field, or principal-value/mean-field subtraction.
+  - Locality: nearby-root dominance requires population, cancellation and transmitter-transversality bounds in addition to inverse-square dilution. Shell population can offset that dilution, and distant near-fold weights can dominate. Infinite populations require an explicit cutoff, screening rule, cancellation estimate, sampled mean field, or principal-value/mean-field subtraction.
   - Bookkeeping: with $\delta_\eta$, delayed-history solvers can integrate smooth contributions; with $\delta$, the analysis can reason about impulses and events. Agreement in the $\eta\to0$ limit is a required convergence result, not an automatic property of the two representations.
 
 ---
@@ -115,7 +115,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
 - Observable: a “quiet line” (near-zero net potential) threading the binary. The line is quiet in potential and in orbit-averaged acceleration, not in instantaneous acceleration: on the axis the two per-hit accelerations point along different lines of action, and their sum is transverse, of magnitude $2\kappa\epsilon\lvert q_r\rvert a/(z^2+a^2)^{3/2}$ for orbit radius $a$, axial distance $z$, receiver polarity $q_r$, coupling $\kappa$, and $c_f=1$; it rotates with the binary, so its orbit average vanishes.
 
 2) Scale selection for $d_0$ and $P_0$
-- With $\delta\to\delta_\eta$, compute the mean inward radial acceleration from the partner versus the mean outward radial self-hit acceleration across one orbit; a radial fixed point nominates $d_0$ and the maximum orbital frequency $2\pi/P_0$ only when the tangential acceleration also vanishes at every instant of the circular candidate, as [Binary Dynamics](../../dynamics/binary-dynamics.md#requirements-for-true-circular-orbit-working-hypothesis) requires; a radial balance with nonzero tangential drive is not a circular branch and defines no scale.
+- With $\delta\to\delta_\eta$, compute the full partner-plus-self acceleration on a declared circular candidate of radius $a$ and angular frequency $\omega$. At every phase require the radial residual $A_r+a\omega^2$ and the tangential acceleration $A_\theta$ to vanish within tolerance, with $A_r$ positive outward; the net radial acceleration must supply the inward centripetal term, not vanish. Only a candidate satisfying this pointwise balance can nominate $d_0$ and $P_0=2\pi/\omega$, as [Binary Dynamics](../../dynamics/binary-dynamics.md#requirements-for-true-circular-orbit-working-hypothesis) requires; a radial balance with nonzero tangential drive is not a circular branch and defines no scale.
 - Prediction: the same $d_0$ appears across binaries with the same $\kappa$, $\epsilon$, and $c_f$, independent of initial conditions after sufficient relaxation. All three inputs enter because the per-hit acceleration scales as $\kappa\epsilon^2/r^2$, so the only length the law supplies is $\kappa\epsilon^2/c_f^2$, which is $\kappa\epsilon^2$ in normalized units, and $d_0$ is a branch-determined multiple of it. The independence from initial conditions is a hypothesis under test, not a derived result: it fails if certified binary branches with the same three inputs settle at different radii, or if no mechanism carries the binary to a common branch, since the principal partner circular branch is anti-damped rather than dissipative.
 
 3) Energy consistency across a same-transmitter root-onset window
@@ -181,7 +181,7 @@ Absolute time and Euclidean frames remove coordinate ambiguity (synchronization 
 - Baseline distance scaling and branch geometry: $\|\mathbf A\|\propto W^{\mathrm{acc}}/r^2$; transmitter motion sets $D_t$ and the arriving acceleration weight, while receiver motion enters root playback through $D_r/D_t$ and changes future geometry.
 - Collinear superposition: several transmitters on the two rays of one inference axis can sum to the same instantaneous $\mathbf A$.
 - Self-hit aliasing: self-intersections can mimic external transmitters along $L$.
-- Surrogate location recast: any instantaneous hit may be recast to a stationary surrogate transmitter placed somewhere along $L$ with an adjusted emission time; useful for inference and visualization, but it does not resolve the sign/side ambiguity or fix distance without temporal data.
+- Surrogate location recast: for a finite nonzero single-hit acceleration, fixed positive coupling and nonzero polarity magnitudes, a single stationary surrogate has $W^{\mathrm{acc}}=1$ and a fixed distance $r_s=\sqrt{\kappa|q_tq_r|/\|\mathbf A\|}$. Its emission time is then $T_t=T_r-r_s/c_f$, and its ray must match the acceleration sign. This constrained visualization does not determine the actual moving transmitter’s distance, weight, identity or history, nor resolve the opposite-ray/opposite-polarity ambiguity.
 
 Consequence: embedded observers and synthetic detector records must reason statistically over ledger classes. The $\mathbb{U}_{\text{now}}$ universe-state perspective can compare those classes against the complete ledger, but the observer-accessible data remain many-to-one; “quantum-like” observability is not a contradiction but a necessity.
 
@@ -189,17 +189,17 @@ Consequence: embedded observers and synthetic detector records must reason stati
 
 ## Single-transmitter multi-hit nuance vs universal superposition
 
-Even for a single transmitter, the receiver cannot be sure that a given acceleration did not come from multiple distinct emission times $T_t\in\mathcal{C}_{r\leftarrow t}(T_r)$ on that same transmitter, where $\mathcal{C}_{r\leftarrow t}(T_r)$ is the causal set of emission times of transmitter $t$ whose wakes reach receiver $r$ at $T_r$, the set written $\mathcal{C}_{aa}(T_r)$ above when transmitter and receiver are the same architrino. When the transmitter has a super-field-speed history interval or its trajectory curves, several roots of $r=c_f(T_r-T_t)$ can occur and arrive in close succession along one acceleration axis, contributing separate per-hit accelerations whose emission-time origins are not recoverable from the net vector alone.
+Even for a single transmitter, the receiver cannot be sure that a given acceleration did not come from multiple distinct emission times $T_t\in\mathcal{C}_{r\leftarrow t}(T_r)$ on that same transmitter, where $\mathcal{C}_{r\leftarrow t}(T_r)$ is the causal set of emission times of transmitter $t$ whose wakes reach receiver $r$ at $T_r$, the set written $\mathcal{C}_{aa}(T_r)$ above when transmitter and receiver are the same architrino. Several roots of $r=c_f(T_r-T_t)$ may occur when the delayed geometry permits them; a super-field-speed interval is not itself sufficient. An everywhere strictly sub-field-speed transmitter has $D_t>0$ throughout the retained interval, so the root function is strictly monotone and curvature alone cannot create multiple roots. Distinct roots can have distinct lines of action, contributing separate per-hit accelerations whose emission-time origins are not recoverable from the net vector alone.
 
-However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net acceleration is the linear sum of contributions from all architrinos in the universe whose causal wake surfaces intersect the receiver now. While inverse-square surface dilution and transmitter-side acceleration weight usually make nearby transmitters dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
+However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net acceleration is the linear sum of contributions from all architrinos in the universe whose causal wake surfaces intersect the receiver now. Even when a declared population, cancellation estimate and transversality bound establish nearby dominance, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
 
 ---
 
 ## Operational noncommutativity and contextuality (emergent)
 
 Measurement procedures are interventions that condition future hit histories:
-- Let $F,G$ be experimental contexts (e.g., planar-mode analyzers, path blockers, timing gates), where a planar mode is the coaxial contra-rotating polarity-conjugate planar pair proposed as the photon carrier in [Electroweak Bosons](../../assemblies/bosons/electroweak-bosons.md#photon-referent-status), a referent whose acceleration-balance closure remains open. Because they modify trajectories and thus the set of future causal roots, their composition generally satisfies $F\circ G\ne G\circ F$ at the level of observed statistics.
-- Contextuality: the distribution over ledger classes that best explains data depends on which filters were applied and in what order; the outcomes are context-dependent without invoking microscopic cross-product acceleration terms.
+- Let $F,G$ be experimental contexts (e.g., planar-mode analyzers, path blockers, timing gates), where a planar mode is the coaxial contra-rotating polarity-conjugate planar pair proposed as the photon carrier in [Electroweak Bosons](../../assemblies/bosons/electroweak-bosons.md#photon-referent-status), a referent whose acceleration-balance closure remains open. Because they modify trajectories and thus the set of future causal roots, their composition can satisfy $F\circ G\ne G\circ F$ for a specified preparation and readout. That order effect must be measured or derived for those interventions; it does not follow from their labels alone.
+- Contextuality: the distribution over ledger classes that best explains data depends on which filters were applied and in what order; the outcomes can be context-dependent without invoking microscopic cross-product acceleration terms. Operational disturbance and order dependence alone do not establish quantum contextuality, which requires the corresponding preparation, measurement-equivalence and noncontextual-model test.
 
 A present intervention changes which acceleration contributions will be recorded later; applying $F$ and then $G$ is therefore not generally equivalent to applying $G$ and then $F$.
 
@@ -231,13 +231,13 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 
 - Two-planar-mode interference:
   - Setup: two coherent photon planar modes reach a screen. Their geometric overlap and path-history phase define a candidate complex-amplitude map. An observed intensity proportional to its squared norm is obtained only if the independently specified detector and ensemble record passes the Born-like closure residual above.
-  - Which-way intervention: inserting a context that disrupts one planar mode's coherence changes the ledger classes and removes the overlap term, flattening the pattern.
+  - Which-way intervention: inserting a context that disrupts one planar mode's coherence changes the ledger classes and can suppress the interference cross term. In the effective amplitude comparison, complete loss of that term leaves $I_1(x)+I_2(x)$, the sum of the individual spatial envelopes, which need not be flat.
 
 - Polarization analyzer:
   - The analyzer projects the planar mode's transverse ledger onto its axis. Geometric projection supplies the candidate $\cos\theta$ amplitude factor; transmission $\propto\cos^2\theta$ remains a recovery result that requires the same record-forming measure and analyzer residual used by the polarization target above.
 
 - Sequential filters (order matters):
-  - Two non-parallel analyzers $F(\theta_1)$ and $G(\theta_2)$ applied in different orders yield different transmitted patterns because they recondition future causal roots differently: $F\circ G \ne G\circ F$.
+  - Compare $F(\theta_1)$ and $G(\theta_2)$ in both orders on the same specified preparation and readout. Different transmitted statistics are a conditional target, not a consequence of nonparallel axes: ideal orthogonal polarization projectors have zero product in both orders, and other preparations can also mask an operator order difference.
 
 ---
 

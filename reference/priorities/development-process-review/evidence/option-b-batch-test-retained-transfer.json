@@ -1,0 +1,51 @@
+{
+  "schema": "option-b-batch-test-retained-transfer/v1",
+  "predecessor": {
+    "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/retained-test-accepted-b.json",
+    "sha256": "f25318061d6b36ce8b1b6fc40a7d12685732b92e877bed0ce065cec924837755"
+  },
+  "originalPayload": {
+    "path": "tests/fixtures/option-b-retained-test-identities.json",
+    "sha256": "b2b073c666eefabe0fc8b229b502b999bde1ab9fb1cfae7a7e3e5156def719f0"
+  },
+  "originalProof": {
+    "path": "reference/priorities/development-process-review/evidence/option-b-retained-test-graph-transfer.json",
+    "sha256": "49a5cd9ab6b59a58f196a35a648c39e3fd9b10dbe138e7cc1d5a1445cc9a6011"
+  },
+  "adapterEdits": [
+    {
+      "path": "tests/option-b-f5-budget-transition.test.mjs",
+      "prefix": "import { retainedSelectedBytes } from './support/option-b-retained-test-identities.mjs';\nimport { decode as decodeOperationalSelection } from '../scripts/equation-mapping/current-source-manifest.mjs';\n",
+      "insertions": [
+        {
+          "anchor": "const budgetPaths=[",
+          "text": "\nconst OPERATIONAL_CONSUMER=\"tests/option-b-f5-budget-transition.test.mjs\";\nconst operationalSelection=decodeOperationalSelection(retainedSelectedBytes(OPERATIONAL_CONSUMER,\"reference/priorities/development-process-review/contracts/option-b-batch-test-operational-selection.json\"));\nassert.equal(operationalSelection.schema,'option-b-batch-test-operational-selection/v1');\nassert.ok(Array.isArray(operationalSelection.profiles));\nconst operationalProfile=name=>{\n  const rows=operationalSelection.profiles.filter(row=>row.name===name);\n  assert.equal(rows.length,1,'exact selected operational profile');\n  const selected=rows[0];\n  assert.match(selected.sha256,/^[a-f0-9]{64}$/u);\n  assert.match(selected.predecessor.sha256,/^[a-f0-9]{64}$/u);\n  return selected;\n};\n\n"
+        }
+      ],
+      "replacements": [
+        {
+          "before": "const beforeRaw=readFileSync(m.predecessor.retainedPath),afterRaw=readFileSync(m.successor.path);",
+          "after": "const selected=operationalProfile(m.profile==='build'?'f5-build':'f5-evolution');\n  assert.equal(selected.manifestPath,m.successor.path);\n  assert.equal(selected.predecessor.sha256,m.successor.sha256);\n  const beforeRaw=readFileSync(m.predecessor.retainedPath),afterRaw=retainedSelectedBytes(OPERATIONAL_CONSUMER,selected.predecessor.path);"
+        }
+      ],
+      "originalSha256": "84636480fb0998cf7add3c8185a5e44d98abe3bacb7e604a2b0000ccfc03a555",
+      "updatedSha256": "0935a4f6eda1ef4bb4313c088a98da8c138cbb24b9648703a9bec26b12e0a82a",
+      "inverseReconstruction": true
+    },
+    {
+      "path": "tests/f5-independent-interpolation-enclosure.test.js",
+      "prefix": "import { retainedSelectedBytes } from './support/option-b-retained-test-identities.mjs';\nimport { decode as decodeOperationalSelection } from '../scripts/equation-mapping/current-source-manifest.mjs';\n",
+      "insertions": [],
+      "replacements": [
+        {
+          "before": "const SOURCE_MAP_SHA = optionBIdentities.f5PreparationSelection.sha256;",
+          "after": "\nconst OPERATIONAL_CONSUMER=\"tests/f5-independent-interpolation-enclosure.test.js\";\nconst operationalSelection=decodeOperationalSelection(retainedSelectedBytes(OPERATIONAL_CONSUMER,\"reference/priorities/development-process-review/contracts/option-b-batch-test-operational-selection.json\"));\nassert.equal(operationalSelection.schema,'option-b-batch-test-operational-selection/v1');\nassert.ok(Array.isArray(operationalSelection.profiles));\nconst operationalProfile=name=>{\n  const rows=operationalSelection.profiles.filter(row=>row.name===name);\n  assert.equal(rows.length,1,'exact selected operational profile');\n  const selected=rows[0];\n  assert.match(selected.sha256,/^[a-f0-9]{64}$/u);\n  assert.match(selected.predecessor.sha256,/^[a-f0-9]{64}$/u);\n  return selected;\n};\n\nconst currentPreparation=operationalProfile('f5-build');\nassert.equal(currentPreparation.manifestPath,optionBIdentities.f5PreparationSelection.path);\nassert.equal(currentPreparation.predecessor.sha256,optionBIdentities.f5PreparationSelection.sha256);\nassert.equal(sha256(retainedSelectedBytes(OPERATIONAL_CONSUMER,currentPreparation.predecessor.path)),optionBIdentities.f5PreparationSelection.sha256);\nconst SOURCE_MAP_SHA = currentPreparation.sha256;"
+        }
+      ],
+      "originalSha256": "fd50618bbfe8b9780b6b6b8cb5b80a6146f682e13335f81b6c1448c0fdc357ac",
+      "updatedSha256": "e1afff62dced7988ea947d2fe672a4da9aaf054a8fc91c3fc5e8b87ca296e140",
+      "inverseReconstruction": true
+    }
+  ],
+  "claimBoundary": "Original payload and historical map expectations preserved; current operational selection separately admitted. No scientific successor acceptance."
+}

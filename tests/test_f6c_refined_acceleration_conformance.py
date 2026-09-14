@@ -8,6 +8,9 @@ The fictional pair boxes need not be realizable by one physical history.
 No producer or acceleration-subject module is imported to generate answers.
 """
 from __future__ import annotations
+from option_b_batch_records import batch_identities
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 
 from copy import deepcopy
 from dataclasses import FrozenInstanceError, fields
@@ -30,7 +33,7 @@ def load(name,relative):
     return module
 s=load('refined_range_core','scripts/eom/oracle/f6c_refined_acceleration_conformance.py')
 REFERENCE='reference/priorities/braid-program/evidence/source-replay/verify-f6c-continuous-reception-acceleration.6e3467a017c3.py.source'
-SHA='6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83'
+SHA=OPTION_B_BATCH_IDENTITIES[0]
 assert hashlib.sha256((ROOT/REFERENCE).read_bytes()).hexdigest()==SHA
 r=load('frozen_independent_range_helpers',REFERENCE)
 IDS=('0+','0-','1+','1-','2+','2-','3+','3-')

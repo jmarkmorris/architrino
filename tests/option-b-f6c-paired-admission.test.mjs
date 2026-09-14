@@ -23,7 +23,7 @@ function fixture(C){
  return {dir,doc,save,digest:save(),close:()=>rmSync(dir,{recursive:true,force:true})};
 }
 test('known inert paired fixtures admit exact source closures before repository targets',async()=>{
- for(const C of [E,R]){const f=fixture(C);try{const a=await C.initializeSourceBindings(f.dir,f.digest);assert.equal(a.sources.length,C===E?9:7);assert.equal(a.sourceMap.path,path.join(f.dir,C.SOURCE_MAP));assert.equal(Object.keys(C.SOURCE_BINDINGS).length,C===E?9:7);assert.equal(C.PINS[C.HELPERS],undefined);assert.equal(C.PINS[C.OUTER],undefined);}finally{f.close();}}
+ for(const C of [E,R]){const f=fixture(C);try{const a=await C.initializeSourceBindings(f.dir,f.digest);assert.equal(a.sources.length,C===E?19:17);assert.equal(a.sourceMap.path,path.join(f.dir,C.SOURCE_MAP));assert.equal(Object.keys(C.SOURCE_BINDINGS).length,C===E?19:17);assert.equal(C.PINS[C.HELPERS],undefined);assert.equal(C.PINS[C.OUTER],undefined);}finally{f.close();}}
 });
 for(const [C,L,label]of [[E,EL,'emission'],[R,RL,'refined']]){
  test(label+' rejects missing digest, changed map and source substitutions and clears prior admission',async()=>{
@@ -50,7 +50,7 @@ for(const [C,L,label]of [[E,EL,'emission'],[R,RL,'refined']]){
  });
  test(label+' repository map admits current operational bytes and rejects wrong entry or launcher selection',async()=>{
   const digest=sha(readFileSync(C.SOURCE_MAP)),a=await C.initializeSourceBindings(root,digest);
-  assert.equal(a.sources.length,C===E?9:7);for(const b of a.sources)assert.equal(sha(readFileSync(b.path)),b.sha256);
+  assert.equal(a.sources.length,C===E?19:17);for(const b of a.sources)assert.equal(sha(readFileSync(b.path)),b.sha256);
   for(const args of [[undefined,root,'0'.repeat(64),C.SOURCE_BINDINGS[C.ENTRY]], [undefined,root,C.SOURCE_BINDINGS[C.LAUNCHER],'0'.repeat(64)]])assert.throws(()=>C.validatePlan(...args),/selected entry\/launcher/);
   const args=['--out','child','--plan','plan','--plan-sha256',digest,'--launcher-sha256',C.SOURCE_BINDINGS[C.LAUNCHER],'--entry-sha256',C.SOURCE_BINDINGS[C.ENTRY],'--python','/explicit/python','--git-binary','/usr/bin/git'];
   assert.throws(()=>L.parseArgs(args));assert.equal(L.parseArgs([...args,'--source-map-sha256',digest]).sourceMapSha256,digest);

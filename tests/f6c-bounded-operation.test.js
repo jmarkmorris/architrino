@@ -1,3 +1,5 @@
+import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';
+const identities=batchTestIdentities(import.meta.url);
 // Tiny inert controls only: no registered subprocesses or numerical dispatch.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -300,7 +302,7 @@ test('scoped stderr charges outward copies and waits for actual callbacks',()=>{
 test('verified empty output log has an identity without becoming a positive-byte source',()=>{
   const helper=runInNewContext(fragment('function validatePublicationIdentity(', '\nfunction rememberPublication')+'\ncapturedOutputIdentities',
     {check:checked,keys:exactKeys,absolute:p=>assert.equal(p,'/fixture/runner-stderr.log'),hashToken:h=>assert.match(h,/^[a-f0-9]{64}$/u),LIMITS:C.LIMITS});
-  const row={path:'/fixture/runner-stderr.log',sha256:'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',bytes:0,identity:'7:11:0:31:37'};
+  const row={path:'/fixture/runner-stderr.log',sha256:identities[0],bytes:0,identity:'7:11:0:31:37'};
   assert.equal(helper([row])[row.path],'7:11:0:31:37');assert.throws(()=>C.originalIdentities([row]),/source binding/u);
   for(const bad of [{...row,bytes:-1},{...row,bytes:false},{...row,identity:'7:11:1:31:37'},{...row,sha256:'bad'}])assert.throws(()=>helper([bad]));
   assert.throws(()=>helper([row,row]),/duplicate/u);

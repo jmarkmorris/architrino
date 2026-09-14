@@ -5,6 +5,9 @@ Mocked CLI plumbing is explicitly NOT mathematical evidence. No saved F6c data
 is opened, and no root, acceleration or historical numerical job is run here.
 """
 from __future__ import annotations
+from option_b_batch_records import batch_identities
+OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
 
 import ast
 from bisect import bisect_left,bisect_right
@@ -105,8 +108,8 @@ def plan_fixture(root):
         acceptanceOwner=b(s.OWNER,'c'*64),priorCoverClosure=s.closure_premise(),runtimeBindings=[{'path':str(root/'python')}],
         operationalBindings=[b(str(root/'node'),'e'*64)],limits=dict(w.LIMITS))
     plan['historicalDocumentRoutes']=[dict(original=dict(path=s.PREFIX+name,sha256=h,bytes=n),physical=dict(path=str(root/('archive-'+h+'.source')),sha256=h,bytes=n)) for name,h,n in (
-        ('2026-08-27-f6c-cached-root-cover-full-resource-plan.md','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b',10021),
-        ('2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021))]
+        ('2026-08-27-f6c-cached-root-cover-full-resource-plan.md',OPTION_B_BATCH_IDENTITIES[0],10021),
+        ('2026-08-27-f6c-root-cover-full-resource-plan.md',OPTION_B_BATCH_IDENTITIES[1],13021))]
     return plan
 
 
@@ -409,8 +412,8 @@ class HistoricalChainTests(unittest.TestCase):
             def binding(self):return self.b
         files={role:File(dict(path=str(root/role),sha256='a'*64,bytes=1)) for role in s.ORIGINAL}
         files['fullPlan']=File(sources[-1]);files['fullEntry'].data=b'entry'
-        contract=dict(declarationSha256='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4',
-            verifierSha256='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132',scope='full',subjectSourceBindings=sources[193:197],runtimeBindings=sources[35:193])
+        contract=dict(declarationSha256=OPTION_B_BATCH_IDENTITIES[2],
+            verifierSha256=OPTION_B_BATCH_IDENTITIES[3],scope='full',subjectSourceBindings=sources[193:197],runtimeBindings=sources[35:193])
         plan=dict(schema='braid-program/f6c-cached-root-cover-full-launch.v1',scope='full',resourcePlan=sources[8],comparisonContract=contract,
             operationalBindings=sources[:6],controlBindings=sources[6:8],python='x',pythonRealPath='x',git='x',node='x')
         manifest=dict(scope='full',status='conditional_complete',accepted=False,rows=files['fullRows'].binding(),pieces=files['fullPieces'].binding(),

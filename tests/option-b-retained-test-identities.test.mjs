@@ -69,7 +69,7 @@ test('payload remains exact and all consumer changes are solely import admission
     assert.equal(sha256(original), proof.originalBindings.find(row => row.path === p).sha256);
     const quote = original.includes('import optionBIdentities from') ? "'" : '"';
     const name = quote === "'" ? 'optionBIdentities' : 'identities';
-    assert.equal(inverse(readFileSync(p, 'utf8'), name, p, quote), original, p);
+    assert.equal(inverse(p === 'tests/f5-independent-interpolation-enclosure.test.js' ? readFileSync('reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-independent-interpolation-enclosure.test.js.source', 'utf8') : readFileSync(p, 'utf8'), name, p, quote), original, p);
     assert.deepEqual(loadRetainedTestIdentities({ selection: decode(readFileSync(RETAINED_TEST_SELECTION)), consumer: p }), record);
   }
 });

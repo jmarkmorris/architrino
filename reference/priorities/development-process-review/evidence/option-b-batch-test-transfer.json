@@ -1,0 +1,1282 @@
+{
+  "schema": "option-b-batch-test-transfer/v1",
+  "originCommit": "87b85e5bab47b6a487a8d6e47073bfa2bde25e9e",
+  "claimBoundary": "Exact original test values and historical source preservation; candidate representation transfer, not scientific acceptance.",
+  "consumers": [
+    "tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js",
+    "tests/compact-configuration-sweep-analyzer.test.js",
+    "tests/f6c-bounded-operation.test.js",
+    "tests/f6c-emission-refinement-pilot.test.js",
+    "tests/f6c-refined-acceleration-pilot.test.js",
+    "tests/option-b-f5-admission.test.mjs",
+    "tests/potential-live-timespace-pipeline-contract.test.js",
+    "tests/support/compact-monte-carlo-fixture.mjs",
+    "tests/test_eom_continuous_reception_roots.py",
+    "tests/test_eom_continuous_reception_roots_cached.py",
+    "tests/test_f6c_cached_continuous_reception_root_cover.py",
+    "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+    "tests/test_f6c_continuous_reception_acceleration.py",
+    "tests/test_f6c_continuous_reception_acceleration_preparation.py",
+    "tests/test_f6c_emission_current_execution.py",
+    "tests/test_f6c_emission_refinement.py",
+    "tests/test_f6c_evidence_package.py",
+    "tests/test_f6c_leaf_continuation.py",
+    "tests/test_f6c_leaf_stream_publication.py",
+    "tests/test_f6c_parent_emission_refinement.py",
+    "tests/test_f6c_parent_emission_refinement_conformance.py",
+    "tests/test_f6c_parent_emission_refinement_preparation.py",
+    "tests/test_f6c_parent_emission_refinement_verification.py",
+    "tests/test_f6c_parent_evidence_inventory.py",
+    "tests/test_f6c_refined_acceleration_conformance.py",
+    "tests/test_f6c_refined_acceleration_preparation.py",
+    "tests/test_f6c_single_leaf_diagnostic.py",
+    "tests/test_f6c_streamed_leaf_session.py",
+    "tests/test_f6c_variable_cell_adapter.py"
+  ],
+  "nodeEdits": [
+    {
+      "path": "tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js",
+      "originalSha256": "ae9ee6362e7051865f463ea97413c35635d6681d5d055333ac8cecdf1d62fcb4",
+      "updatedSha256": "41b7628caacbac03981cbcf1073e7bd5042cebcba36ed0f6489f1571b8bf5c6c",
+      "prefix": "import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';\nconst identities=batchTestIdentities(import.meta.url);\n",
+      "replacements": [
+        {
+          "index": 2665,
+          "literal": "\"7cceed6734253268c47ec53bfa81fcd204a9db626816825ff0e78b657dd47c65\"",
+          "value": "7cceed6734253268c47ec53bfa81fcd204a9db626816825ff0e78b657dd47c65",
+          "replacement": "identities[0]",
+          "outputIndex": 2808
+        }
+      ],
+      "inverseReconstruction": true,
+      "nodeSyntax": true
+    },
+    {
+      "path": "tests/compact-configuration-sweep-analyzer.test.js",
+      "originalSha256": "c1fb6829499b50f93d42a7d9a416ee2015cf895eb52bd8cc709443e2687e193e",
+      "updatedSha256": "e324bffcf00f34eaf7fb3f9d0b24e07dca1f23c0b523e385ba3420f708e8fc5a",
+      "prefix": "import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';\nconst identities=batchTestIdentities(import.meta.url);\n",
+      "replacements": [
+        {
+          "index": 556,
+          "literal": "\"0153fdc7276d1a064d8794a423bd775b24140e8dd8353e4afe44695a0e973911\"",
+          "value": "0153fdc7276d1a064d8794a423bd775b24140e8dd8353e4afe44695a0e973911",
+          "replacement": "identities[0]",
+          "outputIndex": 699
+        }
+      ],
+      "inverseReconstruction": true,
+      "nodeSyntax": true
+    },
+    {
+      "path": "tests/f6c-bounded-operation.test.js",
+      "originalSha256": "a71ef095189f0bae802db6286868c4b99f4a756382c111e7980e9fa38ad4504b",
+      "updatedSha256": "798ba8f2b706c4ce03e25bae3ef494ad1066cb84a7e164bc8223b223bd772128",
+      "prefix": "import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';\nconst identities=batchTestIdentities(import.meta.url);\n",
+      "replacements": [
+        {
+          "index": 25661,
+          "literal": "'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'",
+          "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replacement": "identities[0]",
+          "outputIndex": 25804
+        }
+      ],
+      "inverseReconstruction": true,
+      "nodeSyntax": true
+    },
+    {
+      "path": "tests/f6c-emission-refinement-pilot.test.js",
+      "originalSha256": "9ce6e7d224ef84d4ff584f5f0632919a6ebd0c4da2aa0ded09e7fdec8894a2ce",
+      "updatedSha256": "9df09a061499da3897d51bac884fe553e98eff5ee70a1e9a24c019e595d825c5",
+      "prefix": "import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';\nconst identities=batchTestIdentities(import.meta.url);\n",
+      "replacements": [
+        {
+          "index": 3715,
+          "literal": "'22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44'",
+          "value": "22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44",
+          "replacement": "identities[0]",
+          "outputIndex": 3858
+        },
+        {
+          "index": 13195,
+          "literal": "'11acd09b692fe175861d0f9478b5d1763c18e088682a0c6a16fc29d65453075c'",
+          "value": "11acd09b692fe175861d0f9478b5d1763c18e088682a0c6a16fc29d65453075c",
+          "replacement": "identities[1]",
+          "outputIndex": 13285
+        }
+      ],
+      "inverseReconstruction": true,
+      "nodeSyntax": false,
+      "representationBaseSha256": "b11add3bd1d4711c13b3d8ab4e994ec59b2bf9898700db538d76873a826a0b05",
+      "representationEdits": [
+        {
+          "before": "import {batchTestIdentities}",
+          "after": "import {batchTestIdentities,batchTestSources}"
+        },
+        {
+          "before": "  for(const p of [E.BRIDGE,E.SUPPORT,...Object.values(E.NAMED),...E.SUBJECT_PATHS,E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])",
+          "after": "  const originalControls=new Map(['tests/test_eom_continuous_reception_roots_cached.py','tests/test_f6c_cached_continuous_reception_root_cover.py','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','tests/test_f6c_emission_refinement.py'].map(p=>[p,batchTestSources(import.meta.url,p)]));\n  for(const p of [E.BRIDGE,E.SUPPORT,...Object.values(E.NAMED),...E.SUBJECT_PATHS,E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])"
+        },
+        {
+          "before": "assert.equal(hash(readFileSync(archived(p))),(E.SOURCE_BINDINGS[p]??E.PINS[p]),p);",
+          "after": "assert.equal(hash(!E.SOURCE_BINDINGS[p]&&archived(p)===p&&originalControls.has(p)?Buffer.from(originalControls.get(p).original):readFileSync(archived(p))),(E.SOURCE_BINDINGS[p]??E.PINS[p]),p); // Historical controls retain original bytes; current operational sources retain current admission."
+        }
+      ],
+      "historicalRepresentationInverse": true
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot.test.js",
+      "originalSha256": "bf9a9f4878350c6516580eeed42f2690a05d187df4aa7ce7dfc28966485d9d40",
+      "updatedSha256": "119957a0c926eb3f2e7bdad24a2a7d367020157b17d4489a20ccf112da775f48",
+      "prefix": "import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';\nconst identities=batchTestIdentities(import.meta.url);\n",
+      "replacements": [
+        {
+          "index": 3034,
+          "literal": "'f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31'",
+          "value": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31",
+          "replacement": "identities[0]",
+          "outputIndex": 3177
+        },
+        {
+          "index": 3111,
+          "literal": "'35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826'",
+          "value": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826",
+          "replacement": "identities[1]",
+          "outputIndex": 3201
+        },
+        {
+          "index": 3330,
+          "literal": "'e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae'",
+          "value": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae",
+          "replacement": "identities[2]",
+          "outputIndex": 3367
+        }
+      ],
+      "inverseReconstruction": true,
+      "nodeSyntax": false,
+      "representationBaseSha256": "1ffee20e5d13a8831c5c6164bbc17fc1a8c176f90f53e53f09e2283262d6da66",
+      "representationEdits": [
+        {
+          "before": "import {batchTestIdentities}",
+          "after": "import {batchTestIdentities,batchTestSources}"
+        },
+        {
+          "before": "  materializeSourceReplay({rootDir:root,manifest:JSON.parse(readFileSync('reference/priorities/braid-program/evidence/source-replay/f6c-refined-source-replay.v1.json','utf8')),outputDir:replay});",
+          "after": "  const selectedSource=batchTestSources(import.meta.url,'tests/test_f6c_continuous_reception_acceleration.py');\n  const manifest=JSON.parse(readFileSync('reference/priorities/braid-program/evidence/source-replay/f6c-refined-source-replay.v1.json','utf8'));\n  const inputs=path.join(parent,'inputs');mkdirSync(inputs);\n  for(const row of manifest.files){\n    const raw=row.source==='tests/test_f6c_continuous_reception_acceleration.py'?Buffer.from(selectedSource.original):readFileSync(path.join(root,row.source));\n    const target=path.join(inputs,row.source);mkdirSync(path.dirname(target),{recursive:true});writeFileSync(target,raw);\n  }\n  // The original manifest still authenticates every original byte and destination.\n  materializeSourceReplay({rootDir:inputs,manifest,outputDir:replay});"
+        }
+      ],
+      "historicalRepresentationInverse": true
+    },
+    {
+      "path": "tests/option-b-f5-admission.test.mjs",
+      "originalSha256": "f2d848e704a1203e3d81f3fac5fc96c580ee008aaa2aab04a3b005b6c2089a86",
+      "updatedSha256": "62436377094c09e04dd0952e7540039994bec99d68dde1bdec0053bdb73197cc",
+      "prefix": "import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';\nconst identities=batchTestIdentities(import.meta.url);\n",
+      "replacements": [
+        {
+          "index": 1767,
+          "literal": "'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'",
+          "value": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+          "replacement": "identities[0]",
+          "outputIndex": 1910
+        }
+      ],
+      "inverseReconstruction": true,
+      "nodeSyntax": true
+    },
+    {
+      "path": "tests/potential-live-timespace-pipeline-contract.test.js",
+      "originalSha256": "4b92603c506209353eb9aea202e3659f4620d5e1ad0bf8735ea1d54a6f66b39c",
+      "updatedSha256": "8200625784d25864ac335a5d76b0c76f1de2447906bc17368da01abb6e153b7f",
+      "prefix": "import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';\nconst identities=batchTestIdentities(import.meta.url);\n",
+      "replacements": [
+        {
+          "index": 3573,
+          "literal": "\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"",
+          "value": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "replacement": "identities[0]",
+          "outputIndex": 3716
+        }
+      ],
+      "inverseReconstruction": true,
+      "nodeSyntax": true
+    },
+    {
+      "path": "tests/support/compact-monte-carlo-fixture.mjs",
+      "originalSha256": "f917fdde963101f87d1e3dfddf38dc18a5311da61340fea30dc162a0ffaba741",
+      "updatedSha256": "de75d4a908b20ab9c8bd27b0ed49345c0877143d29aedf59873e15bf8e91e594",
+      "prefix": "import {batchTestIdentities} from '../../scripts/equation-mapping/batch-test-records.mjs';\nconst identities=batchTestIdentities(import.meta.url);\n",
+      "replacements": [
+        {
+          "index": 4465,
+          "literal": "\"2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6\"",
+          "value": "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6",
+          "replacement": "identities[0]",
+          "outputIndex": 4611
+        },
+        {
+          "index": 4966,
+          "literal": "\"3e9d646d95041634d7ee5fe7eed862d679c8f9f93518ebca7c98f549d352ec8f\"",
+          "value": "3e9d646d95041634d7ee5fe7eed862d679c8f9f93518ebca7c98f549d352ec8f",
+          "replacement": "identities[1]",
+          "outputIndex": 5059
+        },
+        {
+          "index": 5447,
+          "literal": "\"ebc963eea7e9104f8f826e86dd4287bce8818c853a7c3315deafce7729c10807\"",
+          "value": "ebc963eea7e9104f8f826e86dd4287bce8818c853a7c3315deafce7729c10807",
+          "replacement": "identities[2]",
+          "outputIndex": 5487
+        }
+      ],
+      "inverseReconstruction": true,
+      "nodeSyntax": true
+    }
+  ],
+  "pythonEdits": [
+    {
+      "path": "tests/test_eom_continuous_reception_roots.py",
+      "edits": [
+        {
+          "start": 31955,
+          "end": 32021,
+          "old": "\"ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 32077,
+          "end": 32143,
+          "old": "\"fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 32278,
+          "end": 32344,
+          "old": "\"db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[2]"
+        },
+        {
+          "start": 81,
+          "end": 81,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_eom_continuous_reception_roots_cached.py",
+      "edits": [
+        {
+          "start": 883,
+          "end": 949,
+          "old": "\"f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 235,
+          "end": 235,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_cached_continuous_reception_root_cover.py",
+      "edits": [
+        {
+          "start": 713,
+          "end": 779,
+          "old": "\"1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 797,
+          "end": 863,
+          "old": "\"5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 882,
+          "end": 948,
+          "old": "\"520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[2]"
+        },
+        {
+          "start": 1507,
+          "end": 1595,
+          "old": "\"DECLARATION_SHA = \\\"3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578\\\"\"",
+          "new": "('DECLARATION_SHA = \"' + OPTION_B_BATCH_IDENTITIES[3] + '\"')"
+        },
+        {
+          "start": 1605,
+          "end": 1693,
+          "old": "\"DECLARATION_SHA = \\\"520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba\\\"\"",
+          "new": "('DECLARATION_SHA = \"' + OPTION_B_BATCH_IDENTITIES[4] + '\"')"
+        },
+        {
+          "start": 1715,
+          "end": 1858,
+          "old": "\"(\\\"rootLibrary\\\", \\\"scripts/eom/oracle/continuous_reception_roots.py\\\", \\\"f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c\\\")\"",
+          "new": "('(\"rootLibrary\", \"scripts/eom/oracle/continuous_reception_roots.py\", \"' + OPTION_B_BATCH_IDENTITIES[5] + '\")')"
+        },
+        {
+          "start": 1868,
+          "end": 2018,
+          "old": "\"(\\\"rootLibrary\\\", \\\"scripts/eom/oracle/continuous_reception_roots_cached.py\\\", \\\"daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf\\\")\"",
+          "new": "('(\"rootLibrary\", \"scripts/eom/oracle/continuous_reception_roots_cached.py\", \"' + OPTION_B_BATCH_IDENTITIES[6] + '\")')"
+        },
+        {
+          "start": 2040,
+          "end": 2180,
+          "old": "\"(\\\"rootControls\\\", \\\"tests/test_eom_continuous_reception_roots.py\\\", \\\"81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac\\\")\"",
+          "new": "('(\"rootControls\", \"tests/test_eom_continuous_reception_roots.py\", \"' + OPTION_B_BATCH_IDENTITIES[7] + '\")')"
+        },
+        {
+          "start": 2190,
+          "end": 2337,
+          "old": "\"(\\\"rootControls\\\", \\\"tests/test_eom_continuous_reception_roots_cached.py\\\", \\\"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\\\")\"",
+          "new": "('(\"rootControls\", \"tests/test_eom_continuous_reception_roots_cached.py\", \"' + OPTION_B_BATCH_IDENTITIES[8] + '\")')"
+        },
+        {
+          "start": 2366,
+          "end": 3772,
+          "old": "\"\"\"    (\"governingDeclaration\", \"reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md\", \"3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578\"),\n    (\"baselineRootLibrary\", \"scripts/eom/oracle/continuous_reception_roots.py\", \"f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c\"),\n    (\"baselineRootControls\", \"tests/test_eom_continuous_reception_roots.py\", \"81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac\"),\n    (\"baselineComparator\", \"scripts/eom/verify-f6c-continuous-reception-root-cover.py\", \"1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36\"),\n    (\"baselineComparatorControls\", \"tests/test_f6c_continuous_reception_root_cover.py\", \"5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5\"),\n    (\"cacheEquivalence\", \"reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md\", \"a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d\"),\n    (\"governingResourcePlan\", \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md\", \"1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d\"),\n    (\"priorResourceReturn\", \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\", \"2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40\"),\n\"\"\"",
+          "new": "('    (\"governingDeclaration\", \"reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md\", \"' + OPTION_B_BATCH_IDENTITIES[9] + '\"),\\n    (\"baselineRootLibrary\", \"scripts/eom/oracle/continuous_reception_roots.py\", \"' + OPTION_B_BATCH_IDENTITIES[10] + '\"),\\n    (\"baselineRootControls\", \"tests/test_eom_continuous_reception_roots.py\", \"' + OPTION_B_BATCH_IDENTITIES[11] + '\"),\\n    (\"baselineComparator\", \"scripts/eom/verify-f6c-continuous-reception-root-cover.py\", \"' + OPTION_B_BATCH_IDENTITIES[12] + '\"),\\n    (\"baselineComparatorControls\", \"tests/test_f6c_continuous_reception_root_cover.py\", \"' + OPTION_B_BATCH_IDENTITIES[13] + '\"),\\n    (\"cacheEquivalence\", \"reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md\", \"' + OPTION_B_BATCH_IDENTITIES[14] + '\"),\\n    (\"governingResourcePlan\", \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md\", \"' + OPTION_B_BATCH_IDENTITIES[15] + '\"),\\n    (\"priorResourceReturn\", \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\", \"' + OPTION_B_BATCH_IDENTITIES[16] + '\"),\\n')"
+        },
+        {
+          "start": 6916,
+          "end": 6982,
+          "old": "\"daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[17]"
+        },
+        {
+          "start": 7087,
+          "end": 7153,
+          "old": "\"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[18]"
+        },
+        {
+          "start": 307,
+          "end": 307,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "edits": [
+        {
+          "start": 1069,
+          "end": 1135,
+          "old": "\"9da7863fe51777de48ee44e0d9dab73cb9844039768b6742310ead3d60702d82\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 1153,
+          "end": 1219,
+          "old": "\"68a940c40b2e3b463555b95858031f96796e2ac94963a86b3a9ae6fd74dc3742\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 1236,
+          "end": 1302,
+          "old": "\"3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[2]"
+        },
+        {
+          "start": 1325,
+          "end": 1391,
+          "old": "\"09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[3]"
+        },
+        {
+          "start": 1410,
+          "end": 1476,
+          "old": "\"520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[4]"
+        },
+        {
+          "start": 1490,
+          "end": 1556,
+          "old": "\"daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[5]"
+        },
+        {
+          "start": 2656,
+          "end": 2722,
+          "old": "\"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[6]"
+        },
+        {
+          "start": 2797,
+          "end": 2863,
+          "old": "\"1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36\"",
+          "new": "OPTION_B_BATCH_IDENTITIES[7]"
+        },
+        {
+          "start": 554,
+          "end": 554,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration.py",
+      "edits": [
+        {
+          "start": 9142,
+          "end": 9208,
+          "old": "'3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 9236,
+          "end": 9302,
+          "old": "'520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba'",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 343,
+          "end": 343,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration_preparation.py",
+      "edits": [
+        {
+          "start": 6838,
+          "end": 6904,
+          "old": "'3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 6934,
+          "end": 7000,
+          "old": "'520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba'",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 429,
+          "end": 429,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "edits": [
+        {
+          "start": 3805,
+          "end": 3871,
+          "old": "'ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 82,
+          "end": 82,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_emission_refinement.py",
+      "edits": [
+        {
+          "start": 14209,
+          "end": 14275,
+          "old": "'3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 14303,
+          "end": 14369,
+          "old": "'520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba'",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 383,
+          "end": 383,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_evidence_package.py",
+      "edits": [
+        {
+          "start": 5259,
+          "end": 5325,
+          "old": "'901687bd92fdc686dc26b8634d8f58ecd46bd9f81208ca68563ad4cff983b09b'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 232,
+          "end": 232,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_leaf_continuation.py",
+      "edits": [
+        {
+          "start": 1145,
+          "end": 1211,
+          "old": "'371f6eff5a7a50514816b9af04c98fdae18084cc364b35b565fc53acae76a79f'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 1299,
+          "end": 1365,
+          "old": "'fc170a91b2747923bda89ef00b58d529c98bf96b01cc7b2c05c035042fc79c5a'",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 1440,
+          "end": 1506,
+          "old": "'a70a15481f793e913440628068f9c53bab611fe9d92f36206a401c01e91478eb'",
+          "new": "OPTION_B_BATCH_IDENTITIES[2]"
+        },
+        {
+          "start": 321,
+          "end": 321,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_leaf_stream_publication.py",
+      "edits": [
+        {
+          "start": 503,
+          "end": 569,
+          "old": "'371f6eff5a7a50514816b9af04c98fdae18084cc364b35b565fc53acae76a79f'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 81,
+          "end": 81,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement.py",
+      "edits": [
+        {
+          "start": 956,
+          "end": 1022,
+          "old": "'d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 1094,
+          "end": 1160,
+          "old": "'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 1230,
+          "end": 1296,
+          "old": "'fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'",
+          "new": "OPTION_B_BATCH_IDENTITIES[2]"
+        },
+        {
+          "start": 1393,
+          "end": 1459,
+          "old": "'daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'",
+          "new": "OPTION_B_BATCH_IDENTITIES[3]"
+        },
+        {
+          "start": 1549,
+          "end": 1615,
+          "old": "'9bca879b94386d033597bb9d1e3a4ceeb9943925615c916299feb91e482391ad'",
+          "new": "OPTION_B_BATCH_IDENTITIES[4]"
+        },
+        {
+          "start": 1705,
+          "end": 1771,
+          "old": "'2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb'",
+          "new": "OPTION_B_BATCH_IDENTITIES[5]"
+        },
+        {
+          "start": 1859,
+          "end": 1925,
+          "old": "'3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'",
+          "new": "OPTION_B_BATCH_IDENTITIES[6]"
+        },
+        {
+          "start": 2044,
+          "end": 2110,
+          "old": "'c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'",
+          "new": "OPTION_B_BATCH_IDENTITIES[7]"
+        },
+        {
+          "start": 2182,
+          "end": 2248,
+          "old": "'ec254ad004fb38612d3e895f5c150d8e5bec8fe53142739a50b15e073bd9783d'",
+          "new": "OPTION_B_BATCH_IDENTITIES[8]"
+        },
+        {
+          "start": 356,
+          "end": 356,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_conformance.py",
+      "edits": [
+        {
+          "start": 982,
+          "end": 1048,
+          "old": "'3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 1175,
+          "end": 1241,
+          "old": "'c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 426,
+          "end": 426,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_preparation.py",
+      "edits": [
+        {
+          "start": 6311,
+          "end": 6377,
+          "old": "'daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 6445,
+          "end": 6511,
+          "old": "'46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef'",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 28955,
+          "end": 29021,
+          "old": "'7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4'",
+          "new": "OPTION_B_BATCH_IDENTITIES[2]"
+        },
+        {
+          "start": 29050,
+          "end": 29116,
+          "old": "'19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'",
+          "new": "OPTION_B_BATCH_IDENTITIES[3]"
+        },
+        {
+          "start": 349,
+          "end": 349,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_verification.py",
+      "edits": [
+        {
+          "start": 1058,
+          "end": 1124,
+          "old": "'e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 1125,
+          "end": 1191,
+          "old": "'7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 3545,
+          "end": 3611,
+          "old": "'daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b'",
+          "new": "OPTION_B_BATCH_IDENTITIES[2]"
+        },
+        {
+          "start": 3679,
+          "end": 3745,
+          "old": "'46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef'",
+          "new": "OPTION_B_BATCH_IDENTITIES[3]"
+        },
+        {
+          "start": 28883,
+          "end": 28949,
+          "old": "'7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4'",
+          "new": "OPTION_B_BATCH_IDENTITIES[4]"
+        },
+        {
+          "start": 28965,
+          "end": 29031,
+          "old": "'19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'",
+          "new": "OPTION_B_BATCH_IDENTITIES[5]"
+        },
+        {
+          "start": 500,
+          "end": 500,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_parent_evidence_inventory.py",
+      "edits": [
+        {
+          "start": 389,
+          "end": 455,
+          "old": "'41e3bdbd07e4551ea0b8afa4c26eff2f52a938a7f5430e228648a94e0aaaf1cd'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 80,
+          "end": 80,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration_conformance.py",
+      "edits": [
+        {
+          "start": 1452,
+          "end": 1518,
+          "old": "'6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 540,
+          "end": 540,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration_preparation.py",
+      "edits": [
+        {
+          "start": 6410,
+          "end": 6476,
+          "old": "'3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 6506,
+          "end": 6572,
+          "old": "'520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba'",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 351,
+          "end": 351,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_single_leaf_diagnostic.py",
+      "edits": [
+        {
+          "start": 909,
+          "end": 975,
+          "old": "'abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 1075,
+          "end": 1141,
+          "old": "'fc170a91b2747923bda89ef00b58d529c98bf96b01cc7b2c05c035042fc79c5a'",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 1246,
+          "end": 1312,
+          "old": "'b86907236e849124f3fa9c6bcad0f65492ecc6fbeb1b51a27438655c45b037b1'",
+          "new": "OPTION_B_BATCH_IDENTITIES[2]"
+        },
+        {
+          "start": 1393,
+          "end": 1459,
+          "old": "'a70a15481f793e913440628068f9c53bab611fe9d92f36206a401c01e91478eb'",
+          "new": "OPTION_B_BATCH_IDENTITIES[3]"
+        },
+        {
+          "start": 32786,
+          "end": 32852,
+          "old": "'8431df6a2dbf6716330d6bc0319cc1e4ad8dd19c0140553dd1e75294eb8cbe80'",
+          "new": "OPTION_B_BATCH_IDENTITIES[4]"
+        },
+        {
+          "start": 37204,
+          "end": 37270,
+          "old": "'94a2a80a1dd0d8f06dde78a11a3eba220a1d86a92dd9888b99e02f2598dc1e63'",
+          "new": "OPTION_B_BATCH_IDENTITIES[5]"
+        },
+        {
+          "start": 80,
+          "end": 80,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_streamed_leaf_session.py",
+      "edits": [
+        {
+          "start": 883,
+          "end": 949,
+          "old": "'371f6eff5a7a50514816b9af04c98fdae18084cc364b35b565fc53acae76a79f'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 21347,
+          "end": 21413,
+          "old": "'52f0a68016d444f50a8365b5183e2268e63757c2d53bdf698f73f1674672d766'",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 82,
+          "end": 82,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_variable_cell_adapter.py",
+      "edits": [
+        {
+          "start": 50960,
+          "end": 51026,
+          "old": "'3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223'",
+          "new": "OPTION_B_BATCH_IDENTITIES[0]"
+        },
+        {
+          "start": 51107,
+          "end": 51173,
+          "old": "'f45ccfb0ff9609fe267f25c1ba2521ec58134f9caf7d128b09e0adfde9e6a979'",
+          "new": "OPTION_B_BATCH_IDENTITIES[1]"
+        },
+        {
+          "start": 51262,
+          "end": 51328,
+          "old": "'7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed'",
+          "new": "OPTION_B_BATCH_IDENTITIES[2]"
+        },
+        {
+          "start": 71576,
+          "end": 71642,
+          "old": "'1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b'",
+          "new": "OPTION_B_BATCH_IDENTITIES[3]"
+        },
+        {
+          "start": 71742,
+          "end": 71808,
+          "old": "'19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'",
+          "new": "OPTION_B_BATCH_IDENTITIES[4]"
+        },
+        {
+          "start": 72625,
+          "end": 72691,
+          "old": "'19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'",
+          "new": "OPTION_B_BATCH_IDENTITIES[5]"
+        },
+        {
+          "start": 72723,
+          "end": 72789,
+          "old": "'7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4'",
+          "new": "OPTION_B_BATCH_IDENTITIES[6]"
+        },
+        {
+          "start": 77204,
+          "end": 77270,
+          "old": "'3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'",
+          "new": "OPTION_B_BATCH_IDENTITIES[7]"
+        },
+        {
+          "start": 77351,
+          "end": 77417,
+          "old": "'520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba'",
+          "new": "OPTION_B_BATCH_IDENTITIES[8]"
+        },
+        {
+          "start": 89213,
+          "end": 89279,
+          "old": "'7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c'",
+          "new": "OPTION_B_BATCH_IDENTITIES[9]"
+        },
+        {
+          "start": 89657,
+          "end": 89723,
+          "old": "'7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c'",
+          "new": "OPTION_B_BATCH_IDENTITIES[10]"
+        },
+        {
+          "start": 109649,
+          "end": 109715,
+          "old": "'a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d'",
+          "new": "OPTION_B_BATCH_IDENTITIES[11]"
+        },
+        {
+          "start": 119665,
+          "end": 119731,
+          "old": "'ff488499f2737860034602ce9559c3ebc817aa8413b827007fb31027815679d2'",
+          "new": "OPTION_B_BATCH_IDENTITIES[12]"
+        },
+        {
+          "start": 119827,
+          "end": 119893,
+          "old": "'517cc307251611177ec19cc5d71938a4086806f48583bcf8e3f2d04e9afb8d9f'",
+          "new": "OPTION_B_BATCH_IDENTITIES[13]"
+        },
+        {
+          "start": 119977,
+          "end": 120043,
+          "old": "'53595cc12589ab56c73a1613922bba2739704cbc78465e3d646d5ae6a43813db'",
+          "new": "OPTION_B_BATCH_IDENTITIES[14]"
+        },
+        {
+          "start": 120140,
+          "end": 120206,
+          "old": "'889d8721d2b51520c0fef78f6a954f9b510cbb46fdf9019205199dfa3658b5a9'",
+          "new": "OPTION_B_BATCH_IDENTITIES[15]"
+        },
+        {
+          "start": 120302,
+          "end": 120368,
+          "old": "'462247cf723339dbdc9ce9b4b897720cd4edcedc9b85c22b70694c41663f5c1b'",
+          "new": "OPTION_B_BATCH_IDENTITIES[16]"
+        },
+        {
+          "start": 120461,
+          "end": 120527,
+          "old": "'dd88eae5729d8ecc5947a27966edb215074d12687f3b5cd0bfc3be69d0400bc1'",
+          "new": "OPTION_B_BATCH_IDENTITIES[17]"
+        },
+        {
+          "start": 120731,
+          "end": 120797,
+          "old": "'928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e'",
+          "new": "OPTION_B_BATCH_IDENTITIES[18]"
+        },
+        {
+          "start": 121688,
+          "end": 121754,
+          "old": "'7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc'",
+          "new": "OPTION_B_BATCH_IDENTITIES[19]"
+        },
+        {
+          "start": 121889,
+          "end": 121955,
+          "old": "'2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40'",
+          "new": "OPTION_B_BATCH_IDENTITIES[20]"
+        },
+        {
+          "start": 310,
+          "end": 310,
+          "old": "",
+          "new": "from option_b_batch_records import batch_identities\nOPTION_B_BATCH_IDENTITIES = batch_identities(__file__)\n\n"
+        }
+      ]
+    }
+  ],
+  "historicalChanges": [
+    {
+      "path": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "old": "from option_b_batch_records import batch_identities",
+      "new": "from option_b_batch_records import batch_identities, original_test_source"
+    },
+    {
+      "path": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "old": "    raw = path.read_bytes()\n    if hashlib.sha256(raw).hexdigest() != expected:",
+      "new": "    relative = path.relative_to(ROOT).as_posix()\n    if relative in {\"tests/test_f6c_cached_continuous_reception_root_cover.py\", \"tests/test_eom_continuous_reception_roots_cached.py\"}:\n        raw = original_test_source(ROOT, __file__, relative)\n    else:\n        raw = path.read_bytes()\n    if hashlib.sha256(raw).hexdigest() != expected:"
+    },
+    {
+      "path": "tests/test_f6c_cached_continuous_reception_root_cover.py",
+      "old": "from option_b_batch_records import batch_identities",
+      "new": "from option_b_batch_records import batch_identities, original_test_source"
+    },
+    {
+      "path": "tests/test_f6c_cached_continuous_reception_root_cover.py",
+      "old": "                self.assertEqual(digest((ROOT/path).read_bytes()), expected, role)",
+      "new": "                if path in {\"tests/test_eom_continuous_reception_roots.py\", \"tests/test_eom_continuous_reception_roots_cached.py\"}:\n                    # The production table retains original control identities;\n                    # selected current controls are admitted separately by this read.\n                    raw = original_test_source(ROOT, __file__, path)\n                else:\n                    raw = (ROOT/path).read_bytes()\n                self.assertEqual(digest(raw), expected, role)"
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement.py",
+      "old": "from option_b_batch_records import batch_identities",
+      "new": "from option_b_batch_records import batch_identities, original_test_source"
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement.py",
+      "old": "    raw = (ROOT/path).read_bytes()\n    assert hashlib.sha256(raw).hexdigest() == digest",
+      "new": "    raw = (original_test_source(ROOT, __file__, path) if name == 'comparisonControls'\n           else (ROOT/path).read_bytes())\n    assert hashlib.sha256(raw).hexdigest() == digest"
+    },
+    {
+      "path": "tests/test_f6c_single_leaf_diagnostic.py",
+      "old": "from option_b_batch_records import batch_identities",
+      "new": "from option_b_batch_records import batch_identities, batch_test_sources"
+    },
+    {
+      "path": "tests/test_f6c_single_leaf_diagnostic.py",
+      "old": "    raw = path.read_bytes()\n    if expected is not None:\n        assert hashlib.sha256(raw).hexdigest() == expected",
+      "new": "    if relative == 'tests/test_f6c_variable_cell_adapter.py':\n        original, raw = batch_test_sources(ROOT, __file__, relative)\n        # Preserve the original helper identity and execute its admitted successor.\n        assert hashlib.sha256(original).hexdigest() == expected\n    else:\n        raw = path.read_bytes()\n        if expected is not None:\n            assert hashlib.sha256(raw).hexdigest() == expected"
+    },
+    {
+      "path": "tests/test_f6c_single_leaf_diagnostic.py",
+      "old": "    return module",
+      "new": "    if relative == 'tests/test_f6c_variable_cell_adapter.py':\n        assert batch_test_sources(ROOT, __file__, relative) == (original, raw)\n    return module"
+    },
+    {
+      "path": "tests/test_f6c_streamed_leaf_session.py",
+      "old": "from option_b_batch_records import batch_identities",
+      "new": "from option_b_batch_records import batch_identities, batch_test_sources"
+    },
+    {
+      "path": "tests/test_f6c_streamed_leaf_session.py",
+      "old": "    raw = p.read_bytes()\n    if digest is not None:\n        assert hashlib.sha256(raw).hexdigest() == digest",
+      "new": "    if path == 'tests/test_f6c_single_leaf_diagnostic.py':\n        original, raw = batch_test_sources(ROOT, __file__, path)\n        # Preserve the original driver identity and execute its admitted successor.\n        assert hashlib.sha256(original).hexdigest() == digest\n    else:\n        raw = p.read_bytes()\n        if digest is not None:\n            assert hashlib.sha256(raw).hexdigest() == digest"
+    },
+    {
+      "path": "tests/test_f6c_streamed_leaf_session.py",
+      "old": "    return m",
+      "new": "    if path == 'tests/test_f6c_single_leaf_diagnostic.py':\n        assert batch_test_sources(ROOT, __file__, path) == (original, raw)\n    return m"
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_verification.py",
+      "old": "from option_b_batch_records import batch_identities",
+      "new": "from option_b_batch_records import batch_identities, batch_test_sources"
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_verification.py",
+      "old": "    raw=path.read_bytes()\n    if digest is not None: assert hashlib.sha256(raw).hexdigest()==digest",
+      "new": "    if path == ROOT/'tests/test_f6c_parent_emission_refinement_conformance.py':\n        original, raw = batch_test_sources(ROOT, __file__, str(path.relative_to(ROOT)))\n        assert hashlib.sha256(original).hexdigest() == digest\n        from importlib.machinery import SourceFileLoader\n        spec=importlib.util.spec_from_file_location(name,path,loader=SourceFileLoader(name,str(path)))\n        m=importlib.util.module_from_spec(spec);sys.modules[name]=m\n        # Execute the independently admitted current representation of the\n        # preserved original closed-form controls, then recheck retained identity.\n        exec(compile(raw, str(path), 'exec'), m.__dict__)\n        assert batch_test_sources(ROOT, __file__, str(path.relative_to(ROOT))) == (original, raw)\n        return m\n    raw=path.read_bytes()\n    if digest is not None: assert hashlib.sha256(raw).hexdigest()==digest"
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "old": "from option_b_batch_records import batch_identities",
+      "new": "from option_b_batch_records import batch_identities, original_test_source"
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "old": "ROOT = Path(__file__).resolve().parents[1]",
+      "new": "ROOT = Path(__file__).resolve().parents[1]\nHISTORICAL_CONTROL_PATHS = {\n    'tests/test_eom_continuous_reception_roots_cached.py',\n    'tests/test_f6c_cached_continuous_reception_root_cover.py',\n    'tests/test_f6c_cached_continuous_reception_root_cover_preparation.py',\n}"
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "old": "            raw=(ROOT/b['path']).read_bytes()\n            b.update(sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))",
+      "new": "            if b['path'] in HISTORICAL_CONTROL_PATHS:\n                raw=original_test_source(ROOT, __file__, b['path'])\n                expected=dict(m.FROZEN_SUBJECT)[b['path']]\n                assert hashlib.sha256(raw).hexdigest() == expected\n                b.update(sha256=expected, bytes=len(raw))\n            else:\n                raw=(ROOT/b['path']).read_bytes()\n                b.update(sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))"
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "old": "                original_instrument = common.instrument\n                @contextmanager",
+      "new": "                original_instrument = common.instrument\n                original_capture = common.Capture\n                def capture(filename, expected, **kwargs):\n                    # Keep actual digest/descriptor/late-recheck capture over the\n                    # preserved historical control bytes in this synthetic fixture.\n                    physical = retained_controls.get(Path(filename), Path(filename))\n                    return original_capture(physical, expected, **kwargs)\n                @contextmanager"
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "old": "                with patch.object(common,'instrument',instrument): yield common",
+      "new": "                with patch.object(common,'instrument',instrument), patch.object(common,'Capture',capture): yield common"
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "old": "            base = Path(tmp).resolve(); p=base/'plan.json'; raw=json.dumps(plan).encode(); p.write_bytes(raw)",
+      "new": "            base = Path(tmp).resolve(); p=base/'plan.json'; raw=json.dumps(plan).encode(); p.write_bytes(raw)\n            retained_controls = {}\n            for relative in sorted(HISTORICAL_CONTROL_PATHS):\n                retained = base / Path(relative).name\n                retained.write_bytes(original_test_source(ROOT, __file__, relative))\n                retained_controls[ROOT/relative] = retained"
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "old": "                    bridge.main(common+args)\n                return json.loads(stream.getvalue())",
+      "new": "                    bridge.main(common+args)\n                for relative in sorted(HISTORICAL_CONTROL_PATHS):\n                    self.assertEqual(original_test_source(ROOT, __file__, relative),\n                                     retained_controls[ROOT/relative].read_bytes())\n                return json.loads(stream.getvalue())"
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "old": "                    bridge.main(common+args)\n                for relative in sorted(HISTORICAL_CONTROL_PATHS):\n                    self.assertEqual(original_test_source(ROOT, __file__, relative),\n                                     retained_controls[ROOT/relative].read_bytes())",
+      "new": "                    try:\n                        bridge.main(common+args)\n                    finally:\n                        for relative in sorted(HISTORICAL_CONTROL_PATHS):\n                            self.assertEqual(original_test_source(ROOT, __file__, relative),\n                                             retained_controls[ROOT/relative].read_bytes())"
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "old": "physical = retained_controls.get(Path(filename), Path(filename))",
+      "new": "physical = retained_controls.get((Path(filename), expected), Path(filename))"
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "old": "retained_controls[ROOT/relative] = retained",
+      "new": "retained_controls[(ROOT/relative, dict(m.FROZEN_SUBJECT)[relative])] = retained"
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "old": "retained_controls[ROOT/relative].read_bytes()",
+      "new": "retained_controls[(ROOT/relative, dict(m.FROZEN_SUBJECT)[relative])].read_bytes()"
+    }
+  ],
+  "historicalPairs": {
+    "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": [
+      "tests/test_f6c_cached_continuous_reception_root_cover.py",
+      "tests/test_eom_continuous_reception_roots_cached.py"
+    ],
+    "tests/test_f6c_cached_continuous_reception_root_cover.py": [
+      "tests/test_eom_continuous_reception_roots.py",
+      "tests/test_eom_continuous_reception_roots_cached.py"
+    ],
+    "tests/test_f6c_parent_emission_refinement.py": [
+      "tests/test_f6c_parent_emission_refinement_conformance.py"
+    ],
+    "tests/test_f6c_single_leaf_diagnostic.py": [
+      "tests/test_f6c_variable_cell_adapter.py"
+    ],
+    "tests/test_f6c_streamed_leaf_session.py": [
+      "tests/test_f6c_single_leaf_diagnostic.py"
+    ],
+    "tests/test_f6c_parent_emission_refinement_verification.py": [
+      "tests/test_f6c_parent_emission_refinement_conformance.py"
+    ],
+    "tests/test_f6c_emission_current_execution.py": [
+      "tests/test_eom_continuous_reception_roots_cached.py",
+      "tests/test_f6c_cached_continuous_reception_root_cover.py",
+      "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py"
+    ]
+  },
+  "originalBindings": [
+    {
+      "path": "tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js",
+      "sha256": "ae9ee6362e7051865f463ea97413c35635d6681d5d055333ac8cecdf1d62fcb4"
+    },
+    {
+      "path": "tests/compact-configuration-sweep-analyzer.test.js",
+      "sha256": "c1fb6829499b50f93d42a7d9a416ee2015cf895eb52bd8cc709443e2687e193e"
+    },
+    {
+      "path": "tests/f6c-bounded-operation.test.js",
+      "sha256": "a71ef095189f0bae802db6286868c4b99f4a756382c111e7980e9fa38ad4504b"
+    },
+    {
+      "path": "tests/f6c-emission-refinement-pilot.test.js",
+      "sha256": "9ce6e7d224ef84d4ff584f5f0632919a6ebd0c4da2aa0ded09e7fdec8894a2ce"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot.test.js",
+      "sha256": "bf9a9f4878350c6516580eeed42f2690a05d187df4aa7ce7dfc28966485d9d40"
+    },
+    {
+      "path": "tests/option-b-f5-admission.test.mjs",
+      "sha256": "f2d848e704a1203e3d81f3fac5fc96c580ee008aaa2aab04a3b005b6c2089a86"
+    },
+    {
+      "path": "tests/potential-live-timespace-pipeline-contract.test.js",
+      "sha256": "4b92603c506209353eb9aea202e3659f4620d5e1ad0bf8735ea1d54a6f66b39c"
+    },
+    {
+      "path": "tests/support/compact-monte-carlo-fixture.mjs",
+      "sha256": "f917fdde963101f87d1e3dfddf38dc18a5311da61340fea30dc162a0ffaba741"
+    },
+    {
+      "path": "tests/test_eom_continuous_reception_roots.py",
+      "sha256": "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac"
+    },
+    {
+      "path": "tests/test_eom_continuous_reception_roots_cached.py",
+      "sha256": "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb"
+    },
+    {
+      "path": "tests/test_f6c_cached_continuous_reception_root_cover.py",
+      "sha256": "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3"
+    },
+    {
+      "path": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "sha256": "5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2"
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration.py",
+      "sha256": "13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed"
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration_preparation.py",
+      "sha256": "45f40e2c6580fa09a614a471e7375615c8d54e3fc295a68dbdb8ad2167b7690b"
+    },
+    {
+      "path": "tests/test_f6c_emission_current_execution.py",
+      "sha256": "1ca78494361b99e291a9e343870ec7ed03f4fe94c250fc984780904551a18f39"
+    },
+    {
+      "path": "tests/test_f6c_emission_refinement.py",
+      "sha256": "f0f788018cc801949596bdd1556fe70399c49e8cbcea9152519485d6d8e35558"
+    },
+    {
+      "path": "tests/test_f6c_evidence_package.py",
+      "sha256": "f2c52fd510cad3da99f65ab2497dde754f8842d18004c3e1ae98d1bbdcb6d3d8"
+    },
+    {
+      "path": "tests/test_f6c_leaf_continuation.py",
+      "sha256": "ec3e156d1d1f71729c6649cbaf43db40779d873e37cfa0d1dd223966bde91743"
+    },
+    {
+      "path": "tests/test_f6c_leaf_stream_publication.py",
+      "sha256": "b1c8e0a789ec2215d12a20e601dfc5175df3516c450373a624c8049b060d49ae"
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement.py",
+      "sha256": "8af9d484379bfcbd81c306a2235bbeec38bed719cad57b596e1ce3106da0a86d"
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_conformance.py",
+      "sha256": "2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb"
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_preparation.py",
+      "sha256": "c9e3cb4ba99b9b1a07679b812a7203d7b5b8420d767a7e59a10aa5973d0a1e00"
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_verification.py",
+      "sha256": "59df2d67b231f8dfc4d001478d54ff19f2ea16b7b6643c777c5402efc612bd9e"
+    },
+    {
+      "path": "tests/test_f6c_parent_evidence_inventory.py",
+      "sha256": "369091d5a0996fb547a70ba8e9aa8b3fe5570cf046863872bfaeb491bd0cf551"
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration_conformance.py",
+      "sha256": "cc9415c10b67608900e98fa5c2d0f7efd11de8276ca2ef16ecf41aede83f6488"
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration_preparation.py",
+      "sha256": "0d6306c3b2d37dd11e2bdcc6fabbdc93abbd25bb088d469cd09a24191b6890dc"
+    },
+    {
+      "path": "tests/test_f6c_single_leaf_diagnostic.py",
+      "sha256": "52f0a68016d444f50a8365b5183e2268e63757c2d53bdf698f73f1674672d766"
+    },
+    {
+      "path": "tests/test_f6c_streamed_leaf_session.py",
+      "sha256": "8768e22871054f903da53075078c12a230e63df3863e1882c5d99048904123a9"
+    },
+    {
+      "path": "tests/test_f6c_variable_cell_adapter.py",
+      "sha256": "94a2a80a1dd0d8f06dde78a11a3eba220a1d86a92dd9888b99e02f2598dc1e63"
+    }
+  ]
+}

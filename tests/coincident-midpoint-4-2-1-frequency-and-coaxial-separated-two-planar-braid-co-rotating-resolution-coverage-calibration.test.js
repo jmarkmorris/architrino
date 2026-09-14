@@ -1,3 +1,5 @@
+import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';
+const identities=batchTestIdentities(import.meta.url);
 import assert from "node:assert/strict";
 import test from "node:test";
 import { spawnSync } from "node:child_process";
@@ -81,7 +83,7 @@ test("retired calibration preserves protocol and historical implementation ident
   assert.equal(loaded.protocol.eventEvaluator.fieldSpeed, 1);
   assert.equal(
     FROZEN_IMPLEMENTATION_HASH,
-    "7cceed6734253268c47ec53bfa81fcd204a9db626816825ff0e78b657dd47c65",
+    identities[0],
   );
   assert.deepEqual(
     [...TARGET_CONFIGURATIONS].sort((left, right) =>

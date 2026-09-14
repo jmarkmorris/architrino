@@ -2356,6 +2356,1032 @@
           "independentCheck": "Exact original Git values and source bytes; existing catalogue/budget/F5 controls; actual source-only setup and published-module integration; changed/missing/replaced input and output rejection."
         }
       ]
+    },
+    {
+      "path": "scripts/equation-mapping/batch-test-records.mjs",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "tests/option_b_batch_records.py",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "tests/option-b-batch-test-records.test.mjs",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "tests/option-b-batch-dependent-selection.test.mjs",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/option-b-batch-test-identities.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/option-b-batch-test-original-sources.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-batch-test-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-batch-test-operational-selection.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-batch-test-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-batch-test-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-batch-test-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-borg-runtime-batch-test-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-five-profile-batch-test-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-five-profile-batch-test-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-retained-test-batch-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-retained-test-batch-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/borg-runtime-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/borg-runtime-outputs.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/borg-runtime-selection.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/borg-runtime-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/borg-runtime-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/cached-root-cover-full-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/cached-root-cover-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-evolution-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-independent-interpolation-enclosure.test.js.source",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f5-operational-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f6c-acceleration-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f6c-bounded-operation-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f6c-emission-operational-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f6c-refined-operational-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/five-profile-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/five-profile-selection.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/five-profile-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/option-b-borg-runtime-admission.test.mjs.source",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/option-b-f5-budget-transition.test.mjs.source",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/option-b-retained-test-identities.test.mjs.source",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/retained-test-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/retained-test-selection.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/retained-test-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/retained-test-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/root-cover-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-retained-transfer.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-transfer.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-borg-runtime-batch-test-transfer.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f6c-test-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f6c-test-selection.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f6c-test-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f6c-test-transfer.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-predecessors/f6c-test-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-batch-test-validation-snapshot.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Retained operational validation receipt and bounded source snapshot; not a source-selection authority.",
+      "roles": [
+        {
+          "binding": "Recorded source hashes and exact validation commands",
+          "targets": [
+            "tests/option-b-batch-test-records.test.mjs",
+            "tests/option-b-batch-dependent-selection.test.mjs"
+          ],
+          "meaning": "Measured byte consistency and terminal control results for the reviewed batch; no scientific or transition eligibility.",
+          "selection": "No admission authority: this is retained validation evidence accompanying externally selected B records.",
+          "consumer": "Campaign reconciliation and recovery handoff.",
+          "independentCheck": "Known SHA-256 abc control before snapshot capture; terminal byte comparison; existing test-runner results and owned-supervisor closed-group receipts."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-f6c-test-batch-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-f6c-test-batch-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-f6c-test-batch-transfer.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux B-CLOSE-1 shared controls and record conformance",
+      "reason": "Protected representation-transfer dependency; original values and historical records preserved under selected B admission.",
+      "roles": [
+        {
+          "binding": "Selected protected original test values, original source bytes and representation-transfer dependencies",
+          "targets": [
+            "scripts/equation-mapping/batch-test-records.mjs",
+            "tests/option_b_batch_records.py"
+          ],
+          "meaning": "Original independent or historical expectations keep their values and applicability; selected current helper sources are separately authenticated.",
+          "selection": "reference/priorities/development-process-review/contracts/option-b-batch-test-selection.json; dependent five-profile, retained and Borg selections retain original checkpoints and grant no new refresh eligibility.",
+          "consumer": "All 29 batch test candidates and their incoming operational admission routes; retained F5 test consumers and supported Borg setup/default Pages.",
+          "independentCheck": "Exact original Git source and value preservation; actual Node/Python admission boundaries; missing/stale/wrong-role/edge-removal and same-byte replacement controls; final connected regression receipts in the reconciliation owner."
+        }
+      ]
     }
   ],
   "appendix": "reference/priorities/development-process-review/analysis/option-b-remaining-migration-plan.md",
@@ -5568,5 +6594,614 @@
     "retired": "The original responsibility remains recorded with operator-attributed decision, replacement or ended-purpose disposition, and verification. The retired file must be absent; live owners and replacement files must remain present. This is structural accounting, not automated semantic approval.",
     "roles": "Grouped by named binding table and consumer obligation; semantic classifications are authored review judgments, not parser-generated acceptance."
   },
-  "status": "binding-role census complete; reviewed operational source roles accepted; final builds and combined global validation are separate outstanding obligations"
+  "status": "binding-role census complete; reviewed operational source roles accepted; final builds and combined global validation are separate outstanding obligations",
+  "currentCampaignAudit": {
+    "date": "2026-09-13",
+    "status": "inventory and remaining-work assignment; not implementation or semantic acceptance",
+    "observedHead": "87b85e5bab47b6a487a8d6e47073bfa2bde25e9e",
+    "owner": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#consolidated-full-b-closure-plan--september-13",
+    "instrument": "Existing check-current-source-dispositions.mjs quotedDigest over its declared rg source listing; five known family-routing cases passed before target classification.",
+    "scope": "Quoted lowercase 64-hex code/config literals; excludes JSON, prose, ignored runtime output and nonliteral encodings. Path-family assignment organizes work, not semantic roles.",
+    "counts": {
+      "f5": 19,
+      "circular": 8,
+      "f6c": 37,
+      "mathematical": 22,
+      "tests": 29
+    },
+    "paths": [
+      {
+        "path": "scripts/eom/check-f5-evolution-dynamics.py",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/derive-f5-independent-interpolation-enclosure.mjs",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/derive-subfield-circular-history-budget.mjs",
+        "family": "circular",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/derive-subfield-circular-root-reference.mjs",
+        "family": "circular",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/execute-f5-prehistory-handoff.py",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/execute-f6c-acceleration.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/execute-f6c-emission-refinement.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/export-f6c-retained-history.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/f6c_leaf_stream_publication.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/f6c_parent_emission_refinement.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/f6c_variable_cell_adapter.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/oracle/f5_api_domain_conformance.py",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/oracle/f5_history_manifest_conformance.py",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/oracle/f6c_correlated_residual_enclosure.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/oracle/f6c_emission_refinement_conformance.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/oracle/f6c_gk13_protocol.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/oracle/f6c_refined_acceleration_conformance.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/oracle/prescribed_acceleration_response.py",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/eom/prepare-f5-enclosed-root-build.mjs",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-f5-enclosed-root.mjs",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-f5-original-input-tree.mjs",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-f5-prehistory-handoff.py",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-f5-prehistory-restriction.mjs",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-f6c-continuous-reception-acceleration.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-f6c-continuous-reception-root-cover.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-f6c-emission-refinement.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-f6c-parent-refinement-batch.mjs",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-f6c-refined-acceleration.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/prepare-ordinary-evolution-request.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/eom/prepare-subfield-circular-root.mjs",
+        "family": "circular",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/publish-prescribed-acceleration-response.py",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/eom/reduce-prescribed-acceleration-response.py",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/eom/run-coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/eom/run-current-f5-enclosed-root.mjs",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/run-f5-enclosed-root.mjs",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/run-f6c-acceleration-pilot.mjs",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/run-f6c-emission-refinement-pilot.mjs",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/run-f6c-evidence-packaging.mjs",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/run-f6c-refined-acceleration-pilot.mjs",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/run-f6c-root-cover-pilot.mjs",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/run-prescribed-response-pilot.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/eom/run-subfield-circular-root-pilot.mjs",
+        "family": "circular",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/run-subfield-circular-root-rung.mjs",
+        "family": "circular",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f5-enclosed-root-prefix.mjs",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f5-ordinary-evolution.py",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f5-prehistory-handoff.py",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f5-prehistory-restriction.py",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f6c-accepted-frame-reconstruction.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f6c-bounded-operation-closure.mjs",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f6c-continuous-reception-acceleration.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f6c-continuous-reception-root-cover.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f6c-emission-refinement.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f6c-parent-emission-refinement.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f6c-retained-history-compatibility.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-f6c-retained-history-guards.py",
+        "family": "f6c",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/eom/verify-subfield-circular-history.mjs",
+        "family": "circular",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "scripts/equation-mapping/certify-planar-three-binary-axial-translation-speed-chart.py",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/equation-mapping/certify_planar_three_binary_coupled_box.py",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/equation-mapping/certify_planar_three_binary_equal_radius_ladder.py",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/equation-mapping/certify_planar_three_binary_phase_box.py",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/equation-mapping/certify_planar_three_binary_unequal_radius_box.py",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/equation-mapping/diagnose_planar_three_binary_unequal_radius_jacobian.py",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/prescribed-path-analysis/audit-bp010-historical-routing.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "scripts/prescribed-path-analysis/independent-causal-delay-bound-audit.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "src/action-analysis/CoincidentMidpointCommonFrequencyMinimumDelayedActionProviderDiagnostic.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "src/eom/native/eom_f5_enclosed_root_cli.cpp",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "src/eom/native/eom_subfield_circular_root_cli.cpp",
+        "family": "circular",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "src/prescribed-path-analysis/CoincidentAxisThreeBinaryCompleteCycleProbeProtocol.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "src/prescribed-path-analysis/CoincidentMidpointCommonFrequencyContinuousRootIntervalCertifier.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "src/prescribed-path-analysis/CoincidentMidpointCommonFrequencyHistoryPolicyExtensionIndependentVerifier.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "src/prescribed-path-analysis/CoincidentMidpointCommonFrequencyOuterRadiusBandExpansionDiagnostic.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "src/prescribed-path-analysis/CoincidentMidpointCommonFrequencyPrescribedStructuralRootLedger.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "src/prescribed-path-analysis/CoincidentMidpointCommonFrequencyReceiverPhaseProjectionMonotonicityCertifier.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "src/prescribed-path-analysis/CoincidentMidpointCommonFrequencyRootSheetMonotonicEnclosureCertifier.mjs",
+        "family": "mathematical",
+        "batch": "B-CLOSE-3"
+      },
+      {
+        "path": "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs",
+        "family": "f5",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs",
+        "family": "circular",
+        "batch": "B-CLOSE-2"
+      },
+      {
+        "path": "tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/compact-configuration-sweep-analyzer.test.js",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/f6c-bounded-operation.test.js",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/f6c-emission-refinement-pilot.test.js",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/f6c-refined-acceleration-pilot.test.js",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/option-b-f5-admission.test.mjs",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/potential-live-timespace-pipeline-contract.test.js",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/support/compact-monte-carlo-fixture.mjs",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_eom_continuous_reception_roots.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_eom_continuous_reception_roots_cached.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_cached_continuous_reception_root_cover.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_continuous_reception_acceleration.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_continuous_reception_acceleration_preparation.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_emission_current_execution.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_emission_refinement.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_evidence_package.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_leaf_continuation.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_leaf_stream_publication.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_parent_emission_refinement.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_parent_emission_refinement_conformance.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_parent_emission_refinement_preparation.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_parent_emission_refinement_verification.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_parent_evidence_inventory.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_refined_acceleration_conformance.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_refined_acceleration_preparation.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_single_leaf_diagnostic.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_streamed_leaf_session.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      },
+      {
+        "path": "tests/test_f6c_variable_cell_adapter.py",
+        "family": "tests",
+        "batch": "B-CLOSE-1"
+      }
+    ],
+    "broadDiscovery": {
+      "nonJsonLdFiles": 1258,
+      "jsonFiles": 456,
+      "scope": "Nonignored text, bounded standalone 64-hex rg, excludes .git/node_modules/.local-data/.tmp and *.jsonld; includes historical evidence; not a migration denominator or universal digest census."
+    },
+    "closure": "All active expected identities and real consumers require role-level reconciliation; a zero literal scan or a retired-file count does not establish full B.",
+    "completedBatches": [
+      {
+        "batch": "B-CLOSE-1",
+        "status": "completed",
+        "owner": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#b-close-1-shared-controls-and-record-conformance",
+        "validation": "reference/priorities/development-process-review/evidence/option-b-batch-test-validation-snapshot.json",
+        "originalTestCandidatesTransferred": 29,
+        "currentCodeCandidates": 86,
+        "scope": "Shared controls and governed external records only; production families and full B remain open."
+      }
+    ]
+  }
 }

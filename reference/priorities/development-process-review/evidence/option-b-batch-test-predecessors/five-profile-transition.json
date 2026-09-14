@@ -1,0 +1,37 @@
+{
+  "schema": "reviewed-current-source-transition/v1",
+  "predecessorSha256": "fa46cb15e63e86d599be8e3ef3f8ca764890ccaf863e05b368afaefc03edc373",
+  "reviewReference": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#cleanup-verification-and-independent-acceptance",
+  "profiles": [
+    {
+      "name": "prescribed-response",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-prescribed-response-sources.jsonld",
+      "sha256": "5b636e60e03fbd74f6046e6efe53712b152ed8d1c91420cbd4b61f6fb32a59ee",
+      "changes": []
+    },
+    {
+      "name": "f6c-acceleration",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-f6c-acceleration-sources.jsonld",
+      "sha256": "61c0a1e09653fa37c821176e354cc2189a1d37896585b53ff02fc6ba3cbb0cb9",
+      "changes": []
+    },
+    {
+      "name": "root-cover",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-root-cover-sources.jsonld",
+      "sha256": "e2501457c5dc8cdd70f883557a95ee3c3188618b152e5f08d64eabeb245835ef",
+      "changes": []
+    },
+    {
+      "name": "cached-root-cover",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-cached-root-cover-sources.jsonld",
+      "sha256": "f312ac2bebb047abed8a8d19dc7ec962424cc58370e3fc1b8ad35231e8008188",
+      "changes": []
+    },
+    {
+      "name": "cached-root-cover-full",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-cached-root-cover-full-sources.jsonld",
+      "sha256": "dcd3e0ebef78192f4f0e360be8a6fd6006b9e29d7cf289c7c7fae68857db43de",
+      "changes": []
+    }
+  ]
+}

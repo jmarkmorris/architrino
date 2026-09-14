@@ -2865,11 +2865,11 @@ if the resulting radial acceleration is the same.
 
 #### Rest-Frame Recast (Useful Inference Device)
 
-Any single hit can be **equivalently described** with a **stationary surrogate transmitter** ($\|\mathbf V\|=0$) placed somewhere along the same unoriented line of action, with the actual transmitter speed at emission accounted for by an adjusted emission time and, if desired, a surrogate location along that line.
+One finite, nonzero per-hit acceleration can be matched at one reception event by a stationary surrogate transmitter ($\|\mathbf V\|=0$) on the same unoriented line of action. For fixed coupling $\kappa>0$ and fixed nonzero transmitter and receiver polarities $q_t,q_r$, its acceleration weight is $W_s^{\mathrm{acc}}=1$. The measured magnitude therefore fixes its separation to $r_s=\sqrt{\kappa|q_tq_r|/\|\mathbf A_{\mathrm{hit}}\|}$, where $\mathbf A_{\mathrm{hit}}$ is the single contribution being matched; the polarity product fixes which side of the receiver gives the required direction. For an actual hit at separation $r$ with finite positive weight $W^{\mathrm{acc}}$, this is $r_s=r/\sqrt{W^{\mathrm{acc}}}$. Its emission time is then fixed by the causal condition, $T_{t,s}=T_r-r_s/c_f$. Separation and emission time cannot be chosen independently while preserving that magnitude and the same coupling and polarities.
 
-**Key property:** The same emission law is preserved in this recast; the velocity dependence is transferred into the adjusted emission geometry and the matched transmitter-side acceleration weight.
+The surrogate uses the same per-hit acceleration law, with the actual transmitter's weight absorbed into the surrogate separation. It matches this instantaneous acceleration vector, not the actual transmitter weight, trajectory, potential record or later response. Allowing different unknown transmitter velocities and histories still leaves the actual transmitter distance undetermined; the uniquely fixed distance within the stationary-surrogate class is not a measurement of that transmitter distance.
 
-**Utility:** This recast simplifies some analytic calculations and provides intuition for the receiver's "inference problem" (what transmitter configurations are consistent with a given hit?).
+This construction is an inference device for comparing configurations consistent with one finite hit. It does not apply directly to a divergent singular hit or establish a dynamically realized replacement history.
 
 #### Superposition Complicates Inference
 

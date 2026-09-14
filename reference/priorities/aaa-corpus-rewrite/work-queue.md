@@ -34,11 +34,11 @@ Claim grade for a completed conversion: `measured` for the preservation checks, 
 
 ## Ranked Next Objects
 
-No accepted document-review task remains. Historical dispositions and open scientific/runtime obligations are retained below and in the unified board.
+No accepted supplementary document-repair task remains. The [final integration record](evidence/crw-005-claude-sixteen-closure-verification-2026-09-13.md#final-sixteen-chapter-integration) records the sixteen chapter dispositions and necessary owner propagation. Scientific and runtime obligations retain their existing owners.
 
 ## In progress
 
-No active document-review rows.
+No rows.
 
 ## Awaiting verification
 

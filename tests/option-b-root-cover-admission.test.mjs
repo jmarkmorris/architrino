@@ -19,7 +19,7 @@ test('required admission coverage retains exactly the five original profiles',()
 for (const [profile, selected] of Object.entries(PROFILES)) {
 const R = await import('../' + selected.entry), { runFileWorker } = await import('../' + (profile === 'f6c-acceleration' ? 'scripts/eom/launch-prescribed-response-pilot.mjs' : selected.launcher));
 const MANIFEST = selected.manifest;
-const expectedSources = { 'root-cover': 18, 'cached-root-cover': 25, 'cached-root-cover-full': 26, 'prescribed-response': 15, 'f6c-acceleration': 16 }[profile];
+const expectedSources = { 'root-cover': 28, 'cached-root-cover': 35, 'cached-root-cover-full': 36, 'prescribed-response': 15, 'f6c-acceleration': 26 }[profile];
 const expectedEvidence = ['cached-root-cover-full','f6c-acceleration'].includes(profile) ? 11 : profile === 'prescribed-response' ? 9 : 3;
 const scenario = (name, fn) => test(profile + ': ' + name, fn);
 

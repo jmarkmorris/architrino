@@ -1,6 +1,6 @@
 # Simulation README
 
-This chapter indexes the simulation protocols of the [validation program](../validation-protocols.md). A simulation in this directory is a numerical integration of the [Master Equation](../../dynamics/master-equation.md), the delayed acceleration law under which each [architrino](../../foundations/architrino.md), a point transceiver of fixed polarity, is accelerated only by the causal wakes, the expanding disturbances emitted from past positions of itself and of other architrinos, that arrive at it at the current instant. The protocols state how such a run is set up, logged, refined, and compared, and what a run can establish: a result is evidence only against the independent reference its protocol names, such as a closed-form baseline, a refinement-ladder convergence test, or an observer-level benchmark, and agreement of a run with its own earlier output or with a replay establishes repeatability, not correctness. No entry below is itself a physical acceptance; each protocol carries its own acceptance conditions and claim grades. The simulation protocols share an [absolute-frame](../../foundations/constructing-the-absolute-frame.md) execution model, meaning fixed Euclidean coordinates and one universal time, together with a virtual $\mathbb{U}_{\text{now}}$ universe-state perspective, a bookkeeping view of the complete modeled state at one absolute time that no physical observer holds, and a strict separation between raw microstate logs and detector-level synthetic observables. The protocols are grouped by responsibility:
+This chapter indexes the simulation protocols of the [validation program](../validation-protocols.md). Direct dynamical simulations numerically integrate the [Master Equation](../../dynamics/master-equation.md), the delayed acceleration law under which each [architrino](../../foundations/architrino.md), a point transceiver of fixed polarity, is accelerated only by the causal wakes, the expanding disturbances emitted from past positions of itself and of other architrinos, that arrive at it at the current instant. The directory also contains prescribed branch searches, reduced models, bookkeeping replays, and arithmetic fixtures. Each is evidence about its declared model and does not by itself establish Master Equation dynamics. The protocols state how each run is set up, logged, refined, and compared. Correctness evidence requires the independent reference its protocol names, such as a separately derived closed form or an independently measured observer-level benchmark. Refinement tests measure resolution sensitivity but are not independent references: every rung can share the same wrong kernel. Agreement with earlier output or a replay establishes repeatability. No entry below is itself a physical acceptance; each protocol carries its own acceptance conditions and claim grades. The simulation protocols share an [absolute-frame](../../foundations/constructing-the-absolute-frame.md) execution model, meaning fixed Euclidean coordinates and one universal time, together with a virtual $\mathbb{U}_{\text{now}}$ universe-state perspective, a bookkeeping view of the complete modeled state at one absolute time that no physical observer holds, and a strict separation between raw microstate logs and detector-level synthetic observables. The protocols are grouped by responsibility:
 
 - common execution and interpretation: [Simulation Run Protocols](run-protocols.md), [Convergence Tests for Non-Markovian Dynamics](convergence-tests.md), [Architrino Simulation Tests](architrino.md), and [Simulation Perspective and Closure Targets](perspective.md);
 - detector-facing and statistical outputs: [Synthetic Observables and $\mathbb{U}_{\text{now}}$ Logging](synthetic-observables.md), [Bell-Family Record-Measure Harness](bell-family-record-measure.md), and [Thermodynamic Residual](thermodynamic-residual.md);
@@ -9,18 +9,18 @@ This chapter indexes the simulation protocols of the [validation program](../val
 
 ## Simulation Frame and the $\mathbb{U}_{\text{now}}$ Universe-State Perspective
 
-All simulations are implemented in the absolute frame:
+Direct dynamical runs use the following absolute-frame specification; its presence here does not certify an implementation. Reduced models and replays declare which state variables and operations they actually represent:
 
 - **Spatial frame:** fixed Cartesian grid in the [Euclidean void](../../foundations/euclidean-void.md), the flat and unmoving spatial container, with $(X,Y,Z)$ constant in time; a grid address is a chart label for a point of the void, not a structure in it.
 - **Temporal frame:** global absolute time $T$, advanced in discrete steps $\Delta T$.
 - **Microdynamics:** architrino positions and velocities updated according to the Master Equation; causal wakes, which carry the potential each architrino emits, propagate at the wake speed $c_f$, normalized to $c_f=1$ in every numerical run.
 
-The simulator occupies the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
+In a direct dynamical run, the logging specification uses the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
 
 - It records the complete modeled state $S(T)$, meaning the position, velocity, polarity, and retained path history of every modeled architrino and assembly, at each time step.
 - It computes the superposed wake potential $\Phi$, its gradient $\nabla\Phi$, and the [Noether sea](../../spacetime/noether-sea.md) state, the ambient assembly medium that occupies the void, anywhere in the declared domain.
 
-To connect to experiment:
+To connect a direct dynamical run to experiment:
 
 - Embed **model detectors**, represented by the worldlines of assemblies (bound configurations of architrinos), in this frame.
 - Compute the wake potential and gradient they experience along their paths, their derived clock time $\tau$, the readout of a physical clock, relative to $T$, and the arrival times, redshifts, and intensity patterns they register.
@@ -33,7 +33,7 @@ This enforces a clean separation between:
 
 ## Simulation Scope Envelope
 
-A simulation is a bounded experiment on the model, not a complete copy of $\mathbb{U}_{\text{now}}$. Every run should declare its scope before outputs are interpreted:
+A simulation is a bounded experiment on the model, not a complete copy of $\mathbb{U}_{\text{now}}$. Every run should declare its scope before outputs are interpreted, marking inapplicable dynamical entries explicitly for reduced models and replays:
 
 - spatial domain and boundary conditions;
 - absolute-time span, $\Delta T$, and retained history depth;

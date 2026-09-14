@@ -133,7 +133,7 @@ Population and perturbation are separate assumptions. An isolated pair receives 
 | Four-particle contact, Section 3.2 | Two environmental labels evolve with the targets; the complete histories preserve reflection with polarity reversal | Environmental contributions are present, but the targets retain equal transverse displacements. Exact contact does not require an empty environment. |
 | One-target transverse change, Section 3.7 | One supplied history breaks that reflection symmetry; all four futures still obey the equation | The stated change turns contact into a derived miss over the stated interval. It models a changed past, not an imposed future disturbance. |
 | Stationary infinite lattice, Section 6.1 | Infinitely many sources; exact stationary histories and the declared grouping give zero total acceleration at each anchor | Equilibrium is a cancellation result. It is not evidence that the environment is absent or remains balanced after a disturbance. |
-| Two modified lattice histories, Sections 6.4–6.7 and 6.9–6.11 | A disturbance is supplied on two fixed labels; every future, including the environment, is evolved | The smooth example gives a stationary waiting interval, environmental motion and later target feedback. Conclusions depend on the reception interval and coupling range. |
+| Two modified lattice histories, Sections 6.4–6.7 and 6.9–6.12 | A disturbance is supplied on two fixed labels; every future, including the environment, is evolved | The smooth example gives a stationary waiting interval, environmental motion and later target feedback with increasing separation throughout the first feedback interval. Conclusions depend on the specified history, reception interval and coupling range. |
 | Coordinated distant-history changes, Sections 6.2 and 6.8 | Changes are prescribed across an infinite set, or a growing finite set, of source pasts | The resulting summation or continuity obstruction is not proved to arise by evolving a local disturbance. |
 
 The environmental effect on an encounter is determined by its contribution to relative acceleration. Let $\mathbf E_i$ and $\mathbf E_j$ be the complete acceleration sums from labels outside the target pair, whenever those sums exist under the declared prescription. For $\mathbf d=\mathbf X_i-\mathbf X_j$, $\mathbf w=\dot{\mathbf d}$ and $\mathbf h=\mathbf d\times\mathbf w$, the environmental term in the derived identity $\dot{\mathbf h}=\mathbf d\times\ddot{\mathbf d}$ is
@@ -601,7 +601,7 @@ At $\theta_0$, the class permits acceleration magnitude at most $J\theta_0=1$, w
 
 | Coupling ratio | Derived conclusion for the unchanged smooth input |
 | --- | --- |
-| $0<g\leq16$ | Continuation through first received EOM-generated environmental feedback to $17\ell/16$ in Section 6.11, preserving the original class; Sections 6.6 and 6.9–6.10 give the earlier reception intervals |
+| $0<g\leq16$ | Continuation through first received EOM-generated environmental feedback to $17\ell/16$ in Section 6.11, preserving the original class; Section 6.12 proves increasing target separation throughout that feedback interval; Sections 6.6 and 6.9–6.10 give the earlier reception intervals |
 | $16<g<2^{48}$ | A positive local response exists, but full-pulse continuation versus original-class loss remains unclassified |
 | $g\geq2^{48}$ | No original-class continuation through $T_*+2^{-16}\ell$, before pulse completion |
 
@@ -863,11 +863,127 @@ $$
 =\frac{g^2}{18\sqrt2}\delta^9+O_g(\delta^{10}).
 $$
 
-Its sign is positive for a sufficiently small positive interval after feedback onset, for each fixed $g>0$, establishing an initial increase. The estimates do not give the remainder a sign through the full horizon or establish long-time separation.
+Its sign is positive for a sufficiently small positive interval after feedback onset, for each fixed $g>0$, establishing an initial increase. This local expansion alone does not bound the remainder through the full horizon. Section 6.12 supplies the finite-interval bound; long-time separation remains unresolved.
 
 Complete displacement below $B\ell$ and speed below $1/256$ preserve exactly one cross root per channel and exclude every positive self root. The original tubes and complement gaps remain valid with slope floor $255/256$. Uniqueness holds among classical continuations with the identical complete input and fixed block sum, future displacement at most $B\ell$ and speed at most $1/4$. Such a competitor first matches the accepted prefix because all its earlier cross emissions are negative, then matches the new step because every subsequently received source segment lies in that same prefix. Equal-time separation exceeds $255\ell/256$ throughout the proved interval, independently of the local expansion.
 
 The distinction between scenarios is explicit here: the two prescribed past disturbances first generate environmental motion, and emissions from that motion later generate target motion. This control supplies a finite interval of actual feedback in an infinite population. Arbitrary-history invariance, the identity of the globally earliest moving receiver, later returns and general coordinate-coincidence behavior remain separate questions.
+
+### 6.12. Separation increases over the complete feedback interval
+
+The separation increase can be controlled throughout the interval constructed in Section 6.11. The relevant distinction is between common motion and relative motion. Both targets initially move in the third direction, while their much smaller first-component motions determine separation. An estimate that combines all components would obscure this difference. The following derived bound retains the signed source-pair cancellation and separately controls the errors that can change it.
+
+Keep the same complete past, block prescription, original class and $0<g=G/\ell\le16$, with $c_f=1$. Let $H=17/16$, $\alpha=\sqrt2-11/8$, $\beta=\alpha+1$ and $\delta=t-\beta$. For the right target write $x(\delta)=y_{e_1,1}(\beta+\delta)$. The result is
+
+$$
+x''(\delta)\ge\frac{g^2}{300}\delta^8
+\qquad(0<\delta\le H-\beta).
+$$
+
+The reflection identities from Section 6.11 give normalized separation $d(t)=\|\mathbf X_{e_1}(\ell t)-\mathbf X_0(\ell t)\|/\ell=1+2x(\delta)$. Both targets start from rest at $\beta$, so
+
+$$
+d'(t)\ge\frac{g^2}{1350}\delta^9>0,\qquad
+d(t)-1\ge\frac{g^2}{13500}\delta^{10}>0.
+$$
+
+Thus separation stays constant before target feedback and increases strictly afterwards through $17\ell/16$. The conservative inequalities quantify the remainder without changing the earlier leading coefficients.
+
+First restrict the required source histories. Put $U=3/128$. The exact inequality $H-\beta<U-1/10000$, the accepted generated-source displacement bound $1/819200$, and the target acceleration bound $g/2000$ imply that every received source offset $u=s-\alpha$ lies below $U$. These source segments are already EOM-evolved parts of the accepted prefix. Each sees only its original old-pulse disturbance during this short interval.
+
+The two vertical environmental sources relevant to the right target have offsets $(1,0,\pm1)$ from their original exciting target. Let their actual displacements be $\mathbf U_\pm(u)$. Their first-component sum obeys
+
+$$
+\frac{gu^8}{20}-\frac7{360}g^2u^9
+\le U_{+,1}(u)+U_{-,1}(u),\qquad
+|U_{+,1}(u)+U_{-,1}(u)|<\frac{gu^8}{3}.
+$$
+
+Each vertical source also satisfies
+
+$$
+\|\mathbf U_\pm\|\le gu^5/10,\quad
+\|\mathbf U_\pm'\|\le gu^4/2,\quad
+|U_{\pm,1}|,|U_{\pm,3}|\le gu^5/16,\quad
+|U_{\pm,1}'|,|U_{\pm,3}'|\le5gu^4/16.
+$$
+
+The positive pair bound has an exact integral origin. For the old pulse $p(v)=-(1-8v)v^4(1-4v)^4$, introduce the auxiliary amplitude $\lambda\in[-1,1]$ and the fixed-anchor comparison
+
+$$
+\begin{gathered}
+r_\lambda(v)=\sqrt{1+(1-\lambda p(v))^2},\quad
+t_\lambda(v)=v+r_\lambda(v)-\sqrt2,\quad
+t_\lambda(v_\lambda)=u,\\
+Z(\lambda,u)=\int_0^{v_\lambda}
+(u-t_\lambda(v))r_\lambda(v)^{-3}\,dv-\frac{u^2}{2(\sqrt2)^3}.
+\end{gathered}
+$$
+
+Changing integration from reception time to emission time cancels the transmitter denominator. The two anchor comparison displacements have first components $gZ(1,u)$ and $gZ(-1,u)$, and $Z(0,u)=0$. Write $b=1-\lambda p$ and $D_\lambda=t_\lambda'$. Differentiating twice in amplitude, including the moving integration boundary, gives
+
+$$
+\begin{aligned}
+\partial_\lambda^2Z={}&
+\frac{b(v_\lambda)^2p(v_\lambda)^2}
+{r_\lambda(v_\lambda)^5D_\lambda(v_\lambda)}\\
+&+\int_0^{v_\lambda}
+\left[
+\frac{(6b^2-1)p^2}{r_\lambda^6}
++(u-t_\lambda)\frac{(12b^2-3)p^2}{r_\lambda^7}
+\right]dv.
+\end{aligned}
+$$
+
+All terms are nonnegative on this interval, and the boundary term is positive for $u>0$. Since $Z(1,u)+Z(-1,u)=\int_{-1}^1(1-|\lambda|)\partial_\lambda^2Z\,d\lambda$, the full pulse shape can be bounded directly. The original roots obey $(999/1000)u\le v_\lambda\le(1001/1000)u<1/40$. The boundary term alone then exceeds $u^8/20$, while the whole expression is below $u^8/4$.
+
+The comparison does not hold the actual environment fixed. For its actual receiver equation, the pulse derivative bounds $|p|\le v^4$, $|p'|\le4v^3$ and $|p''|\le12v^2$, together with range greater than $7/5$, give
+
+$$
+\|D_{\mathbf y}(\mathbf S_0+\mathbf Q)\|\le7u^2.
+$$
+
+The actual displacement bound $gu^5/10$ consequently makes the difference between each moving source and its twice-integrated anchor comparison at most $7g^2u^9/720$. Adding the two errors proves the displayed pair bound.
+
+The transverse environmental sources have exciting offsets $(1,\pm1,0)$. For their anchor comparison, $r=\sqrt{2+p^2}$ and $D=1+pp'/r\ge1$, so the first component begins at order seven in acceleration. Applying the same receiver derivative estimate gives, for each actual transverse source,
+
+$$
+\|\mathbf U_\perp\|\le gu^6/60,\quad
+\|\mathbf U_\perp'\|\le gu^5/10,\quad
+|U_{\perp,1}|<gu^9/64.
+$$
+
+At the target, these source bounds sharpen the total displacement to $\|\mathbf y_{e_1}\|\le g^2\delta^6/14$. Every actual received source offset obeys $0<u_j<(1000001/1000000)\delta$. Let $F_j=r_j^{-3}/D_j$ be its actual range-and-transmitter weight, and let $f_j=\|e_1-j+\mathbf y_{e_1}\|^{-3}$ be the stationary reference factor. Because the four anchor channel vectors have zero first component, the exact first-component equation is
+
+$$
+x''=A(\delta)+b(\delta)x,\qquad
+A=g\sum_j U_{j,1}(u_j)F_j,\qquad |b|\le3g^2\delta^4.
+$$
+
+The coefficient $b$ includes the stationary first-component derivative and $\sum_jg(f_j-F_j)$. The stationary first component vanishes when $x=0$ by reflection, which is why common third-direction motion does not enter this term as a large uncontrolled error.
+
+The two vertical channel contributions differ from their source-pair sum at common offset $\delta$ by at most
+
+$$
+\left|\sum_{j\ {\rm vertical}}U_{j,1}(u_j)F_j
+-U_{+,1}(\delta)-U_{-,1}(\delta)\right|
+<\frac2{25}g^2\delta^9+\frac{23}{500}g^3\delta^{10}.
+$$
+
+This bound includes both the generated-root shift and nonlinear weight. It follows by bounding $|u_j-\delta|$ using the third components and the square of the first-component range difference, then bounding the displacement change with the source velocity. The two transverse terms together have magnitude below $g\delta^9/30$. The source-pair upper bound now yields $|A|<g^2\delta^8/2$. A first-exit comparison, initialized by the earlier local expansion, gives $|x|\le g^2\delta^{10}/64$, and therefore $|bx|<g^4\delta^{10}/250$.
+
+Combining the positive vertical-pair term with every possible opposing contribution gives
+
+$$
+x''\ge g^2\delta^8
+\left[\frac1{20}-\frac{179}{1800}g\delta
+-\frac{\delta}{10}-\frac{g^2\delta^2}{20}\right].
+$$
+
+All subtracted terms increase with $g$ and $\delta$. At the conservative endpoints $g=16$ and $\delta=3/128$, the bracket is exactly $1/300$. It is therefore positive throughout the actual interval, proving the separation inequalities above.
+
+The environment's return signal thus increases the targets' separation throughout this first feedback interval. The conclusion uses the specified smooth disturbance, its actual environmental response and their delayed signed contributions. It supplies no sign for later returns, no stability statement under changed histories, and no general exclusion of coordinate coincidence in a populated universe.
+
 
 ## 7. Wake transport, action, and conserved accounts
 
@@ -1046,7 +1162,7 @@ These downstream questions retain their dependencies. A root chart supplies neit
 
 The investigations separate properties that are easily conflated. A finite coordinate-contact construction establishes reachability within one forward-history class. The stationary pair's earlier self-boundary obstruction establishes failure of the unchanged regular continuation on a different input. A quintic candidate supplies a unique short mirror continuation only after modifying the boundary rule. A proposed speed cap and event completion can supply finite passage while leaving multiple future branches. Their histories, event types and equations differ.
 
-Infinite-population summation adds a distinct requirement. Exact stationary cancellation and finite modifications are viable under a selected reference, while independently coordinated complete histories can destroy convergence and continuity. A sufficient restricted history class addresses that functional problem. Separately, the fixed smooth two-source control continues through first received EOM-generated environmental feedback, with 76 nonconstant environmental histories and two moving targets. Their common sixth-order motion is followed in the local expansion by a positive tenth-order separation change. This finite interval of delayed feedback establishes neither a general invariant population class nor long-time separation or contact behavior.
+Infinite-population summation adds a distinct requirement. Exact stationary cancellation and finite modifications are viable under a selected reference, while independently coordinated complete histories can destroy convergence and continuity. A sufficient restricted history class addresses that functional problem. Separately, the fixed smooth two-source control continues through first received EOM-generated environmental feedback, with 76 nonconstant environmental histories and two moving targets. Their common sixth-order motion is accompanied by a smaller separation change. A finite-interval bound proves that target separation increases throughout the first feedback interval through $17\ell/16$. This establishes neither a general invariant population class nor long-time separation or contact behavior.
 
 The surviving local scalar gradient, the rejected complete action, and the account obstructions likewise have different scopes. They narrow proposed constructions without selecting a conserved completion or excluding every possible one. Assembly root geometry and return diagnostics provide necessary information, while exact EOM existence, stability, and observer-level response remain additional burdens.
 
