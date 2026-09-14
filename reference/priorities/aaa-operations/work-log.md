@@ -2,6 +2,10 @@
 
 This file is the chronological work log for the `aaa-operations` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker.
 
+### 2026-09-14 — Replacement and retirement work queued
+
+At the operator's request, added OPS-034 for Pages/PR coverage replacement, OPS-035 for bounded local-rotation replacement and OPS-036 for removing the resulting obsolete machinery. Each replacement removes superseded execution paths and obligations rather than keeping both structures in regular use. Existing useful tests can be retained, and an explicitly retired requirement needs no replacement. The tasks preserve current consumers and original scientific evidence and retain the four manual suites' explicit-use disposition. Implementation is queued after the current PR; only the queue, tracker and this record changed. No test, runner, workflow or PR setting was changed or executed for this capture.
+
 ### 2026-09-14 — Official testing process and agreed-scope rule
 
 Subsequent operator correction after requesting review of “Remove nonsense processes”: endless testing-process inquiries themselves are displacing project work. Read the task's local transcript after the task-history API returned empty message bodies; the operator messages record escalating migration scope, publication blockage, an estimated month lost and eventual rejection of Option A/B enforcement. Removed the newly proposed comprehensive approval-reconciliation task. The process now puts the burden on a disputed test's proposer at the point of use and explicitly creates no obligation to audit, repair or replace its machinery. Actual PR blockers are handled individually. No tests or further test-inventory investigation were run for this correction.
