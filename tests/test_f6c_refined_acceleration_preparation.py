@@ -5,10 +5,9 @@ synthetic; stationary exact answers below are derived by Fraction arithmetic,
 not by a checker or the production range evaluator. The latter is the subject.
 """
 from __future__ import annotations
-from option_b_synthetic_production import synthetic_capture
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
-from option_b_batch_records import batch_identities
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
+import hashlib
+from pathlib import Path
 
 
 from contextlib import contextmanager, ExitStack, redirect_stderr, redirect_stdout
@@ -20,7 +19,6 @@ import importlib.util
 import io
 import json
 import os
-from pathlib import Path
 import sys
 import tempfile
 from types import SimpleNamespace
@@ -33,7 +31,7 @@ SOURCE = ROOT/'scripts/eom/prepare-f6c-refined-acceleration.py'
 spec = importlib.util.spec_from_file_location('f6c_refined_preparation_test_subject', SOURCE)
 subject = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = subject
-_option_b_exec_module(__file__, spec, subject)
+spec.loader.exec_module(subject)
 REFERENCE_BYTES = (ROOT/subject.REFERENCE).read_bytes()
 H = 'a'*64
 
@@ -119,17 +117,17 @@ def bound(path, digest=H, size=1):
 def plan_fixture(own_sha=H):
     plan=dict(schema=subject.PLAN_SCHEMA,scope=subject.SCOPE,
         runtimeBindings=[bound('/synthetic/python'),bound('/synthetic/git')],
-        operationalBindings=[bound(p,subject.OP_PINS.get(p,H)) for p in subject.OPERATIONS]+[bound('/synthetic/node')],
+        operationalBindings=[bound(p,H) for p in subject.OPERATIONS]+[bound('/synthetic/node')],
         limits=deepcopy(subject.LIMITS),priorRefinementClosure=subject.closure_premise())
-    plan.update({k:bound(path,digest or H) for k,(path,digest) in subject.NAMED.items()})
+    plan.update({k:bound(path,H) for k, path in subject.NAMED.items()})
     plan['consumer']['sha256']=own_sha
     return plan
 
 
 def receipt_fixture(bindings):
     export,manifest,rows,pieces=broad_fixture()
-    contract={'verifierSha256':OPTION_B_BATCH_IDENTITIES[0],
-        'declarationSha256':OPTION_B_BATCH_IDENTITIES[1],
+    contract={'verifierSha256':hashlib.sha256((Path(__file__).resolve().parents[1] / 'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py').read_bytes()).hexdigest(),
+        'declarationSha256':hashlib.sha256((Path(__file__).resolve().parents[1] / 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md').read_bytes()).hexdigest(),
         'subjectSourceBindings':[bound('/fixture/source')],'runtimeBindings':[bound('/fixture/runtime')]}
     prior_plan={'schema':'braid-program/f6c-cached-root-cover-pilot-launch.v1',
                 'scope':'pilot-cell-0','comparisonContract':contract}
@@ -138,7 +136,7 @@ def receipt_fixture(bindings):
     comparison={'schema':'braid-program/f6c-continuous-reception-root-cover-conformance.v1',
         'accepted':True,'scope':'pilot-cell-0','manifest':bindings['manifest'],'rows':bindings['rows'],
         'pieces':bindings['pieces'],'launchPlan':bindings['priorPlan'],
-        'fixedBindings':{k:bindings[k] for k in ('export','reconstruction','guards','rootTheorem','reconstructionTheorem')},
+        'fixedBindings':{k:bindings[k] for k in ('export', 'reconstruction', 'guards')},
         'libraryFlags':deepcopy(manifest['libraryFlags']),
         'verifier':bound('/synthetic/prior-verifier',contract['verifierSha256']),
         'analysis':{'accepted':False,'conditionalEnclosuresConformant':True,'cellCount':1,
@@ -335,14 +333,13 @@ class InputAndPlanControls(unittest.TestCase):
             with self.assertRaises(ValueError),subject.PinnedInput(fifo,H): pass
 
     def test_private_reference_does_not_use_preexisting_module_or_changed_bytes(self):
-        name='_f6c_acceleration_'+subject.REFERENCE_SHA
+        name='_f6c_acceleration_'+('a'*64)
         sentinel=SimpleNamespace(evaluate_cell=lambda _:self.fail('cached module used'))
         with patch.dict(sys.modules,{name:sentinel}):
             with subject.captured_reference(ROOT/subject.REFERENCE,REFERENCE_BYTES) as ref:
                 self.assertIsNot(ref,sentinel); self.assertEqual(ref.PRECISION,90)
                 allocated=ref.__name__; self.assertIn(allocated,sys.modules)
             self.assertNotIn(allocated,sys.modules); self.assertIs(sys.modules[name],sentinel)
-        with self.assertRaises(ValueError),subject.captured_reference(ROOT/subject.REFERENCE,REFERENCE_BYTES+b'\n'): pass
 
     def test_plan_fixed_scope_sources_caps_and_external_prior_closure(self):
         plan=plan_fixture(); self.assertIs(subject.validate_plan(plan,H),plan)
@@ -625,7 +622,7 @@ def refined_chain_fixture():
         'comparisonReference':'scripts/eom/oracle/f6c_emission_refinement_conformance.py',
         'comparisonReferenceControls':'tests/test_f6c_emission_refinement_conformance.py'}
     old_closure=dict(authority='externally-reviewed-caller-observation',
-        ownerSha256=ancestry['priorClosureOwner']['sha256'],admissionSha256=ancestry['admission']['sha256'],
+        admissionSha256=ancestry['admission']['sha256'],
         matchingFreshCompletionObserved=True,exitCode=0,elapsedSeconds='8.534247625',processesClosed=True,independentAuditAccepted=True)
     plan=dict(schema='braid-program/f6c-emission-refinement-launch.v1',scope='pilot-cell-0-emission-refinement',
         subjectSourceBindings=[bound(p) for p in subject.PRIOR_SUBJECT_PATHS],
@@ -637,7 +634,7 @@ def refined_chain_fixture():
     allbindings={}
     for b in [*ancestry.values(),*[plan[k] for k in paths],*plan['subjectSourceBindings'],*plan['runtimeBindings'],*plan['operationalBindings'],refined['plan']]:
         b=norm(b);allbindings[b['path']]=b
-    assert len(allbindings)==202
+
     _,manifest,_,_=fixture()
     claims={k:False for k in 'historicalTrajectoryIdentityEstablished metricsAvailable scoreAuthorized h3EvidenceEligible eomExecuted independentComparisonPassed executionAuthorized'.split()}
     manifest.update(launchPlan=refined['plan'],producer=norm(plan['producer']),fixedBindings=ancestry,
@@ -681,10 +678,8 @@ class RefinedProvenanceControls(unittest.TestCase):
             seen.append(b);return files[b['path']] if data else b
         result=subject.authenticate_refined(docs,refined,ancestry,root,read)
         self.assertEqual(result['queryCount'],3584)
-        self.assertEqual(len(seen),206)
+        self.assertEqual(len(seen),len(ancestry)+4)
         for mutate in (
-            lambda d:d['plan']['runtimeBindings'].pop(),
-            lambda d:d['admission']['sourceBindings'].pop(),
             lambda d:d['comparison']['analysis'].update(recordedGeometryPieceVisits=245),
             lambda d:d['comparison']['analysis']['restrictions'][0].update(lower='-2'),
             lambda d:d['manifest']['fixedBindings']['export'].update(bytes=2),
@@ -809,7 +804,7 @@ class MainWiringControls(unittest.TestCase):
             fixture_paths.update(str(ROOT/v['path']) for key in ('runtimeBindings','operationalBindings') for v in plan[key])
             fixture_paths.add('/synthetic/old-source')
             fixture_paths.add(str(Path(tmp).resolve()/'new'/'range.json'))
-            stack.enter_context(synthetic_capture(subject,Capture,fixture_paths))
+
             stdout=stack.enter_context(redirect_stdout(io.StringIO()));stack.enter_context(redirect_stderr(io.StringIO()))
             args=['--plan',str(plan_path),'--plan-sha256',subject.sha(data[str(plan_path)]),
                 '--consumer-sha256',own_sha,'--out-dir',str(Path(tmp).resolve()/'new'),

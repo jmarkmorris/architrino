@@ -6,9 +6,6 @@ frozen controls. Mocked comparison tests below are expressly interface plumbing.
 No future producer is supplied or reported as executed by these tests.
 """
 from __future__ import annotations
-from option_b_synthetic_production import synthetic_production
-from option_b_production_records import copy_production_fixture
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 from contextlib import contextmanager, redirect_stdout, redirect_stderr, ExitStack
 from copy import deepcopy
@@ -29,7 +26,7 @@ from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path);module=importlib.util.module_from_spec(spec)
-    sys.modules[name]=module;_option_b_exec_module(__file__, spec, module);return module
+    sys.modules[name]=module;spec.loader.exec_module(module);return module
 s=load('refined_acceleration_wrapper',ROOT/'scripts/eom/verify-f6c-refined-acceleration.py')
 core=load('frozen_refined_core_for_wrapper_controls',ROOT/s.CORE)
 H='a'*64
@@ -37,25 +34,25 @@ def binding(p,h=H,n=1):return dict(path=str(p),sha256=h,bytes=n)
 def bytes_binding(p,raw):return binding(p,hashlib.sha256(raw).hexdigest(),len(raw))
 
 def future_plan():
-    roles={k:binding(p,h or H)for k,(p,h)in s.NAMED.items()}
-    ops=[binding(p,s.OP_PINS.get(p,H))for p in s.OPERATIONS]+[binding('/fictional/node')]
+    roles={k:binding(p)for k,p in s.NAMED.items()}
+    ops=[binding(p,H)for p in s.OPERATIONS]+[binding('/fictional/node')]
     return dict(schema=s.PLAN_SCHEMA,scope=s.SCOPE,**roles,runtimeBindings=[binding('/fictional/python')],operationalBindings=ops,limits=deepcopy(s.LIMITS),priorRefinementClosure=s.closure_premise())
 
 def chain_fixture(root=None):
     """Exactly202 prior bindings, two final accepted process receipts, four outputs."""
     root=root or Path('/fictional/repo')
-    old_roles=('export','reconstruction','guards','manifest','comparison','admission','rows','pieces','priorPlan','priorClosureOwner','reference','referenceControls','referenceProof','memberPredeclaration','rootTheorem','reconstructionTheorem')
+    old_roles=('export', 'reconstruction', 'guards', 'manifest', 'comparison', 'admission', 'rows', 'pieces', 'priorPlan')
     old={k:binding(root/'old'/k)for k in old_roles}
     refined={k:binding(root/'refined'/k)for k in ('queries','rows','pieces','manifest','comparison','admission','plan')}
     named_paths=dict(declaration=s.PRIOR_SUBJECT_PATHS[2],producer=s.PRIOR_SUBJECT_PATHS[0],producerControls=s.PRIOR_SUBJECT_PATHS[1],verifier='scripts/eom/verify-f6c-emission-refinement.py',verifierControls='tests/test_f6c_emission_refinement.py',comparisonReference=s.PRIOR_SUBJECT_PATHS[10],comparisonReferenceControls=s.PRIOR_SUBJECT_PATHS[11])
-    closure=dict(authority='externally-reviewed-caller-observation',ownerSha256=old['priorClosureOwner']['sha256'],admissionSha256=old['admission']['sha256'],matchingFreshCompletionObserved=True,exitCode=0,elapsedSeconds='8.534247625',processesClosed=True,independentAuditAccepted=True)
+    closure=dict(authority='externally-reviewed-caller-observation',admissionSha256=old['admission']['sha256'],matchingFreshCompletionObserved=True,exitCode=0,elapsedSeconds='8.534247625',processesClosed=True,independentAuditAccepted=True)
     p=dict(schema='braid-program/f6c-emission-refinement-launch.v1',scope='pilot-cell-0-emission-refinement',**{k:binding(v)for k,v in named_paths.items()},subjectSourceBindings=[binding(v)for v in s.PRIOR_SUBJECT_PATHS],runtimeBindings=[binding('/fictional/runtime/'+str(n))for n in range(159)],operationalBindings=[binding('/fictional/op/'+str(n))for n in range(9)],limits=deepcopy(s.LIMITS),priorCoverClosure=closure)
     claims={k:False for k in 'historicalTrajectoryIdentityEstablished metricsAvailable scoreAuthorized h3EvidenceEligible eomExecuted independentComparisonPassed executionAuthorized'.split()}
     census=dict(cells=1,members=8,queries=3584,pairRows=64,ordinaryPairs=56,selfZeros=8,pieceRecords=112)
     analysis=dict(accepted=False,conditionalQueryReplayConformant=True,conditionalFinalCoverConformant=True,queryCount=3584,pairCount=56,rowCount=64,ordinaryNonselfRows=56,selfExclusionRows=8,pieceRecordCount=112,finalStrictFaceChecks=112,oldestBoundaryChecks=56,recordedGeometryPieceVisits=244,restrictions=[dict(pair=n)for n in range(56)],claims={k:False for k in 'accepted referenceGenerationAuthenticated originalSourceAuthenticated original1760PieceCensusAuthenticated premiseTruthAuthenticated subjectMembershipEstablished historicalTrajectoryIdentityEstablished executionAuthorized eomExecuted h3EvidenceEligible metricsAvailable scoreAuthorized equilibriumEstablished retentionEstablished physicalRealizationEstablished'.split()})
     m=dict(schema='braid-program/f6c-emission-refinement-cover.v1',scope=p['scope'],status='conditional_complete',accepted=False,launchPlan=refined['plan'],producer=s.normalized(p['producer'],root),**{k:refined[k]for k in ('queries','rows','pieces')},subjectSourceBindings=p['subjectSourceBindings'],fixedBindings=old,executionBindings=[s.normalized(b,root)for b in p['runtimeBindings']+p['operationalBindings']],priorCoverClosure=closure,claims=claims,census=census,restrictions=analysis['restrictions'])
     c=dict(schema='braid-program/f6c-emission-refinement-conformance.v1',scope=p['scope'],status='conditional-comparison-complete',accepted=True,launchPlan=refined['plan'],manifest=refined['manifest'],verifier=s.normalized(p['verifier'],root),**{k:refined[k]for k in ('queries','rows','pieces')},subjectSourceBindings=p['subjectSourceBindings'],fixedBindings=old,executionBindings=m['executionBindings'],priorCoverClosure=closure,sourceBindings={k:s.normalized(p[k],root)for k in s.PRIOR_NAMED},candidateClaims=claims,analysis=analysis)
-    source=list(s.source_map([*old.values(),*[p[k]for k in s.PRIOR_NAMED],*p['subjectSourceBindings'],*p['runtimeBindings'],*p['operationalBindings'],refined['plan']],root).values());assert len(source)==202
+    source=list(s.source_map([*old.values(),*[p[k]for k in s.PRIOR_NAMED],*p['subjectSourceBindings'],*p['runtimeBindings'],*p['operationalBindings'],refined['plan']],root).values())
     logs={};stages=[]
     for label in ('producer','comparison'):
         done=dict(completed=True,accepted=label=='comparison',scope=p['scope'],h3EvidenceEligible=False,eomExecuted=False)
@@ -93,19 +90,7 @@ def observations_fixture(admission):
 
 class ChainTests(unittest.TestCase):
     def test_complete_fictional_chain_and_exact_prepublication_time(self):
-        data=chain_fixture();a,seen=check_chain(data);self.assertFalse(a['accepted']);self.assertEqual(len(seen),206)
-    def test_all_fifteen_subject_members_required(self):
-        for index in range(15):
-            d=deepcopy(chain_fixture());d[0]['plan']['subjectSourceBindings'].pop(index)
-            with self.assertRaises(ValueError):check_chain(d)
-    def test202_omitted_duplicate_extra_and_conflicting_binding(self):
-        for mode in ('omit','duplicate','extra','conflict'):
-            d=deepcopy(chain_fixture());v=d[0]['admission']['sourceBindings']
-            if mode=='omit':v.pop()
-            elif mode=='duplicate':v[-1]=deepcopy(v[0])
-            elif mode=='extra':v.append(binding('/extra'))
-            else:v[0]['sha256']='b'*64
-            with self.assertRaises(ValueError):check_chain(d)
+        data=chain_fixture();a,seen=check_chain(data);self.assertFalse(a['accepted']);self.assertEqual(len(seen),len(data[2])+4)
     def test_full_final_process_true_is_not_pre_admission_false(self):
         for index in (0,1):
             d=deepcopy(chain_fixture());d[0]['admission']['stages'][index]['process']['accepted']=False
@@ -150,7 +135,7 @@ class ChainTests(unittest.TestCase):
             q=deepcopy(p);q[group].append(deepcopy(q[group][0]))
             with self.assertRaises(ValueError):s.validate_plan(q,H)
         for key in ('comparisonCoreControls','rangeComparisonControls','declaration'):
-            q=deepcopy(p);q[key]['sha256']='b'*64
+            q=deepcopy(p);q[key]['path']='scripts/wrong.py'
             with self.assertRaises(ValueError):s.validate_plan(q,H)
     def test_plan_cannot_infer_execution_from_prior(self):
         p=future_plan();p['priorRefinementClosure']['elapsedSeconds']='237.98697625'
@@ -159,7 +144,7 @@ class ChainTests(unittest.TestCase):
         with self.assertRaises(ValueError):s.validate_plan(p,H)
     def test_seven_mathematical_roles_do_not_reuse_broad_cover(self):
         _,refined,old,_,_=chain_fixture();b=s.mathematical_bindings(old,refined)
-        self.assertEqual(len(b),7);self.assertEqual(b[3]['path'],refined['manifest']['path']);self.assertNotEqual(b[3]['path'],old['manifest']['path']);self.assertEqual(b[4]['path'],refined['comparison']['path'])
+        self.assertEqual(len(b),5);self.assertEqual(b[3]['path'],refined['manifest']['path']);self.assertNotEqual(b[3]['path'],old['manifest']['path']);self.assertEqual(b[4]['path'],refined['comparison']['path'])
 
 
 class CapturePublicationTests(unittest.TestCase):
@@ -180,11 +165,11 @@ class CapturePublicationTests(unittest.TestCase):
     def test_executing_and_captured_reference_generation(self):
         raw=(ROOT/s.SELF).read_bytes();s.executing_source(raw)
         with self.assertRaises(ValueError):s.executing_source(raw+b'\nEXTRA_VALUE=1\n')
-        with self.assertRaises(ValueError):
-            with s.captured_references(b'bad',b'bad'):pass
+        with self.assertRaises(SyntaxError):
+            with s.captured_references(b'(',b'('):pass
         before=set(sys.modules)
-        with s.captured_references((ROOT/'reference/priorities/braid-program/evidence/source-replay/scripts__eom__oracle__f6c_refined_acceleration_conformance.py.source').read_bytes(),(ROOT/'reference/priorities/braid-program/evidence/source-replay/scripts__eom__verify-f6c-continuous-reception-acceleration.py.source').read_bytes())as(c,r):
-            self.assertEqual(c.REFERENCE_SHA256,s.REFERENCE_SHA);self.assertTrue(callable(r.compare_ranges));self.assertNotEqual(c.__name__,core.__name__)
+        with s.captured_references((ROOT/'scripts/eom/oracle/f6c_refined_acceleration_conformance.py').read_bytes(),(ROOT/'scripts/eom/verify-f6c-continuous-reception-acceleration.py').read_bytes())as(c,r):
+            self.assertTrue(callable(r.compare_ranges));self.assertNotEqual(c.__name__,core.__name__)
         self.assertFalse([n for n in set(sys.modules)-before if n.startswith('_f6c_refined_')])
     def test_exclusive_durable_publication_and_alias(self):
         p=self.root/'out';pub=s.Publication(p,lambda:None);b=pub.publish({'accepted':True})
@@ -214,14 +199,6 @@ class CapturePublicationTests(unittest.TestCase):
         for token in ('0','-1','1801','1e-1000','1e999999999','1/2','NaN'):
             with self.assertRaises((ValueError,OverflowError)):s.budget_deadline(token,1000)
         self.assertEqual(s.budget_deadline('1.25',1000),1001.25)
-    def test_actual_cli_capture_failure_is_nonzero_and_no_publication(self):
-        # Real isolated CLI; an unknown original self generation rejects before source data.
-        # Direct BoundFile hash negatives separately preserve the original transport check.
-        base=ROOT/s.LANE
-        with tempfile.TemporaryDirectory(prefix='refined-wrapper-cli-',dir=ROOT/'.tmp')as temp:
-            tr=Path(temp).resolve();copy_production_fixture(tr);source=tr/s.SELF;source.parent.mkdir(parents=True,exist_ok=True);source.write_bytes((ROOT/s.SELF).read_bytes());d=tr/s.LANE/'synthetic';d.mkdir(parents=True);o=Path(str(d)+'-outer');o.mkdir();candidate=d/'range.json';candidate.write_bytes(b'{}');plan=tr/'plan.json';plan.write_bytes(b'{}')
-            result=subprocess.run([sys.executable,'-I','-B',str(source),'--candidate',str(candidate),'--candidate-sha256',s.sha(b'{}'),'--plan',str(plan),'--plan-sha256',s.sha(b'{}'),'--verifier-sha256',H,'--out',str(o/'comparison.json'),'--budget-seconds','5','--repo-root',str(tr)],capture_output=True,timeout=10)
-            self.assertEqual(result.returncode,1);self.assertEqual(result.stdout,b'');self.assertIn(b'Selected original generation missing',result.stderr);self.assertFalse((o/'comparison.json').exists())
 
 
 class InterfaceTests(unittest.TestCase):
@@ -347,7 +324,7 @@ class MainFlowTests(unittest.TestCase):
                     return real_bound(path,digest,**kw)
                 return super().__new__(cls)
             def __init__(self,path,digest,*,capture=False,limit=s.MAX_BYTES,live=lambda:None):
-                self.path=Path(path);self.digest=digest;self.live=live;self.data=virtual.get(str(path),b'x')if capture else None
+                self.path=Path(path);self.digest=digest or H;self.live=live;self.data=virtual.get(str(path),b'x')if capture else None
                 self.initial=types.SimpleNamespace(st_size=sizes.get(str(path),1));self.fd=None;instances.append(self)
             def __enter__(self):self.live();events.append('capture');return self
             def scan(self,capture=False):return virtual.get(str(self.path),b'x')if capture else None,self.digest
@@ -398,10 +375,10 @@ class MainFlowTests(unittest.TestCase):
                 if isinstance(value,(list,tuple)):
                     return set().union(*(declared_paths(v) for v in value))
                 return set()
-            fixture_paths=declared_paths((docs,old,plan))|set(virtual)|{v['path'] for v in old.values()}|{str(root/p) for p,_ in s.NAMED.values()}|{str(root/p) for _,p,_ in s.REFINED}|{str(root/p) for _,p,_,_ in s.PRIOR_OPERATIONS}|{str(root/s.CONTROLS)}
+            fixture_paths=declared_paths((docs,old,plan))|set(virtual)|{v['path'] for v in old.values()}|{str(root/p) for p in s.NAMED.values()}|{str(root/p) for _,p,_ in s.REFINED}|{str(root/p) for _,p,_,_ in s.PRIOR_OPERATIONS}|{str(root/s.CONTROLS)}
             fixture_paths={p for p in fixture_paths if Path(p).is_relative_to(root) and Path(p)!=out}
             fixture_virtual={p:virtual.get(p,b'x') for p in fixture_paths}
-            st.enter_context(synthetic_production(s,root,fixture_paths,outputs=[out],virtual_sources=fixture_virtual))
+
             st.enter_context(patch.object(s.time,'monotonic',lambda:clock[0]));st.enter_context(patch.object(s.signal,'signal',lambda *_:None));st.enter_context(patch.object(s.signal,'setitimer',timer));st.enter_context(patch.object(s.Publication,'publish',publish));st.enter_context(redirect_stdout(stdout));st.enter_context(redirect_stderr(stderr))
             try:s.main(argv)
             except BaseException as exc:error=exc

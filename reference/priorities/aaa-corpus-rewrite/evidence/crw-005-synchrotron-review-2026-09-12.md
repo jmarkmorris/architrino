@@ -99,10 +99,10 @@ The first repository-wide `node scripts/validate-content.mjs --check --strict` r
 
 | Reported file | Line | Invalid target in that file |
 | --- | --- | --- |
-| [Cached-root cover cutover](../../development-process-review/analysis/option-b-cached-root-cover-cutover.md) | 53 | `../../../../tests/current-launch-bindings.test.js` |
-| [Cached-root cover full cutover](../../development-process-review/analysis/option-b-cached-root-cover-full-cutover.md) | 51 | `../../../../tests/current-launch-bindings.test.js` |
-| [Current-source cutover inventory](../../development-process-review/analysis/option-b-current-source-cutover-inventory.md) | 85 | `../../../../tests/current-launch-bindings.test.js` |
-| [Prescribed-response and acceleration cutover](../../development-process-review/analysis/option-b-prescribed-response-and-acceleration-cutover.md) | 5 | `../../../../tests/current-launch-bindings.test.js` |
+| Cached-root cover cutover (retired migration record) | 53 | `../../../../tests/current-launch-bindings.test.js` |
+| Cached-root cover full cutover (retired migration record) | 51 | `../../../../tests/current-launch-bindings.test.js` |
+| Current-source cutover inventory (retired migration record) | 85 | `../../../../tests/current-launch-bindings.test.js` |
+| Prescribed-response and acceleration cutover (retired migration record) | 5 | `../../../../tests/current-launch-bindings.test.js` |
 
 The second run of the same strict command, after final chapter edits, exited 1 with 1 error, 0 warnings, and 30 notes at the same reported audit counts. It no longer listed those four targets. Its sole error was [the concurrent Radiation review receipt](crw-005-radiation-review-2026-09-12.md), line 50: target `y` was reported as resolving to absent `reference/priorities/aaa-corpus-rewrite/evidence/y`. A numbered source read showed that target inside an inline-code TeX example, not a prose link. A separate `marked` token check first passed controls excluding an inline-code link and retaining a prose link, then returned no link token for that exact line. This is a measured disagreement with strict validation on a code example, not a demonstrated broken prose link. No validator root cause or historical attribution is assigned here. These sequential results reflect the shared live tree and do not establish a green repository-wide state. The owning coordinator should route the validator/example discrepancy for separate-scope resolution and rerun strict validation; this worker did not edit the other receipt, validator, or the four earlier documents.
 

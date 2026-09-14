@@ -1,5 +1,4 @@
-import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';
-const identities=batchTestIdentities(import.meta.url);
+const identities = ["0153fdc7276d1a064d8794a423bd775b24140e8dd8353e4afe44695a0e973911"];
 import assert from "node:assert/strict";
 import { mkdtempSync, writeFileSync } from "node:fs";
 import os from "node:os";

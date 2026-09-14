@@ -1,5 +1,4 @@
-import {batchTestIdentities} from '../../scripts/equation-mapping/batch-test-records.mjs';
-const identities=batchTestIdentities(import.meta.url);
+const identities = ["2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6","3e9d646d95041634d7ee5fe7eed862d679c8f9f93518ebca7c98f549d352ec8f","ebc963eea7e9104f8f826e86dd4287bce8818c853a7c3315deafce7729c10807"];
 import {
   COMPACT_MONTE_CARLO_CAMPAIGN_SCHEMA,
   COMPACT_MONTE_CARLO_CASE_SCHEMA,

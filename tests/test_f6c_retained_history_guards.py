@@ -3,7 +3,6 @@
 Polynomial identities and inequalities are independently specified below.
 Tests of source capture/publication exercise operations, not scientific evidence.
 """
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 from copy import deepcopy
 from decimal import localcontext
@@ -25,7 +24,7 @@ from unittest.mock import patch
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts/eom/verify-f6c-retained-history-guards.py"
 SPEC = importlib.util.spec_from_file_location("f6c_guard_controls", SCRIPT)
 checker = importlib.util.module_from_spec(SPEC)
-_option_b_exec_module(__file__, SPEC, checker)
+SPEC.loader.exec_module(checker)
 
 
 def segment(a="-8", b="1", *, center="0", velocity="0", position="0", radius="0"):

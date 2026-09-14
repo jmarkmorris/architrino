@@ -44,26 +44,9 @@ export const OPERATIONS=Object.freeze({
  "outer": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
  "diagnostics": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs"
 });
-export const SOURCE_MAP='reference/priorities/development-process-review/contracts/option-b-f6c-bounded-operation-sources.jsonld';
-export let PINS;
-// Readiness alone is selected by the reviewed invocation. Historical wrapper
-// tuples are metadata, never instructions execute/import or runtime exemptions.
-export let ARCHIVE_SOURCES;
-// Only this exact accepted parent-two plan selects its old wrapper generation.
-// These files are nonexecuting historical evidence, never current code aliases.
-export let PARENT_TWO_ARCHIVE_PLAN;
-export let PARENT_TWO_ARCHIVE_SOURCES;
-function historicalArchiveSources(d,root){
- const[p,h,n]=PARENT_TWO_ARCHIVE_PLAN;
- return d.parent_index===2&&d.plan.path===path.join(root,p)&&d.plan.sha256===h&&d.plan.bytes===n?PARENT_TWO_ARCHIVE_SOURCES:ARCHIVE_SOURCES;
-}
-export let ANCESTRY_ARCHIVE_SOURCES;
-export let PACKAGE_PINS;
-export let FRESH_EVIDENCE_PINS;
+// Current sources are read directly; accepted scientific data has explicit inputs.
 // Independently accepted pure checker, not an inventory-selected I/O issuer.
 // Every actual batch still requires complete independently observed closure.
-export let FRESH_CLOSURE_PINS;
-export let CONTINUATION_MATH;
 const check=(yes,message)=>{if(!yes)throw Error(message);};
 const sha=raw=>createHash('sha256').update(raw).digest('hex');
 const url=raw=>'data:text/javascript;base64,'+Buffer.from(raw).toString('base64');
@@ -91,21 +74,6 @@ export function decodeSpec(raw){check(raw.length>0&&raw.length<=1024**2,'spec by
 export const LIMITS=Object.freeze({wallSeconds:1800,aggregateRSSBytes:2147483648,rssPollMs:250,maximumRSSGapMs:1000,heartbeatSeconds:15,hostProbeSeconds:2,startFreePercent:40,startDiskBytes:68719476736,stopFreePercent:20,stopDiskBytes:17179869184,scientificBytes:67108864,combinedLogBytes:16777216});
 const bindingKey=b=>[b.path,b.sha256,b.bytes];
 const equalBinding=(a,b)=>same(bindingKey(a),bindingKey(b));
-export function archiveRelations(spec){
- const out=[],seen=new Set();
- for(const r of spec.parentRefinements.flatMap(v=>v.archived_sources)){
-  const key=JSON.stringify([r.role,...bindingKey(r.original),...bindingKey(r.archive)]);
-  if(!seen.has(key)){
-   const copy=b=>({path:b.path,sha256:b.sha256,bytes:b.bytes});
-   out.push({role:r.role,original:copy(r.original),archive:copy(r.archive)});seen.add(key);
-  }
- }
- for(const r of freshEvidenceInputs(spec).archives){
-  const key=JSON.stringify([r.role,...bindingKey(r.original),...bindingKey(r.archive)]);
-  if(!seen.has(key)){out.push(r);seen.add(key);}
- }
- return out;
-}
 function elapsedToken(token){
  check(typeof token==='string'&&token.length>0&&token.length<=1152,'bounded elapsed token');
  const m=/^([+-]?)(?:(\d+)(?:\.(\d*))?|\.(\d+))(?:[eE]([+-]?\d+))?$/u.exec(token);check(m,'decimal elapsed token');
@@ -115,34 +83,16 @@ function elapsedToken(token){
  const n=BigInt(digits);check(m[1]!=='-'&&n>0n&&(exponent>=0?n*10n**BigInt(exponent)<=1800n:n<=1800n*10n**BigInt(-exponent)),'positive elapsed at most1800s');
 }
 function descriptorBindings(spec){
- const out=[],originals=new Map(),targets=new Map();let previous=0;
- const forbidden=new Set([...Object.values(spec.bindings),...spec.runtimeBindings].map(b=>b.path));
- for(const [p]of Object.values({...ARCHIVE_SOURCES,...ANCESTRY_ARCHIVE_SOURCES}))forbidden.add(path.join(spec.root,p));
+ const out=[];let previous=0;
  for(const d of spec.parentRefinements){
-  keys(d,['parent_index','plan','manifest','comparison','operation','launcher_log','resource_log','closure','archived_sources']);
+  keys(d,['parent_index','plan','manifest','comparison','operation','launcher_log','resource_log','closure']);
   check(Number.isInteger(d.parent_index)&&d.parent_index>previous&&d.parent_index<160,'sorted unique original parents1..159');previous=d.parent_index;
   for(const k of ['plan','manifest','comparison','operation','launcher_log','resource_log']){binding(d[k]);out.push(d[k]);}
   keys(d.closure,['owner','operation','original_caller_session','final_completion_chunk','exit_code','elapsed_seconds','processes_closed','independent_audit_accepted','authority']);
   const c=d.closure;binding(c.owner);binding(c.operation);check(equalBinding(c.owner,spec.bindings.readiness)&&equalBinding(c.operation,d.operation),'explicit current closure owner');
   check(typeof c.original_caller_session==='string'&&/^[0-9]{1,32}$/u.test(c.original_caller_session)&&typeof c.final_completion_chunk==='string'&&/^[a-zA-Z0-9_-]{1,128}$/u.test(c.final_completion_chunk)&&c.exit_code===0&&c.processes_closed===true&&c.independent_audit_accepted===true&&c.authority==='attributed-versioned-acceptance-owner-not-fresh-process-observation','attributed accepted closure only');elapsedToken(c.elapsed_seconds);
-  check(Array.isArray(d.archived_sources)&&d.archived_sources.length<=9,'bounded explicit archives');const roles=new Set();
-  for(const r of d.archived_sources){
-   keys(r,['role','original','archive']);binding(r.original);binding(r.archive);
-   check(typeof r.role==='string'&&!roles.has(r.role),'unique archive role');roles.add(r.role);
-   if(r.role==='acceptanceOwner')check(r.original.path===spec.bindings.readiness.path&&!equalBinding(r.original,spec.bindings.readiness),'historical owner distinct from current');
-   else{
-    const allowed={...historicalArchiveSources(d,spec.root),...ANCESTRY_ARCHIVE_SOURCES};
-    check(Object.hasOwn(allowed,r.role),'known historical role');const[p,h,n]=allowed[r.role];
-    check(r.original.path===path.join(spec.root,p)&&r.original.sha256===h&&r.original.bytes===n,'exact historical source tuple');
-   }
-   check(r.archive.path!==r.original.path&&!forbidden.has(r.archive.path)&&r.archive.sha256===r.original.sha256&&r.archive.bytes===r.original.bytes,'byte-identical explicit nonalias archive');
-   const key=JSON.stringify(bindingKey(r.original)),relation=JSON.stringify([r.role,...bindingKey(r.original),...bindingKey(r.archive)]);
-   check(!originals.has(key)||originals.get(key)===relation,'conflicting shared historical mapping');
-   check(!targets.has(r.archive.path)||targets.get(r.archive.path)===key,'ambiguous physical archive');
-   originals.set(key,relation);targets.set(r.archive.path,key);out.push(r.archive);
-  }
+
  }
- for(const d of spec.parentRefinements)for(const k of ['plan','manifest','comparison','operation','launcher_log','resource_log'])check(!targets.has(d[k].path),'archive aliases selected evidence');
  return out;
 }
 function uniqueBindings(records){
@@ -151,7 +101,7 @@ function uniqueBindings(records){
 export function packageInputs(spec){
  const e=spec.evidencePackage;if(e===null)return {sources:[],routes:new Map()};
  keys(e,['package','reader','readerControls','inventory']);for(const b of Object.values(e))binding(b);
- for(const[k,[p,h]]of Object.entries(PACKAGE_PINS))check(e[k].path===path.join(spec.root,p)&&e[k].sha256===h,'fixed package '+k);
+ for(const[k,p]of Object.entries(PACKAGE_PATHS))check(e[k].path===path.join(spec.root,p),'fixed package '+k);
  check(e.package.bytes<=FILE&&e.package.path.startsWith(path.join(spec.root,'.local-data/braid-analysis')+'/'),'bounded package evidence lane');
  const captured=readBound(e.inventory.path,e.inventory.sha256,true,1024**2);check(captured.bytes===e.inventory.bytes,'package inventory bytes');
  const inventory=JSON.parse(captured.data.toString()),routes=new Map();
@@ -169,9 +119,9 @@ export function packageInputs(spec){
 export function freshEvidenceInputs(spec,read=readBound){
  const selections=spec.acceptedParentEvidence;
  check(Array.isArray(selections)&&selections.length<=159,'mandatory bounded v4 fresh evidence array');
- if(selections.length===0)return {sources:[],routes:new Map(),archives:[],executingSources:[]};
- check(Object.keys(FRESH_CLOSURE_PINS).sort().join('|')==='contract|controls|instrument','fresh closure authority not yet independently admitted');
- const pins={...FRESH_EVIDENCE_PINS,...FRESH_CLOSURE_PINS},all=[],routes=new Map(),archives=[],executingSources=[];
+ if(selections.length===0)return {sources:[],routes:new Map(),executingSources:[]};
+ check(Object.keys(PARENT_CLOSURE_PATHS).sort().join('|')==='controls|instrument','fresh closure authority not yet independently admitted');
+ const paths={...PARENT_EVIDENCE_PATHS,...PARENT_CLOSURE_PATHS},all=[],routes=new Map(),executingSources=[];
  const inventoryKeys=new Set(),closureKeys=new Set(),parentIndices=new Set(spec.parentRefinements.map(p=>p.parent_index));parentIndices.add(0);
  let metadataBytes=0;
  for(const selection of selections){
@@ -185,12 +135,12 @@ export function freshEvidenceInputs(spec,read=readBound){
   check(advertised.length===selection.sourceBindings.length,'unique fresh physical source declarations');
   const need=b=>{binding(b);const known=byPath.get(b.path);check(known&&equalBinding(known,b),'required fresh physical source absent or conflicting');used.add(b.path);return b;};
   const json=(b,maximum=16*1024**2)=>{need(b);check(b.bytes<=maximum,'fresh metadata byte limit');const f=read(b.path,b.sha256,true,maximum);check(f.bytes===b.bytes,'fresh metadata byte count');return JSON.parse(f.data.toString());};
-  for(const [role,[relative,h]]of Object.entries(pins)){
-   const b=byPath.get(path.join(spec.root,relative));check(b&&b.sha256===h,'fixed fresh '+role);need(b);
+  for(const [role,relative]of Object.entries(paths)){
+   const b=byPath.get(path.join(spec.root,relative));check(b,'fixed fresh '+role);need(b);
    if(['reader','parser','instrument'].includes(role))executingSources.push(b.path);
   }
   const authority=selection.expected_authority[0];binding(authority);
-  check(authority.path===path.join(spec.root,FRESH_CLOSURE_PINS.instrument[0])&&authority.sha256===FRESH_CLOSURE_PINS.instrument[1],'externally fixed fresh authority');need(authority);
+  check(authority.path===path.join(spec.root,PARENT_CLOSURE_PATHS.instrument),'externally fixed fresh authority');
   metadataBytes+=selection.inventory.bytes;
   for(const c of selection.closures){keys(c,['binding','expected_instrument']);binding(c.binding);binding(c.expected_instrument);
    check(c.binding.bytes<=16*1024**2&&equalBinding(c.expected_instrument,authority)&&!closureKeys.has(JSON.stringify(bindingKey(c.binding))),'unique independently fixed fresh closure');
@@ -205,10 +155,7 @@ export function freshEvidenceInputs(spec,read=readBound){
    keys(obj,['memberName','role','parentIndex','original','physicalPath','identity']);binding(obj.original);
    const physical={...obj.original,path:obj.physicalPath};binding(physical);const key=JSON.stringify(bindingKey(obj.original));
    check(!represented.has(key),'unique inventory original tuple');represented.set(key,physical);
-   if(obj.role==='acceptanceOwner'){
-    check(obj.original.path===spec.bindings.readiness.path&&physical.path!==obj.original.path,'explicit historical consumption archive');
-    archives.push({role:'acceptanceOwner',original:obj.original,archive:physical});
-   }else check(physical.path===obj.original.path,'nonowner physical redirect forbidden');
+
    if(selection.package===null)need(physical);
    else {const prior=routes.get(physical.path);check(!prior||equalBinding(prior,physical),'conflicting generic package route');routes.set(physical.path,physical);}
   }
@@ -221,10 +168,10 @@ export function freshEvidenceInputs(spec,read=readBound){
    const snapshot=json(c.binding);check(equalBinding(snapshot.instrument,authority),'snapshot independent instrument');
    logical(snapshot.operation);need(snapshot.invocation);need(snapshot.closure.evidence);need(snapshot.closure.finalCaller);
    const receipt=json(snapshot.closure.evidence),operationPlan=json(snapshot.invocation);
-   need(receipt.controls);need(receipt.processObservation);
+   binding(receipt.controls);need(receipt.processObservation);
    check(Array.isArray(receipt.sourceIdentities)&&receipt.sourceIdentities.length<=512&&Array.isArray(receipt.outputIdentities)&&receipt.outputIdentities.length<=512
     &&Array.isArray(operationPlan.publicationAliases)&&operationPlan.publicationAliases.length<=512,'bounded fresh complete identity inventories');
-   for(const row of receipt.sourceIdentities)logical(row.binding);
+   for(const row of receipt.sourceIdentities)binding(row.binding);
    const outputs=new Map();for(const row of receipt.outputIdentities){keys(row,['binding','identity']);binding(row.binding);check(!outputs.has(row.binding.path),'unique recorded output path');outputs.set(row.binding.path,row);}
    const privatePaths=new Set(),publicPaths=new Set(operationPlan.publicationAliases.map(a=>a.publicPath));
    check(publicPaths.size===operationPlan.publicationAliases.length,'unique declared public publication paths');
@@ -235,33 +182,30 @@ export function freshEvidenceInputs(spec,read=readBound){
     check(!publicPaths.has(priv.binding.path)&&priv.binding.sha256===pub.binding.sha256&&priv.binding.bytes===pub.binding.bytes&&same(priv.identity,pub.identity)&&!privatePaths.has(priv.binding.path),'original publication identity alias');privatePaths.add(priv.binding.path);
    }
    for(const row of outputs.values())if(!privatePaths.has(row.binding.path))logical(row.binding);
-   for(const p of snapshot.parents){for(const b of Object.values(p.roles))logical(b);logical(p.acceptanceOwner);logical(p.comparisonInstrument);}
+   for(const p of snapshot.parents){for(const b of Object.values(p.roles))logical(b);logical(p.acceptanceOwner);binding(p.comparisonInstrument);}
   }
   check(used.size===advertised.length,'unused fresh physical source declaration');all.push(...advertised);
  }
  const sources=boundedSourceUnion(all),direct=[...Object.values(spec.bindings),...spec.runtimeBindings];
  check(direct.every(b=>!routes.has(b.path)),'generic package cannot replace current code/runtime/approval');
- return {sources,routes,archives,executingSources:[...new Set(executingSources)]};
+ return {sources,routes,executingSources:[...new Set(executingSources)]};
 }
 // Historical segments remain immutable evidence. This admission only checks
 // attributed acceptance, exact source routes and the closed chain; the Python
 // continuation module independently replays the frozen mathematical protocol.
 function inspectContinuation(spec,read,requireDeclaredSources){
  const c=spec.continuation;if(c===null)return {sources:[],segments:[],inheritedPairs:0};
- keys(c,['schema','segments','archives','sourceBindings']);
+ keys(c,['schema','segments','sourceBindings']);
  check(c.schema==='braid-program/f6c-stream-continuation-inputs.v1'&&Array.isArray(c.segments)&&c.segments.length>0&&c.segments.length<=160,'bounded accepted segment chain');
- check(Array.isArray(c.archives)&&c.archives.length<=512&&Array.isArray(c.sourceBindings),'explicit historical source routes');
- const routes=new Map(),used=new Set(),sources=[],segments=[],seen=new Set(),packaged=packageInputs(spec),fresh=freshEvidenceInputs(spec,read);
+ check(Array.isArray(c.sourceBindings),'explicit historical evidence inputs');
+ const sources=[],segments=[],seen=new Set(),packaged=packageInputs(spec),fresh=freshEvidenceInputs(spec,read);
  for(const [p,b]of fresh.routes){const old=packaged.routes.get(p);check(!old||equalBinding(old,b),'conflicting continuation package route');packaged.routes.set(p,b);}
  packaged.sources=boundedSourceUnion([...packaged.sources,...fresh.sources]);
  const key=b=>JSON.stringify(bindingKey(b));
- for(const r of c.archives){keys(r,['original','archive']);binding(r.original);binding(r.archive);
-  check(r.original.path!==r.archive.path&&r.original.sha256===r.archive.sha256&&r.original.bytes===r.archive.bytes&&r.archive.path.startsWith(path.join(spec.root,'.local-data/braid-analysis')+'/')&&!routes.has(key(r.original)),'unique exact nonexecuting archive');routes.set(key(r.original),r.archive);
- }
  // Every historical reference has the same exact-tuple storage route, including
  // old adapter/control bindings repeated inside the parent identity receipt.
  // The documents retain their original logical bindings; only capture moves.
- const add=b=>{binding(b);const archive=routes.get(key(b));if(archive)used.add(key(b));const physical=archive??b;sources.push(physical);boundedSourceUnion(sources);return physical;};
+ const add=b=>{binding(b);if(b.path.includes('/.local-data/')&&!/\.(?:py|mjs|js|cjs|md|source)$/u.test(b.path))sources.push(b);boundedSourceUnion(sources);return b;};
  const json=b=>{const physical=add(b);check(b.bytes<=FILE,'bounded acceptance metadata');const a=read(physical.path,physical.sha256,true,FILE);check(a.bytes===b.bytes,'accepted metadata bytes');return JSON.parse(a.data.toString());};
  let total=0,previous=null,authority=null;
  const artifactRoles=['stream','operation','invocation','finalCaller','numericalReceipt','operationalReceipt','independentAudit','acceptanceReceipt'];
@@ -294,7 +238,7 @@ function inspectContinuation(spec,read,requireDeclaredSources){
   const currentAuthority={context:a.context,history:a.history,mathematicalSettings:a.mathematicalSettings,mathematicalBindings:a.mathematicalBindings};
   if(authority===null)authority=currentAuthority;else check(same(currentAuthority,authority),'unchanged history and mathematical setting across segments');
   check(a.context?.field_speed==='1'&&a.context.coupling==='10.304229970992187'&&a.context.ruler==='0.5320012303229503'&&a.history?.historicalTrajectoryIdentityEstablished===false,'unchanged conditional normalized family');
-  check(same(a.mathematicalBindings,CONTINUATION_MATH.map(([p,sha256,bytes])=>({path:path.join(spec.root,p),sha256,bytes}))),'complete frozen mathematical inventory');
+  check(same(a.mathematicalBindings.map(b=>b.path),CONTINUATION_MATH.map((p)=>path.join(spec.root,p))),'complete mathematical role inventory');
   for(const b of a.mathematicalBindings)add(b);
   add(a.history.retainedHistory);add(a.history.reconstruction);add(a.mathematicalSettings.settingsDeclaration);
   for(const b of Object.values(a.reviewerBindings))add(b);
@@ -305,25 +249,23 @@ function inspectContinuation(spec,read,requireDeclaredSources){
   const identities=operation.process.admission.completion.sourceIdentities;
   keys(identities,oldSources.map(b=>b.path));
   check(oldSources.every(b=>typeof identities[b.path]==='string'&&/^[0-9]+:[0-9]+:[0-9]+:[0-9]+:[0-9]+$/u.test(identities[b.path])),'historical physical identities complete');
-  for(const b of oldSources){
-   const archive=routes.get(key(b)),member=packaged.routes.get(b.path);
-   check(!(archive&&member),'ambiguous historical storage route');
-   if(archive){used.add(key(b));add(archive);}
-   else if(member){check(equalBinding(member,b),'package member exact original bytes');}
-   else {add(b);const actual=read(b.path,b.sha256,false,1024**3);check(actual.bytes===b.bytes&&actual.identity===identities[b.path],'unmapped historical source changed');}
+  for(const b of oldSources)if(b.path.includes('/.local-data/')&&!/\.(?:py|mjs|js|cjs|md|source)$/u.test(b.path)){
+   const member=packaged.routes.get(b.path);
+   if(member)check(equalBinding(member,b),'package member exact original bytes');
+   else {add(b);const actual=read(b.path,b.sha256,false,1024**3);check(actual.bytes===b.bytes,'historical artifact changed');}
   }
   historicalInvocationVersion(invocation.schema);
   const header=json(a.reviewerBindings.frozenHeader).expectedHeaderStatic;
   check(header&&equalBinding(header.spec.binding,a.invocation)&&same(header.spec.parentRefinements,invocation.parentRefinements)&&same(header.sourceBindings.files,invocation.bindings)&&same(header.runtimeBindings,invocation.runtimeBindings),'original frozen header bindings');
   if(['braid-program/f6c-streamed-leaf-invocation.v4','braid-program/f6c-streamed-leaf-invocation.v5'].includes(invocation.schema))check(Object.hasOwn(header.spec,'acceptedParentEvidence')&&Object.hasOwn(header.spec,'evidencePackage')&&same(header.spec.acceptedParentEvidence,invocation.acceptedParentEvidence)&&same(header.spec.evidencePackage,invocation.evidencePackage),'exact historical v4 evidence selection');
-  if(invocation.schema==='braid-program/f6c-streamed-leaf-invocation.v5')check(Object.hasOwn(header.spec,'historicalEvidence')&&same(header.spec.historicalEvidence,invocation.historicalEvidence),'exact historical v5 retained selection');
+
   const parents=json(entry.parents),parentAcceptance=json(entry.parentAcceptance);
   keys(parentAcceptance,['schema','accepted','scope','invocation','descriptors','parents','comparisonParents','metadataReceipt','monitorReceipt','instrument','producerInstrument','adapter','adapterControls','context','historyFrameParentSha256','parentCount','rowsPerParent','refinedIndices','providerCalls','sourceClosed','claims']);
   check(parentAcceptance.accepted===true&&equalBinding(parentAcceptance.parents,entry.parents)&&equalBinding(parentAcceptance.invocation,a.invocation),'independent original-parent snapshot acceptance');
   check(parentAcceptance.schema==='braid-program/f6c-original-parent-snapshot-acceptance.v1'&&parentAcceptance.scope==='independent-original-parent-identity-only-not-numerical-acceptance'&&parentAcceptance.providerCalls===0&&parentAcceptance.sourceClosed===true&&parentAcceptance.parentCount===160&&parentAcceptance.rowsPerParent===64&&same(parentAcceptance.context,a.context)&&/^[a-f0-9]{64}$/u.test(parentAcceptance.historyFrameParentSha256),'closed independent parent identity scope');
   check(same(parentAcceptance.claims,{numericalAcceptance:false,metrics:false,physicalClaims:false,h3EvidenceEligible:false}),'parent identity is not numerical acceptance');
   for(const role of ['descriptors','comparisonParents','metadataReceipt','monitorReceipt','instrument','producerInstrument','adapter','adapterControls'])add(parentAcceptance[role]);
-  check(parentAcceptance.instrument.path===path.join(spec.root,'.local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/parent-snapshot-acceptance.mjs')&&parentAcceptance.instrument.sha256===OPTION_B_PRODUCTION_IDENTITIES[43]&&parentAcceptance.instrument.bytes===5381,'frozen independent parent-snapshot acceptance instrument');
+  check(parentAcceptance.instrument.path===path.join(spec.root,'.local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/parent-snapshot-acceptance.mjs'),'frozen independent parent-snapshot acceptance instrument');
   check(same(json(parentAcceptance.descriptors),invocation.parentRefinements)&&equalBinding(parentAcceptance.adapter,invocation.bindings.adapter)&&equalBinding(parentAcceptance.adapterControls,invocation.bindings.adapterControls),'original parent descriptors and adapter generation');
   check(parentAcceptance.comparisonParents.sha256===entry.parents.sha256&&parentAcceptance.comparisonParents.bytes===entry.parents.bytes,'independent matching original-parent copies');
   const parentMetadata=json(parentAcceptance.metadataReceipt),parentMonitor=json(parentAcceptance.monitorReceipt);
@@ -337,11 +279,9 @@ function inspectContinuation(spec,read,requireDeclaredSources){
    const current=spec.parentRefinements.find(p=>p.parent_index===d.parent_index);check(current,'consumed parent refinement missing');
    for(const role of ['plan','manifest','comparison','operation','launcher_log','resource_log'])check(equalBinding(current[role],d[role]),'consumed parent logical evidence changed');
   }
-  const frozenMath=new Set(a.mathematicalBindings.map(key));check([...routes.keys()].every(k=>!frozenMath.has(k)),'frozen mathematics cannot be rerouted to another generation');
   segments.push({entry,acceptance:a,expectedHeader:header,sourceIdentities:identities});
   previous={stream:a.stream,acceptance:entry.acceptance};total=n.totalPairs;
  }
- check(used.size===routes.size,'unused historical archive route');
  const union=boundedSourceUnion([...sources,...packaged.sources]);
  if(requireDeclaredSources)check(same([...union].sort((a,b)=>a.path.localeCompare(b.path)),[...boundedSourceUnion(c.sourceBindings)].sort((a,b)=>a.path.localeCompare(b.path))),'declared continuation physical union differs');
  return {sources:union,segments,inheritedPairs:total,authority};
@@ -355,66 +295,14 @@ export function prepareContinuation(spec,read=readBound){
  const result=inspectContinuation(spec,read,false);
  return {...structuredClone(spec.continuation),sourceBindings:result.sources};
 }
-export function historicalEvidenceInputs(spec){
- const h=spec.historicalEvidence;if(h===null)return [];
- keys(h,['selection','sourceBindings']);keys(h.selection,['schema','routes']);
- check(h.selection.schema==='braid-program/variable-cell-historical-evidence.v1','explicit retained evidence version');
- const {routes}=h.selection;
- check(Array.isArray(routes)&&routes.length<=198,'bounded retained evidence routes');
- check(Array.isArray(h.sourceBindings)&&h.sourceBindings.length>0,'explicit complete retained physical source union');
- const sources=boundedSourceUnion(h.sourceBindings),byPath=new Map(sources.map(b=>[b.path,b])),keysSeen=new Set(),targets=new Set();
- check(sources.length===h.sourceBindings.length,'duplicate retained physical source');
- for(const row of routes){
-  keys(row,['original','physical']);binding(row.original);binding(row.physical);
-  const a=row.original,b=row.physical,key=JSON.stringify(bindingKey(a));
-  check(a.path!==b.path&&b.path.endsWith('.source')&&a.sha256===b.sha256&&a.bytes===b.bytes,'identical nonexecuting historical archive');
-  check(!keysSeen.has(key)&&!targets.has(b.path),'duplicate historical route');keysSeen.add(key);targets.add(b.path);
-  check(byPath.has(b.path)&&equalBinding(byPath.get(b.path),b),'archive absent from physical union');
-  check(!spec.runtimeBindings.some(r=>r.path===b.path)&&!Object.values(spec.bindings).some(r=>r.path===b.path),'archive cannot supply executable/runtime source');
- }
- // The adapter owns the finite original tuple catalogue and verifies all routes
- // were consumed. This layer authenticates transport, never historical truth.
- return sources;
-}
-// An explicit caller-selected map is required before using any operational module.
-export async function admitOperationalSources(s,live=()=>{}){
- live();check(s&&typeof s.root==='string'&&path.isAbsolute(s.root),'explicit operational root');
- const b=s.bindings?.operationCoordinator;binding(b);check(b.path===path.join(s.root,OPERATIONS.operationCoordinator),'canonical operational coordinator');
- const owner=readBound(b.path,b.sha256,true,1024**2,live);check(owner.bytes===b.bytes,'selected coordinator size');
- const C=await import(url(owner.data)+'#root='+encodeURIComponent(s.root));live();
- binding(s.bindings.sourceMap);check(s.bindings.sourceMap.path===path.join(s.root,SOURCE_MAP),'explicit canonical source map');
- const admitted=await C.initializeSourceBindings(s.root,s.bindings.sourceMap.sha256,live);
- initializeProductionIdentities(admitted.production.identities(SELF));
- admitted.production.check();
- check(equalBinding(s.bindings.sourceMap,admitted.sourceMap),'selected source map size');
- check(equalBinding(s.bindings.manifestReader,admitted.sources.find(v=>v.path===path.join(s.root,'scripts/equation-mapping/current-source-manifest.mjs'))),'selected manifest reader');
- for(const[k,p]of Object.entries(OPERATIONS))check(equalBinding(s.bindings[k],admitted.sources.find(v=>v.path===path.join(s.root,p))),'map-selected operational '+k);
- check(admitted.sources.some(v=>equalBinding(v,b)),'map-selected coordinator');
- checkBindings(admitted.sources,live,admitted.identities);return admitted;
-}
-export function validateSpec(s,selfSha,sourceAdmission){
- keys(s,['schema','scope','root','output','python','git','bindings','runtimeBindings','parentRefinements','evidencePackage','acceptedParentEvidence','historicalEvidence','continuation','maxAdvances','limits']);
+export function validateSpec(s,selfSha){
+ keys(s,['schema','scope','root','output','python','git','bindings','runtimeBindings','parentRefinements','evidencePackage','acceptedParentEvidence','continuation','maxAdvances','limits']);
  check(s.schema==='braid-program/f6c-streamed-leaf-invocation.v6'&&s.scope===SCOPE,'fixed streamed diagnostic scope');
  check(typeof s.root==='string'&&path.isAbsolute(s.root)&&realpathSync(s.root)===s.root&&typeof s.output==='string'&&path.dirname(s.output)===path.join(s.root,LANE)&&path.resolve(s.output)===s.output&&/^[a-z0-9][a-z0-9-]{0,95}$/u.test(path.basename(s.output)),'fresh canonical direct-child lane');
- keys(s.bindings,['coordinator','controls','sourceMap','manifestReader',...Object.keys(PINS),...Object.keys(OPERATIONS)]);for(const b of Object.values(s.bindings))binding(b);
+ keys(s.bindings,['coordinator','controls',...Object.keys(INPUT_PATHS),...Object.keys(OPERATIONS)]);for(const b of Object.values(s.bindings))binding(b);
  check(s.bindings.coordinator.path===path.join(s.root,SELF)&&s.bindings.coordinator.sha256===selfSha&&s.bindings.controls.path===path.join(s.root,CONTROL),'executing connection and controls');
- for(const[k,[p,h]]of Object.entries(PINS)){
-  const b=s.bindings[k];
-  if(k==='readiness'){check(b.path===path.join(s.root,p),'fixed reviewed readiness path');continue;}
-  const pair=sourceAdmission.production.sourcePair(p);
-  if(sha(pair.original)===h){
-   check(b.path===path.join(s.root,p)&&b.sha256===sha(pair.current)&&b.bytes===Buffer.byteLength(pair.current),'exact preBatch2 identity and selected current source '+k);
-  }else{
-   const historical=sourceAdmission.production.originalSourceBinding(p,h);
-   check(equalBinding(b,historical),'exact historical source generation '+k);
-  }
- }
- sourceAdmission.production.check();
- check(sourceAdmission?.sourceMap?.path===path.join(s.root,SOURCE_MAP)&&equalBinding(s.bindings.sourceMap,sourceAdmission.sourceMap)&&equalBinding(s.bindings.manifestReader,sourceAdmission.sources.find(b=>b.path===path.join(s.root,'scripts/equation-mapping/current-source-manifest.mjs'))),'explicit admitted operational selection');
- for(const[k,p]of Object.entries(OPERATIONS)){
-  const selected=sourceAdmission.sources.find(b=>b.path===path.join(s.root,p));
-  check(selected&&equalBinding(s.bindings[k],selected),'manifest-selected operational '+k);
- }
+ for(const[k,p]of Object.entries(INPUT_PATHS))check(s.bindings[k].path===path.join(s.root,p),'input role path '+k);
+ for(const[k,p]of Object.entries(OPERATIONS))check(s.bindings[k].path===path.join(s.root,p),'operation role path '+k);
  check(Number.isInteger(s.maxAdvances)&&s.maxAdvances>=1&&s.maxAdvances<=3280&&same(s.limits,LIMITS),'unchanged explicit bounds');
  check(Array.isArray(s.parentRefinements)&&s.parentRefinements.length<=159,'explicit bounded parent selection');
  check(Array.isArray(s.runtimeBindings)&&s.runtimeBindings.length>0&&s.runtimeBindings.length<=256,'fresh bounded runtime census');s.runtimeBindings.forEach(binding);
@@ -425,7 +313,7 @@ export function validateSpec(s,selfSha,sourceAdmission){
  const physical=descriptors.filter(b=>{const route=packaged.routes.get(b.path);if(!route)return true;check(equalBinding(route,b),'packaged descriptor generation differs');return false;});
  const continuation=continuationInputs(s);
  check(s.maxAdvances+continuation.inheritedPairs<=3280,'inherited evaluations remain spent');
- return boundedSourceUnion([...all,...sourceAdmission.sources,...physical,...packaged.sources,...fresh.sources,...continuation.sources,...historicalEvidenceInputs(s)]);
+ return boundedSourceUnion([...all,...physical,...packaged.sources,...fresh.sources,...continuation.sources]);
 }
 
 export function writeNew(filename,value,live=()=>{},includeIdentity=false){
@@ -457,7 +345,7 @@ def local_deadline(token,clock=time.monotonic):
  began=clock();deadline=began+value/1000000000;require(began<deadline<=began+1800,'local duration');return deadline
 def identity(s):return(s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
 def closed(v,names):require(type(v)is dict and set(v)==set(names),'closed fields')
-def execute(spec_path,spec_sha,node_deadline,remaining,body_sha,production_envelope,production_pins):
+def execute(spec_path,spec_sha,node_deadline,remaining,body_sha):
  deadline=local_deadline(remaining)
  require(type(node_deadline)is str and 0<len(node_deadline)<=20 and node_deadline.isascii()and node_deadline.isdigit(),'Node clock identity')
  clock_transfer=dict(originalNodeDeadlineNanoseconds=node_deadline,entryBudgetStampNanoseconds=str(int(node_deadline)-int(remaining)),remainingNanoseconds=remaining,policy='supplementary-Python-duration-guard; original-Node-deadline-authoritative')
@@ -479,42 +367,15 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha,production_envel
  def module(b):
   raw=read(b['path'],b['sha256']);name='_streamed_leaf_'+b['sha256'];require(name not in sys.modules,'module collision')
   m=types.ModuleType(name);m.__file__=b['path']
-  role=next(k for k,v in bindings.items()if v==b)
-  relative=stream_pins[role][0]
-  original,selected,values=production_source_pair(root,'scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs',relative)
-  if hashlib.sha256(original).hexdigest()==stream_pins[role][1]:
-   require(raw==selected,'selected current embedded module differs')
-   m.__dict__['OPTION_B_PRODUCTION_IDENTITIES']=values
-   for key in ('production_identities','production_source_pair','production_recheck','production_historical_record','production_runtime_binding','production_original_source_binding','production_original_source_binding'):m.__dict__[key]=getattr(production_bridge,key)
-  else:
-   historical=production_bridge.production_original_source_binding(root,'scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs',relative,stream_pins[role][1])
-   require(b==historical,'exact historical module binding differs')
-   m.__file__=str(root/relative)
-   source_paths.add(m.__file__)
   sys.modules[name]=m
   try:
-   production_recheck();exec(compile(raw,m.__file__,'exec',dont_inherit=True),m.__dict__);production_recheck();yield m;production_recheck()
+   exec(compile(raw,m.__file__,'exec',dont_inherit=True),m.__dict__);yield m
   finally:require(sys.modules.get(name)is m,'module identity');del sys.modules[name]
  raw=read(spec_path,spec_sha,1048576);spec=json.loads(raw);bindings=spec['bindings'];root=pathlib.Path(spec['root'])
  require(raw==(json.dumps(spec,separators=(',',':'),ensure_ascii=False)+'\n').encode(),'canonical invocation bytes')
- require(len(production_envelope.encode('utf-8'))<=32768 and len(production_pins.encode('utf-8'))<=8192,'bounded production arguments')
- envelope=json.loads(production_envelope)
- closed(envelope,('root','target','identities','bridgePath','bridgeSha256','bridgeSource','operationalSources'))
- require(envelope['root']==str(root)and envelope['target']=='scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs'and envelope['bridgePath']=='scripts/eom/production_source_records.py','selected embedded production envelope')
- bridge_raw=read(root/envelope['bridgePath'],envelope['bridgeSha256'],1048576)
- require(bridge_raw==base64.b64decode(envelope['bridgeSource'],validate=True),'captured bridge bytes differ')
- production_bridge=types.ModuleType('_streamed_production_bridge');production_bridge.__file__=str(root/envelope['bridgePath'])
- exec(compile(bridge_raw,production_bridge.__file__,'exec',dont_inherit=True),production_bridge.__dict__)
- production_source_pair=production_bridge.production_source_pair;production_recheck=production_bridge.production_recheck
- require(production_bridge.production_identities(root/envelope['target'])==tuple(envelope['identities']),'original stream identity tuple differs')
- stream_pins=json.loads(production_pins)
- require(type(stream_pins)is dict and set(stream_pins)==set(bindings)-{'coordinator','controls','sourceMap','manifestReader','operationCoordinator','operationCoordinatorControls','helpers','outer','diagnostics'},'stream original pin role census')
- require(all(type(v)is list and len(v)==2 and(v[1]is None or v[1]in envelope['identities'])for v in stream_pins.values()),'stream pin identity membership')
- node_binding=production_bridge.production_runtime_binding()
- require(any(all(b.get(k)==v for k,v in node_binding.items())for b in spec['runtimeBindings']),'production bridge Node runtime absent from declared inventory')
  # Supported bounded integer arithmetic activates the lazy runtime helper.
  (10**20000+1)//(10**15000+3)
- publication=None;files={};source_inodes={};source_paths={production_bridge.__file__};prior_signal=None;provenance=();archives=[]
+ publication=None;files={};source_inodes={};source_paths=set();prior_signal=None;provenance=()
  def progress(stage,done,total):
   live();print(json.dumps(dict(kind='streamed-leaf-progress',stage=stage,done=done,total=total,accepted=False)),file=sys.stderr,flush=True);live()
  def heartbeat(*_):
@@ -533,21 +394,9 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha,production_envel
      inode=(f.initial.st_dev,f.initial.st_ino);require(inode not in source_inodes,'physical source hardlink alias');source_inodes[inode]=key
      if key in originals:require(originals[key]==(b['sha256'],identity(f.initial)),'capture replaced original')
      originals.setdefault(key,(b['sha256'],identity(f.initial)));files[key]=f
-    require(type(envelope['operationalSources'])is list and len(envelope['operationalSources'])<=64,'bounded captured operational sources')
-    production_records=production_bridge.production_captured_sources(root/envelope['target'])
-    require(len(production_records)<=512,'bounded actual production source records')
-    for record in (*production_records,*envelope['operationalSources']):
-     closed(record,('path','sha256','bytes','identity'))
-     token=record['identity'];require(type(token)is str and len(token)<=160 and len(token.split(':'))==5 and all(p.isascii()and p.isdigit()for p in token.split(':')),'original production source identity')
-     original=(record['sha256'],tuple(map(int,token.split(':'))));require(original[1][2]==record['bytes'],'original production source size')
-     require(record['path']not in originals or originals[record['path']]==original,'original production source replacement')
-     originals.setdefault(record['path'],original)
-     capture({k:record[k]for k in ('path','sha256','bytes')})
-    production_recheck()
     capture(dict(path=spec_path,sha256=spec_sha,bytes=len(raw)))
-    for b in [*bindings.values(),*spec['runtimeBindings'],*(spec['evidencePackage']or{}).values(),*(spec['continuation']or{}).get('sourceBindings',[]),*(b for e in spec['acceptedParentEvidence']for b in e['sourceBindings']),*(spec['historicalEvidence']or{}).get('sourceBindings',[])]:capture(b)
+    for b in [*bindings.values(),*spec['runtimeBindings'],*(spec['evidencePackage']or{}).values(),*(spec['continuation']or{}).get('sourceBindings',[]),*(b for e in spec['acceptedParentEvidence']for b in e['sourceBindings'])]:capture(b)
     def recheck():
-     production_recheck()
      for f in files.values():f.recheck()
      live()
     allowed={pathlib.Path(b['path'])for b in spec['runtimeBindings']}
@@ -561,21 +410,17 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha,production_envel
     with module(bindings['adapter'])as A,module(bindings['diagnostic'])as D,module(bindings['stream'])as S,module(bindings['codec'])as C,module(bindings['storage'])as P:
      source_paths.update(bindings[k]['path']for k in ('adapter','diagnostic','stream','codec','storage','transport'))
      # Only the adapter's actually loaded captured module roles are code.
-     # Historical source files (including .py archives) confer no runtime bypass.
+     # Only captured current source files confer runtime access.
      executing_roles={'mapping','decoder','rootComparison','acceleration','integral','correlated','gk','geometry','captureHelper','geometryHistory','geometryRoots','geometryIntervals'}
      executing_sources={str(root/p)for role,p,_ in A.SOURCES if role in executing_roles}
      def binding(v):
       closed(v,('path','sha256','bytes'));return A.SourceBinding(**v)
      def descriptor(v):
-      closed(v,('parent_index','plan','manifest','comparison','operation','launcher_log','resource_log','closure','archived_sources'))
+      closed(v,('parent_index','plan','manifest','comparison','operation','launcher_log','resource_log','closure'))
       require(type(v['parent_index'])is int and 1<=v['parent_index']<160,'explicit original parent index')
-      require(type(v['archived_sources'])is list and len(v['archived_sources'])<=9,'bounded historical relations')
       c=v['closure'];closed(c,('owner','operation','original_caller_session','final_completion_chunk','exit_code','elapsed_seconds','processes_closed','independent_audit_accepted','authority'))
       closure=A.ParentClosure(**{**c,'owner':binding(c['owner']),'operation':binding(c['operation'])})
-      relations=[]
-      for r in v['archived_sources']:
-       closed(r,('role','original','archive'));relations.append(A.ArchivedSource(r['role'],binding(r['original']),binding(r['archive'])))
-      return A.ParentRefinement(v['parent_index'],**{k:binding(v[k])for k in ('plan','manifest','comparison','operation','launcher_log','resource_log')},closure=closure,archived_sources=tuple(relations))
+      return A.ParentRefinement(v['parent_index'],**{k:binding(v[k])for k in ('plan','manifest','comparison','operation','launcher_log','resource_log')},closure=closure)
      require(type(spec['parentRefinements'])is list and len(spec['parentRefinements'])<=159,'bounded explicit refinements')
      selected=tuple(descriptor(v)for v in spec['parentRefinements'])
      package_selection=None
@@ -585,7 +430,7 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha,production_envel
       require(e['reader']['path']==str(root/'scripts/eom/f6c_evidence_package.py'),'canonical package reader runtime source')
       executing_sources.add(e['reader']['path'])
      require(type(spec['acceptedParentEvidence'])is list and len(spec['acceptedParentEvidence'])<=159,'mandatory bounded fresh evidence selection')
-     fresh_selected=[];fresh_advertised=set();fresh_owner_archives=[]
+     fresh_selected=[];fresh_advertised=set()
      for e in spec['acceptedParentEvidence']:
       closed(e,('inventory','closures','expected_authority','package','sourceBindings'))
       require(type(e['closures'])is list and 0<len(e['closures'])<=159 and type(e['expected_authority'])is list and len(e['expected_authority'])==1,'explicit immutable fresh authority selections')
@@ -597,49 +442,28 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha,production_envel
       inventory_file=files[e['inventory']['path']];inventory_raw,inventory_hash=inventory_file.scan(True)
       require(inventory_hash==e['inventory']['sha256'],'fresh inventory source changed')
       inventory=json.loads(inventory_raw)
-      for obj in inventory['objects']:
-       if obj['role']=='acceptanceOwner':fresh_owner_archives.append(dict(role='acceptanceOwner',original=obj['original'],archive=dict(path=obj['physicalPath'],sha256=obj['original']['sha256'],bytes=obj['original']['bytes'])))
      if fresh_selected:
-      executing_sources.update(str(root/p)for role,p,_ in (*A.PACKAGE_SOURCES[:2],*A.PARENT_INVENTORY_SOURCES,*A.FRESH_CLOSURE_SOURCES)if role in ('reader','parser','instrument'))
+      executing_sources.update(str(root/p)for role,p in {**A.PACKAGE_SOURCES,**A.PARENT_INVENTORY_SOURCES,**A.FRESH_CLOSURE_SOURCES}.items()if role in ('reader','parser','instrument'))
      indices=tuple(v.parent_index for v in selected);require(indices==tuple(sorted(set(indices))),'sorted unique original parent indices')
-     expected_archives=[];seen_archives=set()
-     for d in selected:
-      for r in d.archived_sources:
-       key=(r.role,r.original.path,r.original.sha256,r.original.bytes,r.archive.path,r.archive.sha256,r.archive.bytes)
-       if key not in seen_archives:seen_archives.add(key);expected_archives.append(dataclasses.asdict(r))
-     for r in fresh_owner_archives:
-      key=(r['role'],r['original']['path'],r['original']['sha256'],r['original']['bytes'],r['archive']['path'],r['archive']['sha256'],r['archive']['bytes'])
-      if key not in seen_archives:seen_archives.add(key);expected_archives.append(r)
-     archive_paths={r['archive']['path']for r in expected_archives}
-     with A.open_adapter(root,adapter_sha256=bindings['adapter']['sha256'],controls_sha256=bindings['adapterControls']['sha256'],closure_owner_sha256=bindings['readiness']['sha256'],deadline=deadline,parent_refinements=selected,evidence_package=package_selection,accepted_parent_evidence=tuple(fresh_selected),historical_evidence=None if spec['historicalEvidence']is None else spec['historicalEvidence']['selection'])as adapter:
+     with A.open_adapter(root,adapter_sha256=bindings['adapter']['sha256'],controls_sha256=bindings['adapterControls']['sha256'],closure_owner_sha256=bindings['readiness']['sha256'],deadline=deadline,parent_refinements=selected,evidence_package=package_selection,accepted_parent_evidence=tuple(fresh_selected))as adapter:
       provenance=tuple(adapter.provenance)
-      historical_verification=None
-      if spec['historicalEvidence']is not None:
-       advertised={(b['path'],b['sha256'],b['bytes'])for b in spec['historicalEvidence']['sourceBindings']}
-       require(advertised==set(provenance),'exact retained physical source union')
-       historical_verification=S.to_wire(adapter.historical_evidence_verification)
       require(0<len(provenance)<=512 and len({p for p,_,_ in provenance})==len(provenance),'unique captured source census')
       for p,h,n in provenance:
        capture(dict(path=p,sha256=h,bytes=n))
-       if p in executing_sources and p not in archive_paths:source_paths.add(p)
+       if p in executing_sources:source_paths.add(p)
       fresh_actual=tuple(adapter.fresh_provenance)
       require(len(fresh_actual)<=512 and len({p for p,_,_ in fresh_actual})==len(fresh_actual)
        and set(fresh_actual)<=set(provenance)and fresh_advertised==set(fresh_actual),'exact advertised and consumed fresh physical source union')
       require(len(adapter.histories)==8 and all(len(h.segments)==1760 for h in adapter.histories)and len(adapter.frames)==81 and len(adapter.parents)==160,'actual metadata census')
       require(all(adapter.call_counts[k]==0 for k in ('projections','evaluations','residuals','root_queries','emission_refinements'))and all(v==0 for v in adapter.geometry_accounting.values()),'metadata zero numerical calls')
-      archives=S.to_wire(adapter.historical_owner_archives)
-      require(archives==expected_archives,'exact unique historical archive relations')
       metadata=dict(sources=len(provenance),members=8,segmentsPerMember=1760,frames=81,parents=160,projections=0,evaluations=0,residuals=0,restrictions=0,historyStateEvaluations=0)
       runtime_check();recheck();progress('metadata',1,1)
       prefix=None;continuation_module=None;inherited_pairs=0;restoration_ns=0;continuation_metadata=None
       if spec['continuation']is not None:
        continuation_module=captures.enter_context(module(bindings['continuation']))
        source_paths.add(bindings['continuation']['path'])
-       archive_routes={(r['original']['path'],r['original']['sha256'],r['original']['bytes']):r['archive']for r in spec['continuation']['archives']}
-       require(len(archive_routes)==len(spec['continuation']['archives']),'unique exact continuation archive routes')
-       def physical_source(b):return archive_routes.get((b['path'],b['sha256'],b['bytes']),b)
        def source_bytes(b):
-        physical=physical_source(b)
+        physical=b
         require(physical['path']in files and files[physical['path']].binding()==physical,'captured continuation source required')
         f=files[physical['path']];raw,digest=f.scan(True);require(digest==b['sha256'],'continuation bytes changed');f.check_path();return raw
        def source_json(b):return json.loads(source_bytes(b))
@@ -673,8 +497,8 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha,production_envel
        require(all(adapter.call_counts[k]==0 for k in ('projections','evaluations','residuals','root_queries','emission_refinements'))and all(v==0 for v in adapter.geometry_accounting.values()),'restoration performed provider work')
        runtime_check();recheck();progress('restoration',inherited_pairs,inherited_pairs)
       publication=P.LeafStreamPublication(spec['output'],C,deadline=deadline,byte_limit=67108864,live=live)
-      header_spec=dict(binding=dict(path=spec_path,sha256=spec_sha,bytes=len(raw)),maxAdvances=spec['maxAdvances'],parentRefinements=spec['parentRefinements'],evidencePackage=spec['evidencePackage'],acceptedParentEvidence=spec['acceptedParentEvidence'],historicalEvidence=spec['historicalEvidence'])
-      metadata_wire=dict(scope=spec['scope'],spec=header_spec,sourceBindings=dict(files=bindings,historicalOwnerArchives=archives,historicalEvidenceVerification=historical_verification),runtimeBindings=spec['runtimeBindings'],pythonBodySha256=body_sha,clockTransfer=clock_transfer,publicationRequires='fresh matching successful process completion and independent mathematical comparison; no metric authority')
+      header_spec=dict(binding=dict(path=spec_path,sha256=spec_sha,bytes=len(raw)),maxAdvances=spec['maxAdvances'],parentRefinements=spec['parentRefinements'],evidencePackage=spec['evidencePackage'],acceptedParentEvidence=spec['acceptedParentEvidence'])
+      metadata_wire=dict(scope=spec['scope'],spec=header_spec,sourceBindings=dict(files=bindings),runtimeBindings=spec['runtimeBindings'],pythonBodySha256=body_sha,clockTransfer=clock_transfer,publicationRequires='fresh matching successful process completion and independent mathematical comparison; no metric authority')
       session=S.StreamedLeafSession(adapter,D,C,metadata_wire,publication.write,byte_limit=67108864,live=live,**({}if prefix is None else dict(continuation=continuation_module,prefix=prefix)))
       runtime_check();recheck()
       maximum=spec['maxAdvances'];require(type(maximum)is int and 1<=maximum<=3280-inherited_pairs,'explicit original bounded advance count')
@@ -707,7 +531,7 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha,production_envel
   after_close_recheck();publication.verify()
   completion=dict(completed=True,accepted=False,scope=spec['scope'],output=dataclasses.asdict(output),completedAdvances=completed,inheritedPairs=inherited_pairs,replayedGKEvaluations=inherited_pairs,restorationNanoseconds=str(restoration_ns),continuation=continuation_metadata,stopReason=stop_reason,finalState=final_state,
    callCounts=calls,geometryAccounting=geometry,streamAccounting=stream_accounting,publicationAccounting=dataclasses.asdict(publication.accounting),metadataCensus=metadata,
-   historicalSourceBindings=[dict(path=p,sha256=h,bytes=n)for p,h,n in provenance],historicalOwnerArchives=archives,sourceIdentities={p:':'.join(map(str,v[1]))for p,v in originals.items()},
+   historicalSourceBindings=[dict(path=p,sha256=h,bytes=n)for p,h,n in provenance],sourceIdentities={p:':'.join(map(str,v[1]))for p,v in originals.items()},
    adapterContextClosed=True,pythonBodySha256=body_sha,clockTransfer=clock_transfer,externalWholeAttemptAdmissionRequired=True,codecEOFValidated=True,
    rootsEvaluated=False,eomExecuted=False,metricsAvailable=False,scoreAuthorized=False)
   print(json.dumps(completion,separators=(',',':')),flush=True);live()
@@ -723,31 +547,22 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha,production_envel
 if __name__=='__main__':execute(*sys.argv[1:])
 `;
 
-function productionOperationalSources(admitted){
- const paths=new Set(admitted.production.capturedSources().map(b=>b.path));
- return admitted.operationalSources.filter(b=>!paths.has(b.path)).map(b=>({...b,identity:admitted.identities[b.path]}));
-}
-function productionEnvelope(admitted){
- return JSON.stringify({...JSON.parse(admitted.production.pythonEnvelope(SELF)),operationalSources:productionOperationalSources(admitted)});
-}
 export async function registered(specPath,specSha,selfSha,deadline){
   const live=()=>check(process.hrtime.bigint()<BigInt(deadline),'registered entry deadline');live();
-  const record=readBound(specPath,specSha,true,1024**2,live),spec=decodeSpec(record.data),admitted=await admitOperationalSources(spec,live);checkBindings(validateSpec(spec,selfSha,admitted),live);
+  const record=readBound(specPath,specSha,true,1024**2,live),spec=decodeSpec(record.data);checkBindings(validateSpec(spec,selfSha),live);
   check(import.meta.url.startsWith('file:')&&fileURLToPath(import.meta.url)===spec.bindings.coordinator.path,'captured registered entry path');
   const body=sha(PYTHON);check(PYTHON.length<65536,'bounded embedded Python');
   // Sample only after preflight, immediately before registering the target.
   // Never renew the original absolute Node deadline or grant a fresh1800s.
-  const productionEnvelopeValue=productionEnvelope(admitted),productionPins=JSON.stringify(PINS);
-  check(Buffer.byteLength(productionEnvelopeValue)<=32768&&Buffer.byteLength(productionPins)<=8192,'bounded production arguments');
   const clockTransfer=remainingDuration(deadline);
   await new Promise((resolve,reject)=>{
-    const args=['-I','-B','-c',PYTHON,specPath,specSha,deadline,clockTransfer.remainingNanoseconds,body,productionEnvelopeValue,productionPins];
+    const args=['-I','-B','-c',PYTHON,specPath,specSha,deadline,clockTransfer.remainingNanoseconds,body];
     check(Buffer.byteLength(JSON.stringify({command:spec.python,args,cwd:spec.root}))<=65536,'bounded registered argument transport');
     const child=spawn(spec.python,args,{cwd:spec.root,detached:true,stdio:['ignore','pipe','pipe']});
     child.stdout.pipe(process.stdout);child.stderr.pipe(process.stderr);child.once('error',reject);
     child.once('close',(code,signal)=>code===0&&!signal?resolve():reject(Error('registered Python failed '+code+'/'+signal)));
   });
-  checkBindings(admitted.sources,live,admitted.identities);checkBindings(validateSpec(spec,selfSha,admitted),live);console.error(JSON.stringify({kind:'streamed-leaf-entry-resources',clockTransfer,resourceUsage:process.resourceUsage()}));live();
+  checkBindings(validateSpec(spec,selfSha),live);console.error(JSON.stringify({kind:'streamed-leaf-entry-resources',clockTransfer,resourceUsage:process.resourceUsage()}));live();
 }
 
 export function inspectStreamLayout(output){
@@ -826,33 +641,23 @@ export function fileOperation(job){
  const live=()=>check(process.hrtime.bigint()<BigInt(job.deadlineNanoseconds),'file worker deadline');live();
  if(job.kind==='preflight')return(async()=>{
   const captured=readBound(job.specPath,job.specSha,true,1024**2,live),spec=decodeSpec(captured.data);
-  const admitted=await admitOperationalSources(spec,live);
-  const records=boundedSourceUnion([...validateSpec(spec,job.selfSha,admitted),clean(captured)]),actual=records.map(b=>readBound(b.path,b.sha256,false,1024**3,live));
+  const records=boundedSourceUnion([...validateSpec(spec,job.selfSha),clean(captured)]),actual=records.map(b=>readBound(b.path,b.sha256,false,1024**3,live));
   actual.forEach((r,n)=>check(r.bytes===records[n].bytes,'source size'));
   return{spec,sources:actual.map(clean),sourceIdentities:Object.fromEntries(actual.map(b=>[b.path,b.identity])),specBinding:clean(captured)};
  })();
  if(job.kind==='recheck')return checkBindings(job.sources,live,job.sourceIdentities);
  if(job.kind==='admit'){
-  initializeProductionIdentities(job.productionIdentities);
   const proc=job.processReceipt;
   check(proc.accepted===false&&proc.processesClosed===true&&proc.exit?.code===0&&proc.exit?.signal===null&&proc.gates?.length===1,'closed registered target');
   const gate=proc.gates[0];check(gate.retired&&gate.acknowledged&&gate.measurement?.code===0&&gate.measurement?.signal===null,'retired successful gate');
-  const args=gate.requestedArgs;check(Array.isArray(args)&&args.length===11&&typeof args[7]==='string'&&/^[0-9]{1,13}$/u.test(args[7]),'closed target arguments');
+  const args=gate.requestedArgs;check(Array.isArray(args)&&args.length===9&&typeof args[7]==='string'&&/^[0-9]{1,13}$/u.test(args[7]),'closed target arguments');
   const duration=BigInt(args[7]);check(duration>0n&&duration<=1800000000000n,'transferred duration');
   const transfer=remainingDuration(job.deadlineNanoseconds,BigInt(job.deadlineNanoseconds)-duration);
-  const bridgePath='scripts/eom/production_source_records.py',bridgeAbsolute=path.join(job.spec.root,bridgePath);
-  const bridgeRows=job.sources.filter(b=>b.path===bridgeAbsolute);check(bridgeRows.length===1&&OPTION_B_PRODUCTION_IDENTITIES,'one admitted production bridge and identity tuple');
-  const bridgeBinding=bridgeRows[0];binding(bridgeBinding);const bridge=readBound(bridgeAbsolute,bridgeBinding.sha256,true,1048576,live);
-  check(bridge.bytes===bridgeBinding.bytes&&bridge.identity===job.sourceIdentities[bridgeAbsolute],'original admitted production bridge');
-  check(Array.isArray(job.productionOperationalSources)&&job.productionOperationalSources.length<=64,'bounded admitted operational sources');
-  for(const row of job.productionOperationalSources){keys(row,['path','sha256','bytes','identity']);const {identity,...source}=row;binding(source);check(job.sources.some(b=>equalBinding(b,source))&&job.sourceIdentities[row.path]===identity,'original admitted operational source');}
-  const productionEnvelope=JSON.stringify({root:job.spec.root,target:SELF,identities:OPTION_B_PRODUCTION_IDENTITIES,bridgePath,bridgeSha256:bridge.sha256,bridgeSource:bridge.data.toString('base64'),operationalSources:job.productionOperationalSources}),productionPins=JSON.stringify(PINS);
-  check(Buffer.byteLength(productionEnvelope)<=32768&&Buffer.byteLength(productionPins)<=8192&&Buffer.byteLength(JSON.stringify({command:job.spec.python,args,cwd:job.spec.root}))<=65536,'bounded registered argument transport');
-  check(gate.target&&gate.requestedCommand===job.spec.python&&same(args,['-I','-B','-c',PYTHON,job.specBinding.path,job.specBinding.sha256,job.deadlineNanoseconds,transfer.remainingNanoseconds,sha(PYTHON),productionEnvelope,productionPins]),'captured target identity');
+  check(gate.target&&gate.requestedCommand===job.spec.python&&same(args,['-I','-B','-c',PYTHON,job.specBinding.path,job.specBinding.sha256,job.deadlineNanoseconds,transfer.remainingNanoseconds,sha(PYTHON)]),'captured target identity');
   const raw=readBound(job.stdout.path,job.stdout.sha256,true,LOG,live).data;
   check(raw.at(-1)===10&&raw.toString().trim().split('\n').length===1,'one fresh stdout completion');
   const done=JSON.parse(raw);
-  keys(done,['completed','accepted','scope','output','completedAdvances','inheritedPairs','replayedGKEvaluations','restorationNanoseconds','continuation','stopReason','finalState','callCounts','geometryAccounting','streamAccounting','publicationAccounting','metadataCensus','historicalSourceBindings','historicalOwnerArchives','sourceIdentities','adapterContextClosed','pythonBodySha256','clockTransfer','externalWholeAttemptAdmissionRequired','codecEOFValidated','rootsEvaluated','eomExecuted','metricsAvailable','scoreAuthorized']);
+  keys(done,['completed','accepted','scope','output','completedAdvances','inheritedPairs','replayedGKEvaluations','restorationNanoseconds','continuation','stopReason','finalState','callCounts','geometryAccounting','streamAccounting','publicationAccounting','metadataCensus','historicalSourceBindings','sourceIdentities','adapterContextClosed','pythonBodySha256','clockTransfer','externalWholeAttemptAdmissionRequired','codecEOFValidated','rootsEvaluated','eomExecuted','metricsAvailable','scoreAuthorized']);
   check(done.completed===true&&done.accepted===false&&done.scope===SCOPE&&done.adapterContextClosed===true&&done.codecEOFValidated===true&&done.externalWholeAttemptAdmissionRequired===true,'conditional framed completion');
   for(const k of['rootsEvaluated','eomExecuted','metricsAvailable','scoreAuthorized'])check(done[k]===false,'authority promotion');
   check(done.pythonBodySha256===sha(PYTHON)&&same(done.clockTransfer,transfer),'body/clock transfer');
@@ -868,7 +673,6 @@ export function fileOperation(job){
   check(['restriction_calls','completed_restrictions','restricted_projections'].every(k=>done.geometryAccounting[k]===4*n)&&Number.isSafeInteger(done.geometryAccounting.history_state_evaluations)&&done.geometryAccounting.history_state_evaluations>=4*n,'actual geometry counters');
   const historical=done.historicalSourceBindings;check(Array.isArray(historical)&&historical.length>0&&historical.length<=512&&new Set(historical.map(b=>b.path)).size===historical.length,'captured historical census');historical.forEach(binding);
   check(same(done.metadataCensus,{sources:historical.length,members:8,segmentsPerMember:1760,frames:81,parents:160,projections:0,evaluations:0,residuals:0,restrictions:0,historyStateEvaluations:0}),'fresh original metadata');
-  check(same(done.historicalOwnerArchives,archiveRelations(job.spec)),'exact explicit archive relations');
   const combined=boundedSourceUnion([...job.sources,...historical]);
   keys(done.sourceIdentities,combined.map(b=>b.path));
   check(Object.values(done.sourceIdentities).every(v=>typeof v==='string'&&/^[0-9]+:[0-9]+:[0-9]+:[0-9]+:[0-9]+$/u.test(v)),'original source identities');
@@ -908,19 +712,17 @@ export async function coordinate({specPath,specSha,selfSha,self,began,deadlineNa
   try{
     const capturedSpec=readBound(specPath,specSha,true,1024**2,live),spec=decodeSpec(capturedSpec.data);
     // Full evidence/continuation validation stays in the observed file worker.
-    keys(spec,['schema','scope','root','output','python','git','bindings','runtimeBindings','parentRefinements','evidencePackage','acceptedParentEvidence','historicalEvidence','continuation','maxAdvances','limits']);
+    keys(spec,['schema','scope','root','output','python','git','bindings','runtimeBindings','parentRefinements','evidencePackage','acceptedParentEvidence','continuation','maxAdvances','limits']);
     check(spec.schema==='braid-program/f6c-streamed-leaf-invocation.v6'&&spec.scope===SCOPE&&spec.root===root,'fixed streamed invocation');
     check(typeof spec.output==='string'&&path.dirname(spec.output)===path.join(root,LANE)&&path.resolve(spec.output)===spec.output&&/^[a-z0-9][a-z0-9-]{0,95}$/u.test(path.basename(spec.output)),'fixed streamed output');
-    keys(spec.bindings,['coordinator','controls','sourceMap','manifestReader',...Object.keys(PINS),...Object.keys(OPERATIONS)]);
+    keys(spec.bindings,['coordinator','controls',...Object.keys(INPUT_PATHS),...Object.keys(OPERATIONS)]);
     check(Array.isArray(spec.runtimeBindings)&&spec.runtimeBindings.length>0&&spec.runtimeBindings.length<=256,'bounded runtime declaration');
     const declared=boundedSourceUnion([...Object.values(spec.bindings),...spec.runtimeBindings]);
     check(equalBinding(spec.bindings.coordinator,clean(self))&&equalBinding(spec.bindings.operationCoordinator,clean(owner)),'exact caller and C declarations');
     const minimalPaths=[spec.git,realpathSync(process.execPath),'/bin/ps','/usr/bin/memory_pressure'];
     const minimal=minimalPaths.map(p=>{check(typeof p==='string'&&path.isAbsolute(p)&&path.resolve(p)===p,'canonical observer executable');const b=declared.find(v=>v.path===p);check(b,'declared initial executable');const a=readBound(p,b.sha256,false,1024**3,live);check(a.bytes===b.bytes,'initial executable byte count');return a;});
     await lifetime.checkpoint();
-    const admitted=await admitOperationalSources(spec,live);
     await lifetime.checkpoint();
-    lifetime.bindSources({sources:admitted.sources,identities:admitted.identities});
     await lifetime.checkpoint();
     const initial=[self,owner,capturedSpec,...minimal];
     lifetime.bindSources({sources:initial.map(clean),identities:Object.fromEntries(initial.map(b=>[b.path,b.identity]))});
@@ -941,7 +743,7 @@ export async function coordinate({specPath,specSha,selfSha,self,began,deadlineNa
     lifetime.bindSources({sources:pre.sources,identities:pre.sourceIdentities});
     const receipt=await lifetime.runRegistered({entry:SELF,args:['--registered',specPath,specSha,selfSha,deadlineNanoseconds],
       sources:[{path:SELF,sha256:selfSha,bytes:self.data}],output:path.join(ops,'process'),
-      admit:({receipt:processReceipt,signal})=>{poll();return worker({kind:'admit',productionIdentities:admitted.production.identities(SELF),productionOperationalSources:productionOperationalSources(admitted),processReceipt,output,spec:pre.spec,specBinding:pre.specBinding,
+      admit:({receipt:processReceipt,signal})=>{poll();return worker({kind:'admit',processReceipt,output,spec:pre.spec,specBinding:pre.specBinding,
         sources:pre.sources,sourceIdentities:pre.sourceIdentities,stdoutPath:path.join(ops,'process/runner-stdout.log')},{signal});}});
     check(receipt.accepted&&receipt.processesClosed&&receipt.admission?.accepted,'closed admitted target');
     poll();check(same(rawOwner,receipt.admission.streamOwner),'admitted original stream owner');checkFinalStreamLayout(output,rawLayout,live);
@@ -975,114 +777,46 @@ async function main(){
   if(v[0]==='--registered'){check(v.length===5,'registered arguments');return registered(...v.slice(1));}
   throw Error('Direct streamed execution is disabled; use scripts/eom/f6c-bounded-operation.mjs with its reviewed streamed-mode invocation.');
 }
-if(import.meta.url.startsWith('file:')&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))main().catch(e=>{console.error(e);process.exitCode=1;});
 
-let OPTION_B_PRODUCTION_IDENTITIES;
-export function initializeProductionIdentities(values) {
-  if (!Array.isArray(values) || values.length !== 44 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
-  if (OPTION_B_PRODUCTION_IDENTITIES && JSON.stringify(OPTION_B_PRODUCTION_IDENTITIES) !== JSON.stringify(values)) throw Error("production identity generation already initialized");
-  OPTION_B_PRODUCTION_IDENTITIES = Object.freeze([...values]);
-  PINS=Object.freeze({
- "adapter": [
-  "scripts/eom/f6c_variable_cell_adapter.py",
-  OPTION_B_PRODUCTION_IDENTITIES[0]
- ],
- "adapterControls": [
-  "tests/test_f6c_variable_cell_adapter.py",
-  OPTION_B_PRODUCTION_IDENTITIES[1]
- ],
- "diagnostic": [
-  "scripts/eom/f6c_single_leaf_diagnostic.py",
-  OPTION_B_PRODUCTION_IDENTITIES[2]
- ],
- "diagnosticControls": [
-  "tests/test_f6c_single_leaf_diagnostic.py",
-  OPTION_B_PRODUCTION_IDENTITIES[3]
- ],
- "stream": [
-  "scripts/eom/f6c_streamed_leaf_session.py",
-  OPTION_B_PRODUCTION_IDENTITIES[4]
- ],
- "streamControls": [
-  "tests/test_f6c_streamed_leaf_session.py",
-  OPTION_B_PRODUCTION_IDENTITIES[5]
- ],
- "continuation": [
-  "scripts/eom/f6c_leaf_continuation.py",
-  OPTION_B_PRODUCTION_IDENTITIES[6]
- ],
- "continuationControls": [
-  "tests/test_f6c_leaf_continuation.py",
-  OPTION_B_PRODUCTION_IDENTITIES[7]
- ],
- "codec": [
-  "scripts/eom/f6c_leaf_evidence_codec.py",
-  OPTION_B_PRODUCTION_IDENTITIES[8]
- ],
- "codecControls": [
-  "tests/test_f6c_leaf_evidence_codec.py",
-  OPTION_B_PRODUCTION_IDENTITIES[9]
- ],
- "storage": [
-  "scripts/eom/f6c_leaf_stream_publication.py",
-  OPTION_B_PRODUCTION_IDENTITIES[10]
- ],
- "storageControls": [
-  "tests/test_f6c_leaf_stream_publication.py",
-  OPTION_B_PRODUCTION_IDENTITIES[11]
- ],
- "readiness": [
-  "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md",
-  null
- ],
- "transport": [
-  "scripts/eom/verify-f6c-refined-acceleration.py",
-  OPTION_B_PRODUCTION_IDENTITIES[12]
- ]
+
+
+export const INPUT_PATHS=Object.freeze({
+ "adapter": "scripts/eom/f6c_variable_cell_adapter.py",
+ "adapterControls": "tests/test_f6c_variable_cell_adapter.py",
+ "diagnostic": "scripts/eom/f6c_single_leaf_diagnostic.py",
+ "diagnosticControls": "tests/test_f6c_single_leaf_diagnostic.py",
+ "stream": "scripts/eom/f6c_streamed_leaf_session.py",
+ "streamControls": "tests/test_f6c_streamed_leaf_session.py",
+ "continuation": "scripts/eom/f6c_leaf_continuation.py",
+ "continuationControls": "tests/test_f6c_leaf_continuation.py",
+ "codec": "scripts/eom/f6c_leaf_evidence_codec.py",
+ "codecControls": "tests/test_f6c_leaf_evidence_codec.py",
+ "storage": "scripts/eom/f6c_leaf_stream_publication.py",
+ "storageControls": "tests/test_f6c_leaf_stream_publication.py",
+ "readiness": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md",
+ "transport": "scripts/eom/verify-f6c-refined-acceleration.py"
 });
-  ARCHIVE_SOURCES=Object.freeze({
- producer:['scripts/eom/prepare-f6c-parent-emission-refinement.py',OPTION_B_PRODUCTION_IDENTITIES[13],57641],
- producerControls:['tests/test_f6c_parent_emission_refinement_preparation.py',OPTION_B_PRODUCTION_IDENTITIES[14],40808],
- verifier:['scripts/eom/verify-f6c-parent-emission-refinement.py',OPTION_B_PRODUCTION_IDENTITIES[15],46134],
- verifierControls:['tests/test_f6c_parent_emission_refinement_verification.py',OPTION_B_PRODUCTION_IDENTITIES[16],39696],
- operationalEntry:['scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs',OPTION_B_PRODUCTION_IDENTITIES[17],48579],
- operationalControls:['tests/f6c-parent-emission-refinement-pilot.test.js',OPTION_B_PRODUCTION_IDENTITIES[18],20889]
+export const PACKAGE_PATHS=Object.freeze({
+ reader:'scripts/eom/f6c_evidence_package.py',
+ readerControls:'tests/test_f6c_evidence_package.py',
+ inventory:'tests/fixtures/f6c-lossless-packaging-expectations.v1.json'
 });
-  PARENT_TWO_ARCHIVE_PLAN=Object.freeze(['reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json',OPTION_B_PRODUCTION_IDENTITIES[19],51509]);
-  PARENT_TWO_ARCHIVE_SOURCES=Object.freeze({
- producer:['scripts/eom/prepare-f6c-parent-emission-refinement.py',OPTION_B_PRODUCTION_IDENTITIES[20],58397],
- producerControls:['tests/test_f6c_parent_emission_refinement_preparation.py',OPTION_B_PRODUCTION_IDENTITIES[21],43836],
- verifier:['scripts/eom/verify-f6c-parent-emission-refinement.py',OPTION_B_PRODUCTION_IDENTITIES[22],46615],
- verifierControls:['tests/test_f6c_parent_emission_refinement_verification.py',OPTION_B_PRODUCTION_IDENTITIES[23],42419],
- operationalEntry:['scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs',OPTION_B_PRODUCTION_IDENTITIES[24],56022],
- operationalControls:['tests/f6c-parent-emission-refinement-pilot.test.js',OPTION_B_PRODUCTION_IDENTITIES[25],33303]
+export const PARENT_EVIDENCE_PATHS=Object.freeze({
+ reader:PACKAGE_PATHS.reader,readerControls:PACKAGE_PATHS.readerControls,
+ parser:'scripts/eom/f6c_parent_evidence_inventory.py',
+ parserControls:'tests/test_f6c_parent_evidence_inventory.py',
 });
-  ANCESTRY_ARCHIVE_SOURCES=Object.freeze({
- memberPredeclaration:['reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md',OPTION_B_PRODUCTION_IDENTITIES[26],16985],
- fullResourcePlan:['reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md',OPTION_B_PRODUCTION_IDENTITIES[27],13021]
+export const PARENT_CLOSURE_PATHS=Object.freeze({
+ instrument:'.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure.py',
+ controls:'.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure_controls.py',
 });
-  PACKAGE_PINS=Object.freeze({
- reader:['scripts/eom/f6c_evidence_package.py',OPTION_B_PRODUCTION_IDENTITIES[28]],
- readerControls:['tests/test_f6c_evidence_package.py',OPTION_B_PRODUCTION_IDENTITIES[29]],
- inventory:['tests/fixtures/f6c-lossless-packaging-expectations.v1.json',OPTION_B_PRODUCTION_IDENTITIES[30]]
-});
-  FRESH_EVIDENCE_PINS=Object.freeze({
- reader:PACKAGE_PINS.reader,readerControls:PACKAGE_PINS.readerControls,
- parser:['scripts/eom/f6c_parent_evidence_inventory.py',OPTION_B_PRODUCTION_IDENTITIES[31]],
- parserControls:['tests/test_f6c_parent_evidence_inventory.py',OPTION_B_PRODUCTION_IDENTITIES[32]],
- schema:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/generic-inventory-v2-closed-schema-expectations.md',OPTION_B_PRODUCTION_IDENTITIES[33]]
-});
-  FRESH_CLOSURE_PINS=Object.freeze({
- instrument:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure.py',OPTION_B_PRODUCTION_IDENTITIES[34]],
- controls:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure_controls.py',OPTION_B_PRODUCTION_IDENTITIES[35]],
- contract:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/fresh-parent-batch-closure-validator-expectations.md',OPTION_B_PRODUCTION_IDENTITIES[36]],
-});
-  CONTINUATION_MATH=Object.freeze([
- ['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py',OPTION_B_PRODUCTION_IDENTITIES[37],41336],
- ['scripts/eom/verify-f6c-continuous-reception-acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[38],42580],
- ['scripts/eom/oracle/f6c_residual_integral_supremum.py',OPTION_B_PRODUCTION_IDENTITIES[39],20129],
- ['scripts/eom/oracle/f6c_gk13_protocol.py',OPTION_B_PRODUCTION_IDENTITIES[40],24388],
- ['scripts/eom/oracle/f6c_correlated_residual_enclosure.py',OPTION_B_PRODUCTION_IDENTITIES[41],7830],
- ['scripts/eom/f6c_leaf_evidence_codec.py',OPTION_B_PRODUCTION_IDENTITIES[42],22926],
+export const CONTINUATION_MATH=Object.freeze([
+ 'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py',
+ 'scripts/eom/verify-f6c-continuous-reception-acceleration.py',
+ 'scripts/eom/oracle/f6c_residual_integral_supremum.py',
+ 'scripts/eom/oracle/f6c_gk13_protocol.py',
+ 'scripts/eom/oracle/f6c_correlated_residual_enclosure.py',
+ 'scripts/eom/f6c_leaf_evidence_codec.py',
 ]);
-}
+
+if(import.meta.url.startsWith('file:')&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))main().catch(e=>{console.error(e);process.exitCode=1;});

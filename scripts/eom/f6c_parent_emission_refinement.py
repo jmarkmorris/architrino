@@ -22,23 +22,17 @@ source-bound, watched execution before any operational acceptance.
 """
 from __future__ import annotations
 
+import hashlib
+
 from dataclasses import dataclass
 from decimal import Context, Decimal, ROUND_HALF_EVEN, localcontext
 from fractions import Fraction
-import hashlib
 import json
 import re
 from types import MappingProxyType
 
 
 PARENT_SCHEMA = 'braid-program/f6c-original-parent-refinement-input.v1'
-PROOF_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[0]
-REQUIRED_SOURCES = (
-    ('helper', OPTION_B_PRODUCTION_IDENTITIES[1]),
-    ('history', OPTION_B_PRODUCTION_IDENTITIES[2]),
-    ('intervals', OPTION_B_PRODUCTION_IDENTITIES[3]),
-    ('roots', OPTION_B_PRODUCTION_IDENTITIES[4]),
-)
 IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')
 CHARGE = '0.1666666666666666666666666666666667'
 OLDEST, END = Fraction(-8), Fraction(13, 100)
@@ -109,12 +103,12 @@ def _require(ok, message):
 
 def _snapshot(value, budget, path=(), depth=0):
     budget[0] += 1
-    _require(budget[0] <= MAX_NODES and depth <= 12, 'input/output node or depth limit')
+    _require((budget[0] <= MAX_NODES) and (depth <= 12), 'input/output node or depth limit')
     if type(value) is dict:
         _require(len(value) <= 32, 'record field limit')
         result = {}
         for key, item in value.items():
-            _require(type(key) is str and len(key) <= 128, 'exact bounded record key')
+            _require((type(key) is str) and (len(key) <= 128), 'exact bounded record key')
             budget[1] += len(key.encode('utf-8'))
             _require(budget[1] <= MAX_BYTES, 'aggregate string byte limit')
             result[key] = _snapshot(item, budget, path+(key,), depth+1)
@@ -142,21 +136,21 @@ def _plain(value):
 
 
 def _keys(value, names):
-    _require(type(value) is MappingProxyType and set(value) == set(names), 'closed record fields')
+    _require((type(value) is MappingProxyType) and (set(value) == set(names)), 'closed record fields')
 
 
 def _integer(value, expected):
-    _require(type(value) is int and value == expected, 'exact integer/order')
+    _require((type(value) is int) and (value == expected), 'exact integer/order')
 
 
 def _number(token):
-    _require(type(token) is str and len(token) <= 1100 and DECIMAL.fullmatch(token), 'exact decimal token')
+    _require((type(token) is str) and (len(token) <= 1100) and (DECIMAL.fullmatch(token)), 'exact decimal token')
     mantissa, *exponent = re.split('[eE]', token)
     _require(sum(c.isdigit() for c in mantissa) <= 1024, 'decimal mantissa bound')
     if exponent:
         # Bound the lexical exponent before constructing an integer or Fraction.
         digits = exponent[0].lstrip('+-').lstrip('0') or '0'
-        _require(len(digits) <= 4 and abs(int(exponent[0])) <= 1000, 'decimal exponent bound')
+        _require((len(digits) <= 4) and (abs(int(exponent[0])) <= 1000), 'decimal exponent bound')
     return Fraction(token)
 
 
@@ -173,7 +167,7 @@ def _scale(value):
 
 def exact_time_token(value):
     """Exact finite midpoint serialization, never rounded to fit the contract."""
-    _require(type(value) is Fraction and abs(value) <= 8, 'exact bounded Fraction time')
+    _require((type(value) is Fraction) and (abs(value) <= 8), 'exact bounded Fraction time')
     places = _scale(value)
     _require(places <= 51, 'derived time exceeds 51 places')
     digits = str(abs(value.numerator)*(10**places//value.denominator)).zfill(places+1)
@@ -186,7 +180,7 @@ def exact_time_token(value):
 
 def _time(token):
     value = _number(token)
-    _require(abs(value) <= 8 and _scale(value) <= 19, 'original time scale/magnitude')
+    _require((abs(value) <= 8) and (_scale(value) <= 19), 'original time scale/magnitude')
     return value
 
 
@@ -202,48 +196,47 @@ def _box_record(lo, hi):
 
 
 def _validate(histories, parent):
-    _require(type(histories) is tuple and len(histories) == 8, 'eight histories')
+    _require((type(histories) is tuple) and (len(histories) == 8), 'eight histories')
     _keys(parent, PARENT_FIELDS)
     _require(parent['schema'] == PARENT_SCHEMA, 'parent schema')
     for field, maximum in (('parentIndex', 159), ('frameIndex', 79)):
-        _require(type(parent[field]) is int and 0 <= parent[field] <= maximum, 'bounded original index')
+        _require((type(parent[field]) is int) and (0 <= parent[field] <= maximum), 'bounded original index')
     f0, f1 = _time_box(parent['frame']); u, v = _time_box(parent['reception'])
     _require(0 <= f0 <= u < v <= f1 <= END, 'positive reception inside original frame')
     _require(parent['oldestTime'] == '-8', 'oldest boundary is -8')
     binding = parent['originalCoverBinding']; _keys(binding, ('path', 'sha256', 'bytes'))
-    _require(type(binding['path']) is str and 0 < len(binding['path']) <= 1024 and '\0' not in binding['path'], 'cover path')
-    _require(type(binding['sha256']) is str and SHA.fullmatch(binding['sha256']), 'declared cover SHA')
-    _require(type(binding['bytes']) is int and 1 <= binding['bytes'] <= MAX_BYTES, 'declared cover byte count')
+    _require((type(binding['path']) is str) and (0 < len(binding['path']) <= 1024) and ('\0' not in binding['path']), 'cover path')
+    _require((type(binding['sha256']) is str) and (SHA.fullmatch(binding['sha256'])), 'declared cover SHA')
+    _require((type(binding['bytes']) is int) and (1 <= binding['bytes'] <= MAX_BYTES), 'declared cover byte count')
     for i, history in enumerate(histories):
         _keys(history, HISTORY_FIELDS)
         _integer(history['pathKey'], i+1); _integer(history['polarity'], 1 if i % 2 == 0 else -1)
-        _require(history['id'] == IDS[i] and history['charge'] == ('' if i % 2 == 0 else '-')+CHARGE, 'member identity/charge')
-        _require(history['coverageStart'] == '-8' and history['coverageEnd'] == '0.13', 'retained history domain')
-        _require(type(history['historyFingerprint']) is str and 0 < len(history['historyFingerprint']) <= 256, 'history fingerprint')
+        _require((history['id'] == IDS[i]) and (history['charge'] == ('' if i % 2 == 0 else '-')+CHARGE), 'member identity/charge')
+        _require((history['coverageStart'] == '-8') and (history['coverageEnd'] == '0.13'), 'retained history domain')
+        _require((type(history['historyFingerprint']) is str) and (0 < len(history['historyFingerprint']) <= 256), 'history fingerprint')
         segments = history['segments']
-        _require(type(segments) is tuple and 0 < len(segments) <= 1760, 'bounded complete original history')
+        _require((type(segments) is tuple) and (0 < len(segments) <= 1760), 'bounded complete original history')
         cursor = OLDEST
         for segment in segments:
             _keys(segment, SEGMENT_FIELDS)
             a, b = _time(segment['startTime']), _time(segment['endTime'])
             _require(cursor == a < b <= END, 'history gap/overlap/domain')
-            _require(not u < a < v and not u < b < v, 'interior reception knot exceeds single-parent production scope')
+            _require((not u < a < v) and (not u < b < v), 'interior reception knot exceeds single-parent production scope')
             cursor = b
-            _require(type(segment['coefficients']) is tuple and len(segment['coefficients']) == 3, 'three coefficient axes')
+            _require((type(segment['coefficients']) is tuple) and (len(segment['coefficients']) == 3), 'three coefficient axes')
             for axis in segment['coefficients']:
-                _require(type(axis) is tuple and len(axis) == 4, 'four exact cubic coefficients')
+                _require((type(axis) is tuple) and (len(axis) == 4), 'four exact cubic coefficients')
                 for token in axis:
                     _number(token)
             for axis, scalar in (('positionErrors', 'positionError'), ('velocityErrors', 'velocityError')):
                 values = segment[axis]; radius = _number(segment[scalar])
-                _require(type(values) is tuple and len(values) == 3 and radius >= 0, 'nonnegative scalar allowance')
+                _require((type(values) is tuple) and (len(values) == 3) and (radius >= 0), 'nonnegative scalar allowance')
                 _require(all(0 <= _number(token) <= radius for token in values), 'axis allowance exceeds scalar enlargement')
         _require(cursor == END, 'missing history suffix')
     digest = hashlib.sha256(json.dumps(_plain(histories), sort_keys=True, separators=(',', ':'),
                                       ensure_ascii=True, allow_nan=False).encode('ascii')).hexdigest()
-    _require(type(parent['historyGenerationSha256']) is str and SHA.fullmatch(parent['historyGenerationSha256'])
-             and parent['historyGenerationSha256'] == digest, 'complete original token generation mismatch')
-    pairs = parent['originalEmissions']; _require(type(pairs) is tuple and len(pairs) == 56, '56 original emissions')
+    _require((type(parent['historyGenerationSha256']) is str) and (SHA.fullmatch(parent['historyGenerationSha256'])) and (parent['historyGenerationSha256'] == digest), 'complete original token generation mismatch')
+    pairs = parent['originalEmissions']; _require((type(pairs) is tuple) and (len(pairs) == 56), '56 original emissions')
     originals = {}; k = 0
     for i in range(8):
         for j in range(8):
@@ -251,7 +244,7 @@ def _validate(histories, parent):
                 continue
             pair = pairs[k]; _keys(pair, PAIR_FIELDS)
             _integer(pair['receiverIndex'], i); _integer(pair['transmitterIndex'], j)
-            _require(pair['receiverId'] == IDS[i] and pair['transmitterId'] == IDS[j], 'original pair identity')
+            _require((pair['receiverId'] == IDS[i]) and (pair['transmitterId'] == IDS[j]), 'original pair identity')
             a, b = _time_box(pair['emission'])
             _require(OLDEST <= a < b < u, 'original emission must precede all reception times')
             originals[i, j] = a, b; k += 1
@@ -264,14 +257,12 @@ def _context():
 
 def _interval(value, refs):
     cls = refs.intervals.DecimalInterval
-    _require(type(value) is cls and type(value.precision) is int and value.precision == 90, 'same-generation 90-digit interval')
+    _require((type(value) is cls) and (type(value.precision) is int) and (value.precision == 90), 'same-generation 90-digit interval')
     _require(all(type(x) is Decimal and x.is_finite() and len(x.as_tuple().digits) <= 1024
                  and abs(x.as_tuple().exponent) <= 1000 for x in (value.lower, value.upper)), 'finite bounded interval endpoints')
     _require(value.lower <= value.upper, 'reversed returned interval')
     record = refs.helper.interval_record(value)
-    _require(type(record) is dict and set(record) == {'lower', 'upper', 'precision'} and type(record['precision']) is int
-             and record['precision'] == 90 and _number(record['lower']) == Fraction(value.lower)
-             and _number(record['upper']) == Fraction(value.upper), 'interval serialization differs')
+    _require((type(record) is dict) and (set(record) == {'lower', 'upper', 'precision'}) and (type(record['precision']) is int) and (record['precision'] == 90) and (_number(record['lower']) == Fraction(value.lower)) and (_number(record['upper']) == Fraction(value.upper)), 'interval serialization differs')
     return record
 
 
@@ -281,18 +272,18 @@ def _build(histories, refs, state):
     with _context():
         state['calls'][0] += 1
         built = refs.helper.build_histories(original_records, modules)
-    _require(type(built) is tuple and len(built) == 8, 'built history census')
+    _require((type(built) is tuple) and (len(built) == 8), 'built history census')
     for original, history in zip(histories, built):
-        _require(type(history) is refs.history.PiecewisePolynomialHistory and history.history_id == original['id'], 'built history type/identity')
-        _require(type(history.segments) is tuple and len(history.segments) == len(original['segments']), 'built segment census')
+        _require((type(history) is refs.history.PiecewisePolynomialHistory) and (history.history_id == original['id']), 'built history type/identity')
+        _require((type(history.segments) is tuple) and (len(history.segments) == len(original['segments'])), 'built segment census')
         for source, segment in zip(original['segments'], history.segments):
-            _require(type(segment) is refs.history.CubicHistorySegment and type(segment.precision) is int and segment.precision == 90, 'built segment type/precision')
+            _require((type(segment) is refs.history.CubicHistorySegment) and (type(segment.precision) is int) and (segment.precision == 90), 'built segment type/precision')
             for field, key in (('t_start', 'startTime'), ('t_end', 'endTime'), ('position_error', 'positionError'), ('velocity_error', 'velocityError')):
-                _require(type(getattr(segment, field)) is Decimal and getattr(segment, field) == Decimal(source[key]), 'built original scalar/time changed')
-            _require(type(segment.coefficients) is tuple and len(segment.coefficients) == 3, 'built coefficient axes')
+                _require((type(getattr(segment, field)) is Decimal) and (getattr(segment, field) == Decimal(source[key])), 'built original scalar/time changed')
+            _require((type(segment.coefficients) is tuple) and (len(segment.coefficients) == 3), 'built coefficient axes')
             for actual, tokens in zip(segment.coefficients, source['coefficients']):
-                _require(type(actual) is tuple and len(actual) == 4 and all(type(a) is Decimal and a == Decimal(t)
-                         for a, t in zip(actual, tokens)), 'built original coefficients changed')
+                _require((type(actual) is tuple) and (len(actual) == 4) and (all(type(a) is Decimal and a == Decimal(t)
+                         for a, t in zip(actual, tokens))), 'built original coefficients changed')
     return built
 
 
@@ -343,7 +334,7 @@ def _queries(histories, reception, originals, refs, state, on_record, progress):
             restrictions.append(_snapshot(dict(receiverIndex=i, transmitterIndex=j, receiverId=IDS[i], transmitterId=IDS[j],
                 lower=exact_time_token(retained['lower']), upper=exact_time_token(retained['upper']),
                 lowerQueryIndex=proofs['lower'], upperQueryIndex=proofs['upper']), state['output_budget']))
-    _require(len(state['query']) == 3584 and len(restrictions) == 56, 'incomplete proposal')
+    _require((len(state['query']) == 3584) and (len(restrictions) == 56), 'incomplete proposal')
     return tuple(restrictions)
 
 
@@ -358,14 +349,13 @@ def _cover(histories, parent, reception, restrictions, refs, state, on_record, p
         proposals = (lib.ReceptionCellProposal(reception, emissions),)
         state['calls'][2] += 1
         cover = lib.enclose_root_cover(histories, premises, proposals)
-    _require(type(cover) is lib.ConditionalRootCover and cover.hypotheses is premises and type(cover.expected_rows) is int
-             and cover.expected_rows == 64 and cover.reception_cells == (reception,), 'single original parent cover identity')
-    _require(type(cover.rows) is tuple and len(cover.rows) <= 64, 'bounded final row prefix')
+    _require((type(cover) is lib.ConditionalRootCover) and (cover.hypotheses is premises) and (type(cover.expected_rows) is int) and (cover.expected_rows == 64) and (cover.reception_cells == (reception,)), 'single original parent cover identity')
+    _require((type(cover.rows) is tuple) and (len(cover.rows) <= 64), 'bounded final row prefix')
     flags = refs.helper.flags(cover)
-    _require(type(flags) is dict and set(flags) == set(LIBRARY_FLAGS) and all(v is False for v in flags.values()), 'library authority flags')
+    _require((type(flags) is dict) and (set(flags) == set(LIBRARY_FLAGS)) and (all(v is False for v in flags.values())), 'library authority flags')
     for index, row in enumerate(cover.rows):
         i, j = divmod(index, 8)
-        _require(type(row) is lib.ConditionalRootRow and (row.receiver_id, row.transmitter_id, row.reception) == (IDS[i], IDS[j], reception), 'final ordered row identity')
+        _require((type(row) is lib.ConditionalRootRow) and ((row.receiver_id, row.transmitter_id, row.reception) == (IDS[i], IDS[j], reception)), 'final ordered row identity')
         _interval(row.reception, refs)
         record = dict(rowIndex=index, cellIndex=parent['parentIndex'], receiverIndex=i, transmitterIndex=j, receiverId=IDS[i], transmitterId=IDS[j],
             reception=_plain(parent['reception']), ordinaryRootsPerReception=row.ordinary_roots_per_reception,
@@ -375,48 +365,44 @@ def _cover(histories, parent, reception, restrictions, refs, state, on_record, p
                      'transmitterFactor', 'receiverFactor', 'receiverPieceRecord', 'transmitterPieceRecord'):
             record[name] = None
         _integer(row.ordinary_roots_per_reception, 0 if i == j else 1)
-        _require(row.root_free_complement_conditional is True and row.retained_boundary_contact is False, 'root complement/boundary')
+        _require((row.root_free_complement_conditional is True) and (row.retained_boundary_contact is False), 'root complement/boundary')
         if i == j:
-            _require(row.coincident_endpoint_excluded is True and row.receiver_pieces == row.transmitter_pieces == (), 'self exclusion/pieces')
+            _require((row.coincident_endpoint_excluded is True) and (row.receiver_pieces == row.transmitter_pieces == ()), 'self exclusion/pieces')
             _require(all(getattr(row, k) is None for k in ('emission', 'oldest_residual', 'lower_face_residual', 'upper_face_residual',
                          'displacement', 'distance', 'transmitter_factor', 'receiver_factor')), 'fabricated self geometry')
         else:
             expected = emissions[IDS[i], IDS[j]]
-            _require(row.coincident_endpoint_excluded is False and row.emission == expected, 'ordinary final emission')
+            _require((row.coincident_endpoint_excluded is False) and (row.emission == expected), 'ordinary final emission')
             _interval(row.emission, refs)
             record['emission'] = _box_record(Fraction(expected.lower), Fraction(expected.upper))
             for name, attribute in (('oldestResidual', 'oldest_residual'), ('lowerFaceResidual', 'lower_face_residual'),
                                     ('upperFaceResidual', 'upper_face_residual'), ('distance', 'distance'),
                                     ('transmitterFactor', 'transmitter_factor'), ('receiverFactor', 'receiver_factor')):
                 record[name] = _interval(getattr(row, attribute), refs)
-            _require(row.oldest_residual.upper < 0 and row.lower_face_residual.upper < 0 < row.upper_face_residual.lower, 'unresolved strict faces')
-            _require(row.distance.lower > 0 and row.transmitter_factor.lower >= Decimal('1e-24') and row.receiver_factor.lower > 0, 'distance/factor safety')
-            _require(type(row.displacement) is tuple and len(row.displacement) == 3, 'displacement dimension')
+            _require((row.oldest_residual.upper < 0) and (row.lower_face_residual.upper < 0 < row.upper_face_residual.lower), 'unresolved strict faces')
+            _require((row.distance.lower > 0) and (row.transmitter_factor.lower >= Decimal('1e-24')) and (row.receiver_factor.lower > 0), 'distance/factor safety')
+            _require((type(row.displacement) is tuple) and (len(row.displacement) == 3), 'displacement dimension')
             record['displacement'] = [_interval(x, refs) for x in row.displacement]
             for role, member, parts, requested in (('receiver', i, row.receiver_pieces, row.reception), ('transmitter', j, row.transmitter_pieces, row.emission)):
-                _require(type(parts) is tuple and 0 < len(parts) <= 1760, 'bounded original closed pieces')
+                _require((type(parts) is tuple) and (0 < len(parts) <= 1760), 'bounded original closed pieces')
                 pointer = len(state['piece']); record[role+'PieceRecord'] = pointer
                 piece = refs.helper.compact_pieces(parts, record_index=pointer, row_index=index, role=role, member=IDS[member], digest=digests[member][1], requested=requested)
                 expected_requested = _plain(parent['reception']) if role == 'receiver' else dict(record['emission'])
-                _require(type(piece) is dict and set(piece) == {'recordIndex', 'rowIndex', 'role', 'memberId', 'historyDigest',
-                    'requestedInterval', 'touchedPieceCount', 'firstIndex', 'lastIndex', 'contiguousIndexRange', 'clippedPiecesSha256'}, 'closed piece serialization')
+                _require((type(piece) is dict) and (set(piece) == {'recordIndex', 'rowIndex', 'role', 'memberId', 'historyDigest',
+                    'requestedInterval', 'touchedPieceCount', 'firstIndex', 'lastIndex', 'contiguousIndexRange', 'clippedPiecesSha256'}), 'closed piece serialization')
                 for name, value in (('recordIndex', pointer), ('rowIndex', index), ('touchedPieceCount', len(parts)),
                                     ('firstIndex', parts[0][0]), ('lastIndex', parts[-1][0])):
                     _integer(piece[name], value)
-                _require(piece['role'] == role and piece['memberId'] == IDS[member] and piece['historyDigest'] == digests[member][1]
-                         and type(piece['clippedPiecesSha256']) is str and SHA.fullmatch(piece['clippedPiecesSha256']), 'piece identity/digest')
-                _require(type(piece['contiguousIndexRange']) is list and len(piece['contiguousIndexRange']) == 2, 'piece index range')
+                _require((piece['role'] == role) and (piece['memberId'] == IDS[member]) and (piece['historyDigest'] == digests[member][1]) and (type(piece['clippedPiecesSha256']) is str) and (SHA.fullmatch(piece['clippedPiecesSha256'])), 'piece identity/digest')
+                _require((type(piece['contiguousIndexRange']) is list) and (len(piece['contiguousIndexRange']) == 2), 'piece index range')
                 for actual, expected_index in zip(piece['contiguousIndexRange'], (parts[0][0], parts[-1][0])):
                     _integer(actual, expected_index)
-                _require(type(piece.get('requestedInterval')) is dict and set(piece['requestedInterval']) == {'lower', 'upper', 'precision'} and
-                         _number(piece['requestedInterval']['lower']) == Fraction(requested.lower) and
-                         _number(piece['requestedInterval']['upper']) == Fraction(requested.upper), 'piece requested interval differs')
+                _require((type(piece.get('requestedInterval')) is dict) and (set(piece['requestedInterval']) == {'lower', 'upper', 'precision'}) and (_number(piece['requestedInterval']['lower']) == Fraction(requested.lower)) and (_number(piece['requestedInterval']['upper']) == Fraction(requested.upper)), 'piece requested interval differs')
                 _integer(piece['requestedInterval']['precision'], 90)
                 piece['requestedInterval'] = expected_requested
                 _ack('piece', piece, state, on_record, progress)
         _ack('row', record, state, on_record, progress)
-    _require(cover.status == 'conditional_complete' and cover.failure_code == cover.failure_detail == ''
-             and len(state['row']) == 64 and len(state['piece']) == 112, 'final cover unresolved/incomplete')
+    _require((cover.status == 'conditional_complete') and (cover.failure_code == cover.failure_detail == '') and (len(state['row']) == 64) and (len(state['piece']) == 112), 'final cover unresolved/incomplete')
 
 
 def propose_parent_refinement(histories, parent, references, *, on_record=None, progress=None):

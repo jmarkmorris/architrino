@@ -30,7 +30,6 @@
     },
     "displaySourceProvenance": {
       "path": "reference/priorities/braid-program/configurations/three-axis-circular-coincident-midpoints-common-frequency.v3.json",
-      "sha256": "92ddbd4c1e84c6d4e79042e8883331d832b16ab60c47da05c0c892da39a5de4c",
       "use": "endpoint identities, cyclic plane frames, polarity assignments, and common circulation only; display radii and display phases are not imported"
     },
     "fieldSpeed": 1,

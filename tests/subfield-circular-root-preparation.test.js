@@ -1,6 +1,3 @@
-import {productionTestAdmission,productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
-import * as optionBProductionModule0 from "../scripts/eom/prepare-subfield-circular-root.mjs";
-optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/prepare-subfield-circular-root.mjs"));
 import test from "node:test";
 import assert from "node:assert/strict";
 import { realpathSync } from "node:fs";
@@ -9,21 +6,19 @@ import { fileURLToPath } from "node:url";
 import { commandTokens, compileInput, fileBinding, makeDependencies, parsePrepareSubfieldCircularArgs,
   referenceSnapshot, requireSameBindings, resolvedInvocation, sourceSnapshot } from "../scripts/eom/prepare-subfield-circular-root.mjs";
 
-const optionBReferenceAdmission=productionTestAdmission();
-const optionBCircularAdmission={productionSourcePair:(relative,expected)=>optionBReferenceAdmission.sourcePair(relative,expected)};
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 test("sub-field circular build preparation accepts only a fresh scoped directory argument", () => {
-  assert.throws(() => parsePrepareSubfieldCircularArgs([]), /Usage/u);
+  assert.throws(() => parsePrepareSubfieldCircularArgs([]), /usage/iu);
   assert.throws(() => parsePrepareSubfieldCircularArgs(["--out", ".tmp/subfieldCircular-build"]));
   assert.throws(() => parsePrepareSubfieldCircularArgs(["--out", ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/../escape"]));
-  assert.throws(() => parsePrepareSubfieldCircularArgs(["--out", "x", "--run", "yes"]), /Usage/u);
-  assert.equal(parsePrepareSubfieldCircularArgs(["--out", ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/control","--self-sha256","a".repeat(64),"--source-map-sha256","b".repeat(64)]),
+  assert.throws(() => parsePrepareSubfieldCircularArgs(["--out", "x", "--run", "yes"]), /usage/iu);
+  assert.equal(parsePrepareSubfieldCircularArgs(["--out", ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/control"]),
     path.join(root, ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/control"));
 });
 
 test("observed source inventory binds full solver tree and reviewed adapter/CMake/supervisor", () => {
-  const records = sourceSnapshot(optionBCircularAdmission);
+  const records = sourceSnapshot();
   assert.equal(new Set(records.map((record) => record.path)).size, records.length);
   for (const filename of ["src/eom/src/ExactPairBatch.cpp", "src/eom/src/History.cpp", "src/eom/src/Interval.cpp",
     "src/eom/include/architrino/eom/ExactPairBatch.hpp", "src/eom/include/architrino/eom/History.hpp",
@@ -34,7 +29,7 @@ test("observed source inventory binds full solver tree and reviewed adapter/CMak
 });
 
 test("reference inventory binds seven frozen references and sixteen exact candidate sources", () => {
-  const records = referenceSnapshot(optionBCircularAdmission);
+  const records = referenceSnapshot();
   assert.equal(records.length, 23);
   assert.equal(records.filter((record) => record.id.startsWith("candidate-source:")).length, 16);
   assert.equal(new Set(records.map((record) => record.path)).size, 23);

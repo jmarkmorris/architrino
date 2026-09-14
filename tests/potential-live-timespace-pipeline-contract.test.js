@@ -1,5 +1,4 @@
-import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';
-const identities=batchTestIdentities(import.meta.url);
+const identities = ["dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"];
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";

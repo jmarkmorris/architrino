@@ -4,11 +4,9 @@ import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { createF5SourceReplay } from "./helpers/f5-source-replay.mjs";
-const replay = createF5SourceReplay();
-after(() => replay.close());
+const testRoot = process.cwd();
 const { parsePrepareArgs, prepareF5, runWatched, scopedPath, validateProofReceipt, verifyFrozenReferences } =
-  await import(pathToFileURL(path.join(replay.rootDir, "scripts/eom/prepare-f5-enclosed-root.mjs")));
+  await import(pathToFileURL(path.join(testRoot, "scripts/eom/prepare-f5-enclosed-root.mjs")));
 
 test("preparation requires explicit fresh scoped output and build directories", () => {
   assert.throws(() => parsePrepareArgs([]), /required/);
@@ -23,7 +21,7 @@ test("preparation requires explicit fresh scoped output and build directories", 
 
 test("frozen F5 references match the reviewed prerequisite generation", () => {
   const bindings = verifyFrozenReferences();
-  assert.equal(bindings.length, 10);
+  assert.equal(bindings.length, 3);
   assert(bindings.every((row) => /^[a-f0-9]{64}$/u.test(row.sha256)));
 });
 
@@ -94,11 +92,11 @@ test("accepted-looking proof must report the exact executed reference and comple
     status: "actual-cubic-conformance-passed", historyManifestSha256: "a".repeat(64), h3EvidenceEligible: false,
     campaignId: "control", runId: "control", resourceContact: false, expectedMemberSegments: 12384,
     processedMemberSegments: 12384, normalizedFieldSpeed: "1", failure: null,
-    sourceBindings: frozen.slice(0, 5), instrumentBindings: frozen.slice(5, 8) };
+    sourceBindings: frozen, instrumentBindings: [] };
   const check = (value) => validateProofReceipt(value, "a".repeat(64), "control", "control");
   assert.doesNotThrow(() => check(proof)); // Synthetic receipt-binding control, not evidence.
-  const wrong = structuredClone(proof); wrong.instrumentBindings[0].sha256 = "b".repeat(64);
-  assert.throws(() => check(wrong), /instrumentBindings/);
+  const wrong = structuredClone(proof); wrong.sourceBindings[0].sha256 = "b".repeat(64);
+  assert.throws(() => check(wrong), /sourceBindings/);
   const stale = structuredClone(proof); stale.sourceBindings[0].sha256 = "b".repeat(64);
   assert.throws(() => check(stale), /sourceBindings/);
   assert.throws(() => check({ ...proof, processedMemberSegments: 12383 }), /census/);

@@ -7,14 +7,12 @@ import { closeSync, constants, existsSync, fstatSync, fsyncSync, lstatSync,
   openSync, readSync, realpathSync, statfsSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { Worker } from "node:worker_threads";
+import { Worker, isMainThread } from "node:worker_threads";
 
 const ROOT = process.cwd();
 const SELF = "scripts/eom/launch-f5-prehistory-handoff-build.mjs";
 const ENTRY = "scripts/eom/prepare-f5-prehistory-handoff-build.mjs";
 const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
-const SOURCE_MAP = "reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld";
-const ADMISSION = "scripts/eom/f5-current-source-admission.mjs";
 const absolute = value => path.resolve(ROOT, value);
 const sha = value => createHash("sha256").update(value).digest("hex");
 const check = (ok, reason) => { if (!ok) throw new Error(reason); };
@@ -38,36 +36,8 @@ export function readBound(filename, expected, collect = false) {
     return { path: filename, sha256: digest, bytes: at, ...(collect ? { data: Buffer.concat(chunks) } : {}) };
   } finally { closeSync(fd); }
 }
-// Builtins-only bootstrap remains usable in captured file workers.
-// Bootstrap uses Node builtins only; no repository module runs before selection.
-export async function initializeF5Sources(root, sourceMapSha256, originalIdentities = {}) {
-  if (!/^[a-f0-9]{64}$/u.test(sourceMapSha256 ?? "")) throw Error("externally selected F5 source-map digest required");
-  const capture = (filename, expected) => {
-    if (f5Fs.realpathSync(filename) !== filename) throw Error("canonical F5 bootstrap source required");
-    const fd = f5Fs.openSync(filename, f5Fs.constants.O_RDONLY | f5Fs.constants.O_NOFOLLOW | f5Fs.constants.O_NONBLOCK);
-    try {
-      const before = f5Fs.fstatSync(fd, {bigint:true});
-      const identity = s => [s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(":");
-      if (!before.isFile() || before.size <= 0n || before.size > 1024n**2n) throw Error("bounded F5 bootstrap source");
-      const data = f5Fs.readFileSync(fd), sha256 = f5Crypto.createHash("sha256").update(data).digest("hex");
-      if (sha256 !== expected || identity(before) !== identity(f5Fs.fstatSync(fd,{bigint:true})) || identity(before) !== identity(f5Fs.lstatSync(filename,{bigint:true}))) throw Error("F5 bootstrap source digest/original identity changed");
-      if (Object.hasOwn(originalIdentities,filename) && originalIdentities[filename] !== identity(before)) throw Error("F5 original bootstrap identity changed");
-      return {data,identity:identity(before),path:filename};
-    } finally {f5Fs.closeSync(fd);}
-  };
-  const mapPath = path.join(root,"reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld");
-  const map = capture(mapPath,sourceMapSha256), admissionPath = "scripts/eom/f5-current-source-admission.mjs";
-  const rows = JSON.parse(map.data)["@graph"]?.filter(r=>r.role==="admission"&&r.binding?.path===admissionPath);
-  if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
-  const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
-  const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
-  return module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
-}
-export async function selectedBuildOperation(job) {
-  const a = await initializeF5Sources(job.root, job.sourceMapSha256, job.identities);
-  a.recheck();
-  const result = job.kind === "finalize" ? finalizeBuild(job) : admitBuild({...job, selectedSourceMap: a.sourceMap});
-  a.recheck(); return result;
+export async function runBuildOperation(job) {
+  return job.kind === "finalize" ? finalizeBuild(job) : admitBuild(job);
 }
 export function writeNew(filename, value) {
   const data = Buffer.from(JSON.stringify(value)+"\n"), fd = openSync(filename, "wx");
@@ -114,7 +84,6 @@ export function admitBuild(job) {
     receipt.status === completion.status && receipt.accepted === false && receipt.rootCalls === 0 &&
     receipt.dataLoaded === false && receipt.eomExecuted === false && receipt.evolutionAuthorized === false &&
     receipt.h3EvidenceEligible === false, "build authority differs");
-  if (job.selectedSourceMap) check(same(receipt.sourceMap, job.selectedSourceMap), "build receipt source-map selection differs");
   check(same(receipt.sourcesBefore, receipt.sourcesAfter), "authored source generation differs");
   check(receipt.stages.length === job.gates.length && receipt.stages.length > 0, "build gate census differs");
   receipt.stages.forEach((stage, index) => {
@@ -151,9 +120,9 @@ export function finalizeBuild(job) {
 async function workerAdmission(job, bytes, limitMs, signal) {
   check(Number.isInteger(limitMs) && limitMs > 0 && limitMs <= 1800000, "positive remaining worker budget required");
   const worker = new Worker(`const {parentPort,workerData}=require('node:worker_threads');
-    import('data:text/javascript;base64,'+Buffer.from(workerData.bytes).toString('base64')).then(m=>m.selectedBuildOperation(workerData.job))
+    import(require('node:url').pathToFileURL(workerData.file).href).then(m=>m.runBuildOperation(workerData.job))
     .then(value=>parentPort.postMessage({value})).catch(e=>parentPort.postMessage({failure:e.message}));`,
-  { eval: true, execArgv: [], workerData: { job, bytes } });
+  { eval: true, execArgv: [], workerData: { job, file: fileURLToPath(import.meta.url) } });
   let timer, listener;
   try { return await new Promise((resolve, reject) => {
     listener = () => reject(signal.reason ?? new Error("build admission interrupted"));
@@ -164,21 +133,16 @@ async function workerAdmission(job, bytes, limitMs, signal) {
   }); } finally { await worker.terminate(); clearTimeout(timer); signal.removeEventListener("abort", listener); }
 }
 export async function launch(argv) {
-  check(argv.length === 8 && argv[6] === "--source-map-sha256" && /^[a-f0-9]{64}$/u.test(argv[7] ?? "") && argv[0] === "--out" && argv[2] === "--python" && argv[4] === "--launcher-sha256" &&
-    /^[a-f0-9]{64}$/u.test(argv[5]) && path.isAbsolute(argv[3]), "expected --out NEW-RUN --python ABSOLUTE-PYTHON --launcher-sha256 SHA");
+  check(argv.length === 4 && argv[0] === "--out" && argv[2] === "--python" && path.isAbsolute(argv[3]), "expected --out NEW-RUN --python ABSOLUTE-PYTHON");
   const started = performance.now(), deadlineNanoseconds = process.hrtime.bigint()+1800000000000n, output = absolute(argv[1]);
   check(output.startsWith(absolute(".local-data/braid-analysis/f5-prehistory-handoff-build-20260827/")+path.sep) &&
     !argv[1].split("/").some(x => x === ".." || x === ".") && !existsSync(output) && !existsSync(output+"-outer"), "exclusive build lane required");
   let ancestor = path.dirname(output);
   while (!existsSync(ancestor)) ancestor = path.dirname(ancestor);
   check(realpathSync(ancestor) === ancestor, "symlinked build ancestor");
-  const admission = await initializeF5Sources(realpathSync(ROOT), argv[7]);
-  check(admission.pins[SELF] === argv[5], "launcher/map selection differs");
-  const self = readBound(SELF, argv[5], true), captures = admission.sources.map(b => readBound(b.path, b.sha256, true));
-  admission.recheck();
-  const selectedJob = job => ({...job, root: admission.root, sourceMapSha256: argv[7], identities: admission.identities});
-  const outerBytes = captures.find(x => x.path === absolute(OUTER)).data;
-  const outer = await import("data:text/javascript;base64,"+outerBytes.toString("base64"));
+  const self = readBound(SELF, undefined, true), captures = [SELF, ENTRY, OUTER].map(p => readBound(p, undefined, true));
+  const selectedJob = job => ({ ...job, root: ROOT });
+  const outer = await import("./launch-subfield-circular-root-pilot.mjs");
   const table = await outer.processTable();
   check(table.filter(x => path.basename(x.command) === "eom_subfield_circular_root_cli").length <= 2, "wait for at most two subfield-circular EOM workers");
   let resourceFailure, timer, inFlight, receipt, finalizing = false;
@@ -202,7 +166,7 @@ export async function launch(argv) {
   process.on("SIGINT", interrupt); process.on("SIGTERM", interrupt);
   try {
     const running = outer.superviseRegisteredPilot({ root: ROOT, entry: ENTRY,
-      args: ["--out", argv[1], "--python", argv[3], "--builder-sha256", admission.pins[ENTRY], "--source-map-sha256", argv[7], "--source-identities", JSON.stringify(admission.identities)],
+      args: ["--out", argv[1], "--python", argv[3]],
       sources, output: output+"-outer", startedAtMs: started, limitMs: 1800000, heartbeatMs: 15000,
       inspectProcesses: startupAbortInspection(outer.processTable, finalAbort.signal),
       admit: async ({ receipt, remainingMs, signal }) => {
@@ -218,8 +182,7 @@ export async function launch(argv) {
     receipt = await running;
     finalizing = true; if (inFlight) await inFlight;
     await observe(false); check(!resourceFailure, "resource supervision failed");
-    admission.recheck();
-    receipt.sourceMap = admission.sourceMap;
+
     receipt.buildLaunchScope = "captured-executing-builder-and-helpers; independently registered cancellable child groups; build only";
     receipt.operationalSourceBindings = [self, ...captures].map(({ path, sha256, bytes }) => ({ path, sha256, bytes }));
     receipt.resourceObservationsBeforePublication = [...observations];
@@ -233,7 +196,7 @@ export async function launch(argv) {
     await observe(false);
     check(!resourceFailure && !finalAbort.signal.aborted, "final resource observation or interruption rejects build");
     check(performance.now()-started < 1800000, "inclusive final deadline");
-    admission.recheck();
+
     console.log(JSON.stringify({ completed: true, accepted: true, authority: "build-process-admission-only",
       receipt: publication, resourceObservations: [...observations], elapsedSeconds: (performance.now()-started)/1000,
       h3EvidenceEligible: false, eomExecuted: false }));
@@ -249,5 +212,5 @@ export async function launch(argv) {
   check(performance.now()-started < 1800000 && !resourceFailure && !finalAbort.signal.aborted,
     "final watch teardown rejects build admission");
 }
-if (import.meta.url.startsWith("file:") && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
+if (isMainThread && import.meta.url.startsWith("file:") && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
   launch(process.argv.slice(2)).catch(error => { console.error(error.message); process.exitCode = 1; });

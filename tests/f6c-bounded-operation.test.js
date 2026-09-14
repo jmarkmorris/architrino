@@ -1,5 +1,3 @@
-import {batchTestIdentities} from '../scripts/equation-mapping/batch-test-records.mjs';
-const identities=batchTestIdentities(import.meta.url);
 // Tiny inert controls only: no registered subprocesses or numerical dispatch.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -133,7 +131,7 @@ test('production entries reject absent or invented actual lifetime before any wo
 });
 
 test('direct CLI has exact flags, absolute plan and explicit hashes',()=>{
-  assert.deepEqual(C.parseArguments(['--plan','/private/tmp/plan.json','--plan-sha256','a'.repeat(64),'--self-sha256','b'.repeat(64),'--source-map-sha256','c'.repeat(64)]),{planPath:'/private/tmp/plan.json',planSha256:'a'.repeat(64),selfSha256:'b'.repeat(64),sourceMapSha256:'c'.repeat(64)});
+  assert.deepEqual(C.parseArguments(['--plan','/private/tmp/plan.json','--plan-sha256','a'.repeat(64),'--self-sha256','b'.repeat(64)]),{planPath:'/private/tmp/plan.json',planSha256:'a'.repeat(64),selfSha256:'b'.repeat(64)});
   for(const args of [[],['--help'],['--plan','relative','--plan-sha256','a'.repeat(64),'--self-sha256','b'.repeat(64)],['--plan','/tmp/p','--plan-sha256','bad','--self-sha256','b'.repeat(64)]])assert.throws(()=>C.parseArguments(args));
 });
 
@@ -268,7 +266,7 @@ test('fixed control profile contracts every nested cutoff without altering scien
 test('finite control CLI accepts no arbitrary duration or mixed-mode fallback',()=>{
   const parse=runInNewContext(fragment('function parseWholeArguments(', '\nasync function wholeAttemptMain')+'\nparseWholeArguments',
     {parseArguments:C.parseArguments,absolute:()=>{},hashToken:h=>assert.match(h,/^[a-f0-9]{64}$/u),check:checked});
-  const fixed=['--control-plan','/fixture/plan.json','--plan-sha256','a'.repeat(64),'--self-sha256','b'.repeat(64),'--source-map-sha256','c'.repeat(64)];
+  const fixed=['--control-plan','/fixture/plan.json','--plan-sha256','a'.repeat(64),'--self-sha256','b'.repeat(64)];
   const parsed=parse(fixed);assert.equal(parsed.mode,'plan');assert.equal(parsed.control,true);assert.equal(parsed.planPath,'/fixture/plan.json');
   for(const bad of [fixed.slice(0,-1),[...fixed,'--duration','120'],['--control-plan=120',...fixed.slice(1)],['--plan',...fixed.slice(1),'--control-plan'],['--control-plan','--streamed',...fixed.slice(2)]])assert.throws(()=>parse(bad));
   const main=fragment('async function wholeAttemptMain(){','\nif(process.argv[1]');
@@ -302,7 +300,7 @@ test('scoped stderr charges outward copies and waits for actual callbacks',()=>{
 test('verified empty output log has an identity without becoming a positive-byte source',()=>{
   const helper=runInNewContext(fragment('function validatePublicationIdentity(', '\nfunction rememberPublication')+'\ncapturedOutputIdentities',
     {check:checked,keys:exactKeys,absolute:p=>assert.equal(p,'/fixture/runner-stderr.log'),hashToken:h=>assert.match(h,/^[a-f0-9]{64}$/u),LIMITS:C.LIMITS});
-  const row={path:'/fixture/runner-stderr.log',sha256:identities[0],bytes:0,identity:'7:11:0:31:37'};
+  const row={path:'/fixture/runner-stderr.log',sha256:digest(Buffer.alloc(0)),bytes:0,identity:'7:11:0:31:37'};
   assert.equal(helper([row])[row.path],'7:11:0:31:37');assert.throws(()=>C.originalIdentities([row]),/source binding/u);
   for(const bad of [{...row,bytes:-1},{...row,bytes:false},{...row,identity:'7:11:1:31:37'},{...row,sha256:'bad'}])assert.throws(()=>helper([bad]));
   assert.throws(()=>helper([row,row]),/duplicate/u);
@@ -404,6 +402,6 @@ test('combined path reserve precedes initial logs, publication and registered lo
   assert.ok(registered.indexOf('two registered log paths fit combined allowance')<registered.indexOf('s.outer.superviseRegisteredPilot'));
   for(const prior of [510,511,512])assert.equal(prior+2<=512,prior===510);
   const worker=fragment('function lifetimeFileWorker(', '\nasync function lifetimeRegistered');
-  assert.match(worker,/runFileWorker\(\{\.\.\.job,\.\.\.\(s\.mode==='plan'\?s\.sourceAdmission:\{\}\),deadlineNanoseconds:s\.deadlineNanoseconds,priorContext:s\.priorContext\}/u);
+  assert.match(worker,/runFileWorker\(\{\.\.\.job,root:s\.root,deadlineNanoseconds:s\.deadlineNanoseconds,priorContext:s\.priorContext\}/u);
   assert.match(fragment('export async function fileOperation(', '\n// PRIVATE SOURCE CANDIDATE'),/outputCensus\(job\.plan,new Map\(\),job\.priorContext\)/u);
 });

@@ -1,7 +1,0 @@
-{
-  "schema": "current-source-acceptance-selection/v1",
-  "acceptedBaseline": "reference/priorities/development-process-review/contracts/option-b-five-profile-batch-test-accepted-b.json",
-  "acceptedBaselineSha256": "3cc7385bcfcdf4e5fb0d59b5ce46f3e37c35eb9a501444c722d8efc70236f149",
-  "transition": "reference/priorities/development-process-review/contracts/option-b-five-profile-batch-test-transition.json",
-  "transitionSha256": "feb957da6a841db4a7d71b25be2c39d4673f67f447da2eca659568c27a4d4906"
-}

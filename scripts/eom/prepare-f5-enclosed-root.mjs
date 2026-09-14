@@ -1,5 +1,3 @@
-import { productionIdentities } from "../equation-mapping/production-source-records.mjs";
-const OPTION_B_PRODUCTION_IDENTITIES = productionIdentities(import.meta.url);
 // Subject-side orchestration only. Mathematical acceptance is delegated to the
 // separately authored, byte-frozen F5 manifest oracle; this file is not an oracle.
 import { spawn } from "node:child_process";
@@ -17,16 +15,9 @@ const BUILD_BASE = ".tmp/";
 const SELF = "scripts/eom/prepare-f5-enclosed-root.mjs";
 const TARGET = "eom_f5_enclosed_root_cli";
 const FROZEN = Object.freeze({
-  "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json": OPTION_B_PRODUCTION_IDENTITIES[0],
-  "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json": OPTION_B_PRODUCTION_IDENTITIES[1],
-  "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md": OPTION_B_PRODUCTION_IDENTITIES[2],
-  "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md": OPTION_B_PRODUCTION_IDENTITIES[3],
-  ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json": OPTION_B_PRODUCTION_IDENTITIES[4],
-  "scripts/eom/oracle/decimal_interval.py": OPTION_B_PRODUCTION_IDENTITIES[5],
-  "scripts/eom/oracle/f5_actual_cubic_conformance.py": OPTION_B_PRODUCTION_IDENTITIES[6],
-  "scripts/eom/oracle/f5_history_manifest_conformance.py": OPTION_B_PRODUCTION_IDENTITIES[7],
-  "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs": OPTION_B_PRODUCTION_IDENTITIES[8],
-  "scripts/eom/reduce-f5-enclosed-root-ledger.mjs": OPTION_B_PRODUCTION_IDENTITIES[9],
+  "tests/fixtures/f5-history/approved-config.json": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+  "tests/fixtures/f5-history/pilot-fixture.json": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
+  "tests/fixtures/f5-history/accepted-enclosure-report.json": "2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9",
 });
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const binding = (relative) => ({ path: relative, sha256: sha(readFileSync(path.join(ROOT, relative))) });
@@ -44,20 +35,12 @@ export function scopedPath(value, prefix) {
   return absolute;
 }
 
-export function verifyFrozenReferences(admission) {
-  const records = Object.entries(FROZEN).map(([relative, expected]) => {
+export function verifyFrozenReferences() {
+  return Object.entries(FROZEN).map(([relative, expected]) => {
     const actual = binding(relative);
-    if (actual.sha256 !== expected) {
-      if(!admission?.productionSourcePair)throw new Error(`frozen reference drift: ${relative}`);
-      const pair=admission.productionSourcePair(relative,expected);
-      if(sha(Buffer.from(pair.original))!==expected || sha(Buffer.from(pair.current))!==actual.sha256)throw new Error(`frozen reference drift: ${relative}`);
-      // These rows describe the retained preparation's original applicability.
-      // Current execution identities are carried separately by sourceMap.
-      return {path:relative,sha256:expected};
-    }
+    if (actual.sha256 !== expected) throw new Error(`frozen reference drift: ${relative}`);
     return actual;
   });
-  return records;
 }
 
 export function validateProofReceipt(proof, manifestSha256, campaignId, runId) {
@@ -70,8 +53,8 @@ export function validateProofReceipt(proof, manifestSha256, campaignId, runId) {
     throw new Error("independent nominal-history receipt has incomplete identity, census, or acceptance");
   }
   const all = Object.entries(FROZEN);
-  const sources = all.slice(0, 5), instruments = all.slice(5, 8);
-  for (const [field, expected] of [["sourceBindings", sources], ["instrumentBindings", instruments]]) {
+  const sources = all;
+  for (const [field, expected] of [["sourceBindings", sources]]) {
     const rows = proof[field];
     if (!Array.isArray(rows) || rows.length !== expected.length ||
         new Set(rows.map((row) => row.path)).size !== expected.length ||

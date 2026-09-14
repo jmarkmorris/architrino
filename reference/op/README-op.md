@@ -21,6 +21,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Efficiency
 
+- [*] Run only agreed testing under the [testing philosophy and process](testing-regime.md); require concrete value, timing, trigger and blocking-status agreement before adding or expanding regular local or PR checks.
 - [*] Complete larger connected development batches per turn, including routine dependent repairs and validation, instead of returning after each small step (operator direction, 2026-09-07).
 - [*] Keep substantial sessions centered on one core geometrical closure target before app, prose, presentation, or infrastructure work.
 - [*] Start each substantial session with one closure objective, likely files in scope, and a definition of done.

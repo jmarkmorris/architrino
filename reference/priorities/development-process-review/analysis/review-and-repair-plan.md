@@ -8,7 +8,7 @@ Legend: ✓ Done, ◐ Partial, ○ Not done. Blocked names a missing prerequisit
 
 The [cross-report assessment](cross-report-findings.md#independently-inspected-findings) traces one concrete mismatch: the enclosure document changed while its test still required the earlier bytes. That establishes a broken binding for that document and test; it does not identify every session's first failure or prove that the mathematical content became incorrect. Recovery must distinguish original scientific evidence, reviewed current dependencies, and incomplete execution-interface migrations before changing an expected hash.
 
-The [consequential repair audit](consequential-repair-audit.md) and [source recovery](source-recovery-and-binding-repair.md) preserve the attribution and reconstructed authored source generations. Current execution capabilities remain separate from the inputs of a historical claim.
+The [consequential repair audit](consequential-repair-audit.md) and source recovery (retired migration record) preserve the attribution and reconstructed authored source generations. Current execution capabilities remain separate from the inputs of a historical claim.
 
 ## Priority and execution order
 
@@ -16,7 +16,7 @@ This campaign's plan ends at step 5. Steps 6–9 have been removed at the operat
 
 | Original step | Current status | Recovery responsibility and completion boundary |
 | --- | --- | --- |
-| 1 | ◐ Partial — Blocked on three original utilities and unavailable incident evidence | Preserve original logs, source bytes, diagnostic instruments and failed-run identities; identify unavailable evidence explicitly. The [source recovery](source-recovery-and-binding-repair.md) retains recovered bytes and exact missing identities. |
+| 1 | ◐ Partial — Blocked on three original utilities and unavailable incident evidence | Preserve original logs, source bytes, diagnostic instruments and failed-run identities; identify unavailable evidence explicitly. The source recovery (retired migration record) retains recovered bytes and exact missing identities. |
 | 2 | ✓ Done for the completed publication; further publication is Deferred to its separate owner | Publication coordination belongs in the [operations guide](../processes-git-codex-claude.md). The designated runner reported verified publication of `6c92ae51ce907e3c7c3cbef1fff1e3f83e901118`; this resumed batch requests no Git publication. |
 | 3A | ◐ Partial — current cleanup repairs verified; historical lost-supervisor cause unresolved | Establish bounded process cleanup with independent observations. The [investigation](first-process-investigation.md), [repair validation](process-repair-validation.md), and recurrence record below retain the scoped results. |
 | 3B | ✓ Done for the consequential-edit audit | The [audit](consequential-repair-audit.md) locates the inspected mismatching transitions and preserves attribution limits; its remaining repairs belong to steps 4–5. |
@@ -27,7 +27,7 @@ This campaign's plan ends at step 5. Steps 6–9 have been removed at the operat
 
 The one-cell root-cover, full-root-cover and prescribed-response input reviews record their own validation and limitations. Authored scientific source transport must preserve original identity independently of its physical storage path.
 
-The [acceleration interface](acceleration-current-migration.md) now passes current-plan authentication, both synthetic execution stages, negative controls and bounded process controls while preserving its numerical subject and independent verifier bytes. The [emission current interface](emission-current-migration.md) also passes its scoped transport controls. Refined new-run transport, the circular ladder contract, and broader numerical acceptance retain separate obligations; the current reconciliation below supersedes the [caller audit](shared-helper-caller-audit.md) baseline where a migration has completed. Operational closure alone does not establish scientific acceptance. No capability is retired merely because its present dependency selection fails.
+The acceleration interface (retired migration record) now passes current-plan authentication, both synthetic execution stages, negative controls and bounded process controls while preserving its numerical subject and independent verifier bytes. The emission current interface (retired migration record) also passes its scoped transport controls. Refined new-run transport, the circular ladder contract, and broader numerical acceptance retain separate obligations; the current reconciliation below supersedes the [caller audit](shared-helper-caller-audit.md) baseline where a migration has completed. Operational closure alone does not establish scientific acceptance. No capability is retired merely because its present dependency selection fails.
 
 For each repair, retain the original failure, validate the corrected behavior, and keep an independent or meaningful negative control that rejects the wrong behavior. An excluded test needs a reason, owner and revisit condition; it is not a repaired test. Do not refresh scientific pins to obtain agreement without reviewing the obligation they enforce.
 

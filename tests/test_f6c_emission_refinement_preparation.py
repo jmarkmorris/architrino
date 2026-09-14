@@ -1,6 +1,4 @@
 """Synthetic controls only: no original F6c data or real campaign is loaded."""
-from option_b_synthetic_production import synthetic_capture
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 from contextlib import contextmanager, ExitStack, redirect_stdout, redirect_stderr
 from decimal import Decimal, localcontext, getcontext
 from fractions import Fraction as F
@@ -21,7 +19,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 PATH = ROOT/"scripts/eom/prepare-f6c-emission-refinement.py"
 spec = importlib.util.spec_from_file_location("emission_subject_controls", PATH)
-p = importlib.util.module_from_spec(spec); sys.modules[spec.name] = p; _option_b_exec_module(__file__, spec, p)
+p = importlib.util.module_from_spec(spec); sys.modules[spec.name] = p; spec.loader.exec_module(p)
 
 
 class Box:
@@ -56,16 +54,16 @@ def valid_plan():
     def b(path, digest="1"*64): return dict(path=path, sha256=digest, bytes=1)
     named = dict(producer=b(p.SELF), producerControls=b(p.CONTROLS),
         verifier=b(p.VERIFIER), verifierControls=b(p.VERIFIER_CONTROLS),
-        declaration=b(p.DECLARATION,p.DECLARATION_SHA),
-        comparisonReference=b(p.COMPARISON,p.COMPARISON_SHA),
-        comparisonReferenceControls=b(p.COMPARISON_CONTROLS,p.COMPARISON_CONTROLS_SHA))
+        declaration=b(p.DECLARATION,('a'*64)),
+        comparisonReference=b(p.COMPARISON,('a'*64)),
+        comparisonReferenceControls=b(p.COMPARISON_CONTROLS,('a'*64)))
     return dict(schema=p.PLAN_SCHEMA, scope=p.SCOPE, **named,
         subjectSourceBindings=[b(k,h) for k,h in p.EXTRA]+[named["producer"],named["producerControls"]],
         runtimeBindings=[b("/synthetic/python")],
         operationalBindings=[b(k,p.OP_PINS.get(k,"1"*64)) for k in p.OPERATIONS]+[b("/synthetic/node")],
         limits=copy.deepcopy(p.LIMITS),
         priorCoverClosure=dict(authority="externally-reviewed-caller-observation",
-            ownerSha256=dict((k,h) for k,_,h in p.FIXED)["priorClosureOwner"],
+
             admissionSha256=dict((k,h) for k,_,h in p.FIXED)["admission"],
             matchingFreshCompletionObserved=True,exitCode=0,elapsedSeconds="8.534247625",
             processesClosed=True,independentAuditAccepted=True))
@@ -75,7 +73,7 @@ class Controls(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.stack = ExitStack()
-        source = cls.stack.enter_context(p._production_capture(p.BoundFile,ROOT/p.HELPER,p.HELPER_SHA,collect=True))
+        source = cls.stack.enter_context(p.BoundFile(ROOT/p.HELPER,('a'*64),collect=True))
         cls.helper = cls.stack.enter_context(p.captured_helper(source))
     @classmethod
     def tearDownClass(cls): cls.stack.close()
@@ -222,14 +220,14 @@ class Controls(unittest.TestCase):
             with self.assertRaises(OSError):p.BoundFile(link,p.sha(b"modified")).__enter__()
 
     def test_helper_uses_captured_bytes_not_sysmodule_alias(self):
-        with p._production_capture(p.BoundFile,ROOT/p.HELPER,p.HELPER_SHA,collect=True) as source:
+        with p.BoundFile(ROOT/p.HELPER,('a'*64),collect=True) as source:
             with p.captured_helper(source) as helper:
                 self.assertIsNot(helper,self.helper)
                 name=helper.__name__;self.assertIn(name,sys.modules)
             self.assertNotIn(name,sys.modules)
 
     def test_changed_helper_bytes_rejected(self):
-        source=NS(expected=p.HELPER_SHA,data=b"raise RuntimeError('wrong')",path=PATH)
+        source=NS(expected=('a'*64),data=b"raise RuntimeError('wrong')",path=PATH)
         with self.assertRaises(ValueError):
             with p.captured_helper(source):pass
 
@@ -404,7 +402,7 @@ class Controls(unittest.TestCase):
             fixture_paths.update(str(ROOT/v['path']) for v in plan.values() if isinstance(v,dict) and 'path' in v)
             fixture_paths.update(str(ROOT/v['path']) for key in ('runtimeBindings','operationalBindings','subjectSourceBindings') for v in plan[key])
             fixture_paths.update(str(output/name) for name in ('queries.ndjson','rows.ndjson','pieces.ndjson','cover-manifest.json'))
-            with synthetic_capture(p,FixtureBound,fixture_paths),patch.object(p,"BoundFile",FixtureBound),patch.object(p,"captured_helper",captured),\
+            with patch.object(p,"BoundFile",FixtureBound),patch.object(p,"captured_helper",captured),\
                  patch.object(p,"authenticate_prior"),patch.object(p,"check_output"),\
                  patch.object(p,"propose",proposal),patch.object(p,"emit_cover",cover),\
                  patch.object(p,"admit_completion",completion),redirect_stdout(stdout),redirect_stderr(stderr):

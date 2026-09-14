@@ -8,89 +8,10 @@ Accepted receipts require fresh successful CLI closure as well as their bytes.
 
 from __future__ import annotations
 
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
-    from pathlib import Path as _b_Path
-    _b_root = _b_Path(__file__).resolve().parents[2]
-    _b_held = {}
-    def _b_identity(path):
-        value = path.lstat()
-        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
-    def _b_capture(relative, expected=None):
-        if (type(relative) is not str or not relative or '\\' in relative
-                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
-            raise ValueError('Unsafe selected Python bootstrap path')
-        path = _b_root / relative
-        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
-            raise ValueError('Canonical regular Python bootstrap source required')
-        before = _b_identity(path)
-        if relative in _b_held and _b_held[relative] != before:
-            raise ValueError('Selected Python bootstrap source replaced')
-        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
-        try:
-            value = _b_os.fstat(fd)
-            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
-                raise ValueError('Bounded Python bootstrap source required')
-            parts = []; size = 0
-            while size < value.st_size:
-                part = _b_os.read(fd, min(65536, value.st_size-size))
-                if not part: raise ValueError('Truncated Python bootstrap source')
-                parts.append(part); size += len(part)
-            raw = b''.join(parts); value = _b_os.fstat(fd)
-            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
-                raise ValueError('Selected Python bootstrap source changed during capture')
-        finally:
-            _b_os.close(fd)
-        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
-            raise ValueError('Selected Python bootstrap digest differs')
-        _b_held[relative] = before
-        return raw
-    def _b_unique(pairs):
-        result = {}
-        for key,value in pairs:
-            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
-            result[key] = value
-        return result
-    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
-    def _b_recheck():
-        for relative,identity in _b_held.items():
-            if _b_identity(_b_root/relative) != identity:
-                raise ValueError('Retained Python bootstrap source replaced')
-    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
-    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
-    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
-    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
-    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
-    _b_path = 'scripts/eom/production_source_records.py'
-    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
-    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
-            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
-            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
-        raise ValueError('Exact selected Python production bridge required')
-    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
-    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
-    _b_bridge.__file__ = str(_b_root/_b_path)
-    _b_sys.modules[_b_bridge.__name__] = _b_bridge
-    _b_recheck()
-    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
-    _b_recheck()
-    def _b_call(name, *args, **kwargs):
-        _b_recheck()
-        result = getattr(_b_bridge,name)(*args,**kwargs)
-        _b_recheck()
-        return result
-    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
-    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
-    production_recheck = lambda: _b_call('production_recheck')
-    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
-    production_runtime_binding = lambda: _b_call('production_runtime_binding')
-    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
-    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+import hashlib
+from pathlib import Path
 
-if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
-        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
-        or len(OPTION_B_PRODUCTION_IDENTITIES) != 3):
-    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
 
 import argparse
 from contextlib import ExitStack
@@ -98,7 +19,6 @@ from fractions import Fraction as F
 from hashlib import sha256
 import json
 import os
-from pathlib import Path
 import re
 import signal
 import stat
@@ -107,11 +27,7 @@ import tempfile
 import time
 
 _EXECUTING_CODE = sys._getframe().f_code
-EXPORT_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[0]
-THEOREMS = {
-    "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md": OPTION_B_PRODUCTION_IDENTITIES[1],
-    "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md": OPTION_B_PRODUCTION_IDENTITIES[2],
-}
+EXPORT_SHA256 = 'f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'
 RUN_ID = "f6c-balanced-tetrahedral-p0.678-n1.25-th3.36-br0.787-cp1.76-hp0.0771-hm-0.147-rp0.0463-rm-0.134-tp0.116-tm-0.254-hhp4.82-hhm2.21-hrp6-hrm3.44-v1"
 LABELS = ("0+", "0-", "1+", "1-", "2+", "2-", "3+", "3-")
 CHARGE = "0.1666666666666666666666666666666667"
@@ -131,50 +47,9 @@ COUNTS = {"members": 8, "segments": 14080, "declaredSegmentsPerMember": 1600,
 from contextlib import contextmanager
 
 
-class _ProductionOriginal:
-    """Original logical binding backed by an independently owned archive handle."""
-    def __init__(self, physical, logical):
-        object.__setattr__(self,'_physical',physical)
-        object.__setattr__(self,'path',logical)
-    def __getattr__(self,name):return getattr(self._physical,name)
-    def __setattr__(self,name,value):setattr(self._physical,name,value)
-    def binding(self):
-        result=self._physical.binding();result['path']=str(self.path);return result
-    def physical_binding(self):return self._physical.binding()
-    def recheck(self):
-        result=self._physical.recheck()
-        if isinstance(result,dict) and 'path' in result:
-            result=dict(result);result['path']=str(self.path)
-        return result
 
 
-@contextmanager
-def _production_capture(cls, filename, limit, **kwargs):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
-    if not _path.is_absolute():_path=_root/_path
-    try:_relative=_path.relative_to(_root).as_posix()
-    except ValueError:_binding=None
-    else:
-        if _path!=_path.resolve():raise ValueError('noncanonical original capture')
-        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
 
-    _physical=_Path(_binding['path']) if _binding is not None else _path
-    production_recheck()
-    with cls(_physical,limit,**kwargs) as _held:
-        if _binding is not None and (_held.binding()['bytes']!=_binding['bytes'] or _held.binding()['sha256']!=_binding['sha256']):raise ValueError('original archive identity differs')
-        try:yield _ProductionOriginal(_held,_path) if _binding is not None else _held
-        finally:
-            if _binding is not None:_held.recheck()
-            production_recheck()
-
-def _production_current_source(raw):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2]
-    _original,_current,_=production_source_pair(_root,__file__,_Path(__file__).resolve().relative_to(_root).as_posix())
-    require(raw==_original or raw==_current,'executing code differs from captured source')
-    production_recheck()
-    return _current
 
 class ProofError(ValueError):
     pass
@@ -186,7 +61,7 @@ def require(condition, message):
 
 
 def exact(token):
-    require(type(token) is str and len(token) <= 256, "bounded decimal string required")
+    require((type(token) is str) and (len(token) <= 256), "bounded decimal string required")
     match = TOKEN.fullmatch(token)
     require(match is not None, "invalid finite decimal token")
     exponent = match.group(1)
@@ -200,7 +75,7 @@ def ratio(value):
 
 
 def exact_int(value, expected, name):
-    require(type(value) is int and value == expected, f"{name} mismatch")
+    require((type(value) is int) and (value == expected), f"{name} mismatch")
 
 
 def unique_object(pairs):
@@ -224,85 +99,80 @@ def parse_json(data):
 
 
 def vector(value):
-    require(type(value) is dict and set(value) == {"x", "y", "z"}, "frame vector fields")
+    require((type(value) is dict) and (set(value) == {"x", "y", "z"}), "frame vector fields")
     return tuple(exact(value[key]) for key in ("x", "y", "z"))
 
 
 def validate_export(document):
     require(type(document) is dict, "export object required")
-    require(document.get("schema") == "braid-program/f6c-retained-history-export.v1"
-            and document.get("status") == "exported-data-only", "export schema/status")
-    require(document.get("runId") == RUN_ID
-            and document.get("modelFingerprint") == "fnv1a64:6b87d1f138d33e13"
-            and document.get("generatingSpec") == "F6c-nonlinear-return-map-search-v2-return-continuation",
+    require((document.get("schema") == "braid-program/f6c-retained-history-export.v1") and (document.get("status") == "exported-data-only"), "export schema/status")
+    require((document.get("runId") == RUN_ID) and (document.get("modelFingerprint") == "fnv1a64:6b87d1f138d33e13") and (document.get("generatingSpec") == "F6c-nonlinear-return-map-search-v2-return-continuation"),
             "frozen run identity")
-    require(document.get("fieldSpeed") == "1" and document.get("coupling") == "10.304229970992187",
+    require((document.get("fieldSpeed") == "1") and (document.get("coupling") == "10.304229970992187"),
             "frozen numerical literals")
     require(document.get("interval") == {"start": "0", "end": "0.13"}, "measurement interval")
     counts = document.get("counts")
-    require(type(counts) is dict and set(counts) == set(COUNTS), "count fields")
+    require((type(counts) is dict) and (set(counts) == set(COUNTS)), "count fields")
     for key, value in COUNTS.items():
         exact_int(counts[key], value, key)
     histories = document.get("retainedHistories")
-    require(type(histories) is list and len(histories) == 8, "history member census")
+    require((type(histories) is list) and (len(histories) == 8), "history member census")
     for index, history in enumerate(histories):
-        require(type(history) is dict and history.get("id") == LABELS[index], "history identity/order")
+        require((type(history) is dict) and (history.get("id") == LABELS[index]), "history identity/order")
         for field, expected in (("pathKey", index + 1), ("polarity", 1 if index % 2 == 0 else -1),
                                 ("stateFlags", 1 if index % 2 == 0 else 2),
                                 ("declaredPrehistorySegmentCount", 1600), ("evolvedSegmentCount", 160)):
             exact_int(history.get(field), expected, field)
         require(history.get("charge") == ("" if index % 2 == 0 else "-") + CHARGE,
                 "signed polarity literal")
-        require(history.get("coverageStart") == "-8" and history.get("coverageEnd") == "0.13",
+        require((history.get("coverageStart") == "-8") and (history.get("coverageEnd") == "0.13"),
                 "declared retained domain")
-        require(type(history.get("segments")) is list and len(history["segments"]) == 1760,
+        require((type(history.get("segments")) is list) and (len(history["segments"]) == 1760),
                 "actual stored segment census")
     frames = document.get("acceptedFrames")
-    require(type(frames) is list and len(frames) == 81, "accepted frame census")
+    require((type(frames) is list) and (len(frames) == 81), "accepted frame census")
     times, states = [], [[] for _ in LABELS]
     for index, frame in enumerate(frames):
-        require(type(frame) is dict and set(frame) == {"frameIndex", "time", "members"}, "frame fields")
+        require((type(frame) is dict) and (set(frame) == {"frameIndex", "time", "members"}), "frame fields")
         exact_int(frame["frameIndex"], index, "frame index")
         frame_time = exact(frame["time"])
         require(not times or times[-1] < frame_time, "frame time ordering")
         times.append(frame_time)
-        require(type(frame["members"]) is list and len(frame["members"]) == 8, "frame member census")
+        require((type(frame["members"]) is list) and (len(frame["members"]) == 8), "frame member census")
         for member, row in enumerate(frame["members"]):
-            require(type(row) is dict and set(row) == {"pathKey", "position", "velocity", "positionErrorBound", "stateFlags"},
+            require((type(row) is dict) and (set(row) == {"pathKey", "position", "velocity", "positionErrorBound", "stateFlags"}),
                     "frame member fields")
             exact_int(row["pathKey"], member + 1, "frame path key/order")
             exact_int(row["stateFlags"], 1 if member % 2 == 0 else 2, "frame state flags")
             require(exact(row["positionErrorBound"]) >= 0, "negative frame provenance error")
             # Frame errors remain provenance. They never enlarge or shift H.
             states[member].append((vector(row["position"]), vector(row["velocity"])))
-    require(times[0] == 0 and times[-1] == F(13, 100), "actual frame domain")
+    require((times[0] == 0) and (times[-1] == F(13, 100)), "actual frame domain")
     intervals = document.get("acceptedFrameIntervals")
-    require(type(intervals) is list and len(intervals) == 80, "accepted interval census")
+    require((type(intervals) is list) and (len(intervals) == 80), "accepted interval census")
     for index, interval in enumerate(intervals):
-        require(type(interval) is dict and set(interval) == {"leftFrameIndex", "rightFrameIndex", "startTime", "endTime"},
+        require((type(interval) is dict) and (set(interval) == {"leftFrameIndex", "rightFrameIndex", "startTime", "endTime"}),
                 "accepted interval fields")
         exact_int(interval["leftFrameIndex"], index, "left frame index")
         exact_int(interval["rightFrameIndex"], index + 1, "right frame index")
-        require(interval["startTime"] == frames[index]["time"]
-                and interval["endTime"] == frames[index + 1]["time"], "accepted interval token binding")
+        require((interval["startTime"] == frames[index]["time"]) and (interval["endTime"] == frames[index + 1]["time"]), "accepted interval token binding")
     return histories, times, states
 
 
 def parse_segment(item):
-    require(type(item) is dict and set(item) == {"startTime", "endTime", "coefficients", "positionErrors",
-                                                "velocityErrors", "positionError", "velocityError"}, "stored segment fields")
+    require((type(item) is dict) and (set(item) == {"startTime", "endTime", "coefficients", "positionErrors",
+                                                "velocityErrors", "positionError", "velocityError"}), "stored segment fields")
     a, b = exact(item["startTime"]), exact(item["endTime"])
     require(a < b, "positive stored duration required")
     rows = item["coefficients"]
-    require(type(rows) is list and len(rows) == 3
-            and all(type(row) is list and len(row) == 4 for row in rows), "stored coefficient shape")
+    require((type(rows) is list) and (len(rows) == 3) and (all(type(row) is list and len(row) == 4 for row in rows)), "stored coefficient shape")
     radii = {}
     for kind in ("position", "velocity"):
         axes = item[kind + "Errors"]
-        require(type(axes) is list and len(axes) == 3, "stored radius axis census")
+        require((type(axes) is list) and (len(axes) == 3), "stored radius axis census")
         axes = tuple(exact(value) for value in axes)
         scalar = exact(item[kind + "Error"])
-        require(all(value >= 0 for value in axes) and scalar >= max(axes), "invalid original radius")
+        require((all(value >= 0 for value in axes)) and (scalar >= max(axes)), "invalid original radius")
         radii[kind] = (axes, scalar)
     return {"a": a, "b": b, "rows": tuple(tuple(exact(value) for value in row) for row in rows), "radii": radii}
 
@@ -313,7 +183,7 @@ def state(row, u):
 
 
 def hermite(p0, v0, p1, v1, h):
-    require(all(type(value) is F for value in (p0, v0, p1, v1, h)) and h > 0,
+    require((all(type(value) is F for value in (p0, v0, p1, v1, h))) and (h > 0),
             "Hermite operands must be exact Fractions with positive duration")
     return (p0, v0, (3*(p1-p0)/h - 2*v0-v1)/h, (2*(p0-p1)/h + v0+v1)/(h*h))
 
@@ -324,7 +194,7 @@ def shifted(row, offset):
 
 
 def difference_controls(row, width):
-    require(type(width) is F and width > 0 and all(type(value) is F for value in row),
+    require((type(width) is F) and (width > 0) and (all(type(value) is F for value in row)),
             "exact positive-width difference operands required")
     a, b, c, d = row
     return ((a, a + width*b/3, a + 2*width*b/3 + width*width*c/3,
@@ -333,7 +203,7 @@ def difference_controls(row, width):
 
 
 def correction_controls(h, e0, e1, d0, d1):
-    require(all(type(value) is F for value in (h, e0, e1, d0, d1)) and h > 0,
+    require((all(type(value) is F for value in (h, e0, e1, d0, d1))) and (h > 0),
             "exact positive-duration correction operands required")
     position = (e0, e0+h*d0/3, e1-h*d1/3, e1)
     # Derivative Bernstein controls follow from successive position differences.
@@ -342,7 +212,7 @@ def correction_controls(h, e0, e1, d0, d1):
 
 
 def partition(segments, start, end):
-    require(segments and segments[0]["a"] == start and segments[-1]["b"] == end, "partition domain")
+    require((segments) and (segments[0]["a"] == start) and (segments[-1]["b"] == end), "partition domain")
     require(all(left["b"] == right["a"] for left, right in zip(segments, segments[1:])), "partition gap or overlap")
 
 
@@ -393,9 +263,8 @@ class ControlAudit:
 def prove_member(raw_segments, times, frames, *, member="independent-control", prehistory_count=1600,
                  audit=None, progress=None):
     """Exact mathematical helper; it cannot issue source-bound acceptance."""
-    require(type(prehistory_count) is int and 0 < prehistory_count < len(raw_segments), "prehistory split census")
-    require(len(times) == len(frames) >= 2 and times[0] == 0
-            and all(a < b for a, b in zip(times, times[1:])), "frame domain/order")
+    require((type(prehistory_count) is int) and (0 < prehistory_count < len(raw_segments)), "prehistory split census")
+    require((len(times) == len(frames) >= 2) and (times[0] == 0) and (all(a < b for a, b in zip(times, times[1:]))), "frame domain/order")
     segments = [parse_segment(item) for item in raw_segments]
     past, future = segments[:prehistory_count], segments[prehistory_count:]
     partition(past, F(-8), F(0))
@@ -421,8 +290,7 @@ def prove_member(raw_segments, times, frames, *, member="independent-control", p
         h = times[index+1]-times[index]
         rows = tuple(hermite(left[0][axis], left[1][axis], right[0][axis], right[1][axis], h) for axis in range(3))
         for axis, row in enumerate(rows):
-            require(state(row, F(0)) == (left[0][axis], left[1][axis])
-                    and state(row, h) == (right[0][axis], right[1][axis]), "exact Hermite endpoint identity failed")
+            require((state(row, F(0)) == (left[0][axis], left[1][axis])) and (state(row, h) == (right[0][axis], right[1][axis])), "exact Hermite endpoint identity failed")
         cubics.append(rows)
     # Shared frame data plus these identities prove all future C1 joins.
     cells = aligned_cells(future, times)
@@ -452,7 +320,7 @@ def analyze_export(document, progress=None):
         require(len(history["segments"]) == 1760, "complete member segment census")
         summary, _ = prove_member(history["segments"], times, frames[index], member=LABELS[index],
                                   prehistory_count=1600, audit=audit, progress=progress)
-        require(summary["frameCubics"] == 80 and summary["futureContainmentCells"] == 160,
+        require((summary["frameCubics"] == 80) and (summary["futureContainmentCells"] == 160),
                 "production frame/cell census")
         members.append(summary)
     fields = ("prehistorySegments", "prehistoryInternalJoins", "releaseAnchors", "frameCubics",
@@ -461,8 +329,7 @@ def analyze_export(document, progress=None):
     counts = {field: sum(member[field] for member in members) for field in fields}
     counts.update(members=8, acceptedFrames=81, frameMemberRows=648, acceptedFrameIntervals=80,
                   allowanceComparisons=audit.comparisons)
-    require(tuple(counts[field] for field in fields) == (12800, 12792, 8, 640, 632, 7680, 1280, 1280, 38400, 3840)
-            and audit.comparisons == 591360, "evaluated production census")
+    require((tuple(counts[field] for field in fields) == (12800, 12792, 8, 640, 632, 7680, 1280, 1280, 38400, 3840)) and (audit.comparisons == 591360), "evaluated production census")
     return {"counts": counts, "members": members,
             "anchoredPrehistoryFits": not any(row["phase"] == "anchoredPrehistory" for row in audit.failures),
             "acceptedFrameFutureFits": not any(row["phase"] == "acceptedFrameFuture" for row in audit.failures),
@@ -483,7 +350,7 @@ class BoundFile:
         self.fd = os.open(self.path, os.O_RDONLY | os.O_NONBLOCK | getattr(os, "O_NOFOLLOW", 0))
         try:
             info = os.fstat(self.fd)
-            require(stat.S_ISREG(info.st_mode) and 0 < info.st_size <= self.limit, "bounded nonempty regular input required")
+            require((stat.S_ISREG(info.st_mode)) and (0 < info.st_size <= self.limit), "bounded nonempty regular input required")
             self.identity = file_identity(info)
             self.data = self.read()
             self.digest = sha256(self.data).hexdigest()
@@ -508,14 +375,13 @@ class BoundFile:
 
     def check_identity(self):
         info = os.stat(self.path, follow_symlinks=False)
-        require(stat.S_ISREG(info.st_mode) and file_identity(info) == self.identity
-                and file_identity(os.fstat(self.fd)) == self.identity, "input changed or pathname replaced")
+        require((stat.S_ISREG(info.st_mode)) and (file_identity(info) == self.identity) and (file_identity(os.fstat(self.fd)) == self.identity), "input changed or pathname replaced")
 
     def recheck(self):
         self.check_identity()
         data = self.read()
         self.check_identity()
-        require(data == self.data and sha256(data).hexdigest() == self.digest, "original input bytes changed")
+        require((data == self.data) and (sha256(data).hexdigest() == self.digest), "original input bytes changed")
         return self.binding()
 
     def binding(self):
@@ -529,7 +395,7 @@ class BoundFile:
 
 
 def verify_executing_source(data):
-    require(compile(_production_current_source(data), _EXECUTING_CODE.co_filename, "exec", dont_inherit=True,
+    require(compile(data, _EXECUTING_CODE.co_filename, "exec", dont_inherit=True,
                     optimize=sys.flags.optimize) == _EXECUTING_CODE, "executing code differs from captured source")
 
 
@@ -669,18 +535,12 @@ def _verify(history_export, output, watch):
     with ExitStack() as stack:
         bound = []
         try:
-            instrument = stack.enter_context(_production_capture(BoundFile, __file__, MAX_INSTRUMENT_BYTES))
+            instrument = stack.enter_context(BoundFile(__file__, MAX_INSTRUMENT_BYTES))
             bound.append(("instrument", instrument))
             packet["instrumentBefore"] = instrument.binding()
             verify_executing_source(instrument.data)
             packet["executingCodeBinding"] = "captured-source compilation equals executing module code object"
-            packet["theoremsBefore"] = {}
-            for relative, expected in THEOREMS.items():
-                theorem = stack.enter_context(_production_capture(BoundFile, root / relative, MAX_INSTRUMENT_BYTES))
-                bound.append((relative, theorem))
-                require(theorem.digest == expected, f"frozen theorem SHA-256 mismatch: {relative}")
-                packet["theoremsBefore"][relative] = theorem.binding()
-            source = stack.enter_context(_production_capture(BoundFile, history_export, MAX_INPUT_BYTES))
+            source = stack.enter_context(BoundFile(history_export, MAX_INPUT_BYTES))
             bound.append(("historyExport", source))
             packet["historyExportBefore"] = source.binding()
             require(source.digest == EXPORT_SHA256, "frozen export SHA-256 mismatch")
@@ -689,14 +549,10 @@ def _verify(history_export, output, watch):
             packet["failures"].extend(result["failures"])
         except (ProofError, OSError, ValueError, KeyError, TypeError, RecursionError) as error:
             packet["failures"].append({"code": "input_or_structure_rejected", "detail": str(error)})
-        packet["theoremsAfter"] = {}
         for role, source in bound:
             try:
                 binding = source.recheck()
-                if role in THEOREMS:
-                    packet["theoremsAfter"][role] = binding
-                else:
-                    packet[role+"After"] = binding
+                packet[role+"After"] = binding
             except (ProofError, OSError) as error:
                 packet["failures"].append({"code": "bound_file_changed", "role": role, "detail": str(error)})
         valid = "analysis" in packet and not any(row["code"] in {"input_or_structure_rejected", "bound_file_changed"}

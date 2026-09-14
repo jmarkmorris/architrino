@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { borgConsumerAdmission } from '../borg/selected-runtime-admission.mjs';
 
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
@@ -565,7 +564,6 @@ export async function runBoundedFiveCoordinateComparison({
   binaryPath = resolve(".tmp/eom-native-dev/eom_borg_shadow_cli"),
   endTime = END_TIME,
 } = {}) {
-  const admission=borgConsumerAdmission(import.meta.url);
   const cases = [];
   for (const row of [
     { id: "common-locus-A", input: COMMON_LOCUS_INPUT, candidate: "A" },
@@ -629,7 +627,6 @@ export async function runBoundedFiveCoordinateComparison({
       refinementCases[1].samples.find((sample) => sample.time === refinementDecision.comparisonEndTime),
     ),
   } : null;
-  admission.check();
   return {
     schema: SCHEMA,
     generatedAt: new Date().toISOString(),
@@ -716,12 +713,10 @@ const invokedPath = process.argv[1] ? pathToFileURL(resolve(process.argv[1])).hr
 if (invokedPath === import.meta.url) {
   const { outputPath, ...options } = parseArguments(process.argv.slice(2));
   const report = await runBoundedFiveCoordinateComparison(options);
-  borgConsumerAdmission(import.meta.url).check();
   const json = `${JSON.stringify(report, null, 2)}\n`;
   if (outputPath) {
     await mkdir(dirname(outputPath), { recursive: true });
     await writeFile(outputPath, json);
-    borgConsumerAdmission(import.meta.url).check();
     process.stderr.write(`[complete] wrote ${outputPath}\n`);
   } else {
     process.stdout.write(json);

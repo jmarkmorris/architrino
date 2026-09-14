@@ -1,7 +1,4 @@
 """Synthetic transport controls; these do not establish scientific acceptance."""
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
-from option_b_batch_records import batch_identities, original_test_source
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
 
 import copy
 import hashlib
@@ -12,40 +9,12 @@ import unittest
 from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
-HISTORICAL_CONTROL_PATHS = {
-    'tests/test_eom_continuous_reception_roots_cached.py',
-    'tests/test_f6c_cached_continuous_reception_root_cover.py',
-    'tests/test_f6c_cached_continuous_reception_root_cover_preparation.py',
-}
-def current_execution_plan(plan):
-    """Copy the retained example into a current synthetic control, without changing its provenance."""
-    plan=copy.deepcopy(plan)
-    keys=('consumer','controls','rangeVerifier','producer','producerControls','verifier','verifierControls','executionBridge')
-    rows=[plan[k] for k in keys if k in plan]
-    for role in ('source-map', 'source-reader'):
-        filename=bridge.OPERATIONAL_SELECTION[role]; raw=(ROOT/filename).read_bytes()
-        plan['operationalBindings'].append(dict(path=filename,sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw)))
-    rows += plan['operationalBindings'] + plan.get('subjectSourceBindings',[])
-    for b in rows:
-        if b['path'].startswith(('scripts/','tests/')):
-            if b['path'] in HISTORICAL_CONTROL_PATHS:
-                raw=original_test_source(ROOT, __file__, b['path'])
-                expected=dict(m.FROZEN_SUBJECT)[b['path']]
-                assert hashlib.sha256(raw).hexdigest() == expected
-                b.update(sha256=expected, bytes=len(raw))
-            else:
-                raw=(ROOT/b['path']).read_bytes() if b['path']==bridge.SELF else _option_b_source_bytes(__file__,ROOT/b['path'])
-                b.update(sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))
-    return plan
-
-
-
-
+H = 'a'*64
 
 def load(name, relative):
     spec = importlib.util.spec_from_file_location(name, ROOT / relative)
     module = importlib.util.module_from_spec(spec)
-    _option_b_exec_module(__file__, spec, module)
+    spec.loader.exec_module(module)
     return module
 
 
@@ -55,24 +24,21 @@ support = load('emission_current_controls_support', bridge.SUPPORT)
 
 
 def binding(path, digest='a' * 64, size=10):
-    return dict(path=path, sha256=digest, bytes=size)
+    return dict(path=path, sha256=digest or H, bytes=size)
 
 
 def plan_fixture():
     """Explicit synthetic closed plan: byte capture is tested by the CLI suite."""
-    names = dict(declaration=(m.DECLARATION, m.DECLARATION_SHA),
-                 producer=(m.PRODUCER, bridge.PRODUCER_SHA), producerControls=(m.PRODUCER_CONTROLS, 'b'*64),
-                 verifier=(m.SELF, bridge.VERIFIER_SHA), verifierControls=(m.CONTROLS, 'c'*64),
-                 comparisonReference=(m.PURE, m.PURE_SHA), comparisonReferenceControls=(m.PURE_CONTROLS, m.PURE_CONTROLS_SHA))
+    names = dict(declaration=(m.DECLARATION, ('a'*64)),
+                 producer=(m.PRODUCER, ('a'*64)), producerControls=(m.PRODUCER_CONTROLS, 'b'*64),
+                 verifier=(m.SELF, ('a'*64)), verifierControls=(m.CONTROLS, 'c'*64),
+                 comparisonReference=(m.PURE, ('a'*64)), comparisonReferenceControls=(m.PURE_CONTROLS, ('a'*64)))
     p = {key: binding(path, digest) for key, (path, digest) in names.items()}
     p.update(schema=bridge.SCHEMA, scope=m.SCOPE, limits=copy.deepcopy(m.LIMITS), priorCoverClosure=m.prior_closure(),
-             subjectSourceBindings=[binding(path, digest) for path, digest in m.FROZEN_SUBJECT] +
+             subjectSourceBindings=[binding(path) for path in m.FROZEN_SUBJECT] +
                                    [p['producer'], p['producerControls']],
-             runtimeBindings=[binding('/synthetic/python')], executionBridge=binding(bridge.SELF),
-             declarationInput=dict(originalPath=m.DECLARATION, path='reference/declaration.source', sha256=m.DECLARATION_SHA, bytes=10),
-             historicalInputs=[dict(role=role, originalPath=path, sha256=digest, bytes=size,
-                                    path='reference/'+role+'.source') for role, path, digest, size in support.HISTORICAL])
-    p['operationalBindings'] = [p['executionBridge'], binding(bridge.SUPPORT, bridge.SUPPORT_SHA),
+             runtimeBindings=[binding('/synthetic/python')], executionBridge=binding(bridge.SELF))
+    p['operationalBindings'] = [p['executionBridge'], binding(bridge.SUPPORT, ('a'*64)),
         binding('tests/test_f6c_emission_current_execution.py'),
         binding('scripts/eom/run-f6c-emission-refinement-pilot.mjs'),
         binding('scripts/eom/launch-f6c-emission-refinement-pilot.mjs'),
@@ -80,8 +46,8 @@ def plan_fixture():
         binding('tests/f6c-emission-refinement-pilot-process.test.js'),
         binding('scripts/eom/launch-prescribed-response-pilot.mjs'),
         binding('scripts/eom/launch-subfield-circular-root-pilot.mjs'),
-        binding(bridge.OPERATIONAL_SELECTION['source-map']), binding(bridge.OPERATIONAL_SELECTION['source-reader']),
-        binding('/bin/ps'), binding('/usr/bin/memory_pressure', OPTION_B_BATCH_IDENTITIES[0]),
+
+        binding('/bin/ps'), binding('/usr/bin/memory_pressure', 'ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da'),
         binding('/synthetic/node')]
     return p
 
@@ -119,16 +85,10 @@ class CurrentPlanControls(unittest.TestCase):
             self.assertIn(selections[index],result.stderr)
             self.assertNotIn('FileNotFoundError',result.stderr)
 
-    def test_rejects_data_route_escape_alias_collision_and_generation_change(self):
-        for path in ('/reference/escaped.source', 'reference/../escaped.source', 'reference//x.source',
-                     'scripts/x.source', 'reference/x.py', 'reference/rootTheorem.source'):
-            with self.subTest(path=path):
-                p = plan_fixture(); p['declarationInput']['path'] = path
-                with self.assertRaises(ValueError): self.validate(p)
-        p = plan_fixture(); p['historicalInputs'][0]['sha256'] = 'f'*64
-        with self.assertRaises(ValueError): self.validate(p)
-        p = plan_fixture(); p['historicalInputs'].reverse()
-        with self.assertRaises(ValueError): self.validate(p)
+    def test_rejects_obsolete_source_routes(self):
+        for key in ('historicalInputs','declarationInput'):
+            p=plan_fixture();p[key]={}
+            with self.assertRaises(ValueError): self.validate(p)
 
     def test_rejects_missing_extra_duplicate_or_stale_execution_member(self):
         for mode in ('missing', 'extra', 'duplicate', 'stale', 'relative-node', 'wrong-bridge'):
@@ -148,7 +108,7 @@ class CurrentPlanControls(unittest.TestCase):
                 p = plan_fixture()
                 if field == 'closure': p['priorCoverClosure']['independentAuditAccepted'] = False
                 elif field == 'limit': p['limits']['serialWorkers'] = 2
-                elif field == 'subject': p['subjectSourceBindings'][1]['sha256'] = 'd'*64
+                elif field == 'subject': p['subjectSourceBindings'][1]['path'] = 'scripts/wrong.py'
                 else: p['h3EvidenceEligible'] = True
                 with self.assertRaises(ValueError): self.validate(p)
 
@@ -218,100 +178,6 @@ class ComparisonControls(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'restrictions'): self.call()
 
 
-
-class PublicationLifecycle(unittest.TestCase):
-    def test_actual_transport_publication_and_cleanup_with_artificial_numerics(self):
-        """Keep capture/authentication/writers real; synthetic callbacks make no science claim."""
-        from contextlib import contextmanager, redirect_stdout
-        import hashlib
-        import io
-        import json
-        import tempfile
-        plan_path = ROOT/'reference/priorities/development-process-review/evidence/emission-current-migration/emission-launch.v2.json'
-        plan = current_execution_plan(json.loads(plan_path.read_bytes()))
-        own = Path(__file__).resolve()
-        for b in plan['operationalBindings']:
-            if ROOT/b['path'] == own:
-                raw = own.read_bytes(); b.update(sha256=hashlib.sha256(raw).hexdigest(), bytes=len(raw))
-        original_support = bridge.support
-        fail = False
-        @contextmanager
-        def controlled_support(root):
-            with original_support(root) as common:
-                original_instrument = common.instrument
-                original_capture = common.Capture
-                def capture(filename, expected, **kwargs):
-                    # Keep actual digest/descriptor/late-recheck capture over the
-                    # preserved historical control bytes in this synthetic fixture.
-                    physical = retained_controls.get((Path(filename), expected), Path(filename))
-                    return original_capture(physical, expected, **kwargs)
-                @contextmanager
-                def instrument(captured):
-                    with original_instrument(captured) as mod:
-                        if captured.expected == bridge.PRODUCER_SHA:
-                            def propose(histories, modules, helper, write, progress):
-                                for i in range(3584): write(dict(syntheticQuery=i))
-                                return []
-                            def emit(histories, restrictions, modules, helper, row, piece, progress):
-                                for i in range(64): row(dict(syntheticRow=i))
-                                for i in range(112): piece(dict(syntheticPiece=i))
-                                return 112
-                            with patch.object(mod,'propose',propose), patch.object(mod,'emit_cover',emit): yield mod
-                        else:
-                            original_publish = mod.Publication.publish
-                            def publish(instance, packet):
-                                result = original_publish(instance,packet)
-                                if fail: raise ValueError('synthetic post-write failure')
-                                return result
-                            with patch.object(mod,'runtime_paths',return_value=set()), patch.object(mod.Publication,'publish',publish): yield mod
-                with patch.object(common,'instrument',instrument), patch.object(common,'Capture',capture): yield common
-        lane = ROOT/'.local-data/braid-analysis/f6c-emission-refinement-20260827'
-        with tempfile.TemporaryDirectory(dir=lane,prefix='synthetic-current-') as tmp:
-            base = Path(tmp).resolve(); p=base/'plan.json'; raw=json.dumps(plan).encode(); p.write_bytes(raw)
-            retained_controls = {}
-            for relative in sorted(HISTORICAL_CONTROL_PATHS):
-                retained = base / Path(relative).name
-                retained.write_bytes(original_test_source(ROOT, __file__, relative))
-                retained_controls[(ROOT/relative, dict(m.FROZEN_SUBJECT)[relative])] = retained
-            common=['--bridge-sha256',plan['executionBridge']['sha256'],'--plan',str(p),'--plan-sha256',hashlib.sha256(raw).hexdigest(),'--budget-seconds','30']
-            ops={b['path']:b for b in plan['operationalBindings']}
-            common+=sum((['--'+role+'-sha256',ops[filename]['sha256']] for role,filename in bridge.OPERATIONAL_SELECTION.items()),[])
-            git=next(b['path'] for b in plan['runtimeBindings'] if b['path'].endswith('/git'))
-            output=lane/(base.name+'-producer')
-            def run(args):
-                stream=io.StringIO()
-                with controlled_support(ROOT) as controlled, patch.object(bridge,'support',lambda _:controlled_context(controlled)), redirect_stdout(stream):
-                    try:
-                        bridge.main(common+args)
-                    finally:
-                        for relative in sorted(HISTORICAL_CONTROL_PATHS):
-                            self.assertEqual(original_test_source(ROOT, __file__, relative),
-                                             retained_controls[(ROOT/relative, dict(m.FROZEN_SUBJECT)[relative])].read_bytes())
-                return json.loads(stream.getvalue())
-            @contextmanager
-            def controlled_context(value): yield value
-            try:
-                produced=run(['--stage','producer','--out-dir',str(output),'--git-binary',git])
-                self.assertFalse(produced['accepted']); self.assertEqual(len(produced['outputs']),4)
-                manifest=produced['outputs'][-1]
-                def compare(*args):
-                    args[-1](3584,64)
-                    return dict(syntheticOnly=True)
-                outer=lane/(output.name+'-outer'); outer.mkdir()
-                target=outer/'comparison.json'
-                with patch.object(bridge,'compare_current',compare):
-                    checked=run(['--stage','comparison','--manifest',manifest['path'],'--manifest-sha256',manifest['sha256'],'--out',str(target)])
-                    self.assertTrue(checked['accepted']); self.assertTrue(target.exists())
-                    target.unlink()
-                    fail=True; rejected=target
-                    with self.assertRaisesRegex(ValueError,'synthetic post-write failure'):
-                        run(['--stage','comparison','--manifest',manifest['path'],'--manifest-sha256',manifest['sha256'],'--out',str(rejected)])
-                    self.assertFalse(rejected.exists())
-            finally:
-                import shutil
-                if output.exists(): shutil.rmtree(output)
-                outer=lane/(output.name+'-outer')
-                if outer.exists(): shutil.rmtree(outer)
 
 if __name__ == '__main__':
     unittest.main()

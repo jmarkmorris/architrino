@@ -116,10 +116,10 @@ The subsequent repository-wide `node scripts/validate-content.mjs --check --stri
 
 | Out-of-scope source | Error line |
 | --- | --- |
-| [Cached root-cover cutover](../../development-process-review/analysis/option-b-cached-root-cover-cutover.md) | 53 |
-| [Cached root-cover full cutover](../../development-process-review/analysis/option-b-cached-root-cover-full-cutover.md) | 51 |
-| [Current-source cutover inventory](../../development-process-review/analysis/option-b-current-source-cutover-inventory.md) | 85 |
-| [Prescribed-response and acceleration cutover](../../development-process-review/analysis/option-b-prescribed-response-and-acceleration-cutover.md) | 5 |
+| Cached root-cover cutover (retired migration record) | 53 |
+| Cached root-cover full cutover (retired migration record) | 51 |
+| Current-source cutover inventory (retired migration record) | 85 |
+| Prescribed-response and acceleration cutover (retired migration record) | 5 |
 
 These errors block a repository-wide strict-validation pass, not the bounded repairs. The earlier green result does not establish the final shared checkout's health, and the later failure does not establish its causal author or transition. No out-of-scope links or target files were changed. Resolution belongs to that workstream's owner: determine whether the missing test was intentionally superseded, then repair the references or restore the intended target and rerun the strict validator.
 

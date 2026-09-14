@@ -1,5 +1,4 @@
 """Synthetic exact-answer controls; no actual histories, roots or range jobs."""
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
 
 from dataclasses import FrozenInstanceError, asdict, replace
 from decimal import Decimal, localcontext
@@ -18,7 +17,7 @@ def load(name, filename):
     spec = importlib.util.spec_from_file_location(name, ROOT / 'scripts/eom/oracle' / filename)
     module = importlib.util.module_from_spec(spec)
     sys.modules[name] = module
-    _option_b_exec_module(__file__, spec, module)
+    spec.loader.exec_module(module)
     return module
 
 
@@ -59,7 +58,7 @@ def plan(cuts=0):
     frames = tuple(R.Frame(i, box(token(a), token(b))) for i, (a,b) in enumerate(zip(times,times[1:])))
     knots = tuple(tuple(token(a+(b-a)*F(j, 25)) for j in range(1,cuts+1))
                   for a,b in zip(times,times[1:]))
-    return M.ProtocolInput(ctx, frames, knots, M.REFERENCE_SHA256)
+    return M.ProtocolInput(ctx, frames, knots, 'a'*64)
 
 
 def response(req, q=box('0'), *, node_q=None, mode='range-subtraction'):
@@ -414,7 +413,7 @@ class RejectionControls(unittest.TestCase):
     def test_mutable_aliases_subclasses_and_identity_changes(self):
         p=plan()
         for bad in (replace(p,frames=list(p.frames)),replace(p,mandatory_knots=list(p.mandatory_knots)),
-                    replace(p,reference_sha256='0'*64),replace(p,context=replace(p.context,field_speed='2'))):
+                    replace(p,reference_sha256=None),replace(p,context=replace(p.context,field_speed='2'))):
             with self.assertRaises(M.ProtocolUnresolved): M.start(R,bad)
         with self.assertRaises(M.ProtocolUnresolved): M.evaluate_leaf(R,replace(self.packet,members=list(self.packet.members)))
         class MutableBounds(R.Bounds): pass

@@ -7,12 +7,14 @@ This is the current execution ledger for deployment, hosting, cost, reliability,
 1. `priority_directory_review_and_drive` — [OPS-028](#ops-028--priority-directory-review-and-drive). Priority: High; status: In progress; first directory completed.
 2. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: Queued.
 3. `operator_explanation_standard_review` — [OPS-029](#ops-029--operator-explanation-standard-review). Status: Queued.
-4. `option_b_report_only_stale_binding_review` — [OPS-030](#ops-030--option-b-report-only-stale-binding-review). Priority: Medium; status: Queued.
-5. ○ `periodic_priority_assets_scan` — [OPS-032](#ops-032--periodic-priority-assets-scan). Status: Recurring; first status scan due 2026-09-20; first substantive sample due 2026-10-13.
-6. ○ `periodic_reader_facing_corpus_scan` — [OPS-031](#ops-031--periodic-reader-facing-corpus-scan). Status: Recurring; first priority-ordered batch due 2026-09-20; first Foundations/Dynamics cycle due 2026-10-13.
-7. `periodic_project_skill_maintenance` — [OPS-027](#ops-027--periodic-project-skill-maintenance). Status: Recurring; next pass due 2026-11-10.
+4. ○ `periodic_priority_assets_scan` — [OPS-032](#ops-032--periodic-priority-assets-scan). Status: Recurring; first status scan due 2026-09-20; first substantive sample due 2026-10-13.
+5. ○ `periodic_reader_facing_corpus_scan` — [OPS-031](#ops-031--periodic-reader-facing-corpus-scan). Status: Recurring; first priority-ordered batch due 2026-09-20; first Foundations/Dynamics cycle due 2026-10-13.
+6. `periodic_project_skill_maintenance` — [OPS-027](#ops-027--periodic-project-skill-maintenance). Status: Recurring; next pass due 2026-11-10.
 
-8. ○ `periodic_retention_review` — [OPS-033](#ops-033--periodic-retention-review). Status: Recurring; first pass due 2026-10-14.
+7. ○ `periodic_retention_review` — [OPS-033](#ops-033--periodic-retention-review). Status: Recurring; first pass due 2026-10-14.
+8. ○ `pages_testing_replacement` — [OPS-034](#ops-034--replace-pages-and-pr-testing-with-agreed-webapp-coverage). Status: Queued; implementation after the current PR.
+9. ○ `local_testing_replacement` — [OPS-035](#ops-035--replace-local-test-rotation-in-bounded-slices). Status: Queued; implementation after the current PR.
+10. ○ `superseded_test_structure_removal` — [OPS-036](#ops-036--remove-superseded-testing-machinery). Status: Queued; closes each replaced slice without requiring a project-wide migration.
 
 ## In progress
 
@@ -57,6 +59,31 @@ This is the current execution ledger for deployment, hosting, cost, reliability,
 
 ## Queued
 
+### OPS-034 — Replace Pages and PR testing with agreed webapp coverage
+
+- **Priority object:** `pages_testing_replacement`.
+- **Status:** ○ Queued; not started. Do not change the current PR or its running checks under this queue entry.
+- **Request:** Apply [testing objectives §2](../../op/testing-regime.md#2-philosophy), prioritizing a working deployed GitHub Pages webapp. For the selected PR/deployment slice, agree the essential reader journeys and candidate checks, implement the smallest necessary coverage, and remove the old invocations and obligations that it supersedes. Reuse suitable existing tests rather than assuming a new framework is needed.
+- **Scope:** Relevant Content Integrity and Pages workflow steps, their called checks, and their local publication counterparts. Verification distinguishes the built candidate from the actual deployed URL; live-site verification belongs to deployment follow-through.
+- **Acceptance:** The selected essential behavior has agreed coverage and a bounded result; superseded or redundant checks no longer run in the affected local/CI paths; obsolete blocking obligations and their procedure text are removed together. Record the objective, retained/new/removed commands, trigger, blocking status and timing using existing evidence where applicable. State any unmeasured cost. A brief controlled comparison may establish replacement coverage, but no permanent parallel old/new rotation remains. Actual required-status changes belong to the authorized publication workflow.
+- **Owner:** operations with the webapp and publication owners.
+
+### OPS-035 — Replace local test rotation in bounded slices
+
+- **Priority object:** `local_testing_replacement`.
+- **Status:** ○ Queued; not started. Execute a selected slice after the current PR; independent local slices need not wait for all of OPS-034.
+- **Request:** Replace a selected local test family or entrypoint with objective-based, agreed selection. Keep meaningful existing tests where they already provide the needed evidence. Remove superseded discovery entries, runner branches, setup dependencies and routine research invocations as that slice is replaced. Address ordinary/slow Node discovery and affected Python/C++ commands only where included in the selected slice.
+- **Acceptance:** One clear supported execution path serves the agreed use; the superseded path no longer runs through package scripts, sweeps or indirect dependencies in that scope. Retained checks name their objective and trigger; explicit-use checks stay outside rotation. The four removed research suites remain explicit-use only unless separately approved for reinstatement. Record the bounded timing and coverage change without requiring a clean full-repository baseline. Do not repair obsolete tests merely to retire them or reinstate requirements removed with Option A/B.
+- **Owner:** operations with the affected software or scientific owner; scientific claim limits remain explicit.
+
+### OPS-036 — Remove superseded testing machinery
+
+- **Priority object:** `superseded_test_structure_removal`.
+- **Status:** ○ Queued; perform alongside each OPS-034/OPS-035 replacement, then close remaining cleanup within that same scope.
+- **Request:** Delete the old test-only wrappers, fixtures, configuration, generated outputs, metadata and obsolete instructions made unnecessary by an agreed replacement or explicit retirement. Remove stale links and calls in the affected owners. Do not leave a second maintained test architecture, compatibility layer or migration apparatus behind.
+- **Acceptance:** Before deletion, inspect actual callers and distinguish test scaffolding from application inputs and original scientific evidence. Remove objects whose only purpose was the superseded test structure; preserve inputs/evidence still needed for current work and the four explicitly retained manual suites. Verify the relevant entrypoints and references no longer call the retired path, and record the removed paths and any specific remaining consumer in the existing work log. No new cleanup checker, repository-wide hash audit or replacement framework is required. Retiring an unjustified requirement needs no replacement test. Each completed slice is usable and closed independently; this work is not a prerequisite to unrelated theory or publication.
+- **Owner:** operations with the owner of each removed dependency; coordinate with existing teardown work to avoid duplicate edits.
+
 ### OPS-016 — Reference equation-mapping surface
 
 - **Priority object:** `reference_equation_mapping_surface`
@@ -72,16 +99,6 @@ This is the current execution ledger for deployment, hosting, cost, reliability,
 - **Request:** Review [operator-explanation-standard.md](../../op/operator-explanation-standard.md) in full for clarity, internal consistency, duplication, instruction precedence, and practical effect on operator communication. Check its relationship to AGENTS.md, the academic style guide, and the dispatch procedures, including the work-item prefix rule for agent and task names.
 - **Acceptance:** Record exact section or line references, distinguish demonstrated conflicts from optional improvements, explain the effect of each finding, and recommend the smallest justified correction. Preserve explicit operator decisions and identify any policy choice requiring their judgment. This action requests a review and recommendations; implementation is a separate disposition.
 - **Owner:** operations with the operator-guidance owner; coordinate with recurring OPS-014 to avoid duplicate review work.
-
-### OPS-030 — Option B report-only stale-binding review
-
-- **Priority object:** `option_b_report_only_stale_binding_review`.
-- **Priority:** Medium.
-- **Status:** ○ Queued.
-- **Opened:** 2026-09-11, after the report-only Option B check on `Converge AAA corpus and record CRW-005 reviews` reported a stale binding.
-- **Request:** Review the Option B report-only dependency-map failure, currently recorded as `Stale binding: https://example.invalid/option-b-corrected/assumptions`, against the exact published candidate head and the retained map/source artifacts. Determine whether the map should be refreshed as a reviewed candidate, whether its declared assumptions binding is obsolete, or whether the diagnostic should remain unchanged pending scope acceptance.
-- **Acceptance:** Record the exact stale binding, affected map and source bytes, comparison head, and independent reproduction. Preserve `approval: not-granted`, A-check authority, report-only status, and the distinction between a consistency result and scientific or baseline acceptance. Do not refresh hashes, alter the namespace, accept the map, or transfer authority without an explicit operator decision and exact-head review.
-- **Owner:** operations with the development-process-review and equation-mapping owners; scientific acceptance remains with the applicable theory owner.
 
 ## Awaiting verification
 

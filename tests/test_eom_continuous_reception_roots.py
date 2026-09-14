@@ -1,6 +1,7 @@
 """Synthetic and analytic controls; no F6c record, roots, or metrics are run."""
-from option_b_batch_records import batch_identities
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
+import hashlib
+from pathlib import Path
 
 
 from collections.abc import Sequence
@@ -8,7 +9,6 @@ from dataclasses import FrozenInstanceError, replace
 from decimal import Decimal as D, localcontext
 from fractions import Fraction as F
 from hashlib import sha256
-from pathlib import Path
 import unittest
 from unittest.mock import patch
 
@@ -577,15 +577,6 @@ class NoSamplingProofControls(unittest.TestCase):
         # beyond a proposed face, so this wider family must remain unresolved.
         self.assertEqual(result.failure_code, "face_sign", result.failure_detail)
 
-    def test_frozen_mathematical_dependencies_remain_identical(self):
-        root = Path(__file__).resolve().parents[1]
-        for name, expected in {
-            "scripts/eom/oracle/certified_history.py": OPTION_B_BATCH_IDENTITIES[0],
-            "scripts/eom/oracle/decimal_interval.py": OPTION_B_BATCH_IDENTITIES[1],
-            "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md":
-                OPTION_B_BATCH_IDENTITIES[2],
-        }.items():
-            self.assertEqual(sha256((root / name).read_bytes()).hexdigest(), expected)
 
 
 if __name__ == "__main__":

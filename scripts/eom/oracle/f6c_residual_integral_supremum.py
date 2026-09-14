@@ -71,22 +71,21 @@ def _require(condition, code, detail):
 
 
 def _tuple(value, minimum, maximum):
-    _require(type(value) is tuple and minimum <= len(value) <= maximum,
+    _require((type(value) is tuple) and (minimum <= len(value) <= maximum),
              'shape', 'bounded exact tuple required')
 
 
 def _number(token):
-    _require(type(token) is str and 0 < len(token) <= MAX_TOKEN_CHARS
-             and _DECIMAL.fullmatch(token) is not None, 'token', 'bounded decimal string required')
+    _require((type(token) is str) and (0 < len(token) <= MAX_TOKEN_CHARS) and (_DECIMAL.fullmatch(token) is not None), 'token', 'bounded decimal string required')
     mantissa, *exponent = re.split('[eE]', token)
     digits = sum(c.isdigit() for c in mantissa)
     _require(digits <= MAX_TOKEN_DIGITS, 'token', 'decimal digit limit')
     if exponent:
         magnitude = exponent[0].lstrip('+-').lstrip('0') or '0'
-        _require(len(magnitude) <= 4 and int(magnitude) <= MAX_TOKEN_EXPONENT,
+        _require((len(magnitude) <= 4) and (int(magnitude) <= MAX_TOKEN_EXPONENT),
                  'token', 'decimal exponent limit')
     parsed = Decimal(token)
-    _require(parsed.is_finite() and abs(parsed.as_tuple().exponent) <= MAX_TOKEN_EXPONENT,
+    _require((parsed.is_finite()) and (abs(parsed.as_tuple().exponent) <= MAX_TOKEN_EXPONENT),
              'token', 'finite bounded decimal required')
     return Fraction(parsed)
 
@@ -260,7 +259,7 @@ class RemainderResult:
 def _bounds(value, *, nonnegative=False):
     _require(type(value) is Bounds, 'immutability', 'exact Bounds record required')
     lo, hi = _number(value.lower), _number(value.upper)
-    _require(lo <= hi and (not nonnegative or lo >= 0), 'interval', 'invalid interval')
+    _require((lo <= hi) and (not nonnegative or lo >= 0), 'interval', 'invalid interval')
     return lo, hi
 
 
@@ -277,18 +276,18 @@ def _context(value):
     _require((value.family, value.field_speed, value.coupling, value.ruler)
              == (FAMILY, '1', COUPLING, RULER), 'context', 'fixed family/model/normalization required')
     for token in (value.source_generation_sha256, value.frame_generation_sha256):
-        _require(type(token) is str and _HASH.fullmatch(token) is not None,
+        _require((type(token) is str) and (_HASH.fullmatch(token) is not None),
                  'context', 'declared lowercase generation SHA256 required')
 
 
 def _frame_index(value):
-    _require(type(value) is int and 0 <= value < 80, 'frame', 'exact frame index 0..79 required')
+    _require((type(value) is int) and (0 <= value < 80), 'frame', 'exact frame index 0..79 required')
 
 
 def _key(value):
     _require(type(value) is IntegralKey, 'immutability', 'exact IntegralKey required')
     _context(value.context)
-    _require(type(value.label) is str and value.label in LABELS, 'member', 'fixed member label required')
+    _require((type(value.label) is str) and (value.label in LABELS), 'member', 'fixed member label required')
     _frame_index(value.frame_index)
     return _domain(value.domain)
 
@@ -414,16 +413,16 @@ def aggregate(request):
         _context(cell.context)
         _require(cell.context == request.context, 'context', 'cell context differs')
         _frame_index(cell.frame_index)
-        _require(frame_index < 80 and cell.frame_index == frame_index,
+        _require((frame_index < 80) and (cell.frame_index == frame_index),
                  'coverage', 'cells must arrive in frame/time order')
         lo, hi = _domain(cell.domain)
-        _require(lo == cursor and hi <= frames[frame_index][1], 'coverage',
+        _require((lo == cursor) and (hi <= frames[frame_index][1]), 'coverage',
                  'cell gap/overlap/cross-frame interval')
         _tuple(cell.members, 8, 8)
         row_values = []
         for member_index, (member, label) in enumerate(zip(cell.members, LABELS)):
             _require(type(member) is MemberBound, 'immutability', 'exact MemberBound required')
-            _require(type(member.label) is str and member.label == label, 'member',
+            _require((type(member.label) is str) and (member.label == label), 'member',
                      'complete fixed member order required')
             squared = _bounds(member.squared_norm, nonnegative=True)
             _tuple(member.validated_integrals, 0, MAX_INTEGRAL_BOUNDS)
@@ -439,21 +438,21 @@ def aggregate(request):
         cursor = hi
         if cursor == frames[frame_index][1]:
             frame_index += 1
-    _require(frame_index == 80 and cursor == DURATION, 'coverage', 'incomplete frame/cell suffix')
+    _require((frame_index == 80) and (cursor == DURATION), 'coverage', 'incomplete frame/cell suffix')
 
     for witness in request.witnesses:
         _require(type(witness) is Witness, 'immutability', 'exact Witness required')
         _context(witness.context)
         _require(witness.context == request.context, 'context', 'witness context differs')
-        _require(type(witness.label) is str and witness.label in LABELS, 'member', 'unknown witness member')
+        _require((type(witness.label) is str) and (witness.label in LABELS), 'member', 'unknown witness member')
         _frame_index(witness.frame_index)
         time, lower = _number(witness.time), _number(witness.squared_lower)
         frame = frames[witness.frame_index]
-        _require(frame[0] <= time <= frame[1] and lower >= 0, 'witness', 'invalid frame-side witness')
+        _require((frame[0] <= time <= frame[1]) and (lower >= 0), 'witness', 'invalid frame-side witness')
         index = LABELS.index(witness.label)
         applicable = [row[index][1] for n, lo, hi, row in cell_values
                       if n == witness.frame_index and lo <= time <= hi]
-        _require(applicable and lower <= min(applicable), 'empty_intersection',
+        _require((applicable) and (lower <= min(applicable)), 'empty_intersection',
                  'witness contradicts an applicable closed-cell bound')
         peak_lower = max(peak_lower, lower)
     _require(peak_lower <= peak_upper, 'empty_intersection', 'inconsistent peak bounds')
@@ -495,7 +494,7 @@ def _residual_area(partition, key):
     for piece in partition.pieces:
         _require(type(piece) is ResidualPiece, 'immutability', 'exact ResidualPiece required')
         lo, hi = _domain(piece.domain)
-        _require(lo == cursor and hi <= end, 'coverage', 'residual partition gap/overlap/order')
+        _require((lo == cursor) and (hi <= end), 'coverage', 'residual partition gap/overlap/order')
         area = _add(area, _scale_positive(hi - lo, _bounds(piece.residual)))
         cursor = hi
     _require(cursor == end, 'coverage', 'residual partition suffix missing')

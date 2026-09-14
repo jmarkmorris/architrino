@@ -23,8 +23,8 @@ export function captureSource(filename,expected) {
     const before=fstatSync(fd);check(before.isFile()&&before.size>0&&before.size<=1024**2,"bounded composition source required");
     const bytes=Buffer.alloc(before.size);let at=0;
     while(at<bytes.length){const n=readSync(fd,bytes,at,bytes.length-at,at);check(n>0,"composition source truncated");at+=n;}
-    check(sameFile(before,fstatSync(fd))&&sameFile(before,lstatSync(filename))&&sha(bytes)===expected,"composition generation differs");
-    return {path:filename,sha256:expected,bytes:bytes.length,data:bytes};
+    check(sameFile(before,fstatSync(fd))&&sameFile(before,lstatSync(filename))&&(expected===undefined||sha(bytes)===expected),"composition generation differs");
+    return {path:filename,sha256:sha(bytes),bytes:bytes.length,data:bytes};
   }finally{closeSync(fd);}
 }
 export function parseObservation(text) {
@@ -77,7 +77,6 @@ export async function runFileWorker(job,bytes,remainingMs,signal) {
   const worker=new Worker(`const{parentPort,workerData}=require('node:worker_threads');
     import('data:text/javascript;base64,'+Buffer.from(workerData.bytes).toString('base64'))
     .then(async m=>{const job=workerData.job;
-      if(m.initializeSourceBindings)await m.initializeSourceBindings(job.root,job.sourceMapSha256);
       if(job.stdoutPath){job.stdout=m.clean(m.readBound(job.stdoutPath,undefined,false,16*1024**2));delete job.stdoutPath;}
       return m.fileOperation(job);}).then(value=>parentPort.postMessage({value}))
     .catch(error=>parentPort.postMessage({failure:String(error.message)}));`,{eval:true,execArgv:[],workerData:{bytes,job}});
@@ -114,8 +113,6 @@ function statRegular(filename,limit) {
 export async function launchCaptured({root,options,self,entry,outerBytes,began,deadlineNanoseconds,startedAt=new Date(Date.now()-(performance.now()-began)).toISOString()}) {
   check(import.meta.url===sourceURL(self.data)&&sha(self.data)===options.launcherSha256,"executing launcher generation differs");
   const C=await import(sourceURL(entry.data));
-  await C.initializeSourceBindings(root,options.sourceMapSha256);
-  check(sha(outerBytes)===C.SOURCE_BINDINGS[OUTER],"registered supervisor generation differs");
   const outer=await import(sourceURL(outerBytes));
   const output=path.resolve(root,options.output),lane=path.join(root,C.LANE),operationalOutput=output+"-outer";
   check(path.dirname(output)===lane&&/^prescribed-response-[A-Za-z0-9][A-Za-z0-9._-]*$/u.test(path.basename(output))&&
@@ -166,7 +163,7 @@ export async function launchCaptured({root,options,self,entry,outerBytes,began,d
       Object.assign(stamp,parseHostResource(text,disk.bavail*disk.bsize,launch));hostObservations.push(stamp);log(stamp);pollOutputs();}
     catch(error){fail(error);throw error;}
   };
-  const worker=job=>runFileWorker({...job,root,sourceMapSha256:options.sourceMapSha256,deadlineNanoseconds},entry.data,remaining(),abort.signal);
+  const worker=job=>runFileWorker({...job,root,deadlineNanoseconds},entry.data,remaining(),abort.signal);
   const stopMonitors=async()=>{clearInterval(timer);clearTimeout(deadlineTimer);if(hostJob)await hostJob;if(rssJob)await rssJob;await Promise.allSettled([...pending]);};
   try {
     // Reservations precede timers/listeners; failure here cannot strand a heartbeat.
@@ -191,7 +188,7 @@ export async function launchCaptured({root,options,self,entry,outerBytes,began,d
     const pre=await worker({kind:"preflight",root,output,planPath:options.plan,planSha256:options.planSha256,
       launcherSha256:options.launcherSha256,entrySha256:entry.sha256});
     const {plan,planBinding,sources}=pre;
-    const context={root,sourceMapSha256:options.sourceMapSha256,output,plan,planBinding,sources,entrySha256:entry.sha256,launcherSha256:self.sha256};
+    const context={root,output,plan,planBinding,sources,entrySha256:entry.sha256,launcherSha256:self.sha256};
     await host(true);live();
     // Resolve and retain the environment invocation path as well as real binary bytes.
     check(plan.node===realpathSync(process.execPath),"resolved Node invocation differs");
@@ -201,7 +198,7 @@ export async function launchCaptured({root,options,self,entry,outerBytes,began,d
       await worker({kind:"recheck",sources});live();
       const args=["--plan",planBinding.path,"--plan-sha256",planBinding.sha256,"--entry-sha256",entry.sha256,
         "--launcher-sha256",self.sha256,"--stage",stage,"--out",output,"--deadline-ns",deadlineNanoseconds,
-        "--publication-job-sha256",publicationJob?.sha256??"none","--source-map-sha256",options.sourceMapSha256];
+        "--publication-job-sha256",publicationJob?.sha256??"none"];
       activeOuter=true;
       let receipt;
       try{receipt=await outer.superviseRegisteredPilot({root,entry:ENTRY,args,sources:[{path:ENTRY,sha256:entry.sha256,bytes:entry.data}],
@@ -329,10 +326,10 @@ export async function flushCompletion(result,{began,lastSampleStartedMs,stream=p
 
 export function parseArgs(argv) {
   const values={};for(let i=0;i<argv.length;i+=2){check(argv[i+1]&&!values[argv[i]],"unique paired launch arguments required");values[argv[i]]=argv[i+1];}
-  check(Object.keys(values).sort().join("|")===["--out","--plan","--plan-sha256","--launcher-sha256","--entry-sha256","--source-map-sha256"].sort().join("|"),"closed launch arguments required");
-  for(const key of ["--plan-sha256","--launcher-sha256","--entry-sha256","--source-map-sha256"])check(/^[a-f0-9]{64}$/u.test(values[key]),"reviewed hash required");
+  check(Object.keys(values).sort().join("|")===["--out","--plan","--plan-sha256","--launcher-sha256","--entry-sha256"].sort().join("|"),"closed launch arguments required");
+  for(const key of ["--plan-sha256","--launcher-sha256","--entry-sha256"])check(/^[a-f0-9]{64}$/u.test(values[key]),"reviewed hash required");
   check(!values["--out"].split(/[\\/]/u).some(p=>p==="."||p===".."),"canonical scoped output required");
-  return {output:values["--out"],plan:path.resolve(values["--plan"]),planSha256:values["--plan-sha256"],launcherSha256:values["--launcher-sha256"],entrySha256:values["--entry-sha256"],sourceMapSha256:values["--source-map-sha256"]};
+  return {output:values["--out"],plan:path.resolve(values["--plan"]),planSha256:values["--plan-sha256"],launcherSha256:values["--launcher-sha256"],entrySha256:values["--entry-sha256"]};
 }
 async function main() {
   const startedAt=new Date().toISOString(),began=performance.now(),deadlineNanoseconds=String(process.hrtime.bigint()+1800000000000n),options=parseArgs(process.argv.slice(2));
@@ -340,8 +337,7 @@ async function main() {
   // Bind observation executables before the first invocation; full source/data
   // capture and rechecks still run in watched workers before numerical dispatch.
   const C=await import(sourceURL(entry.data));
-  await C.initializeSourceBindings(root,options.sourceMapSha256);
-  const outer=captureSource(path.join(root,OUTER),C.SOURCE_BINDINGS[OUTER]);
+  const outer=captureSource(path.join(root,OUTER));
   const plan=C.decode(C.readBound(options.plan,options.planSha256,true,1024**2).data,1024**2);
   C.validatePlan(plan,root,options.launcherSha256,options.entrySha256);
   C.checkBindings(plan.operationalBindings.filter(b=>["/bin/ps","/usr/bin/memory_pressure",plan.node].includes(b.path)));

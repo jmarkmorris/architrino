@@ -22,11 +22,12 @@ by any physical trajectory. No IO, roots, EOM, scheduling or metrics occur.
 
 from __future__ import annotations
 
+import hashlib
+
 from dataclasses import dataclass
 from fractions import Fraction as F
 
 
-REFERENCE_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[0]
 MAX_ALGEBRAIC_PIECES = 10
 MAX_RATIONAL_BITS = 262144
 
@@ -43,8 +44,7 @@ def _require(condition, code, detail):
 
 
 def _bounded(value):
-    _require(type(value) is F and
-             max(value.numerator.bit_length(), value.denominator.bit_length()) <= MAX_RATIONAL_BITS,
+    _require((type(value) is F) and (max(value.numerator.bit_length(), value.denominator.bit_length()) <= MAX_RATIONAL_BITS),
              'capacity', 'bounded exact rational required')
     return value
 
@@ -108,9 +108,9 @@ def enclose(reference, polynomial, required_acceleration, acceleration):
         # coefficient tokens, including the fixed F6c context and c_f=1.
         reference.polynomial_integral(polynomial)
         _require(len(polynomial.coefficients) <= 3, 'degree', 'degree at most two required')
-        _require(type(required_acceleration) is tuple and len(required_acceleration) == 3,
+        _require((type(required_acceleration) is tuple) and (len(required_acceleration) == 3),
                  'shape', 'three immutable affine curvature components required')
-        _require(type(acceleration) is tuple and len(acceleration) == 3,
+        _require((type(acceleration) is tuple) and (len(acceleration) == 3),
                  'shape', 'three immutable law-side intervals required')
         affine = []
         for component in required_acceleration:
@@ -160,7 +160,7 @@ def enclose(reference, polynomial, required_acceleration, acceleration):
         lower = piece_lower if lower is None else min(lower, piece_lower)
         upper = piece_upper if upper is None else max(upper, piece_upper)
 
-    _require(lower is not None and lower <= upper, 'interval', 'nonempty exact residual envelope')
+    _require((lower is not None) and (lower <= upper), 'interval', 'nonempty exact residual envelope')
     try:
         presentation = reference._present((lower, upper))
         # This result crosses back into the unchanged reference as external

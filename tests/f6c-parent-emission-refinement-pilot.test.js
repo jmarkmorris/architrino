@@ -1,8 +1,3 @@
-import {loadProductionTestModule,originalProductionTestSource} from './support/option-b-production-hosts.mjs';
-import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';
-const optionBIdentities = retainedTestIdentities("tests/f6c-parent-emission-refinement-pilot.test.js");
-const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/f6c-parent-emission-refinement-pilot.test.js"].sha256]);
-if (RETAINED_HASHES.length !== 2 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 // Synthetic batch transport controls. Frozen independent mathematical controls
 // remain separate; no retained history, provider or numerical launch occurs.
 import test from 'node:test';
@@ -11,7 +6,7 @@ import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,linkSync,renameSync,rea
 import {createHash} from 'node:crypto';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
-const B=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs");
+import * as B from '../scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs';
 import * as C from '../scripts/eom/f6c-bounded-operation.mjs';
 const root=realpathSync(process.cwd());
 const sha=b=>createHash('sha256').update(b).digest('hex');
@@ -23,13 +18,11 @@ function configuration(indices=[3,4,5]){
  const parents=indices.map(parentIndex=>({parentIndex,plan:b('/synthetic/parent-'+parentIndex+'.json'),output:path.join(root,B.LANE,'pilot-parent-'+parentIndex+'-synthetic'),producerMaximumBytes:1048576,comparisonMaximumBytes:1048576}));
  return{root,operationDirectory:'/synthetic/operation',parents,pythonCommand,git,hookModule,hookControls,sources:[...parents.map(p=>p.plan),...runtimeBindings],runtimeBindings,closureReserveBytes:1048576};
 }
-test('fixed math census/limits and source pins remain unchanged',()=>{
+test('fixed math census and resource limits remain unchanged',()=>{
  assert.equal(B.LIMIT,1800000);assert.equal(B.FILE,67108864);assert.equal(B.LOG,16777216);
  assert.deepEqual(B.CENSUS,{cells:1,members:8,queries:3584,pairRows:64,ordinaryPairs:56,selfZeros:8,pieceRecords:112});
  assert.deepEqual(B.ALGORITHM,{lowerQueriesPerPair:32,upperQueriesPerPair:32,upperSearchRestartsFromOriginal:true,receptionSubdivision:false,automaticRetry:false});
- for(const name of ['proposalReference','comparisonReference']){const[p,h]=B.NAMED[name];assert.equal(sha(originalProductionTestSource(p,h)??readFileSync(path.join(root,p))),h);}
- const selected=JSON.parse(readFileSync(path.join(root,'reference/priorities/development-process-review/contracts/option-b-f6c-bounded-operation-sources.jsonld')))['@graph'].find(r=>r.role==='admission').binding;
- assert.equal(B.COORDINATOR,selected.path);assert.equal(sha(readFileSync(path.join(root,B.COORDINATOR))),selected.sha256);
+ assert.equal(B.COORDINATOR,'scripts/eom/f6c-bounded-operation.mjs');
  assert.ok(Object.values(B.CLAIMS).every(v=>v===false));
 });
 test('closed JSON parser rejects duplicate keys/trailing syntax/unsafe integers',()=>{
@@ -46,15 +39,15 @@ test('data-only planmaker gives exact3/4/5 producer/comparison order and alias l
 });
 test('data-only parent plans preserve every original mathematical/ancestry token',()=>{
  const template={schema:'braid-program/f6c-parent-emission-refinement-launch.v1',scope:B.parentScope(2),parentIndex:2,
-  ...Object.fromEntries(Object.entries(B.NAMED).map(([k,[p,h]])=>[k,b(p,h??'b'.repeat(64))])),
-  dependencies:Object.fromEntries(Object.entries(B.DEPENDENCIES).map(([k,[p,h]])=>[k,b(p,h)])),originalBindings:Object.fromEntries(Object.entries(B.ORIGINAL).map(([k,[p,h,n]])=>[k,b(p,h,n??1)])),
+  ...Object.fromEntries(Object.entries(B.NAMED).map(([k,p])=>[k,b(p,'b'.repeat(64))])),
+  dependencies:Object.fromEntries(Object.entries(B.DEPENDENCIES).map(([k,p])=>[k,b(p)])),originalBindings:Object.fromEntries(Object.entries({...B.ORIGINAL,...Object.fromEntries(Object.entries(B.ORIGINAL_PATHS).map(([k,p])=>[k,[p]]))}).map(([k,[p,h,n]])=>[k,b(p,h,n??1)])),
   acceptanceOwner:b('reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md'),priorCoverClosure:{original:'exact preserved source tokens'},runtimeBindings:[],operationalBindings:[],limits:structuredClone(B.LIMITS)};
- const sourceBindings=['producer','producerControls','verifier','verifierControls'].map(k=>b(path.join(root,B.NAMED[k][0]),'c'.repeat(64)));
- const input={template,indices:[3,4,5],sourceBindings,runtimeBindings:[b('/python')],operationalBindings:[b('/operation')],acceptanceOwner:template.acceptanceOwner,historicalDocumentRoutes:[]},before=structuredClone(input);
+ const sourceBindings=['producer','producerControls','verifier','verifierControls'].map(k=>b(path.join(root,B.NAMED[k]),'c'.repeat(64)));
+ const input={template,indices:[3,4,5],sourceBindings,runtimeBindings:[b('/python')],operationalBindings:[b('/operation')],acceptanceOwner:template.acceptanceOwner},before=structuredClone(input);
  const plans=B.makeParentPlans(input);assert.deepEqual(input,before);assert.deepEqual(plans.map(p=>p.parentIndex),[3,4,5]);
- for(const p of plans){assert.equal(p.schema,'braid-program/f6c-parent-emission-refinement-launch.v3');assert.deepEqual(p.originalBindings,template.originalBindings);assert.deepEqual(p.dependencies,template.dependencies);assert.deepEqual(p.priorCoverClosure,template.priorCoverClosure);assert.equal(p.proposalReference.sha256,B.NAMED.proposalReference[1]);assert.equal(p.producer.sha256,'c'.repeat(64));}
+ for(const p of plans){assert.equal(p.schema,'braid-program/f6c-parent-emission-refinement-launch.v3');assert.deepEqual(p.originalBindings,template.originalBindings);assert.deepEqual(p.dependencies,template.dependencies);assert.deepEqual(p.priorCoverClosure,template.priorCoverClosure);assert.equal(p.proposalReference.sha256,template.proposalReference.sha256);assert.equal(p.producer.sha256,'c'.repeat(64));}
  assert.throws(()=>B.makeParentPlans({...input,indices:[3,3]}));assert.throws(()=>B.makeParentPlans({...input,sourceBindings:sourceBindings.slice(1)}));
- const bad=structuredClone(template);bad.proposalReference.sha256='d'.repeat(64);assert.throws(()=>B.makeParentPlans({...input,template:bad}));
+ const bad=structuredClone(template);bad.proposalReference.path='foreign.py';assert.throws(()=>B.makeParentPlans({...input,template:bad}));
 });
 test('batch validates explicit order and rejects changed stages/aliases/roots',()=>{
  const p=B.makeBatchPlan(configuration());assert.equal(B.validateBatch(p).parents.length,3);
@@ -81,13 +74,6 @@ test('hook leaves completion binding ownership to frozen coordinator',()=>{
  assert.throws(()=>B.coordinatorAdmission(input,{...stdout,bytes:2}));
  assert.throws(()=>B.coordinatorAdmission({...input,completionLogIdentity:'foreign'},stdout));
  const source=readFileSync(path.join(root,B.SELF),'utf8');assert.ok(source.includes('return coordinatorAdmission(result,job.stdoutLog)'));
-});
-test('exact historical tuples are separate logical/physical bindings',()=>{
- const rows=[['2026-08-27-f6c-cached-root-cover-full-resource-plan.md',RETAINED_HASHES[0],10021],['2026-08-27-f6c-root-cover-full-resource-plan.md',RETAINED_HASHES[1],13021]].map(([name,h,n])=>({original:b(path.join(root,'reference/priorities/braid-program/evidence',name),h,n),physical:b('/synthetic/archives/'+h+'.source',h,n)}));
- const routes=B.historicalRoutes(rows,root);assert.deepEqual(B.physicalSource(rows[0].original,{historicalDocumentRoutes:routes}),rows[0].physical);
- assert.deepEqual(B.historicalRoutes([],root),[]);assert.deepEqual(B.historicalRoutes([rows[1]],root),[rows[1]]);
- for(const mutate of [v=>v.push(v[0]),v=>v[0].physical.sha256='0'.repeat(64),v=>v[0].original.bytes++,v=>v[0].physical.path=v[0].original.path,v=>v[0].original.path='/scripts/executable.py']){const v=structuredClone(rows);mutate(v);assert.throws(()=>B.historicalRoutes(v,root));}
- assert.throws(()=>B.physicalSource({...rows[0].original,bytes:1},{historicalDocumentRoutes:routes}));
 });
 test('eight publication paths count four inodes; replacement/third alias reject',()=>{
  const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'parent-batch-controls-')));

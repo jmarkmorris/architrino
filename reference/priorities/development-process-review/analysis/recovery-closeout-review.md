@@ -36,7 +36,7 @@ The starting universe is the live original-step table (1, 2, 3A, 3B, 4, 5), the 
 
 | Original item | Current status | Disposition and reason | Destination/evidence | Owner; activation condition |
 | --- | --- | --- | --- | --- |
-| Step 1: authored evidence/source recovery | ◐ Partial — Blocked | Authored sources and incident evidence retain their own owners; runtime capabilities are not historical inputs. | [Source recovery](source-recovery-and-binding-repair.md) | Recovery / OPS-024; new authored source evidence |
+| Step 1: authored evidence/source recovery | ◐ Partial — Blocked | Authored sources and incident evidence retain their own owners; runtime capabilities are not historical inputs. | Source recovery (retired migration record) | Recovery / OPS-024; new authored source evidence |
 | Step 2: publication coordination | ✓ Done for recorded completed publication; further cycles Deferred | Prior publication does not imply all tests passed. No Git work belongs to this review. | [Process campaign](../processes-git-codex-claude.md), [Git incident record](github-remote-incident-diagnosis.md) | Designated publication runner; explicit operator invocation |
 | Step 3A: process cleanup | ◐ Partial | Current bounded repairs complete as D1; historical cause I6 remains open. | [Repair validation](process-repair-validation.md), [recurrence owner](supervision-and-omitted-coverage.md) | Recovery/process owner; actual recurrence evidence or final regression selection |
 | Step 3B: consequential-edit audit | ✓ Done for inspected transitions | No repeated audit inferred; broader mathematical consequences retain G9/G10 and science owners. | [Audit](consequential-repair-audit.md) | Recovery; new contradictory transition or affected contract |
@@ -126,9 +126,9 @@ The following six numerical requirements remain in [scientific consumption](scie
 
 | Original requirement | Status | Reason/destination/evidence | Owner; activation condition |
 | --- | --- | --- | --- |
-| N1 full 160-cell root cover | ○ Not done — Deferred | [Full-root transport](full-root-cover-current-migration.md) passes transport controls, not 160-cell numerical coverage | Root-cover / Braid Program; complete original pilot chain, resources and independent comparison |
-| N2 acceleration numerical evaluation | ○ Not done — Deferred | [Acceleration transport](acceleration-current-migration.md); synthetic stages are not numerical evidence | Acceleration / Braid Program; bound producer/comparator and resource admission |
-| N3 emission numerical pilot | ○ Not done — Deferred | [Emission transport](emission-current-migration.md); real metadata stages are not numerical refinement | Emission / Braid Program; complete numerical workload and independent acceptance |
+| N1 full 160-cell root cover | ○ Not done — Deferred | Full-root transport (retired migration record) passes transport controls, not 160-cell numerical coverage | Root-cover / Braid Program; complete original pilot chain, resources and independent comparison |
+| N2 acceleration numerical evaluation | ○ Not done — Deferred | Acceleration transport (retired migration record); synthetic stages are not numerical evidence | Acceleration / Braid Program; bound producer/comparator and resource admission |
+| N3 emission numerical pilot | ○ Not done — Deferred | Emission transport (retired migration record); real metadata stages are not numerical refinement | Emission / Braid Program; complete numerical workload and independent acceptance |
 | N4 refined numerical execution | ○ Not done — Blocked | [Remaining caller contracts](remaining-caller-contracts.md); I4 current transport is its prerequisite | Refined / Braid Program; accepted current bridge plus run admission |
 | N5 streamed new-parent consumption | ○ Not done — Deferred | Operational external receipt is not scientific consumer acceptance | Parent/streamed scientific owner; consumer interface and independent acceptance selected |
 | N6 circular fixed cohort | ◐ Partial | All sixteen candidate rows above retain the [predeclaration](../../braid-program/evidence/2026-08-27-subfield-circular-h3-pilot-predeclaration.md), raw certificates and repeated-reception requirements | Braid Program; approved exact cohort/rung profiles and resource dispositions |

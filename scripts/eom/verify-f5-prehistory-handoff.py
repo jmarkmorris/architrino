@@ -11,7 +11,7 @@ origin or successful producer execution. Those remain separate review duties.
 
 Closed producer schema HANDOFF_SCHEMA (all keys required, no additional keys):
   schema, status='data-only-history-handoff', prefixSha256,
-  restrictionReceiptSha256, sourceOwners=SOURCE_OWNERS,
+  restrictionReceiptSha256,
   producerBindings={source,buildReceipt,executable}, each {path,sha256,bytes},
   runtimePremises=RUNTIME_PREMISES, normalizedFieldSpeed='1',
   retainedInterval=['-1','0'], releaseTime='0', claims=FALSE_CLAIMS, members.
@@ -49,6 +49,10 @@ receipt admission; private, interrupted or late publication has no authority.
 """
 from __future__ import annotations
 
+import hashlib
+from pathlib import Path
+
+
 import argparse
 from contextlib import ExitStack
 from decimal import Decimal
@@ -56,7 +60,6 @@ from fractions import Fraction as F
 from hashlib import sha256
 import json
 import os
-from pathlib import Path
 import re
 import signal
 import stat
@@ -65,27 +68,12 @@ import tempfile
 import time
 
 _EXECUTING_CODE = sys._getframe().f_code
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import importlib.util as _option_b_importlib
-    from pathlib import Path as _OptionBPath
-    _option_b_root = _OptionBPath(__file__).resolve().parents[2]
-    _option_b_spec = _option_b_importlib.spec_from_file_location("_option_b_production_source_records", _option_b_root / "scripts/eom/production_source_records.py")
-    _option_b_bridge = _option_b_importlib.module_from_spec(_option_b_spec)
-    _option_b_spec.loader.exec_module(_option_b_bridge)
-    OPTION_B_PRODUCTION_IDENTITIES = _option_b_bridge.production_identities(__file__)
 
-PREFIX_SHA = OPTION_B_PRODUCTION_IDENTITIES[0]
-RESTRICTION_SHA = OPTION_B_PRODUCTION_IDENTITIES[1]
-FULL_SHA = OPTION_B_PRODUCTION_IDENTITIES[2]
-NOMINAL_SHA = OPTION_B_PRODUCTION_IDENTITIES[3]
-API_SHA = OPTION_B_PRODUCTION_IDENTITIES[4]
-SOURCE_OWNERS = {
-    'src/eom/src/History.cpp': OPTION_B_PRODUCTION_IDENTITIES[5],
-    'src/eom/src/Interval.cpp': OPTION_B_PRODUCTION_IDENTITIES[6],
-    'src/eom/include/architrino/eom/Decimal.hpp': OPTION_B_PRODUCTION_IDENTITIES[7],
-    'src/eom/include/architrino/eom/History.hpp': OPTION_B_PRODUCTION_IDENTITIES[8],
-    'src/eom/src/CoupledEvolution.cpp': OPTION_B_PRODUCTION_IDENTITIES[9],
-}
+PREFIX_SHA = '8d14aa3bc5e0788f06c8b79e788a55df82e8db83736e2413c9800a78af63111b'
+RESTRICTION_SHA = '5a2e9158bf26c34a7a9755e53ea1337cc006765727d9afe1ef1304c3fcd140b0'
+FULL_SHA = '5c665fcd7eee92a105fd958929ee443e4eeaea6afc0222935739aad2622a1725'
+NOMINAL_SHA = 'f862a7148a0a00b3bde5fbb0d164156fce2dbfc161597b0cdaa182457f3741e0'
+API_SHA = '440deb996eaeb646b7863e9276fb937f9897c11fdbd56fed11a32efb269fe746'
 HANDOFF_SCHEMA = 'braid-program/f5-prehistory-handoff.v1'
 REPORT_SCHEMA = 'braid-program/f5-prehistory-handoff-conformance.v1'
 HISTORY_PREFIX = 'f5-prehistory/v1/'
@@ -99,7 +87,7 @@ FALSE_CLAIMS = {name: False for name in (
     'scoreAuthorized', 'h3EvidenceEligible', 'analyticTrajectoryIdentityEstablished')}
 SEGMENT_KEYS = {'index', 'tStart', 'tEnd', 'coefficients', 'positionErrors', 'velocityErrors'}
 PARSED_KEYS = SEGMENT_KEYS - {'index'}
-TOP_KEYS = {'schema', 'status', 'prefixSha256', 'restrictionReceiptSha256', 'sourceOwners',
+TOP_KEYS = {'schema', 'status', 'prefixSha256', 'restrictionReceiptSha256',
             'producerBindings', 'runtimePremises', 'normalizedFieldSpeed', 'retainedInterval',
             'releaseTime', 'claims', 'members'}
 MEMBER_KEYS = {'index', 'constituentId', 'worldlineId', 'polarity', 'originalHistory',
@@ -389,7 +377,7 @@ def analyze_data(prefix, receipt, handoff, bindings, progress=None):
         require(type(value['path']) is str and Path(value['path']).is_absolute()
                 and type(value['sha256']) is str and HASH.fullmatch(value['sha256'])
                 and type(value['bytes']) is int and value['bytes'] > 0, 'invalid producer file binding')
-    require(handoff['sourceOwners'] == SOURCE_OWNERS and handoff['producerBindings'] == bindings, 'source/build/executable bindings differ')
+    require(handoff['producerBindings'] == bindings, 'source/build/executable bindings differ')
     require(handoff['runtimePremises'] == RUNTIME_PREMISES, 'runtime premises differ')
     require(handoff['normalizedFieldSpeed'] == '1' and handoff['retainedInterval'] == ['-1', '0'] and handoff['releaseTime'] == '0', 'release scope differs')
     keys(handoff['claims'], FALSE_CLAIMS, 'claims')
@@ -477,7 +465,7 @@ class BoundFile:
         self.path, self.expected, self.limit, self.fd = Path(path).absolute(), expected, limit, None
 
     def __enter__(self):
-        require(type(self.expected) is str and HASH.fullmatch(self.expected), 'external original-byte SHA-256 required')
+        require(type(self.expected) is str and HASH.fullmatch(self.expected), 'invalid expected SHA-256')
         self.fd = os.open(self.path, os.O_RDONLY | os.O_NONBLOCK | getattr(os, 'O_NOFOLLOW', 0))
         try:
             info = os.fstat(self.fd)
@@ -626,7 +614,6 @@ def verify(args):
              ('source', args.producer_source, args.producer_source_sha256),
              ('buildReceipt', args.build_receipt, args.build_receipt_sha256),
              ('executable', args.executable, args.executable_sha256)]
-    paths += [(owner, root/owner, digest) for owner, digest in SOURCE_OWNERS.items()]
     output = Path(args.out).absolute()
     require(output.parent.is_dir() and not os.path.lexists(output), 'fresh output directory/path required')
     require(output.resolve() not in {Path(p).resolve() for _, p, _ in paths}, 'output aliases input')

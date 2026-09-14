@@ -7,19 +7,18 @@ receipt and root ledger must bind those same bytes before any H3 conclusion.
 
 from __future__ import annotations
 
+import hashlib
+from pathlib import Path
+
 import argparse
 from decimal import Decimal
-import hashlib
 import json
 import math
-from pathlib import Path
 import re
 import sys
 import time
-from types import ModuleType
 from typing import Callable
 
-_EXECUTING_WRAPPER_CODE = sys._getframe().f_code
 
 SCHEMA = "braid-program/f5-actual-cubic-conformance.v1"
 MANIFEST_SCHEMA = "braid-program/f5-enclosed-root-history-manifest.v1"
@@ -28,37 +27,8 @@ VELOCITY_WIDTH = "2.866983034112353e-7"
 SEGMENT_COUNT = 1032
 LIMIT_SECONDS = 1800
 HEARTBEAT_SECONDS = 15
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import importlib.util as _option_b_importlib
-    from pathlib import Path as _OptionBPath
-    _option_b_root = _OptionBPath(__file__).resolve().parents[3]
-    _option_b_spec = _option_b_importlib.spec_from_file_location("_option_b_production_source_records", _option_b_root / "scripts/eom/production_source_records.py")
-    _option_b_bridge = _option_b_importlib.module_from_spec(_option_b_spec)
-    _option_b_spec.loader.exec_module(_option_b_bridge)
-    OPTION_B_PRODUCTION_IDENTITIES = _option_b_bridge.production_identities(__file__)
 
-FIXED_BINDINGS = {
-    "approved-config": (
-        "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
-        OPTION_B_PRODUCTION_IDENTITIES[0],
-    ),
-    "pilot-fixture": (
-        "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json",
-        OPTION_B_PRODUCTION_IDENTITIES[1],
-    ),
-    "restart-predeclaration": (
-        "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
-        OPTION_B_PRODUCTION_IDENTITIES[2],
-    ),
-    "enclosure-evidence": (
-        "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md",
-        OPTION_B_PRODUCTION_IDENTITIES[3],
-    ),
-    "accepted-enclosure-report": (
-        ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json",
-        OPTION_B_PRODUCTION_IDENTITIES[4],
-    ),
-}
+FIXED_BINDINGS = {'approved-config': ('tests/fixtures/f5-history/approved-config.json', 'e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb'), 'pilot-fixture': ('tests/fixtures/f5-history/pilot-fixture.json', 'bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344'), 'accepted-enclosure-report': ('tests/fixtures/f5-history/accepted-enclosure-report.json', '2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9')}
 INSTRUMENT_PATHS = (
     "scripts/eom/oracle/decimal_interval.py",
     "scripts/eom/oracle/f5_actual_cubic_conformance.py",
@@ -66,34 +36,10 @@ INSTRUMENT_PATHS = (
 )
 
 
-def _load_frozen_proof_snapshot():
-    """Execute exactly the captured source bytes, never a cached prior import.
-
-    The isolated package makes the core's relative decimal import resolve to
-    the same byte snapshot. No adapter code or external source is loaded.
-    """
-    root = Path(__file__).resolve().parents[3]
-    sources = {relative: (root / relative).read_bytes() for relative in INSTRUMENT_PATHS}
-    compiled_wrapper = compile(sources[INSTRUMENT_PATHS[-1]],
-        _EXECUTING_WRAPPER_CODE.co_filename, "exec", dont_inherit=True, optimize=sys.flags.optimize)
-    if compiled_wrapper != _EXECUTING_WRAPPER_CODE:
-        raise ValueError("executing wrapper code differs from the captured source snapshot")
-    digest = hashlib.sha256(b"".join(sources.values())).hexdigest()
-    package_name = f"_f5_proof_snapshot_{digest}"
-    package = ModuleType(package_name)
-    package.__path__ = []
-    sys.modules[package_name] = package
-    for relative in INSTRUMENT_PATHS[:2]:
-        name = f"{package_name}.{Path(relative).stem}"
-        module = ModuleType(name)
-        module.__file__ = str(root / relative)
-        module.__package__ = package_name
-        sys.modules[name] = module
-        exec(compile(sources[relative], module.__file__, "exec"), module.__dict__)
-    return sys.modules[f"{package_name}.f5_actual_cubic_conformance"], sources
-
-
-_PROOF, _IMPORTED_SOURCE_BYTES = _load_frozen_proof_snapshot()
+# Support the standalone CLI as well as ordinary package imports.
+if not __package__:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+from scripts.eom.oracle import f5_actual_cubic_conformance as _PROOF
 PRECISION = _PROOF.PRECISION
 certify_f5_segment = _PROOF.certify_f5_segment
 point = _PROOF.point
@@ -281,10 +227,7 @@ def verify_manifest_bytes(
     root = (repo_root or Path(__file__).resolve().parents[3]).resolve()
     if (root / INSTRUMENT_PATHS[-1]).resolve() != Path(__file__).resolve():
         raise ValueError("repository root is not the executing verifier's repository")
-    initial_instruments = _IMPORTED_SOURCE_BYTES
-    for relative, imported in initial_instruments.items():
-        if (root / relative).read_bytes() != imported:
-            raise ValueError("instrument changed after frozen import; start a fresh verifier process")
+    initial_instruments = {relative: (root / relative).read_bytes() for relative in INSTRUMENT_PATHS}
     config, report, bindings = load_frozen_sources(root)
     manifest = decode_json(data)
     operators = validate_manifest_shape(manifest, config, report)

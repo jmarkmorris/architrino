@@ -4,15 +4,13 @@ The independent mathematical answer used here is integral(1)=duration and
 peak_squared=1, with zero correlated residual. Frozen GK supplies the unchanged
 transition protocol; equality of replay alone is not independent physics proof.
 """
-from option_b_production_records import source_bytes as _option_b_source_bytes, exec_source as _option_b_exec_source
-from option_b_batch_records import batch_identities
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
+import hashlib
+from pathlib import Path
 
 from dataclasses import dataclass, replace
 from fractions import Fraction as F
-import hashlib
 import json
-from pathlib import Path
 import sys
 from types import ModuleType, SimpleNamespace as NS
 import unittest
@@ -20,19 +18,18 @@ import unittest
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def load(name,relative,expected=None):
-    raw=_option_b_source_bytes(__file__, ROOT/relative)
-    if expected: assert hashlib.sha256(raw).hexdigest()==expected
+def load(name,relative):
+    raw=Path(ROOT/relative).read_bytes()
     m=ModuleType(name);m.__file__=str(ROOT/relative);sys.modules[name]=m
-    _option_b_exec_source(__file__, m, m.__file__, raw);return m
+    exec(compile(raw, str(m.__file__), 'exec', dont_inherit=True), m.__dict__);return m
 
 
 R=load('continuation_subject','scripts/eom/f6c_leaf_continuation.py')
 D=load('continuation_diagnostic','scripts/eom/f6c_single_leaf_diagnostic.py')
 S=load('continuation_streamed','scripts/eom/f6c_streamed_leaf_session.py')
-C=load('continuation_codec','scripts/eom/f6c_leaf_evidence_codec.py',OPTION_B_BATCH_IDENTITIES[0])
-I=load('continuation_integral','scripts/eom/oracle/f6c_residual_integral_supremum.py',OPTION_B_BATCH_IDENTITIES[1])
-G=load('continuation_protocol','scripts/eom/oracle/f6c_gk13_protocol.py',OPTION_B_BATCH_IDENTITIES[2])
+C=load('continuation_codec','scripts/eom/f6c_leaf_evidence_codec.py')
+I=load('continuation_integral','scripts/eom/oracle/f6c_residual_integral_supremum.py')
+G=load('continuation_protocol','scripts/eom/oracle/f6c_gk13_protocol.py')
 
 
 def token(n):
@@ -55,6 +52,7 @@ class Adapter:
     gk_protocol=G
     acceleration_reference=NS()
     def __init__(self):
+        self.integral_reference_sha256=hashlib.sha256(Path(I.__file__).read_bytes()).hexdigest()
         self.context=I.Context('f6c-reconstruction-family','a'*64,'b'*64,'1','10.304229970992187','0.5320012303229503')
         self.frames=tuple(NS(time=token(2*n)) for n in range(81))
         self.parents=tuple(Parent(n,I.Bounds(token(n),token(n+1)),tuple(dict(row=j) for j in range(64)),(),n==0) for n in range(160))

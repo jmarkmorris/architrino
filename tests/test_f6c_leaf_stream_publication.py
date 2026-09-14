@@ -1,16 +1,14 @@
 """Portable filesystem/transport controls; no histories or numerical imports."""
-from option_b_production_records import captured_source as _option_b_capture, exec_source as _option_b_exec_source, exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
-from option_b_batch_records import batch_identities
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
+import hashlib
+from pathlib import Path
 
 
 import copy
 from dataclasses import FrozenInstanceError
-import hashlib
 import importlib.util
 import json
 import os
-from pathlib import Path
 import stat
 import sys
 import tempfile
@@ -23,18 +21,17 @@ from unittest import mock
 ROOT = Path(__file__).resolve().parents[1]
 SUBJECT = ROOT / 'scripts/eom/f6c_leaf_stream_publication.py'
 CODEC = ROOT / 'scripts/eom/f6c_leaf_evidence_codec.py'
-CODEC_SHA = OPTION_B_BATCH_IDENTITIES[0]
+CODEC_SHA = hashlib.sha256((Path(__file__).resolve().parents[1] / 'scripts/eom/f6c_leaf_evidence_codec.py').read_bytes()).hexdigest()
 
 
 def load(name, path):
     spec = importlib.util.spec_from_file_location(name, path)
     module = importlib.util.module_from_spec(spec)
     sys.modules[name] = module
-    _option_b_exec_module(__file__, spec, module)
+    spec.loader.exec_module(module)
     return module
 
 
-assert hashlib.sha256(_option_b_source_bytes(__file__, CODEC)).hexdigest() == CODEC_SHA
 codec = load('leaf_publication_frozen_codec', CODEC)
 subject = load('leaf_publication_subject', SUBJECT)
 
@@ -455,15 +452,14 @@ class PublicationTests(unittest.TestCase):
             self.assertFalse(q.public_path.exists())
 
     def test_import_has_no_filesystem_side_effect_or_numeric_dependency(self):
-        original, raw, identities = _option_b_capture(__file__, SUBJECT)
+        raw = SUBJECT.read_bytes()
         module = types.ModuleType('publication_import_tripwire')
-        module.OPTION_B_PRODUCTION_IDENTITIES = identities
+        module.__file__ = str(SUBJECT)
         sys.modules[module.__name__] = module
         try:
             with mock.patch('os.open', side_effect=AssertionError('I/O at import')), \
                  mock.patch('tempfile.mkdtemp', side_effect=AssertionError('directory at import')):
                 exec(compile(raw, str(SUBJECT), 'exec'), module.__dict__)
-            self.assertEqual(module.CODEC_SHA256, CODEC_SHA)
             self.assertNotIn('subprocess', module.__dict__)
             self.assertNotIn('codec', module.__dict__)
         finally: sys.modules.pop(module.__name__, None)

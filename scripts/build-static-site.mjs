@@ -46,7 +46,7 @@ export function buildStaticSite({ rootDir = ROOT, outputDir = path.join(rootDir,
   if (outputDir === rootDir || rootDir.startsWith(`${outputDir}${path.sep}`)) throw new Error("site output must not contain the source repository");
   if (outputDir.startsWith(`${rootDir}${path.sep}`) && !outputDir.startsWith(`${rootDir}/.tmp/`)) throw new Error("in-repository site output must be under ignored .tmp/");
   if (fs.existsSync(outputDir) && (fs.lstatSync(outputDir).isSymbolicLink() || fs.readdirSync(outputDir).length)) throw new Error("site output must be an empty directory");
-  const prepared = prepare({ rootDir });
+  prepare({ rootDir });
   const families = readRuntimeAssetFamilies(rootDir);
   const tracked = trackedPaths ?? execFileSync("git", ["ls-files", "-z"], { cwd: rootDir, encoding: "utf8" }).split("\0").filter(Boolean);
   // Copy only versioned public paths plus the explicitly enumerated outputs.
@@ -79,7 +79,6 @@ export function buildStaticSite({ rootDir = ROOT, outputDir = path.join(rootDir,
     if (content !== undefined) fs.writeFileSync(target, content);
     else fs.copyFileSync(source, target);
   }
-  prepared?.verifyBorgPublished?.(outputDir);
   fs.writeFileSync(path.join(outputDir, ".nojekyll"), "");
   return { outputDir, fileCount: payload.length, runtimeAssetCount: deployableRuntimeAssets.length, byteCount,
     images: { retained: imageSelection.retainedPaths.length, excluded: excludedImages.size,

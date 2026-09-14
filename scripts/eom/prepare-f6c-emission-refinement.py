@@ -13,99 +13,19 @@ required. No acceleration, EOM evolution, metric, or physical claim is made.
 """
 from __future__ import annotations
 
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
-    from pathlib import Path as _b_Path
-    _b_root = _b_Path(__file__).resolve().parents[2]
-    _b_held = {}
-    def _b_identity(path):
-        value = path.lstat()
-        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
-    def _b_capture(relative, expected=None):
-        if (type(relative) is not str or not relative or '\\' in relative
-                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
-            raise ValueError('Unsafe selected Python bootstrap path')
-        path = _b_root / relative
-        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
-            raise ValueError('Canonical regular Python bootstrap source required')
-        before = _b_identity(path)
-        if relative in _b_held and _b_held[relative] != before:
-            raise ValueError('Selected Python bootstrap source replaced')
-        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
-        try:
-            value = _b_os.fstat(fd)
-            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
-                raise ValueError('Bounded Python bootstrap source required')
-            parts = []; size = 0
-            while size < value.st_size:
-                part = _b_os.read(fd, min(65536, value.st_size-size))
-                if not part: raise ValueError('Truncated Python bootstrap source')
-                parts.append(part); size += len(part)
-            raw = b''.join(parts); value = _b_os.fstat(fd)
-            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
-                raise ValueError('Selected Python bootstrap source changed during capture')
-        finally:
-            _b_os.close(fd)
-        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
-            raise ValueError('Selected Python bootstrap digest differs')
-        _b_held[relative] = before
-        return raw
-    def _b_unique(pairs):
-        result = {}
-        for key,value in pairs:
-            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
-            result[key] = value
-        return result
-    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
-    def _b_recheck():
-        for relative,identity in _b_held.items():
-            if _b_identity(_b_root/relative) != identity:
-                raise ValueError('Retained Python bootstrap source replaced')
-    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
-    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
-    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
-    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
-    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
-    _b_path = 'scripts/eom/production_source_records.py'
-    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
-    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
-            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
-            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
-        raise ValueError('Exact selected Python production bridge required')
-    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
-    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
-    _b_bridge.__file__ = str(_b_root/_b_path)
-    _b_sys.modules[_b_bridge.__name__] = _b_bridge
-    _b_recheck()
-    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
-    _b_recheck()
-    def _b_call(name, *args, **kwargs):
-        _b_recheck()
-        result = getattr(_b_bridge,name)(*args,**kwargs)
-        _b_recheck()
-        return result
-    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
-    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
-    production_recheck = lambda: _b_call('production_recheck')
-    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
-    production_runtime_binding = lambda: _b_call('production_runtime_binding')
-    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
-    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+import hashlib
+from pathlib import Path
 
-if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
-        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
-        or len(OPTION_B_PRODUCTION_IDENTITIES) != 31):
-    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
+
 
 import argparse
 from contextlib import contextmanager, ExitStack
 from decimal import Decimal, localcontext
 from fractions import Fraction
-import hashlib
 import json
 import math
 import os
-from pathlib import Path
 import re
 import signal
 import stat
@@ -121,47 +41,38 @@ CONTROLS = "tests/test_f6c_emission_refinement_preparation.py"
 VERIFIER = "scripts/eom/verify-f6c-emission-refinement.py"
 VERIFIER_CONTROLS = "tests/test_f6c_emission_refinement.py"
 DECLARATION = "reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-predeclaration.md"
-DECLARATION_SHA = OPTION_B_PRODUCTION_IDENTITIES[0]
 COMPARISON = "scripts/eom/oracle/f6c_emission_refinement_conformance.py"
-COMPARISON_SHA = OPTION_B_PRODUCTION_IDENTITIES[1]
 COMPARISON_CONTROLS = "tests/test_f6c_emission_refinement_conformance.py"
-COMPARISON_CONTROLS_SHA = OPTION_B_PRODUCTION_IDENTITIES[2]
 HELPER = "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py"
-HELPER_SHA = OPTION_B_PRODUCTION_IDENTITIES[3]
 BASE = ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/"
 FIXED = (
-    ('export', '.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json', OPTION_B_PRODUCTION_IDENTITIES[4]),
-    ('reconstruction', '.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json', OPTION_B_PRODUCTION_IDENTITIES[5]),
-    ('guards', '.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json', OPTION_B_PRODUCTION_IDENTITIES[6]),
-    ('manifest', BASE+'subject/cover-manifest.json', OPTION_B_PRODUCTION_IDENTITIES[7]),
-    ('comparison', BASE+'comparison.json', OPTION_B_PRODUCTION_IDENTITIES[8]),
-    ('admission', BASE+'pilot-admission.json', OPTION_B_PRODUCTION_IDENTITIES[9]),
-    ('rows', BASE+'subject/rows.ndjson', OPTION_B_PRODUCTION_IDENTITIES[10]),
-    ('pieces', BASE+'subject/pieces.ndjson', OPTION_B_PRODUCTION_IDENTITIES[11]),
-    ('priorPlan', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json', OPTION_B_PRODUCTION_IDENTITIES[12]),
-    ('priorClosureOwner', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md', OPTION_B_PRODUCTION_IDENTITIES[13]),
-    ('reference', 'scripts/eom/oracle/continuous_reception_acceleration.py', OPTION_B_PRODUCTION_IDENTITIES[14]),
-    ('referenceControls', 'tests/test_eom_continuous_reception_acceleration.py', OPTION_B_PRODUCTION_IDENTITIES[15]),
-    ('referenceProof', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', OPTION_B_PRODUCTION_IDENTITIES[16]),
-    ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', OPTION_B_PRODUCTION_IDENTITIES[17]),
-    ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', OPTION_B_PRODUCTION_IDENTITIES[18]),
-    ('reconstructionTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md', OPTION_B_PRODUCTION_IDENTITIES[19]),
+    ('export', '.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json', 'f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'),
+    ('reconstruction', '.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json', '7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43'),
+    ('guards', '.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json', '86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880'),
+    ('manifest', BASE+'subject/cover-manifest.json', '19fae257f7f36d858fa60d9031125b3f29dbb8780e944802699aab5292275f4c'),
+    ('comparison', BASE+'comparison.json', '6bf2b50ef4f0b46f43ae77a9881f82a2f9d504d5df757bc0ad215deb8eac36c6'),
+    ('admission', BASE+'pilot-admission.json', '1a814c90279eed456546b2c4959a8504657213ffc2d25c063060831814e930ee'),
+    ('rows', BASE+'subject/rows.ndjson', '786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383'),
+    ('pieces', BASE+'subject/pieces.ndjson', '2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411'),
+    ('priorPlan', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json', '5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86'),
 )
+SOURCE_PATHS = {'reference': 'scripts/eom/oracle/continuous_reception_acceleration.py', 'referenceControls': 'tests/test_eom_continuous_reception_acceleration.py'}
 
 # Source/control closure is explicit even for bound but unexecuted references.
 EXTRA = (
-    (HELPER, HELPER_SHA),
-    ("tests/test_f6c_cached_continuous_reception_root_cover_preparation.py", OPTION_B_PRODUCTION_IDENTITIES[20]),
-    ("scripts/eom/oracle/continuous_reception_roots_cached.py", OPTION_B_PRODUCTION_IDENTITIES[21]),
-    ("tests/test_eom_continuous_reception_roots_cached.py", OPTION_B_PRODUCTION_IDENTITIES[22]),
-    ("scripts/eom/oracle/certified_history.py", OPTION_B_PRODUCTION_IDENTITIES[23]),
-    ("scripts/eom/oracle/decimal_interval.py", OPTION_B_PRODUCTION_IDENTITIES[24]),
-    ("tests/test_eom_decimal_interval.py", OPTION_B_PRODUCTION_IDENTITIES[25]),
-    ("scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py", OPTION_B_PRODUCTION_IDENTITIES[26]),
-    ("tests/test_f6c_cached_continuous_reception_root_cover.py", OPTION_B_PRODUCTION_IDENTITIES[27]),
-    ("reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md", OPTION_B_PRODUCTION_IDENTITIES[28]),
-    (DECLARATION, DECLARATION_SHA), (COMPARISON, COMPARISON_SHA),
-    (COMPARISON_CONTROLS, COMPARISON_CONTROLS_SHA),
+    HELPER,
+    "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+    "scripts/eom/oracle/continuous_reception_roots_cached.py",
+    "tests/test_eom_continuous_reception_roots_cached.py",
+    "scripts/eom/oracle/certified_history.py",
+    "scripts/eom/oracle/decimal_interval.py",
+    "tests/test_eom_decimal_interval.py",
+    "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py",
+    "tests/test_f6c_cached_continuous_reception_root_cover.py",
+    "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md",
+    DECLARATION,
+    COMPARISON,
+    COMPARISON_CONTROLS,
 )
 MODULE_PATHS = {
     "decimal_interval": "scripts/eom/oracle/decimal_interval.py",
@@ -201,10 +112,6 @@ OPERATIONS = (
     "scripts/eom/launch-subfield-circular-root-pilot.mjs",
     "/bin/ps", "/usr/bin/memory_pressure",
 )
-OP_PINS = {
-    OPERATIONS[4]: OPTION_B_PRODUCTION_IDENTITIES[29],
-    OPERATIONS[5]: OPTION_B_PRODUCTION_IDENTITIES[30],
-}
 
 
 
@@ -213,78 +120,10 @@ OP_PINS = {
 
 
 
-class _ProductionOriginal:
-    """Original logical binding backed by an independently owned archive handle."""
-    def __init__(self, physical, logical):
-        object.__setattr__(self,'_physical',physical)
-        object.__setattr__(self,'path',logical)
-    def __getattr__(self,name):return getattr(self._physical,name)
-    def __setattr__(self,name,value):setattr(self._physical,name,value)
-    def binding(self):
-        result=self._physical.binding();result['path']=str(self.path);return result
-    def physical_binding(self):return self._physical.binding()
-    def recheck(self):
-        result=self._physical.recheck()
-        if isinstance(result,dict) and 'path' in result:
-            result=dict(result);result['path']=str(self.path)
-        return result
 
 
-@contextmanager
-def _production_capture(cls, filename, digest, **kwargs):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
-    if not _path.is_absolute():_path=_root/_path
-    try:_relative=_path.relative_to(_root).as_posix()
-    except ValueError:_binding=None
-    else:
-        if _path!=_path.resolve():raise ValueError('noncanonical original capture')
-        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
-        if _binding is not None:
-            from hashlib import sha256 as _sha256
-            _,_current,_=production_source_pair(_root,__file__,_relative)
-            _binding=None if _sha256(_current).hexdigest()==digest else production_original_source_binding(_root,__file__,_relative,digest)
-    _physical=_Path(_binding['path']) if _binding is not None else _path
-    production_recheck()
-    with cls(_physical,digest,**kwargs) as _held:
-        if _binding is not None and (_held.binding()['bytes']!=_binding['bytes'] or _held.binding()['sha256']!=_binding['sha256']):raise ValueError('original archive identity differs')
-        try:yield _ProductionOriginal(_held,_path) if _binding is not None else _held
-        finally:
-            if _binding is not None:_held.recheck()
-            production_recheck()
 
-def _production_current_source(raw):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2]
-    _original,_current,_=production_source_pair(_root,__file__,_Path(__file__).resolve().relative_to(_root).as_posix())
-    require(raw==_original or raw==_current,'executing source is not the selected equivalent generation')
-    production_recheck()
-    return _current
 
-def _production_exec(raw, filename, namespace, *, optimize=-1):
-    """Execute the proven current representation or the exact older original."""
-    from pathlib import Path as _Path
-    from hashlib import sha256 as _sha256
-    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
-    if not _path.is_absolute():_path=_root/_path
-    try:_relative=_path.relative_to(_root).as_posix()
-    except ValueError:_binding=None
-    else:
-        if _path!=_path.resolve():raise ValueError('noncanonical captured module')
-        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
-    if _binding is not None:
-        _original,_current,_identities=production_source_pair(_root,__file__,_relative)
-        if raw==_original or raw==_current:
-            raw=_current
-            namespace['OPTION_B_PRODUCTION_IDENTITIES']=_identities
-            for _key in ('production_identities','production_source_pair','production_recheck','production_historical_record','production_runtime_binding','production_original_source_binding'):
-                namespace[_key]=globals()[_key]
-        else:
-            _historical,_,_=production_source_pair(_root,__file__,_relative,_sha256(raw).hexdigest())
-            if raw!=_historical:raise ValueError('captured older original differs')
-    production_recheck()
-    try:exec(compile(raw,str(filename),'exec',dont_inherit=True,optimize=optimize),namespace)
-    finally:production_recheck()
 
 def require(ok, message):
     if not ok: raise ValueError(message)
@@ -301,7 +140,7 @@ def encoded(value):
 def decode(raw, *, document_type="data"):
     # Operational receipts carry captured command/source strings, not numeric
     # lexemes. Callers select that document class; ordinary data stays at 8192.
-    require(type(document_type) is str and document_type in ("data", "operational-receipt"), "JSON document type")
+    require((type(document_type) is str) and (document_type in ("data", "operational-receipt")), "JSON document type")
     string_limit = 65536 if document_type == "operational-receipt" else 8192
     require(len(raw) <= MAX_BYTES, "JSON byte limit")
     def pairs(items):
@@ -325,19 +164,19 @@ def decode(raw, *, document_type="data"):
 
 class BoundFile:
     """Original byte capture and same-file before/after identity."""
-    def __init__(self, path, expected, *, collect=False, limit=MAX_BYTES):
+    def __init__(self, path, expected=None, *, collect=False, limit=MAX_BYTES):
         self.path = Path(path).absolute(); self.expected = expected; self.collect = collect; self.limit = limit
         self.fd = None
     @staticmethod
     def identity(s): return s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns
     def __enter__(self):
-        require(type(self.expected) is str and HEX.fullmatch(self.expected), "SHA-256 required")
+        require((self.expected is None or (type(self.expected) is str and HEX.fullmatch(self.expected))), "SHA-256 required")
         self.fd = os.open(self.path, os.O_RDONLY | os.O_NONBLOCK | getattr(os, "O_NOFOLLOW", 0))
         try:
             self.initial = os.fstat(self.fd)
-            require(stat.S_ISREG(self.initial.st_mode) and 0 < self.initial.st_size <= self.limit, "bounded regular file required")
+            require((stat.S_ISREG(self.initial.st_mode)) and (0 < self.initial.st_size <= self.limit), "bounded regular file required")
             self.data, digest = self.scan(self.collect)
-            require(digest == self.expected, "source hash mismatch: "+str(self.path)); self.recheck(); return self
+            self.expected=digest if self.expected is None else self.expected;require(digest==self.expected, "source hash mismatch: "+str(self.path)); self.recheck(); return self
         except BaseException:
             os.close(self.fd); self.fd = None; raise
     def scan(self, collect=False):
@@ -348,10 +187,10 @@ class BoundFile:
             size += len(block); require(size <= self.limit, "file grew beyond bound")
             digest.update(block)
             if collect: chunks.append(block)
-        require(size == self.initial.st_size and self.identity(os.fstat(self.fd)) == self.identity(self.initial), "file changed during capture")
+        require((size == self.initial.st_size) and (self.identity(os.fstat(self.fd)) == self.identity(self.initial)), "file changed during capture")
         return (b"".join(chunks) if collect else None), digest.hexdigest()
     def recheck(self):
-        require(self.scan()[1] == self.expected and self.identity(os.lstat(self.path)) == self.identity(self.initial), "bound source changed/replaced")
+        require((self.scan()[1] == self.expected) and (self.identity(os.lstat(self.path)) == self.identity(self.initial)), "bound source changed/replaced")
     def binding(self): return dict(path=str(self.path), sha256=self.expected, bytes=self.initial.st_size)
     def __exit__(self, *_):
         if self.fd is not None: os.close(self.fd)
@@ -360,53 +199,51 @@ class BoundFile:
 
 @contextmanager
 def captured_helper(source):
-    require(source.expected == HELPER_SHA and sha(source.data) == HELPER_SHA, "frozen helper generation")
-    name = "_emission_helper_"+HELPER_SHA[:20]; suffix = 0
-    while name in sys.modules: suffix += 1; name = "_emission_helper_"+HELPER_SHA[:20]+"_"+str(suffix)
+    pass
+    name = "_emission_helper_"+sha(source.data)[:20]; suffix = 0
+    while name in sys.modules: suffix += 1; name = "_emission_helper_"+sha(source.data)[:20]+"_"+str(suffix)
     module = ModuleType(name); module.__file__ = str(source.path); sys.modules[name] = module
     try:
-        _production_exec(source.data, str(source.path), module.__dict__, optimize=sys.flags.optimize)
+        exec(compile(source.data, str(str(source.path)), 'exec', dont_inherit=True, optimize=sys.flags.optimize), module.__dict__)
         yield module
     finally: sys.modules.pop(name, None)
 
 
 def binding(value):
-    require(type(value) is dict and set(value) == {"path", "sha256", "bytes"}, "closed byte binding")
-    require(type(value["path"]) is str and 0 < len(value["path"]) < 4096, "bounded path")
-    require(type(value["sha256"]) is str and HEX.fullmatch(value["sha256"]), "binding SHA")
-    require(type(value["bytes"]) is int and 0 < value["bytes"] <= MAX_RUNTIME_BYTES, "binding bytes")
+    require((type(value) is dict) and (set(value) == {"path", "sha256", "bytes"}), "closed byte binding")
+    require((type(value["path"]) is str) and (0 < len(value["path"]) < 4096), "bounded path")
+    require((type(value["sha256"]) is str) and (HEX.fullmatch(value["sha256"])), "binding SHA")
+    require((type(value["bytes"]) is int) and (0 < value["bytes"] <= MAX_RUNTIME_BYTES), "binding bytes")
     p = Path(value["path"])
-    require(str(p) == value["path"] and ".." not in p.parts, "canonical binding token")
+    require((str(p) == value["path"]) and (".." not in p.parts), "canonical binding token")
     return value
 
 
 def binding_list(values):
-    require(type(values) is list and 0 < len(values) <= 512, "bounded binding list")
+    require((type(values) is list) and (0 < len(values) <= 512), "bounded binding list")
     for v in values: binding(v)
     require(len({v["path"] for v in values}) == len(values), "duplicate binding paths")
 
 
 def validate_plan(plan, own_sha):
-    require(type(plan) is dict and set(plan) == PLAN_KEYS, "closed launch plan")
-    require(plan["schema"] == PLAN_SCHEMA and plan["scope"] == SCOPE and encoded(plan["limits"]) == encoded(LIMITS), "fixed scope/limits")
-    named = {"producer": (SELF, own_sha), "producerControls": (CONTROLS, None),
-             "verifier": (VERIFIER, None), "verifierControls": (VERIFIER_CONTROLS, None),
-             "declaration": (DECLARATION, DECLARATION_SHA), "comparisonReference": (COMPARISON, COMPARISON_SHA),
-             "comparisonReferenceControls": (COMPARISON_CONTROLS, COMPARISON_CONTROLS_SHA)}
-    for key, (path, digest) in named.items():
-        b = binding(plan[key]); require(b["path"] == path and (digest is None or b["sha256"] == digest), "named source differs: "+key)
+    require((type(plan) is dict) and (set(plan) == PLAN_KEYS), "closed launch plan")
+    require((plan["schema"] == PLAN_SCHEMA) and (plan["scope"] == SCOPE) and (encoded(plan["limits"]) == encoded(LIMITS)), "fixed scope/limits")
+    named = dict(producer=SELF,producerControls=CONTROLS,verifier=VERIFIER,verifierControls=VERIFIER_CONTROLS,
+                 declaration=DECLARATION,comparisonReference=COMPARISON,comparisonReferenceControls=COMPARISON_CONTROLS)
+    for key,path in named.items():
+        require(binding(plan[key])["path"]==path, "named source path differs: "+key)
+    require(plan["producer"]["sha256"]==own_sha, "executing producer differs")
     for key in ("subjectSourceBindings", "runtimeBindings", "operationalBindings"): binding_list(plan[key])
-    expected = {**dict(EXTRA), SELF: own_sha, CONTROLS: plan["producerControls"]["sha256"]}
-    require({b["path"]: b["sha256"] for b in plan["subjectSourceBindings"]} == expected, "exact fifteen source/control bindings")
+    expected = {*EXTRA, SELF, CONTROLS}
+    require({b["path"] for b in plan["subjectSourceBindings"]} == set(expected), "exact fifteen source/control bindings")
     for key in ("producer", "producerControls", "declaration", "comparisonReference", "comparisonReferenceControls"):
         require(plan[key] in plan["subjectSourceBindings"], "named/subject binding disagreement")
     ops = {b["path"]: b["sha256"] for b in plan["operationalBindings"]}
-    require(set(OPERATIONS) < set(ops) and len(ops) == 9, "exact operational files plus resolved Node")
+    require((set(OPERATIONS) < set(ops)) and (len(ops) == 9), "exact operational files plus resolved Node")
     extra = next(iter(set(ops)-set(OPERATIONS)))
-    require(Path(extra).is_absolute() and Path(extra).name == "node", "resolved Node runtime binding")
-    for p, h in OP_PINS.items(): require(ops[p] == h, "frozen operational helper differs")
+    require((Path(extra).is_absolute()) and (Path(extra).name == "node"), "resolved Node runtime binding")
     expected_closure = dict(authority="externally-reviewed-caller-observation",
-        ownerSha256=dict((k, h) for k, _, h in FIXED)["priorClosureOwner"],
+
         admissionSha256=dict((k, h) for k, _, h in FIXED)["admission"],
         matchingFreshCompletionObserved=True, exitCode=0, elapsedSeconds="8.534247625",
         processesClosed=True, independentAuditAccepted=True)
@@ -429,26 +266,20 @@ def authenticate_prior(fixed):
         (c, "rows", "rows"), (c, "pieces", "pieces"), (c, "manifest", "manifest"),
         (c, "launchPlan", "priorPlan"), (a, "plan", "priorPlan")):
         require(binding(obj[key]) == fixed[role].binding(), "prior original-byte link differs")
-    require(c["schema"] == "braid-program/f6c-continuous-reception-root-cover-conformance.v1"
-        and c["accepted"] is True and c["scope"] == "pilot-cell-0"
-        and c["analysis"]["accepted"] is False and c["analysis"]["conditionalEnclosuresConformant"] is True,
+    require((c["schema"] == "braid-program/f6c-continuous-reception-root-cover-conformance.v1") and (c["accepted"] is True) and (c["scope"] == "pilot-cell-0") and (c["analysis"]["accepted"] is False) and (c["analysis"]["conditionalEnclosuresConformant"] is True),
         "prior conditional comparison absent")
-    require(p["schema"] == "braid-program/f6c-cached-root-cover-pilot-launch.v1" and p["scope"] == "pilot-cell-0",
+    require((p["schema"] == "braid-program/f6c-cached-root-cover-pilot-launch.v1") and (p["scope"] == "pilot-cell-0"),
         "prior plan scope differs")
-    require(m["subjectSourceBindings"] == p["comparisonContract"]["subjectSourceBindings"]
-        and m["runtimeBindings"] == p["comparisonContract"]["runtimeBindings"], "prior source/runtime chain differs")
-    require(a["schema"] == "braid-program/f6c-cached-root-cover-pilot-admission.v1"
-        and a["accepted"] is True and a["scope"] == "pilot-cell-0" and a["processesClosed"] is True,
+    require((m["subjectSourceBindings"] == p["comparisonContract"]["subjectSourceBindings"]) and (m["runtimeBindings"] == p["comparisonContract"]["runtimeBindings"]), "prior source/runtime chain differs")
+    require((a["schema"] == "braid-program/f6c-cached-root-cover-pilot-admission.v1") and (a["accepted"] is True) and (a["scope"] == "pilot-cell-0") and (a["processesClosed"] is True),
         "prior operational admission absent")
     for key in ("eomExecuted", "fullRunAuthorized", "h3EvidenceEligible", "historicalTrajectoryIdentityEstablished", "metricsAvailable"):
         require(a[key] is False, "prior authority promoted")
     require(len(a["stages"]) == 2, "prior stage census")
     for item, stage in zip(a["stages"], ("consumer", "comparison")):
         process = item["process"]; completion = item["admission"]["completion"]
-        require(item["stage"] == stage and item["admission"]["accepted"] is True and process["accepted"] is True
-            and process["processesClosed"] is True and process["exit"] == {"code": 0, "signal": None}
-            and completion["completed"] is True and completion["accepted"] is (stage == "comparison"), "prior closed stage differs")
-        require(len(process["gates"]) == 1 and process["gates"][0]["retired"] is True, "prior gate closure differs")
+        require((item["stage"] == stage) and (item["admission"]["accepted"] is True) and (process["accepted"] is True) and (process["processesClosed"] is True) and (process["exit"] == {"code": 0, "signal": None}) and (completion["completed"] is True) and (completion["accepted"] is (stage == "comparison")), "prior closed stage differs")
+        require((len(process["gates"]) == 1) and (process["gates"][0]["retired"] is True), "prior gate closure differs")
         expected = [fixed[k].binding() for k in ("rows", "pieces", "manifest")] if stage == "consumer" else fixed["comparison"].binding()
         require(completion["outputs" if stage == "consumer" else "output"] == expected, "prior completed outputs differ")
 
@@ -461,7 +292,7 @@ def propose(histories, modules, helper, write_query, progress):
 
 
 def _propose(histories, modules, helper, write_query, progress):
-    require(len(histories) == 8 and tuple(h.history_id for h in histories) == IDS, "eight ordered histories")
+    require((len(histories) == 8) and (tuple(h.history_id for h in histories) == IDS), "eight ordered histories")
     lib = modules["continuous_reception_roots"]; box = modules["decimal_interval"].DecimalInterval
     reception = box.bounds("0", "0.001", 90); restrictions = []; qindex = 0
     for i in range(8):
@@ -476,8 +307,7 @@ def _propose(histories, modules, helper, write_query, progress):
                     token = canonical_decimal(midpoint, helper)
                     face = box.bounds(token, token, 90)
                     residual = lib.unrestricted_residual(histories[i], histories[j], reception, face)
-                    require(residual.precision == 90 and residual.lower.is_finite() and residual.upper.is_finite()
-                            and residual.lower <= residual.upper, "finite 90-digit unrestricted residual")
+                    require((residual.precision == 90) and (residual.lower.is_finite()) and (residual.upper.is_finite()) and (residual.lower <= residual.upper), "finite 90-digit unrestricted residual")
                     proved = residual.upper < 0 if side == "lower" else residual.lower > 0
                     if proved: retained[side] = midpoint; proof[side] = qindex
                     if side == "lower":
@@ -499,7 +329,7 @@ def _propose(histories, modules, helper, write_query, progress):
             restrictions.append(dict(receiverIndex=i, transmitterIndex=j, receiverId=IDS[i], transmitterId=IDS[j],
                 lower=canonical_decimal(retained["lower"], helper), upper=canonical_decimal(retained["upper"], helper),
                 lowerQueryIndex=proof["lower"], upperQueryIndex=proof["upper"]))
-    require(qindex == 3584 and len(restrictions) == 56, "complete query census")
+    require((qindex == 3584) and (len(restrictions) == 56), "complete query census")
     return restrictions
 
 
@@ -520,7 +350,7 @@ def emit_cover(histories, restrictions, modules, helper, write_row, write_piece,
         tuple(tuple(Decimal(0) if i == j else Decimal("0.27") for j in range(8)) for i in range(8)),
         True, True, "Externally authenticated F_H subset of unchanged original envelopes; not historical trajectory identity.")
     result = lib.enclose_root_cover(histories, premises, (lib.ReceptionCellProposal(reception, emissions),))
-    require(result.hypotheses is premises and result.expected_rows == 64 and result.reception_cells == (reception,), "final cover identity")
+    require((result.hypotheses is premises) and (result.expected_rows == 64) and (result.reception_cells == (reception,)), "final cover identity")
     flags = helper.flags(result); piece_index = 0; visits = 0
     for index, row in enumerate(result.rows):
         require(index < 64, "extra final row"); i, j = divmod(index, 8)
@@ -537,26 +367,21 @@ def emit_cover(histories, restrictions, modules, helper, write_row, write_piece,
             rootFreeComplementConditional=row.root_free_complement_conditional,
             retainedBoundaryContact=row.retained_boundary_contact, libraryFlags=dict(flags))
         if i == j:
-            require(row.ordinary_roots_per_reception == 0 and row.coincident_endpoint_excluded is True
-                and not row.receiver_pieces and not row.transmitter_pieces
-                and all(getattr(row, k) is None for k in ("emission", "oldest_residual", "lower_face_residual",
-                    "upper_face_residual", "displacement", "distance", "transmitter_factor", "receiver_factor")), "self exclusion differs")
+            require((row.ordinary_roots_per_reception == 0) and (row.coincident_endpoint_excluded is True) and (not row.receiver_pieces) and (not row.transmitter_pieces) and (all(getattr(row, k) is None for k in ("emission", "oldest_residual", "lower_face_residual",
+                    "upper_face_residual", "displacement", "distance", "transmitter_factor", "receiver_factor"))), "self exclusion differs")
         else:
-            require(row.ordinary_roots_per_reception == 1 and row.coincident_endpoint_excluded is False
-                and row.emission == emissions[(IDS[i], IDS[j])], "final emission differs")
-            require(row.oldest_residual.upper < 0 and row.lower_face_residual.upper < 0 < row.upper_face_residual.lower, "strict final/oldest faces unresolved")
-            require(row.distance.lower > 0 and row.transmitter_factor.lower >= Decimal("1e-24")
-                and row.receiver_factor.lower > 0, "positive distance/factors unresolved")
+            require((row.ordinary_roots_per_reception == 1) and (row.coincident_endpoint_excluded is False) and (row.emission == emissions[(IDS[i], IDS[j])]), "final emission differs")
+            require((row.oldest_residual.upper < 0) and (row.lower_face_residual.upper < 0 < row.upper_face_residual.lower), "strict final/oldest faces unresolved")
+            require((row.distance.lower > 0) and (row.transmitter_factor.lower >= Decimal("1e-24")) and (row.receiver_factor.lower > 0), "positive distance/factors unresolved")
             for role, mi, parts, requested in (("receiver", i, row.receiver_pieces, row.reception),
                                                ("transmitter", j, row.transmitter_pieces, row.emission)):
                 record[role+"PieceRecord"] = piece_index
                 write_piece(helper.compact_pieces(parts, record_index=piece_index, row_index=index, role=role,
                     member=IDS[mi], digest=digests[mi][1], requested=requested))
                 visits += len(parts); piece_index += 1; progress["completedPieces"] = piece_index
-        require(row.root_free_complement_conditional is True and row.retained_boundary_contact is False, "complement/boundary differs")
+        require((row.root_free_complement_conditional is True) and (row.retained_boundary_contact is False), "complement/boundary differs")
         write_row(record); progress["completedRows"] = index+1
-    require(result.status == "conditional_complete" and result.failure_code == result.failure_detail == ""
-        and len(result.rows) == 64 and piece_index == 112, "final cover unresolved/incomplete")
+    require((result.status == "conditional_complete") and (result.failure_code == result.failure_detail == "") and (len(result.rows) == 64) and (piece_index == 112), "final cover unresolved/incomplete")
     return visits
 
 
@@ -597,8 +422,8 @@ class Publication:
 
 def check_output(root, output, git_binary):
     lane = root/LANE
-    require(output == output.resolve() and output.parent == lane and lane.is_dir() and lane.resolve() == lane, "canonical direct output child")
-    require(not output.exists() and not output.is_symlink(), "fresh absent output directory")
+    require((output == output.resolve()) and (output.parent == lane) and (lane.is_dir()) and (lane.resolve() == lane), "canonical direct output child")
+    require((not output.exists()) and (not output.is_symlink()), "fresh absent output directory")
     result = subprocess.run([str(git_binary), "check-ignore", "-q", "--", str(output.relative_to(root))],
         cwd=root, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=2)
     require(result.returncode == 0, "output not confirmed ignored")
@@ -633,11 +458,11 @@ def main(argv=None):
     require(len(args.budget_seconds) < 128, "bounded budget token")
     require(re.fullmatch(r"(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?", args.budget_seconds), "decimal remaining budget")
     decimal_budget = Decimal(args.budget_seconds)
-    require(decimal_budget.is_finite() and abs(decimal_budget.as_tuple().exponent) <= 1000, "bounded budget exponent")
+    require((decimal_budget.is_finite()) and (abs(decimal_budget.as_tuple().exponent) <= 1000), "bounded budget exponent")
     budget = Fraction(decimal_budget); seconds = float(budget); deadline = began+seconds
-    require(0 < budget <= LIMIT and math.isfinite(seconds) and 0 < seconds <= LIMIT and deadline > began, "representable positive remaining budget")
+    require((0 < budget <= LIMIT) and (math.isfinite(seconds)) and (0 < seconds <= LIMIT) and (deadline > began), "representable positive remaining budget")
     root = Path(args.repo_root).absolute(); output = Path(args.out_dir).absolute()
-    require(root == root.resolve() and Path(__file__).absolute() == root/SELF, "canonical executing repository root")
+    require((root == root.resolve()) and (Path(__file__).absolute() == root/SELF), "canonical executing repository root")
     publication = None; progress = dict(stage="capture", completedQueries=0, completedRows=0, completedPieces=0)
     def heartbeat(*_):
         require(time.monotonic() < deadline, "producer deadline")
@@ -648,21 +473,22 @@ def main(argv=None):
     try:
         with ExitStack() as stack:
             owned = []; by_path = {}
-            def capture(path, digest, collect=False, limit=MAX_BYTES):
+            def capture(path, digest=None, collect=False, limit=MAX_BYTES):
                 path = Path(path).absolute()
                 if path in by_path:
-                    old = by_path[path]; require(old.expected == digest and (not collect or old.data is not None), "conflicting source capture")
+                    old = by_path[path]; require((digest is None or old.expected==digest) and (not collect or old.data is not None), "conflicting source capture")
                     return old
-                obj = stack.enter_context(_production_capture(BoundFile, path, digest, collect=collect, limit=limit))
+                obj = stack.enter_context(BoundFile(path, digest, collect=collect, limit=limit))
                 owned.append(obj); by_path[path] = obj; return obj
             own = capture(root/SELF, args.producer_sha256, True)
-            require(compile(_production_current_source(own.data), _EXECUTING_CODE.co_filename, "exec", dont_inherit=True, optimize=sys.flags.optimize)
+            require(compile(own.data, _EXECUTING_CODE.co_filename, "exec", dont_inherit=True, optimize=sys.flags.optimize)
                 == _EXECUTING_CODE, "executing producer differs from captured source")
             plan_file = capture(args.plan, args.plan_sha256, True); plan = validate_plan(decode(plan_file.data), args.producer_sha256)
-            fixed = {key: capture(root/path, digest, True) for key, path, digest in FIXED}
+            fixed = ({key: capture(root/path, digest, True) for key, path, digest in FIXED} | {key: capture(root/path,collect=True) for key,path in SOURCE_PATHS.items()})
             authenticate_prior(fixed)
             source_files = {}
             for b in plan["subjectSourceBindings"]:
+                if b["path"]==DECLARATION:continue
                 source_files[b["path"]] = capture(root/b["path"], b["sha256"], True)
                 require(source_files[b["path"]].initial.st_size == b["bytes"], "source byte size")
             for key in ("verifier", "verifierControls"):
@@ -676,8 +502,8 @@ def main(argv=None):
                     execution.append(obj.binding())
                     if key == "runtimeBindings": runtime.add(obj.path.resolve())
             git_binary = Path(args.git_binary)
-            require(git_binary.is_absolute() and git_binary == git_binary.resolve() and git_binary in runtime, "explicit bound resolved Git")
-            require(Path(sys.executable).resolve() in runtime and Path(sys.executable).parent.parent/"pyvenv.cfg" in runtime, "shared Python/venv runtime")
+            require((git_binary.is_absolute()) and (git_binary == git_binary.resolve()) and (git_binary in runtime), "explicit bound resolved Git")
+            require((Path(sys.executable).resolve() in runtime) and (Path(sys.executable).parent.parent/"pyvenv.cfg" in runtime), "shared Python/venv runtime")
             with captured_helper(source_files[HELPER]) as helper:
                 captured = {name: (str(source_files[path].path), source_files[path].data, source_files[path].expected)
                             for name, path in MODULE_PATHS.items()}

@@ -60,19 +60,19 @@ def _require(value, message):
 
 
 def _tuple(value, size):
-    _require(type(value) is tuple and len(value) == size, 'exact bounded tuple required')
+    _require((type(value) is tuple) and (len(value) == size), 'exact bounded tuple required')
 
 
 def _decimal(token):
-    _require(type(token) is str and 0 < len(token) <= 1152 and _TOKEN.fullmatch(token),
+    _require((type(token) is str) and (0 < len(token) <= 1152) and (_TOKEN.fullmatch(token)),
              'bounded exact decimal token required')
     mantissa, *exponent = re.split('[eE]', token)
     _require(sum(c.isdigit() for c in mantissa) <= 1024, 'decimal digit bound')
     if exponent:
         magnitude = exponent[0].lstrip('+-0') or '0'
-        _require(len(magnitude) <= 4 and int(magnitude) <= 1000, 'decimal exponent bound')
+        _require((len(magnitude) <= 4) and (int(magnitude) <= 1000), 'decimal exponent bound')
     value = Decimal(token)
-    _require(value.is_finite() and abs(value.as_tuple().exponent) <= 1000, 'finite bounded decimal')
+    _require((value.is_finite()) and (abs(value.as_tuple().exponent) <= 1000), 'finite bounded decimal')
     return value
 
 
@@ -163,9 +163,9 @@ class GeometryRestriction:
 
 
 def _history(history):
-    _require(type(history) is History and type(history.label) is str and history.label in LABELS,
+    _require((type(history) is History) and (type(history.label) is str) and (history.label in LABELS),
              'original history identity required')
-    _require(type(history.segments) is tuple and 0 < len(history.segments) <= MAX_SEGMENTS,
+    _require((type(history.segments) is tuple) and (0 < len(history.segments) <= MAX_SEGMENTS),
              'bounded original segment census')
     cursor = Decimal('-8'); copied = []
     for segment in history.segments:
@@ -180,7 +180,7 @@ def _history(history):
         for errors, radius in ((segment.position_errors, segment.position_error),
                                (segment.velocity_errors, segment.velocity_error)):
             _tuple(errors, 3); r = _decimal(radius)
-            _require(r >= 0 and all(0 <= _decimal(e) <= r for e in errors), 'axis/scalar error containment')
+            _require((r >= 0) and (all(0 <= _decimal(e) <= r for e in errors)), 'axis/scalar error containment')
         copied.append(Segment(segment.start, segment.end, tuple(tuple(a) for a in segment.coefficients),
                               tuple(segment.position_errors), tuple(segment.velocity_errors),
                               segment.position_error, segment.velocity_error))
@@ -214,27 +214,24 @@ def _clip(history, bounds):
         a, b = max(lo, Fraction(_decimal(segment.start))), min(hi, Fraction(_decimal(segment.end)))
         if a > b:
             continue
-        _require(a <= cursor and (not clips or n == clips[-1][0]+1), 'complete closed piece coverage')
+        _require((a <= cursor) and (not clips or n == clips[-1][0]+1), 'complete closed piece coverage')
         clips.append((n, a, b)); cursor = max(cursor, b)
-    _require(clips and cursor == hi, 'missing closed coverage')
+    _require((clips) and (cursor == hi), 'missing closed coverage')
     text = ''.join(f'{n}\t{a}\t{b}\n' for n, a, b in clips)
     return tuple(clips), hashlib.sha256(text.encode('ascii')).hexdigest()
 
 
 def _parent(refs, parent, histories, J):
     a = refs.ranges
-    _require(type(parent) is ParentCell and type(parent.index) is int and 0 <= parent.index < 160,
+    _require((type(parent) is ParentCell) and (type(parent.index) is int) and (0 <= parent.index < 160),
              'bounded original parent index')
-    _require(parent.family_key == 'f6c-reconstruction-family' and type(parent.family_key) is str
-             and type(parent.retained_start) is str and parent.retained_start == '-8'
-             and type(parent.status) is str and parent.status == 'conditional_complete', 'fixed parent premises')
+    _require((parent.family_key == 'f6c-reconstruction-family') and (type(parent.family_key) is str) and (type(parent.retained_start) is str) and (parent.retained_start == '-8') and (type(parent.status) is str) and (parent.status == 'conditional_complete'), 'fixed parent premises')
     reception = _bounds(a, parent.reception, positive=True)
     _require(Decimal(0) <= _decimal(reception.lower) <= _decimal(J.lower)
              < _decimal(J.upper) <= _decimal(reception.upper) <= Decimal('0.13'), 'positive J must restrict parent')
     _tuple(parent.history_generations, 8)
     generations = tuple(_generation(h) for h in histories)
-    _require(all(type(x) is str and _SHA.fullmatch(x) for x in parent.history_generations)
-             and parent.history_generations == generations, 'history generation mismatch')
+    _require((all(type(x) is str and _SHA.fullmatch(x) for x in parent.history_generations)) and (parent.history_generations == generations), 'history generation mismatch')
     _tuple(parent.rows, 64); copied = []; clips = {}
     def clip(member, b):
         key = (member, b.lower, b.upper)
@@ -243,14 +240,10 @@ def _parent(refs, parent, histories, J):
         return clips[key]
     for n, row in enumerate(parent.rows):
         i, j = divmod(n, 8)
-        _require(type(row) is a.RootRow and type(row.receiver_id) is str and type(row.transmitter_id) is str
-                 and (row.receiver_id, row.transmitter_id) == (LABELS[i], LABELS[j]), 'complete ordered pairs')
+        _require((type(row) is a.RootRow) and (type(row.receiver_id) is str) and (type(row.transmitter_id) is str) and ((row.receiver_id, row.transmitter_id) == (LABELS[i], LABELS[j])), 'complete ordered pairs')
         row_reception = _bounds(a, row.reception, positive=True)
         _require(row_reception == reception, 'exact parent reception identity')
-        _require(type(row.ordinary_roots_per_reception) is int
-                 and row.ordinary_roots_per_reception == (0 if i == j else 1)
-                 and type(row.coincident_endpoint_excluded) is bool and row.coincident_endpoint_excluded == (i == j)
-                 and row.root_free_complement_conditional is True and row.retained_boundary_contact is False,
+        _require((type(row.ordinary_roots_per_reception) is int) and (row.ordinary_roots_per_reception == (0 if i == j else 1)) and (type(row.coincident_endpoint_excluded) is bool) and (row.coincident_endpoint_excluded == (i == j)) and (row.root_free_complement_conditional is True) and (row.retained_boundary_contact is False),
                  'parent root flags')
         fields = (row.emission, row.oldest_residual, row.lower_face_residual, row.upper_face_residual,
                   row.displacement, row.distance, row.transmitter_factor, row.receiver_factor,
@@ -265,15 +258,13 @@ def _parent(refs, parent, histories, J):
                 (row.emission, row.oldest_residual, row.lower_face_residual, row.upper_face_residual,
                  row.distance, row.transmitter_factor, row.receiver_factor)))
         _require(Decimal('-8') <= _decimal(e.lower) < _decimal(e.upper) < _decimal(reception.lower), 'original emission domain')
-        _require(_decimal(oldest.upper) < 0 and _decimal(lower.upper) < 0 and _decimal(upper.lower) > 0,
+        _require((_decimal(oldest.upper) < 0) and (_decimal(lower.upper) < 0) and (_decimal(upper.lower) > 0),
                  'strict inherited faces')
-        _require(_decimal(distance.lower) > 0 and _decimal(dt.lower) >= Decimal('1e-24')
-                 and _decimal(dr.lower) > 0, 'positive original geometry factors')
+        _require((_decimal(distance.lower) > 0) and (_decimal(dt.lower) >= Decimal('1e-24')) and (_decimal(dr.lower) > 0), 'positive original geometry factors')
         _tuple(row.displacement, 3); displacement = tuple(_bounds(a, x) for x in row.displacement)
         for token in (row.receiver_coverage_sha256, row.transmitter_coverage_sha256):
-            _require(type(token) is str and _SHA.fullmatch(token), 'original coverage identity')
-        _require(clip(i, reception)[1] == row.receiver_coverage_sha256
-                 and clip(j, e)[1] == row.transmitter_coverage_sha256, 'original coverage mismatch')
+            _require((type(token) is str) and (_SHA.fullmatch(token)), 'original coverage identity')
+        _require((clip(i, reception)[1] == row.receiver_coverage_sha256) and (clip(j, e)[1] == row.transmitter_coverage_sha256), 'original coverage mismatch')
         copied.append(a.RootRow(LABELS[i], LABELS[j], reception, e, 1, False, oldest, lower, upper,
                                displacement, distance, dt, dr, row.receiver_coverage_sha256,
                                row.transmitter_coverage_sha256, True, False))
@@ -287,7 +278,7 @@ def restrict_cell_geometry(references, histories, parent, J, guards):
     _tuple(histories, 8)
     histories = tuple(_history(h) for h in histories)
     _require(tuple(h.label for h in histories) == LABELS, 'fixed member order')
-    _require(type(guards) is Guards and type(guards.field_speed) is str and guards.field_speed == '1', 'normalized guards')
+    _require((type(guards) is Guards) and (type(guards.field_speed) is str) and (guards.field_speed == '1'), 'normalized guards')
     _tuple(guards.speed_upper, 8); _tuple(guards.clearance_lower, 8)
     _require(all(type(v) is str and v == '0.85' for v in guards.speed_upper), 'fixed full-domain speed')
     for i, row in enumerate(guards.clearance_lower):
@@ -337,7 +328,7 @@ def restrict_cell_geometry(references, histories, parent, J, guards):
             direction = d.interval_vector(x/distance for x in displacement)
             dt = intersect(point(1)-d.interval_dot(direction, transmitter.velocity), speed_bounds)
             dr = intersect(point(1)-d.interval_dot(direction, receiver.velocity), speed_bounds)
-            _require(dt.lower >= Decimal('1e-24') and dr.lower > 0, 'factor floor/positivity unresolved')
+            _require((dt.lower >= Decimal('1e-24')) and (dr.lower > 0), 'factor floor/positivity unresolved')
             rx_clip, rx_hash = clip(i, J); tx_clip, tx_hash = clip(j, row.emission)
             _require(tx_hash == row.transmitter_coverage_sha256, 'unchanged emission coverage')
             rows.append(replace(row, reception=J, displacement=tuple(output(x) for x in displacement),
@@ -345,7 +336,7 @@ def restrict_cell_geometry(references, histories, parent, J, guards):
                                 receiver_coverage_sha256=rx_hash))
             coverage.extend((PieceCoverage(n, 'receiver', LABELS[i], J, rx_clip, rx_hash),
                              PieceCoverage(n, 'transmitter', LABELS[j], row.emission, tx_clip, tx_hash)))
-    _require(len(rows) == 64 and len(coverage) == 112, 'complete output census')
+    _require((len(rows) == 64) and (len(coverage) == 112), 'complete output census')
     return GeometryRestriction('conditional_geometry_restricted', parent.family_key, parent.index,
                                parent.reception, J, parent.history_generations, tuple(rows), tuple(coverage),
                                len(states), Claims())

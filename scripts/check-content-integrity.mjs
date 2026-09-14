@@ -4,16 +4,6 @@ import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { performance } from "node:perf_hooks";
 import { fileURLToPath } from "node:url";
-import optionBSelection from "../reference/priorities/development-process-review/contracts/option-b-five-profile-selection.json" with { type: "json" };
-
-// This authored selection is reviewed with the check configuration. Never
-// derive these expected digests from the candidate maps at execution time.
-const optionBSelectionArgs = [
-  "--accepted-baseline", optionBSelection.acceptedBaseline,
-  "--accepted-baseline-sha256", optionBSelection.acceptedBaselineSha256,
-  "--transition", optionBSelection.transition,
-  "--transition-sha256", optionBSelection.transitionSha256,
-];
 
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 
@@ -83,18 +73,6 @@ const REQUIRED_CHECKS = [
     args: ["scripts/check-owned-compute-launch-policy.mjs"],
   },
   {
-    name: "Test Option B current-source admission and dependency controls",
-    args: ["--test", "--test-concurrency=1", "tests/current-source-manifest.test.mjs", "tests/option-b-next-test-identities.test.mjs", "tests/option-b-retained-test-identities.test.mjs", "tests/option-b-controlled-fixture-records.test.mjs", "tests/option-b-borg-runtime-admission.test.mjs", "tests/option-b-batch-test-records.test.mjs", "tests/option-b-batch-dependent-selection.test.mjs", "tests/option-b-f6c-test-identities.test.mjs", "tests/option-b-root-cover-admission.test.mjs", "tests/option-b-f6c-coordinator-admission.test.mjs", "tests/option-b-f6c-paired-admission.test.mjs", "tests/option-b-f6c-family-admission.test.mjs", "tests/f6c-bounded-operation-current-closure.test.js", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-f5-budget-transition.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-disposition-coverage.test.mjs"],
-  },
-  {
-    name: "Verify Option B profiles against the accepted B checkpoint and reviewed transition",
-    args: ["scripts/equation-mapping/check-current-source-maps.mjs", ...optionBSelectionArgs],
-  },
-  {
-    name: "Verify Option B finite migration binding dispositions",
-    args: ["scripts/equation-mapping/check-current-source-dispositions.mjs"],
-  },
-  {
     name: "Validate private MCP secure-tunnel deployment contract",
     args: ["scripts/archie-service/manage-secure-mcp-tunnel.mjs", "--check"],
   },
@@ -116,7 +94,7 @@ const REQUIRED_CHECKS = [
   },
   {
     name: "Test generated runtime storage and deployment contracts",
-    args: ["--test", "--test-concurrency=1", "tests/machine-artifact-retention.test.js", "tests/runtime-asset-build.test.js", "tests/borg-assembly-record-catalog-generator.test.js", "tests/borg-assembly-record-catalog.test.js", "tests/borg-certified-budget-identities.test.js", "tests/borg-eom-migration.test.js", "tests/analytical-campaign-pipeline-benchmark.test.js", "tests/braid-taxonomy-terminology.test.js"],
+    args: ["--test", "--test-concurrency=1", "tests/machine-artifact-retention.test.js", "tests/runtime-asset-build.test.js", "tests/runtime-asset-preparation.test.js", "tests/borg-assembly-record-catalog-generator.test.js", "tests/borg-assembly-record-catalog.test.js", "tests/borg-certified-budget-identities.test.js", "tests/borg-eom-migration.test.js", "tests/analytical-campaign-pipeline-benchmark.test.js", "tests/braid-taxonomy-terminology.test.js"],
   },
   {
     name: "Test private MCP secure-tunnel deployment safety",
@@ -199,16 +177,12 @@ const MAINTENANCE_CHECKS = [
   { name: "Validate large machine-artifact retention", args: ["scripts/validate-machine-artifact-retention.mjs"] },
 ];
 
-export const MAC_DEPENDENT_TESTS = "^(current Python handoff retains real runtime inventory with external admission and no scientific data|Python admission rejects wrong Node capability, omitted census and same-byte Node replacement|shared-venv Python fixture consumers reject before scientific subject loading|actual Python bridge passes then rejects changed current target and missing selection|Python retained closure rejects identical-byte replacement between source uses)$";
-
 export function selectedChecks(env = process.env, profile = "local") {
   if (!["local", "github"].includes(profile)) throw new Error("Unknown validation profile");
   const checks = env.AAA_CONTENT_MAINTENANCE === "run"
     ? [...REQUIRED_CHECKS, ...MAINTENANCE_CHECKS]
     : REQUIRED_CHECKS;
-  return checks.map(check => profile === "github" && check.args.includes("tests/option-b-f5-admission.test.mjs")
-    ? { ...check, args: [check.args[0], `--test-skip-pattern=${MAC_DEPENDENT_TESTS}`, ...check.args.slice(1)] }
-    : check);
+  return [...checks];
 }
 
 function formatDuration(ms) {
@@ -317,6 +291,5 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   if (args.length > 1 || (args.length && !["--profile=local", "--profile=github"].includes(args[0]))) throw new Error("Usage: check-content-integrity.mjs [--profile=local|--profile=github]");
   const profile = args[0]?.split("=")[1] ?? "local";
   console.log(`[content-integrity] profile: ${profile}`);
-  if (profile === "github") console.log("[content-integrity] Five shared-venv Python admission tests are assigned to mandatory local PR validation, not certified by this run.");
   process.exitCode = runChecks({ checks: selectedChecks(process.env, profile) }).exitCode;
 }

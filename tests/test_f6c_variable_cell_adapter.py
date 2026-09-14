@@ -4,9 +4,9 @@ Stationary answers below follow g(T,s)=|Xi-Xj|-T+s and the signed sharp
 kernel. Hermite controls are independently differentiated polynomials. File
 controls exercise transport/closure, not a new physical acceptance instrument.
 """
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
-from option_b_batch_records import batch_identities
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
+import hashlib
+from pathlib import Path
 
 from contextlib import ExitStack,contextmanager
 from copy import deepcopy
@@ -14,11 +14,9 @@ from dataclasses import asdict,replace
 from decimal import Decimal,localcontext
 from fractions import Fraction as F
 import gc
-import hashlib
 import importlib.util
 import json
 import os
-from pathlib import Path
 import sys
 import tempfile
 import time
@@ -34,8 +32,7 @@ import f6c_evidence_package as storage
 import f6c_reception_geometry_restriction as geometry
 from oracle import continuous_reception_acceleration as a
 from oracle import f6c_residual_integral_supremum as integral
-from option_b_production_records import load_named_module
-correlated = load_named_module(__file__, '_variable_test_correlated', ROOT/'scripts/eom/oracle/f6c_correlated_residual_enclosure.py')
+from oracle import f6c_correlated_residual_enclosure as correlated
 from oracle import certified_history as geometry_history
 from oracle import continuous_reception_roots_cached as geometry_roots
 from oracle import decimal_interval as geometry_intervals
@@ -43,7 +40,7 @@ from oracle import decimal_interval as geometry_intervals
 
 def load(path,name):
     spec=importlib.util.spec_from_file_location(name,ROOT/path);module=importlib.util.module_from_spec(spec)
-    sys.modules[name]=module;_option_b_exec_module(__file__, spec, module);return module
+    sys.modules[name]=module;spec.loader.exec_module(module);return module
 
 
 w=load('scripts/eom/verify-f6c-refined-acceleration.py','_variable_test_transport')
@@ -459,78 +456,6 @@ class RestrictedProjectionTests(unittest.TestCase):
         self.assertEqual(p.cell,q.cell);self.assertEqual(obj.geometry_accounting['history_state_evaluations'],2*count)
 
 
-class AncestryArchiveTests(unittest.TestCase):
-    @contextmanager
-    def setup_pool(self):
-        with tempfile.TemporaryDirectory()as temp,ExitStack()as stack:
-            root=Path(temp).resolve();old=root/'source.md';archive=root/'archive.md'
-            old.write_bytes(b'current link');archive.write_bytes(b'original link')
-            original=subject.SourceBinding(str(old),hsh(b'original link'),13)
-            relation=subject.ArchivedSource('memberPredeclaration',original,replace(original,path=str(archive)))
-            with patch.object(subject,'ANCESTRY_ARCHIVE_SOURCES',(('memberPredeclaration','source.md',original.sha256,13),)):
-                base=subject._Pool(stack,w,root,lambda:None)
-                yield root,base,relation
-
-    def test_logical_bytes_and_physical_provenance_are_separate(self):
-        with self.setup_pool()as(root,base,r):
-            pool=subject._AncestryPool(base,(r,))
-            view=pool.capture('source.md',r.original.sha256,data=True,size=13)
-            self.assertEqual(view.data,b'original link');self.assertEqual(view.binding(),asdict(r.original))
-            self.assertEqual(str(view.path),r.original.path)
-            self.assertEqual(set(pool.files),{r.archive.path});self.assertEqual(base.bytes,13)
-            self.assertEqual(pool.read_binding(asdict(r.original),capture=True),b'original link')
-            pool.recheck();self.assertEqual((root/'source.md').read_bytes(),b'current link')
-
-    def test_wrong_or_unused_generation_rejects(self):
-        with self.setup_pool()as(root,base,r):
-            pool=subject._AncestryPool(base,(r,))
-            with self.assertRaisesRegex(ValueError,'unused'):pool.recheck()
-            for h,n in (('a'*64,13),(r.original.sha256,12),(r.original.sha256,True)):
-                with self.assertRaisesRegex(ValueError,'generation'):pool.capture('source.md',h,size=n)
-            pool.capture('source.md',r.original.sha256);pool.recheck()
-
-    def test_foreign_duplicate_and_alias_routes_reject(self):
-        with self.setup_pool()as(root,base,r):
-            bads=[(r,r),(replace(r,role='runtime'),),
-                (replace(r,original=replace(r.original,sha256='a'*64)),),
-                (replace(r,archive=r.original),),
-                (replace(r,archive=replace(r.archive,path=str(root/subject.SELF))),),
-                (replace(r,archive=replace(r.archive,bytes=12)),)]
-            for relations in bads:
-                with self.subTest(relations=relations),self.assertRaises(ValueError):subject._AncestryPool(base,relations)
-
-    def test_archive_mutation_and_identical_replacement_reject(self):
-        for replacement in (False,True):
-            with self.subTest(replacement=replacement),self.assertRaises(ValueError):
-                with self.setup_pool()as(root,base,r):
-                    pool=subject._AncestryPool(base,(r,));pool.capture('source.md',r.original.sha256)
-                    if replacement:
-                        sibling=root/'replacement';sibling.write_bytes(b'original link');os.replace(sibling,r.archive.path)
-                    else:Path(r.archive.path).write_bytes(b'mutated bytes')
-                    pool.recheck()
-
-    def test_physical_hardlink_alias_rejects(self):
-        with self.setup_pool()as(root,base,r):
-            alias=root/'alias';os.link(r.archive.path,alias)
-            base.capture(alias,r.archive.sha256)
-            pool=subject._AncestryPool(base,(r,))
-            with self.assertRaisesRegex(ValueError,'hardlink'):pool.capture('source.md',r.original.sha256)
-
-    def test_unmapped_source_uses_original_capture_and_limits(self):
-        with self.setup_pool()as(root,base,r):
-            pool=subject._AncestryPool(base,(r,))
-            other=root/'other';other.write_bytes(b'plain')
-            self.assertEqual(pool.capture(other,hsh(b'plain'),data=True).data,b'plain')
-            pool.capture('source.md',r.original.sha256);self.assertEqual(base.bytes,18);pool.recheck()
-
-    def test_data_capture_upgrade_keeps_original_binding(self):
-        with self.setup_pool()as(root,base,r):
-            pool=subject._AncestryPool(base,(r,));view=pool.capture('source.md',r.original.sha256)
-            self.assertIsNone(view.data)
-            self.assertEqual(pool.read_binding(asdict(r.original),capture=True),b'original link')
-            self.assertEqual(view.data,b'original link');self.assertEqual(view.binding(),asdict(r.original));pool.recheck()
-
-
 class PackageRoutingTests(unittest.TestCase):
     """Independent literal byte container; never uses the package writer."""
     @contextmanager
@@ -554,7 +479,7 @@ class PackageRoutingTests(unittest.TestCase):
                 members.append(m);expected[str(p)]=raw
                 closure=subject.ParentClosure(subject.SourceBinding(str(owner),hsh(b'current approval'),16),bound['operation'],'1','abc',0,'1',True,True)
                 descriptors.append(subject.ParentRefinement(parent,**{r:bound[r]for r,_,_,_ in subject.PARENT_ONE[:6]},closure=closure,
-                    archived_sources=(subject.ArchivedSource('acceptanceOwner',old,archive),)))
+                    ))
             members=tuple(sorted(members,key=lambda m:m.name));offset=0;entries=[];payload=b''
             for m in members:
                 raw=expected[m.source_path]
@@ -588,21 +513,6 @@ class PackageRoutingTests(unittest.TestCase):
                 pool=subject._PackagePool(f.base,f.reader,f.members,f.descriptors);pool.recheck()
                 self.assertEqual(len(pool.files),1)
 
-    def test_historical_owner_original_and_archive_attribution_stays_distinct(self):
-        with self.fixture()as f:
-            pool=subject._PackagePool(f.base,f.reader,f.members,f.descriptors)
-            for d in f.descriptors:
-                relation=d.archived_sources[0]
-                historical=subject._HistoricalReader(pool,(relation,),asdict(relation.original))
-                self.assertEqual(historical.read_binding(asdict(relation.original)),asdict(relation.original))
-                self.assertEqual(historical.read_binding(asdict(relation.original),capture=True),f.expected[relation.archive.path])
-                self.assertEqual(historical.finish(),(relation,))
-            current=pool.capture(f.owner,hsh(b'current approval'),data=True)
-            self.assertEqual(current.data,b'current approval');self.assertEqual(len(pool.files),2)
-            for d in f.descriptors:
-                with self.assertRaisesRegex(ValueError,'explicit archive'):
-                    pool.capture(f.owner,d.archived_sources[0].original.sha256)
-            pool.recheck()
 
     def test_route_field_mutations_fail_without_fallback(self):
         with self.fixture()as f:
@@ -616,13 +526,6 @@ class PackageRoutingTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,'descriptor generation'):
                     subject._PackagePool(f.base,f.reader,f.members,(bad,))
 
-    def test_wrong_owner_archive_or_missing_relation_rejects(self):
-        with self.fixture()as f:
-            d=f.descriptors[0];r=d.archived_sources[0]
-            for relations in ((),(replace(r,archive=replace(r.archive,path=str(f.root/'foreign'))),),
-                              (replace(r,original=replace(r.original,sha256='a'*64)),)):
-                with self.assertRaisesRegex(ValueError,'owner relation|owner differ'):
-                    subject._PackagePool(f.base,f.reader,f.members,(replace(d,archived_sources=relations),))
 
     def test_already_consumed_member_and_duplicate_package_reject(self):
         with self.fixture()as f:
@@ -768,13 +671,9 @@ class FreshEvidenceRoutingTests(unittest.TestCase):
 
     def test_independently_fixed_fresh_checker_roles_and_inert_selection(self):
         prefix='.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/'
-        expected=(
-            ('instrument',prefix+'independent_parent_batch_closure.py',OPTION_B_BATCH_IDENTITIES[0]),
-            ('controls',prefix+'independent_parent_batch_closure_controls.py',OPTION_B_BATCH_IDENTITIES[1]),
-            ('contract',prefix+'fresh-parent-batch-closure-validator-expectations.md',OPTION_B_BATCH_IDENTITIES[2]),
-        )
+        expected={'instrument':prefix+'independent_parent_batch_closure.py','controls':prefix+'independent_parent_batch_closure_controls.py'}
         self.assertEqual(subject.FRESH_CLOSURE_SOURCES,expected)
-        instrument=subject.SourceBinding(str(ROOT/expected[0][1]),expected[0][2],53770)
+        instrument=subject.SourceBinding(str(ROOT/expected['instrument']),'a'*64,53770)
         inventory=subject.SourceBinding(str(ROOT/'inert-inventory.json'),'a'*64,1)
         closure=subject.SourceBinding(str(ROOT/'inert-closure.json'),'b'*64,1)
         selection=subject.AcceptedParentEvidence(inventory,(subject.AdmittedClosure(closure,instrument),),(instrument,))
@@ -782,8 +681,7 @@ class FreshEvidenceRoutingTests(unittest.TestCase):
         with patch.object(subject,'_bootstrap',side_effect=AssertionError('inert selection captured bytes')):
             self.assertEqual(subject._fresh_selections((selection,),ROOT),(selection,))
             for wrong in (replace(instrument,path=str(ROOT/'renamed-checker.py')),
-                          replace(instrument,sha256='c'*64),
-                          replace(instrument,path=str(ROOT/expected[1][1]),sha256=expected[1][2])):
+                          replace(instrument,path=str(ROOT/expected['controls']),sha256='b'*64)):
                 bad=replace(selection,expected_authority=(wrong,),closures=(subject.AdmittedClosure(closure,wrong),))
                 with self.subTest(wrong=wrong),self.assertRaisesRegex(ValueError,'unreviewed'):
                     subject._fresh_selections((bad,),ROOT)
@@ -982,7 +880,7 @@ class CaptureTests(unittest.TestCase):
     def test_real_private_geometry_capture_type_generation_and_cleanup(self):
         """Real captured definitions and synthetic histories; no actual data."""
         roles=('geometry','geometryControls','captureHelper','geometryHistory','geometryRoots','geometryIntervals')
-        source={r:(p,h)for r,p,h in subject.SOURCES}
+        source={r:(p,None)for r,p in subject.SOURCES.items()}
         before={n for n in sys.modules if n.startswith(('_f6c_variable_','_f6c_cover_'))}
         with ExitStack()as stack:
             pool=subject._Pool(stack,w,ROOT,lambda:None)
@@ -1006,8 +904,8 @@ class CaptureTests(unittest.TestCase):
             with self.assertRaises(OSError):os.fstat(fd)
 
     def test_new_geometry_source_change_rejects_and_private_module_closes(self):
-        p,h=next((p,h)for r,p,h in subject.SOURCES if r=='geometry')
-        raw=(ROOT/p).read_bytes();self.assertEqual(hsh(raw),h)
+        p=subject.SOURCES['geometry'];h=None
+        raw=(ROOT/p).read_bytes();h=hsh(raw)
         before={n for n in sys.modules if n.startswith('_f6c_variable_')}
         with tempfile.TemporaryDirectory()as temp:
             root=Path(temp).resolve();target=root/'geometry.py';target.write_bytes(raw)
@@ -1058,81 +956,9 @@ class CaptureTests(unittest.TestCase):
         for old,new in ((b'13512',b'13513'),(b'c21aa7',b'c21aa8'),(b'862.951823625',b'862.577186208'),(b'exit zero',b'exit one'),(subject.FULL[0][2].encode(),b'f'*64)):
             with self.assertRaises(ValueError):subject._owner_declaration(raw.replace(old,new))
 
-    def test_entry_pins_literal_source_only(self):
-        raw=(ROOT/'reference/priorities/development-process-review/evidence/source-recovery/original-full-entry.mjs.source').read_bytes()
-        pins=subject._entry_pins(raw)
-        # This parser reads the original full-run entry, whose comparison source
-        # predates the current execution interface in subject.SOURCES.
-        self.assertEqual(hsh(raw),OPTION_B_BATCH_IDENTITIES[3])
-        self.assertEqual(pins['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py'],OPTION_B_BATCH_IDENTITIES[4])
 
-    def full_metadata_fixture(self):
-        """Independent structural fixture, not an actual full-run attestation."""
-        entry=(ROOT/'reference/priorities/development-process-review/evidence/source-recovery/original-full-entry.mjs.source').read_bytes()
-        pins=subject._entry_pins(entry)
-        record=lambda p,h='a'*64,n=1:dict(path=str(ROOT/p),sha256=h,bytes=n)
-        pinned=[record(p,h,1) for p,h in pins.items()]
-        runtime=[record('synthetic-runtime/'+str(n))for n in range(158)]
-        ops=pinned[:2]+[record('synthetic-ops/'+str(n))for n in range(4)]
-        resource=next(b for b in pinned if b['path'].endswith('2026-08-27-f6c-cached-root-cover-full-resource-plan.md'))
-        bound={role:record(p,h,n)for role,p,h,n in subject.FULL}
-        contract=dict(scope='full',verifierSha256=OPTION_B_BATCH_IDENTITIES[5],
-            declarationSha256=OPTION_B_BATCH_IDENTITIES[6],
-            subjectSourceBindings=pinned[:4],runtimeBindings=runtime)
-        plan=dict(schema='braid-program/f6c-cached-root-cover-full-launch.v1',scope='full',resourcePlan=resource,
-            comparisonContract=contract,operationalBindings=ops,controlBindings=pinned[4:6],python='synthetic',pythonRealPath='synthetic',git='synthetic',node='synthetic')
-        sources=w.source_map(pinned+runtime+ops+[bound['plan']],ROOT)
-        claims=dict(conditionalRootCoverValidated=True,reconstructedFamilyApplicabilityAuthenticated=True,
-            historicalTrajectoryIdentityEstablished=False,rootExecutionAuthorized=False,metricsAvailable=False,h3EvidenceEligible=False,scoreAuthorized=False,eomExecuted=False)
-        manifest=dict(scope='full',status='conditional_complete',accepted=False,rows=bound['rows'],pieces=bound['pieces'],launchPlan=bound['plan'],
-            subjectSourceBindings=contract['subjectSourceBindings'],runtimeBindings=runtime)
-        analysis=dict(accepted=False,conditionalEnclosuresConformant=True,cellCount=160,pairCellCertificates=10240,ordinaryNonselfRows=8960,
-            selfExclusionRows=1280,distinctNonselfFaceChecks=17920,pieceRecordCount=17920,recordedGeometryPieceVisits=14639800)
-        comparison=dict(schema='braid-program/f6c-continuous-reception-root-cover-conformance.v1',scope='full',accepted=True,claims=claims,analysis=analysis,
-            rows=bound['rows'],pieces=bound['pieces'],manifest=bound['manifest'],launchPlan=bound['plan'])
-        host=[dict(kind='host-resource',elapsedSeconds=n)for n in range(62)]
-        rss=[dict(kind='aggregate-rss',elapsedSeconds=n/10,aggregateResidentBytes=100,sampleGapMs=100)for n in range(3447)]
-        admission=dict(schema='braid-program/f6c-cached-root-cover-full-admission.v1',scope='full',accepted=True,processesClosed=True,
-            elapsedSecondsBeforePublication=Decimal('862.577186208'),sourceBindings=list(sources.values()),plan=bound['plan'],
-            stages=[],hostObservationsBeforePublication=host[:-1],observationsBeforePublication=dict(samples=3444,maximumSampledRSSBytes=100))
-        admission.update((k,False)for k in ('eomExecuted','fullRunAuthorized','h3EvidenceEligible','historicalTrajectoryIdentityEstablished','metricsAvailable'))
-        logs={}
-        for stage in ('consumer','comparison'):
-            outputs=[bound[k]for k in ('rows','pieces','manifest')]if stage=='consumer'else[bound['comparison']]
-            done=dict(completed=True,accepted=stage=='comparison',h3EvidenceEligible=False)
-            done.update(outputs=outputs)if stage=='consumer'else done.update(output=outputs[0])
-            raw=encoded(done);stdout=record('synthetic-logs/'+stage+'.stdout',hsh(raw),len(raw));stderr=record('synthetic-logs/'+stage+'.stderr')
-            logs[stdout['path']]=raw
-            ad=dict(accepted=True,completion=done,completionLog=stdout,outputs=outputs)
-            proc=dict(accepted=True,processesClosed=True,exit=dict(code=0,signal=None),admission=ad,stdoutLog=stdout,stderrLog=stderr,
-                gates=[dict(retired=True,acknowledged=True,measurement=dict(code=0,signal=None))])
-            admission['stages'].append(dict(stage=stage,process=proc,admission=ad))
-        docs=dict(plan=plan,manifest=manifest,comparison=comparison,admission=admission,
-            launcherLog=b''.join(encoded(x)for x in host),resourceLog=b''.join(encoded(x)for x in rss))
-        owner=('### Independently Accepted Actual Full asymmetric counter-breathing representative Conditional Cover\noriginal caller session `13512` final completion chunk `c21aa7` exit zero '
-            '`862.951823625` Independent post-closure review accepts all 160 '+subject.FULL_BASE+'\n'+'\n'.join(h+' '+str(n)for _,_,h,n in subject.FULL[:-1])).encode()
-        class Pool:
-            root=ROOT
-            def capture(self,p,h):return SimpleNamespace(binding=lambda:record(p,h))
-            def read_binding(self,b,*,capture=False):return logs[b['path']]if capture else b
-        return docs,bound,entry,Pool(),owner
 
-    def test_full_chain_complete_structural_fixture(self):
-        args=self.full_metadata_fixture()
-        self.assertEqual(subject._full_chain(w,core,*args),198)
 
-    def test_full_chain_source_stage_census_and_time_fail_closed(self):
-        docs,bound,entry,pool,owner=self.full_metadata_fixture()
-        mutations=(lambda d:d['plan']['comparisonContract'].update(verifierSha256=OPTION_B_BATCH_IDENTITIES[7]),
-            lambda d:d['plan']['comparisonContract'].update(declarationSha256=OPTION_B_BATCH_IDENTITIES[8]),
-            lambda d:d['admission']['sourceBindings'].pop(),lambda d:d['comparison']['analysis'].update(pairCellCertificates=10239),
-            lambda d:d['admission']['stages'][0]['process'].update(processesClosed=False),
-            lambda d:d['admission']['stages'][0]['process']['gates'][0].update(retired=False),
-            lambda d:d['admission'].update(elapsedSecondsBeforePublication=Decimal('862.951823625')),
-            lambda d:d['manifest']['rows'].update(sha256='f'*64))
-        for mutate in mutations:
-            changed=deepcopy(docs);mutate(changed)
-            with self.assertRaises(ValueError):subject._full_chain(w,core,changed,bound,entry,pool,owner)
 
     @contextmanager
     def mocked_constructor(self,*,late_failure=False):
@@ -1165,7 +991,7 @@ class CaptureTests(unittest.TestCase):
             finally:events.append('package-closed')
         sources={'mapping':fake_ref,'decoder':core,'rootComparison':fake_root,'acceleration':a,'integral':integral,'correlated':correlated,
             'gk':SimpleNamespace(),'geometry':geometry,'captureHelper':SimpleNamespace(captured_package=package)}
-        bypath={str(ROOT/p):sources.get(r)for r,p,_ in subject.SOURCES}
+        bypath={str(ROOT/p):sources.get(r)for r,p in subject.SOURCES.items()}
         @contextmanager
         def module(raw,path):yield w if str(path).endswith('verify-f6c-refined-acceleration.py')else bypath[str(path)]
         @contextmanager
@@ -1279,29 +1105,7 @@ class ParentRefinementTests(unittest.TestCase):
                 subject._refinement_descriptors((replace(value,closure=replace(c,**{key:bad})),),ROOT,'c'*64)
         with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,closure=True),),ROOT,'c'*64)
 
-    def test_descriptor_never_invokes_foreign_equality_hooks(self):
-        class Foreign:
-            def __eq__(self,other):raise AssertionError('foreign equality invoked')
-        value=self.descriptor()
-        for field in ('original_caller_session','final_completion_chunk','elapsed_seconds','authority'):
-            with self.assertRaises(ValueError):
-                subject._refinement_descriptors((replace(value,closure=replace(value.closure,**{field:Foreign()})),),ROOT,'c'*64)
-        old=subject.SourceBinding(str(ROOT/subject.OWNER),OPTION_B_BATCH_IDENTITIES[9],318717)
-        relation=subject.ArchivedSource(Foreign(),old,replace(old,path=str(ROOT/'archive')))
-        with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=(relation,)),),ROOT,'c'*64)
 
-    def test_exact_archive_descriptor_only(self):
-        value=self.descriptor()
-        old=subject.SourceBinding(str(ROOT/subject.OWNER),OPTION_B_BATCH_IDENTITIES[10],318717)
-        archive=replace(old,path=str(ROOT/'synthetic-owner-archive'))
-        relation=subject.ArchivedSource('acceptanceOwner',old,archive)
-        good=replace(value,archived_sources=(relation,))
-        self.assertEqual(subject._refinement_descriptors((good,),ROOT,'c'*64),(good,))
-        invalid=[[],(relation,relation),(replace(relation,role='runtime'),),
-            (replace(relation,original=replace(old,sha256='d'*64)),),
-            (replace(relation,archive=old),),(replace(relation,archive=replace(archive,bytes=1)),)]
-        for relations in invalid:
-            with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=relations),),ROOT,'c'*64)
 
     def test_original_parent_index_separate_from_local_stream_indices(self):
         obj=adapter();rows,pieces=raw_fixture(obj.parents[0],obj.histories)
@@ -1331,61 +1135,11 @@ class ParentRefinementTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 subject._parents_from_raw(a,reference,rows,pieces,obj.histories,obj.parents[0].bindings,cells=1,refined=True,original_indices=indices)
 
-    @contextmanager
-    def archived_reader(self,*,relations=True):
-        with tempfile.TemporaryDirectory()as temp,ExitStack()as stack:
-            root=Path(temp).resolve();live=root/subject.OWNER;live.parent.mkdir(parents=True);live.write_bytes(b'new owner')
-            archive=root/'old-owner';archive.write_bytes(b'old owner')
-            old=subject.SourceBinding(str(live),hsh(b'old owner'),9)
-            new=subject.SourceBinding(str(archive),hsh(b'old owner'),9)
-            relation=subject.ArchivedSource('acceptanceOwner',old,new)
-            pool=subject._Pool(stack,w,root,lambda:None);pool.capture(live,hsh(b'new owner'))
-            reader=subject._HistoricalReader(pool,(relation,)if relations else(),asdict(old))
-            yield pool,reader,relation,live,archive
 
-    def test_archive_preserves_logical_sources_and_separate_physical_provenance(self):
-        with self.archived_reader()as(pool,reader,relation,live,archive):
-            logical=asdict(relation.original);saved=deepcopy(logical)
-            self.assertEqual(reader.read_binding(logical),logical)
-            self.assertEqual(reader.read_binding(logical,capture=True),b'old owner')
-            self.assertEqual(logical,saved);self.assertEqual(reader.finish(),(relation,))
-            self.assertEqual(pool.files[str(live)].digest,hsh(b'new owner'))
-            self.assertEqual(pool.files[str(archive)].digest,hsh(b'old owner'))
-            self.assertNotEqual(pool.files[str(live)].initial.st_ino,pool.files[str(archive)].initial.st_ino)
-            pool.recheck()
 
-    def test_archive_is_not_automatic_fallback(self):
-        with self.archived_reader(relations=False)as(pool,reader,relation,live,archive):
-            with self.assertRaisesRegex(ValueError,'conflicting'):reader.read_binding(asdict(relation.original))
-            self.assertNotIn(str(archive),pool.files)
 
-    def test_archive_unused_wrong_original_and_chained_mapping_reject(self):
-        with self.archived_reader()as(pool,reader,relation,live,archive):
-            with self.assertRaisesRegex(ValueError,'unused'):reader.finish()
-            with self.assertRaises(ValueError):reader.read_binding(asdict(replace(relation.original,sha256='a'*64)))
-            for relations in ((relation,relation),(replace(relation,role='source'),),
-                (replace(relation,original=relation.archive),),(replace(relation,archive=relation.original),)):
-                with self.assertRaises(ValueError):subject._HistoricalReader(pool,relations,asdict(relation.original))
 
-    def test_archive_missing_changed_symlink_and_directory_reject_without_fallback(self):
-        for mode in ('missing','bytes','size','symlink','directory'):
-            with self.subTest(mode=mode),self.archived_reader()as(pool,reader,relation,live,archive):
-                archive.unlink()
-                if mode=='bytes':archive.write_bytes(b'bad owner')
-                elif mode=='size':archive.write_bytes(b'bad')
-                elif mode=='symlink':archive.symlink_to(live)
-                elif mode=='directory':archive.mkdir()
-                with self.assertRaises((ValueError,OSError)):reader.read_binding(asdict(relation.original),capture=True)
-                self.assertEqual(pool.files[str(live)].digest,hsh(b'new owner'))
 
-    def test_current_and_archived_owner_final_recheck(self):
-        for which in ('live','archive'):
-            with self.subTest(which=which):
-                with self.assertRaises((ValueError,OSError)):
-                    with self.archived_reader()as(pool,reader,relation,live,archive):
-                        reader.read_binding(asdict(relation.original));reader.finish()
-                        (live if which=='live'else archive).write_bytes(b'replacement')
-                        pool.recheck()
 
     def test_parent_owner_attribution_scope_and_external_completion(self):
         value=self.descriptor()
@@ -1423,20 +1177,6 @@ class GenericParentTests(unittest.TestCase):
         for elapsed in ('0','1800.001','NaN','1e1001'):
             with self.assertRaises(ValueError):subject._refinement_descriptors((replace(values[1],closure=replace(values[1].closure,elapsed_seconds=elapsed)),),ROOT,'c'*64)
 
-    def test_six_historical_roles_exact_generations_and_shared_dedup(self):
-        value=self.generic();relations=[]
-        for role,path,digest,size in subject.PARENT_ARCHIVE_SOURCES:
-            old=subject.SourceBinding(str(ROOT/path),digest,size)
-            relations.append(subject.ArchivedSource(role,old,replace(old,path=str(ROOT/'synthetic-archive'/role))))
-        value=replace(value,archived_sources=tuple(relations))
-        later=replace(self.generic(159),archived_sources=tuple(relations))
-        self.assertEqual(subject._refinement_descriptors((value,later),ROOT,'c'*64),(value,later))
-        for relation in relations:
-            for bad in (replace(relation,role='runtime'),replace(relation,original=replace(relation.original,bytes=2)),
-                replace(relation,archive=replace(relation.archive,path=str(ROOT/subject.SELF)))):
-                with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=(bad,)),),ROOT,'c'*64)
-        conflict=replace(later,archived_sources=(replace(relations[0],archive=replace(relations[0].archive,path=str(ROOT/'other-archive'))),))
-        with self.assertRaises(ValueError):subject._refinement_descriptors((value,conflict),ROOT,'c'*64)
 
     def test_generic_owner_exact_nine_roles_and_no_conflicting_lines(self):
         value=self.generic();bound={r:asdict(getattr(value,r))for r,_,_,_ in subject.PARENT_ONE[:6]}
@@ -1456,27 +1196,6 @@ class GenericParentTests(unittest.TestCase):
             with self.assertRaises(ValueError):check(data)
         with self.assertRaises(ValueError):subject._parent_owner(raw,value,None)
 
-    def test_real_source_archive_generation_no_fallback_or_current_alias(self):
-        with tempfile.TemporaryDirectory()as temp,ExitStack()as stack:
-            root=Path(temp).resolve();source=root/'scripts/old.py';source.parent.mkdir();source.write_bytes(b'new')
-            archive=root/'old-archive';archive.write_bytes(b'old')
-            old=subject.SourceBinding(str(source),hsh(b'old'),3);new=replace(old,path=str(archive))
-            relation=subject.ArchivedSource('producer',old,new)
-            owner=dict(path=str(root/subject.OWNER),sha256='a'*64,bytes=1)
-            pool=subject._Pool(stack,w,root,lambda:None);pool.capture(source,hsh(b'new'))
-            # Synthetic historical tuple substitution only at this test seam;
-            # public descriptor controls above use the genuine fixed six pins.
-            with patch.object(subject,'PARENT_ARCHIVE_SOURCES',(('producer','scripts/old.py',old.sha256,3),)):
-                reader=subject._HistoricalReader(pool,(relation,),owner,{'producer':asdict(old)})
-                self.assertEqual(reader.read_binding(asdict(old),capture=True),b'old');reader.finish()
-                self.assertEqual(pool.files[str(source)].digest,hsh(b'new'));pool.recheck()
-                with self.assertRaises(ValueError):subject._HistoricalReader(pool,(relation,),owner,{'producer':dict(asdict(old),sha256='f'*64)})
-                with self.assertRaises(ValueError):subject._HistoricalReader(pool,(relation,),owner,{})
-                with self.assertRaises(ValueError):subject._HistoricalReader(pool,(relation,relation),owner,{'producer':asdict(old)})
-                fd=pool.files[str(archive)].fd
-                archive.unlink();archive.write_bytes(b'old')
-                with self.assertRaises(ValueError):pool.recheck()
-        with self.assertRaises(OSError):os.fstat(fd)
 
     def test_generic_local_rows_and_unchanged_nonselected_metadata(self):
         obj=restricted_adapter();old=obj.parents
@@ -1515,7 +1234,7 @@ class GenericParentTests(unittest.TestCase):
         def put(path,raw):
             path=str(ROOT/path);payloads[path]=raw
             b=dict(path=path,sha256=hsh(raw),bytes=len(raw));bindings[path]=b;return b
-        def record(path,digest='a'*64,size=1):return dict(path=str(ROOT/path),sha256=digest,bytes=size)
+        def record(path,digest='a'*64,size=1):return dict(path=str(ROOT/path),sha256=digest or 'a'*64,bytes=size)
         class File:
             def __init__(self,b):self.data=payloads.get(b['path']);self.path=Path(b['path']);self._binding=b
             def binding(self):return dict(self._binding)
@@ -1523,7 +1242,7 @@ class GenericParentTests(unittest.TestCase):
             root=ROOT
             def __init__(self):self.w=w;self.files={}
             def capture(self,path,digest,*,data=False,size=None):
-                path=str(ROOT/path);b=dict(path=path,sha256=digest,bytes=size)
+                path=str(ROOT/path);b=dict(path=path,sha256=digest or 'a'*64,bytes=size)
                 if path in payloads:
                     assert bindings[path]==b,(path,b,bindings[path])
                 elif data:raise AssertionError('unprovided virtual data '+path)
@@ -1546,7 +1265,7 @@ class GenericParentTests(unittest.TestCase):
         full={role:record(p,h,n)for role,p,h,n in subject.FULL}
         ancestry={k:record('synthetic-original/'+k)for k in ('export','reconstruction','guards')}
         ancestry.update((k,record('synthetic-original/'+k))for k in ('acceleration','enclosure'))
-        entry=next((p,h)for role,p,h in subject.SOURCES if role=='fullEntry')
+        entry=(subject.SOURCES['fullEntry'],'a'*64)
         pool.files[str(ROOT/entry[0])]=File(record(*entry,size=27166))
         originals={k:ancestry[k]for k in ('export','reconstruction','guards')}
         originals['fullEntry']=pool.files[str(ROOT/entry[0])].binding()
@@ -1555,19 +1274,18 @@ class GenericParentTests(unittest.TestCase):
             'final completion chunk `c21aa7` exit zero `862.951823625` Independent post-closure review accepts all 160 '+subject.FULL_BASE+'\n'+
             '\n'.join(h+' '+str(n)for _,_,h,n in subject.FULL[:-1])).encode()
         owner_binding=put(subject.OWNER,old_owner)
-        named={role:record(path,digest)for role,path,digest in subject.PARENT_FIXED}
-        named.update((role,record(path,'b'*64))for role,path,_,_ in subject.PARENT_ARCHIVE_SOURCES[:4])
+        named={role:record(path)for role,path in (('proposalReference', 'scripts/eom/f6c_parent_emission_refinement.py'), ('proposalReferenceControls', 'tests/test_f6c_parent_emission_refinement.py'), ('comparisonReference', 'scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py'), ('comparisonReferenceControls', 'tests/test_f6c_parent_emission_refinement_conformance.py'))}
+        named.update((role,record(path,'b'*64))for role,path in (('producer','scripts/eom/prepare-f6c-parent-emission-refinement.py'),('producerControls','tests/test_f6c_parent_emission_refinement_preparation.py'),('verifier','scripts/eom/verify-f6c-parent-emission-refinement.py'),('verifierControls','tests/test_f6c_parent_emission_refinement_verification.py')))
         aliases=dict(transport='transport',transportControls='transportControls',scientificDecoder='decoder',scientificDecoderControls='decoderControls',
             productionHelper='captureHelper',productionHelperControls='captureHelperControls',historyReference='geometryHistory',decimalReference='geometryIntervals',
             decimalControls='geometryIntervalControls',rootLibrary='geometryRoots',rootControls='geometryRootsControls',independentRootReference='rootComparison',independentRootControls='rootControls')
-        deps={role:record(*next((p,h)for r,p,h in subject.SOURCES if r==alias))for role,alias in aliases.items()}
-        deps['cacheEquivalence']=record(subject.PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md',OPTION_B_BATCH_IDENTITIES[11])
+        deps={role:record(subject.SOURCES[alias],'a'*64)for role,alias in aliases.items()}
         closure=dict(authority='versioned-acceptance-owner-declaration-not-fresh-observation',originalCallerSession='13512',finalCompletionChunk='c21aa7',exitCode=0,
             elapsedSeconds='862.951823625',processesClosed=True,independentAuditAccepted=True)
         scope=f'original-parent-{index}-emission-refinement'
         plan=dict(schema='braid-program/f6c-parent-emission-refinement-launch.v1',scope=scope,parentIndex=index,**named,dependencies=deps,
             originalBindings=originals,acceptanceOwner=owner_binding,priorCoverClosure=closure,runtimeBindings=[record('synthetic-runtime/python')],
-            operationalBindings=[record(p,'b'*64)for _,p,_,_ in subject.PARENT_ARCHIVE_SOURCES[4:]],limits=w.LIMITS)
+            operationalBindings=[record(p,'b'*64)for _,p in (('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs'),('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js'))],limits=w.LIMITS)
         directory='synthetic-chain/'+str(index)+'/'
         bound={'plan':put(directory+'plan.json',encoded(plan))}
         subjects=[*named.values(),*deps.values()]
@@ -1585,7 +1303,7 @@ class GenericParentTests(unittest.TestCase):
             originalEmissions=[dict(receiverIndex=i,transmitterIndex=j,receiverId=a.LABELS[i],transmitterId=a.LABELS[j],emission=rawbox(original.rows[8*i+j].emission))for i in range(8)for j in range(8)if i!=j])
         claims=dict.fromkeys('accepted referenceGenerationAuthenticated originalSourceAuthenticated original1760PieceCensusAuthenticated premiseTruthAuthenticated subjectMembershipEstablished historicalTrajectoryIdentityEstablished executionAuthorized eomExecuted h3EvidenceEligible metricsAvailable scoreAuthorized equilibriumEstablished retentionEstablished physicalRealizationEstablished'.split(),False)
         manifest=dict(schema='braid-program/f6c-parent-emission-refinement-cover.v1',scope=scope,status='conditional_complete',accepted=False,launchPlan=bound['plan'],
-            **{k:named[k]for k in ('producer','verifier','declaration')},parent=parent,members=[{k:h[k]for k in ('id','pathKey','polarity','charge','historyFingerprint')}for h in export['retainedHistories']],
+            **{k:named[k]for k in ('producer','verifier')},parent=parent,members=[{k:h[k]for k in ('id','pathKey','polarity','charge','historyFingerprint')}for h in export['retainedHistories']],
             originalBindings=originals,acceptanceOwner=owner_binding,priorCoverClosure=closure,historicalSourceBindings=historical,subjectSourceBindings=subjects,
             runtimeBindings=plan['runtimeBindings'],operationalBindings=plan['operationalBindings'],algorithm=dict(lowerQueriesPerPair=32,upperQueriesPerPair=32,upperSearchRestartsFromOriginal=True,receptionSubdivision=False,automaticRetry=False),
             restrictions=[],census=dict(cells=1,members=8,queries=3584,pairRows=64,ordinaryPairs=56,selfZeros=8,pieceRecords=112),helperCalls=dict(build=1,queries=3584,cover=1),
@@ -1629,8 +1347,8 @@ class GenericParentTests(unittest.TestCase):
             with patch.object(w,'mathematical_bindings',return_value=[asdict(x)for x in expected.bindings]),\
                 patch.object(a,'evaluate_cell',side_effect=AssertionError('metadata kernel')),\
                 patch.object(geometry_roots,'history_state_over',side_effect=AssertionError('metadata geometry')):
-                selected,relations=subject._authenticate_parent(*args)
-            self.assertEqual(selected,expected);self.assertEqual(relations,())
+                selected=subject._authenticate_parent(*args)
+            self.assertEqual(selected,expected)
             self.assertTrue(all(b['path']in data['captured']for b in data['bound'].values()))
             self.assertEqual(len(selected.rows),64)
 
@@ -1649,119 +1367,6 @@ class GenericParentTests(unittest.TestCase):
                 with self.subTest(mode=mode),self.assertRaises(ValueError):subject._authenticate_parent(*changed)
 
 
-class ExactParentTwoArchiveTests(unittest.TestCase):
-    """Literal historical tuples; inert routing is not byte or science acceptance."""
-    descriptor=ParentRefinementTests.descriptor
-    generic=GenericParentTests.generic
-    EXPECTED=(
-        ('producer','scripts/eom/prepare-f6c-parent-emission-refinement.py',OPTION_B_BATCH_IDENTITIES[12],58397),
-        ('producerControls','tests/test_f6c_parent_emission_refinement_preparation.py',OPTION_B_BATCH_IDENTITIES[13],43836),
-        ('verifier','scripts/eom/verify-f6c-parent-emission-refinement.py',OPTION_B_BATCH_IDENTITIES[14],46615),
-        ('verifierControls','tests/test_f6c_parent_emission_refinement_verification.py',OPTION_B_BATCH_IDENTITIES[15],42419),
-        ('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs',OPTION_B_BATCH_IDENTITIES[16],56022),
-        ('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js',OPTION_B_BATCH_IDENTITIES[17],33303),
-    )
-
-    def selection(self):
-        plan=subject.SourceBinding(str(ROOT/'reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json'),
-            OPTION_B_BATCH_IDENTITIES[18],51509)
-        rows=[]
-        for role,path,digest,size in self.EXPECTED:
-            old=subject.SourceBinding(str(ROOT/path),digest,size)
-            rows.append(subject.ArchivedSource(role,old,replace(old,path=str(ROOT/'synthetic-parent2-archives'/role))))
-        return replace(self.generic(),plan=plan,archived_sources=tuple(rows))
-
-    def test_literal_six_and_full_nine_routes(self):
-        value=self.selection()
-        self.assertEqual(subject._historical_parent_sources(value,ROOT),self.EXPECTED)
-        old=subject.SourceBinding(str(ROOT/subject.OWNER),'b'*64,10)
-        extra=[subject.ArchivedSource('acceptanceOwner',old,replace(old,path=str(ROOT/'synthetic-parent2-archives/owner')))]
-        for role,path,digest,size in (
-            ('memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md',OPTION_B_BATCH_IDENTITIES[19],16985),
-            ('fullResourcePlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md',OPTION_B_BATCH_IDENTITIES[20],13021)):
-            old=subject.SourceBinding(str(ROOT/path),digest,size)
-            extra.append(subject.ArchivedSource(role,old,replace(old,path=str(ROOT/'synthetic-parent2-archives'/role))))
-        value=replace(value,archived_sources=value.archived_sources+tuple(extra))
-        self.assertEqual(len(value.archived_sources),9)
-        self.assertEqual(subject._refinement_descriptors((value,),ROOT,'c'*64),(value,))
-        legacy=self.descriptor()
-        self.assertEqual(subject._refinement_descriptors((legacy,value),ROOT,'c'*64),(legacy,value))
-        self.assertEqual(subject._historical_parent_sources(legacy,ROOT),subject.PARENT_ARCHIVE_SOURCES)
-        with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=value.archived_sources+(extra[0],)),),ROOT,'c'*64)
-
-    def test_generation_requires_exact_plan_and_index(self):
-        value=self.selection()
-        mutations=[replace(value,parent_index=i)for i in (1,3,159)]
-        mutations.extend(replace(value,plan=replace(value.plan,**change))for change in (
-            dict(path=str(ROOT/'different-plan.json')),dict(sha256='a'*64),dict(bytes=51508)))
-        for bad in mutations:
-            with self.subTest(bad=bad.parent_index,plan=bad.plan):
-                with self.assertRaises(ValueError):subject._refinement_descriptors((bad,),ROOT,'c'*64)
-        # Mixing a parent-one wrapper tuple into the pinned parent-two generation
-        # must not silently select the older per-role fallback.
-        role,path,digest,size=subject.PARENT_ARCHIVE_SOURCES[0]
-        old=subject.SourceBinding(str(ROOT/path),digest,size)
-        mixed=subject.ArchivedSource(role,old,replace(old,path=str(ROOT/'mixed-generation')))
-        with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=(mixed,)+value.archived_sources[1:]),),ROOT,'c'*64)
-
-    def test_each_exact_tuple_and_route_rejects_mutation(self):
-        value=self.selection()
-        for relation in value.archived_sources:
-            for bad in (
-                replace(relation,role='runtime'),
-                replace(relation,original=replace(relation.original,path=str(ROOT/'wrong-source.py'))),
-                replace(relation,original=replace(relation.original,sha256='f'*64)),
-                replace(relation,original=replace(relation.original,bytes=relation.original.bytes+1)),
-                replace(relation,archive=relation.original),
-                replace(relation,archive=replace(relation.archive,sha256='e'*64)),
-                replace(relation,archive=replace(relation.archive,bytes=1)),
-                replace(relation,archive=replace(relation.archive,path=str(ROOT/subject.SELF)))):
-                with self.subTest(role=relation.role,bad=bad):
-                    with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=(bad,)),),ROOT,'c'*64)
-        with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=(value.archived_sources[0],)*2),),ROOT,'c'*64)
-
-    def test_inert_reader_preserves_logical_tuple_and_exact_physical_route(self):
-        value=self.selection();calls=[]
-        def read(b,*,capture=False):
-            self.assertFalse(capture);calls.append(deepcopy(b));return dict(b)
-        pool=SimpleNamespace(root=ROOT,w=w,read_binding=read)
-        owner=asdict(value.closure.owner);sources={r.role:asdict(r.original)for r in value.archived_sources}
-        reader=subject._HistoricalReader(pool,value.archived_sources,owner,sources,descriptor=value)
-        with self.assertRaisesRegex(ValueError,'unused'):reader.finish()
-        for relation in value.archived_sources:
-            logical=asdict(relation.original)
-            self.assertEqual(reader.read_binding(logical),logical)
-        self.assertEqual(calls,[asdict(r.archive)for r in value.archived_sources])
-        self.assertEqual(reader.finish(),value.archived_sources)
-        self.assertFalse(hasattr(pool,'read_identity'))
-        with self.assertRaises(ValueError):reader.read_binding(dict(sources['producer'],bytes=1))
-        with self.assertRaises(ValueError):subject._HistoricalReader(pool,value.archived_sources,owner,sources)
-        with self.assertRaises(ValueError):subject._HistoricalReader(pool,value.archived_sources,owner,sources,descriptor=replace(value,parent_index=3))
-        with self.assertRaises(ValueError):subject._HistoricalReader(pool,value.archived_sources,owner,{},descriptor=value)
-        with self.assertRaises(ValueError):subject._HistoricalReader(pool,(value.archived_sources[0],)*2,owner,sources,descriptor=value)
-
-    def test_real_tiny_parent2_archive_retains_current_five_field_closure(self):
-        # Tiny payloads substitute only the table at this existing private IO
-        # seam. Literal public-tuple controls above remain separate.
-        with tempfile.TemporaryDirectory()as temp,ExitStack()as stack:
-            root=Path(temp).resolve();source=root/'scripts/old.py';source.parent.mkdir();source.write_bytes(b'new')
-            archive=root/'old-archive';archive.write_bytes(b'old')
-            old=subject.SourceBinding(str(source),hsh(b'old'),3)
-            relation=subject.ArchivedSource('producer',old,replace(old,path=str(archive)))
-            plan=replace(self.selection().plan,path=str(root/Path(self.selection().plan.path).relative_to(ROOT)))
-            descriptor=replace(self.selection(),plan=plan)
-            owner=dict(path=str(root/subject.OWNER),sha256='a'*64,bytes=1)
-            pool=subject._Pool(stack,w,root,lambda:None);pool.capture(source,hsh(b'new'))
-            with patch.object(subject,'PARENT_TWO_ARCHIVE_SOURCES',(('producer','scripts/old.py',old.sha256,3),)):
-                reader=subject._HistoricalReader(pool,(relation,),owner,{'producer':asdict(old)},descriptor=descriptor)
-                self.assertEqual(reader.read_binding(asdict(old),capture=True),b'old');reader.finish();pool.recheck()
-                self.assertEqual(pool.files[str(source)].digest,hsh(b'new'))
-                fd=pool.files[str(archive)].fd;initial=pool.files[str(archive)].initial
-                self.assertEqual(initial.st_dev,archive.stat().st_dev)
-                self.assertNotEqual(initial.st_ino,pool.files[str(source)].initial.st_ino)
-                replacement=root/'replacement';replacement.write_bytes(b'old');os.replace(replacement,archive)
-                with self.assertRaises(ValueError):pool.recheck()
-        with self.assertRaises(OSError):os.fstat(fd)
 
 
 class FreshImmutableMetadataControls(unittest.TestCase):

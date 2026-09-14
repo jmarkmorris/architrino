@@ -4,7 +4,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { beginBorgRuntimeAdmission, BORG_FAMILIES } from "./borg/selected-runtime-admission.mjs";
 import { PRESCRIBED_ASSEMBLY_TARGETS } from "./eom/generate-prescribed-braid-record.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -33,23 +32,17 @@ export function runtimeAssetPaths(rootDir = ROOT) {
 // tracked textbook/scene regeneration remain separate, explicitly requested work.
 export function prepareRuntimeAssets({ rootDir = ROOT, mode = "write", familyId = null, log = console.log } = {}) {
   if (!["write", "check"].includes(mode)) throw new Error("choose write or check");
-  const admission = !familyId || Object.hasOwn(BORG_FAMILIES, familyId) ? beginBorgRuntimeAdmission({ root: path.resolve(rootDir) }) : null;
   const families = readRuntimeAssetFamilies(rootDir).filter((family) => !familyId || family.id === familyId);
   if (!families.length) throw new Error(`unknown runtime asset family: ${familyId}`);
   for (const family of families) {
     const args = [...family.command];
     if (mode === "check") args[args.length - 1] = "--check";
     log(`[runtime-assets] ${mode}: ${family.id}`);
-    admission?.check();
     const result = spawnSync(process.execPath, args, { cwd: rootDir, encoding: "utf8", maxBuffer: 8 * 1024 * 1024 });
     if (result.error || result.status !== 0) {
       throw new Error(`${family.id}: ${result.error?.message || result.stderr || result.stdout || `exit ${result.status}`}`);
     }
-    if (admission && Object.hasOwn(BORG_FAMILIES, family.id)) admission.verifyFamily(family.id);
   }
-  admission?.check();
-  // Preserve the array API; Pages uses this non-enumerable final-copy check.
-  if (admission) Object.defineProperty(families, "verifyBorgPublished", { value: admission.verifyPublished });
   return families;
 }
 

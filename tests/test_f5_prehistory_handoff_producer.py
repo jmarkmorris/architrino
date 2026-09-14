@@ -79,7 +79,7 @@ class Plumbing(unittest.TestCase):
         prefix, result = fixture()
         output = producer.assemble(prefix, result, {'synthetic': 'bindings'})
         self.assertEqual(set(output), {'schema','status','prefixSha256','restrictionReceiptSha256',
-            'sourceOwners','producerBindings','runtimePremises','normalizedFieldSpeed','retainedInterval','releaseTime','claims','members'})
+            'producerBindings','runtimePremises','normalizedFieldSpeed','retainedInterval','releaseTime','claims','members'})
         self.assertTrue(all(v is False for v in output['claims'].values()))
         self.assertEqual(output['members'][0]['release'], result['members'][0]['release'])
         self.assertEqual(output['members'][0]['originalHistory'], prefix['members'][0]['originalHistory'])
@@ -100,7 +100,7 @@ class Plumbing(unittest.TestCase):
                     for k in ('wrapper','inspector','executable')}
         build = {'schema':'braid-program/f5-prehistory-handoff-build.v1',
                  'producerSources': {k: bindings[k] for k in ('wrapper','inspector')},
-                 'built': {'executable':bindings['executable']}, 'sourceOwners':producer.SOURCE_OWNERS.copy()}
+                 'built': {'executable':bindings['executable']}}
         producer.check_build(build, bindings)
         build['producerSources'].pop('wrapper')
         with self.assertRaises(ValueError): producer.check_build(build, bindings)

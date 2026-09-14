@@ -77,11 +77,11 @@ A changed hash means a startup source was edited after the last regeneration. It
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| AGENTS.md | 167 | `1a14cc71599af87c` |
+| AGENTS.md | 169 | `b935bfa1fdfaae43` |
 | README.md | 220 | `36a303599a5a3c02` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 323 | `5f5f909df0a425a8` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 296 | `8ba6633af5a38fa7` |
 | [reference/op/brainstorming.md](brainstorming.md) | 380 | `a64f54974e729b23` |
 | [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 208 | `328459c22faedf60` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
@@ -89,7 +89,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6e7d85fadab80fc0` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `aea014967bca3b04` |
-| [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 871 | `0e21e71853f0a457` |
+| [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 873 | `e5ebc67f25e39867` |
 | [reference/priorities/README.md](../priorities/README.md) | 125 | `f93aee4d2c7b7b80` |
 | [reference/office-of-research/cto/prompts/README.md](../office-of-research/cto/prompts/README.md) | 64 | `44455776ef041094` |
 | [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md) | 72 | `4e0ff61a310d3916` |

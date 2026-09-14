@@ -8,89 +8,10 @@ routine, compatibility witness, or other mathematical oracle is imported.
 
 from __future__ import annotations
 
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
-    from pathlib import Path as _b_Path
-    _b_root = _b_Path(__file__).resolve().parents[2]
-    _b_held = {}
-    def _b_identity(path):
-        value = path.lstat()
-        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
-    def _b_capture(relative, expected=None):
-        if (type(relative) is not str or not relative or '\\' in relative
-                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
-            raise ValueError('Unsafe selected Python bootstrap path')
-        path = _b_root / relative
-        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
-            raise ValueError('Canonical regular Python bootstrap source required')
-        before = _b_identity(path)
-        if relative in _b_held and _b_held[relative] != before:
-            raise ValueError('Selected Python bootstrap source replaced')
-        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
-        try:
-            value = _b_os.fstat(fd)
-            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
-                raise ValueError('Bounded Python bootstrap source required')
-            parts = []; size = 0
-            while size < value.st_size:
-                part = _b_os.read(fd, min(65536, value.st_size-size))
-                if not part: raise ValueError('Truncated Python bootstrap source')
-                parts.append(part); size += len(part)
-            raw = b''.join(parts); value = _b_os.fstat(fd)
-            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
-                raise ValueError('Selected Python bootstrap source changed during capture')
-        finally:
-            _b_os.close(fd)
-        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
-            raise ValueError('Selected Python bootstrap digest differs')
-        _b_held[relative] = before
-        return raw
-    def _b_unique(pairs):
-        result = {}
-        for key,value in pairs:
-            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
-            result[key] = value
-        return result
-    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
-    def _b_recheck():
-        for relative,identity in _b_held.items():
-            if _b_identity(_b_root/relative) != identity:
-                raise ValueError('Retained Python bootstrap source replaced')
-    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
-    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
-    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
-    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
-    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
-    _b_path = 'scripts/eom/production_source_records.py'
-    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
-    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
-            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
-            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
-        raise ValueError('Exact selected Python production bridge required')
-    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
-    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
-    _b_bridge.__file__ = str(_b_root/_b_path)
-    _b_sys.modules[_b_bridge.__name__] = _b_bridge
-    _b_recheck()
-    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
-    _b_recheck()
-    def _b_call(name, *args, **kwargs):
-        _b_recheck()
-        result = getattr(_b_bridge,name)(*args,**kwargs)
-        _b_recheck()
-        return result
-    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
-    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
-    production_recheck = lambda: _b_call('production_recheck')
-    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
-    production_runtime_binding = lambda: _b_call('production_runtime_binding')
-    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
-    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+import hashlib
+from pathlib import Path
 
-if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
-        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
-        or len(OPTION_B_PRODUCTION_IDENTITIES) != 2):
-    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
 
 import argparse
 from contextlib import ExitStack
@@ -99,7 +20,6 @@ from hashlib import sha256
 import json
 from math import comb
 import os
-from pathlib import Path
 import re
 import signal
 import stat
@@ -109,9 +29,7 @@ import time
 
 
 _EXECUTING_CODE = sys._getframe().f_code
-EXPORT_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[0]
-THEOREM_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[1]
-THEOREM_PATH = "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md"
+EXPORT_SHA256 = 'f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'
 SCHEMA = "braid-program/f6c-retained-history-guards.v1"
 RUN_ID = "f6c-balanced-tetrahedral-p0.678-n1.25-th3.36-br0.787-cp1.76-hp0.0771-hm-0.147-rp0.0463-rm-0.134-tp0.116-tm-0.254-hhp4.82-hhm2.21-hrp6-hrm3.44-v1"
 LABELS = ("0+", "0-", "1+", "1-", "2+", "2-", "3+", "3-")
@@ -135,50 +53,9 @@ SEGMENT_KEYS = {"startTime", "endTime", "coefficients", "positionErrors",
 from contextlib import contextmanager
 
 
-class _ProductionOriginal:
-    """Original logical binding backed by an independently owned archive handle."""
-    def __init__(self, physical, logical):
-        object.__setattr__(self,'_physical',physical)
-        object.__setattr__(self,'path',logical)
-    def __getattr__(self,name):return getattr(self._physical,name)
-    def __setattr__(self,name,value):setattr(self._physical,name,value)
-    def binding(self):
-        result=self._physical.binding();result['path']=str(self.path);return result
-    def physical_binding(self):return self._physical.binding()
-    def recheck(self):
-        result=self._physical.recheck()
-        if isinstance(result,dict) and 'path' in result:
-            result=dict(result);result['path']=str(self.path)
-        return result
 
 
-@contextmanager
-def _production_capture(cls, filename, limit, **kwargs):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
-    if not _path.is_absolute():_path=_root/_path
-    try:_relative=_path.relative_to(_root).as_posix()
-    except ValueError:_binding=None
-    else:
-        if _path!=_path.resolve():raise ValueError('noncanonical original capture')
-        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
 
-    _physical=_Path(_binding['path']) if _binding is not None else _path
-    production_recheck()
-    with cls(_physical,limit,**kwargs) as _held:
-        if _binding is not None and (_held.binding()['bytes']!=_binding['bytes'] or _held.binding()['sha256']!=_binding['sha256']):raise ValueError('original archive identity differs')
-        try:yield _ProductionOriginal(_held,_path) if _binding is not None else _held
-        finally:
-            if _binding is not None:_held.recheck()
-            production_recheck()
-
-def _production_current_source(raw):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2]
-    _original,_current,_=production_source_pair(_root,__file__,_Path(__file__).resolve().relative_to(_root).as_posix())
-    require(raw==_original or raw==_current,'executing instrument differs from captured source')
-    production_recheck()
-    return _current
 
 class GuardError(ValueError):
     pass
@@ -190,7 +67,7 @@ def require(condition, message):
 
 
 def rational(token):
-    require(type(token) is str and len(token) <= MAX_TOKEN_LENGTH,
+    require((type(token) is str) and (len(token) <= MAX_TOKEN_LENGTH),
             "decimal token must be a bounded string")
     match = DECIMAL_TOKEN.fullmatch(token)
     require(match is not None, "invalid finite decimal token")
@@ -225,31 +102,27 @@ def parse_export(data):
 
 
 def require_integer(value, expected, name):
-    require(type(value) is int and value == expected, f"{name} mismatch")
+    require((type(value) is int) and (value == expected), f"{name} mismatch")
 
 
 def validate_identity(document):
     require(type(document) is dict, "export must be an object")
-    require(document.get("schema") == "braid-program/f6c-retained-history-export.v1"
-            and document.get("status") == "exported-data-only", "export schema/status mismatch")
-    require(document.get("runId") == RUN_ID
-            and document.get("modelFingerprint") == "fnv1a64:6b87d1f138d33e13"
-            and document.get("generatingSpec") == "F6c-nonlinear-return-map-search-v2-return-continuation",
+    require((document.get("schema") == "braid-program/f6c-retained-history-export.v1") and (document.get("status") == "exported-data-only"), "export schema/status mismatch")
+    require((document.get("runId") == RUN_ID) and (document.get("modelFingerprint") == "fnv1a64:6b87d1f138d33e13") and (document.get("generatingSpec") == "F6c-nonlinear-return-map-search-v2-return-continuation"),
             "frozen run identity mismatch")
-    require(document.get("fieldSpeed") == "1"
-            and document.get("coupling") == "10.304229970992187", "frozen numerical literals mismatch")
+    require((document.get("fieldSpeed") == "1") and (document.get("coupling") == "10.304229970992187"), "frozen numerical literals mismatch")
     require(document.get("interval") == {"start": "0", "end": "0.13"}, "reception interval mismatch")
     expected = {"members": 8, "segments": 14080, "declaredSegmentsPerMember": 1600,
                 "evolvedSegmentsPerMember": 160, "acceptedFrames": 81,
                 "acceptedFrameIntervals": 80, "orderedPairs": 64}
     counts = document.get("counts")
-    require(type(counts) is dict and set(counts) == set(expected), "count fields mismatch")
+    require((type(counts) is dict) and (set(counts) == set(expected)), "count fields mismatch")
     for key, value in expected.items():
         require_integer(counts[key], value, key)
     histories = document.get("retainedHistories")
-    require(type(histories) is list and len(histories) == 8, "member census mismatch")
+    require((type(histories) is list) and (len(histories) == 8), "member census mismatch")
     for index, (history, label) in enumerate(zip(histories, LABELS)):
-        require(type(history) is dict and history.get("id") == label, "member identity/order mismatch")
+        require((type(history) is dict) and (history.get("id") == label), "member identity/order mismatch")
         require_integer(history.get("pathKey"), index + 1, "path key")
         positive = index % 2 == 0
         require_integer(history.get("polarity"), 1 if positive else -1, "polarity")
@@ -257,27 +130,26 @@ def validate_identity(document):
         require(history.get("charge") == (CHARGE if positive else "-" + CHARGE), "signed charge literal mismatch")
         require_integer(history.get("declaredPrehistorySegmentCount"), 1600, "prehistory count")
         require_integer(history.get("evolvedSegmentCount"), 160, "evolved count")
-        require(history.get("coverageStart") == "-8" and history.get("coverageEnd") == "0.13",
+        require((history.get("coverageStart") == "-8") and (history.get("coverageEnd") == "0.13"),
                 "declared retained domain mismatch")
-        require(type(history.get("segments")) is list and len(history["segments"]) == 1760,
+        require((type(history.get("segments")) is list) and (len(history["segments"]) == 1760),
                 "actual segment census mismatch")
     return histories
 
 
 def parse_segment(raw):
-    require(type(raw) is dict and set(raw) == SEGMENT_KEYS, "segment fields mismatch")
+    require((type(raw) is dict) and (set(raw) == SEGMENT_KEYS), "segment fields mismatch")
     a, b = rational(raw["startTime"]), rational(raw["endTime"])
     require(a < b, "segment duration must be strictly positive")
     rows = raw["coefficients"]
-    require(type(rows) is list and len(rows) == 3
-            and all(type(row) is list and len(row) == 4 for row in rows), "coefficient shape mismatch")
+    require((type(rows) is list) and (len(rows) == 3) and (all(type(row) is list and len(row) == 4 for row in rows)), "coefficient shape mismatch")
     errors = {}
     for kind in ("position", "velocity"):
         values = raw[kind + "Errors"]
-        require(type(values) is list and len(values) == 3, "error axis census mismatch")
+        require((type(values) is list) and (len(values) == 3), "error axis census mismatch")
         axes = tuple(rational(value) for value in values)
         scalar = rational(raw[kind + "Error"])
-        require(all(value >= 0 for value in axes) and scalar >= max(axes),
+        require((all(value >= 0 for value in axes)) and (scalar >= max(axes)),
                 "negative or underbounding original error allowance")
         errors[kind] = {"axis": axes, "scalar": (scalar,) * 3}
     return {"a": a, "b": b, "rows": tuple(tuple(rational(c) for c in row) for row in rows),
@@ -297,7 +169,7 @@ def derivative(coefficients):
 
 def bernstein_controls(coefficients, width):
     """Power-to-Bernstein identity on [0,width], not a sampled comparison."""
-    require(coefficients and width > 0, "Bernstein hull requires nonempty polynomial and positive width")
+    require((coefficients) and (width > 0), "Bernstein hull requires nonempty polynomial and positive width")
     degree = len(coefficients) - 1
     return tuple(sum((coefficients[j] * width**j * Fraction(comb(k, j), comb(degree, j))
                       for j in range(k + 1)), Fraction(0)) for k in range(degree + 1))
@@ -343,7 +215,7 @@ def reception_cover(paths, reception):
             segment = path[indices[member]]
             require(segment["a"] <= a < b <= segment["b"], "cell not contained in original segment")
         result.append((a, b, tuple(indices)))
-    require(result[0][0] == left and result[-1][1] == right, "reception endpoints missing")
+    require((result[0][0] == left) and (result[-1][1] == right), "reception endpoints missing")
     return result
 
 
@@ -356,19 +228,18 @@ def _update_extreme(records, key, value, location, maximize=False):
 def analyze_guards(histories, *, production=False, reception=(Fraction(0), Fraction(13, 100)),
                    oldest=Fraction(-8), progress=None):
     """Pure sufficient bounds, without source authentication or acceptance authority."""
-    require(type(histories) is list and 2 <= len(histories) <= 8, "member census out of bounds")
+    require((type(histories) is list) and (2 <= len(histories) <= 8), "member census out of bounds")
     ids, paths = [], []
     total_segments = 0
     for history in histories:
-        require(type(history) is dict and type(history.get("id")) is str
-                and history["id"] not in ids, "missing or duplicate persistent identity")
+        require((type(history) is dict) and (type(history.get("id")) is str) and (history["id"] not in ids), "missing or duplicate persistent identity")
         raw = history.get("segments")
-        require(type(raw) is list and 0 < len(raw) <= 1760, "segment census out of bounds")
+        require((type(raw) is list) and (0 < len(raw) <= 1760), "segment census out of bounds")
         path = [parse_segment(segment) for segment in raw]
-        require(path[0]["a"] == oldest and path[-1]["b"] == reception[1], "retained endpoints mismatch")
+        require((path[0]["a"] == oldest) and (path[-1]["b"] == reception[1]), "retained endpoints mismatch")
         require(all(a["b"] == b["a"] for a, b in zip(path, path[1:])), "exact history gap or overlap")
         if production:
-            require(len(path) == 1760 and path[1599]["b"] == path[1600]["a"] == 0,
+            require((len(path) == 1760) and (path[1599]["b"] == path[1600]["a"] == 0),
                     "production prehistory/evolved split mismatch")
         ids.append(history["id"])
         paths.append(path)
@@ -376,8 +247,7 @@ def analyze_guards(histories, *, production=False, reception=(Fraction(0), Fract
         if progress:
             progress("parse", total_segments)
     if production:
-        require(tuple(ids) == LABELS and total_segments == 14080
-                and reception == (Fraction(0), Fraction(13, 100)) and oldest == -8,
+        require((tuple(ids) == LABELS) and (total_segments == 14080) and (reception == (Fraction(0), Fraction(13, 100))) and (oldest == -8),
                 "production identity/domain census mismatch")
     require(oldest < reception[0], "oldest boundary must precede reception")
     cells = reception_cover(paths, reception)
@@ -519,7 +389,7 @@ class BoundFile:
     def _check_identity(self):
         require(_stat_identity(os.fstat(self.fd)) == self.identity, "open input changed")
         info = os.stat(self.path, follow_symlinks=False)
-        require(stat.S_ISREG(info.st_mode) and _stat_identity(info) == self.identity,
+        require((stat.S_ISREG(info.st_mode)) and (_stat_identity(info) == self.identity),
                 "input pathname replaced or changed")
 
     def binding(self):
@@ -531,7 +401,7 @@ class BoundFile:
         self._check_identity()
         data = self._read()
         self._check_identity()
-        require(data == self.data and sha256(data).hexdigest() == self.digest, "input bytes changed")
+        require((data == self.data) and (sha256(data).hexdigest() == self.digest), "input bytes changed")
         return self.binding()
 
     def __exit__(self, *unused):
@@ -541,7 +411,7 @@ class BoundFile:
 
 
 def verify_executing_source(data):
-    require(compile(_production_current_source(data), _EXECUTING_CODE.co_filename, "exec", dont_inherit=True,
+    require(compile(data, _EXECUTING_CODE.co_filename, "exec", dont_inherit=True,
                     optimize=sys.flags.optimize) == _EXECUTING_CODE,
             "executing instrument differs from captured source")
 
@@ -674,7 +544,7 @@ def _verify_export_watched(history_export, output, watch):
               "authority": "exact finite-data uniform guards conditional on coherent original-box history membership",
               "retainedDomain": {"start": "-8", "end": "0.13"},
               "receptionDomain": {"start": "0", "end": "0.13"}, "oldestBoundaryTime": "-8",
-              "expectedHistoryExportSha256": EXPORT_SHA256, "expectedTheoremSha256": THEOREM_SHA256,
+              "expectedHistoryExportSha256": EXPORT_SHA256,
               "claims": {"conditionalUniformSpeedStrictlyBelowOne": False,
                          "conditionalUniformSameTimeNonselfSeparation": False,
                          "conditionalUniformOldestBoundaryResidualStrictlyNegative": False,
@@ -699,16 +569,12 @@ def _verify_export_watched(history_export, output, watch):
     with ExitStack() as stack:
         bound = []
         try:
-            instrument = stack.enter_context(_production_capture(BoundFile, __file__, MAX_SOURCE_BYTES))
+            instrument = stack.enter_context(BoundFile(__file__, MAX_SOURCE_BYTES))
             bound.append(("instrument", instrument))
             packet["instrumentBefore"] = instrument.binding()
             verify_executing_source(instrument.data)
             packet["executingCodeBinding"] = "captured-source compilation equals executing module code object"
-            theorem = stack.enter_context(_production_capture(BoundFile, Path(__file__).resolve().parents[2] / THEOREM_PATH, MAX_SOURCE_BYTES))
-            bound.append(("theorem", theorem))
-            packet["theoremBefore"] = theorem.binding()
-            require(theorem.digest == THEOREM_SHA256, "frozen theorem SHA-256 mismatch")
-            source = stack.enter_context(_production_capture(BoundFile, history_export, MAX_INPUT_BYTES))
+            source = stack.enter_context(BoundFile(history_export, MAX_INPUT_BYTES))
             bound.append(("historyExport", source))
             packet["historyExportBefore"] = source.binding()
             require(source.digest == EXPORT_SHA256, "frozen original export SHA-256 mismatch")

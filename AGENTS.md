@@ -57,6 +57,8 @@ This document distinguishes three audience scopes:
 
 Follow the [repository skills policy](reference/op/skills/README.md) when using, authoring, or maintaining project skills.
 
+Follow the [testing philosophy and process](reference/op/testing-regime.md) for agreed local testing, scientific verification and GitHub PR checks. Adding or expanding regular testing requires operator agreement on value, scope, timing, trigger and blocking status; prior agreement remains valid within its scope.
+
 #### Startup Access Gate
 
 Before attempting the repository bootstrap reads, determine whether the current session can actually read files in this local checkout. Do not infer filesystem access from the interface name or from a path appearing in the conversation.

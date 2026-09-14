@@ -33,27 +33,22 @@ def _require(value, message):
 
 
 def _keys(value, names):
-    _require(type(value) is dict and all(type(k) is str for k in value)
-             and set(value) == set(names), 'closed exact fields')
+    _require((type(value) is dict) and (all(type(k) is str for k in value)) and (set(value) == set(names)), 'closed exact fields')
 
 
 def _integer(value, lo, hi):
-    _require(type(value) is int and lo <= value <= hi, 'bounded exact integer')
+    _require((type(value) is int) and (lo <= value <= hi), 'bounded exact integer')
     return value
 
 
 def _digest(value):
-    _require(type(value) is str and len(value) == 64
-             and all(c in '0123456789abcdef' for c in value), 'lowercase SHA256')
+    _require((type(value) is str) and (len(value) == 64) and (all(c in '0123456789abcdef' for c in value)), 'lowercase SHA256')
 
 
 def _binding(value):
     _keys(value, ('path', 'sha256', 'bytes'))
     path = value['path']
-    _require(type(path) is str and 1 < len(path) <= 2048 and path.startswith('/')
-             and '\0' not in path and '\\' not in path
-             and not any(0xD800 <= ord(c) <= 0xDFFF for c in path)
-             and all(p not in ('', '.', '..') for p in path.split('/')[1:]),
+    _require((type(path) is str) and (1 < len(path) <= 2048) and (path.startswith('/')) and ('\0' not in path) and ('\\' not in path) and (not any(0xD800 <= ord(c) <= 0xDFFF for c in path)) and (all(p not in ('', '.', '..') for p in path.split('/')[1:])),
              'canonical absolute physical path')
     _digest(value['sha256'])
     _integer(value['bytes'], 1, MAX_SOURCE_BYTES)
@@ -62,7 +57,7 @@ def _binding(value):
 
 def _descriptor(value):
     _keys(value, ('encoding', 'sha256', 'bytes', 'parentCount', 'rowsPerParent'))
-    _require(value['encoding'] == ENCODING and type(value['encoding']) is str,
+    _require((value['encoding'] == ENCODING) and (type(value['encoding']) is str),
              'virtual encoding')
     _digest(value['sha256'])
     _integer(value['bytes'], 1, MAX_DATA_BYTES)
@@ -80,7 +75,7 @@ class _Budget:
 
     def node(self, depth):
         self.nodes += 1
-        _require(depth <= MAX_DEPTH and self.nodes <= MAX_NODES, 'JSON structure limit')
+        _require((depth <= MAX_DEPTH) and (self.nodes <= MAX_NODES), 'JSON structure limit')
         self.tick()
 
     def tick(self, amount=1):
@@ -150,7 +145,7 @@ def _canonical_chunks(value, live, maximum_bytes, *, node_budget=None):
             yield from string(item)
         else:
             _require(kind in (list, dict), 'inert JSON types only')
-            _require(id(item) not in active and len(item) <= MAX_ITEMS, 'container limit or cycle')
+            _require((id(item) not in active) and (len(item) <= MAX_ITEMS), 'container limit or cycle')
             active.add(id(item))
             try:
                 if kind is list:
@@ -216,7 +211,7 @@ class _Parser:
                 char = self.text[self.at]
                 if char in '"\\':
                     break
-                _require(ord(char) >= 32 and not 0xD800 <= ord(char) <= 0xDFFF,
+                _require((ord(char) >= 32) and (not 0xD800 <= ord(char) <= 0xDFFF),
                          'JSON string scalar')
                 self.at += 1
             if self.at > start:
@@ -242,7 +237,7 @@ class _Parser:
 
             def codepoint():
                 raw = self.text[self.at:self.at + 4]
-                _require(len(raw) == 4 and all(c in '0123456789abcdefABCDEF' for c in raw),
+                _require((len(raw) == 4) and (all(c in '0123456789abcdefABCDEF' for c in raw)),
                          'invalid Unicode escape')
                 self.at += 4
                 return int(raw, 16)
@@ -281,7 +276,7 @@ class _Parser:
                     self.space()
                     self.budget.node(depth + 1)
                     name = self.string()
-                    _require(name.isascii() and name not in result, 'non-ASCII or duplicate object key')
+                    _require((name.isascii()) and (name not in result), 'non-ASCII or duplicate object key')
                     self.space()
                     _require(self.text[self.at:self.at + 1] == ':', 'missing JSON colon')
                     self.at += 1
@@ -302,7 +297,7 @@ class _Parser:
         if negative:
             self.at += 1
         start = self.at
-        _require(self.at < len(self.text) and self.text[self.at] in '0123456789',
+        _require((self.at < len(self.text)) and (self.text[self.at] in '0123456789'),
                  'integer JSON number required')
         if self.text[self.at] == '0':
             self.at += 1
@@ -324,7 +319,7 @@ class _Parser:
 def decode_bytes(raw, *, canonical=False, live=None, maximum_bytes=MAX_DATA_BYTES):
     """Parse exact inert bytes with incremental lexical/structural limits."""
     _integer(maximum_bytes, 1, MAX_DATA_BYTES)
-    _require(type(canonical) is bool and type(raw) is bytes and 0 < len(raw) <= maximum_bytes,
+    _require((type(canonical) is bool) and (type(raw) is bytes) and (0 < len(raw) <= maximum_bytes),
              'bounded exact JSON bytes')
     budget = _Budget(live)
     decoder = codecs.getincrementaldecoder('utf-8')('strict')
@@ -388,10 +383,8 @@ def _parent(value, expected_index=None):
     _require(type(value['refined']) is bool, 'exact refined flag')
     _keys(value['reception'], ('lower', 'upper'))
     _require(all(type(v) is str for v in value['reception'].values()), 'exact reception string tokens')
-    _require(type(value['rows']) is list and len(value['rows']) == 64
-             and all(type(row) is dict for row in value['rows']), 'complete 64-row parent')
-    _require(type(value['bindings']) is list and 0 < len(value['bindings']) <= MAX_ITEMS
-             and all(type(b) is dict for b in value['bindings']), 'nonempty inert binding records')
+    _require((type(value['rows']) is list) and (len(value['rows']) == 64) and (all(type(row) is dict for row in value['rows'])), 'complete 64-row parent')
+    _require((type(value['bindings']) is list) and (0 < len(value['bindings']) <= MAX_ITEMS) and (all(type(b) is dict for b in value['bindings'])), 'nonempty inert binding records')
     return index
 
 
@@ -421,7 +414,7 @@ def materialize_snapshot(manifest_binding, read_binding, *, expected_base,
     # Freeze caller-owned supplemental records before invoking any read callback.
     consumed = {}
     if expected_consumed is not None:
-        _require(type(expected_consumed) is dict and len(expected_consumed) <= 160,
+        _require((type(expected_consumed) is dict) and (len(expected_consumed) <= 160),
                  'bounded exact consumed map')
         used = 0
         consumed_nodes = _Budget(budget.live)
@@ -446,13 +439,13 @@ def materialize_snapshot(manifest_binding, read_binding, *, expected_base,
         if path in physical:
             _require(physical[path] == b, 'conflicting physical binding')
         else:
-            _require(len(physical) < MAX_FILES and source_bytes + b['bytes'] <= MAX_SOURCE_BYTES,
+            _require((len(physical) < MAX_FILES) and (source_bytes + b['bytes'] <= MAX_SOURCE_BYTES),
                      'unique physical source limit')
             physical[path] = b
             source_bytes += b['bytes']
         budget.live()
         raw = read_binding(dict(b))
-        _require(type(raw) is bytes and len(raw) == b['bytes'], 'callback byte length')
+        _require((type(raw) is bytes) and (len(raw) == b['bytes']), 'callback byte length')
         _require(_hash(raw, budget.live) == b['sha256'], 'callback byte digest')
         return raw
 
@@ -465,7 +458,7 @@ def materialize_snapshot(manifest_binding, read_binding, *, expected_base,
         _require(_binding(manifest['base'][k]) == base[k], 'externally fixed base binding')
     _require(_descriptor(manifest['materialized']) == expected, 'externally fixed virtual descriptor')
     overrides = manifest['overrides']
-    _require(type(overrides) is list and len(overrides) <= 160, 'bounded override selections')
+    _require((type(overrides) is list) and (len(overrides) <= 160), 'bounded override selections')
     prior, selections = -1, {}
     for selection in overrides:
         _keys(selection, ('parentIndex', 'block'))
@@ -479,7 +472,7 @@ def materialize_snapshot(manifest_binding, read_binding, *, expected_base,
         prior = index
 
     parents = decode_bytes(read(base['parents'], MAX_DATA_BYTES), live=budget.live)
-    _require(type(parents) is list and len(parents) == 160, 'complete original parent list')
+    _require((type(parents) is list) and (len(parents) == 160), 'complete original parent list')
     for index, parent in enumerate(parents):
         budget.live()
         _parent(parent, index)
@@ -492,8 +485,7 @@ def materialize_snapshot(manifest_binding, read_binding, *, expected_base,
         raw = read(b, MAX_DATA_BYTES)
         block = decode_bytes(raw, canonical=True, live=budget.live)
         _keys(block, ('schema', 'parents'))
-        _require(block['schema'] == BLOCK_SCHEMA and type(block['parents']) is list
-                 and 0 < len(block['parents']) <= 160, 'override block schema')
+        _require((block['schema'] == BLOCK_SCHEMA) and (type(block['parents']) is list) and (0 < len(block['parents']) <= 160), 'override block schema')
         by_index = {}
         for parent in block['parents']:
             budget.live()

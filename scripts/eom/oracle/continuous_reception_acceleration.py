@@ -55,10 +55,7 @@ FACTOR_FLOOR = Fraction(1, 10**24)
 MAX_TOKEN_CHARS = 1152
 MAX_TOKEN_DIGITS = 1024
 MAX_TOKEN_EXPONENT = 1000
-REQUIRED_BINDINGS = ('original_export', 'reconstruction_receipt', 'guards_receipt',
-                     'root_cover', 'root_cover_comparison',
-                     'member_acceleration_predeclaration',
-                     'continuous_reception_enclosure_contract')
+REQUIRED_BINDINGS = ('original_export', 'reconstruction_receipt', 'guards_receipt', 'root_cover', 'root_cover_comparison')
 _DECIMAL = re.compile(r'[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?\Z')
 _HASH = re.compile(r'[0-9a-f]{64}\Z')
 

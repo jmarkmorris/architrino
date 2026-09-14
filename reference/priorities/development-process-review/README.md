@@ -8,15 +8,12 @@ Start with the [hash and pin recovery campaign](analysis/review-and-repair-plan.
 
 The [operator's concerns](analysis/operator-concerns.md) define the questions and intended outcomes of this review separately from the agents' incident reports.
 
-The [operator-document inventory and consolidation review](analysis/operator-document-consolidation-review.md) lists the relevant process documents, their distinct responsibilities and proposed consolidation destinations. Its recommendations remain proposals; the completed [prevention implementation](evidence/option-a-validation-rca/prevention-workflow-review.md#september-13-authorized-implementation) has its own recorded scope and evidence. Use the inventory to review documentation cleanup without treating historical status narratives as current instructions or retiring their evidence.
+The [operator-document inventory and consolidation review](analysis/operator-document-consolidation-review.md) lists the relevant process documents, their distinct responsibilities and proposed consolidation destinations. Its retained recommendations concern operational documentation; the abandoned A/B inventory and preservation recommendations have been removed.
 
-The operator-requested [independent Option A vetting and causal-reconciliation investigation](analysis/option-a-validation-rca-prompt.md) examines the original verification evidence, the distinction between introducing and detecting defects, and possible interacting causes raised by the later hash-dispatch incident. Its brief authorizes investigation and a new report, not repairs or changes to earlier evidence.
 
 The [F5 acceptance chain](analysis/f5-remaining-callers.md) and [circular pilot](analysis/circular-current-execution.md) record the completed selected execution work and independent reviews. F5 passes its complete 8/32/128 ladder; circular passes all 32 pilot phases, the first candidate’s complete 8/32/128 ladder, and the second candidate’s eight-phase rung. Its remaining ladders retain the current resource-plan and memory-observer requirements. The September 8 [recovery test coverage](analysis/final-test-coverage.md#baseline-review-and-recovery-execution-september-8) preserves the broader baselines, fresh CTest, standalone checks, complete normal Node rerun and explicit failures/skips. The [remaining caller contracts](analysis/remaining-caller-contracts.md) preserves the earlier interface review. These scoped successes do not establish overall recovery.
 
 The [first bounded process investigation](analysis/first-process-investigation.md) now supplies local synthetic controls, raw outputs, receipts, and a reproducible diagnostic instrument. The subsequently authorized [process repair and validation](analysis/process-repair-validation.md) records 85 passing process regressions; the [consequential repair audit](analysis/consequential-repair-audit.md) separates historical-binding errors and a remaining preparation-pin failure from that repair.
-
-The subsequent [source recovery and binding repair](analysis/source-recovery-and-binding-repair.md) reconstructs the exact intermediate preparation version, preserves authored repository sources from the historical full-run receipt, and repairs the reviewed current composition. Runtime tools and packages are current execution capabilities; they are not historical source inputs or acceptance evidence. Wider scientific-consumer and binding defects remain explicit in the work queue.
 
 ## Evidence inventory
 
@@ -31,17 +28,5 @@ The operator also supplied the [post-report responses](evidence/agent-post-repor
 | 5 | [Cowork GitHub connector availability](evidence/agent-05-session-incident-report.md) | Assessed for connector attribution and read-versus-write evidence. Covers its own conversation, not repository validation. |
 
 Substantive analysis of all five reports is in the linked cross-report assessment; it includes targeted source verification rather than a full audit of every reported change. Preserve received reports unchanged. Put corrections, cross-session reconciliation, and current verification in `analysis/`. Reports from agents are evidence of what those agents reported, not independent proof of the underlying diagnosis. Retain distinct session numbers even when topics overlap. Future reports should be written only to their assigned evidence file; an agent without checkout write access should return a downloadable Markdown file rather than claim a repository write.
-
-## Variable-cell historical migration
-
-The variable-cell source-binding repair is complete within its scoped owner; current runtime capabilities are not retained as historical records.
-
-## Streamed-leaf launch migration
-
-The streamed-leaf current invocation remains an operational owner item; its process controls do not establish scientific consumer acceptance.
-
-## Shared-helper caller audit
-
-The [caller audit](analysis/shared-helper-caller-audit.md) records the remaining current-profile migration boundary without retaining mutable runtime inventories.
 
 The September 8 [bounded closeout review and preservation map](analysis/recovery-closeout-review.md) reconciles completed substeps, required repairs, blocked historical inputs, scientific continuation and final validation. The subsequent operator-delegated finite operational scope is accepted in [current priorities](priorities.md); earlier broader plan tables remain the preserved starting scope, not a requirement to execute deferred scientific campaigns for incident closeout.

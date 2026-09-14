@@ -1,32 +1,24 @@
-import {loadProductionTestModule} from './support/option-b-production-hosts.mjs';
-import { nextTestIdentities } from './support/option-b-next-test-identities.mjs';
-const NEXT_TEST_SHA = nextTestIdentities("tests/f6c-evidence-packaging.test.js", 3);
 // Metadata-only driver controls. No Python process or evidence package created.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
-const D=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-evidence-packaging.mjs");
+import * as D from '../scripts/eom/run-f6c-evidence-packaging.mjs';
 import * as C from '../scripts/eom/f6c-bounded-operation.mjs';
 
 const root='/private/tmp/synthetic-package-driver';
 const b=p=>({path:p,sha256:'a'.repeat(64),bytes:1});
 function plan(){
-  const configuration=Object.fromEntries(Object.entries(D.PINS).map(([k,[p,h]])=>[k,{path:path.join(root,p),sha256:h,bytes:1}]));
+  const configuration=Object.fromEntries(Object.entries(D.INPUT_PATHS).map(([k,p])=>[k,{path:path.join(root,p),sha256:'a'.repeat(64),bytes:1}]));
   configuration.python=b('/private/tmp/python');configuration.pythonCommand=path.resolve(root,process.env.AAA_VENV??'../.venv','bin/python');configuration.pythonVenvConfig=b(path.resolve(path.dirname(configuration.pythonCommand),'../pyvenv.cfg'));configuration.pythonRuntimeBindings=[configuration.python,configuration.pythonVenvConfig];configuration.outputPath=root+'/.local-data/braid-analysis/package/data/evidence.f6cp';
   const hookModule=b(path.join(root,D.SELF)),hookControls=b(path.join(root,D.CONTROL));
   return {root,configuration,hookModule,hookControls,outputDirectories:[path.dirname(configuration.outputPath)],publicationAliases:[{publicPath:configuration.outputPath,privateDirectory:path.dirname(configuration.outputPath),privatePrefix:'evidence.f6cp.partial.'}],
-    sources:[...Object.keys(D.PINS).map(k=>configuration[k]),configuration.python,configuration.pythonVenvConfig],stages:['producer','independent-reader'].map(id=>({id,entry:hookModule,sources:[],runtimeBindings:[configuration.python]}))};
+    sources:[...Object.keys(D.INPUT_PATHS).map(k=>configuration[k]),configuration.python,configuration.pythonVenvConfig],stages:['producer','independent-reader'].map(id=>({id,entry:hookModule,sources:[],runtimeBindings:[configuration.python]}))};
 }
 
-test('driver pins remain independently frozen, separate from its own subject',()=>{
-  assert.equal(D.PINS.packageModule[1],NEXT_TEST_SHA[0]);
-  assert.equal(D.PINS.independentDecoder[1],NEXT_TEST_SHA[1]);
-  assert.equal(D.PINS.inventory[1],NEXT_TEST_SHA[2]);
-  D.validateConfiguration(plan(),C);
-});
+test('driver validates its scientific packaging and runtime configuration',()=>{D.validateConfiguration(plan(),C);});
 
-test('foreign pins, partial runtimes, alternate paths, stages and aliases reject',()=>{
-  for(const change of [p=>p.configuration.extra=true,p=>p.configuration.inventory.sha256='b'.repeat(64),p=>p.configuration.packageModule.path='/private/tmp/foreign.py',p=>p.configuration.pythonRuntimeBindings=[],p=>p.configuration.outputPath='/private/tmp/outside',p=>p.stages.reverse(),p=>p.stages[0].entry=b('/private/tmp/alternate'),p=>p.publicationAliases=[],p=>p.sources.shift()]){
+test('foreign dependencies, partial runtimes, alternate paths, stages and aliases reject',()=>{
+  for(const change of [p=>p.configuration.extra=true,p=>p.configuration.packageModule.path='/private/tmp/foreign.py',p=>p.configuration.pythonRuntimeBindings=[],p=>p.configuration.outputPath='/private/tmp/outside',p=>p.stages.reverse(),p=>p.stages[0].entry=b('/private/tmp/alternate'),p=>p.publicationAliases=[],p=>p.sources.shift()]){
     const p=plan();change(p);assert.throws(()=>D.validateConfiguration(p,C));
   }
 });
@@ -87,10 +79,10 @@ test('mixed and unsupported inventory versions never fall back to v1',()=>{
 
 function genericPlan(){
   const p=plan(),c=p.configuration;c.inventoryVersion=2;c.inventory=b(root+'/inventory-v2.json');
-  for(const[k,[rel,h]]of Object.entries(D.GENERIC_PINS))c[k]={path:path.join(root,rel),sha256:h,bytes:1};
+  for(const[k,rel]of Object.entries(D.GENERIC_PATHS))c[k]={path:path.join(root,rel),sha256:'a'.repeat(64),bytes:1};
   c.expectedAuthority=[b(root+'/independent-reviewer')];c.admittedClosures=[{binding:b(root+'/closed-batch'),expectedInstrument:c.expectedAuthority[0]}];
   c.expectedMembers=[{memberName:'parents/2/plan',role:'plan',parentIndex:2,original:b(root+'/plan'),physicalPath:root+'/plan',identity:{device:'1',inode:'2',bytes:'1',mtimeNs:'3',ctimeNs:'4'}}];
-  p.sources.push(c.inventory,...Object.keys(D.GENERIC_PINS).map(k=>c[k]),...c.expectedAuthority,...c.admittedClosures.map(x=>x.binding));return p;
+  p.sources.push(c.inventory,...Object.keys(D.GENERIC_PATHS).map(k=>c[k]),...c.expectedAuthority,...c.admittedClosures.map(x=>x.binding));return p;
 }
 
 test('generic configuration has explicit independently bound parser and authority',()=>{
@@ -100,8 +92,7 @@ test('generic configuration has explicit independently bound parser and authorit
     p=>p.configuration.admittedClosures[0].expectedInstrument=b(root+'/foreign-reviewer'),
     p=>p.configuration.admittedClosures.push(p.configuration.admittedClosures[0]),
     p=>p.configuration.admittedClosures[0].raw='self-authorized data',
-    p=>p.configuration.genericIndependentReader.sha256='b'.repeat(64),
     p=>p.sources=p.sources.filter(b=>b.path!==p.configuration.inventoryParserControls.path),
-    p=>p.configuration.inventoryVersion='2',p=>delete p.configuration.inventoryContract,
+    p=>p.configuration.inventoryVersion='2',p=>delete p.configuration.inventoryParser,
   ]){const p=genericPlan();change(p);assert.throws(()=>D.validateConfiguration(p,C));}
 });

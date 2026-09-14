@@ -1,9 +1,0 @@
-{
-  "schema": "option-b-production-historical-records/v1",
-  "records": {
-    "f6c-original-full": {
-      "path": "reference/priorities/development-process-review/evidence/option-b-f6c-original-full-record.json",
-      "sha256": "0b9eb6dfaed2148cc5b6b8a3272135ee1673cf4d8ee50fa87cd5c3c62652abbf"
-    }
-  }
-}

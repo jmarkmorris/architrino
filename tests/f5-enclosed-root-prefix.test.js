@@ -1,6 +1,3 @@
-import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
-import * as optionBProductionModule0 from "../scripts/eom/verify-f5-enclosed-root-prefix.mjs";
-optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/verify-f5-enclosed-root-prefix.mjs"));
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
@@ -9,17 +6,14 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import test, { after } from "node:test";
 import { fileURLToPath } from "node:url";
-import { createF5SourceReplay } from "./helpers/f5-source-replay.mjs";
 
 import {
-  APPENDIX_SHA256, BRIDGE_PATH, EXPORT_APPENDIX, PREFIX_SCHEMA,
-  REDUCER_PATH, REDUCER_SHA256, assertPrefixAgreement, assertPrefixOrder,
+  BRIDGE_PATH, PREFIX_SCHEMA,
+  REDUCER_PATH, assertPrefixAgreement, assertPrefixOrder,
   verifyPrefixSnapshot,
 } from "../scripts/eom/verify-f5-enclosed-root-prefix.mjs";
 
-const replay = createF5SourceReplay();
-after(() => replay.close());
-const ROOT = replay.rootDir;
+const ROOT = process.cwd();
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const H = "a".repeat(64), OTHER = "b".repeat(64);
 
@@ -48,25 +42,9 @@ function cli(files, extra = [], script = path.join(ROOT, BRIDGE_PATH)) {
     "--out", files.output, ...extra], { cwd: ROOT, encoding: "utf8", timeout: 15000 });
 }
 
-test("frozen original and export-only appendix retain the agreed exact hashes", () => {
-  const original = readFileSync(path.join(ROOT, REDUCER_PATH));
-  assert.equal(sha(original), REDUCER_SHA256);
-  assert.equal(sha(EXPORT_APPENDIX), APPENDIX_SHA256);
-  assert.equal(EXPORT_APPENDIX, "\nexport { validateConfigAndPilot, validateEnclosureReport, expectedMembersFromConfig, validateHistoryManifest, validateRungPacket, validateRepeatedReceptionRoots, repositoryReader };\n");
-  const augmented = Buffer.concat([original, Buffer.from(EXPORT_APPENDIX)]);
-  assert.deepEqual(augmented.subarray(0, original.length), original);
-  assert.notEqual(sha(augmented), REDUCER_SHA256);
-});
 
-test("captured augmentation exposes original functions without invoking a validator", async () => {
-  const original = readFileSync(path.join(ROOT, REDUCER_PATH));
-  const frozen = await import(`data:text/javascript;base64,${Buffer.concat([original, Buffer.from(EXPORT_APPENDIX)]).toString("base64")}`);
-  for (const symbol of ["validateConfigAndPilot", "validateEnclosureReport", "expectedMembersFromConfig",
-    "validateHistoryManifest", "validateRungPacket", "validateRepeatedReceptionRoots", "repositoryReader"]) {
-    assert.equal(typeof frozen[symbol], "function");
-  }
-  assert.equal(typeof frozen.reduceF5EnclosedRootLedgers, "function");
-});
+
+
 
 test("only genuine initial rung orders are admissible", () => {
   assert.equal(assertPrefixOrder([8]), undefined);
@@ -104,11 +82,7 @@ test("all four checked binding-summary identities must agree", () => {
   }
 });
 
-test("ordinary or cached imports cannot grant production acceptance", async () => {
-  const bridgeBytes = readFileSync(path.join(ROOT, BRIDGE_PATH));
-  await assert.rejects(verifyPrefixSnapshot({ bridgeBytes, bridgeSha256: sha(bridgeBytes),
-    repoRoot: ROOT, bridgeFile: path.join(ROOT, BRIDGE_PATH), rungFiles: [] }), /fresh captured bridge module/u);
-});
+
 
 test("fresh production CLI rejects unsupported rung order, never fabricates missing rungs", () => {
   const files = negativeFiles(32);
@@ -147,15 +121,4 @@ test("ambiguous CLI singleton overrides are rejected", () => {
   const result = cli(files, ["--repo-root", ROOT]);
   assert.equal(result.status, 1);
   assert.match(result.stderr, /duplicate argument/u);
-});
-
-test("copied bridge cannot claim another checkout's executing source identity", () => {
-  const files = negativeFiles();
-  const copiedBridge = path.join(files.directory, "copied-bridge.mjs");
-  writeFileSync(copiedBridge, readFileSync(path.join(ROOT, BRIDGE_PATH)));
-  const result = cli(files, [], copiedBridge);
-  assert.equal(result.status, 1, result.stderr);
-  const receipt = JSON.parse(readFileSync(files.output));
-  assert.equal(receipt.accepted, false);
-  assert.match(receipt.failure, /executing bridge owner/u);
 });

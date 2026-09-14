@@ -1,6 +1,6 @@
 /** Thin package-specific composition for f6c-bounded-operation.mjs.
- * No actual-data default and no scientific calculation. The independently
- * frozen inventory, package implementation and decoder are mandatory pins.
+ * No actual-data default and no scientific calculation. The inventory, package
+ * implementation and independent decoder are selected for each invocation.
  * This same source supplies pure preflight/admit/final hooks and registered
  * producer/independent-reader stages. Child spawning is imported ONLY inside
  * registered producer execution, never while loading/executing a pure hook.
@@ -20,8 +20,6 @@ import {pathToFileURL} from 'node:url';
 
 export const SELF='scripts/eom/run-f6c-evidence-packaging.mjs';
 export const CONTROL='tests/f6c-evidence-packaging.test.js';
-export let PINS;
-export let GENERIC_PINS;
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const sha=raw=>createHash('sha256').update(raw).digest('hex');
 const url=raw=>'data:text/javascript;base64,'+Buffer.from(raw).toString('base64');
@@ -36,28 +34,18 @@ function capabilityPath(b){
   check(b&&typeof b.path==='string'&&path.isAbsolute(b.path)&&path.resolve(b.path)===b.path,'runtime capability path');
   return b.path;
 }
-let productionAdmission;
-export async function admitOperationalSources(plan,live=()=>{}){
-  live();const b=plan.sources.find(b=>b.path===path.join(plan.root,'scripts/eom/f6c-bounded-operation.mjs'));check(b,'explicit coordinator source');const C=await import(url(tiny(b))+'#root='+encodeURIComponent(plan.root));live();const sourceAdmission=await C.admitPlanSourceBindings(plan,live);initializeProductionIdentities(sourceAdmission.production.identities(SELF));productionAdmission=sourceAdmission.production;live();return{C,sourceAdmission};
+export async function loadCoordinator(plan,live=()=>{}){
+  live();const b=plan.sources.find(b=>b.path===path.join(plan.root,'scripts/eom/f6c-bounded-operation.mjs'));check(b,'explicit coordinator source');const C=await import(url(tiny(b)));live();return C;
 }
 export function declaredSources(plan,C){return C.sourceUnion([...plan.sources,plan.hookModule,plan.hookControls,...plan.stages.flatMap(s=>[s.entry,...s.sources])]);}
-function fixedControl(binding,relative,expected,root){
-  if(binding.path!==path.join(root,relative))return false;
-  if(binding.sha256===expected)return true;
-  // These two files are historical control references, never executable stages.
-  // Authenticate their original archive and the separately declared current file.
-  if(!['tests/test_f6c_evidence_package.py','tests/test_f6c_parent_evidence_inventory.py'].includes(relative)||!productionAdmission)return false;
-  const pair=productionAdmission.sourcePair(relative,expected);
-  return sha(pair.original)===expected&&sha(pair.current)===binding.sha256&&Buffer.byteLength(pair.current)===binding.bytes;
-}
 export function validateConfiguration(plan,C){
   const c=plan.configuration;
-  const generic=c?.inventoryVersion===2,fields=['inventory','contract','packageModule','packageControls','independentDecoder','pythonCommand','python','pythonVenvConfig','pythonRuntimeBindings','outputPath'];
-  if(generic)fields.push('inventoryVersion','inventoryParser','inventoryParserControls','inventoryContract','admittedClosures','expectedAuthority','expectedMembers','genericIndependentReader');
+  const generic=c?.inventoryVersion===2,fields=['inventory','packageModule','packageControls','independentDecoder','pythonCommand','python','pythonVenvConfig','pythonRuntimeBindings','outputPath'];
+  if(generic)fields.push('inventoryVersion','inventoryParser','inventoryParserControls','admittedClosures','expectedAuthority','expectedMembers','genericIndependentReader');
   check(c&&Object.keys(c).sort().join('|')===fields.sort().join('|'),'closed packaging configuration');
-  for(const [key,[p,h]] of Object.entries(PINS)){C.binding(c[key]);if(generic&&key==='inventory')continue;check(fixedControl(c[key],p,h,plan.root),'frozen '+key+' differs');}
+  for(const [key,p] of Object.entries(INPUT_PATHS)){C.binding(c[key]);if(generic&&key==='inventory')continue;check(c[key].path===path.join(plan.root,p),'frozen '+key+' differs');}
   if(generic){
-    for(const[key,[p,h]]of Object.entries(GENERIC_PINS)){C.binding(c[key]);check(h!==null&&fixedControl(c[key],p,h,plan.root),'reviewed generic '+key+' differs');}
+    for(const[key,p]of Object.entries(GENERIC_PATHS)){C.binding(c[key]);check(c[key].path===path.join(plan.root,p),'reviewed generic '+key+' differs');}
     check(Array.isArray(c.expectedMembers)&&c.expectedMembers.length>0&&c.expectedMembers.length<=4096,'independently fixed member table');
     check(Array.isArray(c.admittedClosures)&&c.admittedClosures.length>0&&c.admittedClosures.length<=159&&Array.isArray(c.expectedAuthority)&&c.expectedAuthority.length>0&&c.expectedAuthority.length<=159,'independent closure and authority inputs');
     c.expectedAuthority.forEach(C.binding);const seen=new Set();for(const x of c.admittedClosures){check(x&&Object.keys(x).sort().join('|')==='binding|expectedInstrument','closed admitted snapshot');C.binding(x.binding);C.binding(x.expectedInstrument);check(c.expectedAuthority.some(b=>same(b,x.expectedInstrument))&&!seen.has(x.binding.path),'explicit unique admitted authority');seen.add(x.binding.path);}
@@ -69,7 +57,7 @@ export function validateConfiguration(plan,C){
   const runtimePaths=c.pythonRuntimeBindings.map(capabilityPath);check(runtimePaths.includes(pythonPath)&&runtimePaths.includes(venvConfigPath),'Python executable/config absent from runtime capability set');
   check(typeof c.outputPath==='string'&&path.isAbsolute(c.outputPath)&&path.resolve(c.outputPath)===c.outputPath&&plan.outputDirectories.length===1&&path.dirname(c.outputPath)===plan.outputDirectories[0],'single scoped package output');
   check(plan.stages.length===2&&plan.stages[0].id==='producer'&&plan.stages[1].id==='independent-reader','serial writer then independent decoder');
-  const required=C.sourceUnion([...Object.keys(PINS).map(k=>c[k]),...(generic?[...Object.keys(GENERIC_PINS).map(k=>c[k]),...c.expectedAuthority,...c.admittedClosures.flatMap(x=>[x.binding,x.expectedInstrument])]:[])]);
+  const required=C.sourceUnion([...Object.keys(INPUT_PATHS).map(k=>c[k]),...(generic?[...Object.keys(GENERIC_PATHS).map(k=>c[k]),...c.expectedAuthority,...c.admittedClosures.flatMap(x=>[x.binding,x.expectedInstrument])]:[])]);
   const declared=declaredSources(plan,C);
   for(const b of required)check(declared.some(d=>same(d,b)),'missing bound packaging dependency '+b.path);
   check(plan.hookModule.path===path.join(plan.root,SELF)&&plan.hookControls.path===path.join(plan.root,CONTROL)&&plan.stages.every(s=>same(s.entry,plan.hookModule)),'one captured package driver/control generation');
@@ -189,11 +177,10 @@ export function publicationIdentity(p,outputPath){
 
 export async function fileOperation(job){
   const live=()=>check(process.hrtime.bigint()<BigInt(job.deadlineNanoseconds),'original package operation deadline');live();
-  const {C}=await admitOperationalSources(job.plan,live),c=validateConfiguration(job.plan,C);
+  const C=await loadCoordinator(job.plan,live),c=validateConfiguration(job.plan,C);
   const expected=await contents(c,job.plan.root,C,live);
   if(job.kind==='preflight'){
     check(realpathSync(c.pythonCommand)===c.python.path&&realpathSync(c.pythonVenvConfig.path)===c.pythonVenvConfig.path,'shared-venv command resolves to frozen runtime');declaredRuntimes(job.plan,c,C);
-    tiny(c.contract);
     const sources=declaredSources(job.plan,C);
     for(const b of expected.references)check(sources.some(s=>same(s,b)),'all acceptance references must be globally bound');
     const inodes=new Set();
@@ -225,14 +212,13 @@ export async function fileOperation(job){
 
 export async function registered(stageId,planBinding,deadlineNanoseconds,prior){
   const live=()=>check(process.hrtime.bigint()<BigInt(deadlineNanoseconds),'original registered deadline');live();
-  const plan=JSON.parse(tiny(planBinding)),{C}=await admitOperationalSources(plan,live),c=validateConfiguration(plan,C),stage=plan.stages.find(s=>s.id===stageId);check(stage,'declared stage');
+  const plan=JSON.parse(tiny(planBinding)),C=await loadCoordinator(plan,live),c=validateConfiguration(plan,C),stage=plan.stages.find(s=>s.id===stageId);check(stage,'declared stage');
   const node=nodeRuntime(stage,C);
   const expected=await contents(c,plan.root,C,live);let result;
   if(stageId==='producer'){
     check(prior===null,'producer has no predecessor');
     const {spawn}=await import('node:child_process'),census=C.outputCensus(plan),all=declaredSources(plan,C);
-    const selected=await C.admitPlanSourceBindings(plan,live);
-    const global=C.sourceUnion([...all,planBinding,...selected.sources]);
+    const global=C.sourceUnion([...all,planBinding]);
     const budgets={scientificBytesAlready:census.scientificBytes,logBytesAlready:census.logBytes,...sourceBaseline(global,expected.members,C)};
     const config=c.inventoryVersion===2?{planBinding,budgets}:{...c,root:plan.root,...budgets};
     const duration=Number(BigInt(deadlineNanoseconds)-process.hrtime.bigint())/1e9;check(duration>0&&duration<=1800,'remaining original duration');
@@ -258,22 +244,15 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1]
   await registered(v[1],JSON.parse(v[7]),v[3],JSON.parse(v[5]));
 }
 
-let OPTION_B_PRODUCTION_IDENTITIES;
-export function initializeProductionIdentities(values) {
-  if (!Array.isArray(values) || values.length !== 9 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
-  if (OPTION_B_PRODUCTION_IDENTITIES && JSON.stringify(OPTION_B_PRODUCTION_IDENTITIES) !== JSON.stringify(values)) throw Error("production identity generation already initialized");
-  OPTION_B_PRODUCTION_IDENTITIES = Object.freeze([...values]);
-  PINS=Object.freeze({
-  inventory:['tests/fixtures/f6c-lossless-packaging-expectations.v1.json',OPTION_B_PRODUCTION_IDENTITIES[0]],
-  contract:['reference/priorities/braid-program/evidence/2026-08-28-f6c-lossless-packaging-expectations.md',OPTION_B_PRODUCTION_IDENTITIES[1]],
-  packageModule:['scripts/eom/f6c_evidence_package.py',OPTION_B_PRODUCTION_IDENTITIES[2]],
-  packageControls:['tests/test_f6c_evidence_package.py',OPTION_B_PRODUCTION_IDENTITIES[3]],
-  independentDecoder:['.local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/independent-package-review.mjs',OPTION_B_PRODUCTION_IDENTITIES[4]],
+
+export const INPUT_PATHS=Object.freeze({
+  inventory:'tests/fixtures/f6c-lossless-packaging-expectations.v1.json',
+  packageModule:'scripts/eom/f6c_evidence_package.py',
+  packageControls:'tests/test_f6c_evidence_package.py',
+  independentDecoder:'.local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/independent-package-review.mjs',
 });
-  GENERIC_PINS=Object.freeze({
-  inventoryParser:['scripts/eom/f6c_parent_evidence_inventory.py',OPTION_B_PRODUCTION_IDENTITIES[5]],
-  inventoryParserControls:['tests/test_f6c_parent_evidence_inventory.py',OPTION_B_PRODUCTION_IDENTITIES[6]],
-  inventoryContract:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/generic-inventory-v2-closed-schema-expectations.md',OPTION_B_PRODUCTION_IDENTITIES[7]],
-  genericIndependentReader:['.local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/independent-generic-package-review.mjs',OPTION_B_PRODUCTION_IDENTITIES[8]],
+export const GENERIC_PATHS=Object.freeze({
+  inventoryParser:'scripts/eom/f6c_parent_evidence_inventory.py',
+  inventoryParserControls:'tests/test_f6c_parent_evidence_inventory.py',
+  genericIndependentReader:'.local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/independent-generic-package-review.mjs',
 });
-}

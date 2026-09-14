@@ -52,14 +52,11 @@
       "owner": "Development-process recovery campaign",
       "consumers": [
         "reference/priorities/development-process-review/analysis/circular-current-execution.md",
-        "reference/priorities/development-process-review/analysis/source-recovery-and-binding-repair.md",
-        "reference/priorities/development-process-review/analysis/review-and-repair-plan.md",
-        "reference/priorities/development-process-review/analysis/option-b-post-merge-verification.md",
-        "reference/priorities/development-process-review/analysis/option-b-integration-readiness.md"
+        "reference/priorities/development-process-review/analysis/review-and-repair-plan.md"
       ],
       "regenerationCommand": "No single byte-identical regeneration command: use the per-run commands, original inputs and source identities retained in the linked recovery analyses and evidence receipts. Historical observations must not be regenerated and relabeled as originals.",
-      "retentionReason": "Operator-approved collection-specific 125000-line ceiling on 2026-09-08 for active recovery and Option B verification. At approval review the collection measured 193 machine files, 100540 lines and 5163492 bytes. Preserve compact source-recovery, independent-review, execution and Option B verification records required by the named consumers; provide bounded headroom for continued verification. The 10485760-byte limit and general individual-file, collection and branch limits remain unchanged.",
-      "compactAlternativeInsufficient": "A summary alone would omit the source identities, detailed review bindings and negative-control records used by current recovery and Option B analyses. Keep new receipts compact and tied to current consumers; no independently verified replacement for the retained evidence collection has been established. Review consolidation when its consumers retire. Growth reaching either collection ceiling requires a new explicit storage decision.",
+      "retentionReason": "Retain original scientific results, independent reviews and operational observations used by the listed recovery consumers. Option A/B migration records and source archives are retired and excluded. The existing collection ceiling remains unchanged.",
+      "compactAlternativeInsufficient": "The remaining scientific and operational records support scoped recovery findings that a summary alone cannot reproduce. Keep new records tied to current consumers; review consolidation when those consumers retire.",
       "budget": {
         "lineCount": 125000,
         "byteCount": 10485760

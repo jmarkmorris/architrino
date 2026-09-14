@@ -38,7 +38,7 @@ def _require(ok, message):
 
 
 def _keys(value, names):
-    _require(type(value) is dict and set(value) == set(names), 'closed continuation fields')
+    _require((type(value) is dict) and (set(value) == set(names)), 'closed continuation fields')
 
 
 def _same(a, b):
@@ -54,11 +54,8 @@ def _same(a, b):
 def _binding(value, maximum=MAX_SOURCE_BYTES):
     _keys(value, ('path', 'sha256', 'bytes'))
     p = value['path']
-    _require(type(p) is str and 0 < len(p) <= 2048 and p.startswith('/')
-             and not p.startswith('//') and '\\' not in p and '\0' not in p
-             and all(x not in ('', '.', '..') for x in p.split('/')[1:]), 'canonical logical binding path')
-    _require(type(value['sha256']) is str and re.fullmatch('[a-f0-9]{64}', value['sha256'])
-             and type(value['bytes']) is int and 0 < value['bytes'] <= maximum, 'bounded external binding')
+    _require((type(p) is str) and (0 < len(p) <= 2048) and (p.startswith('/')) and (not p.startswith('//')) and ('\\' not in p) and ('\0' not in p) and (all(x not in ('', '.', '..') for x in p.split('/')[1:])), 'canonical logical binding path')
+    _require((type(value['sha256']) is str) and (re.fullmatch('[a-f0-9]{64}', value['sha256'])) and (type(value['bytes']) is int) and (0 < value['bytes'] <= maximum), 'bounded external binding')
     return value
 
 
@@ -115,7 +112,7 @@ def _response(ref, gk, request, value, wire):
     def residual(raw): return record(ref.ResidualPartition, raw, dict(key=key, pieces=lambda x: tuple(piece(p) for p in x)))
     _keys(value, ('request', 'members'))
     _require(_same(value['request'], wire(request)), 'saved request is not the genuine outstanding request')
-    _require(type(value['members']) is list and len(value['members']) == 8, 'complete saved member census')
+    _require((type(value['members']) is list) and (len(value['members']) == 8), 'complete saved member census')
     members = tuple(record(gk.MemberEvidence, m, dict(whole_squared=box,
         node_squared=lambda x: tuple(box(b) for b in x), polynomial=polynomial, residual=residual)) for m in value['members'])
     result = gk.LeafResponse(request, members)
@@ -153,19 +150,14 @@ def _replay(adapter, diagnostic, codec, streamed, segments, *, expected_authorit
     provenance = tuple(adapter.provenance)
     session = diagnostic.LeafResponseSession(adapter)
     ref, gk = session.integral_reference, session.gk_protocol
-    _require(gk.MAX_EVALUATED_LEAVES == MAX_PAIRS and gk.MAX_NODE_NEIGHBORHOODS == 9840
-             and gk.MAX_SPLITS_PER_FRAME == 20 and gk.ROOT_REFINEMENT_LIMIT == 0
-             and gk.EMISSION_REFINEMENT_LIMIT == 0, 'unchanged global budget')
+    _require((gk.MAX_EVALUATED_LEAVES == MAX_PAIRS) and (gk.MAX_NODE_NEIGHBORHOODS == 9840) and (gk.MAX_SPLITS_PER_FRAME == 20) and (gk.ROOT_REFINEMENT_LIMIT == 0) and (gk.EMISSION_REFINEMENT_LIMIT == 0), 'unchanged global budget')
     _require(_same(wire(context), authority['context']), 'current context authority')
     baseline = (tuple(adapter.call_counts.items()), tuple(adapter.geometry_accounting.items()))
-    _require(all(v == 0 for k, v in baseline[0] if k != 'coverage_cache_entries')
-             and all(v == 0 for k, v in baseline[1]), 'replay requires fresh unmeasured adapter')
+    _require((all(v == 0 for k, v in baseline[0] if k != 'coverage_cache_entries')) and (all(v == 0 for k, v in baseline[1])), 'replay requires fresh unmeasured adapter')
 
     def guard():
         _require(id(adapter) not in _POISONED, 'poisoned reentrant replay')
-        _require(adapter.context is context and adapter.frames is frames and adapter.parents is parents
-                 and tuple(adapter.provenance) == provenance and session.integral_reference is ref
-                 and session.gk_protocol is gk, 'same current replay adapter generation')
+        _require((adapter.context is context) and (adapter.frames is frames) and (adapter.parents is parents) and (tuple(adapter.provenance) == provenance) and (session.integral_reference is ref) and (session.gk_protocol is gk), 'same current replay adapter generation')
         _require((tuple(adapter.call_counts.items()), tuple(adapter.geometry_accounting.items())) == baseline,
                  'provider or geometry work during replay')
 
@@ -182,10 +174,10 @@ def _replay(adapter, diagnostic, codec, streamed, segments, *, expected_authorit
         guard()
 
     state = session.state
-    _require(type(state) is gk.State and state.plan.context is context, 'genuine initial protocol state')
+    _require((type(state) is gk.State) and (state.plan.context is context), 'genuine initial protocol state')
     plan_wire = wire(state.plan)
     current_parents = wire(parents)
-    _require(type(current_parents) is list and len(current_parents) == 160, 'complete current parent census')
+    _require((type(current_parents) is list) and (len(current_parents) == 160), 'complete current parent census')
     consumed, previous, total_bytes, segment_count = {}, None, 0, 0
     seen_streams, seen_acceptances = set(), set()
     iterator = external(iter, segments)
@@ -193,22 +185,21 @@ def _replay(adapter, diagnostic, codec, streamed, segments, *, expected_authorit
         tick()
         try: segment = external(next, iterator)
         except StopIteration: break
-        _require(type(segment) is Segment and segment_count < MAX_PAIRS, 'bounded exact segment envelope')
+        _require((type(segment) is Segment) and (segment_count < MAX_PAIRS), 'bounded exact segment envelope')
         stream_binding, acceptance_binding = wire(segment.stream_binding), wire(segment.acceptance_binding)
         _binding(stream_binding, MAX_BYTES); _binding(acceptance_binding, MAX_BYTES)
         stream_key, acceptance_key = (tuple(b[k] for k in ('path','sha256','bytes')) for b in (stream_binding,acceptance_binding))
-        _require(stream_key not in seen_streams and acceptance_key not in seen_acceptances, 'duplicate or cyclic segment')
+        _require((stream_key not in seen_streams) and (acceptance_key not in seen_acceptances), 'duplicate or cyclic segment')
         seen_streams.add(stream_key); seen_acceptances.add(acceptance_key)
         total_bytes += stream_binding['bytes'] + acceptance_binding['bytes']
         _require(total_bytes <= MAX_SOURCE_BYTES, 'aggregate inherited source byte limit')
         raw = segment.acceptance_bytes
-        _require(type(raw) is bytes and len(raw) == acceptance_binding['bytes']
-                 and hashlib.sha256(raw).hexdigest() == acceptance_binding['sha256'], 'exact external acceptance bytes')
+        _require((type(raw) is bytes) and (len(raw) == acceptance_binding['bytes']) and (hashlib.sha256(raw).hexdigest() == acceptance_binding['sha256']), 'exact external acceptance bytes')
         accepted = _decode(raw)
         _keys(accepted, ACCEPTANCE_KEYS)
-        _require(accepted['schema'] == SCHEMA and all(accepted[k] is True for k in
-                 ('accepted', 'completeEOF', 'independentNumericalConformance', 'processClosure')), 'independent closed segment declaration')
-        _require(_same(accepted['stream'], stream_binding) and _same(accepted['predecessor'], previous), 'exact accepted stream and predecessor')
+        _require((accepted['schema'] == SCHEMA) and (all(accepted[k] is True for k in
+                 ('accepted', 'completeEOF', 'independentNumericalConformance', 'processClosure'))), 'independent closed segment declaration')
+        _require((_same(accepted['stream'], stream_binding)) and (_same(accepted['predecessor'], previous)), 'exact accepted stream and predecessor')
         for key in AUTHORITY_KEYS:
             _require(_same(accepted[key], authority[key]), 'same admitted '+key)
         for key in ('operation', 'invocation', 'finalCaller', 'numericalReceipt', 'operationalReceipt',
@@ -216,17 +207,13 @@ def _replay(adapter, diagnostic, codec, streamed, segments, *, expected_authorit
             _binding(accepted[key])
         census = accepted['segment']; _keys(census, ('localPairs', 'totalPairs', 'inheritedPairs', 'records', 'coveredOriginalParents', 'domain'))
         inherited = len(state.evaluations)
-        _require(all(type(census[k]) is int for k in ('localPairs', 'totalPairs', 'inheritedPairs', 'records'))
-                 and 0 < census['localPairs'] <= MAX_PAIRS-inherited and census['inheritedPairs'] == inherited
-                 and census['totalPairs'] == inherited+census['localPairs'] and census['records'] == 2*census['localPairs']+2,
+        _require((all(type(census[k]) is int for k in ('localPairs', 'totalPairs', 'inheritedPairs', 'records'))) and (0 < census['localPairs'] <= MAX_PAIRS-inherited) and (census['inheritedPairs'] == inherited) and (census['totalPairs'] == inherited+census['localPairs']) and (census['records'] == 2*census['localPairs']+2),
                  'one cumulative mathematical budget and local transport census')
         original_parents = wire(segment.original_parents)
-        _require(type(original_parents) is list and len(original_parents) == 160, 'all original whole-parent snapshots required')
+        _require((type(original_parents) is list) and (len(original_parents) == 160), 'all original whole-parent snapshots required')
         for index, parent in enumerate(original_parents):
             _keys(parent, ('index', 'reception', 'rows', 'bindings', 'refined'))
-            _require(type(parent['index']) is int and parent['index'] == index and type(parent['refined']) is bool
-                     and type(parent['rows']) is list and len(parent['rows']) == 64
-                     and _same(parent['reception'], current_parents[index]['reception']), 'same original parent partition/shape')
+            _require((type(parent['index']) is int) and (parent['index'] == index) and (type(parent['refined']) is bool) and (type(parent['rows']) is list) and (len(parent['rows']) == 64) and (_same(parent['reception'], current_parents[index]['reception'])), 'same original parent partition/shape')
         expected_header = wire(segment.expected_header)
         _keys(expected_header, streamed.METADATA_KEYS)
         decoder = codec.StreamDecoder(byte_limit=MAX_BYTES, live=tick)
@@ -240,25 +227,23 @@ def _replay(adapter, diagnostic, codec, streamed, segments, *, expected_authorit
             tick()
             try: line = external(next, lines)
             except StopIteration: break
-            _require(type(line) is bytes and len(line) <= stream_binding['bytes']-segment_bytes, 'bounded original stream bytes')
+            _require((type(line) is bytes) and (len(line) <= stream_binding['bytes']-segment_bytes), 'bounded original stream bytes')
             before_bytes, before_hash = segment_bytes, segment_hash.hexdigest()
             result = decoder.feed(line)
             segment_bytes += len(line); segment_hash.update(line)
             if result['kind'] == 'header':
-                _require(not saw_header and _same({k:result['header'][k] for k in streamed.METADATA_KEYS}, expected_header), 'exact historical transport metadata')
+                _require((not saw_header) and (_same({k:result['header'][k] for k in streamed.METADATA_KEYS}, expected_header)), 'exact historical transport metadata')
                 saw_header = True
-                _require(_same(result['shared']['context'], authority['context'])
-                         and _same(result['header']['protocol_plan'], plan_wire)
-                         and _same(result['header']['initial_state'], initial_summary), 'same original plan and replayed initial frontier')
+                _require((_same(result['shared']['context'], authority['context'])) and (_same(result['header']['protocol_plan'], plan_wire)) and (_same(result['header']['initial_state'], initial_summary)), 'same original plan and replayed initial frontier')
                 continuation = result['header']['spec'].get('continuation')
                 if previous is None:
-                    _require(continuation is None and inherited == 0, 'initial segment has no predecessor')
+                    _require((continuation is None) and (inherited == 0), 'initial segment has no predecessor')
                 else:
                     _require(_same(continuation, dict(schema=CONTINUATION_SCHEMA, predecessor=previous,
                         inheritedPairs=inherited, replayedInitialState=initial_summary,
                         consumedOriginalParents=sorted(consumed))), 'explicit complete continuation header')
             elif result['kind'] == 'provision':
-                _require(local_pairs < census['localPairs'] and len(state.evaluations) < MAX_PAIRS, 'bounded inherited pair count')
+                _require((local_pairs < census['localPairs']) and (len(state.evaluations) < MAX_PAIRS), 'bounded inherited pair count')
                 request = gk.request(state)
                 _require(request is not None, 'cannot continue terminal mathematical state')
                 value = result['value']; pending = _response(ref, gk, request, value['response'], wire)
@@ -266,41 +251,36 @@ def _replay(adapter, diagnostic, codec, streamed, segments, *, expected_authorit
                            < Fraction(request.domain.upper) <= Fraction(p['reception']['upper'])]
                 _require(len(matches) == 1, 'one whole original parent; no boundary crossing')
                 parent = matches[0]; index = parent['index']
-                _require(_same(parent, current_parents[index]) and (index not in consumed or _same(parent, consumed[index])),
+                _require((_same(parent, current_parents[index])) and (index not in consumed or _same(parent, consumed[index])),
                          'consumed parent evidence cannot change')
                 consumed[index] = local_consumed[index] = parent
                 local_domains.append((request.domain.lower,request.domain.upper))
                 observed = value['history_state_evaluations']
-                _require(type(observed) is list and len(observed) == 4 and all(type(v) is int and v > 0 for v in observed), 'historical four positive geometry deltas')
+                _require((type(observed) is list) and (len(observed) == 4) and (all(type(v) is int and v > 0 for v in observed)), 'historical four positive geometry deltas')
                 deltas.extend(observed)
                 n = local_pairs+1
-                _require(_same(value['call_counts'], [[k,v] for k,v in zip(streamed.COUNTERS,(4*n,4*n,8*n,0,0))])
-                         and _same(value['geometry_accounting'], [[k,v] for k,v in zip(streamed.GEOMETRY,(4*n,4*n,sum(deltas),4*n))]), 'historical local measured counters')
+                _require((_same(value['call_counts'], [[k,v] for k,v in zip(streamed.COUNTERS,(4*n,4*n,8*n,0,0))])) and (_same(value['geometry_accounting'], [[k,v] for k,v in zip(streamed.GEOMETRY,(4*n,4*n,sum(deltas),4*n))])), 'historical local measured counters')
             elif result['kind'] == 'transition':
                 _require(pending is not None, 'one pending saved response')
                 next_state = gk.respond(ref, state, pending)
-                _require(type(next_state) is gk.State and next_state.plan is state.plan
-                         and len(next_state.evaluations) == len(state.evaluations)+1, 'one genuine replay transition')
-                _require(_same(wire(next_state.evaluations[-1]), result['value']['evaluation'])
-                         and _same(streamed.state_summary(gk, next_state), result['value']['state_after']), 'complete replay evaluation and frontier')
+                _require((type(next_state) is gk.State) and (next_state.plan is state.plan) and (len(next_state.evaluations) == len(state.evaluations)+1), 'one genuine replay transition')
+                _require((_same(wire(next_state.evaluations[-1]), result['value']['evaluation'])) and (_same(streamed.state_summary(gk, next_state), result['value']['state_after'])), 'complete replay evaluation and frontier')
                 state = next_state; pending = None; local_pairs += 1
             else:
-                _require(result['kind'] == 'footer' and pending is None, 'complete footer after transition')
+                _require((result['kind'] == 'footer') and (pending is None), 'complete footer after transition')
                 saw_footer = True
                 final_summary = streamed.state_summary(gk, state)
                 expected_summary = dict(final_state=final_summary,
                     call_counts=[[k,v] for k,v in zip(streamed.COUNTERS,(4*local_pairs,4*local_pairs,8*local_pairs,0,0))],
                     geometry_accounting=[[k,v] for k,v in zip(streamed.GEOMETRY,(4*local_pairs,4*local_pairs,sum(deltas),4*local_pairs))],
                     history_state_evaluations=deltas, claims=wire(ref.Claims()))
-                _require(_same(result['summary'], expected_summary) and _same(accepted['finalState'], final_summary), 'complete footer and detached final frontier')
+                _require((_same(result['summary'], expected_summary)) and (_same(accepted['finalState'], final_summary)), 'complete footer and detached final frontier')
                 framing = accepted['streamFraming']
                 _require(_same(framing, dict(prefixBytes=before_bytes,prefixSha256=before_hash,finalLF=True,complete=True,
                                             provisions=local_pairs,transitions=local_pairs)), 'independent original framing declaration')
             tick()
         finished = decoder.finish(); tick()
-        _require(saw_header and saw_footer and finished['complete'] is True and finished['pairs'] == local_pairs == census['localPairs']
-                 and segment_bytes == stream_binding['bytes'] == finished['bytes']
-                 and segment_hash.hexdigest() == stream_binding['sha256'] == finished['sha256'], 'external complete stream binding and actual EOF')
+        _require((saw_header) and (saw_footer) and (finished['complete'] is True) and (finished['pairs'] == local_pairs == census['localPairs']) and (segment_bytes == stream_binding['bytes'] == finished['bytes']) and (segment_hash.hexdigest() == stream_binding['sha256'] == finished['sha256']), 'external complete stream binding and actual EOF')
         _require(_same(sorted(local_consumed), census['coveredOriginalParents']), 'exact locally consumed original parents')
         domain = [min(local_domains,key=lambda x:Fraction(x[0]))[0],max(local_domains,key=lambda x:Fraction(x[1]))[1]]
         _require(_same(domain,census['domain']), 'exact covered segment domain hull')
@@ -319,18 +299,16 @@ def _replay(adapter, diagnostic, codec, streamed, segments, *, expected_authorit
 
 def references(prefix, adapter):
     """Keep the actual reference proxy that owns the genuine replayed State."""
-    _require(type(prefix) is ReplayedPrefix and not prefix._used and adapter is prefix._adapter,
+    _require((type(prefix) is ReplayedPrefix) and (not prefix._used) and (adapter is prefix._adapter),
              'original unused same-adapter replay token required')
     return prefix._reference, prefix._protocol
 
 
 def consume(prefix, adapter, reference, protocol, fresh_plan):
     """Consume once, only in the same current unmeasured adapter generation."""
-    _require(type(prefix) is ReplayedPrefix and not prefix._used, 'original unused replay token required')
+    _require((type(prefix) is ReplayedPrefix) and (not prefix._used), 'original unused replay token required')
     object.__setattr__(prefix,'_used',True)
-    _require(adapter is prefix._adapter and reference is prefix._reference and protocol is prefix._protocol
-             and adapter.parents is prefix._parents and adapter.frames is prefix._frames
-             and adapter.context is prefix._context and tuple(adapter.provenance) == prefix._provenance,
+    _require((adapter is prefix._adapter) and (reference is prefix._reference) and (protocol is prefix._protocol) and (adapter.parents is prefix._parents) and (adapter.frames is prefix._frames) and (adapter.context is prefix._context) and (tuple(adapter.provenance) == prefix._provenance),
              'token belongs to another adapter/reference generation')
     _require(_same(prefix._wire(fresh_plan),prefix._wire(prefix._state.plan)), 'fresh plan differs from genuine replayed plan')
     _require((tuple(adapter.call_counts.items()),tuple(adapter.geometry_accounting.items())) == prefix._baseline,

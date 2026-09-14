@@ -1,4 +1,4 @@
-import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';
+import knownAnswerData from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -7,7 +7,7 @@ import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { prepareDispatch, verifyDispatch, sendDispatch, compareReceived, requireHash, sha256, MAX_MESSAGE_BYTES } from '../scripts/agent-dispatch.mjs';
 
-const known = admittedKnownHashAnswers("tests/agent-dispatch.test.mjs").sha256.abc;
+const known = knownAnswerData.sha256.abc;
 const cli = new URL('../scripts/agent-dispatch.mjs', import.meta.url).pathname;
 function fixture(t) {
   const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'agent-dispatch-')));

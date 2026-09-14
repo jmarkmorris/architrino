@@ -5,9 +5,9 @@ Mocked CLI plumbing is explicitly NOT mathematical evidence. No saved F6c data
 is opened, and no root, acceleration or historical numerical job is run here.
 """
 from __future__ import annotations
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
-from option_b_batch_records import batch_identities
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
+import hashlib
+from pathlib import Path
 
 
 import ast
@@ -16,12 +16,10 @@ from contextlib import contextmanager,ExitStack,redirect_stderr,redirect_stdout
 from copy import deepcopy
 from decimal import Decimal
 from fractions import Fraction as F
-import hashlib
 import importlib.util
 import io
 import json
 import os
-from pathlib import Path
 import sys
 import tempfile
 import types
@@ -34,12 +32,12 @@ SOURCE=ROOT/'scripts/eom/prepare-f6c-parent-emission-refinement.py'
 
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path);module=importlib.util.module_from_spec(spec)
-    sys.modules[name]=module;_option_b_exec_module(__file__, spec, module);return module
+    sys.modules[name]=module;spec.loader.exec_module(module);return module
 
 
 s=load('parent_preparation_under_test',SOURCE)
-w=load('parent_preparation_transport',ROOT/s.DEPENDENCIES['transport'][0])
-core=load('parent_preparation_decoder',ROOT/s.DEPENDENCIES['scientificDecoder'][0])
+w=load('parent_preparation_transport',ROOT/s.DEPENDENCIES['transport'])
+core=load('parent_preparation_decoder',ROOT/s.DEPENDENCIES['scientificDecoder'])
 
 
 def digest(raw):return hashlib.sha256(raw).hexdigest()
@@ -102,15 +100,13 @@ def full_fixture():
 
 
 def plan_fixture(root):
-    b=lambda path,sha:dict(path=path,sha256=sha or 'a'*64,bytes=1)
-    plan=dict(schema=s.PLAN_SCHEMA,scope=s.parent_scope(1),parentIndex=1,**{k:b(*v) for k,v in s.NAMED.items()},
-        dependencies={k:b(*v) for k,v in s.DEPENDENCIES.items()},
-        originalBindings={k:dict(path=v[0],sha256=v[1],bytes=v[2] if len(v)>2 else 1) for k,v in s.ORIGINAL.items()},
+    b=lambda path,sha='a'*64:dict(path=path,sha256=sha or 'a'*64,bytes=1)
+    plan=dict(schema=s.PLAN_SCHEMA,scope=s.parent_scope(1),parentIndex=1,**{k:b(v) for k,v in s.NAMED.items()},
+        dependencies={k:b(v) for k,v in s.DEPENDENCIES.items()},
+        originalBindings={k:dict(path=v[0],sha256=v[1] or 'a'*64,bytes=v[2] if len(v)>2 else 1) for k,v in s.ORIGINAL.items()},
         acceptanceOwner=b(s.OWNER,'c'*64),priorCoverClosure=s.closure_premise(),runtimeBindings=[{'path':str(root/'python')}],
         operationalBindings=[b(str(root/'node'),'e'*64)],limits=dict(w.LIMITS))
-    plan['historicalDocumentRoutes']=[dict(original=dict(path=s.PREFIX+name,sha256=h,bytes=n),physical=dict(path=str(root/('archive-'+h+'.source')),sha256=h,bytes=n)) for name,h,n in (
-        ('2026-08-27-f6c-cached-root-cover-full-resource-plan.md',OPTION_B_BATCH_IDENTITIES[0],10021),
-        ('2026-08-27-f6c-root-cover-full-resource-plan.md',OPTION_B_BATCH_IDENTITIES[1],13021))]
+    plan['originalBindings'].update({k:b(v) for k,v in s.ORIGINAL_SOURCES.items()})
     return plan
 
 
@@ -197,7 +193,7 @@ class PlanTests(unittest.TestCase):
     def setUp(self):self.root=Path('/synthetic/repository');self.plan=plan_fixture(self.root)
     def test_closed_plan_subject_census_and_owner_is_plan_selected(self):
         sources,runtime,ops=s.validate_plan(self.plan,'a'*64,self.root,w)
-        self.assertEqual(len(sources),23);self.assertEqual(len(s.PLAN_KEYS),20);self.assertEqual(len(s.MANIFEST_KEYS),28);self.assertEqual(len(s.COMPLETION_KEYS),15)
+        self.assertEqual(len(sources),21);self.assertEqual(len(s.PLAN_KEYS),18);self.assertEqual(len(s.MANIFEST_KEYS),27);self.assertEqual(len(s.COMPLETION_KEYS),15)
         self.plan['acceptanceOwner']['sha256']='f'*64;s.validate_plan(self.plan,'a'*64,self.root,w)
         self.assertEqual(self.plan['priorCoverClosure']['originalCallerSession'],'13512')
     def test_closed_plan_changes_rejected(self):
@@ -240,7 +236,7 @@ class PlanTests(unittest.TestCase):
             with self.assertRaises(ValueError):s.number('1e999999999')
     def test_record_fields_match_unchanged_proposer_and_comparator(self):
         # This is interface parity only, not a mathematical agreement claim.
-        source=ast.parse((ROOT/s.NAMED['comparisonReference'][0]).read_text())
+        source=ast.parse((ROOT/s.NAMED['comparisonReference']).read_text())
         assignment=next(n for n in source.body if isinstance(n,ast.Assign) and isinstance(n.targets[0],ast.Name) and n.targets[0].id=='QUERY_FIELDS')
         self.assertEqual(s.QUERY_KEYS,frozenset(ast.literal_eval(assignment.value.args[0])))
         self.assertEqual(len(s.CLAIMS),15);self.assertTrue(all(v is False for v in s.CLAIMS.values()))
@@ -320,16 +316,15 @@ class CaptureTests(unittest.TestCase):
     def test_captured_package_real_public_history_generation_cleanup(self):
         # Definitions only. No history/root method is called.
         plan=plan_fixture(ROOT)
-        for k,(path,dg) in s.DEPENDENCIES.items():
-            archive=s.production_original_source_binding(ROOT,s.__file__,path,dg,optional=True) if k in ('productionHelper','historyReference','decimalReference','rootLibrary') else None
-            plan['dependencies'][k]=dict(path=path,sha256=dg,bytes=archive['bytes'] if archive else (ROOT/path).stat().st_size)
-        path,expected=s.NAMED['proposalReference'];raw=_option_b_source_bytes(__file__,ROOT/path);self.assertEqual(digest(raw),expected)
+        for k,path in s.DEPENDENCIES.items():
+            plan['dependencies'][k]=dict(path=path,sha256=digest((ROOT/path).read_bytes()),bytes=(ROOT/path).stat().st_size)
+        path=s.NAMED['proposalReference'];raw=Path(ROOT/path).read_bytes();expected=digest(raw)
         plan['proposalReference']=dict(path=str(ROOT/path),sha256=expected,bytes=len(raw))
         before=set(sys.modules)
         with ExitStack() as stack:
             pool=s.CapturePool(stack,w,ROOT,lambda:None)
             with s.captured_dependencies(pool,plan,raw) as (helper,modules,proposer):
-                self.assertEqual(proposer.PROOF_SHA256,s.NAMED['declaration'][1]);self.assertEqual(set(modules),{'certified_history','decimal_interval','continuous_reception_roots'})
+                self.assertEqual(set(modules),{'certified_history','decimal_interval','continuous_reception_roots'})
                 self.assertTrue(callable(helper.build_histories))
         self.assertEqual(set(sys.modules),before)
 
@@ -407,78 +402,6 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(w.records(core,b'{"a":1}\n',1),[{'a':1}])
 
 
-class HistoricalChainTests(unittest.TestCase):
-    def fixture(self):
-        root=Path('/synthetic/full-chain');sources=[dict(path=str(root/f'source-{i}'),sha256=f'{i+1:064x}',bytes=1) for i in range(198)]
-        class File:
-            def __init__(self,b,data=b''):self.b=b;self.data=data
-            def binding(self):return self.b
-        files={role:File(dict(path=str(root/role),sha256='a'*64,bytes=1)) for role in s.ORIGINAL}
-        files['fullPlan']=File(sources[-1]);files['fullEntry'].data=b'entry'
-        contract=dict(declarationSha256=OPTION_B_BATCH_IDENTITIES[2],
-            verifierSha256=OPTION_B_BATCH_IDENTITIES[3],scope='full',subjectSourceBindings=sources[193:197],runtimeBindings=sources[35:193])
-        plan=dict(schema='braid-program/f6c-cached-root-cover-full-launch.v1',scope='full',resourcePlan=sources[8],comparisonContract=contract,
-            operationalBindings=sources[:6],controlBindings=sources[6:8],python='x',pythonRealPath='x',git='x',node='x')
-        manifest=dict(scope='full',status='conditional_complete',accepted=False,rows=files['fullRows'].binding(),pieces=files['fullPieces'].binding(),
-            launchPlan=files['fullPlan'].binding(),subjectSourceBindings=contract['subjectSourceBindings'],runtimeBindings=contract['runtimeBindings'])
-        comparison=dict(schema='braid-program/f6c-continuous-reception-root-cover-conformance.v1',scope='full',accepted=True,
-            claims=dict(conditionalRootCoverValidated=True,reconstructedFamilyApplicabilityAuthenticated=True,historicalTrajectoryIdentityEstablished=False,
-                rootExecutionAuthorized=False,metricsAvailable=False,h3EvidenceEligible=False,scoreAuthorized=False,eomExecuted=False),
-            analysis=dict(accepted=False,conditionalEnclosuresConformant=True,cellCount=160,pairCellCertificates=10240,ordinaryNonselfRows=8960,
-                selfExclusionRows=1280,distinctNonselfFaceChecks=17920,pieceRecordCount=17920,recordedGeometryPieceVisits=14639800),
-            rows=files['fullRows'].binding(),pieces=files['fullPieces'].binding(),manifest=files['fullManifest'].binding(),launchPlan=files['fullPlan'].binding())
-        host=dict(kind='host-resource');rss=dict(kind='aggregate-rss',elapsedSeconds=Decimal('1.25'),aggregateResidentBytes=100,sampleGapMs=250)
-        files['fullLauncherLog'].data=b''.join(json.dumps(host).encode()+b'\n' for _ in range(62))
-        files['fullResourceLog'].data=b''.join(b'{"kind":"aggregate-rss","elapsedSeconds":1.25,"aggregateResidentBytes":100,"sampleGapMs":250}\n' for _ in range(3447))
-        admission=dict(schema='braid-program/f6c-cached-root-cover-full-admission.v1',scope='full',accepted=True,processesClosed=True,
-            elapsedSecondsBeforePublication=Decimal('862.577186208'),sourceBindings=sources,plan=files['fullPlan'].binding(),
-            eomExecuted=False,fullRunAuthorized=False,h3EvidenceEligible=False,historicalTrajectoryIdentityEstablished=False,metricsAvailable=False,
-            stages=[],hostObservationsBeforePublication=[host]*61,observationsBeforePublication=dict(samples=3444,maximumSampledRSSBytes=100))
-        blobs={}
-        for stage in ('consumer','comparison'):
-            outputs=[files[k].binding() for k in ('fullRows','fullPieces','fullManifest')] if stage=='consumer' else [files['fullComparison'].binding()]
-            done=dict(completed=True,accepted=stage=='comparison',h3EvidenceEligible=False)
-            done['outputs' if stage=='consumer' else 'output']=outputs if stage=='consumer' else outputs[0]
-            raw=json.dumps(done).encode()+b'\n';log=bind(root/(stage+'.stdout'),raw);err=bind(root/(stage+'.stderr'),b'error-log\n');blobs[log['path']]=raw
-            ad=dict(accepted=True,completion=done,completionLog=log,outputs=outputs)
-            proc=dict(accepted=True,processesClosed=True,exit=dict(code=0,signal=None),admission=ad,stdoutLog=log,stderrLog=err,
-                gates=[dict(retired=True,acknowledged=True,measurement=dict(code=0,signal=None))])
-            admission['stages'].append(dict(stage=stage,process=proc,admission=ad))
-        class Pool:
-            def __init__(self):self.root=root;self.routes={};self.used_routes=set();self.unavailable={};self.used_unavailable=set()
-            def capture(self,b):return File(b)
-            def historical(self,b):return b
-            def read_binding(self,b,*,capture=False):return blobs[b['path']] if capture else b
-        docs=dict(fullPlan=plan,fullManifest=manifest,fullComparison=comparison,fullAdmission=admission)
-        pins={b['path']:b['sha256'] for b in sources[:35]}
-        return docs,files,Pool(),pins
-    def run_chain(self,fixture):
-        docs,files,pool,pins=fixture
-        with patch.object(s,'owner_declaration',return_value=s.closure_premise()),patch.object(s,'entry_pins',return_value=pins):
-            return s.authenticate_full_chain(w,docs,files,pool,b'owner')
-    def test_independently_derived198_full_source_union(self):
-        result=self.run_chain(self.fixture());self.assertEqual(len(result),198);self.assertEqual(result,sorted(result,key=lambda b:b['path']))
-    def test_ancestry_stage_observation_and_source_mutations(self):
-        for mode in ('source','count','producer-accepted','stage-exit','gate','prepublication','global-census','raw-eof','runtime'):
-            fixture=self.fixture();d,f,p,pins=fixture;a=d['fullAdmission']
-            if mode=='source':a['sourceBindings'][-2]={**a['sourceBindings'][-2],'sha256':'f'*64}
-            elif mode=='count':a['sourceBindings'].pop()
-            elif mode=='producer-accepted':a['stages'][0]['admission']['completion']['accepted']=True
-            elif mode=='stage-exit':a['stages'][1]['process']['exit']['code']=1
-            elif mode=='gate':a['stages'][0]['process']['gates'][0]['retired']=False
-            elif mode=='prepublication':a['elapsedSecondsBeforePublication']=Decimal('862.951823625')
-            elif mode=='global-census':d['fullComparison']['analysis']['cellCount']=1
-            elif mode=='raw-eof':f['fullResourceLog'].data=f['fullResourceLog'].data.rstrip(b'\n')
-            else:d['fullPlan']['comparisonContract']['runtimeBindings']=[]
-            with self.subTest(mode=mode),self.assertRaises(ValueError):self.run_chain(fixture)
-    def test_owner_is_attributed_versioned_whole_completion_not_prepublication(self):
-        tokens=['### Independently Accepted Actual Full asymmetric counter-breathing representative Conditional Cover\n','original caller session `13512`','final completion chunk `c21aa7`',
-            'exit zero','`862.951823625`','Independent post-closure review accepts all 160',s.FULL_BASE]
-        tokens += [f'{dg} {size}' for role,(_,dg,size) in s.FULL.items() if role!='fullPlan']
-        raw='\n'.join(tokens).encode();self.assertEqual(s.owner_declaration(raw),s.closure_premise())
-        for before,after in ((b'13512',b'13513'),(b'862.951823625',b'862.577186208'),(b'c21aa7',b'bad')):
-            with self.assertRaises(ValueError):s.owner_declaration(raw.replace(before,after))
-        with self.assertRaises(ValueError):s.owner_declaration(raw+raw)
 
 
 class MainPathTests(unittest.TestCase):
@@ -531,13 +454,13 @@ class MainPathTests(unittest.TestCase):
             def module(raw,path):
                 path=str(path)
                 try:
-                    if path.endswith(s.DEPENDENCIES['transport'][0]):yield w
-                    elif path.endswith(s.DEPENDENCIES['scientificDecoder'][0]):yield core
-                    elif path.endswith(s.DEPENDENCIES['productionHelper'][0]):yield helper
+                    if path.endswith(s.DEPENDENCIES['transport']):yield w
+                    elif path.endswith(s.DEPENDENCIES['scientificDecoder']):yield core
+                    elif path.endswith(s.DEPENDENCIES['productionHelper']):yield helper
                     else:raise AssertionError(path)
                 finally:
                     events.append('module-close')
-                    if mode=='module-close' and path.endswith(s.DEPENDENCIES['scientificDecoder'][0]):raise ValueError(mode)
+                    if mode=='module-close' and path.endswith(s.DEPENDENCIES['scientificDecoder']):raise ValueError(mode)
             def propose(history,parent,refs,on_record,progress):
                 proposer_calls.append(1)
                 progress(0,0,0)

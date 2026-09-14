@@ -140,7 +140,7 @@ def fixture():
                 for role in ('source','buildReceipt','executable')}
     handoff = {'schema': ref.HANDOFF_SCHEMA, 'status': 'data-only-history-handoff',
                'prefixSha256': ref.PREFIX_SHA, 'restrictionReceiptSha256': ref.RESTRICTION_SHA,
-               'sourceOwners': ref.SOURCE_OWNERS.copy(), 'producerBindings': bindings,
+               'producerBindings': bindings,
                'runtimePremises': list(ref.RUNTIME_PREMISES), 'normalizedFieldSpeed': '1',
                'retainedInterval': ['-1','0'], 'releaseTime': '0', 'claims': ref.FALSE_CLAIMS.copy(), 'members': []}
     for m in members:
@@ -317,7 +317,6 @@ class DataControls(unittest.TestCase):
         self.data[1]['inheritedConstantInterpretations'].pop();self.fails()
 
     def test_bound_source_and_claim_changes_reject(self):
-        self.data[2]['sourceOwners']={};self.fails()
         self.data=copy.deepcopy(self.base);self.data[2]['claims']['couplingChosen']=True;self.fails()
 
     def test_producer_binding_mismatch_rejects(self):

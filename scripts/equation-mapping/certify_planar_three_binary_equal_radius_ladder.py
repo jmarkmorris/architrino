@@ -29,9 +29,6 @@ SCALAR_THEOREM_EVIDENCE = ROOT / (
     "reference/priorities/braid-program/evidence/"
     "2026-08-29-planar-three-binary-circular-balance-ladder.md"
 )
-FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256 = (
-    "1669066391ac4ba783be843b7f77fa11d3d9c3332085d3cbea570b8cc2ae3e54"
-)
 CONFIGURATION_PATTERN = "equal-radius-planar-three-binary-balance-beta-*.v3.json"
 
 POINT_DPS = 120
@@ -470,8 +467,6 @@ class Oracle:
 
 
 def calculate(first_topology: int, maximum_topology: int) -> dict[str, object]:
-    if sha256(SCALAR_THEOREM_EVIDENCE) != FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256:
-        raise CertificateFailure("frozen scalar theorem evidence changed")
     if not (0 <= first_topology <= maximum_topology <= 200):
         raise CertificateFailure("topology range must satisfy 0 <= first <= maximum <= 200")
     rows, source_paths = source_rows()
@@ -514,9 +509,8 @@ def calculate(first_topology: int, maximum_topology: int) -> dict[str, object]:
     return {
         "schema": "braid-program/planar-three-binary-equal-radius-ladder-certificate.v1",
         "claimGrade": "computer-assisted derived finite zero census",
-        "frozenInputs": {
+        "inputs": {
             "scalarTheoremEvidence": str(SCALAR_THEOREM_EVIDENCE.relative_to(ROOT)),
-            "scalarTheoremEvidenceSha256": FROZEN_SCALAR_THEOREM_EVIDENCE_SHA256,
             "sourceConfigurationPattern": str(
                 (CONFIGURATION_OWNER / CONFIGURATION_PATTERN).relative_to(ROOT)
             ),

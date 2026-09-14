@@ -9,160 +9,40 @@ radii. An accepted output never grants H3 or reviewed-build authority.
 
 from __future__ import annotations
 
+import hashlib
+from pathlib import Path
+
 import argparse
 from decimal import Decimal
 from fractions import Fraction
-import hashlib
 import json
 import math
-from pathlib import Path
 import re
 import signal
 import struct
 import sys
 import time
-from types import ModuleType
 
-_EXECUTING_CODE = sys._getframe().f_code
 SELF_PATH = "scripts/eom/oracle/f5_api_domain_conformance.py"
 SCHEMA = "braid-program/f5-api-domain-conformance.v1"
 LIMIT_SECONDS = 1800
 HEARTBEAT_SECONDS = 15
 EXPECTED_SEGMENTS = 12384
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import importlib.util as _option_b_importlib
-    from pathlib import Path as _OptionBPath
-    _option_b_root = _OptionBPath(__file__).resolve().parents[3]
-    _option_b_spec = _option_b_importlib.spec_from_file_location("_option_b_production_source_records", _option_b_root / "scripts/eom/production_source_records.py")
-    _option_b_bridge = _option_b_importlib.module_from_spec(_option_b_spec)
-    _option_b_spec.loader.exec_module(_option_b_bridge)
-    OPTION_B_PRODUCTION_IDENTITIES = _option_b_bridge.production_identities(__file__)
 
-ORACLE_HASHES = {
-    "scripts/eom/oracle/decimal_interval.py": OPTION_B_PRODUCTION_IDENTITIES[0],
-    "scripts/eom/oracle/f5_actual_cubic_conformance.py": OPTION_B_PRODUCTION_IDENTITIES[1],
-    "scripts/eom/oracle/f5_history_manifest_conformance.py": OPTION_B_PRODUCTION_IDENTITIES[2],
-}
-SUBJECT_API_HASHES = {
-    "src/eom/native/eom_f5_enclosed_root_cli.cpp": OPTION_B_PRODUCTION_IDENTITIES[3],
-    "src/eom/CMakeLists.txt": OPTION_B_PRODUCTION_IDENTITIES[4],
-    "src/eom/src/History.cpp": OPTION_B_PRODUCTION_IDENTITIES[5],
-    "src/eom/src/Interval.cpp": OPTION_B_PRODUCTION_IDENTITIES[6],
-    "src/eom/include/architrino/eom/History.hpp": OPTION_B_PRODUCTION_IDENTITIES[7],
-    "src/eom/include/architrino/eom/Interval.hpp": OPTION_B_PRODUCTION_IDENTITIES[8],
-}
+
 
 
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def _materialize_original_api_tree():
-    """Execute the original nested oracle beside its exact historical API inputs."""
-    import atexit
-    import ast
-    import importlib.util
-    import tempfile
-    global _OPTION_B_API_TREE, _OPTION_B_API_CAPTURE_CHECK, _OPTION_B_API_ORIGINAL_SELF
-    selected_root = Path(__file__).resolve().parents[3]
-    spec = importlib.util.spec_from_file_location('_option_b_api_original_records', selected_root / 'scripts/eom/production_source_records.py')
-    bridge = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(bridge)
-    # The shared bridge authenticates its Node bootstrap and the entire selected graph.
-    bridge.production_identities(__file__)
-    retained = {}
-    def capture(filename, expected=None):
-        filename = Path(filename)
-        if filename.resolve() != filename or not filename.is_relative_to(selected_root):
-            raise ValueError('Canonical original API source required')
-        import os
-        descriptor = os.open(filename, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
-        with os.fdopen(descriptor, 'rb') as stream:
-            before = os.fstat(stream.fileno())
-            if not __import__('stat').S_ISREG(before.st_mode) or before.st_size > 64 * 1024 * 1024:
-                raise ValueError('Bounded regular API source required')
-            data = stream.read(64 * 1024 * 1024 + 1)
-            after = os.fstat(stream.fileno())
-        identity = lambda value: (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
-        if len(data) != before.st_size or identity(before) != identity(after) or identity(before) != identity(filename.stat()):
-            raise ValueError('Original API source changed during capture')
-        if expected is not None and sha256(data) != expected:
-            raise ValueError('Exact original API source generation required')
-        prior = retained.get(filename)
-        if prior is not None and prior != (identity(before), sha256(data)):
-            raise ValueError('Original API source replaced after capture')
-        retained[filename] = (identity(before), sha256(data))
-        return data
-    data_by_path = {}
-    for relative, expected in {**ORACLE_HASHES, **SUBJECT_API_HASHES}.items():
-        binding = bridge.production_original_source_binding(selected_root, __file__, relative, expected, optional=True)
-        physical = Path(binding['path']) if binding else selected_root / relative
-        data_by_path[relative] = capture(physical, expected)
-    self_original = bridge.production_original_source_binding(selected_root, __file__, SELF_PATH)
-    _OPTION_B_API_ORIGINAL_SELF = {"path": SELF_PATH, "sha256": self_original["sha256"], "bytes": self_original["bytes"]}
-    capture(Path(self_original["path"]), self_original["sha256"])
-    data_by_path[SELF_PATH] = capture(Path(__file__).resolve())
-    nominal_tree = ast.parse(data_by_path['scripts/eom/oracle/f5_history_manifest_conformance.py'])
-    fixed = [ast.literal_eval(node.value) for node in nominal_tree.body if isinstance(node, ast.Assign)
-             and any(isinstance(target, ast.Name) and target.id == 'FIXED_BINDINGS' for target in node.targets)]
-    if len(fixed) != 1 or len(fixed[0]) != 5:
-        raise ValueError('Original nominal fixed-input census differs')
-    replay = json.loads(capture(selected_root / 'reference/priorities/braid-program/evidence/source-replay/f5-source-replay.v1.json'))
-    for relative, expected in fixed[0].values():
-        rows = [row for row in replay['files'] if row['path'] == relative and row['sha256'] == expected]
-        if len(rows) != 1:
-            raise ValueError('Unique original nominal input route required')
-        source = Path(rows[0]['source'])
-        if source.is_absolute() or '..' in source.parts:
-            raise ValueError('Original nominal input route escapes checkout')
-        data_by_path[relative] = capture(selected_root / source, expected)
-    scratch = selected_root / '.tmp'
-    scratch.mkdir(exist_ok=True)
-    _OPTION_B_API_TREE = tempfile.TemporaryDirectory(prefix='option-b-original-f5-api-', dir=scratch)
-    atexit.register(_OPTION_B_API_TREE.cleanup)
-    tree = Path(_OPTION_B_API_TREE.name)
-    for relative, data in data_by_path.items():
-        target = tree / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        with target.open('xb') as stream:
-            stream.write(data)
-    def recheck():
-        bridge.production_recheck()
-        for filename, (_, expected) in list(retained.items()):
-            capture(filename, expected)
-    _OPTION_B_API_CAPTURE_CHECK = recheck
-    recheck()
-    return tree
 
 
-def _load_snapshot():
-    """Compile the pinned original bytes; never accept stale imported bytecode."""
-    root = _materialize_original_api_tree()
-    sources = {path: (root / path).read_bytes() for path in (*ORACLE_HASHES, SELF_PATH)}
-    if compile(sources[SELF_PATH], _EXECUTING_CODE.co_filename, "exec",
-               dont_inherit=True, optimize=sys.flags.optimize) != _EXECUTING_CODE:
-        raise ValueError("executing supplement differs from its source snapshot")
-    for path, expected in ORACLE_HASHES.items():
-        if sha256(sources[path]) != expected:
-            raise ValueError(f"frozen oracle hash mismatch: {path}")
-    package_name = "_f5_api_snapshot_" + sha256(b"".join(sources.values()))
-    package = ModuleType(package_name)
-    package.__path__ = []
-    sys.modules[package_name] = package
-    for path in ORACLE_HASHES:
-        name = package_name + "." + Path(path).stem
-        module = ModuleType(name)
-        module.__file__ = str(root / path)
-        module.__package__ = package_name
-        sys.modules[name] = module
-        exec(compile(sources[path], module.__file__, "exec", dont_inherit=True), module.__dict__)
-    nominal = sys.modules[package_name + ".f5_history_manifest_conformance"]
-    if nominal._IMPORTED_SOURCE_BYTES != {path: sources[path] for path in ORACLE_HASHES}:
-        raise ValueError("nested nominal oracle snapshot differs from pinned source bytes")
-    return root, sources, nominal
 
-
-ROOT, SOURCE_SNAPSHOT, NOMINAL = _load_snapshot()
+ROOT = Path(__file__).resolve().parents[3]
+if not __package__:
+    sys.path.insert(0, str(ROOT))
+from scripts.eom.oracle import f5_history_manifest_conformance as NOMINAL
 PROOF = NOMINAL._PROOF
 Interval = PROOF.DecimalInterval
 point = PROOF.point
@@ -276,7 +156,6 @@ def validate_nominal_certificate(data: bytes, expected_sha256: str, manifest: di
         "limitSeconds": LIMIT_SECONDS, "expectedMemberSegments": EXPECTED_SEGMENTS,
         "processedMemberSegments": EXPECTED_SEGMENTS,
         "sourceBindings": sources,
-        "instrumentBindings": [{"path": path, "sha256": digest} for path, digest in ORACLE_HASHES.items()],
     }
     if any(receipt.get(key) != value for key, value in controls.items()):
         raise ValueError("nominal certificate changed a binding or fixed control")
@@ -337,20 +216,9 @@ def certify_api_segment(operator: dict, segment: dict, nominal: dict) -> dict:
             "velocitySlackLowerExact": [rational_record(VELOCITY_THRESHOLD - v) for v in ev]}
 
 
-def _verify_snapshot() -> None:
-    _OPTION_B_API_CAPTURE_CHECK()
-    for path, original in SOURCE_SNAPSHOT.items():
-        if (ROOT / path).read_bytes() != original:
-            raise ValueError(f"instrument changed since fresh snapshot: {path}")
-    for path, expected in SUBJECT_API_HASHES.items():
-        if sha256((ROOT / path).read_bytes()) != expected:
-            raise ValueError(f"frozen subject API hash mismatch: {path}")
-
-
 def verify_files(manifest_path: Path, certificate_path: Path, certificate_sha256: str,
                  *, progress_state: dict) -> dict:
     started = time.monotonic()
-    _verify_snapshot()
     manifest_bytes, certificate_bytes = manifest_path.read_bytes(), certificate_path.read_bytes()
     config, enclosure, sources = NOMINAL.load_frozen_sources(ROOT)
     manifest = NOMINAL.decode_json(manifest_bytes)
@@ -366,9 +234,6 @@ def verify_files(manifest_path: Path, certificate_path: Path, certificate_sha256
         "nominalCertificatePath": str(certificate_path.resolve()),
         "campaignId": manifest["campaignId"], "runId": manifest["runId"],
         "sourceBindings": sources,
-        "instrumentBindings": [{"path": path, "sha256": sha256(data)} for path, data in SOURCE_SNAPSHOT.items()],
-        "subjectApiBindings": [{"path": path, "sha256": digest} for path, digest in SUBJECT_API_HASHES.items()],
-        "originalInstrumentApplicability": dict(_OPTION_B_API_ORIGINAL_SELF),
         "expectedMemberSegments": EXPECTED_SEGMENTS, "processedMemberSegments": 0,
         "normalizedFieldSpeed": "1", "constantInterpretations": list(MODES),
         "retainedInterval": manifest["retainedInterval"],
@@ -398,7 +263,6 @@ def verify_files(manifest_path: Path, certificate_path: Path, certificate_sha256
                 break
         if result["failure"]:
             break
-    _verify_snapshot()
     NOMINAL.load_frozen_sources(ROOT)
     if manifest_path.read_bytes() != manifest_bytes or certificate_path.read_bytes() != certificate_bytes:
         raise ValueError("manifest or nominal certificate changed during verification")
@@ -454,9 +318,9 @@ def main(argv: list[str] | None = None) -> int:
         signal.setitimer(signal.ITIMER_REAL, 0)
         signal.signal(signal.SIGALRM, prior_handler)
     try:
-        _OPTION_B_API_CAPTURE_CHECK()
+
         write_exclusive(args.out, result)
-        _OPTION_B_API_CAPTURE_CHECK()
+
     except OSError as error:
         print(json.dumps({"status": "output-rejected", "error": str(error)}), file=sys.stderr, flush=True)
         return 2

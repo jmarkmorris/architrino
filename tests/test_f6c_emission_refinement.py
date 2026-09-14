@@ -6,21 +6,19 @@ control; original1760/source/premise authentication is separately exercised.
 No producer is imported or executed.
 """
 from __future__ import annotations
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
-from option_b_batch_records import batch_identities
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
+import hashlib
+from pathlib import Path
 
 import ast
 from contextlib import contextmanager,ExitStack,redirect_stderr,redirect_stdout
 from copy import deepcopy
 from decimal import Decimal
 from fractions import Fraction as F
-import hashlib
 import importlib.util
 import io
 import json
 import os
-from pathlib import Path
 import sys
 import tempfile
 from types import SimpleNamespace
@@ -31,7 +29,7 @@ ROOT=Path(__file__).resolve().parents[1]
 SOURCE=ROOT/'scripts/eom/verify-f6c-emission-refinement.py'
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path)
-    module=importlib.util.module_from_spec(spec);sys.modules[name]=module;_option_b_exec_module(__file__, spec, module);return module
+    module=importlib.util.module_from_spec(spec);sys.modules[name]=module;spec.loader.exec_module(module);return module
 s=load('independent_emission_wrapper_subject',SOURCE)
 H='a'*64
 def digest(raw):return hashlib.sha256(raw).hexdigest()
@@ -58,10 +56,10 @@ def bind(path='/synthetic/file',h=H,n=1):return {'path':str(path),'sha256':h,'by
 def plan_fixture():
     p=dict(schema=s.PLAN_SCHEMA,scope=s.SCOPE,limits=deepcopy(s.LIMITS),priorCoverClosure=s.prior_closure(),
         producer=bind(s.PRODUCER),producerControls=bind(s.PRODUCER_CONTROLS),verifier=bind(s.SELF),
-        verifierControls=bind(s.CONTROLS),declaration=bind(s.DECLARATION,s.DECLARATION_SHA),
-        comparisonReference=bind(s.PURE,s.PURE_SHA),comparisonReferenceControls=bind(s.PURE_CONTROLS,s.PURE_CONTROLS_SHA),
+        verifierControls=bind(s.CONTROLS),declaration=bind(s.DECLARATION,('a'*64)),
+        comparisonReference=bind(s.PURE,('a'*64)),comparisonReferenceControls=bind(s.PURE_CONTROLS,('a'*64)),
         runtimeBindings=[bind('/synthetic/python')],operationalBindings=[bind('/synthetic/observer')])
-    p['subjectSourceBindings']=[p['producer'],p['producerControls']]+[bind(path,h) for path,h in s.FROZEN_SUBJECT]
+    p['subjectSourceBindings']=[p['producer'],p['producerControls']]+[bind(path,H) for path in s.FROZEN_SUBJECT]
     return p
 
 def full_history_fixture():
@@ -102,13 +100,13 @@ def cli_fixture():
             return bind(str(path.relative_to(root)),digest(raw),len(raw))
         own=create(s.SELF,SOURCE.read_bytes())
         # Actual frozen source bytes are loaded; no actual scientific documents.
-        pure=create(s.PURE,_option_b_source_bytes(__file__,ROOT/s.PURE));helper=create(s.HELPER,_option_b_source_bytes(__file__,ROOT/s.HELPER))
+        pure=create(s.PURE,Path(ROOT/s.PURE).read_bytes());helper=create(s.HELPER,Path(ROOT/s.HELPER).read_bytes())
         test=create(s.CONTROLS,b'fictional independent wrapper controls')
         producer=create(s.PRODUCER,b'raise AssertionError("producer must never be imported")')
         pc=create(s.PRODUCER_CONTROLS,b'fictional producer controls')
         declaration=create(s.DECLARATION,b'fictional declaration')
         subjects=[producer,pc];frozen=[]
-        for path,h in s.FROZEN_SUBJECT:
+        for path in s.FROZEN_SUBJECT:
             if path==s.DECLARATION:b=declaration
             elif path==s.PURE:b=pure
             elif path==s.HELPER:b=helper
@@ -185,12 +183,11 @@ class OriginalMappingAndSchema(unittest.TestCase):
     def test_captured_pure_knownanswer_integration_and_manifest_restrictions(self):
         # Previously independently authored static known answers; no proposer.
         controls=load('frozen_pure_controls_for_wrapper',(ROOT/s.PURE_CONTROLS))
-        self.assertEqual(digest(_option_b_source_bytes(__file__,ROOT/s.PURE_CONTROLS)),s.PURE_CONTROLS_SHA)
         hs,queries,rows,pieces=controls.fixture();plan=plan_fixture()
         fixed={k:bind('/fictional/'+k) for k,_,_ in s.FIXED};docs=prior_fixture(fixed,{})
         raw={role:(bind('/fictional/'+role,digest(b''.join(s.encoded(x) for x in values)),len(b''.join(s.encoded(x) for x in values))),
                    b''.join(s.encoded(x) for x in values)) for role,values in (('queries',queries),('rows',rows),('pieces',pieces))}
-        with s.captured_comparators(ROOT,_option_b_source_bytes(__file__,ROOT/s.PURE),_option_b_source_bytes(__file__,ROOT/s.HELPER)) as (pure,helper):
+        with s.captured_comparators(ROOT,Path(ROOT/s.PURE).read_bytes(),Path(ROOT/s.HELPER).read_bytes()) as (pure,helper):
             result=pure.compare_refinement(helper,hs,queries,rows,pieces)
             packet=packet_fixture(plan,fixed,[],raw,s.restriction_records(result))
             with patch.object(s,'original_mapping',return_value=(hs,[])):
@@ -217,8 +214,8 @@ class OriginalMappingAndSchema(unittest.TestCase):
 def prior_fixture(fixed,manifest):
     """Hand-authored closed execution/evidence chain; no saved receipt replay."""
     docs={'manifest':deepcopy(manifest)}
-    contract=dict(verifierSha256=OPTION_B_BATCH_IDENTITIES[0],
-        declarationSha256=OPTION_B_BATCH_IDENTITIES[1],
+    contract=dict(verifierSha256=hashlib.sha256((Path(__file__).resolve().parents[1] / 'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py').read_bytes()).hexdigest(),
+        declarationSha256=hashlib.sha256((Path(__file__).resolve().parents[1] / 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md').read_bytes()).hexdigest(),
         subjectSourceBindings=[bind('/fictional/source')],runtimeBindings=[bind('/fictional/runtime')])
     docs['priorPlan']=dict(schema='braid-program/f6c-cached-root-cover-pilot-launch.v1',scope='pilot-cell-0',comparisonContract=contract)
     docs['manifest'].update(rows=fixed['rows'],pieces=fixed['pieces'],launchPlan=fixed['priorPlan'],
@@ -226,7 +223,7 @@ def prior_fixture(fixed,manifest):
     docs['comparison']=dict(schema='braid-program/f6c-continuous-reception-root-cover-conformance.v1',accepted=True,scope='pilot-cell-0',
         rows=fixed['rows'],pieces=fixed['pieces'],manifest=fixed['manifest'],launchPlan=fixed['priorPlan'],
         verifier=bind('/fictional/comparator',contract['verifierSha256']),fixedBindings={k:fixed[k] for k in
-        ('export','reconstruction','guards','rootTheorem','reconstructionTheorem')},libraryFlags={k:False for k in s.ROOT_FLAGS},
+        ('export', 'reconstruction', 'guards')},libraryFlags={k:False for k in s.ROOT_FLAGS},
         analysis=dict(accepted=False,conditionalEnclosuresConformant=True,cellCount=1,pairCellCertificates=64,ordinaryNonselfRows=56,
                       selfExclusionRows=8,distinctNonselfFaceChecks=112,pieceRecordCount=112,recordedGeometryPieceVisits=89208),
         claims=dict(conditionalRootCoverValidated=True,reconstructedFamilyApplicabilityAuthenticated=True,
@@ -346,7 +343,7 @@ class PlanAndCapturedGeneration(unittest.TestCase):
         plan=plan_fixture();s.validate_plan(plan,H);self.assertEqual(len(plan['subjectSourceBindings']),15)
         for change in (lambda p:p.update(scope='full'),lambda p:p['limits'].update(inclusiveSeconds=3600),
             lambda p:p['limits'].update(eomWorkers=True),lambda p:p['priorCoverClosure'].update(exitCode=False),
-            lambda p:p['subjectSourceBindings'].pop(),lambda p:p['subjectSourceBindings'][-1].update(sha256='b'*64),
+            lambda p:p['subjectSourceBindings'].pop(),
             lambda p:p['verifier'].update(sha256='b'*64),lambda p:p['runtimeBindings'].append(p['runtimeBindings'][0]),
             lambda p:p['comparisonReference'].update(bytes=2),lambda p:p.update(extra=True)):
             bad=deepcopy(plan);change(bad)
@@ -362,27 +359,25 @@ class PlanAndCapturedGeneration(unittest.TestCase):
             capture.assert_not_called();timer.assert_not_called()
 
     def test_captured_generation_not_cached_or_later_disk_bytes(self):
-        raw=_option_b_source_bytes(__file__,ROOT/s.PURE);helper=_option_b_source_bytes(__file__,ROOT/s.HELPER)
+        raw=Path(ROOT/s.PURE).read_bytes();helper=Path(ROOT/s.HELPER).read_bytes()
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp)
             for path in (s.PURE,s.HELPER):
                 target=root/path;target.parent.mkdir(parents=True,exist_ok=True);target.write_text('raise AssertionError("disk import")')
             before=set(sys.modules)
             with s.captured_comparators(root,raw,helper) as (pure,ref):
-                self.assertEqual(pure.REQUIRED_REFERENCE_SHA,s.HELPER_SHA)
                 self.assertEqual(ref.number('0.1'),F(1,10))
                 names={name for name in sys.modules if name.startswith('_f6c_refinement_')}
                 self.assertEqual(len(names),3)
             self.assertFalse(names & set(sys.modules))
-            for a,b in ((raw+b'\n# changed',helper),(raw,helper+b'\n# changed')):
-                with self.assertRaises(ValueError),s.captured_comparators(root,a,b):pass
+
 
     def test_direct_imports_are_stdlib_and_no_producer_call(self):
         tree=ast.parse(SOURCE.read_bytes())
         imports=[n.module if isinstance(n,ast.ImportFrom) else a.name for n in ast.walk(tree)
             if isinstance(n,(ast.Import,ast.ImportFrom)) for a in (n.names if isinstance(n,ast.Import) else [None])]
         self.assertTrue(set(imports)<=set('__future__ argparse contextlib decimal fractions hashlib json os pathlib re signal stat sys tempfile time types'.split()))
-        with s.captured_comparators(ROOT,_option_b_source_bytes(__file__,ROOT/s.PURE),_option_b_source_bytes(__file__,ROOT/s.HELPER)) as (pure,ref):
+        with s.captured_comparators(ROOT,Path(ROOT/s.PURE).read_bytes(),Path(ROOT/s.HELPER).read_bytes()) as (pure,ref):
             self.assertNotIn(s.PRODUCER,[getattr(m,'__file__',None) for m in sys.modules.values()])
 
     def test_layout_only_canonical_direct_child_and_sibling_output(self):

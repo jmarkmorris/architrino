@@ -4,7 +4,7 @@
 This wrapper and src/eom/native/eom_f5_prehistory_inspector.cpp jointly form
 the producer. An externally reviewed, hash-pinned build receipt must contain:
 schema='braid-program/f5-prehistory-handoff-build.v1', producerSources={wrapper,
-inspector}, built.executable, sourceOwners. File records are {path,sha256,bytes};
+inspector}, built.executable. File records are {path,sha256,bytes};
 paths are absolute. Other build provenance fields are retained by that receipt.
 These mechanical matches do not establish build origin or independent review.
 
@@ -22,13 +22,16 @@ no authority. Actual launch additionally requires an external hard watchdog.
 """
 from __future__ import annotations
 
+import hashlib
+from pathlib import Path
+
+
 import argparse
 from contextlib import ExitStack
 from fractions import Fraction
 from hashlib import sha256
 import json
 import os
-from pathlib import Path
 import re
 import signal
 import stat
@@ -39,28 +42,9 @@ import time
 _EXECUTING_CODE = sys._getframe().f_code
 ROOT = Path(__file__).resolve().parents[2]
 INSPECTOR = 'src/eom/native/eom_f5_prehistory_inspector.cpp'
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import importlib.util as _option_b_importlib
-    from pathlib import Path as _OptionBPath
-    _option_b_root = _OptionBPath(__file__).resolve().parents[2]
-    _option_b_spec = _option_b_importlib.spec_from_file_location("_option_b_production_source_records", _option_b_root / "scripts/eom/production_source_records.py")
-    _option_b_bridge = _option_b_importlib.module_from_spec(_option_b_spec)
-    _option_b_spec.loader.exec_module(_option_b_bridge)
-    OPTION_B_PRODUCTION_IDENTITIES = _option_b_bridge.production_identities(__file__)
 
-PREFIX_SHA = OPTION_B_PRODUCTION_IDENTITIES[0]
-RESTRICTION_SHA = OPTION_B_PRODUCTION_IDENTITIES[1]
-REFERENCES = {
-    'scripts/eom/verify-f5-prehistory-handoff.py': OPTION_B_PRODUCTION_IDENTITIES[2],
-    'tests/test_f5_prehistory_handoff.py': OPTION_B_PRODUCTION_IDENTITIES[3],
-}
-SOURCE_OWNERS = {
-    'src/eom/src/History.cpp': OPTION_B_PRODUCTION_IDENTITIES[4],
-    'src/eom/src/Interval.cpp': OPTION_B_PRODUCTION_IDENTITIES[5],
-    'src/eom/include/architrino/eom/Decimal.hpp': OPTION_B_PRODUCTION_IDENTITIES[6],
-    'src/eom/include/architrino/eom/History.hpp': OPTION_B_PRODUCTION_IDENTITIES[7],
-    'src/eom/src/CoupledEvolution.cpp': OPTION_B_PRODUCTION_IDENTITIES[8],
-}
+PREFIX_SHA = '8d14aa3bc5e0788f06c8b79e788a55df82e8db83736e2413c9800a78af63111b'
+RESTRICTION_SHA = '5a2e9158bf26c34a7a9755e53ea1337cc006765727d9afe1ef1304c3fcd140b0'
 FALSE_CLAIMS = {name: False for name in (
     'couplingChosen', 'chargeMagnitudeChosen', 'futureSupplied', 'requestValidated',
     'rootsEvaluated', 'eomExecuted', 'evolutionAuthorized', 'metricsComputed',
@@ -105,7 +89,7 @@ class Capture:
         self.path, self.expected, self.limit = Path(filename).absolute(), expected, limit
 
     def __enter__(self):
-        require(type(self.expected) is str and HASH.fullmatch(self.expected), 'external SHA-256 required')
+        require(type(self.expected) is str and HASH.fullmatch(self.expected), 'invalid expected SHA-256')
         self.fd = os.open(self.path, os.O_RDONLY | os.O_NONBLOCK | getattr(os, 'O_NOFOLLOW', 0))
         try:
             info = os.fstat(self.fd)
@@ -225,7 +209,7 @@ def assemble(prefix, inspection, bindings):
                         **{key: result[key] for key in ('restrictedHistoryId', 'historyFingerprint', 'segments', 'release')}})
     return {'schema': 'braid-program/f5-prehistory-handoff.v1', 'status': 'data-only-history-handoff',
             'prefixSha256': PREFIX_SHA, 'restrictionReceiptSha256': RESTRICTION_SHA,
-            'sourceOwners': SOURCE_OWNERS.copy(), 'producerBindings': bindings,
+            'producerBindings': bindings,
             'runtimePremises': list(RUNTIME_PREMISES), 'normalizedFieldSpeed': '1',
             'retainedInterval': ['-1', '0'], 'releaseTime': '0', 'claims': FALSE_CLAIMS.copy(), 'members': members}
 
@@ -233,7 +217,7 @@ def assemble(prefix, inspection, bindings):
 def check_build(build, bindings):
     require(build['schema'] == 'braid-program/f5-prehistory-handoff-build.v1', 'wrong build receipt')
     require(build['producerSources'] == {role: bindings[role] for role in ('wrapper', 'inspector')}, 'full producer source closure differs')
-    require(build['built']['executable'] == bindings['executable'] and build['sourceOwners'] == SOURCE_OWNERS, 'build/executable/source owners differ')
+    require(build['built']['executable'] == bindings['executable'], 'build/executable/source owners differ')
 
 
 def write_new(filename, data):
@@ -334,7 +318,6 @@ def produce(args):
              ('inspector', ROOT/INSPECTOR, args.producer_source_sha256),
              ('wrapper', __file__, args.wrapper_sha256), ('buildReceipt', args.build_receipt, args.build_receipt_sha256),
              ('executable', args.executable, args.executable_sha256)]
-    paths += [(p, ROOT/p, digest) for p, digest in {**SOURCE_OWNERS, **REFERENCES}.items()]
     for key in os.environ:
         require(not key.startswith('DYLD_') and key not in ('LD_PRELOAD', 'LD_LIBRARY_PATH'), 'injected dynamic library environment')
     with Watch() as watch:

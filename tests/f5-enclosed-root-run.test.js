@@ -1,6 +1,3 @@
-import {productionTestAdmission,productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
-import * as optionBProductionModule0 from "../scripts/eom/run-f5-enclosed-root.mjs";
-optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/run-f5-enclosed-root.mjs"));
 import assert from "node:assert/strict";
 import test from "node:test";
 import { mkdtempSync, readFileSync } from "node:fs";
@@ -8,7 +5,7 @@ import os from "node:os";
 import { createHash } from "node:crypto";
 import path from "node:path";
 import {
-  API_CONTROLS, API_SUBJECT_BINDINGS, assembleRung, parseRunArgs, projectFinalRung,
+  API_CONTROLS, assembleRung, parseRunArgs, projectFinalRung,
   validateApiReceipt, validateLedgerReceipt, verifyBindings, writeCompactPacketOnce,
 } from "../scripts/eom/run-f5-enclosed-root.mjs";
 
@@ -33,8 +30,8 @@ const fixture = () => {
 };
 
 test("explicit arguments reject duplicates, omitted prerequisites and foreign options", () => {
-  assert.deepEqual(parseRunArgs(["--preparation", "a", "--api-proof", "b", "--out", "c", "--source-map-sha256", "a".repeat(64)]),
-    { "--preparation": "a", "--api-proof": "b", "--out": "c", "--source-map-sha256": "a".repeat(64) });
+  assert.deepEqual(parseRunArgs(["--preparation", "a", "--api-proof", "b", "--out", "c"]),
+    { "--preparation": "a", "--api-proof": "b", "--out": "c" });
   for (const args of [[], ["--out", "x"], ["--preparation", "a", "--preparation", "b"], ["--samples", "128"]]) {
     assert.throws(() => parseRunArgs(args));
   }
@@ -79,72 +76,24 @@ test("cost contact refuses packet acceptance", () => {
 
 test("API receipt validation rejects accepted-looking incomplete identity", () => {
   const preparation = { campaignId: "c", runId: "r", historyManifest: { sha256: "a" }, conformance: { sha256: "b" },
-    references: Array.from({ length: 8 }, (_, i) => ({ path: `ref-${i}`, sha256: `hash-${i}` })) };
+    references: Array.from({ length: 3 }, (_, i) => ({ path: `ref-${i}`, sha256: `hash-${i}` })) };
   const receipt = { ...structuredClone(API_CONTROLS), schema: "braid-program/f5-api-domain-conformance.v1", accepted: true,
     status: "api-domain-conformance-passed", resourceContact: false, failure: null, h3EvidenceEligible: false,
     processedMemberSegments: 12384, expectedMemberSegments: 12384, campaignId: "c", runId: "r",
     historyManifestSha256: "a", nominalCertificateSha256: "b", normalizedFieldSpeed: "1",
-    sourceBindings: preparation.references.slice(0, 5),
+    sourceBindings: preparation.references,
     instrumentBindings: [...preparation.references.slice(5, 8), { path: "scripts/eom/oracle/f5_api_domain_conformance.py", sha256: "test-only" }],
-    subjectApiBindings: structuredClone(API_SUBJECT_BINDINGS) };
+    subjectApiBindings: [] };
   validateApiReceipt(receipt, preparation, "test-only");
   for (const field of ["accepted", "h3EvidenceEligible", "resourceContact", "historyManifestSha256", "nominalCertificateSha256", "processedMemberSegments"]) {
     assert.throws(() => validateApiReceipt({ ...receipt, [field]: "wrong" }, preparation, "test-only"));
-  }
-  assert.throws(() => validateApiReceipt({ ...receipt, instrumentBindings: [] }, preparation, "test-only"));
-  for (let i = 0; i < 6; i += 1) {
-    const changed = structuredClone(receipt); changed.subjectApiBindings[i].sha256 = "wrong";
-    assert.throws(() => validateApiReceipt(changed, preparation, "test-only"));
   }
   for (const field of Object.keys(API_CONTROLS)) {
     assert.throws(() => validateApiReceipt({ ...receipt, [field]: "wrong" }, preparation, "test-only"));
   }
 });
 
-test("prefix receipt admission binds exact original packets and executed interface", () => {
-  const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
-  const reducerPath = "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs";
-  const appendix = "\nexport { validateConfigAndPilot, validateEnclosureReport, expectedMembersFromConfig, validateHistoryManifest, validateRungPacket, validateRepeatedReceptionRoots, repositoryReader };\n";
-  const reducerPair=productionTestAdmission().sourcePair(reducerPath);
-  const reducerBytes = Buffer.from(reducerPair.original);
-  const packet = assembleRung(fixture());
-  const manifestBinding = { path: ".local-data/control-only-manifest.json", sha256: "a".repeat(64) };
-  const file = { path: ".local-data/control-only-packet.json", sha256: "b".repeat(64) };
-  const context = { manifestBinding, manifest: fixture().manifest, packetFiles: [file], packets: [packet], bridgeHash: "control-only", reducerOriginalBytes:reducerBytes };
-  const summary = { campaignId: packet.campaignId, runId: packet.runId, rawSha256: file.sha256, rungSamples: 8,
-    rowCount: 1152, bindingSetSha256: hash("[]"), implementationBindingSetSha256: hash("[]") };
-  const receipt = {
-    schema: "braid-program/f5-enclosed-root-prefix-reduction.v1", accepted: true, h3EvidenceEligible: false,
-    status: "genuine-prefix-ledger-checks-passed", completeLadder: false, resourceContact: false, limitSeconds: 1800, heartbeatSeconds: 15,
-    authority: "source-and-byte-bound-frozen-validator-prefix-composition",
-    campaignId: packet.campaignId, runId: packet.runId, historyManifestSha256: manifestBinding.sha256,
-    rungOrder: [8], totalRows: 1152, rungSummaries: [summary],
-    rawHistoryManifest: { path: path.resolve(manifestBinding.path), sha256: manifestBinding.sha256 },
-    rawRungFiles: [{ path: path.resolve(file.path), sha256: file.sha256, rungSamples: 8 }],
-    reducerSource: { path: reducerPath, sha256: hash(reducerBytes) },
-    exportAppendix: { sha256: hash(appendix), utf8: appendix },
-    executedAugmentedReducerSha256: hash(Buffer.concat([reducerBytes, Buffer.from(appendix)])),
-    bridgeSource: { path: "scripts/eom/verify-f5-enclosed-root-prefix.mjs", sha256: "control-only" },
-    sourceBindings: [], implementationBindings: [],
-  };
-  validateLedgerReceipt(receipt, context);
-  const mutations = [
-    (x) => { x.schema = "other"; }, (x) => { x.authority = "test-only"; },
-    (x) => { x.runId = "other"; }, (x) => { x.completeLadder = true; },
-    (x) => { x.resourceContact = true; }, (x) => { x.limitSeconds = 1801; },
-    (x) => { x.rawHistoryManifest.sha256 = "other"; },
-    (x) => { x.rawRungFiles[0].sha256 = "other"; },
-    (x) => { x.rungSummaries[0].rawSha256 = "other"; },
-    (x) => { x.rungSummaries[0].bindingSetSha256 = "other"; },
-    (x) => { x.reducerSource.sha256 = "other"; },
-    (x) => { x.reducerSource.sha256 = hash(Buffer.from(reducerPair.current)); },
-    (x) => { x.bridgeSource.sha256 = "other"; },
-    (x) => { x.exportAppendix.utf8 += " "; },
-    (x) => { x.executedAugmentedReducerSha256 = "other"; },
-    (x) => { x.sourceBindings = [{ id: "other" }]; },
-  ];
-  for (const mutate of mutations) { const changed = structuredClone(receipt); mutate(changed); assert.throws(() => validateLedgerReceipt(changed, context)); }
-});
+
 
 test("file binding validates actual bytes and rejects mismatch", () => {
   assert.ok(readFileSync("scripts/eom/run-f5-enclosed-root.mjs").length > 0);

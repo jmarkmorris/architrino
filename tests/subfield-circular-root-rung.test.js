@@ -1,6 +1,3 @@
-import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
-import * as optionBProductionModule0 from "../scripts/eom/run-subfield-circular-root-rung.mjs";
-optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/run-subfield-circular-root-rung.mjs"));
 import assert from "node:assert/strict";
 import { fstatSync, mkdtempSync, readFileSync, readSync, realpathSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -8,11 +5,10 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { SUBFIELD_CIRCULAR_BUILD_PATH, SUBFIELD_CIRCULAR_BUILD_SHA, SUBFIELD_CIRCULAR_IDS, SUBFIELD_CIRCULAR_RESOURCE_OBSERVATION, SUBFIELD_CIRCULAR_RUNG_PATH, SUBFIELD_CIRCULAR_RUNTIME_PATHS,
-  SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES, authenticateSubfieldCircularPriorPhases, candidateRungDispositions, candidateRungSchedule, candidateWallLimit,
+  authenticateSubfieldCircularPriorPhases, candidateRungDispositions, candidateRungSchedule, candidateWallLimit,
   checkRepeatedSubfieldCircularPhase, parseSubfieldCircularRungArgs, rungSha, validateSubfieldCircularResourcePlan, validateSubfieldCircularRungSummary,
   captureSubfieldCircularRungSource, summarizeSubfieldCircularNamedOutputs, watchedSubfieldCircularRepeatedPhases } from "../scripts/eom/run-subfield-circular-root-rung.mjs";
 import { subfieldCircularExactDecimal } from "../src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs";
-import {circularFixture} from './option-b-circular-fixture.mjs';
 
 // Pure scheduling and synthetic receipt plumbing, not independent mathematics.
 // No histories are prepared and no EOM root call is made by these controls.
@@ -39,7 +35,7 @@ test("only exact reviewed resource predicates and separately accepted cohort ext
 
 test("rung CLI rejects incomplete authority, changed rungs and output escape", () => {
   const a=["--plan","plan.json","--plan-sha256",hash,"--candidate","coincident-center-two-component-circular-co-rotating","--rung","8","--prior-phase-receipts","prior.json",
-    "--prior-phase-receipts-sha256",hash,"--out",".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/new","--runner-sha256",hash,"--source-map-sha256",hash];
+    "--prior-phase-receipts-sha256",hash,"--out",".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/new"];
   assert.equal(parseSubfieldCircularRungArgs(a)["--rung"],"8");
   for(const b of [a.slice(0,-2),[...a,"--rung","32"],a.map(x=>x==="8"?"2":x),a.map(x=>x.endsWith("/new")?x+"/../escape":x)])assert.throws(()=>parseSubfieldCircularRungArgs(b));
 });
@@ -101,19 +97,7 @@ test("complete rung summary needs exact scope,census,phase order and hash chain"
     assert.throws(()=>validateSubfieldCircularRungSummary({...summary,...mutation},{candidateId:"coincident-midpoint-common-frequency",rung:8},phases,"candidate-rung"));
 });
 
-test("captured selected runtime import exposes exact APIs and preserves scientific selections",async t=>{
-  const {root:fixtureRoot,admission}=await circularFixture(t);
-  const api={outer:["processTable","superviseRegisteredPilot","outerWorkerOperation"],pilot:["installPilotSnapshot","watchedPilotFileOperation","validatePilotPhase","validatePilotProof"],
-    helper:["runSubfieldCircularPhaseProcess"],bridge:["openSubfieldCircularPhaseLedgerWorker"],watch:["runWatched"],reducer:["subfieldCircularExactDecimal"]};
-  for(const[key,names]of Object.entries(api)){const bytes=readFileSync(SUBFIELD_CIRCULAR_RUNTIME_PATHS[key]);assert.equal(rungSha(bytes),admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS[key]).sha256);
-    if(SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES[key]){const pair=admission.productionSourcePair(SUBFIELD_CIRCULAR_RUNTIME_PATHS[key],SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES[key]);assert.equal(rungSha(Buffer.from(pair.original)),SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES[key]);assert.equal(rungSha(Buffer.from(pair.current)),rungSha(bytes));}
-    if(key==="watch")continue; // This module needs its original file URL; covered by the frozen snapshot control below.
-    const m=await import("data:text/javascript;base64,"+bytes.toString("base64"));for(const name of names)assert.equal(typeof m[name],"function",`${key}.${name}`);}
-  const sources=admission.sources;
-  const p=await import("data:text/javascript;base64,"+readFileSync(SUBFIELD_CIRCULAR_RUNTIME_PATHS.pilot).toString("base64")),snapshot=p.installPilotSnapshot(sources,fixtureRoot);
-  try {assert.equal(typeof(await snapshot.import(SUBFIELD_CIRCULAR_RUNG_PATH)).runSubfieldCircularCandidateRung,"function");
-    assert.equal(typeof(await snapshot.import(SUBFIELD_CIRCULAR_RUNTIME_PATHS.watch)).runWatched,"function");}finally{snapshot.close();}
-});
+
 
 test("same-descriptor source capture rejects FIFO, oversized, truncated and changed inputs",()=>{
   const root=realpathSync(mkdtempSync(path.join(os.tmpdir(),"subfieldCircular-rung-capture-"))), filename=path.join(root,"source.mjs"), text="export const synthetic=true;\n";

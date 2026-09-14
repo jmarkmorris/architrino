@@ -23,16 +23,8 @@ import sys
 import time
 
 
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import importlib.util as _option_b_importlib
-    from pathlib import Path as _OptionBPath
-    _option_b_root = _OptionBPath(__file__).resolve().parents[2]
-    _option_b_spec = _option_b_importlib.spec_from_file_location("_option_b_production_source_records", _option_b_root / "scripts/eom/production_source_records.py")
-    _option_b_bridge = _option_b_importlib.module_from_spec(_option_b_spec)
-    _option_b_spec.loader.exec_module(_option_b_bridge)
-    OPTION_B_PRODUCTION_IDENTITIES = _option_b_bridge.production_identities(__file__)
 
-HANDOFF_SHA = OPTION_B_PRODUCTION_IDENTITIES[0]
+HANDOFF_SHA = '4e0696a848a0d36ccbe5948295e71738c933b7ea120e9aee00e2effdd6ecc149'
 SCHEMA = "braid-program/f5-ordinary-evolution-outcome-check.v1"
 DECLARATION_SCHEMA = "braid-program/f5-ordinary-evolution-declaration.v1"
 GRADE = "executable_architecture_evidence"

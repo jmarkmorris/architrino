@@ -61,7 +61,7 @@ test("strict keyed data rejects missing, extra, malformed, mismatched and duplic
 });
 
 function fixture(t, data = readData()) {
-  const scratch = path.join(root, ".tmp/option-b-borg-budget");
+  const scratch = path.join(root, ".tmp/borg-budget-tests");
   fs.mkdirSync(scratch, { recursive: true });
   const dir = fs.mkdtempSync(path.join(scratch, "test-"));
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

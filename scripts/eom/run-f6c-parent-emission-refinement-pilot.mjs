@@ -16,11 +16,8 @@ export function operationScope(index){parentScope(index);return `operational-ori
 export const LIMIT=1800000,FILE=64*1024**2,LOG=16*1024**2;
 export const LIBRARY_FLAGS=Object.freeze({premise_truth_authenticated:false,subject_membership_established:false,execution_authorized:false,metrics_available:false,h3_evidence_eligible:false});
 export const OPERATIONAL_PATHS=Object.freeze(['scripts/eom/launch-prescribed-response-pilot.mjs','scripts/eom/launch-subfield-circular-root-pilot.mjs','scripts/eom/launch-f6c-emission-refinement-pilot.mjs']);
-export let NAMED;
-export let DEPENDENCIES;
-export let ORIGINAL;
-export const PLAN_KEYS=Object.freeze(["schema","scope","parentIndex","declaration","producer","producerControls","proposalReference","proposalReferenceControls","verifier","verifierControls","comparisonReference","comparisonReferenceControls","dependencies","originalBindings","acceptanceOwner","priorCoverClosure","runtimeBindings","operationalBindings","historicalDocumentRoutes","limits"]);
-export const MANIFEST_KEYS=Object.freeze(["schema","scope","status","accepted","launchPlan","producer","verifier","declaration","parent","members","originalBindings","acceptanceOwner","priorCoverClosure","historicalSourceBindings","historicalEvidenceVerification","subjectSourceBindings","runtimeBindings","operationalBindings","algorithm","restrictions","census","helperCalls","queries","rows","pieces","libraryFlags","claims","publicationRequires"]);
+export const PLAN_KEYS=Object.freeze(["schema","scope","parentIndex","producer","producerControls","proposalReference","proposalReferenceControls","verifier","verifierControls","comparisonReference","comparisonReferenceControls","dependencies","originalBindings","acceptanceOwner","priorCoverClosure","runtimeBindings","operationalBindings","limits"]);
+export const MANIFEST_KEYS=Object.freeze(["schema","scope","status","accepted","launchPlan","producer","verifier","parent","members","originalBindings","acceptanceOwner","priorCoverClosure","historicalSourceBindings","historicalEvidenceVerification","subjectSourceBindings","runtimeBindings","operationalBindings","algorithm","restrictions","census","helperCalls","queries","rows","pieces","libraryFlags","claims","publicationRequires"]);
 export const COMPLETION_KEYS=Object.freeze(["completed","accepted","scope","parentIndex","outputs","publicationRecords","census","helperCalls","elapsedSeconds","processUserSeconds","processSystemSeconds","maximumIndividualProcessResidentBytes","independentComparisonRequired","externalInclusiveDeadlineAndProcessClosureRequired","claims"]);
 export const CLAIMS=Object.freeze({"accepted":false,"referenceGenerationAuthenticated":false,"originalSourceAuthenticated":false,"original1760PieceCensusAuthenticated":false,"premiseTruthAuthenticated":false,"subjectMembershipEstablished":false,"historicalTrajectoryIdentityEstablished":false,"executionAuthorized":false,"eomExecuted":false,"h3EvidenceEligible":false,"metricsAvailable":false,"scoreAuthorized":false,"equilibriumEstablished":false,"retentionEstablished":false,"physicalRealizationEstablished":false});
 export const CENSUS=Object.freeze({"cells":1,"members":8,"queries":3584,"pairRows":64,"ordinaryPairs":56,"selfZeros":8,"pieceRecords":112});
@@ -91,45 +88,28 @@ export function originalParentMetadata(exported,index){
 }
 // Original role bindings remain logical provenance; a changed on-disk source
 // is captured at its protected original archive, never relabeled as current.
-export function subjectPhysicalSource(b,root,sourceAdmission){
- const selected=sourceAdmission.sources.find(row=>row.path===b.path);
- if(!selected||same(selected,b))return b;
- check(sourceAdmission.production,'Admitted original source archive required');
- const original=sourceAdmission.production.originalSourceBinding(path.relative(root,b.path),b.sha256);
- check(original.sha256===b.sha256&&original.bytes===b.bytes,'Exact original subject archive');
- return original;
-}
-export function validatePlan(input,{root,selfSha,python,git,sourceAdmission}){
+export function validatePlan(input,{root,selfSha,python,git}){
  keys(input,PLAN_KEYS);check(input.schema==='braid-program/f6c-parent-emission-refinement-launch.v3'&&input.scope===parentScope(input.parentIndex),'selected original parent scope');
  check(same(input.limits,LIMITS),'unchanged operational limits');
  check(same(input.priorCoverClosure,{authority:'versioned-acceptance-owner-declaration-not-fresh-observation',originalCallerSession:'13512',finalCompletionChunk:'c21aa7',exitCode:0,elapsedSeconds:'862.951823625',processesClosed:true,independentAuditAccepted:true}),'original full-cover closure premise');
- keys(input.dependencies,Object.keys(DEPENDENCIES));keys(input.originalBindings,Object.keys(ORIGINAL));
+ keys(input.dependencies,Object.keys(DEPENDENCIES));keys(input.originalBindings,[...Object.keys(ORIGINAL),...Object.keys(ORIGINAL_PATHS)]);
  const plan={...input,dependencies:{},originalBindings:{}};
- for(const [source,target,spec]of [[input,plan,NAMED],[input.dependencies,plan.dependencies,DEPENDENCIES],[input.originalBindings,plan.originalBindings,ORIGINAL]])
-  for(const[k,[p,h,size]]of Object.entries(spec)){
+ for(const [source,target,spec]of [[input,plan,NAMED],[input.dependencies,plan.dependencies,DEPENDENCIES],[input.originalBindings,plan.originalBindings,ORIGINAL_PATHS]])
+  for(const[k,p]of Object.entries(spec)){
    const b=binding(source[k],root);check(b.path===path.join(root,p),'fixed path '+k);
-   if(h&&b.sha256!==h&&source!==input.originalBindings){
-    check(sourceAdmission?.production,'Admitted original/current source pair required');
-    const pair=sourceAdmission.production.sourcePair(p);
-    check(sha(pair.original)===h,'Only the exact transferred predecessor permits current execution '+k);
-    check(sha(pair.original)===h&&(!size||Buffer.byteLength(pair.original)===size),'original applicability '+k);
-    check(sha(pair.current)===b.sha256&&Buffer.byteLength(pair.current)===b.bytes,'selected current source '+k);
-   }else check((!h||b.sha256===h)&&(!size||b.bytes===size),'fixed '+k);
    target[k]=b;
   }
+ for(const[k,[p,h,size]]of Object.entries(ORIGINAL)){const b=binding(input.originalBindings[k],root);check(b.path===path.join(root,p)&&b.sha256===h&&(!size||b.bytes===size),'original artifact '+k);plan.originalBindings[k]=b;}
  plan.acceptanceOwner=binding(input.acceptanceOwner,root);check(plan.acceptanceOwner.path===path.join(root,'reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md'),'versioned acceptance owner');
  for(const key of ['runtimeBindings','operationalBindings']){check(Array.isArray(input[key])&&input[key].length>0&&input[key].length<=512,'bounded inventory');plan[key]=input[key].map(b=>binding(b,root));}
  const requiredOps=[SELF,CONTROL,...OPERATIONAL_PATHS,realpathSync(process.execPath),'/bin/ps','/usr/bin/memory_pressure'].map(p=>path.resolve(root,p));
  check(plan.operationalBindings.length===requiredOps.length&&requiredOps.every(p=>plan.operationalBindings.some(b=>b.path===p)),'exact8 operational bindings');
- check(sourceAdmission?.sourceMap?.path===path.join(root,'reference/priorities/development-process-review/contracts/option-b-f6c-bounded-operation-sources.jsonld'),'explicit admitted operational selection');
- for(const p of OPERATIONAL_PATHS){const selected=sourceAdmission.sources.find(b=>b.path===path.join(root,p));check(selected&&plan.operationalBindings.some(b=>same(b,selected)),'manifest-selected operational helper');}
  check(plan.operationalBindings.some(b=>b.path===path.join(root,SELF)&&b.sha256===selfSha),'executing composition generation');
  for(const p of [python,git])check(typeof p==='string'&&path.isAbsolute(p)&&path.resolve(p)===p,'explicit interpreter/Git');
  for(const p of [realpathSync(python),path.join(path.dirname(path.dirname(python)),'pyvenv.cfg'),git])check(plan.runtimeBindings.some(b=>b.path===p),'runtime executable/config absent');
  const subjects=[...Object.keys(NAMED).map(k=>plan[k]),...Object.values(plan.dependencies)];
- plan.historicalDocumentRoutes=historicalRoutes(input.historicalDocumentRoutes,root);
- const current=[...subjects.map(b=>subjectPhysicalSource(b,root,sourceAdmission)),...plan.runtimeBindings,...plan.operationalBindings];check(new Set(current.map(b=>b.path)).size===current.length,'duplicate current source/runtime');
- return {plan,sources:uniqueBindings([...current,...Object.values(plan.originalBindings).map(b=>physicalSource(b,plan)),plan.acceptanceOwner,...plan.historicalDocumentRoutes.map(r=>r.physical)]),subjects:subjects.sort((a,b)=>a.path<b.path?-1:1)};
+ const current=[...subjects,...plan.runtimeBindings,...plan.operationalBindings];check(new Set(current.map(b=>b.path)).size===current.length,'duplicate current source/runtime');
+ return {plan,sources:uniqueBindings([...current,...historicalPhysicalSources(Object.values(plan.originalBindings),plan),plan.acceptanceOwner]),subjects:subjects.sort((a,b)=>a.path<b.path?-1:1)};
 }
 export function remainingDuration(deadline,now=process.hrtime.bigint()){
  check(typeof deadline==='string'&&/^[0-9]{1,20}$/u.test(deadline)&&typeof now==='bigint','bounded original Node deadline');
@@ -150,27 +130,9 @@ for m in tuple(sys.modules.values()):
 print(json.dumps([str(p)for p in sorted(files)]))
 `;
 export const PYTHON_BOOTSTRAP=String.raw`import hashlib,os,pathlib,resource,sys,time
-stage,filename,digest=sys.argv[1:4]
-import base64,json,types
-_envelope=json.loads(sys.argv[4]);sys.argv=[filename,*sys.argv[5:]]
-assert set(_envelope)=={'root','target','identities','bridgePath','bridgeSha256','bridgeSource'}
-_bridge_raw=base64.b64decode(_envelope['bridgeSource'],validate=True)
-assert hashlib.sha256(_bridge_raw).hexdigest()==_envelope['bridgeSha256']
-_bridge=types.ModuleType('_parent_admitted_production_bridge');_bridge.__file__=os.path.join(_envelope['root'],_envelope['bridgePath']);sys.modules[_bridge.__name__]=_bridge
-exec(compile(_bridge_raw,_bridge.__file__,'exec',dont_inherit=True),_bridge.__dict__)
-_injected={name:getattr(_bridge,name) for name in ('production_identities','production_source_pair','production_recheck','production_historical_record','production_runtime_binding','production_original_source_binding')}
-_injected['OPTION_B_PRODUCTION_IDENTITIES']=tuple(_envelope['identities'])
-assert _injected['production_identities'](filename)==_injected['OPTION_B_PRODUCTION_IDENTITIES']
-def read():
- p=pathlib.Path(filename);assert p==p.resolve();fd=os.open(p,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
- try:
-  a=os.fstat(fd);assert 0<a.st_size<=1048576;left=a.st_size;parts=[]
-  while left:
-   b=os.read(fd,min(65536,left));assert b;parts.append(b);left-=len(b)
-  assert not os.read(fd,1);raw=b''.join(parts);ident=lambda s:(s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
-  assert ident(a)==ident(os.fstat(fd))==ident(os.stat(p,follow_symlinks=False))and hashlib.sha256(raw).hexdigest()==digest;return raw,ident(a)
- finally:os.close(fd)
-raw,original_identity=read();exec(compile(raw,filename,'exec',dont_inherit=True),dict(__name__='__main__',__file__=filename,**_injected));_bridge.production_recheck();assert read()==(raw,original_identity)
+stage,filename=sys.argv[1:3];sys.argv=[filename,*sys.argv[3:]]
+with open(filename,'rb') as source:raw=source.read()
+exec(compile(raw,filename,'exec',dont_inherit=True),dict(__name__='__main__',__file__=filename))
 u=resource.getrusage(resource.RUSAGE_SELF)
 print(__import__('json').dumps(dict(kind='parent-refinement-python-resources',stage=stage,userSeconds=u.ru_utime,systemSeconds=u.ru_stime,maximumIndividualResidentBytes=u.ru_maxrss if sys.platform=='darwin'else u.ru_maxrss*1024)),file=sys.stderr,flush=True)
 `;
@@ -180,7 +142,7 @@ export function stageSpec(stage,context,budget){
  if(stage==='producer')args.push('--producer-sha256',plan[role].sha256,'--out-dir',output,'--git-binary',git);
  else{check(context.manifest,'prior closed producer manifest required');args.push('--verifier-sha256',plan[role].sha256,'--manifest',context.manifest.path,'--manifest-sha256',context.manifest.sha256,'--out',output+'-outer/comparison.json');}
  args.push('--budget-seconds',budget.seconds,'--operation-plan',context.operationPlanBinding.path,'--operation-plan-sha256',context.operationPlanBinding.sha256,'--scientific-bytes-already',String(context.scientificBytesAlready),'--maximum-stage-output-bytes',String(context.maximumStageOutputBytes));
- return {command:python,args:['-I','-B','-c',PYTHON_BOOTSTRAP,stage,plan[role].path,plan[role].sha256,context.production.pythonEnvelope(path.relative(root,plan[role].path)),...args]};
+ return {command:python,args:['-I','-B','-c',PYTHON_BOOTSTRAP,stage,plan[role].path,...args]};
 }
 export function inspectCandidate(output,complete=false,live=()=>{}){
  live();check(realpathSync(output)===output&&lstatSync(output).isDirectory(),'canonical candidate');
@@ -225,7 +187,7 @@ function admitParent(job){
  const layout=inspectCandidate(output,true);const manifestBinding=layout.bindings[3],manifest=parseJSON(readBound(manifestBinding.path,manifestBinding.sha256,true,FILE,live).data);
  keys(manifest,MANIFEST_KEYS);check(manifest.schema==='braid-program/f6c-parent-emission-refinement-cover.v2'&&manifest.scope===parentScope(plan.parentIndex)&&manifest.status==='conditional_complete'&&manifest.accepted===false&&same(manifest.census,CENSUS)&&same(manifest.helperCalls,CALLS)&&same(manifest.claims,CLAIMS)&&same(manifest.libraryFlags,LIBRARY_FLAGS),'candidate disposition/census/flags');
  check(Array.isArray(manifest.members)&&manifest.members.length===8&&Array.isArray(manifest.restrictions)&&manifest.restrictions.length===56,'complete candidate members/restrictions');
- for(const[k,v]of Object.entries({launchPlan:context.planBinding,producer:plan.producer,verifier:plan.verifier,declaration:plan.declaration,originalBindings:plan.originalBindings,acceptanceOwner:plan.acceptanceOwner,priorCoverClosure:plan.priorCoverClosure,subjectSourceBindings:context.subjects,runtimeBindings:plan.runtimeBindings,operationalBindings:plan.operationalBindings,algorithm:ALGORITHM,publicationRequires:PUBLICATION_REQUIRES}))check(same(manifest[k],v),'manifest binding '+k);
+ for(const[k,v]of Object.entries({launchPlan:context.planBinding,producer:plan.producer,verifier:plan.verifier,originalBindings:plan.originalBindings,acceptanceOwner:plan.acceptanceOwner,priorCoverClosure:plan.priorCoverClosure,subjectSourceBindings:context.subjects,runtimeBindings:plan.runtimeBindings,operationalBindings:plan.operationalBindings,algorithm:ALGORITHM,publicationRequires:PUBLICATION_REQUIRES}))check(same(manifest[k],v),'manifest binding '+k);
  check(Object.entries(context.parentMetadata).every(([k,v])=>same(manifest.parent?.[k],v)),'selected original parent metadata identity');
  for(let i=0;i<3;i++)check(same(manifest[['queries','rows','pieces'][i]],layout.bindings[i]),'actual candidate stream binding');
  check(Array.isArray(manifest.historicalSourceBindings)&&manifest.historicalSourceBindings.length>0&&manifest.historicalSourceBindings.length<=512,'historical source closure');checkBindings(historicalPhysicalSources(manifest.historicalSourceBindings.map(b=>binding(b,context.root)),plan),live);check(same(manifest.historicalEvidenceVerification,historicalEvidence(plan)),'explicit historical evidence scope');
@@ -250,26 +212,14 @@ function admitParent(job){
   capturedSourceBindings=uniqueBindings([...historicalPhysicalSources(manifest.historicalSourceBindings,plan),...reported]);checkBindings(capturedSourceBindings,live);
   outputs=[...outputs,b];
  }
- const finalCaptured=checkBindings(uniqueBindings([...context.sources,...capturedSourceBindings.map(b=>physicalSource(b,plan)),...outputs,clean(stdout),clean(stderr)]),live,context.sourceIdentities);
+ const finalCaptured=checkBindings(uniqueBindings([...context.sources,...capturedSourceBindings,...outputs,clean(stdout),clean(stderr)]),live,context.sourceIdentities);
  const sourceIdentities=Object.fromEntries(finalCaptured.map(b=>[b.path,b.identity]));live();
  return{accepted:true,h3EvidenceEligible:false,stage:job.stage,authority:'operational-source-and-fresh-completion-admission-only',completion:done,completionLog:clean(stdout),stderrLog:clean(stderr),outputs,manifest:manifestBinding,historicalSourceBindings:manifest.historicalSourceBindings,capturedSourceBindings,sourceIdentities,resources};
 }
 
 export const COORDINATOR='scripts/eom/f6c-bounded-operation.mjs';
-export let HISTORICAL_ARCHIVES;
-export function historicalRoutes(rows,root){
- check(Array.isArray(rows)&&rows.length<=198,'bounded consumed historical routes');const seen=new Set(),physicalPaths=new Set();
- return rows.map(r=>{keys(r,['original','physical']);const original=binding(r.original,root),physical=binding(r.physical,root);
-  const expected=HISTORICAL_ARCHIVES[path.relative(root,original.path)];
-  check(expected&&same(expected,[original.sha256,original.bytes]),'exact admitted historical tuple');
-  check(original.path!==physical.path&&physical.path.endsWith('.source')&&original.sha256===physical.sha256&&original.bytes===physical.bytes&&!seen.has(original.path)&&!physicalPaths.has(physical.path),'distinct nonexecuting lossless archive route');seen.add(original.path);physicalPaths.add(physical.path);return{original,physical};});
-}
-export function physicalSource(b,plan){
- const row=plan.historicalDocumentRoutes.find(r=>r.original.path===b.path);
- if(!row)return b;check(same(row.original,b),'exact historical original tuple');return row.physical;
-}
 export function historicalPhysicalSources(rows,plan){
- return rows.map(b=>physicalSource(b,plan));
+ return rows.filter(b=>b.path.includes('/.local-data/')&&!/\.(?:py|mjs|js|cjs|md|source)$/u.test(b.path));
 }
 export function historicalEvidence(){
  return{schema:'braid-program/retained-historical-evidence.v2',retainedScientificBytesVerified:true,recordedProvenanceVerified:true,
@@ -277,11 +227,11 @@ export function historicalEvidence(){
 }
 
 function batchSources(plan){return uniqueBindings([...plan.sources,plan.hookModule,plan.hookControls,...plan.stages.flatMap(s=>[s.entry,...s.sources,...s.runtimeBindings])]);}
-export async function admitOperationalSources(plan,live=()=>{}){
+export async function loadCoordinator(plan,live=()=>{}){
  live();
  const b=batchSources(plan).find(b=>b.path===path.join(plan.root,COORDINATOR));check(b,'externally selected generic coordinator');
- const source=readBound(b.path,b.sha256,true,1048576,live);check(source.bytes===b.bytes,'coordinator bytes');const C=await import(url(source.data)+'#root='+encodeURIComponent(plan.root));
- const sourceAdmission=await C.admitPlanSourceBindings(plan,live);initializeProductionIdentities(sourceAdmission.production.identities(SELF));live();return{C,sourceAdmission};
+ const source=readBound(b.path,b.sha256,true,1048576,live);check(source.bytes===b.bytes,'coordinator bytes');const C=await import(url(source.data));
+ live();return C;
 }
 export function makeBatchPlan({root,operationDirectory,parents,pythonCommand,git,hookModule,hookControls,sources,runtimeBindings,closureReserveBytes}){
  // Data-only construction: no source capture, host observation or execution.
@@ -292,19 +242,19 @@ export function makeBatchPlan({root,operationDirectory,parents,pythonCommand,git
   {publicPath:path.join(p.output+'-outer','comparison.json'),privateDirectory:p.output+'-outer',privatePrefix:'comparison.json.partial.'}]);
  return{schema:'braid-program/f6c-bounded-operation-plan.v1',root,operationDirectory,outputDirectories,publicationAliases,sources,hookModule,hookControls,configuration,stages};
 }
-export function makeParentPlans({template,indices,sourceBindings,runtimeBindings,operationalBindings,acceptanceOwner,historicalDocumentRoutes}){
+export function makeParentPlans({template,indices,sourceBindings,runtimeBindings,operationalBindings,acceptanceOwner}){
  // Pure data derivation. The externally bound original template carries all
  // unchanged mathematical, history and closure tokens. No filesystem lookup,
  // frame interpolation, fixture strength or scientific evaluation occurs.
- keys(template,PLAN_KEYS.filter(k=>!(k==='historicalDocumentRoutes'&&template.schema.endsWith('.v1'))));
+ keys(template,PLAN_KEYS);
  check(['braid-program/f6c-parent-emission-refinement-launch.v1','braid-program/f6c-parent-emission-refinement-launch.v2','braid-program/f6c-parent-emission-refinement-launch.v3'].includes(template.schema)&&same(template.limits,LIMITS),'frozen parent template');
  check(Array.isArray(indices)&&indices.length>0&&indices.length<=8&&indices.every((v,i)=>Number.isInteger(v)&&v>=0&&v<160&&(i===0||indices[i-1]<v)),'ordered bounded selected parents');
  check(Array.isArray(sourceBindings)&&Array.isArray(runtimeBindings)&&Array.isArray(operationalBindings),'externally bound current sources');
  const wrappers=['producer','producerControls','verifier','verifierControls'];
- const current=Object.fromEntries(wrappers.map(role=>{const rows=sourceBindings.filter(b=>b.path.endsWith('/'+NAMED[role][0]));check(rows.length===1,'one explicit current '+role);return[role,{...rows[0],path:NAMED[role][0]}];}));
- for(const [role,[p,h]] of Object.entries(NAMED))if(!wrappers.includes(role))check(template[role].path===p&&template[role].sha256===h,'frozen mathematical template '+role);
+ const current=Object.fromEntries(wrappers.map(role=>{const rows=sourceBindings.filter(b=>b.path.endsWith('/'+NAMED[role]));check(rows.length===1,'one explicit current '+role);return[role,{...rows[0],path:NAMED[role]}];}));
+ for(const [role,p] of Object.entries(NAMED))if(!wrappers.includes(role))check(template[role].path===p,'frozen mathematical template '+role);
  return indices.map(parentIndex=>({...structuredClone(template),schema:'braid-program/f6c-parent-emission-refinement-launch.v3',scope:parentScope(parentIndex),parentIndex,
-  ...structuredClone(current),runtimeBindings:structuredClone(runtimeBindings),operationalBindings:structuredClone(operationalBindings),acceptanceOwner:structuredClone(acceptanceOwner),historicalDocumentRoutes:structuredClone(historicalDocumentRoutes)}));
+  ...structuredClone(current),runtimeBindings:structuredClone(runtimeBindings),operationalBindings:structuredClone(operationalBindings),acceptanceOwner:structuredClone(acceptanceOwner)}));
 }
 export function validateBatch(plan){
  const c=plan.configuration;keys(c,['schema','completionContract','pythonCommand','git','parents','runtimeBindings','closureReserveBytes']);
@@ -328,19 +278,18 @@ export function validateBatch(plan){
  check(c.parents.reduce((n,p)=>n+p.producerMaximumBytes+p.comparisonMaximumBytes,c.closureReserveBytes)<=FILE,'all declared stage allocations preserve shared closure reserve');
  return c;
 }
-function parentContext(plan,item,operationPlanBinding,deadlineNanoseconds,sourceAdmission){
+function parentContext(plan,item,operationPlanBinding,deadlineNanoseconds){
  const c=validateBatch(plan),live=()=>check(process.hrtime.bigint()<BigInt(deadlineNanoseconds),'original operation deadline');
  const f=readBound(item.plan.path,item.plan.sha256,true,1048576,live);check(f.bytes===item.plan.bytes,'per-parent plan bytes');
- const pre=validatePlan(parseJSON(f.data),{root:plan.root,selfSha:plan.hookModule.sha256,python:c.pythonCommand,git:c.git,sourceAdmission});check(pre.plan.parentIndex===item.parentIndex,'selected parent plan');
+ const pre=validatePlan(parseJSON(f.data),{root:plan.root,selfSha:plan.hookModule.sha256,python:c.pythonCommand,git:c.git});check(pre.plan.parentIndex===item.parentIndex,'selected parent plan');
  const original=readBound(pre.plan.originalBindings.export.path,pre.plan.originalBindings.export.sha256,true,FILE,live);
  const admission=readBound(pre.plan.originalBindings.fullAdmission.path,pre.plan.originalBindings.fullAdmission.sha256,true,FILE,live);
  const historical=parseJSON(admission.data).sourceBindings;check(Array.isArray(historical)&&historical.length===198,'complete historical ancestry');
  const all=batchSources(plan),required=uniqueBindings([...pre.sources,item.plan,...historicalPhysicalSources(historical.map(b=>binding(b,plan.root)),pre.plan)]);
  for(const b of required)check(all.some(v=>same(v,b)),'undisclosed original/current source '+b.path);
- for(const route of pre.plan.historicalDocumentRoutes)check(historical.some(b=>same(binding(b,plan.root),route.original)),'unused historical document route');
  const expectedRuntime=uniqueBindings([...pre.plan.runtimeBindings,...c.runtimeBindings.filter(b=>b.path===realpathSync(process.execPath))]);check(same(uniqueBindings(c.runtimeBindings),expectedRuntime),'exact parent/stage runtime set');
  const sources=uniqueBindings([...all,...(operationPlanBinding?[operationPlanBinding]:[])]),captured=checkBindings(sources,live);
- return{...pre,production:sourceAdmission.production,sources,sourceIdentities:Object.fromEntries(captured.map(b=>[b.path,b.identity])),root:plan.root,output:item.output,python:c.pythonCommand,git:c.git,planBinding:clean(f),operationPlanBinding,deadlineNanoseconds,parentMetadata:originalParentMetadata(parseJSON(original.data),item.parentIndex)};
+ return{...pre,sources,sourceIdentities:Object.fromEntries(captured.map(b=>[b.path,b.identity])),root:plan.root,output:item.output,python:c.pythonCommand,git:c.git,planBinding:clean(f),operationPlanBinding,deadlineNanoseconds,parentMetadata:originalParentMetadata(parseJSON(original.data),item.parentIndex)};
 }
 export function parseRegisteredArgs(args){
  check(Array.isArray(args)&&args.length===10,'closed registered batch arguments');const result={};
@@ -356,8 +305,8 @@ export async function registeredBatch(args){
  const flags=parseRegisteredArgs(args),operationPlanBinding=binding(parseJSON(Buffer.from(flags['--operation-plan-binding'])),'/'),deadline=flags['--operation-deadline-ns'],prior=parseJSON(Buffer.from(flags['--operation-prior-stdout']));
  const live=()=>check(process.hrtime.bigint()<BigInt(deadline),'original registered deadline');live();
  const p=readBound(operationPlanBinding.path,operationPlanBinding.sha256,true,1048576,live);check(p.bytes===operationPlanBinding.bytes,'original operation plan size');
- const plan=parseJSON(p.data),{C,sourceAdmission}=await admitOperationalSources(plan,live);C.validatePlan(plan,realpathSync(process.cwd()));const c=validateBatch(plan),index=Number(flags['--parent']),role=flags['--registered'],position=c.parents.findIndex(p=>p.parentIndex===index);check(position>=0,'declared parent');
- const item=c.parents[position],context=parentContext(plan,item,operationPlanBinding,deadline,sourceAdmission);
+ const plan=parseJSON(p.data),C=await loadCoordinator(plan,live);C.validatePlan(plan,realpathSync(process.cwd()));const c=validateBatch(plan),index=Number(flags['--parent']),role=flags['--registered'],position=c.parents.findIndex(p=>p.parentIndex===index);check(position>=0,'declared parent');
+ const item=c.parents[position],context=parentContext(plan,item,operationPlanBinding,deadline);
  check(import.meta.url.startsWith('file:')&&fileURLToPath(import.meta.url)===path.join(plan.root,SELF),'registered current entry');
  if(role==='producer'){
   if(position===0)check(prior===null,'first producer has no predecessor');
@@ -373,7 +322,7 @@ export async function registeredBatch(args){
  const budget=remainingDuration(deadline),target=stageSpec(role,context,budget);console.error(JSON.stringify({kind:'parent-refinement-entry-budget',stage:role,budget,operationPlanBinding,scientificBytesAlready:context.scientificBytesAlready,maximumStageOutputBytes:context.maximumStageOutputBytes}));
  const {spawn}=await import('node:child_process');
  await new Promise((resolve,reject)=>{const child=spawn(target.command,target.args,{cwd:plan.root,detached:true,stdio:['ignore','pipe','pipe']});child.stdout.pipe(process.stdout);child.stderr.pipe(process.stderr);child.once('error',reject);child.once('close',(code,signal)=>code===0&&!signal?resolve():reject(Error('registered Python failed '+code+'/'+signal)));});
- sourceAdmission.production.check();checkBindings(context.sources,live,context.sourceIdentities);console.error(JSON.stringify({kind:'parent-refinement-entry-resources',stage:role,budget,resourceUsage:process.resourceUsage()}));live();
+ checkBindings(context.sources,live,context.sourceIdentities);console.error(JSON.stringify({kind:'parent-refinement-entry-resources',stage:role,budget,resourceUsage:process.resourceUsage()}));live();
 }
 export function coordinatorAdmission(result,stdoutLog){
  // The coordinator owns the authenticated completionLog fields. Keep the
@@ -384,9 +333,9 @@ export function coordinatorAdmission(result,stdoutLog){
 }
 export async function fileOperation(job){
  const live=()=>check(process.hrtime.bigint()<BigInt(job.deadlineNanoseconds),'original batch deadline');live();
- const {C,sourceAdmission}=await admitOperationalSources(job.plan,live),c=validateBatch(job.plan);
+ const C=await loadCoordinator(job.plan,live),c=validateBatch(job.plan);
  if(job.kind==='preflight'){
-  for(const item of c.parents)parentContext(job.plan,item,null,job.deadlineNanoseconds,sourceAdmission);
+  for(const item of c.parents)parentContext(job.plan,item,null,job.deadlineNanoseconds);
   // Global source and inode closure is independently enforced by C before and
   // after this pure hook, and again before each registered stage.
   return{accepted:true,h3EvidenceEligible:false,numericalCalls:0};
@@ -397,7 +346,7 @@ export async function fileOperation(job){
   const stderr=readBound(stderrPath,undefined,true,LOG,live),events=stderr.data.toString().split('\n').filter(Boolean).map(l=>parseJSON(Buffer.from(l))),entry=events.filter(e=>e.kind==='parent-refinement-entry-budget');
   check(entry.length===1,'single entry original plan binding');const operationPlanBinding=binding(entry[0].operationPlanBinding,job.plan.root);
   const operation=readBound(operationPlanBinding.path,operationPlanBinding.sha256,true,1048576,live);check(operation.bytes===operationPlanBinding.bytes&&same(parseJSON(operation.data),job.plan),'executed original batch plan');
-  const context=parentContext(job.plan,item,operationPlanBinding,job.deadlineNanoseconds,sourceAdmission);
+  const context=parentContext(job.plan,item,operationPlanBinding,job.deadlineNanoseconds);
   check(Number.isSafeInteger(entry[0].scientificBytesAlready)&&entry[0].scientificBytesAlready>=0&&entry[0].scientificBytesAlready<FILE,'global scientific baseline');context.scientificBytesAlready=entry[0].scientificBytesAlready;
   context.maximumStageOutputBytes=item[role+'MaximumBytes'];check(entry[0].maximumStageOutputBytes===context.maximumStageOutputBytes,'exact declared stage allocation');
   if(role==='comparison'){const previous=previousStages.at(-1);check(previous?.id==='parent-'+index+'-producer'&&previous.process.accepted&&previous.process.processesClosed,'closed correct producer');
@@ -407,7 +356,7 @@ export async function fileOperation(job){
   const newBytes=(role==='producer'?result.outputs:[result.outputs.at(-1)]).reduce((n,b)=>n+b.bytes,0);check(newBytes<=context.maximumStageOutputBytes,'actual bytes within declared stage allowance');
   check(context.scientificBytesAlready+context.maximumStageOutputBytes+c.closureReserveBytes+(role==='producer'?item.comparisonMaximumBytes:0)<=FILE,'retained stage/comparison/closure allocation');
   if(job.kind==='admit')check(context.scientificBytesAlready+newBytes===C.outputCensus(job.plan).scientificBytes,'exact complete global scientific accounting');
-  for(const b of result.capturedSourceBindings){const physical=physicalSource(b,context.plan);check(context.sources.some(v=>same(v,physical))||result.outputs.some(v=>same(v,physical)),'new source outside global declared union');}
+  for(const b of result.capturedSourceBindings){const physical=b;check(context.sources.some(v=>same(v,physical))||result.outputs.some(v=>same(v,physical)),'new source outside global declared union');}
   return{...result,parentIndex:index,runtimeBindings:c.runtimeBindings,numericalCalls:role==='producer'?3584:0};
  };
  if(job.kind==='admit'){const result=admit({id:job.stageId,process:job.processReceipt,stdoutLog:job.stdoutLog},job.previousStages);live();return coordinatorAdmission(result,job.stdoutLog);}
@@ -415,17 +364,88 @@ export async function fileOperation(job){
  for(let i=0;i<job.stages.length;i++){const stage=job.stages[i];check(stage.id===job.plan.stages[i].id&&stage.process.accepted&&stage.process.processesClosed&&stage.process.admission.accepted,'complete ordered closed batch');admit(stage,job.stages.slice(0,i));}
  live();return{accepted:true,h3EvidenceEligible:false,parents:c.parents.map(p=>p.parentIndex),wholeHistoryMetrics:false};
 }
+
+
+
+export const NAMED=Object.freeze({
+  "producer": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+  "producerControls": "tests/test_f6c_parent_emission_refinement_preparation.py",
+  "proposalReference": "scripts/eom/f6c_parent_emission_refinement.py",
+  "proposalReferenceControls": "tests/test_f6c_parent_emission_refinement.py",
+  "verifier": "scripts/eom/verify-f6c-parent-emission-refinement.py",
+  "verifierControls": "tests/test_f6c_parent_emission_refinement_verification.py",
+  "comparisonReference": "scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py",
+  "comparisonReferenceControls": "tests/test_f6c_parent_emission_refinement_conformance.py"
+});
+export const DEPENDENCIES=Object.freeze({
+  "transport": "scripts/eom/verify-f6c-refined-acceleration.py",
+  "transportControls": "tests/test_f6c_refined_acceleration.py",
+  "scientificDecoder": "scripts/eom/oracle/f6c_refined_acceleration_conformance.py",
+  "scientificDecoderControls": "tests/test_f6c_refined_acceleration_conformance.py",
+  "productionHelper": "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py",
+  "productionHelperControls": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+  "historyReference": "scripts/eom/oracle/certified_history.py",
+  "decimalReference": "scripts/eom/oracle/decimal_interval.py",
+  "decimalControls": "tests/test_eom_decimal_interval.py",
+  "rootLibrary": "scripts/eom/oracle/continuous_reception_roots_cached.py",
+  "rootControls": "tests/test_eom_continuous_reception_roots_cached.py",
+  "independentRootReference": "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py",
+  "independentRootControls": "tests/test_f6c_cached_continuous_reception_root_cover.py",
+});
+export const ORIGINAL_PATHS=Object.freeze({
+  "fullEntry": "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+  "fullPlan": "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-launch.v1.json"
+});
+export const ORIGINAL=Object.freeze({
+  "export": [
+    ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json",
+    "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1"
+  ],
+  "reconstruction": [
+    ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json",
+    "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43"
+  ],
+  "guards": [
+    ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json",
+    "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880"
+  ],
+  "fullRows": [
+    ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/subject/rows.ndjson",
+    "28491edb2f1faec7adf248f535d29a1600b8bd69f5a46706fd26dbb3eb848b5c",
+    22585784
+  ],
+  "fullPieces": [
+    ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/subject/pieces.ndjson",
+    "b3a2ddf2c8cd5b586ef7b374eee94afc395f63496c849ec574e71bf1f487a9ab",
+    7505144
+  ],
+  "fullManifest": [
+    ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/subject/cover-manifest.json",
+    "61b0cdfad85696a0b5ead7df838119c9005a28656e9ac3daa26df139054410e2",
+    42922
+  ],
+  "fullComparison": [
+    ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/comparison.json",
+    "1c423aece2009a2d7d0852e9558c16464c640abbc5bea3743211af3805b6eed2",
+    43377
+  ],
+  "fullAdmission": [
+    ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/full-admission.json",
+    "8fe8f0f9651fd8de15467a69f0534f08bbe19e0e3fdb64a86c6422be857eb77f",
+    332567
+  ],
+  "fullLauncherLog": [
+    ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/launcher-stderr.log",
+    "b976d8deb556d8faba5a3aff73a09b77ec26c6da84e42726167eec4ec7a43314",
+    30969
+  ],
+  "fullResourceLog": [
+    ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/resource-observations.ndjson",
+    "66eb0cfa1811d0a834d18d3bd8e749a941e1964f7276898b80a4e12136d69d03",
+    1710278
+  ]
+});
+
 if(import.meta.url.startsWith('file:')&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  registeredBatch(process.argv.slice(2)).catch(e=>{console.error(JSON.stringify({completed:false,accepted:false,failure:String(e.message).slice(0,4096),retainedOutputs:true}));process.exitCode=1;});
-}
-
-let OPTION_B_PRODUCTION_IDENTITIES;
-export function initializeProductionIdentities(values) {
-  if (!Array.isArray(values) || values.length !== 50 || values.some(value => typeof value !== "string" || !/^[a-f0-9]{64}$/u.test(value))) throw Error("exact admitted production identity census required");
-  if (OPTION_B_PRODUCTION_IDENTITIES && JSON.stringify(OPTION_B_PRODUCTION_IDENTITIES) !== JSON.stringify(values)) throw Error("production identity generation already initialized");
-  OPTION_B_PRODUCTION_IDENTITIES = Object.freeze([...values]);
-  NAMED=Object.freeze({"declaration":["reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md",OPTION_B_PRODUCTION_IDENTITIES[0]],"producer":["scripts/eom/prepare-f6c-parent-emission-refinement.py",null],"producerControls":["tests/test_f6c_parent_emission_refinement_preparation.py",null],"proposalReference":["scripts/eom/f6c_parent_emission_refinement.py",OPTION_B_PRODUCTION_IDENTITIES[1]],"proposalReferenceControls":["tests/test_f6c_parent_emission_refinement.py",OPTION_B_PRODUCTION_IDENTITIES[2]],"verifier":["scripts/eom/verify-f6c-parent-emission-refinement.py",null],"verifierControls":["tests/test_f6c_parent_emission_refinement_verification.py",null],"comparisonReference":["scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py",OPTION_B_PRODUCTION_IDENTITIES[3]],"comparisonReferenceControls":["tests/test_f6c_parent_emission_refinement_conformance.py",OPTION_B_PRODUCTION_IDENTITIES[4]]});
-  DEPENDENCIES=Object.freeze({"transport":["scripts/eom/verify-f6c-refined-acceleration.py",OPTION_B_PRODUCTION_IDENTITIES[5]],"transportControls":["tests/test_f6c_refined_acceleration.py",OPTION_B_PRODUCTION_IDENTITIES[6]],"scientificDecoder":["scripts/eom/oracle/f6c_refined_acceleration_conformance.py",OPTION_B_PRODUCTION_IDENTITIES[7]],"scientificDecoderControls":["tests/test_f6c_refined_acceleration_conformance.py",OPTION_B_PRODUCTION_IDENTITIES[8]],"productionHelper":["scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py",OPTION_B_PRODUCTION_IDENTITIES[9]],"productionHelperControls":["tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",OPTION_B_PRODUCTION_IDENTITIES[10]],"historyReference":["scripts/eom/oracle/certified_history.py",OPTION_B_PRODUCTION_IDENTITIES[11]],"decimalReference":["scripts/eom/oracle/decimal_interval.py",OPTION_B_PRODUCTION_IDENTITIES[12]],"decimalControls":["tests/test_eom_decimal_interval.py",OPTION_B_PRODUCTION_IDENTITIES[13]],"rootLibrary":["scripts/eom/oracle/continuous_reception_roots_cached.py",OPTION_B_PRODUCTION_IDENTITIES[14]],"rootControls":["tests/test_eom_continuous_reception_roots_cached.py",OPTION_B_PRODUCTION_IDENTITIES[15]],"independentRootReference":["scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py",OPTION_B_PRODUCTION_IDENTITIES[16]],"independentRootControls":["tests/test_f6c_cached_continuous_reception_root_cover.py",OPTION_B_PRODUCTION_IDENTITIES[17]],"cacheEquivalence":["reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md",OPTION_B_PRODUCTION_IDENTITIES[18]]});
-  ORIGINAL=Object.freeze({"export":[".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json",OPTION_B_PRODUCTION_IDENTITIES[19]],"reconstruction":[".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json",OPTION_B_PRODUCTION_IDENTITIES[20]],"guards":[".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json",OPTION_B_PRODUCTION_IDENTITIES[21]],"fullEntry":["scripts/eom/run-f6c-cached-root-cover-full.mjs",OPTION_B_PRODUCTION_IDENTITIES[22]],"fullRows":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/subject/rows.ndjson",OPTION_B_PRODUCTION_IDENTITIES[23],22585784],"fullPieces":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/subject/pieces.ndjson",OPTION_B_PRODUCTION_IDENTITIES[24],7505144],"fullManifest":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/subject/cover-manifest.json",OPTION_B_PRODUCTION_IDENTITIES[25],42922],"fullComparison":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/comparison.json",OPTION_B_PRODUCTION_IDENTITIES[26],43377],"fullAdmission":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/full-admission.json",OPTION_B_PRODUCTION_IDENTITIES[27],332567],"fullLauncherLog":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/launcher-stderr.log",OPTION_B_PRODUCTION_IDENTITIES[28],30969],"fullResourceLog":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/resource-observations.ndjson",OPTION_B_PRODUCTION_IDENTITIES[29],1710278],"fullPlan":["reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-launch.v1.json",OPTION_B_PRODUCTION_IDENTITIES[30],45282]});
-  HISTORICAL_ARCHIVES=Object.freeze({"scripts/eom/launch-abc-enclosed-root-pilot.mjs":[OPTION_B_PRODUCTION_IDENTITIES[31],39465],"scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py":[OPTION_B_PRODUCTION_IDENTITIES[32],38160],"scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py":[OPTION_B_PRODUCTION_IDENTITIES[33],41336],"reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md":[OPTION_B_PRODUCTION_IDENTITIES[34],10021],"tests/test_f6c_cached_continuous_reception_root_cover_preparation.py":[OPTION_B_PRODUCTION_IDENTITIES[35],11113],"tests/test_f6c_cached_continuous_reception_root_cover.py":[OPTION_B_PRODUCTION_IDENTITIES[36],11096],"reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md":[OPTION_B_PRODUCTION_IDENTITIES[37],12103],"reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md":[OPTION_B_PRODUCTION_IDENTITIES[38],28340],"reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md":[OPTION_B_PRODUCTION_IDENTITIES[39],21031],"tests/test_eom_continuous_reception_roots.py":[OPTION_B_PRODUCTION_IDENTITIES[40],32501],"scripts/eom/verify-f6c-accepted-frame-reconstruction.py":[OPTION_B_PRODUCTION_IDENTITIES[41],31153],"scripts/eom/verify-f6c-retained-history-guards.py":[OPTION_B_PRODUCTION_IDENTITIES[42],31651],"reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md":[OPTION_B_PRODUCTION_IDENTITIES[43],25546],"scripts/eom/verify-f6c-continuous-reception-root-cover.py":[OPTION_B_PRODUCTION_IDENTITIES[44],39929],"reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md":[OPTION_B_PRODUCTION_IDENTITIES[45],10933],"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md":[OPTION_B_PRODUCTION_IDENTITIES[46],13021],"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md":[OPTION_B_PRODUCTION_IDENTITIES[47],6754],"scripts/eom/run-f6c-cached-root-cover-full.mjs":[OPTION_B_PRODUCTION_IDENTITIES[48],27166],"scripts/eom/launch-f6c-cached-root-cover-full.mjs":[OPTION_B_PRODUCTION_IDENTITIES[49],26659]});
 }

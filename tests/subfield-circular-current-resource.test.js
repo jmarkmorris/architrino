@@ -1,9 +1,7 @@
-import {productionTestIdentities as optionBProductionIdentities} from './support/option-b-production-hosts.mjs';
-import * as optionBProductionModule0 from "../scripts/eom/run-subfield-circular-root-rung.mjs";
-optionBProductionModule0.initializeProductionIdentities(optionBProductionIdentities("scripts/eom/run-subfield-circular-root-rung.mjs"));
 import test from 'node:test';import assert from 'node:assert/strict';
 import {currentCircularDispositions} from '../scripts/eom/prepare-current-subfield-circular-ladder.mjs';
-import {acceptCurrentCircularPilot,SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW} from '../scripts/eom/run-subfield-circular-root-rung.mjs';
+import {acceptCurrentCircularPilot} from '../scripts/eom/run-subfield-circular-root-rung.mjs';
+const SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW = {path:"/synthetic/review",sha256:"c".repeat(64)};
 test('known cost boundary partitions enabled and returned candidates without increasing cap',()=>{
  const rows=currentCircularDispositions(['a','b'],[{candidateId:'a',projected128PhaseSeconds:1800},{candidateId:'b',projected128PhaseSeconds:1800.01}]);
  assert.equal(rows[0].disposition,'proposed-enabled-pending-review');assert.equal(rows[1].disposition,'resource-return-not-run');assert(rows.every(row=>row.wallLimitSeconds===1800&&!row.h3EvidenceEligible));

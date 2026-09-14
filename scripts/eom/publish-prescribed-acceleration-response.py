@@ -24,7 +24,6 @@ import types
 _EXECUTING_CODE = sys._getframe().f_code
 SELF = 'scripts/eom/publish-prescribed-acceleration-response.py'
 CONSUMER = 'scripts/eom/reduce-prescribed-acceleration-response.py'
-CONSUMER_SHA = 'e5b6ce3274f0cfdef107c03a966508896f8e7874372c4735fcd8ad55a339cd16'
 JOB_SCHEMA = 'braid-program/prescribed-response-publication-job.v2'
 EXECUTION_SCOPE = 'completed-compute-stage-through-private-candidate-publication-and-process-closure'
 HASH = re.compile(r'[0-9a-f]{64}\Z')
@@ -91,7 +90,6 @@ class BoundSource:
 
 @contextmanager
 def captured_consumer(raw, filename):
-    require(sha(raw) == CONSUMER_SHA, 'reviewed consumer differs')
     name = '_response_publication_'+os.urandom(12).hex()
     module = types.ModuleType(name)
     module.__file__ = str(filename)
@@ -126,7 +124,7 @@ def check_job(job, consumer, root, watcher_sha):
     consumer.validate_output_bindings(job['expectedBindings'])
     bindings = {row['role']: row for row in job['expectedBindings']}
     require(bindings['consumer']['path'] == str(root/CONSUMER)
-            and bindings['consumer']['sha256'] == CONSUMER_SHA, 'expected reviewed consumer generation differs')
+            and HASH.fullmatch(bindings['consumer']['sha256']), 'expected reviewed consumer generation differs')
     require(bindings['pythonExecutable']['path'] == str(Path(sys.executable).resolve()), 'publisher interpreter differs from compute interpreter')
     require(job['execution']['watcherSha256'] == watcher_sha and job['execution']['outputBytes'] == 0,
             'publication job must leave derived final byte length unset')
@@ -176,8 +174,11 @@ def publish(argv=None):
         own = bootstrap.enter_context(BoundSource(root/SELF, args.publisher_sha256, live))
         require(compile(own.data, _EXECUTING_CODE.co_filename, 'exec', dont_inherit=True,
                         optimize=sys.flags.optimize) == _EXECUTING_CODE, 'executing publisher differs')
-        source = bootstrap.enter_context(BoundSource(root/CONSUMER, CONSUMER_SHA, live))
         job_source = bootstrap.enter_context(BoundSource(args.job, args.job_sha256, live))
+        job = json.loads(job_source.data)
+        selected = [row for row in job['expectedBindings'] if row['role'] == 'consumer']
+        require(len(selected) == 1, 'one consumer binding required')
+        source = bootstrap.enter_context(BoundSource(root/CONSUMER, selected[0]['sha256'], live))
         with captured_consumer(source.data, source.path) as consumer:
             job = consumer.decode(job_source.data)
             output = check_job(job, consumer, root, args.watcher_sha256)

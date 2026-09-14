@@ -1,8 +1,13 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';
-const identities = retainedTestIdentities("tests/orthogonal-plane-weave-balance.test.js");
+const identities = {
+  "orthogonalWeave": {
+    "consumer": "tests/orthogonal-plane-weave-balance.test.js",
+    "role": "fixed prescribed assembly seed identity; numerical balance assertions remain separate",
+    "modelRevisionSha256": "b7fdeb1b3f9aa074cacbab3c593a227332178e7b97f50409f759f420cec4cb34"
+  }
+};
 
 const WEAVE_SHA = identities.orthogonalWeave.modelRevisionSha256;
 assert.match(WEAVE_SHA, /^[a-f0-9]{64}$/u);

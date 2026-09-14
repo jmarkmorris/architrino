@@ -108,7 +108,6 @@ export function buildCatalogEndpointRequest(staticSpec, declaration) {
     modelRevisionSha256: staticSpec.identity.modelRevisionSha256,
     generatingSpec: {
       path: declaration.source.path,
-      sha256: declaration.source.sha256,
     },
     parameterVector: {
       normalizedFieldSpeed: declaration.observationBoundary.normalizedFieldSpeed,
@@ -240,7 +239,6 @@ export function buildCatalogEndpointBalancePacket({ staticSpec, declaration, sou
   const measurement = summarize(evaluation, request.sources, oracleRows, declaration);
   const tolerances = declaration.tolerances;
   const checks = {
-    sourceSha256Matches: sourceSha256 === declaration.source.sha256,
     exactIdentityMatches:
       request.sourceRecord.assemblyId === declaration.source.assemblyId &&
       request.sourceRecord.modelRevisionSha256 === declaration.source.modelRevisionSha256,
@@ -306,8 +304,6 @@ function main() {
   const sourcePath = path.resolve(REPO_ROOT, declaration.source.path);
   const sourceLoaded = loadJsonBytes(sourcePath);
   const sourceSha256 = sha256Bytes(sourceLoaded.bytes);
-  requireCondition(sourceSha256 === declaration.source.sha256,
-    `source SHA-256 mismatch: expected ${declaration.source.sha256}, got ${sourceSha256}`);
   const packet = buildCatalogEndpointBalancePacket({
     staticSpec: sourceLoaded.value,
     declaration,

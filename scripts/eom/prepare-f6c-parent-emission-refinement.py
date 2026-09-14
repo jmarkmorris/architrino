@@ -19,99 +19,19 @@ All fifteen scientific-authority flags remain false, including on failure.
 """
 from __future__ import annotations
 
-if 'OPTION_B_PRODUCTION_IDENTITIES' not in globals():
-    import hashlib as _b_hashlib, json as _b_json, os as _b_os, stat as _b_stat, sys as _b_sys, types as _b_types
-    from pathlib import Path as _b_Path
-    _b_root = _b_Path(__file__).resolve().parents[2]
-    _b_held = {}
-    def _b_identity(path):
-        value = path.lstat()
-        return (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
-    def _b_capture(relative, expected=None):
-        if (type(relative) is not str or not relative or '\\' in relative
-                or _b_Path(relative).is_absolute() or any(p in ('', '.', '..') for p in relative.split('/'))):
-            raise ValueError('Unsafe selected Python bootstrap path')
-        path = _b_root / relative
-        if path.resolve() != path or not _b_stat.S_ISREG(path.lstat().st_mode):
-            raise ValueError('Canonical regular Python bootstrap source required')
-        before = _b_identity(path)
-        if relative in _b_held and _b_held[relative] != before:
-            raise ValueError('Selected Python bootstrap source replaced')
-        fd = _b_os.open(path, _b_os.O_RDONLY | _b_os.O_NONBLOCK | _b_os.O_NOFOLLOW)
-        try:
-            value = _b_os.fstat(fd)
-            if not _b_stat.S_ISREG(value.st_mode) or not 0 < value.st_size <= 16 * 1024**2:
-                raise ValueError('Bounded Python bootstrap source required')
-            parts = []; size = 0
-            while size < value.st_size:
-                part = _b_os.read(fd, min(65536, value.st_size-size))
-                if not part: raise ValueError('Truncated Python bootstrap source')
-                parts.append(part); size += len(part)
-            raw = b''.join(parts); value = _b_os.fstat(fd)
-            if before != (value.st_dev,value.st_ino,value.st_size,value.st_mtime_ns,value.st_ctime_ns) or before != _b_identity(path):
-                raise ValueError('Selected Python bootstrap source changed during capture')
-        finally:
-            _b_os.close(fd)
-        if expected is not None and _b_hashlib.sha256(raw).hexdigest() != expected:
-            raise ValueError('Selected Python bootstrap digest differs')
-        _b_held[relative] = before
-        return raw
-    def _b_unique(pairs):
-        result = {}
-        for key,value in pairs:
-            if key in result: raise ValueError('Duplicate selected Python bootstrap key')
-            result[key] = value
-        return result
-    def _b_decode(raw): return _b_json.loads(raw, object_pairs_hook=_b_unique)
-    def _b_recheck():
-        for relative,identity in _b_held.items():
-            if _b_identity(_b_root/relative) != identity:
-                raise ValueError('Retained Python bootstrap source replaced')
-    _b_selection = _b_decode(_b_capture('reference/priorities/development-process-review/contracts/option-b-production-selection.json'))
-    _b_accepted = _b_decode(_b_capture(_b_selection['acceptedBaseline'], _b_selection['acceptedBaselineSha256']))
-    _b_profiles = [p for p in _b_accepted['profiles'] if p['name'] == 'production-source-records']
-    if len(_b_profiles) != 1: raise ValueError('One selected production bootstrap profile required')
-    _b_map = _b_decode(_b_profiles[0]['manifestRaw'])
-    _b_path = 'scripts/eom/production_source_records.py'
-    _b_rows = [r for r in _b_map['@graph'] if r.get('@type') == 'Source' and r.get('binding',{}).get('path') == _b_path]
-    if (len(_b_rows) != 1 or _b_rows[0]['role'] != 'scientific-contract'
-            or _b_rows[0]['binding']['selector'] != {'kind':'whole'}
-            or _b_rows[0]['binding']['contract'] != 'fixed-byte-selection/v1'):
-        raise ValueError('Exact selected Python production bridge required')
-    _b_raw = _b_capture(_b_path, _b_rows[0]['binding']['sha256'])
-    _b_bridge = _b_types.ModuleType('_admitted_f6c_bridge_' + str(id(_b_held)))
-    _b_bridge.__file__ = str(_b_root/_b_path)
-    _b_sys.modules[_b_bridge.__name__] = _b_bridge
-    _b_recheck()
-    exec(compile(_b_raw,_b_bridge.__file__,'exec',dont_inherit=True),_b_bridge.__dict__)
-    _b_recheck()
-    def _b_call(name, *args, **kwargs):
-        _b_recheck()
-        result = getattr(_b_bridge,name)(*args,**kwargs)
-        _b_recheck()
-        return result
-    production_identities = lambda *args,**kwargs: _b_call('production_identities',*args,**kwargs)
-    production_source_pair = lambda *args,**kwargs: _b_call('production_source_pair',*args,**kwargs)
-    production_recheck = lambda: _b_call('production_recheck')
-    production_historical_record = lambda *args,**kwargs: _b_call('production_historical_record',*args,**kwargs)
-    production_runtime_binding = lambda: _b_call('production_runtime_binding')
-    production_original_source_binding = lambda *args, **kwargs: _b_call('production_original_source_binding', *args, **kwargs)
-    OPTION_B_PRODUCTION_IDENTITIES = production_identities(__file__)
+import hashlib
+from pathlib import Path
 
-if ('OPTION_B_PRODUCTION_IDENTITIES' not in globals()
-        or type(OPTION_B_PRODUCTION_IDENTITIES) is not tuple
-        or len(OPTION_B_PRODUCTION_IDENTITIES) != 52):
-    raise RuntimeError('Admitted production host must supply the original identity tuple')
+
+
 
 import argparse
 from contextlib import ExitStack, contextmanager
 from decimal import Decimal
 from fractions import Fraction as F
-import hashlib
 import json
 import math
 import os
-from pathlib import Path
 import re
 import resource
 import signal
@@ -136,52 +56,49 @@ MAX_SOURCE_BYTES = 1024**3
 MAX_LINE = 131072
 IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')
 NAMED = {
- 'declaration': (PREFIX+'2026-08-27-f6c-parent-emission-refinement-reference.md',OPTION_B_PRODUCTION_IDENTITIES[0]),
- 'producer': (SELF,None), 'producerControls': (CONTROLS,None),
- 'proposalReference': ('scripts/eom/f6c_parent_emission_refinement.py',OPTION_B_PRODUCTION_IDENTITIES[1]),
- 'proposalReferenceControls': ('tests/test_f6c_parent_emission_refinement.py',OPTION_B_PRODUCTION_IDENTITIES[2]),
- 'verifier': ('scripts/eom/verify-f6c-parent-emission-refinement.py',None),
- 'verifierControls': ('tests/test_f6c_parent_emission_refinement_verification.py',None),
- 'comparisonReference': ('scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[3]),
- 'comparisonReferenceControls': ('tests/test_f6c_parent_emission_refinement_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[4]),
+ 'producer': SELF, 'producerControls': CONTROLS,
+ 'proposalReference': 'scripts/eom/f6c_parent_emission_refinement.py',
+ 'proposalReferenceControls': 'tests/test_f6c_parent_emission_refinement.py',
+ 'verifier': 'scripts/eom/verify-f6c-parent-emission-refinement.py',
+ 'verifierControls': 'tests/test_f6c_parent_emission_refinement_verification.py',
+ 'comparisonReference': 'scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py',
+ 'comparisonReferenceControls': 'tests/test_f6c_parent_emission_refinement_conformance.py',
 }
 DEPENDENCIES = {
- 'transport': ('scripts/eom/verify-f6c-refined-acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[5]),
- 'transportControls': ('tests/test_f6c_refined_acceleration.py',OPTION_B_PRODUCTION_IDENTITIES[6]),
- 'scientificDecoder': ('scripts/eom/oracle/f6c_refined_acceleration_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[7]),
- 'scientificDecoderControls': ('tests/test_f6c_refined_acceleration_conformance.py',OPTION_B_PRODUCTION_IDENTITIES[8]),
- 'productionHelper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py',OPTION_B_PRODUCTION_IDENTITIES[9]),
- 'productionHelperControls': ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py',OPTION_B_PRODUCTION_IDENTITIES[10]),
- 'historyReference': ('scripts/eom/oracle/certified_history.py',OPTION_B_PRODUCTION_IDENTITIES[11]),
- 'decimalReference': ('scripts/eom/oracle/decimal_interval.py',OPTION_B_PRODUCTION_IDENTITIES[12]),
- 'decimalControls': ('tests/test_eom_decimal_interval.py',OPTION_B_PRODUCTION_IDENTITIES[13]),
- 'rootLibrary': ('scripts/eom/oracle/continuous_reception_roots_cached.py',OPTION_B_PRODUCTION_IDENTITIES[14]),
- 'rootControls': ('tests/test_eom_continuous_reception_roots_cached.py',OPTION_B_PRODUCTION_IDENTITIES[15]),
- 'independentRootReference': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py',OPTION_B_PRODUCTION_IDENTITIES[16]),
- 'independentRootControls': ('tests/test_f6c_cached_continuous_reception_root_cover.py',OPTION_B_PRODUCTION_IDENTITIES[17]),
- 'cacheEquivalence': (PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md',OPTION_B_PRODUCTION_IDENTITIES[18]),
+ 'transport': 'scripts/eom/verify-f6c-refined-acceleration.py',
+ 'transportControls': 'tests/test_f6c_refined_acceleration.py',
+ 'scientificDecoder': 'scripts/eom/oracle/f6c_refined_acceleration_conformance.py',
+ 'scientificDecoderControls': 'tests/test_f6c_refined_acceleration_conformance.py',
+ 'productionHelper': 'scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py',
+ 'productionHelperControls': 'tests/test_f6c_cached_continuous_reception_root_cover_preparation.py',
+ 'historyReference': 'scripts/eom/oracle/certified_history.py',
+ 'decimalReference': 'scripts/eom/oracle/decimal_interval.py',
+ 'decimalControls': 'tests/test_eom_decimal_interval.py',
+ 'rootLibrary': 'scripts/eom/oracle/continuous_reception_roots_cached.py',
+ 'rootControls': 'tests/test_eom_continuous_reception_roots_cached.py',
+ 'independentRootReference': 'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py',
+ 'independentRootControls': 'tests/test_f6c_cached_continuous_reception_root_cover.py',
 }
 FULL_BASE = '.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/'
 FULL = {
- 'fullRows': (FULL_BASE+'subject/rows.ndjson',OPTION_B_PRODUCTION_IDENTITIES[19],22585784),
- 'fullPieces': (FULL_BASE+'subject/pieces.ndjson',OPTION_B_PRODUCTION_IDENTITIES[20],7505144),
- 'fullManifest': (FULL_BASE+'subject/cover-manifest.json',OPTION_B_PRODUCTION_IDENTITIES[21],42922),
- 'fullComparison': (FULL_BASE+'comparison.json',OPTION_B_PRODUCTION_IDENTITIES[22],43377),
- 'fullAdmission': (FULL_BASE+'full-admission.json',OPTION_B_PRODUCTION_IDENTITIES[23],332567),
- 'fullLauncherLog': (FULL_BASE+'launcher-stderr.log',OPTION_B_PRODUCTION_IDENTITIES[24],30969),
- 'fullResourceLog': (FULL_BASE+'resource-observations.ndjson',OPTION_B_PRODUCTION_IDENTITIES[25],1710278),
- 'fullPlan': (PREFIX+'2026-08-27-f6c-cached-root-cover-full-launch.v1.json',OPTION_B_PRODUCTION_IDENTITIES[26],45282),
+ 'fullRows': (FULL_BASE+'subject/rows.ndjson','28491edb2f1faec7adf248f535d29a1600b8bd69f5a46706fd26dbb3eb848b5c',22585784),
+ 'fullPieces': (FULL_BASE+'subject/pieces.ndjson','b3a2ddf2c8cd5b586ef7b374eee94afc395f63496c849ec574e71bf1f487a9ab',7505144),
+ 'fullManifest': (FULL_BASE+'subject/cover-manifest.json','61b0cdfad85696a0b5ead7df838119c9005a28656e9ac3daa26df139054410e2',42922),
+ 'fullComparison': (FULL_BASE+'comparison.json','1c423aece2009a2d7d0852e9558c16464c640abbc5bea3743211af3805b6eed2',43377),
+ 'fullAdmission': (FULL_BASE+'full-admission.json','8fe8f0f9651fd8de15467a69f0534f08bbe19e0e3fdb64a86c6422be857eb77f',332567),
+ 'fullLauncherLog': (FULL_BASE+'launcher-stderr.log','b976d8deb556d8faba5a3aff73a09b77ec26c6da84e42726167eec4ec7a43314',30969),
+ 'fullResourceLog': (FULL_BASE+'resource-observations.ndjson','66eb0cfa1811d0a834d18d3bd8e749a941e1964f7276898b80a4e12136d69d03',1710278),
 }
+ORIGINAL_SOURCES = {'fullEntry': 'scripts/eom/run-f6c-cached-root-cover-full.mjs', 'fullPlan': PREFIX+'2026-08-27-f6c-cached-root-cover-full-launch.v1.json'}
 ORIGINAL = {
- 'export': ('.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json',OPTION_B_PRODUCTION_IDENTITIES[27]),
- 'reconstruction': ('.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json',OPTION_B_PRODUCTION_IDENTITIES[28]),
- 'guards': ('.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json',OPTION_B_PRODUCTION_IDENTITIES[29]),
- 'fullEntry': ('scripts/eom/run-f6c-cached-root-cover-full.mjs',OPTION_B_PRODUCTION_IDENTITIES[30]),
+ 'export': ('.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json','f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'),
+ 'reconstruction': ('.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json','7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43'),
+ 'guards': ('.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json','86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880'),
  **FULL,
 }
 PLAN_KEYS = ('schema','scope','parentIndex',*NAMED,'dependencies','originalBindings','acceptanceOwner',
-             'priorCoverClosure','runtimeBindings','operationalBindings','historicalDocumentRoutes','limits')
-MANIFEST_KEYS = tuple('schema scope status accepted launchPlan producer verifier declaration parent members originalBindings acceptanceOwner priorCoverClosure historicalSourceBindings historicalEvidenceVerification subjectSourceBindings runtimeBindings operationalBindings algorithm restrictions census helperCalls queries rows pieces libraryFlags claims publicationRequires'.split())
+             'priorCoverClosure','runtimeBindings','operationalBindings','limits')
+MANIFEST_KEYS = tuple('schema scope status accepted launchPlan producer verifier parent members originalBindings acceptanceOwner priorCoverClosure historicalSourceBindings historicalEvidenceVerification subjectSourceBindings runtimeBindings operationalBindings algorithm restrictions census helperCalls queries rows pieces libraryFlags claims publicationRequires'.split())
 COMPLETION_KEYS = tuple('completed accepted scope parentIndex outputs publicationRecords census helperCalls elapsedSeconds processUserSeconds processSystemSeconds maximumIndividualProcessResidentBytes independentComparisonRequired externalInclusiveDeadlineAndProcessClosureRequired claims'.split())
 HISTORY_KEYS = tuple('id pathKey polarity charge historyFingerprint coverageStart coverageEnd segments'.split())
 SEGMENT_KEYS = tuple('startTime endTime coefficients positionErrors velocityErrors positionError velocityError'.split())
@@ -204,86 +121,18 @@ TOKEN = re.compile(r'-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\Z')
 
 
 
-class _ProductionOriginal:
-    """Original logical binding backed by an independently owned archive handle."""
-    def __init__(self, physical, logical):
-        object.__setattr__(self,'_physical',physical)
-        object.__setattr__(self,'path',logical)
-    def __getattr__(self,name):return getattr(self._physical,name)
-    def __setattr__(self,name,value):setattr(self._physical,name,value)
-    def binding(self):
-        result=self._physical.binding();result['path']=str(self.path);return result
-    def physical_binding(self):return self._physical.binding()
-    def recheck(self):
-        result=self._physical.recheck()
-        if isinstance(result,dict) and 'path' in result:
-            result=dict(result);result['path']=str(self.path)
-        return result
 
 
-@contextmanager
-def _production_capture(cls, filename, digest, **kwargs):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
-    if not _path.is_absolute():_path=_root/_path
-    try:_relative=_path.relative_to(_root).as_posix()
-    except ValueError:_binding=None
-    else:
-        if _path!=_path.resolve():raise ValueError('noncanonical original capture')
-        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
-        if _binding is not None:
-            from hashlib import sha256 as _sha256
-            _,_current,_=production_source_pair(_root,__file__,_relative)
-            _binding=None if _sha256(_current).hexdigest()==digest else production_original_source_binding(_root,__file__,_relative,digest)
-    _physical=_Path(_binding['path']) if _binding is not None else _path
-    production_recheck()
-    with cls(_physical,digest,**kwargs) as _held:
-        if _binding is not None and (_held.binding()['bytes']!=_binding['bytes'] or _held.binding()['sha256']!=_binding['sha256']):raise ValueError('original archive identity differs')
-        try:yield _ProductionOriginal(_held,_path) if _binding is not None else _held
-        finally:
-            if _binding is not None:_held.recheck()
-            production_recheck()
 
 
-def _production_current_source(raw):
-    from pathlib import Path as _Path
-    _root=_Path(__file__).resolve().parents[2]
-    _original,_current,_=production_source_pair(_root,__file__,_Path(__file__).resolve().relative_to(_root).as_posix())
-    require(raw==_original or raw==_current,'executing source is not the selected equivalent generation')
-    production_recheck()
-    return _current
 
-def _production_exec(raw, filename, namespace, *, optimize=-1):
-    """Execute the proven current representation or the exact older original."""
-    from pathlib import Path as _Path
-    from hashlib import sha256 as _sha256
-    _root=_Path(__file__).resolve().parents[2];_path=_Path(filename)
-    if not _path.is_absolute():_path=_root/_path
-    try:_relative=_path.relative_to(_root).as_posix()
-    except ValueError:_binding=None
-    else:
-        if _path!=_path.resolve():raise ValueError('noncanonical captured module')
-        _binding=production_original_source_binding(_root,__file__,_relative,optional=True)
-    if _binding is not None:
-        _original,_current,_identities=production_source_pair(_root,__file__,_relative)
-        if raw==_original or raw==_current:
-            raw=_current
-            namespace['OPTION_B_PRODUCTION_IDENTITIES']=_identities
-            for _key in ('production_identities','production_source_pair','production_recheck','production_historical_record','production_runtime_binding','production_original_source_binding'):
-                namespace[_key]=globals()[_key]
-        else:
-            _historical,_,_=production_source_pair(_root,__file__,_relative,_sha256(raw).hexdigest())
-            if raw!=_historical:raise ValueError('captured older original differs')
-    production_recheck()
-    try:exec(compile(raw,str(filename),'exec',dont_inherit=True,optimize=optimize),namespace)
-    finally:production_recheck()
 
 def require(condition, message):
     if not condition: raise ValueError(message)
 
 
 def closed(value, names):
-    require(type(value) is dict and set(value) == set(names), 'closed record fields')
+    require((type(value) is dict) and (set(value) == set(names)), 'closed record fields')
 
 
 def equal(a, b):
@@ -301,18 +150,18 @@ def plain(value):
 
 def sha(raw): return hashlib.sha256(raw).hexdigest()
 def encoded(value): return json.dumps(value,sort_keys=True,separators=(',',':'),ensure_ascii=True,allow_nan=False).encode('ascii')+b'\n'
-def index(value, expected): require(type(value) is int and value == expected,'exact index/census')
+def index(value, expected): require((type(value) is int) and (value == expected),'exact index/census')
 
 
 def parent_scope(parent_index):
-    require(type(parent_index) is int and 0<=parent_index<160,'bounded original parent index')
+    require((type(parent_index) is int) and (0<=parent_index<160),'bounded original parent index')
     return f'original-parent-{parent_index}-emission-refinement'
 
 
 def number(token):
-    require(type(token) is str and 0<len(token)<=1100 and TOKEN.fullmatch(token),'bounded decimal token')
+    require((type(token) is str) and (0<len(token)<=1100) and (TOKEN.fullmatch(token)),'bounded decimal token')
     value=Decimal(token)
-    require(value.is_finite() and len(value.as_tuple().digits)<=1024 and abs(value.as_tuple().exponent)<=1000,'decimal operand limit')
+    require((value.is_finite()) and (len(value.as_tuple().digits)<=1024) and (abs(value.as_tuple().exponent)<=1000),'decimal operand limit')
     return F(value)
 
 
@@ -326,15 +175,15 @@ def snapshot(value, *, max_nodes=1000000):
     count=0; size=0
     def visit(v,depth):
         nonlocal count,size
-        count+=1;require(count<=max_nodes and depth<=24,'snapshot structure bound')
+        count+=1;require((count<=max_nodes) and (depth<=24),'snapshot structure bound')
         t=type(v)
         if t is dict:
-            require(len(v)<=10000 and all(type(k) is str and len(k)<=4096 for k in v),'snapshot keys')
+            require((len(v)<=10000) and (all(type(k) is str and len(k)<=4096 for k in v)),'snapshot keys')
             return {k:visit(x,depth+1) for k,x in v.items()}
         if t in (list,tuple):
             require(len(v)<=20000,'snapshot sequence');return [visit(x,depth+1) for x in v]
         require(v is None or t in (str,bool,int),'inert scientific snapshot')
-        if t is str: size+=len(v.encode('utf-8'));require(len(v)<=8192 and size<=MAX_BYTES,'snapshot string bound')
+        if t is str: size+=len(v.encode('utf-8'));require((len(v)<=8192) and (size<=MAX_BYTES),'snapshot string bound')
         if t is int: require(abs(v)<=2**53-1,'snapshot integer bound')
         return v
     return visit(value,0)
@@ -342,17 +191,17 @@ def snapshot(value, *, max_nodes=1000000):
 
 def binding(raw, root=None):
     closed(raw,('path','sha256','bytes'))
-    path=raw['path'];require(type(path) is str and 0<len(path)<=2048 and '\0' not in path,'binding path')
-    p=Path(path);require(str(p)==path and '..' not in p.parts,'canonical binding spelling')
-    require(type(raw['sha256']) is str and HEX.fullmatch(raw['sha256']),'binding digest')
-    require(type(raw['bytes']) is int and 0<raw['bytes']<=MAX_SOURCE_BYTES,'binding bytes')
+    path=raw['path'];require((type(path) is str) and (0<len(path)<=2048) and ('\0' not in path),'binding path')
+    p=Path(path);require((str(p)==path) and ('..' not in p.parts),'canonical binding spelling')
+    require((type(raw['sha256']) is str) and (HEX.fullmatch(raw['sha256'])),'binding digest')
+    require((type(raw['bytes']) is int) and (0<raw['bytes']<=MAX_SOURCE_BYTES),'binding bytes')
     if root is not None:
-        p=root/p;require(p.is_absolute() and p==p.resolve(),'canonical bound path');path=str(p)
+        p=root/p;require((p.is_absolute()) and (p==p.resolve()),'canonical bound path');path=str(p)
     return dict(path=path,sha256=raw['sha256'],bytes=raw['bytes'])
 
 
 def binding_list(values, root, count=None):
-    require(type(values) is list and 0<len(values)<=512 and (count is None or len(values)==count),'binding list census')
+    require((type(values) is list) and (0<len(values)<=512) and (count is None or len(values)==count),'binding list census')
     result=[binding(v,root) for v in values]
     require(len({v['path'] for v in result})==len(result),'duplicate canonical binding');return result
 
@@ -363,19 +212,21 @@ def closure_premise():
 
 
 def validate_plan(plan, own_sha, root, transport):
-    closed(plan,PLAN_KEYS);require(plan['schema']==PLAN_SCHEMA and plan['scope']==parent_scope(plan['parentIndex']),'plan scope')
+    closed(plan,PLAN_KEYS);require((plan['schema']==PLAN_SCHEMA) and (plan['scope']==parent_scope(plan['parentIndex'])),'plan scope')
     require(equal(plan['limits'],transport.LIMITS),'unchanged limits');require(equal(plan['priorCoverClosure'],closure_premise()),'full external closure premise')
-    closed(plan['dependencies'],DEPENDENCIES);closed(plan['originalBindings'],ORIGINAL)
-    for mapping,spec in ((plan,NAMED),(plan['dependencies'],DEPENDENCIES),(plan['originalBindings'],ORIGINAL)):
-        for role,(path,digest,*sizes) in spec.items():
-            b=binding(mapping[role],root)
-            require(b['path']==str(root/path) and (digest is None or b['sha256']==digest),'fixed binding: '+role)
-            if sizes: index(b['bytes'],sizes[0])
+    closed(plan['dependencies'],DEPENDENCIES);closed(plan['originalBindings'],(*ORIGINAL,*ORIGINAL_SOURCES))
+    for mapping,spec in ((plan,NAMED),(plan['dependencies'],DEPENDENCIES),(plan['originalBindings'],ORIGINAL_SOURCES)):
+        for role,path in spec.items():
+            require(binding(mapping[role],root)['path']==str(root/path),'source path: '+role)
+    for role,(path,digest,*sizes) in ORIGINAL.items():
+        b=binding(plan['originalBindings'][role],root)
+        require(b['path']==str(root/path) and b['sha256']==digest,'artifact binding: '+role)
+        if sizes: index(b['bytes'],sizes[0])
     require(plan['producer']['sha256']==own_sha,'executing producer generation')
     owner=binding(plan['acceptanceOwner'],root);require(owner['path']==str(root/OWNER),'acceptance-owner path')
     # No automatic acceptance of the current owner's bytes; only the plan SHA.
     subjects=[binding(plan[k],root) for k in NAMED]+[binding(plan['dependencies'][k],root) for k in DEPENDENCIES]
-    require(type(plan['runtimeBindings']) is list and len(plan['runtimeBindings'])<=256,'bounded runtime capabilities')
+    require((type(plan['runtimeBindings']) is list) and (len(plan['runtimeBindings'])<=256),'bounded runtime capabilities')
     require(all(type(v) is dict and set(v)=={'path'} and type(v['path']) is str and Path(v['path']).is_absolute()
                 and str(Path(v['path']))==v['path'] and '..' not in Path(v['path']).parts for v in plan['runtimeBindings']),
             'normalized absolute runtime capability paths only')
@@ -386,100 +237,11 @@ def validate_plan(plan, own_sha, root, transport):
     require(len({b['path'] for b in new})==len(new),'duplicate new execution source')
     originals=[binding(v,root) for v in plan['originalBindings'].values()]+[owner]
     require(len({b['path'] for b in originals})==len(originals),'duplicate original role')
-    validate_routes(plan['historicalDocumentRoutes'], root)
+
     return subjects,runtime,ops
 
 
-# Exact nonexecuting archives recovered against the original pinned admission.
-HISTORICAL_ARCHIVES = {
- "scripts/eom/launch-abc-enclosed-root-pilot.mjs": [
-  OPTION_B_PRODUCTION_IDENTITIES[31],
-  39465
- ],
- "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": [
-  OPTION_B_PRODUCTION_IDENTITIES[32],
-  38160
- ],
- "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py": [
-  OPTION_B_PRODUCTION_IDENTITIES[33],
-  41336
- ],
- "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md": [
-  OPTION_B_PRODUCTION_IDENTITIES[34],
-  10021
- ],
- "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": [
-  OPTION_B_PRODUCTION_IDENTITIES[35],
-  11113
- ],
- "tests/test_f6c_cached_continuous_reception_root_cover.py": [
-  OPTION_B_PRODUCTION_IDENTITIES[36],
-  11096
- ],
- "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md": [
-  OPTION_B_PRODUCTION_IDENTITIES[37],
-  12103
- ],
- "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md": [
-  OPTION_B_PRODUCTION_IDENTITIES[38],
-  28340
- ],
- "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md": [
-  OPTION_B_PRODUCTION_IDENTITIES[39],
-  21031
- ],
- "tests/test_eom_continuous_reception_roots.py": [
-  OPTION_B_PRODUCTION_IDENTITIES[40],
-  32501
- ],
- "scripts/eom/verify-f6c-accepted-frame-reconstruction.py": [
-  OPTION_B_PRODUCTION_IDENTITIES[41],
-  31153
- ],
- "scripts/eom/verify-f6c-retained-history-guards.py": [
-  OPTION_B_PRODUCTION_IDENTITIES[42],
-  31651
- ],
- "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md": [
-  OPTION_B_PRODUCTION_IDENTITIES[43],
-  25546
- ],
- "scripts/eom/verify-f6c-continuous-reception-root-cover.py": [
-  OPTION_B_PRODUCTION_IDENTITIES[44],
-  39929
- ],
- "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md": [
-  OPTION_B_PRODUCTION_IDENTITIES[45],
-  10933
- ],
- "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md": [
-  OPTION_B_PRODUCTION_IDENTITIES[46],
-  13021
- ],
- "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md": [
-  OPTION_B_PRODUCTION_IDENTITIES[47],
-  6754
- ],
- "scripts/eom/run-f6c-cached-root-cover-full.mjs": [
-  OPTION_B_PRODUCTION_IDENTITIES[48],
-  27166
- ],
- "scripts/eom/launch-f6c-cached-root-cover-full.mjs": [
-  OPTION_B_PRODUCTION_IDENTITIES[49],
-  26659
- ]
-}
-def validate_routes(rows, root):
-    require(type(rows) is list and len(rows)<=198,'bounded consumed archive routes')
-    result={}
-    for row in rows:
-        closed(row,('original','physical'));old=binding(row['original'],root);physical=binding(row['physical'],root)
-        expected=HISTORICAL_ARCHIVES.get(os.path.relpath(old['path'],root))
-        require(expected is not None and [old['sha256'],old['bytes']]==expected,'exact admitted historical tuple')
-        require(physical['path']!=old['path'] and physical['path'].endswith('.source') and physical['sha256']==old['sha256'] and physical['bytes']==old['bytes'],'nonexecuting lossless archive route')
-        require(old['path'] not in result and physical['path'] not in {r['physical']['path'] for r in result.values()},'duplicate historical route')
-        result[old['path']]=dict(original=old,physical=physical)
-    return result
+# Retained scientific-result metadata.
 
 
 def historical_evidence():
@@ -504,7 +266,7 @@ def module_from_bytes(raw, path):
     require(name not in sys.modules,'private module collision')
     module=ModuleType(name);module.__file__=str(path);sys.modules[name]=module
     try:
-        _production_exec(raw, str(path), module.__dict__, optimize=sys.flags.optimize)
+        exec(compile(raw, str(str(path)), 'exec', dont_inherit=True, optimize=sys.flags.optimize), module.__dict__)
         yield module
     finally: sys.modules.pop(name,None)
 
@@ -512,23 +274,18 @@ def module_from_bytes(raw, path):
 @contextmanager
 def bootstrap(path,digest,live):
     """Only bootstrap duplication: bounded same-FD capture before transport."""
-    require(path.is_absolute() and path==path.resolve(),'bootstrap canonical path');live()
-    root=Path(__file__).resolve().parents[2]
-    try:relative=path.relative_to(root).as_posix()
-    except ValueError:archive=None
-    else:archive=production_original_source_binding(root,__file__,relative,digest,optional=True)
-    if archive is not None:path=Path(archive['path'])
+    require((path.is_absolute()) and (path==path.resolve()),'bootstrap canonical path');live()
     fd=os.open(path,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
     identity=lambda s:(s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
     try:
-        original=os.fstat(fd);require(stat.S_ISREG(original.st_mode) and 0<original.st_size<=MAX_BYTES,'bootstrap regular bound')
+        original=os.fstat(fd);require((stat.S_ISREG(original.st_mode)) and (0<original.st_size<=MAX_BYTES),'bootstrap regular bound')
         def scan():
             os.lseek(fd,0,os.SEEK_SET);parts=[];n=0
             while n<original.st_size:
                 live();part=os.read(fd,min(65536,original.st_size-n));require(part,'bootstrap truncation');parts.append(part);n+=len(part)
             require(not os.read(fd,1),'bootstrap growth')
-            require(identity(os.fstat(fd))==identity(original) and path==path.resolve() and identity(os.stat(path,follow_symlinks=False))==identity(original),'bootstrap replacement')
-            raw=b''.join(parts);require(sha(raw)==digest,'bootstrap hash');return raw
+            require((identity(os.fstat(fd))==identity(original)) and (path==path.resolve()) and (identity(os.stat(path,follow_symlinks=False))==identity(original)),'bootstrap replacement')
+            raw=b''.join(parts);require(digest is None or sha(raw)==digest,'bootstrap hash');return raw
         raw=scan()
         try: yield raw
         finally: scan();live()
@@ -537,16 +294,16 @@ def bootstrap(path,digest,live):
 
 class CapturePool:
     def __init__(self,stack,transport,root,live):
-        self.stack,self.w,self.root,self.live=stack,transport,root,live;self.files={};self.routes={};self.used_routes=set();self.allowed=None;self.total=0;self.inodes=set()
+        self.stack,self.w,self.root,self.live=stack,transport,root,live;self.files={};self.allowed=None;self.total=0;self.inodes=set()
     def capture(self,raw,*,data=False,limit=MAX_SOURCE_BYTES):
         b=binding(raw,self.root);path=b['path'];require(b['bytes']<=limit,'capture role size')
-        if self.allowed is not None: require(path in self.allowed and equal(self.allowed[path],b),'source absent from original operation union')
+        if self.allowed is not None: require((path in self.allowed) and (equal(self.allowed[path],b)),'source absent from original operation union')
         if path not in self.files:
-            require(len(self.files)<512 and self.total+b['bytes']<=MAX_SOURCE_BYTES,'aggregate source file/byte cap')
-            f=self.stack.enter_context(_production_capture(self.w.BoundFile,path,b['sha256'],capture=data,limit=limit,live=self.live));self.files[path]=f
+            require((len(self.files)<512) and (self.total+b['bytes']<=MAX_SOURCE_BYTES),'aggregate source file/byte cap')
+            f=self.stack.enter_context(self.w.BoundFile(path,b['sha256'],capture=data,limit=limit,live=self.live));self.files[path]=f
             require(f.initial.st_size==b['bytes'],'captured byte count')
             inode=(f.initial.st_dev,f.initial.st_ino);require(inode not in self.inodes,'source inode alias');self.inodes.add(inode);self.total+=b['bytes']
-        f=self.files[path];require(f.digest==b['sha256'] and f.initial.st_size==b['bytes'],'conflicting captured generation')
+        f=self.files[path];require((f.digest==b['sha256']) and (f.initial.st_size==b['bytes']),'conflicting captured generation')
         if data and f.data is None:
             # Same descriptor, same initial length and final EOF; never read to
             # an uncontrolled moving EOF during a metadata-to-data upgrade.
@@ -556,19 +313,13 @@ class CapturePool:
         f=self.capture(b,data=capture,limit=MAX_BYTES if capture else MAX_SOURCE_BYTES)
         return f.data if capture else f.binding()
     def historical_file(self,b,*,data=False):
-        old=binding(b,self.root)
-        route=self.routes.get(old['path'])
-        if route is not None:
-            require(equal(route['original'],old),'historical route original tuple')
-            self.used_routes.add(old['path']);physical=route['physical']
-        else:physical=old
-        return self.capture(physical,data=data,limit=MAX_BYTES if data else MAX_SOURCE_BYTES)
+        return self.capture(b,data=data,limit=MAX_BYTES if data else MAX_SOURCE_BYTES)
     def historical(self,b):
         old=binding(b,self.root)
         self.historical_file(old)
         return old
     def admit_operation(self, filename, digest):
-        p=Path(filename);require(p.is_absolute() and p==p.resolve(),'canonical operation plan')
+        p=Path(filename);require((p.is_absolute()) and (p==p.resolve()),'canonical operation plan')
         own=dict(path=str(p),sha256=digest,bytes=p.stat().st_size)
         f=self.capture(own,data=True,limit=MAX_BYTES);doc=json.loads(f.data)
         require(doc.get('schema')=='braid-program/f6c-bounded-operation-plan.v1','source-bound generic operation')
@@ -577,14 +328,14 @@ class CapturePool:
         allowed={}
         for row in rows:
             b=binding(row,self.root);require(b['path'] not in allowed or equal(allowed[b['path']],b),'operation source conflict');allowed[b['path']]=b
-        require(len(allowed)<=512 and sum(b['bytes'] for b in allowed.values())<=MAX_SOURCE_BYTES,'global source union cap')
+        require((len(allowed)<=512) and (sum(b['bytes'] for b in allowed.values())<=MAX_SOURCE_BYTES),'global source union cap')
         for b in allowed.values():self.capture(b)
         require(set(self.files)<=set(allowed),'bootstrap source absent from global union');self.allowed=allowed
     def recheck(self):
         for f in self.files.values(): f.recheck()
         self.live()
     def identities(self):
-        return [((self.files[path].physical_binding() if isinstance(self.files[path],_ProductionOriginal) else self.files[path].binding()),self.w.BoundFile.identity(self.files[path].initial)) for path in sorted(self.files)]
+        return [(self.files[path].binding(),self.w.BoundFile.identity(self.files[path].initial)) for path in sorted(self.files)]
 
 
 def final_recapture(transport, identities, live):
@@ -595,37 +346,31 @@ def final_recapture(transport, identities, live):
     bounded regular descriptors stay open together through the recheck, then
     close before completion; no source or execution authority is inferred.
     """
-    require(type(identities) is list and 0<len(identities)<=512,'final source census')
+    require((type(identities) is list) and (0<len(identities)<=512),'final source census')
     require(len({b['path'] for b,_ in identities})==len(identities),'final duplicate source')
     with ExitStack() as stack:
         files=[]
         for original,identity in identities:
             live();b=binding(original)
             f=stack.enter_context(transport.BoundFile(b['path'],b['sha256'],capture=False,limit=b['bytes'],live=live))
-            require(transport.BoundFile.identity(f.initial)==identity and f.initial.st_size==b['bytes'],'post-cleanup original source identity changed')
+            require((transport.BoundFile.identity(f.initial)==identity) and (f.initial.st_size==b['bytes']),'post-cleanup original source identity changed')
             files.append(f)
         for f in files:f.recheck()
         live()
 
 
-def entry_pins(raw):
-    record = production_historical_record(__file__, 'f6c-original-full')
-    require(hashlib.sha256(raw).hexdigest() == record['sourceEntry']['sha256']
-            and len(raw) == record['sourceEntry']['bytes'], 'original full entry bytes differ')
-    require(len(record['pins']) == 35 and len(record['membership']) == 198,
-            'original full historical membership census differs')
-    return dict(record['pins'])
+
 
 
 def owner_declaration(raw):
-    require(type(raw) is bytes and 0<len(raw)<=MAX_BYTES,'owner byte limit')
+    require((type(raw) is bytes) and (0<len(raw)<=MAX_BYTES),'owner byte limit')
     text=raw.decode('utf-8',errors='strict');heading='### Independently Accepted Actual Full asymmetric counter-breathing representative Conditional Cover\n'
     require(text.count(heading)==1,'unique full owner section');section=text.split(heading,1)[1].split('\n### ',1)[0]
     for token in ('original caller session `13512`','final completion chunk `c21aa7`','exit zero','`862.951823625`',
                   'Independent post-closure review accepts all 160',FULL_BASE):
         require(token in section,'full owner declaration identity')
     for role,(_,digest,size) in FULL.items():
-        if role!='fullPlan': require(digest in section and str(size) in section,'full owner output identity')
+        if role!='fullPlan': require((digest in section) and (str(size) in section),'full owner output identity')
     return closure_premise()
 
 
@@ -634,67 +379,50 @@ def authenticate_full_chain(w,docs,files,pool,owner_raw):
     owner_declaration(owner_raw)
     p,m,c,a=(docs[k] for k in ('fullPlan','fullManifest','fullComparison','fullAdmission'))
     closed(p,('schema','scope','resourcePlan','comparisonContract','operationalBindings','controlBindings','python','pythonRealPath','git','node'))
-    require(p['schema']=='braid-program/f6c-cached-root-cover-full-launch.v1' and p['scope']=='full','original full plan scope')
+    require((p['schema']=='braid-program/f6c-cached-root-cover-full-launch.v1') and (p['scope']=='full'),'original full plan scope')
     contract=p['comparisonContract'];closed(contract,('declarationSha256','verifierSha256','scope','subjectSourceBindings','runtimeBindings'))
-    require(contract['scope']=='full' and contract['verifierSha256']==OPTION_B_PRODUCTION_IDENTITIES[50]
-        and contract['declarationSha256']==OPTION_B_PRODUCTION_IDENTITIES[51],'original full comparison contract')
-    # Obtain original sizes from bound plan/admission only after deriving the
-    # independent path/hash set from the captured entry; not receipt labels.
-    claimed=binding_list(a['sourceBindings'],pool.root,198);claimed_map={b['path']:b for b in claimed}
-    expected=[]
-    for path,digest in entry_pins(files['fullEntry'].data).items():
-        absolute=str(pool.root/path);require(absolute in claimed_map and claimed_map[absolute]['sha256']==digest,'entry source missing')
-        expected.append(pool.historical(claimed_map[absolute]))
-    for group,n in ((contract['subjectSourceBindings'],4),(contract['runtimeBindings'],158),(p['operationalBindings'],6),(p['controlBindings'],2)):
-        for b in binding_list(group,pool.root,n): expected.append(pool.historical(b))
-    expected.extend((pool.historical(p['resourcePlan']),files['fullPlan'].binding()))
-    require(pool.used_routes==set(pool.routes),'unused historical route')
-    unique={}
-    for b in expected:
-        require(b['path'] not in unique or equal(unique[b['path']],b),'conflicting historical source');unique[b['path']]=b
-    require(len(unique)==198 and equal(unique,claimed_map),'independently derived full198 source chain')
-    require(m['scope']=='full' and m['status']=='conditional_complete' and m['accepted'] is False,'original full manifest')
-    require(c['schema']=='braid-program/f6c-continuous-reception-root-cover-conformance.v1' and c['scope']=='full' and c['accepted'] is True,'full comparison disposition')
-    require(a['schema']=='braid-program/f6c-cached-root-cover-full-admission.v1' and a['scope']=='full' and a['accepted'] is True and a['processesClosed'] is True,'full admission disposition')
-    t=a['elapsedSecondsBeforePublication'];require(type(t) in (int,Decimal) and 0<=F(t)<F('862.951823625'),'prepublication is not final elapsed')
+    require((contract['scope']=='full'),'original full comparison contract')
+    # Historical source references describe the earlier run; current source is not rebound to them.
+    claimed=binding_list(a['sourceBindings'],pool.root,198)
+    unique={b['path']:b for b in claimed}
+    require((m['scope']=='full') and (m['status']=='conditional_complete') and (m['accepted'] is False),'original full manifest')
+    require((c['schema']=='braid-program/f6c-continuous-reception-root-cover-conformance.v1') and (c['scope']=='full') and (c['accepted'] is True),'full comparison disposition')
+    require((a['schema']=='braid-program/f6c-cached-root-cover-full-admission.v1') and (a['scope']=='full') and (a['accepted'] is True) and (a['processesClosed'] is True),'full admission disposition')
+    t=a['elapsedSecondsBeforePublication'];require((type(t) in (int,Decimal)) and (0<=F(t)<F('862.951823625')),'prepublication is not final elapsed')
     for name in ('eomExecuted','fullRunAuthorized','h3EvidenceEligible','historicalTrajectoryIdentityEstablished','metricsAvailable'):
         require(a[name] is False,'historical authority promotion')
     require(equal(c['claims'],dict(conditionalRootCoverValidated=True,reconstructedFamilyApplicabilityAuthenticated=True,
         historicalTrajectoryIdentityEstablished=False,rootExecutionAuthorized=False,metricsAvailable=False,h3EvidenceEligible=False,scoreAuthorized=False,eomExecuted=False)),'original comparison claims')
-    analysis=c['analysis'];require(analysis['accepted'] is False and analysis['conditionalEnclosuresConformant'] is True,'full conditional comparison')
+    analysis=c['analysis'];require((analysis['accepted'] is False) and (analysis['conditionalEnclosuresConformant'] is True),'full conditional comparison')
     for k,n in dict(cellCount=160,pairCellCertificates=10240,ordinaryNonselfRows=8960,selfExclusionRows=1280,
         distinctNonselfFaceChecks=17920,pieceRecordCount=17920,recordedGeometryPieceVisits=14639800).items(): index(analysis[k],n)
     for obj,key,role in ((m,'rows','fullRows'),(m,'pieces','fullPieces'),(m,'launchPlan','fullPlan'),(c,'rows','fullRows'),
         (c,'pieces','fullPieces'),(c,'manifest','fullManifest'),(c,'launchPlan','fullPlan'),(a,'plan','fullPlan')):
         require(equal(binding(obj[key],pool.root),files[role].binding()),'full file chain differs')
     for key in ('subjectSourceBindings','runtimeBindings'): require(equal(m[key],contract[key]),'full manifest execution bindings')
-    require(type(a['stages']) is list and len(a['stages'])==2,'full stages census')
+    require((type(a['stages']) is list) and (len(a['stages'])==2),'full stages census')
     for item,stage in zip(a['stages'],('consumer','comparison')):
         proc,ad=item['process'],item['admission'];done=ad['completion']
-        require(item['stage']==stage and proc['accepted'] is True and proc['processesClosed'] is True
-            and equal(proc['exit'],dict(code=0,signal=None)) and ad['accepted'] is True and equal(proc['admission'],ad),'full stage closed')
-        require(type(proc['gates']) is list and len(proc['gates'])==1,'full gate census');gate=proc['gates'][0]
-        require(gate['retired'] is True and gate['acknowledged'] is True and equal(gate['measurement']['code'],0)
-            and gate['measurement']['signal'] is None,'full gate retirement')
-        require(done['completed'] is True and done['accepted'] is (stage=='comparison') and done['h3EvidenceEligible'] is False,'full completion disposition')
+        require((item['stage']==stage) and (proc['accepted'] is True) and (proc['processesClosed'] is True) and (equal(proc['exit'],dict(code=0,signal=None))) and (ad['accepted'] is True) and (equal(proc['admission'],ad)),'full stage closed')
+        require((type(proc['gates']) is list) and (len(proc['gates'])==1),'full gate census');gate=proc['gates'][0]
+        require((gate['retired'] is True) and (gate['acknowledged'] is True) and (equal(gate['measurement']['code'],0)) and (gate['measurement']['signal'] is None),'full gate retirement')
+        require((done['completed'] is True) and (done['accepted'] is (stage=='comparison')) and (done['h3EvidenceEligible'] is False),'full completion disposition')
         require(equal(proc['stdoutLog'],ad['completionLog']),'full completion log binding')
         raw=pool.read_binding(proc['stdoutLog'],capture=True);pool.read_binding(proc['stderrLog'])
-        require(raw.endswith(b'\n') and len(raw.splitlines())==1 and equal(w.decode_operational(raw),done),'fresh stage completion line')
+        require((raw.endswith(b'\n')) and (len(raw.splitlines())==1) and (equal(w.decode_operational(raw),done)),'fresh stage completion line')
         outputs=[files[k].binding() for k in ('fullRows','fullPieces','fullManifest')] if stage=='consumer' else [files['fullComparison'].binding()]
-        require(equal(ad['outputs'],outputs) and equal(done['outputs'] if stage=='consumer' else [done['output']],outputs),'full completed outputs')
+        require((equal(ad['outputs'],outputs)) and (equal(done['outputs'] if stage=='consumer' else [done['output']],outputs)),'full completed outputs')
     def lines(raw):
         require(raw.endswith(b'\n'),'full observation EOF');parts=raw.split(b'\n')[:-1]
-        require(0<len(parts)<=10000 and all(0<len(x)<=MAX_LINE for x in parts),'full observation bounds')
+        require((0<len(parts)<=10000) and (all(0<len(x)<=MAX_LINE for x in parts)),'full observation bounds')
         return [w.decode_operational(x) for x in parts]
     hosts=[x for x in lines(files['fullLauncherLog'].data) if x.get('kind')=='host-resource']
     rss=lines(files['fullResourceLog'].data)
-    require(len(hosts)==62 and len(rss)==3447,'final full observation census')
+    require((len(hosts)==62) and (len(rss)==3447),'final full observation census')
     require(equal(hosts[:len(a['hostObservationsBeforePublication'])],a['hostObservationsBeforePublication']),'full host prefix')
     for j,row in enumerate(rss):
-        require(row['kind']=='aggregate-rss' and type(row['elapsedSeconds']) in (int,Decimal)
-            and 0<=F(row['elapsedSeconds'])<F('862.951823625') and (j==0 or F(rss[j-1]['elapsedSeconds'])<=F(row['elapsedSeconds'])),'full RSS ordering')
-        require(type(row['aggregateResidentBytes']) is int and 0<=row['aggregateResidentBytes']<=2*1024**3
-            and type(row['sampleGapMs']) in (int,Decimal) and 0<=F(row['sampleGapMs'])<=1000,'full resource limits')
+        require((row['kind']=='aggregate-rss') and (type(row['elapsedSeconds']) in (int,Decimal)) and (0<=F(row['elapsedSeconds'])<F('862.951823625')) and (j==0 or F(rss[j-1]['elapsedSeconds'])<=F(row['elapsedSeconds'])),'full RSS ordering')
+        require((type(row['aggregateResidentBytes']) is int) and (0<=row['aggregateResidentBytes']<=2*1024**3) and (type(row['sampleGapMs']) in (int,Decimal)) and (0<=F(row['sampleGapMs'])<=1000),'full resource limits')
     prefix=a['observationsBeforePublication'];index(prefix['samples'],3444)
     require(max(x['aggregateResidentBytes'] for x in rss[:3444])==prefix['maximumSampledRSSBytes'],'full prepublication prefix')
     return [unique[k] for k in sorted(unique)]
@@ -714,7 +442,7 @@ def closed_coverage(history, requested):
     for k,s in enumerate(history['segments']):
         a,b=number(s['startTime']),number(s['endTime'])
         if a<=hi and lo<=b: parts.append((k,max(a,lo),min(b,hi)))
-    require(parts and parts[0][1]==lo and parts[-1][2]==hi,'complete original closed coverage')
+    require((parts) and (parts[0][1]==lo) and (parts[-1][2]==hi),'complete original closed coverage')
     require(all(parts[n][0]==parts[n-1][0]+1 and parts[n-1][2]==parts[n][1] for n in range(1,len(parts))),'coverage hole')
     digest=sha(''.join(f'{k}\t{a}\t{b}\n' for k,a,b in parts).encode('ascii'))
     return len(parts),parts[0][0],parts[-1][0],digest
@@ -728,53 +456,51 @@ def project_original_parent(export, full_rows, full_pieces, full_manifest_bindin
     polynomial state, face signs, roots or geometry. Returned built-in trees are
     detached; the frozen proposer performs its own immutable input snapshot.
     """
-    require(type(export) is dict and export.get('schema')=='braid-program/f6c-retained-history-export.v1'
-        and export.get('fieldSpeed')=='1','original export schema')
+    require((type(export) is dict) and (export.get('schema')=='braid-program/f6c-retained-history-export.v1') and (export.get('fieldSpeed')=='1'),'original export schema')
     parent_scope(parent_index)
-    original=export['retainedHistories'];require(type(original) is list and len(original)==8,'eight original histories')
+    original=export['retainedHistories'];require((type(original) is list) and (len(original)==8),'eight original histories')
     histories=[];union=None
     for i,h in enumerate(original):
-        require(type(h) is dict and set(HISTORY_KEYS)<=set(h),'original history fields')
-        require(type(h['segments']) is list and len(h['segments'])==1760,'original segment array')
+        require((type(h) is dict) and (set(HISTORY_KEYS)<=set(h)),'original history fields')
+        require((type(h['segments']) is list) and (len(h['segments'])==1760),'original segment array')
         require(all(type(s) is dict and set(SEGMENT_KEYS)<=set(s) for s in h['segments']),'original segment fields')
         selected={k:h[k] for k in HISTORY_KEYS};selected['segments']=[{k:s[k] for k in SEGMENT_KEYS} for s in h['segments']]
         history=snapshot(selected);histories.append(history)
         index(history['pathKey'],i+1);index(history['polarity'],1 if i%2==0 else -1)
-        require(history['id']==IDS[i] and history['charge']==('' if i%2==0 else '-')+'0.1666666666666666666666666666666667','history identity/charge')
-        require(type(history['historyFingerprint']) is str and 0<len(history['historyFingerprint'])<=256,'history fingerprint')
-        require(history['coverageStart']=='-8' and history['coverageEnd']=='0.13' and len(history['segments'])==1760,'original1760 domain')
+        require((history['id']==IDS[i]) and (history['charge']==('' if i%2==0 else '-')+'0.1666666666666666666666666666666667'),'history identity/charge')
+        require((type(history['historyFingerprint']) is str) and (0<len(history['historyFingerprint'])<=256),'history fingerprint')
+        require((history['coverageStart']=='-8') and (history['coverageEnd']=='0.13') and (len(history['segments'])==1760),'original1760 domain')
         cursor=F(-8);future=set()
         for k,s in enumerate(history['segments']):
             a,b=number(s['startTime']),number(s['endTime']);require(cursor==a<b<=F('0.13'),'original gap/overlap');cursor=b
             require((b<=0) if k<1600 else (a>=0),'original prehistory/future split')
             if k>=1600: future.update((a,b))
-            require(type(s['coefficients']) is list and len(s['coefficients'])==3,'three coefficient axes')
+            require((type(s['coefficients']) is list) and (len(s['coefficients'])==3),'three coefficient axes')
             for axis in s['coefficients']:
-                require(type(axis) is list and len(axis)==4,'four coefficient tokens')
+                require((type(axis) is list) and (len(axis)==4),'four coefficient tokens')
                 for t in axis: number(t)
             for name in ('position','velocity'):
                 values=s[name+'Errors'];radius=number(s[name+'Error'])
-                require(type(values) is list and len(values)==3 and all(0<=number(t)<=radius for t in values),'axis/scalar allowance')
+                require((type(values) is list) and (len(values)==3) and (all(0<=number(t)<=radius for t in values)),'axis/scalar allowance')
         require(cursor==F('0.13'),'complete original suffix')
         grid=sorted(future)
         if union is None: union=grid
-        require(union==grid and len(grid)==161,'common original160 cells')
-    require(type(export['acceptedFrames']) is list and len(export['acceptedFrames'])==81,'81 original frames')
+        require((union==grid) and (len(grid)==161),'common original160 cells')
+    require((type(export['acceptedFrames']) is list) and (len(export['acceptedFrames'])==81),'81 original frames')
     require(all(type(f) is dict and 'time' in f for f in export['acceptedFrames']),'original frame records')
     frame_tokens=[f['time'] for f in export['acceptedFrames']]
     require([number(t) for t in frame_tokens]==union[::2],'original accepted frame grid')
-    require(type(full_rows) is list and len(full_rows)==10240 and type(full_pieces) is list and len(full_pieces)==17920,'full original global census')
+    require((type(full_rows) is list) and (len(full_rows)==10240) and (type(full_pieces) is list) and (len(full_pieces)==17920),'full original global census')
     # Snapshot per bounded record, not an unbounded aggregate object walk.
     rows=[snapshot(r,max_nodes=10000) for r in full_rows];pieces=[snapshot(p,max_nodes=10000) for p in full_pieces]
     emissions=[];reception=None;piece_index=0;digests=[history_digest(h) for h in histories];clips={}
     for n,row in enumerate(rows):
         closed(row,ROW_KEYS);cell,local=divmod(n,64);i,j=divmod(local,8)
         for key,v in (('rowIndex',n),('cellIndex',cell),('receiverIndex',i),('transmitterIndex',j)): index(row[key],v)
-        require(row['receiverId']==IDS[i] and row['transmitterId']==IDS[j],'original global member order')
+        require((row['receiverId']==IDS[i]) and (row['transmitterId']==IDS[j]),'original global member order')
         require(interval(row['reception'])==(union[cell],union[cell+1]),'original global reception')
         require(equal(row['reception'],rows[64*cell]['reception']),'original reception token identity')
-        require(equal(row['libraryFlags'],LIBRARY_FLAGS) and row['rootFreeComplementConditional'] is True
-            and row['retainedBoundaryContact'] is False,'original root flags')
+        require((equal(row['libraryFlags'],LIBRARY_FLAGS)) and (row['rootFreeComplementConditional'] is True) and (row['retainedBoundaryContact'] is False),'original root flags')
         if i==j:
             index(row['ordinaryRootsPerReception'],0);require(row['coincidentEndpointExcluded'] is True,'original self exclusion')
             require(all(row[k] is None for k in ('emission','oldestResidual','lowerFaceResidual','upperFaceResidual','displacement','distance',
@@ -783,33 +509,30 @@ def project_original_parent(export, full_rows, full_pieces, full_manifest_bindin
         index(row['ordinaryRootsPerReception'],1);require(row['coincidentEndpointExcluded'] is False,'original ordinary root')
         require(interval(row['emission'])==(F(-8),union[cell]-F(1,20)),'original per-pair emission')
         for key in ('oldestResidual','lowerFaceResidual','upperFaceResidual','distance','transmitterFactor','receiverFactor'): interval(row[key])
-        require(type(row['displacement']) is list and len(row['displacement'])==3,'original displacement shape')
+        require((type(row['displacement']) is list) and (len(row['displacement'])==3),'original displacement shape')
         for axis in row['displacement']: interval(axis)
         if cell==parent_index:
-            require(interval(row['oldestResidual'])[1]<0 and interval(row['lowerFaceResidual'])[1]<0
-                and interval(row['upperFaceResidual'])[0]>0 and interval(row['distance'])[0]>0
-                and interval(row['transmitterFactor'])[0]>=F('1e-24') and interval(row['receiverFactor'])[0]>0,'parent original certified bounds')
+            require((interval(row['oldestResidual'])[1]<0) and (interval(row['lowerFaceResidual'])[1]<0) and (interval(row['upperFaceResidual'])[0]>0) and (interval(row['distance'])[0]>0) and (interval(row['transmitterFactor'])[0]>=F('1e-24')) and (interval(row['receiverFactor'])[0]>0),'parent original certified bounds')
             require(equal(row['oldestResidual'],row['lowerFaceResidual']),'original oldest/lower identity')
             reception=row['reception']
             emissions.append(dict(receiverIndex=i,transmitterIndex=j,receiverId=IDS[i],transmitterId=IDS[j],emission=row['emission']))
         for role,member,requested in (('receiver',i,row['reception']),('transmitter',j,row['emission'])):
             index(row[role+'PieceRecord'],piece_index);piece=pieces[piece_index];closed(piece,PIECE_KEYS)
             index(piece['recordIndex'],piece_index);index(piece['rowIndex'],n)
-            require(piece['role']==role and piece['memberId']==IDS[member] and equal(piece['requestedInterval'],requested),'original global piece identity')
+            require((piece['role']==role) and (piece['memberId']==IDS[member]) and (equal(piece['requestedInterval'],requested)),'original global piece identity')
             require(piece['historyDigest']==digests[member],'original compact history digest')
             if cell==parent_index:
                 key=member,*interval(requested)
                 if key not in clips: clips[key]=closed_coverage(histories[member],requested)
                 count,first,last,digest=clips[key]
                 for field,v in (('touchedPieceCount',count),('firstIndex',first),('lastIndex',last)): index(piece[field],v)
-                require(equal(piece['contiguousIndexRange'],[first,last]) and piece['clippedPiecesSha256']==digest,'parent closed-piece membership')
+                require((equal(piece['contiguousIndexRange'],[first,last])) and (piece['clippedPiecesSha256']==digest),'parent closed-piece membership')
             else:
-                require(type(piece['firstIndex']) is int and type(piece['lastIndex']) is int and 0<=piece['firstIndex']<=piece['lastIndex']<1760,'original piece index range')
+                require((type(piece['firstIndex']) is int) and (type(piece['lastIndex']) is int) and (0<=piece['firstIndex']<=piece['lastIndex']<1760),'original piece index range')
                 index(piece['touchedPieceCount'],piece['lastIndex']-piece['firstIndex']+1)
-                require(equal(piece['contiguousIndexRange'],[piece['firstIndex'],piece['lastIndex']]) and type(piece['clippedPiecesSha256']) is str
-                    and HEX.fullmatch(piece['clippedPiecesSha256']),'original piece structure')
+                require((equal(piece['contiguousIndexRange'],[piece['firstIndex'],piece['lastIndex']])) and (type(piece['clippedPiecesSha256']) is str) and (HEX.fullmatch(piece['clippedPiecesSha256'])),'original piece structure')
             piece_index+=1
-    require(piece_index==17920 and len(emissions)==56,'complete global EOF and parent census')
+    require((piece_index==17920) and (len(emissions)==56),'complete global EOF and parent census')
     frame_index=parent_index//2
     require(interval(reception)==(union[parent_index],union[parent_index+1]),'selected original reception')
     for history in histories:
@@ -830,10 +553,10 @@ class DurableStream:
         s=os.fstat(self.file.fileno());self.original_inode=(s.st_dev,s.st_ino)
     def check(self):
         s=os.stat(self.path,follow_symlinks=False)
-        require(stat.S_ISREG(s.st_mode) and (s.st_dev,s.st_ino)==self.original_inode,'original stream path replaced')
+        require((stat.S_ISREG(s.st_mode)) and ((s.st_dev,s.st_ino)==self.original_inode),'original stream path replaced')
     def write(self,record):
         value=plain(record);closed(value,self.keys);raw=encoded(value)
-        require(0<len(raw)<=MAX_LINE and self.bytes+len(raw)<=self.limit and self.aggregate[0]+len(raw)<=self.aggregate_limit,'output stream quota')
+        require((0<len(raw)<=MAX_LINE) and (self.bytes+len(raw)<=self.limit) and (self.aggregate[0]+len(raw)<=self.aggregate_limit),'output stream quota')
         n=self.file.write(raw);require(n==len(raw),'short stream write');self.file.flush();os.fsync(self.file.fileno())
         self.bytes+=n;self.aggregate[0]+=n;self.count+=1
         self.check()
@@ -849,14 +572,14 @@ class Publication:
     """Durable private prefix plus own-inode-only public hardlinks."""
     def __init__(self,output,live,scientific_bytes_already=0,maximum_stage_output_bytes=MAX_BYTES):
         self.output=output;self.live=live
-        require(output==output.resolve() and output.is_dir() and not tuple(output.iterdir()),'fresh supervisor-created output directory')
+        require((output==output.resolve()) and (output.is_dir()) and (not tuple(output.iterdir())),'fresh supervisor-created output directory')
         self.directory_identity=(output.stat().st_dev,output.stat().st_ino)
-        require(type(scientific_bytes_already) is int and 0<=scientific_bytes_already<MAX_BYTES,'global scientific byte baseline')
-        require(type(maximum_stage_output_bytes) is int and 0<maximum_stage_output_bytes<=MAX_BYTES-scientific_bytes_already,'stage output allowance within original global bound')
+        require((type(scientific_bytes_already) is int) and (0<=scientific_bytes_already<MAX_BYTES),'global scientific byte baseline')
+        require((type(maximum_stage_output_bytes) is int) and (0<maximum_stage_output_bytes<=MAX_BYTES-scientific_bytes_already),'stage output allowance within original global bound')
         self.baseline=scientific_bytes_already
         self.ceiling=self.baseline+maximum_stage_output_bytes
         self.directory_fd=os.open(output,os.O_RDONLY|getattr(os,'O_NOFOLLOW',0));self.guards={}
-        d=os.fstat(self.directory_fd);require(stat.S_ISDIR(d.st_mode) and (d.st_dev,d.st_ino)==self.directory_identity,'original output directory FD')
+        d=os.fstat(self.directory_fd);require((stat.S_ISDIR(d.st_mode)) and ((d.st_dev,d.st_ino)==self.directory_identity),'original output directory FD')
         self.private=output;self.private_paths={};self.created={};self.published={};self.links=[];self.aggregate=[scientific_bytes_already]
     def private_path(self,name):
         if name not in self.private_paths:self.private_paths[name]=self.output/(name+'.partial.'+os.urandom(16).hex())
@@ -869,17 +592,17 @@ class Publication:
     def binding(self,path):
         self.live();fd=os.open(path,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
         try:
-            before=os.fstat(fd);require(stat.S_ISREG(before.st_mode) and 0<before.st_size<=MAX_BYTES,'output regular bound')
+            before=os.fstat(fd);require((stat.S_ISREG(before.st_mode)) and (0<before.st_size<=MAX_BYTES),'output regular bound')
             h=hashlib.sha256();n=0
             while n<before.st_size:
                 self.live();part=os.read(fd,min(65536,before.st_size-n));require(part,'output truncation');h.update(part);n+=len(part)
-            require(not os.read(fd,1) and self.identity(os.fstat(fd))==self.identity(before),'output changed')
-            require(path==path.resolve() and self.identity(os.stat(path,follow_symlinks=False))==self.identity(before),'output path replacement')
+            require((not os.read(fd,1)) and (self.identity(os.fstat(fd))==self.identity(before)),'output changed')
+            require((path==path.resolve()) and (self.identity(os.stat(path,follow_symlinks=False))==self.identity(before)),'output path replacement')
             return dict(path=str(path),sha256=h.hexdigest(),bytes=n)
         finally:os.close(fd)
     def publish_private(self,name):
-        self.live();source=self.private_path(name);require(source.parent==self.private and source.is_file() and not source.is_symlink(),'private output identity')
-        public=self.output/name;require(not public.exists() and not public.is_symlink(),'fresh public output')
+        self.live();source=self.private_path(name);require((source.parent==self.private) and (source.is_file()) and (not source.is_symlink()),'private output identity')
+        public=self.output/name;require((not public.exists()) and (not public.is_symlink()),'fresh public output')
         before=os.stat(source,follow_symlinks=False);require((before.st_dev,before.st_ino)==self.created[name],'original private file replaced');os.link(source,public);self.links.append((public,before.st_dev,before.st_ino))
         fd=os.open(self.output,os.O_RDONLY)
         try:os.fsync(fd)
@@ -888,7 +611,7 @@ class Publication:
         self.published[name]=self.identity(os.stat(public,follow_symlinks=False))
         return self.binding(public)
     def write_manifest(self,record):
-        raw=encoded(record);require(0<len(raw)<=MAX_BYTES and self.aggregate[0]+len(raw)<=self.ceiling,'manifest/aggregate quota')
+        raw=encoded(record);require((0<len(raw)<=MAX_BYTES) and (self.aggregate[0]+len(raw)<=self.ceiling),'manifest/aggregate quota')
         path=self.private_path('cover-manifest.json');fd=os.open(path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
         try:
             s=os.fstat(fd);self.created['cover-manifest.json']=(s.st_dev,s.st_ino)
@@ -897,7 +620,7 @@ class Publication:
         finally:os.close(fd)
         self.aggregate[0]+=len(raw);return self.publish_private('cover-manifest.json')
     def validate_private(self):
-        require(self.output==self.output.resolve() and self.directory_identity==(self.output.stat().st_dev,self.output.stat().st_ino),'original output directory')
+        require((self.output==self.output.resolve()) and (self.directory_identity==(self.output.stat().st_dev,self.output.stat().st_ino)),'original output directory')
         if self.directory_fd is not None:
             d=os.fstat(self.directory_fd);require((d.st_dev,d.st_ino)==self.directory_identity,'retained original directory FD')
         require({p.name for p in self.output.iterdir()}==set(self.private_paths)|{p.name for p in self.private_paths.values()},'exact eight publication paths')
@@ -906,9 +629,7 @@ class Publication:
         for name,p in self.private_paths.items():
             s=os.stat(p,follow_symlinks=False);public=self.output/name;t=os.stat(public,follow_symlinks=False)
             owned=next(((dev,ino) for path,dev,ino in self.links if path==public),None)
-            require(stat.S_ISREG(s.st_mode) and stat.S_ISREG(t.st_mode) and s.st_nlink==t.st_nlink==2
-                and (s.st_dev,s.st_ino,s.st_size)==(t.st_dev,t.st_ino,t.st_size)
-                and owned==(t.st_dev,t.st_ino) and self.identity(s)==self.identity(t)==self.published[name],'private/public original publication alias');total+=s.st_size
+            require((stat.S_ISREG(s.st_mode)) and (stat.S_ISREG(t.st_mode)) and (s.st_nlink==t.st_nlink==2) and ((s.st_dev,s.st_ino,s.st_size)==(t.st_dev,t.st_ino,t.st_size)) and (owned==(t.st_dev,t.st_ino)) and (self.identity(s)==self.identity(t)==self.published[name]),'private/public original publication alias');total+=s.st_size
             if name in self.guards:require(self.identity(os.fstat(self.guards[name]))==self.published[name],'retained original publication FD')
         require(total+self.baseline==self.aggregate[0]<=self.ceiling<=MAX_BYTES,'global scientific bytes including retained earlier output and stage allowance')
     def verify_outputs(self,bindings):
@@ -948,7 +669,7 @@ def captured_dependencies(pool,plan,proposer_raw):
 def make_manifest(plan,plan_binding,own,bindings,history,parent,result,historical,subjects,runtime,ops,owner):
     members=[dict(id=h['id'],pathKey=h['pathKey'],polarity=h['polarity'],charge=h['charge'],historyFingerprint=h['historyFingerprint']) for h in history]
     value=dict(schema=SCHEMA,scope=parent_scope(plan['parentIndex']),status='conditional_complete',accepted=False,
-        launchPlan=plan_binding,producer=own,verifier=plan['verifier'],declaration=plan['declaration'],parent=plain(parent),members=members,
+        launchPlan=plan_binding,producer=own,verifier=plan['verifier'],parent=plain(parent),members=members,
         originalBindings=plan['originalBindings'],acceptanceOwner=owner,priorCoverClosure=plan['priorCoverClosure'],historicalSourceBindings=historical,historicalEvidenceVerification=historical_evidence(),
         subjectSourceBindings=subjects,runtimeBindings=runtime,operationalBindings=ops,algorithm=ALGORITHM,
         restrictions=plain(result.restrictions),census=CENSUS,helperCalls=CALLS,queries=bindings[0],rows=bindings[1],pieces=bindings[2],
@@ -974,17 +695,17 @@ def check_runtime(runtime,subjects,git_binary):
 
 def check_output(root,output,git_binary):
     lane=root/LANE
-    require(output==output.resolve() and output.parent==lane and lane.is_dir() and lane==lane.resolve(),'canonical direct output')
-    require(output.is_dir() and not output.is_symlink() and not tuple(output.iterdir()),'fresh empty supervisor-created output')
+    require((output==output.resolve()) and (output.parent==lane) and (lane.is_dir()) and (lane==lane.resolve()),'canonical direct output')
+    require((output.is_dir()) and (not output.is_symlink()) and (not tuple(output.iterdir())),'fresh empty supervisor-created output')
     result=subprocess.run([str(git_binary),'check-ignore','-q','--',str(output.relative_to(root))],cwd=root,
         stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=2)
     require(result.returncode==0,'output not ignored')
 
 
 def budget_deadline(token,began):
-    require(type(token) is str and 0<len(token)<=1152 and TOKEN.fullmatch(token),'budget token')
-    value=Decimal(token);require(value.is_finite() and len(value.as_tuple().digits)<=1024 and abs(value.as_tuple().exponent)<=1000,'budget decimal')
-    seconds=float(value);require(0<value<=1800 and math.isfinite(seconds) and 0<seconds<=1800 and began+seconds>began,'bounded remaining budget')
+    require((type(token) is str) and (0<len(token)<=1152) and (TOKEN.fullmatch(token)),'budget token')
+    value=Decimal(token);require((value.is_finite()) and (len(value.as_tuple().digits)<=1024) and (abs(value.as_tuple().exponent)<=1000),'budget decimal')
+    seconds=float(value);require((0<value<=1800) and (math.isfinite(seconds)) and (0<seconds<=1800) and (began+seconds>began),'bounded remaining budget')
     return began+seconds
 
 
@@ -1005,37 +726,37 @@ def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     for key in ('plan','plan-sha256','producer-sha256','out-dir','budget-seconds','git-binary','operation-plan','operation-plan-sha256','scientific-bytes-already','maximum-stage-output-bytes'):parser.add_argument('--'+key,required=True)
     parser.add_argument('--repo-root');args=parser.parse_args(argv)
-    require(re.fullmatch(r'(?:0|[1-9][0-9]*)',args.scientific_bytes_already) and re.fullmatch(r'[1-9][0-9]*',args.maximum_stage_output_bytes),'canonical original stage byte budget')
-    require(0<=int(args.scientific_bytes_already)<MAX_BYTES and 0<int(args.maximum_stage_output_bytes)<=MAX_BYTES-int(args.scientific_bytes_already),'stage budget before any scientific work')
+    require((re.fullmatch(r'(?:0|[1-9][0-9]*)',args.scientific_bytes_already)) and (re.fullmatch(r'[1-9][0-9]*',args.maximum_stage_output_bytes)),'canonical original stage byte budget')
+    require((0<=int(args.scientific_bytes_already)<MAX_BYTES) and (0<int(args.maximum_stage_output_bytes)<=MAX_BYTES-int(args.scientific_bytes_already)),'stage budget before any scientific work')
     began=time.monotonic();deadline=budget_deadline(args.budget_seconds,began);usage0=resource.getrusage(resource.RUSAGE_SELF)
     root=Path(__file__).resolve().parents[2];require(args.repo_root is None or Path(args.repo_root)==root,'executing repository root')
-    require(type(args.producer_sha256) is str and HEX.fullmatch(args.producer_sha256),'producer SHA');output=Path(args.out_dir).absolute()
-    git_binary=Path(args.git_binary);require(git_binary.is_absolute() and git_binary==git_binary.resolve() and git_binary.is_file(),'resolved git binary')
+    require((type(args.producer_sha256) is str) and (HEX.fullmatch(args.producer_sha256)),'producer SHA');output=Path(args.out_dir).absolute()
+    git_binary=Path(args.git_binary);require((git_binary.is_absolute()) and (git_binary==git_binary.resolve()) and (git_binary.is_file()),'resolved git binary')
     progress=dict(stage='capture',queries=0,rows=0,pieces=0);publication=None;streams=[];completion=None;selected_parent=None
     def live():require(time.monotonic()<deadline,'inclusive preparation deadline')
     try:
       with watching(live,progress,began):
-       transport_path=root/DEPENDENCIES['transport'][0]
-       with bootstrap(transport_path,DEPENDENCIES['transport'][1],live) as raw:
+       transport_path=root/DEPENDENCIES['transport']
+       with bootstrap(transport_path,None,live) as raw:
         with module_from_bytes(raw,transport_path) as w,ExitStack() as stack:
             pool=CapturePool(stack,w,root,live)
             own=pool.capture(dict(path=SELF,sha256=args.producer_sha256,bytes=(root/SELF).stat().st_size),data=True,limit=MAX_BYTES)
-            require(compile(_production_current_source(own.data),_EXECUTING_CODE.co_filename,'exec',dont_inherit=True,optimize=sys.flags.optimize)==_EXECUTING_CODE,'executing source differs')
+            require(compile(own.data,_EXECUTING_CODE.co_filename,'exec',dont_inherit=True,optimize=sys.flags.optimize)==_EXECUTING_CODE,'executing source differs')
             plan_path=Path(args.plan).absolute();require(plan_path==plan_path.resolve(),'canonical plan path')
             plan_raw=stack.enter_context(w.BoundFile(plan_path,args.plan_sha256,capture=True,limit=MAX_BYTES,live=live))
-            core_path,core_sha=DEPENDENCIES['scientificDecoder']
+            core_path=DEPENDENCIES['scientificDecoder'];core_sha=sha((root/core_path).read_bytes())
             core_file=pool.capture(dict(path=core_path,sha256=core_sha,bytes=(root/core_path).stat().st_size),data=True,limit=MAX_BYTES)
             with module_from_bytes(core_file.data,core_file.path) as core:
                 plan=core.decode_document(plan_raw.data)
                 subjects,runtime,ops=validate_plan(plan,args.producer_sha256,root,w);plan=canonical_plan(plan,root)
                 selected_parent=plan['parentIndex']
                 pool.admit_operation(args.operation_plan,args.operation_plan_sha256)
-                pool.routes=validate_routes(plan['historicalDocumentRoutes'],root)
+
                 subjects=sorted(subjects,key=lambda b:b['path']);runtime=plan['runtimeBindings'];ops=plan['operationalBindings']
                 for group in (subjects,ops):
                     for b in group:pool.capture(b)
                 check_output(root,output,git_binary);live()
-                original_files={role:pool.historical_file(plan['originalBindings'][role],data=True) for role in ORIGINAL}
+                original_files={role:pool.historical_file(plan['originalBindings'][role],data=True) for role in (*ORIGINAL,*ORIGINAL_SOURCES)}
                 docs={k:w.decode_role(core,original_files[k].data,k) for k in ('export','reconstruction','guards')}
                 docs.update((k,w.decode_role(core,original_files[k].data,{'fullPlan':'plan','fullManifest':'manifest','fullComparison':'comparison','fullAdmission':'admission'}[k]))
                     for k in ('fullPlan','fullManifest','fullComparison','fullAdmission'))
@@ -1044,11 +765,11 @@ def main(argv=None):
                 helper_file=pool.capture(plan['dependencies']['productionHelper'],data=True,limit=MAX_BYTES)
                 with module_from_bytes(helper_file.data,helper_file.path) as premise_helper:
                     originals,cells=premise_helper.authenticate_premises(docs['export'],docs['reconstruction'],docs['guards'])
-                    require(len(cells)==160 and originals is docs['export']['retainedHistories'],'authenticated original premises')
+                    require((len(cells)==160) and (originals is docs['export']['retainedHistories']),'authenticated original premises')
                 rows=w.records(core,original_files['fullRows'].data,10240);pieces=w.records(core,original_files['fullPieces'].data,17920)
                 histories,parent=project_original_parent(docs['export'],rows,pieces,original_files['fullManifest'].binding(),parent_index=selected_parent)
                 require(equal(owner_declaration(owner.data),plan['priorCoverClosure']),'plan/owner closure')
-                require(re.fullmatch(r'(?:0|[1-9][0-9]*)',args.scientific_bytes_already) and re.fullmatch(r'[1-9][0-9]*',args.maximum_stage_output_bytes),'canonical global byte baseline and stage allowance')
+                require((re.fullmatch(r'(?:0|[1-9][0-9]*)',args.scientific_bytes_already)) and (re.fullmatch(r'[1-9][0-9]*',args.maximum_stage_output_bytes)),'canonical global byte baseline and stage allowance')
                 progress['stage']='proposal';publication=Publication(output,live,int(args.scientific_bytes_already),int(args.maximum_stage_output_bytes))
                 query=publication.stream('queries.ndjson',QUERY_KEYS);streams.append(query)
                 row=publication.stream('rows.ndjson',ROW_KEYS);streams.append(row)
@@ -1064,8 +785,7 @@ def main(argv=None):
                     check_runtime(runtime,subjects,git_binary)
                     result=proposer.propose_parent_refinement(histories,parent,refs,on_record=sink,progress=report)
                     check_runtime(runtime,subjects,git_binary)
-                require(result.accepted is False and result.status=='conditional_complete' and equal(dict(result.census),CENSUS)
-                    and (result.build_calls,result.query_calls,result.cover_calls)==(1,3584,1) and equal(dict(result.claims),CLAIMS),'pure proposal result disposition')
+                require((result.accepted is False) and (result.status=='conditional_complete') and (equal(dict(result.census),CENSUS)) and ((result.build_calls,result.query_calls,result.cover_calls)==(1,3584,1)) and (equal(dict(result.claims),CLAIMS)),'pure proposal result disposition')
                 require((query.count,row.count,piece.count)==(3584,64,112),'durable final census')
                 for stream in streams:stream.close()
                 progress['stage']='publication';bindings=[publication.publish_private(n) for n in ('queries.ndjson','rows.ndjson','pieces.ndjson')]

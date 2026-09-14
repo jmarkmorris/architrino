@@ -1,0 +1,12 @@
+[
+  {
+    "role": "past-only-handoff",
+    "path": ".local-data/braid-analysis/f5-prehistory-handoff-20260827-v1/handoff.json",
+    "sha256": "4e0696a848a0d36ccbe5948295e71738c933b7ea120e9aee00e2effdd6ecc149"
+  },
+  {
+    "role": "handoff-conformance",
+    "path": ".local-data/braid-analysis/f5-prehistory-handoff-20260827-v1/handoff-conformance.json",
+    "sha256": "5b7ddc53d47a97f81383bd043c37e93daa80fe5a9b595d400faddd4c9724b622"
+  }
+]

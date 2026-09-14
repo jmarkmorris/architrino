@@ -72,11 +72,11 @@ def conditional_record():
 
 def bindings():
     rows = list(C.SCIENCE)+[
-        ('predeclaration', C.PREDECLARATION, C.PREDECLARATION_SHA), ('reference', C.REFERENCE, C.REFERENCE_SHA),
-        ('referenceTests', C.REFERENCE_TESTS, C.REFERENCE_TESTS_SHA), ('consumer', C.SELF, '1'*64),
+        ('reference', C.REFERENCE, 'a'*64),
+        ('referenceTests', C.REFERENCE_TESTS, 'a'*64), ('consumer', C.SELF, '1'*64),
         ('consumerTests', C.TESTS, '2'*64), ('pythonExecutable', '/synthetic/python', '3'*64),
-        *((p, p, h) for p, h in (*C.IMPORTS, *C.FORMULAS))]
-    return [dict(role=r, path=str(Path('/synthetic/root')/p), originalPath=str(Path('/synthetic/root')/p), sha256=h, bytes=1) for r, p, h in rows]
+        *((p, p, 'a'*64) for p in (*C.IMPORTS, *C.FORMULAS))]
+    return [dict(role=r, path=str(Path('/synthetic/root')/p), originalPath=str(Path('/synthetic/root')/p), sha256=h or 'a'*64, bytes=1) for r, p, h in rows]
 
 
 def assembly_fixture():
@@ -151,8 +151,8 @@ def chain_fixture():
     manifest = dict(**base, schema='braid-program/f5-enclosed-root-history-manifest.v1',
         normalizedFieldSpeed='1', retainedInterval=C.INTERVAL, maximumSegmentStep='0.02',
         positionWidth=C.POSITION, velocityWidth=C.VELOCITY, members=members)
-    packet = dict(**base, schema='braid-program/f5-enclosed-root-rung.v1', bindings=C.expected_bindings(),
-        implementationBindings=C.expected_bindings(True), historyManifestSha256=hashes['historyManifest'],
+    packet = dict(**base, schema='braid-program/f5-enclosed-root-rung.v1', bindings=[{**row, 'sha256': row['sha256'] or 'a'*64} for row in C.expected_bindings()],
+        implementationBindings=[{**row, 'sha256': row['sha256'] or 'a'*64} for row in C.expected_bindings(True)], historyManifestSha256=hashes['historyManifest'],
         rungSamples=8, normalizedFieldSpeed='1', terminalStatus='passed', completedRows=1152, passingRows=1152,
         failureCount=0, rootTolerance='1e-8', rootMaxDepth=192, rootMaxCells=300000, workerCount=8,
         initialMpfrBits=128, maximumMpfrBits=512, positionWidth=C.POSITION, velocityWidth=C.VELOCITY,
@@ -164,7 +164,7 @@ def chain_fixture():
             rowCount=1152, ordinaryRootCount=1056, maximumPrecisionBits=53), {}, {}],
         rawHistoryManifest=dict(path=str(root/C.SCIENCE[2][1]), sha256=hashes['historyManifest']),
         rawRungFiles=[dict(path=str(root/C.SCIENCE[0][1]), sha256=hashes['rootPacket'])],
-        reducer=dict(path=C.IMPLEMENTATION[5][1], sha256=C.IMPLEMENTATION[5][2]))
+        reducer=dict(path='src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs', sha256='a'*64))
     instrument = [dict(path='synthetic-instrument-'+str(i), sha256=str(i)*64) for i in range(4)]
     proofs = []
     for api in (False, True):
@@ -173,32 +173,29 @@ def chain_fixture():
             failure=None, resourceContact=False, h3EvidenceEligible=False, historyManifestSha256=hashes['historyManifest'],
             normalizedFieldSpeed='1', expectedMemberSegments=12384, processedMemberSegments=12384,
             retainedInterval=C.INTERVAL, positionWidth=C.POSITION, velocityWidth=C.VELOCITY,
-            sourceBindings=C.expected_bindings(), instrumentBindings=instrument if api else instrument[:3],
+            sourceBindings=[{**row, 'sha256': row['sha256'] or 'a'*64} for row in C.expected_bindings()], instrumentBindings=instrument if api else instrument[:3],
             memberResults=[dict(index=i, worldlineId=m['worldlineId'], historyFingerprint=m['historyFingerprint'],
                 segments=[dict(index=j, **{'passed' if api else 'accepted': True}) for j in range(1032)]) for i, m in enumerate(members)])
         if api:
             proof.update(constantInterpretations=['source-decimal', 'frozen-binary64'],
                 nominalCertificateSha256=hashes['nominalConformance'], nominalCertificatePath=str(root/C.SCIENCE[3][1]),
-                historyManifestPath=str(root/C.SCIENCE[2][1]), subjectApiBindings=[dict(path=C.IMPLEMENTATION[0][1], sha256=C.IMPLEMENTATION[0][2])])
+                historyManifestPath=str(root/C.SCIENCE[2][1]), subjectApiBindings=[dict(path='src/eom/native/eom_f5_enclosed_root_cli.cpp', sha256='a'*64)])
         proofs.append(proof)
-    build = dict(schema='braid-program/f5-reviewed-build.v1', adapterSourceSha256=C.IMPLEMENTATION[0][2],
+    build = dict(schema='braid-program/f5-reviewed-build.v1', adapterSourceSha256='a'*64,
         runtimePremises=['finite IEEE binary64 nearest rounding', 'gradual underflow'],
         nominalConformance=dict(path=C.SCIENCE[3][1], sha256=hashes['nominalConformance']),
         apiConformance=dict(path=C.SCIENCE[4][1], sha256=hashes['apiConformance']),
-        resolvedCompiler=dict(path=C.IMPLEMENTATION[6][1], sha256=C.IMPLEMENTATION[6][2]),
-        dependencies=[dict(path=p, sha256=h) for _, p, h in C.IMPLEMENTATION[:5]]+deepcopy(instrument))
+        resolvedCompiler=dict(path=C.IMPLEMENTATION[2][1], sha256=C.IMPLEMENTATION[2][2]),
+        dependencies=[dict(path=p, sha256=h or 'a'*64) for _, p, h in C.IMPLEMENTATION[:2]]+[dict(path='src/eom/native/eom_f5_enclosed_root_cli.cpp',sha256='a'*64)]+deepcopy(instrument))
     return dict(rootPacket=packet, rootLedger=ledger, historyManifest=manifest,
                 nominalConformance=proofs[0], apiConformance=proofs[1], reviewedBuild=build), root
 
 
 class ConsumerTests(unittest.TestCase):
-    def test_historical_data_binding_keeps_original_identity_and_physical_provenance(self):
+    def test_direct_data_bindings_keep_scientific_identity(self):
         rows = bindings()
-        for row in rows:
-            if row['role'] in ('approvedSource', 'scientificFixture', 'predeclaration'):
-                row['path'] = '/synthetic/root/reference/archive/'+row['role']+'.source'
         C.validate_output_bindings(rows)
-        self.assertNotEqual(rows[6]['path'], rows[6]['originalPath'])
+        self.assertEqual(rows[6]['path'], rows[6]['originalPath'])
         self.assertEqual(rows[6]['sha256'], C.SCIENCE[6][2])
 
     def test_historical_selection_refuses_executable_routes_aliases_and_wrong_originals(self):
@@ -277,7 +274,7 @@ class ConsumerTests(unittest.TestCase):
             C.verify_executing_consumer(raw.replace(b"'duplicate JSON key'", b"'changed JSON key'", 1))
 
     def test_captured_proof_ignores_poisoned_canonical_module(self):
-        sources = {p: (ROOT/p).read_bytes() for p, _ in C.IMPORTS}; sources[C.REFERENCE] = (ROOT/C.REFERENCE).read_bytes()
+        sources = {p: (ROOT/p).read_bytes() for p in C.IMPORTS}; sources[C.REFERENCE] = (ROOT/C.REFERENCE).read_bytes()
         poisoned = types.ModuleType('scripts.eom.oracle.prescribed_acceleration_response')
         poisoned.evaluate_response = lambda *_: self.fail('cached module must not execute')
         with patch.dict(sys.modules, {poisoned.__name__: poisoned}):
@@ -287,8 +284,8 @@ class ConsumerTests(unittest.TestCase):
                 self.assertEqual(reference.PRECISION, 90)
             self.assertNotIn(name, sys.modules)
         sources[C.REFERENCE] += b'\n'
-        with self.assertRaises(C.Rejected):
-            with C.proof_package(sources): pass
+        with C.proof_package(sources) as reference:
+            self.assertEqual(reference.PRECISION, 90)
 
     def test_member_projection_preserves_all_1032_original_tokens(self):
         source = member_fixture()

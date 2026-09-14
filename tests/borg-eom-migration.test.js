@@ -1561,7 +1561,7 @@ process.stdin.on("data", (chunk) => {
     const first = await client.evolveRetainedHistories(request);
     writeFileSync(fixtureBinary, fixtureSource("replacement"), "utf8");
     chmodSync(fixtureBinary, 0o755);
-    await assert.rejects(client.evolveRetainedHistories(request), /Stale binding|Original identity replaced/u);
+    await assert.rejects(client.evolveRetainedHistories(request), /Reviewed executable bytes differ/u);
 
     assert.equal(first.binaryMarker, "first");
 

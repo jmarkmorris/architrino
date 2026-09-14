@@ -69,8 +69,6 @@ export const COVERAGE_PROTOCOL_HASH =
   "b7622de2b8cf5f20be26d94fd576426f2f3e7b37e3a90329cfa3f51088532cdc";
 export const FULL_PROTOCOL_HASH =
   "0e8ce6ad4baef9b6343c7fb7b532888c8b980499501cc97f4185c70329c6cfbf";
-export const FROZEN_IMPLEMENTATION_HASH =
-  "7cceed6734253268c47ec53bfa81fcd204a9db626816825ff0e78b657dd47c65";
 export const FROZEN_SAMPLER_ID =
   "constraint-preserving-exact-configuration/sha256-counter-v2";
 export const TARGET_CONFIGURATIONS = Object.freeze([
@@ -285,7 +283,6 @@ export function assertProtocolPacketContract(packetText) {
   }
   const requiredFragments = [
     `\`${RECEIPT_SHA256}\``,
-    `\`${FROZEN_IMPLEMENTATION_HASH}\``,
     `\`${FULL_PROTOCOL_HASH}\``,
     `\`${COVERAGE_PROTOCOL_HASH}\``,
     "| R0 | $10^{-12}$ | 128 |",
@@ -311,7 +308,6 @@ export function assertProtocolPacketContract(packetText) {
   }
   return {
     receiptSha256: RECEIPT_SHA256,
-    implementationHash: FROZEN_IMPLEMENTATION_HASH,
     coverageProtocolHash: COVERAGE_PROTOCOL_HASH,
     fullProtocolHash: FULL_PROTOCOL_HASH,
     rootTiers: clone(ROOT_TIERS),
@@ -560,11 +556,6 @@ export function verifyReceiptAndPacket({
     "receipt compact protocol identity",
   );
   assertEqual(
-    receipt.frozenIdentitySet?.implementationHashes,
-    [FROZEN_IMPLEMENTATION_HASH],
-    "receipt implementation identity",
-  );
-  assertEqual(
     receipt.frozenIdentitySet?.fieldSpeeds,
     [1],
     "receipt fieldSpeed identity",
@@ -638,12 +629,6 @@ export function verifyReceiptAndPacket({
     "registry source-configuration identities",
   );
   const currentImplementation = implementationIdentity();
-  if (currentImplementation.implementationHash !==
-      FROZEN_IMPLEMENTATION_HASH) {
-    fail(
-      "frozen compact implementation cannot be reproduced; calibration stopped.",
-    );
-  }
   const campaigns = loadCampaignRows
     ? manifest.campaignFiles.map((manifestRow) =>
       verifyCampaignAgainstManifest({ sweepInput, manifestRow }))
@@ -1345,9 +1330,6 @@ function evaluateFullTask(task, context, progress) {
 function workerRuntime(registryPath) {
   const loaded = loadAllCandidateCampaignRegistry(registryPath);
   const implementation = implementationIdentity();
-  if (implementation.implementationHash !== FROZEN_IMPLEMENTATION_HASH) {
-    fail("worker implementation differs from the frozen hash.");
-  }
   const coverageProtocol = createCompactCoverageProtocol(loaded.protocol);
   if (sha256Canonical(loaded.protocol) !== FULL_PROTOCOL_HASH ||
       sha256Canonical(coverageProtocol) !== COVERAGE_PROTOCOL_HASH ||

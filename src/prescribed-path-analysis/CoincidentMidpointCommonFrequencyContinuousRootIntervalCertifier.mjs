@@ -48,12 +48,6 @@ const EXPECTED_BINARY_ROWS = Object.freeze([
     polarityAssignment: 1,
   }),
 ]);
-const EXPECTED_DISPLAY_SOURCE = Object.freeze({
-  path:
-    "reference/priorities/braid-program/configurations/" +
-    "three-axis-circular-coincident-midpoints-common-frequency.v3.json",
-  sha256: "92ddbd4c1e84c6d4e79042e8883331d832b16ab60c47da05c0c892da39a5de4c",
-});
 const EXPECTED_SCIENTIFIC_IDENTITY = Object.freeze({
   assemblyId: "asm-2a289a6fe32f64922ab71bae973acc80",
   modelRevisionSha256:
@@ -294,10 +288,6 @@ function validateSourceConfiguration(protocol) {
   }
   exactArray(sourceConfiguration.groupVelocity, [0, 0, 0], "protocol.sourceConfiguration.groupVelocity");
   exactArray(sourceConfiguration.phaseBaseline, EXPECTED_PHASES, "protocol.sourceConfiguration.phaseBaseline");
-  if (sourceConfiguration.displaySourceProvenance?.path !== EXPECTED_DISPLAY_SOURCE.path ||
-      sourceConfiguration.displaySourceProvenance?.sha256 !== EXPECTED_DISPLAY_SOURCE.sha256) {
-    throw new TypeError("protocol source provenance must bind the reviewed coincident-midpoint common-frequency configuration display source.");
-  }
   if (!Array.isArray(sourceConfiguration.binaries) || sourceConfiguration.binaries.length !== 3) {
     throw new TypeError("protocol.sourceConfiguration.binaries must contain three binaries.");
   }

@@ -7,41 +7,13 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import * as f5Fs from 'node:fs';
 import * as f5Crypto from 'node:crypto';
-// Bootstrap uses Node builtins only; no repository module runs before selection.
-export async function bootstrapEvolution(root, sourceMapSha256, originalIdentities = {}) {
-  if (!/^[a-f0-9]{64}$/u.test(sourceMapSha256 ?? "")) throw Error("externally selected F5 source-map digest required");
-  const capture = (filename, expected) => {
-    if (f5Fs.realpathSync(filename) !== filename) throw Error("canonical F5 bootstrap source required");
-    const fd = f5Fs.openSync(filename, f5Fs.constants.O_RDONLY | f5Fs.constants.O_NOFOLLOW | f5Fs.constants.O_NONBLOCK);
-    try {
-      const before = f5Fs.fstatSync(fd, {bigint:true});
-      const identity = s => [s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(":");
-      if (!before.isFile() || before.size <= 0n || before.size > 1024n**2n) throw Error("bounded F5 bootstrap source");
-      const data = f5Fs.readFileSync(fd), sha256 = f5Crypto.createHash("sha256").update(data).digest("hex");
-      if (sha256 !== expected || identity(before) !== identity(f5Fs.fstatSync(fd,{bigint:true})) || identity(before) !== identity(f5Fs.lstatSync(filename,{bigint:true}))) throw Error("F5 bootstrap source digest/original identity changed");
-      if (Object.hasOwn(originalIdentities,filename) && originalIdentities[filename] !== identity(before)) throw Error("F5 original bootstrap identity changed");
-      return {data,identity:identity(before),path:filename};
-    } finally {f5Fs.closeSync(fd);}
-  };
-  const mapPath = path.join(root,"reference/priorities/development-process-review/contracts/option-b-f5-evolution-sources.jsonld");
-  const map = capture(mapPath,sourceMapSha256), admissionPath = "scripts/eom/f5-current-source-admission.mjs";
-  const rows = JSON.parse(map.data)["@graph"]?.filter(r=>r.role==="admission"&&r.binding?.path===admissionPath);
-  if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
-  const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
-  const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
-  return module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity},"evolution");
-}
 
-export async function main(argv=process.argv.slice(2),control=null,originalAdmission=null){
- if(argv.at(-2)!=='--source-map-sha256'||!/^[a-f0-9]{64}$/u.test(argv.at(-1)??''))throw Error('externally selected F5 gate map required');
- const selected=argv.at(-1);argv=argv.slice(0,-2);
- const operational=originalAdmission??await bootstrapEvolution(f5Fs.realpathSync(fileURLToPath(new URL('../../',import.meta.url))),selected);
- if(operational.sourceMap.sha256!==selected)throw Error('F5 gate selection differs');
- operational.recheck();
+export async function main(argv=process.argv.slice(2),control=null){
+
 
 let target, cancelled = false, launched = false, permitted = false, inputReady = false, targetClosed = false;
 let timer, killTimer, specification, chunks = [], inputBytes = 0;
-const send = value => { try{operational.recheck();}catch{cancel();return;} if (process.connected) process.send(value, error => { if (error) cancel(); }); };
+const send = value => { if (process.connected) process.send(value, error => { if (error) cancel(); }); };
 function cancel() {
   if (cancelled) return;
   cancelled = true;
@@ -53,7 +25,6 @@ function cancel() {
   try { process.kill(-process.pid, 'SIGTERM'); } catch { /* outer also owns cleanup */ }
 }
 function launch() {
-  try{operational.recheck();}catch{cancel();return;}
   if (cancelled || launched || !permitted || !inputReady) return;
   if (!process.connected || process.ppid !== specification.workerPid) { cancel(); return; }
   if (Date.now() >= specification.deadlineEpochMs) { cancel(); return; }
@@ -94,10 +65,10 @@ process.on('message', message => {
     process.removeListener('disconnect', cancel);
     if (process.connected) process.disconnect();
     if (signal) {
-      operational.recheck();
+
       process.removeListener('SIGTERM', cancel); process.removeListener('SIGINT', cancel);
       process.kill(process.pid, signal);
-    } else { operational.recheck(); process.exitCode = code ?? 125; }
+    } else {  process.exitCode = code ?? 125; }
     return;
   }
   cancel();

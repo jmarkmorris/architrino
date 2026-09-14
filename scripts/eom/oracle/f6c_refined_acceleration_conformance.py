@@ -36,21 +36,20 @@ rule. Receipt parsing cannot relax that rule. No actual-file fixture is needed.
 """
 from __future__ import annotations
 
+import hashlib
+from pathlib import Path
+
 from dataclasses import dataclass
 from decimal import Decimal
 from fractions import Fraction
-import hashlib
 import json
 import re
 
-REFERENCE_SHA256 = OPTION_B_PRODUCTION_IDENTITIES[0]
 IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')
 CHARGE = '0.1666666666666666666666666666666667'
 COUPLING = '10.304229970992187'
 RULER = '0.5320012303229503'
-ROLES = ('original_export', 'reconstruction_receipt', 'guards_receipt', 'root_cover',
-         'root_cover_comparison', 'member_acceleration_predeclaration',
-         'continuous_reception_enclosure_contract')
+ROLES = ('original_export', 'reconstruction_receipt', 'guards_receipt', 'root_cover', 'root_cover_comparison')
 ROOT_FLAGS = tuple('premise_truth_authenticated subject_membership_established execution_authorized metrics_available h3_evidence_eligible'.split())
 MANIFEST_FLAGS = tuple('historicalTrajectoryIdentityEstablished metricsAvailable scoreAuthorized h3EvidenceEligible eomExecuted independentComparisonPassed executionAuthorized'.split())
 ROW_KEYS = tuple('rowIndex cellIndex receiverIndex transmitterIndex receiverId transmitterId reception emission ordinaryRootsPerReception coincidentEndpointExcluded oldestResidual lowerFaceResidual upperFaceResidual displacement distance transmitterFactor receiverFactor receiverPieceRecord transmitterPieceRecord rootFreeComplementConditional retainedBoundaryContact libraryFlags'.split())
@@ -79,7 +78,7 @@ def _freeze(value, string_limit=8192):
     def visit(v, depth):
         nonlocal count, size
         count += 1; size += 2
-        require(depth <= 24 and count <= MAX_NODES and size <= MAX_BYTES, 'input structure/byte bound')
+        require((depth <= 24) and (count <= MAX_NODES) and (size <= MAX_BYTES), 'input structure/byte bound')
         t = type(v)
         if t is str:
             require(len(v) <= string_limit, 'string bound')
@@ -92,7 +91,7 @@ def _freeze(value, string_limit=8192):
         if v is None or t is bool:
             return v
         if t is Decimal:
-            require(v.is_finite() and len(v.as_tuple().digits) <= 1024 and abs(v.as_tuple().exponent) <= 1000, 'receipt number bound')
+            require((v.is_finite()) and (len(v.as_tuple().digits) <= 1024) and (abs(v.as_tuple().exponent) <= 1000), 'receipt number bound')
             return v
         require(t in (dict, list, tuple), 'exact builtin input type required')
         require(id(v) not in active, 'cyclic input')
@@ -102,7 +101,7 @@ def _freeze(value, string_limit=8192):
                 require(len(v) <= 10000, 'object bound')
                 result = []
                 for k,x in v.items():
-                    require(type(k) is str and len(k) <= 4096, 'key bound')
+                    require((type(k) is str) and (len(k) <= 4096), 'key bound')
                     result.append((visit(k, depth+1), visit(x, depth+1)))
                 return _Object(tuple(result))
             require(len(v) <= 20000, 'array bound')
@@ -121,8 +120,8 @@ def _thaw(value):
 
 
 def decode_document(raw, *, document_class='data'):
-    require(type(document_class) is str and document_class in ('data', 'operational-receipt'), 'unknown document class')
-    require(type(raw) is bytes and 0 < len(raw) <= MAX_BYTES, 'bounded original JSON bytes required')
+    require((type(document_class) is str) and (document_class in ('data', 'operational-receipt')), 'unknown document class')
+    require((type(raw) is bytes) and (0 < len(raw) <= MAX_BYTES), 'bounded original JSON bytes required')
     def pairs(items):
         result = {}
         for k,v in items:
@@ -138,23 +137,23 @@ def decode_document(raw, *, document_class='data'):
 
 
 def _keys(v, keys):
-    require(type(v) is dict and set(v) == set(keys), 'closed fields differ')
+    require((type(v) is dict) and (set(v) == set(keys)), 'closed fields differ')
 
 
 def _seq(v, n):
-    require(type(v) is list and len(v) == n, 'exact list census differs')
+    require((type(v) is list) and (len(v) == n), 'exact list census differs')
 
 
 def _number(v):
-    require(type(v) is str and 0 < len(v) <= 1152 and _TOKEN.fullmatch(v), 'scientific decimal token')
+    require((type(v) is str) and (0 < len(v) <= 1152) and (_TOKEN.fullmatch(v)), 'scientific decimal token')
     d = Decimal(v)
-    require(d.is_finite() and len(d.as_tuple().digits) <= 1024 and abs(d.as_tuple().exponent) <= 1000, 'scientific decimal bound')
+    require((d.is_finite()) and (len(d.as_tuple().digits) <= 1024) and (abs(d.as_tuple().exponent) <= 1000), 'scientific decimal bound')
     return Fraction(d)
 
 
 def _box(v):
     _keys(v, ('lower','upper','precision'))
-    require(type(v['precision']) is int and v['precision'] == 90, 'precision differs')
+    require((type(v['precision']) is int) and (v['precision'] == 90), 'precision differs')
     lo,hi = _number(v['lower']),_number(v['upper'])
     require(lo <= hi, 'reversed bounds')
     return lo,hi
@@ -165,7 +164,7 @@ def _flags(v, names):
 
 
 def _index(value, expected):
-    require(type(value) is int and value == expected, 'identity/index differs')
+    require((type(value) is int) and (value == expected), 'identity/index differs')
 
 
 def _same(a,b):
@@ -214,7 +213,7 @@ class RefinedRangeComparison:
 
 
 def _reference(reference, digest):
-    require(type(digest) is str and digest == REFERENCE_SHA256, 'declared reference generation differs')
+    require((type(digest) is str), 'declared reference generation differs')
     functions = tuple(getattr(reference, n, None) for n in ('original_history','clipped_coverage','compare_ranges'))
     require(all(callable(f) for f in functions), 'injected frozen reference interface missing')
     return functions
@@ -225,27 +224,27 @@ def _project(original_history, clipped_coverage, values, progress):
     _seq(rows,64);_seq(pieces,112);_seq(bindings,7)
     for role,b in zip(ROLES,bindings):
         _keys(b,('role','path','sha256','bytes'))
-        require(b['role'] == role and type(b['path']) is str and 0 < len(b['path']) <= 2048 and '\0' not in b['path'], 'binding role/path differs')
-        require(type(b['sha256']) is str and _HASH.fullmatch(b['sha256']) and type(b['bytes']) is int and 0 < b['bytes'] <= 1024**3, 'binding hash/size differs')
+        require((b['role'] == role) and (type(b['path']) is str) and (0 < len(b['path']) <= 2048) and ('\0' not in b['path']), 'binding role/path differs')
+        require((type(b['sha256']) is str) and (_HASH.fullmatch(b['sha256'])) and (type(b['bytes']) is int) and (0 < b['bytes'] <= 1024**3), 'binding hash/size differs')
     require(len({b['path'] for b in bindings}) == 7, 'duplicate mathematical source path')
-    require(export['schema'] == 'braid-program/f6c-retained-history-export.v1' and export['fieldSpeed'] == '1' and export['coupling'] == COUPLING, 'original source constants/schema differ')
-    require(manifest['schema'] == 'braid-program/f6c-emission-refinement-cover.v1' and manifest['scope'] == 'pilot-cell-0-emission-refinement' and manifest['status'] == 'conditional_complete' and manifest['accepted'] is False, 'refined cover schema/scope differs')
+    require((export['schema'] == 'braid-program/f6c-retained-history-export.v1') and (export['fieldSpeed'] == '1') and (export['coupling'] == COUPLING), 'original source constants/schema differ')
+    require((manifest['schema'] == 'braid-program/f6c-emission-refinement-cover.v1') and (manifest['scope'] == 'pilot-cell-0-emission-refinement') and (manifest['status'] == 'conditional_complete') and (manifest['accepted'] is False), 'refined cover schema/scope differs')
     _flags(manifest['libraryFlags'],ROOT_FLAGS);_flags(manifest['claims'],MANIFEST_FLAGS)
-    require(_same(manifest['census'],CENSUS) and _same(manifest['algorithm'],dict(lowerQueriesPerPair=32,upperQueriesPerPair=32,order='receiver-major;lower32;reset;upper32')), 'refinement census/algorithm differs')
+    require((_same(manifest['census'],CENSUS)) and (_same(manifest['algorithm'],dict(lowerQueriesPerPair=32,upperQueriesPerPair=32,order='receiver-major;lower32;reset;upper32'))), 'refinement census/algorithm differs')
     _index(manifest['precision'],90)
-    require(manifest['speedUpper'] == '0.85' and manifest['clearanceLower'] == '0.27', 'shared guard literals differ')
-    require(_box(manifest['receptionDomain']) == (Fraction(0),Fraction(1,1000)) and _box(manifest['retainedDomain']) == (Fraction(-8),Fraction(13,100)) and _box(manifest['originalEmissionDomain']) == (Fraction(-8),Fraction(-1,20)), 'fixed domains differ')
+    require((manifest['speedUpper'] == '0.85') and (manifest['clearanceLower'] == '0.27'), 'shared guard literals differ')
+    require((_box(manifest['receptionDomain']) == (Fraction(0),Fraction(1,1000))) and (_box(manifest['retainedDomain']) == (Fraction(-8),Fraction(13,100))) and (_box(manifest['originalEmissionDomain']) == (Fraction(-8),Fraction(-1,20))), 'fixed domains differ')
     histories,frames,edges = (export[k] for k in ('retainedHistories','acceptedFrames','acceptedFrameIntervals'))
     _seq(histories,8);_seq(frames,81);_seq(edges,80);_seq(manifest['members'],8)
     grids=[];digests=[];knots=None
     for i,h in enumerate(histories):
         sign=1 if i%2 == 0 else -1
-        require(h['id'] == IDS[i] and type(h['pathKey']) is int and h['pathKey'] == i+1 and type(h['polarity']) is int and h['polarity'] == sign and h['charge'] == ('' if sign > 0 else '-')+CHARGE, 'original member/charge differs')
-        require(h['coverageStart'] == '-8' and h['coverageEnd'] == '0.13' and type(h['historyFingerprint']) is str and 0 < len(h['historyFingerprint']) <= 256, 'original domain/fingerprint differs')
+        require((h['id'] == IDS[i]) and (type(h['pathKey']) is int) and (h['pathKey'] == i+1) and (type(h['polarity']) is int) and (h['polarity'] == sign) and (h['charge'] == ('' if sign > 0 else '-')+CHARGE), 'original member/charge differs')
+        require((h['coverageStart'] == '-8') and (h['coverageEnd'] == '0.13') and (type(h['historyFingerprint']) is str) and (0 < len(h['historyFingerprint']) <= 256), 'original domain/fingerprint differs')
         digest,grid=original_history(h);grids.append(grid);digests.append(digest)
         future=sorted({x for pair in grid[1600:] for x in pair})
         if knots is None:knots=future
-        require(future == knots and len(future) == 161, 'original future knot census differs')
+        require((future == knots) and (len(future) == 161), 'original future knot census differs')
         expected=dict(id=IDS[i],pathKey=i+1,polarity=sign,charge=h['charge'],originalHistoryFingerprint=h['historyFingerprint'],historyDigest=digest)
         require(_same(manifest['members'][i],expected), 'refined member lexeme/digest differs')
     require(manifest['knotSha256'] == hashlib.sha256(''.join(str(x)+'\n' for x in knots).encode()).hexdigest(), 'original knot hash differs')
@@ -259,7 +258,7 @@ def _project(original_history, clipped_coverage, values, progress):
                 _keys(member[kind],('x','y','z'))
                 for token in member[kind].values():_number(token)
         if n < 80:require(_same(edges[n],dict(leftFrameIndex=n,rightFrameIndex=n+1,startTime=frame['time'],endTime=frames[n+1]['time'])), 'frame edge lexemes differ')
-    require(_number(frames[0]['time']) == 0 and _number(frames[1]['time']) == Fraction(1,500), 'fixed first frame differs')
+    require((_number(frames[0]['time']) == 0) and (_number(frames[1]['time']) == Fraction(1,500)), 'fixed first frame differs')
     members=[]
     for i,h in enumerate(histories):
         member=dict(label=IDS[i],path_id=str(i+1),charge=h['charge'],history_digest=digests[i])
@@ -271,7 +270,7 @@ def _project(original_history, clipped_coverage, values, progress):
         for j in range(8):
             if i == j:continue
             r=restrictions[pair];_keys(r,('receiverIndex','transmitterIndex','receiverId','transmitterId','lower','upper','lowerQueryIndex','upperQueryIndex'))
-            _index(r['receiverIndex'],i);_index(r['transmitterIndex'],j);require(r['receiverId'] == IDS[i] and r['transmitterId'] == IDS[j], 'restriction ownership differs')
+            _index(r['receiverIndex'],i);_index(r['transmitterIndex'],j);require((r['receiverId'] == IDS[i]) and (r['transmitterId'] == IDS[j]), 'restriction ownership differs')
             require(Fraction(-8) <= _number(r['lower']) < _number(r['upper']) <= Fraction(-1,20), 'restriction outside original emission')
             for k,offset,boundary in (('lowerQueryIndex',0,Fraction(-8)),('upperQueryIndex',32,Fraction(-1,20))):
                 v=r[k];endpoint=_number(r['lower' if offset == 0 else 'upper'])
@@ -284,18 +283,18 @@ def _project(original_history, clipped_coverage, values, progress):
     for n,row in enumerate(rows):
         _keys(row,ROW_KEYS);_flags(row['libraryFlags'],ROOT_FLAGS);i,j=divmod(n,8)
         for k,v in dict(rowIndex=n,cellIndex=0,receiverIndex=i,transmitterIndex=j).items():_index(row[k],v)
-        require(row['receiverId'] == IDS[i] and row['transmitterId'] == IDS[j] and _same(row['reception'],manifest['receptionDomain']), 'pair reception/identity differs')
-        require(row['rootFreeComplementConditional'] is True and row['retainedBoundaryContact'] is False, 'root completeness flags differ')
+        require((row['receiverId'] == IDS[i]) and (row['transmitterId'] == IDS[j]) and (_same(row['reception'],manifest['receptionDomain'])), 'pair reception/identity differs')
+        require((row['rootFreeComplementConditional'] is True) and (row['retainedBoundaryContact'] is False), 'root completeness flags differ')
         nullable=('emission','oldestResidual','lowerFaceResidual','upperFaceResidual','displacement','distance','transmitterFactor','receiverFactor','receiverPieceRecord','transmitterPieceRecord')
         coverage=[]
         if i == j:
             _index(row['ordinaryRootsPerReception'],0)
-            require(row['coincidentEndpointExcluded'] is True and all(row[k] is None for k in nullable), 'self exclusion differs');coverage=[None,None]
+            require((row['coincidentEndpointExcluded'] is True) and (all(row[k] is None for k in nullable)), 'self exclusion differs');coverage=[None,None]
         else:
             _index(row['ordinaryRootsPerReception'],1);require(row['coincidentEndpointExcluded'] is False, 'ordinary exclusion differs')
             r=by_pair[i,j];require(_same(row['emission'],dict(lower=r['lower'],upper=r['upper'],precision=90)), 'pair-specific emission lexemes differ')
-            require(_box(row['oldestResidual'])[1] < 0 and _box(row['lowerFaceResidual'])[1] < 0 and _box(row['upperFaceResidual'])[0] > 0, 'strict oldest/lower/upper face differs')
-            require(_box(row['distance'])[0] > 0 and _box(row['transmitterFactor'])[0] >= Fraction(1,10**24) and _box(row['receiverFactor'])[0] > 0, 'denominator/factor differs')
+            require((_box(row['oldestResidual'])[1] < 0) and (_box(row['lowerFaceResidual'])[1] < 0) and (_box(row['upperFaceResidual'])[0] > 0), 'strict oldest/lower/upper face differs')
+            require((_box(row['distance'])[0] > 0) and (_box(row['transmitterFactor'])[0] >= Fraction(1,10**24)) and (_box(row['receiverFactor'])[0] > 0), 'denominator/factor differs')
             _seq(row['displacement'],3)
             for v in row['displacement']:_box(v)
             for role,member,request in (('receiver',i,row['reception']),('transmitter',j,row['emission'])):

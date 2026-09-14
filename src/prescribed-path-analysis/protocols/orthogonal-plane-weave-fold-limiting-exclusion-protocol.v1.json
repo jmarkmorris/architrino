@@ -2,16 +2,12 @@
   "schema": "prescribed-path-analysis/orthogonal-plane-weave-fold-limiting-exclusion-protocol.v1",
   "date": "2026-08-29",
   "objective": "Close the fourteen fold boxes left by the fixed-120-degree orthogonal-plane weave certificate through a canonical limiting exclusion, without defining a new acceleration law.",
-  "frozenInputs": {
+  "inputs": {
     "ordinaryCertificatePath": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-fold-separated-interval.v1.json",
     "ordinaryCertificateSha256": "d65d556bd25ed6b40d8281aad53d6138daab042e80deb120cb97ae244a1b7b27",
     "ordinaryOraclePath": "scripts/prescribed-path-analysis/oracle/orthogonal_plane_weave_interval_oracle.py",
-    "ordinaryOracleSha256": "b54a5ae488edb49dca8d58fbed8627f3edf912358dd4f4599e077b5136ffdec1",
     "masterEquationPath": "content/markdown/aaa/dynamics/master-equation.md",
-    "masterEquationSha256": "0e8219c7a3cc750747c43030d5b998ddbf2de525a5469d32fa5e52fbae5ec63f",
-    "sixWorldlineSubjectPath": "src/prescribed-path-analysis/OrthogonalPlaneWeaveBalance.mjs",
-    "sixWorldlineSubjectSha256": "109094c43b2df92dbe22338412dd2761e1933cf202b8e4957385d8716da252be",
-    "modificationRule": "All four frozen inputs are read-only controls for this extension."
+    "sixWorldlineSubjectPath": "src/prescribed-path-analysis/OrthogonalPlaneWeaveBalance.mjs"
   },
   "domain": {
     "fieldSpeed": "1",

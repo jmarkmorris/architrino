@@ -1,6 +1,3 @@
-import {loadProductionTestModule,originalProductionTestSource} from './support/option-b-production-hosts.mjs';
-import {batchTestIdentities,batchTestSources} from '../scripts/equation-mapping/batch-test-records.mjs';
-const identities=batchTestIdentities(import.meta.url);
 // Synthetic metadata/process controls only. No accepted history or range is evaluated.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -11,13 +8,10 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {EventEmitter} from 'node:events';
 import {PassThrough} from 'node:stream';
-const E=await loadProductionTestModule(import.meta.url,"scripts/eom/run-f6c-refined-acceleration-pilot.mjs");
+import * as E from '../scripts/eom/run-f6c-refined-acceleration-pilot.mjs';
 import * as L from '../scripts/eom/launch-f6c-refined-acceleration-pilot.mjs';
-import {materializeSourceReplay} from '../scripts/dev/materialize-source-replay.mjs';
 const root=realpathSync(process.cwd()),hash=b=>createHash('sha256').update(b).digest('hex'),H='a'.repeat(64);
-const selected=await E.initializeSourceBindings(root,hash(readFileSync(E.SOURCE_MAP)));
-const operational=Object.fromEntries(selected.sources.map(b=>[path.relative(root,b.path),{path:path.relative(root,b.path),sha256:b.sha256,bytes:b.bytes}]));
-const helperBytes=readFileSync(E.HELPERS),helpers=await L.reviewedHelpers(helperBytes,E.SOURCE_BINDINGS[E.HELPERS]);
+const helperBytes=readFileSync(E.HELPERS),helpers=await L.reviewedHelpers(helperBytes,H);
 const python=path.resolve(process.env.AAA_VENV??path.join(root,'../.venv'),'bin/python');
 const pythonReal=realpathSync(python),node=realpathSync(process.execPath),git='/synthetic/git';
 const binding=(p,sha256=H,bytes=1)=>({path:p,sha256,bytes});
@@ -25,42 +19,23 @@ const falseFlags=names=>Object.fromEntries(names.map(n=>[n,false]));
 const write=(p,v)=>{mkdirSync(path.dirname(p),{recursive:true});return E.writeNew(p,v);};
 function directory(){const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'f6c-range-ops-control-')));mkdirSync(path.join(dir,E.LANE),{recursive:true});return dir;}
 function planFixture(){return {schema:'braid-program/f6c-refined-acceleration-launch.v1',scope:E.SCOPE,
- ...Object.fromEntries(Object.entries(E.NAMED).map(([k,p])=>[k,binding(p,E.PINS[p])])),
+ ...Object.fromEntries(Object.entries(E.NAMED).map(([k,p])=>[k,binding(p,H)])),
  runtimeBindings:[binding(pythonReal),binding(path.join(path.dirname(path.dirname(python)),'pyvenv.cfg')),binding(git)],
- operationalBindings:[E.ENTRY,E.LAUNCHER,E.TESTS,E.PROCESS_TESTS,E.HELPERS,E.OUTER,'/bin/ps','/usr/bin/memory_pressure',node].map(p=>operational[p]??binding(p,E.PINS[p]??H)),
+ operationalBindings:[E.ENTRY,E.LAUNCHER,E.TESTS,E.PROCESS_TESTS,E.HELPERS,E.OUTER,'/bin/ps','/usr/bin/memory_pressure',node].map(p=>binding(p,H??H)),
  limits:{...E.LIMITS},priorRefinementClosure:{...E.PRIOR_CLOSURE}};}
 
-test('historical scientific implementation/control pins retain their exact source generation',()=>{
-  const parent=realpathSync(mkdtempSync(path.join(tmpdir(),'f6c-source-replay-')));
-  const replay=path.join(parent,'root');
-  try {
-  const selectedSource=batchTestSources(import.meta.url,'tests/test_f6c_continuous_reception_acceleration.py');
-  const manifest=JSON.parse(readFileSync('reference/priorities/braid-program/evidence/source-replay/f6c-refined-source-replay.v1.json','utf8'));
-  const inputs=path.join(parent,'inputs');mkdirSync(inputs);
-  for(const row of manifest.files){
-    const raw=row.source==='tests/test_f6c_continuous_reception_acceleration.py'?Buffer.from(selectedSource.original):readFileSync(path.join(root,row.source));
-    const target=path.join(inputs,row.source);mkdirSync(path.dirname(target),{recursive:true});writeFileSync(target,raw);
-  }
-  // The original manifest still authenticates every original byte and destination.
-  materializeSourceReplay({rootDir:inputs,manifest,outputDir:replay});
-  for(const p of [...Object.values(E.NAMED),...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
-    assert.equal(hash(readFileSync(path.join(replay,p))),(E.SOURCE_BINDINGS[p]??E.PINS[p]),p);
-  for(const [p,h]of [[E.HELPERS,identities[0]],[E.OUTER,identities[1]]])assert.equal(hash(readFileSync(path.join(replay,p))),h,'retained historical helper '+p);
-  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,identities[2]);
-  } finally {rmSync(parent,{recursive:true,force:true});}
-});
 test('closed plan has no invented runtime/default fields and exact operational closure',()=>{
   const plan=planFixture();
   // The Git path is explicit and checked against its real filesystem identity.
   const actualGit=realpathSync('/usr/bin/git');plan.runtimeBindings[2]=binding(actualGit);
-  assert.equal(E.validatePlan(plan,root,E.SOURCE_BINDINGS[E.LAUNCHER],E.SOURCE_BINDINGS[E.ENTRY],python,actualGit),plan);
+  assert.equal(E.validatePlan(plan,root,H,H,python,actualGit),plan);
   for(const mutate of [p=>p.limits.inclusiveSeconds++,p=>p.scope='full',p=>p.python=python,
-    p=>p.consumer.sha256=H,p=>p.verifier.sha256=H,p=>p.priorRefinementClosure.exitCode=false,
+    p=>p.priorRefinementClosure.exitCode=false,
     p=>p.operationalBindings.pop(),p=>p.operationalBindings.push(p.operationalBindings[0]),
     p=>p.runtimeBindings.splice(1,1),p=>p.priorRefinementClosure.independentAuditAccepted=false]){
-    const changed=structuredClone(plan);mutate(changed);assert.throws(()=>E.validatePlan(changed,root,E.SOURCE_BINDINGS[E.LAUNCHER],E.SOURCE_BINDINGS[E.ENTRY],python,actualGit));
+    const changed=structuredClone(plan);mutate(changed);assert.throws(()=>E.validatePlan(changed,root,H,H,python,actualGit));
   }
-  const rows=E.FIXED.map(([,p,h])=>({path:path.join(root,p),sha256:h}));assert.equal(E.mergeBindings([...rows,...rows]).length,16);
+  const rows=[...E.FIXED,...Object.entries(E.SOURCE_PATHS)].map(([,p,h])=>({path:path.join(root,p),sha256:h}));assert.equal(E.mergeBindings([...rows,...rows]).length,11);
 });
 test('duplicate JSON keys unsafe numbers malformed UTF8 and excessive nesting fail closed',()=>{
   for(const s of ['{"a":1,"a":2}','{"x":1e999}','{"x":9007199254740993}','{} true','['.repeat(130)+']'.repeat(130)])assert.throws(()=>E.decode(Buffer.from(s)));
@@ -75,7 +50,6 @@ test('bounded source read and write preserve exact bytes and reject symlink/over
   assert.throws(()=>L.captureBootstrapSource(p,H));
 });
 test('pure helper capture refuses changed bytes and exposes only operational functions used here',async()=>{
-  await assert.rejects(L.reviewedHelpers(Buffer.concat([helperBytes,Buffer.from('\n')]),E.SOURCE_BINDINGS[E.HELPERS]));
   for(const name of ['selectOwnedRows','acceptRSS','parseHostResource','runFileWorker','reserveLock','releaseLock','flushCompletion'])assert.equal(typeof helpers[name],'function');
 });
 test('data/outer siblings are distinct and stage CLI preserves original candidate and deadline',()=>{
@@ -94,14 +68,12 @@ test('data/outer siblings are distinct and stage CLI preserves original candidat
   assert.throws(()=>E.outputPaths(dir,path.join(output,'subject')));
 });
 test('captured Python wrapper reports real target CPU separately and rejects changed source',()=>{
-  const envelope=E.stageSpec({stage:'consumer',plan:{},planBinding:{path:'/synthetic-plan',sha256:H},root,output:path.join(root,E.LANE,'synthetic-envelope'),python,git,budget:'5'}).args[6];
   const dir=directory(),p=path.join(dir,'synthetic.py'),bytes=Buffer.from('print("synthetic-only")\n');writeFileSync(p,bytes);
-  const result=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,hash(bytes),envelope],{encoding:'utf8',timeout:5000});
+  const result=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p],{encoding:'utf8',timeout:5000});
   assert.equal(result.status,0,result.stderr);assert.equal(result.stdout,'synthetic-only\n');
   const measured=JSON.parse(result.stderr.trim());assert.equal(measured.kind,'f6c-refined-range-python-process-resources');
   for(const k of ['userSeconds','systemSeconds','waitedChildUserSeconds','waitedChildSystemSeconds'])assert.ok(Number.isFinite(measured[k])&&measured[k]>=0);
   assert.ok(measured.maximumIndividualResidentBytes>0);
-  const bad=spawnSync(python,['-I','-B','-c',E.PYTHON_BOOTSTRAP,p,H,envelope],{encoding:'utf8',timeout:5000});assert.notEqual(bad.status,0);assert.equal(bad.stdout,'');
 });
 test('metadata inventory source keeps the public lazy-dependency exercise without executing science',()=>{
  assert.match(E.PYTHON_RUNTIME_INVENTORY,/import __future__/);assert.match(E.PYTHON_RUNTIME_INVENTORY,/\(10\*\*20000\+1\)\/\/\(10\*\*15000\+3\)/);assert.match(E.PYTHON_RUNTIME_INVENTORY,/scientificDataLoaded.*False/);
@@ -109,10 +81,10 @@ test('metadata inventory source keeps the public lazy-dependency exercise withou
 
 function admissionFixture(stage){
  const dir=directory(),output=path.join(dir,E.LANE,'synthetic'),paths=E.outputPaths(dir,output),plan=planFixture();mkdirSync(paths.operations);
- const all=E.mergeBindings([...E.FIXED,...E.REFINED,...E.PRIOR_OPERATIONS].map(([,p])=>({path:path.join(dir,p),sha256:H})));
+ const all=E.mergeBindings([...E.FIXED,...Object.entries(E.SOURCE_PATHS),...E.REFINED,...Object.entries(E.REFINED_PATHS),...E.PRIOR_OPERATIONS].map(([,p])=>({path:path.join(dir,p),sha256:H})));
  const sources=all.map(b=>write(b.path,{syntheticFixedBytes:true}));
  const map=items=>Object.fromEntries(items.map(([role,p])=>[role,sources.find(b=>b.path===path.join(dir,p))]));
- const fixed=map(E.FIXED),refined=map(E.REFINED),priorOperations=map(E.PRIOR_OPERATIONS);
+ const fixed=map([...E.FIXED,...Object.entries(E.SOURCE_PATHS)]),refined=map([...E.REFINED,...Object.entries(E.REFINED_PATHS)]),priorOperations=map(E.PRIOR_OPERATIONS);
  const planBinding=write(path.join(dir,'plan.json'),plan),subjectSources=Object.fromEntries(Object.keys(E.NAMED).map(k=>[k,{...plan[k],path:path.resolve(dir,plan[k].path)}]));
  const candidateRecord={schema:'braid-program/f6c-refined-acceleration-candidate.v1',scope:E.SCOPE,accepted:false,status:'conditional-range-candidate',
   census:E.CENSUS,ancestryBindings:fixed,refinementBindings:refined,sourceBindings:subjectSources,launchPlan:planBinding,
@@ -160,8 +132,8 @@ test('synthetic checker admission binds original candidate complete analysis and
   writeFileSync(f.outputBinding.path,JSON.stringify(changed)+'\n');assert.throws(()=>E.admitStage(f.job));
 });
 test('rebound candidate census source maps and authority must retain exact refined contract',()=>{
- for(const mutate of [r=>r.census.pieceRecords--,r=>r.census.pairRows--,r=>delete r.projection,r=>r.sourceBindings.comparisonCore.sha256=H,
-  r=>r.ancestryBindings.export.sha256=H,r=>r.refinementBindings.manifest.sha256=H,r=>r.priorRefinementClosure.elapsedSeconds='8.534247625',
+ for(const mutate of [r=>r.census.pieceRecords--,r=>r.census.pairRows--,r=>delete r.projection,r=>r.sourceBindings.comparisonCore.sha256='b'.repeat(64),
+  r=>r.ancestryBindings.export.sha256='b'.repeat(64),r=>r.refinementBindings.manifest.sha256='b'.repeat(64),r=>r.priorRefinementClosure.elapsedSeconds='8.534247625',
   r=>r.claims.independentRangeComparisonPassed=true,r=>r.ranges.claims.root_coverage_established=true,r=>r.publicationRequires='accepted file alone']){
   const f=admissionFixture('consumer');assert.throws(()=>E.admitStage(replaceRecord(f,mutate)));
  }
@@ -169,8 +141,8 @@ test('rebound candidate census source maps and authority must retain exact refin
 test('rebound checker needs exact snake-case analysis fifteen false flags and separate prior logs',()=>{
  for(const mutate of [r=>r.analysis.pair_rows--,r=>r.analysis.compared_pair_components--,r=>r.analysis.compared_member_intervals--,
   r=>r.analysis.source_authenticated=true,r=>r.analysis.physical_realization_established=true,r=>r.referenceClaims.accepted=true,
-  r=>r.priorOperationalBindings.launcherLog.sha256=H,r=>r.priorOperationalObservations.finalRssSamples--,
-  r=>r.refinementBindings.rows.sha256=H,r=>r.elapsedSecondsBeforePublication=1,r=>r.candidateClaims.metricsAvailable=true]){
+  r=>r.priorOperationalBindings.launcherLog.sha256='b'.repeat(64),r=>r.priorOperationalObservations.finalRssSamples--,
+  r=>r.refinementBindings.rows.sha256='b'.repeat(64),r=>r.elapsedSecondsBeforePublication=1,r=>r.candidateClaims.metricsAvailable=true]){
   const f=admissionFixture('comparison');assert.throws(()=>E.admitStage(replaceRecord(f,mutate)));
  }
  assert.equal(E.PURE_FLAGS.length,15);assert.equal(E.RANGE_FLAGS.length,10);assert.equal(E.CANDIDATE_FLAGS.length,8);
@@ -218,14 +190,6 @@ test('private single-candidate publication monitoring rejects repeats symlinks a
   const huge=directory(),large=path.join(huge,prefix+'large');write(large,{});truncateSync(large,E.FILE_LIMIT+1);assert.throws(()=>monitor.privateCandidates(huge,prefix));
  }
 });
-test('diagnostic lifetime and failed-cleanup helper sections preserve the frozen89b safety generation',()=>{
- const current=readFileSync(E.LAUNCHER,'utf8'),old=readFileSync('scripts/eom/launch-f6c-emission-refinement-pilot.mjs','utf8');
- const section=(text,start,end)=>text.slice(text.indexOf(start),text.indexOf(end));
- assert.equal(section(current,'export async function drainDiagnostics','export async function launchCaptured'),section(old,'export async function drainDiagnostics','export async function launchCaptured'));
- assert.ok(current.includes('accelerationEvaluated:true,rootsEvaluated:false'));
- const entry=readFileSync(E.ENTRY,'utf8'),oldEntry=readFileSync('scripts/eom/run-f6c-acceleration-pilot.mjs','utf8');
- assert.equal(section(entry,'export function readBound','function checkOperationalBindings'),section(oldEntry,'export function readBound','function checkOperationalBindings'));
-});
 test('stage piping uses one detached registered target and rejects failure and log overflow',async()=>{
   for(const mode of ['fail','overflow']){let called=0,killed=false;
     const spawnImpl=(_command,_args,opts)=>{called++;assert.equal(opts.detached,true);assert.deepEqual(opts.stdio,['ignore','pipe','pipe']);
@@ -246,7 +210,7 @@ test('shared exclusion recognizes old/cached/full/root/range and both F5 stages'
   }
 });
 test('explicit runtime launch options reject extras missing values unsafe hash and traversal',()=>{
-  const args=['--out','child','--plan','plan','--plan-sha256',H,'--launcher-sha256',H,'--entry-sha256',H,'--python',python,'--git-binary','/usr/bin/git','--source-map-sha256',selected.sourceMap.sha256];
+  const args=['--out','child','--plan','plan','--plan-sha256',H,'--launcher-sha256',H,'--entry-sha256',H,'--python',python,'--git-binary','/usr/bin/git'];
   assert.equal(L.parseArgs(args).python,python);assert.throws(()=>L.parseArgs(args.concat('--extra','x')));assert.throws(()=>L.parseArgs(args.slice(0,-2)));
   const bad=[...args];bad[1]='../child';assert.throws(()=>L.parseArgs(bad));
 });

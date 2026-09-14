@@ -21,7 +21,6 @@ function entrySource(mode) {
     "import path from'node:path';import{fileURLToPath}from'node:url';",
     "import * as U from "+JSON.stringify(pathToFileURL(path.join(root,entryPath)).href)+";",
     "export const LANE="+JSON.stringify(lane)+";export const clean=U.clean,readBound=U.readBound,writeNew=U.writeNew,equal=U.equal;",
-    "export async function initializeSourceBindings(){}", // synthetic transport only
     "export function fileOperation(job){",
     " if(job.kind==='preflight')return{plan:{node:realpathSync(process.execPath)},planBinding:{path:job.planPath,sha256:job.planSha256,bytes:1},sources:[]};",
     " if(job.kind==='recheck')return U.checkBindings(job.sources);",

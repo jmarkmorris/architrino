@@ -149,10 +149,10 @@ The final `node scripts/validate-content.mjs --check --strict` run exited 1 with
 
 | Referring file | Validator line |
 | --- | --- |
-| [Cached root cover cutover](../../development-process-review/analysis/option-b-cached-root-cover-cutover.md) | 53 |
-| [Cached root cover full cutover](../../development-process-review/analysis/option-b-cached-root-cover-full-cutover.md) | 51 |
-| [Current source cutover inventory](../../development-process-review/analysis/option-b-current-source-cutover-inventory.md) | 85 |
-| [Prescribed response and acceleration cutover](../../development-process-review/analysis/option-b-prescribed-response-and-acceleration-cutover.md) | 5 |
+| Cached root cover cutover (retired migration record) | 53 |
+| Cached root cover full cutover (retired migration record) | 51 |
+| Current source cutover inventory (retired migration record) | 85 |
+| Prescribed response and acceleration cutover (retired migration record) | 5 |
 
 `git --no-optional-locks status --short -- tests/current-launch-bindings.test.js` reported an unstaged deletion. That observation establishes its checkout state, not who deleted it or whether deletion is intended; this task did not restore it or alter its referring documents. These failures prevent a repository-wide green validation claim despite the earlier passing snapshot. Their owner must reconcile the intended test location and these links, then rerun the strict command. The scoped checks establish syntax, local path validity, and preservation for the two authorized files, not global repository health.
 

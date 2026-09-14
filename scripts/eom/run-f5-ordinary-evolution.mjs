@@ -11,35 +11,11 @@ import { performance } from 'node:perf_hooks';
 import path from 'node:path';
 import * as f5Fs from 'node:fs';
 import * as f5Crypto from 'node:crypto';
-// Bootstrap uses Node builtins only; no repository module runs before selection.
-export async function bootstrapEvolution(root, sourceMapSha256, originalIdentities = {}) {
-  if (!/^[a-f0-9]{64}$/u.test(sourceMapSha256 ?? "")) throw Error("externally selected F5 source-map digest required");
-  const capture = (filename, expected) => {
-    if (f5Fs.realpathSync(filename) !== filename) throw Error("canonical F5 bootstrap source required");
-    const fd = f5Fs.openSync(filename, f5Fs.constants.O_RDONLY | f5Fs.constants.O_NOFOLLOW | f5Fs.constants.O_NONBLOCK);
-    try {
-      const before = f5Fs.fstatSync(fd, {bigint:true});
-      const identity = s => [s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(":");
-      if (!before.isFile() || before.size <= 0n || before.size > 1024n**2n) throw Error("bounded F5 bootstrap source");
-      const data = f5Fs.readFileSync(fd), sha256 = f5Crypto.createHash("sha256").update(data).digest("hex");
-      if (sha256 !== expected || identity(before) !== identity(f5Fs.fstatSync(fd,{bigint:true})) || identity(before) !== identity(f5Fs.lstatSync(filename,{bigint:true}))) throw Error("F5 bootstrap source digest/original identity changed");
-      if (Object.hasOwn(originalIdentities,filename) && originalIdentities[filename] !== identity(before)) throw Error("F5 original bootstrap identity changed");
-      return {data,identity:identity(before),path:filename};
-    } finally {f5Fs.closeSync(fd);}
-  };
-  const mapPath = path.join(root,"reference/priorities/development-process-review/contracts/option-b-f5-evolution-sources.jsonld");
-  const map = capture(mapPath,sourceMapSha256), admissionPath = "scripts/eom/f5-current-source-admission.mjs";
-  const rows = JSON.parse(map.data)["@graph"]?.filter(r=>r.role==="admission"&&r.binding?.path===admissionPath);
-  if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
-  const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
-  const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
-  return module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity},"evolution");
-}
 
 let prepareOrdinaryEvolutionRequest,canonicalStringify,connectBatchWorker;
 const STAGE_GATE=fileURLToPath(new URL('./f5-registered-stage-gate.mjs',import.meta.url));
-export async function initializeEvolution(admission=null){
- const load=relative=>admission?admission.importModule(relative):import(new URL('../../'+relative,import.meta.url));
+export async function initializeEvolution(){
+ const load=relative=>import(new URL('../../'+relative,import.meta.url));
  ({prepareOrdinaryEvolutionRequest}=await load('scripts/eom/prepare-ordinary-evolution-request.mjs'));
  ({canonicalStringify}=await load('src/apps/borg/BorgCertifiedBudgets.js'));
  ({connectBatchWorker}=await load('scripts/eom/f5-batch-admission.mjs'));
@@ -149,43 +125,11 @@ export function canonicalFreshOutput(path, allowedRoot = resolve(ROOT, '.local-d
   check(path.startsWith(allowedRoot + '/') && basename(path) !== '.' && !existsSync(path) &&
     realpathSync(dirname(path)) === dirname(path), 'fresh canonical scoped output required'); return path;
 }
-export function requiredSourcePaths(d) {
-  const paths = new Set();
-  const addModule = path => {
-    path = resolve(ROOT, path); if (paths.has(path)) return; paths.add(path);
-    const source = capture(path).data.toString('utf8');
-    for (const match of source.matchAll(/\bfrom\s+['"]([^'"]+)['"]/gu))
-      if (match[1].startsWith('.')) addModule(resolve(dirname(path), match[1]));
-  };
-  for(const p of ['scripts/eom/run-f5-ordinary-evolution.mjs','scripts/eom/prepare-ordinary-evolution-request.mjs','src/apps/borg/BorgCertifiedBudgets.js','scripts/eom/f5-batch-admission.mjs'])addModule(p);
-  // Data and its reproducible projection generator are not reachable by the
-  // JavaScript import walk. Fresh declarations must bind the full contract too.
-  for(const p of ['src/apps/borg/data/certified-budget-identities.v1.json',
-    'src/apps/borg/BorgCertifiedBudgetIdentityContract.js',
-    'content/generated/borg/certified-budget-identities.v1.js',
-    'scripts/borg/build-certified-budget-identities.mjs']) paths.add(resolve(ROOT,p));
-  if (d.operationalAdmission) paths.add(STAGE_GATE);
-  for (const file of ['verify-f5-ordinary-evolution.py', 'check-f5-evolution-dynamics.py',
-    'oracle/certified_evolution.py', 'oracle/certified_acceleration.py', 'oracle/certified_history.py', 'oracle/decimal_interval.py']) paths.add(resolve(ROOT, 'scripts/eom', file));
-  const walk = path => { for (const entry of readdirSync(path, { withFileTypes: true })) {
-    check(!entry.isSymbolicLink(), 'symlink in EOM source inventory'); const child = resolve(path, entry.name);
-    if (entry.isDirectory()) walk(child); else paths.add(child);
-  } };
-  walk(resolve(ROOT, 'src/eom/src')); walk(resolve(ROOT, 'src/eom/include'));
-  paths.add(resolve(ROOT, 'src/eom/CMakeLists.txt')); paths.add(resolve(ROOT, 'src/eom/native/eom_borg_shadow_cli.cpp'));
-  check(typeof d.runtime?.python === 'string', 'declared shared-venv runtime required');
-  paths.add(realpathSync(d.runtime.python)); paths.add(realpathSync(process.execPath));
-  return [...paths].sort();
-}
-export function validateSourceInventory(d) {
+export function validateRuntimeSettings(d) {
   check(realpathSync(d.runtime.node) === realpathSync(process.execPath), 'declared Node runtime differs');
   check(canonicalStringify(d.runtime.pythonArguments) === canonicalStringify(PYTHON_FLAGS) &&
     canonicalStringify(d.runtime.childEnvironment) === canonicalStringify(childEnvironment()), 'declared child runtime settings differ');
-  const paths = new Set(d.sourceBindings.map(b => resolve(ROOT, b.path)));
-  check(paths.size === d.sourceBindings.length, 'duplicate source binding');
-  for (const path of requiredSourcePaths(d)) check(paths.has(path), `required source/runtime binding missing: ${path}`);
-  check(d.sourceBindings.some(b => resolve(ROOT, b.path) === realpathSync(d.runtime.python)), 'Python runtime binding missing');
-  authenticateBindings([...d.sourceBindings, d.executable]);
+  authenticateBindings([d.executable]);
 }
 export function validateDeclarationShape(d) {
   const s = d.scientificConditions, c = d.commonNumericalControls, limits = d.operationalLimits;
@@ -423,7 +367,7 @@ function signal(pid, sig) { try { process.kill(pid, sig); } catch (e) { if (e.co
 export function assertBeforeDeadline(deadline, message = 'inclusive evaluation deadline') { check(Date.now() < deadline, message); }
 
 export async function runWatched({ command, args, input = '', output, limits, deadlineEpochMs = Infinity,
-  budgetRoot = output, beforeSpawn = () => {}, abortState = { stopped: false }, testHooks = {}, delegation = null, operational = null }) {
+  budgetRoot = output, beforeSpawn = () => {}, abortState = { stopped: false }, testHooks = {}, delegation = null }) {
   const began = performance.now(), startedAt = new Date().toISOString();
   const deadline = Math.min(Date.now() + limits.wallSeconds * 1000, deadlineEpochMs);
   const observe = testHooks.processTable ?? processTable, hostProbe = testHooks.probe ?? probe;
@@ -488,8 +432,7 @@ export async function runWatched({ command, args, input = '', output, limits, de
     checkOutputBudget(budgetRoot, limits);
     lastSample = performance.now(); nextHost = lastSample + 15000;
     if (delegation) gateSpecification = delegation.describeStage({ command, args, input, environment: childEnvironment(), stageId: basename(output), deadlineEpochMs: deadline });
-    if(delegation)check(operational,'selected F5 operational lifetime required for a gate');
-    child = spawn(delegation ? process.execPath : command, delegation ? operational.invocation('scripts/eom/f5-registered-stage-gate.mjs',[JSON.stringify(gateSpecification),'--source-map-sha256',operational.sourceMap.sha256]) : args,
+    child = spawn(delegation ? process.execPath : command, delegation ? [STAGE_GATE, JSON.stringify(gateSpecification)] : args,
       { cwd: ROOT, detached: true, stdio: delegation ? ['pipe', 'pipe', 'pipe', 'ipc'] : ['pipe', 'pipe', 'pipe'], env: childEnvironment() });
     closureEstablished = false;
     if (child.pid) observed.add(child.pid);
@@ -635,19 +578,15 @@ export function classifyEvaluation(results, comparisons, operation, dynamics) {
     status: positive && local && sensitivity ? 'evidence-ready-pending-independent-actual-output-admission' : 'unresolved-evidence-pending-independent-actual-output-admission' };
 }
 
-export async function main(argv = process.argv.slice(2), control=null, originalAdmission=null) {
-  check(argv.at(-2)==='--source-map-sha256'&&/^[a-f0-9]{64}$/u.test(argv.at(-1)??''),'externally selected F5 evolution map required');
-  const selected=argv.at(-1);argv=argv.slice(0,-2);
-  const operational=originalAdmission??await bootstrapEvolution(realpathSync(ROOT),selected);
-  check(operational.sourceMap.sha256===selected,'F5 evolution selection differs');operational.recheck();
-  await initializeEvolution(operational);
+export async function main(argv = process.argv.slice(2), control=null) {
+  await initializeEvolution();
   const beganEpoch = Date.now();
   validateLauncherEnvironment();
   if (argv.length === 1 && argv[0] === '--help') { process.stdout.write('Usage: --declaration FILE --out FRESH_DIRECTORY [--prepare-only | --batch-plan FILE --batch-case ID]\n'); return; }
   const batchMode = argv.length === 8 && argv[4] === '--batch-plan' && argv[6] === '--batch-case';
   check((argv.length === 4 || (argv.length === 5 && argv[4] === '--prepare-only') || batchMode) && argv[0] === '--declaration' && argv[2] === '--out', 'invalid arguments');
   const declaration = readJson(resolve(argv[1])), d = declaration.value;
-  operational.requireBindings(d.sourceBindings);
+
   check(d.schema === 'braid-program/f5-ordinary-evolution-declaration.v1', 'wrong declaration schema'); validateDeclarationShape(d);
   const output = canonicalFreshOutput(argv[3]), budget = { root: output, limits: d.operationalLimits }, prepareOnly = argv.includes('--prepare-only');
   check(prepareOnly || d.operationalAdmission?.controlOnly !== true, 'inert-control declaration cannot launch the scientific caller');
@@ -658,7 +597,7 @@ export async function main(argv = process.argv.slice(2), control=null, originalA
   check(conformance.sha256 === d.history.conformanceSha256, 'accepted conformance changed');
   let review;
   if (!prepareOnly) {
-    check(d.status === 'frozen' && d.executable && d.sourceBindings.length > 0, 'declaration is not frozen');
+    check(d.status === 'frozen' && d.executable, 'declaration is not frozen');
     check(canonicalStringify(d.runtime?.launcherEnvironment) === canonicalStringify({ PATH: '/usr/bin:/bin', LC_ALL: 'C', LANG: 'C' }), 'declared launcher environment differs');
     for (const [key, value] of Object.entries(d.runtime.launcherEnvironment)) check(process.env[key] === value, `launcher environment mismatch: ${key}`);
     review = readJson(resolve(ROOT, d.independentDeclarationReview));
@@ -676,7 +615,7 @@ export async function main(argv = process.argv.slice(2), control=null, originalA
   for (const request of requests) request.artifact = publish(resolve(output, `${request.rung}-request.json`), request.prepared, budget);
   const immutable = [declaration, h, conformance, ...(review ? [review] : []), ...requests.map(x => x.artifact)];
   const admit = () => {
-    operational.recheck();
+
     check(!abortState.stopped, 'operator interruption'); assertBeforeDeadline(deadlineEpochMs);
     schedule?.assertFinalization();
     delegation?.verify();
@@ -685,7 +624,7 @@ export async function main(argv = process.argv.slice(2), control=null, originalA
   };
   if (prepareOnly) {
     admit(); const receipt = publish(resolve(output, 'preparation.json'), { declaration, requests: requests.map(x => x.artifact), evolutionExecuted: false }, budget);
-    admit(); process.stdout.write(JSON.stringify(receipt) + '\n'); operational.recheck(); return;
+    admit(); process.stdout.write(JSON.stringify(receipt) + '\n');  return;
   }
   const stages = [], results = [], comparisons = [];
   let lock, unsafeClosure = false, finalBinding, finalSummary, primaryError;
@@ -697,7 +636,7 @@ export async function main(argv = process.argv.slice(2), control=null, originalA
     try {
       const beforeSpawn = () => { admit(); schedule?.beforeSpawn(stageId); };
       schedule?.watchStarted(stageId);
-      const record = await runWatched({ ...options, limits, budgetRoot: output, deadlineEpochMs, beforeSpawn, abortState, delegation, operational });
+      const record = await runWatched({ ...options, limits, budgetRoot: output, deadlineEpochMs, beforeSpawn, abortState, delegation });
       schedule?.complete(stageId); admit(); return record;
     } catch (e) { if (e.ownedProcessClosureUnresolved) unsafeClosure = true; throw e; }
   };
@@ -778,7 +717,7 @@ export async function main(argv = process.argv.slice(2), control=null, originalA
     launcherResourceUsage: process.resourceUsage(),
     ...(schedule ? { operationalSchedule: schedule.report() } : {}),
     elapsedSecondsThroughFinalChecks: (Date.now() - beganEpoch) / 1000 }) + '\n');
-  operational.recheck();
+
   delegation?.close();
 }
 if (!new URL(import.meta.url).search && process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

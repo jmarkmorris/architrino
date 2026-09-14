@@ -5,9 +5,9 @@ affine roots use exact rational grid inequalities, not the proposer as oracle.
 The separately frozen comparator remains unchanged and is never a subject import.
 """
 from __future__ import annotations
-from option_b_production_records import exec_source as _option_b_exec_source, exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
-from option_b_batch_records import batch_identities, original_test_source
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
+import hashlib
+from pathlib import Path
 
 
 import ast
@@ -16,10 +16,8 @@ from copy import deepcopy
 from dataclasses import FrozenInstanceError, replace
 from decimal import Decimal, getcontext, localcontext
 from fractions import Fraction as F
-import hashlib
 import importlib.util
 import json
-from pathlib import Path
 import sys
 from types import MappingProxyType, SimpleNamespace
 import unittest
@@ -28,40 +26,27 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 SUBJECT = ROOT/'scripts/eom/f6c_parent_emission_refinement.py'
-PINS = {
-    'helper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py', OPTION_B_BATCH_IDENTITIES[0]),
-    'certified_history': ('scripts/eom/oracle/certified_history.py', OPTION_B_BATCH_IDENTITIES[1]),
-    'decimal_interval': ('scripts/eom/oracle/decimal_interval.py', OPTION_B_BATCH_IDENTITIES[2]),
-    'continuous_reception_roots': ('scripts/eom/oracle/continuous_reception_roots_cached.py', OPTION_B_BATCH_IDENTITIES[3]),
-    'comparison': ('scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py', OPTION_B_BATCH_IDENTITIES[4]),
-    'comparisonControls': ('tests/test_f6c_parent_emission_refinement_conformance.py', OPTION_B_BATCH_IDENTITIES[5]),
-    'geometry': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py', OPTION_B_BATCH_IDENTITIES[6]),
-    'proof': ('reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md', OPTION_B_BATCH_IDENTITIES[7]),
-    'oldSubject': ('scripts/eom/prepare-f6c-emission-refinement.py', OPTION_B_BATCH_IDENTITIES[8]),
-}
+SOURCE_PATHS = {'helper': 'scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py', 'certified_history': 'scripts/eom/oracle/certified_history.py', 'decimal_interval': 'scripts/eom/oracle/decimal_interval.py', 'continuous_reception_roots': 'scripts/eom/oracle/continuous_reception_roots_cached.py', 'comparison': 'scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py', 'geometry': 'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py', 'oldSubject': 'scripts/eom/prepare-f6c-emission-refinement.py'}
 
 
 def load(name, path):
     from importlib.machinery import SourceFileLoader
     spec = importlib.util.spec_from_file_location(name, path, loader=SourceFileLoader(name,str(path)))
     module = importlib.util.module_from_spec(spec); sys.modules[name] = module
-    _option_b_exec_module(__file__, spec, module)
+    spec.loader.exec_module(module)
     return module
 
 
-def pinned(name):
-    path, digest = PINS[name]
-    if name == 'oldSubject': path = 'reference/priorities/braid-program/evidence/source-replay/scripts__eom__prepare-f6c-emission-refinement.py.source'
-    raw = (original_test_source(ROOT, __file__, path) if name == 'comparisonControls'
-           else _option_b_source_bytes(__file__, ROOT/path))
-    assert hashlib.sha256(raw).hexdigest() == digest
-    return ROOT/path, raw, digest
+def read_fixture_source(name):
+    path = SOURCE_PATHS[name]
+    raw = (ROOT/path).read_bytes()
+    return ROOT/path, raw, hashlib.sha256(raw).hexdigest()
 
 
 s = load('parent_proposer_subject', SUBJECT)
-helper = load('parent_proposer_captured_helper', pinned('helper')[0])
-comparison = load('parent_proposer_independent_comparison', pinned('comparison')[0])
-reference = load('parent_proposer_independent_geometry', pinned('geometry')[0])
+helper = load('parent_proposer_captured_helper', read_fixture_source('helper')[0])
+comparison = load('parent_proposer_independent_comparison', read_fixture_source('comparison')[0])
+reference = load('parent_proposer_independent_geometry', read_fixture_source('geometry')[0])
 IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')
 
 
@@ -123,7 +108,7 @@ class ParentProposerTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.stack = ExitStack()
-        captured = {name: (str(pinned(name)[0]), pinned(name)[1], pinned(name)[2])
+        captured = {name: (str(read_fixture_source(name)[0]), read_fixture_source(name)[1], read_fixture_source(name)[2])
                     for name in ('decimal_interval', 'certified_history', 'continuous_reception_roots')}
         cls.modules = cls.stack.enter_context(helper.captured_package(captured))
         cls.refs = s.ProductionReferences(helper, cls.modules['certified_history'], cls.modules['decimal_interval'], cls.modules['continuous_reception_roots'])
@@ -132,8 +117,6 @@ class ParentProposerTests(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         cls.stack.close()
-        for name in PINS:
-            pinned(name)
 
     def run_subject(self, data=None, refs=None, **kwargs):
         return s.propose_parent_refinement(*(self.base if data is None else data), self.refs if refs is None else refs, **kwargs)
@@ -399,7 +382,7 @@ class ParentProposerTests(unittest.TestCase):
 
     def test_parent_zero_legacy_numerical_parity_only(self):
         data = fixture(reception=('0', '0.001'), frame=('0', '0.002'), index=0)
-        result = self.run_subject(data); old = load('parent_proposer_old_subject', pinned('oldSubject')[0])
+        result = self.run_subject(data); old = load('parent_proposer_old_subject', read_fixture_source('oldSubject')[0])
         built = helper.build_histories(data[0], self.modules); queries = []; rows = []; pieces = []
         state = dict(completedQueries=0, completedRows=0, completedPieces=0)
         restrictions = old.propose(built, self.modules, helper, queries.append, state)
@@ -425,8 +408,6 @@ class ParentProposerTests(unittest.TestCase):
         self.assertTrue(forbidden_call(ast.parse('compile(source, name, mode)').body[0].value))
         self.assertTrue(forbidden_call(ast.parse('builtins.compile(source, name, mode)').body[0].value))
         self.assertFalse(forbidden_call(ast.parse('re.compile(pattern)').body[0].value))
-        self.assertEqual(s.PROOF_SHA256, PINS['proof'][1])
-        for name in PINS: pinned(name)
 
 
 if __name__ == '__main__':

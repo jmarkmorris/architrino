@@ -10,7 +10,6 @@ import { fileURLToPath } from 'node:url';
 import * as E from '../scripts/eom/run-prescribed-response-pilot.mjs';
 
 const ROOT=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-await E.initializeSourceBindings(ROOT,E.sha(readFileSync(E.SOURCE_MAP)));
 const clone=value=>structuredClone(value),H='a'.repeat(64),EH='b'.repeat(64),LH='c'.repeat(64);
 function fixture(t){
   const root=realpathSync(mkdtempSync(path.join(os.tmpdir(),'prescribed-entry-controls-')));
@@ -19,10 +18,10 @@ function fixture(t){
   const output=path.join(root,E.LANE,'prescribed-response-synthetic');mkdirSync(output+'-outer');
   const python=path.resolve(process.env.AAA_VENV??path.join(ROOT,'../.venv'),'bin/python');
   const pythonRealPath=realpathSync(python),node=realpathSync(process.execPath);
-  const originalBindings=E.ORIGINALS.map(([role,p,sha256])=>({role,path:p?path.join(root,p):pythonRealPath,originalPath:p?path.join(root,p):pythonRealPath,sha256:sha256??H,bytes:100}));
+  const originalBindings=Object.entries(E.originalInputPaths(root,pythonRealPath)).map(([role,p])=>({role,path:p,originalPath:p,sha256:E.ORIGINALS.find(row=>row[0]===role)?.[2]??H,bytes:100}));
   const runtimeBindings=[{path:pythonRealPath,sha256:H,bytes:100},{path:path.join(path.dirname(path.dirname(python)),'pyvenv.cfg'),sha256:H,bytes:100}];
   const operationalBindings=[E.ENTRY,E.ENTRY_TESTS,E.LAUNCH_TESTS,E.PROCESS_TESTS,E.LAUNCHER,E.OUTER,E.PUBLISHER,'tests/test_prescribed_acceleration_response_publication.py']
-    .map(p=>({path:path.join(root,p),sha256:p===E.ENTRY?EH:p===E.LAUNCHER?LH:E.SOURCE_BINDINGS[p]??H,bytes:100}))
+    .map(p=>({path:path.join(root,p),sha256:p===E.ENTRY?EH:p===E.LAUNCHER?LH:H,bytes:100}))
     .concat([node,'/bin/ps','/usr/bin/memory_pressure'].map(p=>({path:p,sha256:H,bytes:100})));
   const plan={schema:'braid-program/prescribed-response-pilot-launch.v2',scope:'f5-release',originalBindings,operationalBindings,
     runtimeBindings,python,pythonRealPath,node,limits:{...E.LIMITS},
@@ -41,26 +40,25 @@ function measured(){return {startedAt:'2026-08-27T12:00:00Z',elapsedSeconds:5,ex
 
 test('closed first-pilot machine plan validates metadata only',t=>{
   const f=fixture(t);assert.equal(E.validatePlan(f.plan,f.root,LH,EH),f.plan);
-  assert.equal(f.plan.originalBindings.length,19);assert.equal(E.planBindings(f.plan,f.root).length,47);
+  assert.equal(f.plan.originalBindings.length,18);assert.equal(E.planBindings(f.plan,f.root).length,30);
 });
-test('fixed original role order, paths, source hashes and complete census',t=>{
+test('input role order, paths, artifact hashes and complete census',t=>{
   const f=fixture(t);
   for(const mutate of [p=>p.originalBindings.pop(),p=>p.originalBindings.reverse(),p=>p.originalBindings[0].sha256=H,
-    p=>p.originalBindings[0].path='/other/packet.json',p=>p.originalBindings[13].path='/other/python',
+    p=>p.originalBindings[0].path='/other/packet.json',p=>p.originalBindings.find(b=>b.role==='pythonExecutable').path='/other/python',
     p=>p.originalBindings[0].bytes=64*1024**2+1]){
     const p=clone(f.plan);mutate(p);assert.throws(()=>E.validatePlan(p,f.root,LH,EH));
   }
 });
-test('explicit preserved data routes retain original identities and are bound at their physical paths',t=>{
+test('declared scientific inputs retain identities without source archive routing',t=>{
   const f=fixture(t);
-  for(const b of f.plan.originalBindings)if(['approvedSource','scientificFixture','predeclaration'].includes(b.role))b.path=path.join(f.root,'reference','archive',b.role+'.source');
   E.validatePlan(f.plan,f.root,LH,EH);
   const physical=E.planBindings(f.plan,f.root);
   for(const b of f.plan.originalBindings.slice(6,9))assert.ok(physical.some(x=>x.path===b.path&&x.sha256===b.sha256));
   const spec=E.stageSpec({...f,stage:'compute',budget:'10'});
   assert.deepEqual(JSON.parse(spec.args[spec.args.indexOf('--original-bindings')+1]),f.plan.originalBindings);
   for(const mutate of [p=>p.schema='braid-program/prescribed-response-pilot-launch.v1',
-    p=>p.originalBindings[11].path=path.join(f.root,'reference','consumer.source'),
+    p=>p.originalBindings.find(b=>b.role==='consumer').path=path.join(f.root,'reference','consumer.source'),
     p=>p.originalBindings[6].originalPath='/wrong/original',p=>p.originalBindings[6].path='/outside/data.source',
     p=>p.originalBindings[6].path=path.join(f.root,'reference','data.py')]){
     const p=clone(f.plan);mutate(p);assert.throws(()=>E.validatePlan(p,f.root,LH,EH));
@@ -73,7 +71,7 @@ test('no altered scope, hidden strength, unknown fields or relaxed limits',t=>{
 });
 test('operational generation and shared runtime context are mandatory',t=>{
   const f=fixture(t);for(const mutate of [p=>p.operationalBindings.pop(),p=>p.operationalBindings.push({...p.operationalBindings[0]}),
-    p=>p.operationalBindings.find(b=>b.path.endsWith(E.PUBLISHER)).sha256=H,p=>p.runtimeBindings.pop(),
+    p=>p.runtimeBindings.pop(),
     p=>p.pythonRealPath='/unknown/python',p=>p.node='/unknown/node']){
     const p=clone(f.plan);mutate(p);assert.throws(()=>E.validatePlan(p,f.root,LH,EH));}
 });
@@ -84,7 +82,7 @@ test('repeated binding path may not contradict size or hash',t=>{
 test('compute command is one isolated direct Python source with fixed inputs',t=>{
   const {job,spec}=specJob(t);assert.equal(spec.command,job.plan.python);
   assert.deepEqual(spec.args.slice(0,3),['-I','-B',path.join(job.root,E.CONSUMER)]);
-  assert.equal(spec.args[spec.args.indexOf('--consumer-sha256')+1],E.SOURCE_BINDINGS[E.CONSUMER]);
+  assert.equal(spec.args[spec.args.indexOf('--consumer-sha256')+1],H);
   assert.equal(spec.args[spec.args.indexOf('--out-dir')+1],job.output);
   assert.equal(spec.args[spec.args.indexOf('--watcher-sha256')+1],LH);
   assert.equal(spec.args.includes('--coupling'),false);assert.equal(spec.args.includes('--strength'),false);
@@ -178,9 +176,7 @@ test('file operation rejects expired deadline and incomplete final authority',()
 test('publication cannot begin from an unclosed or unauthenticated compute',()=>{
   for(const compute of [null,{accepted:false},{accepted:true,stage:'compute'}])assert.throws(()=>E.fileOperation({kind:'prepare-publication',compute,deadlineNanoseconds:String(process.hrtime.bigint()+1000000000n)}));
 });
-test('all frozen source pins still match; entry imports no science or F6c module',()=>{
-  for(const p of [E.CONSUMER,E.PUBLISHER,'tests/test_prescribed_acceleration_response_consumer.py','tests/test_prescribed_acceleration_response_publication.py',
-    'scripts/eom/oracle/prescribed_acceleration_response.py'])assert.equal(E.sha(readFileSync(path.join(ROOT,p))),E.SOURCE_BINDINGS[p]);
+test('entry imports no science or F6c module',()=>{
   const source=readFileSync(path.join(ROOT,E.ENTRY),'utf8');assert(!source.includes('evaluate_response('));
   assert(!/from ['"][^'"]*f6c/u.test(source));assert(!source.includes('proof_package('));
 });

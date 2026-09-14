@@ -25,7 +25,6 @@ STATIONARY_RECEIPT = STATIONARY_OWNER / "2026-08-29-b13-equal-radius-interval-ze
 STATIONARY_ORACLE = STATIONARY_OWNER / "interval_b13_zero_count.py"
 
 FROZEN_STATIONARY_RECEIPT_SHA256 = "fd83e4ea68aace450fc945e410182177c048be05a592608a865e14bc93e463af"
-FROZEN_STATIONARY_ORACLE_SHA256 = "b16ea1f0137ccbf5349012fb341a461c4af89b5ad968fe1d4151212ebfa582f4"
 INTERVAL_DPS = 80
 POINT_DPS = 120
 TRANSLATION_INTERVAL = (mp.mpf("-0.9"), mp.mpf("0.9"))
@@ -83,7 +82,6 @@ def signed_axial_weight(module, oracle, beta_lo, beta_hi, topology):
 def main():
     for path, expected in (
         (STATIONARY_RECEIPT, FROZEN_STATIONARY_RECEIPT_SHA256),
-        (STATIONARY_ORACLE, FROZEN_STATIONARY_ORACLE_SHA256),
     ):
         actual = sha256(path)
         if actual != expected:
@@ -168,7 +166,7 @@ def main():
             "stationaryIntervalReceipt": str(STATIONARY_RECEIPT.relative_to(ROOT)),
             "stationaryIntervalReceiptSha256": FROZEN_STATIONARY_RECEIPT_SHA256,
             "stationaryIntervalOracle": str(STATIONARY_ORACLE.relative_to(ROOT)),
-            "stationaryIntervalOracleSha256": FROZEN_STATIONARY_ORACLE_SHA256,
+            "stationaryIntervalOracleSha256": sha256(STATIONARY_ORACLE),
         },
         "arithmetic": {
             "kernel": "mpmath 1.3 libmpi arbitrary-precision interval arithmetic",

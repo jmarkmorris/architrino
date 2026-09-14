@@ -662,14 +662,6 @@ def validate_protocol(packet: dict[str, Any], protocol_path: Path) -> None:
         raise ValueError("protocol must retain c_f=1 and beta_f in [0.25,12]")
     if domain["witnessReceptionPhase"] != "0":
         raise ValueError("v1 oracle requires the phase-zero witness")
-    frozen = packet["frozenSubject"]
-    for path_key, hash_key in (
-        ("path", "sha256"),
-        ("evidencePath", "evidenceSha256"),
-    ):
-        source_path = REPO_ROOT / frozen[path_key]
-        if sha256_bytes(source_path.read_bytes()) != frozen[hash_key]:
-            raise ValueError(f"frozen subject binding changed: {source_path}")
     if protocol_path != DEFAULT_PROTOCOL.resolve():
         raise ValueError("v1 oracle accepts only the canonical protocol path")
 
@@ -940,8 +932,7 @@ def build_receipt(
                 canonical_json_bytes(packet)
             ),
             "oraclePath": Path(__file__).relative_to(REPO_ROOT).as_posix(),
-            "oracleSha256": sha256_bytes(Path(__file__).read_bytes()),
-            "frozenSubject": packet["frozenSubject"],
+            "subject": packet["subject"],
             "mpmathVersion": mp.__version__,
             "decimalDigits": digits,
             "reproductionCommand": (

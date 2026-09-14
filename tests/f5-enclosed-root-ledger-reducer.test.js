@@ -5,12 +5,8 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import test, { after } from "node:test";
 import { pathToFileURL } from "node:url";
-import { createF5SourceReplay } from "./helpers/f5-source-replay.mjs";
 
-const originalCwd = process.cwd();
-const replay = createF5SourceReplay();
-process.chdir(replay.rootDir);
-after(() => { process.chdir(originalCwd); replay.close(); });
+const testRoot = process.cwd();
 const {
   F5_FIXED_BINDINGS,
   F5_HISTORY_MANIFEST_SCHEMA,
@@ -20,14 +16,14 @@ const {
   reduceF5EnclosedRootLedgersForTests,
   verifyF5ImplementationBindings,
   writeF5ReductionOnce,
-} = await import(pathToFileURL(path.join(replay.rootDir, "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs")));
+} = await import(pathToFileURL(path.join(testRoot, "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs")));
 
 const ZERO_SHA = "0".repeat(64);
 const PERIOD = decimal("19.63359163663986");
 const POSITION_WIDTH = "1.528724905003159e-10";
 const VELOCITY_WIDTH = "2.866983034112353e-7";
 const CONFIG = JSON.parse(readFileSync(
-  path.join(replay.rootDir, "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json"),
+  path.join(testRoot, "tests/fixtures/f5-history/approved-config.json"),
   "utf8",
 ));
 
@@ -767,7 +763,7 @@ test("reducer output is create-exclusive", () => {
 });
 
 test("executed original reducer has no adapter, operator, EOM, or enclosure-instrument imports", () => {
-  const source = readFileSync(path.join(replay.rootDir,
+  const source = readFileSync(path.join(testRoot,
     "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs"), "utf8");
   const imports = [...source.matchAll(/^import .*$/gmu)].map((match) => match[0]);
   assert.deepEqual(imports, [

@@ -5,10 +5,9 @@ or evaluated. The artificial history fixture patches only the expected knot
 digest for its fictional exact grid; it supplies no actual F6c evidence.
 """
 from __future__ import annotations
-from option_b_synthetic_production import synthetic_production
-from option_b_production_records import exec_module as _option_b_exec_module, original_source as _option_b_original_source, is_production_target as _option_b_target, source_bytes as _option_b_source_bytes
-from option_b_batch_records import batch_identities
-OPTION_B_BATCH_IDENTITIES = batch_identities(__file__)
+
+import hashlib
+from pathlib import Path
 
 
 import ast
@@ -16,12 +15,10 @@ from contextlib import contextmanager, ExitStack, redirect_stderr, redirect_stdo
 from copy import deepcopy
 from decimal import Decimal, localcontext
 from fractions import Fraction as F
-import hashlib
 import importlib.util
 import io
 import json
 import os
-from pathlib import Path
 import sys
 import tempfile
 import unittest
@@ -30,7 +27,7 @@ from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 SOURCE=ROOT/'scripts/eom/verify-f6c-continuous-reception-acceleration.py'
 spec=importlib.util.spec_from_file_location('independent_range_comparison_subject',SOURCE)
-s=importlib.util.module_from_spec(spec);sys.modules[spec.name]=s;_option_b_exec_module(__file__, spec, s)
+s=importlib.util.module_from_spec(spec);sys.modules[spec.name]=s;spec.loader.exec_module(s)
 H='a'*64
 
 
@@ -140,10 +137,10 @@ def mapping_fixture():
 
 def plan_fixture():
     fixed={k:h for k,_,h in s.FIXED}
-    return dict(schema=s.PLAN_SCHEMA,scope=s.SCOPE,consumer=bind(s.CONSUMER,s.CONSUMER_SHA),
-        controls=bind(s.CONSUMER_TEST,s.CONSUMER_TEST_SHA),declaration=bind(s.DECLARATION,s.DECLARATION_SHA),rangeVerifier=bind(s.SELF),
+    return dict(schema=s.PLAN_SCHEMA,scope=s.SCOPE,consumer=bind(s.CONSUMER,('a'*64)),
+        controls=bind(s.CONSUMER_TEST,('a'*64)),declaration=bind(s.DECLARATION,('a'*64)),rangeVerifier=bind(s.SELF),
         runtimeBindings=[bind('/synthetic/python')],operationalBindings=[bind(s.CONTROLS)],limits=deepcopy(s.LIMITS),
-        priorCoverClosure=dict(authority='externally-reviewed-caller-observation',ownerSha256=fixed['priorClosureOwner'],
+        priorCoverClosure=dict(authority='externally-reviewed-caller-observation',
             admissionSha256=fixed['admission'],matchingFreshCompletionObserved=True,exitCode=0,elapsedSeconds='8.534247625',
             processesClosed=True,independentAuditAccepted=True))
 
@@ -151,8 +148,8 @@ def plan_fixture():
 def prior_fixture(fixed,manifest):
     """Hand-authored closed execution/evidence chain; no saved receipt replay."""
     docs={'manifest':deepcopy(manifest)}
-    contract=dict(verifierSha256=OPTION_B_BATCH_IDENTITIES[0],
-        declarationSha256=OPTION_B_BATCH_IDENTITIES[1],
+    contract=dict(verifierSha256=hashlib.sha256((Path(__file__).resolve().parents[1] / 'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py').read_bytes()).hexdigest(),
+        declarationSha256=hashlib.sha256((Path(__file__).resolve().parents[1] / 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md').read_bytes()).hexdigest(),
         subjectSourceBindings=[bind('/fictional/source')],runtimeBindings=[bind('/fictional/runtime')])
     docs['priorPlan']=dict(schema='braid-program/f6c-cached-root-cover-pilot-launch.v1',scope='pilot-cell-0',comparisonContract=contract)
     docs['manifest'].update(rows=fixed['rows'],pieces=fixed['pieces'],launchPlan=fixed['priorPlan'],
@@ -160,7 +157,7 @@ def prior_fixture(fixed,manifest):
     docs['comparison']=dict(schema='braid-program/f6c-continuous-reception-root-cover-conformance.v1',accepted=True,scope='pilot-cell-0',
         rows=fixed['rows'],pieces=fixed['pieces'],manifest=fixed['manifest'],launchPlan=fixed['priorPlan'],
         verifier=bind('/fictional/comparator',contract['verifierSha256']),fixedBindings={k:fixed[k] for k in
-        ('export','reconstruction','guards','rootTheorem','reconstructionTheorem')},libraryFlags={k:False for k in s.ROOT_FLAGS},
+        ('export', 'reconstruction', 'guards')},libraryFlags={k:False for k in s.ROOT_FLAGS},
         analysis=dict(accepted=False,conditionalEnclosuresConformant=True,cellCount=1,pairCellCertificates=64,ordinaryNonselfRows=56,
                       selfExclusionRows=8,distinctNonselfFaceChecks=112,pieceRecordCount=112,recordedGeometryPieceVisits=89208),
         claims=dict(conditionalRootCoverValidated=True,reconstructedFamilyApplicabilityAuthenticated=True,
@@ -223,7 +220,7 @@ def cli_fixture():
             '--plan-sha256',pb['sha256'],'--verifier-sha256',own['sha256'],'--out',str(output),'--budget-seconds','10']
         stdout=io.StringIO();stderr=io.StringIO()
         patches.enter_context(redirect_stdout(stdout));patches.enter_context(redirect_stderr(stderr))
-        patches.enter_context(synthetic_production(s,root,files.values(),outputs=[output]))
+
         yield root,files,args,output,stdout,stderr
 
 
@@ -429,14 +426,6 @@ class StrictCapture(unittest.TestCase):
 
     def test_no_subject_or_reference_imports(self):
         tree=ast.parse(SOURCE.read_bytes())
-        bootstrap=[node for node in tree.body if isinstance(node,ast.If) and ast.unparse(node.test)=="'OPTION_B_PRODUCTION_IDENTITIES' not in globals()"]
-        self.assertEqual(len(bootstrap),1)
-        bootstrap_imports={alias.name for node in ast.walk(bootstrap[0]) if isinstance(node,ast.Import) for alias in node.names}
-        self.assertEqual(bootstrap_imports,{'hashlib','json','os','stat','sys','types'})
-        bootstrap_calls=[node for node in ast.walk(bootstrap[0]) if isinstance(node,ast.Call) and isinstance(node.func,ast.Name) and node.func.id in ('eval','exec','__import__')]
-        self.assertEqual(len(bootstrap_calls),1)
-        self.assertEqual(ast.unparse(bootstrap_calls[0]),"exec(compile(_b_raw, _b_bridge.__file__, 'exec', dont_inherit=True), _b_bridge.__dict__)")
-        tree.body.remove(bootstrap[0])
         imports=[node.module if isinstance(node,ast.ImportFrom) else alias.name for node in ast.walk(tree)
                  if isinstance(node,(ast.Import,ast.ImportFrom)) for alias in (node.names if isinstance(node,ast.Import) else [None])]
         self.assertTrue(set(imports)<=set('__future__ argparse contextlib decimal fractions hashlib itertools json os pathlib re signal stat sys tempfile time'.split()))

@@ -3,8 +3,15 @@ import test from "node:test";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';
-const identities = retainedTestIdentities("tests/mermaid-markdown-runtime.test.js");
+const identities = {
+  "mermaid": {
+    "consumer": "tests/mermaid-markdown-runtime.test.js",
+    "role": "fixed vendor runtime, license and package-integrity expectations",
+    "runtimeSha256": "32f3c1c5cdb397f83f21665b9e741ca68eca908ca689f25ed27435edde72d073",
+    "licenseSha256": "ec9fb67dcb25eccc416ed56e1aab819222c805a2a4bfe4cb19e7556bf2ffde80",
+    "packageIntegrity": "sha512-V6K3C8EBdEsPFZXSKMJe6ppQOENxuHARr9GvHX4hh47lAbhMRD9qf4oEK7LoaRQxULMa80/qt5gHO73aCleBBg=="
+  }
+};
 import {
   createMermaidMarkdownRuntime,
   isMermaidSvgSafe,
