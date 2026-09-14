@@ -2,24 +2,16 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { runChecks, selectedChecks } from "../scripts/check-content-integrity.mjs";
 
-test("local and GitHub profiles run the same content gate", () => {
-  assert.deepEqual(selectedChecks({}), selectedChecks({}, "github"));
+test("local publication adds the Pages build performed separately on GitHub", () => {
+  const github = selectedChecks({}, "github");
+  const local = selectedChecks({});
+  assert.deepEqual(local.slice(0, -1), github);
+  assert.deepEqual(local.at(-1).args, ["scripts/check-pages-build.mjs"]);
   assert.throws(() => selectedChecks({}, "unknown"), /Unknown validation profile/);
 });
 
-test("default gate excludes opt-in maintenance checks", () => {
-  const required = selectedChecks({});
-  const maintenance = selectedChecks({ AAA_CONTENT_MAINTENANCE: "run" });
-  assert.ok(required.length < maintenance.length);
-  assert.ok(required.every(({ name }) => !name.includes("Borg registry")));
-  assert.ok(maintenance.some(({ name }) => name.includes("Borg registry")));
-});
-
-test("runtime contract checks remain required", () => {
-  const checks = selectedChecks({});
-  const runtime = checks.find(row => row.name === "Test generated runtime storage and deployment contracts");
-  assert.ok(runtime && !runtime.reporting && !runtime.skipWhen);
-  for (const file of ["tests/runtime-asset-preparation.test.js", "tests/borg-assembly-record-catalog-generator.test.js", "tests/borg-assembly-record-catalog.test.js", "tests/borg-certified-budget-identities.test.js", "tests/borg-eom-migration.test.js", "tests/analytical-campaign-pipeline-benchmark.test.js", "tests/braid-taxonomy-terminology.test.js"]) assert.ok(runtime.args.includes(file), file);
+test("old environment switches cannot enroll diagnostics in publication", () => {
+  assert.deepEqual(selectedChecks({ AAA_CONTENT_MAINTENANCE: "run", AAA_TEST_SWEEP: "run" }), selectedChecks({}));
 });
 
 function scenario(checks, results) {
@@ -34,30 +26,7 @@ function scenario(checks, results) {
   assert.equal(results.length, 0, "expected check was not executed");
   return { report, output: output.join("\n"), invoked };
 }
-test("agent dispatch evidence regression is mandatory locally and on GitHub", () => {
-  for (const profile of ['local', 'github']) {
-    const gate = selectedChecks({}, profile).find(c => c.name === 'Test agent dispatch validation and handoff evidence');
-    assert.ok(gate && !gate.reporting && !gate.skipWhen);
-    assert.deepEqual(gate.args, ['--test', 'tests/agent-dispatch.test.mjs', 'tests/agent-dispatch-session.test.mjs']);
-    assert.equal(scenario([gate], [{ status: 1 }]).report.exitCode, 1);
-  }
-});
 const check = (name, extra = {}) => ({ name, args: [name], ...extra });
-
-test("passing required checks do not imply that skipped coverage ran", () => {
-  const { report, output, invoked } = scenario([check("required"), check("sweep", { reporting: true, skipWhen: () => true, skipReason: "not requested" })], [{ status: 0 }]);
-  assert.equal(report.exitCode, 0);
-  assert.deepEqual(invoked, [["required"]]);
-  assert.match(output, /1 required passed, 0 required failed, 0 reporting-only failed, 1 skipped, 0 not reached/);
-  assert.doesNotMatch(output, /all checks passed/);
-});
-
-test("reporting failure remains visible with successful required checks", () => {
-  const { report, output } = scenario([check("required"), check("diagnostic", { reporting: true })], [{ status: 0 }, { status: 3 }]);
-  assert.equal(report.exitCode, 0);
-  assert.equal(report.reportingFailures.length, 1);
-  assert.match(output, /required checks passed; .*1 reporting-only failed/);
-});
 
 test("independent failures accumulate without guessing a root cause", () => {
   const { report, output } = scenario([check("a"), check("b"), check("c")], [{ status: 2 }, { status: 0 }, { status: 4 }]);
@@ -75,8 +44,8 @@ test("failed prerequisite preserves its exit code and names unexecuted dependent
   assert.match(output, /1 not reached/);
 });
 
-test("startup failure is gating even for a reporting-only command", () => {
-  const { report } = scenario([check("unstartable", { reporting: true }), check("later")], [{ error: new Error("ENOENT") }]);
+test("startup failure stops subsequent checks", () => {
+  const { report } = scenario([check("unstartable"), check("later")], [{ error: new Error("ENOENT") }]);
   assert.equal(report.exitCode, 1);
   assert.equal(report.failures.length, 1);
   assert.deepEqual(report.unexecuted, ["later"]);

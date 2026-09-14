@@ -75,15 +75,15 @@ The canonical paths are:
 
 JavaScript solver code is reference, fallback, fixture, or comparison code only. It must not become another production solver or bypass a missing EOM-solver capability. Application composition roots should consume the EOM solver through declared contracts and keep rendering or prescribed-path diagnostics at their stated evidence grade.
 
-Common repository checks are:
+Choose checks that protect the changed behavior within the agreed testing scope. Examples for content, generated navigation, and standalone application launch work are:
 
 ```bash
 node scripts/validate-content.mjs
 node scripts/build-scene-graph.mjs --check
-node --test
+npm test -- tests/standalone-app-launch.test.js
 ```
 
-Run a narrower owning test when a change does not justify the full suite. Generated-content checks normally use `--check`; regeneration belongs to an explicitly authorized regeneration or final publication workflow.
+Tests run by explicit filename; adding a file does not enroll it in a recurring suite. Prepare runtime outputs only when the selected test needs them. Generated-content checks normally use `--check`; regeneration belongs to an explicitly authorized regeneration or final publication workflow.
 
 ## Canonical Path Over Coexistence
 

@@ -4,9 +4,9 @@ import {mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
-import {runTestFiles} from '../scripts/run-test-sweep.mjs';
+import {runTestFiles} from '../scripts/run-tests.mjs';
 
-test('sweep files reach their assertions without overlapping a shared exclusive resource', () => {
+test('selected files reach their assertions without overlapping a shared exclusive resource', () => {
   const directory = mkdtempSync(path.join(tmpdir(), 'sweep-execution-'));
   const lock = path.join(directory, 'exclusive.lock');
   const events = path.join(directory, 'events.log');
@@ -41,6 +41,30 @@ test(${JSON.stringify(name)},async()=>{
     const result = runTestFiles(files, {testTimeoutMs: 5000, stdio: 'pipe', execute});
     assert.equal(result.status, 0, result.stdout.toString() + result.stderr.toString());
     assert.equal(readFileSync(events, 'utf8'), 'start first\nend first\nstart second\nend second\n');
+  } finally {
+    rmSync(directory, {recursive: true, force: true});
+  }
+});
+
+test('selection requires exact files and supports explicit manual use without discovery', () => {
+  const directory = mkdtempSync(path.join(tmpdir(), 'local-test-selection-'));
+  const manual = path.join(directory, 'example.manual.js');
+  writeFileSync(manual, 'throw new Error("Listing must not execute this file");\n');
+  try {
+    assert.throws(() => runTestFiles([]), /Usage: npm test/);
+    assert.throws(() => runTestFiles([directory]), /explicit JavaScript file/);
+    assert.throws(() => runTestFiles([path.join(directory, '*.js')]), /glob/);
+    assert.throws(() => runTestFiles(['--slow']), /explicit JavaScript file/);
+    assert.throws(() => runTestFiles([manual], {testTimeoutMs: 0}), /positive integer/);
+    assert.deepEqual(runTestFiles([manual], {listOnly: true}), [manual]);
+    const env = {...process.env};
+    delete env.NODE_TEST_CONTEXT;
+    const listed = spawnSync(process.execPath, ['scripts/run-tests.mjs', '--list', manual], {env, encoding: 'utf8'});
+    assert.equal(listed.status, 0, listed.stderr);
+    assert.equal(listed.stdout.trim(), manual);
+    const empty = spawnSync(process.execPath, ['scripts/run-tests.mjs'], {env, encoding: 'utf8'});
+    assert.equal(empty.status, 1);
+    assert.match(empty.stderr, /Usage: npm test/);
   } finally {
     rmSync(directory, {recursive: true, force: true});
   }

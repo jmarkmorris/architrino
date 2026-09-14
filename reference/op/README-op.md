@@ -38,7 +38,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [ ] Keep iOS textbook packaging on demand rather than requiring it for each PR; preserve the app/exporter and defer App Store release until theory closure and an explicit operator release decision.
 - [ ] Keep the children's-book pilot as preserved sources plus verified on-demand local exports, without adding generated books to routine PRs or the website.
 - [ ] Keep the local push gate and GitHub Content Integrity gate aligned before treating a push as clean.
-- [ ] Run `node scripts/check-content-integrity.mjs` for the default high-value gate; use `AAA_CONTENT_MAINTENANCE=run node scripts/check-content-integrity.mjs` only when the opt-in freshness/binding maintenance checks are relevant. This gate does not replace normal unit/integration tests, scientific acceptance checks, Markdown/link validation, Git review diffs, publication receipts, or exact hashes for genuinely frozen inputs.
+- [ ] Use `npm test -- <explicit files>` for agreed focused development checks and the [PR lifecycle](git/pr-lifecycle.md) for publication; the [testing process](testing-regime.md#6-current-decisions-and-transition) owns selection, value and timing. Content Integrity has no broad sweep or maintenance-bundle enrollment.
 - [ ] Keep easily regenerated runtime payloads out of Git; verify fresh-clone setup and Pages builds, and audit aggregate machine-output growth before merging.
 - [ ] Keep GitHub PR validation deduplicated and timed so slow Content Integrity subchecks identify their bottleneck.
 - [ ] For broad advancement prompts, let the agent continue into the next safe scoped action rather than stopping at a menu.
