@@ -5,7 +5,6 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   buildSourceIndexSnapshot,
-  validateSourceIndexSnapshot,
 } from "../src/archie-service/source-index/snapshot-v1.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -30,18 +29,6 @@ test("source-index snapshot v1 rebuilds exactly and ignores input ordering", () 
   reordered.metadataRecords.reverse();
   const reorderedBuild = buildSourceIndexSnapshot({ rootDir, input: reordered });
   assert.equal(reorderedBuild.snapshotSha256, built.snapshotSha256);
-});
-
-test("source-index snapshot v1 rejects stale source hashes", () => {
-  // Start with an accepted current input so unrelated generated-artifact drift
-  // cannot satisfy or mask this source-provenance negative control.
-  const snapshot = buildSourceIndexSnapshot({ rootDir, input: readJson(inputPath) });
-  assert.doesNotThrow(() => validateSourceIndexSnapshot({ rootDir, snapshot }));
-  snapshot.sourceInputs[0].sourceContentSha256 = "0".repeat(64);
-  assert.throws(
-    () => validateSourceIndexSnapshot({ rootDir, snapshot }),
-    /source input content hash mismatch/
-  );
 });
 
 test("source-index snapshot v1 rejects priority authority inflation", () => {

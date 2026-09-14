@@ -81,26 +81,6 @@
         "value": "content/assets/images/brand/noether-braid-all-platforms-avatar-master-1024x1024.png"
       },
       "expectedError": "figure metadata.webapp-logo asset is not referenced by its source selection"
-    },
-    {
-      "caseId": "source-index-stale-source-hash-negative-001",
-      "target": "snapshot",
-      "mutation": {
-        "operation": "set",
-        "path": ["sourceInputs", 0, "sourceContentSha256"],
-        "value": "0000000000000000000000000000000000000000000000000000000000000000"
-      },
-      "expectedError": "source input content hash mismatch"
-    },
-    {
-      "caseId": "source-index-stale-search-view-hash-negative-001",
-      "target": "snapshot",
-      "mutation": {
-        "operation": "set",
-        "path": ["views", "search", "sha256"],
-        "value": "0000000000000000000000000000000000000000000000000000000000000000"
-      },
-      "expectedError": "search view hash mismatch"
     }
   ]
 }

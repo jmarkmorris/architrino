@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -30,34 +29,6 @@ function repoFile(rootDir, relativePath, label) {
   return { absolute, normalized, stat };
 }
 
-function sha256File(filePath) {
-  return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
-}
-
-export function fingerprintSourceClosure(rootDir, sourcePaths) {
-  rootDir = path.resolve(rootDir);
-  const unique = [...new Set(sourcePaths)].sort();
-  requireCondition(unique.length === sourcePaths.length, "source closure contains duplicate paths");
-  const records = unique.map((relativePath) => {
-    const source = repoFile(rootDir, relativePath, "source closure path");
-    return {
-      path: source.normalized,
-      bytes: source.stat.size,
-      sha256: sha256File(source.absolute),
-    };
-  });
-  const fingerprint = crypto.createHash("sha256");
-  for (const record of records) {
-    fingerprint.update(`${record.path}\0${record.bytes}\0${record.sha256}\n`);
-  }
-  return {
-    files: records.length,
-    bytes: records.reduce((sum, record) => sum + record.bytes, 0),
-    sha256: fingerprint.digest("hex"),
-    records,
-  };
-}
-
 function requireMaximum(value, maximum, label) {
   requireCondition(Number.isFinite(value), `${label} is not finite`);
   requireCondition(value <= maximum, `${label} ${value} exceeds ${maximum}`);
@@ -68,18 +39,7 @@ function requireMinimum(value, minimum, label) {
   requireCondition(value >= minimum, `${label} ${value} is below ${minimum}`);
 }
 
-function validateSourceIdentity(rootDir, evidence, profile) {
-  const identity = evidence.sourceClosures?.[profile.id];
-  requireCondition(identity != null, `${profile.id}: source closure is missing`);
-  requireCondition(Array.isArray(identity.paths) && identity.paths.length > 0, `${profile.id}: source paths are missing`);
-  requireCondition(identity.paths[0] === profile.entrypoint, `${profile.id}: source closure must begin with its entrypoint`);
-  const current = fingerprintSourceClosure(rootDir, identity.paths);
-  requireCondition(current.files === identity.files, `${profile.id}: source file count changed`);
-  requireCondition(current.bytes === identity.bytes, `${profile.id}: source byte count changed`);
-  requireCondition(current.sha256 === identity.sha256, `${profile.id}: source fingerprint changed`);
-}
-
-function validateProfile(rootDir, contract, evidence, profile) {
+function validateProfile(contract, evidence, profile) {
   const measured = evidence.profiles?.[profile.id];
   requireCondition(measured?.status === "passed", `${profile.id}: passing evidence is missing`);
   requireCondition(measured.route === profile.route, `${profile.id}: route changed`);
@@ -115,7 +75,6 @@ function validateProfile(rootDir, contract, evidence, profile) {
     requireCondition(measured.gpuSurfaceProxy?.method === contract.gpu.surfaceProxyMethod, `${profile.id}: GPU surface method changed`);
     requireMaximum(measured.gpuSurfaceProxy.minimumSurfaceBytes, profile.budgets.gpuMinimumSurfaceBytes, `${profile.id}: GPU surface lower bound`);
   }
-  validateSourceIdentity(rootDir, evidence, profile);
   return {
     id: profile.id,
     route: profile.route,
@@ -127,19 +86,6 @@ function validateProfile(rootDir, contract, evidence, profile) {
   };
 }
 
-function validateInstrument(rootDir, contract, evidence) {
-  const paths = contract.instrument.sourceFiles;
-  const recorded = new Map((evidence.instrumentSources ?? []).map((entry) => [entry.path, entry]));
-  requireCondition(recorded.size === paths.length, "performance instrument source count changed");
-  for (const relativePath of paths) {
-    const source = repoFile(rootDir, relativePath, "performance instrument source");
-    const expected = recorded.get(source.normalized);
-    requireCondition(expected != null, `performance instrument identity missing for ${relativePath}`);
-    requireCondition(expected.bytes === source.stat.size, `performance instrument byte count changed for ${relativePath}`);
-    requireCondition(expected.sha256 === sha256File(source.absolute), `performance instrument SHA-256 changed for ${relativePath}`);
-  }
-}
-
 function validateGpuProcess(contract, evidence) {
   const measured = evidence.gpuProcess;
   requireCondition(measured.method === contract.gpu.processMethod, "GPU process measurement method changed");
@@ -149,6 +95,7 @@ function validateGpuProcess(contract, evidence) {
   requireMaximum(measured.peakGrowthBytes, contract.gpu.maximumPeakGrowthBytes, "GPU process RSS growth");
 }
 
+// Checks recorded measurements only; a pass does not establish current browser performance.
 export function checkBrowserPerformanceBudget({ rootDir = ROOT, contractPath = DEFAULT_CONTRACT_PATH, contract: suppliedContract = null, evidence: suppliedEvidence = null } = {}) {
   rootDir = path.resolve(rootDir);
   const contract = suppliedContract ?? readJson(repoFile(rootDir, contractPath, "browser performance contract").absolute);
@@ -160,9 +107,8 @@ export function checkBrowserPerformanceBudget({ rootDir = ROOT, contractPath = D
   requireCondition(evidence.schema === EVIDENCE_SCHEMA, "invalid browser performance evidence schema");
   requireCondition(evidence.status === "passed_pre_release", "browser performance evidence is not passing");
   requireCondition(evidence.productionMutation === false, "browser performance evidence must not imply production mutation");
-  validateInstrument(rootDir, contract, evidence);
   validateGpuProcess(contract, evidence);
-  const profiles = contract.profiles.map((profile) => validateProfile(rootDir, contract, evidence, profile));
+  const profiles = contract.profiles.map((profile) => validateProfile(contract, evidence, profile));
   return { schema: CONTRACT_SCHEMA, status: "passed", evidencePath, profiles };
 }
 

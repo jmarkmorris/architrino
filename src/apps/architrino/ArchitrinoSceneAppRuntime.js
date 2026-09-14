@@ -8843,6 +8843,7 @@ const sceneSearchUiRuntime = createSceneSearchUiRuntime({
   topBarOwnsPopover: true,
 });
 const scenePanelUiRuntime = createScenePanelUiRuntime({
+  textbookPageNav,
   textbookTocButton: null,
   detailClose,
   markdownClose,

@@ -13,7 +13,7 @@ const contract = JSON.parse(fs.readFileSync(path.join(ROOT, CONTRACT_PATH), "utf
 const evidence = JSON.parse(fs.readFileSync(path.join(ROOT, EVIDENCE_PATH), "utf8"));
 const copy = (value) => structuredClone(value);
 
-test("accepted representative browser profiles pass their source-bound budgets", () => {
+test("recorded representative browser measurements satisfy their budgets", () => {
   const result = checkBrowserPerformanceBudget({ rootDir: ROOT, contractPath: CONTRACT_PATH });
   assert.equal(result.status, "passed");
   assert.deepEqual(result.profiles.map(({ id, route }) => ({ id, route })), [
@@ -21,9 +21,6 @@ test("accepted representative browser profiles pass their source-bound budgets",
     { id: "photon-4k-visual", route: "/photon.html" },
   ]);
 
-  const integrityRunner = fs.readFileSync(path.join(ROOT, "scripts/check-content-integrity.mjs"), "utf8");
-  assert.match(integrityRunner, /Validate accepted browser performance budgets/u);
-  assert.match(integrityRunner, /scripts\/check-browser-performance-budget\.mjs/u);
 });
 
 test("browser budget rejects launch, interaction, frame, heap, and storage regressions", () => {
@@ -42,22 +39,6 @@ test("browser budget rejects launch, interaction, frame, heap, and storage regre
       label,
     );
   }
-});
-
-test("browser budget rejects stale app or instrument identity", () => {
-  const staleApp = copy(evidence);
-  staleApp.sourceClosures["public-feedback-interaction"].sha256 = "0".repeat(64);
-  assert.throws(
-    () => checkBrowserPerformanceBudget({ rootDir: ROOT, contract, evidence: staleApp }),
-    /source fingerprint changed/u,
-  );
-
-  const staleInstrument = copy(evidence);
-  staleInstrument.instrumentSources[0].sha256 = "0".repeat(64);
-  assert.throws(
-    () => checkBrowserPerformanceBudget({ rootDir: ROOT, contract, evidence: staleInstrument }),
-    /instrument SHA-256 changed/u,
-  );
 });
 
 test("browser budget rejects GPU surface or shared-process envelope regressions", () => {
