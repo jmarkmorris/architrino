@@ -14,6 +14,52 @@ Cancellation needs the same distinction. A stationary alternating lattice has th
 
 The scientific motivation is to identify the law's domain, allowed events, robustness and continuation requirements, thereby reducing the choices left open in Master Equation closure. The accepted contact and mirror results support their stated local conclusions; the present population restriction, quintic rule and account-sector representation remain proposals. A universal singularity-free claim would require control of all admitted failure mechanisms throughout the claimed evolution interval. Neither no-contact in one class nor finite contact in another supplies that control. A complete unchanged-law continuation on the identical mirror history would challenge the accepted obstruction; a different candidate law would address a different premise.
 
+## Returned pulse and the separation estimate — 2026-09-14
+
+The [next-feedback analysis](analysis/smooth-two-particle-next-feedback.md) distinguishes arrival of a pulse feature from reversal of the resulting motion. The first zero of the old pulse velocity is not a zero of the environmental acceleration; the target subsequently receives the integrated environmental history. Receipt of the complete pulse endpoint is a useful event because the remaining source displacement and velocity then reflect the whole driving pulse. The [independent assessment](analysis/smooth-two-particle-next-feedback-independent-adjudication.md) accepts continuation through $21\ell/16$ and the exact anchor comparison, which sums all four sources before taking bounds and is positive through both pulse lobes, including the transverse contributions. The subsequent [signed-error assessment](analysis/smooth-two-particle-signed-error-independent-adjudication.md) accepts an actual-history error enclosure over the unchanged $0<g\le16$ domain and proves transient approach at $g=16$, followed by renewed separation by the latest pulse-end reception. Source-time shifts and transmitter/range weights supply opposing terms that a positive source sum misses. Increasing separation remains proved for every coupling through $17\ell/16$; the later full coupling classification remains open. The mathematical treatment is in the [signed-error analysis](analysis/smooth-two-particle-signed-error.md) and [manuscript Section 6.15](manuscript.md#615-signed-reception-error-and-a-transient-approach).
+
+### The signed environmental receiver coefficient
+
+Claim grade: derived amplitude coefficient. The [signed-error independent assessment](analysis/smooth-two-particle-signed-error-independent-adjudication.md) reconstructs the source coefficients and their subsequent target transfer; the earlier next-feedback assessment did not cover them. Introduce $\lambda p$ only as an auxiliary differentiation family, with the physical supplied pulse recovered at $\lambda=1$; this adopts no changed history. For the four environmental offsets $k=(1,0,\pm1),(1,\pm1,0)$, write $d_0=\sqrt2$, $L=1/4$, $F(u)=\int_0^up(v)\,dv$ and $J(u)=\int_0^u(u-v)p(v)\,dv$. The first-amplitude old-pulse field and receiver response are
+
+$$
+\begin{gathered}
+q_1(u,y)=A(R)p(u-\|R\|+d_0)+B(R)p'(u-\|R\|+d_0),\qquad R=k+y,\\
+A(R)=\frac{3RR_3}{\|R\|^5}-\frac{e_3}{\|R\|^3},\qquad B(R)=\frac{RR_3}{\|R\|^4},\\
+Y_k^{[1]}=g[A(k)J+B(k)F],\qquad
+D_yq_1=DA\,p+DB\,p'-(Ap'+Bp'')n^{\mathsf T}.
+\end{gathered}
+$$
+
+The stationary field is cubic at the anchor, so it contributes at neither first nor second amplitude order. Direct differentiation and summation over the four offsets yield the second-order receiver contribution, after extracting $g^2$,
+
+$$
+R_2(u)=-\frac{96}{d_0^{12}}Jp-\frac{48}{d_0^{11}}Jp'-\frac8{d_0^{10}}Jp''
+-\frac{36}{d_0^{11}}Fp-\frac{20}{d_0^{10}}Fp'-\frac4{d_0^9}Fp''.
+$$
+
+Because $p,p'$ vanish at the endpoints and $F(0)=F(L)=0$, integration by parts gives $\int Jp=-\int F^2$, $\int Jp'=0$, $\int Jp''=I_0$, $\int Fp=0$, $\int Fp'=-I_0$, and $\int Fp''=0$, with all integrals on $[0,L]$ and $I_0=\int p^2$. Thus
+
+$$
+\int_0^L R_2(u)\,du=\frac32\int_0^LF^2+\frac38I_0>0.
+$$
+
+The exact primitive $F(u)=-u^5(1-4u)^5/5$ gives $\int F^2=(3/1120)I_0$. Combining this with the anchor coefficient gives the formal four-source terminal first-velocity sum
+
+$$
+\sum_k\partial_uY_{k,1}(u;\lambda)
+=\lambda^2I_0\left[\frac{3g}{d_0^7}+\frac{849g^2}{2240}\right]+o(\lambda^2),
+\qquad u\ge L,
+$$
+
+at the stated orders before those sources receive new generated channels. The linear first-coordinate sum cancels. This positive receiver contribution belongs in the signed estimate, but positivity of the terminal source coefficient does not prove target separation through the pulse. The accepted signed-error proof constructs second-degree comparison histories, matches the full equations through degree two, and bounds their finite-amplitude residual with implicit-root derivatives over $0\le\lambda\le1$ and $0<g\le16$. It includes moving pulse endpoints and subsequent source-to-target roots and weights. Its target velocity error is below $10^{-11}$ through all pulse-end receptions, with a sharper $4\times10^{-13}$ bound through target offset $3/25$ at $g=16$. At that event the actual velocity is negative. A missing derivative term, incorrect endpoint integration or a residual exceeding the certified bounds would invalidate the corresponding conclusion.
+
+The original bounded algebra check used the shared venv and SymPy, first verifying the known derivative of $1/x$ in a separate invocation, then differentiating $q_1$, substituting the four offsets and checking the polynomial integrals. That check covers the displayed algebra only. Its derivation and evidence remain in `.tmp/mec-008-next-feedback/pulse-integral.md`. The later independent coefficient and residual reconstruction is recorded in the signed-error adjudication; current acceptance rests on that larger argument.
+
+### Preparation limits the physical interpretation
+
+The [preparation analysis](analysis/smooth-two-particle-preparation.md) and its [independent assessment](analysis/smooth-two-particle-preparation-independent-adjudication.md) prove that the exact prescribed past cannot satisfy the unforced Master Equation. The targets' smooth departure from stationary history contradicts local uniqueness while every received source is stationary. A specified environmental receiver also receives a nonzero pulse acceleration before release despite its stationary prescribed history. Smooth acceleration and jerk matching at release do not remove either contradiction. The forward result remains a valid conditional initial-history theorem; neither its early separation nor its later reversal establishes typical behavior in a self-consistently prepared population. A different earlier coupled history must be specified before that interpretation can be examined.
+
 ## Local Wake Geometry and Superposition
 
 On one connected regular moving-simple-root chart, the canonical per-root acceleration row has a derived scalar-gradient representation. Finite scalar superposition is conditional on every row occupying one shared retained-history and boundary chart; it does not license an independently postulated vector-superposition law.

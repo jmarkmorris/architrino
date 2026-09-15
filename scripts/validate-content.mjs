@@ -747,7 +747,13 @@ function isExternalMarkdownLinkTarget(linkTarget) {
 
 function extractMarkdownLinks(markdownText) {
   const links = [];
-  const lines = String(markdownText || "").split(/\r?\n/);
+  // TeX function application such as A[y](t) is not a Markdown link.
+  // Preserve newlines so diagnostics retain the original source line numbers.
+  const prose = String(markdownText || "").replace(
+    /\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)|(?<!\\)\$(?!\$)(?:\\.|[^\\$\n])*?(?<!\\)\$/g,
+    match => match.replace(/[^\r\n]/g, " ")
+  );
+  const lines = prose.split(/\r?\n/);
   let fencedCodeBlock = false;
   for (const [index, line] of lines.entries()) {
     if (/^```/.test(line)) {

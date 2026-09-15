@@ -3413,7 +3413,8 @@ SubstepAttempt corrected_substep_impl(
             : predictor_snapshot.failure_code);
     if (request.failed_substep_candidate_callback) {
       request.failed_substep_candidate_callback(
-          start_time, end_time, failure, 0U, predictor_histories);
+          start_time, end_time, failure, 0U, predictor_histories,
+          predictor_joint_histories);
     }
     return {
         failed_substep_certificate(
@@ -3486,7 +3487,8 @@ SubstepAttempt corrected_substep_impl(
               : endpoint_snapshot.failure_code);
       if (request.failed_substep_candidate_callback) {
         request.failed_substep_candidate_callback(
-            start_time, end_time, failure, iteration, candidate_histories);
+            start_time, end_time, failure, iteration, candidate_histories,
+            candidate_joint_histories);
       }
       return {
           failed_substep_certificate(
@@ -3589,6 +3591,16 @@ SubstepAttempt corrected_substep_impl(
         timing->joint_endpoint_contraction_wall_seconds +=
             elapsed_seconds(contraction_timing_start);
         if (!contraction.certified) {
+          if (contraction.failure_code.starts_with(
+                  "krawczyk_image_not_strictly_interior/") &&
+              iteration < request.max_correction_iterations) {
+            // The center-settlement threshold can exceed this candidate's
+            // radius. Recenter through the existing bounded correction loop;
+            // the next candidate still requires every acceptance certificate.
+            endpoint_guess = evaluated;
+            endpoint_joint_guess = std::move(evaluated_joint_states);
+            continue;
+          }
           return {
               failed_substep_certificate(
                   start_time, end_time, std::move(start_snapshot),
@@ -3634,7 +3646,7 @@ SubstepAttempt corrected_substep_impl(
                 request.failed_substep_candidate_callback(
                     start_time, end_time,
                     "coincident_same_transmitter_birth_uncertified", iteration,
-                    candidate_histories);
+                    candidate_histories, candidate_joint_histories);
               }
               return {std::move(failed), std::nullopt, std::nullopt};
             }
@@ -3689,7 +3701,7 @@ SubstepAttempt corrected_substep_impl(
             if (request.failed_substep_candidate_callback) {
               request.failed_substep_candidate_callback(
                   start_time, end_time, failure, iteration,
-                  candidate_histories);
+                  candidate_histories, candidate_joint_histories);
             }
             return {std::move(failed), std::nullopt, std::nullopt};
           }
@@ -3789,7 +3801,7 @@ SubstepAttempt corrected_substep_impl(
                     start_time, end_time,
                     "caustic_eta_convergence_failed",
                     iteration + event_iteration + 1U,
-                    event_histories);
+                    event_histories, {});
               }
               return {std::move(failed), std::nullopt, std::nullopt};
             }

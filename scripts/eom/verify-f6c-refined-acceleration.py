@@ -507,8 +507,8 @@ def main(argv=None):
                 ancestry={k:v.binding()for k,v in ancestry_files.items()}
                 olddocs={k:decode_role(core,ancestry_files[k].data,k)for k in ('export','manifest','comparison','admission','reconstruction','guards','priorPlan')}
                 reference.authenticate_prior(olddocs,ancestry)
-                # Bind every source in the original admitted broad-cover chain too.
-                for b in olddocs['admission']['sourceBindings']:read_binding(b)
+                # Preserve the old producer inventory without reopening today's
+                # source/runtime files against it; ancestry data is bound above.
                 refined_files={role:capture(root/p,h,data=True)for role,p,h in REFINED};refined={k:v.binding()for k,v in refined_files.items()}
                 docs={k:decode_role(core,refined_files[k].data,k)for k in ('manifest','comparison','admission','plan')}
                 authenticate_refinement(docs,refined,ancestry,root,decode_operational,read_binding)

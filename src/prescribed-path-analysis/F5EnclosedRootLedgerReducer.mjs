@@ -386,6 +386,9 @@ function validateImplementationBindings(packet, options) {
   }
   if (!options.testOnly) {
     for (const [id, binding] of byId) {
+      // Source identities describe the recorded run, not today's editable code.
+      // Executable and other consumed build artifacts still require integrity.
+      if (Object.hasOwn(IMPLEMENTATION_SOURCE_PATHS, id)) continue;
       const actual = options.readBindingBytes(binding.path);
       if (sha256Bytes(actual) !== binding.sha256) {
         fail(`implementation binding ${id} differs from the bound file bytes.`);

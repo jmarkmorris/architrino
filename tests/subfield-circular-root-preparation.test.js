@@ -28,11 +28,12 @@ test("observed source inventory binds full solver tree and reviewed adapter/CMak
   assert.ok(records.every((record) => record.bytes > 0 && /^[a-f0-9]{64}$/u.test(record.sha256)));
 });
 
-test("reference inventory binds seven frozen references and sixteen exact candidate sources", () => {
+test("reference inventory binds two numerical inputs and sixteen exact candidate configurations", () => {
   const records = referenceSnapshot();
-  assert.equal(records.length, 23);
+  assert.equal(records.length, 18);
   assert.equal(records.filter((record) => record.id.startsWith("candidate-source:")).length, 16);
-  assert.equal(new Set(records.map((record) => record.path)).size, 23);
+  assert.equal(new Set(records.map((record) => record.path)).size, 18);
+  assert.ok(records.every((record) => record.path.endsWith(".json")));
 });
 
 test("snapshot equality rejects hashes, paths, byte counts, missing files and added files", () => {
