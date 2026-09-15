@@ -26,7 +26,7 @@ The stationary sum cancels exactly at a lattice anchor. At a displaced receiver 
 
 ## 1. Read the motion in time
 
-![The supplied vertical excursion, later common vertical motion, separation change, and separation velocity with a close-up of approach](../../../../.local-data/master-equation-closure/motion-plots/target-motion.png)
+Local figure — The supplied vertical excursion, later common vertical motion, separation change, and separation velocity with a close-up of approach: `.local-data/master-equation-closure/motion-plots/target-motion.png`.
 
 - **A — supplied past.** Both targets follow the same down-and-up excursion and return to rest. Their separation stays exactly $\ell$. At release, $t=0$, all particles occupy their lattice anchors with zero velocity.
 - **B — common vertical motion after return.** The targets remain still until $t=\sqrt2-3/8\approx1.0392$. Their subsequent vertical displacement is shared by reflection symmetry. The curve shown is their common comparison height; its certified error is too small to see at this scale.
@@ -37,23 +37,23 @@ The dotted line marks the comparison polynomial join at offset $u=1/4$. The actu
 
 At the orange point, the exact polynomial enclosure gives comparison separation velocity between $-7.622\times10^{-12}$ and $-7.620\times10^{-12}$. Allowing the full error of $8\times10^{-13}$ therefore encloses the actual separation velocity strictly between $-8.422\times10^{-12}$ and $-6.820\times10^{-12}$, in units of wake speed. Even the endpoint closest to zero is negative, which proves approach at that time. Continuity gives an open interval of approach around it. This is a decrease in their current distance; it does not establish that the distance falls below the original lattice spacing or reaches zero. Their common vertical motion cancels when taking their separation.
 
-Vector version: [target motion SVG](../../../../.local-data/master-equation-closure/motion-plots/target-motion.svg).
+Vector version: target motion SVG (local artifact: `.local-data/master-equation-closure/motion-plots/target-motion.svg`).
 
 ## 2. The target paths, with unequal magnification made explicit
 
-![Separate local displacement paths for the left and right targets](../../../../.local-data/master-equation-closure/motion-plots/target-paths.png)
+Local figure — Separate local displacement paths for the left and right targets: `.local-data/master-equation-closure/motion-plots/target-paths.png`.
 
 Each panel places its own target's initial lattice site at the origin. The actual two starting sites remain a distance $\ell$ apart. Follow the arrows upward along the comparison paths. Horizontal displacement is shown in units of $10^{-12}\ell$ and vertical displacement in units of $10^{-6}\ell$: the horizontal units are one million times smaller. The screen magnification also depends on each axis's displayed range and length, so the apparent path angles are distorted. The local origins in separate panels do not represent a collision or a shared starting site.
 
 The orange point is the certified approach event; the gray square is the comparison join. The small inward turn is clearest in the velocity inset of Figure 1 because the later outward displacement occupies most of this path plot's horizontal range. Shading gives the horizontal position enclosure. The separate vertical error bound is below $8\times10^{-12}\ell$, below pixel scale here; the component bounds describe rectangles about each comparison point, not ellipses with those semiaxes.
 
-Vector version: [target paths SVG](../../../../.local-data/master-equation-closure/motion-plots/target-paths.svg).
+Vector version: target paths SVG (local artifact: `.local-data/master-equation-closure/motion-plots/target-paths.svg`).
 
 ### 2.1. Distance to the next neighbor
 
 The outward horizontal neighbors start at $-\ell e_1$ and $2\ell e_1$, on opposite sides of the targets at $0$ and $\ell e_1$. Each initial gap is $\ell$. The targets also have neighbors one spacing above them, at $\ell e_3$ and $\ell(e_1+e_3)$. Their displacement plots magnify motions within these initial gaps; the chart boundaries are not neighboring lattice sites.
 
-At the final plotted time, $t=\sqrt2-3/8+17/64\approx1.30484$, the [plotting receipt](../../../../.local-data/master-equation-closure/motion-plots/receipt.json) records the right target's comparison displacement $x=1.7498408797\ldots\times10^{-11}$ and $z=3.1799091194\ldots\times10^{-6}$. The actual horizontal error is at most $1.50425\times10^{-12}$, and the vertical error is below $8\times10^{-12}$. Reflection gives the opposite horizontal displacement and same vertical displacement for the left target. Thus each target's outward displacement is about 18 trillionths of a spacing, while its upward displacement is about 3.18 millionths of a spacing. These endpoint evaluations measure the retained comparison formulas; the stated errors are derived from the accepted proof.
+At the final plotted time, $t=\sqrt2-3/8+17/64\approx1.30484$, the plotting receipt (local artifact: `.local-data/master-equation-closure/motion-plots/receipt.json`) records the right target's comparison displacement $x=1.7498408797\ldots\times10^{-11}$ and $z=3.1799091194\ldots\times10^{-6}$. The actual horizontal error is at most $1.50425\times10^{-12}$, and the vertical error is below $8\times10^{-12}$. Reflection gives the opposite horizontal displacement and same vertical displacement for the left target. Thus each target's outward displacement is about 18 trillionths of a spacing, while its upward displacement is about 3.18 millionths of a spacing. These endpoint evaluations measure the retained comparison formulas; the stated errors are derived from the accepted proof.
 
 The neighboring architrinos also move, so displacement toward a neighbor's original site is not the change in their actual gap. Write the right target position as $\ell(1+x(t),0,z(t))$ and its outward neighbor position as $\ell(2+U_1(t),U_2(t),U_3(t))$. Here $\mathbf U(t)$ is that neighbor's dimensionless displacement at the same absolute time as the target. Their simultaneous distance $r_{\rm out}$ satisfies the exact geometric identity
 
@@ -94,7 +94,7 @@ The [subsequent extension through $t=2$](smooth-two-particle-later-motion.md) tr
 
 ## 3. The early motion of the four returning sources
 
-![Starting geometry of four sources and their early displacement paths](../../../../.local-data/master-equation-closure/motion-plots/neighbor-paths.png)
+Local figure — Starting geometry of four sources and their early displacement paths: `.local-data/master-equation-closure/motion-plots/neighbor-paths.png`.
 
 The geometry panel shows the four environmental sources that first feed back to the right target: $(1,0,1)$, $(1,0,-1)$ and $(1,\pm1,0)$ in lattice units. Each receives the left target's old pulse over a face diagonal and later contributes to the right target over a nearest-neighbor channel. The left target receives the reflected arrangement. These eight returning sources belong to the 24 first environmental responders; the figure selects the right target's four sources.
 
@@ -102,7 +102,7 @@ The displacement panel overlays the four sources' separate starting displacement
 
 This figure covers the sources' own early absolute times $\sqrt2-11/8\le t\le\sqrt2-11/8+9/32$, approximately $0.0392$ to $0.3205$. The target figures instead cover absolute times approximately $1.0392$ to $1.3048$. The source curves are not extrapolated into that later target-time window. A source may retain displacement and velocity after its original driving pulse ends. Squares mark the polynomial join, and arrows follow the comparison curves in time. Source position error is below $3\times10^{-13}\ell$ throughout the displayed interval.
 
-Vector version: [neighbor paths SVG](../../../../.local-data/master-equation-closure/motion-plots/neighbor-paths.svg).
+Vector version: neighbor paths SVG (local artifact: `.local-data/master-equation-closure/motion-plots/neighbor-paths.svg`).
 
 ## Error bounds and evidence
 
@@ -121,7 +121,7 @@ Its maximum is $1.50425\times10^{-12}$. The separation-change error is twice thi
 
 The independent signed-error reviewer checked this display-specific integration and domain use without rerunning the underlying certificates. The [plotting script](smooth-two-particle-motion-plots.py) evaluates frozen rational-plus-$\sqrt2$ coefficients at 70 decimal digits, then converts sampled values to plotting coordinates. Its known-case mode passed polynomial decoding, differentiation, a matched piecewise join, the exact pulse extrema, the integrated error formula, and mirror/separation transformations before target use. Target fidelity checks then passed the frozen input hashes, actual coefficient joins, derivative arrays and the accepted midpoint value. These checks establish plotting fidelity to the accepted inputs, not independent scientific validity of those inputs.
 
-The author visually inspected all three final PNGs for layout, scales, labels and visibility of the approach inset. A separate reader inspected the three images and passed their geometry, reflection, domains and signed inset; its wording correction distinguishing axis units from screen magnification was applied, and the standalone target paths gained explicit time endpoints. Local receipts are [known-case results](../../../../.local-data/master-equation-closure/motion-plots/known.json) and [input, output and script hashes with plotted-value checks](../../../../.local-data/master-equation-closure/motion-plots/receipt.json). The frozen source and independent adjudication remain unchanged. Reproduce from the repository root, in this order:
+The author visually inspected all three final PNGs for layout, scales, labels and visibility of the approach inset. A separate reader inspected the three images and passed their geometry, reflection, domains and signed inset; its wording correction distinguishing axis units from screen magnification was applied, and the standalone target paths gained explicit time endpoints. Local receipts are known-case results (local artifact: `.local-data/master-equation-closure/motion-plots/known.json`) and input, output and script hashes with plotted-value checks (local artifact: `.local-data/master-equation-closure/motion-plots/receipt.json`). The frozen source and independent adjudication remain unchanged. Reproduce from the repository root, in this order:
 
 ```bash
 "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.py known

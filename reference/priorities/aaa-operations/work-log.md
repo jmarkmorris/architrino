@@ -2,6 +2,12 @@
 
 This file is the chronological work log for the `aaa-operations` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker.
 
+### 2026-09-15 — PR 279 local-evidence reference repair
+
+The operator approved replacing the 24 hyperlinks and image embeds reported by GitHub Content Integrity with labeled literal local paths. The job log for run 34972734411 identified these references in ten Braid and MEC Markdown files: their targets existed on the Mac under ignored `.local-data/` or `.tmp/`, but not in GitHub's fresh checkout. The repair preserves captions, surrounding mathematics, recorded hashes, reproduction commands and local artifacts. Literal paths are repository-root-relative; they identify locally retained evidence without promising that GitHub hosts it. No missing-link rule, scientific assertion, instrument or artifact was changed.
+
+Before application, the mechanical replacement passed known controls for a local receipt, a figure caption and unchanged mathematics with an ordinary link. The target inventory then counted exactly 24 replacements across ten files. `rg` found no basename references to the named analysis/evidence targets under `scripts/`, `tests/`, `src/` or `.github/`; historical source identities are provenance, not current-source pins. `git diff --check` passed after replacement. The existing exact-state publication gate and fresh GitHub checks determine the final publication outcome; this repair introduces no scientific rerun or new test family.
+
 ### 2026-09-15 — Markdown link repair and residual historical-source pin removal
 
 The operator requested the Markdown publication repair and a search for other obsolete hashes. Direct inspection of the content validator confirmed that TeX function application was being parsed as Markdown links. The extractor now masks dollar-delimited and backslash-delimited mathematics while preserving newlines. A known control passed before the repository run: real links remained at lines 1 and 5 while inline and display mathematical applications produced no links. The signed-error adjudication's scratch-directory citation is now a literal directory path, not a file link. No mathematical statement was changed. `node scripts/validate-content.mjs --check --strict` then reported zero errors and zero warnings; the log is retained at `.local-data/pr-validation/markdown-repair-check.log`.

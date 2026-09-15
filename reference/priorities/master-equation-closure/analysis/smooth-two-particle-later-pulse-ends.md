@@ -8,7 +8,7 @@ Claim grade: **computer-assisted derivation, independently accepted**. The [cont
 
 This preserves the exact prepared history and the infinite population used in the [accepted three-turn certificate](smooth-two-particle-later-certification.md). The new calculation extends the continuous target path, retains the already certified environmental source paths exactly, and encloses the acceleration mismatch over every added time cell. It does not extrapolate the last polynomial beyond its cell.
 
-![Common height and vertical velocity through the remaining pulse-end receptions](../../../../.local-data/master-equation-closure/later-pulse-ends/figure/later-pulse-end-motion.png)
+Local figure — Common height and vertical velocity through the remaining pulse-end receptions: `.local-data/master-equation-closure/later-pulse-ends/figure/later-pulse-end-motion.png`.
 
 The shaded event interval encloses eight pulse-end paths per target. The upper panel shows height with its position-error band. The lower panel's entire velocity band stays below zero after $t=2$, establishing continued descent even where the height bands overlap. This leg has not yet reached a minimum.
 

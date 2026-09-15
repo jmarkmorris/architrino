@@ -273,7 +273,7 @@ $$
 
 and $y_\ast\in[L-D_{\max},U-D_{\min}]$.
 
-**Conditional production-box calculation.** Applied with $h=1/5000$ to the last repaired production endpoint and two earlier source frames, the [exact rational packet](../../../../.local-data/braid-program/2-braid-2026-09-14/incoming-event-rational-bound.json) gives
+**Conditional production-box calculation.** Applied with $h=1/5000$ to the last repaired production endpoint and two earlier source frames, the exact rational packet (local artifact: `.local-data/braid-program/2-braid-2026-09-14/incoming-event-rational-bound.json`) gives
 
 $$
 T_\ast\in[1.572632783297250,\;1.572643602856084],
@@ -318,7 +318,7 @@ At source release, $A(S)$ changes from zero to $G$, while $u(S)$ remains continu
 
 If the full-panel upper velocity bound is below one, its nonnegative upper coefficients also bound every shorter elapsed time below one. Together with the positive position, source-distance and derivative bounds, this excludes an earlier exit and closes the bootstrap. Appending the entire interval polynomial therefore extends a continuous solution enclosure by induction. A panel whose upper speed bound reaches one is not appended. The local event enclosure above is instead applied from the last certified endpoint, using a completed-source cap and verifying positive event position and positive partner delay. This encloses the first event without advancing through it.
 
-The canonical known controls pass before target use: exact rational operations, a constant-acceleration event time, stationary and moving-source inverses, a source interval crossing release, and the held-source solution derived earlier in this document. With dyadic panel size $2^{-12}$, the final recorded run certifies 6,441 panels from release through $t_n=1.572509765625$ and then encloses the terminal event. The numerical interval witness is recorded in the [canonical result](../../../../.local-data/braid-program/2-braid-2026-09-14/incoming-interval-canonical-power12.json), with its matching [known-case receipt](../../../../.local-data/braid-program/2-braid-2026-09-14/incoming-interval-canonical-known.json).
+The canonical known controls pass before target use: exact rational operations, a constant-acceleration event time, stationary and moving-source inverses, a source interval crossing release, and the held-source solution derived earlier in this document. With dyadic panel size $2^{-12}$, the final recorded run certifies 6,441 panels from release through $t_n=1.572509765625$ and then encloses the terminal event. The numerical interval witness is recorded in the canonical result (local artifact: `.local-data/braid-program/2-braid-2026-09-14/incoming-interval-canonical-power12.json`), with its matching known-case receipt (local artifact: `.local-data/braid-program/2-braid-2026-09-14/incoming-interval-canonical-known.json`).
 
 The following displayed decimal endpoints have been widened outward from the emitted binary64 intervals:
 
@@ -333,7 +333,7 @@ The following displayed decimal endpoints have been widened outward from the emi
 
 The event-time enclosure comes from the interval induction and local acceleration inequalities. Its validity is not inferred from agreement among decimal oracle refinements. The negative member has the mirror position interval, and the onset velocities are exactly $(X_+'(T_\ast),X_-'(T_\ast))=(-1,+1)$ in positive-label, negative-label order by the event definition.
 
-**Independent measured check.** The separately authored [trace comparison](../../../../.local-data/braid-program/2-braid-2026-09-14/check-incoming-interval-trace.json) finds that all 12,884 position and inward-speed values from the frozen numerical reference lie inside the 6,442 emitted endpoint boxes. That comparison checks the numerical witness; the whole-panel induction above supplies the continuous enclosure argument. Exact rational comparison also verifies that all six displayed decimal intervals contain their emitted binary64 endpoints. No comparison widens an interval or changes the reference.
+**Independent measured check.** The separately authored trace comparison (local artifact: `.local-data/braid-program/2-braid-2026-09-14/check-incoming-interval-trace.json`) finds that all 12,884 position and inward-speed values from the frozen numerical reference lie inside the 6,442 emitted endpoint boxes. That comparison checks the numerical witness; the whole-panel induction above supplies the continuous enclosure argument. Exact rational comparison also verifies that all six displayed decimal intervals contain their emitted binary64 endpoints. No comparison widens an interval or changes the reference.
 
 ### Exact causal census at onset and acceptance scope
 

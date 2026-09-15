@@ -10,7 +10,7 @@ This acceptance does not classify the sign for every coupling, locate a first or
 
 ## 1. Independence and frozen inputs
 
-The reviewed subject has SHA-256 `c0cbba7e4335b064c4823ccbf8b62c63ebb6af5805cc0c57bda8e2b69305391e`. Five frozen coefficient JSON files were treated as subjects to check: `source-polynomials.json`, `target-polynomials.json`, `source-polynomials-after.json`, `target-polynomials-after.json`, and `target-polynomials-general.json` under `.tmp/mec-008-signed-error/`. Their exact digests and the subject digest are recorded in [signed-all-inputs.sha256](../../../../.tmp/mec-008-signed-error/independent-review/signed-all-inputs.sha256).
+The reviewed subject has SHA-256 `c0cbba7e4335b064c4823ccbf8b62c63ebb6af5805cc0c57bda8e2b69305391e`. Five frozen coefficient JSON files were treated as subjects to check: `source-polynomials.json`, `target-polynomials.json`, `source-polynomials-after.json`, `target-polynomials-after.json`, and `target-polynomials-general.json` under `.tmp/mec-008-signed-error/`. Their exact digests and the subject digest are recorded in signed-all-inputs.sha256 (local artifact: `.tmp/mec-008-signed-error/independent-review/signed-all-inputs.sha256`).
 
 The reviewer did not read or execute the author's or contributors' arithmetic implementations. The permitted source-response and after-pulse mathematical notes supplied definitions; they did not serve as numerical or coefficient oracles. The independent instruments reconstruct the canonical implicit row, differentiate the supplied position polynomials themselves, and compare every relevant coupling coefficient. Earlier accepted history results were not recertified as part of this review.
 

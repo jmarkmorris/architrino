@@ -8,7 +8,7 @@ The independent first-order path-sum calculation agrees with these common-height
 
 The numerical instrument is explicitly a non-production analytical comparison. The [EOM solver](../../../../src/eom/README.md) was inspected but was not run for this lattice. Its current finite explicit-history request does not represent the complete infinite stationary population used by the theorem.
 
-![Later common height, target separation and simultaneous neighbor gaps](../../../../.local-data/master-equation-closure/later-motion/later-motion.png)
+Local figure — Later common height, target separation and simultaneous neighbor gaps: `.local-data/master-equation-closure/later-motion/later-motion.png`.
 
 ## The exact population and supplied past
 

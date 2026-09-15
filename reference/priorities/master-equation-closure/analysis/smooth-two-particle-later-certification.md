@@ -8,7 +8,7 @@ Claim grade: **derived by a computer-assisted proof, independently accepted**. T
 
 This is a finite statement about shared vertical motion. The two targets have equal height by reflection symmetry, while their horizontal separation is a different coordinate. Three turns and one smaller succeeding excursion establish neither eventual settling nor decay in every coordinate. The specified past also remains a prepared mathematical input: the earlier preparation assessment excludes its interpretation as an unforced all-past solution.
 
-![Shared target height with a certified position band and three turning windows](../../../../.local-data/master-equation-closure/later-certification/figure/later-certified-height.png)
+Local figure — Shared target height with a certified position band and three turning windows: `.local-data/master-equation-closure/later-certification/figure/later-certified-height.png`.
 
 The central curve is the continuous polynomial defined below. The shaded band encloses the actual common height within $6\times10^{-8}\ell$; the lower panels display the three velocity crossings with their velocity-error bands. The [plot source](smooth-two-particle-later-certified-plot.py) renders these already established bounds and supplies no additional mathematical acceptance.
 

@@ -8,7 +8,7 @@ Claim grade for those vertical turns and the excursion inequality: **derived by 
 
 The [continuation analysis](smooth-two-particle-later-continuation.md) and its [independent adjudication](smooth-two-particle-later-independent-adjudication.md) establish existence of the actual infinite-lattice histories through this horizon. The new certificate adds global source and target residual bounds, including the infinite stationary field, and propagates them to continuous signs and extrema. The [coefficient derivation and numerical record](smooth-two-particle-later-instrument.md) and the nonlinear comparison below remain separately useful explanations and numerical evidence. Their measured precision is not the precision of the rigorous bounds.
 
-![Later common height, separation and simultaneous neighbor gaps](../../../../.local-data/master-equation-closure/later-motion/later-motion.png)
+Local figure — Later common height, separation and simultaneous neighbor gaps: `.local-data/master-equation-closure/later-motion/later-motion.png`.
 
 This retained comparison figure shows the first two amplitude coefficients. The independently evaluated nonlinear changed-history comparison agrees at the displayed scale. The [new certified height figure](smooth-two-particle-later-certification.md#result-and-scope) separately displays actual error bands and turning windows. The different panels above use different vertical units: the height varies on the scale of millionths of a lattice spacing, while the change in target separation is about a thousand times smaller by the endpoint. The neighbor panels measure each pair at the same time.
 
