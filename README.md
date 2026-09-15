@@ -26,7 +26,7 @@ PORT=5174 node scripts/dev/start-local-dev.mjs
 
 There is no `npm install` step for ordinary local serving. The root app is served from `index.html`, `app.js`, `style.css`, `vendor/`, `content/`, `src/`, and the standalone HTML entrypoints in the repo root.
 
-The local server prepares Borg playback records, the equation registry, and the full-corpus source index before listening. These outputs are built from tracked sources and ignored by Git; Pages builds them during deployment. For a separate static server or direct focused tests without saved outputs, run `node scripts/prepare-runtime-assets.mjs --write` once first. `npm test` includes this setup automatically. Repeating setup leaves unchanged output files untouched.
+The local server prepares Borg playback records, the equation registry, and the full-corpus source index before listening. These outputs are built from tracked sources and ignored by Git; Pages builds them during deployment. For a separate static server, or selected tests that need these outputs and do not have them, run `node scripts/prepare-runtime-assets.mjs --write` once first. Run agreed tests by explicit filename, for example `npm test -- tests/standalone-app-launch.test.js`; this command does not prepare runtime assets or discover additional tests. Repeating setup leaves unchanged output files untouched. The [testing process](reference/op/testing-regime.md) owns selection and scope.
 
 ## Web App
 

@@ -48,8 +48,9 @@ export function buildStaticSite({ rootDir = ROOT, outputDir = path.join(rootDir,
   if (fs.existsSync(outputDir) && (fs.lstatSync(outputDir).isSymbolicLink() || fs.readdirSync(outputDir).length)) throw new Error("site output must be an empty directory");
   prepare({ rootDir });
   const families = readRuntimeAssetFamilies(rootDir);
-  const tracked = trackedPaths ?? execFileSync("git", ["ls-files", "-z"], { cwd: rootDir, encoding: "utf8" }).split("\0").filter(Boolean);
-  // Copy only versioned public paths plus the explicitly enumerated outputs.
+  const deleted = trackedPaths ? new Set() : new Set(execFileSync("git", ["ls-files", "--deleted", "-z"], { cwd: rootDir, encoding: "utf8" }).split("\0").filter(Boolean));
+  const tracked = trackedPaths ?? execFileSync("git", ["ls-files", "-z"], { cwd: rootDir, encoding: "utf8" }).split("\0").filter(name => name && !deleted.has(name));
+  // Copy only versioned public paths (respecting current deletions) plus declared outputs.
   // Never recursively copy the checkout: it contains local runs and credentials.
   const publicPaths = tracked.filter((name) => !name.split("/").some((part) => part.startsWith(".")) &&
     !isGeneratedRuntimeAsset(name, families) && !isPagesDeploymentExcluded(name));

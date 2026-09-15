@@ -5,10 +5,10 @@ Status: RATIFIED by the operator (2026-07-24; drafted 2026-07-15). One page, rew
 ## Workstream Metadata
 
 - Kind: `priority-program`
-- Rank: `1`
+- Rank: `2`
 - Value: `55.28`
-- Cost: `4.3`
-- ROI: `12.86`
+- Cost: `7.6`
+- ROI: `7.27`
 - Status: `active`
 
 ## Guiding Question
@@ -52,8 +52,10 @@ The phase-varying display representative's prescribed-root obligation, separate 
 
 ## Waiting On
 
-- Engine: the certified-traversal exact fallback now preserves admitted joint histories, clearing the former `1.3699999999999966` carrier blocker. The refined-prefix stationary fixture is certified through `1.394999999999996`, but its next fixed `0.005` step to `1.3999999999999959` fails closed because the certified joint root-time width `1.0205062366854167e-05` exceeds the unchanged `1e-5` tolerance. Certified root completeness through the full sub-field head-on close approach and the longer transverse path still blocks Campaign 1 fate booking and the sub-field breathing classification.
-- Engine: field-speed-fold root-completeness extension — separately gates queue item 3's at/above-field-speed stage.
+- Engine: the [September 14 repairs and validation](evidence/2026-09-14-zero-acceleration-and-binary-validation.md) close exact-zero representation, premature corrector rejection and history-join root clipping. Frozen independent state/root observers pass the complete saved prefix and a checkpoint restart through `1.57262`. A separate probe at `1.57266` rejects atomically; exact rejected ordinary/joint carriers and available difficult-cell data are retained. Generic continuous error certification by the EOM solver remains separate from these sampled checks.
+- Scientific boundary: the [continuous incoming interval construction](analysis/stationary-binary-first-interval.md#continuous-interval-construction-from-the-exact-stationary-history) now encloses first wake-speed arrival from the exact stationary start in `[1.572637654589540, 1.572640138062056]`, with separation `[0.103011956364294, 0.103017662685080]` and a complete one-partner/zero-self census per label. The incoming boundary request is complete. The [existing stationary-mirror theorem](../master-equation-closure/analysis/mirror-close-approach-causal-root-boundary.md) obstructs regular unchanged-sharp-law continuation beyond that event. This boundary result establishes neither passage nor rebound; full Campaign 1 and the longer transverse path retain their outstanding gates.
+- Operator disposition, 2026-09-15: the [stationary investigation retains the unchanged Master Equation](analysis/stationary-binary-first-interval.md#boundary-result-and-modified-law-scope). The quintic self-wake route and its proposed smoothing work are set aside for this investigation. Their existing conditional mathematics remains preserved under its own owner; it supplies no outgoing prediction under the unchanged equation. Exploring a modified law requires a separate explicit operator decision.
+- Unchanged-law mathematical methods: the [technique assessment](analysis/stationary-binary-first-interval.md#mathematical-techniques-that-preserve-the-equation) shows why auxiliary time and positive weak measures cannot remove this branch's divergent accumulated acceleration. A separately checked local bound also excludes curved or flatter smooth first crossings on a complete simple-root domain when the actual remaining acceleration is bounded. The open research proposal is to determine whether any declared broader history supplies a compensating singular contribution from its own causal roots; no such crossing is established, and no modified-law work or numerical launch is authorized by this assessment.
 
 ## Pointers
 

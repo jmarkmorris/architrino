@@ -54,7 +54,19 @@ Interval centered_representation_hull(
 }
 
 double outward_sum(double left, double right) {
+  // Adding an exact zero has no rounding error. In particular, unused shared
+  // symbols must not enlarge an acceleration remainder or its projection.
+  if (left == 0.0) return right;
+  if (right == 0.0) return left;
   return (Interval::point(left) + Interval::point(right)).upper();
+}
+
+double centering_remainder(const Interval& value, double center) {
+  // A singleton already equal to its center needs no representation error.
+  // Outward interval subtraction would manufacture a denormal radius even for
+  // an empty row sum, once for the center and once for every unused symbol.
+  if (value.lower() == center && value.upper() == center) return 0.0;
+  return magnitude_upper(value - Interval::point(center));
 }
 
 bool permits_accepted_acceleration_fallback(const std::string& failure_code) {
@@ -563,8 +575,7 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
       receiver_state.center[axis] = center_sum[axis].midpoint();
       receiver_state.independent_remainder_radii[axis] = outward_sum(
           receiver_state.independent_remainder_radii[axis],
-          magnitude_upper(center_sum[axis] -
-              Interval::point(receiver_state.center[axis])));
+          centering_remainder(center_sum[axis], receiver_state.center[axis]));
     }
     for (std::size_t symbol = 0U;
          symbol < result.shared_symbol_count; ++symbol) {
@@ -589,8 +600,7 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
         receiver_state.shared_symbol_coefficients[symbol][axis] = coefficient;
         receiver_state.independent_remainder_radii[axis] = outward_sum(
             receiver_state.independent_remainder_radii[axis],
-            magnitude_upper(
-                coefficient_sum[axis] - Interval::point(coefficient)));
+            centering_remainder(coefficient_sum[axis], coefficient));
       }
     }
     receiver_state.accepted_total_representation_hull_dominates = true;

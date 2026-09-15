@@ -176,7 +176,6 @@ test("artifact-only equation build rejects missing source links without editing 
 test("local, CI, service, and Pages entrypoints explicitly prepare runtime outputs", () => {
   assert.match(read("scripts/dev/start-local-dev.mjs"), /prepareRuntimeAssets\(\{ rootDir: REPO_ROOT \}\)/);
   assert.match(read("scripts/check-content-integrity.mjs"), /prepare-runtime-assets\.mjs/);
-  assert.match(read("scripts/check-content-integrity.mjs"), /verify-assembly-record-byte-identity\.mjs/);
   assert.match(read("scripts/pr-validation-receipt.mjs"), /prepare-runtime-assets\.mjs/);
   assert.match(read("scripts/archie-service/run-full-corpus-mcp-server.mjs"), /familyId: "full-corpus-index"/);
   const workflow = read(".github/actions/build-pages/action.yml");
@@ -185,10 +184,8 @@ test("local, CI, service, and Pages entrypoints explicitly prepare runtime outpu
   assert.match(deployment, /github.ref == 'refs\/heads\/main'/);
   assert.match(deployment, /vars.ARCHITRINO_PAGES_DEPLOY_ENABLED == 'true'/);
   assert.match(deployment, /github.event_name == 'push' \|\| github.event_name == 'workflow_dispatch'/);
-  assert.match(workflow, /node --test tests\/runtime-asset-fresh-checkout.test.js/);
-  assert.match(workflow, /build-static-site\.mjs --out \.tmp\/site/);
-  assert.match(workflow, /verify-assembly-record-byte-identity\.mjs --check/);
-  assert.ok(workflow.indexOf("verify-assembly-record-byte-identity.mjs --check") < workflow.indexOf("uses: actions/upload-pages-artifact@"));
+  assert.match(workflow, /check-pages-build\.mjs --out \.tmp\/site/);
+  assert.ok(workflow.indexOf("check-pages-build.mjs --out") < workflow.indexOf("uses: actions/upload-pages-artifact@"));
   assert.match(workflow, /retention-days: 1/);
   assert.match(deployment, /needs: build/);
   assert.match(read(".github/workflows/content-integrity.yml"), /fetch-depth: 0/);
@@ -277,12 +274,7 @@ test("PR Pages check has no deployment job and both workflows use the same build
   const commands = [...action.matchAll(/^      run: (.+)$/gm)].map(match => match[1]);
   assert.deepEqual(commands, [
     "npm ci --ignore-scripts --no-audit --no-fund",
-    "sudo apt-get update && sudo apt-get install -y ripgrep",
-    "node scripts/check-content-integrity.mjs --profile=github",
-    "node --test tests/pages-image-assets.test.js",
-    "node --test tests/runtime-asset-fresh-checkout.test.js",
-    "node scripts/build-static-site.mjs --out .tmp/site",
-    "node scripts/borg/verify-assembly-record-byte-identity.mjs --check",
+    "node scripts/check-pages-build.mjs --out .tmp/site",
   ]);
   assert.equal([...action.matchAll(/^      shell: bash$/gm)].length, commands.length);
 });

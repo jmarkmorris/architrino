@@ -2409,7 +2409,10 @@ enclose_mp_monotone_root(
     return std::nullopt;
   }
 
-  // For a root u_* in this one-sign transmitter-side bracket, the mean-value
+  // The caller must first certify opposite strict endpoint signs and a
+  // one-sign transmitter-side factor on this bracket.  Intersecting with an
+  // unproved probe could discard admissible roots outside that probe.
+  // For a root u_* in this certified bracket, the mean-value
   // theorem gives u_* = point - g(point) / g'(xi).  Directed interval
   // division therefore encloses every root allowed by the retained-history
   // errors without requiring symmetric strict-sign probes around point.
@@ -2494,32 +2497,6 @@ std::optional<MpRoot> surround_mp_segment_join_root(
             right_segment, *shared_position, right_segment.start_time,
             right_interval),
         reception, right_interval, field_speed);
-    if (left_geometry.transmitter_factor.has_value() &&
-        right_geometry.transmitter_factor.has_value() &&
-        left_geometry.receiver_factor.has_value() &&
-        right_geometry.receiver_factor.has_value()) {
-      const MpInterval transmitter_factor = mp_hull(
-          *left_geometry.transmitter_factor, *right_geometry.transmitter_factor);
-      const MpInterval receiver_factor = mp_hull(
-          *left_geometry.receiver_factor, *right_geometry.receiver_factor);
-      const MpInterval boundary = MpInterval::point(boundary_lower);
-      const auto boundary_geometry = mp_geometry_with_source_position(
-          receiver, left_segment, *shared_position,
-          reception, boundary, field_speed);
-      if (!transmitter_factor.contains_zero() &&
-          boundary_geometry.residual.contains_zero()) {
-        const auto enclosed = enclose_mp_monotone_root(
-            boundary_lower, boundary_geometry.residual, transmitter_factor,
-            lower, upper, tolerance);
-        if (enclosed.has_value()) {
-          return MpRoot{
-              enclosed->first, enclosed->second, transmitter_factor,
-              receiver_factor,
-              {left_segment_index, right_segment_index}};
-        }
-      }
-    }
-
     const MpInterval lower_point = MpInterval::point(lower);
     const MpInterval upper_point = MpInterval::point(upper);
     const int lower_sign = mp_geometry_with_source_position(
@@ -2552,12 +2529,27 @@ std::optional<MpRoot> surround_mp_segment_join_root(
         transmitter_factor.strict_sign() != right_geometry.transmitter_factor->strict_sign()) {
       return std::nullopt;
     }
+    const MpInterval receiver_factor = mp_hull(
+        *left_geometry.receiver_factor, *right_geometry.receiver_factor);
+    const auto boundary_geometry = mp_geometry_with_source_position(
+        receiver, left_segment, *shared_position,
+        reception, MpInterval::point(boundary_lower), field_speed);
+    if (boundary_geometry.residual.contains_zero()) {
+      const auto enclosed = enclose_mp_monotone_root(
+          boundary_lower, boundary_geometry.residual, transmitter_factor,
+          lower, upper, tolerance);
+      if (enclosed.has_value()) {
+        return MpRoot{
+            enclosed->first, enclosed->second, transmitter_factor,
+            receiver_factor,
+            {left_segment_index, right_segment_index}};
+      }
+    }
     return MpRoot{
         lower,
         upper,
         transmitter_factor,
-        mp_hull(*left_geometry.receiver_factor,
-                *right_geometry.receiver_factor),
+        receiver_factor,
         {left_segment_index, right_segment_index}};
   }
 

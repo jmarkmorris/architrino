@@ -2308,7 +2308,8 @@ void run(
             const std::string& end_time,
             const std::string& failure_code,
             std::size_t iteration,
-            const std::vector<eom::NativePublishedPath>& histories) {
+            const std::vector<eom::NativePublishedPath>& histories,
+            const std::map<std::string, eom::JointAffineRetainedHistory>&) {
           try {
             shadow_affine_diagnostic->capture_failed_candidate(
                 start_time, end_time, failure_code, iteration, histories);

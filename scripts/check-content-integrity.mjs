@@ -7,182 +7,23 @@ import { fileURLToPath } from "node:url";
 
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 
-// Failure handling (OPS-020 question 1, accepted 2026-09-06): every check runs
-// and failures are summarized at the end with a non-zero exit, so one stale
-// receipt cannot hide the result of every later check. A check marked
-// `halts: true` is a precondition whose output later checks consume; its
-// failure still stops the run, because everything after it would report
-// cascade noise rather than findings. A check marked `reporting: true` prints
-// its result but does not affect the exit status (OPS-022, until promoted).
-// A check carrying `skipWhen` is left out of the run, with its reason printed,
-// when that predicate holds; the exit status is unaffected.
-//
-// The reporting sweep is opt-in until promoted: it runs only when the host sets
-// AAA_TEST_SWEEP=run. Measured 2026-09-07 (OPS-022): the pilot-process tests
-// stall wherever the supervisor fails to observe its owned process group close
-// — unbounded on a GitHub runner (both PR #260 jobs cancelled at 92 minutes),
-// and 120 s per test on the operator's Mac under the sweep's own bound, where
-// the child stage had in fact completed. Until that supervision defect is
-// repaired the sweep cannot sit in a commit gate; run it deliberately with
-// `AAA_TEST_SWEEP=run node scripts/check-content-integrity.mjs` or directly
-// with `node scripts/run-test-sweep.mjs`.
-const SWEEP_OPT_IN = { variable: "AAA_TEST_SWEEP", value: "run" };
-function sweepNotRequested(env = process.env) {
-  return env[SWEEP_OPT_IN.variable] !== SWEEP_OPT_IN.value;
-}
-
-// The default gate protects the reader-facing build, declared deployment and
-// security contracts, and the focused contract tests that exercise them. The
-// maintenance checks below remain available, but their routine freshness or
-// broad binding failures should not block every content change. This is a
-// check-surface decision, not an evidence-retention decision: the scripts,
-// fixtures, historical records, and scientific acceptance checks remain
-// addressable by their owners.
-const REQUIRED_CHECKS = [
-  {
-    name: "Prepare ignored runtime assets from canonical sources",
-    args: ["scripts/prepare-runtime-assets.mjs", "--write"],
-    halts: true,
-  },
-  {
-    name: "Validate content indexes and references",
-    args: ["scripts/validate-content.mjs", "--check", "--strict"],
-  },
-  {
-    name: "Check reader-facing publication boundary",
-    args: ["scripts/check-reader-facing-publication-boundary.mjs"],
-  },
-  {
-    name: "Validate generated scene graph manifest",
-    args: ["scripts/build-scene-graph.mjs", "--check", "--strict"],
-  },
-  {
-    name: "Validate accepted webapp release profiles",
-    args: ["scripts/check-webapp-release-gate.mjs"],
-  },
-  {
-    name: "Validate accepted browser performance budgets",
-    args: ["scripts/check-browser-performance-budget.mjs"],
-  },
-  {
-    name: "Validate accepted deployment budget",
-    args: ["scripts/check-deployment-budget.mjs"],
-  },
-  {
-    name: "Validate owned-compute launch policy",
-    args: ["scripts/check-owned-compute-launch-policy.mjs"],
-  },
-  {
-    name: "Validate private MCP secure-tunnel deployment contract",
-    args: ["scripts/archie-service/manage-secure-mcp-tunnel.mjs", "--check"],
-  },
-  {
-    name: "Test owned-compute task-closeout hook",
-    args: ["--test", "tests/owned-compute-stop-hook.test.js"],
-  },
-  {
-    name: "Validate Potential consumer and publication contract",
-    args: ["scripts/check-potential-consumer-publication-contract.mjs"],
-  },
-  {
-    name: "Validate Potential live timespace pipeline contract",
-    args: ["scripts/check-potential-live-timespace-pipeline-contract.mjs"],
-  },
-  {
-    name: "Validate corpus equation links, source context, and symbol registry",
-    args: ["scripts/build-equation-mapping-corpus.mjs", "--check"],
-  },
-  {
-    name: "Test generated runtime storage and deployment contracts",
-    args: ["--test", "--test-concurrency=1", "tests/machine-artifact-retention.test.js", "tests/runtime-asset-build.test.js", "tests/runtime-asset-preparation.test.js", "tests/borg-assembly-record-catalog-generator.test.js", "tests/borg-assembly-record-catalog.test.js", "tests/borg-certified-budget-identities.test.js", "tests/borg-eom-migration.test.js", "tests/analytical-campaign-pipeline-benchmark.test.js", "tests/braid-taxonomy-terminology.test.js"],
-  },
-  {
-    name: "Test private MCP secure-tunnel deployment safety",
-    args: ["--test", "tests/archie-service-mcp-secure-tunnel-deployment.test.js"],
-  },
-  {
-    name: "Check current Master Equation terminology",
-    args: ["scripts/check-master-equation-terminology-migration.mjs"],
-  },
-  {
-    name: "Check transmitter-factor Master EOM clean slate",
-    args: ["scripts/check-transmitter-factor-clean-slate.mjs"],
-  },
-  {
-    name: "Check frequency-triplet notation drift",
-    args: ["scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs"],
-  },
-  {
-    name: "Check polarity notation drift",
-    args: ["scripts/check-polarity-notation-drift.mjs"],
-  },
-  {
-    name: "Check migrated braid taxonomy terminology",
-    args: ["scripts/check-braid-taxonomy-terminology.mjs"],
-  },
-  {
-    name: "Check validation-document script paths",
-    args: ["scripts/check-validation-script-paths.mjs"],
-  },
-  {
-    name: "Smoke test manifest runtime routes/search",
-    args: ["scripts/smoke-option3.mjs"],
-  },
-  {
-    name: "Test pre-push policy requiring verification for advancement",
-    args: ["--test", "tests/pre-push-gate-policy.test.js"],
-  },
-  {
-    name: "Test PR procedure and gate conformance",
-    args: ["--test", "tests/pr-branch-process-conformance.test.js"],
-  },
-  {
-    name: "Test exact-state PR validation receipts",
-    args: ["--test", "tests/pr-validation-receipt.test.js"],
-  },
-  {
-    name: "Test required, diagnostic, skipped and unexecuted gate reporting",
-    args: ["--test", "tests/content-integrity-reporting.test.js"],
-  },
-  {
-    name: "Test agent dispatch validation and handoff evidence",
-    args: ["--test", "tests/agent-dispatch.test.mjs", "tests/agent-dispatch-session.test.mjs"],
-  },
-  {
-    name: "Test reader-facing publication boundary",
-    args: ["--test", "tests/reader-facing-publication-boundary.test.js"],
-  },
-  {
-    name: "Sweep test files outside the declared slow list (reporting until promoted)",
-    args: ["scripts/run-test-sweep.mjs"],
-    reporting: true,
-    skipWhen: sweepNotRequested,
-    skipReason: `opt-in; set ${SWEEP_OPT_IN.variable}=${SWEEP_OPT_IN.value} to run it`,
-  },
+// OPS-034: direct reader-facing checks only. Specialized research, saved
+// acceptance reports and process conformance are explicit-use work.
+const CONTENT_CHECKS = [
+  { name: "Prepare ignored runtime assets", args: ["scripts/prepare-runtime-assets.mjs", "--write"], halts: true },
+  { name: "Validate content indexes and references", args: ["scripts/validate-content.mjs", "--check", "--strict"] },
+  { name: "Check reader-facing publication boundary", args: ["scripts/check-reader-facing-publication-boundary.mjs"] },
+  { name: "Validate scene graph", args: ["scripts/build-scene-graph.mjs", "--check", "--strict"] },
+  { name: "Validate equation links and symbol registry", args: ["scripts/build-equation-mapping-corpus.mjs", "--check"] },
+  { name: "Check manifest routes and search", args: ["scripts/smoke-option3.mjs"] },
 ];
 
-// Opt-in maintenance checks retain useful local diagnostics without making
-// every PR wait on mutable generated copies, broad current-source bindings,
-// or naming/policy freshness. They are intentionally not part of the default
-// publication receipt contract.
-const MAINTENANCE_CHECKS = [
-  {
-    name: "Verify Borg registry and record byte identities",
-    args: ["scripts/borg/verify-assembly-record-byte-identity.mjs", "--check"],
-  },
-  { name: "Audit title/source filename sync", args: ["scripts/audit-title-filename-sync.mjs"] },
-  { name: "Validate generated agent startup orientation", args: ["scripts/build-agent-startup-orientation.mjs", "--check"] },
-  { name: "Validate generated Claude pre-read floor", args: ["scripts/build-claude-bootstrap-floor.mjs", "--check"] },
-  { name: "Validate generated textbook reading copies", args: ["scripts/build-textbook-md-pdf.mjs", "--check"] },
-  { name: "Validate large machine-artifact retention", args: ["scripts/validate-machine-artifact-retention.mjs"] },
-];
-
-export function selectedChecks(env = process.env, profile = "local") {
+export function selectedChecks(_env = process.env, profile = "local") {
   if (!["local", "github"].includes(profile)) throw new Error("Unknown validation profile");
-  const checks = env.AAA_CONTENT_MAINTENANCE === "run"
-    ? [...REQUIRED_CHECKS, ...MAINTENANCE_CHECKS]
-    : REQUIRED_CHECKS;
-  return [...checks];
+  // GitHub's separate Pages job builds and checks its upload once. Locally,
+  // the publication gate includes that same check without keeping an artifact.
+  return profile === "github" ? [...CONTENT_CHECKS] : [...CONTENT_CHECKS,
+    { name: "Build and check Pages payload", args: ["scripts/check-pages-build.mjs"] }];
 }
 
 function formatDuration(ms) {
@@ -208,19 +49,12 @@ function childEnvironment(env = process.env) {
 export function runChecks({ checks = selectedChecks(), execute = spawnSync, log = console.log, error = console.error } = {}) {
   const suiteStartedAt = performance.now();
   const failures = [];
-  const reportingFailures = [];
-  const skipped = [];
   const passed = [];
   const unexecuted = [];
   let exitCode = 0;
   for (const [index, check] of checks.entries()) {
     const label = `${index + 1}/${checks.length} ${check.name}`;
     log(`[content-integrity] ${label}`);
-    if (check.skipWhen?.()) {
-      log(`[content-integrity] skipped: ${check.name} (${check.skipReason})`);
-      skipped.push({ label, reason: check.skipReason });
-      continue;
-    }
     const checkStartedAt = performance.now();
     const result = execute(process.execPath, check.args, {
       cwd: ROOT_DIR,
@@ -238,11 +72,6 @@ export function runChecks({ checks = selectedChecks(), execute = spawnSync, log 
     if (result.status !== 0) {
       const detail = result.signal ? `signal ${result.signal}` : `exit ${result.status ?? 1}`;
       const record = { label, detail, duration };
-      if (check.reporting) {
-        error(`[content-integrity] reported (does not affect exit status): ${check.name} (${detail}, ${duration})`);
-        reportingFailures.push(record);
-        continue;
-      }
       error(`[content-integrity] failed: ${check.name} (${detail}, ${duration})`);
       failures.push(record);
       exitCode = 1;
@@ -254,25 +83,11 @@ export function runChecks({ checks = selectedChecks(), execute = spawnSync, log 
       }
       continue;
     }
-    passed.push({ label, reporting: Boolean(check.reporting), duration });
+    passed.push({ label, duration });
     log(`[content-integrity] passed: ${check.name} (${duration})`);
   }
 
   const total = formatDuration(performance.now() - suiteStartedAt);
-
-  if (skipped.length > 0) {
-    log(`[content-integrity] ${skipped.length} check(s) skipped on this host:`);
-    for (const entry of skipped) {
-      log(`[content-integrity]   - ${entry.label} (${entry.reason})`);
-    }
-  }
-
-  if (reportingFailures.length > 0) {
-    error(`[content-integrity] ${reportingFailures.length} reporting-only check(s) failed (not gating):`);
-    for (const failure of reportingFailures) {
-      error(`[content-integrity]   - ${failure.label} (${failure.detail}, ${failure.duration})`);
-    }
-  }
 
   if (failures.length > 0) {
     error(`[content-integrity] ${failures.length} required check(s) failed (${total}), listed in run order without causal attribution:`);
@@ -282,8 +97,8 @@ export function runChecks({ checks = selectedChecks(), execute = spawnSync, log 
   }
   if (unexecuted.length) error(`[content-integrity] not executed after prerequisite/startup failure: ${unexecuted.join('; ')}`);
   const status = exitCode ? "required checks failed" : "required checks passed";
-  log(`[content-integrity] ${status}; ${passed.filter(row => !row.reporting).length} required passed, ${failures.length} required failed, ${reportingFailures.length} reporting-only failed, ${skipped.length} skipped, ${unexecuted.length} not reached (${total})`);
-  return { exitCode, passed, failures, reportingFailures, skipped, unexecuted };
+  log(`[content-integrity] ${status}; ${passed.length} required passed, ${failures.length} required failed, ${unexecuted.length} not reached (${total})`);
+  return { exitCode, passed, failures, unexecuted };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

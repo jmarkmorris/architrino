@@ -13,8 +13,7 @@ concurrency:
 jobs:
   validate-content:
     runs-on: ubuntu-latest
-    # Measured 2m16s on PR #259 (2026-09-05); the bound catches a hung step
-    # rather than waiting for the six-hour runner limit.
+    # Bound the focused content checks and dependency setup.
     timeout-minutes: 20
     steps:
       - name: Checkout
@@ -36,8 +35,5 @@ jobs:
       - name: Install source inventory tool
         run: sudo apt-get update && sudo apt-get install -y ripgrep
 
-      # OPS-022: the test sweep is opt-in (AAA_TEST_SWEEP=run) until promoted
-      # and is not requested here; the pilot-process tests stall without
-      # bound on this runner (PR #260, 2026-09-07).
-      - name: Run Content Integrity gate
+      - name: Check content, routes and publication boundary
         run: node scripts/check-content-integrity.mjs --profile=github

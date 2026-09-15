@@ -4,6 +4,7 @@ export function createScenePanelUiRuntime(deps) {
     detailClose,
     markdownClose,
     markdownPanel,
+    textbookPageNav,
     markdownDocButton,
     markdownPdfButton,
     markdownLayoutToggle,
@@ -80,6 +81,7 @@ export function createScenePanelUiRuntime(deps) {
   function isMarkdownChromeTarget(target) {
     return (
       isInsideNode(markdownPanel, target) ||
+      isInsideNode(textbookPageNav, target) ||
       isInsideNode(markdownDocButton, target) ||
       isInsideNode(markdownPdfButton, target) ||
       isInsideNode(markdownLayoutToggle, target)

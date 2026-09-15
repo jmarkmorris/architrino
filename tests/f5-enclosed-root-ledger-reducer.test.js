@@ -585,7 +585,7 @@ test("scientific ledger hash excludes run labels and runtime projections", () =>
   }
 });
 
-test("implementation verification hashes every bound file and catches mutation", () => {
+test("implementation verification retains artifact integrity without freezing historical source", () => {
   const directory = mkdtempSync(path.join(tmpdir(), "f5-binding-check-"));
   const implementation = implementationBindings();
   for (const binding of implementation) {
@@ -594,6 +594,12 @@ test("implementation verification hashes every bound file and catches mutation",
     const bytes = Buffer.from(`${binding.id} independent byte-binding control\n`);
     writeFileSync(file, bytes, { flag: "wx" });
     binding.sha256 = sha256(bytes);
+  }
+  assert.deepEqual(verifyF5ImplementationBindings(implementation, { repoRoot: directory }),
+    { verified: true, bindingCount: 8 });
+  for (const id of ["adapter-source", "exact-pair-header", "exact-pair-source", "reducer-source"]) {
+    const source = implementation.find((binding) => binding.id === id);
+    writeFileSync(path.join(directory, source.path), "ordinary source edit\n");
   }
   assert.deepEqual(verifyF5ImplementationBindings(implementation, { repoRoot: directory }),
     { verified: true, bindingCount: 8 });

@@ -24,7 +24,18 @@ Interval symmetric(double radius) {
   return Interval(-radius, radius);
 }
 
+Interval difference_from_point(double point, const Interval& value) {
+  // Equality of two singleton values is exact; this does not identify the
+  // independently varying values of any non-singleton interval.
+  if (value.lower() == point && value.upper() == point) {
+    return Interval::point(0.0);
+  }
+  return Interval::point(point) - value;
+}
+
 Interval pairwise_sum(std::vector<Interval> terms) {
+  terms.erase(std::remove_if(terms.begin(), terms.end(),
+      [](const Interval& value) { return value.is_exact_zero(); }), terms.end());
   if (terms.empty()) return Interval::point(0.0);
   while (terms.size() > 1U) {
     std::vector<Interval> next;
@@ -139,16 +150,18 @@ JointEndpointCorrectorCertificate certify_joint_endpoint_corrector(
       const std::size_t row = 3U * path + axis;
       std::vector<Interval> residual_terms;
       residual_terms.push_back(
-          Interval::point(center_found->second[axis]) -
-          Interval::point(evaluated.center[axis]));
+          difference_from_point(center_found->second[axis],
+              Interval::point(evaluated.center[axis])));
       residual_terms.push_back(
           symmetric(evaluated.independent_remainder_radii[axis]));
       for (std::size_t symbol = 0U;
            symbol < request.retained_symbol_count; ++symbol) {
-        residual_terms.push_back(
-            (Interval::point(coefficient_found->second[symbol][axis]) -
-             evaluated.shared_symbol_coefficient_enclosures[symbol][axis]) *
-            Interval(-1.0, 1.0));
+        const Interval difference = difference_from_point(
+            coefficient_found->second[symbol][axis],
+            evaluated.shared_symbol_coefficient_enclosures[symbol][axis]);
+        if (!difference.is_exact_zero()) {
+          residual_terms.push_back(difference * Interval(-1.0, 1.0));
+        }
       }
       result.parametric_residual_at_center.push_back(
           pairwise_sum(std::move(residual_terms)));

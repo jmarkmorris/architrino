@@ -1518,7 +1518,8 @@ def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256
             old={k:w.decode_role(core,ancestry_files[k].data,k)for k in ('export','manifest','comparison','admission','reconstruction','guards','priorPlan')}
 
             reference.authenticate_prior(old,ancestry)
-            for b in old['admission']['sourceBindings']:pool.read_binding(b)
+            # The old producer's source/runtime inventory is historical provenance.
+            # Consumed ancestry data is authenticated separately above.
             modules['rootComparison'].validate_premises(old['export'],old['reconstruction'],old['guards'])
             w.authenticate_refinement(rdocs,refined,ancestry,root,w.decode_operational,pool.read_binding)
             logs={role:pool.capture(p,h,data=True,size=n).data for role,p,h,n in w.PRIOR_OPERATIONS}

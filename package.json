@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "node scripts/dev/start-local-dev.mjs",
     "prepare:runtime": "node scripts/prepare-runtime-assets.mjs --write",
-    "pretest": "node scripts/prepare-runtime-assets.mjs --write",
-    "test": "node --test --test-concurrency=1",
+    "test": "node scripts/run-tests.mjs",
     "build:site": "node scripts/build-static-site.mjs"
   },
   "dependencies": {

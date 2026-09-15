@@ -1,8 +1,6 @@
 import { createHash } from "node:crypto";
 import { closeSync, constants, fstatSync, openSync, readFileSync, readSync, realpathSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
-const ROOT = fileURLToPath(new URL("../../", import.meta.url));
 
 export const SUBFIELD_CIRCULAR_PHASE_SCHEMA = "braid-program/subfield-circular-root-phase-reduction.v1";
 export const SUBFIELD_CIRCULAR_SUMMARY_SCHEMA = "braid-program/subfield-circular-root-summary-reduction.v1";
@@ -10,14 +8,9 @@ export const SUBFIELD_CIRCULAR_REDUCER_PATH = "src/prescribed-path-analysis/Subf
 export const SUBFIELD_CIRCULAR_CLI_PATH = "scripts/eom/reduce-subfield-circular-root-ledger.mjs";
 export const SUBFIELD_CIRCULAR_CANDIDATES = Object.freeze(["coincident-midpoint-common-frequency", "coincident-midpoint-equal-radius-common-frequency", "coincident-midpoint-3-2-1-frequency", "phase-compensated-equal-geometry", "axially-separated-common-frequency", "axially-separated-equal-radius-common-frequency", "axially-separated-3-2-1-frequency", "axial-transverse-coincident-axis-interior", "high-axial-coincident-axis-interior", "planar-common-center-three-binary", "coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-counter-rotating"]);
 export const SUBFIELD_CIRCULAR_REFERENCES = Object.freeze([
-  ["circular-core", "src/prescribed-path-analysis/CircularHistoryConformance.mjs", null],
-  ["integer-primitive", "scripts/eom/derive-subfield-circular-root-reference.mjs", null],
   ["root-reference", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-root-reference-20260827-v1.json", "c5c7ae5e44e37c7a03ac916f2c406a657e9b90067c27a596302a2731a9ae066f"],
-  ["budget-cli", "scripts/eom/derive-subfield-circular-history-budget.mjs", null],
   ["construction-budget", ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/subfield-circular-history-budget-20260827-v1.json", "6c380ecb86be8ca505ef7975cdd4d8fb844e2191762692a6b5e29134ee5bfebf"],
-  ["pilot-predeclaration", "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-pilot-predeclaration.md", "b1f0ac316d24637b8ad01f467d33c207e7ed728fa3bd3921824d51697daddc4d"],
-  ["whole-manifest-verifier", "scripts/eom/verify-subfield-circular-history.mjs", null],
-].map(([id, relative, sha256]) => Object.freeze({ id, path: relative, sha256: sha256 ?? createHash("sha256").update(readFileSync(path.join(ROOT, relative))).digest("hex") })));
+].map(([id, relative, sha256]) => Object.freeze({ id, path: relative, sha256 })));
 const SUBJECT_PATH = "src/eom/native/eom_subfield_circular_root_cli.cpp";
 const PX = "0.0000000000072759576141834259033203125", PV = "0.0000002384185791015625";
 const Q = 10n ** 60n, U_DEN = 2n ** 53n;
@@ -196,7 +189,15 @@ function verifyBuild(bytes, expectedHash, files) {
   for (const group of ["sources", "references", "headerDependencies"]) {
     const before = build[`${group}Before`], after = build[`${group}After`];
     if (!Array.isArray(before) || before.length === 0 || !same(before, after)) fail(`build ${group} snapshot mismatch`);
-    const seen = new Set(); for (const binding of before) { if (seen.has(binding.path)) fail(`duplicate build ${group} path`); seen.add(binding.path); verify(binding); }
+    // Before/after source observations remain historical build provenance.
+    // Do not require today's source or headers to reproduce their old bytes.
+    const seen = new Set(); for (const binding of before) {
+      if (!isObject(binding) || typeof binding.path !== "string" || typeof binding.realPath !== "string" || !hashToken(binding.sha256) || !Number.isSafeInteger(binding.bytes) || binding.bytes < 0) fail("invalid build source observation");
+      if (seen.has(binding.path)) fail(`duplicate build ${group} path`);
+      seen.add(binding.path);
+      if (all.has(binding.realPath) && all.get(binding.realPath).sha256 !== binding.sha256) fail("conflicting recorded build source observations");
+      all.set(binding.realPath, binding);
+    }
   }
   for (const field of ["executable", "library", "cmakeCache", "compileCommands", "manualDependencyFile"]) verify(build.built?.[field]);
   // Current host capabilities are identified by path, not historical bytes.
@@ -247,10 +248,10 @@ export async function prepareSubfieldCircularPhaseLedgerContext(options, progres
   if (proof.schema !== "braid-program/subfield-circular-history-conformance.v1" || proof.accepted !== true || proof.actualCarrierValidated !== true || proof.h3EvidenceEligible !== false ||
       proof.authority !== "source-bound-whole-manifest-analytic-conformance-only" || proof.manifestSha256 !== subfieldCircularSha256(manifestBytes) || proof.manifestId !== manifestId ||
       proof.candidateId !== manifest.candidateId || proof.receptionTime !== reception || proof.normalizedFieldSpeed !== "1" || !same(proof.retainedInterval, manifest.retainedInterval)) fail("conformance does not accept exact manifest");
-  const verifierBinding = SUBFIELD_CIRCULAR_REFERENCES.find(binding => binding.id === "whole-manifest-verifier");
-  const bindings = [...SUBFIELD_CIRCULAR_REFERENCES.filter(binding => binding !== verifierBinding), sourceBinding, verifierBinding];
-  if (!same(proof.bindings, bindings) || proof.execution?.mode !== "independent-proof-worker" ||
-      !same(proof.execution.sourceBindings, [SUBFIELD_CIRCULAR_REFERENCES[0], SUBFIELD_CIRCULAR_REFERENCES[1], verifierBinding])) fail("conformance instrument bindings differ");
+  const bindings = [...SUBFIELD_CIRCULAR_REFERENCES, sourceBinding];
+  const consumedIds = new Set(bindings.map(binding => binding.id));
+  if (!Array.isArray(proof.bindings) || !same(proof.bindings.filter(binding => consumedIds.has(binding.id)), bindings) ||
+      proof.execution?.mode !== "independent-proof-worker") fail("conformance input bindings differ");
   const order = source.relationships?.sourceOrder;
   if (![6, 12].includes(sourceRow.memberCount) || !Array.isArray(order) || order.length !== sourceRow.memberCount || !Array.isArray(manifest.members) || manifest.members.length !== order.length ||
       proof.memberCount !== order.length || proof.segmentCount !== order.length*1000 || !Array.isArray(proof.members) || proof.members.length !== order.length) fail("incomplete member census");
@@ -467,7 +468,7 @@ export async function reduceSubfieldCircularSummarySnapshot(snapshot,progress=()
     const bytes=files.read(binding.path);if(!hashToken(binding.sha256)||subfieldCircularSha256(bytes)!==binding.sha256)fail("phase receipt original-byte hash mismatch");
     const receipt=subfieldCircularOriginalJson(bytes);
     if(receipt.schema!==SUBFIELD_CIRCULAR_PHASE_SCHEMA||receipt.accepted!==true||receipt.h3EvidenceEligible!==false||receipt.authority!=="source-byte-build-bound-independent-phase-ledger-only"||
-      receipt.reducer?.path!==SUBFIELD_CIRCULAR_REDUCER_PATH||receipt.reducer.sha256!==reducerSha||receipt.cli?.path!==SUBFIELD_CIRCULAR_CLI_PATH||receipt.cli.sha256!==cliSha||!same(receipt.referenceBindings,SUBFIELD_CIRCULAR_REFERENCES))fail("phase receipt has wrong instrument/authority");
+      receipt.reducer?.path!==SUBFIELD_CIRCULAR_REDUCER_PATH||receipt.cli?.path!==SUBFIELD_CIRCULAR_CLI_PATH||!Array.isArray(receipt.referenceBindings)||!same(receipt.referenceBindings.filter(binding=>SUBFIELD_CIRCULAR_REFERENCES.some(reference=>reference.id===binding.id)),SUBFIELD_CIRCULAR_REFERENCES))fail("phase receipt has wrong instrument/authority");
     for(const input of [receipt.historyManifest,receipt.conformance,receipt.buildReceipt,receipt.rawRows]) {
       if(!input||typeof input.path!=="string"||!hashToken(input.sha256)||files.inspect(input.path).sha256!==input.sha256)fail("phase receipt input bytes changed");
     }

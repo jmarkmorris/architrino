@@ -464,7 +464,7 @@ The constrained response also supplies no energy, momentum or angular-momentum a
 
 A finite population and an infinite population pose different summation problems. For an infinite population, the number of particles in a three-dimensional shell grows with its volume, whereas one stationary contribution decreases as inverse distance squared. Magnitudes need not have a finite total. Cancellation must be specified and proved for the actual delayed contributions.
 
-A useful complete-history control places equal-magnitude alternating polarities at the cubic anchors $\mathbf z_j=\ell j$, with $j\in\mathbb Z^3$ and sign $(-1)^{j_1+j_2+j_3}$. Each particle is stationary throughout its earlier history. Grouping the eight corners of consecutive lattice cells cancels the leading spatial moments through degree two. For a block a distance $R$ away, its remaining acceleration is $O(R^{-5})$. A shell with radii $R$ and $2R$ contains $O(R^3)$ blocks, so its contribution is bounded by $O(R^{-2})$. Summing these bounds over successively doubled shells gives a finite tail.
+A useful complete-history control places one architrino at every site of the infinite simple-cubic lattice $\mathbf z_j=\ell j$, with $j\in\mathbb Z^3$, spacing $\ell$ and fixed polarity charge $q_j=q_0(-1)^{j_1+j_2+j_3}$. The reference number density is $\ell^{-3}$. Each site has six nearest neighbors of opposite polarity at distance $\ell$, and twelve face-diagonal neighbors of the same polarity at distance $\sqrt2\ell$. This is a three-dimensional alternating checkerboard. Each particle in the reference is stationary throughout its earlier history. Grouping sources into disjoint eight-site blocks $\{2n+\epsilon:\epsilon\in\{0,1\}^3\}$, with $n\in\mathbb Z^3$, cancels the leading spatial moments through degree two. Each block contains four sources of each polarity; it is a summation convention, not an assumed bound assembly. For a block a distance $R$ away, its remaining acceleration is $O(R^{-5})$. A shell with radii $R$ and $2R$ contains $O(R^3)$ blocks, so its contribution is bounded by $O(R^{-2})$. Summing these bounds over successively doubled shells gives a finite tail.
 
 At a stationary receiver anchor, this selected grouped sum is exactly zero. Reflection through that anchor pairs equal-polarity sources with opposite acceleration vectors in finite symmetric cubes. To transfer the cancellation to the fixed eight-source grouping, one must also control the unmatched boundary faces, edges and corners. Their total tends to zero, giving the same zero limit. Exact cancellation is therefore a derived property of this reference, despite divergence of the sum of individual magnitudes. It does not establish equality of every possible source ordering.
 
@@ -532,6 +532,8 @@ $$
 
 The acceleration is still zero at this onset. On a sufficiently short positive interval afterward, exactly 24 environmental labels move: 16 have leading displacement of fifth order in elapsed time, and eight have leading displacement of sixth order. Both targets and all other labels remain stationary on this interval. These are conclusions about solutions of the receiver equations, including feedback from receiver displacement, rather than evaluations of the acceleration at fixed anchors.
 
+The initial directions can also be stated geometrically. Take the pulse direction to be the third coordinate and call its positive direction upward. Around each exciting target, the twelve first responders occupy its face-diagonal sites. Eight lie above or below its horizontal plane; all eight initially move downward, with horizontal components determined by their positions. The four in its horizontal plane initially move upward. Across the two disjoint shells this gives sixteen initially downward responses and eight initially upward responses. These are the leading directions immediately after onset, as derived in the [first-response analysis](analysis/smooth-two-particle-first-response.md#4-the-actual-nonstationary-response); velocity and acceleration still vanish at the onset itself. The direction statements concern the initial response and do not assign a fixed direction to every subsequent segment.
+
 The extension preserves the smooth join, the original quantitative history bounds and the complete root census on a common short interval. All arriving emissions still precede the original release. Its existence therefore does not yet require reception of the newly generated source futures. The result remains conditional on the stated history and block-summation convention.
 
 This establishes a nonstationary smooth continuation after the waiting interval. Completing the received pulse requires a longer estimate and its endpoint must follow the moving receivers' actual causal equations. The next result supplies that estimate on a stated parameter range. Later reception of postrelease emissions requires a separate coupled-history estimate; neither target contact nor a globally preserved population class follows.
@@ -548,6 +550,14 @@ $$
 $$
 
 All other supplied histories are stationary. The displacement pulse occupies $[-11\ell/8,-9\ell/8]$; its derivatives through third order vanish at both ends. These complete pasts are prescribed data, with no assertion that the equation generated them before release. The original eight-source block sum remains the summation prescription. Let $G=\kappa q_0^2>0$, where $q_0$ is the common polarity magnitude, and introduce dimensionless reception time $t=T/\ell$, coupling ratio $g=G/\ell$, and displacement $\mathbf y_i(t)=(\mathbf X_i(\ell t)-\mathbf z_i)/\ell$. Primes on $\mathbf y_i$ denote derivatives with respect to $t$; physical acceleration and jerk are $\mathbf y_i''/\ell$ and $\mathbf y_i'''/\ell^2$.
+
+Here $G$ collects the Master Equation's coupling coefficient $\kappa$ and the two equal polarity magnitudes. A single stationary source at distance $r$ contributes acceleration of magnitude $G/r^2$; polarity determines its direction. Thus $G$ sets the strength of each contribution before the population sum is taken. At the exact stationary lattice, that sum cancels for every $G$. The spacing $\ell$ is the distance between nearest lattice sites, and $g$ measures the interaction strength relative to that spacing. It is a dimensionless form of the same coefficient, not an additional physical constant.
+
+Restoring symbolic wake speed makes the normalization explicit: dimensionless time is $t=c_fT/\ell$ and the ratio is $g=G/(c_f^2\ell)$. The ratio compares the single-source acceleration scale $G/\ell^2$ with $c_f^2/\ell$, the acceleration scale for changing speed by $c_f$ during one lattice wake-crossing time $\ell/c_f$. In the required numerical convention $c_f=1$, this reduces to $g=G/\ell$. For fixed $G$, halving the lattice spacing doubles $g$. In this fixed dimensionless control, changing $\ell$ also scales the supplied pulse's physical amplitude and duration with $\ell$. The case $g=16$ therefore selects $\ell=G/16$ in these units. It is a parameter case covered by the proof, with no calibration to a typical populated universe implied. The range $0<g\le16$ is the proved range of this control; its upper endpoint is not asserted to be a universal physical limit.
+
+The two targets occupy adjacent sites $(0,0,0)$ and $(\ell,0,0)$ and have opposite polarities. Their supplied excursions are identical along the third coordinate, perpendicular to their line of separation. Their separation is therefore exactly $\ell$ throughout the supplied past; no inward or outward relative kick is imposed. At release $T=0$, every architrino is back at its reference site with zero velocity. What distinguishes this input from the all-stationary reference is the two targets' earlier emitted histories. Complete paths are specified for every label and every $s\le0$, while the Master Equation determines all paths for $T>0$. Environmental positions are not held fixed during that evolution. This prepared-history control is not an assertion that a self-consistent all-past universe produced either the lattice or the excursion.
+
+During the prescribed excursion, both targets first move downward, reverse, pass upward through their original sites, reverse above those sites, and return to rest at them. Their first and second coordinates remain fixed throughout this past motion. Differentiating the profile gives $\psi'(v)=(1-v^2)^3(1-9v^2)$, so its two interior extrema occur at $v=\pm1/3$. The attained target displacement is therefore at most $\ell/314928$, about three millionths of a lattice spacing. The coefficient $2^{-16}\ell$ in the profile is not its attained maximum. The targets reach the lower extremum at $T=-31\ell/24$, cross their sites at $T=-5\ell/4$, reach the upper extremum at $T=-29\ell/24$, and settle at $T=-9\ell/8$. All other paths in this supplied past remain stationary. Section 6.14 establishes why that environmental prescription cannot be the unforced response to the earlier pulse.
 
 For $0<g\leq16$, the derived continuation reaches the common horizon $T=5\ell/16$. Exactly 24 environmental labels have nonconstant future histories: the disjoint distance-$\sqrt2\ell$ shells around the two modified labels. The targets and all remaining labels stay at their anchors through this horizon. Nonconstant history does not mean nonzero velocity or acceleration at every instant.
 
@@ -768,7 +778,15 @@ The targets remain separated by $\ell$ throughout this interval. Section 6.11 su
 
 The first received emissions from the moving environment change the targets' behavior. Both targets leave their anchors, initially moving together in the direction of the supplied past displacement. Their common leading motion does not change their separation. A higher-order contribution moves them apart along their original line of separation.
 
-Keep the unchanged smooth input and $0<g=G/\ell\le16$, with $c_f=1$. Let $\alpha=\sqrt2-11/8$ be the first environmental onset, and let $\mathcal S$ denote its 24 responding labels at squared distance two from the two target anchors. Continue from the accepted interval ending at $h=113/128$ to $H=17/16$ in dimensionless time. Use a proof displacement ball of radius $B=1/512$, which remains inside the original history class. Every cross range then exceeds $1-2B=255/256$ in lattice units. Hence every received nonnegative source time obeys
+Keep the unchanged smooth input and $0<g=G/\ell\le16$, with $c_f=1$. Let $\alpha=\sqrt2-11/8$ be the first environmental onset, and let $\mathcal S$ denote its 24 responding labels at squared distance two from the two target anchors. Continue from the accepted interval ending at $h=113/128$ to $H=17/16$ in dimensionless time. Use a proof displacement ball of radius $B=1/512$, which remains inside the original history class. Every cross range then exceeds $1-2B=255/256$ in lattice units.
+
+The four returning sources at each target are selected by this geometry and the elapsed causal time. In units of $\ell$, the right target is at anchor $(1,0,0)$. Four of its six nearest neighbors are $(1,1,0)$, $(1,-1,0)$, $(1,0,1)$ and $(1,0,-1)$. Each is a face-diagonal neighbor of the left target $(0,0,0)$, at distance $\sqrt2$, and a nearest neighbor of the right target, at distance one. The first return paths therefore run from the left target's supplied pulse to those four environmental responders, then from their generated histories to the right target. The left target receives the reflected four paths through $(0,\pm1,0)$ and $(0,0,\pm1)$, excited by the right target. There are eight distinct environmental sources across the two targets, drawn from the 24 first responders.
+
+The initial motion of these four neighbors is especially concrete. The source above the right target, at $(1,0,1)$, begins moving down and left. The source below it, at $(1,0,-1)$, begins moving down and right. The two side sources at $(1,\pm1,0)$ begin moving upward. These are the leading directions from Section 6.5, with coordinates in lattice units; later reception of the rest of the pulse changes their acceleration. The left target's four-source picture is the reflection across the plane halfway between the targets. A source need not return to its anchor or stop when the driving pulse ends.
+
+The remaining axial nearest neighbors are still present in the equation. The right target's neighbor at zero is the other target; its direct old pulse arrived before release, and its new target motion cannot return on this interval. The outer neighbor $(2,0,0)$ received the right target's old pulse before release and first receives a postrelease disturbance from the left target across distance two, so its generated return is later. In particular, every distance-one old pulse passed during $[-3\ell/8,-\ell/8]$, which is wholly inside the prescribed past. Distance-$\sqrt2\ell$ pulses are the first that arrive after release. Four counts the nonstationary generated corrections received by one target, not a truncation to four interacting particles or omission of the infinite stationary reference. The eight first-return sources are also distinct from the eight-source blocks used to define that reference sum.
+
+The source-time bound for the continuation is
 
 $$
 s/\ell\le H-(1-2B)=17/256<h.
@@ -984,6 +1002,219 @@ All subtracted terms increase with $g$ and $\delta$. At the conservative endpoin
 
 The environment's return signal thus increases the targets' separation throughout this first feedback interval. The conclusion uses the specified smooth disturbance, its actual environmental response and their delayed signed contributions. It supplies no sign for later returns, no stability statement under changed histories, and no general exclusion of coordinate coincidence in a populated universe.
 
+
+### 6.13. Following the complete returned pulse
+
+The next physical question concerns the rest of the environmental response already arriving at the targets. The original pulse first changes the environment; those moving environmental histories then supply the targets' acceleration. Receiving the original pulse endpoint through this two-stage process marks a change in the source's driving regime. The source can retain displacement and velocity afterwards, so receipt of that endpoint does not end its contribution to the target.
+
+The following continuation and comparison are derived in the [next-feedback analysis](analysis/smooth-two-particle-next-feedback.md) and accepted by its [independent assessment](analysis/smooth-two-particle-next-feedback-independent-adjudication.md). They preserve the identical complete past, fixed stationary block sum, $c_f=1$ and $0<g\le16$. This comparison by itself extends no separation sign beyond $H=17/16$. Section 6.15 supplies the additional actual-history error bound and establishes transient approach at $g=16$.
+
+For one of the four channels at a target, write $e(v)=-11/8+v$ for the original emission time, $p(v)=-(1-8v)v^4(1-4v)^4$ for its third-coordinate displacement, $s_j(v)$ for reception at environmental source $j$, and $t_{ij}(v)$ for the subsequent reception at target $i$. If $c$ is the exciting target, the event equations are
+
+$$
+\begin{aligned}
+s_j(v)-e(v)&=\|j-c+\mathbf U_j(s_j(v))-p(v)e_3\|,\\
+t_{ij}(v)-s_j(v)&=\|i-j+\mathbf y_i(t_{ij}(v))-\mathbf U_j(s_j(v))\|.
+\end{aligned}
+$$
+
+The environmental displacement $\mathbf U_j$ is its actual EOM history. Both maps increase while their receiver and source speeds remain below one. The first zero of $p'$ at $v=1/12$ therefore arrives before the endpoint at $v=1/4$, but it is not an acceleration-zero condition: the acceleration also contains the range-dependent displacement contribution, and the target samples the integrated environmental response.
+
+Continuation to $H_*=21/16$ can be constructed using only source histories already accepted through $h=113/128$. In the displacement ball $B_*=1/256$, every cross range is at least $127/128$, so every sampled nonnegative emission satisfies
+
+$$
+s\le\frac{21}{16}-\frac{127}{128}=\frac{41}{128}<\sqrt3-\frac{11}{8}<h.
+$$
+
+Only the first 24 environmental responders contribute nonconstant generated source histories, and they still act only along nearest-neighbor channels. The targets retain four such channels each. A time-dependent bound for each generated correction, $\|\mathbf Q^{\rm gen}\|<g(t-1)/4750$, gives the full receiver estimate
+
+$$
+\|\mathbf y_i''\|\le\frac g{4300}+\frac{6g^2}{4750}(t-1),
+\qquad H\le t\le H_*.
+$$
+
+Integrating from the accepted cut, at the largest coupling, bounds displacement by $305261/78432000<1/256$ and speed by $94387/4902000<1/32$. The strict displacement inequality prevents the solution from leaving the proof ball. The source-time bound makes the receiver equations ordinary differential equations with known delayed inputs, and their uniform Lipschitz bound supplies existence and uniqueness. Uniqueness compares classical continuations with the identical supplied past and block sum, displacement at most $1/256$ and speed at most $1/4$. Complete speed below $1/32$ makes every cross delay residual strictly increasing, hence gives exactly one cross root and excludes all positive-delay self roots. Acceleration, jerk, density and the original root margins remain within their stated class limits. The exact zero-delay diagonal remains unevaluated.
+
+The old squared-distance-six shell enters during this extension, but its newly generated motion cannot return to the targets on the same slab. The receiving census contains 148 old-pulse ordered receptions on 100 environmental labels, together with both targets, and retains the 144 generated nearest-neighbor channels. Each target's pulse-end reception differs from the anchor value $\sqrt2-1/8$ by at most $3/512$, so all eight channels have received that event before $H_*$. The first additional target-source family has anchor arrival $2\sqrt2-11/8$, later than this slab; its actual reception requires another continuation.
+
+To study separation, hold the four environmental receivers at their anchors only as an analytical comparison and integrate their exact old-pulse acceleration twice. Let $\mathcal Z(u)$ be their summed first-coordinate comparison displacement divided by $g$, with $u$ measured from their onset. The comparison retains the full pulse and actual emission root at each fixed receiver. Combining the four source integrals before estimating them gives kernel differences
+
+$$
+H_m(a)=(2-2a+a^2)^{-m/2}+(2+2a+a^2)^{-m/2}
++2(2+a^2)^{-m/2}-4\,2^{-m/2}.
+$$
+
+For $|a|\le2^{-16}$, direct algebra gives $H_2(a)=-2a^6/[(2+a^2)(4+a^4)]\le0$, while a binomial and convexity estimate gives $H_3(a)\ge a^2(3-105a^2/4)/(\sqrt2)^7>0$ when $a\ne0$. The displacement integral has common integrand $(u-v+\sqrt2)H_3(p(v))-H_2(p(v))$. Its four moving-endpoint corrections are nonnegative because the reception maps increase. Consequently $\mathcal Z(u)>0$ for every $u>0$, including both pulse lobes. After pulse completion it has the exact form
+
+$$
+\mathcal Z(u)=\left(u+\sqrt2-\frac18\right)C_3-C_2,
+\qquad C_m=\int_0^{1/4}H_m(p(v))\,dv,
+\qquad C_3>0,\quad C_2<0.
+$$
+
+The comparison therefore retains a positive summed source velocity. It does not replace the moving environmental sources. Writing the right target's first displacement as $x$, reflection still gives $d=1+2x$, and the exact separation balance can be organized as
+
+$$
+\frac{d'(t)}2=x'(H)+g^2\int_H^t\mathcal Z(v-\beta)\,dv
++\int_H^t\mathcal E(v)\,dv.
+$$
+
+Here $\mathcal E$ is the exact signed difference caused by source receiver motion, unequal sampled source times, transmitter and range weights, and the target's scalar first-coordinate receiver term. Its definition and the corresponding acceleration identity are in the supporting analysis. The initial velocity and comparison integral are positive. A bound on the final signed integral that preserves their sign at every intermediate time would establish continued separation through the returned pulse. A negative value of the complete expression establishes approach; an unsuccessful lower bound establishes neither. Section 6.15 resolves this distinction at $g=16$ while enclosing the signed integral over the full coupling range.
+
+The continuation argument also supplies a restricted local existence and uniqueness statement for finitely many disturbed $C^3$ complete histories over this unit-spaced stationary lattice, with a $C^1$ reference receiver field on the displacement ball. Positive range and subunit-speed margins ensure that a sufficiently short next step samples only known history. A common finite starting time for the disturbances makes the receiving set finite on a bounded step, leaving a regular stationary tail and finitely many receiver equations. This includes the present control, with compatible smooth cuts. It does not give evolution on an open neighborhood of the original infinite-population history norm, where independently changed remote histories can defeat summation, and it supplies no singular-boundary or regulator continuation.
+
+### 6.14. Preparation of the supplied history
+
+The smooth two-target control defines a forward initial-history problem. Its complete past is admissible input, but it cannot itself be an unforced solution of the Master Equation before release. The [preparation analysis](analysis/smooth-two-particle-preparation.md), with its [independent assessment](analysis/smooth-two-particle-preparation-independent-adjudication.md), derives two distinct contradictions. These concern the origin of the input and leave the forward theorems intact.
+
+First consider either target during its prescribed pulse. In dimensionless time let $a=-11/8$ and $t=a+v$, $0\le v\le1/4$. Every cross range exceeds $1-2^{-15}>1/4$, so every received source emission precedes $a$. All received source histories are therefore stationary. The target equation reduces exactly to $y''=gS(y)$, with $S(0)=0$ and a locally Lipschitz stationary receiver field. Its prescribed onset has zero position and velocity. Uniqueness makes the stationary trajectory its only regular continuation, whereas the prescribed pulse is nonzero immediately after onset.
+
+The mismatch is quantitative. For $0<v\le1/128$, direct differentiation gives $p''(v)<-8v^2$, while the stationary cubic bound gives $\|gS(p(v)e_3)\|\le22400v^{12}<v^2$. The physical third-component difference between prescribed acceleration and the Master Equation is consequently
+
+$$
+\frac{p''(v)-gS_3(p(v)e_3)}{\ell}
+<-\frac{7v^2}{\ell}.
+$$
+
+Second, keeping the environmental past stationary also conflicts with the old pulse. Choose the environmental receiver at $e_2$ and source zero, with source emission offset $v_*=1/16$. Then $p_*=-81/2^{25}$ and $p_*'=-135/2^{21}$. Put $r_*=(1+p_*^2)^{1/2}$ and $D_*=1+p_*p_*'/r_*$. Reception occurs at the exact negative time $t_*=-21/16+r_*$. The other target's pulse has not yet arrived, and the stationary background cancels. The EOM third acceleration is $gp_*/(\ell r_*^3D_*)<0$, while the prescribed environmental acceleration is zero. Their difference is greater than $g/(2^{20}\ell)$.
+
+Thus imposing motion only on the two targets would already change the environmental history before release. An additive acceleration chosen to cancel these residuals would merely encode the desired trajectories; it supplies no independently derived preparation mechanism. The exact supplied past would require compensating environmental inputs as well. A physically specified preparation must include every participating architrino and its earlier coupled response in the history supplied to the delayed equation.
+
+At release itself, acceleration and jerk match exactly: the distance-one old pulses have finished, and the distance-$\sqrt2$ pulses have not begun reception. Smooth matching at one cut therefore coexists with the earlier contradictions. A different EOM-generated past might reach the same positions and velocities at release, but those instantaneous data would not reproduce this delayed state. The present control establishes a conditional forward response; neither an unforced origin of that exact input nor typical populated-universe behavior follows.
+
+### 6.15. Signed reception error and a transient approach
+
+The targets briefly approach at $g=16$, then separate again by the latest pulse-end reception. This derived result follows from the [signed-error analysis](analysis/smooth-two-particle-signed-error.md) and its [independent assessment](analysis/smooth-two-particle-signed-error-independent-adjudication.md). It uses the identical supplied past and accepted forward continuation. The proof includes the actual environmental response, both stages of causal reception, and a finite-amplitude error bound. A positive summed source displacement alone misses the reversal because the target receives the sources at different times and with different weights.
+
+The [motion figures and reading guide](analysis/smooth-two-particle-motion-plots.md) show the exact supplied excursion, common vertical response, magnified target paths, changing separation and the four early sources returning to one target. The displayed future curves are the derived comparisons with their certified errors. Their axis units and distinct source/target time windows are explicit.
+
+Use dimensionless time $t=T/\ell$, target onset $\beta=\sqrt2-3/8$, target offset $u=t-\beta$, and $u_H=17/16-\beta$. Let $x(u;g)$ be the right target's first-coordinate displacement divided by $\ell$, so normalized separation is $d(t)=1+2x(t-\beta;g)$. The comparison interval is $0\le u\le b_t=17/64$. The latest pulse-end reception has dimensionless time $\tau_{\rm end}=\beta+u_{\rm end}$, where
+
+$$
+\frac{125}{512}\le u_{\rm end}\le\frac{131}{512}<b_t,
+\qquad \beta+b_t<\frac{21}{16}.
+$$
+
+All sampled environmental histories remain in their accepted prefix, where the same four sources per target receive only their original old pulse and stationary reference field.
+
+Introduce $\lambda p$ as an auxiliary amplitude for constructing a comparison, with the actual pulse recovered at $\lambda=1$. Matching the canonical source and target equations through amplitude degree two, with zero initial displacements and velocities, defines explicit piecewise polynomials. Write the target first-coordinate comparison as
+
+$$
+X(u;g)=g^2X_2(u)+g^3X_3(u)+g^4X_4(u).
+$$
+
+The coefficient equations, their zero-initial primitives and their continuation across $u=1/4$ are given explicitly in Sections 2–3 of the signed-error analysis. The $g^2$ term contains the four-source anchor contribution. The $g^3$ and $g^4$ terms also retain environmental receiver motion, source-time shifts and the target's common transverse displacement in the reception weights. They have no general positivity property. Continuing the coefficient curves after $1/4$ preserves their endpoint values and velocities; the actual source endpoint remains determined by its moving causal root.
+
+To compare these polynomials with the exact histories, evaluate their residual in the full Master Equation. Implicit-root differentiation through amplitude order three bounds the omitted terms, including transmitter factors. Piecewise pulse derivatives retain roots crossing the pulse endpoint. Outward-rounded interval arithmetic encloses the residual integrals over the complete amplitude and coupling domains; receiver derivative bounds then propagate those residuals into trajectory errors. The independent assessment reconstructs the coefficients and interval calculation separately. This yields
+
+$$
+|x'(u;g)-X'(u;g)|<10^{-11},
+\qquad 0\le u\le17/64,\quad 0<g\le16.
+$$
+
+The requested signed error integral now has an explicit enclosure. Retain the exact anchor comparison $\mathcal Z$ from Section 6.13, including its moving integration endpoints, and define
+
+$$
+\mathcal C(u,g)=X'(u;g)-X'(u_H;g)
+-g^2\int_{u_H}^u\mathcal Z(v)\,dv.
+$$
+
+Subtracting the two velocity errors in the exact separation balance gives
+
+$$
+\left|\int_{17/16}^{\beta+u}\mathcal E(t)\,dt-\mathcal C(u,g)\right|
+<2\times10^{-11},
+\qquad u_H\le u\le17/64,\quad 0<g\le16.
+$$
+
+This bounds the signed error at every intermediate time through the latest pulse-end reception. Its center retains the signed corrections; it does not assume that their integral is positive. The absolute radius becomes too coarse to determine the sign as $g$ tends to zero, so a full coupling-dependent classification remains open.
+
+At $g=16$, a sharper calculation on $0\le u\le3/25$ gives $|x'-X'|<4\times10^{-13}$. Direct polynomial evaluation gives $-3.811\times10^{-12}<X'(3/25;16)<-3.810\times10^{-12}$, hence
+
+$$
+-4.211\times10^{-12}<x'(3/25;16)<-3.410\times10^{-12}.
+$$
+
+With $c_f=1$, physical separation velocity equals the derivative of normalized separation with respect to $t$. At the physical event
+
+$$
+T_*=(\sqrt2-51/200)\ell,
+\qquad \frac{d}{dT}\bigl[\ell d(T/\ell)\bigr]<-6.8\times10^{-12}.
+$$
+
+Thus the targets approach on an open interval containing $T_*$. Their earlier positive separation velocity implies at least one intervening zero, without locating a unique first zero or proving that every zero is a transverse crossing.
+
+On the entire endpoint enclosure, the polynomial obeys $X'(u;16)>1.9\times10^{-10}$. Applying the uniform velocity error gives
+
+$$
+x'(u_{\rm end};16)>1.8\times10^{-10},
+\qquad d'(\tau_{\rm end})>3.6\times10^{-10}.
+$$
+
+Separation has therefore resumed by the latest reception. This is a reversal of separation velocity within a regular finite evolution interval. It does not establish contact or that separation falls below its initial value; the accepted positive separation and range floors remain intact. An omitted causal-root term, an invalid interval bound or a failed residual propagation would invalidate the corresponding sign conclusion. Section 6.14 separately establishes that the exact input is not an unforced all-past history, so this result carries no typical populated-universe interpretation.
+
+### 6.16. Later environmental returns and repeated vertical turns
+
+The same supplied-history control admits a further continuation through $T=2\ell$ at $g=16$ and $c_f=1$. The [later-continuation derivation](analysis/smooth-two-particle-later-continuation.md) and its [independent assessment](analysis/smooth-two-particle-later-independent-adjudication.md) retain the fixed infinite checkerboard lattice, complete supplied past, stationary block prescription and original regularity class. The proof first sharpens the already evolved environmental source bounds by integrating the old pulse before taking its absolute estimate. Through the source time $33/32$, this gives displacement below $1/60000$ and speed below $1/16000$ in normalized units. Every generated source time received by $t=2$ lies inside that known prefix.
+
+The subsequent receiver bounds are
+
+$$
+\|y_i(t)\|<\frac1{30000}+\frac{(t-1)_+^2}{144}<\frac1{128},
+\qquad \|y_i'(t)\|<\frac1{32}.
+$$
+
+They close the continuation, retain exactly one positive cross root and exclude every positive self root. The infinite stationary field remains in the equations; finite propagation restricts only the changed-history corrections. The interval contains 206 nonconstant environmental histories and the two targets, with 328 entered old-pulse channels and 1,032 generated-history channels. Each target receives 21 distinct environmental source histories containing 25 original-pulse-to-environment-to-target paths. Counting only source identities would miss a second excitation in four reused sources.
+
+The added returning families include each target's own twelve face-diagonal neighbors near $t=2\sqrt2-11/8$, its outward axial neighbor near $13/8$, and additional histories near $\sqrt2+\sqrt3-11/8$. Their acceleration contributions can oppose or reinforce the previously accumulated velocity. A direction change requires their integrated opposition to exceed that velocity; delay alone establishes no restoring or damping sign.
+
+The [later-motion comparisons](analysis/smooth-two-particle-later-motion.md) evaluate these histories in two independently implemented ways: the first two amplitude coefficients of the full equation and a nonlinear moving-root comparison that omits the cubic stationary term. An independently derived exact first-coefficient path sum also checks the shared vertical response. These calculations propose the approximate motion. A subsequent [full-equation certificate](analysis/smooth-two-particle-later-certification.md), with its [independent assessment](analysis/smooth-two-particle-later-certification-independent-adjudication.md), establishes the actual vertical turns by enclosing the acceleration mismatch of continuous polynomial histories against the unmodified equation.
+
+| Enclosed actual time $t$ | Shared height in $10^{-6}\ell$ | Direction change |
+| --- | --- | --- |
+| $[1545/1024,1547/1024]$ | $[4.59109,4.71167]$ | Upward to downward |
+| $[1878/1024,1881/1024]$ | $[-0.428213,-0.307786]$ | Downward to upward |
+| $[2019/1024,2024/1024]$ | $[0.980320,1.100902]$ | Upward to downward |
+
+There is exactly one actual turn in each interval, and these are exactly three consecutive turns on $[5/4,2]$. The first downward excursion lies between $4.898880\times10^{-6}\ell$ and $5.139873\times10^{-6}\ell$, while the following rise lies between $1.288107\times10^{-6}\ell$ and $1.529114\times10^{-6}\ell$. Using the same trough in their ratio gives $0.256623<U/D<0.304647<1/3$, where $D$ denotes the downward excursion and $U$ the following upward excursion. This is a derived finite-interval ringing result for the actual equation. At the same horizon the numerical comparison's horizontal separation is still increasing, with excess about $1.33330\times10^{-9}\ell$. That smaller horizontal sign is outside the new certificate's error resolution; a decreasing vertical excursion does not imply decay in every motion component.
+
+The nonlinear comparison's nearest sampled upward-neighbor gap is approximately $0.999993562\ell$; the outward-neighbor gap changes by only about $2.49\times10^{-11}\ell$ at its sampled minimum. Both calculations use simultaneous neighbor and target positions. These numerical minima are distinct from the derived coarse exclusion $r>63\ell/64$, which follows for every initially adjacent pair from the actual continuation's displacement bound.
+
+The certificate defines piecewise quintic paths from exact dyadic nodal positions, velocities and accelerations. Shared nodes give exact $C^2$ joins. Every received causal root and every time-cell acceleration residual is enclosed, including the infinite stationary contribution through $16\|S_0(y)\|\le22400\|y\|^3$. The complete source residual is below $9.471749\times10^{-11}$ and the target residual below $1.539527\times10^{-11}$. The [propagation theorem](analysis/smooth-two-particle-later-residual-propagation.md) includes the earlier errors in all 76 received source histories, their shifted causal times and target feedback; it bounds position, velocity and acceleration errors by $6\times10^{-8}$, $1.2\times10^{-7}$ and $2\times10^{-7}$. Continuous polynomial bounds also establish the required target neighborhood. Opposite endpoint velocity signs and a fixed acceleration sign establish a unique turn inside each window, while continuous signs in every gap establish that the turns are consecutive. Exact rational polynomial bounds supply an independent check of those signs and the excursion inequality. Numerical agreement alone is not used as acceptance evidence.
+
+These results do not imply eventual settling. Eight later old-pulse return paths per target have not completed their pulse-end receptions at $t=2$. The next section follows those receptions; a longer argument must also control successive excursions and drift, while retaining the preparation limitation of Section 6.14.
+
+### 6.17. Continued descent through the remaining pulse endpoints
+
+The [pulse-end extension](analysis/smooth-two-particle-later-pulse-ends.md), with its [independent assessment](analysis/smooth-two-particle-later-pulse-end-independent-adjudication.md), proves continuation of the same actual infinite-population problem to $H=259/128=2.0234375$. Its continuation and full-equation residual estimates preserve the supplied past, $g=16$, $c_f=1$, the stationary block sum and the original history class. Every received environmental source time remains below $33/32$, so the already evolved source histories suffice on this added interval. The 208 affected histories and all entered channel counts are unchanged.
+
+Each target receives the last eight original-pulse endpoints along two-leg paths whose squared anchor distances are $(2,3)$ or $(3,2)$. For the right target at $e_1$, these paths originate at zero and pass through $j=(0,\pm1,\pm1)$ or $j=(1,\pm1,\pm1)$. The latter four carry the second excitation of previously received sources. The reflected paths reach the left target. There are sixteen directed endpoint receptions in total and no new target source identities.
+
+The anchor endpoint time is $\tau_e=\sqrt2+\sqrt3-9/8$. Allowing motion on both legs gives the actual enclosure
+
+$$
+|t_e-\tau_e|<\frac7{120000},\qquad
+2.021206036<t_e<2.021322704<H.
+$$
+
+These endpoints precede the next entering generated families anywhere in the population. Completing an old-pulse reception does not make its environmental source stationary: the source retains the displacement and velocity accumulated during its earlier excitation and subsequent evolution, and its subsequent emitted history remains part of the Master Equation.
+
+The continuous target approximation appends 24 quintic cells with exact $C^2$ joins to the unchanged certified prefix. Enclosing the complete acceleration residual on all 192 new subcells, including the infinite stationary field, gives a residual below $4.586780\times10^{-12}$. The extended comparison still bounds target position, velocity and acceleration errors by $6\times10^{-8}$, $1.2\times10^{-7}$ and $2\times10^{-7}$. Independent exact rational polynomial bounds then give, for either target's normalized height $z$,
+
+$$
+-2.119112\times10^{-6}<z'(t)<-1.748130\times10^{-6}<0,
+\qquad 2\le t\le H.
+$$
+
+Both targets therefore continue downward through every remaining endpoint. There is no fourth vertical turn by $H$. Integrating the velocity error bounds the added fall more tightly than subtracting two separate position enclosures:
+
+$$
+4.300499\times10^{-8}\ell
+<\ell\big[z(2)-z(H)\big]
+<4.863000\times10^{-8}\ell.
+$$
+
+The new downward leg is unfinished, so this extension supplies no additional completed-excursion ratio. The previous ratio $0.256623<U/D<0.304647$ remains valid. Deciding whether the next full excursion is smaller requires reaching its next vertical minimum while evolving every newly required source history. Eventual settling, drift in other components and typical preparation remain separate unresolved questions; no additional motion law is introduced.
 
 ## 7. Wake transport, action, and conserved accounts
 

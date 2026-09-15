@@ -153,9 +153,17 @@ Interval operator/(const Interval& left, const Interval& right) {
   if (right.contains_zero()) {
     throw std::domain_error("interval division denominator contains zero");
   }
-  const Interval reciprocal(
-      downward(1.0 / right.upper()), upward(1.0 / right.lower()));
-  return left * reciprocal;
+  if (left.is_exact_zero()) return Interval::point(0.0);
+  // Divide endpoints directly: a subnormal denominator can have an infinite
+  // reciprocal even when every quotient is finite (for example, tiny/tiny).
+  // With zero excluded from the denominator, extrema occur at the corners.
+  const std::array<double, 4> quotients = {
+      left.lower() / right.lower(), left.lower() / right.upper(),
+      left.upper() / right.lower(), left.upper() / right.upper(),
+  };
+  return Interval(
+      downward(*std::min_element(quotients.begin(), quotients.end())),
+      upward(*std::max_element(quotients.begin(), quotients.end())));
 }
 
 Interval interval_square(const Interval& value) {

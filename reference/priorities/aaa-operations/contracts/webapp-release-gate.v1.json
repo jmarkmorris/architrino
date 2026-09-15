@@ -1,7 +1,14 @@
 {
   "schema": "architrino.webapp-release-gate.v1",
-  "status": "accepted",
-  "claimLevel": "operations-contract",
+  "status": "retired",
+  "claimLevel": "historical-operations-record",
+  "retirement": {
+    "date": "2026-09-14",
+    "workItems": ["OPS-034", "OPS-036"],
+    "authority": "Operator-directed replacement of testing and removal of superseded machinery",
+    "currentProcess": "reference/op/testing-regime.md",
+    "scope": "The requirements, commands and profiles below are historical, not active release obligations. The source-bound receipt checker is retired. Built-payload checks and relevant fresh browser observations replace its publication role; original browser evidence is preserved."
+  },
   "requiredCheckCategories": [
     "content",
     "graph",

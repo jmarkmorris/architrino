@@ -183,14 +183,16 @@ struct NativeCoupledEvolutionRequest {
   // and controller state always form a resumable accepted boundary.
   std::function<bool()> cancellation_requested;
   // Diagnostics only: invoked before a failed corrected-substep candidate is
-  // discarded.  The callback cannot alter publication; rejected steps still
+  // discarded, including its parallel joint carrier when enabled. The callback
+  // cannot alter publication; rejected steps still
   // publish their input histories only.
   std::function<void(
       const std::string&,
       const std::string&,
       const std::string&,
       std::size_t,
-      const std::vector<NativePublishedPath>&)>
+      const std::vector<NativePublishedPath>&,
+      const std::map<std::string, JointAffineRetainedHistory>&)>
       failed_substep_candidate_callback;
 };
 
