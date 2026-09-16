@@ -1214,7 +1214,103 @@ $$
 <4.863000\times10^{-8}\ell.
 $$
 
-The new downward leg is unfinished, so this extension supplies no additional completed-excursion ratio. The previous ratio $0.256623<U/D<0.304647$ remains valid. Deciding whether the next full excursion is smaller requires reaching its next vertical minimum while evolving every newly required source history. Eventual settling, drift in other components and typical preparation remain separate unresolved questions; no additional motion law is introduced.
+The new downward leg is unfinished at this horizon, so the pulse-end extension supplies no additional completed-excursion ratio. The previous ratio $0.256623<U/D<0.304647$ remains valid. The following section reaches the next vertical minimum while evolving every newly required source history. Eventual settling, drift in other components and typical preparation remain separate unresolved questions; no additional motion law is introduced.
+
+### 6.18. A fourth vertical turn and a smaller completed descent
+
+The [next-minimum analysis](analysis/smooth-two-particle-next-minimum.md), with its [independent assessment](analysis/smooth-two-particle-next-minimum-independent-adjudication.md), establishes actual continuation through $H=9/4$ and a fourth consecutive turn of the targets' common vertical coordinate. The same supplied past, infinite alternating cubic lattice, eight-source block sum, $g=16$ and $c_f=1$ remain fixed. Both targets finish their downward excursion and begin rising again. This vertical reversal is distinct from a change in their horizontal separation velocity.
+
+The new receiving stage includes the other target's generated future. Each target receives 26 changed source identities: six unit neighbors, twelve face diagonals and eight body diagonals. The required source prefix through $a_1=41/32$ includes 100 environmental histories and both target histories. The [continuation theorem](analysis/smooth-two-particle-next-minimum-continuation.md) proves that every final receiver root samples this prefix, and every generated root needed to evolve that prefix samples the earlier accepted histories through $a_0=33/32$. The full population has 248 histories that become nonconstant by $H$, with 392 old and 1540 generated directed channels. More remote stationary histories remain in the infinite stationary sum.
+
+The intermediate numerical histories are independently checked against their complete equations, including the new generated feedback. Their full residual is below $9.471749\times10^{-11}$; the final target residual is below $1.539527\times10^{-11}$. Both include the infinite stationary-field remainder. A three-stage positive integral comparison propagates source position, velocity and emission-time errors, giving uniform target allowances $1.3\times10^{-8}$, $5\times10^{-8}$ and $2\times10^{-7}$ in dimensionless position, velocity and acceleration. The source and target displacement neighborhoods required by that comparison are themselves certified.
+
+Write $m_2$ for the preceding minimum, $M_3$ for the following maximum and $m_4$ for the new minimum. Continuous polynomial bounds and the propagated errors give
+
+$$
+\begin{gathered}
+\frac{2274}{1024}\le t_4\le\frac{2277}{1024},\\
+3.6306106\times10^{-7}<m_4<3.8976381\times10^{-7}.
+\end{gathered}
+$$
+
+Actual velocity remains negative from the preceding endpoint to this window, crosses zero exactly once inside it, and stays positive afterward through $9/4$. The window's acceleration is strictly positive. Independent exact rational polynomial bounds verify these continuous signs, so the statement does not rest on sampled extrema.
+
+The new fall is $D_4=M_3-m_4$ and the preceding rise is $U=M_3-m_2$. The common maximum cancels: $D_4<U$ is equivalent to $m_4>m_2$. The new minimum is above the lattice plane, while the preceding certified minimum lies below it. The retained enclosures yield
+
+$$
+0.4192709<\frac{D_4}{U}<0.5237783.
+$$
+
+Thus this completed downward excursion is between approximately $42\%$ and $53\%$ of the preceding upward excursion. The finite sequence now contains four consecutive vertical turns and a second comparison of successively smaller excursions. It supplies no all-time damping law or limiting height, and it preserves the preparation restriction of Section 6.14. A subsequent larger excursion would refute an extrapolation of the pattern, not this finite result.
+
+### 6.19. A later rise exceeds the preceding fall
+
+The [next-maximum investigation](analysis/smooth-two-particle-next-maximum.md), with its [independent adjudication](analysis/smooth-two-particle-next-maximum-independent-adjudication.md), establishes continued upward motion through $H=11/4$ under the unchanged supplied history, lattice, block prescription, $g=16$ and $c_f=1$. The next maximum has not occurred. Nevertheless, the ongoing rise has already exceeded the preceding completed fall. The smaller excursions in Sections 6.16 and 6.18 therefore cannot be extrapolated to a monotonically decreasing sequence.
+
+The [continuation theorem](analysis/smooth-two-particle-next-maximum-continuation.md) evolves the necessary 150 environmental source histories and both targets through $57/32$. Each final target receives 36 changed source identities. Integrating the general vector-source acceleration contributions by parts retains their endpoint terms and propagates separate bounds before and after the earlier certified source cut. This closes actual population continuation without adding a motion law or replacing a needed source future. The complete residual includes the infinite stationary field; its maximum is below $9.471749\times10^{-11}$ for source histories and $7.392321\times10^{-9}$ for the final target. The resulting position and velocity error allowances are $1.2\times10^{-7}$ and $4.4\times10^{-7}$.
+
+Independent exact rational polynomial bounds then give
+
+$$
+z'(t)>1.3003342\times10^{-5}\quad(9/4\le t\le11/4),
+\qquad
+6.8976846\times10^{-5}<z(11/4)<6.9216847\times10^{-5}.
+$$
+
+Write $D_4=M_3-m_4$ for the preceding fall and $U(t)=z(t)-m_4$ for the present rise accumulated by time $t$. Their common minimum cancels: $U(t)>D_4$ is equivalent to $z(t)>M_3$. The accepted height already exceeds the preceding maximum, and the correlated ratio obeys
+
+$$
+92.9927368<\frac{U(11/4)}{D_4}<116.5460665.
+$$
+
+The same independent assessment also accepts the [later full-law extension](analysis/smooth-two-particle-next-maximum.md) through $13/4$. It certifies all 246 environmental source histories and both targets through $73/32$, including both targets' returning effects, and 60 changed source identities per final target. Restarting the population comparison from that complete prefix closes continuation; four-stage error propagation and continuous sign bounds give
+
+$$
+\begin{aligned}
+z'(t)&>1.0597846\times10^{-4}&& (11/4\le t\le13/4),\\
+2.2716913\times10^{-4}&<z(13/4)<3.0916914\times10^{-4},\\
+307.3918340&<U(13/4)/D_4<522.8613419.
+\end{aligned}
+$$
+
+This compares an unfinished rise with a completed fall. It proves neither a fifth turning time nor all-time growth. Extending the same comparison with a uniform source bound is insufficient at $15/4$; the following complete-population restart supplies the stronger estimate. This limitation belongs to the earlier proof estimate. The preparation restriction and distinction between vertical motion and horizontal pair separation remain unchanged.
+
+### 6.20. Continuing from the complete population state
+
+The [population-state certificate](analysis/smooth-two-particle-population-restart.md) and its [source-resolved continuation](analysis/smooth-two-particle-post-restart.md) establish actual complete-population continuation and continued common-height rise through $H=19/4$. The [independent assessment](analysis/smooth-two-particle-class-preserving-independent-adjudication.md) retains the Master Equation, supplied past, infinite alternating cubic lattice, stationary block sum, $g=16$ and $c_f=1$.
+
+The common-time state at $h=13/4$ contains 504 environmental identities and both targets, for 506 histories. Its construction samples only the earlier certified histories through $73/32$, preserves the earlier nodes and includes both targets' returning effects. Continuous full-law residuals and independently propagated errors establish
+
+$$
+|y_i(h)|<1/2000,\qquad |y_i'(h)|<1/1000,\qquad |y_i''(h)|<1/100.
+$$
+
+The restart retains the complete past of every source. Each source has its own nondecreasing displacement enclosure on successive source-time intervals. Integrating its vector contribution retains both endpoint terms and the lower emission-time primitive. A source that remains stationary contributes zero to the changed-source sum, while its stationary row remains in the original infinite sum.
+
+The stationary contribution can be bounded more sharply by extracting its cubic term. In displacement coordinates,
+
+$$
+S_{0,i}(y)=a\left(y_i^3-\frac32 y_i\sum_{j\ne i}y_j^2\right)+R_i(y),
+\qquad |R(y)|\le\frac{7995}{(1-B)^7}|y|^5\quad(|y|\le B<1),
+$$
+
+where an absolutely convergent coefficient series, a finite outward sum and an explicit infinite tail give $14.2309<a<14.3977$. Cubic symmetry, zero divergence and the accepted vanishing first two derivatives determine the cubic form. The remainder follows from $\|D^5K(x)\|\le29520|x|^{-7}$ and $\sum_{n\ne0}|n|^{-7}<65/2$. This yields $|S_0(y)|<25|y|^3$ on radius $1/64$, and, using the cubic vector's norm bound $|y|^3$, a bound below $50|y|^3$ on radius $1/20$. These estimates retain the original block prescription and introduce no new acceleration term.
+
+The later proof combines direct comparison to complete numerical histories with a short final continuation. It refreshes all 676 affected histories through $15/4$, then all 836 affected histories through $17/4$. Each refresh retains the complete earlier histories and is checked against the full equation. The environmental residual bounds are $5.460740\times10^{-7}$ and $3.077658\times10^{-6}$ respectively; the copied targets have separately certified residuals within the complete-population budget $1/25000$. Propagating source errors as well as these defects proves complete state bounds at $17/4$ of $1/100$ in displacement, $3/100$ in speed and $1/10$ in acceleration.
+
+The final complete-population comparison extends from $17/4$ to $H=19/4$ and includes all 1070 affected identities. Its continuous full-law residual is below $0.001520358$. Receiver sensitivity retains all possible actual channels; the source-error forcing retains the union of those channels and the nonzero numerical-trial channels. This distinction includes small polynomial terms appearing before the exact causal front. Independently propagated errors give displacement below $0.043639265<1/16$, speed below $0.173612594<1$ and acceleration below $0.863730737$. Strict range, root and jerk bounds preserve the original regularity class. The infinite stationary complement remains in the prescribed sum. The same-time distance between any two labels initially one spacing apart exceeds $0.91272\ell$; this conservative population bound does not locate an individual closest approach.
+
+Each target has 130 possible actual changed-source identities on the final interval; its comparison includes four additional numerical-trial terms. The continuous full-law residual on $[9/2,19/4]$ is below $0.000143090753$, including the stationary remainder. Every required source time is below $3.79<17/4$, within the accepted complete histories. Sufficient uniform target error allowances are $0.00344$ in position and $0.0184$ in velocity, giving
+
+$$
+\begin{aligned}
+z'(t)&>0.0000340325 &&(9/2\le t\le19/4),\\
+0.0127854757&<z(19/4)<0.0196654758,\\
+17327.7513&<U(19/4)/D_4<33299.2235.
+\end{aligned}
+$$
+
+The independently accepted acceleration allowance $0.0936$ also gives $0.1216416860<z''(19/4)<0.3088416861$. Together with the earlier continuous signs, this excludes a fifth turn through $19/4$ and establishes positive upward acceleration at the endpoint. The upward excursion remains unfinished. Its much greater accumulated height refutes monotonic shrinkage of subsequent excursions for this preparation, without establishing a future maximum, all-time growth or eventual settling.
 
 ## 7. Wake transport, action, and conserved accounts
 

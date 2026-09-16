@@ -1,0 +1,777 @@
+{
+  "schema": "fsc-partner-auxiliary-comparison/v1",
+  "grade": "measured auxiliary-model diagnostic; no sharp-limit certification",
+  "knownCases": {
+    "schema": "fsc-partner-auxiliary-known-cases/v1",
+    "createdAt": "2026-09-16T03:39:09.210Z",
+    "sourceSha256": "cf295fa7f5caf4a45576d65a75965663684a7d2a4b72427529362542bfd56538",
+    "passed": true,
+    "checks": [
+      {
+        "name": "Gauss polynomial degree six",
+        "actual": 4.285714285714286,
+        "expected": 4.285714285714286
+      },
+      {
+        "name": "Partner incidence exact antiderivative",
+        "actual": 189.51002680999872,
+        "expected": 189.51002681001154,
+        "relativeError": 6.763858972993951e-14
+      },
+      {
+        "name": "Hollow profile exact incidence zero",
+        "actual": 0,
+        "expected": 0
+      },
+      {
+        "name": "Static separated source exact softened row",
+        "actual": -6.106325395161022,
+        "expected": -6.106325395161031
+      },
+      {
+        "name": "Constant acceleration cap and reversal",
+        "actual": {
+          "x": -1.0000000000000013,
+          "v": -1
+        },
+        "expected": {
+          "x": -1,
+          "v": -1
+        }
+      },
+      {
+        "name": "Zero ledger inertial motion",
+        "actual": {
+          "x": 0.7000000000000005,
+          "v": 0.7
+        },
+        "expected": {
+          "x": 0.7,
+          "v": 0.7
+        }
+      }
+    ]
+  },
+  "runs": [
+    {
+      "name": "g08",
+      "parameters": {
+        "K": 1,
+        "eta": 0.08,
+        "core": 0.08,
+        "horizon": 1,
+        "quadSpacing": 0.02,
+        "profile": "gaussian",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.000706713780918728,
+        "count": 283,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": 0.04175439229675733,
+        "finalV": -1,
+        "maxPosition": 0.0953916501851568,
+        "minPosition": 0,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 57.36383430096472,
+        "velocityZeroCount": 1,
+        "positionZeroCount": 0
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.12168453308596824,
+          "x": 0.09539106253922174
+        }
+      ],
+      "tailAccelerationEnvelope": 5.785977482972601e-20,
+      "wallSeconds": 0.01054245800000001
+    },
+    {
+      "name": "g04",
+      "parameters": {
+        "K": 1,
+        "eta": 0.04,
+        "core": 0.04,
+        "horizon": 1,
+        "quadSpacing": 0.01,
+        "profile": "gaussian",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.00025,
+        "count": 800,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": 0.01430874679245712,
+        "finalV": -0.9612692523537002,
+        "maxPosition": 0.04143340054390691,
+        "minPosition": -0.02688318911091847,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 239.3733374954743,
+        "velocityZeroCount": 3,
+        "positionZeroCount": 2
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.04916022293293356,
+          "x": 0.041433166032919556
+        },
+        {
+          "type": "position-zero",
+          "t": 0.09708975364956172,
+          "v": -1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.13073919716332458,
+          "x": -0.026883085390628246
+        },
+        {
+          "type": "position-zero",
+          "t": 0.1634449390182994,
+          "v": 1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.18923835818495047,
+          "x": 0.019561266523624686
+        }
+      ],
+      "tailAccelerationEnvelope": 4.628781986378081e-19,
+      "wallSeconds": 0.018682084
+    },
+    {
+      "name": "g04fine",
+      "parameters": {
+        "K": 1,
+        "eta": 0.04,
+        "core": 0.04,
+        "horizon": 1,
+        "quadSpacing": 0.005,
+        "profile": "gaussian",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.000125,
+        "count": 1600,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": 0.014306443246701524,
+        "finalV": -0.9614427512255098,
+        "maxPosition": 0.04143358377468797,
+        "minPosition": -0.02688313228252597,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 239.37333752450468,
+        "velocityZeroCount": 3,
+        "positionZeroCount": 2
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.04915990265799735,
+          "x": 0.04143351228688578
+        },
+        {
+          "type": "position-zero",
+          "t": 0.09708921664196302,
+          "v": -1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.13073821308371975,
+          "x": -0.02688308199183774
+        },
+        {
+          "type": "position-zero",
+          "t": 0.1634434617274105,
+          "v": 1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.1892361950835977,
+          "x": 0.01956108692733273
+        }
+      ],
+      "tailAccelerationEnvelope": 4.628781986378081e-19,
+      "wallSeconds": 0.039665374999999996
+    },
+    {
+      "name": "g04finer",
+      "parameters": {
+        "K": 1,
+        "eta": 0.04,
+        "core": 0.04,
+        "horizon": 1,
+        "quadSpacing": 0.0025,
+        "profile": "gaussian",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.0000625,
+        "count": 3200,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": 0.01430584781171727,
+        "finalV": -0.9614890035040159,
+        "maxPosition": 0.04143358514202356,
+        "minPosition": -0.02688310932965132,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 239.37333752460071,
+        "velocityZeroCount": 3,
+        "positionZeroCount": 2
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.049159819649078944,
+          "x": 0.04143357781142311
+        },
+        {
+          "type": "position-zero",
+          "t": 0.09708905172324606,
+          "v": -1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.13073792917735685,
+          "x": -0.026883089845615667
+        },
+        {
+          "type": "position-zero",
+          "t": 0.16344305878264118,
+          "v": 1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.18923563514460776,
+          "x": 0.019561080722006362
+        }
+      ],
+      "tailAccelerationEnvelope": 4.628781986378081e-19,
+      "wallSeconds": 0.24751412499999997
+    },
+    {
+      "name": "g02",
+      "parameters": {
+        "K": 1,
+        "eta": 0.02,
+        "core": 0.02,
+        "horizon": 1,
+        "quadSpacing": 0.005,
+        "profile": "gaussian",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.00008837825894829873,
+        "count": 2263,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": 0.0031790290410495204,
+        "finalV": -0.7542489166760693,
+        "maxPosition": 0.018771840700040107,
+        "minPosition": -0.01001977068347608,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 977.4125750933775,
+        "velocityZeroCount": 13,
+        "positionZeroCount": 12
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.021235196248456933,
+          "x": 0.01877172395881913
+        },
+        {
+          "type": "position-zero",
+          "t": 0.04196877731647137,
+          "v": -1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.05414173002118307,
+          "x": -0.010019678174444128
+        },
+        {
+          "type": "position-zero",
+          "t": 0.06600438009042535,
+          "v": 1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.07326511340035191,
+          "x": 0.005117128111911703
+        }
+      ],
+      "tailAccelerationEnvelope": 3.703025589102465e-18,
+      "wallSeconds": 0.06874725
+    },
+    {
+      "name": "g02fine",
+      "parameters": {
+        "K": 1,
+        "eta": 0.02,
+        "core": 0.02,
+        "horizon": 1,
+        "quadSpacing": 0.0025,
+        "profile": "gaussian",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.000044189129474149365,
+        "count": 4526,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": 0.0031756018116307905,
+        "finalV": -0.7553159133130614,
+        "maxPosition": 0.01877188336524893,
+        "minPosition": -0.010019970078980152,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 977.4125752095002,
+        "velocityZeroCount": 13,
+        "positionZeroCount": 12
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.021235113196128225,
+          "x": 0.018771872639615477
+        },
+        {
+          "type": "position-zero",
+          "t": 0.04196862986938169,
+          "v": -1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.05414145053539554,
+          "x": -0.01001993757914035
+        },
+        {
+          "type": "position-zero",
+          "t": 0.06600405156747717,
+          "v": 1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.07326457507416101,
+          "x": 0.0051171693978657095
+        }
+      ],
+      "tailAccelerationEnvelope": 3.703025589102465e-18,
+      "wallSeconds": 0.289243791
+    },
+    {
+      "name": "g01",
+      "parameters": {
+        "K": 1,
+        "eta": 0.01,
+        "core": 0.01,
+        "horizon": 1,
+        "quadSpacing": 0.0025,
+        "profile": "gaussian",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.00003125,
+        "count": 6400,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": 0.00032488943060154224,
+        "finalV": 0.9907587872225626,
+        "maxPosition": 0.008746135755715118,
+        "minPosition": -0.003774364030148998,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 3949.5305700699673,
+        "velocityZeroCount": 42,
+        "positionZeroCount": 42
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.009564824323181542,
+          "x": 0.008746112764660842
+        },
+        {
+          "type": "position-zero",
+          "t": 0.01894435049302805,
+          "v": -1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.023448398870078383,
+          "x": -0.003774322768897708
+        },
+        {
+          "type": "position-zero",
+          "t": 0.02789726722247159,
+          "v": 0.8610087502163183
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.029505308097507316,
+          "x": 0.0007653235266920848
+        }
+      ],
+      "tailAccelerationEnvelope": 2.962420471281972e-17,
+      "wallSeconds": 0.283058916
+    },
+    {
+      "name": "g01fine",
+      "parameters": {
+        "K": 1,
+        "eta": 0.01,
+        "core": 0.01,
+        "horizon": 1,
+        "quadSpacing": 0.00125,
+        "profile": "gaussian",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.000015625,
+        "count": 12800,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": 0.00033064747311121643,
+        "finalV": 0.9901782041497386,
+        "maxPosition": 0.008746153127538129,
+        "minPosition": -0.0037743615034037032,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 3949.530570534448,
+        "velocityZeroCount": 42,
+        "positionZeroCount": 42
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.009564797407955544,
+          "x": 0.008746143719446115
+        },
+        {
+          "type": "position-zero",
+          "t": 0.01894429047505344,
+          "v": -1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.023448264384249396,
+          "x": -0.0037743500181395954
+        },
+        {
+          "type": "position-zero",
+          "t": 0.027897014634240505,
+          "v": 0.8609142754304235
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.029504887804565397,
+          "x": 0.0007651376397784806
+        }
+      ],
+      "tailAccelerationEnvelope": 2.962420471281972e-17,
+      "wallSeconds": 0.687175875
+    },
+    {
+      "name": "h04",
+      "parameters": {
+        "K": 1,
+        "eta": 0.04,
+        "core": 0.04,
+        "horizon": 1,
+        "quadSpacing": 0.01,
+        "profile": "hollow",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.00025,
+        "count": 800,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": -0.04960213248581224,
+        "finalV": -0.039736473094791086,
+        "maxPosition": 0.06321371817752715,
+        "minPosition": -0.04960213248581224,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 145.2294604207401,
+        "velocityZeroCount": 1,
+        "positionZeroCount": 1
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.07196374776347868,
+          "x": 0.0632135126350872
+        },
+        {
+          "type": "position-zero",
+          "t": 0.14283060406200312,
+          "v": -1
+        }
+      ],
+      "tailAccelerationEnvelope": 4.628781986378081e-17,
+      "wallSeconds": 0.018640208000000002
+    },
+    {
+      "name": "h04fine",
+      "parameters": {
+        "K": 1,
+        "eta": 0.04,
+        "core": 0.04,
+        "horizon": 1,
+        "quadSpacing": 0.005,
+        "profile": "hollow",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.000125,
+        "count": 1600,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": -0.04960162878806056,
+        "finalV": -0.03959986275548106,
+        "maxPosition": 0.06321335926926835,
+        "minPosition": -0.04960162878806056,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 145.23146372076982,
+        "velocityZeroCount": 1,
+        "positionZeroCount": 1
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.07196321079352093,
+          "x": 0.0632132988135286
+        },
+        {
+          "type": "position-zero",
+          "t": 0.14282932076649163,
+          "v": -1
+        }
+      ],
+      "tailAccelerationEnvelope": 4.628781986378081e-17,
+      "wallSeconds": 0.136064542
+    },
+    {
+      "name": "h02",
+      "parameters": {
+        "K": 1,
+        "eta": 0.02,
+        "core": 0.02,
+        "horizon": 1,
+        "quadSpacing": 0.005,
+        "profile": "hollow",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.00008837825894829873,
+        "count": 2263,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": -0.004681918594688213,
+        "finalV": 0.12394499476582233,
+        "maxPosition": 0.029408371055431426,
+        "minPosition": -0.020823706312728726,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 596.5417041700412,
+        "velocityZeroCount": 8,
+        "positionZeroCount": 3
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.03212500393330956,
+          "x": 0.02940836639655068
+        },
+        {
+          "type": "position-zero",
+          "t": 0.06374261154178547,
+          "v": -1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.08715983285835667,
+          "x": -0.0208235996822943
+        },
+        {
+          "type": "position-zero",
+          "t": 0.11027777700477394,
+          "v": 0.9393136434058863
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.12773577261239502,
+          "x": 0.01325795290884232
+        }
+      ],
+      "tailAccelerationEnvelope": 3.703025589102465e-16,
+      "wallSeconds": 0.174508416
+    },
+    {
+      "name": "h02fine",
+      "parameters": {
+        "K": 1,
+        "eta": 0.02,
+        "core": 0.02,
+        "horizon": 1,
+        "quadSpacing": 0.0025,
+        "profile": "hollow",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.000044189129474149365,
+        "count": 4526,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": -0.0046822664439934,
+        "finalV": 0.12438656333672805,
+        "maxPosition": 0.029408277420233067,
+        "minPosition": -0.02082356959420701,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 596.5550794771475,
+        "velocityZeroCount": 8,
+        "positionZeroCount": 3
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.03212479153354288,
+          "x": 0.029408274160915418
+        },
+        {
+          "type": "position-zero",
+          "t": 0.06374198086937509,
+          "v": -1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.0871589001875614,
+          "x": -0.020823552959225833
+        },
+        {
+          "type": "position-zero",
+          "t": 0.11027660262088039,
+          "v": 0.9392640773734615
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.12773482254974292,
+          "x": 0.013257745189481937
+        }
+      ],
+      "tailAccelerationEnvelope": 3.703025589102465e-16,
+      "wallSeconds": 0.29217899999999997
+    },
+    {
+      "name": "g04ratio",
+      "parameters": {
+        "K": 1,
+        "eta": 0.04,
+        "core": 0.02,
+        "horizon": 1,
+        "quadSpacing": 0.005,
+        "profile": "gaussian",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.00008837825894829873,
+        "count": 2263,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": 0.003459305708603701,
+        "finalV": 0.584206089086703,
+        "maxPosition": 0.03059799243666943,
+        "minPosition": -0.016263630605595797,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 488.70628754668877,
+        "velocityZeroCount": 8,
+        "positionZeroCount": 8
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.03513115765344822,
+          "x": 0.030597987863717594
+        },
+        {
+          "type": "position-zero",
+          "t": 0.06931620325808016,
+          "v": -1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.08877489475356826,
+          "x": -0.016263622242763637
+        },
+        {
+          "type": "position-zero",
+          "t": 0.10781061080603048,
+          "v": 1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.11786776998299543,
+          "x": 0.007290148440811124
+        }
+      ],
+      "tailAccelerationEnvelope": 1.8515127945512325e-18,
+      "wallSeconds": 0.057483084000000004
+    },
+    {
+      "name": "g04ratiofine",
+      "parameters": {
+        "K": 1,
+        "eta": 0.04,
+        "core": 0.02,
+        "horizon": 1,
+        "quadSpacing": 0.0025,
+        "profile": "gaussian",
+        "cf": 1,
+        "end": 0.2,
+        "dt": 0.000044189129474149365,
+        "count": 4526,
+        "gaussianGapCutoff": 10
+      },
+      "summary": {
+        "finalX": 0.0034603482574650526,
+        "finalV": 0.583741882558859,
+        "maxPosition": 0.03059812951807749,
+        "minPosition": -0.016263656209929443,
+        "maxSpeed": 1,
+        "maxRawAcceleration": 488.7062876047501,
+        "velocityZeroCount": 8,
+        "positionZeroCount": 8
+      },
+      "firstEvents": [
+        {
+          "type": "velocity-zero",
+          "t": 0.035131127850214675,
+          "x": 0.03059812735279708
+        },
+        {
+          "type": "position-zero",
+          "t": 0.06931612180980355,
+          "v": -1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.08877466708263484,
+          "x": -0.016263651317106918
+        },
+        {
+          "type": "position-zero",
+          "t": 0.10781020282773196,
+          "v": 1
+        },
+        {
+          "type": "velocity-zero",
+          "t": 0.11786715263345594,
+          "x": 0.007290241450665509
+        }
+      ],
+      "tailAccelerationEnvelope": 1.8515127945512325e-18,
+      "wallSeconds": 0.20640212499999996
+    }
+  ]
+}

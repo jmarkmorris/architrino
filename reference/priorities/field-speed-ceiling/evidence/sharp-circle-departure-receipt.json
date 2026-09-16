@@ -1,0 +1,138 @@
+{
+  "schema": "fsc-sharp-circle-departure/v1",
+  "grade": "floating-point sharp-equation diagnostic; no interval certification",
+  "source": "scripts/field-speed-ceiling/sharp-circle-departure.mjs",
+  "sourceSha256": "bbd3ce78d31cfeec3984d3e1ecd9afd53dc3c349af59739e0957ffabbf840fc9",
+  "knownCase": {
+    "knownCase": "exact circle geometry and forward row after three time units",
+    "passed": true,
+    "radius": 0.9999999999985308,
+    "delay": 1.4781702664293457,
+    "J": 1.673612029214444,
+    "forward": 0.9114133120804647,
+    "maxSpeedError": 4.1011638529653283e-13
+  },
+  "history": "all-past supplied unit-speed circles of radius ratio r; released at t=0; past acceleration need not satisfy the equation",
+  "runs": [
+    {
+      "name": "outfine",
+      "command": "node scripts/field-speed-ceiling/sharp-circle-departure.mjs --radius=1.001 --dt=0.001 --angle=0.005 --end=40 --output=.local-data/field-speed-ceiling/departure/outfine.json",
+      "summary": {
+        "radius": 1.001,
+        "nominal": 0.001,
+        "end": 40,
+        "t": 19.90900000000135,
+        "steps": 19909,
+        "reason": "active-boundary crossing bracket",
+        "eventBracket": [
+          19.90900000000135,
+          19.91000000000135
+        ],
+        "trialForward": -0.000004668059115559009,
+        "trialRadius": 2.8723189978166674,
+        "last": {
+          "t": 19.90900000000135,
+          "forward": 0.000022758381564055852,
+          "omega": 0.2178859149973676,
+          "range": 3.4214659505774834,
+          "J": 1.9397941387481197,
+          "delay": 3.4214659505774208,
+          "residual": 6.261657858885883e-14,
+          "radial": 0.4847767470606642,
+          "radius": 2.8718341831617304
+        },
+        "minJ": 1.6736120291832206,
+        "minDelay": 1.4796484366967673,
+        "maxSpeedError": 3.300359985303203e-12,
+        "wallSeconds": 1.795
+      }
+    },
+    {
+      "name": "outfiner",
+      "command": "node scripts/field-speed-ceiling/sharp-circle-departure.mjs --radius=1.001 --dt=0.0005 --angle=0.0025 --end=40 --output=.local-data/field-speed-ceiling/departure/outfiner.json",
+      "summary": {
+        "radius": 1.001,
+        "nominal": 0.0005,
+        "end": 40,
+        "t": 19.90949999999895,
+        "steps": 39819,
+        "reason": "active-boundary crossing bracket",
+        "eventBracket": [
+          19.90949999999895,
+          19.90999999999895
+        ],
+        "trialForward": -0.000004668000508051273,
+        "trialRadius": 2.8723189967788376,
+        "last": {
+          "t": 19.90949999999895,
+          "forward": 0.000009043130835925672,
+          "omega": 0.21785360347745222,
+          "range": 3.4217081722853497,
+          "J": 1.9398071873207492,
+          "delay": 3.4217081722852676,
+          "residual": 8.215650382226158e-14,
+          "radial": 0.4848146493079863,
+          "radius": 2.8720765799781267
+        },
+        "minJ": 1.6736120291832206,
+        "minDelay": 1.4796484366967673,
+        "maxSpeedError": 4.846123502488808e-12,
+        "wallSeconds": 3.231
+      }
+    },
+    {
+      "name": "infine",
+      "command": "node scripts/field-speed-ceiling/sharp-circle-departure.mjs --radius=0.999 --dt=0.001 --angle=0.005 --end=40 --output=.local-data/field-speed-ceiling/departure/infine.json",
+      "summary": {
+        "radius": 0.999,
+        "nominal": 0.001,
+        "end": 40,
+        "t": 16.44059681153814,
+        "steps": 17283,
+        "reason": "radius resolution guard",
+        "last": {
+          "t": 16.44059681153814,
+          "forward": 8500.387135702005,
+          "omega": 87.85842632941149,
+          "range": 0.025432315559958358,
+          "J": 0.8998612231130317,
+          "delay": 0.02543231555996428,
+          "residual": 5.9223459469848194e-15,
+          "radial": -0.485570974153078,
+          "radius": 0.009978747862628763
+        },
+        "minJ": 0.8998612231130317,
+        "minDelay": 0.02543231555996428,
+        "maxSpeedError": 1.9312389465397928e-9,
+        "wallSeconds": 1.543
+      }
+    },
+    {
+      "name": "infiner",
+      "command": "node scripts/field-speed-ceiling/sharp-circle-departure.mjs --radius=0.999 --dt=0.0005 --angle=0.0025 --end=40 --output=.local-data/field-speed-ceiling/departure/infiner.json",
+      "summary": {
+        "radius": 0.999,
+        "nominal": 0.0005,
+        "end": 40,
+        "t": 16.440556212773792,
+        "steps": 34566,
+        "reason": "radius resolution guard",
+        "last": {
+          "t": 16.440556212773792,
+          "forward": 8466.993695706762,
+          "omega": 87.6867591197547,
+          "range": 0.025481951728468285,
+          "J": 0.8998939754099862,
+          "delay": 0.025481951728444585,
+          "residual": 2.369979212879514e-14,
+          "radial": -0.4855619295304997,
+          "radius": 0.009998463477079347
+        },
+        "minJ": 0.8998939754099862,
+        "minDelay": 0.025481951728444585,
+        "maxSpeedError": 2.468174553627023e-10,
+        "wallSeconds": 3.849
+      }
+    }
+  ]
+}

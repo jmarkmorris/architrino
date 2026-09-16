@@ -192,6 +192,8 @@ The complete rejected snapshot identifies a different barrier from the earlier p
 
 ### Reconciliation with the established stationary-mirror theorem
 
+**Historical-stage note:** this reconciliation and the following task closeout precede the [continuous incoming event certificate](#continuous-incoming-event-certificate) recorded below. That later result completes the incoming-event location and census request and retains the exact rejected candidates. The complete outgoing encounter remains unresolved.
+
 The live [MEC-007 stationary-mirror boundary owner](../../master-equation-closure/analysis/mirror-close-approach-causal-root-boundary.md) already establishes, on this incoming sharp-law chart, that individual speed reaches one while current separation and delayed partner distance remain positive. The partner root remains simple, and no positive-delay self root exists exactly at onset. Its separately measured event time near `1.5726396643` agrees at the relevant numerical scale with the present independent reference's prediction near `1.5726396644`; neither decimal is an outward event enclosure.
 
 That owner also proves the unchanged-law obstruction: any continuous regular extension into super-field speed creates a positive-delay self root per persistent label, whose acceleration measure is not locally finite at birth. The [binding's singular-event contract](../../app-solver/contracts/master-eom-binding-v1.md#singular-event-contract) therefore forbids automatic publication across a confirmed coincident same-transmitter birth. An ordinary positive-separation fold's finite-width route is not a substitute for that rule. The present failed EOM rows are consistent with the incoming boundary but have not independently classified the exact event.

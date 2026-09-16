@@ -2,6 +2,14 @@
 
 ## 1. The proposed constrained dynamics
 
+### Current scope and evidence boundary
+
+The current sharp-law investigation retains the Master Equation's ordinary partner reception, imposes the field-speed ceiling through the regular response below, and sets self acceleration to zero at and below the ceiling, including equality. Retaining a self-emission record does not give it a self response in this investigation. A speed ceiling is still a proposed modification, not a consequence of the uncapped canonical equation.
+
+Conclusions about this model must follow from the sharp equation. Smoothing is only an explicitly labeled comparison whose modifications and limitations accompany every reported result. Transferring a smoothed result requires a demonstrated limiting argument; numerical refinement at fixed smoothing checks only the modified calculation. The present continuation and planar analyses use the sharp equation only. The retained [auxiliary trajectories](analysis/partner-only-auxiliary-evolution-results.md) establish neither sharp-law reversal nor sticking nor once-only reception. Prescribed kinematic curves likewise establish no dynamical continuation.
+
+Chapters 3 and 4 preserve conditional results of an older, additionally extended event model. Its common event map, zero velocity jump, frozen-root suppression, and retained multivalued exact-mirror continuation are additional assumptions outside the current cap-only examination. Those chapters do not establish that the sharp capped equation admits straight passage or delayed braking from coincidence. Section 4.4 states the current collinear result; Chapter 5 treats the regular circular configuration independently of those event assumptions.
+
 ### 1.1. Why examine a path-speed ceiling?
 
 Finite propagation speed does not by itself limit the speed of a source. In the canonical master equation of $\mathbb{A}\mathbb{A}\mathbb{A}$, an architrino moves in Euclidean space with absolute time, emits a delayed wake at speed $c_f$, and receives acceleration contributions from its causal path history. The primitive velocity domain is $\mathbb R^3$. Below, equal to, and above $c_f$ are different causal-geometric regimes of that domain, rather than different ontologies. A proposed path ceiling therefore changes the dynamics: it cannot be inferred from wake propagation or inserted as a numerical clamp without changing the model.
@@ -208,7 +216,7 @@ $$
 
 is nondecreasing under every ceiling-admissible future. Once strictly positive it stays positive, so an owned emission cannot return as an ordinary crossing. Equality can persist only on the rigid ridden geometry. This permanence argument preserves other wakes rather than deleting inconvenient contributions.
 
-On the isolated straight right trace, normalized to $T_c=0$, the partner root is $S=0$ with $D_t=2$, $D_r=0$; older cap records have passed, new partner emissions have positive constant margin $2S$, and the self family is inactive. The complete ordinary ledger is zero, making straight separation compatible. Immediate exact rebound would require velocity jumps of magnitude two and is excluded by the zero-atom event rule. A zero atom does not exclude continuous reversal later.
+On the isolated straight right trace, normalized to $T_c=0$, the partner root is $S=0$ with $D_t=2$, $D_r=0$; older cap records have passed, new partner emissions have positive constant margin $2S$, and the self family is inactive in this extended model. Its additional frozen-root suppression sets the received ledger to zero, making straight separation compatible with that extended model. The canonical sharp row itself is nonzero: stationary receiver-side playback does not silence acceleration. Immediate exact rebound would require velocity jumps of magnitude two and is excluded by the extended model's zero-atom event rule. A zero atom does not exclude continuous reversal later within that model.
 
 The inherited cap's incidence depends on the candidate trace: it is a whole characteristic family at coincidence, has passed on the prescribed straight separation, and is a whole ridden $D_t=D_r=0$ interval on exact rebound. Generic right traces need have neither disposition. This geometric census precedes the question of whether the proposed event law admits the candidate trace.
 
@@ -305,7 +313,7 @@ The [selection analysis](analysis/exact-mirror-continuation-selection-analysis.m
 
 A positive onset functional built from a reduced event state would have to respect translation, rotation and scaling; a dimensional form is $u=K\Phi(L/K)$ in normalized units. No current wake or action equation defines $\Phi$. A selector consulting older records could have more arguments, but would also have to restore those records to the live quotient state. Causality, a single root, determinism and Markov sufficiency are different requirements. Even a unique partner root depends on a past position and velocity that instantaneous $(\mathbf X,\mathbf V)$ generally cannot reconstruct. Promoting a sufficient retained history to the state can address that information loss; it cannot cure multiple futures from the same complete state without a selection law.
 
-The current [operator decision](decisions/continuation-selection-operator-decision-2026-09-02.md) retains the multivalued relation as Option A. It adds neither a deterministic selector nor a probability distribution. This is closure of the present decision at its stated authority, not closure of the physical dynamics.
+The current [operator decision](decisions/continuation-selection-operator-decision-2026-09-02.md) retains the multivalued relation as multivalued exact-mirror continuation. It adds neither a deterministic selector nor a probability distribution. This is closure of the present decision at its stated authority, not closure of the physical dynamics.
 
 #### 4.3.2. Short-range and alternative continuation proposals
 
@@ -325,6 +333,42 @@ Its ordinary backward contribution is nonintegrable at coincidence; the trial do
 #### 4.3.4. Response gains and a drifting encounter
 
 A broader exploratory response writes separate longitudinal and transverse gains multiplying the corresponding complete-ledger components. The hard cap is one particular gain choice. Smooth nonattainment would instead require an appropriate boundary reachability estimate and generally changes the interior response. Such gains must be derived from the admitted wake and assembly dynamics before they can explain a ceiling; an observer-level relativistic comparison is only a recovery target. The historical suggestion that a gain modification removes every event obligation is too broad: range singularities, history strata and other events require their own analysis. Likewise, a drifting mirror encounter is a proposed preferred-frame diagnostic, whose interpretation needs an independently derived emergent comparison map and complete drifted histories.
+
+### 4.4. Collinear coincidence under the sharp equation alone
+
+#### 4.4.1. Source measure, surface density, and the incoming family
+
+Set $c_f=1$ and coincidence at $t=0$. The incoming mirror cap has $X_A(s)=s$, $X_B(s)=-s$ for $-L\le s\le0$. Earlier histories remain retained; the results below assume $|X_A(s)|<-s$ for $s<-L$, no external sources, and zero self response. These are restrictions of the theorem, not universal initial data.
+
+Continuous emission labels do not conflict with isolated reception roots. At a fixed receiver event, an ordinary root is an isolated emission time whose sphere passes through that event. A continuum of emitted labels can supply one such root. At coincidence the incoming capped partner instead supplies an entire interval of simultaneous roots. The ordinary sum cannot be applied term by term to that interval.
+
+An emission at $s=-\tau$ from B is centered at $+\tau$. Its sphere reaches the origin at zero. The direction of attraction on A is positive, toward the old center and along its incoming motion, not backward. The outgoing braking row on a straight-through candidate is a different reception: the crossover root gives $-K/(2t^2)$ for $t>0$.
+
+The signed emitted amount is a source measure proportional to $q\,ds$. A sphere's integrated normalization is distinct from its local density and the receiver acceleration kernel. Finite total source measure therefore neither bounds the inverse-square acceleration near zero range nor supplies a finite velocity change at coincidence. No separate finite kick equal to $q$ may be added at incidence. The [continuous-emission analysis](analysis/cap-only-continuous-emission-crossover.md) records the endpoint obstruction without replacing the kernel.
+
+#### 4.4.2. Continuous passage and two sharp rebound attempts
+
+The [partner-only calculation](analysis/self-silent-partner-near-event-balance.md) follows the root of the actual moving history. For a continuous positive outgoing launch, the unique new root satisfies $s+x(s)=t-x(t)$ and produces $a(t)\le-K/(2t^2)$. The cap retains this backward acceleration. Integrating from any $\delta>0$ to $t$ and sending $\delta$ to zero contradicts bounded velocity. This excludes the stated regular continuous-launch class; it does not predict an unbounded physical speed.
+
+An exact immediate full-speed rebound would put A at $x(t)=-t$. Every old partner cap emission remains a root because $|-t+s|=t-s$. The residual is identically zero over an open set of receiver and source times, with $D_t=D_r=0$. This persists at positive ranges away from coincidence. The ordinary weight is undefined; the finite-impulse theorem for an isolated nondegenerate fold does not apply because its nonzero-derivative hypotheses fail. All old partner centers attract A to the right, opposing rebound, so the ceiling does not silence the family. The [sharp rebound audit](analysis/cap-only-rapid-reversal-geometry.md#sharp-law-audit--2026-09-16) therefore identifies both an underived event update and an undefined subsequent interval, not merely one missing value at zero.
+
+Suppose instead A reverses and immediately slows below the ceiling. Write $X_A=-y$, $X_B=y$, $y(0)=0$, outward speed $w=y'$ with $0<w\le1$, and $y(t)<t$ for all positive times in an initial outward interval. The old family is then absent. The complete ordinary ledger contains one new root satisfying $s+y(s)=t-y(t)$ and gives
+
+$$
+w'(t)=-\frac{K}{[t-s(t)]^2[1+w(s(t))]}\le-\frac{K}{2t^2},
+\qquad
+w(t)-w(\delta)\le-\frac K2\left(\frac1\delta-\frac1t\right).
+$$
+
+Bounded outward speed contradicts this inequality as $\delta\downarrow0$. Local absolute continuity on positive intervals suffices; even a separately granted initial velocity jump would not repair this ordinary outward leg. The proof excludes neither every singular continuation nor different histories, external interactions, or broken mirror symmetry.
+
+#### 4.4.3. Once-only passage and the unresolved contact alternative
+
+For a fixed labeled emission center $C_s$, the interior gap $d_s(t)=t-s-|x(t)-C_s|$ is nondecreasing under the cap. Once strictly positive, it cannot return to zero. Thus an emission that has passed cannot be encountered again. A ridden front has persistent equality instead; the theorem supplies no response or source-depletion rule during that contact. Declaring a family spent after a reversing action would add semantics not derived from the sharp equation. A positive-duration turn opens a positive gap, but drawing such a turn does not establish its dynamical existence.
+
+A candidate stationary pair at the origin has no ordinary positive-delay partner roots after crossover under the stated older-history conditions. This empty ordinary sum does not admit persistent coincidence or supply the required stopping changes $\Delta v_A=-1$, $\Delta v_B=+1$. Likewise, convergence of positions toward coincidence would not establish convergence of velocities or of the singular delayed acceleration. Neither a prescribed oscillation nor the retained smoothed runs resolves this boundary.
+
+The current collinear result is therefore a set of scoped obstructions, with no derived sharp bounce, stopping event, or retained binary. A complete sharp event response remains a foundational target. The positive regular circular result below is a separate reason to continue investigating the ceiling.
 
 ## 5. Circular motion and regular local evolution
 
@@ -391,6 +435,108 @@ Here $L_{\mathrm{rec}}$ is the theorem's receiver-position ledger constant. The 
 #### 5.2.3. The separate stability problem
 
 No orbital stability or capture follows. A stability theorem would require a constructed solution and a differentiable evolution and return map on a declared history space, then the correct symmetry reduction and spectral hypotheses. A reduced spectral radius below one, under those nonlinear hypotheses, supports local exponential asymptotic stability and its local basin; a list of multipliers without that structure does not. Nor can any regular positive-gap theorem select the margin-zero mirror future of Section 4.1.
+
+### 5.3. Planar perturbations and the ellipse question
+
+The exact circular history has a unique local continuation within its admitted regular chart. This is stronger than a prescribed radius balance, but it does not show attraction from nearby histories, stability, or formation. The nearby-root theorem protects reception geometry; it does not assert that evolved disturbances remain in that neighborhood. No elliptical binary has been established in this investigation. Elliptical or precessing motion must satisfy the full delayed equation and cap; it cannot be inferred from an instantaneous inverse-square analogy.
+
+#### 5.3.1. First sharp radial response
+
+The [planar first-variation analysis](analysis/planar-circle-sharp-first-variation.md) begins at the exact solution $R_\ast$ with $c_f=c_a=1$. Supply a nearby unit-speed antipodal circular input history of radius $R$, angular speed $1/R$, and release the future to the equation. This is an initial-history response test, not a new equilibrium or an evolved perturbed orbit. Its sole partner root still obeys $D=\cos D$; the sharp capped initial acceleration is $-R_\ast\mathbf e_r/R^2$. For distance $\rho$ from the fixed antipodal midpoint,
+
+$$
+\dot\rho(0)=0,\qquad
+\ddot\rho(0^+)=\frac1R-\frac{R_\ast}{R^2}
+=\frac{R-R_\ast}{R^2}.
+$$
+
+The initially wider history therefore has outward radial acceleration, and the narrower history has inward radial acceleration. This is a derived non-restoring initial response for that input-history family. It is not a stability theorem: the changing history determines later roots, and the displayed initial formula is not a closed radial evolution equation. The supplied history may have an acceleration mismatch at release and is not asserted to meet the stronger compatible-trace continuation theorem.
+
+#### 5.3.2. The delayed perturbation equation
+
+For a smooth planar variation $\mathbf u_i$ about the exact circular solution, fix receiver time $t$ and let $s$ be its base emission time. Set $\mathbf r=\mathbf X_i(t)-\mathbf X_j(s)$, $\mathbf n=\mathbf r/r$, $J=1-\mathbf n\cdot\mathbf v_j(s)>0$. The sharp causal condition determines
+
+$$
+\delta s=-\frac{\mathbf n\cdot[\mathbf u_i(t)-\mathbf u_j(s)]}{J},
+\qquad
+\delta\mathbf r=\mathbf u_i(t)-\mathbf u_j(s)-\mathbf v_j(s)\delta s.
+$$
+
+With $\delta r=\mathbf n\cdot\delta\mathbf r$ and $\delta\mathbf n=(I-\mathbf n\mathbf n^{\mathsf T})\delta\mathbf r/r$, the transmitter-factor variation is
+
+$$
+\delta J=-\delta\mathbf n\cdot\mathbf v_j(s)-\mathbf n\cdot[\dot{\mathbf u}_j(s)+\mathbf a_j(s)\delta s].
+$$
+
+The path acceleration $\mathbf a_j(s)$ appears through evaluating velocity at the displaced emission time; it is not an added acceleration-dependent emission term. For the opposite-polarity raw row $\mathbf a=-K\mathbf n/(r^2J)$,
+
+$$
+\delta\mathbf a=-\frac{K}{r^2J}\left[\delta\mathbf n-\mathbf n\left(\frac{2\delta r}{r}+\frac{\delta J}{J}\right)\right].
+$$
+
+On the active unit-speed boundary branch, where the raw forward component remains positive and $\mathbf v_i\cdot\dot{\mathbf u}_i=0$, the effective variation is
+
+$$
+\ddot{\mathbf u}_i=(I-\mathbf v_i\mathbf v_i^{\mathsf T})\delta\mathbf a-[\dot{\mathbf u}_i\mathbf v_i^{\mathsf T}+\mathbf v_i\dot{\mathbf u}_i^{\mathsf T}]\mathbf a.
+$$
+
+These are derived necessary equations for differentiable solution families on this branch. They account for both changed root time and changed cap direction. They do not establish differentiability of the solution map or cover speed reductions into the interior, where a separate one-sided constrained analysis is required. The next stability object is the rotating-frame delayed system, its admissible modes and symmetry directions, and the connection to a justified evolution map. No spectrum, nonlinear stability, or ellipse follows from the first variation alone.
+
+#### 5.3.3. A growing antipodal planar mode
+
+The [rotating-frame mode calculation](analysis/planar-circle-growing-mode.md) advances the first variation to a characteristic equation. Put $\tau=t/R_\ast$ and write $\mathbf u_A=R_\ast(a\mathbf e_r+b\mathbf e_\theta)$, $\mathbf u_B=-\mathbf u_A$. The boundary-speed constraint is $a+b'=0$. A mode $b=e^{z\tau}$ therefore has $a=-ze^{z\tau}$ and radial velocity coefficient $q=-(1+z^2)$. Set $C=\cos D=D$, $S=\sin D$, $J=1+S$, and $E=e^{-2Dz}$. Define
+
+$$
+N=-Cz-S+E(-Cz+S),\quad M=-Sz+C+E(Sz+C),\quad
+B(z)=\frac{1-2S}{2C^2}M+\frac{3N}{2CJ}+\frac{ECq}{J}.
+$$
+
+The complete delayed row and cap variation give
+
+$$
+F(z)=-z(1+z^2)-B(z)+q\frac SC=0.
+$$
+
+The phase mode satisfies $F(0)=0$, while direct differentiation gives $F'(0)=1$. On the positive real axis, $F(z)=-z^3-(S/C)z^2+O(z)\to-\infty$. Continuity therefore proves at least one positive real characteristic root: the boundary-branch linearized system has a growing antipodal planar mode. The [arithmetic instrument](../../../scripts/field-speed-ceiling/planar-circle-growing-mode.mjs), after its known-case and phase checks, locates one at approximately $z=0.410171808$. Its approximate linear amplitude factor over one base period is $e^{2\pi z}\approx13.1600$. This is a floating-point location of an analytically established mode, not a nonlinear trajectory or an interval-certified spectrum.
+
+This result is stronger than the initially non-restoring radius response, but its scope remains the sharp delayed linearization on the active ceiling branch. A nonlinear instability theorem requires compatible finite-amplitude histories realizing this tangent and a justified differentiable evolution or direct nonlinear growth argument. No elliptical orbit, final collapse, escape, or saturated motion follows. The exact circle remains a solution; its robustness now faces a concrete growing linear mode rather than an untested stability expectation.
+
+#### 5.3.4. Nonlinear instability on the active planar boundary
+
+The [nonlinear bridge](analysis/planar-circle-nonlinear-instability.md) verifies the missing admissibility and smooth-evolution conditions for the antipodal unit-speed branch. It establishes a local nonlinear instability result in that class, not a trajectory after departure or a theorem about every history in the earlier perturbation tube. The [independent review](analysis/planar-circle-instability-independent-review.md) rederived the linear equation and supported the nonlinear conclusion. Its proof-route, admissibility, uniqueness and quantifier corrections are integrated here and in the supporting proof.
+
+Let $Q$ denote planar rotation, $\mathcal J=Q(\pi/2)$, $\tau=t/R_\ast$, and reconstruct the physical pair by $\mathbf X_A=R_\ast Q(\tau)p(\tau)$, $\mathbf X_B=-\mathbf X_A$. A heading angle $\alpha$ represents the unit velocity through $e(\alpha)=(\cos\alpha,\sin\alpha)$. With dimensionless delay $d$, define
+
+$$
+b=p(\tau)+Q(-d)p(\tau-d),\quad |b|=d,\quad n=b/|b|,\quad
+J_t=1+n\cdot Q(-d)e(\alpha(\tau-d)),
+$$
+
+$$
+\mathcal A=-\frac{(K/R_\ast)n}{|b|^2J_t},\qquad
+p'=e(\alpha)-\mathcal Jp,\qquad
+\alpha'=(\mathcal Je(\alpha))\cdot\mathcal A-1.
+$$
+
+These are exactly the sharp partner equation and active ceiling projection in heading coordinates. They enforce speed one without a first-order truncation. The base circle is the constant state $p=(1,0)$, $\alpha=\pi/2$. Its forward raw acceleration is strictly positive and its root is separated from singularities.
+
+On an open $C^1$ neighborhood of this constant history, the implicit root has derivative $G_d=-(1+\sin D)\ne0$ at the base, so the delay depends smoothly on history. Differentiating the full functional uses values of the history variation, but no derivatives of that variation; derivatives of the base history enter only as coefficients of the shifted evaluation. Its derivative therefore extends continuously to continuous variations. These are the solution-manifold smoothness conditions used by the [state-dependent-delay instability theorem](https://www.math.u-szeged.hu/ejqtde/p5301.pdf). This is a mathematical analysis tool applied to the sharp equation, not an added physical premise.
+
+The associated local unstable manifold supplies actual solutions for all negative times approaching the circle. Their position and heading obey the reconstruction equation throughout their past, so they are admissible unit-speed histories, not arbitrary position/velocity records. Choose dimensionless history length $h=4$ and a local radius bound $|p|<1+\epsilon$ with $\epsilon<1/2$. Every possible partner separation is then below $2(1+\epsilon)<h$, excluding roots older than the represented history. This is exact history coverage for these solutions, not a physical memory cutoff. Positive root and forward-acceleration margins preserve the sharp active branch locally.
+
+The positive-root eigenvector in these coordinates is $(-z,1,1+z^2)e^{z\tau}$. It satisfies the linearized heading system and is transverse to the circular phase tangent $(0,1,1)$. Nonzero nearby points on the unstable manifold therefore depart from the circle's phase family, while their negative-time histories approach it. Starting sufficiently far back yields arbitrarily close admissible initial histories that later leave a fixed small neighborhood. This establishes local nonlinear instability even after allowing phase changes.
+
+The exact circle remains a solution, but there exist admissible antipodal planar disturbances, arbitrarily small in the stated history norm, whose evolution leaves a fixed neighborhood of the circular phase family. This result does not determine escape, collision, an ellipse, or saturation after departure, nor does it exclude other stable configurations. The heading reduction, complete history census and theorem hypotheses are recorded explicitly in the supporting proof together with the independent review and its stated verification limits.
+
+The theorem application distinguishes two steps. Instability on the endpoint-compatible solution manifold alone does not supply physical histories. The additional unstable-manifold construction uses backward orbits of a differentiable time-$a$ map on its expanding spectral subspace; matching history segments and forward uniqueness concatenate these into complete negative-time solutions. Continuous dependence fills the intervals between the discrete times. The supporting proof states this route explicitly rather than citing an introductory remark as the theorem. Reflection symmetry gives both receiver equations, and the regular-chart contraction identifies the constructed antipodal solution with the unique two-body evolution locally. Neither step requires a count of every unstable eigenvalue; existence of one positive mode suffices.
+
+#### 5.3.5. First observed departures under the sharp equation
+
+The [departure diagnostic](analysis/sharp-circle-first-departure.md) integrates the sharp equation from supplied all-past unit-speed circular histories of radii $1.001R_\ast$ and $0.999R_\ast$. Their future is generated by the equation; their imposed past has an acceleration mismatch at release, so they are not claimed to be exact unstable-manifold histories. The instrument first passes the exact-circle known case and then halves both the maximum time step and turning control. These are floating-point, history-interpolated calculations, with no smoothing of the causal surface or spatial kernel and no interval certification.
+
+For the larger-radius input, the raw forward acceleration changes sign near $t/R_\ast=19.910$, at radius approximately $2.8723R_\ast$. The finer numerical crossing bracket is $[19.9095,19.9100]$. The partner root remains ordinary: its last accepted transmitter factor is approximately 1.93981. The change matters dynamically because negative forward acceleration is braking that the ceiling must retain. The unit-speed heading formulation therefore stops at this boundary; a full speed-variable capped evolution is needed next. Escape or an outer turning point has not been demonstrated.
+
+For the smaller-radius input, the trajectory contracts to the numerical radius guard $0.01R_\ast$ near $t/R_\ast=16.4406$ while the forward component remains positive and the transmitter factor remains approximately 0.8999. This guard is a stopping criterion, not a physical core or modified law. No collision, limiting spiral, or new event at zero range follows. The [receipt](evidence/sharp-circle-departure-receipt.json) binds reproduction commands, instrument hash, known-case result and refinement summaries. The two outcomes concern the specified histories only and are independent of the analytical proof that some admissible histories are unstable.
 
 ## 6. Assembly compatibility and the missing accounts
 
