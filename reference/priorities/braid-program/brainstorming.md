@@ -146,6 +146,81 @@ Because $s_{ij}$ touches zero without changing sign, a sign-change detector is i
 
 Plainly: sharing a coordinate is an event to classify, not a verdict about what the paths do next.
 
+## Coulomb Recovery and the Microscopic Acceleration Law
+
+### Effective electromagnetic behavior as a recovery target
+
+Coulomb behavior could be an effective law of charged assemblies even if the architrino acceleration law has a different microscopic form. Here an effective law means a reproducible relation between observable assembly variables after internal motion and unresolved wake structure have been accounted for. Such recovery need not involve a macroscopic number of constituents: an observer-level particle can itself be the assembly being described. The stronger proposal, that a different microscopic equation successfully produces this behavior, remains an unconstructed hypothesis.
+
+The [canonical Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) presently includes an inverse-square spatial factor. With normalized wake speed $c_f=1$, a simple causal hit contributes
+
+$$
+\mathbf A_{ij}
+=\kappa q_iq_j\frac{\hat{\mathbf r}_{ij}}{r_{ij}^2|D_{t,ij}|},
+\qquad
+D_{t,ij}=1-\hat{\mathbf r}_{ij}\cdot\mathbf V_j(T_t).
+$$
+
+Here $\mathbf r_{ij}$ runs from the transmitter's emission position to the receiver's reception position, $r_{ij}$ is its length, and $\hat{\mathbf r}_{ij}$ its unit direction. The polarity product supplies attraction or repulsion; $D_{t,ij}$ describes how the emitted wake surfaces are spaced at reception. The chapter explicitly calls the equation postulated. Its spherical-spreading explanation and uniform absolute-time emission premise motivate the form, but do not establish that every possible microscopic theory must have it. Within this law, the inverse-square exponent is already an input before assemblies are formed. Assembly charge, response and full electromagnetic behavior still require derivation.
+
+### What the different powers establish
+
+Three distinct uses of a power must be separated. First, vector notation can display a cubic denominator while retaining inverse-square magnitude:
+
+$$
+\frac{\mathbf r}{r^3}=\frac{\hat{\mathbf r}}{r^2}.
+$$
+
+Second, a spatial far-distance law concerns changing the observation distance while retaining a specified source family. Cancellation between different contributions can remove the leading term and leave a faster-decaying remainder. The conventional electrostatic dipole, whose distant field has inverse-cube magnitude, is a comparison example of cancellation within an inverse-square theory; it is not evidence for an inverse-cube primitive law. See [Feynman, Volume II, Chapter 6, section 6–2](https://www.feynmanlectures.caltech.edu/II_06.html#Ch6-S2).
+
+Third, an event-time singularity concerns approaching a particular causal event along a history. The [speed-crossing geometry](analysis/speed-crossing-opposing-interaction-geometry.md) contains terms of order $t^{-3}$, where $t$ is elapsed time from wake-speed crossing. A representative newborn self row has $r\propto t$ and $|D_t|\propto t$, so its inverse-square spatial factor and growing causal weight combine into $t^{-3}$. Other constructions develop singular weights even at positive limiting range. These powers describe coupled history geometry; they do not independently identify a replacement radial law.
+
+### A restriction on recovery by finite assembly summation
+
+Consider a mathematical comparison kernel whose acceleration magnitude is $r^{-p}$, with $p>0$:
+
+$$
+\mathbf K_p(\mathbf r)=\frac{\mathbf r}{|\mathbf r|^{p+1}}.
+$$
+
+Let a fixed finite assembly have source offsets $\mathbf a_\alpha$ bounded by size $L$, and coefficients $b_\alpha$ independent of the observation distance $R$. Observe it at $R\mathbf n$, where $\mathbf n$ is a unit vector and $R\gg L$. Taylor expansion gives
+
+$$
+\mathbf K_p(R\mathbf n-\mathbf a_\alpha)
+=\frac{\mathbf n}{R^p}
+-\frac{[I-(p+1)\mathbf n\mathbf n^{\mathsf T}]\mathbf a_\alpha}{R^{p+1}}
++O\!\left(\frac{L^2}{R^{p+2}}\right),
+$$
+
+where $I$ is the identity matrix. Summing yields
+
+$$
+\sum_\alpha b_\alpha\mathbf K_p(R\mathbf n-\mathbf a_\alpha)
+=\frac{B\mathbf n}{R^p}
++O\!\left(\frac{L\sum_\alpha|b_\alpha|}{R^{p+1}}\right),
+\qquad B=\sum_\alpha b_\alpha.
+$$
+
+Thus the finite sum retains the same leading exponent when $B\ne0$. When $B=0$, cancellation makes it decay faster. In particular, for $p>2$ this operation cannot generate a nonzero asymptotic $R^{-2}$ term. For delayed moving sources, even the weaker $O(R^{-p})$ bound needs bounded source extent, a uniform bound on contributing root count, and bounded causal weights. An effective receiver readout must also have bounded response if this bound is to transfer to that observable.
+
+Claim grade: derived under the stated compactness, boundedness and summation assumptions. A counterexample would require a nonzero limit of $R^2\sum_\alpha b_\alpha\mathbf K_p$ for $p>2$ while preserving all of those assumptions. The expansion shows that the limit is zero. This result does not cover an extended Noether sea, collective propagation, nonlinear assembly response, increasing root populations or unbounded causal weights; each such mechanism requires a separate derivation.
+
+A microscopic law that changes at short distance but already approaches inverse square at large distance is another possible hypothesis. That construction would preserve the far-distance exponent as input. Obtaining inverse-square behavior from a microscopic law without that tail would require an additional collective mechanism. Neither possibility follows merely from naming an object an assembly.
+
+### The stronger Liénard–Wiechert target
+
+The classical Liénard–Wiechert description contains moving-source angular and velocity dependence, transverse acceleration-dependent radiation with inverse-distance field amplitude, and an associated magnetic field. Its causal emission time is necessary but is not the whole law. These are observer-level comparison and recovery targets here. [Feynman, Volume II, Chapter 21](https://www.feynmanlectures.caltech.edu/II_21.html#Ch21-S1) explicitly distinguishes the complete fields from a merely delayed Coulomb term.
+
+One sufficient recovery route would derive effective charge and current, their continuity equation, Maxwell field equations, and outgoing boundary conditions from retained assembly and wake dynamics. For effective charge and current concentrated on a point-particle trajectory, their causal solution would supply the Liénard–Wiechert target; a finite assembly would require a controlled approximation to that source description. The effective propagation speed and observer-variable map would also need derivation. Maxwell equations cannot serve as microscopic premises for that argument. The current per-hit law's absence of an explicit transmitter-acceleration input neither completes this recovery nor by itself proves it impossible through assembly and wake dynamics.
+
+### Interpretation and next mathematical question
+
+The original stationary binary's continuation obstruction motivates examining the law's domain and assumptions. It does not select a unique correction or prove that the inverse-square spatial factor causes every obstruction: the causal weight and self-root birth also enter. Altering a distance factor alone therefore has no established guarantee of restoring continuation. The existing unchanged-law results retain their stated scope.
+
+Claim grade: guessed for successful Coulomb and Liénard–Wiechert recovery from a different microscopic equation; derived for the distinctions and restricted finite-sum result above. An unspecified replacement equation is not yet a falsifiable physical model. A concrete candidate would fail the proposed recovery test if its derived assembly observable had the wrong leading distance power, polarity dependence, angular structure or dynamical response in the declared classical regime. A candidate intended to resolve the original binary would additionally need a complete causal-root continuation from the original history without an imposed architrino speed ceiling.
+
+The [conditional recovery derivation](../mapping-electromagnetism/analysis/microscopic-law-recovery-constraints.md) now establishes source/receiver factorization of static coefficients, restrictions on finite direct sums, a moving-source vector obstruction and a bounded-direct-response radiation obstruction. It supplies a sufficient effective Green-function route while keeping its microscopic realization open. Distant recovery leaves the local core behavior undetermined; the speed-crossing analysis separately shows why a bounded nonzero core magnitude would still give a logarithmically divergent accumulated self acceleration if the sharp uniform-emission scaffold were retained. These are constraints, not a selected replacement or a continued binary. Possible later destinations remain the Master Equation and electromagnetic mapping chapters after the respective derivations are complete.
+
 ## Assessment and Promotion Boundary
 
 The mature material now has focused priority-stage owners for common-axis train analytics, causal-delay angular structure, integer-frequency outspiral logic, neutral six-point balance, phase-compensated equal-geometry orthogonal-axis three-binary configuration rotation, and coordinate-coincidence continuation. These treatments may later support reader-facing explanations after their stated proof and evidence burdens close. No material in this synthesis changes the canonical corpus, admits a candidate, or establishes a retained braid.

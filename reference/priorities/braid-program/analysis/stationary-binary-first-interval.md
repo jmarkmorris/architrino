@@ -2,11 +2,43 @@
 
 ## Scope and model
 
+This investigation uses unrestricted architrino velocity under the unchanged Master Equation. The field propagation speed $c_f=1$ fixes the wake geometry and units; it imposes no constraint $\|\mathbf V_i\|\le c_f$. The operator explicitly distinguished this investigation from the separate field-speed-ceiling work on 2026-09-16. No velocity clamp, constrained acceleration response or ceiling continuation rule enters this analysis. The question at speed equality is whether the original equation and retained history admit continuation into $\|\mathbf V_i\|>c_f$. A derived obstruction for a specified history and regularity class is not an imposed speed limit or a universal exclusion of superfield motion.
+
 This analysis starts from the sharp simple-root acceleration law in the [EOM evolution contract](../../app-solver/contracts/evolution-contract-v1.md#canonical-per-root-calculation). It concerns two opposite-polarity architrinos with mirror-symmetric stationary histories, released at absolute time $T=0$. Wake speed is normalized to $c_f=1$. The statements below are derived for the exact nominal history; numerical comparisons to the EOM solver must separately retain its input-history uncertainty and integration enclosures. Neither a finite approach nor passage through an instrument boundary establishes permanent binding or a repeated breather.
 
 Write the two positions as $X_+(T)=y(T)$ and $X_-(T)=-y(T)$ on their common axis. Initially $y(T)=a=1/2$ and $y'(T)=0$ on the retained interval $-20\le T\le0$. Let $G=\kappa|q_+q_-|>0$. The ideal shorthand $q_\pm=\pm1/6$ gives $G=\kappa/36$. The executable fixture instead consumes finite decimal charge tokens; an independent numerical comparison uses those exact tokens and the emitted coupling, not a silently substituted exact fraction. The current fixture computes the coupling as `36.0 * 0.2862286103053385`, whose binary64 value is serialized as `10.304229970992187`.
 
 The restriction to mirror symmetry is a reduced initial-value problem, not a perturbation theorem. On the regular sub-field chart, reflection and exchange preserve the equations; uniqueness of that local delayed initial-value problem preserves the symmetry. The argument below does not claim uniqueness across coincidence, a multiple causal root, or an unsupported self-interaction event.
+
+All positions in this prescribed retained history lie on the same fixed axis. Each defined causal chord is therefore axial, and every canonical acceleration contribution has zero transverse component. The later [opposing-interaction construction](speed-crossing-opposing-interaction-geometry.md#this-construction-uses-a-noncollinear-source-history) introduces different, off-axis source histories; its transverse terms are not a result for this collinear release.
+
+## Kinematics and the frictionless-track analogy
+
+The [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md#abstract-form) has the familiar second-order kinematic structure
+
+$$
+\frac{d\mathbf X_i}{dT}=\mathbf V_i,
+\qquad
+\frac{d\mathbf V_i}{dT}=\mathbf A_i.
+$$
+
+On an ordinary interval where acceleration is integrable, this means
+
+$$
+\mathbf V_i(T)=\mathbf V_i(T_0)+\int_{T_0}^{T}\mathbf A_i(s)ds,
+\qquad
+\mathbf X_i(T)=\mathbf X_i(T_0)+\int_{T_0}^{T}\mathbf V_i(s)ds.
+$$
+
+Existing velocity is retained. Acceleration specifies its change, not its replacement. Zero total vector acceleration preserves constant velocity. Acceleration opposite the velocity reduces speed while the particle initially continues in its existing direction; in one dimension, sustained opposing acceleration can bring velocity through zero and then reverse the motion. Acceleration perpendicular to velocity changes direction without instantaneously changing speed. None of these kinematic statements requires primitive architrino mass or a speed ceiling.
+
+As an explicitly labeled ordinary-mechanics comparison, consider an ideal frictionless slider constrained to a fixed smooth track. Let $s$ be arc length and $h(s)$ its height under uniform downward gravitational acceleration of magnitude $g$. Its tangential equation is $\ddot s=-g\,dh/ds$. A slider moving uphill can therefore keep moving uphill while accelerating downhill. At a horizontal tangent the tangential acceleration vanishes, but the slider need not stop; track curvature can still give nonzero normal acceleration. This comparison illustrates position, velocity and acceleration. The track constraint and gravitational law are not premises of the architrino model.
+
+The important difference is what determines acceleration. A fixed track specifies its tangential acceleration from the current track position. The Master Equation instead sums causal hits selected from the retained histories: each row uses the receiver's current position, the transmitter's earlier position and velocity, their polarity product, and the positive transmitter-side weight. Identical current positions and velocities with different retained histories need not give identical acceleration. At a fixed hit, current receiver velocity does not multiply the acceleration; it changes root playback and subsequent geometry. There is no general derivation here of a fixed hill-shaped potential or of the slider's ordinary mechanical-energy formula for the delayed binary. The absence of an imposed friction term does not supply that derivation.
+
+For the original incoming pair, the summed acceleration points along each label's inward velocity, so inward speed increases. At first speed equality $v=c_f=1$, the partner acceleration remains finite and no positive-delay self hit exists. The continuation obstruction arises when a candidate path goes beyond that endpoint and acquires newborn self hits with a nonintegrable inward acceleration contribution. It does not arise from discarding existing velocity, reaching a horizontal track tangent, or enforcing a maximum permitted speed. The kinematic integration rule remains the same; the acceleration supplied by the candidate continuation is what fails the tested finite-velocity integral formulation.
+
+Claim grade: derived kinematic interpretation of the displayed Master Equation and the previously established binary root census; the hilly track is an illustrative comparison only. A canonical update that replaces velocity with acceleration, a receiver-velocity multiplier in the fixed-hit kernel, or a finite outgoing accumulated acceleration satisfying the stated self-birth hypotheses would falsify the corresponding interpretation. This explanation introduces no new continuation or standard-physics premise.
 
 ## Initial acceleration and root playback
 
@@ -384,6 +416,516 @@ At birth, $\rho\to0$ and $w_-+w_+\to0$. In particular the latter sum is bounded 
 
 Consequently the unchanged complete sharp-root sum supplies no regular Carathéodory continuation, meaning one whose velocity change comes from a locally integrable acceleration, and no locally finite measure continuation for this branch. It supplies no regular passage or rebound through the event. The [binding singular-event contract](../../app-solver/contracts/master-eom-binding-v1.md#singular-event-contract) accordingly leaves coincident same-transmitter birth uncertified and forbids publication of the candidate segment; the finite-impulse route for an ordinary positive-separation fold does not resolve this diagonal birth. The obstruction is an existing derived result, while the decimal event coordinates above remain measured reference evaluations. Neither the argument nor the present numerical record selects a replacement transition, an outgoing history, or a binding outcome.
 
+## Local continuation alternatives for the original collinear history
+
+### Fixed data and solution classes
+
+Return to the original two labels and their complete retained history. Shift the certified speed event to $t=T-T_\ast=0$. Let $X_L<X_R$ denote their laboratory positions and define inward scalar velocities $u_L=X_L'$ and $u_R=-X_R'$. The inherited values are $u_L(0)=u_R(0)=1$, with positive separation. The entire incoming record is stationary or inward-moving, is strictly subfield before the event, and has one simple partner root per receiver. No additional particles, off-axis source histories, velocity ceiling or root reweighting enter this examination.
+
+First test collinear extensions with finite continuous velocities at the event and velocities locally absolutely continuous on every compact outgoing interval $[\delta,t_1]$, where $\delta>0$. Absolute continuity means that velocity changes on such an interval equal the integral of its derivative. The complete canonical equation is required almost everywhere there. This class permits an unbounded acceleration near zero and does not assume absolute continuity through the event, outgoing mirror symmetry, immediate superfield motion or an outgoing Taylor expansion.
+
+A second tested class retains continuous velocity and uses the full distributional measure equation: the derivative of velocity must equal the locally finite acceleration measure obtained from all the canonical contributions, preserving their signs. This subsection does not extend its root-map proof to arbitrary discontinuous BV velocities. Merely requiring a derivative equation almost everywhere, without an integral or full measure identity, is weaker and is treated separately below.
+
+### The inherited partner row forces increasing inward speed
+
+For the right receiver, its partner residual on incoming emission times is
+
+$$
+F_R(t,s)=X_R(t)-X_L(s)-(t-s),
+\qquad
+\partial_sF_R=1-u_L(s)>0.
+$$
+
+The corresponding left-receiver derivative is $1-u_R(s)>0$. Each event partner root lies strictly inside the inherited history, with positive range and positive transmitter factor. The implicit-function theorem preserves it in a compact emission neighborhood for each independently continued receiver. After shortening the reception interval, its inward acceleration satisfies
+
+$$
+0<m_i\le P_i(t)
+=\frac{G}{r_i(t)^2D_{t,i}(t)}
+\le M_i<\infty.
+$$
+
+For example, valid compact bounds $r_{\min}\le r_i\le r_{\max}$ and $0<d_{\min}\le D_{t,i}\le d_{\max}$ give $m_i=G/(r_{\max}^2d_{\max})$ and $M_i=G/(r_{\min}^2d_{\min})$. Strict monotonicity of the residual on the complete incoming record preserves uniqueness there. Positive separation excludes a partner root emitted after zero at sufficiently small reception times: its available delay is shorter than the spatial gap. These conclusions use neither outgoing mirror symmetry nor an assumed superfield branch.
+
+Continuity of $u_i(0)=1$ keeps both inward velocities positive on a short interval. Each label's new motion therefore continues in the same spatial direction as its entire inherited history. Every positive-delay self chord points inward. Its charge product is positive, so its acceleration also points inward. Every opposite-polarity partner contribution points inward as well. The absolute transmitter factor cannot change these signs. Thus, wherever the complete ordinary-root sum is defined,
+
+$$
+\dot u_i=P_i+S_i,\qquad S_i\ge0.
+$$
+
+Integration on $[\delta,t]$ and then the finite endpoint limit give
+
+$$
+u_i(t)-u_i(\delta)\ge m_i(t-\delta),
+\qquad
+\boxed{u_i(t)\ge1+m_it>1\quad(t>0).}
+$$
+
+The same conclusion follows from the full measure equation $Du_i=P_i\,dt+d\mu_i^{\mathrm{self}}$ when the admitted self measure is nonnegative. Therefore continuous braking, waiting at speed one, remaining subfield until a later crossing, and downward oscillations across speed one are not alternatives in these classes. The equation would require immediate inward superfield motion. This necessary inequality does not establish that such a continuation exists.
+
+### The forced branch contradicts finite continuous velocity
+
+For either label let $x_i$ be its inward coordinate and put $h_i(t)=x_i(t)-t$. The inherited $h_i$ is strictly decreasing. The inequality just derived makes the outgoing $h_i$ strictly increasing. Consequently there is one incoming-born self root $s_i(t)<0$ with $h_i(s_i(t))=h_i(t)$ and no self match between two distinct outgoing times. The root stays inside the completed incoming history. It is simple at each $t>0$ because $1-u_i(s_i)>0$.
+
+Write
+
+$$
+\rho=t-s_i(t),\qquad
+w_-=1-u_i(s_i)>0,\qquad
+w_+=u_i(t)-1>0,\qquad
+K_i=\kappa q_i^2>0.
+$$
+
+Position is $C^1$ and the incoming inverse is regular at every $s_i<0$. The exact root identities therefore require no outgoing $C^2$ assumption:
+
+$$
+\frac{ds_i}{dt}=-\frac{w_+}{w_-},
+\qquad
+A_{ii}(t)\,dt
+=\frac{K_i}{\rho^2(w_-+w_+)}\,d\rho.
+$$
+
+As $t\downarrow0$, $\rho\downarrow0$ and $w_-+w_+\to0$. An upper bound $w_-+w_+\le M$ already implies a lower bound $(K_i/M)\int_0^{\rho_1}\rho^{-2}\,d\rho=\infty$ for the accumulated inward acceleration. Its positive sign prevents cancellation with the partner row. On $[\delta,t_1]$ the integral equation would equate this growing integral to $u_i(t_1)-u_i(\delta)$, which has a finite limit as $\delta\downarrow0$. That is a contradiction.
+
+**Derived conclusion:** the original retained binary history has no collinear continuation with finite continuous endpoint velocities in the local integral class just specified, nor in a locally finite nonnegative canonical acceleration-measure class. Outgoing mirror symmetry and monotonicity are not additional assumptions. Their relevant local sign consequences follow from continuity and the equation. The result strengthens the branch-specific obstruction without imposing any universal architrino speed limit.
+
+An exactly straight segment at speed one is also not a root-free waiting period. Every earlier point on that segment lies on a causal self chord and has $D_t=0$. It creates a nonisolated self-root set, whose acceleration is not defined by the simple-root sum. Deleting those roots would still leave the nonzero partner acceleration and would not justify coasting.
+
+Claim grade: derived and independently checked by two separate analytical reviews. Falsifier: a collinear path with the declared inherited record and full integral or nonnegative measure equation that violates the inward lower bound, an additional outward admitted local contribution, or a finite accumulated self contribution satisfying the displayed exact delay identity. A merely almost-everywhere derivative identity without the required integral relation is not an in-class counterexample.
+
+### Finite velocity jumps do not bypass the outgoing equation
+
+Now relax velocity continuity while retaining continuous position. For one label, the inherited inward motion has
+
+$$
+x(s)=x_0+s+\frac a2s^2+o(s^2),
+\qquad
+u(s)=1+as+o(|s|),
+\qquad s<0,\quad a>0.
+$$
+
+Here $a$ is the finite positive incoming partner acceleration at the event. Suppose an outgoing path has a finite velocity right limit $u(t)\to U$, so $x(t)=x_0+Ut+o(t)$. The velocity limit, not just the position expansion, is part of the hypothesis. The persistent partner row remains bounded because its emissions lie in the unchanged incoming record.
+
+For a jump to a strictly greater inward speed $U>1$, the incoming self root solves $x(t)-t=x(s)-s$. Hence
+
+$$
+s(t)\sim-\sqrt{\frac{2(U-1)}a}\,\sqrt t,\qquad
+\rho\sim\sqrt{\frac{2(U-1)}a}\,\sqrt t,\qquad
+D_t\sim\sqrt{2a(U-1)}\,\sqrt t.
+$$
+
+The canonical inward self contribution is therefore
+
+$$
+\boxed{
+A_{\mathrm{self}}(t)
+\sim\frac{K_i\sqrt a}{[2(U-1)]^{3/2}}\,t^{-3/2}.
+}
+$$
+
+It still has an infinite time integral. A finite jump at zero cannot cancel a divergence on every outgoing interval $(0,t_1]$. As an elementary local analytical control, prescribe $x(s)=x_0+s+as^2/2$ on a sufficiently small negative-time neighborhood and $x(t)=x_0+Ut$ on a sufficiently small positive-time neighborhood. Their exact local root is $s=-\sqrt{2(U-1)t/a}$, which reproduces the displayed coefficient directly. This control is not a replacement for the original complete retained history.
+
+For a jump to strictly superfield outward velocity $U<-1$, the chord direction reverses. The incoming root instead solves $x(t)+t=x(s)+s$, giving
+
+$$
+s(t)\sim\frac{U+1}{2}t,\qquad
+\rho\sim\frac{1-U}{2}t,\qquad D_t=1+u(s)\to2,
+$$
+
+$$
+\boxed{
+A_{\mathrm{self}}(t)\sim-\frac{2K_i}{(1-U)^2}\,t^{-2}.
+}
+$$
+
+This is a divergent outward contribution. The bounded inward partner row cannot cancel it. In either strict-superfield case, the outgoing speed stays on its corresponding side of one in magnitude near the event; therefore distinct outgoing points supply no further self roots. The inherited strict-subfield chord deficit excludes older roots away from the displayed incoming match.
+
+For either strict case, an independent exact check uses chord sign $n=\operatorname{sgn}U$, $w_-=1-nu(s)>0$ and $w_+=nu(t)-1>0$:
+
+$$
+|A_{\mathrm{self}}|\,dt
+=\frac{K_i}{\rho^2(w_-+w_+)}\,d\rho.
+$$
+
+Now $w_-+w_+$ tends to a positive finite constant while $\rho\to0$, again giving an infinite integral. No finite atom supported at zero repairs an equation that already fails on $[\delta,t_1]$ as $\delta\downarrow0$.
+
+A strictly subfield restart $-1<U<1$ has a different issue. All nearby incoming and outgoing speeds have magnitude below one except at the isolated inherited endpoint, so the cross-event chord is shorter than its elapsed time and no newborn self root exists. The ordinary partner contribution stays bounded. But the velocity drop $\Delta u=U-1<0$ requires an event acceleration atom $(U-1)\delta_0$. Neither the bounded ordinary rows nor the excluded diagonal supplies that atom. Such a restart remains an unspecified event prescription unless the missing impulse is independently derived.
+
+First-order data with $U=\pm1$ do not determine the outgoing self-root topology by themselves. The continuous $U=1$ case in the tested integral classes is already excluded above. The exact reversed trace $U=-1$ is treated next using its full local root geometry and integral equation. An exactly constant unit-speed outgoing segment has a continuum of self roots and cannot be evaluated as a finite simple-root sum.
+
+Claim grade: derived conditional jump asymptotics, independently rederived from the incoming root equations and checked against the exact delay measure. The strict-superfield exclusion assumes a finite velocity trace and the unchanged integral equation on every compact outgoing interval. Falsifier: a complete in-class strict-superfield jump with finite outgoing accumulated acceleration, a missing cancelling admitted root, or failure of a displayed root coefficient. The calculation does not select a jump or prove that an arbitrary event prescription preserves the original equation.
+
+### Exact reversal: outgoing roots and the missing event impulse
+
+Consider a continuous position with the original incoming trace $u(0^-)=1$ and a proposed outgoing trace $u(0^+)=-1$, still in inward coordinates and with $c_f=1$. This is an instantaneous reversal at the same speed magnitude. It is not continuous passage through zero velocity. The two labels remain separated. Their partner roots stay in the unchanged smooth incoming history for a short outgoing interval, so each partner acceleration remains bounded and inward, $0<m_i\le P_i(t)\le M_i$. No outgoing mirror symmetry is needed for these local bounds.
+
+For one label define the outgoing displacement relative to straight outward unit-speed motion,
+
+$$
+q(t)=x(t)+t-x_0,\qquad q(0)=0,\qquad q'(t)=u(t)+1\longrightarrow0.
+$$
+
+Thus $q(t)=o(t)$. Positive $q$ means that the receiver is inward of that straight reference path. It does not alone imply a pointwise velocity bound. On incoming times define $k(s)=x(s)+s-x_0$. The fixed history has
+
+$$
+k(s)=2s+\frac a2s^2+o(s^2),\qquad k'(s)=1+u(s)>0,
+\qquad k(0)=0.
+$$
+
+The complete local self-root inventory follows from these two scalar functions:
+
+- An outward self chord emitted at $s<0$ is causal precisely when $k(s)=q(t)$. It exists uniquely for $q(t)<0$, is absent for $q(t)>0$, and reaches the emission join $s=0$ when $q(t)=0$.
+- For $q(t)<0$, $s(t)=q(t)/2+O(q(t)^2)=o(t)$, $\rho=t-s\sim t$, and $D_t=1+u(s)\to2$. Hence its inward-coordinate acceleration is
+
+$$
+\boxed{A_{\mathrm{self,in}}(t)\sim-\frac{K}{2t^2},\qquad K=\kappa q_i^2>0.}
+$$
+
+- For $0<s<t$, outgoing velocity is negative near zero, so every outgoing self chord points outward. Its causal equation is exactly $q(s)=q(t)$. Each simple level recurrence contributes
+
+$$
+A_{\mathrm{self,out}}(t;s)
+=-\frac{K}{(t-s)^2|q'(s)|}.
+$$
+
+An incoming chord pointing inward cannot be causal here. The incoming function $x(s)-s-x_0$ is positive for $s<0$, whereas its outgoing value is $-2t+o(t)<0$. Incoming emissions bounded away from zero also retain a strict causal deficit by continuity and the original subfield history. The displayed inventory therefore excludes older omitted roots, not just roots in a Taylor neighborhood.
+
+When $q(t)=0$ at a positive reception, $s=0$ is a genuine positive-delay causal emission. Its source velocity jumps, so it is not an ordinary differentiable simple-root evaluation. It must not be deleted using the same-time diagonal exclusion. A plateau of $q$ instead produces a continuum of outgoing self roots with $D_t=0$. Both cases require additional event treatment if they persist; assigning them zero acceleration would change the root inventory.
+
+#### The punctured integral equation selects a subfield outgoing segment
+
+The following result tests a precise regularity class. Require finite right velocity trace, continuous position, velocity locally absolutely continuous on every $[\delta,t_1]$ with $\delta>0$, and the complete ordinary simple-root equation almost everywhere there. No extra singular velocity variation or unassigned interior impulse is permitted. Source-join and non-simple-root receptions may form a null exceptional set; an interval or positive-measure set of unresolved such receptions is outside this class. No monotonicity of $q$ is assumed.
+
+All admitted self contributions now point outward. Write their nonnegative total magnitude as $S$, so
+
+$$
+q''(t)=P(t)-S(t),\qquad S(t)\ge0,\qquad 0<P(t)\le M.
+$$
+
+Integration from $\delta$ to $t$ and the limit $q'(\delta)\to0$ show that $\int_0^t S$ is finite for any in-class solution. They also give $q'(t)\le Mt$ and $q(t)\le Mt^2/2$. These facts follow from the full integral equation, not a derivative identity that could hide singular variation.
+
+First, $q$ cannot have negative excursions arbitrarily near zero. On $q<0$ the incoming-born row gives $S\ge c/t^2$ for a fixed $c>0$. On a sufficiently short interval, $q''\le M-c/t^2<0$. Every negative component is consequently concave. A bounded negative component whose endpoints both have $q=0$ is impossible, since a concave function lies above its endpoint chord. A component beginning at zero would require integrating a $-c/t^2$ acceleration to a finite right velocity trace, also impossible. All remaining negative points, if any, lie in a terminal component whose left endpoint is positive. Hence $q\ge0$ on some initial interval.
+
+Next set $Q(t)=\max_{0\le s\le t}q(s)$, the running maximum. On any component of $\{q<Q\}$, $Q$ stays constant. At an ordinary reception with $0<q(t)<Q(t)$, continuity supplies an earlier outgoing time with the same value of $q$, and hence a self root. Since $q'(s)\to0$, choose the interval so that $|q'(s)|\le1$. Its delay is below $t$, so that row alone gives $S\ge K/t^2$. Receptions with $q(t)=0$ have the source-join root and belong to the null exceptional set stipulated above. Thus $q''<0$ almost everywhere in each running-maximum deficit component after further shortening the interval.
+
+A bounded component cannot be a concave dip below its common endpoint value $Q$. A component beginning at zero would have constant $Q=Q(0)=0$, contradicting $0\le q<Q$. At most a terminal component with a positive left endpoint remains. It follows that $q=Q$ on some initial interval. There $q$ is nondecreasing. A plateau would supply a continuum of self roots over a positive reception interval, contrary to the tested equation class. Therefore $q$ is strictly increasing and positive for $t>0$, and its self-root inventory is empty.
+
+The equation reduces to the smooth historical-partner problem
+
+$$
+x_i''=P_i(t,x_i),\qquad
+x_i(0)=x_{i,0},\qquad x_i'(0^+)=-1.
+$$
+
+The source emission is a smooth implicit function of reception time and receiver position because the inherited transmitter factor stays positive. Ordinary local ODE existence and uniqueness therefore construct the outgoing segment. With $a_i=P_i(0,x_{i,0})>0$,
+
+$$
+\boxed{
+u_i(t)=-1+a_it+o(t),\qquad
+x_i(t)=x_{i,0}-t+\frac{a_i}{2}t^2+o(t^2).
+}
+$$
+
+Consequently $-1<u_i(t)<0$ on a short interval: the labels move outward, while their inward acceleration reduces outward speed. The spliced incoming and outgoing paths have speed magnitude below one almost everywhere, so every positive-delay self chord is strictly shorter than its elapsed time. This independently checks the empty self-root inventory. One historical partner root remains per receiver. The running-maximum argument establishes local uniqueness within the stated punctured ordinary-root class, not within unspecified singular-event formulations.
+
+For both labels reversed, their separation $d$ satisfies
+
+$$
+d(t)=d_0+2t-\frac{a_L+a_R}{2}t^2+o(t^2).
+$$
+
+They would move apart immediately, without passing each other. This statement describes the conditionally assigned restart, not an event generated by the equation.
+
+The partner playback provides another exact check. With inherited source time $s_{i,*}$ and transmitter factor $D_{t,i,*}>0$,
+
+$$
+\frac{ds_i}{dt}=\frac{1+u_i(t)}{D_{t,i}(t)},\qquad
+s_i(t)=s_{i,*}+\frac{a_i}{2D_{t,i,*}}t^2+o(t^2).
+$$
+
+The receiver factor is zero at the reversed endpoint, so source playback pauses to first order. The acceleration there remains $a_i>0$: receiver playback does not multiply the canonical acceleration.
+
+#### The full event equation still lacks the reversal
+
+For this conditional restart, the ordinary partner acceleration is bounded on both sides, and there are no self roots on either side. Continuous position with the two velocity traces nevertheless has the distributional second derivative
+
+$$
+\boxed{D u_i=P_i(t)\,dt-2\delta_0.}
+$$
+
+Here $\delta_0$ denotes a unit event impulse at zero, and $P_i$ denotes the corresponding bounded partner density on each side. The coefficient $-2$ is the exact velocity change $-1-(+1)$ in units $c_f=1$. Integrating the actual ordinary canonical rows over a shrinking event interval gives zero, while the velocity change tends to $-2$. The conditional restart therefore fails the full distributional EOM by precisely this missing atom. A solution of the punctured equation alone does not generate its assigned reversal.
+
+The [canonical endpoint convention](../../../../content/markdown/aaa/dynamics/master-equation.md#conventions-and-exclusions) and [singular-event binding](../../app-solver/contracts/master-eom-binding-v1.md#singular-event-contract) supply no accepted reversal impulse. Excluding a single endpoint is not, by itself, a proof against every possible concentration limit. The stronger auxiliary statement available here concerns regular separated collinear families actually evolved from the original monotone inward data: their inward velocities are nondecreasing by the sign argument below, so a bounded convergent such family cannot produce the required negative jump. Evaluating an already prescribed reversed history is different; its self chords can point outward and it is not covered by that inward-sign assertion.
+
+#### Analytical control and claim boundary
+
+For an exact local root control, take $x(s)=x_0+s+as^2/2$ for negative $s$ and $x(t)=x_0-t+bt^2/2$ for positive $t$, with $a>0$. Then $q(t)=bt^2/2$. If $b<0$, its incoming root is
+
+$$
+s(t)=\frac{-2+\sqrt{4+ab t^2}}{a},\qquad
+D_t=\sqrt{4+ab t^2},\qquad
+A_{\mathrm{self}}=-\frac{K}{[t-s(t)]^2\sqrt{4+ab t^2}}
+\sim-\frac{K}{2t^2}.
+$$
+
+If $b>0$, no local self root exists. If $b=0$, all outgoing emission times are self roots with $D_t=0$. These exact local comparison paths check the topology and coefficient; they are not replacements for the original complete history or solutions of the coupled equation.
+
+Claim grade: **derived**, with independent analytical derivations and review of the complete local root inventory, punctured integral argument and distributional event balance. Falsifiers are an additional admitted local root with an opposing sign, an in-class finite-trace solution violating the concavity/running-maximum proof, a failure of the exact quadratic control, or a derivation of the required $-2\delta_0$ from the full unchanged event equation. An independently specified singular-event operator would require separate analysis. The present result constructs a conditional outgoing segment and shows exactly why it does not constitute a reversal under the existing equation. It introduces no speed ceiling, modified root weight or numerical continuation.
+
+### Integrable velocity singularity fails the acceleration-sign check
+
+The proposed outgoing form $u(t)\sim Bt^{-p}$, with $B\ne0$ and $0<p<1$, permits continuous position: its displacement is asymptotic to $Bt^{1-p}/(1-p)$. The square-root example is $u=C/\sqrt t$, $x=x_0+2C\sqrt t$, with $C>0$ and $c_f=1$. This kinematic property does not establish compatibility with the acceleration equation. The operator required that this route proceed only if it conforms to the unchanged Master Equation.
+
+Use the original collinear incoming history and continuous positions. Require finite velocity at each positive time, local absolute continuity of velocity on compact punctured intervals, and the complete integral EOM there. The argument needs only an eventually fixed velocity sign and an infinite right limit; it does not differentiate an uncontrolled asymptotic remainder. Positive separation and continuity keep the partner root in its earlier regular incoming source interval, so $0<P(t)\le M$ remains valid. Unbounded receiver velocity does not multiply the canonical acceleration.
+
+If $B>0$, the outgoing receiver moves inward from its inherited endpoint. Every self chord, whether emitted in the retained incoming history or on the short outgoing segment, points inward. The partner contribution also points inward. The unchanged positive transmitter weight therefore implies
+
+$$
+u(t)-u(s)=\int_s^t[P(r)+S(r)]dr\ge0,
+\qquad 0<s<t,\quad S\ge0.
+$$
+
+As $s\downarrow0$, $u(s)\to+\infty$, contradicting a finite $u(t)$. For the exact square-root example the conflict is already pointwise: $u'=-C/(2t^{3/2})<0$, whereas every defined canonical contribution is inward and the partner term is strictly positive.
+
+If $B<0$, outgoing self chords point outward. An inward-directed self hit from an incoming emission $s<0$ would require
+
+$$
+x(t)-t-x_0=x(s)-s-x_0.
+$$
+
+The left side is negative because the outgoing position moves outward from $x_0$, while the right side is positive on the original strictly subfield incoming history. Such a hit is impossible. All remaining admitted self contributions are therefore outward. Writing their magnitude as $S\ge0$ gives
+
+$$
+u(t)-u(s)=\int_s^t[P(r)-S(r)]dr\le M(t-s).
+$$
+
+But $u(s)\to-\infty$ makes the left side diverge positively for each fixed finite $u(t)$, another contradiction. The sign check therefore excludes either sign of the proposed power-law singularity, and more generally either infinite one-sided velocity limit under these same position, history and integral-equation hypotheses.
+
+Claim grade: **derived**, independently checked from the actual canonical radial kernel and inherited geometry. Falsifier: an in-class continuation with the claimed infinite limit that violates the corresponding integral inequality, or an additional admitted contribution reversing the proved sign or invalidating the bounded partner remainder. Rapid sign-changing histories without a one-sided velocity limit and separately defined nonordinary event operators are not covered. The failed compatibility check ends this candidate; no numerical continuation, regularization, altered weight or speed ceiling is introduced.
+
+### Conditional limits of positive finite-width approximations
+
+The [binding's finite-width causal-surface equation](../../app-solver/contracts/master-eom-binding-v1.md#finite-width-transmitter-side-acceleration) uses a nonnegative Gaussian and a radial core kernel that preserves chord direction. Consider a regular collinear family evolved from the monotone inward retained history, on an interval where the two labels remain separated. As long as each inward velocity is nonnegative, every self integrand is inward or zero and every signed opposite-polarity partner integrand is inward. The resulting nonnegative inward acceleration preserves that condition. Thus each inward velocity is nondecreasing throughout this interval.
+
+Consequently a bounded convergent family of this kind cannot create a negative velocity-jump atom: its acceleration measures are nonnegative, and any locally finite weak limit preserves that sign. If the family converges to the original incoming trace $u_i(0^-)=1$, a finite outgoing trace must satisfy $U_i\ge1$. If its punctured outgoing limit also recovers the unchanged sharp equation, the strict-superfield jump calculation excludes $U_i>1$. The continuous $U_i=1$ alternative is excluded in the integral classes established above.
+
+Both convergence premises are additional hypotheses. Finite regulators can already change self contributions before the event. Neither convergence to this particular incoming history nor recovery of the complete sharp equation through a singular limit has been proved here. The result is therefore a conditional obstruction to finite resets under positive causal-surface approximation, not a claimed regulator limit or a numerical experiment. A scheme producing a negative impulse would need to identify where it ceased preserving the stated geometry, sign or convergence assumptions.
+
+Claim grade: derived conditional sign argument, independently checked against the binding's actual kernel. Falsifier: a regular collinear separated family satisfying these hypotheses with a decreasing inward velocity or a negative limiting acceleration measure.
+
+### What remains outside these results
+
+| Proposed continuation | Result for this inherited collinear record |
+| --- | --- |
+| Finite continuous velocity, with acceleration allowed to diverge near zero | Excluded in the local integral and nonnegative locally finite measure classes. |
+| Continuous waiting, braking, rebound or oscillation near speed one | The positive partner row forces increasing inward speed; none avoids the same contradiction in those classes. |
+| Finite velocity jump to $U>1$ or $U<-1$ | Excluded by nonintegrable outgoing self acceleration, even after the proposed jump. |
+| Finite restart at $-1<U<1$ | Ordinary outgoing rows are finite, but the required negative event impulse has not been supplied by the equation. |
+| Exact reversed limit $U=-1$ in the punctured integral and ordinary-root class | The unique local outgoing segment moves outward and slows below unit speed; joining it to the incoming path requires a missing $-2\delta_0$ event impulse. |
+| Persistent nonisolated roots or a source-join event on a positive-measure reception set | Outside the ordinary-root theorem; no full event operator or continuation has been constructed. |
+| Infinite one-sided velocity limit with continuous position | Excluded by the acceleration-sign inequalities in the punctured integral class, including integrable power-law singularities of either sign. |
+| No one-sided velocity limit, or a non-measure generalized equation | Outside the proved classes; a precise definition and compatibility proof are still required. |
+
+One regularity distinction matters. A continuous velocity can have a derivative almost everywhere while also carrying singular variation that its almost-everywhere derivative misses. A negative singular part could formally evade the integrated inward inequality if only that derivative identity were checked. The full distributional equation would have to account for that part as an additional acceleration. Merely choosing such a function does not obtain the missing contribution from the canonical root sum.
+
+Likewise, neither an auxiliary clock nor a finite-part subtraction establishes an unchanged-law continuation. The clock preserves the divergent physical-time integral; the subtraction needs an independently justified generalized event operator. Any such proposal must specify position continuity, velocity traces, root admission, and the complete event acceleration. The near-diagonal audit below evaluates the auxiliary causal-surface integral on the original incoming history: its prescribed ordered limit recovers zero incoming accumulated self acceleration, while other joint limits need not. The conditional sign result above constrains any evolved approximation before it could supply an event rule. The present analysis finds no outgoing solution for the original binary. It does not show that the particles stop, pass, rebound, or obey a velocity ceiling.
+
+## Near-diagonal width and core limits
+
+### The sharp equation and its auxiliary regulator
+
+The [Master Equation's auxiliary dual-mollified regulator](../../../../content/markdown/aaa/dynamics/master-equation.md#auxiliary-dual-mollified-regulator-for-proof-and-computation) is an evaluation device, not a second defining law. Its recovery statement specifies wake width $\eta\downarrow0$ first and core length $\epsilon\downarrow0$ second, on compact regular charts with isolated simple roots, positive range and a positive transmitter-factor floor. That statement supplies no extension at the excluded diagonal. Arbitrary joint-limit dependence there does not contradict the declared ordered recovery on regular charts.
+
+Use the actual original incoming history, shift the first speed-equality event to $t=0$, and let $x(t)$ be either label's inward coordinate. Its endpoint data are $x'(0^-)=1$ and $x''(0^-)=a>0$. In this section $a$ denotes incoming acceleration, not the initial half-separation used earlier. Set $K=\kappa q_i^2>0$. For positive delay $\rho=t-S$, define
+
+$$
+d(t,\rho)=x(t)-x(t-\rho),\qquad
+g(t,\rho)=d(t,\rho)-\rho.
+$$
+
+At each moving incoming reception, $d>0$ and $g<0$ throughout the retained positive-delay history. There are no admitted self roots. The [binding's Gaussian and softened radial kernel](../../app-solver/contracts/master-eom-binding-v1.md#finite-width-transmitter-side-acceleration) nevertheless give the auxiliary scalar self integral
+
+$$
+I_{\eta,\epsilon}(t)=
+\frac{K}{\sqrt{2\pi}\eta}
+\int_0^{h(t)}
+\frac{d(t,\rho)}{[d(t,\rho)^2+\epsilon^2]^{3/2}}
+\exp\!\left[-\frac{g(t,\rho)^2}{2\eta^2}\right]d\rho.
+$$
+
+Here $h(t)$ reaches the original retained-history edge; that edge stays outside the local event neighborhood. All evaluations below hold this history fixed. They do not evolve a regularized binary or prove that such an evolution converges to it. Removing only the single integration point $\rho=0$ leaves every finite-regulator integral unchanged. A shrinking neighborhood of that point can still contribute.
+
+### Fixed incoming receptions: the two limits do not commute
+
+Fix $t<0$ with $v=x'(t)\in(0,1)$ and put $b=1-v$. Local smoothness gives $d=v\rho+O(\rho^2)$ and $g=-b\rho+O(\rho^2)$. Substitution $\rho=\eta z/b$, when $\eta/\epsilon\to0$, gives
+
+$$
+\boxed{
+I_{\eta,\epsilon}(t)
+\sim\frac{Kv}{\sqrt{2\pi}b^2}\frac{\eta}{\epsilon^3}.
+}
+$$
+
+The coefficient uses $\int_0^\infty z e^{-z^2/2}dz=1$. A Gaussian bound dominates the rescaled integrand on a small delay interval. On the remaining compact history, both $d$ and $-g$ have positive lower bounds, so the contribution is exponentially small. This establishes the result for the original history, rather than just an affine comparison path. It is not uniform as $v\uparrow1$.
+
+At fixed positive core, width removal gives zero. At fixed positive width, the substitution $\rho=\epsilon z/v$ instead gives
+
+$$
+I_{\eta,\epsilon}(t)\sim
+\frac{K}{\sqrt{2\pi}\eta v\epsilon}.
+$$
+
+Consequently
+
+$$
+\lim_{\epsilon\downarrow0}\lim_{\eta\downarrow0}I_{\eta,\epsilon}(t)=0,
+\qquad
+\lim_{\eta\downarrow0}\lim_{\epsilon\downarrow0}I_{\eta,\epsilon}(t)=+\infty.
+$$
+
+Power-law refinement routes require a fixed reference length $L$: write $\bar\eta=\eta/L$, $\bar\epsilon=\epsilon/L$ and $\bar\eta=C\bar\epsilon^p$, with $C>0$. For $p>1$ the displayed fixed-reception asymptotic applies. It gives zero for $p>3$, a tunable positive finite value for $p=3$, and positive divergence for $1<p<3$. These are auxiliary diagonal-layer contributions, not extra sharp causal hits. At release itself the entire retained self history is stationary, $d\equiv0$, and the softened self integral is exactly zero for every positive width and core. Instantaneous zero velocity alone would not establish that stationary-history control.
+
+An independent closed-form comparison uses an affine history $d=v\rho$ on an infinite delay window. With $\beta=b\epsilon/(v\eta)$,
+
+$$
+I^{\infty}_{\eta,\epsilon}
+=\frac{K}{\sqrt{2\pi}\eta v\epsilon}F(\beta),
+\qquad
+F(\beta)=\int_0^\infty
+\frac{y e^{-\beta^2y^2/2}}{(1+y^2)^{3/2}}dy
+=1-\beta\sqrt{\frac\pi2}e^{\beta^2/2}
+\operatorname{erfc}\!\left(\frac\beta{\sqrt2}\right).
+$$
+
+Integration by parts proves the identity. Substitution $y=z/\beta$ gives $F(\beta)=\beta^{-2}-3\beta^{-4}+O(\beta^{-6})$. For a finite affine delay window $h$, the omitted acceleration is nonnegative and at most $K e^{-b^2h^2/(2\eta^2)}/(\sqrt{2\pi}\eta v^2h)$. This comparison is a coefficient control; it is not a replacement initial history for the binary.
+
+### The endpoint value diverges, but its incoming integral need not
+
+At the speed event the actual $C^2$ incoming record gives
+
+$$
+d(0,\rho)=\rho-\frac a2\rho^2+o(\rho^2),
+\qquad
+g(0,\rho)=-\frac a2\rho^2+o(\rho^2).
+$$
+
+If $\eta/(a\epsilon^2)\to0$, the significant delays are of order $\sqrt{\eta/a}\ll\epsilon$. The denominator is asymptotic to $\epsilon^3$, and
+
+$$
+\begin{aligned}
+I_{\eta,\epsilon}(0)
+&\sim\frac{K}{\sqrt{2\pi}\eta\epsilon^3}
+\int_0^\infty\rho e^{-a^2\rho^4/(8\eta^2)}d\rho\\
+&=\boxed{\frac{K}{2a\epsilon^3}}.
+\end{aligned}
+$$
+
+Every joint approach $\eta,\epsilon\downarrow0$ diverges pointwise at this endpoint, including other scale ratios. Indeed, on $0<\rho<c\min(\epsilon,\sqrt{\eta/a})$, the Gaussian has a positive lower bound, $d$ is comparable to $\rho$, and the denominator is at most a constant times $\epsilon^3$. Thus, with a fixed positive constant $c_1$,
+
+$$
+I_{\eta,\epsilon}(0)
+\ge c_1K\frac{\min(\epsilon^2,\eta/a)}{\eta\epsilon^3}.
+$$
+
+For $\eta\le a\epsilon^2$ this bounds the integral below by a positive multiple of $K/(a\epsilon^3)$; for $\eta\ge a\epsilon^2$ it gives a positive multiple of $K/(\eta\epsilon)$. Both diverge. An infinite limiting value at one reception alone does not establish an infinite accumulated acceleration, however.
+
+To determine that accumulation, fix a short incoming interval and define
+
+$$
+J_{\eta,\epsilon}=\int_{-t_0}^{0}I_{\eta,\epsilon}(t)dt.
+$$
+
+For $z=-t\ge0$, the original $C^2$ history implies the uniform corner expansion
+
+$$
+G(z,\rho):=\rho-d(-z,\rho)
+=\int_z^{z+\rho}[1-x'(-v)]dv
+=a\rho\left(z+\frac\rho2\right)
++o\!\left(\rho(z+\rho)\right).
+$$
+
+Set $\rho=\sqrt{\eta/a}\,r$ and $z=\sqrt{\eta/a}\,w$. If $\eta/(a\epsilon^2)\to0$, then
+
+$$
+\boxed{
+J_{\eta,\epsilon}\sim
+C_0\frac{K\sqrt\eta}{a^{3/2}\epsilon^3},
+\qquad
+C_0=\frac{\Gamma(3/4)}{2^{1/4}\sqrt\pi}.
+}
+$$
+
+The constant follows by changing the order of integration:
+
+$$
+\begin{aligned}
+\sqrt{2\pi}C_0
+&=\int_0^\infty\!\int_0^\infty
+r e^{-r^2(w+r/2)^2/2}\,dw\,dr\\
+&=\int_0^\infty\!\int_{r^2/2}^\infty e^{-y^2/2}\,dy\,dr\\
+&=\sqrt2\int_0^\infty y^{1/2}e^{-y^2/2}dy
+=2^{1/4}\Gamma(3/4).
+\end{aligned}
+$$
+
+For rigor, on a small corner $z+\rho\le\delta$, continuity of the incoming acceleration bounds $G$ between $a_-\rho(z+\rho/2)$ and $a_+\rho(z+\rho/2)$, where $a_\pm\to a$ as $\delta\downarrow0$, and gives $d/\rho\to1$. The normalized core factor is at most one. The scaled integrand is dominated by a constant times $r e^{-c r^2(w+r/2)^2}$, whose quadrant integral is finite by the same order-of-integration calculation. Dominated convergence therefore applies. Reception times away from zero contribute $O(\eta/\epsilon^3)$, which is smaller than the displayed $\sqrt\eta/\epsilon^3$ scale; delays away from zero have a uniform causal deficit and an exponentially small contribution. This proof uses the actual smooth incoming record, not a prescribed quadratic surrogate.
+
+In the dimensionless routes already defined, every $p>3$ recovers zero self acceleration at every fixed $t<0$, while
+
+$$
+J_{\eta,\epsilon}\sim
+\frac{C_0K\sqrt C}{a^{3/2}L^{5/2}}
+\bar\epsilon^{p/2-3}.
+$$
+
+| Joint route $\bar\eta=C\bar\epsilon^p$ | Every fixed incoming reception $t<0$ | Accumulated incoming self acceleration |
+| --- | --- | --- |
+| $p>6$ | Tends to zero. | Tends to zero. |
+| $p=6$ | Tends to zero. | Tends to the positive finite value $C_0K\sqrt C/(a^{3/2}L^{5/2})$. |
+| $3<p<6$ | Tends to zero. | Diverges positively. |
+
+For $p=6$, positivity and concentration imply weak convergence on the closed incoming interval to a positive atom at $t=0$ with the displayed mass. Varying $C$ varies that mass. This is an inward contribution and cannot supply the negative event impulse required by a rebound. It also shows why pointwise incoming recovery is weaker than recovery of the accumulated acceleration.
+
+The literal prescribed iterated incoming integral instead satisfies
+
+$$
+\boxed{\lim_{\epsilon\downarrow0}\lim_{\eta\downarrow0}J_{\eta,\epsilon}=0.}
+$$
+
+At fixed core, the endpoint layer has shrinking total mass proportional to $\sqrt\eta$ even though its endpoint value tends to $K/(2a\epsilon^3)$. The final core limit makes that endpoint value infinite, without creating an incoming acceleration atom in the prescribed iterated integral. None of these fixed-history limits establishes an outgoing trajectory.
+
+### Delay excision and faithful outgoing limits
+
+A proof truncation $\rho\ge\delta>0$ removes the diagonal neighborhood before taking either regulator limit. For each fixed incoming reception, including $t=0$, the truncated residual stays away from zero, so taking width to zero, then core to zero, then $\delta$ to zero gives zero self contribution. Here $\delta$ is an auxiliary proof cutoff, not a physical minimum delay.
+
+For a candidate continuous outgoing branch, every fixed $t>0$ has the genuine positive-delay self root $\rho_s(t)>0$ derived above. Once $\delta<\rho_s(t)$, ordered regular recovery retains its full sharp contribution. After those two regulator limits the truncated density is $A_\delta(t)=\mathbf1_{\{\rho_s(t)>\delta\}}A_s(t)$, apart from a single irrelevant cutoff reception. The exact delay measure gives
+
+$$
+\int A_\delta(t)dt
+=\int_\delta^{\rho_1}
+\frac{K}{\rho^2(w_-+w_+)}d\rho
+\ge\frac K M\left(\frac1\delta-\frac1{\rho_1}\right)
+\longrightarrow+\infty.
+$$
+
+Thus removing the incoming diagonal layer does not remove the outgoing nonintegrable self contribution. Keeping a positive cutoff would delete admitted causal roots and change the equation.
+
+More generally, let nonnegative outgoing acceleration densities $f_n$ satisfy $\liminf_n f_n(t)\ge A_s(t)$ for almost every fixed $t>0$. For a nonnegative smooth test function $\chi$ equal to one near zero, the nonnegative integral limit inequality gives
+
+$$
+\liminf_n\int\chi(t)f_n(t)dt
+\ge\int_0^{t_1}\chi(t)A_s(t)dt=+\infty.
+$$
+
+No locally finite nonnegative acceleration-measure limit can retain those outgoing densities. The statement also applies to varying histories if the density-recovery premise is independently established. Convergence of trajectories alone, or a recovery theorem for a fixed regular history, does not establish that premise.
+
+### Evidence and conclusion of the audit
+
+Claim grade: **derived**, with separate analytical derivations of the fixed-reception limit, the $C^2$ endpoint layer and the outgoing delay-excision obstruction. The bounds and exact integrals above are the references. A bounded mpmath 1.3.0 diagnostic at 80 decimal digits separately checked the affine closed form and the two universal coefficients, after recording successful exponential-integral, Gaussian-moment and stationary-kernel controls. It returned $C_0\approx0.581368317019118581841602$. Direct quadrature and the gamma expression differed by about $1.05\times10^{-81}$; the explicit omitted quadrature tail was bounded by $2.17\times10^{-548}$. These are numerical coefficient checks, not interval certificates or binary evolution. The [work log](../work-log.md#2026-09-16--near-diagonal-regulator-audit) records the instrument and its scope.
+
+Falsifiers are a failure of the affine integration identity, a different leading coefficient under the stated smoothness and scale assumptions, a failure of the quadrant integral or concentration estimate, or a locally finite nonnegative outgoing limit satisfying the displayed density-recovery premise. The audit does not identify a solver implementation defect and does not alter the sharp-root postulate.
+
+The auxiliary integral supplies no regulator-independent diagonal extension. Its declared width-first order recovers the original incoming zero self measure; other joint approaches can agree at every earlier reception yet supply different endpoint masses. Faithful positive recovery of the outgoing sharp rows of the continuous inward crossing still has infinite accumulated acceleration. No passage or rebound under the full equation has been constructed, and unrestricted architrino velocity remains the scope of the investigation. The exact reversed unit-speed trace is classified separately above: its regular conditional outgoing segment exists, but the required negative event impulse is absent.
+
 ## Boundary result and modified-law scope
 
 The result for this stationary initial-value problem is the certified inward motion through first wake-speed equality at positive separation, together with the obstruction to regular continuation under the unchanged sharp-root acceleration sum. At the boundary the positive label remains on the positive axis and moves inward, while the negative label remains on the negative axis and moves inward. Neither has passed or turned around. Failure of regular continuation assigns no later position or velocity and does not establish that the charges physically stop at the boundary. The result is confined to the stated stationary mirror history and solution class; it imposes no universal speed ceiling or general encounter outcome.
@@ -496,7 +1038,7 @@ Claim grade: `inferred` research direction from the proved obstructions; existen
 
 ### What a successful cancellation would have to mean
 
-The proposed investigation searches for a different configuration or history under the unchanged equation. No starting positions or histories realizing the proposed cancellation have been identified. The stationary pair cannot supply the needed opposing contribution: its partner acceleration stays bounded at the first speed boundary. Adding more particles is not sufficient by itself; their admitted wake contributions would have to have the required singular magnitude, direction and timing.
+The investigation concerns a different configuration or history under the unchanged equation. The [geometry derivation](speed-crossing-opposing-interaction-geometry.md#a-reflected-pair-with-a-finite-outgoing-acceleration-sum) now supplies two reflected prescribed source histories whose eight local partner roots cancel every negative-power term of the receiver's local self-plus-partner sum. This gives a finite outgoing limit, but no complete EOM history realizing those paths has been established. The stationary pair cannot supply the needed opposing contribution: its partner acceleration stays bounded at the first speed boundary. Adding more particles is not sufficient by itself; their admitted wake contributions would have to have the required singular magnitude, direction and timing.
 
 Here simultaneous refers to reception. Several contributions would become singular at the same receiver and absolute time, although their emissions could occur at different earlier times. A causal root identifies an earlier emission whose wake reaches that receiver. The cancellation must occur in each affected receiver's acceleration equation; summing opposite accelerations of different particles does not cancel either particle's velocity change.
 
@@ -516,4 +1058,12 @@ Claim grade: `derived` algebra under explicitly hypothetical contributions; exis
 
 ### Investigation disposition
 
-The mathematical-technique assessment preserves the decision to set aside the quintic candidate. Auxiliary time, exact integral formulations and simultaneous root/trajectory asymptotics are permissible analytical tools. No technique assessed here has established an unchanged-law crossing for the stationary binary. The proposed next investigation is to determine whether a declared finite-history configuration can supply the required opposing singular contribution, while completing the root-domain assumptions of the broader obstruction. This is an open research proposal, with no new simulation, solver modification, campaign completion or modified-law authorization implied.
+The current examination retains the [original collinear history](#local-continuation-alternatives-for-the-original-collinear-history) with unrestricted velocity. Positivity of the inherited partner contribution and every nearby admitted self contribution forces any finite continuous-velocity integral solution into the already-obstructed superfield branch. This rules out waiting, braking and oscillation as alternative continuous continuations in that class without assuming outgoing mirror symmetry. Finite jumps to strictly superfield velocity also fail through nonintegrable outgoing self contributions. Subfield restarts require negative event impulses that have not been derived.
+
+The [exact reversal analysis](#exact-reversal-outgoing-roots-and-the-missing-event-impulse) classifies the trace $U=-1$ in the punctured integral and ordinary-root class, including oscillatory candidates. Assigning that reversal gives a unique local self-root-free segment that moves outward and slows below unit speed. The full distributional equation would require an additional $-2\delta_0$ acceleration impulse per inward coordinate; the actual bounded partner rows and absent self rows do not supply it. The conditional segment therefore does not establish rebound under the original equation. Persistent nonordinary root sets, additional singular event operators and histories without any one-sided velocity limit remain outside the proved classes.
+
+The proposed [integrable velocity singularity](#integrable-velocity-singularity-fails-the-acceleration-sign-check) fails its unchanged-equation compatibility check. For an infinite inward right limit, the equation requires nondecreasing inward velocity, contradicting finite velocity at any later time. An infinite outward right limit cannot recover a finite value under the bounded inward partner acceleration and outward self contributions. This excludes both signs of $u(t)\sim Bt^{-p}$, $0<p<1$, without differentiating its asymptotic remainder. Under the operator's condition, this candidate is not pursued further. Histories with no one-sided velocity limit and nonordinary event formulations remain outside these sign-limit results.
+
+The [near-diagonal regulator audit](#near-diagonal-width-and-core-limits) adds a fixed-history limit result: the auxiliary width-first order recovers zero incoming accumulated self acceleration, while other joint refinements can give zero, finite positive or infinite endpoint mass despite pointwise recovery earlier. None supplies the required negative rebound impulse. Positive approximations retaining the genuine outgoing sharp densities still have divergent accumulated acceleration. These findings limit what the auxiliary integral establishes at the event; they do not impose a speed ceiling or diagnose a solver defect.
+
+The [four-root and reflected-source calculations](speed-crossing-opposing-interaction-geometry.md) remain separate prescribed noncollinear geometry results. Their finite selected sum does not apply to the original binary or establish a coupled EOM crossing. Auxiliary time and integral formulations remain analysis tools; none supplies a new event contribution by changing notation.
