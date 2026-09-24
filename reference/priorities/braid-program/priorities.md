@@ -64,6 +64,8 @@ The phase-varying display representative's prescribed-root obligation, separate 
 
 ## Pointers
 
+The [collinear encounter comparison](manuscript.md#56-collinear-encounter-comparison) and numbered source-linked notes compare equation/history variants through speed equality, coincidence, braking and turning. They distinguish unchanged-law obstructions, conditional event extensions, strict-speed controls and smoothed numerical results without transferring conclusions between models. This synthesis changes no model adoption or research priority.
+
 General requirements: [Inferring Braid Requirements](../mapping-equations/analysis/inferring-braid-requirements.md), owned by Equation Mapping. Candidate dispositions: [Braid Candidate Requirement Adjudication](analysis/braid-candidate-requirement-adjudication.md). Focused geometry and evidence: [asymmetric counter-breathing representative Geometry](analysis/f6c-geometry.md), [Pair-Conjugate And Sector-Differential Three-Binary Geometry](analysis/three-binary-orbiting-endpoint-comparison.md), [Five-Coordinate Initialization](evidence/three-binary-five-coordinate-initialization-ledger.md), and [Bounded Five-Coordinate EOM Comparison](evidence/three-binary-five-coordinate-bounded-eom-comparison.md).
 
 Charter and ground rules: [README.md](README.md). Master candidate index: [candidate-registry.md](configurations/candidate-registry.md). Method: [method.md](contracts/method.md). Search space: [configuration-chart.md](configurations/configuration-chart.md). Logs: [work-log.md](work-log.md), [brainstorming.md](brainstorming.md).

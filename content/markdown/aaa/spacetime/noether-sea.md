@@ -1180,7 +1180,7 @@ $$
 
 This follows by source-clock to absolute-time conversion, phase transport, and absolute-time to receiver-clock conversion. The effective packet-energy readout is $E_{\mathrm{obs},X}=h\nu_{\mathrm{obs},X}$ after source calibration, endpoint cadence and mismatch, launch compression, and path response have been specified. It remains a conditional transport map until the response coefficients, frequency and envelope evolution, and energy exchanges are derived from the retained histories.
 
-The expansionary reading is therefore conditional. Local equilibrium by itself does not imply an effective expansion history. A Hubble-like redshift slope appears only if the coarse-grained transport has a signed, persistent cadence-space current or source-relaxation imbalance that projects into the photon path-rate functional while preserving image sharpness, line coherence, and packet time-dilation consistency.
+The expansionary reading is therefore conditional. Local equilibrium by itself does not imply an effective expansion history. Within this candidate propagation mechanism, a Hubble-like path contribution requires a signed, persistent contribution to the independently calibrated photon path-rate functional while preserving image sharpness, line coherence, and packet time-dilation consistency. The candidate channels above include cadence redistribution or source imbalance, flow divergence, and anisotropic response; their physical realization remains to be derived.
 
 ## Refractive Gravity and Effective Metric
 

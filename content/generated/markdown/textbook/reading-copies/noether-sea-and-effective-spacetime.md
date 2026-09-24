@@ -1182,7 +1182,7 @@ $$
 
 This follows by source-clock to absolute-time conversion, phase transport, and absolute-time to receiver-clock conversion. The effective packet-energy readout is $E_{\mathrm{obs},X}=h\nu_{\mathrm{obs},X}$ after source calibration, endpoint cadence and mismatch, launch compression, and path response have been specified. It remains a conditional transport map until the response coefficients, frequency and envelope evolution, and energy exchanges are derived from the retained histories.
 
-The expansionary reading is therefore conditional. Local equilibrium by itself does not imply an effective expansion history. A Hubble-like redshift slope appears only if the coarse-grained transport has a signed, persistent cadence-space current or source-relaxation imbalance that projects into the photon path-rate functional while preserving image sharpness, line coherence, and packet time-dilation consistency.
+The expansionary reading is therefore conditional. Local equilibrium by itself does not imply an effective expansion history. Within this candidate propagation mechanism, a Hubble-like path contribution requires a signed, persistent contribution to the independently calibrated photon path-rate functional while preserving image sharpness, line coherence, and packet time-dilation consistency. The candidate channels above include cadence redistribution or source imbalance, flow divergence, and anisotropic response; their physical realization remains to be derived.
 
 ### Refractive Gravity and Effective Metric
 
@@ -1822,7 +1822,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-388721577cb3d390)
 
-The displayed sum is valid when the cross-kernels vanish under the same joint conditional law; otherwise those kernels must be retained. The same joint decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
+The displayed sum retains all cross-kernels under the same joint conditional law. It reduces to the three individual covariance terms when all cross-kernels vanish; otherwise those cross terms must be retained. The same joint decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
 
 For weak-field GR comparisons, this page treats the ADM/Cartan projection defined by [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) as an input consumed by the observer record. The observer layer should carry the whole channel bundle at once:
 $$

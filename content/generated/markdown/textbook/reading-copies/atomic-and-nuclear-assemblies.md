@@ -332,23 +332,25 @@ $$
 
 The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient branch-strength kernel uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$ and the same-root transmitter-side acceleration weight $W_{\mathbf Xj}^{\mathrm{acc},X}=c_f/\lvert D_{t,\mathbf Xj}\rvert$. The channel probe state behind $D_{r,\mathbf Xj}^{(X)}$ is inherited from the interface diagnostic in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic) only for root playback and path-rate diagnostics: void-stationary for clock and packing scans, the declared path velocity for penetration scans, and an explicitly declared probe velocity for moving corridor scans. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
 
-Hydrogen-specific tolerance scales are fixed by the channel readout being protected. For a declared hydrogen channel readout $\mathcal O_{\mathrm H,X}^{(\ell)}$, the admissible tolerance pullback is
+Hydrogen-specific tolerance scales are fixed by the channel readout being protected. For a declared hydrogen channel readout $\mathcal O_{\mathrm H,X}^{(\ell)}$, let $\mathcal D_{\mu,\mathrm H,X}^{(\ell)}$ contain the scalar perturbations $\delta y_\mu$ admitted on the same branch chart, with all other independent ledger coordinates held fixed. The unperturbed value must be admitted and satisfy the channel bound. The local tolerance radius is
 
 $$
 \epsilon_{\mu,\mathrm H,X}^{2}
 =
-\sup_{\delta y_\mu}
+\sup_{r\ge0}
 \left\{
-\left(\delta y_\mu\right)^2:
-\Delta_{\mathrm H,X}^{(\mu)}(\ell)
+r^2:
+[-r,r]\subseteq\mathcal D_{\mu,\mathrm H,X}^{(\ell)},\quad
+\Delta_{\mathrm H,X}^{(\mu)}(\ell;\delta y_\mu)
 \le
 \Delta_{\mathrm H,X}^{\mathrm{tol}}
+\quad\text{for every }|\delta y_\mu|\le r
 \right\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e000f86bae992d23)
 
-where $\Delta_{\mathrm H,X}^{(\mu)}$ is the channel stability residual after perturbing only the retained ledger entry $y_\mu$ and projecting back to the same $\mathcal O_{\mathrm H,X}^{(\ell)}$. The supremum may be infinite when the readout is insensitive to the entry $y_\mu$; an unconstrained entry simply imposes no tolerance. In the first hydrogen pass this gives the following routing:
+Here $\Delta_{\mathrm H,X}^{(\mu)}(\ell;\delta y_\mu)$ is the channel stability residual after perturbing only $y_\mu$ and projecting back to the same $\mathcal O_{\mathrm H,X}^{(\ell)}$. The entire centered interval must pass, not merely its most distant passing point. The radius covers $|\delta y_\mu|<\epsilon_{\mu,\mathrm H,X}$; a finite boundary value also requires chart admission and the residual test. Zero supplies no positive symmetric tolerance, and infinity requires every finite scalar perturbation to remain admitted and pass. An insensitive readout on a bounded chart remains chart-limited. As in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic), use positive finite certified denominator scales, retain zero-radius entries as explicit constraints, and omit a normalized penalty only for an entry certified unconstrained over the declared domain. Joint perturbations still require the joint channel test. In the first hydrogen pass this gives the following routing:
 
 | Channel | Tolerance source | Hydrogen interpretation |
 | --- | --- | --- |
@@ -698,7 +700,7 @@ This gives a strict level distinction for periodic-table language:
 | Property or label | Continuum role |
 | --- | --- |
 | $Z$, $N$, isotope, proton/neutron axial inventories, nuclear binding ledger | Direct inputs to $\delta\theta_{\mathrm{nuc}}^{(\ell)}$ after coarse-graining. |
-| Electron-envelope branch, shell stability gap, ionization state | Inputs to $\delta\theta_{\mathrm{e-env}}^{(\ell)}$ only after a realized branch is specified. |
+| Electron-envelope branch, conditional shell energy gap, ionization state | Inputs to $\delta\theta_{\mathrm{e-env}}^{(\ell)}$ only after a realized branch is specified. |
 | Bonding corridor, lattice phase, pressure state, magnetic or transport branch | Inputs to $\delta\theta_{\mathrm{bond}}^{(\ell)}$ only for material states, not for the isolated element name. |
 | Element symbol, group, block, oxidation-state family, electronegativity, atomic radius, and chemical family name | Observer-level summaries and validation targets; they do not by themselves source the Noether sea response. |
 
@@ -749,32 +751,32 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-77f10e6cdb1d6682)
 
-Here $C_{\mathrm{shell}}$ is the electron-envelope shell-stability gap defined in [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md). The lattice term is absent for an isolated atom; in a material state it carries bonding, pressure, magnetic, and transport constraints through the realized material branch.
+Here $C_{\mathrm{shell}}$ is the conditional electron-envelope energy gap defined in [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md); dynamical stability requires a separate compatible-history perturbation analysis. The lattice term is absent for an isolated atom; in a material state it carries bonding, pressure, magnetic, and transport constraints through the realized material branch.
 
-Dense material phases should be read through this record rather than through a bare element label. For a material branch $B$ of element or compound $E$, define the relative dense-medium preference against a comparison phase $Y$ by
+Dense material phases should be read through this record rather than through a bare element label. For a material branch $B$ of element or compound $E$ and a comparison phase $Y$, compare chemical potentials for the same transferred inventory, on one common per-unit energy reference, at specified host compositions. The relative dense-medium cost is
 
 $$
 \Delta\mu_{E/Y}^{B}
 \left(
-n,P,T,\mathcal B_{\mathrm{lat}}
+n,P,T_{\mathrm{temp}},\mathcal B_{\mathrm{lat}}
 \right)
 =
 \mu_E^{B}
 \left(
-n,P,T,\mathcal B_{\mathrm{lat}}
+n,P,T_{\mathrm{temp}},\mathcal B_{\mathrm{lat}}
 \right)
 -
 \mu_Y
 \left(
-n,P,T,\mathcal B_Y
+n,P,T_{\mathrm{temp}},\mathcal B_Y
 \right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1e38d24a12c0655c)
 
-Here $\mu_E^B$ and $\mu_Y$ are effective branch free-energy or chemical-potential functionals for the declared material branches. They are constitutive comparison functionals, not the architrino bookkeeping constant $\mu_{\text{arch}}$.
+Here $n=\rho_{\mathrm{NS}}/\rho_{\mathrm{NS},0}$ is normalized Noether braid density, $P$ is pressure, and $T_{\mathrm{temp}}$ is thermodynamic temperature, distinct from absolute time $T$. The effective chemical potentials $\mu_E^B$ and $\mu_Y$ are constitutive comparison functions for that common transfer, not arbitrary bulk free energies and not the architrino bookkeeping constant $\mu_{\text{arch}}$. A bulk free-energy comparison instead requires a specified common inventory and thermodynamic potential.
 
-The hypothesis behind dense iron-bearing phases is then not that the element symbol `Fe` directly sources a denser Noether sea. It is that the realized nuclear inventory, electron branch, metallic bonding branch, and pressure state may make the iron-rich branch more compatible with high normalized Noether braid density than a silicate branch:
+The hypothesis behind dense iron-bearing phases is then not that the element symbol `Fe` directly sources a denser Noether sea. It is that the realized nuclear inventory, electron branch, metallic bonding branch, and pressure state reduce the relative cost of transferring the same iron inventory into the metallic environment rather than the specified silicate host as normalized Noether braid density increases:
 
 $$
 \frac{\partial}{\partial n}
@@ -785,7 +787,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f51858c849c67fb1)
 
-along the relevant planetary-interior branch. This inequality is a constitutive target. It must be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling; it cannot be assumed from ordinary density alone. [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md#earth-core-iron-as-a-boundary-case) carries the Earth-core iron specialization and the packing sufficient condition.
+The partial derivative is taken on a declared branch interval at fixed pressure, temperature, composition, and other independent branch coordinates. Along a planetary profile where these variables change, the total derivative contains their additional chain-rule terms. A negative partial derivative means a decreasing relative cost; it establishes neither a negative cost nor equilibrium existence or preference. This inequality remains a constitutive target to derive from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling, rather than from ordinary density alone. [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md#earth-core-iron-as-a-boundary-case) carries the Earth-core iron specialization and the packing sufficient condition.
 
 This map imposes four local failure tests:
 
@@ -1365,11 +1367,13 @@ The current axial inventory provides charge sites from which an internal electri
 
 ### Proton-Neutron Mass Difference
 
-The proton-neutron mass splitting should be read as a competition between at least three effects:
+The proton-neutron mass splitting is a recovery target for the difference between the two assembly response records. For this observer-level comparison, use one matched calibration and environment for both rest masses and the three energy contributions. Under the effective rest-energy relation, with the same assembly-channel speed $c_{\mathrm{eff}}$ for both records, the proposed decomposition is
 $$
 \Delta m_{np}
 \equiv
-m_n-m_p
+m_n-m_p,
+\qquad
+\Delta m_{np}c_{\mathrm{eff}}^2
 \approx
 \Delta E_{\text{down-up}}
 +\Delta E_{\text{Coul}}
@@ -1403,7 +1407,7 @@ That is why this chapter feeds directly into [nuclear-binding.md](../../../../ma
 | Nucleon | Quark content | Charge | Baryon number | Generation tier of constituents | Architrino inventory (braid bookkeeping) | Ground-state role |
 | --- | --- | ---: | ---: | --- | ---: | --- |
 | Proton | `uud` | `+1` | `+1` | three Generation-I quarks | `36` | stable charged nucleon |
-| Neutron | `udd` | `0` | `+1` | three Generation-I quarks | `36` | neutral nucleon, stable in nuclei, weakly unstable free |
+| Neutron | `udd` | `0` | `+1` | three Generation-I quarks | `36` | neutral nucleon, nuclear stability depends on environment, weakly unstable free |
 
 ### Closure Targets
 

@@ -309,7 +309,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-388721577cb3d390)
 
-The displayed sum is valid when the cross-kernels vanish under the same joint conditional law; otherwise those kernels must be retained. The same joint decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
+The displayed sum retains all cross-kernels under the same joint conditional law. It reduces to the three individual covariance terms when all cross-kernels vanish; otherwise those cross terms must be retained. The same joint decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
 
 For weak-field GR comparisons, this page treats the ADM/Cartan projection defined by [Emergent Metric](emergent-metric.md) as an input consumed by the observer record. The observer layer should carry the whole channel bundle at once:
 $$

@@ -10,6 +10,10 @@ A prescribed path is a comparison chart, not a retained object. Exact reconstruc
 
 Plainly: precise geometry can make a candidate testable, but geometry alone cannot make it physical.
 
+## Proposed collinear encounter comparison
+
+The developed [collinear encounter comparison and numbered notes](manuscript.md#56-collinear-encounter-comparison) now own this synthesis. The table separates the unchanged stationary history, conditional reversal, quintic self-response modification, sharp capped encounter, extended event branches, strict-speed comparisons and smoothed numerical evolution. Its cells distinguish supported stages, conditional results, scoped obstructions and stages not reached. The numbered notes retain the equation and history differences, source evidence, claim boundaries and conditions that would change each conclusion. This documentation does not adopt or reactivate a modified law.
+
 ## Composition, Identity, and Taxonomy
 
 Braid classification separates assembly composition, individual braid geometry, and persistent binary identity. Neutral identifiers such as `coincident-midpoint orthogonal-axis three-binary configuration`, `phase-compensated equal-geometry orthogonal-axis three-binary configuration`, and `coincident-axis three-binary configuration` carry no mechanism by themselves; their meaning comes from coordinate tables, worldline maps, polarity assignments, symmetries, and retained histories. Every binary is recorded as one electrino and one positrino, and its persistent index is not reassigned by instantaneous radius, frequency, speed, exposure, or any later dynamical role.

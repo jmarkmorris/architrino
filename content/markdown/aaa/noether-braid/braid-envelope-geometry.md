@@ -564,14 +564,15 @@ $$
 
 The signed entries in the penetration record remain available before the norm is taken, so a stabilizing tangent push and a destabilizing tangent push are not treated as the same path-history branch. The scalar norm is used only after the sign-sensitive admissibility test has decided which branch contributes to the penetration benchmark.
 
-The tolerance scales must be inherited from declared ledger comparisons. Let $\mathcal O_X[\mathcal B]$ be the channel readout produced from the projected branch record, and let $\Delta_X^{\mathrm{tol}}$ be the benchmark sensitivity fixed before the scan. For any retained scalar entry $y_\mu(\mathcal B)$ in channel $X$, the first admissible scale is the local pullback of that readout tolerance,
+The tolerance scales must be inherited from declared ledger comparisons. Let $\mathcal O_X[\mathcal B]$ be the channel readout produced from the projected branch record, and let $\Delta_X^{\mathrm{tol}}\ge0$ be the benchmark sensitivity fixed before the scan. For a retained scalar entry $y_\mu(\mathcal B)$, let $\mathcal D_{\mu,X}\subseteq\mathbb R$ be the declared domain of scalar perturbations $\delta y_\mu$ that remain in the same branch chart, contain the unperturbed value $0$, and admit the channel readout. All other independent ledger coordinates are held fixed. The local tolerance radius is
 
 $$
 \epsilon_{\mu,X}^{2}
 =
-\sup_{\delta y_\mu}
+\sup_{r\ge0}
 \left\{
-\left(\delta y_\mu\right)^2:
+r^2:
+[-r,r]\subseteq\mathcal D_{\mu,X},\quad
 \frac{
 \left\|
 \mathcal O_X[\mathcal B+\delta_\mu\mathcal B]
@@ -585,12 +586,15 @@ $$
 }
 \le
 \Delta_X^{\mathrm{tol}}
+\quad\text{for every }|\delta y_\mu|\le r
 \right\}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-097fced51c1ca56c)
 
-This definition makes the $\epsilon$ values derived chart scales: they are how far a retained ledger entry may move before the declared channel readout changes by more than the accepted tolerance. The practical first estimates are:
+Here $\varepsilon_X>0$ is the declared readout normalization floor and $\delta_\mu\mathcal B$ is the branch perturbation associated with $\delta y_\mu$. The definition requires the entire centered interval to satisfy the readout bound; a distant passing perturbation cannot hide an intervening failure. Every perturbation with $|\delta y_\mu|<\epsilon_{\mu,X}$ is covered, while a finite supremum endpoint is included only when it also belongs to the chart and satisfies the bound. A zero radius supplies no positive symmetric tolerance. An infinite radius requires every finite scalar perturbation to remain admitted and satisfy the bound; readout insensitivity within a bounded chart alone does not imply an infinite radius.
+
+The normalized diagnostics use positive finite certified scales no larger than these radii, with endpoint admission checked whenever a non-strict bound is used. A zero-radius entry is retained as an explicit admissibility constraint rather than a divisor; an entry certified unconstrained over the declared domain contributes no normalized penalty. Single-entry bounds do not establish stability under simultaneous perturbations of several entries, so the channel readout must still be checked for the joint branch record. The practical first estimates are:
 
 $$
 \epsilon_\omega=\Delta_{\Gamma}^{\mathrm{tol}},

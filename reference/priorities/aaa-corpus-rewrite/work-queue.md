@@ -46,6 +46,12 @@ No rows.
 
 ## Deferred / discussion-scoped
 
+### OPS-031 — Separate scientific follow-ups
+
+- **Status:** ○ Discussion-scoped; outside the eight approved corrections.
+- **Neutron dipole:** Determine whether the declared observer projection includes the neutral braid-core first moment in an existing term, needs an explicit contribution, or supports a cancellation/bound. Neutrality alone does not imply a vanishing dipole; do not invent one or double count. The [full question](analysis/ops-031-repair-proposal-2026-09-23.md#separate-neutron-dipole-question--no-implementation-proposed) retains the independent counterexample and current neutron/strong-CP ownership.
+- **Direction normalization:** Assess the direction-scale estimate against its squared diagnostic denominator in Braid Envelope Geometry and Atomic Structure before claiming an exact angular-threshold equivalence. This observation is not an accepted repair; see the [proposal verification notes](analysis/ops-031-repair-proposal-2026-09-23.md#verification-and-source-snapshots).
+
 ### CRW-006 — Offline context-aware glossary-link classifier
 
 - **Status:** Discussion-scoped; not accepted for implementation
@@ -57,6 +63,23 @@ No rows.
 - **Completion:** Either the operator accepts a bounded classifier prototype with a declared benchmark and human-acceptance workflow, or declines the idea and this row moves to `Withdrawn`.
 
 ## Verified
+
+### OPS-031 — Eight approved corrections integrated
+
+✓ Done. The operator approved the consolidated batch on September 23, 2026. All eight replacements are applied across six chapters; the [implementation record](analysis/ops-031-repair-proposal-2026-09-23.md#implementation-record) records source versions, mathematical verification and check results. CRW-005 remains closed.
+
+### OPS-031 referral — Nuclear and atomic comparison proposals
+
+The four bounded corrections are integrated under the [approved batch](analysis/ops-031-repair-proposal-2026-09-23.md). The neutron dipole question remains separately discussion-scoped above. Original review receipts retain historical evidence.
+
+### OPS-031 referral — Core overview clarification proposals
+
+Both wording corrections are integrated under the [approved batch](analysis/ops-031-repair-proposal-2026-09-23.md). The original receipts retain their scientific limits.
+
+### OPS-031 referral — Ontology clarification proposals
+
+Both clarifications are integrated under the [approved batch](analysis/ops-031-repair-proposal-2026-09-23.md). No physical postulate or Bell equation changed.
+
 
 ### CRW-005 — Independent post-conversion assurance review
 

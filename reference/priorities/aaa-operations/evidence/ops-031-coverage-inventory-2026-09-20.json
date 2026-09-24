@@ -1,0 +1,1798 @@
+{
+  "captured": "2026-09-20",
+  "instrument": ".tmp/ops-031/inventory.cjs; known-case controls passed before target",
+  "ordering": "Tier then initial priority-2 dependencies then textbook traversal; absent TOC paths follow lexically within tier. Reprioritize confirmed defects and accepted changed dependencies explicitly.",
+  "entries": [
+    {
+      "path": "content/markdown/aaa/foundations/ontology.md",
+      "tier": 1,
+      "sha256": "48bf11bec4defceb1a317443928e43ecebfae28340aef02ac2f8c0754e47c43d",
+      "toc": 0,
+      "sequence": 1,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/foundations/architrino.md",
+      "tier": 1,
+      "sha256": "f91c2123169e3f1efd46a905769838f90a4da67cd268dc64d972a000d40f322d",
+      "toc": 1,
+      "sequence": 2,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/foundations/absolute-time.md",
+      "tier": 1,
+      "sha256": "fa03318d71b159e57c8bb2857540e8f49458859ced96da1d8b50b43d26a7ba42",
+      "toc": 2,
+      "sequence": 3,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/foundations/euclidean-void.md",
+      "tier": 1,
+      "sha256": "1b561ec1b1ad6ebbe40533b262c3c584abc5ac1813cb874dbcfa94d035022a02",
+      "toc": 3,
+      "sequence": 4,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/foundations/absolute-timespace.md",
+      "tier": 1,
+      "sha256": "6dfc68496c19792463d3093f1f160ebd519496e4149190bcded0c971c3d7c603",
+      "toc": 4,
+      "sequence": 5,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/foundations/absolute-time-defense.md",
+      "tier": 1,
+      "sha256": "35742a23faf464df67f3d7cfcc9c2f11f4fa6481aa92ed2070ef8aa382b0d2d3",
+      "toc": 5,
+      "sequence": 6,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+      "tier": 1,
+      "sha256": "438cca92df7117cc00e1bd7decebb00ac4dc50af27b331024805a631b391c21b",
+      "toc": 6,
+      "sequence": 7,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
+      "tier": 1,
+      "sha256": "338bade09771545d55eaa58ef7bae25727ddd224160424088160cc4bb8d103cc",
+      "toc": 7,
+      "sequence": 8,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/foundations/emergence-of-structure.md",
+      "tier": 1,
+      "sha256": "d9594a7f8c6cf8222065675ee9fb452c7996184ea2d54b2309fe9d2823a44e24",
+      "toc": 8,
+      "sequence": 9,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/dynamics/master-equation.md",
+      "tier": 1,
+      "sha256": "c06a7076562258bd3aa3e7987044535e11c07e16740dd811915531dc32f7a8ac",
+      "toc": 9,
+      "sequence": 10,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/dynamics/energy.md",
+      "tier": 1,
+      "sha256": "0916f6bf30d4944b41b0c02b55dc1403740ef46a4f9263a32d2b15bcf82c59b2",
+      "toc": 10,
+      "sequence": 11,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/dynamics/entropy.md",
+      "tier": 1,
+      "sha256": "bf462293a13b9c9b26376454361be6b146155dfcd1c46e08415adb9e66395f2c",
+      "toc": 27,
+      "sequence": 12,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/dynamics/binary-dynamics.md",
+      "tier": 1,
+      "sha256": "6437aa818e0fadd8e2987b5d3023b7cd6645bb9dc01afcca905f0b5cf3151528",
+      "toc": 28,
+      "sequence": 13,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/dynamics/causal-action-functional.md",
+      "tier": 1,
+      "sha256": "7e585c26bd6702dcb01efbf329431ae17295d3293d19d373816c7c28657d62dd",
+      "toc": 29,
+      "sequence": 14,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+      "tier": 1,
+      "sha256": "f00de94b8dc84bdbc68441ebdda9e92bc882c4260c9e147c221904f643745084",
+      "toc": 30,
+      "sequence": 15,
+      "deadline": "2026-10-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/noether-braid.md",
+      "tier": 2,
+      "sha256": "fc4606a3fdf670df93ee39d15af262920be517d6b2b02beb6a7316daf8905d31",
+      "toc": 31,
+      "sequence": 16,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/noether-sea.md",
+      "tier": 2,
+      "sha256": "ce5cbbcd3860dd8092d101a4354b27c71ceeb38f7187a9fe44c3e6712950d2d9",
+      "toc": 45,
+      "sequence": 17,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/observer-framework.md",
+      "tier": 2,
+      "sha256": "a762461606eb437bb061399d0ffdc45b24ef14ee10e6fd53781d222f25a7e2ff",
+      "toc": 48,
+      "sequence": 18,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
+      "tier": 2,
+      "sha256": "fa44f6a09ffd2f0a61b4d46bb5022164590f03e95c6d76174a488193ac5ca3b2",
+      "toc": 32,
+      "sequence": 19,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
+      "tier": 2,
+      "sha256": "b8f2f307cc00d31a5dfbf5c6081fb6debf7a15605dc34af7e4c9b058e51a5c64",
+      "toc": 33,
+      "sequence": 20,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+      "tier": 2,
+      "sha256": "7952215c05a3c6329dd8a2a56b0dbd93aa38a9720b188c700855e42f6c75497e",
+      "toc": 34,
+      "sequence": 21,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+      "tier": 2,
+      "sha256": "6cf2c4e8f51c257d9eddbcbf71162b2aa2f725be41c0ab46faf7080fa1a5d202",
+      "toc": 35,
+      "sequence": 22,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
+      "tier": 2,
+      "sha256": "a19eb389eeb69d895f28564a142c56e6946b4fe3ad353ac84da049b89c307ebe",
+      "toc": 36,
+      "sequence": 23,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+      "tier": 2,
+      "sha256": "a5f0b0b6890a5852c2ff04a458695aa6667d3bd70471fb118d77ce629684e9a3",
+      "toc": 37,
+      "sequence": 24,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+      "tier": 2,
+      "sha256": "554575868e7b08c9ece8095a811ab3feabc20549ee2f3ccf7bc083bff93ee212",
+      "toc": 38,
+      "sequence": 25,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
+      "tier": 2,
+      "sha256": "b90b6f4e77bf5fe0ad1c3fb80b37ed002617acd0458188c11030c10381aea981",
+      "toc": 39,
+      "sequence": 26,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+      "tier": 2,
+      "sha256": "9a51cc3a0e2bd5652d0c869a651dc6622f5fbf2303382fc62b3252d7d4b36ccb",
+      "toc": 40,
+      "sequence": 27,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+      "tier": 2,
+      "sha256": "6c07e773cb850c1ab4bfec1d46d01fb536ac728ad8e6740bcb66deb0bdeb6bdb",
+      "toc": 41,
+      "sequence": 28,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
+      "tier": 2,
+      "sha256": "faf2c9e4a78036ede08bfd3e2a531b5a3b2e4a11233bb1fd0b0eea9ff964f609",
+      "toc": 42,
+      "sequence": 29,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "tier": 2,
+      "sha256": "8a9cc859f4e99b3ff69533f685217f3584acf1858f0384aafb9ad51ccd4960f5",
+      "toc": 43,
+      "sequence": 30,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+      "tier": 2,
+      "sha256": "a34ea3690f85e2edd088a6cd29ef4b43b897e0dce0408f50e09caa2f2528b15f",
+      "toc": 44,
+      "sequence": 31,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
+      "tier": 2,
+      "sha256": "b5c69b1a1149a7fd2b5a08fb312f94a21cb2de569213032ab1b5cf29d57d0ea5",
+      "toc": 46,
+      "sequence": 32,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
+      "tier": 2,
+      "sha256": "034f83bc1d92c3cf7737c994150a6366871926a41ae8ec29765888a33e1d821d",
+      "toc": 47,
+      "sequence": 33,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+      "tier": 2,
+      "sha256": "fca269ee45aac0451e167856af96d02358d3bc8fdc981ade8f41bd075066025f",
+      "toc": 49,
+      "sequence": 34,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+      "tier": 2,
+      "sha256": "348a1c70383bc26e35d51303011ba20f9e05ad416515250dca5f201c220846d3",
+      "toc": 50,
+      "sequence": 35,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/emergent-metric.md",
+      "tier": 2,
+      "sha256": "47441fb210ec54d13e64888c9aa85f0d7257cc8c3d68da97d8992b687ab659b0",
+      "toc": 51,
+      "sequence": 36,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/general-relativity.md",
+      "tier": 2,
+      "sha256": "60fe1cebac95b016073f0c062f1b815e9b5920d2a4c2c778b23ff89a39de16e9",
+      "toc": 52,
+      "sequence": 37,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/ppn-parameters.md",
+      "tier": 2,
+      "sha256": "c27680fb472a28708f8fdbb9cd5f5ada6d1c3989f72a17e9f2e183cfc0bc2ed9",
+      "toc": 53,
+      "sequence": 38,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/gravitational-waves.md",
+      "tier": 2,
+      "sha256": "88d94988ad83fdf22a52a85d34675933f45624c8645a70ed0ceb425e57e1cfd1",
+      "toc": 54,
+      "sequence": 39,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/black-holes.md",
+      "tier": 2,
+      "sha256": "5c36552d19af2504dc40fbef4f8db40d92c50b7ad5bb8cd6a9fd31a3344abc07",
+      "toc": 55,
+      "sequence": 40,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/singularity-resolution.md",
+      "tier": 2,
+      "sha256": "160c45ce4a6014ff0442fef193860ffff0882dbd6adad6cbfb524b8ce54d906d",
+      "toc": 56,
+      "sequence": 41,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/spacetime/horizon-chirality.md",
+      "tier": 2,
+      "sha256": "d6d65a8871cf16820a2686b40e8d71098586b7d5a5dc5e78af0d86ec4a05a6dd",
+      "toc": 57,
+      "sequence": 42,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "tier": 2,
+      "sha256": "91f4531aa3ae3a009002399abc0e82e8ad6296ef3eeb3337d7e0575b407ee83b",
+      "toc": 58,
+      "sequence": 43,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/gauge-symmetries.md",
+      "tier": 2,
+      "sha256": "4f82806b04932ff1b39cbc45b3b7d8e76162e8b6f768c2bfdf7a2c5fd598507d",
+      "toc": 59,
+      "sequence": 44,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/particle-masses.md",
+      "tier": 2,
+      "sha256": "7c12ec4982c88d82c7e0d07af8e6f690f559352a05cbad342024eacecc23e945",
+      "toc": 60,
+      "sequence": 45,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
+      "tier": 2,
+      "sha256": "c92e84c7f2025661f5894fb41b39c46dfda7d43f623e5a59941ad35ca54147d0",
+      "toc": 61,
+      "sequence": 46,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/fermions/electron.md",
+      "tier": 2,
+      "sha256": "1d19dc7a972aa0b0678aa7f4eaaf2734b1b8cf90c2c4c5de68b5fe5b2dd2d93d",
+      "toc": 62,
+      "sequence": 47,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+      "tier": 2,
+      "sha256": "8a7a9b6480511ae27c657b3c550996aae3d295952f3c2811f139c75064caa459",
+      "toc": 63,
+      "sequence": 48,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
+      "tier": 2,
+      "sha256": "ee219810d2e4a46e911ae72acae88b001005def722b8cd8bf8a5b677921db2cf",
+      "toc": 64,
+      "sequence": 49,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
+      "tier": 2,
+      "sha256": "fc86abf9fb7258b5dc069080b15c4590389261754b20c9e776e77a3fec03b6b0",
+      "toc": 65,
+      "sequence": 50,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/fermions/quarks.md",
+      "tier": 2,
+      "sha256": "e4ea5dfe452b20e54055d2694fbfb770a3cdf02fc261c02fb4bea8be217ab028",
+      "toc": 66,
+      "sequence": 51,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+      "tier": 2,
+      "sha256": "319583d395c6ef0a217b7c640c9bba8936adc962a4e728100a9cafa0f36120eb",
+      "toc": 67,
+      "sequence": 52,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+      "tier": 2,
+      "sha256": "4b08d06b4842b9e004d567db75b372783a58b4b4a3ab0fb8cc9c99a39193ba80",
+      "toc": 68,
+      "sequence": 53,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/bosons/gluons.md",
+      "tier": 2,
+      "sha256": "92c7018d82d7c811d7add39e6a9e318e299540cf9eaf0d5078d820ab8f4ad0df",
+      "toc": 69,
+      "sequence": 54,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/assemblies/mesons/mesons.md",
+      "tier": 2,
+      "sha256": "5e3311408fce6f3053b9aedac06d0e055ccde17ec64f6c5e29699523ccb9b4fd",
+      "toc": 70,
+      "sequence": 55,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/quantum/quantum-summary.md",
+      "tier": 2,
+      "sha256": "38b246c282807e119d4e1a17b0a40ea9f7ca541524d578647dc9b75000009776",
+      "toc": 83,
+      "sequence": 56,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/quantum/reality-quantum-causality.md",
+      "tier": 2,
+      "sha256": "29fa069212900967c1e378eb2adb0635f7d60f8ebddbefb5e345f129dd8611cd",
+      "toc": 84,
+      "sequence": 57,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/quantum/wavefunction-ontology.md",
+      "tier": 2,
+      "sha256": "3b9563ad43f0f393d6afaf652978ae52f0087064c61e7d27b2060b751697e6c2",
+      "toc": 85,
+      "sequence": 58,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/quantum/measurement-ontology.md",
+      "tier": 2,
+      "sha256": "0a96748f04ce938fa13feb8e4cec0bc5e0010944b63bdd05bf9fcb4233d16db9",
+      "toc": 86,
+      "sequence": 59,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+      "tier": 2,
+      "sha256": "8c91b3ff9a979ca816d08277bd390df655f2daf98888ab3aad95bbe360d48dc0",
+      "toc": 87,
+      "sequence": 60,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "tier": 2,
+      "sha256": "96594ded903814c0b282c68e034c94d3f96fb0b067ba0adc44c0b0336c920faf",
+      "toc": 88,
+      "sequence": 61,
+      "deadline": "2026-12-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+      "tier": 3,
+      "sha256": "211304166faf077387833dee25256f893619053e2b3b8034e3dd27c313925d27",
+      "toc": 71,
+      "sequence": 62,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+      "tier": 3,
+      "sha256": "dc8f6687cebdf944892cb47aa40bcb41a66342d772fe675a8b4de80ecc51246d",
+      "toc": 72,
+      "sequence": 63,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+      "tier": 3,
+      "sha256": "0ea9a4a3d237e770d3fff6e62b3dc16049abb6de2eee6baf737b2014d054ac7d",
+      "toc": 73,
+      "sequence": 64,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+      "tier": 3,
+      "sha256": "e1a94e84b6363ddd450856039d9eec714edae5e77d10263257127ace67f3d99f",
+      "toc": 74,
+      "sequence": 65,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
+      "tier": 3,
+      "sha256": "214b830c94f3ea9df46c2cfc4030cca2c0a40963033124c5cd172f4ab051b7df",
+      "toc": 75,
+      "sequence": 66,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
+      "tier": 3,
+      "sha256": "be17d3173cfcd55e8775b7f864aca1a3f7bc33da670b6a6fb304bdc540f8e4fb",
+      "toc": 76,
+      "sequence": 67,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+      "tier": 3,
+      "sha256": "80b7ef0c631746c7fa4df313fdfab34019994fa48476ad40f51e1e307b0d8523",
+      "toc": 77,
+      "sequence": 68,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/reactions/mode-taxonomy.md",
+      "tier": 3,
+      "sha256": "e354634d9aecea148c7ac9cb7f9ab483e45123e4ae03ce92776323d26e0d0891",
+      "toc": 78,
+      "sequence": 69,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/reactions/radiation.md",
+      "tier": 3,
+      "sha256": "1b74b1ba87fdc99f43a72a7c022430fc9ed2ec48bf1c0bb1457ff1a058b785a5",
+      "toc": 79,
+      "sequence": 70,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+      "tier": 3,
+      "sha256": "3b8119f3a8aa5aeb6106598ee711081418155bb988e1eaa78ff3f31b5656171d",
+      "toc": 80,
+      "sequence": 71,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/reactions/bremsstrahlung.md",
+      "tier": 3,
+      "sha256": "e5a4496f006c900a0769d3c3176bccdba11a32604d3a7e4532224a69419fb869",
+      "toc": 81,
+      "sequence": 72,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/reactions/synchrotron.md",
+      "tier": 3,
+      "sha256": "635754650cd1bc9d00d3d2b05273b856fea7cba691f2fd03af02d5e2454bc20e",
+      "toc": 82,
+      "sequence": 73,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+      "tier": 3,
+      "sha256": "0dc4d1ad5ab8657e954feb90513183cf8683c416f4cfa3403c53c2e4f4b41d2b",
+      "toc": 89,
+      "sequence": 74,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+      "tier": 3,
+      "sha256": "4cdc71fa008ae2d3b295cc6aa177a502abc54f59b99f6cba33fed439b71f30a0",
+      "toc": 90,
+      "sequence": 75,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+      "tier": 3,
+      "sha256": "08e09f9d940c47c4f3af41f524f0dd8eb6d9f8759350e80490fd87bf1a2dcfc0",
+      "toc": 91,
+      "sequence": 76,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/cosmology/inflation-model.md",
+      "tier": 3,
+      "sha256": "f9d74f49f7ec5cc78c5d30980bece6faada653a8bcc196e014da0bce1fce3eb9",
+      "toc": 92,
+      "sequence": 77,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/cosmology/BBN-constraints.md",
+      "tier": 3,
+      "sha256": "cb1110c051a060af5d02b0c29c44b34d66b3bfc84eacca746502ca9b36e121d0",
+      "toc": 93,
+      "sequence": 78,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/cosmology/CMB.md",
+      "tier": 3,
+      "sha256": "1830a52795893fc0ffeae0098ccf04086fba65f88602a4f734c60821e9e4d89d",
+      "toc": 94,
+      "sequence": 79,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/cosmology/dark-matter.md",
+      "tier": 3,
+      "sha256": "10c6015713731da8d47501220a0628a1042f2d76852451b34b5df127527bcb56",
+      "toc": 95,
+      "sequence": 80,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/cosmology/dark-energy.md",
+      "tier": 3,
+      "sha256": "cfab673bb65239bc631520390128afd030447efbc8f016e1ed646e694b763e21",
+      "toc": 96,
+      "sequence": 81,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/cosmology/structure-formation.md",
+      "tier": 3,
+      "sha256": "08fae3b6be360ef97fd56e5fb5d94477ff647daa1a7b44a7df306363e49c78d8",
+      "toc": 97,
+      "sequence": 82,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+      "tier": 3,
+      "sha256": "763b9d43a77410720891f6448ba630b705290e857e819d15b07208bf81b6230a",
+      "toc": 98,
+      "sequence": 83,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/philosophy-history.md",
+      "tier": 3,
+      "sha256": "aa1808ab1214bf096e1e2f0d70673da596478b344dba6a7a2a3b88e8fc2acc6c",
+      "toc": 126,
+      "sequence": 84,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "tier": 3,
+      "sha256": "6c1bc3e972f05802a190762ee6f209a71913d810b76f98266ad452a8e77ea5f1",
+      "toc": 127,
+      "sequence": 85,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "tier": 3,
+      "sha256": "a4c1fe39b8e4c06e6084b2c095b3beaca638a474d534d670adefb05aa97b7cc7",
+      "toc": 128,
+      "sequence": 86,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "tier": 3,
+      "sha256": "4926c8d9cd5fc6d514aece7cfce1b461bb650515947e84e3217c8850b6eda21b",
+      "toc": 129,
+      "sequence": 87,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "tier": 3,
+      "sha256": "f0666a01461bd0978df171e53ff9feab9cf98acaf1078565c2e2b96d8e654ba9",
+      "toc": 130,
+      "sequence": 88,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+      "tier": 3,
+      "sha256": "5f2e2d4d2e767f3a219a2a26640da95f9792e12420bdf32c3c6cd3d2d11e0846",
+      "toc": 131,
+      "sequence": 89,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+      "tier": 3,
+      "sha256": "cd0818b42fa15cb6f9d6b124ba3d0def70819a50751e386d4e94eedca11e4835",
+      "toc": 132,
+      "sequence": 90,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+      "tier": 3,
+      "sha256": "82950a4deb08053d2eba87579738e13ea420b0a15459880c8c25da2350f69a3d",
+      "toc": 133,
+      "sequence": 91,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+      "tier": 3,
+      "sha256": "c00dfd39db5cc403f3d30d978ea1bc7372b04f1750a549b459a791654a8e5b85",
+      "toc": 134,
+      "sequence": 92,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md",
+      "tier": 3,
+      "sha256": "3bcd91aedb4ad653672435e45ec9fedb02bb62342f013393f6f390ff533a8c2b",
+      "toc": 135,
+      "sequence": 93,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "tier": 3,
+      "sha256": "f654cc1552fc867bb97a8b1dd63bc722bfa141a3e71bfb734f263a307e85a711",
+      "toc": 136,
+      "sequence": 94,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+      "tier": 3,
+      "sha256": "a911d8c784e5864052d51c89c2ad206deda0263793290d73a254163ad7b05a7b",
+      "toc": 137,
+      "sequence": 95,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md",
+      "tier": 3,
+      "sha256": "19786c89fa0113e3fd7a58dc56529f9463f7f4296ea8bcc2aef17b977c125d79",
+      "toc": 138,
+      "sequence": 96,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
+      "tier": 3,
+      "sha256": "2b9c7bf6b5ce5aae992f2b20182fa94940d5306661a0b40dc7c9a9e56b489918",
+      "toc": 139,
+      "sequence": 97,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+      "tier": 3,
+      "sha256": "3e987e12a57faddd0b70af36a08c6cf1ac0d37f725cc37b65e0cc3e6c6c448ee",
+      "toc": 140,
+      "sequence": 98,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md",
+      "tier": 3,
+      "sha256": "70bb0793bc277431db8e12dbe31b27a2ec1e333f5f0711a7aefe3f0410396057",
+      "toc": 141,
+      "sequence": 99,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+      "tier": 3,
+      "sha256": "d4133f8c8c9b7e6fba932c232d3d8f17bf420f1e4e8b22d910d7648f1215e467",
+      "toc": 142,
+      "sequence": 100,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
+      "tier": 3,
+      "sha256": "3023333e7357e110484975e60a2a5e37704285c88e93211b9c8d38f563b25ba2",
+      "toc": 143,
+      "sequence": 101,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
+      "tier": 3,
+      "sha256": "61a674c9b3ba33e80bcb48be7d8a2c40214495a84c3e0e1ddade14c081d7d8e2",
+      "toc": 144,
+      "sequence": 102,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+      "tier": 3,
+      "sha256": "6723629c3f4d2e3007b696764669c502588977224208135b3c5527824955bb43",
+      "toc": 145,
+      "sequence": 103,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "tier": 3,
+      "sha256": "8a51dc8a7cfb78ca1d7fa35fba3929a9e8d31131b1b75500f3818c47f75b9a15",
+      "toc": 146,
+      "sequence": 104,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+      "tier": 3,
+      "sha256": "2c1f0ff06263b7da3ade48cec73026e6e73df4cfc6cb507873ea954f90de3b82",
+      "toc": 147,
+      "sequence": 105,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "tier": 3,
+      "sha256": "0b63a95966d933cc26697af0e537f325830124b9ac45ca35dc99ef500fa5fb3b",
+      "toc": 148,
+      "sequence": 106,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "tier": 3,
+      "sha256": "b32ec822974071ead28f1aaa49202a6137a7606f0bf6c2b579d3bfa4f4438f58",
+      "toc": 149,
+      "sequence": 107,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/information-computation.md",
+      "tier": 3,
+      "sha256": "dc1a5419ae3be83d977c82af8fd7eddd8298d8f88ed78222d37c45f4b65c08c1",
+      "toc": 150,
+      "sequence": 108,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "tier": 3,
+      "sha256": "f4a7eb4812adbd72f8e72b5bc6d1842fb697396041b8136b9f6448feb5c0ed6c",
+      "toc": 151,
+      "sequence": 109,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "tier": 3,
+      "sha256": "c9a9bc7599ed0581a5bfd83deb2e20c2a1dc92daddef27420a21216cceb6e78f",
+      "toc": 152,
+      "sequence": 110,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "tier": 3,
+      "sha256": "33a4bf3d337c3cdd792063c9f2f384bc076eabc175ae4adeb537a3c2016411d6",
+      "toc": 153,
+      "sequence": 111,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+      "tier": 3,
+      "sha256": "0c4d953f89640203595b4ef2736534851da7b92e44b69dc0735b399fa572c3d6",
+      "toc": 154,
+      "sequence": 112,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+      "tier": 3,
+      "sha256": "632019e7779b096f23f9b0356367cd87af1e2a18ed42289dac60cd24be8f71a1",
+      "toc": 155,
+      "sequence": 113,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
+      "tier": 3,
+      "sha256": "99b4f11db61561120acd18fceea81545bc81bb1e6b913b938aab63b55d0bfa70",
+      "toc": 156,
+      "sequence": 114,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/about-architrino.md",
+      "tier": 3,
+      "sha256": "bab0a2cbe3a73eab5241ef15cf6b9da45689c7b5b86b18e04a06599658666100",
+      "toc": 157,
+      "sequence": 115,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/aaa-journey.md",
+      "tier": 3,
+      "sha256": "57a5920b2eb4ef6173697ebbceda543750655053989a468033a0a560c34ac101",
+      "toc": -1,
+      "sequence": 116,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/about-the-webapp.md",
+      "tier": 3,
+      "sha256": "b1d85b59bec6d5432277e6f811f0a465466befa4acb0609c6ba69feeb2d2b254",
+      "toc": -1,
+      "sequence": 117,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/academic-style-guide.md",
+      "tier": 3,
+      "sha256": "d2a048e3902023dd4e56dbff7c07a657eafffc1cd2b5f9b37da2e2a5d0f7c8a5",
+      "toc": -1,
+      "sequence": 118,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/branding-and-marketing.md",
+      "tier": 3,
+      "sha256": "dcc396584423e6645009cbf3e829a20bc7c94c364c1f933b9d2a675b2fc3dbb6",
+      "toc": -1,
+      "sequence": 119,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics.md",
+      "tier": 3,
+      "sha256": "ea9e192b9375ff215722b420a0a1b4b2ed402f981c668e422478cd5b7491c947",
+      "toc": -1,
+      "sequence": 120,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/acknowledgements-in-architrino-s-room.md",
+      "tier": 3,
+      "sha256": "c99814f7fa75d23789e44e4ff1b5527f3eb92db9d13f5ad3cb291d60872659e1",
+      "toc": -1,
+      "sequence": 121,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/birthday-cake-for-observer-era.md",
+      "tier": 3,
+      "sha256": "30ee0311f19136c4c71e47b0f08730c027bc22b92196aab848bfe449c0bdb1af",
+      "toc": -1,
+      "sequence": 122,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/candidate-not-a-throne.md",
+      "tier": 3,
+      "sha256": "f18905aee986e14172def1d9176abb37f0c9b9db3ce1efda5585aad43c9cb860",
+      "toc": -1,
+      "sequence": 123,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/citation-needed.md",
+      "tier": 3,
+      "sha256": "929a44d753492986e6d987b1a1b1138cacdd83dbd1d1537581c334d1f48c1cb4",
+      "toc": -1,
+      "sequence": 124,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/first-page-problem.md",
+      "tier": 3,
+      "sha256": "fae37a975b7b29dc22c17faac85bddd4638564302ca98080be5fd35e1b99b606",
+      "toc": -1,
+      "sequence": 125,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/four-theories-one-oval.md",
+      "tier": 3,
+      "sha256": "dbc5ef63d7d50d6a85114557d440c774e7be4c2403e210ee23abf00e841c92ad",
+      "toc": -1,
+      "sequence": 126,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/group-project-assumption.md",
+      "tier": 3,
+      "sha256": "3d2c58460bd7399203eaa47fa5da4c5f2638fd61b931b3ba87551faddec8c64e",
+      "toc": -1,
+      "sequence": 127,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/nature-is-analog.md",
+      "tier": 3,
+      "sha256": "14f1dc55fd1d04198cc41250d19bf61a46e506cdbd8a4cd20d4ce2e68434c4f6",
+      "toc": -1,
+      "sequence": 128,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/new-theory-same-budget.md",
+      "tier": 3,
+      "sha256": "b0ff30c3e619185cee13b83df663b026115ff65cee91bf8ac1aef7c94f657c93",
+      "toc": -1,
+      "sequence": 129,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/observable-edge-receipt.md",
+      "tier": 3,
+      "sha256": "ad0e3aac9ce6ef8b021e5fcbd38a354f1cce9f7b6adab5e737062ba5eaf63eb4",
+      "toc": -1,
+      "sequence": 130,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/office-hours-for-a-claim.md",
+      "tier": 3,
+      "sha256": "078ce3c187bff39b48e6119f2a105a92ef6bbac8abe170f1c5d8406d67c758a2",
+      "toc": -1,
+      "sequence": 131,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/old-alchemy-new-apparatus.md",
+      "tier": 3,
+      "sha256": "118eb2cefed0ef3924d7f4e8f200c8fcf45ed145866806ce94e5c59c2ba63610",
+      "toc": -1,
+      "sequence": 132,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/opening-scene-not-building-permit.md",
+      "tier": 3,
+      "sha256": "3c5607888476330c727e8d94814b792b5e073cef6a8fe0ba7e8cd83e24a2422b",
+      "toc": -1,
+      "sequence": 133,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/show-the-residuals.md",
+      "tier": 3,
+      "sha256": "548f043a3ed823d1d8c691eb8de25f2d3eb4c4fc2682e42ac22319f1a19dbe0e",
+      "toc": -1,
+      "sequence": 134,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/signals-from-earlier.md",
+      "tier": 3,
+      "sha256": "fa4a52ac5dbf3e6626b9fdcf5ea4a172cc1399cc4f1d87659ce8eeca2f8dd414",
+      "toc": -1,
+      "sequence": 135,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/we-need-to-talk.md",
+      "tier": 3,
+      "sha256": "8bb5d8045777a5f25f5f032f5c9d44a0deef6164719ecf1c0f89dcc3481e20ae",
+      "toc": -1,
+      "sequence": 136,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comics/what-counts-as-evidence.md",
+      "tier": 3,
+      "sha256": "029b4a279201aa7c4fa84ced59d57f10423a6de148b44a427d8a314781eb331d",
+      "toc": -1,
+      "sequence": 137,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/comparative-glossary.md",
+      "tier": 3,
+      "sha256": "37bc5d3b91870f98d80e0e60775af4a173e19984c8c7872d541ab91b62e26e44",
+      "toc": -1,
+      "sequence": 138,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/download-textbook-pdf.md",
+      "tier": 3,
+      "sha256": "1055885362a82c99c9d386b65c77c1f0dea0b69765f6a2d21fea81eb9f0b60e3",
+      "toc": -1,
+      "sequence": 139,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/github-presence-and-community.md",
+      "tier": 3,
+      "sha256": "16c081de2d30ab75838c5afe721ef57435363819bd7ce1867712585c032cdc6e",
+      "toc": -1,
+      "sequence": 140,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/ideal-braid-guide.md",
+      "tier": 3,
+      "sha256": "8986984b2e4b682091e3d998bceb6d5ea5b7e1fc8ea71ea140343780ca6a8792",
+      "toc": -1,
+      "sequence": 141,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/legal-terms.md",
+      "tier": 3,
+      "sha256": "fab8f4e82914d982fb5a909663adff2c07af928576acff85897a81fe8d5dd0f8",
+      "toc": -1,
+      "sequence": 142,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/licenses-attributions.md",
+      "tier": 3,
+      "sha256": "e64e4749e3917cce3197125481f6dda4c0b7c3b2192b06f9651742e812364ce7",
+      "toc": -1,
+      "sequence": 143,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "tier": 3,
+      "sha256": "b467b09a2793d2bf865f4f31005773ea420b4b3f45b63bfa5c29457d9d28680e",
+      "toc": -1,
+      "sequence": 144,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "tier": 3,
+      "sha256": "c11973d85706ac6644bdc3c42f56b679b827bd647802188333c1b228d8e83234",
+      "toc": -1,
+      "sequence": 145,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "tier": 3,
+      "sha256": "bb4ff055ede1f2763077e98f4b674608c13b862a25e38288eed774d5504e1064",
+      "toc": -1,
+      "sequence": 146,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/people.md",
+      "tier": 3,
+      "sha256": "57ec57412c9ccc926458b63e5bb9e3c7a285277d02954945ae0f365d173075a5",
+      "toc": -1,
+      "sequence": 147,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/photon-guide.md",
+      "tier": 3,
+      "sha256": "385870e493425b30ba302757e63293dab6dca2a21626c05ad9be21675cf43aa3",
+      "toc": -1,
+      "sequence": 148,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/research-notebook.md",
+      "tier": 3,
+      "sha256": "6eaabed9153ed54a187fec80606b8afc721feb0c49835fb53b6b74cf0358116d",
+      "toc": -1,
+      "sequence": 149,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/software-architecture-and-maintenance.md",
+      "tier": 3,
+      "sha256": "7b69afa0708a8c209100771f15bf04d6f79df25261a66f7596e798a5b84cdc88",
+      "toc": -1,
+      "sequence": 150,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/support-architrino-research.md",
+      "tier": 3,
+      "sha256": "137f374b7c8202104835ae90a9be0fabfc0f43a4d9ea787d4bf7acf875964c30",
+      "toc": -1,
+      "sequence": 151,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/system-card.md",
+      "tier": 3,
+      "sha256": "ce9b141d3bbd1f77cea4e468098a7855f52ecc261daaa0b52c2fbda31e006c82",
+      "toc": -1,
+      "sequence": 152,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/terminology-usage.md",
+      "tier": 3,
+      "sha256": "04d08cc13faa1d108387a44656fd0507b3664591bc270e7359e616d802af0c7c",
+      "toc": -1,
+      "sequence": 153,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/ui-guidelines.md",
+      "tier": 3,
+      "sha256": "f97d7fb6e759077d8f37e9f587d54b6ab6f9143297eb5d3fb23ab0b260219025",
+      "toc": -1,
+      "sequence": 154,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/archie/values.md",
+      "tier": 3,
+      "sha256": "e3edf8cacc3287b27e4ec66ec899657fa734c08bbd96c2f16894ad27aad7892d",
+      "toc": -1,
+      "sequence": 155,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/philosophy-history/one-nature-many-theories.md",
+      "tier": 3,
+      "sha256": "bc5feac148586db5edf0c2b2c3e21be5844f63b785b65027d66f783e5926ed13",
+      "toc": -1,
+      "sequence": 156,
+      "deadline": "2027-03-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+      "tier": 4,
+      "sha256": "f777f9554efd6d1b702ff426bbebc7a4ed2a90c1e82a22d57b402f82e7e61f4b",
+      "toc": 11,
+      "sequence": 157,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+      "tier": 4,
+      "sha256": "ad8e4c536735eda5c6b4d9daa5fadd16745691b18db1ebe7c36b465bd1768d55",
+      "toc": 12,
+      "sequence": 158,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+      "tier": 4,
+      "sha256": "355541b573439c1291adbcb446127bf07e4db8dc17edacd7dc0365472aced262",
+      "toc": 13,
+      "sequence": 159,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+      "tier": 4,
+      "sha256": "765331fc396e7fc88ce3c4ee7763a8c0fc7de6e08435648014d88510cfdc6542",
+      "toc": 14,
+      "sequence": 160,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+      "tier": 4,
+      "sha256": "a8f8afda3c4b744d8e5b894773eca75d377d8b551beead1b6cfac2685109583f",
+      "toc": 15,
+      "sequence": 161,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+      "tier": 4,
+      "sha256": "1bceeeea7483b1f6666b579f0a3d4c4ef33f24be6f83c86a5ed0fc4e7a3f5157",
+      "toc": 16,
+      "sequence": 162,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+      "tier": 4,
+      "sha256": "f65783ae73a470fed7f1ab00bcce30f498c3c2d6dca855d8cd270d3af18d2388",
+      "toc": 17,
+      "sequence": 163,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
+      "tier": 4,
+      "sha256": "a1aee0ecc7edff25896ddab493415301afb0783058f7d73c47d7b13952a8633e",
+      "toc": 18,
+      "sequence": 164,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+      "tier": 4,
+      "sha256": "81d1fdda5fcaa27ae9b1f2b7dfc48a65c5c634fc187514b8b0865f3b3a7b03d6",
+      "toc": 19,
+      "sequence": 165,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
+      "tier": 4,
+      "sha256": "e52f5974f554f1cf29bced6c1b427d47a164666207186cfa513fd6109485ce8a",
+      "toc": 20,
+      "sequence": 166,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+      "tier": 4,
+      "sha256": "694a2222ddb2241035689f1825be9f71c9e2ae597181c3e6c3db386c2221a400",
+      "toc": 21,
+      "sequence": 167,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+      "tier": 4,
+      "sha256": "bd669ef58444026ba518fcbfd0c77513ae1624c2f9f2588c97d097380a5e6592",
+      "toc": 22,
+      "sequence": 168,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
+      "tier": 4,
+      "sha256": "53951013c469f11d583f67dd17ca22a27cfd5f34501ca392cb077949aebb1f53",
+      "toc": 23,
+      "sequence": 169,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+      "tier": 4,
+      "sha256": "4d0a21022ec9879a9e54c21e5ebe75867193d89d3dae48b08ec3d4ec32ef49dd",
+      "toc": 24,
+      "sequence": 170,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+      "tier": 4,
+      "sha256": "a3161b0d24837c5788c036bff1eb5fea2ceb03cff6315e2f38ae2f5f38d53313",
+      "toc": 25,
+      "sequence": 171,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+      "tier": 4,
+      "sha256": "ac7c3706d43a6007e59b92a95d26d1a1d341c16caa0ed1cc1aeb75aaa9caf8a4",
+      "toc": 26,
+      "sequence": 172,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/validation-protocols.md",
+      "tier": 4,
+      "sha256": "bf012ffc4a8791e2e3ed960ec3006b6f1b4e908a638dde3bd8ddda35464fa0f8",
+      "toc": 99,
+      "sequence": 173,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/architrino-si-base-units.md",
+      "tier": 4,
+      "sha256": "424c915a88bd066fc542db7642bfe853527f8392879890aaca54d011e5dc42af",
+      "toc": 100,
+      "sequence": 174,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/parameter-ledger.md",
+      "tier": 4,
+      "sha256": "fe1a3b6c03aa19ede069d47c37d5eeb3d0951f4e5713882a54c232a61ca04982",
+      "toc": 101,
+      "sequence": 175,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/reaction-ledger.md",
+      "tier": 4,
+      "sha256": "cca32daa0d086021c64e1392633fbb80b6eab8f1906e3c8ed6d21675c3db9b13",
+      "toc": 102,
+      "sequence": 176,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+      "tier": 4,
+      "sha256": "9a23e670850873347637bd43de227c04f0e8234fda7aa80004a2d38db8b981f3",
+      "toc": 103,
+      "sequence": 177,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/constraint-ledger.md",
+      "tier": 4,
+      "sha256": "c7bf881b19a04ab0ea4cd870bc0ab668e6f3d8b0ff59234b2330fa8253af876a",
+      "toc": 104,
+      "sequence": 178,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/failure-criteria.md",
+      "tier": 4,
+      "sha256": "6ffd0dfc7e70ee7da8da05340d3184a7d45e14aa4cfb194235b3dc8220195d80",
+      "toc": 105,
+      "sequence": 179,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/no-go-theorems.md",
+      "tier": 4,
+      "sha256": "cb85278b5e552ed067cafa5da1748290002becfc81d434c3d380670aa26ec3c3",
+      "toc": 106,
+      "sequence": 180,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/known-tensions.md",
+      "tier": 4,
+      "sha256": "6557662f556269bd64a11c3ce6ddf082f28a1ba38299415645f66ac5ec686079",
+      "toc": 107,
+      "sequence": 181,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+      "tier": 4,
+      "sha256": "929194af0dcb3c51652cab4649f6711372fd0b9a7c09f1c34fcd425ad141fcb2",
+      "toc": 108,
+      "sequence": 182,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/architrino.md",
+      "tier": 4,
+      "sha256": "3a919b2d2cb5fe3abe4da23b408e7d1ff4bf58d5ae5d42f779cb1c81c37ff5bc",
+      "toc": 109,
+      "sequence": 183,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/convergence-tests.md",
+      "tier": 4,
+      "sha256": "65007bdca95317103f4af22517615befeb984c694dd01469cfe6d0de74252a70",
+      "toc": 110,
+      "sequence": 184,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/perspective.md",
+      "tier": 4,
+      "sha256": "e9d31a410198099a8e25b5717e94a7f02b8718d51cff302bd24db16a469b2170",
+      "toc": 111,
+      "sequence": 185,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/README.md",
+      "tier": 4,
+      "sha256": "11f331676cdf87367733e4fbec20fcc341997cd177b48767a8a9eb7502945bd2",
+      "toc": 112,
+      "sequence": 186,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/run-protocols.md",
+      "tier": 4,
+      "sha256": "a4656e686fcadef1a083ac3b578aff49fe30a66e3da411062a7920a955ed7c4a",
+      "toc": 113,
+      "sequence": 187,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "tier": 4,
+      "sha256": "5e143e5fbd7d31d7f88fa3f41d5a36318cf8036af9e243b5e966d3d29e9cc214",
+      "toc": 114,
+      "sequence": 188,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
+      "tier": 4,
+      "sha256": "cf6fab485804aa355a3a48d1c7e7fcd4c8b0dd690f9ca5b8cae5cfe9e39f5456",
+      "toc": 115,
+      "sequence": 189,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+      "tier": 4,
+      "sha256": "b707bdd34a4cffe04df34ec7f454d7d76c779564503710d924c46ce599aaf28e",
+      "toc": 116,
+      "sequence": 190,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+      "tier": 4,
+      "sha256": "55a146579d63abd25c8acb6577ef0d27034ce9a8340ced0b58653272bb48c2a0",
+      "toc": 117,
+      "sequence": 191,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
+      "tier": 4,
+      "sha256": "e3202f611d6ade4ca9251f0a09a9a1ca58dea2839b0274d10dce7f4cee53eeb5",
+      "toc": 118,
+      "sequence": 192,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+      "tier": 4,
+      "sha256": "43023bd002042e81cc9f05f6087308b0b7b398aa709be01fc07d3ffdbd4df41b",
+      "toc": 119,
+      "sequence": 193,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+      "tier": 4,
+      "sha256": "fff1004483fdcb93a0401f65f34dca2442cb62942222502f852196bd4545e9ec",
+      "toc": 120,
+      "sequence": 194,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+      "tier": 4,
+      "sha256": "b601ad8b571f164ae45f6fcce3082b61694e41d7369f10dceb2eb7f5121a0bd3",
+      "toc": 121,
+      "sequence": 195,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
+      "tier": 4,
+      "sha256": "c0e8f503a896204f4d76b7f58836ffb0d7a22c1ab72f3d8e3b482e2a965bdfd5",
+      "toc": 122,
+      "sequence": 196,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+      "tier": 4,
+      "sha256": "88ef78498ce0053704df6d535a0e3f3337d106803a82b121976bbc1f2d527c6c",
+      "toc": 123,
+      "sequence": 197,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+      "tier": 4,
+      "sha256": "cf998a7b4a91a2284b0749957b8857f4c6679a02a91c0380222afe6575868113",
+      "toc": 124,
+      "sequence": 198,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    },
+    {
+      "path": "content/markdown/aaa/validation/closure-scorecard.md",
+      "tier": 4,
+      "sha256": "435c5d9770b14b3039f4aacd6c70f7678b2df8a3c522633b8aabb8b0358ee659",
+      "toc": 125,
+      "sequence": 199,
+      "deadline": "2027-09-13",
+      "status": "pending"
+    }
+  ]
+}

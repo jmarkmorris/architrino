@@ -478,11 +478,13 @@ The current axial inventory provides charge sites from which an internal electri
 
 ## Proton-Neutron Mass Difference
 
-The proton-neutron mass splitting should be read as a competition between at least three effects:
+The proton-neutron mass splitting is a recovery target for the difference between the two assembly response records. For this observer-level comparison, use one matched calibration and environment for both rest masses and the three energy contributions. Under the effective rest-energy relation, with the same assembly-channel speed $c_{\mathrm{eff}}$ for both records, the proposed decomposition is
 $$
 \Delta m_{np}
 \equiv
-m_n-m_p
+m_n-m_p,
+\qquad
+\Delta m_{np}c_{\mathrm{eff}}^2
 \approx
 \Delta E_{\text{down-up}}
 +\Delta E_{\text{Coul}}
@@ -516,7 +518,7 @@ That is why this chapter feeds directly into [nuclear-binding.md](./nuclear-bind
 | Nucleon | Quark content | Charge | Baryon number | Generation tier of constituents | Architrino inventory (braid bookkeeping) | Ground-state role |
 | --- | --- | ---: | ---: | --- | ---: | --- |
 | Proton | `uud` | `+1` | `+1` | three Generation-I quarks | `36` | stable charged nucleon |
-| Neutron | `udd` | `0` | `+1` | three Generation-I quarks | `36` | neutral nucleon, stable in nuclei, weakly unstable free |
+| Neutron | `udd` | `0` | `+1` | three Generation-I quarks | `36` | neutral nucleon, nuclear stability depends on environment, weakly unstable free |
 
 ## Closure Targets
 
