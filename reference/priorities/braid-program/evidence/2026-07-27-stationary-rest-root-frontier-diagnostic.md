@@ -4,7 +4,7 @@ Status: CURRENT-SOURCE DIAGNOSTIC; ORDINARY CROSS-ROOT CORRELATION INPUT MISSING
 
 ## Current blocker
 
-The unchanged R0 stationary-rest seed from [the predeclared diagnostic](../campaigns/stationary-binary-breather-diagnostic.md) again certifies release clearance and evolves atomically through $T=1.2399999999999993$. The attempted step to $T=1.2449999999999992$ fails closed for both cross pairs with:
+The unchanged R0 stationary-rest seed from [the predeclared diagnostic](../../collinear-research/campaigns/stationary-binary-breather-diagnostic.md) again certifies release clearance and evolves atomically through $T=1.2399999999999993$. The attempted step to $T=1.2449999999999992$ fails closed for both cross pairs with:
 
 ```text
 status=uncertified

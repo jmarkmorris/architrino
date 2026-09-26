@@ -37,3 +37,7 @@ The one-sentence hygiene rule: **results land in `evidence/`; the synthesis may 
 - `app-solver` owns the engine and the independent oracle. This program consumes accepted engine capabilities only, and is blocked wherever a needed capability is not yet accepted — it never substitutes an unvalidated path.
 - Corpus braid chapters (`content/markdown/aaa/noether-braid/`) are downstream: this program stages results; promotion follows the standard corpus rules, and legacy-era corpus claims are reconciled by their own lanes, not from here.
 - The legacy `braid-*` directories are read-only source material for `mining/` and are otherwise not consulted.
+
+## Research ownership after the collinear separation
+
+[Collinear research](../collinear-research/README.md) owns encounters along one line. This program retains circular and other noncollinear binaries, assemblies, and the combined Campaign 1, whose head-on cases are linked from collinear research. Existing ceiling-model circular and braid results are now integrated here under their original assumptions. Shared equation definitions belong to [Master-Equation Closure](../master-equation-closure/priorities.md). The former ceiling directory is [historical](../dormant-deferred/field-speed-ceiling/README.md).

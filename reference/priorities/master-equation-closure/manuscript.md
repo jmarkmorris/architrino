@@ -1312,6 +1312,81 @@ $$
 
 The independently accepted acceleration allowance $0.0936$ also gives $0.1216416860<z''(19/4)<0.3088416861$. Together with the earlier continuous signs, this excludes a fifth turn through $19/4$ and establishes positive upward acceleration at the endpoint. The upward excursion remains unfinished. Its much greater accumulated height refutes monotonic shrinkage of subsequent excursions for this preparation, without establishing a future maximum, all-time growth or eventual settling.
 
+### 6.21. Complete-population continuation through five
+
+The [time-dependent continuation](analysis/smooth-two-particle-through-five-continuation.md), with its [independent assessment](analysis/smooth-two-particle-through-five-independent-adjudication.md), extends the same actual solution through $t=5$. The infinite alternating cubic lattice, supplied complete past, $g=16$, $c_f=1$, stationary block prescription and Master Equation remain unchanged. There are 1174 affected identities through this time. The comparison contains all of them, plus 176 allocated environmental histories that remain exactly zero; the infinite stationary complement is still included analytically.
+
+The environmental numerical displacement approaches $0.059305$, leaving only about $0.003195$ below the original class ceiling $1/16$. Closing the proof requires separate source and receiver errors. Starting at the accepted state at $13/4$, the comparison propagates these errors over 112 intervals of length $1/64$. A source error is evaluated at its earlier emission time, and every actual or nonzero trial contribution is retained. On a stopped solution with displacements below $1/16$, every required emission received by $5$ is at most $33/8<17/4$, within the already accepted complete histories.
+
+The stationary field has the same cubic form as in Section 6.20, with the sharper coefficient enclosure $14.3016343017<a<14.3270249269$. A solid-harmonic representation of the infinite remainder gives
+
+$$
+|R(y)|<197|y|^5,\qquad
+\|DS_0(y)\|\le3(14.3271)|y|^2+983|y|^4
+\qquad(|y|\le1/16).
+$$
+
+These are bounds on the original sum. The new continuous population residual on $[19/4,5]$ is below $0.004498697$. A sharper earlier target residual is below $1.090401\times10^{-6}$ on $[13/4,15/4]$. Both use the unchanged numerical histories and full acceleration equation. Old supplied-pulse derivatives vanish only where the support and causal range prove that the corresponding reception has already ended or has not yet begun.
+
+The vector acceleration error is bounded by a receiver coefficient times the position error plus the received-source errors and residual. Integrating twice gives a Volterra inequality for the position-error norm. A scalar comparison with positive hyperbolic kernels bounds that integral; the Euclidean error norm itself need not have a classical second derivative. The resulting strict bounds throughout the extension are
+
+$$
+|y_i|<0.062304433<1/16,\qquad
+|y_i'|<0.177391005<1/2,\qquad
+|y_i''|<0.611649869.
+$$
+
+The displacement margin exceeds $0.000195567$. Cross ranges exceed $7/8$, causal-root slopes exceed $1/2$, positive own-history roots remain absent, and the independently bounded jerk is below $12481.469<65536$. The original root-complement, density, separation and regularity conditions persist. These margins establish actual continuation; a small residual alone would not suffice.
+
+Independent continuous sign bounds give
+
+$$
+\begin{aligned}
+z'(t)&>0.0459339318,\qquad z''(t)>0.1925968116 &&(19/4\le t\le5),\\
+0.0348881581&<z(5)<0.0411686831,\\
+0.1180127268&<z'(5)<0.1530480085,\\
+0.3819939490&<z''(5)<0.6116490107,\\
+47283.6691&<U(5)/D_4<69710.9690.
+\end{aligned}
+$$
+
+The [neighbor-distance enclosure](analysis/smooth-two-particle-through-five-history-audit.md) applies the triangle inequality to the individual displacement bounds and includes stationary exterior neighbors. Throughout $[0,5]$, every initially unit-separated lattice-neighbor pair remains more than $0.8825413871\ell$ apart, and the selected pair remains more than $0.9176591506\ell$ apart. The estimate does not locate a closest approach or assert that either lower bound is attained.
+
+The selected pair therefore continues upward and gains upward speed throughout this extension. No fifth turn has occurred, and the upward excursion is still unfinished. The numerical environmental displacement candidate near $5.02206$ remains unproved. The ceiling $1/16$ belongs to the present history class; it is not a collision condition or an added dynamical law. Neither a later maximum, eventual settling nor typical behavior of an independently prepared population follows from this finite fixed-history result.
+
+### 6.22. An environmental displacement boundary precedes the next maximum
+
+The [first-boundary continuation](analysis/smooth-two-particle-first-class-boundary.md), independently assessed in the [event adjudication](analysis/smooth-two-particle-first-class-boundary-independent-adjudication.md), proves that the original environmental displacement ceiling is reached while the selected pair is still rising. Let $\tau$ be the first time any environmental architrino reaches distance $1/16$ from its original anchor. For the same supplied history, infinite alternating lattice, stationary block prescription, $g=16$, $c_f=1$ and unmodified Master Equation,
+
+$$
+\frac{5121}{1024}<\tau\le\frac{10339}{2048}.
+$$
+
+Both targets satisfy $z'(t)>0.0975220255$ and $z''(t)>0.1323581026$ throughout $[5,\tau]$. The previously accepted signs cover the interval from the fourth minimum to $5$, so no next upward maximum precedes this environmental boundary.
+
+The proof considers the stopped solution through a prospective horizon $H=81/16$. It includes all 1278 identities whose first excitation could occur by $H$, together with the unchanged infinite stationary complement. The number already excited at the unknown $\tau$ is not asserted. Stopping on displacements $1/16$ gives delayed cross ranges at least $7/8$ and source times at most $67/16<17/4$, inside the previously accepted complete population histories. Applying this displacement bound to the targets is an auxiliary restriction that is closed separately, rather than an assumption about their original larger history class.
+
+For a generated source whose displacement and speed are bounded by $b,w$, with intervening range at least $r$, its acceleration contribution minus the stationary reference has norm at most
+
+$$
+16\left(\frac{2b}{r^3}+\frac{w}{r^2(1-w)}\right).
+$$
+
+Summing the individually bounded sources, including all possible old-pulse receptions and the original stationary field, gives acceleration below $3.262580$. Consequently the entire population stays below speed $0.381303$, and the target displacement norm stays below $0.057141<1/16$. The jerk bound is below $13281.469<65536$. Together with the inherited range and simple-root margins, these estimates exclude earlier speed, target-displacement and regularity obstructions. Strictly subunit motion also excludes positive own-history roots. Initially unit-separated pairs remain at least $7/8$ of a lattice spacing apart at the first boundary.
+
+For the environmental witness anchored at $(-1,0,0)$ and the right target, form quadratic comparison curves from their exact saved endpoint triples at $5$:
+
+$$
+\widetilde y(t)=\widetilde y(5)+(t-5)\widetilde y'(5)
++\frac{(t-5)^2}{2}\widetilde y''(5).
+$$
+
+These curves have full-law acceleration defects bounded continuously by $0.025802911$ and $0.115937198$ respectively. Every incoming source emission lies within the certified earlier archive. The stationary remainder is bounded on the comparison ball $3/40$, which permits the witness curve to cross the environmental ceiling without changing the actual class being investigated.
+
+Independent receiver and source-error estimates yield positive-kernel comparisons with coefficients $\lambda=(20,38)$ and forcing bounds $q=(0.085,0.18)$. If $P,V$ denote their position and velocity error bounds, the scalar equation $P''=\lambda P+q$ bounds the twice-integrated vector acceleration inequality; no second derivative of the Euclidean error norm is assumed. Under the hypothesis that the solution remains inside every environmental displacement bound, the witness's vertical coordinate exceeds $1/16$ by $10339/2048$. Some environmental boundary must therefore occur first. Conversely, the global acceleration bound keeps every environmental displacement below $0.062479222<1/16$ through $5121/1024$, proving the other end of the event bracket.
+
+The theorem identifies an event of the actual solution, but not its unique first label or an exact crossing time. The numerical candidate near $5.02206$ remains only a narrower search guide. Reaching $1/16$ marks the limit of the current small-displacement proof class. It establishes no collision, acceleration singularity or modification of the Master Equation. The next maximum, any later damping pattern and continuation beyond this class require further analysis with the same complete past and law.
+
 ## 7. Wake transport, action, and conserved accounts
 
 ### 7.1. Geometry does not determine an account value
@@ -1494,3 +1569,7 @@ Infinite-population summation adds a distinct requirement. Exact stationary canc
 The surviving local scalar gradient, the rejected complete action, and the account obstructions likewise have different scopes. They narrow proposed constructions without selecting a conserved completion or excluding every possible one. Assembly root geometry and return diagnostics provide necessary information, while exact EOM existence, stability, and observer-level response remain additional burdens.
 
 A complete theory must connect these levels on one declared domain and update. It must identify admissible histories, include every reception, determine a solution with the claimed regularity, and specify what happens at reachable exceptional events. If unique prediction is claimed, the state must select the continuation rather than leave an onset or boundary choice as external data. If conservation is claimed, its quantities and transfers must be independently defined on that same evolution. These requirements preserve the positive results while making clear which singular events, population limits, and physical account maps remain unresolved.
+
+## 11. Shared equation variants and geometry-specific research
+
+The [existing field-speed-ceiling definition and shared results](analysis/field-speed-ceiling-definition-and-shared-results.md) collect the previously studied alternative response and general reception arguments. Collinear applications are developed in the [encounter manuscript](../collinear-research/manuscript.md), and circular and braid applications in the [Braid Program](../braid-program/manuscript.md#9-circular-motion-and-regular-local-evolution). This division preserves their separate assumptions and does not adopt the alternative.

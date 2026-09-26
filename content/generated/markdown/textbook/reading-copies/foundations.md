@@ -231,7 +231,7 @@ Observer descriptions can be indispensable without being final ontology. Effecti
 
 Some background, because this section is unintelligible without it.
 
-**Bell's theorem** constrains a specific conjunction of assumptions. For settings chosen independently of a complete hidden state $\lambda$, Bell-local causality requires each outcome probability to depend only on the local setting and $\lambda$. That factorization implies Bell inequalities. Loophole-free experiments violate those inequalities, so no model satisfying the full conjunction can reproduce the observed correlations. Hensen and collaborators' [2015 experiment](https://doi.org/10.1038/nature15759), for example, reported a Bell-inequality violation while closing the principal locality and detection loopholes.
+**Bell's theorem** constrains a specific conjunction of assumptions. For settings chosen independently of a complete hidden state $\lambda$, Bell-local causality requires the joint outcome probability to factor into two local response probabilities, each depending only on its own setting and $\lambda$. This conditional factorization implies Bell inequalities. Loophole-free experiments violate those inequalities, so no model satisfying the full conjunction can reproduce the observed correlations. Hensen and collaborators' [2015 experiment](https://doi.org/10.1038/nature15759), for example, reported a Bell-inequality violation while closing the principal locality and detection loopholes.
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ is deterministic, so it owes an answer. Bell-family experiments are treated here as a hard observer-level constraint on any deterministic completion. They are not treated as evidence for ontological randomness, backward causation, or faster-than-$c_f$ signalling.
 
@@ -272,7 +272,7 @@ The finite-speed obstruction therefore remains a substantive proof burden. Measu
 Routing:
 
 - [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md) owns complete-state versus observer access.
-- [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) owns observer clocks and $t\mapsto\tau$ extraction.
+- [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) owns physical clock readouts, their extraction from native absolute time, and their comparison in effective observer coordinates.
 - [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) owns moving-assembly deformation, clock and ruler retuning, two-way synchronization, and preferred-frame leakage bounds.
 - [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) owns metric reconstruction.
 - [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md) own quantum-state and measurement descriptions.

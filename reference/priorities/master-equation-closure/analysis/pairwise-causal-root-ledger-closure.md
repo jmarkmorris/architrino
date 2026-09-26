@@ -427,7 +427,7 @@ Plainly: a fold has two incident root histories and one boundary event. The ledg
 
 ### MEC-007 mirror-encounter intake rule
 
-The completed [MEC-007 mirror close-approach record](mirror-close-approach-causal-root-boundary.md) uses this packet's symmetric collinear encounter, but it does not replace MEC-005 ownership. Its first-boundary theorems, independently checked incoming ledger, and unchanged-law obstruction may enter as bounded event geometry only. Every root, event, and unresolved boundary cell still needs one refinement-stable MEC-005 identity, and no MEC-007 acceleration integral may be interpreted as a provenance or no-double-booking pass.
+The completed [MEC-007 mirror close-approach record](../../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md) uses this packet's symmetric collinear encounter, but it does not replace MEC-005 ownership. Its first-boundary theorems, independently checked incoming ledger, and unchanged-law obstruction may enter as bounded event geometry only. Every root, event, and unresolved boundary cell still needs one refinement-stable MEC-005 identity, and no MEC-007 acceleration integral may be interpreted as a provenance or no-double-booking pass.
 
 Plainly: MEC-007 can show where the encounter becomes singular. MEC-005 must still show that every root and boundary event was found and booked exactly once.
 

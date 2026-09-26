@@ -4,6 +4,12 @@ This is the chronological completion log for the CRW-005 assurance campaign. The
 
 ## Completed milestones
 
+### 2026-09-26 — Bounded Master Equation corpus pullbacks and distinctions
+
+The operator accepted the narrow Master Equation reassessment batch. Fifteen corpus chapters now distinguish exact reformulations and controlled mathematical approximations from unproved physical transfers. The three experimental proposals are preserved with their research owners: physical wake duration, softened collinear origin crossing and recapture, and root-count-to-fixed-action clicks. The [implementation record](analysis/ops-031-master-equation-deviation-audit-2026-09-26.md#implementation-record) records the scope, dependencies, equation preservation and verification. It also closes Analytic Baselines proposal items 1–3; the separate items 4–9 remain proposed. CRW-005 is not reopened and no scientific campaign is reactivated.
+
+The known-case-first joined checker passed 4,554 strict-KaTeX expressions across the fifteen chapters and three notes, with 859 corpus display blocks retaining associated viewer links. The registered-equation checker passed its 23-link scope, and scoped whitespace checks passed. Strict repository content validation reported two broken links in the separate Braid Program work log and no error in this batch's edited files; their locations and candidate destinations are retained in the implementation record. The generated equation registry needs its normal authorized regeneration. No solver behavior or new physics result is claimed.
+
 ### 2026-09-13 — Supplementary sixteen-chapter repairs integrated
 
 The operator's accepted bounded corrections are complete in all sixteen chapters, with necessary stationary-surrogate propagation to Master Equation. Three disjoint editing groups supplied new repair receipts; a different reviewer checked each group against the independent references and counterexamples, including the final CL calibration propagation. The [integration record](evidence/crw-005-claude-sixteen-closure-verification-2026-09-13.md#final-sixteen-chapter-integration) retains all sixteen final source hashes, receipt links, peer scopes and the coordinator dependency hash. Original receipts remain historical evidence.

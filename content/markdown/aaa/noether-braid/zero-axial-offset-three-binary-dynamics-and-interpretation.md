@@ -14,7 +14,7 @@ The claims in this chapter have three distinct scopes: hypotheses specific to th
 | Retention, causal-root closure, perturbation recovery, and same-record shielding tests | Family-general recovery requirements | The coincident-midpoint configuration is one instantiation. The proof contract belongs to [Braid Recovery Requirements](braid-recovery-requirements.md), and the common analysis record belongs to [Candidate Braid Analysis Methodology](braid-analysis-methodology.md). |
 | Integer phase return and root-ledger return | Family-general recovery requirement with a coincident-midpoint-specific coordinate form | Return is required for every periodic candidate; $(k_1,k_2,k_3)$ and $\Lambda_{\mathrm{cm}}$ are coordinates of this chart. |
 | Cadence-scale retuning map and rest-level scaling curve | Coincident-midpoint-specific hypothesis | The maps depend on $\Lambda_{\mathrm{cm}}$ and cannot be assigned to another member without a separate derivation. |
-| Fold-set action clicks | Family-general hypothesis | The machinery is owned by [Braid Mathematics](braid-mathematics.md#action-clicks-at-the-fold-set), not by coincident-midpoint orthogonal-axis three-binary configuration. |
+| Root-count transitions and action increments | Family-general mathematical distinction | [Braid Mathematics](braid-mathematics.md#action-clicks-at-the-fold-set) distinguishes root-event geometry from a physical action amount; this configuration has no derived one-root/one-action-unit mechanism. |
 | Reduced closure label $\Lambda_{\mathrm{cm}}$ and its alignment restriction | Coincident-midpoint-specific hypothesis | The label is available for comparison within this chart only and does not establish a retained branch. |
 | Dynamic exclusion-envelope export | Family-general export requirement with a coincident-midpoint realization | The shared interface is owned by [Braid Envelope Geometry](braid-envelope-geometry.md). |
 | Three-support-row shielding mapped to fermion generations | Unsupported coincident-midpoint assignment | No retained branch, shielding extraction, or particle map currently establishes the assignment. |
@@ -68,7 +68,7 @@ The same closure-label machinery is the candidate carrier for branch-quantized L
 
 ### Cadence-Scale Retuning Hypothesis
 
-The single-braid version of the $h_{\mathrm{act}}$-step claim is geometric rather than merely thermal. An accepted action transaction does not add energy to an undeformable object. It moves the coincident-midpoint orthogonal-axis three-binary configuration record from one admissible closure branch toward another, and the braid resolves that transaction by retuning its cadence-scale closure. The symbol $h_{\mathrm{act}}$ denotes the closed-cycle action unit in this chart; it is distinct from the finite-memory depth $h_{\mathrm{mem}}$ used in dynamics chapters, and its comparison with the observer-level Planck constant $h$ remains part of action-scale closure.
+The single-braid version of the $h_{\mathrm{act}}$-step claim is geometric rather than merely thermal. Under this hypothesis, an accepted action transaction moves the coincident-midpoint orthogonal-axis three-binary configuration record from one admissible closure branch toward another, and the braid resolves that transaction by retuning its cadence-scale closure. The fixed unit is an independent hypothesis of this comparison chart; it is not derived from integer phase winding or causal-root counts. The symbol $h_{\mathrm{act}}$ denotes the closed-cycle action unit in this chart; it is distinct from the finite-memory depth $h_{\mathrm{mem}}$ used in dynamics chapters, and its comparison with the observer-level Planck constant $h$ remains part of action-scale closure.
 
 The bookkeeping distinction is
 
@@ -195,11 +195,11 @@ $$
 
 with the weights determined by the same branch and exposure record used for clock and medium coupling. The full coincident-midpoint orthogonal-axis three-binary configuration record need not put the entire transaction into a single binary. One binary may tighten while another expands, and the path-history envelope may change through $\lambda$ or $\xi$, provided the total closure label remains admissible.
 
-This is the local branchwise origin of the smoother Noether sea equilibrium-current language: individual retunings are discrete, while many asynchronous accepted retunings can coarse-grain into a continuous cadence-space current.
+Within this hypothesis, many asynchronous discrete retunings may admit a continuous cadence-space current after coarse-graining. Such a limit requires the population and its event statistics; the retuning equations alone do not establish it.
 
 #### Action Clicks at the Field-Speed Hinge
 
-The candidate physical implementation of the discrete action transaction — each accepted transaction realized as a controlled crossing of the causal-root fold set that changes the integer root count by one — is core-agnostic machinery and is developed at hypothesis level in [Braid Mathematics](braid-mathematics.md#action-clicks-at-the-fold-set). For this chapter's ledger the hypothesis-level consequences are that the closed-cycle action unit $h_{\mathrm{act}}$ is the action transacted in one crossing, that closure-label changes are tied to causal-root bifurcation, and that many asynchronous crossings coarse-grain into the smooth cadence-space current named above. No binary is assigned this role by the taxonomy, and no dynamical mechanism holding a branch at the field-speed locus is asserted.
+The retuning formulas do not identify $h_{\mathrm{act}}$ with one causal-root crossing. [Braid Mathematics](braid-mathematics.md#action-clicks-at-the-fold-set) distinguishes ordinary interior folds, which create or remove a root pair, from coincident endpoints and retained-history boundary crossings. None fixes a physical action amount merely by changing an integer count. A transaction may be assigned to a root event only after the same evolved history supplies the action observable, wake balance, and event continuation. No binary is assigned a transaction role by the taxonomy, and the retuning map supplies no mechanism holding a branch at the field-speed locus.
 
 ### Rest-Level Scaling Curve
 

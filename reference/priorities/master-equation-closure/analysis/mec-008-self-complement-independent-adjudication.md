@@ -4,7 +4,7 @@
 
 **Accept the finite-event uniform self-delay floor, the complete two-branch transverse-fold coefficient and integral, and the endpoint-velocity estimate on their stated conditional classes. Reject treating these results as an actual singular self-root evolution or as progress through the stationary two-particle control's terminal event.** The entrance proof is complete when “complete census” includes every limiting root, the initial and cutoff sections, and every singular event point at strictly positive delay. Those conditions are hypotheses about an evolution, not facts obtained from a finite particle count or from the estimates themselves.
 
-The read-only subject is [Self-Boundary Estimates with Positive-Delay Singular Events](mec-008-self-boundary-complement.md). The [accepted self-delay adjudication](mec-008-self-delay-independent-adjudication.md), its [original analysis](mec-008-self-channel-reachability.md), and [MEC-007](mirror-close-approach-causal-root-boundary.md) are prior inputs. This report independently differentiates the causal residual, traces maximal regular graphs to their entrances, computes the fold from its geometric derivatives, and integrates the complete projected receiver equation. The shown reasoning supplies the evidence; agreement of wording or document checks supplies none.
+The read-only subject is [Self-Boundary Estimates with Positive-Delay Singular Events](mec-008-self-boundary-complement.md). The [accepted self-delay adjudication](mec-008-self-delay-independent-adjudication.md), its [original analysis](mec-008-self-channel-reachability.md), and [MEC-007](../../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md) are prior inputs. This report independently differentiates the causal residual, traces maximal regular graphs to their entrances, computes the fold from its geometric derivatives, and integrates the complete projected receiver equation. The shown reasoning supplies the evidence; agreement of wording or document checks supplies none.
 
 | Exact statement | Verdict | Claim boundary |
 | --- | --- | --- |
@@ -423,7 +423,7 @@ Claim grade: **derived** for the variation bound, endpoint alternative, and nonc
 
 ## Consequence for the stationary two-particle control
 
-The accepted [stationary mirror owner](mirror-close-approach-causal-root-boundary.md) and [incoming ledger](../evidence/mec-007-stationary-mirror-incoming-ledger-2026-09-02.md) supply an incoming future with positive present separation and a simple positive-range partner root when inward speed first reaches one. No new numerical claim or oracle replay is used in this review.
+The accepted [stationary mirror owner](../../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md) and [incoming ledger](../evidence/mec-007-stationary-mirror-incoming-ledger-2026-09-02.md) supply an incoming future with positive present separation and a simple positive-range partner root when inward speed first reaches one. No new numerical claim or oracle replay is used in this review.
 
 For either label, choose its inward coordinate $x$ with $x'=u$. The complete earlier history has $0\le u<1$ before the endpoint. Every positive-delay self candidate at reception $T\le T_*$ therefore obeys
 

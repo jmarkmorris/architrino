@@ -18,7 +18,7 @@ In the many-body indexed formulas below, receiver index $i$ occupies role $r$ an
 
 The Master EOM is:
 
-- **Deterministic when well posed**: Given a complete admissible history, a locally unique future follows for the finite-width model under the stated hypotheses. Applicability of the state-dependent-delay theorem and the sharp $\eta\to0$ limit remain conditional.
+- **Deterministic when well posed**: A complete admissible history determines a locally unique future wherever an applicable existence-and-uniqueness theorem has been established for the sharp law. A local theorem for an auxiliary finite-width model proves uniqueness for that model; transferring it to the Master Equation requires a separate convergence and uniqueness argument.
 - **Non-Markovian**: Depends on full path history, not just instantaneous state.
 - **Event-local at the receiver**: Only delayed causal intersections at the receiver event contribute to acceleration (no action-at-a-distance).
 - **Causal**: Each emitted wake propagates at the finite field speed $c_f$; a direct hit samples an earlier emission event.
@@ -792,7 +792,7 @@ Branch-resolved formulas are the authoritative sharp law on their admitted regul
 
 The two regulators quarantine different singular loci. The width $\eta$ regularizes the causal-surface collapse, branch folds, and caustic-transit impulse; the core scale $\epsilon_c$ regularizes the coincidence or diagonal collision locus. A theorem may refine them together for computation, but a sharp-limit claim must state which of $\eta\to0^+$ and $\epsilon_c\to0^+$ is being taken, and why the other singular locus remains controlled during that limit.
 
-Coordinate coincidence is also a provenance question, not an annihilation rule. Two architrinos may share $\mathbf X_i(T)=\mathbf X_j(T)$ on one absolute-time slice only as a boundary case of the retained history record; the next admissible update is determined by their identities, polarities, velocities, past causal-wake ledgers, and the same $\eta,\epsilon_c$ convention. If two like-polarity records agree through the retained memory window up to label permutation, the deterministic law is quotient-degenerate: relabeling the records changes no acceleration contribution until a provenance-visible history distinguishes them. If the polarities, velocities, or retained path histories differ, later incoming causal wakes can separate the records even though their current coordinates coincided. Thus the $r=0$ stratum is not a contact interaction or annihilation channel. It is a regularized or quarantined branch condition whose continuation must preserve provenance.
+Coordinate coincidence does not prescribe annihilation or a contact interaction. Equality $\mathbf X_i(T)=\mathbf X_j(T)$ on one absolute-time slice is distinct from zero separation between an earlier emission and its receiver event. Positive-delay roots can still have positive separation when the current coordinates agree. Whether a lawful history can reach and continue through that configuration depends on the complete causal-root contributions and an applicable continuation result. Identity, polarity, velocity, and retained wake history remain necessary data; choosing $\eta$ and $\epsilon_c$ does not itself determine a continuation of the sharp law. Where the sharp evolution is well posed, relabeling identical like-polarity histories preserves the acceleration record, while different histories can produce different later accelerations. If causal separation, root transversality, or convergence fails, the next sharp-law update remains unresolved.
 
 #### Finite-Regulator Pathology Quarantine Theorem Target
 
@@ -827,8 +827,8 @@ Under these assumptions, a finite-$\eta$ theorem should prove the following loca
 
   then $K_{\mu}(T)$ remains bounded on $W$. A branch with $V_{\max}\to\infty$ must therefore leave the admissible class by driving the interaction charge downward without bound, losing a floor, or breaking the declared action-energy residual.
 - **Pre-acceleration is excluded at finite $\eta$.** The acceleration at $T$ is a functional of the retained history segment $[T-h,T)$, together with the current receiver event, and contains no future state. A proposed action repair is admissible only when its endpoint convention contributes a wake-history boundary term or a vanishing residual, not a future-boundary acceleration selection rule.
-- **Caustic and Jacobian blow-up are quarantined.** Simple-root charts require $\nu_J > 0$. A finite-order caustic may be crossed only through the auxiliary dual-mollified regulator with finite integrated impulse and stable transition metadata. Persistent $J=0$, cusp behavior outside a finite-order normal form, simultaneous collision-floor failure, or regulator-dependent transition observables are chart failures rather than ordinary acceleration contributions.
-- **Finite deterministic multistability is routed, not quarantined.** At a fold boundary, if the regularized post-transit data supply exactly one admissible continuation chart, the event is an ordinary branch transition. If they supply two or more inequivalent admissible charts with positive floors and finite memory, the complete microstate still selects one deterministic continuation, but a record-limited comparison must route the event to a finite basin-weight or multistability record. Multistability is a failure only when the finite continuation family is empty, infinite, unlabeled, or lacks the common branch data needed for comparison.
+- **Caustic and Jacobian blow-up are quarantined.** Simple-root charts require $\nu_J > 0$. The present auxiliary theorem target studies finite-order caustics through its declared regulator. A continuation claim for the sharp law requires a finite accepted impulse, complete event data, and existence and uniqueness in the stated solution class. Exact singular analysis or another controlled approximation may establish those facts; no particular smoothing method is mandatory. Persistent $J=0$, cusp behavior outside the admitted normal form, simultaneous collision-floor failure, or regulator-dependent limiting observables remain outside this target's accepted continuation domain.
+- **Deterministic multistability concerns different complete states.** If an applicable uniqueness theorem supplies one regularized post-transit history from complete initial and boundary data, different charts of that same history do not represent different futures. An incomplete record can admit several complete states whose individually unique evolutions enter different basins. Basin weights then require a measure on those states; the number of charts alone supplies no weights. Two inequivalent futures from identical complete data would instead contradict the stated uniqueness hypothesis.
 
 The theorem's failure boundary is the union of the following conditions:
 $$
@@ -862,7 +862,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-881fed3da323b266)
 
-where $\Sigma_{\mathrm{transit}}$ has a unique finite post-transit chart, $\Sigma_{\mathrm{bif}}^{\mathrm{multi}}$ has a finite labeled family of admissible continuations, and $\Sigma_{\mathrm{sing}}^{\mathrm{fail}}$ lacks an accepted finite chart. A trajectory crossing this boundary is not an accepted closed Master Equation solution until the appropriate continuation is certified. The applicable condition is branch transition, finite multistability, caustic transit, core-regularization failure, finite-window leakage, or $\eta$-ladder failure according to which boundary component is reached.
+where $\Sigma_{\mathrm{transit}}$ denotes a certified finite post-transit history, $\Sigma_{\mathrm{bif}}^{\mathrm{multi}}$ denotes a record-limited family arising from different compatible complete states, and $\Sigma_{\mathrm{sing}}^{\mathrm{fail}}$ lacks an accepted finite continuation. This is a proposed classification for the declared auxiliary model, not a proved partition of the sharp dynamics. A unique continuation at fixed regulator values becomes a Master Equation result only after the corresponding sharp-limit existence and uniqueness have been established. In particular, regulator-dependent limits cannot select a physical continuation by convention.
 
 The residuals required by this theorem target are the root residual, root-transport residual, active transmitter-side Jacobian floor, transmitter-side acceleration-weight interval, inactive-gap residual, finite-memory residual, return residual, finite-window energy residual $\mathcal{R}_E$, momentum residual $\mathcal{R}_P$, angular-momentum residual $\mathcal{R}_J$, Euler residual of the same action, endpoint or period-cut leakage, transition-observable residuals across $\eta$ refinement, and the symplectic residual $\mathcal{R}_{\Omega}$ when the branch is represented by a reduced Hamiltonian chart. The theorem is finite-$\eta$ only; any zero-width or infinite-system statement requires the separate convergence boundary stated in the regularization analysis.
 
@@ -2559,9 +2559,9 @@ This argument identifies a theorem scheme, not a verified application to the aux
 
 #### Finite-Continuation Criterion for Global Comparisons
 
-The compatible-history well-posedness target is the dynamics-side home for global-continuation comparisons used later in [General Relativity](../spacetime/general-relativity.md#global-continuation-and-cosmic-censorship-comparison) and [Singularity Resolution](../spacetime/singularity-resolution.md#cauchy-horizon-comparison-pressure). It should not be read as a claim that observer records determine a unique global spacetime. Its native claim is narrower: a declared finite history, boundary wake record, and branch chart either determine a finite continuation family or they do not.
+The compatible-history well-posedness target supplies a conditional comparison framework for [General Relativity](../spacetime/general-relativity.md#global-continuation-and-cosmic-censorship-comparison) and [Singularity Resolution](../spacetime/singularity-resolution.md#cauchy-horizon-comparison-pressure). The finite-width family below is an auxiliary example. Its size does not establish continuation of the sharp Master Equation or determine a unique global spacetime from observer records. Transfer to the sharp law requires convergence of the complete evolved histories and boundary data, together with existence and uniqueness in the claimed limiting solution class.
 
-For a compact subsystem $\Omega$ and window $W=[T_i,T_f]$, let $\mathcal{A}_{\Omega,W}^{(\eta)}$ be the set of branch charts that satisfy the regularized assumptions (W1)-(W5), the compatible-history and functional-domain conditions, the bounded active-branch condition, the distance floor, and the root-transversality floor on $W$ using the same finite boundary data $\mathcal{B}_{\partial\Omega}|_W$. The dynamics-side continuation family is
+For a compact subsystem $\Omega$ and window $W=[T_i,T_f]$, fix one complete initial history $\mathbf Y_{T_i}$ and boundary wake record $\mathcal{B}_{\partial\Omega}|_W$ for the declared auxiliary functional. Let $\mathcal{A}_{\Omega,W}^{(\eta)}$ contain its admissible branch charts satisfying (W1)-(W5), the compatible-history and functional-domain conditions, and the required memory and support bounds on $W$. The associated family of final histories is
 $$
 \mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}
 =
@@ -2570,30 +2570,30 @@ $$
 :
 a\in\mathcal{A}_{\Omega,W}^{(\eta)},
 \ \mathbf{Y}_{T_f}^{a}
-\text{ is generated by the regularized master equation from }
+\text{ is generated by the declared auxiliary functional from }
 \left(\mathbf{Y}_{T_i},\mathcal{B}_{\partial\Omega}|_W\right)
 \right\}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d60d8e392bd6977c)
 
-The comparison passes only if
+The notation $\mathrm{ME},\eta$ identifies the auxiliary family associated with the Master Equation recovery target; it does not identify its members as sharp-law solutions. A necessary finiteness condition for this comparison is
 $$
 0<\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|<\infty
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-548a520d042a52a9)
 
-with every element carrying the causal-root ledger, energy diagnostic or exact charge used for the run, and the boundary wake data that selected it. Empty, infinite, or unlabeled families are not global closure; they mark an unresolved continuation ambiguity. A later strong-field or cosmology chapter may quotient this family by observer-accessible records, but the quotient must be derived from the same master-equation data rather than imposed as a global-hyperbolicity assumption.
+with every element carrying its complete causal-root record, declared energy diagnostic or exact charge, and boundary wake data. Under an applicable existence-and-uniqueness theorem for the fixed complete data, the family must contain exactly one final history. Finiteness alone is weaker, and none of these auxiliary-model conditions certifies sharp-law continuation.
 
 The cardinality is itself a structural diagnostic:
 
-- $\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|=0$ means no compatible global section of the declared branch-chart data exists.
-- $\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|=1$ means the finite data select a unique deterministic continuation.
-- $2\le\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|<\infty$ means deterministic multistability: the complete state occupies one branch, while record-limited comparisons must use the basin weights induced on the finite labeled family.
-- $\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|=\infty$ means root accumulation, noncompact branch freedom, or unresolved chart gluing, not a mature global comparison.
+- $\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|=0$ means no final history is represented by the admitted construction; distinguishing nonexistence from an incomplete chart construction requires a separate argument.
+- $\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|=1$ means that construction supplies one final history. Uniqueness of the entire intervening evolution still requires the applicable theorem; distinct trajectories can in principle end with the same finite history segment.
+- $2\le\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|<\infty$ means inequivalent final histories arise from the same stipulated complete data. This would contradict an applicable uniqueness theorem; it is not deterministic multistability.
+- $\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|=\infty$ likewise fails the stated finite-family target. Cardinality alone does not identify the cause as root accumulation, noncompactness, or a gluing obstruction.
 
-Equivalently, this is the section count of the causal-root gluing target over the finite window:
+When a family member is represented by its entire compatible branch record over $W$, the proposed gluing notation is
 $$
 \mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}
 \subset
@@ -2602,7 +2602,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-210bb933126c8c9e)
 
-after the finite boundary data and regularization convention have been fixed. Finite labeled multistability is an admissible branch-statistics object. Empty, infinite, unlabeled, or non-gluing continuation families remain closure failures, and the obstruction should be reported as a local admissibility failure, an accumulation failure, or a nonzero gluing class in $\check H^1$.
+after the initial and boundary data and auxiliary functional have been fixed. Interpreting $H^0$ as a space of sections requires the restriction and gluing structure described earlier; a failed construction alone does not establish a nonzero cohomology class. For record-limited comparisons, form a separate family by varying complete initial and boundary data over all states consistent with the observer's record. Several members of that family can reflect different deterministic basins without assigning several futures to one complete state. An observer quotient and basin weights require their own equivalence relation and measure. These constructions remain conditional mathematical comparisons until their sharp-law recovery is established.
 
 ## Operational Principles, Self-Interaction, and Examples
 
@@ -2889,16 +2889,15 @@ This limited, unoriented, and transmitter-ambiguous information at the hit level
 
 ### Parameter Definitions
 
-The core parameters entering the Master Equation are:
+The parameters of the sharp Master Equation are:
 
 | **Parameter** | **Symbol** | **Working convention** | **Dimensional** | **Comment** |
 |:--------------|:-----------|:----------------------|:----------------|:------------|
-| Wake speed | $c_f$ | Set to 1 in natural units unless otherwise stated | $\mathrm{L}\,\mathrm{T}^{-1}$ | Propagation speed in the causal constraint |
+| Wake speed | $c_f$ | Set to 1 in numerical instantiations; retained symbolically in derivations | $\mathrm{L}\,\mathrm{T}^{-1}$ | Propagation speed in the causal constraint |
 | Coupling constant | $\kappa$ | Universal coupling parameter | $\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | Controls the strength of the inverse-square interaction |
 | Architrino polarity unit | $\epsilon$ | $\lvert e \rvert / 6$ | $\mathrm{Q}$ | Fundamental polarity magnitude |
-| Causal-wake-surface thickness (regularization) | $\eta$ | Positive regularization width used in analysis and simulation | $\mathrm{L}$ | Mollifies delta singularities |
 
-In this document, $c_f$ is treated primarily as a unit-setting convention, $\kappa$ as the universal coupling scale of the delayed interaction law, $\epsilon$ as the fundamental polarity unit, and $\eta$ as a regularization parameter used only when a smooth surrogate of the exact causal-wake dynamics is required.
+The numerical convention $c_f=1$ fixes the relation between length and time units. The coupling $\kappa$ sets the acceleration scale, and $\epsilon$ sets the polarity magnitude. Auxiliary calculations may also introduce a causal-surface width $\eta$ and spatial core scale $\epsilon_c$, both with dimensions of length, and a history depth $h$ with dimensions of time. These are approximation or proof conventions, not additional parameters of the postulated law. Sharp-law claims require the corresponding regulator limits and proof that omitted history contributes nothing or a controlled error.
 
 ### Numerical Implementation Notes
 
@@ -3086,7 +3085,7 @@ The reduction permits the following steps:
 
 The reduced problem is analytic up to standard quadratures, with causal-delay corrections available as a systematic perturbation series.
 
-For the local origin-crossing theorem program in the self-hit-capable collinear reduction, the auxiliary working 1D model is dual-mollified rather than merely causal-surface-regularized: the causal-surface mollifier $\delta_\eta$ still selects delayed roots, while a separate core regulator $\epsilon_c$ is imposed on the inverse-square amplitude so the post-crossing local vector field remains finite. This working model is not the canonical Master Equation and cannot supply a coincidence law; any result intended to bear on the sharp dynamics must pass the declared regulator-convergence and event-certification burdens.
+This slow-motion reduction supplies no continuation through coincidence or a self-root birth. Those events require the complete delayed equation in an admitted solution class. A finite trajectory of a softened auxiliary equation establishes only that model's behavior; recovering a sharp-law passage, rebound, or recurrence requires a separate limit and uniqueness result for the complete histories.
 
 ---
 
@@ -4788,7 +4787,7 @@ On a certified effective assembly chart, the candidate kinetic bookkeeping may b
 
 With finite-speed causal wakes and path-history dependence, an instantaneous position-only potential is not fundamental. Time-translation symmetry of a symmetry-preserving nonlocal action model supplies the corresponding nonlocal Noether charge. The formulas in this subsection therefore belong to the action-derived delayed model, not to every regularized implementation of the Master Equation.
 
-For the dual-mollified local 1D collinear model, the same conservation language should be read more carefully: the causal-surface mollifier $\delta_\eta$ and core mollifier $\epsilon_c$ support a finite local vector field and a tractable return-map theorem program, but exact Noether-charge statements transfer automatically only if that dual mollification is itself derived from a time-translation-invariant action-level regularization of the causal kernel.
+For any auxiliary regularization, finiteness of the acceleration functional does not establish a conserved Noether charge. The chosen regularization must be generated by a time-translation-invariant action, and its boundary charge must be retained. Transferring that conservation statement to the Master Equation also requires recovery of the canonical acceleration law and control of the charge and boundary terms in the same limit.
 
 ##### Energy exchange per causal hit
 
@@ -5605,7 +5604,7 @@ $$
 
 where $K_{\mu}$ is the quadratic kinetic bookkeeping proxy and $E_{\text{wake}}$ denotes the exact nonlocal interaction charge. In direct trajectory evaluation, $U$ may be used as a compatible reconstruction up to a constant offset when it is derived from the same action-level acceleration law and boundary convention.
 
-This statement would be exact for a valid action-based delayed theory. The displayed scalar action is not yet such a theory because its variation does not reproduce the canonical Master Equation on generic branches. For regularized working models, especially the dual-mollified local collinear recapture model, the expression is therefore a history-aware bookkeeping candidate rather than a proved invariant unless a separate generating action is supplied.
+This statement would be exact for a valid action-based delayed theory. The displayed scalar action is not yet such a theory because its variation does not reproduce the canonical Master Equation on generic branches. For an auxiliary regularized model, the expression is a history-aware bookkeeping candidate unless its own generating action and boundary charge are supplied; even then, a separate recovery argument is required before the charge can be attributed to the sharp Master Equation.
 
 There is an important independence limit. If $E_{\text{wake}}$ or $U$ is defined only by integrating the same realized acceleration power $-\sum_i\mu_{\text{arch}}\mathbf A_i\cdot\mathbf V_i$, then constancy of $K_\mu+E_{\text{wake}}$ is true by construction. That reconstruction cannot independently detect a persistent same-sign tangential acceleration: it merely books the kinetic change into the opposite wake entry. An independent no-runaway or circular-closure test therefore needs the action-derived time-translation boundary charge, or another separately derived finite-window wake account, rather than the work integral alone.
 

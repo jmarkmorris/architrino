@@ -78,7 +78,7 @@ This sample contrasts a provisional question collection, a developed conditional
 
 ### 4. The Breather Proposal Must Travel With Its Negative Trigger Result
 
-**Sources:** [Field-Speed Ceiling brainstorming](../../field-speed-ceiling/brainstorming.md), lines 101–145, `Autonomous Crossing-State Braking and Breather Audit` and `Two-Lobe Return Map Result`; [current queue](../../field-speed-ceiling/work-queue.md), `Completed Prerequisites` and the missing-instrument item; [continuation-selection decision](../../field-speed-ceiling/decisions/continuation-selection-operator-decision-2026-09-02.md).
+**Sources:** [Field-Speed Ceiling brainstorming](../../dormant-deferred/field-speed-ceiling/brainstorming.md), lines 101–145, `Autonomous Crossing-State Braking and Breather Audit` and `Two-Lobe Return Map Result`; [current queue](../../dormant-deferred/field-speed-ceiling/work-queue.md), `Completed Prerequisites` and the missing-instrument item; [continuation-selection decision](../../dormant-deferred/field-speed-ceiling/decisions/continuation-selection-operator-decision-2026-09-02.md).
 
 **Faithful idea and value:** a prescribed delayed onset can produce braking, turnaround, and a returning lobe inside the proposed ceiling model. Repeating the onset gives a spatial cycle. The minimal autonomous crossing state does not select the onset, and reusing the previous cap duration fails to give a positive fixed cycle in the derived regime. The useful recovery is the complete conditional result together with the failed mechanism, not the attractive word “breather.”
 
@@ -121,7 +121,7 @@ Verification: `git diff --check -- reference/priorities/aaa-work-threads` passed
 
 The [Lattice Lab entry](../../app-lattice-lab/brainstorming.md#established-ownership) now explains opposite-offset cancellation, the specified infinite-sum exhaustion, the broader symmetry-group certificates, and the undeformed-only HCP boundary. It explicitly separates these derived stationary results from restoring response, stability, evolution, conservation, and a physical medium. The two proof documents retain their original mathematics and provenance.
 
-The [FSC entry](../../field-speed-ceiling/brainstorming.md#two-lobe-return-map-result) now distinguishes its earlier proposal from the later Option A decision. It records the conditional quotient-state two-cycle without upgrading it to an autonomous breather or a periodic literal all-past record. The prior request for independent review is replaced by its completed review/disposition links and the existing [Routed Reproducibility Gap](../../field-speed-ceiling/work-queue.md#routed-reproducibility-gap). The cap-map equations and original reasoning remain intact. This edit neither executes that numerical repair nor changes the selected doctrine.
+The [FSC entry](../../dormant-deferred/field-speed-ceiling/brainstorming.md#two-lobe-return-map-result) now distinguishes its earlier proposal from the later Option A decision. It records the conditional quotient-state two-cycle without upgrading it to an autonomous breather or a periodic literal all-past record. The prior request for independent review is replaced by its completed review/disposition links and the existing [Routed Reproducibility Gap](../../dormant-deferred/field-speed-ceiling/work-queue.md#routed-reproducibility-gap). The cap-map equations and original reasoning remain intact. This edit neither executes that numerical repair nor changes the selected doctrine.
 
 ### Whole-Document Assessment
 

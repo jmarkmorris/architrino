@@ -7,7 +7,7 @@
 - Priority object: `receiver_wake_gradient_closure`
 - Claim level: `complete at bounded regular-domain derivative scope; singular boundaries terminally quarantined`
 - Workstream: [master-equation-closure](../priorities.md)
-- Related queue items: [MEC-001 characteristic-tail action adjudication](characteristic-tail.md), [MEC-005 pairwise causal-root ledger closure](pairwise-causal-root-ledger-closure.md), and [MEC-007 mirror close-approach causal-root boundary](mirror-close-approach-causal-root-boundary.md)
+- Related queue items: [MEC-001 characteristic-tail action adjudication](characteristic-tail.md), [MEC-005 pairwise causal-root ledger closure](pairwise-causal-root-ledger-closure.md), and [MEC-007 mirror close-approach causal-root boundary](../../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md)
 - Routed research input: [wake reception, transfer, and maturity](../../../office-of-research/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) invokes MEC-006 only when a reception candidate actually consumes a receiver/self acceleration-gradient row; it is not a blanket gate on allocation research.
 - External review evidence: operator-supplied independent mathematical audit of the regular fixed-reception Jacobian and singular-boundary extension problem, received 2026-07-29. No public source identity or durable external artifact was supplied.
 - Finite-width review input: operator-supplied mathematical review of constant-time emission and causal-defect mollification, received 2026-07-29. Its nonuniqueness argument is incorporated below with corrected regular-domain and coincident-boundary scope.
@@ -37,7 +37,7 @@ This packet derives one fixed-reception spatial derivative and designs its small
 - a finite fold or coincident same-transmitter continuation; or
 - closure of MEC-001 or MEC-005, or any enlargement of completed MEC-007.
 
-The stationary mirror first-boundary theorem, complete pre-boundary root and singularity ledger, exact same-event exclusion, and unchanged sharp-law post-threshold obstruction are completed separately by [MEC-007](mirror-close-approach-causal-root-boundary.md). They are not MEC-006 verification or completion evidence.
+The stationary mirror first-boundary theorem, complete pre-boundary root and singularity ledger, exact same-event exclusion, and unchanged sharp-law post-threshold obstruction are completed separately by [MEC-007](../../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md). They are not MEC-006 verification or completion evidence.
 
 MEC-005 may use the accepted regular rows only as an acceleration-operator readiness input. A calculation that requires a singular derivative row remains consumer-ineligible under the terminal quarantine. Its two-body conservation interpretation remains gated on a separately accepted MEC-002/MEC-003 boundary update and the independently derived wake and boundary accounts required by MEC-004.
 

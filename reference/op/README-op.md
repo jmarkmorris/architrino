@@ -10,6 +10,8 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Method
 
+- [*] Say what the equation does in plain language: call conformity to the Master Equation by that name, and describe actual modifications directly; avoid labels such as “sharp” or redundant descriptions such as “not smoothing” (operator direction, 2026-09-26).
+
 - [ ] Use [OPS-031/OPS-032 periodic scans](periodic-document-review.md) to measure confirmed improvements and introduced regressions; preserve no-change outcomes and evaluate new models before broadening document edits.
 - [ ] During participation/role reviews, check first-class human and AI collaborator framing under common evidence standards and distinguish audience relevance from public visibility; follow the [existing review practice](../priorities/development-process-review/analysis/public-community-guidance-review.md#continuing-review-practice).
 

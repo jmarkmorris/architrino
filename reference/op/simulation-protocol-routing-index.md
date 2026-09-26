@@ -29,7 +29,7 @@ The following authored surfaces consume this routing declaration:
 - Archived [Cosmology Closure](../priorities/dormant-deferred/mapping-cosmology/priorities.md), [Validation Gates](../priorities/dormant-deferred/validation-gates/priorities.md), and [Animator simulation mode](../priorities/dormant-deferred/app-animator/simulation-mode.md) retain the same route while their local queues remain dormant.
 - The priority-ranking checker deliberately excludes the legacy compatibility directory from its owner scan; it does not parse or certify the routing table.
 
-The [notation inventory](../priorities/aaa-work-threads/analysis/notation.md) and [field-speed compatibility decision](../priorities/field-speed-ceiling/decisions/field-speed-ceiling-compatibility-decision.md) link directly to the preserved protocol detail. They consume those definitions, not this ownership declaration.
+The [notation inventory](../priorities/aaa-work-threads/analysis/notation.md) and [field-speed compatibility decision](../priorities/dormant-deferred/field-speed-ceiling/decisions/field-speed-ceiling-compatibility-decision.md) link directly to the preserved protocol detail. They consume those definitions, not this ownership declaration.
 
 ## Generated References
 
