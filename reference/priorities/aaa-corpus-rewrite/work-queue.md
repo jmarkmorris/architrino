@@ -34,6 +34,8 @@ Claim grade for a completed conversion: `measured` for the preservation checks, 
 
 ## Ranked Next Objects
 
+The operator-accepted [September 26 Master Equation methods batch](analysis/ops-031-master-equation-deviation-audit-2026-09-26.md#implementation-record) is implemented: three experimental physical proposals are preserved under priorities, with their corpus dependencies and the local mathematical distinctions corrected. The completed batch is removed from actionable work. The [search inventory](analysis/ops-031-master-equation-search-inventory-2026-09-26.md) remains a candidate-location index, not a list of prohibited material. This bounded integration does not reopen CRW-005's historical review dispositions.
+
 No accepted supplementary document-repair task remains. The [final integration record](evidence/crw-005-claude-sixteen-closure-verification-2026-09-13.md#final-sixteen-chapter-integration) records the sixteen chapter dispositions and necessary owner propagation. Scientific and runtime obligations retain their existing owners.
 
 ## In progress
@@ -45,6 +47,15 @@ No rows.
 No rows.
 
 ## Deferred / discussion-scoped
+
+### OPS-031 — September 25 review referrals
+
+- **Status:** Proposed clarifications and residual historical editorial work; CRW-005 remains closed. No automatic substantive rewrite is authorized by this scan.
+- **Analytic Baselines, AB-20260925-01 — completed September 26:** The accepted insertion requires integrated, disjoint emission bands plus their complement wherever needed, and the related virial wording now states trajectory and equation assumptions. The [receipt](../aaa-operations/evidence/ops-031-analytic-baselines-review-2026-09-25.md) retains the independent positive-complement counterexample; the [implementation record](analysis/ops-031-master-equation-deviation-audit-2026-09-26.md#implementation-record) records the integration. Existing O1–O3 remain open.
+- **Braid Recovery Requirements, BRR-01:** Low notation clarification. Specify observer-chart relative velocity in the weak-clock row, consistently with Proper Time and Time Dilation. The [receipt](../aaa-operations/evidence/ops-031-braid-recovery-requirements-review-2026-09-25.md) supplies the unit-rescaling argument and explicit falsifier. This is not a demonstrated wrong coefficient or introduced regression.
+- **Action Model Comparison, historical E1–E3:** The [current full review](../aaa-operations/evidence/ops-031-action-model-review-2026-09-25.md) qualifies the broad September 11 closeout: undefined hit observables, ambiguous single-weight wording, residual unmeasured-cost qualifiers and malformed Pros hierarchy remain. Preserve existing IDs and acceptance history; the editorial owner should prepare the remaining exact replacements, resolving intended observable definitions before editing. The zero-delay, impulse and discrepancy repairs survive. Repeated-summary consolidation and simple-root wording are optional; O1–O3 scientific obligations remain separately owned. No new mathematical regression or new repair campaign is asserted.
+- **Remaining prepared proposal:** Items 4–9 of the [September 26 consolidated proposal](analysis/ops-031-repair-proposal-2026-09-26.md) remain proposed; items 1–3 are implemented. The remaining Action Model observable/weight/editorial repairs and the weak-clock velocity notation are separate from this accepted Master Equation batch.
+- **Operator clarification and integration, September 26:** Mathematical techniques for studying the Master Equation remain permitted. The [implementation record](analysis/ops-031-master-equation-deviation-audit-2026-09-26.md#implementation-record) records the three research pullbacks and local distinction repairs. These documentation changes establish no new sharp-law trajectory, solver behavior, or scientific closure. Historical receipts and scheduled coverage remain intact.
 
 ### OPS-031 — Separate scientific follow-ups
 

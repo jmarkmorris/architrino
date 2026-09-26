@@ -9713,10 +9713,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Tier 1: $\\eta > 0$ Continuation",
+                    "title": "Tier 1: Direct Delayed Dynamics",
                     "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
-                    "markdownSection": "Tier 1: $\\eta > 0$ Continuation",
-                    "sectionKey": "tier 1 eta 0 continuation",
+                    "markdownSection": "Tier 1: Direct Delayed Dynamics",
+                    "sectionKey": "tier 1 direct delayed dynamics",
                     "headingLevel": 2
                   },
                   {

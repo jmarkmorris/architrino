@@ -4,7 +4,7 @@
 
 This investigation follows the common vertical motion of two selected architrinos until its next upward maximum, keeping the Master Equation and complete supplied past fixed. A maximum requires an actual positive-to-negative vertical velocity crossing, together with continuous sign information excluding an earlier crossing. Reaching another numerical endpoint alone does not establish that event.
 
-**Derived result, independently accepted:** the unchanged Master Equation continues through $19/4=4.75$ with strictly positive common vertical velocity, as established by the [complete independent assessment](smooth-two-particle-class-preserving-independent-adjudication.md). Both targets also have positive upward acceleration at that endpoint. No fifth turn occurs through that time. Later numerical proposals reach an environmental displacement-bound candidate near $5.02206$ and a target wake-speed candidate near $5.47144$; neither later boundary is an actual-motion result. The next maximum remains unresolved.
+**Derived result, independently accepted:** the unchanged Master Equation continues through $t=5$ with strictly positive common vertical velocity, as established by the [complete independent assessment](smooth-two-particle-through-five-independent-adjudication.md). Both targets also have positive upward acceleration throughout $[19/4,5]$. No fifth turn occurs through $5$. All 1174 affected identities remain in the original history class, with the infinite stationary complement retained. Later numerical proposals reach an environmental displacement-bound candidate near $5.02206$ and a target wake-speed candidate near $5.47144$; neither later boundary is an actual-motion result. The next maximum remains unresolved.
 
 ## 1. Fixed geometry, histories and equation
 
@@ -91,14 +91,63 @@ The importance of speed one follows from causal geometry. A positive own-history
 
 This [independent root analysis](smooth-two-particle-post-restart-later-independent-adjudication.md) imposes no speed prohibition. It identifies additional acceleration contributions that a later full-equation continuation must evaluate. An approximation that continues to omit own-history roots after such a crossing would no longer represent the unchanged Master Equation.
 
-## 7. The next certification step
+## 7. Complete continuation through five
 
-Actual continuation after $19/4$ remains unproved. The existing stopped numerical population archive already supplies every comparison path through $5$. Under an auxiliary displacement bound $1/16$ for every receiver, all source times obey $s\le5-(1-2/16)=33/8<17/4$, so the accepted source histories cover that next comparison. No further source-history evolution is needed for this domain argument.
+The [time-dependent comparison](smooth-two-particle-through-five-continuation.md) closes actual continuation through $5$ without a new numerical trajectory. The [history audit](smooth-two-particle-through-five-history-audit.md) verifies 1174 affected identities and 176 additional allocated paths that remain exactly zero. The proof checks all 1350 allocated paths, preserves every inherited node, and retains the infinite stationary contribution. Under the stopped displacement bound $1/16$, every required source time is at most $33/8<17/4$, inside the previously accepted complete histories.
 
-The [refinement diagnosis](smooth-two-particle-five-comparison-refinement.md) shows that amplified inherited uncertainty dominates the present failed estimate through $5$. Successive receiver bounds reduce that uncertainty substantially on the unchanged paths. The next work is a continuous residual and stopped population comparison, retaining the union of actual and numerical source terms, followed by a continuous target-sign check. The original history class remains fixed. If those bounds fail, their failure identifies an estimate to improve; it does not establish a physical turnaround or an actual class exit.
+The sharper comparison starts at $13/4$ and follows each receiver and received source separately over 112 intervals of length $1/64$. It retains the actual/trial source union, bounds the stationary remainder from the original sum, and sets a supplied-pulse derivative to zero only when causal timing proves that reception has ended or has not begun. The new continuous full-law population residual on $[19/4,5]$ is below $0.004498697$. A separately sharpened earlier target residual reduces inherited uncertainty without changing any trajectory. The independently accepted whole-population bounds are
+
+$$
+|y_i|<0.062304433<1/16,\qquad
+|y_i'|<0.177391005<1/2,\qquad
+|y_i''|<0.611649869.
+$$
+
+Strict range, root, complement and jerk margins preserve the original regularity class. The independent target signs give $z'(t)>0.0459339318$ and $z''(t)>0.1925968116$ throughout $[19/4,5]$. At the new endpoint,
+
+$$
+\begin{aligned}
+0.0348881581&<z(5)<0.0411686831,\\
+0.1180127268&<z'(5)<0.1530480085,\\
+0.3819939490&<z''(5)<0.6116490107,\\
+47283.6691&<U(5)/D_4<69710.9690.
+\end{aligned}
+$$
+
+The [accepted neighbor-distance calculation](smooth-two-particle-through-five-history-audit.md) combines individual displacement bounds by the triangle inequality. Throughout $[0,5]$, every pair whose anchors are one lattice spacing apart remains more than $0.8825413871\ell$ apart; the selected target pair remains more than $0.9176591506\ell$ apart. These are conservative simultaneous-distance bounds, not locations or values of actual closest approaches.
+
+Thus the selected pair is still rising and gaining upward speed at $5$; its upward excursion remains unfinished. The following event argument determines which obstruction to the present proof occurs first. The supplied-past and typicality limitations remain unchanged.
+
+## 8. The environmental displacement boundary occurs first
+
+The [stopped continuation](smooth-two-particle-first-class-boundary.md), with its [independent assessment](smooth-two-particle-first-class-boundary-independent-adjudication.md), establishes a first environmental displacement-boundary time $\tau$ satisfying
+
+$$
+\frac{5121}{1024}<\tau\le\frac{10339}{2048},
+\qquad
+5.0009765625<\tau\le5.04833984375.
+$$
+
+At least one environmental architrino reaches displacement $1/16$ from its original lattice anchor at this time. Both selected targets remain rising and gaining upward speed throughout $[5,\tau]$:
+
+$$
+z'(t)>0.0975220255,\qquad z''(t)>0.1323581026.
+$$
+
+These are derived bounds on the actual solution, using continuous full-law residuals and an independently authored delayed-error comparison. The Master Equation, supplied past, infinite population, stationary block sum and original environmental class remain unchanged. The exact first label and event time are unresolved; in particular, the numerical candidate near $5.02206$ has not become a certified narrow bracket.
+
+The argument stops on environmental displacement $1/16$, an auxiliary target displacement $1/16$, or an auxiliary speed $1/2$, and considers receptions only through $H=81/16$. The [exact prospective census](smooth-two-particle-first-class-boundary-history.md#4-saved-tail-and-prospective-population-census) contains 1278 potentially affected identities through this comparison horizon. It includes every receiver that could move before $\tau$; it does not assert that all 1278 have begun moving by the unknown event. The infinite stationary complement remains in the analytic block sum. Every required actual source time is at most $67/16<17/4$, within the already accepted complete histories.
+
+Individually bounded received-source contributions give global acceleration below $3.262580$ and speed below $0.381303$. The selected targets' full vector displacement remains below $0.057141<1/16$, excluding the auxiliary target boundary. Jerk is below $13281.469<65536$, causal roots remain simple, and positive own-history roots remain absent. These strict margins exclude the other continuation obstructions before an environmental displacement boundary. For any initially unit-separated pair, the same-time separation at that boundary is at least $7/8$ of a lattice spacing.
+
+Two quadratic comparison curves join the exact saved position, velocity and acceleration at $5$. They are auxiliary functions, not newly integrated trajectories. The continuous residual instrument includes the original stationary field and every possible nonzero incoming trial contribution. Its acceleration defects are below $0.025802911$ for the environmental witness at $(-1,0,0)$ and $0.115937198$ for the right target. The comparison ball $3/40$ permits the witness curve to pass $1/16$; it does not enlarge the stopped actual history class.
+
+For the witness and target respectively, independent positive-kernel majorants use receiver coefficients $(20,38)$ and total residual-plus-source-error bounds $(0.085,0.18)$. Twice integrating the vector acceleration-error inequality gives the position-error bound without differentiating its Euclidean norm. Assuming that no environmental boundary occurs first, the witness's vertical coordinate must exceed $1/16$ by $10339/2048$. This contradicts the stopped displacement bound, and forces some environmental boundary by that time. The separate global acceleration estimate keeps every environmental displacement below $0.062479222<1/16$ through $5121/1024$, supplying the lower end of the bracket.
+
+This finishes the boundary-ordering question. The next upward maximum remains unresolved. Further evolution requires a new continuation argument beyond the present displacement class while preserving the same equation, supplied past and complete causal-root accounting. The reached displacement ceiling is a bound used by the proof; no collision, singular acceleration, physical speed ceiling, eventual settling or typical-population conclusion follows from reaching it.
 
 ## Evidence, validation and falsifiers
 
-The numerical data, continuous residual and sign receipts are retained under the local evidence directory `.local-data/master-equation-closure/post-restart/`. Previously accepted subjects, independent references and archives remain unchanged. Known cases precede every new arithmetic target: exact causal rows, quintic derivatives, signed interval accumulation, a known stationary cubic coefficient and a rising quadratic with nonzero error allowances. Independent coefficient arithmetic, source census, polynomial bounds and hereditary comparison are recorded in the assessment.
+The numerical data and earlier receipts are retained under `.local-data/master-equation-closure/post-restart/`; subsequent residuals, archive audits and comparison evidence are under `.local-data/master-equation-closure/through-five/` and `.local-data/master-equation-closure/first-class-boundary/`. Previously accepted subjects, independent references and archives remain unchanged. Known cases precede every new arithmetic target: exact causal rows, quintic and quadratic derivatives, signed interval accumulation, a known stationary cubic coefficient, exact constant-acceleration comparison and a rising quadratic with nonzero error allowances. Independent coefficient arithmetic, source census, polynomial bounds and hereditary comparison are recorded in the assessments.
 
 An omitted source, a source query beyond the certified history, an invalid stationary remainder, a changed inherited node, a false polynomial join, an underestimated residual or an uncovered sign interval would defeat the corresponding conclusion. Failure of an auxiliary continuation estimate alone would not demonstrate failure of the Master Equation. A later reversal, if established, must be located and certified before comparing the completed rise with the preceding fall.

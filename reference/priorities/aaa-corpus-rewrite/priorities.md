@@ -15,6 +15,8 @@ Bring all 199 documents under `content/markdown/aaa` into line with edition 1.0 
 
 This is an editorial program, not a theory program. It changes how the corpus explains, never what it claims. A rewrite that alters a claim, a claim grade, a falsifier, or an equation has failed, and the physics content of a converted document must survive the conversion exactly.
 
+The operator accepted the narrow batch from the [September 26 Master Equation methods reassessment](analysis/ops-031-master-equation-deviation-audit-2026-09-26.md#implementation-record). The physical wake-duration hypothesis, softened collinear crossing program, and root-count-to-fixed-action mechanism are now preserved in their research owners; local corpus corrections distinguish exact reformulations, auxiliary approximations and unproved physical transfers. Mathematical techniques remain permitted. Items 1–3 of the [OPS-031 repair proposal](analysis/ops-031-repair-proposal-2026-09-26.md) are implemented; its separate items 4–9 remain proposed. CRW-005 stays closed and existing scientific obligations retain their owners.
+
 ### How the assurance corrections relate to the rewrite
 
 The operator-approved [September 23 batch](analysis/ops-031-repair-proposal-2026-09-23.md#implementation-record) integrates eight OPS-031 corrections across six chapters: Bell factorization and clock wording, covariance explanation, shell energy-gap terminology, thermodynamic comparison conditions, mass/energy calibration, safe perturbation radii, and the candidate path-redshift condition. CRW-005 remains closed. The [neutron dipole and direction-normalization follow-ups](work-queue.md#ops-031--separate-scientific-follow-ups) remain discussion-scoped and are not implied complete by these repairs.

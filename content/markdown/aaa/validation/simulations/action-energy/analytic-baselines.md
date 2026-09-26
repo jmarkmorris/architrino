@@ -76,7 +76,7 @@ The analytic baselines state the delay differential equations that govern canoni
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-8bc11bdeb4e4414f)
 
-  Before the branch average is formed, retain the root-resolved virial rows
+  At finite width $\eta>0$, use the emission-band accounting defined in [Delay-Dynamics Energy](delay-dynamics-energy.md#binary-branch-work-ledger). Each label $T_t$ denotes a band around a reference causal root, and $\mathbf A_{i\leftarrow j}^{(\eta)}(T;T_t)$ is the acceleration contribution integrated over that band. The bands must be disjoint within the modeled emission-history domain. Any contribution from the remaining domain must also be retained; a complete list of roots does not by itself cover a finite-width integral. Before the branch average is formed, retain the band-resolved virial rows
   $$
   V_{i\leftarrow j,T_t}^{(\eta)}(T)
   =
@@ -100,7 +100,7 @@ The analytic baselines state the delay differential equations that govern canoni
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-b5085d10a50323f5)
 
-  for every retained source/root hit $T_t\in\mathcal C_{ij,b}^{(\eta)}(T)$. The net virial term is then the ledger-preserving sum
+  for every retained source/root band $T_t\in\mathcal C_{ij,b}^{(\eta)}(T)$. When these bands exhaust the modeled emission-history integral for every contributing pair, the net virial term is the ledger-preserving sum
   $$
   \sum_i
   \mu_{\text{arch}}\,
@@ -114,7 +114,7 @@ The analytic baselines state the delay differential equations that govern canoni
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-7e4ad858f88cfece)
 
-  on the same active causal-root ledger used by the acceleration residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after transmitter identity, polarity, emission time, Jacobian, transmitter-side acceleration weight, and receiver radial power have survived aggregation over the retained records. When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
+  on the same declared emission-band partition used by the acceleration residual and energy crosswalk. If the root-labeled bands do not exhaust the integral, add the virial and power contributions from the complement explicitly. Thus a small branch-virial residual is meaningful only after transmitter identity, polarity, emission time or band, the applicable acceleration weighting, and delivered power have survived aggregation over the retained records and any complement. For any sufficiently regular modeled trajectory satisfying $d\mathbf V_i/dT=\mathbf A_{i,b}^{(\eta)}$ with the complete modeled acceleration retained, the product rule gives the following finite-window identity. The same identity holds for sharp-law trajectories with that regularity; mollification is not required for its derivation.
   $$
   \left\langle
   2T_{\mu,b}^{(\eta)}

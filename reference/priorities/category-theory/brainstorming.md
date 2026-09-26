@@ -197,7 +197,7 @@ Plainly: a present state is sufficient only when additional knowledge of the pas
 
 Deterministic, causal, single-root, and Markovian have separate meanings. Determinism means one complete physical state selects one future under the declared well-posedness and selection law; causality restricts influences to the declared past-supported wake structure; single-root behavior supplies one past emission event for an ordered transmitter-receiver pair; and Markovianity means the declared present state already contains everything needed to determine the transition law. None of the first three implies the fourth.
 
-The detailed [field-speed variant matrix](../field-speed-ceiling/brainstorming.md#markov-sufficiency-across-master-equation-variants) applies this test to the unrestricted, future-capped, universal non-strict, universal strict, uniform-gap, finite-history, complete-state, explicit-wake, and coarse effective variants. Its central separation is:
+The detailed [field-speed variant matrix](../dormant-deferred/field-speed-ceiling/brainstorming.md#markov-sufficiency-across-master-equation-variants) applies this test to the unrestricted, future-capped, universal non-strict, universal strict, uniform-gap, finite-history, complete-state, explicit-wake, and coarse effective variants. Its central separation is:
 
 | Proposed state or restriction | Geometric or representational effect | Markov assessment |
 | --- | --- | --- |

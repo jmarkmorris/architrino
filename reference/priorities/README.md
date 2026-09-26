@@ -122,3 +122,7 @@ Follow the [operator explanation standard](../op/operator-explanation-standard.m
 - surface one unresolved discussion item directly to the operator in later substantive theory closeouts until it is accepted, rejected, or explicitly deferred with a revisit condition;
 - do not launch implementation agents or promote the claim while its status remains `discussion-scoped`;
 - after the operator decides, record the decision in the owning strategy tracker or work log, remove the row from the cross-workstream discussion queue, and renumber any following queue items when applicable.
+
+## Collinear, braid and shared equation research
+
+[Collinear research](collinear-research/README.md) owns encounters along one line. The [Braid Program](braid-program/README.md) owns noncollinear binaries, braids and assemblies, while [Master-Equation Closure](master-equation-closure/priorities.md) owns shared definitions and general equation questions. The former [field-speed-ceiling investigation](dormant-deferred/field-speed-ceiling/README.md) is historical; its current work is distributed among those subject owners.

@@ -241,7 +241,7 @@ The wake-width regulator $\eta$ is a computational and analytic regularization, 
 
 ### Layer-I two-body scale closure
 
-The displayed bare two-body kernel has no remaining dimensionless coupling built solely from the following positive dimensional substrate triplet, once a regulator-independent limit has been justified:
+The displayed sharp two-body kernel has no remaining dimensionless coupling built solely from the following positive dimensional substrate triplet:
 $$
 (c_f,\kappa,\epsilon)
 $$
@@ -290,20 +290,20 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ec1cfba383b1b28c)
 
-up to the separately declared regulator ratio $\eta/R_*$ when a mollified surrogate is being used.
+on the admitted sharp causal roots. A mollified surrogate introduces a separate numerical ratio $\eta/R_*$; it approximates this equation only under its declared error or recovery conditions.
 
 This removes a dimensionless coupling from the kernel, not the dimensionless initial-history data. Root multiplicities, branch thresholds, curvature, and residuals can still depend on the retained histories, polarity assignment, boundary conditions, and selected branch. For a fixed branch problem those quantities must be computed from the delayed dynamics; rescaling the dimensional triplet cannot independently tune them. A declared geometric chart alone neither selects a unique history nor certifies a stable maximum-curvature binary.
 
 ## Layer I: Substrate and Kernel Parameters
 
-These symbols belong to the delayed microscopic law itself.
+The first three rows specify the delayed microscopic law. The remaining rows record an auxiliary regulator and an observer-interface convention; neither adds a primitive-law parameter.
 
 | ID | Symbol | Class | Status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | K1 | $c_f$ | Fundamental parameter | Primitive | field speed of causal wake propagation | [../dynamics/master-equation.md](../dynamics/master-equation.md), [../foundations/absolute-timespace.md](../foundations/absolute-timespace.md) |
 | K2 | $\epsilon$ | Fundamental parameter | Primitive | potential polarity-unit magnitude, with observer-level electric charge reconstructed from it | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../assemblies/gauge-structure-emergence.md](../assemblies/gauge-structure-emergence.md) |
 | K3 | $\kappa$ | Fundamental parameter or normalization-sensitive coupling | Open as primitive/normalization split; universal in the substrate acceleration law | coupling multiplying $\sigma_{ij}\lvert q_iq_j\rvert W_{ij}^{\mathrm{acc}}/r_{ij}^2$ in the per-hit acceleration law; because a single architrino has no primitive inertial mass, this is not an $F=ma$ coefficient; with $c_f$ and $\epsilon$ it sets the two-body scale $R_*=\kappa\epsilon^2/c_f^2$ rather than a Layer-I dimensionless fit constant; dimensional row $[\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | [../dynamics/master-equation.md](../dynamics/master-equation.md), [architrino-si-base-units.md](./architrino-si-base-units.md), [../foundations/architrino.md](../foundations/architrino.md) |
-| K4 | $\eta$ | Regulator / convention | Open but non-ontological | mollifier width used to regularize causal wake surfaces for smooth dynamics and numerics | [simulations/action-energy/well-posedness-and-regularization.md](./simulations/action-energy/well-posedness-and-regularization.md), [../dynamics/master-equation.md](../dynamics/master-equation.md) |
+| K4 | $\eta$ | Regulator / convention | Non-ontological; recovery conditions require justification | mollifier width used in an auxiliary smooth approximation for analysis or numerics; not a physical wake thickness | [simulations/action-energy/well-posedness-and-regularization.md](./simulations/action-energy/well-posedness-and-regularization.md), [../dynamics/master-equation.md](../dynamics/master-equation.md) |
 | K5 | $Z_e$ | Regulator / convention | Convention, default $Z_e=1$ | charge-map normalization at the observer interface; not an additional microscopic acceleration-law parameter | [../assemblies/gauge-structure-emergence.md](../assemblies/gauge-structure-emergence.md), [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md) |
 
 ## Layer II: Assembly-Geometry Closure Targets
@@ -362,14 +362,14 @@ The ledger above is only useful if the interfaces between layers stay explicit. 
 
 ### 1. Microscopic delayed dynamics
 
-The regularized representation of the microscopic law uses the kernel-side set
+The microscopic acceleration law uses the substrate parameters
 $$
-(c_f,\epsilon,\kappa,\eta)
+(c_f,\epsilon,\kappa)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-dc8084e941317a8f)
 
-A representative regularized form is
+On its admitted positive-separation simple-root domain, the sharp history-integral representation is
 $$
 \frac{d^2\mathbf X_a}{dT^2}
 =
@@ -377,12 +377,14 @@ $$
 \kappa\,\sigma_{ab}|q_aq_b|
 \int_{-\infty}^{T}\!dT_t\;
 \frac{\hat{\mathbf R}_{ab}(T;T_t)}{R_{ab}(T;T_t)^2}\,
-c_f\,\delta_\eta\!\big(R_{ab}(T;T_t)-c_f(T-T_t)\big)
+c_f\,\delta\!\big(R_{ab}(T;T_t)-c_f(T-T_t)\big)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-996e953dc8ddbd9e)
 
-Here $a$ is the receiver, $b$ the transmitter, $\mathbf R_{ab}=\mathbf X_a(T)-\mathbf X_b(T_t)$ the delayed separation, and $\sigma_{ab}=\operatorname{sign}(q_aq_b)$ the polarity sign. The mollifier $\delta_\eta$ is normalized in its length argument and has inverse-length units. The factor $c_f$ gives a dimensionless transmitter-time weight: at a simple causal root the integral collapses to $c_f/|c_f-\hat{\mathbf R}_{ab}\cdot\mathbf V_b(T_t)|$, as in the [Master Equation](../dynamics/master-equation.md). Removing that factor while retaining the stated dimensions of $\kappa$ breaks both units and root normalization. The expression requires admitted histories, positive noncoincident separations, exclusion of instantaneous self-interaction, and controlled convergence of the history integral and regulator limit. A finite history window requires its boundary and omitted-tail treatment to be declared.
+Here $a$ is the receiver, $b$ the transmitter, $\mathbf R_{ab}=\mathbf X_a(T)-\mathbf X_b(T_t)$ the delayed separation, and $\sigma_{ab}=\operatorname{sign}(q_aq_b)$ the polarity sign. The delta distribution selects exact causal emissions and has inverse-length units. At each isolated simple root it supplies the dimensionless weight $c_f/|c_f-\hat{\mathbf R}_{ab}\cdot\mathbf V_b(T_t)|$, multiplying that root's vector kernel, as in the [Master Equation](../dynamics/master-equation.md). Removing $c_f$ while retaining the stated dimensions of $\kappa$ breaks both units and root normalization. The expression includes every admitted causal root, excludes the exact zero-delay self endpoint, and requires convergence when the contributing root set or history is unbounded. A finite history window needs proof that no contributing past was omitted or a bound on the resulting approximation error.
+
+For an auxiliary calculation, a normalized smooth profile $\delta_\eta$ may approximate $\delta$. At positive width the integral generally samples emissions away from the sharp roots and does not equal their sum. Recovering the displayed law requires the appropriate zero-width limit on a common history domain with complete root coverage, separation and transversality control, and any additional spatial regularization removed under its stated conditions. A fixed-history limit alone does not prove convergence of evolved trajectories or continuation through a singular event.
 
 ### 2. Charge reconstruction
 
@@ -584,7 +586,7 @@ The corpus supports the following conservative closure assessment.
 ### Still genuinely open
 
 - whether $\kappa$ is primitive, derived, or partly a normalization artifact,
-- whether $\eta$ should disappear entirely from physical statements after the weak limit is taken,
+- whether each auxiliary calculation has a controlled limit or error bound that removes dependence on the artificial width $\eta$ from its claimed physical result,
 - whether any specific maximum-curvature binary branch exists and is stable under the full signed-root, finite-window two-body dynamics,
 - the $A_0$ reference-attractor output packet,
 - the actual indexed coincident-midpoint orthogonal-axis braid radii/frequency record,

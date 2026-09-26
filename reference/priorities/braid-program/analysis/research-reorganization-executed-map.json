@@ -1,0 +1,731 @@
+{
+  "date": "2026-09-26",
+  "status": "executed",
+  "operatorAmendment": "Move remaining field-speed-ceiling historical files to dormant-deferred after current research separation.",
+  "files": [
+    {
+      "source": "reference/priorities/braid-program/analysis/speed-crossing-opposing-interaction-geometry.md",
+      "destination": "reference/priorities/master-equation-closure/analysis/speed-crossing-opposing-interaction-geometry.md",
+      "source_sha256": "b19d70779e4e1499773f7261927abd1ce6fb3846f0e21af9d3f3521ede0eb80b",
+      "destination_sha256": "4e1b065a44b033f73616263f360475bd3e3ff43d8c1598616a65a28e1bb53413"
+    },
+    {
+      "source": "reference/priorities/braid-program/analysis/stationary-binary-first-interval.md",
+      "destination": "reference/priorities/collinear-research/analysis/stationary-binary-first-interval.md",
+      "source_sha256": "e24bfffb2ab4a12729a68e80c664760c37488d55224558db45a9c200e4aaaa46",
+      "destination_sha256": "08e81855d8d378b092b983948c234ecca2f7ab7cc32575d89c6a131bae72e261"
+    },
+    {
+      "source": "reference/priorities/braid-program/analysis/stationary-continuation-history-bound.md",
+      "destination": "reference/priorities/collinear-research/analysis/stationary-continuation-history-bound.md",
+      "source_sha256": "fd24f8580cf585014e48e842237fbd943e1c7b81a396bb74883117e44b90f5ea",
+      "destination_sha256": "5d73272d21e73c49680cd4877ccc7af7b5383dbacc9d7c580231be6321f9019c"
+    },
+    {
+      "source": "reference/priorities/braid-program/campaigns/stationary-binary-breather-diagnostic.md",
+      "destination": "reference/priorities/collinear-research/campaigns/stationary-binary-breather-diagnostic.md",
+      "source_sha256": "28d9861107a2f4149dab66d700f8b0804c1d8b7b9abc7448746f16a742f7d6f9",
+      "destination_sha256": "eec8b29cb5f58398c26bcecc16178c508721694e8e74b4d10577ff141a2a9f71"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/cap-only-continuous-emission-crossover.md",
+      "destination": "reference/priorities/collinear-research/analysis/cap-only-continuous-emission-crossover.md",
+      "source_sha256": "e8f92812e70ec965a966c6e1b4f91b42f300d4dc86b7bfb25a6d38b751ed9d38",
+      "destination_sha256": "9350a7ccd034594c5bc15f98c5be50bbd7918663028b678b5ddc030223d9d11d"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/cap-only-coupled-near-incidence-evolution.md",
+      "destination": "reference/priorities/collinear-research/analysis/cap-only-coupled-near-incidence-evolution.md",
+      "source_sha256": "1149a320a0d753386237ce60ab1e9cf49ee4bcdd09911292db8a29a9b824510d",
+      "destination_sha256": "1149a320a0d753386237ce60ab1e9cf49ee4bcdd09911292db8a29a9b824510d"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/cap-only-normalized-ledger-resolution-test.md",
+      "destination": "reference/priorities/collinear-research/analysis/cap-only-normalized-ledger-resolution-test.md",
+      "source_sha256": "d60543f8760c9cd3b377d8d9938ed984b4b90aca9f5a610245f84a3851a23d5a",
+      "destination_sha256": "d60543f8760c9cd3b377d8d9938ed984b4b90aca9f5a610245f84a3851a23d5a"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/cap-only-rapid-reversal-geometry.md",
+      "destination": "reference/priorities/collinear-research/analysis/cap-only-rapid-reversal-geometry.md",
+      "source_sha256": "7aae4f3d5fb3936dca2a995058aa5f84b141db51b0a78e6ebb4cd3b6ce1cfd18",
+      "destination_sha256": "2e1374acb50152076c838fca2334230fe8e15506e19444275b36035e2a584f6a"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/capped-collinear-endpoint-reanalysis.md",
+      "destination": "reference/priorities/collinear-research/analysis/capped-collinear-endpoint-reanalysis.md",
+      "source_sha256": "bc0dd99c54ab86241b99d98956587795d25e6eda7010d131ccd1a44b8737656f",
+      "destination_sha256": "8173a136f62656aec4a97cc76255d8f6ed4925929014ad06ed5888a14af929dc"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/circular-binary-all-root-certificate.md",
+      "destination": "reference/priorities/braid-program/analysis/circular-binary-all-root-certificate.md",
+      "source_sha256": "55aab5f494e0df2854a09b6fc6001975019bdc76356bef85af3b95d87ffbf6fc",
+      "destination_sha256": "13ec4bfc889b1a4012595001c2e0e675c1af7cc5fbcb31a5408369674b0363a9"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/circular-binary-census-stability-neighborhood.md",
+      "destination": "reference/priorities/braid-program/analysis/circular-binary-census-stability-neighborhood.md",
+      "source_sha256": "c7118e869c40a3da36fd843a4626b279b537d7331f59a07b70aa2966bd0d11be",
+      "destination_sha256": "c7118e869c40a3da36fd843a4626b279b537d7331f59a07b70aa2966bd0d11be"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/circular-binary-secondary-theorems.md",
+      "destination": "reference/priorities/braid-program/analysis/circular-binary-secondary-theorems.md",
+      "source_sha256": "e5af1ae4229b77b7d248f8f6662b3b84061dfcf3e2b4421c390c2f83f3aab09b",
+      "destination_sha256": "67d0398e95132235880e8163160224321757ac299fb1158d653b68d2d659338a"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/coincidence-continuation-scratchpad.md",
+      "destination": "reference/priorities/collinear-research/analysis/coincidence-continuation-scratchpad.md",
+      "source_sha256": "b23243262752ff8246b9ec88d39f52c5c4758b1ee31f4a127d720a967ecdfce6",
+      "destination_sha256": "b23243262752ff8246b9ec88d39f52c5c4758b1ee31f4a127d720a967ecdfce6"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/coincidence-open-interval-convergence-and-endpoint-residue.md",
+      "destination": "reference/priorities/master-equation-closure/analysis/coincidence-open-interval-convergence-and-endpoint-residue.md",
+      "source_sha256": "286544c93f5059a96f6a975b7e20110ffca533a09c5d75fd8207c33f536b7565",
+      "destination_sha256": "286544c93f5059a96f6a975b7e20110ffca533a09c5d75fd8207c33f536b7565"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/coincident-position-limit-and-velocity-oscillation.md",
+      "destination": "reference/priorities/collinear-research/analysis/coincident-position-limit-and-velocity-oscillation.md",
+      "source_sha256": "1cac58379745c4d4a850f60631d7c22db2e6e23151978daee8d417ec506b3f08",
+      "destination_sha256": "1cac58379745c4d4a850f60631d7c22db2e6e23151978daee8d417ec506b3f08"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/collinear-breather-under-ceiling.md",
+      "destination": "reference/priorities/collinear-research/analysis/collinear-breather-under-ceiling.md",
+      "source_sha256": "cf4913abbedb74818f97c4ea42fa6ff45b38274bc46d70efa6ba1cf579509cf7",
+      "destination_sha256": "8682975d713be3df7e5a1f8be7510226083ca7285bbca11cad9ea6580a778ae7"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/common-impulse-event-measure-and-mirror-cancellation.md",
+      "destination": "reference/priorities/collinear-research/analysis/common-impulse-event-measure-and-mirror-cancellation.md",
+      "source_sha256": "8367dc73af6d89bd35aa76dd6e82d0b8872efb9b048a006207abb28905a2ec8d",
+      "destination_sha256": "8367dc73af6d89bd35aa76dd6e82d0b8872efb9b048a006207abb28905a2ec8d"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/event-adjacent-no-cascade-lemma.md",
+      "destination": "reference/priorities/collinear-research/analysis/event-adjacent-no-cascade-lemma.md",
+      "source_sha256": "64ea28868fef2d9863e2cc35303cf98925f6aedf942887e00349c511753260ee",
+      "destination_sha256": "64ea28868fef2d9863e2cc35303cf98925f6aedf942887e00349c511753260ee"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/exact-mirror-continuation-selection-analysis.md",
+      "destination": "reference/priorities/collinear-research/analysis/exact-mirror-continuation-selection-analysis.md",
+      "source_sha256": "e8b7866af46701ee5c3244d759e297c455eeab0d98be86937efb7c6b092f749e",
+      "destination_sha256": "fc83d5505cf02caff2770a97b44b7a85a3eff210fca6535ad90308b4fef2a4d7"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/exploratory-bounded-reception-functional.md",
+      "destination": "reference/priorities/master-equation-closure/analysis/exploratory-bounded-reception-functional.md",
+      "source_sha256": "244dcadd43f462e2a49e63a92c56abd970699ce38533e0b52aa6b9e94fbfb258",
+      "destination_sha256": "90da4cdf4645a5df77e472e8a2770d2f45d34e99658adcb9e55e74801f28219a"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/finite-turn-labeled-partner-integral.md",
+      "destination": "reference/priorities/collinear-research/analysis/finite-turn-labeled-partner-integral.md",
+      "source_sha256": "6ad018d2caf6c70d78d2f759fafb40b27415efeeccd4cea9261aeea5b727f2dc",
+      "destination_sha256": "6ad018d2caf6c70d78d2f759fafb40b27415efeeccd4cea9261aeea5b727f2dc"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/future-equivalence-quotient-and-two-cycle.md",
+      "destination": "reference/priorities/collinear-research/analysis/future-equivalence-quotient-and-two-cycle.md",
+      "source_sha256": "e9e405354ac9ce60d1a3c61626c49e810f18e26b143f40e323c2ccc60181f4ca",
+      "destination_sha256": "e9e405354ac9ce60d1a3c61626c49e810f18e26b143f40e323c2ccc60181f4ca"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/inherited-partner-characteristic-family-disposition.md",
+      "destination": "reference/priorities/collinear-research/analysis/inherited-partner-characteristic-family-disposition.md",
+      "source_sha256": "61c75869d6d9086f623ebd18ebcf8c3f2fbe2c5154f48d9acfbec57046bb0b0f",
+      "destination_sha256": "61047889eff10615509615cc0d89f53ec7c59ab8f421c267fa96d524b2ae8d75"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/mirror-event-family-completion-and-right-trace.md",
+      "destination": "reference/priorities/collinear-research/analysis/mirror-event-family-completion-and-right-trace.md",
+      "source_sha256": "d595685551eb344859bfa35f04ab87c237f15968ff7a871ca81e32225ffa7aab",
+      "destination_sha256": "0908d69c9bf960c4b51b529017cd72b1fbc423ab40ad8d50b8694808ed083b78"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/near-contact-separating-trace-incompatibility-theorem-target.md",
+      "destination": "reference/priorities/collinear-research/analysis/near-contact-separating-trace-incompatibility-theorem-target.md",
+      "source_sha256": "15b3915cb7cc6dd1211dfd6af0238408880214266b3fa6da2271a2ce65b42d0b",
+      "destination_sha256": "56ecb0317190dfcc3182dd9aea704b0455759273b400234e6f9be2cb99a5f24b"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/partner-only-auxiliary-evolution-results.md",
+      "destination": "reference/priorities/collinear-research/analysis/partner-only-auxiliary-evolution-results.md",
+      "source_sha256": "1adcaa37660acf1fd52b1eed3c212a9c49bd469bd288dc8b07408d23cfc021e4",
+      "destination_sha256": "bd3943eb2f30e606910c17a7e82947c16f5c94c647a1c18a0d4f2a49bba7b214"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/planar-circle-growing-mode.md",
+      "destination": "reference/priorities/braid-program/analysis/planar-circle-growing-mode.md",
+      "source_sha256": "a74647872ef49c52758730d6691f6d9a5edd2d06c766758199f25da5602e5c64",
+      "destination_sha256": "a74647872ef49c52758730d6691f6d9a5edd2d06c766758199f25da5602e5c64"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/planar-circle-nonlinear-instability.md",
+      "destination": "reference/priorities/braid-program/analysis/planar-circle-nonlinear-instability.md",
+      "source_sha256": "739cb8ce21022b00383182f4deac9848673bd4b8ac5e29dbbf78b6ee5312a8e1",
+      "destination_sha256": "c9c297e42707e9469d31bdee8726547fcf830db9120d137b536465d15590d05a"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/planar-circle-sharp-first-variation.md",
+      "destination": "reference/priorities/braid-program/analysis/planar-circle-sharp-first-variation.md",
+      "source_sha256": "4ec37a365b84848ed425b4548b6110b0c081795a676567ee771e3d877f466e68",
+      "destination_sha256": "0c096a610e75111108f5dae9ae0be1ee834a6b152eeb7f3d439df93bcc90b2eb"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/regular-chart-history-to-ledger-well-posedness.md",
+      "destination": "reference/priorities/master-equation-closure/analysis/regular-chart-history-to-ledger-well-posedness.md",
+      "source_sha256": "3d7269590f28ccb73fdbf3319eaeff8946cc8d714fd95d8b354c3e579601ebaa",
+      "destination_sha256": "3d7269590f28ccb73fdbf3319eaeff8946cc8d714fd95d8b354c3e579601ebaa"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/self-silent-partner-near-event-balance.md",
+      "destination": "reference/priorities/collinear-research/analysis/self-silent-partner-near-event-balance.md",
+      "source_sha256": "25e5461e5c993990ae4063bca0def208ff063d73ffe8da971f6a03e3beaacf40",
+      "destination_sha256": "25e5461e5c993990ae4063bca0def208ff063d73ffe8da971f6a03e3beaacf40"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/sharp-circle-first-departure.md",
+      "destination": "reference/priorities/braid-program/analysis/sharp-circle-first-departure.md",
+      "source_sha256": "afb8baab9f62b8c95ef13d2a2f01086c07932adc8657dcbf11a1a1555a588104",
+      "destination_sha256": "ed138d7578063a8fc97c5d9e98ffa422095860000e8d1934d7dad4de45ec0fa6"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/trailing-front-activation-dichotomy.md",
+      "destination": "reference/priorities/collinear-research/analysis/trailing-front-activation-dichotomy.md",
+      "source_sha256": "a049a04e89374cc24ab34ed8bb4d97dd02c82b58b6166bd7bcfbeb74adfccccc",
+      "destination_sha256": "3b9ce88d1d8aca6d69e301399d74b155eb4d66a9a11fb6bf10268cc56c53963d"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/two-lobe-return-map-and-autonomous-trigger-audit.md",
+      "destination": "reference/priorities/collinear-research/analysis/two-lobe-return-map-and-autonomous-trigger-audit.md",
+      "source_sha256": "784c8c31decbcc03446baacb417fab067fbdbb042e8f1efbc1a2da7565a95961",
+      "destination_sha256": "99c74506b92962a737604f2b500a43a34bc59aeb6dbfe53c02b1084c3f6b9d37"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/uniform-translation-spatial-receiver-measure-limit.md",
+      "destination": "reference/priorities/master-equation-closure/analysis/uniform-translation-spatial-receiver-measure-limit.md",
+      "source_sha256": "f4cade888482fc43d21ff4893deb69daf2b451fd6bd558c4bc9b63d1ea039ab8",
+      "destination_sha256": "f4cade888482fc43d21ff4893deb69daf2b451fd6bd558c4bc9b63d1ea039ab8"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/analysis/mirror-close-approach-causal-root-boundary.md",
+      "destination": "reference/priorities/collinear-research/analysis/mirror-close-approach-causal-root-boundary.md",
+      "source_sha256": "2f24afc0e162256c21ec62a18f9b880c783f25e106c03e0472c2088237592520",
+      "destination_sha256": "a16edaad604afeda9c1bc32690a227eaaaa0d75e4bd2ee5e50095795bcb76f01"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/analysis/quintic-mirror-boundary-assessment.md",
+      "destination": "reference/priorities/collinear-research/analysis/quintic-mirror-boundary-assessment.md",
+      "source_sha256": "83514f8679323b77a38770f4a307e0d1269e4a343fc544bef085cbc6488f691e",
+      "destination_sha256": "dd1109a2096391cfbe49ae9c93e28541803413aadbbc2ade4eebebebd9a80e1a"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/analysis/quintic-mirror-regulator-assessment.md",
+      "destination": "reference/priorities/collinear-research/analysis/quintic-mirror-regulator-assessment.md",
+      "source_sha256": "699bf7599e10a126c244056a9807b942c80126d4906b3d2db3b1831981a41b5d",
+      "destination_sha256": "734e0f7657a0497eaa1249f53a8ae822089114da53ac2c76710a84dc753e092e"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/work-queue.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/work-queue.md",
+      "source_sha256": "3d2819ee403607bb656c7c14b85d1d0774b883891b18e525da6626c2b5c484d0",
+      "destination_sha256": "f3b4f8844507acf18a22c1d61ea4df15ced99537c7058672faf248543e3f407a"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/manuscript.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/manuscript.md",
+      "source_sha256": "eef322b6228bf12cd4cb4a4d637da83929952ae5f948225fa1fe16d9cad939cc",
+      "destination_sha256": "66333cac40689747f7eb48c89ade69d1043dc81179eaa4e784d05ee1d38a70cd"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/brainstorming.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/brainstorming.md",
+      "source_sha256": "5a0b4f6c40d8645ea83cb76a85030ecb47b0bff2f38b59769faf21704166b4a8",
+      "destination_sha256": "78be40bda8371ba7e04e6b35236ad0aef1871f9724c89e9ab7bb22e6c1472fe3"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/decisions/continuation-selection-operator-decision-2026-09-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/decisions/continuation-selection-operator-decision-2026-09-02.md",
+      "source_sha256": "29459a3b1f1d7751722e4e8212d8a2873568aefbc14acf2fb193991767c2f9a2",
+      "destination_sha256": "29459a3b1f1d7751722e4e8212d8a2873568aefbc14acf2fb193991767c2f9a2"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/decisions/field-speed-ceiling-compatibility-decision.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/decisions/field-speed-ceiling-compatibility-decision.md",
+      "source_sha256": "5934cfe1dae8e94418d04f455a93417dd242e328426203079fadc0ebcc33741e",
+      "destination_sha256": "e42db6e91afa46ad9729bce60bc94132c9a72e81eac2006de61b7308e06e1a28"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/work-log.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/work-log.md",
+      "source_sha256": "26753ff11ee0efb46855f2e2587638c705b3fe50398f0e923cefe46187564fc4",
+      "destination_sha256": "5f9a75a61e3cf2112be8f240a04e7bcaca1518e5c265c205a463e74fbd87eaec"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/priorities.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/priorities.md",
+      "source_sha256": "1080e9b1d5f777f00a679cfc900540575c2477ac3463fb3fa43094b55e9d4246",
+      "destination_sha256": "d42a3861d81cf0134acf9de9245d27d282db96386c995327ae21b8bb15800292"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/evidence/sharp-circle-departure-receipt.json",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/evidence/sharp-circle-departure-receipt.json",
+      "source_sha256": "0fb4eecb48b8641463c039bb9c0ded378dddb473202afbae57a723202f91a5d5",
+      "destination_sha256": "0fb4eecb48b8641463c039bb9c0ded378dddb473202afbae57a723202f91a5d5"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/evidence/partner-only-auxiliary-evolution-receipt.json",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/evidence/partner-only-auxiliary-evolution-receipt.json",
+      "source_sha256": "fb849be79efcf0c39af528497281f33e21332f4623b9d789d2e3a044821ac84a",
+      "destination_sha256": "fb849be79efcf0c39af528497281f33e21332f4623b9d789d2e3a044821ac84a"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json",
+      "source_sha256": "0006364cac947b23c26c42393c66a8953ee5b0388d4b0a0d5e37d6b2b3c753f2",
+      "destination_sha256": "0006364cac947b23c26c42393c66a8953ee5b0388d4b0a0d5e37d6b2b3c753f2"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json",
+      "source_sha256": "218a4d2e489fdb1165debdc2626b14840b8d14a15bbb660f6598f92e30c4d30e",
+      "destination_sha256": "218a4d2e489fdb1165debdc2626b14840b8d14a15bbb660f6598f92e30c4d30e"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/independent-complete-lobe-returning-event-review-2026-09-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/independent-complete-lobe-returning-event-review-2026-09-02.md",
+      "source_sha256": "41ab0d6a4c1d264e2207495bd12faf50986848dbbdc828c5375b34c2d4e41f70",
+      "destination_sha256": "3d3f6ba6b98c6b3dd8e021547462d745c7a70b2aef18aeb069fda87968c5834c"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/bill-thurston-second-review-2026-08-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/bill-thurston-second-review-2026-08-02.md",
+      "source_sha256": "e4a7a68d801a03f6ce4029c86a2b928b2304140e8b3e3e2c2ab016dcd76d67ae",
+      "destination_sha256": "96e67b08635fef9abfb35125a482e58e593ab2b87952ad901ab1baf6a8389db8"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/bill-thurston-review-response-2026-08-01.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/bill-thurston-review-response-2026-08-01.md",
+      "source_sha256": "3897eee1ac95751a71f542afcb0fa6ae3b9d444edfe67c5bc233c09399deedc0",
+      "destination_sha256": "c6cb8675d81dbe1627fde79c8861ff110724846fc8a0b7b56ed4a5673e78b7b2"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/manuscript-fidelity-review.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/manuscript-fidelity-review.md",
+      "source_sha256": "1c85b17ba5fedc6e735f892542948a72cac9adffee22984e50c558dfcefc7ce3",
+      "destination_sha256": "1c85b17ba5fedc6e735f892542948a72cac9adffee22984e50c558dfcefc7ce3"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/quarantined-hypotheses-and-prescribed-reference-cases.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/quarantined-hypotheses-and-prescribed-reference-cases.md",
+      "source_sha256": "5d65571675bf9924e62be270c7c0651fda2986e3d1d5c721849ee6c1ba52b63d",
+      "destination_sha256": "9518bbf38e4899d1abea5fce99ac286623636a7cb5127c42c25ed9eaa0bc27e3"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/first-entourage-review-readiness.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/first-entourage-review-readiness.md",
+      "source_sha256": "629a0519cebc52097843984a7b3efc142b482df389bd76952c17955ae95b16c1",
+      "destination_sha256": "00e149e74aa2886ce593fdf552d14445a6689e3915d9f965f9b984036db58671"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/albert-einstein-review-2026-08-01.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/albert-einstein-review-2026-08-01.md",
+      "source_sha256": "9be50438680835d5e3fc919a93651954e925b8fd4056daa16bbc6e867617fdcc",
+      "destination_sha256": "a102a8af5b8c72283f59c615c7c0f204ac34ee6f5a940a12e6d52344d0d98e58"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/albert-einstein-second-review-2026-08-01.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/albert-einstein-second-review-2026-08-01.md",
+      "source_sha256": "064d49b22a6f384f7a814b7110302575b172fcdec8e3afd11b6db43f831a9425",
+      "destination_sha256": "bd268f14f68de5a2783de70b2c36ee6b130fc289babd7c4375a07ca6ff14ff0e"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/mathematics-geometry-dynamical-system.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/mathematics-geometry-dynamical-system.md",
+      "source_sha256": "42ce1d2ec54ef32509c3f30e40bb51ec8172b6e808b79662e68ded1bd7c2b11e",
+      "destination_sha256": "b6098fcc275362cafb26f6e7687e796e6dcca72ce0fe4dcf649ae0d02a3382ee"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/no-escape-audit.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/no-escape-audit.md",
+      "source_sha256": "978e16649ad02d2ef6c2e5322f24a01df872869c1c2d99e88c70472f480baf15",
+      "destination_sha256": "978e16649ad02d2ef6c2e5322f24a01df872869c1c2d99e88c70472f480baf15"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/inherited-family-event-measure-review-2026-08-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/inherited-family-event-measure-review-2026-08-02.md",
+      "source_sha256": "fa06bf4f71e2d69e3f1c65c3c60f5af9550a38d6136b7dd64986066af9722eca",
+      "destination_sha256": "fa06bf4f71e2d69e3f1c65c3c60f5af9550a38d6136b7dd64986066af9722eca"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/planar-circle-instability-independent-review.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/planar-circle-instability-independent-review.md",
+      "source_sha256": "2b16f06df614a50411eaa804ac4cb4fe49fed7b3e275f05e95a478383f48d856",
+      "destination_sha256": "95b75b549b8ef5d476c9cd8ec7efa7443893c89a2e697c5f672ce2edfd349f83"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/jack-k-hale-second-review-2026-08-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/jack-k-hale-second-review-2026-08-02.md",
+      "source_sha256": "2cb54b92d8d232a19ab939606d877700e00b2be1a672bb292a3ea4ac613dd0c6",
+      "destination_sha256": "58ed7a9320f07753c619ae3de2825e6c51400c31b635bc462911dfb482ff895a"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/elie-cartan-review-2026-08-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/elie-cartan-review-2026-08-02.md",
+      "source_sha256": "6e77f743c62393323771cf05d9ab27c4a93e35d59b7e74effab6697cb40b36c9",
+      "destination_sha256": "cbda11e1cf799fb4d671b4328c616cae8054a1f5426408e4dfcee1163db07bd9"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/jack-k-hale-third-review-2026-08-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/jack-k-hale-third-review-2026-08-02.md",
+      "source_sha256": "92d5a25d2dc798c09156896b3db8a29dcfee85bfbe14c36e3aeca484b1aa35a5",
+      "destination_sha256": "7e5fc9d195d14275b03a9042335767670a8cf5e6b4df67576d6070b86fac00dd"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/jack-k-hale-review-response-2026-07-31.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/jack-k-hale-review-response-2026-07-31.md",
+      "source_sha256": "da81e8254a705d0bcc70ccc03df299bb4b4ab46ac55d4cfed95af324be41cf5c",
+      "destination_sha256": "b4f4b2ffd85e339f3256b6e817478c511268191b336a29e474c9be2a240675da"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/germund-dahlquist-review-2026-08-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/germund-dahlquist-review-2026-08-02.md",
+      "source_sha256": "9a1a4f2a1904a712835dd878eb6476c0d20a98364e9d1ba3953d11c89bd4c167",
+      "destination_sha256": "e310835e70d8b0157151e527e85b8c3441356c5cc2ba11898fcfe96d237c68eb"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/manuscript-source-coverage.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/manuscript-source-coverage.md",
+      "source_sha256": "1d62d1b57b5c39aa4014c16badb7c2333144e16b1e21c46044608663fc78f8f9",
+      "destination_sha256": "18e6b9629216a4efd0ec8653a6f532989dc9d80520f535f86cfa0ef2ddf64f7c"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/geometry-panel-collation-2026-08-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/geometry-panel-collation-2026-08-02.md",
+      "source_sha256": "689f386e7ecd9f6d983d93cd1c625794d3a6813816094e9b358525010b1baf46",
+      "destination_sha256": "689f386e7ecd9f6d983d93cd1c625794d3a6813816094e9b358525010b1baf46"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/albert-einstein-review-response-2026-08-01.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/albert-einstein-review-response-2026-08-01.md",
+      "source_sha256": "be2b0f071be90b9ae505eb57396926e13dbfa2ced1bf0b4e0ee47bddbd54bb13",
+      "destination_sha256": "5640f82b553e91a197cbaab9086e789d9c150e9977cf208003c27dca8be92421"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/ramon-e-moore-review-2026-08-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/ramon-e-moore-review-2026-08-02.md",
+      "source_sha256": "e8ff47acf19eec78ef6f8b02de971bd834195a5da5980f623548b554dabf08cc",
+      "destination_sha256": "3eefdccecfac7c0741b90b288a3e93fe53700d0458fd77ed6bcf8989645f4cf9"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/sections-12-14-independent-review-2026-09-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/sections-12-14-independent-review-2026-09-02.md",
+      "source_sha256": "c5cddd729c70827b43f84fd980b48c5ff6b2641da7d19ba41bd7b11c6a8e9b24",
+      "destination_sha256": "c5cddd729c70827b43f84fd980b48c5ff6b2641da7d19ba41bd7b11c6a8e9b24"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/lars-hormander-second-review-2026-08-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/lars-hormander-second-review-2026-08-02.md",
+      "source_sha256": "e8298f26179bd74d0b540cb65e34c4562487b0c086189ef1c20a16a56809c057",
+      "destination_sha256": "f2537b1e8824993b9f83e4acb4fbaa7d1e0c2ffbd58a295f1458d42c782806c2"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/lars-hormander-review-response-2026-07-31.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/lars-hormander-review-response-2026-07-31.md",
+      "source_sha256": "d6bcce7e217a0d514e1eecddb85c345a3d632736d2c0d6f3e4bf30b27f149173",
+      "destination_sha256": "d6bcce7e217a0d514e1eecddb85c345a3d632736d2c0d6f3e4bf30b27f149173"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/albert-einstein-second-review-response-2026-08-01.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/albert-einstein-second-review-response-2026-08-01.md",
+      "source_sha256": "e9a6541c39c3e3654b83b4cd9968699649d40ad821950c9854526f2b145a4498",
+      "destination_sha256": "3fb1eb5268d99c2737f9e901486889d94cc0696d79956696014ee525d3ffdafa"
+    },
+    {
+      "source": "reference/priorities/field-speed-ceiling/analysis/hassler-whitney-review-2026-08-02.md",
+      "destination": "reference/priorities/dormant-deferred/field-speed-ceiling/analysis/hassler-whitney-review-2026-08-02.md",
+      "source_sha256": "9deedcf0a679b4392e5a1fa77f98ddf99079fa084f47564645549e06055af838",
+      "destination_sha256": "5e6bbc80e403b94f80d2b726f8356af9ed940fa6ef7859bcbd8a248893c22149"
+    }
+  ],
+  "sectionRoutes": {
+    "reference/priorities/braid-program/manuscript.md#56-collinear-encounter-comparison": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "1-collinear-encounter-comparison"
+    },
+    "reference/priorities/braid-program/manuscript.md#collinear-note-1": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "collinear-note-1"
+    },
+    "reference/priorities/braid-program/manuscript.md#collinear-note-2": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "collinear-note-2"
+    },
+    "reference/priorities/braid-program/manuscript.md#collinear-note-3": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "collinear-note-3"
+    },
+    "reference/priorities/braid-program/manuscript.md#collinear-note-4": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "collinear-note-4"
+    },
+    "reference/priorities/braid-program/manuscript.md#collinear-note-5": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "collinear-note-5"
+    },
+    "reference/priorities/braid-program/manuscript.md#collinear-note-6": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "collinear-note-6"
+    },
+    "reference/priorities/braid-program/manuscript.md#collinear-note-7": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "collinear-note-7"
+    },
+    "reference/priorities/braid-program/manuscript.md#collinear-note-8": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "collinear-note-8"
+    },
+    "reference/priorities/braid-program/manuscript.md#collinear-note-9": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "collinear-note-9"
+    },
+    "reference/priorities/braid-program/manuscript.md#52-history-correlation-moves-a-certification-frontier": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "3-history-uncertainty-in-the-stationary-calculation"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#22-incoming-acceleration-and-the-singular-endpoint": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "22-incoming-acceleration-and-the-singular-endpoint"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#221-clock-transfer-and-finite-incoming-accumulation": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "221-clock-transfer-and-finite-incoming-accumulation"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#222-endpoint-divergence-and-failed-completions": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "222-endpoint-divergence-and-failed-completions"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#223-transverse-variation-on-the-open-cap": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "223-transverse-variation-on-the-open-cap"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#3-a-finite-coincidence-event-and-its-restart-data": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "3-a-finite-coincidence-event-and-its-restart-data"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#31-a-common-finite-source-carrier": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "31-a-common-finite-source-carrier"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#32-complete-history-ownership-and-the-straight-right-trace": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "32-complete-history-ownership-and-the-straight-right-trace"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#33-frozen-reception-remains-an-additional-choice": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "33-frozen-reception-remains-an-additional-choice"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#4-multiple-futures-and-the-missing-selection-law": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "4-multiple-futures-and-the-missing-selection-law"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#41-delayed-braking-from-the-same-complete-past": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "41-delayed-braking-from-the-same-complete-past"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#411-why-exclusion-of-an-immediate-cascade-does-not-select-onset": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "411-why-exclusion-of-an-immediate-cascade-does-not-select-onset"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#42-returning-lobes-and-controlled-recurrence": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "42-returning-lobes-and-controlled-recurrence"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#421-turnaround-and-inward-ceiling-arrival": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "421-turnaround-and-inward-ceiling-arrival"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#422-the-complete-returning-cap-census": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "422-the-complete-returning-cap-census"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#423-recurrence-of-the-live-state": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "423-recurrence-of-the-live-state"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#424-the-cap-duration-reset-has-no-positive-fixed-cycle": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "424-the-cap-duration-reset-has-no-positive-fixed-cycle"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#43-what-a-selection-law-would-add": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "43-what-a-selection-law-would-add"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#431-selection-proposals-and-the-retained-multivalued-relation": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "431-selection-proposals-and-the-retained-multivalued-relation"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#432-short-range-and-alternative-continuation-proposals": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "432-short-range-and-alternative-continuation-proposals"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#433-strict-speed-domains-and-nonattainment-targets": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "433-strict-speed-domains-and-nonattainment-targets"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#434-response-gains-and-a-drifting-encounter": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "434-response-gains-and-a-drifting-encounter"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#44-collinear-coincidence-under-the-sharp-equation-alone": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "44-collinear-coincidence-under-the-sharp-equation-alone"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#441-source-measure-surface-density-and-the-incoming-family": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "441-source-measure-surface-density-and-the-incoming-family"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#442-continuous-passage-and-two-sharp-rebound-attempts": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "442-continuous-passage-and-two-sharp-rebound-attempts"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#443-once-only-passage-and-the-unresolved-contact-alternative": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "443-once-only-passage-and-the-unresolved-contact-alternative"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#collinear-coincidence-with-speed-cap": {
+      "file": "reference/priorities/collinear-research/manuscript.md",
+      "anchor": "collinear-coincidence-with-speed-cap"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#1-the-proposed-constrained-dynamics": {
+      "file": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "anchor": "1-the-proposed-constrained-dynamics"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#current-scope-and-evidence-boundary": {
+      "file": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "anchor": "current-scope-and-evidence-boundary"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#11-why-examine-a-path-speed-ceiling": {
+      "file": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "anchor": "11-why-examine-a-path-speed-ceiling"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#12-the-ordinary-causal-root-ledger": {
+      "file": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "anchor": "12-the-ordinary-causal-root-ledger"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#13-the-velocity-constraint-and-response-order": {
+      "file": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "anchor": "13-the-velocity-constraint-and-response-order"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#14-response-to-a-supplied-input": {
+      "file": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "anchor": "14-response-to-a-supplied-input"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#21-root-geometry-at-and-below-wake-speed": {
+      "file": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "anchor": "21-root-geometry-at-and-below-wake-speed"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#211-strict-gap-control-and-its-boundary": {
+      "file": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "anchor": "211-strict-gap-control-and-its-boundary"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#212-the-remaining-event-geometry": {
+      "file": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "anchor": "212-the-remaining-event-geometry"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#23-the-spatial-wake-speed-limit": {
+      "file": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "anchor": "23-the-spatial-wake-speed-limit"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#63-the-cycle-diagnostic-is-not-an-action-account": {
+      "file": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "anchor": "63-the-cycle-diagnostic-is-not-an-action-account"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#64-transitions-and-an-infinite-background": {
+      "file": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "anchor": "64-transitions-and-an-infinite-background"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#5-circular-motion-and-regular-local-evolution": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "5-circular-motion-and-regular-local-evolution"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#51-the-exact-circular-binary": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "51-the-exact-circular-binary"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#511-root-census-and-acceleration-compatibility": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "511-root-census-and-acceleration-compatibility"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#512-the-radius-family-and-interior-circle-exclusion": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "512-the-radius-family-and-interior-circle-exclusion"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#513-rigid-translation-fails-the-complete-response": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "513-rigid-translation-fails-the-complete-response"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#52-from-admissible-histories-to-local-evolution": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "52-from-admissible-histories-to-local-evolution"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#521-a-geometric-neighborhood-and-a-history-space-contract": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "521-a-geometric-neighborhood-and-a-history-space-contract"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#522-contraction-and-the-continuation-boundary": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "522-contraction-and-the-continuation-boundary"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#523-the-separate-stability-problem": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "523-the-separate-stability-problem"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#53-planar-perturbations-and-the-ellipse-question": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "53-planar-perturbations-and-the-ellipse-question"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#531-first-sharp-radial-response": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "531-first-sharp-radial-response"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#532-the-delayed-perturbation-equation": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "532-the-delayed-perturbation-equation"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#533-a-growing-antipodal-planar-mode": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "533-a-growing-antipodal-planar-mode"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#534-nonlinear-instability-on-the-active-planar-boundary": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "534-nonlinear-instability-on-the-active-planar-boundary"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#535-first-observed-departures-under-the-sharp-equation": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "535-first-observed-departures-under-the-sharp-equation"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#6-assembly-compatibility-and-the-missing-accounts": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "6-assembly-compatibility-and-the-missing-accounts"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#61-complete-ledger-closure-for-six-paths": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "61-complete-ledger-closure-for-six-paths"
+    },
+    "reference/priorities/field-speed-ceiling/manuscript.md#62-a-complete-census-with-failed-acceleration-closure": {
+      "file": "reference/priorities/braid-program/manuscript.md",
+      "anchor": "62-a-complete-census-with-failed-acceleration-closure"
+    },
+    "reference/priorities/braid-program/work-queue.md#bp-003--collinear-breather-campaign": {
+      "file": "reference/priorities/collinear-research/work-queue.md",
+      "anchor": "bp-003--collinear-breather-campaign"
+    }
+  }
+}

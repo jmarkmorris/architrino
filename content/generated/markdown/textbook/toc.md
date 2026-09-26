@@ -1186,7 +1186,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - **Ch 10.11.6.1** [Master-Equation Handoff Boundary](../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Master-Equation+Handoff+Boundary)
       - **Ch 10.11.6.2** [Evidence Required for a Branch](../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Evidence+Required+for+a+Branch)
       - **Ch 10.11.6.3** [Tier 0: Algebraic Branch Search](../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Tier+0%3A+Algebraic+Branch+Search)
-      - **Ch 10.11.6.4** [Tier 1: $\eta > 0$ Continuation](../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Tier+1%3A+%24%5Ceta+%3E+0%24+Continuation)
+      - **Ch 10.11.6.4** [Tier 1: Direct Delayed Dynamics](../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Tier+1%3A+Direct+Delayed+Dynamics)
       - **Ch 10.11.6.5** [Tier 2: Energy and Shielding](../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Tier+2%3A+Energy+and+Shielding)
       - **Ch 10.11.6.6** [Tier 3: Medium-Response Probe](../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Tier+3%3A+Medium-Response+Probe)
       - **Ch 10.11.6.7** [Acceptance Boundary](../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Acceptance+Boundary)

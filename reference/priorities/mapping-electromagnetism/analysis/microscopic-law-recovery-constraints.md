@@ -284,7 +284,7 @@ The microscopic burden is to derive this common response, source continuity, rec
 
 ## 5. Distant recovery does not fix local speed-crossing behavior
 
-The original binary exposes a separate local question. On a prescribed smooth transverse crossing, use elapsed substrate time $t>0$ from the event and incoming slope $a>0$. The existing [local geometry](../../braid-program/analysis/speed-crossing-opposing-interaction-geometry.md#leading-cancellation-and-its-limit) gives $r(t)\sim2t$ and $|D_t(t)|\sim at$ for the newborn self root. For a conditional comparison magnitude $k(r)|D_t|^{-\nu}$ with $k(r)\sim k_0r^m$, $k_0>0$, its acceleration is
+The original binary exposes a separate local question. On a prescribed smooth transverse crossing, use elapsed substrate time $t>0$ from the event and incoming slope $a>0$. The existing [local geometry](../../master-equation-closure/analysis/speed-crossing-opposing-interaction-geometry.md#leading-cancellation-and-its-limit) gives $r(t)\sim2t$ and $|D_t(t)|\sim at$ for the newborn self root. For a conditional comparison magnitude $k(r)|D_t|^{-\nu}$ with $k(r)\sim k_0r^m$, $k_0>0$, its acceleration is
 
 $$
 \mathbf A_{\mathrm{self}}(t)

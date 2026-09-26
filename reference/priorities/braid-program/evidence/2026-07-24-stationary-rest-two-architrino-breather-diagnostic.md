@@ -84,7 +84,7 @@ Plainly: the initial attraction is independently checked. The unresolved piece i
 - fresh compiled EOM checks: 5/5 passed;
 - sampled reducer tests: 4/4 passed.
 
-Raw manifests, exact retained-history records, checkpoints, release acceleration, frames, and census rows remain under `.local-data/braid-program/stationary-rest-breather/`, which the repository ignores. The predeclared protocol is [stationary-binary-breather-diagnostic.md](../campaigns/stationary-binary-breather-diagnostic.md).
+Raw manifests, exact retained-history records, checkpoints, release acceleration, frames, and census rows remain under `.local-data/braid-program/stationary-rest-breather/`, which the repository ignores. The predeclared protocol is [stationary-binary-breather-diagnostic.md](../../collinear-research/campaigns/stationary-binary-breather-diagnostic.md).
 
 No architrino-level energy account is reported because no accepted account is defined for this diagnostic.
 

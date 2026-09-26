@@ -39,7 +39,7 @@ The audit preserves component scores for unchanged marginal objects, removes eig
 ## Operator Discussion Queue
 
 - **[`app-solver`](../app-solver/priorities.md) — [EOM-013](../app-solver/work-queue.md#eom-013--safety-zone-speed-and-accuracy-assessment), discussion-scoped.** Assess a numerical safety or exclusion zone around each architrino: potential simulation speed gains, accuracy loss on zone entry, and an operational boundary/response definition. Any changed interaction or trajectory rule requires an explicit EOM contract decision and a declared boundary for Braid Program consumers; no implementation, physical exclusion radius, or ranking change is approved.
-- **[`field-speed-ceiling`](../field-speed-ceiling/priorities.md) — `FSC-001`, discussion-scoped.** Assess the operator-proposed primitive domain $\|\mathbf V\|\le c_f$, including exact-boundary root admission and evolution semantics. This crosses the Master Equation, MEC-007, EOM solver, Braid prescribed diagnostics, and several reader-facing closure hypotheses. It changes no existing theory status while the compatibility map is pending. See [its work queue](../field-speed-ceiling/work-queue.md).
+- **[Collinear research](../collinear-research/priorities.md), organizational separation.** Encounters along one line now have their own current account. BP-001 remains the mixed-geometry Braid Program campaign. Shared equation questions belong to Master-Equation Closure; circular and braid applications belong to the Braid Program. The [former ceiling investigation](../dormant-deferred/field-speed-ceiling/README.md) is historical. Existing scientific status and ranked winners are unchanged.
 
 ## Current Scoring Review — 2026-09-14
 

@@ -240,14 +240,14 @@ Per-hit equation of motion (EOM)
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-257a5ab02e2be0c7)
 
-with $W_{o'j}^{\mathrm{acc}}=c_f/\lvert D_{t,o'j}\rvert$, $D_{t,o'j}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}$, and $D_{r,o'j}=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$. Total acceleration is the sum over transmitters and roots. Convention $H(0)=0$ removes instantaneous self-acceleration at zero delay. Optional mollification replaces $\delta(\cdot)$ by $\delta_\eta(\cdot)$ to produce smooth acceleration contributions.
+with $W_{o'j}^{\mathrm{acc}}=c_f/\lvert D_{t,o'j}\rvert$, $D_{t,o'j}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}$, and $D_{r,o'j}=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$. Total acceleration is the sum over transmitters and roots. Convention $H(0)=0$ removes instantaneous self-acceleration at zero delay. Optional mollification replaces the delta inside the emission-time integral by a normalized $\delta_\eta$, yielding an auxiliary calculation at positive width. Its result approximates the Master Equation only on a domain where the approximation error or recovery limit has been justified; the width is not a physical wake thickness.
 
 For a continuous source density, an ordinary simple causal root contributes to the acceleration at each reception time on its regular branch; it is not itself a delta impulse in reception time. Event tracking is a numerical organization of those contributions. A true impulse requires a declared pulse-train quadrature weight or a separately proved singular limit.
 
 Implementation checklist
 - Root finding: solve $F(T_t;T_r)=\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|-c_f(T_r-T_t)=0$ for all transmitters $j$ (including $j=o'$ for self-hits when kinematics permit).
 - Accumulation: compute $r,\hat{\mathbf{r}}$, $D_t$, $D_r$, and $W^{\mathrm{acc}}$, apply $W^{\mathrm{acc}}/r^2$, then superpose.
-- Time stepping: impulsive mode (events) or mollified mode ($\eta>0$) with a delayed-history integrator that retains and interpolates the required path segment.
+- Time stepping: integrate the sharp simple-root acceleration with a delayed-history integrator that retains and interpolates the required path segment at every stage. Track root changes as events without imposing velocity jumps. A mollified calculation is an optional auxiliary method subject to the [numerical recipe's approximation and recovery requirements](numerical-recipe-and-stability.md); a discrete-emission impulse calculation additionally needs its declared quadrature weights and convergence argument.
 - Self-interaction: a super-field-speed history interval nominates the channel, but an admitted self-hit still requires a nonzero-delay same-transmitter root and the declared branch floors; accepted self-hits are repulsive (like-on-like).
 
 Relation to Methods 1 and 2
@@ -291,14 +291,14 @@ Operator diagnostics (finite-window checks)
 
   For the conservative potential channel $\mathbf{Y}_\eta=\nabla\Phi_\eta$, nonzero circulation is a numerical, boundary, or coordinate-operator error unless a non-gradient effective channel has been explicitly declared.
 
-The potential contribution is treated as a conserved amount spread over a growing causal wake surface. When the surface reaches a receiver, it supplies a line-of-action acceleration contribution that falls off as $1/r^2$; the calculation may represent the event either sharply or through a short, smooth mollified contribution.
+The emitted measure is spread over a growing causal wake surface. Integrating continuous emission gives the sharp causal-root acceleration sum, with inverse-square geometry and transmitter-side weighting. A mollified emission-time integral is an auxiliary approximation to that calculation; its finite-width result is not an interchangeable physical reception rule.
 
 ## Cross-Method Guidance
 
 ### Cross-Method Selection
 - Method 1 (PDE): whole-field grid simulations, visualization, and complex media/boundaries. Deposit a smeared source term each step; robust when a transmitter slows or stops. Aggregate particle data to coarse-grained densities $n(\mathbf X,T)$, $\rho(\mathbf X,T)$, and $\mathcal E(\mathbf X,T)$ as inputs/targets for PDE runs and validation.
 - Method 2 (Green’s function / path-history integral): closed forms and sparse probe evaluation. Enforce the path-history condition $T-T_t=\|\mathbf X-\mathbf X_t(T_t)\|/c_f$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf V_t/c_f$ during evaluation; root-solve one or more $T_t$ values per observer-time pair.
-- Method 3 (Event-driven canonical): production many-body dynamics. Find causal roots and sum per-hit $W^{\mathrm{acc}}/r^2$ acceleration contributions; prefer $\eta$-mollified mode for smooth ODEs when needed.
+- Method 3 (Event-driven canonical): production many-body dynamics. Find causal roots and integrate the summed per-hit $W^{\mathrm{acc}}/r^2$ acceleration contributions. Use mollification only as a declared mathematical approximation with error or recovery control for the claimed observable; positive width alone does not establish the sharp-law dynamics.
 
 Short worked example — stationary transmitter, continuous source term (consistent across methods)
 - Setup: transmitter at origin $\mathbf X_t=0$ with $q(T)\equiv q_0$ (constant).
@@ -309,7 +309,7 @@ Short worked example — stationary transmitter, continuous source term (consist
 Practical implementation notes (concise)
 - PDE: smear $\delta(\mathbf X-\mathbf X_t)$ to grid scale; enforce CFL ($c_f\,\Delta T/\Delta X$ within the scheme’s bound).
 - Path-history: robust root-finding for $T_t$ from $T-T_t=r(T_t)/c_f$; take care near grazing geometries where $1-\mathbf{n}\cdot\mathbf V_t/c_f$ is small.
-- Event-driven: bracket causal roots for continuity, optionally use $\delta_\eta$ for smooth acceleration contributions, and limit step sizes so only a controlled number of mollified wake surfaces overlap.
+- Event-driven: isolate every admitted causal root and integrate the sharp acceleration while controlling history interpolation and root-time error. If an auxiliary $\delta_\eta$ calculation is used, resolve its emission-time integral and bound omitted contributions; the number of overlapping wake bands alone does not bound the error.
 
 ### Operational Summary
 - Model the transmitter through the source term $S(\mathbf X,T)=q(T)\,\delta\!\big(\mathbf X-\mathbf X_t(T)\big)$ (time-based emission density).
@@ -363,7 +363,7 @@ Summary (one line each)
 Operational guidance — when to use which method
 - Method 1 (PDE): use this for whole-field grid simulations, visualization, and complex media or boundaries; step the wave PDE forward with a smeared source term. Robust when a transmitter slows or stops.
 - Method 2 (Path history integral): use this for closed forms, analytic insight, or sparse probe evaluation; enforce the path-history condition $T-T_t=\|\mathbf X-\mathbf X_t(T_t)\|/c_f$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf V_t/c_f$ in evaluation; solve one root per observer-time pair in slow-motion, more if transmitters move fast.
-- Method 3 (Event-driven canonical): use this for production many-body dynamics; find causal roots and sum per-hit $W^{\mathrm{acc}}/r^2$ acceleration contributions; prefer $\eta$-mollified mode for smooth ODEs when needed.
+- Method 3 (Event-driven canonical): use the causal-root acceleration sum for production many-body dynamics. An auxiliary mollified calculation must retain its approximation grade until error control or a recovery argument connects the claimed result to the Master Equation.
 
 ## Pros and cons (comparative)
 
@@ -391,7 +391,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
 - Pros
   - Directly implements the project’s delayed, radial-only interaction law with constant emission cadence.
   - Natural support for self-hits and superposition; local $1/r^2$ weighting favors nearby coherent roots with all other factors fixed, but does not by itself bound far-root weights, multiplicity, cancellation, or omitted-tail error.
-  - Can be numerically lightweight for particle dynamics on a declared workload; works with impulsive or mollified ODE integration under the stated root and regulator conditions.
+  - Can be numerically lightweight for particle dynamics on a declared workload; supports direct integration of sharp simple-root acceleration, with auxiliary mollified or emission-quadrature calculations under their separate approximation conditions.
 - Cons
   - Not derived from the scalar wave equation; global field-energy accounting is indirect (via mollified potentials).
   - Must retain the transmitter-side factor and transmitter-side acceleration weight from the Master EOM; a reduced test harness that omits either one is a noncanonical approximation rather than a calibration of $\kappa$.
@@ -410,7 +410,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
   - Always smear $\delta(\mathbf X-\mathbf X_t)$ to a normalized kernel of width $\sigma$ comparable to the grid spacing in PDE runs to avoid grid-scale artifacts.
   - Enforce CFL: choose $\Delta T$ so that $c_f\,\Delta T/\Delta X$ meets the stability bound for the chosen stencil to prevent instability.
   - Path history solving: solve $T-T_t=r(T_t)/c_f$ carefully; near $\|\mathbf V_t\|\approx c_f$, root finding and the factor $1-\mathbf{n}\cdot\mathbf V_t/c_f$ require extra care.
-  - Finite temporal thickness: if wake surfaces have duration, replace the arrival selector $\delta(T-T_t-r/c_f)$, or equivalently the distance selector $\delta(r-c_f(T-T_t))$ with its stated Jacobian, by a normalized smooth profile. A profile applied only to $\delta(T-T_t)$ smooths emission timing, not propagation arrival.
+  - Mathematical mollification: a normalized approximate identity may replace the arrival selector $\delta(T-T_t-r/c_f)$, or the distance selector $\delta(r-c_f(T-T_t))$ with the corresponding width conversion and Jacobian, in an explicitly auxiliary calculation. The profile does not assign a physical duration to a wake. Establish approximation error or the regulator-removal limit on the stated domain before drawing a Master Equation conclusion. A profile applied only to $\delta(T-T_t)$ smooths emission timing, not propagation arrival.
 
 The event-driven radial method governs dynamics, the path-history integral checks the declared comparison map, and the PDE supplies whole-field pictures or explicitly modeled comparison media.
 

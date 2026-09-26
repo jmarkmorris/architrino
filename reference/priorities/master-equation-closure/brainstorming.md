@@ -202,3 +202,197 @@ Fixed-reception self-root accumulation requires field speed and vanishing quadra
 The [finite-event independent review](analysis/mec-008-self-complement-independent-adjudication.md) accepts its conditional finite-event delay floor, transverse-fold integral and endpoint-velocity estimate. It rejects interpreting them as a continuation or new self-root reachability result for the stationary mirror control. Its positive-delay transverse-fold hypotheses do not cover that zero-delay endpoint birth. General MEC-008 remains open; the existing quintic candidate is now being assessed without adopting it.
 
 Operator explicitly requested greater parallel progress. Population admissibility proposals, nondepleting account construction and the existing quintic mirror-boundary assessment can be developed independently. Proposal development is authorized; changed domain or physical assumptions remain decisions, not automatically accepted inputs.
+
+## Existing shared discussion from the ceiling investigation
+
+Transferred on 2026-09-26 without changing any equation choice or research authorization. The dated assessment below retains its original status; subsequent circular results are in the Braid Program manuscript.
+
+## Foundational Distinctions
+
+**2026-09-16 nonlinear circular result:** the [sharp heading-coordinate analysis](../braid-program/analysis/planar-circle-nonlinear-instability.md) upgrades the positive boundary-branch mode to a local nonlinear instability theorem for actual antipodal unit-speed histories, including after circular phase is ignored. Its smooth delay-functional and all-past coverage checks are explicit; the mathematical instability theorem introduces no new physics. The independent review supports this local conclusion; its corrections are integrated in the proof. The circle remains exact but is not robust to all disturbances in this class. Post-departure motion and other planar configurations remain open.
+
+### Investigation assessment — 2026-09-16
+
+**Current assessment:** the sharp collinear collision investigation has produced obstructions, not an admitted collision continuation. Continuous forward departure is excluded in the stated ordinary mirror class; exact full-speed rebound retains an undefined partner characteristic family; immediate sub-field outward rebound contradicts bounded speed through its new ordinary partner root. Persistent rest and a nonregular outgoing history remain unresolved, not positive results. Historical multivalued exact-mirror continuation and delayed-braking constructions use event/frozen-family conventions outside this thread's cap-only authority. Auxiliary trajectories do not resolve these sharp-law gaps.
+
+**Recommended direction, an informed research judgment:** prioritize the planar circular binary over further attempts to select a collinear bounce. FSC-010 supplies the complete ordinary root census and radial balance; FSC-007 section 7 upgrades the exact all-past circular history to a unique local circular continuation under the proposed ceiling response. At the field-speed ceiling, the response removes forward tangential acceleration while retaining the inward component. This does not require a collision rule or smoothing. It remains conditional on that explicit ceiling implementation and supplies neither stability nor formation from other histories. Uniform circles strictly below the fixed ceiling are excluded in the declared antipodal class by their uncanceled forward tangential acceleration, as FSC-015 proves.
+
+The promising unresolved planar question is whether small admissible changes to the entire circular history remain close, grow, or lead to another regular orbit. FSC-013 controls nearby root geometry, not dynamical stability; FSC-011's full perturbed-history continuation still requires its stated response-regime and compatibility conditions. Elliptical motion must emerge from or satisfy the full delayed equation, rather than be assumed from an instantaneous inverse-square analogy. A case-insensitive `rg 'ellip'` search over `reference/priorities/field-speed-ceiling/` found no ellipse-specific text before this assessment was inserted; this is a scoped search result, not an assertion about the entire repository.
+
+For collinear work, one bounded sharp-event analysis could still determine whether the law admits a stopping/contact or other singular continuation with the supplied history. Its value is foundational classification, with no present positive evidence for a retained collinear pair. An invariant collinear neighborhood or an independently derived sharp event response could change this assessment. For planar work, a growing admissible perturbation would refute stability of the exact circular solution without invalidating its exact-history local continuation theorem.
+
+**2026-09-16 sharp rebound with immediate slowing:** the [direct Master Equation calculation](../collinear-research/analysis/self-silent-partner-near-event-balance.md#sharp-reversal-followed-by-sub-field-slowing--2026-09-16) shows that moving off the exact full-speed rebound ray does not supply a regular outgoing solution for the isolated mirror pair. The old family disappears, but a new isolated partner root produces nonintegrable braking over an interval starting at coincidence. Bounded outward speed is incompatible with that interval. The proof allows an initial jump and does not use smoothing or a prescribed trajectory; more general singular continuations remain unresolved.
+
+**2026-09-16 position and velocity limits:** the [sharp-law candidate analysis](../collinear-research/analysis/coincident-position-limit-and-velocity-oscillation.md) separates uniform position convergence, smooth time-averaged velocity convergence, and satisfaction of the delayed acceleration law. A limiting pair at rest would require a crossover velocity change from the incoming capped history. Its empty ordinary right-hand root sum does not derive that event or admit persistent coincidence. Rapid reversals are a kinematic illustration only; the auxiliary runs are not transferred to the sharp law.
+
+**Accepted evidence rule, 2026-09-16:** conclusions use the sharp Master Equation with the explicitly authorized FSC premises. Smoothing is permitted only as a labeled comparison whose modifications and limitations accompany every result. Transferring a smoothed result requires a demonstrated limiting argument; numerical refinement at fixed smoothing checks only the modified calculation. The [current priority decision](../dormant-deferred/field-speed-ceiling/priorities.md#current) records the operator's three rules, and the [auxiliary-results boundary](../collinear-research/analysis/partner-only-auxiliary-evolution-results.md#accepted-evidence-boundary) applies them to the retained runs. No sharp crossover motion or once-only reception account follows from those runs.
+
+**2026-09-15 auxiliary evolution:** the [partner-only generated-motion diagnostic](../collinear-research/analysis/partner-only-auxiliary-evolution-results.md) advances the finite-turn discussion from a prescribed curve to numerically evolved finite-memory smoothed equations. It finds shrinking first excursions and repeated crossings, with no self acceleration. Fixed-parameter refinement supports those bounded observations; profile and core/width choices still affect the trajectories. This is exploratory evidence about the auxiliary equations, with no new rule or sharp-limit conclusion adopted.
+
+A closed admissible velocity domain, a boundary reaction, an exact coincidence event, and a rule selecting an outgoing history are different mathematical objects. MEC-007's sharp-law obstruction establishes none of the latter three, and the absence of an admissible super-field-speed segment does not prove passage, rebound, or any other continuation.
+
+The current proposed constrained-response picture forms a complete finite ordinary acceleration ledger before applying a radial normal-cone reaction to keep regular velocity inside the closed domain. Exact nonordinary coincidence families require a separately declared event classification. Even after such a classification, a continuation may remain multivalued.
+
+Plainly: a speed limit says which velocities are allowed. It does not say what happens at the boundary or choose one future when several allowed futures exist.
+
+
+## Strict-Inequality Variant: An Open Domain Is Not a Braking Law
+
+Consider replacing the proposed closed domain by the strict open ball
+
+$$
+\mathcal B_{c_f}^{\circ}
+=
+\left\{\mathbf V:\|\mathbf V\|<c_f\right\}.
+$$
+
+Every admitted velocity is then an interior point. Its tangent cone is $\mathbb R^3$ and its Euclidean normal cone is $\{\mathbf0\}$. Therefore the current normal-cone construction would return the complete ordinary acceleration unchanged at every admitted state. If an ordinary mirror approach has a positive speed-increasing acceleration and reaches $\|\mathbf V\|=c_f$ in finite time, the strict inequality supplies neither a braking contribution nor a boundary state on which to define one; the proposed evolution simply leaves its admissible domain.
+
+Plainly: “less than $c_f$” states which speeds are forbidden, but there is no greatest allowed speed immediately below $c_f$ and no boundary point inside the model where a reaction can switch on. A separate response law is required.
+
+A fixed regulator $\|\mathbf V\|\le c_f-\varepsilon$ with $\varepsilon>0$ would be a different closed-domain model. Under the same least-change response, a purely speed-increasing collinear ledger is canceled only at $c_f-\varepsilon$, so the mirror partners coast at that sub-field speed and still reach coordinate coincidence. Taking $\varepsilon\downarrow0$ approaches the closed-ceiling cap geometry; it does not create braking or select turnaround.
+
+The prescribed post-coincidence constant-speed test also shows why a sub-field passage does not automatically repair the event. In normalized units $c_f=1$, let the separating trial be $X_1(t)=ut$ and $X_2(t)=-ut$ with $0<u<1$, and let $K>0$ denote the attractive normalized partner coupling. Its unique post-event partner root is
+
+$$
+s(t)=\frac{1-u}{1+u}\,t,
+\qquad
+r(t)=\frac{2u}{1+u}\,t,
+\qquad
+D_t=1+u,
+\qquad
+D_r=1-u.
+$$
+
+The ordinary partner contribution points opposite the separating velocity, but its magnitude scales as
+
+$$
+\frac{K}{r(t)^2D_t}
+=
+\frac{K(1+u)}{4u^2t^2}.
+$$
+
+Its accumulated variation diverges at $t=0$. This prescribed trace therefore exhibits a singular immediate-braking obstruction, not a finite continuous turnaround solution. A lawful turnaround would need a separately declared pre-boundary response or event law and a proof that its net speed-reducing acceleration is locally integrable and sufficient to reduce each inward speed to zero before or at a classified event.
+
+Plainly: a sub-field wake can catch a particle after passage and point backward, but in the simplest constant-speed trial it does so with a nonintegrable near-coincidence contribution. That does not prove rebound; it shows that the proposed passage is not a regular solution.
+
+- **Claim level:** `derived` for the open-ball tangent/normal-cone consequence and the prescribed constant-sub-field root calculation; `inferred obstruction` for the absence of an absolutely continuous passage on that trial; `speculation` for any soft-barrier or pre-boundary turnaround law.
+- **Assumptions and proof burden:** retain normalized $c_f=1$, declare whether the strict inequality is merely admissibility or comes with a new response, classify the coincidence limit, and prove existence, uniqueness, local integrability, and a complete root census before asserting braking or turnaround.
+- **Promotion target:** the Field-Speed Ceiling mathematics packet only if the operator selects a strict-domain alternative for formal comparison; no canonical or proposed-law replacement is made here.
+- **Next artifact:** a strict-domain viability packet comparing the bare open ball, the closed regulators $\|\mathbf V\|\le1-\varepsilon$, and one explicitly stated soft-barrier law, with threshold reachability, coincidence time, root census, accumulated acceleration, and turnaround criteria.
+
+
+## Ceiling Negative: Reframe the Bound as an Emergent-Theorem Test
+
+The closed-ceiling and strict-inequality results jointly weigh against a primitive velocity constraint as the missing evolution law. The closed ball requires a separately proposed reaction and still leaves the exact-mirror continuation multivalued; the open ball supplies no reaction and terminates when the unchanged ordinary evolution reaches its excluded boundary. Inside this Field-Speed investigation only, the conservative alternative is to keep $c_f$ as the primitive causal-wake propagation speed and ask whether an FSC-local candidate update could make a path-speed bound emerge as a theorem. This question is not promoted or assigned to Master Equation Closure.
+
+Let
+
+$$
+b_i(T)=c_f^2-\|\mathbf V_i(T)\|^2.
+$$
+
+An update would establish strict nonattainment on a regular interval if it derived an integrable $C(T)$ such that
+
+$$
+\mathbf V_i\mathbin{\cdot}\mathbf A_i^{\mathrm{native}}
+\le
+C(T)b_i(T).
+$$
+
+Then $b_i'(T)\ge-2C(T)b_i(T)$ and Gronwall's inequality preserves $b_i(T)>0$ from strictly sub-field initial data. This would be a consequence of the candidate update rather than a projected boundary rule. The stationary-mirror evidence consumed by this packet fails the estimate under the unchanged sharp-root continuation: its partner contribution remains finite, inward, and speed-increasing while $b_i\downarrow0$.
+
+Plainly: the clean target is not “forbid $v>c_f$.” It is “derive an interaction law whose own acceleration makes the speed gap stay positive.” The current regular law does not do that.
+
+Even a derived nonattainment estimate would not prove turnaround. For a mirror half-separation $q(T)>0$ and inward signed speed $u(T)>0$, a turnaround additionally requires a finite time $T_{\mathrm{turn}}$ with $q(T_{\mathrm{turn}})>0$, $u(T_{\mathrm{turn}})=0$, and enough accumulated native speed-reducing acceleration to cancel the incoming speed. That condition must follow from the same wake update and complete ledger; it cannot be inferred from the speed-gap estimate.
+
+One FSC-local candidate mechanism family is an autonomous retained-history-plus-wake state with declared emission, propagation, reception, maturity, and boundary behavior. It could in principle make the singular root-birth accumulation change the candidate wake state and return a finite motion update. Within this lane it is only a comparison proposal: it is not an MEC-002 object or a Master Equation change. It is acceptable for further FSC analysis only if it reduces exactly to the packet's regular simple-root row, uses no future receiver history, deletes no admitted root, and introduces no fitted barrier profile or unexplained core scale.
+
+FSC-009's source-provenanced intersection or swept-reception measure remains useful but insufficient alone. It may derive the correct type of ordinary, frozen, and event contributions without an arbitrary cap, but retyping does not by itself make the consumed stationary-mirror input's infinite-total-variation newborn self-root measure finite.
+
+Plainly: the divergence is evidence that the transparent root-sampling rule is incomplete at root birth. A non-artificial repair must come from a derived wake update or action boundary law, not from an epsilon cap, a hand-shaped barrier, deletion of self roots, a fitted finite core, or a chosen rebound.
+
+- **Claim level:** `derived negative` for the bare closed- and open-domain formulations already analyzed; `FSC-local derivation target` for an emergent speed-gap theorem and finite turnaround under a candidate update; `speculation` for any specific maturity or wake-state mechanism not yet derived.
+- **Assumptions and proof burden:** within FSC, derive the candidate from source, wake, path-history, polarity, and absolute-time primitives; preserve the regular acceleration row; prove finite birth-neighborhood total variation, unique continuation, regulator independence, the speed-gap estimate, and a separate positive-separation turnaround criterion.
+- **Promotion target:** remain in `reference/priorities/field-speed-ceiling`. No Master Equation owner, canonical law, or reader-facing corpus claim receives this work without a separate explicit operator promotion decision.
+- **Next artifact:** inside the Field-Speed lane, test each FSC-local candidate update on the consumed stationary-mirror history against two predeclared obligations: an emergent gap inequality $\mathbf V\cdot\mathbf A^{\mathrm{candidate}}\le C(c_f^2-\|\mathbf V\|^2)$ and a finite positive-separation turnaround integral, while preserving the packet's regular partner row.
+
+
+## Uniform Field-Speed Geometry
+
+For a prescribed straight path
+
+$$
+\mathbf X(s)=c_fs\mathbf e_x,
+$$
+
+the forward endpoints of all earlier wake spheres coincide at the current architrino position, while the trailing endpoints are distributed along the rear ray. A point at distance $d>0$ behind the architrino receives exactly one emission with
+
+$$
+s=T-\frac{d}{2c_f},
+\qquad
+r=\frac d2,
+\qquad
+D_t=D_r=2c_f.
+$$
+
+Plainly: the leading direction contains a characteristic pile-up, but a trailing receiver meets successive ordinary fronts one at a time.
+
+The complete all-past spatial result and its zero-residual sub-cap limit belong in [uniform-translation-spatial-receiver-measure-limit.md](analysis/uniform-translation-spatial-receiver-measure-limit.md). It supplies no point self-action, coincidence measure, or ceiling adoption.
+
+
+## Markov Sufficiency Across Master-Equation Variants
+
+The Markov property is relative to a declared state description. Let $Z_H(T)$ be the proposed state at absolute time $T$ extracted from a complete admissible history $H$. A deterministic state description is Markov-sufficient only if
+
+$$
+Z_{H_1}(T)=Z_{H_2}(T)
+\quad\Longrightarrow\quad
+\Phi_{\Delta T}(H_1)=\Phi_{\Delta T}(H_2)
+$$
+
+for every admitted future interval $\Delta T\ge0$, where $\Phi_{\Delta T}$ is the physical transition expressed in the proposed state variables. A difference in the next acceleration is enough to falsify Markov sufficiency. Agreement of one next acceleration is not enough to prove it, because a hidden wake record may arrive later. In a stochastic description, the corresponding requirement is equality of the full conditional transition law given $Z(T)$, independent of the earlier history.
+
+Plainly: the present state is sufficient only when knowing more of the past cannot improve or change any future prediction made by the law.
+
+This separates four ideas that are often conflated:
+
+- **Deterministic** means one complete physical state selects one future, subject to the declared well-posedness and selection law.
+- **Causal** means influences arrive only through the declared past-supported wake structure.
+- **Single-root** means one past emission event contributes for an ordered transmitter-receiver pair on the selected interval.
+- **Markovian in $Z$** means $Z(T)$ already contains everything needed to determine the transition law.
+
+None of the first three implies the fourth. A deterministic, causal, single-root delay equation can remain non-Markovian in its instantaneous particle variables.
+
+| Variant and proposed state | What the restriction buys | Markov verdict | Exact reason |
+| --- | --- | --- | --- |
+| Canonical unrestricted Master Equation with instantaneous $X(T)$ or $(\mathbf X(T),\mathbf V(T),\mathbf q)$ | No reduction of the full causal-root family. | Not Markov-sufficient. | Past transmitter paths select root number, emission times, directions, weights, self-hits, and boundary-wake records. Equal instantaneous data can hide different consumed histories. |
+| A ceiling $\|\mathbf V\|\le c_f$ imposed only from a finite time onward | Constrains future velocities. | Not Markov-sufficient. | Previously emitted wakes and earlier super-field-speed self-hit candidates remain in flight; the future cap does not erase them. |
+| A universal non-strict ceiling $\|\mathbf V\|\le c_f$ | Removes super-field-speed interiors from the admissible history. | Not Markov-sufficient, and equality remains singular. | Delayed partner hits still use past positions; at equality the strict root-transversality floor may vanish and tangent or degenerate cases require extra event/selection data. |
+| A universal strict constraint $\|\mathbf V\|<c_f$ | Forbids ordinary noncoincident self-hits and makes the partner delay map monotone on the consumed interval. | Still not Markov-sufficient in instantaneous variables. | One unique partner root is still a root in the transmitter's past. Present position and velocity do not reconstruct a generally accelerated past path. |
+| A uniform margin $\|\mathbf V\|\le c_f-\delta$ with $\delta>0$ | Adds a positive root-conditioning margin on the declared interval. | Still not Markov-sufficient in instantaneous variables. | Better conditioning changes sensitivity, not the information consumed by the delayed law. |
+| A finite retained window $\mathbf Y_T(\theta)=\mathbf Y(T+\theta)$ for $\theta\in[-h,0]$, plus required branch and boundary records | Promotes the consumed memory into the state. | Candidate Markov state on an infinite-dimensional phase space. | It passes the information test only where the regularized history problem is well posed, the window is sufficient, and one continuation or transition kernel is actually selected. |
+| Canonical complete state $S(T)=(X(T),H_T,\mathcal N_{\mathrm{sea}}(T,\cdot),\mathcal B_T)$ | Includes instantaneous data, path history, Noether sea state, and branch/regularization data. | Intended Markov-sufficient ontic state, conditionally realized. | Sufficiency still requires all consumed boundary-wake data and a single-valued continuation law; the exact-mirror delayed-ignition family shows that a proposed ceiling response can lack such a selector even when the preceding labeled history is shared. |
+| Explicit independently evolving wake/medium degrees of freedom | May replace a history functional by local evolution of a larger state. | Possible, not established. | A local field-plus-architrino formulation is Markov only after its state, emission, propagation, reception, boundary rules, and unique evolution are derived and shown equivalent to the delayed law. |
+| Coarse assembly or observer state | Discards most substrate history. | At most approximately Markov on a certified domain. | Histories collapsed to one effective state must have matching effective transition laws within a declared residual; otherwise the discarded memory reappears as a memory kernel, environment variable, or prediction error. |
+
+Plainly: each speed restriction simplifies the geometry but leaves the same information deficit in the instantaneous state. The history-state variants can satisfy the Markov test only by admitting that the relevant past has become part of “the present state.”
+
+The exact-mirror ceiling proposal exposes a second, logically independent failure. Several continuations can share the same complete labeled preceding history because the proposed response has no activation-time selector. That is not merely non-Markovianity of $(\mathbf X,\mathbf V)$; it is failure to define a single-valued deterministic transition on the proposed complete state. A stochastic transition kernel could make such a process Markov, but only after a physical probability law over the continuations is supplied. Category theory cannot provide that selector.
+
+- **Claim level:** the Markov-sufficiency criterion is standard mathematics; failure of instantaneous Master-Equation states follows from the canonical delayed causal-root dependence; full-history, explicit-wake, and effective Markov formulations remain conditional closure targets.
+- **Assumptions and proof burden:** declare the state variables, history domain, wake and boundary records, speed regime, regularization, and continuation concept; then prove that equal declared states induce the same full future transition or transition kernel.
+- **Falsifier:** for a claimed Markov state, exhibit two admissible complete histories mapped to that same state whose next acceleration, later arriving wake record, event classification, or continuation law differs.
+- **Promotion target:** the Master Equation and field-speed-ceiling owners for dynamics and selection; `CT-001` and `CT-004` for history-object sufficiency and lawful composition if the category-theory lane retains those objects.
+- **Next artifact:** build a `markov_sufficiency_variant_matrix` containing matched-state/history-distinct pairs for the unrestricted, capped, strict sub-field, uniform-gap, finite-history, and complete-state variants, with an independent next-acceleration check and a later-wake-arrival check for each pair.
+
+
+## 2026-09-15 — Cap-only authority and emitted measure versus point response
+
+**Operator constraint:** the field-speed cap is the only authorized deviation from the Master Equation. The earlier proposed zero-impulse event completion, frozen-family suppression, and almost-everywhere join must not be treated as consequences of that authorization. The historical conditional proofs remain records of their stated extended model, not proofs for cap-only dynamics.
+
+**Correction to the discussion above:** the canonical Master Equation's receiver-turning section states that $D_r=0$ does not silence an otherwise ordinary root. On the prescribed straight mirror passage with $c_f=1$, the partner crossover root at $s=0$ has $r=t>0$, $D_t=2$, and $D_r=0$. Its canonical partner acceleration is $-K\mathbf e/(2t^2)$. Clause 4 of the proposed event completion suppresses that root separately; the speed cap does not, since the contribution is backward. This is a derived partner-channel result, not a complete crossover solution or an adjudication of the degenerate self-family. In particular, the preceding statement that the straight ordinary ledger is zero uses the additional suppression rule and is not available under cap-only authority.
+
+The operator asks whether the emitted potential at zero radius is already fixed by the integral over the spherical isochron. The [canonical wake transport](../../../content/markdown/aaa/dynamics/master-equation.md#autonomous-emission-labeled-wake-transport) specifies a conserved signed emission measure: per unit emission time and with $c_f=1$, its surface density at positive radius is $q/(4\pi R^2)$ and its scalar surface integral is $q$. The corresponding normalized surface measures have a point-supported weak limit as $R\downarrow0$. This fixes the total weight of the source measure, not a finite pointwise density, scalar-potential value, or receiver acceleration at zero radius. The continuous emission measure is $q\,dT_e$; a single emission-time label is not an extra finite pulse.
+
+**Theory level and grade:** derived normalization and distinction between integrated measure and point evaluation; unresolved coincidence response. The proposed next analysis keeps the canonical partner reception and asks whether the complete capped ledger has a finite outgoing continuation through crossover. A finite total source measure alone cannot justify replacing the singular receiver kernel or choosing a zero-impulse event. **Falsifier:** an existing canonical reception theorem converting this source measure into a finite coincidence response, with the same kernel and complete partner/self census, would resolve or overturn this stated gap. No such theorem is supplied by the surface-normalization identity itself.

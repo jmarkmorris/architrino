@@ -10,9 +10,39 @@ A prescribed path is a comparison chart, not a retained object. Exact reconstruc
 
 Plainly: precise geometry can make a candidate testable, but geometry alone cannot make it physical.
 
-## Proposed collinear encounter comparison
+## Collinear encounters
 
-The developed [collinear encounter comparison and numbered notes](manuscript.md#56-collinear-encounter-comparison) now own this synthesis. The table separates the unchanged stationary history, conditional reversal, quintic self-response modification, sharp capped encounter, extended event branches, strict-speed comparisons and smoothed numerical evolution. Its cells distinguish supported stages, conditional results, scoped obstructions and stages not reached. The numbered notes retain the equation and history differences, source evidence, claim boundaries and conditions that would change each conclusion. This documentation does not adopt or reactivate a modified law.
+The [collinear manuscript](../collinear-research/manuscript.md) owns the comparison of equations, histories and encounter stages.
+
+## Proposed organization by research question — 2026-09-26
+
+Status: the [reorganization is complete](analysis/research-reorganization-completion.md). Current collinear, braid and shared equation research have separate owners. The former ceiling directory is under dormant-deferred. Speed-condition discussion remains a separate follow-up; no equation or research-task authorization changed.
+
+The current division mixes two organizing principles: `braid-program` names an object being investigated, while `field-speed-ceiling` names a proposed change to the equation. Inspection of the two manuscripts and work queues shows that both contain collinear work, and the field-speed-ceiling manuscript also contains circular-binary and three-binary research. The collinear comparison is in the Braid Program manuscript, its capped cases depend on the field-speed-ceiling analyses, and some original-equation proofs and proposed changes are owned by Master-Equation Closure. A simple rename of either directory would leave this overlap unresolved.
+
+The recommended arrangement gives each research question one main account:
+
+| Proposed owner | Material it would own |
+| --- | --- |
+| `collinear-research/` | Motion along one line: approach, first wake-speed arrival, coincidence, passage, braking, reversal and recurrence. Its manuscript would contain the existing comparison and all equation alternatives tested on those encounters. |
+| `braid-program/` | Circular and other noncollinear binaries, braid configurations and assemblies, including their formation, persistence and stability. Circular binaries remain here as building blocks and comparison cases; they are not automatically established braids. |
+| `master-equation-closure/` | General questions about whether the equation determines motion, shared definitions of proposed changes, and results that apply across geometries. Campaigns link to these definitions rather than maintaining separate copies. |
+
+The field-speed-ceiling material would be divided by subject: general ceiling definitions and results applicable across geometries go with Master-Equation Closure; collinear results go with collinear research; circular and braid results go with the Braid Program. Thus `field-speed-ceiling/` would cease to be a competing current campaign directory after migration. Historical records must retain their provenance; their preservation and eventual location require a file-level decision, not deletion or a blanket rename. Mixed manuscripts and mixed analyses must be divided by argument, preserving shared proofs in one owner and linking their applications.
+
+Each experiment must identify its equation as well as its geometry and complete starting history. The Master Equation is the baseline. A proposed modification is recorded explicitly without adopting it merely by including it in the comparison. In particular, these speed choices require separate entries:
+
+| Choice | What still has to be specified |
+| --- | --- |
+| Master Equation | No imposed architrino speed limit. Each result retains its actual history and mathematical assumptions. |
+| Speed at most wake speed | Equality is allowed. Specify the acceleration response at the ceiling, including turning and slowing. The existing proposal removes the net speed-increasing component after summing the acceleration contributions. |
+| Speed strictly below wake speed | Equality is excluded. A restriction alone does not change acceleration or prevent finite-time arrival at the excluded speed; a proposed mechanism must explain how the inequality is maintained. |
+| Speed at most a fixed value below wake speed | Specify that lower value and the acceleration response there. This imposes a uniform gap below wake speed, which is stronger than merely requiring strict inequality at every finite time. |
+| Modified acceleration that approaches wake speed without attaining it | Specify the actual formula and prove the claimed behavior. This is a possible class of modifications, not an adopted equation or an established result. |
+
+Self interaction and any coincidence rule must also be stated separately. Neither follows merely from writing a speed inequality. The existing [ceiling response definition](../master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md#13-the-velocity-constraint-and-response-order) and [lower-cap geometry](../master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md#211-strict-gap-control-and-its-boundary) explain those distinctions; the [collinear comparison](../collinear-research/manuscript.md#1-collinear-encounter-comparison) records their present consequences.
+
+Before moving files, prepare a source-to-destination map covering the affected manuscripts, analyses, queue items and evidence. Identify relative links, script and test paths, declared reproduction commands, generated indexes and any recorded content digests. A bounded `rg` search of `scripts/`, `tests/` and `src/` already finds field-speed-ceiling receipt paths in the circular-binary and six-path instruments and tests; this establishes that moving the directory is not only a Markdown-link change, but is not a complete dependency inventory. Preserve existing task identifiers and claim grades. Update executable paths and validate affected consumers together with the move, under the existing generated-artifact rules. The recommendation should be revised if the file-level map reveals a subject that cannot be assigned without duplicating a current definition or breaking a necessary scientific distinction.
 
 ## Composition, Identity, and Taxonomy
 
@@ -177,7 +207,7 @@ $$
 
 Second, a spatial far-distance law concerns changing the observation distance while retaining a specified source family. Cancellation between different contributions can remove the leading term and leave a faster-decaying remainder. The conventional electrostatic dipole, whose distant field has inverse-cube magnitude, is a comparison example of cancellation within an inverse-square theory; it is not evidence for an inverse-cube primitive law. See [Feynman, Volume II, Chapter 6, section 6–2](https://www.feynmanlectures.caltech.edu/II_06.html#Ch6-S2).
 
-Third, an event-time singularity concerns approaching a particular causal event along a history. The [speed-crossing geometry](analysis/speed-crossing-opposing-interaction-geometry.md) contains terms of order $t^{-3}$, where $t$ is elapsed time from wake-speed crossing. A representative newborn self row has $r\propto t$ and $|D_t|\propto t$, so its inverse-square spatial factor and growing causal weight combine into $t^{-3}$. Other constructions develop singular weights even at positive limiting range. These powers describe coupled history geometry; they do not independently identify a replacement radial law.
+Third, an event-time singularity concerns approaching a particular causal event along a history. The [speed-crossing geometry](../master-equation-closure/analysis/speed-crossing-opposing-interaction-geometry.md) contains terms of order $t^{-3}$, where $t$ is elapsed time from wake-speed crossing. A representative newborn self row has $r\propto t$ and $|D_t|\propto t$, so its inverse-square spatial factor and growing causal weight combine into $t^{-3}$. Other constructions develop singular weights even at positive limiting range. These powers describe coupled history geometry; they do not independently identify a replacement radial law.
 
 ### A restriction on recovery by finite assembly summation
 
@@ -216,6 +246,10 @@ A microscopic law that changes at short distance but already approaches inverse 
 The classical Liénard–Wiechert description contains moving-source angular and velocity dependence, transverse acceleration-dependent radiation with inverse-distance field amplitude, and an associated magnetic field. Its causal emission time is necessary but is not the whole law. These are observer-level comparison and recovery targets here. [Feynman, Volume II, Chapter 21](https://www.feynmanlectures.caltech.edu/II_21.html#Ch21-S1) explicitly distinguishes the complete fields from a merely delayed Coulomb term.
 
 One sufficient recovery route would derive effective charge and current, their continuity equation, Maxwell field equations, and outgoing boundary conditions from retained assembly and wake dynamics. For effective charge and current concentrated on a point-particle trajectory, their causal solution would supply the Liénard–Wiechert target; a finite assembly would require a controlled approximation to that source description. The effective propagation speed and observer-variable map would also need derivation. Maxwell equations cannot serve as microscopic premises for that argument. The current per-hit law's absence of an explicit transmitter-acceleration input neither completes this recovery nor by itself proves it impossible through assembly and wake dynamics.
+
+### Classical point-charge comparison
+
+The [collinear discussion](../collinear-research/brainstorming.md#what-classical-point-charge-theory-already-knows) distinguishes familiar point-charge singularities from the original encounter obstruction.
 
 ### Interpretation and next mathematical question
 
@@ -972,3 +1006,66 @@ Plainly: the first success condition is a coherent selection law, not a numerica
 #### 13. Immediate next artifact
 
 Construct the symbolic ledger for three neighboring states $(n-1,n,n+1)$ under both the orbital-frequency and return-cadence interpretations. Derive the adjacent-row ratios and the phase-lock residual before selecting numerical values for $m_0$, $N$, or $L_*$.
+
+## Existing circular and braid proposals from the ceiling investigation
+
+The following discussion retains its original conditional status. No speed condition is selected by transferring it.
+
+## Fixed-Speed Circular Geometry
+
+For a constituent moving on a circle of radius $R$ at speed $c_f$, the required transverse acceleration is
+
+$$
+a_\perp=\frac{c_f^2}{R}.
+$$
+
+A same-path emission separated by angular advance $\theta$ would require
+
+$$
+\theta=2\sin\left(\frac{\theta}{2}\right).
+$$
+
+Only $\theta=0$ solves this equation, so a uniform field-speed circle has no nonzero ordinary same-path chord crossing. A phase-offset partner can instead satisfy
+
+$$
+\theta=2\left|\sin\left(\frac{\theta+\phi}{2}\right)\right|,
+$$
+
+which constrains phase and root topology but does not select a radius because $R$ cancels from the idealized chord equation.
+
+Plainly: circular geometry can select which delayed partner hits exist, but amplitude balance and an all-label closure condition are still required to select a physical scale.
+
+The complete prescribed circular root census belongs in [circular-binary-all-root-certificate.md](analysis/circular-binary-all-root-certificate.md). It establishes neither local continuation nor a retained Braid.
+
+
+## Capped-Braid Closure Conditions
+
+An equal-radius planar candidate at field speed requires every persistent label to satisfy
+
+$$
+A_{\perp,\mathrm{net}}(R,\Phi)=\frac{c_f^2}{R},
+\qquad
+A_{\parallel,\mathrm{net}}(R,\Phi)=0,
+\qquad
+A_{z,\mathrm{net}}(R,\Phi)=0.
+$$
+
+Here $\Phi$ contains all phase offsets and retained root incidences. The first row supplies curvature, the second prevents tangential drift or speed change, and the third preserves planarity. These conditions must hold on one complete causal ledger with no exceptional constituent.
+
+For a fixed dimensionless root topology and phase pattern, inverse-square scaling suggests
+
+$$
+A_{\perp,\mathrm{net}}
+=
+\frac{\kappa |q|^2}{R^2}\,C_\perp(\Phi),
+$$
+
+and hence the schematic balance
+
+$$
+R
+=
+\frac{\kappa |q|^2}{c_f^2}\,C_\perp(\Phi).
+$$
+
+Plainly: this is a scale template, not a derived Braid law. The actual root multiplicity, transmitter factors, polarity, and any boundary response must be included in $C_\perp$.

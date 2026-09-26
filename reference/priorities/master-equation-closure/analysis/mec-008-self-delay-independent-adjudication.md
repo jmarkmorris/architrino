@@ -337,7 +337,7 @@ Equality forces speed one and a common velocity direction throughout that interv
 
 ## Preserved minimal controls and evidence independence
 
-The accepted [MEC-007 stationary mirror result](mirror-close-approach-causal-root-boundary.md) remains an input. For either label, use the inward coordinate $x$ and inward speed $u$. Its complete incoming history has $0\le u<1$ before its first speed-one endpoint. Consequently every earlier emission obeys
+The accepted [MEC-007 stationary mirror result](../../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md) remains an input. For either label, use the inward coordinate $x$ and inward speed $u$. Its complete incoming history has $0\le u<1$ before its first speed-one endpoint. Consequently every earlier emission obeys
 
 $$
 x(T)-x(s)-(T-s)=\int_s^T[u(v)-1]\,dv<0
