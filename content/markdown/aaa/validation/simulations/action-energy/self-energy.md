@@ -38,15 +38,15 @@ The factor $1/c_f$ from the delta change of variables cancels the emission facto
 
 ### Strict Delay and the Self Endpoint
 
-For receiver $i$, a causal root is an emission time satisfying $g_{ij}(T_r;T_t)=r_{ij}-c_f(T_r-T_t)=0$, where $r_{ij}=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$. Self-hits have $j=i$. Strict delay requires $T_t<T_r$, so every admitted sharp root has $r_{ij}=c_f\Delta>0$. The convention $H(0)=0$, with $H$ the step selecting positive delay, records exclusion of the zero-delay diagonal; implement that exclusion in the root domain. See [Causal Set and Delay Geometry](causal-set-and-delay-geometry.md).
+For receiver $i$, a causal root is an emission time satisfying $g_{ij}(T_r;T_t)=r_{ij}-c_f(T_r-T_t)=0$, where $r_{ij}=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$. Self-hits have $j=i$. Strict delay requires $T_t<T_r$, so every admitted causal root has $r_{ij}=c_f\Delta>0$. The convention $H(0)=0$, with $H$ the step selecting positive delay, records exclusion of the zero-delay diagonal; implement that exclusion in the root domain. See [Causal Set and Delay Geometry](causal-set-and-delay-geometry.md).
 
 The exclusion is not a prescription for multiplying undefined distributions at coincidence, nor does it bound the limit as positive delay approaches zero. At finite wake width, off-root history points can also have zero separation. Excluding one endpoint supplies no control of those points or of a neighborhood of the endpoint, and it does not select a continuation through a coincident self-root birth.
 
 ### Two Distinct Regularizations
 
-Mollification replaces the sharp delta by the Gaussian $\delta_\eta(g)=\exp[-g^2/(2\eta^2)]/(\sqrt{2\pi}\eta)$, where $\eta>0$ is a length measuring width in the distance gap $g$. In the time gap $\Delta-r/c_f$, the corresponding width is $\eta/c_f$; its normalized Gaussian equals $c_f\delta_\eta(g)$. Width and normalization must change together.
+Mollification replaces the delta constraint by the Gaussian $\delta_\eta(g)=\exp[-g^2/(2\eta^2)]/(\sqrt{2\pi}\eta)$, where $\eta>0$ is a length measuring width in the distance gap $g$. In the time gap $\Delta-r/c_f$, the corresponding width is $\eta/c_f$; its normalized Gaussian equals $c_f\delta_\eta(g)$. Width and normalization must change together.
 
-A Gaussian smooths the selector but leaves any inverse-distance singularity in the amplitude. For a concrete prescribed-history counterexample, use normalized wake-speed units $c_f=1$ and $\mathbf X_i(T)=(T/2,0,0)$, evaluated at $T_r=0$. Then $r_{ii}=\Delta/2$ and $g_{ii}=-\Delta/2$, so no positive-delay sharp self-root exists. Yet the Gaussian-only inverse-square magnitude integral is
+A Gaussian smooths the selector but leaves any inverse-distance singularity in the amplitude. For a concrete prescribed-history counterexample, use normalized wake-speed units $c_f=1$ and $\mathbf X_i(T)=(T/2,0,0)$, evaluated at $T_r=0$. Then $r_{ii}=\Delta/2$ and $g_{ii}=-\Delta/2$, so no positive-delay self-root exists. Yet the Gaussian-only inverse-square magnitude integral is
 $$
 \int_0^h \frac{4}{\Delta^2}\delta_\eta(-\Delta/2)\,d\Delta=\infty
 $$
@@ -65,7 +65,7 @@ $$
 
 Here $\mathbf r_{ij}=\mathbf X_i(T_r)-\mathbf X_j(T_t)$ and $\epsilon_c$ is a length controlling the spatial denominator. Its magnitude is bounded by $2/(3\sqrt3\,\epsilon_c^2)$, obtained by maximizing $r/(r^2+\epsilon_c^2)^{3/2}$ at $r=\epsilon_c/\sqrt2$. Since $\delta_\eta\le1/(\sqrt{2\pi}\eta)$, finite memory and finitely many fixed-amplitude transmitters give bounded auxiliary acceleration at fixed positive $\eta,\epsilon_c$. The bound is not uniform as either regulator vanishes. The kernel's continuous zero value at $\mathbf r_{ij}=0$ supplies no physical coincidence response or stored self-energy.
 
-The Gaussian has nonzero tails, so finite-width evaluation is an integral over emission bands and their complement, not automatically a discrete sharp-root sum. A separation floor at the roots alone does not control all sampled history points. Any omitted bands, old history, endpoint neighborhoods, or transmitters require an explicit bound; spatial normalization must also account for the truncated radial domain near a newly emitted surface.
+The Gaussian has nonzero tails, so finite-width evaluation is an integral over emission bands and their complement, not automatically a discrete causal-root sum. A separation floor at the roots alone does not control all sampled history points. Any omitted bands, old history, endpoint neighborhoods, or transmitters require an explicit bound; spatial normalization must also account for the truncated radial domain near a newly emitted surface.
 
 ### Regular Self-Hit Bounds
 

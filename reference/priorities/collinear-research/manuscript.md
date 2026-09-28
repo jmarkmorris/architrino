@@ -6,6 +6,8 @@ The [shared equation definition](../master-equation-closure/analysis/field-speed
 
 ## Speed regimes to explore
 
+The [assumption audit](analysis/master-equation-assumption-audit.md) separates the Master Equation's starting geometry from its chosen reception response. Inverse-square acceleration, linear addition and same-law self reception are commitments of the current law, not deductions from causal delay alone. The comparison below retains every tested equation and result; reconsidering those commitments has not adopted a replacement law. The isolated pair and exact collinearity are also experimental choices, not requirements imposed by the underlying point identities.
+
 Both collinear geometries and braids use exactly three top-level speed regimes. Here $v$ is the speed of an individual architrino and $c_f$ is the field propagation speed.
 
 | Speed regime | Meaning | Field speed ceiling? |
@@ -26,7 +28,7 @@ Here, *coincidence* means that both architrinos occupy the same position at the 
 
 The first table answers what we tried and what prevents each attempt from settling the encounter. The second follows the same numbered cases through the stages of motion. A result obtained after adding a rule is identified as such. The notes explain the mechanism and link to the exact analysis.
 
-Rows 1–3 examine unrestricted $v$; rows 4–6 and 9 examine $v\le c_f$; rows 7–8 and 10 examine $v<c_f$. These labels describe the speed restriction being tested, not the speeds successfully reached. Row 2 tests an assigned reversal against the unrestricted Master Equation; the candidate motion staying below or at $c_f$ does not make that equation a ceiling model. Row 8 uses a fixed lower cap as one choice within $v<c_f$. Equation modifications remain separate entries within their speed regime.
+Rows 1–3 examine unrestricted $v$; rows 4–6 and 9 examine $v\le c_f$; rows 7–8 and 10–12 examine $v<c_f$. These labels describe the speed restriction being tested, not the speeds successfully reached. Row 2 tests an assigned reversal against the unrestricted Master Equation; the candidate motion staying below or at $c_f$ does not make that equation a ceiling model. Row 8 uses a fixed lower cap as one choice within $v<c_f$. Equation modifications remain separate entries within their speed regime.
 
 | No. | Speed regime | What we tried | Starting conditions | How far the examination goes | Summary: result and remaining problem |
 | --- | --- | --- | --- | --- | --- |
@@ -40,6 +42,8 @@ Rows 1–3 examine unrestricted $v$; rows 4–6 and 9 examine $v\le c_f$; rows 7
 | [8](#collinear-note-8) | $v<c_f$ | Consider a fixed speed cap lower than wake speed | General complete histories obeying that lower cap; no one release experiment selected | Derived simpler wake-arrival geometry while the pair remains separated | **Only part of the problem was examined.** Easier wake calculations do not remove the interaction's divergence at zero distance. A complete encounter is still missing. |
 | [9](#collinear-note-9) | $v\le c_f$ | Spread wake reception over a finite width and soften the interaction at short distances; cap speed and omit self acceleration | Prescribed inward motion at wake speed; simulation starts at coincidence | Numerical outward motion, braking, turning and repeated crossings | **Turning occurs in the smoothed model.** We have not shown that it remains a solution when smoothing is removed. Different smoothing choices change the measured motion. |
 | [10](#collinear-note-10) | $v<c_f$ | Multiply the Master Equation acceleration by $1-v^2/c_f^2$ | Same stationary positions, history, charges and coupling as 1 | Derived strict speed at positive separation, then a finite coincidence limit with speed tending to $c_f$ | **Blocked at the endpoint.** No braking or turn occurs. A continuous endpoint velocity would equal $c_f$, forbidden by the requirement; contact and departure remain undefined. |
+| [11](#collinear-note-11) | $v<c_f$ | Multiply acceleration by $1-v^2/c_f^2$ and replace the inverse-square interaction by a finite short-distance response with length $\ell=0.5$ | Same stationary preparation and coupling as 1; acceleration changes with the equation | Numerical passage, outgoing braking, a turn and return through coincidence | **Passage obtained numerically; return depends on the chosen length.** The sensitivity study finds return at lengths 1 and 0.5, but continued separation through the tested interval at smaller lengths, with conditional analytical support for escape. Independent trajectory validation remains open. |
+| [12](#collinear-note-12) | $v<c_f$ | Use a response linear in delayed separation at every distance, with the same source weight and receiver factor $1-v^2$ | Stationary history at $x=\pm0.5$; $k=0.2862286103053385$ matches original release acceleration at separation one | Three numerical passages and two turns through $T=16$, compared with exact instantaneous controls | **Regular passage, but increasing excursions.** Crossing speeds rise from 0.432764 to 0.666169 to 0.937309; turns move from 0.831831 to 1.639889. The instantaneous version with the same speed factor repeats at distance 0.5. No breather or indefinite-growth theorem is established. |
 
 Rows 1 and 4 locate different mathematical problems. Row 1 encounters the architrino's own wake just beyond first wake-speed arrival, before coincidence. Row 4 prevents that speed crossing, but still has to explain the partner interaction at coincidence and immediately afterward. Rows 5–6 and 9 demonstrate what additional assumptions can accomplish; they do not resolve those problems under the original rules. Row 3 also changes the law, while rows 7–8 test restrictions on speed with different levels of completeness.
 
@@ -63,6 +67,8 @@ For rows 1–4 and 7, the shared incoming wake-speed positions are approximately
 | 8 | $v<c_f$ | Forbidden by the lower cap; lower-cap entry coordinates not calculated | No full approach calculated | Zero-distance problem remains | A constant-speed separating trial fails | No valid braking interval established | No turn derived |
 | 9 | $v\le c_f$ | Already imposed on the supplied past | Prescribed incoming motion | Simulation initialized here | Outward motion measured with smoothing | Measured with smoothing | Turns and crossings measured with smoothing |
 | 10 | $v<c_f$ | Not reached at positive separation; approached at the coincidence endpoint | Inward motion with speed strictly below $c_f$ | Continuous limiting speed equals $c_f$, forbidden; contact response undefined | No permitted continuation established | None during approach | No turn before coincidence; later motion undefined |
+| 11 | $v<c_f$ | Not reached; strict incoming bound derived | Compressed partner arrivals; finite response | First crossing measured near $T=2.054357$, speed about $0.580409c_f$; acceleration tends to zero | Labels pass through; retained-history acceleration opposes departure | Starts immediately after passage without an assigned start time | Turn measured near $T=11.768426$; return crossing near $T=22.190686$ |
+| 12 | $v<c_f$ | Remains below wake speed in the computed interval; no equality event | Finite incoming response and compressed partner arrivals | First passage at $T\approx1.984851$, speed 0.432764; zero limiting acceleration | Labels pass through and slow | Starts immediately after passage | First turn at distance 0.831831; return crossing speed 0.666169; second turn at distance 1.639889 |
 
 ### Why each attempt succeeds or runs into trouble
 
@@ -164,6 +170,51 @@ The [quadratic speed response](analysis/strict-speed-quadratic-response.md) mult
 For the mirror pair, write $x$ for half-separation and $u=-x'$ for inward speed, with $c_f=1$. The delayed equation becomes $u'=(1-u^2)F$, where $F>0$ is the original partner contribution evaluated on the modified history. Its exact identity $u=\tanh(\int_0^T F(t)\,dt)$ keeps speed below one while separation is positive. The source delay bounds make that integral finite at every such finite time.
 
 The same analysis proves that separation tends to zero in finite time and $u$ tends to one at that endpoint. Inward speed increases throughout, so there is no braking or turn. The incoming modified acceleration has a finite integral, but a continuous endpoint velocity would violate $v<c_f$ and the contact equation remains undefined. The candidate moves the difficulty to coincidence; it does not establish passage. These are derived results in the specified continuous mirror class, with an analytical self-check and no independent review or numerical trajectory.
+
+<a id="collinear-note-11"></a>
+### Note 11. A finite short-distance response permits a numerical passage and return
+
+The [finite-contact candidate](analysis/strict-speed-finite-contact-passage.md) adds a short-distance change to row 10's speed factor: $\mathbf r/R^3$ becomes $\mathbf r/(R^2+\ell^2)^{3/2}$, with $\ell=0.5$ and $c_f=1$. The causal arrival condition remains unchanged. The continuous partner acceleration at exact coincidence is defined to be zero under a strict speed gap. The same stationary history, charges and coupling are used; the modified equation changes the release acceleration. This is one specified equation in the strict-speed regime, not a result for the Master Equation alone.
+
+The incoming derivation bounds speed strictly below one through the finite contact limit. The numerical calculation then follows the same labels through coincidence, outgoing braking, a turn and a return crossing, without a velocity reset or assigned braking time. Three refinements through $T=24$ preserve the sequence; the finest first-crossing speed is about $0.580409$, and the largest sampled speed through the run is about $0.662823$. The turn occurs after first passage, at positive separation; the return is a second passage through coincidence. The first and return crossings have different speeds, so a periodic cycle has not been established. The [motion-sequence explanation](analysis/strict-speed-finite-contact-passage.md#what-the-turn-and-return-mean) distinguishes this measured excursion from a sustained bounded breather.
+
+The instrument passed analytical root and early-interval controls before the target runs. Later trajectory refinement checks consistency, not independent correctness. The result is measured for the chosen softened interaction and length; its physical justification, independent trajectory validation, long-time behavior and any limit removing the short-distance change remain open. This supplies the desired passage as a concrete comparison, while preserving those limitations.
+
+The [length-sensitivity study](analysis/strict-speed-finite-contact-passage.md#sensitivity-to-the-short-distance-length) repeats row 11 at lengths 1, 0.5, 0.25, 0.125 and 0.0625. First passage becomes faster across that sequence, with speeds about 0.3164, 0.5804, 0.8176, 0.9566 and 0.9968. The two larger lengths turn and return; the three smaller lengths keep separating through the runs to time 24. Their numerical outgoing states satisfy a derived sufficient condition for no later turn, conditional on state accuracy. Smaller lengths require substantially finer steps, and the smallest long run is not quantitatively settled. This supports sensitivity of the proposed model, not a result for vanishing short-distance length.
+
+The [acceleration audit](analysis/strict-speed-acceleration-balance.md) separates the factors along the length-0.5 saved path. Source-motion weighting changes a distance-only braking surplus into a return-acceleration surplus; the receiver-speed factor reduces the excess but leaves the second crossing faster. This is a diagnosis of the modified equation on its recorded history, not a conserved wake account or a new evolution experiment.
+
+The [derivation check](analysis/strict-speed-acceleration-balance.md#does-the-source-motion-weighting-survive-the-two-modifications) confirms that this weighting still follows from the unchanged wake-arrival condition when the distance response is softened. The receiver-speed factor can multiply that response consistently, but the arrival geometry does not derive it. The unresolved issue is why these two additions should describe architrinos and how the coupled paths and wakes account for the changing motion; the higher return speed does not by itself identify a wrong source weight.
+
+The [two-path action calculation](analysis/strict-speed-two-path-action.md) rejects one attempted justification of this modified equation. Adding the two prescribed-partner expressions produces an extra term depending on the partner's later reception of emissions. Correcting the static pair count does not remove it. This is a failure of that proposed derivation, not a missing term in the simulated causal equation, and it establishes no impossibility of a collinear breather.
+
+### Length comparison through the first two turns
+
+The [response comparison with springs](analysis/finite-passage-response-comparison.md) shows that this softened interaction already becomes linear in delayed separation near coincidence. That behavior supports a finite passage but does not establish a repeated cycle. A spring's regular center and the balance that keeps its oscillation amplitude constant are distinct properties; the latter must be checked for the actual delayed equation.
+
+Speeds are the magnitudes for either member. Turn distances are each member’s distance from the midpoint; the pair separation is twice the listed distance. Initial separation is one, with $c_f=1$. A dash means that event was not observed by $T=200$, not a zero distance or speed. The first turn follows first coincidence; the second turn, when present, follows second coincidence.
+
+| Length $\ell$ | First crossing speed $v/c_f$ | Distance at first turn | Second crossing speed $v/c_f$ | Distance at second turn |
+| --- | --- | --- | --- | --- |
+| 0.3 | 0.7628 | — | — | — |
+| 0.4 | 0.6643 | 3.379 | 0.7352 | — |
+| 0.5 | 0.5804 | 1.727 | 0.6628 | — |
+| 0.6 | 0.5093 | 1.274 | 0.5976 | — |
+| 0.7 | 0.4489 | 1.062 | 0.5385 | 6.349 |
+| 0.8 | 0.3976 | 0.938 | 0.4846 | 2.944 |
+| 0.9 | 0.3538 | 0.856 | 0.4358 | 2.025 |
+| 1.0 | 0.3164 | 0.798 | 0.3917 | 1.596 |
+
+The [extended experiment](analysis/strict-speed-finite-contact-passage.md#extended-runs-and-the-first-two-turns) uses the same softened equation and stationary preparation, with two time steps through $T=200$. At $\ell=0.5$, the pair keeps separating after the second crossing rather than making a second turn. At lengths 0.7 through 1, the second turn is farther out than the first. These results do not establish a breather. Conditional escape inequalities support continued separation for lengths 0.3 through 0.8; exact trajectory validation remains open.
+
+<a id="collinear-note-12"></a>
+### Note 12. A linear delayed attraction still produces growing excursions
+
+The [linear-response comparison](analysis/linear-delayed-response-comparison.md) removes the short-distance singularity everywhere while retaining the same delayed arrival weighting and strict-speed receiver factor. Both members begin at rest at distance 0.5 from the midpoint. The response coefficient is chosen to match the original inverse-square release acceleration at separation one; it does not match every softened-length row.
+
+The instantaneous equation with the same speed factor has an exact repeating solution with crossing speed 0.365164 and turning distance 0.5. The delayed equation instead gives crossing speeds 0.432764, 0.666169 and 0.937309, and turning distances 0.831831 and 1.639889, through time 16. Three numerical time steps preserve this sequence. Analytical controls passed before the target runs; independent full-trajectory validation remains open.
+
+The exact balance calculation explains the distinction: delay and arrival weighting remove the cancellation that keeps the instantaneous oscillator's position-and-speed quantity constant. Regular passage and stronger attraction at large separation are therefore insufficient to produce recurrence in this tested case. The comparison changes delay and its source weighting together; it does not identify either alone as the cause, prove unlimited growth or rule out other equations.
 
 **Scope of the comparison.** The [off-axis cancellation examples](../master-equation-closure/analysis/speed-crossing-opposing-interaction-geometry.md) use additional, noncollinear prescribed source histories. They can cancel selected local divergences, but are not complete coupled solutions for this collinear binary. The [transverse-moving rebound](../braid-program/manuscript.md#51-inward-approach-is-not-a-completed-breathing-cycle) likewise belongs to a different geometry. Neither supplies a missing stage in the tables above.
 

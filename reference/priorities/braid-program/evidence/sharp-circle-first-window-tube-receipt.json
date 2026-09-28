@@ -1,0 +1,347 @@
+{
+  "date": "2026-09-26",
+  "grade": "Derived first-window trajectory bound with interval-evaluated inequalities; not independently reviewed",
+  "script": "scripts/field-speed-ceiling/sharp-circle-first-window-tube.py",
+  "commands": [
+    "\"${AAA_VENV:-../.venv}/bin/python\" scripts/field-speed-ceiling/sharp-circle-first-window-tube.py --known --output=.local-data/braid-analysis/sharp-circle-defect/tube-known.json",
+    "\"${AAA_VENV:-../.venv}/bin/python\" scripts/field-speed-ceiling/sharp-circle-first-window-tube.py --target --known-receipt=.local-data/braid-analysis/sharp-circle-defect/tube-known.json --output=.local-data/braid-analysis/sharp-circle-defect/tube-target.json"
+  ],
+  "limitations": [
+    "Depends on companion mathematical proof, original defect evaluation, and outward-rounded backend.",
+    "Only [0,1] for the exact supplied radius-1.001 circular past; no all-past admissibility claim.",
+    "No certified continuation through ceiling release or time 300; no escape conclusion."
+  ],
+"records":[{"localPath":".local-data/braid-analysis/sharp-circle-defect/tube-known.json","rawSha256":"8228f327632d17f375caeb5abefed4cee2caba2a3bad376abc500beee993a639","result":{
+  "knownCasesPassed": true,
+  "references": [
+    "L=0, delta=3, t=2 gives p=q=6",
+    "L=delta=1, t=log(2) gives p=1/4, q=3/4",
+    "Exact signed dyadic round trip and directed decimal rounding"
+  ],
+  "nonzeroLControl": {
+    "position": {
+      "lower": "0.249999999999999999",
+      "upper": "0.250000000000000001",
+      "binary": [
+        [
+          0,
+          191561942608236107294793378393788647952342390272950271,
+          -179,
+          177
+        ],
+        [
+          0,
+          95780971304118053647396689196894323976171195136475137,
+          -178,
+          177
+        ]
+      ]
+    },
+    "velocity": {
+      "lower": "0.749999999999999999",
+      "upper": "0.750000000000000001",
+      "binary": [
+        [
+          0,
+          574685827824708321884380135181365943857027170818850815,
+          -179,
+          179
+        ],
+        [
+          0,
+          1149371655649416643768760270362731887714054341637701635,
+          -180,
+          180
+        ]
+      ]
+    }
+  },
+  "sourceSha256": "a04e7513de70c30442f904bcd72d79459f0e5487788a1ddb636fd499f088b7dd",
+  "backend": "mpmath.iv 1.3.0, 180-bit interval arithmetic"
+}},
+{"localPath":".local-data/braid-analysis/sharp-circle-defect/tube-target.json","rawSha256":"587156c97646b67973bdd4707ec4fd45b4157c4b06ac80d9efa06ecacd56f699","result":{
+  "inputs": {
+    "range0": "1.4780",
+    "J0": "1.6706",
+    "power0": "0.8995",
+    "sourceUpper0": "-0.4798",
+    "kUpper": "4.947768",
+    "radius": "1.001",
+    "rho": "0.01",
+    "sigma": "0.01",
+    "eta": "0.02",
+    "delta": "0.000053736821978284"
+  },
+  "defectInputManifestSha256": "1a859eb2a00ebca187bff08ce7f4ff4b90f2f53342edc85eac0f44266dbcdce7",
+  "defectInputRawPath": ".local-data/braid-analysis/sharp-circle-defect/target128-final.json",
+  "defectInputRawSha256": "640e56866244dfccc3c95e6249ac81ff578728660062c085fe063301d3896afd",
+  "defectEvaluatorSha256": "43a19e9c6aebb5fb510c762409b775ed217ad33831ddfc467ec9b754cd728e09",
+  "checkedTimeBoxes": 512,
+  "bounds": {
+    "rangeFloor": {
+      "lower": "1.447999999999999999",
+      "upper": "1.448000000000000001",
+      "binary": [
+        [
+          0,
+          1109526771586903533451443247656823848939967124460927975,
+          -179,
+          180
+        ],
+        [
+          0,
+          1109526771586903533451443247656823848939967124460927977,
+          -179,
+          180
+        ]
+      ]
+    },
+    "JFloor": {
+      "lower": "1.610024580831888003",
+      "upper": "1.610024580831888004",
+      "binary": [
+        [
+          0,
+          1233677745404670100869651972053611486533308891909149829,
+          -179,
+          180
+        ],
+        [
+          0,
+          1233677745404670100869651972053611486533308891909149833,
+          -179,
+          180
+        ]
+      ]
+    },
+    "rootSignMargin": {
+      "lower": "0.022200491616637760",
+      "upper": "0.022200491616637761",
+      "binary": [
+        [
+          0,
+          1088708941040893294438483475540523764004638862544959083,
+          -185,
+          180
+        ],
+        [
+          0,
+          272177235260223323609620868885130941001159715636239773,
+          -183,
+          178
+        ]
+      ]
+    },
+    "sourceTimeUpper": {
+      "lower": "-0.459800000000000001",
+      "upper": "-0.459799999999999999",
+      "binary": [
+        [
+          1,
+          704641449690135697073167963083712162627896248380020281,
+          -180,
+          179
+        ],
+        [
+          1,
+          88080181211266962134145995385464020328487031047502535,
+          -177,
+          176
+        ]
+      ]
+    },
+    "accelerationUpper": {
+      "lower": "1.465681806883276927",
+      "upper": "1.465681806883276928",
+      "binary": [
+        [
+          0,
+          561537708344220184435008041735536395142076591663156527,
+          -178,
+          179
+        ],
+        [
+          0,
+          561537708344220184435008041735536395142076591663156533,
+          -178,
+          179
+        ]
+      ]
+    },
+    "positionLipschitzUpper": {
+      "lower": "6.506751907827792755",
+      "upper": "6.506751907827792756",
+      "binary": [
+        [
+          0,
+          1246446035533338433281064753754309466972570876907163595,
+          -177,
+          180
+        ],
+        [
+          0,
+          623223017766669216640532376877154733486285438453581809,
+          -176,
+          179
+        ]
+      ]
+    },
+    "activeMarginOnBootstrapTube": {
+      "lower": "0.820874719657111178",
+      "upper": "0.820874719657111179",
+      "binary": [
+        [
+          0,
+          1257986847484059483495722343191194405319923468864375631,
+          -180,
+          180
+        ],
+        [
+          0,
+          314496711871014870873930585797798601329980867216093909,
+          -178,
+          178
+        ]
+      ]
+    },
+    "positionErrorAt1": {
+      "lower": "0.000044992163416491",
+      "upper": "0.000044992163416492",
+      "binary": [
+        [
+          0,
+          1129681548241833483343619459851481609028019135595888251,
+          -194,
+          180
+        ],
+        [
+          0,
+          141210193530229185417952432481435201128502391949486033,
+          -191,
+          177
+        ]
+      ]
+    },
+    "velocityErrorAt1": {
+      "lower": "0.000134190370747610",
+      "upper": "0.000134190370747611",
+      "binary": [
+        [
+          0,
+          842326609092009479013728960600355219453849199437476289,
+          -192,
+          180
+        ],
+        [
+          0,
+          842326609092009479013728960600355219453849199437476299,
+          -192,
+          180
+        ]
+      ]
+    },
+    "actualForwardAccelerationLower": {
+      "lower": "0.899025315053791872",
+      "upper": "0.899025315053791873",
+      "binary": [
+        [
+          0,
+          1377752286445486908446545099074333962799482177620916777,
+          -180,
+          180
+        ],
+        [
+          0,
+          344438071611371727111636274768583490699870544405229195,
+          -178,
+          178
+        ]
+      ]
+    }
+  },
+  "comparisonLipschitzConstant": "6.506751907827792756",
+  "endpointEnclosure": {
+    "position": [
+      {
+        "lower": "0.541949658372256496",
+        "upper": "0.542039642699089480",
+        "binary": [
+          [
+            0,
+            415267717414637455916664467218422330316046842263646315,
+            -179,
+            179
+          ],
+          [
+            0,
+            830673335408894276272213653609189812195695737644436365,
+            -180,
+            180
+          ]
+        ]
+      },
+      {
+        "lower": "0.841964697088240975",
+        "upper": "0.842054681415073959",
+        "binary": [
+          [
+            0,
+            645153571927114066058033615929728145635960644005219263,
+            -179,
+            179
+          ],
+          [
+            0,
+            322611261108461874138737987757950360708880835281895635,
+            -178,
+            178
+          ]
+        ]
+      }
+    ],
+    "velocity": [
+      {
+        "lower": "-0.840654448484836297",
+        "upper": "-0.840386067743341075",
+        "binary": [
+          [
+            1,
+            1288299193712084702726965880769855173084591634219972925,
+            -180,
+            180
+          ],
+          [
+            1,
+            643943950711244497486770604212906015443796342207780023,
+            -179,
+            179
+          ]
+        ]
+      },
+      {
+        "lower": "0.541645927112190048",
+        "upper": "0.541914307853685271",
+        "binary": [
+          [
+            0,
+            830069968027601503099941424373227066401151605517791173,
+            -180,
+            180
+          ],
+          [
+            0,
+            415240630158598605426683048358635104299075277661102039,
+            -179,
+            179
+          ]
+        ]
+      }
+    ]
+  },
+  "tubeClosed": true,
+  "scope": "Sharp capped solution for supplied circular past on [0,1]; conditional on companion proof and interval backend; no long-time escape claim",
+  "knownReceiptSha256": "8228f327632d17f375caeb5abefed4cee2caba2a3bad376abc500beee993a639",
+  "sourceSha256": "a04e7513de70c30442f904bcd72d79459f0e5487788a1ddb636fd499f088b7dd",
+  "backend": "mpmath.iv 1.3.0, 180-bit interval arithmetic"
+}}]
+}

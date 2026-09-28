@@ -1080,7 +1080,7 @@ Second, keeping the environmental past stationary also conflicts with the old pu
 
 Thus imposing motion only on the two targets would already change the environmental history before release. An additive acceleration chosen to cancel these residuals would merely encode the desired trajectories; it supplies no independently derived preparation mechanism. The exact supplied past would require compensating environmental inputs as well. A physically specified preparation must include every participating architrino and its earlier coupled response in the history supplied to the delayed equation.
 
-At release itself, acceleration and jerk match exactly: the distance-one old pulses have finished, and the distance-$\sqrt2$ pulses have not begun reception. Smooth matching at one cut therefore coexists with the earlier contradictions. A different EOM-generated past might reach the same positions and velocities at release, but those instantaneous data would not reproduce this delayed state. The present control establishes a conditional forward response; neither an unforced origin of that exact input nor typical populated-universe behavior follows.
+At release itself, acceleration and jerk match exactly: the distance-one old pulses have finished, and the distance-$\sqrt2$ pulses have not begun reception. Smooth matching at one cut therefore coexists with the earlier contradictions. A different EOM-generated past might reach the same positions and velocities at release, but those instantaneous data would not reproduce this delayed state. The present control establishes a conditional forward response; neither an unforced origin of that exact input nor typical populated-universe behavior follows. Section 6.27 constructs a different, self-consistent complete past approaching rest in the remote past; it does not reproduce this supplied pulse or inherit its event certificate.
 
 ### 6.15. Signed reception error and a transient approach
 
@@ -1385,7 +1385,290 @@ These curves have full-law acceleration defects bounded continuously by $0.02580
 
 Independent receiver and source-error estimates yield positive-kernel comparisons with coefficients $\lambda=(20,38)$ and forcing bounds $q=(0.085,0.18)$. If $P,V$ denote their position and velocity error bounds, the scalar equation $P''=\lambda P+q$ bounds the twice-integrated vector acceleration inequality; no second derivative of the Euclidean error norm is assumed. Under the hypothesis that the solution remains inside every environmental displacement bound, the witness's vertical coordinate exceeds $1/16$ by $10339/2048$. Some environmental boundary must therefore occur first. Conversely, the global acceleration bound keeps every environmental displacement below $0.062479222<1/16$ through $5121/1024$, proving the other end of the event bracket.
 
-The theorem identifies an event of the actual solution, but not its unique first label or an exact crossing time. The numerical candidate near $5.02206$ remains only a narrower search guide. Reaching $1/16$ marks the limit of the current small-displacement proof class. It establishes no collision, acceleration singularity or modification of the Master Equation. The next maximum, any later damping pattern and continuation beyond this class require further analysis with the same complete past and law.
+The theorem identifies an event of the actual solution, but not its unique first label or an exact crossing time. The numerical candidate near $5.02206$ remains only a narrower search guide. Reaching $1/16$ marks the limit of this small-displacement proof class. It establishes no collision, acceleration singularity or modification of the Master Equation. Continuation beyond that class is established below; the next maximum and any later damping pattern remain unresolved.
+
+### 6.23. Regular continuation through the displacement boundary
+
+The [extended continuation](analysis/smooth-two-particle-beyond-class-boundary.md), with its [independent assessment](analysis/smooth-two-particle-beyond-class-boundary-independent-adjudication.md), proves unique regular evolution of the same population through $H=81/16=5.0625$. This is strictly beyond the first environmental boundary in Section 6.22. The actual solution crosses the former displacement limit without a changed equation, a replacement past or a state update at the crossing.
+
+The mathematical change is to allow displacement up to $B=3/32$ in the local existence argument, then prove a stricter bound on the resulting motion. The earlier stationary-field theorem gives a continuously differentiable field on this larger ball: its remainder series and differentiated series converge uniformly for every $B<1$. The same expressions for the remainder coefficients yield
+
+$$
+|R(y)|<198|y|^5,\qquad
+\|DR(y)\|<992|y|^4
+\qquad(|y|\le3/32).
+$$
+
+The enlarged displacement ball leaves every cross range at least $13/16$. Consequently every source time received through $H$ is at most $H-13/16=17/4$, which lies in the already accepted complete history and precedes the restart at $5$. The delayed terms therefore depend on fixed earlier source paths during this short continuation. Their simple causal roots vary smoothly with receiver position, and the acceleration is locally Lipschitz: nearby receiver positions give proportionately nearby acceleration values. Finite-dimensional ordinary differential equation existence and uniqueness apply to all 1278 potentially affected labels. Labels outside this finite causal set retain their stationary solution, with the infinite stationary sum still included analytically.
+
+The original stationary contribution and individually bounded changed rows give a whole-population acceleration bound $A_*=3.962883$. Let $P_0=0.062304432625$ and $V_0=0.177391004262$ be the accepted displacement and speed upper bounds at $5$. For $0\le h=t-5\le1/16$, integration gives
+
+$$
+\begin{aligned}
+|y_i(t)|&\le P_0+V_0h+\frac12A_*h^2<0.081132<\frac3{32},\\
+|y_i'(t)|&\le V_0+A_*h<0.425072<\frac12.
+\end{aligned}
+$$
+
+Thus neither the displacement nor the speed boundary can terminate the local solution before $H$. Jerk stays below $15939.657<65536$, cross roots remain simple with their retained complement margins, and positive own-history roots remain absent. Smooth joining at $5$ follows because this is an interior cut of the same equation with compatible position, velocity, acceleration and jerk. These strict bounds establish regular continuation across the earlier boundary. They also keep every initially unit-separated pair more than $0.837736$ of a lattice spacing apart.
+
+The two quadratic comparison curves from Section 6.22 and their residuals remain valid. Only the error comparison must be enlarged to cover the possible actual receiver positions. Independent receiver and source bounds permit $(\lambda,q)=(25,23/250)$ for the environmental witness and $(45,47/250)$ for the target in the scalar error equation $P''=\lambda P+q$. At the new endpoint the actual environmental witness satisfies
+
+$$
+z_{(-1,0,0)}(81/16)>0.06437605151>1/16.
+$$
+
+It has therefore moved outside the old displacement class. The larger existence neighborhood is supported by actual continuation and a verified displacement beyond the previous limit, not merely by relaxing a numerical stopping criterion. Both targets satisfy
+
+$$
+z'(t)>0.09526010667,\qquad z''(t)>0.08741526776
+\qquad(5\le t\le81/16).
+$$
+
+The selected pair continues upward and gains upward speed through this extension. Combined with the preceding sign intervals, this excludes a next vertical maximum through $81/16$. The old displacement ceiling is thus a removable restriction of the earlier proof for this fixed solution. Neither a future maximum nor a long-time growth or damping law follows; those questions require further evolution with the same complete past and full causal-root accounting.
+
+### 6.24. A wake-speed obstruction before the next maximum
+
+The [event certificate](analysis/smooth-two-particle-next-event-continuation.md), with its [independent assessment](analysis/smooth-two-particle-next-event-independent-adjudication.md), proves a first global speed-one event under the identical supplied past and unmodified equation:
+
+$$
+\frac{87}{16}<t_*\le\frac{351}{64},
+\qquad 5.4375<t_*\le5.484375.
+$$
+
+Every path remains below speed $0.948131$ through the lower endpoint. At the upper endpoint, the fixed-history auxiliary solution for the anchor $(-1,0,1)$ has speed greater than $1.0014633$, even after its velocity error is subtracted. The auxiliary equation agrees with the Master Equation before the first global speed-one event, so continuity forces an actual event in the bracket. Both selected targets retain $z_i'(t)>0.1320962439$ throughout $[5,t_*]$. Their preceding accepted rise therefore continues to this event without the next vertical maximum.
+
+The first actual label is unresolved among twelve possibilities, including both targets. The [numerical comparison](analysis/smooth-two-particle-next-event-evolution.md) suggests four downward-moving environmental anchors $(0,\pm1,1)$ and $(1,\pm1,1)$ near $5.46164723$; that numerical ordering is not promoted to an actual ordering. The continuous certificate instead proves $v_*\cdot a_*>1.4630814180$ for every possible first-event identity. Population displacement stays below $0.265391$ through the forcing endpoint. Consequently all distinct identities remain more than $0.469218$ apart in unit-lattice coordinates. This is a guaranteed lower separation bound, not a measured closest approach; contact does not precede the event.
+
+The [history audit](analysis/smooth-two-particle-next-event-history.md) establishes coverage of all 1502 potentially affected identities through $11/2$, with 1350 retained incoming histories containing every required earlier source. The infinite stationary complement remains in the original block sum. Later numerical curves use an auxiliary equation containing all cross contributions but omitting own-history roots. It equals the unchanged Master Equation before the first actual global speed-one event. Its values after a comparison crossing serve only a stopped error comparison; they are not a proposed continuation that discards newly received self interaction.
+
+The [root-birth theorem](analysis/smooth-two-particle-next-event-root-birth.md) now applies to the certified event. Let $v_*$ be a first-event unit velocity and $\alpha=v_*\cdot a_*>0$ the rate at which speed increases there. No positive own-history root exists at the endpoint, because all earlier path speeds were strictly smaller than one. A hypothetical $C^3$ extension would immediately create a root of delay $\tau=2h+O(h^2)$ and transmitter denominator $D_t=\alpha h+O(h^2)$, where $h=t-t_*>0$. Its same-identity acceleration contribution would be
+
+$$
+A_{\rm self}(t_*+h)=\frac{g v_*}{4\alpha h^3}+O(h^{-2}).
+$$
+
+The divergent contribution cannot coexist with a bounded continuous acceleration if the cross contribution stays bounded. At a first global speed event, positive cross separation and finite disturbed-source support ensure that all received cross emissions remain in an earlier compact subunit portion of the histories. Their transmitter denominators remain positive, providing that bounded remainder. The argument applies to curved three-dimensional paths. It excludes the stated smooth continuation, without assuming a universal speed ceiling or deciding every possible nonsmooth continuation.
+
+The [continuous residual](analysis/smooth-two-particle-next-event-residual.md) and trajectory comparison close these event conditions with every generated relationship and the infinite stationary remainder retained. Independently verified earlier time-dependent source errors sharpen the comparison without changing any history. Exact rational error propagation and continuous polynomial signs establish actual arrival and transversality. Every required cross emission remains before $5$; the sharper computed cut before the forcing endpoint is below $4.778039$. Positive range and source-denominator margins exclude an earlier cross-root obstruction.
+
+The incoming solution reaches this endpoint with finite acceleration. The divergent own-history term belongs to a hypothetical smooth extension after it, and prevents that extension from satisfying the unchanged equation. Thus this fixed preparation reaches a genuine obstruction to $C^3$ continuation before the next target maximum. Section 6.25 extends the obstruction to continuous-velocity integral solutions. Singular event continuation, eventual settling and typical populated-universe behavior remain unresolved. In particular, the result retains the supplied-past restriction established in Section 6.14 and does not replace it with an unforced preparation.
+
+### 6.25. The obstruction persists for continuous-velocity integral solutions
+
+The outgoing acceleration need not be continuous for a trajectory to have finite continuous velocity. For example, an acceleration proportional to $t^{-1/2}$ has a finite time integral near zero. A divergence of acceleration alone therefore does not settle whether the first wake-speed event admits a weaker continuation. The [weaker-continuation theorem](analysis/smooth-two-particle-weaker-continuation.md) and its [independent assessment](analysis/smooth-two-particle-weaker-continuation-independent-adjudication.md) establish a nonintegrable contribution for any candidate in the following class.
+
+Translate the event to zero. Require position $X$ to be continuously differentiable across it, with $v(0)=e$ and $|e|=1$. Require velocity to be absolutely continuous on every compact interval $[a,b]$ strictly after zero: its change there is the integral of its acceleration. The acceleration may be unbounded or discontinuous, and its integrability at zero is not assumed. The complete ordinary causal-root equation is imposed almost everywhere. The incoming history remains the certified strictly subunit history, with positive endpoint projection $\alpha=e\cdot a(0-)$.
+
+All possible own-history roots at receptions approaching zero must have their emissions approaching zero as well. Earlier chords have a strict subunit margin, and the stationary remote past excludes arbitrarily old roots. Continuity of velocity therefore places every possible recent chord direction in a cone about $e$. Each same-identity row has positive weight, so its projection along $e$ is positive. The cross contribution $R$ remains continuous with $e\cdot R(0)=\alpha>0$. Integrating the projected equation on compact outgoing intervals and taking the continuous endpoint limit yields
+
+$$
+e\cdot v(t)\ge1+\frac{\alpha t}{2},
+\qquad
+e\cdot[X(t)-X(0)]\ge t+\frac{\alpha t^2}{4}>t.
+$$
+
+This inequality forces a simple root emitted strictly before the event. For
+
+$$
+F(t,s)=|X(t)-X(s)|-(t-s),
+$$
+
+one has $F(t,0)>0$ while $F(t,s_0)<0$ for a fixed small $s_0<0$. Strict subunit source speed makes $F(t,s)$ strictly increasing on the negative-emission history. Hence it has exactly one such root $s(t)<0$, with transmitter factor $D=1-n\cdot v(s(t))>0$. Its delay $\delta(t)=t-s(t)$ tends to zero.
+
+Implicit differentiation of this one branch gives
+
+$$
+\delta'(t)=\frac{n\cdot[v(t)-v(s(t))]}{D},
+\qquad
+|A_s(t)|=\frac{g}{\delta(t)^2D}.
+$$
+
+If $M$ bounds source and receiver velocity in a short interval straddling the event and the cone is chosen so that $e\cdot n\ge1/2$, then
+
+$$
+\left|\frac{d}{dt}\frac1\delta\right|
+\le\frac{2M}{g}|A_s|,
+\qquad
+\frac12|A_s|\le e\cdot v'-e\cdot R.
+$$
+
+For fixed $b>0$ these inequalities imply
+
+$$
+\frac{g}{4M}\left|\frac1{\delta(a)}-\frac1{\delta(b)}\right|
+\le e\cdot[v(b)-v(a)]-\int_a^b e\cdot R(t)\,dt
+\qquad(0<a<b).
+$$
+
+The left side diverges as $a\downarrow0$; the right side has a finite limit. This contradiction excludes the candidate continuation. It requires neither a future Taylor expansion nor a prescribed rate of root birth. A second proof uses the incoming chord deficit to obtain $e\cdot A_s(t)\ge k/t$ for some $k>0$. An everywhere classical outgoing equation is also excluded without an absolute-continuity premise: the mean value theorem applied to $e\cdot v(t)-k\log t$ contradicts its finite endpoint limit.
+
+For the infinite lattice, boundedness of the cross field requires an explicit population neighborhood. Retain the original stationary summation and a uniform displacement bound $|y_i|<7/20$ for every label near the event. Continuity of the population positions in the supremum norm supplies this neighborhood from the certified endpoint bound below $0.265391$. Distinct-label ranges exceed or equal $3/10$, so receptions within $3/20$ after the event sample only emissions at least $3/20$ before it. The cross field uses fixed earlier smooth histories and a regular stationary complement; it is consequently continuous. The argument needs neither a uniform outgoing population-speed bound nor finite future disturbed support. Coordinatewise continuity without any common position neighborhood is a different population class.
+
+The result is a derived nonexistence theorem for this fixed preparation and the stated integral class. It is stronger than the earlier $C^3$ obstruction. A velocity jump or a continuous singular variation would require a separately defined reception-time acceleration measure; the ordinary equation imposed only on an almost-everywhere derivative does not determine that missing component. No generalized event rule is selected by this theorem, and no conclusion about eventual damping follows without an admitted all-time continuation.
+
+The [domain audit](analysis/smooth-two-particle-weaker-continuation-domain.md#a-finite-jump-to-a-strictly-superunit-right-velocity-is-still-excluded) further excludes a finite jump to an outgoing velocity limit $w$ with $|w|>1$, under locally absolutely continuous outgoing velocity and bounded cross contribution. The negative-emission root still exists, and entirely outgoing chords have length greater than their delay, leaving no additional self row to cancel it. Its direction tends to one point in the finite intersection of the segment $[e,w]$ with the unit sphere. Projection along that limiting direction and the reciprocal-delay identity reproduce the divergent-integral contradiction. An assigned finite velocity change at the event cannot balance that divergence afterward.
+
+A subunit outgoing limit instead gives no nearby self roots and no velocity atom from the bounded ordinary acceleration. A nonzero jump would therefore require a singular event measure derived separately from the history interaction. A unit outgoing limit in a changed direction is outside this ordinary-equation exclusion; Section 6.26 addresses it within a direct measure interpretation. The ordinary positive-range fold theorem supplies neither a nonzero atomic velocity change nor an extension through vanishing self range. These distinctions preserve the gap between ruling out ordinary integral solutions and ruling out every possible generalized event formulation.
+
+### 6.26. The direct history measure supplies no finite event impulse
+
+An instantaneous velocity change requires more than a large acceleration. An acceleration measure assigns a vector velocity change to each time interval; a nonzero amount concentrated at one time is called an atom. For a velocity $v$ of bounded variation, the sum of the magnitudes of its changes over arbitrary time partitions is bounded. Its distributional derivative $Dv$ is then a finite vector measure, and an event atom equals the jump $v(0+)-v(0-)$. This class includes ordinary acceleration, finite jumps and singular continuous changes that an almost-everywhere derivative does not record.
+
+The [event-measure analysis](analysis/smooth-two-particle-event-measure.md), with its [independent assessment](analysis/smooth-two-particle-event-measure-independent-adjudication.md), tests a direct measure interpretation of the unchanged history integral. Translate the certified event to zero. For one first-event identity define
+
+$$
+\Gamma=\{(t,s):s<t,\ |X(t)-X(s)|=t-s\},
+\qquad \pi(t,s)=t.
+$$
+
+The set $\Gamma$ contains the positive-delay geometric incidences. Let $\nu$ be a nonnegative scalar measure carried by this set, with direction $n=[X(t)-X(s)]/(t-s)$. On every simple graph emitted from the fixed smooth past, including graphs obtained by composing the smooth source root map with a locally Lipschitz receiver, retain the canonical weight
+
+$$
+d\nu(t,s(t))=\frac{g}{(t-s(t))^2|1-n\cdot v(s(t))|}\,dt.
+$$
+
+The same-identity acceleration measure assigns each contribution to its reception time:
+
+$$
+\mu_{\rm self}(E)=\int_{\Gamma\cap\pi^{-1}(E)}n\,d\nu,
+\qquad Dv=R(t)\,dt+\mu_{\rm self}.
+$$
+
+Here $E$ is a reception-time set and $R$ is the complete cross contribution. Require finite scalar weight over compact reception intervals containing the event, and add no measure on the excluded diagonal. These are explicit interpretation hypotheses. The formal delta expression is not assumed to define a measure on every degenerate or nonsmooth history. The theorem also allows additional positive contributions on singular incidences wherever a measure with those properties can be defined.
+
+The first decisive fact is independent of the proposed outgoing velocity. Every earlier self chord satisfies
+
+$$
+|X(0)-X(s)|<-s\qquad(s<0).
+$$
+
+There is therefore no point of $\Gamma$ with reception time zero. Its entire event fiber is empty, giving
+
+$$
+\mu_{\rm self}(\{0\})=0.
+$$
+
+The bounded cross density also has zero atom. The measure equation consequently requires $v(0+)=v(0-)=e$, with $|e|=1$. This proves that the direct positive-delay measure supplies no nonzero instantaneous jump. It does not construct a continuation with zero jump.
+
+In fact, no bounded-variation continuation can satisfy this measure equation. The matching velocity traces place all sufficiently recent chord directions in a common cone, $e\cdot n\ge1/2$. Positivity of the self measure and the incoming cross projection $\alpha=e\cdot R(0)>0$ yield
+
+$$
+D(e\cdot v)\ge\frac{\alpha}{2}\,dt,
+\qquad
+e\cdot[X(t)-X(0)]\ge t+\frac{\alpha t^2}{4}>t.
+$$
+
+Thus there is a unique simple root emitted strictly before zero, with delay $\delta(t)\to0$. Although the receiver velocity may have jumps or singular continuous variation, its position is Lipschitz. The fixed smooth source and positive transmitter margin make the selected root Lipschitz on every compact outgoing interval. The reciprocal-delay identity therefore holds almost everywhere and can be integrated:
+
+$$
+(e\cdot\mu_{\rm self})([a,b])
+\ge\frac{g}{4M}
+\left|\frac1{\delta(a)}-\frac1{\delta(b)}\right|,
+\qquad 0<a<b,
+$$
+
+where $M$ bounds incoming and outgoing velocity near zero. For fixed $b$, the right side diverges as $a\downarrow0$. This contradicts finite reception weight and finite velocity variation. The result extends Section 6.25 by controlling singular velocity changes through a full measure equation, without assuming absolute continuity on outgoing intervals.
+
+The population qualification remains explicit. In the same uniform displacement neighborhood of radius $7/20$, every cross range is at least $3/10$. Sufficiently early outgoing receptions use only fixed smooth pre-event sources and the original regular stationary sum. Hence the complete cross contribution remains the bounded continuous density used above. The theorem does not cover an uncontrolled coordinatewise continuation of infinitely many paths.
+
+A fixed-path cutoff cannot turn the contradiction into a finite impulse. Restricting the same incidence measure to delays at least $\varepsilon$ gives nested positive pieces. If their reception weight is finite, cutoff removal converges to the same direct measure with zero event atom; if the positive weight diverges near zero, there is no finite positive measure limit there. Infinite positive accumulation is not a finite point contribution.
+
+The [domain audit](analysis/smooth-two-particle-event-measure-domain.md) distinguishes this conclusion from limits in which the histories or regularization change. Such measures can concentrate at a boundary, even when each approximant has no atom. Regular-chart agreement alone does not determine that concentration, its direction or its effect on the coupled paths. Appending a vector multiple of a reception-time delta formally leaves off-event data unchanged, but supplies extra boundary data and proves no solution of the full history equation. A uniquely derived varying-history limit remains a separate theorem target. The direct integral investigated here supplies neither a finite event impulse nor an outgoing bounded-variation solution.
+
+### 6.27. Self-consistent incoming growth and its stability consequence
+
+The preparation failure in Section 6.14 leaves a different possibility: motion that tends to rest as time tends to minus infinity while remaining nonzero at every finite time. The [incoming-history construction](analysis/smooth-two-particle-incoming-reachability.md), with its [independent assessment](analysis/smooth-two-particle-incoming-reachability-independent-adjudication.md), establishes such complete histories under the unchanged Master Equation. The result retains the unit cubic lattice, alternating polarity, original eight-source block prescription, $g=16$ and $c_f=1$. Its claim grade is derived. It is an exact nonlinear existence theorem, rather than a prescribed trajectory or a simulation.
+
+In this motion the two polarity sublattices move oppositely along a lattice axis:
+
+$$
+X_i(t)=i+\sigma_i q(t)e_3,
+\qquad \sigma_i=(-1)^{i_1+i_2+i_3},\qquad t\le0.
+$$
+
+Every architrino moves, and every delayed source contribution remains in its equation. Translation and inversion symmetry reduce the unknown histories to the scalar function $q$. They do not replace the population by two architrinos. This pattern also differs from the old pulse, which moved two selected labels in the same vertical direction.
+
+For a small complete history, all speeds are below one and all distinct labels remain separated. Each cross channel consequently has one simple positive-delay root; every self channel is empty. The full acceleration is the accepted stationary receiver field plus the actual correction from every moving source. If $q$ and its derivatives decay as $e^{\lambda t}$ in the past, a source at anchor distance $r$ is sampled at a time no later than $t-r+2b$, where $b$ bounds all displacements. Its correction is bounded by a constant times $e^{\lambda t-\lambda r}(r^{-3}+r^{-2})$. This makes the changing-source series absolutely convergent while preserving the original stationary block sum. The [domain analysis](analysis/smooth-two-particle-incoming-reachability-domain.md) verifies this infinite-population reduction and its complete roots.
+
+Linearization is taken at the already verified resting equilibrium. Its stationary receiver derivative is zero. The source displacement terms cancel on each complete cubic shell, whereas the transmitter-velocity terms give
+
+$$
+h''(t)=\frac g3\sum_{d\ne0}\frac{h'(t-|d|)}{|d|^2}.
+$$
+
+An exponential $h(t)=ae^{\lambda t}$ therefore requires
+
+$$
+\lambda=\frac g3\sum_{d\ne0}\frac{e^{-\lambda|d|}}{|d|^2}.
+$$
+
+The right side is positive and strictly decreasing in $\lambda>0$, whereas the left side increases. There is exactly one positive root, with $2<\lambda<4$ at $g=16$. This linear mode identifies growth from the remote past; nonlinear existence requires the next step.
+
+The exact nonlinear acceleration differs from this linear operator by a quadratically small remainder with a controlled Lipschitz bound. A convergent iteration on complete past functions gives, for every $0<a\le1/2000000$, an actual solution with
+
+$$
+\left|q^{(k)}(t)-\lambda^kae^{\lambda t}\right|
+\le(2\lambda)^k\,150000a^2e^{2\lambda t},
+\qquad k=0,1,2,\quad t\le0.
+$$
+
+The proof controls the correction in a weighted $C^2$ norm, rather than solving the delay equation backward from an endpoint. Its integrated linear operator has norm below $1/2$ on the faster-decaying correction, and the nonlinear estimate closes the stated correction ball. Differentiation of the convergent acceleration series supplies the third derivative and the original complete-history regularity bounds. In particular, $q$, $q'$ and $q''$ are positive on this axial branch. The equation holds at every finite past time; there is no finite onset at which an imposed kick is hidden.
+
+This supplies a precise nonlinear instability statement. Measure a complete history through a cut $T$ by
+
+$$
+\mathcal H_T=\sup_{i,s\le T}|X_i(s)-i|
++\sup_{i,s\le T}|X_i'(s)|.
+$$
+
+Fix any one nonzero branch just constructed. Then $\mathcal H_T\to0$ as $T\to-\infty$, but $q(0)\ge a/2$. For every initial-history tolerance, a sufficiently early cut gives a self-consistent past within that tolerance whose exact future reaches this same fixed small displacement. Time translation makes that cut the new release time. Hence the property that all sufficiently small histories remain in every fixed uniform neighborhood of rest fails in any admitted class containing these coherent histories and their translations. This conclusion concerns the uniform complete-history norm and infinitely many coordinated labels. It does not establish instability under finite-support disturbances, typicality or unbounded growth.
+
+The local construction has speeds far below one. Positive small-amplitude acceleration cannot simply be extrapolated: individual geometric contributions from delayed source displacement have opposite signs in axial and transverse directions. Section 6.28 supplies the separate complete-sum comparison needed to continue this branch to wake speed. The old pulse's event time and finite source census supply no certificate for that new arrival. The domain analysis identifies the corresponding obstruction hypotheses: a complete incoming displacement bound below $1/2$, a finite positive transverse acceleration trace, and a proposed outgoing population within a uniform anchor neighborhood of radius below $1/2$. The complete-prefix bound controls cross-time ranges; equal-time separation alone does not replace it.
+
+### 6.28. A self-consistent past reaches a transverse first wake-speed event
+
+The [first-event proof](analysis/staggered-lattice-first-event.md), with its [independent assessment](analysis/staggered-lattice-first-event-independent-adjudication.md), continues the axial branch from Section 6.27 under the unchanged Master Equation. Fix its ancient leading amplitude at $a=2^{-40}$. This identifies a time origin; it does not add an external acceleration or substitute a new past. The exact characteristic root and the nonlinear ancient correction are both retained. The population still consists of one architrino at every integer cubic anchor with alternating polarity, $g=16$, $c_f=1$ and the original eight-source block sum.
+
+**Claim grade: derived with an independently checked interval certificate.** The first speed-one time satisfies
+
+$$
+\frac{1191}{128}<t_*\le\frac{1193}{128}.
+$$
+
+Every label reaches this event simultaneously, with velocity $\sigma_i e_3$. No earlier reversal occurs. The displacement and incoming acceleration satisfy
+
+$$
+0.2207234700<q(t_*)<0.2455541486,
+\qquad
+5.9711295686<q''(t_*^-)<8.075038970.
+$$
+
+The nearest simultaneous opposite-polarity separation is $1-2q$, so it exceeds $0.5088917028$ at arrival. The complete prefix also keeps cross ranges above $0.7294887052$ and transmitter denominators above $0.9287873355$. Thus the speed-one boundary occurs while distinct architrinos remain separated and their received source histories remain regular.
+
+The analytical continuation argument first excludes contact as an earlier finite boundary. While $0<q<1/2$ and $0<q'<1$, only the approaching axial opposite-polarity partner can have causal range below one. Its delay $\delta$ and positive acceleration obey
+
+$$
+\delta=1-q(t)-q(t-\delta),\qquad
+A_+(t)=\frac{16}{\delta^2[1-q'(t-\delta)]}
+\ge8\left(\frac1\delta\right)'.
+$$
+
+Every other row samples a source at least one time unit earlier. Its signed remainder is bounded near a finite prospective endpoint, including the exponentially decaying distant tail. A contact limit would require $\delta\downarrow0$ and hence unbounded integrated positive acceleration, contradicting incoming speed bounded by one. Local receiver evolution and the infinite-tail bounds also give continuation within each compact subunit, separated part of the branch.
+
+The actual event requires more than this barrier. A [scalar numerical comparison](analysis/staggered-lattice-first-event-evolution.md) locates a candidate, while the [continuous residual calculation](analysis/staggered-lattice-first-event-residual.md) encloses its full equation defect. Exact scalar orbit multiplicities represent 24,388 finite source offsets in 3,073 groups; analytical tails retain the infinite complement. The stationary contribution is the original full block sum, enclosed using immutable independent coefficients and remainders. Exact polynomial reconstruction controls times between saved samples. None of these steps treats a finite bare lattice as the full population.
+
+The trajectory comparison propagates the ancient nonlinear correction, the exact characteristic-rate uncertainty and each continuous residual bound. It preserves the shell cancellations in the linear operator of Section 6.27, then bounds the nonlinear difference using complete delayed source intervals and the signed total receiver derivative. Positive integrated scalar majorants close every provisional displacement-error neighborhood. Independent exact-rational replay verifies all 658 final updates and their continuous sign intervals. The first coarse enclosure fell slightly short of forcing an event; refining only the final reception cells closed it without changing the reference history or equation.
+
+The comparison remains within $|q|<1/4$, keeps velocity positive, and excludes speed one through $1191/128$. If no event had occurred by $1193/128$, the lower velocity bound there would exceed $1.0211550976$, a contradiction. The lower incoming acceleration bound above makes the first arrival transverse. The reference's short mathematical extension uses the auxiliary cross-source equation only; it is not a full-law path beyond the actual first event.
+
+The preceding continuation obstruction therefore applies to a genuinely self-consistent past. To check the population premise, consider any proposed outgoing history staying within $B=1/3$ of every anchor. The entire incoming prefix already lies inside that ball. Every distinct-label cross range is at least $1/3$, so receptions earlier than $t_*+1/6$ can use only sources earlier than $t_*-1/6$. That earlier staggered prefix has a uniform speed margin below one. Its recent part is regular and its remote source corrections retain exponential decay, giving a bounded continuous complete cross contribution. The incoming own-root fiber is empty, and the acceleration trace is finite and strictly positive along the velocity.
+
+One step of the earlier self-root localization used an exactly stationary remote past. The bounded ancient branch supplies the necessary extension: an outgoing receiver inside the $1/3$ ball and an incoming position inside the proved $0.24556$ ball have an own-history chord shorter than $2/3$. Sufficiently old delays exceed that uniform chord bound and cannot be roots. Together with strict subunit motion on each earlier compact interval, this excludes remote own roots just as required by the localization argument. The independent assessment proves this replacement explicitly.
+
+These bounds yield the exclusion of $C^3$ continuation and extend the weaker arguments to finite continuous velocity with locally absolutely continuous outgoing velocity, and bounded-variation velocity under the stated locally finite direct positive history-measure interpretation. No finite event update or varying-history singular limit is selected. The obstruction is reached before any reversal or decay; no later ringing or settling follows from the unchanged evolution in these classes.
+
+This result removes the supplied-preparation objection for the particular coherent branch. It does not establish typicality or the fate of a spatially localized disturbance. The exact resting lattice remains an equilibrium, while the complete-history instability proved in Section 6.27 now has an event-reaching realization.
 
 ## 7. Wake transport, action, and conserved accounts
 
@@ -1566,7 +1849,9 @@ The investigations separate properties that are easily conflated. A finite coord
 
 Infinite-population summation adds a distinct requirement. Exact stationary cancellation and finite modifications are viable under a selected reference, while independently coordinated complete histories can destroy convergence and continuity. A sufficient restricted history class addresses that functional problem. Separately, the fixed smooth two-source control continues through first received EOM-generated environmental feedback, with 76 nonconstant environmental histories and two moving targets. Their common sixth-order motion is accompanied by a smaller separation change. A finite-interval bound proves that target separation increases throughout the first feedback interval through $17\ell/16$. This establishes neither a general invariant population class nor long-time separation or contact behavior.
 
-The surviving local scalar gradient, the rejected complete action, and the account obstructions likewise have different scopes. They narrow proposed constructions without selecting a conserved completion or excluding every possible one. Assembly root geometry and return diagnostics provide necessary information, while exact EOM existence, stability, and observer-level response remain additional burdens.
+A separate coherent two-sublattice construction supplies exact nonlinear incoming histories obeying the equation throughout their past. It proves failure of uniform stability against that infinite-support pattern by translating a growing ancient history to arbitrarily early cuts. It does not prove that this self-consistent branch reaches the wake-speed obstruction found for the supplied two-target pulse. Preparation, perturbation topology and exceptional-event reachability remain distinct parts of the conclusion.
+
+The surviving local scalar gradient, the rejected complete action, and the account obstructions likewise have different scopes. They narrow proposed constructions without selecting a conserved completion or excluding every possible one. Assembly root geometry and return diagnostics provide necessary information, while further EOM existence, stability, and observer-level response claims retain their own proof obligations.
 
 A complete theory must connect these levels on one declared domain and update. It must identify admissible histories, include every reception, determine a solution with the claimed regularity, and specify what happens at reachable exceptional events. If unique prediction is claimed, the state must select the continuation rather than leave an onset or boundary choice as external data. If conservation is claimed, its quantities and transfers must be independently defined on that same evolution. These requirements preserve the positive results while making clear which singular events, population limits, and physical account maps remain unresolved.
 

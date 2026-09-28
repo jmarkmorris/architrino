@@ -11,10 +11,6 @@ Two [unlike architrino polarities](../../../foundations/architrino.md), whose in
 - Because the delayed law samples path history, the endpoint values at $T=0$ are not sufficient initial data. For the stationary-release example below, prescribe the past on the required history domain $T\le0$ by $X_1(T)=r_0/2$, $X_2(T)=-r_0/2$, and $V_1(T)=V_2(T)=0$, then release the pair at $T=0$.
 - The prescribed past is preparation data rather than a freely evolving equilibrium of the attracting pair. Any finite stored history must cover every emission time used by the causal-root sets; persistence of the reflection symmetry and midpoint rest is conditional on a unique continuation under the stated root rules.
 
-### Prescribed Past and Release Convention
-- Because the delayed law samples path history, the endpoint values at $T=0$ are not sufficient initial data. For the stationary-release example below, prescribe the past on the required history domain $T\le0$ by $X_1(T)=r_0/2$, $X_2(T)=-r_0/2$, and $V_1(T)=V_2(T)=0$, then release the pair at $T=0$.
-- The prescribed past is preparation data rather than a freely evolving equilibrium of the attracting pair. Any finite stored history must cover every emission time used by the causal-root sets; persistence of the reflection symmetry and midpoint rest is conditional on a unique continuation under the stated root rules.
-
 ## Scope and Solvability
 - This is a native one-dimensional partner-attraction comparison, not a standard-physics surrogate. It gives a delay differential equation (DDE) formulation and records the solvability status of the resulting delayed evolution.
 - Exact analytic solutions are given only where a prescribed history makes a reduction available; no exact closed-form solution is asserted for the fully coupled delayed system.
@@ -57,7 +53,7 @@ For the canonical two-body delayed law, set $c_f=1$.
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-2c5b3d8a9fb366b7)
 
-  Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract), $W_{ab}^{\mathrm{acc}}=c_f/\lvert D_{t,ab}\rvert$ is the transmitter-side acceleration weight on the corresponding root, and $\mathrm{sgn}(\cdot)$ denotes the sign function. The displayed sharp-root rows apply on a finite complete simple-root chart with $r_{ab}>0$ and $|D_{t,ab}|\ge\delta_D>0$ for every admitted root. If a distance or derivative floor fails, this formula stops; a finite-width or other continuation is a separate explicitly defined law, not an implicit mollification of these rows.
+  Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract), $W_{ab}^{\mathrm{acc}}=c_f/\lvert D_{t,ab}\rvert$ is the transmitter-side acceleration weight on the corresponding root, and $\mathrm{sgn}(\cdot)$ denotes the sign function. The displayed causal-root rows apply on a finite complete simple-root chart with $r_{ab}>0$ and $|D_{t,ab}|\ge\delta_D>0$ for every admitted root. If a declared distance or derivative floor fails, stop using this chart and reassess its applicability; failure of a chosen positive floor alone does not establish a singular root. Continuation requires a justified chart extension or, at a genuine singular event, an applicable continuation analysis with the required history and boundary data. A finite-width approximation is an auxiliary equation whose results apply to the Master Equation only through the required recovery argument.
 
 ### Relative-Coordinate Delay Equation
 - Define $r(T)=X_1(T)-X_2(T)>0$. Then $s_{12}(T;T_t)=X_1(T)-X_2(T_t)$ and $s_{21}(T;T_t)=X_2(T)-X_1(T_t)$ are the signed delayed separations, with $r_{12}=|s_{12}|$ and $r_{21}=|s_{21}|$. Subtracting the two per-particle rows gives

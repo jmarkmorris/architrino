@@ -236,7 +236,7 @@ Outside that locus, the action integral is multivalued under the return map, so 
 
 The Master Equation of Motion for architrinos is non-Markovian, driven by intersections between receiver trajectories and past causal wake surfaces. Consequently, any action-level scaffold for this law cannot be a local integral over instantaneous states. It must be a multi-time functional over path history, and its variation residual must be identified before the scaffold is treated as an exact action derivation. If that residual does not vanish or reduce to a declared boundary term, the proposed action does not derive the Master EOM.
 
-For a finite, isolated set of architrinos parameterized by absolute time $T$ in the Euclidean void, consider the $\eta>0$ auxiliary delayed action below. Recovery of the exact causal selector as $\eta\to0^+$ requires coverage of every contributing root and control of omitted history. The admissible sharp interaction sum excludes the exact zero-delay endpoint; nontrivial self hits have $T-T_t>0$. A fixed cutoff $T-T_t\ge\Delta_{\min}>0$ is auxiliary localization: shrinking $\eta$ does not restore roots below that cutoff. A sharp-law claim therefore needs the omitted interval to be root-free or its contributions restored or bounded within the claimed error. A spatial core regulator is a separate auxiliary choice and does not admit the excluded instantaneous endpoint into the sharp law.
+For a finite, isolated set of architrinos parameterized by absolute time $T$ in the Euclidean void, consider the $\eta>0$ auxiliary delayed action below. Recovery of the exact causal selector as $\eta\to0^+$ requires coverage of every contributing root and control of omitted history. The admissible causal-root interaction sum excludes the exact zero-delay endpoint; nontrivial self hits have $T-T_t>0$. A fixed cutoff $T-T_t\ge\Delta_{\min}>0$ is auxiliary localization: shrinking $\eta$ does not restore roots below that cutoff. A claim about the Master Equation therefore needs the omitted interval to be root-free or its contributions restored or bounded within the claimed error. A spatial core regulator is a separate auxiliary choice and does not admit the excluded instantaneous endpoint into the Master Equation.
 
 The $\eta\to0^+$ statement is a weak or distributional scaling claim over declared observables unless a stronger topology is explicitly supplied. A finite-regulator trend supports this action scaffold only after the observable map, normalization, admissible test functions, and uniform control needed for the limit are stated. It is not by itself a proof of the exact causal-wake action.
 
@@ -283,7 +283,7 @@ The derivation below is valid under:
 
 - **(EL1)** $\mathbf X_i\in C^2([T_a,T_b];\mathbb{R}^3)$ and variations $\boldsymbol{\xi}_i$ are $C^1$ with $\boldsymbol{\xi}_i(T_a)=\boldsymbol{\xi}_i(T_b)=0$.
 - **(EL2)** $\phi_\eta$ is a normalized $C^1$ approximate identity: either $\phi_\eta\in C_c^1(\mathbb{R})$, $\phi_\eta\ge0$, $\int\phi_\eta(s)\,ds=1$, or a Gaussian/sufficiently fast-decaying mollifier with an explicit tail bound on the chosen analysis window.
-- **(EL3)** Collision and trivial-self exclusion on active support, or on the tail-controlled analysis window for noncompact mollifiers: $r_{ij}(T;T_t)\ge r_{\min}>0$ whenever the retained window admits $\phi_\eta(\tilde g_{ij}(T,T_t))$, and for $i=j$ the retained window also satisfies $T-T_t\ge\Delta_{\min}>0$. A separately declared core-regularized functional may replace these support floors only if its kernel and required derivatives satisfy the bounds used in the variation. Neither choice removes the root-coverage obligation for recovery of the sharp law.
+- **(EL3)** Collision and trivial-self exclusion on active support, or on the tail-controlled analysis window for noncompact mollifiers: $r_{ij}(T;T_t)\ge r_{\min}>0$ whenever the retained window admits $\phi_\eta(\tilde g_{ij}(T,T_t))$, and for $i=j$ the retained window also satisfies $T-T_t\ge\Delta_{\min}>0$. A separately declared core-regularized functional may replace these support floors only if its kernel and required derivatives satisfy the bounds used in the variation. Neither choice removes the root-coverage obligation for recovery of the Master Equation.
 - **(EL4)** Delay-root transversality on active branches: $\partial_{T_t}\tilde g_{ij}(T,T_t)\neq0$ when $\tilde g_{ij}(T,T_t)=0$.
 - **(EL5)** Integrability on the chosen history window, either by finite support or sufficient tail falloff, so differentiation under the time integrals is justified.
 - **(EL6)** Delayed branch convention: only $T_t\le T$ contributes (equivalently, the $\Theta(T-T_t)$ branch of the causal selector).
@@ -379,7 +379,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e3232fa0259734af)
 
-where $\mathbf A_i(T)$ in this auxiliary calculation denotes the surrogate's acceleration, not an assertion of equality with the sharp law at positive width. Its weak limit must be recomputed on the complete admitted root record so that the recovered branch law carries the transmitter-side factor $W^{\mathrm{acc}}$. The derivative term in $\nabla_{\mathbf X_i}\mathcal{K}_{ij}$ is cleared only after the full delayed variation is assembled and the branch reduction is performed. If it survives in the interior, this action candidate fails to derive the Master EOM.
+where $\mathbf A_i(T)$ in this auxiliary calculation denotes the surrogate's acceleration, not an assertion of equality with the Master Equation at positive width. Its weak limit must be recomputed on the complete admitted root record so that the recovered branch law carries the transmitter-side factor $W^{\mathrm{acc}}$. The derivative term in $\nabla_{\mathbf X_i}\mathcal{K}_{ij}$ is cleared only after the full delayed variation is assembled and the branch reduction is performed. If it survives in the interior, this action candidate fails to derive the Master EOM.
 
 A derivation, reduction, or simulation that claims action-derived dynamics must therefore distinguish the scale-only diagnostic below from the complete Euler derivative. The scale-only row checks agreement with the desired native acceleration scale, but a small value does not establish that the candidate action varies to that law, because receiver, transmitter, constraint, self-history, and boundary terms may remain.
 $$
@@ -556,7 +556,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6da92b5088a86221)
 
-The outer minus sign matches the action convention $S=S_{\mathrm{kinetic}}-\tfrac12\sum S_{ij}$ and makes the sharp static like-polarity pair charge positive. Reversing that sign would contradict the positive work required to bring a repelling like-polarity pair closer.
+The outer minus sign matches the action convention $S=S_{\mathrm{kinetic}}-\tfrac12\sum S_{ij}$ and makes the static like-polarity pair charge positive. Reversing that sign would contradict the positive work required to bring a repelling like-polarity pair closer.
 
 The boundary charge must inherit both the units and the sign of the same action kernel.
 

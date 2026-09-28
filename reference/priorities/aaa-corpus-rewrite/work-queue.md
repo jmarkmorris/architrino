@@ -48,6 +48,12 @@ No rows.
 
 ## Deferred / discussion-scoped
 
+### OPS-031 — September 28 core review referrals
+
+- **Status:** ○ Proposed; report-only review, with CRW-005 remaining closed.
+- **Braid Taxonomy, BT28-01:** Clarify that a 2D component has affine dimension exactly two, and leave complete but rank-zero/rank-one components unassigned. Plane containment alone includes a line or point; the live Borg descriptor already distinguishes that boundary. The [review receipt](../aaa-operations/evidence/ops-031-braid-taxonomy-review-2026-09-28.md) gives the coordinate counterexample, consumer scope and falsifier. The corpus editor should confirm the boundary with the Borg taxonomy owner before preparing the narrow definition repair; no new physical class or runtime change is accepted here.
+- **Planar Braid Assemblies, PBA28-01:** Reconcile current-status sentences with the already accepted BP-011 global equal-radius ladder, T04 short-time history uniqueness, local phase/radius isolation and bounded axial-speed results. The [whole-chapter review](../aaa-operations/evidence/ops-031-2d-braid-assemblies-review-2026-09-28.md) identifies each passage, primary evidence and scope limit. Prepare one self-contained editorial synthesis with BP-011 scientific adjudication; do not upgrade the old numerical instruments, imply full-cycle release/stability, or reopen completed research. Historical certificates were inspected, not rerun; this is a proposed propagation repair, not fresh scientific acceptance.
+
 ### OPS-031 — September 25 review referrals
 
 - **Status:** Proposed clarifications and residual historical editorial work; CRW-005 remains closed. No automatic substantive rewrite is authorized by this scan.
@@ -74,6 +80,10 @@ No rows.
 - **Completion:** Either the operator accepts a bounded classifier prototype with a declared benchmark and human-acceptance workflow, or declines the idea and this row moves to `Withdrawn`.
 
 ## Verified
+
+### OPS-031 — September 27 validation follow-ups
+
+✓ Accepted and implemented after the operator requested “fix those.” Removed the second duplicated preparation block in Attraction (ATT27-01), clarified chosen chart floors versus genuine singularities and auxiliary approximations (ATT27-02), and aligned the direct-consumer chart-extension wording in Background and Simple Action (BSA-C1). Equations and physical continuation obligations are preserved. Both whole chapters passed a separate reviewer’s check against the independent affine-root examples; the [implementation record](../aaa-operations/work-log.md#2026-09-27--approved-validation-corrections-integrated) retains source versions and validation. Original review receipts remain unchanged. CRW-005 remains closed.
 
 ### OPS-031 — Eight approved corrections integrated
 

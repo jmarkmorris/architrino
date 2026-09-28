@@ -20,7 +20,7 @@ In the many-body indexed formulas below, receiver index $i$ occupies role $r$ an
 
 The Master EOM is:
 
-- **Deterministic when well posed**: A complete admissible history determines a locally unique future wherever an applicable existence-and-uniqueness theorem has been established for the sharp law. A local theorem for an auxiliary finite-width model proves uniqueness for that model; transferring it to the Master Equation requires a separate convergence and uniqueness argument.
+- **Deterministic when well posed**: A complete admissible history determines a locally unique future wherever an applicable existence-and-uniqueness theorem has been established for the Master Equation. A local theorem for an auxiliary finite-width model proves uniqueness for that model; transferring it to the Master Equation requires a separate convergence and uniqueness argument.
 - **Non-Markovian**: Depends on full path history, not just instantaneous state.
 - **Event-local at the receiver**: Only delayed causal intersections at the receiver event contribute to acceleration (no action-at-a-distance).
 - **Causal**: Each emitted wake propagates at the finite field speed $c_f$; a direct hit samples an earlier emission event.
@@ -410,7 +410,7 @@ $$
 
 inside a declared one- or multi-parameter branch family. The finite-impulse lemma covers the fold stratum $\Sigma^1$, where $\partial_{T_tT_t}g\ne0$ and the control parameter crosses the fold transversely. Cusp and higher strata, such as $\Sigma^{1,1}$, require extra degeneracy conditions and are not ordinary acceleration contributions. They may merge or split more than one opposite-sign root pair at once, so their ledger transition is not certified by the generic $\Delta N=\pm2,\ \Delta D=0$ fold law until a separate regularized normal form is supplied. Thus $\Sigma^1$ admits a finite-impulse account plus transition metadata, while $\Sigma^{1,1}$ or deeper requires a singular-stratum chart before acceptance.
 
-The word "set" in $\mathcal{C}_{ij}(T_r)$ should therefore be read as a root set extracted from a continuous path-history integral, not as a replacement for that history. The transmitter path is continuous data. In the sharp causal-wake limit the delta constraint collapses the received contribution to the emission times in $\mathcal{C}_{ij}(T_r)$; with $\eta > 0$ mollification, the received contribution comes from finite-width neighborhoods of those roots. A single transmitter can contribute more than one root at the same receiver event when its worldline crosses the receiver's backward causal surface more than once, especially in curved or super-field-speed history. The same bookkeeping applies to nontrivial self-history roots when $j=i$.
+The word "set" in $\mathcal{C}_{ij}(T_r)$ should therefore be read as a root set extracted from a continuous path-history integral, not as a replacement for that history. The transmitter path is continuous data. In the zero-width causal-wake limit the delta constraint collapses the received contribution to the emission times in $\mathcal{C}_{ij}(T_r)$; with $\eta > 0$ mollification, the received contribution comes from finite-width neighborhoods of those roots. A single transmitter can contribute more than one root at the same receiver event when its worldline crosses the receiver's backward causal surface more than once, especially in curved or super-field-speed history. The same bookkeeping applies to nontrivial self-history roots when $j=i$.
 
 Writing
 $$
@@ -655,7 +655,7 @@ The gluing target is concrete: records on $U_\alpha$ and $U_\beta$ must agree on
 
 ##### Auxiliary Dual-Mollified Regulator for Proof and Computation
 
-The postulated Master Equation is the sharp causal-root law stated in [The Master Equation (Canonical Form)](#the-master-equation-canonical-form). It is defined on admitted positive-separation roots. The finite-regulator family below is not a second Master Equation and does not alter that postulate. It is an auxiliary evaluation route for finite-width causal surfaces, certified fold or caustic neighborhoods, and regulator-convergence tests. Its authority is conditional on recovering the canonical sharp law on a common regular domain.
+The postulated Master Equation is the causal-root law stated in [The Master Equation (Canonical Form)](#the-master-equation-canonical-form). It is defined on admitted positive-separation roots. The finite-regulator family below is not a second Master Equation and does not alter that postulate. It is an auxiliary evaluation route for finite-width causal surfaces, certified fold or caustic neighborhoods, and regulator-convergence tests. Its authority is conditional on recovering the canonical law on a common regular domain.
 
 The memory horizon limits the retained past:
 $$
@@ -788,17 +788,17 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2760b9055d10f80c)
 
-First shrink the artificial wake thickness while the roots remain isolated, then remove the artificial core scale while every separation remains positive. The result must be the canonical sharp causal-root sum. This statement supplies no limit at coincidence.
+First shrink the artificial wake thickness while the roots remain isolated, then remove the artificial core scale while every separation remains positive. The result must be the canonical causal-root sum. This statement supplies no limit at coincidence.
 
-Branch-resolved formulas are the authoritative sharp law on their admitted regular domain, while the auxiliary integral supplies a controlled route through finite-width or singular-chart calculations. It must not replace the canonical definition or be used to assign a value at a causal fold, caustic transit, coordinate coincidence, or chart boundary without the corresponding convergence and event certificates.
+Branch-resolved formulas are the authoritative law on their admitted regular domain, while the auxiliary integral supplies a controlled route through finite-width or singular-chart calculations. It must not replace the canonical definition or be used to assign a value at a causal fold, caustic transit, coordinate coincidence, or chart boundary without the corresponding convergence and event certificates.
 
-The two regulators quarantine different singular loci. The width $\eta$ regularizes the causal-surface collapse, branch folds, and caustic-transit impulse; the core scale $\epsilon_c$ regularizes the coincidence or diagonal collision locus. A theorem may refine them together for computation, but a sharp-limit claim must state which of $\eta\to0^+$ and $\epsilon_c\to0^+$ is being taken, and why the other singular locus remains controlled during that limit.
+The two regulators quarantine different singular loci. The width $\eta$ regularizes the causal-surface collapse, branch folds, and caustic-transit impulse; the core scale $\epsilon_c$ regularizes the coincidence or diagonal collision locus. A theorem may refine them together for computation, but a claim about removing the regulators must state which of $\eta\to0^+$ and $\epsilon_c\to0^+$ is being taken, and why the other singular locus remains controlled during that limit.
 
-Coordinate coincidence does not prescribe annihilation or a contact interaction. Equality $\mathbf X_i(T)=\mathbf X_j(T)$ on one absolute-time slice is distinct from zero separation between an earlier emission and its receiver event. Positive-delay roots can still have positive separation when the current coordinates agree. Whether a lawful history can reach and continue through that configuration depends on the complete causal-root contributions and an applicable continuation result. Identity, polarity, velocity, and retained wake history remain necessary data; choosing $\eta$ and $\epsilon_c$ does not itself determine a continuation of the sharp law. Where the sharp evolution is well posed, relabeling identical like-polarity histories preserves the acceleration record, while different histories can produce different later accelerations. If causal separation, root transversality, or convergence fails, the next sharp-law update remains unresolved.
+Coordinate coincidence does not prescribe annihilation or a contact interaction. Equality $\mathbf X_i(T)=\mathbf X_j(T)$ on one absolute-time slice is distinct from zero separation between an earlier emission and its receiver event. Positive-delay roots can still have positive separation when the current coordinates agree. Whether a lawful history can reach and continue through that configuration depends on the complete causal-root contributions and an applicable continuation result. Identity, polarity, velocity, and retained wake history remain necessary data; choosing $\eta$ and $\epsilon_c$ does not itself determine a continuation of the Master Equation. Where evolution under the Master Equation is well posed, relabeling identical like-polarity histories preserves the acceleration record, while different histories can produce different later accelerations. If causal separation, root transversality, or convergence fails, the next Master Equation update remains unresolved.
 
 ##### Finite-Regulator Pathology Quarantine Theorem Target
 
-The classical point-transceiver pathologies are not closed by the sharp branch formula alone. The theorem target is finite-$\eta$, branch-chart local, and conditional on one regularized action and energy convention. Fix a finite architrino set, a finite window $W=[T_a,T_b]$, a memory depth $h < \infty$, a causal-surface width $\eta > 0$, a core scale $\epsilon_c > 0$, and a branch chart
+The classical point-transceiver pathologies are not closed by the causal-root formula alone. The theorem target is finite-$\eta$, branch-chart local, and conditional on one regularized action and energy convention. Fix a finite architrino set, a finite window $W=[T_a,T_b]$, a memory depth $h < \infty$, a causal-surface width $\eta > 0$, a core scale $\epsilon_c > 0$, and a branch chart
 $$
 \mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)
 $$
@@ -829,7 +829,7 @@ Under these assumptions, a finite-$\eta$ theorem should prove the following loca
 
   then $K_{\mu}(T)$ remains bounded on $W$. A branch with $V_{\max}\to\infty$ must therefore leave the admissible class by driving the interaction charge downward without bound, losing a floor, or breaking the declared action-energy residual.
 - **Pre-acceleration is excluded at finite $\eta$.** The acceleration at $T$ is a functional of the retained history segment $[T-h,T)$, together with the current receiver event, and contains no future state. A proposed action repair is admissible only when its endpoint convention contributes a wake-history boundary term or a vanishing residual, not a future-boundary acceleration selection rule.
-- **Caustic and Jacobian blow-up are quarantined.** Simple-root charts require $\nu_J > 0$. The present auxiliary theorem target studies finite-order caustics through its declared regulator. A continuation claim for the sharp law requires a finite accepted impulse, complete event data, and existence and uniqueness in the stated solution class. Exact singular analysis or another controlled approximation may establish those facts; no particular smoothing method is mandatory. Persistent $J=0$, cusp behavior outside the admitted normal form, simultaneous collision-floor failure, or regulator-dependent limiting observables remain outside this target's accepted continuation domain.
+- **Caustic and Jacobian blow-up are quarantined.** Simple-root charts require $\nu_J > 0$. The present auxiliary theorem target studies finite-order caustics through its declared regulator. A continuation claim for the Master Equation requires a finite accepted impulse, complete event data, and existence and uniqueness in the stated solution class. Exact singular analysis or another controlled approximation may establish those facts; no particular smoothing method is mandatory. Persistent $J=0$, cusp behavior outside the admitted normal form, simultaneous collision-floor failure, or regulator-dependent limiting observables remain outside this target's accepted continuation domain.
 - **Deterministic multistability concerns different complete states.** If an applicable uniqueness theorem supplies one regularized post-transit history from complete initial and boundary data, different charts of that same history do not represent different futures. An incomplete record can admit several complete states whose individually unique evolutions enter different basins. Basin weights then require a measure on those states; the number of charts alone supplies no weights. Two inequivalent futures from identical complete data would instead contradict the stated uniqueness hypothesis.
 
 The theorem's failure boundary is the union of the following conditions:
@@ -864,7 +864,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-881fed3da323b266)
 
-where $\Sigma_{\mathrm{transit}}$ denotes a certified finite post-transit history, $\Sigma_{\mathrm{bif}}^{\mathrm{multi}}$ denotes a record-limited family arising from different compatible complete states, and $\Sigma_{\mathrm{sing}}^{\mathrm{fail}}$ lacks an accepted finite continuation. This is a proposed classification for the declared auxiliary model, not a proved partition of the sharp dynamics. A unique continuation at fixed regulator values becomes a Master Equation result only after the corresponding sharp-limit existence and uniqueness have been established. In particular, regulator-dependent limits cannot select a physical continuation by convention.
+where $\Sigma_{\mathrm{transit}}$ denotes a certified finite post-transit history, $\Sigma_{\mathrm{bif}}^{\mathrm{multi}}$ denotes a record-limited family arising from different compatible complete states, and $\Sigma_{\mathrm{sing}}^{\mathrm{fail}}$ lacks an accepted finite continuation. This is a proposed classification for the declared auxiliary model, not a proved partition of the Master Equation dynamics. A unique continuation at fixed regulator values becomes a Master Equation result only after existence and uniqueness in the corresponding zero-width and core-removal limits have been established. In particular, regulator-dependent limits cannot select a physical continuation by convention.
 
 The residuals required by this theorem target are the root residual, root-transport residual, active transmitter-side Jacobian floor, transmitter-side acceleration-weight interval, inactive-gap residual, finite-memory residual, return residual, finite-window energy residual $\mathcal{R}_E$, momentum residual $\mathcal{R}_P$, angular-momentum residual $\mathcal{R}_J$, Euler residual of the same action, endpoint or period-cut leakage, transition-observable residuals across $\eta$ refinement, and the symplectic residual $\mathcal{R}_{\Omega}$ when the branch is represented by a reduced Hamiltonian chart. The theorem is finite-$\eta$ only; any zero-width or infinite-system statement requires the separate convergence boundary stated in the regularization analysis.
 
@@ -894,7 +894,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-12f8bf7b83ad6932)
 
-Here $h$ bounds the retained causal memory. On a simple sharp root, integrating the delta function produces the transmitter-side factor once:
+Here $h$ bounds the retained causal memory. For the zero-width diagnostic, integrating the delta function on a simple causal root produces the transmitter-side factor once:
 $$
 E_{\text{wake}}^{\mathrm{sharp}}(T_r)
 =
@@ -1366,7 +1366,7 @@ Every term is evaluated in absolute time. The dimensionless ratio fixes the unit
 
 #### The Master Equation (Canonical Form)
 
-**Authority statement.** The equations in this section are the postulated Master Equation. They govern admitted sharp causal roots at positive separation. The earlier [auxiliary dual-mollified regulator](#auxiliary-dual-mollified-regulator-for-proof-and-computation) is a proof and computational route only: it must recover this law on a common regular domain, and it supplies no ordinary zero-delay hit or coincidence law.
+**Authority statement.** The equations in this section are the postulated Master Equation. They govern admitted causal roots at positive separation. The earlier [auxiliary dual-mollified regulator](#auxiliary-dual-mollified-regulator-for-proof-and-computation) is a proof and computational route only: it must recover this law on a common regular domain, and it supplies no ordinary zero-delay hit or coincidence law.
 
 This section states the equation of motion. A softened computation is acceptable only as a tested approximation or singular-chart instrument subordinate to it.
 
@@ -1487,7 +1487,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#causal-wake-master-equation)
 
-This boxed sharp causal-root sum is the authoritative Master Equation. No $\epsilon_c$ factor belongs to its regular-domain acceleration kernel. A calculation that introduces $\epsilon_c$ must label it as auxiliary regularization, retain the same polarity and transmitter-side acceleration weight, and demonstrate convergence to this equation wherever it claims canonical Master Equation evidence.
+This boxed causal-root sum is the authoritative Master Equation. No $\epsilon_c$ factor belongs to its regular-domain acceleration kernel. A calculation that introduces $\epsilon_c$ must label it as auxiliary regularization, retain the same polarity and transmitter-side acceleration weight, and demonstrate convergence to this equation wherever it claims canonical Master Equation evidence.
 
 Core softening may help a proof or solver cross a difficult numerical region, but it cannot silently change the law being tested.
 
@@ -1527,7 +1527,7 @@ $$
 
 **Physical justification:** The causal wake surface at the instant of emission ($r=0$, $\Delta=0$) has not yet expanded; it cannot produce self-acceleration on the transmitter at that same event. This endpoint exclusion does not certify a finite transition when a nontrivial same-transmitter root is born from that endpoint.
 
-**No accepted $r = 0$ sharp roots:**
+**No accepted $r = 0$ causal roots:**
 
 Because $r = c_f(T_r-T_t)$, $r = 0$ implies $\Delta = T_r-T_t = 0$. This case is excluded by $H(0) = 0$. A coincident same-transmitter birth, simultaneous core/transmitter-side-factor failure, or regulator-dependent continuation remains uncertified and must fail closed.
 
@@ -2561,7 +2561,7 @@ This argument identifies a theorem scheme, not a verified application to the aux
 
 ##### Finite-Continuation Criterion for Global Comparisons
 
-The compatible-history well-posedness target supplies a conditional comparison framework for [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md#global-continuation-and-cosmic-censorship-comparison) and [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md#cauchy-horizon-comparison-pressure). The finite-width family below is an auxiliary example. Its size does not establish continuation of the sharp Master Equation or determine a unique global spacetime from observer records. Transfer to the sharp law requires convergence of the complete evolved histories and boundary data, together with existence and uniqueness in the claimed limiting solution class.
+The compatible-history well-posedness target supplies a conditional comparison framework for [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md#global-continuation-and-cosmic-censorship-comparison) and [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md#cauchy-horizon-comparison-pressure). The finite-width family below is an auxiliary example. Its size does not establish continuation of the Master Equation or determine a unique global spacetime from observer records. Transfer to the Master Equation requires convergence of the complete evolved histories and boundary data, together with existence and uniqueness in the claimed limiting solution class.
 
 For a compact subsystem $\Omega$ and window $W=[T_i,T_f]$, fix one complete initial history $\mathbf Y_{T_i}$ and boundary wake record $\mathcal{B}_{\partial\Omega}|_W$ for the declared auxiliary functional. Let $\mathcal{A}_{\Omega,W}^{(\eta)}$ contain its admissible branch charts satisfying (W1)-(W5), the compatible-history and functional-domain conditions, and the required memory and support bounds on $W$. The associated family of final histories is
 $$
@@ -2579,14 +2579,14 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d60d8e392bd6977c)
 
-The notation $\mathrm{ME},\eta$ identifies the auxiliary family associated with the Master Equation recovery target; it does not identify its members as sharp-law solutions. A necessary finiteness condition for this comparison is
+The notation $\mathrm{ME},\eta$ identifies the auxiliary family associated with the Master Equation recovery target; it does not identify its members as Master Equation solutions. A necessary finiteness condition for this comparison is
 $$
 0<\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|<\infty
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-548a520d042a52a9)
 
-with every element carrying its complete causal-root record, declared energy diagnostic or exact charge, and boundary wake data. Under an applicable existence-and-uniqueness theorem for the fixed complete data, the family must contain exactly one final history. Finiteness alone is weaker, and none of these auxiliary-model conditions certifies sharp-law continuation.
+with every element carrying its complete causal-root record, declared energy diagnostic or exact charge, and boundary wake data. Under an applicable existence-and-uniqueness theorem for the fixed complete data, the family must contain exactly one final history. Finiteness alone is weaker, and none of these auxiliary-model conditions certifies continuation of the Master Equation.
 
 The cardinality is itself a structural diagnostic:
 
@@ -2604,7 +2604,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-210bb933126c8c9e)
 
-after the initial and boundary data and auxiliary functional have been fixed. Interpreting $H^0$ as a space of sections requires the restriction and gluing structure described earlier; a failed construction alone does not establish a nonzero cohomology class. For record-limited comparisons, form a separate family by varying complete initial and boundary data over all states consistent with the observer's record. Several members of that family can reflect different deterministic basins without assigning several futures to one complete state. An observer quotient and basin weights require their own equivalence relation and measure. These constructions remain conditional mathematical comparisons until their sharp-law recovery is established.
+after the initial and boundary data and auxiliary functional have been fixed. Interpreting $H^0$ as a space of sections requires the restriction and gluing structure described earlier; a failed construction alone does not establish a nonzero cohomology class. For record-limited comparisons, form a separate family by varying complete initial and boundary data over all states consistent with the observer's record. Several members of that family can reflect different deterministic basins without assigning several futures to one complete state. An observer quotient and basin weights require their own equivalence relation and measure. These constructions remain conditional mathematical comparisons until their recovery of the Master Equation is established.
 
 ### Operational Principles, Self-Interaction, and Examples
 
@@ -2889,7 +2889,7 @@ This limited, unoriented, and transmitter-ambiguous information at the hit level
 
 #### Parameter Definitions
 
-The parameters of the sharp Master Equation are:
+The parameters of the Master Equation are:
 
 | **Parameter** | **Symbol** | **Working convention** | **Dimensional** | **Comment** |
 |:--------------|:-----------|:----------------------|:----------------|:------------|
@@ -2897,7 +2897,7 @@ The parameters of the sharp Master Equation are:
 | Coupling constant | $\kappa$ | Universal coupling parameter | $\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | Controls the strength of the inverse-square interaction |
 | Architrino polarity unit | $\epsilon$ | $\lvert e \rvert / 6$ | $\mathrm{Q}$ | Fundamental polarity magnitude |
 
-The numerical convention $c_f=1$ fixes the relation between length and time units. The coupling $\kappa$ sets the acceleration scale, and $\epsilon$ sets the polarity magnitude. Auxiliary calculations may also introduce a causal-surface width $\eta$ and spatial core scale $\epsilon_c$, both with dimensions of length, and a history depth $h$ with dimensions of time. These are approximation or proof conventions, not additional parameters of the postulated law. Sharp-law claims require the corresponding regulator limits and proof that omitted history contributes nothing or a controlled error.
+The numerical convention $c_f=1$ fixes the relation between length and time units. The coupling $\kappa$ sets the acceleration scale, and $\epsilon$ sets the polarity magnitude. Auxiliary calculations may also introduce a causal-surface width $\eta$ and spatial core scale $\epsilon_c$, both with dimensions of length, and a history depth $h$ with dimensions of time. These are approximation or proof conventions, not additional parameters of the postulated law. Claims about the Master Equation require the corresponding regulator limits and proof that omitted history contributes nothing or a controlled error.
 
 #### Numerical Implementation Notes
 
@@ -2940,7 +2940,7 @@ The Master EOM is a **state-dependent DDE** (delay depends on the solution itsel
 
 - **Fixed-point iteration** with predictor-corrector (for implicit delays)
 - **Adaptive time-stepping** (small $\Delta T$ when roots are close or numerous)
-- **Event detection** for exact root crossings (optional; improves accuracy in sharp-hit regime)
+- **Event detection** for exact root crossings (optional; improves accuracy when evaluating individual causal hits)
 
 **Resolution and stability:** For a fixed emission event the gap $g(T_r,T_t)=r(T_r,T_t)-c_f(T_r-T_t)$ satisfies $\partial_{T_r}g=-D_r$. Away from a stationary crossing, its local width is traversed on the scale $\eta/|D_r|$, so resolving a finite-width contribution requires steps small relative to that scale or an event treatment that resolves the crossing independently. At $D_r=0$, higher derivatives determine the local traversal scale. For example, with $c_f=1$, a receiver approaching a stationary emission center at speed ten has $|D_r|=11$; the rule $\Delta T_r<\eta/c_f$ alone can miss the crossing. Emission-time quadrature similarly needs control of $D_t$ and singular-root neighborhoods. These are resolution conditions, not an integrator-stability theorem; convergence and stability must be checked for the chosen history interpolation, quadrature, and time-stepping method.
 
@@ -3084,7 +3084,7 @@ The reduction permits the following steps:
 
 The reduced problem is analytic up to standard quadratures, with causal-delay corrections available as a systematic perturbation series.
 
-This slow-motion reduction supplies no continuation through coincidence or a self-root birth. Those events require the complete delayed equation in an admitted solution class. A finite trajectory of a softened auxiliary equation establishes only that model's behavior; recovering a sharp-law passage, rebound, or recurrence requires a separate limit and uniqueness result for the complete histories.
+This slow-motion reduction supplies no continuation through coincidence or a self-root birth. Those events require the complete delayed equation in an admitted solution class. A finite trajectory of a softened auxiliary equation establishes only that model's behavior; recovering a passage, rebound, or recurrence under the Master Equation requires a separate limit and uniqueness result for the complete histories.
 
 ---
 
@@ -4861,7 +4861,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-60df624ac580a2e5)
 
-The outer minus sign follows the convention that the interaction enters the action as $-\tfrac12\sum S_{ij}$. It also makes the sharp static like-polarity interaction charge positive, as required by the work integral.
+The outer minus sign follows the convention that the interaction enters the action as $-\tfrac12\sum S_{ij}$. It also makes the static like-polarity interaction charge positive, as required by the work integral.
 
 One action convention fixes the interaction units, the static sign, and the boundary charge together.
 
@@ -4978,7 +4978,7 @@ Key points:
 
 - $\Theta(T-T')$ enforces the purely past-causal branch ($T' \le T$).
 - $\delta(\tilde g_{ij})$ restricts support to the characteristic causal surface $r_{ij}=c_f(T-T')$.
-- The sharp action scaffold contains no fundamental mollifier: $\eta$ is a regularization parameter used to test branch limits.
+- The action scaffold contains no fundamental mollifier: $\eta$ is a regularization parameter used to test branch limits.
 
 At a receiver event $T=T_r$, integrating out the delta via the delay-map Jacobian gives the branch-resolved form:
 
@@ -5131,7 +5131,7 @@ $$
 
 The first term is an endpoint or excluded-coincidence contribution; the second is the root-chart interior derivative that must be accounted for before the pure scalar kernel can be claimed to derive any branch-resolved acceleration law. Therefore the action proof does not license dropping $\delta_\eta'(\tilde g_{ij})$ by fiat. It requires the symmetry-preserving regularization to make this interior derivative vanish, become a boundary/transmitter-side contribution under the allowed variations, or be cancelled by an explicit counterterm. In the canonical Master EOM the branch-resolved target is $W_{ij}^{\mathrm{acc}}\hat{\mathbf r}_{ij}/r_{ij}^2$, so this residual must be rebuilt inside the receiver-side proof rather than reused as closure evidence.
 
-In the sharp positive-delay transmitter-time-collapse limit,
+In the zero-width positive-delay transmitter-time-collapse limit,
 $$
 \int dT'\,
 \delta_\eta(\tilde g_{ij})
@@ -5603,7 +5603,7 @@ $$
 
 where $K_{\mu}$ is the quadratic kinetic bookkeeping proxy and $E_{\text{wake}}$ denotes the exact nonlocal interaction charge. In direct trajectory evaluation, $U$ may be used as a compatible reconstruction up to a constant offset when it is derived from the same action-level acceleration law and boundary convention.
 
-This statement would be exact for a valid action-based delayed theory. The displayed scalar action is not yet such a theory because its variation does not reproduce the canonical Master Equation on generic branches. For an auxiliary regularized model, the expression is a history-aware bookkeeping candidate unless its own generating action and boundary charge are supplied; even then, a separate recovery argument is required before the charge can be attributed to the sharp Master Equation.
+This statement would be exact for a valid action-based delayed theory. The displayed scalar action is not yet such a theory because its variation does not reproduce the canonical Master Equation on generic branches. For an auxiliary regularized model, the expression is a history-aware bookkeeping candidate unless its own generating action and boundary charge are supplied; even then, a separate recovery argument is required before the charge can be attributed to the Master Equation.
 
 There is an important independence limit. If $E_{\text{wake}}$ or $U$ is defined only by integrating the same realized acceleration power $-\sum_i\mu_{\text{arch}}\mathbf A_i\cdot\mathbf V_i$, then constancy of $K_\mu+E_{\text{wake}}$ is true by construction. That reconstruction cannot independently detect a persistent same-sign tangential acceleration: it merely books the kinetic change into the opposite wake entry. An independent no-runaway or circular-closure test therefore needs the action-derived time-translation boundary charge, or another separately derived finite-window wake account, rather than the work integral alone.
 
@@ -6166,7 +6166,7 @@ $$\mu_{\text{arch}}\mathbf A_i(T) = -\nabla_{\mathbf X_i}U_i(T) = -q_i \nabla_{\
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6eef4154628cac82)
 
-This is a matching condition for the declared finite-width model. The sharp regular-chart identity above already holds for moving simple roots; it does not require a quasi-static source. A mollified kernel needs its own scalar derivation and convergence comparison. For a general kinetic scalar, a variational reduction would instead concern the conjugate-momentum rate and must be derived from the same accepted action. Replacing $\mu_{\text{arch}}$ pointwise by $\mu_K$ does not prove that reduction.
+This is a matching condition for the declared finite-width model. The regular-chart identity above already holds for moving simple roots; it does not require a quasi-static source. A mollified kernel needs its own scalar derivation and convergence comparison. For a general kinetic scalar, a variational reduction would instead concern the conjugate-momentum rate and must be derived from the same accepted action. Replacing $\mu_{\text{arch}}$ pointwise by $\mu_K$ does not prove that reduction.
 
 #### Macroscopic Cancellation and Localized Resonance
 
@@ -6328,7 +6328,7 @@ No accepted causal action, delay-compatible Noether theorem, provenance-complete
 
 This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_T$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
 
-For any candidate scalar action kernel proportional to $1/r$ with the time-normalized constraint $\tilde g=T_r-T_t-r/c_f$, dimensional consistency requires the coefficient $\mu_{\text{arch}}\kappa$, not $\kappa/c_f$. The corresponding regularized interaction diagnostic for that candidate is proportional to $\delta_\eta(\tilde g)/r$; simple-root collapse produces $W^{\mathrm{acc}}/r$ once. An inverse-square acceleration density with a manually inserted $W^{\mathrm{acc}}$ is not an energy functional. With the polarity convention that like signs repel, the sharp like-polarity interaction charge is positive and the boundary derivative inherits the outer minus sign declared in the action.
+For any candidate scalar action kernel proportional to $1/r$ with the time-normalized constraint $\tilde g=T_r-T_t-r/c_f$, dimensional consistency requires the coefficient $\mu_{\text{arch}}\kappa$, not $\kappa/c_f$. The corresponding regularized interaction diagnostic for that candidate is proportional to $\delta_\eta(\tilde g)/r$; simple-root collapse produces $W^{\mathrm{acc}}/r$ once. An inverse-square acceleration density with a manually inserted $W^{\mathrm{acc}}$ is not an energy functional. With the polarity convention that like signs repel, the like-polarity interaction charge is positive and the boundary derivative inherits the outer minus sign declared in the action.
 
 The wake-energy account must come from whatever action kernel is eventually accepted as generating the acceleration operator. The $1/r$ construction above constrains candidates only. Reusing the $1/r^2$ acceleration formula as energy gives the wrong units and double-counts the root weight.
 
@@ -7715,7 +7715,7 @@ For a continuous source density, an ordinary simple causal root contributes to t
 Implementation checklist
 - Root finding: solve $F(T_t;T_r)=\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|-c_f(T_r-T_t)=0$ for all transmitters $j$ (including $j=o'$ for self-hits when kinematics permit).
 - Accumulation: compute $r,\hat{\mathbf{r}}$, $D_t$, $D_r$, and $W^{\mathrm{acc}}$, apply $W^{\mathrm{acc}}/r^2$, then superpose.
-- Time stepping: integrate the sharp simple-root acceleration with a delayed-history integrator that retains and interpolates the required path segment at every stage. Track root changes as events without imposing velocity jumps. A mollified calculation is an optional auxiliary method subject to the [numerical recipe's approximation and recovery requirements](../../../../markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md); a discrete-emission impulse calculation additionally needs its declared quadrature weights and convergence argument.
+- Time stepping: integrate the simple-root acceleration with a delayed-history integrator that retains and interpolates the required path segment at every stage. Track root changes as events without imposing velocity jumps. A mollified calculation is an optional auxiliary method subject to the [numerical recipe's approximation and recovery requirements](../../../../markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md); a discrete-emission impulse calculation additionally needs its declared quadrature weights and convergence argument.
 - Self-interaction: a super-field-speed history interval nominates the channel, but an admitted self-hit still requires a nonzero-delay same-transmitter root and the declared branch floors; accepted self-hits are repulsive (like-on-like).
 
 Relation to Methods 1 and 2
@@ -7759,14 +7759,14 @@ Operator diagnostics (finite-window checks)
 
   For the conservative potential channel $\mathbf{Y}_\eta=\nabla\Phi_\eta$, nonzero circulation is a numerical, boundary, or coordinate-operator error unless a non-gradient effective channel has been explicitly declared.
 
-The emitted measure is spread over a growing causal wake surface. Integrating continuous emission gives the sharp causal-root acceleration sum, with inverse-square geometry and transmitter-side weighting. A mollified emission-time integral is an auxiliary approximation to that calculation; its finite-width result is not an interchangeable physical reception rule.
+The emitted measure is spread over a growing causal wake surface. Integrating continuous emission gives the causal-root acceleration sum, with inverse-square geometry and transmitter-side weighting. A mollified emission-time integral is an auxiliary approximation to that calculation; its finite-width result is not an interchangeable physical reception rule.
 
 #### Cross-Method Guidance
 
 ##### Cross-Method Selection
 - Method 1 (PDE): whole-field grid simulations, visualization, and complex media/boundaries. Deposit a smeared source term each step; robust when a transmitter slows or stops. Aggregate particle data to coarse-grained densities $n(\mathbf X,T)$, $\rho(\mathbf X,T)$, and $\mathcal E(\mathbf X,T)$ as inputs/targets for PDE runs and validation.
 - Method 2 (Green’s function / path-history integral): closed forms and sparse probe evaluation. Enforce the path-history condition $T-T_t=\|\mathbf X-\mathbf X_t(T_t)\|/c_f$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf V_t/c_f$ during evaluation; root-solve one or more $T_t$ values per observer-time pair.
-- Method 3 (Event-driven canonical): production many-body dynamics. Find causal roots and integrate the summed per-hit $W^{\mathrm{acc}}/r^2$ acceleration contributions. Use mollification only as a declared mathematical approximation with error or recovery control for the claimed observable; positive width alone does not establish the sharp-law dynamics.
+- Method 3 (Event-driven canonical): production many-body dynamics. Find causal roots and integrate the summed per-hit $W^{\mathrm{acc}}/r^2$ acceleration contributions. Use mollification only as a declared mathematical approximation with error or recovery control for the claimed observable; positive width alone does not establish the Master Equation dynamics.
 
 Short worked example — stationary transmitter, continuous source term (consistent across methods)
 - Setup: transmitter at origin $\mathbf X_t=0$ with $q(T)\equiv q_0$ (constant).
@@ -7777,7 +7777,7 @@ Short worked example — stationary transmitter, continuous source term (consist
 Practical implementation notes (concise)
 - PDE: smear $\delta(\mathbf X-\mathbf X_t)$ to grid scale; enforce CFL ($c_f\,\Delta T/\Delta X$ within the scheme’s bound).
 - Path-history: robust root-finding for $T_t$ from $T-T_t=r(T_t)/c_f$; take care near grazing geometries where $1-\mathbf{n}\cdot\mathbf V_t/c_f$ is small.
-- Event-driven: isolate every admitted causal root and integrate the sharp acceleration while controlling history interpolation and root-time error. If an auxiliary $\delta_\eta$ calculation is used, resolve its emission-time integral and bound omitted contributions; the number of overlapping wake bands alone does not bound the error.
+- Event-driven: isolate every admitted causal root and integrate the acceleration while controlling history interpolation and root-time error. If an auxiliary $\delta_\eta$ calculation is used, resolve its emission-time integral and bound omitted contributions; the number of overlapping wake bands alone does not bound the error.
 
 ##### Operational Summary
 - Model the transmitter through the source term $S(\mathbf X,T)=q(T)\,\delta\!\big(\mathbf X-\mathbf X_t(T)\big)$ (time-based emission density).
@@ -7859,7 +7859,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
 - Pros
   - Directly implements the project’s delayed, radial-only interaction law with constant emission cadence.
   - Natural support for self-hits and superposition; local $1/r^2$ weighting favors nearby coherent roots with all other factors fixed, but does not by itself bound far-root weights, multiplicity, cancellation, or omitted-tail error.
-  - Can be numerically lightweight for particle dynamics on a declared workload; supports direct integration of sharp simple-root acceleration, with auxiliary mollified or emission-quadrature calculations under their separate approximation conditions.
+  - Can be numerically lightweight for particle dynamics on a declared workload; supports direct integration of simple-root acceleration, with auxiliary mollified or emission-quadrature calculations under their separate approximation conditions.
 - Cons
   - Not derived from the scalar wave equation; global field-energy accounting is indirect (via mollified potentials).
   - Must retain the transmitter-side factor and transmitter-side acceleration weight from the Master EOM; a reduced test harness that omits either one is a noncanonical approximation rather than a calibration of $\kappa$.
@@ -8016,7 +8016,7 @@ The analytic baselines state the delay differential equations that govern canoni
 
   [View →](../../../../../equation-mapping.html#corpus-equation-7e4ad858f88cfece)
 
-  on the same declared emission-band partition used by the acceleration residual and energy crosswalk. If the root-labeled bands do not exhaust the integral, add the virial and power contributions from the complement explicitly. Thus a small branch-virial residual is meaningful only after transmitter identity, polarity, emission time or band, the applicable acceleration weighting, and delivered power have survived aggregation over the retained records and any complement. For any sufficiently regular modeled trajectory satisfying $d\mathbf V_i/dT=\mathbf A_{i,b}^{(\eta)}$ with the complete modeled acceleration retained, the product rule gives the following finite-window identity. The same identity holds for sharp-law trajectories with that regularity; mollification is not required for its derivation.
+  on the same declared emission-band partition used by the acceleration residual and energy crosswalk. If the root-labeled bands do not exhaust the integral, add the virial and power contributions from the complement explicitly. Thus a small branch-virial residual is meaningful only after transmitter identity, polarity, emission time or band, the applicable acceleration weighting, and delivered power have survived aggregation over the retained records and any complement. For any sufficiently regular modeled trajectory satisfying $d\mathbf V_i/dT=\mathbf A_{i,b}^{(\eta)}$ with the complete modeled acceleration retained, the product rule gives the following finite-window identity. The same identity holds for Master Equation trajectories with that regularity; mollification is not required for its derivation.
   $$
   \left\langle
   2T_{\mu,b}^{(\eta)}
@@ -8127,7 +8127,7 @@ Solution techniques (toolbox for delayed, radial DDEs):
 - Stability analysis (qualitative): Lyapunov–Krasovskii and Razumikhin functionals yield sufficient conditions for stability without solving trajectories; applicable to history classes with bounded delays.
 - PDE embeddings (transport representation): with the negative history coordinate $\theta\in[-\Delta_{\max},0]$, define the auxiliary history field by $Y(T,\theta)=X(T+\theta)$ and impose $\partial_T Y - \partial_\theta Y = 0$ with boundary $Y(T,0)=X(T)$; discretize in $\theta$ (method of lines). For state-dependent delays, use a moving boundary; aligns with the project’s radial-transport perspective.
 - Green’s-function / hit-integral formulations: write per-hit actions as delta-weighted time integrals selecting causal roots; evaluate by robust root-finding and quadrature. This matches the event-driven law used here.
-- Measure-driven/event-driven solvers with mollification: replace surface deltas by narrow Gaussians ($\eta>0$), together with a declared separation floor, support exclusion, or controlled core denominator, to obtain a finite-width regularized trajectory on its stated domain. Convergence to the sharp law as $\eta\to 0$ and work–energy agreement over resolved windows remain separate checks.
+- Measure-driven/event-driven solvers with mollification: replace surface deltas by narrow Gaussians ($\eta>0$), together with a declared separation floor, support exclusion, or controlled core denominator, to obtain a finite-width regularized trajectory on its stated domain. Convergence to the Master Equation as $\eta\to 0$ and work–energy agreement over resolved windows remain separate checks.
 - Linear constant-delay benchmarks: for linear DDEs (e.g., $dX/dT = aX + bX(T-\Delta)$) use Laplace transforms/characteristic equations and Lambert W; helpful for validation and step-size/error control, even though the canonical two-body problems here are nonlinear and state-dependent.
 - A posteriori error control: use defect/residual of collocation, step halving with history re-interpolation, and event-time error estimates for adaptive step and tolerance selection.
 - Fixed-point frameworks: establish local existence/uniqueness by contraction on history spaces $C([-\Delta T_{\max},0])$ (or their mollified variants); use Picard iterations as a solver preconditioner.
@@ -8150,10 +8150,6 @@ Two [unlike architrino polarities](../../../../markdown/aaa/foundations/architri
 - Two architrinos with polarities $q_1=-\epsilon$ and $q_2=+\epsilon$.
 - Initial velocities $V_1\approx0$, $V_2\approx0$; initial separation $r_0$ is large relative to the declared reference length.
 - For all examples, we restrict motion to a single geometrical line.
-
-##### Prescribed Past and Release Convention
-- Because the delayed law samples path history, the endpoint values at $T=0$ are not sufficient initial data. For the stationary-release example below, prescribe the past on the required history domain $T\le0$ by $X_1(T)=r_0/2$, $X_2(T)=-r_0/2$, and $V_1(T)=V_2(T)=0$, then release the pair at $T=0$.
-- The prescribed past is preparation data rather than a freely evolving equilibrium of the attracting pair. Any finite stored history must cover every emission time used by the causal-root sets; persistence of the reflection symmetry and midpoint rest is conditional on a unique continuation under the stated root rules.
 
 ##### Prescribed Past and Release Convention
 - Because the delayed law samples path history, the endpoint values at $T=0$ are not sufficient initial data. For the stationary-release example below, prescribe the past on the required history domain $T\le0$ by $X_1(T)=r_0/2$, $X_2(T)=-r_0/2$, and $V_1(T)=V_2(T)=0$, then release the pair at $T=0$.
@@ -8201,7 +8197,7 @@ For the canonical two-body delayed law, set $c_f=1$.
 
   [View →](../../../../../equation-mapping.html#corpus-equation-2c5b3d8a9fb366b7)
 
-  Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract), $W_{ab}^{\mathrm{acc}}=c_f/\lvert D_{t,ab}\rvert$ is the transmitter-side acceleration weight on the corresponding root, and $\mathrm{sgn}(\cdot)$ denotes the sign function. The displayed sharp-root rows apply on a finite complete simple-root chart with $r_{ab}>0$ and $|D_{t,ab}|\ge\delta_D>0$ for every admitted root. If a distance or derivative floor fails, this formula stops; a finite-width or other continuation is a separate explicitly defined law, not an implicit mollification of these rows.
+  Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract), $W_{ab}^{\mathrm{acc}}=c_f/\lvert D_{t,ab}\rvert$ is the transmitter-side acceleration weight on the corresponding root, and $\mathrm{sgn}(\cdot)$ denotes the sign function. The displayed causal-root rows apply on a finite complete simple-root chart with $r_{ab}>0$ and $|D_{t,ab}|\ge\delta_D>0$ for every admitted root. If a declared distance or derivative floor fails, stop using this chart and reassess its applicability; failure of a chosen positive floor alone does not establish a singular root. Continuation requires a justified chart extension or, at a genuine singular event, an applicable continuation analysis with the required history and boundary data. A finite-width approximation is an auxiliary equation whose results apply to the Master Equation only through the required recovery argument.
 
 ##### Relative-Coordinate Delay Equation
 - Define $r(T)=X_1(T)-X_2(T)>0$. Then $s_{12}(T;T_t)=X_1(T)-X_2(T_t)$ and $s_{21}(T;T_t)=X_2(T)-X_1(T_t)$ are the signed delayed separations, with $r_{12}=|s_{12}|$ and $r_{21}=|s_{21}|$. Subtracting the two per-particle rows gives
@@ -8332,7 +8328,7 @@ $$
 
 The regular formula below assumes a uniformly finite count of these roots, positive separation $r\ge d_{\min}>0$, a transmitter-Jacobian floor $|D_t|\ge d_t>0$, and positive delay margins from both retained endpoints. Here $d_{\min}$ is a length floor and $d_t$ is a speed floor. A retained branch chart is the record of those roots and their continued identities over the reception interval. Its all-root account requires existence and uniqueness in the active-root neighborhoods and positive bounds on $|g|$ over the remaining retained domain outside the declared endpoint exclusions. Naming a root or observing $D_t\ne0$ does not establish that account.
 
-Self-hits use $o=o'$ and satisfy the same regular conditions. Strict delay excludes the zero-delay self coincidence; it supplies no continuation through its birth. At a caustic, where $D_t=0$, or at a separation-floor or endpoint-margin failure, the regular formula ceases to apply. Continuation requires a separately specified event or regularization rule with its boundary terms; see the [Master Equation branch chart](../../../../markdown/aaa/dynamics/master-equation.md#branch-chart-closure-object). No finite-width prescription or singular-limit theorem is defined here.
+Self-hits use $o=o'$ and satisfy the same regular conditions. Strict delay excludes the zero-delay self coincidence; it supplies no continuation through its birth. At a caustic, where $D_t=0$, or at a separation-floor or endpoint-margin failure, the regular formula ceases to apply. Continuation requires a justified chart extension or, at a genuine singular event, an applicable continuation analysis with the required history and boundary data; see the [Master Equation branch chart](../../../../markdown/aaa/dynamics/master-equation.md#branch-chart-closure-object). No finite-width prescription or singular-limit theorem is defined here.
 
 These assumptions describe a retained calculation. Equality with the full history law additionally requires the omitted total contribution to vanish. Otherwise, an account of excluded endpoint neighborhoods, older emissions, and transmitters outside the retained member set must supply a declared truncation bound for the resulting approximation. The finite root set alone proves no delayed-history completeness or assembly stability.
 
@@ -8421,9 +8417,9 @@ For a self-root, $o'=o$, the emission-to-reception interval imposes a stronger r
 
 ##### Singular Cases and Continuation
 
-The strict inequality $T_t<T_r$ excludes the instantaneous diagonal. It is consistent with the [Master Equation's Heaviside endpoint convention](../../../../markdown/aaa/dynamics/master-equation.md#conventions-and-exclusions), $H(0)=0$, where $H$ is one for positive delay and zero for nonpositive delay. At an exact sharp root, $r=c_f\Delta$ and $c_f>0$ imply that $r=0$ occurs only at $\Delta=0$, outside the set. This conclusion follows directly from the root equality.
+The strict inequality $T_t<T_r$ excludes the instantaneous diagonal. It is consistent with the [Master Equation's Heaviside endpoint convention](../../../../markdown/aaa/dynamics/master-equation.md#conventions-and-exclusions), $H(0)=0$, where $H$ is one for positive delay and zero for nonpositive delay. At an exact causal root, $r=c_f\Delta$ and $c_f>0$ imply that $r=0$ occurs only at $\Delta=0$, outside the set. This conclusion follows directly from the root equality.
 
-Endpoint exclusion supplies no transition law. Passage through a fold, a nonisolated positive-delay family, or a root born at the excluded diagonal requires a separate rule specifying the outgoing history and root census. Mollification, the replacement of a sharp wake surface by a finite-width kernel, also requires declared positive-delay support, near-origin control, and a verified limit for that kernel and geometry. A finite sample or a chosen value of $H(0)$ does not establish such a limit. These continuation and regularization obligations remain open here; the local branch theorem stops when its hypotheses fail.
+Endpoint exclusion supplies no transition law. Passage through a fold, a nonisolated positive-delay family, or a root born at the excluded diagonal requires a separate rule specifying the outgoing history and root census. Mollification, the replacement of a zero-thickness wake surface by a finite-width kernel, also requires declared positive-delay support, near-origin control, and a verified limit for that kernel and geometry. A finite sample or a chosen value of $H(0)$ does not establish such a limit. These continuation and regularization obligations remain open here; the local branch theorem stops when its hypotheses fail.
 
 ##### Outrunning One's Own Wake: A Speedboat Analogy
 Picture an idealized speedboat laying down circular ridges at constant emission cadence, each centered at the boat's position when emitted and expanding at a fixed speed $c_w$. This is a geometric analogy, not a model of water dynamics. If the boat stays strictly slower than $c_w$ throughout an emission-to-reception interval, its displacement is less than the ridge radius, so it cannot meet that ridge again. A faster segment followed by slowing or turning makes a later crossing possible without guaranteeing it. In the intended self-hit comparison, an admitted crossing contributes outward acceleration along the radius from the earlier emission position. The analogy's crossing geometry alone does not calculate an acceleration.
@@ -8498,7 +8494,7 @@ The action-boundary route proposes an interaction charge, the work-integral rout
 
 ##### Action-Boundary Route
 
-An action is a scalar functional of paths; a time-translation boundary charge must follow from its complete variation, including the endpoints. The candidate in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#action-level-wake-energy-functional-at-a-time-boundary) uses the convention that the interaction enters the action with an outer factor $-1/2$. In the sharp, positive-separation form its kernel is
+An action is a scalar functional of paths; a time-translation boundary charge must follow from its complete variation, including the endpoints. The candidate in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#action-level-wake-energy-functional-at-a-time-boundary) uses the convention that the interaction enters the action with an outer factor $-1/2$. In the unmollified, positive-separation form its kernel is
 $$
 \mathcal K_{ij}^{E}(T_1,T_t)
 =\mu_{\text{arch}}\kappa\,\sigma_{ij}|q_iq_j|
@@ -8600,7 +8596,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7d54e85f39a0ca25)
 
-only if the root-labeled bands $\mathcal C_{ij,b}^{(\eta)}(T)$ exhaust the modeled integral; otherwise the complement power must be added explicitly. At finite width, $T_t$ labels a band around a reference root rather than an instantaneous sharp hit. A fold or overlapping support requires its own partition and event treatment. Each entry retains transmitter identity, polarity, emission time or band, the transmitter-side factor $D_t=c_f-\hat{\mathbf r}_t\cdot\mathbf V_j(T_t)$, the acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ in the sharp simple-root limit, inactive-domain coverage, and memory-edge contributions. Here $\hat{\mathbf r}_t$ points from emission to reception. Complete coverage and refinement require an independent root check; scalar summation alone establishes neither. The work-integral route then reconstructs the compatible causal-history interaction entry by
+only if the root-labeled bands $\mathcal C_{ij,b}^{(\eta)}(T)$ exhaust the modeled integral; otherwise the complement power must be added explicitly. At finite width, $T_t$ labels a band around a reference root rather than a single causal hit. A fold or overlapping support requires its own partition and event treatment. Each entry retains transmitter identity, polarity, emission time or band, the transmitter-side factor $D_t=c_f-\hat{\mathbf r}_t\cdot\mathbf V_j(T_t)$, the acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ in the zero-width simple-root limit, inactive-domain coverage, and memory-edge contributions. Here $\hat{\mathbf r}_t$ points from emission to reception. Complete coverage and refinement require an independent root check; scalar summation alone establishes neither. The work-integral route then reconstructs the compatible causal-history interaction entry by
 $$
 U_{b,\mathrm{work}}^{(\eta)}(T)
 =
@@ -8904,7 +8900,7 @@ This is a numerical specification with conditional acceptance requirements. Eval
 
 1. Root finding:
    - Supply continuous evaluable position and velocity histories, their interpolation method and error bounds, and their retained time interval. For each transmitter $o$, including $o=o'$ for self-history, solve $F(T_t;T_r)=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|-(T_r-T_t)=0$ for every admitted emission time $T_t<T_r$. Here $T_r$ is reception time and $T_t$ is emission time.
-   - The causal convention $H(0)=0$, where $H$ is the step function admitting positive delay, excludes the zero-delay endpoint. On an exact sharp root, $r=T_r-T_t>0$. This endpoint exclusion is not a bound on the neighboring finite-width integral or on positive separations approaching zero.
+   - The causal convention $H(0)=0$, where $H$ is the step function admitting positive delay, excludes the zero-delay endpoint. On an exact causal root, $r=T_r-T_t>0$. This endpoint exclusion is not a bound on the neighboring finite-width integral or on positive separations approaching zero.
    - Isolate distinct roots in separate intervals and certify exclusion on the entire complementary retained domain. Sign-change bracketing and continuation of previously found roots alone do not establish completeness: a tangency or a newly born root pair can be missed. Track root identities and perform independent recovery scans. Report a history-edge or unresolved-root condition when coverage is insufficient. Interpreting the retained sum as the full Master Equation acceleration requires complete causal-history coverage or an independently controlled omitted-tail error. A declared finite-memory model without that control supplies an auxiliary calculation, not the full-law acceleration.
    - Record both residual and root-time error. If an isolating interval contains one root and $|\partial_{T_t}F|\ge\nu_t>0$ throughout it, a residual tolerance $\varepsilon_F$ plus a bound $\varepsilon_g$ on interpolation and evaluation error gives root-time error at most $(\varepsilon_F+\varepsilon_g)/\nu_t$. The derivative floor must include its own uncertainty. A small residual without these bounds is not a root certificate.
 
@@ -8919,8 +8915,8 @@ This is a numerical specification with conditional acceptance requirements. Eval
    - Sum over all transmitters and all admitted roots, preserving their identities and signed contributions. The derivative identity $dT_t/dT_r=D_r/D_t$ describes signed root playback. A zero or negative $D_r$ does not remove the root or change the positive acceleration weight. At $D_t=0$, the displayed simple-root formula is unavailable; use a declared singular-event or regularized treatment, or stop the affected acceptance claim. Do not clip the denominator or silently discard the root.
 
 3. Time stepping:
-   - Sharp simple-root mode integrates the acceleration sum while retaining the history needed at every internal solver stage. Track branch entry, exit, and loss of a root floor as events. The generic fold described in [Caustic Transit and Finite Impulse](../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse) has locally integrable acceleration: its integrated velocity change over a shrinking window tends to zero. It does not automatically create an atomic velocity jump. A discrete-emission quadrature needs explicit emission-time weights and a separate convergence argument before its jumps approximate continuous emission.
-   - Mollified mode replaces the distance-gap delta inside the transmitter-time history integral by $\delta_\eta(F)$, with $\int_{\mathbb R}\delta_\eta(u)\,du=1$ and distance width $\eta>0$. It integrates finite neighborhoods of emissions, rather than evaluating the sharp root formula at broadened roots. The factor $1/|D_t|$ arises from sharp delta collapse and must not be inserted again into this integral. Preserve the causal endpoint and finite-memory conventions and account for truncated mollifier support.
+   - Direct simple-root mode integrates the acceleration sum while retaining the history needed at every internal solver stage. Track branch entry, exit, and loss of a root floor as events. The generic fold described in [Caustic Transit and Finite Impulse](../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse) has locally integrable acceleration: its integrated velocity change over a shrinking window tends to zero. It does not automatically create an atomic velocity jump. A discrete-emission quadrature needs explicit emission-time weights and a separate convergence argument before its jumps approximate continuous emission.
+   - Mollified mode replaces the distance-gap delta inside the transmitter-time history integral by $\delta_\eta(F)$, with $\int_{\mathbb R}\delta_\eta(u)\,du=1$ and distance width $\eta>0$. It integrates finite neighborhoods of emissions, rather than evaluating the causal-root formula at broadened roots. The factor $1/|D_t|$ arises from delta collapse and must not be inserted again into this integral. Preserve the causal endpoint and finite-memory conventions and account for truncated mollifier support.
    - Surface width alone does not regularize the inverse-square kernel near coincidence. Use a stated positive-separation support restriction or the declared core scale $\epsilon_c>0$ of the [auxiliary dual-mollified regulator](../../../../markdown/aaa/dynamics/master-equation.md#auxiliary-dual-mollified-regulator-for-proof-and-computation). A core-regularized result is evidence about that auxiliary model until its recovery limit is justified; it supplies no physical coincidence or continuation rule by itself.
 
 4. Resolution and convergence:
@@ -9145,7 +9141,7 @@ The following equations give total accelerations on a domain with no same-transm
 
 If a same-transmitter root exists, the corresponding displayed equation contains only the partner contribution. The canonical total must also include $\kappa\epsilon^2\sum_{T_t\in\mathcal C_{i\leftarrow i}(T)}W_{ii}^{\mathrm{acc}}\operatorname{sgn}(s_{ii})/r_{ii}^2$ on admitted regular roots. A sufficient condition for no self-hits is a speed bound $|V_i(u)|\le v_*<1$ over every relevant interval from emission to reception: integration gives $|X_i(T)-X_i(T_t)|\le v_*(T-T_t)<T-T_t$, which excludes the self-root equality. Present rest or straight-line motion alone does not exclude delayed self-hits.
 
-A failed distance or derivative floor ends the stated regular-domain guarantee. An exact $D_{t,ij}=0$ is a degenerate root where the displayed sharp-root weight is unavailable; failure of a chosen positive floor need not mean that this exact degeneracy has occurred. Neither a simple root nor a positive floor proves dynamical stability. A singular event, unresolved root inventory, or history boundary requires a separately justified continuation or an end to the claim; clipping a denominator, discarding a root, or introducing an unspecified smoothing rule changes the problem.
+A failed distance or derivative floor ends the stated regular-domain guarantee. An exact $D_{t,ij}=0$ is a degenerate root where the displayed simple-root weight is unavailable; failure of a chosen positive floor need not mean that this exact degeneracy has occurred. Neither a simple root nor a positive floor proves dynamical stability. A singular event, unresolved root inventory, or history boundary requires a separately justified continuation or an end to the claim; clipping a denominator, discarding a root, or introducing an unspecified smoothing rule changes the problem.
 
 #### Symmetry and Outward Acceleration
 
@@ -9213,15 +9209,15 @@ The factor $1/c_f$ from the delta change of variables cancels the emission facto
 
 ##### Strict Delay and the Self Endpoint
 
-For receiver $i$, a causal root is an emission time satisfying $g_{ij}(T_r;T_t)=r_{ij}-c_f(T_r-T_t)=0$, where $r_{ij}=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$. Self-hits have $j=i$. Strict delay requires $T_t<T_r$, so every admitted sharp root has $r_{ij}=c_f\Delta>0$. The convention $H(0)=0$, with $H$ the step selecting positive delay, records exclusion of the zero-delay diagonal; implement that exclusion in the root domain. See [Causal Set and Delay Geometry](../../../../markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md).
+For receiver $i$, a causal root is an emission time satisfying $g_{ij}(T_r;T_t)=r_{ij}-c_f(T_r-T_t)=0$, where $r_{ij}=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$. Self-hits have $j=i$. Strict delay requires $T_t<T_r$, so every admitted causal root has $r_{ij}=c_f\Delta>0$. The convention $H(0)=0$, with $H$ the step selecting positive delay, records exclusion of the zero-delay diagonal; implement that exclusion in the root domain. See [Causal Set and Delay Geometry](../../../../markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md).
 
 The exclusion is not a prescription for multiplying undefined distributions at coincidence, nor does it bound the limit as positive delay approaches zero. At finite wake width, off-root history points can also have zero separation. Excluding one endpoint supplies no control of those points or of a neighborhood of the endpoint, and it does not select a continuation through a coincident self-root birth.
 
 ##### Two Distinct Regularizations
 
-Mollification replaces the sharp delta by the Gaussian $\delta_\eta(g)=\exp[-g^2/(2\eta^2)]/(\sqrt{2\pi}\eta)$, where $\eta>0$ is a length measuring width in the distance gap $g$. In the time gap $\Delta-r/c_f$, the corresponding width is $\eta/c_f$; its normalized Gaussian equals $c_f\delta_\eta(g)$. Width and normalization must change together.
+Mollification replaces the delta constraint by the Gaussian $\delta_\eta(g)=\exp[-g^2/(2\eta^2)]/(\sqrt{2\pi}\eta)$, where $\eta>0$ is a length measuring width in the distance gap $g$. In the time gap $\Delta-r/c_f$, the corresponding width is $\eta/c_f$; its normalized Gaussian equals $c_f\delta_\eta(g)$. Width and normalization must change together.
 
-A Gaussian smooths the selector but leaves any inverse-distance singularity in the amplitude. For a concrete prescribed-history counterexample, use normalized wake-speed units $c_f=1$ and $\mathbf X_i(T)=(T/2,0,0)$, evaluated at $T_r=0$. Then $r_{ii}=\Delta/2$ and $g_{ii}=-\Delta/2$, so no positive-delay sharp self-root exists. Yet the Gaussian-only inverse-square magnitude integral is
+A Gaussian smooths the selector but leaves any inverse-distance singularity in the amplitude. For a concrete prescribed-history counterexample, use normalized wake-speed units $c_f=1$ and $\mathbf X_i(T)=(T/2,0,0)$, evaluated at $T_r=0$. Then $r_{ii}=\Delta/2$ and $g_{ii}=-\Delta/2$, so no positive-delay self-root exists. Yet the Gaussian-only inverse-square magnitude integral is
 $$
 \int_0^h \frac{4}{\Delta^2}\delta_\eta(-\Delta/2)\,d\Delta=\infty
 $$
@@ -9240,7 +9236,7 @@ $$
 
 Here $\mathbf r_{ij}=\mathbf X_i(T_r)-\mathbf X_j(T_t)$ and $\epsilon_c$ is a length controlling the spatial denominator. Its magnitude is bounded by $2/(3\sqrt3\,\epsilon_c^2)$, obtained by maximizing $r/(r^2+\epsilon_c^2)^{3/2}$ at $r=\epsilon_c/\sqrt2$. Since $\delta_\eta\le1/(\sqrt{2\pi}\eta)$, finite memory and finitely many fixed-amplitude transmitters give bounded auxiliary acceleration at fixed positive $\eta,\epsilon_c$. The bound is not uniform as either regulator vanishes. The kernel's continuous zero value at $\mathbf r_{ij}=0$ supplies no physical coincidence response or stored self-energy.
 
-The Gaussian has nonzero tails, so finite-width evaluation is an integral over emission bands and their complement, not automatically a discrete sharp-root sum. A separation floor at the roots alone does not control all sampled history points. Any omitted bands, old history, endpoint neighborhoods, or transmitters require an explicit bound; spatial normalization must also account for the truncated radial domain near a newly emitted surface.
+The Gaussian has nonzero tails, so finite-width evaluation is an integral over emission bands and their complement, not automatically a discrete causal-root sum. A separation floor at the roots alone does not control all sampled history points. Any omitted bands, old history, endpoint neighborhoods, or transmitters require an explicit bound; spatial normalization must also account for the truncated radial domain near a newly emitted surface.
 
 ##### Regular Self-Hit Bounds
 
@@ -9343,7 +9339,7 @@ A regular branch record retains positive separation and delay margins, controlle
 
 ##### Coincidence and Singular Events
 
-At an exact sharp root, $r=c_f\Delta$ with $c_f>0$ and $\Delta>0$ implies $r>0$. Thus there is no coincident positive-delay root. The convention $H(0)=0$, where $H$ selects positive delay, records exclusion of the instantaneous diagonal $T_t=T_r$. It does not bound acceleration as a root approaches that endpoint or provide a finite transition through its birth. Finite-width wake evaluation and spatial regularization require their own domain and limit controls, as explained in [Self-Energy and Regularization](../../../../markdown/aaa/validation/simulations/action-energy/self-energy.md#strict-delay-and-the-self-endpoint).
+At an exact causal root, $r=c_f\Delta$ with $c_f>0$ and $\Delta>0$ implies $r>0$. Thus there is no coincident positive-delay root. The convention $H(0)=0$, where $H$ selects positive delay, records exclusion of the instantaneous diagonal $T_t=T_r$. It does not bound acceleration as a root approaches that endpoint or provide a finite transition through its birth. Finite-width wake evaluation and spatial regularization require their own domain and limit controls, as explained in [Self-Energy and Regularization](../../../../markdown/aaa/validation/simulations/action-energy/self-energy.md#strict-delay-and-the-self-endpoint).
 
 ##### Repulsive Character and Scale Selection
 
@@ -9353,7 +9349,7 @@ For a prescribed circle of fixed center and radius $R>0$, let $\theta$ be the an
 
 In a binary or multi-binary candidate, self-repulsion can oppose inward partner contributions on that circular geometry. A proposed minimum sustainable orbital radius $d_0$, measured from a declared center, still requires full acceleration balance and persistence under the delayed dynamics. A candidate period $P_0$ is the absolute-time duration of a repeat of the relevant complete history; its angular frequency is $2\pi/P_0$, while its cycle frequency is $1/P_0$. Establishing stability requires control of perturbations about an actual solution, including how retained history returns after a cycle. Calling a radius minimal or a frequency fastest further requires comparison across a specified family of admissible solutions. No such extremum or stable structure follows from the switch or the outward circular projection alone.
 
-Claim grade: derived for the speed restriction, coincidence exclusion, and directional projections under their stated hypotheses. A simple self-root with no super-field-speed interval, a positive-delay sharp root at zero separation, or an inward self projection on the stated fixed-center circle would refute the corresponding result. Scale selection and stable-assembly realization remain open proof obligations.
+Claim grade: derived for the speed restriction, coincidence exclusion, and directional projections under their stated hypotheses. A simple self-root with no super-field-speed interval, a positive-delay causal root at zero separation, or an inward self projection on the stated fixed-center circle would refute the corresponding result. Scale selection and stable-assembly realization remain open proof obligations.
 
 ### Superposition and Locality
 
@@ -9403,7 +9399,7 @@ The action-energy simulations use normalized wake-speed units with $c_f=1$. An [
 - $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$.
 - $r=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|$, with $\hat{\mathbf{r}}=(\mathbf X_{o'}(T_r)-\mathbf X_o(T_t))/r$.
 
-Here $o$ labels the transmitter, $o'$ the receiver, $T_t$ the emission time, and $T_r$ the reception time. Position is $\mathbf X_o(T)$ and velocity is $\mathbf V_o=d\mathbf X_o/dT$ in the Euclidean void and absolute time. An admitted sharp root satisfies $T_t<T_r$ and $r=c_f(T_r-T_t)>0$; the coincident-time endpoint is excluded. The sign $\sigma_{q q'}$ is positive for like polarities and negative for unlike polarities.
+Here $o$ labels the transmitter, $o'$ the receiver, $T_t$ the emission time, and $T_r$ the reception time. Position is $\mathbf X_o(T)$ and velocity is $\mathbf V_o=d\mathbf X_o/dT$ in the Euclidean void and absolute time. An admitted causal root satisfies $T_t<T_r$ and $r=c_f(T_r-T_t)>0$; the coincident-time endpoint is excluded. The sign $\sigma_{q q'}$ is positive for like polarities and negative for unlike polarities.
 
 Writing $\mathrm L$, $\mathrm T$, and $\mathrm Q$ for length, time, and polarity dimensions, respectively, the acceleration law gives $[c_f]=\mathrm L\mathrm T^{-1}$, $[\eta]=\mathrm L$, $[\epsilon]=\mathrm Q$, and $[\kappa]=\mathrm L^3\mathrm T^{-2}\mathrm Q^{-2}$. Indeed, $W^{\mathrm{acc}}$ is dimensionless and $[\kappa\epsilon^2/r^2]=\mathrm L\mathrm T^{-2}$. These are dimensional deductions from the acceleration law, not a force or mass convention.
 
@@ -9414,26 +9410,26 @@ Writing $\mathrm L$, $\mathrm T$, and $\mathrm Q$ for length, time, and polarity
   - A change of units preserves predictions only when every dimensional input and output is converted consistently. With the polarity unit held fixed, replacing $(L_0,T_0)$ by $(aL_0,aT_0)$ with $a>0$ divides the numerical values of $r$, $T_r-T_t$, $\eta$, and $\kappa$ by $a$, while leaving numerical velocities unchanged. Ratios such as $\eta/r$ and $g_\kappa$ below are invariant when their reference scales describe the same geometry; holding the other numerical inputs fixed would change the problem.
 
 - Coupling constant ($\kappa>0$):
-  - On an admitted simple root, meaning $D_t\ne0$, the canonical contribution is $\mathbf A_{o'\leftarrow o}=\kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2}W_{o'\leftarrow o}^{\mathrm{acc}}\,\hat{\mathbf r}$. Here $D_t=c_f-\mathbf V_o(T_t)\cdot\hat{\mathbf r}$ measures how rapidly the causal distance gap changes with emission time, and $W^{\mathrm{acc}}=c_f/|D_t|$. At $D_t=0$ this sharp-root formula is unavailable; a singular-event or regularized treatment is required.
+  - On an admitted simple root, meaning $D_t\ne0$, the canonical contribution is $\mathbf A_{o'\leftarrow o}=\kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2}W_{o'\leftarrow o}^{\mathrm{acc}}\,\hat{\mathbf r}$. Here $D_t=c_f-\mathbf V_o(T_t)\cdot\hat{\mathbf r}$ measures how rapidly the causal distance gap changes with emission time, and $W^{\mathrm{acc}}=c_f/|D_t|$. At $D_t=0$ this simple-root formula is unavailable; a singular-event or regularized treatment is required.
   - Replacing $\kappa$ by $\alpha\kappa$, with $\alpha>0$, multiplies the evaluated acceleration by $\alpha$ on the same prescribed histories, polarities, and regulator prescription. Evolved histories can change their separations, root counts, and weights, so this pointwise identity does not determine an assembly's radius, period, or stability.
 
 - Regularization width ($\eta>0$):
-  - For $\Delta T=T_r-T_t$, replace the distance-gap delta $\delta(r-c_f\Delta T)$ inside the transmitter-time history integral by a smooth kernel $\delta_\eta(r-c_f\Delta T)$ normalized by $\int_{\mathbb R}\delta_\eta(u)\,du=1$. Its width $\eta$ has dimensions of length. In normalized units the gap is $r-\Delta T$. Continuous emission already gives continuous acceleration on regular sharp-root branches; surface mollification does not define a physical pulse train. It also does not remove the $1/r^2$ singularity near coincidence. Smoothness requires a controlled history domain and either positive separation throughout the contributing support or a separately declared core regulator, as explained in [Numerical Recipe and Stability](../../../../markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md).
+  - For $\Delta T=T_r-T_t$, replace the distance-gap delta $\delta(r-c_f\Delta T)$ inside the transmitter-time history integral by a smooth kernel $\delta_\eta(r-c_f\Delta T)$ normalized by $\int_{\mathbb R}\delta_\eta(u)\,du=1$. Its width $\eta$ has dimensions of length. In normalized units the gap is $r-\Delta T$. Continuous emission already gives continuous acceleration on regular causal-root branches; surface mollification does not define a physical pulse train. It also does not remove the $1/r^2$ singularity near coincidence. Smoothness requires a controlled history domain and either positive separation throughout the contributing support or a separately declared core regulator, as explained in [Numerical Recipe and Stability](../../../../markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md).
   - Choose $\eta$ small relative to the resolved geometric scales, then resolve its support in both reception time and emission-time history. Locally the traversal scales are $\eta/|D_r|$ and $\eta/|D_t|$, respectively, where the derivatives are nonzero; $D_r=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf r}$ measures reception-time crossing. Zero derivatives require higher-order local analysis. Small width alone proves neither numerical stability nor convergence. The evolution remains a delayed-history problem requiring retained histories, controlled interpolation, and the declared causal and memory boundaries.
 
 - Polarity-unit magnitude ($\epsilon>0$):
   - $\epsilon$ is the fundamental polarity scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). The observer-level calibration target $|e|=6\epsilon$, where $|e|$ is the elementary electric-charge magnitude, is the normalization convention $Z_e=1$ in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md#2-charge-reconstruction). It supplies charge labels for comparisons with particle measurements; it neither identifies an assembly as a particle nor inserts the measured charge into substrate dynamics.
-  - Emission is continuous with constant transmitter-time density. The sharp-root acceleration weight is $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; receiver-side geometry controls signed root playback through $D_r/D_t$ and does not supply an additional arriving-strength factor.
+  - Emission is continuous with constant transmitter-time density. The simple-root acceleration weight is $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; receiver-side geometry controls signed root playback through $D_r/D_t$ and does not supply an additional arriving-strength factor.
 
 - Sign of interaction ($\sigma_{q q'}$):
   - $\sigma_{q q'}=\mathrm{sign}(q\,q')$ selects the direction along the delayed emission-to-receiver line. Like polarities ($\sigma=+1$) accelerate along $+\hat{\mathbf r}$, and unlike polarities ($\sigma=-1$) along $-\hat{\mathbf r}$. These directions concern the past emission point; they do not by themselves determine whether the present receiver-transmitter separation increases or decreases.
 
 - Line of action ($r$, $\hat{\mathbf{r}}$, $D_t$, $D_r$, $W^{\mathrm{acc}}$):
-  - $r=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|$ is the delayed separation and $\hat{\mathbf r}$ its unit direction. Both $D_t$ and $D_r$ have speed dimensions, whereas $W^{\mathrm{acc}}$ and the playback derivative $dT_t/dT_r=D_r/D_t$ are dimensionless. Each sharp per-hit acceleration lies along this line; the total is the vector sum over all admitted transmitter roots, including positive-delay self roots.
+  - $r=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|$ is the delayed separation and $\hat{\mathbf r}$ its unit direction. Both $D_t$ and $D_r$ have speed dimensions, whereas $W^{\mathrm{acc}}$ and the playback derivative $dT_t/dT_r=D_r/D_t$ are dimensionless. Each per-hit acceleration lies along this line; the total is the vector sum over all admitted transmitter roots, including positive-delay self roots.
 
 - Combined role in assembly scales:
   - The bare coupling defines the length $R_*=\kappa\epsilon^2/c_f^2$ and time $T_*=R_*/c_f$, as derived in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md#layer-i-two-body-scale-closure). These are units, not proofs of a smallest sustainable orbit or fastest frequency. Such extrema require an admitted solution family, acceleration balance, and stability evidence; [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) owns those conditional assembly claims.
-  - A derived similarity of the bare sharp law makes the limitation concrete. At fixed $c_f$ and $\epsilon$, if $\mathbf X_i(T)$ is a solution for $\kappa$, then $\mathbf X_i^{(\alpha)}(T)=\alpha\mathbf X_i(T/\alpha)$ is a solution for $\alpha\kappa$ on the correspondingly scaled history domain. Velocities and $W^{\mathrm{acc}}$ are unchanged, while separations and delays multiply by $\alpha$; both sides of the acceleration law therefore divide by $\alpha$. If the solution is periodic, its radius and period scale by $\alpha$. A finite-width similarity also requires $\eta\mapsto\alpha\eta$, the same normalized kernel shape, and scaling every other length, time, core, and boundary parameter. This does not establish existence or stability of any candidate, and varying $\kappa$ at fixed $\eta$ changes the regulator ratio.
+  - A derived similarity of the Master Equation makes the limitation concrete. At fixed $c_f$ and $\epsilon$, if $\mathbf X_i(T)$ is a solution for $\kappa$, then $\mathbf X_i^{(\alpha)}(T)=\alpha\mathbf X_i(T/\alpha)$ is a solution for $\alpha\kappa$ on the correspondingly scaled history domain. Velocities and $W^{\mathrm{acc}}$ are unchanged, while separations and delays multiply by $\alpha$; both sides of the acceleration law therefore divide by $\alpha$. If the solution is periodic, its radius and period scale by $\alpha$. A finite-width similarity also requires $\eta\mapsto\alpha\eta$, the same normalized kernel shape, and scaling every other length, time, core, and boundary parameter. This does not establish existence or stability of any candidate, and varying $\kappa$ at fixed $\eta$ changes the regulator ratio.
 
 - Dimensionless branch-scan controls:
   - Simulation sweeps should report dimensionless controls rather than only raw choices of $(\kappa,\epsilon,\eta,L_0,T_0)$. Choose a reference length $L_\star$ and the corresponding reference time $T_\star=L_\star/c_f$; in field-speed units, $c_f=1$ and $T_\star=L_\star$.
@@ -9467,7 +9463,7 @@ Writing $\mathrm L$, $\mathrm T$, and $\mathrm Q$ for length, time, and polarity
 
     [View →](../../../../../equation-mapping.html#corpus-equation-1f5196ad240d203b)
 
-    with local checks such as $\eta/r_{\min}$, where $r_{\min}>0$ is a separation floor on the contributing support. First refine numerical resolution at fixed regulators and history prescription. Then compare matched root identities and observables on the same window as $\hat\eta$ is reduced, with kernel shape, truncation, and any core prescription stated. A resolved finite-$\eta$ result remains evidence about that model even without a sharp-limit claim. Count agreement or two nearby widths alone does not establish convergence, and a genuine root transition requires its own event treatment.
+    with local checks such as $\eta/r_{\min}$, where $r_{\min}>0$ is a separation floor on the contributing support. First refine numerical resolution at fixed regulators and history prescription. Then compare matched root identities and observables on the same window as $\hat\eta$ is reduced, with kernel shape, truncation, and any core prescription stated. A resolved finite-$\eta$ result remains evidence about that model even without a claim of convergence as the regulators are removed. Count agreement or two nearby widths alone does not establish convergence, and a genuine root transition requires its own event treatment.
   - **Coupling scale:** compare the per-hit acceleration scale with the reference acceleration $L_\star/T_\star^2$:
     $$
     g_\kappa
@@ -9502,7 +9498,7 @@ Writing $\mathrm L$, $\mathrm T$, and $\mathrm Q$ for length, time, and polarity
 
 ### Well-Posedness and Regularization
 
-The ideal model sums delayed acceleration contributions from [causal wake surfaces](../../../../markdown/aaa/foundations/architrino.md), the expanding disturbances emitted by architrinos. Continuous emission and a sharp surface delta do not by themselves make velocity discontinuous. An auxiliary finite-width model replaces the delta by a mollifier; its normalization, origin treatment, history functional, and convergence must be specified together. We work in normalized wake-speed units with $c_f=1$ in the following replacement; symbolic $c_f$ is retained where dimensional conversions matter.
+The ideal model sums delayed acceleration contributions from [causal wake surfaces](../../../../markdown/aaa/foundations/architrino.md), the expanding disturbances emitted by architrinos. Continuous emission and a surface delta do not by themselves make velocity discontinuous. An auxiliary finite-width model replaces the delta by a mollifier; its normalization, origin treatment, history functional, and convergence must be specified together. We work in normalized wake-speed units with $c_f=1$ in the following replacement; symbolic $c_f$ is retained where dimensional conversions matter.
 $$
 \delta(r-\Delta)\longrightarrow
 \frac{1}{\sqrt{2\pi}\,\eta}
@@ -9514,13 +9510,13 @@ $$
 #### Impulses Versus Smooth Acceleration
 
 - Measure-driven dynamics:
-  - For continuous emission, integrating the sharp delta over emission time gives the ordinary simple-root acceleration sum with weight $c_f/|D_t|$ on a regular chart. Locally integrable acceleration gives absolutely continuous velocity, with no jumps. A measure-driven description allows jumps only where the reception-time acceleration measure actually has atoms; discrete emission pulses or a separately specified singular transition may require that description. A surface delta in emission coordinates alone does not establish such atoms.
+  - For continuous emission, integrating the delta constraint over emission time gives the ordinary simple-root acceleration sum with weight $c_f/|D_t|$ on a regular chart. Locally integrable acceleration gives absolutely continuous velocity, with no jumps. A measure-driven description allows jumps only where the reception-time acceleration measure actually has atoms; discrete emission pulses or a separately specified singular transition may require that description. A surface delta in emission coordinates alone does not establish such atoms.
 
 - Mollified causal wake surfaces:
   - A Gaussian of width $\eta>0$ has noncompact tails. It smooths the radial delta, but does not regularize the inverse-square origin singularity or prove regularity of a state-dependent history functional. Classical trajectories require the history-domain and local existence hypotheses below, including distance or core control over the entire integrated support.
 
 - Choosing $\eta$:
-  - Select $\eta$ small relative to local geometric scales (path curvature radius, inter-source spacing) as part of a declared regularization and discretization study. Small width alone neither proves approximation of the sharp law nor maintains numerical stability.
+  - Select $\eta$ small relative to local geometric scales (path curvature radius, inter-source spacing) as part of a declared regularization and discretization study. Small width alone neither proves approximation of the Master Equation nor maintains numerical stability.
 
 - Distributional wake-surface normalization:
   - Treat $\delta(r-c_f\Delta)$ and $\delta_\eta(r-c_f\Delta)$ as distributions, so the invariant statement is an integrated statement against a test function, not the sampled height of the spike. For a fixed positive emission age $\Delta=T-T_t>0$, $r=\|\mathbf X-\mathbf X_0\|$, and a bounded continuous test function $f$,
@@ -9564,7 +9560,7 @@ $$
 
     [View →](../../../../../equation-mapping.html#corpus-equation-ca1da5e9188e06a9)
 
-    Here $\varepsilon_q>0$ has polarity units. Comparing a numerical spatial integral with the independently evaluated radial Gaussian integral tests the spatial Jacobian and truncation accounting. Agreement of two sides built from the same incorrectly normalized mollifier would not test its normalization. At finite width the full spatial integral is $qH(\Delta)$ times the Gaussian probability on $r>0$, strictly between zero and one for positive age. Thus exact finite-width total emission is not preserved by this formula; the stated sharp limit is. The residual and the separate total-emission limit test have different obligations.
+    Here $\varepsilon_q>0$ has polarity units. Comparing a numerical spatial integral with the independently evaluated radial Gaussian integral tests the spatial Jacobian and truncation accounting. Agreement of two sides built from the same incorrectly normalized mollifier would not test its normalization. At finite width the full spatial integral is $qH(\Delta)$ times the Gaussian probability on $r>0$, strictly between zero and one for positive age. Thus exact finite-width total emission is not preserved by this formula; the stated zero-width limit is. The residual and the separate total-emission limit test have different obligations.
 
 - Curvilinear-coordinate hygiene:
   - Operator checks in spherical or cylindrical charts must use the Euclidean metric scale factors, not Cartesian component formulas applied to curvilinear components. For spherical coordinates $(r,\theta,\varphi)$ centered on the emission point,
@@ -9655,7 +9651,7 @@ $$
 
     [View →](../../../../../equation-mapping.html#corpus-equation-96f13f070ee4acb8)
 
-    Here $\xi_a$ is a reception-time discontinuity location, $k_a$ its derivative order, $\ell_a$ its delayed branch, $t_{0,\ell_a}$ the branch emission-time map, and $\xi_{\pi(a)}$ its matched earlier discontinuity. The reception-time step $\Delta T$, history-time spacing $\Delta h$, and positive time floor $\varepsilon_T$ use the same absolute-time units. Such rows are conditional on actual jumps; they are not inferred from a sharp wake alone. Unstable jump identity routes to $\mathsf{branch\_root\_instability}$; unresolved jump or interpolation convergence routes to $\mathsf{mesh\_nonconvergence}$.
+    Here $\xi_a$ is a reception-time discontinuity location, $k_a$ its derivative order, $\ell_a$ its delayed branch, $t_{0,\ell_a}$ the branch emission-time map, and $\xi_{\pi(a)}$ its matched earlier discontinuity. The reception-time step $\Delta T$, history-time spacing $\Delta h$, and positive time floor $\varepsilon_T$ use the same absolute-time units. Such rows are conditional on actual jumps; they are not inferred from a zero-thickness wake alone. Unstable jump identity routes to $\mathsf{branch\_root\_instability}$; unresolved jump or interpolation convergence routes to $\mathsf{mesh\_nonconvergence}$.
 
 - Fold-layer status is only a transition classification. A stable fold-layer row may preserve branch identity through $\eta$ refinement, but it does not prove branch-equation balance. When the run claims a corrected one-period carrier, the acceleration-balance residual for that period must also pass before the result can proceed to monodromy, $\Delta_{\mathbf{k}}$, or $\eta$-ladder persistence.
 
@@ -9776,7 +9772,7 @@ $$
 
 Here $d_{\mathcal L}$ is a declared metric on a common complete ledger space, with fixed transmitter identities, matching rules, units, and observation window. The observation norm must separate the promoted records; finite sample agreement proves convergence only of those sampled records, not of an unobserved continuum field. Restriction and interpolation maps must be stable and mutually consistent. Summable absolute adjacent increments are a sufficient alternative along one ladder; adjacent relative increments merely vanishing are not. A ladder result alone needs control between ladder points before it proves the full regulator limit displayed above. Numerical mesh, history, and boundary errors must be controlled independently of width.
 
-Completeness gives a limit of the represented observables and ledgers; it does not show that the limit is an admissible sharp-law solution. That requires passing the governing equation and its boundary conditions to the limit, controlling singular roots and any lost history, and proving the limiting ledger remains in the claimed domain. Otherwise the result remains finite-$\eta$ evidence or convergence of specified diagnostics only.
+Completeness gives a limit of the represented observables and ledgers; it does not show that the limit is an admissible Master Equation solution. That requires passing the governing equation and its boundary conditions to the limit, controlling singular roots and any lost history, and proving the limiting ledger remains in the claimed domain. Otherwise the result remains finite-$\eta$ evidence or convergence of specified diagnostics only.
 
 ## Entropy
 
@@ -12683,15 +12679,15 @@ The numerical acceptance target is:
 
 > A finite-$\eta$ record with small EOM, period, balance, and frequency residuals, complete root coverage, positive smooth-chart floors, a numerical transverse spectral margin, and an independently checked energy account is a candidate for validation. To certify a nearby periodic binary, additionally prove an a posteriori existence result on the declared history space, with nonlinear error bounds and a validated return operator at that orbit. Local attraction then requires the verified transverse spectral bound or another applicable stability theorem. Small residuals alone do not supply these conclusions.
 
-No such existence-and-stability certificate is supplied here. A return map whose derivative is small at one approximate state need not have a fixed point. A suitable route is an enclosure on which a return or periodic-boundary operator satisfies a proved fixed-point theorem, with complete root exclusion and bounded nonlinear errors. The sharp limit, basin measure, and universal clock/matter interpretation remain separate obligations.
+No such existence-and-stability certificate is supplied here. A return map whose derivative is small at one approximate state need not have a fixed point. A suitable route is an enclosure on which a return or periodic-boundary operator satisfies a proved fixed-point theorem, with complete root exclusion and bounded nonlinear errors. The zero-width limit, basin measure, and universal clock/matter interpretation remain separate obligations.
 
 ### State Space and Well-Posedness of the Two-Body Delay System
 
 #### Introduction and Scope
 
-In first-order variables $\mathbf Z=(\mathbf X,\mathbf V)$, the sharp Master Equation is a state-dependent delay differential equation: its delayed arguments are selected by the evolving positions, while its highest derivative appears only at the current reception time. It is therefore not a neutral delay equation in this representation. A neutral classification would require delayed occurrences of the highest derivative, which the canonical acceleration law does not contain.
+In first-order variables $\mathbf Z=(\mathbf X,\mathbf V)$, the Master Equation is a state-dependent delay differential equation: its delayed arguments are selected by the evolving positions, while its highest derivative appears only at the current reception time. It is therefore not a neutral delay equation in this representation. A neutral classification would require delayed occurrences of the highest derivative, which the canonical acceleration law does not contain.
 
-Unlike an ordinary differential equation, whose state is a point in $\mathbb R^{6N}$, this system requires a segment of past positions and velocities. The classification matters because existence and uniqueness must be established on a history space, and because a smooth finite-width wake model and the sharp root-resolved equation have different regularity burdens.
+Unlike an ordinary differential equation, whose state is a point in $\mathbb R^{6N}$, this system requires a segment of past positions and velocities. The classification matters because existence and uniqueness must be established on a history space, and because a smooth finite-width wake model and the root-resolved Master Equation have different regularity burdens.
 
 ---
 
@@ -12715,7 +12711,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f157ade25feabdc3)
 
-The norm is the uniform norm on both components. Histories representing differentiable trajectories also satisfy the compatibility condition $d\mathbf X/dT=\mathbf V$ on smooth arcs. The finite-width integral below is naturally defined on $\mathcal H_0$; extracting and differentiating individual sharp roots generally requires a smoother history chart.
+The norm is the uniform norm on both components. Histories representing differentiable trajectories also satisfy the compatibility condition $d\mathbf X/dT=\mathbf V$ on smooth arcs. The finite-width integral below is naturally defined on $\mathcal H_0$; extracting and differentiating individual causal roots generally requires a smoother history chart.
 
 Finite impulses require a different limiting class. Bounded velocity and a uniform bound on $\int\|\mathbf A\|\,dT$ support bounded variation of velocity, not a uniform bound on its derivative. A candidate finite-window space for event limits is
 $$
@@ -12726,15 +12722,15 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-baba0dacd7bb9adf)
 
-Here $BV$ means finite total variation; its velocity derivative may be a finite measure with atoms representing impulses. For an integrable ordinary acceleration, velocity is absolutely continuous, a narrower class. For example, $A(T)=T^{-1/2}$ gives $V(T)=2\sqrt T$, which has finite impulse but is not Lipschitz at zero. A candidate sharp-limit statement must name its topology, such as uniform position convergence, $L^1$ velocity convergence, and weak convergence of acceleration measures under uniform variation bounds. It must also specify one-sided velocity evaluations at event times. These are a proposed solution framework, not a proved limit of the present kernel.
+Here $BV$ means finite total variation; its velocity derivative may be a finite measure with atoms representing impulses. For an integrable ordinary acceleration, velocity is absolutely continuous, a narrower class. For example, $A(T)=T^{-1/2}$ gives $V(T)=2\sqrt T$, which has finite impulse but is not Lipschitz at zero. A candidate zero-width limit statement must name its topology, such as uniform position convergence, $L^1$ velocity convergence, and weak convergence of acceleration measures under uniform variation bounds. It must also specify one-sided velocity evaluations at event times. These are a proposed solution framework, not a proved limit of the present kernel.
 
-Below, $\mathcal H$ denotes the stated chart. The fixed-width local theorem uses continuous histories $\mathcal H_0$. Sharp simple-root differentiation uses a compatible $C^1$ chart and roots strictly inside the retained interval. Event limits use the declared weaker class and event prescription; convergence in $W^{1,\infty}$ for the velocity is not inferred from finite impulse.
+Below, $\mathcal H$ denotes the stated chart. The fixed-width local theorem uses continuous histories $\mathcal H_0$. Differentiating simple causal roots uses a compatible $C^1$ chart and roots strictly inside the retained interval. Event limits use the declared weaker class and event prescription; convergence in $W^{1,\infty}$ for the velocity is not inferred from finite impulse.
 
 ---
 
 #### The Regularized Interaction Functional
 
-The sharp root map and the finite-width integral must be distinguished. Root differentiability is needed for the former, while the latter can be evaluated without extracting individual roots.
+The causal-root map and the finite-width integral must be distinguished. Root differentiability is needed for the former, while the latter can be evaluated without extracting individual roots.
 
 ##### Definition 2 (Causal Constraint Functional)
 For receiver $i$ at reception time $T_r$ and transmitter $j$, let $\phi=(\phi_X,\phi_V)$ be a sufficiently smooth history. A **causal root** is a value $\Delta>0$ satisfying
@@ -12782,9 +12778,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e3a7f07a7a30e112)
 
-For an isolated simple root on which $\chi_{ij}=1$, sharp-delta collapse gives the canonical $c_f/|D_{t,ij}|$ weight. A sufficient condition for term-by-term recovery of the complete sharp acceleration is that the mask equals one at every contributing root and the omitted history contains no contributing roots. Under those conditions the mask is exact localization: removing a root-free near-zero interval does not remove a physical hit. A mask that attenuates an actual root changes that contribution. At positive $\eta$, root-free regions can still contribute to the integral, so recovering an unmasked finite-width calculation requires their contributions or explicit error bounds, including any omitted past tail. With fixed $\eta>0$, bounded $C^1$ masks and mollifier, and the stated support separation floor, the restricted integral is locally Lipschitz on $\mathcal H_0$ without extracting roots.
+For an isolated simple root on which $\chi_{ij}=1$, zero-width delta collapse gives the canonical $c_f/|D_{t,ij}|$ weight. A sufficient condition for term-by-term recovery of the complete Master Equation acceleration is that the mask equals one at every contributing root and the omitted history contains no contributing roots. Under those conditions the mask is exact localization: removing a root-free near-zero interval does not remove a physical hit. A mask that attenuates an actual root changes that contribution. At positive $\eta$, root-free regions can still contribute to the integral, so recovering an unmasked finite-width calculation requires their contributions or explicit error bounds, including any omitted past tail. With fixed $\eta>0$, bounded $C^1$ masks and mollifier, and the stated support separation floor, the restricted integral is locally Lipschitz on $\mathcal H_0$ without extracting roots.
 
-The following theorem proves local well-posedness of this auxiliary functional, not removal of its masks, finite memory, or finite width. A sharp-law recovery argument must establish the complete root sum and control the omitted contributions; matching the weight at one retained root is insufficient. Each simple root carries $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$. The same record carries $D_{r,ij}/D_{t,ij}$ for signed root playback, but that ratio does not multiply the instantaneous acceleration. No choice of mask supplies a self-coincidence continuation.
+The following theorem proves local well-posedness of this auxiliary functional, not removal of its masks, finite memory, or finite width. A Master Equation recovery argument must establish the complete root sum and control the omitted contributions; matching the weight at one retained root is insufficient. Each simple root carries $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$. The same record carries $D_{r,ij}/D_{t,ij}$ for signed root playback, but that ratio does not multiply the instantaneous acceleration. No choice of mask supplies a self-coincidence continuation.
 
 Passing from this continuous finite-width model to an event history requires uniform total-variation bounds, a convergent acceleration measure, and explicit root evaluation at event times. Finite impulse alone does not establish that limit or uniqueness in $\mathcal H_*$.
 
@@ -12843,7 +12839,7 @@ Here $\mathcal A^{(\eta)}$ collects the components from Definition 3.
 3. Finite summation and integration over $[-h,0]$ preserve local Lipschitz continuity; hence $\mathcal{G}$ is locally Lipschitz on an open subset of $\mathcal{H}_0$ containing $\phi^0$.
 4. The standard local existence and uniqueness result for a locally Lipschitz finite-delay functional differential equation then gives the claimed local solution and maximal continuation; the solution-manifold framework of [Walther (2003)](https://doi.org/10.1016/j.jde.2003.07.001) supplies a stronger smooth setting when compatibility and differentiability of the history functional are required.
 
-This proves the proposition only for the auxiliary finite-width, finite-window model with the declared support exclusions. It does not prove well-posedness of the sharp root-resolved Master Equation. $\square$
+This proves the proposition only for the auxiliary finite-width, finite-window model with the declared support exclusions. It does not prove well-posedness of the Master Equation. $\square$
 
 > Claim grade: derived, conditional on the stated finite-width, finite-window, smoothness, and separation-floor assumptions. Falsifier: exhibit two solutions from the same admissible history, or show that $\mathcal G$ is not locally Lipschitz on the stated neighborhood.
 
@@ -12851,16 +12847,16 @@ This proves the proposition only for the auxiliary finite-width, finite-window m
 
 #### Continuation Boundaries
 
-Local existence does not by itself imply global existence. For the finite-width model, continuation is available while the history remains bounded and stays inside an admissible neighborhood with a positive separation floor. For the sharp root-resolved equation, additional boundaries include loss of transversality, root accumulation, and unbounded active-root count.
+Local existence does not by itself imply global existence. For the finite-width model, continuation is available while the history remains bounded and stays inside an admissible neighborhood with a positive separation floor. For the root-resolved Master Equation, additional boundaries include loss of transversality, root accumulation, and unbounded active-root count.
 
-These are possible continuation failures, not an exhaustive theorem for the sharp theory:
+These are possible continuation failures, not an exhaustive theorem for the Master Equation:
 
 1. **Collision support:** the separation floor tends to zero on a retained channel.
 2. **Unbounded state:** position or speed leaves every bounded admissible set on a finite interval.
-3. **Sharp-branch fold:** $D_{t,ij}\to0$ for a root-resolved contribution. This is not a singularity of the fixed-$\eta$ integral itself, but it obstructs the simple-root reduction and may produce a singular sharp limit.
+3. **Causal-root fold:** $D_{t,ij}\to0$ for a root-resolved contribution. This is not a singularity of the fixed-$\eta$ integral itself, but it obstructs the simple-root reduction and may produce a singular zero-width limit.
 4. **Root accumulation or memory escape:** the active branch count becomes uncontrolled, or relevant wake support leaves the declared finite history window.
 
-> Claim grade: inferred for this list as the boundary atlas of the sharp binary equation. Falsifier: a certified sharp solution fails at finite time while all four controls remain uniformly bounded away from their stated boundaries.
+> Claim grade: inferred for this list as the boundary atlas of the binary Master Equation. Falsifier: a certified solution of the Master Equation fails at finite time while all four controls remain uniformly bounded away from their stated boundaries.
 
 ---
 
@@ -13206,7 +13202,7 @@ To prove these statements, let $\xi=|\omega|(T_r-T_t)/2>0$. The full root equati
 
 For the matching asymptotic lower bound, every later complete half-wave whose midpoint lies below $\beta_f$ has negative values at both endpoints and a positive value at its midpoint, so it contributes two roots. Only a bounded number of end half-waves escape this argument. Half of the sine half-waves have positive sine, which gives the one-sign asymptotic above. This sign is the sine-lobe sign of the full half-angle, not the reduced-angle orientation label in the binary atlas.
 
-Higher interior pair births occur at tangencies with $D_t=0$. The principal self onset at $\beta_f=1$ is an excluded coincident endpoint. The principal root's later passage through full delay angle $\pi$ at $\beta_f=\pi/2$ has $J=1$ and changes only its signed representation. The root-count theorem includes distinct geometric roots at tangency, but evaluating the sharp magnitude there lies outside the regular scalar domain.
+Higher interior pair births occur at tangencies with $D_t=0$. The principal self onset at $\beta_f=1$ is an excluded coincident endpoint. The principal root's later passage through full delay angle $\pi$ at $\beta_f=\pi/2$ has $J=1$ and changes only its signed representation. The root-count theorem includes distinct geometric roots at tangency, but evaluating the causal-root magnitude there lies outside the regular scalar domain.
 
 On a regular uniform non-translating circular root, $D_r=D_t$ and the playback ratio is one, whereas the acceleration weight is $W^{\mathrm{acc}}=c_f/|D_t|=1/|J|$, with $J=D_t/c_f$. At a tangency the playback quotient is not evaluated as $0/0$; the known circular root family must be treated separately. The detailed geometry is given in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#root-multiplicity-vs-speed).
 
@@ -13490,7 +13486,7 @@ Outside that locus, the action integral is multivalued under the return map, so 
 
 The Master Equation of Motion for architrinos is non-Markovian, driven by intersections between receiver trajectories and past causal wake surfaces. Consequently, any action-level scaffold for this law cannot be a local integral over instantaneous states. It must be a multi-time functional over path history, and its variation residual must be identified before the scaffold is treated as an exact action derivation. If that residual does not vanish or reduce to a declared boundary term, the proposed action does not derive the Master EOM.
 
-For a finite, isolated set of architrinos parameterized by absolute time $T$ in the Euclidean void, consider the $\eta>0$ auxiliary delayed action below. Recovery of the exact causal selector as $\eta\to0^+$ requires coverage of every contributing root and control of omitted history. The admissible sharp interaction sum excludes the exact zero-delay endpoint; nontrivial self hits have $T-T_t>0$. A fixed cutoff $T-T_t\ge\Delta_{\min}>0$ is auxiliary localization: shrinking $\eta$ does not restore roots below that cutoff. A sharp-law claim therefore needs the omitted interval to be root-free or its contributions restored or bounded within the claimed error. A spatial core regulator is a separate auxiliary choice and does not admit the excluded instantaneous endpoint into the sharp law.
+For a finite, isolated set of architrinos parameterized by absolute time $T$ in the Euclidean void, consider the $\eta>0$ auxiliary delayed action below. Recovery of the exact causal selector as $\eta\to0^+$ requires coverage of every contributing root and control of omitted history. The admissible causal-root interaction sum excludes the exact zero-delay endpoint; nontrivial self hits have $T-T_t>0$. A fixed cutoff $T-T_t\ge\Delta_{\min}>0$ is auxiliary localization: shrinking $\eta$ does not restore roots below that cutoff. A claim about the Master Equation therefore needs the omitted interval to be root-free or its contributions restored or bounded within the claimed error. A spatial core regulator is a separate auxiliary choice and does not admit the excluded instantaneous endpoint into the Master Equation.
 
 The $\eta\to0^+$ statement is a weak or distributional scaling claim over declared observables unless a stronger topology is explicitly supplied. A finite-regulator trend supports this action scaffold only after the observable map, normalization, admissible test functions, and uniform control needed for the limit are stated. It is not by itself a proof of the exact causal-wake action.
 
@@ -13537,7 +13533,7 @@ The derivation below is valid under:
 
 - **(EL1)** $\mathbf X_i\in C^2([T_a,T_b];\mathbb{R}^3)$ and variations $\boldsymbol{\xi}_i$ are $C^1$ with $\boldsymbol{\xi}_i(T_a)=\boldsymbol{\xi}_i(T_b)=0$.
 - **(EL2)** $\phi_\eta$ is a normalized $C^1$ approximate identity: either $\phi_\eta\in C_c^1(\mathbb{R})$, $\phi_\eta\ge0$, $\int\phi_\eta(s)\,ds=1$, or a Gaussian/sufficiently fast-decaying mollifier with an explicit tail bound on the chosen analysis window.
-- **(EL3)** Collision and trivial-self exclusion on active support, or on the tail-controlled analysis window for noncompact mollifiers: $r_{ij}(T;T_t)\ge r_{\min}>0$ whenever the retained window admits $\phi_\eta(\tilde g_{ij}(T,T_t))$, and for $i=j$ the retained window also satisfies $T-T_t\ge\Delta_{\min}>0$. A separately declared core-regularized functional may replace these support floors only if its kernel and required derivatives satisfy the bounds used in the variation. Neither choice removes the root-coverage obligation for recovery of the sharp law.
+- **(EL3)** Collision and trivial-self exclusion on active support, or on the tail-controlled analysis window for noncompact mollifiers: $r_{ij}(T;T_t)\ge r_{\min}>0$ whenever the retained window admits $\phi_\eta(\tilde g_{ij}(T,T_t))$, and for $i=j$ the retained window also satisfies $T-T_t\ge\Delta_{\min}>0$. A separately declared core-regularized functional may replace these support floors only if its kernel and required derivatives satisfy the bounds used in the variation. Neither choice removes the root-coverage obligation for recovery of the Master Equation.
 - **(EL4)** Delay-root transversality on active branches: $\partial_{T_t}\tilde g_{ij}(T,T_t)\neq0$ when $\tilde g_{ij}(T,T_t)=0$.
 - **(EL5)** Integrability on the chosen history window, either by finite support or sufficient tail falloff, so differentiation under the time integrals is justified.
 - **(EL6)** Delayed branch convention: only $T_t\le T$ contributes (equivalently, the $\Theta(T-T_t)$ branch of the causal selector).
@@ -13633,7 +13629,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e3232fa0259734af)
 
-where $\mathbf A_i(T)$ in this auxiliary calculation denotes the surrogate's acceleration, not an assertion of equality with the sharp law at positive width. Its weak limit must be recomputed on the complete admitted root record so that the recovered branch law carries the transmitter-side factor $W^{\mathrm{acc}}$. The derivative term in $\nabla_{\mathbf X_i}\mathcal{K}_{ij}$ is cleared only after the full delayed variation is assembled and the branch reduction is performed. If it survives in the interior, this action candidate fails to derive the Master EOM.
+where $\mathbf A_i(T)$ in this auxiliary calculation denotes the surrogate's acceleration, not an assertion of equality with the Master Equation at positive width. Its weak limit must be recomputed on the complete admitted root record so that the recovered branch law carries the transmitter-side factor $W^{\mathrm{acc}}$. The derivative term in $\nabla_{\mathbf X_i}\mathcal{K}_{ij}$ is cleared only after the full delayed variation is assembled and the branch reduction is performed. If it survives in the interior, this action candidate fails to derive the Master EOM.
 
 A derivation, reduction, or simulation that claims action-derived dynamics must therefore distinguish the scale-only diagnostic below from the complete Euler derivative. The scale-only row checks agreement with the desired native acceleration scale, but a small value does not establish that the candidate action varies to that law, because receiver, transmitter, constraint, self-history, and boundary terms may remain.
 $$
@@ -13810,7 +13806,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6da92b5088a86221)
 
-The outer minus sign matches the action convention $S=S_{\mathrm{kinetic}}-\tfrac12\sum S_{ij}$ and makes the sharp static like-polarity pair charge positive. Reversing that sign would contradict the positive work required to bring a repelling like-polarity pair closer.
+The outer minus sign matches the action convention $S=S_{\mathrm{kinetic}}-\tfrac12\sum S_{ij}$ and makes the static like-polarity pair charge positive. Reversing that sign would contradict the positive work required to bring a repelling like-polarity pair closer.
 
 The boundary charge must inherit both the units and the sign of the same action kernel.
 

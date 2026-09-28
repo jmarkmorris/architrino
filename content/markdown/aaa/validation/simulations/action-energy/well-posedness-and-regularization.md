@@ -1,6 +1,6 @@
 # Well-posedness and regularization
 
-The ideal model sums delayed acceleration contributions from [causal wake surfaces](../../../foundations/architrino.md), the expanding disturbances emitted by architrinos. Continuous emission and a sharp surface delta do not by themselves make velocity discontinuous. An auxiliary finite-width model replaces the delta by a mollifier; its normalization, origin treatment, history functional, and convergence must be specified together. We work in normalized wake-speed units with $c_f=1$ in the following replacement; symbolic $c_f$ is retained where dimensional conversions matter.
+The ideal model sums delayed acceleration contributions from [causal wake surfaces](../../../foundations/architrino.md), the expanding disturbances emitted by architrinos. Continuous emission and a surface delta do not by themselves make velocity discontinuous. An auxiliary finite-width model replaces the delta by a mollifier; its normalization, origin treatment, history functional, and convergence must be specified together. We work in normalized wake-speed units with $c_f=1$ in the following replacement; symbolic $c_f$ is retained where dimensional conversions matter.
 $$
 \delta(r-\Delta)\longrightarrow
 \frac{1}{\sqrt{2\pi}\,\eta}
@@ -12,13 +12,13 @@ $$
 ## Impulses Versus Smooth Acceleration
 
 - Measure-driven dynamics:
-  - For continuous emission, integrating the sharp delta over emission time gives the ordinary simple-root acceleration sum with weight $c_f/|D_t|$ on a regular chart. Locally integrable acceleration gives absolutely continuous velocity, with no jumps. A measure-driven description allows jumps only where the reception-time acceleration measure actually has atoms; discrete emission pulses or a separately specified singular transition may require that description. A surface delta in emission coordinates alone does not establish such atoms.
+  - For continuous emission, integrating the delta constraint over emission time gives the ordinary simple-root acceleration sum with weight $c_f/|D_t|$ on a regular chart. Locally integrable acceleration gives absolutely continuous velocity, with no jumps. A measure-driven description allows jumps only where the reception-time acceleration measure actually has atoms; discrete emission pulses or a separately specified singular transition may require that description. A surface delta in emission coordinates alone does not establish such atoms.
 
 - Mollified causal wake surfaces:
   - A Gaussian of width $\eta>0$ has noncompact tails. It smooths the radial delta, but does not regularize the inverse-square origin singularity or prove regularity of a state-dependent history functional. Classical trajectories require the history-domain and local existence hypotheses below, including distance or core control over the entire integrated support.
 
 - Choosing $\eta$:
-  - Select $\eta$ small relative to local geometric scales (path curvature radius, inter-source spacing) as part of a declared regularization and discretization study. Small width alone neither proves approximation of the sharp law nor maintains numerical stability.
+  - Select $\eta$ small relative to local geometric scales (path curvature radius, inter-source spacing) as part of a declared regularization and discretization study. Small width alone neither proves approximation of the Master Equation nor maintains numerical stability.
 
 - Distributional wake-surface normalization:
   - Treat $\delta(r-c_f\Delta)$ and $\delta_\eta(r-c_f\Delta)$ as distributions, so the invariant statement is an integrated statement against a test function, not the sampled height of the spike. For a fixed positive emission age $\Delta=T-T_t>0$, $r=\|\mathbf X-\mathbf X_0\|$, and a bounded continuous test function $f$,
@@ -62,7 +62,7 @@ $$
 
     [View →](../../../../../../equation-mapping.html#corpus-equation-ca1da5e9188e06a9)
 
-    Here $\varepsilon_q>0$ has polarity units. Comparing a numerical spatial integral with the independently evaluated radial Gaussian integral tests the spatial Jacobian and truncation accounting. Agreement of two sides built from the same incorrectly normalized mollifier would not test its normalization. At finite width the full spatial integral is $qH(\Delta)$ times the Gaussian probability on $r>0$, strictly between zero and one for positive age. Thus exact finite-width total emission is not preserved by this formula; the stated sharp limit is. The residual and the separate total-emission limit test have different obligations.
+    Here $\varepsilon_q>0$ has polarity units. Comparing a numerical spatial integral with the independently evaluated radial Gaussian integral tests the spatial Jacobian and truncation accounting. Agreement of two sides built from the same incorrectly normalized mollifier would not test its normalization. At finite width the full spatial integral is $qH(\Delta)$ times the Gaussian probability on $r>0$, strictly between zero and one for positive age. Thus exact finite-width total emission is not preserved by this formula; the stated zero-width limit is. The residual and the separate total-emission limit test have different obligations.
 
 - Curvilinear-coordinate hygiene:
   - Operator checks in spherical or cylindrical charts must use the Euclidean metric scale factors, not Cartesian component formulas applied to curvilinear components. For spherical coordinates $(r,\theta,\varphi)$ centered on the emission point,
@@ -153,7 +153,7 @@ $$
 
     [View →](../../../../../../equation-mapping.html#corpus-equation-96f13f070ee4acb8)
 
-    Here $\xi_a$ is a reception-time discontinuity location, $k_a$ its derivative order, $\ell_a$ its delayed branch, $t_{0,\ell_a}$ the branch emission-time map, and $\xi_{\pi(a)}$ its matched earlier discontinuity. The reception-time step $\Delta T$, history-time spacing $\Delta h$, and positive time floor $\varepsilon_T$ use the same absolute-time units. Such rows are conditional on actual jumps; they are not inferred from a sharp wake alone. Unstable jump identity routes to $\mathsf{branch\_root\_instability}$; unresolved jump or interpolation convergence routes to $\mathsf{mesh\_nonconvergence}$.
+    Here $\xi_a$ is a reception-time discontinuity location, $k_a$ its derivative order, $\ell_a$ its delayed branch, $t_{0,\ell_a}$ the branch emission-time map, and $\xi_{\pi(a)}$ its matched earlier discontinuity. The reception-time step $\Delta T$, history-time spacing $\Delta h$, and positive time floor $\varepsilon_T$ use the same absolute-time units. Such rows are conditional on actual jumps; they are not inferred from a zero-thickness wake alone. Unstable jump identity routes to $\mathsf{branch\_root\_instability}$; unresolved jump or interpolation convergence routes to $\mathsf{mesh\_nonconvergence}$.
 
 - Fold-layer status is only a transition classification. A stable fold-layer row may preserve branch identity through $\eta$ refinement, but it does not prove branch-equation balance. When the run claims a corrected one-period carrier, the acceleration-balance residual for that period must also pass before the result can proceed to monodromy, $\Delta_{\mathbf{k}}$, or $\eta$-ladder persistence.
 
@@ -274,4 +274,4 @@ $$
 
 Here $d_{\mathcal L}$ is a declared metric on a common complete ledger space, with fixed transmitter identities, matching rules, units, and observation window. The observation norm must separate the promoted records; finite sample agreement proves convergence only of those sampled records, not of an unobserved continuum field. Restriction and interpolation maps must be stable and mutually consistent. Summable absolute adjacent increments are a sufficient alternative along one ladder; adjacent relative increments merely vanishing are not. A ladder result alone needs control between ladder points before it proves the full regulator limit displayed above. Numerical mesh, history, and boundary errors must be controlled independently of width.
 
-Completeness gives a limit of the represented observables and ledgers; it does not show that the limit is an admissible sharp-law solution. That requires passing the governing equation and its boundary conditions to the limit, controlling singular roots and any lost history, and proving the limiting ledger remains in the claimed domain. Otherwise the result remains finite-$\eta$ evidence or convergence of specified diagnostics only.
+Completeness gives a limit of the represented observables and ledgers; it does not show that the limit is an admissible Master Equation solution. That requires passing the governing equation and its boundary conditions to the limit, controlling singular roots and any lost history, and proving the limiting ledger remains in the claimed domain. Otherwise the result remains finite-$\eta$ evidence or convergence of specified diagnostics only.

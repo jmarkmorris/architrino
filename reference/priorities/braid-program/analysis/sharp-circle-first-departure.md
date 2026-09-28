@@ -43,9 +43,9 @@ The $r=0.999$ history contracts to the declared radius-resolution guard $|X_A|=0
 | 0.001 / 0.005 | 16.4405968 | 0.00997875 | 8500.39 | 0.899861 |
 | 0.0005 / 0.0025 | 16.4405562 | 0.00999846 | 8466.99 | 0.899894 |
 
-The difference in forward amplitudes is primarily sampled at different radii on this rapidly varying segment, so it is not a fixed-state error estimate. The finer last state has delay 0.0254820 and inward radial speed approximately $-0.485562$. Its forward component remains positive and its partner root remains ordinary. The guard is a numerical stopping criterion, not a hard core, a physical radius, or a collision rule; no acceleration kernel was modified at it.
+The difference in forward amplitudes is primarily sampled at different radii on this rapidly varying segment, so it is not a fixed-state error estimate. The finer last state has delay 0.0254820 and inward radial speed approximately $-0.485562$. The instrument observed positive forward components and ordinary partner roots at its evaluated accepted states and trial stages up to the guard. These sampled checks do not certify positivity, a complete root census, or absence of a brief branch change between evaluations. The guard is a numerical stopping criterion, not a hard core, a physical radius, or a collision rule; no acceleration kernel was modified at it.
 
-No new dynamical event was established on this branch before the guard. These runs do not prove finite-time collision, a limiting spiral, rebound, or survival at zero separation. Smaller radii would require further resolved integration or an analytical asymptotic argument.
+No new dynamical event was established on this branch before the guard. These runs do not prove finite-time collision, a limiting spiral, rebound, or survival at zero separation. Smaller radii would require further resolved integration or an analytical asymptotic argument. The [contracting-run review handoff](sharp-circle-escape-independent-review.md#35-contracting-input-separate-resolution-question) records the later fixed-step comparison's resolution sensitivity and a separate bounded check of the existing guard; the outward escape theorem does not settle this branch.
 
 ## Limits and disposition
 

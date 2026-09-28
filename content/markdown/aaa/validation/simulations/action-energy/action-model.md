@@ -247,7 +247,7 @@ For a continuous source density, an ordinary simple causal root contributes to t
 Implementation checklist
 - Root finding: solve $F(T_t;T_r)=\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|-c_f(T_r-T_t)=0$ for all transmitters $j$ (including $j=o'$ for self-hits when kinematics permit).
 - Accumulation: compute $r,\hat{\mathbf{r}}$, $D_t$, $D_r$, and $W^{\mathrm{acc}}$, apply $W^{\mathrm{acc}}/r^2$, then superpose.
-- Time stepping: integrate the sharp simple-root acceleration with a delayed-history integrator that retains and interpolates the required path segment at every stage. Track root changes as events without imposing velocity jumps. A mollified calculation is an optional auxiliary method subject to the [numerical recipe's approximation and recovery requirements](numerical-recipe-and-stability.md); a discrete-emission impulse calculation additionally needs its declared quadrature weights and convergence argument.
+- Time stepping: integrate the simple-root acceleration with a delayed-history integrator that retains and interpolates the required path segment at every stage. Track root changes as events without imposing velocity jumps. A mollified calculation is an optional auxiliary method subject to the [numerical recipe's approximation and recovery requirements](numerical-recipe-and-stability.md); a discrete-emission impulse calculation additionally needs its declared quadrature weights and convergence argument.
 - Self-interaction: a super-field-speed history interval nominates the channel, but an admitted self-hit still requires a nonzero-delay same-transmitter root and the declared branch floors; accepted self-hits are repulsive (like-on-like).
 
 Relation to Methods 1 and 2
@@ -291,14 +291,14 @@ Operator diagnostics (finite-window checks)
 
   For the conservative potential channel $\mathbf{Y}_\eta=\nabla\Phi_\eta$, nonzero circulation is a numerical, boundary, or coordinate-operator error unless a non-gradient effective channel has been explicitly declared.
 
-The emitted measure is spread over a growing causal wake surface. Integrating continuous emission gives the sharp causal-root acceleration sum, with inverse-square geometry and transmitter-side weighting. A mollified emission-time integral is an auxiliary approximation to that calculation; its finite-width result is not an interchangeable physical reception rule.
+The emitted measure is spread over a growing causal wake surface. Integrating continuous emission gives the causal-root acceleration sum, with inverse-square geometry and transmitter-side weighting. A mollified emission-time integral is an auxiliary approximation to that calculation; its finite-width result is not an interchangeable physical reception rule.
 
 ## Cross-Method Guidance
 
 ### Cross-Method Selection
 - Method 1 (PDE): whole-field grid simulations, visualization, and complex media/boundaries. Deposit a smeared source term each step; robust when a transmitter slows or stops. Aggregate particle data to coarse-grained densities $n(\mathbf X,T)$, $\rho(\mathbf X,T)$, and $\mathcal E(\mathbf X,T)$ as inputs/targets for PDE runs and validation.
 - Method 2 (Green’s function / path-history integral): closed forms and sparse probe evaluation. Enforce the path-history condition $T-T_t=\|\mathbf X-\mathbf X_t(T_t)\|/c_f$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf V_t/c_f$ during evaluation; root-solve one or more $T_t$ values per observer-time pair.
-- Method 3 (Event-driven canonical): production many-body dynamics. Find causal roots and integrate the summed per-hit $W^{\mathrm{acc}}/r^2$ acceleration contributions. Use mollification only as a declared mathematical approximation with error or recovery control for the claimed observable; positive width alone does not establish the sharp-law dynamics.
+- Method 3 (Event-driven canonical): production many-body dynamics. Find causal roots and integrate the summed per-hit $W^{\mathrm{acc}}/r^2$ acceleration contributions. Use mollification only as a declared mathematical approximation with error or recovery control for the claimed observable; positive width alone does not establish the Master Equation dynamics.
 
 Short worked example — stationary transmitter, continuous source term (consistent across methods)
 - Setup: transmitter at origin $\mathbf X_t=0$ with $q(T)\equiv q_0$ (constant).
@@ -309,7 +309,7 @@ Short worked example — stationary transmitter, continuous source term (consist
 Practical implementation notes (concise)
 - PDE: smear $\delta(\mathbf X-\mathbf X_t)$ to grid scale; enforce CFL ($c_f\,\Delta T/\Delta X$ within the scheme’s bound).
 - Path-history: robust root-finding for $T_t$ from $T-T_t=r(T_t)/c_f$; take care near grazing geometries where $1-\mathbf{n}\cdot\mathbf V_t/c_f$ is small.
-- Event-driven: isolate every admitted causal root and integrate the sharp acceleration while controlling history interpolation and root-time error. If an auxiliary $\delta_\eta$ calculation is used, resolve its emission-time integral and bound omitted contributions; the number of overlapping wake bands alone does not bound the error.
+- Event-driven: isolate every admitted causal root and integrate the acceleration while controlling history interpolation and root-time error. If an auxiliary $\delta_\eta$ calculation is used, resolve its emission-time integral and bound omitted contributions; the number of overlapping wake bands alone does not bound the error.
 
 ### Operational Summary
 - Model the transmitter through the source term $S(\mathbf X,T)=q(T)\,\delta\!\big(\mathbf X-\mathbf X_t(T)\big)$ (time-based emission density).
@@ -391,7 +391,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
 - Pros
   - Directly implements the project’s delayed, radial-only interaction law with constant emission cadence.
   - Natural support for self-hits and superposition; local $1/r^2$ weighting favors nearby coherent roots with all other factors fixed, but does not by itself bound far-root weights, multiplicity, cancellation, or omitted-tail error.
-  - Can be numerically lightweight for particle dynamics on a declared workload; supports direct integration of sharp simple-root acceleration, with auxiliary mollified or emission-quadrature calculations under their separate approximation conditions.
+  - Can be numerically lightweight for particle dynamics on a declared workload; supports direct integration of simple-root acceleration, with auxiliary mollified or emission-quadrature calculations under their separate approximation conditions.
 - Cons
   - Not derived from the scalar wave equation; global field-energy accounting is indirect (via mollified potentials).
   - Must retain the transmitter-side factor and transmitter-side acceleration weight from the Master EOM; a reduced test harness that omits either one is a noncanonical approximation rather than a calibration of $\kappa$.

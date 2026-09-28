@@ -279,7 +279,7 @@ $$\mu_{\text{arch}}\mathbf A_i(T) = -\nabla_{\mathbf X_i}U_i(T) = -q_i \nabla_{\
 
 [View →](../../../../equation-mapping.html#corpus-equation-6eef4154628cac82)
 
-This is a matching condition for the declared finite-width model. The sharp regular-chart identity above already holds for moving simple roots; it does not require a quasi-static source. A mollified kernel needs its own scalar derivation and convergence comparison. For a general kinetic scalar, a variational reduction would instead concern the conjugate-momentum rate and must be derived from the same accepted action. Replacing $\mu_{\text{arch}}$ pointwise by $\mu_K$ does not prove that reduction.
+This is a matching condition for the declared finite-width model. The regular-chart identity above already holds for moving simple roots; it does not require a quasi-static source. A mollified kernel needs its own scalar derivation and convergence comparison. For a general kinetic scalar, a variational reduction would instead concern the conjugate-momentum rate and must be derived from the same accepted action. Replacing $\mu_{\text{arch}}$ pointwise by $\mu_K$ does not prove that reduction.
 
 ### Macroscopic Cancellation and Localized Resonance
 
@@ -441,7 +441,7 @@ No accepted causal action, delay-compatible Noether theorem, provenance-complete
 
 This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_T$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
 
-For any candidate scalar action kernel proportional to $1/r$ with the time-normalized constraint $\tilde g=T_r-T_t-r/c_f$, dimensional consistency requires the coefficient $\mu_{\text{arch}}\kappa$, not $\kappa/c_f$. The corresponding regularized interaction diagnostic for that candidate is proportional to $\delta_\eta(\tilde g)/r$; simple-root collapse produces $W^{\mathrm{acc}}/r$ once. An inverse-square acceleration density with a manually inserted $W^{\mathrm{acc}}$ is not an energy functional. With the polarity convention that like signs repel, the sharp like-polarity interaction charge is positive and the boundary derivative inherits the outer minus sign declared in the action.
+For any candidate scalar action kernel proportional to $1/r$ with the time-normalized constraint $\tilde g=T_r-T_t-r/c_f$, dimensional consistency requires the coefficient $\mu_{\text{arch}}\kappa$, not $\kappa/c_f$. The corresponding regularized interaction diagnostic for that candidate is proportional to $\delta_\eta(\tilde g)/r$; simple-root collapse produces $W^{\mathrm{acc}}/r$ once. An inverse-square acceleration density with a manually inserted $W^{\mathrm{acc}}$ is not an energy functional. With the polarity convention that like signs repel, the like-polarity interaction charge is positive and the boundary derivative inherits the outer minus sign declared in the action.
 
 The wake-energy account must come from whatever action kernel is eventually accepted as generating the acceleration operator. The $1/r$ construction above constrains candidates only. Reusing the $1/r^2$ acceleration formula as energy gives the wrong units and double-counts the root weight.
 
