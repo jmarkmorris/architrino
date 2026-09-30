@@ -18,8 +18,8 @@ All 13 original lane files were freshly read in full for this independent review
 | [Fixed-law continuation](fixed-law-source-continuation.md) | All 220 lines |
 | [Multi-receiver response](e0-e4-multi-receiver-electric-response.md) | 1–185 and 186–327 |
 | [Fine structure](fine-structure.md) | 1–220, 221–435, 436–620 and 621–734 |
-| [Adaptive kinematics](adaptive-cubic-medium-kinematics-and-ledger-contract.md) | 1–180, 181–365 and 366–478 |
-| [Cubic lattice](f6c-cubic-lattice.md) | 1–180, 181–365, 366–520 and 521–664 |
+| [Adaptive kinematics](../../master-equation-closure/lattice-research/analysis/adaptive-cubic-medium-kinematics-and-ledger-contract.md) | 1–180, 181–365 and 366–478 |
+| [Cubic lattice](../../master-equation-closure/lattice-research/analysis/f6c-cubic-lattice.md) | 1–180, 181–365, 366–520 and 521–664 |
 | [Work log](../work-log.md) | 1–85, 86–175, 176–265, 266–355, 356–430 and 431–478 |
 
 The reviewer had read the shared Mapping README and work log before this assignment, and had only partially read the method. For this review all three were freshly read in full: [README](../../mapping/README.md), [work log](../../mapping/work-log.md), and [method](../../mapping/contracts/mapping-method.md), the latter through consecutive ranges 1–250, 251–500, 501–750, 751–1000 and 1001–1219. The writer's inherited full reading of these documents is a separate receipt and is not used to establish the reviewer's reading.

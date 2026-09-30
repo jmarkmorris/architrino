@@ -256,7 +256,7 @@ test("uniformly translating closed form exercises the transmitter-side causal fa
 test("the canonical assembly evaluator preserves every exact axial-transverse three-binary interior source path and supports a six-source evaluation", () => {
   const spec = JSON.parse(fs.readFileSync(
     new URL(
-      "../reference/priorities/braid-program/configurations/axial-transverse-three-binary-interior.v3.json",
+      "../reference/priorities/master-equation-closure/braid-program/configurations/axial-transverse-three-binary-interior.v3.json",
       import.meta.url,
     ),
     "utf8",

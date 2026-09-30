@@ -1,3 +1,4 @@
+import { researchSourceLocation } from "../src/documentation/ResearchSourceLocations.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -8,7 +9,7 @@ import {
 } from "../scripts/prescribed-path-analysis/build-stella-octangula-catalog-endpoint-balance.mjs";
 
 const PREDECLARATION_PATH = new URL(
-  "../reference/priorities/braid-program/evidence/2026-09-02-stella-octangula-catalog-endpoint-balance.predeclaration.v1.json",
+  "../reference/priorities/master-equation-closure/braid-program/evidence/2026-09-02-stella-octangula-catalog-endpoint-balance.predeclaration.v1.json",
   import.meta.url,
 );
 
@@ -18,7 +19,7 @@ function readJson(url) {
 
 test("catalog stella-octangula endpoint is bound to its exact identity and complete history", () => {
   const declaration = readJson(PREDECLARATION_PATH);
-  const sourceUrl = new URL(`../${declaration.source.path}`, import.meta.url);
+  const sourceUrl = new URL(`../${researchSourceLocation(declaration.source.path)}`, import.meta.url);
   const sourceBytes = readFileSync(sourceUrl);
   const packet = buildCatalogEndpointBalancePacket({
     staticSpec: JSON.parse(sourceBytes.toString("utf8")),
@@ -38,7 +39,7 @@ test("catalog stella-octangula endpoint is bound to its exact identity and compl
 
 test("catalog stella-octangula endpoint fails prescribed balance against an independent oracle", () => {
   const declaration = readJson(PREDECLARATION_PATH);
-  const sourceUrl = new URL(`../${declaration.source.path}`, import.meta.url);
+  const sourceUrl = new URL(`../${researchSourceLocation(declaration.source.path)}`, import.meta.url);
   const sourceBytes = readFileSync(sourceUrl);
   const packet = buildCatalogEndpointBalancePacket({
     staticSpec: JSON.parse(sourceBytes.toString("utf8")),

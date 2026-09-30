@@ -101,7 +101,7 @@ test('planar common-center three-binary constraint frozen topology and return ac
 });
 
 test('T04 exact-reference handoff matches both unchanged independent root instruments and all six acceleration rows', () => {
-  const source = JSON.parse(readFileSync(new URL('../reference/priorities/braid-program/configurations/equal-radius-planar-three-binary-balance-beta-2p974307176117293.v3.json', import.meta.url)));
+  const source = JSON.parse(readFileSync(new URL('../reference/priorities/master-equation-closure/braid-program/configurations/equal-radius-planar-three-binary-balance-beta-2p974307176117293.v3.json', import.meta.url)));
   const sourceBeta = Number(source.geometry.balanceParameters.betaDecimal);
   const sourceRadius = Number(source.geometry.balanceParameters.radiusDecimal);
   const beta = Number(B13_RELEASE.beta);

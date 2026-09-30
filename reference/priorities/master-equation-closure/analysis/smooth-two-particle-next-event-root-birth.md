@@ -2,7 +2,7 @@
 
 ## Scope
 
-This conditional result identifies one event that could end the regular continuation being investigated in the two-target lattice experiment. It does not establish that the supplied lattice history reaches the event. The [accepted continuation](smooth-two-particle-beyond-class-boundary-independent-adjudication.md) reaches $81/16$; later event candidates require their own trajectory and error certificates. All speeds below use $c_f=1$, and the acceleration coefficient of an own-history row is $g>0$.
+This conditional result identifies one event that could end the regular continuation being investigated in the two-target lattice experiment. It does not establish that the supplied lattice history reaches the event. The [accepted continuation](../lattice-research/analysis/smooth-two-particle-beyond-class-boundary-independent-adjudication.md) reaches $81/16$; later event candidates require their own trajectory and error certificates. All speeds below use $c_f=1$, and the acceleration coefficient of an own-history row is $g>0$.
 
 The relevant condition is stronger than speed merely equaling one. The speed must arrive at one while increasing at a strictly positive rate. Under that condition, a hypothetical smooth continuation would immediately receive a wake emitted from its own recent past. The delay and the transmitter denominator both approach zero, making this acceleration contribution unbounded. The derivation applies to curved paths in three dimensions and assumes no collinear reduction.
 

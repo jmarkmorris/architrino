@@ -6,7 +6,7 @@ The next caller migration cannot use the root-cover schema change unchanged. The
 
 ## Recovered source identities
 
-After the known SHA-256 `abc` case passed, `git show 897fe1aa7^:<path>` recovered all four exact selected inputs. The configuration's historical path is `reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json`; the other three paths are unchanged. The source identity record (retired migration record) gives expected, recovered and current hashes and the preserved nonexecuting sources. The adjacent `.diff` files contain complete `git diff --no-index` comparisons against current files. This recovery establishes exact bytes, not scientific equivalence of the current revisions.
+After the known SHA-256 `abc` case passed, `git show 897fe1aa7^:<path>` recovered all four exact selected inputs. The configuration's historical path is `reference/priorities/master-equation-closure/braid-program/configurations/f5-phase-varying-campaign.v2.json`; the other three paths are unchanged. The source identity record (retired migration record) gives expected, recovered and current hashes and the preserved nonexecuting sources. The adjacent `.diff` files contain complete `git diff --no-index` comparisons against current files. This recovery establishes exact bytes, not scientific equivalence of the current revisions.
 
 | Input | Selected original | Current boundary requiring review |
 | --- | --- | --- |

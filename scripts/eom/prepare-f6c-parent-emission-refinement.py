@@ -320,7 +320,7 @@ class CapturePool:
         return old
     def admit_operation(self, filename, digest):
         p=Path(filename);require((p.is_absolute()) and (p==p.resolve()),'canonical operation plan')
-        own=dict(path=str(p),sha256=digest,bytes=p.stat().st_size)
+        own=dict(path=str(p),sha256=digest,bytes=self.w._research_source_path(p).stat().st_size)
         f=self.capture(own,data=True,limit=MAX_BYTES);doc=json.loads(f.data)
         require(doc.get('schema')=='braid-program/f6c-bounded-operation-plan.v1','source-bound generic operation')
         rows=[*doc['sources'],doc['hookModule'],doc['hookControls'],own]

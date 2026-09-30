@@ -53,6 +53,11 @@ const beneath=(p,d)=>p.startsWith(d+path.sep);
 const hashToken=h=>check(typeof h==='string'&&/^[a-f0-9]{64}$/u.test(h),'explicit expected SHA-256 required');
 
 export function readBound(filename,expected,collect=false,limit=LIMITS.sourceBytes,live=()=>{}){
+  // Captured modules cannot add an undeclared import. Route physical bytes only.
+  check(typeof filename==='string'&&path.isAbsolute(filename)&&path.resolve(filename)===filename,'canonical absolute logical input');
+  const logicalFilename=filename;
+  const braidPrefix=path.join(process.cwd(),'reference/priorities/braid-program')+path.sep;
+  if(typeof filename==='string'&&filename.startsWith(braidPrefix))filename=path.join(process.cwd(),'reference/priorities/master-equation-closure/braid-program',filename.slice(braidPrefix.length));
   absolute(filename);check(realpathSync(filename)===filename,'source symlink alias');live();
   const fd=openSync(filename,constants.O_RDONLY|constants.O_NONBLOCK|constants.O_NOFOLLOW);
   try{
@@ -60,7 +65,7 @@ export function readBound(filename,expected,collect=false,limit=LIMITS.sourceByt
     const hash=createHash('sha256'),parts=[],buffer=Buffer.allocUnsafe(65536);let bytes=0;
     for(;;){live();const n=readSync(fd,buffer,0,buffer.length,bytes);if(!n)break;bytes+=n;check(BigInt(bytes)<=before.size,'source grew');hash.update(buffer.subarray(0,n));if(collect)parts.push(Buffer.from(buffer.subarray(0,n)));}
     const digest=hash.digest('hex');check(BigInt(bytes)===before.size&&(!expected||digest===expected)&&identity(before)===identity(fstatSync(fd,{bigint:true}))&&identity(before)===identity(lstatSync(filename,{bigint:true}))&&realpathSync(filename)===filename,'source changed/replaced/hash mismatch');
-    return {path:filename,sha256:digest,bytes,identity:identity(before),...(collect?{data:Buffer.concat(parts)}:{})};
+    return {path:logicalFilename,sha256:digest,bytes,identity:identity(before),...(collect?{data:Buffer.concat(parts)}:{})};
   }finally{closeSync(fd);}
 }
 

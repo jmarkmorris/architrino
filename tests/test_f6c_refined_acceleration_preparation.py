@@ -127,7 +127,7 @@ def plan_fixture(own_sha=H):
 def receipt_fixture(bindings):
     export,manifest,rows,pieces=broad_fixture()
     contract={'verifierSha256':hashlib.sha256((Path(__file__).resolve().parents[1] / 'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py').read_bytes()).hexdigest(),
-        'declarationSha256':hashlib.sha256((Path(__file__).resolve().parents[1] / 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md').read_bytes()).hexdigest(),
+        'declarationSha256':hashlib.sha256((Path(__file__).resolve().parents[1] / 'reference/priorities/master-equation-closure/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md').read_bytes()).hexdigest(),
         'subjectSourceBindings':[bound('/fixture/source')],'runtimeBindings':[bound('/fixture/runtime')]}
     prior_plan={'schema':'braid-program/f6c-cached-root-cover-pilot-launch.v1',
                 'scope':'pilot-cell-0','comparisonContract':contract}

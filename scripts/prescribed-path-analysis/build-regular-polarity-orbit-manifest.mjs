@@ -6,7 +6,7 @@ import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const SOURCE_MODULE = "src/prescribed-path-analysis/PlanarCoRotatingRingBalance.mjs";
-const REDUCTION = "reference/priorities/braid-program/evidence/2026-09-02-bp012-regular-polarity-orbit-reduction.md";
+const REDUCTION = "reference/priorities/master-equation-closure/braid-program/evidence/2026-09-02-bp012-regular-polarity-orbit-reduction.md";
 
 function requireN(n) {
   if (!Number.isSafeInteger(n) || n < 1 || n > 12) throw new TypeError("n must be an integer in [1,12]");

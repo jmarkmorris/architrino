@@ -940,7 +940,7 @@ def build_receipt(
                 '"${AAA_VENV:-../.venv}/bin/python" '
                 "scripts/prescribed-path-analysis/oracle/"
                 "orthogonal_plane_weave_interval_oracle.py --write-receipt "
-                "reference/priorities/braid-program/evidence/"
+                "reference/priorities/master-equation-closure/braid-program/evidence/"
                 "2026-08-29-orthogonal-plane-weave-fold-separated-interval.v1.json"
             ),
         },

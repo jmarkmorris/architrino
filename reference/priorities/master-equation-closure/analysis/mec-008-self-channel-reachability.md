@@ -52,7 +52,7 @@ The first question does not imply the second. The third can expose an obstructio
 
 ## What the accepted mirror release decides
 
-For the left and right opposite-polarity labels, [MEC-007](../../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md) uses $\mathbf X_-= -q\mathbf e$, $\mathbf X_+=q\mathbf e$, and inward speed $u=-\dot q$. The independent instrument declares the complete stationary past $q=1/2$, $u=0$ through release $T=0$, represented from $T=-20$ with all-earlier stationary exclusion. Its reduced coupling is $K=0.2862286103053385$. This prescribed past is input to future evolution; it is not asserted to solve the EOM before release.
+For the left and right opposite-polarity labels, [MEC-007](../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md) uses $\mathbf X_-= -q\mathbf e$, $\mathbf X_+=q\mathbf e$, and inward speed $u=-\dot q$. The independent instrument declares the complete stationary past $q=1/2$, $u=0$ through release $T=0$, represented from $T=-20$ with all-earlier stationary exclusion. Its reduced coupling is $K=0.2862286103053385$. This prescribed past is input to future evolution; it is not asserted to solve the EOM before release.
 
 On the accepted incoming chart, the unique partner root and acceleration obey
 

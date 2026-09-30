@@ -18,16 +18,19 @@ const LIMITS={inclusiveMilliseconds:1800000,aggregateRSSBytes:2147483648,rssPoll
 export const clean=({path,sha256,bytes})=>({path,sha256,bytes});
 
 export function capture(b,{collect=false,limit=1073741824,expectedIdentity,live=()=>{}}={}){
- check(b&&typeof b.path==='string'&&path.isAbsolute(b.path)&&path.resolve(b.path)===b.path&&realpathSync(b.path)===b.path,'canonical captured path');
+ check(b&&typeof b.path==='string'&&path.isAbsolute(b.path)&&path.resolve(b.path)===b.path,'canonical logical source');
+ const prefix=path.join(process.cwd(),'reference/priorities/braid-program')+path.sep;
+ const physicalPath=b.path.startsWith(prefix)?path.join(process.cwd(),'reference/priorities/master-equation-closure/braid-program',b.path.slice(prefix.length)):b.path;
+ check(b&&typeof b.path==='string'&&path.isAbsolute(b.path)&&path.resolve(b.path)===b.path&&realpathSync(physicalPath)===physicalPath,'canonical captured path');
  check(/^[a-f0-9]{64}$/u.test(b.sha256)&&integer(b.bytes,limit),'bounded expected bytes');live();
- const fd=openSync(b.path,constants.O_RDONLY|constants.O_NONBLOCK|(constants.O_NOFOLLOW??0));
+ const fd=openSync(physicalPath,constants.O_RDONLY|constants.O_NONBLOCK|(constants.O_NOFOLLOW??0));
  try{
   const before=fstatSync(fd,{bigint:true});check(before.isFile()&&before.size===BigInt(b.bytes),'regular exact captured size');
   const id=identity(before);check(!expectedIdentity||id===expectedIdentity,'original file identity');
   const hash=createHash('sha256'),parts=[],buffer=Buffer.alloc(65536);let at=0;
   while(at<b.bytes){live();const n=readSync(fd,buffer,0,Math.min(buffer.length,b.bytes-at),at);check(n>0,'captured truncation');hash.update(buffer.subarray(0,n));if(collect)parts.push(Buffer.from(buffer.subarray(0,n)));at+=n;}
   check(readSync(fd,buffer,0,1,at)===0&&hash.digest('hex')===b.sha256,'captured EOF/hash');
-  check(identity(fstatSync(fd,{bigint:true}))===id&&identity(lstatSync(b.path,{bigint:true}))===id&&realpathSync(b.path)===b.path,'captured replacement');live();
+  check(identity(fstatSync(fd,{bigint:true}))===id&&identity(lstatSync(physicalPath,{bigint:true}))===id&&realpathSync(physicalPath)===physicalPath,'captured replacement');live();
   return{...clean(b),identity:id,...(collect?{data:Buffer.concat(parts)}:{})};
  }finally{closeSync(fd);}
 }

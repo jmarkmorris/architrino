@@ -1,3 +1,4 @@
+import { researchSourceLocation } from "../../documentation/ResearchSourceLocations.mjs";
 import {
   validateBorgSelection,
 } from "../shared/BorgSelectionNavigation.mjs";
@@ -514,7 +515,7 @@ function validateCampaignRegistry(value, registryEntries) {
       fail(`campaign candidate ${index} duplicates an exact identity.`);
     }
     identities.add(key);
-    if (candidate.specPath !== registered.get(key).sourceSpec) {
+    if (researchSourceLocation(candidate.specPath) !== researchSourceLocation(registered.get(key).sourceSpec)) {
       fail(`campaign candidate ${index} does not match its Borg source.`);
     }
   });

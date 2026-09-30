@@ -1,3 +1,4 @@
+import { researchSourceLocation } from "../../src/documentation/ResearchSourceLocations.mjs";
 import { readFile, stat } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { resolve } from "node:path";
@@ -15,7 +16,7 @@ const send = (res, status, data) => { res.writeHead(status, { "Content-Type": "a
 // Indexed, read-only BORG-014 provider. The committed registry is the migration
 // authority; content-addressed source and record objects remain in their owning
 // files and are loaded only on snapshot construction or exact preview demand.
-export function createBorgLibraryService({ repoRoot, registryFile = "reference/priorities/app-borg/contracts/assembly-registry.v1.json", classificationFile = "reference/priorities/app-borg/contracts/library-classifications.v4.json", scientificProjectionFile = "reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json", platonicAssignmentsFile = "reference/priorities/braid-program/configurations/borg-platonic-relationship-assignments.v1.json" } = {}) {
+export function createBorgLibraryService({ repoRoot, registryFile = "reference/priorities/app-borg/contracts/assembly-registry.v1.json", classificationFile = "reference/priorities/app-borg/contracts/library-classifications.v4.json", scientificProjectionFile = "reference/priorities/master-equation-closure/braid-program/contracts/braid-candidate-adjudication-projection.v1.json", platonicAssignmentsFile = "reference/priorities/master-equation-closure/braid-program/configurations/borg-platonic-relationship-assignments.v1.json" } = {}) {
   let snapshot = null;
   let pending = Promise.resolve();
 
@@ -27,11 +28,11 @@ export function createBorgLibraryService({ repoRoot, registryFile = "reference/p
     const classifications = validateLibraryClassifications(JSON.parse(classificationBytes));
     const projection = validateBorgScientificStatusProjection(JSON.parse(projectionBytes));
     const platonicAssignments = validateBorgPlatonicRelationshipAssignments(JSON.parse(platonicBytes));
-    const ownerBytes = await readFile(resolve(repoRoot, projection.source));
-    const platonicOwnerBytes = await readFile(resolve(repoRoot, platonicAssignments.source));
+    const ownerBytes = await readFile(resolve(repoRoot, researchSourceLocation(projection.source)));
+    const platonicOwnerBytes = await readFile(resolve(repoRoot, researchSourceLocation(platonicAssignments.source)));
     const brokenEvidenceLinks = [];
     for (const evidenceUrl of new Set(projection.relations.flatMap((relation) => relation.evidenceLinks.map((link) => link.url)))) {
-      try { await stat(resolve(repoRoot, evidenceUrl.split("#")[0])); }
+      try { await stat(resolve(repoRoot, researchSourceLocation(evidenceUrl.split("#")[0]))); }
       catch { brokenEvidenceLinks.push(evidenceUrl); }
     }
     const signature = digest(Buffer.concat([registryBytes, classificationBytes, projectionBytes, ownerBytes, platonicBytes, platonicOwnerBytes, Buffer.from(brokenEvidenceLinks.join("\0"))]));

@@ -4,7 +4,7 @@
 
 ## Trigger, finding and owner follow-up
 
-The [September 27 weekly receipt](ops-032-weekly-review-2026-09-27.md) recorded the supplied-history first-event result and weaker continuation as unstarted. The current Master-Equation Closure queue records completed weaker-continuation and direct-measure investigations and an accepted self-consistent incoming-history first event. The [independent assessment](../../master-equation-closure/analysis/staggered-lattice-first-event-independent-adjudication.md), sections 13–14, explicitly supplies that event and checks the additional population and remote-root hypotheses needed to apply the earlier continuation exclusions. This is a material acceptance transition within that workstream, not adoption of a replacement physical law.
+The [September 27 weekly receipt](ops-032-weekly-review-2026-09-27.md) recorded the supplied-history first-event result and weaker continuation as unstarted. The current Master-Equation Closure queue records completed weaker-continuation and direct-measure investigations and an accepted self-consistent incoming-history first event. The [independent assessment](../../master-equation-closure/lattice-research/analysis/staggered-lattice-first-event-independent-adjudication.md), sections 13–14, explicitly supplies that event and checks the additional population and remote-root hypotheses needed to apply the earlier continuation exclusions. This is a material acceptance transition within that workstream, not adoption of a replacement physical law.
 
 **OPS032-20260928-01 — summary retains a superseded reachability limitation.** A bounded source read of [the manuscript](../../master-equation-closure/manuscript.md), section 10, line 1852 at the recorded version, returns:
 

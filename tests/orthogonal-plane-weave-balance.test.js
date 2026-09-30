@@ -87,7 +87,7 @@ function stateFromCircularOperator(operator, time) {
 
 test("the exact six-member orthogonal-plane weave seed is validated and routed for Borg generation", () => {
   const sourceRelativeUrl =
-    "../reference/priorities/braid-program/configurations/orthogonal-plane-circular-weave-unit-radius-beta-3p070356625390253.v3.json";
+    "../reference/priorities/master-equation-closure/braid-program/configurations/orthogonal-plane-circular-weave-unit-radius-beta-3p070356625390253.v3.json";
   const spec = readJson(sourceRelativeUrl);
   assert.equal(validatePrescribedAssemblySpec(spec), spec);
   assert.equal(spec.identity.assemblyId, "asm-b7fdeb1b3f9aa074cacbab3c593a2273");
@@ -127,7 +127,7 @@ test("the exact six-member orthogonal-plane weave seed is validated and routed f
   }
 
   const displayCatalog = readFileSync(new URL(
-    "../reference/priorities/braid-program/configurations/configuration-display-catalog.md",
+    "../reference/priorities/master-equation-closure/braid-program/configurations/configuration-display-catalog.md",
     import.meta.url,
   ), "utf8");
   assert.match(displayCatalog, /Six-member orthogonal-plane circular weave/);
@@ -137,7 +137,7 @@ test("the exact six-member orthogonal-plane weave seed is validated and routed f
 
 test("target coordinates are accepted by the coincident-midpoint and phase-compensated cyclic relations", () => {
   const coincidentMidpoint = projectCircularRelationshipParameters(readJson(
-    "../reference/priorities/braid-program/configurations/three-axis-circular-coincident-midpoints-equal-radius-common-frequency.v3.json",
+    "../reference/priorities/master-equation-closure/braid-program/configurations/three-axis-circular-coincident-midpoints-equal-radius-common-frequency.v3.json",
   ));
   const coincidentMidpointPairs = coincidentMidpoint.components[0].pairs;
   assert.deepEqual(coincidentMidpointPairs.map((pair) => pair.phase),
@@ -148,7 +148,7 @@ test("target coordinates are accepted by the coincident-midpoint and phase-compe
   assert.ok(coincidentMidpointPairs.every((pair) => pair.transverseOrbitRadius === pair.radius));
 
   const phaseCompensatedSource = readJson(
-    "../reference/priorities/braid-program/configurations/three-axis-circular-phase-compensated-symmetric.v3.json",
+    "../reference/priorities/master-equation-closure/braid-program/configurations/three-axis-circular-phase-compensated-symmetric.v3.json",
   );
   const targetParameters = projectCircularRelationshipParameters(phaseCompensatedSource);
   targetParameters.assemblyPlacement.centerAtEpoch = [0, 0, 0];
@@ -253,7 +253,7 @@ test("every seed-phase root passes an independent direct-coordinate root and Jac
 
 test("regenerated receipt cycles pass direct-coordinate root, contribution, projection, and all-receiver checks", () => {
   const receipt = readJson(
-    "../reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.receipt.v1.json",
+    "../reference/priorities/master-equation-closure/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.receipt.v1.json",
   );
   assert.equal(receipt.rawArtifact.requiredForTests, false);
   const labels = new Map(ORTHOGONAL_PLANE_WEAVE_LABELS.map((label) => [label.id, label]));

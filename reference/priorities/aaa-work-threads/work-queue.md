@@ -11,9 +11,9 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 ## Ranked Next Objects
 
 1. `eom_bounded_population_acceptance_stack` — Route to [App Solver](../app-solver/work-queue.md). Status: `In progress`.
-2. `braid_campaign_1_execution` — Route to [Braid Program](../braid-program/work-queue.md). Status: `Deferred / blocked`.
+2. `braid_campaign_1_execution` — Route to [Braid Program](../master-equation-closure/braid-program/work-queue.md). Status: `Deferred / blocked`.
 3. `causal_wake_update_law_joint_acceptance` — Route to [Master-Equation Closure](../master-equation-closure/work-queue.md). Status: `In progress`.
-4. `pressure_dependent_noether_sea_response` — Route to Master-Equation Closure. Status: `Deferred / blocked`.
+4. `pressure_dependent_noether_sea_response` — Route to [Noether sea research](../master-equation-closure/noether-sea-research/work-queue.md). Status: `Deferred / blocked`.
 5. `atomic_nuclear_review_cleanup` — Status: `Deferred / blocked`.
 6. `spacetime_review_cleanup` — Status: `Deferred / blocked`.
 7. `lorentz_composition_target` — Status: `Deferred / blocked`.
@@ -51,6 +51,7 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 ### AWT-005 — Pressure-dependent Noether sea response
 
 - **Status:** Deferred / blocked
+- **Execution owner:** [Noether sea research](../master-equation-closure/noether-sea-research/work-queue.md); this row preserves cross-workstream routing only.
 - **Request / acceptance:** Produce one accepted-branch response row shared by clock, signal, inertia, effective-metric, material, and cosmology consumers.
 - **Evidence / blocker:** Requires an accepted branch carrying causal wake-state closure.
 - **Completion:** One source-bound response record satisfies the shared packet’s acceptance boundary.

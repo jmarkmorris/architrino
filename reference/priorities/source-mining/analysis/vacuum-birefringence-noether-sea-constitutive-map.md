@@ -181,7 +181,7 @@ This is especially useful for $\mathbb{A}\mathbb{A}\mathbb{A}$ because it links 
 
 | External object | AAA disposition | Intended owner |
 | --- | --- | --- |
-| Magnetized quantum vacuum | Reframe as a strongly loaded Noether sea region; do not identify the two ontologies. | [Pressure-dependent Noether sea constitutive response](../../master-equation-closure/analysis/pressure-dependent-noether-sea-constitutive-response.md) |
+| Magnetized quantum vacuum | Reframe as a strongly loaded Noether sea region; do not identify the two ontologies. | [Pressure-dependent Noether sea constitutive response](../../master-equation-closure/noether-sea-research/analysis/pressure-dependent-noether-sea-constitutive-response.md) |
 | QED polarization-dependent refractive indices | Observer-level recovery target for two eigenvalues of one photon-channel constitutive projection. | Noether sea constitutive response and photon closure |
 | Poincare-sphere Stokes evolution | Mathematical transport bridge after the photon branch and response tensor exist. | Photon-channel projection from the same constitutive record |
 | Polarization-limiting radius | Reframe as a frequency-dependent surface where native adiabatic following fails. | Strong-loading path-history calculation |

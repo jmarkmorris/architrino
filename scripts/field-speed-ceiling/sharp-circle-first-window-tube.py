@@ -16,7 +16,7 @@ mp.prec = iv.prec = 180
 ROOT = Path(__file__).resolve().parents[2]
 DEFECT_SCRIPT = ROOT / 'scripts/field-speed-ceiling/sharp-circle-first-window-defect.py'
 DEFECT_HASH = '43a19e9c6aebb5fb510c762409b775ed217ad33831ddfc467ec9b754cd728e09'
-INPUT = ROOT / 'reference/priorities/braid-program/evidence/sharp-circle-first-window-defect-receipt.json'
+INPUT = ROOT / 'reference/priorities/master-equation-closure/braid-program/evidence/sharp-circle-first-window-defect-receipt.json'
 
 
 def digest(path):

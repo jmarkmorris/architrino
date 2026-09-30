@@ -1,3 +1,4 @@
+import { resolveResearchSourcePath } from "../documentation/ResearchSourcePaths.mjs";
 import { createHash } from "node:crypto";
 import { closeSync, constants, fstatSync, openSync, readFileSync, readSync, realpathSync } from "node:fs";
 import path from "node:path";
@@ -165,7 +166,7 @@ function fileContext(repoRoot) {
   const capture=(filename,identity)=>{const absolute=path.resolve(filename);if(captured.has(absolute)&&!same(captured.get(absolute),identity))fail(`bound bytes changed: ${filename}`);captured.set(absolute,identity);};
   const read = (filename) => {const bytes=regularBytes(filename);capture(filename,{sha256:subfieldCircularSha256(bytes),bytes:bytes.length});return bytes;};
   const inspect=(filename)=>{const identity=hashRegular(filename);capture(filename,identity);return identity;};
-  const relative = (name) => { if (typeof name !== "string" || path.isAbsolute(name) || name.split(/[\\/]/u).includes("..")) fail("repository-relative path required"); return path.join(root, name); };
+  const relative = (name) => { if (typeof name !== "string" || path.isAbsolute(name) || name.split(/[\\/]/u).includes("..")) fail("repository-relative path required"); return resolveResearchSourcePath(root, name); };
   const bound = (binding) => { if (!hashToken(binding.sha256)) fail("invalid binding hash"); const bytes = read(relative(binding.path)); if (subfieldCircularSha256(bytes) !== binding.sha256) fail(`bound bytes changed: ${binding.path}`); return bytes; };
   const recheck = () => { for (const [filename, original] of captured) if (!same(hashRegular(filename),original)) fail(`input changed during ledger check: ${filename}`); };
   return { root, read, inspect, relative, bound, recheck, captured };

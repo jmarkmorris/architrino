@@ -17,23 +17,23 @@ import {
 // or worldline operator from the production path under test.
 
 const SD3_URL = new URL(
-  "../reference/priorities/braid-program/configurations/centered-five-coordinate-linear-history.v3.json",
+  "../reference/priorities/master-equation-closure/braid-program/configurations/centered-five-coordinate-linear-history.v3.json",
   import.meta.url,
 );
 const F5_URL = new URL(
-  "../reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
+  "../reference/priorities/master-equation-closure/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
   import.meta.url,
 );
 const F6C_URL = new URL(
-  "../reference/priorities/braid-program/configurations/small-asymmetric-counter-breathing-history.v3.json",
+  "../reference/priorities/master-equation-closure/braid-program/configurations/small-asymmetric-counter-breathing-history.v3.json",
   import.meta.url,
 );
 const F6B_URL = new URL(
-  "../reference/priorities/braid-program/configurations/co-spherical-scoped-negative-circular-control.v3.json",
+  "../reference/priorities/master-equation-closure/braid-program/configurations/co-spherical-scoped-negative-circular-control.v3.json",
   import.meta.url,
 );
 const READINESS_MATRIX_URL = new URL(
-  "../reference/priorities/braid-program/analysis/prescribed-worldline-readiness-matrix.md",
+  "../reference/priorities/master-equation-closure/braid-program/analysis/prescribed-worldline-readiness-matrix.md",
   import.meta.url,
 );
 

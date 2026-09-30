@@ -1,3 +1,4 @@
+import { resolveResearchSourcePath } from "../documentation/ResearchSourcePaths.mjs";
 import { createHash } from "node:crypto";
 import {
   existsSync,
@@ -134,7 +135,7 @@ function concreteString(value, label) {
 function resolveRepositoryPath(relativePath, label) {
   const value = concreteString(relativePath, label);
   if (path.isAbsolute(value)) throw new TypeError(`${label} must be repository-relative.`);
-  const absolutePath = path.resolve(REPOSITORY_ROOT, value);
+  const absolutePath = resolveResearchSourcePath(REPOSITORY_ROOT, value);
   if (!absolutePath.startsWith(`${REPOSITORY_ROOT}${path.sep}`)) {
     throw new RangeError(`${label} must remain inside the repository.`);
   }

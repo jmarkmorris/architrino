@@ -3,6 +3,7 @@
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import { frozenResearchSourceOrigin, researchSourceLocation } from "../src/documentation/ResearchSourceLocations.mjs";
 
 const SCENES_DIR = "content/scenes";
 const MARKDOWN_DIR = "content/markdown";
@@ -786,7 +787,8 @@ function auditMarkdownRelativeLinks(markdownPaths, markdownTextByPath) {
     if (typeof markdownText !== "string") {
       continue;
     }
-    const sourceAbsolutePath = path.join(rootDir, markdownPath);
+    // Protected evidence retains links relative to its recorded source location.
+    const sourceAbsolutePath = path.join(rootDir, frozenResearchSourceOrigin(markdownPath));
     for (const link of extractMarkdownLinks(markdownText)) {
       const target = link.target;
       if (!target || isExternalMarkdownLinkTarget(target)) {
@@ -802,12 +804,18 @@ function auditMarkdownRelativeLinks(markdownPaths, markdownTextByPath) {
       if (!pathTarget) {
         continue;
       }
-      const resolvedAbsolutePath = path.resolve(path.dirname(sourceAbsolutePath), pathTarget);
-      const resolvedRelativePath = normalizePath(path.relative(rootDir, resolvedAbsolutePath));
-      if (resolvedRelativePath.startsWith("..")) {
+      const logicalAbsolutePath = path.resolve(path.dirname(sourceAbsolutePath), pathTarget);
+      const logicalRelativePath = normalizePath(path.relative(rootDir, logicalAbsolutePath));
+      if (logicalRelativePath.startsWith("..")) {
         errors.push(
           `${markdownPath}:${link.line}: markdown link target escapes repo "${target}"`
         );
+        continue;
+      }
+      const resolvedRelativePath = researchSourceLocation(logicalRelativePath);
+      const resolvedAbsolutePath = path.resolve(rootDir, resolvedRelativePath);
+      if (path.relative(rootDir, resolvedAbsolutePath).startsWith("..")) {
+        errors.push(`${markdownPath}:${link.line}: mapped markdown link target escapes repo "${target}"`);
         continue;
       }
       if (!fs.existsSync(resolvedAbsolutePath)) {

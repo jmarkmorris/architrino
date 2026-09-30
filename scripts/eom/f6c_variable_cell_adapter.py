@@ -790,6 +790,24 @@ class _PackageLogicalFile:
         return self
 
 
+def _research_source_path(logical, root=None):
+    """Locate moved Braid bytes; preserve the caller's historical binding path.
+
+    Kept self-contained because this source executes from a captured closure.
+    No new import, source inventory entry, or historical hash is substituted.
+    """
+    logical = Path(logical)
+    root = Path(root) if root is not None else Path(__file__).absolute().parents[2]
+    prefix = root / 'reference/priorities/braid-program'
+    try:
+        suffix = logical.relative_to(prefix)
+    except ValueError:
+        return logical
+    if logical != Path(os.path.abspath(logical)):
+        raise ValueError('noncanonical logical source path')
+    return root / 'reference/priorities/master-equation-closure/braid-program' / suffix
+
+
 class _PackagePool:
     """Exact inert member routes; archive attribution remains in descriptors.
 
@@ -815,7 +833,7 @@ class _PackagePool:
                 self.historical_owners.add((original.sha256,original.bytes))
                 logical=replace(original,path=m.source_path)
             else:
-                require(m.source_path==original.path,'evidence package cannot redirect a logical path')
+                require(m.source_path==str(_research_source_path(original.path,self.root)),'evidence package requires the declared source location')
                 logical=original
             require((logical.path not in self.routes) and (logical.path not in pool.files),
                     'duplicate packaged route or already captured loose evidence')

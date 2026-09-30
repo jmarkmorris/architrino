@@ -234,6 +234,14 @@ Tree read_json(const std::string& bytes) {
  boost::property_tree::read_json(input, tree);
  return tree;
 }
+// Frozen source identifiers remain in manifests; only the file location moved.
+fs::path physical_research_source(const fs::path& root, std::string_view logical) {
+ constexpr std::string_view old_prefix = "reference/priorities/braid-program/";
+ if (logical.starts_with(old_prefix))
+   return root / "reference/priorities/master-equation-closure/braid-program" /
+     std::string(logical.substr(old_prefix.size()));
+ return root / std::string(logical);
+}
 struct FrozenInputs {
  fs::path root;
  std::array<std::string, kSources.size()> bytes;
@@ -246,14 +254,14 @@ struct FrozenInputs {
    if (std::find(kCandidates.begin(), kCandidates.end(), candidate) == kCandidates.end())
      throw std::runtime_error("candidate absent from frozen sixteen-row census");
    for (std::size_t i = 0; i < kSources.size(); ++i) {
-     const auto target = root / kSources[i].path;
+     const auto target = physical_research_source(root, kSources[i].path);
      if (!within(target, root)) throw std::runtime_error("bound source escapes repository");
      originals[i]=std::make_unique<RetainedOriginalInput>(target);
      bytes[i] = originals[i]->bytes;
      if (kSources[i].hash && sha256(bytes[i]) != kSources[i].hash)
        throw std::runtime_error("frozen source mismatch: " + std::string(kSources[i].id));
    }
-   current_verifier=std::make_unique<RetainedOriginalInput>(root / kSources[6].path);
+   current_verifier=std::make_unique<RetainedOriginalInput>(physical_research_source(root, kSources[6].path));
    const auto report = read_json(bytes[2]);
    const auto& rows = report.get_child("results");
    if (!report.get<bool>("accepted") || report.get<std::string>("normalizedFieldSpeed") != "1" ||
@@ -271,7 +279,7 @@ struct FrozenInputs {
      }
    }
    if (member_count != 6 && member_count != 12) throw std::runtime_error("wrong member count");
-   const auto target = root / source_path;
+   const auto target = physical_research_source(root, source_path);
    if (!within(target, root)) throw std::runtime_error("candidate source escapes repository");
    candidate_original=std::make_unique<RetainedOriginalInput>(target);
    source_bytes = candidate_original->bytes;

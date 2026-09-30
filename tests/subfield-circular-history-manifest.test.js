@@ -1,3 +1,4 @@
+import { resolveResearchSourcePath } from "../src/documentation/ResearchSourcePaths.mjs";
 import {Worker} from 'node:worker_threads';
 import {pathToFileURL} from 'node:url';
 import assert from "node:assert/strict";
@@ -52,7 +53,7 @@ function chain(segments) {
 // subject adapter is manufactured by this suite.
 function plumbingManifest(candidateId = "coincident-midpoint-common-frequency", rung = 2, phase = 0) {
   const chosen = reference.results.find((row) => row.id === candidateId);
-  const source = JSON.parse(readFileSync(path.join(ROOT, chosen.sourcePath)));
+  const source = JSON.parse(readFileSync(resolveResearchSourcePath(ROOT, chosen.sourcePath)));
   const time = 4000000 + 4000000 * phase / rung;
   assert.equal(Number.isSafeInteger(time), true);
   const lower = time - 2000000;

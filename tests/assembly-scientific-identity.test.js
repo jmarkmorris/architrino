@@ -10,15 +10,15 @@ import {
 import { generatePrescribedBraidRecord } from "../scripts/eom/generate-prescribed-braid-record.mjs";
 
 const sourceUrl = new URL(
-  "../reference/priorities/braid-program/configurations/equal-radius-planar-three-binary-balance-beta-2p974307176117293.v3.json",
+  "../reference/priorities/master-equation-closure/braid-program/configurations/equal-radius-planar-three-binary-balance-beta-2p974307176117293.v3.json",
   import.meta.url,
 );
 
 const paritySourceUrls = [
   sourceUrl,
-  new URL("../reference/priorities/braid-program/configurations/co-spherical-two-planar-braid-co-rotating.v3.json", import.meta.url),
-  new URL("../reference/priorities/braid-program/configurations/centered-five-coordinate-linear-history.v3.json", import.meta.url),
-  new URL("../reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json", import.meta.url),
+  new URL("../reference/priorities/master-equation-closure/braid-program/configurations/co-spherical-two-planar-braid-co-rotating.v3.json", import.meta.url),
+  new URL("../reference/priorities/master-equation-closure/braid-program/configurations/centered-five-coordinate-linear-history.v3.json", import.meta.url),
+  new URL("../reference/priorities/master-equation-closure/braid-program/configurations/phase-varying-prescribed-display-history.v3.json", import.meta.url),
 ];
 
 async function sourceSpec() {

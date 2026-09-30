@@ -38,7 +38,7 @@ Plainly: first learn what the mathematical tools do. Then ask what physical info
 
 ### Ownership and Destinations
 
-The [Effective State-Vector Contract](../../../../content/markdown/aaa/quantum/wavefunction-ontology.md#effective-state-vector-contract) is the existing corpus destination for a justified state-space construction. QC-003 and QC-004 in the [parent queue](../work-queue.md) and the [transfer-operator and basin-measure packet](../analysis/transfer-operator-basin-measure.md) own physical distributions and outcome weights. The [Braid Program](../../braid-program/priorities.md) owns candidate geometry and dynamical evidence. This exploration can clarify requirements and expose missing information without claiming those upstream objects already exist.
+The [Effective State-Vector Contract](../../../../content/markdown/aaa/quantum/wavefunction-ontology.md#effective-state-vector-contract) is the existing corpus destination for a justified state-space construction. QC-003 and QC-004 in the [parent queue](../work-queue.md) and the [transfer-operator and basin-measure packet](../analysis/transfer-operator-basin-measure.md) own physical distributions and outcome weights. The [Braid Program](../../master-equation-closure/braid-program/priorities.md) owns candidate geometry and dynamical evidence. This exploration can clarify requirements and expose missing information without claiming those upstream objects already exist.
 
 Plainly: learning can begin now. A successful lesson does not certify a braid, a detector law, or quantum recovery, and it does not reactivate the deferred physical program.
 
@@ -397,7 +397,7 @@ Distinguish three possibilities: the histories differ physically and have distin
 
 Plainly: ask what a snapshot of the braid loses. If that information changes an observable response, it belongs somewhere in the effective description. This is more concrete than assigning quantum meanings to every braid component at once.
 
-The strongest current result is conditional mathematics: Hilbert spaces can be constructed from weighted functions of histories or square-integrable response patterns. The proposed physical direction is to derive response geometry from retained causal histories. The unresolved transition is from that geometry to a common quantum representation of preparations, transformations, and records. The existing [Effective State-Vector Contract](../../../../content/markdown/aaa/quantum/wavefunction-ontology.md#effective-state-vector-contract) is the eventual promotion destination; the [Braid Program](../../braid-program/priorities.md) retains candidate-specific evidence.
+The strongest current result is conditional mathematics: Hilbert spaces can be constructed from weighted functions of histories or square-integrable response patterns. The proposed physical direction is to derive response geometry from retained causal histories. The unresolved transition is from that geometry to a common quantum representation of preparations, transformations, and records. The existing [Effective State-Vector Contract](../../../../content/markdown/aaa/quantum/wavefunction-ontology.md#effective-state-vector-contract) is the eventual promotion destination; the [Braid Program](../../master-equation-closure/braid-program/priorities.md) retains candidate-specific evidence.
 
 ## Sources and Verification Scope
 

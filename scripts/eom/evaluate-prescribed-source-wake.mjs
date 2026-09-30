@@ -15,7 +15,7 @@ const SCRIPT_DIRECTORY = path.dirname(SCRIPT_PATH);
 const REPOSITORY_ROOT = path.resolve(SCRIPT_DIRECTORY, "../..");
 export const DEFAULT_AXIAL_TRANSVERSE_THREE_BINARY_INTERIOR_SOURCE_SPEC_PATH = path.resolve(
   REPOSITORY_ROOT,
-  "reference/priorities/braid-program/configurations/" +
+  "reference/priorities/master-equation-closure/braid-program/configurations/" +
     "axial-transverse-three-binary-interior.v3.json",
 );
 export const DEFAULT_AXIAL_TRANSVERSE_THREE_BINARY_INTERIOR_ANALYSIS_PROTOCOL_PATH = path.resolve(

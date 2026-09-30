@@ -1,3 +1,4 @@
+import { researchSourceLocation } from "../src/documentation/ResearchSourceLocations.mjs";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
@@ -11,9 +12,9 @@ import { describeLibraryRecord, LIBRARY_DESCRIPTOR_VERSION } from "../src/apps/b
 import { queryLibraryRows } from "../src/apps/borg/library/BorgLibraryQuery.mjs";
 
 const assignments = validateBorgPlatonicRelationshipAssignments(JSON.parse(await readFile(
-  new URL("../reference/priorities/braid-program/configurations/borg-platonic-relationship-assignments.v1.json", import.meta.url),
+  new URL("../reference/priorities/master-equation-closure/braid-program/configurations/borg-platonic-relationship-assignments.v1.json", import.meta.url),
 )));
-const sourceBytes = await readFile(new URL(`../${assignments.source}`, import.meta.url));
+const sourceBytes = await readFile(new URL(`../${researchSourceLocation(assignments.source)}`, import.meta.url));
 const sourceSha256 = (await import("node:crypto")).createHash("sha256").update(sourceBytes).digest("hex");
 const integrity = { sourceSha256 };
 

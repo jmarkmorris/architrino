@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -19,7 +20,7 @@ const protocolPath =
   "src/prescribed-path-analysis/protocols/" +
   "coincident-midpoint-common-frequency-outer-radius-second-band-expansion-protocol.v1.json";
 const defaultSummaryPath =
-  "reference/priorities/braid-program/evidence/" +
+  "reference/priorities/master-equation-closure/braid-program/evidence/" +
   "coincident-midpoint-common-frequency-outer-radius-second-band-expansion-summary.v1.json";
 const gzipAsync = promisify(gzip);
 
@@ -47,7 +48,7 @@ function parseArguments(argv) {
 
 async function readJson(relativePath) {
   return JSON.parse(await readFile(
-    path.resolve(repositoryRoot, relativePath),
+    resolveResearchSourcePath(repositoryRoot, relativePath),
     "utf8",
   ));
 }

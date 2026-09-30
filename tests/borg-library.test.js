@@ -77,7 +77,7 @@ test("Library classifications bind exact scientific identities", async () => {
 
 test("Library scientific projection is Braid Program owned and exact adjudications bind exact identities", async () => {
   const projection = validateBorgScientificStatusProjection(JSON.parse(await readFile(
-    new URL("../reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json", import.meta.url),
+    new URL("../reference/priorities/master-equation-closure/braid-program/contracts/braid-candidate-adjudication-projection.v1.json", import.meta.url),
   )));
   assert.equal(projection.source, "reference/priorities/braid-program/analysis/braid-candidate-requirement-adjudication.md");
   const exactAdjudications = projection.relations.filter((relation) => relation.kind === "adjudication" && relation.scope === "exact-configuration");

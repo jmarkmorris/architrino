@@ -1,0 +1,789 @@
+AWT-016 configuration research consumer candidates
+Date: 2026-09-29
+Status: planning snapshot; no relocation performed.
+
+These retained search outputs accompany campaigns/configuration-research-ownership-map.md. They are literal candidate discovery within the stated scopes, not a complete resolved link graph. Empty blocks support no broader absence claim. Historical paths and runtime receipts remain unchanged. Source-time line numbers may change after this snapshot.
+
+===== Lattice source-path candidates =====
+Captured output: .tmp/awt-016/lattice/script-path-consumers.txt
+Scope: Scoped rg within the inventoried MEC analysis Python files: fixed root ancestry, imports, source paths and runtime references.
+
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients.py:16:ROOT = Path(__file__).resolve().parents[4]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients.py:17:HERE = ROOT / '.local-data/master-equation-closure/later-motion'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients-plots.py:12:ROOT=Path(__file__).resolve().parents[4]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients-plots.py:13:HERE=ROOT/'.local-data/master-equation-closure/later-motion'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients-plots.py:15:os.environ.setdefault('MPLCONFIGDIR',str(ROOT/'.tmp/mec-008-later-continuation/mpl'))
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients-plots.py:16:os.environ.setdefault('XDG_CACHE_HOME',str(ROOT/'.tmp/mec-008-later-continuation/cache'))
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients-plots.py:72:    parent=json.loads((ROOT/'.local-data/master-equation-closure/later-motion/leading/result.json').read_text())
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients-plots.py:79:    raw=json.loads((ROOT/'.tmp/mec-008-signed-error/target-polynomials.json').read_text())
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certified-plot.py:16:ROOT=Path(__file__).resolve().parents[4]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certified-plot.py:17:OUT=ROOT/'.local-data/master-equation-closure/later-certification/figure'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certified-plot.py:18:ARCHIVE=ROOT/'.local-data/master-equation-closure/later-certification/approx/approximant-h1024.npz'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certified-plot.py:20:TURNS=ROOT/'.local-data/master-equation-closure/later-certification/check/turns.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certified-plot.py:23:os.environ.setdefault('MPLCONFIGDIR',str(ROOT/'.tmp/mec-008-later-certification/dahlquist/mpl'))
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certified-plot.py:24:os.environ.setdefault('XDG_CACHE_HOME',str(ROOT/'.tmp/mec-008-later-certification/dahlquist/cache'))
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certified-plot.py:71:        review=ROOT/'reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certification-independent-adjudication.md'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-approximant.py:20:ROOT=Path(__file__).resolve().parents[4]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-approximant.py:21:OUT=ROOT/'.local-data/master-equation-closure/later-certification/approx'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-approximant.py:22:SCRATCH=ROOT/'.tmp/mec-008-later-certification/dahlquist'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-approximant.py:30:    prior=json.loads((ROOT/'.local-data/master-equation-closure/later-motion/nonlinear-known.json').read_text())
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-approximant.py:32:    spec=importlib.util.spec_from_file_location('frozen_nonlinear_comparison',FROZEN)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-class-boundary-selected-certificate.py:15:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-class-boundary-selected-certificate.py:16:spec=importlib.util.spec_from_file_location('frozen_five',HERE/'smooth-two-particle-through-five-population-certificate.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-class-boundary-selected-certificate.py:19:OUT=ROOT/'.local-data/master-equation-closure/first-class-boundary/selected-check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-class-boundary-selected-certificate.py:65: old_bounds=json.loads((ROOT/'.local-data/master-equation-closure/post-restart/cubic-population-check/polynomial-bounds.json').read_text())
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-leading.py:9:OUT=Path(__file__).resolve().parents[4]/'.local-data/master-equation-closure/later-motion/leading'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.py:21:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.py:22:OUT=ROOT/'.local-data/master-equation-closure/next-maximum/approximant'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.py:23:PRIOR=ROOT/'.local-data/master-equation-closure/next-minimum/approximant/candidate.npz'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.py:24:BASE=ROOT/'.local-data/master-equation-closure/later-certification/approx/approximant-h1024.npz'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.py:38:    spec=importlib.util.spec_from_file_location('frozen_minimum_proposal',path)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-residual.py:16:ROOT=Path(__file__).resolve().parents[4]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-residual.py:17:OUT=ROOT/'.local-data/master-equation-closure/later-certification/check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-residual.py:408:    p.add_argument('--input',default=str(ROOT/'.local-data/master-equation-closure/later-certification/approx/approximant-h1024.npz'))
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.py:4:Outputs live in .local-data/master-equation-closure/motion-plots/.
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.py:16:ROOT = Path(__file__).resolve().parents[4]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.py:17:INPUT = ROOT / '.tmp/mec-008-signed-error'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.py:18:OUT = ROOT / '.local-data/master-equation-closure/motion-plots'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.py:20:os.environ.setdefault('MPLCONFIGDIR', str(ROOT / '.tmp/mec-008-motion-plots/mpl'))
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.py:21:os.environ.setdefault('XDG_CACHE_HOME', str(ROOT / '.tmp/mec-008-motion-plots/cache'))
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-turns.py:11:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-turns.py:12:OUT=ROOT/'.local-data/master-equation-closure/later-certification/check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-turns.py:13:SPEC=importlib.util.spec_from_file_location('residual',HERE/'smooth-two-particle-later-residual.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-plot.py:16:ROOT=Path(__file__).resolve().parents[4]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-plot.py:17:BASE=ROOT/'.local-data/master-equation-closure/later-pulse-ends'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-plot.py:23:PREFIX=ROOT/'.local-data/master-equation-closure/later-certification/approx/approximant-h1024.npz'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-certificate.py:18:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-certificate.py:19:OUT=ROOT/'.local-data/master-equation-closure/next-maximum/check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-certificate.py:20:OLD=ROOT/'.local-data/master-equation-closure/next-minimum'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-certificate.py:21:CANDIDATE=ROOT/'.local-data/master-equation-closure/next-maximum/approximant/candidate.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-certificate.py:26:spec=importlib.util.spec_from_file_location('accepted_minimum_certificate',HERE/'smooth-two-particle-next-minimum-certificate.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-certificate.py:18:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-certificate.py:19:OUT=ROOT/'.local-data/master-equation-closure/next-minimum/check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-certificate.py:20:OLD=ROOT/'.local-data/master-equation-closure/later-certification'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-certificate.py:21:TAIL=ROOT/'.local-data/master-equation-closure/later-pulse-ends'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-certificate.py:22:CANDIDATE=ROOT/'.local-data/master-equation-closure/next-minimum/approximant/candidate.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-certificate.py:37:    spec=importlib.util.spec_from_file_location('frozen_interval_primitive',path)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-nonlinear.py:19:OUT = REPO / '.local-data/master-equation-closure/later-motion'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-certificate.py:19:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-certificate.py:20:OUT=ROOT/'.local-data/master-equation-closure/population-restart/check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-certificate.py:21:PRIOR=ROOT/'.local-data/master-equation-closure/next-maximum'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-certificate.py:22:MANIFEST=ROOT/'.local-data/master-equation-closure/population-restart/approximant/candidate.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-certificate.py:27:spec=importlib.util.spec_from_file_location('frozen_later_certificate',HERE/'smooth-two-particle-next-maximum-later-certificate.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-certificate.py:19:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-certificate.py:20:OLD=ROOT/'.local-data/master-equation-closure/later-certification'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-certificate.py:21:OUT=ROOT/'.local-data/master-equation-closure/later-pulse-ends'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-certificate.py:32:    spec=importlib.util.spec_from_file_location(name,path)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-turns.py:16:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-turns.py:17:OUT=ROOT/'.local-data/master-equation-closure/population-restart/check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-turns.py:18:SPEC=importlib.util.spec_from_file_location('frozen_later_signs',HERE/'smooth-two-particle-next-maximum-later-certificate.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-turns.py:52:    inherited_path=ROOT/'.local-data/master-equation-closure/next-maximum/later-check/signs.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-turns.py:54:    old_path=ROOT/'.local-data/master-equation-closure/next-minimum/check/turns.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-population-certificate.py:10:HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-population-certificate.py:11:s=importlib.util.spec_from_file_location('frozen_population',HERE/'smooth-two-particle-population-restart-certificate.py');M=importlib.util.module_from_spec(s);s.loader.exec_module(M)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-population-certificate.py:13:OUT=ROOT/'.local-data/master-equation-closure/post-restart/cubic-population-check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-population-certificate.py:14:MANIFEST=ROOT/'.local-data/master-equation-closure/post-restart/approximant/population-h17-4.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-later-certificate.py:18:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-later-certificate.py:19:OUT=ROOT/'.local-data/master-equation-closure/next-maximum/later-check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-later-certificate.py:20:OLD=ROOT/'.local-data/master-equation-closure/next-maximum'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-later-certificate.py:21:CANDIDATE=ROOT/'.local-data/master-equation-closure/next-maximum/approximant/bridge-h13-4.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-later-certificate.py:26:spec=importlib.util.spec_from_file_location('accepted_minimum_certificate',HERE/'smooth-two-particle-next-minimum-certificate.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-later-certificate.py:30:turn_spec=importlib.util.spec_from_file_location('frozen_bridge_turns',HERE/'smooth-two-particle-next-maximum-turns.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-later-certificate.py:249:    old_path=ROOT/'.local-data/master-equation-closure/next-minimum/check/turns.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.py:20:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.py:21:OUT=ROOT/'.local-data/master-equation-closure/next-minimum/approximant'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.py:22:PRIOR=ROOT/'.local-data/master-equation-closure/later-certification/approx/approximant-h1024.npz'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.py:23:TAIL=ROOT/'.local-data/master-equation-closure/later-pulse-ends/target-approximant.npz'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.py:35:        spec=importlib.util.spec_from_file_location(name,path)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-approximant.py:21:ROOT = HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-approximant.py:22:OUT = ROOT / '.local-data/master-equation-closure/population-restart/approximant'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-approximant.py:23:PRIOR = ROOT / '.local-data/master-equation-closure/next-maximum/approximant/candidate.npz'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-approximant.py:35:    spec = importlib.util.spec_from_file_location('frozen_maximum_proposal', path)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-turns.py:11:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-turns.py:12:OUT=ROOT/'.local-data/master-equation-closure/next-minimum/check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-turns.py:13:spec=importlib.util.spec_from_file_location('accepted_turn_primitives',HERE/'smooth-two-particle-later-turns.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-turns.py:74:    old_path=ROOT/'.local-data/master-equation-closure/later-certification/check/turns.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-certificate.py:6:HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-certificate.py:7:s=importlib.util.spec_from_file_location('frozen_new_population',HERE/'smooth-two-particle-post-restart-population-certificate.py');P=importlib.util.module_from_spec(s);s.loader.exec_module(P)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-certificate.py:8:M=P.M;R=P.R;N=P.N;I=P.I;OUT=ROOT/'.local-data/master-equation-closure/post-restart/later-check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-certificate.py:9:MANIFEST=ROOT/'.local-data/master-equation-closure/post-restart/approximant/target-h9-2.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-turns.py:6:HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-turns.py:7:s=importlib.util.spec_from_file_location('frozen_signs',HERE/'smooth-two-particle-population-restart-turns.py');M=importlib.util.module_from_spec(s);s.loader.exec_module(M)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-turns.py:8:L=M.L;I=M.I;B=M.B;OUT=ROOT/'.local-data/master-equation-closure/post-restart/later-check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-turns.py:25: ip=ROOT/'.local-data/master-equation-closure/post-restart/check/signs.json';inherited=json.loads(ip.read_text());assert inherited['horizon']=='33/8' and inherited['actual_velocity_range'][0]>0
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-turns.py:26: tp=ROOT/'.local-data/master-equation-closure/next-minimum/check/turns.json';old=json.loads(tp.read_text());assert old['four_consecutive_turns']=='PASS'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-turns.py:13:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-turns.py:14:OUT=ROOT/'.local-data/master-equation-closure/next-maximum/check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-turns.py:15:spec=importlib.util.spec_from_file_location('accepted_turn_primitives',HERE/'smooth-two-particle-later-turns.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-turns.py:78:    old_path=ROOT/'.local-data/master-equation-closure/next-minimum/check/turns.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-turns.py:80:    assert old['archive_sha256']==json.loads((ROOT/'.local-data/master-equation-closure/next-minimum/check/both-residual.json').read_text())['archive_sha256']
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-turns.py:108:    previous_path=ROOT/'.local-data/master-equation-closure/next-minimum/check/turns.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-rk4-approximant.py:18:spec=importlib.util.spec_from_file_location('frozen_target_proposal',HERE/'smooth-two-particle-post-restart-approximant.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.py:18:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.py:19:OUT=ROOT/'.local-data/master-equation-closure/post-restart/approximant'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.py:20:SOURCE=ROOT/'.local-data/master-equation-closure/population-restart/approximant/candidate.npz'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.py:21:PRIOR=ROOT/'.local-data/master-equation-closure/next-maximum/approximant/candidate.npz'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.py:31:    spec=importlib.util.spec_from_file_location('frozen_history',path)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-history-approximant.py:19:spec=importlib.util.spec_from_file_location('frozen_target_proposal',HERE/'smooth-two-particle-post-restart-approximant.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-approximant.py:19:spec=importlib.util.spec_from_file_location('frozen_target_proposal',HERE/'smooth-two-particle-post-restart-approximant.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-early-target-certificate.py:11:spec=importlib.util.spec_from_file_location('frozen_five_subject',HERE/'smooth-two-particle-through-five-population-certificate.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-early-target-certificate.py:14:OUT=C.ROOT/'.local-data/master-equation-closure/through-five/early-target-check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-population-certificate.py:16:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-population-certificate.py:17:spec=importlib.util.spec_from_file_location('frozen_nineteen',HERE/'smooth-two-particle-post-restart-nineteen-population-certificate.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-population-certificate.py:20:OUT=ROOT/'.local-data/master-equation-closure/through-five/population-check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-population-certificate.py:21:DATA=ROOT/'.local-data/master-equation-closure/post-restart/approximant'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-population-certificate.py:68: bounds=json.loads((ROOT/'.local-data/master-equation-closure/post-restart/cubic-population-check/polynomial-bounds.json').read_text())
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-population-certificate.py:10:HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-population-certificate.py:11:s=importlib.util.spec_from_file_location('frozen_population',HERE/'smooth-two-particle-population-restart-certificate.py');M=importlib.util.module_from_spec(s);s.loader.exec_module(M)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-population-certificate.py:13:OUT=ROOT/'.local-data/master-equation-closure/post-restart/population-check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-population-certificate.py:14:MANIFEST=ROOT/'.local-data/master-equation-closure/post-restart/approximant/population-h15-4.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-five-certificate.py:10:HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-five-certificate.py:11:s=importlib.util.spec_from_file_location('frozen_new_population',HERE/'smooth-two-particle-post-restart-cubic-population-certificate.py');P=importlib.util.module_from_spec(s);s.loader.exec_module(P)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-five-certificate.py:12:M=P.M;R=P.R;N=P.N;I=P.I;OUT=ROOT/'.local-data/master-equation-closure/post-restart/five-check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-five-certificate.py:13:MANIFEST=ROOT/'.local-data/master-equation-closure/post-restart/approximant/target-h5.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-turns.py:10:ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-turns.py:11:s=importlib.util.spec_from_file_location('frozen_signs',HERE/'smooth-two-particle-population-restart-turns.py')
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-turns.py:14:OUT=ROOT/'.local-data/master-equation-closure/post-restart/nineteen-target-check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-turns.py:33: rp=ROOT/'.local-data/master-equation-closure/post-restart/five-check/target-residual.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-turns.py:39: ip=ROOT/'.local-data/master-equation-closure/post-restart/later-check/signs.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-turns.py:41: tp=ROOT/'.local-data/master-equation-closure/next-minimum/check/turns.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-certificate.py:6:HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-certificate.py:7:s=importlib.util.spec_from_file_location('frozen_population',HERE/'smooth-two-particle-population-restart-certificate.py');M=importlib.util.module_from_spec(s);s.loader.exec_module(M)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-certificate.py:9:OUT=ROOT/'.local-data/master-equation-closure/post-restart/check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-certificate.py:10:MANIFEST=ROOT/'.local-data/master-equation-closure/post-restart/approximant/candidate.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-population-certificate.py:12:HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-population-certificate.py:13:s=importlib.util.spec_from_file_location('frozen_population',HERE/'smooth-two-particle-population-restart-certificate.py');M=importlib.util.module_from_spec(s);s.loader.exec_module(M)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-population-certificate.py:15:OUT=ROOT/'.local-data/master-equation-closure/post-restart/nineteen-population-check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-population-certificate.py:16:MANIFEST=ROOT/'.local-data/master-equation-closure/post-restart/approximant/population-h19-4.json'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-population-certificate.py:74: om=json.loads(incoming_archive.with_suffix('.json').read_text());bounds=json.loads((ROOT/'.local-data/master-equation-closure/post-restart/cubic-population-check/polynomial-bounds.json').read_text());assert bounds['archive_sha256']==M.digest(incoming_archive) and bounds['norms'][0]<1/128
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-turns.py:6:HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[3]
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-turns.py:7:s=importlib.util.spec_from_file_location('frozen_signs',HERE/'smooth-two-particle-population-restart-turns.py');M=importlib.util.module_from_spec(s);s.loader.exec_module(M)
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-turns.py:8:L=M.L;I=M.I;B=M.B;OUT=ROOT/'.local-data/master-equation-closure/post-restart/check'
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-turns.py:25: ip=ROOT/'.local-data/master-equation-closure/population-restart/check/signs.json';inherited=json.loads(ip.read_text());assert inherited['horizon']=='15/4' and inherited['actual_velocity_range'][0]>0
+reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-turns.py:26: tp=ROOT/'.local-data/master-equation-closure/next-minimum/check/turns.json';old=json.loads(tp.read_text());assert old['four_consecutive_turns']=='PASS'
+
+===== Lattice external production candidates =====
+Captured output: .tmp/awt-016/lattice/production-consumers.txt
+Scope: Scoped rg under scripts/, tests/ and src/ for smooth-two-particle, staggered-lattice and the named population/release filenames. Empty output is limited to those literals and trees.
+
+[No matching lines in this captured output.]
+
+===== Lattice runtime candidate filenames =====
+Captured output: .tmp/awt-016/lattice/runtime-reference-files.txt
+Scope: Scoped textual rg under .local-data/master-equation-closure/ for the lattice/proof families, limited to Markdown, JSON, Python, text and SHA files. Filenames are candidates, not confirmed hash bindings.
+
+.local-data/master-equation-closure/first-class-boundary/continuation/bounds.py
+.local-data/master-equation-closure/event-measure/domain/manifest-sha256.txt
+.local-data/master-equation-closure/event-measure/domain/input-sha256.txt
+.local-data/master-equation-closure/event-measure/domain/document-check.json
+.local-data/master-equation-closure/event-measure/domain/domain-source.md
+.local-data/master-equation-closure/next-maximum/approximant/diagnostics/endpoint_analysis.py
+.local-data/master-equation-closure/first-class-boundary/continuation/retention.json
+.local-data/master-equation-closure/event-measure/continuation/smooth-two-particle-event-measure.md
+.local-data/master-equation-closure/event-measure/continuation/retention.json
+.local-data/master-equation-closure/first-class-boundary/history/endpoint-instrument.py
+.local-data/master-equation-closure/event-measure/independent/input-sha256.txt
+.local-data/master-equation-closure/event-measure/independent/smooth-two-particle-event-measure.md
+.local-data/master-equation-closure/event-measure/independent/document-check.json
+.local-data/master-equation-closure/population-restart/approximant/frozen-sha256.txt
+.local-data/master-equation-closure/event-measure/independent/smooth-two-particle-event-measure-domain.md
+.local-data/master-equation-closure/population-restart/approximant/candidate.json
+.local-data/master-equation-closure/event-measure/independent/smooth-two-particle-event-measure-independent-adjudication.md
+.local-data/master-equation-closure/event-measure/independent/MANIFEST.sha256
+.local-data/master-equation-closure/next-event/residual/instruments/residual.py
+.local-data/master-equation-closure/next-event/residual/reproduction.json
+.local-data/master-equation-closure/sublattice-decomposition/evaluation/reproduction.md
+.local-data/master-equation-closure/sublattice-decomposition/evaluation/analysis-snapshot.md
+.local-data/master-equation-closure/first-class-boundary/independent/event-reference.py
+.local-data/master-equation-closure/next-event/evolution/frozen-inputs.sha256
+.local-data/master-equation-closure/sublattice-decomposition/independent/prior-manifest-verification.txt
+.local-data/master-equation-closure/first-class-boundary/independent/RETENTION.md
+.local-data/master-equation-closure/sublattice-decomposition/independent/manifest-verification.txt
+.local-data/master-equation-closure/next-minimum/approximant/figure/plot.py
+.local-data/master-equation-closure/next-event/evolution/evolution-instrument.py
+.local-data/master-equation-closure/sublattice-decomposition/independent/snapshots/staggered-lattice-decomposition-independent-assessment.md
+.local-data/master-equation-closure/weaker-continuation/domain/input-sha256.txt
+.local-data/master-equation-closure/next-event/independent/self-birth-reference.py
+.local-data/master-equation-closure/sublattice-decomposition/independent/manifest.sha256
+.local-data/master-equation-closure/sublattice-decomposition/independent/snapshots/staggered-lattice-displacement-equation.md
+.local-data/master-equation-closure/weaker-continuation/domain/output-sha256.txt
+.local-data/master-equation-closure/weaker-continuation/domain/document-check.json
+.local-data/master-equation-closure/sublattice-decomposition/independent/snapshots/staggered-lattice-acceleration-decomposition.md
+.local-data/master-equation-closure/weaker-continuation/continuation/smooth-two-particle-weaker-continuation.md
+.local-data/master-equation-closure/weaker-continuation/continuation/retention.json
+.local-data/master-equation-closure/next-event/independent/corollary-control/self-birth-reference.py
+.local-data/master-equation-closure/next-event/continuation/README.md
+.local-data/master-equation-closure/weaker-continuation/independent/smooth-two-particle-weaker-continuation-independent-adjudication.md
+.local-data/master-equation-closure/weaker-continuation/independent/document-check.json
+.local-data/master-equation-closure/staggered-first-event/construction/input-sha256.txt
+.local-data/master-equation-closure/through-five/continuation/pulse.py
+.local-data/master-equation-closure/weaker-continuation/independent/smooth-two-particle-weaker-continuation.md
+.local-data/master-equation-closure/staggered-first-event/construction/manifest.json
+.local-data/master-equation-closure/weaker-continuation/independent/prior-input-sha256.txt
+.local-data/master-equation-closure/next-event/continuation/jacobian.py
+.local-data/master-equation-closure/next-event/continuation/retention.json
+.local-data/master-equation-closure/weaker-continuation/independent/smooth-two-particle-weaker-continuation-domain.md
+.local-data/master-equation-closure/weaker-continuation/independent/reproduction.json
+.local-data/master-equation-closure/weaker-continuation/independent/MANIFEST.sha256
+.local-data/master-equation-closure/through-five/history/audit-instrument.py
+.local-data/master-equation-closure/beyond-class-boundary/continuation/bounds.py
+.local-data/master-equation-closure/beyond-class-boundary/continuation/retention.json
+.local-data/master-equation-closure/through-five/continuation/retention.json
+.local-data/master-equation-closure/staggered-first-event/construction/staggered-lattice-first-event.md
+.local-data/master-equation-closure/staggered-first-event/independent/input-sha256.txt
+.local-data/master-equation-closure/staggered-first-event/independent/pre-subject-derivation.md
+.local-data/master-equation-closure/staggered-first-event/evolution/inputs/smooth-two-particle-incoming-reachability.md
+.local-data/master-equation-closure/staggered-first-event/evolution/inputs/smooth-two-particle-incoming-reachability-domain.md
+.local-data/master-equation-closure/beyond-class-boundary/history/coverage-instrument.py
+.local-data/master-equation-closure/staggered-first-event/evolution/owner-snapshot.md
+.local-data/master-equation-closure/beyond-class-boundary/independent/selected-reference.py
+.local-data/master-equation-closure/staggered-first-event/evolution/archive-reference-owner-snapshot.md
+.local-data/master-equation-closure/through-five/history/adopt-neighbor-instrument.py
+.local-data/master-equation-closure/through-five/history/neighbor-adoption.json
+.local-data/master-equation-closure/staggered-first-event/evolution/manifest.sha256
+.local-data/master-equation-closure/beyond-class-boundary/independent/RETENTION.md
+.local-data/master-equation-closure/incoming-reachability/domain/inputs/smooth-two-particle-post-restart-stationary.md
+.local-data/master-equation-closure/staggered-first-event/independent/manifest.sha256
+.local-data/master-equation-closure/incoming-reachability/domain/inputs/population-history-class.md
+.local-data/master-equation-closure/staggered-first-event/independent/snapshots/staggered-lattice-first-event-independent-adjudication.md
+.local-data/master-equation-closure/incoming-reachability/domain/inputs/smooth-two-particle-event-measure-independent-adjudication.md
+.local-data/master-equation-closure/staggered-first-event/independent/snapshots/smooth-two-particle-incoming-reachability.md
+.local-data/master-equation-closure/staggered-first-event/independent/snapshots/smooth-two-particle-incoming-reachability-independent-adjudication.md
+.local-data/master-equation-closure/incoming-reachability/domain/inputs/smooth-two-particle-preparation.md
+.local-data/master-equation-closure/staggered-first-event/independent/snapshots/smooth-two-particle-incoming-reachability-domain.md
+.local-data/master-equation-closure/incoming-reachability/domain/inputs/smooth-two-particle-pulse-continuation.md
+.local-data/master-equation-closure/incoming-reachability/domain/manifest-sha256.txt
+.local-data/master-equation-closure/post-restart/approximant/compute-closeout.json
+.local-data/master-equation-closure/incoming-reachability/domain/input-sha256.txt
+.local-data/master-equation-closure/staggered-first-event/independent/snapshots/staggered-lattice-first-event.md
+.local-data/master-equation-closure/staggered-first-event/independent/snapshots/smooth-two-particle-event-measure.md
+.local-data/master-equation-closure/incoming-reachability/domain/document-check.json
+.local-data/master-equation-closure/staggered-first-event/independent/snapshots/staggered-lattice-first-event-evolution.md
+.local-data/master-equation-closure/staggered-first-event/independent/snapshots/smooth-two-particle-weaker-continuation.md
+.local-data/master-equation-closure/staggered-first-event/independent/snapshots/smooth-two-particle-next-event-root-birth.md
+.local-data/master-equation-closure/incoming-reachability/independent/input-sha256.txt
+.local-data/master-equation-closure/incoming-reachability/domain/domain-source.md
+.local-data/master-equation-closure/staggered-first-event/integration/residual-owner-snapshot.md
+.local-data/master-equation-closure/incoming-reachability/construction/input-sha256.txt
+.local-data/master-equation-closure/incoming-reachability/independent/pre-subject-derivation.md
+.local-data/master-equation-closure/incoming-reachability/independent/smooth-two-particle-incoming-reachability.md
+.local-data/master-equation-closure/incoming-reachability/construction/smooth-two-particle-incoming-reachability.md
+.local-data/master-equation-closure/incoming-reachability/independent/smooth-two-particle-incoming-reachability-independent-adjudication.md
+.local-data/master-equation-closure/incoming-reachability/independent/MANIFEST.sha256
+.local-data/master-equation-closure/incoming-reachability/construction/retention.json
+.local-data/master-equation-closure/incoming-reachability/independent/smooth-two-particle-incoming-reachability-domain.md
+.local-data/master-equation-closure/incoming-reachability/integration/domain-manifest.txt
+.local-data/master-equation-closure/incoming-reachability/integration/domain-inputs.txt
+.local-data/master-equation-closure/incoming-reachability/integration/independent-inputs.txt
+.local-data/master-equation-closure/incoming-reachability/integration/construction-inputs.txt
+.local-data/master-equation-closure/post-restart/approximant/instrument-sources/14009bec89a42283f29ebf884713471febd4be982b721e51a26175a04725451f.py
+
+===== Lattice priority candidate lines =====
+Captured output: .tmp/awt-016/lattice/priority-reference-hits.txt
+Scope: Scoped rg under priorities outside MEC, excluding chronological work logs and brainstorming. Current routing and historical evidence require separate treatment.
+
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2660:      "source": "reference/priorities/master-equation-closure/analysis/finite-perturbation-release-compatibility.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2662:      "destination": "reference/priorities/master-equation-closure/analysis/finite-perturbation-release-compatibility.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2666:      "source": "reference/priorities/master-equation-closure/analysis/finite-perturbation-release-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2668:      "destination": "reference/priorities/master-equation-closure/analysis/finite-perturbation-release-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2762:      "source": "reference/priorities/master-equation-closure/analysis/population-admissibility-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2764:      "destination": "reference/priorities/master-equation-closure/analysis/population-admissibility-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2768:      "source": "reference/priorities/master-equation-closure/analysis/population-admissibility-proposal.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2770:      "destination": "reference/priorities/master-equation-closure/analysis/population-admissibility-proposal.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2774:      "source": "reference/priorities/master-equation-closure/analysis/population-delayed-summation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2776:      "destination": "reference/priorities/master-equation-closure/analysis/population-delayed-summation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2786:      "source": "reference/priorities/master-equation-closure/analysis/population-history-class.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2788:      "destination": "reference/priorities/master-equation-closure/analysis/population-history-class.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2792:      "source": "reference/priorities/master-equation-closure/analysis/population-history-derivative.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2794:      "destination": "reference/priorities/master-equation-closure/analysis/population-history-derivative.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2864:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-class-preserving-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2866:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-class-preserving-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2870:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-class-preserving-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2872:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-class-preserving-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2876:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-distance-two-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2878:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-distance-two-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2882:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-distance-two-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2884:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-distance-two-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2888:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-feedback-separation-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2890:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-feedback-separation-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2894:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-feedback-separation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2896:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-feedback-separation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2900:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-response-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2902:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-response-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2906:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-response.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2908:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-response.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2912:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-five-comparison-refinement.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2914:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-five-comparison-refinement.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2918:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-five-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2920:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-five-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2924:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-generated-feedback-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2926:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-generated-feedback-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2930:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-generated-feedback-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2932:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-generated-feedback-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2936:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-approximant.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2938:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-approximant.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2942:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2944:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2948:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-background-comparison.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2950:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-background-comparison.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2954:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certification-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2956:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certification-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2960:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certification.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2962:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certification.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2966:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certified-plot.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2968:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certified-plot.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2972:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients-plots.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2974:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients-plots.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2978:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2980:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2984:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2986:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2990:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2992:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2996:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-instrument.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:2998:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-instrument.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3002:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-leading.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3004:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-leading.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3008:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-motion.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3010:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-motion.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3014:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-nonlinear.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3016:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-nonlinear.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3020:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3022:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3026:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3028:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3032:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3034:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3038:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-plot.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3040:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-plot.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3044:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-ends.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3046:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-ends.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3050:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-residual-propagation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3052:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-residual-propagation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3056:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-residual.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3058:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-residual.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3062:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3064:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3068:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3070:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3074:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3076:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3080:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-feedback-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3082:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-feedback-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3086:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-feedback.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3088:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-feedback.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3092:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3094:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3098:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3100:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3104:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3106:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3110:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3112:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3116:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3118:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3122:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-later-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3124:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-later-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3128:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3130:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3134:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3136:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3140:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3142:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3146:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3148:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3152:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3154:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3158:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3160:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3164:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3166:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3170:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3172:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3176:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3178:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3182:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-approximant.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3184:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-approximant.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3188:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3190:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3194:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3196:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3200:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3202:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3206:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3208:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3212:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3214:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3218:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3220:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3224:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3226:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3230:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3232:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3236:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3238:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3242:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3244:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3248:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3250:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3254:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-population-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3256:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-population-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3260:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-five-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3262:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-five-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3266:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-history-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3268:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-history-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3272:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3274:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3278:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3280:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3284:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3286:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3290:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3292:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3296:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3298:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3302:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-population-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3304:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-population-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3308:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3310:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3314:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-population-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3316:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-population-certificate.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3320:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-rk4-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3322:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-rk4-approximant.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3326:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-stationary.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3328:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-stationary.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3332:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3334:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-turns.py",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3338:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3340:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3344:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-preparation-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3346:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-preparation-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3350:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-preparation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3352:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-preparation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3356:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-pulse-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3358:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-pulse-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3362:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-pulse-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3364:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-pulse-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3368:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-second-shell-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3370:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-second-shell-continuation.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3374:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-second-shell-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3376:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-second-shell-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3380:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-signed-error-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3382:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-signed-error-independent-adjudication.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3386:      "source": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-signed-error.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json:3388:      "destination": "reference/priorities/master-equation-closure/analysis/smooth-two-particle-signed-error.md",
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:461:| [analysis/finite-perturbation-release-compatibility.md](../../master-equation-closure/analysis/finite-perturbation-release-compatibility.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:462:| [analysis/finite-perturbation-release-independent-adjudication.md](../../master-equation-closure/analysis/finite-perturbation-release-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:478:| [analysis/population-admissibility-independent-adjudication.md](../../master-equation-closure/analysis/population-admissibility-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:479:| [analysis/population-admissibility-proposal.md](../../master-equation-closure/analysis/population-admissibility-proposal.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:480:| [analysis/population-delayed-summation.md](../../master-equation-closure/analysis/population-delayed-summation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:482:| [analysis/population-history-class.md](../../master-equation-closure/analysis/population-history-class.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:483:| [analysis/population-history-derivative.md](../../master-equation-closure/analysis/population-history-derivative.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:495:| [analysis/smooth-two-particle-class-preserving-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-class-preserving-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:496:| [analysis/smooth-two-particle-class-preserving-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-class-preserving-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:497:| [analysis/smooth-two-particle-distance-two-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-distance-two-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:498:| [analysis/smooth-two-particle-distance-two-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-distance-two-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:499:| [analysis/smooth-two-particle-feedback-separation-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-feedback-separation-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:500:| [analysis/smooth-two-particle-feedback-separation.md](../../master-equation-closure/analysis/smooth-two-particle-feedback-separation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:501:| [analysis/smooth-two-particle-first-response-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-first-response-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:502:| [analysis/smooth-two-particle-first-response.md](../../master-equation-closure/analysis/smooth-two-particle-first-response.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:503:| [analysis/smooth-two-particle-five-comparison-refinement.md](../../master-equation-closure/analysis/smooth-two-particle-five-comparison-refinement.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:504:| [analysis/smooth-two-particle-five-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-five-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:505:| [analysis/smooth-two-particle-generated-feedback-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-generated-feedback-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:506:| [analysis/smooth-two-particle-generated-feedback-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-generated-feedback-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:507:| [analysis/smooth-two-particle-later-approximant.md](../../master-equation-closure/analysis/smooth-two-particle-later-approximant.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:508:| [analysis/smooth-two-particle-later-approximant.py](../../master-equation-closure/analysis/smooth-two-particle-later-approximant.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:509:| [analysis/smooth-two-particle-later-background-comparison.md](../../master-equation-closure/analysis/smooth-two-particle-later-background-comparison.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:510:| [analysis/smooth-two-particle-later-certification-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-later-certification-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:511:| [analysis/smooth-two-particle-later-certification.md](../../master-equation-closure/analysis/smooth-two-particle-later-certification.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:512:| [analysis/smooth-two-particle-later-certified-plot.py](../../master-equation-closure/analysis/smooth-two-particle-later-certified-plot.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:513:| [analysis/smooth-two-particle-later-coefficients-plots.py](../../master-equation-closure/analysis/smooth-two-particle-later-coefficients-plots.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:514:| [analysis/smooth-two-particle-later-coefficients.py](../../master-equation-closure/analysis/smooth-two-particle-later-coefficients.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:515:| [analysis/smooth-two-particle-later-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-later-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:516:| [analysis/smooth-two-particle-later-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-later-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:517:| [analysis/smooth-two-particle-later-instrument.md](../../master-equation-closure/analysis/smooth-two-particle-later-instrument.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:518:| [analysis/smooth-two-particle-later-leading.py](../../master-equation-closure/analysis/smooth-two-particle-later-leading.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:519:| [analysis/smooth-two-particle-later-motion.md](../../master-equation-closure/analysis/smooth-two-particle-later-motion.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:520:| [analysis/smooth-two-particle-later-nonlinear.py](../../master-equation-closure/analysis/smooth-two-particle-later-nonlinear.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:521:| [analysis/smooth-two-particle-later-pulse-end-certificate.py](../../master-equation-closure/analysis/smooth-two-particle-later-pulse-end-certificate.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:522:| [analysis/smooth-two-particle-later-pulse-end-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-later-pulse-end-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:523:| [analysis/smooth-two-particle-later-pulse-end-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-later-pulse-end-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:524:| [analysis/smooth-two-particle-later-pulse-end-plot.py](../../master-equation-closure/analysis/smooth-two-particle-later-pulse-end-plot.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:525:| [analysis/smooth-two-particle-later-pulse-ends.md](../../master-equation-closure/analysis/smooth-two-particle-later-pulse-ends.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:526:| [analysis/smooth-two-particle-later-residual-propagation.md](../../master-equation-closure/analysis/smooth-two-particle-later-residual-propagation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:527:| [analysis/smooth-two-particle-later-residual.py](../../master-equation-closure/analysis/smooth-two-particle-later-residual.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:528:| [analysis/smooth-two-particle-later-turns.py](../../master-equation-closure/analysis/smooth-two-particle-later-turns.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:529:| [analysis/smooth-two-particle-motion-plots.md](../../master-equation-closure/analysis/smooth-two-particle-motion-plots.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:530:| [analysis/smooth-two-particle-motion-plots.py](../../master-equation-closure/analysis/smooth-two-particle-motion-plots.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:531:| [analysis/smooth-two-particle-next-feedback-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-next-feedback-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:532:| [analysis/smooth-two-particle-next-feedback.md](../../master-equation-closure/analysis/smooth-two-particle-next-feedback.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:533:| [analysis/smooth-two-particle-next-maximum-approximant.md](../../master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:534:| [analysis/smooth-two-particle-next-maximum-approximant.py](../../master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:535:| [analysis/smooth-two-particle-next-maximum-certificate.py](../../master-equation-closure/analysis/smooth-two-particle-next-maximum-certificate.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:536:| [analysis/smooth-two-particle-next-maximum-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-next-maximum-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:537:| [analysis/smooth-two-particle-next-maximum-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-next-maximum-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:538:| [analysis/smooth-two-particle-next-maximum-later-certificate.py](../../master-equation-closure/analysis/smooth-two-particle-next-maximum-later-certificate.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:539:| [analysis/smooth-two-particle-next-maximum-turns.py](../../master-equation-closure/analysis/smooth-two-particle-next-maximum-turns.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:540:| [analysis/smooth-two-particle-next-maximum.md](../../master-equation-closure/analysis/smooth-two-particle-next-maximum.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:541:| [analysis/smooth-two-particle-next-minimum-approximant.md](../../master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:542:| [analysis/smooth-two-particle-next-minimum-approximant.py](../../master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:543:| [analysis/smooth-two-particle-next-minimum-certificate.py](../../master-equation-closure/analysis/smooth-two-particle-next-minimum-certificate.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:544:| [analysis/smooth-two-particle-next-minimum-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-next-minimum-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:545:| [analysis/smooth-two-particle-next-minimum-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-next-minimum-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:546:| [analysis/smooth-two-particle-next-minimum-turns.py](../../master-equation-closure/analysis/smooth-two-particle-next-minimum-turns.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:547:| [analysis/smooth-two-particle-next-minimum.md](../../master-equation-closure/analysis/smooth-two-particle-next-minimum.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:548:| [analysis/smooth-two-particle-population-restart-approximant.md](../../master-equation-closure/analysis/smooth-two-particle-population-restart-approximant.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:549:| [analysis/smooth-two-particle-population-restart-approximant.py](../../master-equation-closure/analysis/smooth-two-particle-population-restart-approximant.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:550:| [analysis/smooth-two-particle-population-restart-certificate.py](../../master-equation-closure/analysis/smooth-two-particle-population-restart-certificate.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:551:| [analysis/smooth-two-particle-population-restart-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-population-restart-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:552:| [analysis/smooth-two-particle-population-restart-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-population-restart-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:553:| [analysis/smooth-two-particle-population-restart-turns.py](../../master-equation-closure/analysis/smooth-two-particle-population-restart-turns.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:554:| [analysis/smooth-two-particle-population-restart.md](../../master-equation-closure/analysis/smooth-two-particle-population-restart.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:555:| [analysis/smooth-two-particle-post-restart-approximant.md](../../master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:556:| [analysis/smooth-two-particle-post-restart-approximant.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:557:| [analysis/smooth-two-particle-post-restart-certificate.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-certificate.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:558:| [analysis/smooth-two-particle-post-restart-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-post-restart-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:559:| [analysis/smooth-two-particle-post-restart-cubic-approximant.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-approximant.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:560:| [analysis/smooth-two-particle-post-restart-cubic-population-certificate.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-population-certificate.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:561:| [analysis/smooth-two-particle-post-restart-five-certificate.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-five-certificate.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:562:| [analysis/smooth-two-particle-post-restart-history-approximant.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-history-approximant.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:563:| [analysis/smooth-two-particle-post-restart-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-post-restart-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:564:| [analysis/smooth-two-particle-post-restart-later-certificate.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-later-certificate.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:565:| [analysis/smooth-two-particle-post-restart-later-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-post-restart-later-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:566:| [analysis/smooth-two-particle-post-restart-later-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-post-restart-later-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:567:| [analysis/smooth-two-particle-post-restart-later-turns.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-later-turns.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:568:| [analysis/smooth-two-particle-post-restart-nineteen-population-certificate.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-population-certificate.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:569:| [analysis/smooth-two-particle-post-restart-nineteen-turns.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-turns.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:570:| [analysis/smooth-two-particle-post-restart-population-certificate.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-population-certificate.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:571:| [analysis/smooth-two-particle-post-restart-rk4-approximant.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-rk4-approximant.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:572:| [analysis/smooth-two-particle-post-restart-stationary.md](../../master-equation-closure/analysis/smooth-two-particle-post-restart-stationary.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:573:| [analysis/smooth-two-particle-post-restart-turns.py](../../master-equation-closure/analysis/smooth-two-particle-post-restart-turns.py) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:574:| [analysis/smooth-two-particle-post-restart.md](../../master-equation-closure/analysis/smooth-two-particle-post-restart.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:575:| [analysis/smooth-two-particle-preparation-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-preparation-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:576:| [analysis/smooth-two-particle-preparation.md](../../master-equation-closure/analysis/smooth-two-particle-preparation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:577:| [analysis/smooth-two-particle-pulse-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-pulse-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:578:| [analysis/smooth-two-particle-pulse-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-pulse-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:579:| [analysis/smooth-two-particle-second-shell-continuation.md](../../master-equation-closure/analysis/smooth-two-particle-second-shell-continuation.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:580:| [analysis/smooth-two-particle-second-shell-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-second-shell-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:581:| [analysis/smooth-two-particle-signed-error-independent-adjudication.md](../../master-equation-closure/analysis/smooth-two-particle-signed-error-independent-adjudication.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md:582:| [analysis/smooth-two-particle-signed-error.md](../../master-equation-closure/analysis/smooth-two-particle-signed-error.md) | retain | General equation/population research remains here; update references to relocated collinear analyses. |
+reference/priorities/aaa-operations/evidence/ops-032-trigger-review-2026-09-28.md:7:The [September 27 weekly receipt](ops-032-weekly-review-2026-09-27.md) recorded the supplied-history first-event result and weaker continuation as unstarted. The current Master-Equation Closure queue records completed weaker-continuation and direct-measure investigations and an accepted self-consistent incoming-history first event. The [independent assessment](../../master-equation-closure/analysis/staggered-lattice-first-event-independent-adjudication.md), sections 13–14, explicitly supplies that event and checks the additional population and remote-root hypotheses needed to apply the earlier continuation exclusions. This is a material acceptance transition within that workstream, not adoption of a replacement physical law.
+reference/priorities/aaa-operations/evidence/ops-032-trigger-review-2026-09-28.md:48:70b18b43cb88ab196c59ade696efe1aa6152eff38c9c9961d42e3053d0dc4288  reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event-independent-adjudication.md
+reference/priorities/aaa-operations/evidence/ops-032-trigger-review-2026-09-28.md:49:d7450344b368435e36846c03dba66adb3bf71587b0e3f9f1b0c919c531af867e  reference/priorities/master-equation-closure/analysis/smooth-two-particle-event-measure-independent-adjudication.md
+reference/priorities/aaa-operations/evidence/ops-032-weekly-review-2026-09-20.md:81:- **MEC:** `analysis/smooth-two-particle-post-restart.md` question/current-boundary, source census and next-certification sections route to `analysis/smooth-two-particle-class-preserving-independent-adjudication.md`. That adjudication's status and first domain/comparison section explicitly accept 1070 histories through `19/4` under the same supplied past and unmodified law, and leave the next maximum open. The queue's `1-mec` next-maximum and separate coupling-classification assignments agree. No numerical later boundary is promoted to an accepted event.
+reference/priorities/aaa-operations/evidence/ops-032-weekly-review-2026-09-20.md:98:| `master-equation-closure/analysis/smooth-two-particle-class-preserving-independent-adjudication.md` | `c6dcd5152045464a830a2dc36a7d7cf015dafb40332bcc9e556ee8f011a7db2c` |
+
+===== Sea response packet candidates =====
+Captured output: .tmp/awt-016/sea/pressure-packet-consumers.txt
+Scope: Literal packet-name rg under reference/, content/, scripts/, tests/, src/ and .agents/.
+
+reference/priorities/operator-document-style-conversion-ledger.md
+reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/priorities.md
+reference/priorities/braid-program/mining/2026-09-01-disposition-review.md
+reference/priorities/source-mining/analysis/vacuum-birefringence-noether-sea-constitutive-map.md
+reference/priorities/source-mining/analysis/source-mining-history.md
+reference/priorities/braid-program/evidence/coincident-midpoint-common-frequency-step-action-ledger.md
+reference/priorities/braid-program/analysis/research-reorganization-file-map.json
+reference/priorities/braid-program/analysis/research-reorganization-file-list.md
+reference/priorities/master-equation-closure/work-log.md
+reference/priorities/master-equation-closure/priorities.md
+reference/priorities/aaa-corpus-rewrite/work-queue.md
+reference/priorities/master-equation-closure/analysis/manuscript-source-coverage.md
+reference/priorities/aaa-work-threads/brainstorming.md
+reference/priorities/aaa-work-threads/priorities.md
+reference/priorities/aaa-work-threads/work-log.md
+reference/priorities/aaa-work-threads/evidence/research-insight-recovery-source-inventory-2026-09-09.txt
+reference/priorities/aaa-work-threads/evidence/research-insight-recovery-pilot-2026-09-09.md
+reference/priorities/aaa-work-threads/evidence/inventory.md
+reference/priorities/aaa-work-threads/analysis/closure-join-matrix.md
+
+===== Cubic population packet candidates =====
+Captured output: .tmp/awt-016/sea/cubic-packet-consumers.txt
+Scope: Scoped literal cubic/adaptive packet references; records the searched source files in each hit.
+
+reference/priorities/operator-document-style-conversion-ledger.md
+tests/f6c-cubic-lattice-o0-analysis.test.js
+scripts/eom/attractor-ensemble-harness.cpp
+reference/priorities/development-process-review/evidence/test-entrypoint-reconciliation.json
+reference/priorities/development-process-review/evidence/test-coverage-inventory.json
+scripts/mapping-electromagnetism/f6c-cubic-lattice-o0-analysis.mjs
+reference/priorities/development-process-review/evidence/final-validation/completed-runs.json
+reference/priorities/development-process-review/evidence/final-validation/node-normal-recovery.json
+reference/priorities/mapping-electromagnetism/manuscript.md
+reference/priorities/mapping-electromagnetism/brainstorming.md
+reference/priorities/mapping-electromagnetism/evidence/adaptive-cubic-background-o0-audit-2026-08-25.json
+reference/priorities/mapping-electromagnetism/analysis/manuscript-fidelity-review.md
+reference/priorities/mapping-electromagnetism/analysis/manuscript-source-coverage.md
+reference/priorities/mapping-electromagnetism/analysis/adaptive-cubic-medium-kinematics-and-ledger-contract.md
+reference/priorities/mapping-electromagnetism/analysis/f6c-cubic-lattice.md
+reference/priorities/aaa-work-threads/evidence/research-insight-recovery-source-inventory-2026-09-09.txt
+reference/priorities/aaa-work-threads/analysis/notation.md
+reference/priorities/aaa-corpus-rewrite/evidence/crw-005-run-protocols-review-2026-09-13.md
+reference/priorities/braid-program/analysis/research-reorganization-reference-candidates.json
+
+===== Sea provider bindings =====
+Captured output: .tmp/awt-016/sea/provider-bindings.txt
+Scope: Focused source-path and source-hash search in the spacetime provider chain.
+
+scripts/spacetime/noether-sea-density-compression-provider-output-projection.v1.json:6:  "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider-output-projection.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:11:        "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:17:        "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:23:        "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:29:        "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:35:        "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:41:        "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:47:        "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json"
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:84:      "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json"
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:91:      "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:98:      "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:105:      "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:112:      "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:119:      "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:126:      "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json:142:    "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+
+===== Corpus headings used for owner boundaries =====
+Captured output: .tmp/awt-016/sea/corpus-headings.txt
+Scope: Scoped heading search of the named sea and coupling corpus documents.
+
+1:# Noether Sea
+66:## Core Definition
+82:## Boundary With the Euclidean Void
+105:## Absolute Record and Observer Readout
+127:## Composition
+182:## Local Branches in the Medium
+186:### Assembly-Medium Metabolism
+259:## State Variables
+306:## Medium Properties
+321:## Continuum Balance and Constitutive Closure
+525:## Equilibrium Transport Hypothesis
+577:### Temperature-Conditioned Branch Transition Target
+611:### Ambient-Branch Acceptance
+670:### Absolute-Record Transport Target
+1185:## Refractive Gravity and Effective Metric
+1201:## Matter Coupling and Inertia
+1215:## Cosmological Role
+1230:## Terminology Discipline
+1244:## Ownership Boundary
+1263:## Source Notes
+1269:## Summary Commitment
+
+===== 2026-09-30 nested research directory consumers =====
+Direction: all five research directories under master-equation-closure; field-speed-ceiling stays dormant.
+Scope: literal rg -l for reference/priorities/braid-program/, reference/priorities/collinear-research/ and reference/priorities/dormant-deferred/field-speed-ceiling/ across scripts/, tests/, src/, package.json and .github/.
+Instrument: rg -l -e <each of the three prefixes>; wc -l reports 114 candidate files. These are candidate references, not resolved semantic dependencies; prior search blocks above retain their original date/scope.
+
+tests/test_f6c_parent_emission_refinement_conformance.py
+tests/borg-platonic-relationships.test.js
+tests/assembly-view-record.test.js
+tests/f5-ordinary-evolution-runner.test.js
+tests/orthogonal-plane-weave-fold-limit.test.js
+tests/borg-taxonomy-publication-surfaces.test.js
+tests/prescribed-sea-model.test.js
+tests/f5-phase-varying-campaign-spec.test.js
+tests/stella-octangula-short-release.test.js
+tests/compact-sweep-dashboard-data.test.js
+tests/test_f6c_emission_refinement.py
+src/prescribed-path-analysis/protocols/orthogonal-plane-weave-fold-limiting-exclusion-protocol.v1.json
+src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-prescribed-structural-root-ledger-protocol.v1.json
+tests/test_f6c_refined_acceleration_preparation.py
+src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-root-sheet-monotonic-enclosure-treatment-protocol.v1.json
+tests/assembly-scientific-identity.test.js
+src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-outer-radius-history-policy-extension-protocol.v1.json
+tests/prescribed-braid-record.test.js
+src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-continuous-ratio-phase-root-inventory-protocol.v1.json
+src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-history-policy-extension-independent-verifier-protocol.v1.json
+tests/test_f5_actual_cubic_conformance.py
+src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-receiver-phase-projection-monotonicity-protocol.v1.json
+tests/braid-taxonomy-terminology.test.js
+src/prescribed-path-analysis/protocols/orthogonal-plane-weave-fold-separated-interval-protocol.v1.json
+scripts/check-borg-scientific-status-projection.mjs
+src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-outer-radius-band-expansion-protocol.v1.json
+tests/f6c-parent-emission-refinement-pilot.test.js
+src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-outer-radius-second-band-expansion-protocol.v1.json
+tests/stella-octangula-catalog-endpoint-balance.test.js
+tests/f6c-parent-refinement-batch-preparation.test.js
+src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v2.json
+tests/test_field_speed_ceiling_t0_mpmath_oracle.py
+tests/borg-library.test.js
+scripts/dev/BorgLibraryService.mjs
+tests/test_f6c_continuous_reception_acceleration_preparation.py
+tests/stella-octangula-stationary-release.test.js
+tests/planar-three-binary-circular-release-preparation.test.js
+scripts/check-braid-taxonomy-terminology.mjs
+src/apps/braid-search/BraidSearchRuntime.js
+tests/test_orthogonal_plane_weave_interval_oracle.py
+src/prescribed-path-analysis/README.md
+tests/test_orthogonal_plane_weave_fold_limit_certificate.py
+tests/test_field_speed_ceiling_circular_binary_all_root_certificate.py
+tests/prescribed-worldline-independent-conformance.test.js
+tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js
+tests/test_f6c_continuous_reception_acceleration.py
+tests/borg-eom-migration.test.js
+scripts/action-analysis/run-coincident-midpoint-common-frequency-minimum-delayed-action-provider.mjs
+tests/f6c-refined-acceleration-pilot.test.js
+tests/f6c-cached-root-cover-full.test.js
+tests/orthogonal-plane-weave-balance.test.js
+tests/borg-scientific-status.test.js
+tests/evolved-neutral-twelve-worldline-us-relationship.test.js
+tests/planar-co-rotating-ring-balance.test.js
+tests/test_f5_evolution_dynamics_checker.py
+tests/prescribed-source-wake-evaluator.test.js
+tests/fixtures/f5-history/accepted-enclosure-report.json
+tests/fixtures/f6c-lossless-packaging-expectations.v1.json
+src/apps/borg/BorgScientificStatus.mjs
+scripts/prescribed-path-analysis/build-regular-polarity-orbit-manifest.mjs
+scripts/prescribed-path-analysis/build-stella-octangula-stationary-release.mjs
+scripts/borg/verify-platonic-relationship-assignments.py
+scripts/prescribed-path-analysis/run-coincident-midpoint-common-frequency-outer-radius-band-expansion.mjs
+src/apps/borg/BorgPlatonicRelationships.mjs
+scripts/prescribed-path-analysis/build-stella-octangula-catalog-endpoint-balance.mjs
+scripts/borg/build-assembly-registry.mjs
+scripts/prescribed-path-analysis/oracle/orthogonal_plane_weave_fold_limit_certificate.py
+src/apps/borg/library/README.md
+scripts/eom/f6c_evidence_package.py
+scripts/prescribed-path-analysis/oracle/orthogonal_plane_weave_interval_oracle.py
+scripts/prescribed-path-analysis/oracle/certify_octahedral_antipodal_generic_axis_edges.py
+scripts/eom/f6c_variable_cell_adapter.py
+scripts/prescribed-path-analysis/run-coincident-midpoint-common-frequency-history-policy-extension-independent-verifier.mjs
+scripts/eom/run-f6c-refined-acceleration-pilot.mjs
+scripts/prescribed-path-analysis/run-orthogonal-plane-weave-balance.mjs
+scripts/prescribed-path-analysis/run-coincident-midpoint-common-frequency-outer-radius-second-band-expansion.mjs
+scripts/prescribed-path-analysis/run-coincident-midpoint-common-frequency-outer-radius-history-policy-extension.mjs
+scripts/eom/export-f6c-retained-history.py
+scripts/eom/prepare-f6c-refined-acceleration.py
+scripts/eom/run-coincident-axis-three-binary-complete-cycle-streaming-reduction.mjs
+scripts/eom/prepare-f6c-parent-emission-refinement.py
+scripts/build-machine-artifact-receipts.mjs
+scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs
+src/apps/shared/EomHistoryDataset.mjs
+scripts/eom/run-f6c-emission-refinement-pilot.mjs
+scripts/eom/run-f6c-cached-root-cover-pilot.mjs
+src/action-analysis/protocols/coincident-midpoint-common-frequency-minimum-delayed-action-provider-protocol.v1.json
+scripts/equation-mapping/certify_planar_three_binary_global_tail_shapes.py
+scripts/equation-mapping/certify_planar_three_binary_phase_box.py
+scripts/eom/run-stella-octangula-short-release.mjs
+scripts/equation-mapping/certify_planar_three_binary_unequal_radius_box.py
+scripts/eom/verify-f6c-parent-emission-refinement.py
+scripts/eom/generate-prescribed-braid-record.mjs
+scripts/eom/verify-f6c-continuous-reception-acceleration.py
+scripts/eom/execute-f6c-acceleration.py
+scripts/eom/verify-f6c-emission-refinement.py
+scripts/eom/run-f6c-root-cover-pilot.mjs
+scripts/equation-mapping/diagnose_planar_three_binary_unequal_radius_jacobian.py
+scripts/eom/evaluate-prescribed-source-wake.mjs
+scripts/eom/verify-subfield-circular-history.mjs
+scripts/eom/prepare-f6c-emission-refinement.py
+scripts/equation-mapping/certify_planar_three_binary_equal_radius_ladder.py
+src/eom/native/eom_subfield_circular_root_cli.cpp
+scripts/eom/f6c_parent_evidence_inventory.py
+scripts/eom/derive-subfield-circular-root-reference.mjs
+scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs
+scripts/field-speed-ceiling/sharp-circle-first-window-tube.py
+scripts/eom/run-f6c-acceleration-pilot.mjs
+scripts/eom/run-f6c-cached-root-cover-full.mjs
+scripts/eom/prepare-planar-three-binary-circular-release.mjs
+scripts/eom/verify-f6c-refined-acceleration.py
+scripts/eom/prepare-subfield-circular-root.mjs
+scripts/eom/prepare-f6c-continuous-reception-acceleration.py
+scripts/eom/attractor-ensemble-harness.cpp

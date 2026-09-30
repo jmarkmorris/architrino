@@ -23,6 +23,8 @@ The [September 27 validation follow-ups](work-queue.md#ops-031--september-27-val
 
 ### How the assurance corrections relate to the rewrite
 
+The [September 29 frame clarification](work-queue.md#ops-031--september-29-frame-clarification) is accepted, implemented and independently reviewed. The chapter defines a framed closed curve before using self-linking, explains why arbitrary framing cannot establish physical chirality, and separates a causal-root fold from a geometric singularity. CAFR29-01 is resolved at this bounded explanatory scope; CRW-005 remains closed.
+
 The [September 28 core referrals](work-queue.md#ops-031--september-28-core-review-referrals) remain proposed: clarify the degenerate affine-dimension boundary in Braid Taxonomy and reconcile the Planar Braid chapter's open-work summaries with scoped results already accepted by BP-011. These are bounded editorial follow-ups, not a reopened CRW-005 campaign or authorization to promote stability, release or physical-identity claims.
 
 The operator-approved [September 23 batch](analysis/ops-031-repair-proposal-2026-09-23.md#implementation-record) integrates eight OPS-031 corrections across six chapters: Bell factorization and clock wording, covariance explanation, shell energy-gap terminology, thermodynamic comparison conditions, mass/energy calibration, safe perturbation radii, and the candidate path-redshift condition. CRW-005 remains closed. The [neutron dipole and direction-normalization follow-ups](work-queue.md#ops-031--separate-scientific-follow-ups) remain discussion-scoped and are not implied complete by these repairs.

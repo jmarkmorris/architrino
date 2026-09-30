@@ -9,7 +9,7 @@ import {
 } from "../scripts/eom/run-stella-octangula-short-release.mjs";
 
 const staticSpec = JSON.parse(readFileSync(new URL(
-  "../reference/priorities/braid-program/configurations/stella-octangula-static-assembly.v3.json",
+  "../reference/priorities/master-equation-closure/braid-program/configurations/stella-octangula-static-assembly.v3.json",
   import.meta.url,
 ), "utf8"));
 

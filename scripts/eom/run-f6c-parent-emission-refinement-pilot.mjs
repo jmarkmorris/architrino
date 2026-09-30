@@ -51,6 +51,11 @@ export function parseJSON(raw){
  const result=value(0);ws();check(i===s.length,'JSON trailing input');return result;
 }
 export function readBound(filename,expected,collect=false,limit=collect?FILE:1024**3,live=()=>{}){
+  // Captured modules cannot add an undeclared import. Route physical bytes only.
+  check(typeof filename==='string'&&path.isAbsolute(filename)&&path.resolve(filename)===filename,'canonical absolute logical input');
+  const logicalFilename=filename;
+  const braidPrefix=path.join(process.cwd(),'reference/priorities/braid-program')+path.sep;
+  if(typeof filename==='string'&&filename.startsWith(braidPrefix))filename=path.join(process.cwd(),'reference/priorities/master-equation-closure/braid-program',filename.slice(braidPrefix.length));
  live();check(path.isAbsolute(filename)&&path.resolve(filename)===filename&&realpathSync(filename)===filename,'canonical source');
  const fd=openSync(filename,constants.O_RDONLY|constants.O_NONBLOCK|(constants.O_NOFOLLOW??0));
  try{const before=fstatSync(fd,{bigint:true}),identity=s=>[s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(':');
@@ -59,7 +64,7 @@ export function readBound(filename,expected,collect=false,limit=collect?FILE:102
   while(count<Number(before.size)){live();const n=readSync(fd,buffer,0,Math.min(buffer.length,Number(before.size)-count),count);check(n>0,'truncated file');count+=n;digest.update(buffer.subarray(0,n));if(collect)chunks.push(Buffer.from(buffer.subarray(0,n)));}
   check(readSync(fd,buffer,0,1,count)===0,'grown file');const hash=digest.digest('hex');
   check(identity(before)===identity(fstatSync(fd,{bigint:true}))&&identity(before)===identity(lstatSync(filename,{bigint:true}))&&(!expected||hash===expected),'changed source');live();
-  return{path:filename,sha256:hash,bytes:count,identity:identity(before),...(collect?{data:Buffer.concat(chunks)}:{})};
+  return{path:logicalFilename,sha256:hash,bytes:count,identity:identity(before),...(collect?{data:Buffer.concat(chunks)}:{})};
  }finally{closeSync(fd);}
 }
 export function binding(b,root){

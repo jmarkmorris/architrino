@@ -27,7 +27,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT/'scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py'
 REFERENCE = ROOT/'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py'
 REFERENCE_SHA = hashlib.sha256((Path(__file__).resolve().parents[1] / 'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py').read_bytes()).hexdigest()
-PROOF = ROOT/'reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md'
+PROOF = ROOT/'reference/priorities/master-equation-closure/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md'
 PROOF_SHA = 'c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'
 
 

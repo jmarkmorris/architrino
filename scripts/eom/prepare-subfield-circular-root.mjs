@@ -1,3 +1,4 @@
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 // Build provenance only. This script prepares no histories, invokes no root
 // calls, and grants no scientific or root-execution authority.
 import { createHash } from "node:crypto";
@@ -20,7 +21,7 @@ const absolute = (filename) => path.isAbsolute(filename) ? filename : path.join(
 const local = (filename) => filename.startsWith(`${ROOT}/`) ? path.relative(ROOT, filename) : filename;
 
 export function fileBinding(filename) {
-  const full = absolute(filename), realPath = realpathSync(full);
+  const full = absolute(filename), realPath = realpathSync(resolveResearchSourcePath(ROOT, full));
   if (!statSync(realPath).isFile()) throw new Error(`binding is not a regular file: ${filename}`);
   const bytes = readFileSync(realPath);
   return { path: local(full), realPath, sha256: hash(bytes), bytes: bytes.length };

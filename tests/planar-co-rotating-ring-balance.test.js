@@ -208,7 +208,7 @@ test("the planar common-center three-binary constraint mapping is exact only for
 });
 
 test("the live planar common-center three-binary constraint source record satisfies the independent coordinate mapping", () => {
-  const path = new URL("../reference/priorities/braid-program/configurations/planar-three-binary-common-center-reference.v3.json", import.meta.url);
+  const path = new URL("../reference/priorities/master-equation-closure/braid-program/configurations/planar-three-binary-common-center-reference.v3.json", import.meta.url);
   const spec = JSON.parse(readFileSync(path, "utf8"));
   const constituents = new Map(spec.constituents.map((row) => [row.id, row]));
   const phases = spec.worldlines.map((row) => {
@@ -237,7 +237,7 @@ test("the live planar common-center three-binary constraint source record satisf
 });
 
 test("every promoted regular candidate matches both unchanged independent root instruments", () => {
-  const evidencePath = new URL("../reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.receipt.v1.json", import.meta.url);
+  const evidencePath = new URL("../reference/priorities/master-equation-closure/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.receipt.v1.json", import.meta.url);
   const evidence = JSON.parse(readFileSync(evidencePath, "utf8"));
   assert.equal(evidence.decision.balancedCandidateCount, 5);
   assert.equal(evidence.rawArtifact.requiredForTests, false);
@@ -269,7 +269,7 @@ test("every promoted regular candidate matches both unchanged independent root i
 
 test("the regular alternating 12:12 candidate balances and matches both unchanged independent root instruments", () => {
   const n = 12;
-  const evidencePath = new URL("../reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-12-12-alternating.receipt.v1.json", import.meta.url);
+  const evidencePath = new URL("../reference/priorities/master-equation-closure/braid-program/evidence/2026-08-29-planar-co-rotating-12-12-alternating.receipt.v1.json", import.meta.url);
   const evidence = JSON.parse(readFileSync(evidencePath, "utf8"));
   assert.equal(evidence.rawArtifact.requiredForTests, false);
   assert.equal(evidence.declaredScope.coverage,

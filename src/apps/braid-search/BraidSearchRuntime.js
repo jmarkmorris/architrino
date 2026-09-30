@@ -1,3 +1,4 @@
+import { researchSourceLocation } from "../../documentation/ResearchSourceLocations.mjs";
 import {
   ACTIVE_CANDIDATE_DISPOSITION,
   COMPACT_SWEEP_METRICS,
@@ -1882,7 +1883,7 @@ function evidenceStatusLabel(record) {
 
 function evidenceLink(value) {
   const link = element("a", "compact-dashboard-button", value.label);
-  link.href = `./${value.url}`;
+  link.href = `./${researchSourceLocation(value.url)}`;
   link.target = "_blank";
   link.rel = "noopener";
   return link;
@@ -2480,7 +2481,7 @@ async function sha256Text(value, cryptoLike) {
 }
 
 async function loadProjectionIntegrity(fetchImpl, projection, cryptoLike) {
-  const sourceResponse = await fetchImpl(`./${projection.source}`, {
+  const sourceResponse = await fetchImpl(`./${researchSourceLocation(projection.source)}`, {
     cache: "no-store",
   });
   if (!sourceResponse.ok) {
@@ -2494,7 +2495,7 @@ async function loadProjectionIntegrity(fetchImpl, projection, cryptoLike) {
     relation.evidenceLinks.map((link) => link.url.split("#")[0])))];
   const evidenceChecks = await Promise.all(evidenceUrls.map(async (url) => {
     try {
-      const response = await fetchImpl(`./${url}`, { cache: "no-store" });
+      const response = await fetchImpl(`./${researchSourceLocation(url)}`, { cache: "no-store" });
       return response.ok ? null : url;
     } catch {
       return url;
@@ -2511,7 +2512,7 @@ async function loadSourceSpecs(fetchImpl, registry) {
   const paths = [...new Set(registry.entries.map((entry) => entry.sourceSpec))];
   const rows = await Promise.all(paths.map(async (sourcePath) => [
     sourcePath,
-    await fetchJson(fetchImpl, `./${sourcePath}`, `source ${sourcePath}`),
+    await fetchJson(fetchImpl, `./${researchSourceLocation(sourcePath)}`, `source ${researchSourceLocation(sourcePath)}`),
   ]));
   return new Map(rows);
 }
@@ -2525,7 +2526,7 @@ export async function renderBraidSearchApp({
   borgRegistryPath =
     "./reference/priorities/app-borg/contracts/assembly-registry.v1.json",
   scientificProjectionPath =
-    "./reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json",
+    "./reference/priorities/master-equation-closure/braid-program/contracts/braid-candidate-adjudication-projection.v1.json",
   campaignRegistryPath =
     "./src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v2.json",
   fetchImpl = globalThis.fetch,

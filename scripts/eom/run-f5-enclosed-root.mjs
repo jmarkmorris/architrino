@@ -1,3 +1,4 @@
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 // Subject-side coordinator. Independent acceptance belongs to the frozen proof
 // and ledger instruments, never to this packet assembler.
 import { execFileSync } from "node:child_process";
@@ -79,9 +80,9 @@ function canonical(value) {
 
 export function verifyBindings(records) {
   for (const record of records) {
-    const filename = path.isAbsolute(record.path) ? record.path : path.join(ROOT, record.path);
+    const filename = resolveResearchSourcePath(ROOT, record.path);
     if (sha(readFileSync(filename)) !== record.sha256) throw new Error(`bound bytes changed: ${record.path}`);
-    if (record.realPath && realpathSync(filename) !== record.realPath) throw new Error(`bound target changed: ${record.path}`);
+    if (record.realPath && realpathSync(filename) !== resolveResearchSourcePath(ROOT, record.realPath)) throw new Error(`bound target changed: ${record.path}`);
   }
 }
 

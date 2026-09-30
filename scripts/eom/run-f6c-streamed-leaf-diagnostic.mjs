@@ -54,6 +54,11 @@ const keys=(v,names)=>check(v&&Object.getPrototypeOf(v)===Object.prototype&&Obje
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 export const clean=({data,identity,...record})=>record;
 export function readBound(filename,expected,collect=false,limit=collect?FILE:1024**3,live=()=>{}){
+  // Captured modules cannot add an undeclared import. Route physical bytes only.
+  check(typeof filename==='string'&&path.isAbsolute(filename)&&path.resolve(filename)===filename,'canonical absolute logical input');
+  const logicalFilename=filename;
+  const braidPrefix=path.join(process.cwd(),'reference/priorities/braid-program')+path.sep;
+  if(typeof filename==='string'&&filename.startsWith(braidPrefix))filename=path.join(process.cwd(),'reference/priorities/master-equation-closure/braid-program',filename.slice(braidPrefix.length));
   live();check(path.isAbsolute(filename)&&path.resolve(filename)===filename&&realpathSync(filename)===filename,'canonical regular source');
   const fd=openSync(filename,constants.O_RDONLY|constants.O_NONBLOCK|(constants.O_NOFOLLOW??0));
   try{const before=fstatSync(fd,{bigint:true}),identity=s=>[s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(':');
@@ -62,7 +67,7 @@ export function readBound(filename,expected,collect=false,limit=collect?FILE:102
     while(count<Number(before.size)){live();const n=readSync(fd,buffer,0,Math.min(buffer.length,Number(before.size)-count),count);check(n>0,'truncated file');count+=n;digest.update(buffer.subarray(0,n));if(collect)chunks.push(Buffer.from(buffer.subarray(0,n)));}
     check(readSync(fd,buffer,0,1,count)===0,'grown file');const hash=digest.digest('hex');
     check(identity(before)===identity(fstatSync(fd,{bigint:true}))&&identity(before)===identity(lstatSync(filename,{bigint:true}))&&(!expected||hash===expected),'changed source');live();
-    return{path:filename,sha256:hash,bytes:count,identity:identity(before),...(collect?{data:Buffer.concat(chunks)}:{})};
+    return{path:logicalFilename,sha256:hash,bytes:count,identity:identity(before),...(collect?{data:Buffer.concat(chunks)}:{})};
   }finally{closeSync(fd);}
 }
 function binding(b){keys(b,['path','sha256','bytes']);check(typeof b.path==='string'&&!b.path.includes('\0')&&path.isAbsolute(b.path)&&path.resolve(b.path)===b.path&&/^[a-f0-9]{64}$/u.test(b.sha256)&&Number.isSafeInteger(b.bytes)&&b.bytes>0&&b.bytes<=1024**3,'source binding');}
@@ -352,10 +357,14 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha):
  def live():require(time.monotonic()<deadline,'supplementary Python deadline')
  originals={}
  def read(p,digest,limit=67108864):
-  live();p=pathlib.Path(p);require(p.is_absolute()and str(p)==str(p.resolve()),'canonical captured source')
+  live();p=pathlib.Path(p);logical_key=str(p)
+  require(p.is_absolute()and str(p)==os.path.abspath(p),'canonical logical source')
+  prefix=pathlib.Path.cwd()/'reference/priorities/braid-program'
+  if p.is_relative_to(prefix):p=pathlib.Path.cwd()/'reference/priorities/master-equation-closure/braid-program'/p.relative_to(prefix)
+  require(p.is_absolute()and str(p)==str(p.resolve()),'canonical captured source')
   fd=os.open(p,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
   try:
-   s=os.fstat(fd);require(stat.S_ISREG(s.st_mode)and 0<s.st_size<=limit,'bounded source');key=str(p)
+   s=os.fstat(fd);require(stat.S_ISREG(s.st_mode)and 0<s.st_size<=limit,'bounded source');key=logical_key
    if key in originals:require(originals[key][1]==identity(s),'original source replaced')
    left=s.st_size;parts=[];h=hashlib.sha256()
    while left:

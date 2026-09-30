@@ -13,11 +13,11 @@ import mpmath as mp
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / (
-    "reference/priorities/braid-program/configurations/"
+    "reference/priorities/master-equation-closure/braid-program/configurations/"
     "equal-radius-planar-three-binary-balance-beta-2p974307176117293.v3.json"
 )
 PHASE_CERTIFICATE = ROOT / (
-    "reference/priorities/braid-program/evidence/"
+    "reference/priorities/master-equation-closure/braid-program/evidence/"
     "2026-09-01-planar-three-binary-phase-box-certificate.md"
 )
 POLARITIES = (1, -1, 1, -1, 1, -1)

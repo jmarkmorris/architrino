@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -46,7 +47,7 @@ function parseArguments(argv) {
 
 async function readJson(relativePath) {
   return JSON.parse(await readFile(
-    path.resolve(repositoryRoot, relativePath),
+    resolveResearchSourcePath(repositoryRoot, relativePath),
     "utf8",
   ));
 }

@@ -421,9 +421,28 @@ def project_cell(export, manifest, rows, pieces, reference, range_bindings):
         tuple(range_bindings),tuple(members),tuple(projected))
 
 
+def _research_source_path(logical, root=None):
+    """Locate moved Braid bytes; preserve the caller's historical binding path.
+
+    Kept self-contained because this source executes from a captured closure.
+    No new import, source inventory entry, or historical hash is substituted.
+    """
+    logical = Path(logical)
+    root = Path(root) if root is not None else Path(__file__).absolute().parents[2]
+    prefix = root / 'reference/priorities/braid-program'
+    try:
+        suffix = logical.relative_to(prefix)
+    except ValueError:
+        return logical
+    if logical != Path(os.path.abspath(logical)):
+        raise ValueError('noncanonical logical source path')
+    return root / 'reference/priorities/master-equation-closure/braid-program' / suffix
+
+
 class PinnedInput:
     def __init__(self,path,expected=None,*,capture=False,limit=MAX_BYTES):
         self.path=Path(path).absolute(); self.expected=expected; self.capture=capture; self.limit=limit; self.fd=None
+        self.physical_path = _research_source_path(self.path)
 
     @staticmethod
     def identity(s):
@@ -431,14 +450,14 @@ class PinnedInput:
 
     def __enter__(self):
         hash_token(self.expected)
-        require(self.path==self.path.resolve(),'noncanonical or symlink input')
-        self.fd=os.open(self.path,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
+        require(self.physical_path == self.physical_path.resolve(),'noncanonical or symlink input')
+        self.fd=os.open(self.physical_path,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
         try:
             self.initial=os.fstat(self.fd)
             require((stat.S_ISREG(self.initial.st_mode)) and (0<self.initial.st_size<=self.limit),'bounded nonempty regular source required')
             self.data,digest=self.scan(self.capture)
             self.expected=digest if self.expected is None else self.expected;require(digest==self.expected,'source hash differs: '+str(self.path))
-            require(self.identity(os.stat(self.path,follow_symlinks=False))==self.identity(self.initial),
+            require(self.identity(os.stat(self.physical_path,follow_symlinks=False))==self.identity(self.initial),
                     'source replaced during capture')
             return self
         except BaseException:
@@ -457,12 +476,12 @@ class PinnedInput:
         # Read at most one extra byte; never retain a growing file beyond its
         # original recorded size, even after a metadata-only 1GiB admission.
         require(not os.read(self.fd,1),'source grew during capture')
-        require((size==expected_size) and (self.identity(os.fstat(self.fd))==self.identity(self.initial)) and (self.identity(os.stat(self.path,follow_symlinks=False))==self.identity(self.initial)),
+        require((size==expected_size) and (self.identity(os.fstat(self.fd))==self.identity(self.initial)) and (self.identity(os.stat(self.physical_path,follow_symlinks=False))==self.identity(self.initial)),
                 'source changed during capture')
         return (b''.join(chunks) if capture else None),digest.hexdigest()
 
     def recheck(self):
-        require((self.scan()[1]==self.expected) and (self.identity(os.stat(self.path,follow_symlinks=False))==self.identity(self.initial)),'bound input changed/replaced')
+        require((self.scan()[1]==self.expected) and (self.identity(os.stat(self.physical_path,follow_symlinks=False))==self.identity(self.initial)),'bound input changed/replaced')
 
     def binding(self):
         return {'path':str(self.path),'sha256':self.expected,'bytes':self.initial.st_size}

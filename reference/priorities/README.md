@@ -29,7 +29,15 @@ The [directory map](mapping/README.md#how-the-directories-are-organized) identif
 
 The [shared bidirectional mapping method](mapping/contracts/mapping-method.md#bidirectional-mapping-and-mathematical-reframing) develops native derivations toward established physics and uses established results as reverse constraints on the native construction. Its goal is to make the two ends meet and develop a mathematical language grounded in the derived structures that can reframe mapped domains while recovering their tested behavior.
 
-The prefix changes neither rank, evidence grade, nor active or deferred status. Foundational law and braid programs, cross-workstream mathematical support, speculative assembly candidates, source acquisition, editorial programs, and `app-*` implementation owners remain separate. Parked work remains under `dormant-deferred/` until an explicit reactivation decision.
+The prefix changes neither rank, evidence grade, nor active or deferred status. Foundational law and braid programs, cross-workstream mathematical support, speculative assembly candidates, source acquisition, editorial programs, and `app-*` implementation owners retain their separate responsibilities.
+
+## Research parents and lifecycle
+
+[Master-Equation Closure](master-equation-closure/README.md) is the parent of collinear, lattice, Braid Program, Noether sea and field-speed-ceiling research. Its own queue covers general equation questions; its children keep their subject manuscripts, task identities and queues. Being inside the same directory does not duplicate a task or combine scientific grades.
+
+A research parent declares its immediate child owners in `workstreams.json`, using schema `architrino/research-workstreams.v1`, a `children` array and each child's `directory` and `lifecycle` (`current` or `dormant`). Declared children can themselves declare children. Discovery follows these declarations; ordinary supporting directories do not become owners merely by containing old priority documents. Current owners retain their internal active, deferred or blocked task states. Dormant children and everything under `dormant-deferred/` are excluded from active priority validation and ranking, while remaining available in reference navigation.
+
+Parked work normally resides under `dormant-deferred/`. The [historical field-speed-ceiling investigation](master-equation-closure/field-speed-ceiling/README.md) is explicitly dormant within its research parent. A location change alone never reactivates historical queues. Ranking links resolve the full owner path, including nested parents; each ranked object is represented once.
 
 ## Priority-Doc Maintenance Pattern
 
@@ -44,7 +52,7 @@ The current preferred style for live priority docs is:
 - use `manuscript.md` for the lane's developed, coherent subject explanation, organized around scientific questions or the application's or operation's actual responsibilities; preserve established results, conditional arguments, proposals, negative findings, and unresolved alternatives at their supported grades;
 - use the sibling `brainstorming.md` for provisional reasoning and rapid idea capture; integrate developed explanations into `manuscript.md` while preserving original source and evidence bytes during the [priority manuscript campaign](aaa-operations/campaigns/priority-manuscript-synthesis.md);
 - keep chronological agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and communication updates in the sibling `work-log.md` file;
-- every immediate priority workstream directory should carry a `work-log.md`, even when it only contains the standard purpose note;
+- every current priority workstream directory, including a declared nested owner, should carry a `work-log.md`, even when it only contains the standard purpose note;
 - let `priorities.md` reference `work-queue.md`, `brainstorming.md`, `work-log.md`, and focused support files instead of embedding task execution, explanation-first material, long status logs, or detailed proof packets;
 - promote a brainstorming item into `work-queue.md` only when it has become an accepted, testable task, and remove the promoted task from `brainstorming.md` in the same edit;
 - keep detailed proof packets, certificates, app specs, and requirement notes in focused supporting files when their structure deserves more than a dated log entry, filed under the [workstream directory layout](#workstream-directory-layout) rather than accumulating at the top level;
@@ -85,7 +93,7 @@ The other categories exist for exactly that internal material: what a run measur
 
 Do not create `reviews/`, `benchmarks/`, `history/`, `proofs/`, or `packets/`. Each of those was tried and folded back into `analysis/` on 2026-09-05, because splitting theory across several subdirectory names is exactly what makes a lane's theory content impossible to survey from one place.
 
-Use only the subdirectories a workstream actually needs; an empty category is not created in advance. [`app-solver/`](app-solver/README.md) is the reference implementation of this layout, and [`braid-program/`](braid-program/README.md) applies it to a larger evidence body.
+Use only the subdirectories a workstream actually needs; an empty category is not created in advance. [`app-solver/`](app-solver/README.md) is the reference implementation of this layout, and [`braid-program/`](master-equation-closure/braid-program/README.md) applies it to a larger evidence body.
 
 Filing a document into a subdirectory changes its location only. It does not change its claim grade, evidence status, lifecycle state, or authority, and it does not retire it. In particular, `archive/` means superseded, and moving a live document there is a disposition that belongs to the workstream owner, not to a filing pass.
 
@@ -125,4 +133,4 @@ Follow the [operator explanation standard](../op/operator-explanation-standard.m
 
 ## Collinear, braid and shared equation research
 
-[Collinear research](collinear-research/README.md) owns encounters along one line. The [Braid Program](braid-program/README.md) owns noncollinear binaries, braids and assemblies, while [Master-Equation Closure](master-equation-closure/priorities.md) owns shared definitions and general equation questions. The former [field-speed-ceiling investigation](dormant-deferred/field-speed-ceiling/README.md) is historical; its current work is distributed among those subject owners.
+[Collinear research](master-equation-closure/collinear-research/README.md) owns encounters along one line. The [Braid Program](master-equation-closure/braid-program/README.md) owns noncollinear binaries, braids and assemblies, while [Master-Equation Closure](master-equation-closure/priorities.md) owns shared definitions and general equation questions. The former [field-speed-ceiling investigation](master-equation-closure/field-speed-ceiling/README.md) is historical; its current work is distributed among those subject owners.

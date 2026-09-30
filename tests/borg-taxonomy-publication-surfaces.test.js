@@ -47,7 +47,7 @@ test("current Borg documentation uses exact identity routes and no retired recor
   const files = [
     "reference/priorities/app-borg/contracts/requirements-and-design.md",
     "reference/priorities/app-borg/contracts/assembly-viewer-requirements.md",
-    "reference/priorities/braid-program/campaigns/instrument-gate.md",
+    "reference/priorities/master-equation-closure/braid-program/campaigns/instrument-gate.md",
     "src/apps/borg/library/README.md",
   ];
   for (const relativePath of files) {

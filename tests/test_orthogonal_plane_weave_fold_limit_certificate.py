@@ -13,6 +13,9 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from research_source_paths import resolve_research_source_path
+
 PROTOCOL_PATH = (
     REPO_ROOT
     / "src/prescribed-path-analysis/protocols/"
@@ -25,7 +28,7 @@ CERTIFICATE_PATH = (
 )
 RECEIPT_PATH = (
     REPO_ROOT
-    / "reference/priorities/braid-program/evidence/"
+    / "reference/priorities/master-equation-closure/braid-program/evidence/"
     "2026-08-29-orthogonal-plane-weave-fold-limiting-exclusion.v1.json"
 )
 
@@ -43,7 +46,7 @@ class OrthogonalPlaneWeaveFoldLimitCertificateTests(unittest.TestCase):
 
     def test_ordinary_certificate_artifact_matches_recorded_evidence(self) -> None:
         inputs = self.receipt["provenance"]["frozenInputs"]
-        path = REPO_ROOT / inputs["ordinaryCertificatePath"]
+        path = resolve_research_source_path(REPO_ROOT, inputs["ordinaryCertificatePath"])
         self.assertEqual(inputs["ordinaryCertificateSha256"], sha256(path))
 
     def test_all_fourteen_boxes_are_closed_by_the_declared_partition(self) -> None:

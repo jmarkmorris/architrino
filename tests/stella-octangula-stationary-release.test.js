@@ -1,3 +1,4 @@
+import { researchSourceLocation } from "../src/documentation/ResearchSourceLocations.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -11,7 +12,7 @@ import {
 } from "../scripts/prescribed-path-analysis/oracle/stella-octangula-stationary-release-oracle.mjs";
 
 const PREDECLARATION_PATH = new URL(
-  "../reference/priorities/braid-program/evidence/2026-09-01-stella-octangula-stationary-release.predeclaration.v1.json",
+  "../reference/priorities/master-equation-closure/braid-program/evidence/2026-09-01-stella-octangula-stationary-release.predeclaration.v1.json",
   import.meta.url,
 );
 
@@ -26,7 +27,7 @@ function closeTo(actual, expected, tolerance = 1e-10) {
 
 test("stationary stella-octangula release has the frozen complete root inventory", () => {
   const declaration = readJson(PREDECLARATION_PATH);
-  const sourceUrl = new URL(`../${declaration.source.path}`, import.meta.url);
+  const sourceUrl = new URL(`../${researchSourceLocation(declaration.source.path)}`, import.meta.url);
   const sourceBytes = readFileSync(sourceUrl);
   const sourceSha256 = createHash("sha256").update(sourceBytes).digest("hex");
   const packet = buildStationaryReleasePacket({
@@ -49,7 +50,7 @@ test("stationary stella-octangula release has the frozen complete root inventory
 
 test("stationary stella-octangula release acceleration matches the independent radial oracle", () => {
   const declaration = readJson(PREDECLARATION_PATH);
-  const sourceUrl = new URL(`../${declaration.source.path}`, import.meta.url);
+  const sourceUrl = new URL(`../${researchSourceLocation(declaration.source.path)}`, import.meta.url);
   const sourceBytes = readFileSync(sourceUrl);
   const packet = buildStationaryReleasePacket({
     staticSpec: JSON.parse(sourceBytes.toString("utf8")),
@@ -69,7 +70,7 @@ test("stationary stella-octangula release acceleration matches the independent r
 
 test("deeper stationary history leaves release acceleration and root inventory unchanged", () => {
   const declaration = readJson(PREDECLARATION_PATH);
-  const sourceUrl = new URL(`../${declaration.source.path}`, import.meta.url);
+  const sourceUrl = new URL(`../${researchSourceLocation(declaration.source.path)}`, import.meta.url);
   const sourceBytes = readFileSync(sourceUrl);
   const packet = buildStationaryReleasePacket({
     staticSpec: JSON.parse(sourceBytes.toString("utf8")),

@@ -7,6 +7,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 import {
   EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA,
   validateExactPrescribedSourceRecord,
@@ -38,8 +39,18 @@ export const ASSEMBLY_VIEW_RECORD_NUMERIC_CANONICALIZATION_ID = "assembly-view-r
 const STATE_FLAG_FOR_POLARITY = Object.freeze({ "1": 1, "-1": 2 });
 const SCRIPT_DIRECTORY = path.dirname(fileURLToPath(import.meta.url));
 const REPOSITORY_ROOT = path.resolve(SCRIPT_DIRECTORY, "../..");
-const CONFIGURATION_DIRECTORY = path.resolve(REPOSITORY_ROOT, "reference/priorities/braid-program/configurations");
+const CONFIGURATION_DIRECTORY = path.resolve(REPOSITORY_ROOT, "reference/priorities/master-equation-closure/braid-program/configurations");
 const RECORD_DIRECTORY = path.resolve(REPOSITORY_ROOT, "content/assets/borg/records");
+
+// The registry pins exact display-record bytes, including this logical source
+// identifier. Directory relocation changes IO, not the record's provenance ID.
+const CONFIGURATION_SOURCE_ID = "reference/priorities/braid-program/configurations";
+function sourceIdentifier(specPath) {
+  const relative = path.relative(CONFIGURATION_DIRECTORY, path.resolve(specPath));
+  return relative && !relative.startsWith(`..${path.sep}`) && relative !== ".." && !path.isAbsolute(relative)
+    ? `${CONFIGURATION_SOURCE_ID}/${relative.split(path.sep).join("/")}`
+    : path.relative(REPOSITORY_ROOT, specPath);
+}
 
 function target(specFile, outFile, { activeAnalytical = false, control = false } = {}) {
   return Object.freeze({
@@ -211,7 +222,7 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
       runId: spec.specId,
       claimGrade: spec.claimGrade,
       evidenceStatus: spec.evidenceStatus,
-      generatingSpec: options.generatingSpec ?? (options.specPath ? path.relative(REPOSITORY_ROOT, options.specPath) : "inline-prescribed-assembly-spec"),
+      generatingSpec: options.generatingSpec ?? (options.specPath ? sourceIdentifier(options.specPath) : "inline-prescribed-assembly-spec"),
       date: spec.date,
       prescribedGeometry: {
         emitterId: PRESCRIBED_BRAID_EMITTER_ID,
@@ -386,7 +397,7 @@ function parseArgs(args) {
       const value = args[index + 1];
       if (!value) throw new TypeError(`${arg} requires a path.`);
       index += 1;
-      if (arg === "--spec") parsed.specPath = path.resolve(value);
+      if (arg === "--spec") parsed.specPath = resolveResearchSourcePath(REPOSITORY_ROOT, path.resolve(value));
       else parsed.outPath = path.resolve(value);
     } else if (arg === "--all") parsed.all = true;
     else if (arg === "--write" || arg === "--check") {
@@ -407,7 +418,7 @@ export function runPrescribedBraidCli(args = process.argv.slice(2)) {
 
 function processTarget({ specPath, outPath }, mode) {
   const spec = JSON.parse(fs.readFileSync(specPath, "utf8"));
-  const record = generatePrescribedBraidRecord(spec, { specPath, generatingSpec: path.relative(REPOSITORY_ROOT, specPath) });
+  const record = generatePrescribedBraidRecord(spec, { specPath, generatingSpec: sourceIdentifier(specPath) });
   const serialized = serializePrescribedBraidRecord(record);
   if (mode === "write") {
     fs.mkdirSync(path.dirname(outPath), { recursive: true });

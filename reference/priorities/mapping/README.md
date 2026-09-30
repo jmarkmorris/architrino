@@ -47,7 +47,7 @@ Plainly: Mapping Benchmarks asks, "What exactly must our explanation reproduce, 
 
 | Owner | What it supplies or controls |
 | --- | --- |
-| [Braid Program](../braid-program/priorities.md) | Candidate geometry, candidate adjudication, dynamical existence, retained histories, and braid evidence. Mapping supplies requirements; it does not certify the candidate for this owner. |
+| [Braid Program](../master-equation-closure/braid-program/priorities.md) | Candidate geometry, candidate adjudication, dynamical existence, retained histories, and braid evidence. Mapping supplies requirements; it does not certify the candidate for this owner. |
 | [Master Equation Closure](../master-equation-closure/priorities.md) | Foundational causal-wake, acceleration, conservation-account, and shared Noether sea response obligations. Domain packets consume their results. |
 | [EOM solver](../app-solver/priorities.md) | Accepted computational capabilities and their independent validation. A mapping request cannot bypass a missing solver capability. |
 | [Source Mining](../source-mining/priorities.md) | Source acquisition, extraction, and provenance. The scientific owner decides how an acquired result enters a recovery argument. |
@@ -83,7 +83,7 @@ Plainly: one observed line pattern creates several connected questions. Each has
 
 Start with the relevant owner's `priorities.md`, then its `work-queue.md` and the named packet. Strategic state belongs in the tracker; accepted executable work belongs in the queue; provisional ideas belong in `brainstorming.md`; dated results belong in `work-log.md` or the owner's evidence packet. Do not create copies of another owner's task or evidence record here.
 
-Use this overview for orientation and directory navigation. Use the [shared architecture](contracts/mapping-method.md) for method, ownership contracts, and common mathematical components. Use [Inferring Braid Requirements](../mapping-equations/analysis/inferring-braid-requirements.md) for the general reverse-inference application and the Braid Program's [candidate adjudication](../braid-program/analysis/braid-candidate-requirement-adjudication.md) for applying those requirements to candidates.
+Use this overview for orientation and directory navigation. Use the [shared architecture](contracts/mapping-method.md) for method, ownership contracts, and common mathematical components. Use [Inferring Braid Requirements](../mapping-equations/analysis/inferring-braid-requirements.md) for the general reverse-inference application and the Braid Program's [candidate adjudication](../master-equation-closure/braid-program/analysis/braid-candidate-requirement-adjudication.md) for applying those requirements to candidates.
 
 Reader-facing explanations live in [Theory Bridges](../../../content/markdown/aaa/philosophy-history/theory-bridges.md), [Theory Mapping](../../../content/markdown/aaa/philosophy-history/theory-mapping.md), and [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md). Accepted content is promoted into its corpus owner; reader-facing chapters do not depend on this priority directory.
 

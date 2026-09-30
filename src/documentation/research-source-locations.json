@@ -1,0 +1,409 @@
+{
+  "schema": "architrino/research-source-locations.v1",
+  "directoryMoves": [
+    [
+      "reference/priorities/braid-program/",
+      "reference/priorities/master-equation-closure/braid-program/"
+    ],
+    [
+      "reference/priorities/collinear-research/",
+      "reference/priorities/master-equation-closure/collinear-research/"
+    ],
+    [
+      "reference/priorities/dormant-deferred/field-speed-ceiling/",
+      "reference/priorities/master-equation-closure/field-speed-ceiling/"
+    ]
+  ],
+  "fileMoves": {
+    "reference/priorities/mapping-electromagnetism/analysis/adaptive-cubic-medium-kinematics-and-ledger-contract.md": "reference/priorities/master-equation-closure/lattice-research/analysis/adaptive-cubic-medium-kinematics-and-ledger-contract.md",
+    "reference/priorities/mapping-electromagnetism/analysis/f6c-cubic-lattice.md": "reference/priorities/master-equation-closure/lattice-research/analysis/f6c-cubic-lattice.md",
+    "reference/priorities/master-equation-closure/analysis/finite-perturbation-release-compatibility.md": "reference/priorities/master-equation-closure/lattice-research/analysis/finite-perturbation-release-compatibility.md",
+    "reference/priorities/master-equation-closure/analysis/finite-perturbation-release-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/finite-perturbation-release-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/pressure-dependent-noether-sea-constitutive-response.md": "reference/priorities/master-equation-closure/noether-sea-research/analysis/pressure-dependent-noether-sea-constitutive-response.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-beyond-class-boundary-history.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-beyond-class-boundary-history.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-beyond-class-boundary-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-beyond-class-boundary-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-beyond-class-boundary.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-beyond-class-boundary.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-class-preserving-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-class-preserving-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-class-preserving-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-class-preserving-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-distance-two-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-distance-two-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-distance-two-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-distance-two-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-feedback-separation-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-feedback-separation-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-feedback-separation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-feedback-separation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-class-boundary-history.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-first-class-boundary-history.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-class-boundary-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-first-class-boundary-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-class-boundary-selected-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-first-class-boundary-selected-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-class-boundary.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-first-class-boundary.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-response-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-first-response-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-response.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-first-response.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-five-comparison-refinement.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-five-comparison-refinement.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-five-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-five-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-generated-feedback-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-generated-feedback-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-generated-feedback-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-generated-feedback-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-incoming-reachability-domain.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-incoming-reachability-domain.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-incoming-reachability-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-incoming-reachability-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-incoming-reachability.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-incoming-reachability.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-approximant.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-approximant.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-approximant.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-approximant.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-background-comparison.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-background-comparison.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certification-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-certification-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certification.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-certification.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-certified-plot.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-certified-plot.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients-plots.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-coefficients-plots.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-coefficients.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-coefficients.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-instrument.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-instrument.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-leading.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-leading.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-motion.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-motion.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-nonlinear.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-nonlinear.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-pulse-end-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-pulse-end-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-pulse-end-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-plot.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-pulse-end-plot.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-ends.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-pulse-ends.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-residual-propagation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-residual-propagation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-residual.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-residual.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-turns.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-later-turns.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-motion-plots.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-motion-plots.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-motion-plots.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-event-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-event-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-event-error-budget.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-event-error-budget.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-event-evolution.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-event-evolution.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-event-history.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-event-history.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-event-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-event-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-event-residual.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-event-residual.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-feedback-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-feedback-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-feedback.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-feedback.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-maximum-approximant.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-approximant.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-maximum-approximant.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-maximum-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-maximum-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-maximum-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-later-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-maximum-later-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum-turns.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-maximum-turns.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-maximum.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-maximum.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-minimum-approximant.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-approximant.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-minimum-approximant.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-minimum-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-minimum-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-minimum-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-turns.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-minimum-turns.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-next-minimum.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-approximant.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-population-restart-approximant.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-approximant.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-population-restart-approximant.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-population-restart-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-population-restart-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-population-restart-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-turns.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-population-restart-turns.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-population-restart.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-approximant.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-approximant.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-approximant.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-approximant.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-cubic-approximant.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-cubic-population-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-cubic-population-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-five-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-five-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-history-approximant.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-history-approximant.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-later-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-later-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-later-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-later-turns.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-later-turns.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-population-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-nineteen-population-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-nineteen-turns.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-nineteen-turns.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-population-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-population-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-rk4-approximant.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-rk4-approximant.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-stationary.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-stationary.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-turns.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart-turns.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-post-restart.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-preparation-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-preparation-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-preparation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-preparation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-pulse-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-pulse-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-pulse-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-pulse-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-second-shell-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-second-shell-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-second-shell-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-second-shell-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-signed-error-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-signed-error-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-signed-error.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-signed-error.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-continuation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-through-five-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-early-target-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-through-five-early-target-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-history-audit.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-through-five-history-audit.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-through-five-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-population-certificate.py": "reference/priorities/master-equation-closure/lattice-research/analysis/smooth-two-particle-through-five-population-certificate.py",
+    "reference/priorities/master-equation-closure/analysis/staggered-lattice-acceleration-decomposition.md": "reference/priorities/master-equation-closure/lattice-research/analysis/staggered-lattice-acceleration-decomposition.md",
+    "reference/priorities/master-equation-closure/analysis/staggered-lattice-decomposition-independent-assessment.md": "reference/priorities/master-equation-closure/lattice-research/analysis/staggered-lattice-decomposition-independent-assessment.md",
+    "reference/priorities/master-equation-closure/analysis/staggered-lattice-displacement-equation.md": "reference/priorities/master-equation-closure/lattice-research/analysis/staggered-lattice-displacement-equation.md",
+    "reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event-evolution.md": "reference/priorities/master-equation-closure/lattice-research/analysis/staggered-lattice-first-event-evolution.md",
+    "reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/staggered-lattice-first-event-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event-residual.md": "reference/priorities/master-equation-closure/lattice-research/analysis/staggered-lattice-first-event-residual.md",
+    "reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event.md": "reference/priorities/master-equation-closure/lattice-research/analysis/staggered-lattice-first-event.md"
+  },
+  "frozenOrigins": [
+    "reference/priorities/braid-program/analysis/braid-candidate-requirement-adjudication.md",
+    "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
+    "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md",
+    "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md",
+    "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md",
+    "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md",
+    "reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-predeclaration.md",
+    "reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md",
+    "reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md",
+    "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md",
+    "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-parallel-resource-plan.md",
+    "reference/priorities/braid-program/evidence/2026-08-27-subfield-circular-h3-pilot-predeclaration.md",
+    "reference/priorities/braid-program/evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md",
+    "reference/priorities/braid-program/evidence/2026-09-01-borg-assembly-source-inventory-handoff.md",
+    "reference/priorities/braid-program/evidence/2026-09-01-planar-three-binary-t200-finite-ladder-certificate.md",
+    "reference/priorities/braid-program/evidence/2026-09-02-planar-three-binary-global-tail-calculus-reduction.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-class-preserving-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-first-class-boundary-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-incoming-reachability-domain.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-incoming-reachability-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-incoming-reachability.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-later-pulse-end-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-event-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-next-minimum-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-population-restart-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-post-restart-stationary.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-preparation-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-pulse-continuation.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-pulse-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-independent-adjudication.md",
+    "reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event.md"
+  ],
+  "sectionMoves": [
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "6-infinite-populations-and-cancellation",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "1-infinite-populations-and-cancellation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "61-what-the-stationary-lattice-establishes",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "11-what-the-stationary-lattice-establishes"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "62-finite-changes-and-infinitely-coordinated-changes",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "12-finite-changes-and-infinitely-coordinated-changes"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "63-one-sufficient-proposed-history-class",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "13-one-sufficient-proposed-history-class"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "64-a-common-first-evolution-interval",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "14-a-common-first-evolution-interval"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "65-the-first-nonstationary-response",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "15-the-first-nonstationary-response"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "66-completion-of-the-first-received-pulse",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "16-completion-of-the-first-received-pulse"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "67-class-loss-and-the-next-continuation-boundary",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "17-class-loss-and-the-next-continuation-boundary"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "68-the-topology-and-summation-rule-are-part-of-the-result",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "18-the-topology-and-summation-rule-are-part-of-the-result"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "69-continuation-through-the-second-receiving-shell",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "19-continuation-through-the-second-receiving-shell"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "610-distance-two-reception-and-the-overlapping-next-shell",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "110-distance-two-reception-and-the-overlapping-next-shell"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "611-first-received-environmental-feedback-and-target-motion",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "111-first-received-environmental-feedback-and-target-motion"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "612-separation-increases-over-the-complete-feedback-interval",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "112-separation-increases-over-the-complete-feedback-interval"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "613-following-the-complete-returned-pulse",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "113-following-the-complete-returned-pulse"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "614-preparation-of-the-supplied-history",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "114-preparation-of-the-supplied-history"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "615-signed-reception-error-and-a-transient-approach",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "115-signed-reception-error-and-a-transient-approach"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "616-later-environmental-returns-and-repeated-vertical-turns",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "116-later-environmental-returns-and-repeated-vertical-turns"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "617-continued-descent-through-the-remaining-pulse-endpoints",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "117-continued-descent-through-the-remaining-pulse-endpoints"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "618-a-fourth-vertical-turn-and-a-smaller-completed-descent",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "118-a-fourth-vertical-turn-and-a-smaller-completed-descent"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "619-a-later-rise-exceeds-the-preceding-fall",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "119-a-later-rise-exceeds-the-preceding-fall"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "620-continuing-from-the-complete-population-state",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "120-continuing-from-the-complete-population-state"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "621-complete-population-continuation-through-five",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "121-complete-population-continuation-through-five"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "622-an-environmental-displacement-boundary-precedes-the-next-maximum",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "122-an-environmental-displacement-boundary-precedes-the-next-maximum"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "623-regular-continuation-through-the-displacement-boundary",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "123-regular-continuation-through-the-displacement-boundary"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "624-a-wake-speed-obstruction-before-the-next-maximum",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "124-a-wake-speed-obstruction-before-the-next-maximum"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "625-the-obstruction-persists-for-continuous-velocity-integral-solutions",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "125-the-obstruction-persists-for-continuous-velocity-integral-solutions"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "626-the-direct-history-measure-supplies-no-finite-event-impulse",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "126-the-direct-history-measure-supplies-no-finite-event-impulse"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "627-self-consistent-incoming-growth-and-its-stability-consequence",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "127-self-consistent-incoming-growth-and-its-stability-consequence"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "628-a-self-consistent-past-reaches-a-transverse-first-wake-speed-event",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "128-a-self-consistent-past-reaches-a-transverse-first-wake-speed-event"
+    ],
+    [
+      "reference/priorities/master-equation-closure/manuscript.md",
+      "629-the-collective-displacement-equation-and-its-singular-boundary",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "129-the-collective-displacement-equation-and-its-singular-boundary"
+    ],
+    [
+      "reference/priorities/mapping-electromagnetism/manuscript.md",
+      "6-cubic-backgrounds-exact-facts-and-finite-failures",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "2-cubic-backgrounds-exact-facts-and-finite-failures"
+    ],
+    [
+      "reference/priorities/mapping-electromagnetism/manuscript.md",
+      "61-stationary-inversion-cancellation",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "21-stationary-inversion-cancellation"
+    ],
+    [
+      "reference/priorities/mapping-electromagnetism/manuscript.md",
+      "62-why-isolated-cells-and-copied-circles-differ",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "22-why-isolated-cells-and-copied-circles-differ"
+    ],
+    [
+      "reference/priorities/mapping-electromagnetism/manuscript.md",
+      "63-rank-two-isotropy-does-not-remove-directional-dispersion",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "23-rank-two-isotropy-does-not-remove-directional-dispersion"
+    ],
+    [
+      "reference/priorities/mapping-electromagnetism/manuscript.md",
+      "64-three-bounded-negative-results",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "24-three-bounded-negative-results"
+    ],
+    [
+      "reference/priorities/mapping-electromagnetism/manuscript.md",
+      "7-adaptive-geometry-and-a-retained-medium",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "3-adaptive-geometry-and-a-retained-medium"
+    ],
+    [
+      "reference/priorities/mapping-electromagnetism/manuscript.md",
+      "71-local-kinematics-without-lattice-bonds",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "31-local-kinematics-without-lattice-bonds"
+    ],
+    [
+      "reference/priorities/mapping-electromagnetism/manuscript.md",
+      "72-neighborhood-identity-return-and-reorganization",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "32-neighborhood-identity-return-and-reorganization"
+    ],
+    [
+      "reference/priorities/mapping-electromagnetism/manuscript.md",
+      "73-directional-response-needs-a-physical-readout",
+      "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "33-directional-response-needs-a-physical-readout"
+    ]
+  ]
+}

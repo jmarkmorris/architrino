@@ -14,8 +14,8 @@
 - Anchor substrate symmetry analysis in `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and the interaction assumptions in `validation/parameter-ledger.md`.
 - Distinguish substrate symmetries from emergent observer symmetries using `foundations/ontology.md`, `foundations/absolute-timespace.md`, `spacetime/lorentz-kinematics.md`, and `spacetime/emergent-metric.md`.
 - Attach conservation-law diagnostics to `validation/simulations/run-protocols.md`, `validation/constraint-ledger.md`, `validation/failure-criteria.md`, `noether-braid/braid-recovery-requirements.md`, and the current accepted EOM solver evolution contract.
-- Treat `reference/priorities/braid-program/priorities.md` as the active theorem-burden ledger for Lorentz, mass, photon, and effective-metric closure claims.
-- Treat `reference/priorities/braid-program/priorities.md` as the active mass-side ledger for $E_{\text{internal}}(A)$, $\zeta(A)$, exposed inertial-response trace, and $\mathcal{M}_{\text{sea}}^{ab}$.
+- Treat `reference/priorities/master-equation-closure/braid-program/priorities.md` as the active theorem-burden ledger for Lorentz, mass, photon, and effective-metric closure claims.
+- Treat `reference/priorities/master-equation-closure/braid-program/priorities.md` as the active mass-side ledger for $E_{\text{internal}}(A)$, $\zeta(A)$, exposed inertial-response trace, and $\mathcal{M}_{\text{sea}}^{ab}$.
 - Legacy `$A_0$` certificate files are historical inputs, not the current Braid Program authority.
 
 ## Perspective Response Mandate

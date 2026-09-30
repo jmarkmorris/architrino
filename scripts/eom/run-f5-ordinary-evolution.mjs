@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 // Scientific settings belong to the frozen declaration. This module only maps
 // accepted past tokens and supervises the existing certified EOM transport.
 import { spawn, execFile } from 'node:child_process';
@@ -67,14 +68,15 @@ export function parseUniqueJson(bytes) {
 export function capture(path, maximumBytes = 256 * 1024 ** 2) {
   check(Number.isSafeInteger(maximumBytes) && maximumBytes > 0, 'bounded capture limit required');
   path = resolve(path);
-  const fd = openSync(path, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
+  const physicalPath = resolveResearchSourcePath(ROOT, path);
+  const fd = openSync(physicalPath, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
   try {
     const before = fstatSync(fd);
     check(before.isFile() && before.size <= maximumBytes, 'bounded regular input required');
     const bytes = Buffer.alloc(before.size); let offset = 0;
     while (offset < bytes.length) { const count = readSync(fd, bytes, offset, bytes.length - offset, offset); check(count > 0, 'short input capture'); offset += count; }
     const extra = Buffer.alloc(1); check(readSync(fd, extra, 0, 1, offset) === 0, 'input grew during capture');
-    const after = fstatSync(fd), current = lstatSync(path);
+    const after = fstatSync(fd), current = lstatSync(physicalPath);
     check(current.isFile() && !current.isSymbolicLink() && before.dev === current.dev && before.ino === current.ino &&
       before.size === after.size && before.mtimeMs === after.mtimeMs && before.ctimeMs === after.ctimeMs, 'input changed during capture');
     return { data: bytes, path, sha256: sha256(bytes), bytes: bytes.length, dev: before.dev, ino: before.ino };

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -21,11 +22,11 @@ const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const REPO_ROOT = path.resolve(path.dirname(SCRIPT_PATH), "../..");
 const PREDECLARATION_PATH = path.resolve(
   REPO_ROOT,
-  "reference/priorities/braid-program/evidence/2026-09-01-stella-octangula-stationary-release.predeclaration.v1.json",
+  "reference/priorities/master-equation-closure/braid-program/evidence/2026-09-01-stella-octangula-stationary-release.predeclaration.v1.json",
 );
 const OUTPUT_PATH = path.resolve(
   REPO_ROOT,
-  "reference/priorities/braid-program/evidence/2026-09-01-stella-octangula-stationary-release.packet.v1.json",
+  "reference/priorities/master-equation-closure/braid-program/evidence/2026-09-01-stella-octangula-stationary-release.packet.v1.json",
 );
 
 function sha256Bytes(bytes) {
@@ -369,7 +370,7 @@ export function buildStationaryReleasePacket({ staticSpec, declaration, sourceSh
 function main() {
   const declarationLoaded = loadJsonBytes(PREDECLARATION_PATH);
   const declaration = declarationLoaded.value;
-  const sourcePath = path.resolve(REPO_ROOT, declaration.source.path);
+  const sourcePath = resolveResearchSourcePath(REPO_ROOT, declaration.source.path);
   const sourceLoaded = loadJsonBytes(sourcePath);
   const sourceSha256 = sha256Bytes(sourceLoaded.bytes);
   const packet = buildStationaryReleasePacket({

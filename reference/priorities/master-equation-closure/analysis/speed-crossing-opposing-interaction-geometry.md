@@ -19,7 +19,7 @@ Two meanings of first crossing must be distinguished. An individual receiver can
 | Explicit analytic higher contact with one earlier superfield source | Four local roots supply a tunable opposite cubic coefficient, but an unavoidable transverse quadratic remainder survives. | This source family and the local self row alone do not give an integrable acceleration. |
 | Two reflected earlier superfield sources with the derived parameter relations | Eight local partner roots cancel every negative-power term of the selected self-plus-partner sum, which has a finite outgoing limit. | The finite value, complete histories, coupled EOM evolution and the event limit still require compatibility checks. |
 
-The purpose is mathematical exploration of the unchanged equation. The [stationary release](../../collinear-research/analysis/stationary-binary-first-interval.md#existing-sharp-law-obstruction-at-this-boundary) retains its original obstruction. Its partner range is positive and its earlier source velocity is subfield, so neither of the candidate singular geometries supplies an escape for that history.
+The purpose is mathematical exploration of the unchanged equation. The [stationary release](../collinear-research/analysis/stationary-binary-first-interval.md#existing-sharp-law-obstruction-at-this-boundary) retains its original obstruction. Its partner range is positive and its earlier source velocity is subfield, so neither of the candidate singular geometries supplies an escape for that history.
 
 ## Equation and solution class
 
@@ -458,7 +458,7 @@ The construction changes the source geometry and the number of source labels. Ev
 
 ### Retained numerical comparison
 
-The [independent direct geometric evaluation](../../braid-program/work-log.md#2026-09-15--complete-outgoing-cancellation-in-reflected-prescribed-geometry) checks original Euclidean chords, causal residuals and the absolute transmitter derivative against the derived expansion. Its stationary, affine-source and four-root absolute-weight controls passed before target use. For $a=1$, $\kappa=36$, $q_i=1/6$, each $q_s=-1/6$, $c_f=1$ and the exact tuning relations above, the retained 100-decimal-digit mpmath diagnostic gives:
+The [independent direct geometric evaluation](../braid-program/work-log.md#2026-09-15--complete-outgoing-cancellation-in-reflected-prescribed-geometry) checks original Euclidean chords, causal residuals and the absolute transmitter derivative against the derived expansion. Its stationary, affine-source and four-root absolute-weight controls passed before target use. For $a=1$, $\kappa=36$, $q_i=1/6$, each $q_s=-1/6$, $c_f=1$ and the exact tuning relations above, the retained 100-decimal-digit mpmath diagnostic gives:
 
 | Reception time $T$ | Selected longitudinal acceleration |
 | --- | --- |
