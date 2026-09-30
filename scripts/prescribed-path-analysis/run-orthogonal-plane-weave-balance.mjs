@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -26,9 +27,9 @@ const PROVENANCE_PATHS = [
   "content/markdown/aaa/dynamics/master-equation.md",
   "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
   "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
-  "reference/priorities/braid-program/brainstorming.md",
-  "reference/priorities/braid-program/configurations/three-axis-circular-coincident-midpoints-equal-radius-common-frequency.v3.json",
-  "reference/priorities/braid-program/configurations/three-axis-circular-phase-compensated-symmetric.v3.json",
+  "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+  "reference/priorities/master-equation-closure/braid-program/configurations/three-axis-circular-coincident-midpoints-equal-radius-common-frequency.v3.json",
+  "reference/priorities/master-equation-closure/braid-program/configurations/three-axis-circular-phase-compensated-symmetric.v3.json",
 ];
 
 function parseArguments(argv) {
@@ -47,7 +48,7 @@ function parseArguments(argv) {
 
 function sha256File(relativePath) {
   return createHash("sha256")
-    .update(readFileSync(path.join(ROOT, relativePath)))
+    .update(readFileSync(resolveResearchSourcePath(ROOT, relativePath)))
     .digest("hex");
 }
 

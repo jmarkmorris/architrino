@@ -1,3 +1,4 @@
+import { researchSourceLocation } from "../../documentation/ResearchSourceLocations.mjs";
 function node(documentLike, tag, text = null, className = null) {
   const value = documentLike.createElement(tag);
   if (text != null) value.textContent = text;
@@ -13,7 +14,7 @@ function row(documentLike, term, value) {
 
 function link(documentLike, value) {
   const anchor = node(documentLike, "a", value.label);
-  anchor.href = `./${value.url}`;
+  anchor.href = `./${researchSourceLocation(value.url)}`;
   anchor.target = "_blank";
   anchor.rel = "noopener";
   return anchor;
@@ -90,7 +91,7 @@ export function renderBorgScientificStatus(documentLike, container, status) {
     context.append(list); container.append(context);
   }
   if (status.projection) {
-    const provenance = node(documentLike, "p", `Projection ${status.projection.revision} · current against ${status.projection.source} · lifecycle ${status.current?.lifecycle ?? "no exact relation"}`, "borg-status-provenance");
+    const provenance = node(documentLike, "p", `Projection ${status.projection.revision} · current against ${researchSourceLocation(status.projection.source)} · lifecycle ${status.current?.lifecycle ?? "no exact relation"}`, "borg-status-provenance");
     provenance.dataset.statusHook = "projection-provenance";
     container.append(provenance);
   }

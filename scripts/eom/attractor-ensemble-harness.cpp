@@ -1708,7 +1708,7 @@ void write_campaign1_grid_manifest(const std::filesystem::path& path) {
   }
   output << std::setprecision(17)
          << "{\"schema\":\"campaign1_binary_workload_construction/v0\""
-         << ",\"generatingSpec\":\"reference/priorities/braid-program/"
+         << ",\"generatingSpec\":\"reference/priorities/master-equation-closure/braid-program/"
             "campaigns/campaign-1-subfield-binary.md\""
          << ",\"purpose\":\"declared-initial-condition-construction-only\""
          << ",\"evolutionInvoked\":false"

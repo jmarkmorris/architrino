@@ -12,10 +12,10 @@ Before substantive work:
 2. Choose the smallest live workflow that fits the task.
 3. Read the current owning corpus pages before relying on any role-file summary.
 4. If the task concerns braid evidence or program state, read:
-   - `reference/priorities/braid-program/README.md`
-   - `reference/priorities/braid-program/priorities.md`
-   - `reference/priorities/braid-program/work-queue.md`
-   - `reference/priorities/braid-program/contracts/method.md`
+   - `reference/priorities/master-equation-closure/braid-program/README.md`
+   - `reference/priorities/master-equation-closure/braid-program/priorities.md`
+   - `reference/priorities/master-equation-closure/braid-program/work-queue.md`
+   - `reference/priorities/master-equation-closure/braid-program/contracts/method.md`
 5. If the task concerns EOM evolution or numerical authority, read:
    - `reference/priorities/app-solver/contracts/evolution-contract-v1.md`
    - the current Braid Program instrument gate and the exact accepted capability record it cites

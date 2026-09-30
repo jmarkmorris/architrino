@@ -241,7 +241,7 @@ The wake-width regulator $\eta$ is a computational and analytic regularization, 
 
 ### Layer-I two-body scale closure
 
-The displayed sharp two-body kernel has no remaining dimensionless coupling built solely from the following positive dimensional substrate triplet:
+The displayed two-body kernel of the Master Equation has no remaining dimensionless coupling built solely from the following positive dimensional substrate triplet:
 $$
 (c_f,\kappa,\epsilon)
 $$
@@ -290,7 +290,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ec1cfba383b1b28c)
 
-on the admitted sharp causal roots. A mollified surrogate introduces a separate numerical ratio $\eta/R_*$; it approximates this equation only under its declared error or recovery conditions.
+on the admitted causal roots. A mollified surrogate introduces a separate numerical ratio $\eta/R_*$; it approximates this equation only under its declared error or recovery conditions.
 
 This removes a dimensionless coupling from the kernel, not the dimensionless initial-history data. Root multiplicities, branch thresholds, curvature, and residuals can still depend on the retained histories, polarity assignment, boundary conditions, and selected branch. For a fixed branch problem those quantities must be computed from the delayed dynamics; rescaling the dimensional triplet cannot independently tune them. A declared geometric chart alone neither selects a unique history nor certifies a stable maximum-curvature binary.
 
@@ -369,7 +369,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-dc8084e941317a8f)
 
-On its admitted positive-separation simple-root domain, the sharp history-integral representation is
+On its admitted positive-separation simple-root domain, the history-integral representation of the Master Equation is
 $$
 \frac{d^2\mathbf X_a}{dT^2}
 =
@@ -384,7 +384,7 @@ $$
 
 Here $a$ is the receiver, $b$ the transmitter, $\mathbf R_{ab}=\mathbf X_a(T)-\mathbf X_b(T_t)$ the delayed separation, and $\sigma_{ab}=\operatorname{sign}(q_aq_b)$ the polarity sign. The delta distribution selects exact causal emissions and has inverse-length units. At each isolated simple root it supplies the dimensionless weight $c_f/|c_f-\hat{\mathbf R}_{ab}\cdot\mathbf V_b(T_t)|$, multiplying that root's vector kernel, as in the [Master Equation](../dynamics/master-equation.md). Removing $c_f$ while retaining the stated dimensions of $\kappa$ breaks both units and root normalization. The expression includes every admitted causal root, excludes the exact zero-delay self endpoint, and requires convergence when the contributing root set or history is unbounded. A finite history window needs proof that no contributing past was omitted or a bound on the resulting approximation error.
 
-For an auxiliary calculation, a normalized smooth profile $\delta_\eta$ may approximate $\delta$. At positive width the integral generally samples emissions away from the sharp roots and does not equal their sum. Recovering the displayed law requires the appropriate zero-width limit on a common history domain with complete root coverage, separation and transversality control, and any additional spatial regularization removed under its stated conditions. A fixed-history limit alone does not prove convergence of evolved trajectories or continuation through a singular event.
+For an auxiliary calculation, a normalized smooth profile $\delta_\eta$ may approximate $\delta$. At positive width the integral generally samples emissions away from the causal roots and does not equal their sum. Recovering the displayed law requires the appropriate zero-width limit on a common history domain with complete root coverage, separation and transversality control, and any additional spatial regularization removed under its stated conditions. A fixed-history limit alone does not prove convergence of evolved trajectories or continuation through a singular event.
 
 ### 2. Charge reconstruction
 

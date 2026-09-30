@@ -68,7 +68,7 @@ Plainly: an equation row says what one formula requires, a benchmark packet says
 
 ### Standard-Side Decomposition
 
-The shared reverse-inference application is [Inferring Braid Requirements](../../mapping-equations/analysis/inferring-braid-requirements.md), owned by Equation Mapping. It develops cross-domain requirements without taking over benchmark definitions or native evidence. The Braid Program's [candidate adjudication](../../braid-program/analysis/braid-candidate-requirement-adjudication.md) applies those requirements to the candidate registry; domain owners retain their same-record integration tasks.
+The shared reverse-inference application is [Inferring Braid Requirements](../../mapping-equations/analysis/inferring-braid-requirements.md), owned by Equation Mapping. It develops cross-domain requirements without taking over benchmark definitions or native evidence. The Braid Program's [candidate adjudication](../../master-equation-closure/braid-program/analysis/braid-candidate-requirement-adjudication.md) applies those requirements to the candidate registry; domain owners retain their same-record integration tasks.
 
 Every equation or benchmark intake must separate three layers:
 

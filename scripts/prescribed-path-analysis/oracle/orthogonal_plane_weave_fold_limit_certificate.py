@@ -22,6 +22,9 @@ import mpmath as mp
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from research_source_paths import resolve_research_source_path
+
 DEFAULT_PROTOCOL = (
     REPO_ROOT
     / "src/prescribed-path-analysis/protocols/"
@@ -29,7 +32,7 @@ DEFAULT_PROTOCOL = (
 )
 DEFAULT_RECEIPT = (
     REPO_ROOT
-    / "reference/priorities/braid-program/evidence/"
+    / "reference/priorities/master-equation-closure/braid-program/evidence/"
     "2026-08-29-orthogonal-plane-weave-fold-limiting-exclusion.v1.json"
 )
 RECEIPT_SCHEMA = (
@@ -88,7 +91,7 @@ def validate_protocol(packet: dict[str, Any], protocol_path: Path) -> None:
     if domain["fieldSpeed"] != "1" or domain["beta"] != ["0.25", "12"]:
         raise ValueError("the normalized bounded domain must remain frozen")
     artifact = packet["inputs"]
-    path = REPO_ROOT / artifact["ordinaryCertificatePath"]
+    path = resolve_research_source_path(REPO_ROOT, artifact["ordinaryCertificatePath"])
     if sha256_bytes(path.read_bytes()) != artifact["ordinaryCertificateSha256"]:
         raise ValueError("ordinary certificate artifact differs")
 
@@ -285,7 +288,7 @@ def build_receipt(
     mp.iv.dps = digits
 
     inputs = packet["inputs"]
-    ordinary_path = REPO_ROOT / inputs["ordinaryCertificatePath"]
+    ordinary_path = resolve_research_source_path(REPO_ROOT, inputs["ordinaryCertificatePath"])
     ordinary = json.loads(ordinary_path.read_text(encoding="utf-8"))
     oracle_path = REPO_ROOT / inputs["ordinaryOraclePath"]
     oracle = load_oracle(oracle_path)
@@ -454,7 +457,7 @@ def build_receipt(
                 '"${AAA_VENV:-../.venv}/bin/python" '
                 "scripts/prescribed-path-analysis/oracle/"
                 "orthogonal_plane_weave_fold_limit_certificate.py "
-                "--write-receipt reference/priorities/braid-program/evidence/"
+                "--write-receipt reference/priorities/master-equation-closure/braid-program/evidence/"
                 "2026-08-29-orthogonal-plane-weave-fold-limiting-exclusion.v1.json"
             ),
         },

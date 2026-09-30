@@ -302,9 +302,28 @@ def emit_cell(histories, cell, cell_index, modules, write_row, write_piece, *, r
     return {"completedRows": row_index, "pieceRecords": piece_index, "recordedGeometryPieceVisits": visits}
 
 
+def _research_source_path(logical, root=None):
+    """Locate moved Braid bytes; preserve the caller's historical binding path.
+
+    Kept self-contained because this source executes from a captured closure.
+    No new import, source inventory entry, or historical hash is substituted.
+    """
+    logical = Path(logical)
+    root = Path(root) if root is not None else Path(__file__).absolute().parents[2]
+    prefix = root / 'reference/priorities/braid-program'
+    try:
+        suffix = logical.relative_to(prefix)
+    except ValueError:
+        return logical
+    if logical != Path(os.path.abspath(logical)):
+        raise ValueError('noncanonical logical source path')
+    return root / 'reference/priorities/master-equation-closure/braid-program' / suffix
+
+
 class PinnedInput:
     def __init__(self, path, expected=None, *, capture=False, limit=MAX_BYTES):
         self.path = Path(path).absolute(); self.expected = expected; self.capture = capture; self.limit = limit
+        self.physical_path = _research_source_path(self.path)
         self.fd = None
 
     @staticmethod
@@ -313,7 +332,7 @@ class PinnedInput:
 
     def __enter__(self):
         require((self.expected is None or (type(self.expected) is str and HEX.fullmatch(self.expected))), "external source hash required")
-        self.fd = os.open(self.path, os.O_RDONLY | os.O_NONBLOCK | getattr(os, "O_NOFOLLOW", 0))
+        self.fd = os.open(self.physical_path, os.O_RDONLY | os.O_NONBLOCK | getattr(os, "O_NOFOLLOW", 0))
         try:
             self.initial = os.fstat(self.fd)
             require((stat.S_ISREG(self.initial.st_mode)) and (0 < self.initial.st_size <= self.limit), "bounded regular source required")
@@ -336,7 +355,7 @@ class PinnedInput:
         return (b"".join(chunks) if capture else None), digest.hexdigest()
 
     def recheck(self):
-        require((self.scan()[1] == self.expected) and (self.identity(os.stat(self.path, follow_symlinks=False)) == self.identity(self.initial)), "bound source changed/replaced")
+        require((self.scan()[1] == self.expected) and (self.identity(os.stat(self.physical_path, follow_symlinks=False)) == self.identity(self.initial)), "bound source changed/replaced")
 
     def binding(self):
         return {"path": str(self.path), "sha256": self.expected, "bytes": self.initial.st_size}

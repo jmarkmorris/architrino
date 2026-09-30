@@ -67,10 +67,11 @@ export function validateConfiguration(plan,C){
 
 async function genericReader(c){return import(url(tiny(c.genericIndependentReader)));}
 function document(b,C,live){const r=C.readBound(b.path,b.sha256,true,16777216,live);check(r.bytes===b.bytes,'exact metadata bytes');return JSON.parse(r.data.toString('utf8'));}
-export function sourceBaseline(global,members,C){
-  const physical=C.sourceUnion(members.map(e=>({path:e.physicalPath,sha256:e.original.sha256,bytes:e.original.bytes})));
+export function sourceBaseline(global,members,C,root=process.cwd()){
+  const physical=C.sourceUnion(members.map(e=>({path:researchSourcePath(e.physicalPath,root),sha256:e.original.sha256,bytes:e.original.bytes})));
+  const declaredPhysical=global.map(b=>({...b,path:researchSourcePath(b.path,root)}));
   check(physical.length===members.length,'one unique physical source per expected object');
-  for(const b of physical)check(global.filter(x=>same(x,b)).length===1,'subtracted member must occur once in complete source union');
+  for(const b of physical)check(declaredPhysical.filter(x=>same(x,b)).length===1,'subtracted member must occur once in complete source union');
   return {sourceFilesAlready:global.length-physical.length,sourceBytesAlready:global.reduce((n,b)=>n+b.bytes,0)-physical.reduce((n,b)=>n+b.bytes,0)};
 }
 async function contents(c,root,C,live){
@@ -85,18 +86,26 @@ async function contents(c,root,C,live){
     for(const x of c.admittedClosures){const snapshot=document(x.binding,C,live);check(same(snapshot.instrument,x.expectedInstrument),'externally admitted snapshot instrument');references.push(...[snapshot.operation,snapshot.invocation,snapshot.closure.evidence,...(snapshot.closure.finalCaller?[snapshot.closure.finalCaller]:[]),...snapshot.parents.map(p=>p.comparisonInstrument)].map(physical));}
     return {members:c.expectedMembers,census,references,owner:inventory.currentAcceptanceOwner,expectationSha256:reader.expectationSha256(c.expectedMembers)};
   }
-  const inventory=JSON.parse(tiny(c.inventory)),members=inventory.parents.flatMap(p=>[...p.entries,p.archivedOwner].map(e=>({memberName:e.memberName,role:e.role,parentIndex:e.role==='acceptanceOwner'?null:p.parentIndex,original:e.logicalBinding,physicalPath:path.join(root,e.physicalPath),identity:e.identity})));
+  const inventory=JSON.parse(tiny(c.inventory)),members=inventory.parents.flatMap(p=>[...p.entries,p.archivedOwner].map(e=>({memberName:e.memberName,role:e.role,parentIndex:e.role==='acceptanceOwner'?null:p.parentIndex,original:e.logicalBinding,physicalPath:researchSourcePath(path.join(root,e.physicalPath),root),identity:e.identity})));
   check(members.length===28&&inventory.observedEligibleBytes===8083912,'frozen accepted inventory');
   return {members,census:{objects:28,payloadBytes:8083912},references:[],owner:null,expectationSha256:null};
 }
 
+// Pure transport for a captured source closure; logical evidence IDs stay fixed.
+function researchSourcePath(filename,root=process.cwd()){
+ check(path.isAbsolute(filename)&&path.resolve(filename)===filename,'canonical logical source');
+ const prefix=path.join(root,'reference/priorities/braid-program')+path.sep;
+ return filename.startsWith(prefix)?path.join(root,'reference/priorities/master-equation-closure/braid-program',filename.slice(prefix.length)):filename;
+}
 export const PYTHON=String.raw`import __future__,contextlib,dataclasses,hashlib,importlib.util,json,math,os,pathlib,re,stat,sys,time,types
 entry_started=time.monotonic()
 def require(ok,msg):
  if not ok: raise ValueError(msg)
 def ident(s): return (s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
 def capture(b):
- p=b['path']; require(os.path.realpath(p)==p,'runtime/source symlink'); fd=os.open(p,os.O_RDONLY|os.O_NOFOLLOW)
+ p=b['path']; require(os.path.isabs(p)and os.path.abspath(p)==p,'canonical logical source'); prefix=str(pathlib.Path.cwd()/'reference/priorities/braid-program')+'/'
+ if p.startswith(prefix): p=str(pathlib.Path.cwd()/'reference/priorities/master-equation-closure/braid-program'/p[len(prefix):])
+ require(os.path.realpath(p)==p,'runtime/source symlink'); fd=os.open(p,os.O_RDONLY|os.O_NOFOLLOW)
  try:
   before=os.fstat(fd); require(stat.S_ISREG(before.st_mode)and 0<before.st_size<=1073741824,'bounded runtime/source'); h=hashlib.sha256(); parts=[]; n=0
   while True:
@@ -181,10 +190,10 @@ export async function fileOperation(job){
   const expected=await contents(c,job.plan.root,C,live);
   if(job.kind==='preflight'){
     check(realpathSync(c.pythonCommand)===c.python.path&&realpathSync(c.pythonVenvConfig.path)===c.pythonVenvConfig.path,'shared-venv command resolves to frozen runtime');declaredRuntimes(job.plan,c,C);
-    const sources=declaredSources(job.plan,C);
-    for(const b of expected.references)check(sources.some(s=>same(s,b)),'all acceptance references must be globally bound');
+    const sources=declaredSources(job.plan,C).map(b=>({...b,path:researchSourcePath(b.path,job.plan.root)}));
+    for(const b of expected.references)check(sources.some(s=>same(s,{...b,path:researchSourcePath(b.path,job.plan.root)})),'all acceptance references must be globally bound');
     const inodes=new Set();
-    for(const e of expected.members){const b={path:e.physicalPath,sha256:e.original.sha256,bytes:e.original.bytes};check(sources.some(s=>same(s,b)),'all original package inputs must be globally bound');
+    for(const e of expected.members){const b={path:researchSourcePath(e.physicalPath,job.plan.root),sha256:e.original.sha256,bytes:e.original.bytes};check(sources.some(s=>same(s,b)),'all original package inputs must be globally bound');
       const actual=C.readBound(b.path,b.sha256,false,67108864,live),identity=['device','inode','bytes','mtimeNs','ctimeNs'].map(k=>e.identity[k]).join(':'),inode=identity.split(':').slice(0,2).join(':');check(actual.bytes===b.bytes&&actual.identity===identity&&!inodes.has(inode),'original inventory identity differs or aliases');inodes.add(inode);}
     if(expected.owner){const b=expected.owner.binding,actual=C.readBound(b.path,b.sha256,false,67108864,live),identity=['device','inode','bytes','mtimeNs','ctimeNs'].map(k=>expected.owner.identity[k]).join(':');check(actual.bytes===b.bytes&&actual.identity===identity&&!inodes.has(identity.split(':').slice(0,2).join(':')),'direct current owner identity');}
     return {accepted:true,h3EvidenceEligible:false,numericalCalls:0};
@@ -219,7 +228,7 @@ export async function registered(stageId,planBinding,deadlineNanoseconds,prior){
     check(prior===null,'producer has no predecessor');
     const {spawn}=await import('node:child_process'),census=C.outputCensus(plan),all=declaredSources(plan,C);
     const global=C.sourceUnion([...all,planBinding]);
-    const budgets={scientificBytesAlready:census.scientificBytes,logBytesAlready:census.logBytes,...sourceBaseline(global,expected.members,C)};
+    const budgets={scientificBytesAlready:census.scientificBytes,logBytesAlready:census.logBytes,...sourceBaseline(global,expected.members,C,plan.root)};
     const config=c.inventoryVersion===2?{planBinding,budgets}:{...c,root:plan.root,...budgets};
     const duration=Number(BigInt(deadlineNanoseconds)-process.hrtime.bigint())/1e9;check(duration>0&&duration<=1800,'remaining original duration');
     const child=spawn(c.pythonCommand,['-I','-B','-c',PYTHON,'write',JSON.stringify(config),String(duration)],{cwd:plan.root,detached:true,stdio:['ignore','pipe','pipe']});

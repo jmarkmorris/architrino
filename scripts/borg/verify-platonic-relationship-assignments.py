@@ -10,11 +10,15 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-ASSIGNMENTS = ROOT / "reference/priorities/braid-program/configurations/borg-platonic-relationship-assignments.v1.json"
+sys.path.insert(0, str(ROOT / "scripts"))
+from research_source_paths import resolve_research_source_path
+
+ASSIGNMENTS = ROOT / "reference/priorities/master-equation-closure/braid-program/configurations/borg-platonic-relationship-assignments.v1.json"
 REGISTRY = ROOT / "reference/priorities/app-borg/contracts/assembly-registry.v1.json"
 CONTROLLED_RELATIONSHIPS = {
     "exact-vertex-set",
@@ -33,7 +37,7 @@ def main() -> None:
     projection = load(ASSIGNMENTS)
     registry = load(REGISTRY)
     assert projection["schema"] == "borg-platonic-relationship-assignments.v1"
-    source_path = ROOT / projection["source"]
+    source_path = resolve_research_source_path(ROOT, projection["source"])
     assert hashlib.sha256(source_path.read_bytes()).hexdigest() == projection["sourceSha256"]
 
     registry_rows = {
@@ -54,7 +58,7 @@ def main() -> None:
         assert row["relationships"] == ["exact-vertex-set"]
         assert set(row["solids"]) <= CONTROLLED_SOLIDS
         assert row["braidQualified"] is False
-        source = load(ROOT / row["sourceSpec"])
+        source = load(resolve_research_source_path(ROOT, row["sourceSpec"]))
         assert (source["identity"]["assemblyId"], source["identity"]["modelRevisionSha256"]) == key
         solid = source["geometry"]["platonicVertices"]["solid"]
         assert row["solids"] == [solid]

@@ -329,7 +329,7 @@ test("Borg taxonomy reads canonical JSON labels without requiring generated modu
     label: "Literal known configuration", recordUrl: "content/assets/borg/records/known.json",
   }] };
   fs.mkdirSync(path.dirname(path.join(rootDir, catalogPath)), { recursive: true });
-  fs.mkdirSync(path.join(rootDir, "reference/priorities/braid-program/configurations"), { recursive: true });
+  fs.mkdirSync(path.join(rootDir, "reference/priorities/master-equation-closure/braid-program/configurations"), { recursive: true });
   fs.writeFileSync(path.join(rootDir, "src/apps/borg/BorgAssemblyViewControls.js"), "");
   fs.writeFileSync(path.join(rootDir, "borg.html"), "");
   const write = (text) => fs.writeFileSync(path.join(rootDir, catalogPath), text);

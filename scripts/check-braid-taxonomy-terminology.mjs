@@ -12,7 +12,7 @@ export const MIGRATED_SCAN_TARGETS = ["content/markdown/aaa"];
 const CORPUS_SCAN_TARGETS = ["content/markdown/aaa"];
 
 const BORG_PRESCRIBED_CONFIG_DIRECTORY =
-  "reference/priorities/braid-program/configurations";
+  "reference/priorities/master-equation-closure/braid-program/configurations";
 const BORG_READER_SURFACES = Object.freeze([
   "src/apps/borg/BorgAssemblyViewControls.js",
   "borg.html",

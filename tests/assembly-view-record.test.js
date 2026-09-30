@@ -39,7 +39,7 @@ function createAssemblyViewRecordFixture(overrides = {}) {
       runId: "assembly-view-fixture-run",
       claimGrade: "evolved-record",
       evidenceStatus: "executable_architecture_evidence",
-      generatingSpec: "reference/priorities/braid-program/campaigns/example-campaign.md",
+      generatingSpec: "reference/priorities/master-equation-closure/braid-program/campaigns/example-campaign.md",
       date: "2026-07-16",
     },
     recordFrame: carriers.frame,
@@ -130,7 +130,7 @@ test("shared adapter ingests assembly-view-record.v0 with full provenance", () =
   assert.equal(dataset.provenance.evidenceStatus, "executable_architecture_evidence");
   assert.equal(
     dataset.provenance.generatingSpec,
-    "reference/priorities/braid-program/campaigns/example-campaign.md",
+    "reference/priorities/master-equation-closure/braid-program/campaigns/example-campaign.md",
   );
   assert.equal(dataset.window.start, 0);
   assert.equal(dataset.window.end, 2);

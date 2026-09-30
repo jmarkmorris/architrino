@@ -20,7 +20,7 @@ The CT-004 continue-or-pause gate found no stronger categorical theorem than the
 
 Physical completion of the CT-004 question remains blocked by sufficient-history, state-dependent-delay continuation, causal-root completeness, branching, an independently certified physical separating pair, and—if an assembly claim is attempted—retained-carrier obligations. Those are physical-owner burdens and are not an active Category Theory queue.
 
-The Braid Program's priority-side proposal for a stratified topological symmetry groupoid of polarity-labeled histories with certified finite-history pro-presentations remains unadopted research architecture, and [`BP-002`](../braid-program/work-queue.md#bp-002--configuration-chart-completion) retains ownership of its braid-atlas objects, arrows, restrictions, uncertainty transport, controls, and abstention rules.
+The Braid Program's priority-side proposal for a stratified topological symmetry groupoid of polarity-labeled histories with certified finite-history pro-presentations remains unadopted research architecture, and [`BP-002`](../master-equation-closure/braid-program/work-queue.md#bp-002--configuration-chart-completion) retains ownership of its braid-atlas objects, arrows, restrictions, uncertainty transport, controls, and abstention rules.
 
 This lane owns the cross-lane categorical vocabulary, type boundaries, comparison map, and prospective recovery-functor program. It does not duplicate the Braid Program's executable atlas work, decide that any proposed category is physically realized, or grant retention, stability, particle identity, quantum closure, effective-metric closure, or Standard Model closure.
 
@@ -93,7 +93,7 @@ Plainly: this lane can describe and test how already-declared physical records r
 
 ## Related Priorities
 
-- [Braid Program](../braid-program/priorities.md)
+- [Braid Program](../master-equation-closure/braid-program/priorities.md)
 - [Master Equation Closure](../master-equation-closure/priorities.md)
 - [Mapping Equations](../mapping-equations/priorities.md)
 - [Quantum Closure](../mapping-quantum/priorities.md)

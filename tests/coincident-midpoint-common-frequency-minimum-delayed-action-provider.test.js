@@ -20,7 +20,7 @@ const protocol = JSON.parse(await readFile(
 ));
 const sealedCoincidentMidpointCommonFrequencySummary = JSON.parse(await readFile(
   new URL(
-    "../reference/priorities/braid-program/evidence/" +
+    "../reference/priorities/master-equation-closure/braid-program/evidence/" +
     "coincident-midpoint-common-frequency-history-policy-extension-independent-verifier-summary.v1.json",
     import.meta.url,
   ),

@@ -54,7 +54,7 @@ The action-boundary route proposes an interaction charge, the work-integral rout
 
 ### Action-Boundary Route
 
-An action is a scalar functional of paths; a time-translation boundary charge must follow from its complete variation, including the endpoints. The candidate in [Master Equation](../../../dynamics/master-equation.md#action-level-wake-energy-functional-at-a-time-boundary) uses the convention that the interaction enters the action with an outer factor $-1/2$. In the sharp, positive-separation form its kernel is
+An action is a scalar functional of paths; a time-translation boundary charge must follow from its complete variation, including the endpoints. The candidate in [Master Equation](../../../dynamics/master-equation.md#action-level-wake-energy-functional-at-a-time-boundary) uses the convention that the interaction enters the action with an outer factor $-1/2$. In the unmollified, positive-separation form its kernel is
 $$
 \mathcal K_{ij}^{E}(T_1,T_t)
 =\mu_{\text{arch}}\kappa\,\sigma_{ij}|q_iq_j|
@@ -156,7 +156,7 @@ $$
 
 [View →](../../../../../../equation-mapping.html#corpus-equation-7d54e85f39a0ca25)
 
-only if the root-labeled bands $\mathcal C_{ij,b}^{(\eta)}(T)$ exhaust the modeled integral; otherwise the complement power must be added explicitly. At finite width, $T_t$ labels a band around a reference root rather than an instantaneous sharp hit. A fold or overlapping support requires its own partition and event treatment. Each entry retains transmitter identity, polarity, emission time or band, the transmitter-side factor $D_t=c_f-\hat{\mathbf r}_t\cdot\mathbf V_j(T_t)$, the acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ in the sharp simple-root limit, inactive-domain coverage, and memory-edge contributions. Here $\hat{\mathbf r}_t$ points from emission to reception. Complete coverage and refinement require an independent root check; scalar summation alone establishes neither. The work-integral route then reconstructs the compatible causal-history interaction entry by
+only if the root-labeled bands $\mathcal C_{ij,b}^{(\eta)}(T)$ exhaust the modeled integral; otherwise the complement power must be added explicitly. At finite width, $T_t$ labels a band around a reference root rather than a single causal hit. A fold or overlapping support requires its own partition and event treatment. Each entry retains transmitter identity, polarity, emission time or band, the transmitter-side factor $D_t=c_f-\hat{\mathbf r}_t\cdot\mathbf V_j(T_t)$, the acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ in the zero-width simple-root limit, inactive-domain coverage, and memory-edge contributions. Here $\hat{\mathbf r}_t$ points from emission to reception. Complete coverage and refinement require an independent root check; scalar summation alone establishes neither. The work-integral route then reconstructs the compatible causal-history interaction entry by
 $$
 U_{b,\mathrm{work}}^{(\eta)}(T)
 =

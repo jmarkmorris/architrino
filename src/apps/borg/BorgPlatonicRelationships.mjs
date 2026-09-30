@@ -1,3 +1,4 @@
+import { researchSourceLocation } from "../../documentation/ResearchSourceLocations.mjs";
 export const BORG_PLATONIC_RELATIONSHIP_SCHEMA = "borg-platonic-relationship-assignments.v1";
 export const BORG_PLATONIC_RELATIONSHIP_VALUES = Object.freeze([
   "exact-vertex-set",
@@ -73,14 +74,14 @@ async function sha256Text(value, cryptoLike) {
 }
 
 export async function loadBorgPlatonicRelationships({ fetchLike, identity,
-  assignmentsUrl = "./reference/priorities/braid-program/configurations/borg-platonic-relationship-assignments.v1.json",
+  assignmentsUrl = "./reference/priorities/master-equation-closure/braid-program/configurations/borg-platonic-relationship-assignments.v1.json",
   cryptoLike = globalThis.crypto } = {}) {
   try {
     if (typeof fetchLike !== "function") throw new Error("Platonic relationship loading requires fetch().");
     const response = await fetchLike(assignmentsUrl);
     if (!response?.ok) throw new Error(`Platonic relationship fetch failed (${response?.status ?? "no response"}).`);
     const assignments = validateBorgPlatonicRelationshipAssignments(await response.json());
-    const sourceResponse = await fetchLike(`./${assignments.source}`);
+    const sourceResponse = await fetchLike(`./${researchSourceLocation(assignments.source)}`);
     if (!sourceResponse?.ok) throw new Error(`Platonic relationship source fetch failed (${sourceResponse?.status ?? "no response"}).`);
     return describeBorgPlatonicRelationships(identity, assignments, { sourceSha256: await sha256Text(await sourceResponse.text(), cryptoLike) });
   } catch (error) {

@@ -1,3 +1,4 @@
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -108,7 +109,7 @@ export function deriveReference({ progress = () => {} } = {}) {
   const results = [];
   progress({ status: "started", candidateCount: 16, samplesPerRow: Number(N) + 1 });
   for (const binding of bindings) {
-    const target = realpathSync(path.resolve(ROOT, binding.path));
+    const target = realpathSync(resolveResearchSourcePath(ROOT, binding.path));
     if (!target.startsWith(`${ROOT}${path.sep}`)) {
       throw new Error(`invalid source binding ${binding.id}`);
     }
@@ -183,7 +184,7 @@ export function deriveReference({ progress = () => {} } = {}) {
     if (!passed) break;
   }
   for (const binding of bindings) {
-    if (sha(readFileSync(path.join(ROOT, binding.path))) !== binding.sha256) throw new Error("midrun source drift");
+    if (sha(readFileSync(resolveResearchSourcePath(ROOT, binding.path))) !== binding.sha256) throw new Error("midrun source drift");
   }
   if (sha(readFileSync(instrumentPath)) !== sha(instrumentBytes)) throw new Error("midrun reference drift");
   const elapsedSeconds = (Date.now() - started) / 1000;

@@ -19,7 +19,7 @@ import mpmath as mp
 
 ROOT = Path(__file__).resolve().parents[2]
 RELEASE_SOURCE = ROOT / "scripts/eom/prepare-planar-three-binary-circular-release.mjs"
-SCALAR_THEOREM_EVIDENCE = ROOT / "reference/priorities/braid-program/evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md"
+SCALAR_THEOREM_EVIDENCE = ROOT / "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-29-planar-three-binary-circular-balance-ladder.md"
 
 HISTORICAL_SCALAR_RECEIPT_SHA256 = "fd83e4ea68aace450fc945e410182177c048be05a592608a865e14bc93e463af"
 

@@ -9,7 +9,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RING_RAW_DIRECTORY = ".local-data/braid-analysis/retained-evidence/planar-co-rotating-rings";
 const RING_BASENAME = "2026-08-29-planar-co-rotating-n-n-circular-balance";
 const RING_RECEIPT =
-  "reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.receipt.v1.json";
+  "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.receipt.v1.json";
 const PHOTON_RAW =
   ".local-data/braid-analysis/retained-evidence/photon/helical-self-hit-phase-lock-sweep.v1.json";
 const PHOTON_RECEIPT =
@@ -17,11 +17,11 @@ const PHOTON_RECEIPT =
 const ORTHOGONAL_RAW =
   ".local-data/braid-analysis/retained-evidence/orthogonal-plane-weave/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json";
 const ORTHOGONAL_RECEIPT =
-  "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.receipt.v1.json";
+  "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.receipt.v1.json";
 const RING_TWELVE_RAW =
   ".local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/2026-08-29-planar-co-rotating-12-12-alternating.v1.json";
 const RING_TWELVE_RECEIPT =
-  "reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-12-12-alternating.receipt.v1.json";
+  "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-29-planar-co-rotating-12-12-alternating.receipt.v1.json";
 
 function parseArguments(argv) {
   const modes = argv.filter((argument) => argument === "--write" || argument === "--check");
@@ -214,7 +214,7 @@ function buildOrthogonalReceipt() {
       retention: "ignored-local-analytical-storage",
       path: raw.relativePath,
       historicalRepositoryPath:
-        "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
+        "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
       sha256: raw.sha256,
       byteCount: raw.byteCount,
       lineCount: raw.lineCount,
@@ -288,7 +288,7 @@ function buildRingTwelveReceipt() {
       retention: "ignored-local-analytical-storage",
       path: raw.relativePath,
       historicalRepositoryPath:
-        "reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-12-12-alternating.v1.json",
+        "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-29-planar-co-rotating-12-12-alternating.v1.json",
       sha256: raw.sha256,
       byteCount: raw.byteCount,
       lineCount: raw.lineCount,

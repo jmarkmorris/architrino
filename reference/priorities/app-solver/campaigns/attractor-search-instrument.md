@@ -5,7 +5,7 @@
 - Parent: [EOM](../priorities.md)
 - Status: `accepted-for-bounded-campaign-use`
 - Claim level: `priority-design`
-- Scientific campaign owner: [Braid Program](../../braid-program/priorities.md)
+- Scientific campaign owner: [Braid Program](../../master-equation-closure/braid-program/priorities.md)
 - Instrument history: [Attractor-Search Instrument Work Log](./attractor-search-work-log.md)
 
 ## Purpose

@@ -172,7 +172,7 @@ test("every available source declares one stable worldline per individual consti
 
 test("the legacy migration receipt reports dense preservation-only parity", () => {
   const receipt = JSON.parse(readFileSync(new URL(
-    "../reference/priorities/braid-program/evidence/prescribed-assembly-v2-migration-parity.v1.json",
+    "../reference/priorities/master-equation-closure/braid-program/evidence/prescribed-assembly-v2-migration-parity.v1.json",
     import.meta.url,
   )));
   assert.equal(receipt.instrument.grade, "measured");
@@ -204,7 +204,7 @@ test("the exact-source producer delegates position and velocity to each declared
 test("centered five-coordinate worldlines reproduce the exact owner", () => {
   const fixture = {
     spec: JSON.parse(readFileSync(new URL(
-      "../reference/priorities/braid-program/configurations/centered-five-coordinate-linear-history.v3.json",
+      "../reference/priorities/master-equation-closure/braid-program/configurations/centered-five-coordinate-linear-history.v3.json",
       import.meta.url,
     ), "utf8")),
   };

@@ -164,11 +164,30 @@ def validate_frames(data: bytes, *, path_keys: tuple[int, ...], frame_count: int
     return frames
 
 
+def _research_source_path(logical, root=None):
+    """Locate moved Braid bytes; preserve the caller's historical binding path.
+
+    Kept self-contained because this source executes from a captured closure.
+    No new import, source inventory entry, or historical hash is substituted.
+    """
+    logical = Path(logical)
+    root = Path(root) if root is not None else Path(__file__).absolute().parents[2]
+    prefix = root / 'reference/priorities/braid-program'
+    try:
+        suffix = logical.relative_to(prefix)
+    except ValueError:
+        return logical
+    if logical != Path(os.path.abspath(logical)):
+        raise ValueError('noncanonical logical source path')
+    return root / 'reference/priorities/master-equation-closure/braid-program' / suffix
+
+
 def read_bound(path: Path, expected_hash: str):
-    original = path.read_bytes()
+    physical = _research_source_path(path)
+    original = physical.read_bytes()
     digest = sha256(original).hexdigest()
     _require(digest == expected_hash, f"scientific artifact digest mismatch: {path}")
-    return original, {"path": str(path), "realPath": str(path.resolve()),
+    return original, {"path": str(path), "realPath": str(physical.resolve()),
                       "sha256": digest, "bytes": len(original)}
 
 

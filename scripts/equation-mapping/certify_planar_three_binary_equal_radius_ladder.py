@@ -24,9 +24,9 @@ import mpmath.libmp.libmpi as libmpi
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CONFIGURATION_OWNER = ROOT / "reference/priorities/braid-program/configurations"
+CONFIGURATION_OWNER = ROOT / "reference/priorities/master-equation-closure/braid-program/configurations"
 SCALAR_THEOREM_EVIDENCE = ROOT / (
-    "reference/priorities/braid-program/evidence/"
+    "reference/priorities/master-equation-closure/braid-program/evidence/"
     "2026-08-29-planar-three-binary-circular-balance-ladder.md"
 )
 CONFIGURATION_PATTERN = "equal-radius-planar-three-binary-balance-beta-*.v3.json"

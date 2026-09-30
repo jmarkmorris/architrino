@@ -11,7 +11,7 @@
 - Exact equation and score owner: [Equation Mapping](../priorities.md)
 - Independent benchmark owner: [Mapping Benchmarks](../../mapping-benchmarks/priorities.md)
 - Retained-geometry and dynamics owners: Braid Program, Master Equation Closure, Photon Closure, Standard Model Closure, and the EOM solver
-- Candidate adjudication owner: [Braid Candidate Requirement Adjudication](../../braid-program/analysis/braid-candidate-requirement-adjudication.md)
+- Candidate adjudication owner: [Braid Candidate Requirement Adjudication](../../master-equation-closure/braid-program/analysis/braid-candidate-requirement-adjudication.md)
 
 ## Purpose
 
@@ -80,7 +80,7 @@ Plainly: state what every successful geometry must produce before proposing what
 
 ## Theory-Layer Boundary
 
-The canonical architrino velocity domain is unbounded: finite speeds below, at, and above $c_f$ are admitted. The [universal H3 requirement](../../braid-program/analysis/braid-candidate-requirement-adjudication.md#velocity-domain-and-instrument-scope) concerns complete partner- and self-root inventories and valid causal-event continuation, not a member-speed ceiling. Strict sub-field bounds in the seed constructions, proofs, and bounded releases below are hypotheses of those specific methods. Historical speed stops, margins, and negative results retain that scope; they neither reject every faster history nor certify an unevaluated continuation. A separately versioned capped model would require explicit adoption, which the [field-speed-ceiling compatibility decision](../../dormant-deferred/field-speed-ceiling/decisions/field-speed-ceiling-compatibility-decision.md) does not provide.
+The canonical architrino velocity domain is unbounded: finite speeds below, at, and above $c_f$ are admitted. The [universal H3 requirement](../../master-equation-closure/braid-program/analysis/braid-candidate-requirement-adjudication.md#velocity-domain-and-instrument-scope) concerns complete partner- and self-root inventories and valid causal-event continuation, not a member-speed ceiling. Strict sub-field bounds in the seed constructions, proofs, and bounded releases below are hypotheses of those specific methods. Historical speed stops, margins, and negative results retain that scope; they neither reject every faster history nor certify an unevaluated continuation. A separately versioned capped model would require explicit adoption, which the [field-speed-ceiling compatibility decision](../../master-equation-closure/field-speed-ceiling/decisions/field-speed-ceiling-compatibility-decision.md) does not provide.
 
 Plainly: a calculation that stops at its speed guard has reached the limit of that calculation, not an established speed limit of nature.
 
@@ -2645,7 +2645,7 @@ Claim grade: the listed functional rows are inferred from the accumulated deduce
 
 #### Intersection With The Admitted Braid Charts
 
-The [Braid Program configuration chart](../../braid-program/configurations/configuration-chart.md) already contains partial realizations of the blueprint. None is presently a retained branch, and none carries the complete fermion record. Their value here is to identify which coordinates can be reused and which extensions would be genuinely new.
+The [Braid Program configuration chart](../../master-equation-closure/braid-program/configurations/configuration-chart.md) already contains partial realizations of the blueprint. None is presently a retained branch, and none carries the complete fermion record. Their value here is to identify which coordinates can be reused and which extensions would be genuinely new.
 
 | Existing chart | Blueprint rows naturally represented | Missing or collapsed rows | Disposition for fermion search |
 | --- | --- | --- | --- |
@@ -9612,7 +9612,7 @@ Plainly: improve what the search records now, use the new constraints to avoid b
 
 ## Ownership And Non-Advancement Boundary
 
-This Equation Mapping packet owns the cross-row inference method, requirement statements, candidate realization register, and same-record braid-role map under the [Shared Equation And Mapping Architecture](../../mapping/contracts/mapping-method.md). The Braid Program owns [candidate adjudication](../../braid-program/analysis/braid-candidate-requirement-adjudication.md), focused candidate geometry, and dynamical evidence; Mapping Electromagnetism consumes the electromagnetic requirements without owning the general method. This file does not own or alter:
+This Equation Mapping packet owns the cross-row inference method, requirement statements, candidate realization register, and same-record braid-role map under the [Shared Equation And Mapping Architecture](../../mapping/contracts/mapping-method.md). The Braid Program owns [candidate adjudication](../../master-equation-closure/braid-program/analysis/braid-candidate-requirement-adjudication.md), focused candidate geometry, and dynamical evidence; Mapping Electromagnetism consumes the electromagnetic requirements without owning the general method. This file does not own or alter:
 
 - equation maturity scores or accepted evidence decisions;
 - benchmark provenance or covariance;
@@ -9691,9 +9691,9 @@ Plainly: this packet narrows the search and makes the proof obligations explicit
 
 ## 2026-08-26 Braid Evaluation Dispositions
 
-This section preserves the dated campaign's dispositions, not the current hard-gate frontier. The [current candidate-level overlay](../../braid-program/analysis/braid-candidate-requirement-adjudication.md#candidate-level-outcome) incorporates the separately accepted prescribed H3 evidence for the revised phase-varying display representative geometry and all sixteen declared sub-field braid-coordinate rows without advancing H4, H5, retention or physical claims.
+This section preserves the dated campaign's dispositions, not the current hard-gate frontier. The [current candidate-level overlay](../../master-equation-closure/braid-program/analysis/braid-candidate-requirement-adjudication.md#candidate-level-outcome) incorporates the separately accepted prescribed H3 evidence for the revised phase-varying display representative geometry and all sixteen declared sub-field braid-coordinate rows without advancing H4, H5, retention or physical claims.
 
-The [all-candidate evaluation campaign](../../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) assigns `STASIS` to F1--F4 at their incomplete `H1` charts, `DEMOTED` only to the phase-varying display representative common-cadence circular realization at its exact `H2` obstruction, `STASIS` to parent-only F6, `DEMOTED` to the scoped-negative circular control circular realization at its measured `H4` member-acceleration failure, and `STASIS` to asymmetric counter-breathing representative at `H5`. The distinct revised phase-varying display representative creative geometry is active at `H1/H2 P[D/M]`. Both six-accessory continuations remain in stasis behind `ACC1` because no named base braid passes `H5`.
+The [all-candidate evaluation campaign](../../master-equation-closure/braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) assigns `STASIS` to F1--F4 at their incomplete `H1` charts, `DEMOTED` only to the phase-varying display representative common-cadence circular realization at its exact `H2` obstruction, `STASIS` to parent-only F6, `DEMOTED` to the scoped-negative circular control circular realization at its measured `H4` member-acceleration failure, and `STASIS` to asymmetric counter-breathing representative at `H5`. The distinct revised phase-varying display representative creative geometry is active at `H1/H2 P[D/M]`. Both six-accessory continuations remain in stasis behind `ACC1` because no named base braid passes `H5`.
 
 The coincident-axis three-binary charts and six current two-component circular charts also remain in `STASIS` at `H2`. Their exact `R1/R2` capability passes and failures do not adjudicate a universal hard gate. Superseded two-component circular records remain ineligible for the current exact identities.
 
@@ -9701,7 +9701,7 @@ Plainly: the seed comparisons still narrow what each geometry can attempt, but o
 
 ## Current Concrete Pass And Blocker
 
-The requirement-mining pass now covers electric, magnetic, induction, radiation, moment, holonomy, material, multiplet covariance, additive provenance labels, cross-sector geometry, and accessory placement relative to a retained braid. The electric field-identity matrix, magnetic source--sea--receiver reduction, weak-response skew lemma, cross-sector framed causal-history bundle, multiplet-orbit test, accessory-placement and braid-response requirements, ranked summary, and [candidate-by-requirement adjudication](../../braid-program/analysis/braid-candidate-requirement-adjudication.md) are all present at report grade. The adjudication covers every active registry row without converting unknowns into failures or introducing a weighted physical score. The six residual recommendations each have an owner or explicit prerequisite.
+The requirement-mining pass now covers electric, magnetic, induction, radiation, moment, holonomy, material, multiplet covariance, additive provenance labels, cross-sector geometry, and accessory placement relative to a retained braid. The electric field-identity matrix, magnetic source--sea--receiver reduction, weak-response skew lemma, cross-sector framed causal-history bundle, multiplet-orbit test, accessory-placement and braid-response requirements, ranked summary, and [candidate-by-requirement adjudication](../../master-equation-closure/braid-program/analysis/braid-candidate-requirement-adjudication.md) are all present at report grade. The adjudication covers every active registry row without converting unknowns into failures or introducing a weighted physical score. The six residual recommendations each have an owner or explicit prerequisite.
 
 The fixed-law continuation instrument also evaluates a signed weak regime and its first native geometric transition while keeping pair capture and backreaction fail-closed. Its prescribed fixture is `candidate_only`; it is an implementation check, not physical electromagnetic evidence.
 

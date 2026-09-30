@@ -1,3 +1,4 @@
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -22,7 +23,7 @@ try {
   const instrumentBindings = instrumentPaths.map((relative) => ({ path: relative, sha256: sha(readFileSync(path.join(ROOT, relative))) }));
   const results = [];
   for (const row of reference.results) {
-    const bytes = readFileSync(path.join(ROOT, row.sourcePath));
+    const bytes = readFileSync(resolveResearchSourcePath(ROOT, row.sourcePath));
     if (sha(bytes) !== row.sourceSha256) throw new Error(`source drift: ${row.id}`);
     const source = JSON.parse(bytes.toString(), (_key, value, context) => typeof value === "number" ? context.source : value);
     const byId = new Map(source.worldlines.map((member) => [member.constituentId, member]));
@@ -35,7 +36,7 @@ try {
   }
   for (const binding of [{ path: REFERENCE, sha256: REFERENCE_SHA }, ...instrumentBindings,
     ...results.map((row) => ({ path: row.sourcePath, sha256: row.sourceSha256 }))]) {
-    if (sha(readFileSync(path.join(ROOT, binding.path))) !== binding.sha256) throw new Error("midrun binding drift");
+    if (sha(readFileSync(resolveResearchSourcePath(ROOT, binding.path))) !== binding.sha256) throw new Error("midrun binding drift");
   }
   const result = { schema: "braid-program/subfield-circular-history-construction-budget.v1", accepted: results.every((row) => row.accepted),
     authority: "conditional-construction-budget-only", actualCarrierValidated: false, h3EvidenceEligible: false,

@@ -210,6 +210,24 @@ def _members(values):
     return tuple(sorted(values, key=lambda m: m.name)), index, raw
 
 
+def _research_source_path(logical, root=None):
+    """Locate moved Braid bytes; preserve the caller's historical binding path.
+
+    Kept self-contained because this source executes from a captured closure.
+    No new import, source inventory entry, or historical hash is substituted.
+    """
+    logical = Path(logical)
+    root = Path(root) if root is not None else Path(__file__).absolute().parents[2]
+    prefix = root / 'reference/priorities/braid-program'
+    try:
+        suffix = logical.relative_to(prefix)
+    except ValueError:
+        return logical
+    if logical != Path(os.path.abspath(logical)):
+        raise ValueError('noncanonical logical source path')
+    return root / 'reference/priorities/master-equation-closure/braid-program' / suffix
+
+
 def inventory_members(raw, *, expected_sha256, root):
     """Decode only an externally pinned expectations inventory, never a package.
 
@@ -243,7 +261,7 @@ def inventory_members(raw, *, expected_sha256, root):
             role = entry['role']
             members.append(ExpectedMember(entry['memberName'], role,
                                           None if role == 'acceptanceOwner' else parent['parentIndex'],
-                                          b, str(root / physical), identity))
+                                          b, str(_research_source_path(root / physical, root)), identity))
     _require((len(members) == inventory['observedEligiblePhysicalCount'] == 28) and (sum(m.original.bytes for m in members) == inventory['observedEligibleBytes']), 'inventory census')
     return _members(tuple(members))[0]
 
@@ -264,7 +282,7 @@ class _Control:
 class _Captured:
     def __init__(self, binding, control, expected_identity=None):
         self.binding = _binding(binding)
-        self.path = _path(binding.path)
+        self.path = _research_source_path(_path(binding.path))
         self.control = control
         self.fd = None
         control.check('capture', path=binding.path)

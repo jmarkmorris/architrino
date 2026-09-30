@@ -4,6 +4,8 @@ This file is the canonical control surface for the overall `reference/priorities
 
 The pre-split monolith is retained in Git history rather than as a live priority document.
 
+Current owner discovery includes the research children declared by [Master-Equation Closure](../master-equation-closure/workstreams.json). Field-speed-ceiling is dormant and excluded from current ranking; a deferred scientific target in a current owner remains deferred. The [migration record](campaigns/configuration-research-ownership-map.md#9-execution-evidence-and-limits) preserves existing task identities and numerical scores.
+
 The [proposed advancement sequence for Master-Equation Closure and the Braid Program](brainstorming.md#advancing-master-equation-closure-and-the-braid-program--2026-09-14) targets the next physically decisive feedback event and a current diagnosis of the binary history-error barrier. It preserves the ranking and existing acceptance boundaries; the proposal does not dispatch either campaign.
 
 ## Scoring System
@@ -39,7 +41,7 @@ The audit preserves component scores for unchanged marginal objects, removes eig
 ## Operator Discussion Queue
 
 - **[`app-solver`](../app-solver/priorities.md) — [EOM-013](../app-solver/work-queue.md#eom-013--safety-zone-speed-and-accuracy-assessment), discussion-scoped.** Assess a numerical safety or exclusion zone around each architrino: potential simulation speed gains, accuracy loss on zone entry, and an operational boundary/response definition. Any changed interaction or trajectory rule requires an explicit EOM contract decision and a declared boundary for Braid Program consumers; no implementation, physical exclusion radius, or ranking change is approved.
-- **[Collinear research](../collinear-research/priorities.md), organizational separation.** Encounters along one line now have their own current account. BP-001 remains the mixed-geometry Braid Program campaign. Shared equation questions belong to Master-Equation Closure; circular and braid applications belong to the Braid Program. The [former ceiling investigation](../dormant-deferred/field-speed-ceiling/README.md) is historical. Existing scientific status and ranked winners are unchanged.
+- **[Collinear research](../master-equation-closure/collinear-research/priorities.md), organizational separation.** Encounters along one line now have their own current account. BP-001 remains the mixed-geometry Braid Program campaign. Shared equation questions belong to Master-Equation Closure; circular and braid applications belong to the Braid Program. The [former ceiling investigation](../master-equation-closure/field-speed-ceiling/README.md) is historical. Existing scientific status and ranked winners are unchanged.
 
 ## Current Scoring Review — 2026-09-14
 
@@ -75,9 +77,9 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | Rank | Kind | Slug or packet | Bucket #1 next unresolved evidence object | Base | Cascade | MinDelta | Pressure | Engine | Eureka | EWeight | Value | Exec | Intuition | Deps | Valid | Cost | ROI |
 | ---: | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 1 | Workstream | [`master-equation-closure`](../master-equation-closure/priorities.md) | `causal_wake_update_law`: one independently evolving wake state with declared causal updates and a regular transmitter-side reduction | 10.0 | 1.70 | -56 | 1.56 | 1.45 | 9 | 1.40 | 53.84 | 6 | 6 | 5 | 7 | 6.0 | 8.97 |
-| 2 | Program | [`braid-program`](../braid-program/priorities.md) | `binary_subfield_fate`: Campaign 1 opposite-polarity binary fate packet | 10.0 | 1.75 | -56 | 1.56 | 1.35 | 10 | 1.50 | 55.28 | 7 | 7 | 8 | 9 | 7.6 | 7.27 |
+| 2 | Program | [`braid-program`](../master-equation-closure/braid-program/priorities.md) | `binary_subfield_fate`: Campaign 1 opposite-polarity binary fate packet | 10.0 | 1.75 | -56 | 1.56 | 1.35 | 10 | 1.50 | 55.28 | 7 | 7 | 8 | 9 | 7.6 | 7.27 |
 | 3 | Shared packet | [`transfer-operator-basin-measure`](../mapping-quantum/analysis/transfer-operator-basin-measure.md) | Explicit transfer operator and invariant measure on one persistent accepted assembly state | 9.0 | 1.70 | -56 | 1.56 | 0.90 | 9 | 1.40 | 30.07 | 5 | 7 | 5 | 7 | 6.1 | 4.93 |
-| 4 | Shared packet | [`pressure-dependent-noether-sea-constitutive-response`](../master-equation-closure/analysis/pressure-dependent-noether-sea-constitutive-response.md) | `pressure_dependent_noether_sea_constitutive_response/v0` on one accepted transmitter-side branch with causal wake accounts | 8.8 | 1.50 | -45 | 1.45 | 0.95 | 8 | 1.30 | 23.64 | 4 | 5 | 5 | 5 | 4.8 | 4.93 |
+| 4 | Workstream | [`noether-sea-research`](../master-equation-closure/noether-sea-research/priorities.md) | `pressure_dependent_noether_sea_constitutive_response/v0` on one accepted transmitter-side branch with causal wake accounts | 8.8 | 1.50 | -45 | 1.45 | 0.95 | 8 | 1.30 | 23.64 | 4 | 5 | 5 | 5 | 4.8 | 4.93 |
 | 5 | Workstream | [`mapping-equations`](../mapping-equations/priorities.md) | `lorentz_envelope_closure`: source-backed positive-width `S_eq` retained-domain carrier | 8.5 | 1.50 | -45 | 1.45 | 0.85 | 8 | 1.30 | 20.43 | 5 | 5 | 5 | 6 | 5.2 | 3.93 |
 | 6 | Workstream | [`mapping-standard-model`](../mapping-standard-model/priorities.md) | `quark_mass_predictions`: first geometry-derived row without observed-mass fitting | 8.5 | 1.30 | -56 | 1.56 | 0.95 | 8 | 1.30 | 21.29 | 6 | 6 | 6 | 7 | 6.2 | 3.43 |
 | 7 | Shared packet | `exposure-quotient-theorem` | One accepted branch-to-sector exposure quotient with a null-sector bound | 9.5 | 1.65 | -45 | 1.45 | 0.35 | 6 | 1.10 | 8.75 | 4 | 4 | 4 | 5 | 4.2 | 2.08 |

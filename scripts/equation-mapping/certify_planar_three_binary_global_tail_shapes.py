@@ -24,15 +24,15 @@ import flint
 
 ROOT = Path(__file__).resolve().parents[2]
 GLOBAL_TAIL_SOURCE = ROOT / (
-    "reference/priorities/braid-program/evidence/"
+    "reference/priorities/master-equation-closure/braid-program/evidence/"
     "2026-09-02-planar-three-binary-global-tail-calculus-reduction.md"
 )
 T200_SOURCE = ROOT / (
-    "reference/priorities/braid-program/evidence/"
+    "reference/priorities/master-equation-closure/braid-program/evidence/"
     "2026-09-01-planar-three-binary-t200-finite-ladder-certificate.md"
 )
 SCALAR_SOURCE = ROOT / (
-    "reference/priorities/braid-program/evidence/"
+    "reference/priorities/master-equation-closure/braid-program/evidence/"
     "2026-08-29-planar-three-binary-circular-balance-ladder.md"
 )
 

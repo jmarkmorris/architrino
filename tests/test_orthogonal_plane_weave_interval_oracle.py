@@ -21,12 +21,12 @@ PROTOCOL_PATH = (
 )
 RECEIPT_PATH = (
     REPO_ROOT
-    / "reference/priorities/braid-program/evidence/"
+    / "reference/priorities/master-equation-closure/braid-program/evidence/"
     "2026-08-29-orthogonal-plane-weave-fold-separated-interval.v1.json"
 )
 FROZEN_RECEIPT_PATH = (
     REPO_ROOT
-    / "reference/priorities/braid-program/evidence/"
+    / "reference/priorities/master-equation-closure/braid-program/evidence/"
     "2026-08-29-orthogonal-plane-weave-complete-cycle.receipt.v1.json"
 )
 

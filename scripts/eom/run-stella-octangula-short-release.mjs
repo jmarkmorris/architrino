@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 
 import { createHash } from "node:crypto";
 import {
@@ -23,7 +24,7 @@ const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const REPO_ROOT = path.resolve(path.dirname(SCRIPT_PATH), "../..");
 const DEFAULT_PREDECLARATION = path.resolve(
   REPO_ROOT,
-  "reference/priorities/braid-program/evidence/2026-09-01-stella-octangula-short-eom-release.predeclaration.v1.json",
+  "reference/priorities/master-equation-closure/braid-program/evidence/2026-09-01-stella-octangula-short-eom-release.predeclaration.v1.json",
 );
 const ALLOWED_OUTPUT_ROOT = path.resolve(REPO_ROOT, ".local-data/braid-analysis");
 
@@ -40,7 +41,7 @@ function canonical(value) {
 }
 
 function readBoundJson(filePath, maximumBytes = 16 * 1024 * 1024) {
-  const bytes = readFileSync(filePath);
+  const bytes = readFileSync(resolveResearchSourcePath(REPO_ROOT, filePath));
   check(bytes.length <= maximumBytes, `bounded JSON input exceeded: ${filePath}`);
   return { bytes, sha256: sha256(bytes), value: JSON.parse(bytes.toString("utf8")) };
 }
@@ -59,7 +60,7 @@ function bindingMap(declaration) {
 
 function authenticateBindings(declaration) {
   for (const binding of declaration.bindings) {
-    const absolute = path.resolve(REPO_ROOT, binding.path);
+    const absolute = resolveResearchSourcePath(REPO_ROOT, binding.path);
     const bytes = readFileSync(absolute);
     check(bytes.length === binding.bytes, `binding byte count changed: ${binding.role}`);
     check(sha256(bytes) === binding.sha256, `binding SHA-256 changed: ${binding.role}`);
@@ -348,9 +349,9 @@ async function main() {
   check(sha256(readFileSync(binaryPath)) === binaryBinding.sha256,
     "invoked EOM executable hash differs from predeclaration");
   const sourceBinding = bindings.get("static-assembly-source");
-  const staticSpec = readBoundJson(path.resolve(REPO_ROOT, sourceBinding.path)).value;
+  const staticSpec = readBoundJson(resolveResearchSourcePath(REPO_ROOT, sourceBinding.path)).value;
   const releasePacketBinding = bindings.get("stationary-release-packet");
-  const releasePacket = readBoundJson(path.resolve(REPO_ROOT, releasePacketBinding.path)).value;
+  const releasePacket = readBoundJson(resolveResearchSourcePath(REPO_ROOT, releasePacketBinding.path)).value;
   check(releasePacket.verdict === "passed", "stationary release packet did not pass");
   check(releasePacket.resultHash === declaration.stationaryReleaseResultHash,
     "stationary release result hash differs from predeclaration");

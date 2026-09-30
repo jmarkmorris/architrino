@@ -1,3 +1,4 @@
+import { researchSourceLocation } from "../../documentation/ResearchSourceLocations.mjs";
 export const BORG_SCIENTIFIC_STATUS_SCHEMA = "borg-scientific-status-projection.v1";
 
 const SHA256 = /^[a-f0-9]{64}$/;
@@ -209,14 +210,14 @@ async function sha256Text(value, cryptoLike) {
 }
 
 export async function loadBorgScientificStatus({ fetchLike, coordinates, identity,
-  projectionUrl = "./reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json",
+  projectionUrl = "./reference/priorities/master-equation-closure/braid-program/contracts/braid-candidate-adjudication-projection.v1.json",
   cryptoLike = globalThis.crypto } = {}) {
   try {
     if (typeof fetchLike !== "function") throw new Error("projection loading requires fetch()");
     const projectionResponse = await fetchLike(projectionUrl);
     if (!projectionResponse?.ok) throw new Error(`projection fetch failed (${projectionResponse?.status ?? "no response"})`);
     const projection = validateBorgScientificStatusProjection(await projectionResponse.json());
-    const sourceResponse = await fetchLike(`./${projection.source}`);
+    const sourceResponse = await fetchLike(`./${researchSourceLocation(projection.source)}`);
     if (!sourceResponse?.ok) throw new Error(`adjudication source fetch failed (${sourceResponse?.status ?? "no response"})`);
     const sourceText = await sourceResponse.text();
     const sourceSha256 = await sha256Text(sourceText, cryptoLike);
@@ -224,7 +225,7 @@ export async function loadBorgScientificStatus({ fetchLike, coordinates, identit
     const brokenEvidenceLinks = [];
     const links = new Set([provisional.current, ...provisional.context].filter(Boolean).flatMap((relation) => relation.evidenceLinks.map((link) => link.url)));
     for (const evidenceUrl of links) {
-      const response = await fetchLike(`./${evidenceUrl.split("#")[0]}`);
+      const response = await fetchLike(`./${researchSourceLocation(evidenceUrl.split("#")[0])}`);
       if (!response?.ok) brokenEvidenceLinks.push(evidenceUrl);
     }
     return describeBorgScientificStatus(coordinates, identity, projection, { sourceText, sourceSha256, brokenEvidenceLinks });

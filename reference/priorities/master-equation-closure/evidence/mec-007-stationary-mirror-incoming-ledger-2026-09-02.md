@@ -2,7 +2,7 @@
 
 ## Scope and disposition
 
-This record completes the bounded incoming verification required by [MEC-007](../../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md) for the stationary separated-at-rest, mirror-symmetric, opposite-polarity pair at normalized wake speed $c_f=1$. It supplies the complete partner-and-self root census, regular margins through the first receiver event $u=1$, signed relative-acceleration integral, total variation, refinement record, and an independent overlap check against the EOM solver frontier fixture. It supplies no post-threshold history or boundary value.
+This record completes the bounded incoming verification required by [MEC-007](../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md) for the stationary separated-at-rest, mirror-symmetric, opposite-polarity pair at normalized wake speed $c_f=1$. It supplies the complete partner-and-self root census, regular margins through the first receiver event $u=1$, signed relative-acceleration integral, total variation, refinement record, and an independent overlap check against the EOM solver frontier fixture. It supplies no post-threshold history or boundary value.
 
 Disposition: `Complete` at MEC-007's declared priority scope. The unchanged sharp-law post-threshold branch remains `Not advanced` because the newborn self-root acceleration measure is not locally finite.
 

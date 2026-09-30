@@ -321,110 +321,17 @@ Equal instantaneous velocities cancel the group row and drive relative motion; o
 
 The full moment burden is stricter than a nonzero raw loop moment. A retained ordered frame, a nontrivial double-cover lift with the appropriate $4\pi$ restoration, an angular-momentum account, leading $g$ behavior, anomalous residuals, Zeeman splitting, and gradient-dependent discrete outcomes must agree on one record. A reflected shape return after a half-cycle, or a current that reverses at that return, is not by itself fermionic spin restoration. Shielded-source phase shifts further require a history-dependent transport account; a primitive vector potential cannot substitute for that derivation. Material domains, hysteresis, Hall response, screening, and critical behavior also require material and boundary records rather than an undeclared change to the ambient sea law.
 
-## 6. Cubic backgrounds: exact facts and finite failures
+## 6. Cubic backgrounds and their electromagnetic limits
 
-### 6.1. Stationary inversion cancellation
+The [lattice account](../master-equation-closure/lattice-research/manuscript.md#2-cubic-backgrounds-exact-facts-and-finite-failures) develops stationary inversion cancellation, copied-cell incompatibility, cubic anisotropy and the recorded finite moving-background failures. Inversion-paired stationary contributions cancel under the stated convention; that identity is not an absolute-convergence theorem, a moving-medium solution or a stability result. Cubic rank-two isotropy leaves higher-order directional structure, so it cannot by itself establish isotropic propagation or observer Lorentz behavior.
 
-The [cubic-lattice analysis](analysis/f6c-cubic-lattice.md) contains an exact stationary identity. Let sites be $\mathbf X_g=dLg$ for integer triples $g$, invertible fixed $L$, lattice scale $d>0$, and checkerboard polarity. A displacement $n$ and its inverse $-n$ have the same polarity-product factor $\sigma(n)$. With stationary paths, the causal root has delay $d\|Ln\|/c_f$. In normalized units $c_f=1$, the transmitter factor is $D_t=1$ and the dimensionless acceleration contribution has the form
+An electromagnetic recovery must consume an actual admitted background with controlled exterior histories and physical receiver assemblies. It cannot linearize about a prescribed path whose memberwise acceleration equation has failed, or infer an infinite-population limit from two finite crops. The detailed mathematical and numerical conditions remain with the [cubic-lattice analysis](../master-equation-closure/lattice-research/analysis/f6c-cubic-lattice.md).
 
-$$
-\frac{\mathbf A_n}{a_0}
-=-\sigma(n)\frac{Ln}{\|Ln\|^3},
-\qquad
-\mathbf A_n+\mathbf A_{-n}=0.
-$$
+## 7. Adaptive geometry and the medium-response dependency
 
-Here $a_0$ absorbs the fixed dimensional coefficient and lattice scale. Any inversion-paired finite sum cancels. The corresponding inversion-ordered infinite construction is conditionally organized; it is not an absolute-convergence theorem. The cancellation survives a homogeneous invertible affine deformation $L$. Its derivative with respect to homogeneous strain consequently vanishes in this stationary construction, but that says nothing by itself about a nonuniform elastic modulus, moving-site stability, or a closed finite environment.
+The [adaptive geometry account](../master-equation-closure/lattice-research/manuscript.md#3-adaptive-geometry-and-a-retained-medium) distinguishes local path estimators, persistent identities, neighbor changes, continuous history return and physical directional readouts. Center, radius, phase and strain descriptions supply kinematics; they introduce no lattice bonds, stiffness or constitutive law. Neighbor selection does not truncate causal interactions.
 
-The retained source reports a structural audit of 192 stationary ledgers and 105,600 rows with exact cancellation, tamper negatives, and a separately authored high-precision comparison. Those are historical instrument results. They do not establish a moving periodic sea, and no new execution is represented here.
-
-### 6.2. Why isolated cells and copied circles differ
-
-Equal positive and negative tetrahedral center sets at $\pm h\mathbf n_i$ form the eight vertices of a cube with side $d=2h/\sqrt3$. These are track centers, not moving members when the orbit radius is nonzero. The cube is the convex hull of the vertices; the tetrahedra are not filled matter occupying the intervening volume.
-
-An isolated frozen eight-vertex cube has an inward acceleration coefficient
-
-$$
-\frac{3\sqrt6}{8}-\frac{1+3\sqrt3}{4}
-\simeq-0.630479452.
-$$
-
-The exterior checkerboard changes this acceleration ledger. Isolated-cube contraction therefore does not refute the stationary infinite cancellation identity, nor does that identity bind the isolated cube.
-
-Copying the same moving cell into adjacent cubes introduces a different obstruction: a shared vertex is assigned four distinct unoriented normal planes. A nonzero circle cannot lie in all four required planes; the common circular cell-copy limit collapses to zero orbit radius. A site-indexed orientation pattern is another construction and remains logically separate from this no-go result.
-
-The global-plane antiphase pattern has a two-site primitive cell under the even-parity translation lattice, although an orthogonal description uses a $2\times2\times2$ cell. A nonzero circle in one fixed plane at a fixed site cannot possess full cubic point symmetry there. Multiple site orientations, permutations, or time-dependent symmetries require their own analysis.
-
-### 6.3. Rank-two isotropy does not remove directional dispersion
-
-Cubic symmetry forces an invariant rank-two tensor to be proportional to the identity. It also permits the fourth-order invariant
-
-$$
-I_4(\hat{\mathbf k})=\hat k_x^4+\hat k_y^4+\hat k_z^4,
-$$
-
-whose values on $[100]$, $[110]$, and $[111]$ are $1$, $1/2$, and $1/3$. A vector response can involve fourth-rank coefficients even in a quadratic wavevector term. Thus isotropic second orientation moments neither prove propagation isotropy nor recover observer Lorentz behavior. Physical clock and ruler assemblies must participate in the readout. Linearization also requires an actual background solution; a spectrum around a rejected prescribed orbit has no stability interpretation for that orbit.
-
-### 6.4. Three bounded negative results
-
-The moving-seed evidence distinguishes three experiments, all in normalized wake-speed units:
-
-| Prescribed construction | Recorded comparison | Scope of the negative |
-| --- | --- | --- |
-| Eight-site open population, one global circular plane; $d=1$, orbit radius $0.05$, angular cadence $1$ | Evolution through $T=0.1$ had complete recorded roots and positive clearance, but symmetry leakage grew from about $1.28\times10^{-5}$ at $T=0.01$ to $1.27\times10^{-3}$ at $T=0.1$, above $10^{-8}$ | Rejects the prescribed symmetry as an invariant continuation in this finite experiment; no full-period nonreturn conclusion |
-| Rigid global-plane release, side lengths $2,4,6$ with the central eight-site core compared | Normalized release-mismatch intervals were approximately $[0.2556023163,0.2556023470]$, $[0.0087010690,0.0087012283]$, and $[0.0044355249,0.0044358262]$ | The finite exterior suppresses the mismatch, but every tested level remains above $10^{-8}$; no infinite-tail estimate or evolved return |
-| Site-local tetrahedral orientation pattern, side lengths $2,4,6$ | Certified release-mismatch lower bounds were $0.2680958096$, $0.2450927240$, and $0.2450927240$, with 50,816 complete ordered roots over the ladder | Rejects the stated site-local circular histories on the tested finite ladder; exact rank-two orientation balance does not repair the memberwise acceleration mismatch |
-
-The first experiment reached maximum recorded speed about $0.06815$ and minimum recorded separation about $0.89836$; its failure was not inferred from a collision. The rigid-ladder suppression factors, approximately $29.38$ and $1.96$, describe finite comparisons, not a convergent infinite correction. The [site-local audit](evidence/adaptive-cubic-site-local-release-ladder-audit-2026-08-25.json) retains the exact intervals and root counts. None of these rows rejects every adaptive cubic organization or establishes a material propagation law.
-
-Finite open crops, exact periodic all-image constructions, replicated finite ladders, receiver-centered exhaustion, and screened-cell constructions have different boundary obligations. Agreement between two finite sizes is not an infinite-tail proof. A screened tail requires a derived screening estimate, not a declared omission of the exterior.
-
-## 7. Adaptive geometry and a retained medium
-
-### 7.1. Local kinematics without lattice bonds
-
-The [adaptive cubic contract](analysis/adaptive-cubic-medium-kinematics-and-ledger-contract.md) replaces immutable cell copies with identity-labeled local geometry. A candidate chart writes a member path as
-
-$$
-\mathbf X_g(T)=\mathbf Y_g(T)
-+\rho_g(T)\bigl[\mathbf p_g(T)\cos\theta_g(T)
-+\mathbf q_g(T)\sin\theta_g(T)\bigr]
-+\mathbf e_g(T),
-$$
-
-with an orthonormal local plane basis, radius and phase, center, and residual. These are estimators of a path record. Persistent site labels preserve provenance; they do not pin members to space or add bonds to the law. Plane-basis and phase changes can be chart gauge. When the estimator loses the required rank or exceeds its error floor, the chart is unavailable rather than physically singular by definition.
-
-A midpoint $[\mathbf X(T)+\mathbf X(T-P/2)]/2$ can estimate a circular center if an appropriate period $P$ is already supported. Choosing $P$ does not establish periodicity. Likewise, common and differential displacements of separately normalized positive and negative sectors are kinematic observables. Naming them gravitational and electric fields would require additional response derivations.
-
-Local neighbor geometry defines a deformation gradient $F$ and the finite strain
-
-$$
-E=\frac12(F^TF-I).
-$$
-
-A rigid proper rotation gives $E=0$, an exact kinematic check. The antisymmetric part $(F-F^T)/2$ is not the finite polar-decomposition rotation. Neither construction supplies a stiffness, energy density, or elastic constitutive law.
-
-### 7.2. Neighborhood identity, return, and reorganization
-
-Suppose distance enclosures distinguish six local neighbors from every omitted candidate. A positive separation between the largest upper bound among the six and the smallest lower bound among the omitted distances certifies the neighbor identities within those enclosures. It does not truncate causal interactions at the sixth neighbor. Rank changes require persistent identities, reciprocal edge changes, a bracket or dwell record distinguishing the change from an unresolved instantaneous rank tie, and continued root and account provenance. A kinematically admissible swap is not yet a retained physical reorganization.
-
-Continuous history return compares position and velocity over an entire window, not a scalar crossing or a few stored frames. In a declared frame convention, typical return quantities are
-
-$$
-D_X=\sup_{T\in W}\|\mathbf X(T+P)-\mathbf X(T)\|,
-\qquad
-D_V=\sup_{T\in W}\|\mathbf V(T+P)-\mathbf V(T)\|.
-$$
-
-Piecewise polynomial histories require extrema and error enclosures on every interval. An independent verifier is needed for a certified conclusion. Return alone is not transverse stability, and neither implies response isotropy. After a disturbance, elastic return, persistent excitation, retained reorganization, and failure are separate outcomes.
-
-The [background audit](evidence/adaptive-cubic-background-o0-audit-2026-08-25.json) did not reach this return question. Its usable history was only $[-2,0.1]$ while the candidate period was $2\pi$; even an antipodal sample at the initial event would require an earlier history. It also lacked a closed exterior and an independent continuous-return certificate. Root completeness, speed, clearance, and use of the EOM solver did not remove those gaps. The adaptive background was blocked, and physical receiver and directional-response comparisons were not run. Missing comparisons are not negative physical measurements.
-
-### 7.3. Directional response needs a physical readout
-
-An even-sided tetrahedral parity pattern can have orientation second moment exactly $I/3$ while retaining higher-order structure. A fourth orientation diagnostic measures that structure, but it is still an orientation statistic. Propagation along $[100]$, $[110]$, and $[111]$ would require an accepted background, controlled boundaries, physical receiver assemblies, one fixed readout, and refinement. Those three directions can falsify isotropy when they disagree; their agreement alone does not establish isotropy over every direction.
-
-This hierarchy prevents a path-acceleration diagnostic from being promoted to a clock measurement. It also explains why a candidate with good static symmetry but a failed memberwise release equation cannot be used as the background for a claimed stability or wave result.
+The shared sea response belongs to [Noether sea research](../master-equation-closure/noether-sea-research/manuscript.md). Electromagnetic projection remains here: an accepted background, controlled boundaries and one fixed physical readout must support a directional comparison. Agreement on a few directions cannot establish isotropy over all directions, and an unavailable comparison is not a negative physical measurement.
 
 ## 8. Inverse assembly constraints and their limits
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -18,7 +19,7 @@ const protocolPath =
   "src/action-analysis/protocols/" +
   "coincident-midpoint-common-frequency-minimum-delayed-action-provider-protocol.v1.json";
 const defaultSummaryPath =
-  "reference/priorities/braid-program/evidence/" +
+  "reference/priorities/master-equation-closure/braid-program/evidence/" +
   "coincident-midpoint-common-frequency-minimum-delayed-action-provider-summary.v1.json";
 
 function parseArguments(argv) {
@@ -38,7 +39,7 @@ function parseArguments(argv) {
 
 async function readJson(relativePath) {
   return JSON.parse(await readFile(
-    path.resolve(repositoryRoot, relativePath),
+    resolveResearchSourcePath(repositoryRoot, relativePath),
     "utf8",
   ));
 }

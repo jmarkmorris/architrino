@@ -1,3 +1,4 @@
+import { researchSourceLocation } from "../src/documentation/ResearchSourceLocations.mjs";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
@@ -19,7 +20,7 @@ import {
 } from "../src/apps/braid-search/BraidSearchData.js";
 
 function readJson(relativePath) {
-  return JSON.parse(readFileSync(new URL(`../${relativePath}`, import.meta.url)));
+  return JSON.parse(readFileSync(new URL(`../${researchSourceLocation(relativePath)}`, import.meta.url)));
 }
 
 const FIRST_ASSEMBLY_ID = "asm-0153fdc7276d1a064d8794a423bd775b";
@@ -260,7 +261,7 @@ test("evidence index covers every current Borg identity without a compact export
     "reference/priorities/app-borg/contracts/assembly-registry.v1.json",
   );
   const projection = readJson(
-    "reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json",
+    "reference/priorities/master-equation-closure/braid-program/contracts/braid-candidate-adjudication-projection.v1.json",
   );
   const campaignRegistry = readJson(
     "src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v2.json",

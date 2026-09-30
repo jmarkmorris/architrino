@@ -88,7 +88,7 @@ function recordFixture(overrides = {}) {
       claimGrade: "evolved-record",
       evidenceStatus: "executable_architecture_evidence",
       generatingSpec:
-        "reference/priorities/braid-program/campaigns/future-neutral-twelve-worldline.md",
+        "reference/priorities/master-equation-closure/braid-program/campaigns/future-neutral-twelve-worldline.md",
       date: "2026-07-24",
     },
     window: {

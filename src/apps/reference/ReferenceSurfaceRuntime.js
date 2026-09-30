@@ -13,6 +13,7 @@
 // directly from the working tree served by the local dev server.
 
 import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
+import { resolveResearchDocumentLink } from "../../documentation/ResearchSourceLocations.mjs";
 
 const MANIFEST_PATH = "./content/generated/reference/reference-surface.v1.json";
 
@@ -257,19 +258,14 @@ export function createReferenceSurfaceRuntime({
   }
 
   function rewriteInternalLinks(container, documentPath) {
-    const baseSegments = documentPath.split("/").slice(0, -1);
     for (const anchor of container.querySelectorAll("a[href]")) {
       const href = anchor.getAttribute("href");
       if (!href || /^[a-z]+:/iu.test(href) || href.startsWith("#")) continue;
       const [rawPath, fragment] = href.split("#");
       if (!rawPath.endsWith(".md")) continue;
-      const segments = [...baseSegments];
-      for (const part of rawPath.split("/")) {
-        if (part === "." || part === "") continue;
-        if (part === "..") segments.pop();
-        else segments.push(part);
-      }
-      const resolved = segments.join("/");
+      const target = resolveResearchDocumentLink(documentPath, href);
+      if (!target) continue;
+      const resolved = target.path;
       if (fileIndex.has(resolved)) {
         anchor.setAttribute("href", `#/doc/${encodeURIComponent(resolved)}`);
         anchor.classList.add("reference-internal-link");

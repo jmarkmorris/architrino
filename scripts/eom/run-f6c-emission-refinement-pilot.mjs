@@ -79,6 +79,11 @@ export function decode(bytes,limit=FILE_LIMIT) {
   const value=item(0);space();check(at===text.length,'trailing JSON bytes');return value;
 }
 export function readBound(filename,expected,collect=false,limit=collect?FILE_LIMIT:1024**3,live=()=>{}) {
+  // Captured modules cannot add an undeclared import. Route physical bytes only.
+  check(typeof filename==='string'&&path.isAbsolute(filename)&&path.resolve(filename)===filename,'canonical absolute logical input');
+  const logicalFilename=filename;
+  const braidPrefix=path.join(process.cwd(),'reference/priorities/braid-program')+path.sep;
+  if(typeof filename==='string'&&filename.startsWith(braidPrefix))filename=path.join(process.cwd(),'reference/priorities/master-equation-closure/braid-program',filename.slice(braidPrefix.length));
   check(typeof filename==='string'&&path.isAbsolute(filename)&&path.resolve(filename)===filename,'canonical absolute input');
   check(expected===undefined||hash(expected),'expected hash');live();check(realpathSync(filename)===filename,'symlink input');
   const fd=openSync(filename,constants.O_RDONLY|constants.O_NONBLOCK|(constants.O_NOFOLLOW??0));
@@ -86,7 +91,7 @@ export function readBound(filename,expected,collect=false,limit=collect?FILE_LIM
     const digest=createHash('sha256'),buffer=Buffer.alloc(65536),chunks=[];let count=0;
     while(count<Number(before.size)){live();const n=readSync(fd,buffer,0,Math.min(buffer.length,Number(before.size)-count),count);check(n>0,'truncated input');count+=n;digest.update(buffer.subarray(0,n));if(collect)chunks.push(Buffer.from(buffer.subarray(0,n)));}
     const value=digest.digest('hex');check(identity(before)===identity(fstatSync(fd,{bigint:true}))&&identity(before)===identity(lstatSync(filename,{bigint:true}))&&realpathSync(filename)===filename&&(!expected||value===expected),'changed input/hash: '+filename);live();
-    return {path:filename,sha256:value,bytes:count,...(collect?{data:Buffer.concat(chunks)}:{})};
+    return {path:logicalFilename,sha256:value,bytes:count,...(collect?{data:Buffer.concat(chunks)}:{})};
   }finally{closeSync(fd);}
 }
 function checkOperationalBindings(items,live=()=>{}) {return items.map(b=>{const actual=readBound(b.path,b.sha256,false,b.path.endsWith('.json')||b.path.endsWith('.ndjson')?FILE_LIMIT:1024**3,live);check(b.bytes===undefined||actual.bytes===b.bytes,'binding byte count');return clean(actual);});}

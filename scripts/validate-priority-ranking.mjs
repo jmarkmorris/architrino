@@ -3,6 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { discoverPriorityWorkstreams } from "./lib/priority-workstreams.mjs";
 
 // Repository root from this file's location, not the working directory, so the
 // script behaves the same when a session is rooted above the repository.
@@ -12,7 +13,6 @@ const RANKING_PATH = path.join(
   "reference/priorities/aaa-work-threads/priorities.md"
 );
 const PRIORITIES_DIR = path.join(ROOT_DIR, "reference/priorities");
-const PRIORITY_COMPATIBILITY_DIRECTORIES = new Set(["app-simulation"]);
 const LEGACY_TASK_HEADING =
   /^##+ (Task Queue|Immediate Priority Queue|Open Work Queue|Detailed Task Inventory|Ranked Next Objects|Next Actions|Recommended Build Order|Candidate Discussion Prompts|Implementation Tickets|Release Gates)\s*$/m;
 
@@ -54,17 +54,15 @@ if (!fs.existsSync(RANKING_PATH)) {
   process.exit(1);
 }
 
-const activeOwnerDirectories = fs
-  .readdirSync(PRIORITIES_DIR, { withFileTypes: true })
-  .filter(
-    (entry) =>
-      entry.isDirectory() &&
-      entry.name !== "dormant-deferred" &&
-      !PRIORITY_COMPATIBILITY_DIRECTORIES.has(entry.name) &&
-      fs.existsSync(path.join(PRIORITIES_DIR, entry.name, "priorities.md"))
-  )
-  .map((entry) => entry.name)
-  .sort();
+let activeOwnerDirectories;
+try {
+  activeOwnerDirectories = discoverPriorityWorkstreams(PRIORITIES_DIR)
+    .filter((owner) => owner.lifecycle === "current")
+    .map((owner) => owner.directory);
+} catch (error) {
+  fail(error.message);
+  process.exit(1);
+}
 
 for (const owner of activeOwnerDirectories) {
   const ownerDirectory = path.join(PRIORITIES_DIR, owner);
@@ -231,10 +229,15 @@ for (let index = 0; index < rows.length; index += 1) {
 }
 
 for (const row of rows) {
-  const trackerMatch = row.slug.match(/\]\(\.\.\/([^/]+)\/priorities\.md\)/);
+  const trackerMatch = row.slug.match(/\]\((\.\.\/[^)#]+\/priorities\.md)(?:#[^)]*)?\)/);
   if (!trackerMatch) continue;
-  const trackerPath = path.join(ROOT_DIR, "reference/priorities", trackerMatch[1], "priorities.md");
-  const queuePath = path.join(ROOT_DIR, "reference/priorities", trackerMatch[1], "work-queue.md");
+  const trackerPath = path.resolve(path.dirname(RANKING_PATH), trackerMatch[1]);
+  const owner = path.relative(PRIORITIES_DIR, path.dirname(trackerPath)).split(path.sep).join("/");
+  if (!activeOwnerDirectories.includes(owner)) {
+    fail(`rank ${row.rank} does not name a current declared owner: ${trackerMatch[1]}`);
+    continue;
+  }
+  const queuePath = path.join(path.dirname(trackerPath), "work-queue.md");
   if (!fs.existsSync(trackerPath)) {
     fail(`rank ${row.rank} points to missing tracker ${path.relative(ROOT_DIR, trackerPath)}`);
     continue;

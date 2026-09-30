@@ -7,13 +7,13 @@
 // src/apps/reference/ are listed in the static-site builder's internal developer
 // harness paths, so nothing here can reach a Pages deployment.
 //
-// Default scope is three directory levels below the reference root, which
-// measured 939 of 1,084 markdown files on 2026-09-03. Pass --depth N to change
-// it; --depth 5 captures everything currently present.
+// Four levels include the analysis directories of research nested below a
+// priority parent. Pass --depth N to select another traversal depth.
 
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { readWorkstreamChildren } from "./lib/priority-workstreams.mjs";
 
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 // Surface roots, each walked independently and presented as a top-level folder
@@ -25,7 +25,7 @@ const SURFACE_ROOTS = [
 ];
 const OUTPUT_PATH = "content/generated/reference/reference-surface.v1.json";
 const SCHEMA = "architrino/reference-surface.v1";
-const DEFAULT_MAX_DEPTH = 3;
+const DEFAULT_MAX_DEPTH = 4;
 
 function humanize(name) {
   return name
@@ -81,12 +81,16 @@ function walk(relativeDir, depth, maxDepth) {
 
   const dirs = [];
   if (depth < maxDepth) {
+    const childLifecycles = new Map(readWorkstreamChildren(path.join(ROOT_DIR, relativeDir))
+      .map((child) => [child.directory, child.lifecycle]));
     const childNames = entries
       .filter((entry) => entry.isDirectory() && !entry.name.startsWith("."))
       .map((entry) => entry.name)
       .sort();
     for (const name of childNames) {
       const child = walk(`${relativeDir}/${name}`, depth + 1, maxDepth);
+      if (childLifecycles.has(name)) child.lifecycle = childLifecycles.get(name);
+      if (child.lifecycle === "dormant") child.name += " (dormant)";
       if (child.fileCount) dirs.push(child);
     }
   }

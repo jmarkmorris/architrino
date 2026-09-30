@@ -354,12 +354,31 @@ def _stat_identity(info):
     return info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns
 
 
+def _research_source_path(logical, root=None):
+    """Locate moved Braid bytes; preserve the caller's historical binding path.
+
+    Kept self-contained because this source executes from a captured closure.
+    No new import, source inventory entry, or historical hash is substituted.
+    """
+    logical = Path(logical)
+    root = Path(root) if root is not None else Path(__file__).absolute().parents[2]
+    prefix = root / 'reference/priorities/braid-program'
+    try:
+        suffix = logical.relative_to(prefix)
+    except ValueError:
+        return logical
+    if logical != Path(os.path.abspath(logical)):
+        raise ValueError('noncanonical logical source path')
+    return root / 'reference/priorities/master-equation-closure/braid-program' / suffix
+
+
 class BoundFile:
     def __init__(self, path, limit):
         self.path, self.limit, self.fd = Path(path).absolute(), limit, None
+        self.physical_path = _research_source_path(self.path)
 
     def __enter__(self):
-        self.fd = os.open(self.path, os.O_RDONLY | os.O_NONBLOCK | getattr(os, "O_NOFOLLOW", 0))
+        self.fd = os.open(self.physical_path, os.O_RDONLY | os.O_NONBLOCK | getattr(os, "O_NOFOLLOW", 0))
         try:
             info = os.fstat(self.fd)
             require(stat.S_ISREG(info.st_mode), "input must be a regular file")
@@ -388,7 +407,7 @@ class BoundFile:
 
     def _check_identity(self):
         require(_stat_identity(os.fstat(self.fd)) == self.identity, "open input changed")
-        info = os.stat(self.path, follow_symlinks=False)
+        info = os.stat(self.physical_path, follow_symlinks=False)
         require((stat.S_ISREG(info.st_mode)) and (_stat_identity(info) == self.identity),
                 "input pathname replaced or changed")
 

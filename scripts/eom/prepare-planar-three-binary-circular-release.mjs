@@ -113,7 +113,7 @@ export function makePrepared(handoff, rung) {
   allocations.finiteWidth=JSON.parse(JSON.stringify(allocations.finiteWidth));
   const canonical=canonicalStringify(allocations), presetId=allocations.presetId;
   return prepareOrdinaryEvolutionRequest({ candidateId:B13_RELEASE.candidateId, releaseTime:'0', historyCoverageStart:B13_RELEASE.historyStart,
-    historyEvidence:[{role:'balanced-locus',path:'reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.md',sha256:sha256(readFileSync(resolve(ROOT,'reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.md')))}],
+    historyEvidence:[{role:'balanced-locus',path:'reference/priorities/master-equation-closure/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.md',sha256:sha256(readFileSync(resolve(ROOT,'reference/priorities/master-equation-closure/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.md')))}],
     histories:handoff.members.map(({pathId,sourceHistoryId,sourceFingerprint,polarity,segments})=>({pathId,sourceHistoryId,sourceFingerprint,polarity,segments})),
     settings:{runId:presetId,endTime:B13_RELEASE.period,strength:{effectiveStrength:'1',chargeMagnitude:'1',coupling:'1'},
       numericalControls:{initialStep:rung.initialStep,minimumStep:rung.minimumStep,maximumStep:rung.maximumStep,useAdaptiveStepGrowth:false,rootTolerance:rung.rootTolerance,accelerationTolerance:rung.accelerationTolerance,farFieldEnclosureFraction:'0',positionTolerance:rung.positionTolerance,velocityTolerance:rung.velocityTolerance,correctionTolerance:rung.correctionTolerance,threadCount:8},

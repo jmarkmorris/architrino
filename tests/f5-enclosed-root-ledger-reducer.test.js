@@ -773,6 +773,7 @@ test("executed original reducer has no adapter, operator, EOM, or enclosure-inst
     "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs"), "utf8");
   const imports = [...source.matchAll(/^import .*$/gmu)].map((match) => match[0]);
   assert.deepEqual(imports, [
+    'import { resolveResearchSourcePath } from "../documentation/ResearchSourcePaths.mjs";',
     'import { createHash } from "node:crypto";',
     'import { readFileSync, realpathSync, writeFileSync } from "node:fs";',
     'import path from "node:path";',

@@ -31,6 +31,12 @@ The recurring editorial task is not merely lexical replacement. It is ontologica
 
 A standing instance of this rule: the $\mathbb{A}\mathbb{A}\mathbb{A}$ primitive dynamical law is the **acceleration law** — architrinos carry no primitive mass, so `force law` never names the substrate law (see [Architrino](../foundations/architrino.md)). `Force law` remains correct at the observer/comparison layer and in historical prose: the effective Lorentz-force law as a recovery target, Newtonian and MOND-class comparison frameworks, and lists of emergent effective closures. Contrast sentences that deny substrate status should say "not a substrate-level law" rather than "not a substrate force law," which would imply the category exists.
 
+## Master Equation and Auxiliary Approximations
+
+Use **Master Equation** for the postulated architrino acceleration law. Its name identifies the causal-root law on its admitted domain. Qualify an auxiliary construction according to its role: **auxiliary regularized equation**, **finite-width approximation**, or **regularized kernel**. A result for that construction applies to the Master Equation only with the required approximation or recovery argument.
+
+When discussing a limit, identify the regulator being removed and the quantity or property whose convergence is claimed. Use **zero-width limit** for removal of causal-surface smoothing; state removal of a spatial core regulator separately when one is present. Preserve separation, transversality, history coverage, and continuation conditions. A limit of acceleration evaluated on a fixed history does not by itself establish convergence of evolved histories or continuation through a singular event.
+
 ## Canon Maintenance Rule
 
 Treat terminology maintenance as a theory-protective cleanup discipline, not as a search for literary variation.

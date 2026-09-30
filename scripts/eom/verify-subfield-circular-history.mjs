@@ -1,3 +1,4 @@
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 import { createHash, randomUUID } from "node:crypto";
 import { closeSync, constants, fstatSync, fsyncSync, openSync, readSync, readFileSync, writeFileSync } from "node:fs";
 import { CIRCULAR_ERROR_CONTRACT, certifyCircularSegment, circularCarrierDomain, formatCircularBound, parseCircularToken } from "../../src/prescribed-path-analysis/CircularHistoryConformance.mjs";
@@ -58,7 +59,7 @@ function captureProofSnapshot() {
     ...SUBFIELD_CIRCULAR_FROZEN_BINDINGS.filter((binding) => ["circular-core", "integer-primitive"].includes(binding.id)),
     { id: "whole-manifest-verifier", path: SELF },
   ].map((binding) => {
-    const url = pathToFileURL(path.join(ROOT, binding.path)).href;
+    const url = pathToFileURL(resolveResearchSourcePath(ROOT, binding.path)).href;
     const bytes = readRegularBytes(fileURLToPath(url));
     const digest = sha(bytes);
     if (binding.sha256 && digest !== binding.sha256) reject(`bound bytes changed: ${binding.id}`);
@@ -127,7 +128,7 @@ function originalJson(bytes, exactNumbers = false) {
 }
 
 function readBound(binding) {
-  const bytes = readRegularBytes(path.join(ROOT, binding.path));
+  const bytes = readRegularBytes(resolveResearchSourcePath(ROOT, binding.path));
   if (sha(bytes) !== binding.sha256) reject(`bound bytes changed: ${binding.id ?? binding.path}`);
   return bytes;
 }

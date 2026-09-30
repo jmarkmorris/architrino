@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { resolveResearchSourcePath } from "../../src/documentation/ResearchSourcePaths.mjs";
 
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -19,7 +20,7 @@ function sha256Bytes(bytes) {
 
 function readBoundJson(path) {
   const absolutePath = resolve(path);
-  const bytes = readFileSync(absolutePath);
+  const bytes = readFileSync(resolveResearchSourcePath(process.cwd(), absolutePath));
   return { absolutePath, bytes, sha256: sha256Bytes(bytes), document: JSON.parse(bytes) };
 }
 
@@ -31,7 +32,7 @@ function writeNewJson(path, document) {
 }
 
 function sourceBinding(path) {
-  const bytes = readFileSync(path);
+  const bytes = readFileSync(resolveResearchSourcePath(process.cwd(), path));
   return { path, bytes: bytes.length, sha256: sha256Bytes(bytes) };
 }
 

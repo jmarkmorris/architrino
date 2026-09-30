@@ -16,9 +16,9 @@ The following inventory excludes the new manuscript, coverage and independently 
 
 | Original source | Lines | Bytes | Reading status | Main destination |
 | --- | ---: | ---: | --- | --- |
-| [Adaptive kinematics and ledger contract](adaptive-cubic-medium-kinematics-and-ledger-contract.md) | 478 | 32805 | Full, fresh | §§6.4, 7 |
+| [Adaptive kinematics and ledger contract](../../master-equation-closure/lattice-research/analysis/adaptive-cubic-medium-kinematics-and-ledger-contract.md) | 478 | 32805 | Full, fresh | §§6.4, 7 |
 | [Multi-receiver electric response](e0-e4-multi-receiver-electric-response.md) | 327 | 19870 | Full, fresh | §4 |
-| [Cubic lattice](f6c-cubic-lattice.md) | 664 | 61119 | Full, fresh | §§6–7 |
+| [Cubic lattice](../../master-equation-closure/lattice-research/analysis/f6c-cubic-lattice.md) | 664 | 61119 | Full, fresh | §§6–7 |
 | [Fine-structure coupling](fine-structure.md) | 734 | 52937 | Full, fresh | §9 |
 | [Fixed-law continuation](fixed-law-source-continuation.md) | 220 | 10619 | Full, fresh | §10 |
 | [Brainstorming](../brainstorming.md) | 93 | 10162 | Full, fresh | §§1–3, 5 |

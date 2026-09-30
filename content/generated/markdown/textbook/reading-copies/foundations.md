@@ -4137,7 +4137,11 @@ with positive and negative values selecting opposite sides once an orientation h
 
 The two live in different places. Coordinate handedness is a property of the chart — a label you assigned. **Dynamical chirality** is a property of the physical configuration, and would have to be an invariant of the retained branch record, surviving any smooth deformation that preserves the branch. A simulation may line the two signs up as a reporting convention, but a nonzero $V_{\mathrm{vol}}$ never implies that the assembly is chiral.
 
-Dynamical chirality is reserved for a handed marker carried by the assembly itself. Ordered precession, axial-frame exposure, reaction provenance, and braid handedness may all feed such a marker, but the deformation-stable object should be a topological invariant — for example a framed self-linking sign,
+Dynamical chirality is reserved for a handed marker carried by the assembly itself. Ordered precession, axial-frame exposure, reaction provenance, and braid handedness may all feed such a marker. One candidate for a deformation-stable marker is the self-linking sign of a **framed closed curve**.
+
+Start with a smooth closed curve $\gamma$ with no self-intersections and a nonzero tangent everywhere. A framing assigns a smoothly varying unit arrow perpendicular to the tangent at every point, returning to the same arrow after one circuit. Displacing each point a sufficiently small distance along its arrow gives a second closed curve $\gamma^{\mathrm{fr}}$, disjoint from the first. The narrow strip joining these curves is the mathematical picture called a *ribbon*. The displaced curve is an auxiliary construction; using it as a physical handedness marker requires the assembly's geometry and retained history to supply the framing and justify the closure.
+
+For these two curves, framed self-linking obeys
 
 $$
 Lk(\gamma,\gamma^{\mathrm{fr}})
@@ -4147,13 +4151,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b3e9e39386cbd52e)
 
-for the two disjoint edges of a closed, nonsingular framed ribbon. This is the Călugăreanu–White–Fuller relation: the integer linking number is the sum of geometric writhe and framing twist. Writhe and twist may change under a smooth ribbon deformation, while their sum remains fixed so long as the two edges remain disjoint and the framing stays regular. Dennis and Hannay give a geometric account in [*Geometry of Călugăreanu's theorem* (2005)](https://doi.org/10.1098/rspa.2005.1527). Linking between distinct closed worldline traces is a related invariant, but it must be defined on the actual retained closure.
+This is the Călugăreanu–White–Fuller relation. The integer linking number $Lk$ counts the signed linking of the curve and its displaced copy; writhe $\operatorname{Wr}$ measures the spatial coiling of the original curve, and twist $\operatorname{Tw}$ measures the rotation of the framing along it. Writhe and twist may change during a smooth deformation, while their sum remains fixed so long as both curves remain embedded and disjoint and the framing stays regular. Dennis and Hannay give a geometric account in [*Geometry of Călugăreanu's theorem* (2005)](https://doi.org/10.1098/rspa.2005.1527). Choosing a different framing can give a different self-linking number for the same original curve, so an arbitrary choice cannot establish physical chirality. Linking between distinct closed worldline traces is a related invariant, but it must be defined on the actual retained closure.
 
 If the branch record supplies a nonzero handed marker, a simulation may choose its coordinate convention so that $\operatorname{sgn}(V_{\mathrm{vol}})$ matches $\operatorname{sgn}(Lk)$. If the linking row is zero, uncomputed, or not protected under branch-preserving deformation, then coordinate parity is a reporting convention carrying no physical content.
 
-There is a real restriction on when this is available. The self-linking row is defined only on a closed return cycle or an explicitly closed, nonsingular framed trace. An open worldline carries no deformation-invariant writhe on its own, and a near self-hit or a fold crossing is exactly where the framing degenerates.
+There is a real restriction on when this is available. The self-linking row is defined only on a closed return cycle or an explicitly closed, nonsingular framed trace. An open worldline carries no deformation-invariant writhe on its own. A near self-hit or a causal-root fold requires the framing and retained closure to be checked separately; neither event by itself proves that the framed curve has become singular.
 
-So chirality is a regular-branch certificate: admissible where the retained roots and the frame have positive floors, including $\kappa_{\mathrm{hit}}>0$ on the relevant rows. A causal-root fold alone does not change $Lk$. The linking certificate can change only when the retained closure is replaced or when the ribbon passes through a collision, reconnection, or framing singularity; such an event is a physical branch transition rather than a coordinate convention.
+So chirality is a regular-branch certificate: admissible where the retained roots and the frame have positive floors, including $\kappa_{\mathrm{hit}}>0$ on the relevant rows. A causal-root fold alone does not change $Lk$. The linking certificate can change only when the retained closure or framing class is replaced, or when the curves pass through a collision, reconnection, or framing singularity. A change to the auxiliary construction alone does not establish a physical branch transition; that interpretation requires the assembly-derived framing and closure to track the physical configuration.
 
 ### Coordinate Frames Are Not Ontology
 

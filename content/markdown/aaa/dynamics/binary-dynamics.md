@@ -1909,15 +1909,15 @@ The numerical acceptance target is:
 
 > A finite-$\eta$ record with small EOM, period, balance, and frequency residuals, complete root coverage, positive smooth-chart floors, a numerical transverse spectral margin, and an independently checked energy account is a candidate for validation. To certify a nearby periodic binary, additionally prove an a posteriori existence result on the declared history space, with nonlinear error bounds and a validated return operator at that orbit. Local attraction then requires the verified transverse spectral bound or another applicable stability theorem. Small residuals alone do not supply these conclusions.
 
-No such existence-and-stability certificate is supplied here. A return map whose derivative is small at one approximate state need not have a fixed point. A suitable route is an enclosure on which a return or periodic-boundary operator satisfies a proved fixed-point theorem, with complete root exclusion and bounded nonlinear errors. The sharp limit, basin measure, and universal clock/matter interpretation remain separate obligations.
+No such existence-and-stability certificate is supplied here. A return map whose derivative is small at one approximate state need not have a fixed point. A suitable route is an enclosure on which a return or periodic-boundary operator satisfies a proved fixed-point theorem, with complete root exclusion and bounded nonlinear errors. The zero-width limit, basin measure, and universal clock/matter interpretation remain separate obligations.
 
 ## State Space and Well-Posedness of the Two-Body Delay System
 
 ### Introduction and Scope
 
-In first-order variables $\mathbf Z=(\mathbf X,\mathbf V)$, the sharp Master Equation is a state-dependent delay differential equation: its delayed arguments are selected by the evolving positions, while its highest derivative appears only at the current reception time. It is therefore not a neutral delay equation in this representation. A neutral classification would require delayed occurrences of the highest derivative, which the canonical acceleration law does not contain.
+In first-order variables $\mathbf Z=(\mathbf X,\mathbf V)$, the Master Equation is a state-dependent delay differential equation: its delayed arguments are selected by the evolving positions, while its highest derivative appears only at the current reception time. It is therefore not a neutral delay equation in this representation. A neutral classification would require delayed occurrences of the highest derivative, which the canonical acceleration law does not contain.
 
-Unlike an ordinary differential equation, whose state is a point in $\mathbb R^{6N}$, this system requires a segment of past positions and velocities. The classification matters because existence and uniqueness must be established on a history space, and because a smooth finite-width wake model and the sharp root-resolved equation have different regularity burdens.
+Unlike an ordinary differential equation, whose state is a point in $\mathbb R^{6N}$, this system requires a segment of past positions and velocities. The classification matters because existence and uniqueness must be established on a history space, and because a smooth finite-width wake model and the root-resolved Master Equation have different regularity burdens.
 
 ---
 
@@ -1941,7 +1941,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f157ade25feabdc3)
 
-The norm is the uniform norm on both components. Histories representing differentiable trajectories also satisfy the compatibility condition $d\mathbf X/dT=\mathbf V$ on smooth arcs. The finite-width integral below is naturally defined on $\mathcal H_0$; extracting and differentiating individual sharp roots generally requires a smoother history chart.
+The norm is the uniform norm on both components. Histories representing differentiable trajectories also satisfy the compatibility condition $d\mathbf X/dT=\mathbf V$ on smooth arcs. The finite-width integral below is naturally defined on $\mathcal H_0$; extracting and differentiating individual causal roots generally requires a smoother history chart.
 
 Finite impulses require a different limiting class. Bounded velocity and a uniform bound on $\int\|\mathbf A\|\,dT$ support bounded variation of velocity, not a uniform bound on its derivative. A candidate finite-window space for event limits is
 $$
@@ -1952,15 +1952,15 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-baba0dacd7bb9adf)
 
-Here $BV$ means finite total variation; its velocity derivative may be a finite measure with atoms representing impulses. For an integrable ordinary acceleration, velocity is absolutely continuous, a narrower class. For example, $A(T)=T^{-1/2}$ gives $V(T)=2\sqrt T$, which has finite impulse but is not Lipschitz at zero. A candidate sharp-limit statement must name its topology, such as uniform position convergence, $L^1$ velocity convergence, and weak convergence of acceleration measures under uniform variation bounds. It must also specify one-sided velocity evaluations at event times. These are a proposed solution framework, not a proved limit of the present kernel.
+Here $BV$ means finite total variation; its velocity derivative may be a finite measure with atoms representing impulses. For an integrable ordinary acceleration, velocity is absolutely continuous, a narrower class. For example, $A(T)=T^{-1/2}$ gives $V(T)=2\sqrt T$, which has finite impulse but is not Lipschitz at zero. A candidate zero-width limit statement must name its topology, such as uniform position convergence, $L^1$ velocity convergence, and weak convergence of acceleration measures under uniform variation bounds. It must also specify one-sided velocity evaluations at event times. These are a proposed solution framework, not a proved limit of the present kernel.
 
-Below, $\mathcal H$ denotes the stated chart. The fixed-width local theorem uses continuous histories $\mathcal H_0$. Sharp simple-root differentiation uses a compatible $C^1$ chart and roots strictly inside the retained interval. Event limits use the declared weaker class and event prescription; convergence in $W^{1,\infty}$ for the velocity is not inferred from finite impulse.
+Below, $\mathcal H$ denotes the stated chart. The fixed-width local theorem uses continuous histories $\mathcal H_0$. Differentiating simple causal roots uses a compatible $C^1$ chart and roots strictly inside the retained interval. Event limits use the declared weaker class and event prescription; convergence in $W^{1,\infty}$ for the velocity is not inferred from finite impulse.
 
 ---
 
 ### The Regularized Interaction Functional
 
-The sharp root map and the finite-width integral must be distinguished. Root differentiability is needed for the former, while the latter can be evaluated without extracting individual roots.
+The causal-root map and the finite-width integral must be distinguished. Root differentiability is needed for the former, while the latter can be evaluated without extracting individual roots.
 
 #### Definition 2 (Causal Constraint Functional)
 For receiver $i$ at reception time $T_r$ and transmitter $j$, let $\phi=(\phi_X,\phi_V)$ be a sufficiently smooth history. A **causal root** is a value $\Delta>0$ satisfying
@@ -2008,9 +2008,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e3a7f07a7a30e112)
 
-For an isolated simple root on which $\chi_{ij}=1$, sharp-delta collapse gives the canonical $c_f/|D_{t,ij}|$ weight. A sufficient condition for term-by-term recovery of the complete sharp acceleration is that the mask equals one at every contributing root and the omitted history contains no contributing roots. Under those conditions the mask is exact localization: removing a root-free near-zero interval does not remove a physical hit. A mask that attenuates an actual root changes that contribution. At positive $\eta$, root-free regions can still contribute to the integral, so recovering an unmasked finite-width calculation requires their contributions or explicit error bounds, including any omitted past tail. With fixed $\eta>0$, bounded $C^1$ masks and mollifier, and the stated support separation floor, the restricted integral is locally Lipschitz on $\mathcal H_0$ without extracting roots.
+For an isolated simple root on which $\chi_{ij}=1$, zero-width delta collapse gives the canonical $c_f/|D_{t,ij}|$ weight. A sufficient condition for term-by-term recovery of the complete Master Equation acceleration is that the mask equals one at every contributing root and the omitted history contains no contributing roots. Under those conditions the mask is exact localization: removing a root-free near-zero interval does not remove a physical hit. A mask that attenuates an actual root changes that contribution. At positive $\eta$, root-free regions can still contribute to the integral, so recovering an unmasked finite-width calculation requires their contributions or explicit error bounds, including any omitted past tail. With fixed $\eta>0$, bounded $C^1$ masks and mollifier, and the stated support separation floor, the restricted integral is locally Lipschitz on $\mathcal H_0$ without extracting roots.
 
-The following theorem proves local well-posedness of this auxiliary functional, not removal of its masks, finite memory, or finite width. A sharp-law recovery argument must establish the complete root sum and control the omitted contributions; matching the weight at one retained root is insufficient. Each simple root carries $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$. The same record carries $D_{r,ij}/D_{t,ij}$ for signed root playback, but that ratio does not multiply the instantaneous acceleration. No choice of mask supplies a self-coincidence continuation.
+The following theorem proves local well-posedness of this auxiliary functional, not removal of its masks, finite memory, or finite width. A Master Equation recovery argument must establish the complete root sum and control the omitted contributions; matching the weight at one retained root is insufficient. Each simple root carries $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$. The same record carries $D_{r,ij}/D_{t,ij}$ for signed root playback, but that ratio does not multiply the instantaneous acceleration. No choice of mask supplies a self-coincidence continuation.
 
 Passing from this continuous finite-width model to an event history requires uniform total-variation bounds, a convergent acceleration measure, and explicit root evaluation at event times. Finite impulse alone does not establish that limit or uniqueness in $\mathcal H_*$.
 
@@ -2069,7 +2069,7 @@ Here $\mathcal A^{(\eta)}$ collects the components from Definition 3.
 3. Finite summation and integration over $[-h,0]$ preserve local Lipschitz continuity; hence $\mathcal{G}$ is locally Lipschitz on an open subset of $\mathcal{H}_0$ containing $\phi^0$.
 4. The standard local existence and uniqueness result for a locally Lipschitz finite-delay functional differential equation then gives the claimed local solution and maximal continuation; the solution-manifold framework of [Walther (2003)](https://doi.org/10.1016/j.jde.2003.07.001) supplies a stronger smooth setting when compatibility and differentiability of the history functional are required.
 
-This proves the proposition only for the auxiliary finite-width, finite-window model with the declared support exclusions. It does not prove well-posedness of the sharp root-resolved Master Equation. $\square$
+This proves the proposition only for the auxiliary finite-width, finite-window model with the declared support exclusions. It does not prove well-posedness of the Master Equation. $\square$
 
 > Claim grade: derived, conditional on the stated finite-width, finite-window, smoothness, and separation-floor assumptions. Falsifier: exhibit two solutions from the same admissible history, or show that $\mathcal G$ is not locally Lipschitz on the stated neighborhood.
 
@@ -2077,16 +2077,16 @@ This proves the proposition only for the auxiliary finite-width, finite-window m
 
 ### Continuation Boundaries
 
-Local existence does not by itself imply global existence. For the finite-width model, continuation is available while the history remains bounded and stays inside an admissible neighborhood with a positive separation floor. For the sharp root-resolved equation, additional boundaries include loss of transversality, root accumulation, and unbounded active-root count.
+Local existence does not by itself imply global existence. For the finite-width model, continuation is available while the history remains bounded and stays inside an admissible neighborhood with a positive separation floor. For the root-resolved Master Equation, additional boundaries include loss of transversality, root accumulation, and unbounded active-root count.
 
-These are possible continuation failures, not an exhaustive theorem for the sharp theory:
+These are possible continuation failures, not an exhaustive theorem for the Master Equation:
 
 1. **Collision support:** the separation floor tends to zero on a retained channel.
 2. **Unbounded state:** position or speed leaves every bounded admissible set on a finite interval.
-3. **Sharp-branch fold:** $D_{t,ij}\to0$ for a root-resolved contribution. This is not a singularity of the fixed-$\eta$ integral itself, but it obstructs the simple-root reduction and may produce a singular sharp limit.
+3. **Causal-root fold:** $D_{t,ij}\to0$ for a root-resolved contribution. This is not a singularity of the fixed-$\eta$ integral itself, but it obstructs the simple-root reduction and may produce a singular zero-width limit.
 4. **Root accumulation or memory escape:** the active branch count becomes uncontrolled, or relevant wake support leaves the declared finite history window.
 
-> Claim grade: inferred for this list as the boundary atlas of the sharp binary equation. Falsifier: a certified sharp solution fails at finite time while all four controls remain uniformly bounded away from their stated boundaries.
+> Claim grade: inferred for this list as the boundary atlas of the binary Master Equation. Falsifier: a certified solution of the Master Equation fails at finite time while all four controls remain uniformly bounded away from their stated boundaries.
 
 ---
 

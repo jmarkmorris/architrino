@@ -1,0 +1,25 @@
+# OPS-031 — Hyde Periodic Table review — 2026-09-29
+
+**Disposition: no new actionable finding in the full chapter review.** This is report-only supporting-class coverage, not scientific acceptance of the proposed assembly mechanism. CRW-005 remains closed. No corpus, generated or shared control file was changed.
+
+## Scope and preserved versions
+
+The assigned supporting reservation covers [Hyde Periodic Table](../../../../content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md), all 219 lines, read with `cat`; `wc -l` supplies the extent. Its SHA-256 measured by `shasum -a 256` is `214b830c94f3ea9df46c2cfc4030cca2c0a40963033124c5cd172f4ab051b7df`. The [September 12 receipt](../../aaa-corpus-rewrite/evidence/crw-005-hyde-periodic-table-review-2026-09-12.md), SHA-256 `1be0d7969d5baa8b9f9affbdddc0bbcf9456d22558dd884ee6cf3e412d303a02`, supplies prior repair/no-change and source-verification scope; its scientific acceptance is not assumed from its existence.
+
+Startup used live AGENTS, generated router, review skill and its maintained owner, corpus reviewer, periodic-review procedure, theory orientation and About Architrino. Task-relevant nearby reads cover Atomic Structure's opening interface boundary, Statistics' effective antisymmetry and channel-specific geometry discussion, Master Equation's opening acceleration/history domain, Energy's opening mass/energy distinction and the mathematics-style symbol/layer requirements. Those dependency excerpts are not added to coverage. The two-chapter batch was explicitly assigned; the companion Molecular Geometry receipt carries two accepted-correction rechecks.
+
+## Independent checks and retained dispositions
+
+**Previously retained no-change passage, HY-02 display arithmetic:** the earlier receipt explicitly judged the two capacity equations correct and preserved them. Rechecking independently, a subshell with integer index $\ell\ge0$ has the declared effective comparison capacity $2(2\ell+1)$. Summing for $\ell=0,\ldots,n-1$ gives $2[n+2n(n-1)/2]=2n^2$. This is a finite-sum identity under stated standard-state premises, not a substrate derivation. The live chapter preserves that distinction. The third-shell capacity 18 versus third-period length eight remains a counterexample to identifying those two counts. This supports no change to the displayed arithmetic and its current explanation; a mismatching sum or a claim that it derives assembly packing would overturn the disposition.
+
+The [NIST configuration compilation](https://www.nist.gov/pml/atomic-reference-data-electronic-structure-calculations/atomic-reference-data-electronic-8), opened September 29 and inspected at its neutral K, Ca, Cr and Cu rows, supports the chapter's interleaving examples and chromium/copper assignments. These are observer-level comparisons, not evidence of the proposed physical map.
+
+The geometric claims remain honestly underdetermined: four directions can be coplanar or tetrahedral while retaining the same count, so neither four valence electrons nor the drawn axis establishes tetrahedral docking. An imposed eight-member outer tier cannot independently recover the number eight. The chapter explicitly states both limitations and requires full-history balance before stability. No new repair is warranted for those already corrected passages.
+
+The distinction between speed equality and transmitter degeneracy also survives: in normalized units $c_f=1$, a unit source velocity perpendicular to the unit reception direction gives $D_t=1$ rather than zero. A matching unit distance and unit delay can realize such a kinematic hit. This is an independent geometric counterexample, not an EOM solution. The chapter already uses the projected emission velocity and separates additional fold conditions.
+
+## Limits, owner obligations and schedule
+
+The historical chronology, protrusion story and attribution detail retain the September 12 receipt's explicit incomplete full-text verification. No fresh full-text historical audit or artwork pixel/property audit was performed, and no historical claim is newly certified. This remains a known source-support limit, not a demonstrated new historical error. Physical shell recovery, exchange/statistics, constitutive response and quantitative residual prediction are already declared open; this pass does not create duplicate obligations or treat a guessed mechanism as an error merely because it is incomplete.
+
+No model change or superiority assessment is claimed: the available same-lineage reviewer does not constitute independent scientific validation; the finite-sum derivation, geometric counterexamples and NIST data are the independent references for their stated checks. No review-duration or operator-burden measurement was taken. This one completed path advances only supporting-class coverage; parent retains the remaining cursor and March 13, 2027 class deadline. Triggered review remains due if a relevant accepted premise or credible defect changes. No broader coverage or repair campaign is inferred.

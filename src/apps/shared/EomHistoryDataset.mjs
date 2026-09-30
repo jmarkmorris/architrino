@@ -11,7 +11,7 @@
 // no interaction law, and no causal-root solving here, and none may be added.
 //
 // It also ingests `assembly-view-record.v0`, the braid-program viewer record
-// schema (finalized in reference/priorities/braid-program/campaigns/
+// schema (finalized in reference/priorities/master-equation-closure/braid-program/campaigns/
 // instrument-gate.md): `provenance` (engine, run id, claim grade), `window`,
 // `worldlines[]` (id, polarity, retained segments; optional display samples),
 // `events[]`. Retained segments are the authoritative state in both schemas;

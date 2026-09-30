@@ -108,7 +108,7 @@ const braidTemplates = [
     variant: "pro",
     populationRole: "sea-background",
     memberCount: 2,
-    geometryOwner: "reference/priorities/braid-program/pro-braid-geometry.md",
+    geometryOwner: "reference/priorities/master-equation-closure/braid-program/pro-braid-geometry.md",
   },
   {
     id: "anti-braid",
@@ -116,7 +116,7 @@ const braidTemplates = [
     variant: "anti",
     populationRole: "sea-background",
     memberCount: 2,
-    geometryOwner: "reference/priorities/braid-program/anti-braid-geometry.md",
+    geometryOwner: "reference/priorities/master-equation-closure/braid-program/anti-braid-geometry.md",
   },
 ];
 

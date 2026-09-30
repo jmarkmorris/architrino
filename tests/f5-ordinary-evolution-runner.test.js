@@ -12,7 +12,7 @@ import { admitTargetStart, terminalCensus } from '../scripts/eom/run-f5-complete
 
 // Synthetic constant carriers exercise metadata only, never candidate dynamics.
 function fixture() {
-  const d = JSON.parse(readFileSync(new URL('../reference/priorities/braid-program/evidence/2026-08-27-f5-ordinary-evolution-declaration.v1.json', import.meta.url)));
+  const d = JSON.parse(readFileSync(new URL('../reference/priorities/master-equation-closure/braid-program/evidence/2026-08-27-f5-ordinary-evolution-declaration.v1.json', import.meta.url)));
   d.authorization = { approved: true, operatorMessage: 'synthetic metadata control only', effectiveStrength: '0.002', chargeMagnitude: '1', coupling: '0.002' };
   const bits = value => { const b = Buffer.alloc(8); b.writeDoubleBE(value); return b.toString('hex'); };
   const endpointState = Object.fromEntries(['position', 'velocity'].map(kind => [kind, Array.from({ length: 3 }, () => ({ lowerBits: bits(kind === 'position' ? 0.99 : -0.01), upperBits: bits(kind === 'position' ? 1.01 : 0.01) }))]));

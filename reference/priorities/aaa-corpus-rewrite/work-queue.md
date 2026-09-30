@@ -48,6 +48,12 @@ No rows.
 
 ## Deferred / discussion-scoped
 
+### OPS-031 — September 28 core review referrals
+
+- **Status:** ○ Proposed; report-only review, with CRW-005 remaining closed.
+- **Braid Taxonomy, BT28-01:** Clarify that a 2D component has affine dimension exactly two, and leave complete but rank-zero/rank-one components unassigned. Plane containment alone includes a line or point; the live Borg descriptor already distinguishes that boundary. The [review receipt](../aaa-operations/evidence/ops-031-braid-taxonomy-review-2026-09-28.md) gives the coordinate counterexample, consumer scope and falsifier. The corpus editor should confirm the boundary with the Borg taxonomy owner before preparing the narrow definition repair; no new physical class or runtime change is accepted here.
+- **Planar Braid Assemblies, PBA28-01:** Reconcile current-status sentences with the already accepted BP-011 global equal-radius ladder, T04 short-time history uniqueness, local phase/radius isolation and bounded axial-speed results. The [whole-chapter review](../aaa-operations/evidence/ops-031-2d-braid-assemblies-review-2026-09-28.md) identifies each passage, primary evidence and scope limit. Prepare one self-contained editorial synthesis with BP-011 scientific adjudication; do not upgrade the old numerical instruments, imply full-cycle release/stability, or reopen completed research. Historical certificates were inspected, not rerun; this is a proposed propagation repair, not fresh scientific acceptance.
+
 ### OPS-031 — September 25 review referrals
 
 - **Status:** Proposed clarifications and residual historical editorial work; CRW-005 remains closed. No automatic substantive rewrite is authorized by this scan.
@@ -74,6 +80,17 @@ No rows.
 - **Completion:** Either the operator accepts a bounded classifier prototype with a declared benchmark and human-acceptance workflow, or declines the idea and this row moves to `Withdrawn`.
 
 ## Verified
+
+### OPS-031 — September 29 frame clarification
+
+- **Status:** ✓ Done; the operator approved the combined terminology explanation and CAFR29-01 correction on September 29. CRW-005 remains closed.
+- **Implemented:** [Constructing the Absolute Frame](../../../content/markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality) introduces “framed closed curve” before the linking equation: a smooth closed curve, perpendicular unit arrows, and a sufficiently small displaced copy. “Ribbon” appears once as the geometric picture. The text explains framing dependence and requires assembly-derived framing and justified closure before a physical handedness interpretation.
+- **CAFR29-01 resolved:** A near self-hit or causal-root fold requires separate geometric checking; neither necessarily makes the framing singular. Replacement of an auxiliary framing or closure is distinguished from a physical branch transition. The linking identity, frame reconstruction and physical branch obligations remain intact.
+- **Verification:** The separate OPS-031 reviewer read the whole revised chapter and baseline diff, checked Dennis–Hannay and independently verified the fixed-circle causal-fold counterexample. No introduced defect was found within this scope. The [original review](../aaa-operations/evidence/ops-031-constructing-absolute-frame-review-2026-09-29.md) remains unchanged; the [implementation record](../aaa-operations/work-log.md#2026-09-29--ops-031-frame-clarification-implemented) records source versions, checks and limitations.
+
+### OPS-031 — September 27 validation follow-ups
+
+✓ Accepted and implemented after the operator requested “fix those.” Removed the second duplicated preparation block in Attraction (ATT27-01), clarified chosen chart floors versus genuine singularities and auxiliary approximations (ATT27-02), and aligned the direct-consumer chart-extension wording in Background and Simple Action (BSA-C1). Equations and physical continuation obligations are preserved. Both whole chapters passed a separate reviewer’s check against the independent affine-root examples; the [implementation record](../aaa-operations/work-log.md#2026-09-27--approved-validation-corrections-integrated) retains source versions and validation. Original review receipts remain unchanged. CRW-005 remains closed.
 
 ### OPS-031 — Eight approved corrections integrated
 
@@ -3027,7 +3044,7 @@ Concrete local findings F1 through F6 remain deferred rather than silently accep
 
 ### CRW-005 Molecular Exclusion — deferred disposition closeout — 2026-09-11
 
-The operator authorized closure of CRW-005-2 at the bounded review-disposition level. The chapter's exploratory assembly-to-molecule mapping and the accepted F7 framing repair are retained, while F1–F6 remain explicit deferred and reopenable findings; no local repair is silently treated as accepted merely because the item is leaving the active queue. The upstream obligations are routed to the [Braid Program](../braid-program/priorities.md) for candidate formation, persistence, and stability; the [geometry-first Standard Model mapping program](../mapping-standard-model/analysis/geometry-first-program.md) for branch-to-particle records; and the [Noether Sea constitutive-response lane](../master-equation-closure/analysis/pressure-dependent-noether-sea-constitutive-response.md) for ambient assembly response.
+The operator authorized closure of CRW-005-2 at the bounded review-disposition level. The chapter's exploratory assembly-to-molecule mapping and the accepted F7 framing repair are retained, while F1–F6 remain explicit deferred and reopenable findings; no local repair is silently treated as accepted merely because the item is leaving the active queue. The upstream obligations are routed to the [Braid Program](../master-equation-closure/braid-program/priorities.md) for candidate formation, persistence, and stability; the [geometry-first Standard Model mapping program](../mapping-standard-model/analysis/geometry-first-program.md) for branch-to-particle records; and the [Noether Sea constitutive-response lane](../master-equation-closure/noether-sea-research/analysis/pressure-dependent-noether-sea-constitutive-response.md) for ambient assembly response.
 
 This closes the CRW review item, not the molecular derivation. Reopening conditions are a new operator-authorized repair pass for F1–F6 or an upstream branch result that supplies the missing assembly evidence. The disposition is therefore complete for workflow accounting, while braid realization, particle mapping, Noether-sea response, and physical theory closure remain open.
 

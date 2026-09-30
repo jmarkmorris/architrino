@@ -1,3 +1,4 @@
+import { resolveResearchSourcePath } from "../documentation/ResearchSourcePaths.mjs";
 import { createHash } from "node:crypto";
 import { readFileSync, realpathSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -1093,7 +1094,7 @@ function repositoryReader(repoRoot) {
   return (relativePath) => {
     assertSafeRelativePath(relativePath, "repository binding path");
     if (!cache.has(relativePath)) {
-      cache.set(relativePath, readFileSync(path.join(repoRoot, relativePath)));
+      cache.set(relativePath, readFileSync(resolveResearchSourcePath(repoRoot, relativePath)));
     }
     return cache.get(relativePath);
   };

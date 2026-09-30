@@ -421,7 +421,7 @@ function alterWholeFixture(f,change){
 }
 
 test('current runtime dependencies exist and bootstrap stays bounded',()=>{
- for(const[k,p]of Object.entries(C.INPUT_PATHS))assert(existsSync(path.join(root,p)));
+ for(const[k,p]of Object.entries(C.INPUT_PATHS))assert(C.readBound(path.join(root,p)).bytes>0);
  assert(C.PYTHON.length<65536);
 });
 test('genuine two-refined-parent provider connects to frozen stream and codec',()=>{

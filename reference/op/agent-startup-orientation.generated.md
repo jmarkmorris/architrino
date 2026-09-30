@@ -90,7 +90,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `aea014967bca3b04` |
 | [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 873 | `8c2b1ad6282d631c` |
-| [reference/priorities/README.md](../priorities/README.md) | 129 | `3d3d95cb42801d0c` |
+| [reference/priorities/README.md](../priorities/README.md) | 137 | `74b44f3546f27c5d` |
 | [reference/office-of-research/cto/prompts/README.md](../office-of-research/cto/prompts/README.md) | 64 | `44455776ef041094` |
 | [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md) | 72 | `4e0ff61a310d3916` |
 | [reference/office-of-research/cto/prompts/start-research.md](../office-of-research/cto/prompts/start-research.md) | 104 | `ad41a664553d2087` |
@@ -105,6 +105,6 @@ A changed hash means a startup source was edited after the last regeneration. It
 | [content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md) | 79 | `bab0a2cbe3a73eab` |
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 518 | `d2a048e3902023dd` |
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 368 | `b467b09a2793d2bf` |
-| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 152 | `c11973d85706ac66` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 612 | `04d08cc13faa1d10` |
+| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 152 | `29fa65e516f1c014` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 618 | `50d6c7cdb6da5a7e` |
 | [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 183 | `37bc5d3b91870f98` |

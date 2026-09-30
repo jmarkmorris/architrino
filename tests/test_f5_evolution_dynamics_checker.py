@@ -77,7 +77,7 @@ class F5DynamicsWrapperTests(unittest.TestCase):
 
     def test_synthetic_full_contract_and_wire_mutations(self):
         """Only serialization/validation: invented stationary members, never evolved."""
-        declaration = json.loads((ROOT / "reference/priorities/braid-program/evidence/2026-08-27-f5-ordinary-evolution-declaration.v1.json").read_text())
+        declaration = json.loads((ROOT / "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-27-f5-ordinary-evolution-declaration.v1.json").read_text())
         declaration["authorization"].update(approved=True, coupling="1", chargeMagnitude="1", effectiveStrength="1")
         declaration["independentDeclarationReview"] = {"syntheticOnly": True}
         common, rung = declaration["commonNumericalControls"], declaration["rungs"][-1]

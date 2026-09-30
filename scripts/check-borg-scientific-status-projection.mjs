@@ -1,12 +1,13 @@
+import { researchSourceLocation } from "../src/documentation/ResearchSourceLocations.mjs";
 import { createHash } from "node:crypto";
 import { readFile, stat } from "node:fs/promises";
 
 import { BORG_ASSEMBLY_RECORD_CATALOG } from "../src/apps/borg/BorgAssemblyRecordCatalog.js";
 import { validateBorgScientificStatusProjection } from "../src/apps/borg/BorgScientificStatus.mjs";
 
-const projectionPath = new URL("../reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json", import.meta.url);
+const projectionPath = new URL("../reference/priorities/master-equation-closure/braid-program/contracts/braid-candidate-adjudication-projection.v1.json", import.meta.url);
 const projection = validateBorgScientificStatusProjection(JSON.parse(await readFile(projectionPath)));
-const ownerBytes = await readFile(new URL(`../${projection.source}`, import.meta.url));
+const ownerBytes = await readFile(new URL(`../${researchSourceLocation(projection.source)}`, import.meta.url));
 const ownerText = ownerBytes.toString("utf8");
 const ownerSha256 = createHash("sha256").update(ownerBytes).digest("hex");
 if (ownerSha256 !== projection.sourceSha256) throw new Error(`Projection source digest is stale: expected ${projection.sourceSha256}, current ${ownerSha256}.`);
@@ -18,7 +19,7 @@ for (const relation of projection.relations) {
   }
   const exactTargets = relation.match.kind === "exact-configuration-set" ? relation.match.configurations
     : ["exact-configuration", "context-target"].includes(relation.match.kind) ? [relation.match] : [];
-  for (const link of relation.evidenceLinks) await stat(new URL(`../${link.url.split("#")[0]}`, import.meta.url));
+  for (const link of relation.evidenceLinks) await stat(new URL(`../${researchSourceLocation(link.url.split("#")[0])}`, import.meta.url));
 }
 
 const activeAdjudications = projection.relations.filter((relation) => relation.kind === "adjudication" && relation.lifecycle === "active");

@@ -53,7 +53,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6705a6df8d92128d)
 
-where $\mathbf d=\mathbf X_\ell(T_r)-\mathbf X_{\ell'}(T_t)$ with $d=\|\mathbf d\|>0$, the causal roots $T_t$ solve $d=c_f(T_r-T_t)$ within the retained history window, $\kappa$ is the coupling, and the acceleration weight is $W=c_f/|D_t|$ on a sign-certified transmitter-side Jacobian floor. Receiver-side velocity remains in the signed root-playback record $D_r/D_t$ but not in this instantaneous acceleration kernel. The proof also applies to an explicitly auxiliary radial regularization when its scalar kernel is equivariant, but such a regularization does not supply evidence for the canonical sharp kernel without a convergence argument.
+where $\mathbf d=\mathbf X_\ell(T_r)-\mathbf X_{\ell'}(T_t)$ with $d=\|\mathbf d\|>0$, the causal roots $T_t$ solve $d=c_f(T_r-T_t)$ within the retained history window, $\kappa$ is the coupling, and the acceleration weight is $W=c_f/|D_t|$ on a sign-certified transmitter-side Jacobian floor. Receiver-side velocity remains in the signed root-playback record $D_r/D_t$ but not in this instantaneous acceleration kernel. The proof also applies to an explicitly auxiliary radial regularization when its scalar kernel is equivariant, but such a regularization does not supply evidence for the Master Equation’s kernel without a convergence argument.
 
 Four explicit hypotheses carry the proof:
 

@@ -24,7 +24,12 @@ const canonical = v => JSON.stringify(v && typeof v === "object" && !Array.isArr
 export const equal = (a,b) => canonical(a) === canonical(b);
 const hex = value => typeof value === "string" && /^[a-f0-9]{64}$/u.test(value);
 export function readBound(filename, expected, collect = false, limit = collect ? FILE_LIMIT : 1024**3) {
+  // Captured modules cannot add an undeclared import. Route physical bytes only.
+  check(!(typeof filename==='string'&&filename.startsWith(path.join(process.cwd(),'reference/priorities/braid-program')+path.sep))||path.resolve(filename)===filename,'canonical relocated logical input');
   filename = path.resolve(filename);
+  const logicalFilename=filename;
+  const braidPrefix=path.join(process.cwd(),'reference/priorities/braid-program')+path.sep;
+  if(typeof filename==='string'&&filename.startsWith(braidPrefix))filename=path.join(process.cwd(),'reference/priorities/master-equation-closure/braid-program',filename.slice(braidPrefix.length));
   const fd = openSync(filename, constants.O_RDONLY|constants.O_NONBLOCK|(constants.O_NOFOLLOW??0));
   try {
     const before=fstatSync(fd), chunks=[], digest=createHash("sha256"), buffer=Buffer.alloc(65536);
@@ -38,7 +43,7 @@ export function readBound(filename, expected, collect = false, limit = collect ?
     const hash=digest.digest("hex");
     check(id(before)===id(fstatSync(fd)) && id(before)===id(lstatSync(filename)) &&
       (!expected || expected===hash),"input changed or hash differs: "+filename);
-    return {path:filename,sha256:hash,bytes:count,...(collect?{data:Buffer.concat(chunks)}:{})};
+    return {path:logicalFilename,sha256:hash,bytes:count,...(collect?{data:Buffer.concat(chunks)}:{})};
   } finally {closeSync(fd);}
 }
 export function writeNew(filename,value,limit=FILE_LIMIT) {

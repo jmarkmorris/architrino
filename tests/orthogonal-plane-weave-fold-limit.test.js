@@ -8,7 +8,7 @@ import {
 
 
 const RECEIPT = JSON.parse(await readFile(new URL(
-  "../reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-fold-limiting-exclusion.v1.json",
+  "../reference/priorities/master-equation-closure/braid-program/evidence/2026-08-29-orthogonal-plane-weave-fold-limiting-exclusion.v1.json",
   import.meta.url,
 ), "utf8"));
 
