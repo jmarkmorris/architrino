@@ -216,7 +216,7 @@ The instantaneous equation with the same speed factor has an exact repeating sol
 
 The exact balance calculation explains the distinction: delay and arrival weighting remove the cancellation that keeps the instantaneous oscillator's position-and-speed quantity constant. Regular passage and stronger attraction at large separation are therefore insufficient to produce recurrence in this tested case. The comparison changes delay and its source weighting together; it does not identify either alone as the cause, prove unlimited growth or rule out other equations.
 
-**Scope of the comparison.** The [off-axis cancellation examples](../analysis/speed-crossing-opposing-interaction-geometry.md) use additional, noncollinear prescribed source histories. They can cancel selected local divergences, but are not complete coupled solutions for this collinear binary. The [transverse-moving rebound](../braid-program/manuscript.md#51-inward-approach-is-not-a-completed-breathing-cycle) likewise belongs to a different geometry. Neither supplies a missing stage in the tables above.
+**Scope of the comparison.** The [off-axis cancellation examples](../analysis/speed-crossing-opposing-interaction-geometry.md) use additional, noncollinear prescribed source histories. They can cancel selected local divergences, but are not complete coupled solutions for this collinear binary. The [transverse-moving rebound](../binary-research/manuscript.md#21-a-transverse-rebound-without-a-completed-return) likewise belongs to a different geometry. Neither supplies a missing stage in the tables above.
 
 
 ## 2. Earlier stationary-release diagnostics
@@ -225,7 +225,7 @@ The stationary two-member release begins at $(\pm0.5,0,0)$ with zero velocity an
 
 The failure frontier belongs to cross-pair certification rather than nontrivial self roots. Extending the same constant past from depth 10 to 20 or 40 produced identical streams in one recorded control. That checks sensitivity to the cutoff of that particular constant history; it does not prove that different endpoint-matched histories are forgotten. Symmetric zero midpoint and transverse drift likewise do not establish a general conservation law.
 
-These are the earlier numerical diagnostics. Section 1 reports the subsequent incoming certificate and continuation obstruction. The [stationary diagnostic](../braid-program/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md) retains the original evidence.
+These are the earlier numerical diagnostics. Section 1 reports the subsequent incoming certificate and continuation obstruction. The [stationary diagnostic](../binary-research/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md) retains the original evidence.
 
 
 ## 3. History uncertainty in the stationary calculation

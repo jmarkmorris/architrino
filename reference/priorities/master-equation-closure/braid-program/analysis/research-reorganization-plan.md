@@ -1,5 +1,7 @@
 # Collinear and braid research: reorganization plan
 
+**Historical ownership record.** The subsequent [binary and photon separation](../../../aaa-work-threads/campaigns/binary-photon-research-separation.md) moves current single-pair research and Campaign 1 into Binary research. The dispositions below record the earlier collinear separation.
+
 Date: 2026-09-26. Status: **implemented on 2026-09-26**, with the operator’s additional instruction to place the remaining historical directory under `dormant-deferred`. See the [execution record](research-reorganization-completion.md) and [executed path map](research-reorganization-executed-map.json). The original proposal below is retained as the planning record. The operator requested the file-by-file plan before further discussion of speed conditions. This plan changes document ownership only. Existing equations, assumptions, results, task identifiers and research decisions remain unchanged.
 
 ## Recommended arrangement

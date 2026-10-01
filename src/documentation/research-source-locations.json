@@ -135,7 +135,35 @@
     "reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event-evolution.md": "reference/priorities/master-equation-closure/lattice-research/analysis/staggered-lattice-first-event-evolution.md",
     "reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event-independent-adjudication.md": "reference/priorities/master-equation-closure/lattice-research/analysis/staggered-lattice-first-event-independent-adjudication.md",
     "reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event-residual.md": "reference/priorities/master-equation-closure/lattice-research/analysis/staggered-lattice-first-event-residual.md",
-    "reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event.md": "reference/priorities/master-equation-closure/lattice-research/analysis/staggered-lattice-first-event.md"
+    "reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event.md": "reference/priorities/master-equation-closure/lattice-research/analysis/staggered-lattice-first-event.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/circular-binary-all-root-certificate.md": "reference/priorities/master-equation-closure/binary-research/analysis/circular-binary-all-root-certificate.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/circular-binary-census-stability-neighborhood.md": "reference/priorities/master-equation-closure/binary-research/analysis/circular-binary-census-stability-neighborhood.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/circular-binary-secondary-theorems.md": "reference/priorities/master-equation-closure/binary-research/analysis/circular-binary-secondary-theorems.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/planar-circle-growing-mode.md": "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-growing-mode.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/planar-circle-instability-review-corrections-prompt.md": "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-instability-review-corrections-prompt.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/planar-circle-instability-review-reassessment.md": "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-instability-review-reassessment.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/planar-circle-nonlinear-instability.md": "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-nonlinear-instability.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/planar-circle-sharp-first-variation.md": "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-sharp-first-variation.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/sharp-circle-braking-continuation.md": "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-braking-continuation.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/sharp-circle-escape-claude-review-prompt.md": "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-escape-claude-review-prompt.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/sharp-circle-escape-independent-review.md": "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-escape-independent-review.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/sharp-circle-first-departure.md": "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-first-departure.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/sharp-circle-first-window-defect.md": "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-first-window-defect.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/sharp-circle-first-window-tube.md": "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-first-window-tube.md",
+    "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-campaign-1-two-architrino-breathing-diagnostic.md": "reference/priorities/master-equation-closure/binary-research/evidence/2026-07-24-campaign-1-two-architrino-breathing-diagnostic.md",
+    "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-current-solver-two-architrino-breather-return-map.md": "reference/priorities/master-equation-closure/binary-research/evidence/2026-07-24-current-solver-two-architrino-breather-return-map.md",
+    "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-10-balanced-circular-release-outward-departure.md": "reference/priorities/master-equation-closure/binary-research/evidence/2026-08-10-balanced-circular-release-outward-departure.md",
+    "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-11-physical-binary-retained-history-radial-turn.md": "reference/priorities/master-equation-closure/binary-research/evidence/2026-08-11-physical-binary-retained-history-radial-turn.md",
+    "reference/priorities/master-equation-closure/braid-program/evidence/planar-circle-review-instrument-retention.md": "reference/priorities/master-equation-closure/binary-research/evidence/planar-circle-review-instrument-retention.md",
+    "reference/priorities/master-equation-closure/braid-program/evidence/sharp-circle-braking-receipt.json": "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-braking-receipt.json",
+    "reference/priorities/master-equation-closure/braid-program/evidence/sharp-circle-escape-independent-review-receipt.json": "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-escape-independent-review-receipt.json",
+    "reference/priorities/master-equation-closure/braid-program/evidence/sharp-circle-first-window-defect-receipt.json": "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-first-window-defect-receipt.json",
+    "reference/priorities/master-equation-closure/braid-program/evidence/sharp-circle-first-window-tube-receipt.json": "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-first-window-tube-receipt.json",
+    "reference/priorities/master-equation-closure/braid-program/campaigns/campaign-1-subfield-binary.md": "reference/priorities/master-equation-closure/binary-research/campaigns/campaign-1-subfield-binary.md",
+    "reference/priorities/master-equation-closure/braid-program/campaigns/campaign-1-dispatch-prompt.md": "reference/priorities/master-equation-closure/binary-research/campaigns/campaign-1-dispatch-prompt.md",
+    "reference/priorities/master-equation-closure/braid-program/configurations/alternating-circular-ring-01.v3.json": "reference/priorities/master-equation-closure/binary-research/configurations/alternating-circular-ring-01.v3.json",
+    "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md": "reference/priorities/master-equation-closure/binary-research/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md",
+    "reference/priorities/app-photon/evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json": "reference/priorities/master-equation-closure/photon-research/evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json"
   },
   "frozenOrigins": [
     "reference/priorities/braid-program/analysis/braid-candidate-requirement-adjudication.md",
@@ -168,7 +196,13 @@
     "reference/priorities/master-equation-closure/analysis/smooth-two-particle-pulse-continuation.md",
     "reference/priorities/master-equation-closure/analysis/smooth-two-particle-pulse-independent-adjudication.md",
     "reference/priorities/master-equation-closure/analysis/smooth-two-particle-through-five-independent-adjudication.md",
-    "reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event.md"
+    "reference/priorities/master-equation-closure/analysis/staggered-lattice-first-event.md",
+    "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-campaign-1-two-architrino-breathing-diagnostic.md",
+    "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-current-solver-two-architrino-breather-return-map.md",
+    "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-10-balanced-circular-release-outward-departure.md",
+    "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-11-physical-binary-retained-history-radial-turn.md",
+    "reference/priorities/master-equation-closure/braid-program/evidence/planar-circle-review-instrument-retention.md",
+    "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md"
   ],
   "sectionMoves": [
     [
@@ -404,6 +438,342 @@
       "73-directional-response-needs-a-physical-readout",
       "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
       "33-directional-response-needs-a-physical-readout"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "9-circular-motion-and-regular-local-evolution",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "1-circular-motion-and-regular-local-evolution"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "91-the-exact-circular-binary",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "11-the-exact-circular-binary"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "911-root-census-and-acceleration-compatibility",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "111-root-census-and-acceleration-compatibility"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "912-the-radius-family-and-interior-circle-exclusion",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "112-the-radius-family-and-interior-circle-exclusion"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "913-rigid-translation-fails-the-complete-response",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "113-rigid-translation-fails-the-complete-response"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "92-from-admissible-histories-to-local-evolution",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "12-from-admissible-histories-to-local-evolution"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "921-a-geometric-neighborhood-and-a-history-space-contract",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "121-a-geometric-neighborhood-and-a-history-space-contract"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "922-contraction-and-the-continuation-boundary",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "122-contraction-and-the-continuation-boundary"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "923-the-separate-stability-problem",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "123-the-separate-stability-problem"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "93-planar-perturbations-and-the-ellipse-question",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "13-planar-perturbations-and-the-ellipse-question"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "931-first-sharp-radial-response",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "131-first-sharp-radial-response"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "932-the-delayed-perturbation-equation",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "132-the-delayed-perturbation-equation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "933-a-growing-antipodal-planar-mode",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "133-a-growing-antipodal-planar-mode"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "934-nonlinear-instability-on-the-active-planar-boundary",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "134-nonlinear-instability-on-the-active-planar-boundary"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "935-first-observed-departures-under-the-sharp-equation",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "135-first-observed-departures-under-the-sharp-equation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "936-braking-continuation-and-a-sufficient-escape-condition",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "136-braking-continuation-and-a-sufficient-escape-condition"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "937-first-window-interval-equation-error-bounds",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "137-first-window-interval-equation-error-bounds"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "938-a-closed-first-window-trajectory-bound",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "138-a-closed-first-window-trajectory-bound"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "51-the-exact-circular-binary",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "11-the-exact-circular-binary"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "511-root-census-and-acceleration-compatibility",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "111-root-census-and-acceleration-compatibility"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "512-the-radius-family-and-interior-circle-exclusion",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "112-the-radius-family-and-interior-circle-exclusion"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "513-rigid-translation-fails-the-complete-response",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "113-rigid-translation-fails-the-complete-response"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "52-from-admissible-histories-to-local-evolution",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "12-from-admissible-histories-to-local-evolution"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "521-a-geometric-neighborhood-and-a-history-space-contract",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "121-a-geometric-neighborhood-and-a-history-space-contract"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "522-contraction-and-the-continuation-boundary",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "122-contraction-and-the-continuation-boundary"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "523-the-separate-stability-problem",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "123-the-separate-stability-problem"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "53-planar-perturbations-and-the-ellipse-question",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "13-planar-perturbations-and-the-ellipse-question"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "531-first-sharp-radial-response",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "131-first-sharp-radial-response"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "532-the-delayed-perturbation-equation",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "132-the-delayed-perturbation-equation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "533-a-growing-antipodal-planar-mode",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "133-a-growing-antipodal-planar-mode"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "534-nonlinear-instability-on-the-active-planar-boundary",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "134-nonlinear-instability-on-the-active-planar-boundary"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "535-first-observed-departures-under-the-sharp-equation",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "135-first-observed-departures-under-the-sharp-equation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "51-inward-approach-is-not-a-completed-breathing-cycle",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "21-a-transverse-rebound-without-a-completed-return"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "53-local-outward-departure-and-a-later-inward-turn",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "22-local-outward-departure-and-a-later-inward-turn"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+      "55-what-a-completed-return-experiment-still-requires",
+      "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "23-what-a-completed-return-experiment-still-requires"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/priorities.md",
+      "research-ownership--2026-09-26",
+      "reference/priorities/master-equation-closure/binary-research/priorities.md",
+      "research-ownership--2026-09-26"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/work-queue.md",
+      "bp-001--binary-subfield-fate",
+      "reference/priorities/master-equation-closure/binary-research/work-queue.md",
+      "bp-001--binary-subfield-fate"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "existing-super-field-speed-binary-foothold",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "existing-super-field-speed-binary-foothold"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "integer-frequency-stabilized-outspiral-investigation",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "integer-frequency-stabilized-outspiral-investigation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "1-why-this-deserves-a-focused-investigation",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "1-why-this-deserves-a-focused-investigation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "2-exact-discrete-scaffold",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "2-exact-discrete-scaffold"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "3-unit-step-integer-frequency-landing-rule",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "3-unit-step-integer-frequency-landing-rule"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "4-continuous-path-and-stabilized-states",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "4-continuous-path-and-stabilized-states"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "5-candidate-phase-lock-mechanism",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "5-candidate-phase-lock-mechanism"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "6-two-interpretations-to-keep-separate",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "6-two-interpretations-to-keep-separate"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "61-orbital-frequency-interpretation",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "61-orbital-frequency-interpretation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "62-return-cadence-interpretation",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "62-return-cadence-interpretation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "7-planck-scale-boundary-conditions",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "7-planck-scale-boundary-conditions"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "8-relationship-to-the-existing-frequency-step-ledger",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "8-relationship-to-the-existing-frequency-step-ledger"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "9-impact-on-the-master-equation",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "9-impact-on-the-master-equation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "10-assembly-transition-as-the-quantum",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "10-assembly-transition-as-the-quantum"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "11-first-investigation-ledger",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "11-first-investigation-ledger"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "12-claim-boundary-falsifiers-and-promotion-route",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "12-claim-boundary-falsifiers-and-promotion-route"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "13-immediate-next-artifact",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "13-immediate-next-artifact"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+      "fixed-speed-circular-geometry",
+      "reference/priorities/master-equation-closure/binary-research/brainstorming.md",
+      "fixed-speed-circular-geometry"
+    ],
+    [
+      "reference/priorities/master-equation-closure/braid-program/analysis/f6c-geometry.md",
+      "candidate-photon-role",
+      "reference/priorities/master-equation-closure/photon-research/analysis/f6c-photon-source-and-carrier-candidate.md",
+      "candidate-photon-role"
     ]
   ]
 }

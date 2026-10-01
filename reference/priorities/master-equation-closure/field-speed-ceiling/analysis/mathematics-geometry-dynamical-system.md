@@ -2044,7 +2044,7 @@ Plainly: the packet now identifies exactly where a new choice would enter. It do
 
 This is a ceiling-boundary-speed family: the candidate circle runs at $\|\mathbf V_i\|=R|\omega|=c_a$, not at an arbitrary speed below $c_a$. Assume the two labeled antipodal circular paths are prescribed for all past times and that no other labels are present. The result below concerns this complete two-label periodic history only.
 
-The independent durable form of this prescribed-chart result is the [FSC-010 circular-binary all-root certificate](../../braid-program/analysis/circular-binary-all-root-certificate.md), with an analytic all-parameter census and a replayable numerical witness at the equal-speed endpoint.
+The independent durable form of this prescribed-chart result is the [FSC-010 circular-binary all-root certificate](../../binary-research/analysis/circular-binary-all-root-certificate.md), with an analytic all-parameter census and a replayable numerical witness at the equal-speed endpoint.
 
 Set
 

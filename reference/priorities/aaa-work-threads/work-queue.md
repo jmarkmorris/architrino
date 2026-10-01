@@ -11,7 +11,7 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 ## Ranked Next Objects
 
 1. `eom_bounded_population_acceptance_stack` — Route to [App Solver](../app-solver/work-queue.md). Status: `In progress`.
-2. `braid_campaign_1_execution` — Route to [Braid Program](../master-equation-closure/braid-program/work-queue.md). Status: `Deferred / blocked`.
+2. `braid_campaign_1_execution` — Route to [Binary research](../master-equation-closure/binary-research/work-queue.md). Status: `Deferred / blocked`.
 3. `causal_wake_update_law_joint_acceptance` — Route to [Master-Equation Closure](../master-equation-closure/work-queue.md). Status: `In progress`.
 4. `pressure_dependent_noether_sea_response` — Route to [Noether sea research](../master-equation-closure/noether-sea-research/work-queue.md). Status: `Deferred / blocked`.
 5. `atomic_nuclear_review_cleanup` — Status: `Deferred / blocked`.
@@ -29,7 +29,7 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 
 - **Status:** In progress
 - **Request / acceptance:** Close retained-history residency, refinement and precision ladders, deterministic CPU/SIMD evidence, and the first claim-ready binary run packet under the App Solver queue.
-- **Evidence / blocker:** App Solver owns execution; scientific fate remains with Braid Program.
+- **Evidence / blocker:** App Solver owns execution; single-pair scientific fate belongs to Binary research.
 - **Completion:** The owner queue closes its bounded-population acceptance object with independent validation.
 
 ### AWT-004 — Causal wake update joint acceptance
@@ -41,12 +41,12 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 
 ## Deferred / blocked
 
-### AWT-002 — Braid Campaign 1
+### AWT-002 — Binary Campaign 1
 
 - **Status:** Deferred / blocked
 - **Request / acceptance:** Execute the frozen Campaign 1 workload without changing the production instrument in the same change.
 - **Evidence / blocker:** Blocked on instrument reacceptance and certified close-approach root completeness.
-- **Completion:** Braid Program books one accepted fate or a declared failure under the frozen gate.
+- **Completion:** Binary research books one accepted fate or a declared failure under the frozen gate.
 
 ### AWT-005 — Pressure-dependent Noether sea response
 

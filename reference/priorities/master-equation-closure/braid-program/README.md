@@ -6,7 +6,7 @@ This is a fresh start on the braid search. It supersedes the eight legacy `braid
 
 ## Goal
 
-Find and certify architrino braid configurations that are genuine solutions of the master equation — zero master-equation residual and dynamically persistent — using the EOM engine and independently verified instruments, and then map certified objects to the assembly ontology (photon carrier, charged leptons, neutrinos) at graded claim levels.
+Find and certify multi-binary and more general multi-architrino braid configurations that are genuine solutions of the master equation — zero master-equation residual and dynamically persistent — using the EOM engine and independently verified instruments, and then map certified objects to the assembly ontology (photon carrier, charged leptons, neutrinos) at graded claim levels.
 
 ## Ground Rules
 
@@ -38,6 +38,6 @@ The one-sentence hygiene rule: **results land in `evidence/`; the synthesis may 
 - Corpus braid chapters (`content/markdown/aaa/noether-braid/`) are downstream: this program stages results; promotion follows the standard corpus rules, and legacy-era corpus claims are reconciled by their own lanes, not from here.
 - The legacy `braid-*` directories are read-only source material for `mining/` and are otherwise not consulted.
 
-## Research ownership after the collinear separation
+## Research ownership
 
-[Collinear research](../collinear-research/README.md) owns encounters along one line. This program retains circular and other noncollinear binaries, assemblies, and the combined Campaign 1, whose head-on cases are linked from collinear research. Existing ceiling-model circular and braid results are now integrated here under their original assumptions. Shared equation definitions belong to [Master-Equation Closure](../priorities.md). The former ceiling directory is [historical](../field-speed-ceiling/README.md).
+[Binary research](../binary-research/README.md) owns isolated two-architrino dynamics, circular-pair analyses and the complete Campaign 1. [Collinear research](../collinear-research/README.md) owns encounters along one line. This program owns multi-binary and more general multi-architrino collections, including four-member and larger circular assemblies, three-binary geometries, and their complete coupled ledgers. [Photon research](../photon-research/README.md) owns photon-specific interpretation and geometry. Shared equation definitions belong to [Master-Equation Closure](../priorities.md); the former ceiling directory remains [historical](../field-speed-ceiling/README.md). Existing task identifiers, model assumptions and evidence grades are preserved.

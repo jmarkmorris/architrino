@@ -26,7 +26,7 @@ The [queue](work-queue.md) is the single execution home of AWT-005. Its status a
 
 ## Dependencies and consumers
 
-The [Braid Program](../braid-program/priorities.md) owns constituent and finite-assembly qualification. [Master-Equation Closure](../priorities.md) owns the admitted causal update, infinite-history domain and causal wake accounts. [Lattice research](../lattice-research/priorities.md) provides controlled ordered-population cases without representing them as an accepted Noether sea.
+[Binary research](../binary-research/priorities.md) owns single-pair qualification, while the [Braid Program](../braid-program/priorities.md) owns multi-binary and other finite-assembly qualification. [Master-Equation Closure](../priorities.md) owns the admitted causal update, infinite-history domain and causal wake accounts. [Lattice research](../lattice-research/priorities.md) provides controlled ordered-population cases without representing them as an accepted Noether sea.
 
 Lorentz/GR, mass, condensed-matter, electromagnetic, equation-mapping and cosmological consumers must use one shared response record. Existing mapping tasks, BP-017 and dormant cosmology tasks retain their own owners and dependencies. The sea workstream does not take over their scientific acceptance decisions.
 

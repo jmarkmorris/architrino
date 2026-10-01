@@ -7,7 +7,7 @@ This synthesis examines the provisional hypothesis that $c_f$ is both the causal
 
 ## Foundational Distinctions
 
-**2026-09-16 nonlinear circular result:** the [sharp heading-coordinate analysis](../braid-program/analysis/planar-circle-nonlinear-instability.md) upgrades the positive boundary-branch mode to a local nonlinear instability theorem for actual antipodal unit-speed histories, including after circular phase is ignored. Its smooth delay-functional and all-past coverage checks are explicit; the mathematical instability theorem introduces no new physics. The independent review supports this local conclusion; its corrections are integrated in the proof. The circle remains exact but is not robust to all disturbances in this class. Post-departure motion and other planar configurations remain open.
+**2026-09-16 nonlinear circular result:** the [sharp heading-coordinate analysis](../binary-research/analysis/planar-circle-nonlinear-instability.md) upgrades the positive boundary-branch mode to a local nonlinear instability theorem for actual antipodal unit-speed histories, including after circular phase is ignored. Its smooth delay-functional and all-past coverage checks are explicit; the mathematical instability theorem introduces no new physics. The independent review supports this local conclusion; its corrections are integrated in the proof. The circle remains exact but is not robust to all disturbances in this class. Post-departure motion and other planar configurations remain open.
 
 ### Investigation assessment — 2026-09-16
 
@@ -214,7 +214,7 @@ which constrains phase and root topology but does not select a radius because $R
 
 Plainly: circular geometry can select which delayed partner hits exist, but amplitude balance and an all-label closure condition are still required to select a physical scale.
 
-The complete prescribed circular root census belongs in [circular-binary-all-root-certificate.md](../braid-program/analysis/circular-binary-all-root-certificate.md). It establishes neither local continuation nor a retained Braid.
+The complete prescribed circular root census belongs in [circular-binary-all-root-certificate.md](../binary-research/analysis/circular-binary-all-root-certificate.md). It establishes neither local continuation nor a retained Braid.
 
 ## Capped-Braid Closure Conditions
 

@@ -2,7 +2,7 @@
 
 The research comparison uses three speed regimes: unrestricted $v$, $v\le c_f$, and $v<c_f$. Both restricted regimes are field speed ceiling variants, and both are ideas to explore for collinear geometries and braids. The particular response developed below implements $v\le c_f$; it does not define every possible ceiling implementation or settle the $v<c_f$ case.
 
-This is the shared account of the previously examined equation variant. Its definitions and claim limits are retained; this reorganization makes no new choice of speed condition. Applications are owned by [collinear research](../collinear-research/manuscript.md) and the [Braid Program](../braid-program/manuscript.md#9-circular-motion-and-regular-local-evolution). The [historical combined manuscript](../field-speed-ceiling/manuscript.md) preserves the former arrangement.
+This is the shared account of the previously examined equation variant. Its definitions and claim limits are retained; this reorganization makes no new choice of speed condition. Applications are owned by [collinear research](../collinear-research/manuscript.md) and the [Braid Program](../binary-research/manuscript.md#1-circular-motion-and-regular-local-evolution). The [historical combined manuscript](../field-speed-ceiling/manuscript.md) preserves the former arrangement.
 
 <a id="1-the-proposed-constrained-dynamics"></a>
 ## 1. The proposed constrained dynamics
@@ -14,7 +14,7 @@ The examined equation variant retains the Master Equation's ordinary partner rec
 
 Conclusions about this model must follow from its stated equation. Smoothing is only an explicitly labeled comparison whose modifications and limitations accompany every reported result. Transferring a smoothed result requires a demonstrated limiting argument; numerical refinement at fixed smoothing checks only the modified calculation. The continuation and planar analyses use the stated equation. The retained [auxiliary trajectories](../collinear-research/analysis/partner-only-auxiliary-evolution-results.md) establish neither reversal under that equation nor sticking nor once-only reception. Prescribed kinematic curves likewise establish no dynamical continuation.
 
-The [collinear manuscript](../collinear-research/manuscript.md#5-a-finite-coincidence-event-and-its-restart-data) preserves conditional results of an older model with additional event rules: a common event map, zero velocity jump and suppression of a continuing wake contact. Those rules do not follow from the speed cap. The [circular-binary account](../braid-program/manuscript.md#9-circular-motion-and-regular-local-evolution) is independent of those event assumptions.
+The [collinear manuscript](../collinear-research/manuscript.md#5-a-finite-coincidence-event-and-its-restart-data) preserves conditional results of an older model with additional event rules: a common event map, zero velocity jump and suppression of a continuing wake contact. Those rules do not follow from the speed cap. The [circular-binary account](../binary-research/manuscript.md#1-circular-motion-and-regular-local-evolution) is independent of those event assumptions.
 
 <a id="11-why-examine-a-path-speed-ceiling"></a>
 ### 1.1. Why examine a path-speed ceiling?
@@ -147,7 +147,7 @@ This derived result concerns a spatial marginal of an eternal uniform path. It n
 <a id="63-the-cycle-diagnostic-is-not-an-action-account"></a>
 ## 4. The cycle diagnostic is not an action account
 
-Accounts remain unresolved even for the [compatible circular binary](../braid-program/manuscript.md#91-the-exact-circular-binary). With its period $P$, angular speed $\omega$ and half-delay phase $D=|\omega|(T-S)/2$, its raw per-label cycle diagnostic is
+Accounts remain unresolved even for the [compatible circular binary](../binary-research/manuscript.md#11-the-exact-circular-binary). With its period $P$, angular speed $\omega$ and half-delay phase $D=|\omega|(T-S)/2$, its raw per-label cycle diagnostic is
 
 $$
 \mathcal J_i^{\mathrm{raw}}=\int_0^P\mathbf V_i\cdot\mathbf A_i^{\mathrm{ord}}\,dT=2\pi c_f^2\frac{\sin D}{D},\qquad
