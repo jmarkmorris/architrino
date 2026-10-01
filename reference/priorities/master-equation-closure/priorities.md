@@ -18,6 +18,8 @@ Scenario interpretation distinguishes absent external sources, exact environment
 
 ## Reading path and the role of analysis
 
+The [existing geometry comparison](brainstorming.md#existing-geometries-as-master-equation-tests--2026-09-30) connects the one-source, binary, few-body, circular-assembly, three-dimensional and lattice investigations to the specific questions they can settle about the shared law. Its inferred recommendation is to compare the regular six-member ring, the stationary mirror boundary and the self-consistent staggered-lattice boundary, while retaining separate contact, fold and population-summation tests. It changes no task state, score, accepted claim or equation assumption.
+
 The [physical wake-duration hypothesis](analysis/physical-wake-duration-hypothesis.md) preserves an experimental interpretation pulled back from the corpus on 2026-09-26. Mathematical finite-width approximations remain permitted; a physical duration requires a separate derivation. This record adds no primitive-law parameter and reactivates no research task.
 
 The operator is not expected to read every file in `analysis/`. Under the [priority directory policy](../README.md#workstream-directory-layout), that directory holds theory-bearing work: derivations, proof targets, mathematical reviews, candidate mechanisms and reusable supporting results. Receipts and operational chronology have separate homes. Being in `analysis/` does not mean that a result is accepted or that the document will be promoted into the corpus.
@@ -220,4 +222,4 @@ Operator explicitly requested greater parallel progress. Population admissibilit
 
 ## Research ownership — 2026-09-26
 
-[Collinear research](collinear-research/priorities.md) now owns the encounter comparison and focused mirror analyses. The Braid Program owns circular and multi-binary applications. [Shared ceiling definitions](analysis/field-speed-ceiling-definition-and-shared-results.md) remain conditional equation research; their relocation makes no new speed-condition decision. The former ceiling investigation is [parked as history](field-speed-ceiling/README.md). Existing queue identifiers and scientific statuses are preserved.
+[Collinear research](collinear-research/priorities.md) now owns the encounter comparison and focused mirror analyses. [Binary research](binary-research/priorities.md) owns single-pair circular applications; the Braid Program owns multi-binary and other multi-architrino collections. [Shared ceiling definitions](analysis/field-speed-ceiling-definition-and-shared-results.md) remain conditional equation research; their relocation makes no new speed-condition decision. The former ceiling investigation is [parked as history](field-speed-ceiling/README.md). Existing queue identifiers and scientific statuses are preserved.

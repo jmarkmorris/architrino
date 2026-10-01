@@ -8,15 +8,16 @@ The detailed planar common-center three-binary constraint investigation is maint
 
 ## Ranked Next Objects
 
-1. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`.
-2. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
-3. `asymmetric_counter_breathing_member_acceleration` — [BP-010](#bp-010--asymmetric-counter-breathing-representative-normalized-member-acceleration-predeclaration). Status: `Three-parent streamed partial calculation admitted; historical-source archive admission is retired; whole-history M05/M06 and three-rung measurement remain open`.
-4. `circular_path_regular_polarity_completion` — [BP-012](#bp-012--circular-path-regular-polarity-completion). Status: `In progress`; the exact topology schedule and seven-speed 286,664-projection census are complete, but no continuous exclusion follows.
-5. `circular_path_nonuniform_phase_census` — [BP-013](#bp-013--circular-path-nonuniform-phase-census). Status: `In progress`; the regular-square $D_4$ cell is certified and the rest of the chamber remains open.
-6. `platonic_braid_qualification_and_prescribed_history` — [BP-016](#bp-016--platonic-braid-qualification-and-prescribed-history-program). Status: `In progress`; mixed-face, face-diagonal, all quotient vertices, and all five generic-axis quotient edges are excluded, while the two simplex interiors remain open.
-7. `packed_platonic_assembly_histories` — [BP-017](#bp-017--packed-platonic-assembly-history-program). Status: `In progress for exact geometry; dynamics blocked`; the complete private-cube shrink family is proved.
-8. `f5_current_generation_ordinary_evolution_regeneration` — [BP-018](#bp-018--f5-current-generation-ordinary-evolution-regeneration). Status: `Queued`; the prior halted-prefix payload is superseded and a fresh source-bound campaign is required.
-9. `f6c_current_generation_whole_history_regeneration` — [BP-019](#bp-019--f6c-current-generation-whole-history-regeneration). Status: `Queued`; the prior three-parent payload is partial and a fresh full-domain campaign is required.
+This assembly workstream is unranked globally pending its own scored object. The order below preserves the existing local order after BP-001 transfers to the [binary queue](../binary-research/work-queue.md).
+
+1. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
+2. `asymmetric_counter_breathing_member_acceleration` — [BP-010](#bp-010--asymmetric-counter-breathing-representative-normalized-member-acceleration-predeclaration). Status: `Three-parent streamed partial calculation admitted; historical-source archive admission is retired; whole-history M05/M06 and three-rung measurement remain open`.
+3. `circular_path_regular_polarity_completion` — [BP-012](#bp-012--circular-path-regular-polarity-completion). Status: `In progress`; the exact topology schedule and seven-speed 286,664-projection census are complete, but no continuous exclusion follows.
+4. `circular_path_nonuniform_phase_census` — [BP-013](#bp-013--circular-path-nonuniform-phase-census). Status: `In progress`; the regular-square $D_4$ cell is certified and the rest of the chamber remains open.
+5. `platonic_braid_qualification_and_prescribed_history` — [BP-016](#bp-016--platonic-braid-qualification-and-prescribed-history-program). Status: `In progress`; mixed-face, face-diagonal, all quotient vertices, and all five generic-axis quotient edges are excluded, while the two simplex interiors remain open.
+6. `packed_platonic_assembly_histories` — [BP-017](#bp-017--packed-platonic-assembly-history-program). Status: `In progress for exact geometry; dynamics blocked`; the complete private-cube shrink family is proved.
+7. `f5_current_generation_ordinary_evolution_regeneration` — [BP-018](#bp-018--f5-current-generation-ordinary-evolution-regeneration). Status: `Queued`; the prior halted-prefix payload is superseded and a fresh source-bound campaign is required.
+8. `f6c_current_generation_whole_history_regeneration` — [BP-019](#bp-019--f6c-current-generation-whole-history-regeneration). Status: `Queued`; the prior three-parent payload is partial and a fresh full-domain campaign is required.
 
 ## Shared search prerequisites
 
@@ -232,16 +233,13 @@ The exact octahedral coloured-axis and residual-channel census is produced by `s
 "${AAA_VENV:-../.venv}/bin/python" scripts/prescribed-path-analysis/oracle/octahedral_word_axis_reduction.py
 ```
 
+<a id="bp-001--binary-subfield-fate"></a>
+<a id="fsc-011--local-circular-binary-existence-and-contraction"></a>
+## Transferred binary questions
+
+[BP-001](../binary-research/work-queue.md#bp-001--binary-subfield-fate) and [FSC-011](../binary-research/work-queue.md#circular-pair-continuation-and-its-prerequisites) are executed from the binary queue with unchanged statuses. These anchors preserve navigation only.
+
 ## Deferred / blocked
-
-### BP-001 — Binary subfield fate
-
-- **Status:** Deferred / blocked
-- **Priority object:** `binary_subfield_fate`
-- **Request / acceptance:** Execute the frozen 27-configuration, three-prehistory, three-refinement Campaign 1 and book the opposite-polarity sub-field binary as bound, unbound, conditional, or failed.
-- **Evidence / blocker:** G3/G4 retain the bounded 2026-07-27 instrument acceptance. The [September 14 follow-through](evidence/2026-09-14-zero-acceleration-and-binary-validation.md#continuous-incoming-event-certificate) repairs the numerical defects and independently certifies the stationary incoming event from exact initial data. The continuous interval construction bounds first wake-speed arrival in `[1.572637654589540, 1.572640138062056]`, with positive separation and a complete one-partner/zero-self census per label. The EOM checkpoint probe through `1.57262` passes frozen state/root checks; the `1.57266` probe rejects atomically with its exact candidate retained. The [unchanged-law obstruction](../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md) prevents regular continuation beyond onset. Generic EOM continuous-error certification, the longer transverse path and full campaign gates remain open. No campaign fate is booked.
-- **Stationary-record disposition:** The incoming certificate and unchanged-law continuation obstruction are the retained result. Under the [September 15 operator decision](../collinear-research/analysis/stationary-binary-first-interval.md#boundary-result-and-modified-law-scope), the quintic route and its smoothing proposal are set aside for this investigation. No outgoing continuation task is authorized by this disposition. A modified-law investigation requires a separate explicit operator decision. Preserve root inclusion, atomic rejection and the coincident-birth prohibition; full campaign execution remains blocked.
-- **Completion:** The unchanged residual, root, oracle, collapse, and record gates yield one accepted fate or declared failure.
 
 ### BP-006 — Borg braid-analysis mode
 
@@ -328,8 +326,9 @@ The optional calibration route was retired on 2026-09-10; the [decision, consume
 
 These retain their existing statuses and dependencies. They are not newly ranked against the established BP tasks, and this transfer launches no run.
 
-1. **FSC-011 — Local Circular-Binary Existence and Contraction.** Status: `exact FSC-010 circle has unique local continuation by FSC-007 / full perturbative FSC-013 tube remains conditional`. The [regular-chart theorem](../analysis/regular-chart-history-to-ledger-well-posedness.md) supplies explicit history-to-root and history-to-ledger constants and a method-of-steps contraction under an invariant-response-cylinder hypothesis. The exact certified all-past circle satisfies that theorem's pointwise chart assumptions. A uniform theorem for arbitrary histories across the whole [FSC-013 tube](analysis/circular-binary-census-stability-neighborhood.md) still requires a verified invariant response regime and compatible right-acceleration trace. This is not a stability, capture, retained-binary, or physical-binary result.
-2. **FSC-017 — Three-Binary Constructive Milestone.** Status: `Section 12--14 review complete / blocked on the perturbative FSC-011 result; verified-numerics route also consumes FSC-014`. For one precisely declared three-binary geometry class, seek either an exact certified complete-ledger residual zero or an exclusion theorem. Consume the [FSC-016 review](../field-speed-ceiling/analysis/sections-12-14-independent-review-2026-09-02.md): separate field-speed equalities from inequality margins, declare one- versus two-sided tangents, count twelve scalar perpendicular-residual components, and retain the stated nonlinear-return-map hypotheses. A residual zero remains a prescribed-chart result unless a separate retained-history and stability theorem is proved.
-3. **FSC-002 — Equal-Radius Phase-Offset Braid Speed-Domain Calculation.** Status: `deferred / blocked`. The selected collinear coincidence postulate does not define noncollinear or braid coincidence events, establish a retained closed-domain braid, or adopt the ceiling.
+The [FSC-011 binary continuation question](../binary-research/work-queue.md#circular-pair-continuation-and-its-prerequisites) retains its status and supplies the existing binary prerequisite below.
 
-Completed FSC-010, FSC-013, FSC-015 and FSC-016 results are linked from the [current manuscript](manuscript.md#9-circular-motion-and-regular-local-evolution); they are not reopened.
+1. **FSC-017 — Three-Binary Constructive Milestone.** Status: `Section 12--14 review complete / blocked on the perturbative FSC-011 result; verified-numerics route also consumes FSC-014`. For one precisely declared three-binary geometry class, seek either an exact certified complete-ledger residual zero or an exclusion theorem. Consume the [FSC-016 review](../field-speed-ceiling/analysis/sections-12-14-independent-review-2026-09-02.md): separate field-speed equalities from inequality margins, declare one- versus two-sided tangents, count twelve scalar perpendicular-residual components, and retain the stated nonlinear-return-map hypotheses. A residual zero remains a prescribed-chart result unless a separate retained-history and stability theorem is proved.
+2. **FSC-002 — Equal-Radius Phase-Offset Braid Speed-Domain Calculation.** Status: `deferred / blocked`. The selected collinear coincidence postulate does not define noncollinear or braid coincidence events, establish a retained closed-domain braid, or adopt the ceiling.
+
+Completed FSC-010, FSC-013 and FSC-015 pair results are maintained in [binary research](../binary-research/manuscript.md#1-circular-motion-and-regular-local-evolution); the FSC-016 assembly review remains linked above. None is reopened by this filing change.

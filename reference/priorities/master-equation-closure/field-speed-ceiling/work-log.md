@@ -96,7 +96,7 @@
 
 ## 2026-09-02 — FSC-013 circular-binary census-stability neighborhood completed
 
-- Added [Circular-Binary Census-Stability Neighborhood](../braid-program/analysis/circular-binary-census-stability-neighborhood.md) under packet identifier `fsc_circular_binary_census_stability_neighborhood/v1`.
+- Added [Circular-Binary Census-Stability Neighborhood](../binary-research/analysis/circular-binary-census-stability-neighborhood.md) under packet identifier `fsc_circular_binary_census_stability_neighborhood/v1`.
 - Defined a dimensionless $W^{2,\infty}$ history norm around the equal-speed FSC-010 circle and intersected its ball with the ceiling-admissible path class, avoiding super-ceiling histories that a generic open norm ball would include.
 - Derived one explicit sufficient radius from front/back causal-gap signs, minimum base range, received-direction perturbation, root-factor floors, and nonzero-curvature margin. Its normalized diagnostic value is approximately $0.06825864457559688$.
 - Proved one partner root per ordered channel, delay bracket $[R_\ast D,3R_\ast D]$, range floor $R_\ast\cos(3D/2)$, $D_t,D_r\ge[1+\sin(D/2)]/2$, a root-displacement bound, and equal-time collision exclusion throughout the tube.
@@ -107,7 +107,7 @@
 
 ## 2026-09-02 — FSC-015 circular-binary secondary theorem bundle completed
 
-- Added [Circular-Binary Secondary Theorems](../braid-program/analysis/circular-binary-secondary-theorems.md) under packet identifier `fsc_circular_binary_secondary_theorems/v1`.
+- Added [Circular-Binary Secondary Theorems](../binary-research/analysis/circular-binary-secondary-theorems.md) under packet identifier `fsc_circular_binary_secondary_theorems/v1`.
 - Proved that no strictly interior-speed all-past antipodal two-label uniform circle closes because the complete unprojected partner row has a strictly positive forward component.
 - Proved that orthogonal-axis translation is the only rigid uniform translation preserving constant label speeds, then combined that exhaustiveness lemma with the existing negative axial residual to exclude every nonzero rigid uniformly translating constant-boundary-speed circular pair.
 - Derived $\xi_\lambda=\lambda-\lambda^3/2+13\lambda^5/24+O(\lambda^7)$ and $R_{\ast,\lambda}=K(1-\lambda^2/2+7\lambda^4/8+O(\lambda^6))/(4c_a^2)$.

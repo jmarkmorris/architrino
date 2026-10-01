@@ -41,7 +41,7 @@ The audit preserves component scores for unchanged marginal objects, removes eig
 ## Operator Discussion Queue
 
 - **[`app-solver`](../app-solver/priorities.md) — [EOM-013](../app-solver/work-queue.md#eom-013--safety-zone-speed-and-accuracy-assessment), discussion-scoped.** Assess a numerical safety or exclusion zone around each architrino: potential simulation speed gains, accuracy loss on zone entry, and an operational boundary/response definition. Any changed interaction or trajectory rule requires an explicit EOM contract decision and a declared boundary for Braid Program consumers; no implementation, physical exclusion radius, or ranking change is approved.
-- **[Collinear research](../master-equation-closure/collinear-research/priorities.md), organizational separation.** Encounters along one line now have their own current account. BP-001 remains the mixed-geometry Braid Program campaign. Shared equation questions belong to Master-Equation Closure; circular and braid applications belong to the Braid Program. The [former ceiling investigation](../master-equation-closure/field-speed-ceiling/README.md) is historical. Existing scientific status and ranked winners are unchanged.
+- **[Collinear research](../master-equation-closure/collinear-research/priorities.md), organizational separation.** Encounters along one line now have their own current account. BP-001 is the mixed-geometry single-pair campaign in [Binary research](../master-equation-closure/binary-research/work-queue.md). Shared equation questions belong to Master-Equation Closure; single-pair circular applications belong to Binary research; multi-binary collections belong to the Braid Program. The [former ceiling investigation](../master-equation-closure/field-speed-ceiling/README.md) is historical. Existing scientific status and ranked winners are unchanged.
 
 ## Current Scoring Review — 2026-09-14
 
@@ -70,6 +70,10 @@ The remaining twelve rows retain their component scores: this review found no ac
 
 Active support, editorial and discussion owners remain outside this numeric table under their current metadata. Their live queues can be operator-selected without assigning them a scientific recovery score. In particular, completed testing simplification and textbook navigation repair receive no remaining-value credit; field-speed proposals remain unadopted. The numeric list includes blocked strategic obligations and must be read together with each owner's execution status, not as an instruction to run down the table automatically.
 
+## Binary and photon ownership — 2026-09-30
+
+The existing rank-2 `binary_subfield_fate` object and every component score transfer with BP-001 to Binary research. This is an ownership change, with no rescore or scientific promotion. The dated September 14 review above describes its owner at that time. The Braid Program remains a current assembly owner with its remaining queue and awaits a score for its own next object. Photon research is current but unranked; PHO-009 remains deferred behind retained-branch and environment prerequisites. The [separation record](campaigns/binary-photon-research-separation.md) defines the boundary.
+
 ## Unified Priority Table
 
 The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unresolved evidence object` column is the scored unit and must match the owning bucket's local rank `1`; the slug identifies that bucket. `MinDelta` is prioritization pressure, not ownership of the full scorecard category. Shared theorem packets remain ranked only when they multiply several live workstreams; ordinary support files remain children of their owning directory.
@@ -77,7 +81,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | Rank | Kind | Slug or packet | Bucket #1 next unresolved evidence object | Base | Cascade | MinDelta | Pressure | Engine | Eureka | EWeight | Value | Exec | Intuition | Deps | Valid | Cost | ROI |
 | ---: | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 1 | Workstream | [`master-equation-closure`](../master-equation-closure/priorities.md) | `causal_wake_update_law`: one independently evolving wake state with declared causal updates and a regular transmitter-side reduction | 10.0 | 1.70 | -56 | 1.56 | 1.45 | 9 | 1.40 | 53.84 | 6 | 6 | 5 | 7 | 6.0 | 8.97 |
-| 2 | Program | [`braid-program`](../master-equation-closure/braid-program/priorities.md) | `binary_subfield_fate`: Campaign 1 opposite-polarity binary fate packet | 10.0 | 1.75 | -56 | 1.56 | 1.35 | 10 | 1.50 | 55.28 | 7 | 7 | 8 | 9 | 7.6 | 7.27 |
+| 2 | Program | [`binary-research`](../master-equation-closure/binary-research/priorities.md) | `binary_subfield_fate`: Campaign 1 opposite-polarity binary fate packet | 10.0 | 1.75 | -56 | 1.56 | 1.35 | 10 | 1.50 | 55.28 | 7 | 7 | 8 | 9 | 7.6 | 7.27 |
 | 3 | Shared packet | [`transfer-operator-basin-measure`](../mapping-quantum/analysis/transfer-operator-basin-measure.md) | Explicit transfer operator and invariant measure on one persistent accepted assembly state | 9.0 | 1.70 | -56 | 1.56 | 0.90 | 9 | 1.40 | 30.07 | 5 | 7 | 5 | 7 | 6.1 | 4.93 |
 | 4 | Workstream | [`noether-sea-research`](../master-equation-closure/noether-sea-research/priorities.md) | `pressure_dependent_noether_sea_constitutive_response/v0` on one accepted transmitter-side branch with causal wake accounts | 8.8 | 1.50 | -45 | 1.45 | 0.95 | 8 | 1.30 | 23.64 | 4 | 5 | 5 | 5 | 4.8 | 4.93 |
 | 5 | Workstream | [`mapping-equations`](../mapping-equations/priorities.md) | `lorentz_envelope_closure`: source-backed positive-width `S_eq` retained-domain carrier | 8.5 | 1.50 | -45 | 1.45 | 0.85 | 8 | 1.30 | 20.43 | 5 | 5 | 5 | 6 | 5.2 | 3.93 |

@@ -1,6 +1,6 @@
 # Completed assignment: planar-instability theorem source check
 
-**Completed, 2026-09-26:** the original map-level theorem has been obtained, read and checked against the circular-history construction. The [reassessment's source record](planar-circle-instability-review-reassessment.md#31-the-map-level-unstable-manifold-theorem-still-needs-a-checked-source) and [proof §4](planar-circle-nonlinear-instability.md#4-recovering-admissible-all-past-histories) discharge the former source obligation. The [work log](../work-log.md#2026-09-26--original-unstable-manifold-theorem-checked) records integration and validation.
+**Completed, 2026-09-26:** the original map-level theorem has been obtained, read and checked against the circular-history construction. The [reassessment's source record](planar-circle-instability-review-reassessment.md#31-the-map-level-unstable-manifold-theorem-still-needs-a-checked-source) and [proof §4](planar-circle-nonlinear-instability.md#4-recovering-admissible-all-past-histories) discharge the former source obligation. The [work log](../../braid-program/work-log.md#2026-09-26--original-unstable-manifold-theorem-checked) records integration and validation.
 
 ## Source and completed application
 
@@ -8,7 +8,7 @@ Krisztin, Walther and Wu (1999), *Shape, Smoothness, and Invariant Stratificatio
 
 The checked application uses a fixed positive-time $C^1$ map in a Banach chart, its invariant stable/center/unstable split, strict stable and unstable spectral gaps, and the theorem's contracting inverse on the unstable graph. The neutral circular phase direction stays in the center space. No global nonlinear extension, inverse of the full map, higher differentiability, exact unstable-root count or phase quotient is required. The chart transfer, compatible endpoints, forward uniqueness and survey Proposition 3.5.3 turn the backward iterates into physical all-past solutions.
 
-The [main proof](planar-circle-nonlinear-instability.md), [reassessment](planar-circle-instability-review-reassessment.md), [manuscript §9.3.4](../manuscript.md#934-nonlinear-instability-on-the-active-planar-boundary) and [live status](../priorities.md#research-ownership--2026-09-26) now state the derived existential local instability within the stated capped active-boundary antipodal planar class. The independently checked position-to-history lemma supplies departure from any one fixed circular phase over a finite window. This result does not determine subsequent escape, collapse, collision or another eventual state, and does not apply to the uncapped equation.
+The [main proof](planar-circle-nonlinear-instability.md), [reassessment](planar-circle-instability-review-reassessment.md), [manuscript §9.3.4](../manuscript.md#134-nonlinear-instability-on-the-active-planar-boundary) and [live status](../priorities.md#research-ownership--2026-09-26) now state the derived existential local instability within the stated capped active-boundary antipodal planar class. The independently checked position-to-history lemma supplies departure from any one fixed circular phase over a finite window. This result does not determine subsequent escape, collapse, collision or another eventual state, and does not apply to the uncapped equation.
 
 ## Separate questions
 

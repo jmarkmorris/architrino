@@ -48,6 +48,12 @@ No rows.
 
 ## Deferred / discussion-scoped
 
+### OPS-031 — September 30 spatial chart referrals
+
+- **Status:** ○ Proposed; report-only. CRW-005 remains closed.
+- **Two-component chart:** Reconcile strictly ordered axial coordinates with the declared all-equatorial special case, which places six endpoints at each component height. Also reconcile the sorted first-six/last-six circulation rule with opposite component circulation when component heights interleave. The direct coordinate witnesses and source scope belong in the [September 30 review](../aaa-operations/evidence/ops-031-3d-braid-assemblies-review-2026-09-30.md). The existing Braid geometry and corpus owners should choose a consistent member-label and chart-domain declaration; preserve persistent identities, explicit component membership and physical claim limits. No runtime or source edit is accepted by this referral.
+- **Axial-speed status propagation:** Extend the already proposed [September 28 core-status reconciliation](#ops-031--september-28-core-review-referrals) to the 3D chapter's Fixed Axial-Translation Control paragraph. Its blanket “other axial speeds” statement omits the accepted bounded speed chart. Preserve the certified branch and speed limits and the open deformed/higher-topology cases; do not reopen or strengthen the underlying scientific acceptance.
+
 ### OPS-031 — September 28 core review referrals
 
 - **Status:** ○ Proposed; report-only review, with CRW-005 remaining closed.

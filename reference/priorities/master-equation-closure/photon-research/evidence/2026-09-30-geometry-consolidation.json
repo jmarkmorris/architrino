@@ -1,0 +1,167 @@
+{
+  "schema": "architrino/photon-research-source-consolidation.v1",
+  "date": "2026-09-30",
+  "scope": "Authorized relocation of photon-specific geometry and dynamics research; preserve app controls, display, software contracts and observer diagnostics.",
+  "scientificStatus": "Organizational change only. No new calculation, retained photon branch, task activation or score change.",
+  "wholeFileMoves": [
+    {
+      "source": "reference/priorities/app-photon/evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json",
+      "destination": "reference/priorities/master-equation-closure/photon-research/evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json",
+      "sha256": "0d6e65b5b59f2eaba5359ee9408b3bb595b74d3887502ad4dfa9564ef3ee7f12",
+      "preservation": "byte-identical; schema, producer, historical raw path and results unchanged"
+    }
+  ],
+  "extractions": [
+    {
+      "source": "reference/priorities/app-photon/manuscript.md",
+      "destination": "reference/priorities/master-equation-closure/photon-research/analysis/prescribed-moving-pair-and-self-hit-geometry.md",
+      "sourceBeforeSha256": "cac26db88a181a20984a638f50632748568ca87c9b12b95d596d495105b5b1ae",
+      "sourceAfterSha256": "54ae6edb05574bde51b15d2b37c376b58d0fd551e443b958f9b5e35282bdd1a3",
+      "destinationSha256": "64059df5e2c3b60cba12c1ed84f21714158816ca0dda20cde55fbfa8a653f13f",
+      "fragments": [
+        {
+          "sourceHeading": "2.1. The two braid views",
+          "movedFragmentSha256": "cf8a20054b8b541d90d9c1466ded76b0723995ad13d640f8804606b35c4f3bfa",
+          "targetHeading": "1. Prescribed pair and orbital phase",
+          "targetAnchor": "1-prescribed-pair-and-orbital-phase",
+          "texSpansMoved": 10
+        },
+        {
+          "sourceHeading": "2.2. Absolute histories and the comparison chart",
+          "movedFragmentSha256": "6529c181d1218b8780d6e168fd6255fdef516765091a766cac216c2fadfea4ef",
+          "targetHeading": "2. Absolute histories and the comparison chart",
+          "targetAnchor": "2-absolute-histories-and-the-comparison-chart",
+          "texSpansMoved": 3
+        },
+        {
+          "sourceHeading": "3.1. The arrival equation",
+          "movedFragmentSha256": "48bc98336e76726efd9ecfb04f759d0be04f597acfae1f36df7b4d6a7f13fcf7",
+          "targetHeading": "3. Arrival roots and catch-up geometry",
+          "targetAnchor": "3-arrival-roots-and-catch-up-geometry",
+          "texSpansMoved": 5
+        },
+        {
+          "sourceHeading": "6.1. Speed eligibility does not establish a hit",
+          "movedFragmentSha256": "fa908e44f1074526fab858bce374c5a271729845ddee2552314212b0b723d393",
+          "targetHeading": "4. Same-transmitter speed and phase conditions",
+          "targetAnchor": "4-same-transmitter-speed-and-phase-conditions",
+          "texSpansMoved": 1
+        },
+        {
+          "sourceHeading": "6.2. What the sweep did and did not find",
+          "movedFragmentSha256": "64d094d90a8a04b076dd1cd5800d20b07eef36a9f0877ac618a21c0cb8c6f313",
+          "targetHeading": "5. Historical finite self-hit sweep",
+          "targetAnchor": "5-historical-finite-self-hit-sweep",
+          "texSpansMoved": 0
+        },
+        {
+          "sourceHeading": "8.1. Local speed and formation geometry",
+          "movedFragmentSha256": "67795a906cec4b94335306d9ce1ebe54793fb76287fe03d37c7bfbd3a0a62b64",
+          "targetHeading": "6. Conditional formation-geometry response",
+          "targetAnchor": "6-conditional-formation-geometry-response",
+          "texSpansMoved": 0
+        }
+      ],
+      "preservation": "Exact fragment text and original TeX retained; fourteen complete app subsections unchanged. Original headings retain links. Partial-section app paragraphs remain with the app."
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/f6c-geometry.md",
+      "destination": "reference/priorities/master-equation-closure/photon-research/analysis/f6c-photon-source-and-carrier-candidate.md",
+      "sourceBeforeSha256": "360dbdbd7507904ff5500eb231c3eaf8f250af0ece6b3f04a46ab682305c3865",
+      "sourceAfterSha256": "345710387f8bde68d2f7b731b478e487267ddede1c03e2fa33c9c7dfc22c0f91",
+      "destinationSha256": "667614777c26a02d37aa2cbbe1fb6e0b2271a9aeb59085c8fed264f2b74e2d57",
+      "sectionRoute": [
+        "reference/priorities/master-equation-closure/braid-program/analysis/f6c-geometry.md",
+        "candidate-photon-role",
+        "reference/priorities/master-equation-closure/photon-research/analysis/f6c-photon-source-and-carrier-candidate.md",
+        "candidate-photon-role"
+      ],
+      "bodyProseEdits": [
+        {
+          "from": "native evolution",
+          "to": "EOM evolution",
+          "count": 1
+        }
+      ],
+      "preservation": "Original section body byte-identical after reversing the sole prose substitution native evolution -> EOM evolution; all original TeX is therefore byte-identical. Source prefix and suffix are byte-identical."
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/brainstorming.md",
+      "destination": "reference/priorities/master-equation-closure/photon-research/analysis/carrier-and-constituent-speeds.md",
+      "sourceBeforeSha256": "8974740b572849a2893088f83c429f71fbf289b5a1c128c00ce0c6f2b36ecee3",
+      "sourceAfterSha256": "0f41996338d388a10c54024f6caaacb760ab55491951f89700a7772d9c16562c",
+      "destinationSha256": "19c3cb1ec934fd9e42cb302e067ccaa35bdf9d21434ce292566affc176f6eacf",
+      "bodySha256": "4ce2f71b95a1d3121f3440c1595601f4d98327a95c5c15f38f738ed07faeee4e",
+      "preservation": "Selected body and all original TeX copied exactly; general middle-support hinge paragraph and surrounding source unchanged."
+    }
+  ],
+  "retainedOwners": {
+    "app-photon": "App controls, display layout, root-record/admission contracts, observer diagnostics, analytic software fixture, search/export behavior and architecture.",
+    "braid-program": "Generic F6c geometry and other candidate roles, four shared planar-pair controls, general circular protocol and mixed mining provenance.",
+    "master-equation-closure": "Shared law and general middle-support root-topology discussion.",
+    "mapping workstreams": "Observer recovery contracts and benchmarks.",
+    "dormant-deferred/dark-sector": "Speculative photon-like modes without a complete analyzable constituent history."
+  },
+  "navigation": "Exact receipt lookup and F6c section transport added to research-source-locations.json; partial app and Master-Equation sections keep their headings and direct links.",
+  "verification": {
+    "authorPreservationChecks": "Passed known-case-first exact extraction checks; details retained in local evidence.",
+    "receiptGenerator": "node scripts/build-machine-artifact-receipts.mjs --target=photon --check: passed; consistency only.",
+    "priorityRanking": "node scripts/validate-priority-ranking.mjs: passed; 31 owners and 14 ranked rows.",
+    "sourceTransport": "Known identity, receipt path, original and current F6c section paths and relative receipt route passed.",
+    "independentPreservation": {
+      "instrument": ".local-data/aaa-work-threads/photon-geometry-consolidation/verification/review/review.py",
+      "knownControlsPassed": true,
+      "appOriginalTexSpans": 54,
+      "appRetainedTexSpans": 35,
+      "appMovedTexSpans": 19,
+      "f6cMovedTexSpans": 14,
+      "speedMovedTexSpans": 2,
+      "retainedAppSubsectionsUnchanged": 14,
+      "receiptBytesUnchanged": true,
+      "photonQueueBytesUnchanged": true
+    },
+    "links": {
+      "instrument": ".local-data/aaa-work-threads/photon-geometry-consolidation/verification/review/links.py",
+      "outgoingDocuments": 16,
+      "affectedDocuments": 56,
+      "checked": 246,
+      "newIssues": 0,
+      "preexistingIssues": [
+        {
+          "document": "reference/priorities/master-equation-closure/brainstorming.md",
+          "href": "work-queue.md#coordinated-campaign-execution-order",
+          "status": "missing-anchor"
+        },
+        {
+          "document": "reference/priorities/master-equation-closure/braid-program/analysis/f6c-geometry.md",
+          "href": "#native-response-coordinates-suggested-by-f6c",
+          "status": "missing-anchor"
+        },
+        {
+          "document": "reference/priorities/master-equation-closure/braid-program/analysis/f6c-geometry.md",
+          "href": "../../../mapping-equations/analysis/inferring-braid-requirements.md#seed-f6c--polarity-resolved-breathing-tetrahedron",
+          "status": "missing-anchor"
+        }
+      ],
+      "scope": [
+        "Complete outgoing relative links from snapshot Markdown and three new analyses; incoming repository Markdown links to affected files, including transported historical paths.",
+        "Fenced code and TeX pseudo-links excluded; actual current resolver used for frozen document origins.",
+        "External destinations not requested or tested; recognized heading anchors follow GitHub-like and project-source-index conventions."
+      ]
+    },
+    "mathSyntax": {
+      "instrument": ".local-data/aaa-work-threads/photon-geometry-consolidation/verification/review/math.mjs",
+      "documents": 16,
+      "expressions": 1343,
+      "failures": 0,
+      "scope": [
+        "KaTeX syntax verification only; no rendered visual inspection or mathematical correctness claim.",
+        "All delimited spans checked, including historical excerpts; baseline failures classified by exact original expression."
+      ]
+    },
+    "referenceIndex": "Ignored reference-surface runtime regenerated through prepareRuntimeAssets and checked successfully.",
+    "whitespace": "Scoped git diff --check passed; untracked analysis whitespace checked separately."
+  },
+  "localEvidence": ".local-data/aaa-work-threads/photon-geometry-consolidation/",
+  "falsifier": "A byte mismatch in the moved receipt, changed retained app subsection, lost original equation, broken current link or altered queue/scientific status would invalidate the corresponding preservation statement."
+}

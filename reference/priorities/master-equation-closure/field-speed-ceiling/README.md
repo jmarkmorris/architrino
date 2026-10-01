@@ -5,7 +5,8 @@
 The investigation was parked on 2026-09-26 after separating current research by subject, then relocated under MEC on 2026-09-30. These filing decisions preserve its scientific status and equation assumptions.
 
 - [Collinear encounters](../collinear-research/manuscript.md): comparison, coincidence and continuation.
-- [Circular binaries and braids](../braid-program/manuscript.md#9-circular-motion-and-regular-local-evolution): configurations, perturbations and assembly results.
+- [Circular binaries](../binary-research/manuscript.md): single-pair configurations and perturbations.
+- [Multi-binary collections](../braid-program/manuscript.md): assembly configurations and results.
 - [Shared definition and general results](../analysis/field-speed-ceiling-definition-and-shared-results.md): previously examined response and reception mathematics.
 - [Path migration record](../braid-program/analysis/research-reorganization-completion.md): old-to-new locations and validation.
 

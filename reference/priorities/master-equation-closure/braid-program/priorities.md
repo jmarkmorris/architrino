@@ -5,11 +5,9 @@ Status: RATIFIED by the operator (2026-07-24; drafted 2026-07-15). One page, rew
 ## Workstream Metadata
 
 - Kind: `priority-program`
-- Rank: `2`
-- Value: `55.28`
-- Cost: `7.6`
-- ROI: `7.27`
 - Status: `active`
+
+The assembly workstream is unranked pending its own scored object. The former rank-2 object, BP-001 `binary_subfield_fate`, and its unchanged score now belong to [binary research](../binary-research/priorities.md).
 
 ## Guiding Question
 
@@ -21,7 +19,7 @@ Explore exactly three speed regimes in both collinear geometries and braids: unr
 
 ## Work Queue
 
-The locally ranked campaign and decision objects live in [work-queue.md](work-queue.md). The charter, N-ladder, and method remain strategic constraints here.
+The locally ordered campaign and decision objects live in [work-queue.md](work-queue.md). The charter, N-ladder, and method remain strategic constraints here.
 
 ## Strategy: the ratified N-ladder, evolution-first
 
@@ -29,11 +27,11 @@ The canonical theory imposes no architrino speed ceiling. Sub-field speed is a d
 
 Walk up from the smallest object, certifying dynamical behavior at each rung before adding structure. This inverts the last effort, which explored elaborate shapes on prescribed motion before any object had a verified dynamical existence.
 
-1. `binary_subfield_fate` — **Two architrinos, below field speed.** Evolve the opposite-polarity pair under the master equation; collapse-test; characterize its fate (bound, unbound, conditional). The program's first certified dynamical object — everything else builds on knowing what a binary actually does.
-2. **Two architrinos at and above field speed.** Resolve the actual partner- and self-root inventory; speed alone does not establish a self-hit. Apply the same fate question where delayed self-interaction is present.
+1. [Binary research: `binary_subfield_fate`](../binary-research/work-queue.md#bp-001--binary-subfield-fate) — **Two architrinos, below field speed.** Evolve the opposite-polarity pair under the master equation; collapse-test; characterize its fate (bound, unbound, conditional). This dependency is owned by [binary research](../binary-research/priorities.md); no binary fate has been booked.
+2. **Two architrinos at and above field speed — binary research.** Resolve the actual partner- and self-root inventory; speed alone does not establish a self-hit. Apply the same fate question where delayed self-interaction is present.
 3. **Four architrinos: a neutral pair of pairs.** First composite: do certified binaries interact toward binding or dispersal?
 4. **Six architrinos: braid candidates.** Screening over the configuration chart nominates candidates; evolution decides them.
-5. **Assembly mapping.** Photon-carrier and charged-lepton campaigns open only after a persistent object exists to map.
+5. **Assembly mapping.** [Photon research](../photon-research/README.md) owns photon interpretation; charged-lepton mapping retains its existing scope. These campaigns open only after a persistent object exists to map.
 
 ## Parallel Analytical Lanes
 
@@ -57,13 +55,13 @@ The phase-varying display representative's prescribed-root obligation, separate 
 ## Waiting On
 
 - Microscopic-law question, derived constraints completed 2026-09-16: [Coulomb and Liénard–Wiechert recovery](../../mapping-electromagnetism/analysis/microscopic-law-recovery-constraints.md) constrains the combined source, interaction, environment and receiver map. Static coefficients must factor into common source charge and receiver response; finite bounded direct sums cannot supply a slower distant tail; one radial hit misses moving-source transverse structure; and bounded finite inverse-square sums cannot supply the radiative inverse-distance amplitude. The effective Green-function route is sufficient if derived, while short-distance self-event behavior remains independently constrained. No replacement law or speed ceiling is selected, and the original unchanged-law binary results remain intact.
-- BP-001 retains its full mixed-geometry campaign requirements. Its stationary head-on findings and continuation limits are maintained in the [collinear result records](../collinear-research/priorities.md#detailed-result-and-dependency-records); the longer transverse path and shared EOM solver obligations remain relevant here.
+- [BP-001 in binary research](../binary-research/work-queue.md#bp-001--binary-subfield-fate) retains its full two-architrino, mixed-geometry campaign requirements and blocked status. Collinear research owns the stationary head-on findings and continuation limits; the unresolved binary fate remains a dependency for assembly work.
 
 ## Pointers
 
 The [action-click mechanism hypothesis](analysis/action-click-mechanism-hypothesis.md) preserves the root-count-to-fixed-action proposal and its related self-hit doubling conjecture pulled back from the corpus on 2026-09-26. Exact root geometry and conditional retuning mathematics remain in the corpus; neither an integer root count nor an auxiliary core scale derives an action unit. This placement leaves the ratified N-ladder and active queue unchanged.
 
-Reorganization completed, 2026-09-26: see the [migration record](analysis/research-reorganization-completion.md). Current research is separated by subject and the historical ceiling directory is under dormant-deferred. Speed-condition discussion remains deferred to the next task.
+Reorganization completed, 2026-09-26: see the [migration record](analysis/research-reorganization-completion.md). Current research is separated by subject and the historical ceiling directory is dormant under Master-Equation Closure. Speed-condition discussion remains deferred to the next task.
 
 The [collinear encounter comparison](../collinear-research/manuscript.md#1-collinear-encounter-comparison) begins with what was tried, how far it worked and a summary of each remaining problem, followed by the stages of motion and numbered explanatory notes. The original stationary case is blocked just after wake-speed arrival, before coincidence; the capped case needs a valid coincidence response and subsequent motion. Results using extra event rules or smoothing retain those assumptions. This synthesis changes no model adoption or research priority.
 
@@ -71,12 +69,8 @@ General requirements: [Inferring Braid Requirements](../../mapping-equations/ana
 
 Charter and ground rules: [README.md](README.md). Master candidate index: [candidate-registry.md](configurations/candidate-registry.md). Method: [method.md](contracts/method.md). Search space: [configuration-chart.md](configurations/configuration-chart.md). Logs: [work-log.md](work-log.md), [brainstorming.md](brainstorming.md).
 
-## Research ownership — 2026-09-26
+## Binary dependency
 
-**Local capped-circle instability, review and source check completed 2026-09-26:** the [main proof](analysis/planar-circle-nonlinear-instability.md), [linear analysis](analysis/planar-circle-growing-mode.md) and [manuscript §§9.3.3–9.3.4](manuscript.md#933-a-growing-antipodal-planar-mode) now contain the analytic root-confinement bound and the independently checked positions-only estimate from the [corrected reassessment](analysis/planar-circle-instability-review-reassessment.md) of the [historical review](../field-speed-ceiling/analysis/planar-circle-instability-independent-review.md). At least one positive real characteristic root is derived, and all roots with nonnegative real part lie in $|z|<3$; the exact count and multiplicities remain uncertified. Original KWW Appendix I, Theorem I.3, pp. 168–169, and its setup on pp. 167–168 have now been read and independently checked. Its local map, spectral-gap and backward-orbit hypotheses complete the physical all-past nonlinear-instability construction, with the neutral phase mode retained. Its positional conclusion concerns departure from any single phase circle over a finite window. The original exploratory instruments are retained with a [compact receipt](evidence/planar-circle-review-instrument-retention.md), without promoting them to certified counting tools. The source obligation is closed in the [work log](work-log.md#2026-09-26--original-unstable-manifold-theorem-checked). Local instability is derived within the stated capped active-boundary antipodal class; a complete spectral count is optional, and no post-departure fate follows from this argument.
+The [binary research live state](../binary-research/priorities.md#research-ownership--2026-09-26) now owns the capped-circle instability, supplied-history braking, and first-window trajectory results and their unchanged proof boundaries. The [FSC-011 continuation question](../binary-research/work-queue.md#circular-pair-continuation-and-its-prerequisites) remains the existing prerequisite of FSC-017.
 
-**Scoped capped-circle continuation, 2026-09-26:** the operator-requested [sharp braking continuation](analysis/sharp-circle-braking-continuation.md), captured in [manuscript §9.3.6](manuscript.md#936-braking-continuation-and-a-sufficient-escape-condition), advances the transferred circular investigation under its existing cap-only assumptions. The supplied $1.001R_\ast$ history leaves the ceiling near normalized time 19.90983 and continues expanding through time 1000, reaching radius about $489.05R_\ast$ and speed $0.47828c_f$. These are refined floating-point measurements with no smoothing. A derived sufficient escape condition bounds all future partner acceleration; the numerical history meets it with margin about 0.03190. The [independent review](analysis/sharp-circle-escape-independent-review.md) checks the conditional criterion with completed hypotheses and corroborates the numerical continuation; exact escape still requires a validated finite-prefix enclosure. The [contracting-input resolution question](analysis/sharp-circle-escape-independent-review.md#35-contracting-input-separate-resolution-question) is a separate received review item: positivity in the adaptive run is sampled evidence, and the exploratory fixed-step run's changing stop event needs a controlled comparison through the existing radius guard. Neither task adopts a ceiling, establishes physical preparation of the supplied histories, or activates unrelated deferred FSC tasks.
-
-**First-window trajectory bound, 2026-09-26:** the [corrected escape review](analysis/sharp-circle-escape-independent-review.md) is integrated into the [braking analysis](analysis/sharp-circle-braking-continuation.md#6-stronger-escape-criterion-and-corrected-finite-target) and manuscript. The sharper conditional criterion reduces the planned horizon to 300 with position allowance 0.5 and velocity allowance 0.02 on the later source interval; these are not achieved errors. The [interval defect evaluator](analysis/sharp-circle-first-window-defect.md), checked first on exact zero and nonzero circular defects, bounds the full comparison-curve equation error on $[0,1]$. The subsequent [trajectory-bound proof](analysis/sharp-circle-first-window-tube.md) controls receiver-position sensitivity including emission-time displacement, proves complete ordinary roots throughout the proposed region, and closes the normal-cone comparison. Position error is below 0.0000450 and velocity error below 0.0001342 throughout $[0,1]$; the actual solution remains at field speed and receives only negative-time emissions. This finite-prefix result is conditional on the derivation, original defect evaluator and interval backend, and has not been independently reviewed. The [receipt](evidence/sharp-circle-first-window-tube-receipt.json) records analytic controls before target arithmetic and checks of all 512 input boxes. Escape remains uncertified. The next bounded step is extension beyond time one with the nonzero endpoint errors retained, preserving the analytic-source boundary or explicitly adding evolving-source error when it is crossed. No regular testing obligation or unrelated FSC activation is introduced.
-
-[Collinear research](../collinear-research/priorities.md) now owns the encounter comparison and focused mirror analyses. The Braid Program owns circular and multi-binary applications. [Shared ceiling definitions](../analysis/field-speed-ceiling-definition-and-shared-results.md) remain conditional equation research; their relocation makes no new speed-condition decision. The former ceiling investigation is [parked as history](../field-speed-ceiling/README.md). Existing queue identifiers and scientific statuses are preserved.
+[Collinear research](../collinear-research/priorities.md) now owns the encounter comparison and focused mirror analyses. [Binary research](../binary-research/README.md) owns isolated pairs; the Braid Program owns multi-binary and more general multi-architrino applications. [Shared ceiling definitions](../analysis/field-speed-ceiling-definition-and-shared-results.md) remain conditional equation research; their relocation makes no new speed-condition decision. The former ceiling investigation is [parked as history](../field-speed-ceiling/README.md). Existing queue identifiers and scientific statuses are preserved.

@@ -6,7 +6,7 @@ This note re-evaluates the earlier review against the current state of its subje
 
 ## 1. What the reorganization changed
 
-On 2026-09-26 the field-speed-ceiling directory was parked under `dormant-deferred`. The circular-binary work, including the three planar derivations, moved to the Braid Program, and the regular-chart theorem moved to Master-Equation Closure. The migration record lists these moves in its [path map](research-reorganization-completion.md). The manuscript sections formerly numbered 5.3.1 to 5.3.4 are now [§9.3.1 to §9.3.4](../manuscript.md#93-planar-perturbations-and-the-ellipse-question), with legacy anchors preserved. Two new numerical subsections, §9.3.5 and §9.3.6, follow them.
+On 2026-09-26 the field-speed-ceiling directory was parked under `dormant-deferred`. The circular-binary work, including the three planar derivations, moved to the Braid Program, and the regular-chart theorem moved to Master-Equation Closure. The migration record lists these moves in its [path map](../../braid-program/analysis/research-reorganization-completion.md). The manuscript sections formerly numbered 5.3.1 to 5.3.4 are now [§9.3.1 to §9.3.4](../manuscript.md#13-planar-perturbations-and-the-ellipse-question), with legacy anchors preserved. Two new numerical subsections, §9.3.5 and §9.3.6, follow them.
 
 The reorganization preserved the governing equations in the first-variation and growing-mode analyses. The nonlinear proof was revised after the review to integrate its corrections. The questions here concern those integrations and the earlier review's remaining mathematical and evidence obligations; the corrected verdicts are stated in Section 6.
 
@@ -142,7 +142,7 @@ The derived spectral conclusions are a growing real mode and the analytic confin
 | Add the positions lemma | Taylor and chord steps independently verified and integrated in proof §6. The completed all-past construction supplies the positional instability corollary. |
 | Record a complete eigenvalue count | **Not accepted as established.** The derived $|z|<3$ bound is integrated in growing-mode §3.1. The historical winding remains diagnostic, and the proof header retains its caution. A whole-contour count certificate is an optional separate investigation. |
 | Align manuscript and links | §§9.3.3–9.3.4 contain the bound, lemma consequence and derived local claim grade, with links to this reassessment and the primary proof. |
-| Update live status | [Braid Program priorities](../priorities.md#research-ownership--2026-09-26) and the [source-check work-log entry](../work-log.md#2026-09-26--original-unstable-manifold-theorem-checked) capture the completed result. Historical ceiling priorities remain preserved. |
+| Update live status | [Braid Program priorities](../priorities.md#research-ownership--2026-09-26) and the [source-check work-log entry](../../braid-program/work-log.md#2026-09-26--original-unstable-manifold-theorem-checked) capture the completed result. Historical ceiling priorities remain preserved. |
 | Hand off contracting-run sensitivity | The escape review now owns the separate resolution question in §3.5. The departure analysis and manuscript distinguish sampled positivity from continuous certification; no new trajectory run was performed. |
 
 The [source-check assignment](planar-circle-instability-review-corrections-prompt.md) is complete. The optional complete spectral certificate and contracting-run comparison remain separate investigations; neither is a prerequisite for the local instability result.

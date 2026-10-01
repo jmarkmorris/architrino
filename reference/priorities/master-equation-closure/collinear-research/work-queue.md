@@ -1,6 +1,6 @@
 # Collinear research work queue
 
-Transferred on 2026-09-26 without changing scientific scope or reactivating deferred tasks. BP-001 remains a mixed head-on/oblique/transverse campaign in the [Braid Program queue](../braid-program/work-queue.md#bp-001--binary-subfield-fate); this queue does not duplicate it.
+Transferred on 2026-09-26 without changing scientific scope or reactivating deferred tasks. BP-001 remains a mixed head-on/oblique/transverse campaign in the [Binary research queue](../binary-research/work-queue.md#bp-001--binary-subfield-fate); this queue does not duplicate it.
 
 ## Ranked Next Objects
 

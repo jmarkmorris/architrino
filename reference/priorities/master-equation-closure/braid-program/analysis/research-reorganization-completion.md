@@ -1,5 +1,7 @@
 # Research reorganization — 2026-09-26
 
+**Historical ownership record.** The subsequent [binary and photon separation](../../../aaa-work-threads/campaigns/binary-photon-research-separation.md) moves current single-pair research and Campaign 1 into Binary research. The dispositions below record the earlier collinear separation.
+
 The approved [plan](research-reorganization-plan.md) is implemented with the operator's amendment: after distributing current research, move the remaining field-speed-ceiling directory under `dormant-deferred`. Speed-condition research remains a separate follow-up; no equation, claim grade, task identifier or research authorization changed.
 
 ## Current reading path

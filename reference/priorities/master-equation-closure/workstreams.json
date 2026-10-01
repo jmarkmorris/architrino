@@ -1,10 +1,37 @@
 {
   "schema": "architrino/research-workstreams.v1",
   "children": [
-    { "directory": "collinear-research", "lifecycle": "current" },
-    { "directory": "lattice-research", "lifecycle": "current" },
-    { "directory": "braid-program", "lifecycle": "current" },
-    { "directory": "noether-sea-research", "lifecycle": "current" },
-    { "directory": "field-speed-ceiling", "lifecycle": "dormant" }
+    {
+      "directory": "collinear-research",
+      "lifecycle": "current"
+    },
+    {
+      "directory": "lattice-research",
+      "lifecycle": "current"
+    },
+    {
+      "directory": "binary-research",
+      "lifecycle": "current"
+    },
+    {
+      "directory": "braid-program",
+      "lifecycle": "current"
+    },
+    {
+      "directory": "photon-research",
+      "lifecycle": "current"
+    },
+    {
+      "directory": "neutrino-research",
+      "lifecycle": "current"
+    },
+    {
+      "directory": "noether-sea-research",
+      "lifecycle": "current"
+    },
+    {
+      "directory": "field-speed-ceiling",
+      "lifecycle": "dormant"
+    }
   ]
 }

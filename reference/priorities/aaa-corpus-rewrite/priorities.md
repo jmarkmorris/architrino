@@ -23,6 +23,8 @@ The [September 27 validation follow-ups](work-queue.md#ops-031--september-27-val
 
 ### How the assurance corrections relate to the rewrite
 
+The [September 30 spatial-chart referrals](work-queue.md#ops-031--september-30-spatial-chart-referrals) propose reconciling the twelve-member chart's axial ordering with its planar and interleaved-component cases, and propagating the already accepted bounded axial-speed result into its current-status paragraph. These are report-only findings for the existing geometry and editorial owners; no physical assembly, retention or stability claim is promoted.
+
 The [September 29 frame clarification](work-queue.md#ops-031--september-29-frame-clarification) is accepted, implemented and independently reviewed. The chapter defines a framed closed curve before using self-linking, explains why arbitrary framing cannot establish physical chirality, and separates a causal-root fold from a geometric singularity. CAFR29-01 is resolved at this bounded explanatory scope; CRW-005 remains closed.
 
 The [September 28 core referrals](work-queue.md#ops-031--september-28-core-review-referrals) remain proposed: clarify the degenerate affine-dimension boundary in Braid Taxonomy and reconcile the Planar Braid chapter's open-work summaries with scoped results already accepted by BP-011. These are bounded editorial follow-ups, not a reopened CRW-005 campaign or authorization to promote stability, release or physical-identity claims.

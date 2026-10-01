@@ -13,6 +13,8 @@
 
 This folder owns the priority work ledger for the deployed Photon and Polarization Visualization app.
 
+Photon-specific geometry and dynamics research is gathered in [Photon research under Master-Equation Closure](../master-equation-closure/photon-research/README.md#geometry-analyses-and-evidence). This app owner keeps its controls, visualization, software contracts and observer diagnostics; its [manuscript](manuscript.md) links to the extracted research where those details are needed.
+
 The app begins from the candidate photon picture already used in the photon Gate B priority material: a coaxial contra-rotating planar pair whose observer-facing transverse ledger must still be derived, tested, and routed through analyzer behavior. This priority packet does not claim photon closure, Malus-law recovery, helicity recovery, or a physical free photon branch.
 
 The deployed route is `photon.html`. The dedicated runtime lives under `src/apps/photon/`, with focused modules for state, controls, braid rendering, formulas, diagnostics, and runtime assembly.

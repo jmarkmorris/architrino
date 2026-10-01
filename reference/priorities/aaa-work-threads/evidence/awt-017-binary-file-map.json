@@ -1,0 +1,303 @@
+{
+  "task": "AWT-017",
+  "directoryMoves": [],
+  "files": [
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/circular-binary-all-root-certificate.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/circular-binary-all-root-certificate.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "b1517630895dd45d358566f0b4b1b217e19156c450be402b5ba24c2c25e8c63b",
+      "bytes": 5082,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/circular-binary-census-stability-neighborhood.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/circular-binary-census-stability-neighborhood.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "c7118e869c40a3da36fd843a4626b279b537d7331f59a07b70aa2966bd0d11be",
+      "bytes": 10165,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/circular-binary-secondary-theorems.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/circular-binary-secondary-theorems.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "67a41d5a919803fbe67704dc3d988f190fe3d5717c490dc9d542f514713c1953",
+      "bytes": 13908,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/planar-circle-growing-mode.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-growing-mode.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "4eaafbce79f0d535a465cab1783e8d1717263df7528fa57aa05a282b0f7e12a3",
+      "bytes": 9749,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/planar-circle-instability-review-corrections-prompt.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-instability-review-corrections-prompt.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "7ab20ac9cc36970dba65a3fb7fc09d45385c72ae77644353132a816eb53072a6",
+      "bytes": 3342,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/planar-circle-instability-review-reassessment.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-instability-review-reassessment.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "04a1679e794b204cdbd8e4ed4f8aa297cd6e8cb4cca77f6a3d393fedff0bb205",
+      "bytes": 27384,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/planar-circle-nonlinear-instability.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-nonlinear-instability.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "655bfd8dc496c0a2adc21d48270a9197927be43d95e46cadac098959c701a638",
+      "bytes": 21042,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/planar-circle-sharp-first-variation.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-sharp-first-variation.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "11365d6bd340900fa550d499a404e2d0e2073aa793053e44222b823c178b2e2f",
+      "bytes": 6577,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/sharp-circle-braking-continuation.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-braking-continuation.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "5644f6204d7d000af012e245fa05945c8546600bc8591d1694d420634f767d9c",
+      "bytes": 19840,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/sharp-circle-escape-claude-review-prompt.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-escape-claude-review-prompt.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "a9a0e30d46c7ab8246d596867a72e817e6340ad0937252f893fe38f0ba605e26",
+      "bytes": 13059,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/sharp-circle-escape-independent-review.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-escape-independent-review.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "245d238ed93074aa5b5a6effa334fdfb0db8b528f451966ffda58f065724c1a3",
+      "bytes": 41648,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/sharp-circle-first-departure.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-first-departure.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "31ed6ec4107177e3a9a958d72c3edc7f6e434959f22d4620ceffe1c29d19ea97",
+      "bytes": 7883,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/sharp-circle-first-window-defect.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-first-window-defect.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "190065b72aa63cbcf772dbd5bfe9db43381b0456f83d4462fff37a2312cdcf07",
+      "bytes": 11909,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/analysis/sharp-circle-first-window-tube.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-first-window-tube.md",
+      "rationale": "Isolated antipodal two-architrino circular dynamics, its conditional ceiling model, perturbation analysis, or direct review.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "70371e9a97f2b010ad623bf586237f360566739cc29a5bf1810ee7f84d2ea9b5",
+      "bytes": 14479,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-campaign-1-two-architrino-breathing-diagnostic.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/2026-07-24-campaign-1-two-architrino-breathing-diagnostic.md",
+      "rationale": "Direct two-architrino diagnostic or provenance/receipt of the isolated circular-binary analysis.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "96d729c9e94f9c329f0959a8fe500004d912dae52f56e6918365858a5007fde6",
+      "bytes": 5399,
+      "protected": true
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-current-solver-two-architrino-breather-return-map.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/2026-07-24-current-solver-two-architrino-breather-return-map.md",
+      "rationale": "Direct two-architrino diagnostic or provenance/receipt of the isolated circular-binary analysis.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "18d048f4b9ac19ccf0c5943fc4fefbf7982e9cae05178b66e8185fccfcf9f8f0",
+      "bytes": 7956,
+      "protected": true
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-10-balanced-circular-release-outward-departure.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/2026-08-10-balanced-circular-release-outward-departure.md",
+      "rationale": "Direct two-architrino diagnostic or provenance/receipt of the isolated circular-binary analysis.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "880756baf685259df025185a6ad18c6af2d8fb4ab8bfe4ed5533c80ff53ba22e",
+      "bytes": 7007,
+      "protected": true
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-11-physical-binary-retained-history-radial-turn.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/2026-08-11-physical-binary-retained-history-radial-turn.md",
+      "rationale": "Direct two-architrino diagnostic or provenance/receipt of the isolated circular-binary analysis.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "966c6cd79c5eb14dfdb05f497f022c225a71e5a9a8ff3d4ec18f3db09e85fa72",
+      "bytes": 8147,
+      "protected": true
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/evidence/planar-circle-review-instrument-retention.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/planar-circle-review-instrument-retention.md",
+      "rationale": "Direct two-architrino diagnostic or provenance/receipt of the isolated circular-binary analysis.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "c216fad9b94128c43475e5efb5c0eb2461e74aad5c77fbb0ec1755125054b63d",
+      "bytes": 8081,
+      "protected": true
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/evidence/sharp-circle-braking-receipt.json",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-braking-receipt.json",
+      "rationale": "Direct two-architrino diagnostic or provenance/receipt of the isolated circular-binary analysis.",
+      "preservation": "Move with byte-for-byte preservation; embedded schema, logical paths, hashes, identities and commands are frozen. Update current physical-path consumers separately.",
+      "sourceSha256": "31f2545c78599ddfb1f345458a38e020ecb38e1d78ca058ab1282495c98ca1a6",
+      "bytes": 9063,
+      "protected": true
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/evidence/sharp-circle-escape-independent-review-receipt.json",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-escape-independent-review-receipt.json",
+      "rationale": "Direct two-architrino diagnostic or provenance/receipt of the isolated circular-binary analysis.",
+      "preservation": "Move with byte-for-byte preservation; embedded schema, logical paths, hashes, identities and commands are frozen. Update current physical-path consumers separately.",
+      "sourceSha256": "846b1343d26a60fa8780e3f84c3e98c4e182f245a2db15e0c2e50d804b3d9168",
+      "bytes": 48439,
+      "protected": true
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/evidence/sharp-circle-first-window-defect-receipt.json",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-first-window-defect-receipt.json",
+      "rationale": "Direct two-architrino diagnostic or provenance/receipt of the isolated circular-binary analysis.",
+      "preservation": "Move with byte-for-byte preservation; embedded schema, logical paths, hashes, identities and commands are frozen. Update current physical-path consumers separately.",
+      "sourceSha256": "1a859eb2a00ebca187bff08ce7f4ff4b90f2f53342edc85eac0f44266dbcdce7",
+      "bytes": 27037,
+      "protected": true
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/evidence/sharp-circle-first-window-tube-receipt.json",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-first-window-tube-receipt.json",
+      "rationale": "Direct two-architrino diagnostic or provenance/receipt of the isolated circular-binary analysis.",
+      "preservation": "Move with byte-for-byte preservation; embedded schema, logical paths, hashes, identities and commands are frozen. Update current physical-path consumers separately.",
+      "sourceSha256": "117292718439119469275a91b62766912f41c30eaad6c79f097b737852aeed9b",
+      "bytes": 9393,
+      "protected": true
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/campaigns/campaign-1-subfield-binary.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/campaigns/campaign-1-subfield-binary.md",
+      "rationale": "Combined two-architrino Campaign 1 across head-on, oblique and transverse preparations; head-on results remain referenced from collinear research.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "7a741698c6c2c7ffb8f0deca5767ae28b6c7adae9056f375681e288bed329c40",
+      "bytes": 13625,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/campaigns/campaign-1-dispatch-prompt.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/campaigns/campaign-1-dispatch-prompt.md",
+      "rationale": "Combined two-architrino Campaign 1 across head-on, oblique and transverse preparations; head-on results remain referenced from collinear research.",
+      "preservation": "Snapshot original bytes before move; retain formulas, stated model, claim grade, historical status and source hashes. Rebase navigation only outside explicitly hash-bound content.",
+      "sourceSha256": "7c39d9e9a3ce7b3a82b54b0147c0087ac5c6a26defa174f5da89c1bcbee1cde3",
+      "bytes": 5347,
+      "protected": false
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/configurations/alternating-circular-ring-01.v3.json",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "destination": "reference/priorities/master-equation-closure/binary-research/configurations/alternating-circular-ring-01.v3.json",
+      "rationale": "Actual 1:1 two-member prescribed circular display record; ring-02 and higher have more members and remain Braid.",
+      "preservation": "Move with byte-for-byte preservation; embedded schema, logical paths, hashes, identities and commands are frozen. Update current physical-path consumers separately.",
+      "sourceSha256": "69d35d6e9c52975314fcf684c9b41a05c1392a328c63116ebfb094773b84c3da",
+      "bytes": 5312,
+      "protected": true
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md",
+      "proposedOwner": "binary-research",
+      "action": "move",
+      "rationale": "Single stationary-rest pair diagnostic for Campaign1; current collinear exposition remains its linked geometry owner.",
+      "preservation": "Byte-identical frozen Markdown; original logical directory retained through source transport.",
+      "sourceSha256": "9f91cf9f60e1fa09cf71101ead5e8deab7278a35c4e25160092222ba274f3ff7",
+      "bytes": 7421,
+      "protected": true
+    }
+  ]
+}
