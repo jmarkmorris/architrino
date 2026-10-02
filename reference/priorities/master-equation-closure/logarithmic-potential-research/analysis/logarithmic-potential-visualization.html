@@ -1,0 +1,188 @@
+<div id="logarithmic-potential-1002">
+  <h3>A movable zero; an unchanged gradient</h3>
+  <div class="viz-controls">
+    <label class="form-label" for="log-reference-1002">Zero-reference radius <span class="tabular-nums" id="log-reference-value-1002">r₀/L = 1.00</span>
+      <input class="form-range" id="log-reference-1002" type="range" min="-2" max="2" step="0.02" value="0" aria-label="Zero-reference radius divided by fixed length L">
+    </label>
+  </div>
+  <div class="log-legend" aria-label="Potential branches">
+    <button class="cursor-interaction" type="button" aria-pressed="true" data-branch="1"><span class="log-swatch log-plus"></span>+ln(r/r₀)</button>
+    <button class="cursor-interaction" type="button" aria-pressed="true" data-branch="-1"><span class="log-swatch log-minus"></span>−ln(r/r₀)</button>
+  </div>
+  <div class="log-plot" data-plot="potential"></div>
+  <div class="log-plot" data-plot="gradient"></div>
+  <div class="text-small tabular-nums" aria-live="polite" id="log-difference-1002">Normalized change, L → 2L: ±0.6931</div>
+  <div class="tooltip" role="tooltip" hidden></div>
+  <span class="sr-only">Derived behavior of a conditional scalar model. L is a fixed length and A is a fixed positive potential amplitude. Changing the reference radius adds a constant to each potential. Neither radial gradient changes. The model specifies no speed law.</span>
+</div>
+<style>
+#logarithmic-potential-1002 { position: relative; }
+#logarithmic-potential-1002 .log-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 8px 0; }
+#logarithmic-potential-1002 .log-legend button { display: inline-flex; align-items: center; gap: 7px; color: var(--foreground); background: transparent; border: 0; padding: 3px 0; font: inherit; }
+#logarithmic-potential-1002 .log-legend button[aria-pressed="false"] { opacity: 0.5; }
+#logarithmic-potential-1002 .log-swatch { width: 24px; height: 0; border-top: 2px solid var(--viz-series-1); }
+#logarithmic-potential-1002 .log-minus { border-top-color: var(--viz-series-2); border-top-style: dashed; }
+#logarithmic-potential-1002 .log-chart { display: block; width: 100%; overflow: visible; }
+#logarithmic-potential-1002 .log-chart text { fill: var(--foreground); }
+#logarithmic-potential-1002 .log-chart .domain { display: none; }
+#logarithmic-potential-1002 .log-chart .tick line { stroke: var(--border); }
+#logarithmic-potential-1002 .log-chart [data-chart-frame] { fill: none; stroke: var(--border); }
+#logarithmic-potential-1002 .log-chart .log-grid { stroke: var(--border); stroke-width: 1; }
+#logarithmic-potential-1002 .log-chart .log-zero { stroke: var(--foreground); stroke-opacity: 0.45; stroke-width: 1; }
+#logarithmic-potential-1002 .log-chart .log-reference { stroke: var(--foreground); stroke-opacity: 0.6; stroke-dasharray: 3 4; }
+#logarithmic-potential-1002 .tooltip { position: absolute; pointer-events: none; background: var(--popover); color: var(--popover-foreground); padding: 8px 10px; max-width: calc(100% - 16px); z-index: 3; }
+#logarithmic-potential-1002 .tooltip[hidden] { display: none; }
+@media (pointer: coarse) { #logarithmic-potential-1002 .log-legend button { min-height: 44px; } }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script>
+(() => {
+  const root = document.getElementById('logarithmic-potential-1002');
+  const slider = root.querySelector('#log-reference-1002');
+  const value = root.querySelector('#log-reference-value-1002');
+  const tooltip = root.querySelector('[role="tooltip"]');
+  const enabled = new Set([1, -1]);
+  const xs = Array.from({length: 321}, (_, i) => 0.1 + 5.9 * i / 320);
+  const xExtent = d3.extent(xs);
+  const maxPotential = d3.extent(xs.flatMap(x => [Math.log(x / 0.25), -Math.log(x / 0.25), Math.log(x / 4), -Math.log(x / 4)]));
+  const gradientExtent = d3.extent(xs.map(x => 1 / x));
+  let reference = 1;
+  let plots = [];
+  const stored = window.openai?.widgetState?.modelContent;
+  if (stored && Number.isFinite(stored.referenceRatio) && stored.referenceRatio >= 0.25 && stored.referenceRatio <= 4) reference = stored.referenceRatio;
+  function restoreBranches(saved) {
+    if (!Array.isArray(saved) || !saved.every(sign => sign === 1 || sign === -1)) return;
+    enabled.clear();
+    saved.forEach(sign => enabled.add(sign));
+    root.querySelectorAll('[data-branch]').forEach(button => button.setAttribute('aria-pressed', String(enabled.has(Number(button.dataset.branch)))));
+  }
+  restoreBranches(window.openai?.widgetState?.privateContent?.visibleBranches);
+  slider.value = Math.log2(reference);
+  const color = sign => `var(--viz-series-${sign === 1 ? 1 : 2})`;
+  function syncLabel() {
+    value.textContent = `r₀/L = ${reference.toFixed(2)}`;
+    slider.setAttribute('aria-valuetext', `${reference.toFixed(2)} times fixed length L`);
+  }
+  function hideHover() {
+    tooltip.hidden = true;
+    root.querySelectorAll('[data-chart-hover-guide], [data-chart-hover-marker]').forEach(el => el.style.display = 'none');
+  }
+  function fitLabels(svg) {
+    const bounds = svg.node().getBoundingClientRect();
+    const tickLabels = svg.selectAll('.x-axis .tick text').nodes();
+    let previous = null;
+    for (const label of tickLabels) {
+      label.style.display = '';
+      const box = label.getBoundingClientRect();
+      if (box.left < bounds.left + 4 || box.right > bounds.right - 4 || (previous && box.left < previous.right + 4)) label.style.display = 'none';
+      else previous = box;
+    }
+    const labels = svg.selectAll('text.axis-title, .tick text, text.log-reference-label').nodes().filter(el => el.style.display !== 'none');
+    const boxes = labels.map(el => ({el, box: el.getBoundingClientRect()}));
+    for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
+      const a = boxes[i], b = boxes[j];
+      if (a.box.left < b.box.right + 4 && b.box.left < a.box.right + 4 && a.box.top < b.box.bottom + 4 && b.box.top < a.box.bottom + 4) {
+        const optional = [a.el, b.el].find(el => el.classList.contains('log-reference-label'));
+        if (optional) optional.style.display = 'none';
+      }
+    }
+  }
+  function draw() {
+    hideHover();
+    plots = [];
+    root.querySelectorAll('.log-plot').forEach((container, index) => {
+      const potential = index === 0;
+      const width = container.getBoundingClientRect().width;
+      if (width < 100) return;
+      const height = potential ? 235 : 180;
+      const m = {left: 68, right: 16, top: 26, bottom: 46};
+      const innerW = width - m.left - m.right;
+      const innerH = height - m.top - m.bottom;
+      const x = d3.scaleLinear().domain(xExtent).range([m.left + 4, width - m.right - 4]);
+      const padding = (maxPotential[1] - maxPotential[0]) * 0.08;
+      const y = d3.scaleLinear().domain(potential ? [maxPotential[0] - padding, maxPotential[1] + padding] : [0, gradientExtent[1] * 1.08]).range([height - m.bottom - 4, m.top + 4]);
+      const svg = d3.select(container).selectAll('svg').data([null]).join('svg').attr('class', 'log-chart').attr('viewBox', `0 0 ${width} ${height}`).attr('role', 'img').attr('aria-label', potential ? 'Normalized potential versus distance. The two branches cross zero at the adjustable reference radius.' : 'Normalized radial gradient magnitude versus distance. Both branches have magnitude one over distance, independent of the zero reference.');
+      svg.selectAll('*').remove();
+      svg.append('rect').attr('data-chart-frame', '').attr('x', m.left).attr('y', m.top).attr('width', innerW).attr('height', innerH);
+      const yTicks = potential ? [-4, -2, 0, 2, 4] : [0, 5, 10];
+      yTicks.forEach(t => svg.append('line').attr('class', t === 0 ? 'log-zero' : 'log-grid').attr('x1', m.left).attr('x2', width - m.right).attr('y1', y(t)).attr('y2', y(t)));
+      svg.append('g').attr('class', 'x-axis').attr('transform', `translate(0,${height - m.bottom})`).call(d3.axisBottom(x).tickValues(width < 450 ? [0.1, 2, 4, 6] : [0.1, 1, 2, 3, 4, 5, 6]).tickSize(4).tickFormat(d3.format('~g')));
+      svg.append('g').attr('class', 'y-axis').attr('transform', `translate(${m.left},0)`).call(d3.axisLeft(y).tickValues(yTicks).tickSize(4));
+      svg.append('text').attr('class', 'axis-title').attr('data-axis', 'x').attr('x', m.left + innerW / 2).attr('y', height - 9).attr('text-anchor', 'middle').text('Distance r/L (dimensionless)');
+      svg.append('text').attr('class', 'axis-title').attr('data-axis', 'y').attr('x', m.left).attr('y', 15).text(potential ? 'Potential φ/A (dimensionless)' : 'Gradient magnitude (L/A)|dφ/dr|');
+      if (potential) {
+        svg.append('line').attr('class', 'log-reference').attr('x1', x(reference)).attr('x2', x(reference)).attr('y1', m.top).attr('y2', height - m.bottom);
+        svg.append('circle').attr('cx', x(reference)).attr('cy', y(0)).attr('r', 4).attr('fill', 'var(--foreground)');
+      }
+      const line = d3.line().x(d => x(d.x)).y(d => y(d.y));
+      const branches = potential ? [1, -1].filter(sign => enabled.has(sign)) : [1];
+      for (const sign of branches) {
+        const data = xs.map(r => ({x: r, y: potential ? sign * Math.log(r / reference) : 1 / r}));
+        svg.append('path').datum(data).attr('data-series', sign).attr('fill', 'none').attr('stroke', potential ? color(sign) : 'var(--viz-series-3)').attr('stroke-width', 2).attr('stroke-dasharray', potential && sign === -1 ? '7 4' : null).attr('d', line);
+      }
+      const guide = svg.append('line').attr('data-chart-hover-guide', '').attr('stroke', 'var(--foreground)').attr('stroke-opacity', 0.4).attr('y1', m.top).attr('y2', height - m.bottom).style('display', 'none');
+      const markers = branches.map(sign => ({sign, dot: svg.append('circle').attr('data-chart-hover-marker', '').attr('r', 4).attr('fill', potential ? color(sign) : 'var(--viz-series-3)').style('display', 'none')}));
+      let pinned = false;
+      const overlay = svg.append('rect').attr('data-chart-hit', '').attr('data-chart-hover-overlay', 'cross-series').attr('class', 'cursor-interaction').attr('x', m.left).attr('y', m.top).attr('width', innerW).attr('height', innerH).attr('fill', 'transparent');
+      function show(event) {
+        const [pointerX] = d3.pointer(event, svg.node());
+        const r = Math.max(xExtent[0], Math.min(xExtent[1], x.invert(pointerX)));
+        guide.attr('x1', x(r)).attr('x2', x(r)).style('display', '');
+        const rows = [`r/L = ${r.toFixed(3)}`];
+        markers.forEach(({sign, dot}) => {
+          const v = potential ? sign * Math.log(r / reference) : 1 / r;
+          dot.attr('cx', x(r)).attr('cy', y(v)).style('display', '');
+          rows.push(potential ? `${sign === 1 ? '+' : '−'} branch: ${v.toFixed(3)}` : `Gradient magnitude: ${v.toFixed(3)}`);
+        });
+        tooltip.replaceChildren(...rows.map(row => { const div = document.createElement('div'); div.textContent = row; return div; }));
+        tooltip.hidden = false;
+        const rootBox = root.getBoundingClientRect();
+        const svgBox = svg.node().getBoundingClientRect();
+        const toolBox = tooltip.getBoundingClientRect();
+        tooltip.style.left = `${Math.max(8, Math.min(rootBox.width - toolBox.width - 8, x(r) + 12))}px`;
+        tooltip.style.top = `${svgBox.top - rootBox.top + m.top + 7}px`;
+      }
+      overlay.on('pointermove', event => { if (!pinned) show(event); }).on('pointerleave', () => { if (!pinned) hideHover(); }).on('click', event => { pinned = !pinned; if (pinned) show(event); else hideHover(); });
+      svg.selectAll('text').classed('text-small', true);
+      fitLabels(svg);
+      plots.push({svg, x, y, line, potential});
+    });
+  }
+  function update(animate = true) {
+    syncLabel();
+    hideHover();
+    const duration = animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 120 : 0;
+    const p = plots.find(plot => plot.potential);
+    if (!p) { draw(); return; }
+    p.svg.selectAll('[data-series]').each(function() {
+      const sign = Number(this.getAttribute('data-series'));
+      const data = xs.map(r => ({x: r, y: sign * Math.log(r / reference)}));
+      d3.select(this).interrupt().datum(data).transition().duration(duration).attr('d', p.line);
+    });
+    p.svg.select('.log-reference').interrupt().transition().duration(duration).attr('x1', p.x(reference)).attr('x2', p.x(reference));
+    p.svg.select('circle:not([data-chart-hover-marker])').interrupt().transition().duration(duration).attr('cx', p.x(reference));
+    fitLabels(p.svg);
+  }
+  function save() {
+    window.openai?.setWidgetState?.({modelContent: {referenceRatio: reference, fixedLength: 'L', model: 'phi/A = +/-ln(r/r0)', potentialDifferenceLto2L: '+/-ln(2)', speedLaw: null}, privateContent: {visibleBranches: [...enabled]}})?.catch(() => {});
+  }
+  slider.addEventListener('input', () => { reference = 2 ** Number(slider.value); update(); });
+  slider.addEventListener('change', save);
+  root.querySelectorAll('[data-branch]').forEach(button => button.addEventListener('click', () => {
+    const sign = Number(button.dataset.branch);
+    if (enabled.has(sign)) enabled.delete(sign); else enabled.add(sign);
+    button.setAttribute('aria-pressed', String(enabled.has(sign)));
+    draw(); save();
+  }));
+  window.addEventListener('openai:set_globals', event => {
+    const state = event.detail?.globals?.widgetState;
+    const next = state?.modelContent?.referenceRatio;
+    if (Number.isFinite(next) && next >= 0.25 && next <= 4) { reference = next; slider.value = Math.log2(next); syncLabel(); }
+    restoreBranches(state?.privateContent?.visibleBranches);
+    draw();
+  });
+  syncLabel();
+  new ResizeObserver(draw).observe(root.querySelector('.log-plot'));
+  draw();
+})();
+</script>

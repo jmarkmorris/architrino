@@ -85,34 +85,7 @@ The focused source-mining capture for QCD confinement, hadronization, jet-fragme
 
 ### Quark Vortex-Coupling Simulation Target
 
-The quark-era source-mining signal is useful only as a simulation target. A candidate finite-assembly run should retain quark-like nested shell braid records with axial layers, a color-singlet constraint, and vortex-like wake-coupling rows:
-$$
-\Theta_q
-=
-\left(
-B_q,
-A_q,
-C_q,
-V_{\mathrm{wake}},
-\mathcal{L}_{E\mathbf{p}\mathbf{J}},
-\mathcal{P}_{\mathrm{singlet}}
-\right).
-$$
-The first comparison should ask whether the retained records produce stable hadron-like bound states, confinement-scale growth with separation, and gluon-comparison transition behavior before importing QCD language as ontology. Failure modes include a stable free-quark branch, color leakage outside a singlet ledger, and a fitted force law that does not arise from the retained wake-coupling rows.
-
-The octet check should be explicit. A candidate color-corridor run should start from the naive $3\times3$ axis-coupling space and show that the symmetric singlet is not an open long-range corridor while the eight traceless directions remain as active reconfiguration modes:
-$$
-\mathcal{O}_{8/9}
-=
-\left(
-\mathcal{C}_{3\times3},
-\Pi_{\mathrm{singlet}},
-\Pi_{\mathrm{octet}},
-\mathcal{R}_{\mathrm{open}},
-\mathcal{R}_{\mathrm{conf}}
-\right).
-$$
-Here $\mathcal{C}_{3\times3}$ is the candidate color-coupling inventory, $\Pi_{\mathrm{singlet}}$ and $\Pi_{\mathrm{octet}}$ are the singlet and octet projections, $\mathcal{R}_{\mathrm{open}}$ rejects an independent ninth open mode, and $\mathcal{R}_{\mathrm{conf}}$ checks that the same corridor record still supports confinement-scale behavior. This is a refinement of the existing quark vortex-coupling target, not a new top-level gate.
+The [quark vortex-coupling proposal](../master-equation-closure/quark-research/analysis/quark-vortex-coupling-target.md) is filed with quark geometry research. SMC-011 remains **Deferred / blocked** in the [queue](work-queue.md), depending on SMC-003 and SMC-009. Its color-singlet and octet conditions remain recovery targets; no retained quark history or completed simulation is supplied.
 
 ### Feynman-Diagram To Event-Ledger Translation Target
 

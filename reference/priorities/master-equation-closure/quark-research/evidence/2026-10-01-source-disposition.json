@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-01",
+  "scope": "Quark-specific unpublished research filing; published corpus stays in place.",
+  "scientificStatus": "No new calculation, retained branch, task activation or score change.",
+  "extraction": {
+    "source": "reference/priorities/mapping-standard-model/priorities.md",
+    "destination": "reference/priorities/master-equation-closure/quark-research/analysis/quark-vortex-coupling-target.md",
+    "sourceBeforeSha256": "73091684a1e4c256c6513492b286cfd92160fe90079d5f50c1e7c3b92763064e",
+    "sourceAfterSha256": "9accc98df1ef2a3ecd118f96182618b6743884a0bc0e0ed2a7f541aede2f772d",
+    "movedSectionSha256": "810e6da103b7ec8392a2e396d69837baf6c32c510d84c8eb29190a5c55321945",
+    "preservation": "Original section heading, prose and equations preserved exactly, apart from trailing inter-section blank line; source prefix and suffix unchanged.",
+    "sectionRoute": [
+      "reference/priorities/mapping-standard-model/priorities.md",
+      "quark-vortex-coupling-simulation-target",
+      "reference/priorities/master-equation-closure/quark-research/analysis/quark-vortex-coupling-target.md",
+      "quark-vortex-coupling-simulation-target"
+    ]
+  },
+  "retainedOwners": {
+    "publishedCorpus": "All content/markdown/aaa files remain in place; linked from the new owner.",
+    "braidProgram": "Shared F6c host, six-accessory capture analysis and candidate registry remain shared.",
+    "equationMapping": "Shared accessory placement and inverse geometry requirements remain in place.",
+    "standardModelMapping": "Flavor-overlap, effective confinement and QCD recovery remain in place; SMC-011 keeps its original deferred state and dependencies.",
+    "historicalReview": "CRW-005 evidence remains with corpus review."
+  },
+  "newSynthesis": "analysis/accessory-geometry.md gathers unpublished quark placement questions; manuscript.md connects their history and evidence requirements. Neither reproduces the published derivations.",
+  "verification": {
+    "extraction": "Known control passed before target split; exact original section body preserved apart from inter-section blank line.",
+    "navigationAndMath": {
+      "pass": true,
+      "files": 11,
+      "links": 197,
+      "fragments": 21,
+      "math": 188,
+      "issues": [],
+      "scope": "Relative paths and heading fragments using live research source resolver; KaTeX syntax only, not mathematical correctness or rendered visual inspection."
+    },
+    "published": "Pre-edit content/markdown/aaa SHA-256 manifest check passed.",
+    "sharedSourcesAndQueues": "Pre-edit eight-file SHA-256 manifest check passed.",
+    "priorityRanking": "32 current owners, 14 ranked rows; validator passed.",
+    "referenceIndex": "Declared ignored runtime family prepared and check passed.",
+    "limits": "Filing and preservation checks are not evidence for quark dynamics.",
+    "independentReview": {
+      "result": "pass",
+      "scope": "Exact original section, eight mathematical spans, surrounding source, declaration and section-route preservation; published/shared-source checksum checks.",
+      "instrument": ".local-data/aaa-work-threads/quark-research-setup/verification/review/check.py",
+      "knownControlsPassed": true,
+      "correction": "Added missing quark entry to parent enumeration and verified correction.",
+      "limits": "No independent scientific validation; broader navigation and KaTeX checks remain coordinator evidence."
+    }
+  },
+  "localEvidence": ".local-data/aaa-work-threads/quark-research-setup/",
+  "falsifier": "A changed published file, lost original equation, changed existing queue, broken relocated section address or altered scientific grade invalidates the corresponding filing claim."
+}

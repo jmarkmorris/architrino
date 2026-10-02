@@ -222,4 +222,6 @@ Operator explicitly requested greater parallel progress. Population admissibilit
 
 ## Research ownership — 2026-09-26
 
+[Logarithmic potential research](logarithmic-potential-research/README.md) owns the exploratory manuscript, supporting analysis, and [collinear-first research plan](logarithmic-potential-research/work-queue.md). All substantive work on that proposal remains there until its promise is assessed.
+
 [Collinear research](collinear-research/priorities.md) now owns the encounter comparison and focused mirror analyses. [Binary research](binary-research/priorities.md) owns single-pair circular applications; the Braid Program owns multi-binary and other multi-architrino collections. [Shared ceiling definitions](analysis/field-speed-ceiling-definition-and-shared-results.md) remain conditional equation research; their relocation makes no new speed-condition decision. The former ceiling investigation is [parked as history](field-speed-ceiling/README.md). Existing queue identifiers and scientific statuses are preserved.

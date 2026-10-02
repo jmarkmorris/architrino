@@ -23,6 +23,8 @@ The [September 27 validation follow-ups](work-queue.md#ops-031--september-27-val
 
 ### How the assurance corrections relate to the rewrite
 
+The [October 2 integration](work-log.md#2026-10-02--three-ops-031-clarifications-integrated) implements the three operator-accepted distinctions: preparation weight versus branch existence, fold onset versus ordinary simple-root admission, and a two-direction consistency check versus a full angular projection. Equations and scientific obligations are preserved. The separate auxiliary-method and chart-floor [direct-consumer follow-ups](work-queue.md#ops-031--october-2-early-chapter-referrals) remain proposed; CRW-005 remains closed.
+
 The [September 30 spatial-chart referrals](work-queue.md#ops-031--september-30-spatial-chart-referrals) propose reconciling the twelve-member chart's axial ordering with its planar and interleaved-component cases, and propagating the already accepted bounded axial-speed result into its current-status paragraph. These are report-only findings for the existing geometry and editorial owners; no physical assembly, retention or stability claim is promoted.
 
 The [September 29 frame clarification](work-queue.md#ops-031--september-29-frame-clarification) is accepted, implemented and independently reviewed. The chapter defines a framed closed curve before using self-linking, explains why arbitrary framing cannot establish physical chirality, and separates a causal-root fold from a geometric singularity. CAFR29-01 is resolved at this bounded explanatory scope; CRW-005 remains closed.

@@ -4354,7 +4354,7 @@ A change in context is not free relabeling. Something physical must have changed
 
 If the surroundings change from $c$ to $c'$, the emergence claim is admissible only when the altered constraints change the accessible basins *and* the change is accounted for in the same energy and provenance bookkeeping used everywhere else.
 
-A clean opening criterion is
+A change from zero to positive preparation weight is expressed by
 
 $$
 \mu_c(B_k^W(c))=0,
@@ -4364,7 +4364,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e26dabf6f02bd8bf)
 
-a branch with no admissible histories before, and some after. The reverse records closure; intermediate changes record reshaping.
+The branch receives zero weight under the first preparation and positive weight under the second. This does not by itself establish that new admissible histories have appeared: a nonempty basin can have zero measure, and changing the preparation can change its weight while leaving its admissible histories unchanged. Dynamical opening requires a separate demonstration that the admissible branch changes from empty to nonempty, or a theorem equating the weight criterion with branch existence under the stated preparation and support assumptions. The reverse weight change likewise does not by itself establish dynamical closure.
 
 A physical transition must be representable as a replayable event
 
@@ -4552,7 +4552,7 @@ $$
 
 The chord distance cannot exceed the integrated speed, and if speed stays under $c_f$ throughout the stated interval then the architrino cannot meet its own surface on that interval. If the bound persists for all later times, the exclusion persists as well.
 
-So reaching $c_f$ somewhere in the history is **necessary** for a nontrivial self-hit — but not **sufficient**. Curvature, acceleration, and branch geometry decide whether the worldline actually meets its own surface. The onset condition is root existence plus transversality, never the scalar inequality alone. Onset governs whether a root exists; an admitted contribution additionally carries the transmitter-side weight.
+So reaching $c_f$ somewhere in the history is **necessary** for a nontrivial self-hit — but not **sufficient**. Curvature, acceleration, and branch geometry decide whether the worldline actually meets its own surface. Onset is the first appearance of a root, never the scalar speed inequality alone. At a generic fold onset, the transmitter derivative vanishes, so the event requires singular-root treatment. Ordinary simple-root evaluation applies where that derivative is nonzero and the applicable chart conditions hold; an admitted contribution then carries the transmitter-side weight.
 
 That creates a **threshold asymmetry**. A small acceleration from crossing a wake can push an architrino into a chart where same-transmitter roots become admissible, or where the transversality floor fails. The transistor comparison is pedagogical only — a small input changing which channel conducts. The mechanism here is delayed root selection, not electronics.
 
@@ -5913,7 +5913,7 @@ $$
 
 for one leg pair.
 
-In spherical-harmonic language this checkpoint is the $\ell=0$ isotropy projection of the moving internal delay record. The next leakage record is the $\ell=2$ quadrupole anisotropy, denoted schematically by $Q_A$ for assembly $A$. A retained Lorentz or clock-universality claim must show that $Q_A$ is either cancelled by the full three-dimensional branch ledger or bounded below the relevant anisotropy ceiling; otherwise the two-leg period result is only an orientation-specific delay identity.
+Equality of the parallel and transverse delays is a necessary directional consistency check for isotropy. It does not determine the delay at intermediate orientations or its angular average. In spherical-harmonic language, the $\ell=0$ component is obtained by averaging a specified full angular delay record; the two-leg checkpoint does not perform that projection. Directional variation resides in the higher angular components, including the $\ell=2$ quadrupole anisotropy, denoted schematically by $Q_A$ for assembly $A$. A retained Lorentz or clock-universality claim must show that $Q_A$ and any other contributing anisotropic components are either cancelled by the full three-dimensional branch ledger or bounded below the applicable anisotropy ceilings; otherwise the two-leg period result is only an orientation-specific delay identity.
 
 Accelerated motion requires a transport law for the internal phase distribution through the Noether sea. For a stable branch with rest size $L_0$, group speed $v(T)$, and acceleration magnitude $a(T)$, the dimensionless small parameter is $aL_0/c_f^2$. A quadratic correction is a guessed transport ansatz, not a derived consequence of the inertial loop identity:
 $$

@@ -163,7 +163,8 @@
     "reference/priorities/master-equation-closure/braid-program/campaigns/campaign-1-dispatch-prompt.md": "reference/priorities/master-equation-closure/binary-research/campaigns/campaign-1-dispatch-prompt.md",
     "reference/priorities/master-equation-closure/braid-program/configurations/alternating-circular-ring-01.v3.json": "reference/priorities/master-equation-closure/binary-research/configurations/alternating-circular-ring-01.v3.json",
     "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md": "reference/priorities/master-equation-closure/binary-research/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md",
-    "reference/priorities/app-photon/evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json": "reference/priorities/master-equation-closure/photon-research/evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json"
+    "reference/priorities/app-photon/evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json": "reference/priorities/master-equation-closure/photon-research/evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json",
+    "reference/priorities/mapping-electromagnetism/analysis/logarithmic-potential-and-reference-level.md": "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md"
   },
   "frozenOrigins": [
     "reference/priorities/braid-program/analysis/braid-candidate-requirement-adjudication.md",
@@ -774,6 +775,18 @@
       "candidate-photon-role",
       "reference/priorities/master-equation-closure/photon-research/analysis/f6c-photon-source-and-carrier-candidate.md",
       "candidate-photon-role"
+    ],
+    [
+      "reference/priorities/mapping-standard-model/priorities.md",
+      "quark-vortex-coupling-simulation-target",
+      "reference/priorities/master-equation-closure/quark-research/analysis/quark-vortex-coupling-target.md",
+      "quark-vortex-coupling-simulation-target"
+    ],
+    [
+      "reference/priorities/master-equation-closure/collinear-research/analysis/master-equation-assumption-audit.md",
+      "would-inverse-distance-acceleration-remove-the-blockers",
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/inverse-distance-collinear-obstructions.md",
+      "would-inverse-distance-acceleration-remove-the-blockers"
     ]
   ]
 }

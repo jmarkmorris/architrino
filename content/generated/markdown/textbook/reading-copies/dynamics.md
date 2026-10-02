@@ -1343,7 +1343,7 @@ $$
 
 for one leg pair.
 
-In spherical-harmonic language this checkpoint is the $\ell=0$ isotropy projection of the moving internal delay record. The next leakage record is the $\ell=2$ quadrupole anisotropy, denoted schematically by $Q_A$ for assembly $A$. A retained Lorentz or clock-universality claim must show that $Q_A$ is either cancelled by the full three-dimensional branch ledger or bounded below the relevant anisotropy ceiling; otherwise the two-leg period result is only an orientation-specific delay identity.
+Equality of the parallel and transverse delays is a necessary directional consistency check for isotropy. It does not determine the delay at intermediate orientations or its angular average. In spherical-harmonic language, the $\ell=0$ component is obtained by averaging a specified full angular delay record; the two-leg checkpoint does not perform that projection. Directional variation resides in the higher angular components, including the $\ell=2$ quadrupole anisotropy, denoted schematically by $Q_A$ for assembly $A$. A retained Lorentz or clock-universality claim must show that $Q_A$ and any other contributing anisotropic components are either cancelled by the full three-dimensional branch ledger or bounded below the applicable anisotropy ceilings; otherwise the two-leg period result is only an orientation-specific delay identity.
 
 Accelerated motion requires a transport law for the internal phase distribution through the Noether sea. For a stable branch with rest size $L_0$, group speed $v(T)$, and acceleration magnitude $a(T)$, the dimensionless small parameter is $aL_0/c_f^2$. A quadratic correction is a guessed transport ansatz, not a derived consequence of the inertial loop identity:
 $$

@@ -1,0 +1,59 @@
+# OPS-031 Master Equation, part 1 — 2026-10-02
+
+## Scope and source
+
+**Partial chapter review only: lines 1–1362 completed; one low-severity mathematical-description finding proposed.** The next unread heading is line 1363, `Master Equation and DDE Formulation`. Lines 1363–5887 remain uncovered by this pass and must carry forward; this receipt does not complete the chapter or its monthly coverage. `wc -l` measured 5,887 lines. Four bounded `sed` reads covered 1–331, 332–653, 654–912, and 913–1362 without target-text truncation.
+
+`shasum -a 256` before and after source review returned `6284102f1f50a3fe4c1f75e7f7df4c0d640dc73dd4db3786caea4ad1a4748fa6` for [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md). No corpus source, shared control, scientific instrument, or generated artifact was edited. CRW-005 remains closed. Reviewer: Codex, continuing the existing review lineage; no materially different model adopted and no superiority claim. Wall time and operator burden were not measured.
+
+The live AGENTS, startup routing, review skill owner, corpus-reviewer, theory orientation, and periodic procedure govern this report-only pass. Task-relevant foundations, source policy, and the September 26 methods/naming assessment were consulted as bounded dependency checks, not additional chapter coverage. Mathematical support below is explicit differentiation, inequalities and a separately specified angular counterexample; agreement with an earlier receipt is provenance rather than independent proof.
+
+## ME02-01 — two directional delays do not constitute a spherical-harmonic projection
+
+**Low severity, derived mathematical-description defect; line 1344.** The sentence calls the two-leg checkpoint “the $\ell=0$ isotropy projection of the moving internal delay record.” The preceding calculation derives equality of parallel and transverse delays under a prescribed two-leg geometry and imposed phase-lock condition. It does not specify the full angular record or perform its monopole projection. The same paragraph correctly calls the result orientation-specific, and the preceding paragraph explicitly requires all orientations; preserve both qualifications.
+
+An independent counterexample is a positive axisymmetric angular record $p(\mu)=1+\epsilon\mu^2(1-\mu^2)$, with $\mu=\cos\theta$ and $0<\epsilon<1$. The parallel and transverse samples satisfy $p(1)=p(0)=1$, while its angular mean is
+
+$$
+\frac12\int_{-1}^{1}p(\mu)\,d\mu
+=1+\frac{2\epsilon}{15}.
+$$
+
+It is nonconstant and has higher even harmonics despite equality of the two sampled directions. This is an abstract smooth angular function, not an asserted assembly solution. The constant spherical harmonic and orthogonal angular projection are independently defined by [NIST DLMF §14.30](https://dlmf.nist.gov/14.30), definitions and orthogonality, inspected on October 2. No external physical law enters the counterexample.
+
+**Consequence and smallest proposal:** retain the derived two-leg formulas and describe their equality as an orientation-specific necessary consistency check for isotropy. State that an $\ell=0$ projection requires the angular average of a specified full delay record; leave the quadrupole and other angular recovery obligations with the existing full-branch owner. This is a narrow explanatory correction, not a proposal for another review campaign, constitutive law or new gate. The implied physical period law for a realized assembly remains unproved.
+
+**Falsifier:** an explicit definition of the full angular record and a valid reconstruction/quadrature theorem identifying this particular checkpoint with its constant projection would remove the objection. Two equal directional values alone do not supply it. An explicitly figurative description would instead need wording that avoids asserting the mathematical projection.
+
+**Provenance:** `rg -n` found the same sentence in preserved pre-repair `.tmp/crw005-master-fixes/before.md:1352` (SHA-256 `6a9675f6a6e193e939f20e78f11ed65a881b75bafde695677604656ab145d865`) and pre-campaign `.tmp/crw005-master-review/master-equation-baseline.md:1257` (SHA-256 `ccff8f702e9c2b3919a20186f05e804d11c7b829575850cae1b7844c3c963513`). These match the historical source identities recorded in the [CRW-005 queue](../../aaa-corpus-rewrite/work-queue.md). Thus this is an old missed wording defect, not a regression established against the September repairs. Original introduction and authorship were not determined.
+
+## Retrospective sample checks
+
+The September 10 [accepted integration record](../../aaa-corpus-rewrite/work-queue.md#crw-005-master-equation-me-1-through-me-16--accepted-integration-2026-09-10) supplies acceptance provenance; the preserved `before.md` supplies actual previous wording.
+
+| Sample | Independent check and current disposition | Meaning and explanatory usefulness |
+| --- | --- | --- |
+| ME-3, current 1126–1155: necessary memory-retention bound | Before: the delay criterion and speed bound were called equivalent. Current text calls the speed bound necessary and supplies the transverse-offset counterexample. With $c_f=1$, separation $(1,3,0)$, $u=0$, $d_{\min}=1$, and $h=2$, the exact delay is $\sqrt{10}>2$, although $u<1-1/2$. Correctness passes. | Preserves the forward starvation obstruction and removes false sufficiency. The explicit witness explains why transverse geometry matters. |
+| ME-4, current 997–1013 and 1173–1194: monotonicity versus existence | Before: the positive derivative was followed by a generic singleton assertion. Current text requires the complete retained-interval speed bound and an existence bracket. For stationary source zero, receiver distance two, $T_r=0$, $c_f=1$, $F(s)=s+2$ has positive derivative but no root in $[-1,-0.1]$. Extending memory to include $s=-2$ restores the unique root. Correctness passes. | Preserves uniqueness where justified while making omitted older emissions explicit. The repair improves the meaning of the retained-window claim. |
+| Explicit prior no-change: transmitter weight versus receiver playback | The September 10 review's `Overall assessment and preserved strengths` explicitly says this distinction should survive. Current 103–146 and 478–524 retain it. Differentiation gives $g_{T_t}=D_t$, $g_{T_r}=-D_r$, hence $dT_t/dT_r=D_r/D_t$ on a simple root. Fixed-reception delta collapse gives $c_f/|D_t|$, with no $D_r$ multiplier. Correctness passes. | Preserves the physical response/postulate versus kinematic replay distinction. Useful as written; no change proposed. |
+
+Falsifiers: for ME-3, a purported converse must add geometry making the lower bound exact; for ME-4, a counterexample must obey the interval-wide derivative and bracket hypotheses. The no-change distinction fails if the declared delta integral or causal support changes, or if the algebra differentiating the present support fails. These checks certify the stated elementary implications only, not evolved histories, existence of an assembly, or global well-posedness.
+
+## Coverage and retained distinctions
+
+| Inspected range | Disposition and independent reasoning |
+| --- | --- |
+| 1–164: roles, postulate, path-history integral | Receiver/emitter times, polarity sign, and acceleration-first scope agree with the inspected Architrino definitions. Differentiating distance gives the source projection with the stated sign. The delta identity requires simple roots and a meaningful retained sum, as the surrounding chart discussion recognizes. |
+| 165–331: autonomous wake geometry | Fixed center plus radius $c_f(T-T_e)$ has fixed surface-point speed $c_f$. For extrapolated center $X(T_e)+V(T_e)(T_r-T_e)$, differentiation with respect to $T_e$ gives $A(T_e)(T_r-T_e)$ and the displayed alternative denominator. This checks geometry, not the cited instrument's numerical residuals or a complete wake energy account. |
+| 332–477: fold transit and transport | For $g=\alpha s^2-\lambda\tau$, roots scale as $\sqrt{\tau}$ and inverse Jacobians as $\tau^{-1/2}$. Two contributions bounded by $C/\sqrt{\tau}$ integrate to at most $4C\sqrt{\varepsilon}$. Finite impulse alone is insufficient for a unique evolved continuation; later explicit continuation qualifications remain necessary. |
+| 478–653: action residual, chart, history dependence and gluing | The receiver action residual is expressly necessary rather than sufficient. The implicit-function argument applies away from zero separation with a nonzero root derivative on the stated history chart. Signed root data and overlap identifications are not promoted to undefined homology or a completed global theorem. Stability and reconstruction remain additional obligations. |
+| 654–912: auxiliary regulator and energy diagnostic | Distinct width/core limits and fixed-history recovery are not a theorem for self-consistent evolved limits. Current-coordinates coincidence is properly distinguished from positive-delay separation. The finite-regulator pathology result is a target with explicit action/energy and existence hypotheses. The scalar $1/r$ diagnostic is expressly not a proved conserved charge; its static sign is consistent with outward like-polarity acceleration. No numerical instrument was rerun. |
+| 913–1172: retained counts, degree, starvation, separators | The elementary fold $s^2-\lambda$ changes unsigned count by two with opposite derivative signs. The cubic $s^3-\lambda s$ has degree one on both regular sides despite higher degeneracy. A boundary root exit can change degree and count singly. The starvation inequality follows by projecting displacement on the translation axis. Its decay scaling is conditional on the stated asymptotics. |
+| 1173–1269: single, multiple and self roots | Interval-wide monotonicity is separated from existence. Triangle inequality bounds chord by integrated speed; a simple same-transmitter root cannot arise from a smooth uniformly sub-field-speed interval. Super-field-speed history alone does not provide a root or a stable assembly. |
+| 1270–1362: translating two-leg checkpoint | Direct substitution yields $T_\parallel=(2L_0/c_f)C/(1-\beta_f^2)$ and $T_\perp=(2L_0/c_f)/\sqrt{1-\beta_f^2}$ on the sub-field-speed prescribed geometry; equality yields the stated contraction and period. This is a conditional geometric checkpoint. ME02-01 concerns only the subsequent projection label. The acceleration correction is correctly marked a guessed ansatz with dimensionless $(aL_0/c_f^2)^2$. |
+
+A related existing scope concern was noticed at line 163: failure of a chosen positive transversality floor need not mean actual $D_t=0$. A still-simple root can require a different certified chart. This is the same declared-floor-versus-singularity distinction already raised in the [Attraction receipt](ops-031-attraction-review-2026-09-27.md), not a newly counted independent finding or evidence of an evolved-dynamics failure. The September 26 methods owner already permits exact singular analysis and other justified approximations; the auxiliary constructions here are not rejected merely because they use regulators.
+
+## Remaining work and assurance limits
+
+Carry forward from line 1363. The canonical per-hit section, the remaining DDE theory, circular/spiral derivations, numerical algorithms, action variation, and late conservation discussion have not received this pass's complete reading. No claim of whole-chapter correctness, all-reference verification, rendered mathematics, live equation-viewer navigation, or solver conformance is made. Unresolved existence, continuation, action, conservation, and physical recovery obligations remain with their current owners; this receipt adds only the proposed narrow projection-wording correction. The parent owns adjudication, durable owner referral, coverage cursor and the next due date.
