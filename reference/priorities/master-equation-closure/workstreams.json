@@ -26,7 +26,15 @@
       "lifecycle": "current"
     },
     {
+      "directory": "quark-research",
+      "lifecycle": "current"
+    },
+    {
       "directory": "noether-sea-research",
+      "lifecycle": "current"
+    },
+    {
+      "directory": "logarithmic-potential-research",
       "lifecycle": "current"
     },
     {

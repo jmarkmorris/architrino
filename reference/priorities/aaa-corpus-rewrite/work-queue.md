@@ -48,6 +48,12 @@ No rows.
 
 ## Deferred / discussion-scoped
 
+### OPS-031 — October 2 early-chapter referrals
+
+- **Status:** The operator accepted EOS02-01, EOS02-02 and ME02-01; their scoped replacements are implemented in the [October 2 integration record](work-log.md#2026-10-02--three-ops-031-clarifications-integrated). The two separate scope-family follow-ups below remain ○ Proposed. CRW-005 remains closed.
+- **Existing chart-floor scope family:** Include Master Equation line 163 in the existing distinction between a chosen positive floor failing and the actual zero-derivative singularity. A different certified chart may still cover a simple root. This is proposed direct-consumer propagation of ATT27-02, not permission to alter a continuation law.
+- **Existing auxiliary-method scope family:** Clarify the Emergence finite-regulator/history chart and convergence-mechanism paragraph under the September 26 decision. Mathematical approximations remain permitted; equivalence to complete-root dynamics requires the applicable exact restriction or recovery argument. Do not prohibit valid centering, screening or summation prescriptions. This is proposed direct-consumer propagation, not authorization for a new repair campaign.
+
 ### OPS-031 — September 30 spatial chart referrals
 
 - **Status:** ○ Proposed; report-only. CRW-005 remains closed.
