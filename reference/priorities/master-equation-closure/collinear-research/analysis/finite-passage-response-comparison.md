@@ -20,13 +20,13 @@ $$
 
 $f(R)\ge0$ is the distance-response magnitude, including its coupling. The current comparison uses either $m=1$ or the already proposed $m=1-v_i^2$. This notation does not specify a new fourth speed regime. A coefficient multiplying a different power of distance has different dimensions; quantitative comparisons must state a reference range and normalization.
 
-Suppose near a nonzero-speed crossing that $R$ is bounded above and below by positive constants times $|T-T_c|$, $D$ is bounded above and below by positive constants, and the multiplier has the same property. Then finite one-sided accumulated magnitude is equivalent, up to these bounds, to
+Suppose near a nonzero-speed crossing that $R$ is absolutely continuous and monotone, with $0<c\le|dR/dT|\le C<\infty$ almost everywhere, and that $D$ and the multiplier are bounded above and below by positive constants. Then change of variable gives finite one-sided accumulated magnitude equivalent, up to these bounds, to
 
 $$
 \int_0^\epsilon f(R)\,dR<\infty.
 $$
 
-For $f(R)\sim C R^p$ with $C>0$, the criterion is $p>-1$. A finite integral permits a finite velocity change but does not automatically define acceleration exactly at coincidence. Bounded magnitude, continuous acceleration, and unique continuation are stronger and distinct requirements.
+The weaker position estimate $R\asymp|T-T_c|$ alone does not provide these change-of-variable bounds for an arbitrary nonnegative response. For $f(R)\sim C R^p$ with $C>0$, those position bounds suffice directly and the criterion is $p>-1$. A finite integral permits a finite velocity change but does not automatically define acceleration exactly at coincidence. Bounded magnitude, continuous acceleration, and unique continuation are stronger and distinct requirements.
 
 | Distance magnitude near zero | Finite accumulated magnitude under these crossing bounds? | Value at coincidence | Consequence |
 | --- | --- | --- | --- |
@@ -79,7 +79,19 @@ This establishes a permitted strict-speed incoming contact limit for the stated 
 
 ## What changes when arrivals crowd or self roots appear?
 
-The first table assumes a source-factor gap. If instead, on a declared crossing, $D\sim cR^q$ with $q>0$ and a nonvanishing receiver multiplier, the corresponding criterion becomes $p-q>-1$. The exponents must come from the actual histories. This observation is a warning about which bounds are required, not a prediction that every encounter has that scaling.
+The first table assumes a source-factor gap. On a simple one-dimensional causal branch, differentiating $T-S=R$ and $R=|x_i(T)-x_j(S)|$ instead gives the exact identity
+
+$$
+\frac{dR}{dT}=\frac{n[v_i(T)-v_j(S)]}{1-nv_j(S)}.
+$$
+
+Thus, on a monotone range branch with nonzero relative velocity, the accumulated magnitude obeys
+
+$$
+|A_i|\,dT=\frac{m(v_i)f(R)}{|v_i(T)-v_j(S)|}\,|dR|.
+$$
+
+The source factor cancels in this variable; it has not disappeared from the acceleration law. If the multiplier and relative-speed magnitude have positive upper and lower bounds, the same $p>-1$ threshold holds even when the source factor tends to zero. A criterion $p-q>-1$ inferred from $D\sim R^q$ alone is therefore unjustified. Vanishing relative speed, nonmonotone range and degenerate roots require their own analysis; the simple-branch substitution does not resolve them.
 
 For the monotone self-birth geometry of the [existing self-root analysis](mirror-close-approach-causal-root-boundary.md), write $\rho=T_r-T_s$, $w_-=1-u(T_s)$ and $w_+=u(T_r)-1$. With unsuppressed self response $f_{\mathrm s}(\rho)$, the exact measure is
 

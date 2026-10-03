@@ -521,7 +521,7 @@ A separate [reflected-source construction](../analysis/speed-crossing-opposing-i
 
 The inequalities $v<c_f$ and $v\le c_f$ define different allowed speed domains, but neither specifies an acceleration law. With the same logarithmic equation and complete incoming history, the speed-one event has positive separation and finite positive inward acceleration. The strict inequality excludes that event; the inclusive inequality admits its state. Neither inequality by itself supplies continuing motion through it.
 
-The active comparison keeps the logarithmic causal acceleration unchanged, with $a,K>0$, $0\le u_0<1$ and $c_f=1$. It contains no receiver-speed multiplier or boundary projection. Zero self acceleration is part of the stated ceiling scenarios; through the first speed-one event, it also follows from the absence of self roots. The earlier projected-response calculation is retained separately below with its additional assumptions explicit. Its capped trajectory is not a consequence of allowing equality alone.
+The inequality-only comparison keeps the logarithmic causal acceleration unchanged, with $a,K>0$, $0\le u_0<1$ and $c_f=1$. It contains no receiver-speed multiplier or boundary projection. Zero self acceleration is part of the stated ceiling scenarios; through the first speed-one event, it also follows from the absence of self roots. A subsequent comparison explicitly adds a boundary projection and examines its entry event. Its capped trajectory is a consequence of that additional response, not of allowing equality alone.
 
 | Feature | Strict requirement: $v<1$ with unchanged logarithmic acceleration | Inclusive requirement: $v\le1$ with unchanged logarithmic acceleration |
 | --- | --- | --- |
@@ -878,13 +878,85 @@ There are no positive-delay self roots at the first equality: every finite earli
 
 Thus replacing $<$ by $\le$ changes whether the boundary state is allowed, while leaving the failure of forward continuation intact. It does not derive coasting, braking or reflection. Keeping a solution inside the inclusive domain would require a changed acceleration response whose right-side speed derivative is nonpositive at the boundary. That necessary condition does not choose a particular response: setting the derivative to zero would be an additional rule, as would prescribing braking. No such rule is selected by this inequality-only comparison.
 
-This is a derived result for the stated incoming histories and response. A continuous subunit-or-unit-speed extension satisfying the unchanged integrated equation and zero self acceleration would refute it. A trajectory that changes the boundary acceleration or velocity instead tests a different model. The following earlier comparison keeps one such additional response explicit; it is not used to fill the missing continuation here.
+This is a derived result for the stated incoming histories and response. A continuous subunit-or-unit-speed extension satisfying the unchanged integrated equation and zero self acceleration would refute it. A trajectory that changes the boundary acceleration or velocity instead tests a different model. The following comparison examines one such additional response explicitly; it does not alter this unchanged-equation result.
+
+### Boundary projection as an explicit additional response
+
+A boundary-only modification can retain the logarithmic acceleration at every speed below one and change the response only at equality. To make the word minimal precise, choose the allowed acceleration nearest to the raw acceleration at the same state, measured by their squared difference. This is an additional modeling criterion. The following projection is derived from that criterion and the speed domain, not from the logarithmic potential or from a transport account.
+
+Use signed collinear velocity $V_i=X_i'$ for each constituent, with $c_f=1$ and $|V_i|\le1$. Let $A_i^{\log}$ be its finite raw partner acceleration, summed before applying the boundary response. In the notation of the logarithmic Master Equation, its collinear form is
+
+$$
+A_i^{\log}(T)=
+\sum_{j\ne i}\sum_{S\in\mathcal C_{ij}(T)}
+\kappa_{\log}\sigma_{ij}|q_iq_j|\,
+\frac{n_{ij}}{r_{ij}|1-n_{ij}V_j(S)|},
+\qquad n_{ij}=\operatorname{sgn}[X_i(T)-X_j(S)].
+$$
+
+Here $r_{ij}=|X_i(T)-X_j(S)|=T-S$ is the delayed distance, and the source roots and polarity convention are those already defined above. The sum includes the ordinary partner roots. The stipulated zero self acceleration is held fixed in this comparison; it is not obtained by projecting an undefined self contribution. No range, transmitter weight, emission history or below-boundary receiver multiplier is changed.
+
+Before the boundary modification, the selected collinear equation is
+
+$$
+X_i'=V_i,\qquad V_i'=A_i^{\log}.
+$$
+
+After the modification it is
+
+$$
+\boxed{
+X_i'=V_i,\qquad
+V_i'=\begin{cases}
+A_i^{\log},&|V_i|<1,\\
+\min(A_i^{\log},0),&V_i=+1,\\
+\max(A_i^{\log},0),&V_i=-1.
+\end{cases}
+}
+$$
+
+At $V_i=+1$, an allowed acceleration must be nonpositive to avoid increasing the speed beyond one. Minimizing $(b-A_i^{\log})^2$ over $b\le0$ keeps $A_i^{\log}$ if it is already nonpositive and otherwise selects zero. At $V_i=-1$, the corresponding condition is $b\ge0$, giving the last branch. In the interior there is no active boundary restriction, so the nearest acceleration is the unchanged input. These scalar minimizations prove uniqueness under the stated criterion. They do not establish that this criterion is nature's response.
+
+This rule preserves braking at the boundary: an acceleration directed opposite to the velocity is retained. It removes only the part that would increase the speed. The finite partner contributions are added first; projecting each contribution separately would generally define a different equation. The rule applies only to finite total input and assigns no meaning to an infinite or otherwise undefined acceleration.
+
+#### Entry into the modified boundary response
+
+For the approaching symmetric pair, let $A_p=K/[R(1-u(S))]>0$ be the raw inward partner acceleration. The signed equation reduces to
+
+$$
+x'=-u,\qquad
+u'=\begin{cases}
+A_p,&0\le u<1,\\
+\min(A_p,0),&u=1.
+\end{cases}
+$$
+
+Until the first speed-one event, the trajectory is exactly the previously derived one. The modified equation therefore reaches the same $T_v$, $x_v$ and incoming velocity. At entry the raw input is continuous with value $A_v>0$, but the actual inward acceleration has one-sided limits
+
+$$
+u'(T_v^-)=A_v,\qquad u'(T_v^+)=0.
+$$
+
+For $K=1$, these are approximately $1.126286409/a$ and zero. Position and velocity remain continuous. The finite step in acceleration produces no velocity jump: its integral over a shrinking time interval tends to zero. Evolution through the switch is understood with absolutely continuous velocity satisfying the modified equation almost everywhere, or equivalently its integral form. A two-sided classical acceleration need not exist at the switching instant.
+
+The positive partner input persists for a sufficiently short time because the pair remains separated and the existing source root still samples the regular earlier history. On that local interval the modified inward-speed derivative is nonnegative almost everywhere in the allowed domain and zero at its upper boundary. Starting from $u=1$, an absolutely continuous speed can neither decrease under this response nor increase within the domain. Hence the local continuation is uniquely
+
+$$
+u(T_v+h)=1,\qquad x(T_v+h)=x_v-h
+\qquad(0\le h<h_0)
+$$
+
+for some $h_0>0$ within the regular partner-history neighborhood. The constituents continue moving toward one another at unit speed. The raw attraction has not disappeared, and emission continues under the same source rule; the added response prevents that input from increasing their speed. It does not make them stop or reverse at cap entry. The finite partner root continues without a fold, and the raw input is evaluated on this newly modified trajectory, not on a continued uncapped trajectory.
+
+At first equality there is no positive-delay self root in the incoming history. On the subsequent exactly straight unit-speed segment, any two distinct times in that segment satisfy a geometric self wake equality, with zero source derivative. Those are nonordinary equalities, not a finite list of simple self hits to which the displayed raw sum can be applied. Self acceleration remains zero by the scenario's explicit self-response clause. The boundary projection alone would not resolve an unrestricted undefined self input, so these two assumptions must remain distinct.
+
+This establishes the new response and its first entry event with immediate local continuation. The earlier obstruction for unchanged acceleration remains valid. The projected model advances through that boundary because its equation is different; no contact or passage conclusion follows from this local entry result. A different minimizer under the stated squared-change criterion, a velocity jump without an impulse, or a nonconstant speed-one-entry solution with positive partner input in this integral solution class would contradict the corresponding derivation. Following the ensuing interval to its next event is a separate step.
 
 <a id="inclusive-ceiling-capped-approach-and-a-singular-partner-event"></a>
 
 ### Separate projected-response comparison: capped approach and contact
 
-This retained comparison adds a boundary projection to the logarithmic partner acceleration and separately assigns zero self acceleration. Those response clauses are additional hypotheses. They are not selected by changing the speed inequality to $u\le1$, and the capped motion below is not a continuation of the unchanged-response scenario. Its conditional derivation is preserved to distinguish the effect of an explicit boundary law from the effect of allowing equality alone.
+This retained calculation uses the same boundary projection now examined explicitly above, together with the stipulated zero self acceleration. The current event-by-event treatment has established its entry and immediate local continuation. The subsequent approach and contact analysis below remains a conditional reference, not a consequence of the inequality-only equation or a further event examined in this step. Its mathematical derivation is preserved at that scope.
 
 Write $u$ for inward speed and $F=K/[R(1-u(S))]$ for the raw inward partner acceleration. The inclusive scalar response is
 
@@ -929,7 +1001,7 @@ Zero playback does not delete the acceleration, and the ceiling retains braking.
 
 ### Scope of the ceiling results
 
-The unchanged logarithmic response reaches the same finite speed-one boundary under both domain choices. Strict inequality excludes its state; inclusive inequality admits it. Neither supplies a continuous continuation with the stated zero self acceleration, because the persistent partner input remains positive. The separately retained capped calculation concerns an additional projection and its explicit zero-self convention. Its trajectory and the withdrawn quadratic-response experiment are not premises for either inequality-only result. Changing the acceleration response requires selecting that change explicitly.
+The unchanged logarithmic response reaches the same finite speed-one boundary under both domain choices. Strict inequality excludes its state; inclusive inequality admits it. Neither supplies a continuous continuation with the stated zero self acceleration, because the persistent partner input remains positive. The separately examined boundary projection changes the equation only at equality and permits a unique local unit-speed continuation with zero self acceleration. Its later retained contact calculation has its own conditional scope. None of these modified-response results or the withdrawn quadratic experiment supplies a premise for an inequality-only result or changes the baseline Master Equation.
 
 For the strict result, a counterexample would have to satisfy the displayed unmodified delayed equation and complete preparation while avoiding the proved finite-time speed-one boundary. A changed receiver factor or contact rule changes the model rather than overturning that result.
 

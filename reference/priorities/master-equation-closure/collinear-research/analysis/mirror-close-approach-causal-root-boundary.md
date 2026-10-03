@@ -48,6 +48,8 @@ $$
 
 while $R_\ast>0$ and $q(T_\ast)>0$. At that event the partner emission remains strictly earlier than reception, $D_t^{\mathrm{partner}}=1-u(T_t)>0$, and $D_r^{\mathrm{partner}}=2$. The partner root is therefore simple and the event is not a transmitter-side fold. The exact self-root integral is negative for every earlier candidate emission, so no positive-delay self root exists at the event.
 
+Here $R=T_r-T_t=q(T_r)+q(T_t)$, $u_r=u(T_r)$, $u_t=u(T_t)$, and $\bar u=R^{-1}\int_{T_t}^{T_r}u(\tau)\,d\tau$ is the mean inward speed over that causal interval. The identity $q(T_t)=q(T_r)+\int_{T_t}^{T_r}u\,d\tau$ gives $R(1-\bar u)=2q(T_r)$; it is not an assumption that speed is constant.
+
 Claim grade: `derived priority result` on the declared stationary mirror chart. The result is falsified by an in-chart certified root census or exact identity that contradicts the stated first-event ordering.
 
 Plainly: the two receivers reach the primitive wake-speed threshold while their present and delayed separations are still positive. The incoming theorem does not say how to evolve through that threshold.
@@ -69,6 +71,8 @@ Disposition: `Not advanced`. This is obstruction evidence, not an alternative ev
 Plainly: the existing acceleration operator reaches a singular self-root birth whose accumulated contribution diverges. Repeating that unchanged-law continuation calculation cannot produce passage or rebound.
 
 ### Conditional immediate post-threshold ledger
+
+**Class extension, 2026-10-03:** the [review integration's continuous-velocity theorem](collinear-review-integration-2026-10-03.md#class-level-continuous-velocity-obstruction) applies beyond stationary release to a member of $\mathcal H_{\mathrm{att}}^{\mathrm{reg}}$ whose first exit is speed equality at positive separation, provided its complete monotone subfield retained history extends continuously to the event and the inherited partner root remains in a regular positive-range tube. The positive partner lower bound forces superfield inward motion, whose exact newborn self measure has infinite accumulation. This excludes finite continuous endpoint velocity in the stated integral and nonnegative locally finite measure classes. A different first regularity boundary is not covered. The stationary jump and infinite-limit exclusions are not promoted to class-level results by this extension.
 
 Fix a prescribed continuous one-sided extension on $[T_\ast,T_\ast+\varepsilon]$ that enters $u>1$, remains regular away from the birth, preserves the complete monotone strict-subfield retained history before $T_\ast$, keeps $q(T_\ast)>0$, and retains the simple partner-root tube. These are history hypotheses for a root-topology calculation, not a continuation selected by the Master Equation.
 

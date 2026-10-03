@@ -4,6 +4,8 @@
 
 ## Purpose
 
+**Scope clarification, 2026-10-03:** the two-source carrier below includes the receiver's own cap record as well as its partner's. Its cancellation is conditional on admitting both records to the proposed nonordinary event map. The selected ceiling scenario excludes self acceleration including at equality; retaining a self emission as provenance does not authorize its event response. With only the partner admitted, the raw aggregate is $\pm q\nu(I)\delta_E$, not zero. Applying a particular event map could still give zero, but that would require its own rule and is not proved by matched cancellation. The construction below remains a separate conditional event model; it supplies no zero-impulse derivation for the selected no-self scenario and adopts no exception to that scenario. See the [review disposition](collinear-review-integration-2026-10-03.md#event-aggregation-and-self-exclusion).
+
 This note defines the impulse component produced when two exactly matched, equal-magnitude, opposite-polarity cap histories arrive at one event in absolute time and Euclidean position. Wakes do not interact with, modify, or consume one another. Superposition is the linear bookkeeping operation used to form the complete wake total before an architrino response is assigned.
 
 The construction keeps the two labeled source records while separately forming the label-forgetting aggregate used for the event response.

@@ -6,6 +6,8 @@ The corrected conclusion is that none of the audited cap-only mirror geometries 
 
 ## Equation and conclusion map
 
+**Subsequent scope assessment, 2026-10-03:** the extended event model's matched cancellation also requires the receiver's own cap record in its two-source event map. The [review integration](collinear-review-integration-2026-10-03.md#event-aggregation-and-self-exclusion) therefore withdraws any transfer of that cancellation to the selected no-self-at-equality scenario. The historical table's conditional extended results retain both-source event admission as a separate hypothesis; no self-response exception or replacement event law is selected.
+
 The selected ceiling scenario retains ordinary partner reception, sets self acceleration identically to zero including equality, and uses the regular least-change response on complete finite ledgers. With normalized wake speed $c_f=1$, signed mirror position $x$, velocity $v=x'$, and opposite-polarity coupling $K>0$, its ordinary partner acceleration is
 
 $$
