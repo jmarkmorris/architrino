@@ -30,6 +30,8 @@ The proposal contains a compact possible mechanism for the appearance of integer
 
 The strongest defensible claim is presently **speculation with an exact kinematic scaffold**. The equations below define the proposed correspondence, but no master-equation derivation, containing acceleration, retained branch, stability result, or physical integer-frequency selection law has been supplied.
 
+The [slow isolated-binary comparison](analysis/slow-binary-first-order-drift.md#formal-averaging-and-its-boundary) instead gives a quadratic-in-angle averaged spiral at first order. Thus the logarithmic path below is a stipulated candidate with an additional containing environment, not the derived free slow-binary trajectory. No contradiction is established for that larger unconstructed system; its environmental response must derive the proposed path rather than import the free-pair approximation.
+
 Plainly: this is promising because it offers a continuous substrate route to discrete retained states. It is not yet evidence that such states exist.
 
 #### 2. Exact discrete scaffold

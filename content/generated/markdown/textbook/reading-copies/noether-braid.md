@@ -223,7 +223,7 @@ A retained, transportable braid branch is the theory's proposed common cause for
 | Target | Requirement | Owning chapters |
 | --- | --- | --- |
 | Lorentz clock/ruler export | A moving retained branch must retune its internal record so that clock rate and envelope contraction collapse to the observer-calibrated $\gamma_0(v_{\mathrm{eff}})=(1-v_{\mathrm{eff}}^2/c_0^2)^{-1/2}$ in the homogeneous weak-field limit, with preferred-frame leakage bounded below current test sensitivity. | [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
-| Effective metric and weak-field gravity | The braid-bearing Noether sea must export an effective metric whose weak clock row reproduces $d\tau_{\mathcal A}/dt_{\mathrm{eff}}\approx1-U/c_0^2-\|\mathbf w\|^2/(2c_0^2)$, where $U\ge 0$ is the positive Newtonian-potential magnitude and $\mathbf w$ is the clock's group velocity through the local Noether sea. The Newtonian-potential match, effective coupling, and PPN coefficients must follow from one same-record constitutive response rather than be fitted separately. | [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
+| Effective metric and weak-field gravity | The braid-bearing Noether sea must export an effective metric whose leading weak-clock row reproduces $d\tau_{\mathcal A}/dt_{\mathrm{eff}}\approx1-U/c_0^2-\|\mathbf w_{\mathrm{eff}}\|^2/(2c_0^2)$, where $U\ge 0$ is the positive Newtonian-potential magnitude, $c_0$ is the calibrated weak-field observer speed, and $\mathbf w_{\mathrm{eff}}=d\mathbf x_{\mathrm{eff}}/dt_{\mathrm{eff}}-\mathbf u_{\mathrm{sea,eff}}$ is the clock velocity relative to local Noether sea flow in the declared effective observer chart. Here $\mathbf x_{\mathrm{eff}}$ is the clock position and $\mathbf u_{\mathrm{sea,eff}}$ is the sea-flow velocity in that chart. The comparison requires $U/c_0^2\ll1$ and $\|\mathbf w_{\mathrm{eff}}\|^2/c_0^2\ll1$, with the clock conversion defined in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md). The Newtonian-potential match, effective coupling, and PPN coefficients must follow from one same-record constitutive response rather than be fitted separately. | [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
 | Strong-field and horizon behavior | The terminal-alignment condition of the braid family must recover horizon phenomenology — darkness, entropy counting over alignment-restricted closure labels, and singularity resolution — as branch-boundary behavior rather than as imported geometry. | [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md) |
 | Decay-rate dilation and the clock hypothesis | A moving unstable retained branch must dilate its decay and transaction rates by the same $1/\gamma_0(v_{\mathrm{eff}})$ as its clock export. The [CERN storage-ring muon-lifetime measurement](https://doi.org/10.1038/268301a0) and [Kündig rotor measurement](https://doi.org/10.1103/PhysRev.129.2371) are observer-level benchmarks. The candidate mechanism is that internal cadence, and therefore the pacing of action-transaction events, slows with the clock. The storage-ring result agreed with the relativistic lifetime prediction while the muons underwent high centripetal acceleration, so any independent acceleration dependence of decay rates must remain within the experimental bound; this constrains how much braid-geometry strain per unit acceleration may leak into transaction rates. | [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) |
 
@@ -393,7 +393,7 @@ A symmetry transformation may establish equivalence between complete records, bu
 
 ### Component-Braid Dimensionality
 
-Let $D(\mathcal B_k)$ be the affine dimension of the complete paths of declared component braid $\mathcal B_k$ in its declared braid frame. A component braid is **2D** when one fixed plane contains all its paths and **3D** when no fixed plane does.
+Let $D(\mathcal B_k)$ be the affine dimension of the complete paths of declared component braid $\mathcal B_k$ in its declared braid frame. A component braid is **2D** when its complete paths lie in one fixed plane but not in any affine line, and **3D** when no fixed plane contains them. A component whose complete paths have affine dimension zero or one receives no planar or spatial assignment under this classification.
 
 For a complete, disjoint component partition of assembly $\mathcal A$,
 
@@ -401,10 +401,10 @@ $$
 D_{\mathcal B}(\mathcal A)
 =
 \begin{cases}
-\mathrm{2D}, & D(\mathcal B_k)=\mathrm{2D}\text{ for every component }k,\\
-\mathrm{3D}, & D(\mathcal B_k)=\mathrm{3D}\text{ for every component }k,\\
-\mathrm{Mixed}, & \text{both component dimensions occur},\\
-\mathrm{Not\ assigned}, & \text{membership or complete path evidence is unavailable}.
+\mathrm{2D}, & D(\mathcal B_k)=2\text{ for every component }k,\\
+\mathrm{3D}, & D(\mathcal B_k)=3\text{ for every component }k,\\
+\mathrm{Mixed}, & \text{every component has dimension 2 or 3, and both occur},\\
+\mathrm{Not\ assigned}, & \text{membership or complete path evidence is unavailable, or any component has }D<2.
 \end{cases}
 $$
 
@@ -504,11 +504,11 @@ The taxonomy is falsified for a record if Borg and the corpus assign different c
 
 ## Planar (2D) Braid Assemblies
 
-This chapter collects worked records classified as planar (2D) under [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md): every declared component braid in a complete, disjoint partition remains in one fixed plane. The whole assembly may span three dimensions when its planar components occupy different planes. The chapter begins with one-circle comparisons and the planar common-center three-binary locus, then treats assemblies made from two planar component braids.
+This chapter collects worked records classified as planar (2D) under [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md): every declared component braid in a complete, disjoint partition has complete paths of affine dimension exactly two in its declared braid frame. The whole assembly may span three dimensions when its planar components occupy different planes. The chapter begins with one-circle comparisons and the planar common-center three-binary locus, then treats assemblies made from two planar component braids.
 
 The equal-radius, phase-symmetric planar common-center three-binary intersection contains one hundred independently accepted prescribed acceleration balances in the consecutive even topology classes T02 through T200. Their complete [causal-root ledgers](../../../../markdown/aaa/foundations/architrino.md#the-condition-that-picks-out-a-causal-root) — records of every admissible earlier emission event whose wake reaches a receiver — obey an exact fold mechanism controlled by [polarity](../../../../markdown/aaa/foundations/architrino.md#polarity-and-electric-bookkeeping), the primitive two-valued sign carried by each architrino, together with an exact root-count ladder and derived high-speed spacing and scale laws. On $0.05\leq\beta_f\leq20$, an outward-rounded interval certificate proves that T02 through T36 are the only balances: each even interval contains exactly one simple inward-radial zero, while T00, T01, and every odd interval contain none. These T-indices name causal-root topology classes, not Borg records or taxonomy families. This derived ledger-indexed isolation supports an inferred quantum-like comparison in the restricted sense of internally selected, isolated admissible modes.
 
-Above speed 20, the accepted rows establish existence but not interval-by-interval completeness. The exact circular-solution theorem below proves that an exact balance with its exact complete circular history is an invariant periodic solution; it does not establish perturbation stability, physical energy quantization, or selection of that solution from an approximate history. The result is a structured planar common-center three-binary chart balance ladder, not one isolated numerical point. The first eighteen rungs exhaust the whole declared speed interval through 20, and another eighty-two rungs have been checked at arbitrary precision. The higher-speed existence checks do not rule out extra rungs between the listed ones, and no prescribed calculation says the assembly survives release.
+The finite interval certificate through T200 and a uniform theorem for all later ordinary cells establish the complete infinite balance ladder on this fixed chart: exactly one simple inward-radial balance in every even cell and none in T00 or any odd cell. The exact circular-solution theorem proves that each exact balance with its complete circular history is an invariant periodic solution. A separate T04 local history-flow theorem supplies short-time existence and uniqueness near that exact history. None of these results establishes perturbation stability, physical energy quantization or full-cycle numerical reproduction.
 
 This chapter studies the planar rigid co-rotating subchart under the default uncapped Master Equation. It includes sub-field-speed and super-field-speed motion; the wake speed is not imposed as a ceiling on member speed. The established results concern prescribed acceleration balance. They do not establish formation, binding, retention, stability, release survival, physical identity, or scientific acceptance. Putting several architrinos on the same rotating circle defines a useful dynamics chart, not a parent taxonomy. A ring receives braid characteristics only from its complete source-declared membership and paths.
 
@@ -556,27 +556,27 @@ where $(\hat{\mathbf e}_1,\hat{\mathbf e}_2,\hat{\mathbf n})$ is an oriented ort
 | Member inventory | Integer $N$, giving $2N$ members | Regular alternating candidates measured for $1\leq N\leq12$; polarity completeness is narrower | Test which inventories admit balance, derive large-$N$ laws, and distinguish a general ring mechanism from an isolated six-member effect |
 | Polarity word | $q_k\in\{+\epsilon,-\epsilon\}$ with $\sum_kq_k=0$ | Every regular neutral polarity orbit is enumerated through $N=6$; all non-alternating no-balance verdicts are measured bounded searches, while only the alternating orbit was tested for $N=7$ through $N=12$ | Identify which delayed acceleration channels cancel and whether strict alternation is necessary or merely favored |
 | Pairing and label map | A declared fixed-point-free pairing or other taxonomy map on the labels | Fixed on the planar common-center three-binary chart overlap; not every ring possesses such a map | Separate path geometry from braid identity and test neutral-antipode or two-component circular decompositions without inferring them from member count |
-| Fixed relative phase offsets | $2N-1$ independent relative phases, or positive gaps summing to $2\pi$ | Regular gaps are solved extensively; asymmetric fixed gaps have only bounded exploratory coverage | Search for asymmetric balances, determine whether regular spacing is isolated, and test which symmetry cancellations are essential |
+| Fixed relative phase offsets | $2N-1$ independent relative phases, or positive gaps summing to $2\pi$ | T04 is locally isolated in the certified equal-radius phase box and coupled phase-radius box described below; wider asymmetric domains retain bounded exploratory coverage | Search for asymmetric balances, determine whether regular spacing is isolated, and test which symmetry cancellations are essential |
 | Time-dependent phase offsets | $\delta\phi_k(T)$ | Open beyond limited prescribed variable-speed constructions | Test phase locking, internal angular shear, collision-free speed exchange, and possible paths between discrete balance modes |
-| Common angular speed | $\Omega$, equivalently $\beta_f=|\Omega|R/c_f$ | The equal-radius planar common-center three-binary chart ladder is solved through T200 at $\beta_f=105.7622250967280$; the accepted completeness theorem is certified through $\beta_f=20$ | Locate balance modes, causal-root folds, high-speed spacing laws, and topology changes |
+| Common angular speed | $\Omega$, equivalently $\beta_f=|\Omega|R/c_f$ | The equal-radius planar common-center three-binary chart ladder is solved through T200 at $\beta_f=105.7622250967280$; the finite T200 certificate and uniform tail theorem establish completeness for the entire ordinary topology sequence | Locate balance modes, causal-root folds, high-speed spacing laws, and topology changes |
 | Circulation sense | $s=\operatorname{sgn}\Omega\in\{-1,+1\}$ | Reflection with circulation reversal is checked for the declared regular-ring reduction through $N=6$; broader charts require their own covariance check | Test handedness, reflection covariance, and any genuine circulation asymmetry after symmetry-equivalent cases are removed |
 | Common radius | $R$, or $R/R_*$ | Solved jointly with $\beta_f$ on the regular planar common-center three-binary chart ladder | Determine the compatible assembly scale, test scalability, and measure how scale changes across root-topology modes |
-| Independent member or binary radii | $R_k$, or $(R_1,R_2,R_3)$ for general planar common-center three-binary chart | Open; unequal radii leave the one-circular-path chart | Explore the broader planar common-center three-binary chart family, symmetry breaking, nested radial structure, and whether unequal-radius balance families exist |
+| Independent member or binary radii | $R_k$, or $(R_1,R_2,R_3)$ for general planar common-center three-binary chart | T04 is locally isolated in the certified regular-phase radius box and coupled phase-radius box; wider unequal-radius domains remain open and leave the one-circular-path chart | Explore the broader planar common-center three-binary chart family, symmetry breaking, nested radial structure, and whether unequal-radius balance families exist |
 | Common radial breathing | $\delta r_k(T)=\delta R(T)$ for every member | Open as a retained-history problem | Test coherent expansion and contraction, radial oscillation, and whether the exact circle is a center, attractor, repeller, or separatrix in the radial direction |
 | Differential planar shape modes | Nonidentical $\delta r_k(T)$ and $\delta\phi_k(T)$ | Open | Test elliptical, alternating, binary-splitting, and higher cyclic deformations; construct the planar return map around an exact balance mode |
 | Perturbative planar acceleration diagnostic | A small prescribed planar path perturbation with controlled $\delta\ddot{\mathbf X}_k^{\parallel}(T)$ | Available as a prescribed-path probe, not as an independent released-state coordinate | Measure acceleration response, identify coupled radial and tangential modes, and design stability perturbations; under EOM release the acceleration must be recomputed from causal history rather than freely assigned |
 | Out-of-plane displacement and rate | $\delta z_k(T)$ and $\delta\dot z_k(T)$ | Open for the balanced ladder | Test loss of planarity, axial buckling, three-dimensional retention, and nearby connections to non-equatorial braid charts |
 | Coincident-axis three-binary axial half-separations | $h_a$ for the three binaries | Fixed at $h_a=0$ on the planar common-center three-binary chart; nonzero values leave the planar chart | Explore adjacent coincident-axis three-binary loci and determine whether axial binary structure repairs or destroys the planar balance mechanism |
 | Plane orientation, tilt, and wobble | Time-dependent orthonormal frame $(\hat{\mathbf e}_1,\hat{\mathbf e}_2,\hat{\mathbf n})(T)$ | A constant common orientation is removable by global rotation; time dependence is open | Test orientational retention, precession-like path histories, and coupling between planar circulation and axial motion without assuming an imported magnetic mechanism |
-| Center translation | $\mathbf C(T)$, including axial and transverse components | Bounded nonexistence is certified for the fixed $0.1c_f$ planar common-center three-binary chart axial-speed slice; other speeds and transverse translation remain open | Search for translating or screw-path balances and test whether internal balance survives assembly transport |
-| Complete retained prehistory | History functions $\mathbf X_k(T)$ on $-H\leq T\leq0$, including their certified causal-root ledger | Exact circular histories are defined; nearby-history uniqueness and stability remain open | Supply the actual initial data required by a delayed equation, test release and restart, and distinguish exact continuation from perturbation stability |
+| Center translation | $\mathbf C(T)$, including axial and transverse components | Nonzero axial translation is excluded for T02 through T36 on $\lvert s_{\mathrm{grp}}/c_f\rvert\leq0.9$ on the declared regular screw-path chart; higher branches, wider speeds and transverse translation remain open | Search for translating or screw-path balances and test whether internal balance survives assembly transport |
+| Complete retained prehistory | History functions $\mathbf X_k(T)$ on $-H\leq T\leq0$, including their certified causal-root ledger | Short-time local history flow is established near exact T04 on $0\leq T\leq0.05$; full-cycle numerical reproduction and perturbation stability remain open | Supply the actual initial data required by a delayed equation, test release and restart, and distinguish exact continuation from perturbation stability |
 | Root-topology or ladder index | Topology class $\mathrm T_t$ or balance index $n$ | Derived discrete label, not a freely assigned coordinate | Organize branches, bracket searches, count directed roots, and study mode adjacency or transitions without treating the label as an imposed quantum number |
 | Global phase, position, and constant orientation | Common phase shift, constant $\mathbf C$, and constant rigid rotation of the frame | Symmetry coordinates on the fixed model | Remove duplicate descriptions and provide covariance checks; these do not change the assembly's internal geometry |
 | Coupling scale and Master-Equation variant | $R_*=\kappa\epsilon^2/c_f^2$ and the declared uncapped, capped, or instrument-limited equation | Experimental controls, not assembly degrees of freedom | Test scale covariance or compare explicitly versioned dynamical laws without confusing a changed model with a new state of one assembly |
 
 > Scope note: this table is a coordinate and research map. Its status entries summarize the scoped evidence and claim grades documented in the corresponding sections below; the table introduces no new balance, retention, or stability result. A proposed variation remains open unless a complete causal-root calculation or retained-history test explicitly closes it.
 
-The most direct next searches are asymmetric fixed phases, unequal planar common-center three-binary chart radii, and small planar and axial history perturbations around an exact ladder member. Phase and radius searches ask whether more exact balances exist. Perturbation searches ask the different question of whether a known exact balance retains nearby histories.
+Further geometric searches cover asymmetric fixed phases and unequal radii outside the certified local T04 boxes. Small planar and axial history perturbations around an exact ladder member address a separate dynamical question. Phase and radius searches ask whether more exact balances exist. Perturbation searches ask the different question of whether a known exact balance retains nearby histories.
 
 Acceleration requires special care. In a prescribed-path diagnostic, a small acceleration-shaped deformation may be imposed to measure the Master Equation residual. In a released calculation, positions, rates, and the complete retained history are supplied, while acceleration is the Master Equation's output. Treating released acceleration as an independently adjustable knob would test a different problem. We may push a trial path in a chosen planar pattern to learn how the ledger responds. Once the path is released, however, the theory—not the investigator—chooses its acceleration from the causal history.
 
@@ -608,7 +608,7 @@ The planar common-center three-binary chart and the one-circle chart are not int
 
 A common translation along the circle's axis moves the center $\mathbf C(T)$ and turns each circular worldline into a screw path, so it leaves the fixed-center chart defined here while remaining a coincident-axis three-binary locus specialization. [coincident-axis three-binary configurations axial translation](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md#fixed-axial-translation-control) owns the general geometry. Because the fixed-speed control begins from the verified equal-radius planar common-center three-binary chart circular-path row, the adjacent translated study and its bounded certificate are recorded below without folding them into the stationary balance ladder. Carrying the whole rotating hexagon upward changes every delayed chord even though its instantaneous cross-section still looks like the same circle. That is a different path history, so the stationary radius and speed cannot be assumed to remain balanced.
 
-A twelve-worldline $6{:}6$ circular-path record does not become a two-component circular configuration from its member count alone. A two-component configuration requires a declared fixed-point-free map into six neutral binaries and strictly ordered axial coordinates on its coaxial chart. The tested planar regular alternating $6{:}6$ ring has like-polarity antipodes and one common axial coordinate, so it is outside that chart. In particular, it cannot be either coaxial two-planar-braid configuration, whose component centers must have positive axial separation. The 24-member $12{:}12$ ring lies outside both the six-member planar three-binary inventory and the twelve-worldline two-component circular inventory. Taxonomy follows the coordinate record, not visual resemblance or arithmetic decomposition. A large ring may be compared with a braid locus without being renamed as that braid.
+A twelve-worldline $6{:}6$ circular-path record does not become a two-component circular configuration from its member count alone. A two-component configuration requires declared component membership and a fixed-point-free map into six neutral binaries; its axial coordinates may coincide. The tested planar regular alternating $6{:}6$ ring has like-polarity antipodes, so antipodal geometry does not supply that neutral-binary map or a component decomposition. In particular, it cannot be either coaxial two-planar-braid configuration, whose component centers must have positive axial separation. The 24-member $12{:}12$ ring lies outside both the six-member planar three-binary inventory and the twelve-worldline two-component circular inventory. Taxonomy follows the coordinate record, not visual resemblance or arithmetic decomposition. A large ring may be compared with a braid locus without being renamed as that braid.
 
 ### Verified Bounded Landscape
 
@@ -791,7 +791,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f01069b7c26ed631)
 
-The first accepted balance is T02 at $\beta_f=1.826430964654679$ with 48 directed roots, and the hundredth is T200 at $\beta_f=105.7622250967280$ with 2,424. Each accepted rung skips the intervening odd class, so adjacent rungs differ by two $+12$ transitions, or 24 roots. The bounded certificate proves uniqueness and odd-class absence only through T36 at $\beta_f=19.87159370465900$; above that boundary, the map identifies and counts the accepted rows without proving that no extra zero exists.
+The first accepted balance is T02 at $\beta_f=1.826430964654679$ with 48 directed roots, and the hundredth is T200 at $\beta_f=105.7622250967280$ with 2,424. Each accepted rung skips the intervening odd class, so adjacent rungs differ by two $+12$ transitions, or 24 roots. The original bounded certificate proves uniqueness and odd-class absence through T36 at $\beta_f=19.87159370465900$. The finite T200 certificate and uniform tail theorem extend that count to every ordinary topology cell.
 
 Define $A_q=\pi(q+3)/6$. Expanding the boundary equation as $\xi_q\to\pi/2$ gives
 
@@ -807,7 +807,7 @@ Every other fold boundary approaches a spacing of $\pi/3$. The balance-to-fold c
 
 > Claim grade: derived for the circular root equation, unified integer-level ledger, exact root projections, fold parameterization, local odd/even newborn-pair sign, ordinary $+12$ rule, and fold-boundary asymptotic. A contrary chord reduction, a phase channel that fails the integer-level map, a fold with the wrong polarity or one-sided divergence, or a regular-hexagon boundary with a different six-channel or local two-root multiplicity overturns the corresponding statement.
 
-The root ledger and local fold signs are exact consequences of the circular geometry. They organize where crossings can begin, but only the interval certificate below proves how many complete-ledger zeros occur across a whole bounded interval.
+The root ledger and local fold signs are exact consequences of the circular geometry. They organize where crossings can begin, while the interval certificates and uniform tail theorem below establish how many complete-ledger zeros occur in each ordinary topology cell.
 
 ##### Certified Bounded Zero Count
 
@@ -857,9 +857,15 @@ The table uses checkpoints so the trend remains readable, not because the omitte
 
 > Claim grade: independently measured prescribed acceleration-balance existence for the one hundred listed rows. Against the frozen binary64 discovery list, the independently reconstructed rows match all one hundred topology labels and directed-root counts; the maximum coordinate differences are $2.54\times10^{-12}$ in $\beta_f$ and $1.38\times10^{-9}$ in $R/R_*$. This cross-instrument comparison identifies the same loci, while the 100-to-120-digit repetition is only the arbitrary-precision instrument's roundoff check: its maximum speed difference was $1.03\times10^{-105}$ and its maximum radius difference was $9.49\times10^{-95}$. The maximum complete six-receiver residual was $1.25\times10^{-110}$, and the maximum causal-root residual was $1.00\times10^{-85}$. The measured minimum transversality—the smallest absolute root-Jacobian margin from a fold—decreases monotonically across the recorded rows from $0.195548$ at T02 to $0.003151$ at T200, where the minimum occurs. No asymptotic transversality law is claimed. A failed cross-instrument topology or root-count match, precision comparison, phase-channel identity, receiver residual, root residual, transversality, topology label, or directed-root count overturns the affected row.
 
-The independent arbitrary-precision instrument makes roundoff far smaller than the reported balance residuals and evaluates every receiver. Its root branches become progressively more weakly separated from folds, with T200 the closest recorded row; that measured conditioning trend helps explain why higher-topology enclosure work is more demanding, but it does not prove a completeness obstruction. The solution list is not a zero-count theorem, completeness above $\beta_f=20$ remains open, and existence still says nothing about release, retention, binding, stability, a physical spectrum, or scientific acceptance.
+The independent arbitrary-precision instrument makes roundoff far smaller than the reported balance residuals and evaluates every receiver. Its root branches become progressively more weakly separated from folds, with T200 the closest recorded row; that measured conditioning trend helps explain why higher-topology enclosure work is more demanding, but it does not prove a completeness obstruction. The solution list alone is not a zero-count theorem and says nothing about release, retention, binding, stability or a physical spectrum. Separate proofs supply completeness.
 
-The derived local and asymptotic signs narrow the high-index completeness target without closing it. An odd interval begins at an even-$q$ fold whose newborn pair sends the tangential ledger to $+\infty$, while the old-root background tends to $+3/2$; a high-index odd-class zero would therefore require a negative excursion away from both positive regimes. An additional even-class zero would require another sign reversal after the fold-born crossing, or a zero pair created away from a fold. This is a proof-route inference, not a zero-count result, because no interval-wide monotonicity theorem or uniform remainder bound excludes those excursions. A missing high-speed mode cannot be inserted arbitrarily into the established fold picture. It would require the complete ledger to bend through an additional sign reversal that the current asymptotics do not rule out. Proving that this never happens is the remaining completeness problem.
+##### Complete Infinite Ladder
+
+On the prescribed equal-radius, regular-phase, common-center, common-circulation chart, the finite interval certificate through T200 and a uniform theorem for all later ordinary cells establish the complete infinite balance ladder: exactly one simple inward-radial balance in every even cell T02, T04, and onward, and none in T00 or any odd cell. This is a computer-assisted derived zero census. The arbitrary-precision list supplies coordinate estimates for its first one hundred members; that list alone is not the completeness proof. The result establishes no formation, perturbation stability, binding or physical energy spectrum.
+
+Completeness beyond the finite census follows by separating the old-root background from the newborn fold pair. An outward-rounded bound keeps the old-root background above $1.43$ throughout each post-T200 cell, while the newborn contribution at the right edge is below $0.01$. A uniform derivative comparison excludes additional crossings. Combined with the fold signs, these bounds give no zero in odd cells and exactly one simple zero in even cells. The argument is uniform in the cell index; extending the pointwise numerical list would not supply that conclusion.
+
+> Claim grade: computer-assisted derived on the fixed prescribed chart. An additional ordinary zero, a non-simple even-cell zero, a non-inward radial coefficient at the balance, or failure of the outward-rounded kernel bounds or derivative comparison overturns the corresponding conclusion.
 
 ##### Derived High-Speed Ladder
 
@@ -1018,7 +1024,7 @@ The balance spacing approaches $\pi/3$ from above, and the radius falls like $1/
 
 > Claim grade: derived. The proof uses the exact integer-level root ledger, endpoint pairing, alternating-series tail bounds, the odd-fold newborn-pair expansion, and the complete radial acceleration sum. A failure of the unified ledger to reproduce the six-channel root count, a nonvanishing upper-level remainder, a high-precision sequence for which $\beta_f^3(\beta_{\mathrm{bal}}-\beta_q)$ fails to approach $1/18$, or accepted values that fail either displayed scale limit overturns the corresponding result. Higher coefficients remain unclaimed because the endpoint expansion becomes nonuniform in the level index and may introduce logarithmic corrections.
 
-The leading high-speed law and its first correction are mathematical results. The proof does not establish one and only one balance in every topology interval.
+The leading high-speed law and its first correction are mathematical results. This asymptotic proof alone does not establish the zero count; that conclusion comes from the finite certificate and uniform tail theorem.
 
 ##### Scalability on the Prescribed Planar Three-Binary Chart
 
@@ -1048,15 +1054,15 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-89d075dff9c5aed0)
 
-with $N_{\mathrm{root},n}=24(n+1)$. On $0.05\leq\beta_f\leq20$, the bounded zero-count theorem gives exactly eighteen members, one in each even topology interval $\mathrm{T}_{02}$ through $\mathrm{T}_{36}$ and none in the intervening odd intervals. Simplicity of every zero makes each admitted speed isolated rather than part of a continuous balance band. The arbitrary-precision continuation supplies accepted members through $n=100$, while completeness above speed 20 remains open. The equations do not balance at every speed and radius. They select separate allowed speed-radius pairs, and the causal-root inventory changes by a whole-number step from one selected pair to the next.
+with $N_{\mathrm{root},n}=24(n+1)$. On $0.05\leq\beta_f\leq20$, the bounded zero-count theorem gives exactly eighteen members, one in each even topology interval $\mathrm{T}_{02}$ through $\mathrm{T}_{36}$ and none in the intervening odd intervals. Simplicity of every zero makes each admitted speed isolated rather than part of a continuous balance band. The arbitrary-precision continuation supplies coordinate estimates through $n=100$; the finite interval certificate through T200 and the uniform tail theorem establish completeness for all ordinary cells. The equations do not balance at every speed and radius. They select separate allowed speed-radius pairs, and the causal-root inventory changes by a whole-number step from one selected pair to the next.
 
 This discreteness is emergent because no integer mode rule is inserted into the Master Equation. The integer $n$ labels the causal-root topology that survives the complete delayed acceleration sum: fold births change the root ledger, polarity makes only the even classes support a tangential crossing on the certified domain, and the inward radial coefficient fixes the corresponding scale. In this precise sense the planar common-center three-binary chart ladder is **quantum-like behavior**: a continuous substrate equation produces isolated, ledger-indexed admissible modes. The quantum-like feature is mode selection generated by causal history itself. It is not a claim that the architrinos were assigned quantum numbers or that a quantum postulate was added to make the sequence discrete.
 
-Isolated zeros of a smooth one-parameter residual are generic and do not by themselves support a quantum-like comparison. The non-generic structure used here is the derived causal-root topology index, the exact 24-root ledger increment between adjacent accepted rungs, the bounded one-zero-per-even-class certificate, and the asymptotic spacing law $\Delta\beta_n\to\pi/3$. Merely finding separate numerical roots would be too weak. The comparison rests on the exact whole-number change in causal-history content, the certified alternating selection rule on the bounded domain, and the derived regular spacing at high ladder index.
+Isolated zeros of a smooth one-parameter residual are generic and do not by themselves support a quantum-like comparison. The non-generic structure used here is the derived causal-root topology index, the exact 24-root ledger increment between adjacent accepted rungs, the global one-zero-per-even-class theorem, and the asymptotic spacing law $\Delta\beta_n\to\pi/3$. Merely finding separate numerical roots would be too weak. The comparison rests on the exact whole-number change in causal-history content, the certified alternating selection rule on the fixed chart, and the derived regular spacing at high ladder index.
 
-> Claim grades: derived for the existence, isolation, and bounded completeness of the eighteen modes on the certified domain; measured for the continued existence list through $n=100$. A certified additional balance in an odd interval, a second balance in one of the certified even intervals, a nonsimple listed zero, or a failed full-vector balance overturns the corresponding statement.
+> Claim grades: computer-assisted derived for existence, isolation and completeness throughout the ordinary topology sequence on the fixed chart; measured for the coordinate estimates through $n=100$. A certified additional balance in an odd interval, a second balance in one of the certified even intervals, a nonsimple listed zero, or a failed full-vector balance overturns the corresponding statement.
 
-The certificate proves the first eighteen isolated modes and the arbitrary-precision instrument measures the extended list. Neither grade turns the comparison itself into a physical quantum-spectrum result.
+The finite certificate and uniform tail theorem prove the complete isolated ladder, while the arbitrary-precision instrument measures the first one hundred coordinates. Neither grade turns the comparison itself into a physical quantum-spectrum result.
 
 Calling the ladder quantum-like is an inferred comparison, not a promotion to a physical quantum spectrum. The modes do not carry a derived history-aware energy value $E_n$, a transition law between $n$ and $n\pm1$, an action increment, a preparation measure, or a perturbation-stability certificate. They therefore provide a concrete realized subcase of the discrete residual-system mechanism anticipated by the [eigen-braid spectrum](../../../../markdown/aaa/noether-braid/braid-mathematics.md#the-eigen-braid-spectrum), but they are not members of a certified physical eigen-braid spectrum. An allowed-note pattern has appeared, but the theory has not yet shown that a released assembly occupies the notes stably, jumps between them in whole energy steps, or reproduces quantum probabilities.
 
@@ -1068,9 +1074,15 @@ Quantum-like is a comparison grade, not a physical-spectrum verdict. It survives
 
 The exact coefficients $C_\infty=3/2$ and $3\log 2/\pi$ rest on the complete ledger derivation. Inverse-power fits and deterministic continuation figures retain discovery provenance only: their decimal coefficients depend on the finite fitting window and cannot determine whether factors such as $\pi$, $\sqrt{3}$, or $\log 2$ survive exact sixfold summation. Curve fits record the numerical pattern but do not prove its constants. The authority comes from pairing every old causal root, evaluating the alternating series, and matching that background against the newborn fold pair.
 
-The 100/120-digit calculation supplies the accepted existence rows through T200 at $\beta_f=105.7622250967280$. The binary64 extension and empirical regression coefficients remain non-authoritative discovery provenance for the high-topology coordinates and exact asymptotic coefficients. Neither numerical instrument supplies interval-by-interval completeness above the certified domain. The high-speed rows are individually accepted arbitrary-precision balances, while the exact formulas stand or fall with the ledger derivation and its stated falsifiers. The list does not prove that no additional high-speed balance exists.
+The 100/120-digit calculation supplies the accepted existence rows through T200 at $\beta_f=105.7622250967280$. The binary64 extension and empirical regression coefficients remain non-authoritative discovery provenance for the high-topology coordinates and exact asymptotic coefficients. Neither numerical instrument supplies interval-by-interval completeness above the certified domain. The high-speed rows are individually accepted arbitrary-precision balances, while the exact formulas stand or fall with the ledger derivation and its stated falsifiers. Completeness is supplied separately by the finite T200 certificate and uniform tail theorem.
 
-For $N=2$ through $N=6$, exactly one orbit at each inventory is alternating. Every other regular polarity orbit is a measured bounded-search negative on $0.05\leq\beta_f\leq20$: one of the two orbits for $N=2$, two of the three for $N=3$, six of the seven for $N=4$, twelve of the thirteen for $N=5$, and thirty-four of the thirty-five for $N=6$. The discrete regular polarity-word census is complete through $N=6$, while the no-balance verdicts retain the declared sampled and adaptively refined search grade rather than a continuous zero-count grade. The nonuniform fixed-phase searches found no additional nonregular solution but do not cover their multidimensional domains; those charts remain unresolved. The dedicated equal-radius antipodal-neutral planar common-center three-binary chart phase search found the regular hexagon and left unequal phases unresolved. The velocity search above held those regular phases fixed. Unequal planar common-center three-binary chart radii were not searched. The negative rows reject only the tested regular polarity words below speed 20. They say nothing global about faster, variable-speed, breathing, eccentric, nonplanar, or freely evolving assemblies.
+For $N=2$ through $N=6$, exactly one orbit at each inventory is alternating. Every other regular polarity orbit is a measured bounded-search negative on $0.05\leq\beta_f\leq20$: one of the two orbits for $N=2$, two of the three for $N=3$, six of the seven for $N=4$, twelve of the thirteen for $N=5$, and thirty-four of the thirty-five for $N=6$. The discrete regular polarity-word census is complete through $N=6$, while the no-balance verdicts retain the declared sampled and adaptively refined search grade rather than a continuous zero-count grade. The nonuniform fixed-phase searches found no additional nonregular solution but do not cover their multidimensional domains; those charts remain unresolved. The dedicated phase search found the regular hexagon without a multidimensional census; the velocity search above held those regular phases fixed. The negative rows reject only the tested regular polarity words below speed 20. They say nothing global about faster, variable-speed, breathing, eccentric, nonplanar, or freely evolving assemblies.
+
+##### Local Phase and Radius Isolation
+
+The earlier phase search found the regular hexagon without establishing a multidimensional census. Separate interval certificates now establish local isolation of T04 within the antipodal-neutral, common-center, common-circulation planar chart. Write $\delta_2,\delta_3$ for the two phase departures from regular spacing, and $r_2=R_2/R_1$, $r_3=R_3/R_1$ for the independent radius ratios. All three binaries share one angular rate $\Omega$; on the unequal-radius and coupled charts, $\beta_f=|\Omega|R_1/c_f$ uses the first binary's radius as its reference scale. At equal radii, T04 is the unique full-vector balance when each of $|\delta_2|$, $|\delta_3|$ and $|\beta_f-\beta_{\mathrm{T04}}|$ is at most $9\times10^{-6}$. At regular phases, the corresponding bound on each of $|r_2-1|$, $|r_3-1|$ and $|\beta_f-\beta_{\mathrm{T04}}|$ gives the same uniqueness result. Allowing all five coordinates to vary together, uniqueness holds when every departure is at most $10^{-6}$. These are computer-assisted derived local zero censuses, with all 72 causal roots preserved. They do not exclude wider or disconnected phase-radius branches, nor establish dynamical stability.
+
+The interval certificates enclose every causal root and use nonsingular interval Jacobians and interval-Newton inclusion to isolate a unique zero of independent tangential and radius-compatibility equations. Exact circular covariance discharges the remaining full-vector conditions at regular T04. A missing root, an invalid interval enclosure, loss of the Jacobian bound, or an independently certified second balance inside the declared box would overturn the affected result.
 
 ### Fixed Axial-Translation Study
 
@@ -1232,6 +1244,12 @@ throughout the declared domain wherever the ordinary-root residual is finite. At
 
 The fixed $0.1c_f$ translation slice is closed. The result does not exclude another axial speed, unequal radii, phase deformation, non-axial transport, or another coincident-axis three-binary locus chart, and it establishes no release, retention, stability, binding, physical identity, or scientific acceptance.
 
+#### Bounded Axial-Speed Interval
+
+A separate computer-assisted result excludes nonzero axial translation for the eighteen stationary branches T02 through T36 on $-0.9\leq u=s_{\mathrm{grp}}/c_f\leq0.9$, with $c_f=1$, within the equal-radius, regular-phase, common-circulation prescribed screw-path chart. The reduction gives an axial residual $\mathcal R_z(u)=uS(b_n)$, where $b_n$ is the corresponding stationary balance speed and $S(b_n)$ is its signed axial weight. Interval evaluation establishes $S(b_n)<0$ for each of these eighteen branches, so the residual vanishes only at $u=0$. Higher topology branches, speed domains outside this interval, unequal radii, deformed phases and non-axial translation retain separate obligations. This result does not exclude axial translation for every coincident-axis configuration.
+
+Here $S(b_n)$ is the sum in the preceding formula for $a_z^{\mathrm{tr}}/u$, evaluated on the stationary balance. The outward-rounded 80-decimal census gives $S(b_n)<-5.757$ for every one of the eighteen branches; the T04 value reproduces the separate fixed-speed certificate. A signed-weight enclosure containing zero, a missed causal root, or failure of the exact screw-path reduction would invalidate this exclusion.
+
 ### Exact Circular-Solution Theorem
 
 The balance condition has a stronger consequence than a one-phase numerical observation. Let $Q_\Omega(T)$ be rotation through angle $\Omega T$ in the circular-path plane, let $\mathbf x_j$ be the fixed center-relative phase vector of member $j$, and consider the exact circular histories
@@ -1349,7 +1367,9 @@ Hence $H\geq2R/c_f$ contains every possible circular causal root. If exact circu
 
 Exact balance and a complete simple causal-root ledger make the prescribed circle an all-time solution. This theorem does not say that approximate initial data select that solution uniquely or return after a perturbation.
 
-The theorem attaches to the mathematically defined balance zero and its compatible radius, not to a finite decimal treated as exact. The outward-rounded T04 zero certificate establishes a unique exact member in its certified interval, and the independent arbitrary-precision evaluation estimates that member's coordinates. The EOM-solver release calculation uses rounded values and enclosed cubic history segments, so it supplies a distinct numerical-continuation test. Direct substitution proves that the exact member is a global solution. The stronger statement that one supplied past-only history admits no other future requires a local well-posedness and uniqueness theorem for the state-dependent delayed history problem on the same complete-simple-root chart; that uniqueness theorem remains an explicit closure target. Perturbation stability is a further and separate question. An exact circle exists and repeats. What remains unproved is that every sufficiently exact numerical release must select only that continuation and that a slightly disturbed circle returns rather than departing.
+The theorem attaches to the mathematically defined balance zero and its compatible radius, not to a finite decimal treated as exact. The outward-rounded T04 zero certificate establishes a unique exact member in its certified interval, and the independent arbitrary-precision evaluation estimates that member's coordinates. The EOM-solver release calculation uses rounded values and enclosed cubic history segments, so it supplies a distinct numerical-continuation test. Direct substitution proves that the exact member is a global solution.
+
+A separate local history-flow theorem establishes existence, uniqueness and continuous dependence on $0\leq T\leq0.05$ for a nonzero $W^{2,\infty}$ neighborhood of the exact T04 retained history, while the same complete 72-root chart and its positive delay, separation and transmitter-factor bounds remain valid. Here $W^{2,\infty}$ controls the history together with its first two weak derivatives. The neighborhood radius exists but has not been numerically enclosed. Within this neighborhood, the exact past selects the exact circle over the stated interval. This theorem does not certify a rounded numerical input as lying in that neighborhood, an EOM-solver trajectory through a complete cycle, or return after a perturbation. Perturbation stability remains a separate question.
 
 ### Release Attempt and Dynamical Boundary
 
@@ -1361,9 +1381,9 @@ No calculation established a full-period continuation or a comparison between ad
 
 The calculation supports only the short accepted prefix and the reported numerical blockers. It supplies no full-cycle, retention, stability, escape, or physical-fate result.
 
-The planar common-center three-binary chart circular result is a mathematically structured prescribed-balance ladder with one hundred independently accepted consecutive even-class balances. The bounded T00-through-T36 zero count is certified, the map $n\mapsto\mathrm{T}_{2n}$ fixes their complete directed-root counts, local polarity controls the fold-born crossing mechanism, and the high-speed spacing and radius laws are derived. Above speed 20, interval completeness remains open. The exact circular-solution theorem supplies an invariant mathematical reference orbit for every exact complete-simple-ledger balance member. The unresolved numerical continuation limits the independent past-only reproduction, while perturbation stability still requires a well-posed nearby-history flow and a separate return-map analysis. The exact-root mathematics establishes continuing circular solutions, while the release experiment reached only a very short approximation to one of them. Exact continuation, numerical reproduction, and stability are three different evidence levels; none yet establishes a bound or perturbatively stable physical assembly.
+The planar common-center three-binary circular chart has a complete infinite prescribed-balance ladder, certified by the finite zero census through T200 and uniform tail theorem. Its exact root counts, local fold signs and high-speed scale laws are derived. The exact circular-solution theorem supplies a periodic mathematical reference orbit for every complete-simple-ledger balance member. Near T04, the local history-flow theorem supplies short-time existence and uniqueness; independent full-cycle numerical reproduction and perturbation return remain separate obligations. These results establish no bound or perturbatively stable physical assembly.
 
-Broader geometric closure separately requires controlled coverage of unequal phase gaps, unequal planar common-center three-binary chart binary radii, and translated screw paths beyond the bounded diagnostic recorded in coincident-axis three-binary configurations. This chapter closes the circular-path taxonomy bridge, derives exact circular continuation for the exact balance members, and records the separate release-prefix evidence at its measured grade. It supplies no binding, perturbation-stability, physical-spectrum, energy-quantization, transition, or scientific-acceptance verdict.
+Broader geometric closure requires coverage of phase and radius domains outside the certified local T04 boxes, and translated screw paths beyond the T02-through-T36 axial-speed certificate on $|u|\leq0.9$. This chapter closes the circular-path taxonomy bridge, derives exact circular continuation for the exact balance members, and records the separate release-prefix evidence at its measured grade. It supplies no binding, perturbation-stability, physical-spectrum, energy-quantization, transition, or scientific-acceptance verdict.
 
 ### Two Planar Component Braids
 
@@ -1766,7 +1786,7 @@ At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but do not c
 
 #### Planar Balance Locus
 
-The equal-radius, phase-symmetric all-equatorial restriction and its complete acceleration-balance evidence are owned by [Planar (2D) Braid Assemblies](../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md#equal-radius-planar-three-binary-velocity-search). Here it marks only a coordinate boundary of the spatial coincident-axis chart. The exact circular continuation, finite release prefix, unequal-phase and unequal-radius open domains, and fixed axial-translation result retain the separate grades stated there. A spatial coordinate chart can meet the planar chart at an exact boundary. The planar chapter owns the balance calculation, and crossing that boundary does not transfer a retention or stability result back to the spatial chart.
+The equal-radius, phase-symmetric all-equatorial restriction and its complete acceleration-balance evidence are owned by [Planar (2D) Braid Assemblies](../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md#equal-radius-planar-three-binary-velocity-search). Here it marks only a coordinate boundary of the spatial coincident-axis chart. The exact circular continuation, short-time T04 history flow, finite release prefix, local phase-radius isolation and bounded axial-speed exclusion retain the separate grades stated there. Wider phase-radius and translation domains remain open. A spatial coordinate chart can meet the planar chart at an exact boundary. The planar chapter owns the balance calculation, and crossing that boundary does not transfer a retention or stability result back to the spatial chart.
 
 #### All-Axial Boundary
 
@@ -1816,7 +1836,7 @@ Axial translation is a coincident-axis three-binary locus specialization, not a 
 
 #### Fixed Axial-Translation Control
 
-The fixed $0.1c_f$ screw-path study and its interval-certified bounded nonexistence result are owned by [Planar (2D) Braid Assemblies](../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md#fixed-axial-translation-study). This spatial chapter retains only the generic screw-path coordinates above; it does not duplicate the numerical ledger. Other axial speeds and broader unequal-radius or phase-deformed charts remain open. The cited control rejects one declared translated planar chart, not axial translation for every coincident-axis configuration.
+The fixed $0.1c_f$ screw-path study and its interval-certified bounded nonexistence result are owned by [Planar (2D) Braid Assemblies](../../../../markdown/aaa/noether-braid/2d-braid-assemblies.md#fixed-axial-translation-study). This spatial chapter retains only the generic screw-path coordinates above; it does not duplicate the numerical ledger. A separate computer-assisted result in that chapter excludes nonzero axial translation for T02 through T36 on $-0.9\leq s_{\mathrm{grp}}/c_f\leq0.9$, within the equal-radius, regular-phase, common-circulation prescribed screw-path chart with $c_f=1$. Higher topology branches, speeds outside this interval, unequal radii, deformed phases and non-axial translation retain separate obligations. Neither result excludes axial translation for every coincident-axis configuration.
 
 ### Boundary with Orthogonal-Axis Three-Binary Configurations
 
@@ -1856,20 +1876,20 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-aee3b66945615003)
 
-and strictly ordered axial coordinates
+Each persistent member index $m$ carries its own axial coordinate $\xi_m\in\mathbb R$. Equal axial coordinates are allowed: different members can lie at the same height while having different transverse positions. To describe the axial spacing, choose an auxiliary ordering permutation $\sigma$ with
 
 $$
-\xi_1<\xi_2<\cdots<\xi_{12}.
+\xi_{\sigma(1)}\leq\xi_{\sigma(2)}\leq\cdots\leq\xi_{\sigma(12)}.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2906606dee811b1c)
 
-The adjacent spacings and total train length are
+This ordering does not change persistent identities, binary partners or component membership. Ties can be resolved in any declared order because they contribute zero spacing. The adjacent spacings and total train length are
 
 $$
-d_m=\xi_{m+1}-\xi_m>0,
+d_j=\xi_{\sigma(j+1)}-\xi_{\sigma(j)}\geq0,
 \qquad
-m\in\{1,\ldots,11\}
+j\in\{1,\ldots,11\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2596f73f93a2c254)
@@ -1877,7 +1897,7 @@ $$
 and
 
 $$
-L_C=\xi_{12}-\xi_1=\sum_{m=1}^{11}d_m.
+L_C=\xi_{\sigma(12)}-\xi_{\sigma(1)}=\sum_{j=1}^{11}d_j.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-867390011c64e68b)
@@ -1890,7 +1910,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d5fbf3807a2fffea)
 
-is a primary two-component circular coordinate because it changes the exact causal delays between architrino worldlines. A common shift of every $\xi_m$ is absorbed into the assembly center and does not create a thirteenth axial coordinate.
+describes the ordered axial separations. The permutation assigning these positions to persistent members remains part of the coordinate record: spacings alone do not identify which members occupy which heights. Changing the member-resolved axial positions changes the exact causal delays. A common shift of every $\xi_m$ is absorbed into the assembly center and does not create a thirteenth axial coordinate.
 
 Let $\mathbf X_{\mathrm{grp}}(T)$ be the prescribed assembly center. For uniform translation of that center at group speed $s_{\mathrm{grp}}$,
 
@@ -1984,21 +2004,21 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2c260fe4c04b56e4)
 
-This configuration retains the full ordered-spacing, radius, frequency, phase, and binary-pairing coordinates. It does not require equal radii, equal spacings, equal frequencies, reflection symmetry, or decomposition into two coincident-axis three-binary components.
+This configuration retains the full member-resolved axial-position, radius, frequency, phase, and binary-pairing coordinates. It does not require equal radii, equal spacings, equal frequencies, reflection symmetry, or decomposition into two coincident-axis three-binary components.
 
 ### Counter-Rotating Coincident-Center Two-Component Circular Configuration
 
-The counter-rotating coincident-center two-component circular configuration declares the two ordered index subsets
+The counter-rotating coincident-center two-component circular configuration declares two disjoint six-member circulation subsets of the persistent indices,
 
 $$
-\mathcal I_1=\{1,\ldots,6\},
+\mathcal I_1\mathbin{\dot\cup}\mathcal I_2=\{1,\ldots,12\},
 \qquad
-\mathcal I_2=\{7,\ldots,12\}
+|\mathcal I_1|=|\mathcal I_2|=6.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8a976e0e99f3631d)
 
-and imposes
+Their membership is independent of height ordering; a subset need not occupy the lower or upper six positions. The circulation relation is
 
 $$
 q_m=q_C
@@ -2065,7 +2085,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6fb5a1df2182a13e)
 
-Each component separately satisfies the complete coincident-axis three-binary common-midpoint, common-axis, common-frequency, common-circulation, antipodality, and polarity-conjugacy relations. The source record declares the bijection between these twelve endpoint labels and the persistent two-component circular indices $m$.
+Each component separately satisfies the complete coincident-axis three-binary common-midpoint, common-axis, common-frequency, common-circulation, antipodality, and polarity-conjugacy relations. The source record declares the bijection between these twelve endpoint labels and the persistent two-component circular indices $m$. In the counter-rotating case, the six endpoints of component 1 form $\mathcal I_1$ and those of component 2 form $\mathcal I_2$. These memberships remain fixed when their axial positions interleave. Setting every $h_{ba}=0$ places all six endpoints of a component at one height and gives the planar restriction without changing any identity or membership.
 
 The co-rotating coaxial two-component circular configuration imposes one common circulation sense across both components. The counter-rotating peer imposes opposite component circulation senses. Neither configuration requires the two components to have equal radii, equal frequencies, equal internal phases, or a phase lock.
 

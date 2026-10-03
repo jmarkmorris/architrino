@@ -3,12 +3,12 @@
 ## Document Status
 
 - **Owner:** [Mapping Electromagnetism](../../../mapping-electromagnetism/priorities.md)
-- **Status:** active seed document; rigid two-history and first parity-tetrahedral site-local circular backgrounds rejected under the tested finite boundaries; adaptive-background closure open
+- **Status:** active seed document; rigid two-history finite background rejected; site-local $N=2$ rejection retained, while $N=4,6$ complete-history evidence is withdrawn pending a corrected ladder; adaptive-background closure open
 - **Created:** 2026-08-24
 - **Claim level:** mixed derived geometry, derived stationary cancellation, inferred response coordinates, and guessed medium interpretation
 - **Advancement:** no retained branch, physical Noether sea, equation-score movement, or reader-facing promotion
 
-This document is the durable priority-side home for the alternating cubic population proposed in [Session 23](../../../mapping-electromagnetism/brainstorming.md#session-23--deformable-alternating-cubic-sea-with-orbiting-sites-2026-08-24). It consumes the exact asymmetric counter-breathing representative center scaffold from [asymmetric counter-breathing representative Geometry](../../braid-program/analysis/f6c-geometry.md), the stationary theorem from the [Simple-Cubic Checkerboard Stationary-Release Cancellation Certificate](../../../app-lattice-lab/analysis/simple-cubic-checkerboard-cancellation-certificate.md), and the campaign discipline in [Simulation Run Protocols](../../../../../content/markdown/aaa/validation/simulations/run-protocols.md). It does not promote the candidate into `content/markdown/aaa`.
+This document is the durable priority-side home for the alternating cubic population originally identified as Session 23. That historical section is absent from the current [Mapping Electromagnetism discussion](../../../mapping-electromagnetism/brainstorming.md); the original session provenance remains unresolved. The construction consumes the exact asymmetric counter-breathing representative center scaffold from [asymmetric counter-breathing representative Geometry](../../braid-program/analysis/f6c-geometry.md), the stationary theorem from the [Simple-Cubic Checkerboard Stationary-Release Cancellation Certificate](../../../app-lattice-lab/analysis/simple-cubic-checkerboard-cancellation-certificate.md), and the campaign discipline in [Simulation Run Protocols](../../../../../content/markdown/aaa/validation/simulations/run-protocols.md). It does not promote the candidate into `content/markdown/aaa`.
 
 Plainly: this is a rigorous research seed, not a declaration that the universe is a cubic lattice. The exact results concern corner geometry and one stationary cancellation family. The moving medium remains a testable guess.
 
@@ -18,7 +18,7 @@ The candidate population occupies nominal simple-cubic sites indexed by integer 
 
 The equal-scale asymmetric counter-breathing representative track centers supply one exact local cube motif. They do not supply a tiling rule for member tracks. Every lattice vertex belongs to eight visible cubes, so a physical architrino at that vertex must have one site-indexed history rather than eight independently copied cell histories.
 
-The strongest static foothold is exact: a complete stationary checkerboard history has zero release acceleration under receiver-centered inversion-symmetric exhaustion. The same proof holds after every fixed nonsingular uniform linear deformation, not only one-axis compression. This family supplies no acceleration-restoring slope for a homogeneous affine strain. Any nonzero stiffness must therefore come from nonstationary causal history, nonuniform structure, or additional retained assemblies.
+The strongest static foothold is exact: a complete stationary checkerboard history has zero release acceleration under receiver-centered inversion-symmetric exhaustion. The same proof holds after every fixed nonsingular uniform linear deformation, not only one-axis compression. This family supplies no acceleration-restoring slope for a homogeneous affine strain. Nonuniform static structure or additional stationary sources can supply directional slopes, but their source-free receiver Jacobian has zero trace and cannot be strictly restoring in all three directions. Nonstationary histories and actually evolving assemblies require their own analysis; they are not supplied stabilizers.
 
 Plainly: the static array is exactly quiet under a broad family of uniform shape changes. That makes it a clean control, but it also means the static construction has not shown why a disturbed medium would spring back.
 
@@ -26,7 +26,7 @@ Plainly: the static array is exactly quiet under a broad family of uniform shape
 
 1. [Vocabulary And Symbols](#vocabulary-and-symbols) defines the lattice, polarity, orbit, and response records.
 2. [Exact Static Checkerboard Foothold](#exact-static-checkerboard-foothold) proves the stationary cancellation and states its stiffness boundary.
-3. [Relationship To asymmetric counter-breathing representative](#relationship-to-f6c) identifies the exact cube map and the isolated-cube dynamical contrast.
+3. [Relationship To asymmetric counter-breathing representative](#relationship-to-asymmetric-counter-breathing-representative) identifies the exact cube map and the isolated-cube dynamical contrast.
 4. [Candidate Orbiting-Site Map](#candidate-orbiting-site-map) gives a site-indexed history without treating the grid as primitive.
 5. [Shared-Vertex Compatibility](#shared-vertex-compatibility) proves the cell-copy obstruction and compares candidate orientation classes.
 6. [Common And Polarity-Differential Response Coordinates](#common-and-polarity-differential-response-coordinates) defines the first translation-symmetry diagnostics and the cubic-anisotropy boundary.
@@ -137,7 +137,7 @@ The stationary acceleration is identically zero along the entire affine family. 
 
 This statement is not an elastic-modulus calculation. A modulus is a constitutive response that also needs a lawful stress, action, energy, or work ledger. The theorem establishes neither that ledger nor the response to a local nonuniform perturbation. It establishes only that homogeneous stationary geometry cannot be used as evidence of nonzero stiffness.
 
-Plainly: squeezing the whole stationary array uniformly moves it to another exactly balanced stationary array. A spring-like response, if one exists, must come from history-dependent motion, local gradients, defects, or additional retained structure.
+Uniformly deforming this stationary array produces another balanced stationary array. Local gradients, defects and additional stationary sources can alter directional acceleration derivatives, but their defined fixed-source receiver Jacobian still has zero trace. They do not establish strict restoration in every direction. History-dependent motion remains a distinct route requiring a self-consistent equation solution. The verified checkerboard instability must accompany its use as a quiet reference, as explained in the [general-wavevector analysis](checkerboard-linear-wavevectors.md).
 
 ## Relationship To asymmetric counter-breathing representative
 
@@ -410,6 +410,8 @@ The physical matter interpretation remains blocked until the source is itself a 
 
 ## Periodic And Infinite-Medium Boundary Contract
 
+A periodically repeated moving population needs a proved acceleration sum as well as complete image representation. Nondecaying temporal histories do not satisfy the exponential-past tail condition used for the ancient branch. The velocity correction has inverse-square range and need not be absolutely summable; a continuum oscillatory-tail estimate alone neither proves nor disproves convergence of the exact lattice sum under every exhaustion. `periodic_exact` is therefore a conditional capability description: name the summation prescription and prove convergence, derivative control and compatibility with the complete history before assigning it that status. No Abel or other replacement summation is adopted here.
+
 | Boundary treatment | What it can establish | What remains uncontrolled or excluded |
 | --- | --- | --- |
 | finite open crop | literal evolution of the declared finite members and boundary | omitted exterior histories; boundary loading; no infinite-medium conclusion |
@@ -572,7 +574,7 @@ Plainly: the hashes bind the source, executable, release-root record, atomic che
 
 Claim grade: **measured** by the EOM solver finite-replicated diagnostic and [asymmetric counter-breathing representative cubic-lattice O0 analyzer](../../../../../scripts/mapping-electromagnetism/f6c-cubic-lattice-o0-analysis.mjs). The analyzer is independently unit-tested for fail-closed symmetry rejection, but it consumes the EOM output and is not an independent numerical oracle for the evolution law. The result is falsified by rerunning the immutable seed and obtaining $\lambda_{\mathrm{sym}}\le10^{-8}$ through the accepted window under the same finite boundary and model fingerprint. It does not reject a `periodic_exact` implementation, a larger replication ladder, or a different multi-plane or time-dependent orientation field.
 
-Plainly: the finite crop is not an admissible orbiting background, so the campaign stops before response interpretation. The missing exterior is a real boundary limitation; this result cannot decide whether exact periodic images would preserve the two-sublattice motion.
+The finite crop is not an admissible orbiting background, so the campaign stops before response interpretation. In a well-defined translation-covariant periodic evolution, members of one sublattice remain translates, so their within-sublattice split is identically zero. This symmetry alone does not make the prescribed circle an equation solution: the sublattice-mean acceleration must match its circular requirement. The finite boundary leakage tests a different obligation.
 
 ## Boundary-Replication Execution Record — 2026-08-24
 
@@ -588,7 +590,7 @@ Plainly: the central split became smaller as exterior layers were added, so the 
 
 The upper enclosure fell by a factor of approximately $29.38$ from $N=2$ to $N=4$, by $1.96$ from $N=4$ to $N=6$, and by $57.62$ across the full ladder. This is a measured bounded boundary-suppression trend. It is not an infinite-medium extrapolation: the three points do not supply a derived tail law, and the slowing suppression between the last two rungs is not fitted to one.
 
-The predeclared decision is `declared_ladder_did_not_remove_release_split`. The campaign halted before any $N=6$ evolved step because release-level same-sublattice accelerations already violate the background symmetry obligation. One-period EOM history return remains `not_evaluated_background_rejected_before_period`; `P-c`, `P-d`, `P-t`, and `S-on/off` remain `not_run`. Exact periodic images remain untested rather than rejected.
+The predeclared decision is `declared_ladder_did_not_remove_release_split`. The campaign halted before any $N=6$ evolved step because release-level same-sublattice accelerations already violate the background symmetry obligation. One-period EOM history return remains `not_evaluated_background_rejected_before_period`; `P-c`, `P-d`, `P-t`, and `S-on/off` remain `not_run`. Exact periodic dynamics remains untested. Its same-sublattice split vanishes by translation covariance when the acceleration sum is defined; its informative existence test is the mean acceleration against the prescribed circular acceleration.
 
 Plainly: this closes the finite-ladder question by falsification under its declared sizes. It does not prove that the split survives an infinite lattice or an exact periodic-image construction. Those require a new solver capability or a controlled exterior tail, not a response interpretation of these rejected finite backgrounds.
 
@@ -652,7 +654,7 @@ Plainly: the rejected rigid seed remains a useful control. The flexible descript
 ## Local Provenance
 
 - [asymmetric counter-breathing representative Geometry](../../braid-program/analysis/f6c-geometry.md) supplies the exact tetrahedral axes, member map, track-center versus moving-member distinction, equal-scale *stella octangula*, cube hull, and asymmetric counter-breathing representative claim boundaries.
-- [Session 23 — Deformable Alternating Cubic Sea With Orbiting Sites](../../../mapping-electromagnetism/brainstorming.md#session-23--deformable-alternating-cubic-sea-with-orbiting-sites-2026-08-24) supplies the candidate synthesis, descriptive site history, common/differential idea, and original proof burden.
+- The historical Session 23 proposal is recorded as the source of the candidate synthesis, descriptive site history, common/differential idea, and original proof burden. Its old section is absent from the current discussion; this source claim remains historical attribution rather than a verified live reference.
 - [Adaptive Cubic-Medium Kinematics And Ledger Contract](adaptive-cubic-medium-kinematics-and-ledger-contract.md) supplies site-local history reconstruction, cutoff-robust neighbor selection, lawful reclassification decisions, and the matched Physical Observer directional adjudicator.
 - [Adaptive Cubic-Background O0 Audit](../../../mapping-electromagnetism/evidence/adaptive-cubic-background-o0-audit-2026-08-25.json) applies the continuous EOM-history return and instantaneous site-chart consumer to the provenance-bound eight-site run and records its four blocking prerequisites.
 - [Adaptive Site-Local Release Ladder Audit](../../../mapping-electromagnetism/evidence/adaptive-cubic-site-local-release-ladder-audit-2026-08-25.json) records the exact orientation census and the release-consistency falsification across the $N=2,4,6$ finite ladder.

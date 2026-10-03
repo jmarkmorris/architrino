@@ -1266,7 +1266,7 @@ Plainly: the adjudication is concrete. One complete asymmetric counter-breathing
 
 ### Exact Invariants And Identities
 
-The word invariant can mean either a quantity that remains fixed or a surface that the dynamics cannot leave. The currently established asymmetric counter-breathing representative results include both kinds. The list below is scoped to the declared asymmetric counter-breathing representative chart and its complete ordinary causal-root branch.
+The list below distinguishes exact algebraic identities from tangency of the acceleration field to the declared surface. Tangency implies that a unique evolution stays on the surface only where existence and uniqueness have been established; neither follows from symmetry alone. These statements are scoped to the declared asymmetric counter-breathing representative chart and its complete ordinary causal-root branch.
 
 | Exact row | Statement | Important boundary |
 | --- | --- | --- |
@@ -1284,7 +1284,7 @@ The word invariant can mean either a quantity that remains fixed or a surface th
 | current-axis line | \(\mathbf m_{\mathrm{cur}}=m_x\hat{\mathbf x}\) | The magnitude and sign are not invariant. |
 | equal sector-member speed | Every member in sector \(\sigma\) has \(v_\sigma^2=\dot h_\sigma^2+\dot\rho_\sigma^2+(\rho_\sigma\dot\theta_\sigma)^2\) | This is a speed identity, not a conserved speed. |
 | edge-orbit equality | Symmetry-related two-edge and four-edge pair classes have identical distances | The distances change with the six coordinates and can approach coincidence. |
-| conjugation parity | Common coordinates are even and polarity-differential coordinates are odd under sector exchange | Effective charge from the odd coordinates remains inferred. |
+| conjugation parity | The signed combinations defined under Global Polarity Conjugation are even and odd under complete conjugation | Effective charge from the odd coordinates remains inferred. |
 | singlet/triplet split | Four module values split into one common value plus a three-dimensional sum-zero directional part | The response interpretation of those parts is inferred. |
 | invariant history surface | The Master Equation acceleration is tangent to asymmetric counter-breathing representative when the complete ordinary causal-root branch remains nondegenerate | Does not establish recurrence, attraction, or stability. |
 | return-action order | Direct chart returns have order one; reflected shape returns have order one for scalar shape but order two for cadence and fixed-frame axial current | A symmetry return is not automatically a labeled path-history return. |
@@ -1436,16 +1436,16 @@ Plainly: the symmetry calculation says how shape and current would transform if 
 
 #### Global Polarity Conjugation
 
-Global polarity conjugation is separate from the eight spatial chart maps. It flips every persistent architrino polarity without changing the unlabeled paths. Since each ordered interaction carries a polarity product, both signs flip and the product is unchanged. On the asymmetric counter-breathing representative coordinates,
+Global polarity conjugation is separate from the eight spatial chart maps. It flips every persistent architrino polarity without changing the unlabeled paths. Since each ordered interaction carries a polarity product, both signs flip and the product is unchanged. The member map gives $h_+'=-h_-$, $\rho_+'=\rho_-$ and $\theta_+'=-\theta_-$, with the corresponding exchanged relations for the negative sector. Phases use compatible continuous lifts. Put $p_h=p_\theta=-1$ and $p_\rho=1$. Conjugation-adapted coordinates are
 
 \[
 z_{\mathrm{even}}
 =
-\frac12(z_++z_-),
+\frac12(z_++p_z z_-),
 \qquad
 z_{\mathrm{odd}}
 =
-\frac12(z_+-z_-),
+\frac12(z_+-p_z z_-),
 \]
 
 and
@@ -1457,7 +1457,7 @@ and
 (z_{\mathrm{even}},-z_{\mathrm{odd}}).
 \]
 
-The polarity-weighted current moment also reverses. This is an exact field-free comparison theorem for the complete globally conjugated record. It does not establish that asymmetric counter-breathing representative is charged or identify a particle/antiparticle pair, and it does not apply unchanged when only the receiver is conjugated while an external source is held fixed.
+The raw arithmetic mean and difference transform as $(z_{\mathrm{mean}},z_{\mathrm{diff}})\mapsto(p_z z_{\mathrm{mean}},-p_z z_{\mathrm{diff}})$; only radius has the earlier simple mean-even/difference-odd rule. The polarity-weighted current moment also reverses. This is an exact field-free comparison theorem for the complete globally conjugated record. It does not establish that asymmetric counter-breathing representative is charged or identify a particle/antiparticle pair, and it does not apply unchanged when only the receiver is conjugated while an external source is held fixed.
 
 Plainly: swapping every positrino for an electrino and every electrino for a positrino leaves the unlabeled field-free paths available but reverses every polarity-odd readout.
 
@@ -1986,19 +1986,19 @@ Plainly: the topics in this part are jobs asymmetric counter-breathing represent
 
 #### Common And Polarity-Differential Coordinates
 
-For a continuous lifted phase and either collective coordinate \(z\in\{h,\rho,\theta\}\), the even/odd split is
+For a continuous lifted phase and any collective coordinate \(z\in\{h,\rho,\theta\}\), use the conjugation-adapted split with $p_h=p_\theta=-1$ and $p_\rho=1$:
 
 \[
 z_{\mathrm{even}}
 =
-\frac12(z_++z_-),
+\frac12(z_++p_z z_-),
 \qquad
 z_{\mathrm{odd}}
 =
-\frac12(z_+-z_-).
+\frac12(z_+-p_z z_-).
 \]
 
-The three even coordinates describe common motion of the two polarity sectors; the three odd coordinates describe their relative displacement, scale, and phase. Under complete polarity conjugation the even coordinates remain fixed and the odd coordinates reverse sign.
+These coordinates separate conjugation-even geometry from conjugation-odd geometry. For axial displacement and phase the even coordinate is a difference and the odd coordinate is a mean; for radius the assignments are reversed. Under complete polarity conjugation the even coordinates remain fixed and the odd coordinates reverse sign.
 
 This gives an exact parity requirement for any proposed effective projection. A charge-facing function must be odd under the sector exchange,
 
@@ -2016,7 +2016,7 @@ Q_{\mathrm{eff}}
 
 whereas a scalar envelope or mass-facing projection must be even. asymmetric counter-breathing representative does not yet supply either functional form; both must be derived from the same root- resolved source, wake, and receiver history.
 
-Plainly: motion shared by the positive and negative tetrahedra can control the common size and cadence. Motion that separates their geometries is the natural place to look for a sign-reversing charge readout. The symmetry tells us the required sign behavior, not the value of electric charge.
+The adapted coordinates organize sign-preserving scalar and sign-reversing charge readouts according to the actual member map. Their parity does not determine the value of electric charge.
 
 A symmetry-based branch chart would therefore distinguish:
 
@@ -2089,12 +2089,12 @@ Combining this split with polarity conjugation gives
 \mathbf Z_{z,\mathrm{even}}
 =
 \frac12
-\left(\mathbf Z_{z,+}+\mathbf Z_{z,-}\right),
+\left(\mathbf Z_{z,+}+p_z\mathbf Z_{z,-}\right),
 \qquad
 \mathbf Z_{z,\mathrm{odd}}
 =
 \frac12
-\left(\mathbf Z_{z,+}-\mathbf Z_{z,-}\right).
+\left(\mathbf Z_{z,+}-p_z\mathbf Z_{z,-}\right).
 \]
 
 This creates a disciplined response chart:
@@ -2655,7 +2655,7 @@ h_{\mathrm{even}},
 \right)
 $$
 
-provide a candidate reduced response space. The reduced operator defined in [Native Response Coordinates Suggested By asymmetric counter-breathing representative](#native-response-coordinates-suggested-by-f6c) could possess as many as three isolated modes, but a linear eigenvector is only a local deformation. To carry generation, each mode must continue nonlinearly into a positive-width retained branch or into a spectrally isolated admissible mode of one retained branch.
+provide a candidate reduced response space. The reduced operator defined in [Native Response Coordinates Suggested By asymmetric counter-breathing representative](#native-response-coordinates-suggested-by-asymmetric-counter-breathing-representative) could possess as many as three isolated modes, but a linear eigenvector is only a local deformation. To carry generation, each mode must continue nonlinearly into a positive-width retained branch or into a spectrally isolated admissible mode of one retained branch.
 
 Plainly: three coordinates can describe three candidate rhythms, but a rhythm becomes a generation only when finite perturbations return to the same durable class instead of drifting continuously or destroying the assembly.
 
@@ -3127,7 +3127,7 @@ $$
 
 Plainly: one six-member configuration must possess a real basin, while every other admitted count and arrangement must escape, collide, lose causal roots, or reorganize. No current calculation establishes either half of that result.
 
-A plausible selection mechanism is that full occupation of the octahedral \(2+4\) seed cancels directional acceleration leakage that a partially filled pattern leaves unmatched. That mechanism is only a guess. The asymmetric counter-breathing representative symmetry also admits paired and four-member special-position orbits, while generic off-symmetry sites occur in eight-member orbits. Symmetry therefore cannot exclude retained two-, four-, eight-, or symmetry-broken additions. Polarity decoration can further reduce the symmetry even when all six geometric sites are occupied.
+A plausible selection mechanism is that full occupation of the octahedral \(2+4\) seed cancels directional acceleration leakage that a partially filled pattern leaves unmatched. That mechanism is only a guess. The generic fixed-history spatial stabilizer has four elements; its generic pocket orbits have four members, and special positions can have smaller orbits. The other chart maps relate different phase histories. Symmetry therefore cannot exclude retained two-, four-, eight-, or symmetry-broken additions. Polarity decoration can further reduce the symmetry even when all six geometric sites are occupied.
 
 Plainly: filling all six seats may balance the structure better than filling some of them, but smaller symmetry-complete groups also exist. The Master Equation must decide which counts actually persist.
 
@@ -3244,16 +3244,16 @@ Plainly: $3{:}3$, $2{:}2$, $1{:}1$, and asymmetric counter-breathing representat
 
 #### What Symmetry Can Say Before Dynamics
 
-The \(D_{2d}\) chart symmetry constrains the multiplicities and shapes of candidate neutral volumes but does not prove that any exist:
+The eight \(D_{2d}\) chart maps must be distinguished from the four-element stabilizer of a generic complete history. The direct maps (identity, $C_{2x}$ and $S_{4x}^{\pm}$) fix that history; reflected maps generally change its phase history. The fixed-history stabilizer constrains candidate neutral-volume orbits but does not prove that any exist:
 
-- a central neutral volume can be invariant under all eight chart maps;
+- a central neutral volume can be fixed by the history stabilizer;
 - an off-center pocket on the current-axis line requires a paired pocket on the opposite side;
-- pockets centered on special transverse axes or mirror planes can occur in four-member symmetry orbits; and
-- generic off-symmetry pockets occur in eight-member orbits.
+- special-position pockets can have smaller orbits; and
+- generic off-symmetry pockets occur in four-member orbits.
 
 These are orbit sizes of symmetry-related candidates, not counts of capture volumes. A positive probe's neutral region also need not equal a negative probe's region unless a complete polarity-conjugation relation is imposed on the source and probe histories.
 
-Exactly six distinct generic pockets cannot form one generic eight-member symmetry orbit. A natural fully decorated candidate is instead a sum of a two-member orbit and a four-member orbit. Other six-member arrangements may break part of \(D_{2d}\), use a connected multi-path volume, or exchange member labels over a cycle. The polarity decoration can reduce the spatial symmetry further even when the undecorated six-path set is symmetric.
+Exactly six distinct pockets cannot form one generic four-member stabilizer orbit. A possible fully decorated candidate is a two-member special-position orbit plus a four-member orbit. This decomposition is not an existence or exclusivity theorem. Other six-member arrangements may break the host stabilizer, use a connected multi-path volume, or exchange member labels over a cycle. Polarity decoration can reduce the spatial symmetry further even when the undecorated six-path set is symmetric.
 
 Plainly: symmetry says how copies of a discovered pocket must be arranged. Six separate symmetric seats most naturally split into a pair plus a group of four; otherwise the captured pattern must use a different symmetry or a shared volume. Symmetry does not guarantee that any seat exists.
 
@@ -3857,7 +3857,7 @@ Plainly: the table is a compact review of the core chain. Its exact statements c
 
 ## Local Provenance
 
-- The general inference and originating seed record is [Inferring Braid Requirements](../../../mapping-equations/analysis/inferring-braid-requirements.md#seed-f6c--polarity-resolved-breathing-tetrahedron); this document owns the focused asymmetric counter-breathing representative geometry and diagnostics.
+- The general inference and originating seed record is [Inferring Braid Requirements](../../../mapping-equations/analysis/inferring-braid-requirements.md#seed-asymmetric-counter-breathing-representative--polarity-resolved-breathing-tetrahedron); this document owns the focused asymmetric counter-breathing representative geometry and diagnostics.
 - Dated campaign changes belong in the [Braid Program work log](../work-log.md). Earlier entries remain in the [Mapping Electromagnetism work log](../../../mapping-electromagnetism/work-log.md).
 - Exact return-group enumeration is implemented by [f6c-identity-return-group.mjs](../../../../../scripts/mapping-electromagnetism/f6c-identity-return-group.mjs).
 - EOM coordinate reconstruction is implemented by [f6c-eom-coordinate-analysis.mjs](../../../../../scripts/mapping-electromagnetism/f6c-eom-coordinate-analysis.mjs).

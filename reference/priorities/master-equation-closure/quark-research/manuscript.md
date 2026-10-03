@@ -20,8 +20,16 @@ The decisive dynamical object is a coupled history with complete causal-root acc
 
 Even a successful finite-interval calculation would have a bounded conclusion. Long-time persistence, stability under changes of preparation and identification with observed quarks require further evidence. A stability calculation around an equilibrium first requires that equilibrium to exist.
 
+### 3.1. A prescribed-host comparison before accessory evolution
+
+For a stationary probe separated from complete periodic source paths with a uniform subfield speed margin, changing the cycle integral from reception time to emission time cancels the canonical transmitter weight. The exact mean acceleration is the cycle average of the static inverse-square rows. Its acceleration potential is harmonic away from the paths, so it has no strict local restoring minimum. The [periodic-host derivation](analysis/periodic-host-probe-average.md) establishes this identity without a slow-speed expansion. It concerns the stationary-probe average; time-dependent trapping and mutually evolved accessories remain separate questions.
+
+The same analysis derives a conditional slow-probe correction from the oscillating field. A single-frequency intensity-gradient expression needs curl-free coefficients and small oscillatory displacement; general periodic motion requires harmonic-dependent frequency weights. A declared host's mean field and temporal coefficients therefore provide the first comparison. Axial nodes, an intensity minimum or a polarity-even correction alone do not establish a capture seat. The alternating six-ring supplies an analytical axis control, not a guaranteed node for the F6c host.
+
 ## 4. From assembly motion to observer comparisons
 
 The [vortex-coupling target](analysis/quark-vortex-coupling-target.md) proposes studying interactions among quark-like assemblies and comparing the resulting behavior with confinement and gluon response. Its color-singlet and octet constructions are comparison requirements, not additional substrate laws. No completed simulation is supplied by that proposal.
+
+The [spatial symmetry calculation](analysis/axis-coupling-symmetry.md) makes the comparison conditional on a declared coupling representation. Oriented spatial components under full octahedral symmetry split the traceless matrix directions into dimensions $2+3+3$; unsigned exceptional-axis labels give a different decomposition. The complete decorated host may have a smaller symmetry. Neither decomposition derives a continuous color action or makes all eight perturbation frequencies equivalent.
 
 Mass, flavor mixing and effective confinement calculations remain in the [Standard Model geometry program](../../mapping-standard-model/analysis/geometry-first-program.md). They require branch-derived inputs: quantities extracted from an actual retained history. Selecting such inputs to reproduce a desired observer value would not establish that the Master Equation produces them. Quark research supplies the candidate dynamics; the mapping work must then show how those same dynamics produce the observable response.

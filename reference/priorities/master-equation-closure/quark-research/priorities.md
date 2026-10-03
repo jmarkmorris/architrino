@@ -10,6 +10,8 @@ Determine whether complete interacting histories support a quark-candidate assem
 
 The [complete candidate-and-history specification](work-queue.md#specify-one-complete-quark-candidate-geometry-and-past-history) is queued following the operator's request to retain unfinished recommendations. It defines a reproducible research input before a simulation is selected. No numerical score or global rank is assigned.
 
+The [supplied-review assessment](analysis/quark-review-integration-2026-10-03.md) adds two derived, self-reviewed reductions: an [exact stationary-probe cycle average](analysis/periodic-host-probe-average.md) and [conditional spatial matrix decompositions](analysis/axis-coupling-symmetry.md). They sharpen the first comparison and color-coordinate requirements without supplying a complete quark preparation. Dynamic seat formation, the actual coupling representation and retained response remain unresolved. Numerical evaluation and independent mathematical adjudication are not completed.
+
 The [vortex-coupling proposal](analysis/quark-vortex-coupling-target.md) is filed here as a geometry experiment. Its existing SMC-011 execution row stays **Deferred / blocked** in [Standard Model Mapping](../../mapping-standard-model/work-queue.md), with SMC-003 and SMC-009 as dependencies. Queuing the preparation specification does not activate that simulation.
 
 ## Ownership and dependencies

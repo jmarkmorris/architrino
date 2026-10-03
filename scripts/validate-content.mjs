@@ -4,6 +4,7 @@ import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { frozenResearchSourceOrigin, researchSourceLocation } from "../src/documentation/ResearchSourceLocations.mjs";
+import { findTheoryAbbreviationCandidates } from "./lib/theory-abbreviation-audit.mjs";
 
 const SCENES_DIR = "content/scenes";
 const MARKDOWN_DIR = "content/markdown";
@@ -22,10 +23,6 @@ const ARCHIE_COMIC_THUMBNAIL_SIZE = 360;
 const REPO_MARKDOWN_AUDIT_IGNORED_DIRS = new Set([".git", "node_modules", "__pycache__"]);
 const REPO_MARKDOWN_AUDIT_IGNORED_PATH_PREFIXES = [
   "apps/ios/ArchitrinoReader/GeneratedTextbookPackage/",
-];
-const DISALLOWED_THEORY_ABBREVIATIONS = [
-  { label: "A^3", regex: /A\^3/g },
-  { label: "A³", regex: /A³/g },
 ];
 const ALLOWED_SCENE_TYPES = new Set([
   "Scene-Index",
@@ -877,19 +874,15 @@ function auditDisallowedTheoryAbbreviations(markdownPaths, markdownTextByPath) {
       continue;
     }
     const searchableText = stripMarkdownFencedCodeBlocks(markdownText);
-    for (const pattern of DISALLOWED_THEORY_ABBREVIATIONS) {
-      pattern.regex.lastIndex = 0;
-      let match;
-      while ((match = pattern.regex.exec(searchableText))) {
-        const lineNumber = lineNumberAtIndex(searchableText, match.index);
-        const line = lineAtIndex(searchableText, match.index);
-        if (isAllowedDisallowedTheoryAbbreviationMention(markdownPath, line)) {
-          continue;
-        }
-        errors.push(
-          `${markdownPath}:${lineNumber}: disallowed theory abbreviation "${pattern.label}"; use Architrino, Architrino Assembly Architecture, AAA only where interoperability requires it, or $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ in formal prose and math`
-        );
+    for (const match of findTheoryAbbreviationCandidates(searchableText)) {
+      const lineNumber = lineNumberAtIndex(searchableText, match.index);
+      const line = lineAtIndex(searchableText, match.index);
+      if (isAllowedDisallowedTheoryAbbreviationMention(markdownPath, line)) {
+        continue;
       }
+      errors.push(
+        `${markdownPath}:${lineNumber}: disallowed theory abbreviation "${match.label}"; use Architrino, Architrino Assembly Architecture, AAA only where interoperability requires it, or $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ in formal prose and math`
+      );
     }
   }
 }

@@ -2,20 +2,29 @@
 
 ## Ranked Next Objects
 
-No numerical ranking is assigned. The manuscript review below is queued following the operator's 2026-10-02 request to capture unfinished recommendations; it does not dispatch a calculation. The missing retained branch remains a scientific dependency, and further proposed investigations remain in [brainstorming](brainstorming.md) until their scope and acceptance condition are selected.
+No numerical ranking is assigned. The completed manuscript review is recorded in [work-log.md](work-log.md); it is not a live task. The operator's 2026-10-03 reconciliation captures the bounded verification below, without dispatching a calculation or supplying the missing retained branch.
 
-## Queued follow-up
+## Queued
 
-### Review the manuscript and scope one focused investigation
+### Verify the prescribed alternating-ring mismatch moments
 
-- **Status:** ○ Queued — not started; unassigned.
-- **Request:** Review the [neutrino manuscript](manuscript.md) as the starting point for selecting a focused investigation, as recommended when this research owner was established.
-- **Scope:** Check the candidate geometry and required complete histories against the cited source material. Separate the proposed assembly, the missing retained branch, and the observer-level common-clock and oscillation recovery targets. Identify the nearest question that can be posed without assuming an unproved photon or neutrino equilibrium.
-- **Dependencies:** The [photon reference owner](../photon-research/priorities.md), [common-clock mapping packet](../../mapping-equations/analysis/eq-16a-neutrino-common-clock-phase-packet.md) and existing execution owners below retain their evidence and task boundaries. A missing retained reference does not prevent a review, but it constrains which subsequent calculation can be selected.
-- **Completion:** A source-linked review states the supported construction, unresolved inputs and one bounded proposed investigation with its preparation, unchanged-equation assumptions, acceptance condition and independent check. If those inputs are unavailable, identify the dependency and the prerequisite work explicitly. Reviewing and scoping do not launch the proposed research or establish a retained neutrino.
-- **Ranking:** No numerical score or global rank is assigned.
+- **Status:** ○ Queued — unassigned; independent analytical construction first.
+- **Request:** Separately check the harmonic hierarchy and first mismatch coefficients in the [bounded prescribed comparison](analysis/alternating-ring-mismatch-moments.md#bounded-proposed-check), then verify them with a separately authored direct-sum or exterior-response evaluator.
+- **Scenario:** Use its complete prescribed subfield histories and numerical $c_f=1$, common-time moments and declared angular norms. Preserve the applicable far-root approximation and its remainder; exact superfield rings cannot borrow that theorem.
+- **Completion / falsifier:** Record regular-ring zero moments and the analytical small-mismatch coefficients as known controls before target mismatch or angular-response comparisons. Give a controlled leading-order result or discrepancy, with source identity and errors. Low-moment cancellation is not total silence; quadratic response scaling requires its stated norm and reference. No reaction probability, exposure fit, retained neutrino or three-mode spectrum follows from this task.
+
+## Deferred / blocked
+
+### Define the near-reference coordinate and slow-mode test
+
+- **Status:** ○ Deferred / blocked — a lawful reference motion and differentiable response/return operator are required.
+- **Request:** After a reference is exhibited, specify a complete-history distance, retained root-topology controls and a separated slow spectral subspace for the near-photon candidate. Inherit the [photon conditions](../photon-research/analysis/translating-carrier-root-and-axial-constraints.md) only on their actual fixed-plane/regular-ring chart.
+- **Completion:** A bounded reduction names the removed symmetry directions, retained modes, discarded-history error and source/detector projection. Three exact unit-circle pairs are not a general necessity; do not import a Hamiltonian pairing rule. A periodic modulated reference remains a search proposal until the photon criterion and actual orbit are supplied. This does not duplicate EQ-16A's observer/readout work.
 
 ## Existing research routes
+
+<a id="review-the-manuscript-and-scope-one-focused-investigation"></a>
+The completed review/scoping action is retained in the work log and [assessment](analysis/neutrino-review-integration-2026-10-03.md). It supplied the moment comparison's preparation and controls; it did not establish a retained branch or independently validate its new mathematics. This compatibility anchor is not a live review task.
 
 These links preserve existing ownership and do not duplicate execution tasks.
 

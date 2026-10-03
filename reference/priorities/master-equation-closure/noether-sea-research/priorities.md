@@ -10,6 +10,8 @@ Derive a common response of a specified ambient braid population and its embedde
 
 The operator's proposed dense population of highly energetic scaled braids surrounding matter-containing regions is a candidate preparation. Its density, constituent scale and cadence distribution, correlations, complete past and exterior must be specified; no equilibrium, stability, screening or relaxation result is inferred from the description. The [brainstorming record](brainstorming.md) preserves this proposal separately from the blocked response task.
 
+The [supplied-review assessment](analysis/noether-sea-review-integration-2026-10-03.md) adds preparation and channel-readout prerequisites while preserving v0 and its execution status. A [log-density and group-delay proposal](analysis/preparation-controls-and-population-scales.md) is ready for discussion as an amendment or companion, not an adopted coordinate change. The [checkerboard continuum-rate lemma](../lattice-research/analysis/checkerboard-weak-coupling-rate.md) is derived and self-reviewed, with independent adjudication outstanding; it is a lattice control, not an accepted sea timescale. Fixed-coupling scale constraints, received-root tails and transverse strain projection are now explicit.
+
 ## Workstream Metadata
 
 - Rank: `4`

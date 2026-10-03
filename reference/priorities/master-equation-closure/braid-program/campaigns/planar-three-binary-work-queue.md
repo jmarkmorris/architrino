@@ -1,6 +1,6 @@
 # Planar Common-Center Three-Binary Investigation Work Queue
 
-This is the detailed subordinate execution queue for the planar common-center three-binary investigation. The canonical Braid Program queue owns the aggregate [BP-011](../work-queue.md#bp-011--planar-common-center-three-binary-investigation) status and candidate disposition; this file owns the individual task order, lifecycle state, acceptance boundary, dependency, and completion condition. Do not duplicate individual task status in the parent queue.
+This is the detailed subordinate execution queue for the planar common-center three-binary investigation. The canonical Braid Program queue owns the aggregate [BP-011](../work-queue.md#bp-011--planar-common-center-three-binary-constraint-investigation) status and candidate disposition; this file owns the individual task order, lifecycle state, acceptance boundary, dependency, and completion condition. Do not duplicate individual task status in the parent queue.
 
 ## Scope
 
@@ -40,9 +40,33 @@ Plainly: exact prescribed circles, the complete infinite equal-radius ladder, it
 
 ## In progress
 
-No rows.
+No active assignment remains after the bounded T02 diagnostic and nonlinear-history connection below. The ranked numerical return-map and evolution objects remain deferred/blocked.
+
+## Supplied-review follow-ups
+
+These bounded analytical tasks were captured on 2026-10-03. They change no ranked object or blocked numerical return-map prerequisite.
+
+### Verify outstanding ring-certificate scope and reproducibility
+
+- **Status:** ○ Queued — bounded evidence/proof audit; target recalculation blocked on admitted known controls.
+- **Request:** Check the remaining [coverage and oracle questions](../analysis/braid-review-integration-2026-10-03.md#current-evidence-versus-the-supplied-snapshot): low-speed T00 sign, fold-enclosure edges, exact radial-sign domain, non-alternating float-scan claims, asymptotic remainder scope and retained oracle availability.
+- **Completion / falsifier:** Each allegation receives its exact source, interval, endpoint convention, independent reference and accepted/corrected/unresolved verdict. Reproduce known cases before any new interval target and version missing references without changing frozen receipts. Consume the existing global-tail theorem and higher-order correction; do not replace them with a two-point guess of a coefficient. A complete compliant zero or sign counterexample refutes the corresponding exclusion, while a float scan cannot certify a narrow-fold negative.
 
 ## Completed
+
+### Connect T02 growing modes to admissible nonlinear histories
+
+- **Status:** ✓ Done — 2026-10-03; the [nonlinear construction](../analysis/t02-admissible-nonlinear-history-connection.md) is accepted by its [separate adjudication](../analysis/t02-nonlinear-history-independent-adjudication-2026-10-03.md).
+- **Result:** Complete coupled ancient histories satisfy the unchanged Master Equation and converge to the exact T02 circle. A complete-root neighborhood retains every one of its 48 directed hits, including self hits, and excludes the inactive complement. A direct compatible $C^2$ local evolution argument and a convergent analytic series at the largest positive real characteristic root connect the linear witnesses to local orbital instability in the common in-plane class. Phase shifts and translations do not remove the departure. The compatible history manifold is $C^1$; no unlimited differentiability is asserted.
+- **Inherited premise:** The circular balance, complete reference ledger, positive-root witnesses and radius-43 confinement remain the frozen characteristic certificate inputs. The nonlinear adjudication independently reconstructs the analytical argument; it does not recalculate that interval matrix or identify the largest root with either witness.
+- **Boundary / falsifier:** No later nonlinear fate, nearby retained-state exclusion, subfield accessibility, other-rung verdict, numerical evolution or qualification follows. A failed root-complement bound, history derivative, strict delayed analytic composition, coefficient grading or inverse estimate defeats the affected theorem. The deferred T04 numerical return map and analytical-qualification method decision retain their owners and statuses.
+
+### Evaluate the T02 symmetric characteristic function
+
+- **Status:** ✓ Completed at the positive-characteristic-root boundary — 2026-10-03.
+- **Result:** The [independent evaluation](../analysis/t02-symmetric-characteristic-independent-evaluation.md) reconstructs the common-radius/phase matrix and complete 48-hit T02 ledger, including one positive-delay self hit per receiver. Known controls precede the point diagnostic and outward-rounded endpoint certificate. With $K=c_f=1$, two disjoint intervals enclose positive real roots near $0.8596290682133805$ and $10.6584241740493694$. Each interval contains at least one root; uniqueness, multiplicity and total count are unclaimed.
+- **Boundary:** Computer-assisted derived growing formal modes of this exact symmetric first variation. No full-ring stability, nonlinear retention, accessible preparation or qualification follows. The remaining right-half-plane count is confined to $|z|<43$; a complex count is unnecessary for this positive-root verdict. The root-to-flow interpretation is separately completed in the nonlinear-history task above, while the original first-variation reference and frozen oracle remain unchanged.
+- **Falsifier:** Non-outward endpoint arithmetic, a missed ordinary row, incorrect signed transmitter derivative or failed current-source identity overturns the affected certificate. The retracted fold-sign argument is not used.
 
 ### Higher-order ladder asymptotics
 
@@ -162,7 +186,7 @@ Plainly: this is the independent numerical reproduction of the exact circle. It 
 - **Status:** Deferred / blocked
 - **Closure goal:** Determine whether exact T04 has a positive-width neighborhood of histories that returns toward, remains near, or departs from the circular solution.
 - **Request / acceptance:** After local history-flow well-posedness task and T04 one-cycle EOM reproduction task, predeclare perturbations of position, rate, and retained history spanning common radial, two differential-radial, two phase-shear, and out-of-plane directions. Acceleration remains the Master Equation output. Construct a phase-aligned multi-cycle return map with root-chart, separation, history, refinement, and precision controls; remove only genuine global symmetry directions before interpreting multipliers or growth.
-- **Evidence / blocker:** The local history-flow theorem now supplies a well-posed nearby-history flow on a nonzero neighborhood for $0\leq T\leq0.05$. This row remains blocked on one independently reproduced reference cycle and a numerical enclosure showing that the predeclared perturbation histories lie inside an admissible local-history tube. Linearization or return-map analysis before those remaining foundations would have no accepted dynamical referent.
+- **Evidence / blocker:** The local history-flow theorem now supplies a well-posed nearby-history flow on a nonzero neighborhood for $0\leq T\leq0.05$. This numerical return-map row remains blocked on one independently reproduced reference cycle and a numerical enclosure showing that the predeclared perturbation histories lie inside an admissible local-history tube. The exact ring does supply a referent for a formal analytical first variation; the [common-radius/phase matrix](../analysis/six-ring-symmetric-first-variation.md) supplies that calculation and its analytic controls. It does not complete this task or establish a full-ring spectrum. Accepting an analytical alternative to the ratified evolution route remains an operator decision, not a consequence of this note.
 - **Completion:** A nonzero declared perturbation neighborhood receives a converged stability, instability, mixed-direction, or chart-exit disposition. A single prescribed-path residual or exact unperturbed return does not complete this row.
 
 ### Same-record action and energy ledger
@@ -197,10 +221,10 @@ Plainly: first the theory must define what energy means for one delayed-history 
 
 | Dependency | Owner | planar common-center three-binary constraint consumption boundary |
 | --- | --- | --- |
-| Reusable root continuation, memory control, deterministic restart, supervised campaign execution, and full-cycle execution | [EOM-002](../../../app-solver/work-queue.md#eom-002--coupled-retained-history-integrator), [EOM-003](../../../app-solver/work-queue.md#eom-003--persistent-long-run-checkpoint-and-campaign-driver), and [EOM-004](../../../app-solver/work-queue.md#eom-004--precision-convergence-and-failure-policy) | T04 one-cycle EOM reproduction task consumes accepted capabilities; the EOM queue owns reusable implementation and launcher defects, while this queue owns the T04 scientific result |
+| Reusable root continuation, memory control, deterministic restart, supervised campaign execution, and full-cycle execution | [EOM-002](../../../app-solver/work-log.md#2026-09-02--eom-002-bounded-population-coupled-kernel-accepted), [EOM-003](../../../app-solver/work-log.md#2026-09-02--eom-003-long-run-checkpoint-and-campaign-driver-accepted), and [EOM-004](../../../app-solver/work-log.md#2026-09-02--eom-004-precision-convergence-and-failure-policy-accepted) | T04 one-cycle EOM reproduction task consumes accepted capabilities; the EOM queue owns reusable implementation and launcher defects, while this queue owns the T04 scientific result |
 | Delayed action and conserved time-cut account | [Master-Equation Closure work queue](../../work-queue.md) | same-record action and energy ledger task consumes an accepted same-action identity; this queue does not invent an energy law |
 | Assembly identities, taxonomy-oriented navigation, visual representatives, and honest animations | [Borg BORG-014](../../../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser) | Borg displays source-defined planar common-center three-binary constraint records; display coverage does not establish balance or stability |
-| Prescribed translation frames and causal-history tubes | [Borg BORG-006](../../../app-borg/work-queue.md#borg-006--prescribed-translation-and-causal-history-tubes) | Borg may display translated source records; fixed axial-translation interval certificate task owns the scientific balance certificate |
+| Prescribed translation frames and causal-history tubes | [Borg BORG-006](../../../app-borg/work-log.md#2026-09-01---borg-006-prescribed-translation-and-causal-history-tubes-verified) | Borg may display translated source records; fixed axial-translation interval certificate task owns the scientific balance certificate |
 
 ## Task-to-Queue Disposition
 
@@ -230,7 +254,7 @@ Every remaining obligation associated with this investigation has a durable owne
 - Exact T04 identity, decimal reconciliation, and numerical-history enclosure are closed by the accepted handoff packet, and local history-flow uniqueness is closed by the T04-specific theorem; one-cycle reproduction and perturbation stability remain owned by the detailed rows in this queue.
 - Reusable causal-root continuation, bounded retained-memory evolution, checkpoint parity, precision failure policy, and circular-root launcher supervision are owned by EOM-002, EOM-003, and EOM-004 in the [EOM work queue](../../../app-solver/work-queue.md).
 - Source-level braid and assembly inventory is owned by [BP-015](../work-queue.md#bp-015--borg-assembly-source-inventory-handoff); durable Borg identity, classification coverage, filtering, and visual representatives are owned by [BORG-014](../../../app-borg/work-queue.md#borg-014--assembly-registry-durable-identity-and-taxonomy-browser) and [BORG-015](../../../app-borg/work-queue.md#borg-015--taxonomy-selection-canvas).
-- The delayed action and conserved time-cut account required by the energy rows is owned by the [Master-Equation Closure work queue](../../work-queue.md), and translated display remains owned by [BORG-006](../../../app-borg/work-queue.md#borg-006--prescribed-translation-and-causal-history-tubes).
+- The delayed action and conserved time-cut account required by the energy rows is owned by the [Master-Equation Closure work queue](../../work-queue.md), and translated display remains owned by [BORG-006](../../../app-borg/work-log.md#2026-09-01---borg-006-prescribed-translation-and-causal-history-tubes-verified).
 
 No remaining research, implementation, taxonomy, Borg, or documentation obligation identified by this investigation is tracked only in a user-visible task.
 

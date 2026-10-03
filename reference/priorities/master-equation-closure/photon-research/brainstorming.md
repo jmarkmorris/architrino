@@ -20,6 +20,14 @@ A release transient and an asymptotic propagation state are different objects. A
 
 Geometry response would not by itself establish a frequency shift, energy transfer or gravitational-redshift law. Those readouts require the corresponding source, path, receiver and environmental accounts. The [shared sea response](../noether-sea-research/analysis/pressure-dependent-noether-sea-constitutive-response.md) and mapping owners retain those dependencies.
 
+## Rigid screen and modulated-history proposal
+
+The [root and axial analysis](analysis/translating-carrier-root-and-axial-constraints.md) derives a phase-bijection constraint for regular alternating hexagons with equal and opposite angular frequencies: their complete cross-ring acceleration is anti-periodic in a constituent's rotating frame. A nonzero constant cross correction is impossible in that chart. This does not prove that every contra-rotating layered history fails or that a periodic solution exists.
+
+**Claim grade: guessed search proposal.** After a rigid prescribed-history screen, seek a history with periodic internal modulation in the translating chart, supplying its full past and solving the acceleration equation rather than imposing circular motion. A boundary-value formulation would need an unknown period, phase convention, admitted root/event treatment and a same-record independent check. It should preserve twelve constituent identities while allowing the shape and, if declared, axial offsets to vary. The latter change requires re-deriving the fixed-plane constraints. Co-rotating controls remove the relative-phase symmetry obstruction but are not thereby balanced.
+
+The proposal is unactivated. Replacing or supplementing the queued residual-screen completion has a [discussion-scoped decision entry](work-queue.md#decide-whether-to-add-a-modulated-periodic-orbit-criterion); the rigid screen remains binding until that decision. Its falsifier is failure of the resulting declared history to satisfy the complete equation or maintain the proposed carrier identity; a nonzero rigid residual does not prove that a modulated branch exists.
+
 ## Alternative assembly roles
 
 The [F6c photon analysis](analysis/f6c-photon-source-and-carrier-candidate.md) considers an eight-member assembly acting as an emitter or receiver and, separately, a possible propagating continuation. Its identification remains guessed. The existence of a transverse response plane in that assembly does not establish a free carrier with two polarization channels, no free longitudinal channel and no retained rest branch. The photon-specific analysis is gathered here; the exact member map and other candidate roles remain with the [multi-role F6c geometry](../braid-program/analysis/f6c-geometry.md).

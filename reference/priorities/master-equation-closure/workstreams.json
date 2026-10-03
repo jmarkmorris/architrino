@@ -32,14 +32,6 @@
     {
       "directory": "noether-sea-research",
       "lifecycle": "current"
-    },
-    {
-      "directory": "logarithmic-potential-research",
-      "lifecycle": "current"
-    },
-    {
-      "directory": "field-speed-ceiling",
-      "lifecycle": "dormant"
     }
   ]
 }

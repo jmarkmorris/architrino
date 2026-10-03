@@ -258,7 +258,7 @@ At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but do not c
 
 ### Planar Balance Locus
 
-The equal-radius, phase-symmetric all-equatorial restriction and its complete acceleration-balance evidence are owned by [Planar (2D) Braid Assemblies](2d-braid-assemblies.md#equal-radius-planar-three-binary-velocity-search). Here it marks only a coordinate boundary of the spatial coincident-axis chart. The exact circular continuation, finite release prefix, unequal-phase and unequal-radius open domains, and fixed axial-translation result retain the separate grades stated there. A spatial coordinate chart can meet the planar chart at an exact boundary. The planar chapter owns the balance calculation, and crossing that boundary does not transfer a retention or stability result back to the spatial chart.
+The equal-radius, phase-symmetric all-equatorial restriction and its complete acceleration-balance evidence are owned by [Planar (2D) Braid Assemblies](2d-braid-assemblies.md#equal-radius-planar-three-binary-velocity-search). Here it marks only a coordinate boundary of the spatial coincident-axis chart. The exact circular continuation, short-time T04 history flow, finite release prefix, local phase-radius isolation and bounded axial-speed exclusion retain the separate grades stated there. Wider phase-radius and translation domains remain open. A spatial coordinate chart can meet the planar chart at an exact boundary. The planar chapter owns the balance calculation, and crossing that boundary does not transfer a retention or stability result back to the spatial chart.
 
 ### All-Axial Boundary
 
@@ -308,7 +308,7 @@ Axial translation is a coincident-axis three-binary locus specialization, not a 
 
 ### Fixed Axial-Translation Control
 
-The fixed $0.1c_f$ screw-path study and its interval-certified bounded nonexistence result are owned by [Planar (2D) Braid Assemblies](2d-braid-assemblies.md#fixed-axial-translation-study). This spatial chapter retains only the generic screw-path coordinates above; it does not duplicate the numerical ledger. Other axial speeds and broader unequal-radius or phase-deformed charts remain open. The cited control rejects one declared translated planar chart, not axial translation for every coincident-axis configuration.
+The fixed $0.1c_f$ screw-path study and its interval-certified bounded nonexistence result are owned by [Planar (2D) Braid Assemblies](2d-braid-assemblies.md#fixed-axial-translation-study). This spatial chapter retains only the generic screw-path coordinates above; it does not duplicate the numerical ledger. A separate computer-assisted result in that chapter excludes nonzero axial translation for T02 through T36 on $-0.9\leq s_{\mathrm{grp}}/c_f\leq0.9$, within the equal-radius, regular-phase, common-circulation prescribed screw-path chart with $c_f=1$. Higher topology branches, speeds outside this interval, unequal radii, deformed phases and non-axial translation retain separate obligations. Neither result excludes axial translation for every coincident-axis configuration.
 
 ## Boundary with Orthogonal-Axis Three-Binary Configurations
 
@@ -348,20 +348,20 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-aee3b66945615003)
 
-and strictly ordered axial coordinates
+Each persistent member index $m$ carries its own axial coordinate $\xi_m\in\mathbb R$. Equal axial coordinates are allowed: different members can lie at the same height while having different transverse positions. To describe the axial spacing, choose an auxiliary ordering permutation $\sigma$ with
 
 $$
-\xi_1<\xi_2<\cdots<\xi_{12}.
+\xi_{\sigma(1)}\leq\xi_{\sigma(2)}\leq\cdots\leq\xi_{\sigma(12)}.
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2906606dee811b1c)
 
-The adjacent spacings and total train length are
+This ordering does not change persistent identities, binary partners or component membership. Ties can be resolved in any declared order because they contribute zero spacing. The adjacent spacings and total train length are
 
 $$
-d_m=\xi_{m+1}-\xi_m>0,
+d_j=\xi_{\sigma(j+1)}-\xi_{\sigma(j)}\geq0,
 \qquad
-m\in\{1,\ldots,11\}
+j\in\{1,\ldots,11\}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2596f73f93a2c254)
@@ -369,7 +369,7 @@ $$
 and
 
 $$
-L_C=\xi_{12}-\xi_1=\sum_{m=1}^{11}d_m.
+L_C=\xi_{\sigma(12)}-\xi_{\sigma(1)}=\sum_{j=1}^{11}d_j.
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-867390011c64e68b)
@@ -382,7 +382,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d5fbf3807a2fffea)
 
-is a primary two-component circular coordinate because it changes the exact causal delays between architrino worldlines. A common shift of every $\xi_m$ is absorbed into the assembly center and does not create a thirteenth axial coordinate.
+describes the ordered axial separations. The permutation assigning these positions to persistent members remains part of the coordinate record: spacings alone do not identify which members occupy which heights. Changing the member-resolved axial positions changes the exact causal delays. A common shift of every $\xi_m$ is absorbed into the assembly center and does not create a thirteenth axial coordinate.
 
 Let $\mathbf X_{\mathrm{grp}}(T)$ be the prescribed assembly center. For uniform translation of that center at group speed $s_{\mathrm{grp}}$,
 
@@ -476,21 +476,21 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2c260fe4c04b56e4)
 
-This configuration retains the full ordered-spacing, radius, frequency, phase, and binary-pairing coordinates. It does not require equal radii, equal spacings, equal frequencies, reflection symmetry, or decomposition into two coincident-axis three-binary components.
+This configuration retains the full member-resolved axial-position, radius, frequency, phase, and binary-pairing coordinates. It does not require equal radii, equal spacings, equal frequencies, reflection symmetry, or decomposition into two coincident-axis three-binary components.
 
 ## Counter-Rotating Coincident-Center Two-Component Circular Configuration
 
-The counter-rotating coincident-center two-component circular configuration declares the two ordered index subsets
+The counter-rotating coincident-center two-component circular configuration declares two disjoint six-member circulation subsets of the persistent indices,
 
 $$
-\mathcal I_1=\{1,\ldots,6\},
+\mathcal I_1\mathbin{\dot\cup}\mathcal I_2=\{1,\ldots,12\},
 \qquad
-\mathcal I_2=\{7,\ldots,12\}
+|\mathcal I_1|=|\mathcal I_2|=6.
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8a976e0e99f3631d)
 
-and imposes
+Their membership is independent of height ordering; a subset need not occupy the lower or upper six positions. The circulation relation is
 
 $$
 q_m=q_C
@@ -557,7 +557,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6fb5a1df2182a13e)
 
-Each component separately satisfies the complete coincident-axis three-binary common-midpoint, common-axis, common-frequency, common-circulation, antipodality, and polarity-conjugacy relations. The source record declares the bijection between these twelve endpoint labels and the persistent two-component circular indices $m$.
+Each component separately satisfies the complete coincident-axis three-binary common-midpoint, common-axis, common-frequency, common-circulation, antipodality, and polarity-conjugacy relations. The source record declares the bijection between these twelve endpoint labels and the persistent two-component circular indices $m$. In the counter-rotating case, the six endpoints of component 1 form $\mathcal I_1$ and those of component 2 form $\mathcal I_2$. These memberships remain fixed when their axial positions interleave. Setting every $h_{ba}=0$ places all six endpoints of a component at one height and gives the planar restriction without changing any identity or membership.
 
 The co-rotating coaxial two-component circular configuration imposes one common circulation sense across both components. The counter-rotating peer imposes opposite component circulation senses. Neither configuration requires the two components to have equal radii, equal frequencies, equal internal phases, or a phase lock.
 

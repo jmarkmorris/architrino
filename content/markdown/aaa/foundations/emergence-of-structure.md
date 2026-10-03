@@ -38,7 +38,7 @@ The closer analogy is a population of coupled oscillators with delayed feedback 
 
 - **Absolute time and Euclidean void.** No grid and no time steps. Interactions occur whenever an architrino crosses an expanding wake surface.
 - **Delayed roots.** Active terms depend on past transmitter positions and, in self-hit regimes, on the architrino's own earlier path. Evaluating the next motion needs history, not just the present state.
-- **Unlimited range, with convergence to be earned.** Wake surfaces are not nearest-neighbour links. Contributions fall as $1/r^2$, so distant structure can contribute in principle. But inverse-square falloff alone does *not* make an infinite three-dimensional sum converge, for a reason worth carrying: a shell at radius $r$ contains sources growing as $r^2$, which exactly cancels the falloff. A valid branch must declare the cancellation, screening, horizon, or subtraction that makes its sum well-defined.
+- **Unlimited range, with convergence to be earned.** Wake surfaces are not nearest-neighbour links. Contributions fall as $1/r^2$, so distant structure can contribute in principle. But inverse-square falloff alone does *not* make an infinite three-dimensional sum converge, for a reason worth carrying: a shell at radius $r$ contains sources growing as $r^2$, which exactly cancels the falloff. A valid branch must establish convergence under its declared summation prescription. Cancellation or shielding needs quantitative bounds; screening, a finite horizon or subtraction needs an exactness or recovery argument before it represents the complete law.
 - **Emergent assemblies.** The dynamical target is that delayed interactions admit stable or metastable configurations called **assemblies**. An assembly is not a new primitive; it is a retained branch structure of the delay dynamics, comparable to a synchronized oscillator cluster or a soliton. The existence and persistence of each physical assembly class must be derived or measured, and it becomes an attractor basin only where the reduced flow has the contraction and flux accounting stated below.
 
 Stability here is dynamic rather than static. An assembly is not held together by definition or by one instantaneous acceleration balance. The claim that it persists is established only when its delayed return record remains on an admissible branch with the required stability margin, energy and boundary ledger, shielding, and provenance closure. The physical trajectory may persist before those facts are known, but the corpus may not grade it as stable on that basis. It can dissolve, branch, or reconfigure when the corresponding dynamical conditions fail.
@@ -63,7 +63,7 @@ $$
 
 reading as: the histories that satisfy every constraint $G_\alpha$ imposed by the context, and that live in at least one branch chart the context allows.
 
-The native state is $\mathsf Z=(\mathbf X,\mathbf V)$, and the constrained flow is still the same lower-level dynamics:
+The native state is $\mathsf Z=(\mathbf X,\mathbf V)$. Restricting admissible histories preserves the Master Equation when every contributing causal root remains included and the acceleration kernel is unchanged. A finite regulator or history cutoff defines an auxiliary flow unless an exact restriction or controlled recovery argument establishes its relation to the complete law. For the chosen flow, write:
 
 $$
 \frac{d\mathsf Z}{dT}=F_L(\mathsf Z_T),\qquad \mathsf Z_T\in \mathcal K_c
@@ -71,7 +71,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a22147c2836f6f9e)
 
-where $\mathsf Z_T(\theta)=\mathsf Z(T+\theta)$ is the stretch of history the delayed equation needs. The constraints restrict which histories are available; they are not causes acting from outside.
+where $\mathsf Z_T(\theta)=\mathsf Z(T+\theta)$ denotes the retained history. Here $F_L$ is the canonical delayed flow only where the preceding exactness conditions hold; otherwise it denotes the declared auxiliary flow for this construction. The constraints restrict which histories are available; they are not causes acting from outside.
 
 ### Context changes are wall-crossings
 
@@ -313,13 +313,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-856c9b4a5873bdd3)
 
-exist under a declared summation prescription: add up contributions within distance $R$, let $R$ grow, and require a limit. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite horizon, or a declared subtraction. Without one, the sum is not defined.
+exist under a declared summation prescription: add contributions within distance $R$, let $R$ grow, and prove a limit. Neutrality, angular cancellation and shielding require sufficient quantitative bounds; their names alone do not establish convergence. Screening, a finite horizon or subtraction can be useful mathematical constructions, but a conclusion about the complete Master Equation must state the exact cancellation, retained boundary account or controlled limit that justifies the construction. Otherwise it describes an auxiliary model.
 
 For the weak homogeneous case, the lemma derives the $O(n^{-2})$ shell-variance target from local neutrality and vector mixing. Almost-sure and mean-square convergence additionally require the stated martingale-difference shell hypothesis, or another declared cross-shell convergence theorem. That is the foothold the medium construction consumes; coherent, inhomogeneous, strong-field, or poorly screened branches keep a separate burden.
 
 This convergence discipline makes the acceleration sum well-defined; it does not by itself make an assembly metastable. Persistence additionally requires a retained return or stability certificate, an energy and boundary ledger, shielding, and provenance closure.
 
-So the unbounded-history statement does not mean every past wake carries equal weight. An architrino receives the contributions whose supports intersect it. A declared branch may control the remote sum through dilution together with phase cancellation, screening, a finite active horizon, or demonstrated shielding; none follows automatically from the kernel. The task is identifying which branches remain dynamically active — not inferring shielding from a label, nor treating the entire past universe as an undifferentiated influence.
+So the unbounded-history statement does not mean every past wake carries equal weight. An architrino receives the contributions whose supports intersect it. A declared branch may control the remote sum through dilution together with quantitatively established phase cancellation or shielding. Screening or a finite active horizon remains an auxiliary construction unless an exactness or controlled recovery argument connects it to the complete law; none follows automatically from the kernel. The task is identifying which branches remain dynamically active — not inferring shielding from a label, nor treating the entire past universe as an undifferentiated influence.
 
 ### Self-hit is not a speed test
 

@@ -1,0 +1,901 @@
+{
+  "date": "2026-10-03",
+  "status": "complete",
+  "knownCase": "PASS before target scan",
+  "binders": [
+    "src/documentation/research-source-locations.json: physical lookup, frozen origins and section routing",
+    "Historical AWT-016/AWT-017 manifests: preserve their original inventory and digests",
+    "Two Python oracle tests: receipt lookup paths only",
+    "JSON receipts and oracle inputs: immutable scientific bytes and reproduction provenance",
+    "Generated source index/reference navigation: canonical inputs changed; no tracked generator writes",
+    "Python plotting instrument: same directory depth and filename-derived PNG remain paired"
+  ],
+  "consumers": [
+    "reference/office-of-research/specialists/roles-geometry-dynamics/carl-friedrich-gauss.md",
+    "reference/office-of-research/specialists/roles-geometry-dynamics/joseph-louis-lagrange.md",
+    "reference/op/simulation-protocol-routing-index.md",
+    "reference/priorities/README.md",
+    "reference/priorities/aaa-corpus-rewrite/analysis/ops-031-master-equation-deviation-audit-2026-09-26.md",
+    "reference/priorities/aaa-corpus-rewrite/evidence/crw-005-causal-set-and-delay-geometry-review-2026-09-11.md",
+    "reference/priorities/aaa-corpus-rewrite/evidence/crw-005-simulation-perspective-review-2026-09-13.md",
+    "reference/priorities/aaa-operations/campaigns/priority-manuscript-synthesis.md",
+    "reference/priorities/aaa-operations/evidence/ops-032-weekly-review-2026-09-20.md",
+    "reference/priorities/aaa-operations/evidence/ops-032-weekly-review-2026-09-27.md",
+    "reference/priorities/aaa-work-threads/analysis/notation.md",
+    "reference/priorities/aaa-work-threads/brainstorming.md",
+    "reference/priorities/aaa-work-threads/campaigns/configuration-research-ownership-map.md",
+    "reference/priorities/aaa-work-threads/campaigns/data-file-layout-completion.md",
+    "reference/priorities/aaa-work-threads/evidence/awt-016-configuration-consumers.txt",
+    "reference/priorities/aaa-work-threads/evidence/awt-016-configuration-file-map.json",
+    "reference/priorities/aaa-work-threads/evidence/awt-016-configuration-migration.json",
+    "reference/priorities/aaa-work-threads/evidence/inventory.md",
+    "reference/priorities/aaa-work-threads/evidence/research-insight-recovery-pilot-2026-09-09.md",
+    "reference/priorities/aaa-work-threads/evidence/research-insight-recovery-source-inventory-2026-09-09.txt",
+    "reference/priorities/aaa-work-threads/priorities.md",
+    "reference/priorities/aaa-work-threads/work-log.md",
+    "reference/priorities/category-theory/analysis/manuscript-fidelity-review.md",
+    "reference/priorities/category-theory/analysis/manuscript-source-coverage.md",
+    "reference/priorities/category-theory/brainstorming.md",
+    "reference/priorities/category-theory/manuscript.md",
+    "reference/priorities/development-process-review/analysis/external-codex-storage-audit.md",
+    "reference/priorities/development-process-review/evidence/agent-02-hash-pin-repair-incident-report.md",
+    "reference/priorities/development-process-review/evidence/agent-03-session-incident-report.md",
+    "reference/priorities/development-process-review/evidence/historical-voice-handoff-2026-08-01.md",
+    "reference/priorities/development-process-review/evidence/repair-audit/commit-change-inventory.json",
+    "reference/priorities/dormant-deferred/README.md",
+    "reference/priorities/mapping-electromagnetism/brainstorming.md",
+    "reference/priorities/mapping-electromagnetism/priorities.md",
+    "reference/priorities/mapping-equations/analysis/inferring-braid-requirements.md",
+    "reference/priorities/master-equation-closure/README.md",
+    "reference/priorities/master-equation-closure/analysis/analysis-independent-causal-wake-state.md",
+    "reference/priorities/master-equation-closure/analysis/coincide-or-not.md",
+    "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+    "reference/priorities/master-equation-closure/binary-research/README.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/circular-binary-all-root-certificate.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/circular-binary-secondary-theorems.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-growing-mode.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-instability-review-reassessment.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-nonlinear-instability.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-braking-continuation.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-escape-claude-review-prompt.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-escape-independent-review.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-first-departure.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-first-window-defect.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-first-window-tube.md",
+    "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-braking-receipt.json",
+    "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-escape-independent-review-receipt.json",
+    "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-first-window-defect-receipt.json",
+    "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-first-window-tube-receipt.json",
+    "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+    "reference/priorities/master-equation-closure/binary-research/priorities.md",
+    "reference/priorities/master-equation-closure/braid-program/README.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/braid-candidate-requirement-adjudication.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/research-reorganization-completion.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/research-reorganization-executed-map.json",
+    "reference/priorities/master-equation-closure/braid-program/analysis/research-reorganization-file-list.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/research-reorganization-file-map.json",
+    "reference/priorities/master-equation-closure/braid-program/analysis/research-reorganization-plan.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/research-reorganization-reference-candidates.json",
+    "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+    "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+    "reference/priorities/master-equation-closure/braid-program/priorities.md",
+    "reference/priorities/master-equation-closure/braid-program/work-log.md",
+    "reference/priorities/master-equation-closure/braid-program/work-queue.md",
+    "reference/priorities/master-equation-closure/brainstorming.md",
+    "reference/priorities/master-equation-closure/collinear-research/README.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/capped-collinear-endpoint-reanalysis.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/collinear-breather-under-ceiling.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/exact-mirror-continuation-selection-analysis.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/inherited-partner-characteristic-family-disposition.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/master-equation-assumption-audit.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/mirror-event-family-completion-and-right-trace.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/near-contact-separating-trace-incompatibility-theorem-target.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/partner-only-auxiliary-evolution-results.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/trailing-front-activation-dichotomy.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/two-lobe-return-map-and-autonomous-trigger-audit.md",
+    "reference/priorities/master-equation-closure/collinear-research/brainstorming.md",
+    "reference/priorities/master-equation-closure/collinear-research/manuscript.md",
+    "reference/priorities/master-equation-closure/collinear-research/priorities.md",
+    "reference/priorities/master-equation-closure/collinear-research/work-log.md",
+    "reference/priorities/master-equation-closure/collinear-research/work-queue.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/README.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/first-entourage-review-readiness.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/manuscript-fidelity-review.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/manuscript-source-coverage.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/planar-circle-instability-independent-review.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/quarantined-hypotheses-and-prescribed-reference-cases.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/brainstorming.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/evidence/sharp-circle-departure-receipt.json",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/manuscript.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/work-log.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/work-queue.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/work-log.md",
+    "reference/priorities/master-equation-closure/priorities.md",
+    "reference/priorities/master-equation-closure/work-log.md",
+    "reference/priorities/master-equation-closure/workstreams.json",
+    "reference/priorities/operator-document-style-conversion-ledger.md",
+    "scripts/field-speed-ceiling/circular-binary-all-root-mpmath-oracle.py",
+    "scripts/field-speed-ceiling/partner-only-auxiliary-evolution.mjs",
+    "scripts/field-speed-ceiling/sharp-circle-first-window-tube.py",
+    "scripts/field-speed-ceiling/t0-six-path-mpmath-oracle.py",
+    "scripts/field-speed-ceiling/t0-six-path-oracle-input.v1.json",
+    "src/documentation/research-source-locations.json",
+    "tests/test_field_speed_ceiling_circular_binary_all_root_certificate.py",
+    "tests/test_field_speed_ceiling_t0_mpmath_oracle.py"
+  ],
+  "files": [
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/README.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/README.md",
+      "sha256Before": "6447c46331cc01ba0a0f8a91311f77bdf7de8ca0227404c09346a54b7187fa36",
+      "preservation": "byte-preserved",
+      "sha256After": "6447c46331cc01ba0a0f8a91311f77bdf7de8ca0227404c09346a54b7187fa36"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/albert-einstein-review-2026-08-01.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/albert-einstein-review-2026-08-01.md",
+      "sha256Before": "a102a8af5b8c72283f59c615c7c0f204ac34ee6f5a940a12e6d52344d0d98e58",
+      "preservation": "byte-preserved",
+      "sha256After": "a102a8af5b8c72283f59c615c7c0f204ac34ee6f5a940a12e6d52344d0d98e58"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/albert-einstein-review-response-2026-08-01.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/albert-einstein-review-response-2026-08-01.md",
+      "sha256Before": "5640f82b553e91a197cbaab9086e789d9c150e9977cf208003c27dca8be92421",
+      "preservation": "byte-preserved",
+      "sha256After": "5640f82b553e91a197cbaab9086e789d9c150e9977cf208003c27dca8be92421"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/albert-einstein-second-review-2026-08-01.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/albert-einstein-second-review-2026-08-01.md",
+      "sha256Before": "cfffe01108483b205f7109dee0622604b583430e04b3a127697fa1368872da76",
+      "preservation": "byte-preserved",
+      "sha256After": "cfffe01108483b205f7109dee0622604b583430e04b3a127697fa1368872da76"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/albert-einstein-second-review-response-2026-08-01.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/albert-einstein-second-review-response-2026-08-01.md",
+      "sha256Before": "3fb1eb5268d99c2737f9e901486889d94cc0696d79956696014ee525d3ffdafa",
+      "preservation": "byte-preserved",
+      "sha256After": "3fb1eb5268d99c2737f9e901486889d94cc0696d79956696014ee525d3ffdafa"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/bill-thurston-review-response-2026-08-01.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/bill-thurston-review-response-2026-08-01.md",
+      "sha256Before": "c6cb8675d81dbe1627fde79c8861ff110724846fc8a0b7b56ed4a5673e78b7b2",
+      "preservation": "byte-preserved",
+      "sha256After": "c6cb8675d81dbe1627fde79c8861ff110724846fc8a0b7b56ed4a5673e78b7b2"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/bill-thurston-second-review-2026-08-02.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/bill-thurston-second-review-2026-08-02.md",
+      "sha256Before": "96e67b08635fef9abfb35125a482e58e593ab2b87952ad901ab1baf6a8389db8",
+      "preservation": "byte-preserved",
+      "sha256After": "96e67b08635fef9abfb35125a482e58e593ab2b87952ad901ab1baf6a8389db8"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/elie-cartan-review-2026-08-02.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/evidence/elie-cartan-review-2026-08-02.md",
+      "sha256Before": "81a19b1eac2bc097eb172e252a2cd741c360877ca92cad1a49767611df997a94",
+      "preservation": "byte-preserved",
+      "sha256After": "81a19b1eac2bc097eb172e252a2cd741c360877ca92cad1a49767611df997a94"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/first-entourage-review-readiness.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/first-entourage-review-readiness.md",
+      "sha256Before": "e352cfe9aaaa3eda307063f23369598e274bd737942ebfd0bc7cb00882018bd5",
+      "preservation": "byte-preserved",
+      "sha256After": "e352cfe9aaaa3eda307063f23369598e274bd737942ebfd0bc7cb00882018bd5"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/geometry-panel-collation-2026-08-02.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/geometry-panel-collation-2026-08-02.md",
+      "sha256Before": "689f386e7ecd9f6d983d93cd1c625794d3a6813816094e9b358525010b1baf46",
+      "preservation": "byte-preserved",
+      "sha256After": "689f386e7ecd9f6d983d93cd1c625794d3a6813816094e9b358525010b1baf46"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/germund-dahlquist-review-2026-08-02.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/germund-dahlquist-review-2026-08-02.md",
+      "sha256Before": "e310835e70d8b0157151e527e85b8c3441356c5cc2ba11898fcfe96d237c68eb",
+      "preservation": "byte-preserved",
+      "sha256After": "e310835e70d8b0157151e527e85b8c3441356c5cc2ba11898fcfe96d237c68eb"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/hassler-whitney-review-2026-08-02.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/hassler-whitney-review-2026-08-02.md",
+      "sha256Before": "5e6bbc80e403b94f80d2b726f8356af9ed940fa6ef7859bcbd8a248893c22149",
+      "preservation": "byte-preserved",
+      "sha256After": "5e6bbc80e403b94f80d2b726f8356af9ed940fa6ef7859bcbd8a248893c22149"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/independent-complete-lobe-returning-event-review-2026-09-02.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/evidence/independent-complete-lobe-returning-event-review-2026-09-02.md",
+      "sha256Before": "6f3ba71f6eb288a3f6946a9e71af54d5e6acc91e99b4690db5b989333cd6f7e9",
+      "preservation": "byte-preserved",
+      "sha256After": "6f3ba71f6eb288a3f6946a9e71af54d5e6acc91e99b4690db5b989333cd6f7e9"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/inherited-family-event-measure-review-2026-08-02.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/evidence/inherited-family-event-measure-review-2026-08-02.md",
+      "sha256Before": "fa06bf4f71e2d69e3f1c65c3c60f5af9550a38d6136b7dd64986066af9722eca",
+      "preservation": "byte-preserved",
+      "sha256After": "fa06bf4f71e2d69e3f1c65c3c60f5af9550a38d6136b7dd64986066af9722eca"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/jack-k-hale-review-response-2026-07-31.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/jack-k-hale-review-response-2026-07-31.md",
+      "sha256Before": "0796703d25af57def61513369e787830bc48a9d0c0a4b46e28ae01c89ae554b7",
+      "preservation": "byte-preserved",
+      "sha256After": "0796703d25af57def61513369e787830bc48a9d0c0a4b46e28ae01c89ae554b7"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/jack-k-hale-second-review-2026-08-02.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/jack-k-hale-second-review-2026-08-02.md",
+      "sha256Before": "58ed7a9320f07753c619ae3de2825e6c51400c31b635bc462911dfb482ff895a",
+      "preservation": "byte-preserved",
+      "sha256After": "58ed7a9320f07753c619ae3de2825e6c51400c31b635bc462911dfb482ff895a"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/jack-k-hale-third-review-2026-08-02.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/jack-k-hale-third-review-2026-08-02.md",
+      "sha256Before": "8a639dbd4ae97e21b578ffbe424027c34cf1474c035bf2e6d3e59b46c5339edd",
+      "preservation": "byte-preserved",
+      "sha256After": "8a639dbd4ae97e21b578ffbe424027c34cf1474c035bf2e6d3e59b46c5339edd"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/lars-hormander-review-response-2026-07-31.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/lars-hormander-review-response-2026-07-31.md",
+      "sha256Before": "d6bcce7e217a0d514e1eecddb85c345a3d632736d2c0d6f3e4bf30b27f149173",
+      "preservation": "byte-preserved",
+      "sha256After": "d6bcce7e217a0d514e1eecddb85c345a3d632736d2c0d6f3e4bf30b27f149173"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/lars-hormander-second-review-2026-08-02.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/lars-hormander-second-review-2026-08-02.md",
+      "sha256Before": "f2537b1e8824993b9f83e4acb4fbaa7d1e0c2ffbd58a295f1458d42c782806c2",
+      "preservation": "byte-preserved",
+      "sha256After": "f2537b1e8824993b9f83e4acb4fbaa7d1e0c2ffbd58a295f1458d42c782806c2"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/manuscript-fidelity-review.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/manuscript-fidelity-review.md",
+      "sha256Before": "1c85b17ba5fedc6e735f892542948a72cac9adffee22984e50c558dfcefc7ce3",
+      "preservation": "byte-preserved",
+      "sha256After": "1c85b17ba5fedc6e735f892542948a72cac9adffee22984e50c558dfcefc7ce3"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/manuscript-source-coverage.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/manuscript-source-coverage.md",
+      "sha256Before": "35c993bb0967ef054ed9038ea24834ead9ac360c40d7ad1bf36da98ff7d960fb",
+      "preservation": "byte-preserved",
+      "sha256After": "35c993bb0967ef054ed9038ea24834ead9ac360c40d7ad1bf36da98ff7d960fb"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/mathematics-geometry-dynamical-system.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/mathematics-geometry-dynamical-system.md",
+      "sha256Before": "aba3b8e029cccc2b8f196dee89063452aa856ae9415dab09db8626a5ad6fb199",
+      "preservation": "byte-preserved",
+      "sha256After": "aba3b8e029cccc2b8f196dee89063452aa856ae9415dab09db8626a5ad6fb199"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/no-escape-audit.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/no-escape-audit.md",
+      "sha256Before": "978e16649ad02d2ef6c2e5322f24a01df872869c1c2d99e88c70472f480baf15",
+      "preservation": "byte-preserved",
+      "sha256After": "978e16649ad02d2ef6c2e5322f24a01df872869c1c2d99e88c70472f480baf15"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/planar-circle-instability-independent-review.md",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/planar-circle-instability-independent-review.md",
+      "sha256Before": "45b1703932b9051dc818a64b0f1adaad9cd7f456043d9a4a7985a808fc12fb26",
+      "preservation": "byte-preserved",
+      "sha256After": "45b1703932b9051dc818a64b0f1adaad9cd7f456043d9a4a7985a808fc12fb26"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/quarantined-hypotheses-and-prescribed-reference-cases.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/quarantined-hypotheses-and-prescribed-reference-cases.md",
+      "sha256Before": "9518bbf38e4899d1abea5fce99ac286623636a7cb5127c42c25ed9eaa0bc27e3",
+      "preservation": "byte-preserved",
+      "sha256After": "9518bbf38e4899d1abea5fce99ac286623636a7cb5127c42c25ed9eaa0bc27e3"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/ramon-e-moore-review-2026-08-02.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/ramon-e-moore-review-2026-08-02.md",
+      "sha256Before": "3eefdccecfac7c0741b90b288a3e93fe53700d0458fd77ed6bcf8989645f4cf9",
+      "preservation": "byte-preserved",
+      "sha256After": "3eefdccecfac7c0741b90b288a3e93fe53700d0458fd77ed6bcf8989645f4cf9"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/sections-12-14-independent-review-2026-09-02.md",
+      "destination": "reference/priorities/master-equation-closure/braid-program/evidence/sections-12-14-independent-review-2026-09-02.md",
+      "sha256Before": "c5cddd729c70827b43f84fd980b48c5ff6b2641da7d19ba41bd7b11c6a8e9b24",
+      "preservation": "byte-preserved",
+      "sha256After": "c5cddd729c70827b43f84fd980b48c5ff6b2641da7d19ba41bd7b11c6a8e9b24"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/brainstorming.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/brainstorming.md",
+      "sha256Before": "0e8b79eb2e47fa253e899d9ee079bd16af7352db930ef2dc530fdb699884d975",
+      "preservation": "byte-preserved",
+      "sha256After": "0e8b79eb2e47fa253e899d9ee079bd16af7352db930ef2dc530fdb699884d975"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/decisions/continuation-selection-operator-decision-2026-09-02.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/decisions/continuation-selection-operator-decision-2026-09-02.md",
+      "sha256Before": "29459a3b1f1d7751722e4e8212d8a2873568aefbc14acf2fb193991767c2f9a2",
+      "preservation": "byte-preserved",
+      "sha256After": "29459a3b1f1d7751722e4e8212d8a2873568aefbc14acf2fb193991767c2f9a2"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/decisions/field-speed-ceiling-compatibility-decision.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/decisions/field-speed-ceiling-compatibility-decision.md",
+      "sha256Before": "18fdd026f6685abee0c2f2a2839f9ac25f958439f484eda25809ad262e32a5f7",
+      "preservation": "byte-preserved",
+      "sha256After": "18fdd026f6685abee0c2f2a2839f9ac25f958439f484eda25809ad262e32a5f7"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json",
+      "destination": "reference/priorities/master-equation-closure/braid-program/evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json",
+      "sha256Before": "0006364cac947b23c26c42393c66a8953ee5b0388d4b0a0d5e37d6b2b3c753f2",
+      "preservation": "byte-preserved",
+      "sha256After": "0006364cac947b23c26c42393c66a8953ee5b0388d4b0a0d5e37d6b2b3c753f2"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json",
+      "sha256Before": "218a4d2e489fdb1165debdc2626b14840b8d14a15bbb660f6598f92e30c4d30e",
+      "preservation": "byte-preserved",
+      "sha256After": "218a4d2e489fdb1165debdc2626b14840b8d14a15bbb660f6598f92e30c4d30e"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/evidence/partner-only-auxiliary-evolution-receipt.json",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/evidence/partner-only-auxiliary-evolution-receipt.json",
+      "sha256Before": "fb849be79efcf0c39af528497281f33e21332f4623b9d789d2e3a044821ac84a",
+      "preservation": "byte-preserved",
+      "sha256After": "fb849be79efcf0c39af528497281f33e21332f4623b9d789d2e3a044821ac84a"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/evidence/sharp-circle-departure-receipt.json",
+      "destination": "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-departure-receipt.json",
+      "sha256Before": "0fb4eecb48b8641463c039bb9c0ded378dddb473202afbae57a723202f91a5d5",
+      "preservation": "byte-preserved",
+      "sha256After": "0fb4eecb48b8641463c039bb9c0ded378dddb473202afbae57a723202f91a5d5"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/manuscript.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/manuscript.md",
+      "sha256Before": "2d123ed0caaaf46ae96c9d4f637935a6cfb142715834bfdcb8f9cd7c65b86f5c",
+      "preservation": "byte-preserved",
+      "sha256After": "2d123ed0caaaf46ae96c9d4f637935a6cfb142715834bfdcb8f9cd7c65b86f5c"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/priorities.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/priorities.md",
+      "sha256Before": "1979df99bf2a06e99e40932d2ef28ed4a38b02b7691a95445b277ec13cb0c491",
+      "preservation": "byte-preserved",
+      "sha256After": "1979df99bf2a06e99e40932d2ef28ed4a38b02b7691a95445b277ec13cb0c491"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/work-log.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/work-log.md",
+      "sha256Before": "b30f2c189e429bba18656f95fea6679008d789762de476570c32404672ed754a",
+      "preservation": "byte-preserved",
+      "sha256After": "b30f2c189e429bba18656f95fea6679008d789762de476570c32404672ed754a"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/field-speed-ceiling/work-queue.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/work-queue.md",
+      "sha256Before": "f8f0e286211f75c4ecb4d2fa17692b30309e9e96508a799152a6c89205c9cbfb",
+      "preservation": "byte-preserved",
+      "sha256After": "f8f0e286211f75c4ecb4d2fa17692b30309e9e96508a799152a6c89205c9cbfb"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/definition.md",
+      "sha256Before": "ed5ae9a901bfddb5393e5ecb125e4271f14549fed29859b193bfb9a4742cdee7",
+      "preservation": "relocation and ownership text only",
+      "sha256After": "4d81db804f4fd76eff111a96e816cbcb31278f8d243b2b3b7060ebc8d5ddd050"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/README.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/README.md",
+      "sha256Before": "68580b5b3f395659dc5d77d623367a99f79b42f7547b36db113e49662d314cea",
+      "preservation": "relocation and ownership text only",
+      "sha256After": "2cf9aa332f39fb82813946f27df6af0cae86c1e3774eccbd19407ba0f8904ef0"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/__pycache__/first-interval-event-order.cpython-313.pyc",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/__pycache__/logarithmic-first-interval-event-order.cpython-313.pyc",
+      "sha256Before": "f27c8e68728f10c05a3fd389310083edfe97efccc66410aef7d241cf838e99c1",
+      "preservation": "relocation and ownership text only",
+      "sha256After": "f27c8e68728f10c05a3fd389310083edfe97efccc66410aef7d241cf838e99c1"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/__pycache__/radial-potential-comparison.cpython-313.pyc",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/__pycache__/logarithmic-radial-potential-comparison.cpython-313.pyc",
+      "sha256Before": "ff3e07583f8c23b33c1f9bbd809dd6ce4dc1654966ad80f8a331c5b419de10e5",
+      "preservation": "relocation and ownership text only",
+      "sha256After": "ff3e07583f8c23b33c1f9bbd809dd6ce4dc1654966ad80f8a331c5b419de10e5"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/__pycache__/second-history-interval.cpython-313.pyc",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/__pycache__/logarithmic-second-history-interval.cpython-313.pyc",
+      "sha256Before": "eac27a1bb59747d44dbf9f5edc619fbff214775ec47c2ac1576763aae5a2c643",
+      "preservation": "relocation and ownership text only",
+      "sha256After": "eac27a1bb59747d44dbf9f5edc619fbff214775ec47c2ac1576763aae5a2c643"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-collinear-first-event.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-causal-collinear-first-event.md",
+      "sha256Before": "dc7624dd74cc5d62096ffc8afa7dd20c6071d21d553258468bffd559631cdb7c",
+      "preservation": "byte-preserved",
+      "sha256After": "dc7624dd74cc5d62096ffc8afa7dd20c6071d21d553258468bffd559631cdb7c"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-collinear-independent-check.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-causal-collinear-independent-check.md",
+      "sha256Before": "b945d6c3edb77d14132c149fc699ff18fef255c1b482f9274d7b550fc92921c0",
+      "preservation": "byte-preserved",
+      "sha256After": "b945d6c3edb77d14132c149fc699ff18fef255c1b482f9274d7b550fc92921c0"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-continuation-independent-check.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-causal-continuation-independent-check.md",
+      "sha256Before": "06064f6e8f8bffbcf4890f3bc3792c87206074ed50cc918c4fe923f6f73d1db3",
+      "preservation": "byte-preserved",
+      "sha256After": "06064f6e8f8bffbcf4890f3bc3792c87206074ed50cc918c4fe923f6f73d1db3"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-continuation-obstruction.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-causal-continuation-obstruction.md",
+      "sha256Before": "fa56f38ee15ce776127a9617fcf6cb59e577a116b10f483f62b4be991f8b13c8",
+      "preservation": "byte-preserved",
+      "sha256After": "fa56f38ee15ce776127a9617fcf6cb59e577a116b10f483f62b4be991f8b13c8"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-logarithmic-formulation.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-causal-logarithmic-formulation.md",
+      "sha256Before": "2548f09a0804185d51d544e5e03c894200672246d9e669a83e04fb03016adc83",
+      "preservation": "byte-preserved",
+      "sha256After": "2548f09a0804185d51d544e5e03c894200672246d9e669a83e04fb03016adc83"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/ceiling-comparison.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-ceiling-comparison.md",
+      "sha256Before": "ec0fe0660dbcfe03ffe631357ab0dfde6d1b7341bc6ac3f4100ac6652c6f5435",
+      "preservation": "byte-preserved",
+      "sha256After": "ec0fe0660dbcfe03ffe631357ab0dfde6d1b7341bc6ac3f4100ac6652c6f5435"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/first-interval-event-order.py",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-first-interval-event-order.py",
+      "sha256Before": "eb3e01fe5d2de6ad78cd3660943ea4cd6f0eb2756f256b94b3ee75eced7af84c",
+      "preservation": "byte-preserved",
+      "sha256After": "eb3e01fe5d2de6ad78cd3660943ea4cd6f0eb2756f256b94b3ee75eced7af84c"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/inclusive-ceiling-independent-check.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-inclusive-ceiling-independent-check.md",
+      "sha256Before": "4764b27542927c73bb29acbd2d1a4eccf383e70c250eecf1b6f6657ff43a3112",
+      "preservation": "byte-preserved",
+      "sha256After": "4764b27542927c73bb29acbd2d1a4eccf383e70c250eecf1b6f6657ff43a3112"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/instantaneous-collinear-first-event.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-instantaneous-collinear-first-event.md",
+      "sha256Before": "f989f342d7effbd6c0fb1fa1e94cd9a65eca6c891bc4074282e0560b3dbe972d",
+      "preservation": "byte-preserved",
+      "sha256After": "f989f342d7effbd6c0fb1fa1e94cd9a65eca6c891bc4074282e0560b3dbe972d"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/instantaneous-collinear-independent-check.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-instantaneous-collinear-independent-check.md",
+      "sha256Before": "f72484c765f1ad804c8ec7a8a367037826c286a518c579c23cdb2438324a50e2",
+      "preservation": "byte-preserved",
+      "sha256After": "f72484c765f1ad804c8ec7a8a367037826c286a518c579c23cdb2438324a50e2"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/inverse-distance-collinear-obstructions.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-inverse-distance-collinear-obstructions.md",
+      "sha256Before": "5476d24bd17b67bc731f5bc5c34ad4caa3693c7d54a7823f9266d2e556ca1416",
+      "preservation": "byte-preserved",
+      "sha256After": "5476d24bd17b67bc731f5bc5c34ad4caa3693c7d54a7823f9266d2e556ca1416"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/logarithmic-potential-visualization.html",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/analysis/logarithmic-potential-visualization.html",
+      "sha256Before": "8fc555feeaa57acdc2d12860f7c790d2dcc4a440beb78488682159ecf3020f43",
+      "preservation": "relocation and ownership text only",
+      "sha256After": "8fc555feeaa57acdc2d12860f7c790d2dcc4a440beb78488682159ecf3020f43"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/quadratic-response-occurrence-audit.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-quadratic-response-occurrence-audit.md",
+      "sha256Before": "9fa09e15ac9e21b0c0a4869f6d847f00189b71a293f259e695732f847fd76bc5",
+      "preservation": "byte-preserved",
+      "sha256After": "9fa09e15ac9e21b0c0a4869f6d847f00189b71a293f259e695732f847fd76bc5"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/radial-potential-comparison.png",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-radial-potential-comparison.png",
+      "sha256Before": "50d0751bac0c20b1ac92fa82c73bb360b4221c8483ba640ce67c31363e8202d4",
+      "preservation": "byte-preserved",
+      "sha256After": "50d0751bac0c20b1ac92fa82c73bb360b4221c8483ba640ce67c31363e8202d4"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/radial-potential-comparison.py",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-radial-potential-comparison.py",
+      "sha256Before": "55b72d9dca952146ecbffbe5c3cd89819d79ad579d6216baa171551e6e2e4e8f",
+      "preservation": "byte-preserved",
+      "sha256After": "55b72d9dca952146ecbffbe5c3cd89819d79ad579d6216baa171551e6e2e4e8f"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/second-history-interval-independent-check.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-second-history-interval-independent-check.md",
+      "sha256Before": "2e5460f1d8da1b3edd3b08bba63dc32608a2edc9330527632dc5af54595b308a",
+      "preservation": "byte-preserved",
+      "sha256After": "2e5460f1d8da1b3edd3b08bba63dc32608a2edc9330527632dc5af54595b308a"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/second-history-interval.py",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-second-history-interval.py",
+      "sha256Before": "4078234132c0702782df11ee38e9c14c75b87b172fc4fa623bc450d922b03288",
+      "preservation": "byte-preserved",
+      "sha256After": "4078234132c0702782df11ee38e9c14c75b87b172fc4fa623bc450d922b03288"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/strict-ceiling-independent-check.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-strict-ceiling-independent-check.md",
+      "sha256Before": "b8d2ec682592d9324b222870fae32b3e9c24e825679928d05bb86c410dc40d11",
+      "preservation": "byte-preserved",
+      "sha256After": "b8d2ec682592d9324b222870fae32b3e9c24e825679928d05bb86c410dc40d11"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/brainstorming.md",
+      "destination": "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/brainstorming.md",
+      "sha256Before": "751b7724ac1024a3f61f5ca5568129663d36877bdcba5771ee5924d4ba6efe73",
+      "preservation": "relocation and ownership text only",
+      "sha256After": "157952631d823ceac8a1f1c121b257deb91c6c37f4041301936b75c2e3f504cc"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-collinear-manuscript.md",
+      "sha256Before": "32865da6d13927f982623899660cb63c3be5627f66c33fe9064ea7d0fa371cd8",
+      "preservation": "relocation and ownership text only",
+      "sha256After": "2f45b9872abb9ee9543ebeed0146299e6f7e61b2c720e763e75f6e0479ec7305"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/priorities.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-research-status.md",
+      "sha256Before": "290c6b718aea96b56f94b1c74126f3279ff4460dee830f84db3520960a9de79d",
+      "preservation": "relocation and ownership text only",
+      "sha256After": "734ec0f800014886a2ff3d1412f35c76a2dfe2a36ad6caa99c4e565ffd5dc411"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/work-log.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/evidence/logarithmic-research-work-log.md",
+      "sha256Before": "d6bf307f9ff1d375743302eb9da4394b17481b7afa2cbb1167a8e8dcce8d9b05",
+      "preservation": "original byte-preserved prefix; concurrent append retained",
+      "sha256After": "78b87cd8263092916abc0607a833c862032fe744539ed0164f3e94997aa0b84a"
+    },
+    {
+      "source": "reference/priorities/master-equation-closure/logarithmic-potential-research/work-queue.md",
+      "destination": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-research-plan.md",
+      "sha256Before": "b3d62d7173c4bfe46717a46721532d5fc30faf7c8c8f4761c45528fea34abb14",
+      "preservation": "relocation and ownership text only",
+      "sha256After": "3ed52c13e6e271865f173f3007b8b06d2d212dcad44739dbbb9a2e62a85f25de"
+    }
+  ],
+  "sections": [
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "logarithmic-potentials-reference-levels-and-spherical-wake-accounting",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "logarithmic-potentials-reference-levels-and-spherical-wake-accounting"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "the-proposed-scalar-and-its-scope",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "the-proposed-scalar-and-its-scope"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "radial-comparison-with-electrostatic-multipoles",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "radial-comparison-with-electrostatic-multipoles"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "reference-zero-polarity-and-a-floating-ground",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "reference-zero-polarity-and-a-floating-ground"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "master-equation-before-and-after-a-logarithmic-replacement",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "master-equation-before-and-after-a-logarithmic-replacement"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "shared-causal-geometry",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "shared-causal-geometry"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "before-the-current-master-equation",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "before-the-current-master-equation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "after-the-proposed-logarithmic-potential-equation",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "after-the-proposed-logarithmic-potential-equation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "why-the-logarithmic-scalar-gives-this-moving-source-response",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "why-the-logarithmic-scalar-gives-this-moving-source-response"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "coupling-normalization-and-the-remaining-physical-choice",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "coupling-normalization-and-the-remaining-physical-choice"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "what-would-connect-radius-with-wake-speed",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "what-would-connect-radius-with-wake-speed"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "what-is-integrated-over-an-expanding-sphere",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "what-is-integrated-over-an-expanding-sphere"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "three-ways-a-logarithm-could-acquire-physical-meaning",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "three-ways-a-logarithm-could-acquire-physical-meaning"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "an-effective-geometry-or-distributed-source",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "an-effective-geometry-or-distributed-source"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "a-nonlinear-flux-law",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "a-nonlinear-flux-law"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "a-measure-accumulated-across-scales",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "a-measure-accumulated-across-scales"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "neutral-logarithmic-sources-and-the-earlier-multipole-question",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "neutral-logarithmic-sources-and-the-earlier-multipole-question"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "an-exact-two-source-nonlinear-comparison",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "an-exact-two-source-nonlinear-comparison"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "disposition-checks-and-next-scientific-question",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "disposition-checks-and-next-scientific-question"
+    ]
+  ],
+  "linkEdits": [
+    "AGENTS.md",
+    "apps/ios/ArchitrinoReader/GeneratedTextbookPackage/references/academic-style-guide.md",
+    "apps/ios/ArchitrinoReader/GeneratedTextbookPackage/references/terminology-usage.md",
+    "content/markdown/aaa/archie/academic-style-guide.md",
+    "content/markdown/aaa/archie/terminology-usage.md",
+    "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
+    "content/markdown/aaa/assemblies/fermions/electron.md",
+    "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+    "content/markdown/aaa/assemblies/fermions/neutrinos.md",
+    "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
+    "content/markdown/aaa/assemblies/fermions/quarks.md",
+    "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+    "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
+    "content/markdown/aaa/assemblies/gauge-symmetries.md",
+    "content/markdown/aaa/assemblies/particle-masses.md",
+    "content/markdown/aaa/cosmology/BBN-constraints.md",
+    "content/markdown/aaa/cosmology/CMB.md",
+    "content/markdown/aaa/cosmology/cosmology-ontology.md",
+    "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+    "content/markdown/aaa/cosmology/dark-energy.md",
+    "content/markdown/aaa/cosmology/dark-matter.md",
+    "content/markdown/aaa/cosmology/expansion-mechanism.md",
+    "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+    "content/markdown/aaa/cosmology/inflation-model.md",
+    "content/markdown/aaa/cosmology/structure-formation.md",
+    "content/markdown/aaa/dynamics/effective-lagrangian.md",
+    "content/markdown/aaa/dynamics/energy.md",
+    "content/markdown/aaa/foundations/absolute-time-defense.md",
+    "content/markdown/aaa/foundations/ontology.md",
+    "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+    "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+    "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+    "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+    "content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md",
+    "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+    "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
+    "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+    "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+    "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+    "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
+    "content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md",
+    "content/markdown/aaa/philosophy-history/theory-mapping.md",
+    "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+    "content/markdown/aaa/quantum/measurement-ontology.md",
+    "content/markdown/aaa/quantum/quantum-summary.md",
+    "content/markdown/aaa/quantum/wavefunction-ontology.md",
+    "content/markdown/aaa/spacetime/black-holes.md",
+    "content/markdown/aaa/spacetime/emergent-metric.md",
+    "content/markdown/aaa/spacetime/general-relativity.md",
+    "content/markdown/aaa/spacetime/gravitational-waves.md",
+    "content/markdown/aaa/spacetime/horizon-chirality.md",
+    "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+    "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
+    "content/markdown/aaa/spacetime/noether-sea.md",
+    "content/markdown/aaa/spacetime/observer-framework.md",
+    "content/markdown/aaa/spacetime/ppn-parameters.md",
+    "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+    "content/markdown/aaa/spacetime/singularity-resolution.md",
+    "content/markdown/aaa/validation/known-tensions.md",
+    "content/markdown/aaa/validation/no-go-theorems.md",
+    "content/markdown/aaa/validation/parameter-ledger.md",
+    "content/markdown/aaa/validation/simulations/synthetic-observables.md",
+    "reference/README.md",
+    "reference/op/simulation-protocol-routing-index.md",
+    "reference/op/skills/skill-architrino-math-preview.md",
+    "reference/priorities/README.md",
+    "reference/priorities/aaa-work-threads/analysis/notation.md",
+    "reference/priorities/aaa-work-threads/brainstorming.md",
+    "reference/priorities/aaa-work-threads/priorities.md",
+    "reference/priorities/app-solver/analysis/analysis-transmitter-factor-causal-history-functional.md",
+    "reference/priorities/app-solver/analysis/analysis-transmitter-factor-conservation-obstruction.md",
+    "reference/priorities/app-solver/analysis/analysis-transmitter-factor-simple-root-independent-review.md",
+    "reference/priorities/app-solver/analysis/master-equation-import-audit-walkthrough-2026-07-18.md",
+    "reference/priorities/app-solver/contracts/application-and-engine-contract.md",
+    "reference/priorities/app-solver/contracts/certified-error-budget-ledger.md",
+    "reference/priorities/app-solver/contracts/evolution-contract-v1.md",
+    "reference/priorities/app-solver/contracts/far-field-contribution-enclosure.md",
+    "reference/priorities/app-solver/contracts/finite-width-close-approach-caustic-route.md",
+    "reference/priorities/app-solver/contracts/language-and-numeric-architecture.md",
+    "reference/priorities/app-solver/contracts/million-path-certified-execution-architecture.md",
+    "reference/priorities/app-solver/contracts/precision-dynamic-range-and-certification-contract.md",
+    "reference/priorities/app-solver/priorities.md",
+    "reference/priorities/category-theory/analysis/manuscript-fidelity-review.md",
+    "reference/priorities/category-theory/analysis/manuscript-source-coverage.md",
+    "reference/priorities/category-theory/brainstorming.md",
+    "reference/priorities/category-theory/manuscript.md",
+    "reference/priorities/development-process-review/analysis/external-codex-storage-audit.md",
+    "reference/priorities/dormant-deferred/README.md",
+    "reference/priorities/dormant-deferred/epr-bell/priorities.md",
+    "reference/priorities/dormant-deferred/epr-bell/stanford-encyclopedia-bell-theorem-source-mining.md",
+    "reference/priorities/dormant-deferred/epr-bell/tim-maudlin-bell-foundations-2022-video-source-mining.md",
+    "reference/priorities/dormant-deferred/epr-bell/tim-maudlin-epr-bell-video-source-mining.md",
+    "reference/priorities/dormant-deferred/epr-bell/work-queue.md",
+    "reference/priorities/dormant-deferred/mapping-cosmology/brainstorming.md",
+    "reference/priorities/dormant-deferred/mapping-cosmology/priorities.md",
+    "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/brainstorming.md",
+    "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md",
+    "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md",
+    "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/nuclear-binding-closure.md",
+    "reference/priorities/dormant-deferred/mapping-nuclear-atomic-molecular/priorities.md",
+    "reference/priorities/mapping-electromagnetism/brainstorming.md",
+    "reference/priorities/mapping-electromagnetism/priorities.md",
+    "reference/priorities/mapping-equations/analysis/inferring-braid-requirements.md",
+    "reference/priorities/mapping-quantum/analysis/hilbert-space-and-braid-mapping.md",
+    "reference/priorities/master-equation-closure/README.md",
+    "reference/priorities/master-equation-closure/analysis/analysis-independent-causal-wake-state.md",
+    "reference/priorities/master-equation-closure/analysis/coincide-or-not.md",
+    "reference/priorities/master-equation-closure/binary-research/README.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/circular-binary-all-root-certificate.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/circular-binary-secondary-theorems.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-instability-review-reassessment.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/planar-circle-nonlinear-instability.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-escape-claude-review-prompt.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-escape-independent-review.md",
+    "reference/priorities/master-equation-closure/binary-research/analysis/sharp-circle-first-departure.md",
+    "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+    "reference/priorities/master-equation-closure/binary-research/priorities.md",
+    "reference/priorities/master-equation-closure/braid-program/README.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/research-reorganization-completion.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/research-reorganization-file-list.md",
+    "reference/priorities/master-equation-closure/braid-program/analysis/research-reorganization-plan.md",
+    "reference/priorities/master-equation-closure/braid-program/brainstorming.md",
+    "reference/priorities/master-equation-closure/braid-program/manuscript.md",
+    "reference/priorities/master-equation-closure/braid-program/priorities.md",
+    "reference/priorities/master-equation-closure/braid-program/work-queue.md",
+    "reference/priorities/master-equation-closure/brainstorming.md",
+    "reference/priorities/master-equation-closure/collinear-research/README.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/capped-collinear-endpoint-reanalysis.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/collinear-breather-under-ceiling.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/exact-mirror-continuation-selection-analysis.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/inherited-partner-characteristic-family-disposition.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/master-equation-assumption-audit.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/mirror-event-family-completion-and-right-trace.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/near-contact-separating-trace-incompatibility-theorem-target.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/partner-only-auxiliary-evolution-results.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/shim-repair-cap-scope-audit.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/trailing-front-activation-dichotomy.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/two-lobe-return-map-and-autonomous-trigger-audit.md",
+    "reference/priorities/master-equation-closure/collinear-research/brainstorming.md",
+    "reference/priorities/master-equation-closure/collinear-research/manuscript.md",
+    "reference/priorities/master-equation-closure/collinear-research/priorities.md",
+    "reference/priorities/master-equation-closure/collinear-research/work-queue.md",
+    "reference/priorities/master-equation-closure/manuscript.md",
+    "reference/priorities/master-equation-closure/priorities.md",
+    "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/definition.md",
+    "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/README.md",
+    "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/brainstorming.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-collinear-manuscript.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-research-status.md",
+    "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-research-plan.md",
+    "tests/test_field_speed_ceiling_t0_mpmath_oracle.py",
+    "tests/test_field_speed_ceiling_circular_binary_all_root_certificate.py"
+  ],
+  "concurrentWork": "A separate capped-interval task added manuscript mathematics, a new collinear instrument, status/plan updates and a work-log append after relocation. Original work-log prefix is byte-preserved; appendix links use its frozen origin. This migration validates preservation of original math, not the new scientific results.",
+  "validation": {
+    "preservedFiles": 56,
+    "mathematicalSpans": 730,
+    "concurrentChangedSpans": [
+      "$$\nT_v-S\\sim2\\sqrt{\\frac{T_c-T}{A_v}},\\qquad\nR\\to x_v,\\qquad\nF(T)\\sim\\frac{K}{2x_v\\sqrt{A_v(T_c-T)}}.\n$$",
+      "$$\nu'=\\begin{cases}F,&u<1,\\\\\\min(F,0),&u=1.\\end{cases}\n$$",
+      "$$\nu=1,\\qquad x(T)=x_v-(T-T_v),\\qquad T_c=T_v+x_v.\n$$",
+      "$D_t=0$",
+      "$F=K/[R(1-u(S))]$",
+      "$T_c-S$",
+      "$T_v,x_v$",
+      "$T_v\\le S<T_c$"
+    ],
+    "configurationOwners": [
+      "master-equation-closure/binary-research",
+      "master-equation-closure/braid-program",
+      "master-equation-closure/collinear-research",
+      "master-equation-closure/lattice-research",
+      "master-equation-closure/neutrino-research",
+      "master-equation-closure/noether-sea-research",
+      "master-equation-closure/photon-research",
+      "master-equation-closure/quark-research"
+    ],
+    "checkedMarkdownLinks": 5254,
+    "missingTargets": [],
+    "mathShieldFallbacks": [
+      "Unclosed math delimiter $ near source line 62",
+      "Unclosed math delimiter $ near source line 130",
+      "Unclosed math delimiter $ near source line 53"
+    ],
+    "knownCases": "PASS before target run",
+    "concurrentChangedSpanCount": 8,
+    "concurrentAdditionalSpanCount": 132,
+    "initialPostMoveMathCheck": "PASS: all 730 original mathematical spans retained before later concurrent scientific revisions",
+    "strictContent": "node scripts/validate-content.mjs --check --strict: PASS, zero errors/warnings",
+    "priorityRanking": "node scripts/validate-priority-ranking.mjs: PASS",
+    "whitespace": "git diff --check: PASS"
+  }
+}

@@ -29,6 +29,37 @@ No independent score is assigned to this geometry workstream. The existing in-pr
 - **Scope:** State precisely what spatial localization means for complete histories, declare the exterior population and summation prescription, and construct an admitted preparation satisfying the unchanged Master Equation, or prove a precise obstruction to the selected preparation class. Use numerical $c_f=1$, retain environmental response and every applicable causal root, and impose no added speed ceiling, response factor, root exclusion or event law.
 - **Completion:** A source-supported preparation theorem or obstruction identifies the history class, root and tail control, and independent proof checks. The non-self-consistent two-target pulse and the coherent infinite-support branch are controls, not substitutes for the missing localized history. Further evolution, stability and decay need their own continuation argument.
 - **Context:** [Preparation distinction](brainstorming.md#a-spatially-localized-self-consistent-disturbance). Recording this recommendation does not change the active coupling-classification assignment.
+- **Linear foothold, 2026-10-03:** the [general-wavevector derivation](analysis/checkerboard-linear-wavevectors.md) supplies an unstable band at every $g>0$ and complete ancient linear histories with spatial tails decaying faster than any power. The derivation awaits separate mathematical adjudication. It does not meet this entry's nonlinear Master Equation completion condition. A spatially weighted nonlinear remainder and complete-history fixed-point or obstruction argument remain required; the entry stays queued and unassigned.
+- **First unfinished step:** Independently reconstruct the source-displacement and transmitter-velocity derivatives, the growing band and localized ancient-history proof. Check the adjacent [weak-coupling rate estimate](analysis/checkerboard-weak-coupling-rate.md) under its centered-cube remainder assumptions. A general-wavevector evaluator must reproduce the exact staggered matrix and its known growth bracket before other modes; report tail and numerical errors. Only then attempt the weighted nonlinear construction. This is one preparation task, not a second dispersion or sea-rate campaign; the active `1-mec` assignment is unchanged.
+
+### Repair the complete-history site-local release ladder
+
+- **Status:** ○ Queued — protocol and current-source admission first; target execution blocked until those are checked.
+- **Request:** Replace the unsupported larger-rung conclusion with a fresh complete-history comparison, following the [accepted history-depth defect](analysis/lattice-review-integration-2026-10-03.md#retained-history-ladder-defect).
+- **Scope:** Declare the actual source-history retention and causal search interval, including radius excursions. For the recorded preparation require history strictly beyond the stated maximum range bound, not merely a changed delay-horizon metadata field. Retain every source and applicable root; compare central-core residuals separately from boundary maxima. Use the unchanged equation and $c_f=1$.
+- **Completion / falsifier:** The admitted current build passes a finite static/simple-root analytical control before each target family; fresh ladder outputs demonstrate history/search completeness and controlled residuals, or report a precise failure. Preserve old receipts and their source identities. A required emission outside the retained/search interval defeats completeness. This task owns the lattice scientific comparison; reusable capability repairs stay with App Solver, and no Mapping Electromagnetism recovery conclusion follows automatically.
+
+### Restore current-source lattice boundary reproducibility
+
+- **Status:** ○ Queued — unassigned; original certified input and proof remain preserved.
+- **Request:** Resolve the subject-byte mismatch and old reference path identified in the [boundary reproduction assessment](analysis/lattice-review-integration-2026-10-03.md#independence-and-current-reproduction).
+- **Scope:** Preserve the frozen subject/reference/receipts. Run current-source analytical known controls before a new target; create a separately versioned reference with current paths and complete literal hashes. Identify shared residual inputs explicitly. Independently reconstruct at least one complete residual enclosure if an independent-residual claim is sought; replay of its saved input does not meet that condition.
+- **Completion / falsifier:** Source-bound current controls, target and reference yield an accepted reproduction or a documented discrepancy, with a separate verdict on residual independence. Missing input, mismatched identity or failed analytical control stops the target. An old hash is not repaired by repinning its receipt.
+
+## Completed supplied-review investigation
+
+### Independently adjudicate logarithmic collective growth
+
+- **Status:** ✓ Done — accepted by a separate analytical reconstruction in the [independent adjudication](analysis/logarithmic-collective-independent-adjudication-2026-10-03.md).
+- **Result:** Emission-time distributional variation reconstructs all three row terms; grouped stationary derivatives and the exponentially decaying history correction justify the full first variation. The dominated Gaussian limit and strict lattice-integral inequality establish positive staggered growth for every positive coupling and a nearby real-wavevector band. Fixed-source restoration remains valid, but it does not give collective checkerboard stability.
+- **Boundary / falsifier:** Accepted only at linear grade in the specified neutral-cell and ancient-history class. No nonlinear/localized retained population, arbitrary nondecaying history operator, full spectrum or equation disposition is established. An invalid row variation, domination, strict integral comparison or explicit-mode substitution overturns the affected claim. No subject instrument was replayed as independent evidence.
+
+### Assess collective logarithmic lattice stability
+
+- **Status:** ✓ Completed at the bounded linear scope — 2026-10-03.
+- **Result:** The [independent analysis](analysis/logarithmic-collective-stability-independent-analysis.md) reconstructs and accepts the fixed-source restoring proof, derives receiver, delayed-source and transmitter-velocity terms, and proves a positive staggered characteristic root at every positive coupling, with a nearby growing wavevector band. The new collective theorem is derived with analytical self-review; its separate adjudication is queued above. The original static reference is preserved.
+- **Scenario / boundary:** Authorized inverse-distance response, $c_f=1$, neutral-cell stationary background and exponentially decaying complete histories. Static restoration survives, but this checkerboard is linearly unstable in the declared bounded spatial class. No nonlinear retained trajectory, localized disturbance theorem, complete spectrum or stable sea follows. LPR-006 remains deferred and receives this result as an input, not an equation-adoption decision.
+- **Evidence:** The separately authored comparison instrument recorded stationary-row, Gaussian-mixture and six-axis controls before non-interval target quadrature. The existence proof uses analytical signs rather than the measured decimals. Its source, history, summation and inequality falsifiers are stated in the analysis.
 
 ## Results that constrain the next step
 

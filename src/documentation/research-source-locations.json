@@ -164,7 +164,73 @@
     "reference/priorities/master-equation-closure/braid-program/configurations/alternating-circular-ring-01.v3.json": "reference/priorities/master-equation-closure/binary-research/configurations/alternating-circular-ring-01.v3.json",
     "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md": "reference/priorities/master-equation-closure/binary-research/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md",
     "reference/priorities/app-photon/evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json": "reference/priorities/master-equation-closure/photon-research/evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json",
-    "reference/priorities/mapping-electromagnetism/analysis/logarithmic-potential-and-reference-level.md": "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md"
+    "reference/priorities/mapping-electromagnetism/analysis/logarithmic-potential-and-reference-level.md": "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/README.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/README.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/albert-einstein-review-2026-08-01.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/albert-einstein-review-2026-08-01.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/albert-einstein-review-response-2026-08-01.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/albert-einstein-review-response-2026-08-01.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/albert-einstein-second-review-2026-08-01.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/albert-einstein-second-review-2026-08-01.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/albert-einstein-second-review-response-2026-08-01.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/albert-einstein-second-review-response-2026-08-01.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/bill-thurston-review-response-2026-08-01.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/bill-thurston-review-response-2026-08-01.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/bill-thurston-second-review-2026-08-02.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/bill-thurston-second-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/elie-cartan-review-2026-08-02.md": "reference/priorities/master-equation-closure/collinear-research/evidence/elie-cartan-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/first-entourage-review-readiness.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/first-entourage-review-readiness.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/geometry-panel-collation-2026-08-02.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/geometry-panel-collation-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/germund-dahlquist-review-2026-08-02.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/germund-dahlquist-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/hassler-whitney-review-2026-08-02.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/hassler-whitney-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/independent-complete-lobe-returning-event-review-2026-09-02.md": "reference/priorities/master-equation-closure/collinear-research/evidence/independent-complete-lobe-returning-event-review-2026-09-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/inherited-family-event-measure-review-2026-08-02.md": "reference/priorities/master-equation-closure/collinear-research/evidence/inherited-family-event-measure-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/jack-k-hale-review-response-2026-07-31.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/jack-k-hale-review-response-2026-07-31.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/jack-k-hale-second-review-2026-08-02.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/jack-k-hale-second-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/jack-k-hale-third-review-2026-08-02.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/jack-k-hale-third-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/lars-hormander-review-response-2026-07-31.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/lars-hormander-review-response-2026-07-31.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/lars-hormander-second-review-2026-08-02.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/lars-hormander-second-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/manuscript-fidelity-review.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/manuscript-fidelity-review.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/manuscript-source-coverage.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/manuscript-source-coverage.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/mathematics-geometry-dynamical-system.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/mathematics-geometry-dynamical-system.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/no-escape-audit.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/no-escape-audit.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/planar-circle-instability-independent-review.md": "reference/priorities/master-equation-closure/binary-research/evidence/planar-circle-instability-independent-review.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/quarantined-hypotheses-and-prescribed-reference-cases.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/quarantined-hypotheses-and-prescribed-reference-cases.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/ramon-e-moore-review-2026-08-02.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/analysis/ramon-e-moore-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/sections-12-14-independent-review-2026-09-02.md": "reference/priorities/master-equation-closure/braid-program/evidence/sections-12-14-independent-review-2026-09-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/brainstorming.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/brainstorming.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/decisions/continuation-selection-operator-decision-2026-09-02.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/decisions/continuation-selection-operator-decision-2026-09-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/decisions/field-speed-ceiling-compatibility-decision.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/decisions/field-speed-ceiling-compatibility-decision.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json": "reference/priorities/master-equation-closure/braid-program/evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json": "reference/priorities/master-equation-closure/binary-research/evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/evidence/partner-only-auxiliary-evolution-receipt.json": "reference/priorities/master-equation-closure/collinear-research/evidence/partner-only-auxiliary-evolution-receipt.json",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/evidence/sharp-circle-departure-receipt.json": "reference/priorities/master-equation-closure/binary-research/evidence/sharp-circle-departure-receipt.json",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/manuscript.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/manuscript.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/priorities.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/priorities.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/work-log.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/work-log.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/work-queue.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/history/work-queue.md",
+    "reference/priorities/master-equation-closure/analysis/field-speed-ceiling-definition-and-shared-results.md": "reference/priorities/master-equation-closure/equation-variants/field-speed-ceiling/definition.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/README.md": "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/README.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-collinear-first-event.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-causal-collinear-first-event.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-collinear-independent-check.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-causal-collinear-independent-check.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-continuation-independent-check.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-causal-continuation-independent-check.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-continuation-obstruction.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-causal-continuation-obstruction.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-logarithmic-formulation.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-causal-logarithmic-formulation.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/ceiling-comparison.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-ceiling-comparison.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/first-interval-event-order.py": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-first-interval-event-order.py",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/inclusive-ceiling-independent-check.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-inclusive-ceiling-independent-check.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/instantaneous-collinear-first-event.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-instantaneous-collinear-first-event.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/instantaneous-collinear-independent-check.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-instantaneous-collinear-independent-check.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/inverse-distance-collinear-obstructions.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-inverse-distance-collinear-obstructions.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/logarithmic-potential-visualization.html": "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/analysis/logarithmic-potential-visualization.html",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/quadratic-response-occurrence-audit.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-quadratic-response-occurrence-audit.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/radial-potential-comparison.png": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-radial-potential-comparison.png",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/radial-potential-comparison.py": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-radial-potential-comparison.py",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/second-history-interval-independent-check.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-second-history-interval-independent-check.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/second-history-interval.py": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-second-history-interval.py",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/strict-ceiling-independent-check.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-strict-ceiling-independent-check.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/brainstorming.md": "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/brainstorming.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-collinear-manuscript.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/priorities.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-research-status.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/work-log.md": "reference/priorities/master-equation-closure/collinear-research/evidence/logarithmic-research-work-log.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/work-queue.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-research-plan.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/first-capped-history-interval.py": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-first-capped-history-interval.py",
+    "reference/priorities/master-equation-closure/analysis/logarithmic-collinear-manuscript.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-collinear-manuscript.md",
+    "reference/priorities/master-equation-closure/analysis/logarithmic-inclusive-ceiling-independent-check.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-inclusive-ceiling-independent-check.md"
   },
   "frozenOrigins": [
     "reference/priorities/braid-program/analysis/braid-candidate-requirement-adjudication.md",
@@ -203,7 +269,55 @@
     "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-10-balanced-circular-release-outward-departure.md",
     "reference/priorities/master-equation-closure/braid-program/evidence/2026-08-11-physical-binary-retained-history-radial-turn.md",
     "reference/priorities/master-equation-closure/braid-program/evidence/planar-circle-review-instrument-retention.md",
-    "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md"
+    "reference/priorities/master-equation-closure/braid-program/evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/README.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/albert-einstein-review-2026-08-01.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/albert-einstein-review-response-2026-08-01.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/albert-einstein-second-review-2026-08-01.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/albert-einstein-second-review-response-2026-08-01.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/bill-thurston-review-response-2026-08-01.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/bill-thurston-second-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/elie-cartan-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/first-entourage-review-readiness.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/geometry-panel-collation-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/germund-dahlquist-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/hassler-whitney-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/independent-complete-lobe-returning-event-review-2026-09-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/inherited-family-event-measure-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/jack-k-hale-review-response-2026-07-31.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/jack-k-hale-second-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/jack-k-hale-third-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/lars-hormander-review-response-2026-07-31.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/lars-hormander-second-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/manuscript-fidelity-review.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/manuscript-source-coverage.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/mathematics-geometry-dynamical-system.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/no-escape-audit.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/planar-circle-instability-independent-review.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/quarantined-hypotheses-and-prescribed-reference-cases.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/ramon-e-moore-review-2026-08-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/analysis/sections-12-14-independent-review-2026-09-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/brainstorming.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/decisions/continuation-selection-operator-decision-2026-09-02.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/decisions/field-speed-ceiling-compatibility-decision.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/manuscript.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/priorities.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/work-log.md",
+    "reference/priorities/master-equation-closure/field-speed-ceiling/work-queue.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-collinear-first-event.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-collinear-independent-check.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-continuation-independent-check.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-continuation-obstruction.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/causal-logarithmic-formulation.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/ceiling-comparison.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/inclusive-ceiling-independent-check.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/instantaneous-collinear-first-event.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/instantaneous-collinear-independent-check.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/inverse-distance-collinear-obstructions.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/quadratic-response-occurrence-audit.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/second-history-interval-independent-check.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/strict-ceiling-independent-check.md",
+    "reference/priorities/master-equation-closure/logarithmic-potential-research/work-log.md"
   ],
   "sectionMoves": [
     [
@@ -787,6 +901,144 @@
       "would-inverse-distance-acceleration-remove-the-blockers",
       "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/inverse-distance-collinear-obstructions.md",
       "would-inverse-distance-acceleration-remove-the-blockers"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "logarithmic-potentials-reference-levels-and-spherical-wake-accounting",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "logarithmic-potentials-reference-levels-and-spherical-wake-accounting"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "the-proposed-scalar-and-its-scope",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "the-proposed-scalar-and-its-scope"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "radial-comparison-with-electrostatic-multipoles",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "radial-comparison-with-electrostatic-multipoles"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "reference-zero-polarity-and-a-floating-ground",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "reference-zero-polarity-and-a-floating-ground"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "master-equation-before-and-after-a-logarithmic-replacement",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "master-equation-before-and-after-a-logarithmic-replacement"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "shared-causal-geometry",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "shared-causal-geometry"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "before-the-current-master-equation",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "before-the-current-master-equation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "after-the-proposed-logarithmic-potential-equation",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "after-the-proposed-logarithmic-potential-equation"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "why-the-logarithmic-scalar-gives-this-moving-source-response",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "why-the-logarithmic-scalar-gives-this-moving-source-response"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "coupling-normalization-and-the-remaining-physical-choice",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "coupling-normalization-and-the-remaining-physical-choice"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "what-would-connect-radius-with-wake-speed",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "what-would-connect-radius-with-wake-speed"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "what-is-integrated-over-an-expanding-sphere",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "what-is-integrated-over-an-expanding-sphere"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "three-ways-a-logarithm-could-acquire-physical-meaning",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "three-ways-a-logarithm-could-acquire-physical-meaning"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "an-effective-geometry-or-distributed-source",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "an-effective-geometry-or-distributed-source"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "a-nonlinear-flux-law",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "a-nonlinear-flux-law"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "a-measure-accumulated-across-scales",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "a-measure-accumulated-across-scales"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "neutral-logarithmic-sources-and-the-earlier-multipole-question",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "neutral-logarithmic-sources-and-the-earlier-multipole-question"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "an-exact-two-source-nonlinear-comparison",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "an-exact-two-source-nonlinear-comparison"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/manuscript.md",
+      "disposition-checks-and-next-scientific-question",
+      "reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md",
+      "disposition-checks-and-next-scientific-question"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/work-queue.md",
+      "lpr-006--research-disposition",
+      "reference/priorities/master-equation-closure/collinear-research/work-queue.md",
+      "lpr-006--research-disposition"
+    ],
+    [
+      "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-research-plan.md",
+      "lpr-006--research-disposition",
+      "reference/priorities/master-equation-closure/collinear-research/work-queue.md",
+      "lpr-006--research-disposition"
+    ],
+    [
+      "reference/priorities/master-equation-closure/logarithmic-potential-research/work-queue.md",
+      "lpr-005--robustness-and-conserved-account",
+      "reference/priorities/master-equation-closure/work-queue.md",
+      "lpr-005--robustness-and-conserved-account"
+    ],
+    [
+      "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-research-plan.md",
+      "lpr-005--robustness-and-conserved-account",
+      "reference/priorities/master-equation-closure/work-queue.md",
+      "lpr-005--robustness-and-conserved-account"
     ]
   ]
 }

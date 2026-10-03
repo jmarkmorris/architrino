@@ -104,7 +104,7 @@ A collinear breather is a proposed structure to establish. Its existence would n
 
 ### Would inverse-distance acceleration remove the blockers?
 
-The conditional inverse-distance comparison is now centralized in [Logarithmic potential research](../../logarithmic-potential-research/analysis/inverse-distance-collinear-obstructions.md#would-inverse-distance-acceleration-remove-the-blockers), preserving its assumptions, derivations, and self-checked review status.
+The conditional inverse-distance comparison is now centralized in [Logarithmic potential research](logarithmic-inverse-distance-collinear-obstructions.md#would-inverse-distance-acceleration-remove-the-blockers), preserving its assumptions, derivations, and self-checked review status.
 
 **Inference:** the first question to reopen is the conversion from arriving wake information into acceleration, including the distance response, addition of simultaneous contributions and self reception. That is broader than changing Coulomb's exponent. The arrival geometry can be held fixed initially so that the effect of revising reception is identifiable. The default comparison would also retain point identities, the polarity convention, absolute time and Euclidean space; this is a suggested bounded investigation, not a newly adopted canon.
 

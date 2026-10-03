@@ -48,33 +48,6 @@ No rows.
 
 ## Deferred / discussion-scoped
 
-### OPS-031 — October 2 early-chapter referrals
-
-- **Status:** The operator accepted EOS02-01, EOS02-02 and ME02-01; their scoped replacements are implemented in the [October 2 integration record](work-log.md#2026-10-02--three-ops-031-clarifications-integrated). The two separate scope-family follow-ups below remain ○ Proposed. CRW-005 remains closed.
-- **Existing chart-floor scope family:** Include Master Equation line 163 in the existing distinction between a chosen positive floor failing and the actual zero-derivative singularity. A different certified chart may still cover a simple root. This is proposed direct-consumer propagation of ATT27-02, not permission to alter a continuation law.
-- **Existing auxiliary-method scope family:** Clarify the Emergence finite-regulator/history chart and convergence-mechanism paragraph under the September 26 decision. Mathematical approximations remain permitted; equivalence to complete-root dynamics requires the applicable exact restriction or recovery argument. Do not prohibit valid centering, screening or summation prescriptions. This is proposed direct-consumer propagation, not authorization for a new repair campaign.
-
-### OPS-031 — September 30 spatial chart referrals
-
-- **Status:** ○ Proposed; report-only. CRW-005 remains closed.
-- **Two-component chart:** Reconcile strictly ordered axial coordinates with the declared all-equatorial special case, which places six endpoints at each component height. Also reconcile the sorted first-six/last-six circulation rule with opposite component circulation when component heights interleave. The direct coordinate witnesses and source scope belong in the [September 30 review](../aaa-operations/evidence/ops-031-3d-braid-assemblies-review-2026-09-30.md). The existing Braid geometry and corpus owners should choose a consistent member-label and chart-domain declaration; preserve persistent identities, explicit component membership and physical claim limits. No runtime or source edit is accepted by this referral.
-- **Axial-speed status propagation:** Extend the already proposed [September 28 core-status reconciliation](#ops-031--september-28-core-review-referrals) to the 3D chapter's Fixed Axial-Translation Control paragraph. Its blanket “other axial speeds” statement omits the accepted bounded speed chart. Preserve the certified branch and speed limits and the open deformed/higher-topology cases; do not reopen or strengthen the underlying scientific acceptance.
-
-### OPS-031 — September 28 core review referrals
-
-- **Status:** ○ Proposed; report-only review, with CRW-005 remaining closed.
-- **Braid Taxonomy, BT28-01:** Clarify that a 2D component has affine dimension exactly two, and leave complete but rank-zero/rank-one components unassigned. Plane containment alone includes a line or point; the live Borg descriptor already distinguishes that boundary. The [review receipt](../aaa-operations/evidence/ops-031-braid-taxonomy-review-2026-09-28.md) gives the coordinate counterexample, consumer scope and falsifier. The corpus editor should confirm the boundary with the Borg taxonomy owner before preparing the narrow definition repair; no new physical class or runtime change is accepted here.
-- **Planar Braid Assemblies, PBA28-01:** Reconcile current-status sentences with the already accepted BP-011 global equal-radius ladder, T04 short-time history uniqueness, local phase/radius isolation and bounded axial-speed results. The [whole-chapter review](../aaa-operations/evidence/ops-031-2d-braid-assemblies-review-2026-09-28.md) identifies each passage, primary evidence and scope limit. Prepare one self-contained editorial synthesis with BP-011 scientific adjudication; do not upgrade the old numerical instruments, imply full-cycle release/stability, or reopen completed research. Historical certificates were inspected, not rerun; this is a proposed propagation repair, not fresh scientific acceptance.
-
-### OPS-031 — September 25 review referrals
-
-- **Status:** Proposed clarifications and residual historical editorial work; CRW-005 remains closed. No automatic substantive rewrite is authorized by this scan.
-- **Analytic Baselines, AB-20260925-01 — completed September 26:** The accepted insertion requires integrated, disjoint emission bands plus their complement wherever needed, and the related virial wording now states trajectory and equation assumptions. The [receipt](../aaa-operations/evidence/ops-031-analytic-baselines-review-2026-09-25.md) retains the independent positive-complement counterexample; the [implementation record](analysis/ops-031-master-equation-deviation-audit-2026-09-26.md#implementation-record) records the integration. Existing O1–O3 remain open.
-- **Braid Recovery Requirements, BRR-01:** Low notation clarification. Specify observer-chart relative velocity in the weak-clock row, consistently with Proper Time and Time Dilation. The [receipt](../aaa-operations/evidence/ops-031-braid-recovery-requirements-review-2026-09-25.md) supplies the unit-rescaling argument and explicit falsifier. This is not a demonstrated wrong coefficient or introduced regression.
-- **Action Model Comparison, historical E1–E3:** The [current full review](../aaa-operations/evidence/ops-031-action-model-review-2026-09-25.md) qualifies the broad September 11 closeout: undefined hit observables, ambiguous single-weight wording, residual unmeasured-cost qualifiers and malformed Pros hierarchy remain. Preserve existing IDs and acceptance history; the editorial owner should prepare the remaining exact replacements, resolving intended observable definitions before editing. The zero-delay, impulse and discrepancy repairs survive. Repeated-summary consolidation and simple-root wording are optional; O1–O3 scientific obligations remain separately owned. No new mathematical regression or new repair campaign is asserted.
-- **Remaining prepared proposal:** Items 4–9 of the [September 26 consolidated proposal](analysis/ops-031-repair-proposal-2026-09-26.md) remain proposed; items 1–3 are implemented. The remaining Action Model observable/weight/editorial repairs and the weak-clock velocity notation are separate from this accepted Master Equation batch.
-- **Operator clarification and integration, September 26:** Mathematical techniques for studying the Master Equation remain permitted. The [implementation record](analysis/ops-031-master-equation-deviation-audit-2026-09-26.md#implementation-record) records the three research pullbacks and local distinction repairs. These documentation changes establish no new sharp-law trajectory, solver behavior, or scientific closure. Historical receipts and scheduled coverage remain intact.
-
 ### OPS-031 — Separate scientific follow-ups
 
 - **Status:** ○ Discussion-scoped; outside the eight approved corrections.
@@ -92,6 +65,52 @@ No rows.
 - **Completion:** Either the operator accepts a bounded classifier prototype with a declared benchmark and human-acceptance workflow, or declines the idea and this row moves to `Withdrawn`.
 
 ## Verified
+
+### OPS-031 — October 3 Master Equation continuation referrals
+
+The original referral descriptions below preserve the review scope; the completed disposition supersedes their proposal and permission wording.
+
+- **Status:** ✓ Done; accepted October 3 and implemented with separate verification in the [October 3 six-group closure](evidence/ops-031-six-group-closure-2026-10-03.md). The [part-2 receipt](../aaa-operations/evidence/ops-031-master-equation-part-2-review-2026-10-03.md) records exact passages, independent witnesses and falsifiers. CRW-005 remains closed.
+- **ME03-01 — moving-root separation:** Replace the receiver-radial-velocity sign rule for successive-hit distance with the actual tracked-root derivative, or explicitly restrict it to a frozen emission point. Transmitter motion changes the selected emission point even infinitesimally; outward receiver motion can accompany decreasing causal separation. Preserve the valid instantaneous power formula.
+- **ME03-02 — relative-periodic root relabeling:** Make the forward-time root map use the inverse of the permutation defined by the displayed orbit-return convention. For a non-involutive permutation, applying the displayed forward permutation at the later time generally selects a different history. Preserve relative-periodic closure and the full evolved-history obligations.
+- **ME03-03 — transmitter fold versus receiver tangency:** Describe the MCB Jacobian condition as transmitter-side root degeneracy. Tangency of the receiver to a fixed emitted wake is a receiver-side condition; the two coincide in the stated uniform-circular special case, not for arbitrary curved self-history. Preserve singular-event and non-closure limits.
+- **Existing ME-2 propagation:** A stationary playback point at `D_r=0` need not reverse playback unless the sign actually changes. Clarify the surviving receiver-turning sentence using the already accepted stationary-point versus reversal distinction; retain the canonical transmitter-side acceleration weight. This is a direct-consumer follow-up, not a newly counted independent scientific finding.
+
+### OPS-031 — October 2 early-chapter referrals
+
+The original referral descriptions below preserve the review scope; the completed disposition supersedes their proposal and permission wording.
+
+- **Status:** The operator accepted EOS02-01, EOS02-02 and ME02-01; their scoped replacements are implemented in the [October 2 integration record](work-log.md#2026-10-02--three-ops-031-clarifications-integrated). The two scope-family follow-ups below were accepted and completed October 3; see the [October 3 six-group closure](evidence/ops-031-six-group-closure-2026-10-03.md). CRW-005 remains closed.
+- **Existing chart-floor scope family:** Include Master Equation line 163 in the existing distinction between a chosen positive floor failing and the actual zero-derivative singularity. A different certified chart may still cover a simple root. This is proposed direct-consumer propagation of ATT27-02, not permission to alter a continuation law.
+- **Existing auxiliary-method scope family:** Clarify the Emergence finite-regulator/history chart and convergence-mechanism paragraph under the September 26 decision. Mathematical approximations remain permitted; equivalence to complete-root dynamics requires the applicable exact restriction or recovery argument. Do not prohibit valid centering, screening or summation prescriptions. This is proposed direct-consumer propagation, not authorization for a new repair campaign.
+
+### OPS-031 — September 30 spatial chart referrals
+
+The original referral descriptions below preserve the review scope; the completed disposition supersedes their proposal and permission wording.
+
+- **Status:** ✓ Done; the fixed-identity coordinate choice and bounded result propagation were accepted and completed October 3; see the [October 3 six-group closure](evidence/ops-031-six-group-closure-2026-10-03.md). CRW-005 remains closed.
+- **Two-component chart:** Reconcile strictly ordered axial coordinates with the declared all-equatorial special case, which places six endpoints at each component height. Also reconcile the sorted first-six/last-six circulation rule with opposite component circulation when component heights interleave. The direct coordinate witnesses and source scope belong in the [September 30 review](../aaa-operations/evidence/ops-031-3d-braid-assemblies-review-2026-09-30.md). The existing Braid geometry and corpus owners should choose a consistent member-label and chart-domain declaration; preserve persistent identities, explicit component membership and physical claim limits. No runtime or source edit is accepted by this referral.
+- **Axial-speed status propagation:** Extend the already proposed [September 28 core-status reconciliation](#ops-031--september-28-core-review-referrals) to the 3D chapter's Fixed Axial-Translation Control paragraph. Its blanket “other axial speeds” statement omits the accepted bounded speed chart. Preserve the certified branch and speed limits and the open deformed/higher-topology cases; do not reopen or strengthen the underlying scientific acceptance.
+
+### OPS-031 — September 28 core review referrals
+
+The original referral descriptions below preserve the review scope; the completed disposition supersedes their proposal and permission wording.
+
+- **Status:** ✓ Done; both findings were accepted and completed October 3; see the [October 3 six-group closure](evidence/ops-031-six-group-closure-2026-10-03.md). CRW-005 remains closed.
+- **Braid Taxonomy, BT28-01:** Clarify that a 2D component has affine dimension exactly two, and leave complete but rank-zero/rank-one components unassigned. Plane containment alone includes a line or point; the live Borg descriptor already distinguishes that boundary. The [review receipt](../aaa-operations/evidence/ops-031-braid-taxonomy-review-2026-09-28.md) gives the coordinate counterexample, consumer scope and falsifier. The corpus editor should confirm the boundary with the Borg taxonomy owner before preparing the narrow definition repair; no new physical class or runtime change is accepted here.
+- **Planar Braid Assemblies, PBA28-01:** Reconcile current-status sentences with the already accepted BP-011 global equal-radius ladder, T04 short-time history uniqueness, local phase/radius isolation and bounded axial-speed results. The [whole-chapter review](../aaa-operations/evidence/ops-031-2d-braid-assemblies-review-2026-09-28.md) identifies each passage, primary evidence and scope limit. Prepare one self-contained editorial synthesis with BP-011 scientific adjudication; do not upgrade the old numerical instruments, imply full-cycle release/stability, or reopen completed research. Historical certificates were inspected, not rerun; this is a proposed propagation repair, not fresh scientific acceptance.
+
+### OPS-031 — September 25 review referrals
+
+The original referral descriptions below preserve the review scope; the completed disposition supersedes their proposal and permission wording.
+
+- **Status:** ✓ Done for the bounded editorial findings: the operator accepted the remaining Action Model and weak-clock replacements October 3, implemented with separate verification in the [October 3 six-group closure](evidence/ops-031-six-group-closure-2026-10-03.md). Scientific obligations and optional consolidation remain separately scoped; CRW-005 remains closed.
+- **Analytic Baselines, AB-20260925-01 — completed September 26:** The accepted insertion requires integrated, disjoint emission bands plus their complement wherever needed, and the related virial wording now states trajectory and equation assumptions. The [receipt](../aaa-operations/evidence/ops-031-analytic-baselines-review-2026-09-25.md) retains the independent positive-complement counterexample; the [implementation record](analysis/ops-031-master-equation-deviation-audit-2026-09-26.md#implementation-record) records the integration. Existing O1–O3 remain open.
+- **Braid Recovery Requirements, BRR-01:** Low notation clarification. Specify observer-chart relative velocity in the weak-clock row, consistently with Proper Time and Time Dilation. The [receipt](../aaa-operations/evidence/ops-031-braid-recovery-requirements-review-2026-09-25.md) supplies the unit-rescaling argument and explicit falsifier. This is not a demonstrated wrong coefficient or introduced regression.
+- **Action Model Comparison, historical E1–E3:** The [current full review](../aaa-operations/evidence/ops-031-action-model-review-2026-09-25.md) qualifies the broad September 11 closeout: undefined hit observables, ambiguous single-weight wording, residual unmeasured-cost qualifiers and malformed Pros hierarchy remain. Preserve existing IDs and acceptance history; the editorial owner should prepare the remaining exact replacements, resolving intended observable definitions before editing. The zero-delay, impulse and discrepancy repairs survive. Repeated-summary consolidation and simple-root wording are optional; O1–O3 scientific obligations remain separately owned. No new mathematical regression or new repair campaign is asserted.
+- **Remaining prepared proposal:** Items 4–9 of the [September 26 consolidated proposal](analysis/ops-031-repair-proposal-2026-09-26.md) were accepted and implemented October 3; items 1–3 were implemented September 26. The remaining Action Model observable/weight/editorial repairs and the weak-clock velocity notation are separate from this accepted Master Equation batch.
+- **Operator clarification and integration, September 26:** Mathematical techniques for studying the Master Equation remain permitted. The [implementation record](analysis/ops-031-master-equation-deviation-audit-2026-09-26.md#implementation-record) records the three research pullbacks and local distinction repairs. These documentation changes establish no new sharp-law trajectory, solver behavior, or scientific closure. Historical receipts and scheduled coverage remain intact.
+
 
 ### OPS-031 — September 29 frame clarification
 

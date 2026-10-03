@@ -11,7 +11,7 @@
 - Promotion status: not promoted
 - Normalization: $c_f=1$ throughout; symbolic $c_f$ is retained only where its dependence is the point of the identity.
 - Separate mathematical owner: [MEC-007 mirror close-approach causal-root boundary](../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md) owns the persistent-label mirror-symmetric collinear encounter. This packet does not reopen, re-derive, or contradict it.
-- Consumed as settled prior: MEC-007's first-boundary ordering and unchanged-law divergence; [MEC-006 receiver wake-gradient closure](receiver-wake-gradient-closure.md) for the regular fixed-reception gradient; [GD-5 vanishing-delay hazard](../field-speed-ceiling/analysis/germund-dahlquist-review-2026-08-02.md); and the [conditional speed-bound rigidity and self-root exclusion theorem](../field-speed-ceiling/analysis/jack-k-hale-second-review-2026-08-02.md), without importing a global velocity ceiling.
+- Consumed as settled prior: MEC-007's first-boundary ordering and unchanged-law divergence; [MEC-006 receiver wake-gradient closure](receiver-wake-gradient-closure.md) for the regular fixed-reception gradient; [GD-5 vanishing-delay hazard](../equation-variants/field-speed-ceiling/history/analysis/germund-dahlquist-review-2026-08-02.md); and the [conditional speed-bound rigidity and self-root exclusion theorem](../equation-variants/field-speed-ceiling/history/analysis/jack-k-hale-second-review-2026-08-02.md), without importing a global velocity ceiling.
 
 ## Independent disposition, 2026-09-09
 
@@ -1963,7 +1963,7 @@ The [independent adjudication](mec-008-independent-adjudication.md) accepts the 
 
 | Acceptance element | Present evidence | Status |
 | --- | --- | --- |
-| Admitted path domain | The canonical model has an open velocity domain; the separate [field-speed compatibility decision](../field-speed-ceiling/decisions/field-speed-ceiling-compatibility-decision.md) explicitly records that no primitive $c_f$ path-speed ceiling is adopted | satisfied by current canon |
+| Admitted path domain | The canonical model has an open velocity domain; the separate [field-speed compatibility decision](../equation-variants/field-speed-ceiling/history/decisions/field-speed-ceiling-compatibility-decision.md) explicitly records that no primitive $c_f$ path-speed ceiling is adopted | satisfied by current canon |
 | Populated and noncollinear | Four Architrinos, with the environmental pair at $y=1.5$ | satisfied |
 | Complete retained history | Exact piecewise-cubic target histories, stationary environmental histories, declared all-earlier shelves, retained depth $5.5$, and radius $2.5$ | satisfied analytically |
 | Complete causal-root provenance | Fourteen named simple $D_t=1$ roots and two proved-empty self channels; persistence is proved on $[0,T_\ast)$ | satisfied analytically |

@@ -10,13 +10,23 @@ This is the single execution home for the existing PHO-009 photon formation-geom
 
 ### Specify the first twelve-architrino candidate test
 
-- **Status:** ○ Queued — not started; unassigned.
+- **Status:** ○ Queued — complete preparation and executable specification remain unassigned.
 - **Request:** Define the first test of the twelve-architrino photon candidate against the unchanged Master Equation, as recommended after the geometry consolidation and captured by the operator's 2026-10-02 request.
 - **Scope:** Specify every constituent's identity, polarity and complete relevant past for the coaxial contra-rotating planar-pair candidate, together with radii, phases, relative placement, translation and surrounding-population assumptions. Identify which histories are prescribed and which would evolve with full mutual response. Keep the twelve-member construction distinct from the alternative F6c proposal.
 - **Scenario:** Use the unchanged Master Equation with numerical $c_f=1$, all applicable partner and self-history causal roots, and declared root-admission and singular-event boundaries. No response multiplier, speed ceiling, root exclusion or event rule transfers from a side study.
 - **Dependencies:** Start from the [candidate account](manuscript.md) and its existing source and Braid-control links. A retained photon is the eventual target, not an assumed input to this specification. Any required history or environmental input that cannot be supplied must be named explicitly.
+- **Derived constraints to consume:** The [fixed-plane root and axial conditions](analysis/translating-carrier-root-and-axial-constraints.md) exclude an isolated ordinary circular leading plane at $c_\gamma\geq c_f$ and require per-member axial balance $A_{x,i}=US_i+C_i=0$. For $U>0$, the proposed opposite cross-weight signs require verified negative total scalar weights, not isolated-ring signs. Identify whether the chosen histories actually form regular alternating hexagons; in that restricted contra-rotating chart, cross coupling is anti-periodic and cannot provide a nonzero constant correction. Use the existing bounded single-ring certificate only on its stated stationary-derived screw branches. A prescribed rigid residual remains a valid rejection screen; it is not a retained-orbit test.
+- **First unfinished comparisons:** Independently reconstruct the root exclusion, axial identity and regular-hexagon time-dependence argument. For one completely declared coaxial pair below wake speed, evaluate the complete per-member axial sums before any retained-orbit search, with a static/simple-root or other exact analytical known case first. Report the actual total scalar weights and cross contributions; a wrong necessary sign rejects that preparation only under the verified weight hypotheses. A sampled phase value does not establish balance throughout a period. Keep histories with internal axial motion outside the fixed-offset exclusion unless a new proof covers them.
 - **Completion:** A reproducible test specification supplies complete histories, parameters, a bounded comparison interval, root-coverage requirements and the acceleration residual between the prescribed motion and the full equation for each constituent. It names an independent mathematical reference or separately authored check, known cases to validate the instrument before use, acceptance tolerances and conditions that would reject the candidate or stop the calculation. Specification completion alone establishes no retained branch and launches no simulation; PHO-009 remains blocked on its existing prerequisites.
 - **Ranking:** No new numerical score or global rank is assigned.
+
+The [modulated-history proposal](brainstorming.md#rigid-screen-and-modulated-history-proposal) records a possible periodic boundary-value problem after the rigid screen. Adopting that as a new completion criterion is unresolved; this integration neither completes the specification nor launches a simulation.
+
+### Decide whether to add a modulated periodic-orbit criterion
+
+- **Status:** ○ Deferred — discussion-scoped; current rigid-screen completion remains binding.
+- **Decision:** Decide whether to supplement the candidate specification with a periodic boundary-value problem, and declare its complete histories, symmetry/phase conditions, axial motion, root topology and equation-residual acceptance. The contra-rotating time-dependence result is restricted to the actual regular-ring chart; it is not a universal nonexistence theorem for photon carriers.
+- **Completion:** Record the selected completion criterion or a rejection/deferral with revisit condition. No retained orbit, ambient mechanism or environmental response is assumed. This cross-owner change is indexed in the Operator Discussion Queue.
 
 ## Deferred / blocked
 

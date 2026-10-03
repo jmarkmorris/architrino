@@ -16,6 +16,8 @@ The [geometry collection](README.md#geometry-analyses-and-evidence) now brings t
 
 ## Research boundary
 
+The [2026-10-03 supplied-review assessment](analysis/photon-review-integration-2026-10-03.md) adds [root and axial constraints](analysis/translating-carrier-root-and-axial-constraints.md) to the existing test specification. The wake-speed exclusion is scoped to isolated fixed-plane histories on the ordinary chart; singular contacts remain explicit. The axial identity and regular-hexagon anti-periodicity narrow possible rigid tests without supplying a retained branch. A modulated-history boundary-value search remains a proposal; task status and completion criteria are unchanged.
+
 The photon-specific question begins where a candidate assembly is required to propagate as a coherent carrier. A binary result may constrain one constituent pair; a multi-binary result may constrain a braid or pair of braids. Neither alone supplies the complete photon history or its source, environment and receiver accounts. A photon identification requires the additional kinematic, transverse-response and event-transfer conditions in the corpus [closure interface](../../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface).
 
 The [Braid Program](../braid-program/priorities.md) keeps general assembly qualification, and [binary research](../binary-research/priorities.md) keeps single-binary dynamics. Shared causal-root, self-history and continuation rules remain with [Master-Equation Closure](../priorities.md). Common environmental response remains with [Noether sea research](../noether-sea-research/priorities.md).

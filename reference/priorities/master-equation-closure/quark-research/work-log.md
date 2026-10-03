@@ -1,5 +1,15 @@
 # Quark research work log
 
+## 2026-10-03 — Supplied review integrated; preparation remains queued
+
+The [assessment](analysis/quark-review-integration-2026-10-03.md) accepts the periodic-probe identity and dyad arithmetic while qualifying the seat and octet claims. The [probe calculation](analysis/periodic-host-probe-average.md) strengthens the first-order no-static-seat result: changing reception to emission time cancels the canonical transmitter weight, so a complete periodic uniformly subfield host has an exact harmonic stationary-probe average away from its paths. It also derives a formal Fourier-weighted oscillation correction, with an intensity-gradient form only for curl-free coefficients in a controlled small-displacement regime.
+
+The [symmetry calculation](analysis/axis-coupling-symmetry.md) gives the oriented octahedral decomposition and the distinct unsigned-axis decomposition. Full host-history symmetry, an actual response map and the observer-level color action remain unresolved. Equal block responses are a conditional isotropic comparison, not a universal requirement on all candidate frequencies.
+
+The manuscript, accessory analysis, strategy, brainstorming and existing queued specification now carry these results and boundaries. The specification remains queued because its selected host and complete preparation have not been supplied. SMC-011 remains Deferred / blocked on SMC-003 and SMC-009, as checked by direct read of the Standard Model queue; no simulation, numerical score or task dispatch was activated. The original extracted vortex proposal body and historical filing evidence are preserved. The mathematics is derived and self-reviewed, with independent adjudication outstanding.
+
+The disposable Node checker at .tmp/quark-review-integration/check.mjs passes its positive and negative known cases before checking the eleven current Markdown documents for local paths, anchors, KaTeX syntax and trailing whitespace. Its receipt is .tmp/quark-review-integration/check-result.json. A known SHA-256 control precedes preservation checks against the pre-edit baseline: the concurrent README, filing JSON, two published corpus chapters and external execution queue retain their bytes, and the original extracted proposal body matches exactly. Scoped git diff --check passes; new Markdown whitespace is also covered by the Node checker. These are source and preservation checks, not scientific validation. No host/probe evolution, scientific instrument, Python command, corpus edit, generated-target write or Git mutation was performed.
+
 Scientific explanation belongs in the [manuscript](manuscript.md) and [focused analyses](analysis/accessory-geometry.md); proposals belong in [brainstorming](brainstorming.md), and execution routing belongs in the [queue](work-queue.md).
 
 ## 2026-10-02 — Unfinished preparation recommendation queued

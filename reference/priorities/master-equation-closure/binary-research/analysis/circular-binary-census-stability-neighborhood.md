@@ -107,7 +107,7 @@ Direct evaluation from the exact Dottie root gives the diagnostic values
 
 | Quantity | Normalized value |
 | --- | ---: |
-| $D$ | $0.7390851332151607$ |
+| $D$ | $0.7390851332151606$ |
 | $c_\circ$ | $0.44589026512609264$ |
 | $q_-$ | $1.1259001928478412$ |
 | $q_+$ | $1.3254748693932965$ |

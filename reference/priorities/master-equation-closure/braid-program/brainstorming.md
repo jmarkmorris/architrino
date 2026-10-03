@@ -16,7 +16,7 @@ The [collinear manuscript](../collinear-research/manuscript.md) owns the compari
 
 ## Research ownership
 
-[Master-Equation Closure](../README.md) owns the shared law and its geometry workstreams. [Binary research](../binary-research/README.md) owns isolated-pair dynamics and the combined Campaign 1; [collinear research](../collinear-research/README.md) owns encounters along one line; this program owns multi-binary and more general multi-architrino assemblies. [Lattice research](../lattice-research/README.md), [Noether sea research](../noether-sea-research/README.md), and [photon research](../photon-research/README.md) own their respective questions. The [field-speed-ceiling directory](../field-speed-ceiling/README.md) remains dormant history. The [earlier filing record](analysis/research-reorganization-completion.md) preserves the prior migration.
+[Master-Equation Closure](../README.md) owns the shared law and its geometry workstreams. [Binary research](../binary-research/README.md) owns isolated-pair dynamics and the combined Campaign 1; [collinear research](../collinear-research/README.md) owns encounters along one line; this program owns multi-binary and more general multi-architrino assemblies. [Lattice research](../lattice-research/README.md), [Noether sea research](../noether-sea-research/README.md), and [photon research](../photon-research/README.md) own their respective questions. The [field-speed-ceiling directory](../equation-variants/field-speed-ceiling/history/README.md) remains dormant history. The [earlier filing record](analysis/research-reorganization-completion.md) preserves the prior migration.
 
 ## Composition, Identity, and Taxonomy
 

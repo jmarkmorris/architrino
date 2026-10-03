@@ -33,7 +33,7 @@ $$
 R_\ast(\lambda)=\frac{K}{4c_a^2\cos\xi(1+\lambda\sin\xi)},\qquad |\omega_\ast|=\frac{c_a}{R_\ast}
 $$
 
-At $c_a=c_f=1$, $D=\cos D$ gives $D\approx0.7390851332151606$, $R_\ast/K\approx0.2021113735152611$, $|\omega_\ast|K\approx4.9477670782$ and $P/K\approx1.269903212$. These are rounded numerical evaluations of the analytic expressions, consistent with the retained [100-digit endpoint receipt](../field-speed-ceiling/evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json), not new interval certificates.
+At $c_a=c_f=1$, $D=\cos D$ gives $D\approx0.7390851332151606$, $R_\ast/K\approx0.2021113735152611$, $|\omega_\ast|K\approx4.9477670782$ and $P/K\approx1.269903212$. These are rounded numerical evaluations of the analytic expressions, consistent with the retained [100-digit endpoint receipt](evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json), not new interval certificates.
 
 <a id="512-the-radius-family-and-interior-circle-exclusion"></a>
 #### 1.1.2. The radius family and interior-circle exclusion
@@ -46,6 +46,8 @@ R_\ast=\frac{K}{4c_a^2}\left(1-\frac{\lambda^2}{2}+\frac{7\lambda^4}{8}+O(\lambd
 $$
 
 This gives a minimum only inside the stated family. It supplies no universal minimum radius, action quantum or maximum physical frequency. Root conditioning is favorable: $d\xi/d\lambda=\cos\xi/(1+\lambda\sin\xi)\in(0,1)$, and $\lambda=\xi/\cos\xi$ parameterizes the family explicitly. Interval-Newton-ready algebra does not replace an actual directed-rounding certificate.
+
+The same complete raw circular ledger directly excludes an isolated all-past antipodal uniform circle under the unchanged Master Equation at every speed $0<w\le c_f$: its tangential acceleration is strictly positive, whereas uniform circular acceleration has zero tangential component. At equality the circle still has no positive-delay self root. This exclusion does not depend on a collinear continuation theorem and makes no assertion about superfield circular candidates.
 
 <a id="513-rigid-translation-fails-the-complete-response"></a>
 #### 1.1.3. Rigid translation fails the complete response
@@ -152,7 +154,7 @@ This result is stronger than the initially non-restoring radius response, but it
 <a id="534-nonlinear-instability-on-the-active-planar-boundary"></a>
 #### 1.3.4. Nonlinear instability on the active planar boundary
 
-The [nonlinear proof](analysis/planar-circle-nonlinear-instability.md) establishes local instability for the antipodal unit-speed branch by constructing physical all-past solutions. Its §4 checks the original Krisztin–Walther–Wu (1999), Appendix I, [Theorem I.3, pp. 168–169](https://books.google.com/books?id=dZRjVZkPG2YC&pg=PA168), including the standing hypotheses on pp. 167–168. The [independent review](../field-speed-ceiling/analysis/planar-circle-instability-independent-review.md) and [corrected reassessment](analysis/planar-circle-instability-review-reassessment.md) record the completed source and application checks. The positions-only estimate below makes the local departure observable in positions; it does not establish motion afterward.
+The [nonlinear proof](analysis/planar-circle-nonlinear-instability.md) establishes local instability for the antipodal unit-speed branch by constructing physical all-past solutions. Its §4 checks the original Krisztin–Walther–Wu (1999), Appendix I, [Theorem I.3, pp. 168–169](https://books.google.com/books?id=dZRjVZkPG2YC&pg=PA168), including the standing hypotheses on pp. 167–168. The [independent review](evidence/planar-circle-instability-independent-review.md) and [corrected reassessment](analysis/planar-circle-instability-review-reassessment.md) record the completed source and application checks. The positions-only estimate below makes the local departure observable in positions; it does not establish motion afterward.
 
 Let $Q$ denote planar rotation, $\mathcal J=Q(\pi/2)$, $\tau=t/R_\ast$, and reconstruct the physical pair by $\mathbf X_A=R_\ast Q(\tau)p(\tau)$, $\mathbf X_B=-\mathbf X_A$. A heading angle $\alpha$ represents the unit velocity through $e(\alpha)=(\cos\alpha,\sin\alpha)$. With dimensionless delay $d$, define
 
@@ -177,6 +179,8 @@ The positive-root eigenvector in these coordinates is $(-z,1,1+z^2)e^{z\tau}$. I
 
 The derived conclusion is existential: there are admissible antipodal planar disturbances, arbitrarily small in the stated history norm, whose evolution leaves a fixed neighborhood of the circular phase family. The exact circle remains a solution. This result does not determine escape, collision, an ellipse, or saturation after departure, nor does it exclude other stable configurations. The supporting proof records the reduction, root census and checked theorem hypotheses.
 
+The grade is derived conditional on KWW Theorem I.3 and the checked local-history hypotheses. The published mathematical theorem is an explicit proof input; its earlier page inspection and application checks do not amount to an independent reproof of that theorem or a new adjudication in this integration.
+
 The [position-to-history lemma](analysis/planar-circle-nonlinear-instability.md#6-exact-scope-of-the-conclusion) makes the departure visible in positions on a window of dimensionless length $2h=8$. In its local domain, let $M_2>0$ bound the second derivative of rotating position and let $L$ be a uniform Lipschitz constant for the history equation. Positional distance at most $\varepsilon$ from one fixed phase circle throughout that window implies final history distance at most
 
 $$
@@ -194,7 +198,7 @@ The [departure diagnostic](analysis/sharp-circle-first-departure.md) integrates 
 
 For the larger-radius input, the raw forward acceleration changes sign near $t/R_\ast=19.910$, at radius approximately $2.8723R_\ast$. The finer numerical crossing bracket is $[19.9095,19.9100]$. The partner root remains ordinary: its last accepted transmitter factor is approximately 1.93981. The change matters dynamically because negative forward acceleration is braking that the ceiling must retain. The unit-speed heading formulation therefore stops at this boundary. The speed-variable continuation in §1.3.6 follows the ensuing motion; the first-departure calculation alone established neither escape nor an outer turning point.
 
-For the smaller-radius input, the adaptive numerical run reaches the radius guard $0.01R_\ast$ near $t/R_\ast=16.4406$, with positive forward component at the evaluated accepted states and trial stages and endpoint transmitter factor approximately 0.8999. This is an observed numerical sign history, not a proof of positivity between evaluations. The guard is a stopping criterion, not a physical core or modified law. No collision, limiting spiral, or new event at zero range follows. The [receipt](../field-speed-ceiling/evidence/sharp-circle-departure-receipt.json) binds reproduction commands, instrument hash, known-case result and refinement summaries. The [contracting-run review](analysis/sharp-circle-escape-independent-review.md#35-contracting-input-separate-resolution-question) records the different stopping events in an exploratory fixed-step instrument and the need for controlled comparisons at shared radii. That diagnostic's resolution sensitivity neither refutes nor certifies the adaptive run. The supplied-history outcomes are separate from the analytical construction of unstable admissible histories.
+For the smaller-radius input, the adaptive numerical run reaches the radius guard $0.01R_\ast$ near $t/R_\ast=16.4406$, with positive forward component at the evaluated accepted states and trial stages and endpoint transmitter factor approximately 0.8999. This is an observed numerical sign history, not a proof of positivity between evaluations. The guard is a stopping criterion, not a physical core or modified law. No collision, limiting spiral, or new event at zero range follows. The [receipt](evidence/sharp-circle-departure-receipt.json) binds reproduction commands, instrument hash, known-case result and refinement summaries. The [contracting-run review](analysis/sharp-circle-escape-independent-review.md#35-contracting-input-separate-resolution-question) records the different stopping events in an exploratory fixed-step instrument and the need for controlled comparisons at shared radii. That diagnostic's resolution sensitivity neither refutes nor certifies the adaptive run. The supplied-history outcomes are separate from the analytical construction of unstable admissible histories.
 
 
 #### 1.3.6. Braking continuation and a sufficient escape condition
@@ -221,6 +225,8 @@ I_B=\frac{k}{(1-\beta)u(x_0+m)}
 $$
 
 It gives $J\ge1-\beta$, includes the source's longitudinal distance in the range floor, and closes the future bounds by integrating the acceleration. Lipschitz retained velocity permits Picard–Lindelöf continuation on windows shorter than the positive delay floor; reflection symmetry and uniqueness identify the reduction with the two-body solution. The [full treatment](analysis/sharp-circle-braking-continuation.md#6-stronger-escape-criterion-and-corrected-finite-target) includes the uncertain-direction radial condition. The corrected plan seeks existence through time 300 and errors at most 0.5 in position and 0.02 in velocity on $[99.27557599180734,300]$, together with continuous root and source bounds. These are planning allowances, not achieved errors. Position allowance 1 was too large to preserve the negative old-source gap.
+
+The preceding escape arguments also apply to an unchanged-equation antipodal solution with all their complete-history, ordinary-root, regularity, old-source exclusion and strict bootstrap hypotheses. They do not need a positive boundary projection once the future stays strictly subfield. This conditional applicability does not transfer the preceding capped numerical preparation to the unchanged model or establish escape from that supplied input.
 
 #### 1.3.7. First-window interval equation-error bounds
 
@@ -263,7 +269,9 @@ An earlier removed run had also motivated the breathing investigation, but its n
 
 
 
-### 2.2. Local outward departure and a later inward turn
+<a id="22-local-outward-departure-and-a-later-inward-turn"></a>
+
+### 2.2. Local outward departure and a reported radial sign change
 
 A radially balanced circular two-member past has another behavior. On its principal one-partner-root, no-self-root chart with $0<\beta<1$, the initial radial velocity and acceleration vanish, but the delayed tangential acceleration is positive. Rotational covariance and the exact polar equations give
 
@@ -274,9 +282,11 @@ $$
 
 Thus the initial departure is outward at cubic order. The derivation is acceleration-first and does not import an angular-momentum conservation argument. It is local: positive tangential acceleration does not prohibit a later radial maximum, nor must it make total speed increase when radial acceleration projects negatively on velocity.
 
-A longer retained circular-history release supplies the source's measured counterexample to universal monotone outspiral. Its observer mapping starts at radius 2 kpc and member speed 100 km/s, while the actual numerical evolution remains normalized to $c_f=1$. The first radial-velocity sign change is bracketed at normalized times 18,547.75–18,548.00, mapped to roughly 120.989–120.991 million years, with radius about 2.00840092573 kpc. The earlier total-speed maximum and this radial maximum are distinct events.
+A longer retained circular-history release reports a numerical radial-velocity sign change. Its observer mapping starts at radius 2 kpc and member speed 100 km/s, while the actual numerical evolution remains normalized to $c_f=1$. Successive accepted midpoint samples change sign at normalized times 18,547.75–18,548.00, mapped to roughly 120.989–120.991 million years, with radius about 2.00840092573 kpc. The earlier total-speed maximum and this reported radial event are distinct.
 
-That long run explicitly changes root and acceleration tolerances through a fingerprint-bound continuation sequence and records overlap controls. It is not one unchanged refinement ladder. The independent circular reference checks release calibration, not the complete later trajectory. The [radial-turn result](evidence/2026-08-11-physical-binary-retained-history-radial-turn.md) therefore supports a bounded measured negative to universal monotonicity; it supplies no later inward fate, repeated excursion, binding or persistent branch.
+That long run explicitly changes root and acceleration tolerances through a fingerprint-bound continuation sequence and records overlap controls. It is not one unchanged refinement ladder. The independent circular reference checks release calibration, not the complete later trajectory. Inspection of the measurement code shows midpoint extraction from retained position and velocity hulls; its stopping rule does not prove opposite interval radial signs for the exact solution. The [historical radial-turn record](evidence/2026-08-11-physical-binary-retained-history-radial-turn.md) is preserved, while the [current assessment](analysis/binary-review-integration-2026-10-03.md#evidence-and-reproducibility-boundaries) limits its universal-monotonicity claim to the numerical observation. No later inward fate, repeated excursion, binding or persistent branch follows.
+
+The [slow-binary calculation](analysis/slow-binary-first-order-drift.md) derives a local row remainder bound and the forced response about the zero-delay circular control. With initial member speed $v$, $\omega=v/R$ and leading forward acceleration $f=v^3/(Rc_f)$, its first-order radial velocity is $2f(1-\cos\omega T)/\omega$. It predicts outward mean drift with a double zero near one revolution, and separately reproduces the measured speed maximum and radius increment closely. This is an analytical comparison independent of the solver, with no achieved exact-trajectory error bound. The tiny reported negative radial velocity is a higher-order event that the leading expression cannot resolve. Formal averaging gives $d(R^2)/dT=K/c_f$ and a quadratic-in-angle spiral; long-time validity and actual binary escape remain unproved.
 
 ### 2.3. What a completed return experiment still requires
 

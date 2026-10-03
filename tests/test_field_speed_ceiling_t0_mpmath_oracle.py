@@ -20,7 +20,7 @@ INPUT = (
 )
 RECEIPT = (
     ROOT
-    / "reference/priorities/master-equation-closure/field-speed-ceiling/evidence/"
+    / "reference/priorities/master-equation-closure/braid-program/evidence/"
     "fsc-004-t0-six-path-mpmath-receipt.v1.json"
 )
 PYTHON = Path(sys.executable)
