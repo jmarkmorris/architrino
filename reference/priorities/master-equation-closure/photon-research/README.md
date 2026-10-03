@@ -1,5 +1,8 @@
 # Photon research
 
+This configuration owner contains its research under the canonical Master Equation and any explicitly selected [authorized equation variations](../equation-variants/README.md): field-speed ceiling, logarithmic potential, or their specified combination. Shared definitions remain with the parent; configuration-specific mathematics, reviews, evidence and tasks belong here. An available variation is not an implicit assumption, and this ownership rule activates no new investigation.
+
+
 This workstream investigates candidate photon histories under the Master Equation: their formation, propagation, internal geometry and interaction with a specified environment. The [manuscript](manuscript.md) begins with the canonical 12-worldline candidate and explains what remains to be established before it can represent a physical photon.
 
 The current candidate is a coaxial contra-rotating polarity-conjugate planar pair. Each planar braid contains three binaries, so the full pair contains twelve architrinos. Its geometry is specified; an independently certified retained free-photon branch remains missing. Establishing this directory does not change that evidence boundary.

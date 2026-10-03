@@ -1,6 +1,6 @@
 # Reassessment of the planar-instability review after the research reorganization
 
-**Date:** 2026-09-26. **Author:** Claude, the author of the [2026-09-16 independent review](../../field-speed-ceiling/analysis/planar-circle-instability-independent-review.md); evidence-grade and lemma corrections and original-source verification integrated by Codex on 2026-09-26. **Grade:** derived local nonlinear instability and estimates under the stated model and local-history hypotheses; reported floating-point diagnostics with the validation limits in Sections 3.3 and 5. Section 3.1 records the completed original-theorem check. **Scope:** the sharp Master Equation partner row, the authorized field-speed ceiling with least-change projection of the complete sum, zero self response at and below field speed, $c_f=c_a=1$, isolated antipodal opposite-polarity pair. No smoothing or additional reception rule enters.
+**Date:** 2026-09-26. **Author:** Claude, the author of the [2026-09-16 independent review](../evidence/planar-circle-instability-independent-review.md); evidence-grade and lemma corrections and original-source verification integrated by Codex on 2026-09-26. **Grade:** derived local nonlinear instability and estimates under the stated model and local-history hypotheses; reported floating-point diagnostics with the validation limits in Sections 3.3 and 5. Section 3.1 records the completed original-theorem check. **Scope:** the sharp Master Equation partner row, the authorized field-speed ceiling with least-change projection of the complete sum, zero self response at and below field speed, $c_f=c_a=1$, isolated antipodal opposite-polarity pair. No smoothing or additional reception rule enters.
 
 This note re-evaluates the earlier review against the current state of its subject. The review itself is preserved unchanged in the historical ceiling directory. Where this note corrects the review, the correction is stated explicitly and supersedes it.
 
@@ -9,6 +9,8 @@ This note re-evaluates the earlier review against the current state of its subje
 On 2026-09-26 the field-speed-ceiling directory was parked under `dormant-deferred`. The circular-binary work, including the three planar derivations, moved to the Braid Program, and the regular-chart theorem moved to Master-Equation Closure. The migration record lists these moves in its [path map](../../braid-program/analysis/research-reorganization-completion.md). The manuscript sections formerly numbered 5.3.1 to 5.3.4 are now [§9.3.1 to §9.3.4](../manuscript.md#13-planar-perturbations-and-the-ellipse-question), with legacy anchors preserved. Two new numerical subsections, §9.3.5 and §9.3.6, follow them.
 
 The reorganization preserved the governing equations in the first-variation and growing-mode analyses. The nonlinear proof was revised after the review to integrate its corrections. The questions here concern those integrations and the earlier review's remaining mathematical and evidence obligations; the corrected verdicts are stated in Section 6.
+
+The later binary-directory extraction renumbered this circular chapter again: all historical §9.3.x references in this record correspond to current binary-manuscript §1.3.x, with their link targets preserved. The current departure references below use that numbering; earlier review-history labels retain their original section identity.
 
 ## 2. Status of each correction the review requested
 
@@ -77,6 +79,8 @@ Then the $C^1$ distance of the final state segment from the equilibrium $(p_\gam
 
 ### 3.3. An analytic spectral bound and an uncertified numerical count
 
+The analytic confinement inequality below repeats the argument in the subject's growing-mode proof; its second presentation is not an independently authored proof. The sampled numerical check is already classified as uncontrolled in Section 5. The exclusion stands on its explicit rational inequalities, whose correctness can be assessed directly.
+
 The review's argument-principle computation covered a finite window, and the proof header correctly declined to call it a global spectral certificate. An analytic bound confines every root in the closed right half-plane to that window. This resolves the outer-domain question only; it does not certify the numerical count inside. Use $F$, $N$, and $M$ from the [growing-mode derivation](planar-circle-growing-mode.md#1-rotating-coordinates-and-the-speed-constraint), with $C=D$, $S=\sin D$, and $J=1+S$. For $\operatorname{Re}z\ge0$ one has $|E|=|e^{-2Dz}|\le1$, $|M|\le2S|z|+2C$, and $|N|\le2C|z|+2S$. Termwise triangle inequalities then give
 
 $$
@@ -106,7 +110,7 @@ A root-count certificate would require a justified nonvanishing enclosure for $F
 
 ## 4. The new departure subsections
 
-Sections 9.3.5 and 9.3.6 of the manuscript are outside the review's original scope. Their escape argument has its own [review assignment](sharp-circle-escape-claude-review-prompt.md), and nothing here pre-empts its resulting review. They do bear on one statement in the review. The review reported an exploratory run from the supplied radius $1.001R_\ast$ that left the band $[0.5,1.5]R_\ast$ near $t/R_\ast\approx15.7$ with the active branch intact. That is consistent with §9.3.5, which follows the same history further to ceiling release. The review's exploratory run is now superseded by §9.3.5 and adds nothing beyond it.
+Sections 1.3.5 and 1.3.6 of the current binary manuscript (formerly 9.3.5 and 9.3.6) are outside the review's original scope. Their escape argument has its own [review assignment](sharp-circle-escape-claude-review-prompt.md), and nothing here pre-empts its resulting review. They do bear on one statement in the review. The review reported an exploratory run from the supplied radius $1.001R_\ast$ that left the band $[0.5,1.5]R_\ast$ near $t/R_\ast\approx15.7$ with the active branch intact. That is consistent with §1.3.5, which follows the same history further to ceiling release. The review's exploratory run is now superseded by §1.3.5 and adds nothing beyond it.
 
 ## 5. Reported numerical checks and corrected validation account
 

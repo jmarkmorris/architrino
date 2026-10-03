@@ -1,5 +1,7 @@
 # Finite passage, springs and other restoring responses
 
+> **Mixed scope: quadratic-response sections are quarantined.** The stronger stationary strict-speed theorem below assumes the added quadratic receiver multiplier. That theorem and the softened/linear examples using it are inactive special examinations, not current scenario assumptions; reuse requires explicit operator re-selection. The general local integrability criterion under its stated crossing bounds, the separate self-root criterion and the external oscillator comparisons do not depend on selecting that multiplier and retain their own conditional scopes. The original mathematics is preserved. See the [collinear quarantine disposition](../README.md#quarantined-quadratic-response-examinations).
+
 ## Result and meaning
 
 **Derived result:** with the original arrival geometry and source-motion weighting, a distance response less singular than $1/R$ has finite accumulated acceleration on a crossing whose speed and source factor stay away from their singular limits. A stronger statement holds for the stationary mirror encounter with the proposed multiplier $1-v^2$: positive responses behaving as $R^p$ with $p>-1$ reach a finite coincidence limit at speed strictly below one. A response that tends to zero also supplies a continuous zero acceleration limit there, provided the source-speed gap remains positive. These statements do not by themselves prove a unique outgoing history or repeated bounded motion.
@@ -18,13 +20,13 @@ $$
 
 $f(R)\ge0$ is the distance-response magnitude, including its coupling. The current comparison uses either $m=1$ or the already proposed $m=1-v_i^2$. This notation does not specify a new fourth speed regime. A coefficient multiplying a different power of distance has different dimensions; quantitative comparisons must state a reference range and normalization.
 
-Suppose near a nonzero-speed crossing that $R$ is bounded above and below by positive constants times $|T-T_c|$, $D$ is bounded above and below by positive constants, and the multiplier has the same property. Then finite one-sided accumulated magnitude is equivalent, up to these bounds, to
+Suppose near a nonzero-speed crossing that $R$ is absolutely continuous and monotone, with $0<c\le|dR/dT|\le C<\infty$ almost everywhere, and that $D$ and the multiplier are bounded above and below by positive constants. Then change of variable gives finite one-sided accumulated magnitude equivalent, up to these bounds, to
 
 $$
 \int_0^\epsilon f(R)\,dR<\infty.
 $$
 
-For $f(R)\sim C R^p$ with $C>0$, the criterion is $p>-1$. A finite integral permits a finite velocity change but does not automatically define acceleration exactly at coincidence. Bounded magnitude, continuous acceleration, and unique continuation are stronger and distinct requirements.
+The weaker position estimate $R\asymp|T-T_c|$ alone does not provide these change-of-variable bounds for an arbitrary nonnegative response. For $f(R)\sim C R^p$ with $C>0$, those position bounds suffice directly and the criterion is $p>-1$. A finite integral permits a finite velocity change but does not automatically define acceleration exactly at coincidence. Bounded magnitude, continuous acceleration, and unique continuation are stronger and distinct requirements.
 
 | Distance magnitude near zero | Finite accumulated magnitude under these crossing bounds? | Value at coincidence | Consequence |
 | --- | --- | --- | --- |
@@ -39,6 +41,8 @@ For $f(R)\sim C R^p$ with $C>0$, the criterion is $p>-1$. A finite integral perm
 Here “Lipschitz” means that a small change of position changes the response by at most a fixed constant times that change. It is useful in uniqueness proofs, but is not a proof of uniqueness for the full delayed equation. For $f\to0$, assigning zero at $R=0$ is a continuous extension of the vector expression on a strict-speed domain; it remains an explicit extension beyond the original positive-delay rule.
 
 ## A stronger conclusion for the stationary strict-speed encounter
+
+**Quarantined theorem for the additional quadratic response.** The following proof requires that expressly modified equation; it is not a conclusion for the Master Equation or for a strict speed domain alone.
 
 Take the same mirror preparation $X_+=x$, $X_-=-x$, $x=a>0$ and inward speed $u=0$ on the supplied stationary past. Assume $f$ is positive and locally regular for $0<R\le2a$, and $f(R)\le C R^p$ near zero for some $p>-1$. Use the proposed strict-speed multiplier. Before coincidence,
 
@@ -75,7 +79,19 @@ This establishes a permitted strict-speed incoming contact limit for the stated 
 
 ## What changes when arrivals crowd or self roots appear?
 
-The first table assumes a source-factor gap. If instead, on a declared crossing, $D\sim cR^q$ with $q>0$ and a nonvanishing receiver multiplier, the corresponding criterion becomes $p-q>-1$. The exponents must come from the actual histories. This observation is a warning about which bounds are required, not a prediction that every encounter has that scaling.
+The first table assumes a source-factor gap. On a simple one-dimensional causal branch, differentiating $T-S=R$ and $R=|x_i(T)-x_j(S)|$ instead gives the exact identity
+
+$$
+\frac{dR}{dT}=\frac{n[v_i(T)-v_j(S)]}{1-nv_j(S)}.
+$$
+
+Thus, on a monotone range branch with nonzero relative velocity, the accumulated magnitude obeys
+
+$$
+|A_i|\,dT=\frac{m(v_i)f(R)}{|v_i(T)-v_j(S)|}\,|dR|.
+$$
+
+The source factor cancels in this variable; it has not disappeared from the acceleration law. If the multiplier and relative-speed magnitude have positive upper and lower bounds, the same $p>-1$ threshold holds even when the source factor tends to zero. A criterion $p-q>-1$ inferred from $D\sim R^q$ alone is therefore unjustified. Vanishing relative speed, nonmonotone range and degenerate roots require their own analysis; the simple-branch substitution does not resolve them.
 
 For the monotone self-birth geometry of the [existing self-root analysis](mirror-close-approach-causal-root-boundary.md), write $\rho=T_r-T_s$, $w_-=1-u(T_s)$ and $w_+=u(T_r)-1$. With unsuppressed self response $f_{\mathrm s}(\rho)$, the exact measure is
 
@@ -104,6 +120,8 @@ This is why the ideal undriven, undamped model repeats without growing excursion
 
 ## Our softened interaction already contains a linear restoring center
 
+**Quarantined example.** The spatial expansion is an algebraic property of the stated response; the passage and return results cited here belong to the combined softened-plus-quadratic study.
+
 The earlier finite-length response was
 
 $$
@@ -116,6 +134,10 @@ Before source and receiver weighting, its signed response is therefore $-Gd/\ell
 The recorded passage is consistent with this finite, vanishing center response. The subsequent speed gain remains possible because the actual equation samples delayed source positions and velocities, includes the source-motion weighting, and includes the proposed receiver factor. It is not the instantaneous oscillator equation. The [acceleration-balance audit](strict-speed-acceleration-balance.md) already records the unequal departure and return contributions. Calling the interaction a spring would not remove those differences.
 
 ## Recommendation and checkable limits
+
+**Current comparison correction, 2026-10-02:** the historical “completed linear-response comparison” below used an unselected receiver multiplier and did not perform the originally accepted ordinary-versus-delayed comparison. Its stronger multiplier-bearing theorem remains quarantined. The [corrected comparison](multiplier-free-linear-delayed-comparison.md) independently measures the first two passages and turns without that factor, then reaches a self-root birth requiring the complete uncapped ledger. This does not replace the assumptions of the general local integrability criterion or convert the historical strict-speed theorem into a multiplier-free theorem.
+
+The recommendations below are retained as part of the original comparison. They do not select a response for current research or reactivate the quarantined softened/linear family; any such extension requires explicit operator re-selection.
 
 The useful response class for regular contact is a signed attraction that vanishes continuously at zero, with at least linear behavior offering a simple locally Lipschitz spatial expression. This is a mathematical recommendation, not a physical selection. Slower-than-inverse-distance singular laws can have finite accumulated effects but leave a pointwise event problem. Source crowding must be checked separately, and the strict-speed proof above must not be reused in a superfield self-interacting case.
 

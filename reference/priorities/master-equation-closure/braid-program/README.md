@@ -1,5 +1,11 @@
 # Braid Program
 
+The [preserved multi-binary review](evidence/sections-12-14-independent-review-2026-09-02.md) and [six-path root receipt](evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json) now reside with their configuration research. The [mixed historical reference-case packet](../equation-variants/field-speed-ceiling/history/analysis/quarantined-hypotheses-and-prescribed-reference-cases.md#appendix-b--conditional-prescribed-six-path-reference-geometry) remains cross-subject provenance, not a competing current research owner.
+
+
+This configuration owner contains its research under the canonical Master Equation and any explicitly selected [authorized equation variations](../equation-variants/README.md): field-speed ceiling, logarithmic potential, or their specified combination. Shared definitions remain with the parent; configuration-specific mathematics, reviews, evidence and tasks belong here. An available variation is not an implicit assumption, and this ownership rule activates no new investigation.
+
+
 Status: RATIFIED by the operator (2026-07-24; opened 2026-07-15).
 
 This is a fresh start on the braid search. It supersedes the eight legacy `braid-*` workstreams, which remain frozen in place until they are archived (planned after the current instrument cross-verification campaign completes). Nothing in this directory is moved from the legacy directories; everything here is authored new.
@@ -40,4 +46,4 @@ The one-sentence hygiene rule: **results land in `evidence/`; the synthesis may 
 
 ## Research ownership
 
-[Binary research](../binary-research/README.md) owns isolated two-architrino dynamics, circular-pair analyses and the complete Campaign 1. [Collinear research](../collinear-research/README.md) owns encounters along one line. This program owns multi-binary and more general multi-architrino collections, including four-member and larger circular assemblies, three-binary geometries, and their complete coupled ledgers. [Photon research](../photon-research/README.md) owns photon-specific interpretation and geometry. Shared equation definitions belong to [Master-Equation Closure](../priorities.md); the former ceiling directory remains [historical](../field-speed-ceiling/README.md). Existing task identifiers, model assumptions and evidence grades are preserved.
+[Binary research](../binary-research/README.md) owns isolated two-architrino dynamics, circular-pair analyses and the complete Campaign 1. [Collinear research](../collinear-research/README.md) owns encounters along one line. This program owns multi-binary and more general multi-architrino collections, including four-member and larger circular assemblies, three-binary geometries, and their complete coupled ledgers. [Photon research](../photon-research/README.md) owns photon-specific interpretation and geometry. Shared equation definitions belong to [Master-Equation Closure](../priorities.md); the former ceiling directory remains [historical](../equation-variants/field-speed-ceiling/history/README.md). Existing task identifiers, model assumptions and evidence grades are preserved.

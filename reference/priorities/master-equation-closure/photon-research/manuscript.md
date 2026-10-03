@@ -40,6 +40,29 @@ The [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.
 
 The [prescribed moving-pair analysis](analysis/prescribed-moving-pair-and-self-hit-geometry.md) develops this issue for a moving apparatus, and the [speed analysis](analysis/carrier-and-constituent-speeds.md) states the orthogonality boundary explicitly. The no-catch-up and old-root regimes constrain that diagnostic preparation. The Photon app supplies internal paths and uses its declared display regularization; it does not establish that the unmodified equation produces those paths.
 
+### 2.1. Necessary acceleration conditions for fixed-plane translation
+
+For a finite isolated candidate with paths $\mathbf X_i(T)=(UT+\chi_i)\hat{\mathbf x}+\mathbf y_i(T)$, fixed axial offsets and transverse $\mathbf y_i$, the leading-plane root equation at $U=c_\gamma/c_f=1$ is
+
+$$
+\delta_{ij}^2+2\delta_{ij}u+|\mathbf y_i(T)-\mathbf y_j(T-u)|^2=0,
+\qquad \delta_{ij}=\chi_i-\chi_j\geq0.
+$$
+
+A strictly positive axial gap permits no positive-delay root. Equal-offset contacts require zero transverse separation and have $D_t=0$. Thus the leading plane receives no ordinary contribution; singular contacts cannot be silently omitted. On the ordinary chart its members cannot maintain nonzero circular acceleration. This derived obstruction excludes the isolated fixed-plane circular candidate at wake-speed translation, and at higher forward translation speeds, under these assumptions. It does not exclude every photon geometry or establish an environmental transport law.
+
+At an ordinary root in normalized $c_f=1$ units, the exact axial identity is
+
+$$
+A_{x,i}=US_i+C_i,\qquad
+S_i=\sum_{j,u}\frac{q_iq_jK}{r^2|D_t|},\qquad
+C_i=\sum_{j,u:\chi_j\ne\chi_i}\frac{q_iq_jK\delta_{ij}}{r^3|D_t|}.
+$$
+
+Here $r=u$ is the root range and $K>0$ the acceleration coefficient. Steady axial translation requires the sum to vanish for every member and time. The existing [single-ring axial certificate](../braid-program/evidence/2026-09-01-planar-three-binary-axial-translation-speed-chart.md) excludes nonzero translation on eighteen specific tangential/radial screw candidates at $|U|\leq0.9$; it supplies no universal single-ring sign law. Cross-ring contributions change the total weights and must be evaluated explicitly before assigning their required signs.
+
+For regular alternating hexagons with opposite common angular frequencies, a derived source-index symmetry makes the cross-ring acceleration anti-periodic in the receiver's rotating frame. A rigid circle requires that contribution to be constant, hence identically zero. Within the certified isolated-ring screw chart it therefore cannot repair the axial mismatch. The app's general three-layer paths need not satisfy this regular-hexagon symmetry. The [root and axial analysis](analysis/translating-carrier-root-and-axial-constraints.md) supplies the proof, singular boundary, scope and falsifiers. These new analytical results are self-reviewed, without independent adjudication or a numerical candidate evaluation.
+
 ## 3. From candidate dynamics to photon identification
 
 A complete history is the first requirement. Photon identification additionally connects that history to observed transport, polarization and interaction. The corpus [closure interface](../../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface) separates these requirements into three gates.

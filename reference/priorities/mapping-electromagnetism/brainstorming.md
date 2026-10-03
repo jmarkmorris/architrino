@@ -90,5 +90,5 @@ The session-derived material now has focused priority-stage owners: source/momen
 
 ## Unresolved Ideas
 
-- **Logarithmic potential and floating reference:** the proposal and unresolved interpretations now belong to [Logarithmic potential research](../master-equation-closure/logarithmic-potential-research/brainstorming.md).
+- **Logarithmic potential and floating reference:** the proposal and unresolved interpretations now belong to [Logarithmic potential research](../master-equation-closure/equation-variants/logarithmic-potential/brainstorming.md).
 - **[inferred] Long-wavelength response-mode count.** Construct one small-$\mathbf k$ mode matrix with source moments, sea variables, direct and mediated receiver projections, screening class, dispersion, parity, and null controls; likely destination is a focused response-mode packet if the calculation becomes executable.

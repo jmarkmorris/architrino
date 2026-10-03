@@ -21,6 +21,18 @@ This assembly workstream is unranked globally pending its own scored object. The
 
 ## Shared search prerequisites
 
+### Correct the current score reduction
+
+- **Status:** ○ Queued — unassigned; affected credits remain withdrawn.
+- **Request:** Reconstruct the affected control rows of the [weighted score packet](analysis/candidate-weighted-score-packet.md) using its frozen ruler and admitted source records, as required by the [normalization assessment](analysis/braid-review-integration-2026-10-03.md).
+- **Completion / falsifier:** A separately authored reduction or analytical reference establishes the units, divisor, uncertainty and affected aggregate comparisons, or identifies unavailable inputs. Preserve old numbers, receipts, weights and byte bindings; publish any corrected comparison with a new identity. Symmetry roundoff and certification completeness are not acceleration balance, an attracting basin or retention. A reduction still using required acceleration in place of the frozen ruler fails the task. No production evolution or historical rescore is launched by this entry.
+
+### Decide how analytical stability may inform qualification
+
+- **Status:** ○ Deferred — discussion-scoped; ratified evolution-based acceptance remains unchanged.
+- **Decision:** Determine whether a controlled analytical instability theorem can exclude a candidate, what flow/spectral hypotheses that inference requires, and whether any analytical evidence can supplement the existing evolution route. The [T02 diagnostic](campaigns/planar-three-binary-work-queue.md#evaluate-the-t02-symmetric-characteristic-function) is a bounded analysis, not automatic qualification.
+- **Completion:** Record the permitted inference, required proof domain and remaining evolution obligations. Stability in one sector cannot rule a full assembly in. This decision is indexed in the Operator Discussion Queue; the existing nearby-history return map remains deferred/blocked.
+
 ### Routed test breakage from OPS-020
 
 **Current refined I4 disposition, 2026-09-11: ◐ Partial — current transport implementation Deferred.** The [Development Process Review queue, item 2](../../development-process-review/work-queue.md#blocked-prerequisites) retains custody of the current bridge, authored ancestry routes and independent controls; Braid retains scientific acceptance. Current host utilities and runtime packages are capabilities for a new run, not historical source inputs. BP-018/BP-019 and their scientific campaigns retain their separate scope.
@@ -190,6 +202,8 @@ Plainly: this program asks whether a Platonic arrangement can carry a complete b
 
 Plainly: moving the cells apart creates separately owned candidate assemblies, but it does not make their histories independent. Independence is a calculation about the cross-assembly acceleration, not a consequence of drawing a gap.
 
+<a id="bp-018--f5-current-generation-ordinary-evolution-regeneration"></a>
+
 ### BP-018 — F5 current-generation ordinary-EOM regeneration
 
 - **Status:** Queued; operator-authorized current-generation replacement of the superseded halted-prefix result payload.
@@ -328,7 +342,7 @@ These retain their existing statuses and dependencies. They are not newly ranked
 
 The [FSC-011 binary continuation question](../binary-research/work-queue.md#circular-pair-continuation-and-its-prerequisites) retains its status and supplies the existing binary prerequisite below.
 
-1. **FSC-017 — Three-Binary Constructive Milestone.** Status: `Section 12--14 review complete / blocked on the perturbative FSC-011 result; verified-numerics route also consumes FSC-014`. For one precisely declared three-binary geometry class, seek either an exact certified complete-ledger residual zero or an exclusion theorem. Consume the [FSC-016 review](../field-speed-ceiling/analysis/sections-12-14-independent-review-2026-09-02.md): separate field-speed equalities from inequality margins, declare one- versus two-sided tangents, count twelve scalar perpendicular-residual components, and retain the stated nonlinear-return-map hypotheses. A residual zero remains a prescribed-chart result unless a separate retained-history and stability theorem is proved.
+1. **FSC-017 — Three-Binary Constructive Milestone.** Status: `Section 12--14 review complete / blocked on the perturbative FSC-011 result; verified-numerics route also consumes FSC-014`. For one precisely declared three-binary geometry class, seek either an exact certified complete-ledger residual zero or an exclusion theorem. Consume the [FSC-016 review](evidence/sections-12-14-independent-review-2026-09-02.md): separate field-speed equalities from inequality margins, declare one- versus two-sided tangents, count twelve scalar perpendicular-residual components, and retain the stated nonlinear-return-map hypotheses. A residual zero remains a prescribed-chart result unless a separate retained-history and stability theorem is proved.
 2. **FSC-002 — Equal-Radius Phase-Offset Braid Speed-Domain Calculation.** Status: `deferred / blocked`. The selected collinear coincidence postulate does not define noncollinear or braid coincidence events, establish a retained closed-domain braid, or adopt the ceiling.
 
 Completed FSC-010, FSC-013 and FSC-015 pair results are maintained in [binary research](../binary-research/manuscript.md#1-circular-motion-and-regular-local-evolution); the FSC-016 assembly review remains linked above. None is reopened by this filing change.

@@ -90,6 +90,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Technical Closure
 
+- [x] Keep each Master Equation scenario on its named baseline and expressly selected modifications; prevent temporary side-study changes from carrying into later analyses through the [scenario assumptions procedure](theory-orientation.md#scenario-assumptions) (operator direction implemented, 2026-10-02).
 - [ ] Keep substantive theory discussion captured as it develops under the operator explanation standard, with the full treatment in its subject owner.
 - [ ] Require scorecard increases to separate hard mathematical closure from auditability, terminology, and priority-queue improvements.
 - [x] Require each major theory push to leave behind at least one mathematical artifact: equation, lemma, invariant, proof route, branch certificate, or simulation target.

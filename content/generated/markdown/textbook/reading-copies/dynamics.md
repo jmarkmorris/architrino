@@ -162,7 +162,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3a792928c9153685)
 
-When this floor fails, the active root is caustic-like or degenerate and must be routed to a different branch chart or regularization regime. In special geometries the floor can be computed rather than declared; the principal circular partner branch derives $\kappa_{\mathrm{hit}}^{\mathrm{bin}}=c_f(1+\beta_f\sin(\phi/2)) > c_f$ in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#principal-partner-root-certificate), where Binary Dynamics uses $\phi/2=\xi$ for the circular delay angle used below.
+Failure of the chosen positive floor means that this chart's certified bound no longer applies. A root with nonzero transmitter derivative can remain simple and admit another justified regular chart. A zero derivative is a distinct singular event requiring the applicable fold or higher-singularity treatment. In special geometries the floor can be computed rather than declared; the principal circular partner branch derives $\kappa_{\mathrm{hit}}^{\mathrm{bin}}=c_f(1+\beta_f\sin(\phi/2)) > c_f$ in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#principal-partner-root-certificate), where Binary Dynamics uses $\phi/2=\xi$ for the circular delay angle used below.
 
 ##### Autonomous Emission-Labeled Wake Transport
 
@@ -1857,12 +1857,7 @@ $$
 
 **Key insight:** There is **no instantaneous work** on the orthogonal component. Power depends only on the radial velocity $V_r$.
 
-**Radial motion and the $1/r^2$ factor (local trend):**
-
-- **Inward motion** ($V_r < 0$, receiver moving toward the emission point): decreases $r_{ij}$ between close successive hits, tending to **increase** subsequent per-hit strengths via $1/r^2$ (all else equal).
-- **Outward motion** ($V_r > 0$): increases $r_{ij}$, tending to **decrease** subsequent per-hit strengths.
-
-**Important caveat:** Path-history delay shifts both the causal root $T_t$ and $\hat{\mathbf{r}}_{ij}$ over finite intervals, so these are strictly **local** statements about infinitesimal time evolution. The global trajectory depends on the full history of all transmitters.
+**Receiver displacement and successive-hit distance.** With the emission point held fixed, inward receiver displacement decreases separation and outward displacement increases it. Along a tracked simple causal root, the emission point also changes. Differentiating $r_{ij}=c_f(T_r-T_t)$ gives $dr_{ij}/dT_r=c_f(1-D_{r,ij}/D_{t,ij})$. Thus receiver radial velocity alone does not determine whether successive-hit separation grows or shrinks, even infinitesimally. The inverse-square factor increases when this total separation decreases; the full contribution also depends on the transmitter weight and line of action.
 
 ##### Moving Transceiver Geometry and Received Branch Strength
 
@@ -2268,12 +2263,12 @@ The delayed ledger must close with the orbit. Each retained root must map as
 $$
 (a,j,T,T_t)
 \longmapsto
-(\pi(a),\pi(j),T+P_u,T_t+P_u),
+(\pi^{-1}(a),\pi^{-1}(j),T+P_u,T_t+P_u),
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4882dbbe09f516e2)
 
-with root identity, multiplicity, $D_t$, acceleration weight, inactive intervals, finite-memory contents, and event conventions preserved. Acceptance then requires an EOM-solver evolution record, the full position-velocity return residual modulo translation and permutation, the master-equation residual along the orbit, and the applicable stability or Floquet certificate.
+The inverse permutation follows from the declared convention: $\boldsymbol\xi_{\pi^{-1}(a)}^{(u)}(T+P_u)=\boldsymbol\xi_a^{(u)}(T)$. Applying this relabeling to both events preserves their separation and delay under the common translation. The map must preserve root identity, multiplicity, $D_t$, acceleration weight, inactive intervals, finite-memory contents, and event conventions. Acceptance then requires an EOM-solver evolution record, the full position-velocity return residual modulo translation and permutation, the master-equation residual along the orbit, and the applicable stability or Floquet certificate.
 
 A successful moving assembly is a repeated solution of the complete delayed dynamics, not a sequence of geometrically attractive pictures.
 
@@ -2379,7 +2374,7 @@ When $D_{r,ij}=0$, the tracked emission time has a stationary point as a functio
 This cleanly separates two events:
 
 - $D_t=0$ is a transmitter-side fold or higher singularity and requires the declared fold or singular-event route.
-- $D_r=0$ is a root-playback turning point. It changes the sign of branch playback but is not an acceleration pole, zero, or chart boundary.
+- For $D_t\ne0$, $D_r=0$ makes the tracked emission time stationary. Playback reverses only if $D_r/D_t$ changes sign; vanishing alone does not imply reversal. This event is not an acceleration pole or zero and does not by itself invalidate the simple-root chart.
 
 There is therefore no receiver-velocity resistance tensor and no primitive field-speed barrier in the Master Equation. Any effective damping, velocity-dependent assembly response, or observer-level magnetic-like behavior must be derived from delayed multi-branch geometry and wake-state evolution rather than inserted as an instantaneous receiver multiplier.
 
@@ -2612,7 +2607,7 @@ after the initial and boundary data and auxiliary functional have been fixed. In
 
 ##### Superposition
 
-**Statement:** The potential wake contributions from all transmitters **superpose linearly**. The net potential at any point is the sum of the individual wake potentials:
+**Statement:** The canonical acceleration contributions superpose linearly. Where the local scalar representatives and common regular chart established in [Superposition and Local Wake Geometry](#superposition-and-local-wake-geometry) exist, their scalar sum is
 
 $$
 \Phi_{\text{net}}(\mathbf X, T) = \sum_{i} \Phi_i(\mathbf X, T)
@@ -2620,9 +2615,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0656af3bfbbee2de)
 
-The total acceleration on a particle at any instant is the **vector sum** of the contributions from every causal entry in its path history.
+For a finite set of those scalar representatives, gradient linearity reproduces the acceleration sum. An infinite scalar sum additionally needs convergence and interchange of the gradient with summation; neither follows from the displayed notation. The canonical total acceleration is the **vector sum** of the admitted causal contributions at the receiver event.
 
-**Operational implication:** Every architrino is continuously immersed in the superposed wakes of all others (and, when the same-transmitter root condition permits, its own). Tractability comes from treating each causal emission independently with $1/r^2$ distance weighting modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}$, branch gaps, and screening or cancellation assumptions that make the retained sum finite.
+**Operational implication:** Every architrino is continuously immersed in the superposed wakes of all others (and, when the same-transmitter root condition permits, its own). Each causal contribution carries $1/r^2$ distance weighting and the transmitter-side acceleration weight $W^{\mathrm{acc}}$. A finite retained sum still needs bounds on its omitted contributions before it can approximate the complete law; cancellation and shielding require quantitative control.
 
 Inverse-square dilution alone is not a global convergence theorem. For an infinite transmitter family, a branch chart must declare a summation or continuum prescription under which
 $$
@@ -2634,7 +2629,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7e2f11f4fb23e401)
 
-exists, or it must supply local neutrality, angular cancellation, shielding, a screened kernel, finite active horizon, or a mean-field/principal-value subtraction. Without this condition, the many-transmitter wake sum is not a well-defined acceleration law even though each individual hit has the correct surface-density falloff.
+exists under the declared prescription. Neutrality, angular cancellation and shielding must supply bounds sufficient to establish that limit. A screened kernel, finite horizon or subtraction must be identified as an exact reformulation with its required boundary account, a controlled approximation, or an auxiliary comparison. None establishes the complete-law limit merely by being named. Individual inverse-square falloff alone does not define the infinite acceleration sum.
 
 ##### Velocity Dependence
 
@@ -2807,7 +2802,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2f93531dee60f25e)
 
-with approach from the admissible side $J_{ii}>0$. Geometrically, this is the state where the receiver trajectory is tangent to the causal wake surface of its own past emission (the “riding-the-shock” limit).
+with approach from the declared side $J_{ii}>0$. This is loss of transversality in the emission-time root equation: its derivative with respect to $T_t$ vanishes at fixed reception. Tangency of the receiver to a fixed past-emission wake instead requires $D_{r,ii}=0$. The two conditions coincide on the uniform-circular root chart discussed below, but not on a general curved history.
 
 **Why this is a hard wall in the exact theory:** In the exact branch-resolved acceleration, the self-hit contribution carries the factor
 
@@ -7821,7 +7816,7 @@ Boundaries, media, and heterogeneity
 ##### Observables and Inference
 - Method 1: Full-field pictures aid intuition and corridor studies but obscure per-hit ambiguity without extra processing.
 - Method 2: Clarifies causal timing and geometry at probes; good for inference templates and surrogate-location recasts.
-- Method 3: Directly aligned with hit histories $\{A(T_k),L(T_k)\}$ and therefore the most direct substrate representation among these three options.
+- Method 3: Directly represents the receiver-local acceleration history $\{\mathbf A(T_k)\}$, where $\mathbf A(T_k)$ is the net acceleration vector of a specified receiver at the sampled absolute reception time $T_k$, and $k$ indexes the samples. As explained in [Simulation Perspective](../../../../markdown/aaa/validation/simulations/perspective.md#effective-observables-and-states-quantum-like-layer), a nonzero vector also defines an unoriented inference axis $L(T_k)=\operatorname{span}\{\mathbf A(T_k)\}$, the line through the origin parallel to that vector. The axis is derived from the acceleration record; it is not an independent measurement or a reconstruction of the transmitter ledger. For an isolated contribution, opposite transmitter-ray and polarity assignments can give the same vector; with superposed contributions, the net axis need not coincide with any individual transmitter ray. A zero vector defines no distinguished axis.
 
 Summary (one line each)
 - Method 1: Best for whole-field, media, and visualization; poorest fit to per-hit radial-only axioms without translation layers.
@@ -7836,12 +7831,12 @@ Operational guidance — when to use which method
 #### Pros and cons (comparative)
 
 Method 1 — Time-based PDE (wave equation)
-  - Pros
+- Pros
   - Propagation at fixed speed $c_f$ in the comparison surrogate; expanding causal wake surfaces emerge automatically.
   - Robust on grids; handles inhomogeneous media, damping, and boundaries.
   - Good for full-field visualization and energy bookkeeping in continuum form.
 - Cons
-  - Computationally heavy for many-particle dynamics (3D grids, CFL constraints).
+  - Work and storage depend on the three-dimensional grid, required spatial resolution, and CFL-limited time-step count; comparative cost requires measured wall time and memory at matched accuracy on the declared workload.
   - Requires careful numerics to avoid dispersion/reflection; mesh choices can bias results.
   - Mapping grid fields to the radial-only per-hit ODE can add another modeling layer.
 
@@ -7852,7 +7847,7 @@ Method 2 — Green’s function (path-history integral)
   - Often efficient for field evaluation at a few observation points; useful for analysis and cross-checks, subject to the declared workload.
 - Cons
   - Requires root-finding for each receiver-time pair; multiple roots are possible when transmitters outrun wake surfaces.
-  - Costly when many receivers and transmitters are present; bookkeeping grows quickly.
+  - Work depends on the numbers of receivers, reception-time samples, transmitters and causal roots, together with the root-solving and history-reconstruction method; comparative cost requires measured wall time and memory at matched accuracy on the declared workload.
   - Needs careful handling near tangencies (small Jacobians) and in multi-hit/self-hit regimes.
 
 Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
@@ -7862,7 +7857,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
   - Can be numerically lightweight for particle dynamics on a declared workload; supports direct integration of simple-root acceleration, with auxiliary mollified or emission-quadrature calculations under their separate approximation conditions.
 - Cons
   - Not derived from the scalar wave equation; global field-energy accounting is indirect (via mollified potentials).
-  - Must retain the transmitter-side factor and transmitter-side acceleration weight from the Master EOM; a reduced test harness that omits either one is a noncanonical approximation rather than a calibration of $\kappa$.
+  - Retain the transmitter-side denominator $D_t$ and its derived acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ in the causal-root record. On a simple-root branch, the per-hit acceleration contains this weight once. Recording both quantities does not introduce a second multiplier; changing or omitting the prescribed weight changes the Master Equation and cannot be absorbed into a constant calibration of $\kappa$ over histories with varying $D_t$.
   - Accuracy depends on robust causal-root finding and regularization choices in complex multi-hit scenarios.
 
 ---

@@ -1,6 +1,6 @@
 # Near-Contact Separating-Trace Incompatibility Theorem Target
 
-**Date:** 2026-07-31 **Status:** queued prove-or-refute theorem target; FSC-006a provenance and positive-range convergence prerequisite complete; consumes the constructed FSC-006b exact-event restart but remains blocked on its independent review and local-uniqueness boundary; no result claimed **Claim level:** proposed theorem program **Origin:** finding 9 of the [Jack K. Hale review](../../field-speed-ceiling/analysis/jack-k-hale-review-response-2026-07-31.md), revised by finding 7 of the [Lars Hörmander review](../../field-speed-ceiling/analysis/lars-hormander-review-response-2026-07-31.md), and narrowed by the [Albert Einstein second review](../../field-speed-ceiling/analysis/albert-einstein-second-review-response-2026-08-01.md) **Scope:** exact mirror-collinear partner contact under the unchanged ordinary positive-separation causal-root law, with normalized $c_f=1$
+**Date:** 2026-07-31 **Status:** retained prove-or-refute theorem target; FSC-006a provenance and positive-range convergence prerequisite complete; FSC-006b independent review complete, with multivalued continuation retained and no selector supplied; this target's complete-ledger and regularity hypotheses remain to be discharged; no result claimed **Claim level:** proposed theorem program **Origin:** finding 9 of the [Jack K. Hale review](../../equation-variants/field-speed-ceiling/history/analysis/jack-k-hale-review-response-2026-07-31.md), revised by finding 7 of the [Lars Hörmander review](../../equation-variants/field-speed-ceiling/history/analysis/lars-hormander-review-response-2026-07-31.md), and narrowed by the [Albert Einstein second review](../../equation-variants/field-speed-ceiling/history/analysis/albert-einstein-second-review-response-2026-08-01.md) **Scope:** exact mirror-collinear partner contact under the unchanged ordinary positive-separation causal-root law, with normalized $c_f=1$
 
 ## Target question
 
@@ -174,7 +174,7 @@ The conclusion would not establish a universal continuation no-go, choose a term
 
 ## Dependencies and acceptance boundary
 
-FSC-005 now consumes FSC-006a's completed source-provenanced far-part theorem and exact endpoint residue. FSC-006b now supplies a proposed typed exact-event family, competing-stratum ownership rule, and right-trace restart in the [mathematics packet](../../field-speed-ceiling/analysis/mathematics-geometry-dynamical-system.md). It also uses the [endpoint reanalysis](capped-collinear-endpoint-reanalysis.md) only for the prescribed straight-trace calculation and MEC-007 only for the conditional incoming threshold history.
+FSC-005 now consumes FSC-006a's completed source-provenanced far-part theorem and exact endpoint residue. FSC-006b now supplies a proposed typed exact-event family, competing-stratum ownership rule, and right-trace restart in the [mathematics packet](../../equation-variants/field-speed-ceiling/history/analysis/mathematics-geometry-dynamical-system.md). It also uses the [endpoint reanalysis](capped-collinear-endpoint-reanalysis.md) only for the prescribed straight-trace calculation and MEC-007 only for the conditional incoming threshold history.
 
 `Advanced` would require either:
 

@@ -1,3 +1,5 @@
+> **Quarantined special examination — inactive.** The entire calculation below uses the added quadratic receiver multiplier. It follows from neither the Master Equation, a logarithmic potential nor the strict inequality, and is not the active or default collinear response. The original proof and its recommendations are preserved as historical study material; those recommendations no longer authorize continuation. Reuse requires explicit operator re-selection for a named scenario. The [collinear quarantine disposition](../README.md#quarantined-quadratic-response-examinations) records its scope under the [scenario-assumption procedure](../../../../op/theory-orientation.md#scenario-assumptions).
+
 # A quadratic speed response for the stationary encounter
 
 ## Equation and scope

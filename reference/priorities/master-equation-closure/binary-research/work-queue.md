@@ -6,7 +6,46 @@ This is the execution ledger for isolated two-architrino investigations. BP-001 
 
 1. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`. Global rank: `2`; Value: `55.28`; Cost: `7.6`; ROI: `7.27`.
 
+## Queued follow-up
+
+### Audit the manuscript's unchanged-equation results
+
+- **Status:** ◐ Partial — source-linked review integration completed 2026-10-03; remaining source/evidence checks unassigned.
+- **Request:** Audit the [binary manuscript](manuscript.md) before selecting the next binary calculation, as recommended after the directory migration and captured by the operator's 2026-10-02 request.
+- **Scope:** Identify the equation, complete-history assumptions, causal-root coverage, evidence and limitations of each binary result. Distinguish results under the unchanged Master Equation from the separately selected capped response studies. Preserve each result's supported grade and existing scientific owner.
+- **Dependencies:** Read the cited proofs and independent reviews, including the [collinear incoming-event and continuation boundary](../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md). A missing proof or unresolved review condition remains explicit; it cannot be replaced by agreement between outputs of the same implementation.
+- **Completion:** A source-linked account identifies which results apply to the unchanged equation, which depend on additional assumptions, and the smallest unresolved binary question worth pursuing. Any proposed calculation names its preparation, equation, acceptance condition and independent reference. This audit does not execute Campaign 1, adopt a speed ceiling or change BP-001's blocked disposition.
+- **Ranking:** No new numerical score or global rank is assigned.
+- **Progress:** the [assessment](analysis/binary-review-integration-2026-10-03.md#unchanged-equation-manuscript-audit-current-progress) maps the manuscript's equation scopes, directly excludes unchanged uniform circles through $c_f$, retains every hypothesis of the applicable escape criteria, and separates midpoint event observations from an exact-solution radial turn. The [slow-row lemma](analysis/slow-binary-first-order-drift.md) adds an analytic comparison; the separately adjudicated [finite secular comparison](analysis/slow-binary-controlled-secular-comparison.md) now controls the declared very slow mirror class. All-future iteration and the independently resolved tiny radial sign remain open. The July evidence and external-source checks are not revalidated by this pass, so the audit is not marked complete.
+- **Remaining review boundary:** Check the named July evidence and external-theorem application, and independently adjudicate the capped first-window tube and its retained numerical inputs before any later-window extension. Use the tasks below for the slow-row and radial-sign questions rather than duplicating them inside this audit.
+
+### Predeclare Campaign 1 expectations by complete history
+
+- **Status:** ○ Queued — analytical predeclaration only; production execution remains blocked under BP-001.
+- **Request:** Refine the [endpoint-level assessment](analysis/binary-review-integration-2026-10-03.md#campaign-predictions-and-their-limits) into source-linked hypotheses for all 27 endpoint rows and each of their three prehistories before production use.
+- **Completion / falsifier:** State the root/history hypotheses supporting each prediction, mark unclassified cases explicitly, and apply the frozen finite-window bound/dispersion gates. A lateral prehistory is not a collinear history; the slow lemma does not cover the whole speed grid; an instantaneous escape threshold is only a comparison. A future admitted run may overturn a prediction, but this table books no fate and changes no campaign gate.
+
+### Extend the finite secular comparison to a controlled fate statement
+
+- **Status:** ○ Queued — analytical successor, unassigned; no production execution or campaign gate changed.
+- **Request:** Starting from the [independently accepted finite comparison](analysis/slow-binary-controlled-secular-comparison.md), determine whether changing-scale windows can be joined for the same complete mirror history. Control the actual source past, eccentricity, scale-dependent error and root margins at every join. The existing theorem's fixed initial bounds cannot simply be reused after its radius has changed.
+- **Completion / falsifier:** A uniform iteration or another independently checked argument proves a stated all-future expanding class, or identifies the failed estimate and its bounded consequence. Cumulative error, renewed eccentricity or a failed complete-history margin defeats the corresponding extension. Keep larger-speed, non-mirror, pointwise radial-sign and Campaign 1 questions separate. This is the remaining analytical fate question, not a duplicate of the completed finite theorem.
+
+## Completed analytical follow-ups
+
+### Prove a controlled slow-binary secular comparison
+
+- **Status:** ✓ Done — the [local kernel/remainder, proxy and forced-response review](analysis/slow-binary-independent-adjudication-2026-10-03.md) and [controlled secular theorem](analysis/slow-binary-controlled-secular-comparison.md) have separate derivations; the latter is accepted by its [independent adjudication](analysis/slow-binary-secular-independent-adjudication-2026-10-03.md).
+- **Result:** Complete supplied planar mirror preparations with $\epsilon=v_0/c_f\le10^{-9}$ have a unique ordinary-root continuation through $T=R_0c_f/(4v_0^2)$. For the geometric slow radius $\mathcal R=R_0h^2$, the squared-radius drift differs from $K/c_f$ by at most $4\times10^6\epsilon K/c_f$, and the actual radius stays uniformly close to $\mathcal R$. A circular preparation reaches actual radius greater than $1.4R_0$ within that interval. The corrected-eccentricity argument, actual source-acceleration bound and complete-root census control the delayed solution rather than extrapolating one fixed circle.
+- **Boundary / falsifier:** The conservative parameter restriction excludes certification of the historical speed ratio. No all-future escape, generic non-mirror fate, pointwise radial sign or physical total-energy account follows. Failure of the local estimate, corrected-coordinate identity, continuation tube or dimensional error bound under the stated preparation would overturn the affected result. BP-001's scored object, campaign gates and blocked status remain unchanged. Further iteration needs a new changing-scale preparation/error argument; the finite theorem must not simply be repeated without checking those hypotheses.
+
 ## Deferred / blocked
+
+### Resolve the tiny radial dip with a controlled continuation
+
+- **Status:** ○ Deferred / blocked — current-source history and continuous-error admission required; no trajectory launched.
+- **Request:** Specify and, after admission, extend the retained slow-binary comparison far enough past the near-one-revolution dip to decide whether radial velocity becomes positive again, as proposed in the [review assessment](analysis/binary-review-integration-2026-10-03.md#evidence-and-reproducibility-boundaries).
+- **Completion / falsifier:** Preserve legacy receipts, reproduce analytical controls with $c_f=1$, and retain the actual complete past, source/build identity and propagated interval errors. Decide the radial signs and radius change with bounds resolving the small higher-order scale; midpoint sign changes are insufficient. The proposed extra fraction of a period is an initial bracket, not the scientific completion condition. If the admitted instrument cannot resolve that scale, report the obstruction. App Solver retains reusable production capability; no replacement solver is commissioned.
 
 ### BP-001 — Binary subfield fate
 

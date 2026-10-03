@@ -4,13 +4,62 @@ The accepted two-target lattice control and its complete supplied past determine
 
 ## Ranked Next Objects
 
-No independent score is assigned to this geometry workstream. The existing named task below retains its scientific scope, status and `1-mec` assignment; it does not inherit the parent's general-law rank.
+No independent score is assigned to this geometry workstream. The existing in-progress task retains its scientific scope, status and `1-mec` assignment; it does not inherit the parent's general-law rank. The queued follow-ups record unfinished recommendations without launching a calculation.
 
 ## In progress
 
 | Work | Status | What finishes it / what must happen first |
 | --- | --- | --- |
 | **Classify separation through the returned pulse across the admitted couplings** | **◐ In progress — 1-mec** | Preserve the identical input and $0<g\le16$. The [accepted signed-error enclosure](analysis/smooth-two-particle-signed-error-independent-adjudication.md) covers the full interval and proves transient approach followed by renewed separation at $g=16$. Determine which remaining couplings retain positive separation velocity and which admit reversals, with justified transition-time bounds. The current absolute error is too coarse near $g=0$; a coupling-scaled bound or another rigorous sign argument is required. A failed sign bound proves neither approach nor a law obstruction. |
+
+## Queued follow-ups
+
+### Define an EOM solver reproduction of the fixed lattice control
+
+- **Status:** ○ Queued — specification incomplete; numerical execution blocked.
+- **Request:** Define the finite EOM solver reproduction previously recommended for the supplied two-target lattice control.
+- **Scope:** Name the finite changed-history population, complete supplied pasts, horizon and unchanged Master Equation with numerical $c_f=1$. Specify how the surrounding infinite lattice contributes through the stationary aggregate, receiver-dependent evaluation, subtraction of replaced source rows and certified tails. A bare finite lattice is a different experiment.
+- **Evidence / blocker:** The [existing capability audit](analysis/smooth-two-particle-later-instrument.md#eom-solver-capability-boundary) identifies the missing infinite stationary-field representation. The [EOM solver owner](../../app-solver/priorities.md) retains capability implementation and acceptance; this entry does not commission a new solver or expand its testing obligations.
+- **Completion:** A reproducible protocol defines all inputs, the aggregate interface, independent analytical comparison and error requirements, and names any remaining capability dependency. A production run stays blocked until the required capability is accepted. Existing comparison curves remain comparison evidence.
+
+### Specify a spatially localized self-consistent lattice preparation
+
+- **Status:** ○ Queued — unassigned.
+- **Request:** Examine whether the wake-speed boundary found for coherent infinite-support motion can be investigated from a spatially localized disturbance with a self-consistent past.
+- **Scope:** State precisely what spatial localization means for complete histories, declare the exterior population and summation prescription, and construct an admitted preparation satisfying the unchanged Master Equation, or prove a precise obstruction to the selected preparation class. Use numerical $c_f=1$, retain environmental response and every applicable causal root, and impose no added speed ceiling, response factor, root exclusion or event law.
+- **Completion:** A source-supported preparation theorem or obstruction identifies the history class, root and tail control, and independent proof checks. The non-self-consistent two-target pulse and the coherent infinite-support branch are controls, not substitutes for the missing localized history. Further evolution, stability and decay need their own continuation argument.
+- **Context:** [Preparation distinction](brainstorming.md#a-spatially-localized-self-consistent-disturbance). Recording this recommendation does not change the active coupling-classification assignment.
+- **Linear foothold, 2026-10-03:** the [general-wavevector derivation](analysis/checkerboard-linear-wavevectors.md) supplies an unstable band at every $g>0$ and complete ancient linear histories with spatial tails decaying faster than any power. The derivation awaits separate mathematical adjudication. It does not meet this entry's nonlinear Master Equation completion condition. A spatially weighted nonlinear remainder and complete-history fixed-point or obstruction argument remain required; the entry stays queued and unassigned.
+- **First unfinished step:** Independently reconstruct the source-displacement and transmitter-velocity derivatives, the growing band and localized ancient-history proof. Check the adjacent [weak-coupling rate estimate](analysis/checkerboard-weak-coupling-rate.md) under its centered-cube remainder assumptions. A general-wavevector evaluator must reproduce the exact staggered matrix and its known growth bracket before other modes; report tail and numerical errors. Only then attempt the weighted nonlinear construction. This is one preparation task, not a second dispersion or sea-rate campaign; the active `1-mec` assignment is unchanged.
+
+### Repair the complete-history site-local release ladder
+
+- **Status:** ○ Queued — protocol and current-source admission first; target execution blocked until those are checked.
+- **Request:** Replace the unsupported larger-rung conclusion with a fresh complete-history comparison, following the [accepted history-depth defect](analysis/lattice-review-integration-2026-10-03.md#retained-history-ladder-defect).
+- **Scope:** Declare the actual source-history retention and causal search interval, including radius excursions. For the recorded preparation require history strictly beyond the stated maximum range bound, not merely a changed delay-horizon metadata field. Retain every source and applicable root; compare central-core residuals separately from boundary maxima. Use the unchanged equation and $c_f=1$.
+- **Completion / falsifier:** The admitted current build passes a finite static/simple-root analytical control before each target family; fresh ladder outputs demonstrate history/search completeness and controlled residuals, or report a precise failure. Preserve old receipts and their source identities. A required emission outside the retained/search interval defeats completeness. This task owns the lattice scientific comparison; reusable capability repairs stay with App Solver, and no Mapping Electromagnetism recovery conclusion follows automatically.
+
+### Restore current-source lattice boundary reproducibility
+
+- **Status:** ○ Queued — unassigned; original certified input and proof remain preserved.
+- **Request:** Resolve the subject-byte mismatch and old reference path identified in the [boundary reproduction assessment](analysis/lattice-review-integration-2026-10-03.md#independence-and-current-reproduction).
+- **Scope:** Preserve the frozen subject/reference/receipts. Run current-source analytical known controls before a new target; create a separately versioned reference with current paths and complete literal hashes. Identify shared residual inputs explicitly. Independently reconstruct at least one complete residual enclosure if an independent-residual claim is sought; replay of its saved input does not meet that condition.
+- **Completion / falsifier:** Source-bound current controls, target and reference yield an accepted reproduction or a documented discrepancy, with a separate verdict on residual independence. Missing input, mismatched identity or failed analytical control stops the target. An old hash is not repaired by repinning its receipt.
+
+## Completed supplied-review investigation
+
+### Independently adjudicate logarithmic collective growth
+
+- **Status:** ✓ Done — accepted by a separate analytical reconstruction in the [independent adjudication](analysis/logarithmic-collective-independent-adjudication-2026-10-03.md).
+- **Result:** Emission-time distributional variation reconstructs all three row terms; grouped stationary derivatives and the exponentially decaying history correction justify the full first variation. The dominated Gaussian limit and strict lattice-integral inequality establish positive staggered growth for every positive coupling and a nearby real-wavevector band. Fixed-source restoration remains valid, but it does not give collective checkerboard stability.
+- **Boundary / falsifier:** Accepted only at linear grade in the specified neutral-cell and ancient-history class. No nonlinear/localized retained population, arbitrary nondecaying history operator, full spectrum or equation disposition is established. An invalid row variation, domination, strict integral comparison or explicit-mode substitution overturns the affected claim. No subject instrument was replayed as independent evidence.
+
+### Assess collective logarithmic lattice stability
+
+- **Status:** ✓ Completed at the bounded linear scope — 2026-10-03.
+- **Result:** The [independent analysis](analysis/logarithmic-collective-stability-independent-analysis.md) reconstructs and accepts the fixed-source restoring proof, derives receiver, delayed-source and transmitter-velocity terms, and proves a positive staggered characteristic root at every positive coupling, with a nearby growing wavevector band. The new collective theorem is derived with analytical self-review; its separate adjudication is queued above. The original static reference is preserved.
+- **Scenario / boundary:** Authorized inverse-distance response, $c_f=1$, neutral-cell stationary background and exponentially decaying complete histories. Static restoration survives, but this checkerboard is linearly unstable in the declared bounded spatial class. No nonlinear retained trajectory, localized disturbance theorem, complete spectrum or stable sea follows. LPR-006 remains deferred and receives this result as an input, not an equation-adoption decision.
+- **Evidence:** The separately authored comparison instrument recorded stationary-row, Gaussian-mixture and six-axis controls before non-interval target quadrature. The existence proof uses analytical signs rather than the measured decimals. Its source, history, summation and inequality falsifiers are stated in the analysis.
 
 ## Results that constrain the next step
 
@@ -22,4 +71,4 @@ No independent score is assigned to this geometry workstream. The existing named
 - **The unchanged equation continues regularly across the first environmental displacement boundary.** The [accepted extension](analysis/smooth-two-particle-beyond-class-boundary-independent-adjudication.md) reaches $81/16$, beyond the boundary bracket $5121/1024<\tau\le10339/2048$, and proves an environmental displacement greater than $1/16$ at its endpoint. Both targets still rise and accelerate upward. The first boundary identity and exact time remain unresolved. The earlier four turns, two shrinking completed comparisons and unfinished rise exceeding the preceding fall by more than 47283 times at $5$ remain accepted. The next maximum and eventual settling remain open.
 - **The fixed two-target disturbance separates initially and has an accepted later velocity reversal at $g=16$.** For $0<G/\ell\le16$, the [generated-feedback adjudication](analysis/smooth-two-particle-generated-feedback-independent-adjudication.md) accepts continuation to $17\ell/16$, original class/root preservation, 144 generated channels reaching 76 labels, and actual motion of both targets. The [full first-feedback separation adjudication](analysis/smooth-two-particle-feedback-separation-independent-adjudication.md) proves positive separation acceleration and velocity through that horizon. The [signed-error adjudication](analysis/smooth-two-particle-signed-error-independent-adjudication.md) proves later approach at $g=16$ and renewed separation by the latest pulse-end reception. It supplies no contact or complete coupling classification. The global earliest moving receiver and arbitrary-history contact remain unassigned. This fixed-input result is separate from the blocked arbitrary-population formulation.
 - **The supplied complete past is not an unforced EOM-generated preparation.** The [preparation adjudication](analysis/smooth-two-particle-preparation-independent-adjudication.md) accepts the target-onset uniqueness contradiction and a nonzero environmental pre-release residual. Exact release compatibility and forward evolution remain valid. The separate ancient-history construction supplies different coupled histories; it neither repairs the exact old pulse nor transfers that pulse's later event to them. No typicality claim follows.
-The original source packets and independent references remain fixed scientific inputs. A further evolution or altered history class requires its own accepted task. The [localized self-consistent disturbance](brainstorming.md) remains proposed. General population evolution, approximation and equation closure stay in the [parent queue](../work-queue.md).
+The original source packets and independent references remain fixed scientific inputs. The [localized preparation follow-up](#specify-a-spatially-localized-self-consistent-lattice-preparation) is now queued; its result remains unproved and no evolution is launched by recording it. General population evolution, approximation and equation closure stay in the [parent queue](../work-queue.md).

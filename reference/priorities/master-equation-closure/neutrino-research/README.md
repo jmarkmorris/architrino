@@ -1,5 +1,8 @@
 # Neutrino research
 
+This configuration owner contains its research under the canonical Master Equation and any explicitly selected [authorized equation variations](../equation-variants/README.md): field-speed ceiling, logarithmic potential, or their specified combination. Shared definitions remain with the parent; configuration-specific mathematics, reviews, evidence and tasks belong here. An available variation is not an implicit assumption, and this ownership rule activates no new investigation.
+
+
 This workstream investigates candidate neutrino assemblies under the Master Equation: their complete histories, internal geometry, propagation and interaction with source, detector and ambient assemblies. The [manuscript](manuscript.md) explains the current construction and its evidence boundary.
 
 The corpus proposes two near-planar polarity-conjugate Noether braids, containing six binaries and twelve architrinos in total, near the proposed photon configuration. The identification is guessed; neither the required photon reference branch nor a retained neutrino branch has been exhibited. A prescribed geometry does not establish either branch.

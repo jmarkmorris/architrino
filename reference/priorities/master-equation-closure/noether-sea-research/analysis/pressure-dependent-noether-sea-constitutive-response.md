@@ -5,7 +5,7 @@ This focused priority packet is owned by [Noether sea research](../priorities.md
 ## Claim Level
 
 - Status: `defer-with-blocker`.
-- Claim grade: candidate constitutive response.
+- Claim grade: guessed constitutive response target.
 - First blocker: no accepted EOM-evolved retained branch currently binds the pressure perturbation, transmitter-side acceleration records, causal wake accounts, Noether sea response, and downstream projections to one retained state.
 - Barred substitution: toy pressure records, transmitter-side diagnostics without the causal wake accounts, archived braid quotients, empirical material fits, or observable-local coefficients cannot replace the same-state retained-branch input.
 
@@ -48,6 +48,14 @@ $$
 $$
 
 The same $\mathcal C_{\mathrm{sea}}^{(\ell)}$ record must feed every consumer. A separate fitted response for clocks, signal delay, inertia, effective metric, pressure, or cosmology is a failure, not closure.
+
+## Preparation and readout prerequisites
+
+The pressure coordinate is conditional on an accepted same-record stress or boundary-flux account, averaging convention and dimensional calibration. The substrate constants alone do not define ordinary pressure, and an applied pressure label supplies no constituent histories or boundary operation. Both compared preparations must state those inputs before the First Executable Packet below can run. Its pressure pair and response formula remain the accepted target definition; an undefined pressure difference is not executable.
+
+The delay factor likewise needs a declared channel readout for effective speed. A frequency-resolved group delay between calibrated stations is one proposed choice; the launch, receiver observable, frame, analysis window and background phase must be specified. It does not change primitive wake speed or automatically establish a front-speed bound.
+
+The [prepared-population proposal](preparation-controls-and-population-scales.md) gives these definitions and a dimensionless log-density alternative for operator discussion. Adopting that coordinate as an amendment or preparatory companion remains unselected. This clarification preserves v0, its score, retained-branch/account blocker and original executable section.
 
 ## Transmitter-Side Intake
 
@@ -138,6 +146,15 @@ R_{\gamma}^{ab}.
 $$
 
 The two eigenvalues must coincide in the weak homogeneous isotropic limit and may split only when the same retained state supplies nonzero local orientation or strain. Their gap and eigenvectors then feed an observer-level Stokes transport, an adiabatic-following calculation, and any candidate mode crossing. A source-specific refractive tensor, an independently fitted strong-field row, or a polarization split that is not tied to the clock, stress, metric, and matter response remains a failed shared constitutive object.
+
+The three-dimensional trace-free tensor need not remain trace-free after transverse projection. With $B=P_\perp S^{\mathrm{TF}}P_\perp$ and $s_k=\hat k^iS_{ij}^{\mathrm{TF}}\hat k^j$,
+
+$$
+\operatorname{tr}_\perp B=-s_k,\qquad
+B_\perp^{\mathrm{TF}}=B+\frac{s_k}{2}P_\perp.
+$$
+
+Thus the anisotropic coefficient also shifts the transverse mean by $-\chi_{\mathrm{aniso}}s_k/2$. The eigenvalue gap comes from the transverse trace-free part and the anisotropic part of $R_\gamma$. The isotropic-limit target requires that residual anisotropy to vanish as well; setting strain to zero alone does not prove it.
 
 ## Falsifiers
 

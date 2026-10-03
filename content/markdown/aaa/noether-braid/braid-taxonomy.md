@@ -22,7 +22,7 @@ A symmetry transformation may establish equivalence between complete records, bu
 
 ## Component-Braid Dimensionality
 
-Let $D(\mathcal B_k)$ be the affine dimension of the complete paths of declared component braid $\mathcal B_k$ in its declared braid frame. A component braid is **2D** when one fixed plane contains all its paths and **3D** when no fixed plane does.
+Let $D(\mathcal B_k)$ be the affine dimension of the complete paths of declared component braid $\mathcal B_k$ in its declared braid frame. A component braid is **2D** when its complete paths lie in one fixed plane but not in any affine line, and **3D** when no fixed plane contains them. A component whose complete paths have affine dimension zero or one receives no planar or spatial assignment under this classification.
 
 For a complete, disjoint component partition of assembly $\mathcal A$,
 
@@ -30,10 +30,10 @@ $$
 D_{\mathcal B}(\mathcal A)
 =
 \begin{cases}
-\mathrm{2D}, & D(\mathcal B_k)=\mathrm{2D}\text{ for every component }k,\\
-\mathrm{3D}, & D(\mathcal B_k)=\mathrm{3D}\text{ for every component }k,\\
-\mathrm{Mixed}, & \text{both component dimensions occur},\\
-\mathrm{Not\ assigned}, & \text{membership or complete path evidence is unavailable}.
+\mathrm{2D}, & D(\mathcal B_k)=2\text{ for every component }k,\\
+\mathrm{3D}, & D(\mathcal B_k)=3\text{ for every component }k,\\
+\mathrm{Mixed}, & \text{every component has dimension 2 or 3, and both occur},\\
+\mathrm{Not\ assigned}, & \text{membership or complete path evidence is unavailable, or any component has }D<2.
 \end{cases}
 $$
 

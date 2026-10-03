@@ -8,8 +8,8 @@ The approved [plan](research-reorganization-plan.md) is implemented with the ope
 
 - [Collinear encounters](../../collinear-research/manuscript.md): comparison first, followed by the stationary history and coincidence arguments.
 - [Braid Program](../manuscript.md): noncollinear binaries and assemblies, including the transferred circular and multi-binary results under their original assumptions.
-- [Shared equation definition and results](../../analysis/field-speed-ceiling-definition-and-shared-results.md): previously examined response and reusable reception arguments.
-- [Historical ceiling investigation](../../field-speed-ceiling/README.md): preserved reviews, decisions, source accounts and receipts.
+- [Shared equation definition and results](../../equation-variants/field-speed-ceiling/definition.md): previously examined response and reusable reception arguments.
+- [Historical ceiling investigation](../../equation-variants/field-speed-ceiling/history/README.md): preserved reviews, decisions, source accounts and receipts.
 
 ## Executed scope
 

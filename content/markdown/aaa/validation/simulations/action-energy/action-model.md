@@ -353,7 +353,7 @@ Boundaries, media, and heterogeneity
 ### Observables and Inference
 - Method 1: Full-field pictures aid intuition and corridor studies but obscure per-hit ambiguity without extra processing.
 - Method 2: Clarifies causal timing and geometry at probes; good for inference templates and surrogate-location recasts.
-- Method 3: Directly aligned with hit histories $\{A(T_k),L(T_k)\}$ and therefore the most direct substrate representation among these three options.
+- Method 3: Directly represents the receiver-local acceleration history $\{\mathbf A(T_k)\}$, where $\mathbf A(T_k)$ is the net acceleration vector of a specified receiver at the sampled absolute reception time $T_k$, and $k$ indexes the samples. As explained in [Simulation Perspective](../perspective.md#effective-observables-and-states-quantum-like-layer), a nonzero vector also defines an unoriented inference axis $L(T_k)=\operatorname{span}\{\mathbf A(T_k)\}$, the line through the origin parallel to that vector. The axis is derived from the acceleration record; it is not an independent measurement or a reconstruction of the transmitter ledger. For an isolated contribution, opposite transmitter-ray and polarity assignments can give the same vector; with superposed contributions, the net axis need not coincide with any individual transmitter ray. A zero vector defines no distinguished axis.
 
 Summary (one line each)
 - Method 1: Best for whole-field, media, and visualization; poorest fit to per-hit radial-only axioms without translation layers.
@@ -368,12 +368,12 @@ Operational guidance — when to use which method
 ## Pros and cons (comparative)
 
 Method 1 — Time-based PDE (wave equation)
-  - Pros
+- Pros
   - Propagation at fixed speed $c_f$ in the comparison surrogate; expanding causal wake surfaces emerge automatically.
   - Robust on grids; handles inhomogeneous media, damping, and boundaries.
   - Good for full-field visualization and energy bookkeeping in continuum form.
 - Cons
-  - Computationally heavy for many-particle dynamics (3D grids, CFL constraints).
+  - Work and storage depend on the three-dimensional grid, required spatial resolution, and CFL-limited time-step count; comparative cost requires measured wall time and memory at matched accuracy on the declared workload.
   - Requires careful numerics to avoid dispersion/reflection; mesh choices can bias results.
   - Mapping grid fields to the radial-only per-hit ODE can add another modeling layer.
 
@@ -384,7 +384,7 @@ Method 2 — Green’s function (path-history integral)
   - Often efficient for field evaluation at a few observation points; useful for analysis and cross-checks, subject to the declared workload.
 - Cons
   - Requires root-finding for each receiver-time pair; multiple roots are possible when transmitters outrun wake surfaces.
-  - Costly when many receivers and transmitters are present; bookkeeping grows quickly.
+  - Work depends on the numbers of receivers, reception-time samples, transmitters and causal roots, together with the root-solving and history-reconstruction method; comparative cost requires measured wall time and memory at matched accuracy on the declared workload.
   - Needs careful handling near tangencies (small Jacobians) and in multi-hit/self-hit regimes.
 
 Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
@@ -394,7 +394,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
   - Can be numerically lightweight for particle dynamics on a declared workload; supports direct integration of simple-root acceleration, with auxiliary mollified or emission-quadrature calculations under their separate approximation conditions.
 - Cons
   - Not derived from the scalar wave equation; global field-energy accounting is indirect (via mollified potentials).
-  - Must retain the transmitter-side factor and transmitter-side acceleration weight from the Master EOM; a reduced test harness that omits either one is a noncanonical approximation rather than a calibration of $\kappa$.
+  - Retain the transmitter-side denominator $D_t$ and its derived acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ in the causal-root record. On a simple-root branch, the per-hit acceleration contains this weight once. Recording both quantities does not introduce a second multiplier; changing or omitting the prescribed weight changes the Master Equation and cannot be absorbed into a constant calibration of $\kappa$ over histories with varying $D_t$.
   - Accuracy depends on robust causal-root finding and regularization choices in complex multi-hit scenarios.
 
 ---

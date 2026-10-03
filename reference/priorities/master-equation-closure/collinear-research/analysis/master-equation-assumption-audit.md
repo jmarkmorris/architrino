@@ -1,5 +1,7 @@
 # What the Master Equation assumes and what follows from it
 
+> **Scope of retained side studies.** This general assumption audit remains distinct from the [quarantined quadratic-response examinations](../README.md#quarantined-quadratic-response-examinations). Its references to the quadratic, softened and associated action results describe inactive special examinations. They do not select their added receiver multiplier for the Master Equation or later scenarios; reuse requires explicit operator re-selection. The audit's postulate/derivation distinctions and unchanged-equation results are not withdrawn by this quarantine.
+
 ## Finding and scope
 
 The Master Equation is a specific proposed microscopic acceleration law, not a consequence of causal delay alone. Its wake-arrival geometry, its response to an individual arrival, and its rule for combining arrivals are distinct commitments. The [Master Equation chapter](../../../../../content/markdown/aaa/dynamics/master-equation.md) explicitly labels the equation a postulate. The [Architrino chapter](../../../../../content/markdown/aaa/foundations/architrino.md) states the primitive object and also summarizes that chosen dynamics; appearing in Foundations does not turn a response postulate into a derivation.
@@ -80,6 +82,8 @@ The three speed regimes remain unrestricted $v$, $v\le c_f$ and $v<c_f$. The las
 
 This table identifies dependencies of the existing arguments, not a claim that one assumption alone causes every failure.
 
+The last three rows summarize quarantined quadratic-response studies. Their conditional results are retained for comparison, with no active continuation recommendation.
+
 | Encounter result | Ingredients entering it | What the result does not establish |
 | --- | --- | --- |
 | Unchanged stationary pair cannot continue through first wake-speed arrival in the tested classes | Incoming attraction reaches that event; geometry creates self roots; their unsuppressed response with short delayed range and source weighting has divergent accumulated acceleration | That all geometries fail, that delay itself is impossible, or that the partner's present separation vanishes |
@@ -100,7 +104,7 @@ A collinear breather is a proposed structure to establish. Its existence would n
 
 ### Would inverse-distance acceleration remove the blockers?
 
-The conditional inverse-distance comparison is now centralized in [Logarithmic potential research](../../logarithmic-potential-research/analysis/inverse-distance-collinear-obstructions.md#would-inverse-distance-acceleration-remove-the-blockers), preserving its assumptions, derivations, and self-checked review status.
+The conditional inverse-distance comparison is now centralized in [Logarithmic potential research](logarithmic-inverse-distance-collinear-obstructions.md#would-inverse-distance-acceleration-remove-the-blockers), preserving its assumptions, derivations, and self-checked review status.
 
 **Inference:** the first question to reopen is the conversion from arriving wake information into acceleration, including the distance response, addition of simultaneous contributions and self reception. That is broader than changing Coulomb's exponent. The arrival geometry can be held fixed initially so that the effect of revising reception is identifiable. The default comparison would also retain point identities, the polarity convention, absolute time and Euclidean space; this is a suggested bounded investigation, not a newly adopted canon.
 

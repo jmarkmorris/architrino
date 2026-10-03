@@ -2,7 +2,7 @@
 
 **Continuation:** the [2026-09-26 sharp braking calculation](sharp-circle-braking-continuation.md) follows the larger-radius input through ceiling release and supplies a conditional escape argument. The measurements below retain their original first-departure scope.
 
-**Date:** 2026-09-16. **Grade:** measured floating-point integration of the sharp equation, with known-case validation and step refinement; not a certified nonlinear trajectory theorem. **Instrument:** [sharp-circle-departure.mjs](../../../../../scripts/field-speed-ceiling/sharp-circle-departure.mjs). **Receipt:** [parameters, source hash, reproduction commands and results](../../field-speed-ceiling/evidence/sharp-circle-departure-receipt.json).
+**Date:** 2026-09-16. **Grade:** measured floating-point integration of the sharp equation, with known-case validation and step refinement; not a certified nonlinear trajectory theorem. **Instrument:** [sharp-circle-departure.mjs](../../../../../scripts/field-speed-ceiling/sharp-circle-departure.mjs). **Receipt:** [parameters, source hash, reproduction commands and results](../evidence/sharp-circle-departure-receipt.json).
 
 ## Input and scope
 

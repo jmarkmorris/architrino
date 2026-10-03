@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This note calculates the causal incidence geometry of the actual ceiling-cap history used in Section 10.7 of [the mathematics packet](../../field-speed-ceiling/analysis/mathematics-geometry-dynamical-system.md). It separates the exact coincidence event from a candidate path on the open right-hand interval. Its purpose is to determine which source times are roots; it does not select a continuation or assign a nonordinary event response.
+This note calculates the causal incidence geometry of the actual ceiling-cap history used in Section 10.7 of [the mathematics packet](../../equation-variants/field-speed-ceiling/history/analysis/mathematics-geometry-dynamical-system.md). It separates the exact coincidence event from a candidate path on the open right-hand interval. Its purpose is to determine which source times are roots; it does not select a continuation or assign a nonordinary event response.
 
 ## Hypotheses and notation
 

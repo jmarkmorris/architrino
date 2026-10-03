@@ -1,0 +1,11 @@
+# Logarithmic potential: shared definition
+
+This directory owns the shared logarithmic interaction candidate, its reference-level identities, general spherical-accounting comparisons and interpretation questions. The [manuscript](manuscript.md) gives the canonical equation before and after the proposed inverse-distance replacement. The canonical Master Equation remains the baseline; the logarithmic replacement is authorized for research and is not adopted physics.
+
+The shared treatment separates a primitive reception hypothesis from effective collective and accumulated-scale interpretations. Its scalar and flux identities do not supply a dynamical conserved account or an assembly solution. The [discussion](brainstorming.md) preserves those interpretation boundaries, and the [shared parent queue](../../work-queue.md#lpr-005--robustness-and-conserved-account) owns the remaining account question.
+
+All current collinear logarithmic research is owned by [collinear research](../../collinear-research/README.md): the [full encounter treatment](../../collinear-research/analysis/logarithmic-collinear-manuscript.md), [scientific status](../../collinear-research/analysis/logarithmic-research-status.md), [research-plan context](../../collinear-research/analysis/logarithmic-research-plan.md), and [LPR-006 execution owner](../../collinear-research/work-queue.md#lpr-006--research-disposition). Its instantaneous and causal proofs, independent reviews, ceiling comparisons and local numerical instruments are there. Other configuration owners hold their own applications when investigated; this directory supplies no parallel geometry queue.
+
+The [combined-variation procedure](../combined-variations.md) specifies conjunction with a field-speed ceiling. Existing explicitly selected projection and zero-self-response comparisons keep their stated scope. The quadratic receiver-response experiment remains withdrawn from the active scenario; its preserved calculations confer no authority to reuse it.
+
+The [reference-level illustration](analysis/logarithmic-potential-visualization.html) belongs to this shared definition. Mathematical and physical claim grades, complete-history assumptions, summation and self-reception choices remain visible where results are made. Investigation and filing do not authorize promotion or production-solver implementation.

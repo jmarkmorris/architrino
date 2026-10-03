@@ -99,12 +99,14 @@ The app uses this combined speed for shared-geometry same-transmitter span diagn
 
 Partner-hit loops, same-transmitter loops and recurring causal round trips are proposed phase-lock mechanisms. Phase recurrence on prescribed paths is a diagnostic output, not a retained dynamical locking argument.
 
+At $c_\gamma=c_{\mathrm{sig}}=c_f=1$, a nonzero-radius circular transverse path has exact same-transmitter contacts only at whole internal periods: $4R^2\sin^2(\omega u/2)=0$. Every positive contact has $D_t=0$, because its arriving direction is axial and the source's axial speed equals the wake speed. The [root and axial analysis](translating-carrier-root-and-axial-constraints.md) proves this and the leading-plane obstruction. These persistent singular contacts do not define ordinary retained hits.
+
 
 ## 5. Historical finite self-hit sweep
 
 The retained compact receipt reports 756 prescribed cases: six named presets, six translation-speed ratios, three signal-speed ratios and seven observation phases. Within its three-history-cycle, finite-subdivision, finite-root-cap search, it records 5,068 helical roots and 5,116 phase families. The family classification is 4,666 single-hit, 422 singular-candidate and 28 phase-drift families. No stable or candidate phase-lock family was found; 42 cases contained singular candidates.
 
-The strongest singular example has zero recorded source and receiver phase spreads yet is still a singular candidate, not a stable result. This is a useful negative control against identifying phase coincidence with regular retention. The receipt's root and family totals are different reported populations; their difference is not silently repaired into a new equality.
+The strongest singular example has zero recorded source and receiver phase spreads yet is still a singular candidate, not a stable result. Whole-period self contacts explain this exact boundary geometry; the stored finite count and numerical Jacobian margin remain outputs of the historical approximate search. This is a useful negative control against identifying phase coincidence with regular retention. The receipt's root and family totals are different reported populations; their difference is not silently repaired into a new equality. Its headline counts also combine the declared signal speeds $0.6$, $0.8$ and $1$; they are not counts from a pure $c_{\mathrm{sig}}=c_f$ Master-Equation sample.
 
 The negative applies to the declared prescribed cases, search limits and historical classifier. It does not exclude every transmitter history, all phase-lock mechanisms or physical photons. Later admission work added explicit rejected-root reasons without adding a new transmitter-history family, so the same sweep was not regenerated. The retained receipt also states that a migration rerun reproduced headline counts but not the historical raw bytes because the case-row schema evolved. Count agreement is therefore not exact reproduction of the old record, and the raw case rows have not been read for this synthesis.
 

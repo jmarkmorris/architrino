@@ -10,7 +10,7 @@ This note combines three completed inputs:
 2. the retained partner-cap incidence theorem; and
 3. the proposed common impulse-event aggregation with exact mirror cancellation.
 
-It then supplies the missing event-family ownership rule, retained-history splice, and right-trace equation. The construction does not choose free passage or rebound as an event instruction. It preserves the incoming velocities and lets the complete non-event remainder ledger determine subsequent motion.
+It then supplies the missing event-family ownership rule, retained-history splice, and right-trace equation. It preserves incoming velocities under the proposed two-source event aggregation and lets the modified non-event remainder ledger determine subsequent motion. Both-source event admission is an additional assumption: the cancellation does not apply to the selected scenario excluding self acceleration at equality. The conditional continuation results are preserved under this event model, not transferred to that no-self scenario.
 
 Plainly: the event itself does not throw the architrinos forward or backward. It cancels the matched impulse, keeps all histories, and restarts the ordinary calculation with every other wake still present.
 
@@ -282,7 +282,7 @@ $$
 
 allowing a new, unowned post-event partner root to detach from the endpoint. The [trailing-front local-existence theorem](trailing-front-activation-dichotomy.md) proves that for every $u_*>0$ a local full-vector mirror-collinear branch agrees with the straight trace through $u_*$ and then brakes on exactly one new ordinary partner root per receiver. The restart therefore does not select a unique continuation in its declared absolutely continuous, almost-everywhere solution class. Retaining multivaluedness or adopting a separate activation selection clause is a foundational decision not made here.
 
-Plainly: free passage was not put into the event instruction. It appears in the isolated calculation because the event supplies no velocity jump and the complete ledger after the event contains no active row.
+Straight passage is compatible because the event supplies no velocity jump and clause 4 suppresses the frozen endpoint row. On the straight trial that row is an ordinary positive-delay partner root with $D_t=2$ and canonical acceleration $-K/(2t^2)$ in normalized wake-speed units. Its removal is an added response rule, not a consequence of zero receiver playback. Together with the assumed event cancellation, it permits straight passage; positive-waiting braking branches show that it does not uniquely select it.
 
 ## Why immediate rebound is excluded
 
@@ -320,7 +320,7 @@ A general well-posedness theorem for this history-dependent restart is not prove
 
 ## Completed review and decision
 
-The completed Jack K. Hale delayed-history review is recorded in [FSC-006b-JKH3](../../field-speed-ceiling/analysis/jack-k-hale-third-review-2026-08-02.md). The [independent complete-lobe and returning-event review](../../field-speed-ceiling/analysis/independent-complete-lobe-returning-event-review-2026-09-02.md) verifies the repaired local-existence, root-census, and measure-typing chain. The [event-adjacent no-cascade lemma](event-adjacent-no-cascade-lemma.md) closes the thin activation-component question in the declared mirror-collinear class. The [future-equivalence quotient theorem](future-equivalence-quotient-and-two-cycle.md) supplies the live/archive state boundary. The operator selected Option A in the [continuation-selection decision](../../field-speed-ceiling/decisions/continuation-selection-operator-decision-2026-09-02.md), retaining the continuation as a multivalued relation without adding a selector.
+The completed Jack K. Hale delayed-history review is recorded in [FSC-006b-JKH3](../../equation-variants/field-speed-ceiling/history/analysis/jack-k-hale-third-review-2026-08-02.md). The [independent complete-lobe and returning-event review](../evidence/independent-complete-lobe-returning-event-review-2026-09-02.md) verifies the repaired local-existence, root-census, and measure-typing chain. The [event-adjacent no-cascade lemma](event-adjacent-no-cascade-lemma.md) closes the thin activation-component question in the declared mirror-collinear class. The [future-equivalence quotient theorem](future-equivalence-quotient-and-two-cycle.md) supplies the live/archive state boundary. The operator selected Option A in the [continuation-selection decision](../../equation-variants/field-speed-ceiling/history/decisions/continuation-selection-operator-decision-2026-09-02.md), retaining the continuation as a multivalued relation without adding a selector.
 
 Plainly: the event construction and its compatible futures have been reviewed, the immediate cascade gap has been closed, and the state quotient has been specified. The operator's decision records the remaining nonuniqueness instead of inventing a rule that chooses one future.
 

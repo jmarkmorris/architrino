@@ -1,5 +1,8 @@
 # Quark research
 
+This configuration owner contains its research under the canonical Master Equation and any explicitly selected [authorized equation variations](../equation-variants/README.md): field-speed ceiling, logarithmic potential, or their specified combination. Shared definitions remain with the parent; configuration-specific mathematics, reviews, evidence and tasks belong here. An available variation is not an implicit assumption, and this ownership rule activates no new investigation.
+
+
 This workstream gathers quark-specific candidate geometry and experiments under the Master Equation. It asks whether specified architrino histories can retain the proposed assembly and how assemblies with different polarity arrangements interact. A quark label remains a candidate identification until the dynamics and observer-facing response support it.
 
 - [Manuscript: the geometry and its unresolved dynamics](manuscript.md)

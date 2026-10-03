@@ -441,7 +441,7 @@ The accepted September result covers only original parents 0–2 at the loose se
 
 ### 6.7. Physical interpretations remain downstream
 
-The six-coordinate map admits even/odd sector variables and an exact scalar-plus-directional decomposition with an inverse. It does not establish exactly three dynamical modes: that requires a closed history reconstruction and a return operator. Polar and axial response also require reflection behavior, not rotations alone. A vector reversal under a chart action is not a spinor sign.
+The six-coordinate map admits conjugation-adapted even/odd sector variables and an exact scalar-plus-directional decomposition with an inverse. For $z\in\{h,\rho,\theta\}$, put $p_h=p_\theta=-1$ and $p_\rho=1$, so the even and odd coordinates are $(z_++p_z z_-)/2$ and $(z_+-p_z z_-)/2$, respectively. Raw means and differences have that parity only for radius. This split does not establish exactly three dynamical modes: that requires a closed history reconstruction and a return operator. Polar and axial response also require reflection behavior, not rotations alone. A vector reversal under a chart action is not a spinor sign.
 
 A return-count clock, absolute time and synchronized observer time are different constructions. A moving clock must be solved as a moving history; transforming a drawing supplies no dynamical time-dilation result. Likewise, emitted ticks and received ticks require a shared signal account. The candidate's possible clock, particle, neutrino, photon and tensor roles remain recovery targets or explicitly speculative identifications. No stability analysis may begin by linearizing a history that has not been established as a solution.
 
@@ -545,7 +545,7 @@ E_{\mathrm{wake},\mathfrak B}^{(\eta)}(T)=
 \partial_{T_1}\mathcal K_{ij,\mathfrak B}^{E,\eta}(T_1,T_t).
 $$
 
-The branch $\mathfrak B$, regulator $\eta$, endpoint convention and treatment of nontrivial self hits belong to the definition. In particular, the integral crosses from past transmission to future reception. Present path jets and causal acceleration rows do not automatically determine it.
+The branch $\mathfrak B$, regulator $\eta$, endpoint convention and treatment of nontrivial self hits belong to the definition. The notation $\partial_{T_1}$ must additionally specify whether it differentiates an explicit kernel argument with path data fixed or the kernel composed with the reception history; these generally give different expressions. The accepted action must fix that convention and all boundary terms before this proposed expression defines a conserved charge. In particular, the integral crosses from past transmission to future reception. Present path jets and causal acceleration rows do not automatically determine it.
 
 A time-cut charge is also not yet a spatial density. A control-volume account needs an action-derived allocation inside and outside the spatial region, with complementary terms and no double counting between near interaction and wake storage. Under those additional assumptions one may seek a balance of the form
 
@@ -652,14 +652,14 @@ g_i=\mathbf t_i\cdot\mathbf A_i^{\mathrm{ord}}\ge0,\qquad
 (I-\mathbf t_i\mathbf t_i^{\mathsf T})\mathbf A_i^{\mathrm{ord}}=-\frac{c_f^2}{R_i}\boldsymbol\rho_i
 $$
 
-There are six scalar inequalities and twelve perpendicular scalar equalities before reduction. They must hold for the complete period, not only sampled phases. Exact speed constraints $R_i^2\omega_i^2-c_f^2=0$ are separate equalities; active inequalities have different one-sided and two-sided tangent conditions. The [independent review of the assembly program](../field-speed-ceiling/analysis/sections-12-14-independent-review-2026-09-02.md) requires this separation explicitly.
+There are six scalar inequalities and twelve perpendicular scalar equalities before reduction. They must hold for the complete period, not only sampled phases. Exact speed constraints $R_i^2\omega_i^2-c_f^2=0$ are separate equalities; active inequalities have different one-sided and two-sided tangent conditions. The [independent review of the assembly program](evidence/sections-12-14-independent-review-2026-09-02.md) requires this separation explicitly.
 
 A common period requires integer windings $\omega_iP=2\pi k_i$ and corresponding inverse-winding radius ratios at fixed speed. Relative phases must be taken through the correct integer-lattice quotient; a convenient pair of phase combinations need not distinguish every orbit when winding integers exceed one. Rotating a circle's frame while shifting its phase is a representation redundancy. Incommensurate windings give a torus trajectory rather than a finite-period cycle. Homothetic scaling balances a raw $L^{-2}$ ledger against required $L^{-1}$ curvature and gives at most one positive scale for a fixed curved shape and coupling. It is not an existence theorem. Likewise, a small-radius obstruction assumes bounded external contributions; simultaneous singular cross rows or leading cancellations leave that hypothesis class.
 
 <a id="62-a-complete-census-with-failed-acceleration-closure"></a>
 ### 10.2. A complete census with failed acceleration closure
 
-The [quarantined reference calculation](../field-speed-ceiling/analysis/quarantined-hypotheses-and-prescribed-reference-cases.md) fixes three equal-radius antipodal pairs in orthogonal planes with phases $0,2\pi/3,4\pi/3$ and normalized $c_f=R=\omega=1$. Its geometry theorem gives thirty ordinary distinct-label roots at every reception time and no self root. That complete census does not make it a solution. Write $\lambda=\kappa q_0^2>0$ for the common coupling, so the unit-coupling total $\mathbf A^{(0)}$ satisfies $\mathbf A^{\mathrm{ord}}=\lambda\mathbf A^{(0)}$. The retained [time-zero coordinate receipt](../field-speed-ceiling/evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json), produced at 100-digit precision, records these unit-coupling necessary-condition failures:
+The [quarantined reference calculation](../equation-variants/field-speed-ceiling/history/analysis/quarantined-hypotheses-and-prescribed-reference-cases.md) fixes three equal-radius antipodal pairs in orthogonal planes with phases $0,2\pi/3,4\pi/3$ and normalized $c_f=R=\omega=1$. Its geometry theorem gives thirty ordinary distinct-label roots at every reception time and no self root. That complete census does not make it a solution. Write $\lambda=\kappa q_0^2>0$ for the common coupling, so the unit-coupling total $\mathbf A^{(0)}$ satisfies $\mathbf A^{\mathrm{ord}}=\lambda\mathbf A^{(0)}$. The retained [time-zero coordinate receipt](evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json), produced at 100-digit precision, records these unit-coupling necessary-condition failures:
 
 | Relative polarity orientation | Receiver and failed quantity | Recorded value, rounded |
 | --- | --- | --- |

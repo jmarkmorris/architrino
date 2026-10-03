@@ -12,6 +12,12 @@ In the first schematic record, $B_q$ denotes the candidate braid, $A_q$ its axia
 
 The source passage below is preserved from the [Standard Model strategy](../../../mapping-standard-model/priorities.md). Its reference to a fitted force law concerns an effective assembly comparison; it supplies no substrate force law. The [shared geometry-first program](../../../mapping-standard-model/analysis/geometry-first-program.md) retains flavor-overlap and effective-confinement mathematics.
 
+## Spatial symmetry of the proposed coupling coordinates
+
+The [axis-symmetry analysis](axis-coupling-symmetry.md) supplies a conditional diagnostic for the naive matrix space. If its coordinates are oriented spatial components and a complete history preserves the proper octahedral rotation group, the identity, diagonal traceless, antisymmetric and symmetric off-diagonal subspaces have dimensions $1,2,3,3$. Spatial symmetry permits distinct responses in the three traceless blocks. Unsigned exceptional-axis labels instead transform through axis permutations and have a different traceless decomposition, including an invariant direction.
+
+The comparison must first define the coordinate transformation and the actual history stabilizer. F6c's six-site octahedral seed does not confer full octahedral symmetry on the decorated moving host. Equality of block coefficients tests an explicitly isotropic response at an appropriate reference; it neither establishes color covariance nor imposes equality of all local frequencies as a universal recovery requirement. Generator action, local transport and observer readout still need the same retained history. These qualifications leave the original source proposal below intact.
+
 ### Quark Vortex-Coupling Simulation Target
 
 The quark-era source-mining signal is useful only as a simulation target. A candidate finite-assembly run should retain quark-like nested shell braid records with axial layers, a color-singlet constraint, and vortex-like wake-coupling rows:

@@ -1,5 +1,7 @@
 # Testing an action for both collinear paths
 
+> **Quarantined special examination — inactive.** This action test targets the softened equation with the added quadratic receiver multiplier. Its rejection remains a result about that candidate family; neither the factor nor the proposed repeat-cycle follow-up is active or a default for later work. The original derivation and numerical checks are preserved. Reuse or extension requires explicit operator re-selection for a named scenario. See the [collinear quarantine disposition](../README.md#quarantined-quadratic-response-examinations).
+
 ## Result and scope
 
 **Derived result:** adding the two prescribed-partner variational expressions does not reproduce the causal equation used in the softened encounter. Varying a path changes both its reception of earlier emissions and the later reception of its own emissions by the partner. The second effect contributes an additional term involving a later partner position. A factor of one half fixes double counting for stationary paths but does not remove that later-path dependence for moving paths.

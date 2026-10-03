@@ -2,6 +2,8 @@
 
 Status: PREDECLARED DIAGNOSTIC; NON-BOOKING (2026-07-24).
 
+**Current disposition, 2026-10-03:** this historical protocol does not authorize continuation of the unchanged stationary seed through first wake-speed equality. The [stationary boundary analysis](../analysis/stationary-binary-first-interval.md#the-inherited-partner-row-forces-increasing-inward-speed) establishes a positive-separation self-birth obstruction in its local integral and nonnegative locally finite measure classes. The [BP-003 queue](../work-queue.md#bp-003--collinear-breather-campaign) remains deferred / blocked. Its stopping rule reaches the subfield scope boundary before any minimum–maximum–minimum sequence; refining ordinary folds cannot repair this diagonal birth. This is an obstruction for the stated history and solution classes, not a global nonexistence theorem for collinear breathers. The original predeclaration below is preserved.
+
 ## Question and claim ceiling
 
 Release two opposite-polarity architrinos from rest after a declared stationary retained prehistory. Determine, over the finite computed interval, whether they approach, cross or reach a positive-separation closest approach, move apart, turn back toward one another, and complete a minimum-maximum-minimum separation sequence.

@@ -6,6 +6,8 @@ The Noether sea investigation concerns a populated environment of braids and the
 
 The candidate preparation considered here is a dense population of highly energetic scaled braids surrounding regions containing assemblies proposed to represent standard-model particles. This is a research hypothesis, not a derived equilibrium or an accepted retained population. “High energy” must ultimately refer to an accepted account evaluated on those histories. It does not supply an intrinsic mass or license an independent acceleration law. Changing a constituent's geometric scale is also a candidate construction; it does not prove that the scaled history continues to satisfy the same equation in its new surroundings.
 
+The [scale calculation](analysis/preparation-controls-and-population-scales.md#a-scaled-history-needs-an-equation-check) makes that restriction explicit: a generic length/time dilation at fixed wake speed changes the coupling. At unchanged constants, the exact alternating-ring family instead has ledger-selected size and speed. Its high-rung radii and periods shrink at different rates; they are branch properties, not a transition law or universal physical scale spectrum.
+
 A matter-containing pocket is a region identified by its assembly population and local environment. It need not be an empty cavity or have a rigid boundary. Ambient braids can occupy the region, cross its boundary, or change their histories in response to the embedded assemblies. A calculation must specify which of those possibilities its preparation admits. No exclusion surface, confining wall, pressure law, or equilibrium is supplied by the word “pocket.”
 
 The present mathematical target is the [shared pressure-dependent constitutive response](analysis/pressure-dependent-noether-sea-constitutive-response.md). A constitutive response describes how measured properties of a populated state change under a specified disturbance. Here it must be obtained from the delayed interaction of complete histories and from accounts defined on that same evolution. It is not an additional primitive medium law.
@@ -27,6 +29,10 @@ A useful population description must identify both the contents and their histor
 A homogeneous candidate controls the simplest environmental comparison. An inhomogeneous candidate allows density, orientation, scale or cadence distributions to vary. An embedded-assembly candidate introduces reciprocal interaction with a specified material assembly. These descriptions select different questions; moving among them requires a new preparation and its corresponding causal-history and boundary justification.
 
 An ordered population can be studied as a lattice and as a candidate sea. Lattice research owns questions about the repeated arrangement and its disturbances. Sea research owns the collective ambient response and its reciprocal interaction with embedded assemblies. Both use the same underlying evidence when their preparations coincide. The already studied lattice of individual architrinos is not thereby a population of retained Noether braids.
+
+An infinite preparation needs actual received-root and derivative tail bounds. The [lattice summation results](../lattice-research/manuscript.md#18-the-topology-and-summation-rule-are-part-of-the-result) show why equal-time neutrality or rigid-cell geometry alone cannot provide them. A decaying distant-past envelope is one sufficient proposed history class, not a requirement that every sea realization adopt that class.
+
+The [weak-coupling checkerboard lemma](../lattice-research/analysis/checkerboard-weak-coupling-rate.md) gives a derived coherent linear growth timescale for that bare-architrino control. It does not establish a disordered-sea growth rate, a braid-density stability criterion or a transport speed. Constituent stability and collective response remain distinct.
 
 ## 3. Acceleration strength and history playback
 
@@ -52,15 +58,19 @@ Every response record consequently needs persistent transmitter and receiver ide
 
 ## 4. One shared pressure response
 
-Pressure here is a proposed collective descriptor at a declared averaging scale. It is not an architrino-level premise. The scientific target is to compare one accepted populated branch with a controlled pressure disturbance while retaining the same causal update and account definitions.
+Pressure here is a proposed collective descriptor at a declared averaging scale. It is not an architrino-level premise. A pressure-labeled comparison requires a same-record stress or boundary-flux account, dimensional calibration and an explicit change of prepared histories or boundary data. The scientific target is to compare accepted populated records under that operation while retaining the same causal update and account definitions.
 
 The response includes changes in braid density, signal delay, cadence, stress and inertia-related readouts. Those changes must come from one retained population record. Clock, signal, effective-metric, material and cosmological consumers then project that common record into their respective observables. Supplying a separately fitted medium response for each consumer would leave the common constitutive problem unresolved.
 
 The existing response packet specifies one original pressure state, one signed subthreshold perturbation, a wrong-sign or record-mismatch negative control, a smaller pressure step and a tighter numerical refinement. The comparison is meaningful only when the histories, branch identity, causal wake accounts and physical readouts remain tied to the same states. Its finite-difference response is a target for an accepted retained branch; no numerical coefficient is supplied here.
 
+The [kinematic-control proposal](analysis/preparation-controls-and-population-scales.md#proposed-dimensionless-preparation-coordinate) prepares a log-density comparison without applying an undefined primitive pressure. It remains an unselected amendment or companion to the existing v0 target. Effective speed also needs a named disturbance and readout; the [two-station group-delay proposal](analysis/preparation-controls-and-population-scales.md#effective-speed-is-a-channel-readout) preserves the distinction between collective channel delay and primitive wake speed.
+
 A vanishing first response in one disturbance direction would not exclude a higher-order response or a response averaged over periodic driving. Either conclusion would require its own declared disturbance and observable. Conversely, a nonzero isolated-constituent acceleration does not determine the response of a dense population. The environment can change both the source history and the receiving assembly, so an isolated calculation is a control rather than the constitutive result.
 
 The same requirement applies to polarization. A directional photon response must use the orientation or strain record that also supplies the other medium readouts. An isotropic homogeneous limit requires coincident polarization eigenvalues within the stated limiting construction. A directional split, if established, must arise from that same retained state; a separate fitted refractive tensor does not close the shared response target.
+
+Projecting a three-dimensional trace-free strain into the transverse plane can shift both the mean susceptibility and its eigenvalue gap. The [packet decomposition](analysis/pressure-dependent-noether-sea-constitutive-response.md#polarization-resolved-strong-loading-bridge) separates those effects and retains the unresolved anisotropic remainder in the isotropic-limit requirement.
 
 ## 5. Present evidence boundary
 

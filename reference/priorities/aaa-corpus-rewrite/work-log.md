@@ -4,6 +4,10 @@ This is the chronological completion log for the CRW-005 assurance campaign. The
 
 ## Completed milestones
 
+### 2026-10-03 — Six OPS-031 repair groups integrated
+
+The operator approved the six-group before/after proposal, including the fixed-identity braid coordinate choice. All six groups are implemented across seven chapters and separately checked against independent geometric, algebraic and accepted theorem references. The [closure receipt](evidence/ops-031-six-group-closure-2026-10-03.md) links each editor receipt, source hashes, scope, validation and unresolved scientific-owner questions. The affected referral sections are moved from discussion-scoped to Verified in the work queue while preserving their original finding descriptions. CRW-005 remains closed and scheduled mathematical coverage is unchanged. The unrelated neutron-dipole and direction-normalization questions remain discussion-scoped.
+
 ### 2026-10-02 — Three OPS-031 clarifications integrated
 
 The operator's “fix those issues” accepted the three findings explained in the thread: EOS02-01, EOS02-02 and ME02-01. Four prose replacements in two chapters implement that scope. The original [Emergence review](../aaa-operations/evidence/ops-031-emergence-of-structure-review-2026-10-02.md) and [Master Equation part-1 review](../aaa-operations/evidence/ops-031-master-equation-part-1-review-2026-10-02.md) remain unchanged historical evidence. CRW-005 remains closed; the auxiliary-method and chart-floor follow-ups are not included in this authorization.
