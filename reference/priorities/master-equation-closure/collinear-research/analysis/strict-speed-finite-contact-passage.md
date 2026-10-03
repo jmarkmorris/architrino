@@ -1,5 +1,7 @@
 # A strict-speed equation with finite contact response
 
+> **Quarantined special examination — inactive.** This study combines an added quadratic receiver multiplier, a softened spatial response and a contact extension. Its passage and length-sweep results belong to that complete modified equation, not to a radial change or strict inequality alone. It is not the active or default collinear response. The original calculations, recommendations and reproduction instructions remain historical records; further use requires explicit operator re-selection for a named scenario. See the [collinear quarantine disposition](../README.md#quarantined-quadratic-response-examinations).
+
 ## Experimental setup and meanings of the terms
 
 These are numerical experiments on a proposed equation, not physical experiments and not runs of the unchanged Master Equation. Every run uses two isolated, opposite-polarity architrinos on one line. Their positions are mirror images, initially $+0.5$ and $-0.5$, so the initial separation is one length unit. Both have zero velocity, with stationary histories supplied from $T=-20$ to $T=0$. At zero we start evolving that preparation. No other architrinos or external influences are included. The mirror symmetry is imposed by the reduced calculation; these runs do not test transverse disturbances.

@@ -4,13 +4,31 @@ The accepted two-target lattice control and its complete supplied past determine
 
 ## Ranked Next Objects
 
-No independent score is assigned to this geometry workstream. The existing named task below retains its scientific scope, status and `1-mec` assignment; it does not inherit the parent's general-law rank.
+No independent score is assigned to this geometry workstream. The existing in-progress task retains its scientific scope, status and `1-mec` assignment; it does not inherit the parent's general-law rank. The queued follow-ups record unfinished recommendations without launching a calculation.
 
 ## In progress
 
 | Work | Status | What finishes it / what must happen first |
 | --- | --- | --- |
 | **Classify separation through the returned pulse across the admitted couplings** | **◐ In progress — 1-mec** | Preserve the identical input and $0<g\le16$. The [accepted signed-error enclosure](analysis/smooth-two-particle-signed-error-independent-adjudication.md) covers the full interval and proves transient approach followed by renewed separation at $g=16$. Determine which remaining couplings retain positive separation velocity and which admit reversals, with justified transition-time bounds. The current absolute error is too coarse near $g=0$; a coupling-scaled bound or another rigorous sign argument is required. A failed sign bound proves neither approach nor a law obstruction. |
+
+## Queued follow-ups
+
+### Define an EOM solver reproduction of the fixed lattice control
+
+- **Status:** ○ Queued — specification incomplete; numerical execution blocked.
+- **Request:** Define the finite EOM solver reproduction previously recommended for the supplied two-target lattice control.
+- **Scope:** Name the finite changed-history population, complete supplied pasts, horizon and unchanged Master Equation with numerical $c_f=1$. Specify how the surrounding infinite lattice contributes through the stationary aggregate, receiver-dependent evaluation, subtraction of replaced source rows and certified tails. A bare finite lattice is a different experiment.
+- **Evidence / blocker:** The [existing capability audit](analysis/smooth-two-particle-later-instrument.md#eom-solver-capability-boundary) identifies the missing infinite stationary-field representation. The [EOM solver owner](../../app-solver/priorities.md) retains capability implementation and acceptance; this entry does not commission a new solver or expand its testing obligations.
+- **Completion:** A reproducible protocol defines all inputs, the aggregate interface, independent analytical comparison and error requirements, and names any remaining capability dependency. A production run stays blocked until the required capability is accepted. Existing comparison curves remain comparison evidence.
+
+### Specify a spatially localized self-consistent lattice preparation
+
+- **Status:** ○ Queued — unassigned.
+- **Request:** Examine whether the wake-speed boundary found for coherent infinite-support motion can be investigated from a spatially localized disturbance with a self-consistent past.
+- **Scope:** State precisely what spatial localization means for complete histories, declare the exterior population and summation prescription, and construct an admitted preparation satisfying the unchanged Master Equation, or prove a precise obstruction to the selected preparation class. Use numerical $c_f=1$, retain environmental response and every applicable causal root, and impose no added speed ceiling, response factor, root exclusion or event law.
+- **Completion:** A source-supported preparation theorem or obstruction identifies the history class, root and tail control, and independent proof checks. The non-self-consistent two-target pulse and the coherent infinite-support branch are controls, not substitutes for the missing localized history. Further evolution, stability and decay need their own continuation argument.
+- **Context:** [Preparation distinction](brainstorming.md#a-spatially-localized-self-consistent-disturbance). Recording this recommendation does not change the active coupling-classification assignment.
 
 ## Results that constrain the next step
 
@@ -22,4 +40,4 @@ No independent score is assigned to this geometry workstream. The existing named
 - **The unchanged equation continues regularly across the first environmental displacement boundary.** The [accepted extension](analysis/smooth-two-particle-beyond-class-boundary-independent-adjudication.md) reaches $81/16$, beyond the boundary bracket $5121/1024<\tau\le10339/2048$, and proves an environmental displacement greater than $1/16$ at its endpoint. Both targets still rise and accelerate upward. The first boundary identity and exact time remain unresolved. The earlier four turns, two shrinking completed comparisons and unfinished rise exceeding the preceding fall by more than 47283 times at $5$ remain accepted. The next maximum and eventual settling remain open.
 - **The fixed two-target disturbance separates initially and has an accepted later velocity reversal at $g=16$.** For $0<G/\ell\le16$, the [generated-feedback adjudication](analysis/smooth-two-particle-generated-feedback-independent-adjudication.md) accepts continuation to $17\ell/16$, original class/root preservation, 144 generated channels reaching 76 labels, and actual motion of both targets. The [full first-feedback separation adjudication](analysis/smooth-two-particle-feedback-separation-independent-adjudication.md) proves positive separation acceleration and velocity through that horizon. The [signed-error adjudication](analysis/smooth-two-particle-signed-error-independent-adjudication.md) proves later approach at $g=16$ and renewed separation by the latest pulse-end reception. It supplies no contact or complete coupling classification. The global earliest moving receiver and arbitrary-history contact remain unassigned. This fixed-input result is separate from the blocked arbitrary-population formulation.
 - **The supplied complete past is not an unforced EOM-generated preparation.** The [preparation adjudication](analysis/smooth-two-particle-preparation-independent-adjudication.md) accepts the target-onset uniqueness contradiction and a nonzero environmental pre-release residual. Exact release compatibility and forward evolution remain valid. The separate ancient-history construction supplies different coupled histories; it neither repairs the exact old pulse nor transfers that pulse's later event to them. No typicality claim follows.
-The original source packets and independent references remain fixed scientific inputs. A further evolution or altered history class requires its own accepted task. The [localized self-consistent disturbance](brainstorming.md) remains proposed. General population evolution, approximation and equation closure stay in the [parent queue](../work-queue.md).
+The original source packets and independent references remain fixed scientific inputs. The [localized preparation follow-up](#specify-a-spatially-localized-self-consistent-lattice-preparation) is now queued; its result remains unproved and no evolution is launched by recording it. General population evolution, approximation and equation closure stay in the [parent queue](../work-queue.md).

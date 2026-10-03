@@ -1,3 +1,5 @@
+> **Retained historical comparisons with different assumptions.** The quadratic strict-response section below is excluded from the active logarithmic scenario as of 2026-10-02. Its receiver factor and contact conclusion must not be carried into the [current strict equation](../manuscript.md#strict-domain-with-unchanged-logarithmic-acceleration). The other conditional arguments retain their stated scope; this mixed comparison is not the active scenario definition. See the [occurrence audit](quadratic-response-occurrence-audit.md).
+
 # Conditional inverse-distance collinear obstructions
 
 This analysis preserves the inverse-distance comparison from the [collinear assumption audit](../../collinear-research/analysis/master-equation-assumption-audit.md), originally dated 2026-09-27. Its conditional, self-checked grade is unchanged. “Row 10” refers to the [strict-speed quadratic-response comparison in the collinear manuscript](../../collinear-research/manuscript.md#collinear-note-10); it is not a result for every logarithmic model.

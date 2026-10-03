@@ -1,5 +1,7 @@
 # Coupled capped evolution near mirror incidence
 
+> **Current scope correction, 2026-10-02.** The selected ceiling scenario has zero self acceleration, including equality. References below to a possible compensating self term or a remaining self-response theorem are historical general-comparison obligations. For the isolated mirror history with the stated earlier-root exclusion, the [partner-only companion](self-silent-partner-near-event-balance.md) supplies the complete ledger and removes that compensation branch: continuous launch and immediate ordinary rebound remain obstructed. Singular partner-event evolution is still unresolved. No extra event pairing, zero-jump rule or frozen-root suppression follows from the cap. The [scope audit](shim-repair-cap-scope-audit.md) preserves the conditional theorem and its exact limits.
+
 **Date:** 2026-09-15. **Status:** exploratory formulation and conditional obstruction proved below; no event update, response regularization, or continuation selected. **Authority:** unchanged Master Equation reception plus the speed cap, interpreted on regular finite ledgers by the previously discussed least-change response. **Grade:** derived regular equations and conditional inequality; unresolved complete singular-event dynamics.
 
 ## Result in context

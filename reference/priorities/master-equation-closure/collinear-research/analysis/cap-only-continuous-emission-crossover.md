@@ -1,5 +1,7 @@
 # Cap-only continuous-emission crossover calculation
 
+> **Current scope correction, 2026-10-02.** The prescribed-path partner divergence below is retained. Its older request to include a self-family response is superseded by the selected no-self scenario and the [partner-only companion](self-silent-partner-near-event-balance.md). The calculation supplies neither an event impulse nor an evolved passage. Extended-model straight passage and delayed braking require their additional event/ownership rules; they are not cap-only advances. See the [scope audit](shim-repair-cap-scope-audit.md).
+
 **Date:** 2026-09-15. **Authority:** the operator permits only the field-speed cap as a deviation from the canonical Master Equation. **Claim grade:** derived distributional calculation for one prescribed mirror partner channel on positive-range truncations. No actual crossover trajectory, event update, self-family disposition, or finite velocity jump is established.
 
 ## Question and result

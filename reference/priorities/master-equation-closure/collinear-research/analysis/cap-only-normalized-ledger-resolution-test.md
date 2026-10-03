@@ -1,5 +1,7 @@
 # Normalized partner-and-self ledger: resolution-dependence test
 
+> **Current scope correction, 2026-10-02.** The self-active diagnostic and its remaining self-response obligations below do not govern the selected no-self ceiling scenario. The [partner-only companion](self-silent-partner-near-event-balance.md) already recomputes the profiles with zero self acceleration and proves the corresponding regular outgoing obstructions. Under this scope, both profiles have backward normalized partner balance at fixed positive time; the Gaussian straight continuation is excluded. The unresolved event is singular partner reception, not selection of a self response. The [scope audit](shim-repair-cap-scope-audit.md) gives the before/after and geometry disposition; historical formulas remain intact.
+
 **Date:** 2026-09-15. **Status:** exploratory analytic auxiliary-model calculation; no smoothing or event law adopted. **Grade:** derived formulas for the stated finite-memory, dual-smoothed diagnostic on a prescribed mirror history. **Boundary:** regular-domain agreement does not certify either diagnostic as the correct sharp singular-event extension.
 
 ## Question and outcome

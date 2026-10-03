@@ -77,7 +77,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| AGENTS.md | 169 | `b935bfa1fdfaae43` |
+| AGENTS.md | 170 | `679920441e69b3eb` |
 | README.md | 220 | `d4d70d3ce6813fe6` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
@@ -86,7 +86,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 | [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 208 | `328459c22faedf60` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 142 | `5da12922fc9cadb4` |
-| [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6e7d85fadab80fc0` |
+| [reference/op/theory-orientation.md](theory-orientation.md) | 72 | `3b447b9b7a1961e7` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `aea014967bca3b04` |
 | [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 873 | `8c2b1ad6282d631c` |

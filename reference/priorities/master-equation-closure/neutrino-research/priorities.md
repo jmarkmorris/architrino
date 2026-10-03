@@ -8,7 +8,7 @@ Establish whether specified interacting architrino histories support the propose
 
 **Status: candidate construction; retained branch unresolved.** The [canonical referent statement](../../../../content/markdown/aaa/assemblies/fermions/neutrinos.md#referent-status) identifies the unexhibited photon reference branch inherited by the near-photon construction. The assembly identification remains guessed. A geometric neighborhood, phase model or prescribed path is not a retained solution or a stability result.
 
-The directory is a current subject owner with no independently ranked evidence object. Its setup assigns no numerical score and activates no calculation. The [queue](work-queue.md) links existing execution owners; [brainstorming](brainstorming.md) holds proposed questions until a bounded investigation is selected.
+The directory is a current subject owner with no independently ranked evidence object. The [manuscript review](work-queue.md#review-the-manuscript-and-scope-one-focused-investigation) is queued and unassigned following the operator's 2026-10-02 request to retain unfinished recommendations. Its purpose is to identify the candidate's evidence and missing inputs and scope one focused investigation. No calculation or numerical score is assigned. The queue also links existing execution owners; [brainstorming](brainstorming.md) holds further proposed questions.
 
 ## Ownership and dependencies
 

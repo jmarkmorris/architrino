@@ -6,6 +6,18 @@ This is the single execution home for the existing PHO-009 photon formation-geom
 
 1. `formation_geometry_relaxation` — [PHO-009](#pho-009--conditional-formation-geometry-relaxation). Status: `Deferred / blocked`.
 
+## Queued follow-up
+
+### Specify the first twelve-architrino candidate test
+
+- **Status:** ○ Queued — not started; unassigned.
+- **Request:** Define the first test of the twelve-architrino photon candidate against the unchanged Master Equation, as recommended after the geometry consolidation and captured by the operator's 2026-10-02 request.
+- **Scope:** Specify every constituent's identity, polarity and complete relevant past for the coaxial contra-rotating planar-pair candidate, together with radii, phases, relative placement, translation and surrounding-population assumptions. Identify which histories are prescribed and which would evolve with full mutual response. Keep the twelve-member construction distinct from the alternative F6c proposal.
+- **Scenario:** Use the unchanged Master Equation with numerical $c_f=1$, all applicable partner and self-history causal roots, and declared root-admission and singular-event boundaries. No response multiplier, speed ceiling, root exclusion or event rule transfers from a side study.
+- **Dependencies:** Start from the [candidate account](manuscript.md) and its existing source and Braid-control links. A retained photon is the eventual target, not an assumed input to this specification. Any required history or environmental input that cannot be supplied must be named explicitly.
+- **Completion:** A reproducible test specification supplies complete histories, parameters, a bounded comparison interval, root-coverage requirements and the acceleration residual between the prescribed motion and the full equation for each constituent. It names an independent mathematical reference or separately authored check, known cases to validate the instrument before use, acceptance tolerances and conditions that would reject the candidate or stop the calculation. Specification completion alone establishes no retained branch and launches no simulation; PHO-009 remains blocked on its existing prerequisites.
+- **Ranking:** No new numerical score or global rank is assigned.
+
 ## Deferred / blocked
 
 ### PHO-009 — Conditional formation-geometry relaxation

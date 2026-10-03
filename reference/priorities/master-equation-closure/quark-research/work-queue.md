@@ -2,7 +2,18 @@
 
 ## Ranked Next Objects
 
-No new executable task or numerical ranking is assigned by this directory setup. The [open questions](brainstorming.md) remain proposals until a bounded investigation is selected.
+The specification below is queued following the operator's 2026-10-02 request to capture unfinished recommendations. No numerical score or global rank is assigned, and no simulation is launched by this entry.
+
+## Queued
+
+### Specify one complete quark-candidate geometry and past history
+
+- **Status:** ○ Queued — not started.
+- **Request:** Make the candidate-and-history specification recommended after the quark research setup concrete enough to analyze or reproduce.
+- **Scope:** Select one declared host and one quark-facing polarity arrangement; identify every constituent, its complete relevant past, the surrounding population and boundary assumptions. Keep the catalog's twelve-member first-generation candidate separate from the alternative fourteen-member F6c experiment. Specify which histories are prescribed and which satisfy the equation, and which members evolve with full mutual response.
+- **Scenario:** Use the unchanged Master Equation with numerical $c_f=1$. Include all applicable partner and self-history contributions; introduce no response multiplier, speed ceiling, root exclusion or event rule from a side study.
+- **Completion:** A self-contained specification supplies the histories and parameters, causal-root coverage requirements, admission checks, a bounded first comparison and an independent reference or known-case check. If a required history or environment cannot yet be supplied, name that missing input and mark the task blocked rather than treating a drawing as a complete preparation. This task does not establish a retained quark or run SMC-011.
+- **Sources:** [Candidate-history requirements](manuscript.md#3-what-would-make-the-geometry-testable) and [accessory geometry](analysis/accessory-geometry.md).
 
 ## Existing execution routes
 

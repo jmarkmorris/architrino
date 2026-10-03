@@ -6,9 +6,11 @@ This queue holds the remaining operator-requested plan for assessing the proposa
 
 No global numerical score is assigned. The order below is a local dependency plan. LPR-006 is the next unresolved object: the proved collinear obstruction triggers the plan's early-disposition path, before investing in the remaining conserved-account work.
 
+The operator removed the quadratic receiver response from this scenario. The [strict treatment](manuscript.md#strict-domain-with-unchanged-logarithmic-acceleration) retains the logarithmic equation on the domain below wake speed; its incoming theorem reaches the excluded boundary at positive separation. The discussion has now advanced to the [inclusive inequality with unchanged acceleration](manuscript.md#inclusive-domain-with-unchanged-logarithmic-acceleration): allowing equality admits the endpoint but supplies no continuing motion. The earlier quadratic side study and the separately retained projected response are not assumptions of this comparison. The [occurrence audit](analysis/quadratic-response-occurrence-audit.md) records the quadratic separation, and the manuscript distinguishes the additional projection explicitly. Further boundary-response discussion and LPR-006 execution remain deferred; examining an inequality does not select a new acceleration law.
+
 | Order | Object | Progress and lifecycle | Dependency | Completion result |
 | --- | --- | --- | --- | --- |
-| 1 | [LPR-006 — Research disposition](#lpr-006--research-disposition) | ○ Not done — Queued | Completed LPR-004 obstruction and its stated regularity boundary | Operator-reviewable continue, revise, or park recommendation |
+| 1 | [LPR-006 — Research disposition](#lpr-006--research-disposition) | ○ Not done — Queued; execution Deferred during the current discussion | Completed LPR-004 obstruction and its regularity boundary; use only the explicitly selected scenario assumptions | Operator-reviewable continue, revise, or park recommendation |
 | 2 | [LPR-005 — Robustness and conserved account](#lpr-005--robustness-and-conserved-account) | ◐ Partial — remaining execution Deferred | Incoming and endpoint family results available; further work depends on disposition | Remaining robustness assessment and a derived account with boundary terms, or named failures |
 
 ## Remaining research stages

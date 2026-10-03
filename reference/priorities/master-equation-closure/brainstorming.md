@@ -41,7 +41,7 @@ The remaining common requirements are a declared admissible history domain, comp
 
 The operator's dense Noether sea of energetic scaled braids surrounding matter-containing pockets remains a [population research target](noether-sea-research/manuscript.md). The existing individual-architrino lattice does not establish that environment or its constitutive response. Photon and neutrino identification likewise retain their own unexhibited-branch and recovery requirements.
 
-The next useful artifact is a common comparison of the unchanged update and any explicitly proposed continuation on the ring, mirror pair and staggered lattice, preserving their complete histories, source census, law assumptions and evidence grades. Such a comparison can identify which single missing rule or domain restriction is shared and which questions are geometry-specific. It would support the existing Master-Equation manuscript after review; this discussion does not authorize a new solver campaign or promote a law change.
+The common ring, mirror-pair and staggered-lattice comparison is recorded in the [execution queue](work-queue.md#work-to-do). It can identify which missing rule or domain restriction is shared and which questions are geometry-specific. The survey supplies its source map; queuing the comparison does not authorize a new solver campaign or promote a law change.
 
 ## Returned pulse and the separation estimate — 2026-09-14
 

@@ -1,5 +1,7 @@
 # Where the higher return speed comes from in the softened encounter
 
+> **Quarantined special examination — inactive.** This audit diagnoses saved paths of the softened equation with the added quadratic receiver multiplier. Its factor comparisons and action discussion do not select a response law for current or later scenarios. The original analysis is preserved; its recommendations are historical and inactive, and reuse of the modified equation requires explicit operator re-selection. See the [collinear quarantine disposition](../README.md#quarantined-quadratic-response-examinations).
+
 ## Scope and result
 
 This 2026-09-27 audit keeps the equation and recorded trajectories unchanged. It examines the $\ell=0.5$ stationary encounter through its second crossing, using both saved time steps from the [extended experiment](strict-speed-finite-contact-passage.md#extended-runs-and-the-first-two-turns). The question is how the distance response, source-motion weighting and proposed receiver-speed multiplier contribute to the different first and second crossing speeds.

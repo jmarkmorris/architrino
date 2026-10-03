@@ -18,7 +18,7 @@ Scenario interpretation distinguishes absent external sources, exact environment
 
 ## Reading path and the role of analysis
 
-The [existing geometry comparison](brainstorming.md#existing-geometries-as-master-equation-tests--2026-09-30) connects the one-source, binary, few-body, circular-assembly, three-dimensional and lattice investigations to the specific questions they can settle about the shared law. Its inferred recommendation is to compare the regular six-member ring, the stationary mirror boundary and the self-consistent staggered-lattice boundary, while retaining separate contact, fold and population-summation tests. It changes no task state, score, accepted claim or equation assumption.
+The [existing geometry survey](brainstorming.md#existing-geometries-as-master-equation-tests--2026-09-30) connects the one-source, binary, few-body, circular-assembly, three-dimensional and lattice investigations to the specific questions they can settle about the shared law. The recommended comparison of the regular six-member ring, stationary mirror boundary and self-consistent staggered-lattice boundary is now in the [execution queue](work-queue.md#work-to-do), retaining separate contact, fold and population-summation controls. Its capture changes no score, accepted scientific claim or equation assumption.
 
 The [physical wake-duration hypothesis](analysis/physical-wake-duration-hypothesis.md) preserves an experimental interpretation pulled back from the corpus on 2026-09-26. Mathematical finite-width approximations remain permitted; a physical duration requires a separate derivation. This record adds no primitive-law parameter and reactivates no research task.
 

@@ -10,6 +10,8 @@ Establish whether a specified interacting architrino history supports the propos
 
 This directory is the subject owner for photon dynamics. The existing PHO-009 formation-geometry task transfers here with its deferred / blocked status, conditional hypothesis and acceptance requirements unchanged. Its creation is organizational work; no new calculation, physical branch, task activation or numerical score follows from that change. The [queue](work-queue.md) retains the transferred task and links to the remaining app and mapping execution owners.
 
+The [first twelve-architrino test specification](work-queue.md#specify-the-first-twelve-architrino-candidate-test) is queued and unassigned following the operator's 2026-10-02 request to retain unfinished recommendations. It will declare the complete histories, unchanged-equation scenario, causal-root coverage and acceleration residual comparison needed for a first test. No simulation is launched, and PHO-009 retains its existing prerequisites and deferred / blocked status.
+
 The [geometry collection](README.md#geometry-analyses-and-evidence) now brings together the prescribed moving-pair paths and self-hit analysis, carrier-versus-constituent speed distinction, F6c photon proposal, and unchanged historical sweep receipt. The [brainstorming record](brainstorming.md#geometry-and-neutral-history-comparisons) also restates two geometry leads from the mixed Braid mining notes at guessed grade. App controls, software contracts and observer diagnostics remain in the Photon app; shared Braid controls and mapping recovery contracts retain their existing owners.
 
 ## Research boundary

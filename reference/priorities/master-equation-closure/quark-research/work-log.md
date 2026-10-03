@@ -2,6 +2,10 @@
 
 Scientific explanation belongs in the [manuscript](manuscript.md) and [focused analyses](analysis/accessory-geometry.md); proposals belong in [brainstorming](brainstorming.md), and execution routing belongs in the [queue](work-queue.md).
 
+## 2026-10-02 — Unfinished preparation recommendation queued
+
+The operator requested that unfinished recommendations be retained in their owning work queues. Added the complete quark-candidate geometry and past-history specification, with its unchanged-equation scenario, inputs, acceptance boundary and missing-input disposition. The strategy links that task and the former brainstorming entry now routes to the queue. This is task capture, not an executed specification, simulation or retained-branch claim; the existing SMC-011 deferral and ranking are unchanged.
+
 ## 2026-10-01 — Quark geometry owner established
 
 The operator authorized a quark research directory under Master-Equation Closure and explicitly required published corpus material to remain in place. The directory gathers quark-specific geometry questions, links the published quark and color chapters, and receives the unpublished vortex-coupling proposal from the Standard Model strategy document. Its original heading retains a link, and the research source-location map transports the old section address.

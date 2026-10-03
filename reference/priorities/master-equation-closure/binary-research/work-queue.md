@@ -6,6 +6,17 @@ This is the execution ledger for isolated two-architrino investigations. BP-001 
 
 1. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`. Global rank: `2`; Value: `55.28`; Cost: `7.6`; ROI: `7.27`.
 
+## Queued follow-up
+
+### Audit the manuscript's unchanged-equation results
+
+- **Status:** ○ Queued — not started; unassigned.
+- **Request:** Audit the [binary manuscript](manuscript.md) before selecting the next binary calculation, as recommended after the directory migration and captured by the operator's 2026-10-02 request.
+- **Scope:** Identify the equation, complete-history assumptions, causal-root coverage, evidence and limitations of each binary result. Distinguish results under the unchanged Master Equation from the separately selected capped response studies. Preserve each result's supported grade and existing scientific owner.
+- **Dependencies:** Read the cited proofs and independent reviews, including the [collinear incoming-event and continuation boundary](../collinear-research/analysis/mirror-close-approach-causal-root-boundary.md). A missing proof or unresolved review condition remains explicit; it cannot be replaced by agreement between outputs of the same implementation.
+- **Completion:** A source-linked account identifies which results apply to the unchanged equation, which depend on additional assumptions, and the smallest unresolved binary question worth pursuing. Any proposed calculation names its preparation, equation, acceptance condition and independent reference. This audit does not execute Campaign 1, adopt a speed ceiling or change BP-001's blocked disposition.
+- **Ranking:** No new numerical score or global rank is assigned.
+
 ## Deferred / blocked
 
 ### BP-001 — Binary subfield fate

@@ -1,5 +1,25 @@
 # Master Equation Closure Work Log
 
+## 2026-10-02 — Unfinished thread recommendations reconciled with queues
+
+The operator requested that recommendations not yet completed be recorded in each subject's work queue. A root-final-message extraction from this thread, checked on a synthetic final/commentary case before use, was compared with the live queues, strategies, logs and supporting result records. The resulting task capture is:
+
+| Unfinished recommendation | Execution owner and disposition |
+| --- | --- |
+| Compare the six-member ring, stationary mirror pair and self-consistent staggered lattice | [Parent queue](work-queue.md#work-to-do); ○ Queued, unassigned, with separate equation assumptions and source/claim checks |
+| Audit the binary manuscript's unchanged-equation results | [Binary queue](binary-research/work-queue.md); ○ Queued, unassigned, before choosing another calculation |
+| Review the neutrino manuscript to identify a focused investigation | [Neutrino queue](neutrino-research/work-queue.md); ○ Queued for review and scoping, with no new simulation selected |
+| Specify the first twelve-architrino photon test and acceleration residuals | [Photon queue](photon-research/work-queue.md); ○ Queued for specification under the unchanged equation |
+| Specify one complete quark-candidate geometry and past history | [Quark queue](quark-research/work-queue.md#specify-one-complete-quark-candidate-geometry-and-past-history); ○ Queued, not started |
+| Define the finite EOM solver reproduction of the fixed lattice control | [Lattice queue](lattice-research/work-queue.md#define-an-eom-solver-reproduction-of-the-fixed-lattice-control); ○ Queued for specification, execution blocked on the accepted infinite stationary-field capability |
+| Specify a spatially localized self-consistent lattice preparation | [Lattice queue](lattice-research/work-queue.md#specify-a-spatially-localized-self-consistent-lattice-preparation); ○ Queued, unassigned |
+
+The returned-pulse coupling classification already has its in-progress lattice row and is not duplicated. Signed-error and preparation studies, finite ringing and first-event investigations, the direct-measure/continuation studies and the sublattice displacement equation are completed at their linked scopes. Same-time target–neighbor curves are also complete at measured comparison grade, as confirmed by the later-motion account, instrument note and plotting source; exact minimum-distance certification is not substituted for that completed request. Geometry-directory setup and the approved research migrations are complete. The Noether sea recommendation concerned those filing decisions; its existing AWT-005 deferral remains in force.
+
+Existing ranks, scientific grades, BP-001, PHO-009 and SMC-011 dependencies, and the active lattice assignment are preserved. Queuing these follow-ups neither executes them nor selects an equation modification. Published corpus files and scientific evidence are outside this edit scope. The extraction and audit working notes are in `.tmp/recommendation-queue-audit/`.
+
+Verification: `node scripts/validate-priority-ranking.mjs` passes with 33 current owners and the same 14 ranked rows. A known-case-first Markdown/diff checker resolves all 40 new relative links and fragments across the 21 edited control documents, and scoped `git diff --check` passes. A separate known-case-first preservation comparison confirms unchanged BP-001 and PHO-009 task/ranking blocks and unchanged historical prefixes in the binary, neutrino and photon logs. No scientific calculation or generated-file write was required. The audit instruments and results are retained under `.local-data/aaa-work-threads/recommendation-queue-audit/`.
+
 ## 2026-09-29 — Sublattice acceleration and the displacement equation
 
 The operator accepted the proposed contribution study and requested a section in the lattice chapter of the developing manuscript. The scope is the certified coherent staggered branch, its scalar history equation and the nature of its singular boundary. Same-polarity and opposite-polarity corrections are separated within the already absolutely convergent changing-source sum, while the original stationary block contribution is retained. Any further separation of the stationary sum requires an explicit inherited cutoff argument. The unchanged Master Equation, $g=16$, $c_f=1$, exact ancient-history uncertainty and existing first-event certificate remain fixed.

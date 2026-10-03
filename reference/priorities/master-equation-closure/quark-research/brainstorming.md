@@ -1,10 +1,6 @@
 # Quark research — open questions
 
-These are proposed investigations, not dispatched calculations. The [accessory analysis](analysis/accessory-geometry.md) supplies their geometry and failure boundaries.
-
-## A complete candidate preparation
-
-Specify one host and one quark-facing polarity arrangement, including every constituent's past and the surrounding population. Keep the catalog scaffold and the alternative F6c host as separate candidates. This is the recommended next specification because an instantaneous drawing cannot be evolved uniquely by a delayed equation.
+These are proposed investigations, not dispatched calculations. The [accessory analysis](analysis/accessory-geometry.md) supplies their geometry and failure boundaries. The candidate-preparation recommendation now has its single execution entry in the [work queue](work-queue.md#specify-one-complete-quark-candidate-geometry-and-past-history).
 
 ## Mixed-polarity association
 

@@ -15,6 +15,8 @@ The scored object is the existing BP-001 `binary_subfield_fate`. Its score trans
 
 What motion does an isolated electrino–positrino pair produce from a declared complete history, and when can that motion continue, return, bind or separate? The [manuscript](manuscript.md) distinguishes derived conditional results from finite numerical observations and unresolved fate.
 
+The [unchanged-equation audit](work-queue.md#audit-the-manuscripts-unchanged-equation-results) is queued and unassigned following the operator's 2026-10-02 request to retain unfinished recommendations. It will establish the applicable assumptions and evidence before another binary calculation is selected; BP-001's score and blocked status remain unchanged.
+
 ## Scope and dependencies
 
 The complete [Campaign 1](campaigns/campaign-1-subfield-binary.md) retains its 27 configurations, three endpoint-matched prehistories and three refinement rows. It is a two-architrino campaign throughout. The [queue](work-queue.md#bp-001--binary-subfield-fate) retains the exact task and gates. The unchanged-law stationary incoming event and continuation obstruction belong to [collinear research](../collinear-research/priorities.md#detailed-result-and-dependency-records); the transverse continuation and full campaign requirements remain open. No campaign fate is booked.

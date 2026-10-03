@@ -52,6 +52,14 @@ The current frontier is core geometrical theory closure: master-equation closure
 
 Before editing or reporting, classify the claim as ontology, derivation or closure target, effective summary, or speculation. Promote only corpus-solid material into `content/markdown/aaa`; stage provisional material in the owning priority workstream or sibling `brainstorming.md` with claim level, assumptions, proof burden, and intended corpus destination.
 
+## Scenario Assumptions
+
+For each Master Equation scenario, name the baseline equation and state the modifications expressly selected for that scenario. A temporary response factor, event prescription, root exclusion, or other modification introduced to understand a particular issue belongs only to that side study. Its existence in an earlier analysis does not authorize importing it into a later scenario. Reuse requires the operator's explicit selection for the current scenario; an existing selection remains authoritative and does not need reconfirmation.
+
+When the selected equations encounter an obstruction, report the obstruction under those assumptions. Do not silently add a response modification to obtain continuation or the desired behavior. Keep any proposed remedy separate from the current scenario until selected.
+
+When an assumption is withdrawn, remove it and its dependent conclusions from the active scenario, including its explanatory walkthrough and current summaries. Retain useful side studies and protected evidence with their assumptions and a clear statement that they are outside the active scenario; preservation does not make them defaults for later work.
+
 ## Durable Capture
 
 At startup, identify the likely durable home for any successful theory work: a direct corpus destination, the owning priority workstream, or that workstream's `brainstorming.md`.

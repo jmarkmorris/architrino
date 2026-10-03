@@ -1,5 +1,7 @@
 # Finite passage, springs and other restoring responses
 
+> **Mixed scope: quadratic-response sections are quarantined.** The stronger stationary strict-speed theorem below assumes the added quadratic receiver multiplier. That theorem and the softened/linear examples using it are inactive special examinations, not current scenario assumptions; reuse requires explicit operator re-selection. The general local integrability criterion under its stated crossing bounds, the separate self-root criterion and the external oscillator comparisons do not depend on selecting that multiplier and retain their own conditional scopes. The original mathematics is preserved. See the [collinear quarantine disposition](../README.md#quarantined-quadratic-response-examinations).
+
 ## Result and meaning
 
 **Derived result:** with the original arrival geometry and source-motion weighting, a distance response less singular than $1/R$ has finite accumulated acceleration on a crossing whose speed and source factor stay away from their singular limits. A stronger statement holds for the stationary mirror encounter with the proposed multiplier $1-v^2$: positive responses behaving as $R^p$ with $p>-1$ reach a finite coincidence limit at speed strictly below one. A response that tends to zero also supplies a continuous zero acceleration limit there, provided the source-speed gap remains positive. These statements do not by themselves prove a unique outgoing history or repeated bounded motion.
@@ -39,6 +41,8 @@ For $f(R)\sim C R^p$ with $C>0$, the criterion is $p>-1$. A finite integral perm
 Here “Lipschitz” means that a small change of position changes the response by at most a fixed constant times that change. It is useful in uniqueness proofs, but is not a proof of uniqueness for the full delayed equation. For $f\to0$, assigning zero at $R=0$ is a continuous extension of the vector expression on a strict-speed domain; it remains an explicit extension beyond the original positive-delay rule.
 
 ## A stronger conclusion for the stationary strict-speed encounter
+
+**Quarantined theorem for the additional quadratic response.** The following proof requires that expressly modified equation; it is not a conclusion for the Master Equation or for a strict speed domain alone.
 
 Take the same mirror preparation $X_+=x$, $X_-=-x$, $x=a>0$ and inward speed $u=0$ on the supplied stationary past. Assume $f$ is positive and locally regular for $0<R\le2a$, and $f(R)\le C R^p$ near zero for some $p>-1$. Use the proposed strict-speed multiplier. Before coincidence,
 
@@ -104,6 +108,8 @@ This is why the ideal undriven, undamped model repeats without growing excursion
 
 ## Our softened interaction already contains a linear restoring center
 
+**Quarantined example.** The spatial expansion is an algebraic property of the stated response; the passage and return results cited here belong to the combined softened-plus-quadratic study.
+
 The earlier finite-length response was
 
 $$
@@ -116,6 +122,10 @@ Before source and receiver weighting, its signed response is therefore $-Gd/\ell
 The recorded passage is consistent with this finite, vanishing center response. The subsequent speed gain remains possible because the actual equation samples delayed source positions and velocities, includes the source-motion weighting, and includes the proposed receiver factor. It is not the instantaneous oscillator equation. The [acceleration-balance audit](strict-speed-acceleration-balance.md) already records the unequal departure and return contributions. Calling the interaction a spring would not remove those differences.
 
 ## Recommendation and checkable limits
+
+**Current comparison correction, 2026-10-02:** the historical “completed linear-response comparison” below used an unselected receiver multiplier and did not perform the originally accepted ordinary-versus-delayed comparison. Its stronger multiplier-bearing theorem remains quarantined. The [corrected comparison](multiplier-free-linear-delayed-comparison.md) independently measures the first two passages and turns without that factor, then reaches a self-root birth requiring the complete uncapped ledger. This does not replace the assumptions of the general local integrability criterion or convert the historical strict-speed theorem into a multiplier-free theorem.
+
+The recommendations below are retained as part of the original comparison. They do not select a response for current research or reactivate the quarantined softened/linear family; any such extension requires explicit operator re-selection.
 
 The useful response class for regular contact is a signed attraction that vanishes continuously at zero, with at least linear behavior offering a simple locally Lipschitz spatial expression. This is a mathematical recommendation, not a physical selection. Slower-than-inverse-distance singular laws can have finite accumulated effects but leave a pointwise event problem. Source crowding must be checked separately, and the strict-speed proof above must not be reused in a superfield self-interacting case.
 
