@@ -1,0 +1,61 @@
+# Selected ring follow-ups: closing report
+
+Date: 2026-10-03, completed 2026-10-04 UTC. This follows the operator's selection of recommendations 1, 2 and 3 after the [completed four-hour ring session](ring-exploration-closing-report-2026-10-03.md). The historical report remains intact. Scenario: unchanged Master Equation, every positive-delay self root retained, numerical $K=c_f=1$. No score, rank, qualification method, deferred/dormant object or equation changes. No Git publication.
+
+## Three outcomes in plain terms
+
+1. **T04 enclosure repair admitted; cycle still blocked.** A reusable acceleration-bound repair passed separate mathematical and implementation admission. The explicitly requested unchanged-input retry then exceeded its existing aggregate memory cap before a complete EOM response or checkpoint. It supplies no new accepted prefix or full cycle. The next blocker is allocation/retention diagnosis and reliable failure receipts.
+2. **T02 departure followed much farther; destination still open.** The same exact ancient departing history is now independently validated through $|q|\le0.006$, rather than the earlier $10^{-13}$ amplitude radius. Every ordinary hit persists. One real branch moves inward throughout this window and the other outward. Neither encounters a fold, wake-speed event, collision or radial turn there. Larger sufficient-bound attempts do not close; this is a quantified proof limitation rather than a physical stopping event.
+3. **No exact nonrigid three-dimensional ring found.** An independently checked local periodic-branch obstruction and two sinusoidal-height trial negatives were followed by six finite Fourier searches that allowed radius, phase and height to vary together. Two selected coupled complete histories are independently rejected by their complete reception-zero past census and full acceleration residual. The Fourier box and arbitrary waveforms remain open.
+
+Exact circular rings and their established instabilities remain as recorded in the [original closing report](ring-exploration-closing-report-2026-10-03.md). This follow-up adds no stable ring. Negative trials are not references for stability calculations.
+
+## Repair and attempted cycle
+
+The [repair subject](ring-t04-enclosure-followup-2026-10-03.md) and [separate admission](ring-t04-enclosure-independent-adjudication-2026-10-03.md) establish a generic mean-value acceleration enclosure on the implicit causal-root graph. It retains the original uncertainty balls, every root and both divisor signs, with the old direct enclosure as fallback. Independent closed-range analytical controls and the unchanged Decimal oracle support implementation admission. Only `src/eom/src/CertifiedAcceleration.cpp` changes production behavior in this scope; fresh compiled execution identities and all 120 successor bindings are recorded in the admission.
+
+**Measured by the original watched provider's resource/progress traces and the separately controlled outcome accountant:** the coarse retry reported two step times, 0.001953125 and 0.00390625, then aggregate RSS 1674690560 bytes exceeded the unchanged 1610612736-byte cap. The native process accounted for 1265909760 bytes and launcher for 408780800 bytes. Medium/fine/checkpoint did not start. Provider cleanup raised EPERM before a complete failure receipt; an exact-PID process observation subsequently found the watched PIDs absent. The denied PID/reason and memory causation remain unresolved. See the [frozen outcome](../evidence/ring-t04-enclosure-followup-2026-10-03.md). Operational progress messages are not retained scientific motion; the previous accepted prefix near 0.0029 remains authoritative.
+
+**Falsifier and scope:** a failed analytical range, incorrect graph derivative, altered request/wire identity or omitted root defeats the affected admission. A new complete three-response independently checked cycle would resolve the retained-cycle blocker. A different allocation profile does not retroactively validate this incomplete response.
+
+## Validated complete ancient departure
+
+The [independent degree-twenty recurrence](ring-departure-followup-coefficient20-independent-adjudication-2026-10-03.md) and [separate centered-domain adjudication](ring-departure-followup-centered-independent-adjudication-2026-10-03.md) continue the inherited normalized T02 fast ancient germ through the exact closed amplitude disk $|q|\le0.006$. The accepted conservative exact-polynomial tails are $7\times10^{-7}$ in coefficient norm, $0.00025/21$ first Euler and $0.00025$ second Euler. Independent binary coverage checks include both exact rational endpoints and every active/complementary amplitude-delay region. Reviewer-only point-endpoint and zero-range derivative issues were repaired before final admission, with rejected drafts preserved.
+
+**Computer-assisted derived, independently checked:** every real complete past in this disk has 48 directed ordinary hits, including six self hits; transmitter magnitude exceeds 0.12425, member speed exceeds 1.69267 and simultaneous separation exceeds 0.95717. Thus no fold, wake-speed crossing or collision occurs here. These are bounds for the same exact nonlinear history, rather than polynomial extrapolation.
+
+The [independently recomputed observables](ring-departure-followup-observables-independent-adjudication-2026-10-03.md), conditional on that admitted domain, give deliberately widened outward endpoint bounds:
+
+| Quantity | Inward branch, $q=-0.006$ | Outward branch, $q=0.006$ |
+| --- | --- | --- |
+| Radius | $[0.9693301,0.9693316]$ | $[0.9813170,0.9813185]$ |
+| Speed | $[1.7916944,1.7919619]$ | $[1.8477123,1.8479756]$ |
+| Radial velocity | $[-0.0820952,-0.0818406]$ | $[0.0521612,0.0524155]$ |
+
+The stronger whole-window inequality $7.0116<\dot r/q<13.8848$ excludes a radial turn for either real sign before this endpoint. Normalized elapsed time from amplitude $10^{-13}$ is enclosed in $[2.3284502468566848,2.3284502468566850]$. This is elapsed time along an ancient history with $q'=\lambda q$; it is not evolution after a finite endpoint impulse. Restore radius units with $K/c_f^2$, speed with $c_f$ and time with $K/c_f^3$; no physical value of $K$ is derived.
+
+The [bounded outcome](ring-departure-followup-2026-10-03.md#3-quantified-sufficient-bound-obstruction) records a 0.007 candidate whose row-7 delay-map image cap exceeds its chosen 0.0006 ball, and a 0.008 candidate with additional image and contraction failures. Upper-cap failures do not establish nonexistence or a singularity at either amplitude. No adjacent-rung transfer, dispersal or final destination is certified. **Falsifiers:** failed reference/germ premises, a missing causal root or coverage strip, an invalid tail/implicit derivative bound or a true admitted history violating the stated margins overturns the affected result.
+
+## Nonrigid three-dimensional search
+
+The [local/two-sinusoid adjudication](ring-followup-axis-independent-adjudication-2026-10-03.md) excludes a differentiable periodic alternating-height branch through exact T02/T04 with nonzero first axial variation and finite positive limiting period. Coupled planar variations are permitted in that conditional theorem. Higher-order-flat, disconnected, singular-frequency and nonperiodic histories are outside it. Two complete sinusoidal-height preparations also fail full balance after complete all-time censuses.
+
+The [finite coupled search](ring-nonrigid-3d-followup-coupled-search-2026-10-03.md) uses radial and phase second harmonics, axial first/third harmonics, variable mean speed and deformation rate, and fixed fundamental height ratios 0.05, 0.15 and 0.30. **Measured by its controlled floating proposal instrument:** none of six T02/T04-seeded starts had a small full-vector residual on its declared reprobes. This is not exhaustive optimization or a box exclusion.
+
+**Computer-assisted derived, independently checked:** the two literal complete coupled trials `H0.05-T02` and `H0.3-T02` fail balance. The [separate Cartesian adjudication](ring-followup-coupled-independent-adjudication-2026-10-03.md) independently reconstructs their complete reception-zero past censuses, 48 hits and six self hits each, and all three residual components. Their axial scaled residuals are respectively inside $[0.0782825,0.0782826]$ and $[-0.0973741,-0.0973740]$, strictly excluding zero. The scaling is $R^2$ times physical acceleration residual. A necessary one-time balance already fails, so this acceptance need not promote the subject's full-period Fourier intervals. No new exact locus enters the circular registry.
+
+**Falsifiers and scope:** an omitted root, invalid recent/remote guard or corrected full Cartesian residual containing zero defeats the affected trial rejection. An exact different waveform would answer the broader existence question without contradicting these two negatives. No stability or retained evolution is assigned to failed histories.
+
+## Integration and closing checks
+
+The coordinator integrates every accepted result in Braid Program priorities, the planar campaign foundation, manuscript and work-log, with matching entries in both the cross-geometry registry and findings ledger. Bounded completed routes keep their identifiers; broader departure R42 and nonrigid R43 remain open with their guessed High/High/Low ratings unchanged. Memory/allocation and teardown evidence repair E-7 remains open. The circular configuration registry receives no invented balanced locus and is included in the closing read/check scope. Historical records, independent references and unrelated concurrent changes are preserved.
+
+Final scoped link, mathematical-rendering, ledger/vocabulary and whitespace checks pass for 98 selected Markdown files by `node .tmp/ring-followup/closing-validation.mjs`, after its known controls. The circular registry and both cross-geometry indexes are included. All new completed routes R47–R52 are inside the rendered completed table. `node scripts/validate-priority-ranking.mjs` passes for 32 active owners and 14 ranked rows; scoped `git --no-optional-locks diff --check` passes for the implementation and research paths. Shared-venv syntax compilation passes for 26 selected follow-up Python instruments; this is syntax validation, not scientific target replay. Eleven selected frozen source/verdict/receipt identities match by the SHA-256 closing inventory. The original analytical controls and unchanged Decimal-oracle comparisons passed before repair admission; they are not rerun merely for prose integration. Exact commands and receipt provenance are recorded in the work-log.
+
+Scientific instruments pass recorded known analytical controls first; Python uses the shared venv. All assigned computations have terminal ownership receipts or the explicitly recorded failed-provider outcome, rather than being left silently running. The closing `collaboration.list_agents` snapshot shows all three workers completed. No generated indexes are regenerated, and no Git publication occurs.
+
+## Recommended next actions
+
+1. **Profile allocation/retention and repair failure receipts before another T04 cycle attempt — recommended first.** Preserve the current cap and original requests; identify native versus launcher growth, make cleanup failures retain an outcome, then obtain fresh execution binding and independent admission before any retry. This resolves the concrete numerical blocker.
+2. **Repair the 0.007 centered delay/tail balls, then continue toward a decisive event — recommended analytical step.** The failed sufficient estimate is explicitly quantified and its contraction is still below one; a different ball may close it. Require known-first outward computation, a complete real chart and separate adjudication. Do not infer a physical event from a proof-bound failure.
+3. **Broaden coupled waveform proposals, admitting only full-history balances — recommended with lower immediate priority.** More harmonics or different phase relations may escape the tested slice. A nonzero collocation residual supplies a lead only; an exact candidate needs complete phase coverage and all three acceleration equations. No unselected arbitrary search or spectrum about an imbalanced trial is launched by this report.

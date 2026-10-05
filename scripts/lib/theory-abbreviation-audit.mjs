@@ -1,11 +1,6 @@
 // This is a conservative notation check, not a semantic classifier. Ambiguous
 // uses remain findings; math delimiters alone never exempt a theory nickname.
-function mathSpans(text) {
-  const withoutCode = text.replace(/(`+)([^\n]*?)\1/g, value => " ".repeat(value.length));
-  return [...withoutCode.matchAll(/(?<!\\)(\$\$)([\s\S]*?)(?<!\\)\$\$|(?<![\\$])\$(?!\$)([^\n]*?)(?<!\\)\$|\\\[([\s\S]*?)\\\]|\\\(([^\n]*?)\\\)/g)]
-    .map(match => ({ start: match.index, end: match.index + match[0].length,
-      body: match[2] ?? match[3] ?? match[4] ?? match[5] }));
-}
+import { mathSpans } from "./markdown-math-spans.mjs";
 
 export function findTheoryAbbreviationCandidates(text) {
   const spans = mathSpans(text);
@@ -26,14 +21,18 @@ export function findTheoryAbbreviationCandidates(text) {
 
     const span = spans.find(item => item.start <= index && index < item.end);
     const definedA = span && spans.some(item => item.start < span.start
-      && /(?:^|[\s,;])A(?:\([^()\n]*\))?\s*=/.test(item.body)
-      && !/\\(?:text|mathrm|operatorname)\b/.test(item.body));
+      && !/\\(?:text|mathrm|operatorname)\b/.test(item.body)
+      && (/(?:^|[\s,;])A(?:\([^()\n]*\))?\s*=/.test(item.body)
+        || (item.body.trim() === "A"
+          && /\b(?:scale|parameter|variable|constant)\s*$/.test(text.slice(0, item.start)))));
     // Only a defined mathematical A in an explicit algebraic relation qualifies.
     // Text-bearing TeX and standalone badges such as $A^3$ remain prohibited.
     const algebra = span && definedA
       && !/\\(?:text|textrm|textbf|mathrm|operatorname)\b/.test(span.body)
       && /[=<>]|\\(?:leq?|geq?|equiv)\b/.test(span.body)
-      && /^\s*(?:[-+*/=<>]|\\(?:cdot|times|leq?|geq?)\b)/.test(text.slice(index + match[0].length, span.end));
+      // A denominator may end in a brace; TeX juxtaposition is multiplication.
+      // Do not accept arbitrary words after the cube as implicit products.
+      && /^\s*(?:$|[-+*/=<>}\])]|[a-zA-Z](?![a-zA-Z])|\\(?:cdot|times|leq?|geq?|alpha|beta|gamma|delta|epsilon|eta|theta|lambda|mu|nu|rho|sigma|tau|phi|psi|omega)\b)/.test(text.slice(index + match[0].length, span.bodyEnd));
     if (!algebra) findings.push({ index, label: match[0] });
   }
   return findings;

@@ -4,7 +4,7 @@ import argparse,hashlib,importlib.util,json,threading,time
 from pathlib import Path
 import numpy as np
 from scipy.integrate import solve_ivp
-from scipy.interpolate import CubicHermiteSpline
+from scipy.interpolate import CubicHermiteSpline,PchipInterpolator
 from scipy.optimize import brentq
 ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'.local-data/collinear-research/linear-recross-fate'
@@ -23,14 +23,27 @@ def known():
     err=max(abs(sol.y[1,-1]-np.sqrt(u0*u0+2*b0*r0*r0)),abs(sol.y[0,-1]-(np.sqrt(u0*u0+2*b0*r0*r0)-u0)/b0))
     # RHS above sign must be negative for du/dr, matching A=-b.
     if err>1e-9:raise RuntimeError(('fold control',err))
-    rec=dict(cf=1,trace_residual=res,fold_exact_error=err,order='known controls before targets')
+    B1=.0376332747157;peak=3.967587666e-10
+    qvalues=np.array([3e-10,1e-9,1e-8])
+    roundtrip=np.sqrt(2*(peak-(peak-.5*B1*qvalues*qvalues))/B1)
+    times=np.linspace(0,.002,101);delta=.5*B1*times**2;slopes=B1*times
+    exact=CubicHermiteSpline(times,delta,slopes);mid=.5*(times[1:]+times[:-1])
+    derivative_error=float(np.max(abs(exact(mid,1)-PchipInterpolator(times,slopes)(mid))))
+    if derivative_error>1e-15:raise RuntimeError('Known source Hermite derivative control failed')
+    rec=dict(cf=1,trace_residual=res,fold_exact_error=err,
+        parabolic_clock_roundtrip_q=qvalues.tolist(),
+        parabolic_clock_roundtrip_relative_error=((roundtrip-qvalues)/qvalues).tolist(),
+        direct_source_coordinate_has_zero_roundtrip_error=True,
+        parabolic_source_derivative_error=derivative_error,
+        order='known controls before targets')
     OUT.mkdir(parents=True,exist_ok=True);(OUT/'known.json').write_text(json.dumps(rec,indent=2)+'\n');print('KNOWN',rec,flush=True)
 
 class Loop:
     def __init__(self,source,branch):
         with np.load(source) as z:self.ch=up.Chart(*[z[k] for k in ['t','x','v']])
         with np.load(branch) as z:
-            tau=z['Tout']-self.ch.Tc;q=z['qout'];w=z['vout']+1
+            tau=z['tauout'] if 'tauout' in z else z['Tout']-self.ch.Tc
+            q=z['qout'];w=z['wout'].copy() if 'wout' in z else z['vout']+1
         # Preserve centered receiver times from source q wherever cancellation matters.
         self.end=float(tau[-1]);self.qend=float(q[-1]);self.dend=self.ch.delta(self.qend)
         self.Bd=-self.ch.acceleration(self.qend,self.end)[0]
@@ -55,7 +68,7 @@ class Loop:
         if q<self.width*.5:return self.dend-.5*self.Bd*q*q,self.Bd*q
         return float(self.f(self.end-q)),float(self.f(self.end-q,1))
 
-def target(source,branch,tol,qstart):
+def target(source,branch,tol,qstart,q2start,profile_samples):
     for path in [source,branch]:
         raw=path.read_bytes();digest=hashlib.sha256(raw).hexdigest()
         inputs=OUT/'inputs';inputs.mkdir(exist_ok=True)
@@ -64,7 +77,9 @@ def target(source,branch,tol,qstart):
     # Unique downward birth, source coordinate q=Td−S_right.
     tau0=loop.end+qstart*np.sqrt(loop.Bd/loop.b);u0=qstart*np.sqrt(loop.Bd*loop.b)
     def rhs(eta,y):
-        q=np.exp(eta);d,p=loop.newborn(q);A,_=loop.parts(y[0],d)
+        q=np.exp(eta);d,p=loop.newborn(q)
+        H,_=ch.older(ch.Tc+y[0],ch.Pc+d);ql=loop.leftq(d)
+        A=H-K*(y[0]+ql)/ch.p(ql)-K*(y[0]-loop.end+q)/p
         return [q*p/y[1],-q*p*A/y[1]]
     qstop=loop.end*.95
     sol=solve_ivp(rhs,(np.log(qstart),np.log(qstop)),[tau0,u0],method='Radau',rtol=tol,atol=tol*.001,max_step=.015,dense_output=True)
@@ -90,32 +105,46 @@ def target(source,branch,tol,qstart):
     after=solve_ivp(after_rhs,(tf,tf+2),[0.,uf],method='DOP853',rtol=tol,atol=tol*.001,max_step=.001,events=rebirth,dense_output=True)
     if not after.success:raise RuntimeError(after.message)
     te=float(after.t[-1]);de,ue=after.y[:,-1];H,_=ch.older(ch.Tc+te,ch.Pc+de)
-    rec=dict(cf=1,k=K,subject_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),input_hashes={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [source.resolve(),branch.resolve()]},Bd=loop.Bd,downward_trace=loop.b,qstart=qstart,tolerance=tol,
+    probe=.5*(loop.f.x[1:]+loop.f.x[:-1])
+    # Derivative comparison to a separately interpolated recorded raw slope.
+    with np.load(branch) as z:
+        bt=z['tauout'] if 'tauout' in z else z['Tout']-ch.Tc
+        bw=z['wout'] if 'wout' in z else z['vout']+1
+    wp=PchipInterpolator(np.r_[0,bt],np.r_[0,bw])
+    derivative_disagreement=np.abs(loop.f(probe,1)-wp(probe))
+    rec=dict(cf=1,k=K,first_loop_dense_samples_per_chart=profile_samples,
+        source_slope_interpolation_diagnostic=dict(max_abs=float(max(derivative_disagreement)),
+            at_centered_time=float(probe[np.argmax(derivative_disagreement)]),
+            scope='Hermite centered-clock derivative vs PCHIP recorded raw w at source-cell midpoints; interpolation diagnostic, not independent correctness'),
+        subject_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),input_hashes={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [source.resolve(),branch.resolve()]},Bd=loop.Bd,downward_trace=loop.b,qstart=qstart,tolerance=tol,
         downward_birth=dict(T=ch.Tc+loop.end,PminusPu=loop.dend,v=-1),
         self_minimum_fold=dict(T=ch.Tc+tf,x=ch.Pc-ch.Tc-tf,v=-1-uf,u=uf,ledger_before='1 partner + 3 negative self',ledger_after='1 partner + 1 negative self'),
         endpoint=dict(kind='next_upward_self_birth' if len(after.t_events[0]) else 'finite_regular_endpoint',T=ch.Tc+te,x=ch.Pc+de-ch.Tc-te,v=-1-ue,PminusPu=float(de),H=float(H)),
         nfev=[sol.nfev,fold.nfev,after.nfev],scope='unique continuation through downward birth and minimum fold; stop before selecting next upward branch')
-    label=branch.stem+f'-q{qstart:g}-tol{tol:g}'
+    label=branch.stem+f'-q{qstart:g}-q2{q2start:g}-tol{tol:g}-profile{profile_samples}'
     (OUT/(label+'.json')).write_text(json.dumps(rec,indent=2)+'\n')
-    birth_eta_dense=np.linspace(sol.t[0],sol.t[-1],4001)
+    birth_eta_dense=np.linspace(sol.t[0],sol.t[-1],profile_samples)
     birth_values=sol.sol(birth_eta_dense)
     birth_delta=np.array([loop.newborn(np.exp(e))[0] for e in birth_eta_dense])
-    fold_r_dense=np.linspace(fold.t[0],fold.t[-1],4001)
+    fold_r_dense=np.linspace(fold.t[0],fold.t[-1],profile_samples)
     fold_values=fold.sol(fold_r_dense)
-    after_dense=np.linspace(after.t[0],after.t[-1],1001)
+    after_dense=np.linspace(after.t[0],after.t[-1],profile_samples)
     after_values=after.sol(after_dense)
     segment_tau=np.r_[birth_values[0],fold_values[0,1:],after_dense[1:]]
     segment_delta=np.r_[birth_delta,fold_r_dense[1:]**2,after_values[0,1:]]
     segment_v=-1-np.r_[birth_values[1],fold_values[1,1:],after_values[1,1:]]
-    np.savez(OUT/(label+'.npz'),tau=segment_tau,delta=segment_delta,v=segment_v,birth_eta=birth_eta_dense,birth_tau=birth_values[0],birth_u=birth_values[1],fold_r=fold_r_dense,fold_tau=fold_values[0],fold_u=fold_values[1],after_tau=after_dense,after_delta=after_values[0],after_u=after_values[1],Tu=ch.Tc,Pu=ch.Pc)
+    np.savez(OUT/(label+'.npz'),tau=segment_tau,delta=segment_delta,v=segment_v,w=-np.r_[birth_values[1],fold_values[1,1:],after_values[1,1:]],birth_eta=birth_eta_dense,birth_tau=birth_values[0],birth_u=birth_values[1],fold_r=fold_r_dense,fold_tau=fold_values[0],fold_u=fold_values[1],after_tau=after_dense,after_delta=after_values[0],after_u=after_values[1],Tu=ch.Tc,Pu=ch.Pc)
     print('RESULT',json.dumps(rec),flush=True)
-    samples,events,kind=witness(loop,sol,fold,after,tol,qstart)
-    wr=dict(cf=1,kind=kind,events=events,selection='larger trace witness at second upward birth; no physical selection')
+    audit_samples=[]
+    samples,events,kind=witness(loop,sol,fold,after,tol,qstart,q2start,audit_samples)
+    wr=dict(cf=1,kind=kind,q2start=q2start,events=events,subject_sha256=rec['subject_sha256'],selection='larger trace witness at second upward birth; no physical selection')
     (OUT/(label+'-witness.json')).write_text(json.dumps(wr,indent=2)+'\n')
     st,sd,sv=np.array(samples).T
     np.savez(OUT/(label+'-witness.npz'),tau=st,delta=sd,v=sv,Tu=ch.Tc,Pu=ch.Pc)
+    at,ad,av,aseg,aw=np.array(audit_samples).T
+    np.savez(OUT/(label+'-witness-dense.npz'),tau=at.astype(float),delta=ad.astype(float),v=av.astype(float),w=aw.astype(float),segment=aseg,Tu=ch.Tc,Pu=ch.Pc)
 
-def witness(loop,sol,fold,after,tol,qstart):
+def witness(loop,sol,fold,after,tol,qstart,q2start,audit_samples):
     ch=loop.ch;te=float(after.t[-1]);de=float(after.y[0,-1]);H=ch.older(ch.Tc+te,ch.Pc+de)[0]
     b,W=up.fixed_points(H,H)[1]
     # Centered descending history including all three segments; endpoint curvature H.
@@ -143,6 +172,8 @@ def witness(loop,sol,fold,after,tol,qstart):
     def add(label,s,d_fun):
         for z in s.t:
             t,w=s.sol(z);samples.append((float(t),float(d_fun(z)),float(w-1)))
+        for z in np.linspace(s.t[0],s.t[-1],4001):
+            t,w=s.sol(z);audit_samples.append((float(t),float(d_fun(z)),float(w-1),label,float(w)))
         t,w=s.y[:,-1];d=float(d_fun(s.t[-1]));records.append(dict(event=label,T=ch.Tc+t,delta=d,v=w-1))
         print('WITNESS_EVENT',records[-1],flush=True)
         if not s.success:raise RuntimeError(s.message)
@@ -181,9 +212,11 @@ def witness(loop,sol,fold,after,tol,qstart):
         end=solve_ivp(end_rhs,(w,0),[t,d],method='DOP853',rtol=tol,atol=tol*.001,max_step=w/20,dense_output=True)
         for wi in end.t:
             ti,di=end.sol(wi);samples.append((float(ti),float(di),float(wi-1)))
+        for wi in np.linspace(end.t[0],end.t[-1],1001):
+            ti,di=end.sol(wi);audit_samples.append((float(ti),float(di),float(wi-1),'second_recross_finish',float(wi)))
         ti,di=end.y[:,-1];acc,count=A(ti,di)
         records.append(dict(event='new_downward_recross_between_folds',T=ch.Tc+ti,delta=di,v=-1.,acceleration=acc,self_count=count,original_Pd_gap=loop.dend-di))
-        more,ev=second_down(loop,A,samples,te,de,H,b,ti,di,-acc,tol)
+        more,ev=second_down(loop,A,samples,te,de,H,b,ti,di,-acc,tol,q2start,audit_samples)
         samples.extend(more);records.extend(ev)
         return samples,records,'third_upward_birth'
     def max_rhs(r,y):
@@ -199,7 +232,7 @@ def witness(loop,sol,fold,after,tol,qstart):
     samples.extend((t,ch.delta(q),w-1) for q,t,w in later)
     records.append(event)
     return samples,records,event['kind']
-def second_down(loop,A,samples,te,de,H,b,td,dd,Bd,tol):
+def second_down(loop,A,samples,te,de,H,b,td,dd,Bd,tol,q2start,audit_samples):
     ch=loop.ch;bd=trace(Bd)
     tt,ds,vs=np.array(samples).T;keep=np.r_[True,np.diff(tt)>0]
     fs=CubicHermiteSpline(np.r_[te,tt[keep]],np.r_[de,ds[keep]],np.r_[0.,1+vs[keep]])
@@ -218,9 +251,9 @@ def second_down(loop,A,samples,te,de,H,b,td,dd,Bd,tol):
     def qprofile(q):
         if q<1e-10:return dd-.5*Bd*q*q,Bd*q
         return float(fs(td-q)),float(fs(td-q,1))
-    start=1e-12;stop=min(1e-8,(td-te)*.01)
+    start=q2start;stop=min(1e-8,(td-te)*.01)
     def rhs(eta,y):
-        q=np.exp(eta);d,p=qprofile(q);av=accel(y[0],d)
+        q=np.exp(eta);d,p=qprofile(q);av=A(y[0],d)[0]-K*(y[0]-td+q)/p
         return [q*p/y[1],-q*p*av/y[1]]
     leg=solve_ivp(rhs,(np.log(start),np.log(stop)),[td+start*np.sqrt(Bd/bd),start*np.sqrt(Bd*bd)],method='Radau',rtol=tol,atol=tol*.001,max_step=.01,dense_output=True)
     if not leg.success:raise RuntimeError(leg.message)
@@ -229,6 +262,8 @@ def second_down(loop,A,samples,te,de,H,b,td,dd,Bd,tol):
         if not sol.success:raise RuntimeError(sol.message)
         for z in sol.t:
             ti,ui=sol.sol(z);out.append((float(ti),float(d_fun(z)),float(-1-ui)))
+        for z in np.linspace(sol.t[0],sol.t[-1],4001):
+            ti,ui=sol.sol(z);audit_samples.append((float(ti),float(d_fun(z)),float(-1-ui),label,float(-ui)))
         ti,ui=sol.y[:,-1];events.append(dict(event=label,T=ch.Tc+ti,delta=float(d_fun(sol.t[-1])),v=-1-ui));print('SECOND_DOWN',events[-1],flush=True)
     add('second_downward_regular_cutoff',leg,lambda eta:qprofile(np.exp(eta))[0])
     def firstfold(r,y):
@@ -253,17 +288,19 @@ def second_down(loop,A,samples,te,de,H,b,td,dd,Bd,tol):
     born.terminal=True;born.direction=-1
     leg=solve_ivp(regular,(t,t+1),[de,u],method='DOP853',rtol=tol,atol=tol*.001,max_step=.001,events=born,dense_output=True)
     for ti in np.linspace(leg.t[0],leg.t[-1],1001):
-        di,ui=leg.sol(ti);out.append((ti,di,-1-ui))
+        di,ui=leg.sol(ti);out.append((ti,di,-1-ui));audit_samples.append((float(ti),float(di),float(-1-ui),'third_birth_regular',float(-ui)))
     di,ui=leg.y[:,-1];events.append(dict(event='third_upward_birth',T=ch.Tc+leg.t[-1],delta=di,v=-1-ui,H=ch.older(ch.Tc+leg.t[-1],ch.Pc+di)[0]));print('SECOND_DOWN',events[-1],flush=True)
     return out,events
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--source',type=Path);p.add_argument('--branch',type=Path);p.add_argument('--tol',type=float,default=1e-9);p.add_argument('--qstart',type=float,default=1e-9);a=p.parse_args()
+    global OUT
+    OUT=OUT/'reconciliation-r1'
+    p=argparse.ArgumentParser();p.add_argument('--source',type=Path);p.add_argument('--branch',type=Path);p.add_argument('--tol',type=float,default=1e-9);p.add_argument('--qstart',type=float,default=1e-9);p.add_argument('--q2start',type=float,default=1e-12);p.add_argument('--profile-samples',type=int,default=4001);a=p.parse_args()
     start=time.monotonic();stop=threading.Event()
     def hb():
         while not stop.wait(10):print(f'HEARTBEAT recross-fate wall={time.monotonic()-start:.1f}s',flush=True)
     th=threading.Thread(target=hb,daemon=True);th.start()
     try:
         known()
-        if a.source:target(a.source,a.branch,a.tol,a.qstart)
+        if a.source:target(a.source,a.branch,a.tol,a.qstart,a.q2start,a.profile_samples)
     finally:stop.set();th.join()
 if __name__=='__main__':main()

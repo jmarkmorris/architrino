@@ -48,6 +48,14 @@ No rows.
 
 ## Deferred / discussion-scoped
 
+### OPS-031 — October 4 circular-root referrals
+
+- **Status:** ○ Proposed corrections; not accepted for implementation. CRW-005 remains closed.
+- **Evidence:** The [October 4 bounded pilot](../aaa-operations/evidence/ops-031-master-equation-continuation-review-2026-10-04.md) preserves the current source hash, before text, independent fold expansion, minimal proposed replacements and falsifiers. The coordinator independently checked both against the declared branch kernel and current scalar definition.
+- **Circular amplitude:** Replace the denial of singular receiver-evaluated amplitude with the distinction between unit signed playback and the diverging transmitter-weighted acceleration on nondegenerate circular roots approaching a birth. A finite transition or locked orbit is not established.
+- **Scalar counting:** Remove the extra coarea multiplier and the resulting inverse-first-power fold claim for the declared receiver-time scalar. Its branch magnitudes scale as the inverse square root of the speed-parameter offset at positive separation. A different variational functional needs its own integrand and measure; no reception-time integrability conclusion follows from that parameter scaling alone.
+- **Owner / next action:** Corpus integration coordinates with the Master Equation and Causal Action Functional owners after acceptance of the bounded corrections. Preserve historical evidence and independently verify any consequential repair. Both sentences occur in preserved October 2/3 pre-repair snapshots by exact-text `rg`; earliest causal attribution remains unresolved.
+
 ### OPS-031 — Separate scientific follow-ups
 
 - **Status:** ○ Discussion-scoped; outside the eight approved corrections.
