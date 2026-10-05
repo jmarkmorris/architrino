@@ -1,0 +1,9 @@
+# Directed two-slope candidate controls
+
+The [v8 directed source](../evidence/alternatives-screen-2026-10-05-width-entry-directed-v8.mjs) applies the same assessed monotone-width theorem to the [measured-positive two-slope candidate](alternatives-screen-2026-10-05-width-entry-growing-v6-controls.md), $e=\min(1/10,3/1000+3d/2,7/1000+d)$. Its diagnostic passed all 169 rows, including both derivatives at both seams, with minimum margins approximately $0.0059862$ and $0.0060042$. Its candidate contact lower value is approximately $8.079697>8$; that remains a candidate value until continuous certification.
+
+Both rational seams $1/125$ and $93/1000$ receive directed enclosures and explicit receiver cuts. Their middle strips use slope intervals $[1,3/2]$ and $[0,1]$ respectively. The generated collar uses the first slope $3/2$ in both derivative corrections. All complete-source, exact coefficient and preparation checks are retained. The receiver-first scheduling heuristic is retained; each accepted leaf still requires both positive directed margins.
+
+The frozen source hash is `fd5adb1d97f892a66d2d44d147e889ee8d937ab43def9bc929693e4a560b727f`. Its known controls passed at 15:36:26 UTC before target use, in 0.144 measured seconds; receipt `width-entry-directed-v8-controls/receipt.json` under the campaign evidence owner. The independently derived complete affine reference remains unchanged.
+
+The proposed bounded target retains 256 travel subdivisions, at most 16 source subdivisions and receiver depth at most 9, with a 600-second instrument deadline. Reduced source breadth prioritizes receiver subdivision; a source enclosure that cannot pass remains unresolved. Earlier v6/v7 runs retain their own complete outputs and deadlines, and their incomplete prefixes are not treated as contact results.

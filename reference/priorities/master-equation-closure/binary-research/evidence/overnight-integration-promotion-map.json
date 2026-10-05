@@ -1,0 +1,460 @@
+{
+  "utc": "2026-10-05T19:27:33.456Z",
+  "linkedOccurrences": 25,
+  "moves": [
+    {
+      "old": ".tmp/weber-overnight/reduction/checks.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/reduction/checks.mjs",
+      "sha256": "0380efe7e1949ad1d27a7ac7b1f6be2159843d79663dde0aacc9ae28d55cc709",
+      "bytes": 18063,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-investigation.md",
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-investigation.md",
+        "reference/priorities/master-equation-closure/collinear-research/analysis/weber-overnight-collinear-approach.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/reduction/predictions.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/reduction/predictions.mjs",
+      "sha256": "157873f194d201e004b2b471fd3df5d3b8147c49859572eb518e302fc668e344",
+      "bytes": 9330,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-investigation.md",
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-investigation.md",
+        "reference/priorities/master-equation-closure/collinear-research/analysis/weber-overnight-collinear-approach.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/reduction/predictions.out.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/reduction/predictions.out.txt",
+      "sha256": "08e0d2770085f2952f66ccb577f0a7d94fb8452041c57943ad8cdee7b90e87d7",
+      "bytes": 3185,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-investigation.md",
+        "reference/priorities/master-equation-closure/collinear-research/analysis/weber-overnight-collinear-approach.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/reduction/checks.out.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/reduction/checks.out.txt",
+      "sha256": "29721b429bd2004878fb915548fd7eb807b6cdb36095735ccc8142525e743328",
+      "bytes": 3146,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-investigation.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/round2/corrections/corrections-checks.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round2/corrections/corrections-checks.mjs",
+      "sha256": "71a750f59c740912b185036d5bf83147a91c9de84a577a81dc96222300837573",
+      "bytes": 22492,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-investigation.md",
+        "reference/priorities/master-equation-closure/collinear-research/analysis/weber-overnight-collinear-approach.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/round2/corrections/corrections-checks.out.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round2/corrections/corrections-checks.out.txt",
+      "sha256": "7ade5225ef64bdfb5163e82cc0d1c47bc45fb0297331c4c959d7567f4a48a08c",
+      "bytes": 4970,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-investigation.md",
+        "reference/priorities/master-equation-closure/collinear-research/analysis/weber-overnight-collinear-approach.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/round2/persistence/persistence-checks.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round2/persistence/persistence-checks.mjs",
+      "sha256": "1214c3df5000ba5a8a9452d35aa5c07cfcfabea8675afa375a73f417b9ca2c44",
+      "bytes": 14079,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-persistence.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/round2/persistence/persistence-checks.out.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round2/persistence/persistence-checks.out.txt",
+      "sha256": "d6dcee274fe613681b03a3a25466b5c57bf9a42a2e7d6baf6dcd839f9848bf0e",
+      "bytes": 3782,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-persistence.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/round2/persistence/predictions.json",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round2/persistence/predictions.json",
+      "sha256": "3c15cc69cda6d0e2131c826780510702cb664062f7a51367c77fa9a2ed6bf110",
+      "bytes": 2776,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-persistence.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/round2/persistence/contact-schedule.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round2/persistence/contact-schedule.mjs",
+      "sha256": "1b551aac1fa269d0e11f64d905ad69d05f4d24dcb8ab3dde569764893cc3d044",
+      "bytes": 4609,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-persistence.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/round2/persistence/contact-schedule.out.json",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round2/persistence/contact-schedule.out.json",
+      "sha256": "7ee680fd4792a75dfa5b45843d948e7833c444d4629824e13254ffa191f8b6b3",
+      "bytes": 9009,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-persistence.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/instrument/run-targets.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/instrument/run-targets.mjs",
+      "sha256": "8dd3000670d15c54508a25c78509455857045bd7449f8c7f667790310496c88e",
+      "bytes": 14209,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-pair-instrument.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/instrument-longrun/run-longrun.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/instrument-longrun/run-longrun.mjs",
+      "sha256": "6f2c07f5e7c6c66c7a3c51d6c49b97e46c843234a594811f16f82fb13c2e7755",
+      "bytes": 2904,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-pair-instrument.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/instrument-longrun/reduce-longrun.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/instrument-longrun/reduce-longrun.mjs",
+      "sha256": "8401130f2f6fd34430e360e5c24235bc6581f332be65a367c0cd49bdd223b254",
+      "bytes": 12689,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-pair-instrument.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/pi/common-brief.md",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/pi/common-brief.md",
+      "sha256": "cc1ccf36cda2d396a02f873eaab99844c6555e0abbc1902f8a21221602fbea10",
+      "bytes": 5209,
+      "consumers": [
+        "reference/priorities/master-equation-closure/braid-program/analysis/weber-overnight-ring-independent-adjudication.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/round2/ring/ring-checks.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round2/ring/ring-checks.mjs",
+      "sha256": "5d0428a771794da6d6fba5e755ae789272f5b6728f09931b3cc2af0d0fdf6c3e",
+      "bytes": 30928,
+      "consumers": [
+        "reference/priorities/master-equation-closure/braid-program/analysis/weber-overnight-ring.md",
+        "reference/priorities/master-equation-closure/braid-program/analysis/weber-overnight-ring.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/round2/ring/ring-checks-output.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round2/ring/ring-checks-output.txt",
+      "sha256": "501a929729f5964f4961e7061e3a94a87f209bae6e7dd2e47ffd14af8c185a4d",
+      "bytes": 9164,
+      "consumers": [
+        "reference/priorities/master-equation-closure/braid-program/analysis/weber-overnight-ring.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/pi/clock.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/pi/clock.txt",
+      "sha256": "8bb12963983ab8e8486fdfd8b169d1a8b62c07c9cacc34997729758ef140d1d8",
+      "bytes": 572,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/darwin-overnight/pi/common-brief.md",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/pi/common-brief.md",
+      "sha256": "44e1e5dea6d2838aed5d4872e2d86a86eafe08ddd908a40e53970a672ac51b89",
+      "bytes": 12405,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/darwin-overnight/pi/run-record.md",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/pi/run-record.md",
+      "sha256": "fabda638fce4ee0474003d5a50c41f6246454362f9c9e898443ab3897bfdb1d5",
+      "bytes": 42389,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/darwin-overnight/pi/clock.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/pi/clock.txt",
+      "sha256": "926e331e4b4054b06db6eabdfddb4c87fb344cfb1a5b0bf778a866e952b55b53",
+      "bytes": 340,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/verify/hardwrap-check.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/verify/hardwrap-check.mjs",
+      "sha256": "2fe99037039daa337533c12f98a142829a216c3a67891788017c561c8d0900fa",
+      "bytes": 1427,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/verify/hardwrap-check.out.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/verify/hardwrap-check.out.txt",
+      "sha256": "5990a1605476ce59a9474ceece7e3f7a3fa7ab716dc6efadecd150bcbca3241e",
+      "bytes": 1218,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/verify/hash-check.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/verify/hash-check.mjs",
+      "sha256": "dc993e71efa255643fc81acd8cf6cdd4b4345616916c7017c8607d4787c2778e",
+      "bytes": 3117,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/verify/hash-check.out.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/verify/hash-check.out.txt",
+      "sha256": "def120f84c37d38d07d404d5cd08a248ade94f13597742e1403c31a45cf7d7ad",
+      "bytes": 2166,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/verify/link-check.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/verify/link-check.mjs",
+      "sha256": "1fdb3afa6b78221c47fa247c1abea18794945b57bfd6063d1e37871c3f0536ea",
+      "bytes": 3908,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/verify/link-check.out.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/verify/link-check.out.txt",
+      "sha256": "7864c191d119d2cbf4bff86f34f82f2ff0aa31ba714465deb4b44c099084d6ef",
+      "bytes": 1792,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/verify/planted/hash-test.json",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/verify/planted/hash-test.json",
+      "sha256": "9b9013d0a2912dbcb7f1b29fd20f2b4284fc678856f9d5484975437534b6b828",
+      "bytes": 550,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/verify/planted/target.md",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/verify/planted/target.md.fixture",
+      "sha256": "8a5f4c9ecad88ccc7bcc3ce6ef1230659dd421dd145193ce8f6e0e54ad65566c",
+      "bytes": 85,
+      "consumers": [],
+      "note": "Known-case planted Markdown, preserved as .md.fixture to keep intentional breaks outside authored-document validation; replay at recorded scratch path."
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/verify/planted/test.md",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/verify/planted/test.md.fixture",
+      "sha256": "4dadb3057cef64dbe1010795ec9352916f3e7f8566094ac5fd251070eab820f0",
+      "bytes": 443,
+      "consumers": [],
+      "note": "Known-case planted Markdown, preserved as .md.fixture to keep intentional breaks outside authored-document validation; replay at recorded scratch path."
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/verify/planted/wrap-test.md",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/verify/planted/wrap-test.md.fixture",
+      "sha256": "52533fbdb051b782735486f6d8a69739b09e43c3d770d207a5848f176e96d0cd",
+      "bytes": 190,
+      "consumers": [],
+      "note": "Known-case planted Markdown, preserved as .md.fixture to keep intentional breaks outside authored-document validation; replay at recorded scratch path."
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/verify/sha-after.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/verify/sha-after.txt",
+      "sha256": "1993ef8c37cef5a99763367cec8fd487d02d1215f313378ed4f56e4520e07cc4",
+      "bytes": 1609,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/verify/sha-before.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/verify/sha-before.txt",
+      "sha256": "1993ef8c37cef5a99763367cec8fd487d02d1215f313378ed4f56e4520e07cc4",
+      "bytes": 1609,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/darwin-overnight/reduction/second-order-drift.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/reduction/second-order-drift.mjs",
+      "sha256": "6b0608dd7c0091c0599631f7ead7ba8a301023f042606be16b734ff84ee43228",
+      "bytes": 18215,
+      "consumers": []
+    },
+    {
+      "old": ".tmp/darwin-overnight/reference/cartesian-residual-check.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/reference/cartesian-residual-check.mjs",
+      "sha256": "885f6396e691f1cff9360e075599c9059a01aef7b0c94a60a8760e1dddbab012",
+      "bytes": 2531,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/darwin-overnight-independent-adjudication.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/reference/controls-before-batch2.json",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/reference/controls-before-batch2.json",
+      "sha256": "1f98936279a9d362415666727b3089a505957646f4b9ef13822ab6f322cfb0f9",
+      "bytes": 23389,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/darwin-overnight-independent-adjudication.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/reference/adjudicate-subject-records.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/reference/adjudicate-subject-records.mjs",
+      "sha256": "1294f34618d32388a8d5cbc9e2f34f0d4077261e6f6c7fcc3c516599d622c894",
+      "bytes": 20814,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/darwin-overnight-independent-adjudication.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/reference/adjudicate-stdout.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/reference/adjudicate-stdout.txt",
+      "sha256": "196e182eeaca71b7be2d29cf115cf532bcc05a048beefab5624f2b0ad98953a6",
+      "bytes": 29476,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/darwin-overnight-independent-adjudication.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/reduction/common-block-jordan.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/reduction/common-block-jordan.mjs",
+      "sha256": "3d774e59589043f0bb9cd737efa72dae18f1a8074b566713da96963c56047c7c",
+      "bytes": 9018,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/darwin-overnight-investigation.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/reduction/spot-check.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/reduction/spot-check.mjs",
+      "sha256": "20869d8a1d43f92c70d55c8f4d5710faebd24426794f0cba8525f17e441355e6",
+      "bytes": 11205,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/darwin-overnight-investigation.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/reduction/spot-check-output.json",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/reduction/spot-check-output.json",
+      "sha256": "ad703425e82e3f047e9de234285fbffc3d6686a76a941481b69ff9d0902e70a9",
+      "bytes": 6201,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/darwin-overnight-investigation.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/reduction/launch-state-check.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/reduction/launch-state-check.mjs",
+      "sha256": "d5f5df307608baa6ab4310b869e573ce9d42a8efe78bb90ebe2e020d2db7d4f1",
+      "bytes": 1690,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/darwin-overnight-investigation.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/reduction/common-block-jordan-output.json",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/reduction/common-block-jordan-output.json",
+      "sha256": "c30cd28d5540985993d24a1753c7f02e960cd593e2cb40f9b0f4828ec262b826",
+      "bytes": 8317,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/darwin-overnight-investigation.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/round2/targets/controls-rerun-receipt.json",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round2/targets/controls-rerun-receipt.json",
+      "sha256": "125c28f4e6ef9f7e670ac9d962a10c79db68c695a04ed62b409462060096a0fd",
+      "bytes": 23759,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-closeout-verification.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/round2/reference/branch-checks.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round2/reference/branch-checks.mjs",
+      "sha256": "e47f573027388d7560b379560c692aa7ad8cf95b9bbcd2049f43b35e99cb4239",
+      "bytes": 2750,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-independent-adjudication.md"
+      ]
+    },
+    {
+      "old": ".tmp/weber-overnight/round3/persistence-adjudication/persistence-enclosures.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-promoted/round3/persistence-adjudication/persistence-enclosures.mjs",
+      "sha256": "21737343fd9ea199e3add9887496eaf46f51f4ea9716c75aab3a72cca358f358",
+      "bytes": 13555,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-independent-adjudication.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/instrument/run-stdout.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/instrument/run-stdout.txt",
+      "sha256": "e9b39356573faf8fc6dea7a808703c496a381b4da598e737036a15aa1c42becc",
+      "bytes": 8713,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-pair-instrument.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/instrument-longrun/receipt-before.json",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/instrument-longrun/receipt-before.json",
+      "sha256": "e3e5624288dc86939e5bf404e236a28d4d62f4ef3c38ba72c2bf38e46b47da68",
+      "bytes": 34330,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-pair-instrument.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/instrument/cases/DG-100.json",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/instrument/cases/DG-100.json",
+      "sha256": "cdf122ad821a0e87a8fb9013e755a979ba719a3d82d481eeefabd5989ad14f98",
+      "bytes": 759,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-pair-instrument.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/ring-instrument/receipt-before-K1.json",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/ring-instrument/receipt-before-K1.json",
+      "sha256": "8d2fb2ca6cccc4e3b656c8510c04f1553f8a09b09ca010ce2120195190d6f74b",
+      "bytes": 34330,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-ring-instrument.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/ring-instrument/final-run-end.txt",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/ring-instrument/final-run-end.txt",
+      "sha256": "60a538301276c1592f4401e6dfa4fb182f6d4eded087ebb98c26cb2f58e593f1",
+      "bytes": 21,
+      "consumers": [
+        "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-ring-instrument.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/ring-reference/round3-compare.mjs",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/ring-reference/round3-compare.mjs",
+      "sha256": "4e6caf190783ae5baacfa07c378ad5eafd235f3a0b29352ae4108a504fac57d4",
+      "bytes": 11375,
+      "consumers": [
+        "reference/priorities/master-equation-closure/braid-program/analysis/darwin-overnight-ring-independent-adjudication.md"
+      ]
+    },
+    {
+      "old": ".tmp/darwin-overnight/ring/run1.json",
+      "new": "reference/priorities/master-equation-closure/binary-research/evidence/darwin-overnight-promoted/ring/run1.json",
+      "sha256": "8dc4ffe2386beb1ed5a9701ea6c2dca1572e9db0c30dc08b89a5bd678a025cf4",
+      "bytes": 19058,
+      "consumers": [
+        "reference/priorities/master-equation-closure/braid-program/analysis/darwin-overnight-ring.md"
+      ]
+    }
+  ]
+}

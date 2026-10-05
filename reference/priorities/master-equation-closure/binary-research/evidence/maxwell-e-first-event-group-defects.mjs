@@ -1,0 +1,20 @@
+// Finite receiving-partition grouping; complete comparison/source curve unchanged.
+import fs from 'node:fs';import crypto from 'node:crypto';import assert from 'node:assert/strict';
+import {Q} from './maxwell-shaped-overnight-grid-interval.mjs';
+const max=(a,b)=>Q.of(a).cmp(b)>0?Q.of(a):Q.of(b),min=(a,b)=>Q.of(a).cmp(b)<0?Q.of(a):Q.of(b),sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+export function group(rows){
+ assert(rows.length);let next=Q.of(rows[0].left);const out=[];
+ for(let j=0;j<rows.length;j+=4){const part=rows.slice(j,j+4),left=next;let bound=Q.of(0),r=null,d=null,slo=null,shi=null;
+  for(const z of part){assert(Q.of(z.left).cmp(next)===0&&Q.of(z.right).cmp(next)>0&&Q.of(z.bound).cmp(0)>=0,'exact closed child coverage');assert(Q.of(z.R.lo).cmp(0)>0&&Q.of(z.D.lo).cmp(0)>0&&Q.of(z.source.hi).cmp(z.left)<0,'admitted nominal child margins');next=Q.of(z.right);bound=max(bound,z.bound);r=r===null?Q.of(z.R.lo):min(r,z.R.lo);d=d===null?Q.of(z.D.lo):min(d,z.D.lo);slo=slo===null?Q.of(z.source.lo):min(slo,z.source.lo);shi=shi===null?Q.of(z.source.hi):max(shi,z.source.hi);}
+  assert(shi.cmp(left)<0,'whole grouped nominal source earlier than receiving cell');out.push({left:left.toString(),right:next.toString(),bound:bound.toString(),source:{lo:slo.toString(),hi:shi.toString()},R:{lo:r.toString()},D:{lo:d.toString()},method:'maximum of four or final fewer complete child defect bounds',children:part.map((z,k)=>({index:j+k,left:z.left,right:z.right,bound:z.bound}))});
+ }
+ return out;
+}
+export function known(){
+ const row=(a,b,c)=>({left:a,right:b,bound:c,source:{lo:-3,hi:-2},R:{lo:2},D:{lo:'4/5'}}),rows=[row(0,'1/12','1/4'),row('1/12','1/6','1/10'),row('1/6','1/4','1/9'),row('1/4','1/3','1/7'),row('1/3','2/3','1/8')],g=group(rows);assert(g.length===2&&g[0].right==='1/3'&&g[0].bound==='1/4'&&g[1].left==='1/3'&&g[1].right==='2/3'&&g[1].children.length===1);
+ for(const mutate of [x=>x[2].left='1/5',x=>x[3].bound=-1,x=>x[4].source.hi='1/2',x=>x[1].D.lo=0]){const bad=structuredClone(rows);mutate(bad);assert.throws(()=>group(bad));}
+ return {passed:true,cases:['exact four non-grid children max1/4','complete last shorter group','gap/negative bound/noncausal source/zeroD rejected']};
+}
+const args=Object.fromEntries(process.argv.slice(2).reduce((a,x,j,z)=>x.startsWith('--')?[...a,[x.slice(2),z[j+1]]]:a,[]));const knownFirst=known();
+if(!args.input){console.log(JSON.stringify({knownFirst}));process.exit(0);}
+assert(args.out&&!fs.existsSync(args.out)&&!fs.existsSync(args.out+'.jsonl'));const parent=JSON.parse(fs.readFileSync(args.input)),ps=JSON.parse(fs.readFileSync(args.input+'.specification.json'));assert(parent.firstFailure===null&&parent.inputSHA===sha(parent.input)&&ps.inputSHA===parent.inputSHA&&ps.knownFirst.passed&&parent.law===ps.law&&Q.of(parent.lastCompleted).cmp(parent.end)===0,'successful complete same-input parent');const rows=fs.readFileSync(args.input+'.jsonl','utf8').trim().split('\n').map(JSON.parse);assert(rows.length===parent.cells);const output=group(rows);assert(Q.of(output[0].left).cmp(parent.start)===0&&Q.of(output.at(-1).right).cmp(parent.end)===0);const spec={input:parent.input,inputSHA:parent.inputSHA,law:parent.law,start:parent.start,end:parent.end,knownFirst,sourceHashes:parent.sourceHashes,parentReceipt:args.input,parentReceiptSHA:sha(args.input),parentRows:args.input+'.jsonl',parentRowsSHA:sha(args.input+'.jsonl'),parentSpec:args.input+'.specification.json',parentSpecSHA:sha(args.input+'.specification.json'),groupSize:4,composerSHA:sha(new URL(import.meta.url)),grade:'same complete analytical curve, max of complete child residual bounds on exact closed receiving unions; no new physical history or old curve cap'};fs.writeFileSync(args.out+'.specification.json',JSON.stringify(spec,null,2),{flag:'wx'});fs.writeFileSync(args.out+'.jsonl',output.map(JSON.stringify).join('\n')+'\n',{flag:'wx'});const result={...spec,cells:output.length,firstFailure:null,lastCompleted:spec.end,rowsSHA:sha(args.out+'.jsonl')};fs.writeFileSync(args.out,JSON.stringify(result,null,2),{flag:'wx'});console.log(JSON.stringify(result));

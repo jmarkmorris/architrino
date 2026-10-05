@@ -1,0 +1,11 @@
+# Fourth-law directed prefix and measured cost obstruction
+
+The frozen v6 directed target for $(h,\rho)=(1/32,1/32)$ exhausted its 600-second internal deadline before reaching contact. Its complete receipt is retained at `width-entry-directed-v6-h32-r32/receipt.json` beneath the campaign local evidence owner. It completed 811 of 3914 original segments and 5782 strict receiver panels, ending at $d=0.0005766856148368676$, with zero failed final leaves and the remaining displacement region unvisited. The last leaf used depth 5 and 16 source subdivisions. Neither zero unresolved leaves in this prefix nor a candidate contact value is a contact certificate.
+
+Measured instrument wall time was 601.594 seconds, user CPU 418.537 seconds, system CPU 5.826 seconds and final RSS 389251072 bytes. Its supervisor run `c2558c79-04e4-4890-92c5-9b5a1c9b6e61` finished with exit code zero and `processGroupClosed: true` at 15:33:27 UTC. The script explicitly records `failure: owned instrument deadline`; a clean process exit does not mean complete science coverage.
+
+The bottleneck is tight interval enclosure under a one-tenth-percent initial speed band. Many original receiver segments require repeated bisection, while source range quadrature needs up to 16 or 32 subdivisions. The v7 scheduling experiment preserves the same candidate and inequalities; by its 500-second heartbeat it had covered 794 original segments with 5368 passed panels and no failed leaf. This does not establish a useful speedup, and its final result remains separately required.
+
+Further fixed proof candidates were tested with known-first measured diagnostics and retained independently. The linear wider candidate and first two-slope candidate failed sampled inequalities. The later candidate $e=\min(1/10,3/1000+3d/2,7/1000+d)$ passed every sampled row with approximately three times the original minimum margin; it is nominated for a separate directed target, not retroactively substituted into the earlier receipts.
+
+> Grade: measured partial enclosure and empirical cost obstruction by the named instrument. Actual original fourth-law escape remains unresolved until a full continuous certificate or another complete proof succeeds.

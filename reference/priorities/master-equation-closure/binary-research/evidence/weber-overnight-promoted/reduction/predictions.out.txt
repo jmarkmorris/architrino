@@ -1,0 +1,32 @@
+=== Known case first: zero-coefficient control (kappa = 0) reproduces Kepler radial period and apsidal angle pi ===
+Tr quad = 22.41023934847  2pi sqrt(A^3/k) = 22.41023934847  rel err 0.00e+0
+Phi quad = 3.141592653590  pi = 3.141592653590  rel err 0.00e+0
+
+=== Circular histories (sigma = -1), x = r c^2/K; r is full separation ===
+x=4: relative speed 0.7071067811865, individual speed 0.3535533905933, Omega 0.1767766952966, orbital period 35.54306350527
+      radial frequency 0.1443375672974, small-oscillation radial period 43.53118474162, apsidal angle (linear) 3.847649490486 rad, precession per radial period 1.412113673792 rad
+      quadrature limit e->0: Tr 43.53118474740, Phi 3.847649490483  (e = 1.00e-5)
+x=1: relative speed 1.414213562373, individual speed 0.7071067811865, Omega 1.414213562373, orbital period 4.442882938158
+      radial frequency 0.8164965809277, small-oscillation radial period 7.695298980971, apsidal angle (linear) 5.441398092703 rad, precession per radial period 4.599610878226 rad
+      quadrature limit e->0: Tr 7.695298981848, Phi 5.441398092688  (e = 1.00e-5)
+
+=== Apocentre release at x = 4, tangential speed 0.8 of circular (sigma = -1) ===
+initial relative tangential speed 0.5656854249492, individual 0.2828427124746, h = 2.262741699797, epsilon = -0.3400000000000 (identical for both laws since rdot = 0)
+Weber frozen: r_p 1.882352941176, r_a 4.000000000000, A 2.941176470588, e 0.3600000000000
+   radial period 29.00582560484 [RK4 reduced: 29.00582560480], apsidal angle 4.186307002636 rad [RK4: 4.186307002636], precession/radial period 2.089428698092 rad
+   max individual speed (CoV at rest) 0.6010407640086 at pericentre
+zero-coefficient: r_p 1.882352941176, r_a 4.000000000000, A 2.941176470588, e 0.3600000000000
+   radial period 22.41023934847 [RK4 reduced: 22.41023934844], apsidal angle 3.141592653590 rad [RK4: 3.141592653590], precession/radial period 0.000000000000e+0 rad
+   max individual speed (CoV at rest) 0.6010407640086 at pericentre
+
+=== Radial release from rest at x = 4 ===
+sigma=-1 Weber: contact time 8.560326833493, relative speed at contact 1.414213562373, individual 0.7071067811865, rddot at contact -0.7500000000000 (per-member acceleration half of this)
+   checkpoint: time to r = 2: 6.521305376769, relative speed there 0.7071067811865
+sigma=-1 zero-coefficient: contact time 6.283185307180 (speed diverges); time to r = 2: 5.141592653590, relative speed there 1.000000000000
+   [RK4 reduced check, linear interpolation at dt=1e-4: time to r = 2 = 6.521305376699]
+sigma=+1 Weber: no contact, no further turning; epsilon = 0.5000000000000 < c^2, escapes; asymptotic relative speed 1.000000000000, individual 0.5000000000000
+   checkpoint: time to r = 8: 7.191411155128, relative speed there 0.8164965809277
+sigma=+1 zero-coefficient: time to r = 8: 9.182348597571, relative speed there 0.7071067811865, asymptotic relative 1.000000000000
+
+=== Supplementary: like polarity launched inward at x = 4 with rdot = -1.6 (individual speed 0.8) ===
+epsilon = 1.140000000000 > c^2: reaches critical radius r_c = 2 in finite time 1.115419163630 with rdot -> -infinity; individual speed equals c at r_x = 2.325581395349

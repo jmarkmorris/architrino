@@ -1,0 +1,78 @@
+## A. Matrix assembled from the law vs closed form (4.7); known case = two-member determinant 1 - a/r
+known case passed: two-member det agreement (relative) 6.37e-15 over 50 random states, both polarities
+four members, 60 random states: entrywise |M_law - M_closed| max 4.88e-15, det relative 9.73e-13
+velocity independence: |M(X,V) - M(X,V')| max 1.78e-15
+## B. M equals the velocity Hessian of L (central differences, step 1e-4), four members
+max |M - d2L/dVdV| over 20 states: 5.15e-8
+## C. Euler-Lagrange residual d/dT(dL/dV) - dL/dX with the solved accelerations; dE/dT; four members
+EL residual max 1.89e-6 (second-order central differences, step 1e-4); |dE/dT| / sum_i |V_i||A_i| max 6.75e-8; |sum of accelerations| max 5.33e-15; |total moment| max 7.11e-15
+## D. Ring determinant vs closed form (1+(sqrt2-1)/x)(1-1/x)(1+sqrt2/x)^3, K = c_f = 1 so x = rho
+x=0.2: det12=-6458.659454 closed=-6458.659454 pairspace=-6458.659454 |diff| 1.0e-11
+x=0.4142: det12=-243.3152878 closed=-243.3152878 pairspace=-243.3152878 |diff| 1.7e-13
+x=0.4571: det12=-155.3380699 closed=-155.3380699 pairspace=-155.3380699 |diff| 1.4e-13
+x=0.7: det12=-18.79516135 closed=-18.79516135 pairspace=-18.79516135 |diff| 1.4e-14
+x=0.999: det12=-0.01996032589 closed=-0.01996032589 pairspace=-0.01996032589 |diff| 9.8e-16
+x=1: det12=9.956003439e-15 closed=0.000000000 pairspace=1.325572647e-14 |diff| 1.0e-14
+x=1.001: det12=0.01983892843 closed=0.01983892843 pairspace=0.01983892843 |diff| 6.2e-15
+x=1.5: det12=3.119379567 closed=3.119379567 pairspace=3.119379567 |diff| 2.7e-15
+x=2: det12=3.002601910 closed=3.002601910 pairspace=3.002601910 |diff| 0.0e+0
+x=3: det12=2.416987629 closed=2.416987629 pairspace=2.416987629 |diff| 2.7e-15
+x=10: det12=1.393820895 closed=1.393820895 pairspace=1.393820895 |diff| 1.1e-15
+x=100: det12=1.036876108 closed=1.036876108 pairspace=1.036876108 |diff| 6.7e-16
+x=1.7: trace 14.1510907350 vs closed 12 + 2(2sqrt2-1)/x = 14.1510907350
+M eigenvalues on the symmetry-adapted modes (Rayleigh quotients; closed forms 1, 1+(sqrt2-1)/x, 1-1/x, 1+sqrt2/x):
+  k0_breathing: Rayleigh 1.243655036690 expected 1.243655036690 eigen-residual 1.9e-16
+  k0_rotation: Rayleigh 1.000000000000 expected 1.000000000000 eigen-residual 1.4e-16
+  k0_axial: Rayleigh 1.000000000000 expected 1.000000000000 eigen-residual 0.0e+0
+  k2_elliptic: Rayleigh 0.411764705882 expected 0.411764705882 eigen-residual 1.8e-16
+  k2_shear: Rayleigh 1.831890330808 expected 1.831890330808 eigen-residual 2.6e-16
+  k2_warp: Rayleigh 1.000000000000 expected 1.000000000000 eigen-residual 0.0e+0
+  k1_transX: Rayleigh 1.000000000000 expected 1.000000000000 eigen-residual 9.2e-17
+  k1_transY: Rayleigh 1.000000000000 expected 1.000000000000 eigen-residual 8.0e-17
+  k1_sublatX: Rayleigh 1.831890330808 expected 1.831890330808 eigen-residual 1.9e-16
+  k1_sublatY: Rayleigh 1.831890330808 expected 1.831890330808 eigen-residual 2.6e-16
+  k1_tiltX: Rayleigh 1.000000000000 expected 1.000000000000 eigen-residual 1.6e-16
+  k1_tiltY: Rayleigh 1.000000000000 expected 1.000000000000 eigen-residual 1.6e-16
+  worst deviation 2.59e-16
+## E. Balance residual at Omega^2 = (2 sqrt2 - 1) K/(4 rho^3); wrong Omega control; static ring
+x=0.3: |a - (-Omega^2 X)| max 1.0e-14; tangential max 9.3e-15; max |rddot| on solved state 1.6e-14; speed Omega rho = 1.234378; det M = -1036.369539; control with 1.1 Omega: residual 3.44e-1
+x=0.4571: |a - (-Omega^2 X)| max 3.1e-15; tangential max 9.4e-16; max |rddot| on solved state 4.4e-15; speed Omega rho = 1.000007; det M = -155.338070; control with 1.1 Omega: residual 2.35e-1
+x=0.8: |a - (-Omega^2 X)| max 5.6e-16; tangential max 3.7e-16; max |rddot| on solved state 6.1e-16; speed Omega rho = 0.755899; det M = -8.045141; control with 1.1 Omega: residual 9.82e-2
+x=1.2: |a - (-Omega^2 X)| max 1.7e-16; tangential max 1.1e-16; max |rddot| on solved state 5.6e-16; speed Omega rho = 0.617189; det M = 2.317971; control with 1.1 Omega: residual 4.77e-2
+x=2.5: |a - (-Omega^2 X)| max 4.2e-17; tangential max 3.5e-17; max |rddot| on solved state 6.9e-17; speed Omega rho = 0.427601; det M = 2.684393; control with 1.1 Omega: residual 1.02e-2
+x=7: |a - (-Omega^2 X)| max 5.2e-18; tangential max 3.5e-18; max |rddot| on solved state 1.6e-17; speed Omega rho = 0.255541; det M = 1.576764; control with 1.1 Omega: residual 1.80e-3
+speed equality Omega rho = c_f at x* = (2 sqrt2 - 1)/4 = 0.4571067812; check: speed at x* = 1.000000000000
+static ring x=0.5: solved radial acceleration -1.000000000 closed -1.000000000 (inverse-square value would be -1.828427125); tangential 2.8e-16
+static ring x=1.5: solved radial acceleration -0.1591974167 closed -0.1591974167 (inverse-square value would be -0.2031585694); tangential 9.4e-18
+static ring x=4: solved radial acceleration -0.02588834765 closed -0.02588834765 (inverse-square value would be -0.02856917382); tangential 8.1e-18
+## F. Rotating-frame linearization: M xi'' + 2 Omega J xi' + K xi = 0, K = Hess(U) - Omega^2 Pi
+fixed point check: |Y''| at the ring in the rotating frame = 1.1e-16
+x=1.7: |FD dY''/dY - (-M^-1 K)| max 1.97e-11 (scale 0.149); |FD dY''/dW - (-M^-1 2 Omega J)| max 7.18e-12 (scale 0.729)
+cross-sector entries (k0|k2|k1): K 9.0e-17, M 1.6e-16, 2 Omega J 2.8e-17
+diagonal K entries in units K/rho^3 (closed forms: breathing -3 Omega^2, rotation 0, axial 0, elliptic 3/4, shear -3 sqrt2/2, warp sqrt2, trans -Omega^2, sublattice (1-4 sqrt2)/4, tilt Omega^2):
+  k0_breathing: -1.371320343560 expected -1.371320343560
+  k0_rotation: -0.000000000000 expected 0.000000000000
+  k0_axial: 0.000000000000 expected 0.000000000000
+  k2_elliptic: 0.750000000000 expected 0.750000000000
+  k2_shear: -2.121320343560 expected -2.121320343560
+  k2_warp: 1.414213562373 expected 1.414213562373
+  k1_transX: -0.457106781187 expected -0.457106781187
+  k1_transY: -0.457106781187 expected -0.457106781187
+  k1_sublatX: -1.164213562373 expected -1.164213562373
+  k1_sublatY: -1.164213562373 expected -1.164213562373
+  k1_tiltX: 0.457106781187 expected 0.457106781187
+  k1_tiltY: 0.457106781187 expected 0.457106781187
+  worst diagonal deviation 6.66e-16; largest off-diagonal K entry in this basis 1.1e-16
+x=1.7: det(z^2 M + 2 Omega z J + K) vs product of closed-form sector polynomials at 12 random complex z: worst relative difference 1.67e-15
+closed-form spectrum (units: K = c_f = 1, so Omega^2 = (2 sqrt2 - 1)/(4 x^3)); z in units of Omega
+  x=0.3: breathing +-0.6481i; warp +-1.7589i; tilt +-1i (x2); translation +-1i (double, Jordan); zero (x4: rotation+family, axial trans+boost); sublattice UNSTABLE: Re z = +-0.6443; k2 in-plane s1=6.855e+0 -> z=+-0.6363 (real); s2=2.388e+1 -> z=+-1.1876 (real)
+  x=0.4142: breathing +-0.7071i; warp +-1.7589i; tilt +-1i (x2); translation +-1i (double, Jordan); zero (x4: rotation+family, axial trans+boost); sublattice UNSTABLE: Re z = +-0.7250; k2 in-plane s1=3.370e+0 -> z=+-0.7238 (real); s2=1.498e+1 -> z=+-1.5259 (real)
+  x=0.4571: breathing +-0.7243i; warp +-1.7589i; tilt +-1i (x2); translation +-1i (double, Jordan); zero (x4: rotation+family, axial trans+boost); sublattice UNSTABLE: Re z = +-0.7500; k2 in-plane s1=2.703e+0 -> z=+-0.7515 (real); s2=1.327e+1 -> z=+-1.6652 (real)
+  x=0.7: breathing +-0.7926i; warp +-1.7589i; tilt +-1i (x2); translation +-1i (double, Jordan); zero (x4: rotation+family, axial trans+boost); sublattice UNSTABLE: Re z = +-0.8565; k2 in-plane s1=1.019e+0 -> z=+-0.8746 (real); s2=1.025e+1 -> z=+-2.7731 (real)
+  x=0.95: breathing +-0.8345i; warp +-1.7589i; tilt +-1i (x2); translation +-1i (double, Jordan); zero (x4: rotation+family, axial trans+boost); sublattice UNSTABLE: Re z = +-0.9284; k2 in-plane s1=4.947e-1 -> z=+-0.9633 (real); s2=3.340e+1 -> z=+-7.9152 (real)
+  x=1.05: breathing +-0.8468i; warp +-1.7589i; tilt +-1i (x2); translation +-1i (double, Jordan); zero (x4: rotation+family, axial trans+boost); sublattice UNSTABLE: Re z = +-0.9506; k2 in-plane s1=3.885e-1 -> z=+-0.9919 (real); s2=-2.735e+1 -> z=+-8.3219i
+  x=1.7: breathing +-0.8967i; warp +-1.7589i; tilt +-1i (x2); translation +-1i (double, Jordan); zero (x4: rotation+family, axial trans+boost); sublattice UNSTABLE: Re z = +-1.0451; k2 in-plane s1=1.172e-1 -> z=+-1.1223 (real); s2=-7.456e-1 -> z=+-2.8309i
+  x=3: breathing +-0.9374i; warp +-1.7589i; tilt +-1i (x2); translation +-1i (double, Jordan); zero (x4: rotation+family, axial trans+boost); sublattice UNSTABLE: Re z = +-1.1265; k2 in-plane s1=2.654e-2 -> z=+-1.2520 (real); s2=-8.384e-2 -> z=+-2.2254i
+  x=10: breathing +-0.9799i; warp +-1.7589i; tilt +-1i (x2); translation +-1i (double, Jordan); zero (x4: rotation+family, axial trans+boost); sublattice UNSTABLE: Re z = +-1.2099; k2 in-plane s1=9.231e-4 -> z=+-1.4211 (real); s2=-1.678e-3 -> z=+-1.9158i
+  x=1000: breathing +-0.9998i; warp +-1.7589i; tilt +-1i (x2); translation +-1i (double, Jordan); zero (x4: rotation+family, axial trans+boost); sublattice UNSTABLE: Re z = +-1.2434; k2 in-plane s1=1.052e-9 -> z=+-1.5169 (real); s2=-1.512e-9 -> z=+-1.8187i
+nonlinear growth check at x=1.7: predicted real root z = 0.342339 (= 1.1223 Omega); measured ln-amplitude rate over T=1 (RK4, dt=0.002) = 0.342339; energy drift |E1-E0|/|E0| = 3.32e-13

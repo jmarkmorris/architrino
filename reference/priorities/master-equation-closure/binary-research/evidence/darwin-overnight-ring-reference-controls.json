@@ -1,0 +1,2462 @@
+{
+ "instrument": "darwin-overnight-ring-reference.mjs",
+ "lens": "ramon-e-moore",
+ "utcStart": "2026-10-05T15:26:26.130Z",
+ "law": "Section 10 functional, K=1, c_f=1, unit weights, coupling 1/(2 c_f^2), instantaneous, no kinetic correction",
+ "genericPhaseRad": 0.37,
+ "knownCaseFirst": {
+  "K1_assemblyVsFiniteDifferences": {
+   "pass": true,
+   "trials": [
+    {
+     "trial": 0,
+     "coupling": 1,
+     "maxAbsErrH": 1.242062008799394e-13,
+     "maxAbsErrDLdX": 6.494804694057166e-12,
+     "maxAbsErrMixed": 6.137867991640178e-13
+    },
+    {
+     "trial": 1,
+     "coupling": 1,
+     "maxAbsErrH": 4.791306240647941e-14,
+     "maxAbsErrDLdX": 5.790368184932504e-13,
+     "maxAbsErrMixed": 1.1981379430259231e-12
+    },
+    {
+     "trial": 2,
+     "coupling": 1,
+     "maxAbsErrH": 8.815170815523743e-14,
+     "maxAbsErrDLdX": 2.470496029971514e-12,
+     "maxAbsErrMixed": 6.843213495866252e-12
+    },
+    {
+     "trial": 3,
+     "coupling": 1,
+     "maxAbsErrH": 1.1102230246251563e-13,
+     "maxAbsErrDLdX": 3.2357450052700187e-12,
+     "maxAbsErrMixed": 4.766013972368199e-12
+    },
+    {
+     "trial": 4,
+     "coupling": 0,
+     "maxAbsErrH": 4.374278717023117e-14,
+     "maxAbsErrDLdX": 1.0914602555089914e-12,
+     "maxAbsErrMixed": 1.3651344543491524e-15
+    },
+    {
+     "trial": 5,
+     "coupling": 0,
+     "maxAbsErrH": 1.56097357262297e-13,
+     "maxAbsErrDLdX": 5.735856234423409e-11,
+     "maxAbsErrMixed": 2.2095525746446394e-14
+    }
+   ],
+   "tolerances": {
+    "H": 1e-10,
+    "dLdX": 1e-8,
+    "mixed": 1e-8
+   }
+  },
+  "K2_pairSpectrumN2": {
+   "pass": true,
+   "rows": [
+    {
+     "sigma": -1,
+     "r": 0.3,
+     "maxAbsErr": 4.440892098500626e-15
+    },
+    {
+     "sigma": -1,
+     "r": 0.5,
+     "maxAbsErr": 3.552713678800501e-15
+    },
+    {
+     "sigma": -1,
+     "r": 0.75,
+     "maxAbsErr": 1.7763568394002505e-15
+    },
+    {
+     "sigma": -1,
+     "r": 1,
+     "maxAbsErr": 2.220446049250313e-15
+    },
+    {
+     "sigma": -1,
+     "r": 2,
+     "maxAbsErr": 2.220446049250313e-15
+    },
+    {
+     "sigma": -1,
+     "r": 10,
+     "maxAbsErr": 1.7763568394002505e-15
+    },
+    {
+     "sigma": 1,
+     "r": 0.3,
+     "maxAbsErr": 4.440892098500626e-15
+    },
+    {
+     "sigma": 1,
+     "r": 0.5,
+     "maxAbsErr": 3.9968028886505635e-15
+    },
+    {
+     "sigma": 1,
+     "r": 0.75,
+     "maxAbsErr": 2.4424906541753444e-15
+    },
+    {
+     "sigma": 1,
+     "r": 1,
+     "maxAbsErr": 2.220446049250313e-15
+    },
+    {
+     "sigma": 1,
+     "r": 2,
+     "maxAbsErr": 2.4424906541753444e-15
+    },
+    {
+     "sigma": 1,
+     "r": 10,
+     "maxAbsErr": 1.9984014443252818e-15
+    }
+   ],
+   "tolerance": 1e-12
+  },
+  "K3_zeroCouplingRing": {
+   "pass": true,
+   "closedForm": "v0^2 = (2*sqrt(2)-1)/(4R), Omega0^2 = (2*sqrt(2)-1)/(4R^3)",
+   "rows": [
+    {
+     "R": 0.5,
+     "v0": 0.9561451575849219,
+     "residualInf": 8.881784197001252e-16,
+     "Ginf": 1.7046926078486897,
+     "vSolved": 0.9561451575849219
+    },
+    {
+     "R": 1,
+     "v0": 0.6760967247269783,
+     "residualInf": 2.220446049250313e-16,
+     "Ginf": 0.4261731519621724,
+     "vSolved": 0.6760967247269783
+    },
+    {
+     "R": 5,
+     "v0": 0.3023596471708973,
+     "residualInf": 7.806255641895632e-18,
+     "Ginf": 0.017046926078486895,
+     "vSolved": 0.30235964717089736
+    },
+    {
+     "R": 50,
+     "v0": 0.0956145157584922,
+     "residualInf": 1.0842021724855044e-19,
+     "Ginf": 0.00017046926078486907,
+     "vSolved": 0.09561451575849222
+    },
+    {
+     "R": 1000,
+     "v0": 0.02138005568717134,
+     "residualInf": 2.6469779601696886e-22,
+     "Ginf": 4.261731519621725e-7,
+     "vSolved": 0.021380055687171346
+    }
+   ],
+   "tolerance": 1e-12
+  }
+ },
+ "targets": {
+  "T1_spectrum": {
+   "closedForms": [
+    {
+     "label": "in-plane m=0 radial (breathing)",
+     "sector": 0,
+     "kind": "in-plane",
+     "mult": 1
+    },
+    {
+     "label": "in-plane m=0 tangential (rigid rotation)",
+     "sector": 0,
+     "kind": "in-plane",
+     "mult": 1
+    },
+    {
+     "label": "in-plane m=2 radial (rectangle)",
+     "sector": 2,
+     "kind": "in-plane",
+     "mult": 1
+    },
+    {
+     "label": "in-plane m=2 tangential (rhombus)",
+     "sector": 2,
+     "kind": "in-plane",
+     "mult": 1
+    },
+    {
+     "label": "in-plane m=+-1 lower",
+     "sector": "1,3",
+     "kind": "in-plane",
+     "mult": 2
+    },
+    {
+     "label": "in-plane m=+-1 upper",
+     "sector": "1,3",
+     "kind": "in-plane",
+     "mult": 2
+    },
+    {
+     "label": "axial m=0 (common z)",
+     "sector": 0,
+     "kind": "axial",
+     "mult": 1
+    },
+    {
+     "label": "axial m=2 (alternating z)",
+     "sector": 2,
+     "kind": "axial",
+     "mult": 1
+    },
+    {
+     "label": "axial m=+-1 (tilt)",
+     "sector": "1,3",
+     "kind": "axial",
+     "mult": 2
+    }
+   ],
+   "formulas": {
+    "in-plane m=0 radial": "1 - (2-sqrt2)/(4R)",
+    "in-plane m=0 tangential": "1 - (1+sqrt2)/(4R)",
+    "in-plane m=2 radial": "1 - (2+sqrt2)/(4R)",
+    "in-plane m=2 tangential": "1 + (sqrt2-1)/(4R)",
+    "in-plane m=+-1": "1 + (3 -+ sqrt73)/(8R) (each x2)",
+    "axial m=0": "1 - (2 sqrt2 - 1)/(4R)",
+    "axial m=2": "1 + (2 sqrt2 + 1)/(4R)",
+    "axial m=+-1": "1 - 1/(4R) (x2)"
+   },
+   "rows": [
+    {
+     "R": 0.2,
+     "maxAbsErr": 8.881784197001252e-15,
+     "detH": -510.7886066436787,
+     "sectorLeak": 9.618818769909475e-16,
+     "sectorBlockErr": 8.881784197001252e-16
+    },
+    {
+     "R": 0.5,
+     "maxAbsErr": 3.9968028886505635e-15,
+     "detH": 0.01757812500000001,
+     "sectorLeak": 3.5216069267724256e-16,
+     "sectorBlockErr": 4.440892098500626e-16
+    },
+    {
+     "R": 0.75,
+     "maxAbsErr": 1.3322676295501878e-15,
+     "detH": -0.0004817091643286831,
+     "sectorLeak": 3.7987152870861854e-16,
+     "sectorBlockErr": 1.1102230246251565e-16
+    },
+    {
+     "R": 1,
+     "maxAbsErr": 3.9968028886505635e-15,
+     "detH": 0.01838493347167968,
+     "sectorLeak": 2.744110491947567e-16,
+     "sectorBlockErr": 2.220446049250313e-16
+    },
+    {
+     "R": 2,
+     "maxAbsErr": 1.7763568394002505e-15,
+     "detH": 0.4312020968645811,
+     "sectorLeak": 2.2516683988987807e-16,
+     "sectorBlockErr": 3.3306690738754696e-16
+    },
+    {
+     "R": 10,
+     "maxAbsErr": 2.6645352591003757e-15,
+     "detH": 0.9646449036047045,
+     "sectorLeak": 1.8081944052427395e-16,
+     "sectorBlockErr": 2.1094237467877974e-15
+    },
+    {
+     "R": 50,
+     "maxAbsErr": 1.7763568394002505e-15,
+     "detH": 0.9985146844339431,
+     "sectorLeak": 2.0357887244792217e-16,
+     "sectorBlockErr": 4.218847493575595e-15
+    },
+    {
+     "R": 100,
+     "maxAbsErr": 1.7763568394002505e-15,
+     "detH": 0.9996267931858613,
+     "sectorLeak": 1.8537596761403798e-16,
+     "sectorBlockErr": 1.8984813721090177e-14
+    }
+   ],
+   "maxAbsErr": 8.881784197001252e-15
+  },
+  "T2_singularRadii": {
+   "radii": [
+    {
+     "R12": "0.146446609407",
+     "R": 0.1464466094067262,
+     "closed": "(2-sqrt2)/4",
+     "mode": "in-plane m=0 radial",
+     "multiplicity": 1,
+     "numericalZeroEigenvalues": 1,
+     "smallestAbsEigenvalue": 5.013331995166774e-16
+    },
+    {
+     "R12": "0.250000000000",
+     "R": 0.25,
+     "closed": "1/4",
+     "mode": "axial m=+-1 (tilt)",
+     "multiplicity": 2,
+     "numericalZeroEigenvalues": 2,
+     "smallestAbsEigenvalue": 6.166234516108405e-17
+    },
+    {
+     "R12": "0.457106781187",
+     "R": 0.4571067811865476,
+     "closed": "(2 sqrt2 - 1)/4",
+     "mode": "axial m=0",
+     "multiplicity": 1,
+     "numericalZeroEigenvalues": 1,
+     "smallestAbsEigenvalue": 1.874826540508664e-16
+    },
+    {
+     "R12": "0.603553390593",
+     "R": 0.6035533905932737,
+     "closed": "(1+sqrt2)/4",
+     "mode": "in-plane m=0 tangential (rigid rotation)",
+     "multiplicity": 1,
+     "numericalZeroEigenvalues": 1,
+     "smallestAbsEigenvalue": 1.9588532196419117e-16
+    },
+    {
+     "R12": "0.693000468165",
+     "R": 0.6930004681646913,
+     "closed": "(sqrt73 - 3)/8",
+     "mode": "in-plane m=+-1 lower",
+     "multiplicity": 2,
+     "numericalZeroEigenvalues": 2,
+     "smallestAbsEigenvalue": 2.345366441049784e-16
+    },
+    {
+     "R12": "0.853553390593",
+     "R": 0.8535533905932737,
+     "closed": "(2+sqrt2)/4",
+     "mode": "in-plane m=2 radial",
+     "multiplicity": 1,
+     "numericalZeroEigenvalues": 1,
+     "smallestAbsEigenvalue": 1.5825867393240483e-16
+    }
+   ],
+   "intervals": [
+    {
+     "interval": "(0.000000000000, 0.146446609407)",
+     "sampleR": 0.0732233047033631,
+     "negativeEigenvalues": 8,
+     "signDetH": "+"
+    },
+    {
+     "interval": "(0.146446609407, 0.250000000000)",
+     "sampleR": 0.1982233047033631,
+     "negativeEigenvalues": 7,
+     "signDetH": "-"
+    },
+    {
+     "interval": "(0.250000000000, 0.457106781187)",
+     "sampleR": 0.3535533905932738,
+     "negativeEigenvalues": 5,
+     "signDetH": "-"
+    },
+    {
+     "interval": "(0.457106781187, 0.603553390593)",
+     "sampleR": 0.5303300858899107,
+     "negativeEigenvalues": 4,
+     "signDetH": "+"
+    },
+    {
+     "interval": "(0.603553390593, 0.693000468165)",
+     "sampleR": 0.6482769293789825,
+     "negativeEigenvalues": 3,
+     "signDetH": "-"
+    },
+    {
+     "interval": "(0.693000468165, 0.853553390593)",
+     "sampleR": 0.7732769293789825,
+     "negativeEigenvalues": 1,
+     "signDetH": "-"
+    },
+    {
+     "interval": "(0.853553390593, inf)",
+     "sampleR": 1.7071067811865475,
+     "negativeEigenvalues": 0,
+     "signDetH": "+"
+    }
+   ],
+   "positiveDefiniteFor": "R > (2+sqrt2)/4 = 0.853553390593",
+   "pairRadiiNote": "none of 1, 1/2 (pair separations) nor their ring images R=1/sqrt2, 1/(2 sqrt2), 1/2 is a ring singular radius; R=1/4 is, as the diagonal same-polarity transverse term alone (the adjacent terms cancel in the axial m=+-1 sector)"
+  },
+  "T3_balance": {
+   "closedForm": {
+    "v2": "v^2 = 2(2 sqrt2 - 1)/(8R - 1 - sqrt2)",
+    "Omega2": "Omega^2 = v^2/R^2",
+    "zeroCoupling": "v0^2 = (2 sqrt2 - 1)/(4R)",
+    "ratio": "v^2/v0^2 = 8R/(8R - 1 - sqrt2)",
+    "E": "E = -2 v^2 = -4(2 sqrt2 - 1)/(8R - 1 - sqrt2)",
+    "P": "0",
+    "Jz": "J_z = 4 R lambda_t v = v (4R - 1 - sqrt2)",
+    "lambdaT": "1 - (1+sqrt2)/(4R)"
+   },
+   "realOmegaFor": "R > (1+sqrt2)/8 = 0.301776695297",
+   "vEqualsCfAt": "0.758883476483",
+   "declaredDomain": {
+    "speedBound": 0.1,
+    "epsBound": 0.05,
+    "R_speed12": "46.012454813951",
+    "R_eps12": "14.142135623731",
+    "binding": "speed",
+    "R_domain12": "46.012454813951"
+   },
+   "rows": [
+    {
+     "R": 0.5,
+     "v12": "1.518558321178",
+     "Omega": 3.0371166423558433,
+     "vZeroCoupling": 0.9561451575849219,
+     "residualInertialInf": 2.4424906541753444e-15,
+     "Ginf": 3.0405095522250614,
+     "residualRotatingInf": 1.6653345369377348e-15,
+     "GtangentialMax": 6.661338147750939e-16,
+     "GaxialMax": 0,
+     "E": -4.6120387496374144,
+     "Jz": -0.6290074518864135,
+     "P": [
+      9.992007221626409e-16,
+      -4.996003610813204e-16,
+      0
+     ],
+     "maxEps": 1.4142135623730951,
+     "insideDomain": false,
+     "hessianPositiveDefinite": false
+    },
+    {
+     "R": 1,
+     "v12": "0.809117625798",
+     "Omega": 0.8091176257977611,
+     "vZeroCoupling": 0.6760967247269783,
+     "residualInertialInf": 3.3306690738754696e-16,
+     "Ginf": 0.520981663583511,
+     "residualRotatingInf": 1.6653345369377348e-16,
+     "GtangentialMax": 1.3877787807814457e-16,
+     "GaxialMax": 0,
+     "E": -1.3093426647532116,
+     "Jz": 1.283087757434971,
+     "P": [
+      2.7755575615628914e-16,
+      1.1102230246251565e-16,
+      0
+     ],
+     "maxEps": 0.7071067811865476,
+     "insideDomain": false,
+     "hessianPositiveDefinite": true
+    },
+    {
+     "R": 5,
+     "v12": "0.311919125553",
+     "Omega": 0.06238382511060109,
+     "vZeroCoupling": 0.3023596471708973,
+     "residualInertialInf": 1.0408340855860843e-17,
+     "Ginf": 0.01761052221264245,
+     "residualRotatingInf": 1.0408340855860843e-17,
+     "GtangentialMax": 3.469446951953614e-18,
+     "GaxialMax": 0,
+     "E": -0.19458708177150322,
+     "Jz": 5.4853431277864875,
+     "P": [
+      5.551115123125783e-17,
+      -4.163336342344337e-17,
+      0
+     ],
+     "maxEps": 0.14142135623730953,
+     "insideDomain": false,
+     "hessianPositiveDefinite": true
+    },
+    {
+     "R": 20,
+     "v12": "0.152333459077",
+     "Omega": 0.007616672953830355,
+     "vZeroCoupling": 0.15117982358544865,
+     "residualInertialInf": 4.336808689942018e-19,
+     "Ginf": 0.001073834337142751,
+     "residualRotatingInf": 3.2526065174565133e-19,
+     "GtangentialMax": 3.2526065174565133e-19,
+     "GaxialMax": 0,
+     "E": -0.046410965508488666,
+     "Jz": 11.818911223222617,
+     "P": [
+      0,
+      -6.938893903907228e-18,
+      0
+     ],
+     "maxEps": 0.03535533905932738,
+     "insideDomain": false,
+     "hessianPositiveDefinite": true
+    },
+    {
+     "R": 50,
+     "v12": "0.095904370819",
+     "Omega": 0.0019180874163765187,
+     "vZeroCoupling": 0.0956145157584922,
+     "residualInertialInf": 8.131516293641283e-20,
+     "Ginf": 0.00017100205659040436,
+     "residualRotatingInf": 1.3552527156068805e-19,
+     "GtangentialMax": 8.131516293641283e-20,
+     "GaxialMax": 0,
+     "E": -0.01839529668430975,
+     "Jz": 18.949340531043518,
+     "P": [
+      1.3877787807814457e-17,
+      -1.3877787807814457e-17,
+      0
+     ],
+     "maxEps": 0.014142135623730952,
+     "insideDomain": true,
+     "hessianPositiveDefinite": true
+    },
+    {
+     "R": 100,
+     "v12": "0.067711919066",
+     "Omega": 0.0006771191906591982,
+     "vZeroCoupling": 0.06760967247269783,
+     "residualInertialInf": 4.0657581468206416e-20,
+     "Ginf": 0.000042683713081860566,
+     "residualRotatingInf": 4.0657581468206416e-20,
+     "GtangentialMax": 2.371692252312041e-20,
+     "GaxialMax": 0,
+     "E": -0.009169807967179353,
+     "Jz": 26.921296593024678,
+     "P": [
+      1.3877787807814457e-17,
+      -6.938893903907228e-18,
+      0
+     ],
+     "maxEps": 0.007071067811865476,
+     "insideDomain": true,
+     "hessianPositiveDefinite": true
+    },
+    {
+     "R": 200,
+     "v12": "0.047843366538",
+     "Omega": 0.00023921683268970955,
+     "vZeroCoupling": 0.0478072578792461,
+     "residualInertialInf": 5.082197683525802e-21,
+     "Ginf": 0.000010662615992500857,
+     "residualRotatingInf": 1.0164395367051604e-20,
+     "GtangentialMax": 5.082197683525802e-21,
+     "GaxialMax": 0,
+     "E": -0.004577975443367719,
+     "Jz": 38.159189125988036,
+     "P": [
+      1.3877787807814457e-17,
+      -3.469446951953614e-18,
+      0
+     ],
+     "maxEps": 0.003535533905932738,
+     "insideDomain": true,
+     "hessianPositiveDefinite": true
+    },
+    {
+     "R": 1000,
+     "v12": "0.021383282419",
+     "Omega": 0.00002138328241877928,
+     "vZeroCoupling": 0.02138005568717134,
+     "residualInertialInf": 2.117582368135751e-22,
+     "Ginf": 4.262393694573677e-7,
+     "residualRotatingInf": 2.117582368135751e-22,
+     "GtangentialMax": 5.293955920339377e-23,
+     "GaxialMax": 0,
+     "E": -0.0009144895340025499,
+     "Jz": 85.48150586469363,
+     "P": [
+      3.469446951953614e-18,
+      -3.469446951953614e-18,
+      0
+     ],
+     "maxEps": 0.0007071067811865476,
+     "insideDomain": true,
+     "hessianPositiveDefinite": true
+    }
+   ]
+  }
+ },
+ "linearSpectrum": {
+  "frame": "rotating at Omega about z; balanced ring is a fixed point; pencil lambda^2 H0 + lambda C + K with C = -dRrhs/dW, K = -dRrhs/dY by fourth-order central differences; roots per sector by Durand-Kerner plus Newton polish; geometric multiplicity = nullity of the pencil at the root",
+  "sectorConvention": "sector m: member-k displacement carries phase i^{mk} in the local frame (n_k, t_k, z); m=3 is the complex conjugate of m=1",
+  "rows": [
+   {
+    "R": 50,
+    "coupling": 1,
+    "v": 0.09590437081882594,
+    "Omega": 0.0019180874163765187,
+    "residualRotatingInf": 1.6263032587282567e-19,
+    "residualInertialInf": 8.131516293641283e-20,
+    "sectorLeak": 3.509020331249335e-16,
+    "normK": 0.000007038232297581104,
+    "normC": 0.0038186394174545965,
+    "fdStepDisagreement": 1.097948699934453e-9,
+    "deltaRel": 4.985655748326627e-11,
+    "positiveRealPartThreshold": 1.3543457214190372e-7,
+    "thresholdRule": "max(10 sqrt(deltaRel) Omega, 10 x FD step disagreement); deltaRel = max(sector leak, rotating-frame residual)/||K||inf, floor 1e-14",
+    "countRePositive": 3,
+    "maxRealPart": 0.002879526781295548,
+    "summaryOverOmega": {
+     "m0_inPlane_kappaOverOmega": 1.0075673612000793,
+     "m0_inPlane_zeroPairSplit": 1.0979244156706853e-9,
+     "m0_axial_zeroPairSplit": 7.309446304181423e-12,
+     "m1_axial_overOmega": [
+      0.9999999999986938,
+      -0.9857867983668035
+     ],
+     "m2_axial_overOmega": 1.7310658710448126,
+     "m2_inPlane_realGrowthOverOmega": [
+      1.5012489820382096
+     ],
+     "m2_inPlane_oscOverOmega": 1.8129039595095495,
+     "m1_inPlane_growingExponentOverOmega": [
+      [
+       1.2265210155550903,
+       -0.9863047815556804
+      ]
+     ],
+     "m1_inPlane_translationPair": [
+      [
+       -1.58651166797696e-10,
+       0.0019180876602189
+      ],
+      [
+       1.587092943592433e-10,
+       0.0019180871726235896
+      ]
+     ]
+    },
+    "exponents": [
+     {
+      "m": 0,
+      "kind": "axial",
+      "lambda": [
+       1.442381574685e-21,
+       7.309446304181e-12
+      ],
+      "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+     },
+     {
+      "m": 0,
+      "kind": "axial",
+      "lambda": [
+       1.442381574685e-21,
+       -7.309446304181e-12
+      ],
+      "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+     },
+     {
+      "m": 0,
+      "kind": "in-plane",
+      "lambda": [
+       7.03496209016e-15,
+       -1.097924415648e-9
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 0,
+      "kind": "in-plane",
+      "lambda": [
+       -7.064838279312e-15,
+       0.00193260227667
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 0,
+      "kind": "in-plane",
+      "lambda": [
+       7.03496209016e-15,
+       1.097924415648e-9
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 0,
+      "kind": "in-plane",
+      "lambda": [
+       -7.064838279312e-15,
+       -0.00193260227667
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 1,
+      "kind": "axial",
+      "lambda": [
+       1.181689321978e-20,
+       0.001918087416374
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 1,
+      "kind": "axial",
+      "lambda": [
+       -1.236027639815e-20,
+       -0.001890825253177
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 1,
+      "kind": "in-plane",
+      "lambda": [
+       0.002352574525858,
+       -0.001891818790214
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 1,
+      "kind": "in-plane",
+      "lambda": [
+       -1.586511667977e-10,
+       0.001918087660219
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 1,
+      "kind": "in-plane",
+      "lambda": [
+       1.587092943592e-10,
+       0.001918087172624
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 1,
+      "kind": "in-plane",
+      "lambda": [
+       -0.002352574525858,
+       -0.001891818790219
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "axial",
+      "lambda": [
+       -1.922142745193e-21,
+       0.00332033566417
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "axial",
+      "lambda": [
+       -1.922142745193e-21,
+       -0.00332033566417
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "in-plane",
+      "lambda": [
+       0.002879526781296,
+       -2.596176018899e-32
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "in-plane",
+      "lambda": [
+       -1.505288763173e-15,
+       0.003477308271834
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "in-plane",
+      "lambda": [
+       -0.002879526781293,
+       -1.216330635969e-32
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "in-plane",
+      "lambda": [
+       -1.505288763173e-15,
+       -0.003477308271834
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "axial",
+      "lambda": [
+       8.067619772892e-21,
+       0.001890825253177
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "axial",
+      "lambda": [
+       -8.60456984949e-21,
+       -0.001918087416374
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "in-plane",
+      "lambda": [
+       1.593418054661e-10,
+       -0.001918087172382
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 3,
+      "kind": "in-plane",
+      "lambda": [
+       0.002352574525858,
+       0.001891818790214
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "in-plane",
+      "lambda": [
+       -0.002352574525858,
+       0.001891818790219
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "in-plane",
+      "lambda": [
+       -1.594947008511e-10,
+       -0.001918087660137
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     }
+    ]
+   },
+   {
+    "R": 100,
+    "coupling": 1,
+    "v": 0.06771191906591982,
+    "Omega": 0.0006771191906591982,
+    "residualRotatingInf": 4.0657581468206416e-20,
+    "residualInertialInf": 4.0657581468206416e-20,
+    "sectorLeak": 1.8537596761403798e-16,
+    "normK": 8.832113899101995e-7,
+    "normC": 0.001351143223581242,
+    "fdStepDisagreement": 1.9965311018061706e-10,
+    "deltaRel": 2.0988856091732025e-10,
+    "positiveRealPartThreshold": 9.809785415898382e-8,
+    "thresholdRule": "max(10 sqrt(deltaRel) Omega, 10 x FD step disagreement); deltaRel = max(sector leak, rotating-frame residual)/||K||inf, floor 1e-14",
+    "countRePositive": 3,
+    "maxRealPart": 0.0010222122437392501,
+    "summaryOverOmega": {
+     "m0_inPlane_kappaOverOmega": 1.0037667568818163,
+     "m0_inPlane_zeroPairSplit": 8.773765141130305e-11,
+     "m0_axial_zeroPairSplit": 3.6463221454207295e-12,
+     "m1_axial_overOmega": [
+      0.9999999999986859,
+      -0.9929112102123546
+     ],
+     "m2_axial_overOmega": 1.7449216937919834,
+     "m2_inPlane_realGrowthOverOmega": [
+      1.5096489035321718
+     ],
+     "m2_inPlane_oscOverOmega": 1.8153619539384476,
+     "m1_inPlane_growingExponentOverOmega": [
+      [
+       1.2351082356497007,
+       -0.993042161936456
+      ]
+     ],
+     "m1_inPlane_translationPair": [
+      [
+       2.1856309853978825e-10,
+       0.0006771192735377668
+      ],
+      [
+       -2.186071979229362e-10,
+       0.0006771191077972717
+      ]
+     ]
+    },
+    "exponents": [
+     {
+      "m": 0,
+      "kind": "axial",
+      "lambda": [
+       3.646322145377e-12,
+       0
+      ],
+      "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+     },
+     {
+      "m": 0,
+      "kind": "axial",
+      "lambda": [
+       -3.646322145421e-12,
+       0
+      ],
+      "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+     },
+     {
+      "m": 0,
+      "kind": "in-plane",
+      "lambda": [
+       -1.962467930175e-15,
+       -0.0006796697340304
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 0,
+      "kind": "in-plane",
+      "lambda": [
+       1.965242520137e-15,
+       8.773765138929e-11
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 0,
+      "kind": "in-plane",
+      "lambda": [
+       -1.962467930175e-15,
+       0.0006796697340304
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 0,
+      "kind": "in-plane",
+      "lambda": [
+       1.965242520137e-15,
+       -8.773765138929e-11
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 1,
+      "kind": "axial",
+      "lambda": [
+       4.166880873246e-21,
+       0.0006771191906583
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 1,
+      "kind": "axial",
+      "lambda": [
+       -4.214449888814e-21,
+       -0.0006723192350554
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 1,
+      "kind": "in-plane",
+      "lambda": [
+       0.0008363154888996,
+       -0.0006724079049809
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 1,
+      "kind": "in-plane",
+      "lambda": [
+       2.185630985398e-10,
+       0.0006771192735378
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 1,
+      "kind": "in-plane",
+      "lambda": [
+       -2.186071979229e-10,
+       0.0006771191077973
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 1,
+      "kind": "in-plane",
+      "lambda": [
+       -0.0008363154888996,
+       -0.0006724079049825
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "axial",
+      "lambda": [
+       -2.14784715421e-23,
+       0.001181519965064
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "axial",
+      "lambda": [
+       -2.147847154207e-23,
+       -0.001181519965064
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "in-plane",
+      "lambda": [
+       -4.175152702449e-16,
+       -0.001229216417004
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "in-plane",
+      "lambda": [
+       -0.001022212243738,
+       -7.556731725823e-34
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "in-plane",
+      "lambda": [
+       -4.175152702449e-16,
+       0.001229216417004
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "in-plane",
+      "lambda": [
+       0.001022212243739,
+       -1.608854173918e-32
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "axial",
+      "lambda": [
+       2.642913581106e-21,
+       0.0006723192350554
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "axial",
+      "lambda": [
+       -2.690519216714e-21,
+       -0.0006771191906583
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "in-plane",
+      "lambda": [
+       2.182954800596e-10,
+       -0.0006771192735173
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 3,
+      "kind": "in-plane",
+      "lambda": [
+       0.0008363154888996,
+       0.0006724079049809
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "in-plane",
+      "lambda": [
+       -0.0008363154888996,
+       0.0006724079049825
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "in-plane",
+      "lambda": [
+       -2.183104875411e-10,
+       -0.0006771191078067
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     }
+    ]
+   },
+   {
+    "R": 200,
+    "coupling": 1,
+    "v": 0.04784336653794191,
+    "Omega": 0.00023921683268970955,
+    "residualRotatingInf": 1.0164395367051604e-20,
+    "residualInertialInf": 5.082197683525802e-21,
+    "sectorLeak": 2.0852949009957897e-16,
+    "normK": 1.1061497324954844e-7,
+    "normC": 0.00047788692719747213,
+    "fdStepDisagreement": 6.943035852509441e-11,
+    "deltaRel": 1.8851832077844872e-9,
+    "positiveRealPartThreshold": 1.0386483061825214e-7,
+    "thresholdRule": "max(10 sqrt(deltaRel) Omega, 10 x FD step disagreement); deltaRel = max(sector leak, rotating-frame residual)/||K||inf, floor 1e-14",
+    "countRePositive": 3,
+    "maxRealPart": 0.000362134292677297,
+    "summaryOverOmega": {
+     "m0_inPlane_kappaOverOmega": 1.0018791788760493,
+     "m0_inPlane_zeroPairSplit": 1.0920358360454952e-10,
+     "m0_axial_zeroPairSplit": 2.409051358712644e-12,
+     "m1_axial_overOmega": [
+      0.9999999999986818,
+      -0.9964600411441809
+     ],
+     "m2_axial_overOmega": 1.7519067129172607,
+     "m2_inPlane_realGrowthOverOmega": [
+      1.5138328210666716
+     ],
+     "m2_inPlane_oscOverOmega": 1.8165778438544538,
+     "m1_inPlane_growingExponentOverOmega": [
+      [
+       1.23942268990189,
+       -0.9964929652342687
+      ]
+     ],
+     "m1_inPlane_translationPair": [
+      [
+       5.0056522050012724e-11,
+       0.00023921679997139945
+      ],
+      [
+       -5.003299561335576e-11,
+       0.000239216865423431
+      ]
+     ]
+    },
+    "exponents": [
+     {
+      "m": 0,
+      "kind": "axial",
+      "lambda": [
+       2.245534390474e-23,
+       2.409051358713e-12
+      ],
+      "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+     },
+     {
+      "m": 0,
+      "kind": "axial",
+      "lambda": [
+       2.245534390474e-23,
+       -2.409051358713e-12
+      ],
+      "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+     },
+     {
+      "m": 0,
+      "kind": "in-plane",
+      "lambda": [
+       -8.986623651787e-16,
+       -0.0002396663639085
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 0,
+      "kind": "in-plane",
+      "lambda": [
+       8.790941615612e-16,
+       1.09203583601e-10
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 0,
+      "kind": "in-plane",
+      "lambda": [
+       -8.986623651787e-16,
+       0.0002396663639085
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 0,
+      "kind": "in-plane",
+      "lambda": [
+       8.790941615612e-16,
+       -1.09203583601e-10
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 1,
+      "kind": "axial",
+      "lambda": [
+       1.449862422228e-21,
+       0.0002392168326894
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 1,
+      "kind": "axial",
+      "lambda": [
+       -1.458310730188e-21,
+       -0.0002383700149444
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 1,
+      "kind": "in-plane",
+      "lambda": [
+       0.0002964907702421,
+       -0.0002383778909409
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 1,
+      "kind": "in-plane",
+      "lambda": [
+       5.005652205001e-11,
+       0.0002392167999714
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 1,
+      "kind": "in-plane",
+      "lambda": [
+       -5.003299561336e-11,
+       0.0002392168654234
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 1,
+      "kind": "in-plane",
+      "lambda": [
+       -0.0002964907702421,
+       -0.0002383778909415
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "axial",
+      "lambda": [
+       -3.039010487125e-23,
+       0.0004190855750319
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "axial",
+      "lambda": [
+       -3.039010487125e-23,
+       -0.0004190855750319
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "in-plane",
+      "lambda": [
+       -1.56521276512e-16,
+       -0.0004345559981412
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "in-plane",
+      "lambda": [
+       0.0003621342926773,
+       -5.230329359784e-33
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "in-plane",
+      "lambda": [
+       -1.56521276512e-16,
+       0.0004345559981412
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 2,
+      "kind": "in-plane",
+      "lambda": [
+       -0.000362134292677,
+       -1.815512871613e-33
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "axial",
+      "lambda": [
+       8.897206789055e-22,
+       0.0002383700149444
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "axial",
+      "lambda": [
+       -8.981862759482e-22,
+       -0.0002392168326894
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "in-plane",
+      "lambda": [
+       5.007773163129e-11,
+       -0.0002392167999273
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     },
+     {
+      "m": 3,
+      "kind": "in-plane",
+      "lambda": [
+       0.0002964907702421,
+       0.0002383778909409
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "in-plane",
+      "lambda": [
+       -0.0002964907702421,
+       0.0002383778909415
+      ],
+      "structure": "simple"
+     },
+     {
+      "m": 3,
+      "kind": "in-plane",
+      "lambda": [
+       -5.008609640661e-11,
+       -0.0002392168654467
+      ],
+      "structure": "Jordan block (geometric multiplicity 1)"
+     }
+    ]
+   }
+  ],
+  "zeroCouplingComparison": {
+   "note": "same linearization with the velocity coupling deleted (H = I) about the zero-coupling balanced ring; measured comparison, not a known case (no independent closed form for this spectrum was derived)",
+   "rows": [
+    {
+     "R": 50,
+     "coupling": 0,
+     "v": 0.0956145157584922,
+     "Omega": 0.0019122903151698439,
+     "residualRotatingInf": 1.3552527156068805e-19,
+     "residualInertialInf": 1.0842021724855044e-19,
+     "sectorLeak": 1.438117412878864e-16,
+     "normK": 0.000007092984212331756,
+     "normC": 0.003824580630339763,
+     "fdStepDisagreement": 8.566876586049673e-10,
+     "deltaRel": 2.0275209556769836e-11,
+     "positiveRealPartThreshold": 8.610661195693528e-8,
+     "thresholdRule": "max(10 sqrt(deltaRel) Omega, 10 x FD step disagreement); deltaRel = max(sector leak, rotating-frame residual)/||K||inf, floor 1e-14",
+     "countRePositive": 3,
+     "maxRealPart": 0.0029028685598130794,
+     "summaryOverOmega": {
+      "m0_inPlane_kappaOverOmega": 1.0000000000010048,
+      "m0_inPlane_zeroPairSplit": 8.759380330014179e-10,
+      "m0_axial_zeroPairSplit": 1.925037439697619e-11,
+      "m1_axial_overOmega": [
+       0.9999999999986777,
+       -0.9999999999986778
+      ],
+      "m2_axial_overOmega": 1.7589304481275696,
+      "m2_inPlane_realGrowthOverOmega": [
+       1.5180062027115666
+      ],
+      "m2_inPlane_oscOverOmega": 1.817785144474041,
+      "m1_inPlane_growingExponentOverOmega": [
+       [
+        1.2437516475068828,
+        -0.9999999999986866
+       ]
+      ],
+      "m1_inPlane_translationPair": [
+       [
+        2.4315140239274836e-10,
+        0.00191229072138124
+       ],
+       [
+        -2.4319957981940485e-10,
+        0.0019122899090388754
+       ]
+      ]
+     },
+     "exponents": [
+      {
+       "m": 0,
+       "kind": "axial",
+       "lambda": [
+        1.925037439698e-11,
+        1.936295957425e-121
+       ],
+       "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "axial",
+       "lambda": [
+        -1.925037439698e-11,
+        0
+       ],
+       "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        6.400844424155e-15,
+        -8.75938032978e-10
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        -6.400790214047e-15,
+        0.001912290315172
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        6.400844424155e-15,
+        8.75938032978e-10
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        -6.400790214047e-15,
+        -0.001912290315172
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "axial",
+       "lambda": [
+        1.145744700265e-20,
+        0.001912290315167
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "axial",
+       "lambda": [
+        -1.145744700265e-20,
+        -0.001912290315167
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        0.002378414230004,
+        -0.001912290315167
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        2.431514023927e-10,
+        0.001912290721381
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        -2.431995798194e-10,
+        0.001912289909039
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        -0.002378414230004,
+        -0.001912290315172
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "axial",
+       "lambda": [
+        -2.795812491289e-35,
+        0.003363585661012
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "axial",
+       "lambda": [
+        2.795812491289e-35,
+        -0.003363585661012
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        0.002902868559813,
+        -3.397003704185e-32
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        -1.420207829626e-15,
+        0.003476132926837
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        -0.00290286855981,
+        -1.801654285768e-32
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        -1.420207829626e-15,
+        -0.003476132926837
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "axial",
+       "lambda": [
+        6.688490504969e-21,
+        0.001912290315167
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "axial",
+       "lambda": [
+        -6.688490504969e-21,
+        -0.001912290315167
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        -2.430107942812e-10,
+        -0.001912289909214
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        0.002378414230004,
+        0.001912290315167
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        -0.002378414230004,
+        0.001912290315172
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        2.429150387912e-10,
+        -0.001912290721286
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      }
+     ]
+    },
+    {
+     "R": 100,
+     "coupling": 0,
+     "v": 0.06760967247269783,
+     "Omega": 0.0006760967247269784,
+     "residualRotatingInf": 3.3881317890172014e-20,
+     "residualInertialInf": 3.3881317890172014e-20,
+     "sectorLeak": 1.438117412878864e-16,
+     "normK": 8.866230265414469e-7,
+     "normC": 0.0013521934494539838,
+     "fdStepDisagreement": 2.5607780510609744e-10,
+     "deltaRel": 1.6220167645416285e-10,
+     "positiveRealPartThreshold": 8.610661195693638e-8,
+     "thresholdRule": "max(10 sqrt(deltaRel) Omega, 10 x FD step disagreement); deltaRel = max(sector leak, rotating-frame residual)/||K||inf, floor 1e-14",
+     "countRePositive": 3,
+     "maxRealPart": 0.0010263190217685205,
+     "summaryOverOmega": {
+      "m0_inPlane_kappaOverOmega": 1.0000000000010831,
+      "m0_inPlane_zeroPairSplit": 2.628838402440764e-10,
+      "m0_axial_zeroPairSplit": 6.8060351382408795e-12,
+      "m1_axial_overOmega": [
+       0.9999999999986778,
+       -0.9999999999986778
+      ],
+      "m2_axial_overOmega": 1.7589304481275698,
+      "m2_inPlane_realGrowthOverOmega": [
+       1.518006202711556
+      ],
+      "m2_inPlane_oscOverOmega": 1.817785144474065,
+      "m1_inPlane_growingExponentOverOmega": [
+       [
+        1.2437516475068668,
+        -0.9999999999986912
+       ]
+      ],
+      "m1_inPlane_translationPair": [
+       [
+        6.527119505221086e-11,
+        0.0006760969136811202
+       ],
+       [
+        -6.527550039150597e-11,
+        0.0006760965357852905
+       ]
+      ]
+     },
+     "exponents": [
+      {
+       "m": 0,
+       "kind": "axial",
+       "lambda": [
+        6.806035138241e-12,
+        0
+       ],
+       "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "axial",
+       "lambda": [
+        -6.806035138241e-12,
+        0
+       ],
+       "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        -2.276175683187e-15,
+        -0.0006760967247277
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        2.276175683187e-15,
+        2.628838402342e-10
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        -2.276175683187e-15,
+        0.0006760967247277
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        2.276175683187e-15,
+        -2.628838402342e-10
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 1,
+       "kind": "axial",
+       "lambda": [
+        4.05081923533e-21,
+        0.0006760967247261
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "axial",
+       "lambda": [
+        -4.05081923533e-21,
+        -0.0006760967247261
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        0.0008408964152532,
+        -0.0006760967247261
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        6.527119505221e-11,
+        0.0006760969136811
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        -6.527550039151e-11,
+        0.0006760965357853
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        -0.0008408964152532,
+        -0.0006760967247279
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "axial",
+       "lambda": [
+        -9.884689857584e-36,
+        0.001189207115002
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "axial",
+       "lambda": [
+        9.884689857584e-36,
+        -0.001189207115002
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        -4.972449045636e-16,
+        -0.001228998582436
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        -0.001026319021768,
+        -6.351751090085e-33
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        -4.972449045636e-16,
+        0.001228998582436
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        0.001026319021769,
+        -1.200884801446e-32
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "axial",
+       "lambda": [
+        2.364738495983e-21,
+        0.0006760967247261
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "axial",
+       "lambda": [
+        -2.364738495983e-21,
+        -0.0006760967247261
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        6.518822958327e-11,
+        -0.000676096913744
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        0.0008408964152532,
+        0.0006760967247261
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        -0.0008408964152532,
+        0.0006760967247279
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        -6.51637108928e-11,
+        -0.0006760965356389
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      }
+     ]
+    },
+    {
+     "R": 200,
+     "coupling": 0,
+     "v": 0.0478072578792461,
+     "Omega": 0.00023903628939623048,
+     "residualRotatingInf": 8.470329472543003e-21,
+     "residualInertialInf": 6.776263578034403e-21,
+     "sectorLeak": 1.438117412878864e-16,
+     "normK": 1.1082787831768369e-7,
+     "normC": 0.0004780725787924704,
+     "fdStepDisagreement": 1.0708595732562092e-10,
+     "deltaRel": 1.2976134116332695e-9,
+     "positiveRealPartThreshold": 8.610661195693528e-8,
+     "thresholdRule": "max(10 sqrt(deltaRel) Omega, 10 x FD step disagreement); deltaRel = max(sector leak, rotating-frame residual)/||K||inf, floor 1e-14",
+     "countRePositive": 3,
+     "maxRealPart": 0.00036285856997663493,
+     "summaryOverOmega": {
+      "m0_inPlane_kappaOverOmega": 1.0000000000010048,
+      "m0_inPlane_zeroPairSplit": 1.0949225412517724e-10,
+      "m0_axial_zeroPairSplit": 2.406296799622024e-12,
+      "m1_axial_overOmega": [
+       0.9999999999986778,
+       -0.9999999999986778
+      ],
+      "m2_axial_overOmega": 1.7589304481275698,
+      "m2_inPlane_realGrowthOverOmega": [
+       1.5180062027115666
+      ],
+      "m2_inPlane_oscOverOmega": 1.817785144474041,
+      "m1_inPlane_growingExponentOverOmega": [
+       [
+        1.2437516475068828,
+        -0.9999999999986866
+       ]
+      ],
+      "m1_inPlane_translationPair": [
+       [
+        3.0376291327913666e-11,
+        0.0002390363402021316
+       ],
+       [
+        -3.0379182692592106e-11,
+        0.0002390362385951596
+       ]
+      ]
+     },
+     "exponents": [
+      {
+       "m": 0,
+       "kind": "axial",
+       "lambda": [
+        2.406296799622e-12,
+        7.745183829699e-121
+       ],
+       "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "axial",
+       "lambda": [
+        -2.406296799622e-12,
+        -4.616489308893e-128
+       ],
+       "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        -8.000987767558e-16,
+        -0.0002390362893965
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        8.001055530194e-16,
+        1.094922541223e-10
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        -8.000987767558e-16,
+        0.0002390362893965
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        8.001055530194e-16,
+        -1.094922541223e-10
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 1,
+       "kind": "axial",
+       "lambda": [
+        1.432180875331e-21,
+        0.0002390362893959
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "axial",
+       "lambda": [
+        -1.432180875331e-21,
+        -0.0002390362893959
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        0.0002973017787505,
+        -0.0002390362893959
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        3.037629132791e-11,
+        0.0002390363402021
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        -3.037918269259e-11,
+        0.0002390362385952
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        -0.0002973017787505,
+        -0.0002390362893965
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "axial",
+       "lambda": [
+        -3.494765614112e-36,
+        0.0004204482076265
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "axial",
+       "lambda": [
+        3.494765614112e-36,
+        -0.0004204482076265
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        -1.775259787033e-16,
+        -0.0004345166158547
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        0.0003628585699766,
+        -4.246254630231e-33
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        -1.775259787033e-16,
+        0.0004345166158547
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        -0.0003628585699763,
+        -2.25206785721e-33
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "axial",
+       "lambda": [
+        8.360613131211e-22,
+        0.0002390362893959
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "axial",
+       "lambda": [
+        -8.360613131211e-22,
+        -0.0002390362893959
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        3.036078085913e-11,
+        -0.0002390363401668
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        0.0002973017787505,
+        0.0002390362893959
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        -0.0002973017787505,
+        0.0002390362893965
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        -3.036450501417e-11,
+        -0.0002390362386319
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      }
+     ]
+    },
+    {
+     "R": 1000,
+     "coupling": 0,
+     "v": 0.02138005568717134,
+     "Omega": 0.00002138005568717134,
+     "residualRotatingInf": 2.117582368135751e-22,
+     "residualInertialInf": 2.6469779601696886e-22,
+     "sectorLeak": 1.438117412878864e-16,
+     "normK": 8.866230265415237e-10,
+     "normC": 0.00004276011137434381,
+     "fdStepDisagreement": 9.347546443533111e-12,
+     "deltaRel": 1.6220167645414879e-7,
+     "positiveRealPartThreshold": 8.610661195693266e-8,
+     "thresholdRule": "max(10 sqrt(deltaRel) Omega, 10 x FD step disagreement); deltaRel = max(sector leak, rotating-frame residual)/||K||inf, floor 1e-14",
+     "countRePositive": 3,
+     "maxRealPart": 0.000032455057147444986,
+     "summaryOverOmega": {
+      "m0_inPlane_kappaOverOmega": 1.0000000000006324,
+      "m0_inPlane_zeroPairSplit": 9.678997684437067e-12,
+      "m0_axial_zeroPairSplit": 3.314512409159136e-13,
+      "m1_axial_overOmega": [
+       0.9999999999986774,
+       -0.9999999999986774
+      ],
+      "m2_axial_overOmega": 1.7589304481275692,
+      "m2_inPlane_realGrowthOverOmega": [
+       1.5180062027115753
+      ],
+      "m2_inPlane_oscOverOmega": 1.8177851444739808,
+      "m1_inPlane_growingExponentOverOmega": [
+       [
+        1.2437516475071162,
+        -0.9999999999985774
+       ]
+      ],
+      "m1_inPlane_translationPair": [
+       [
+        3.056568853291158e-12,
+        0.000021380055600804016
+       ],
+       [
+        -3.0493726959185502e-12,
+        0.00002138005577374287
+       ]
+      ]
+     },
+     "exponents": [
+      {
+       "m": 0,
+       "kind": "axial",
+       "lambda": [
+        3.314512409159e-13,
+        0
+       ],
+       "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "axial",
+       "lambda": [
+        -3.314512409159e-13,
+        0
+       ],
+       "structure": "Jordan block (scalar pencil, geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        -8.07941477188e-17,
+        -0.00002138005568718
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        8.079393596056e-17,
+        9.6789976841e-12
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        -8.07941477188e-17,
+        0.00002138005568718
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 0,
+       "kind": "in-plane",
+       "lambda": [
+        8.079393596056e-17,
+        -9.6789976841e-12
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 1,
+       "kind": "axial",
+       "lambda": [
+        1.13589642763e-22,
+        0.00002138005568714
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "axial",
+       "lambda": [
+        -1.13589642763e-22,
+        -0.00002138005568714
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        0.00002659147948471,
+        -0.00002138005568714
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        3.056568853291e-12,
+        0.0000213800556008
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        -3.049372695919e-12,
+        0.00002138005577374
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 1,
+       "kind": "in-plane",
+       "lambda": [
+        -0.00002659147948471,
+        -0.0000213800556872
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "axial",
+       "lambda": [
+        -1.526276070036e-37,
+        0.00003760603093083
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "axial",
+       "lambda": [
+        1.526276070036e-37,
+        -0.00003760603093083
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        -1.40498606655e-17,
+        -0.00003886434761617
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        0.00003245505714744,
+        -1.260889485012e-34
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        -1.40498606655e-17,
+        0.00003886434761617
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 2,
+       "kind": "in-plane",
+       "lambda": [
+        -0.00003245505714742,
+        -8.598650786033e-35
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "axial",
+       "lambda": [
+        3.850832475587e-23,
+        0.00002138005568714
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "axial",
+       "lambda": [
+        -3.850832475587e-23,
+        -0.00002138005568714
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        3.078149446855e-12,
+        -0.00002138005559249
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        0.00002659147948471,
+        0.00002138005568714
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        -0.00002659147948471,
+        0.0000213800556872
+       ],
+       "structure": "simple"
+      },
+      {
+       "m": 3,
+       "kind": "in-plane",
+       "lambda": [
+        -3.078468326062e-12,
+        -0.00002138005578185
+       ],
+       "structure": "Jordan block (geometric multiplicity 1)"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "utcEnd": "2026-10-05T15:26:26.324Z",
+ "allChecksPass": true
+}

@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { frozenResearchSourceOrigin, researchSourceLocation } from "../src/documentation/ResearchSourceLocations.mjs";
 import { findTheoryAbbreviationCandidates } from "./lib/theory-abbreviation-audit.mjs";
+import { extractMarkdownLinks } from "./lib/markdown-link-audit.mjs";
 
 const SCENES_DIR = "content/scenes";
 const MARKDOWN_DIR = "content/markdown";
@@ -733,41 +734,8 @@ function parseMarkdownHeading(line) {
   return { level, title };
 }
 
-function stripMarkdownLinkTarget(linkTarget) {
-  const trimmed = String(linkTarget || "").trim();
-  const match = trimmed.match(/^(\S+)(?:\s+["'][^"']*["'])?$/);
-  return match ? match[1] : trimmed;
-}
-
 function isExternalMarkdownLinkTarget(linkTarget) {
   return /^(https?:|mailto:|tel:|data:|#)/i.test(linkTarget);
-}
-
-function extractMarkdownLinks(markdownText) {
-  const links = [];
-  // TeX function application such as A[y](t) is not a Markdown link.
-  // Preserve newlines so diagnostics retain the original source line numbers.
-  const prose = String(markdownText || "").replace(
-    /\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)|(?<!\\)\$(?!\$)(?:\\.|[^\\$\n])*?(?<!\\)\$/g,
-    match => match.replace(/[^\r\n]/g, " ")
-  );
-  const lines = prose.split(/\r?\n/);
-  let fencedCodeBlock = false;
-  for (const [index, line] of lines.entries()) {
-    if (/^```/.test(line)) {
-      fencedCodeBlock = !fencedCodeBlock;
-      continue;
-    }
-    if (fencedCodeBlock) {
-      continue;
-    }
-    const linkRegex = /!?\[[^\]]*\]\(([^)]+)\)/g;
-    let match;
-    while ((match = linkRegex.exec(line))) {
-      links.push({ line: index + 1, target: stripMarkdownLinkTarget(match[1]) });
-    }
-  }
-  return links;
 }
 
 function splitMarkdownLinkTarget(linkTarget) {

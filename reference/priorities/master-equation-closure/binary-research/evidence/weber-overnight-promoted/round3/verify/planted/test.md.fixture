@@ -1,0 +1,13 @@
+# Planted test
+
+Good file link [t](target.md) and good anchor [a](target.md#real-heading-one) and punctuation anchor [b](target.md#real-heading-two-with-punctuation).
+Self anchor [s](#planted-test). External [x](https://example.org/nope.md) is skipped.
+
+Inline code `[bad](nope-inline.md)` must be skipped.
+
+```
+[bad](nope-fenced.md) must be skipped
+```
+
+Planted break 1: [m](missing-file.md).
+Planted break 2: [n](target.md#no-such-heading).

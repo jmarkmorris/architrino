@@ -1,5 +1,12 @@
 # Braid Program — Live State
 
+**Weber frequency and binding-sphere brief, 2026-10-05:** ○ Prepared, not launched. The operator requested a six-hour Claude continuation under the fixed instantaneous Section 9 law: derive binary radius/speed versus frequency, then search for an unconstrained, equal-radius/equal-speed three-electrino/three-positrino spherical configuration and assess integer-related frequencies, relative phasing and full Cartesian stability. The [complete prompt](../brainstorming.md#claude-six-hour-weber-frequency-and-binding-sphere-prompt-2026-10-05) freezes the law and claim boundaries; no binding result, active computation, queue/rank change or canon adoption follows from prompt preparation.
+
+
+**Delayed Weber first screen, 2026-10-05.** The separately selected [Section 9a](../equation-variants/manuscript.md#9a-selected-delayed-weber-adaptation) has one independently checked, interval-certified superfield alternating-square balance with all self roots included and two growing pairing modes. The [analytical screen](analysis/weber-delayed-ring-screen.md) leaves subfield/other-radius balance and nonlinear fate open; no canon adoption or deferred-task activation follows.
+
+**Overnight integration, 2026-10-05.** The [Weber frozen checkpoint and correction addendum](../binary-research/analysis/weber-overnight-investigation.md#frozen-checkpoint-synthesis-pi-2026-10-05t1531z) close the instantaneous benchmark: binary GO with a derived independently confirmed global bound class; alternating square exactly balanced but unstable at every regular radius; 59 newly specified cases, three undefined cases and five step-capped ring runs. The [Darwin frozen checkpoint](../binary-research/analysis/darwin-overnight-investigation.md#frozen-checkpoint-2026-10-05t1530z-pi-synthesis-closeout-of-the-darwin-lane) closes the Section 10 adapted law after 2 h 40 min: binary GO checked at preregistered level; ring NO GO at examined radii, with blind-matched spectra and measured prepared-eigenvector growth. General drift stability and the two 200-period controls remain open. BP-001, ranks and canon are unaffected. The [integration and closeout record](../binary-research/analysis/weber-overnight-closeout-verification.md) owns the destination/source audit, host result and promotion map.
+
 Status: RATIFIED by the operator (2026-07-24; drafted 2026-07-15). One page, rewritten forward-only. This is the program's single entry point.
 
 ## Workstream Metadata
@@ -12,6 +19,8 @@ The assembly workstream is unranked pending its own scored object. The former ra
 ## Guiding Question
 
 Which architrino configurations persist as free assemblies under the master equation — and which observed particles do they map to?
+
+**Selected four-member Maxwell-shaped comparison, 2026-10-05.** After the primary binary circle/domain and bounded contraction results were independently checked, the permitted four-member candidate received [complete balance and Cartesian assessment](manuscript.md#11-four-member-alternating-circles-under-the-maxwell-shaped-comparisons). E and E+M each have a certified complete circular solution at the common enclosed speed near $0.429117161835$, with separate exact radial-coefficient radii near $2.06783883307$ and $2.559210616145$, $K=c_f=1$. All twelve partner roots/no self roots and every acceleration equation are covered. Both references have derived growing Cartesian planar shape and out-of-plane modes with delayed source acceleration retained; no complete spectrum or nonlinear fate is claimed. Constant-offset disturbed histories have independently compared finite Cartesian futures through $10r$ at measured grade; the literal eigen-shaped sweeps are a different, self-refined measured family. The exact-mode family has a separately assessed fixed-horizon comparison only. The 24-member candidate, baseline return tasks, BP-001 and assembly qualification decisions remain unchanged.
 
 ## Speed regimes
 
@@ -99,3 +108,5 @@ Charter and ground rules: [README.md](README.md). Master candidate index: [candi
 The [binary research live state](../binary-research/priorities.md#research-ownership--2026-09-26) now owns the capped-circle instability, supplied-history braking, and first-window trajectory results and their unchanged proof boundaries. The [FSC-011 continuation question](../binary-research/work-queue.md#circular-pair-continuation-and-its-prerequisites) remains the existing prerequisite of FSC-017.
 
 [Collinear research](../collinear-research/priorities.md) now owns the encounter comparison and focused mirror analyses. [Binary research](../binary-research/README.md) owns isolated pairs; the Braid Program owns multi-binary and more general multi-architrino applications. [Shared ceiling definitions](../equation-variants/field-speed-ceiling/definition.md) remain conditional equation research; their relocation makes no new speed-condition decision. The former ceiling investigation is [parked as history](../equation-variants/field-speed-ceiling/history/README.md). Existing queue identifiers and scientific statuses are preserved.
+
+**Separate Weber ring status, 2026-10-05.** The [final-hour source assessment](../binary-research/analysis/maxwell-shaped-overnight-weber-checkpoint-assessment.md) found a smoke output but no complete Weber ring balance, acceleration-matrix invertibility or assessed perturbation source in the searched owners. No Weber ring result is integrated or spectrum licensed from that output.

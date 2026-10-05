@@ -55,6 +55,8 @@ Claim grade: `measured` by scanning every corpus document outside `archie/` and 
 
 ## Current State
 
+The [October 5 referrals](work-queue.md#ops-031--october-5-master-equation-and-three-binary-referrals) add five bounded Master Equation proposals and one three-binary retuning-definition clarification. Independent references support the proposals; implementation is unaccepted. With the two October 4 proposals, eight bounded repairs await disposition. The unresolved recurrence question and separate scientific obligations remain distinct. CRW-005 stays closed.
+
 The [October 4 OPS-031 circular-root referrals](work-queue.md#ops-031--october-4-circular-root-referrals) propose two bounded corrections to Master Equation: distinguish unit root playback from divergent branch acceleration, and count the transmitter collapse once in the current scalar functional. They are not accepted repairs and do not reopen CRW-005.
 
 The sixteen accepted supplementary chapter repairs and the necessary Master Equation stationary-surrogate propagation are complete. Each chapter group passed a different reviewer's check against the recorded independent mathematical references; final hashes, three new receipts and validation are in the [supplementary integration record](evidence/crw-005-claude-sixteen-closure-verification-2026-09-13.md#final-sixteen-chapter-integration). The unified board again records 199 completed dispositions and no active repair. Original receipts and open scientific/runtime obligations remain intact.

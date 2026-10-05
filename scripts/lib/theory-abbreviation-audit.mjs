@@ -25,11 +25,12 @@ export function findTheoryAbbreviationCandidates(text) {
       && (/(?:^|[\s,;])A(?:\([^()\n]*\))?\s*=/.test(item.body)
         || (item.body.trim() === "A"
           && /\b(?:scale|parameter|variable|constant)\s*$/.test(text.slice(0, item.start)))));
-    // Only a defined mathematical A in an explicit algebraic relation qualifies.
+    // Require a defined mathematical A in a relation or an arithmetic operation.
     // Text-bearing TeX and standalone badges such as $A^3$ remain prohibited.
     const algebra = span && definedA
       && !/\\(?:text|textrm|textbf|mathrm|operatorname)\b/.test(span.body)
-      && /[=<>]|\\(?:leq?|geq?|equiv)\b/.test(span.body)
+      && (/[=<>]|\\(?:leq?|geq?|equiv)\b/.test(span.body)
+        || /^\s*[-+*/]\s*(?:\d|[a-zA-Z](?![a-zA-Z]))/.test(text.slice(index + match[0].length, span.bodyEnd)))
       // A denominator may end in a brace; TeX juxtaposition is multiplication.
       // Do not accept arbitrary words after the cube as implicit products.
       && /^\s*(?:$|[-+*/=<>}\])]|[a-zA-Z](?![a-zA-Z])|\\(?:cdot|times|leq?|geq?|alpha|beta|gamma|delta|epsilon|eta|theta|lambda|mu|nu|rho|sigma|tau|phi|psi|omega)\b)/.test(text.slice(index + match[0].length, span.bodyEnd));

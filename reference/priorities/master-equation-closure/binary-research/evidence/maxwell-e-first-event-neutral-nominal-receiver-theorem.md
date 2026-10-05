@@ -1,0 +1,15 @@
+# Nominal receiving derivative in the sequential transformed comparison
+
+Derived prospective theorem; unchanged original E physical preparation, complete original partner/self census under the conditional stopping premise, no target application at freeze. The prior transformed-error and signed-source theorems are retained. Fix reception T and a receiving alignment once for the comparison. Let source V/A replacement at the actual partner root precede translated nominal-clock spatial comparison with actual receiving u held fixed. The last comparison changes receiving u at the nominal comparison receiver and nominal source clock; both steps keep the same complete source histories.
+
+Write the transformed response as $H(X,u)=E(X)+q_T(X)+q_X(X)u$ after substituting the partner clock determined by X,T. E and q do not depend on receiving u. This follows from the exact chain-rule transformation $p=u+q$; $q_T$ is the partial time derivative at fixed X. Therefore
+
+$$
+H_u(X,u)=q_X(X).
+$$
+
+This identity uses the completed nominal source history, including nominal delayed A. It does not substitute actual A or J. The receiving derivative in the final difference $H(X_c,u_a)-H(X_c,u_c)$ is thus the nominal-clock $H_u=q_X$ at $X_c$, independent of u. The full nominal-clock family over the expanded spatial/root bracket already over-encloses that endpoint. Source V/A replacement derivatives remain evaluated over the expanded actual/nominal fixed-root V/A families, so the existing $V_H,A_H$ and source forcing terms remain unchanged. The nominal-clock spatial H family still retains the full actual receiving-velocity cylinder; $C_H$ is not tightened or evaluated at nominal u.
+
+Consequently the signed current U block may be formed from `clock.H.Fu` rather than `offset.H.Fu`. The scalar forcing multiplier $U_H$ may use the corresponding nominal-clock derivative norm. All receiving q, signed-source radius, actual source direction, delayed physical acceleration, original E reconstruction, physical velocity conversion, complete angular history, strict prescribed receiving trials and root/source guards remain unchanged. The clock family is a valid sufficient family, not an assertion that the two mean-value averages Q and U coincide. In particular no identity between independently averaged current columns is imposed. A target must retain separate frozen adapter/source hashes and independently audit recurrence/domain before any event conclusion.
+
+Independent known controls are the separately frozen Cartesian symbolic coefficient reference: static $H_u=q_X=\operatorname{diag}(-1/4,1/4)$ at R=2; affine radial source velocity 1/5 at R=5/2; accelerated source and nonaligned source/receiver cases. Additional symbolic global identity $H_u-q_X=0$ is checked separately without importing the subject. The falsifier is a nonzero symbolic difference, a sequential comparison order different from the one stated, or a missing actual-source error term in the retained target forcing. A smaller reported current coefficient alone is not actual contraction or stability.

@@ -1,0 +1,877 @@
+{
+  "instrument": "darwin-overnight-independent-reference.mjs",
+  "lens": "ramon-e-moore",
+  "route": "centre/relative split, mirror reduction, polar quadratures, closed forms, bisection root finding; no Cartesian ODE integrator",
+  "law": "Section 10 frozen functional, c_f = 1, K = 1, unit weights, coupling 1/(2 c_f^2), instantaneous",
+  "parameters": {
+    "SPEED_BOUND": 0.1,
+    "EPS_BOUND": 0.05,
+    "CF": 1,
+    "K": 1
+  },
+  "bracketSemantics": "quadrature values: interval hull of Gauss-Legendre and Romberg converged values widened by each rule's last change and 4 ulps; closed forms: double rounding only. Reported agreement brackets, not rigorous outward-rounded enclosures.",
+  "startedAt": "2026-10-05T15:26:30.378Z",
+  "finishedAt": "2026-10-05T15:26:30.408Z",
+  "knownCaseFirst": {
+    "allPass": true,
+    "checks": [
+      {
+        "name": "kepler circle r0=25 omega = sqrt(2/r0^3)",
+        "got": 0.01131370849898476,
+        "expect": 0.01131370849898476,
+        "relErr": 0,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=25 individual speed = sqrt(1/(2 r0))",
+        "got": 0.1414213562373095,
+        "expect": 0.1414213562373095,
+        "relErr": 0,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=25 E = -1/(2 r0)",
+        "got": -0.019999999999999997,
+        "expect": -0.02,
+        "relErr": 1.734723475976807e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=25 ell = sqrt(r0/2)",
+        "got": 3.5355339059327378,
+        "expect": 3.5355339059327378,
+        "relErr": 0,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=25 kappa = omega (closed orbits)",
+        "got": 0.011313708498984765,
+        "expect": 0.01131370849898476,
+        "relErr": 4.599880250050122e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=25 apsidal angle = 2 pi",
+        "got": 6.283185307179583,
+        "expect": 6.283185307179586,
+        "relErr": 5.654319433712919e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=25 W'=0 root finding returns r0",
+        "got": 25.000000000000004,
+        "expect": 25,
+        "relErr": 1.4210854715202004e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=100 omega = sqrt(2/r0^3)",
+        "got": 0.001414213562373095,
+        "expect": 0.001414213562373095,
+        "relErr": 0,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=100 individual speed = sqrt(1/(2 r0))",
+        "got": 0.07071067811865475,
+        "expect": 0.07071067811865475,
+        "relErr": 0,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=100 E = -1/(2 r0)",
+        "got": -0.004999999999999999,
+        "expect": -0.005,
+        "relErr": 1.734723475976807e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=100 ell = sqrt(r0/2)",
+        "got": 7.0710678118654755,
+        "expect": 7.0710678118654755,
+        "relErr": 0,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=100 kappa = omega (closed orbits)",
+        "got": 0.0014142135623730957,
+        "expect": 0.001414213562373095,
+        "relErr": 4.599880250050122e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=100 apsidal angle = 2 pi",
+        "got": 6.283185307179583,
+        "expect": 6.283185307179586,
+        "relErr": 5.654319433712919e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler circle r0=100 W'=0 root finding returns r0",
+        "got": 100.00000000000001,
+        "expect": 100,
+        "relErr": 1.4210854715202004e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler eccentric radial period = 2 pi sqrt(s^3/2)",
+        "got": 3422.507657043746,
+        "expect": 3422.5076570437463,
+        "relErr": 1.328696372528383e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler eccentric apsidal angle = 2 pi",
+        "got": 6.2831853071795845,
+        "expect": 6.283185307179586,
+        "relErr": 2.8271597168564594e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler eccentric r_p r_a = ell^2/|E|",
+        "got": 6806.722689075633,
+        "expect": 6806.72268907563,
+        "relErr": 4.0085136855917947e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler eccentric r_p + r_a = 2 s",
+        "got": 168.06722689075633,
+        "expect": 168.0672268907563,
+        "relErr": 1.6910917111090386e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler radial fall 100 -> 20 time (quadrature vs closed form)",
+        "got": 753.5743588970455,
+        "expect": 753.5743588970454,
+        "relErr": 1.5086346341190747e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler radial fall 100 -> 0 time = pi r0^{3/2}/4",
+        "got": 785.3981633974483,
+        "expect": 785.3981633974482,
+        "relErr": 1.4475057750305073e-16,
+        "pass": true
+      },
+      {
+        "name": "kepler same-polarity release 100 -> 200 time (quadrature vs closed form)",
+        "got": 1147.793574696319,
+        "expect": 1147.793574696319,
+        "relErr": 0,
+        "pass": true
+      },
+      {
+        "name": "kepler same-polarity head-on v=0.05 turning point = 1/E = 80",
+        "got": 80,
+        "expect": 80,
+        "relErr": 0,
+        "pass": true
+      },
+      {
+        "name": "kepler same-polarity head-on time to turning point (quadrature vs closed form)",
+        "got": 372.16357638560163,
+        "expect": 372.16357638560163,
+        "relErr": 0,
+        "pass": true
+      }
+    ],
+    "note": "Zero-coupling control: closed-form Kepler-type two-weight problem (relative coordinate acceleration -2 r/r^3). Known case run before any target computation."
+  },
+  "targets": {
+    "a_circles": [
+      {
+        "r0": 25,
+        "epsilon": 0.04,
+        "angularRate": 0.01125756071568467,
+        "angularRateClosedForm": "omega^2 = 8 / (r0^2 (4 r0 + 1))",
+        "individualSpeed": 0.14071950894605836,
+        "individualSpeedClosedForm": "v^2 = 2 / (4 r0 + 1)",
+        "period": 558.1302615961465,
+        "energyLike": -0.019801980198019806,
+        "energyLikeClosedForm": "E = -2 / (4 r0 + 1)",
+        "angularMomentumReduced": 3.588347478124488,
+        "angularMomentumClosedForm": "ell^2 = (2 r0 + 1)^2 / (2 (4 r0 + 1))",
+        "radialOscillationFrequency": 0.010930185747310412,
+        "radialOscillationClosedForm": "kappa^2 = 16 / ((4 r0 + 1)(2 r0 + 1)(r0 + 1))",
+        "radialPeriod": 574.8470751035213,
+        "apsidalAnglePerRadialPeriod": 6.471375850211636,
+        "apsidalAdvancePerRadialPeriod": 0.18819054303205007,
+        "apsidalAdvanceClosedForm": "2 pi ( sqrt((2 r0 + 1)(r0 + 1) / (2 r0^2)) - 1 )",
+        "linearlyStableReducedPlanar": true,
+        "rootFindingCrossCheckReturnsR0": 24.999999999999993,
+        "hessianEigs": {
+          "sumRadial": 0.96,
+          "sumTransverse": 0.98,
+          "diffRadial": 1.04,
+          "diffTransverse": 1.02
+        },
+        "bracket": "closed form; double rounding only (relative width <= 1e-15)",
+        "insideProvisionalDomainAtRelease": false,
+        "coverage": {
+          "unrestricted": "whole interval",
+          "inclusiveCeiling": "whole interval",
+          "strictCeiling": "whole interval"
+        }
+      },
+      {
+        "r0": 50,
+        "epsilon": 0.02,
+        "angularRate": 0.003990037344430531,
+        "angularRateClosedForm": "omega^2 = 8 / (r0^2 (4 r0 + 1))",
+        "individualSpeed": 0.09975093361076327,
+        "individualSpeedClosedForm": "v^2 = 2 / (4 r0 + 1)",
+        "period": 1574.7184211069932,
+        "energyLike": -0.009950248756218909,
+        "energyLikeClosedForm": "E = -2 / (4 r0 + 1)",
+        "angularMomentumReduced": 5.037422147343546,
+        "angularMomentumClosedForm": "ell^2 = (2 r0 + 1)^2 / (2 (4 r0 + 1))",
+        "radialOscillationFrequency": 0.003931118972925586,
+        "radialOscillationClosedForm": "kappa^2 = 16 / ((4 r0 + 1)(2 r0 + 1)(r0 + 1))",
+        "radialPeriod": 1598.3198042219424,
+        "apsidalAnglePerRadialPeriod": 6.377355707188445,
+        "apsidalAdvancePerRadialPeriod": 0.09417040000885901,
+        "apsidalAdvanceClosedForm": "2 pi ( sqrt((2 r0 + 1)(r0 + 1) / (2 r0^2)) - 1 )",
+        "linearlyStableReducedPlanar": true,
+        "rootFindingCrossCheckReturnsR0": 49.999999999999986,
+        "hessianEigs": {
+          "sumRadial": 0.98,
+          "sumTransverse": 0.99,
+          "diffRadial": 1.02,
+          "diffTransverse": 1.01
+        },
+        "bracket": "closed form; double rounding only (relative width <= 1e-15)",
+        "insideProvisionalDomainAtRelease": true,
+        "coverage": {
+          "unrestricted": "whole interval",
+          "inclusiveCeiling": "whole interval",
+          "strictCeiling": "whole interval"
+        }
+      },
+      {
+        "r0": 100,
+        "epsilon": 0.01,
+        "angularRate": 0.0014124491030928974,
+        "angularRateClosedForm": "omega^2 = 8 / (r0^2 (4 r0 + 1))",
+        "individualSpeed": 0.07062245515464487,
+        "individualSpeedClosedForm": "v^2 = 2 / (4 r0 + 1)",
+        "period": 4448.433075160754,
+        "energyLike": -0.004987531172069825,
+        "energyLikeClosedForm": "E = -2 / (4 r0 + 1)",
+        "angularMomentumReduced": 7.097556743041809,
+        "angularMomentumClosedForm": "ell^2 = (2 r0 + 1)^2 / (2 (4 r0 + 1))",
+        "radialOscillationFrequency": 0.0014019389097224225,
+        "radialOscillationClosedForm": "kappa^2 = 16 / ((4 r0 + 1)(2 r0 + 1)(r0 + 1))",
+        "radialPeriod": 4481.782525333881,
+        "apsidalAnglePerRadialPeriod": 6.33028970816526,
+        "apsidalAdvancePerRadialPeriod": 0.04710440098567403,
+        "apsidalAdvanceClosedForm": "2 pi ( sqrt((2 r0 + 1)(r0 + 1) / (2 r0^2)) - 1 )",
+        "linearlyStableReducedPlanar": true,
+        "rootFindingCrossCheckReturnsR0": 100,
+        "hessianEigs": {
+          "sumRadial": 0.99,
+          "sumTransverse": 0.995,
+          "diffRadial": 1.01,
+          "diffTransverse": 1.005
+        },
+        "bracket": "closed form; double rounding only (relative width <= 1e-15)",
+        "insideProvisionalDomainAtRelease": true,
+        "coverage": {
+          "unrestricted": "whole interval",
+          "inclusiveCeiling": "whole interval",
+          "strictCeiling": "whole interval"
+        }
+      },
+      {
+        "r0": 200,
+        "epsilon": 0.005,
+        "angularRate": 0.0004996877926639076,
+        "angularRateClosedForm": "omega^2 = 8 / (r0^2 (4 r0 + 1))",
+        "individualSpeed": 0.049968779266390755,
+        "individualSpeedClosedForm": "v^2 = 2 / (4 r0 + 1)",
+        "period": 12574.222143156672,
+        "energyLike": -0.002496878901373284,
+        "energyLikeClosedForm": "E = -2 / (4 r0 + 1)",
+        "angularMomentumReduced": 10.018740242911347,
+        "angularMomentumClosedForm": "ell^2 = (2 r0 + 1)^2 / (2 (4 r0 + 1))",
+        "radialOscillationFrequency": 0.0004978213500712082,
+        "radialOscillationClosedForm": "kappa^2 = 16 / ((4 r0 + 1)(2 r0 + 1)(r0 + 1))",
+        "radialPeriod": 12621.36568927958,
+        "apsidalAnglePerRadialPeriod": 6.306742361680092,
+        "apsidalAdvancePerRadialPeriod": 0.023557054500505714,
+        "apsidalAdvanceClosedForm": "2 pi ( sqrt((2 r0 + 1)(r0 + 1) / (2 r0^2)) - 1 )",
+        "linearlyStableReducedPlanar": true,
+        "rootFindingCrossCheckReturnsR0": 200,
+        "hessianEigs": {
+          "sumRadial": 0.995,
+          "sumTransverse": 0.9975,
+          "diffRadial": 1.005,
+          "diffTransverse": 1.0025
+        },
+        "bracket": "closed form; double rounding only (relative width <= 1e-15)",
+        "insideProvisionalDomainAtRelease": true,
+        "coverage": {
+          "unrestricted": "whole interval",
+          "inclusiveCeiling": "whole interval",
+          "strictCeiling": "whole interval"
+        }
+      },
+      {
+        "r0": 400,
+        "epsilon": 0.0025,
+        "angularRate": 0.0001767214784609008,
+        "angularRateClosedForm": "omega^2 = 8 / (r0^2 (4 r0 + 1))",
+        "individualSpeed": 0.03534429569218016,
+        "individualSpeedClosedForm": "v^2 = 2 / (4 r0 + 1)",
+        "period": 35554.16897765331,
+        "energyLike": -0.0012492192379762645,
+        "energyLikeClosedForm": "E = -2 / (4 r0 + 1)",
+        "angularMomentumReduced": 14.155390424718155,
+        "angularMomentumClosedForm": "ell^2 = (2 r0 + 1)^2 / (2 (4 r0 + 1))",
+        "radialOscillationFrequency": 0.00017639078013499996,
+        "radialOscillationClosedForm": "kappa^2 = 16 / ((4 r0 + 1)(2 r0 + 1)(r0 + 1))",
+        "radialPeriod": 35620.82611330805,
+        "apsidalAnglePerRadialPeriod": 6.2949650547424625,
+        "apsidalAdvancePerRadialPeriod": 0.011779747562876253,
+        "apsidalAdvanceClosedForm": "2 pi ( sqrt((2 r0 + 1)(r0 + 1) / (2 r0^2)) - 1 )",
+        "linearlyStableReducedPlanar": true,
+        "rootFindingCrossCheckReturnsR0": 400.0000000000001,
+        "hessianEigs": {
+          "sumRadial": 0.9975,
+          "sumTransverse": 0.99875,
+          "diffRadial": 1.0025,
+          "diffTransverse": 1.00125
+        },
+        "bracket": "closed form; double rounding only (relative width <= 1e-15)",
+        "insideProvisionalDomainAtRelease": true,
+        "coverage": {
+          "unrestricted": "whole interval",
+          "inclusiveCeiling": "whole interval",
+          "strictCeiling": "whole interval"
+        }
+      }
+    ],
+    "a_samePolarityCircles": {
+      "statement": "omega^2 = -8 / (r0^2 (4 r0 - 1)): positive only for r0 < 1/4, where the full Hessian is indefinite (both mirror modes negative) and v^2 = 2/(1 - 4 r0) > 2, so no same-polarity circle exists with individual speed below c_f or with r0 >= 1/4.",
+      "samples": [
+        {
+          "r0": 0.2,
+          "exists": true,
+          "individualSpeed": 3.1622776601683795,
+          "hessianEigs": {
+            "sumRadial": 6,
+            "sumTransverse": 3.5,
+            "diffRadial": -4,
+            "diffTransverse": -1.5
+          }
+        },
+        {
+          "r0": 0.25,
+          "exists": false,
+          "omega2": null,
+          "hessianEigs": {
+            "sumRadial": 5,
+            "sumTransverse": 3,
+            "diffRadial": -3,
+            "diffTransverse": -1
+          }
+        },
+        {
+          "r0": 0.5,
+          "exists": false,
+          "omega2": -32,
+          "hessianEigs": {
+            "sumRadial": 3,
+            "sumTransverse": 2,
+            "diffRadial": -1,
+            "diffTransverse": 0
+          }
+        },
+        {
+          "r0": 1,
+          "exists": false,
+          "omega2": -2.6666666666666665,
+          "hessianEigs": {
+            "sumRadial": 2,
+            "sumTransverse": 1.5,
+            "diffRadial": 0,
+            "diffTransverse": 0.5
+          }
+        },
+        {
+          "r0": 25,
+          "exists": false,
+          "omega2": -0.0001292929292929293,
+          "hessianEigs": {
+            "sumRadial": 1.04,
+            "sumTransverse": 1.02,
+            "diffRadial": 0.96,
+            "diffTransverse": 0.98
+          }
+        },
+        {
+          "r0": 100,
+          "exists": false,
+          "omega2": -0.0000020050125313283207,
+          "hessianEigs": {
+            "sumRadial": 1.01,
+            "sumTransverse": 1.005,
+            "diffRadial": 0.99,
+            "diffTransverse": 0.995
+          }
+        }
+      ]
+    },
+    "b_eccentric": {
+      "r0": 100,
+      "speedFactor": 0.9,
+      "ell": 6.3878010687376285,
+      "E": -0.005939900249376559,
+      "pericentre": 67.85299550778794,
+      "pericentreBracket": [
+        67.85299550778794,
+        67.85299550778794
+      ],
+      "pericentreQuadraticFormula": 67.8529955077879,
+      "apocentre": 100,
+      "apocentreQuadraticFormula": 100.00000000000001,
+      "radialPeriod": {
+        "value": 3451.6063244356014,
+        "lo": 3451.6063244355964,
+        "hi": 3451.6063244356064,
+        "gl": 3451.6063244356014,
+        "romberg": 3451.6063244356014,
+        "disagreement": 0
+      },
+      "apsidalAnglePerRadialPeriod": {
+        "value": 6.341435377806649,
+        "lo": 6.341435377806641,
+        "hi": 6.341435377806655,
+        "gl": 6.34143537780665,
+        "romberg": 6.341435377806648,
+        "disagreement": 1.7763568394002505e-15
+      },
+      "apsidalAdvancePerRadialPeriod": {
+        "value": 0.058250070627062556,
+        "lo": 0.05825007062705456,
+        "hi": 0.05825007062706877
+      },
+      "supIndividualSpeed": 0.09345312551824918,
+      "individualSpeedAtRelease": 0.0635602096391804,
+      "maxEpsilon": 0.014737742858901835,
+      "hessianEigsAtPericentre": {
+        "sumRadial": 0.9852622571410982,
+        "sumTransverse": 0.9926311285705491,
+        "diffRadial": 1.0147377428589017,
+        "diffTransverse": 1.0073688714294509
+      },
+      "coverage": {
+        "unrestricted": "whole interval",
+        "inclusiveCeiling": "whole interval",
+        "strictCeiling": "whole interval"
+      }
+    },
+    "c_restReleaseOpposite": {
+      "r0": 100,
+      "E": -0.01,
+      "firstSingularSeparation": 1,
+      "singularMode": "common-centre (sum) radial mode (e, e): eigenvalue 1 - 1/r; the mirror (difference) modes stay positive",
+      "timeTo_r20": {
+        "value": 759.0853889143432,
+        "lo": 759.0853889143423,
+        "hi": 759.0853889143441,
+        "gl": 759.0853889143433,
+        "romberg": 759.0853889143432,
+        "disagreement": 1.1368683772161603e-13,
+        "closedForm": 759.0853889143431
+      },
+      "individualSpeedAt_r20": 0.19518001458970663,
+      "timeToSingular": {
+        "value": 792.3083820321704,
+        "lo": 792.3083820321694,
+        "hi": 792.3083820321713,
+        "gl": 792.3083820321702,
+        "romberg": 792.3083820321705,
+        "disagreement": 2.2737367544323206e-13,
+        "closedForm": 792.3083820321704
+      },
+      "individualSpeedAtSingular": 0.7035623639735145,
+      "individualSpeedAtSingularClosedForm": "sqrt((r0 - 1)/(2 r0)) = sqrt(99/200)",
+      "speedBoundCrossingRadius": 49.5,
+      "speedBoundCrossingRadiusClosedForm": "(r0 - 1)/2 = 49.5",
+      "timeToSpeedBound": {
+        "value": 649.1260725157113,
+        "lo": 649.1260725157105,
+        "hi": 649.126072515712,
+        "gl": 649.1260725157115,
+        "romberg": 649.126072515711,
+        "disagreement": 4.547473508864641e-13
+      },
+      "epsilonBoundCrossingRadius": 20,
+      "supIndividualSpeed": 0.7035623639735145,
+      "maxEpsilon": 1,
+      "reducedLimitAtContact": "reduced problem alone: individual speed -> sqrt((r0 - r)/(r0 (r + 1))) -> 1 = c_f as r -> 0; not reached because the full history ends at r = 1 with an obstruction event",
+      "historyEnd": "obstruction event at r = 1 (singular 6x6 Hessian) under the frozen rule",
+      "coverage": {
+        "unrestricted": "whole interval",
+        "inclusiveCeiling": "whole interval",
+        "strictCeiling": "whole interval"
+      }
+    },
+    "d_restReleaseSame": {
+      "r0": 100,
+      "E": 0.01,
+      "asymptoticIndividualSpeed": 0.1,
+      "asymptoticClosedForm": "1/sqrt(r0) = 0.1 (same as zero coupling: a(r) -> 1)",
+      "individualSpeedAt_r200": 0.0708881205008336,
+      "timeTo_r200": {
+        "value": 1143.3778308987949,
+        "lo": 1143.3778308987937,
+        "hi": 1143.377830898796,
+        "gl": 1143.3778308987949,
+        "romberg": 1143.3778308987949,
+        "disagreement": 0,
+        "closedForm": 1143.3778308987946
+      },
+      "supIndividualSpeedOnInterval": 0.0708881205008336,
+      "supIndividualSpeedAllTime": 0.1,
+      "maxEpsilon": 0.01,
+      "singularSeparationReached": false,
+      "coverage": {
+        "unrestricted": "whole interval",
+        "inclusiveCeiling": "whole interval",
+        "strictCeiling": "whole interval"
+      }
+    },
+    "e_headOnSame": {
+      "r0": 100,
+      "individualSpeed": 0.05,
+      "E": 0.012475,
+      "minimumSeparation": 80.16032064128257,
+      "minimumSeparationBisection": [
+        80.16032064128257,
+        80.16032064128257
+      ],
+      "timeToTurningPoint": {
+        "value": 369.122401316666,
+        "lo": 369.12240131666556,
+        "hi": 369.12240131666636,
+        "gl": 369.12240131666596,
+        "romberg": 369.122401316666,
+        "disagreement": 5.684341886080802e-14,
+        "closedForm": 369.12240131666596
+      },
+      "supIndividualSpeed": 0.05,
+      "maxEpsilon": 0.012475,
+      "singularSeparationReached": false,
+      "hessianEigsAtMinimum": {
+        "sumRadial": 1.012475,
+        "sumTransverse": 1.0062375,
+        "diffRadial": 0.987525,
+        "diffTransverse": 0.9937625
+      },
+      "coverage": {
+        "unrestricted": "whole interval",
+        "inclusiveCeiling": "whole interval",
+        "strictCeiling": "whole interval"
+      }
+    },
+    "f_headOnOpposite": {
+      "r0": 100,
+      "individualSpeed": 0.02,
+      "E": -0.009596,
+      "wouldBeApocentre": 104.21008753647352,
+      "firstSingularSeparation": 1,
+      "timeTo_r20": {
+        "value": 596.0555909291804,
+        "lo": 596.0555909291792,
+        "hi": 596.0555909291817,
+        "gl": 596.0555909291804,
+        "romberg": 596.0555909291803,
+        "disagreement": 1.1368683772161603e-13,
+        "closedForm": 596.05559092918
+      },
+      "individualSpeedAt_r20": 0.19616319736382765,
+      "timeToSingular": {
+        "value": 629.1840957683139,
+        "lo": 629.1840957683129,
+        "hi": 629.1840957683154,
+        "gl": 629.1840957683141,
+        "romberg": 629.1840957683138,
+        "disagreement": 3.410605131648481e-13,
+        "closedForm": 629.1840957683139
+      },
+      "individualSpeedAtSingular": 0.7037059044799894,
+      "speedBoundCrossingRadius": 50.52051439069197,
+      "timeToSpeedBound": {
+        "value": 482.34513253754767,
+        "lo": 482.34513253754704,
+        "hi": 482.3451325375483,
+        "gl": 482.3451325375476,
+        "romberg": 482.34513253754767,
+        "disagreement": 5.684341886080802e-14
+      },
+      "epsilonBoundCrossingRadius": 20,
+      "supIndividualSpeed": 0.7037059044799894,
+      "maxEpsilon": 1,
+      "historyEnd": "obstruction event at r = 1 (singular 6x6 Hessian) under the frozen rule",
+      "coverage": {
+        "unrestricted": "whole interval",
+        "inclusiveCeiling": "whole interval",
+        "strictCeiling": "whole interval"
+      }
+    },
+    "hessian": {
+      "eigenvalues": "sum (common-centre) modes: 1 + sigma/r (radial), 1 + sigma/(2r) (transverse x2); difference (mirror) modes: 1 - sigma/r (radial), 1 - sigma/(2r) (transverse x2)",
+      "oppositePolarity": {
+        "singular": [
+          {
+            "r": 1,
+            "mode": "sum radial (e,e)"
+          },
+          {
+            "r": 0.5,
+            "mode": "sum transverse (t,t) x2"
+          }
+        ],
+        "positiveDefinite": "r > 1",
+        "mirrorModesSingular": "never"
+      },
+      "samePolarity": {
+        "singular": [
+          {
+            "r": 1,
+            "mode": "difference radial (e,-e)"
+          },
+          {
+            "r": 0.5,
+            "mode": "difference transverse (t,-t) x2"
+          }
+        ],
+        "positiveDefinite": "r > 1",
+        "mirrorModesSingular": "r = 1 (radial) and r = 1/2 (transverse)"
+      },
+      "zeroVelocity": "does not remove the coupling: at V = 0, H A = (sigma/r^2)(e, -e) gives A_1 = sigma e / (r (r - sigma)); the factor 1/(1 - sigma/r) is the coupling."
+    }
+  },
+  "withheldRound2": {
+    "fixedAtUtc": "2026-10-05T15:26:30.394Z",
+    "blindness": "No subject run record, subject instrument file, subject receipt or investigation file was read before these values were fixed; inputs were the common brief, the preregistration case table (Sections 1-4) and this instrument.",
+    "knownCaseRerun": {
+      "ranFirst": true,
+      "allPass": true,
+      "checks": 23,
+      "maxRelErr": 5.654319433712919e-16,
+      "maxRelErrExcludingContact": 5.654319433712919e-16
+    },
+    "WR150": {
+      "id": "WR-150",
+      "polarity": "opposite",
+      "preparation": "mirror head-on, r0 = 150, individual speeds 0.03 inward",
+      "r0": 150,
+      "individualSpeedAtRelease": 0.03,
+      "E": -0.005760666666666667,
+      "energyLikeClosedForm": "E = (1/4)(1 + 1/r0)(2 v)^2 - 1/r0",
+      "turningPoint": "none on the inward leg: E + 1/r > 0 for all r < -1/E; the only root of E + 1/r is the would-be apocentre",
+      "wouldBeApocentre": 173.59101955792153,
+      "timeToSpeedBound": {
+        "value": 787.7053185131688,
+        "lo": 787.7053185131679,
+        "hi": 787.7053185131697,
+        "gl": 787.7053185131689,
+        "romberg": 787.7053185131688,
+        "disagreement": 1.1368683772161603e-13
+      },
+      "speedBoundCrossingRadius": 62.81460175119494,
+      "speedBoundCrossingRadiusClosedForm": 62.81460175119495,
+      "timeTo_r20": {
+        "value": 947.3162913882677,
+        "lo": 947.316291388266,
+        "hi": 947.3162913882701,
+        "gl": 947.316291388268,
+        "romberg": 947.3162913882675,
+        "disagreement": 5.684341886080801e-13,
+        "closedForm": 947.3162913882671
+      },
+      "individualSpeedAt_r20": 0.20526251097728102,
+      "firstSingularSeparation": 1,
+      "singularMode": "common-centre (sum) radial mode (e, e), eigenvalue 1 - 1/r; mirror modes stay positive",
+      "timeToSingular": {
+        "value": 979.5938817199592,
+        "lo": 979.5938817199572,
+        "hi": 979.5938817199612,
+        "gl": 979.5938817199589,
+        "romberg": 979.5938817199595,
+        "disagreement": 6.821210263296962e-13,
+        "closedForm": 979.5938817199584
+      },
+      "individualSpeedAtSingular": 0.7050671362832526,
+      "individualSpeedAtSingularClosedForm": "sqrt((1 + E)/2)",
+      "supIndividualSpeed": 0.7050671362832526,
+      "maxEpsilon": 1,
+      "epsilonBoundCrossingRadius": 20,
+      "hessianEigsAtSingular": {
+        "sumRadial": 0,
+        "sumTransverse": 0.5,
+        "diffRadial": 2,
+        "diffTransverse": 1.5
+      },
+      "historyEnd": "obstruction event at r = 1 (singular 6x6 Hessian) under the frozen rule",
+      "coverage": {
+        "unrestricted": "whole interval",
+        "inclusiveCeiling": "whole interval",
+        "strictCeiling": "whole interval"
+      }
+    },
+    "WE150": {
+      "id": "WE-150",
+      "polarity": "opposite",
+      "preparation": "mirror, r0 = 150, tangential individual speed 0.95 u_c(150)",
+      "uc150": 0.057686974453776095,
+      "uc150MatchesCircleClosedForm": 1.2028528050933378e-16,
+      "releaseIndividualSpeed": 0.054802625731087275,
+      "r0": 150,
+      "speedFactor": 0.95,
+      "ell": 8.247795172528635,
+      "E": -0.003653327787021633,
+      "pericentre": 123.22304329014187,
+      "pericentreBracket": [
+        123.22304329014187,
+        123.22304329014187
+      ],
+      "pericentreQuadraticFormula": 123.22304329014187,
+      "apocentre": 150,
+      "apocentreQuadraticFormula": 149.99999999999983,
+      "radialPeriod": {
+        "value": 7139.534935683414,
+        "lo": 7139.534935683405,
+        "hi": 7139.534935683422,
+        "gl": 7139.534935683416,
+        "romberg": 7139.534935683413,
+        "disagreement": 2.7284841053187847e-12
+      },
+      "apsidalAnglePerRadialPeriod": {
+        "value": 6.318003316241445,
+        "lo": 6.318003316241437,
+        "hi": 6.318003316241453,
+        "gl": 6.318003316241444,
+        "romberg": 6.318003316241445,
+        "disagreement": 8.881784197001252e-16
+      },
+      "apsidalAdvancePerRadialPeriod": {
+        "value": 0.03481800906185839,
+        "lo": 0.0348180090618504,
+        "hi": 0.034818009061866384
+      },
+      "supIndividualSpeed": 0.06666337129443865,
+      "individualSpeedAtRelease": 0.054802625731087275,
+      "maxEpsilon": 0.008115365221465864,
+      "hessianEigsAtPericentre": {
+        "sumRadial": 0.9918846347785342,
+        "sumTransverse": 0.9959423173892671,
+        "diffRadial": 1.0081153652214658,
+        "diffTransverse": 1.004057682610733
+      },
+      "individualSpeedAtPericentre": 0.06666337129443865,
+      "epsilonAtPericentre": 0.008115365221465864,
+      "insideDeclaredDomainThroughout": true,
+      "domainNote": "speed <= 0.1: true; K/r <= 0.05: true",
+      "coverage": {
+        "unrestricted": "whole interval",
+        "inclusiveCeiling": "whole interval",
+        "strictCeiling": "whole interval"
+      }
+    },
+    "DL100": {
+      "id": "DL-100",
+      "polarity": "opposite",
+      "preparation": "mirror, r0 = 100, tangential individual speed 0.005",
+      "r0": 100,
+      "releaseIndividualSpeed": 0.005,
+      "thetadot0": 0.0001,
+      "ell": 0.5025000000000001,
+      "ellClosedForm": "ell = (1/2) h(r0) thetadot0 = b(r0) r0 v = 0.5025",
+      "ellSquared": 0.25250625000000004,
+      "ellSquaredBelowHalf": true,
+      "E": -0.009974875,
+      "Qpolynomial": "Q(r) = (E - W) h = E r^2 + (E/2 + 1) r + (1/2 - ell^2)",
+      "Qat0": 0.24749374999999996,
+      "QatRelease": -3.885780586188048e-15,
+      "Qroots": [
+        -0.2481171443251165,
+        100.00000000000001
+      ],
+      "minimumOfQOnLeg": {
+        "value": -3.885780586188048e-15,
+        "at": 100
+      },
+      "pericentre": null,
+      "pericentreExists": false,
+      "pericentreStatement": "none: Q(0) = 1/2 - ell^2 > 0 and Q has exactly one root in (0, r0], at r0 itself, so E - W(r) > 0 on (0, r0) and the reduced problem falls to contact; the release is at the apocentre",
+      "apocentre": 100,
+      "maximumSeparation": 100,
+      "apocentreStatement": "release point (rdot = 0 and Q decreasing through r0)",
+      "speedBoundCrossingRadius": 49.564784292086784,
+      "timeToSpeedBound": {
+        "value": 650.616787143166,
+        "lo": 650.6167871431651,
+        "hi": 650.6167871431668,
+        "gl": 650.6167871431661,
+        "romberg": 650.6167871431658,
+        "disagreement": 3.410605131648481e-13
+      },
+      "timeTo_r20": {
+        "value": 761.4415650691362,
+        "lo": 761.441565069135,
+        "hi": 761.4415650691377,
+        "gl": 761.4415650691363,
+        "romberg": 761.4415650691361,
+        "disagreement": 2.2737367544323206e-13
+      },
+      "angleSweptTo_r20": {
+        "value": 0.20182227089565832,
+        "lo": 0.20182227089565785,
+        "hi": 0.20182227089565874,
+        "gl": 0.2018222708956582,
+        "romberg": 0.20182227089565843,
+        "disagreement": 2.220446049250313e-16
+      },
+      "individualSpeedAt_r20": 0.1952779367069321,
+      "firstSingularSeparation": 1,
+      "singularMode": "common-centre (sum) radial mode (e, e), eigenvalue 1 - 1/r; mirror modes stay positive",
+      "timeToSingular": {
+        "value": 795.1781707442808,
+        "lo": 795.1781707442794,
+        "hi": 795.1781707442819,
+        "gl": 795.178170744281,
+        "romberg": 795.1781707442807,
+        "disagreement": 3.410605131648481e-13
+      },
+      "angleSweptToSingular": {
+        "value": 1.0222979649001438,
+        "lo": 1.0222979649001407,
+        "hi": 1.0222979649001478,
+        "gl": 1.0222979649001442,
+        "romberg": 1.0222979649001431,
+        "disagreement": 1.1102230246251565e-15
+      },
+      "individualSpeedAtSingular": 0.7232349635491913,
+      "supIndividualSpeed": 0.7232349635491913,
+      "maxEpsilon": 1,
+      "epsilonBoundCrossingRadius": 20,
+      "hessianEigsAtSingular": {
+        "sumRadial": 0,
+        "sumTransverse": 0.5,
+        "diffRadial": 2,
+        "diffTransverse": 1.5
+      },
+      "historyEnd": "obstruction event at r = 1 (singular 6x6 Hessian) under the frozen rule",
+      "coverage": {
+        "unrestricted": "whole interval",
+        "inclusiveCeiling": "whole interval",
+        "strictCeiling": "whole interval"
+      }
+    }
+  }
+}

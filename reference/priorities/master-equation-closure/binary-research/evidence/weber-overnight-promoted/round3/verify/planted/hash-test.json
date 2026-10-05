@@ -1,0 +1,3 @@
+{"instrument":{"path":"reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-pair-instrument.mjs","sha256":"3d16f3494c55fefa41b3d225e8e591501241f725a79965469f1dfb9d28109d18"},
+ "bad":{"caseFile":"reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-pair-instrument.mjs","caseFileSHA256":"0000000000000000000000000000000000000000000000000000000000000000"},
+ "missing":{"caseFile":"no/such/file.json","caseFileSHA256":"1111111111111111111111111111111111111111111111111111111111111111"}}

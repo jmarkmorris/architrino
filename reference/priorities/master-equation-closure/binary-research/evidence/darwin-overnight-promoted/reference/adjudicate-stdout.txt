@@ -1,0 +1,577 @@
+[known case] scratch quadrature against fixed reference values: PASS (7 checks, max rel err 1.58e-15)
+DC-025 | mean angular rate of member 1 over the run (vs closed-form omega) | P 0.011257560701820947 | C 0.01125756071529143 | R 0.011257561900724264 | ref 0.01125756071568467 | relP 1.23e-9 met | relC 3.49e-11 met | C-P 1.20e-9 met | R-P 1.06e-7 met
+DC-025 | supremum of member speed (vs closed-form v) | P 0.14071950895228857 | C 0.1407195089462129 | R 0.14071952062843818 | ref 0.14071950894605836 | relP 4.43e-11 met | relC 1.10e-12 met | C-P 4.32e-11 met | R-P 8.30e-8 met
+DC-025 | {"caseId":"DC-025","quantity":"max |r - r0|/r0 over run; return error per period /r0 (P, C, R); drift |dE/E|, |dP|, |dJ|/|J| (P)","subjP":[1.6617924813999707e-9,3.869097238100703e-9],"subjC":[4.6773749318163025e-11,1.0974470052748837e-10],"subjR":[1.3806284457018592e-7,3.3072121901971857e-7],"drifts":[1.6668510426087742e-9,1.536130705445833e-16,8.170838800253728e-10],"driftsMet":true,"perPeriodCriterionMet":true,"eventsOtherThanTurningPoints":[0,0,0],"turningPointRadiusMaxDev":1.6500567312505154e-9,"stopReason":["tMax","tMax","tMax"],"tEnd":[11162.605231922931,11162.605231922931,11162.605231922931],"runLengthExpected":11162.605231922931}
+DC-050 | mean angular rate of member 1 over the run (vs closed-form omega) | P 0.003990037339419404 | C 0.003990037344299089 | R 0.003990037376643009 | ref 0.003990037344430531 | relP 1.26e-9 met | relC 3.29e-11 met | C-P 1.22e-9 met | R-P 9.33e-9 met
+DC-050 | supremum of member speed (vs closed-form v) | P 0.09975093361521616 | C 0.09975093361086738 | R 0.09975093431105361 | ref 0.09975093361076327 | relP 4.46e-11 met | relC 1.04e-12 met | C-P 4.36e-11 met | R-P 6.98e-9 met
+DC-050 | {"caseId":"DC-050","quantity":"max |r - r0|/r0 over run; return error per period /r0 (P, C, R); drift |dE/E|, |dP|, |dJ|/|J| (P)","subjP":[1.7322167877864558e-9,3.945879545646223e-9],"subjC":[4.5253329972183566e-11,1.0358263805300492e-10],"subjR":[1.0681808220169842e-8,2.5363829372574195e-8],"drifts":[1.701960728600626e-9,2.4891199714808e-16,8.425548503373394e-10],"driftsMet":true,"perPeriodCriterionMet":true,"eventsOtherThanTurningPoints":[0,0,0],"turningPointRadiusMaxDev":1.6510320222096198e-9,"stopReason":["tMax","tMax","tMax"],"tEnd":[31494.36842213987,31494.36842213987,31494.36842213987],"runLengthExpected":31494.368422139865}
+DC-100 | mean angular rate of member 1 over the run (vs closed-form omega) | P 0.0014124491012936556 | C 0.001412449103048632 | R 0.0014124491032269685 | ref 0.0014124491030928974 | relP 1.27e-9 met | relC 3.13e-11 met | C-P 1.24e-9 met | R-P 1.37e-9 met
+DC-100 | supremum of member speed (vs closed-form v) | P 0.07062245515781196 | C 0.07062245515471538 | R 0.07062245516158605 | ref 0.07062245515464487 | relP 4.48e-11 met | relC 9.98e-13 met | C-P 4.38e-11 met | R-P 5.34e-11 met
+DC-100 | {"caseId":"DC-100","quantity":"max |r - r0|/r0 over run; return error per period /r0 (P, C, R); drift |dE/E|, |dP|, |dJ|/|J| (P)","subjP":[1.7586656042567483e-9,4.0021445921180265e-9],"subjC":[4.2941223910020196e-11,9.846136990970012e-11],"subjR":[1.2591755194080178e-10,2.982086710879124e-10],"drifts":[1.7265515718511981e-9,3.672125617785646e-17,8.589811102368548e-10],"driftsMet":true,"perPeriodCriterionMet":true,"eventsOtherThanTurningPoints":[0,0,0],"turningPointRadiusMaxDev":1.6608422015451652e-9,"stopReason":["tMax","tMax","tMax"],"tEnd":[88968.66150321509,88968.66150321509,88968.66150321509],"runLengthExpected":88968.66150321509}
+DC-200 | mean angular rate of member 1 over the run (vs closed-form omega) | P 0.0004996877920226475 | C 0.0004996877926482593 | R 0.0004996877926644805 | ref 0.0004996877926639076 | relP 1.28e-9 met | relC 3.13e-11 met | C-P 1.25e-9 met | R-P 1.28e-9 met
+DC-200 | supremum of member speed (vs closed-form v) | P 0.04996877926863687 | C 0.049968779266440756 | R 0.04996877926645893 | ref 0.049968779266390755 | relP 4.50e-11 met | relC 1.00e-12 met | C-P 4.39e-11 met | R-P 4.36e-11 met
+DC-200 | {"caseId":"DC-200","quantity":"max |r - r0|/r0 over run; return error per period /r0 (P, C, R); drift |dE/E|, |dP|, |dJ|/|J| (P)","subjP":[1.7638218707816121e-9,4.031912624877837e-9],"subjC":[4.2784904508152974e-11,9.838789715931915e-11],"subjR":[1.5363355032604886e-12,3.601958259334795e-12],"drifts":[1.739614979411746e-9,5.879423979557216e-17,8.67638506978925e-10],"driftsMet":true,"perPeriodCriterionMet":true,"eventsOtherThanTurningPoints":[0,0,0],"turningPointRadiusMaxDev":1.6644516165342792e-9,"stopReason":["tMax","tMax","tMax"],"tEnd":[251484.44286313344,251484.44286313344,251484.44286313344],"runLengthExpected":251484.44286313344}
+DC-400 | mean angular rate of member 1 over the run (vs closed-form omega) | P 0.0001767214784069169 | C 0.00017672147845956056 | R 0.00017672147846093926 | ref 0.0001767214784609008 | relP 3.05e-10 met | relC 7.58e-12 met | C-P 2.98e-10 met | R-P 3.06e-10 met
+DC-400 | supremum of member speed (vs closed-form v) | P 0.03534429569377095 | C 0.03534429569221536 | R 0.03534429569219095 | ref 0.03534429569218016 | relP 4.50e-11 met | relC 9.96e-13 met | C-P 4.40e-11 met | R-P 4.47e-11 met
+DC-400 | {"caseId":"DC-400","quantity":"max |r - r0|/r0 over run; return error per period /r0 (P, C, R); drift |dE/E|, |dP|, |dJ|/|J| (P)","subjP":[4.5552056349151826e-10,9.607207897411865e-10],"subjC":[1.1067555760746472e-11,2.388853448839306e-11],"subjR":[3.055333763768431e-13,6.43921610476994e-13],"drifts":[4.3660944109256977e-10,3.2121678349735876e-17,2.1803221938877868e-10],"driftsMet":true,"perPeriodCriterionMet":true,"eventsOtherThanTurningPoints":[0,0,0],"turningPointRadiusMaxDev":3.50209319321948e-10,"stopReason":["tMax","tMax","tMax"],"tEnd":[177770.84488826655,177770.84488826655,177770.84488826655],"runLengthExpected":177770.84488826655}
+DE-100 | pericentre (mean of turning-point minima) | P 67.85299551251823 | C 67.85299550875209 | R 67.8529954859936 | ref 67.85299550778794 | relP 6.97e-11 met | relC 1.42e-11 met | C-P 5.55e-11 met | R-P 3.91e-10 met
+DE-100 | apocentre (mean of turning-point maxima after release) | P 100.000000086623 | C 100.00000000078334 | R 99.9999999781927 | ref 100 | relP 8.66e-10 met | relC 7.83e-12 met | C-P 8.58e-10 met | R-P 1.08e-9 met
+DE-100 | radial period (mean spacing of apocentres) | P 3451.6063271005437 | C 3451.6063244840216 | R 3451.6063250234 | ref 3451.6063244356014 [3451.6063244355964, 3451.6063244356064] | relP 7.72e-10 met | relC 1.40e-11 met | C-P 7.58e-10 met | R-P 6.02e-10 met
+DE-100 | apsidal advance per radial period | P 0.058250070926686784 | C 0.05825007062829021 | R 0.05825007438498848 | ref 0.058250070627062556 [0.05825007062705456, 0.05825007062706877] | relP 5.14e-9 met | relC 2.11e-11 met | C-P 5.12e-9 met | R-P 5.94e-8 met
+DE-100 | supremum of member speed (vs pericentre speed) | P 0.09345312553542323 | C 0.09345312551820496 | R 0.09345312554544254 | ref 0.09345312551824918 | relP 1.84e-10 met | relC 4.73e-13 met | C-P 1.84e-10 met | R-P 1.07e-10 met
+DE-100 | {"caseId":"DE-100","quantity":"drifts (P) |dE/E|, |dP|, |dJ|/|J|; n pericentres; events other than turning points; stopReason","drifts":[1.0785763008965675e-9,2.7755575615628914e-17,4.022751797383214e-10],"driftsMet":true,"nPeri":[10,10,10],"otherEvents":[0,0,0],"stopReason":["tMax","tMax","tMax"],"rMin":[67.85299550526176,67.8529955078484,67.8529954845237],"rMax":[100.00000016526744,100.00000000153682,100]}
+WE-150 | pericentre (mean of turning-point minima) | P 123.22304330692758 | C 123.22304329161786 | R 123.22304328841523 | ref 123.22304329014187 | relP 1.36e-10 met | relC 1.20e-11 met | C-P 1.24e-10 met | R-P 1.50e-10 met
+WE-150 | apocentre (mean of turning-point maxima after release) | P 150.00000014330925 | C 150.00000000162902 | R 149.9999999994852 | ref 150 | relP 9.55e-10 met | relC 1.09e-11 met | C-P 9.45e-10 met | R-P 9.59e-10 met
+WE-150 | radial period (mean spacing of apocentres) | P 7139.534941960109 | C 7139.53493580063 | R 7139.534935786293 | ref 7139.534935683414 [7139.534935683405, 7139.534935683422] | relP 8.79e-10 met | relC 1.64e-11 met | C-P 8.63e-10 met | R-P 8.65e-10 met
+WE-150 | apsidal advance per radial period | P 0.03481800954665395 | C 0.034818009063723405 | R 0.034818009232752314 | ref 0.03481800906185839 [0.0348180090618504, 0.034818009061866384] | relP 1.39e-8 met | relC 5.36e-11 met | C-P 1.39e-8 met | R-P 9.02e-9 met
+WE-150 | supremum of member speed (vs pericentre speed) | P 0.06666337130520883 | C 0.06666337129441821 | R 0.06666337129530492 | ref 0.06666337129443865 | relP 1.62e-10 met | relC 3.07e-13 met | C-P 1.62e-10 met | R-P 1.49e-10 met
+WE-150 | {"caseId":"WE-150","quantity":"drifts (P) |dE/E|, |dP|, |dJ|/|J|; n pericentres; events other than turning points; stopReason","drifts":[1.1108163134456756e-9,4.193998958984656e-17,4.861512759217075e-10],"driftsMet":true,"nPeri":[11,11,11],"otherEvents":[0,0,0],"stopReason":["tMax","tMax","tMax"],"rMin":[123.2230432876546,123.22304329023206,123.22304328829705],"rMax":[150.0000002620595,150.00000000303316,150]}
+DR-100 | time of eps-bound departure (r = 20) | P 759.085388914682 | C 759.0853889146116 | R 759.0853889528662 | ref 759.0853889143432 [759.0853889143423, 759.0853889143441] | relP 4.46e-13 met | relC 3.54e-13 met | C-P 9.27e-14 met | R-P 5.03e-11 met
+DR-100 | member speed at r = 20 | P 0.19518001459040343 | C 0.1951800145902925 | R 0.19518001499262372 | ref 0.19518001458970663 | relP 3.57e-12 met | relC 3.00e-12 met | C-P 5.68e-13 met | R-P 2.06e-9 met
+DR-100 | time of obstruction (r = 1) | P 792.308382032019 | C 792.3083820320101 | R 792.3084202073514 | ref 792.3083820321704 [792.3083820321694, 792.3083820321713] | relP 1.91e-13 met | relC 2.02e-13 met | C-P 1.13e-14 met | R-P 4.82e-8 met
+DR-100 | separation at obstruction | P 1.0000000000577023 | C 1.0000000002161773 | R 1.0000000022126505 | ref 1 | relP 5.77e-11 met | relC 2.16e-10 met | C-P 1.58e-10 met | R-P 2.15e-9 met
+DR-100 | member speed at obstruction as reported (event.speed) | P 0.7035627493041647 | C 0.7035624752012571 | R 0.7036426356029304 | ref 0.7035623639735145 | relP 5.48e-7 NOT MET | relC 1.58e-7 NOT MET | C-P 3.90e-7 NOT MET | R-P 1.14e-4 NOT MET
+DR-100 | mirror relative speed at obstruction |rdot|/2 (from the same event) | P 0.7035623639595328 | C 0.7035623639345456 | R 0.703642620187981 | ref 0.7035623639735145 | relP 1.99e-11 met | relC 5.54e-11 met | C-P 3.55e-11 met | R-P 1.14e-4 NOT MET
+DR-100 | {"caseId":"DR-100","quantity":"sup speed, max eps, drift |dE/E| at final (P), pericentres before r=1, turning points, obstruction reason (P, C, R)","sup":[0.7035627493041647,0.7035624752012571,0.7036426356029304],"refSup":0.7035623639735145,"maxEps":[0.9999999999422977,0.9999999997838227,0.9999999977873495],"drift":[-1.0208065295835844e-9,0,0],"nPeri":[0,0,0],"turningPoints":[0,0,0],"reasons":["det H changed sign within a step (singular locus crossed)","det H changed sign within a step (singular locus crossed)","det H changed sign within a step (singular locus crossed)"],"cfCrossings":[0,0,0]}
+DH-100 | time of speed-bound departure (member speed 0.1) | P 482.34513253811747 | C 482.34513253811747 | R 482.3451325362548 | ref 482.34513253754767 [482.34513253754704, 482.3451325375483] | relP 1.18e-12 met | relC 1.18e-12 met | C-P 0.00e+0 met | R-P 3.86e-12 met
+DH-100 | separation at speed-bound departure | P 50.52051439057785 | C 50.52051439057785 | R 50.52051439108535 | ref 50.52051439069197 | relP 2.26e-12 met | relC 2.26e-12 met | C-P 0.00e+0 met | R-P 1.00e-11 met
+DH-100 | time of eps-bound departure (r = 20) | P 596.0555909294635 | C 596.0555909291785 | R 596.055590968579 | ref 596.0555909291804 [596.0555909291792, 596.0555909291817] | relP 4.75e-13 met | relC 3.24e-15 met | C-P 4.78e-13 met | R-P 6.56e-11 met
+DH-100 | member speed at r = 20 | P 0.19616319736439736 | C 0.19616319736379742 | R 0.19616319777309957 | ref 0.19616319736382765 | relP 2.90e-12 met | relC 1.54e-13 met | C-P 3.06e-12 met | R-P 2.08e-9 met
+DH-100 | time of obstruction (r = 1) | P 629.1840957677557 | C 629.1840957675666 | R 629.1841513253748 | ref 629.1840957683139 [629.1840957683129, 629.1840957683154] | relP 8.87e-13 met | relC 1.19e-12 met | C-P 3.00e-13 met | R-P 8.83e-8 met
+DH-100 | separation at obstruction | P 1.0000000006278136 | C 1.000000001040561 | R 1.0000000011004821 | ref 1 | relP 6.28e-10 met | relC 1.04e-9 met | C-P 4.13e-10 met | R-P 4.73e-10 met
+DH-100 | member speed at obstruction as reported (event.speed) | P 0.7037059101274072 | C 0.7037059045390823 | R 0.7038233467053107 | ref 0.7037059044799894 | relP 8.03e-9 met | relC 8.40e-11 met | C-P 7.94e-9 met | R-P 1.67e-4 NOT MET
+DH-100 | mirror relative speed at obstruction |rdot|/2 (from the same event) | P 0.7037059043642634 | C 0.7037059042932059 | R 0.7038233466747461 | ref 0.7037059044799894 | relP 1.64e-10 met | relC 2.65e-10 met | C-P 1.01e-10 met | R-P 1.67e-4 NOT MET
+DH-100 | {"caseId":"DH-100","quantity":"sup speed, max eps, drift |dE/E| at final (P), pericentres before r=1, turning points, obstruction reason (P, C, R)","sup":[0.7037059101274072,0.7037059045390823,0.7038233467053107],"refSup":0.7037059044799894,"maxEps":[0.9999999993721864,0.999999998959439,0.9999999988995179],"drift":[-9.201043095995505e-10,0,0],"nPeri":[0,0,0],"turningPoints":[0,0,0],"reasons":["det H changed sign within a step (singular locus crossed)","det H changed sign within a step (singular locus crossed)","det H changed sign within a step (singular locus crossed)"],"cfCrossings":[0,0,0]}
+WR-150 | time of speed-bound departure (member speed 0.1) | P 787.7053185133263 | C 787.7053185133263 | R 787.7053185133263 | ref 787.7053185131688 [787.7053185131679, 787.7053185131697] | relP 2.00e-13 met | relC 2.00e-13 met | C-P 0.00e+0 met | R-P 0.00e+0 met
+WR-150 | separation at speed-bound departure | P 62.814601751163295 | C 62.814601751163295 | R 62.81460175121398 | ref 62.81460175119494 | relP 5.04e-13 met | relC 5.04e-13 met | C-P 0.00e+0 met | R-P 8.07e-13 met
+WR-150 | time of eps-bound departure (r = 20) | P 947.3162913890556 | C 947.3162913884772 | R 947.3162914263085 | ref 947.3162913882677 [947.316291388266, 947.3162913882701] | relP 8.32e-13 met | relC 2.21e-13 met | C-P 6.10e-13 met | R-P 3.93e-11 met
+WR-150 | member speed at r = 20 | P 0.20526251097899254 | C 0.20526251097772977 | R 0.20526251139979113 | ref 0.20526251097728102 | relP 8.34e-12 met | relC 2.19e-12 met | C-P 6.15e-12 met | R-P 2.05e-9 met
+WR-150 | time of obstruction (r = 1) | P 979.5938817188564 | C 979.5938817191515 | R 979.5940283387899 | ref 979.5938817199592 [979.5938817199572, 979.5938817199612] | relP 1.13e-12 met | relC 8.25e-13 met | C-P 3.01e-13 met | R-P 1.50e-7 met
+WR-150 | separation at obstruction | P 1.0000000013963861 | C 1.0000000011283348 | R 1.000000000814332 | ref 1 | relP 1.40e-9 met | relC 1.13e-9 met | C-P 2.68e-10 met | R-P 5.82e-10 met
+WR-150 | member speed at obstruction as reported (event.speed) | P 0.7050671361989447 | C 0.7050671372368207 | R 0.7053814297688374 | ref 0.7050671362832526 | relP 1.20e-10 met | relC 1.35e-9 met | C-P 1.47e-9 met | R-P 4.46e-4 NOT MET
+WR-150 | mirror relative speed at obstruction |rdot|/2 (from the same event) | P 0.7050671360312193 | C 0.7050671360818848 | R 0.705381429766295 | ref 0.7050671362832526 | relP 3.57e-10 met | relC 2.86e-10 met | C-P 7.19e-11 met | R-P 4.46e-4 NOT MET
+WR-150 | {"caseId":"WR-150","quantity":"sup speed, max eps, drift |dE/E| at final (P), pericentres before r=1, turning points, obstruction reason (P, C, R)","sup":[0.7050671361989447,0.7050671372368207,0.7053814297688374],"refSup":0.7050671362832526,"maxEps":[0.9999999986036139,0.9999999988716652,0.9999999991856681],"drift":[-1.4905471942644243e-9,0,0],"nPeri":[0,0,0],"turningPoints":[0,0,0],"reasons":["det H changed sign within a step (singular locus crossed)","det H changed sign within a step (singular locus crossed)","determinant-continuity control (factor 2) cannot be met at the declared fixed step"],"cfCrossings":[0,0,0]}
+DL-100 | time of speed-bound departure (member speed 0.1) | P 650.616787143983 | C 650.616787143983 | R 650.6167871421203 | ref 650.616787143166 [650.6167871431651, 650.6167871431668] | relP 1.26e-12 met | relC 1.26e-12 met | C-P 0.00e+0 met | R-P 2.86e-12 met
+DL-100 | separation at speed-bound departure | P 49.5647842919242 | C 49.5647842919242 | R 49.56478429244062 | ref 49.564784292086784 | relP 3.28e-12 met | relC 3.28e-12 met | C-P 0.00e+0 met | R-P 1.04e-11 met
+DL-100 | time of eps-bound departure (r = 20) | P 761.44156506937 | C 761.4415650694415 | R 761.4415651066229 | ref 761.4415650691362 [761.441565069135, 761.4415650691377] | relP 3.07e-13 met | relC 4.01e-13 met | C-P 9.39e-14 met | R-P 4.89e-11 met
+DL-100 | member speed at r = 20 | P 0.19527793670739427 | C 0.1952779367076073 | R 0.19527793708169625 | ref 0.1952779367069321 | relP 2.37e-12 met | relC 3.46e-12 met | C-P 1.09e-12 met | R-P 1.92e-9 met
+DL-100 | time of obstruction (r = 1) | P 795.1781707427416 | C 795.1781707438573 | R 795.1782595645636 | ref 795.1781707442808 [795.1781707442794, 795.1781707442819] | relP 1.94e-12 met | relC 5.33e-13 met | C-P 1.40e-12 met | R-P 1.12e-7 met
+DL-100 | separation at obstruction | P 1.000000001894758 | C 1.000000000536704 | R 1.0000000018911634 | ref 1 | relP 1.89e-9 met | relC 5.37e-10 met | C-P 1.36e-9 met | R-P 3.59e-12 met
+DL-100 | member speed at obstruction as reported (event.speed) | P 0.7232349672558509 | C 0.7232349930349469 | R 0.7234028608417462 | ref 0.7232349635491913 | relP 5.13e-9 met | relC 4.08e-8 met | C-P 3.56e-8 met | R-P 2.32e-4 NOT MET
+DL-100 | {"caseId":"DL-100","quantity":"sup speed, max eps, drift |dE/E| at final (P), pericentres before r=1, turning points, obstruction reason (P, C, R)","sup":[0.7232349672558509,0.7232349930349469,0.7234028608417462],"refSup":0.7232349635491913,"maxEps":[0.9999999981052421,0.999999999463296,0.9999999981088366],"drift":[4.1838454654683807e-10,2.220446049250313e-16,1.2003731342247193e-11],"nPeri":[0,0,0],"turningPoints":[0,0,0],"reasons":["det H changed sign within a step (singular locus crossed)","det H changed sign within a step (singular locus crossed)","det H changed sign within a step (singular locus crossed)"],"cfCrossings":[0,0,0]}
+DR-100 | time of speed-bound departure (r = 49.5) | P 649.1260725157335 | C 649.1260725157335 | R 649.1260725148022 | ref 649.1260725157113 [649.1260725157105, 649.126072515712] | relP 3.43e-14 met | relC 3.43e-14 met | C-P 0.00e+0 met | R-P 1.43e-12 met
+DR-100 | separation at speed-bound departure | P 49.499999999995474 | C 49.499999999995474 | R 49.500000000331255 | ref 49.5 | relP 9.14e-14 met | relC 9.14e-14 met | C-P 0.00e+0 met | R-P 6.78e-12 met
+SR-100 | time to r = 200 (escape event at rEscape 200) | P 1143.3778308993205 | C 1143.3778308993205 | R 1143.3778308993205 | ref 1143.3778308987949 [1143.3778308987937, 1143.377830898796] | relP 4.60e-13 met | relC 4.60e-13 met | C-P 0.00e+0 met | R-P 0.00e+0 met
+SR-100 | member speed at r = 200 | P 0.07088812050084652 | C 0.07088812050084652 | R 0.07088812050084625 | ref 0.0708881205008336 | relP 1.82e-13 met | relC 1.82e-13 met | C-P 0.00e+0 met | R-P 3.72e-15 met
+SR-100 | {"caseId":"SR-100","quantity":"sup speed, max eps, drift, events","sup":[0.07088812050084652,0.07088812050084652,0.07088812050084625],"maxEps":0.01,"drift":[-3.989863994746656e-15,0,0],"events":["escape"]}
+SH-100 | turning-point separation | P 80.16032064128252 | C 80.16032064128252 | R 80.16032064128643 | ref 80.16032064128257 | relP 5.32e-16 met | relC 5.32e-16 met | C-P 0.00e+0 met | R-P 4.88e-14 met
+SH-100 | time of turning point | P 369.12240131758153 | C 369.12240131758153 | R 369.12240131758153 | ref 369.122401316666 [369.12240131666556, 369.12240131666636] | relP 2.48e-12 met | relC 2.48e-12 met | C-P 0.00e+0 met | R-P 0.00e+0 met
+SH-100 | return time to r = 100 (vs twice the turning time) | P 738.2448026342317 | C 738.2448026342317 | R 738.2448026342317 | ref 738.244802633332 [738.2448026333311, 738.2448026333327] | relP 1.22e-12 met | relC 1.22e-12 met | C-P 0.00e+0 met | R-P 0.00e+0 met
+SH-100 | {"caseId":"SH-100","quantity":"sup speed, max eps, drift, events, detMin","sup":[0.050000000000090694,0.050000000000090694,0.050000000000076573],"refSup":0.05,"maxEps":0.012475000000000007,"refMaxEps":0.012475,"drift":[-4.1716797017478323e-16,6.938893903907228e-18,0],"events":["turning-point","escape"],"detMin":0.9997665751856403}
+
+[DR-100] {
+ "reportedSpeedP": 0.7035627493041647,
+ "rWhereClosedFormGivesReportedSpeedP": 0.9999978526421671,
+ "reportedSpeedC": 0.7035624752012571,
+ "rWhereClosedFormGivesReportedSpeedC": 0.9999993801533817,
+ "closedFormSpeedAtRecordedR_P": 0.7035623639631602,
+ "closedFormSpeedAtRecordedR_C": 0.7035623639347227,
+ "halfRdotP": 0.7035623639595328,
+ "halfRdotC": 0.7035623639345456,
+ "refSpeedAt1": 0.7035623639735145,
+ "dvdr_at1": -0.1794439362659721
+}
+
+[obstruction states] {
+ "DR-100 dp54-rtol1e-10": {
+  "t": 792.308382032019,
+  "r": 1.0000000000577023,
+  "rdot": -1.4071247279190655,
+  "reportedSpeed": 0.7035627493041647,
+  "memberSpeeds": [
+   0.7035627493041647,
+   0.7035619786149007
+  ],
+  "halfRelativeSpeed": 0.7035623639595328,
+  "centreVelocity": [
+   -3.8534463203676594e-7,
+   0,
+   0
+  ],
+  "centrePosition": [
+   2.1094237467877974e-15,
+   0,
+   0
+  ],
+  "P": [
+   0,
+   0,
+   0
+  ],
+  "sumRadialEigenvalue": 5.7702287392658036e-11,
+  "creepSteps": 41,
+  "failedAt": 792.3083820331697,
+  "detH_at_failure": -2.99367530738428e-10,
+  "lastAccepted": {
+   "t": 792.2960215698257,
+   "r": 1.0173543568115209,
+   "centreVelocity": [
+    -1.27675647831893e-15,
+    0,
+    0
+   ],
+   "speeds": [
+    0.7004682155415524,
+    0.7004682155415498
+   ]
+  },
+  "lastSamples": [
+   {
+    "t": 790,
+    "r": 3.5393603827825606,
+    "sumVx": -5.551115123125783e-17,
+    "speeds": [
+     0.4609753865250139,
+     0.46097538652501385
+    ]
+   },
+   {
+    "t": 791,
+    "r": 2.5602564039947837,
+    "sumVx": -1.1102230246251565e-16,
+    "speeds": [
+     0.5231514436251109,
+     0.5231514436251108
+    ]
+   },
+   {
+    "t": 792,
+    "r": 1.4128480902757348,
+    "sumVx": -2.220446049250313e-16,
+    "speeds": [
+     0.639212368972427,
+     0.6392123689724267
+    ]
+   }
+  ]
+ },
+ "DR-100 dp54-rtol1e-12": {
+  "t": 792.3083820320101,
+  "r": 1.0000000002161773,
+  "rdot": -1.4071247278690913,
+  "reportedSpeed": 0.7035624752012571,
+  "memberSpeeds": [
+   0.7035622526678341,
+   0.7035624752012571
+  ],
+  "halfRelativeSpeed": 0.7035623639345456,
+  "centreVelocity": [
+   1.1126671151107104e-7,
+   0,
+   0
+  ],
+  "centrePosition": [
+   3.774758283725532e-15,
+   0,
+   0
+  ],
+  "P": [
+   0,
+   0,
+   0
+  ],
+  "sumRadialEigenvalue": 2.1617729828449228e-10,
+  "creepSteps": 14,
+  "failedAt": 792.3083820335502,
+  "detH_at_failure": -2.444114910283373e-10,
+  "lastAccepted": {
+   "t": 792.3083815083646,
+   "r": 1.000000737050478,
+   "centreVelocity": [
+    3.263461723079786e-11,
+    0,
+    0
+   ],
+   "speeds": [
+    0.7035622316815,
+    0.7035622317467692
+   ]
+  },
+  "lastSamples": [
+   {
+    "t": 790,
+    "r": 3.539360382903348,
+    "sumVx": 0,
+    "speeds": [
+     0.4609753865302972,
+     0.4609753865302972
+    ]
+   },
+   {
+    "t": 791,
+    "r": 2.560256404119816,
+    "sumVx": 0,
+    "speeds": [
+     0.5231514436276857,
+     0.5231514436276857
+    ]
+   },
+   {
+    "t": 792,
+    "r": 1.41284809041261,
+    "sumVx": 1.1102230246251565e-16,
+    "speeds": [
+     0.6392123689620137,
+     0.6392123689620138
+    ]
+   }
+  ]
+ },
+ "DH-100 dp54-rtol1e-10": {
+  "t": 629.1840957677557,
+  "r": 1.0000000006278136,
+  "rdot": -1.4074118087285268,
+  "reportedSpeed": 0.7037059101274072,
+  "memberSpeeds": [
+   0.7037058986011195,
+   0.7037059101274072
+  ],
+  "halfRelativeSpeed": 0.7037059043642634,
+  "centreVelocity": [
+   5.763143851034158e-9,
+   0,
+   0
+  ],
+  "centrePosition": [
+   0,
+   0,
+   0
+  ],
+  "P": [
+   0,
+   0,
+   0
+  ],
+  "sumRadialEigenvalue": 6.278135789017369e-10,
+  "creepSteps": 3,
+  "failedAt": 629.1840957695038,
+  "detH_at_failure": -1.2405451665464012e-10,
+  "lastAccepted": {
+   "t": 629.1840957660077,
+   "r": 1.000000003088094,
+   "centreVelocity": [
+    1.171654939735589e-9,
+    0,
+    0
+   ],
+   "speeds": [
+    0.7037059027513927,
+    0.7037059050947025
+   ]
+  },
+  "lastSamples": [
+   {
+    "t": 627,
+    "r": 3.4249734850013906,
+    "sumVx": 0,
+    "speeds": [
+     0.4675068505076725,
+     0.4675068505076725
+    ]
+   },
+   {
+    "t": 628,
+    "r": 2.4294076242332596,
+    "sumVx": 0,
+    "speeds": [
+     0.5336644078342405,
+     0.5336644078342405
+    ]
+   },
+   {
+    "t": 629,
+    "r": 1.2512088251222102,
+    "sumVx": 0,
+    "speeds": [
+     0.6624744456702076,
+     0.6624744456702076
+    ]
+   }
+  ]
+ },
+ "DH-100 dp54-rtol1e-12": {
+  "t": 629.1840957675666,
+  "r": 1.000000001040561,
+  "rdot": -1.4074118085864118,
+  "reportedSpeed": 0.7037059045390823,
+  "memberSpeeds": [
+   0.7037059040473294,
+   0.7037059045390823
+  ],
+  "halfRelativeSpeed": 0.7037059042932059,
+  "centreVelocity": [
+   2.458764858381812e-10,
+   0,
+   0
+  ],
+  "centrePosition": [
+   0,
+   0,
+   0
+  ],
+  "P": [
+   0,
+   0,
+   0
+  ],
+  "sumRadialEigenvalue": 1.0405609707220265e-9,
+  "creepSteps": 34,
+  "failedAt": 629.1840957686687,
+  "detH_at_failure": -2.2533974684707347e-10,
+  "lastAccepted": {
+   "t": 629.1715641953219,
+   "r": 1.017597678221046,
+   "centreVelocity": [
+    0,
+    0,
+    0
+   ],
+   "speeds": [
+    0.7005705560384811,
+    0.7005705560384811
+   ]
+  },
+  "lastSamples": [
+   {
+    "t": 627,
+    "r": 3.424973485122441,
+    "sumVx": 0,
+    "speeds": [
+     0.46750685051268237,
+     0.46750685051268237
+    ]
+   },
+   {
+    "t": 628,
+    "r": 2.4294076243600724,
+    "sumVx": 0,
+    "speeds": [
+     0.5336644078361127,
+     0.5336644078361127
+    ]
+   },
+   {
+    "t": 629,
+    "r": 1.2512088252617646,
+    "sumVx": 0,
+    "speeds": [
+     0.6624744456552295,
+     0.6624744456552295
+    ]
+   }
+  ]
+ },
+ "WR-150 dp54-rtol1e-10": {
+  "t": 979.5938817188564,
+  "r": 1.0000000013963861,
+  "rdot": -1.4101342720624386,
+  "reportedSpeed": 0.7050671361989447,
+  "memberSpeeds": [
+   0.7050671361989447,
+   0.705067135863494
+  ],
+  "halfRelativeSpeed": 0.7050671360312193,
+  "centreVelocity": [
+   -1.6772533362185982e-10,
+   0,
+   0
+  ],
+  "centrePosition": [
+   0,
+   0,
+   0
+  ],
+  "P": [
+   0,
+   0,
+   0
+  ],
+  "sumRadialEigenvalue": 1.3963861178467596e-9,
+  "creepSteps": 40,
+  "failedAt": 979.5938817200088,
+  "detH_at_failure": -5.393685498147737e-11,
+  "lastAccepted": {
+   "t": 979.5805297148814,
+   "r": 1.0187835730812052,
+   "centreVelocity": [
+    0,
+    0,
+    0
+   ],
+   "speeds": [
+    0.7017411674476501,
+    0.7017411674476501
+   ]
+  },
+  "lastSamples": [
+   {
+    "t": 977,
+    "r": 3.8113731494871192,
+    "sumVx": 0,
+    "speeds": [
+     0.4508630714605764,
+     0.4508630714605764
+    ]
+   },
+   {
+    "t": 978,
+    "r": 2.859665919184253,
+    "sumVx": 0,
+    "speeds": [
+     0.5047986180409952,
+     0.5047986180409952
+    ]
+   },
+   {
+    "t": 979,
+    "r": 1.7670771644524959,
+    "sumVx": 0,
+    "speeds": [
+     0.598091427382015,
+     0.598091427382015
+    ]
+   }
+  ]
+ },
+ "WR-150 dp54-rtol1e-12": {
+  "t": 979.5938817191515,
+  "r": 1.0000000011283348,
+  "rdot": -1.4101342721637695,
+  "reportedSpeed": 0.7050671372368207,
+  "memberSpeeds": [
+   0.7050671372368207,
+   0.7050671349269487
+  ],
+  "halfRelativeSpeed": 0.7050671360818848,
+  "centreVelocity": [
+   -1.1549359801854564e-9,
+   0,
+   0
+  ],
+  "centrePosition": [
+   -5.551115123125783e-17,
+   0,
+   0
+  ],
+  "P": [
+   0,
+   0,
+   0
+  ],
+  "sumRadialEigenvalue": 1.1283347589596815e-9,
+  "creepSteps": 35,
+  "failedAt": 979.5938817202415,
+  "detH_at_failure": -1.1399930998804615e-10,
+  "lastAccepted": {
+   "t": 979.5881104792883,
+   "r": 1.0081298721196479,
+   "centreVelocity": [
+    -1.6653345369377348e-16,
+    0,
+    0
+   ],
+   "speeds": [
+    0.7036218914100234,
+    0.7036218914100231
+   ]
+  },
+  "lastSamples": [
+   {
+    "t": 977,
+    "r": 3.8113731496096697,
+    "sumVx": 0,
+    "speeds": [
+     0.4508630714661364,
+     0.4508630714661364
+    ]
+   },
+   {
+    "t": 978,
+    "r": 2.8596659193104497,
+    "sumVx": 0,
+    "speeds": [
+     0.5047986180447545,
+     0.5047986180447545
+    ]
+   },
+   {
+    "t": 979,
+    "r": 1.7670771645868966,
+    "sumVx": -1.1102230246251565e-16,
+    "speeds": [
+     0.5980914273777737,
+     0.5980914273777735
+    ]
+   }
+  ]
+ },
+ "DL-100 dp54-rtol1e-10": {
+  "t": 795.1781707427416,
+  "r": 1.000000001894758,
+  "rdot": -1.2819419834075432,
+  "reportedSpeed": 0.7232349672558509,
+  "memberSpeeds": [
+   0.7232349590510333,
+   0.7232349672558509
+  ],
+  "halfRelativeSpeed": 0.723234963153442,
+  "centreVelocity": [
+   2.4135504705924404e-9,
+   3.949899046729044e-9,
+   0
+  ],
+  "centrePosition": [
+   6.522560269672795e-15,
+   1.1102230246251565e-16,
+   0
+  ],
+  "P": [
+   2.220446049250313e-16,
+   0,
+   0
+  ],
+  "sumRadialEigenvalue": 1.89475790612903e-9,
+  "creepSteps": 39,
+  "failedAt": 795.1781707443239,
+  "detH_at_failure": -1.5033624184383387e-10,
+  "lastAccepted": {
+   "t": 795.1589122536211,
+   "r": 1.024631283410161,
+   "centreVelocity": [
+    3.3306690738754696e-16,
+    3.0531133177191805e-16,
+    0
+   ],
+   "speeds": [
+    0.7181195139423051,
+    0.718119513942306
+   ]
+  },
+  "lastSamples": [
+   {
+    "t": 793,
+    "r": 3.3116885426700753,
+    "sumVx": 5.551115123125783e-17,
+    "speeds": [
+     0.4756907263368624,
+     0.47569072633686244
+    ]
+   },
+   {
+    "t": 794,
+    "r": 2.3436691184538265,
+    "sumVx": 1.1102230246251565e-16,
+    "speeds": [
+     0.5447480043700186,
+     0.5447480043700187
+  

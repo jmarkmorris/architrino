@@ -1,0 +1,5 @@
+# Three-tenths-percent initial-width candidate
+
+The two-slope candidate failed three measured rows just after its first slope reduction; that failure is retained at `width-entry-growing-v4-h32-r32/receipt.json`. The next fixed candidate is $e(d)=\min(1/10,3/1000+d)$, with seam $97/1000$, using the same nondecreasing-width implication. It has three times the original successful diagnostic's initial width and delays its cap beyond the intermediate failing region. Candidate contact factor remains $9/10$.
+
+The [v5 measured diagnostic](../evidence/alternatives-screen-2026-10-05-width-entry-growing-diagnostic-v5.mjs), hash `997de93fea6fa0c844e63f642f87cacf3d9c99c004457f3dff0934652d671b25`, passed known affine and polynomial controls at 15:33:53 UTC before its target, in 0.053 measured seconds. Receipt: `width-entry-growing-v5-controls/receipt.json` under the campaign evidence owner. Candidate tuning here changes only proposed proof envelopes for the original fixed equation and preparation; no failed envelope is interpreted as a failed trajectory.

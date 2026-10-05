@@ -1,0 +1,4 @@
+// Reach checks for the preserved original majorant coefficient instrument.
+import assert from 'node:assert/strict';import {Q,G} from './maxwell-shaped-overnight-grid-interval.mjs';import {tubeCoefficients as original} from './maxwell-shaped-overnight-directed-majorant.mjs';export {positiveDirected,directedMajorantKnown} from './maxwell-shaped-overnight-directed-majorant.mjs';
+export function initialSourceWindow(T,seed,receiverX,sourceX){const width=T.hi.sub(T.lo).mul(4).add('0.00000001').add(receiverX.add(sourceX).mul(10));return new G(Q.of(seed).sub(width),Q.of(seed).add(width));}
+export function tubeCoefficients(...args){const [history,T,seed,law,receiverX,receiverV,sourceX]=args,window=initialSourceWindow(T,seed,receiverX,sourceX);assert(window.lo.cmp(-6)>0,'entire initial root bracket in finite mismatch support');assert(window.hi.cmp(T.lo)<0,'entire initial source bracket before bin');return {...original(...args),initialSourceWindow:window};}
