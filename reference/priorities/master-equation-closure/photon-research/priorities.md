@@ -16,12 +16,15 @@ The [geometry collection](README.md#geometry-analyses-and-evidence) now brings t
 
 ## Research boundary
 
+The authorized ring session has completed a bounded [two-ring mutual residual screen](analysis/coaxial-ring-mutual-residual-2026-10-03.md), accepted by [independent unsquared Cartesian adjudication](analysis/coaxial-ring-independent-adjudication-2026-10-03.md). All 24 declared zero-translation T02/T04 preparations at gaps $R,2R,10R$, phases $0,\pi/6$ and co-/contra-rotation fail full balance, including their polarity-conjugate versions. Complete mutual censuses precede this rejection; no stability is assigned to those failed references. The sign of the prescribed co-rotating axial interaction depends on rung, phase and sampled gap; the ordinary contra-rotating chart has zero mean axial interaction, while near gaps encounter folds. Other spacings, deformed/modulated histories and the retained photon branch remain open. This screen does not complete the broader translating-candidate specification or activate PHO-009.
+
 The [2026-10-03 supplied-review assessment](analysis/photon-review-integration-2026-10-03.md) adds [root and axial constraints](analysis/translating-carrier-root-and-axial-constraints.md) to the existing test specification. The wake-speed exclusion is scoped to isolated fixed-plane histories on the ordinary chart; singular contacts remain explicit. The axial identity and regular-hexagon anti-periodicity narrow possible rigid tests without supplying a retained branch. A modulated-history boundary-value search remains a proposal; task status and completion criteria are unchanged.
 
 The photon-specific question begins where a candidate assembly is required to propagate as a coherent carrier. A binary result may constrain one constituent pair; a multi-binary result may constrain a braid or pair of braids. Neither alone supplies the complete photon history or its source, environment and receiver accounts. A photon identification requires the additional kinematic, transverse-response and event-transfer conditions in the corpus [closure interface](../../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface).
 
 The [Braid Program](../braid-program/priorities.md) keeps general assembly qualification, and [binary research](../binary-research/priorities.md) keeps single-binary dynamics. Shared causal-root, self-history and continuation rules remain with [Master-Equation Closure](../priorities.md). Common environmental response remains with [Noether sea research](../noether-sea-research/priorities.md).
 
+The [independent far-mean adjudication](analysis/coaxial-ring-far-mean-independent-adjudication-2026-10-03.md) accepts a fixed-rung prescribed co-rotating $d^{-5}$ axial mean with an explicit remainder and delayed phases. Zero-phase gap signs alternate at arbitrarily large distance; twelve additional declared far preparations fail full residuals. The combined grid therefore has 36 checked preparations, without a continuous balanced-pair census or retained photon branch.
 ## Dependencies and consumers
 
 | Owner | Role and current boundary |

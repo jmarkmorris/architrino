@@ -39,3 +39,20 @@ test("reports exact source offsets for multiple findings", () => {
   const text = "first\nA^3 then A³";
   assert.deepEqual(audit(text), [{ index: 6, label: "A^3" }, { index: 15, label: "A³" }]);
 });
+
+test("defined scale cubes support denominators and implicit multiplication", () => {
+  for (const formula of ["\\tau=\\frac{s-s_0}{A^3}", "s-s_*=A^3\\tau", "x=A^3z", "x=A^3"]) {
+    assert.deepEqual(audit(`At scale $A=H(s_0)$.\n$$${formula}$$`), [], formula);
+    assert.deepEqual(audit(`Freeze a reception scale $A$ and use $${formula}$.`), [], formula);
+  }
+});
+
+test("scale definitions do not exempt names, text, or undefined powers", () => {
+  for (const suffix of ["$A^3$ theory", "$A^3 theory=1$", "$\\text{A^3}=1$", "A^3 in prose", "`$x=A^3$`"])
+    assert.equal(audit(`Freeze a scale $A$. ${suffix}`).length, 1, suffix);
+  assert.equal(audit("$x=A^3\\tau$").length, 1);
+  assert.equal(audit("`scale $A$` then $x=A^3\\tau$").length, 1);
+  assert.equal(audit("$x=A^3$ then define scale $A$.").length, 1);
+  const text = "Freeze a scale $A$. $x=A^3\\tau$ and A^3 theory.";
+  assert.deepEqual(audit(text), [{index: text.lastIndexOf("A^3"), label: "A^3"}]);
+});

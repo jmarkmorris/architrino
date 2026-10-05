@@ -4,6 +4,10 @@ This is the chronological completion log for the CRW-005 assurance campaign. The
 
 ## Completed milestones
 
+### 2026-10-04 — Two circular-root proposals routed
+
+The [bounded current-document pilot](../aaa-operations/evidence/ops-031-master-equation-continuation-review-2026-10-04.md) proposes two corrections at the recorded Master Equation lines 3519 and 3578. Independent Taylor expansion gives transmitter Jacobian proportional to the square root of the positive speed offset at a positive-radius fold. The current acceleration and receiver-time scalar each contain its inverse once; unit signed playback removes neither. The coordinator separately checked those definitions and derivatives. The [owning queue](work-queue.md#ops-031--october-4-circular-root-referrals) retains exact scope and implementation remains unaccepted. Both suspect sentences occur in preserved pre-repair snapshots by exact-text `rg`, so this pass establishes no regression introduced by the October 2/3 repairs; earliest attribution remains unresolved. Source and historical evidence are unchanged; CRW-005 stays closed.
+
 ### 2026-10-03 — Six OPS-031 repair groups integrated
 
 The operator approved the six-group before/after proposal, including the fixed-identity braid coordinate choice. All six groups are implemented across seven chapters and separately checked against independent geometric, algebraic and accepted theorem references. The [closure receipt](evidence/ops-031-six-group-closure-2026-10-03.md) links each editor receipt, source hashes, scope, validation and unresolved scientific-owner questions. The affected referral sections are moved from discussion-scoped to Verified in the work queue while preserving their original finding descriptions. CRW-005 remains closed and scheduled mathematical coverage is unchanged. The unrelated neutron-dipole and direction-normalization questions remain discussion-scoped.

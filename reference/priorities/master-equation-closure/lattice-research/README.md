@@ -14,6 +14,8 @@ The [manuscript](manuscript.md) brings together the infinite alternating lattice
 
 The active returned-pulse coupling classification retains its `1-mec` assignment. The proposed localized self-consistent disturbance has not been activated.
 
+The [rotating alternating ladder](analysis/rotating-alternating-ladder.md) is an infinite line of stacked opposite pairs that balances exactly under the unchanged equation at every speed examined below wake speed, at one spacing for each speed. It is unstable at every speed examined and is recorded as a reference solution only.
+
 The [logarithmic static comparison](analysis/logarithmic-static-checkerboard-response.md) derives a restoring receiver-displacement response with other sources fixed and complete neutral-cell summation. It is an explicitly selected kernel comparison for the supplied review, not a stability verdict for a responding population or a change to the canonical-law investigations.
 
 [Master-Equation Closure](../README.md) owns the shared history-domain, summation and continuation theorems. [Collinear research](../collinear-research/README.md) owns encounters along one line; [Braid Program](../braid-program/README.md) owns finite-assembly qualification; [Noether sea research](../noether-sea-research/README.md) owns ambient braid populations and common constitutive response.

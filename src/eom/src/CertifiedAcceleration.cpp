@@ -209,6 +209,189 @@ bool root_overlaps_segment(
   return emission.intersection(segment_interval).has_value();
 }
 
+struct SharpNominalState {
+  IntervalVector position;
+  IntervalVector velocity;
+  IntervalVector acceleration;
+};
+
+SharpNominalState sharp_nominal_state(
+    const CubicHistorySegment& segment, const Interval& time) {
+  const Interval tau = time - segment.t_start_interval();
+  const Interval zero = Interval::point(0.0);
+  SharpNominalState state{{zero, zero, zero}, {zero, zero, zero},
+                          {zero, zero, zero}};
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    const auto& tokens = segment.coefficient_tokens()[axis];
+    const Interval c0 = Interval::decimal_token(tokens[0]);
+    const Interval c1 = Interval::decimal_token(tokens[1]);
+    const Interval c2 = Interval::decimal_token(tokens[2]);
+    const Interval c3 = Interval::decimal_token(tokens[3]);
+    state.position[axis] = ((c3 * tau + c2) * tau + c1) * tau + c0;
+    state.velocity[axis] =
+        (Interval::point(3.0) * c3 * tau + Interval::point(2.0) * c2) *
+            tau + c1;
+    state.acceleration[axis] =
+        Interval::point(6.0) * c3 * tau + Interval::point(2.0) * c2;
+  }
+  return state;
+}
+
+// Bound the same sharp kernel on its implicit causal-root graph, rather than
+// varying emission time independently of the position errors that move it.
+// The surrogate homotopy holds source error VALUES fixed; its causal
+// derivative is therefore the nominal polynomial velocity, not that velocity
+// plus the independent admitted rate-error value. No remainder derivative or
+// reduction of an input error ball is assumed. Eligibility failures retain the
+// existing direct interval route.
+std::optional<IntervalVector> implicit_root_mean_value_acceleration(
+    const NativePairAccelerationRequest& request,
+    const NativeRootBracket& root,
+    const IntervalVector& receiver_position,
+    const Interval& reception,
+    const Interval& field_speed,
+    const Interval& signed_coupling) {
+  const Interval zero = Interval::point(0.0);
+  const Interval one = Interval::point(1.0);
+  const Interval emission = token_bounds(root.lower, root.upper);
+  const CubicHistorySegment* source_segment = nullptr;
+  std::optional<HistorySegmentSequence::PinnedSegment> source_pin;
+  for (const std::size_t index : root.transmitter_segment_indices) {
+    auto pin = request.transmitter_history->segments().pin(index);
+    if (emission.subset_of(token_bounds(
+            pin->t_start_token(), pin->t_end_token()))) {
+      if (source_segment != nullptr) {
+        return std::nullopt;
+      }
+      source_pin = std::move(pin);
+      source_segment = &**source_pin;
+    }
+  }
+  if (source_segment == nullptr) {
+    return std::nullopt;
+  }
+  const auto& segment = *source_segment;
+  IntervalVector position_error{zero, zero, zero};
+  IntervalVector velocity_error{zero, zero, zero};
+  IntervalVector receiver_center{zero, zero, zero};
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    const double ep =
+        Interval::decimal_token(segment.position_error_tokens()[axis]).upper();
+    const double ev =
+        Interval::decimal_token(segment.velocity_error_tokens()[axis]).upper();
+    position_error[axis] = Interval(-ep, ep);
+    velocity_error[axis] = Interval(-ev, ev);
+    receiver_center[axis] = Interval::point(receiver_position[axis].midpoint());
+  }
+  const auto residual = [&](const Interval& time,
+                            const IntervalVector& receiver,
+                            const IntervalVector& source_error) {
+    const auto state = sharp_nominal_state(segment, time);
+    return norm(subtract(subtract(receiver, state.position), source_error)) -
+        field_speed * (reception - time);
+  };
+  const Interval lower_residual = residual(
+      Interval::point(emission.lower()), receiver_position, position_error);
+  const Interval upper_residual = residual(
+      Interval::point(emission.upper()), receiver_position, position_error);
+  if (lower_residual.strict_sign() == 0 ||
+      upper_residual.strict_sign() == 0 ||
+      lower_residual.strict_sign() == upper_residual.strict_sign()) {
+    return std::nullopt;
+  }
+  const auto state = sharp_nominal_state(segment, emission);
+  const IntervalVector displacement = subtract(
+      subtract(receiver_position, state.position), position_error);
+  const Interval separation = norm(displacement);
+  if (separation.contains_zero()) {
+    return std::nullopt;
+  }
+  const IntervalVector direction = divide(displacement, separation);
+  const IntervalVector source_velocity = add(state.velocity, velocity_error);
+  const Interval actual_factor = field_speed - dot(direction, source_velocity);
+  const Interval homotopy_factor = field_speed - dot(direction, state.velocity);
+  if (actual_factor.contains_zero() || homotopy_factor.contains_zero()) {
+    return std::nullopt;
+  }
+  // Opposite uniform endpoint signs and a one-sign homotopy factor establish
+  // a unique ordinary surrogate root for every error parameter on the path.
+  Interval center_root = emission;
+  for (std::size_t iteration = 0U; iteration < 32U; ++iteration) {
+    const Interval probe = Interval::point(center_root.midpoint());
+    const auto center_state = sharp_nominal_state(segment, center_root);
+    const IntervalVector center_displacement =
+        subtract(receiver_center, center_state.position);
+    const Interval center_separation = norm(center_displacement);
+    if (center_separation.contains_zero()) {
+      return std::nullopt;
+    }
+    const Interval derivative = field_speed - dot(
+        divide(center_displacement, center_separation), center_state.velocity);
+    if (derivative.contains_zero()) {
+      return std::nullopt;
+    }
+    const Interval candidate = probe -
+        residual(probe, receiver_center, {zero, zero, zero}) / derivative;
+    const auto overlap = center_root.intersection(candidate);
+    if (!overlap.has_value()) {
+      return std::nullopt;
+    }
+    if (overlap->width() >= center_root.width()) {
+      break;
+    }
+    center_root = *overlap;
+  }
+  const auto center_state = sharp_nominal_state(segment, center_root);
+  const IntervalVector center_displacement =
+      subtract(receiver_center, center_state.position);
+  const Interval center_separation = norm(center_displacement);
+  if (center_separation.contains_zero()) {
+    return std::nullopt;
+  }
+  const Interval center_factor = field_speed - dot(
+      divide(center_displacement, center_separation), center_state.velocity);
+  if (center_factor.contains_zero()) {
+    return std::nullopt;
+  }
+  const IntervalVector base = scale(
+      signed_coupling * field_speed /
+          (interval_square(center_separation) * center_separation *
+           interval_absolute(center_factor)),
+      center_displacement);
+  const Interval weight = signed_coupling * field_speed /
+      (interval_square(separation) * separation *
+       interval_absolute(actual_factor));
+  const Interval normal_velocity = dot(direction, source_velocity);
+  const IntervalVector position_difference = subtract(
+      subtract(receiver_position, receiver_center), position_error);
+  IntervalVector estimate = base;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    IntervalVector jq{zero, zero, zero};
+    IntervalVector jv{zero, zero, zero};
+    for (std::size_t coordinate = 0U; coordinate < 3U; ++coordinate) {
+      const Interval factor_gradient =
+          (zero - source_velocity[coordinate] +
+           normal_velocity * direction[coordinate]) / separation;
+      jq[coordinate] = weight *
+          ((axis == coordinate ? one : zero) -
+           Interval::point(3.0) * direction[axis] * direction[coordinate] -
+           displacement[axis] * factor_gradient / actual_factor);
+      jv[coordinate] = weight * displacement[axis] *
+          direction[coordinate] / actual_factor;
+    }
+    const Interval emission_derivative =
+        zero - dot(jq, state.velocity) + dot(jv, state.acceleration);
+    IntervalVector jp{zero, zero, zero};
+    for (std::size_t coordinate = 0U; coordinate < 3U; ++coordinate) {
+      jp[coordinate] = jq[coordinate] - emission_derivative *
+          direction[coordinate] / homotopy_factor;
+    }
+    estimate[axis] = base[axis] + dot(jp, position_difference) +
+        dot(jv, velocity_error);
+  }
+  return estimate;
+}
+
 NativeAccelerationRow reconstruct_row(
     const NativePairAccelerationRequest& request,
     const NativeRootBracket& root,
@@ -319,8 +502,24 @@ NativeAccelerationRow reconstruct_row(
       divide(displacement, radial_denominator);
   const Interval signed_scale =
       coupling * receiver_charge * transmitter_charge * acceleration_weight;
-  const IntervalVector acceleration =
+  IntervalVector acceleration =
       scale(signed_scale, inverse_square_direction);
+  bool implicit_root_mean_value_used = false;
+  const auto centered = implicit_root_mean_value_acceleration(
+      request, root, receiver_position, reception, field_speed,
+      coupling * receiver_charge * transmitter_charge);
+  if (centered.has_value()) {
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      const auto overlap = acceleration[axis].intersection((*centered)[axis]);
+      if (!overlap.has_value()) {
+        throw AccelerationCertificationError(
+            "sharp direct and implicit-root mean-value enclosures disagree");
+      }
+      implicit_root_mean_value_used = implicit_root_mean_value_used ||
+          overlap->width() < acceleration[axis].width();
+      acceleration[axis] = *overlap;
+    }
+  }
 
   return NativeAccelerationRow{
       .row_id = request.row_id + "/root/" + std::to_string(row_index),
@@ -346,7 +545,9 @@ NativeAccelerationRow reconstruct_row(
       .acceptance_status = "consumed_certified_sharp_root",
       .root_precision_route = root.precision_route,
       .root_precision_bits = root.precision_bits,
-      .acceleration_precision_route = emission_contracted
+      .acceleration_precision_route = implicit_root_mean_value_used
+          ? "binary64_outward_implicit_root_mean_value"
+          : emission_contracted
           ? "binary64_outward_monotone_root_contraction"
           : "binary64_outward",
       .acceleration_precision_bits = 53,

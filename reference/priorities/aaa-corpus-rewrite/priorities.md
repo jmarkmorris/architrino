@@ -55,6 +55,8 @@ Claim grade: `measured` by scanning every corpus document outside `archie/` and 
 
 ## Current State
 
+The [October 4 OPS-031 circular-root referrals](work-queue.md#ops-031--october-4-circular-root-referrals) propose two bounded corrections to Master Equation: distinguish unit root playback from divergent branch acceleration, and count the transmitter collapse once in the current scalar functional. They are not accepted repairs and do not reopen CRW-005.
+
 The sixteen accepted supplementary chapter repairs and the necessary Master Equation stationary-surrogate propagation are complete. Each chapter group passed a different reviewer's check against the recorded independent mathematical references; final hashes, three new receipts and validation are in the [supplementary integration record](evidence/crw-005-claude-sixteen-closure-verification-2026-09-13.md#final-sixteen-chapter-integration). The unified board again records 199 completed dispositions and no active repair. Original receipts and open scientific/runtime obligations remain intact.
 
 The CRW-005 bounded document review is complete: the [unified board](corpus-review-status.md) records all 199 live corpus paths with completed dispositions and no active or unopened document. Accepted bounded corrections are integrated. This is review completion, not theory closure, model acceptance or runtime implementation of every described protocol. Remaining physical and implementation obligations retain their existing owners and receipt scopes; CRW-006 remains an unaccepted discussion item. See the [final review closeout](work-log.md#2026-09-13--final-corpus-review-disposition) for validation and source-attribution limits.

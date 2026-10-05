@@ -65,6 +65,12 @@ For regular alternating hexagons with opposite common angular frequencies, a der
 
 ## 3. From candidate dynamics to photon identification
 
+### A complete prescribed two-ring residual screen
+
+A pair of individually exact circles need not remain exact when combined. The [coaxial calculation](analysis/coaxial-ring-mutual-residual-2026-10-03.md), accepted by [independent Cartesian adjudication](analysis/coaxial-ring-independent-adjudication-2026-10-03.md), covers 24 preparations built from T02 or T04 hexagons at total gaps $R,2R,10R$, phases $0,\pi/6$ and equal or opposite circulation. Every mutual ordinary root is included. All preparations have a nonzero full acceleration residual; conjugating one component's polarities reverses that residual and preserves the rejection. These are bounded negatives for specified complete circular histories, not a general exclusion of photon carriers.
+
+For co-rotation the axial residual is constant in time. At phase zero its demanded gap acceleration changes sign across the three sampled separations, and T02 and T04 have opposite sign patterns. At phase $\pi/6$ both components have equal nonzero axial acceleration despite zero gap acceleration. A total scalar weight can become positive even when the isolated-ring weight is negative. For contra-rotation, source-charge symmetry makes the axial interaction anti-periodic and its ordinary cycle mean zero; close-gap preparations meeting a transmitter-factor zero have no ordinary cycle mean assigned. None of these residuals is an evolved capture, separation or binding trajectory. No rejected preparation supplies a reference for linear stability.
+
 A complete history is the first requirement. Photon identification additionally connects that history to observed transport, polarization and interaction. The corpus [closure interface](../../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface) separates these requirements into three gates.
 
 | Gate | Physical question | Evidence boundary |
@@ -77,6 +83,19 @@ These gates are linked through one history and its accounts. They are not indepe
 
 The [EQ-12 packet](../../mapping-equations/analysis/eq-12-16a-photon-quantum-gauge-neutrino-packet.md#eq-12-photon-energy-null-condition-and-eikonal-propagation) keeps these source, path and receiver requirements on one proposed transfer record. Its stated first blocker is an accepted photon packet. Passing an attempt-level residual therefore cannot establish the physical carrier that the residual assumes.
 
+### Far coaxial mean at fixed rung
+
+Two prescribed equal-radius exact rings with aligned polarity labels in coaxial co-rotation have a different mean from a fixed probe. With gap $h=Rd$, phase $\phi$ and fixed $\beta$, the [far mutual calculation](analysis/coaxial-ring-far-mean-2026-10-03.md), accepted by [separate density/Cartesian adjudication](analysis/coaxial-ring-far-mean-independent-adjudication-2026-10-03.md), gives
+
+$$
+\overline A_{z,-}=-\frac{27K\beta^3}{4R^2d^5}\sin[3(\phi-\beta d)]+O_\beta\!\left(\frac K{R^2d^6}\right),
+$$
+
+$$
+\overline A_{z,+}=-\frac{27K\beta^3}{4R^2d^5}\sin[3(\phi+\beta d)]+O_\beta\!\left(\frac K{R^2d^6}\right).
+$$
+
+Each axial acceleration is constant in time under this prescription. The complete far cross chart has one ordinary root per source when $d>\beta$. An explicit conservative remainder applies at $d\ge64(1+\beta)$. At zero phase, both gap-acceleration signs occur at arbitrarily large separations, with leading spatial period $2\pi c_f/(3\Omega)$; at $\phi=\pi/6$ the gap acceleration vanishes exactly although the common acceleration need not vanish. Twelve additional full residual checks at $d=300,1000,10000$, T02/T04 and those phases exclude their combined preparations. The theorem is fixed-rung and prescribed; it supplies no released pair balance, binding, stability or trajectory.
 ## 4. Formation, propagation and environmental response
 
 A photon preparation includes its earlier source interaction and the ambient histories relevant to later propagation. A source-coupled release state may have different geometry from a later freely propagating state. Calling the visible release shape an equilibrium would require a separate dynamical argument.

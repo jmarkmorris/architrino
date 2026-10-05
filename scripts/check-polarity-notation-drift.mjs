@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { maskFractionalChangeRatios } from "./lib/polarity-notation-audit.mjs";
 
 const rootDir = process.cwd();
 
@@ -129,6 +130,7 @@ function scanFile(relativePath, label) {
   const absolutePath = path.join(rootDir, relativePath);
   const source = fs.readFileSync(absolutePath, "utf8");
   const lines = source.split(/\r?\n/);
+  const classifiedLines = maskFractionalChangeRatios(source).split(/\r?\n/);
   let inFence = false;
 
   for (const [lineIndex, rawLine] of lines.entries()) {
@@ -140,7 +142,7 @@ function scanFile(relativePath, label) {
       continue;
     }
 
-    const line = stripInlineCode(rawLine);
+    const line = stripInlineCode(classifiedLines[lineIndex]);
     if (!line.trim()) {
       continue;
     }
