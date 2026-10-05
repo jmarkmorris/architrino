@@ -1,0 +1,3 @@
+Weber lane, continuation run: start 2026-10-05T12:50Z, final-hour freeze 19:50Z, deadline 20:50Z (eight elapsed hours or a checked NO GO).
+Darwin lane: start 2026-10-05T12:50Z, final-hour freeze 19:50Z, deadline 20:50Z.
+Original interrupted run: 02:31Z–12:15Z, see run record in binary-research/analysis/weber-overnight-investigation.md.

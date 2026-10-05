@@ -1,0 +1,29 @@
+// Exact unit-ray q/H coefficient successor. Physical E is unchanged; no receiver clipping.
+// Independently frozen global Cartesian symbolic coefficient reference supplies known cases.
+import assert from 'node:assert/strict';
+import {Q,G,dot,length} from './maxwell-shaped-overnight-grid-interval.mjs';
+import {physicalDirection} from './maxwell-shaped-overnight-unit-frame-clock-angular.mjs';
+import {normUpper,matrixNormUpper} from './maxwell-shaped-overnight-directed-sensitivity.mjs';
+import {rootBox} from './maxwell-e-first-event-root-speed-floor.mjs';
+import {initialSourceWindow} from './maxwell-shaped-overnight-directed-majorant-checked.mjs';
+export {initialSourceWindow};
+const N=7;
+class D{constructor(v,d=Array.from({length:N},()=>new G(0))){this.v=G.of(v);this.d=d;}static of(x){return x instanceof D?x:new D(x);}add(x){x=D.of(x);return new D(this.v.add(x.v),this.d.map((a,k)=>a.add(x.d[k])));}neg(){return new D(this.v.neg(),this.d.map(a=>a.neg()));}sub(x){return this.add(D.of(x).neg());}mul(x){x=D.of(x);return new D(this.v.mul(x.v),this.d.map((a,k)=>a.mul(x.v).add(this.v.mul(x.d[k]))));}div(x){x=D.of(x);return new D(this.v.div(x.v),this.d.map((a,k)=>a.mul(x.v).sub(this.v.mul(x.d[k])).div(x.v.sq())));}sq(){return this.mul(this);}}
+const cross=(a,b)=>G.of(a[0]).mul(b[1]).sub(G.of(a[1]).mul(b[0])),expand=(a,e)=>a.map(z=>G.of(z).add(new G(Q.of(e).neg(),e))),neg=a=>a.map(z=>G.of(z).neg());
+export function neutralFrame(r,v,a,j,u){
+ assert([r,v,a,j,u].every(z=>z.length===2));const radius=length(r),n=physicalDirection(r),coords=[radius,dot(n,v),cross(n,v),dot(n,a),cross(n,a),dot(n,u),cross(n,u)],xs=coords.map((x,k)=>new D(x,Array.from({length:N},(_,i)=>new G(i===k?1:0)))),[R,vn,vt,an,at,un,ut]=xs,Dn=new D(1).sub(vn);assert(radius.lo.cmp(0)>0&&Dn.v.lo.cmp(0)>0,'positive transformed source clock');
+ const R2=R.sq(),D2=Dn.sq(),D3=D2.mul(Dn),W=new D(1).sub(vn.sq()).sub(vt.sq()),Dr=new D(1).sub(un),Rd=un.sub(vn).div(Dn),alpha=ut.sub(vt.mul(Dr).div(Dn)).div(R),q=[new D(1).div(R),vt.neg().div(R.mul(Dn))],Lr=Rd.neg().div(R2).add(alpha.mul(vt).div(R.mul(Dn))),Lt=vt.mul(Rd).div(R2.mul(Dn)).add(alpha.mul(Dn.sub(vt.sq())).div(R.mul(D2))),H=[W.neg().div(R2.mul(D2)).add(Lr),W.mul(vt).div(R2.mul(D3)).add(Lt).add(un.mul(vt.mul(an).div(R.mul(D3)).add(at.div(R.mul(D2)))))],jn=dot(n,j),jt=cross(n,j);
+ function coefficients(f){const FR=f.map(z=>z.d[0]),Fv=f.map(z=>z.d.slice(1,3)),Fa=f.map(z=>z.d.slice(3,5)),Fu=f.map(z=>z.d.slice(5,7)),theta=f.map((z,k)=>z.d[1].mul(vt.v).sub(z.d[2].mul(vn.v)).add(z.d[3].mul(at.v)).sub(z.d[4].mul(an.v)).add(z.d[5].mul(ut.v)).sub(z.d[6].mul(un.v)).add(k===0?f[1].v.neg():f[0].v)),colN=FR.map((z,k)=>z.add(vt.v.mul(theta[k]).div(radius)).sub(dot(Fv[k],[an.v,at.v])).sub(dot(Fa[k],[jn,jt])).div(Dn.v)),colT=theta.map(z=>z.div(radius));return {F:f.map(z=>z.v),FR,Ftheta:theta,Fv,Fa,Fu,AX:[[colN[0],colT[0]],[colN[1],colT[1]]]};}
+ return {R:radius,D:Dn.v,n,components:Object.fromEntries(['R','vn','vt','an','at','un','ut'].map((key,k)=>[key,coords[k]])),q:coefficients(q),H:coefficients(H)};
+}
+export function neutralFamily(r,v,a,j,u,pv,pa){
+ for(const e of [pv,pa])assert(Q.of(e).cmp(0)>=0);const clock=neutralFrame(r,v,a,j,u),offset=neutralFrame(r,expand(v,pv),expand(a,pa),j,u);
+ return {Cq:matrixNormUpper(clock.q.AX),Vq:matrixNormUpper(offset.q.Fv),CH:matrixNormUpper(clock.H.AX),UH:matrixNormUpper(clock.H.Fu),VH:matrixNormUpper(offset.H.Fv),AH:matrixNormUpper(offset.H.Fa),Pc:normUpper(clock.q.F.map((x,k)=>x.add(k===0?dot(clock.n,u):cross(clock.n,u)))),D:offset.D,Dclock:clock.D,R:clock.R,clock,offset};
+}
+export function neutralTube(history,T,seed,rx,rv,px,pv,pa){
+ for(const e of [rx,rv,px,pv,pa])assert(Q.of(e).cmp(0)>=0);const speed=normUpper(history.box(T,1)).add(rv),clearance=length(history.box(T,0)).lo.sub(rx);assert(clearance.cmp(0)>0);const window=initialSourceWindow(T,seed,rx,px);assert(window.lo.cmp(-6)>0&&window.hi.cmp(T.lo)<0,'transformed initial guard completed');const U=expand(history.box(T,1),rv),X=expand(history.box(T,0),rx),width=T.hi.sub(T.lo).mul(4).add('0.00000001').add(Q.of(rx).add(px).mul(10)),S=rootBox(history,T,X,seed,width,px,3);assert(S.lo.cmp(-6)>0&&S.hi.cmp(T.lo)<0);const r=X.map((x,k)=>x.add(expand(history.box(S,0),px)[k])),c=neutralFamily(r,neg(history.box(S,1)),neg(history.box(S,2)),neg(history.box(S,3)),U,pv,pa);return {...c,S,speed,clearance,initialSourceWindow:window};
+}
+export function known(){
+ const contains=(z,e)=>assert(z.lo.cmp(e)<=0&&z.hi.cmp(e)>=0,'independent exact symbolic control');const matrix=(m,e)=>m.forEach((row,i)=>row.forEach((z,k)=>contains(z,e[i][k]))),z=[0,0];const stat=neutralFrame([2,0],z,z,z,z);matrix(stat.H.AX,[['1/4',0],[0,'-1/8']]);matrix(stat.H.Fu,[['-1/4',0],[0,'1/4']]);matrix(stat.q.AX,[['-1/4',0],[0,'1/4']]);matrix(stat.q.Fv,[[0,0],[0,'-1/2']]);const accel=neutralFrame([2,0],z,[0,'3/100'],[0,'1/20'],['1/5',0]);accel.H.F.forEach((x,k)=>contains(x,['-3/10','3/1000'][k]));matrix(accel.H.Fa,[[0,0],[0,'1/10']]);matrix(accel.H.AX,[['3/10','-3/2000'],['-19/2000','-7/40']]);const aff=neutralFrame(['5/2',0],['1/5',0],z,z,z);matrix(aff.H.Fa,[[0,0],[0,0]]);const arb=neutralFrame(['6/5','8/5'],['1/10','-1/5'],['2/7','-3/11'],['1/13','2/17'],['-3/10','2/5']),ray=[new G('3/5'),new G('4/5')],cart=arb.H.F.map((_,k)=>ray[k].mul(arb.H.F[0]).add((k===0?ray[1].neg():ray[0]).mul(arb.H.F[1])));cart.forEach((x,k)=>contains(x,['-13183/58564','-2648/14641'][k]));assert.throws(()=>neutralFrame([2,0],[1,0],z,z,z),/positive transformed source clock/);return {passed:true,cases:['independent symbolic static q/H,Fv/Fu/AX','nonzero sourceA/J and receivingrayprojection matrices','affine zero receivingprojection has zero directA','nonaligned global Cartesian transformedH','zero clock rejected'],reference:'separately authored global Cartesian SymPy coefficient reference; prospective theorem independently assessed'};
+}
+if(process.argv.includes('--known'))console.log(JSON.stringify(known()));

@@ -1,0 +1,21 @@
+PASS K1: control: excess-identity turning radii vs Kepler A(1-e), A(1+e), 200 random bound states = 8.632e-15 (tol 1.0e-12)
+PASS K2: excess identity (2.3) at 2000 random states x 2 weights = 4.311e-16 (tol 1.0e-12)
+PASS K3: control (r,rdot) Hessian at the circle vs diag(k^4/h^6, 1), 50 random h = 6.531e-8 (tol 1.0e-6)
+PASS T1a: frozen (r,rdot) Hessian vs diag(k^4/h^6, 1+kappa/r_h), 50 random h = 6.726e-8 (tol 1.0e-6)
+PASS T1b: frozen Hessian positive definite (smallest eigenvalue 1.436e-3 > 0) = 0.000e+0 (tol 0.0e+0)
+PASS T1c: ratio of Hessian entries reproduces omega_r^2 = Omega^2/(1+2/x), eq. (7.1) = 6.718e-8 (tol 1.0e-6)
+PASS K4a: control 6D Hessian of Lambda has no negative eigenvalue (most negative -3.82e-7) = 0.000e+0 (tol 0.0e+0)
+PASS K4b: control: four smallest |eigenvalues| (family directions) = 2.967e-7 (tol 1.0e-6)
+PASS K4c: control: two positive eigenvalues, smallest 1.032e+0 = 0.000e+0 (tol 0.0e+0)
+PASS T2a: frozen 6D Hessian of Lambda: most negative eigenvalue relative to the largest (-1.24e-6 / 4.79e+1), finite-difference floor = 2.587e-8 (tol 1.0e-5)
+PASS T2b: frozen: four smallest |eigenvalues| relative to the largest (rank 2 up to the finite-difference floor) = 2.491e-8 (tol 1.0e-5)
+PASS T2c: frozen: two positive eigenvalues, smallest 1.513e+0 = 0.000e+0 (tol 0.0e+0)
+PASS T2d: frozen: Hessian annihilates the four tangent directions of the circle family (relative to the largest eigenvalue) = 4.222e-8 (tol 1.0e-5)
+PASS T3a: Lambda nonnegative at 20000 random states (minimum 6.585e-6) = 0.000e+0 (tol 0.0e+0)
+PASS T3b: states with Lambda < 1e-4 are all near a circle (|rdot|<0.02, |r_h/r-1|<0.02) = 0.000e+0 (tol 0.0e+0)
+PASS K5: control quadrature vs WB-11 printed values = 3.377e-14 (tol 1.0e-10)
+PASS K5b: frozen quadrature vs WB-4 printed values (same-lane consistency, not independent) = 3.162e-13 (tol 1.0e-10)
+WP-1: {"h":2.8287099533179436,"hVector":[0,-0.04,2.8284271247461903],"epsilon":-0.24993124999999988,"Lambda":0.000018759998000411615,"e":0.00866342888237947,"rh":4.000800000000002,"rp":3.9664370546605157,"ra":4.035763550505909,"normal":[0,-0.01414072162226526,0.9999000149975004],"radialPeriod":43.54712879154115,"apsidalAngle":3.8475192541555234,"precessionPerRadialPeriod":1.4118532011314606,"supSpeedCentreRest":0.356580718959632,"supSpeedVoidFrame":0.40911127413594567,"supAt":{"r":3.9664370546605157,"rdot":-8.591082045812604e-9,"theta":1.5707963267948966},"tEnd":7108.612701053999,"radialPeriodsInRun":163.23952688322402,"rdotMax":0.005008735976403161}
+WP-2: {"h":2.2045407685048604,"hVector":[0,0,2.2045407685048604],"epsilon":-0.3966666666666666,"Lambda":0.014855967078189314,"e":0.1900000000000001,"rh":2.43,"rp":2.042016806722689,"ra":3.000000000000001,"normal":[0,0,1],"radialPeriod":23.80464654115541,"apsidalAngle":4.239830417084792,"precessionPerRadialPeriod":2.196475526989998,"supSpeedCentreRest":0.5397949618355523,"supSpeedVoidFrame":0.5397949618355525,"supAt":{"r":2.042016806722689,"rdot":1.0591335159019919e-8,"theta":3.5081117965086026},"tEnd":4760.92930824,"radialPeriodsInRun":200.00000000037463,"rdotMax":0.1335183900959983}
+WP-3: {"h":1.4142142694796995,"hVector":[0,-0.0014142135623730952,1.4142135623730951],"epsilon":-0.9999959999999999,"Lambda":0.000003000000999953123,"e":0.0017320519622557873,"rh":1.0000010000000001,"rp":0.9982719411255087,"ra":1.0017360589064914,"normal":[0,-0.000999999500000375,0.9999995000003751],"radialPeriod":7.695334251251155,"apsidalAngle":5.441395825454664,"precessionPerRadialPeriod":4.599606343729741,"supSpeedCentreRest":0.7083311727089283,"supSpeedVoidFrame":0.7083311727089284,"supAt":{"r":0.9982719411255087,"rdot":0,"theta":0.017453292519943295},"tEnd":888.5765876316,"radialPeriodsInRun":115.46952460019911,"rdotMax":0.0014150314745186884}
+checks failed: 0

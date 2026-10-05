@@ -1,0 +1,7 @@
+# Directed v4 caching successor
+
+The [v4 instrument](../evidence/alternatives-screen-2026-10-05-width-entry-directed-v4.mjs) preserves the interval formulas and candidate specification, caches complete fixed source cells, and recomputes only cells clipped by a receiver endpoint. Every complete source cell remains visited or interval-excluded. A window whose entire gap lies outside the triangular support is now returned as the exact interval $[0,0]$; this prevents a harmless outward-rounded subnormal from defeating the inactive-cell optimization.
+
+The source hash is `cf9ee758bc79abfeda0d4e4e183a11492857e9f3bd39dd2526a1c3a57d37fe95`. At 15:06:22 UTC its known controls passed before any v4 target, in 0.150 measured seconds with 108003328 bytes RSS. The local receipt is `.local-data/master-equation-closure/collinear-research/alternatives-screen-2026-10-05/width-entry-directed-v4-controls/receipt.json`. The earlier frozen versions and their receipts remain unchanged. The source-cell partition now stays fixed on each full Hermite segment; any clipped remainder is enclosed separately, which preserves interval inclusion and may change tightness.
+
+The first v3 target had reached 1595 of 3919 original segments by 92 seconds, with no unresolved panels and 1955 passed receiver panels. Repeated reconstruction of all earlier source-time bounds is the observed computational bottleneck, motivating this cache. This observation is operational and does not establish any missing mathematical inequality.

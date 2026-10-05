@@ -1,0 +1,49 @@
+{
+ "rContact": 0.001,
+ "rEscape": 10000,
+ "speedBound": 0.1,
+ "epsBound": 0.05,
+ "detTol": 1e-12,
+ "condMax": 1000000000000,
+ "tTol": 1e-9,
+ "caseId": "DG-100",
+ "kind": "perturbed",
+ "positions": [
+  [
+   50,
+   0,
+   0
+  ],
+  [
+   -50,
+   0,
+   0
+  ]
+ ],
+ "velocities": [
+  [
+   0.005,
+   0.07062245515464487,
+   0.002
+  ],
+  [
+   0.005,
+   -0.07062245515464487,
+   0
+  ]
+ ],
+ "polarities": [
+  1,
+  -1
+ ],
+ "r0": 100,
+ "u": 0.07062245515464487,
+ "period": 4448.433075160754,
+ "tMax": 88968.66150321509,
+ "outputDt": 22.24216537580377,
+ "runLength": "20 periods of DC-100 (4448.433075160754)",
+ "note": "DC-100 preparation plus common velocity (0.005,0,0) on both members and (0,0,0.002) on member 1",
+ "integrator": "dp54",
+ "rtol": 1e-10,
+ "atol": 1e-12
+}

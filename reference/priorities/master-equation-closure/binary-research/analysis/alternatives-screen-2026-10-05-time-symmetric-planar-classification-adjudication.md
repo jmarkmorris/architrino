@@ -1,0 +1,21 @@
+# Assessment of the complete small-speed planar frequency classification
+
+**Admitted as a derived whole-line linear classification.** The [independent subject](alternatives-screen-2026-10-05-time-symmetric-planar-classification-independent.md), SHA-256 `c6596505ad8b4acd6779205bf8beaf812c21f6bd59dd61388456abcbadaab00c`, was frozen before the worker read any coordinator classification. The [coordinator reference](alternatives-screen-2026-10-05-time-symmetric-planar-classification-coordinator-reference.md), SHA-256 `5874600c3715a51175e949142baa1c3979f7db10df0eeb4d4d817d175e9cee07`, was frozen before receipt of that report. It discloses a preliminary worker observation and a corrected transcription of the common-root cancellation. These affect provenance, not the independently reconstructed completeness argument.
+
+The complete case is unchanged: exact opposite-polarity equal-past/future circles, $K=c_f=1$, sufficiently small positive $\beta$, all complete partner roots and no nonzero-delay self roots. Exact acceleration balance precedes the Cartesian derivative, which retains both source-clock variations and the shifted source acceleration. The claim concerns the resulting linear boundary equation on the whole time axis.
+
+Both references establish the common roots $m=\pm1$ as exactly double, the opposite root $m=0$ as exactly double and the opposite pair $m=\pm m_*(\beta)$ as simple, with $m_*=1-\beta^2/2+O(\beta^4)$. Rank is one at every root. The exact common derivative cancellation uses $S_2=2cs$ and $C_2^2+S_2^2=1$; the coordinator checked it by differentiating the three elementary matrix entries. Analytic division and compact convergence prevent additional roots near the limiting polynomial zeros. This is stronger than inferring multiplicity from a numerical near-zero determinant.
+
+The two tail exclusions are different sufficient estimates. The coordinator uses small-speed tensor bounds and the smallest singular value $(|m|-1)^2$ to exclude $|m|\ge4$. The worker uses the full subfield inequalities $c>7/10$, $D\ge1$, $\|\widehat M\|\le319/98$ and $\|\widehat N\|\le10/7$. The resulting inequality
+
+$$
+\frac{24}{7}|m|+\frac{438}{49}<m^2\qquad(|m|\ge6)
+$$
+
+is strict at six and improves thereafter. The coordinator checked the symmetric ray-basis row-sum bound and the polynomial inequality directly. The worker's compact analytic quotients cover the remaining interval. No finite frequency scan supplies this complete real-axis coverage.
+
+The generalized-mode formulas were checked after the report by differentiating the exact symbol identity. A polynomial companion obeys $Hw=iH'v$. At the common root, $v=(1,i)$, $v_\perp=(1,-i)$, $Hv_\perp=2hv_\perp$ and $H'v=kv_\perp$ give $w=ikv_\perp/(2h)$. Rotation to physical coordinates produces a constant-vector secular drift plus the bounded twice-frequency correction. At the opposite zero, $H'e_T=if_1e_R$ and $He_R=a_0e_R$ give $w=-f_1e_R/a_0$, the secular phase/radial companion. These identities supply the actual generalized directions; no unproved Galilean symmetry is substituted.
+
+Finally, an invertible local analytic pivot reduces each matrix zero to its scalar Schur complement. Fourier support at the finite root set therefore gives exactly the ordinary modes and degree-one companions listed by the subject. Reality leaves eight planar tempered dimensions. Boundedness removes the three independent secular directions, leaving five planar dimensions. With the separately admitted normal result, there are eight bounded Cartesian dimensions: six Euclidean directions and the two non-Euclidean planar oscillatory directions.
+
+This is a complete real-frequency and tempered-solution classification on a positive but unevaluated small-speed interval. It does not classify the complex spectrum, every subfield speed, nonlinear noncircular histories, or stability of a causal release. Falsifiers are a failed exact common derivative identity, tail inverse, analytic quotient, matrix rank, generalized-chain sign or Fourier-support argument. The previously flagged terminology in an immutable antecedent is an editorial defect; current explanation uses past/future terminology and preserves the frozen evidence bytes as explicitly requested. No numerical target was used.

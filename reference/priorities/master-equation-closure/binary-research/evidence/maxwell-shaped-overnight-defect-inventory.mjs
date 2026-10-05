@@ -1,0 +1,5 @@
+// Exact partition reach; no sampled input can silently bridge a missing cell.
+import assert from 'node:assert/strict';import {Q} from './maxwell-shaped-overnight-grid-interval.mjs';
+export function defectInventory(rows){assert(rows.length>0,'nonempty defect inventory');let previous=null;for(const d of rows){assert(d.left.cmp(d.right)<0&&d.bound.cmp(0)>=0,'positive cell width and nonnegative defect');if(previous)assert(previous.cmp(d.left)===0,'exact contiguous defect cells; no gap/overlap');previous=d.right;}return {cells:rows.length,left:rows[0].left.toString(),right:rows.at(-1).right.toString(),contiguous:true};}
+export function inventoryKnown(){const row=(a,b)=>({left:Q.of(a),right:Q.of(b),bound:Q.of('.1')}),good=defectInventory([row(0,'.5'),row('.5',1)]);assert.throws(()=>defectInventory([row(0,'.4'),row('.6',1)]),/contiguous/);assert.throws(()=>defectInventory([row(0,'.6'),row('.4',1)]),/contiguous/);return {passed:true,cases:['exact two-cell contiguous partition','missing internal cell rejected','overlapping inventory rejected'],good};}
+if(process.argv.includes('--known'))console.log(JSON.stringify(inventoryKnown()));

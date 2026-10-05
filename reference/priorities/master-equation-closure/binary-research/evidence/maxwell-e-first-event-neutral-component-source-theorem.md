@@ -1,0 +1,17 @@
+# Complete physical source components in the transformed comparison
+
+Derived prospective composition of the independently assessed source-components v3 theorem with the transformed signed-current theorem. Same original E complete physical past and stopping premise. The full root/source coefficient balls remain unchanged and use the old physical source norm errors. No delayed source A or source time is removed.
+
+At a fixed receiving alignment, write each q/H fixed-root source V/A derivative row as w in the field's own unit-ray frame. Let ds be the complete nominal source radial direction in that frame, ts its perpendicular, and let Psi bound actual-to-nominal source angle. For intrinsic complete source errors eur,eut (or ear,eat), the established source component rule gives
+
+$$
+|w\,\delta V|\leq\min(\|w\|,|w\cdot d_s|+\|w\|\Psi)e_{u_r}+\min(\|w\|,|w\cdot t_s|+\|w\|\Psi)e_{u_t}+\|w\|V_c\Psi.
+$$
+
+The same rule applies to physical A components with nominal Ac and ear,eat. It follows by rotating the actual intrinsic vector into its nominal source frame; the matrix rotation difference norm is at most min(2,Psi). Mirror source signs do not change these magnitudes. All derivative rows are full mean-value interval families before projection and caps. The receiving radial/tangential directions and nominal source directions are separately enclosed on their complete closed windows.
+
+Project q and H output rows onto the fixed receiving axes. Bound each forcing component by the old whole spatial norm term plus its row-specific source-V/A term and original residual norm. Cap each by the independently valid old full vector forcing norm, and cap the Euclidean norm of the two component bounds by that old norm. This yields valid fq/fH norms for the unchanged signed W recurrence. No identity between independently averaged source and receiving derivative columns is imposed.
+
+With signed receiving q column Q and r error er, physical receiving velocity components satisfy $e_{u_r}\leq W+|Q_r|e_r+f_{q,r}$ and $e_{u_t}\leq W+|Q_t|e_r+f_{q,t}$. Cap each by the retained valid full physical velocity bound. For original physical E, project its complete clock/offset derivative rows onto the same receiving axes; use the unchanged full spatial error term and the row-specific full source V/A terms. Cap each physical acceleration component by the unchanged full E acceleration error bound. Current receiving alignment makes these precisely intrinsic radial/tangential physical acceleration errors. The full A norm and full receiving/source balls stay conservative as before.
+
+Every completed/source bin and physical negative-past component remains; no endpoint substitution is allowed. The old complete H3 triangle prefix already supplies distinct ur/ut/ar/at. New rows must store those independently valid component bounds before outward rounding, while keeping full u/a bounds and all strict W/U trial checks. Independent recurrence and domain audits still precede any outcome. Known static source-V row2 with eur4 transmits8, rank-one delayed source-A row1/2 with eat2 transmits1 despite arbitrary ear100, rotated controls and nonzero angular row caps provide independent pretarget checks. Falsifier: incorrect ray/receiving/source projection, missed complete closed source bins, omitted nominal-axis rotation, or stored component smaller than its proved raw bound. This is a comparison sharpening, not stability or a physical event.

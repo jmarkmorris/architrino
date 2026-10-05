@@ -1,0 +1,293 @@
+{
+  "fdChecks": [
+    {
+      "N": 2,
+      "sigma": -1,
+      "maxAbsErrH": 1.914134629e-9,
+      "maxAbsErrG": 2.337402702e-10,
+      "scaleG": 0.05101549993
+    },
+    {
+      "N": 2,
+      "sigma": 1,
+      "maxAbsErrH": 1.220245238e-9,
+      "maxAbsErrG": 1.833497776e-10,
+      "scaleG": 0.04037245688
+    },
+    {
+      "N": 3,
+      "sigma": -1,
+      "maxAbsErrH": 1.208987099e-8,
+      "maxAbsErrG": 3.792509917e-9,
+      "scaleG": 0.4663133762
+    },
+    {
+      "N": 3,
+      "sigma": 1,
+      "maxAbsErrH": 1.162858609e-8,
+      "maxAbsErrG": 1.821901685e-9,
+      "scaleG": 0.2197376423
+    }
+  ],
+  "circleResiduals": [
+    {
+      "r0": 25,
+      "maxResidual": 2.168404345e-19,
+      "scale": 0.00164751046,
+      "relative": 1.316170305e-16
+    },
+    {
+      "r0": 100,
+      "maxResidual": 5.421010862e-20,
+      "scale": 0.0001007481159,
+      "relative": 5.380756566e-16
+    },
+    {
+      "r0": 400,
+      "maxResidual": 3.388131789e-21,
+      "scale": 0.000006261711417,
+      "relative": 5.410871826e-16
+    },
+    {
+      "r0": 0.3,
+      "maxResidual": 0,
+      "scale": 18.65053398,
+      "relative": 0
+    }
+  ],
+  "zeroCouplingCircleInCoupledLaw_residual": 2.5e-7,
+  "invariantRates": [
+    {
+      "N": 2,
+      "sigma": -1,
+      "dEdT": -3.830269435e-11,
+      "dPdT": [
+        -5.828670879e-12,
+        2.567390744e-12,
+        -1.101549407e-12
+      ],
+      "dJdT": [
+        -4.683753385e-13,
+        -1.214306433e-13,
+        2.567390744e-12
+      ],
+      "Escale": 0.5677269773
+    },
+    {
+      "N": 3,
+      "sigma": 1,
+      "dEdT": -3.719247132e-11,
+      "dPdT": [
+        5.412337245e-12,
+        -3.053113318e-12,
+        -6.938893904e-14
+      ],
+      "dJdT": [
+        2.220446049e-12,
+        9.36750677e-12,
+        -5.551115123e-13
+      ],
+      "Escale": 0.838720112
+    },
+    {
+      "N": 3,
+      "sigma": -1,
+      "dEdT": 2.331468352e-11,
+      "dPdT": [
+        -2.053912596e-11,
+        -2.137179322e-11,
+        4.128641873e-12
+      ],
+      "dJdT": [
+        3.469446952e-12,
+        1.984523657e-11,
+        5.384581669e-11
+      ],
+      "Escale": 1.459990665
+    }
+  ],
+  "zeroVelocitySolve": [
+    {
+      "sigma": -1,
+      "r": 100,
+      "A1x": -0.00009900990099,
+      "inverseSquare": -0.0001,
+      "ratio": 0.9900990099,
+      "predictedRatio": 0.9900990099
+    },
+    {
+      "sigma": -1,
+      "r": 20,
+      "A1x": -0.002380952381,
+      "inverseSquare": -0.0025,
+      "ratio": 0.9523809524,
+      "predictedRatio": 0.9523809524
+    },
+    {
+      "sigma": -1,
+      "r": 2,
+      "A1x": -0.1666666667,
+      "inverseSquare": -0.25,
+      "ratio": 0.6666666667,
+      "predictedRatio": 0.6666666667
+    },
+    {
+      "sigma": 1,
+      "r": 100,
+      "A1x": 0.000101010101,
+      "inverseSquare": 0.0001,
+      "ratio": 1.01010101,
+      "predictedRatio": 1.01010101
+    },
+    {
+      "sigma": 1,
+      "r": 20,
+      "A1x": 0.002631578947,
+      "inverseSquare": 0.0025,
+      "ratio": 1.052631579,
+      "predictedRatio": 1.052631579
+    },
+    {
+      "sigma": 1,
+      "r": 2,
+      "A1x": 0.5,
+      "inverseSquare": 0.25,
+      "ratio": 2,
+      "predictedRatio": 2
+    }
+  ],
+  "rotatingFrameLinearization": [
+    {
+      "r0": 100,
+      "Omega": 0.001412449103,
+      "radialFrequencyClosed": 0.00140193891,
+      "equilibriumResidual": 1.355252716e-20,
+      "relativeInPlane": [
+        {
+          "re": 5.1240008e-23,
+          "im": 7.166432e-11
+        },
+        {
+          "re": 4.0514372e-40,
+          "im": 0.0014019389
+        },
+        {
+          "re": -5.1240008e-23,
+          "im": -7.166432e-11
+        },
+        {
+          "re": -4.0513759e-40,
+          "im": -0.0014019389
+        }
+      ],
+      "relativeInPlane_offBlockLeak": 7.187313421e-15,
+      "relativeOutOfPlane": [
+        {
+          "re": -7.5231638e-37,
+          "im": 0.0014124491
+        },
+        {
+          "re": 7.5231638e-37,
+          "im": -0.0014124491
+        }
+      ],
+      "relativeOutOfPlane_offBlockLeak": 1.110223025e-16,
+      "commonInPlane": [
+        {
+          "re": -3.5489119e-33,
+          "im": 0.0014124022
+        },
+        {
+          "re": -7.8551367e-33,
+          "im": 0.001412496
+        },
+        {
+          "re": -7.7215853e-33,
+          "im": -0.0014124022
+        },
+        {
+          "re": 7.7273404e-33,
+          "im": -0.001412496
+        }
+      ],
+      "commonInPlane_offBlockLeak": 2.39577107e-15,
+      "commonOutOfPlane": [
+        {
+          "re": 7.3625985e-16,
+          "im": 3.1128567e-16
+        },
+        {
+          "re": -7.3625985e-16,
+          "im": -3.1128567e-16
+        }
+      ],
+      "commonOutOfPlane_offBlockLeak": 1.110223025e-16
+    },
+    {
+      "r0": 25,
+      "Omega": 0.01125756072,
+      "radialFrequencyClosed": 0.01093018575,
+      "equilibriumResidual": 2.168404345e-19,
+      "relativeInPlane": [
+        {
+          "re": -2.777364e-33,
+          "im": 9.7463871e-10
+        },
+        {
+          "re": 8.0939848e-45,
+          "im": 0.010930186
+        },
+        {
+          "re": 2.77727e-33,
+          "im": -9.7463871e-10
+        },
+        {
+          "re": -8.0939848e-45,
+          "im": -0.010930186
+        }
+      ],
+      "relativeInPlane_offBlockLeak": 1.110223025e-16,
+      "relativeOutOfPlane": [
+        {
+          "re": -3.0092655e-36,
+          "im": 0.011257561
+        },
+        {
+          "re": 3.0092655e-36,
+          "im": -0.011257561
+        }
+      ],
+      "relativeOutOfPlane_offBlockLeak": 1.110223025e-16,
+      "commonInPlane": [
+        {
+          "re": -3.3129534e-305,
+          "im": 0.011257313
+        },
+        {
+          "re": -3.1009936e-305,
+          "im": 0.011257809
+        },
+        {
+          "re": 2.0150995e-305,
+          "im": -0.011257313
+        },
+        {
+          "re": 1.2996943e-305,
+          "im": -0.011257809
+        }
+      ],
+      "commonInPlane_offBlockLeak": 7.666783874e-14,
+      "commonOutOfPlane": [
+        {
+          "re": 7.3625985e-16,
+          "im": 3.1128567e-16
+        },
+        {
+          "re": -7.3625985e-16,
+          "im": -3.1128567e-16
+        }
+      ],
+      "commonOutOfPlane_offBlockLeak": 1.110223025e-16
+    }
+  ]
+}

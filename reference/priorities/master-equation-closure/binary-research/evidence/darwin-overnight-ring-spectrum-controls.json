@@ -1,0 +1,5287 @@
+{
+ "script": "darwin-overnight-ring-spectrum.mjs",
+ "utcStart": "2026-10-05T15:26:33.479Z",
+ "law": "Section 10 box, K=1, c_f=1, instantaneous, no kinetic correction",
+ "polarities": [
+  1,
+  -1,
+  1,
+  -1
+ ],
+ "unitsNote": "all exponents in units of Omega (time scaled by Omega, velocities by 1/Omega)",
+ "K1_assembly_vs_fd_LD_N4": {
+  "trials": [
+   {
+    "rmin": 2.718663516909871,
+    "maxAbsDiffH": 3.043112428713357e-10,
+    "maxAbsDiffG": 5.9270115967957615e-9
+   },
+   {
+    "rmin": 3.656434886078951,
+    "maxAbsDiffH": 3.618225719037582e-10,
+    "maxAbsDiffG": 3.6931210346813348e-9
+   },
+   {
+    "rmin": 2.929137921882401,
+    "maxAbsDiffH": 2.5080026944124256e-10,
+    "maxAbsDiffG": 3.5717150001501885e-9
+   }
+  ],
+  "worstH": 3.618225719037582e-10,
+  "worstG": 5.9270115967957615e-9,
+  "tolerance": 0.000001,
+  "pass": true
+ },
+ "K2_dHdX_contracted_closedForm_vs_dual": {
+  "maxAbsDiff": 2.0816681711721685e-17,
+  "scale": 0.07617274702944989,
+  "pass": true
+ },
+ "K3_pair_circle_r0_100": {
+  "r0": 100,
+  "thetaDot0": 0.0014124491030928974,
+  "uc": 0.07062245515464487,
+  "ucFromThetaDot": 0.07062245515464487,
+  "residualInf": 0,
+  "GInf": 0.00010074812967581047,
+  "certified": true,
+  "fixedPointResidual": 0,
+  "offBlockLeakage": 0,
+  "normJ": 2.975247524752475,
+  "omega_r_over_thetaDot_closed": 0.9925588870087708,
+  "expected": {
+   "relInPlane": "{0,0,+-i w_r}",
+   "relAxial": "+-i",
+   "comInPlane": "+-i each double, Jordan size 2",
+   "comAxial": "{0,0} Jordan"
+  },
+  "relInPlane": {
+   "roots": [
+    [
+     1.405135575811689e-8,
+     -9.79015551700297e-310
+    ],
+    [
+     0,
+     0.9925588870087706
+    ],
+    [
+     -1.405135575811689e-8,
+     -2.781342323134e-309
+    ],
+    [
+     0,
+     -0.9925588870087706
+    ]
+   ],
+   "clusters": [
+    {
+     "lambda": [
+      0,
+      -1.88017893741715e-309
+     ],
+     "algebraic": 2,
+     "geometric": 1,
+     "structure": "Jordan (algebraic 2, geometric 1)",
+     "spread": 1.405135575811689e-8
+    },
+    {
+     "lambda": [
+      0,
+      0.9925588870087706
+     ],
+     "algebraic": 1,
+     "structure": "simple",
+     "spread": 0
+    },
+    {
+     "lambda": [
+      0,
+      -0.9925588870087706
+     ],
+     "algebraic": 1,
+     "structure": "simple",
+     "spread": 0
+    }
+   ],
+   "charPoly": [
+    [
+     -1.945131753521153e-16,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0.9851731441800893,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ]
+  },
+  "relAxial": {
+   "roots": [
+    [
+     0,
+     0.9999999999999998
+    ],
+    [
+     0,
+     -0.9999999999999998
+    ]
+   ],
+   "clusters": [
+    {
+     "lambda": [
+      0,
+      0.9999999999999998
+     ],
+     "algebraic": 1,
+     "structure": "simple",
+     "spread": 0
+    },
+    {
+     "lambda": [
+      0,
+      -0.9999999999999998
+     ],
+     "algebraic": 1,
+     "structure": "simple",
+     "spread": 0
+    }
+   ],
+   "charPoly": [
+    [
+     0.9999999999999996,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ]
+  },
+  "comInPlane": {
+   "roots": [
+    [
+     9.103867109260127e-9,
+     0.9999999999999998
+    ],
+    [
+     -8.15557865570055e-9,
+     0.9999999999999999
+    ],
+    [
+     7.143739747256715e-9,
+     -0.9999999999999998
+    ],
+    [
+     -6.396245747941003e-9,
+     -0.9999999999999999
+    ]
+   ],
+   "clusters": [
+    {
+     "lambda": [
+      4.741442267797882e-10,
+      0.9999999999999998
+     ],
+     "algebraic": 2,
+     "geometric": 1,
+     "structure": "Jordan (algebraic 2, geometric 1)",
+     "spread": 8.629722882480339e-9
+    },
+    {
+     "lambda": [
+      3.737469996578559e-10,
+      -0.9999999999999998
+     ],
+     "algebraic": 2,
+     "geometric": 1,
+     "structure": "Jordan (algebraic 2, geometric 1)",
+     "spread": 6.769992747598859e-9
+    }
+   ],
+   "charPoly": [
+    [
+     0.9999999999999993,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1.9999999999999991,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ]
+  },
+  "comAxial": {
+   "roots": [
+    [
+     2.4171036981047215e-18,
+     -4.902034569054025e-19
+    ],
+    [
+     -1.493852239761783e-18,
+     3.0296239777023306e-19
+    ]
+   ],
+   "clusters": [
+    {
+     "lambda": [
+      4.616257291714693e-19,
+      -9.36205295675847e-20
+     ],
+     "algebraic": 2,
+     "geometric": 1,
+     "structure": "Jordan (algebraic 2, geometric 1)",
+     "spread": 1.9952874743352525e-18
+    }
+   ],
+   "charPoly": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ]
+  },
+  "relInPlane_maxAbsImag_vs_wr": -2.220446049250313e-16,
+  "relInPlane_zeroCount": 2,
+  "relAxial_absImag_minus_1": [
+   -2.220446049250313e-16,
+   -2.220446049250313e-16
+  ],
+  "comInPlane_charPoly_minus_expected": [
+   6.661338147750939e-16,
+   0,
+   8.881784197001252e-16,
+   0
+  ],
+  "comInPlane_maxDistFrom_pm_i": 9.103867109260129e-9,
+  "comAxial_maxAbs": 2.4663109529322387e-18,
+  "maxRealPart_all": 1.405135575811689e-8,
+  "sqrtDeltaTest": {
+   "steps": [
+    {
+     "h": 0.01,
+     "delta": 0.00019562280357754425,
+     "split": 0.0009426440907027066,
+     "maxAbsRealPart": 0.0009426440907025885,
+     "ratio_split_over_sqrtDelta": 0.06739660341840903,
+     "roots": [
+      [
+       0.0009426440907025885,
+       1.000000000471663
+      ],
+      [
+       -0.0009426440906862762,
+       1.000000000471663
+      ],
+      [
+       0.0009426440906974043,
+       -1.000000000471663
+      ],
+      [
+       -0.0009426440906974584,
+       -1.000000000471663
+      ]
+     ]
+    },
+    {
+     "h": 0.001,
+     "delta": 0.0000019559406325697637,
+     "split": 0.00009426757083900687,
+     "maxAbsRealPart": 0.00009426757083900676,
+     "ratio_split_over_sqrtDelta": 0.06740381556685451,
+     "roots": [
+      [
+       0.00009426757080054677,
+       1.0000000000047164
+      ],
+      [
+       -0.00009426757083900676,
+       1.0000000000047164
+      ],
+      [
+       0.00009426757070630263,
+       -1.0000000000047164
+      ],
+      [
+       -0.000094267570683572,
+       -1.0000000000047164
+      ]
+     ]
+    },
+    {
+     "h": 0.0001,
+     "delta": 1.9558076491676957e-8,
+     "split": 0.00000942272527903453,
+     "maxAbsRealPart": 0.00000942272527903453,
+     "ratio_split_over_sqrtDelta": 0.06737727760401804,
+     "roots": [
+      [
+       0.00000942272527903453,
+       1.00000000000005
+      ],
+      [
+       -0.00000942272387014427,
+       1.00000000000005
+      ],
+      [
+       0.000009422723930298368,
+       -1.00000000000005
+      ],
+      [
+       -0.00000942272343829446,
+       -1.00000000000005
+      ]
+     ]
+    },
+    {
+     "h": 0.00001,
+     "delta": 2.0294799174536138e-10,
+     "split": 0.000001302098374789118,
+     "maxAbsRealPart": 1.7099256577e-314,
+     "ratio_split_over_sqrtDelta": 0.09140109901560607,
+     "roots": [
+      [
+       -1.58772269e-315,
+       0.9999986979306461
+      ],
+      [
+       -4.53373452e-315,
+       1.0000013020688288
+      ],
+      [
+       -1.7099256577e-314,
+       -1.0000013020649567
+      ],
+      [
+       7.73034343e-316,
+       -0.9999986979016252
+      ]
+     ]
+    }
+   ],
+   "slopeFitSteps": [
+    0.01,
+    0.001,
+    0.0001
+   ],
+   "logLogSlope": 0.5000311368079227,
+   "pass": true
+  },
+  "pass": true
+ },
+ "knownCasesPass": true,
+ "threshold": {
+  "tauAD_over_Omega": 0.000001,
+  "fdThreshold": "3 sqrt(delta_h) per step",
+  "note": "exact-derivative Jacobian: rounding ~1e-15 relative; a size-two Jordan block splits by ~sqrt(rounding) ~ 3e-8; symmetry exponents (0 and +-i Omega) are exact and their observed real parts bound the spurious part"
+ },
+ "ringPhi0": 0.37,
+ "domain": {
+  "Rspeed01": 46.01245481395139,
+  "Rweak": 14.142135623730947
+ },
+ "ringRecertification": [
+  {
+   "R": 50,
+   "inDomain": true,
+   "v": 0.09590437081882594,
+   "Omega": 0.0019180874163765187,
+   "residualInf": 2.710505431213761e-20,
+   "GInf": 0.0001710020565904042,
+   "pass": true,
+   "HpositiveDefinite": true
+  },
+  {
+   "R": 100,
+   "inDomain": true,
+   "v": 0.06771191906591982,
+   "Omega": 0.0006771191906591982,
+   "residualInf": 1.3552527156068805e-20,
+   "GInf": 0.000042683713081860525,
+   "pass": true,
+   "HpositiveDefinite": true
+  },
+  {
+   "R": 200,
+   "inDomain": true,
+   "v": 0.04784336653794191,
+   "Omega": 0.00023921683268970955,
+   "residualInf": 5.082197683525802e-21,
+   "GInf": 0.000010662615992500847,
+   "pass": true,
+   "HpositiveDefinite": true
+  },
+  {
+   "R": 5,
+   "inDomain": false,
+   "v": 0.31191912555300544,
+   "Omega": 0.06238382511060109,
+   "residualInf": 1.3877787807814457e-17,
+   "GInf": 0.017610522212642435,
+   "pass": true,
+   "HpositiveDefinite": true
+  },
+  {
+   "R": 20,
+   "inDomain": false,
+   "v": 0.1523334590766071,
+   "Omega": 0.007616672953830355,
+   "residualInf": 1.0842021724855044e-18,
+   "GInf": 0.00107383433714275,
+   "pass": true,
+   "HpositiveDefinite": true
+  },
+  {
+   "R": 1,
+   "inDomain": false,
+   "v": 0.8091176257977611,
+   "Omega": 0.8091176257977611,
+   "residualInf": 2.498001805406602e-16,
+   "GInf": 0.5209816635835107,
+   "pass": true,
+   "HpositiveDefinite": true
+  }
+ ],
+ "ringSpectra": [
+  {
+   "R": 50,
+   "domainLabel": "inside declared domain (speed <= 0.1, eps <= 0.05)",
+   "Omega": 0.0019180874163765187,
+   "v": 0.09590437081882594,
+   "period": 3275.7554496912476,
+   "fixedPointResidual": 2.710505431213761e-20,
+   "shiftCommutator": 4.460408803362169e-16,
+   "reversibility": 5.575511004202712e-16,
+   "fdStudy": [
+    {
+     "h": 0.001,
+     "delta_maxAbs_vs_exact": 0.0000018167386747203196
+    },
+    {
+     "h": 0.0001,
+     "delta_maxAbs_vs_exact": 1.8165941417791487e-8,
+     "fdSelfDiff_vs_previousStep": 0.0000017985738383630157
+    },
+    {
+     "h": 0.00001,
+     "delta_maxAbs_vs_exact": 1.9798940265047804e-10,
+     "fdSelfDiff_vs_previousStep": 1.800736759705046e-8
+    },
+    {
+     "h": 0.000001,
+     "delta_maxAbs_vs_exact": 4.883928816923344e-10,
+     "fdSelfDiff_vs_previousStep": 4.5677794879850353e-10
+    }
+   ],
+   "leakage": {
+    "sector": 3.785708886935689e-16,
+    "axialInPlane": 0
+   },
+   "powerSums": {
+    "sum_lambda_minus_trJ": 1.8824432674729116e-10,
+    "sum_lambda2_minus_trJ2": 7.755236453022007e-10,
+    "sum_lambda4_minus_trJ4": -1.5510508433180803e-9
+   },
+   "counts": {
+    "positiveRealAboveThreshold": 3,
+    "negativeRealBelowThreshold": 3,
+    "zeroExponents": 4,
+    "purelyImaginaryNonzero": 14,
+    "maxRealPart": 1.5012489820379598,
+    "maxAbsRealPart_on_exact_symmetry_exponents": 5.9286020368983345e-9
+   },
+   "frequencies_over_Omega": [
+    "0.985786798368",
+    "0.986304781557",
+    "0.999999988307",
+    "1.00000000000",
+    "1.00000001091",
+    "1.00756736120",
+    "1.73106587105",
+    "1.81290395951"
+   ],
+   "sectors": [
+    {
+     "m": 0,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       5.393622253917926e-16,
+       1.8352699365992764e-8
+      ],
+      [
+       -5.809955888152359e-16,
+       1.0075673611989315
+      ],
+      [
+       5.393622253917926e-16,
+       -1.8352699365992768e-8
+      ],
+      [
+       -5.80995588815236e-16,
+       -1.0075673611989315
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        5.393622253917926e-16,
+        -1.6543612251060553e-24
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.8352699365992764e-8,
+       "eigvecAbs": [
+        1.817116050335708e-8,
+        0.9999999999999997,
+        8.020421658880196e-17,
+        2.7311910189137264e-8
+       ],
+       "label": "rigid-rotation phase / circular-family shift (m=0 tangential, neutral)"
+      },
+      {
+       "lambda": [
+        -5.809955888152359e-16,
+        1.0075673611989315
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.31539861875373154,
+        0.6298843913932397,
+        0.3177853540234853,
+        0.6346509540964819
+       ],
+       "label": "breathing coupled to rotation-rate change (m=0 radial-tangential)"
+      },
+      {
+       "lambda": [
+        -5.80995588815236e-16,
+        -1.0075673611989315
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.31539861875373143,
+        0.6298843913932398,
+        0.3177853540234851,
+        0.6346509540964818
+       ],
+       "label": "breathing coupled to rotation-rate change (m=0 radial-tangential)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       0.000011774134846657025,
+       1.387267263e-315
+      ],
+      [
+       3.905312900571028e-10,
+       1.0075673612689218
+      ],
+      [
+       -0.000011774938011529359,
+       0
+      ],
+      [
+       3.905312900571028e-10,
+       -1.0075673612689218
+      ]
+     ]
+    },
+    {
+     "m": 0,
+     "kind": "axial",
+     "exponents": [
+      [
+       2.4628187465919647e-18,
+       -4.901479895401632e-19
+      ],
+      [
+       -1.4488532408848946e-18,
+       3.028726590271057e-19
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        5.069827528535351e-19,
+        -9.363766525652875e-20
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.9956239304203345e-18,
+       "eigvecAbs": [
+        0.9999999999999997,
+        2.610076619865292e-8
+       ],
+       "label": "uniform axial displacement (m=0 axial, neutral drift)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       2.592120573216178e-19,
+       -7.156727706312489e-7
+      ],
+      [
+       2.592120573216178e-19,
+       7.156727706312489e-7
+      ]
+     ]
+    },
+    {
+     "m": 1,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       4.842460389420722e-10,
+       0.9999999883066076
+      ],
+      [
+       -5.18863921431339e-10,
+       1.000000010913227
+      ],
+      [
+       -1.226521015555845,
+       -0.9863047815569487
+      ],
+      [
+       1.2265210155558448,
+       -0.9863047815569486
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -1.7308941244633385e-11,
+        0.9999999996099174
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.1314431859810318e-8,
+       "eigvecAbs": [
+        0.499999998340609,
+        0.49999999832130215,
+        0.500000001678698,
+        0.5000000016593913
+       ],
+       "label": "centre drift (m=1,3 in-plane: translation plus generalized-momentum partner, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        -1.226521015555845,
+        -0.9863047815569487
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3759574738626768,
+        0.382423523195928,
+        0.5917182395696702,
+        0.6018951334857081
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        1.2265210155558448,
+        -0.9863047815569486
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.37595747386267697,
+        0.382423523195928,
+        0.5917182395696706,
+        0.6018951334857079
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       0.000003799490748546935,
+       0.9999967717651737
+      ],
+      [
+       -0.000003799515687473917,
+       1.0000032282305207
+      ],
+      [
+       -1.226521015569441,
+       -0.9863047814378242
+      ],
+      [
+       1.2265210155664379,
+       -0.9863047816840544
+      ]
+     ]
+    },
+    {
+     "m": 1,
+     "kind": "axial",
+     "exponents": [
+      [
+       1.9220992895992688e-17,
+       1
+      ],
+      [
+       -1.9047401526119078e-17,
+       -0.9857867983681097
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.9220992895992688e-17,
+        1
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7071067811865475,
+        0.7071067811865476
+       ],
+       "label": "tilt of the ring plane (m=1,3 axial, rotation symmetry, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        -1.9047401526119078e-17,
+        -0.9857867983681097
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7121496327435823,
+        0.7020277064213211
+       ],
+       "label": "second axial m=1,3 mode (axial warp, not a symmetry)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -6.463790051299305e-17,
+       0.9999999999528831
+      ],
+      [
+       6.481906212112057e-17,
+       -0.9857867983209927
+      ]
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       -9.86636669272869e-18,
+       -1.8129039595093337
+      ],
+      [
+       -9.866366692728711e-18,
+       1.8129039595093337
+      ],
+      [
+       1.5012489820379598,
+       5.20137716094826e-32
+      ],
+      [
+       -1.5012489820379598,
+       -4.1249129824285125e-33
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -9.86636669272869e-18,
+        -1.8129039595093337
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.4395191620346824,
+        0.20026706453283066,
+        0.7968060291329001,
+        0.36306495425087987
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        -9.866366692728711e-18,
+        1.8129039595093337
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.4395191620346824,
+        0.20026706453283066,
+        0.7968060291329002,
+        0.36306495425087987
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        1.5012489820379598,
+        5.20137716094826e-32
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3400461434658065,
+        0.43784294982257,
+        0.5104939267239761,
+        0.6573112827136306
+       ],
+       "label": "alternating twist (m=2 tangential-dominant)"
+      },
+      {
+       "lambda": [
+        -1.5012489820379598,
+        -4.1249129824285125e-33
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.34004614346580647,
+        0.4378429498225701,
+        0.5104939267239761,
+        0.6573112827136307
+       ],
+       "label": "alternating twist (m=2 tangential-dominant)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       7.497794132884372e-11,
+       -1.812903959531145
+      ],
+      [
+       7.497794132884372e-11,
+       1.812903959531145
+      ],
+      [
+       1.5012489819897648,
+       2.932169330034108e-28
+      ],
+      [
+       -1.5012489821286696,
+       -9.419146683404248e-28
+      ]
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "axial",
+     "exponents": [
+      [
+       4.544153666212137e-20,
+       -1.7310658710464204
+      ],
+      [
+       4.544153666212137e-20,
+       1.7310658710464204
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        4.544153666212137e-20,
+        -1.7310658710464204
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.500213320820844,
+        0.8659022079157571
+       ],
+       "label": "alternating axial saddle (m=2 axial)"
+      },
+      {
+       "lambda": [
+        4.544153666212137e-20,
+        1.7310658710464204
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.5002133208208442,
+        0.8659022079157573
+       ],
+       "label": "alternating axial saddle (m=2 axial)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -1.7446881167258398e-19,
+       -1.7310658709820752
+      ],
+      [
+       -1.7446881167258398e-19,
+       1.7310658709820752
+      ]
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       1.2265210155558448,
+       0.9863047815569485
+      ],
+      [
+       -1.226521015555845,
+       0.9863047815569488
+      ],
+      [
+       -5.705739405146756e-9,
+       -1.0000000104387843
+      ],
+      [
+       5.9286020368983345e-9,
+       -0.9999999899536212
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.2265210155558448,
+        0.9863047815569485
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.37595747386267697,
+        0.38242352319592804,
+        0.5917182395696703,
+        0.6018951334857079
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        -1.226521015555845,
+        0.9863047815569488
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.37595747386267697,
+        0.3824235231959281,
+        0.5917182395696704,
+        0.601895133485708
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        1.1143131587578912e-10,
+        -1.0000000001962026
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.1779217057982155e-8,
+       "eigvecAbs": [
+        0.5000000020223508,
+        0.5000000020458802,
+        0.4999999979541195,
+        0.4999999979776491
+       ],
+       "label": "centre drift (m=1,3 in-plane: translation plus generalized-momentum partner, |lambda| = Omega)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       1.2265210155664379,
+       0.9863047816840543
+      ],
+      [
+       -1.226521015569441,
+       0.9863047814378243
+      ],
+      [
+       -0.000003799539786418995,
+       -1.0000032282159963
+      ],
+      [
+       0.000003799527099599139,
+       -0.9999967717901079
+      ]
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "axial",
+     "exponents": [
+      [
+       1.2572277016337839e-17,
+       -1
+      ],
+      [
+       -1.2398685646464233e-17,
+       0.9857867983681097
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.2572277016337839e-17,
+        -1
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7071067811865475,
+        0.7071067811865475
+       ],
+       "label": "tilt of the ring plane (m=1,3 axial, rotation symmetry, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        -1.2398685646464233e-17,
+        0.9857867983681097
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7121496327435823,
+        0.7020277064213213
+       ],
+       "label": "second axial m=1,3 mode (axial warp, not a symmetry)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -7.12866164016186e-17,
+       -0.9999999999528831
+      ],
+      [
+       7.146777800974611e-17,
+       0.9857867983209927
+      ]
+     ]
+    }
+   ],
+   "unstableModes": [
+    {
+     "m": 1,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.2265210155558448,
+      -0.9863047815569486
+     ],
+     "growthRate_over_Omega": 1.2265210155558448,
+     "growthTime_in_rotationPeriods": 0.12976128502760975,
+     "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.2265212271913382,
+       "threshold_3sqrtDelta": 0.004043593460337337,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.2265210176757586,
+       "threshold_3sqrtDelta": 0.00040434326105442064,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.2265210155664379,
+       "threshold_3sqrtDelta": 0.000042212612142039994,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.2265210155656174,
+       "threshold_3sqrtDelta": 0.00006629883811373326,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.5012489820379598,
+      5.20137716094826e-32
+     ],
+     "growthRate_over_Omega": 1.5012489820379598,
+     "growthTime_in_rotationPeriods": 0.106015021489534,
+     "label": "alternating twist (m=2 tangential-dominant)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.5012485906276327,
+       "threshold_3sqrtDelta": 0.004043593460337337,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.5012489781243246,
+       "threshold_3sqrtDelta": 0.00040434326105442064,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.5012489819897648,
+       "threshold_3sqrtDelta": 0.000042212612142039994,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.5012489820219248,
+       "threshold_3sqrtDelta": 0.00006629883811373326,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.2265210155558448,
+      0.9863047815569485
+     ],
+     "growthRate_over_Omega": 1.2265210155558448,
+     "growthTime_in_rotationPeriods": 0.12976128502760975,
+     "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.2265212271913382,
+       "threshold_3sqrtDelta": 0.004043593460337337,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.2265210176757588,
+       "threshold_3sqrtDelta": 0.00040434326105442064,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.2265210155664379,
+       "threshold_3sqrtDelta": 0.000042212612142039994,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.2265210155656174,
+       "threshold_3sqrtDelta": 0.00006629883811373326,
+       "confirmed": true
+      }
+     ]
+    }
+   ],
+   "verdict": "linearly unstable at R=50 in mode in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring) [m=1, inPlane] (growth rate 1.226521e+0 Omega, e-folding 0.12976129 rotation periods); alternating twist (m=2 tangential-dominant) [m=2, inPlane] (growth rate 1.501249e+0 Omega, e-folding 0.10601502 rotation periods); in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring) [m=3, inPlane] (growth rate 1.226521e+0 Omega, e-folding 0.12976129 rotation periods)"
+  },
+  {
+   "R": 100,
+   "domainLabel": "inside declared domain (speed <= 0.1, eps <= 0.05)",
+   "Omega": 0.0006771191906591982,
+   "v": 0.06771191906591982,
+   "period": 9279.289959368447,
+   "fixedPointResidual": 1.3552527156068805e-20,
+   "shiftCommutator": 5.5635565985515e-16,
+   "reversibility": 4.450845278841199e-16,
+   "fdStudy": [
+    {
+     "h": 0.001,
+     "delta_maxAbs_vs_exact": 0.0000018392651122134396
+    },
+    {
+     "h": 0.0001,
+     "delta_maxAbs_vs_exact": 1.8392306844194906e-8,
+     "fdSelfDiff_vs_previousStep": 0.00000182087317546209
+    },
+    {
+     "h": 0.00001,
+     "delta_maxAbs_vs_exact": 2.1842255781834297e-10,
+     "fdSelfDiff_vs_previousStep": 1.8229787013268606e-8
+    },
+    {
+     "h": 0.000001,
+     "delta_maxAbs_vs_exact": 4.688245902606525e-10,
+     "fdSelfDiff_vs_previousStep": 3.0667485217961143e-10
+    }
+   ],
+   "leakage": {
+    "sector": 5.091024756134164e-16,
+    "axialInPlane": 0
+   },
+   "powerSums": {
+    "sum_lambda_minus_trJ": 3.211640478091179e-10,
+    "sum_lambda2_minus_trJ2": 7.571046012344596e-10,
+    "sum_lambda4_minus_trJ4": -1.5142020970415615e-9
+   },
+   "counts": {
+    "positiveRealAboveThreshold": 3,
+    "negativeRealBelowThreshold": 3,
+    "zeroExponents": 4,
+    "purelyImaginaryNonzero": 14,
+    "maxRealPart": 1.5096489035321605,
+    "maxAbsRealPart_on_exact_symmetry_exponents": 1.3938759963208945e-8
+   },
+   "frequencies_over_Omega": [
+    "0.992911210214",
+    "0.993042161938",
+    "0.999999991551",
+    "1.00000000000",
+    "1.00000000720",
+    "1.00376675688",
+    "1.74492169379",
+    "1.81536195394"
+   ],
+   "sectors": [
+    {
+     "m": 0,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       -1.1650915503876195e-17,
+       1.4049900125221086e-8
+      ],
+      [
+       -1.610466011175272e-17,
+       1.0037667568807929
+      ],
+      [
+       -1.1650915503876194e-17,
+       -1.4049900125221086e-8
+      ],
+      [
+       -1.610466011175272e-17,
+       -1.0037667568807929
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -1.1650915503876195e-17,
+        0
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.4049900125221086e-8,
+       "eigvecAbs": [
+        1.5830730530200543e-8,
+        0.9999999999999994,
+        1.5763289106420546e-16,
+        2.3770054755496063e-8
+       ],
+       "label": "rigid-rotation phase / circular-family shift (m=0 tangential, neutral)"
+      },
+      {
+       "lambda": [
+        -1.610466011175272e-17,
+        1.0037667568807929
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3158166502731218,
+        0.6311735197702361,
+        0.317006254813607,
+        0.6335509969688047
+       ],
+       "label": "breathing coupled to rotation-rate change (m=0 radial-tangential)"
+      },
+      {
+       "lambda": [
+        -1.610466011175272e-17,
+        -1.0037667568807929
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3158166502731218,
+        0.6311735197702363,
+        0.31700625481360684,
+        0.6335509969688047
+       ],
+       "label": "breathing coupled to rotation-rate change (m=0 radial-tangential)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       0.000008819442838561776,
+       7.854549544476363e-90
+      ],
+      [
+       3.6852468888428007e-10,
+       1.0037667569171855
+      ],
+      [
+       -0.000008820196515000384,
+       0
+      ],
+      [
+       3.6852468888428007e-10,
+       -1.0037667569171855
+      ]
+     ]
+    },
+    {
+     "m": 0,
+     "kind": "axial",
+     "exponents": [
+      [
+       1.3938759963025698e-8,
+       0
+      ],
+      [
+       -1.3938759963208945e-8,
+       0
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -9.162348773004866e-20,
+        0
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.3938759963117321e-8,
+       "eigvecAbs": [
+        0.9999999999999996,
+        2.8057530662049698e-8
+       ],
+       "label": "uniform axial displacement (m=0 axial, neutral drift)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -3.765002866529617e-20,
+       -5.072417431135573e-7
+      ],
+      [
+       -3.765002866529617e-20,
+       5.072417431135573e-7
+      ]
+     ]
+    },
+    {
+     "m": 1,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       2.4302936287520112e-9,
+       0.9999999915509299
+      ],
+      [
+       -2.8526877557239485e-9,
+       1.0000000071980264
+      ],
+      [
+       -1.235108235650491,
+       -0.9930421619376488
+      ],
+      [
+       1.235108235650491,
+       -0.9930421619376488
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -2.1119706348596863e-10,
+        0.9999999993744781
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 8.257443935921076e-9,
+       "eigvecAbs": [
+        0.49999999820718366,
+        0.4999999981967286,
+        0.5000000018032714,
+        0.5000000017928165
+       ],
+       "label": "centre drift (m=1,3 in-plane: translation plus generalized-momentum partner, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        -1.235108235650491,
+        -0.9930421619376488
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3757434836190791,
+        0.37892647696320464,
+        0.5954823092181386,
+        0.6005267512628277
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        1.235108235650491,
+        -0.9930421619376488
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.37574348361907894,
+        0.3789264769632047,
+        0.5954823092181386,
+        0.6005267512628276
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       0.0000021569799106691696,
+       0.9999997818289713
+      ],
+      [
+       -0.000002156985849283957,
+       1.0000002181602825
+      ],
+      [
+       -1.2351082356700167,
+       -0.9930421618058421
+      ],
+      [
+       1.2351082356742267,
+       -0.9930421620714093
+      ]
+     ]
+    },
+    {
+     "m": 1,
+     "kind": "axial",
+     "exponents": [
+      [
+       -9.08222656416646e-18,
+       1
+      ],
+      [
+       8.825287393573368e-18,
+       -0.9929112102136687
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -9.08222656416646e-18,
+        1
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7071067811865475,
+        0.7071067811865475
+       ],
+       "label": "tilt of the ring plane (m=1,3 axial, rotation symmetry, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        8.825287393573368e-18,
+        -0.9929112102136687
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7096174725233547,
+        0.7045871434319289
+       ],
+       "label": "second axial m=1,3 mode (axial warp, not a symmetry)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       3.2699098659728264e-17,
+       0.999999999952563
+      ],
+      [
+       -3.295629326838127e-17,
+       -0.9929112101662316
+      ]
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       5.427115911627977e-17,
+       -1.8153619539383419
+      ],
+      [
+       5.4271159116279815e-17,
+       1.8153619539383419
+      ],
+      [
+       1.5096489035321605,
+       1.346364279189011e-32
+      ],
+      [
+       -1.5096489035321605,
+       -1.647205199238037e-32
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        5.427115911627977e-17,
+        -1.8153619539383419
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.4389018479920676,
+        0.20041163185222022,
+        0.7967657163580287,
+        0.363819651591218
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        5.4271159116279815e-17,
+        1.8153619539383419
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.43890184799206755,
+        0.20041163185222016,
+        0.796765716358029,
+        0.3638196515912181
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        1.5096489035321605,
+        1.346364279189011e-32
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3377586817909465,
+        0.43690547933208107,
+        0.5098970236241706,
+        0.6595738778208691
+       ],
+       "label": "alternating twist (m=2 tangential-dominant)"
+      },
+      {
+       "lambda": [
+        -1.5096489035321605,
+        -1.647205199238037e-32
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.33775868179094654,
+        0.4369054793320809,
+        0.5098970236241704,
+        0.6595738778208691
+       ],
+       "label": "alternating twist (m=2 tangential-dominant)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       7.52188141102818e-11,
+       -1.8153619539537738
+      ],
+      [
+       7.521881411028181e-11,
+       1.8153619539537738
+      ],
+      [
+       1.5096489034970821,
+       7.826672908808383e-28
+      ],
+      [
+       -1.5096489036290455,
+       -9.104563284655228e-28
+      ]
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "axial",
+     "exponents": [
+      [
+       2.3363713021425756e-19,
+       -1.7449216937936116
+      ],
+      [
+       2.336371302142717e-19,
+       1.7449216937936116
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        2.3363713021425756e-19,
+        -1.7449216937936116
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.4972262702983669,
+        0.8676209057677065
+       ],
+       "label": "alternating axial saddle (m=2 axial)"
+      },
+      {
+       "lambda": [
+        2.336371302142717e-19,
+        1.7449216937936116
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.49722627029836697,
+        0.8676209057677065
+       ],
+       "label": "alternating axial saddle (m=2 axial)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       1.791904058317977e-19,
+       -1.7449216937284635
+      ],
+      [
+       1.791904058318118e-19,
+       1.7449216937284635
+      ]
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       1.235108235650491,
+       0.9930421619376488
+      ],
+      [
+       -1.235108235650491,
+       0.9930421619376488
+      ],
+      [
+       -8.562733238454149e-9,
+       -1.0000000109199738
+      ],
+      [
+       9.306291405675358e-9,
+       -0.9999999899525153
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.235108235650491,
+        0.9930421619376488
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.375743483619079,
+        0.3789264769632048,
+        0.5954823092181386,
+        0.6005267512628276
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        -1.235108235650491,
+        0.9930421619376488
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.37574348361907906,
+        0.3789264769632047,
+        0.5954823092181385,
+        0.6005267512628275
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        3.7177908361060467e-10,
+        -1.0000000004362446
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.3774399844603567e-8,
+       "eigvecAbs": [
+        0.5000000024629148,
+        0.5000000024772775,
+        0.49999999752272245,
+        0.4999999975370851
+       ],
+       "label": "centre drift (m=1,3 in-plane: translation plus generalized-momentum partner, |lambda| = Omega)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       1.2351082356742267,
+       0.9930421620714093
+      ],
+      [
+       -1.2351082356700167,
+       0.9930421618058421
+      ],
+      [
+       0.0000021569705132422814,
+       -0.9999997817893795
+      ],
+      [
+       -0.0000021569523443936706,
+       -1.0000002182023129
+      ]
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "axial",
+     "exponents": [
+      [
+       1.4793540738022705e-17,
+       0.9929112102136686
+      ],
+      [
+       -1.5050479908615794e-17,
+       -0.9999999999999999
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.4793540738022705e-17,
+        0.9929112102136686
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7096174725233549,
+        0.7045871434319291
+       ],
+       "label": "second axial m=1,3 mode (axial warp, not a symmetry)"
+      },
+      {
+       "lambda": [
+        -1.5050479908615794e-17,
+        -0.9999999999999999
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7071067811865475,
+        0.7071067811865475
+       ],
+       "label": "tilt of the ring plane (m=1,3 axial, rotation symmetry, |lambda| = Omega)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -2.6988039914933767e-17,
+       0.9929112101662315
+      ],
+      [
+       2.6730845306280763e-17,
+       -0.9999999999525628
+      ]
+     ]
+    }
+   ],
+   "unstableModes": [
+    {
+     "m": 1,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.235108235650491,
+      -0.9930421619376488
+     ],
+     "growthRate_over_Omega": 1.235108235650491,
+     "growthTime_in_rotationPeriods": 0.12885910602650436,
+     "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.2351084545384916,
+       "threshold_3sqrtDelta": 0.004068585259020752,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.2351082378411637,
+       "threshold_3sqrtDelta": 0.0004068547180477991,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.2351082356742267,
+       "threshold_3sqrtDelta": 0.000044337377238229674,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.2351082356484986,
+       "threshold_3sqrtDelta": 0.00006495707284311596,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.5096489035321605,
+      1.346364279189011e-32
+     ],
+     "growthRate_over_Omega": 1.5096489035321605,
+     "growthTime_in_rotationPeriods": 0.10542513740745735,
+     "label": "alternating twist (m=2 tangential-dominant)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.5096485166961136,
+       "threshold_3sqrtDelta": 0.004068585259020752,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.509648899666028,
+       "threshold_3sqrtDelta": 0.0004068547180477991,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.5096489034970821,
+       "threshold_3sqrtDelta": 0.000044337377238229674,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.5096489034715748,
+       "threshold_3sqrtDelta": 0.00006495707284311596,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.235108235650491,
+      0.9930421619376488
+     ],
+     "growthRate_over_Omega": 1.235108235650491,
+     "growthTime_in_rotationPeriods": 0.12885910602650436,
+     "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.2351084545384918,
+       "threshold_3sqrtDelta": 0.004068585259020752,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.235108237841164,
+       "threshold_3sqrtDelta": 0.0004068547180477991,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.2351082356742267,
+       "threshold_3sqrtDelta": 0.000044337377238229674,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.2351082356484986,
+       "threshold_3sqrtDelta": 0.00006495707284311596,
+       "confirmed": true
+      }
+     ]
+    }
+   ],
+   "verdict": "linearly unstable at R=100 in mode in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring) [m=1, inPlane] (growth rate 1.235108e+0 Omega, e-folding 0.12885911 rotation periods); alternating twist (m=2 tangential-dominant) [m=2, inPlane] (growth rate 1.509649e+0 Omega, e-folding 0.10542514 rotation periods); in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring) [m=3, inPlane] (growth rate 1.235108e+0 Omega, e-folding 0.12885911 rotation periods)"
+  },
+  {
+   "R": 200,
+   "domainLabel": "inside declared domain (speed <= 0.1, eps <= 0.05)",
+   "Omega": 0.00023921683268970955,
+   "v": 0.04784336653794191,
+   "period": 26265.648769497613,
+   "fixedPointResidual": 5.082197683525802e-21,
+   "shiftCommutator": 4.72378758805591e-16,
+   "reversibility": 4.445917729934974e-16,
+   "fdStudy": [
+    {
+     "h": 0.001,
+     "delta_maxAbs_vs_exact": 0.0000018508720148746605
+    },
+    {
+     "h": 0.0001,
+     "delta_maxAbs_vs_exact": 1.8509337451622088e-8,
+     "fdSelfDiff_vs_previousStep": 0.0000018323659340402365
+    },
+    {
+     "h": 0.00001,
+     "delta_maxAbs_vs_exact": 2.0200469075248861e-10,
+     "fdSelfDiff_vs_previousStep": 1.8349148533935988e-8
+    },
+    {
+     "h": 0.000001,
+     "delta_maxAbs_vs_exact": 5.861960361563945e-10,
+     "fdSelfDiff_vs_previousStep": 3.922497882058451e-10
+    }
+   ],
+   "leakage": {
+    "sector": 4.856398434385105e-16,
+    "axialInPlane": 0
+   },
+   "powerSums": {
+    "sum_lambda_minus_trJ": 2.961345156642006e-9,
+    "sum_lambda2_minus_trJ2": 1.924307824197058e-9,
+    "sum_lambda4_minus_trJ4": -3.8486049902530794e-9
+   },
+   "counts": {
+    "positiveRealAboveThreshold": 3,
+    "negativeRealBelowThreshold": 3,
+    "zeroExponents": 4,
+    "purelyImaginaryNonzero": 14,
+    "maxRealPart": 1.5138328210664145,
+    "maxAbsRealPart_on_exact_symmetry_exponents": 1.5644884482367064e-8
+   },
+   "frequencies_over_Omega": [
+    "0.996460041145",
+    "0.996492965236",
+    "0.999999995185",
+    "1.00000000000",
+    "1.00000000420",
+    "1.00187917887",
+    "1.75190671292",
+    "1.81657784385"
+   ],
+   "sectors": [
+    {
+     "m": 0,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       -1.4911669611158373e-16,
+       4.288945384841176e-8
+      ],
+      [
+       1.7687227172721267e-16,
+       1.0018791788746848
+      ],
+      [
+       -1.4911669611158373e-16,
+       -4.288945384841176e-8
+      ],
+      [
+       1.768722717272127e-16,
+       -1.0018791788746848
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -1.4911669611158373e-16,
+        0
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 4.288945384841176e-8,
+       "eigvecAbs": [
+        1.0683580897529708e-8,
+        0.9999999999999999,
+        8.961378490627833e-16,
+        1.6033443688749053e-8
+       ],
+       "label": "rigid-rotation phase / circular-family shift (m=0 tangential, neutral)"
+      },
+      {
+       "lambda": [
+        1.7687227172721267e-16,
+        1.0018791788746848
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.31602306749518083,
+        0.6318154114932214,
+        0.3166169313675311,
+        0.6330027056672002
+       ],
+       "label": "breathing coupled to rotation-rate change (m=0 radial-tangential)"
+      },
+      {
+       "lambda": [
+        1.768722717272127e-16,
+        -1.0018791788746848
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.31602306749518083,
+        0.6318154114932215,
+        0.31661693136753094,
+        0.6330027056672001
+       ],
+       "label": "breathing coupled to rotation-rate change (m=0 radial-tangential)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       0.000007284251743058572,
+       -9.464112186e-315
+      ],
+      [
+       3.507718628609874e-10,
+       1.001879178885191
+      ],
+      [
+       -0.000007284951436597623,
+       0
+      ],
+      [
+       3.507718628609874e-10,
+       -1.001879178885191
+      ]
+     ]
+    },
+    {
+     "m": 0,
+     "kind": "axial",
+     "exponents": [
+      [
+       -5.977520201207408e-20,
+       -1.0536712127723507e-8
+      ],
+      [
+       -5.977520201207408e-20,
+       1.0536712127723509e-8
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -5.977520201207408e-20,
+        8.271806125530277e-25
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.0536712127723507e-8,
+       "eigvecAbs": [
+        0.9999999999999999,
+        2.4997785154080065e-8
+       ],
+       "label": "uniform axial displacement (m=0 axial, neutral drift)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -5.991811196950678e-20,
+       -3.586740762564811e-7
+      ],
+      [
+       -5.991811196950678e-20,
+       3.586740762564811e-7
+      ]
+     ]
+    },
+    {
+     "m": 1,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       -1.3642061973959046e-8,
+       0.9999999951849945
+      ],
+      [
+       1.5644884482367064e-8,
+       1.0000000041985995
+      ],
+      [
+       -1.239422689902654,
+       -0.9964929652355281
+      ],
+      [
+       1.239422689902654,
+       -0.996492965235528
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.0014112542040087e-9,
+        0.999999999691797
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.532131119841199e-8,
+       "eigvecAbs": [
+        0.499999997829216,
+        0.4999999978228787,
+        0.5000000021771214,
+        0.5000000021707841
+       ],
+       "label": "centre drift (m=1,3 in-plane: translation plus generalized-momentum partner, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        -1.239422689902654,
+        -0.9964929652355281
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.37560901403814845,
+        0.37718810395246777,
+        0.5973443292405094,
+        0.5998556119052637
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        1.239422689902654,
+        -0.996492965235528
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.37560901403814856,
+        0.3771881039524677,
+        0.5973443292405092,
+        0.5998556119052635
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       0.000005026905279474726,
+       0.9999983891861209
+      ],
+      [
+       -0.0000050269121092418905,
+       1.0000016108129124
+      ],
+      [
+       -1.2394226899202294,
+       -0.9964929651100516
+      ],
+      [
+       1.2394226899165415,
+       -0.9964929653694222
+      ]
+     ]
+    },
+    {
+     "m": 1,
+     "kind": "axial",
+     "exponents": [
+      [
+       1.8763165929435514e-17,
+       0.9999999999999998
+      ],
+      [
+       -1.880829675780631e-17,
+       -0.9964600411454989
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.8763165929435514e-17,
+        0.9999999999999998
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7071067811865475,
+        0.7071067811865474
+       ],
+       "label": "tilt of the ring plane (m=1,3 axial, rotation symmetry, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        -1.880829675780631e-17,
+        -0.9964600411454989
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.708359451292015,
+        0.7058518879802443
+       ],
+       "label": "second axial m=1,3 mode (axial warp, not a symmetry)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       4.860684432955662e-18,
+       0.9999999999524035
+      ],
+      [
+       -4.905988431012997e-18,
+       -0.9964600410979026
+      ]
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       -2.6529224916824356e-17,
+       -1.8165778438544173
+      ],
+      [
+       -2.6529224916824402e-17,
+       1.8165778438544173
+      ],
+      [
+       1.5138328210664145,
+       1.5437596224162742e-32
+      ],
+      [
+       -1.5138328210664145,
+       3.928931066228763e-32
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -2.6529224916824356e-17,
+        -1.8165778438544173
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.43859624829054705,
+        0.2004841662032511,
+        0.7967442270422787,
+        0.36419509436845254
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        -2.6529224916824402e-17,
+        1.8165778438544173
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.43859624829054705,
+        0.20048416620325116,
+        0.7967442270422788,
+        0.3641950943684526
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        1.5138328210664145,
+        1.5437596224162742e-32
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.33662800704261403,
+        0.4364366131133464,
+        0.5095985255512854,
+        0.6606920692460484
+       ],
+       "label": "alternating twist (m=2 tangential-dominant)"
+      },
+      {
+       "lambda": [
+        -1.5138328210664145,
+        3.928931066228763e-32
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.336628007042614,
+        0.4364366131133464,
+        0.5095985255512854,
+        0.6606920692460483
+       ],
+       "label": "alternating twist (m=2 tangential-dominant)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       7.510726278645283e-11,
+       -1.8165778438768976
+      ],
+      [
+       7.510726278645283e-11,
+       1.8165778438768976
+      ],
+      [
+       1.5138328210235974,
+       -2.4316955292286034e-28
+      ],
+      [
+       -1.5138328211701115,
+       -1.285032487454951e-27
+      ]
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "axial",
+     "exponents": [
+      [
+       1.0285512386075863e-19,
+       -1.751906712918899
+      ],
+      [
+       1.0285512386074456e-19,
+       1.7519067129188992
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.0285512386075863e-19,
+        -1.751906712918899
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.49573171294344054,
+        0.8684757157123982
+       ],
+       "label": "alternating axial saddle (m=2 axial)"
+      },
+      {
+       "lambda": [
+        1.0285512386074456e-19,
+        1.7519067129188992
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.4957317129434406,
+        0.868475715712398
+       ],
+       "label": "alternating axial saddle (m=2 axial)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       1.0271221390329778e-19,
+       -1.751906712853346
+      ],
+      [
+       1.0271221390334001e-19,
+       1.751906712853346
+      ]
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       1.239422689902654,
+       0.9964929652355281
+      ],
+      [
+       -1.239422689902654,
+       0.9964929652355282
+      ],
+      [
+       1.0281318814838932e-8,
+       -1.0000000033628382
+      ],
+      [
+       -9.322796232137745e-9,
+       -0.9999999962914119
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.239422689902654,
+        0.9964929652355281
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3756090140381486,
+        0.37718810395246766,
+        0.5973443292405094,
+        0.5998556119052636
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        -1.239422689902654,
+        0.9964929652355282
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3756090140381486,
+        0.37718810395246766,
+        0.5973443292405095,
+        0.5998556119052638
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        4.792612913505936e-10,
+        -0.9999999998271251
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.0420249483140445e-8,
+       "eigvecAbs": [
+        0.5000000018448293,
+        0.5000000018502151,
+        0.4999999981497852,
+        0.4999999981551707
+       ],
+       "label": "centre drift (m=1,3 in-plane: translation plus generalized-momentum partner, |lambda| = Omega)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       1.2394226899165413,
+       0.9964929653694222
+      ],
+      [
+       -1.2394226899202292,
+       0.9964929651100516
+      ],
+      [
+       0.000005026893877862893,
+       -0.9999983891741975
+      ],
+      [
+       -0.0000050268986601423,
+       -1.000001610825492
+      ]
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "axial",
+     "exponents": [
+      [
+       -1.3177185141422163e-17,
+       0.9964600411454989
+      ],
+      [
+       1.3132054313051368e-17,
+       -0.9999999999999998
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -1.3177185141422163e-17,
+        0.9964600411454989
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.708359451292015,
+        0.7058518879802442
+       ],
+       "label": "second axial m=1,3 mode (axial warp, not a symmetry)"
+      },
+      {
+       "lambda": [
+        1.3132054313051368e-17,
+        -0.9999999999999998
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7071067811865477,
+        0.7071067811865476
+       ],
+       "label": "tilt of the ring plane (m=1,3 axial, rotation symmetry, |lambda| = Omega)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       7.251231943829306e-19,
+       0.9964600410979026
+      ],
+      [
+       -7.704271924402657e-19,
+       -0.9999999999524035
+      ]
+     ]
+    }
+   ],
+   "unstableModes": [
+    {
+     "m": 1,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.239422689902654,
+      -0.996492965235528
+     ],
+     "growthRate_over_Omega": 1.239422689902654,
+     "growthTime_in_rotationPeriods": 0.1284105449968772,
+     "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.2394229125361582,
+       "threshold_3sqrtDelta": 0.004081402716453247,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.2394226921309424,
+       "threshold_3sqrtDelta": 0.00040814707773619897,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.2394226899165415,
+       "threshold_3sqrtDelta": 0.00004263850626807179,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.2394226900483136,
+       "threshold_3sqrtDelta": 0.00007263445687418301,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.5138328210664145,
+      1.5437596224162742e-32
+     ],
+     "growthRate_over_Omega": 1.5138328210664145,
+     "growthTime_in_rotationPeriods": 0.10513376436096766,
+     "label": "alternating twist (m=2 tangential-dominant)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.5138324365566738,
+       "threshold_3sqrtDelta": 0.004081402716453247,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.5138328172215074,
+       "threshold_3sqrtDelta": 0.00040814707773619897,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.5138328210235974,
+       "threshold_3sqrtDelta": 0.00004263850626807179,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.5138328209390732,
+       "threshold_3sqrtDelta": 0.00007263445687418301,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.239422689902654,
+      0.9964929652355281
+     ],
+     "growthRate_over_Omega": 1.239422689902654,
+     "growthTime_in_rotationPeriods": 0.1284105449968772,
+     "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.239422912536158,
+       "threshold_3sqrtDelta": 0.004081402716453247,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.2394226921309424,
+       "threshold_3sqrtDelta": 0.00040814707773619897,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.2394226899165413,
+       "threshold_3sqrtDelta": 0.00004263850626807179,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.2394226900483136,
+       "threshold_3sqrtDelta": 0.00007263445687418301,
+       "confirmed": true
+      }
+     ]
+    }
+   ],
+   "verdict": "linearly unstable at R=200 in mode in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring) [m=1, inPlane] (growth rate 1.239423e+0 Omega, e-folding 0.12841054 rotation periods); alternating twist (m=2 tangential-dominant) [m=2, inPlane] (growth rate 1.513833e+0 Omega, e-folding 0.10513376 rotation periods); in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring) [m=3, inPlane] (growth rate 1.239423e+0 Omega, e-folding 0.12841054 rotation periods)"
+  },
+  {
+   "R": 5,
+   "domainLabel": "OUTSIDE declared domain: adapted-law statement only",
+   "Omega": 0.06238382511060109,
+   "v": 0.31191912555300544,
+   "period": 100.71817968904674,
+   "fixedPointResidual": 1.3877787807814457e-17,
+   "shiftCommutator": 5.712471132468766e-16,
+   "reversibility": 4.569976905975013e-16,
+   "fdStudy": [
+    {
+     "h": 0.001,
+     "delta_maxAbs_vs_exact": 0.0000015297684706760961
+    },
+    {
+     "h": 0.0001,
+     "delta_maxAbs_vs_exact": 1.529781978870659e-8,
+     "fdSelfDiff_vs_previousStep": 0.0000015144712526282689
+    },
+    {
+     "h": 0.00001,
+     "delta_maxAbs_vs_exact": 1.6774087674420457e-10,
+     "fdSelfDiff_vs_previousStep": 1.5155767890684402e-8
+    },
+    {
+     "h": 0.000001,
+     "delta_maxAbs_vs_exact": 4.3518771919437427e-10,
+     "fdSelfDiff_vs_previousStep": 3.8334050517230267e-10
+    }
+   ],
+   "leakage": {
+    "sector": 3.209295566382222e-16,
+    "axialInPlane": 0
+   },
+   "powerSums": {
+    "sum_lambda_minus_trJ": 3.674762879813605e-11,
+    "sum_lambda2_minus_trJ2": 1.8696155734687636e-11,
+    "sum_lambda4_minus_trJ4": -3.737454790098127e-11
+   },
+   "counts": {
+    "positiveRealAboveThreshold": 3,
+    "negativeRealBelowThreshold": 3,
+    "zeroExponents": 4,
+    "purelyImaginaryNonzero": 14,
+    "maxRealPart": 1.3414546916929364,
+    "maxAbsRealPart_on_exact_symmetry_exponents": 1.2967525443678797e-8
+   },
+   "frequencies_over_Omega": [
+    "0.851135414487",
+    "0.894842651265",
+    "0.999999996899",
+    "1.00000000000",
+    "1.00000000309",
+    "1.08240352251",
+    "1.50398899941",
+    "1.76146817312"
+   ],
+   "sectors": [
+    {
+     "m": 0,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       3.240715491620362e-16,
+       4.040502529948115e-8
+      ],
+      [
+       -3.79582700393294e-16,
+       1.0824035225146356
+      ],
+      [
+       3.2407154916203613e-16,
+       -4.0405025299481146e-8
+      ],
+      [
+       -3.79582700393294e-16,
+       -1.0824035225146356
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        3.2407154916203613e-16,
+        3.308722450212111e-24
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 4.0405025299481146e-8,
+       "eigvecAbs": [
+        1.0683615112140195e-8,
+        0.9999999999999998,
+        8.005420266788603e-16,
+        1.636853813537503e-8
+       ],
+       "label": "rigid-rotation phase / circular-family shift (m=0 tangential, neutral)"
+      },
+      {
+       "lambda": [
+        -3.79582700393294e-16,
+        1.0824035225146356
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3065912689012084,
+        0.6053860830489601,
+        0.33185546943090005,
+        0.6552720287735326
+       ],
+       "label": "breathing coupled to rotation-rate change (m=0 radial-tangential)"
+      },
+      {
+       "lambda": [
+        -3.79582700393294e-16,
+        -1.0824035225146356
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.30659126890120847,
+        0.6053860830489601,
+        0.3318554694309002,
+        0.6552720287735327
+       ],
+       "label": "breathing coupled to rotation-rate change (m=0 radial-tangential)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       0.000008260992593807171,
+       -7.854549544476363e-90
+      ],
+      [
+       2.64665293817553e-10,
+       1.082403522512504
+      ],
+      [
+       -0.000008261539754160247,
+       0
+      ],
+      [
+       2.64665293817553e-10,
+       -1.082403522512504
+      ]
+     ]
+    },
+    {
+     "m": 0,
+     "kind": "axial",
+     "exponents": [
+      [
+       1.2904784138667244e-8,
+       0
+      ],
+      [
+       -1.2904784140850603e-8,
+       0
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -1.0916798852229838e-18,
+        0
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.2904784139758924e-8,
+       "eigvecAbs": [
+        0.9999999999999996,
+        2.7776544494651758e-8
+       ],
+       "label": "uniform axial displacement (m=0 axial, neutral drift)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -1.0039446799858847e-18,
+       -0.0000022220974105606587
+      ],
+      [
+       -1.0039446799858847e-18,
+       0.0000022220974105606583
+      ]
+     ]
+    },
+    {
+     "m": 1,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       1.2967525443678797e-8,
+       1.0000000030910883
+      ],
+      [
+       -1.292450697486755e-8,
+       0.9999999968986231
+      ],
+      [
+       -1.0773972516760728,
+       -0.8948426512646769
+      ],
+      [
+       1.0773972516760728,
+       -0.8948426512646769
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        2.1509234405623855e-11,
+        0.9999999999948557
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.3311122868736489e-8,
+       "eigvecAbs": [
+        0.4999999981772892,
+        0.49999999797412,
+        0.5000000020258801,
+        0.5000000018227108
+       ],
+       "label": "centre drift (m=1,3 in-plane: translation plus generalized-momentum partner, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        -1.0773972516760728,
+        -0.8948426512646769
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.36630902070904736,
+        0.4510889136624473,
+        0.5130325173719866,
+        0.6317706304007604
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        1.0773972516760728,
+        -0.8948426512646769
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3663090207090474,
+        0.45108891366244724,
+        0.5130325173719866,
+        0.6317706304007603
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -0.000001089688612382315,
+       0.9999956454283923
+      ],
+      [
+       0.0000010896716165349757,
+       1.0000043545931643
+      ],
+      [
+       -1.0773972516881638,
+       -0.8948426511823164
+      ],
+      [
+       1.0773972516767567,
+       -0.894842651357739
+      ]
+     ]
+    },
+    {
+     "m": 1,
+     "kind": "axial",
+     "exponents": [
+      [
+       -1.9698048566987575e-17,
+       0.9999999999999996
+      ],
+      [
+       2.2322053055570344e-17,
+       -0.8511354144870422
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -1.9698048566987575e-17,
+        0.9999999999999996
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7071067811865478,
+        0.7071067811865475
+       ],
+       "label": "tilt of the ring plane (m=1,3 axial, rotation symmetry, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        2.2322053055570344e-17,
+        -0.8511354144870422
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7615124833509963,
+        0.648150243154007
+       ],
+       "label": "second axial m=1,3 mode (axial warp, not a symmetry)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       2.5033948165421185e-17,
+       0.9999999999592174
+      ],
+      [
+       -2.287168721706534e-17,
+       -0.8511354144462601
+      ]
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       -1.3138100033704767e-16,
+       -1.7614681731155934
+      ],
+      [
+       -1.3138100033704772e-16,
+       1.7614681731155934
+      ],
+      [
+       -1.3414546916929364,
+       -1.0300462620334776e-32
+      ],
+      [
+       1.3414546916929364,
+       -5.6068942649207435e-33
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -1.3138100033704767e-16,
+        -1.7614681731155934
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.45230855543795273,
+        0.19787554338120575,
+        0.7967271248318438,
+        0.34855147190394786
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        -1.3138100033704772e-16,
+        1.7614681731155934
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.45230855543795284,
+        0.19787554338120578,
+        0.7967271248318438,
+        0.3485514719039478
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        -1.3414546916929364,
+        -1.0300462620334776e-32
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3884319030901938,
+        0.4542325535239775,
+        0.5210637988035565,
+        0.6093323900444026
+       ],
+       "label": "alternating twist (m=2 tangential-dominant)"
+      },
+      {
+       "lambda": [
+        1.3414546916929364,
+        -5.6068942649207435e-33
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.38843190309019365,
+        0.4542325535239776,
+        0.5210637988035566,
+        0.6093323900444026
+       ],
+       "label": "alternating twist (m=2 tangential-dominant)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       6.941568553054229e-11,
+       -1.7614681731390016
+      ],
+      [
+       6.941568553054227e-11,
+       1.7614681731390016
+      ],
+      [
+       -1.3414546917972165,
+       -1.4315052124717117e-28
+      ],
+      [
+       1.3414546916516992,
+       -3.669812023350656e-27
+      ]
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "axial",
+     "exponents": [
+      [
+       -1.0916796367855571e-18,
+       -1.5039889994100517
+      ],
+      [
+       -1.0916796367855408e-18,
+       1.5039889994100517
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -1.0916796367855571e-18,
+        -1.5039889994100517
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.5536804118613494,
+        0.832729248628296
+       ],
+       "label": "alternating axial saddle (m=2 axial)"
+      },
+      {
+       "lambda": [
+        -1.0916796367855408e-18,
+        1.5039889994100517
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.5536804118613493,
+        0.8327292486282961
+       ],
+       "label": "alternating axial saddle (m=2 axial)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -1.003944679985889e-18,
+       -1.5039889993589737
+      ],
+      [
+       -1.0039446799858809e-18,
+       1.5039889993589737
+      ]
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       1.0773972516760728,
+       0.894842651264677
+      ],
+      [
+       -1.0773972516760728,
+       0.894842651264677
+      ],
+      [
+       1.2943377239141306e-8,
+       -1.0000000019387878
+      ],
+      [
+       -1.2949647656955272e-8,
+       -0.999999998062151
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.0773972516760728,
+        0.894842651264677
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.36630902070904736,
+        0.4510889136624474,
+        0.5130325173719866,
+        0.6317706304007604
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        -1.0773972516760728,
+        0.894842651264677
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3663090207090473,
+        0.45108891366244724,
+        0.5130325173719865,
+        0.6317706304007603
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        -3.135208906982579e-12,
+        -1.0000000000004694
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.3090808331291799e-8,
+       "eigvecAbs": [
+        0.5000000013831606,
+        0.5000000015373348,
+        0.49999999846266496,
+        0.4999999986168397
+       ],
+       "label": "centre drift (m=1,3 in-plane: translation plus generalized-momentum partner, |lambda| = Omega)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       1.0773972516767567,
+       0.8948426513577391
+      ],
+      [
+       -1.0773972516881638,
+       0.8948426511823165
+      ],
+      [
+       0.0000010896686764148996,
+       -1.0000043545915807
+      ],
+      [
+       -0.0000010896844803295277,
+       -0.9999956454252127
+      ]
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "axial",
+     "exponents": [
+      [
+       -4.019249206562185e-17,
+       -0.9999999999999997
+      ],
+      [
+       4.281649655420462e-17,
+       0.8511354144870423
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -4.019249206562185e-17,
+        -0.9999999999999997
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7071067811865477,
+        0.7071067811865474
+       ],
+       "label": "tilt of the ring plane (m=1,3 axial, rotation symmetry, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        4.281649655420462e-17,
+        0.8511354144870423
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7615124833509964,
+        0.6481502431540073
+       ],
+       "label": "second axial m=1,3 mode (axial warp, not a symmetry)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       4.539504658392308e-18,
+       -0.9999999999592173
+      ],
+      [
+       -2.3772437100364577e-18,
+       0.85113541444626
+      ]
+     ]
+    }
+   ],
+   "unstableModes": [
+    {
+     "m": 1,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.0773972516760728,
+      -0.8948426512646769
+     ],
+     "growthRate_over_Omega": 1.0773972516760728,
+     "growthTime_in_rotationPeriods": 0.1477216902533425,
+     "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.0773973755548396,
+       "threshold_3sqrtDelta": 0.003710514281886659,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.0773972529150149,
+       "threshold_3sqrtDelta": 0.0003710530664182137,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.0773972516767567,
+       "threshold_3sqrtDelta": 0.00003885444492844855,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.0773972516042005,
+       "threshold_3sqrtDelta": 0.00006258346005734557,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.3414546916929364,
+      -5.6068942649207435e-33
+     ],
+     "growthRate_over_Omega": 1.3414546916929364,
+     "growthTime_in_rotationPeriods": 0.11864354724574362,
+     "label": "alternating twist (m=2 tangential-dominant)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.341454231432362,
+       "threshold_3sqrtDelta": 0.003710514281886659,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.34145468708966,
+       "threshold_3sqrtDelta": 0.0003710530664182137,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.3414546916516992,
+       "threshold_3sqrtDelta": 0.00003885444492844855,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.3414546918007084,
+       "threshold_3sqrtDelta": 0.00006258346005734557,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.0773972516760728,
+      0.894842651264677
+     ],
+     "growthRate_over_Omega": 1.0773972516760728,
+     "growthTime_in_rotationPeriods": 0.1477216902533425,
+     "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.0773973755548396,
+       "threshold_3sqrtDelta": 0.003710514281886659,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.0773972529150149,
+       "threshold_3sqrtDelta": 0.0003710530664182137,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.0773972516767567,
+       "threshold_3sqrtDelta": 0.00003885444492844855,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.0773972516042005,
+       "threshold_3sqrtDelta": 0.00006258346005734557,
+       "confirmed": true
+      }
+     ]
+    }
+   ],
+   "verdict": "linearly unstable at R=5 in mode in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring) [m=1, inPlane] (growth rate 1.077397e+0 Omega, e-folding 0.14772169 rotation periods); alternating twist (m=2 tangential-dominant) [m=2, inPlane] (growth rate 1.341455e+0 Omega, e-folding 0.11864355 rotation periods); in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring) [m=3, inPlane] (growth rate 1.077397e+0 Omega, e-folding 0.14772169 rotation periods)"
+  },
+  {
+   "R": 20,
+   "domainLabel": "OUTSIDE declared domain: adapted-law statement only",
+   "Omega": 0.007616672953830355,
+   "v": 0.1523334590766071,
+   "period": 824.9251799658578,
+   "fixedPointResidual": 1.3010426069826053e-18,
+   "shiftCommutator": 6.730215324002792e-16,
+   "reversibility": 4.48681021600186e-16,
+   "fdStudy": [
+    {
+     "h": 0.001,
+     "delta_maxAbs_vs_exact": 0.000001754273118492744
+    },
+    {
+     "h": 0.0001,
+     "delta_maxAbs_vs_exact": 1.7542188479602316e-8,
+     "fdSelfDiff_vs_previousStep": 0.0000017367327751482975
+    },
+    {
+     "h": 0.00001,
+     "delta_maxAbs_vs_exact": 1.871035271161503e-10,
+     "fdSelfDiff_vs_previousStep": 1.7383550487970467e-8
+    },
+    {
+     "h": 0.000001,
+     "delta_maxAbs_vs_exact": 4.949447518498573e-10,
+     "fdSelfDiff_vs_previousStep": 5.886946485844646e-10
+    }
+   ],
+   "leakage": {
+    "sector": 3.9924234078266517e-16,
+    "axialInPlane": 0
+   },
+   "powerSums": {
+    "sum_lambda_minus_trJ": -1.8701636110005834e-11,
+    "sum_lambda2_minus_trJ2": 1.1181011672078967e-9,
+    "sum_lambda4_minus_trJ4": -2.236191676274757e-9
+   },
+   "counts": {
+    "positiveRealAboveThreshold": 3,
+    "negativeRealBelowThreshold": 3,
+    "zeroExponents": 4,
+    "purelyImaginaryNonzero": 14,
+    "maxRealPart": 1.475783537281442,
+    "maxAbsRealPart_on_exact_symmetry_exponents": 1.393875996319372e-8
+   },
+   "frequencies_over_Omega": [
+    "0.964197125003",
+    "0.967331598683",
+    "0.999999979422",
+    "1.00000000000",
+    "1.00000002007",
+    "1.01917739815",
+    "1.69037866681",
+    "1.80531183576"
+   ],
+   "sectors": [
+    {
+     "m": 0,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       -2.0110292833451655e-16,
+       4.8526958923635035e-8
+      ],
+      [
+       1.1783620148762978e-16,
+       1.0191773981526058
+      ],
+      [
+       -2.0110292833451652e-16,
+       -4.8526958923635035e-8
+      ],
+      [
+       1.1783620148762978e-16,
+       -1.0191773981526058
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -2.0110292833451655e-16,
+        0
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 4.8526958923635035e-8,
+       "eigvecAbs": [
+        1.583668225928358e-8,
+        0.9999999999999996,
+        1.7036784405455795e-15,
+        2.3876332352620942e-8
+       ],
+       "label": "rigid-rotation phase / circular-family shift (m=0 tangential, neutral)"
+      },
+      {
+       "lambda": [
+        1.1783620148762978e-16,
+        1.0191773981526058
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.31410219709736703,
+        0.6259736713842841,
+        0.32012585999171134,
+        0.6379782177134687
+       ],
+       "label": "breathing coupled to rotation-rate change (m=0 radial-tangential)"
+      },
+      {
+       "lambda": [
+        1.1783620148762978e-16,
+        -1.0191773981526058
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.31410219709736703,
+        0.6259736713842843,
+        0.32012585999171134,
+        0.6379782177134686
+       ],
+       "label": "breathing coupled to rotation-rate change (m=0 radial-tangential)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       0.000007585513661839232,
+       0
+      ],
+      [
+       3.1096790370857397e-10,
+       1.0191773981241796
+      ],
+      [
+       -0.000007586172975081128,
+       0
+      ],
+      [
+       3.1096790370857397e-10,
+       -1.0191773981241796
+      ]
+     ]
+    },
+    {
+     "m": 0,
+     "kind": "axial",
+     "exponents": [
+      [
+       1.3938759963040925e-8,
+       0
+      ],
+      [
+       -1.393875996319372e-8,
+       0
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -7.639757419478508e-20,
+        0
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.3938759963117323e-8,
+       "eigvecAbs": [
+        0.9999999999999996,
+        2.8057530662064465e-8
+       ],
+       "label": "uniform axial displacement (m=0 axial, neutral drift)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -8.264954498673293e-20,
+       -0.0000011275082049079923
+      ],
+      [
+       -8.264954498673293e-20,
+       0.0000011275082049079923
+      ]
+     ]
+    },
+    {
+     "m": 1,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       6.522834293504276e-10,
+       0.9999999794224644
+      ],
+      [
+       -6.687414702648043e-10,
+       1.0000000200711143
+      ],
+      [
+       -1.2010601304786905,
+       -0.9673315986830837
+      ],
+      [
+       1.2010601304786905,
+       -0.9673315986830835
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -8.22902045718837e-12,
+        0.9999999997467894
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 2.0335055038849855e-8,
+       "eigvecAbs": [
+        0.4999999981713255,
+        0.49999999811852036,
+        0.5000000018814796,
+        0.5000000018286745
+       ],
+       "label": "centre drift (m=1,3 in-plane: translation plus generalized-momentum partner, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        -1.2010601304786905,
+        -0.9673315986830837
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3761542022483069,
+        0.3930865028918276,
+        0.5800922077175625,
+        0.6062046254529715
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        1.2010601304786905,
+        -0.9673315986830835
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.376154202248307,
+        0.39308650289182767,
+        0.5800922077175621,
+        0.6062046254529715
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -0.0000028539196854987373,
+       0.999997884586743
+      ],
+      [
+       0.0000028539349370351386,
+       1.0000021154081309
+      ],
+      [
+       -1.2010601305027382,
+       -0.9673315985632083
+      ],
+      [
+       1.2010601305074373,
+       -0.9673315988029386
+      ]
+     ]
+    },
+    {
+     "m": 1,
+     "kind": "axial",
+     "exponents": [
+      [
+       5.42473217422076e-18,
+       0.9999999999999996
+      ],
+      [
+       -6.0006054568768615e-18,
+       -0.9641971250032123
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        5.42473217422076e-18,
+        0.9999999999999996
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7071067811865477,
+        0.7071067811865472
+       ],
+       "label": "tilt of the ring plane (m=1,3 axial, rotation symmetry, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        -6.0006054568768615e-18,
+        -0.9641971250032123
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7198761602433144,
+        0.6941025240649554
+       ],
+       "label": "second axial m=1,3 mode (axial warp, not a symmetry)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -2.282568892822344e-17,
+       0.9999999999538612
+      ],
+      [
+       2.2271570965193045e-17,
+       -0.964197124957074
+      ]
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       1.475783537281442,
+       3.082936503848287e-32
+      ],
+      [
+       -6.596802338900695e-17,
+       1.80531183576214
+      ],
+      [
+       -6.596802338900693e-17,
+       -1.80531183576214
+      ],
+      [
+       -1.475783537281442,
+       1.0948187356537993e-32
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.475783537281442,
+        3.082936503848287e-32
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.34712611317362313,
+        0.44065066085343957,
+        0.5122830031821279,
+        0.6503049909796941
+       ],
+       "label": "alternating twist (m=2 tangential-dominant)"
+      },
+      {
+       "lambda": [
+        -6.596802338900695e-17,
+        1.80531183576214
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.44142197541882855,
+        0.19983799866224136,
+        0.7969043167891158,
+        0.36076990421996324
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        -6.596802338900693e-17,
+        -1.80531183576214
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.4414219754188286,
+        0.19983799866224142,
+        0.7969043167891159,
+        0.3607699042199632
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        -1.475783537281442,
+        1.0948187356537993e-32
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.34712611317362324,
+        0.44065066085343957,
+        0.5122830031821279,
+        0.6503049909796941
+       ],
+       "label": "alternating twist (m=2 tangential-dominant)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       1.4757835372355605,
+       6.834381494303539e-28
+      ],
+      [
+       7.832345651186886e-11,
+       1.805311835755614
+      ],
+      [
+       7.832345651186886e-11,
+       -1.805311835755614
+      ],
+      [
+       -1.4757835373863673,
+       1.2567252038408286e-27
+      ]
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "axial",
+     "exponents": [
+      [
+       7.909642165332776e-19,
+       -1.6903786668146488
+      ],
+      [
+       7.909642165332632e-19,
+       1.6903786668146488
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        7.909642165332776e-19,
+        -1.6903786668146488
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.5091594230634032,
+        0.8606722267540312
+       ],
+       "label": "alternating axial saddle (m=2 axial)"
+      },
+      {
+       "lambda": [
+        7.909642165332632e-19,
+        1.6903786668146488
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.5091594230634031,
+        0.860672226754031
+       ],
+       "label": "alternating axial saddle (m=2 axial)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       7.847121930016705e-19,
+       -1.6903786667526648
+      ],
+      [
+       7.847121930016705e-19,
+       1.6903786667526648
+      ]
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       1.2010601304786903,
+       0.9673315986830835
+      ],
+      [
+       -1.2010601304786903,
+       0.9673315986830838
+      ],
+      [
+       -1.059673373251551e-9,
+       -1.0000000248078702
+      ],
+      [
+       1.057429895957181e-9,
+       -0.999999975139498
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.2010601304786903,
+        0.9673315986830835
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3761542022483069,
+        0.3930865028918277,
+        0.5800922077175623,
+        0.6062046254529715
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        -1.2010601304786903,
+        0.9673315986830838
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.3761542022483071,
+        0.3930865028918276,
+        0.5800922077175624,
+        0.6062046254529714
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        -1.1217386471850774e-12,
+        -0.9999999999736842
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 2.4856736177405562e-8,
+       "eigvecAbs": [
+        0.5000000026709941,
+        0.5000000027481221,
+        0.499999997251878,
+        0.499999997329006
+       ],
+       "label": "centre drift (m=1,3 in-plane: translation plus generalized-momentum partner, |lambda| = Omega)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       1.2010601305074373,
+       0.9673315988029386
+      ],
+      [
+       -1.2010601305027382,
+       0.9673315985632083
+      ],
+      [
+       0.0000028539286025998917,
+       -1.0000021154132344
+      ],
+      [
+       -0.0000028539242888469765,
+       -0.9999978845897469
+      ]
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "axial",
+     "exponents": [
+      [
+       -3.316188305965151e-18,
+       -0.9999999999999994
+      ],
+      [
+       2.740315023309048e-18,
+       0.9641971250032122
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -3.316188305965151e-18,
+        -0.9999999999999994
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7071067811865479,
+        0.7071067811865474
+       ],
+       "label": "tilt of the ring plane (m=1,3 axial, rotation symmetry, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        2.740315023309048e-18,
+        0.9641971250032122
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7198761602433145,
+        0.6941025240649555
+       ],
+       "label": "second axial m=1,3 mode (axial warp, not a symmetry)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -3.1566609417295456e-17,
+       -0.9999999999538612
+      ],
+      [
+       3.1012491454265066e-17,
+       0.964197124957074
+      ]
+     ]
+    }
+   ],
+   "unstableModes": [
+    {
+     "m": 1,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.2010601304786905,
+      -0.9673315986830835
+     ],
+     "growthRate_over_Omega": 1.2010601304786905,
+     "growthTime_in_rotationPeriods": 0.13251205252185255,
+     "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.2010603221438345,
+       "threshold_3sqrtDelta": 0.0039734692733724136,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.2010601323954249,
+       "threshold_3sqrtDelta": 0.00039734078108900526,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.2010601305074373,
+       "threshold_3sqrtDelta": 0.00004103573740101855,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.2010601304055375,
+       "threshold_3sqrtDelta": 0.0000667420614503981,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.475783537281442,
+      3.082936503848287e-32
+     ],
+     "growthRate_over_Omega": 1.475783537281442,
+     "growthTime_in_rotationPeriods": 0.10784436814160192,
+     "label": "alternating twist (m=2 tangential-dominant)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.4757831327252708,
+       "threshold_3sqrtDelta": 0.0039734692733724136,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.4757835332358065,
+       "threshold_3sqrtDelta": 0.00039734078108900526,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.4757835372355605,
+       "threshold_3sqrtDelta": 0.00004103573740101855,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.4757835369102363,
+       "threshold_3sqrtDelta": 0.0000667420614503981,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      1.2010601304786903,
+      0.9673315986830835
+     ],
+     "growthRate_over_Omega": 1.2010601304786903,
+     "growthTime_in_rotationPeriods": 0.1325120525218526,
+     "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 1.2010603221438345,
+       "threshold_3sqrtDelta": 0.0039734692733724136,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 1.2010601323954249,
+       "threshold_3sqrtDelta": 0.00039734078108900526,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 1.2010601305074373,
+       "threshold_3sqrtDelta": 0.00004103573740101855,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 1.2010601304055373,
+       "threshold_3sqrtDelta": 0.0000667420614503981,
+       "confirmed": true
+      }
+     ]
+    }
+   ],
+   "verdict": "linearly unstable at R=20 in mode in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring) [m=1, inPlane] (growth rate 1.201060e+0 Omega, e-folding 0.13251205 rotation periods); alternating twist (m=2 tangential-dominant) [m=2, inPlane] (growth rate 1.475784e+0 Omega, e-folding 0.10784437 rotation periods); in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring) [m=3, inPlane] (growth rate 1.201060e+0 Omega, e-folding 0.13251205 rotation periods)"
+  },
+  {
+   "R": 1,
+   "domainLabel": "OUTSIDE declared domain: adapted-law statement only",
+   "Omega": 0.8091176257977611,
+   "v": 0.8091176257977611,
+   "period": 7.765478228192829,
+   "fixedPointResidual": 6.661338147750939e-16,
+   "shiftCommutator": 1.0848623001536682e-15,
+   "reversibility": 1.0848623001536682e-15,
+   "fdStudy": [
+    {
+     "h": 0.001,
+     "delta_maxAbs_vs_exact": 0.000003711441766363066
+    },
+    {
+     "h": 0.0001,
+     "delta_maxAbs_vs_exact": 3.711597296174318e-8,
+     "fdSelfDiff_vs_previousStep": 0.0000036743324076660144
+    },
+    {
+     "h": 0.00001,
+     "delta_maxAbs_vs_exact": 4.1103920267460126e-10,
+     "fdSelfDiff_vs_previousStep": 3.673884929611404e-8
+    },
+    {
+     "h": 0.000001,
+     "delta_maxAbs_vs_exact": 5.89099435899243e-10,
+     "fdSelfDiff_vs_previousStep": 7.885693764642099e-10
+    }
+   ],
+   "leakage": {
+    "sector": 9.179604078223346e-16,
+    "axialInPlane": 0
+   },
+   "powerSums": {
+    "sum_lambda_minus_trJ": -5.110012084295773e-11,
+    "sum_lambda2_minus_trJ2": -5.048761408943392e-10,
+    "sum_lambda4_minus_trJ4": 1.0097878089254664e-9
+   },
+   "counts": {
+    "positiveRealAboveThreshold": 2,
+    "negativeRealBelowThreshold": 2,
+    "zeroExponents": 4,
+    "purelyImaginaryNonzero": 16,
+    "maxRealPart": 0.817834381024237,
+    "maxAbsRealPart_on_exact_symmetry_exponents": 4.923711778728951e-9
+   },
+   "frequencies_over_Omega": [
+    "0.0357407698311",
+    "0.0571909584179",
+    "0.726963739460",
+    "0.749542002093",
+    "0.999999969844",
+    "1.00000000000",
+    "1.00000003016",
+    "1.71906500754",
+    "1.79656929607"
+   ],
+   "sectors": [
+    {
+     "m": 0,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       2.785796425341148e-17,
+       1.5994768376171406e-8
+      ],
+      [
+       1.2479770163254754e-16,
+       1.7190650075389922
+      ],
+      [
+       2.785796425341148e-17,
+       -1.5994768376171406e-8
+      ],
+      [
+       1.2479770163254754e-16,
+       -1.7190650075389922
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        2.785796425341148e-17,
+        0
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.5994768376171406e-8,
+       "eigvecAbs": [
+        1.2565839267204421e-8,
+        0.9999999999999999,
+        2.7485476528861773e-16,
+        2.156427809718563e-8
+       ],
+       "label": "rigid-rotation phase / circular-family shift (m=0 tangential, neutral)"
+      },
+      {
+       "lambda": [
+        1.2479770163254754e-16,
+        1.7190650075389922
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.22053493760883852,
+        0.45188167402420165,
+        0.379113894183149,
+        0.7768139733631465
+       ],
+       "label": "breathing coupled to rotation-rate change (m=0 radial-tangential)"
+      },
+      {
+       "lambda": [
+        1.2479770163254754e-16,
+        -1.7190650075389922
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.22053493760883844,
+        0.4518816740242015,
+        0.3791138941831491,
+        0.7768139733631465
+       ],
+       "label": "breathing coupled to rotation-rate change (m=0 radial-tangential)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       0.000009122745500807677,
+       4.5265815e-317
+      ],
+      [
+       7.327355521018765e-11,
+       1.7190650075901104
+      ],
+      [
+       -0.000009122889928141523,
+       0
+      ],
+      [
+       7.327355521018765e-11,
+       -1.7190650075901104
+      ]
+     ]
+    },
+    {
+     "m": 0,
+     "kind": "axial",
+     "exponents": [
+      [
+       3.224421871274232e-17,
+       -1.1780402288468104e-8
+      ],
+      [
+       3.224421871274232e-17,
+       1.1780402288468104e-8
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        3.224421871274232e-17,
+        0
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 1.1780402288468104e-8,
+       "eigvecAbs": [
+        0.9999999999999996,
+        2.472447318479664e-8
+       ],
+       "label": "uniform axial displacement (m=0 axial, neutral drift)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       8.977490479344661e-18,
+       -0.000005378915430721249
+      ],
+      [
+       8.977490479344661e-18,
+       0.000005378915430721249
+      ]
+     ]
+    },
+    {
+     "m": 1,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       1.8971968465454872e-9,
+       1.0000000301591108
+      ],
+      [
+       -1.8974114927700726e-9,
+       0.9999999698443025
+      ],
+      [
+       -3.9816185150495576e-16,
+       0.03574076983114551
+      ],
+      [
+       1.309288500295264e-16,
+       -1.796569296073745
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -1.0732311229266259e-13,
+        1.0000000000017066
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 3.0217028095779773e-8,
+       "eigvecAbs": [
+        0.49999999750021856,
+        0.4999999963260161,
+        0.500000003673984,
+        0.5000000024997813
+       ],
+       "label": "centre drift (m=1,3 in-plane: translation plus generalized-momentum partner, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        -3.9816185150495576e-16,
+        0.03574076983114551
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.45323180747892755,
+        0.8906767964514309,
+        0.016198853711258253,
+        0.031833474375912336
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        1.309288500295264e-16,
+        -1.796569296073745
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.06642473423200053,
+        0.48179368556606383,
+        0.11933663802107072,
+        0.8655757425301985
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       0.00000835719245914589,
+       1.0000182239045237
+      ],
+      [
+       -0.000008357326607373277,
+       0.9999817760668538
+      ],
+      [
+       1.6196426352626015e-10,
+       0.03574076986105458
+      ],
+      [
+       -2.813471950337103e-11,
+       -1.7965692960582276
+      ]
+     ]
+    },
+    {
+     "m": 1,
+     "kind": "axial",
+     "exponents": [
+      [
+       1.280191436485419e-16,
+       0.9999999999999999
+      ],
+      [
+       -1.2882988840078987e-16,
+       -0.057190958417936644
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.280191436485419e-16,
+        0.9999999999999999
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7071067811865475,
+        0.7071067811865475
+       ],
+       "label": "tilt of the ring plane (m=1,3 axial, rotation symmetry, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        -1.2882988840078987e-16,
+        -0.057190958417936644
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.9983685980477196,
+        0.05709765697672084
+       ],
+       "label": "second axial m=1,3 mode (axial warp, not a symmetry)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       1.7067395766673702e-16,
+       1.0000000000276963
+      ],
+      [
+       -1.6802378211866839e-16,
+       -0.05719095844563312
+      ]
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       0.817834381024237,
+       0.7269637394598597
+      ],
+      [
+       -0.817834381024237,
+       0.7269637394598597
+      ],
+      [
+       -0.817834381024237,
+       -0.7269637394598597
+      ],
+      [
+       0.817834381024237,
+       -0.7269637394598597
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        0.817834381024237,
+        0.7269637394598597
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.5921535071046155,
+        0.32319055637060007,
+        0.6479494426097028,
+        0.3536433346160246
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        -0.817834381024237,
+        0.7269637394598597
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.5921535071046155,
+        0.32319055637060007,
+        0.6479494426097029,
+        0.3536433346160246
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        -0.817834381024237,
+        -0.7269637394598597
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.5921535071046153,
+        0.3231905563706,
+        0.6479494426097029,
+        0.35364333461602465
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      },
+      {
+       "lambda": [
+        0.817834381024237,
+        -0.7269637394598597
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.5921535071046155,
+        0.3231905563706,
+        0.6479494426097028,
+        0.3536433346160246
+       ],
+       "label": "rhombic shear (m=2 radial-dominant)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       0.8178343808220032,
+       0.7269637397560325
+      ],
+      [
+       -0.8178343807743074,
+       0.7269637394387829
+      ],
+      [
+       -0.8178343807743074,
+       -0.7269637394387829
+      ],
+      [
+       0.8178343808220032,
+       -0.7269637397560325
+      ]
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "axial",
+     "exponents": [
+      [
+       -9.389144710701073e-18,
+       -0.7495420020925945
+      ],
+      [
+       -9.389144710701028e-18,
+       0.7495420020925945
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -9.389144710701073e-18,
+        -0.7495420020925945
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.8001758754781991,
+        0.5997654277321238
+       ],
+       "label": "alternating axial saddle (m=2 axial)"
+      },
+      {
+       "lambda": [
+        -9.389144710701028e-18,
+        0.7495420020925945
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.8001758754781991,
+        0.5997654277321238
+       ],
+       "label": "alternating axial saddle (m=2 axial)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       -4.9002973284698426e-18,
+       -0.7495420020949402
+      ],
+      [
+       -4.900297328469752e-18,
+       0.7495420020949402
+      ]
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "inPlane",
+     "exponents": [
+      [
+       -4.171716522577798e-16,
+       -0.03574076983114526
+      ],
+      [
+       1.6165525328951447e-16,
+       1.796569296073745
+      ],
+      [
+       4.8728264835909354e-9,
+       -1.0000000218655485
+      ],
+      [
+       -4.923711778728951e-9,
+       -0.9999999783834737
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        -4.171716522577798e-16,
+        -0.03574076983114526
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.4532318074789274,
+        0.8906767964514308,
+        0.016198853711258236,
+        0.03183347437591231
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        1.6165525328951447e-16,
+        1.796569296073745
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.06642473423200045,
+        0.481793685566064,
+        0.11933663802107077,
+        0.8655757425301988
+       ],
+       "label": "in-plane m=1,3 deformation (epicyclic / eccentric displacement of the ring)"
+      },
+      {
+       "lambda": [
+        -2.5442647569007877e-11,
+        -1.000000000124511
+       ],
+       "algebraic": 2,
+       "geometric": 1,
+       "structure": "Jordan (algebraic 2, geometric 1)",
+       "spread": 2.2285998931023366e-8,
+       "eigvecAbs": [
+        0.50000000129298,
+        0.500000001900321,
+        0.4999999980996791,
+        0.49999999870702
+       ],
+       "label": "centre drift (m=1,3 in-plane: translation plus generalized-momentum partner, |lambda| = Omega)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       1.6196423410686416e-10,
+       -0.0357407698610546
+      ],
+      [
+       -2.8134729281124886e-11,
+       1.7965692960582276
+      ],
+      [
+       0.00000835719568710768,
+       -1.0000182239047766
+      ],
+      [
+       -0.000008357330524788459,
+       -0.9999817760681048
+      ]
+     ]
+    },
+    {
+     "m": 3,
+     "kind": "axial",
+     "exponents": [
+      [
+       1.2482957873979904e-16,
+       -0.9999999999999999
+      ],
+      [
+       -1.25640323492047e-16,
+       0.05719095841793664
+      ]
+     ],
+     "modes": [
+      {
+       "lambda": [
+        1.2482957873979904e-16,
+        -0.9999999999999999
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.7071067811865476,
+        0.7071067811865476
+       ],
+       "label": "tilt of the ring plane (m=1,3 axial, rotation symmetry, |lambda| = Omega)"
+      },
+      {
+       "lambda": [
+        -1.25640323492047e-16,
+        0.05719095841793664
+       ],
+       "algebraic": 1,
+       "structure": "simple",
+       "spread": 0,
+       "eigvecAbs": [
+        0.9983685980477195,
+        0.05709765697672082
+       ],
+       "label": "second axial m=1,3 mode (axial warp, not a symmetry)"
+      }
+     ],
+     "fdExponentsBestStep": [
+      [
+       1.674843927632491e-16,
+       -1.0000000000276963
+      ],
+      [
+       -1.6483421721518045e-16,
+       0.05719095844563312
+      ]
+     ]
+    }
+   ],
+   "unstableModes": [
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      0.817834381024237,
+      0.7269637394598597
+     ],
+     "growthRate_over_Omega": 0.817834381024237,
+     "growthTime_in_rotationPeriods": 0.194605346491515,
+     "label": "rhombic shear (m=2 radial-dominant)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 0.8178321659500656,
+       "threshold_3sqrtDelta": 0.00577953076791426,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 0.8178343588781263,
+       "threshold_3sqrtDelta": 0.0005779651863699825,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 0.8178343808220032,
+       "threshold_3sqrtDelta": 0.00006082230531697571,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 0.8178343808056795,
+       "threshold_3sqrtDelta": 0.00007281411211498212,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "m": 2,
+     "kind": "inPlane",
+     "lambda_over_Omega": [
+      0.817834381024237,
+      -0.7269637394598597
+     ],
+     "growthRate_over_Omega": 0.817834381024237,
+     "growthTime_in_rotationPeriods": 0.194605346491515,
+     "label": "rhombic shear (m=2 radial-dominant)",
+     "fdConfirmation": [
+      {
+       "h": 0.001,
+       "realPart": 0.8178321659500656,
+       "threshold_3sqrtDelta": 0.00577953076791426,
+       "confirmed": true
+      },
+      {
+       "h": 0.0001,
+       "realPart": 0.8178343588781263,
+       "threshold_3sqrtDelta": 0.0005779651863699825,
+       "confirmed": true
+      },
+      {
+       "h": 0.00001,
+       "realPart": 0.8178343808220032,
+       "threshold_3sqrtDelta": 0.00006082230531697571,
+       "confirmed": true
+      },
+      {
+       "h": 0.000001,
+       "realPart": 0.8178343808056795,
+       "threshold_3sqrtDelta": 0.00007281411211498212,
+       "confirmed": true
+      }
+     ]
+    }
+   ],
+   "verdict": "linearly unstable at R=1 in mode rhombic shear (m=2 radial-dominant) [m=2, inPlane] (growth rate 8.178344e-1 Omega, e-folding 0.19460535 rotation periods); rhombic shear (m=2 radial-dominant) [m=2, inPlane] (growth rate 8.178344e-1 Omega, e-folding 0.19460535 rotation periods)"
+  }
+ ],
+ "phaseIndependence_R100": {
+  "maxDiff": 1.666000468661438e-8
+ },
+ "zeroCouplingClosedFormLimit": {
+  "m1_growthRate_over_Omega": 1.2437516475076635,
+  "m2_twist_growthRate_over_Omega": 1.5180062027113062,
+  "m2_shear_frequency_over_Omega": 1.8177851444739004,
+  "m2_axial_frequency_over_Omega": 1.7589304481292187
+ },
+ "coupledMinusZeroCouplingLimit": [
+  {
+   "R": 50,
+   "maxMatchDistance": 0.027864577082798325
+  },
+  {
+   "R": 100,
+   "maxMatchDistance": 0.01400875433560711
+  },
+  {
+   "R": 200,
+   "maxMatchDistance": 0.007023735210319737
+  },
+  {
+   "R": 5,
+   "maxMatchDistance": 0.254941448719167
+  },
+  {
+   "R": 20,
+   "maxMatchDistance": 0.06855178131456996
+  },
+  {
+   "R": 1,
+   "maxMatchDistance": 0.5059192795876212
+  }
+ ],
+ "zeroCouplingControl": {
+  "rows": [
+   {
+    "R": 50,
+    "residualInf": 4.0657581468206416e-20,
+    "sectors": [
+     {
+      "m": 0,
+      "inPlane": [
+       [
+        0.000009714012836067198,
+        0
+       ],
+       [
+        3.9566478481572455e-10,
+        1.0000000000205693
+       ],
+       [
+        -0.000009714804165442543,
+        -1.72515771e-315
+       ],
+       [
+        3.9566478481572455e-10,
+        -1.0000000000205693
+       ]
+      ],
+      "axial": [
+       [
+        9.85619169125181e-9,
+        -4.021529366771898e-87
+       ],
+       [
+        -9.85619169125181e-9,
+        -3.745341083753759e-96
+       ]
+      ]
+     },
+     {
+      "m": 1,
+      "inPlane": [
+       [
+        0.0000025283723002940506,
+        1.0000000916272858
+       ],
+       [
+        -0.000002528395262523266,
+        0.9999999083700429
+       ],
+       [
+        -1.243751647531611,
+        -0.9999999998632285
+       ],
+       [
+        1.243751647531611,
+        -1.000000000133268
+       ]
+      ],
+      "axial": [
+       [
+        4.7934481340380634e-18,
+        0.9999999999522451
+       ],
+       [
+        -4.7934481340380634e-18,
+        -0.9999999999522451
+       ]
+      ]
+     },
+     {
+      "m": 2,
+      "inPlane": [
+       [
+        7.112039768728475e-11,
+        -1.817785144492127
+       ],
+       [
+        7.112039768728475e-11,
+        1.817785144492127
+       ],
+       [
+        -1.5180062028132408,
+        -2.56370327304226e-28
+       ],
+       [
+        1.5180062026710002,
+        7.41912709175962e-28
+       ]
+      ],
+      "axial": [
+       [
+        -7.007640158626111e-33,
+        -1.7589304480632586
+       ],
+       [
+        7.007640158626111e-33,
+        1.7589304480632586
+       ]
+      ]
+     },
+     {
+      "m": 3,
+      "inPlane": [
+       [
+        1.2437516475316113,
+        1.000000000133268
+       ],
+       [
+        -1.243751647531611,
+        0.9999999998632285
+       ],
+       [
+        0.000002528399820695833,
+        -1.000000091601589
+       ],
+       [
+        -0.000002528401021189199,
+        -0.999999908394951
+       ]
+      ],
+      "axial": [
+       [
+        5.025565936369857e-19,
+        0.999999999952245
+       ],
+       [
+        -5.025565936369857e-19,
+        -0.9999999999522451
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "R": 120,
+    "residualInf": 1.3552527156068805e-20,
+    "sectors": [
+     {
+      "m": 0,
+      "inPlane": [
+       [
+        0.000011475397321584289,
+        0
+       ],
+       [
+        3.689012459638417e-10,
+        1.0000000000352294
+       ],
+       [
+        -0.000011476135124076216,
+        -4.64872864e-315
+       ],
+       [
+        3.689012459638417e-10,
+        -1.0000000000352294
+       ]
+      ],
+      "axial": [
+       [
+        0,
+        -1.4901161193847656e-8
+       ],
+       [
+        0,
+        1.4901161193847656e-8
+       ]
+      ]
+     },
+     {
+      "m": 1,
+      "inPlane": [
+       [
+        -2.7809247282674555e-7,
+        0.999998800381592
+       ],
+       [
+        2.781030614541177e-7,
+        1.000001199571454
+       ],
+       [
+        -1.2437516475262027,
+        -0.9999999998741218
+       ],
+       [
+        1.2437516475262027,
+        -1.000000000124599
+       ]
+      ],
+      "axial": [
+       [
+        4.7934481340380395e-18,
+        0.9999999999522455
+       ],
+       [
+        -4.7934481340380395e-18,
+        -0.9999999999522455
+       ]
+      ]
+     },
+     {
+      "m": 2,
+      "inPlane": [
+       [
+        6.5535393321607e-11,
+        -1.817785144479308
+       ],
+       [
+        6.5535393321607e-11,
+        1.817785144479308
+       ],
+       [
+        -1.5180062028026078,
+        3.757681374460439e-28
+       ],
+       [
+        1.518006202671537,
+        5.2733151098037525e-28
+       ]
+      ],
+      "axial": [
+       [
+        0,
+        -1.7589304480632593
+       ],
+       [
+        0,
+        1.7589304480632593
+       ]
+      ]
+     },
+     {
+      "m": 3,
+      "inPlane": [
+       [
+        1.2437516475262025,
+        1.000000000124599
+       ],
+       [
+        -1.2437516475262027,
+        0.9999999998741218
+       ],
+       [
+        2.7808113981972356e-7,
+        -1.000001199553731
+       ],
+       [
+        -2.7808702235167857e-7,
+        -0.9999988004703647
+       ]
+      ],
+      "axial": [
+       [
+        5.025565936369361e-19,
+        0.9999999999522455
+       ],
+       [
+        -5.025565936369361e-19,
+        -0.9999999999522455
+       ]
+      ]
+     }
+    ]
+   }
+  ],
+  "maxDiff_R50_vs_R120_in_units_of_Omega": 0.000002508286477426083,
+  "maxDiff_vs_closedForm": 0.000009714804165442543,
+  "maxRealPart": 1.5180062026710002,
+  "closedFormMaxRealPart": 1.5180062027113062,
+  "note": "inverse-square alternating square (coupling deleted); exponents in units of Omega are scale-free; finite-difference Jacobian, step 1e-5 relative; closed forms in zeroCouplingClosedFormLimit",
+  "pass": true
+ },
+ "utcEnd": "2026-10-05T15:26:34.727Z"
+}

@@ -1,0 +1,3061 @@
+{
+ "instrument": "darwin-overnight-ring-growth.mjs (over the unmodified pair instrument and ring wrapper)",
+ "worker": "darwin-overnight ring growth measurement (lens henri-poincare)",
+ "constants": {
+  "K": 1,
+  "c_f": 1
+ },
+ "note": "Prepared-eigenvector growth measurement. Order: pair-instrument controls and ring known cases (recorded here from their own receipts), zero-coupling known case of the linearization machinery, tolerance statement, eigenpairs at each radius, target runs. Exponents in units of Omega = v / R.",
+ "tolerance": {
+  "fixedPointResidual": 1e-12,
+  "knownCaseExponentDigits": 8,
+  "eigenResidual": 1e-8,
+  "tight": {
+   "window": [
+    "10 a0",
+    0.001
+   ],
+   "relative": 0.001
+  },
+  "loose": {
+   "window": [
+    "10 a0",
+    0.01
+   ],
+   "relative": 0.01
+  },
+  "statement": "The growth rate fitted by least squares on ln(position deviation norm / R) over the samples where that deviation lies between 10 a0 and 1e-3 must agree with the derived exponent to 1e-3 relative (tight); over the samples between 10 a0 and 1e-2 it must agree to 1e-2 relative (loose). For the complex m=1 pair the same statements apply to the growth rate sigma of the five-parameter fit ln(dev) = c + sigma t + (1/2) ln(1 + beta cos(2 omega t + psi)), and the plain slope and the local-maxima envelope slope are reported beside it."
+ },
+ "targets": {
+  "50": {
+   "m2": {
+    "re": 1.501248982,
+    "im": 0
+   },
+   "m1": {
+    "re": 1.226521016,
+    "im": 0.986304782
+   }
+  },
+  "100": {
+   "m2": {
+    "re": 1.509648903,
+    "im": 0
+   },
+   "m1": {
+    "re": 1.235108236,
+    "im": 0.993042162
+   }
+  }
+ },
+ "controls": {
+  "pairInstrument": {
+   "allPass": true,
+   "pass": 12,
+   "total": 12,
+   "utcEnd": "2026-10-05T15:11:29.369Z"
+  },
+  "ringKnownCases": {
+   "allPass": true,
+   "cases": [
+    {
+     "id": "K1-pair-controls-rerun",
+     "pass": true,
+     "utc": "2026-10-05T14:07:25.719Z"
+    },
+    {
+     "id": "K2-zero-coupling-ring",
+     "pass": true,
+     "utc": "2026-10-05T15:11:34.023Z"
+    },
+    {
+     "id": "K3-exact-ring-R50-one-period",
+     "pass": true,
+     "utc": "2026-10-05T15:11:34.460Z"
+    }
+   ],
+   "utcStart": "2026-10-05T15:11:29.542Z"
+  },
+  "utc": "2026-10-05T15:15:17.818Z"
+ },
+ "knownCase": {
+  "id": "KZ-zero-coupling-linearization",
+  "description": "Same field, Jacobian and inverse-iteration machinery applied to the zero-coupling ring (velocity coupling deleted, H = I, inverse-square gradient, balanced speed v0 = sqrt((2 sqrt2 - 1)/(4R))); must return the closed-form exponents of ring document Section 10: m=2 twist sqrt((-1 + sqrt(625 + 648 sqrt2)/7)/2) = 1.5180062027 Omega0 and m=1 in-plane -i +- sqrt((8 + 2 sqrt2)/7) (real part 1.2437516475, |imaginary part| exactly 1), to 8 digits; eigenvector residuals <= 1e-8; cyclic-shift factor -1 (m=2) and +-i (m=1).",
+  "rows": [
+   {
+    "R": 50,
+    "v0": 0.0956145157584922,
+    "Omega0": 0.0019122903151698439,
+    "fixedPoint": {
+     "residualScaled": 1.1102230246251565e-16,
+     "residualPhysical": 2.029961892742394e-20,
+     "pass": true
+    },
+    "jacobian": {
+     "steps": [
+      0.0001,
+      0.00001
+     ],
+     "maxEntryDifference": 1.5171752743015077e-8,
+     "used": 0.00001
+    },
+    "m2": {
+     "expected": 1.5180062027113062,
+     "eigenvalue": {
+      "re": 1.518006202720921,
+      "im": 0
+     },
+     "difference": 9.61475343785878e-12,
+     "relative": 6.333822355486518e-12,
+     "residual": 1.350992187948496e-14,
+     "iterations": 8,
+     "cyclicShiftFactor": {
+      "re": -1,
+      "im": 0
+     },
+     "cyclicShiftResidual": 1.136457811473258e-13
+    },
+    "m1": {
+     "expectedRe": 1.2437516475076635,
+     "expectedImAbs": 1,
+     "eigenvalue": {
+      "re": 1.2437516474104828,
+      "im": 1.0000000000005
+     },
+     "differenceRe": -9.718070792530398e-11,
+     "relativeRe": 7.81351650047668e-11,
+     "differenceImAbs": 5.000444502911705e-13,
+     "residual": 2.6834416672026873e-14,
+     "iterations": 7,
+     "cyclicShiftFactor": {
+      "re": 5.424321785036796e-25,
+      "im": 1
+     },
+     "cyclicShiftResidual": 5.302724011832813e-12
+    },
+    "pass": true
+   },
+   {
+    "R": 100,
+    "v0": 0.06760967247269783,
+    "Omega0": 0.0006760967247269784,
+    "fixedPoint": {
+     "residualScaled": 0,
+     "residualPhysical": 0,
+     "pass": true
+    },
+    "jacobian": {
+     "steps": [
+      0.0001,
+      0.00001
+     ],
+     "maxEntryDifference": 1.5165646516379638e-8,
+     "used": 0.00001
+    },
+    "m2": {
+     "expected": 1.5180062027113062,
+     "eigenvalue": {
+      "re": 1.5180062027224235,
+      "im": 0
+     },
+     "difference": 1.1117329279386468e-11,
+     "relative": 7.323697204242308e-12,
+     "residual": 1.3375132126691924e-14,
+     "iterations": 8,
+     "cyclicShiftFactor": {
+      "re": -0.9999999999999998,
+      "im": 0
+     },
+     "cyclicShiftResidual": 1.1358285728347736e-13
+    },
+    "m1": {
+     "expectedRe": 1.2437516475076635,
+     "expectedImAbs": 1,
+     "eigenvalue": {
+      "re": 1.2437516474138308,
+      "im": 0.9999999999991123
+     },
+     "differenceRe": -9.383271937224436e-11,
+     "relativeRe": 7.544331825926065e-11,
+     "differenceImAbs": -8.877343304902752e-13,
+     "residual": 2.6777359160227453e-14,
+     "iterations": 7,
+     "cyclicShiftFactor": {
+      "re": 5.422302301119432e-25,
+      "im": 0.9999999999999999
+     },
+     "cyclicShiftResidual": 5.3019458802418735e-12
+    },
+    "pass": true
+   }
+  ],
+  "pass": true,
+  "utc": "2026-10-05T15:15:17.852Z"
+ },
+ "eigen": {
+  "50": {
+   "R": 50,
+   "v": 0.09590437081882594,
+   "Omega": 0.0019180874163765187,
+   "period": 3275.7554496912476,
+   "fixedPoint": {
+    "residualScaled": 2.220446049250313e-16,
+    "residualPhysical": 4.0845763847462957e-20,
+    "pass": true
+   },
+   "jacobian": {
+    "steps": [
+     0.0001,
+     0.00001
+    ],
+    "maxEntryDifference": 1.503686064552312e-8,
+    "used": 0.00001
+   },
+   "modes": {
+    "m2": {
+     "shift": {
+      "re": 1.5,
+      "im": 0
+     },
+     "eigenvalue": {
+      "re": 1.5012489820540331,
+      "im": 0
+     },
+     "target": {
+      "re": 1.501248982,
+      "im": 0
+     },
+     "differenceRe": 5.403322234087682e-11,
+     "differenceImAbs": 0,
+     "residual": 5.838411743853164e-15,
+     "iterations": 5,
+     "cyclicShiftFactor": {
+      "re": -1.0000000000000002,
+      "im": 0
+     },
+     "cyclicShiftResidual": 9.714236537966048e-12
+    },
+    "m1": {
+     "shift": {
+      "re": 1.23,
+      "im": 0.99
+     },
+     "eigenvalue": {
+      "re": 1.2265210154574477,
+      "im": 0.9863047815585044
+     },
+     "target": {
+      "re": 1.226521016,
+      "im": 0.986304782
+     },
+     "differenceRe": -5.425522253688086e-10,
+     "differenceImAbs": -4.414956178422358e-10,
+     "residual": 3.4569156788943665e-14,
+     "iterations": 6,
+     "cyclicShiftFactor": {
+      "re": -6.938896238837162e-18,
+      "im": 1
+     },
+     "cyclicShiftResidual": 2.0108051861215387e-11
+    }
+   }
+  },
+  "100": {
+   "R": 100,
+   "v": 0.06771191906591982,
+   "Omega": 0.0006771191906591982,
+   "period": 9279.289959368447,
+   "fixedPoint": {
+    "residualScaled": 3.3306690738754696e-16,
+    "residualPhysical": 1.5270797904830577e-20,
+    "pass": true
+   },
+   "jacobian": {
+    "steps": [
+     0.0001,
+     0.00001
+    ],
+    "maxEntryDifference": 1.5124568264468508e-8,
+    "used": 0.00001
+   },
+   "modes": {
+    "m2": {
+     "shift": {
+      "re": 1.5,
+      "im": 0
+     },
+     "eigenvalue": {
+      "re": 1.509648903541356,
+      "im": 0
+     },
+     "target": {
+      "re": 1.509648903,
+      "im": 0
+     },
+     "differenceRe": 5.413560710820775e-10,
+     "differenceImAbs": 0,
+     "residual": 1.1233140580122689e-14,
+     "iterations": 7,
+     "cyclicShiftFactor": {
+      "re": -0.9999999999999999,
+      "im": 0
+     },
+     "cyclicShiftResidual": 1.7921280816498987e-11
+    },
+    "m1": {
+     "shift": {
+      "re": 1.23,
+      "im": 0.99
+     },
+     "eigenvalue": {
+      "re": 1.235108235561888,
+      "im": 0.9930421619332677
+     },
+     "target": {
+      "re": 1.235108236,
+      "im": 0.993042162
+     },
+     "differenceRe": -4.381119911300857e-10,
+     "differenceImAbs": -6.673228636344675e-11,
+     "residual": 9.033052542739299e-14,
+     "iterations": 6,
+     "cyclicShiftFactor": {
+      "re": 4.315215813849742e-24,
+      "im": 1
+     },
+     "cyclicShiftResidual": 2.7194301233847077e-11
+    }
+   }
+  }
+ },
+ "runs": [
+  {
+   "id": "G-R50-m1-a1e-6-dp54-rtol1e-10",
+   "R": 50,
+   "mode": "m1",
+   "a0": 0.000001,
+   "setting": "P",
+   "settingLabel": "dp54-rtol1e-10",
+   "v": 0.09590437081882594,
+   "Omega": 0.0019180874163765187,
+   "period": 3275.7554496912476,
+   "tMax": 4599.122434406811,
+   "periodsRun": 1.4039883333904843,
+   "stopReason": "tMax",
+   "steps": 564,
+   "wallMs": 414,
+   "eigenvalueUsed": {
+    "re": 1.2265210154574477,
+    "im": 0.9863047815585044
+   },
+   "target": {
+    "re": 1.226521016,
+    "im": 0.986304782
+   },
+   "initialDeviation": {
+    "position": 0.0000019831115210777643,
+    "velocity": 0.0000024327550403037466
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      0.000009999999999999999,
+      0.001
+     ],
+     "position": {
+      "points": 240,
+      "tFrom": 687.908644435163,
+      "tTo": 2645.17252562569,
+      "slope": 0.0023525745620026676,
+      "intercept": -13.130843516459555,
+      "rms": 1.8327410522086764e-8
+     },
+     "velocity": {
+      "points": 240,
+      "tFrom": 687.908644435163,
+      "tTo": 2645.17252562569,
+      "slope": 0.0023525746243197045,
+      "intercept": -12.926486298677881,
+      "rms": 5.4894842165553045e-8
+     },
+     "ratePerOmega": 1.226521034399435,
+     "velocityRatePerOmega": 1.2265210668885889,
+     "relativeDifference": 1.500132063014803e-8,
+     "envelope": {
+      "points": 240,
+      "tFrom": 687.908644435163,
+      "tTo": 2645.17252562569,
+      "c": -13.130843558104583,
+      "sigma": 0.002352574590396103,
+      "beta": 6.814288282634748e-8,
+      "omega": 0.001292986021933827,
+      "psi": 4.391225312499758,
+      "rms": 7.762230193020413e-9,
+      "sigmaPerOmega": 1.2265210492024285,
+      "omegaPerOmega": 0.6741017176247482,
+      "relativeDifferenceSigma": 2.707041146798872e-8,
+      "relativeDifferenceOmega": 0.3165381229747011
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 239,
+      "gammaSlope": 0.002352574533628672,
+      "omegaSlope": 0.0018918187846201488,
+      "rmsLogModulus": 7.46161154054246e-9,
+      "rmsPhase": 5.7448171918154945e-9,
+      "tFrom": 278.439213223756,
+      "tTo": 2227.5137057900474,
+      "gammaPerOmega": 1.2265210196065768,
+      "omegaPerOmega": 0.9863047786393415,
+      "relativeDifferenceGamma": 2.9404931822796243e-9,
+      "relativeDifferenceOmega": 3.4073225352315717e-9
+     },
+     "plainSlopeRelativeDifference": 1.500132063014803e-8,
+     "envelopeRelativeDifference": 2.707041146798872e-8,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      0.000009999999999999999,
+      0.01
+     ],
+     "position": {
+      "points": 359,
+      "tFrom": 687.908644435163,
+      "tTo": 3619.709771908856,
+      "slope": 0.0023525754264338175,
+      "intercept": -13.13084484084607,
+      "rms": 8.759067867379424e-7
+     },
+     "velocity": {
+      "points": 359,
+      "tFrom": 687.908644435163,
+      "tTo": 3619.709771908856,
+      "slope": 0.0023525771193260657,
+      "intercept": -12.926490026183155,
+      "rms": 0.0000027849458846114983
+     },
+     "ratePerOmega": 1.226521485072925,
+     "velocityRatePerOmega": 1.2265223676668222,
+     "relativeDifference": 3.8244181621571727e-7,
+     "envelope": {
+      "points": 359,
+      "tFrom": 687.908644435163,
+      "tTo": 3619.709771908856,
+      "c": -13.130845338913613,
+      "sigma": 0.0023525756238140377,
+      "beta": 0.000001750172905860747,
+      "omega": 0.0011808259636236274,
+      "psi": 22.721023948970846,
+      "rms": 6.305450939234426e-7,
+      "sigmaPerOmega": 1.2265215879776301,
+      "omegaPerOmega": 0.6156267715130208,
+      "relativeDifferenceSigma": 4.6634148342938886e-7,
+      "relativeDifferenceOmega": 0.37582501601110474
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 359,
+      "gammaSlope": 0.002352574850018284,
+      "omegaSlope": 0.0018918182309470373,
+      "rmsLogModulus": 4.2923769166611045e-7,
+      "rmsPhase": 9.048759767732932e-7,
+      "tFrom": 278.439213223756,
+      "tTo": 3210.2403406974418,
+      "gammaPerOmega": 1.2265211845571464,
+      "omegaPerOmega": 0.9863044899803853,
+      "relativeDifferenceGamma": 1.3742703486308017e-7,
+      "relativeDifferenceOmega": 2.960744184266062e-7
+     },
+     "plainSlopeRelativeDifference": 3.8244181621571727e-7,
+     "envelopeRelativeDifference": 4.6634148342938886e-7,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": {
+    "normRe": 0.7071067811865874,
+    "normIm": 0.7071067811865076,
+    "cosAngle": 3.6039643491747597e-12
+   },
+   "firstCrossing": {
+    "1e-5": {
+     "t": 687.908644435163,
+     "periods": 0.2100000000000003
+    },
+    "1e-4": {
+     "t": 1670.6352793425347,
+     "periods": 0.5099999999999996
+    },
+    "1e-3": {
+     "t": 2653.3619142499183,
+     "periods": 0.8100000000000024
+    },
+    "1e-2": {
+     "t": 3627.8991605330843,
+     "periods": 1.1075000000000084
+    }
+   },
+   "events": [
+    {
+     "kind": "speed-bound",
+     "t": 4562.670817421848,
+     "periods": 1.3928606355068103,
+     "member": 1,
+     "direction": "departure from declared domain"
+    },
+    {
+     "kind": "tMax",
+     "t": 4599.122434406811,
+     "periods": 1.4039883333904843
+    }
+   ],
+   "eventCount": 15,
+   "turningPoints": 13,
+   "coverage": {
+    "supMemberSpeed": 0.100724485264172,
+    "maxEps": 0.015216124084459796,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "partially inside"
+   },
+   "invariants": {
+    "dErel": 4.485783932783724e-12,
+    "dP": 2.091033429140428e-15,
+    "dJrel": 2.282252701152787e-12
+   },
+   "detHmin": 0.9985063339868168,
+   "condMax": 1.0469293954189482,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m1-a1e-6-dp54-rtol1e-10.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m1-a1e-6-dp54-rtol1e-10.deviation.json",
+   "utc": "2026-10-05T15:16:49.367Z"
+  },
+  {
+   "id": "G-R50-m1-a1e-6-dp54-rtol1e-12",
+   "R": 50,
+   "mode": "m1",
+   "a0": 0.000001,
+   "setting": "C",
+   "settingLabel": "dp54-rtol1e-12",
+   "v": 0.09590437081882594,
+   "Omega": 0.0019180874163765187,
+   "period": 3275.7554496912476,
+   "tMax": 4599.122434406811,
+   "periodsRun": 1.4039883333904843,
+   "stopReason": "tMax",
+   "steps": 953,
+   "wallMs": 448,
+   "eigenvalueUsed": {
+    "re": 1.2265210154574477,
+    "im": 0.9863047815585044
+   },
+   "target": {
+    "re": 1.226521016,
+    "im": 0.986304782
+   },
+   "initialDeviation": {
+    "position": 0.0000019831115210777643,
+    "velocity": 0.0000024327550403037466
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      0.000009999999999999999,
+      0.001
+     ],
+     "position": {
+      "points": 240,
+      "tFrom": 687.908644435163,
+      "tTo": 2645.17252562569,
+      "slope": 0.002352574562002912,
+      "intercept": -13.130843516533846,
+      "rms": 1.8328811593842743e-8
+     },
+     "velocity": {
+      "points": 240,
+      "tFrom": 687.908644435163,
+      "tTo": 2645.17252562569,
+      "slope": 0.0023525746243157506,
+      "intercept": -12.926486298739006,
+      "rms": 5.489642632954371e-8
+     },
+     "ratePerOmega": 1.2265210343995625,
+     "velocityRatePerOmega": 1.2265210668865274,
+     "relativeDifference": 1.5001424547023134e-8,
+     "envelope": {
+      "points": 240,
+      "tFrom": 687.908644435163,
+      "tTo": 2645.17252562569,
+      "c": -13.130843558153607,
+      "sigma": 0.0023525745903927872,
+      "beta": 6.81636856026929e-8,
+      "omega": 0.0012922791531770122,
+      "psi": 4.3941764889233665,
+      "rms": 7.76282552771629e-9,
+      "sigmaPerOmega": 1.2265210492006997,
+      "omegaPerOmega": 0.6737331897095034,
+      "relativeDifferenceSigma": 2.7069001928836656e-8,
+      "relativeDifferenceOmega": 0.31691176804057786
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 239,
+      "gammaSlope": 0.0023525745335995283,
+      "omegaSlope": 0.00189181878459935,
+      "rmsLogModulus": 7.467457191440767e-9,
+      "rmsPhase": 5.741480048912829e-9,
+      "tFrom": 278.439213223756,
+      "tTo": 2227.5137057900474,
+      "gammaPerOmega": 1.2265210195913825,
+      "omegaPerOmega": 0.9863047786284981,
+      "relativeDifferenceGamma": 2.928105091726252e-9,
+      "relativeDifferenceOmega": 3.4183165187329223e-9
+     },
+     "plainSlopeRelativeDifference": 1.5001424547023134e-8,
+     "envelopeRelativeDifference": 2.7069001928836656e-8,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      0.000009999999999999999,
+      0.01
+     ],
+     "position": {
+      "points": 359,
+      "tFrom": 687.908644435163,
+      "tTo": 3619.709771908856,
+      "slope": 0.0023525754264367067,
+      "intercept": -13.130844840924267,
+      "rms": 8.759078236571382e-7
+     },
+     "velocity": {
+      "points": 359,
+      "tFrom": 687.908644435163,
+      "tTo": 3619.709771908856,
+      "slope": 0.0023525771193275273,
+      "intercept": -12.926490026252207,
+      "rms": 0.000002784947879463153
+     },
+     "ratePerOmega": 1.2265214850744313,
+     "velocityRatePerOmega": 1.2265223676675843,
+     "relativeDifference": 3.824430443444271e-7,
+     "envelope": {
+      "points": 359,
+      "tFrom": 687.908644435163,
+      "tTo": 3619.709771908856,
+      "c": -13.13084533900633,
+      "sigma": 0.002352575623820935,
+      "beta": 0.0000017501769654572891,
+      "omega": 0.0011808322430347938,
+      "psi": 3.8714599551828437,
+      "rms": 6.305456545370719e-7,
+      "sigmaPerOmega": 1.2265215879812261,
+      "omegaPerOmega": 0.6156300453008121,
+      "relativeDifferenceSigma": 4.663444153063523e-7,
+      "relativeDifferenceOmega": 0.3758216967655217
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 359,
+      "gammaSlope": 0.002352574850005902,
+      "omegaSlope": 0.0018918182309372571,
+      "rmsLogModulus": 4.2924275363385247e-7,
+      "rmsPhase": 9.048735523377352e-7,
+      "tFrom": 278.439213223756,
+      "tTo": 3210.2403406974418,
+      "gammaPerOmega": 1.226521184550691,
+      "omegaPerOmega": 0.9863044899752864,
+      "relativeDifferenceGamma": 1.3742177173980963e-7,
+      "relativeDifferenceOmega": 2.9607958818012037e-7
+     },
+     "plainSlopeRelativeDifference": 3.824430443444271e-7,
+     "envelopeRelativeDifference": 4.663444153063523e-7,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": {
+    "normRe": 0.7071067811865874,
+    "normIm": 0.7071067811865076,
+    "cosAngle": 3.6039643491747597e-12
+   },
+   "firstCrossing": {
+    "1e-5": {
+     "t": 687.908644435163,
+     "periods": 0.2100000000000003
+    },
+    "1e-4": {
+     "t": 1670.6352793425347,
+     "periods": 0.5099999999999996
+    },
+    "1e-3": {
+     "t": 2653.3619142499183,
+     "periods": 0.8100000000000024
+    },
+    "1e-2": {
+     "t": 3627.8991605330843,
+     "periods": 1.1075000000000084
+    }
+   },
+   "events": [
+    {
+     "kind": "speed-bound",
+     "t": 4562.670817149185,
+     "periods": 1.3928606354235735,
+     "member": 1,
+     "direction": "departure from declared domain"
+    },
+    {
+     "kind": "tMax",
+     "t": 4599.122434406811,
+     "periods": 1.4039883333904843
+    }
+   ],
+   "eventCount": 15,
+   "turningPoints": 13,
+   "coverage": {
+    "supMemberSpeed": 0.10072448526987668,
+    "maxEps": 0.015216124084839322,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "partially inside"
+   },
+   "invariants": {
+    "dErel": 2.5014695720026295e-12,
+    "dP": 1.5626897250293214e-15,
+    "dJrel": 1.2748967689015816e-12
+   },
+   "detHmin": 0.9985063339868118,
+   "condMax": 1.0469293954191632,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m1-a1e-6-dp54-rtol1e-12.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m1-a1e-6-dp54-rtol1e-12.deviation.json",
+   "utc": "2026-10-05T15:16:51.107Z"
+  },
+  {
+   "id": "G-R50-m1-a1e-8-dp54-rtol1e-10",
+   "R": 50,
+   "mode": "m1",
+   "a0": 1e-8,
+   "setting": "P",
+   "settingLabel": "dp54-rtol1e-10",
+   "v": 0.09590437081882594,
+   "Omega": 0.0019180874163765187,
+   "period": 3275.7554496912476,
+   "tMax": 6556.6247935037745,
+   "periodsRun": 2.001561134278739,
+   "stopReason": "tMax",
+   "steps": 803,
+   "wallMs": 605,
+   "eigenvalueUsed": {
+    "re": 1.2265210154574477,
+    "im": 0.9863047815585044
+   },
+   "target": {
+    "re": 1.226521016,
+    "im": 0.986304782
+   },
+   "initialDeviation": {
+    "position": 1.983111526020338e-8,
+    "velocity": 2.4327550351918393e-8
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      1e-7,
+      0.001
+     ],
+     "position": {
+      "points": 479,
+      "tFrom": 687.908644435163,
+      "tTo": 4602.436406816222,
+      "slope": 0.002352574530323011,
+      "intercept": -17.73601366893203,
+      "rms": 7.753594906199867e-9
+     },
+     "velocity": {
+      "points": 479,
+      "tFrom": 687.908644435163,
+      "tTo": 4602.436406816222,
+      "slope": 0.0023525745542868626,
+      "intercept": -17.531656425111844,
+      "rms": 7.37359980199119e-8
+     },
+     "ratePerOmega": 1.2265210178831614,
+     "velocityRatePerOmega": 1.2265210303767795,
+     "relativeDifference": 1.5353682769614352e-9,
+     "envelope": {
+      "points": 479,
+      "tFrom": 687.908644435163,
+      "tTo": 4602.436406816222,
+      "c": -17.736013669490067,
+      "sigma": 0.0023525745303874983,
+      "beta": -6.815285513539548e-9,
+      "omega": 0.0018648238111843964,
+      "psi": 5.597562034770629,
+      "rms": 7.359281766499564e-9,
+      "sigmaPerOmega": 1.226521017916782,
+      "omegaPerOmega": 0.9722308771032223,
+      "relativeDifferenceSigma": 1.5627796834394303e-9,
+      "relativeDifferenceOmega": 0.014269326432990725
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 478,
+      "gammaSlope": 0.0023525745269439855,
+      "omegaSlope": 0.001891818786552869,
+      "rmsLogModulus": 3.068907261298726e-9,
+      "rmsPhase": 7.822411732537612e-9,
+      "tFrom": 278.439213223756,
+      "tTo": 4184.777586980603,
+      "gammaPerOmega": 1.2265210161214974,
+      "omegaPerOmega": 0.9863047796469704,
+      "relativeDifferenceGamma": 9.905853914915497e-11,
+      "relativeDifferenceOmega": 2.3857024133988602e-9
+     },
+     "plainSlopeRelativeDifference": 1.5353682769614352e-9,
+     "envelopeRelativeDifference": 1.5627796834394303e-9,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      1e-7,
+      0.01
+     ],
+     "position": {
+      "points": 598,
+      "tFrom": 687.908644435163,
+      "tTo": 5576.973653099334,
+      "slope": 0.002352575041369951,
+      "intercept": -17.736014821545055,
+      "rms": 0.0000018455636516696618
+     },
+     "velocity": {
+      "points": 598,
+      "tFrom": 687.908644435163,
+      "tTo": 5576.973653099334,
+      "slope": 0.002352577810096588,
+      "intercept": -17.531663808661147,
+      "rms": 0.000011582210123121997
+     },
+     "ratePerOmega": 1.226521284318849,
+     "velocityRatePerOmega": 1.22652272780188,
+     "relativeDifference": 2.187641676698604e-7,
+     "envelope": {
+      "points": 598,
+      "tFrom": 687.908644435163,
+      "tTo": 5576.973653099334,
+      "c": -17.73612830783956,
+      "sigma": 0.002352616899740848,
+      "beta": -0.0003870027287424578,
+      "omega": 0.00011198191922130587,
+      "psi": 10.389997982912835,
+      "rms": 0.000001455859713227017,
+      "sigmaPerOmega": 1.2265431072923694,
+      "omegaPerOmega": 0.058382072821713316,
+      "relativeDifferenceSigma": 0.000018011344348201064,
+      "relativeDifferenceOmega": 0.9408072698346571
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 598,
+      "gammaSlope": 0.002352574482390048,
+      "omegaSlope": 0.0018918186101450666,
+      "rmsLogModulus": 3.058479224155042e-7,
+      "rmsPhase": 4.30476096022834e-7,
+      "tFrom": 278.439213223756,
+      "tTo": 5167.504221887943,
+      "gammaPerOmega": 1.226520992893183,
+      "omegaPerOmega": 0.9863046876762912,
+      "relativeDifferenceGamma": 1.883931588508858e-8,
+      "relativeDifferenceOmega": 9.563342950880127e-8
+     },
+     "plainSlopeRelativeDifference": 2.187641676698604e-7,
+     "envelopeRelativeDifference": 0.000018011344348201064,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": {
+    "normRe": 0.7071067811865874,
+    "normIm": 0.7071067811865076,
+    "cosAngle": 3.6039643491747597e-12
+   },
+   "firstCrossing": {
+    "1e-5": {
+     "t": 2653.3619142499183,
+     "periods": 0.8100000000000024
+    },
+    "1e-4": {
+     "t": 3627.8991605330843,
+     "periods": 1.1075000000000084
+    },
+    "1e-3": {
+     "t": 4610.62579544045,
+     "periods": 1.4075000000000057
+    },
+    "1e-2": {
+     "t": 5585.163041723562,
+     "periods": 1.7049999999999954
+    }
+   },
+   "events": [
+    {
+     "kind": "speed-bound",
+     "t": 6414.9943572037855,
+     "periods": 1.95832517284171,
+     "member": 3,
+     "direction": "departure from declared domain"
+    },
+    {
+     "kind": "tMax",
+     "t": 6556.6247935037745,
+     "periods": 2.001561134278739
+    }
+   ],
+   "eventCount": 23,
+   "turningPoints": 21,
+   "coverage": {
+    "supMemberSpeed": 0.10223242206413277,
+    "maxEps": 0.015017575960140493,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "partially inside"
+   },
+   "invariants": {
+    "dErel": 6.41144210439989e-12,
+    "dP": 1.933054508266074e-15,
+    "dJrel": 3.2562363356298373e-12
+   },
+   "detHmin": 0.9985063876382491,
+   "condMax": 1.0469391406022612,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m1-a1e-8-dp54-rtol1e-10.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m1-a1e-8-dp54-rtol1e-10.deviation.json",
+   "utc": "2026-10-05T15:16:53.828Z"
+  },
+  {
+   "id": "G-R50-m1-a1e-8-dp54-rtol1e-12",
+   "R": 50,
+   "mode": "m1",
+   "a0": 1e-8,
+   "setting": "C",
+   "settingLabel": "dp54-rtol1e-12",
+   "v": 0.09590437081882594,
+   "Omega": 0.0019180874163765187,
+   "period": 3275.7554496912476,
+   "tMax": 6556.6247935037745,
+   "periodsRun": 2.001561134278739,
+   "stopReason": "tMax",
+   "steps": 1362,
+   "wallMs": 636,
+   "eigenvalueUsed": {
+    "re": 1.2265210154574477,
+    "im": 0.9863047815585044
+   },
+   "target": {
+    "re": 1.226521016,
+    "im": 0.986304782
+   },
+   "initialDeviation": {
+    "position": 1.983111526020338e-8,
+    "velocity": 2.4327550351918393e-8
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      1e-7,
+      0.001
+     ],
+     "position": {
+      "points": 479,
+      "tFrom": 687.908644435163,
+      "tTo": 4602.436406816222,
+      "slope": 0.0023525745303156886,
+      "intercept": -17.736013675405363,
+      "rms": 7.774255033141196e-9
+     },
+     "velocity": {
+      "points": 479,
+      "tFrom": 687.908644435163,
+      "tTo": 4602.436406816222,
+      "slope": 0.0023525745536528368,
+      "intercept": -17.53165642940425,
+      "rms": 7.388801610839008e-8
+     },
+     "ratePerOmega": 1.2265210178793438,
+     "velocityRatePerOmega": 1.2265210300462284,
+     "relativeDifference": 1.532255655689596e-9,
+     "envelope": {
+      "points": 479,
+      "tFrom": 687.908644435163,
+      "tTo": 4602.436406816222,
+      "c": -17.736013803900686,
+      "sigma": 0.002352574589827917,
+      "beta": 2.748576336595902e-7,
+      "omega": 0.0002454534010525742,
+      "psi": 6.804916846439665,
+      "rms": 5.7345245706585e-9,
+      "sigmaPerOmega": 1.2265210489062033,
+      "omegaPerOmega": 0.1279677865340794,
+      "relativeDifferenceSigma": 2.6828894883479393e-8,
+      "relativeDifferenceOmega": 0.8702553319526749
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 478,
+      "gammaSlope": 0.0023525745258456496,
+      "omegaSlope": 0.0018918187860992406,
+      "rmsLogModulus": 3.1340943075200904e-9,
+      "rmsPhase": 7.656305946182714e-9,
+      "tFrom": 278.439213223756,
+      "tTo": 4184.777586980603,
+      "gammaPerOmega": 1.226521015548877,
+      "omegaPerOmega": 0.98630477941047,
+      "relativeDifferenceGamma": 3.6780689605109274e-10,
+      "relativeDifferenceOmega": 2.625486605900562e-9
+     },
+     "plainSlopeRelativeDifference": 1.532255655689596e-9,
+     "envelopeRelativeDifference": 2.6828894883479393e-8,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      1e-7,
+      0.01
+     ],
+     "position": {
+      "points": 598,
+      "tFrom": 687.908644435163,
+      "tTo": 5576.973653099334,
+      "slope": 0.00235257504138698,
+      "intercept": -17.73601482807572,
+      "rms": 0.0000018456791524647487
+     },
+     "velocity": {
+      "points": 598,
+      "tFrom": 687.908644435163,
+      "tTo": 5576.973653099334,
+      "slope": 0.002352577809795753,
+      "intercept": -17.53166381368954,
+      "rms": 0.00001158281343470154
+     },
+     "ratePerOmega": 1.2265212843277273,
+     "velocityRatePerOmega": 1.2265227276450388,
+     "relativeDifference": 2.1877140610193635e-7,
+     "envelope": {
+      "points": 598,
+      "tFrom": 687.908644435163,
+      "tTo": 5576.973653099334,
+      "c": -17.73612831971383,
+      "sigma": 0.002352616902985743,
+      "beta": -0.0003870602049539898,
+      "omega": 0.000111973618219308,
+      "psi": 10.390061001311413,
+      "rms": 0.0000014559951065861141,
+      "sigmaPerOmega": 1.2265431089841041,
+      "omegaPerOmega": 0.05837774507213997,
+      "relativeDifferenceSigma": 0.00001801272364354567,
+      "relativeDifferenceOmega": 0.9408116576766836
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 598,
+      "gammaSlope": 0.0023525744816575147,
+      "omegaSlope": 0.0018918186098746787,
+      "rmsLogModulus": 3.056866062506023e-7,
+      "rmsPhase": 4.3027641457791345e-7,
+      "tFrom": 278.439213223756,
+      "tTo": 5167.504221887943,
+      "gammaPerOmega": 1.226520992511275,
+      "omegaPerOmega": 0.9863046875353237,
+      "relativeDifferenceGamma": 1.9150691032976397e-8,
+      "relativeDifferenceOmega": 9.57763544029433e-8
+     },
+     "plainSlopeRelativeDifference": 2.1877140610193635e-7,
+     "envelopeRelativeDifference": 0.00001801272364354567,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": {
+    "normRe": 0.7071067811865874,
+    "normIm": 0.7071067811865076,
+    "cosAngle": 3.6039643491747597e-12
+   },
+   "firstCrossing": {
+    "1e-5": {
+     "t": 2653.3619142499183,
+     "periods": 0.8100000000000024
+    },
+    "1e-4": {
+     "t": 3627.8991605330843,
+     "periods": 1.1075000000000084
+    },
+    "1e-3": {
+     "t": 4610.62579544045,
+     "periods": 1.4075000000000057
+    },
+    "1e-2": {
+     "t": 5585.163041723562,
+     "periods": 1.7049999999999954
+    }
+   },
+   "events": [
+    {
+     "kind": "speed-bound",
+     "t": 6414.994458963349,
+     "periods": 1.9583252039061665,
+     "member": 3,
+     "direction": "departure from declared domain"
+    },
+    {
+     "kind": "tMax",
+     "t": 6556.6247935037745,
+     "periods": 2.001561134278739
+    }
+   ],
+   "eventCount": 23,
+   "turningPoints": 21,
+   "coverage": {
+    "supMemberSpeed": 0.10223241995290691,
+    "maxEps": 0.015017575802513604,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "partially inside"
+   },
+   "invariants": {
+    "dErel": 3.530499051369699e-12,
+    "dP": 1.2628790305127477e-15,
+    "dJrel": 1.7914174451256965e-12
+   },
+   "detHmin": 0.9985063876386395,
+   "condMax": 1.046939140513808,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m1-a1e-8-dp54-rtol1e-12.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m1-a1e-8-dp54-rtol1e-12.deviation.json",
+   "utc": "2026-10-05T15:16:56.287Z"
+  },
+  {
+   "id": "G-R100-m1-a1e-6-dp54-rtol1e-10",
+   "R": 100,
+   "mode": "m1",
+   "a0": 0.000001,
+   "setting": "P",
+   "settingLabel": "dp54-rtol1e-10",
+   "v": 0.06771191906591982,
+   "Omega": 0.0006771191906591982,
+   "period": 9279.289959368447,
+   "tMax": 12937.436200754204,
+   "periodsRun": 1.3942269567395578,
+   "stopReason": "tMax",
+   "steps": 560,
+   "wallMs": 415,
+   "eigenvalueUsed": {
+    "re": 1.235108235561888,
+    "im": 0.9930421619332677
+   },
+   "target": {
+    "re": 1.235108236,
+    "im": 0.993042162
+   },
+   "initialDeviation": {
+    "position": 0.000001991604514489569,
+    "velocity": 0.000002459953906489485
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      0.000009999999999999999,
+      0.001
+     ],
+     "position": {
+      "points": 237,
+      "tFrom": 1948.6508914673748,
+      "tTo": 7423.431967494775,
+      "slope": 0.0008363155017818118,
+      "intercept": -13.126570000582985,
+      "rms": 1.8329723479532516e-8
+     },
+     "velocity": {
+      "points": 237,
+      "tFrom": 1948.6508914673748,
+      "tTo": 7423.431967494775,
+      "slope": 0.0008363155236611249,
+      "intercept": -12.915368062029971,
+      "rms": 5.4751425812661076e-8
+     },
+     "ratePerOmega": 1.2351082546746766,
+     "velocityRatePerOmega": 1.2351082869870278,
+     "relativeDifference": 1.511987046676211e-8,
+     "envelope": {
+      "points": 237,
+      "tFrom": 1948.6508914673748,
+      "tTo": 7423.431967494775,
+      "c": -13.126570043778706,
+      "sigma": 0.0008363155122683644,
+      "beta": 6.930196101833997e-8,
+      "omega": 0.00045841828824003025,
+      "psi": 4.394850784315464,
+      "rms": 7.721262767871613e-9,
+      "sigmaPerOmega": 1.2351082701616878,
+      "omegaPerOmega": 0.677012695200301,
+      "relativeDifferenceSigma": 2.7658861645463162e-8,
+      "relativeDifferenceOmega": 0.318243755293543
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 238,
+      "gammaSlope": 0.000836315491709178,
+      "omegaSlope": 0.000672407902970213,
+      "rmsLogModulus": 7.599593845956298e-9,
+      "rmsPhase": 5.85638022437907e-9,
+      "tFrom": 765.5414216478972,
+      "tTo": 6263.520722573707,
+      "gammaPerOmega": 1.235108239798959,
+      "omegaPerOmega": 0.9930421589670224,
+      "relativeDifferenceGamma": 3.0758104951900123e-9,
+      "relativeDifferenceOmega": 3.0542283147028115e-9
+     },
+     "plainSlopeRelativeDifference": 1.511987046676211e-8,
+     "envelopeRelativeDifference": 2.7658861645463162e-8,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      0.000009999999999999999,
+      0.01
+     ],
+     "position": {
+      "points": 356,
+      "tFrom": 1948.6508914673748,
+      "tTo": 10184.020730406839,
+      "slope": 0.0008363158046193798,
+      "intercept": -13.126571306084145,
+      "rms": 8.796968547167264e-7
+     },
+     "velocity": {
+      "points": 356,
+      "tFrom": 1948.6508914673748,
+      "tTo": 10184.020730406839,
+      "slope": 0.0008363163904595405,
+      "intercept": -12.915371704909173,
+      "rms": 0.0000028198430854037205
+     },
+     "ratePerOmega": 1.2351087019187839,
+     "velocityRatePerOmega": 1.2351095671138173,
+     "relativeDifference": 3.772291126136196e-7,
+     "envelope": {
+      "points": 356,
+      "tFrom": 1948.6508914673748,
+      "tTo": 10184.020730406839,
+      "c": -13.126571739892857,
+      "sigma": 0.0008363158613515168,
+      "beta": 0.0000016833554220850528,
+      "omega": 0.0004328115573044835,
+      "psi": 3.740639936263807,
+      "rms": 6.492581170846656e-7,
+      "sigmaPerOmega": 1.2351087857033491,
+      "omegaPerOmega": 0.6391955260980374,
+      "relativeDifferenceSigma": 4.4506492069551484e-7,
+      "relativeDifferenceOmega": 0.35632589374585144
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 356,
+      "gammaSlope": 0.0008363156048910215,
+      "omegaSlope": 0.0006724077167382058,
+      "rmsLogModulus": 4.3617231258868217e-7,
+      "rmsPhase": 8.668366337508145e-7,
+      "tFrom": 765.5414216478972,
+      "tTo": 9000.911260587396,
+      "gammaPerOmega": 1.2351084069509835,
+      "omegaPerOmega": 0.9930418839312387,
+      "relativeDifferenceGamma": 1.3840971857526085e-7,
+      "relativeDifferenceOmega": 2.800170746386499e-7
+     },
+     "plainSlopeRelativeDifference": 3.772291126136196e-7,
+     "envelopeRelativeDifference": 4.4506492069551484e-7,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": {
+    "normRe": 0.707106781187335,
+    "normIm": 0.70710678118576,
+    "cosAngle": 4.446637502653062e-12
+   },
+   "firstCrossing": {
+    "1e-5": {
+     "t": 1948.6508914673748,
+     "periods": 0.2100000000000001
+    },
+    "1e-4": {
+     "t": 4686.041429481054,
+     "periods": 0.5049999999999988
+    },
+    "1e-3": {
+     "t": 7446.630192393196,
+     "periods": 0.8025000000000019
+    },
+    "1e-2": {
+     "t": 10207.21895530526,
+     "periods": 1.0999999999999965
+    }
+   },
+   "events": [
+    {
+     "kind": "tMax",
+     "t": 12937.436200754204,
+     "periods": 1.3942269567395578
+    }
+   ],
+   "eventCount": 15,
+   "turningPoints": 14,
+   "coverage": {
+    "supMemberSpeed": 0.07114251457301939,
+    "maxEps": 0.007610566803109578,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "inside"
+   },
+   "invariants": {
+    "dErel": 4.520780266478111e-12,
+    "dP": 6.596563037153694e-16,
+    "dJrel": 2.2863224389112894e-12
+   },
+   "detHmin": 0.9996246822035338,
+   "condMax": 1.0232629277262286,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m1-a1e-6-dp54-rtol1e-10.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m1-a1e-6-dp54-rtol1e-10.deviation.json",
+   "utc": "2026-10-05T15:17:04.807Z"
+  },
+  {
+   "id": "G-R100-m1-a1e-6-dp54-rtol1e-12",
+   "R": 100,
+   "mode": "m1",
+   "a0": 0.000001,
+   "setting": "C",
+   "settingLabel": "dp54-rtol1e-12",
+   "v": 0.06771191906591982,
+   "Omega": 0.0006771191906591982,
+   "period": 9279.289959368447,
+   "tMax": 12937.436200754204,
+   "periodsRun": 1.3942269567395578,
+   "stopReason": "tMax",
+   "steps": 955,
+   "wallMs": 442,
+   "eigenvalueUsed": {
+    "re": 1.235108235561888,
+    "im": 0.9930421619332677
+   },
+   "target": {
+    "re": 1.235108236,
+    "im": 0.993042162
+   },
+   "initialDeviation": {
+    "position": 0.000001991604514489569,
+    "velocity": 0.000002459953906489485
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      0.000009999999999999999,
+      0.001
+     ],
+     "position": {
+      "points": 237,
+      "tFrom": 1948.6508914673748,
+      "tTo": 7423.431967494775,
+      "slope": 0.0008363155017796886,
+      "intercept": -13.126570000555276,
+      "rms": 1.8331471865649003e-8
+     },
+     "velocity": {
+      "points": 237,
+      "tFrom": 1948.6508914673748,
+      "tTo": 7423.431967494775,
+      "slope": 0.0008363155236601644,
+      "intercept": -12.91536806200828,
+      "rms": 5.475363241545481e-8
+     },
+     "ratePerOmega": 1.2351082546715408,
+     "velocityRatePerOmega": 1.2351082869856091,
+     "relativeDifference": 1.5117331608749396e-8,
+     "envelope": {
+      "points": 237,
+      "tFrom": 1948.6508914673748,
+      "tTo": 7423.431967494775,
+      "c": -13.126570043748165,
+      "sigma": 0.0008363155122592636,
+      "beta": 6.925928083743814e-8,
+      "omega": 0.00045883008691993026,
+      "psi": 4.390678787666706,
+      "rms": 7.72134680062651e-9,
+      "sigmaPerOmega": 1.2351082701482474,
+      "omegaPerOmega": 0.6776208579662967,
+      "relativeDifferenceSigma": 2.7647979683464996e-8,
+      "relativeDifferenceOmega": 0.31763133138117783
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 238,
+      "gammaSlope": 0.0008363154916993803,
+      "omegaSlope": 0.0006724079029745762,
+      "rmsLogModulus": 7.604207740626562e-9,
+      "rmsPhase": 5.856990777117343e-9,
+      "tFrom": 765.5414216478972,
+      "tTo": 6263.520722573707,
+      "gammaPerOmega": 1.2351082397844895,
+      "omegaPerOmega": 0.993042158973466,
+      "relativeDifferenceGamma": 3.0640954218341676e-9,
+      "relativeDifferenceOmega": 3.04773961623539e-9
+     },
+     "plainSlopeRelativeDifference": 1.5117331608749396e-8,
+     "envelopeRelativeDifference": 2.7647979683464996e-8,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      0.000009999999999999999,
+      0.01
+     ],
+     "position": {
+      "points": 356,
+      "tFrom": 1948.6508914673748,
+      "tTo": 10184.020730406839,
+      "slope": 0.0008363158046189019,
+      "intercept": -13.126571306063274,
+      "rms": 8.796983994553604e-7
+     },
+     "velocity": {
+      "points": 356,
+      "tFrom": 1948.6508914673748,
+      "tTo": 10184.020730406839,
+      "slope": 0.0008363163904603865,
+      "intercept": -12.915371704895028,
+      "rms": 0.000002819844292592116
+     },
+     "ratePerOmega": 1.2351087019180782,
+     "velocityRatePerOmega": 1.2351095671150665,
+     "relativeDifference": 3.772285412928511e-7,
+     "envelope": {
+      "points": 356,
+      "tFrom": 1948.6508914673748,
+      "tTo": 10184.020730406839,
+      "c": -13.126571739822923,
+      "sigma": 0.0008363158613389737,
+      "beta": 0.0000016833447611989825,
+      "omega": 0.00043283212330091014,
+      "psi": 3.7403892331075266,
+      "rms": 6.492582782072446e-7,
+      "sigmaPerOmega": 1.2351087856848249,
+      "omegaPerOmega": 0.6392258988842623,
+      "relativeDifferenceSigma": 4.450499224706306e-7,
+      "relativeDifferenceOmega": 0.35629530815000554
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 356,
+      "gammaSlope": 0.0008363156048863889,
+      "omegaSlope": 0.0006724077167406859,
+      "rmsLogModulus": 4.361770328645672e-7,
+      "rmsPhase": 8.668379697698807e-7,
+      "tFrom": 765.5414216478972,
+      "tTo": 9000.911260587396,
+      "gammaPerOmega": 1.2351084069441418,
+      "omegaPerOmega": 0.9930418839349014,
+      "relativeDifferenceGamma": 1.384041792285018e-7,
+      "relativeDifferenceOmega": 2.800133862557175e-7
+     },
+     "plainSlopeRelativeDifference": 3.772285412928511e-7,
+     "envelopeRelativeDifference": 4.450499224706306e-7,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": {
+    "normRe": 0.707106781187335,
+    "normIm": 0.70710678118576,
+    "cosAngle": 4.446637502653062e-12
+   },
+   "firstCrossing": {
+    "1e-5": {
+     "t": 1948.6508914673748,
+     "periods": 0.2100000000000001
+    },
+    "1e-4": {
+     "t": 4686.041429481054,
+     "periods": 0.5049999999999988
+    },
+    "1e-3": {
+     "t": 7446.630192393196,
+     "periods": 0.8025000000000019
+    },
+    "1e-2": {
+     "t": 10207.21895530526,
+     "periods": 1.0999999999999965
+    }
+   },
+   "events": [
+    {
+     "kind": "tMax",
+     "t": 12937.436200754204,
+     "periods": 1.3942269567395578
+    }
+   ],
+   "eventCount": 15,
+   "turningPoints": 14,
+   "coverage": {
+    "supMemberSpeed": 0.07114251456912035,
+    "maxEps": 0.007610566802910628,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "inside"
+   },
+   "invariants": {
+    "dErel": 2.4772824032108998e-12,
+    "dP": 2.642089888482022e-16,
+    "dJrel": 1.255530833119885e-12
+   },
+   "detHmin": 0.999624682203533,
+   "condMax": 1.0232629277261878,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m1-a1e-6-dp54-rtol1e-12.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m1-a1e-6-dp54-rtol1e-12.deviation.json",
+   "utc": "2026-10-05T15:17:06.576Z"
+  },
+  {
+   "id": "G-R100-m1-a1e-8-dp54-rtol1e-10",
+   "R": 100,
+   "mode": "m1",
+   "a0": 1e-8,
+   "setting": "P",
+   "settingLabel": "dp54-rtol1e-10",
+   "v": 0.06771191906591982,
+   "Omega": 0.0006771191906591982,
+   "period": 9279.289959368447,
+   "tMax": 18443.934939335664,
+   "periodsRun": 1.9876450698379693,
+   "stopReason": "tMax",
+   "steps": 798,
+   "wallMs": 597,
+   "eigenvalueUsed": {
+    "re": 1.235108235561888,
+    "im": 0.9930421619332677
+   },
+   "target": {
+    "re": 1.235108236,
+    "im": 0.993042162
+   },
+   "initialDeviation": {
+    "position": 1.991604509371842e-8,
+    "velocity": 2.4599539005502363e-8
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      1e-7,
+      0.001
+     ],
+     "position": {
+      "points": 474,
+      "tFrom": 1948.6508914673748,
+      "tTo": 12921.411268420452,
+      "slope": 0.0008363154904120105,
+      "intercept": -17.731740148087347,
+      "rms": 6.999182971823647e-9
+     },
+     "velocity": {
+      "points": 474,
+      "tFrom": 1948.6508914673748,
+      "tTo": 12921.411268420452,
+      "slope": 0.0008363154980646581,
+      "intercept": -17.520538178600646,
+      "rms": 6.843476035038444e-8
+     },
+     "ratePerOmega": 1.2351082378832439,
+     "velocityRatePerOmega": 1.2351082491850172,
+     "relativeDifference": 1.5247600959611418e-9,
+     "envelope": {
+      "points": 474,
+      "tFrom": 1948.6508914673748,
+      "tTo": 12921.411268420452,
+      "c": -17.731740148498556,
+      "sigma": 0.0008363154904197153,
+      "beta": 6.2266829545605345e-9,
+      "omega": 0.0006600037608259969,
+      "psi": 2.6735314843674955,
+      "rms": 6.630829601113179e-9,
+      "sigmaPerOmega": 1.2351082378946225,
+      "omegaPerOmega": 0.9747231653314405,
+      "relativeDifferenceSigma": 1.5339727266194814e-9,
+      "relativeDifferenceOmega": 0.018447350343780644
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 475,
+      "gammaSlope": 0.0008363154889563509,
+      "omegaSlope": 0.000672407903711655,
+      "rmsLogModulus": 3.099859277376955e-9,
+      "rmsPhase": 7.874028975035824e-9,
+      "tFrom": 765.5414216478972,
+      "tTo": 11761.50002349943,
+      "gammaPerOmega": 1.2351082357334604,
+      "omegaPerOmega": 0.9930421600620171,
+      "relativeDifferenceGamma": 2.1580270903598375e-10,
+      "relativeDifferenceOmega": 1.9515615790055563e-9
+     },
+     "plainSlopeRelativeDifference": 1.5247600959611418e-9,
+     "envelopeRelativeDifference": 1.5339727266194814e-9,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      1e-7,
+      0.01
+     ],
+     "position": {
+      "points": 593,
+      "tFrom": 1948.6508914673748,
+      "tTo": 15682.000031332485,
+      "slope": 0.000836315671213007,
+      "intercept": -17.73174129646455,
+      "rms": 0.0000018451479728184308
+     },
+     "velocity": {
+      "points": 593,
+      "tFrom": 1948.6508914673748,
+      "tTo": 15682.000031332485,
+      "slope": 0.0008363166557851313,
+      "intercept": -17.520545572796426,
+      "rms": 0.00001159759407516163
+     },
+     "ratePerOmega": 1.235108504898267,
+     "velocityRatePerOmega": 1.2351099589585537,
+     "relativeDifference": 2.177123099578182e-7,
+     "envelope": {
+      "points": 593,
+      "tFrom": 1948.6508914673748,
+      "tTo": 15682.000031332485,
+      "c": -17.73185459359185,
+      "sigma": 0.0008363305141910951,
+      "beta": -0.00038573871475190274,
+      "omega": 0.0000398364880365889,
+      "psi": 10.389055773948055,
+      "rms": 0.0000014604680020397854,
+      "sigmaPerOmega": 1.2351304256742441,
+      "omegaPerOmega": 0.05883231281306139,
+      "relativeDifferenceSigma": 0.00001796577303703195,
+      "relativeDifferenceOmega": 0.9407554733682482
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 594,
+      "gammaSlope": 0.0008363154733453518,
+      "omegaSlope": 0.0006724078406574441,
+      "rmsLogModulus": 3.0929003569741533e-7,
+      "rmsPhase": 4.348886908076052e-7,
+      "tFrom": 765.5414216478972,
+      "tTo": 14522.088786411463,
+      "gammaPerOmega": 1.2351082126784365,
+      "omegaPerOmega": 0.9930420669407296,
+      "relativeDifferenceGamma": 1.8882202246217616e-8,
+      "relativeDifferenceOmega": 9.572531156631925e-8
+     },
+     "plainSlopeRelativeDifference": 2.177123099578182e-7,
+     "envelopeRelativeDifference": 0.00001796577303703195,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": {
+    "normRe": 0.707106781187335,
+    "normIm": 0.70710678118576,
+    "cosAngle": 4.446637502653062e-12
+   },
+   "firstCrossing": {
+    "1e-5": {
+     "t": 7446.630192393196,
+     "periods": 0.8025000000000019
+    },
+    "1e-4": {
+     "t": 10207.21895530526,
+     "periods": 1.0999999999999965
+    },
+    "1e-3": {
+     "t": 12944.609493318872,
+     "periods": 1.394999999999988
+    },
+    "1e-2": {
+     "t": 15705.198256230906,
+     "periods": 1.6924999999999795
+    }
+   },
+   "events": [
+    {
+     "kind": "tMax",
+     "t": 18443.934939335664,
+     "periods": 1.9876450698379693
+    }
+   ],
+   "eventCount": 23,
+   "turningPoints": 22,
+   "coverage": {
+    "supMemberSpeed": 0.0722217391823967,
+    "maxEps": 0.00751083636345824,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "inside"
+   },
+   "invariants": {
+    "dErel": 6.464392287141567e-12,
+    "dP": 7.025400442326107e-16,
+    "dJrel": 3.2628757461519145e-12
+   },
+   "detHmin": 0.9996246960573927,
+   "condMax": 1.0232678803247601,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m1-a1e-8-dp54-rtol1e-10.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m1-a1e-8-dp54-rtol1e-10.deviation.json",
+   "utc": "2026-10-05T15:17:09.276Z"
+  },
+  {
+   "id": "G-R100-m1-a1e-8-dp54-rtol1e-12",
+   "R": 100,
+   "mode": "m1",
+   "a0": 1e-8,
+   "setting": "C",
+   "settingLabel": "dp54-rtol1e-12",
+   "v": 0.06771191906591982,
+   "Omega": 0.0006771191906591982,
+   "period": 9279.289959368447,
+   "tMax": 18443.934939335664,
+   "periodsRun": 1.9876450698379693,
+   "stopReason": "tMax",
+   "steps": 1369,
+   "wallMs": 688,
+   "eigenvalueUsed": {
+    "re": 1.235108235561888,
+    "im": 0.9930421619332677
+   },
+   "target": {
+    "re": 1.235108236,
+    "im": 0.993042162
+   },
+   "initialDeviation": {
+    "position": 1.991604509371842e-8,
+    "velocity": 2.4599539005502363e-8
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      1e-7,
+      0.001
+     ],
+     "position": {
+      "points": 474,
+      "tFrom": 1948.6508914673748,
+      "tTo": 12921.411268420452,
+      "slope": 0.0008363154903909774,
+      "intercept": -17.731740144590102,
+      "rms": 7.0297117318659575e-9
+     },
+     "velocity": {
+      "points": 474,
+      "tFrom": 1948.6508914673748,
+      "tTo": 12921.411268420452,
+      "slope": 0.0008363154982032181,
+      "intercept": -17.520538176591963,
+      "rms": 6.832106491837168e-8
+     },
+     "ratePerOmega": 1.2351082378521812,
+     "velocityRatePerOmega": 1.2351082493896488,
+     "relativeDifference": 1.499610435828913e-9,
+     "envelope": {
+      "points": 474,
+      "tFrom": 1948.6508914673748,
+      "tTo": 12921.411268420452,
+      "c": -17.731740145020353,
+      "sigma": 0.0008363154903999564,
+      "beta": 6.371923082958166e-9,
+      "omega": 0.0006615834112283793,
+      "psi": 2.6344034172949877,
+      "rms": 6.644938046527779e-9,
+      "sigmaPerOmega": 1.2351082378654419,
+      "omegaPerOmega": 0.9770560639173522,
+      "relativeDifferenceSigma": 1.5103467365662482e-9,
+      "relativeDifferenceOmega": 0.01609810609697726
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 475,
+      "gammaSlope": 0.0008363154891302609,
+      "omegaSlope": 0.0006724079038555179,
+      "rmsLogModulus": 3.003603476365741e-9,
+      "rmsPhase": 8.133943599295282e-9,
+      "tFrom": 765.5414216478972,
+      "tTo": 11761.50002349943,
+      "gammaPerOmega": 1.2351082359902985,
+      "omegaPerOmega": 0.9930421602744803,
+      "relativeDifferenceGamma": 7.854827899222983e-12,
+      "relativeDifferenceOmega": 1.7376096117516227e-9
+     },
+     "plainSlopeRelativeDifference": 1.499610435828913e-9,
+     "envelopeRelativeDifference": 1.5103467365662482e-9,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      1e-7,
+      0.01
+     ],
+     "position": {
+      "points": 593,
+      "tFrom": 1948.6508914673748,
+      "tTo": 15682.000031332485,
+      "slope": 0.0008363156712013975,
+      "intercept": -17.73174129302462,
+      "rms": 0.000001845178048545617
+     },
+     "velocity": {
+      "points": 593,
+      "tFrom": 1948.6508914673748,
+      "tTo": 15682.000031332485,
+      "slope": 0.0008363166558818028,
+      "intercept": -17.520545570539095,
+      "rms": 0.000011597568209454424
+     },
+     "ratePerOmega": 1.235108504881122,
+     "velocityRatePerOmega": 1.2351099591013224,
+     "relativeDifference": 2.176984283952521e-7,
+     "envelope": {
+      "points": 593,
+      "tFrom": 1948.6508914673748,
+      "tTo": 15682.000031332485,
+      "c": -17.7318547545028,
+      "sigma": 0.000836330536168866,
+      "beta": -0.00038658331681438047,
+      "omega": 0.00003980631263785044,
+      "psi": 10.389531594721182,
+      "rms": 0.0000014604872345973258,
+      "sigmaPerOmega": 1.2351304581320022,
+      "omegaPerOmega": 0.0587877484303726,
+      "relativeDifferenceSigma": 0.00001799205231933776,
+      "relativeDifferenceOmega": 0.9408003499952375
+     },
+     "localMaxima": {
+      "points": 0,
+      "slope": null,
+      "ratePerOmega": null,
+      "relativeDifference": null
+     },
+     "projection": {
+      "points": 594,
+      "gammaSlope": 0.0008363154734605682,
+      "omegaSlope": 0.0006724078407498229,
+      "rmsLogModulus": 3.09345303449289e-7,
+      "rmsPhase": 4.3502125964366494e-7,
+      "tFrom": 765.5414216478972,
+      "tTo": 14522.088786411463,
+      "gammaPerOmega": 1.2351082128485933,
+      "omegaPerOmega": 0.9930420670771588,
+      "relativeDifferenceGamma": 1.87444355592703e-8,
+      "relativeDifferenceOmega": 9.55879264630255e-8
+     },
+     "plainSlopeRelativeDifference": 2.176984283952521e-7,
+     "envelopeRelativeDifference": 0.00001799205231933776,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": {
+    "normRe": 0.707106781187335,
+    "normIm": 0.70710678118576,
+    "cosAngle": 4.446637502653062e-12
+   },
+   "firstCrossing": {
+    "1e-5": {
+     "t": 7446.630192393196,
+     "periods": 0.8025000000000019
+    },
+    "1e-4": {
+     "t": 10207.21895530526,
+     "periods": 1.0999999999999965
+    },
+    "1e-3": {
+     "t": 12944.609493318872,
+     "periods": 1.394999999999988
+    },
+    "1e-2": {
+     "t": 15705.198256230906,
+     "periods": 1.6924999999999795
+    }
+   },
+   "events": [
+    {
+     "kind": "tMax",
+     "t": 18443.934939335664,
+     "periods": 1.9876450698379693
+    }
+   ],
+   "eventCount": 25,
+   "turningPoints": 24,
+   "coverage": {
+    "supMemberSpeed": 0.07222173901122264,
+    "maxEps": 0.007510836351525248,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "inside"
+   },
+   "invariants": {
+    "dErel": 3.5173815748682555e-12,
+    "dP": 4.3933026638106474e-16,
+    "dJrel": 1.7750835859045257e-12
+   },
+   "detHmin": 0.9996246960573869,
+   "condMax": 1.0232678803198898,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m1-a1e-8-dp54-rtol1e-12.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m1-a1e-8-dp54-rtol1e-12.deviation.json",
+   "utc": "2026-10-05T15:17:11.725Z"
+  },
+  {
+   "id": "G-R50-m2-a1e-6-dp54-rtol1e-10",
+   "R": 50,
+   "mode": "m2",
+   "a0": 0.000001,
+   "setting": "P",
+   "settingLabel": "dp54-rtol1e-10",
+   "v": 0.09590437081882594,
+   "Omega": 0.0019180874163765187,
+   "period": 3275.7554496912476,
+   "tMax": 3757.4848600010814,
+   "periodsRun": 1.1470590273627534,
+   "stopReason": "tMax",
+   "steps": 461,
+   "wallMs": 200,
+   "eigenvalueUsed": {
+    "re": 1.5012489820540331,
+    "im": 0
+   },
+   "target": {
+    "re": 1.501248982,
+    "im": 0
+   },
+   "initialDeviation": {
+    "position": 0.0000019999999999596693,
+    "velocity": 0.0000036076299733265348
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      0.000009999999999999999,
+      0.001
+     ],
+     "position": {
+      "points": 195,
+      "tFrom": 565.0678150717404,
+      "tTo": 2153.809208171993,
+      "slope": 0.002879526804917297,
+      "intercept": -13.122363401523527,
+      "rms": 1.0649549985924256e-8
+     },
+     "velocity": {
+      "points": 195,
+      "tFrom": 565.0678150717404,
+      "tTo": 2153.809208171993,
+      "slope": 0.0028795268584520676,
+      "intercept": -12.532459597006296,
+      "rms": 3.4817329365685414e-8
+     },
+     "ratePerOmega": 1.5012489943534715,
+     "velocityRatePerOmega": 1.5012490222639672,
+     "relativeDifference": 8.22879586692693e-9,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      0.000009999999999999999,
+      0.01
+     ],
+     "position": {
+      "points": 293,
+      "tFrom": 565.0678150717404,
+      "tTo": 2956.369293346365,
+      "slope": 0.0028795279435054246,
+      "intercept": -13.122364880319125,
+      "rms": 0.0000010472810014318326
+     },
+     "velocity": {
+      "points": 293,
+      "tFrom": 565.0678150717404,
+      "tTo": 2956.369293346365,
+      "slope": 0.0028795305797010905,
+      "intercept": -12.532464430154036,
+      "rms": 0.000003422819441804204
+     },
+     "ratePerOmega": 1.5012495879594343,
+     "velocityRatePerOmega": 1.501250962347089,
+     "relativeDifference": 4.036368661530787e-7,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": null,
+   "firstCrossing": {
+    "1e-5": {
+     "t": 565.0678150717404,
+     "periods": 0.17250000000000004
+    },
+    "1e-4": {
+     "t": 1359.4385116218684,
+     "periods": 0.4150000000000002
+    },
+    "1e-3": {
+     "t": 2161.998596796221,
+     "periods": 0.6599999999999993
+    },
+    "1e-2": {
+     "t": 2964.558681970593,
+     "periods": 0.9050000000000044
+    }
+   },
+   "events": [
+    {
+     "kind": "speed-bound",
+     "t": 3501.4876166479576,
+     "periods": 1.0689099569316098,
+     "member": 1,
+     "direction": "departure from declared domain"
+    },
+    {
+     "kind": "speed-bound",
+     "t": 3501.4876166479576,
+     "periods": 1.0689099569316098,
+     "member": 3,
+     "direction": "departure from declared domain"
+    },
+    {
+     "kind": "tMax",
+     "t": 3757.4848600010814,
+     "periods": 1.1470590273627534
+    }
+   ],
+   "eventCount": 3,
+   "turningPoints": 0,
+   "coverage": {
+    "supMemberSpeed": 0.10439836128448735,
+    "maxEps": 0.014731621871965687,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "partially inside"
+   },
+   "invariants": {
+    "dErel": 3.6380039639941514e-12,
+    "dP": 2.4868637720769757e-16,
+    "dJrel": 1.8590994647669694e-12
+   },
+   "detHmin": 0.9985069434917193,
+   "condMax": 1.0472269946515185,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m2-a1e-6-dp54-rtol1e-10.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m2-a1e-6-dp54-rtol1e-10.deviation.json",
+   "utc": "2026-10-05T15:19:45.422Z"
+  },
+  {
+   "id": "G-R50-m2-a1e-6-dp54-rtol1e-12",
+   "R": 50,
+   "mode": "m2",
+   "a0": 0.000001,
+   "setting": "C",
+   "settingLabel": "dp54-rtol1e-12",
+   "v": 0.09590437081882594,
+   "Omega": 0.0019180874163765187,
+   "period": 3275.7554496912476,
+   "tMax": 3757.4848600010814,
+   "periodsRun": 1.1470590273627534,
+   "stopReason": "tMax",
+   "steps": 781,
+   "wallMs": 293,
+   "eigenvalueUsed": {
+    "re": 1.5012489820540331,
+    "im": 0
+   },
+   "target": {
+    "re": 1.501248982,
+    "im": 0
+   },
+   "initialDeviation": {
+    "position": 0.0000019999999999596693,
+    "velocity": 0.0000036076299733265348
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      0.000009999999999999999,
+      0.001
+     ],
+     "position": {
+      "points": 195,
+      "tFrom": 565.0678150717404,
+      "tTo": 2153.809208171993,
+      "slope": 0.0028795268048832636,
+      "intercept": -13.122363401473518,
+      "rms": 1.0657555449175178e-8
+     },
+     "velocity": {
+      "points": 195,
+      "tFrom": 565.0678150717404,
+      "tTo": 2153.809208171993,
+      "slope": 0.002879526858451035,
+      "intercept": -12.53245959700774,
+      "rms": 3.481708387928206e-8
+     },
+     "ratePerOmega": 1.5012489943357281,
+     "velocityRatePerOmega": 1.5012490222634287,
+     "relativeDifference": 8.21697687669598e-9,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      0.000009999999999999999,
+      0.01
+     ],
+     "position": {
+      "points": 293,
+      "tFrom": 565.0678150717404,
+      "tTo": 2956.369293346365,
+      "slope": 0.002879527943487365,
+      "intercept": -13.122364880288186,
+      "rms": 0.0000010472849879470616
+     },
+     "velocity": {
+      "points": 293,
+      "tFrom": 565.0678150717404,
+      "tTo": 2956.369293346365,
+      "slope": 0.002879530579699276,
+      "intercept": -12.532464430154464,
+      "rms": 0.0000034228190755993617
+     },
+     "ratePerOmega": 1.5012495879500187,
+     "velocityRatePerOmega": 1.501250962346143,
+     "relativeDifference": 4.03630594281168e-7,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": null,
+   "firstCrossing": {
+    "1e-5": {
+     "t": 565.0678150717404,
+     "periods": 0.17250000000000004
+    },
+    "1e-4": {
+     "t": 1359.4385116218684,
+     "periods": 0.4150000000000002
+    },
+    "1e-3": {
+     "t": 2161.998596796221,
+     "periods": 0.6599999999999993
+    },
+    "1e-2": {
+     "t": 2964.558681970593,
+     "periods": 0.9050000000000044
+    }
+   },
+   "events": [
+    {
+     "kind": "speed-bound",
+     "t": 3501.4876166477434,
+     "periods": 1.0689099569315443,
+     "member": 1,
+     "direction": "departure from declared domain"
+    },
+    {
+     "kind": "speed-bound",
+     "t": 3501.4876166504873,
+     "periods": 1.068909956932382,
+     "member": 3,
+     "direction": "departure from declared domain"
+    },
+    {
+     "kind": "tMax",
+     "t": 3757.4848600010814,
+     "periods": 1.1470590273627534
+    }
+   ],
+   "eventCount": 3,
+   "turningPoints": 0,
+   "coverage": {
+    "supMemberSpeed": 0.10439836128442517,
+    "maxEps": 0.014731621871973518,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "partially inside"
+   },
+   "invariants": {
+    "dErel": 2.006192553528218e-12,
+    "dP": 2.818708378168767e-16,
+    "dJrel": 1.0291041712490818e-12
+   },
+   "detHmin": 0.9985069434917164,
+   "condMax": 1.0472269946515627,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m2-a1e-6-dp54-rtol1e-12.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m2-a1e-6-dp54-rtol1e-12.deviation.json",
+   "utc": "2026-10-05T15:19:46.402Z"
+  },
+  {
+   "id": "G-R50-m2-a1e-8-dp54-rtol1e-10",
+   "R": 50,
+   "mode": "m2",
+   "a0": 1e-8,
+   "setting": "P",
+   "settingLabel": "dp54-rtol1e-10",
+   "v": 0.09590437081882594,
+   "Omega": 0.0019180874163765187,
+   "period": 3275.7554496912476,
+   "tMax": 5356.765066741634,
+   "periodsRun": 1.635276243605587,
+   "stopReason": "tMax",
+   "steps": 657,
+   "wallMs": 305,
+   "eigenvalueUsed": {
+    "re": 1.5012489820540331,
+    "im": 0
+   },
+   "target": {
+    "re": 1.501248982,
+    "im": 0
+   },
+   "initialDeviation": {
+    "position": 2.000000013464022e-8,
+    "velocity": 3.607629958742564e-8
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      1e-7,
+      0.001
+     ],
+     "position": {
+      "points": 390,
+      "tFrom": 565.0678150717404,
+      "tTo": 3750.7399898965086,
+      "slope": 0.0028795267873249234,
+      "intercept": -17.727533573513202,
+      "rms": 9.77537450617369e-9
+     },
+     "velocity": {
+      "points": 390,
+      "tFrom": 565.0678150717404,
+      "tTo": 3750.7399898965086,
+      "slope": 0.002879526802622862,
+      "intercept": -17.13762973862884,
+      "rms": 3.133390200958402e-8
+     },
+     "ratePerOmega": 1.5012489851816404,
+     "velocityRatePerOmega": 1.5012489931572617,
+     "relativeDifference": 2.119328934568898e-9,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      1e-7,
+      0.01
+     ],
+     "position": {
+      "points": 488,
+      "tFrom": 565.0678150717404,
+      "tTo": 4553.300075070855,
+      "slope": 0.0028795272221883257,
+      "intercept": -17.72753437095645,
+      "rms": 9.10893324422962e-7
+     },
+     "velocity": {
+      "points": 488,
+      "tFrom": 565.0678150717404,
+      "tTo": 4553.300075070855,
+      "slope": 0.0028795282233203172,
+      "intercept": -17.137632343923006,
+      "rms": 0.0000029766470227459465
+     },
+     "ratePerOmega": 1.5012492118988372,
+     "velocityRatePerOmega": 1.5012497338416764,
+     "relativeDifference": 1.53138380198925e-7,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": null,
+   "firstCrossing": {
+    "1e-5": {
+     "t": 2161.998596796221,
+     "periods": 0.6599999999999993
+    },
+    "1e-4": {
+     "t": 2964.558681970593,
+     "periods": 0.9050000000000044
+    },
+    "1e-3": {
+     "t": 3758.929378520737,
+     "periods": 1.1475000000000093
+    },
+    "1e-2": {
+     "t": 4561.489463695083,
+     "periods": 1.3925000000000063
+    }
+   },
+   "events": [
+    {
+     "kind": "speed-bound",
+     "t": 5100.7678237844175,
+     "periods": 1.5571271732953034,
+     "member": 1,
+     "direction": "departure from declared domain"
+    },
+    {
+     "kind": "speed-bound",
+     "t": 5100.767823906449,
+     "periods": 1.5571271733325562,
+     "member": 3,
+     "direction": "departure from declared domain"
+    },
+    {
+     "kind": "tMax",
+     "t": 5356.765066741634,
+     "periods": 1.635276243605587
+    }
+   ],
+   "eventCount": 3,
+   "turningPoints": 0,
+   "coverage": {
+    "supMemberSpeed": 0.10439836127466497,
+    "maxEps": 0.014731621871215104,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "partially inside"
+   },
+   "invariants": {
+    "dErel": 5.212668026163562e-12,
+    "dP": 7.148706964151564e-17,
+    "dJrel": 2.656097430151306e-12
+   },
+   "detHmin": 0.9985069434917442,
+   "condMax": 1.047226994650602,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m2-a1e-8-dp54-rtol1e-10.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m2-a1e-8-dp54-rtol1e-10.deviation.json",
+   "utc": "2026-10-05T15:19:48.065Z"
+  },
+  {
+   "id": "G-R50-m2-a1e-8-dp54-rtol1e-12",
+   "R": 50,
+   "mode": "m2",
+   "a0": 1e-8,
+   "setting": "C",
+   "settingLabel": "dp54-rtol1e-12",
+   "v": 0.09590437081882594,
+   "Omega": 0.0019180874163765187,
+   "period": 3275.7554496912476,
+   "tMax": 5356.765066741634,
+   "periodsRun": 1.635276243605587,
+   "stopReason": "tMax",
+   "steps": 1116,
+   "wallMs": 395,
+   "eigenvalueUsed": {
+    "re": 1.5012489820540331,
+    "im": 0
+   },
+   "target": {
+    "re": 1.501248982,
+    "im": 0
+   },
+   "initialDeviation": {
+    "position": 2.000000013464022e-8,
+    "velocity": 3.607629958742564e-8
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      1e-7,
+      0.001
+     ],
+     "position": {
+      "points": 390,
+      "tFrom": 565.0678150717404,
+      "tTo": 3750.7399898965086,
+      "slope": 0.002879526789102429,
+      "intercept": -17.727533584091596,
+      "rms": 9.24783107394842e-9
+     },
+     "velocity": {
+      "points": 390,
+      "tFrom": 565.0678150717404,
+      "tTo": 3750.7399898965086,
+      "slope": 0.002879526803390777,
+      "intercept": -17.13762974643033,
+      "rms": 3.106542037660981e-8
+     },
+     "ratePerOmega": 1.5012489861083478,
+     "velocityRatePerOmega": 1.501248993557616,
+     "relativeDifference": 2.736619819643238e-9,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      1e-7,
+      0.01
+     ],
+     "position": {
+      "points": 488,
+      "tFrom": 565.0678150717404,
+      "tTo": 4553.300075070855,
+      "slope": 0.0028795272233444803,
+      "intercept": -17.727534380450486,
+      "rms": 9.104395110586415e-7
+     },
+     "velocity": {
+      "points": 488,
+      "tFrom": 565.0678150717404,
+      "tTo": 4553.300075070855,
+      "slope": 0.0028795282238186916,
+      "intercept": -17.13763235125412,
+      "rms": 0.000002976449840811391
+     },
+     "ratePerOmega": 1.5012492125016015,
+     "velocityRatePerOmega": 1.501249734101505,
+     "relativeDifference": 1.535398885810224e-7,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": null,
+   "firstCrossing": {
+    "1e-5": {
+     "t": 2161.998596796221,
+     "periods": 0.6599999999999993
+    },
+    "1e-4": {
+     "t": 2964.558681970593,
+     "periods": 0.9050000000000044
+    },
+    "1e-3": {
+     "t": 3758.929378520737,
+     "periods": 1.1475000000000093
+    },
+    "1e-2": {
+     "t": 4561.489463695083,
+     "periods": 1.3925000000000063
+    }
+   },
+   "events": [
+    {
+     "kind": "speed-bound",
+     "t": 5100.767825806052,
+     "periods": 1.557127173912454,
+     "member": 1,
+     "direction": "departure from declared domain"
+    },
+    {
+     "kind": "speed-bound",
+     "t": 5100.767825832907,
+     "periods": 1.557127173920652,
+     "member": 3,
+     "direction": "departure from declared domain"
+    },
+    {
+     "kind": "tMax",
+     "t": 5356.765066741634,
+     "periods": 1.635276243605587
+    }
+   ],
+   "eventCount": 3,
+   "turningPoints": 0,
+   "coverage": {
+    "supMemberSpeed": 0.10439836122605721,
+    "maxEps": 0.014731621867641704,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "partially inside"
+   },
+   "invariants": {
+    "dErel": 2.8596306756166122e-12,
+    "dP": 2.0386021367372204e-16,
+    "dJrel": 1.4601317700302375e-12
+   },
+   "detHmin": 0.9985069434918251,
+   "condMax": 1.0472269946470005,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m2-a1e-8-dp54-rtol1e-12.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R50-m2-a1e-8-dp54-rtol1e-12.deviation.json",
+   "utc": "2026-10-05T15:19:49.478Z"
+  },
+  {
+   "id": "G-R100-m2-a1e-6-dp54-rtol1e-10",
+   "R": 100,
+   "mode": "m2",
+   "a0": 0.000001,
+   "setting": "P",
+   "settingLabel": "dp54-rtol1e-10",
+   "v": 0.06771191906591982,
+   "Omega": 0.0006771191906591982,
+   "period": 9279.289959368447,
+   "tMax": 10584.669039617133,
+   "periodsRun": 1.1406766127542727,
+   "stopReason": "tMax",
+   "steps": 459,
+   "wallMs": 220,
+   "eigenvalueUsed": {
+    "re": 1.509648903541356,
+    "im": 0
+   },
+   "target": {
+    "re": 1.509648903,
+    "im": 0
+   },
+   "initialDeviation": {
+    "position": 0.000002000000000021139,
+    "velocity": 0.000003621623841382753
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      0.000009999999999999999,
+      0.001
+     ],
+     "position": {
+      "points": 195,
+      "tFrom": 1577.4792930926367,
+      "tTo": 6077.934923386336,
+      "slope": 0.0010222122521977288,
+      "intercept": -13.122363401590562,
+      "rms": 1.0860729698174871e-8
+     },
+     "velocity": {
+      "points": 195,
+      "tFrom": 1577.4792930926367,
+      "tTo": 6077.934923386336,
+      "slope": 0.0010222122713974635,
+      "intercept": -12.528588136988247,
+      "rms": 3.55023592624892e-8
+     },
+     "ratePerOmega": 1.5096489160240327,
+     "velocityRatePerOmega": 1.5096489443790622,
+     "relativeDifference": 8.62719318206473e-9,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      0.000009999999999999999,
+      0.01
+     ],
+     "position": {
+      "points": 292,
+      "tFrom": 1577.4792930926367,
+      "tTo": 8328.162738533203,
+      "slope": 0.001022212653585279,
+      "intercept": -13.122364866423197,
+      "rms": 0.0000010440941567235968
+     },
+     "velocity": {
+      "points": 292,
+      "tFrom": 1577.4792930926367,
+      "tTo": 8328.162738533203,
+      "slope": 0.001022213583857776,
+      "intercept": -12.528592926711752,
+      "rms": 0.0000034140002000891465
+     },
+     "ratePerOmega": 1.5096495088111752,
+     "velocityRatePerOmega": 1.5096508826793358,
+     "relativeDifference": 4.0129276013267656e-7,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": null,
+   "firstCrossing": {
+    "1e-5": {
+     "t": 1577.4792930926367,
+     "periods": 0.17000000000000007
+    },
+    "1e-4": {
+     "t": 3827.707108239469,
+     "periods": 0.41249999999999837
+    },
+    "1e-3": {
+     "t": 6101.133148284757,
+     "periods": 0.6575000000000004
+    },
+    "1e-2": {
+     "t": 8351.360963431624,
+     "periods": 0.9000000000000022
+    }
+   },
+   "events": [
+    {
+     "kind": "tMax",
+     "t": 10584.669039617133,
+     "periods": 1.1406766127542727
+    }
+   ],
+   "eventCount": 1,
+   "turningPoints": 0,
+   "coverage": {
+    "supMemberSpeed": 0.0737332332055123,
+    "maxEps": 0.007366349196669282,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "inside"
+   },
+   "invariants": {
+    "dErel": 3.6751558035337154e-12,
+    "dP": 1.1806223271919822e-16,
+    "dJrel": 1.8668004167853795e-12
+   },
+   "detHmin": 0.9996248448656128,
+   "condMax": 1.0234088376052974,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m2-a1e-6-dp54-rtol1e-10.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m2-a1e-6-dp54-rtol1e-10.deviation.json",
+   "utc": "2026-10-05T15:19:50.482Z"
+  },
+  {
+   "id": "G-R100-m2-a1e-6-dp54-rtol1e-12",
+   "R": 100,
+   "mode": "m2",
+   "a0": 0.000001,
+   "setting": "C",
+   "settingLabel": "dp54-rtol1e-12",
+   "v": 0.06771191906591982,
+   "Omega": 0.0006771191906591982,
+   "period": 9279.289959368447,
+   "tMax": 10584.669039617133,
+   "periodsRun": 1.1406766127542727,
+   "stopReason": "tMax",
+   "steps": 783,
+   "wallMs": 266,
+   "eigenvalueUsed": {
+    "re": 1.509648903541356,
+    "im": 0
+   },
+   "target": {
+    "re": 1.509648903,
+    "im": 0
+   },
+   "initialDeviation": {
+    "position": 0.000002000000000021139,
+    "velocity": 0.000003621623841382753
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      0.000009999999999999999,
+      0.001
+     ],
+     "position": {
+      "points": 195,
+      "tFrom": 1577.4792930926367,
+      "tTo": 6077.934923386336,
+      "slope": 0.0010222122521945925,
+      "intercept": -13.122363401596063,
+      "rms": 1.085881932948922e-8
+     },
+     "velocity": {
+      "points": 195,
+      "tFrom": 1577.4792930926367,
+      "tTo": 6077.934923386336,
+      "slope": 0.0010222122713977357,
+      "intercept": -12.528588137009807,
+      "rms": 3.5500444786656594e-8
+     },
+     "ratePerOmega": 1.5096489160194007,
+     "velocityRatePerOmega": 1.509648944379464,
+     "relativeDifference": 8.624124969713876e-9,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      0.000009999999999999999,
+      0.01
+     ],
+     "position": {
+      "points": 292,
+      "tFrom": 1577.4792930926367,
+      "tTo": 8328.162738533203,
+      "slope": 0.0010222126535818655,
+      "intercept": -13.122364866427747,
+      "rms": 0.000001044094208378605
+     },
+     "velocity": {
+      "points": 292,
+      "tFrom": 1577.4792930926367,
+      "tTo": 8328.162738533203,
+      "slope": 0.0010222135838570301,
+      "intercept": -12.528592926729846,
+      "rms": 0.0000034139994268221256
+     },
+     "ratePerOmega": 1.509649508806134,
+     "velocityRatePerOmega": 1.5096508826782342,
+     "relativeDifference": 4.012894208038631e-7,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": null,
+   "firstCrossing": {
+    "1e-5": {
+     "t": 1577.4792930926367,
+     "periods": 0.17000000000000007
+    },
+    "1e-4": {
+     "t": 3827.707108239469,
+     "periods": 0.41249999999999837
+    },
+    "1e-3": {
+     "t": 6101.133148284757,
+     "periods": 0.6575000000000004
+    },
+    "1e-2": {
+     "t": 8351.360963431624,
+     "periods": 0.9000000000000022
+    }
+   },
+   "events": [
+    {
+     "kind": "tMax",
+     "t": 10584.669039617133,
+     "periods": 1.1406766127542727
+    }
+   ],
+   "eventCount": 1,
+   "turningPoints": 0,
+   "coverage": {
+    "supMemberSpeed": 0.07373323320535596,
+    "maxEps": 0.007366349196667149,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "inside"
+   },
+   "invariants": {
+    "dErel": 1.9958250747557882e-12,
+    "dP": 6.445059907716904e-17,
+    "dJrel": 1.0179908394657441e-12
+   },
+   "detHmin": 0.999624844865612,
+   "condMax": 1.0234088376053152,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m2-a1e-6-dp54-rtol1e-12.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m2-a1e-6-dp54-rtol1e-12.deviation.json",
+   "utc": "2026-10-05T15:19:51.356Z"
+  },
+  {
+   "id": "G-R100-m2-a1e-8-dp54-rtol1e-10",
+   "R": 100,
+   "mode": "m2",
+   "a0": 1e-8,
+   "setting": "P",
+   "settingLabel": "dp54-rtol1e-10",
+   "v": 0.06771191906591982,
+   "Omega": 0.0006771191906591982,
+   "period": 9279.289959368447,
+   "tMax": 15089.770808664403,
+   "periodsRun": 1.6261773125679349,
+   "stopReason": "tMax",
+   "steps": 653,
+   "wallMs": 252,
+   "eigenvalueUsed": {
+    "re": 1.509648903541356,
+    "im": 0
+   },
+   "target": {
+    "re": 1.509648903,
+    "im": 0
+   },
+   "initialDeviation": {
+    "position": 2.0000000103797423e-8,
+    "velocity": 3.6216238589280684e-8
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      1e-7,
+      0.001
+     ],
+     "position": {
+      "points": 389,
+      "tFrom": 1577.4792930926367,
+      "tTo": 10578.390553679987,
+      "slope": 0.00102221224614858,
+      "intercept": -17.727533576718436,
+      "rms": 9.745746475810789e-9
+     },
+     "velocity": {
+      "points": 389,
+      "tFrom": 1577.4792930926367,
+      "tTo": 10578.390553679987,
+      "slope": 0.0010222122514175122,
+      "intercept": -17.13375827970649,
+      "rms": 3.2077410572374284e-8
+     },
+     "ratePerOmega": 1.5096489070903782,
+     "velocityRatePerOmega": 1.5096489148717738,
+     "relativeDifference": 2.7094897436796828e-9,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      1e-7,
+      0.01
+     ],
+     "position": {
+      "points": 486,
+      "tFrom": 1577.4792930926367,
+      "tTo": 12828.61836882677,
+      "slope": 0.0010222124001719477,
+      "intercept": -17.727534371043525,
+      "rms": 9.1153916830848e-7
+     },
+     "velocity": {
+      "points": 486,
+      "tFrom": 1577.4792930926367,
+      "tTo": 12828.61836882677,
+      "slope": 0.0010222127551237669,
+      "intercept": -17.133760877386777,
+      "rms": 0.0000029807249965643037
+     },
+     "ratePerOmega": 1.509649134558998,
+     "velocityRatePerOmega": 1.5096496587677697,
+     "relativeDifference": 1.5338599435033018e-7,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": null,
+   "firstCrossing": {
+    "1e-5": {
+     "t": 6101.133148284757,
+     "periods": 0.6575000000000004
+    },
+    "1e-4": {
+     "t": 8351.360963431624,
+     "periods": 0.9000000000000022
+    },
+    "1e-3": {
+     "t": 10601.588778578407,
+     "periods": 1.1424999999999954
+    },
+    "1e-2": {
+     "t": 12851.81659372519,
+     "periods": 1.3849999999999882
+    }
+   },
+   "events": [
+    {
+     "kind": "tMax",
+     "t": 15089.770808664403,
+     "periods": 1.6261773125679349
+    }
+   ],
+   "eventCount": 1,
+   "turningPoints": 0,
+   "coverage": {
+    "supMemberSpeed": 0.0737332331985509,
+    "maxEps": 0.007366349196310703,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "inside"
+   },
+   "invariants": {
+    "dErel": 5.260843554859962e-12,
+    "dP": 1.2634613401697851e-16,
+    "dJrel": 2.6640110288197656e-12
+   },
+   "detHmin": 0.9996248448656183,
+   "condMax": 1.0234088376048824,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m2-a1e-8-dp54-rtol1e-10.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m2-a1e-8-dp54-rtol1e-10.deviation.json",
+   "utc": "2026-10-05T15:19:52.376Z"
+  },
+  {
+   "id": "G-R100-m2-a1e-8-dp54-rtol1e-12",
+   "R": 100,
+   "mode": "m2",
+   "a0": 1e-8,
+   "setting": "C",
+   "settingLabel": "dp54-rtol1e-12",
+   "v": 0.06771191906591982,
+   "Omega": 0.0006771191906591982,
+   "period": 9279.289959368447,
+   "tMax": 15089.770808664403,
+   "periodsRun": 1.6261773125679349,
+   "stopReason": "tMax",
+   "steps": 1126,
+   "wallMs": 362,
+   "eigenvalueUsed": {
+    "re": 1.509648903541356,
+    "im": 0
+   },
+   "target": {
+    "re": 1.509648903,
+    "im": 0
+   },
+   "initialDeviation": {
+    "position": 2.0000000103797423e-8,
+    "velocity": 3.6216238589280684e-8
+   },
+   "fits": {
+    "tight": {
+     "window": [
+      1e-7,
+      0.001
+     ],
+     "position": {
+      "points": 389,
+      "tFrom": 1577.4792930926367,
+      "tTo": 10578.390553679987,
+      "slope": 0.001022212246145064,
+      "intercept": -17.727533583026542,
+      "rms": 9.755002325652867e-9
+     },
+     "velocity": {
+      "points": 389,
+      "tFrom": 1577.4792930926367,
+      "tTo": 10578.390553679987,
+      "slope": 0.001022212251566396,
+      "intercept": -17.133758287150474,
+      "rms": 3.1918778678720425e-8
+     },
+     "ratePerOmega": 1.5096489070851855,
+     "velocityRatePerOmega": 1.5096489150916519,
+     "relativeDifference": 2.706050050704789e-9,
+     "pass": true
+    },
+    "loose": {
+     "window": [
+      1e-7,
+      0.01
+     ],
+     "position": {
+      "points": 486,
+      "tFrom": 1577.4792930926367,
+      "tTo": 12828.61836882677,
+      "slope": 0.0010222124001709528,
+      "intercept": -17.727534377363824,
+      "rms": 9.115429600767437e-7
+     },
+     "velocity": {
+      "points": 486,
+      "tFrom": 1577.4792930926367,
+      "tTo": 12828.61836882677,
+      "slope": 0.0010222127552193864,
+      "intercept": -17.13376088456929,
+      "rms": 0.000002980614663156908
+     },
+     "ratePerOmega": 1.5096491345575287,
+     "velocityRatePerOmega": 1.5096496589089847,
+     "relativeDifference": 1.533850209067822e-7,
+     "pass": true
+    }
+   },
+   "eigenvectorGeometry": null,
+   "firstCrossing": {
+    "1e-5": {
+     "t": 6101.133148284757,
+     "periods": 0.6575000000000004
+    },
+    "1e-4": {
+     "t": 8351.360963431624,
+     "periods": 0.9000000000000022
+    },
+    "1e-3": {
+     "t": 10601.588778578407,
+     "periods": 1.1424999999999954
+    },
+    "1e-2": {
+     "t": 12851.81659372519,
+     "periods": 1.3849999999999882
+    }
+   },
+   "events": [
+    {
+     "kind": "tMax",
+     "t": 15089.770808664403,
+     "periods": 1.6261773125679349
+    }
+   ],
+   "eventCount": 1,
+   "turningPoints": 0,
+   "coverage": {
+    "supMemberSpeed": 0.07373323316117601,
+    "maxEps": 0.007366349194416485,
+    "reachedCf": false,
+    "speedLabels": "unrestricted, inclusive ceiling, strict ceiling on the whole interval",
+    "domain": "inside"
+   },
+   "invariants": {
+    "dErel": 2.8244235418051433e-12,
+    "dP": 1.0329558754647627e-16,
+    "dJrel": 1.4322341950651863e-12
+   },
+   "detHmin": 0.9996248448656406,
+   "condMax": 1.0234088376029127,
+   "runRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m2-a1e-8-dp54-rtol1e-12.json",
+   "deviationRecord": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/ring-growth/G-R100-m2-a1e-8-dp54-rtol1e-12.deviation.json",
+   "utc": "2026-10-05T15:19:53.398Z"
+  }
+ ],
+ "utcStart": "2026-10-05T15:15:17.813Z",
+ "knownCasePass": true,
+ "toleranceStatedUtc": "2026-10-05T15:15:17.852Z",
+ "runsUtcLast": "2026-10-05T15:19:53.398Z"
+}

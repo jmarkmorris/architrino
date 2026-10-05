@@ -1,0 +1,1035 @@
+{
+ "instrument": "darwin-overnight-pair-instrument.mjs",
+ "worker": "darwin-overnight instrument (lens henri-poincare)",
+ "utcStart": "2026-10-05T15:26:18.935Z",
+ "constants": {
+  "K": 1,
+  "c_f": 1
+ },
+ "note": "Known-case controls run before any target use. Invariants are of the adapted law, not physical accounts. Opposite and same polarity are labelled per pair.",
+ "controls": [
+  {
+   "id": "a1-free-single-dp54",
+   "description": "single member, N=1, straight line",
+   "expected": [
+    [
+     31,
+     13,
+     -17
+    ]
+   ],
+   "measured": [
+    [
+     31,
+     12.999999999999998,
+     -16.999999999999996
+    ]
+   ],
+   "difference": 3.552713678800501e-15,
+   "tolerance": 1e-9,
+   "pass": true,
+   "summary": "max|X(T)-X0-VT| = 3.553e-15",
+   "runFile": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-a1-dp54.json"
+  },
+  {
+   "id": "a2-free-pair-dp54",
+   "description": "two members (opposite polarity labels), whole interaction switched off (interaction: 0)",
+   "expected": [
+    [
+     31,
+     13,
+     -17
+    ],
+    [
+     -24,
+     55,
+     4
+    ]
+   ],
+   "measured": [
+    [
+     31,
+     12.999999999999998,
+     -16.999999999999996
+    ],
+    [
+     -23.999999999999996,
+     55,
+     3.9999999999999996
+    ]
+   ],
+   "difference": 3.552713678800501e-15,
+   "tolerance": 1e-9,
+   "pass": true,
+   "summary": "max|X(T)-X0-VT| = 3.553e-15",
+   "runFile": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-a2-dp54.json"
+  },
+  {
+   "id": "a1-free-single-rk4",
+   "description": "single member, N=1, straight line",
+   "expected": [
+    [
+     31,
+     13,
+     -17
+    ]
+   ],
+   "measured": [
+    [
+     31.00000000000005,
+     12.999999999999984,
+     -16.999999999999975
+    ]
+   ],
+   "difference": 4.973799150320701e-14,
+   "tolerance": 1e-9,
+   "pass": true,
+   "summary": "max|X(T)-X0-VT| = 4.974e-14",
+   "runFile": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-a1-rk4.json"
+  },
+  {
+   "id": "a2-free-pair-rk4",
+   "description": "two members (opposite polarity labels), whole interaction switched off (interaction: 0)",
+   "expected": [
+    [
+     31,
+     13,
+     -17
+    ],
+    [
+     -24,
+     55,
+     4
+    ]
+   ],
+   "measured": [
+    [
+     31.00000000000005,
+     12.999999999999984,
+     -16.999999999999975
+    ],
+    [
+     -23.999999999999947,
+     55,
+     3.999999999999998
+    ]
+   ],
+   "difference": 5.3290705182007514e-14,
+   "tolerance": 1e-9,
+   "pass": true,
+   "summary": "max|X(T)-X0-VT| = 5.329e-14",
+   "runFile": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-a2-rk4.json"
+  },
+  {
+   "id": "b-zero-coupling-circular-dp54",
+   "description": "coupling 0, inverse-distance term kept, opposite-polarity mirror pair, r0=100, v=sqrt(K/(2 r0)), one closed-form period T=2 pi sqrt(r0^3/(2K))",
+   "expected": {
+    "period": 4442.882938158366,
+    "memberSpeed": 0.07071067811865475,
+    "returnError": 0,
+    "energyDrift": 0
+   },
+   "measured": {
+    "positionReturnError": 2.7889550890947135e-8,
+    "velocityReturnError": 3.943287775302895e-11,
+    "dE": 9.98822552444878e-13,
+    "dErel": 1.9976451048897561e-10,
+    "dP": [
+     0,
+     0,
+     0
+    ],
+    "dJ": [
+     0,
+     0,
+     7.062741502750214e-10
+    ],
+    "steps": 221,
+    "turningPointEvents": 3
+   },
+   "difference": 2.7889550890947135e-8,
+   "tolerance": {
+    "positionReturn": 0.00001,
+    "relativeEnergyDrift": 1e-8
+   },
+   "pass": true,
+   "summary": "return error 2.789e-8 (tol 0.00001), dE/E 1.998e-10",
+   "runFile": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-b-dp54.json"
+  },
+  {
+   "id": "b-zero-coupling-circular-rk4",
+   "description": "coupling 0, inverse-distance term kept, opposite-polarity mirror pair, r0=100, v=sqrt(K/(2 r0)), one closed-form period T=2 pi sqrt(r0^3/(2K))",
+   "expected": {
+    "period": 4442.882938158366,
+    "memberSpeed": 0.07071067811865475,
+    "returnError": 0,
+    "energyDrift": 0
+   },
+   "measured": {
+    "positionReturnError": 1.819793110646728e-8,
+    "velocityReturnError": 2.5735862659720388e-11,
+    "dE": -1.4944642745540193e-14,
+    "dErel": -2.988928549108039e-12,
+    "dP": [
+     0,
+     0,
+     0
+    ],
+    "dJ": [
+     0,
+     0,
+     -1.056665865917239e-11
+    ],
+    "steps": 900,
+    "turningPointEvents": 2
+   },
+   "difference": 1.819793110646728e-8,
+   "tolerance": {
+    "positionReturn": 0.001,
+    "relativeEnergyDrift": 1e-8
+   },
+   "pass": true,
+   "summary": "return error 1.820e-8 (tol 0.001), dE/E -2.989e-12",
+   "runFile": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-b-rk4.json"
+  },
+  {
+   "id": "c-zero-coupling-freefall-dp54",
+   "description": "coupling 0, rest release at r0=100, time to r=20 (contact event) against closed-form t = sqrt(r0^3/(2 mu))[sqrt(x(1-x))+arccos(sqrt x)], mu=2K, x=0.2; also speed-bound (0.1) crossing at r=50, x=0.5",
+   "expected": {
+    "tFreeFall": 753.5743588970452,
+    "tSpeedBound": 642.6990816987242
+   },
+   "measured": {
+    "tContact": 753.5743588839132,
+    "rAtContact": 19.999999999984887,
+    "tSpeedBound": 642.6990817000417,
+    "rAtSpeedBound": 49.99999999641372,
+    "epsBoundEvents": 0
+   },
+   "difference": {
+    "relativeFreeFall": 1.7426238658709436e-11,
+    "relativeSpeedBound": 2.0499745524351254e-12
+   },
+   "tolerance": 1e-7,
+   "pass": true,
+   "summary": "rel. free-fall time error 1.743e-11, rel. speed-bound time error 2.050e-12 (tol 1e-7)",
+   "runFile": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-c-dp54.json"
+  },
+  {
+   "id": "c-zero-coupling-freefall-rk4",
+   "description": "coupling 0, rest release at r0=100, time to r=20 (contact event) against closed-form t = sqrt(r0^3/(2 mu))[sqrt(x(1-x))+arccos(sqrt x)], mu=2K, x=0.2; also speed-bound (0.1) crossing at r=50, x=0.5",
+   "expected": {
+    "tFreeFall": 753.5743588970452,
+    "tSpeedBound": 642.6990816987242
+   },
+   "measured": {
+    "tContact": 753.5743589000194,
+    "rAtContact": 19.99999999998733,
+    "tSpeedBound": 642.6990816986654,
+    "rAtSpeedBound": 50.00000000002166,
+    "epsBoundEvents": 0
+   },
+   "difference": {
+    "relativeFreeFall": 3.946889929782324e-12,
+    "relativeSpeedBound": 9.145196683138837e-14
+   },
+   "tolerance": 0.00001,
+   "pass": true,
+   "summary": "rel. free-fall time error 3.947e-12, rel. speed-bound time error 9.145e-14 (tol 0.00001)",
+   "runFile": "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-c-rk4.json"
+  },
+  {
+   "id": "d-full-law-mirror-convergence",
+   "description": "full frozen law, opposite-polarity mirror pair r0=100, tangential member speed sqrt(K/(2 r0)) = 0.07071067811865475 (zero-coupling circular value, near circular), T=4000; invariant drift and final-position difference against the dp54 rtol 1e-12 run (same code, so a convergence check only)",
+   "expected": {
+    "rk4GlobalOrder": 4,
+    "dp54EffectiveOrderInTolerance": ">= 0.5 (tolerance-proportional global error has exponent 0.8..1)"
+   },
+   "measured": {
+    "drifts": {
+     "dp54-1e-8": {
+      "E": 5.3456463214307526e-11,
+      "Erel": 1.07450177315191e-8,
+      "P": 3.1031676915590914e-17,
+      "J": 3.810963988826188e-8,
+      "maxAbsdE": 5.3456463214307526e-11,
+      "finalPositionDiffVsDp54_1e12": 0.0000018501305945051172,
+      "steps": 89,
+      "detHmin": 0.9998500056249374,
+      "detHmax": 0.9998515091850096,
+      "condMax": 1.0202020202020203,
+      "cond2Final": 1.0201899732999178,
+      "cond2PairClosedFormFinal": 1.0201899732999167,
+      "cond1EstimateMaxFinal": 1.021308187531682,
+      "supSpeed": 0.07071067811865475,
+      "supEps": 0.01,
+      "turningPoints": 1
+     },
+     "dp54-1e-10": {
+      "E": 9.10781866592103e-13,
+      "Erel": 1.8307173197831216e-10,
+      "P": 1.3877787807814457e-17,
+      "J": 6.485088022145646e-10,
+      "maxAbsdE": 9.10781866592103e-13,
+      "finalPositionDiffVsDp54_1e12": 2.0081817098116517e-8,
+      "steps": 186,
+      "detHmin": 0.9998500056249374,
+      "detHmax": 0.9998515091876466,
+      "condMax": 1.0202020202020203,
+      "cond2Final": 1.0201899735901443,
+      "cond2PairClosedFormFinal": 1.0201899735901443,
+      "cond1EstimateMaxFinal": 1.0213081875317784,
+      "supSpeed": 0.07071067811865475,
+      "supEps": 0.01,
+      "turningPoints": 1
+     },
+     "dp54-1e-12": {
+      "E": 1.0200174038743626e-14,
+      "Erel": 2.0502862389434423e-12,
+      "P": 2.7755575615628914e-17,
+      "J": 7.259970402628824e-12,
+      "maxAbsdE": 1.0200174038743626e-14,
+      "finalPositionDiffVsDp54_1e12": 0,
+      "steps": 437,
+      "detHmin": 0.9998500056249374,
+      "detHmax": 0.9998515091876384,
+      "condMax": 1.0202020202020203,
+      "cond2Final": 1.0201899735950972,
+      "cond2PairClosedFormFinal": 1.020189973595097,
+      "cond1EstimateMaxFinal": 1.021308187539335,
+      "supSpeed": 0.07071067811865475,
+      "supEps": 0.01,
+      "turningPoints": 1
+     },
+     "rk4-h10": {
+      "E": 4.313155735347074e-13,
+      "Erel": 8.669659769541856e-11,
+      "P": 1.5515838457795457e-17,
+      "J": 3.0399238681866336e-10,
+      "maxAbsdE": 4.313155735347074e-13,
+      "finalPositionDiffVsDp54_1e12": 2.5901502809233534e-7,
+      "steps": 400,
+      "detHmin": 0.9998500056249374,
+      "detHmax": 0.999851509187252,
+      "condMax": 1.0202020202020203,
+      "cond2Final": 1.0201899735997764,
+      "cond2PairClosedFormFinal": 1.0201899735997755,
+      "cond1EstimateMaxFinal": 1.0213081875906316,
+      "supSpeed": 0.07071067811865475,
+      "supEps": 0.01,
+      "turningPoints": 1
+     },
+     "rk4-h5": {
+      "E": 1.3605436222086098e-14,
+      "Erel": 2.7347610496655474e-12,
+      "P": 3.1031676915590914e-17,
+      "J": 9.50706180447014e-12,
+      "maxAbsdE": 1.3605436222086098e-14,
+      "finalPositionDiffVsDp54_1e12": 1.5970570643730753e-8,
+      "steps": 800,
+      "detHmin": 0.9998500056249374,
+      "detHmax": 0.9998515091876146,
+      "condMax": 1.0202020202020203,
+      "cond2Final": 1.0201899735953817,
+      "cond2PairClosedFormFinal": 1.0201899735953814,
+      "cond1EstimateMaxFinal": 1.021308187542495,
+      "supSpeed": 0.07071067811865475,
+      "supEps": 0.01,
+      "turningPoints": 1
+     },
+     "rk4-h2.5": {
+      "E": 4.440892098500626e-16,
+      "Erel": 8.926416278393218e-14,
+      "P": 1.962615573354719e-17,
+      "J": 3.0375701953744283e-13,
+      "maxAbsdE": 4.440892098500626e-16,
+      "finalPositionDiffVsDp54_1e12": 1.2984955333195103e-9,
+      "steps": 1600,
+      "detHmin": 0.9998500056249374,
+      "detHmax": 0.9998515091876367,
+      "condMax": 1.0202020202020203,
+      "cond2Final": 1.0201899735951638,
+      "cond2PairClosedFormFinal": 1.0201899735951645,
+      "cond1EstimateMaxFinal": 1.0213081875396264,
+      "supSpeed": 0.07071067811865475,
+      "supEps": 0.01,
+      "turningPoints": 1
+     }
+    },
+    "orders": {
+     "rk4PositionOrder_h10_h5": 4.019548038078141,
+     "rk4PositionOrder_h5_h2p5": 3.6205029061140666,
+     "rk4EnergyDriftOrder_h10_h5": 4.986488689863731,
+     "dp54PositionOrderVsTol_1e8_1e10": 0.9821996887985595,
+     "dp54EnergyDriftOrderVsTol_1e8_1e10": 0.8842929231183224
+    }
+   },
+   "difference": null,
+   "tolerance": {
+    "rk4PositionOrder": [
+     3.5,
+     5.5
+    ],
+    "dp54OrderVsTol": ">= 0.5"
+   },
+   "pass": true,
+   "summary": "RK4 order 4.02 (h10/h5), 3.62 (h5/h2.5); DP54 order vs tol 0.98; det H in [0.99985001, 0.99985151], cond est max 1.02020",
+   "runFiles": [
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-d-dp54-1e-8.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-d-dp54-1e-10.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-d-dp54-1e-12.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-d-rk4-h10.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-d-rk4-h5.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-d-rk4-h2.5.json"
+   ]
+  },
+  {
+   "id": "e-order-swap-and-rotation",
+   "description": "preparation (d) with member order swapped and with a rigid rotation (axis (1,2,3), angle 0.7 rad); separation r(t) at the output samples compared with the unmodified run. The fixed-step rows test round-off invariance (same step grid); the adaptive rows differ at tolerance level because the accepted step sequence may change.",
+   "expected": "identical separation histories up to round-off (rk4) or up to integrator tolerance (dp54)",
+   "measured": [
+    {
+     "integrator": "rk4",
+     "settings": {
+      "integrator": "rk4",
+      "h": 10
+     },
+     "samplesCompared": 41,
+     "maxSeparationDiffSwapped": 0,
+     "maxSeparationDiffRotated": 8.100187187665142e-13,
+     "stepsBase": 400,
+     "stepsSwapped": 400,
+     "stepsRotated": 400
+    },
+    {
+     "integrator": "dp54",
+     "settings": {
+      "integrator": "dp54",
+      "rtol": 1e-10,
+      "atol": 1e-12
+     },
+     "samplesCompared": 41,
+     "maxSeparationDiffSwapped": 0,
+     "maxSeparationDiffRotated": 7.341753871514811e-9,
+     "stepsBase": 186,
+     "stepsSwapped": 186,
+     "stepsRotated": 192
+    }
+   ],
+   "tolerance": {
+    "rk4": 1e-10,
+    "dp54": 1e-7
+   },
+   "pass": true,
+   "summary": "rk4: swap 0.000e+0, rot 8.100e-13; dp54: swap 0.000e+0, rot 7.342e-9",
+   "runFiles": [
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-e-swapped-rk4.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-e-rotated-rk4.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-e-swapped-dp54.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-e-rotated-dp54.json"
+   ]
+  },
+  {
+   "id": "f-time-reversal",
+   "description": "preparation (d) integrated forward to T=2000, velocities negated, integrated back; return error in positions (and velocities, sign restored)",
+   "expected": "return to the preparation",
+   "measured": [
+    {
+     "integrator": "dp54",
+     "settings": {
+      "integrator": "dp54",
+      "rtol": 1e-10,
+      "atol": 1e-12
+     },
+     "positionReturnError": 1.8276168134434556e-8,
+     "velocityReturnError": 4.542130560558633e-12
+    },
+    {
+     "integrator": "rk4",
+     "settings": {
+      "integrator": "rk4",
+      "h": 10
+     },
+     "positionReturnError": 4.441820355971515e-9,
+     "velocityReturnError": 9.46982943450525e-12
+    }
+   ],
+   "tolerance": {
+    "dp54": 0.00001,
+    "rk4": 0.001
+   },
+   "pass": true,
+   "summary": "dp54: dX 1.828e-8, dV 4.542e-12; rk4: dX 4.442e-9, dV 9.470e-12",
+   "runFiles": [
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-f-forward-dp54.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-f-backward-dp54.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-f-forward-rk4.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-f-backward-rk4.json"
+   ]
+  },
+  {
+   "id": "g-obstruction-stop",
+   "description": "instrument-behaviour controls: pair released moving inward (member speed 0.05). g1: release at r=6, detTol 0.9 (opposite, member speed 0.05) or 0.95 (same, member speed 0.2) must stop where det H = (1-1/r^2)(1-1/(4r^2))^2 equals detTol, each polarity separately. g2: release at r=3, opposite polarity with detTol 1e-6 must end just outside the singular locus r=1 with det H positive throughout (no step across). Nothing is regularized or pseudo-inverted.",
+   "expected": {
+    "g1_rThreshold": {
+     "opposite": 3.823366138052716,
+     "same": 5.442576101210071
+    },
+    "g2_r": "in (1, 1.01), det H > 0 over the whole history"
+   },
+   "measured": [
+    {
+     "control": "g1",
+     "polarity": "opposite",
+     "stopReason": "obstruction",
+     "tObstruction": 7.244612225608541,
+     "rAtObstruction": 3.8233661383386437,
+     "rExpected": 3.823366138052716,
+     "rDifference": 2.859277259403825e-10,
+     "detHAtEvent": 0.9000000000145693,
+     "detTol": 0.9,
+     "memberSpeed": 0.05,
+     "supSpeed": 0.2784302620850579
+    },
+    {
+     "control": "g1",
+     "polarity": "same",
+     "stopReason": "obstruction",
+     "tObstruction": 1.622906563719668,
+     "rAtObstruction": 5.442576101352231,
+     "rExpected": 5.442576101210071,
+     "rDifference": 1.4216006150036264e-10,
+     "detHAtEvent": 0.9500000000025787,
+     "detTol": 0.95,
+     "memberSpeed": 0.2,
+     "supSpeed": 0.2
+    },
+    {
+     "control": "g2",
+     "polarity": "opposite",
+     "stopReason": "obstruction",
+     "tObstruction": 3.9146326468300288,
+     "rAtObstruction": 1.0000020005055064,
+     "rExpected": 1,
+     "detHAtEvent": 0.0000022505679442471853,
+     "cond2AtEvent": 999748.3106992841,
+     "cond2AtFailure": 1000304.6356577541,
+     "reason": "declared obstruction tolerance reached (|det H| < detTol or cond_2(H) > condMax)",
+     "detHMinOverHistory": 0.0000022505679442471853,
+     "detTol": 0.000001,
+     "condMax": 1000000,
+     "supSpeed": 0.5787912705144014,
+     "steps": 41,
+     "note": "speeds leave the declared domain before the locus; instrument-behaviour control only"
+    }
+   ],
+   "tolerance": {
+    "g1_rDifference": 0.000001,
+    "g2_r": [
+     1,
+     1.01
+    ]
+   },
+   "pass": true,
+   "summary": "g1 opposite: obstruction r=3.823366138 det=9.000e-1; g1 same: obstruction r=5.442576101 det=9.500e-1; g2 opposite: obstruction r=1.000002001 det=2.251e-6",
+   "runFiles": [
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-g1-opposite.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-g1-same.json",
+    "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-g2-opposite.json"
+   ]
+  }
+ ],
+ "selfcheck": {
+  "note": "internal consistency check of the analytic assembly against central finite differences of a direct evaluation of L_D; not independent evidence",
+  "cases": [
+   {
+    "N": 2,
+    "polarities": [
+     1,
+     -1
+    ],
+    "pairs": [
+     "opposite"
+    ],
+    "detLU": 0.7924434647557577,
+    "detClosedForm": 0.7924434647557578,
+    "cond2PairClosedForm": 2.2385696608350436,
+    "cond2Jacobi": 2.238569660835046,
+    "cond1Estimate": 2.543416018148481,
+    "dLdV": 2.7478019859472624e-14,
+    "dLdX": 2.1223431120676425e-11,
+    "H": 2.8822916275927923e-11,
+    "mixedFromL": 1.1101304762455245e-10,
+    "mixedFromP": 1.101037151094379e-10,
+    "solveResidual": 5.597124814526762e-17,
+    "detPairClosedForm": 1.4010122791123565e-16,
+    "cond2PairClosedForm_vs_Jacobi": 9.919039322734455e-16,
+    "detH": 0.7924434647557577,
+    "cond2": 2.238569660835046
+   },
+   {
+    "N": 2,
+    "polarities": [
+     1,
+     -1
+    ],
+    "pairs": [
+     "opposite"
+    ],
+    "detLU": 0.9534147580611413,
+    "detClosedForm": 0.9534147580611413,
+    "cond2PairClosedForm": 1.4309413906691062,
+    "cond2Jacobi": 1.4309413906691066,
+    "cond1Estimate": 1.4704463342966263,
+    "dLdV": 1.7014167852380524e-14,
+    "dLdX": 1.0917468478720253e-10,
+    "H": 4.263345232402571e-11,
+    "mixedFromL": 1.6859189881427593e-10,
+    "mixedFromP": 1.5931752286200825e-10,
+    "solveResidual": 1.649585037364874e-16,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 3.103475884797819e-16,
+    "detH": 0.9534147580611413,
+    "cond2": 1.4309413906691066
+   },
+   {
+    "N": 2,
+    "polarities": [
+     1,
+     -1
+    ],
+    "pairs": [
+     "opposite"
+    ],
+    "detLU": 0.9512779189741952,
+    "detClosedForm": 0.9512779189741952,
+    "cond2PairClosedForm": 1.4430269609318225,
+    "cond2Jacobi": 1.4430269609318223,
+    "cond1Estimate": 1.4758839617870123,
+    "dLdV": 3.9718228705964975e-14,
+    "dLdX": 1.249249169071274e-10,
+    "H": 2.6755486715046572e-11,
+    "mixedFromL": 5.298343455277545e-10,
+    "mixedFromP": 1.4160326706940858e-10,
+    "solveResidual": 0,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 1.5387419011329343e-16,
+    "detH": 0.9512779189741952,
+    "cond2": 1.4430269609318223
+   },
+   {
+    "N": 2,
+    "polarities": [
+     -1,
+     -1
+    ],
+    "pairs": [
+     "same"
+    ],
+    "detLU": 0.9161612005983594,
+    "detClosedForm": 0.9161612005983595,
+    "cond2PairClosedForm": 1.6280252246150593,
+    "cond2Jacobi": 1.6280252246150568,
+    "cond1Estimate": 1.685119656654954,
+    "dLdV": 1.3322676295501878e-14,
+    "dLdX": 8.752255099365126e-12,
+    "H": 1.2877698907232116e-11,
+    "mixedFromL": 2.187483033283263e-10,
+    "mixedFromP": 1.6559604060751343e-10,
+    "solveResidual": 1.51147798893387e-16,
+    "detPairClosedForm": 1.211820609626398e-16,
+    "cond2PairClosedForm_vs_Jacobi": 1.5002781389660977e-15,
+    "detH": 0.9161612005983594,
+    "cond2": 1.6280252246150568
+   },
+   {
+    "N": 2,
+    "polarities": [
+     -1,
+     -1
+    ],
+    "pairs": [
+     "same"
+    ],
+    "detLU": 0.832233664098553,
+    "detClosedForm": 0.8322336640985528,
+    "cond2PairClosedForm": 2.0390981961876533,
+    "cond2Jacobi": 2.0390981961876515,
+    "cond1Estimate": 2.2179247784765423,
+    "dLdV": 4.057865155004947e-14,
+    "dLdX": 5.0475874399918076e-11,
+    "H": 2.6755486715046572e-11,
+    "mixedFromL": 8.702996258849374e-11,
+    "mixedFromP": 5.243079487127687e-11,
+    "solveResidual": 4.0206271103133483e-16,
+    "detPairClosedForm": 2.6680560340651743e-16,
+    "cond2PairClosedForm_vs_Jacobi": 8.711482569703459e-16,
+    "detH": 0.832233664098553,
+    "cond2": 2.0390981961876515
+   },
+   {
+    "N": 2,
+    "polarities": [
+     -1,
+     -1
+    ],
+    "pairs": [
+     "same"
+    ],
+    "detLU": 0.9055007504717445,
+    "detClosedForm": 0.9055007504717445,
+    "cond2PairClosedForm": 1.681211657851108,
+    "cond2Jacobi": 1.6812116578511087,
+    "cond1Estimate": 1.7928076882705417,
+    "dLdV": 7.993605777301127e-15,
+    "dLdX": 5.163146073756855e-11,
+    "H": 7.415561220636135e-12,
+    "mixedFromL": 2.5040637127155825e-10,
+    "mixedFromP": 2.473742004272272e-10,
+    "solveResidual": 3.785540862931874e-16,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 3.9622245757356523e-16,
+    "detH": 0.9055007504717445,
+    "cond2": 1.6812116578511087
+   },
+   {
+    "N": 2,
+    "polarities": [
+     1,
+     1
+    ],
+    "pairs": [
+     "same"
+    ],
+    "detLU": 0.9654714267581198,
+    "detClosedForm": 0.9654714267581198,
+    "cond2PairClosedForm": 1.3595576253089958,
+    "cond2Jacobi": 1.3595576253089958,
+    "cond1Estimate": 1.3908843810474156,
+    "dLdV": 8.104628079763643e-15,
+    "dLdX": 5.947127584818422e-11,
+    "H": 7.93898280448957e-12,
+    "mixedFromL": 5.8054341869155435e-11,
+    "mixedFromP": 1.516098010880854e-10,
+    "solveResidual": 9.421697861209637e-17,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 0,
+    "detH": 0.9654714267581198,
+    "cond2": 1.3595576253089958
+   },
+   {
+    "N": 2,
+    "polarities": [
+     1,
+     1
+    ],
+    "pairs": [
+     "same"
+    ],
+    "detLU": 0.9395941823912229,
+    "detClosedForm": 0.9395941823912226,
+    "cond2PairClosedForm": 1.5069716648527933,
+    "cond2Jacobi": 1.506971664852795,
+    "cond1Estimate": 1.5982781145335807,
+    "dLdV": 1.3072876114961218e-14,
+    "dLdX": 8.064846550311917e-11,
+    "H": 1.2877698907232116e-11,
+    "mixedFromL": 7.413608870757971e-11,
+    "mixedFromP": 6.125874540898238e-11,
+    "solveResidual": 1.0274607658152455e-16,
+    "detPairClosedForm": 3.544795334299617e-16,
+    "cond2PairClosedForm_vs_Jacobi": 1.178759283157306e-15,
+    "detH": 0.9395941823912229,
+    "cond2": 1.506971664852795
+   },
+   {
+    "N": 2,
+    "polarities": [
+     1,
+     1
+    ],
+    "pairs": [
+     "same"
+    ],
+    "detLU": 0.8684992295289015,
+    "detClosedForm": 0.8684992295289017,
+    "cond2PairClosedForm": 1.86205667017147,
+    "cond2Jacobi": 1.8620566701714691,
+    "cond1Estimate": 1.913616256107978,
+    "dLdV": 1.6264767310758543e-14,
+    "dLdX": 4.079981407605797e-11,
+    "H": 1.2877698907232116e-11,
+    "mixedFromL": 1.233207369834605e-10,
+    "mixedFromP": 1.233207369834605e-10,
+    "solveResidual": 3.1065916215818105e-16,
+    "detPairClosedForm": 2.5566471146494225e-16,
+    "cond2PairClosedForm_vs_Jacobi": 4.769878564535504e-16,
+    "detH": 0.8684992295289015,
+    "cond2": 1.8620566701714691
+   },
+   {
+    "N": 3,
+    "polarities": [
+     1,
+     -1,
+     1
+    ],
+    "pairs": [
+     "opposite",
+     "same",
+     "opposite"
+    ],
+    "dLdV": 6.00908212078366e-14,
+    "dLdX": 5.979183123662812e-11,
+    "H": 5.6596161784883137e-11,
+    "mixedFromL": 1.7299870852934043e-10,
+    "mixedFromP": 1.4677609253804136e-10,
+    "solveResidual": 1.8787103490534773e-16,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 0,
+    "detH": 0.696318974263622,
+    "cond2": 2.3660606588309143,
+    "cond1Estimate": 3.3332627699951334
+   },
+   {
+    "N": 3,
+    "polarities": [
+     1,
+     -1,
+     1
+    ],
+    "pairs": [
+     "opposite",
+     "same",
+     "opposite"
+    ],
+    "dLdV": 7.815970093361102e-14,
+    "dLdX": 3.011241742655629e-11,
+    "H": 5.551115123125783e-11,
+    "mixedFromL": 4.391440721021903e-10,
+    "mixedFromP": 3.9945547143947115e-10,
+    "solveResidual": 3.948623294292822e-17,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 0,
+    "detH": 0.6024062519660606,
+    "cond2": 3.138965467277555,
+    "cond1Estimate": 4.300961692980839
+   },
+   {
+    "N": 3,
+    "polarities": [
+     1,
+     -1,
+     1
+    ],
+    "pairs": [
+     "opposite",
+     "same",
+     "opposite"
+    ],
+    "dLdV": 5.873079800267078e-14,
+    "dLdX": 3.1737543950960975e-11,
+    "H": 4.3997305798626485e-11,
+    "mixedFromL": 1.5456855956077455e-10,
+    "mixedFromP": 1.2534460570795537e-10,
+    "solveResidual": 1.904909914451574e-16,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 0,
+    "detH": 0.7743137755544726,
+    "cond2": 2.223597874601057,
+    "cond1Estimate": 2.6310115893610857
+   },
+   {
+    "N": 3,
+    "polarities": [
+     -1,
+     -1,
+     -1
+    ],
+    "pairs": [
+     "same",
+     "same",
+     "same"
+    ],
+    "dLdV": 5.2388648974499574e-14,
+    "dLdX": 3.9028574737298215e-11,
+    "H": 5.551115123125783e-11,
+    "mixedFromL": 1.4087776001281575e-10,
+    "mixedFromP": 1.6009543698733968e-10,
+    "solveResidual": 2.179245620717798e-16,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 0,
+    "detH": 0.7029241920289988,
+    "cond2": 2.41117386014009,
+    "cond1Estimate": 3.1667927714705977
+   },
+   {
+    "N": 3,
+    "polarities": [
+     -1,
+     -1,
+     -1
+    ],
+    "pairs": [
+     "same",
+     "same",
+     "same"
+    ],
+    "dLdV": 6.916689443414725e-14,
+    "dLdX": 3.206783348189482e-11,
+    "H": 6.448253042634633e-11,
+    "mixedFromL": 3.1028820661403983e-10,
+    "mixedFromP": 3.030315179434514e-10,
+    "solveResidual": 1.8690572063787517e-16,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 0,
+    "detH": 0.7703200500829795,
+    "cond2": 2.0349034464893183,
+    "cond1Estimate": 2.554655537697336
+   },
+   {
+    "N": 3,
+    "polarities": [
+     -1,
+     -1,
+     -1
+    ],
+    "pairs": [
+     "same",
+     "same",
+     "same"
+    ],
+    "dLdV": 7.144285163462882e-14,
+    "dLdX": 5.2871479041386394e-11,
+    "H": 8.4222989693572e-11,
+    "mixedFromL": 8.887938421471275e-10,
+    "mixedFromP": 9.220567439039097e-10,
+    "solveResidual": 2.257865841716166e-16,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 0,
+    "detH": 0.7242799467225121,
+    "cond2": 2.1656030106002135,
+    "cond1Estimate": 2.9878980350351965
+   },
+   {
+    "N": 3,
+    "polarities": [
+     1,
+     1,
+     1
+    ],
+    "pairs": [
+     "same",
+     "same",
+     "same"
+    ],
+    "dLdV": 3.291811268013589e-14,
+    "dLdX": 1.1856206886105467e-10,
+    "H": 5.616276887998595e-11,
+    "mixedFromL": 3.2509764409028253e-10,
+    "mixedFromP": 3.5467890103805275e-10,
+    "solveResidual": 3.464768639777215e-16,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 0,
+    "detH": 0.8150219206666789,
+    "cond2": 1.85014000947511,
+    "cond1Estimate": 2.1177778323541907
+   },
+   {
+    "N": 3,
+    "polarities": [
+     1,
+     1,
+     1
+    ],
+    "pairs": [
+     "same",
+     "same",
+     "same"
+    ],
+    "dLdV": 6.232514504489473e-14,
+    "dLdX": 8.374144803989134e-11,
+    "H": 6.368361393782607e-11,
+    "mixedFromL": 6.323056000669643e-10,
+    "mixedFromP": 6.811518446882249e-10,
+    "solveResidual": 2.0017874603403543e-16,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 0,
+    "detH": 0.6921362037644129,
+    "cond2": 2.247118761681048,
+    "cond1Estimate": 3.012589970208239
+   },
+   {
+    "N": 3,
+    "polarities": [
+     1,
+     1,
+     1
+    ],
+    "pairs": [
+     "same",
+     "same",
+     "same"
+    ],
+    "dLdV": 6.456987722280871e-14,
+    "dLdX": 9.61168276867607e-11,
+    "H": 4.509782824957398e-11,
+    "mixedFromL": 1.3574016108299992e-10,
+    "mixedFromP": 6.931266322507436e-11,
+    "solveResidual": 2.328534295221692e-16,
+    "detPairClosedForm": 0,
+    "cond2PairClosedForm_vs_Jacobi": 0,
+    "detH": 0.8038271141985235,
+    "cond2": 2.0909906731823567,
+    "cond1Estimate": 2.1531389948003343
+   }
+  ],
+  "maxRelativeDiscrepancy": {
+   "dLdV": 7.815970093361102e-14,
+   "dLdX": 1.249249169071274e-10,
+   "H": 8.4222989693572e-11,
+   "mixedFromL": 8.887938421471275e-10,
+   "mixedFromP": 9.220567439039097e-10,
+   "solveResidual": 4.0206271103133483e-16,
+   "detPairClosedForm": 3.544795334299617e-16,
+   "cond2PairClosedForm_vs_Jacobi": 1.5002781389660977e-15
+  },
+  "fdSteps": {
+   "dLdV": 0.001,
+   "dLdX": 0.00001,
+   "H": 0.001,
+   "mixedFromL": "1e-4 (X, along V), 0.5 (V)",
+   "mixedFromP": "1e-4 (X, along V)"
+  }
+ },
+ "allPass": true,
+ "utcEnd": "2026-10-05T15:26:20.427Z",
+ "wallMs": 1492,
+ "runFiles": [
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-a1-dp54.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-a2-dp54.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-a1-rk4.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-a2-rk4.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-b-dp54.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-b-rk4.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-c-dp54.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-c-rk4.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-d-dp54-1e-8.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-d-dp54-1e-10.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-d-dp54-1e-12.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-d-rk4-h10.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-d-rk4-h5.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-d-rk4-h2.5.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-e-swapped-rk4.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-e-rotated-rk4.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-e-swapped-dp54.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-e-rotated-dp54.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-f-forward-dp54.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-f-backward-dp54.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-f-forward-rk4.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-f-backward-rk4.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-g1-opposite.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-g1-same.json",
+  "/sessions/upbeat-blissful-allen/mnt/architrino/.local-data/master-equation-closure/darwin-overnight/instrument/control-g2-opposite.json"
+ ]
+}

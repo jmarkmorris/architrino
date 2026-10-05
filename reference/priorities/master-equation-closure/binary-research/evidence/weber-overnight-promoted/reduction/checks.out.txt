@@ -1,0 +1,31 @@
+Weber-overnight reduction spot checks (c_f = 1, seeded PRNG 20261005)
+A1 rdot formula vs FD (abs) ................................................................ 6.101e-8
+A2 rddot formula vs FD (abs) ............................................................... 1.511e-7
+B1 det(6x6 from law) vs 1-2 sigma K mu/(c^2 r) (rel) ....................................... 4.115e-14
+B2 A1 = f e (rel) .......................................................................... 5.065e-14
+B3 A2 = -f e (rel) ......................................................................... 5.108e-14
+B4 law residual at solution (rel) .......................................................... 9.243e-14
+C1 reduced rddot formula vs full solve (rel) ............................................... 1.003e-13
+D1 d(epsilon)/dt along flow, frozen (rel to one term) ...................................... 1.580e-8
+D2 epsilon = 2(E_tot - |Vc|^2) (abs) ....................................................... 3.553e-15
+D3 d/dt(I rdot^2) = 2 I A rdot, general (rel) .............................................. 1.410e-8
+D4 radial invariant (1+lam rdot^2)|1-a/r|^(-2lam/mu) conserved, general (rel) .............. 8.248e-8
+E1 N=4 M from law vs I - sum alpha u u^T (abs) ............................................. 8.327e-16
+E2 det M = det(I_P - D G) (rel) ............................................................ 1.208e-14
+E3 sum A_i = 0 (rel) ....................................................................... 3.229e-16
+E4 sum X_i x A_i = 0 (rel) ................................................................. 2.340e-16
+E5 dE/dt = 0 for N=4, frozen (rel) ......................................................... 3.580e-16
+E7 velocity Hessian of L = M (abs, FD h=1e-4) .............................................. 5.112e-8
+E8 Euler-Lagrange residual (rel, FD) ....................................................... 1.264e-6
+E6 min over trials of |dE/dt| rel at lambda=-0.3 (expected NONZERO) ........................ 1.042e-3
+F0 circular balance rddot(r0,0)=0 (abs) .................................................... 2.151e-16
+F1 dA/dr at r0 = -Omega^2/(1+mu k/(c^2 r0)) (rel) .......................................... 1.323e-10
+G1 radial rddot = -sigma k (eps-c^2)/(c^2 (r - sigma kappa)^2) (rel) ....................... 6.957e-15
+G2 rdot^2(r_x) = 4c^2 on level (rel) ....................................................... 9.104e-15
+H1 argmax of |w|^2 over [u_a,u_p] is u_p (grid index deficit) .............................. 0.000e+0
+H2 |w|^2(u_p) = (h u_p)^2 (rel) ............................................................ 3.742e-16
+I0 KNOWN CASE: quadrature(kappa=0) vs pi/2 sqrt(r0^3/2k) (rel) ............................. 7.068e-16
+I1 contact time closed form vs quadrature (rel) ............................................ 3.174e-15
+J0 desingularized field vanishes at indeterminate point (abs) .............................. 7.105e-15
+J1 eigenvalues = +-kappa^2 |v*| (rel) ...................................................... 2.833e-10
+E6 well above round-off means the energy function is NOT conserved off lambda = -mu/2, as stated.

@@ -1,0 +1,347 @@
+{
+  "r0=100": {
+    "r0": 100,
+    "Omega": 0.001412449103,
+    "b1": 1.01010101,
+    "b2": 1.005025126,
+    "kappa": 1.005050505,
+    "charPolyExact": [
+      1,
+      0,
+      0.000003990024938,
+      0,
+      3.980074751e-12
+    ],
+    "charPolyTarget": [
+      1,
+      0,
+      0.000003990024938,
+      0,
+      3.980074751e-12
+    ],
+    "charPolyMaxRelDev": 2.029593959e-16,
+    "jordanTest": {
+      "normN_overOmega2": 1419.555933,
+      "normN2_overOmega4": 4.156608427e-13,
+      "rankDeficiencyNote": "N != 0 and N^2 = 0 means minimal polynomial (lambda^2+Omega^2)^2: one Jordan block of size two at each of +i Omega, -i Omega"
+    },
+    "exactBlockSplit": {
+      "maxRelImSplit": 5.067892477e-9,
+      "maxRelRe": 5.188957673e-15,
+      "roots": [
+        [
+          6.71283397e-24,
+          1.000000003
+        ],
+        [
+          -5.535804715e-24,
+          0.9999999968
+        ],
+        [
+          2.889499129e-15,
+          -0.9999999949
+        ],
+        [
+          5.188957673e-15,
+          -1.000000001
+        ]
+      ]
+    },
+    "finiteDifference": [
+      {
+        "eps": 0.001,
+        "deltaMaxAbs": 2.220446049e-16,
+        "deltaRelOmega2": 1.112998582e-10,
+        "splitRel": 1.842250604e-15,
+        "maxRelRe": 0.000001397857663,
+        "splitRelSquared_over_deltaRelOmega2": 3.04931861e-20,
+        "E_lowerLeft": [
+          5.282097459e-18,
+          0,
+          0,
+          2.513993787e-18
+        ]
+      },
+      {
+        "eps": 0.0001,
+        "deltaMaxAbs": 2.220446049e-16,
+        "deltaRelOmega2": 1.112998582e-10,
+        "splitRel": 2.133940284e-14,
+        "maxRelRe": 0.000002994989321,
+        "splitRelSquared_over_deltaRelOmega2": 4.091380893e-18,
+        "E_lowerLeft": [
+          3.577570708e-17,
+          0,
+          0,
+          2.498747194e-20
+        ]
+      },
+      {
+        "eps": 0.00001,
+        "deltaMaxAbs": 8.239936511e-16,
+        "deltaRelOmega2": 4.130268176e-10,
+        "splitRel": 0.000009643105605,
+        "maxRelRe": 2.938839591e-296,
+        "splitRelSquared_over_deltaRelOmega2": 0.2251415205,
+        "E_lowerLeft": [
+          -3.708001076e-16,
+          0,
+          0,
+          4.235164736e-22
+        ]
+      },
+      {
+        "eps": 0.000001,
+        "deltaMaxAbs": 1.442249098e-14,
+        "deltaRelOmega2": 7.229273603e-9,
+        "splitRel": 0.00003322689074,
+        "maxRelRe": 5.561359101e-30,
+        "splitRelSquared_over_deltaRelOmega2": 0.152716072,
+        "E_lowerLeft": [
+          -4.436557831e-15,
+          0,
+          0,
+          4.235164736e-22
+        ]
+      },
+      {
+        "eps": 1e-7,
+        "deltaMaxAbs": 4.656388122e-14,
+        "deltaRelOmega2": 2.334014546e-8,
+        "splitRel": 4.250225665e-12,
+        "maxRelRe": 0.00009942665753,
+        "splitRelSquared_over_deltaRelOmega2": 7.739633943e-16,
+        "E_lowerLeft": [
+          3.960915543e-14,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "eps": 1e-8,
+        "deltaMaxAbs": 1.044593017e-12,
+        "deltaRelOmega2": 5.2360225e-7,
+        "splitRel": 0.0005111553922,
+        "maxRelRe": 2.532353425e-300,
+        "splitRelSquared_over_deltaRelOmega2": 0.4990044159,
+        "E_lowerLeft": [
+          -1.044593017e-12,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "controlledPerturbation": [
+      {
+        "dRelOmega2": 0.000001,
+        "splitRel": 0.0004993714954,
+        "splitRel_over_sqrtd": 0.4993714954
+      },
+      {
+        "dRelOmega2": 1e-8,
+        "splitRel": 0.0000499371467,
+        "splitRel_over_sqrtd": 0.499371467
+      },
+      {
+        "dRelOmega2": 1e-10,
+        "splitRel": 0.000004993716944,
+        "splitRel_over_sqrtd": 0.4993716944
+      },
+      {
+        "dRelOmega2": 1e-12,
+        "splitRel": 4.994073277e-7,
+        "splitRel_over_sqrtd": 0.4994073277
+      }
+    ]
+  },
+  "r0=25": {
+    "r0": 25,
+    "Omega": 0.01125756072,
+    "b1": 1.041666667,
+    "b2": 1.020408163,
+    "kappa": 1.020833333,
+    "charPolyExact": [
+      1,
+      0,
+      0.0002534653465,
+      0,
+      1.606117047e-8
+    ],
+    "charPolyTarget": [
+      1,
+      0,
+      0.0002534653465,
+      0,
+      1.606117047e-8
+    ],
+    "charPolyMaxRelDev": 2.138758192e-16,
+    "jordanTest": {
+      "normN_overOmega2": 179.5089882,
+      "normN2_overOmega4": 1.054758679e-13,
+      "rankDeficiencyNote": "N != 0 and N^2 = 0 means minimal polynomial (lambda^2+Omega^2)^2: one Jordan block of size two at each of +i Omega, -i Omega"
+    },
+    "exactBlockSplit": {
+      "maxRelImSplit": 1.101096732e-8,
+      "maxRelRe": 1.78669688e-296,
+      "roots": [
+        [
+          1.78669688e-296,
+          0.999999989
+        ],
+        [
+          7.095562516e-298,
+          1.000000008
+        ],
+        [
+          1.579567955e-296,
+          -0.9999999914
+        ],
+        [
+          -9.346720564e-297,
+          -1.00000001
+        ]
+      ]
+    },
+    "finiteDifference": [
+      {
+        "eps": 0.001,
+        "deltaMaxAbs": 1.047396219e-14,
+        "deltaRelOmega2": 8.264610792e-11,
+        "splitRel": 1.226588887e-13,
+        "maxRelRe": 0.0000077634034,
+        "splitRelSquared_over_deltaRelOmega2": 1.820436964e-16,
+        "E_lowerLeft": [
+          4.743330295e-15,
+          0,
+          0,
+          1.047396219e-14
+        ]
+      },
+      {
+        "eps": 0.0001,
+        "deltaMaxAbs": 1.707618422e-15,
+        "deltaRelOmega2": 1.347417661e-11,
+        "splitRel": 0.000002503301192,
+        "maxRelRe": 1.44819501e-301,
+        "splitRelSquared_over_deltaRelOmega2": 0.4650760519,
+        "E_lowerLeft": [
+          -1.707618422e-15,
+          0,
+          0,
+          1.047339299e-16
+        ]
+      },
+      {
+        "eps": 0.00001,
+        "deltaMaxAbs": 1.742857703e-14,
+        "deltaRelOmega2": 1.375223656e-10,
+        "splitRel": 0.000008209968122,
+        "maxRelRe": 1.727388267e-302,
+        "splitRelSquared_over_deltaRelOmega2": 0.4901281058,
+        "E_lowerLeft": [
+          -1.742857703e-14,
+          0,
+          0,
+          1.029992064e-18
+        ]
+      },
+      {
+        "eps": 0.000001,
+        "deltaMaxAbs": 1.340837164e-13,
+        "deltaRelOmega2": 1.058004324e-9,
+        "splitRel": 0.00002203524434,
+        "maxRelRe": 2.942869688e-303,
+        "splitRelSquared_over_deltaRelOmega2": 0.4589319552,
+        "E_lowerLeft": [
+          -1.258487943e-13,
+          0,
+          0,
+          5.421010862e-20
+        ]
+      },
+      {
+        "eps": 1e-7,
+        "deltaMaxAbs": 9.501219256e-13,
+        "deltaRelOmega2": 7.497055819e-9,
+        "splitRel": 3.775921368e-12,
+        "maxRelRe": 0.00005724741232,
+        "splitRelSquared_over_deltaRelOmega2": 1.901757506e-15,
+        "E_lowerLeft": [
+          8.49933161e-13,
+          0,
+          0,
+          2.710505431e-20
+        ]
+      },
+      {
+        "eps": 1e-8,
+        "deltaMaxAbs": 4.744829529e-12,
+        "deltaRelOmega2": 3.74396705e-8,
+        "splitRel": 0.0001175800507,
+        "maxRelRe": 1.168723137e-304,
+        "splitRelSquared_over_deltaRelOmega2": 0.3692625535,
+        "E_lowerLeft": [
+          -3.486875529e-12,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "controlledPerturbation": [
+      {
+        "dRelOmega2": 0.000001,
+        "splitRel": 0.0004974424693,
+        "splitRel_over_sqrtd": 0.4974424693
+      },
+      {
+        "dRelOmega2": 1e-8,
+        "splitRel": 0.00004974424449,
+        "splitRel_over_sqrtd": 0.4974424449
+      },
+      {
+        "dRelOmega2": 1e-10,
+        "splitRel": 0.000004974429028,
+        "splitRel_over_sqrtd": 0.4974429028
+      },
+      {
+        "dRelOmega2": 1e-12,
+        "splitRel": 4.975133851e-7,
+        "splitRel_over_sqrtd": 0.4975133851
+      }
+    ]
+  },
+  "triangularFormCheck": {
+    "r0": 100,
+    "maxAbsDev": 4.33680869e-19,
+    "T": [
+      [
+        0,
+        0.001412449103,
+        0.5050505051,
+        0
+      ],
+      [
+        -0.001412449103,
+        0,
+        0,
+        0.5025125628
+      ],
+      [
+        -8.470329473e-22,
+        0,
+        0,
+        0.001412449103
+      ],
+      [
+        0,
+        8.470329473e-22,
+        -0.001412449103,
+        0
+      ]
+    ],
+    "note": "S^{-1} A S equals [[-Omega J, B/2],[0, -Omega J]]: block upper triangular, eigenvalues those of -Omega J twice, independent of B"
+  }
+}

@@ -1,0 +1,9 @@
+# Directed v3 pre-target record
+
+The [v3 instrument](../evidence/alternatives-screen-2026-10-05-width-entry-directed-v3.mjs) freezes source hash `4f3915c0d1f3721b4d494415e09a7e6949d5c951f48976a5718837041dcc887c`. At 15:02:55 UTC its arithmetic and complete affine controls passed in 0.288 measured seconds, with 106807296 bytes final RSS. The local receipt is `.local-data/master-equation-closure/collinear-research/alternatives-screen-2026-10-05/width-entry-directed-v3-controls/receipt.json`. This pass preceded target application.
+
+This successor removes unused cube-root calls at a zero source endpoint, adds an explicit zero-root control, clamps physically nonnegative root arguments after interval division, and derives the coefficient enclosure from the actual exact rational receipt. It checks the independently frozen preparation-source hash, selected law, positive/negative residual signs and fixed $\delta=1/2048$, then retains the exact case and receipt hash. The earlier v1/v2 sources and control outputs remain unchanged and were never run on targets.
+
+The successor also implements finite candidate checks for the [separate collar lemma](alternatives-screen-2026-10-05-width-entry-seam-collar.md). Those checks cannot supply the lemma's independent assessment. Until that assessment and every future panel pass, results retain the partial-validation label.
+
+Travel-time Darboux bounds use **64 subdivisions per original Hermite segment**. The first bounded target permits **source range partitions of 1, 2, 4 or 8 subdivisions per segment**, plus receiver bisection depth at most 5. These are distinct partitions; source refinement is not implicitly 64. The intended first cost probe is 180 seconds of instrument time with a 210-second supervisor deadline. Its results may be incomplete and must retain every unresolved or unvisited panel.

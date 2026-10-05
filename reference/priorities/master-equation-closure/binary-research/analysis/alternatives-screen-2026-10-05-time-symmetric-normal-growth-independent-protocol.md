@@ -1,0 +1,9 @@
+# Normal real exponents: independent analytical protocol
+
+Status: frozen 2026-10-05 before the new independent derivation. The coordinator's new normal-growth reference remains unread. The selected equation is the complete Section 14 equal past/future canonical radial law with opposite polarities and $K=c_f=1$, about its exactly balanced circle for every fixed $0<\beta<1$.
+
+The target is the complete set of real exponential rates in both normal exchange sectors, their exact multiplicities, and endpoint asymptotics as $\beta\downarrow0$ and $\beta\uparrow1$. The source-clock and shifted-source-acceleration terms must be differentiated before normal projection; their disappearance, if any, must follow from planar base geometry. Every ordinary partner root in both time directions is retained. No numerical target is needed or proposed.
+
+The original binary source already proves existence and uniqueness of the positive common normal rate. This assignment must identify that antecedent honestly while independently reconstructing the scalar equation, zero and nonzero multiplicities, absence or presence of opposite real rates, and controlled endpoint asymptotics. The zero-speed limit is not a finite-radius physical circle. Any field-speed endpoint equation is a formal limiting equation unless its separate complete-history domain is explicitly proved.
+
+State the precise relation to bounded and tempered whole-line variations. In particular, an unbounded exponential need not be an admissible small globally uniformly subfield history perturbation. No advanced initial-value solvability, full complex spectrum, nonlinear branch, causal instability, collision rule or physical fate may be inferred. The deliverable is a new independent source with falsifiers and frozen provenance; prior subjects and shared owners remain unchanged.

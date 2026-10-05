@@ -1,0 +1,817 @@
+{
+  "instrument": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-pair-instrument.mjs",
+  "command": "node reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-pair-instrument.mjs controls",
+  "date": "2026-10-05T12:50:56.051Z",
+  "node": "v22.23.2",
+  "units": {
+    "cf": 1,
+    "K": 1
+  },
+  "claimBoundary": "Floating-point comparison against closed forms on the listed cases only; not an enclosure; no Weber-coefficient target was run before these controls.",
+  "controls": [
+    {
+      "id": "a1-kepler-circular-rate",
+      "reference": "closed form: relative circular rate omega = sqrt(2K/r^3) for lambda=mu=0, sigma=-1, unit weights",
+      "case": {
+        "r": 1,
+        "omega": 1.4142135623730951,
+        "orbits": 10,
+        "method": "gbs",
+        "rtol": 1e-13,
+        "atol": 1e-15
+      },
+      "tolerance": {
+        "phi": 1e-9,
+        "r": 1e-10
+      },
+      "phiError": 3.062439191126032e-12,
+      "radiusError": 7.149836278586008e-14,
+      "finalPositionError": 3.0991237342096132e-12,
+      "relDriftH0": 5.884182030513331e-14,
+      "steps": 497,
+      "nfev": 12923,
+      "wallSeconds": 0.045,
+      "pass": true
+    },
+    {
+      "id": "a2-kepler-eccentric-position",
+      "reference": "closed form: Kepler's equation E - e sin E = n t, relative coupling 2K",
+      "case": {
+        "a": 3,
+        "e": 0.5,
+        "rp": 1.5,
+        "vp": 1.4142135623730951,
+        "method": "gbs",
+        "rtol": 1e-13,
+        "atol": 1e-15
+      },
+      "tolerance": {
+        "relPosition": 1e-9
+      },
+      "errors": [
+        {
+          "t": 1.7,
+          "error": 1.6011864169946886e-15
+        },
+        {
+          "t": 7.3,
+          "error": 1.4918173637706032e-14
+        },
+        {
+          "t": 13.9,
+          "error": 2.9892112083010386e-14
+        },
+        {
+          "t": 58.08474235728388,
+          "error": 6.616038151757689e-12
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "a3-kepler-radial-period-and-apsides",
+      "reference": "closed form: T = 2 pi sqrt(a^3/(2K)), r_min = a(1-e), r_max = a(1+e), zero apsidal advance",
+      "case": {
+        "a": 3,
+        "e": 0.5,
+        "orbits": 5,
+        "expectedPeriod": 23.085896942913553
+      },
+      "tolerance": {
+        "position": 1e-9,
+        "period": 1e-10,
+        "apsides": 1e-10,
+        "apsidalAngle": 1e-8
+      },
+      "measuredPeriods": [
+        23.085896942905528,
+        23.085896942892283,
+        23.08589694289701,
+        23.085896942925146
+      ],
+      "firstPericentreReturn": 23.085896942913237,
+      "maxRelPeriodError": 9.213459129430822e-13,
+      "firstApocentreRelTimeError": 8.387064014597959e-15,
+      "maxRelApocentreError": 1.2215413865609055e-12,
+      "maxRelPericentreError": 2.5002222514558525e-13,
+      "maxApsidalAngleError": 7.531752999057062e-13,
+      "relDriftH0": 6.594724766273436e-13,
+      "steps": 129,
+      "nfev": 8570,
+      "wallSeconds": 0.022,
+      "wallSecondsPerOrbit": 0.004190476190476191,
+      "pass": true
+    },
+    {
+      "id": "a4-kepler-radial-infall-contact",
+      "reference": "closed form: radial Kepler fall r = r0(1+cos psi)/2, t = sqrt(r0^3/(8*2K))(psi + sin psi)",
+      "case": {
+        "r0": 1,
+        "rContact": 0.000001
+      },
+      "tolerance": {
+        "contactTime": 1e-9,
+        "speedCrossingTime": 1e-11
+      },
+      "termination": {
+        "reason": "contact",
+        "event": "contact:0-1",
+        "t": 0.7853981630641178
+      },
+      "expectedContactTime": 0.7853981630641149,
+      "contactTimeError": 2.886579864025407e-15,
+      "speedEvents": [
+        {
+          "member": 0,
+          "t": 0.6426990816987268,
+          "direction": "rising-through-cf"
+        },
+        {
+          "member": 1,
+          "t": 0.6426990816987268,
+          "direction": "rising-through-cf"
+        }
+      ],
+      "expectedSpeedCrossingTime": 0.6426990816987241,
+      "speedCrossingTimeError": 2.6645352591003757e-15,
+      "steps": 417,
+      "nfev": 7345,
+      "pass": true
+    },
+    {
+      "id": "a5-kepler-parabolic-escape",
+      "reference": "closed form: zero-energy radial motion r(t)^{3/2} = r0^{3/2} + (3/2) sqrt(2*2K) t",
+      "case": {
+        "r0": 2,
+        "rEscape": 50,
+        "relSpeed0": 1.4142135623730951
+      },
+      "tolerance": {
+        "relEscapeTime": 1e-10
+      },
+      "termination": {
+        "reason": "escape",
+        "event": "escape:0-1",
+        "t": 116.90832115615896
+      },
+      "expectedEscapeTime": 116.90832115617586,
+      "relEscapeTimeError": 1.445295432290329e-13,
+      "speedEvents": [],
+      "pass": true
+    },
+    {
+      "id": "g-obstruction-event-test-coefficients",
+      "reference": "independent adaptive-Simpson quadrature of the collinear energy relation for det = 1 - 2/r (test-only coefficients lambda=0, mu=-1)",
+      "case": {
+        "r0": 3,
+        "detMin": 0.001,
+        "rAtThreshold": 2.002002002002002
+      },
+      "tolerance": {
+        "obstructionTime": 1e-9,
+        "detAtEvent": 1e-9
+      },
+      "termination": {
+        "reason": "obstruction",
+        "event": "obstruction:det",
+        "t": 1.4877569911727118
+      },
+      "expectedTime": 1.4877569911727122,
+      "timeError": 4.440892098500626e-16,
+      "detAtEvent": 0.0009999999999995206,
+      "pass": true
+    },
+    {
+      "id": "b-zero-coefficient-linear-and-angular-invariants",
+      "reference": "antisymmetric pair contributions (sum of accelerations zero, central directions) for lambda=mu=0",
+      "tolerance": {
+        "sumV": 1e-11,
+        "angularMomentumRel": 1e-10,
+        "centre": 1e-11,
+        "H0rel": 1e-10
+      },
+      "rows": [
+        {
+          "case": "eccentric pair with centre drift, t=50",
+          "termination": {
+            "reason": "final-time",
+            "t": 50
+          },
+          "maxAbsDeltaSumV": 4.105049633551516e-14,
+          "maxRelDeltaSumXxV": 2.0131445521298325e-13,
+          "maxCentreDeviation": 7.016925711266667e-13,
+          "maxRelDriftH0": 3.471097283476708e-13,
+          "minPairSeparation": 1.5
+        },
+        {
+          "case": "N=4 random mixed polarity, t=5",
+          "termination": {
+            "reason": "final-time",
+            "t": 5
+          },
+          "maxAbsDeltaSumV": 4.841657581937378e-13,
+          "maxRelDeltaSumXxV": 1.260393444819079e-11,
+          "maxCentreDeviation": 4.0340557155833943e-13,
+          "maxRelDriftH0": 3.398892823440736e-11,
+          "minPairSeparation": 0.042478497657580216
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "c-pair-linear-solve-and-determinant",
+      "reference": "boxed Section 9 law residual (round-off), independent numerical second derivative of |X_i - X_j|, and the Section 9 scalar pair identity (comparison only)",
+      "case": {
+        "states": 2000,
+        "coefficients": {
+          "lambda": -0.5,
+          "mu": 1
+        },
+        "rRange": [
+          0.05,
+          50
+        ],
+        "relSpeedBox": 1.5,
+        "nearSingularSkipped": 0,
+        "maxCond": 818.269228498211
+      },
+      "tolerance": {
+        "lawResidualRel": 1e-12,
+        "rddotIndependentRel": 1e-7,
+        "section9IdentityRel": 1e-12,
+        "detScaled": 1e-14,
+        "detRel": 1e-13,
+        "antisymmetry": 1e-13,
+        "perpendicular": 1e-13
+      },
+      "maxLawResidualRel": 2.0829992280952142e-13,
+      "maxRddotIndependentRel": 8.575402111823588e-10,
+      "maxSection9IdentityRel": 2.2395066381631607e-13,
+      "maxScaledDetMinusFactor": 2.559152732427113e-15,
+      "detScaling": "abs(det - (1 - 2 sigma K mu/r)) / (1 + 2 K mu/r), mu = 1",
+      "maxAntisymmetry": 4.610151594093563e-15,
+      "maxPerpendicularFraction": 4.836186208577521e-15,
+      "determinantForm": {
+        "observed": "det M = (1 - 2 sigma K mu/(c_f^2 r))^p with p = 1, independent of lambda and velocities",
+        "exponentRange": [
+          0.9999999999999701,
+          1.0000000000000302
+        ],
+        "maxRelDiffOverGrid": 1.3322676295501882e-15,
+        "maxSpreadOverLambdaAndVelocity": 0,
+        "grid": [
+          {
+            "mu": 1,
+            "sigma": -1,
+            "r": 0.1,
+            "det": 21.000000000000018,
+            "factor": 21,
+            "relDiff": 8.458842092382145e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000002
+          },
+          {
+            "mu": 1,
+            "sigma": -1,
+            "r": 0.5,
+            "det": 5.0000000000000036,
+            "factor": 5,
+            "relDiff": 7.105427357601002e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000004
+          },
+          {
+            "mu": 1,
+            "sigma": -1,
+            "r": 1.5,
+            "det": 2.3333333333333335,
+            "factor": 2.333333333333333,
+            "relDiff": 1.9032394707859828e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000002
+          },
+          {
+            "mu": 1,
+            "sigma": -1,
+            "r": 3,
+            "det": 1.666666666666666,
+            "factor": 1.6666666666666665,
+            "relDiff": 2.664535259100376e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 0.9999999999999993
+          },
+          {
+            "mu": 1,
+            "sigma": -1,
+            "r": 10,
+            "det": 1.2000000000000004,
+            "factor": 1.2,
+            "relDiff": 3.7007434154171886e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.000000000000002
+          },
+          {
+            "mu": 1,
+            "sigma": -1,
+            "r": 100,
+            "det": 1.02,
+            "factor": 1.02,
+            "relDiff": 0,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": 1,
+            "sigma": 1,
+            "r": 0.1,
+            "det": -19.000000000000004,
+            "factor": -19,
+            "relDiff": 1.8698493046318425e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000002
+          },
+          {
+            "mu": 1,
+            "sigma": 1,
+            "r": 0.5,
+            "det": -3,
+            "factor": -3,
+            "relDiff": 0,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": 1,
+            "sigma": 1,
+            "r": 1.5,
+            "det": -0.3333333333333337,
+            "factor": -0.33333333333333326,
+            "relDiff": 1.3322676295501882e-15,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 0.9999999999999988
+          },
+          {
+            "mu": 1,
+            "sigma": 1,
+            "r": 3,
+            "det": 0.33333333333333326,
+            "factor": 0.33333333333333337,
+            "relDiff": 3.330669073875469e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000004
+          },
+          {
+            "mu": 1,
+            "sigma": 1,
+            "r": 10,
+            "det": 0.7999999999999998,
+            "factor": 0.8,
+            "relDiff": 2.7755575615628914e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000013
+          },
+          {
+            "mu": 1,
+            "sigma": 1,
+            "r": 100,
+            "det": 0.98,
+            "factor": 0.98,
+            "relDiff": 0,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": 0.37,
+            "sigma": -1,
+            "r": 0.1,
+            "det": 8.400000000000004,
+            "factor": 8.399999999999999,
+            "relDiff": 6.34413156928661e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000002
+          },
+          {
+            "mu": 0.37,
+            "sigma": -1,
+            "r": 0.5,
+            "det": 2.48,
+            "factor": 2.48,
+            "relDiff": 0,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": 0.37,
+            "sigma": -1,
+            "r": 1.5,
+            "det": 1.4933333333333332,
+            "factor": 1.4933333333333334,
+            "relDiff": 1.4869058365515488e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 0.9999999999999998
+          },
+          {
+            "mu": 0.37,
+            "sigma": -1,
+            "r": 3,
+            "det": 1.2466666666666666,
+            "factor": 1.2466666666666666,
+            "relDiff": 0,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": 0.37,
+            "sigma": -1,
+            "r": 10,
+            "det": 1.0739999999999996,
+            "factor": 1.074,
+            "relDiff": 4.134908844041551e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 0.9999999999999941
+          },
+          {
+            "mu": 0.37,
+            "sigma": -1,
+            "r": 100,
+            "det": 1.0073999999999999,
+            "factor": 1.0074,
+            "relDiff": 2.2041354469429352e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 0.9999999999999701
+          },
+          {
+            "mu": 0.37,
+            "sigma": 1,
+            "r": 0.1,
+            "det": -6.3999999999999995,
+            "factor": -6.3999999999999995,
+            "relDiff": 0,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": 0.37,
+            "sigma": 1,
+            "r": 0.5,
+            "det": -0.48,
+            "factor": -0.48,
+            "relDiff": 0,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": 0.37,
+            "sigma": 1,
+            "r": 1.5,
+            "det": 0.5066666666666666,
+            "factor": 0.5066666666666666,
+            "relDiff": 0,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": 0.37,
+            "sigma": 1,
+            "r": 3,
+            "det": 0.7533333333333332,
+            "factor": 0.7533333333333333,
+            "relDiff": 1.4737473778210043e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000007
+          },
+          {
+            "mu": 0.37,
+            "sigma": 1,
+            "r": 10,
+            "det": 0.9259999999999999,
+            "factor": 0.926,
+            "relDiff": 1.198944950999089e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000016
+          },
+          {
+            "mu": 0.37,
+            "sigma": 1,
+            "r": 100,
+            "det": 0.9925999999999998,
+            "factor": 0.9926,
+            "relDiff": 2.2369998481264486e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000302
+          },
+          {
+            "mu": -2,
+            "sigma": -1,
+            "r": 0.1,
+            "det": -38.99999999999999,
+            "factor": -39,
+            "relDiff": 1.8219044506669235e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": -2,
+            "sigma": -1,
+            "r": 0.5,
+            "det": -6.999999999999998,
+            "factor": -7,
+            "relDiff": 2.5376526277146434e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 0.9999999999999999
+          },
+          {
+            "mu": -2,
+            "sigma": -1,
+            "r": 1.5,
+            "det": -1.6666666666666674,
+            "factor": -1.6666666666666665,
+            "relDiff": 5.329070518200752e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.000000000000001
+          },
+          {
+            "mu": -2,
+            "sigma": -1,
+            "r": 3,
+            "det": -0.3333333333333337,
+            "factor": -0.33333333333333326,
+            "relDiff": 1.3322676295501882e-15,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 0.9999999999999988
+          },
+          {
+            "mu": -2,
+            "sigma": -1,
+            "r": 10,
+            "det": 0.6,
+            "factor": 0.6,
+            "relDiff": 0,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": -2,
+            "sigma": -1,
+            "r": 100,
+            "det": 0.96,
+            "factor": 0.96,
+            "relDiff": 0,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": -2,
+            "sigma": 1,
+            "r": 0.1,
+            "det": 41.00000000000003,
+            "factor": 41,
+            "relDiff": 6.932124251318051e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000002
+          },
+          {
+            "mu": -2,
+            "sigma": 1,
+            "r": 0.5,
+            "det": 9.000000000000002,
+            "factor": 9,
+            "relDiff": 1.9737298215558337e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": -2,
+            "sigma": 1,
+            "r": 1.5,
+            "det": 3.666666666666667,
+            "factor": 3.6666666666666665,
+            "relDiff": 1.211152390500171e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          },
+          {
+            "mu": -2,
+            "sigma": 1,
+            "r": 3,
+            "det": 2.3333333333333335,
+            "factor": 2.333333333333333,
+            "relDiff": 1.9032394707859828e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000002
+          },
+          {
+            "mu": -2,
+            "sigma": 1,
+            "r": 10,
+            "det": 1.4000000000000004,
+            "factor": 1.4,
+            "relDiff": 3.1720657846433045e-16,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1.0000000000000009
+          },
+          {
+            "mu": -2,
+            "sigma": 1,
+            "r": 100,
+            "det": 1.04,
+            "factor": 1.04,
+            "relDiff": 0,
+            "spreadOverLambdaAndVelocity": 0,
+            "exponent": 1
+          }
+        ],
+        "agreementWithSection9Factor": "agrees: the only non-unit eigenvalue of the 6x6 pair matrix is the Section 9 factor (sum and transverse-difference directions carry eigenvalue 1)"
+      },
+      "pass": true
+    },
+    {
+      "id": "d-n4-linear-solve",
+      "reference": "boxed Section 9 law for every member (residual with rddot recomputed from solved accelerations) and independent numerical rddot",
+      "case": {
+        "states": 500,
+        "condCut": 100000000,
+        "coefficients": {
+          "lambda": -0.5,
+          "mu": 1
+        }
+      },
+      "tolerance": {
+        "lawResidualRel": 1e-11,
+        "rddotIndependentRel": 1e-7,
+        "sumAccelerations": 1e-12
+      },
+      "maxLawResidualRel": 7.0998343644731246e-15,
+      "maxRddotIndependentRel": 1.2459907828874163e-8,
+      "maxRelSumOfAccelerations": 2.638721460633363e-15,
+      "maxCond": 2506.451732884929,
+      "minAbsDet": 0.0001573848108982621,
+      "examples": [
+        {
+          "q": [
+            -1,
+            -1,
+            1,
+            -1
+          ],
+          "det": 2.0539193368308264,
+          "cond": 14.898800677257345,
+          "lawResidualRel": 9.60735178814309e-16
+        },
+        {
+          "q": [
+            1,
+            -1,
+            -1,
+            1
+          ],
+          "det": -0.46419822831089036,
+          "cond": 151.5756359278568,
+          "lawResidualRel": 3.639106880417867e-16
+        },
+        {
+          "q": [
+            -1,
+            -1,
+            1,
+            1
+          ],
+          "det": -1.2803287479853684,
+          "cond": 21.831508424695862,
+          "lawResidualRel": 3.964980828898444e-16
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "e-integrator-refinement",
+      "reference": "Kepler's equation after one radial period (a=3, e=0.5)",
+      "rk4": [
+        {
+          "stepsPerOrbit": 400,
+          "err": 0.000001376934142166386,
+          "steps": 400,
+          "nfev": 1601
+        },
+        {
+          "stepsPerOrbit": 800,
+          "err": 7.850222800978854e-8,
+          "steps": 800,
+          "nfev": 3201
+        },
+        {
+          "stepsPerOrbit": 1600,
+          "err": 4.672945893922022e-9,
+          "steps": 1601,
+          "nfev": 6405
+        },
+        {
+          "stepsPerOrbit": 3200,
+          "err": 2.847965826456942e-10,
+          "steps": 3201,
+          "nfev": 12805
+        }
+      ],
+      "rk4ObservedOrders": [
+        4.132582147351925,
+        4.070329362360581,
+        4.036328592722241
+      ],
+      "dp54": {
+        "err": 1.641379953990843e-10,
+        "steps": 393,
+        "nfev": 2764
+      },
+      "gbs": {
+        "err": 1.5343058375570748e-13,
+        "steps": 157,
+        "nfev": 2804
+      },
+      "tolerance": {
+        "rk4OrderWindow": [
+          3.7,
+          4.3
+        ],
+        "dp54": 1e-8,
+        "gbs": 1e-10
+      },
+      "pass": true
+    },
+    {
+      "id": "f-linearization-helper",
+      "reference": "similarity-transformed block matrix with prescribed spectrum; companion matrix of a polynomial with known roots; lambda=mu=0 circular pair in the co-rotating frame (expected spectrum: 0 x4, +-i*omega x4 each, omega = sqrt(2K/r^3): epicyclic frequency equals orbital rate, out-of-plane tilt at omega, centre translation gives +-i*omega and 0 in the rotating frame)",
+      "tolerance": {
+        "knownMatrix": 1e-10,
+        "companion": 1e-10,
+        "keplerRotating": 0.00001
+      },
+      "knownMatrixMaxError": 1.3322676295501878e-15,
+      "companionMaxError": 1.3322676295501878e-15,
+      "kepler": {
+        "omega": 1.4142135623730951,
+        "balanceResidualMax": 2.220446049250313e-16,
+        "jacobianErrorEstimate": 1.0000518931481869e-8,
+        "eigenvalues": [
+          {
+            "re": 1.0112841553749918e-14,
+            "im": -1.4142140782729908
+          },
+          {
+            "re": 0,
+            "im": -1.4142135623761032
+          },
+          {
+            "re": -1.6653345369377348e-16,
+            "im": -1.4142135623730963
+          },
+          {
+            "re": -1.0091672506332139e-14,
+            "im": -1.4142130464737692
+          },
+          {
+            "re": -5.6663902060395255e-8,
+            "im": 0
+          },
+          {
+            "re": -3.088847302934461e-9,
+            "im": 0
+          },
+          {
+            "re": 3.0888477747792464e-9,
+            "im": 0
+          },
+          {
+            "re": 5.6663902060395255e-8,
+            "im": 0
+          },
+          {
+            "re": -1.0091672506332139e-14,
+            "im": 1.4142130464737692
+          },
+          {
+            "re": -1.6653345369377348e-16,
+            "im": 1.4142135623730963
+          },
+          {
+            "re": 0,
+            "im": 1.4142135623761032
+          },
+          {
+            "re": 1.0112841553749918e-14,
+            "im": 1.4142140782729908
+          }
+        ],
+        "maxErrorToExpected": 5.15899895692229e-7,
+        "note": "eigenvalues 0 and +-i*omega are defective (Jordan blocks), so splitting of order sqrt(Jacobian error) is expected"
+      },
+      "refusesUnbalanced": {
+        "balanced": false,
+        "balanceResidualMax": 0.02010000000000023,
+        "spectrumReported": false
+      },
+      "pass": true
+    }
+  ],
+  "allPass": true,
+  "wallSeconds": 0.425
+}

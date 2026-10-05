@@ -27,6 +27,27 @@ This is the execution ledger for isolated two-architrino investigations. BP-001 
 
 ## Proposed analytical follow-up
 
+### Enclose a finite-amplitude noncircular time-symmetric binary
+
+- **Status:** ○ Proposed — unassigned; no further target is launched by the completed daily screen.
+- **Complete case:** Retain the equal-past/future canonical radial boundary law, $\alpha=1/2$, $K=c_f=1$, both labels and complete periodic histories. Start from the independently certified ten-period resonance and the [actual nonlinear branch](manuscript.md#528-noncircular-complete-periodic-binaries-at-multiple-period-resonances), including its full Cartesian local classification. The displayed reference-circle speed is a period parameter along the branch, not a constant member speed.
+- **Next decisive work:** Give a computable nonzero amplitude interval and a concrete profile enclosure, proving the complete roots, positive separation, strict speed margin and all acceleration equations. Preserve the two-level regularity proof; do not replace it by the rejected low-operator analyticity assertion. Only then formulate and examine a precise admissible perturbation problem retaining source-clock and delayed source-acceleration variation.
+- **Completion / falsifier:** An independently checked finite-amplitude boundary reference or the exact failed enclosure. A missing residual component, root, domain margin or period condition defeats the reference. Stability, causal preparation and physical selection require separate evidence; the current existential branch is already an actual solution theorem and is not superseded by failure of a numerical enclosure.
+
+### Certify the unchanged E first event with separate source charts
+
+- **Status:** ○ Proposed — unassigned successor to the closed bounded attempt; no new evolution is running.
+- **Complete case:** Retain the exact Section 7 E preparation identified in the [completed attempt](#resolve-the-original-maxwell-shaped-e-only-first-event), all closed source X/V/A histories, $K=c_f=1$ and the ordinary incoming root census. No auxiliary release or changed source past resolves this question.
+- **Next decisive work:** Assess the [split source-chart proposal](analysis/maxwell-e-first-event-independent-assessment.md#static-diagnosis-of-the-shared-source-guard). Prove a complete actual-root interval separately from every intermediate translated nominal-clock chart, including the original physical E reconstruction. The actual mirror bound $S\le T-r(T)$ is available only under its complete incoming speed hypothesis and a proved trial radius floor; it must not clip nonmirror comparison families. Reuse later old Cartesian source evidence only through an independently checked complete comparison transfer. The fresh receiver-dependent coordinate is another unimplemented possibility, requiring its own error theorem.
+- **Completion / falsifier:** Establish the same physical preparation's first event or a named actual obstruction, with complete pre-event continuation and positive/failed separation, root and acceleration margins. A new nominal endpoint, changed past, missing source-A support, unjustified source chart or stopped sufficient bound is insufficient. Capture, stable binding and outgoing continuation require their own evidence.
+
+### Locate terminal alternatives in one unchanged slow family
+
+- **Status:** ○ Proposed — unassigned; the occurrence theorem is complete and is not itself queued again.
+- **Complete case:** Choose one of the existing fixed radial or unit-uniform-memory complete compatible families, preserving its coefficient, past patch, self/root clauses and normalization. The fixed $p=3/2$ radial family is the recommended first quantitative case; no equation is retuned to obtain a preferred outcome.
+- **Next decisive work:** Derive an explicit admissible launch threshold and a validated criterion locating a positive-terminal-speed member and enclosing at least one zero-terminal-speed parameter. The [occurrence result](manuscript.md#521-both-terminal-alternatives-occur-in-every-fixed-slow-family-below-inverse-cube) supplies existence, not parameter ordering, a unique threshold or a numerical separatrix.
+- **Completion / falsifier:** Independently certified quantitative preparation and terminal-selection bounds, or the exact bound preventing localization. A finite outward segment or very small terminal estimate cannot establish either an all-future positive limit or an exact zero limit. Preserve the distinction between member-dependent positive-branch Cartesian robustness and the unresolved structure and robustness of the zero-speed set.
+
 ### Prove dispersal robustness for the nominal nonmirror source
 
 - **Status:** ○ Proposed — unassigned analytical successor; production and the radial-dip task remain blocked.
@@ -35,6 +56,13 @@ This is the execution ledger for isolated two-architrino investigations. BP-001 
 
 
 ## Completed analytical follow-ups
+
+### Resolve the original Maxwell-shaped E-only first event
+
+- **Status:** ✓ Bounded attempt complete at the allowed method-obstruction boundary — 2026-10-05. The physical first event remains unresolved; the [new source-chart proposal](#certify-the-unchanged-e-first-event-with-separate-source-charts) is unassigned.
+- **Complete case:** Original two-label opposite-polarity mirror-planar Section 7 E law, $K=c_f=1$, speed $3/10$, radius $25/9$, angular rate $27/250$, and the exact complete $C^{2,1}$ circle-tail/compatible endpoint patch. The [original synthesis](analysis/maxwell-shaped-overnight-investigation.md#complete-case-disposition-for-closeout) and [successor assessment](analysis/maxwell-e-first-event-independent-assessment.md) preserve its identity and independent evidence.
+- **Result:** New signed, intrinsic, neutral and component comparison methods were independently assessed. All final retained prefixes passed their complete recurrence, physical-domain and tangential-geometry audits. The last restart stopped near $T=54.532118$ because a proposed source guard exceeded completed history before root-family acceptance. This is a sufficient-method failure; it does not locate an actual source root or prove a physical endpoint. The earlier actual interval through $T=56.72222$ and contraction on $[20,55]$ remain the strongest admitted original-case result.
+- **Completion / boundary:** The bounded assignment allowed identification of the exact independently checked bound that could not close. That condition is met, all owned producers are closed, and the frozen sources and receipts remain preserved. No first event, capture, stable binding, outgoing rule or all-future fate is claimed. A changed original-case binding, omitted source-A support, false error induction or invalid audit would overturn the corresponding admission; a successful different guard would overcome the present method limitation without contradicting it.
 
 ### Bind an exact historical preparation before applying the dispersal theorem
 

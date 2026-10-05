@@ -1,0 +1,40 @@
+PASS K1: 6x6 solver on zero-coefficient law reproduces sig K e/r^2: worst 4.578e-16
+PASS K2: Faddeev-LeVerrier on diag(1,2,-3): coefficient error 0.000e+0
+PASS K3: analytic rotating centre block: charpoly = (s^2+Om^2)^2 (err 1.110e-16); (A^2+Om^2 I) nonzero (1.400e+0) with square 2.220e-16 => two size-2 Jordan blocks at +-i Om
+PASS K3b: inertial centre block: A nonzero, A^2 = 0.000e+0 => zero eigenvalue, size-2 Jordan blocks
+PASS T1(x=1): equilibrium residual 2.220e-16; charpoly (time rescaled by 1/Om) = s^4 (s^2+1)^3 (s^2+(wr/Om)^2) with coefficient error 3.371e-13 (Om=1.414214, wr=0.816497); minimal-polynomial test: m(A)=1.058e-12, without one s: 1.000e+0, without one (s^2+Om^2): 1.414e+0 => size-2 Jordan blocks at 0 and at +-i Om
+PASS T1(x=4): equilibrium residual 1.388e-17; charpoly (time rescaled by 1/Om) = s^4 (s^2+1)^3 (s^2+(wr/Om)^2) with coefficient error 5.540e-12 (Om=0.176777, wr=0.144338); minimal-polynomial test: m(A)=4.525e-12, without one s: 5.657e+0, without one (s^2+Om^2): 9.192e+0 => size-2 Jordan blocks at 0 and at +-i Om
+PASS K4: rdot^2 vanishes at r_p=0.620197, r_a=6.046470 on a bound level: 4.205e-16
+PASS T2: eps=0, h=1: rdot^2 at r=2,10,100,1000,10000,1000000 = 8.75e-1, 3.25e-1, 3.91e-2, 3.99e-3, 4.00e-4, 4.00e-6 (monotone decreasing: true); T(8e3)/T(1e3) = 22.563 against 8^{3/2} = 22.627 => infinite-time dispersal, speed -> 0
+PASS T2b: rdot^2 > 0 at every sampled r > r_p (min 4.030e-6) so rdot keeps its sign after the turning point
+   eps=-0.5: v(r->0)=0.707107, v(r=2)=0.353553, decreasing in r
+   eps=0: v(r->0)=0.707107, v(r=1000000)=0.001000, decreasing in r
+   eps=0.5: v(r->0)=0.707107, v(r=1000000)=0.500000, decreasing in r
+   eps=1: v(r->0)=0.707107, v(r=1000000)=0.707107, increasing in r
+   eps=1.5: v(r->0)=0.707107, v(r=1000000)=0.866025, increasing in r
+   eps=2: v(r->0)=0.707107, v(r=1000000)=1.000000, increasing in r; sup over finite r < 1: v(1e6)=0.99999950
+   eps=3: v(r->0)=0.707107, v(r=1000000)=1.224744, increasing in r; v(r_x=2) = 1.000000000000
+PASS T3: radial table: v -> c_f/sqrt2 at contact for every eps; eps=2 stays below c_f at every finite r (sup only at infinity); eps=3 crosses at r_x=k/(eps-2)=2
+PASS T3b: relative speed^2 g(u) on (0,u_p]: at most one interior critical point and the supremum is at the pericentre end in 300/300 random (h,eps) cases including eps > c_f^2
+PASS T3c: max(|V1|,|V2|)^2 = |Vc|^2 + |w|^2/4 + |Vc . w| at 200 random states: worst 1.776e-15
+PASS K5: RK4 on (5.2): bound opposite-polarity history stays in [r_p, r_a] = [0.620197, 6.046470]: observed [0.620197, 6.046470], err 5.845e-8, fate 'still bounded at Tmax'
+   ok  exterior, eps<Veff(k), approaching: eps=0.8000, fate=dispersal, turns=1, T=319.699 rdot^2=1.5980 vs 2eps=1.6000
+   ok  exterior, eps<Veff(k), receding: eps=0.8000, fate=dispersal, turns=0, T=312.468 rdot^2=1.5980 vs 2eps=1.6000
+   ok  exterior, eps>Veff(k), approaching: eps=1.5000, fate=critical radius, turns=0, T=1.911 |rdot|=123.147 (threshold-level finite value sqrt(2c_f^2+2h^2/kappa^2)=1.581)
+   ok  exterior, eps>Veff(k), receding (omitted branch): eps=1.5000, fate=dispersal, turns=0, T=228.390 rdot^2=3.0050 vs 2eps=3.0000
+   ok  exterior, eps=Veff(k), approaching: eps=1.1250, fate=critical radius, turns=0, T=2.589 |rdot|=1.581 (threshold-level finite value sqrt(2c_f^2+2h^2/kappa^2)=1.581)
+   ok  exterior, eps=Veff(k), receding: eps=1.1250, fate=dispersal, turns=0, T=264.629 rdot^2=2.2512 vs 2eps=2.2500
+   ok  interior, eps<Veff(k), approaching: eps=0.8000, fate=contact, turns=0, T=0.751 |rdot|=71.266
+   ok  interior, eps<Veff(k), receding: eps=0.8000, fate=critical radius, turns=0, T=0.174 |rdot|=115.839 (threshold-level finite value sqrt(2c_f^2+2h^2/kappa^2)=1.581)
+   ok  interior, eps=Veff(k), approaching: eps=1.1250, fate=contact, turns=0, T=0.822 |rdot|=72.094
+   ok  interior, eps=Veff(k), receding: eps=1.1250, fate=critical radius, turns=0, T=0.314 |rdot|=1.581 (threshold-level finite value sqrt(2c_f^2+2h^2/kappa^2)=1.581)
+   ok  interior, eps>Veff(k), approaching: eps=1.5000, fate=contact, turns=0, T=0.547 |rdot|=70.982
+   ok  interior, eps>Veff(k), receding: eps=1.5000, fate=contact, turns=1, T=1.800 |rdot|=71.967
+PASS T4: like-polarity branch list (12 direction/level/region cases) matches the corrected Theorem 8.1 list
+PASS T4b: exterior rdot^2 > 0 at every sampled r > kappa on eps=1.5 > Veff(kappa)=1.125: min 3.000e+0 => no exterior turning point on that level
+PASS K6: opposite polarity (Delta>0): C = 1 - eps/c_f^2 at 100 random states, worst 1.776e-15
+PASS T5: like polarity: inside r<kappa, C = -(1 - eps/c_f^2) (worst 7.105e-15); outside, C = +(1 - eps/c_f^2) (worst 8.882e-16) => C = sign(Delta)(1 - eps/c_f^2)
+PASS T5b: inside like-polarity history from r=1.5, eps=0.8: C in [-0.200000000000, -0.200000000000], expected -(1-eps) = -0.200000000000
+PASS T5c: signed identity Delta (1 - rdot^2/2c_f^2) = 1 - eps/c_f^2 on both charts and both polarities: worst 8.882e-16
+
+19/19 checks passed

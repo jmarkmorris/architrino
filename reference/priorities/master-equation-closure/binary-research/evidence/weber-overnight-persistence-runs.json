@@ -1,0 +1,1203 @@
+{
+  "document": "reference/priorities/master-equation-closure/binary-research/analysis/weber-overnight-persistence.md",
+  "law": "equation-variants/manuscript.md Section 9, lambda=-1/2, mu=1, K=1, cf=1, opposite polarity, instantaneous support, unit weights",
+  "preregisteredAt": "2026-10-05T14:06Z",
+  "runsAt": "2026-10-05T14:10Z",
+  "grade": "measured by the subject instrument on the three preregistered cases; predictions derived from the initial invariants (Theorem 2.1, quadratures 7.4-7.5, identity A.4)",
+  "spotChecks": {
+    "script": ".tmp/weber-overnight/round2/persistence/persistence-checks.mjs",
+    "output": ".tmp/weber-overnight/round2/persistence/persistence-checks.out.txt",
+    "checksFailed": 0,
+    "predictionsDate": "2026-10-05T14:06:25.782Z"
+  },
+  "knownCase": {
+    "date": "2026-10-05T14:07:57.258Z",
+    "input": "WB-7-prereg (target-run report Section 2.3)",
+    "expected": {
+      "rMin": 3.9664373,
+      "rMax": 4.0357635,
+      "radialPeriod": 43.5471288,
+      "apsidalAngle": 3.8475193,
+      "turningPoints": 33,
+      "maxPlaneAngle": "1.5e-8 was the report's arccosine floor; the atan2 form here must be below that floor",
+      "maxSpeed": 0.4090908
+    },
+    "measured": {
+      "rMin": 3.966437349680117,
+      "rMax": 4.03576354213166,
+      "radialPeriod": 43.5471287915518,
+      "radialPeriodSpread": 1.0101075531565584e-10,
+      "apsidalAngle": 3.847519254156188,
+      "turningPoints": 33,
+      "maxPlaneAngleRad": 1.757977549874077e-14,
+      "maxSpeedSampled": 0.4090908472642905,
+      "maxRelDrift_h": 2.9059505604959173e-13,
+      "maxRelDrift_epsilon": 5.779189897371094e-13
+    },
+    "pass": true
+  },
+  "controlsRerun": {
+    "date": "2026-10-05T14:10:00.650Z",
+    "receipt": ".tmp/weber-overnight/round2/persistence/controls-rerun-receipt.json",
+    "passed": 11,
+    "total": 11,
+    "wallSeconds": 0.639,
+    "tail": [
+      "PASS  f-linearization-helper",
+      "allPass=true receipt=.tmp/weber-overnight/round2/persistence/controls-rerun-receipt.json wall=0.612s"
+    ]
+  },
+  "instrument": {
+    "path": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-pair-instrument.mjs",
+    "sha256": "3d16f3494c55fefa41b3d225e8e591501241f725a79965469f1dfb9d28109d18",
+    "node": "v22.23.2"
+  },
+  "runs": {
+    "WP-1-prereg": {
+      "caseFile": ".local-data/master-equation-closure/weber-overnight/binary/persistence/cases/WP-1-prereg.json",
+      "rtol": 1e-12,
+      "command": "node reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-pair-instrument.mjs run .local-data/master-equation-closure/weber-overnight/binary/persistence/cases/WP-1-prereg.json",
+      "date": "2026-10-05T14:10:03.904Z"
+    },
+    "WP-1-refine": {
+      "caseFile": ".local-data/master-equation-closure/weber-overnight/binary/persistence/cases/WP-1-refine.json",
+      "rtol": 1e-10,
+      "command": "node reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-pair-instrument.mjs run .local-data/master-equation-closure/weber-overnight/binary/persistence/cases/WP-1-refine.json",
+      "date": "2026-10-05T14:10:06.624Z"
+    },
+    "WP-2-prereg": {
+      "caseFile": ".local-data/master-equation-closure/weber-overnight/binary/persistence/cases/WP-2-prereg.json",
+      "rtol": 1e-12,
+      "command": "node reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-pair-instrument.mjs run .local-data/master-equation-closure/weber-overnight/binary/persistence/cases/WP-2-prereg.json",
+      "date": "2026-10-05T14:10:11.276Z"
+    },
+    "WP-2-refine": {
+      "caseFile": ".local-data/master-equation-closure/weber-overnight/binary/persistence/cases/WP-2-refine.json",
+      "rtol": 1e-10,
+      "command": "node reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-pair-instrument.mjs run .local-data/master-equation-closure/weber-overnight/binary/persistence/cases/WP-2-refine.json",
+      "date": "2026-10-05T14:10:15.479Z"
+    },
+    "WP-3-prereg": {
+      "caseFile": ".local-data/master-equation-closure/weber-overnight/binary/persistence/cases/WP-3-prereg.json",
+      "rtol": 1e-12,
+      "command": "node reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-pair-instrument.mjs run .local-data/master-equation-closure/weber-overnight/binary/persistence/cases/WP-3-prereg.json",
+      "date": "2026-10-05T14:10:19.186Z"
+    },
+    "WP-3-refine": {
+      "caseFile": ".local-data/master-equation-closure/weber-overnight/binary/persistence/cases/WP-3-refine.json",
+      "rtol": 1e-10,
+      "command": "node reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-pair-instrument.mjs run .local-data/master-equation-closure/weber-overnight/binary/persistence/cases/WP-3-refine.json",
+      "date": "2026-10-05T14:10:21.926Z"
+    }
+  },
+  "cases": {
+    "WP-1": {
+      "description": "WB-7 continued: x=4 circle, member 1 velocity kicked by (0.005,0,0.01), pair boosted by (0.05,0,0); 200 orbital periods of the x=4 circle",
+      "tEnd": 7108.612701053999,
+      "hmax": 0.7108612701054,
+      "predicted": {
+        "h": 2.8287099533179436,
+        "hVector": [
+          0,
+          -0.04,
+          2.8284271247461903
+        ],
+        "epsilon": -0.24993124999999988,
+        "Lambda": 0.000018759998000411615,
+        "e": 0.00866342888237947,
+        "rh": 4.000800000000002,
+        "rp": 3.9664370546605157,
+        "ra": 4.035763550505909,
+        "normal": [
+          0,
+          -0.01414072162226526,
+          0.9999000149975004
+        ],
+        "radialPeriod": 43.54712879154115,
+        "apsidalAngle": 3.8475192541555234,
+        "precessionPerRadialPeriod": 1.4118532011314606,
+        "supSpeedCentreRest": 0.356580718959632,
+        "supSpeedVoidFrame": 0.40911127413594567,
+        "supAt": {
+          "r": 3.9664370546605157,
+          "rdot": -8.591082045812604e-9,
+          "theta": 1.5707963267948966
+        },
+        "tEnd": 7108.612701053999,
+        "radialPeriodsInRun": 163.23952688322402,
+        "rdotMax": 0.005008735976403161
+      },
+      "prereg": {
+        "summary": ".local-data/master-equation-closure/weber-overnight/binary/persistence/WP-1-prereg.summary.json",
+        "trajectory": ".local-data/master-equation-closure/weber-overnight/binary/persistence/WP-1-prereg.trajectory.jsonl",
+        "termination": {
+          "reason": "final-time",
+          "t": 7108.612701053999
+        },
+        "steps": 10000,
+        "rejects": 0,
+        "nfev": 306843,
+        "wallSeconds": 3.211,
+        "states": 10001,
+        "rMinSteps": 3.9664370549474937,
+        "rMaxSteps": 4.035763550353687,
+        "rMinInstrument": 3.9664370549474937,
+        "rMaxInstrument": 4.035763550353687,
+        "turningPoints": 326,
+        "pericentres": {
+          "n": 163,
+          "mean": 3.966437054643349,
+          "min": 3.96643705459449,
+          "max": 3.9664370546625602,
+          "spread": 6.807043817502745e-11
+        },
+        "apocentres": {
+          "n": 163,
+          "mean": 4.035763550493438,
+          "min": 4.035763550464968,
+          "max": 4.035763550525298,
+          "spread": 6.0329519158131e-11
+        },
+        "radialPeriod": {
+          "n": 162,
+          "mean": 43.54712879134778,
+          "min": 43.54712879019098,
+          "max": 43.547128792598414,
+          "spread": 2.407432475592941e-9
+        },
+        "radialPeriodTrend": {
+          "slopePerIndex": -2.011330110458658e-12,
+          "totalChangeByFit": -3.2382414778384397e-10,
+          "firstTenthMean": 43.547128791536075,
+          "lastTenthMean": 43.54712879143892,
+          "lastMinusFirst": -9.71525082604785e-11,
+          "firstValue": 43.54712879155909,
+          "lastValue": 43.54712879136514
+        },
+        "apsidalAngle": {
+          "n": 325,
+          "mean": 3.8475192541588155,
+          "min": 3.847519253972905,
+          "max": 3.8475192543455705,
+          "spread": 3.7266545405145735e-10
+        },
+        "apsidalTrend": {
+          "slopePerIndex": 2.95537231215277e-14,
+          "totalChangeByFit": 9.575406291374973e-12,
+          "firstTenthMean": 3.8475192541547996,
+          "lastTenthMean": 3.8475192541779037,
+          "lastMinusFirst": 2.3104185231659358e-11,
+          "firstValue": 3.847519254155323,
+          "lastValue": 3.8475192540877288
+        },
+        "planeNormalInitial": [
+          0,
+          -0.01414072162226526,
+          0.9999000149975004
+        ],
+        "maxPlaneAngleRad": 1.0356617568746396e-12,
+        "maxRelDrift_h": 4.687199348145117e-12,
+        "maxRelDrift_epsilon": 9.390517266176064e-12,
+        "maxRelDriftCandidateH": 9.610745180355738e-12,
+        "maxAbsDeltaSumV": 2.8284215169626304e-14,
+        "maxAbsDeltaSumXxV": 4.332448238333957e-12,
+        "maxCentreDeviationFromLinear": 1.220169819785024e-10,
+        "minAbsDet": 1.4955691717431574,
+        "maxCond": 1.8402673523210593,
+        "maxSpeedSampled": 0.40910888563705433,
+        "maxSpeedSampledAt": 5911.522322197644,
+        "maxSpeedInstrument": [
+          0.4091056878371831,
+          0.4091088856370544
+        ],
+        "centreVelocity": [
+          0.052500000000000005,
+          0,
+          0.005
+        ],
+        "phiUnwrapped": 1256.1154308285743,
+        "speedEvents": 0
+      },
+      "refine": {
+        "summary": ".local-data/master-equation-closure/weber-overnight/binary/persistence/WP-1-refine.summary.json",
+        "trajectory": ".local-data/master-equation-closure/weber-overnight/binary/persistence/WP-1-refine.trajectory.jsonl",
+        "termination": {
+          "reason": "final-time",
+          "t": 7108.612701053999
+        },
+        "steps": 10118,
+        "rejects": 0,
+        "nfev": 208923,
+        "wallSeconds": 2.689,
+        "states": 10119,
+        "rMinSteps": 3.966437054904485,
+        "rMaxSteps": 4.035763550510493,
+        "rMinInstrument": 3.966437054904485,
+        "rMaxInstrument": 4.035763550510493,
+        "turningPoints": 326,
+        "pericentres": {
+          "n": 163,
+          "mean": 3.966437054883503,
+          "min": 3.9664370546599335,
+          "max": 3.9664370550929173,
+          "spread": 4.329838709793421e-10
+        },
+        "apocentres": {
+          "n": 163,
+          "mean": 4.0357635507195475,
+          "min": 4.035763550505802,
+          "max": 4.035763550934834,
+          "spread": 4.290319211008864e-10
+        },
+        "radialPeriod": {
+          "n": 162,
+          "mean": 43.54712879507044,
+          "min": 43.54712879175947,
+          "max": 43.54712879840463,
+          "spread": 6.645159089657682e-9
+        },
+        "radialPeriodTrend": {
+          "slopePerIndex": 3.7981135390868653e-11,
+          "totalChangeByFit": 6.114962797929853e-9,
+          "firstTenthMean": 43.54712879222034,
+          "lastTenthMean": 43.5471287977918,
+          "lastMinusFirst": 5.571457961650594e-9,
+          "firstValue": 43.54712879175947,
+          "lastValue": 43.547128797960795
+        },
+        "apsidalAngle": {
+          "n": 325,
+          "mean": 3.8475192541471146,
+          "min": 3.8475192540378202,
+          "max": 3.847519254228928,
+          "spread": 1.9110757421003655e-10
+        },
+        "apsidalTrend": {
+          "slopePerIndex": -2.225666646905881e-13,
+          "totalChangeByFit": -7.211159935975054e-11,
+          "firstTenthMean": 3.847519254179761,
+          "lastTenthMean": 3.84751925411436,
+          "lastMinusFirst": -6.540101793461872e-11,
+          "firstValue": 3.8475192541717753,
+          "lastValue": 3.8475192540606713
+        },
+        "planeNormalInitial": [
+          0,
+          -0.01414072162226526,
+          0.9999000149975004
+        ],
+        "maxPlaneAngleRad": 3.059878384222901e-13,
+        "maxRelDrift_h": 5.4573311944180894e-11,
+        "maxRelDrift_epsilon": 1.0911563621831962e-10,
+        "maxRelDriftCandidateH": 1.1160440359054492e-10,
+        "maxAbsDeltaSumV": 1.44459455498868e-14,
+        "maxAbsDeltaSumXxV": 7.628763678438307e-11,
+        "maxCentreDeviationFromLinear": 8.245080694040628e-11,
+        "minAbsDet": 1.495569171723902,
+        "maxCond": 1.8402721059963463,
+        "maxSpeedSampled": 0.4090872628887535,
+        "maxSpeedSampledAt": 3778.259707049887,
+        "maxSpeedInstrument": [
+          0.40907401731619236,
+          0.4090872628887535
+        ],
+        "centreVelocity": [
+          0.052500000000000005,
+          0,
+          0.005
+        ],
+        "phiUnwrapped": 1256.1154307193785,
+        "speedEvents": 0
+      },
+      "integrationError": {
+        "turningPointsCompared": 326,
+        "maxTurningTimeDiff": 6.030895747244358e-7,
+        "maxTurningRadiusDiff": 4.842513057212727e-10,
+        "maxTurningAngleDiff": 3.819195626419969e-9,
+        "meanRadialPeriodDiff": 3.7226612903396017e-9,
+        "meanApsidalAngleDiff": 1.170086250112945e-11,
+        "rMinDiff": 4.3008707706349014e-11,
+        "rMaxDiff": 1.568061236412177e-10,
+        "finalStateDiff": 2.2368297446800422e-7,
+        "finalPhiDiff": 1.0919575288426131e-7,
+        "apsidalTrendDiff": 8.850520316627808e-11
+      },
+      "comparison": {
+        "predicted": [
+          3.9664370546605157,
+          4.035763550505909
+        ],
+        "measuredSteps": [
+          3.9664370549474937,
+          4.035763550353687
+        ],
+        "measuredTurning": [
+          3.96643705459449,
+          4.035763550525298
+        ],
+        "insidePredicted": true,
+        "pericentreMinusPredicted": -1.716671249596402e-11,
+        "apocentreMinusPredicted": -1.2470913191009458e-11,
+        "radialPeriodMinusPredicted": -1.9336710010975366e-10,
+        "apsidalMinusPredicted": 3.292033312618514e-12,
+        "supSpeedPredictedVoid": 0.40911127413594567,
+        "supSpeedSampled": 0.40910888563705433,
+        "sampledMinusPredicted": -0.0000023884988913369654,
+        "planeNormalPredicted": [
+          0,
+          -0.01414072162226526,
+          0.9999000149975004
+        ],
+        "planeNormalMeasuredInitial": [
+          0,
+          -0.01414072162226526,
+          0.9999000149975004
+        ],
+        "label": "strict"
+      }
+    },
+    "WP-2": {
+      "description": "WB-5 continued: apocentre release at x=3, tangential relative speed 0.9 of circular; 200 radial periods",
+      "tEnd": 4760.92930824,
+      "hmax": 0.3,
+      "predicted": {
+        "h": 2.2045407685048604,
+        "hVector": [
+          0,
+          0,
+          2.2045407685048604
+        ],
+        "epsilon": -0.3966666666666666,
+        "Lambda": 0.014855967078189314,
+        "e": 0.1900000000000001,
+        "rh": 2.43,
+        "rp": 2.042016806722689,
+        "ra": 3.000000000000001,
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "radialPeriod": 23.80464654115541,
+        "apsidalAngle": 4.239830417084792,
+        "precessionPerRadialPeriod": 2.196475526989998,
+        "supSpeedCentreRest": 0.5397949618355523,
+        "supSpeedVoidFrame": 0.5397949618355525,
+        "supAt": {
+          "r": 2.042016806722689,
+          "rdot": 1.0591335159019919e-8,
+          "theta": 3.5081117965086026
+        },
+        "tEnd": 4760.92930824,
+        "radialPeriodsInRun": 200.00000000037463,
+        "rdotMax": 0.1335183900959983
+      },
+      "prereg": {
+        "summary": ".local-data/master-equation-closure/weber-overnight/binary/persistence/WP-2-prereg.summary.json",
+        "trajectory": ".local-data/master-equation-closure/weber-overnight/binary/persistence/WP-2-prereg.trajectory.jsonl",
+        "termination": {
+          "reason": "final-time",
+          "t": 4760.92930824
+        },
+        "steps": 16767,
+        "rejects": 0,
+        "nfev": 416130,
+        "wallSeconds": 4.623,
+        "states": 16768,
+        "rMinSteps": 2.042016875223033,
+        "rMaxSteps": 3,
+        "rMinInstrument": 2.042016875223033,
+        "rMaxInstrument": 3,
+        "turningPoints": 400,
+        "pericentres": {
+          "n": 200,
+          "mean": 2.0420168067208393,
+          "min": 2.0420168067190936,
+          "max": 2.042016806722736,
+          "spread": 3.6424196991902136e-12
+        },
+        "apocentres": {
+          "n": 200,
+          "mean": 2.9999999999962768,
+          "min": 2.9999999999931486,
+          "max": 2.9999999999999516,
+          "spread": 6.803002605693109e-12
+        },
+        "radialPeriod": {
+          "n": 199,
+          "mean": 23.804646541127077,
+          "min": 23.804646541100738,
+          "max": 23.804646541155705,
+          "spread": 5.496758603840135e-11
+        },
+        "radialPeriodTrend": {
+          "slopePerIndex": -2.406751501475854e-13,
+          "totalChangeByFit": -4.765367972922191e-11,
+          "firstTenthMean": 23.804646541153808,
+          "lastTenthMean": 23.804646541104663,
+          "lastMinusFirst": -4.914468831884733e-11,
+          "firstValue": 23.80464654115484,
+          "lastValue": 23.804646541103466
+        },
+        "apsidalAngle": {
+          "n": 399,
+          "mean": 4.23983041708577,
+          "min": 4.239830417084683,
+          "max": 4.23983041708766,
+          "spread": 2.9771740628348198e-12
+        },
+        "apsidalTrend": {
+          "slopePerIndex": 4.680617383668503e-15,
+          "totalChangeByFit": 1.8628857187000643e-12,
+          "firstTenthMean": 4.239830417084865,
+          "lastTenthMean": 4.2398304170865,
+          "lastMinusFirst": 1.6351364706679306e-12,
+          "firstValue": 4.2398304170848355,
+          "lastValue": 4.239830417086978
+        },
+        "planeNormalInitial": [
+          0,
+          0,
+          1
+        ],
+        "maxPlaneAngleRad": 0,
+        "maxRelDrift_h": 9.882791439606819e-13,
+        "maxRelDrift_epsilon": 2.0760704080227984e-12,
+        "maxRelDriftCandidateH": 2.0762103521015326e-12,
+        "maxAbsDeltaSumV": 1.597815590176058e-14,
+        "maxAbsDeltaSumXxV": 1.0891287871572786e-12,
+        "maxCentreDeviationFromLinear": 1.9797878003577335e-11,
+        "minAbsDet": 1.6666666666666665,
+        "maxCond": 2.62179563282141,
+        "maxSpeedSampled": 0.5397949451881914,
+        "maxSpeedSampledAt": 2797.044243517837,
+        "maxSpeedInstrument": [
+          0.5397949451881914,
+          0.5397949451881888
+        ],
+        "centreVelocity": [
+          0,
+          0,
+          0
+        ],
+        "phiUnwrapped": 1695.9321668378789,
+        "speedEvents": 0
+      },
+      "refine": {
+        "summary": ".local-data/master-equation-closure/weber-overnight/binary/persistence/WP-2-refine.summary.json",
+        "trajectory": ".local-data/master-equation-closure/weber-overnight/binary/persistence/WP-2-refine.trajectory.jsonl",
+        "termination": {
+          "reason": "final-time",
+          "t": 4760.92930824
+        },
+        "steps": 16192,
+        "rejects": 0,
+        "nfev": 309376,
+        "wallSeconds": 4.169,
+        "states": 16193,
+        "rMinSteps": 2.0420168087721855,
+        "rMaxSteps": 3,
+        "rMinInstrument": 2.0420168087721855,
+        "rMaxInstrument": 3,
+        "turningPoints": 399,
+        "pericentres": {
+          "n": 200,
+          "mean": 2.0420168068411155,
+          "min": 2.0420168067194227,
+          "max": 2.0420168069659836,
+          "spread": 2.4656099384401386e-10
+        },
+        "apocentres": {
+          "n": 199,
+          "mean": 2.999999999959131,
+          "min": 2.9999999999226517,
+          "max": 3.0000000000025753,
+          "spread": 7.992362327513547e-11
+        },
+        "radialPeriod": {
+          "n": 199,
+          "mean": 23.80464654174326,
+          "min": 23.804646541244466,
+          "max": 23.804646542295814,
+          "spread": 1.0513474535400746e-9
+        },
+        "radialPeriodTrend": {
+          "slopePerIndex": 5.231573343154931e-12,
+          "totalChangeByFit": 1.0358515219446764e-9,
+          "firstTenthMean": 23.804646541295565,
+          "lastTenthMean": 23.804646542226116,
+          "lastMinusFirst": 9.305516357471788e-10,
+          "firstValue": 23.80464654127347,
+          "lastValue": 23.804646542295814
+        },
+        "apsidalAngle": {
+          "n": 398,
+          "mean": 4.239830417076312,
+          "min": 4.2398304170435495,
+          "max": 4.239830417106191,
+          "spread": 6.264144758461043e-11
+        },
+        "apsidalTrend": {
+          "slopePerIndex": -1.4293970688531894e-13,
+          "totalChangeByFit": -5.674706363347162e-11,
+          "firstTenthMean": 4.239830417101402,
+          "lastTenthMean": 4.239830417050464,
+          "lastMinusFirst": -5.093792054822188e-11,
+          "firstValue": 4.23983041710477,
+          "lastValue": 4.239830417049234
+        },
+        "planeNormalInitial": [
+          0,
+          0,
+          1
+        ],
+        "maxPlaneAngleRad": 0,
+        "maxRelDrift_h": 3.12196293785215e-11,
+        "maxRelDrift_epsilon": 3.437838249370169e-11,
+        "maxRelDriftCandidateH": 3.437866238185916e-11,
+        "maxAbsDeltaSumV": 1.1265379199095255e-14,
+        "maxAbsDeltaSumXxV": 3.441247287128135e-11,
+        "maxCentreDeviationFromLinear": 1.1231570458218983e-11,
+        "minAbsDet": 1.6666666666666665,
+        "maxCond": 2.6212378388070503,
+        "maxSpeedSampled": 0.5397949613385906,
+        "maxSpeedSampledAt": 821.2606013886425,
+        "maxSpeedInstrument": [
+          0.5397949613385907,
+          0.5397949613385903
+        ],
+        "centreVelocity": [
+          0,
+          0,
+          0
+        ],
+        "phiUnwrapped": 1695.9321668039015,
+        "speedEvents": 0
+      },
+      "integrationError": {
+        "turningPointsCompared": 399,
+        "maxTurningTimeDiff": 1.2265354598639533e-7,
+        "maxTurningRadiusDiff": 2.4689006394851276e-10,
+        "maxTurningAngleDiff": 3.7473455449799076e-9,
+        "meanRadialPeriodDiff": 6.161826604511589e-10,
+        "meanApsidalAngleDiff": 9.458211991386634e-12,
+        "rMinDiff": 6.645084749123953e-8,
+        "rMaxDiff": 0,
+        "finalStateDiff": 5.2892646428145584e-8,
+        "finalPhiDiff": 3.397735781618394e-8,
+        "apsidalTrendDiff": 5.257305701888981e-11
+      },
+      "comparison": {
+        "predicted": [
+          2.042016806722689,
+          3.000000000000001
+        ],
+        "measuredSteps": [
+          2.042016875223033,
+          3
+        ],
+        "measuredTurning": [
+          2.0420168067190936,
+          2.9999999999999516
+        ],
+        "insidePredicted": true,
+        "pericentreMinusPredicted": -1.8496315590255108e-12,
+        "apocentreMinusPredicted": -3.724132113802625e-12,
+        "radialPeriodMinusPredicted": -2.8332891588433995e-11,
+        "apsidalMinusPredicted": 9.778844400898379e-13,
+        "supSpeedPredictedVoid": 0.5397949618355525,
+        "supSpeedSampled": 0.5397949451881914,
+        "sampledMinusPredicted": -1.6647361156252316e-8,
+        "planeNormalPredicted": [
+          0,
+          0,
+          1
+        ],
+        "planeNormalMeasuredInitial": [
+          0,
+          0,
+          1
+        ],
+        "label": "strict"
+      }
+    },
+    "WP-3": {
+      "description": "x=1 circle with 1e-3 relative radial kick and 1e-3 out-of-plane relative velocity kick (fractions of the circular relative speed sqrt2), centre at rest; 200 orbital periods of the x=1 circle",
+      "tEnd": 888.5765876316,
+      "hmax": 0.08885765876316,
+      "predicted": {
+        "h": 1.4142142694796995,
+        "hVector": [
+          0,
+          -0.0014142135623730952,
+          1.4142135623730951
+        ],
+        "epsilon": -0.9999959999999999,
+        "Lambda": 0.000003000000999953123,
+        "e": 0.0017320519622557873,
+        "rh": 1.0000010000000001,
+        "rp": 0.9982719411255087,
+        "ra": 1.0017360589064914,
+        "normal": [
+          0,
+          -0.000999999500000375,
+          0.9999995000003751
+        ],
+        "radialPeriod": 7.695334251251155,
+        "apsidalAngle": 5.441395825454664,
+        "precessionPerRadialPeriod": 4.599606343729741,
+        "supSpeedCentreRest": 0.7083311727089283,
+        "supSpeedVoidFrame": 0.7083311727089284,
+        "supAt": {
+          "r": 0.9982719411255087,
+          "rdot": 0,
+          "theta": 0.017453292519943295
+        },
+        "tEnd": 888.5765876316,
+        "radialPeriodsInRun": 115.46952460019911,
+        "rdotMax": 0.0014150314745186884
+      },
+      "prereg": {
+        "summary": ".local-data/master-equation-closure/weber-overnight/binary/persistence/WP-3-prereg.summary.json",
+        "trajectory": ".local-data/master-equation-closure/weber-overnight/binary/persistence/WP-3-prereg.trajectory.jsonl",
+        "termination": {
+          "reason": "final-time",
+          "t": 888.5765876316
+        },
+        "steps": 10001,
+        "rejects": 0,
+        "nfev": 285820,
+        "wallSeconds": 3.677,
+        "states": 10002,
+        "rMinSteps": 0.9982719411255435,
+        "rMaxSteps": 1.0017360586902848,
+        "rMinInstrument": 0.9982719411255435,
+        "rMaxInstrument": 1.0017360586902848,
+        "turningPoints": 231,
+        "pericentres": {
+          "n": 115,
+          "mean": 0.9982719411254031,
+          "min": 0.9982719411252619,
+          "max": 0.9982719411255637,
+          "spread": 3.0186964039558006e-13
+        },
+        "apocentres": {
+          "n": 116,
+          "mean": 1.0017360589066047,
+          "min": 1.0017360589064335,
+          "max": 1.0017360589067479,
+          "spread": 3.1441516057384433e-13
+        },
+        "radialPeriod": {
+          "n": 114,
+          "mean": 7.695334251250099,
+          "min": 7.695334251232566,
+          "max": 7.695334251268605,
+          "spread": 3.603872755775228e-11
+        },
+        "radialPeriodTrend": {
+          "slopePerIndex": -6.135378819953499e-14,
+          "totalChangeByFit": -6.932978066547454e-12,
+          "firstTenthMean": 7.695334251254359,
+          "lastTenthMean": 7.695334251245682,
+          "lastMinusFirst": -8.677503160470224e-12,
+          "firstValue": 7.695334251253617,
+          "lastValue": 7.69533425124223
+        },
+        "apsidalAngle": {
+          "n": 230,
+          "mean": 5.441395825454906,
+          "min": 5.441395825437382,
+          "max": 5.441395825479503,
+          "spread": 4.212097337585874e-11
+        },
+        "apsidalTrend": {
+          "slopePerIndex": -6.1800625616485726e-15,
+          "totalChangeByFit": -1.4152343266175231e-12,
+          "firstTenthMean": 5.4413958254570876,
+          "lastTenthMean": 5.441395825453662,
+          "lastMinusFirst": -3.425704164783383e-12,
+          "firstValue": 5.44139582545709,
+          "lastValue": 5.4413958254685895
+        },
+        "planeNormalInitial": [
+          0,
+          -0.000999999500000375,
+          0.9999995000003751
+        ],
+        "maxPlaneAngleRad": 8.355514235098555e-17,
+        "maxRelDrift_h": 3.73681818325876e-14,
+        "maxRelDrift_epsilon": 7.527342216327427e-14,
+        "maxRelDriftCandidateH": 7.471830843050678e-14,
+        "maxAbsDeltaSumV": 4.80453289020855e-14,
+        "maxAbsDeltaSumXxV": 2.631228615454723e-14,
+        "maxCentreDeviationFromLinear": 6.505223588487848e-12,
+        "minAbsDet": 2.996533899972503,
+        "maxCond": 4.347319913074125,
+        "maxSpeedSampled": 0.7083311727089109,
+        "maxSpeedSampledAt": 5.775747819605408,
+        "maxSpeedInstrument": [
+          0.7083311727089109,
+          0.7083311727089094
+        ],
+        "centreVelocity": [
+          0,
+          0,
+          0
+        ],
+        "phiUnwrapped": 1256.6188940525087,
+        "speedEvents": 0
+      },
+      "refine": {
+        "summary": ".local-data/master-equation-closure/weber-overnight/binary/persistence/WP-3-refine.summary.json",
+        "trajectory": ".local-data/master-equation-closure/weber-overnight/binary/persistence/WP-3-refine.trajectory.jsonl",
+        "termination": {
+          "reason": "final-time",
+          "t": 888.5765876316
+        },
+        "steps": 10126,
+        "rejects": 0,
+        "nfev": 194071,
+        "wallSeconds": 2.71,
+        "states": 10127,
+        "rMinSteps": 0.998271941447756,
+        "rMaxSteps": 1.0017360589026707,
+        "rMinInstrument": 0.998271941447756,
+        "rMaxInstrument": 1.0017360589026707,
+        "turningPoints": 231,
+        "pericentres": {
+          "n": 115,
+          "mean": 0.9982719411218932,
+          "min": 0.9982719411189045,
+          "max": 0.9982719411248304,
+          "spread": 5.9259264162392356e-12
+        },
+        "apocentres": {
+          "n": 116,
+          "mean": 1.0017360589019275,
+          "min": 1.0017360588978823,
+          "max": 1.0017360589060207,
+          "spread": 8.138378859712248e-12
+        },
+        "radialPeriod": {
+          "n": 114,
+          "mean": 7.695334251274906,
+          "min": 7.695334251218355,
+          "max": 7.69533425133935,
+          "spread": 1.2099476975890866e-10
+        },
+        "radialPeriodTrend": {
+          "slopePerIndex": -5.739442078752644e-13,
+          "totalChangeByFit": -6.485569548990488e-11,
+          "firstTenthMean": 7.69533425130177,
+          "lastTenthMean": 7.695334251245051,
+          "lastMinusFirst": -5.671907388205e-11,
+          "firstValue": 7.695334251315096,
+          "lastValue": 7.6953342512607605
+        },
+        "apsidalAngle": {
+          "n": 230,
+          "mean": 5.441395825502601,
+          "min": 5.441395825358143,
+          "max": 5.441395825653444,
+          "spread": 2.9530156098189764e-10
+        },
+        "apsidalTrend": {
+          "slopePerIndex": 4.6087931863015764e-14,
+          "totalChangeByFit": 1.055413639663061e-11,
+          "firstTenthMean": 5.441395825498672,
+          "lastTenthMean": 5.441395825502824,
+          "lastMinusFirst": 4.1522341120980855e-12,
+          "firstValue": 5.441395825573341,
+          "lastValue": 5.441395825369682
+        },
+        "planeNormalInitial": [
+          0,
+          -0.000999999500000375,
+          0.9999995000003751
+        ],
+        "maxPlaneAngleRad": 8.937144078703671e-17,
+        "maxRelDrift_h": 3.5402427057192655e-12,
+        "maxRelDrift_epsilon": 7.084028389339294e-12,
+        "maxRelDriftCandidateH": 7.08447248032551e-12,
+        "maxAbsDeltaSumV": 2.388218661577327e-14,
+        "maxAbsDeltaSumXxV": 2.503221055541748e-12,
+        "maxCentreDeviationFromLinear": 5.280605350226634e-12,
+        "minAbsDet": 2.9965338995492043,
+        "maxCond": 4.348496824171347,
+        "maxSpeedSampled": 0.7083311724784427,
+        "maxSpeedSampledAt": 698.3550735979396,
+        "maxSpeedInstrument": [
+          0.7083311724784428,
+          0.7083311724784401
+        ],
+        "centreVelocity": [
+          0,
+          0,
+          0
+        ],
+        "phiUnwrapped": 1256.6188940595548,
+        "speedEvents": 0
+      },
+      "integrationError": {
+        "turningPointsCompared": 231,
+        "maxTurningTimeDiff": 2.516685526643414e-9,
+        "maxTurningRadiusDiff": 8.79518680108049e-12,
+        "maxTurningAngleDiff": 1.0483745427336544e-8,
+        "meanRadialPeriodDiff": 2.4806823262224498e-11,
+        "meanApsidalAngleDiff": 4.7695181137896725e-11,
+        "rMinDiff": 3.2221247892039173e-10,
+        "rMaxDiff": 2.1238588665539737e-10,
+        "finalStateDiff": 6.103581889810799e-9,
+        "finalPhiDiff": 7.046082828310318e-9,
+        "apsidalTrendDiff": 7.577938276881468e-12
+      },
+      "comparison": {
+        "predicted": [
+          0.9982719411255087,
+          1.0017360589064914
+        ],
+        "measuredSteps": [
+          0.9982719411255435,
+          1.0017360586902848
+        ],
+        "measuredTurning": [
+          0.9982719411252619,
+          1.0017360589067479
+        ],
+        "insidePredicted": true,
+        "pericentreMinusPredicted": -1.0558220964185239e-13,
+        "apocentreMinusPredicted": 1.1324274851176597e-13,
+        "radialPeriodMinusPredicted": -1.056044141023449e-12,
+        "apsidalMinusPredicted": 2.424727085781342e-13,
+        "supSpeedPredictedVoid": 0.7083311727089284,
+        "supSpeedSampled": 0.7083311727089109,
+        "sampledMinusPredicted": -1.7541523789077473e-14,
+        "planeNormalPredicted": [
+          0,
+          -0.000999999500000375,
+          0.9999995000003751
+        ],
+        "planeNormalMeasuredInitial": [
+          0,
+          -0.000999999500000375,
+          0.9999995000003751
+        ],
+        "label": "strict"
+      }
+    }
+  },
+  "contactStepObligation": {
+    "rule": "h_n <= theta * r_n / W with W = sup|rdot| on the approach (sqrt2 cf for the frozen opposite-polarity radial law); sufficient for capture of the contact event; verified by a manual staged hmax schedule on WB-6 at rtol 1e-10 through the unchanged instrument module export runCase",
+    "script": ".tmp/weber-overnight/round2/persistence/contact-schedule.mjs",
+    "result": {
+      "date": "2026-10-05T14:14:06.592Z",
+      "case": "WB-6: opposite polarity, radial release from rest at x=2.5",
+      "rtol": 1e-10,
+      "knownCase": {
+        "termination": {
+          "reason": "final-time",
+          "t": 6
+        },
+        "contactEvents": 0,
+        "turningEvents": [
+          {
+            "t": 4.759921204022148,
+            "r": 6.642164851129048e-16
+          }
+        ],
+        "rMinSteps": 0.000008338476069190445,
+        "steps": 187,
+        "pass": true
+      },
+      "schedule": {
+        "theta": 0.5,
+        "supRdot": 1.4142135623730951,
+        "rule": "hmax_k = theta * r_k / sqrt2 on the stage starting at separation r_k, stage ends when r = r_k/2 (located as a measuring stop), final stage stops at r = 1e-6",
+        "stages": [
+          {
+            "stage": 0,
+            "rStart": 2.5,
+            "hmax": 0.8838834764831843,
+            "stopTarget": 1.25,
+            "termination": "contact",
+            "tStop": 3.5683217732069568,
+            "rStop": 1.25,
+            "rdotStop": -0.7844645405524364,
+            "steps": 52,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 1,
+            "rStart": 1.25,
+            "hmax": 0.44194173824159216,
+            "stopTarget": 0.625,
+            "termination": "contact",
+            "tStop": 4.250151357220721,
+            "rStop": 0.625,
+            "rdotStop": -1.0690449676506635,
+            "steps": 16,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 2,
+            "rStart": 0.625,
+            "hmax": 0.22097086912079608,
+            "stopTarget": 0.3125,
+            "termination": "contact",
+            "tStop": 4.522780798108485,
+            "rStop": 0.3124999999999999,
+            "rdotStop": -1.2302493704625859,
+            "steps": 11,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 3,
+            "rStart": 0.3124999999999999,
+            "hmax": 0.110485434560398,
+            "stopTarget": 0.15624999999999994,
+            "termination": "contact",
+            "tStop": 4.645476726956795,
+            "rStop": 0.1562499999999999,
+            "rdotStop": -1.3187609467979737,
+            "steps": 9,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 4,
+            "rStart": 0.1562499999999999,
+            "hmax": 0.055242717280198986,
+            "stopTarget": 0.07812499999999994,
+            "termination": "contact",
+            "tStop": 4.703698327807335,
+            "rStop": 0.07812499999999993,
+            "rdotStop": -1.3655261455419692,
+            "steps": 7,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 5,
+            "rStart": 0.07812499999999993,
+            "hmax": 0.027621358640099486,
+            "stopTarget": 0.039062499999999965,
+            "termination": "contact",
+            "tStop": 4.732055958011626,
+            "rStop": 0.03906249999999996,
+            "rdotStop": -1.3896166675654096,
+            "steps": 5,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 6,
+            "rStart": 0.03906249999999996,
+            "hmax": 0.013810679320049741,
+            "stopTarget": 0.01953124999999998,
+            "termination": "contact",
+            "tStop": 4.746049694002944,
+            "rStop": 0.019531249999999976,
+            "rdotStop": -1.4018501176791924,
+            "steps": 4,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 7,
+            "rStart": 0.019531249999999976,
+            "hmax": 0.006905339660024869,
+            "stopTarget": 0.009765624999999988,
+            "termination": "contact",
+            "tStop": 4.753000674152303,
+            "rStop": 0.009765624999999981,
+            "rdotStop": -1.4080153723095545,
+            "steps": 3,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 8,
+            "rStart": 0.009765624999999981,
+            "hmax": 0.0034526698300124323,
+            "stopTarget": 0.0048828124999999905,
+            "termination": "contact",
+            "tStop": 4.756464738812562,
+            "rStop": 0.00488281249999999,
+            "rdotStop": -1.4111103227351829,
+            "steps": 3,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 9,
+            "rStart": 0.00488281249999999,
+            "hmax": 0.0017263349150062157,
+            "stopTarget": 0.002441406249999995,
+            "termination": "contact",
+            "tStop": 4.758193920534035,
+            "rStop": 0.0024414062499999944,
+            "rdotStop": -1.412660902928251,
+            "steps": 2,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 10,
+            "rStart": 0.0024414062499999944,
+            "hmax": 0.0008631674575031077,
+            "stopTarget": 0.0012207031249999972,
+            "termination": "contact",
+            "tStop": 4.759057799456179,
+            "rStop": 0.0012207031249999972,
+            "rdotStop": -1.4134369723523843,
+            "steps": 2,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 11,
+            "rStart": 0.0012207031249999972,
+            "hmax": 0.00043158372875155387,
+            "stopTarget": 0.0006103515624999986,
+            "termination": "contact",
+            "tStop": 4.7594895610214945,
+            "rStop": 0.0006103515624999985,
+            "rdotStop": -1.4138252022335296,
+            "steps": 2,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 12,
+            "rStart": 0.0006103515624999985,
+            "hmax": 0.00021579186437577688,
+            "stopTarget": 0.00030517578124999924,
+            "termination": "contact",
+            "tStop": 4.759705397341314,
+            "rStop": 0.00030517578124970325,
+            "rdotStop": -1.414019366014174,
+            "steps": 2,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 13,
+            "rStart": 0.00030517578124970325,
+            "hmax": 0.0001078959321877838,
+            "stopTarget": 0.00015258789062485163,
+            "termination": "contact",
+            "tStop": 4.759813304386901,
+            "rStop": 0.00015258789062483306,
+            "rdotStop": -1.414116460120495,
+            "steps": 2,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 14,
+            "rStart": 0.00015258789062483306,
+            "hmax": 0.000053947966093885335,
+            "stopTarget": 0.00007629394531241653,
+            "termination": "contact",
+            "tStop": 4.759867255131287,
+            "rStop": 0.00007629394531241531,
+            "rdotStop": -1.414165010228404,
+            "steps": 2,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 15,
+            "rStart": 0.00007629394531241531,
+            "hmax": 0.000026973983046942237,
+            "stopTarget": 0.000038146972656207655,
+            "termination": "contact",
+            "tStop": 4.759894229808899,
+            "rStop": 0.000038146972656207614,
+            "rdotStop": -1.4141892860461385,
+            "steps": 2,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 16,
+            "rStart": 0.000038146972656207614,
+            "hmax": 0.000013486991523471103,
+            "stopTarget": 0.000019073486328103807,
+            "termination": "contact",
+            "tStop": 4.759907716974063,
+            "rStop": 0.000019073486328103804,
+            "rdotStop": -1.4142014241459626,
+            "steps": 2,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 17,
+            "rStart": 0.000019073486328103804,
+            "hmax": 0.000006743495761735551,
+            "stopTarget": 0.000009536743164051902,
+            "termination": "contact",
+            "tStop": 4.759914460513235,
+            "rStop": 0.000009536743164051902,
+            "rdotStop": -1.4142074932436146,
+            "steps": 2,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 18,
+            "rStart": 0.000009536743164051902,
+            "hmax": 0.0000033717478808677754,
+            "stopTarget": 0.000004768371582025951,
+            "termination": "contact",
+            "tStop": 4.759917832271968,
+            "rStop": 0.000004768371582025951,
+            "rdotStop": -1.414210527804377,
+            "steps": 2,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 19,
+            "rStart": 0.000004768371582025951,
+            "hmax": 0.0000016858739404338877,
+            "stopTarget": 0.0000023841857910129755,
+            "termination": "contact",
+            "tStop": 4.759919518148622,
+            "rStop": 0.0000023841857910129746,
+            "rdotStop": -1.4142120450877427,
+            "steps": 2,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 20,
+            "rStart": 0.0000023841857910129746,
+            "hmax": 8.429369702169435e-7,
+            "stopTarget": 0.0000011920928955064873,
+            "termination": "contact",
+            "tStop": 4.75992036108627,
+            "rStop": 0.0000011920928955064852,
+            "rdotStop": -1.41421280373017,
+            "steps": 2,
+            "maxStepOverR": null
+          },
+          {
+            "stage": 21,
+            "rStart": 0.0000011920928955064852,
+            "hmax": 4.21468485108471e-7,
+            "stopTarget": 0.000001,
+            "termination": "contact",
+            "tStop": 4.759920496916527,
+            "rStop": 9.99999999999998e-7,
+            "rdotStop": -1.4142129259772505,
+            "steps": 1,
+            "maxStepOverR": null
+          }
+        ],
+        "final": {
+          "ok": true,
+          "tContact": 4.759920496916527,
+          "rContact": 9.99999999999998e-7,
+          "rdotContact": -1.4142129259772505,
+          "individualSpeed": 0.7071064629886255
+        }
+      },
+      "comparison": {
+        "tContactMinusFineRun": 1.652633585536023e-11,
+        "rdotPlusSqrt2": 6.363958446886642e-7,
+        "expected": {
+          "tContactEvent_rtol1e12": 4.7599204969,
+          "tZero_extrapolated": 4.759921204,
+          "relSpeed": 1.4142135623730951
+        }
+      }
+    }
+  },
+  "date": "2026-10-05T14:10:29.005Z"
+}

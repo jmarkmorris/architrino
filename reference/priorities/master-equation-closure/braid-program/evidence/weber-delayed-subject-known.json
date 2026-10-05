@@ -1,0 +1,70 @@
+{
+  "utc": "2026-10-05T19:30:39.775Z",
+  "knownCaseFirst": true,
+  "checks": [
+    {
+      "name": "subfield exactly three partner roots and no self",
+      "value": 3,
+      "expected": 3,
+      "tol": 0,
+      "pass": true
+    },
+    {
+      "name": "stationary separated ordinary-hit acceleration magnitude",
+      "value": 0.25,
+      "expected": 0.25,
+      "tol": 0,
+      "pass": true
+    },
+    {
+      "name": "stationary receiver transverse affine source range second derivative",
+      "value": 0.0899999987868938,
+      "expected": 0.09,
+      "tol": 1e-7,
+      "pass": true
+    },
+    {
+      "name": "rigid history range derivative 1",
+      "value": 0,
+      "expected": 0,
+      "tol": 1e-13,
+      "pass": true
+    },
+    {
+      "name": "rigid history range second derivative 1",
+      "value": 0,
+      "expected": 0,
+      "tol": 1e-13,
+      "pass": true
+    },
+    {
+      "name": "rigid history range derivative 2",
+      "value": 0,
+      "expected": 0,
+      "tol": 1e-13,
+      "pass": true
+    },
+    {
+      "name": "rigid history range second derivative 2",
+      "value": -6.678552418518406e-18,
+      "expected": 0,
+      "tol": 1e-13,
+      "pass": true
+    },
+    {
+      "name": "rigid history range derivative 3",
+      "value": 0,
+      "expected": 0,
+      "tol": 1e-13,
+      "pass": true
+    },
+    {
+      "name": "rigid history range second derivative 3",
+      "value": -7.855556022419763e-18,
+      "expected": 0,
+      "tol": 1e-13,
+      "pass": true
+    }
+  ],
+  "pass": true
+}

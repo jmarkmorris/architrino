@@ -1,0 +1,7 @@
+# Growing-barrier measured instrument controls
+
+The [growing-width diagnostic](../evidence/alternatives-screen-2026-10-05-width-entry-growing-diagnostic.mjs) is a measured feasibility instrument for the exact candidate in the [frozen theorem extension](alternatives-screen-2026-10-05-width-entry-growing-barriers.md). It uses the previously assessed complete functional bounds at the receiver's maximum width and includes both exact derivative terms. This is ordinary floating quadrature, not a directed certificate.
+
+Source hash `ce7bc8af993fee7d45131b215f2a215855fff0c1775202e33e56135fb1dfb9c4` passed known controls at 15:12:05 UTC, before target use. In addition to the independently derived affine and polynomial controls retained from the first diagnostic, the derivative expressions reproduce the explicit polynomial values $0.2975$ and $1.8975$ for $E=1+d,e=0.1+0.2d$ at $d=1/4$. Measured runtime was 0.069 seconds. The local receipt is `.local-data/master-equation-closure/collinear-research/alternatives-screen-2026-10-05/width-entry-growing-controls/receipt.json`.
+
+The fourth-law target uses the same original retained finest history only as candidate data, with the original 161 receiver samples and additional points on both sides of the width seam. Both one-sided derivatives are evaluated at the seam. A sampled failure rejects this candidate or this bound; a sampled pass only nominates it for directed validation.

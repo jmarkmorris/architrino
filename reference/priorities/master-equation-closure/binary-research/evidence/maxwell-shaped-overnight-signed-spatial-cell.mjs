@@ -1,0 +1,28 @@
+// Section44 one conditional comparison cell; no actual-prefix premise supplied.
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import {Q,G,add,mul,length} from './maxwell-shaped-overnight-grid-interval.mjs';
+import {ExactReferenceHistory,cacheKnown} from './maxwell-shaped-overnight-exact-reference-cached.mjs';
+import {History,geometry,knownControls} from './maxwell-shaped-overnight-history-instrument.mjs';
+import {preparation} from './maxwell-shaped-overnight-preparation.mjs';
+import {rootBox,defectCell,defectKnown} from './maxwell-shaped-overnight-directed-defect.mjs';
+import {directedSensitivity,matrixNormUpper,normUpper} from './maxwell-shaped-overnight-directed-sensitivity.mjs';
+import {signedSpatial,midpointGenerator} from './maxwell-shaped-overnight-signed-spatial-transport.mjs';
+import {guardedSignedStep,knownSignedGuard} from './maxwell-shaped-overnight-signed-spatial-guard.mjs';
+const expand=(a,e)=>a.map(z=>G.of(z).add(new G(Q.of(e).neg(),e))),min=(a,b)=>a.cmp(b)<0?a:b,max=(a,b)=>a.cmp(b)>0?a:b;
+const knownFirst={guard:knownSignedGuard(),cache:cacheKnown(),roots:knownControls(),defect:defectKnown(),passed:true};
+console.log(JSON.stringify({knownFirst,stage:'known-before-target'}));
+if(process.argv.includes('--known'))process.exit(0);
+const input='.local-data/master-equation-closure/binary-research/maxwell-shaped-overnight/b03-full-checked-event999-h0.00125.history.json',out='.local-data/master-equation-closure/binary-research/maxwell-shaped-overnight-equation-domain/signed-spatial-cell.json';assert(!fs.existsSync(out),'retain prior sources/outputs');
+const bytes=fs.readFileSync(input),SHA=crypto.createHash('sha256').update(bytes).digest('hex');assert.equal(SHA,'c8efbc9f7102661333fff29d0c7bb42c43982cf8740fac4b670953511c4a0af6');
+const saved=JSON.parse(bytes),ref=new ExactReferenceHistory(saved.knots,saved.specification),Tc=Q.of('38.3'),Tf=Q.of('38.301'),T=new G(Tc,Tf),h=Tf.sub(Tc),initial={x:Q.of('.005'),v:Q.of('.01')},proposed={x:Q.of('.0051'),v:Q.of('.015')},px=Q.of('.005'),pv=Q.of('.005'),pa=Q.of('.03'),guard=new G('37.15','38.25');
+const float=new History(preparation(.3,'full').past,saved.knots[0]);for(const k of saved.knots.slice(1)){if(Q.of(k.t).cmp(Tc)>=0)break;float.append(k);}float.append({t:Tc.num(),x:ref.box(new G(Tc),0).map(z=>z.lo.num()),v:ref.box(new G(Tc),1).map(z=>z.lo.num()),a:ref.box(new G(Tc),2).map(z=>z.lo.num())});
+const center=Tc.add(Tf).div(2),seed=Q.of(geometry(float,ref.box(new G(center),0).map(z=>z.lo.num()),center.num(),2e-14).S),width=h.mul(4).add('.00000001').add(proposed.x.add(px).mul(3));assert(seed.sub(width).cmp(guard.lo)>0&&seed.add(width).cmp(guard.hi)<0,'whole initial source guard before root query');
+const X=expand(ref.box(T,0),proposed.x),U=expand(ref.box(T,1),proposed.v).map(z=>new G(max(z.lo,Q.of(-1)),min(z.hi,Q.of(1)))),S=rootBox(ref,T,X,seed,width,px,6);assert(S.lo.cmp(guard.lo)>0&&S.hi.cmp(guard.hi)<0&&S.hi.cmp(Tc)<0);
+const nomX=ref.box(S,0),nomV=mul(ref.box(S,1),-1),nomA=mul(ref.box(S,2),-1),nomJ=mul(ref.box(S,3),-1),r=add(X,expand(nomX,px)),field=directedSensitivity(r,expand(nomV,pv),expand(nomA,pa),U,'full'),signed=signedSpatial(r,nomV,nomA,nomJ,U,'full'),B=midpointGenerator(signed.AX,signed.K),Lv=matrixNormUpper(field.Fv),La=matrixNormUpper(field.Fa),defect=defectCell(ref,Tc,Tf,seed.num(),'full').bound;
+const separation=length(ref.box(T,0)).lo.sub(proposed.x).mul(2);assert(field.D.lo.cmp(0)>0&&field.R.lo.cmp(0)>0&&signed.Dclock.lo.cmp(0)>0&&separation.cmp(0)>0);
+const result=guardedSignedStep({AX:signed.AX,K:signed.K,B,h,initial,proposed,sourcePosition:px,sourceVelocity:pv,sourceAcceleration:pa,Lv,La,defect,N:24}),Fr=matrixNormUpper(field.Fr),clockFloor=min(field.D.lo,signed.Dclock.lo),triangle=Fr.add(Fr.mul(normUpper(nomV)).add(Lv.mul(normUpper(nomA))).add(La.mul(normUpper(nomJ))).div(clockFloor));
+const q=x=>x instanceof Q?x.toString():x instanceof G?x.out():Array.isArray(x)?x.map(q):x&&typeof x==='object'?Object.fromEntries(Object.entries(x).map(([k,v])=>[k,q(v)])):x;
+const receipt={knownFirst,grade:'one conditional completed-source signed transport cell; true original errors are unsupplied',case:{law:'full',K:1,cf:1,beta:'.3',input,SHA256:SHA,Tc:Tc.toString(),Tf:Tf.toString(),initial,sourceErrors:{x:px,v:pv,a:pa},proposed,sourceGuard:guard.out(),N:24,generator:'midpoint of preselected signed AX/K with exact derivative-compatible top blocks'},initialRoot:{seed:seed.toString(),halfWidth:width.toString()},root:S.out(),inputBoxes:{r:r.map(z=>z.out()),comparisonV:nomV.map(z=>z.out()),comparisonA:nomA.map(z=>z.out()),comparisonJ:nomJ.map(z=>z.out()),actualU:U.map(z=>z.out()),actualConvexV:expand(nomV,pv).map(z=>z.out()),actualConvexA:expand(nomA,pa).map(z=>z.out())},AX:signed.AX,K:signed.K,B,Lv,La,defect,triangleSpatialCoefficient:triangle,comparisonClockD:signed.Dclock.out(),actualFieldD:field.D.out(),R:field.R.out(),currentSeparationLower:separation,result,passed:result.passed};
+fs.writeFileSync(out,JSON.stringify(q(receipt),null,2),{flag:'wx'});console.log(JSON.stringify(q({...receipt,inputBoxes:undefined,knownFirst:undefined}),null,2));

@@ -1,0 +1,308 @@
+{
+  "date": "2026-10-05T14:14:06.592Z",
+  "case": "WB-6: opposite polarity, radial release from rest at x=2.5",
+  "rtol": 1e-10,
+  "knownCase": {
+    "termination": {
+      "reason": "final-time",
+      "t": 6
+    },
+    "contactEvents": 0,
+    "turningEvents": [
+      {
+        "t": 4.759921204022148,
+        "r": 6.642164851129048e-16
+      }
+    ],
+    "rMinSteps": 0.000008338476069190445,
+    "steps": 187,
+    "pass": true
+  },
+  "schedule": {
+    "theta": 0.5,
+    "supRdot": 1.4142135623730951,
+    "rule": "hmax_k = theta * r_k / sqrt2 on the stage starting at separation r_k, stage ends when r = r_k/2 (located as a measuring stop), final stage stops at r = 1e-6",
+    "stages": [
+      {
+        "stage": 0,
+        "rStart": 2.5,
+        "hmax": 0.8838834764831843,
+        "stopTarget": 1.25,
+        "termination": "contact",
+        "tStop": 3.5683217732069568,
+        "rStop": 1.25,
+        "rdotStop": -0.7844645405524364,
+        "steps": 52,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 1,
+        "rStart": 1.25,
+        "hmax": 0.44194173824159216,
+        "stopTarget": 0.625,
+        "termination": "contact",
+        "tStop": 4.250151357220721,
+        "rStop": 0.625,
+        "rdotStop": -1.0690449676506635,
+        "steps": 16,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 2,
+        "rStart": 0.625,
+        "hmax": 0.22097086912079608,
+        "stopTarget": 0.3125,
+        "termination": "contact",
+        "tStop": 4.522780798108485,
+        "rStop": 0.3124999999999999,
+        "rdotStop": -1.2302493704625859,
+        "steps": 11,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 3,
+        "rStart": 0.3124999999999999,
+        "hmax": 0.110485434560398,
+        "stopTarget": 0.15624999999999994,
+        "termination": "contact",
+        "tStop": 4.645476726956795,
+        "rStop": 0.1562499999999999,
+        "rdotStop": -1.3187609467979737,
+        "steps": 9,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 4,
+        "rStart": 0.1562499999999999,
+        "hmax": 0.055242717280198986,
+        "stopTarget": 0.07812499999999994,
+        "termination": "contact",
+        "tStop": 4.703698327807335,
+        "rStop": 0.07812499999999993,
+        "rdotStop": -1.3655261455419692,
+        "steps": 7,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 5,
+        "rStart": 0.07812499999999993,
+        "hmax": 0.027621358640099486,
+        "stopTarget": 0.039062499999999965,
+        "termination": "contact",
+        "tStop": 4.732055958011626,
+        "rStop": 0.03906249999999996,
+        "rdotStop": -1.3896166675654096,
+        "steps": 5,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 6,
+        "rStart": 0.03906249999999996,
+        "hmax": 0.013810679320049741,
+        "stopTarget": 0.01953124999999998,
+        "termination": "contact",
+        "tStop": 4.746049694002944,
+        "rStop": 0.019531249999999976,
+        "rdotStop": -1.4018501176791924,
+        "steps": 4,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 7,
+        "rStart": 0.019531249999999976,
+        "hmax": 0.006905339660024869,
+        "stopTarget": 0.009765624999999988,
+        "termination": "contact",
+        "tStop": 4.753000674152303,
+        "rStop": 0.009765624999999981,
+        "rdotStop": -1.4080153723095545,
+        "steps": 3,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 8,
+        "rStart": 0.009765624999999981,
+        "hmax": 0.0034526698300124323,
+        "stopTarget": 0.0048828124999999905,
+        "termination": "contact",
+        "tStop": 4.756464738812562,
+        "rStop": 0.00488281249999999,
+        "rdotStop": -1.4111103227351829,
+        "steps": 3,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 9,
+        "rStart": 0.00488281249999999,
+        "hmax": 0.0017263349150062157,
+        "stopTarget": 0.002441406249999995,
+        "termination": "contact",
+        "tStop": 4.758193920534035,
+        "rStop": 0.0024414062499999944,
+        "rdotStop": -1.412660902928251,
+        "steps": 2,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 10,
+        "rStart": 0.0024414062499999944,
+        "hmax": 0.0008631674575031077,
+        "stopTarget": 0.0012207031249999972,
+        "termination": "contact",
+        "tStop": 4.759057799456179,
+        "rStop": 0.0012207031249999972,
+        "rdotStop": -1.4134369723523843,
+        "steps": 2,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 11,
+        "rStart": 0.0012207031249999972,
+        "hmax": 0.00043158372875155387,
+        "stopTarget": 0.0006103515624999986,
+        "termination": "contact",
+        "tStop": 4.7594895610214945,
+        "rStop": 0.0006103515624999985,
+        "rdotStop": -1.4138252022335296,
+        "steps": 2,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 12,
+        "rStart": 0.0006103515624999985,
+        "hmax": 0.00021579186437577688,
+        "stopTarget": 0.00030517578124999924,
+        "termination": "contact",
+        "tStop": 4.759705397341314,
+        "rStop": 0.00030517578124970325,
+        "rdotStop": -1.414019366014174,
+        "steps": 2,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 13,
+        "rStart": 0.00030517578124970325,
+        "hmax": 0.0001078959321877838,
+        "stopTarget": 0.00015258789062485163,
+        "termination": "contact",
+        "tStop": 4.759813304386901,
+        "rStop": 0.00015258789062483306,
+        "rdotStop": -1.414116460120495,
+        "steps": 2,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 14,
+        "rStart": 0.00015258789062483306,
+        "hmax": 0.000053947966093885335,
+        "stopTarget": 0.00007629394531241653,
+        "termination": "contact",
+        "tStop": 4.759867255131287,
+        "rStop": 0.00007629394531241531,
+        "rdotStop": -1.414165010228404,
+        "steps": 2,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 15,
+        "rStart": 0.00007629394531241531,
+        "hmax": 0.000026973983046942237,
+        "stopTarget": 0.000038146972656207655,
+        "termination": "contact",
+        "tStop": 4.759894229808899,
+        "rStop": 0.000038146972656207614,
+        "rdotStop": -1.4141892860461385,
+        "steps": 2,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 16,
+        "rStart": 0.000038146972656207614,
+        "hmax": 0.000013486991523471103,
+        "stopTarget": 0.000019073486328103807,
+        "termination": "contact",
+        "tStop": 4.759907716974063,
+        "rStop": 0.000019073486328103804,
+        "rdotStop": -1.4142014241459626,
+        "steps": 2,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 17,
+        "rStart": 0.000019073486328103804,
+        "hmax": 0.000006743495761735551,
+        "stopTarget": 0.000009536743164051902,
+        "termination": "contact",
+        "tStop": 4.759914460513235,
+        "rStop": 0.000009536743164051902,
+        "rdotStop": -1.4142074932436146,
+        "steps": 2,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 18,
+        "rStart": 0.000009536743164051902,
+        "hmax": 0.0000033717478808677754,
+        "stopTarget": 0.000004768371582025951,
+        "termination": "contact",
+        "tStop": 4.759917832271968,
+        "rStop": 0.000004768371582025951,
+        "rdotStop": -1.414210527804377,
+        "steps": 2,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 19,
+        "rStart": 0.000004768371582025951,
+        "hmax": 0.0000016858739404338877,
+        "stopTarget": 0.0000023841857910129755,
+        "termination": "contact",
+        "tStop": 4.759919518148622,
+        "rStop": 0.0000023841857910129746,
+        "rdotStop": -1.4142120450877427,
+        "steps": 2,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 20,
+        "rStart": 0.0000023841857910129746,
+        "hmax": 8.429369702169435e-7,
+        "stopTarget": 0.0000011920928955064873,
+        "termination": "contact",
+        "tStop": 4.75992036108627,
+        "rStop": 0.0000011920928955064852,
+        "rdotStop": -1.41421280373017,
+        "steps": 2,
+        "maxStepOverR": null
+      },
+      {
+        "stage": 21,
+        "rStart": 0.0000011920928955064852,
+        "hmax": 4.21468485108471e-7,
+        "stopTarget": 0.000001,
+        "termination": "contact",
+        "tStop": 4.759920496916527,
+        "rStop": 9.99999999999998e-7,
+        "rdotStop": -1.4142129259772505,
+        "steps": 1,
+        "maxStepOverR": null
+      }
+    ],
+    "final": {
+      "ok": true,
+      "tContact": 4.759920496916527,
+      "rContact": 9.99999999999998e-7,
+      "rdotContact": -1.4142129259772505,
+      "individualSpeed": 0.7071064629886255
+    }
+  },
+  "comparison": {
+    "tContactMinusFineRun": 1.652633585536023e-11,
+    "rdotPlusSqrt2": 6.363958446886642e-7,
+    "expected": {
+      "tContactEvent_rtol1e12": 4.7599204969,
+      "tZero_extrapolated": 4.759921204,
+      "relSpeed": 1.4142135623730951
+    }
+  }
+}

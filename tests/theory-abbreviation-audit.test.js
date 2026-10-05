@@ -40,6 +40,18 @@ test("reports exact source offsets for multiple findings", () => {
   assert.deepEqual(audit(text), [{ index: 6, label: "A^3" }, { index: 15, label: "A³" }]);
 });
 
+test("defined cubes in arithmetic expressions need no relation sign", () => {
+  for (const expression of ["2\\pi\\sqrt{A^3/k}", "A^3/2", "A^3+B", "A³*2"]) {
+    assert.deepEqual(audit(`$A=k/(2e)$ then $${expression}$.`), [], expression);
+    assert.equal(audit(`$${expression}$`).length, 1, expression);
+  }
+  for (const expression of ["A^3", "A^3/theory", "\\text{A^3/k}", "A^3 theory"]) {
+    assert.equal(audit(`$A=2$ then $${expression}$.`).length, 1, expression);
+  }
+  const text = "$A=2$ then $2\\pi\\sqrt{A^3/k}$ and A^3 theory.";
+  assert.deepEqual(audit(text), [{ index: text.lastIndexOf("A^3"), label: "A^3" }]);
+});
+
 test("defined scale cubes support denominators and implicit multiplication", () => {
   for (const formula of ["\\tau=\\frac{s-s_0}{A^3}", "s-s_*=A^3\\tau", "x=A^3z", "x=A^3"]) {
     assert.deepEqual(audit(`At scale $A=H(s_0)$.\n$$${formula}$$`), [], formula);

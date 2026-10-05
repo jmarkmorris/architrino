@@ -536,4 +536,248 @@ For a fixed labeled emission center $C_s$, the interior gap $d_s(t)=t-s-|x(t)-C_
 
 A candidate stationary pair at the origin has no ordinary positive-delay partner roots after crossover under the stated older-history conditions. This empty ordinary sum does not admit persistent coincidence or supply the required stopping changes $\Delta v_A=-1$, $\Delta v_B=+1$. Likewise, convergence of positions toward coincidence would not establish convergence of velocities or of the singular delayed acceleration. Neither a prescribed oscillation nor the retained smoothed runs resolves this boundary.
 
-The current collinear result is therefore a set of scoped obstructions, with no derived sharp bounce, stopping event, or retained binary. A complete sharp event response remains a foundational target. The positive regular circular result below is a separate reason to continue investigating the ceiling.
+The current collinear result is therefore a set of scoped obstructions, with no derived sharp bounce, stopping event, or retained binary. A complete sharp event response remains a foundational target. The [regular circular ceiling result](../binary-research/manuscript.md#1-circular-motion-and-regular-local-evolution) belongs to the binary owner and retains its separate scenario assumptions.
+
+## 7. A held-tail control for the selected Maxwell-shaped laws
+
+The bounded [E and E+M comparison](../equation-variants/manuscript.md#7-complete-maxwell-shaped-transmitter-response) has an exact line reduction. At an ordinary collinear root, delayed longitudinal source acceleration cancels and the receiver turning contribution vanishes, even for accelerated sources. With $v_n=\mathbf n\cdot\mathbf v_s$ and $D=1-v_n$, each signed response is $\sigma K(1+v_n)\mathbf n/(R^2D)$. **Derived, independently assessed identity:** both laws therefore produce the same coupled collinear future from identical complete histories; this does not settle nonzero-angular binary fate.
+
+The [focused control](analysis/maxwell-shaped-overnight-domain-controls.md), accepted by the [independent root-clock and gap proof](analysis/maxwell-shaped-overnight-independent-collinear.md), selects $K=c_f=1$, opposite polarities and mirror positions $\pm x(T)$. Its complete past has $x=1$ before $-1/4$ and $x=1-T^2(1+4T)^3/8$ on $[-1/4,0]$. The $C^{2,1}$ patch launches with zero velocity and acceleration $-1/4$; its source roots remain in the held tail, making the release compatible. Its complete past is separated and uniformly subfield.
+
+**Derived actual solution to a named boundary:** the first speed-one endpoint obeys $1/2<T_*\le20/3$, with partner delay between $1/2$ and 2, simultaneous separation at least $3/160$, transmitter denominator at least $3/40$, and positive incoming speed derivative between $3/20$ and $320/3$. The proof follows the evolving causal clock and acceleration equation; contact and a partner fold are excluded at this first event. This is a finite incoming endpoint, not a numerical radius decrease or a circular-residual argument.
+
+The strict selected domain ends there. An inclusive inequality supplies no enforcement response. Under the separate hypothetical unchanged all-root extension with positive self coupling, the [classical transverse self-birth obstruction](../binary-research/analysis/maxwell-shaped-overnight-independent-reference.md#independently-reconstructed-c2-transverse-speed-one-boundary) excludes a separated $C^2$ outgoing crossing. No weak event law, rebound, capture or repeating history is selected. A complete solution of this exact control that remains strictly subfield beyond $20/3$, or a violated root-clock, compatibility or endpoint inequality, would falsify the corresponding bounded theorem.
+
+## 8. Reading path for the instantaneous line comparisons
+
+The [Weber radial classification](#10-instantaneous-weber-inspired-radial-comparison) and [Darwin radial classification](#11-instantaneous-darwin-inspired-radial-comparison) below retain their distinct implicit solves, contact limits and obstruction rules. No contact or singular-matrix continuation is selected, and their conclusions do not transfer to delayed Maxwell or canonical line cases.
+
+## 9. Fixed alternatives on the line
+
+The [2026-10-05 screen](../analysis/alternatives-screen-2026-10-05.md) compares separately fixed radial-power, amplitude-gradient, finite-width, uniform-memory and equal past/future laws. The [collinear derivation](analysis/alternatives-screen-2026-10-05-collinear.md), [independent reference](../analysis/alternatives-screen-2026-10-05-independent-reference.md) and [adversarial assessment](../analysis/alternatives-screen-2026-10-05-adjudication-first.md) retain their complete histories and domain assumptions. The following statements are equation-specific and adopt no alternative into canon.
+
+### 9.1. Sharp radial and memory preparations reach unit speed
+
+For the radial-power law $R^{-p}/|D|$, take $p\in\{1,3/2,2\}$ with $K=R_*=c_f=1$. Supply mirror history $x=1/2$ before $-\delta$, with $\delta=1/16$, followed by
+
+$$
+x(T)=\frac12-\frac{A(T+\delta)^3}{6\delta},\qquad -\delta\le T\le0.
+$$
+
+The unique coefficient $A\in(1,2)$ satisfying $A(1-A\delta^2/6)^p=1$ makes the complete $C^{2,1}$ preparation compatible: the release root remains in the held tail. The incoming acceleration stays positive in inward coordinates, and the first unit-speed arrival occurs at positive separation in finite time. The class-level self-arrival integral diverges for every selected $p\ge1$; within its stated regular-partner hypotheses the unchanged complete-root equation supplies no bounded-variation continuation through that event. This is a specified preparation and continuation-class result, not a claim that every initial history has the same first event.
+
+For the separate canonical-plus-uniform-memory law, retain the complete ordinary self channel and add $H=-\int_0^1[V(T)-V(T-\theta)]\,d\theta$. The same cubic shape uses its own unique compatible coefficient in $(0.9,1)$, fixed by
+
+$$
+A(1+\delta/2-\delta^2/6)(1-A\delta^2/6)^2=1.
+$$
+
+The inward speed obeys $u'\ge1-u$ before its first unit event. A hypothetical contact while remaining subfield contradicts the divergent partner accumulation; the first event is transverse unit speed at positive separation before time two. Bounded memory does not cancel the canonical self-arrival divergence. The memory term also has zero period average, so it cannot balance a complete separated ordered periodic pair whose radial input always points inward. These are derived exclusions and event statements; no ceiling or outgoing selection law is added.
+
+### 9.2. Amplitude-gradient finite endpoints and conditional dispersal
+
+For the original regular-pair gradient law, delayed source acceleration remains explicit. Let the labels satisfy $x_1>x_2$, and denote each receiver's positive root range and transmitter factor by $R_i,D_i$. Put $\Psi_i=1/(R_iD_i)$. Exact differentiation gives
+
+$$
+\frac d{dT}\left(v_1-\frac{v_1^2}{2}+\Psi_1\right)=-\frac1{R_1^2D_1},\qquad
+\frac d{dT}\left(v_2+\frac{v_2^2}{2}-\Psi_2\right)=\frac1{R_2^2D_2}.
+$$
+
+These identities include the source-acceleration terms rather than suppressing them. On an all-future uniformly subfield solution, their bounded monotone quantities imply integrability of inverse squared separation. Separation is Lipschitz, so infinitely many bounded returns would contradict that integrability. Separation therefore tends to infinity, the $\Psi_i$ terms vanish, and each velocity converges. Relative terminal velocity is nonnegative; strict positivity is not proved for this whole class.
+
+A finite maximal strict-domain endpoint has a different conclusion. The same identities bound $\Psi_i$ above, giving a positive delay floor. At a proposed finite endpoint every sampled source remains in an already regular compact old interval, with a positive source-speed margin. Root folds and neutral regularity failure cannot occur first, and contact would contradict the strict source chord inequality. Thus the endpoint must be unit speed at positive separation. An explicit compatible incoming cubic preparation reaches such an endpoint; general transversality and an outgoing extension are not asserted. All-future existence is a hypothesis of the preceding dispersal statement, not a consequence of this finite-endpoint classification.
+
+### 9.3. Finite reception width gives passage but does not imply binding
+
+Use the Section 11 triangular reception window and positive spatial core, with $K=c_f=1$, both complete self and partner integrals, and the four fixed pairs $(h,\rho)\in\{1/16,1/32\}\times\{1/32,1/64\}$. For each positive pair the complete acceleration functional is globally bounded and Lipschitz in the path displacement. Splitting source ages at $2h$ proves integrable uniform tail bounds, independent of how far the old path extends. The resulting Volterra equation has a unique unrestricted global forward solution for every continuous complete past and finite release velocity. These bounds concern the modified law at fixed positive scales; they establish no zero-width or zero-core limit.
+
+For the selected incoming compatible cubic histories, the first unit event is transverse and occurs while pair separation still exceeds $1/4$. The unrestricted solution then reaches contact in finite time and passes uniquely with its labels retained. Strict-domain evolution ends at unit speed; an inclusive inequality alone does not provide a boundary response. The [retained comparison measurements](analysis/alternatives-screen-2026-10-05-width-measurements.md) continue all four unrestricted cases through time two, with three step sizes and an independently constructed source-integral audit. Their absence of a postcontact turn is measured finite behavior, not a proof of later escape.
+
+An analytical all-future criterion is available. For a complete nonincreasing mirror history bounded above by $a$, write $y=-x$, $u=-x'$. At an entry with $y>a$, $u>0$ and
+
+$$
+E=\frac{u^2}{2}-\frac1{y-a}>0,
+$$
+
+the complete partner clock bounds braking by $(y-a)^{-2}$ and the self input is nonnegative. Direct differentiation gives $E'\ge0$, preventing a later turn. Integrable partner braking and the strictly positive affine self response then force $u\to\infty$ and $y/T\to\infty$. This scalar is a comparison function, not a physical conserved account. The [criterion](analysis/alternatives-screen-2026-10-05-width-energy-escape.md) and [independent reconstruction](../analysis/alternatives-screen-2026-10-05-independent-reference.md#complete-finite-width-escape-and-the-entire-collinear-boundary-exclusion) prove unbounded escape for a separately constructed compatible fast-outgoing preparation for every fixed law. That preparation has a superfield release and a prescribed past passage; it is not substituted for the original incoming preparation, whose exact entry is now separately certified for all four laws in Section 9.7.
+
+The coincident stationary pair is an exact equilibrium because the self and partner channels cancel. Its relative Cartesian linearization has exactly two growing conjugate characteristic roots per component. This derived linear instability concerns coincidence, not a separated bound state or the nonlinear fate of the incoming cases.
+
+### 9.4. An entire collinear history cannot solve the equal past/future law
+
+For the equal-weight canonical radial boundary equation, suppose two opposite labels were separated, $C^2$ and uniformly subfield at every real time, and obeyed the equation on that entire time line. Complete clock monotonicity gives one past and one future partner root, no nonzero self root and positive Jacobians. Both partner contributions point toward the other present label. Their separation $r>0$ would therefore satisfy $r''<0$ everywhere.
+
+A positive concave function on the entire real line must be constant: a nonzero tangent slope would make the tangent upper bound negative in one temporal direction. The strict inequality is a contradiction. **Derived entire-history exclusion:** no solution exists in that complete collinear class, including periodic-up-to-drift candidates. A uniform separation floor is unnecessary. The [focused proof](analysis/alternatives-screen-2026-10-05-time-symmetric-entire-exclusion.md) does not define causal evolution or exclude noncollinear boundary solutions; the binary circular family is a distinct positive result.
+
+### 9.5. Long-range radial input distinguishes finite events from outward examples
+
+For every selected sharp radial exponent $p\ge1$, monotonicity of the ordered velocities and the exact source-time change exclude a finite contact endpoint, including contact simultaneous with first unit speed. Indeed, with $Q_i=R_i^{-p}D_i^{-1}$ and hypothetical contact time $T_*$, the complete clock gives $R_i\to0$, $S_i\to T_*$ and
+
+$$
+Q_i\,dT=\frac{dS_i}{R_i^p(1-n_i v_i(T))}
+\ge\frac{dS_i}{2(T_*-S_i)^p}.
+$$
+
+The divergent integral contradicts finite variation of bounded monotone velocities. At positive separation, complete-past speed margin and a positive source-delay floor permit ordinary continuation unless receiving speed reaches one. Thus every finite endpoint is a unit endpoint at positive separation; transversality is a separate question.
+
+For $p=1$ the conclusion is stronger. A global strict-subfield ordered future would have monotone velocity limits satisfying $v_2(0)\le v_2^\infty\le v_1^\infty\le v_1(0)$, so its future would automatically have a uniform speed margin. Then $Q_i\ge c/r$ for some $c>0$, while separation obeys $r(T)\le r(0)+2T$. The accumulated acceleration diverges, again contradicting bounded monotone velocities. **Derived universal statement on the declared preparation class:** every complete compatible separated uniformly subfield $p=1$ line preparation reaches unit speed in finite time at positive separation. It need not be incoming at release. The [long-range proof](analysis/alternatives-screen-2026-10-05-radial-long-range-class.md) and [independent reconstruction](../analysis/alternatives-screen-2026-10-05-fate-adjudication.md#radial-long-range-classification-and-compatible-outward-barriers) retain the exact assumptions and falsifiers.
+
+For $p>1$, complete mirror outward histories with $x\ge a$, $v\ge0$ have $R\ge x+a$, $D\ge1$. The scalar $v^2/2-(x+a)^{1-p}/(p-1)$ is nondecreasing while $v>0$. Positive release value proves no turn, a uniform subfield bound and a positive terminal speed. Explicit compatible $p=3/2$ and $p=2$ examples take $a=100$, hold $x=a$ before $-1$, and prescribe on $[-1,0]$, with $q=T+1$,
+
+$$
+v_A(T)=\frac34(3q^2-2q^3)+Aq^2(1-q),\qquad
+A=(200+3/8+A/12)^{-p}.
+$$
+
+The unique coefficient lies in $(0,1/100)$, the release acceleration is $-A$, and every launch source lies in the held tail. These are actual scattering examples with complete compatible histories, distinct from the incoming cases in Section 9.1.
+
+### 9.6. Entire histories and outward preparations for gradient and memory responses
+
+The gradient identities in Section 9.2 also exclude an entire separated uniformly subfield collinear solution. Write $L=v_1-v_1^2/2+\Psi_1$ and $J=v_2+v_2^2/2-\Psi_2$. If $L>1/2$, its exact derivative gives a backward Riccati contradiction; similarly $J<-1/2$ is impossible. The resulting two-sided bounds imply integrable positive $Q_i$, separation tending to infinity at both temporal ends, and individual limiting velocities. Integrating the identities makes relative terminal velocity strictly decrease from the past to the future. Entire positive separation instead requires the past relative limit to be nonpositive and the future limit nonnegative. This contradiction proves the [entire gradient exclusion](analysis/alternatives-screen-2026-10-05-gradient-entire-exclusion.md). It does not impose the equation on an externally supplied preparation.
+
+The fixed uniform-memory law has its own exact monotone transform,
+
+$$
+M_i(T)=v_i(T)+\int_0^1(1-\theta)v_i(T-\theta)\,d\theta,
+\qquad M_1'=-Q_1,\quad M_2'=Q_2.
+$$
+
+The convolution operator has norm $1/2$ on bounded complete histories. Its convergent inverse series proves that $M_i\to m_i$ implies $v_i\to2m_i/3$. Consequently every all-future uniformly subfield separated solution has separation tending to infinity and convergent individual velocities; an entire such solution is excluded by the same strict terminal-relative-velocity contradiction. These are [derived transform and conditional fate results](analysis/alternatives-screen-2026-10-05-memory-monotone-identity.md), independently reconstructed in the [fate assessment](../analysis/alternatives-screen-2026-10-05-fate-adjudication.md#entire-history-exclusions-and-conditional-terminal-velocities). They neither prove arbitrary-history global existence nor add an outgoing boundary response.
+
+Both laws nevertheless admit explicit compatible outward futures. Use the same $a=100$, $v_A$ family as Section 9.5, with the law-specific coefficient $A=R_0^{-2}$ for gradient and $(13/12)A=3/8+R_0^{-2}$ for memory, where $R_0=200+3/8+A/12$. The gradient identity preserves $1/2<v<4/5$; a memory maximum principle and its monotone transform preserve $1/4<v<5/6$. Positive delay and complete regular source windows close continuation, including the gradient's delayed source acceleration. **Derived examples:** both preparations have global separated subfield futures and positive outward terminal speed. The [complete barriers](analysis/alternatives-screen-2026-10-05-gradient-memory-outward-histories.md) provide the constants. A failed compatibility equation, barrier crossing within its hypotheses or missing complete source would falsify the respective example. No result about entire histories or arbitrary incoming releases is inferred from these examples.
+
+<a id="97-three-original-finite-width-incoming-preparations-escape-after-passage"></a>
+
+### 9.7. Four original finite-width incoming preparations escape after passage
+
+The [independent entry assessment](analysis/alternatives-screen-2026-10-05-width-entry-independent-assessment.md) now decides the later fate of the original compatible incoming preparations for $(h,\rho)=(1/16,1/32),(1/16,1/64),(1/32,1/64),(1/32,1/32)$. Each uses its exact compatible cubic coefficient, complete held tail, $K_{ij}=c_f=1$ and full self/partner reception. **Computer-assisted derived fate:** after the earlier transverse unit event and unique contact passage, the unrestricted solution never turns back, its separation tends to infinity, and its outward speed tends to infinity. Separation grows faster than linearly.
+
+The proof follows displacement $d=1/2-x$ and speed $u=d'>0$ through first contact. A positive cubic kinetic profile supplies upper and lower speed barriers. Directed integration encloses the complete history functional at every receiver displacement, including the stationary self tail, all source cells, the exact preparation coefficient and the short interval between the exact and stored release seams. Strict differential inequalities prevent the true speed from crossing these barriers. Separate exact-rational instruments check the compatible coefficient signs, source identities, complete receiver coverage and contact threshold; mathematical reconstruction checks the full functional and interval implementation.
+
+The certified lower contact speeds exceed $8.389785342261062$, $11.675573230377227$, $12.382679800181853$ and $8.079697365534539$ respectively, with the exact lower endpoints retained in the evidence. Each satisfies $u_c^2>2/\rho$. For each fixed reception gap, the complete braking range increases monotonically even if its source time reverses. Integrating over range bounds all future partner braking work by $1/\rho$. Hence $u(T)^2/2\ge u_c^2/2-1/\rho>0$ and a later turn is impossible. Integrable distant partner braking and the strictly positive affine self response then exclude finite terminal speed.
+
+The complete held tail also determines the asymptotic rate. Write $y=-x$ after passage. The near-diagonal self band has source-age width tending to zero as $u\to\infty$, while its exact change of variable retains the factor $1/(u(S)-1)$. The intervening compact history eventually leaves the reception window; the distant held-tail self band and the entire partner contribution become negligible after multiplication by $u$. The independently assessed limit and its integrated consequences are
+
+$$
+uu'\longrightarrow C_{h,\rho}=\frac1{h\rho}-\frac{\operatorname{arsinh}(h/\rho)}{h^2}>0,
+\qquad u(T)\sim\sqrt{2C_{h,\rho}T},\qquad y(T)\sim\frac23\sqrt{2C_{h,\rho}}T^{3/2}.
+$$
+
+The fixed positive-core functional is Lipschitz on complete histories. Finite-time continuous dependence and the transverse contact preserve the strict braking threshold on a relative neighborhood within compatible mirror, held-tail preparations with nonnegative incoming past speed. The escape rate therefore holds for that neighborhood at the same fixed law; a numerical neighborhood radius and nonsymmetric perturbations are not covered. The [independent asymptotic and robustness reconstruction](analysis/alternatives-screen-2026-10-05-width-entry-independent-assessment.md#independent-assessment-of-the-asymptotic-rate-and-relative-robustness) accounts for every source band.
+
+These are the original incoming histories, distinct from the separate fast-outgoing examples of Section 9.3. The fourth law uses a separate complete varying-width certificate and independently checked exact contact bound. All four satisfy the stronger $u_c^2-2/\rho>1$, so their incoming transverse unit event is the only unit-speed crossing. This result applies to the unrestricted positive-width/core law. It supplies no ceiling response, sharp-width limit, stable binding or general nonmirror conclusion. An incomplete source or receiver interval, a failed compatible-coefficient binding, an arithmetic under-enclosure, an omitted asymptotic source band or a future turn despite the strict contact threshold would falsify the corresponding proof step.
+
+
+### 9.8. A complete radial-power family contains critical zero-speed escape
+
+Fix $p>1$, $K=R_*=c_f=1$ and a held radius $a\ge100$ with $(2a)^{1-p}/(p-1)<9/32$. Extend the compatible preparation of Section 9.5 by allowing release speed $b\in[0,3/4]$. Its exact coefficient solves $A=(2a+b/2+A/12)^{-p}$, its complete past is held at $x=a$ before $-1$, and on the last unit interval its right-member velocity is $b(3q^2-2q^3)+Aq^2(1-q)$, $q=S+1$. The coefficient varies smoothly with the release parameter to preserve compatibility. The complete past is separated, uniformly subfield and locally $C^{2,1}$; it is a prescribed preparation, not an asserted past solution. The choice $a=100$ suffices for both $p=3/2$ and $p=2$.
+
+The [critical-escape construction](analysis/alternatives-screen-2026-10-05-radial-critical-escape.md) has a [fresh independent reconstruction](analysis/alternatives-screen-2026-10-05-radial-critical-escape-adjudication.md). The exact mirror equation has $v'=-R^{-p}/D<0$. Once $v$ becomes negative, a finite inward unit event follows before contact. The source-time integral excludes finite contact even if it coincides with unit speed; a positive-gap finite endpoint has a compact strictly old source interval, so the inward unit event is transverse. This does not supply a continuation after that event.
+
+If velocity never becomes negative, the future is global and outward, with $x\to\infty$ and a terminal speed $V\ge0$. At $b=0$ it immediately turns inward. At $b=3/4$ the positive comparison value $v^2/2-(x+a)^{1-p}/(p-1)$ proves positive-speed escape. Turning inward has a finite-time strict witness. Positive terminal speed also has a finite witness: at some finite time that comparison value is positive. Complete-history continuous dependence makes the two parameter sets relatively open and disjoint. Connectedness of the parameter interval forces a nonempty closed complement, consisting precisely of outward zero-speed escapes. The first boundary of the component containing $b=0$ is one such member; neither uniqueness nor ordering of the other parameter components is proved.
+
+For every zero-speed member, the complete source clock satisfies $S/T\to1$, $R/(2x)\to1$ and $D\to1$. Integrating the actual radial equation on its increasing tail gives
+
+$$
+v^2\sim\frac{2^{1-p}}{p-1}x^{1-p},\qquad
+x(T)\sim C_pT^{2/(p+1)},\qquad
+C_p=\left[\frac{p+1}{2}\sqrt{\frac{2^{1-p}}{p-1}}\right]^{2/(p+1)}.
+$$
+
+**Derived existence and exact asymptotic fate, independently assessed:** this one complete family contains both finite inward unit events and global outward scattering, with at least one zero-speed escape separating their open parameter sets. The coefficient is for one member; separation is $2x$. There is no numerical critical parameter, uniqueness theorem, parameter monotonicity, post-unit selector, nonmirror extension or persistent binary. Falsifiers are failure of compatibility or complete root coverage, loss of the finite witnesses and continuous dependence, or a zero-speed member violating the displayed source limits or tail coefficient.
+
+
+### 9.9. Sublinear radial histories can reach contact below wake speed
+
+Fix $0<p<1$, $K=R_*=c_f=1$ and the ordinary opposite-polarity mirror pair. Supply $x=a$ for every $S\le-d$, $d=a/16$, and on $-d\le S\le0$ set $q=(S+d)/d$, $v=Adq^2(1-q)$ and $x=a+\int_{-d}^S v$. The unique positive coefficient solves $A=(2a+Ad^2/12)^{-p}$. The release source is in the held tail and gives $v'(0)=-A$ exactly. The complete history is separated and locally $C^{2,1}$. A sufficient size is
+
+$$
+0<a\le\frac12\left(\frac{1-p}{64}\right)^{1/(1-p)}.
+$$
+
+The [sublinear contact theorem](analysis/alternatives-screen-2026-10-05-radial-sublinear-contact-independent.md) has a [separately derived reference and assessment](analysis/alternatives-screen-2026-10-05-radial-sublinear-contact-adjudication.md). **Derived incoming fate:** this family reaches finite contact while all complete-history speeds are at most $1/4$ and the transmitter denominator is at least $3/4$. For example, $p=1/2$, $a=2^{-16}$ and $d=2^{-20}$ satisfy the conditions. The complete census remains one partner root and no positive-delay self root until contact.
+
+Writing $w=-v$ and $Q=1/(R^pD)$, complete chord bounds under a provisional half-speed margin give $c_px^{-p}\le Q\le2x^{-p}$, $c_p=2/(3\,4^p)$. The actual identity $d(w^2)/dx=-2Q$ bounds total speed gain and closes the stronger quarter-speed margin. The strictly positive lower acceleration makes contact finite, while positive-radius continuation excludes another finite endpoint. This uses no instantaneous conserved energy.
+
+Let $T_*$ be contact time, $w_*\in(0,1/4]$ the limiting incoming speed and $\delta=T_*-T$. The exact source limits give $R\sim2w_*\delta/(1-w_*)$ and $D\to1-w_*$. Thus
+
+$$
+Q\sim C_*\delta^{-p},\qquad C_*=2^{-p}(1-w_*)^{p-1}w_*^{-p},
+$$
+
+$$
+v=-w_*+\frac{C_*}{1-p}\delta^{1-p}+o(\delta^{1-p}),\qquad
+x=w_*\delta-\frac{C_*}{(1-p)(2-p)}\delta^{2-p}+o(\delta^{2-p}).
+$$
+
+Acceleration diverges but is integrable. Position has a finite $C^1$ incoming trace; the ordinary positive-range equation supplies no classical $C^2$ continuation or collision selector. At fixed exponent and $a\downarrow0$, $w_*\sim[2^{1-p}/(1-p)]^{1/2}a^{(1-p)/2}$, and $T_*$ has the explicit integral coefficient in the linked proof. At $p=1$ the same compatible preparation instead reaches inward unit speed at positive separation: the source-clock impulse would diverge at hypothetical contact. This contrast is specific to the stated incoming mechanism and does not supply a post-unit rule.
+
+No optimal radius threshold, arbitrary-history fate, nonmirror robustness or planar-binary result follows from this mirror theorem. Failure of compatibility, complete root coverage, the integrated speed bound or the exact source coefficient would falsify it.
+
+### 9.10. Nonmirror sublinear contact and its incoming trace
+
+For each fixed $0<p<1$, $K=R_*=c_f=1$, the [nonmirror contact assessment](analysis/alternatives-screen-2026-10-05-radial-sublinear-nonmirror-adjudication.md) proves a relative-open compatible collinear contact class. Let $g_0>0$ be the release gap, $w_0=v_2(0)-v_1(0)>0$ its approach speed, $B_0=\max_i|v_i(0)|$, and assume a complete separated locally $C^{2,1}$ compatible past with speed below $1/2$. The sufficient strict condition is
+
+$$
+B_0+\sqrt{w_0^2+12g_0^{1-p}/(1-p)}-w_0<1/2.
+$$
+
+Complete root geometry bounds both acceleration magnitudes by $3g^{-p}$. The exact identity $d(w^2)/dg=-2(Q_1+Q_2)$ then bounds total velocity change and closes the strict half-speed margin. Since $g'\le-w_0$, contact is finite. Every positive-gap finite endpoint remains an ordinary regular chart, so contact is the first endpoint. There is one partner root for each label and no positive-delay self root before it.
+
+An explicit moving-center preparation has affine tails $x_1=a+(3/32)S$, $x_2=-a+(5/32)S$, patch width $d=a/16$ and velocities $v_1=3/32+A_1dz^2(1-z)$, $v_2=5/32-A_2dz^2(1-z)$. The coefficients are uniquely determined by their complete affine-source release equations, stated in the linked assessment. The sufficient bound $a\le[(1-p)/1024]^{1/(1-p)}/4$ closes speed below $7/32$. The fixed example $p=1/2$, $a=2^{-26}$, $d=2^{-30}$ is compatible. Both labels continue moving rightward with unequal velocities; mirror symmetry is absent.
+
+At contact time $T_*$, let $v_1\to U<v_2\to V$, $w_*=V-U>0$, $\Delta=T_*-T$ and $q=1-p$. Then $R_1\sim w_*\Delta/(1-V)$ and $R_2\sim w_*\Delta/(1+U)$. With $C_1=(1-V)^{p-1}w_*^{-p}$ and $C_2=(1+U)^{p-1}w_*^{-p}$,
+
+$$
+v_1=U+(C_1/q)\Delta^q+o(\Delta^q),\qquad
+v_2=V-(C_2/q)\Delta^q+o(\Delta^q).
+$$
+
+The acceleration divergence is integrable and position has the explicit next-order $\Delta^{2-p}$ terms in the assessment. The ordinary zero-range equation is undefined; no classical $C^2$ continuation or collision rule follows. Strict inequalities and uniform vanishing time/impulse tails establish continuity of contact data in the complete weighted-position/uniform-velocity topology, relative to compatible line histories. This does not establish robustness under transverse perturbations. Compatibility, the full root directions and the integrated speed and endpoint-source bounds are the checkable falsifiers.
+
+### 9.11. A fixed-memory family contains critical zero-speed escape
+
+The [independent assessment](analysis/alternatives-screen-2026-10-05-memory-critical-adjudication.md) establishes a complete three-way classification for the original canonical-plus-unit-uniform-memory line family at held radius $a=100$. The opposite-polarity mirror pair has $K=c_f=\lambda=\tau=1$, is held for $S\le-1$, and uses the fixed compatible unit polynomial patch of the linked preparation with release speed $b\in[0,3/4]$. The past is separated, locally $C^{2,1}$ and uniformly below speed $5/6$.
+
+The exact history variable
+
+$$
+M=v+\int_0^1(1-\theta)v(T-\theta)\,d\theta
+$$
+
+obeys $M'=-Q<0$, where Q is the complete canonical inward partner input. No new outward maximum at $5/6$ is possible. A finite contact would require an infinite decrease in bounded M, so every finite ordinary endpoint is inward unit speed at positive separation. Such an endpoint occurs if and only if M has a negative value at an earlier finite reception. The finite witness makes its parameter set open without assuming event transversality.
+
+Outside that set, $M\ge0$ gives $-5/12\le v<5/6$, proving global ordinary continuation and a complete uniform speed margin. Radius tends to infinity and $v\to V\ge0$. The endpoint $b=0$ has an explicit negative-M witness before $T=1/8$, whereas $b=3/4$ has a strict outgoing barrier above speed $1/4$. Every positive-speed member eventually enters the full-memory scattering criterion, making that parameter set open as well. Connectedness supplies at least one interior zero-speed member, without shot ordering or a unique critical parameter.
+
+Every such zero-speed member has
+
+$$
+x(T)\sim(3/4)^{1/3}T^{2/3},\qquad
+v(T)\sim\frac23(3/4)^{1/3}T^{-1/3},\qquad
+v'(T)\sim-\frac1{6x(T)^2}.
+$$
+
+The exact convolution establishes these coefficients and eventual outward, decreasing-speed motion; it is not replaced by a local response. No critical numerical parameter, transverse robustness, post-unit selector or persistent isolated binary is established. A failed compatibility, complete root census, finite-witness equivalence or weighted memory bound falsifies the theorem.
+
+
+### 9.12. Memory does not remove the newborn self singularity
+
+The [unit-endpoint assessment](analysis/alternatives-screen-2026-10-05-memory-unit-obstruction-adjudication.md) sharpens the finite-event side of Section 9.11 without assuming that its entire supplied past moves inward. With inward coordinate y and velocity u, the complete incoming clocks $y-T$ and $y+T$ are respectively strictly decreasing and increasing. They exclude every old self root at the first unit arrival and fix the sign of all local newborn self contributions.
+
+For an immediate genuine crossing above unit speed, the single newborn root has age $\rho=T-S$ and satisfies
+
+$$
+A_{\rm self}\,dT=\frac{d\rho}{\rho^2[(1-u(S))+(u(T)-1)]}.
+$$
+
+Finite velocity traces make this integral diverge as $\rho\downarrow0$, even at zero incoming acceleration. The partner input remains regular at positive separation and the memory stays bounded, so neither cancels it. The unchanged locally finite acceleration-measure equation also supplies no event atom and therefore allows no velocity jump.
+
+A strictly positive actual trace $B_*=P_*-1+\int_{-1}^0u(S)dS$ forces immediate crossing in any putative bounded-variation continuation, giving a full local collinear obstruction. The family theorem proves only $B_*\ge0$. If it is zero, the exact delayed-source acceleration determines the next test: nonnegative $a_s$ excludes tangency, while $B_*=0$ and $C_*=P_*'+1-u(-1)<0$ would give an actual local subfield-return continuation after the complete root census is checked. No member with that tangent data has been exhibited or excluded. Universal positivity, higher tangency and oscillatory punctured continuations remain unresolved. These distinctions prevent a finite-unit arrival from being silently promoted into a universal no-continuation claim.
+
+## 10. Instantaneous Weber-inspired radial comparison
+
+The frozen law has $K=c_f=1$, $(\lambda_{\mathrm W},\mu_{\mathrm W})=(-1/2,1)$, no self term or boundary response. Derived and independently confirmed in the [collinear source and correction addendum](analysis/weber-overnight-collinear-approach.md): with $k=2K$, $\kappa=2K/c_f^2$, the shifted separation $s=r-\sigma\kappa$ obeys $\ddot s=-G_\sigma/s^2$, $G_\sigma=-\sigma k(1-\varepsilon/c_f^2)$, and $\dot s^2=2\varepsilon+2G_\sigma/s$. On each regular sign chart, $\varepsilon=\tfrac12(1-\sigma\kappa/r)\dot r^2+\sigma k/r$ is constant. Acceleration has sign $-\sigma\operatorname{sign}(\varepsilon-c_f^2)$; equality gives uniform relative speed $\sqrt2c_f$. Every radial history reaching contact has that relative speed, with individual limit $c_f/\sqrt2$ only in the centre-rest frame. Contact ends the definition. Like polarity has a critical radius $r=\kappa$: exterior approaches above its threshold level have speed growing as $(T_*-T)^{-1/3}$; the threshold solve is indeterminate. Exterior receding branches disperse, including at and above the threshold. The absolute value in the general integrating factor and its chart-specific constant are retained. Falsifier: a regular radial history violating the first integral or a contact with another relative speed.
+
+## 11. Instantaneous Darwin-inspired radial comparison
+
+The frozen Section 10 law uses $K=c_f=1$, unit weights, no kinetic correction, delay, self term or boundary response. The [collinear analysis](analysis/darwin-overnight-collinear-approach.md) derives $\dot r^2/4=(Er-\sigma)/(r-\sigma)$. For opposite-polarity rest release from $r_0$, $u^2=(1-r/r_0)/(1+r)$ and $T(r_0\to r)=\tfrac12\sqrt{r_0}[F(\pi/2)-F(\varphi)]$, with $F(\varphi)=(r_0+1)(\varphi-\tfrac12\sin2\varphi)$ and $\sin^2\varphi=(1+r)/(r_0+1)$. At $r_0=100$, speed $0.1$ is reached first at $r=49.5$, then the interaction-domain limit at $r=20$, then the full solve becomes non-unique at $r=1$; reduced contact is not full-law continuation. Same-polarity preparations with $E<1$ turn at $r=1/E>1$ or recede from rest, without singularity or ceiling crossing. Measured by the frozen pair instrument and blind-matched to $10^{-12}$: DR-100, DH-100, WR-150 and DL-100 obstruction times are $792.3083820$, $629.1840958$, $979.5938817$ and $795.1781707$. These outside-domain end events concern the adapted law. Falsifier: an independently checked turning point or invertible full Hessian at the stated opposite-polarity obstruction.

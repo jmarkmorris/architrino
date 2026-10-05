@@ -1,0 +1,32 @@
+{
+  "phase": "known",
+  "status": "PASS",
+  "controls": {
+    "stationary": {
+      "range": 2,
+      "p": 1,
+      "Rprime": 0,
+      "Rsecond": 0,
+      "bracket": 1
+    },
+    "affineTransverse": {
+      "d": 2,
+      "v": 0.3,
+      "closedRprime": 0,
+      "finiteDifferenceFirst": -1.1102230246251565e-11,
+      "closedRsecond": 0.045,
+      "finiteDifferenceSecond": 0.04499995931439571,
+      "bracket": 1.09
+    },
+    "subfieldRootCensus": {
+      "beta": 0.5,
+      "counts": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "basis": "strict monotonic arrival, no positive self root"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+// Prospective signed current block and exact PSD certificate. No target use here.
+import assert from 'node:assert/strict';
+import {Q,G,dot,length} from './maxwell-shaped-overnight-grid-interval.mjs';
+import {physicalDirection} from './maxwell-shaped-overnight-unit-frame-clock-angular.mjs';
+import {normUpper} from './maxwell-shaped-overnight-directed-sensitivity.mjs';
+const mv=(A,v)=>A.map(row=>dot(row,v)),mm=(A,B)=>A.map(row=>B[0].map((_,j)=>dot(row,B.map(r=>r[j])))),tr=A=>A[0].map((_,j)=>A.map(row=>row[j])),cross=(a,b)=>G.of(a[0]).mul(b[1]).sub(G.of(a[1]).mul(b[0]));
+export function signedBlock(c,XC,VC,ra,rc,nu,sourceXC){
+ const nr=physicalDirection(XC),d=[dot(c.clock.n,nr),cross(c.clock.n,nr)],B=[[d[0],d[1]],[d[1].neg(),d[0]]],ns=physicalDirection(sourceXC),ds=[dot(c.clock.n,ns),cross(c.clock.n,ns)],sum=d.map((x,k)=>x.add(ds[k])),Qcol=mv(B,mv(c.clock.q.AX,sum)),Ccol=mv(B,mv(c.clock.H.AX,sum)),Qsource=mv(B,mv(c.clock.q.AX,ds)),Csource=mv(B,mv(c.clock.H.AX,ds)),U=mm(mm(B,c.offset.H.Fu),tr(B)),nomV=[dot(nr,VC),cross(nr,VC)],pc=mv(B,c.clock.q.F).map((x,k)=>x.add(nomV[k])),Jpc=[pc[1],pc[0].neg()],den=G.of(ra),clockRc=G.of(rc);assert(den.lo.cmp(0)>0&&clockRc.lo.cmp(0)>0&&Q.of(nu).cmp(0)>0);
+ const angular=Qcol[1].div(den).add(nomV[1].div(den.mul(clockRc))),lower=Ccol.map((x,k)=>x.sub(dot(U[k],Qcol)).sub(Jpc[k].mul(angular)).div(nu)),pp=U.map((row,k)=>row.map((x,j)=>j===1?x.add(Jpc[k].div(den)):x)),M=[[Qcol[0].neg(),new G(nu),new G(0)],[lower[0],pp[0][0],pp[0][1]],[lower[1],pp[1][0],pp[1][1]]],S=M.map((row,i)=>row.map((x,j)=>x.add(M[j][i]).div(2)));
+ const min=(a,b)=>a.cmp(b)<=0?a:b;return {Qcol,Ccol,Qsource,Csource,Qnorm:min(c.Cq.mul(2),normUpper(Qcol)),QsNorm:min(c.Cq,normUpper(Qsource)),CsNorm:min(c.CH,normUpper(Csource)),U,pc,Pc:normUpper(pc),nomV,Jpc,M,S,d};
+}
+const det2=(a,b,c,d)=>a.mul(d).sub(b.mul(c));
+function det3(A){return A[0][0].mul(det2(A[1][1],A[1][2],A[2][1],A[2][2])).sub(A[0][1].mul(det2(A[1][0],A[1][2],A[2][0],A[2][2]))).add(A[0][2].mul(det2(A[1][0],A[1][1],A[2][0],A[2][1])));}
+export function psd(A){assert(A.length===3&&A.every(row=>row.length===3));for(let i=0;i<3;i++)for(let j=0;j<3;j++)assert(A[i][j].cmp(A[j][i])===0);const minors=[A[0][0],A[1][1],A[2][2],det2(A[0][0],A[0][1],A[1][0],A[1][1]),det2(A[0][0],A[0][2],A[2][0],A[2][2]),det2(A[1][1],A[1][2],A[2][1],A[2][2]),det3(A)];return {passed:minors.every(x=>x.cmp(0)>=0),minors};}
+export function lognorm(S){
+ const midpoint=S.map(row=>row.map(x=>G.of(x).lo.add(G.of(x).hi).div(2))),radii=S.flat().map(x=>G.of(x).hi.sub(G.of(x).lo).div(2)),radius=normUpper(radii),cert=alpha=>psd(midpoint.map((row,i)=>row.map((x,j)=>i===j?Q.of(alpha).sub(x):x.neg()))),sums=midpoint.map((row,i)=>row[i].add(row.reduce((z,x,j)=>j===i?z:z.add(x.abs()),Q.of(0)))),max=(a,b)=>a.cmp(b)>=0?a:b;let upper=sums.reduce(max).add('0.000000000001'),lower=midpoint.map((row,i)=>row[i]).reduce(max);assert(cert(upper).passed);for(let i=0;i<60;i++){const mid=lower.add(upper).div(2);if(cert(mid).passed)upper=mid;else lower=mid;}const proof=cert(upper);assert(proof.passed);return {mu:upper.add(radius),midpoint,radius,alpha:upper,minors:proof.minors};
+}
+export function forcing(nu,fq,fH,UH,Pc,ra){const f0=Q.of(nu).mul(fq),f1=Q.of(fH).add(Q.of(UH).add(Q.of(Pc).div(Q.of(ra))).mul(fq));return length([new G(f0),new G(f1)]).hi;}
+export function known(){
+ const I=x=>new G(x),q=Q.of,m=A=>A.map(row=>row.map(q));assert(psd(m([[1,1,0],[1,1,0],[0,0,0]])).passed);assert(!psd(m([[0,1,0],[1,0,0],[0,0,0]])).passed);const diag=lognorm([[I(-1),I(0),I(0)],[I(0),I(-2),I(0)],[I(0),I(0),I(-3)]]);assert(diag.mu.cmp(-1)>=0&&diag.mu.sub(-1).cmp('0.000000000001')<0);const osc=lognorm([[I(0),I(0),I(0)],[I(0),I(0),I(0)],[I(0),I(0),I(0)]]);assert(osc.mu.cmp(0)>=0&&osc.mu.cmp('0.000000000001')<0);assert(forcing(3,1,0,0,0,1).cmp(3)>=0&&forcing(3,1,0,0,0,1).sub(3).cmp('0.00000000000000000001')<0);
+ const fake={clock:{n:[I(1),I(0)],q:{AX:[[I(-1),I(0)],[I(0),I(0)]],F:[I(0),I(0)]},H:{AX:[[I(-2),I(0)],[I(0),I(0)]]}},offset:{H:{Fu:[[I(0),I(0)],[I(0),I(0)]]}},Cq:q(1),CH:q(2)},z=signedBlock(fake,[1,0],[0,0],1,1,1,[1,0]);assert(z.M[0][0].lo.cmp(2)===0&&z.M[0][1].lo.cmp(1)===0&&z.M[1][0].lo.cmp(-4)===0);const sym=lognorm(z.S);assert(sym.mu.cmp('2.8027756377319946')>=0&&sym.mu.cmp('2.8027756377319947')<0);return {passed:true,cases:['seven-principal-minor rank-one PSD and zero-diagonal nonPSD','negative diagonal largest-eigen upper−1','zero symmetric oscillator upper0','forcingnorm3','signed Qr−2 Hr−4 combinedsourcecurrentmatrix and independent(2+sqrt13)/2 lognorm']};
+}
+if(process.argv.includes('--known'))console.log(JSON.stringify(known()));
