@@ -1,0 +1,16 @@
+{
+ "test": "ext-falsu-mirrorcheck",
+ "utc": "2026-10-06T23:39:02Z",
+ "mseed": {
+  "n": 200,
+  "max_abs_d_minus_2Xnu": 3.9968028886505635e-15,
+  "minDistanceSampled": 0.07377535308744654,
+  "minVariationOfSeparation": 0.2424375096051552
+ },
+ "mpin": {
+  "n": 200,
+  "max_abs_d_minus_2Xnu": 1.7208456881689926e-15,
+  "minDistanceSampled": 0.09860223654831402,
+  "minVariationOfSeparation": 0.19722663753662517
+ }
+}

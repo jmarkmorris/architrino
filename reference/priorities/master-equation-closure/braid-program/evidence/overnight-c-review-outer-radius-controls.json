@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "rational division",
+    "stationary-source delay and row bounds exact",
+    "constant radial-velocity causal geometry",
+    "static antipodal norm 1/2",
+    "antipodal near/far pairing at rational positions"
+  ],
+  "mode": "controls",
+  "checker_sha256": "76bf854c2f4598ac56f229cb8edd14cfb809ead7dd6be1a824e0459ed2e36e17",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

@@ -1,0 +1,794 @@
+{
+  "startedAt": "2026-10-06T02:29:44.355Z",
+  "F4": {
+    "likeWithLike": [
+      {
+        "case": "(iii) square + pair antipodal through the origin (subject geometry), phi=0 deg",
+        "singular": false,
+        "R": 3.91250908485092,
+        "radial": 2.76491632252162,
+        "tangential": 1.13132885037274,
+        "binormal": 3.50534640849003,
+        "minAbsDet": 32.1447749412639,
+        "minSep": 1,
+        "samples": 96,
+        "T_total": 6.28318530717959
+      },
+      {
+        "case": "(iii) square + pair antipodal through the origin (subject geometry), phi=30 deg",
+        "singular": false,
+        "R": 3.91250908485092,
+        "radial": 2.76491632252162,
+        "tangential": 1.13132885037274,
+        "binormal": 3.50534640849003,
+        "minAbsDet": 32.1447749412639,
+        "minSep": 1,
+        "samples": 96,
+        "T_total": 6.28318530717959
+      },
+      {
+        "case": "(iii) square + pair antipodal through the origin (subject geometry), phi=60 deg",
+        "subjectR": 3.91250908485092,
+        "singular": false,
+        "R": 3.91250908485092,
+        "radial": 2.76491632252162,
+        "tangential": 1.13132885037274,
+        "binormal": 3.50534640849003,
+        "minAbsDet": 32.1447749412639,
+        "minSep": 1,
+        "samples": 96,
+        "T_total": 6.28318530717959
+      },
+      {
+        "case": "(iii) square + pair on one circle (reference Section 13 geometry), phi=0 deg",
+        "singular": false,
+        "R": 3.42656428961436,
+        "radial": 1.56484615354984,
+        "tangential": 2.253122847678,
+        "binormal": 2.84606792871785,
+        "minAbsDet": 22.1055810540327,
+        "minSep": 1,
+        "samples": 96,
+        "T_total": 6.28318530717959
+      },
+      {
+        "case": "(iii) square + pair on one circle (reference Section 13 geometry), phi=30 deg",
+        "singular": false,
+        "R": 3.42656428961436,
+        "radial": 1.56484615354984,
+        "tangential": 2.253122847678,
+        "binormal": 2.84606792871785,
+        "minAbsDet": 22.1055810540328,
+        "minSep": 1,
+        "samples": 96,
+        "T_total": 6.28318530717959
+      },
+      {
+        "case": "(iii) square + pair on one circle (reference Section 13 geometry), phi=60 deg",
+        "singular": false,
+        "R": 3.42656428961437,
+        "radial": 1.56484615354984,
+        "tangential": 2.253122847678,
+        "binormal": 2.84606792871786,
+        "minAbsDet": 22.1055810540326,
+        "minSep": 1,
+        "samples": 96,
+        "T_total": 6.28318530717959
+      },
+      {
+        "case": "(i) 1:2:3, + members same side, subject best phases (0, 3pi/2, pi)",
+        "subjectR": 7.72184032002466,
+        "singular": false,
+        "R": 7.72184032002469,
+        "radial": 5.42337191229958,
+        "tangential": 3.3820085994776,
+        "binormal": 5.65956420522139,
+        "minAbsDet": 35.9154414527461,
+        "minSep": 0.183503419072274,
+        "samples": 96,
+        "T_total": 6.28318530717959
+      },
+      {
+        "case": "(i) 1:2:3, + member of pair 3 opposite side, subject best phases (0, 0, 0)",
+        "subjectR": 66.6957559428623,
+        "singular": false,
+        "R": 66.6957559428651,
+        "radial": 40.603585158419,
+        "tangential": 45.27247536026,
+        "binormal": 27.3875100698823,
+        "minAbsDet": 0.178731457753739,
+        "minSep": 0.183503419072274,
+        "samples": 96,
+        "T_total": 6.28318530717959
+      },
+      {
+        "case": "(i) 1:2:2, + members same side, subject best phases (0, pi/6, pi)",
+        "subjectR": 7.06184313364835,
+        "singular": false,
+        "R": 7.06184313364835,
+        "radial": 5.02713238560491,
+        "tangential": 2.00670308321249,
+        "binormal": 4.54050333562429,
+        "minAbsDet": 4.33207920776167,
+        "minSep": 0.965925826289068,
+        "samples": 96,
+        "T_total": 6.28318530717959
+      },
+      {
+        "case": "(ii) same-circle 1:2:2 at z = (0, +sqrt3/2, -sqrt3/2), subject best phases (0, pi/3, 4pi/3)",
+        "subjectR": 9.89433431942591,
+        "singular": false,
+        "R": 9.89433431942596,
+        "radial": 6.32149516890283,
+        "tangential": 8.54217715878142,
+        "binormal": 7.38921715151965,
+        "minAbsDet": 0.0612330018608865,
+        "minSep": 1,
+        "samples": 96,
+        "T_total": 6.28318530717959
+      }
+    ],
+    "samplingCheck": [
+      {
+        "r": 0.495,
+        "eightLaps768": 10.0069674107404
+      },
+      {
+        "r": 0.5,
+        "eightLaps768": 9.89433431942623,
+        "commonPeriod96": 9.89433431942596
+      },
+      {
+        "r": 0.505,
+        "eightLaps768": 9.92315869816211
+      }
+    ]
+  },
+  "k3": {
+    "entries": {
+      "m_a": [
+        -1.73205080756888,
+        -1.73205080756888
+      ],
+      "m_b": [
+        3,
+        3
+      ],
+      "k_a": [
+        3.48205080756888,
+        3.48205080756888
+      ],
+      "k_b": [
+        -7.25,
+        -7.25
+      ],
+      "k_c": [
+        4.25,
+        4.25
+      ],
+      "Omega2": [
+        0.672649730810374,
+        0.672649730810374
+      ]
+    },
+    "rows": [
+      {
+        "x": 0.1,
+        "subjectA": -505.935750346352,
+        "subjectB": 228.95785750662,
+        "subjectC": -25.2448683548744,
+        "referenceA": -505.935750346352,
+        "referenceB": 228.95785750662,
+        "referenceC": -25.2448683548744,
+        "relDiffA": 5.61765192733409e-16,
+        "relDiffB": 7.44810675813968e-16,
+        "relDiffC": 8.44380797441837e-16,
+        "subjectGrowth": 16.1971554524542,
+        "referenceGrowth": 16.1971554524542,
+        "relDiffGrowth": 4.38683655192332e-16,
+        "documentFormulaB": 229.45785750662
+      },
+      {
+        "x": 0.3,
+        "subjectA": -52.5085296108589,
+        "subjectB": 75.6010523227471,
+        "subjectC": -25.2448683548744,
+        "referenceA": -52.5085296108588,
+        "referenceB": 75.601052322747,
+        "referenceC": -25.2448683548744,
+        "relDiffA": 8.11916929717064e-16,
+        "relDiffB": 5.63914956680816e-16,
+        "relDiffC": 8.44380797441837e-16,
+        "subjectGrowth": 5.81652643455619,
+        "referenceGrowth": 5.81652643455619,
+        "relDiffGrowth": 6.10796446775124e-16,
+        "documentFormulaB": 76.101052322747
+      },
+      {
+        "x": 0.5,
+        "subjectA": -17.2487113059643,
+        "subjectB": 44.9296912859724,
+        "subjectC": -25.2448683548744,
+        "referenceA": -17.2487113059643,
+        "referenceB": 44.9296912859724,
+        "referenceC": -25.2448683548744,
+        "relDiffA": 6.17909410583973e-16,
+        "relDiffB": 6.32581898894054e-16,
+        "relDiffC": 8.44380797441837e-16,
+        "subjectGrowth": 3.7786569385995,
+        "referenceGrowth": 3.7786569385995,
+        "relDiffGrowth": 0,
+        "documentFormulaB": 45.4296912859724
+      },
+      {
+        "x": 0.672649730810374,
+        "subjectA": -8.59927772310869,
+        "subjectB": 33.1210143831942,
+        "subjectC": -25.2448683548744,
+        "referenceA": -8.59927772310869,
+        "referenceB": 33.1210143831942,
+        "referenceC": -25.2448683548744,
+        "relDiffA": 6.19711409468732e-16,
+        "relDiffB": 4.29058559342092e-16,
+        "relDiffC": 8.44380797441837e-16,
+        "subjectGrowth": 3.0358773877953,
+        "referenceGrowth": 3.0358773877953,
+        "relDiffGrowth": 1.46280350990251e-16,
+        "documentFormulaB": 33.6210143831942
+      },
+      {
+        "x": 1,
+        "subjectA": -2.92820323027551,
+        "subjectB": 21.9261705083914,
+        "subjectC": -25.2448683548744,
+        "referenceA": -2.92820323027551,
+        "referenceB": 21.9261705083914,
+        "referenceC": -25.2448683548744,
+        "relDiffA": 7.5829642775218e-16,
+        "relDiffB": 6.48122968384441e-16,
+        "relDiffC": 8.44380797441837e-16,
+        "subjectGrowth": 2.46310528860284,
+        "referenceGrowth": 2.46310528860284,
+        "relDiffGrowth": 1.80296478556938e-16,
+        "documentFormulaB": 22.4261705083914
+      },
+      {
+        "x": 1.5,
+        "subjectA": -0.464101615137755,
+        "subjectB": 14.2583302491977,
+        "subjectC": -25.2448683548744,
+        "referenceA": -0.464101615137754,
+        "referenceB": 14.2583302491977,
+        "referenceC": -25.2448683548744,
+        "relDiffA": 1.55492879677256e-15,
+        "relDiffB": 4.98335165017013e-16,
+        "relDiffC": 8.44380797441837e-16,
+        "subjectGrowth": 2.92301593985293,
+        "referenceGrowth": 2.92301593985293,
+        "relDiffGrowth": 4.55785276907255e-16,
+        "documentFormulaB": 14.7583302491977
+      },
+      {
+        "x": 1.7,
+        "subjectA": -0.052124150717552,
+        "subjectB": 12.4541325411521,
+        "subjectC": -25.2448683548744,
+        "referenceA": -0.0521241507175512,
+        "referenceB": 12.4541325411521,
+        "referenceC": -25.2448683548744,
+        "relDiffA": 1.46434679303616e-14,
+        "relDiffB": 7.13159601253095e-16,
+        "relDiffC": 8.44380797441837e-16,
+        "subjectGrowth": 6.94380885146312,
+        "referenceGrowth": 6.94380885146317,
+        "relDiffGrowth": 7.03501696669168e-15,
+        "documentFormulaB": 12.9541325411521
+      },
+      {
+        "x": 1.75,
+        "subjectA": 0.0278395637707204,
+        "subjectB": 12.0675187465709,
+        "subjectC": -25.2448683548744,
+        "referenceA": 0.0278395637707211,
+        "referenceB": 12.0675187465709,
+        "referenceC": -25.2448683548744,
+        "relDiffA": 2.60461844492301e-14,
+        "relDiffB": 5.88805992915491e-16,
+        "relDiffC": 8.44380797441837e-16,
+        "subjectGrowth": 0.623275441620922,
+        "referenceGrowth": 0.623275441620924,
+        "relDiffGrowth": 2.31565345854027e-15,
+        "documentFormulaB": 12.5675187465709
+      },
+      {
+        "x": 2,
+        "subjectA": 0.334936490538903,
+        "subjectB": 10.4244101196009,
+        "subjectC": -25.2448683548744,
+        "referenceA": 0.334936490538904,
+        "referenceB": 10.4244101196009,
+        "referenceC": -25.2448683548744,
+        "relDiffA": 1.4916271448282e-15,
+        "relDiffB": 6.81614333672537e-16,
+        "relDiffC": 8.44380797441837e-16,
+        "subjectGrowth": 0.531260775626922,
+        "referenceGrowth": 0.531260775626922,
+        "relDiffGrowth": 2.08978918745699e-16,
+        "documentFormulaB": 10.9244101196009
+      },
+      {
+        "x": 3,
+        "subjectA": 0.845299461620748,
+        "subjectB": 6.59048999000404,
+        "subjectC": -25.2448683548744,
+        "referenceA": 0.845299461620749,
+        "referenceB": 6.59048999000404,
+        "referenceC": -25.2448683548744,
+        "relDiffA": 2.62681588012952e-16,
+        "relDiffB": 4.04300023691978e-16,
+        "relDiffC": 8.44380797441837e-16,
+        "subjectGrowth": 0.322863197546766,
+        "referenceGrowth": 0.322863197546766,
+        "relDiffGrowth": 3.43867939443406e-16,
+        "documentFormulaB": 7.09048999000404
+      },
+      {
+        "x": 5,
+        "subjectA": 1.04574374157796,
+        "subjectB": 3.52335388632657,
+        "subjectC": -25.2448683548744,
+        "referenceA": 1.04574374157796,
+        "referenceB": 3.52335388632657,
+        "referenceC": -25.2448683548744,
+        "relDiffA": 2.1233175595197e-16,
+        "relDiffB": 3.78124841424658e-16,
+        "relDiffC": 8.44380797441837e-16,
+        "subjectGrowth": 0.167558199284919,
+        "referenceGrowth": 0.167558199284919,
+        "relDiffGrowth": 1.65647373474293e-16,
+        "documentFormulaB": 4.02335388632657
+      },
+      {
+        "x": 10,
+        "subjectA": 1.07483339501605,
+        "subjectB": 1.22300180856847,
+        "subjectC": -25.2448683548744,
+        "referenceA": 1.07483339501605,
+        "referenceB": 1.22300180856847,
+        "referenceC": -25.2448683548744,
+        "relDiffA": 0,
+        "relDiffB": 3.63114107222679e-16,
+        "relDiffC": 8.44380797441837e-16,
+        "subjectGrowth": 0.0656560488872538,
+        "referenceGrowth": 0.0656560488872538,
+        "relDiffGrowth": 4.22742094384806e-16,
+        "documentFormulaB": 1.72300180856847
+      }
+    ],
+    "worstCoefficientRelDiff": 2.60461844492301e-14,
+    "worstGrowthRelDiff": 7.03501696669168e-15,
+    "documentBFormulaRelDiff": 0.408830139495256
+  },
+  "choreography": {
+    "subject": {
+      "floor": 1.296801292876,
+      "circleAtHex": 6.34448745283553,
+      "circleAtClamp": 2.27614564616694
+    },
+    "reference": {
+      "circle": [
+        {
+          "omega": 0.820152260748194,
+          "omegaOverHex": 1,
+          "rms": 3.03279607244152,
+          "max": 6.34448745283552,
+          "maxNodesAtZero": 6.34448745283553
+        },
+        {
+          "omega": 2.46045678224458,
+          "omegaOverHex": 3,
+          "rms": 1.08006318752673,
+          "max": 2.27614564616693,
+          "maxNodesAtZero": 2.27614564616693
+        }
+      ],
+      "fits": [
+        {
+          "seed": "circle seed",
+          "omegaBox": [
+            0.3,
+            3
+          ],
+          "rms": 0.93237047155238,
+          "max": 2.13475495797527,
+          "omegaOverHex": 3,
+          "iterations": 200,
+          "zMax": 0,
+          "radiusRange": [
+            0.765602083694213,
+            1.0229340756545
+          ]
+        },
+        {
+          "seed": "circle + out-of-plane a_z2 = 0.05",
+          "omegaBox": [
+            0.3,
+            3
+          ],
+          "rms": 0.831448087296323,
+          "max": 1.6825144353993,
+          "omegaOverHex": 3,
+          "iterations": 200,
+          "zMax": 0.185396995785009,
+          "radiusRange": [
+            0.647821443884891,
+            0.986774886425663
+          ]
+        },
+        {
+          "seed": "circle + out-of-plane a_z2 = 0.2",
+          "omegaBox": [
+            0.3,
+            3
+          ],
+          "rms": 0.831443794032396,
+          "max": 1.68247179050171,
+          "omegaOverHex": 3,
+          "iterations": 200,
+          "zMax": 0.185401366114844,
+          "radiusRange": [
+            0.647813128404459,
+            0.986771226615122
+          ]
+        },
+        {
+          "seed": "random seed 1",
+          "omegaBox": [
+            0.3,
+            3
+          ],
+          "rms": 0.799077503288153,
+          "max": 1.71955348342,
+          "omegaOverHex": 3,
+          "iterations": 200,
+          "zMax": 0.212166351304896,
+          "radiusRange": [
+            0.570609244013374,
+            0.985817348595345
+          ]
+        },
+        {
+          "seed": "random seed 2",
+          "omegaBox": [
+            0.3,
+            3
+          ],
+          "rms": 0.803488665620828,
+          "max": 1.71891773500049,
+          "omegaOverHex": 3,
+          "iterations": 200,
+          "zMax": 0.20819469902712,
+          "radiusRange": [
+            0.5817006064905,
+            0.988161761489708
+          ]
+        },
+        {
+          "seed": "random seed 3",
+          "omegaBox": [
+            0.3,
+            3
+          ],
+          "rms": 0.804356445594371,
+          "max": 1.71773432106242,
+          "omegaOverHex": 3,
+          "iterations": 200,
+          "zMax": 0.207371385302912,
+          "radiusRange": [
+            0.583950300522082,
+            0.988447626653069
+          ]
+        },
+        {
+          "seed": "circle + out-of-plane a_z2 = 0.2, box to 5.0",
+          "omegaBox": [
+            0.3,
+            6.09642896727333
+          ],
+          "rms": 0.642632441264541,
+          "max": 1.38237092487318,
+          "omegaOverHex": 6.09642896727333,
+          "iterations": 200,
+          "zMax": 0.161791652512652,
+          "radiusRange": [
+            0.646295868534902,
+            0.980114524879199
+          ]
+        }
+      ]
+    }
+  },
+  "F3": {
+    "KN2 RK4-flow stall state": {
+      "subject": {
+        "finalResidual": 4.26753698906657e-8,
+        "period": 7.43510228988986,
+        "characterisation": null
+      },
+      "radii": [
+        0.980207065549807,
+        0.980264957333767,
+        0.980261225171036,
+        0.980207065549255,
+        0.980264957332248,
+        0.980261225172118
+      ],
+      "speeds": [
+        0.828402566029918,
+        0.828360768778667,
+        0.828363461928128,
+        0.828402566030103,
+        0.82836076878113,
+        0.828363461929476
+      ],
+      "maxZ": 0.0588013869578045,
+      "reference": {
+        "radialMax": 0.000152390137692861,
+        "tangentialMax": 0.0000594134701247664,
+        "sum": 0.000211803607817628,
+        "perMember": [
+          {
+            "radial15_1": 0.000152390130007526,
+            "tangential15_2": 0.00000383213859431481,
+            "radius": 0.980207065549807,
+            "speed": 0.828402566029918
+          },
+          {
+            "radial15_1": 0.0000838192903963757,
+            "tangential15_2": 0.000055581477284099,
+            "radius": 0.980264957333767,
+            "speed": 0.828360768778667
+          },
+          {
+            "radial15_1": 0.0000685851699508869,
+            "tangential15_2": 0.0000594134649612102,
+            "radius": 0.980261225171036,
+            "speed": 0.828363461928129
+          },
+          {
+            "radial15_1": 0.000152390137692861,
+            "tangential15_2": 0.00000383213635810314,
+            "radius": 0.980207065549255,
+            "speed": 0.828402566030103
+          },
+          {
+            "radial15_1": 0.0000838192948472437,
+            "tangential15_2": 0.0000555814771684591,
+            "radius": 0.980264957332248,
+            "speed": 0.82836076878113
+          },
+          {
+            "radial15_1": 0.0000685851596139888,
+            "tangential15_2": 0.0000594134701247664,
+            "radius": 0.980261225172118,
+            "speed": 0.828363461929477
+          }
+        ],
+        "det": -153.281240397159,
+        "minSep": 0.980239864856084
+      }
+    },
+    "KN2 re-anchored final state": {
+      "subject": {
+        "finalResidual": 1.36138870211744e-8,
+        "period": 7.41911660640611,
+        "characterisation": null
+      },
+      "radii": [
+        0.978823846092886,
+        0.97883868743749,
+        0.97885409672246,
+        0.97882384609289,
+        0.978838687437484,
+        0.978854096722465
+      ],
+      "speeds": [
+        0.828981005896535,
+        0.828970264848944,
+        0.828959115908549,
+        0.828981005896539,
+        0.828970264848941,
+        0.828959115908552
+      ],
+      "maxZ": 0.0549752839383975,
+      "reference": {
+        "radialMax": 0.000062199890945799,
+        "tangentialMax": 0.0000311510678475586,
+        "sum": 0.0000933509587933576,
+        "perMember": [
+          {
+            "radial15_1": 0.0000614204982975448,
+            "tangential15_2": 0.0000158712704522143,
+            "radius": 0.978823846092886,
+            "speed": 0.828981005896534
+          },
+          {
+            "radial15_1": 7.77885649361352e-7,
+            "tangential15_2": 0.0000311510678475586,
+            "radius": 0.97883868743749,
+            "speed": 0.828970264848944
+          },
+          {
+            "radial15_1": 0.000062199890945799,
+            "tangential15_2": 0.0000152796467190135,
+            "radius": 0.97885409672246,
+            "speed": 0.828959115908549
+          },
+          {
+            "radial15_1": 0.0000614204983311476,
+            "tangential15_2": 0.0000158712704389192,
+            "radius": 0.97882384609289,
+            "speed": 0.82898100589654
+          },
+          {
+            "radial15_1": 7.77885617211029e-7,
+            "tangential15_2": 0.0000311510678380468,
+            "radius": 0.978838687437484,
+            "speed": 0.828970264848941
+          },
+          {
+            "radial15_1": 0.0000621998909113855,
+            "tangential15_2": 0.0000152796467086962,
+            "radius": 0.978854096722465,
+            "speed": 0.828959115908552
+          }
+        ],
+        "det": -154.51202719444,
+        "minSep": 0.978837039749499
+      }
+    },
+    "unconstrainedStarts": [
+      {
+        "start": 0,
+        "subjectJ_gbs": 10.9941262782857,
+        "subjectMinSep": 0.991245867291395,
+        "v": 0.699190708780181,
+        "member5Radius": 1.02963994064195,
+        "member5Speed": 0.68732310749855,
+        "reference": {
+          "radialMax": 9.53350170267669,
+          "tangentialMax": 15.4922377581122,
+          "sum": 25.0257394607889,
+          "minSep": 0.998994186574071
+        }
+      },
+      {
+        "start": 1,
+        "subjectJ_gbs": 10.9862003814656,
+        "subjectMinSep": 0.676242175837669,
+        "v": 0.957585424637632,
+        "member5Radius": 0.827708404207398,
+        "member5Speed": 1.49747208265206,
+        "reference": {
+          "radialMax": 17.1011976131464,
+          "tangentialMax": 22.1345528541284,
+          "sum": 39.2357504672748,
+          "minSep": 0.814938094793863
+        }
+      },
+      {
+        "start": 2,
+        "subjectJ_gbs": 10.951236989472,
+        "subjectMinSep": 0.190807043025717,
+        "v": 0.640764005110299,
+        "member5Radius": 0.993182250638746,
+        "member5Speed": 0.658202810072638,
+        "reference": {
+          "radialMax": 1.7207493716517,
+          "tangentialMax": 2.02779595316889,
+          "sum": 3.7485453248206,
+          "minSep": 0.190807043025717
+        }
+      },
+      {
+        "start": 3,
+        "subjectJ_gbs": 10.9965859229126,
+        "subjectMinSep": 0.16304346430121,
+        "v": 2.13947692410627,
+        "member5Radius": 0.860461548135904,
+        "member5Speed": 1.19852197338579,
+        "reference": {
+          "radialMax": 2.02483191083924,
+          "tangentialMax": 4.28647726140535,
+          "sum": 6.31130917224459,
+          "minSep": 0.257614569494563
+        }
+      },
+      {
+        "start": 4,
+        "subjectJ_gbs": 10.7511127444948,
+        "subjectMinSep": 0.00004429644380707,
+        "v": 0.749914211684042,
+        "member5Radius": 1.03612616592098,
+        "member5Speed": 0.867986403592281,
+        "reference": {
+          "radialMax": 4.04168527622307,
+          "tangentialMax": 2.72809148219896,
+          "sum": 6.76977675842203,
+          "minSep": 0.228934694651805
+        }
+      },
+      {
+        "start": 5,
+        "subjectJ_gbs": 10.9151415590245,
+        "subjectMinSep": 0.4318129913634,
+        "v": 0.838644544300937,
+        "member5Radius": 1.02279606798985,
+        "member5Speed": 0.853244137389926,
+        "reference": {
+          "radialMax": 8.973538019098,
+          "tangentialMax": 5.17689039215409,
+          "sum": 14.1504284112521,
+          "minSep": 0.432619035011487
+        }
+      },
+      {
+        "start": 6,
+        "subjectJ_gbs": 10.950693534172,
+        "subjectMinSep": 0.0000111076713279218,
+        "v": 0.762125695814642,
+        "member5Radius": 0.996322096410848,
+        "member5Speed": 0.787098626507889,
+        "reference": {
+          "radialMax": 1.79355606501253,
+          "tangentialMax": 1.82116256209097,
+          "sum": 3.6147186271035,
+          "minSep": 0.301022047655415
+        }
+      },
+      {
+        "start": 7,
+        "subjectJ_gbs": 10.9111069488097,
+        "subjectMinSep": 0.0000189089758011481,
+        "v": 0.702522153975022,
+        "member5Radius": 1.02804301627779,
+        "member5Speed": 0.746386292050694,
+        "reference": {
+          "radialMax": 16.2570574218488,
+          "tangentialMax": 6.98866244485121,
+          "sum": 23.2457198667,
+          "minSep": 0.560898177267353
+        }
+      },
+      {
+        "start": 8,
+        "subjectJ_gbs": 10.9738807026734,
+        "subjectMinSep": 0.227197464382705,
+        "v": 0.616537838566848,
+        "member5Radius": 1.05946401684081,
+        "member5Speed": 0.755394950457823,
+        "reference": {
+          "radialMax": 4.65498803901782,
+          "tangentialMax": 3.85857418456318,
+          "sum": 8.513562223581,
+          "minSep": 1.06007265455504
+        }
+      },
+      {
+        "start": 9,
+        "subjectJ_gbs": 10.8791515938956,
+        "subjectMinSep": 0.0000446737717827469,
+        "v": 0.696538225459953,
+        "member5Radius": 1.01186452758899,
+        "member5Speed": 0.707029792799464,
+        "reference": {
+          "radialMax": 4.81442308870304,
+          "tangentialMax": 1.32226980666151,
+          "sum": 6.13669289536455,
+          "minSep": 0.179677957528007
+        }
+      }
+    ]
+  },
+  "finishedAt": "2026-10-06T02:29:56.478Z"
+}

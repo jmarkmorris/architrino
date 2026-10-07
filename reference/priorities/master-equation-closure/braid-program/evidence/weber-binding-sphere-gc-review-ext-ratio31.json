@@ -1,0 +1,55 @@
+{
+ "test": "ext-ratio31",
+ "utc": "2026-10-06T23:17:34Z",
+ "knownCase_exactSquare": 2.003970726517624e-16,
+ "knownCase_generic31": {
+  "defect": 158.89706866284132,
+  "harmonicsBeyond4": 9.772485525101522e-16,
+  "minD": 0.02849112255988391
+ },
+ "claimedConfiguration": {
+  "relsign+1_phi3.14": {
+   "defect": 4.2878370654597504e-13,
+   "minD": 1.3436884816420428e-32
+  },
+  "relsign+1_phi0.00": {
+   "defect": 180.42068043371899,
+   "minD": 0.2962962962962963
+  },
+  "relsign-1_phi3.14": {
+   "defect": 5.548302918859951,
+   "minD": 1.3333333333333335
+  },
+  "relsign-1_phi0.00": {
+   "defect": 55.93621157318829,
+   "minD": 2.0000000000000004
+  }
+ },
+ "tangency_arcsin_aj_minus_arcsin_ai_minus_gamma": 0.0,
+ "claimedConfiguration_rootModuli": [
+  0.26794917355603165,
+  0.2679492113062147,
+  0.999861774999563,
+  0.9999799675049404,
+  1.000020057963166,
+  1.0001382190394712,
+  3.732050546528184,
+  3.7320510686095965
+ ],
+ "solutionsFound": 0,
+ "solutions_relsign_counts": {
+  "plus": 0,
+  "minus": 0
+ },
+ "two27": 0.07407407407407407,
+ "sevenNinths": 0.7777777777777778,
+ "nonSolutionEndStates_minD_ge_0p01": {
+  "count": 173,
+  "minDefect": 0.5573142549830837
+ },
+ "random31_minD_ge_0p01": {
+  "n": 2745,
+  "minDefect": 0.6081502983237485,
+  "minRootGap": 0.10255025242780842
+ }
+}

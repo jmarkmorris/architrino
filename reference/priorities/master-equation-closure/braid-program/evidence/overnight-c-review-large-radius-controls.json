@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": [
+    "rational arithmetic",
+    "circle-height equality at rational tangency",
+    "lower source factor 9/10",
+    "static antipodal radial row -1/2"
+  ],
+  "mode": "controls",
+  "sha256": "a0e55e0c0a0d511f0f57e817c3e5f4bc05250f78050cbb8457bc1827f682fde2"
+}

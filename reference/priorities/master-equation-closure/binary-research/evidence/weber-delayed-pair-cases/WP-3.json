@@ -1,0 +1,14 @@
+{
+ "name": "WP-3",
+ "description": "Circle at x=1 with 1e-3 radial and out-of-plane kicks; Section 9 backward past over S in [-40,0]; window twenty instantaneous orbital periods",
+ "members": [
+  {"q": -1, "x": [0.5, 0, 0], "v": [0.00070710678119, 0.70710678118655, 0.00070710678119], "past": {"kind": "section9-backward"}},
+  {"q": 1, "x": [-0.5, 0, 0], "v": [-0.00070710678119, -0.70710678118655, -0.00070710678119], "past": {"kind": "section9-backward"}}
+ ],
+ "pastLength": 40, "pastHmax": 0.02,
+ "coefficients": {"lambda": -0.5, "mu": 1, "K": 1, "cf": 1},
+ "integrator": {"method": "dp54", "rtol": 1e-10, "atol": 1e-14, "hmax": 0.0889},
+ "events": {"rContact": 1e-6, "rEscape": 1000, "detMin": 1e-8},
+ "tEnd": 88.86,
+ "output": {"every": 4}
+}

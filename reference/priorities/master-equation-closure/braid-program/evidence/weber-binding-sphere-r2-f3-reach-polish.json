@@ -1,0 +1,129 @@
+{
+ "subject": "F3 reach repair: periodic-orbit Newton (multiple shooting) and staged least-squares shooting in symmetry strata",
+ "law": {
+  "lambda": -0.5,
+  "mu": 1,
+  "K": 1,
+  "cf": 1
+ },
+ "R": 1,
+ "started": "2026-10-06T01:24:29.990Z",
+ "settings": {
+  "segments": 8,
+  "jacobianFlowRtol": 1e-13,
+  "fdStepNewton": 0.00001,
+  "nodeInitialisation": "rigid rotation of the seed about its total-moment axis sum X x V by 2 pi j / m",
+  "flowRtol": 1e-13,
+  "fdStep": 0.000001,
+  "lmIter": 15,
+  "shootingStages": [
+   0.015625,
+   0.03125,
+   0.0625,
+   0.125,
+   0.25,
+   0.5,
+   1
+  ],
+  "shootingSamples": 256
+ },
+ "knownCases": [
+  {
+   "id": "KN1-hexagon-is-a-zero",
+   "initialResidual": 5.440092820663267e-15,
+   "finalResidual": 5.440092820663267e-15,
+   "periodChange": 0,
+   "pass": true,
+   "note": "the initial residual is the accuracy floor of the one-period GBS flow of an orbit whose instability amplifies round-off by e^{2.46 P/m} per segment; the Newton must return to the hexagon with the period unchanged"
+  },
+  {
+   "id": "KN3-reach-staged-shooting-free",
+   "newtonPolish": {
+    "residual": 2.893241202173158e-13,
+    "iterations": 6,
+    "period": 7.660998597059269,
+    "periodOverHexagon": 1.00000000187601,
+    "converged": true,
+    "characterisation": {
+     "rMean": 1.0000000012508254,
+     "sMean": 0.8201522602351019,
+     "sphereDeviation": 1.8351627305928387e-8,
+     "speedDeviation": 5.275831333185093e-9,
+     "zMax": 0.063570965067552,
+     "minSep": 0.9999999936959958,
+     "HPlus3v2": -1.5512036100062687e-12,
+     "isHexagonLike": false
+    }
+   },
+   "window": 7.660998582687159,
+   "exactHexagonJ": {
+    "rk4": 4.3170029079933085e-8,
+    "gbs": 4.8512737575481615e-9
+   },
+   "startJ": 79238529546.3125,
+   "finalJ": {
+    "rk4": 6.6231099809247e-8,
+    "gbs": 6.333666206242778e-8
+   },
+   "history": [
+    {
+     "frac": 0.015625,
+     "J": 1.2577060981331867e-10,
+     "iter": 16,
+     "reason": "max-iter"
+    },
+    {
+     "frac": 0.03125,
+     "J": 1.9311206214839484e-12,
+     "iter": 16,
+     "reason": "max-iter"
+    },
+    {
+     "frac": 0.0625,
+     "J": 1.852121649906515e-13,
+     "iter": 16,
+     "reason": "max-iter"
+    },
+    {
+     "frac": 0.125,
+     "J": 1.1039162892666335e-10,
+     "iter": 16,
+     "reason": "max-iter"
+    },
+    {
+     "frac": 0.25,
+     "J": 2.3911747513347254e-10,
+     "iter": 16,
+     "reason": "max-iter"
+    },
+    {
+     "frac": 0.5,
+     "J": 4.3749901203887605e-10,
+     "iter": 31,
+     "reason": "max-iter"
+    },
+    {
+     "frac": 1,
+     "J": 6.6231099809247e-8,
+     "iter": 1,
+     "reason": "no-descent"
+    }
+   ],
+   "characterisation": {
+    "rMean": 1.0000000118460748,
+    "sMean": 0.8201522553901325,
+    "sphereDeviation": 5.486495059891096e-8,
+    "speedDeviation": 2.3539094875396636e-8,
+    "zMax": 0.06357929294634833,
+    "minSep": 0.9999999823453044,
+    "HPlus3v2": -4.876427706079767e-9,
+    "isHexagonLike": false
+   },
+   "pass": false
+  }
+ ],
+ "newton": [],
+ "shooting": {},
+ "finished": "2026-10-06T01:26:06.366Z",
+ "wallSeconds": 96.375
+}

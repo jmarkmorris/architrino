@@ -1,0 +1,28 @@
+{
+ "utc": "2026-10-06T23:31:27.683Z",
+ "command": "node reference/priorities/master-equation-closure/braid-program/evidence/weber-binding-sphere-mc-r2-refine.mjs --self-test",
+ "hexagonZeroAtM5": 2.7470157004066655e-15,
+ "reach": [
+  {
+   "trial": 0,
+   "iterations": 19,
+   "tailSteps": 3,
+   "score": 3.796200072155706e-15,
+   "omegaError": 2.220446049250313e-16,
+   "exactHexagon": true
+  },
+  {
+   "trial": 1,
+   "iterations": 19,
+   "tailSteps": 3,
+   "score": 3.961252249205954e-15,
+   "omegaError": 1.1102230246251565e-16,
+   "exactHexagon": true
+  }
+ ],
+ "tolerance": {
+  "zero": 1e-13,
+  "reach": 1e-10
+ },
+ "pass": true
+}

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": [
+    "elementary rational sum",
+    "single neutral-pair contraction=-1",
+    "average-velocity subtraction has norm 4/15 at rational 3-4-5 geometry"
+  ],
+  "mode": "controls",
+  "checker_sha256": "561a7607a4b8c594784de77afeed02349aadcd8b56c4f4ac02fc537e01a21fcc",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

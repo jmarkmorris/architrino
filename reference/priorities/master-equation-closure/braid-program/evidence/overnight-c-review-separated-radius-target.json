@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "corners": {
+    "7,20": "-6005717/173713200",
+    "6,30": "-9000059/681966900",
+    "11,11": "-35161/738100"
+  },
+  "C_at_20": "22319239/57904400",
+  "C_limit": "1/2",
+  "necessary_radius_bound_limit": "5",
+  "limit_reference": "Analytical comparison of degree-six leading coefficients in the accompanying review; finite substitutions do not prove the limit.",
+  "mode": "target",
+  "checker_sha256": "bf7a948aa254600a9d499fbe2a3f7c542457ff4b4f0d71e8b1198f3bab527dd5",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

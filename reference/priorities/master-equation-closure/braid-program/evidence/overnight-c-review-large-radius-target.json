@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "radiusLower": "11",
+  "commonRateUpper": "1/11",
+  "innerPartnerFactorUpper": "122/121",
+  "innerReceiverOuterFactorLower": "10/11",
+  "circularTermUpper": "1/121",
+  "innerPartnerRadialUpper": "-121/244",
+  "outerRadialUpper": "11/25",
+  "innerRadialResidualUpper": "-35161/738100",
+  "marginMagnitude": "35161/738100",
+  "directedPartnerCount": 30,
+  "outerSourcesPerInnerReceiver": 4,
+  "scope": "Exact constants and finite multiplicities; the full subfield root census is analytical.",
+  "mode": "target",
+  "sha256": "a0e55e0c0a0d511f0f57e817c3e5f4bc05250f78050cbb8457bc1827f682fde2"
+}

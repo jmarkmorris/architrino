@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "time": "2026-10-06T08:52:42.027Z",
+  "instrumentSha256": "48c32d1bd49b6ef4f8544bc78767e10d0d4942c9993b9969ef002887f54b1266",
+  "controls": [
+    "backtick, tilde, indented and inline code excluded",
+    "math application not a link",
+    "legitimate and broken local link distinguished",
+    "reference links retained",
+    "malformed TeX rejected",
+    "trailing whitespace and unmatched math diagnostic detected"
+  ],
+  "anchors": "Counted only; no renderer-aligned anchor implementation established."
+}

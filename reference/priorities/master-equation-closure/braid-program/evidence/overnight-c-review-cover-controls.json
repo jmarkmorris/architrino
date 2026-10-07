@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "controls": [
+    "exact dyadic values including large mantissa",
+    "positive and negative strict signs",
+    "invalid/special tuples rejected",
+    "reversed/zero-containing/mismatched intervals rejected",
+    "complete covers and malformed covers",
+    "duplicate JSON keys rejected",
+    "synthetic valid source chain",
+    "changed inherited witnesses and false completion rejected",
+    "display-only final witness rejected"
+  ],
+  "boundary": "Synthetic evidence-format controls only; no scientific target receipt read.",
+  "mode": "controls",
+  "checker_sha256": "601b32127cab24f9c40ca27824f7d908d0af5523c41b5a4f5661524708986df8",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

@@ -1,0 +1,115 @@
+{
+ "script": "weber-binding-sphere-gc-fh-checks.py",
+ "startedUTC": "2026-10-06T23:40:20.535626+00:00",
+ "knownCase": {
+  "circle_defect": 7.850462293418875e-17,
+  "circle_kVariation": 1.3322676295501878e-15,
+  "circle_axisVariation": 1.8885543062698778e-14,
+  "circle_winding": 2,
+  "jacobianMaxErr": 2.6881452619420543e-10,
+  "recovered_cost": 1.906670644943363e-31,
+  "recovered_axisVariation": 3.9727950376348334e-10,
+  "recovered_kVariation": 1.3403415044521694e-09,
+  "recovered_winding": 2,
+  "seamCurve_sphereDefect": 8.881784197001252e-16,
+  "seamCurve_speedSpread": 0.24390889145857741,
+  "seamCurve_kVariation": 4.124318125460255,
+  "pass": true
+ },
+ "targets": {
+  "2": {
+   "starts": 120,
+   "zerosFound": 91,
+   "degenerateConstantCurves": 29,
+   "notConverged": 0,
+   "smallestDefectAmongNotConverged": null,
+   "max_kVariation_amongZeros": 1.5598056823939999e-07,
+   "median_kVariation_amongZeros": 6.861178292183467e-14,
+   "max_axisVariation_amongZeros": 5.19935645714423e-08,
+   "max_otherHarmonics_amongZeros": 5.199368784113418e-08,
+   "largestDefectAmongZeros": 2.6645352591003757e-15,
+   "zerosWithDefectBelow1e-12": 91,
+   "max_kVariation_amongThose": 1.5598056823939999e-07,
+   "converged(defect<1e-12)": {
+    "count": 91,
+    "max_otherHarmonics": 5.199368784113418e-08,
+    "max_relative_kVariation": 7.799028411226224e-08,
+    "median_otherHarmonics": 7.600370075899858e-16
+   },
+   "stillDescending(defect>=1e-12)": {
+    "count": 0,
+    "max_otherHarmonics": 0.0
+   },
+   "windingCounts": {
+    "1": 54,
+    "2": 37
+   },
+   "greatCircles": 35,
+   "smallCircles": 56
+  },
+  "3": {
+   "starts": 120,
+   "zerosFound": 94,
+   "degenerateConstantCurves": 26,
+   "notConverged": 0,
+   "smallestDefectAmongNotConverged": null,
+   "max_kVariation_amongZeros": 0.0017987274336608294,
+   "median_kVariation_amongZeros": 2.3042412387874744e-07,
+   "max_axisVariation_amongZeros": 0.0008996073343782009,
+   "max_otherHarmonics_amongZeros": 1.7538224764334008e-06,
+   "largestDefectAmongZeros": 1.1324274851176597e-14,
+   "zerosWithDefectBelow1e-12": 94,
+   "max_kVariation_amongThose": 0.0017987274336608294,
+   "converged(defect<1e-12)": {
+    "count": 94,
+    "max_otherHarmonics": 1.7538224764334008e-06,
+    "max_relative_kVariation": 0.0017794652990189253,
+    "median_otherHarmonics": 4.854157235771548e-08
+   },
+   "stillDescending(defect>=1e-12)": {
+    "count": 0,
+    "max_otherHarmonics": 0.0
+   },
+   "windingCounts": {
+    "1": 53,
+    "2": 29,
+    "3": 12
+   },
+   "greatCircles": 38,
+   "smallCircles": 56
+  },
+  "4": {
+   "starts": 120,
+   "zerosFound": 56,
+   "degenerateConstantCurves": 38,
+   "notConverged": 26,
+   "smallestDefectAmongNotConverged": 1.027729024105639e-07,
+   "max_kVariation_amongZeros": 0.31284096527963146,
+   "median_kVariation_amongZeros": 0.00020739967793198533,
+   "max_axisVariation_amongZeros": 0.1040407230258528,
+   "max_otherHarmonics_amongZeros": 0.10420019140873905,
+   "largestDefectAmongZeros": 1.0318685905730263e-09,
+   "zerosWithDefectBelow1e-12": 46,
+   "max_kVariation_amongThose": 0.0012188853317047776,
+   "converged(defect<1e-12)": {
+    "count": 46,
+    "max_otherHarmonics": 4.461240609580549e-05,
+    "max_relative_kVariation": 0.0011961118225597164,
+    "median_otherHarmonics": 2.9255165631889733e-06
+   },
+   "stillDescending(defect>=1e-12)": {
+    "count": 10,
+    "max_otherHarmonics": 0.10420019140873905
+   },
+   "windingCounts": {
+    "1": 35,
+    "2": 11,
+    "3": 9,
+    "4": 1
+   },
+   "greatCircles": 6,
+   "smallCircles": 50
+  }
+ },
+ "finishedUTC": "2026-10-06T23:42:11.225613+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "time": "2026-10-06T06:05:44.285304+00:00",
+  "instrumentSha256": "f8ba1e7003463a7bcfd37cf2d1ec572861e0ad0f04ac6a1b82faa06dfb1ebfb2",
+  "cases": [
+    "all12 stationary-square tube roots",
+    "signed static-square exact receiver matrix",
+    "wholecell source window and separation margins"
+  ],
+  "scope": "Geometry wrapper controls only; no retained target read"
+}

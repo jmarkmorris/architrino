@@ -1,0 +1,5 @@
+identity Gddot = T + H : worst relative residual over 200 random states = 1.6442569992875307e-14
+hexagon rho 0.3 Omega^2 24.912952992976827 max|A+Om^2 X|/(Om^2 rho) 1.1883756747617867e-15 det -110797.84181594536
+hexagon rho 1 Omega^2 0.6726497308103742 max|A+Om^2 X|/(Om^2 rho) 8.252608852512409e-16 det -137.0961495747587
+hexagon rho 3 Omega^2 0.02491295299297682 max|A+Om^2 X|/(Om^2 rho) 1.2997858942707045e-15 det 4.81312464168482
+2026-10-05T23:44:18Z

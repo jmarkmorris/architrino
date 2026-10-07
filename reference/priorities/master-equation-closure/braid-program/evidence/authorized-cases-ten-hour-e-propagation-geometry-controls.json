@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "time": "2026-10-06T06:17:53.570703+00:00",
+  "geometrySha256": "bd12fbb0a60d7b6ca2d264f46570be9b8ce7cd7912c0e8f8bc194e5f05155c5c",
+  "cases": [
+    "all12 generated-source static-square tubes",
+    "independent exact source-acceleration coefficient sum",
+    "exact signed current-position matrix with separate source discrepancy domain"
+  ],
+  "scope": "known analytical geometry controls; no retained target evaluated"
+}

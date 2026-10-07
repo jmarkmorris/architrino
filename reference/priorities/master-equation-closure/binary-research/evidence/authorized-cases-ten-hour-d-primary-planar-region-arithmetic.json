@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "time": "2026-10-06T04:57:56.575Z",
+  "boundary": "Exact rational constants and polynomial comparisons only; no trajectory or independent theorem validation",
+  "knownReceipt": ".tmp/authorized-cases-ten-hour/d/planar-region-arithmetic-known.json",
+  "subject": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-planar-region.md",
+  "subjectSha256": "2c75dfbf3306d1f5fc9602b8dd98f5551d14b4d8460b18a2242f215593ecbb87",
+  "rows": [
+    {
+      "name": "angular remainder ratio",
+      "numerator": "38170625429",
+      "denominator": "12679867332",
+      "approximate": 3.0103331864261182,
+      "strictUpper": 3.02
+    },
+    {
+      "name": "completed square coefficient",
+      "numerator": "40401",
+      "denominator": "10000",
+      "approximate": 4.0401,
+      "strictUpper": 4.1
+    },
+    {
+      "name": "inverse midpoint coercivity",
+      "numerator": "78408",
+      "denominator": "38809",
+      "approximate": 2.020356102965807,
+      "strictUpper": 2.1
+    },
+    {
+      "name": "midpoint squared coefficient",
+      "numerator": "2027535783",
+      "denominator": "168188240",
+      "approximate": 12.055157857648073,
+      "strictUpper": 12.25
+    },
+    {
+      "name": "sqrt4.04 via squaring",
+      "numerator": "101",
+      "denominator": "25",
+      "approximate": 4.04,
+      "strictUpper": 4.0401
+    },
+    {
+      "name": "2.1 power1.5 via squaring",
+      "numerator": "9261",
+      "denominator": "1000",
+      "approximate": 9.261,
+      "strictUpper": 9.3025
+    },
+    {
+      "name": "separation barrier coefficient",
+      "numerator": "244879",
+      "denominator": "58000",
+      "approximate": 4.222051724137931,
+      "strictUpper": 4.223
+    },
+    {
+      "name": "separation cube comparison",
+      "numerator": "17833729",
+      "denominator": "70728100000000000000",
+      "approximate": 2.521448900790492e-13,
+      "strictUpper": 2.962962962962963e-13
+    },
+    {
+      "name": "member speed via positive squaring",
+      "numerator": "101",
+      "denominator": "1500000",
+      "approximate": 0.00006733333333333333,
+      "strictUpper": 0.000068775564803805
+    },
+    {
+      "name": "release lower account",
+      "numerator": "43605399240613718",
+      "denominator": "21173210104671225",
+      "approximate": 2.059460942627378,
+      "strictUpper": 2.1
+    },
+    {
+      "name": "release upper account",
+      "numerator": "-70521746083077629",
+      "denominator": "36248172637500000",
+      "approximate": -1.945525552096947,
+      "strictUpper": 0
+    },
+    {
+      "name": "release inverse distance",
+      "numerator": "20000",
+      "denominator": "9929",
+      "approximate": 2.014301540940679,
+      "strictUpper": 2.1
+    },
+    {
+      "name": "generated third-window coverage",
+      "numerator": "30213",
+      "denominator": "5000",
+      "approximate": 6.0426,
+      "strictUpper": 10
+    }
+  ]
+}

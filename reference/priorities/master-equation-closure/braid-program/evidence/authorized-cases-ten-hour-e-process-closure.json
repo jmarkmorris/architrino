@@ -1,0 +1,86 @@
+[
+  {
+    "runId": "096719ad-4ec6-426a-9169-62d43791d4be",
+    "status": "completed",
+    "exitCode": 0,
+    "processGroupClosed": true,
+    "startedAtUtc": "2026-10-06T06:20:28.702Z",
+    "finishedAtUtc": "2026-10-06T06:20:41.546Z",
+    "elapsedWallSeconds": 12.877,
+    "stdoutBytes": 905,
+    "stderrBytes": 0,
+    "stopReason": null
+  },
+  {
+    "runId": "13e2ddb1-06a5-4880-b64d-71fc7bfe7c81",
+    "status": "stopped",
+    "exitCode": 0,
+    "processGroupClosed": true,
+    "startedAtUtc": "2026-10-06T06:54:48.195Z",
+    "finishedAtUtc": "2026-10-06T08:11:37.900Z",
+    "elapsedWallSeconds": 4609.732,
+    "stdoutBytes": 54565,
+    "stderrBytes": 0,
+    "stopReason": "Coordinator accepted independently verified exact-T10 finite spatial departure; preserve completed prefix and stop before fifteen."
+  },
+  {
+    "runId": "549d54a0-609e-4c02-8ade-a0c88fb7f11c",
+    "status": "failed",
+    "exitCode": 1,
+    "processGroupClosed": true,
+    "startedAtUtc": "2026-10-06T06:14:35.263Z",
+    "finishedAtUtc": "2026-10-06T06:14:35.522Z",
+    "elapsedWallSeconds": 0.288,
+    "stdoutBytes": 0,
+    "stderrBytes": 633,
+    "stopReason": null
+  },
+  {
+    "runId": "c38e7204-4a8e-44ea-9f22-ac578a901eff",
+    "status": "completed",
+    "exitCode": 0,
+    "processGroupClosed": true,
+    "startedAtUtc": "2026-10-06T05:59:52.354Z",
+    "finishedAtUtc": "2026-10-06T06:00:27.236Z",
+    "elapsedWallSeconds": 34.908,
+    "stdoutBytes": 3299,
+    "stderrBytes": 0,
+    "stopReason": null
+  },
+  {
+    "runId": "cddd4295-ad7d-4f9b-8bdf-291a4c8a87b4",
+    "status": "completed",
+    "exitCode": 0,
+    "processGroupClosed": true,
+    "startedAtUtc": "2026-10-06T06:33:10.427Z",
+    "finishedAtUtc": "2026-10-06T06:33:36.648Z",
+    "elapsedWallSeconds": 26.261,
+    "stdoutBytes": 886,
+    "stderrBytes": 0,
+    "stopReason": null
+  },
+  {
+    "runId": "e03f0ba2-8b8c-470a-a4b0-8875713cbe88",
+    "status": "completed",
+    "exitCode": 0,
+    "processGroupClosed": true,
+    "startedAtUtc": "2026-10-06T05:54:21.619Z",
+    "finishedAtUtc": "2026-10-06T05:54:58.459Z",
+    "elapsedWallSeconds": 36.868,
+    "stdoutBytes": 841,
+    "stderrBytes": 0,
+    "stopReason": null
+  },
+  {
+    "runId": "eee734d2-e607-4fad-894f-55ebc339b396",
+    "status": "completed",
+    "exitCode": 0,
+    "processGroupClosed": true,
+    "startedAtUtc": "2026-10-06T06:20:40.140Z",
+    "finishedAtUtc": "2026-10-06T06:20:47.715Z",
+    "elapsedWallSeconds": 7.607,
+    "stdoutBytes": 3266,
+    "stderrBytes": 0,
+    "stopReason": null
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "time": "2026-10-06T06:35:35.456623+00:00",
+  "instrumentSha256": "f027a63729e056da47e7e3395229d3b7c464ab0a4063a906eec1883e472e3bbb",
+  "cases": [
+    "complete newline-delimited JSON record",
+    "partial line deferred",
+    "unknown record rejected",
+    "incremental prefix digest",
+    "reference cell-only footer digest",
+    "scientific budget below and at boundary"
+  ],
+  "scope": "stream wrapper controls only; target not evaluated"
+}

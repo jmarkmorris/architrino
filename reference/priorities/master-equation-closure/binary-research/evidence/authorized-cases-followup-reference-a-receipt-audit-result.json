@@ -1,0 +1,10 @@
+{
+  "sourceSHA": "ba9d44771c24330a04cab644c62a9c529950d88006939d394572fbce183d17e4",
+  "passed": true,
+  "cases": [
+    "exact affine signed moments",
+    "quadratic integral containment",
+    "missing interval rejected",
+    "invalid final weight rejected"
+  ]
+}

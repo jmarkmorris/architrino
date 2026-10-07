@@ -1,0 +1,13 @@
+# Primary D route assessment and exact angular-floor control
+
+Claim grade: derived analytical assessment. The [angular-floor control](authorized-cases-ten-hour-d-primary-angular-floor-control.md), SHA-256 `c6adaae781216f8828d91fcf4603e8850b6de012433b0f1b264a1b1e80c9a0a7`, agrees with the [independently frozen affine reference](authorized-cases-ten-hour-reference-d-angular-floor-control.md). Its local control conclusion is accepted.
+
+The two explicitly distinct delays are correct. Substitution into the affine chord quadratics gives $R_+=d/(q_--a)$ and $R_-=d/(q_++a)$, with positive denominators at the stated small speed. The complete constant velocities give unique ordinary partner roots and empty self census. Their exact tangential relative row yields the negative angular derivative while the scalar account is negative. Ordinary local continuation from the smooth supplied velocities preserves that sign immediately after release, even though acceleration jumps from its prescribed zero value.
+
+This establishes failure of automatic angular-floor invariance from the instantaneous small-speed and account data alone. The control does not satisfy the generated-window condition $t>3d$ at release. It is therefore neither a counterexample to the full conditional planar theorem nor evidence that the actual nominal member loses its angular floor or fails to disperse.
+
+The current [primary route synthesis](authorized-cases-ten-hour-d-primary-route-boundary.md), SHA-256 `44c4ea82e1a076c070537b645a98ae92ef00d0ceb40110fa4fc44bf9f4ded270`, accurately assembles the separately accepted midpoint correction, scalar account, planar region, exact nominal-prefix entry and positive-account continuation. Its combined conclusion explicitly maintains the stronger $H_*=2\epsilon R_0$ floor through both stages. It preserves the missing historical request/build identity, the unrestricted three-dimensional moving-plane term and the lack of a strict outgoing witness for the selected slow mirror member.
+
+The primary all-future nonmirror-neighborhood request remains unresolved. The substantive accepted advance is a complete conditional planar continuation route with exact finite nominal-prefix admission and one remaining angular-floor preservation question, together with the separately identified three-dimensional obstruction to this particular estimate. Neither the affine control nor an inequality counterpath is promoted to a physical nondispersal result.
+
+No computation was run for this assessment. The B reference scalar and endpoint-comparison processes have already closed; no reference process is active. A separately authorized fallback remains distinct from completing the primary request.

@@ -29,6 +29,13 @@ The [modulated-history proposal](brainstorming.md#rigid-screen-and-modulated-his
 - **Decision:** Decide whether to supplement the candidate specification with a periodic boundary-value problem, and declare its complete histories, symmetry/phase conditions, axial motion, root topology and equation-residual acceptance. The contra-rotating time-dependence result is restricted to the actual regular-ring chart; it is not a universal nonexistence theorem for photon carriers.
 - **Completion:** Record the selected completion criterion or a rejection/deferral with revisit condition. No retained orbit, ambient mechanism or environmental response is assumed. This cross-owner change is indexed in the Operator Discussion Queue.
 
+### Assess whether finite travelling balances bear on the translating carrier
+
+- **Status:** ◐ Assessment written 2026-10-05, with a recommended ruling; the ruling awaits the operator. See the [assessment](analysis/travelling-balances-assessment-2026-10-05.md). It carries no score and changes no ranked object.
+- **Source:** The Braid Program's [wider search](../braid-program/analysis/rigid-balance-search-2026-10-04.md#balances-that-travel-along-their-axis) found four finite arrangements, of three, six and eight members, that satisfy the unchanged delayed equation exactly while rotating and moving steadily along their rotation axis, with every member below wake speed. Two have separately constructed certificates.
+- **Request:** Decide whether these bear on this owner's [twelve-member specification](#specify-the-first-twelve-architrino-candidate-test). The facts to weigh: they travel at $0.11$ to $0.45$ of wake speed and not at wake speed; one of the four has no net polarity; none is built from two coaxial rings of conjugate polarity turning in opposite senses; each has 9 to 32 growing characteristic roots. The count of conditions that makes them travel, namely that an arrangement without a mirror plane has one more axial condition than unknowns unless it moves along its axis, applies to any rigid carrier.
+- **Completion:** A short recorded ruling: not relevant, relevant as a control for the axial-balance identity, or a reason to state a travelling twelve-member rigid search. No retained carrier is implied by these balances.
+
 ## Deferred / blocked
 
 ### PHO-009 — Conditional formation-geometry relaxation

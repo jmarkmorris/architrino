@@ -1,0 +1,15 @@
+{
+ "test": "t4",
+ "utc": "2026-10-06T22:39:56Z",
+ "n": 200,
+ "familyAlphaError": 3.397282455352979e-14,
+ "familyKappaRelError": 2.8848076477614634e-14,
+ "maxProportionalityDefect_equalAlphaKappa": 1.2182123932680136e-13,
+ "A_ratio_range": [
+  0.00904300697210509,
+  303.636090958097
+ ],
+ "maxAbsD_bothPartners_at_common_Tstar": 1.998449630507562e-15,
+ "minProportionalityDefect_equalKappaOnly": 0.8870982225488658,
+ "min_absD_over_2A_at_other_Tstar_equalKappaOnly": 0.1979099602845028
+}

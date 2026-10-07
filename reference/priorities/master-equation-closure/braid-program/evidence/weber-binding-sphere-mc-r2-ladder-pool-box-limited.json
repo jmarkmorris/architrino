@@ -1,0 +1,1134 @@
+{
+ "utc": "2026-10-06T23:50:25.909Z",
+ "mode": "pool",
+ "Ms": [
+  3,
+  5,
+  7
+ ],
+ "args": [
+  "--mode",
+  "pool",
+  "--tags",
+  "free-direct-80,free-direct-580",
+  "--top",
+  "10",
+  "--allow-box-limited",
+  "--Ms",
+  "3,5,7",
+  "--tag",
+  "pool-box-limited"
+ ],
+ "ladders": [
+  {
+   "label": "free-direct-580:586:direct2:stacked-latitude",
+   "rungs": [
+    {
+     "ok": true,
+     "M": 3,
+     "Nc": 16,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.5762081139236988,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 0.6737159705556113,
+     "maxE": 0.6589565779845745,
+     "maxEspeed": 0.6737159705556113,
+     "maxS": 0.038842929386131875,
+     "maxV": 0.1021388231949345,
+     "minSep": 0.591999855908849,
+     "det": [
+      0.0509158396913101,
+      0.05091597446389809
+     ],
+     "detOneSigned": true,
+     "separationOK": true,
+     "speed": [
+      1.5447873249009083,
+      1.574741995435634
+     ],
+     "Hplus3v2": 17.855245791806453,
+     "sigDVariation": 1.0868195232660582e-9,
+     "pairDistanceSpread": 2.3787316560941463e-10,
+     "rigid": true,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 5,
+     "Nc": 24,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.5761458169708487,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 0.6737594518904342,
+     "maxE": 0.6589991073712836,
+     "maxEspeed": 0.6737594518904342,
+     "maxS": 0.038842960387607484,
+     "maxV": 0.10205161203395757,
+     "minSep": 0.5920112542946032,
+     "det": [
+      0.036960632207717434,
+      0.036960805977743635
+     ],
+     "detOneSigned": true,
+     "separationOK": true,
+     "speed": [
+      1.5447263757962308,
+      1.5746796903105102
+     ],
+     "Hplus3v2": 17.854592605975682,
+     "sigDVariation": 1.4389573976814063e-9,
+     "pairDistanceSpread": 3.220337330134271e-10,
+     "rigid": true,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 7,
+     "Nc": 32,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.5761101976832879,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 0.6737844978980376,
+     "maxE": 0.6590236001961939,
+     "maxEspeed": 0.6737844978980376,
+     "maxS": 0.038843000323131704,
+     "maxV": 0.10200177301955075,
+     "minSep": 0.5920176914405135,
+     "det": [
+      0.02901317926051887,
+      0.02901339362683998
+     ],
+     "detOneSigned": true,
+     "separationOK": true,
+     "speed": [
+      1.5446915097921143,
+      1.5746440833705848
+     ],
+     "Hplus3v2": 17.854219361161622,
+     "sigDVariation": 1.8068551099759134e-9,
+     "pairDistanceSpread": 4.5826920036518004e-10,
+     "rigid": true,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    }
+   ],
+   "trend": "stalls; box-limited at M=3,5,7; rigid at M=3,5,7",
+   "rank": 0,
+   "M3searchScore": 0.6736118152987222,
+   "M3boxLimited": true
+  },
+  {
+   "label": "free-direct-580:606:direct2:stacked-latitude",
+   "rungs": [
+    {
+     "ok": true,
+     "M": 3,
+     "Nc": 16,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.4310131914782096,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 1.044714168100061,
+     "maxE": 0.769028996632129,
+     "maxEspeed": 1.044714168100061,
+     "maxS": 0.11242915011145804,
+     "maxV": 0.59816013578174,
+     "minSep": 0.6265937919466268,
+     "det": [
+      -582.2497713812556,
+      -582.2497713491866
+     ],
+     "detOneSigned": true,
+     "separationOK": true,
+     "speed": [
+      0.9508626054751996,
+      1.3495898674619078
+     ],
+     "Hplus3v2": 10.402478443691006,
+     "sigDVariation": 6.446132516657599e-11,
+     "pairDistanceSpread": 4.877587223006685e-11,
+     "rigid": true,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 5,
+     "Nc": 24,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.4320392776271609,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 1.0460314381678495,
+     "maxE": 0.7681831795248769,
+     "maxEspeed": 1.0460314381678495,
+     "maxS": 0.11245867021444855,
+     "maxV": 0.5999839530490821,
+     "minSep": 0.626161988508464,
+     "det": [
+      -582.1753702578682,
+      -582.1753702227189
+     ],
+     "detOneSigned": true,
+     "separationOK": true,
+     "speed": [
+      0.9487023272025664,
+      1.350211482584617
+     ],
+     "Hplus3v2": 10.404469965907834,
+     "sigDVariation": 4.232614259080947e-11,
+     "pairDistanceSpread": 4.602540570886049e-11,
+     "rigid": true,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 7,
+     "Nc": 32,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.4313460124044064,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 1.0474635876415979,
+     "maxE": 0.7686449218380296,
+     "maxEspeed": 1.0474635876415979,
+     "maxS": 0.11307161839096702,
+     "maxV": 0.6010140022545664,
+     "minSep": 0.6259788874650817,
+     "det": [
+      -581.6240721356141,
+      -581.6240721102984
+     ],
+     "detOneSigned": true,
+     "separationOK": true,
+     "speed": [
+      0.9474800762692721,
+      1.349502540964334
+     ],
+     "Hplus3v2": 10.399602918498731,
+     "sigDVariation": 1.6513013179064728e-11,
+     "pairDistanceSpread": 4.766409489320722e-11,
+     "rigid": true,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    }
+   ],
+   "trend": "stalls; box-limited at M=3,5,7; rigid at M=3,5,7",
+   "rank": 1,
+   "M3searchScore": 1.041603248366471,
+   "M3boxLimited": true
+  },
+  {
+   "label": "free-direct-580:639:direct2:great-circle-pairs",
+   "rungs": [
+    {
+     "ok": true,
+     "M": 3,
+     "Nc": 16,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.3365783009516257,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 1.2255193611899837,
+     "maxE": 1.355688529179958,
+     "maxEspeed": 1.2255193611899837,
+     "maxS": 0.18844507813839995,
+     "maxV": 0.20040455902907497,
+     "minSep": 0.5670350757698382,
+     "det": [
+      93.8498883036853,
+      11279.335989098754
+     ],
+     "detOneSigned": true,
+     "separationOK": true,
+     "speed": [
+      1.3413015105428687,
+      1.4557982725031664
+     ],
+     "Hplus3v2": 15.994633596700067,
+     "sigDVariation": 0.723713821716867,
+     "pairDistanceSpread": 0.22038522252841541,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 5,
+     "Nc": 24,
+     "iter": 52,
+     "reason": "stalled",
+     "omega": 1.3405623333854828,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 1.252236969589603,
+     "maxE": 1.3852734513371934,
+     "maxEspeed": 1.252236969589603,
+     "maxS": 0.19011100440838447,
+     "maxV": 0.208726309067177,
+     "minSep": 0.562156649059857,
+     "det": [
+      50.75396820592519,
+      11920.045369260924
+     ],
+     "detOneSigned": true,
+     "separationOK": true,
+     "speed": [
+      1.334303490439432,
+      1.4874180632519416
+     ],
+     "Hplus3v2": 16.040224729846834,
+     "sigDVariation": 0.7268735941310336,
+     "pairDistanceSpread": 0.2192538053368377,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 7,
+     "Nc": 32,
+     "iter": 39,
+     "reason": "stalled",
+     "omega": 1.3394583959903086,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 1.2430248093566598,
+     "maxE": 1.3752074362881517,
+     "maxEspeed": 1.2430248093566598,
+     "maxS": 0.1912824881350157,
+     "maxV": 0.20619138920896182,
+     "minSep": 0.5622853005521847,
+     "det": [
+      38.71227239658589,
+      11893.462978877344
+     ],
+     "detOneSigned": true,
+     "separationOK": true,
+     "speed": [
+      1.336439064933316,
+      1.5016818427656942
+     ],
+     "Hplus3v2": 16.0324547753604,
+     "sigDVariation": 0.7220106962165183,
+     "pairDistanceSpread": 0.2187715742720182,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    }
+   ],
+   "trend": "stalls; box-limited at M=3,5,7",
+   "rank": 2,
+   "M3searchScore": 1.3592340314211875,
+   "M3boxLimited": true
+  },
+  {
+   "label": "free-direct-580:623:direct2:great-circle-pairs",
+   "rungs": [
+    {
+     "ok": true,
+     "M": 3,
+     "Nc": 16,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.4419856068919672,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 6.924614213522779,
+     "maxE": 8.033150725943921,
+     "maxEspeed": 6.924614213522779,
+     "maxS": 0.2469708098930774,
+     "maxV": 0.34802926355735636,
+     "minSep": 0.8925968906540476,
+     "det": [
+      -80.88966481198919,
+      1.1481259513337254
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      1.2111705730391356,
+      1.7159884964080294
+     ],
+     "Hplus3v2": 12.234780506531926,
+     "sigDVariation": 9.186172270467415,
+     "pairDistanceSpread": 0.9031139648864359,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 5,
+     "Nc": 24,
+     "iter": 67,
+     "reason": "stalled",
+     "omega": 1.0002755557950578,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 5.971932006293471,
+     "maxE": 7.092241706273256,
+     "maxEspeed": 5.971932006293471,
+     "maxS": 0.32595602499116705,
+     "maxV": 0.7300152430336713,
+     "minSep": 0.922478502588136,
+     "det": [
+      -67.36962637713222,
+      8.013066412559626
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      0.7794008616714762,
+      1.271125889610412
+     ],
+     "Hplus3v2": 8.558980565532668,
+     "sigDVariation": 9.35662757906087,
+     "pairDistanceSpread": 1.0286608919792526,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 7,
+     "Nc": 32,
+     "iter": 74,
+     "reason": "stalled",
+     "omega": 0.9414475526105686,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 3.9711038185861156,
+     "maxE": 4.75161582562767,
+     "maxEspeed": 3.9711038185861156,
+     "maxS": 0.33114751559764466,
+     "maxV": 0.7730165369896372,
+     "minSep": 0.9035380232154288,
+     "det": [
+      -66.11576653359637,
+      12.735849897518555
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      0.7146417226648024,
+      1.1964579596250773
+     ],
+     "Hplus3v2": 8.19169466406691,
+     "sigDVariation": 9.4382082662772,
+     "pairDistanceSpread": 1.0511175722781099,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    }
+   ],
+   "trend": "falls slowly; box-limited at M=3,5,7; determinant changes sign at M=3,5,7",
+   "rank": 3,
+   "M3searchScore": 8.064330657207055,
+   "M3boxLimited": true
+  },
+  {
+   "label": "free-direct-80:91:direct2:great-circle-pairs",
+   "rungs": [
+    {
+     "ok": true,
+     "M": 3,
+     "Nc": 16,
+     "iter": 78,
+     "reason": "stalled",
+     "omega": 1.3368473540526877,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 8.707077544398029,
+     "maxE": 9.571527614890558,
+     "maxEspeed": 8.707077544398029,
+     "maxS": 0.2689874117501254,
+     "maxV": 0.5802964117438899,
+     "minSep": 0.13237158604047355,
+     "det": [
+      310.6736922516883,
+      110813.25960827264
+     ],
+     "detOneSigned": true,
+     "separationOK": false,
+     "speed": [
+      0.9717680142792559,
+      1.867295322466179
+     ],
+     "Hplus3v2": 12.920944286598397,
+     "sigDVariation": 3.4394487479231834,
+     "pairDistanceSpread": 0.937182531676923,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 5,
+     "Nc": 24,
+     "iter": 150,
+     "reason": "max-iterations",
+     "omega": 1.2676789313757735,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 13.322566262520553,
+     "maxE": 15.115083005856707,
+     "maxEspeed": 13.322566262520553,
+     "maxS": 0.3064618554794052,
+     "maxV": 0.7128482508900862,
+     "minSep": 0.08813072466235557,
+     "det": [
+      613.1664119966606,
+      279547.0164877049
+     ],
+     "detOneSigned": true,
+     "separationOK": false,
+     "speed": [
+      0.8037981310610929,
+      1.9071029208205776
+     ],
+     "Hplus3v2": 13.559500785970993,
+     "sigDVariation": 3.2197844586008095,
+     "pairDistanceSpread": 0.8842092990990031,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 7,
+     "Nc": 32,
+     "iter": 129,
+     "reason": "stalled",
+     "omega": 1.2351773231664698,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 18.491781421869945,
+     "maxE": 21.429593912653303,
+     "maxEspeed": 18.491781421869945,
+     "maxS": 0.3402332439164617,
+     "maxV": 0.7697343416912842,
+     "minSep": 0.06325539418400941,
+     "det": [
+      575.2615722097383,
+      613375.8829372905
+     ],
+     "detOneSigned": true,
+     "separationOK": false,
+     "speed": [
+      0.7197900605000118,
+      1.9166684104066611
+     ],
+     "Hplus3v2": 13.659461069047477,
+     "sigDVariation": 3.0342792269813437,
+     "pairDistanceSpread": 0.8921078044674655,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    }
+   ],
+   "trend": "rises; box-limited at M=3,5,7",
+   "rank": 4,
+   "M3searchScore": 9.589540834210306,
+   "M3boxLimited": true
+  },
+  {
+   "label": "free-direct-80:99:direct2:great-circle-pairs",
+   "rungs": [
+    {
+     "ok": true,
+     "M": 3,
+     "Nc": 16,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.3991665124507002,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 12.533390700811953,
+     "maxE": 13.087408230646968,
+     "maxEspeed": 12.533390700811953,
+     "maxS": 0.530291554909692,
+     "maxV": 0.670188387195984,
+     "minSep": 0.06235638395759699,
+     "det": [
+      387.24966314432345,
+      395119.110904293
+     ],
+     "detOneSigned": true,
+     "separationOK": false,
+     "speed": [
+      0.861438406857412,
+      1.7025234221438967
+     ],
+     "Hplus3v2": 14.980254505285519,
+     "sigDVariation": 0.8157134467329197,
+     "pairDistanceSpread": 0.9866945829707439,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 5,
+     "Nc": 24,
+     "iter": 150,
+     "reason": "max-iterations",
+     "omega": 1.4154070309409545,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 16.0142864236611,
+     "maxE": 17.695057919026922,
+     "maxEspeed": 16.0142864236611,
+     "maxS": 0.4533357403283742,
+     "maxV": 0.47282058418639994,
+     "minSep": 0.04650744870783708,
+     "det": [
+      611.2763927821917,
+      1104676.517804053
+     ],
+     "detOneSigned": true,
+     "separationOK": false,
+     "speed": [
+      1.0891068292782853,
+      1.757847700496911
+     ],
+     "Hplus3v2": 16.983404782311666,
+     "sigDVariation": 0.9550222345228931,
+     "pairDistanceSpread": 0.8451955547800778,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 7,
+     "Nc": 32,
+     "iter": 150,
+     "reason": "max-iterations",
+     "omega": 1.4358532243639854,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 21.856990201275014,
+     "maxE": 23.800399861882635,
+     "maxEspeed": 21.856990201275014,
+     "maxS": 0.4052637878757328,
+     "maxV": 0.5005299224198814,
+     "minSep": 0.03477649797553514,
+     "det": [
+      787.7354853031178,
+      2330459.9868906448
+     ],
+     "detOneSigned": true,
+     "separationOK": false,
+     "speed": [
+      1.0600979551698355,
+      1.7946446358508263
+     ],
+     "Hplus3v2": 17.34347210467797,
+     "sigDVariation": 0.8786412812642084,
+     "pairDistanceSpread": 0.8395075314946808,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    }
+   ],
+   "trend": "rises; box-limited at M=3,5,7",
+   "rank": 5,
+   "M3searchScore": 13.041807350000932,
+   "M3boxLimited": true
+  },
+  {
+   "label": "free-direct-580:598:direct2:stacked-latitude",
+   "rungs": [
+    {
+     "ok": true,
+     "M": 3,
+     "Nc": 16,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.3494480307977814,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 13.897810055534022,
+     "maxE": 12.848091370891042,
+     "maxEspeed": 13.897810055534022,
+     "maxS": 0.6953656402187078,
+     "maxV": 0.7135800458164557,
+     "minSep": 0.15309494685385122,
+     "det": [
+      0.011734405420371378,
+      19504.100228199015
+     ],
+     "detOneSigned": true,
+     "separationOK": false,
+     "speed": [
+      0.8027732537354335,
+      1.7053150618332624
+     ],
+     "Hplus3v2": 6.633721218733714,
+     "sigDVariation": 4.876194362934064,
+     "pairDistanceSpread": 1.723424861839431,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 5,
+     "Nc": 24,
+     "iter": 73,
+     "reason": "stalled",
+     "omega": 1.268219493869112,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 26.81438642067387,
+     "maxE": 25.786055426806826,
+     "maxEspeed": 26.81438642067387,
+     "maxS": 0.7344338041220455,
+     "maxV": 0.7961087156978547,
+     "minSep": 0.07085356997433957,
+     "det": [
+      -0.11488141309612386,
+      97362.69993607239
+     ],
+     "detOneSigned": false,
+     "separationOK": false,
+     "speed": [
+      0.6773148379297673,
+      1.654539269399366
+     ],
+     "Hplus3v2": 7.620765927428047,
+     "sigDVariation": 6.819572679141787,
+     "pairDistanceSpread": 1.7823606001203847,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 7,
+     "Nc": 32,
+     "iter": 145,
+     "reason": "stalled",
+     "omega": 1.2038309624862455,
+     "v": 1.4459256818872677,
+     "boxLimited": false,
+     "combined": 39.06764990064387,
+     "maxE": 38.13297449469957,
+     "maxEspeed": 39.06764990064387,
+     "maxS": 0.7317782481987414,
+     "maxV": 0.808316076568682,
+     "minSep": 0.05170365703847949,
+     "det": [
+      -0.24158936731761554,
+      206100.1613562506
+     ],
+     "detOneSigned": false,
+     "separationOK": false,
+     "speed": [
+      0.633051171126927,
+      1.6432115811173604
+     ],
+     "Hplus3v2": 7.360774534439104,
+     "sigDVariation": 7.427605311126294,
+     "pairDistanceSpread": 1.8169147129006105,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    }
+   ],
+   "trend": "rises; box-limited at M=3,5; determinant changes sign at M=5,7",
+   "rank": 6,
+   "M3searchScore": 13.863698168900376,
+   "M3boxLimited": true
+  },
+  {
+   "label": "free-direct-580:611:direct2:great-circle-pairs",
+   "rungs": [
+    {
+     "ok": true,
+     "M": 3,
+     "Nc": 16,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.041881881316978,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 15.185466794221282,
+     "maxE": 18.11627288854153,
+     "maxEspeed": 15.185466794221282,
+     "maxS": 0.5324810220262892,
+     "maxV": 0.7486518546342465,
+     "minSep": 0.5998211953495868,
+     "det": [
+      -2.158635470848313,
+      3810.516049412323
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      0.7520194991308039,
+      1.3249433872204859
+     ],
+     "Hplus3v2": 10.333416580488873,
+     "sigDVariation": 4.8493529064980825,
+     "pairDistanceSpread": 1.1924619663793523,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 5,
+     "Nc": 24,
+     "iter": 150,
+     "reason": "max-iterations",
+     "omega": 0.9566043514198933,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 12.286377381461552,
+     "maxE": 14.687829890385837,
+     "maxEspeed": 12.286377381461552,
+     "maxS": 0.46616499643415565,
+     "maxV": 0.7831875841755477,
+     "minSep": 0.5728210763400353,
+     "det": [
+      -0.8913078302635068,
+      3592.072726156571
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      0.6984468022727414,
+      1.287402179721473
+     ],
+     "Hplus3v2": 9.900681806453537,
+     "sigDVariation": 4.853521282105893,
+     "pairDistanceSpread": 1.0981172616548698,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 7,
+     "Nc": 32,
+     "iter": 150,
+     "reason": "max-iterations",
+     "omega": 0.9742334612053271,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 3.41210113848561,
+     "maxE": 4.05749296432483,
+     "maxEspeed": 3.41210113848561,
+     "maxS": 0.40441431535538896,
+     "maxV": 0.823115303478894,
+     "minSep": 0.5520536315244398,
+     "det": [
+      -0.4360285723504433,
+      5114.879825507849
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      0.6308649357608079,
+      1.3051168153801618
+     ],
+     "Hplus3v2": 10.227213626527556,
+     "sigDVariation": 4.868737634879877,
+     "pairDistanceSpread": 1.0850600759464357,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    }
+   ],
+   "trend": "falls slowly; box-limited at M=3,5,7; determinant changes sign at M=3,5,7",
+   "rank": 7,
+   "M3searchScore": 18.121734541753828,
+   "M3boxLimited": true
+  },
+  {
+   "label": "free-direct-580:595:direct2:great-circle-pairs",
+   "rungs": [
+    {
+     "ok": true,
+     "M": 3,
+     "Nc": 16,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.5208048024038112,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 16.41352512354706,
+     "maxE": 18.698086872645376,
+     "maxEspeed": 16.41352512354706,
+     "maxS": 0.28405687302851956,
+     "maxV": 0.962735084828847,
+     "minSep": 0.1764809853649992,
+     "det": [
+      -22.18572706482927,
+      22829.160156539452
+     ],
+     "detOneSigned": false,
+     "separationOK": false,
+     "speed": [
+      1.2651900426240879,
+      2.101464713209552
+     ],
+     "Hplus3v2": 12.936809712827174,
+     "sigDVariation": 8.838285613336527,
+     "pairDistanceSpread": 1.4329885234299085,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 5,
+     "Nc": 24,
+     "iter": 150,
+     "reason": "max-iterations",
+     "omega": 1.0753109527799727,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 17.57148011547181,
+     "maxE": 23.10893381914668,
+     "maxEspeed": 17.57148011547181,
+     "maxS": 0.473486547706641,
+     "maxV": 0.8532713832712827,
+     "minSep": 0.07778938486380513,
+     "det": [
+      -34.21386571263131,
+      64511.198595057984
+     ],
+     "detOneSigned": false,
+     "separationOK": false,
+     "speed": [
+      0.5745775732132381,
+      1.6702555328622277
+     ],
+     "Hplus3v2": 10.618926245642268,
+     "sigDVariation": 10.409799507358962,
+     "pairDistanceSpread": 1.6716113830644153,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 7,
+     "Nc": 32,
+     "iter": 101,
+     "reason": "stalled",
+     "omega": 1.324340556111469,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 27.054372346316743,
+     "maxE": 35.33094566481087,
+     "maxEspeed": 27.054372346316743,
+     "maxS": 0.45012873155730704,
+     "maxV": 0.9928124083169606,
+     "minSep": 0.0795600957838068,
+     "det": [
+      -27.781526396103466,
+      69065.73460024394
+     ],
+     "detOneSigned": false,
+     "separationOK": false,
+     "speed": [
+      0.7017975341434812,
+      2.1175051165730774
+     ],
+     "Hplus3v2": 12.71336077287311,
+     "sigDVariation": 10.628336448742656,
+     "pairDistanceSpread": 1.711299117521416,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    }
+   ],
+   "trend": "rises; box-limited at M=3,5,7; determinant changes sign at M=3,5,7",
+   "rank": 8,
+   "M3searchScore": 18.6741591856224,
+   "M3boxLimited": true
+  },
+  {
+   "label": "free-direct-580:587:direct2:great-circle-pairs",
+   "rungs": [
+    {
+     "ok": true,
+     "M": 3,
+     "Nc": 16,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.5726786968309816,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 17.194129881598176,
+     "maxE": 18.409766773429013,
+     "maxEspeed": 17.194129881598176,
+     "maxS": 0.24118842905144133,
+     "maxV": 1.8209154238485068,
+     "minSep": 0.3268460512014287,
+     "det": [
+      -18.06494310737633,
+      3540.857598333559
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      0.6877644524925882,
+      2.519337155614377
+     ],
+     "Hplus3v2": 12.158593005610046,
+     "sigDVariation": 6.031255244866722,
+     "pairDistanceSpread": 1.3414078512853531,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 5,
+     "Nc": 24,
+     "iter": 45,
+     "reason": "stalled",
+     "omega": 1.3654944495922026,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 21.833488913863057,
+     "maxE": 23.278038484672233,
+     "maxEspeed": 21.833488913863057,
+     "maxS": 0.3121443374633236,
+     "maxV": 1.1572763956794772,
+     "minSep": 0.35900075563421785,
+     "det": [
+      -13.603467852659396,
+      3905.446200036295
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      0.6312478775207433,
+      2.2031504465829888
+     ],
+     "Hplus3v2": 11.062154262789807,
+     "sigDVariation": 6.511336300260844,
+     "pairDistanceSpread": 1.2798939947412045,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 7,
+     "Nc": 32,
+     "iter": 78,
+     "reason": "stalled",
+     "omega": 0.9182450230550511,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 4.513362205778498,
+     "maxE": 4.834883521075258,
+     "maxEspeed": 4.513362205778498,
+     "maxS": 0.3211193076530455,
+     "maxV": 0.9641322825760272,
+     "minSep": 0.396567079861884,
+     "det": [
+      -12.150446134316171,
+      3805.2566581816964
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      0.2840816153923699,
+      1.484697961381346
+     ],
+     "Hplus3v2": 8.706500767015958,
+     "sigDVariation": 6.443378127182718,
+     "pairDistanceSpread": 1.249876998710787,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    }
+   ],
+   "trend": "rises; box-limited at M=3,5,7; determinant changes sign at M=3,5,7",
+   "rank": 9,
+   "M3searchScore": 18.67448332829992,
+   "M3boxLimited": true
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+# Independent seam audit: preserved failure and v2 admission
+
+The first target completed segment zero independently, then failed on interval-left multiplication of a custom jet in the patch evaluator before emitting a seam result. Lease `4267244b-d06e-4aac-aac7-c7a21b5c6ab7` closed with exit one after 3.788 seconds. This is a reference implementation failure, not a physical or subject falsification. Its frozen source and output remain preserved.
+
+Version two, SHA-256 `6246594bd91333aef876b535c9b39bc0f697c1bc8873f62429679e805e1af305`, puts custom jet multiplication first and separately restricts an extension-root search to a small bracket around the nominal root; no global extension history is assumed. Before rerunning the same target, the known suite passed again with a new exact patch X/V/A control at normalized time minus one half, in addition to the C2 cubic difference and independent static partial controls. The known receipt is `reference/e-seam-audit-known-v2.json`. The target remains exactly the same four cells with internal 120-second and owned outer 150-second limits, writing a new unique receipt. No subject instrument or physical input was modified.

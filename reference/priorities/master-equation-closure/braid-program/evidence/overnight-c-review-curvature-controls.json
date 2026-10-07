@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": [
+    "rational arithmetic",
+    "longitudinal cancellation zero",
+    "mixed cancellation squared norm 225/4672",
+    "antipodal distance reciprocal sum 4/3",
+    "ordered product counts for two and four members"
+  ],
+  "mode": "controls",
+  "sha256": "1a1f6ab9d620001c3ab69526f2f2e52cf075ab1b0fb5374f6132c1bbdfc5dd84"
+}

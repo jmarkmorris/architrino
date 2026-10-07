@@ -6,6 +6,7 @@ This configuration owner contains its research under the canonical Master Equati
 This workstream investigates candidate photon histories under the Master Equation: their formation, propagation, internal geometry and interaction with a specified environment. The [manuscript](manuscript.md) begins with the canonical 12-worldline candidate and explains what remains to be established before it can represent a physical photon.
 
 The current candidate is a coaxial contra-rotating polarity-conjugate planar pair. Each planar braid contains three binaries, so the full pair contains twelve architrinos. Its geometry is specified; an independently certified retained free-photon branch remains missing. Establishing this directory does not change that evidence boundary.
+Four finite arrangements found by the Braid Program satisfy the unchanged delayed equation while rotating and travelling along their axis below wake speed. They are not this candidate; whether they bear on it is a [queued assessment](work-queue.md#assess-whether-finite-travelling-balances-bear-on-the-translating-carrier).
 
 - [Priorities and ownership](priorities.md)
 - [Execution queue and existing task routes](work-queue.md)
@@ -18,6 +19,7 @@ The current candidate is a coaxial contra-rotating polarity-conjugate planar pai
 | --- | --- |
 | [Prescribed moving pair and self-hit geometry](analysis/prescribed-moving-pair-and-self-hit-geometry.md) | Explicit constituent paths, moving-receiver arrival equations, same-transmitter roots, the bounded historical phase-lock sweep, and the conditional formation question. Extracted from the Photon app manuscript. |
 | [Carrier and constituent speeds](analysis/carrier-and-constituent-speeds.md) | The orthogonal speed decomposition and its causal-history implications. Extracted from the shared Master-Equation discussion. |
+| [Assessment of the finite travelling balances](analysis/travelling-balances-assessment-2026-10-05.md) | Whether four exact rigid balances that travel along their axis below wake speed bear on the carrier; a check of the axial balance identity on them; a recommended ruling awaiting the operator. |
 | [F6c photon source and carrier candidate](analysis/f6c-photon-source-and-carrier-candidate.md) | The eight-member assembly's proposed emitter/receiver role and the additional requirements for a propagating photon candidate. Extracted from the multi-role F6c analysis. |
 | [Historical self-hit sweep receipt](evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json) | Unchanged compact evidence for the declared prescribed cases; no retained photon branch is established. |
 

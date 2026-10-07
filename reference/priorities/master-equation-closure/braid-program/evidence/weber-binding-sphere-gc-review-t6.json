@@ -1,0 +1,8 @@
+{
+ "test": "t6",
+ "utc": "2026-10-06T22:59:04Z",
+ "n": 100,
+ "maxRel_classSum_vs_7_1": 9.954409425307195e-14,
+ "maxAbs_contraction_y12": 4.189529226675416e-15,
+ "maxAbs_contraction_y32": 4.009887038176866e-13
+}

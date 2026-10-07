@@ -1,0 +1,9 @@
+# Scope check of the consolidated logarithmic-family disposition
+
+Claim grade: derived source-linked review. The frozen [family disposition](authorized-cases-ten-hour-c-spiral-family-disposition.md), SHA-256 `483c294e57f6c9546ebcf5d26f76d7c3c79b3728f81540c83648277994f7cbc7`, accurately separates its accepted finite/infinite theorem and endpoint criterion from actual branch selection. No material scope overstatement was found by reading its complete text against the independent component assessments.
+
+Its historical pending labels for the later refinements are now superseded by separate immutable assessments: the [angular formulation](authorized-cases-ten-hour-reference-c-spiral-angular-adjudication.md), [invertible limiting flow](authorized-cases-ten-hour-reference-c-spiral-backward-adjudication.md), [finite-window rigidity and recurrent subfield visits](authorized-cases-ten-hour-reference-c-spiral-window-adjudication.md), and [attained exit and long-survival reduction](authorized-cases-ten-hour-reference-c-spiral-exit-adjudication.md) are accepted at their stated conditional scopes. The frozen consolidation is not edited.
+
+The remaining actual-family question is still the attained exit set's forward disposition: an open finite-event cover, or an attained complete viable connection and its invariant behavior. No result in the consolidation chooses that outcome. The inward event's transverse, noncontinuable endpoint consequence is additionally established in the exit assessment, conditional on actual entry. Existential family smallness and branch-dependent compactness constants remain existential. No numerical amplitude, new past or equality selector has been supplied.
+
+All C proof assessments are analytical and no C target computation was run. This scope check introduces no further scientific target.

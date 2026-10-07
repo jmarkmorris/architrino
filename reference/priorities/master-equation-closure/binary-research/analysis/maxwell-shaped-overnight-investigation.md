@@ -195,6 +195,16 @@ The [coordinator's conservative window](maxwell-shaped-overnight-original-feedba
 
 **Derived, independently assessed finite feedback window:** the source is confined to the previously proved actual segment through 35, and the improved method-of-steps bounds close the exact extended solution. The coordinator's independent fixed-seam gap proof places first generated-source entry between 45 and 60; it is a regular support transition. A separately specified tighter equation-worker successor reaches time 75 under its paired source bounds. The angular branch at 70 is bounded and positive, while radial/tangential signs and monotonic angular motion are not inferred from the coarse inequalities. Neither window establishes contraction, binding or terminal fate at this finite initial speed. Failed source support, response bounds or a first-escape margin would falsify these conclusions.
 
+### Supporting analyses indexed on 2026-10-06
+
+Three analyses of this investigation were not linked from any document of the record. Their headline results are already stated above and in the [independent reference](maxwell-shaped-overnight-independent-reference.md); they are indexed here so that the material found only in them has a route. Each keeps the grade written in its own text.
+
+- The [low-speed complete-launch comparison](maxwell-shaped-overnight-low-speed-evolution.md) freezes and evolves the original circular-tail family at launch speed $1/20$ and radius $100$ for E and E+M. Found only there: the input-ablation table at $T=10^6$ and the fitted sixth-power slopes.
+- The [same-history physical-frame enclosure of the original full prefix](maxwell-shaped-overnight-original-full-frame-prefix.md) treats the exact original E+M launch at speed $3/10$ through horizon 38. Found only there: its whole-prefix acceleration bound.
+- The [comparison-history seam note](maxwell-shaped-overnight-comparison-seam-obligation.md) asks whether a nonzero point defect of the fixed Hermite comparison near a sampled preparation seam comes from a receiving polynomial that spans an emitted-history jerk seam. Found only there: the seam interpolation control. It changes neither equation nor preparation.
+
+The terminal times of the original speed-$0.1$ and speed-$0.2$ launches at the selected $0.999$ margin are tabulated in the [coupled-evolution source](maxwell-shaped-overnight-coupled-evolution.md).
+
 ## Final-hour Weber assessment
 
 At the nine-hour Maxwell science cutoff, all owned target computations were closed and the worker subject/reference sources and scientific outcomes were frozen before any Weber scientific read. The coordinator synthesis continued through final-hour integration and verification. The [separate final-hour assessment](maxwell-shaped-overnight-weber-checkpoint-assessment.md) records the available Weber subject/reference, independently reconstructed pair equations, known-control replay and required corrections. The sources still declare PI integration and subject adjudication pending; the searched geometry/runtime owners supplied no explicitly frozen nine-hour PI checkpoint. The coordinator read snapshot does not satisfy that external freeze requirement. Claude's elapsed duration is not inferred from file timestamps.

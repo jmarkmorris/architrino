@@ -1,0 +1,966 @@
+{
+ "subject": "F2 bounded-rate refinement (Omega in [0.3, 3] x reference)",
+ "started": "2026-10-06T00:43:15.224Z",
+ "combosRefined": 22,
+ "floor": {
+  "triad": "orthogonal",
+  "senses": [
+   1,
+   -1,
+   1
+  ],
+  "R": 2,
+  "gridMin": 3.94060209563784,
+  "refined": {
+   "residual": 2.8276314390897928,
+   "radial": 1.4748448974404784,
+   "tangential": 2.193651376196417,
+   "components": [
+    2.25040045636447,
+    2.2504004561888746,
+    2.25212879081013
+   ],
+   "phasesDeg": [
+    89.99999999926541,
+    29.876185493772255,
+    299.876185494365
+   ],
+   "OmegaOverReference": 3,
+   "minSep": 0.7353390361788031,
+   "minAbsDet": 2.443164261842548,
+   "maxCond": 61.707931594204354,
+   "speed": {
+    "max": 1.0606601717798216,
+    "min": 1.0606601717798212,
+    "unrestricted": true,
+    "strict": false,
+    "inclusive": false
+   },
+   "sigmaSumSpread": 0.566465835366035,
+   "HPlus3v2": 6.163738863939209,
+   "iter": 81,
+   "reason": "max-iter",
+   "fromGrid": 3.940602095637842
+  }
+ },
+ "rows": [
+  {
+   "triad": "orthogonal",
+   "senses": [
+    1,
+    -1,
+    1
+   ],
+   "R": 2,
+   "gridMin": 3.94060209563784,
+   "refined": {
+    "residual": 2.8276314390897928,
+    "radial": 1.4748448974404784,
+    "tangential": 2.193651376196417,
+    "components": [
+     2.25040045636447,
+     2.2504004561888746,
+     2.25212879081013
+    ],
+    "phasesDeg": [
+     89.99999999926541,
+     29.876185493772255,
+     299.876185494365
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.7353390361788031,
+    "minAbsDet": 2.443164261842548,
+    "maxCond": 61.707931594204354,
+    "speed": {
+     "max": 1.0606601717798216,
+     "min": 1.0606601717798212,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 0.566465835366035,
+    "HPlus3v2": 6.163738863939209,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 3.940602095637842
+   }
+  },
+  {
+   "triad": "orthogonal",
+   "senses": [
+    1,
+    1,
+    1
+   ],
+   "R": 2,
+   "gridMin": 3.9406020956378414,
+   "refined": {
+    "residual": 2.827631439094732,
+    "radial": 1.4748448974551132,
+    "tangential": 2.1936513762025873,
+    "components": [
+     2.2504004561048334,
+     2.2521287908906107,
+     2.2504004564691087
+    ],
+    "phasesDeg": [
+     299.8761854882779,
+     60.12381450030705,
+     89.99999999307857
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.7353390361336803,
+    "minAbsDet": 2.443164261829403,
+    "maxCond": 61.7079315939269,
+    "speed": {
+     "max": 1.0606601717798216,
+     "min": 1.0606601717798212,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 0.566465835375983,
+    "HPlus3v2": 6.163738863941287,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 3.940602095637843
+   }
+  },
+  {
+   "triad": "orthogonal",
+   "senses": [
+    1,
+    1,
+    -1
+   ],
+   "R": 2,
+   "gridMin": 3.9406020956378427,
+   "refined": {
+    "residual": 2.8276314391122157,
+    "radial": 1.4748448974356454,
+    "tangential": 2.193651376144718,
+    "components": [
+     2.2521287907766405,
+     2.25040045620154,
+     2.250400456333679
+    ],
+    "phasesDeg": [
+     209.87618549269575,
+     269.9999999985246,
+     119.87618549558789
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.7353390361960195,
+    "minAbsDet": 2.443164261854104,
+    "maxCond": 61.707931594376795,
+    "speed": {
+     "max": 1.0606601717798216,
+     "min": 1.0606601717798212,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 0.5664658353572807,
+    "HPlus3v2": 6.163738863937377,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 3.9406020956378427
+   }
+  },
+  {
+   "triad": "orthogonal",
+   "senses": [
+    -1,
+    1,
+    1
+   ],
+   "R": 2,
+   "gridMin": 3.9406020956378414,
+   "refined": {
+    "residual": 2.8276314391766553,
+    "radial": 1.4748448974193444,
+    "tangential": 2.193651376076691,
+    "components": [
+     2.250400456232741,
+     2.2504004562299325,
+     2.2521287906882264
+    ],
+    "phasesDeg": [
+     270.00000000024124,
+     150.12381450543148,
+     119.8761854943013
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.7353390362083282,
+    "minAbsDet": 2.443164261900396,
+    "maxCond": 61.70793159535741,
+    "speed": {
+     "max": 1.0606601717798216,
+     "min": 1.0606601717798212,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 0.5664658353222416,
+    "HPlus3v2": 6.163738863930051,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 3.940602095637842
+   }
+  },
+  {
+   "triad": "random-11",
+   "senses": [
+    1,
+    1,
+    -1
+   ],
+   "R": 2,
+   "gridMin": 7.239784661532119,
+   "refined": {
+    "residual": 2.82809102635731,
+    "radial": 1.4753035033908442,
+    "tangential": 2.193486680583532,
+    "components": [
+     2.458402585786788,
+     1.580260703240788,
+     2.805401442253916
+    ],
+    "phasesDeg": [
+     38.954891703216674,
+     177.95436341089953,
+     262.2615915972017
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.7318931794266972,
+    "minAbsDet": 2.443931963606231,
+    "maxCond": 68.79683522168447,
+    "speed": {
+     "max": 1.0606601717798216,
+     "min": 1.0606601717798212,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 0.5659287937095794,
+    "HPlus3v2": 6.1635380180762205,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 7.239784661532134
+   }
+  },
+  {
+   "triad": "random-41",
+   "senses": [
+    1,
+    1,
+    1
+   ],
+   "R": 2,
+   "gridMin": 5.430157804567571,
+   "refined": {
+    "residual": 2.8282785257800716,
+    "radial": 1.4752472206020109,
+    "tangential": 2.1936277679432874,
+    "components": [
+     2.804240932403187,
+     2.609478345155616,
+     1.4245480229755692
+    ],
+    "phasesDeg": [
+     131.93290126586857,
+     9.131183923682158,
+     216.93685551742067
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.7322359230841704,
+    "minAbsDet": 2.4438916905788544,
+    "maxCond": 64.80793883846415,
+    "speed": {
+     "max": 1.0606601717798216,
+     "min": 1.060660171779821,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 0.5659508765852812,
+    "HPlus3v2": 6.163559691242528,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 5.430157804567571
+   }
+  },
+  {
+   "triad": "random-9",
+   "senses": [
+    -1,
+    1,
+    1
+   ],
+   "R": 2,
+   "gridMin": 5.3087505748706,
+   "refined": {
+    "residual": 2.8283466482043838,
+    "radial": 1.4752233156597143,
+    "tangential": 2.193675868818002,
+    "components": [
+     1.9761094745937438,
+     2.557008957279967,
+     2.656557770644659
+    ],
+    "phasesDeg": [
+     135.0378373372426,
+     4.1833162496921545,
+     220.41765046771866
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.7323791286767755,
+    "minAbsDet": 2.4438762907595173,
+    "maxCond": 67.86619496268668,
+    "speed": {
+     "max": 1.0606601717798216,
+     "min": 1.060660171779821,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 0.5659592989326101,
+    "HPlus3v2": 6.163567992041154,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 5.308750574870602
+   }
+  },
+  {
+   "triad": "random-18",
+   "senses": [
+    1,
+    -1,
+    1
+   ],
+   "R": 2,
+   "gridMin": 5.094539595653986,
+   "refined": {
+    "residual": 2.8283944184325005,
+    "radial": 1.4752050157420433,
+    "tangential": 2.193708177190563,
+    "components": [
+     1.9613696322783427,
+     2.530934230423473,
+     2.702498858204595
+    ],
+    "phasesDeg": [
+     45.99760778088108,
+     310.87966265478167,
+     175.58242831591588
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.7324878625727518,
+    "minAbsDet": 2.4438651459980614,
+    "maxCond": 67.65395159162033,
+    "speed": {
+     "max": 1.0606601717798216,
+     "min": 1.0606601717798212,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 0.5659653865243812,
+    "HPlus3v2": 6.1635740039411,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 5.094539595653994
+   }
+  },
+  {
+   "triad": "random-14",
+   "senses": [
+    -1,
+    1,
+    1
+   ],
+   "R": 2,
+   "gridMin": 6.617155334258329,
+   "refined": {
+    "residual": 2.828583861570931,
+    "radial": 1.475111203455929,
+    "tangential": 2.1938163582064876,
+    "components": [
+     2.7600809382234983,
+     2.466108398507681,
+     1.8011258789054836
+    ],
+    "phasesDeg": [
+     3.0223596580043477,
+     304.6130647994888,
+     99.86914526916883
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.7330340575177583,
+    "minAbsDet": 2.4438160979352395,
+    "maxCond": 71.56379694351632,
+    "speed": {
+     "max": 1.0606601717798216,
+     "min": 1.0606601717798212,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 0.5659921016179301,
+    "HPlus3v2": 6.163600508686759,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 6.617155334258329
+   }
+  },
+  {
+   "triad": "random-40",
+   "senses": [
+    -1,
+    1,
+    1
+   ],
+   "R": 2,
+   "gridMin": 7.005001296170272,
+   "refined": {
+    "residual": 2.8287209716931794,
+    "radial": 1.474938156880456,
+    "tangential": 2.1937935814292073,
+    "components": [
+     1.4538876705478931,
+     2.7061983362726285,
+     2.563371582194246
+    ],
+    "phasesDeg": [
+     43.83742345092827,
+     350.4092181016539,
+     279.10786234364286
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.7339992531689987,
+    "minAbsDet": 2.443756116675818,
+    "maxCond": 66.28886018775684,
+    "speed": {
+     "max": 1.0606601717798219,
+     "min": 1.0606601717798212,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 0.566024599585254,
+    "HPlus3v2": 6.163633026457356,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 7.005001296170277
+   }
+  },
+  {
+   "triad": "orthogonal",
+   "senses": [
+    1,
+    1,
+    -1
+   ],
+   "R": 1,
+   "gridMin": 3.177685738112449,
+   "refined": {
+    "residual": 2.8669327065120203,
+    "radial": 2.265280515157842,
+    "tangential": 1.3946876227706937,
+    "components": [
+     2.763539220504291,
+     2.763539220438641,
+     2.7635392204977283
+    ],
+    "phasesDeg": [
+     298.31859195456536,
+     118.31859195688781,
+     151.68140804401736
+    ],
+    "OmegaOverReference": 2.6294263479284403,
+    "minSep": 1.0000114162756635,
+    "minAbsDet": 0.000018561295186487267,
+    "maxCond": 8795.833284423592,
+    "speed": {
+     "max": 1.3147131739642204,
+     "min": 1.31471317396422,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 8.784393600254848,
+    "HPlus3v2": 11.40644987180212,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 3.177685738112449
+   }
+  },
+  {
+   "triad": "orthogonal",
+   "senses": [
+    1,
+    1,
+    1
+   ],
+   "R": 1,
+   "gridMin": 3.177685738112449,
+   "refined": {
+    "residual": 2.866932706553303,
+    "radial": 2.265280515153601,
+    "tangential": 1.3946876228425076,
+    "components": [
+     2.763539220199053,
+     2.7635392202071407,
+     2.7635392202441955
+    ],
+    "phasesDeg": [
+     298.3185919542741,
+     298.31859195378513,
+     208.31859195531126
+    ],
+    "OmegaOverReference": 2.629426348732305,
+    "minSep": 1.0000114162824725,
+    "minAbsDet": 0.000018561295888223917,
+    "maxCond": 8795.833146791336,
+    "speed": {
+     "max": 1.3147131743661526,
+     "min": 1.3147131743661522,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 8.784393600257873,
+    "HPlus3v2": 11.40644987814693,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 3.177685738112449
+   }
+  },
+  {
+   "triad": "orthogonal",
+   "senses": [
+    -1,
+    1,
+    1
+   ],
+   "R": 1,
+   "gridMin": 3.177685738112449,
+   "refined": {
+    "residual": 2.8669327069648394,
+    "radial": 2.265280515435446,
+    "tangential": 1.3946876231087575,
+    "components": [
+     2.763539220374999,
+     2.763539220336398,
+     2.763539220296542
+    ],
+    "phasesDeg": [
+     241.68140804483664,
+     298.318591955049,
+     28.318591957303795
+    ],
+    "OmegaOverReference": 2.6294263483653717,
+    "minSep": 1.0000114162763074,
+    "minAbsDet": 0.000018561295172637066,
+    "maxCond": 8795.833387507111,
+    "speed": {
+     "max": 1.314713174182686,
+     "min": 1.3147131741826856,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 8.784393600254788,
+    "HPlus3v2": 11.406449875248619,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 3.1776857381124493
+   }
+  },
+  {
+   "triad": "orthogonal",
+   "senses": [
+    1,
+    -1,
+    1
+   ],
+   "R": 1,
+   "gridMin": 3.1776857381124497,
+   "refined": {
+    "residual": 2.866932707180972,
+    "radial": 2.26528051556112,
+    "tangential": 1.3946876232193293,
+    "components": [
+     2.7635392202103937,
+     2.7635392202391187,
+     2.763539220264064
+    ],
+    "phasesDeg": [
+     208.3185919561788,
+     151.6814080438299,
+     298.3185919546686
+    ],
+    "OmegaOverReference": 2.629426348663379,
+    "minSep": 1.000011416282715,
+    "minAbsDet": 0.00001856129525871796,
+    "maxCond": 8795.833276865125,
+    "speed": {
+     "max": 1.3147131743316898,
+     "min": 1.3147131743316893,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 8.784393600255157,
+    "HPlus3v2": 11.406449877599808,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 3.1776857381124506
+   }
+  },
+  {
+   "triad": "random-19",
+   "senses": [
+    1,
+    1,
+    1
+   ],
+   "R": 2,
+   "gridMin": 7.464908021782517,
+   "refined": {
+    "residual": 2.8863437196465056,
+    "radial": 1.475961510465033,
+    "tangential": 2.183256741110984,
+    "components": [
+     2.2345707135885,
+     2.5639370490866824,
+     2.529299924113411
+    ],
+    "phasesDeg": [
+     290.35672533852676,
+     122.15590943529031,
+     261.2623870794662
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.7249381525355015,
+    "minAbsDet": 2.4464770627446115,
+    "maxCond": 70.4240622513153,
+    "speed": {
+     "max": 1.0606601717798219,
+     "min": 1.0606601717798212,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 0.5644052085424844,
+    "HPlus3v2": 6.162246266848723,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 7.464908021782517
+   }
+  },
+  {
+   "triad": "random-24",
+   "senses": [
+    -1,
+    1,
+    1
+   ],
+   "R": 2,
+   "gridMin": 6.303853679183816,
+   "refined": {
+    "residual": 2.913399368965589,
+    "radial": 1.4749555670424985,
+    "tangential": 2.169960202179677,
+    "components": [
+     2.4940854759236237,
+     2.8034876986270594,
+     1.4396880185392935
+    ],
+    "phasesDeg": [
+     113.0412957842396,
+     275.5145187100077,
+     301.396240106174
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.7215812560894004,
+    "minAbsDet": 2.4521645791923254,
+    "maxCond": 65.53000084069754,
+    "speed": {
+     "max": 1.0606601717798216,
+     "min": 1.0606601717798212,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 0.5605075117680602,
+    "HPlus3v2": 6.1596577718060805,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 6.303853679183829
+   }
+  },
+  {
+   "triad": "orthogonal",
+   "senses": [
+    1,
+    1,
+    -1
+   ],
+   "R": 0.5,
+   "gridMin": 3.4833706581868222,
+   "refined": {
+    "residual": 7.251074228307743,
+    "radial": 3.2069717812410894,
+    "tangential": 6.158793680935357,
+    "components": [
+     3.0827561978718134,
+     2.538302947506136,
+     6.221898571536574
+    ],
+    "phasesDeg": [
+     328.6205094767199,
+     58.56900230366341,
+     209.27465944441758
+    ],
+    "OmegaOverReference": 1.489822577661457,
+    "minSep": 0.028931102573536406,
+    "minAbsDet": 3955.051613612841,
+    "maxCond": 402.7214104928667,
+    "speed": {
+     "max": 1.0534636474292385,
+     "min": 1.053463647429238,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 4.011481202382216,
+    "HPlus3v2": 13.098160707267127,
+    "iter": 55,
+    "reason": "no-descent",
+    "fromGrid": 3.4833706581868222
+   }
+  },
+  {
+   "triad": "orthogonal",
+   "senses": [
+    1,
+    -1,
+    1
+   ],
+   "R": 0.5,
+   "gridMin": 3.4833706581868205,
+   "refined": {
+    "residual": 7.25107428373798,
+    "radial": 3.206971797905753,
+    "tangential": 6.158793722139947,
+    "components": [
+     6.221898612552829,
+     2.5383029059672007,
+     3.0827562147446015
+    ],
+    "phasesDeg": [
+     121.4309979465612,
+     328.62050950026526,
+     209.27465943485709
+    ],
+    "OmegaOverReference": 1.4898225753780359,
+    "minSep": 0.02893110119458792,
+    "minAbsDet": 3955.051985242529,
+    "maxCond": 402.72141493329866,
+    "speed": {
+     "max": 1.0534636458146158,
+     "min": 1.0534636458146154,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 4.011481199140886,
+    "HPlus3v2": 13.098160722734132,
+    "iter": 54,
+    "reason": "step",
+    "fromGrid": 3.4833706581868205
+   }
+  },
+  {
+   "triad": "orthogonal",
+   "senses": [
+    -1,
+    1,
+    1
+   ],
+   "R": 0.5,
+   "gridMin": 3.483370658186817,
+   "refined": {
+    "residual": 7.251075081135941,
+    "radial": 3.2069720333854153,
+    "tangential": 6.158794247866663,
+    "components": [
+     2.5383029327303372,
+     3.0827564558299585,
+     6.221899134871154
+    ],
+    "phasesDeg": [
+     238.62050951462993,
+     29.27465928566386,
+     121.43099762303535
+    ],
+    "OmegaOverReference": 1.48982257934983,
+    "minSep": 0.028931103256769685,
+    "minAbsDet": 3955.0516481763066,
+    "maxCond": 402.72143369068095,
+    "speed": {
+     "max": 1.0534636486230984,
+     "min": 1.053463648623098,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 4.011481203450724,
+    "HPlus3v2": 13.098160726901774,
+    "iter": 53,
+    "reason": "no-descent",
+    "fromGrid": 3.4833706581868586
+   }
+  },
+  {
+   "triad": "orthogonal",
+   "senses": [
+    1,
+    1,
+    1
+   ],
+   "R": 0.5,
+   "gridMin": 3.483370658186836,
+   "refined": {
+    "residual": 7.251076668980559,
+    "radial": 3.2069725086986267,
+    "tangential": 6.158795313575245,
+    "components": [
+     6.2219001940769205,
+     2.538302902572614,
+     3.0827569416045053
+    ],
+    "phasesDeg": [
+     148.56900246032876,
+     238.620509639533,
+     60.725341008457235
+    ],
+    "OmegaOverReference": 1.4898225779122458,
+    "minSep": 0.02893110454358043,
+    "minAbsDet": 3955.051808800374,
+    "maxCond": 402.7214811883449,
+    "speed": {
+     "max": 1.0534636476065729,
+     "min": 1.0534636476065724,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 4.011481203529773,
+    "HPlus3v2": 13.098160209251823,
+    "iter": 51,
+    "reason": "step",
+    "fromGrid": 3.483370658186838
+   }
+  },
+  {
+   "triad": "random-39",
+   "senses": [
+    1,
+    -1,
+    1
+   ],
+   "R": 2,
+   "gridMin": 6.846067831766271,
+   "refined": {
+    "residual": 16.803385916388528,
+    "radial": 6.483705127080708,
+    "tangential": 11.387614739314978,
+    "components": [
+     13.264746579878175,
+     11.947545372234298,
+     9.00292759949709
+    ],
+    "phasesDeg": [
+     116.64014920870937,
+     269.6125774310118,
+     205.29553178654578
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.1663944799293635,
+    "minAbsDet": 1.4111398811401032,
+    "maxCond": 276.5412346596832,
+    "speed": {
+     "max": 1.0606601717798219,
+     "min": 1.0606601717798212,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 1.5398607110727291,
+    "HPlus3v2": 6.514064965142184,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 6.846067831766272
+   }
+  },
+  {
+   "triad": "random-49",
+   "senses": [
+    1,
+    -1,
+    1
+   ],
+   "R": 2,
+   "gridMin": 6.594738558428568,
+   "refined": {
+    "residual": 17.361527171102125,
+    "radial": 6.731561876404522,
+    "tangential": 11.774951573479125,
+    "components": [
+     14.572804813947215,
+     4.182865838144796,
+     14.571204556660698
+    ],
+    "phasesDeg": [
+     7.188165920475569,
+     154.7080318735858,
+     210.97880491558703
+    ],
+    "OmegaOverReference": 3,
+    "minSep": 0.16148909835077152,
+    "minAbsDet": 1.394541313373772,
+    "maxCond": 249.07582376482296,
+    "speed": {
+     "max": 1.0606601717798216,
+     "min": 1.0606601717798212,
+     "unrestricted": true,
+     "strict": false,
+     "inclusive": false
+    },
+    "sigmaSumSpread": 1.557552865557382,
+    "HPlus3v2": 6.519932693451953,
+    "iter": 81,
+    "reason": "max-iter",
+    "fromGrid": 6.594738558428575
+   }
+  }
+ ],
+ "perR": [
+  {
+   "R": 0.5,
+   "min": 7.251074228307743
+  },
+  {
+   "R": 1,
+   "min": 2.8669327065120203
+  },
+  {
+   "R": 2,
+   "min": 2.8276314390897928
+  }
+ ],
+ "wallSeconds": 13.019,
+ "finished": "2026-10-06T00:43:15.224Z"
+}

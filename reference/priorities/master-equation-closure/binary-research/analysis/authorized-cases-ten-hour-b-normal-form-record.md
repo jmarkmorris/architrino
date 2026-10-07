@@ -1,0 +1,29 @@
+# B finite normal-form construction record
+
+The [method protocol](authorized-cases-ten-hour-b-normal-form-protocol.md) is frozen at SHA-256 `8dec4a6f6153e26fe787daaacb3b873b94611df4c7d59046abc94fc1025dc91f`. The [producer](../evidence/authorized-cases-ten-hour-coordinator-b-normal-form.py) is frozen at SHA-256 `8d1321fecab362257a94c3dfd7e4b9e81e595ecd8f9926e24af0483b964d4aef`. Its method is finite Gaussian rational algebra, preserving the original physical preparation and the distinction between logarithmic and ordinary parameter derivatives.
+
+## Known controls before any target
+
+Measured by this frozen instrument, its known mode passed exact Gaussian arithmetic and conjugation, the constant-translation pullback sign, the logarithmic-parameter bracket degree, the full separately derived degree-two/three generators and means, and the corresponding forward-map center and parameter shifts. The known receipt under `.local-data/master-equation-closure/binary-research/authorized-cases-ten-hour/coordinator-b-normal-form/known-v1.json` has SHA-256 `57292e82c5bfbe1ffc1c0b6d672d992fc8f27ea316444a9c7ff615e71e3025db`. It records 1,032 operations and about 0.019 seconds internally.
+
+The supervisor reports lease `c89d5d83-5685-4451-8286-a6b2a46081e4` completed at 04:16:23.092 UTC with exit zero and `processGroupClosed: true`; its elapsed time was 0.110 seconds. Internal/outer deadlines were 120/180 seconds. No higher normal-form target has run. Admission requires the independent method reference and assessment, plus independent acceptance of the full input coefficients through sixteen. An exact producer normal form will still leave analytic remainder, actual phase sensitivity and signed terminal-section obligations open.
+
+## Higher target admission at 04:25 UTC
+
+The [independent method assessment](authorized-cases-ten-hour-reference-b-normal-form-admission.md), SHA-256 `67f8ee182a5ac4435a032df678b5b9088c91eb2057d2d562c27e165ef376f8d8`, accepts the frozen sequential time-one-flow convention, polynomial operators and retained forward coordinate map. The [autonomous input assessment](authorized-cases-ten-hour-reference-b-autonomous-acceptance.md) independently accepts the input digest `a3f32f07d942924a7d1d0d6bf6e14302247f23c7d5a69474e5e8cd040ac52e1c`.
+
+The admitted target performs degrees two through sixteen, retaining all generators, resonant output and forward coordinate coefficients. Its internal/outer deadlines are 900/960 seconds, with two GiB resident memory and 32 MiB output bounds. It writes new `normal-form-v1.json` and step checkpoints in the ignored `coordinator-b-normal-form` owner. Full independent conjugacy and coordinate-map checking is required before use; producer resonance checks alone cannot admit it. The [analytic remainder candidate](authorized-cases-ten-hour-b-normal-form-remainder.md) also requires a separately audited finite norm and independent proof assessment. No scalar phase target is launched.
+
+## Producer completion, independent audit pending
+
+Measured by the frozen producer, all fifteen steps completed with the stated reality, grading and resonance checks. The immutable output `normal-form-v1.json` has SHA-256 `a607884e8b14a96cb11033efedcd2ec00b5e18e802c5c6508600283f552f9782` and includes every generator, retained field and forward coordinate coefficient. It reports 271,417 operations and about 12.908 seconds internal time. A separate full conjugacy audit and finite norm check remain required; these producer checks do not replace them.
+
+Supervisor lease `2e186485-1c90-408b-8ce6-d18961587407` reports completion at 04:25:50.681 UTC, exit zero, `processGroupClosed: true`, 13.020 seconds elapsed, 2,830 stdout bytes and empty stderr. No root-owned process from this target remains active. The independently authored reviewer has the frozen output and the requested generator/scalar norm bounds. The [phase-stability candidate](authorized-cases-ten-hour-b-phase-stability-candidate.md) separately states the input premises needed for an accumulated actual phase bound; it has not yet been admitted.
+
+## Independent acceptance at 04:42 UTC
+
+The [full independent acceptance](authorized-cases-ten-hour-reference-b-normal-acceptance.md), SHA-256 `4c333a9657421df8b09d9ff52c646f54a387aea1237ada2c8f18467178459775`, verifies every retained coefficient of the complete three-component conjugacy equation through degree sixteen, including all fifteen auxiliary-flow maps and the parameter multiplier derivative. Its separately authored audit receipt has SHA-256 `fe8413cc57d81f954568beff14efdc44736336a7fe4b800144dea211e0a53d1c`. Exact finite norms discharge the algebraic premises of the [analytic remainder assessment](authorized-cases-ten-hour-reference-b-normal-remainder-adjudication.md); the original actual-history chart restrictions remain in force.
+
+The earlier reference audit reached its internal deadline during a costly full composition. That preserved v1 run is a method cost failure, not a coefficient mismatch. The revised independently authored v2 audit completed in 26.659 seconds under lease `93b7f391-5c08-4ed9-bc98-70bccac29dbc`, closed at 04:40:42.054 UTC with exit zero and its process group closed. Both reference runs are closed according to their supervisor receipts.
+
+The [separate phase assessment](authorized-cases-ten-hour-reference-b-phase-adjudication-v2.md), SHA-256 `a36e2e7632c33b7171acbacad631b52a17009ec65dbf4609e2dc5c7bd70a8927`, accepts the correlated actual/comparison phase estimate conditional on the original preparation's full complex-state enclosure and the final physical section. Those two conditions are not supplied by this polynomial audit. The initial-coordinate and finite slow-map instruments have passed known cases but have not run their targets at this record entry. No terminal branch has been selected.

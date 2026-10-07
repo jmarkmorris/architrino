@@ -1,0 +1,212 @@
+{
+  "passed": true,
+  "manifest_sha256": "097cc39c68e855bdf7c2045f6a715666309f4fabe16bbc802ebcf9a341763959",
+  "target_sha256": "bcc6e3100518f4167cefdc8a19d517f7e0e6e955cf9cc521c26a3b1a88a8c6cc",
+  "complete_exclusion": false,
+  "all_final_witnesses_exact": true,
+  "chain_newest_first": [
+    {
+      "sha256": "bcc6e3100518f4167cefdc8a19d517f7e0e6e955cf9cc521c26a3b1a88a8c6cc",
+      "path": ".local-data/master-equation-closure/overnight-c/exact-witness-cover-stream.json",
+      "summary": {
+        "producer": "6df95c3f85445dcf48deb45dd88ec1130c687bd33ff85f9f17e19fe1fa49c573",
+        "excluded": 114308,
+        "unresolved": 35693,
+        "complete_exclusion": false,
+        "partition": {
+          "leaves": 150001,
+          "internal_nodes": 150000,
+          "max_depth": 25,
+          "normalized_volume": "1"
+        },
+        "witness_kinds": {
+          "exact": 114308
+        },
+        "exact_signs": {
+          "positive": 49033,
+          "negative": 65275
+        },
+        "evaluator_rows": {
+          "c1c0f341a2f60a2cba948138f4ab9575019eb18bc6ad94f4460f1d37d7b73be7": 9057,
+          "71c94b26243a7bd2eca7dfe41b6513779e0573a001e148649aaf420e4e7a6004": 105251
+        }
+      },
+      "transition": {
+        "kind": "witness_refresh",
+        "refreshed_rows": 9057
+      }
+    },
+    {
+      "sha256": "e82c326fe269c6a2084f9591cfb1542c82effe8e979c4c21025684822b979ac2",
+      "path": ".local-data/master-equation-closure/overnight-c/tight-cover-3.json",
+      "summary": {
+        "producer": "b5f1a6810042533dfe1625417f5c772d702eca426a94c05979cee29a44d7d564",
+        "excluded": 114308,
+        "unresolved": 35693,
+        "complete_exclusion": false,
+        "partition": {
+          "leaves": 150001,
+          "internal_nodes": 150000,
+          "max_depth": 25,
+          "normalized_volume": "1"
+        },
+        "witness_kinds": {
+          "display": 9057,
+          "exact": 105251
+        },
+        "exact_signs": {
+          "positive": 45455,
+          "negative": 59796
+        },
+        "evaluator_rows": {
+          "c1c0f341a2f60a2cba948138f4ab9575019eb18bc6ad94f4460f1d37d7b73be7": 9057,
+          "71c94b26243a7bd2eca7dfe41b6513779e0573a001e148649aaf420e4e7a6004": 105251
+        }
+      },
+      "transition": {
+        "kind": "cover_refinement",
+        "new_exclusions": 7678
+      }
+    },
+    {
+      "sha256": "740acb5acf857458ab81381f7499f90675819aadc126c9d389a78449e8e07ceb",
+      "path": ".local-data/master-equation-closure/overnight-c/tight-cover-2.json",
+      "summary": {
+        "producer": "b5f1a6810042533dfe1625417f5c772d702eca426a94c05979cee29a44d7d564",
+        "excluded": 106630,
+        "unresolved": 33984,
+        "complete_exclusion": false,
+        "partition": {
+          "leaves": 140614,
+          "internal_nodes": 140613,
+          "max_depth": 25,
+          "normalized_volume": "1"
+        },
+        "witness_kinds": {
+          "display": 9057,
+          "exact": 97573
+        },
+        "exact_signs": {
+          "positive": 44353,
+          "negative": 53220
+        },
+        "evaluator_rows": {
+          "c1c0f341a2f60a2cba948138f4ab9575019eb18bc6ad94f4460f1d37d7b73be7": 9057,
+          "71c94b26243a7bd2eca7dfe41b6513779e0573a001e148649aaf420e4e7a6004": 97573
+        }
+      },
+      "transition": {
+        "kind": "cover_refinement",
+        "new_exclusions": 50217
+      }
+    },
+    {
+      "sha256": "c0d78a01e9f7d49295c7f2943a54f6bea4601fe39eb4b099d4279894ed26e2b7",
+      "path": ".local-data/master-equation-closure/overnight-c/tight-cover.json",
+      "summary": {
+        "producer": "b5f1a6810042533dfe1625417f5c772d702eca426a94c05979cee29a44d7d564",
+        "excluded": 56413,
+        "unresolved": 34418,
+        "complete_exclusion": false,
+        "partition": {
+          "leaves": 90831,
+          "internal_nodes": 90830,
+          "max_depth": 22,
+          "normalized_volume": "1"
+        },
+        "witness_kinds": {
+          "display": 9057,
+          "exact": 47356
+        },
+        "exact_signs": {
+          "positive": 22329,
+          "negative": 25027
+        },
+        "evaluator_rows": {
+          "c1c0f341a2f60a2cba948138f4ab9575019eb18bc6ad94f4460f1d37d7b73be7": 9057,
+          "71c94b26243a7bd2eca7dfe41b6513779e0573a001e148649aaf420e4e7a6004": 47356
+        }
+      },
+      "transition": {
+        "kind": "cover_refinement",
+        "new_exclusions": 47356
+      }
+    },
+    {
+      "sha256": "04f8ac3489be894568168188306305ddf5b593eec809d140f789a804f230e720",
+      "path": ".local-data/master-equation-closure/overnight-c/interval-continued.json",
+      "summary": {
+        "producer": "61ac65a9a874316099d88ff97dd93958e475810fef17f7bbb412e519c066645d",
+        "excluded": 9057,
+        "unresolved": 29130,
+        "complete_exclusion": false,
+        "partition": {
+          "leaves": 38187,
+          "internal_nodes": 38186,
+          "max_depth": 18,
+          "normalized_volume": "1"
+        },
+        "witness_kinds": {
+          "display": 9057
+        },
+        "exact_signs": {},
+        "evaluator_rows": {
+          "c1c0f341a2f60a2cba948138f4ab9575019eb18bc6ad94f4460f1d37d7b73be7": 9057
+        }
+      },
+      "transition": {
+        "kind": "cover_refinement",
+        "new_exclusions": 7977
+      }
+    },
+    {
+      "sha256": "4c364cf02a35d5fb9a301e3a0f071b19e5717b0376e8e40572591030ef0d387d",
+      "path": ".local-data/master-equation-closure/overnight-c/interval-pilot-weighted.json",
+      "summary": {
+        "producer": "c1c0f341a2f60a2cba948138f4ab9575019eb18bc6ad94f4460f1d37d7b73be7",
+        "excluded": 1080,
+        "unresolved": 7448,
+        "complete_exclusion": false,
+        "partition": {
+          "leaves": 8528,
+          "internal_nodes": 8527,
+          "max_depth": 15,
+          "normalized_volume": "1"
+        },
+        "witness_kinds": {
+          "display": 1080
+        },
+        "exact_signs": {},
+        "evaluator_rows": {
+          "c1c0f341a2f60a2cba948138f4ab9575019eb18bc6ad94f4460f1d37d7b73be7": 1080
+        }
+      }
+    }
+  ],
+  "code_pins": {
+    "overnight-c-subfield-interval.py": "c1c0f341a2f60a2cba948138f4ab9575019eb18bc6ad94f4460f1d37d7b73be7",
+    "overnight-c-interval-continue.py": "61ac65a9a874316099d88ff97dd93958e475810fef17f7bbb412e519c066645d",
+    "overnight-c-tight-interval.py": "71c94b26243a7bd2eca7dfe41b6513779e0573a001e148649aaf420e4e7a6004",
+    "overnight-c-tight-cover.py": "b5f1a6810042533dfe1625417f5c772d702eca426a94c05979cee29a44d7d564",
+    "overnight-c-witness-refresh.py": "8d0fee5eede003a59b7dfaf06ae620e005ad2b9083e7b15955380863e28c3500",
+    "overnight-c-witness-refresh-stream.py": "6df95c3f85445dcf48deb45dd88ec1130c687bd33ff85f9f17e19fe1fa49c573"
+  },
+  "subject_control_receipts_checked": 5,
+  "runtime_identity_sha256": "f5de98f995fda3a28615ea345fb493656b30e88a75726a4eabaf86155370b33f",
+  "runtime_python_sources_verified": 87,
+  "runtime_boundary": "Runtime inventory captured during active cover; this is not a launch-time environment attestation.",
+  "peak_rss_bytes": 36667392,
+  "memory_contract": {
+    "sqlite_cache_kib": 8192,
+    "max_value_characters": 65536,
+    "max_metadata_bytes": 1000000,
+    "max_leaves": 150001,
+    "max_depth": 40,
+    "memory_guard_bytes": 320000000
+  },
+  "boundary": "Independent exact saved-sign, complete partition, domain, dependency and ancestry audit. No independent residual replay, formal library verification or launch-time runtime attestation.",
+  "mode": "target",
+  "checker_sha256": "54567e2a95fbdd364be24ad425da7847c3d3065ff5914964a99a257e1d1909f5",
+  "reference_checker_sha256": "601b32127cab24f9c40ca27824f7d908d0af5523c41b5a4f5661524708986df8",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

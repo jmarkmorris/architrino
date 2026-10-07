@@ -161,7 +161,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ffc5a96889b2ef66)
 
-If $\Delta\mathcal{C}_{\mathcal{G}}=0$, the retuning stays on the same causal-root ledger. If $\Delta\mathcal{C}_{\mathcal{G}}\neq0$, the event is a branch transition and must be treated as a separator crossing or causal-locus reconnection rather than as smooth single-braid drift.
+The first-order closure equation alone does not determine whether the causal-root ledger is preserved. The ledger records the discrete member and root identities and their branch incidence; delays, weights and wake-exchange values are continuous data evaluated on those branches. Smooth retuning must preserve the discrete identities and incidence together with the chart's separation, transversality, separator and stability conditions, while satisfying the continuous closure equation. A nonzero $\Delta\mathcal C_{\mathcal G}$ can be compensated by $D\mathcal C_q[\Delta\mathbf y]$ without changing those identities. A demonstrated change of the discrete branch data requires event analysis; loss of a chart margin requires separate admission or continuation analysis. Neither follows from $\Delta\mathcal C_{\mathcal G}\ne0$ alone.
 
 The local cadence-scale retuning map is therefore the closure target
 

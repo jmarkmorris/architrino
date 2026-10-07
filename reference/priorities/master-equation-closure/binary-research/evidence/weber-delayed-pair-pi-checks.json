@@ -1,0 +1,359 @@
+{
+  "utc": "2026-10-06T03:21:05.847Z",
+  "script": "weber-delayed-pair-pi-checks.mjs",
+  "grade": "measured double-precision checks of derived formulas on prescribed histories and rigid circles; not an integrator; not an enclosure",
+  "census": {
+    "scan": {
+      "betaMin": 0.02,
+      "betaMax": 20,
+      "step": 0.005
+    },
+    "censusChanges": [
+      {
+        "beta": 0.02,
+        "nPartner": 1,
+        "nSelf": 0
+      },
+      {
+        "beta": 1.005,
+        "nPartner": 1,
+        "nSelf": 1
+      },
+      {
+        "beta": 2.975,
+        "nPartner": 3,
+        "nSelf": 1
+      },
+      {
+        "beta": 4.605,
+        "nPartner": 3,
+        "nSelf": 3
+      },
+      {
+        "beta": 6.205,
+        "nPartner": 5,
+        "nSelf": 3
+      },
+      {
+        "beta": 7.79,
+        "nPartner": 5,
+        "nSelf": 5
+      },
+      {
+        "beta": 9.375,
+        "nPartner": 7,
+        "nSelf": 5
+      },
+      {
+        "beta": 10.95,
+        "nPartner": 7,
+        "nSelf": 7
+      },
+      {
+        "beta": 12.53,
+        "nPartner": 9,
+        "nSelf": 7
+      },
+      {
+        "beta": 14.105,
+        "nPartner": 9,
+        "nSelf": 9
+      },
+      {
+        "beta": 15.68,
+        "nPartner": 11,
+        "nSelf": 9
+      },
+      {
+        "beta": 17.25,
+        "nPartner": 11,
+        "nSelf": 11
+      },
+      {
+        "beta": 18.825,
+        "nPartner": 13,
+        "nSelf": 11
+      }
+    ],
+    "signChanges": [
+      {
+        "between": [
+          2.97,
+          2.975
+        ],
+        "sameCensus": false
+      },
+      {
+        "between": [
+          3.07,
+          3.075
+        ],
+        "sameCensus": true
+      },
+      {
+        "between": [
+          6.2,
+          6.205
+        ],
+        "sameCensus": false
+      },
+      {
+        "between": [
+          6.215,
+          6.22
+        ],
+        "sameCensus": true
+      },
+      {
+        "between": [
+          9.37,
+          9.375
+        ],
+        "sameCensus": false
+      },
+      {
+        "between": [
+          9.375,
+          9.38
+        ],
+        "sameCensus": true
+      }
+    ],
+    "balances": [
+      {
+        "beta": 3.070356625389679,
+        "Ct": 5.273559366969494e-16,
+        "Cr": -0.8196069638182271,
+        "rho": 0.0869416734741591,
+        "Omega": 35.31513142891428,
+        "nPartner": 3,
+        "nSelf": 1,
+        "minAbsDt": 0.7071146280548457,
+        "detM": -33.91154663420372,
+        "roots": [
+          {
+            "type": "partner",
+            "d": 2.3545664912566213,
+            "Dt": 3.8356822753328994
+          },
+          {
+            "type": "partner",
+            "d": 5.104056995667452,
+            "Dt": -0.7071146280548457
+          },
+          {
+            "type": "partner",
+            "d": 6.1203787957353555,
+            "Dt": 0.7503389172246584
+          },
+          {
+            "type": "self",
+            "d": 4.593149365086385,
+            "Dt": 3.037850469140446
+          }
+        ]
+      },
+      {
+        "beta": 6.2184549634094495,
+        "Ct": 5.48172618408671e-16,
+        "Cr": -1.2902686401068009,
+        "rho": 0.033366845869767604,
+        "Omega": 186.36628069912203,
+        "nPartner": 5,
+        "nSelf": 3,
+        "minAbsDt": 0.4390768024467242,
+        "detM": -121.72493597799185,
+        "roots": [
+          {
+            "type": "partner",
+            "d": 2.7033622397121384,
+            "Dt": 7.06977267137545
+          },
+          {
+            "type": "partner",
+            "d": 3.7550153682124323,
+            "Dt": -4.9282499127545
+          },
+          {
+            "type": "partner",
+            "d": 8.02257066555726,
+            "Dt": 5.751712545071163
+          },
+          {
+            "type": "partner",
+            "d": 12.099295861927061,
+            "Dt": -0.4390768024467242
+          },
+          {
+            "type": "partner",
+            "d": 12.386831939674735,
+            "Dt": 0.4425228645809087
+          },
+          {
+            "type": "self",
+            "d": 5.387190379028002,
+            "Dt": 6.604795008470752
+          },
+          {
+            "type": "self",
+            "d": 7.5975461235768496,
+            "Dt": -3.9232616583909294
+          },
+          {
+            "type": "self",
+            "d": 10.543024245777524,
+            "Dt": 4.298536352715917
+          }
+        ]
+      },
+      {
+        "beta": 9.376436028216599,
+        "Ct": -2.531308496145357e-14,
+        "Cr": -1.800143132063893,
+        "rho": 0.02047535536428584,
+        "Omega": 457.9376455937589,
+        "nPartner": 7,
+        "nSelf": 5,
+        "minAbsDt": 0.30596832161319454,
+        "detM": -287.2777926154205,
+        "roots": [
+          {
+            "type": "partner",
+            "d": 2.8377757874647953,
+            "Dt": 10.268457786290982
+          },
+          {
+            "type": "partner",
+            "d": 3.519149654417083,
+            "Dt": -8.209856080237751
+          },
+          {
+            "type": "partner",
+            "d": 8.485647622581148,
+            "Dt": 9.361578720408243
+          },
+          {
+            "type": "partner",
+            "d": 10.630142200183009,
+            "Dt": -6.7244787391907765
+          },
+          {
+            "type": "partner",
+            "d": 14.01915948462847,
+            "Dt": 7.227627511932299
+          },
+          {
+            "type": "partner",
+            "d": 18.57008339606272,
+            "Dt": -0.30596832161319454
+          },
+          {
+            "type": "partner",
+            "d": 18.701537004502867,
+            "Dt": 0.3066883755909471
+          },
+          {
+            "type": "self",
+            "d": 5.668977782224413,
+            "Dt": 9.937741622882132
+          },
+          {
+            "type": "self",
+            "d": 7.054534381292706,
+            "Dt": -7.687688919213674
+          },
+          {
+            "type": "self",
+            "d": 11.276114711446809,
+            "Dt": 8.49198650858445
+          },
+          {
+            "type": "self",
+            "d": 14.301031695296402,
+            "Dt": -5.065284470144022
+          },
+          {
+            "type": "self",
+            "d": 16.661518919747735,
+            "Dt": 5.303022125548556
+          }
+        ]
+      }
+    ],
+    "subfield": {
+      "minCtOn01": 0.00024999983333362524,
+      "CtOverBetaAt1e3": 0.24999983333362524,
+      "atBetaOne": {
+        "nPartner": 1,
+        "nSelf": 0,
+        "Cr": -0.20211137351526115,
+        "Ct": 0.18420699634745277
+      }
+    },
+    "closedFormBeta005": {
+      "d": 0.09987533737220838,
+      "Ct_closed": 0.012479254791261116,
+      "Cr_closed": -0.24968886068247564,
+      "Ct_scan": 0.01247925479126113,
+      "Cr_scan": -0.24968886068247573
+    }
+  },
+  "expansion": {
+    "polynomialHistories": [
+      {
+        "beta": 0.05,
+        "remainderAfterFirstOrder": 0.0017985819679232386,
+        "remainderAfterSecondOrder": 0.00004422027728215957,
+        "nineA_minus_ME": 0.0008082330919733025,
+        "decompositionResidual": 0.0004542588977389032,
+        "bracket9aMinusOne": -0.0007833045081083734,
+        "bracketS9MinusOne": -0.0012617499999999504
+      },
+      {
+        "beta": 0.025,
+        "remainderAfterFirstOrder": 0.0004530616534575791,
+        "remainderAfterSecondOrder": 0.000005692022796947957,
+        "nineA_minus_ME": 0.0002585364752030715,
+        "decompositionResidual": 0.00005701503616876609,
+        "bracket9aMinusOne": -0.00025448749503464985,
+        "bracketS9MinusOne": -0.00031543749999995985
+      },
+      {
+        "beta": 0.0125,
+        "remainderAfterFirstOrder": 0.0001136918492968092,
+        "remainderAfterSecondOrder": 7.21918069250445e-7,
+        "nineA_minus_ME": 0.00007174013033071854,
+        "decompositionResidual": 0.000007134745934231692,
+        "bracket9aMinusOne": -0.00007117394224787077,
+        "bracketS9MinusOne": -0.0000788593749999622
+      },
+      {
+        "beta": 0.00625,
+        "remainderAfterFirstOrder": 0.000028476129594015118,
+        "remainderAfterSecondOrder": 9.089487243228527e-8,
+        "nineA_minus_ME": 0.000018824747833272475,
+        "decompositionResidual": 8.92109117262473e-7,
+        "bracket9aMinusOne": -0.000018750169413883633,
+        "bracketS9MinusOne": -0.000019714843749962796
+      }
+    ],
+    "rigidCircleTransverse": [
+      {
+        "beta": 0.05,
+        "transverseOverPredicted": 0.9983403833008894,
+        "bracket9aMinusOne": 0
+      },
+      {
+        "beta": 0.0125,
+        "transverseOverPredicted": 0.9998958609944205,
+        "bracket9aMinusOne": 0
+      },
+      {
+        "beta": 0.00625,
+        "transverseOverPredicted": 0.9999739600625358,
+        "bracket9aMinusOne": 0
+      }
+    ],
+    "note": "normalized by K/r^2; prescribed histories with kinematic accelerations inserted; shape fixed, scaled by rho=1/(4 beta^2), beta, beta^2/rho, beta^3/rho^2"
+  }
+}

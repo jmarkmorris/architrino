@@ -1,0 +1,480 @@
+{
+ "instrument": "weber-binding-sphere-mc-lib.mjs",
+ "law": "instantaneous Weber comparison law, K=c_f=1, lambda=-1/2, mu=1, full 3N x 3N solve",
+ "cases": {
+  "KC1": {
+   "description": "alternating hexagon R=1, Omega^2=(5/4-1/sqrt3)/R^3 is a zero of stage 2",
+   "M": 3,
+   "Nc": 16,
+   "omega": 0.8201522607481944,
+   "v": 0.8201522607481944,
+   "collocation": {
+    "maxE": 1.980626124602978e-15,
+    "maxS": 1.2212453270876722e-15,
+    "maxV": 1.1553652393517373e-15
+   },
+   "fine": {
+    "Nf": 256,
+    "maxE": 2.7470157004065945e-15,
+    "maxS": 1.3322676295501878e-15,
+    "maxV": 1.3204174164019854e-15,
+    "det": [
+     -137.09614957475907,
+     -137.09614957475844
+    ]
+   },
+   "value": 2.7470157004065945e-15,
+   "tolerance": 1e-13,
+   "pass": true,
+   "command": "node reference/priorities/master-equation-closure/braid-program/evidence/weber-binding-sphere-mc-known-cases.mjs --only kc1,kc5,kc2",
+   "utc": "2026-10-06T22:21:32.402Z"
+  },
+  "KC5": {
+   "description": "hexagon at 1.01 omega is not a zero (v kept, and v scaled with omega)",
+   "maxE_vKept": 0.015540015886046164,
+   "maxV_vKept": 0.020100000000000773,
+   "maxE_vScaled": 0.015540015886046164,
+   "value": 0.015540015886046164,
+   "tolerance": ">= 1e-3",
+   "pass": true,
+   "command": "node reference/priorities/master-equation-closure/braid-program/evidence/weber-binding-sphere-mc-known-cases.mjs --only kc1,kc5,kc2",
+   "utc": "2026-10-06T22:21:32.414Z"
+  },
+  "KC1-jacobian": {
+   "description": "Jacobian times random direction against central difference of the residual at a 5 percent perturbed hexagon (stage 2)",
+   "maxAbsDifference": 2.3232884505119955e-9,
+   "scale": 3.227236103853226,
+   "value": 7.199003654359396e-10,
+   "tolerance": 0.000001,
+   "pass": true,
+   "command": "node reference/priorities/master-equation-closure/braid-program/evidence/weber-binding-sphere-mc-known-cases.mjs --only kc1,kc5,kc2",
+   "utc": "2026-10-06T22:21:32.528Z"
+  },
+  "KC2": {
+   "description": "reach: hexagon recovered from 20 percent perturbed coefficients (out-of-plane content included)",
+   "M": 3,
+   "Nc": 16,
+   "runs": [
+    {
+     "route": "stage2-direct",
+     "trial": 0,
+     "seed": 20261006,
+     "perturbation": "20 percent of the coefficient 2-norm, isotropic over all harmonics and all three axes; omega and v each scaled by a uniform factor in [0.8,1.2]",
+     "maxOutOfPlaneCoefficientAtStart": 0.16699932139370943,
+     "omega0": 0.8602555147332064,
+     "v0": 0.9246226032304524,
+     "stageLog": [
+      {
+       "stage": 2,
+       "iter": 119,
+       "reason": "residual-tolerance",
+       "cost": 9.882279781557127e-25
+      }
+     ],
+     "omega": 0.8201522607481945,
+     "omegaError": 1.1102230246251565e-16,
+     "v": 0.8201522607481945,
+     "fine": {
+      "maxE": 5.396738269605754e-14,
+      "maxS": 9.592326932761353e-14,
+      "maxV": 9.25942713251892e-14,
+      "minSep": 0.9999999999999751
+     },
+     "classification": "hexagon family member, r=1.000000000, lap period 7.660998583 (law 2pi/sqrt(0.672650/r^3)=7.660998583), 1 lap(s) per collocation period",
+     "value": 9.592326932761353e-14,
+     "pass": true
+    },
+    {
+     "route": "stage2-direct",
+     "trial": 1,
+     "seed": 20261007,
+     "perturbation": "20 percent of the coefficient 2-norm, isotropic over all harmonics and all three axes; omega and v each scaled by a uniform factor in [0.8,1.2]",
+     "maxOutOfPlaneCoefficientAtStart": 0.14649555785275084,
+     "omega0": 0.8008435738512208,
+     "v0": 0.9388274987031848,
+     "stageLog": [
+      {
+       "stage": 2,
+       "iter": 118,
+       "reason": "residual-tolerance",
+       "cost": 9.898845985556232e-25
+      }
+     ],
+     "omega": 0.8201522607481946,
+     "omegaError": 2.220446049250313e-16,
+     "v": 0.8201522607481946,
+     "fine": {
+      "maxE": 5.3895802741897196e-14,
+      "maxS": 9.592326932761353e-14,
+      "maxV": 9.308942785633991e-14,
+      "minSep": 0.9999999999999752
+     },
+     "classification": "hexagon family member, r=1.000000000, lap period 7.660998583 (law 2pi/sqrt(0.672650/r^3)=7.660998583), 1 lap(s) per collocation period",
+     "value": 9.592326932761353e-14,
+     "pass": true
+    },
+    {
+     "route": "stage2-direct",
+     "trial": 2,
+     "seed": 20261008,
+     "perturbation": "20 percent of the coefficient 2-norm, isotropic over all harmonics and all three axes; omega and v each scaled by a uniform factor in [0.8,1.2]",
+     "maxOutOfPlaneCoefficientAtStart": 0.12300139522186938,
+     "omega0": 0.753761264031804,
+     "v0": 0.9297573014352625,
+     "stageLog": [
+      {
+       "stage": 2,
+       "iter": 118,
+       "reason": "residual-tolerance",
+       "cost": 9.952147499026473e-25
+      }
+     ],
+     "omega": 0.8201522607481945,
+     "omegaError": 1.1102230246251565e-16,
+     "v": 0.8201522607481945,
+     "fine": {
+      "maxE": 5.456918649416929e-14,
+      "maxS": 9.614531393253856e-14,
+      "maxV": 9.308942785633995e-14,
+      "minSep": 0.999999999999975
+     },
+     "classification": "hexagon family member, r=1.000000000, lap period 7.660998583 (law 2pi/sqrt(0.672650/r^3)=7.660998583), 1 lap(s) per collocation period",
+     "value": 9.614531393253856e-14,
+     "pass": true
+    },
+    {
+     "route": "stage1-then-stage2",
+     "trial": 0,
+     "seed": 20261006,
+     "perturbation": "20 percent of the coefficient 2-norm, isotropic over all harmonics and all three axes; omega and v each scaled by a uniform factor in [0.8,1.2]",
+     "maxOutOfPlaneCoefficientAtStart": 0.16699932139370943,
+     "omega0": 0.8602555147332064,
+     "v0": 0.9246226032304524,
+     "stageLog": [
+      {
+       "stage": 1,
+       "iter": 300,
+       "reason": "max-iterations",
+       "cost": 2.56155933699821e-18,
+       "maxE": 2.3042581381066208e-10
+      },
+      {
+       "stage": 2,
+       "iter": 118,
+       "reason": "residual-tolerance",
+       "cost": 9.841569717607564e-25
+      }
+     ],
+     "omega": 0.8201522607481945,
+     "omegaError": 1.1102230246251565e-16,
+     "v": 0.8201522607481945,
+     "fine": {
+      "maxE": 5.3667553011921656e-14,
+      "maxS": 9.547918011776346e-14,
+      "maxV": 9.25942713251892e-14,
+      "minSep": 0.9999999999999754
+     },
+     "classification": "hexagon family member, r=1.000000000, lap period 7.660998583 (law 2pi/sqrt(0.672650/r^3)=7.660998583), 1 lap(s) per collocation period",
+     "value": 9.547918011776346e-14,
+     "pass": true
+    },
+    {
+     "route": "stage1-then-stage2",
+     "trial": 1,
+     "seed": 20261007,
+     "perturbation": "20 percent of the coefficient 2-norm, isotropic over all harmonics and all three axes; omega and v each scaled by a uniform factor in [0.8,1.2]",
+     "maxOutOfPlaneCoefficientAtStart": 0.14649555785275084,
+     "omega0": 0.8008435738512208,
+     "v0": 0.9388274987031848,
+     "stageLog": [
+      {
+       "stage": 1,
+       "iter": 300,
+       "reason": "max-iterations",
+       "cost": 1.407839001816684e-17,
+       "maxE": 5.408072431858551e-10
+      },
+      {
+       "stage": 2,
+       "iter": 118,
+       "reason": "residual-tolerance",
+       "cost": 9.840392016040829e-25
+      }
+     ],
+     "omega": 0.8201522607481945,
+     "omegaError": 1.1102230246251565e-16,
+     "v": 0.8201522607481945,
+     "fine": {
+      "maxE": 5.32025136106317e-14,
+      "maxS": 9.592326932761353e-14,
+      "maxV": 9.29243756792897e-14,
+      "minSep": 0.9999999999999755
+     },
+     "classification": "hexagon family member, r=1.000000000, lap period 7.660998583 (law 2pi/sqrt(0.672650/r^3)=7.660998583), 1 lap(s) per collocation period",
+     "value": 9.592326932761353e-14,
+     "pass": true
+    },
+    {
+     "route": "stage1-then-stage2",
+     "trial": 2,
+     "seed": 20261008,
+     "perturbation": "20 percent of the coefficient 2-norm, isotropic over all harmonics and all three axes; omega and v each scaled by a uniform factor in [0.8,1.2]",
+     "maxOutOfPlaneCoefficientAtStart": 0.12300139522186938,
+     "omega0": 0.753761264031804,
+     "v0": 0.9297573014352625,
+     "stageLog": [
+      {
+       "stage": 1,
+       "iter": 300,
+       "reason": "max-iterations",
+       "cost": 2.359398687420581e-18,
+       "maxE": 2.2133475279343265e-10
+      },
+      {
+       "stage": 2,
+       "iter": 118,
+       "reason": "residual-tolerance",
+       "cost": 9.819042595401257e-25
+      }
+     ],
+     "omega": 0.8201522607481946,
+     "omegaError": 2.220446049250313e-16,
+     "v": 0.8201522607481946,
+     "fine": {
+      "maxE": 5.322004561873132e-14,
+      "maxS": 9.547918011776346e-14,
+      "maxV": 9.259427132518917e-14,
+      "minSep": 0.9999999999999751
+     },
+     "classification": "hexagon family member, r=1.000000000, lap period 7.660998583 (law 2pi/sqrt(0.672650/r^3)=7.660998583), 1 lap(s) per collocation period",
+     "value": 9.547918011776346e-14,
+     "pass": true
+    }
+   ],
+   "value": 9.614531393253856e-14,
+   "tolerance": 1e-10,
+   "passCount": 6,
+   "pass": true,
+   "command": "node reference/priorities/master-equation-closure/braid-program/evidence/weber-binding-sphere-mc-known-cases.mjs --only kc1,kc5,kc2",
+   "utc": "2026-10-06T22:22:17.947Z"
+  },
+  "KC3": {
+   "description": "closed eccentric two-member opposite-polarity rosette reproduced by the same collocation code with N=2 (6x6 solve), stage 1 with the mean-square radius fixed to the quadrature value and omega unknown",
+   "invariants": {
+    "A": 0.7263407594617661,
+    "eccentricity": 0.3,
+    "epsilon": -1.3767642624668637,
+    "h": 1.1497565752020793,
+    "rPeri": 0.5084385316232363,
+    "rApo": 0.944242987300296,
+    "apsidalAngleOverPi": 2.0000000000000004,
+    "radialPeriod": 5.311758491618341,
+    "closedPeriod": 5.311758491618341,
+    "radialPeriodsPerClosure": 1,
+    "turnsPerClosure": 2.0000000000000004,
+    "quadratureConvergence": 4.263256414560601e-14,
+    "maxMemberSpeed": 1.1306741166246554
+   },
+   "directIntegration": {
+    "instrument": "weber-overnight-pair-instrument.mjs runCase gbs rtol 1e-12",
+    "closureError": 3.770344652780157e-12,
+    "tolerance": 1e-9,
+    "steps": 122
+   },
+   "collocation": {
+    "M": 40,
+    "Nc": 162,
+    "seedSamples": 64,
+    "seedHarmonics": 31,
+    "seedOmegaOffset": 0.01,
+    "seedMaxE": 0.028957096504208992,
+    "iterations": 26,
+    "reason": "no-descent",
+    "cost": 2.2628084699848293e-27,
+    "collocationMaxE": 8.323650641824184e-15,
+    "wallSeconds": 5.657
+   },
+   "periodQuadrature": 5.311758491618341,
+   "periodCollocation": 5.311758491618356,
+   "periodError": 1.509903313490213e-14,
+   "periodTolerance": 1e-8,
+   "fine": {
+    "Nf": 1024,
+    "maxE": 1.5348053427854507e-14,
+    "tolerance": 1e-9,
+    "minSep": 0.5084385316232304,
+    "det": [
+     3.1180988653336237,
+     4.933612178476801
+    ],
+    "speed": [
+     0.6088245243363478,
+     1.1306741166246652
+    ],
+    "speedLabel": "unrestricted only (v>1 reached)",
+    "radius": [
+     0.2542192658116152,
+     0.47212149365015066
+    ],
+    "identityGddot": 1.9317880628477724e-14,
+    "identityRel": 9.82195486081606e-15,
+    "Hvariation": 5.440092820663267e-15
+   },
+   "spectrumTail": [
+    [
+     36,
+     1.5478983693136128e-17
+    ],
+    [
+     38,
+     1.571925420830152e-18
+    ],
+    [
+     39,
+     4.998104931382967e-19
+    ],
+    [
+     40,
+     1.6394810385050237e-19
+    ]
+   ],
+   "value": 1.5348053427854507e-14,
+   "pass": true,
+   "command": "node reference/priorities/master-equation-closure/braid-program/evidence/weber-binding-sphere-mc-known-cases.mjs --only kc3 --phi 2 --M 40",
+   "utc": "2026-10-06T22:22:24.031Z"
+  },
+  "KC3-phi1.5pi": {
+   "description": "closed eccentric two-member opposite-polarity rosette reproduced by the same collocation code with N=2 (6x6 solve), stage 1 with the mean-square radius fixed to the quadrature value and omega unknown",
+   "invariants": {
+    "A": 1.7471585783296781,
+    "eccentricity": 0.3,
+    "epsilon": -0.572357891494899,
+    "h": 1.7832073947132494,
+    "rPeri": 1.2230110048307745,
+    "rApo": 2.2713061518285818,
+    "apsidalAngleOverPi": 1.4999999999999998,
+    "radialPeriod": 15.001142149890393,
+    "closedPeriod": 30.002284299780786,
+    "radialPeriodsPerClosure": 2,
+    "turnsPerClosure": 2.9999999999999996,
+    "quadratureConvergence": 8.08242361927114e-14,
+    "maxMemberSpeed": 0.729023446097277
+   },
+   "directIntegration": {
+    "instrument": "weber-overnight-pair-instrument.mjs runCase gbs rtol 1e-12",
+    "closureError": 8.128485579185929e-12,
+    "tolerance": 1e-9,
+    "steps": 119
+   },
+   "collocation": {
+    "M": 72,
+    "Nc": 290,
+    "seedSamples": 128,
+    "seedHarmonics": 63,
+    "seedOmegaOffset": 0.01,
+    "seedMaxE": 0.12376780318208275,
+    "iterations": 16,
+    "reason": "no-descent",
+    "cost": 1.0271172067877026e-24,
+    "collocationMaxE": 7.284548339992633e-14,
+    "wallSeconds": 18.659
+   },
+   "periodQuadrature": 30.002284299780786,
+   "periodCollocation": 30.00228429978047,
+   "periodError": -3.161915174132446e-13,
+   "periodTolerance": 1e-8,
+   "fine": {
+    "Nf": 1024,
+    "maxE": 9.318126059023031e-14,
+    "tolerance": 1e-9,
+    "minSep": 1.2230110048307687,
+    "det": [
+     1.8805506022998466,
+     2.6353082614140058
+    ],
+    "speed": [
+     0.3925510863600725,
+     0.7290234460972786
+    ],
+    "speedLabel": "strict (v<1)",
+    "radius": [
+     0.6115055024153844,
+     1.135653075914288
+    ],
+    "identityGddot": 1.2545520178264269e-14,
+    "identityRel": 1.534330923934367e-14,
+    "Hvariation": 3.774758283725532e-15
+   },
+   "spectrumTail": [
+    [
+     68,
+     3.4757690858834824e-19
+    ],
+    [
+     70,
+     3.753803140836719e-19
+    ],
+    [
+     71,
+     2.988470371642845e-17
+    ],
+    [
+     72,
+     2.8856989430071485e-19
+    ]
+   ],
+   "value": 3.161915174132446e-13,
+   "pass": true,
+   "command": "node reference/priorities/master-equation-closure/braid-program/evidence/weber-binding-sphere-mc-known-cases.mjs --only kc3 --phi 1.5 --M 72 --samples 128",
+   "utc": "2026-10-06T22:22:44.117Z"
+  },
+  "KC4": {
+   "description": "Gddot = T_kin + H evaluated from the curve kinematics (Gddot uses the curve second derivative, no solve)",
+   "hexagon": {
+    "identityMax": 3.4416913763379853e-15,
+    "identityRel": 8.527695814262819e-16,
+    "maxE": 2.0079463962107943e-15,
+    "H": -2.0179491924311157,
+    "Hplus3v2": 6.661338147750939e-15,
+    "sigDVariation": 2.886579864025407e-15
+   },
+   "nonSolution": {
+    "what": "hexagon coefficients perturbed by 20 percent at the hexagon omega",
+    "identityMax": 3.3036124599808616,
+    "identityRel": 0.7342268783273379,
+    "maxE": 3.2433342367905373
+   },
+   "rosette": {
+    "identityMax": 1.9317880628477724e-14,
+    "identityRel": 9.82195486081606e-15,
+    "maxE": 5.8523000520365936e-15,
+    "Hvariation": 5.440092820663267e-15
+   },
+   "value": 9.82195486081606e-15,
+   "tolerance": 1e-9,
+   "pass": true,
+   "command": "node reference/priorities/master-equation-closure/braid-program/evidence/weber-binding-sphere-mc-known-cases.mjs --only kc4",
+   "utc": "2026-10-06T22:22:44.321Z"
+  },
+  "KC1-speed-normalized-stage1": {
+   "description": "hexagon is a zero of the speed-normalized residual (with the speed box 3 present and inactive); Jacobian against central difference at a 5 percent perturbed hexagon",
+   "hexagonMaxResidual": 1.9806261246029784e-15,
+   "jacobianRelativeDifference": 6.068742287112735e-10,
+   "value": 1.9806261246029784e-15,
+   "tolerance": 1e-13,
+   "pass": true,
+   "command": "node reference/priorities/master-equation-closure/braid-program/evidence/weber-binding-sphere-mc-known-cases.mjs --only kc1,kc5,kc2",
+   "utc": "2026-10-06T22:21:32.451Z"
+  },
+  "KC1-speed-normalized-stage2": {
+   "description": "hexagon is a zero of the speed-normalized residual (with the speed box 3 present and inactive); Jacobian against central difference at a 5 percent perturbed hexagon",
+   "hexagonMaxResidual": 1.980626124602978e-15,
+   "jacobianRelativeDifference": 5.39614795632406e-10,
+   "value": 1.980626124602978e-15,
+   "tolerance": 1e-13,
+   "pass": true,
+   "command": "node reference/priorities/master-equation-closure/braid-program/evidence/weber-binding-sphere-mc-known-cases.mjs --only kc1,kc5,kc2",
+   "utc": "2026-10-06T22:21:32.491Z"
+  }
+ }
+}

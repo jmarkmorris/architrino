@@ -1,0 +1,34 @@
+{
+ "utc": "2026-10-06T22:48:12.479Z",
+ "knownCases": {
+  "hexagon": {
+   "rate": 0.8201522607481945,
+   "rigidVelocityFitResidual": 1.2412670766236366e-16,
+   "balanceResidual": 1.6011864169946886e-15,
+   "balanceRelative": 2.3804163499265216e-15
+  },
+  "hexagonAt1p01Omega": {
+   "rate": 0.8283537833556763,
+   "rigidVelocityFitResidual": 0,
+   "balanceResidual": 0.013520259589288491,
+   "balanceRelative": 0.019703950593079066
+  },
+  "pass": true
+ },
+ "objects": {
+  "free-nobox-0:38": {
+   "omegaCollocation": 0.8134557856649353,
+   "rate": 0.8134557856649346,
+   "rigidVelocityFitResidual": 4.2041098313973166e-16,
+   "balanceResidual": 3.31021727291483e-15,
+   "balanceRelative": 3.479868997497113e-15
+  },
+  "w111111-box3-0:7": {
+   "omegaCollocation": 0.898865153230564,
+   "rate": 0.8988651532305693,
+   "rigidVelocityFitResidual": 3.927980991006924e-13,
+   "balanceResidual": 1.0862836988204459e-13,
+   "balanceRelative": 9.822790087290073e-14
+  }
+ }
+}

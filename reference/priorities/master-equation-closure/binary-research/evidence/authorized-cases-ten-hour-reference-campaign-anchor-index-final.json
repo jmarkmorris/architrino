@@ -1,0 +1,13 @@
+{
+  "time": "2026-10-06T10:06:57.557Z",
+  "scope": "One new equation-variants index campaign link, outside basename-prefix anchor inventory",
+  "source": "reference/priorities/master-equation-closure/equation-variants/README.md",
+  "sourceSha256": "5b4ddfd145bf6a311b6a40edd631315ada0820c9d3fb65f07c8e7b7bb7c002be",
+  "target": "reference/priorities/master-equation-closure/analysis/authorized-cases-ten-hour-codex-investigation.md",
+  "targetSha256": "db8e9ad5735304dceb44dc3fcbe13a6a6c6e47ffe07583c435ec3353ba8bf73c",
+  "fragment": "b-quantitative-admission",
+  "selectedTitle": "B quantitative admission",
+  "policySha256": "271cb9e663c3a120bc332a666b3839a34338994c5784a63873ddbbc5ebb83eb2",
+  "knownControls": "Existing anchor checker known receipt c47aec0f03ae07656428df14b16519fb08819a493e2f5c9ede9b52b67b6ed8e3",
+  "passed": true
+}

@@ -1,0 +1,228 @@
+{
+  "passed": true,
+  "time": "2026-10-06T05:13:11.110Z",
+  "boundary": "Exact source-token arithmetic and declared analytical constants only; no trajectory or independent theorem validation",
+  "knownReceipt": ".tmp/authorized-cases-ten-hour/d/continuation-entry-arithmetic-known.json",
+  "subjects": [
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-nominal-entry.md",
+      "sha256": "7a3a3e4a84430ebb8ed2fa912254f26f7dcd287e4073a454f979de23e3fe691a"
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-positive-account-continuation.md",
+      "sha256": "9342375278e2e5e6f0c9254c8e2480a80726cb1bb916c84d7ebb5b870e28462a"
+    }
+  ],
+  "rows": [
+    {
+      "name": "exact epsilon lower squared",
+      "numerator": "11126500880881",
+      "denominator": "100000000000000000000",
+      "approximate": 1.1126500880881e-7,
+      "strictUpper": 1.1126501179531171e-7
+    },
+    {
+      "name": "exact epsilon upper squared",
+      "numerator": "44506004718124686111111111111111128913512998360985555555555555555557335795744280543",
+      "denominator": "400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "approximate": 1.1126501179531171e-7,
+      "strictUpper": 1.112650154800921e-7
+    },
+    {
+      "name": "epsilon in planar range",
+      "numerator": "33356411",
+      "denominator": "100000000000",
+      "approximate": 0.00033356411,
+      "strictUpper": 0.0003448275862068965
+    },
+    {
+      "name": "fixed coupling upper",
+      "numerator": "44506004718124686111111111111111128913512998360985555555555555555557335795744280543",
+      "denominator": "100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "approximate": 4.4506004718124684e-7,
+      "strictUpper": 5e-7
+    },
+    {
+      "name": "nominal prefix velocity difference",
+      "numerator": "46698973327741287",
+      "denominator": "1000000000000000000000000000000000000",
+      "approximate": 4.6698973327741285e-20,
+      "strictUpper": 5e-20
+    },
+    {
+      "name": "finite comparison spatial derivative",
+      "numerator": "1999000000",
+      "denominator": "6845288859",
+      "approximate": 0.29202566044700495,
+      "strictUpper": 0.3
+    },
+    {
+      "name": "finite comparison velocity derivative",
+      "numerator": "100000000",
+      "denominator": "360278361",
+      "approximate": 0.2775631590041568,
+      "strictUpper": 0.28
+    },
+    {
+      "name": "finite comparison position coefficient",
+      "numerator": "25000007",
+      "denominator": "41625000",
+      "approximate": 0.6006007687687688,
+      "strictUpper": 1
+    },
+    {
+      "name": "weighted finite Lipschitz exponent",
+      "numerator": "250044506004718124686111111111111111128913512998360985555555555555555557335795744280543",
+      "denominator": "5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "approximate": 0.050008901200943624,
+      "strictUpper": 0.051
+    },
+    {
+      "name": "weighted initial difference",
+      "numerator": "7046698973327741287",
+      "denominator": "50000000000000000000000000000000000",
+      "approximate": 1.4093397946655483e-16,
+      "strictUpper": 1.41e-16
+    },
+    {
+      "name": "finite Gronwall bound",
+      "numerator": "141",
+      "denominator": "490000000000000000",
+      "approximate": 2.877551020408163e-16,
+      "strictUpper": 3e-16
+    },
+    {
+      "name": "strict mirror account lower margin",
+      "numerator": "43605399240613718",
+      "denominator": "21173210104671225",
+      "approximate": 2.059460942627378,
+      "strictUpper": 2.07
+    },
+    {
+      "name": "strict mirror account upper margin",
+      "numerator": "-70521746083077629",
+      "denominator": "36248172637500000",
+      "approximate": -1.945525552096947,
+      "strictUpper": -1.9
+    },
+    {
+      "name": "strict mirror distance margin",
+      "numerator": "20000",
+      "denominator": "9929",
+      "approximate": 2.014301540940679,
+      "strictUpper": 2.02
+    },
+    {
+      "name": "inverse distance perturbation",
+      "numerator": "133518014154374058333333333333333386740538995082956666666666666666672007387232841629",
+      "denominator": "1805000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "approximate": 7.397119897749255e-23,
+      "strictUpper": 1e-22
+    },
+    {
+      "name": "account perturbation",
+      "numerator": "2178378010032204837708832749029021548498426235104157305755321833830840136231512399304619464421072271972853",
+      "denominator": "72200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "approximate": 3.0171440582163506e-20,
+      "strictUpper": 1e-19
+    },
+    {
+      "name": "angular perturbation",
+      "numerator": "159",
+      "denominator": "2500000000000000000",
+      "approximate": 6.36e-17,
+      "strictUpper": 1e-16
+    },
+    {
+      "name": "midpoint entry bound",
+      "numerator": "3",
+      "denominator": "200000000000000000",
+      "approximate": 1.5e-17,
+      "strictUpper": 0.000003335641
+    },
+    {
+      "name": "angular floor inverse distance",
+      "numerator": "1",
+      "denominator": "14500",
+      "approximate": 0.00006896551724137931,
+      "strictUpper": 0.0001
+    },
+    {
+      "name": "positive account source acceleration",
+      "numerator": "8379",
+      "denominator": "5780",
+      "approximate": 1.4496539792387544,
+      "strictUpper": 1.45
+    },
+    {
+      "name": "positive account clock discrepancy",
+      "numerator": "88200",
+      "denominator": "104329",
+      "approximate": 0.8454025247054989,
+      "strictUpper": 0.85
+    },
+    {
+      "name": "positive account source velocity discrepancy",
+      "numerator": "441",
+      "denominator": "289",
+      "approximate": 1.5259515570934257,
+      "strictUpper": 1.53
+    },
+    {
+      "name": "positive account comparison range cost",
+      "numerator": "190017",
+      "denominator": "200000",
+      "approximate": 0.950085,
+      "strictUpper": 0.9523809523809523
+    },
+    {
+      "name": "positive account spatial derivative",
+      "numerator": "6240000",
+      "denominator": "2476099",
+      "approximate": 2.5200930980546414,
+      "strictUpper": 2.53
+    },
+    {
+      "name": "positive account velocity derivative",
+      "numerator": "160000",
+      "denominator": "130321",
+      "approximate": 1.2277376631548254,
+      "strictUpper": 1.23
+    },
+    {
+      "name": "positive account row error",
+      "numerator": "10081",
+      "denominator": "2500",
+      "approximate": 4.0324,
+      "strictUpper": 5
+    },
+    {
+      "name": "positive account boundary coefficient",
+      "numerator": "-293023222117",
+      "denominator": "528327805500",
+      "approximate": -0.5546238889313957,
+      "strictUpper": -0.5
+    },
+    {
+      "name": "virial coefficient",
+      "numerator": "9",
+      "denominator": "5",
+      "approximate": 1.8,
+      "strictUpper": 1.879
+    },
+    {
+      "name": "member acceleration prefactor",
+      "numerator": "441",
+      "denominator": "380",
+      "approximate": 1.1605263157894736,
+      "strictUpper": 1.161
+    },
+    {
+      "name": "total speed change by squared rational bound",
+      "numerator": "18122049",
+      "denominator": "17762500000",
+      "approximate": 0.0010202420267417312,
+      "strictUpper": 0.001089
+    }
+  ]
+}

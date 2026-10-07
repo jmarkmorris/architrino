@@ -1,0 +1,883 @@
+{
+ "test": "t2",
+ "mode": "222anti",
+ "polarities": [
+  1.0,
+  -1.0,
+  1.0,
+  -1.0,
+  1.0,
+  -1.0
+ ],
+ "utc": "2026-10-06T22:50:10Z",
+ "nstart": 80,
+ "seed": 2,
+ "collocationTimes": 24,
+ "reportTimes": 96,
+ "seconds": 189.84904074668884,
+ "nConvergedRuns": 80,
+ "nPlanar": 5,
+ "nPlanarBelow1em8": 5,
+ "bestPlanar": 7.0749249819721626e-15,
+ "bestNonPlanar": {
+  "start": 25,
+  "supResidual96": 1.048572884842409,
+  "rms": 0.573285297028169,
+  "nonPlanarity_maxA": 0.008906164097112756,
+  "minSeparation": 0.7207104823886018,
+  "Omega": 2.9999999999999996,
+  "nfev": 28,
+  "status": 2
+ },
+ "nNonPlanarBelow1em4": 0,
+ "nonPlanarFloorQuantiles": [
+  1.048572884842409,
+  1.0486164286687951,
+  6.792794386486288,
+  665720.9354430449
+ ],
+ "smallNonPlanarityRuns": [
+  [
+   0.008906131783613935,
+   1.048665720271199
+  ],
+  [
+   0.008906137250410229,
+   1.0486575987249416
+  ],
+  [
+   0.008906141094408793,
+   1.048669412553869
+  ],
+  [
+   0.008906146428343198,
+   1.048662619784075
+  ],
+  [
+   0.008906147260454855,
+   1.048666808885434
+  ],
+  [
+   0.008906147627025074,
+   1.0486492353330934
+  ],
+  [
+   0.008906151432460208,
+   1.0486614378411447
+  ],
+  [
+   0.008906153200819444,
+   1.0486585788591376
+  ],
+  [
+   0.008906154239541164,
+   1.0486502913012672
+  ],
+  [
+   0.008906155733270693,
+   1.0486161307466513
+  ]
+ ],
+ "rows": [
+  {
+   "start": 0,
+   "supResidual96": 8.57328497711905e-15,
+   "rms": 1.482170560527112e-15,
+   "nonPlanarity_maxA": 5.551115123125783e-17,
+   "minSeparation": 0.9999999999999986,
+   "Omega": 0.8201522607481945,
+   "nfev": 45,
+   "status": 3
+  },
+  {
+   "start": 1,
+   "supResidual96": 126.74577306411071,
+   "rms": 1.5668755024405583,
+   "nonPlanarity_maxA": 0.7199817752993142,
+   "minSeparation": 0.1536572064915604,
+   "Omega": 2.9999999999999996,
+   "nfev": 41,
+   "status": 2
+  },
+  {
+   "start": 2,
+   "supResidual96": 134.02245309884017,
+   "rms": 1.3764252075147703,
+   "nonPlanarity_maxA": 0.7747663738443948,
+   "minSeparation": 0.15477108338152035,
+   "Omega": 2.9999999999999996,
+   "nfev": 48,
+   "status": 2
+  },
+  {
+   "start": 3,
+   "supResidual96": 1.0486575987249416,
+   "rms": 0.5732852970281718,
+   "nonPlanarity_maxA": 0.008906137250410229,
+   "minSeparation": 0.7207007174082288,
+   "Omega": 2.9999999999999996,
+   "nfev": 27,
+   "status": 2
+  },
+  {
+   "start": 4,
+   "supResidual96": 127.89449066519,
+   "rms": 1.4043912945670503,
+   "nonPlanarity_maxA": 0.7567494310554337,
+   "minSeparation": 0.15672755403503322,
+   "Omega": 2.9999999999999996,
+   "nfev": 135,
+   "status": 2
+  },
+  {
+   "start": 5,
+   "supResidual96": 198.66540056906558,
+   "rms": 1.4664336714469104,
+   "nonPlanarity_maxA": 0.9885355626862253,
+   "minSeparation": 0.15018120813182867,
+   "Omega": 1.380252313052536,
+   "nfev": 42,
+   "status": 2
+  },
+  {
+   "start": 6,
+   "supResidual96": 1.048616875552011,
+   "rms": 0.5732852970281678,
+   "nonPlanarity_maxA": 0.008906158514110585,
+   "minSeparation": 0.7207054252413608,
+   "Omega": 2.9999999999999996,
+   "nfev": 30,
+   "status": 2
+  },
+  {
+   "start": 7,
+   "supResidual96": 1.0486614378411447,
+   "rms": 0.5732852970281676,
+   "nonPlanarity_maxA": 0.008906151432460208,
+   "minSeparation": 0.7207002876504852,
+   "Omega": 2.9999999999999996,
+   "nfev": 29,
+   "status": 2
+  },
+  {
+   "start": 8,
+   "supResidual96": 6.792794386486288,
+   "rms": 2.0567877424242513,
+   "nonPlanarity_maxA": 0.7132755048146605,
+   "minSeparation": 0.6743890324183328,
+   "Omega": 2.9999999999999996,
+   "nfev": 57,
+   "status": 2
+  },
+  {
+   "start": 9,
+   "supResidual96": 4445753.69993159,
+   "rms": 0.5227277929068432,
+   "nonPlanarity_maxA": 0.18699309397600555,
+   "minSeparation": 0.0004834004879297533,
+   "Omega": 1.6208859510353313,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 10,
+   "supResidual96": 1.0486013621179708,
+   "rms": 0.5732852970281679,
+   "nonPlanarity_maxA": 0.008906158768037797,
+   "minSeparation": 0.7207072072950456,
+   "Omega": 2.9999999999999996,
+   "nfev": 31,
+   "status": 2
+  },
+  {
+   "start": 11,
+   "supResidual96": 1.0486585788591376,
+   "rms": 0.5732852970281678,
+   "nonPlanarity_maxA": 0.008906153200819444,
+   "minSeparation": 0.7207006285417585,
+   "Omega": 2.9999999999999996,
+   "nfev": 27,
+   "status": 2
+  },
+  {
+   "start": 12,
+   "supResidual96": 743856.5266836328,
+   "rms": 0.5226645564303454,
+   "nonPlanarity_maxA": 0.1537240266826218,
+   "minSeparation": 0.00010015438878960406,
+   "Omega": 1.7875401260711814,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 13,
+   "supResidual96": 1.0486119081218148,
+   "rms": 0.5732852970281687,
+   "nonPlanarity_maxA": 0.008906167305490265,
+   "minSeparation": 0.7207059862448929,
+   "Omega": 2.9999999999999996,
+   "nfev": 29,
+   "status": 2
+  },
+  {
+   "start": 14,
+   "supResidual96": 126.74577157622437,
+   "rms": 1.5668755024405772,
+   "nonPlanarity_maxA": 0.7199818205905824,
+   "minSeparation": 0.15365721200026636,
+   "Omega": 2.9999999999999996,
+   "nfev": 51,
+   "status": 2
+  },
+  {
+   "start": 15,
+   "supResidual96": 7.493472063242495,
+   "rms": 2.2608626876365436,
+   "nonPlanarity_maxA": 0.7107378615683537,
+   "minSeparation": 0.6619115974391241,
+   "Omega": 2.9999999999999996,
+   "nfev": 41,
+   "status": 2
+  },
+  {
+   "start": 16,
+   "supResidual96": 1.048654869168044,
+   "rms": 0.573285297028168,
+   "nonPlanarity_maxA": 0.008906160518251938,
+   "minSeparation": 0.7207010489684991,
+   "Omega": 2.9999999999999996,
+   "nfev": 36,
+   "status": 2
+  },
+  {
+   "start": 17,
+   "supResidual96": 1.0486492353330934,
+   "rms": 0.5732852970281674,
+   "nonPlanarity_maxA": 0.008906147627025074,
+   "minSeparation": 0.7207016994777891,
+   "Omega": 2.9999999999999996,
+   "nfev": 44,
+   "status": 4
+  },
+  {
+   "start": 18,
+   "supResidual96": 129.05344422838843,
+   "rms": 1.7626426424954478,
+   "nonPlanarity_maxA": 0.742701760847103,
+   "minSeparation": 0.1545180047337843,
+   "Omega": 2.9999999999999996,
+   "nfev": 64,
+   "status": 2
+  },
+  {
+   "start": 19,
+   "supResidual96": 1.0486433255580239,
+   "rms": 0.573285297028168,
+   "nonPlanarity_maxA": 0.008906162415573682,
+   "minSeparation": 0.7207023848760851,
+   "Omega": 2.9999999999999996,
+   "nfev": 32,
+   "status": 2
+  },
+  {
+   "start": 20,
+   "supResidual96": 4946228.414746153,
+   "rms": 0.6598455052160911,
+   "nonPlanarity_maxA": 0.20217685683898234,
+   "minSeparation": 0.00045789311604893545,
+   "Omega": 1.5528988145936158,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 21,
+   "supResidual96": 1.0485762401773813,
+   "rms": 0.5732852970281677,
+   "nonPlanarity_maxA": 0.008906157212746069,
+   "minSeparation": 0.7207100798585769,
+   "Omega": 2.9999999999999996,
+   "nfev": 29,
+   "status": 2
+  },
+  {
+   "start": 22,
+   "supResidual96": 7.493472083786503,
+   "rms": 2.2608626876365476,
+   "nonPlanarity_maxA": 0.7107378690032775,
+   "minSeparation": 0.6619115939782597,
+   "Omega": 2.9999999999999996,
+   "nfev": 42,
+   "status": 2
+  },
+  {
+   "start": 23,
+   "supResidual96": 1.0486451562303682,
+   "rms": 0.5732852970281737,
+   "nonPlanarity_maxA": 0.008906179742465103,
+   "minSeparation": 0.7207021562222153,
+   "Omega": 2.9999999999999996,
+   "nfev": 29,
+   "status": 2
+  },
+  {
+   "start": 24,
+   "supResidual96": 211733.677668823,
+   "rms": 0.6697282203550492,
+   "nonPlanarity_maxA": 0.13143202371360818,
+   "minSeparation": 0.0011887875467336347,
+   "Omega": 1.9563103457688864,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 25,
+   "supResidual96": 1.048572884842409,
+   "rms": 0.573285297028169,
+   "nonPlanarity_maxA": 0.008906164097112756,
+   "minSeparation": 0.7207104823886018,
+   "Omega": 2.9999999999999996,
+   "nfev": 28,
+   "status": 2
+  },
+  {
+   "start": 26,
+   "supResidual96": 1.0486643019633346,
+   "rms": 0.5732852970281684,
+   "nonPlanarity_maxA": 0.008906166178967001,
+   "minSeparation": 0.7206999812818605,
+   "Omega": 2.9999999999999996,
+   "nfev": 28,
+   "status": 2
+  },
+  {
+   "start": 27,
+   "supResidual96": 1.0486575030035816,
+   "rms": 0.5732852970281684,
+   "nonPlanarity_maxA": 0.008906166567962004,
+   "minSeparation": 0.7207007479601721,
+   "Omega": 2.9999999999999996,
+   "nfev": 33,
+   "status": 2
+  },
+  {
+   "start": 28,
+   "supResidual96": 1.048661097606725,
+   "rms": 0.5732852970281789,
+   "nonPlanarity_maxA": 0.008906193963453046,
+   "minSeparation": 0.7207003685221017,
+   "Omega": 2.9999999999999996,
+   "nfev": 34,
+   "status": 2
+  },
+  {
+   "start": 29,
+   "supResidual96": 548517.548582159,
+   "rms": 0.523464571897688,
+   "nonPlanarity_maxA": 0.18243048491012137,
+   "minSeparation": 0.00066142049669103,
+   "Omega": 1.6410438887801868,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 30,
+   "supResidual96": 205561.4280016422,
+   "rms": 0.5372196832318273,
+   "nonPlanarity_maxA": 0.09297528430310881,
+   "minSeparation": 0.0002511272596472053,
+   "Omega": 2.297919977227417,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 31,
+   "supResidual96": 129.11317368513906,
+   "rms": 2.011865032106895,
+   "nonPlanarity_maxA": 0.8529617624720409,
+   "minSeparation": 0.16471904029015624,
+   "Omega": 2.9999999999999996,
+   "nfev": 37,
+   "status": 2
+  },
+  {
+   "start": 32,
+   "supResidual96": 1.0486502913012672,
+   "rms": 0.5732852970281682,
+   "nonPlanarity_maxA": 0.008906154239541164,
+   "minSeparation": 0.7207015711602006,
+   "Omega": 2.9999999999999996,
+   "nfev": 28,
+   "status": 2
+  },
+  {
+   "start": 33,
+   "supResidual96": 1058028.3671317108,
+   "rms": 0.5324354755979616,
+   "nonPlanarity_maxA": 0.11859632043430218,
+   "minSeparation": 0.0003664646379401267,
+   "Omega": 2.0347147936151444,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 34,
+   "supResidual96": 1.048659432705799,
+   "rms": 0.5732852970281687,
+   "nonPlanarity_maxA": 0.008906168233996481,
+   "minSeparation": 0.7207005204856922,
+   "Omega": 2.9999999999999996,
+   "nfev": 29,
+   "status": 2
+  },
+  {
+   "start": 35,
+   "supResidual96": 9114189.073117584,
+   "rms": 0.6557656625108363,
+   "nonPlanarity_maxA": 0.12089200964947627,
+   "minSeparation": 0.0002530520903630795,
+   "Omega": 2.009030749718658,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 36,
+   "supResidual96": 233.12263793558668,
+   "rms": 0.7121787060072788,
+   "nonPlanarity_maxA": 0.28249940233373005,
+   "minSeparation": 0.006697634025270205,
+   "Omega": 2.0929755830528243,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 37,
+   "supResidual96": 129.69761300566958,
+   "rms": 2.1128042429437004,
+   "nonPlanarity_maxA": 0.8608215934477366,
+   "minSeparation": 0.16607666619199798,
+   "Omega": 2.9999999999999996,
+   "nfev": 39,
+   "status": 3
+  },
+  {
+   "start": 38,
+   "supResidual96": 15376.411184231387,
+   "rms": 0.6789044799624736,
+   "nonPlanarity_maxA": 0.2484734413905375,
+   "minSeparation": 0.0034626604931962276,
+   "Omega": 1.400546773805654,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 39,
+   "supResidual96": 130.07980421850306,
+   "rms": 1.2454706231009287,
+   "nonPlanarity_maxA": 0.7457629561611612,
+   "minSeparation": 0.15423720889616546,
+   "Omega": 2.9999999999999996,
+   "nfev": 55,
+   "status": 2
+  },
+  {
+   "start": 40,
+   "supResidual96": 1.0486613900942565,
+   "rms": 0.5732852970281683,
+   "nonPlanarity_maxA": 0.008906163533755118,
+   "minSeparation": 0.7207003004621968,
+   "Omega": 2.9999999999999996,
+   "nfev": 33,
+   "status": 2
+  },
+  {
+   "start": 41,
+   "supResidual96": 1202.3596284049192,
+   "rms": 0.7129338909564413,
+   "nonPlanarity_maxA": 0.279086527717526,
+   "minSeparation": 0.005831673340042335,
+   "Omega": 1.7387469409503191,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 42,
+   "supResidual96": 1.048669412553869,
+   "rms": 0.5732852970281674,
+   "nonPlanarity_maxA": 0.008906141094408793,
+   "minSeparation": 0.7206993700309265,
+   "Omega": 2.9999999999999996,
+   "nfev": 43,
+   "status": 3
+  },
+  {
+   "start": 43,
+   "supResidual96": 8.930851897097165e-15,
+   "rms": 1.6942841835004322e-15,
+   "nonPlanarity_maxA": 1.1102230246251565e-16,
+   "minSeparation": 0.9999999999999981,
+   "Omega": 0.8201522607481945,
+   "nfev": 47,
+   "status": 3
+  },
+  {
+   "start": 44,
+   "supResidual96": 4521.6194951808575,
+   "rms": 1.004255170205967,
+   "nonPlanarity_maxA": 0.44697535363954866,
+   "minSeparation": 0.0030181247687352123,
+   "Omega": 1.0752432628636308,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 45,
+   "supResidual96": 1.04866999580924,
+   "rms": 0.5732852970281679,
+   "nonPlanarity_maxA": 0.008906161348909314,
+   "minSeparation": 0.7206993207636502,
+   "Omega": 2.9999999999999996,
+   "nfev": 30,
+   "status": 2
+  },
+  {
+   "start": 46,
+   "supResidual96": 10418.924912366456,
+   "rms": 0.6412639179305141,
+   "nonPlanarity_maxA": 0.09118302085367969,
+   "minSeparation": 0.0009706494757426118,
+   "Omega": 2.6209331411298353,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 47,
+   "supResidual96": 379412.00121212326,
+   "rms": 0.6726506778364896,
+   "nonPlanarity_maxA": 0.2337337589008719,
+   "minSeparation": 0.0007941473362846113,
+   "Omega": 1.4437487355655236,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 48,
+   "supResidual96": 1.048666808885434,
+   "rms": 0.5732852970281672,
+   "nonPlanarity_maxA": 0.008906147260454855,
+   "minSeparation": 0.7206996695908048,
+   "Omega": 2.9999999999999996,
+   "nfev": 40,
+   "status": 2
+  },
+  {
+   "start": 49,
+   "supResidual96": 129.05344435595453,
+   "rms": 1.762642642495451,
+   "nonPlanarity_maxA": 0.7427017612708461,
+   "minSeparation": 0.15451800471171723,
+   "Omega": 2.9999999999999996,
+   "nfev": 53,
+   "status": 2
+  },
+  {
+   "start": 50,
+   "supResidual96": 1.0486707476808197,
+   "rms": 0.5732852970281676,
+   "nonPlanarity_maxA": 0.008906155770111224,
+   "minSeparation": 0.7206992199086726,
+   "Omega": 2.9999999999999996,
+   "nfev": 28,
+   "status": 2
+  },
+  {
+   "start": 51,
+   "supResidual96": 1.0486376845226486,
+   "rms": 0.5732852970281697,
+   "nonPlanarity_maxA": 0.008906160349195669,
+   "minSeparation": 0.7207030412847353,
+   "Omega": 2.9999999999999996,
+   "nfev": 33,
+   "status": 2
+  },
+  {
+   "start": 52,
+   "supResidual96": 11448131.74919563,
+   "rms": 0.522220532678385,
+   "nonPlanarity_maxA": 0.18327131257008628,
+   "minSeparation": 0.00030932144231403646,
+   "Omega": 1.6372974613575793,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 53,
+   "supResidual96": 6.792794298023816,
+   "rms": 2.0567877424242393,
+   "nonPlanarity_maxA": 0.7132755082194542,
+   "minSeparation": 0.6743890336500192,
+   "Omega": 2.9999999999999996,
+   "nfev": 41,
+   "status": 2
+  },
+  {
+   "start": 54,
+   "supResidual96": 1474.0264948413078,
+   "rms": 1.2308401268624176,
+   "nonPlanarity_maxA": 0.5281799412320096,
+   "minSeparation": 0.014495753274930885,
+   "Omega": 1.0440494011485424,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 55,
+   "supResidual96": 1.048648519344132,
+   "rms": 0.5732852970281678,
+   "nonPlanarity_maxA": 0.008906156996396797,
+   "minSeparation": 0.7207017706590251,
+   "Omega": 2.9999999999999996,
+   "nfev": 28,
+   "status": 2
+  },
+  {
+   "start": 56,
+   "supResidual96": 7.0749249819721626e-15,
+   "rms": 1.6962878177197406e-15,
+   "nonPlanarity_maxA": 1.1102230246251565e-16,
+   "minSeparation": 0.9999999999999987,
+   "Omega": 0.8201522607481944,
+   "nfev": 40,
+   "status": 3
+  },
+  {
+   "start": 57,
+   "supResidual96": 1.0486210734521784,
+   "rms": 0.5732852970281714,
+   "nonPlanarity_maxA": 0.008906168116044777,
+   "minSeparation": 0.7207049330856629,
+   "Omega": 2.9999999999999996,
+   "nfev": 34,
+   "status": 2
+  },
+  {
+   "start": 58,
+   "supResidual96": 129.05344374650724,
+   "rms": 1.7626426424954493,
+   "nonPlanarity_maxA": 0.7427017696511365,
+   "minSeparation": 0.15451800588421205,
+   "Omega": 2.9999999999999996,
+   "nfev": 48,
+   "status": 2
+  },
+  {
+   "start": 59,
+   "supResidual96": 130.0798039481293,
+   "rms": 1.2454706231009252,
+   "nonPlanarity_maxA": 0.7457629487529847,
+   "minSeparation": 0.15423720831864032,
+   "Omega": 2.9999999999999996,
+   "nfev": 52,
+   "status": 2
+  },
+  {
+   "start": 60,
+   "supResidual96": 1.0485818315760511,
+   "rms": 0.5732852970281684,
+   "nonPlanarity_maxA": 0.008906163607639739,
+   "minSeparation": 0.7207094280104174,
+   "Omega": 2.9999999999999996,
+   "nfev": 30,
+   "status": 2
+  },
+  {
+   "start": 61,
+   "supResidual96": 1.099611743161894e-14,
+   "rms": 1.7563120923552718e-15,
+   "nonPlanarity_maxA": 2.220446049250313e-16,
+   "minSeparation": 0.9999999999999981,
+   "Omega": 0.8201522607481945,
+   "nfev": 42,
+   "status": 3
+  },
+  {
+   "start": 62,
+   "supResidual96": 1.048667736390209,
+   "rms": 0.5732852970281684,
+   "nonPlanarity_maxA": 0.008906164532691385,
+   "minSeparation": 0.7206995812130168,
+   "Omega": 2.9999999999999996,
+   "nfev": 30,
+   "status": 2
+  },
+  {
+   "start": 63,
+   "supResidual96": 8.115986889777459e-15,
+   "rms": 1.5232927747047614e-15,
+   "nonPlanarity_maxA": 0.0,
+   "minSeparation": 0.9999999999999982,
+   "Omega": 0.8201522607481946,
+   "nfev": 41,
+   "status": 3
+  },
+  {
+   "start": 64,
+   "supResidual96": 1.0486181357868365,
+   "rms": 0.5732852970281679,
+   "nonPlanarity_maxA": 0.008906163016958013,
+   "minSeparation": 0.7207052687818382,
+   "Omega": 2.9999999999999996,
+   "nfev": 30,
+   "status": 2
+  },
+  {
+   "start": 65,
+   "supResidual96": 4215995.991429499,
+   "rms": 0.5232118005315373,
+   "nonPlanarity_maxA": 0.1872902414662337,
+   "minSeparation": 0.0004411062706393937,
+   "Omega": 1.6196739786386292,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 66,
+   "supResidual96": 1.048665720271199,
+   "rms": 0.5732852970281677,
+   "nonPlanarity_maxA": 0.008906131783613935,
+   "minSeparation": 0.7206997915463693,
+   "Omega": 2.9999999999999996,
+   "nfev": 27,
+   "status": 2
+  },
+  {
+   "start": 67,
+   "supResidual96": 1.0486161307466513,
+   "rms": 0.5732852970281677,
+   "nonPlanarity_maxA": 0.008906155733270693,
+   "minSeparation": 0.7207054942815487,
+   "Omega": 2.9999999999999996,
+   "nfev": 30,
+   "status": 2
+  },
+  {
+   "start": 68,
+   "supResidual96": 1.048609911925995,
+   "rms": 0.5732852970281687,
+   "nonPlanarity_maxA": 0.008906167974054302,
+   "minSeparation": 0.7207062295504023,
+   "Omega": 2.9999999999999996,
+   "nfev": 28,
+   "status": 2
+  },
+  {
+   "start": 69,
+   "supResidual96": 143.3492124921961,
+   "rms": 3.0327058105653215,
+   "nonPlanarity_maxA": 0.9999962239682879,
+   "minSeparation": 0.00497355973641717,
+   "Omega": 2.438677967026888,
+   "nfev": 60,
+   "status": 3
+  },
+  {
+   "start": 70,
+   "supResidual96": 1.048662619784075,
+   "rms": 0.5732852970281683,
+   "nonPlanarity_maxA": 0.008906146428343198,
+   "minSeparation": 0.7207001427747549,
+   "Omega": 2.9999999999999996,
+   "nfev": 32,
+   "status": 2
+  },
+  {
+   "start": 71,
+   "supResidual96": 21.901457225075596,
+   "rms": 0.7264935231202327,
+   "nonPlanarity_maxA": 0.34203007503503835,
+   "minSeparation": 0.011109431573169404,
+   "Omega": 2.779107763710328,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 72,
+   "supResidual96": 1.0485988366258157,
+   "rms": 0.5732852970281679,
+   "nonPlanarity_maxA": 0.008906159394324542,
+   "minSeparation": 0.7207074883944309,
+   "Omega": 2.9999999999999996,
+   "nfev": 33,
+   "status": 2
+  },
+  {
+   "start": 73,
+   "supResidual96": 2856.6467661452252,
+   "rms": 1.171254745610438,
+   "nonPlanarity_maxA": 0.45814599942645623,
+   "minSeparation": 0.0049918826007946246,
+   "Omega": 1.064232296990802,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 74,
+   "supResidual96": 1546454.34740214,
+   "rms": 0.6689919557713366,
+   "nonPlanarity_maxA": 0.2043508131568938,
+   "minSeparation": 0.00042416940248814753,
+   "Omega": 2.8151648810228944,
+   "nfev": 250,
+   "status": 0
+  },
+  {
+   "start": 75,
+   "supResidual96": 6.792794128248532,
+   "rms": 2.056787742424239,
+   "nonPlanarity_maxA": 0.7132755170965605,
+   "minSeparation": 0.6743890464715988,
+   "Omega": 2.9999999999999996,
+   "nfev": 41,
+   "status": 2
+  },
+  {
+   "start": 76,
+   "supResidual96": 1.0486294504040057,
+   "rms": 0.5732852970281686,
+   "nonPlanarity_maxA": 0.008906165883084904,
+   "minSeparation": 0.7207039692697111,
+   "Omega": 2.9999999999999996,
+   "nfev": 32,
+   "status": 2
+  },
+  {
+   "start": 77,
+   "supResidual96": 118.21181805755276,
+   "rms": 2.096681626021844,
+   "nonPlanarity_maxA": 0.8619861361923866,
+   "minSeparation": 0.17279735952239425,
+   "Omega": 2.9999999999999996,
+   "nfev": 45,
+   "status": 3
+  },
+  {
+   "start": 78,
+   "supResidual96": 146.4735915326037,
+   "rms": 1.7690500588587685,
+   "nonPlanarity_maxA": 0.8126034526399644,
+   "minSeparation": 0.15355770706623761,
+   "Omega": 2.2702244978450947,
+   "nfev": 44,
+   "status": 2
+  },
+  {
+   "start": 79,
+   "supResidual96": 1.0486644203350264,
+   "rms": 0.5732852970281692,
+   "nonPlanarity_maxA": 0.008906173900585013,
+   "minSeparation": 0.7206999575105638,
+   "Omega": 2.9999999999999996,
+   "nfev": 29,
+   "status": 2
+  }
+ ]
+}

@@ -47,6 +47,8 @@ Specialists preserve unrelated staged and unstaged changes and do not stage, com
 
 Require every Specialist to return the evidence obtained, exact files changed, scoped validation, unresolved blockers, and whether work continues. Between the scope above and this return contract, every Specialist should leave the briefing knowing four things: what question it owns, what it may touch, what would count as evidence, and where to stop.
 
+Assignments also name the receiving research account and the coordinator responsible for integration. Apply the [research checkpoint contract](../../../op/operator-explanation-standard.md#research-checkpoint-and-handoff-completion): update authorized records before handoff, preserve original evidence, report practical regeneration and retained-storage status under the retention owner, and identify incomplete capture or missing evidence. Read-only workers return proposed integration and exact artifact locations; they do not silently claim the account was updated. The coordinator verifies integration and retention status before administrative closeout.
+
 ## Choose a working style
 
 Use independent parallel reviews when genuinely different lenses can test the same claim adversarially. Give those reviewers the same claim boundary and source owners, but do not expose one reviewer's conclusions to another before the independent reports are complete.
@@ -94,6 +96,7 @@ Return:
 - Proposals
 - Unresolved questions and falsifiers
 - Files changed, scoped validation, blockers, and whether work continues
+- Current research account or proposed receiving paths, integration owner, and evidence preservation status (including gaps)
 ```
 
 ## Principal Investigator synthesis

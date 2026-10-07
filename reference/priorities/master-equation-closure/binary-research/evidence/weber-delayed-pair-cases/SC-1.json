@@ -1,0 +1,13 @@
+{
+ "name": "SC-1",
+ "description": "Mirror circle beta=0.05, rho=100, Omega=5e-4, rigid-circle past for all S<0; window two zero-delay orbital periods (preregistration Section 3)",
+ "members": [
+  {"q": -1, "x": [100, 0, 0], "v": [0, 0.05, 0], "past": {"kind": "rigid-circle", "rho": 100, "Omega": 0.0005, "phi0": 0, "sign": 1}},
+  {"q": 1, "x": [-100, 0, 0], "v": [0, -0.05, 0], "past": {"kind": "rigid-circle", "rho": 100, "Omega": 0.0005, "phi0": 0, "sign": -1}}
+ ],
+ "coefficients": {"lambda": -0.5, "mu": 1, "K": 1, "cf": 1},
+ "integrator": {"method": "dp54", "rtol": 1e-10, "atol": 1e-14, "hmax": 50},
+ "events": {"rContact": 1e-6, "rEscape": 1000, "detMin": 1e-8},
+ "tEnd": 25133,
+ "output": {"every": 1}
+}

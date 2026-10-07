@@ -1,0 +1,98 @@
+{
+  "passed": true,
+  "time": "2026-10-06T08:13:58.798Z",
+  "knownReceipt": ".tmp/authorized-cases-ten-hour/d/e-document-known.json",
+  "boundary": "TeX syntax and local link-file existence only; no link-anchor or mathematical correctness claim",
+  "results": [
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/analysis/authorized-cases-ten-hour-e-propagation-continuation.md",
+      "sha256": "a4a5625281fc98696e26031b5e9c6e9cc31f2b5f1d395f94a3d7d025633aec2a",
+      "mathSpans": 19,
+      "existingLocalLinkFiles": 3
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/analysis/authorized-cases-ten-hour-e-propagation-controller-v2.md",
+      "sha256": "5ba57d4b47b21cf059cedf502e6236197fbd5ffdc16c5d95351ee081031023b5",
+      "mathSpans": 11,
+      "existingLocalLinkFiles": 4
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/analysis/authorized-cases-ten-hour-e-propagation-interface.md",
+      "sha256": "3e6d7e989cfbb3ba44d70906cf448810ebe3ca845d416b6cd4852f28c6551891",
+      "mathSpans": 7,
+      "existingLocalLinkFiles": 5
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/analysis/authorized-cases-ten-hour-e-propagation-method.md",
+      "sha256": "fc67f673610d9fefaa7e5fc17ae32d843b3619c3464e6c6046a27f967be25748",
+      "mathSpans": 86,
+      "existingLocalLinkFiles": 2
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/analysis/authorized-cases-ten-hour-e-propagation-pilot-admission.md",
+      "sha256": "78375325d5f4bb95e0ef2c7fa236649c17e375ce2d9aa10a15b152913c66a8ef",
+      "mathSpans": 12,
+      "existingLocalLinkFiles": 3
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/analysis/authorized-cases-ten-hour-e-propagation-prefix-protocol.md",
+      "sha256": "168ee59e953a008c2ad7a1c51b6e537b39637b3ea1169937ea9c408ab6c12472",
+      "mathSpans": 9,
+      "existingLocalLinkFiles": 4
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/analysis/authorized-cases-ten-hour-e-propagation-prefix-v2-admission.md",
+      "sha256": "eca0f2c1a88737257ad208ba16769c3a3b85e8dc0f4ccc3cf8db4d00e5dc74f6",
+      "mathSpans": 6,
+      "existingLocalLinkFiles": 4
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/analysis/authorized-cases-ten-hour-e-propagation-prefix-v3-admission.md",
+      "sha256": "8a795ef878c0dfa3672c65cbbb2f5ad22263379ba9708071e28307f0e4bea680",
+      "mathSpans": 4,
+      "existingLocalLinkFiles": 3
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/analysis/authorized-cases-ten-hour-e-propagation-prefix-v4-admission.md",
+      "sha256": "2ec69e6d8e37d3c0b2a214990b9382342d964f0cf88fef405ae07ad510dc8342",
+      "mathSpans": 0,
+      "existingLocalLinkFiles": 3
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/analysis/authorized-cases-ten-hour-e-propagation-prefix-v5-admission.md",
+      "sha256": "d2da8a649b4cee3438492c914be215d83e9d789e669a64514e424fbfe40a1a26",
+      "mathSpans": 4,
+      "existingLocalLinkFiles": 3
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/analysis/authorized-cases-ten-hour-e-propagation-prefix-v6-admission.md",
+      "sha256": "536931059be50948224603feba81e668f797368cd46148df1754ab1dc035745a",
+      "mathSpans": 0,
+      "existingLocalLinkFiles": 3
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/analysis/authorized-cases-ten-hour-e-propagation-stream-interface.md",
+      "sha256": "058938faf883c9e2fd86463ee1a02d9f4c2a65f35c6d74ec09e50c3c37b7fc98",
+      "mathSpans": 3,
+      "existingLocalLinkFiles": 4
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/evidence/authorized-cases-ten-hour-e-propagation-ownership-inventory.md",
+      "sha256": "318686cd29d300494fd26b1440cab47b065f0eaafc0eedb79075da1b79248c43",
+      "mathSpans": 17,
+      "existingLocalLinkFiles": 10
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/evidence/authorized-cases-ten-hour-e-propagation-pilot-receipt.md",
+      "sha256": "29f3463cd52ae3f7e5a7d13c0bfcd7376a925ee4af2e76f803cde37791e85546",
+      "mathSpans": 6,
+      "existingLocalLinkFiles": 3
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/braid-program/evidence/authorized-cases-ten-hour-e-propagation-prefix-launch.md",
+      "sha256": "b3b1864379fd9c36a3886e06f1953a03fa71c2b97cee6528727f42081a24128e",
+      "mathSpans": 3,
+      "existingLocalLinkFiles": 4
+    }
+  ]
+}

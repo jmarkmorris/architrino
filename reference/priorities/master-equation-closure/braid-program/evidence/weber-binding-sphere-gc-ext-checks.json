@@ -1,0 +1,73 @@
+{
+ "script": "weber-binding-sphere-gc-ext-checks.mjs",
+ "startedUTC": "2026-10-06T22:47:41.688Z",
+ "law": {
+  "K": 1,
+  "c_f": 1
+ },
+ "seed": 20261007,
+ "checkE1": {
+  "tenRandomClassUStates": {
+   "relDiffMaxNormVsFrozenLawResidual": 2.6147605563038746e-16,
+   "relDiffVectorVsFrozenAssembly_b_minus_Ma": 6.745166137191399e-16,
+   "relDiffVectorVsFrozen_M_times_fullSolveResidual": 7.521894837089278e-16,
+   "meanFrozenResidual": 59.32949686400967
+  },
+  "hexagonMaxAbsF": 3.3569207662921573e-15,
+  "diametralPairOnSmallCircle": {
+   "maxAbsF": 9.931106305546747e-16,
+   "frozenLawResidual": 1.1432341004841432e-15,
+   "maxAbsF_at1p1Omega": 0.1458333333333346
+  },
+  "pass": true
+ },
+ "checkE2": {
+  "configurations": 40,
+  "worstExponentDeviation": 0.0004308077277563882,
+  "worstLeadingCoeffRelErrAt1em6": 0.00003969667397235768,
+  "monodromy": {
+   "singularFlips": 40,
+   "othersReturn": 40,
+   "trials": 40
+  },
+  "minAbsDdotAtZero": 0.11244310645429935,
+  "worstIsotropy": 3.894862841808403e-14,
+  "numeratorOrderCheck": 0,
+  "draws": 45
+ },
+ "checkE3": {
+  "rigidCriterion": {
+   "maxRelVariationOfD_sameAngularVelocity": 2.660660705043344e-13,
+   "minRelVariationOfD_otherwise": 0.05635701954388937
+  },
+  "coaxial": {
+   "maxErrOfSingleCosineRange": 9.563315138736375e-7,
+   "minKappa": 1.0001721824903356
+  },
+  "equalRate": {
+   "pairs": 400,
+   "closedFormAbsErr": 1.9984014443252818e-15,
+   "squareConditionIdentity_absErr": 8.014422459012849e-16,
+   "minRootGap_nonMirror": 0.0006596606439742595,
+   "minRootGap_sameSideHeights": 0.04808671056309368,
+   "mirrorCases": 50,
+   "mirrorMaxGapBetweenPairedRoots": 1.3737283818501253e-7,
+   "mirror_d_equals_2absXdotNu_absErr": 9.992007221626409e-16,
+   "mirrorCasesWithoutPlaneCrossing": 28,
+   "diametralPair_topCoefficientsOpposite_relErr": 9.627750358173597e-14
+  }
+ },
+ "checkE4": {
+  "cases": 20,
+  "worstExponentDeviation": 0.000004986514632765449,
+  "worstRootSingleValued": 2.560957435274081e-10,
+  "worstCoefficientRelErr": 1.1796048921549318e-8,
+  "minBracketAtPole": 1.337323258399541
+ },
+ "checkE5": {
+  "cases": 100,
+  "topCoefficientRelErr": 7.401132240343202e-12,
+  "maxHigherHarmonicOverTop": 4.037133944854169e-11
+ },
+ "finishedUTC": "2026-10-06T22:47:51.953Z"
+}

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "M": "6",
+  "S": "400",
+  "speed_bound": "3/200",
+  "H": "48889281/388090000",
+  "delta": "425520000/727290719",
+  "near_norm_lower": "727290719/438480000",
+  "other_norm_upper_terms": {
+    "own_antipodal": "401/800",
+    "far_cross_pair": "147640015957/202725103286",
+    "outer_pair": "800/159201",
+    "required_circular_norm": "1/160000"
+  },
+  "total_cancellation_upper": "3187534568705719565843/2581923133458758880000",
+  "strict_margin": "95265590168624957827777/224627312610912022560000",
+  "boundary": "Exact constant arithmetic only; continuous geometry and monotonicity are derived in the independent report.",
+  "mode": "target",
+  "checker_sha256": "76bf854c2f4598ac56f229cb8edd14cfb809ead7dd6be1a824e0459ed2e36e17",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": [
+    "rational sum",
+    "direct 12-row aligned distance sum 41/3 at r=2",
+    "direct 12-row orthogonal distance sum 131/15 at r=4/3",
+    "C26,I10,O12 at r=2"
+  ],
+  "mode": "controls",
+  "checker_sha256": "4ffea3a92825053fee158e0ed58c42bb1bcb84acc24f386195fd9f17a2922c34",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

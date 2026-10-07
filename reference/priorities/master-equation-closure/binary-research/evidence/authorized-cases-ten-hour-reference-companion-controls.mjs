@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import crypto from 'node:crypto';import {pathToFileURL} from 'node:url';import {resolve} from 'node:path';import {Q} from './maxwell-shaped-overnight-grid-interval.mjs';
+const q=Q.of,eq=(a,b)=>assert(q(a).cmp(b)===0),sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+// Exact geometric-series known case for x_{j+1}=a+x_j/16.
+const a=q('49/320'),known=a.mul(q(1).add('1/16').add('1/256')).add('1/4096');eq(known,'13397/81920');assert.throws(()=>eq(known,'1/6'));console.log('Exact three-stage affine-series oracle and mismatch controls passed.');
+const [modulePath,out]=process.argv.slice(2);assert(!fs.existsSync(out));const subject=await import(pathToFileURL(resolve(modulePath)));
+const base={X0:'1/10',V0:'1/5',W0:'1/2',h:'1/4',Cx:2,sourceX:0,sourceV:0,sourceA:'1/10',Hv:0,B:1,delta:0,E:1,P:'1/4',f:'1/5',nu:2,bx:1,bw:1,bf:0,trialX:1,trialV:3};
+const got=subject.combine(base);eq(got.Wend,'11/20');eq(got.Wwhole,'11/20');eq(got.X,'13397/81920');eq(got.A,'17493/40960');eq(got.V,'50261/163840');assert(got.strict.X&&got.strict.V);
+const down=subject.combine({...base,E:'1/2',P:'1/2',f:'1/4'});eq(down.Wend,'3/8');eq(down.Wwhole,'1/2');
+const cap=subject.combine({...base,nu:100});eq(cap.X,'11/2000');eq(cap.A,'111/1000');eq(cap.V,'911/4000');
+assert.throws(()=>subject.combine({...base,nu:0}));assert.throws(()=>subject.combine({...base,B:-1}));const result={passed:true,subjectSHA:sha(modulePath),independentSource:'closed affine geometric sum and exact constant-acceleration integrals; not an iteration replay',cases:['three strict affine stages X13397/81920 and V50261/163840','decreasing whole norm retains initial1/2','norm cap wins X11/2000 and reconstructs originalA111/1000','zero metric and negative source coefficient rejected'],scope:'scalar companion controls only; complete coefficient-family and physical root premises external'};fs.writeFileSync(out,JSON.stringify(result,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(result));

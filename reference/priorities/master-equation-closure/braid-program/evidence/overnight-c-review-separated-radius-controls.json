@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": [
+    "elementary rational sum",
+    "hand-computed B(2,3)=749/180",
+    "static antipodal radial contribution=-1/2",
+    "exact circle-height equality"
+  ],
+  "mode": "controls",
+  "checker_sha256": "bf7a948aa254600a9d499fbe2a3f7c542457ff4b4f0d71e8b1198f3bab527dd5",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

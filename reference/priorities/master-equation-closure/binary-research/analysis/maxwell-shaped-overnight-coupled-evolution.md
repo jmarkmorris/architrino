@@ -131,6 +131,17 @@ The original $\beta=0.3$ family has the following interpolated threshold events,
 
 The E threshold-time spread is approximately $1.23\times10^{-5}$ and is not monotone; the full-row spread is approximately $4.71\times10^{-6}$. The interpolated time widths are much narrower than these trajectory differences, so they cannot serve as total event error bars. Positive separation, delay and sampled D survive these threshold events. The original $\beta=0.1,0.2$ family and the separate radial-balance family also reach the selected margin, with retained full history and phase-return measurements; independent finite-interval and event coverage is explicitly narrower than the full family.
 
+For the original circular-tail launches the terminal records are as follows (measured; RK4 with quintic Hermite history at relative steps $0.0025$ and $0.005$, read from the `b0.1-*` and `b0.2-*` receipts and their cycle files under `.local-data/master-equation-closure/binary-research/maxwell-shaped-overnight/`). The terminal time is the time each run recorded when its monitored speed passed the selected $0.999$ margin. It is a stopping record of that margin, not an equality event and not a continuation.
+
+| Launch speed | Rows | Terminal time, step $0.0025$ | Terminal time, step $0.005$ | Turns completed | Largest and smallest knot radius | Smallest $D$ |
+| --- | --- | --- | --- | --- | --- | --- |
+| $0.1$ | E | $18032.231799$ | $18032.231746$ | $24.04$ | $25.41285$, $0.19035$ | $0.98580$ |
+| $0.1$ | E+M | $16530.970172$ | $16530.969740$ | $21.60$ | $25.04073$, $0.25789$ | $0.87229$ |
+| $0.2$ | E | $412.871403$ | $412.870719$ | $4.52$ | $6.47171$, $0.19546$ | $0.98165$ |
+| $0.2$ | E+M | $308.139424$ | $308.139805$ | $3.32$ | $6.25601$, $0.25760$ | $0.87495$ |
+
+The two step sizes agree on each terminal time to between $5\times10^{-5}$ and $7\times10^{-4}$. That is agreement of two samplings of one scheme and one implementation; these four launches have no independent event enclosure, so the times carry no error bar beyond that spread. A run of the same specification by a separately written integrator that kept one of these launches below the margin past its listed time would overturn the corresponding row.
+
 ## Feasibility and limits of a continuous enclosure
 
 The [chart instrument](../evidence/maxwell-shaped-overnight-chart-diagnostics.mjs) evaluates the exact planar norm of the delayed-acceleration coefficient. Writing $P=I-\mathbf n\mathbf n^{\mathsf T}$ and $\mathbf v_\perp=P\mathbf v$ gives

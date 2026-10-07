@@ -1,0 +1,2215 @@
+{
+  "schema": "weber-delayed-pair-reference.runs.v1",
+  "lane": "C (ramon-e-moore)",
+  "runs": [
+    {
+      "recordedAtUtc": "2026-10-06T03:34:19.042Z",
+      "label": "SC-1",
+      "preparation": {
+        "X0": [
+          [
+            99.99999999999999,
+            0,
+            0
+          ],
+          [
+            -99.99999999999999,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0,
+            0.05,
+            0
+          ],
+          [
+            0,
+            -0.05,
+            0
+          ]
+        ],
+        "past": "rigid mirror circle rho=99.99999999999999 Omega=0.0005000000000000001 for all S<0",
+        "window": 25133,
+        "step": 3.1415926535897927,
+        "stepsPerPeriod": 4000,
+        "period": 12566.37061435917
+      },
+      "termination": "window complete",
+      "endTime": 25133,
+      "firstEvent": {
+        "name": "turning-point",
+        "T": 16519.958918947814,
+        "TNode": 16519.958918947814,
+        "r": 358.36222361539905,
+        "h": 25.312952123639672
+      },
+      "firstEvents": {
+        "turning-point": {
+          "T": 16519.958918947814,
+          "TNode": 16519.958918947814,
+          "r": 358.36222361539905,
+          "h": 25.312952123639672
+        }
+      },
+      "rMin": 199.99999999999997,
+      "rMax": 358.36222361539905,
+      "h0": 20,
+      "hEnd": 27.189227650555168,
+      "rhoH2Start": 10000,
+      "rhoH2End": 34156.039044522346,
+      "slopeRhoH2": {
+        "full": 0.9015569304366321,
+        "firstHalf": 1.0261395036226628,
+        "secondHalf": 0.9019350303876675
+      },
+      "speedExtremes": {
+        "max": [
+          0.05175871767430385,
+          0.05175871767430385
+        ],
+        "min": [
+          0.03512238447041098,
+          0.03512238447041098
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.0027838111012308,
+        "max": 1.0049813445458469
+      },
+      "DtMin": 0.9993278896991644,
+      "bracketExtremes": {
+        "min": 0.9992356113284387,
+        "max": 1.0008877960398261
+      },
+      "delayMin": 199.75066182975965,
+      "delayOverStep": 63.58261043216766,
+      "rootResidualMax": 1.0913936421275139e-11,
+      "mirrorAsymmetryMax": 0,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 1,
+      "escapeRadius": 1000,
+      "tinyIntervals": 0,
+      "crossingCorrections": 1,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        0.0000012483094333291079,
+        0.0000012483094333291079
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [
+        {
+          "receiver": 0,
+          "T": 199.7517038008938,
+          "S": -3.45011225321931e-14,
+          "jump": 4.642989772787802e-10,
+          "jumpVector": [
+            -4.637172753329589e-10,
+            -2.3234217436747103e-11,
+            0
+          ]
+        },
+        {
+          "receiver": 1,
+          "T": 199.7517038008938,
+          "S": -3.45011225321931e-14,
+          "jump": 4.642989772787802e-10,
+          "jumpVector": [
+            4.637172753329589e-10,
+            2.3234217436747103e-11,
+            0
+          ]
+        }
+      ],
+      "jumpGenerations": 10,
+      "jumpsFirstTen": [
+        {
+          "receiver": 0,
+          "T": 199.7517038008938,
+          "breakpoint": 0,
+          "jump": 4.642989772787802e-10
+        },
+        {
+          "receiver": 1,
+          "T": 199.7517038008938,
+          "breakpoint": 0,
+          "jump": 4.642989772787802e-10
+        },
+        {
+          "receiver": 0,
+          "T": 399.51657788946596,
+          "breakpoint": 199.7517038008938,
+          "jump": 2.2887481776556978e-12
+        },
+        {
+          "receiver": 1,
+          "T": 399.51657788946596,
+          "breakpoint": 199.7517038008938,
+          "jump": 2.2887481776556978e-12
+        },
+        {
+          "receiver": 0,
+          "T": 599.3266251987309,
+          "breakpoint": 399.51657788946596,
+          "jump": 1.1272169987950872e-14
+        },
+        {
+          "receiver": 1,
+          "T": 599.3266251987309,
+          "breakpoint": 399.51657788946596,
+          "jump": 1.1272169987950872e-14
+        },
+        {
+          "receiver": 0,
+          "T": 799.2332544036427,
+          "breakpoint": 599.3266251987309,
+          "jump": 5.543665718911445e-17
+        },
+        {
+          "receiver": 1,
+          "T": 799.2332544036427,
+          "breakpoint": 599.3266251987309,
+          "jump": 5.543665718911445e-17
+        },
+        {
+          "receiver": 0,
+          "T": 999.3068921586554,
+          "breakpoint": 799.2332544036427,
+          "jump": 2.742922350841057e-19
+        },
+        {
+          "receiver": 1,
+          "T": 999.3068921586554,
+          "breakpoint": 799.2332544036427,
+          "jump": 2.742922350841057e-19
+        }
+      ],
+      "steps": 8040,
+      "shortenedSteps": 170,
+      "nodes": 8041,
+      "selfRootCensus": "none: max member speed 0.0517587 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 0.671,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:19.189Z",
+      "label": "SC-2",
+      "preparation": {
+        "X0": [
+          [
+            625,
+            0,
+            0
+          ],
+          [
+            -625,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0,
+            0.02,
+            0
+          ],
+          [
+            0,
+            -0.02,
+            0
+          ]
+        ],
+        "past": "rigid mirror circle rho=625 Omega=0.000032 for all S<0",
+        "window": 196350,
+        "step": 49.08738521234052,
+        "stepsPerPeriod": 4000,
+        "period": 196349.5408493621
+      },
+      "termination": "event: escape",
+      "endTime": 49.08738521234052,
+      "firstEvent": {
+        "name": "escape",
+        "T": 0,
+        "TNode": 0,
+        "r": 1250,
+        "h": 50
+      },
+      "firstEvents": {
+        "escape": {
+          "T": 0,
+          "TNode": 0,
+          "r": 1250,
+          "h": 50
+        }
+      },
+      "rMin": 1250,
+      "rMax": 1250.0000003407195,
+      "h0": 50,
+      "hEnd": 50.00157037784376,
+      "rhoH2Start": 390625,
+      "rhoH2End": 390674.07661962206,
+      "slopeRhoH2": {
+        "full": 0.9997806851958156,
+        "firstHalf": null,
+        "secondHalf": null
+      },
+      "speedExtremes": {
+        "max": [
+          0.020000628145687142,
+          0.020000628145687142
+        ],
+        "min": [
+          0.02,
+          0.02
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.000799520388694,
+        "max": 1.000799520389
+      },
+      "DtMin": 1.0003998933845035,
+      "bracketExtremes": {
+        "min": 0.9999998402503048,
+        "max": 0.9999998904332899
+      },
+      "delayMin": 1249.7501081353837,
+      "delayOverStep": 25.45970013944026,
+      "rootResidualMax": 0,
+      "mirrorAsymmetryMax": 0,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 0,
+      "escapeRadius": 1000,
+      "tinyIntervals": 0,
+      "crossingCorrections": 0,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        1.2797227223324397e-8,
+        1.2797227223324397e-8
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [],
+      "jumpGenerations": 0,
+      "jumpsFirstTen": [],
+      "steps": 1,
+      "shortenedSteps": 0,
+      "nodes": 2,
+      "selfRootCensus": "none: max member speed 0.0200006 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 0.002,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:19.883Z",
+      "label": "SC-3",
+      "preparation": {
+        "X0": [
+          [
+            24.999999999999996,
+            0,
+            0
+          ],
+          [
+            -24.999999999999996,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0,
+            0.1,
+            0
+          ],
+          [
+            0,
+            -0.1,
+            0
+          ]
+        ],
+        "past": "rigid mirror circle rho=24.999999999999996 Omega=0.004000000000000001 for all S<0",
+        "window": 3142,
+        "step": 0.3926990816987241,
+        "stepsPerPeriod": 4000,
+        "period": 1570.7963267948962
+      },
+      "termination": "window complete",
+      "endTime": 3142,
+      "firstEvent": null,
+      "firstEvents": {},
+      "rMin": 49.99999999999999,
+      "rMax": 159.80802483955162,
+      "h0": 10,
+      "hEnd": 14.96695285127351,
+      "rhoH2Start": 625,
+      "rhoH2End": 3136.1929747203426,
+      "slopeRhoH2": {
+        "full": 0.7629258573865226,
+        "firstHalf": 1.12704709122614,
+        "secondHalf": 0.5100406415073762
+      },
+      "speedExtremes": {
+        "max": [
+          0.10724102445440063,
+          0.10724102445440063
+        ],
+        "min": [
+          0.04687455683113905,
+          0.04687455683113905
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.006206556007395,
+        "max": 1.0197059558177204
+      },
+      "DtMin": 1.006164602789967,
+      "bracketExtremes": {
+        "min": 0.9955177000276981,
+        "max": 1.0063458434894819
+      },
+      "delayMin": 49.75262090796301,
+      "delayOverStep": 126.69400878847195,
+      "rootResidualMax": 1.3642420526593924e-12,
+      "mirrorAsymmetryMax": 0,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 0,
+      "escapeRadius": 1000,
+      "tinyIntervals": 0,
+      "crossingCorrections": 1,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        0.000039784460895565755,
+        0.000039784460895565755
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [
+        {
+          "receiver": 0,
+          "T": 49.756642759984196,
+          "S": -7.965564857461392e-15,
+          "jump": 1.1547194783384757e-7,
+          "jumpVector": [
+            -1.148893240392212e-7,
+            -1.1585074810014945e-8,
+            0
+          ]
+        },
+        {
+          "receiver": 1,
+          "T": 49.756642759984196,
+          "S": -7.965564857461392e-15,
+          "jump": 1.1547194783384757e-7,
+          "jumpVector": [
+            1.148893240392212e-7,
+            1.1585074810014945e-8,
+            0
+          ]
+        }
+      ],
+      "jumpGenerations": 16,
+      "jumpsFirstTen": [
+        {
+          "receiver": 0,
+          "T": 49.756642759984196,
+          "breakpoint": 0,
+          "jump": 1.1547194783384757e-7
+        },
+        {
+          "receiver": 1,
+          "T": 49.756642759984196,
+          "breakpoint": 0,
+          "jump": 1.1547194783384757e-7
+        },
+        {
+          "receiver": 0,
+          "T": 99.56412199556605,
+          "breakpoint": 49.756642759984196,
+          "jump": 2.170515387823518e-9
+        },
+        {
+          "receiver": 1,
+          "T": 99.56412199556605,
+          "breakpoint": 49.756642759984196,
+          "jump": 2.170515387823518e-9
+        },
+        {
+          "receiver": 0,
+          "T": 149.5450484050777,
+          "breakpoint": 99.56412199556605,
+          "jump": 4.0247864033823245e-11
+        },
+        {
+          "receiver": 1,
+          "T": 149.5450484050777,
+          "breakpoint": 99.56412199556605,
+          "jump": 4.0247864033823245e-11
+        },
+        {
+          "receiver": 0,
+          "T": 199.89381842050952,
+          "breakpoint": 149.5450484050777,
+          "jump": 7.306873081166337e-13
+        },
+        {
+          "receiver": 1,
+          "T": 199.89381842050952,
+          "breakpoint": 149.5450484050777,
+          "jump": 7.306873081166337e-13
+        },
+        {
+          "receiver": 0,
+          "T": 250.8718901457166,
+          "breakpoint": 199.89381842050952,
+          "jump": 1.2883741624780306e-14
+        },
+        {
+          "receiver": 1,
+          "T": 250.8718901457166,
+          "breakpoint": 199.89381842050952,
+          "jump": 1.2883741624780306e-14
+        }
+      ],
+      "steps": 8017,
+      "shortenedSteps": 64,
+      "nodes": 8018,
+      "selfRootCensus": "none: max member speed 0.107241 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 0.543,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:21.807Z",
+      "label": "WP-2",
+      "preparation": {
+        "X0": [
+          [
+            1.5,
+            0,
+            0
+          ],
+          [
+            -1.5,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0,
+            0.36742346141748,
+            0
+          ],
+          [
+            0,
+            -0.36742346141748,
+            0
+          ]
+        ],
+        "past": "Section 9 backward solution over S in [-40.00000000000012, 0], RK4 step 0.005951124999999999, right-hand side from the validated instrument",
+        "window": 476.09,
+        "step": 0.005951124999999999,
+        "stepsPerPeriod": 4000,
+        "period": 23.804499999999997
+      },
+      "termination": "window complete",
+      "endTime": 476.09,
+      "firstEvent": {
+        "name": "turning-point",
+        "T": 0.8867176249999966,
+        "TNode": 0.8867176249999966,
+        "r": 2.9982314059296153,
+        "h": 2.390596302330771
+      },
+      "firstEvents": {
+        "turning-point": {
+          "T": 0.8867176249999966,
+          "TNode": 0.8867176249999966,
+          "r": 2.9982314059296153,
+          "h": 2.390596302330771
+        }
+      },
+      "rMin": 2.9982314059296153,
+      "rMax": 308.83620901730563,
+      "h0": 2.20454076850488,
+      "hEnd": 6.196831375070076,
+      "rhoH2Start": 1.4762250000000525,
+      "rhoH2End": 92.16331849695959,
+      "slopeRhoH2": {
+        "full": 0.05971845830598754,
+        "firstHalf": 0.17743305494925105,
+        "secondHalf": 0.008194846343182459
+      },
+      "speedExtremes": {
+        "max": [
+          0.5441347406161763,
+          0.5441347406161763
+        ],
+        "min": [
+          0.31521341679626186,
+          0.3152134167962702
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.002446227169804,
+        "max": 1.274188823781079
+      },
+      "DtMin": 1.1404276856616722,
+      "bracketExtremes": {
+        "min": 0.8468078486169553,
+        "max": 1.203296305214464
+      },
+      "delayMin": 2.77567458784693,
+      "delayOverStep": 466.4117436361916,
+      "rootResidualMax": 8.526512829121202e-14,
+      "mirrorAsymmetryMax": 2.410740719653458e-12,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 1,
+      "escapeRadius": 1000,
+      "tinyIntervals": 0,
+      "crossingCorrections": 3,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        0.034894169596657136,
+        0.034894169596657136
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [
+        {
+          "receiver": 0,
+          "T": 2.8046726270262083,
+          "S": 2.514437818003582e-16,
+          "jump": 0.003978676136056497,
+          "jumpVector": [
+            -0.003676545974315451,
+            -0.0015208134318088831,
+            0
+          ]
+        },
+        {
+          "receiver": 1,
+          "T": 2.8046726270262083,
+          "S": 3.139600410891969e-17,
+          "jump": 0.003978676136056495,
+          "jumpVector": [
+            0.003676545974315451,
+            0.0015208134318088762,
+            0
+          ]
+        }
+      ],
+      "jumpGenerations": 16,
+      "jumpsFirstTen": [
+        {
+          "receiver": 0,
+          "T": 2.8046726270262083,
+          "breakpoint": 0,
+          "jump": 0.003978676136056497
+        },
+        {
+          "receiver": 1,
+          "T": 2.8046726270262083,
+          "breakpoint": 0,
+          "jump": 0.003978676136056495
+        },
+        {
+          "receiver": 0,
+          "T": 5.83002236626777,
+          "breakpoint": 2.8046726270262083,
+          "jump": 0.0003006271689596295
+        },
+        {
+          "receiver": 1,
+          "T": 5.83002236626777,
+          "breakpoint": 2.8046726270262083,
+          "jump": 0.0003006271689596295
+        },
+        {
+          "receiver": 0,
+          "T": 10.167396122445941,
+          "breakpoint": 5.83002236626777,
+          "jump": 0.000006139367516530216
+        },
+        {
+          "receiver": 1,
+          "T": 10.167396122445941,
+          "breakpoint": 5.83002236626777,
+          "jump": 0.000006139367516541042
+        },
+        {
+          "receiver": 0,
+          "T": 18.644271116609538,
+          "breakpoint": 10.167396122445941,
+          "jump": 5.2555909917402305e-8
+        },
+        {
+          "receiver": 1,
+          "T": 18.644271116609538,
+          "breakpoint": 10.167396122445941,
+          "jump": 5.255590991568277e-8
+        },
+        {
+          "receiver": 0,
+          "T": 36.861040308056715,
+          "breakpoint": 18.644271116609538,
+          "jump": 2.787392170492069e-10
+        },
+        {
+          "receiver": 1,
+          "T": 36.861040308056715,
+          "breakpoint": 18.644271116609538,
+          "jump": 2.787392167766645e-10
+        }
+      ],
+      "steps": 80006,
+      "shortenedSteps": 16,
+      "nodes": 86729,
+      "selfRootCensus": "none: max member speed 0.544135 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 1.761,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:23.019Z",
+      "label": "WP-3",
+      "preparation": {
+        "X0": [
+          [
+            0.5,
+            0,
+            0
+          ],
+          [
+            -0.5,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0.00070710678119,
+            0.70710678118655,
+            0.00070710678119
+          ],
+          [
+            -0.00070710678119,
+            -0.70710678118655,
+            -0.00070710678119
+          ]
+        ],
+        "past": "Section 9 backward solution over S in [-40.0000000000007, 0], RK4 step 0.00111075, right-hand side from the validated instrument",
+        "window": 88.86,
+        "step": 0.00111075,
+        "stepsPerPeriod": 4000,
+        "period": 4.443
+      },
+      "termination": "census change: member speed reached c_f; stopped (self roots below the step cannot be enumerated by this reference)",
+      "endTime": 0.5687040000000005,
+      "firstEvent": {
+        "name": "speed-equality",
+        "T": 0.5684620177661015,
+        "TNode": 0.5687040000000005,
+        "r": 1.124588677998164,
+        "h": 2.1718151389831584
+      },
+      "firstEvents": {
+        "speed-equality": {
+          "T": 0.5684620177661015,
+          "TNode": 0.5687040000000005,
+          "r": 1.124588677998164,
+          "h": 2.1718151389831584
+        }
+      },
+      "rMin": 1,
+      "rMax": 1.124588677998164,
+      "h0": 1.4142142694797044,
+      "hEnd": 2.1718151389831584,
+      "rhoH2Start": 0.25000050000025353,
+      "rhoH2End": 1.3356969843115334,
+      "slopeRhoH2": {
+        "full": 1.877381579219184,
+        "firstHalf": 1.1382796597747735,
+        "secondHalf": 2.7588692912443373
+      },
+      "speedExtremes": {
+        "max": [
+          1.0001046809451615,
+          1.000104680945164
+        ],
+        "min": [
+          0.7071074882929776,
+          0.7071074882929776
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.5591537630803054,
+        "max": 1.6193556021308928
+      },
+      "DtMin": 1.393622395158487,
+      "bracketExtremes": {
+        "min": 0.9242049689567646,
+        "max": 1.3074278109137354
+      },
+      "delayMin": 0.8307330250499945,
+      "delayOverStep": 747.9027909520545,
+      "rootResidualMax": 7.771561172376096e-16,
+      "mirrorAsymmetryMax": 1.4152622541272047e-15,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 0,
+      "escapeRadius": 1000,
+      "tinyIntervals": 0,
+      "crossingCorrections": 0,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        0.5692983744705084,
+        0.5692983744705049
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [],
+      "jumpGenerations": 0,
+      "jumpsFirstTen": [],
+      "steps": 512,
+      "shortenedSteps": 0,
+      "nodes": 36525,
+      "selfRootCensus": "none: max member speed 1.00010 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 1.065,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:25.848Z",
+      "label": "WP-1",
+      "preparation": {
+        "X0": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            -2,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0.055,
+            0.35355339059327,
+            0.01
+          ],
+          [
+            0.05,
+            -0.35355339059327,
+            0
+          ]
+        ],
+        "past": "Section 9 backward solution over S in [-39.99999999999695, 0], RK4 step 0.00888575, right-hand side from the validated instrument",
+        "window": 710.86,
+        "step": 0.00888575,
+        "stepsPerPeriod": 4000,
+        "period": 35.543
+      },
+      "termination": "window complete",
+      "endTime": 710.86,
+      "firstEvent": null,
+      "firstEvents": {},
+      "rMin": 4,
+      "rMax": 340.90769803845336,
+      "h0": 2.8287099533179134,
+      "hEnd": 6.671896317225753,
+      "rhoH2Start": 4.001600159999831,
+      "rhoH2End": 123.84439825571617,
+      "slopeRhoH2": {
+        "full": 0.054114664234175845,
+        "firstHalf": 0.1560423001655815,
+        "secondHalf": 0.00814756333787675
+      },
+      "speedExtremes": {
+        "max": [
+          0.4040496979642937,
+          0.5082559664738433
+        ],
+        "min": [
+          0.17120734277694746,
+          0.2859030078554834
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.0022709414499853,
+        "max": 1.2180914495473332
+      },
+      "DtMin": 1.0752400219035734,
+      "bracketExtremes": {
+        "min": 0.8786675806209467,
+        "max": 1.1558969585518581
+      },
+      "delayMin": 3.6039797565366154,
+      "delayOverStep": 405.5909469134981,
+      "rootResidualMax": 2.5579538487363607e-13,
+      "mirrorAsymmetryMax": 0,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 0,
+      "escapeRadius": 1000,
+      "tinyIntervals": 8,
+      "crossingCorrections": 13,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        0.020347805772066147,
+        0.021819464583324993
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [
+        {
+          "receiver": 1,
+          "T": 3.6333741988206416,
+          "S": 6.368437066266158e-18,
+          "jump": 0.0021179316622331706,
+          "jumpVector": [
+            0.0019710597652590617,
+            0.0007749549881043288,
+            0.000001641364942150074
+          ]
+        },
+        {
+          "receiver": 0,
+          "T": 4.0260226871897595,
+          "S": 4.116037890220759e-16,
+          "jump": 0.0013036087391649373,
+          "jumpVector": [
+            -0.001213452075671466,
+            -0.0004762078177402082,
+            -0.000012486760945770725
+          ]
+        }
+      ],
+      "jumpGenerations": 18,
+      "jumpsFirstTen": [
+        {
+          "receiver": 1,
+          "T": 3.6333741988206416,
+          "breakpoint": 0,
+          "jump": 0.0021179316622331706
+        },
+        {
+          "receiver": 0,
+          "T": 4.0260226871897595,
+          "breakpoint": 0,
+          "jump": 0.0013036087391649373
+        },
+        {
+          "receiver": 0,
+          "T": 8.049783075643127,
+          "breakpoint": 3.6333741988206416,
+          "jump": 0.00015480255126559676
+        },
+        {
+          "receiver": 1,
+          "T": 8.193113146245366,
+          "breakpoint": 4.0260226871897595,
+          "jump": 0.00006549263219640174
+        },
+        {
+          "receiver": 1,
+          "T": 13.995234030189437,
+          "breakpoint": 8.049783075643127,
+          "jump": 0.000003000680621882773
+        },
+        {
+          "receiver": 0,
+          "T": 14.201450990885085,
+          "breakpoint": 8.193113146245366,
+          "jump": 0.0000020162651167373983
+        },
+        {
+          "receiver": 0,
+          "T": 23.576978036221902,
+          "breakpoint": 13.995234030189437,
+          "jump": 4.750326093190152e-8
+        },
+        {
+          "receiver": 1,
+          "T": 24.878740887910133,
+          "breakpoint": 14.201450990885085,
+          "jump": 2.131787931414931e-8
+        },
+        {
+          "receiver": 0,
+          "T": 42.34203122958398,
+          "breakpoint": 24.878740887910133,
+          "jump": 1.9886069074090384e-10
+        },
+        {
+          "receiver": 1,
+          "T": 42.53037191738754,
+          "breakpoint": 23.576978036221902,
+          "jump": 3.6690954517178734e-10
+        }
+      ],
+      "steps": 81026,
+      "shortenedSteps": 3898,
+      "nodes": 85529,
+      "selfRootCensus": "none: max member speed 0.508256 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 2.676,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:26.343Z",
+      "label": "SC-2",
+      "preparation": {
+        "X0": [
+          [
+            625,
+            0,
+            0
+          ],
+          [
+            -625,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0,
+            0.02,
+            0
+          ],
+          [
+            0,
+            -0.02,
+            0
+          ]
+        ],
+        "past": "rigid mirror circle rho=625 Omega=0.000032 for all S<0",
+        "window": 196350,
+        "step": 49.08738521234052,
+        "stepsPerPeriod": 4000,
+        "period": 196349.5408493621
+      },
+      "termination": "window complete",
+      "endTime": 196350,
+      "firstEvent": null,
+      "firstEvents": {},
+      "rMin": 1250,
+      "rMax": 1588.6340328105966,
+      "h0": 50,
+      "hEnd": 55.337992468079534,
+      "rhoH2Start": 390625,
+      "rhoH2End": 586102.5582101424,
+      "slopeRhoH2": {
+        "full": 1.0016084417695483,
+        "firstHalf": 1.064032109943185,
+        "secondHalf": 0.9318212107186895
+      },
+      "speedExtremes": {
+        "max": [
+          0.020276803527806527,
+          0.020276803527806527
+        ],
+        "min": [
+          0.01740215416710825,
+          0.01740215416710825
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.0006290629291754,
+        "max": 1.000799520389
+      },
+      "DtMin": 1.0003998933845035,
+      "bracketExtremes": {
+        "min": 0.9999415935968913,
+        "max": 1.0000609145644783
+      },
+      "delayMin": 1249.750106212505,
+      "delayOverStep": 25.459700100267696,
+      "rootResidualMax": 8.731149137020111e-11,
+      "mirrorAsymmetryMax": 0,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 0,
+      "escapeRadius": 10000,
+      "tinyIntervals": 0,
+      "crossingCorrections": 1,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        1.2797227223324397e-8,
+        1.2797227223324397e-8
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [
+        {
+          "receiver": 0,
+          "T": 1249.7502746140672,
+          "S": -7.480425784009426e-14,
+          "jump": 3.0673251358686346e-13,
+          "jumpVector": [
+            -3.066711445952756e-13,
+            -6.135467703357043e-15,
+            0
+          ]
+        },
+        {
+          "receiver": 1,
+          "T": 1249.7502746140672,
+          "S": -7.480425784009426e-14,
+          "jump": 3.0673251358686346e-13,
+          "jumpVector": [
+            3.066711445952756e-13,
+            6.135467703357043e-15,
+            0
+          ]
+        }
+      ],
+      "jumpGenerations": 8,
+      "jumpsFirstTen": [
+        {
+          "receiver": 0,
+          "T": 1249.7502746140672,
+          "breakpoint": 0,
+          "jump": 3.0673251358686346e-13
+        },
+        {
+          "receiver": 1,
+          "T": 1249.7502746140672,
+          "breakpoint": 0,
+          "jump": 3.0673251358686346e-13
+        },
+        {
+          "receiver": 0,
+          "T": 2499.502678336141,
+          "breakpoint": 1249.7502746140672,
+          "jump": 2.4484388415104056e-16
+        },
+        {
+          "receiver": 1,
+          "T": 2499.502678336141,
+          "breakpoint": 1249.7502746140672,
+          "jump": 2.4484388415104056e-16
+        },
+        {
+          "receiver": 0,
+          "T": 3749.2623981750344,
+          "breakpoint": 2499.502678336141,
+          "jump": 1.955838169044619e-19
+        },
+        {
+          "receiver": 1,
+          "T": 3749.2623981750344,
+          "breakpoint": 2499.502678336141,
+          "jump": 1.955838169044619e-19
+        },
+        {
+          "receiver": 0,
+          "T": 4999.037805303162,
+          "breakpoint": 3749.2623981750344,
+          "jump": 1.067030928447678e-22
+        },
+        {
+          "receiver": 1,
+          "T": 4999.037805303162,
+          "breakpoint": 3749.2623981750344,
+          "jump": 1.067030928447678e-22
+        }
+      ],
+      "steps": 4072,
+      "shortenedSteps": 280,
+      "nodes": 4073,
+      "selfRootCensus": "none: max member speed 0.0202768 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 0.336,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:27.746Z",
+      "label": "SC-1",
+      "preparation": {
+        "X0": [
+          [
+            99.99999999999999,
+            0,
+            0
+          ],
+          [
+            -99.99999999999999,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0,
+            0.05,
+            0
+          ],
+          [
+            0,
+            -0.05,
+            0
+          ]
+        ],
+        "past": "rigid mirror circle rho=99.99999999999999 Omega=0.0005000000000000001 for all S<0",
+        "window": 25133,
+        "step": 1.5707963267948963,
+        "stepsPerPeriod": 8000,
+        "period": 12566.37061435917
+      },
+      "termination": "window complete",
+      "endTime": 25133,
+      "firstEvent": {
+        "name": "turning-point",
+        "T": 16519.9588984376,
+        "TNode": 16519.9588984376,
+        "r": 358.3622224999092,
+        "h": 25.312952123363377
+      },
+      "firstEvents": {
+        "turning-point": {
+          "T": 16519.9588984376,
+          "TNode": 16519.9588984376,
+          "r": 358.3622224999092,
+          "h": 25.312952123363377
+        }
+      },
+      "rMin": 199.99999999999997,
+      "rMax": 358.3622224999092,
+      "h0": 20,
+      "hEnd": 27.18922765808853,
+      "rhoH2Start": 10000,
+      "rhoH2End": 34156.03908237702,
+      "slopeRhoH2": {
+        "full": 0.9015614426813499,
+        "firstHalf": 1.0260078463475697,
+        "secondHalf": 0.9020400996840663
+      },
+      "speedExtremes": {
+        "max": [
+          0.0517587178147866,
+          0.0517587178147866
+        ],
+        "min": [
+          0.035122384591986536,
+          0.035122384591986536
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.0027838111099046,
+        "max": 1.0049813445458469
+      },
+      "DtMin": 0.9993278898220767,
+      "bracketExtremes": {
+        "min": 0.999235611333137,
+        "max": 1.000887796342539
+      },
+      "delayMin": 199.7506618297597,
+      "delayOverStep": 127.16522086433537,
+      "rootResidualMax": 1.0913936421275139e-11,
+      "mirrorAsymmetryMax": 0,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 1,
+      "escapeRadius": 1000,
+      "tinyIntervals": 0,
+      "crossingCorrections": 0,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        0.0000012483094333291079,
+        0.0000012483094333291079
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [
+        {
+          "receiver": 0,
+          "T": 199.75170380089452,
+          "S": 5.686355122105666e-13,
+          "jump": 4.642989771668364e-10,
+          "jumpVector": [
+            -4.6371727522115055e-10,
+            -2.323421743124139e-11,
+            0
+          ]
+        },
+        {
+          "receiver": 1,
+          "T": 199.75170380089452,
+          "S": 5.686355122105666e-13,
+          "jump": 4.642989771668364e-10,
+          "jumpVector": [
+            4.6371727522115055e-10,
+            2.323421743124139e-11,
+            0
+          ]
+        }
+      ],
+      "jumpGenerations": 10,
+      "jumpsFirstTen": [
+        {
+          "receiver": 0,
+          "T": 199.75170380089452,
+          "breakpoint": 0,
+          "jump": 4.642989771668364e-10
+        },
+        {
+          "receiver": 1,
+          "T": 199.75170380089452,
+          "breakpoint": 0,
+          "jump": 4.642989771668364e-10
+        },
+        {
+          "receiver": 0,
+          "T": 399.51657791365193,
+          "breakpoint": 199.75170380089452,
+          "jump": 2.288748181005564e-12
+        },
+        {
+          "receiver": 1,
+          "T": 399.51657791365193,
+          "breakpoint": 199.75170380089452,
+          "jump": 2.288748181005564e-12
+        },
+        {
+          "receiver": 0,
+          "T": 599.3266252946748,
+          "breakpoint": 399.51657791365193,
+          "jump": 1.1272173480287523e-14
+        },
+        {
+          "receiver": 1,
+          "T": 599.3266252946748,
+          "breakpoint": 399.51657791365193,
+          "jump": 1.1272173480287523e-14
+        },
+        {
+          "receiver": 0,
+          "T": 799.2332546174445,
+          "breakpoint": 599.3266252946748,
+          "jump": 5.543548700702644e-17
+        },
+        {
+          "receiver": 1,
+          "T": 799.2332546174445,
+          "breakpoint": 599.3266252946748,
+          "jump": 5.543548700702644e-17
+        },
+        {
+          "receiver": 0,
+          "T": 999.306892534662,
+          "breakpoint": 799.2332546174445,
+          "jump": 2.681979723371275e-19
+        },
+        {
+          "receiver": 1,
+          "T": 999.306892534662,
+          "breakpoint": 799.2332546174445,
+          "jump": 2.681979723371275e-19
+        }
+      ],
+      "steps": 16040,
+      "shortenedSteps": 170,
+      "nodes": 16041,
+      "selfRootCensus": "none: max member speed 0.0517587 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 1.237,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:27.867Z",
+      "label": "SC-2",
+      "preparation": {
+        "X0": [
+          [
+            625,
+            0,
+            0
+          ],
+          [
+            -625,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0,
+            0.02,
+            0
+          ],
+          [
+            0,
+            -0.02,
+            0
+          ]
+        ],
+        "past": "rigid mirror circle rho=625 Omega=0.000032 for all S<0",
+        "window": 196350,
+        "step": 24.54369260617026,
+        "stepsPerPeriod": 8000,
+        "period": 196349.5408493621
+      },
+      "termination": "event: escape",
+      "endTime": 24.54369260617026,
+      "firstEvent": {
+        "name": "escape",
+        "T": 0,
+        "TNode": 0,
+        "r": 1250,
+        "h": 50
+      },
+      "firstEvents": {
+        "escape": {
+          "T": 0,
+          "TNode": 0,
+          "r": 1250,
+          "h": 50
+        }
+      },
+      "rMin": 1250,
+      "rMax": 1250.000000081147,
+      "h0": 50,
+      "hEnd": 50.00078518879097,
+      "rhoH2Start": 390625,
+      "rhoH2End": 390625,
+      "slopeRhoH2": {
+        "full": null,
+        "firstHalf": null,
+        "secondHalf": null
+      },
+      "speedExtremes": {
+        "max": [
+          0.020000314074218303,
+          0.020000314074218303
+        ],
+        "min": [
+          0.02,
+          0.02
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.0007995203889248,
+        "max": 1.000799520389
+      },
+      "DtMin": 1.0003998933845035,
+      "bracketExtremes": {
+        "min": 0.9999998402503048,
+        "max": 0.9999998653415134
+      },
+      "delayMin": 1249.750108236775,
+      "delayOverStep": 50.919400283011576,
+      "rootResidualMax": 0,
+      "mirrorAsymmetryMax": 0,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 0,
+      "escapeRadius": 1000,
+      "tinyIntervals": 0,
+      "crossingCorrections": 0,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        1.2797227223324397e-8,
+        1.2797227223324397e-8
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [],
+      "jumpGenerations": 0,
+      "jumpsFirstTen": [],
+      "steps": 1,
+      "shortenedSteps": 0,
+      "nodes": 2,
+      "selfRootCensus": "none: max member speed 0.0200003 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 0.002,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:29.154Z",
+      "label": "SC-3",
+      "preparation": {
+        "X0": [
+          [
+            24.999999999999996,
+            0,
+            0
+          ],
+          [
+            -24.999999999999996,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0,
+            0.1,
+            0
+          ],
+          [
+            0,
+            -0.1,
+            0
+          ]
+        ],
+        "past": "rigid mirror circle rho=24.999999999999996 Omega=0.004000000000000001 for all S<0",
+        "window": 3142,
+        "step": 0.19634954084936204,
+        "stepsPerPeriod": 8000,
+        "period": 1570.7963267948962
+      },
+      "termination": "window complete",
+      "endTime": 3142,
+      "firstEvent": null,
+      "firstEvents": {},
+      "rMin": 49.99999999999999,
+      "rMax": 159.80801189551633,
+      "h0": 10,
+      "hEnd": 14.9669529384933,
+      "rhoH2Start": 625,
+      "rhoH2End": 3136.2710532227684,
+      "slopeRhoH2": {
+        "full": 0.7628535591519339,
+        "firstHalf": 1.126931622221229,
+        "secondHalf": 0.5100217781193145
+      },
+      "speedExtremes": {
+        "max": [
+          0.10724102241201888,
+          0.10724102241201888
+        ],
+        "min": [
+          0.046874560706298946,
+          0.046874560706298946
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.0062065565199332,
+        "max": 1.0197059558177204
+      },
+      "DtMin": 1.0061646011428054,
+      "bracketExtremes": {
+        "min": 0.9955177005916982,
+        "max": 1.0063458417903155
+      },
+      "delayMin": 49.752620907963006,
+      "delayOverStep": 253.38801757694387,
+      "rootResidualMax": 1.3926637620897964e-12,
+      "mirrorAsymmetryMax": 0,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 0,
+      "escapeRadius": 1000,
+      "tinyIntervals": 0,
+      "crossingCorrections": 0,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        0.000039784460895565755,
+        0.000039784460895565755
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [
+        {
+          "receiver": 0,
+          "T": 49.756642759984494,
+          "S": 2.723365639166765e-13,
+          "jump": 1.1547194696966137e-7,
+          "jumpVector": [
+            -1.1488932317939467e-7,
+            -1.1585074723319429e-8,
+            0
+          ]
+        },
+        {
+          "receiver": 1,
+          "T": 49.756642759984494,
+          "S": 2.723365639166765e-13,
+          "jump": 1.1547194696966137e-7,
+          "jumpVector": [
+            1.1488932317939467e-7,
+            1.1585074723319429e-8,
+            0
+          ]
+        }
+      ],
+      "jumpGenerations": 14,
+      "jumpsFirstTen": [
+        {
+          "receiver": 0,
+          "T": 49.756642759984494,
+          "breakpoint": 0,
+          "jump": 1.1547194696966137e-7
+        },
+        {
+          "receiver": 1,
+          "T": 49.756642759984494,
+          "breakpoint": 0,
+          "jump": 1.1547194696966137e-7
+        },
+        {
+          "receiver": 0,
+          "T": 99.56412217977112,
+          "breakpoint": 49.756642759984494,
+          "jump": 2.1705153171897667e-9
+        },
+        {
+          "receiver": 1,
+          "T": 99.56412217977112,
+          "breakpoint": 49.756642759984494,
+          "jump": 2.1705153171897667e-9
+        },
+        {
+          "receiver": 0,
+          "T": 149.54504911589453,
+          "breakpoint": 99.56412217977112,
+          "jump": 4.024786145891251e-11
+        },
+        {
+          "receiver": 1,
+          "T": 149.54504911589453,
+          "breakpoint": 99.56412217977112,
+          "jump": 4.024786145891251e-11
+        },
+        {
+          "receiver": 0,
+          "T": 199.89381995582727,
+          "breakpoint": 149.54504911589453,
+          "jump": 7.306872316185783e-13
+        },
+        {
+          "receiver": 1,
+          "T": 199.89381995582727,
+          "breakpoint": 149.54504911589453,
+          "jump": 7.306872316185783e-13
+        },
+        {
+          "receiver": 0,
+          "T": 250.87189275281784,
+          "breakpoint": 199.89381995582727,
+          "jump": 1.2883725443521621e-14
+        },
+        {
+          "receiver": 1,
+          "T": 250.87189275281784,
+          "breakpoint": 199.89381995582727,
+          "jump": 1.2883725443521621e-14
+        }
+      ],
+      "steps": 16016,
+      "shortenedSteps": 64,
+      "nodes": 16017,
+      "selfRootCensus": "none: max member speed 0.107241 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 1.143,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:32.891Z",
+      "label": "WP-2",
+      "preparation": {
+        "X0": [
+          [
+            1.5,
+            0,
+            0
+          ],
+          [
+            -1.5,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0,
+            0.36742346141748,
+            0
+          ],
+          [
+            0,
+            -0.36742346141748,
+            0
+          ]
+        ],
+        "past": "Section 9 backward solution over S in [-39.99999999999813, 0], RK4 step 0.0029755624999999995, right-hand side from the validated instrument",
+        "window": 476.09,
+        "step": 0.0029755624999999995,
+        "stepsPerPeriod": 8000,
+        "period": 23.804499999999997
+      },
+      "termination": "window complete",
+      "endTime": 476.09,
+      "firstEvent": {
+        "name": "turning-point",
+        "T": 0.8867176249999943,
+        "TNode": 0.8867176249999943,
+        "r": 2.998231405929572,
+        "h": 2.390596302330726
+      },
+      "firstEvents": {
+        "turning-point": {
+          "T": 0.8867176249999943,
+          "TNode": 0.8867176249999943,
+          "r": 2.998231405929572,
+          "h": 2.390596302330726
+        }
+      },
+      "rMin": 2.99823137401397,
+      "rMax": 308.83509852187353,
+      "h0": 2.20454076850488,
+      "hEnd": 6.196829120595197,
+      "rhoH2Start": 1.4762250000000525,
+      "rhoH2End": 92.16327849872299,
+      "slopeRhoH2": {
+        "full": 0.05970392559683392,
+        "firstHalf": 0.17738019979651068,
+        "secondHalf": 0.008193946963931598
+      },
+      "speedExtremes": {
+        "max": [
+          0.5441338436192162,
+          0.5441338436192165
+        ],
+        "min": [
+          0.315212174932438,
+          0.3152121749324385
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.0024462382442738,
+        "max": 1.2741888237810979
+      },
+      "DtMin": 1.140427685661719,
+      "bracketExtremes": {
+        "min": 0.8468084100849643,
+        "max": 1.203113062811989
+      },
+      "delayMin": 2.7756745878469493,
+      "delayOverStep": 932.8234872723896,
+      "rootResidualMax": 8.526512829121202e-14,
+      "mirrorAsymmetryMax": 3.5170071074516563e-13,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 1,
+      "escapeRadius": 1000,
+      "tinyIntervals": 0,
+      "crossingCorrections": 1,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        0.03489416959775134,
+        0.03489416959775133
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [
+        {
+          "receiver": 0,
+          "T": 2.8046726270345244,
+          "S": 8.335684885062948e-12,
+          "jump": 0.0039786692227452335,
+          "jumpVector": [
+            -0.003676539585979202,
+            -0.0015208107892660527,
+            0
+          ]
+        },
+        {
+          "receiver": 1,
+          "T": 2.8046726270345244,
+          "S": 8.335682282977734e-12,
+          "jump": 0.0039786692227452335,
+          "jumpVector": [
+            0.003676539585979202,
+            0.0015208107892660527,
+            0
+          ]
+        }
+      ],
+      "jumpGenerations": 16,
+      "jumpsFirstTen": [
+        {
+          "receiver": 0,
+          "T": 2.8046726270345244,
+          "breakpoint": 0,
+          "jump": 0.0039786692227452335
+        },
+        {
+          "receiver": 1,
+          "T": 2.8046726270345244,
+          "breakpoint": 0,
+          "jump": 0.0039786692227452335
+        },
+        {
+          "receiver": 0,
+          "T": 5.830024625737046,
+          "breakpoint": 2.8046726270345244,
+          "jump": 0.00030062589800544144
+        },
+        {
+          "receiver": 1,
+          "T": 5.830024625737046,
+          "breakpoint": 2.8046726270345244,
+          "jump": 0.0003006258980054395
+        },
+        {
+          "receiver": 0,
+          "T": 10.167400336118739,
+          "breakpoint": 5.830024625737046,
+          "jump": 0.000006139379050996024
+        },
+        {
+          "receiver": 1,
+          "T": 10.167400336118739,
+          "breakpoint": 5.830024625737046,
+          "jump": 0.000006139379050992783
+        },
+        {
+          "receiver": 0,
+          "T": 18.64426077905962,
+          "breakpoint": 10.167400336118739,
+          "jump": 5.2556451825399884e-8
+        },
+        {
+          "receiver": 1,
+          "T": 18.64426077905962,
+          "breakpoint": 10.167400336118739,
+          "jump": 5.2556451827148054e-8
+        },
+        {
+          "receiver": 0,
+          "T": 36.86095558294362,
+          "breakpoint": 18.64426077905962,
+          "jump": 2.7874473341452246e-10
+        },
+        {
+          "receiver": 1,
+          "T": 36.86095558294362,
+          "breakpoint": 18.64426077905962,
+          "jump": 2.787447333815298e-10
+        }
+      ],
+      "steps": 160003,
+      "shortenedSteps": 16,
+      "nodes": 173447,
+      "selfRootCensus": "none: max member speed 0.544134 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 3.595,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:35.249Z",
+      "label": "WP-3",
+      "preparation": {
+        "X0": [
+          [
+            0.5,
+            0,
+            0
+          ],
+          [
+            -0.5,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0.00070710678119,
+            0.70710678118655,
+            0.00070710678119
+          ],
+          [
+            -0.00070710678119,
+            -0.70710678118655,
+            -0.00070710678119
+          ]
+        ],
+        "past": "Section 9 backward solution over S in [-39.99999999994953, 0], RK4 step 0.000555375, right-hand side from the validated instrument",
+        "window": 88.86,
+        "step": 0.000555375,
+        "stepsPerPeriod": 8000,
+        "period": 4.443
+      },
+      "termination": "census change: member speed reached c_f; stopped (self roots below the step cannot be enumerated by this reference)",
+      "endTime": 0.5687040000000129,
+      "firstEvent": {
+        "name": "speed-equality",
+        "T": 0.5684620177588727,
+        "TNode": 0.5687040000000129,
+        "r": 1.1245886779974488,
+        "h": 2.1718151389883773
+      },
+      "firstEvents": {
+        "speed-equality": {
+          "T": 0.5684620177588727,
+          "TNode": 0.5687040000000129,
+          "r": 1.1245886779974488,
+          "h": 2.1718151389883773
+        }
+      },
+      "rMin": 1,
+      "rMax": 1.1245886779974488,
+      "h0": 1.4142142694797044,
+      "hEnd": 2.1718151389883773,
+      "rhoH2Start": 0.25000050000025353,
+      "rhoH2End": 1.33569698432396,
+      "slopeRhoH2": {
+        "full": 1.8773815792385258,
+        "firstHalf": 1.1382796597926754,
+        "secondHalf": 2.7588692912717296
+      },
+      "speedExtremes": {
+        "max": [
+          1.0001046809482796,
+          1.0001046809482674
+        ],
+        "min": [
+          0.7071074882929776,
+          0.7071074882929776
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.5591537630806114,
+        "max": 1.6193556021309512
+      },
+      "DtMin": 1.3936223951584066,
+      "bracketExtremes": {
+        "min": 0.9242049688425378,
+        "max": 1.3074278109580542
+      },
+      "delayMin": 0.8307330250496889,
+      "delayOverStep": 1495.8055819035587,
+      "rootResidualMax": 3.3306690738754696e-16,
+      "mirrorAsymmetryMax": 1.0367553919089746e-14,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 0,
+      "escapeRadius": 1000,
+      "tinyIntervals": 0,
+      "crossingCorrections": 0,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        0.569298374443957,
+        0.5692983744440724
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [],
+      "jumpGenerations": 0,
+      "jumpsFirstTen": [],
+      "steps": 1024,
+      "shortenedSteps": 0,
+      "nodes": 73049,
+      "selfRootCensus": "none: max member speed 1.00010 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 2.229,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:40.450Z",
+      "label": "WP-1",
+      "preparation": {
+        "X0": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            -2,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0.055,
+            0.35355339059327,
+            0.01
+          ],
+          [
+            0.05,
+            -0.35355339059327,
+            0
+          ]
+        ],
+        "past": "Section 9 backward solution over S in [-40.00000000000295, 0], RK4 step 0.004442875, right-hand side from the validated instrument",
+        "window": 710.86,
+        "step": 0.004442875,
+        "stepsPerPeriod": 8000,
+        "period": 35.543
+      },
+      "termination": "window complete",
+      "endTime": 710.86,
+      "firstEvent": null,
+      "firstEvents": {},
+      "rMin": 4,
+      "rMax": 340.9076980383779,
+      "h0": 2.8287099533179134,
+      "hEnd": 6.671896317224218,
+      "rhoH2Start": 4.001600159999831,
+      "rhoH2End": 123.84459268168033,
+      "slopeRhoH2": {
+        "full": 0.05423883046763736,
+        "firstHalf": 0.1566890855688973,
+        "secondHalf": 0.008156715523184886
+      },
+      "speedExtremes": {
+        "max": [
+          0.40404969800633417,
+          0.5082559664734563
+        ],
+        "min": [
+          0.17120734277702912,
+          0.28590300785503225
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.002270941449986,
+        "max": 1.218091462386663
+      },
+      "DtMin": 1.0752399939586388,
+      "bracketExtremes": {
+        "min": 0.8786675807609384,
+        "max": 1.1558969619394934
+      },
+      "delayMin": 3.603979756536654,
+      "delayOverStep": 811.1818938270048,
+      "rootResidualMax": 2.5579538487363607e-13,
+      "mirrorAsymmetryMax": 0,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 0,
+      "escapeRadius": 1000,
+      "tinyIntervals": 7,
+      "crossingCorrections": 1,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        0.02034780577195241,
+        0.021819464583224053
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [
+        {
+          "receiver": 1,
+          "T": 3.6333741988176627,
+          "S": -3.5043764045228883e-12,
+          "jump": 0.0021179316618026465,
+          "jumpVector": [
+            0.001971059764858951,
+            0.0007749549879453796,
+            0.0000016413649417920976
+          ]
+        },
+        {
+          "receiver": 0,
+          "T": 4.0260226871869325,
+          "S": -2.4532988005148486e-12,
+          "jump": 0.001303608739202478,
+          "jumpVector": [
+            -0.0012134520757066253,
+            -0.00047620781775337476,
+            -0.0000124867609461232
+          ]
+        }
+      ],
+      "jumpGenerations": 18,
+      "jumpsFirstTen": [
+        {
+          "receiver": 1,
+          "T": 3.6333741988176627,
+          "breakpoint": 0,
+          "jump": 0.0021179316618026465
+        },
+        {
+          "receiver": 0,
+          "T": 4.0260226871869325,
+          "breakpoint": 0,
+          "jump": 0.001303608739202478
+        },
+        {
+          "receiver": 0,
+          "T": 8.049783075615018,
+          "breakpoint": 3.6333741988176627,
+          "jump": 0.00015480255123526007
+        },
+        {
+          "receiver": 1,
+          "T": 8.193113146219478,
+          "breakpoint": 4.0260226871869325,
+          "jump": 0.00006549263219895274
+        },
+        {
+          "receiver": 1,
+          "T": 13.99523403010803,
+          "breakpoint": 8.049783075615018,
+          "jump": 0.0000030006806213424976
+        },
+        {
+          "receiver": 0,
+          "T": 14.201450990918634,
+          "breakpoint": 8.193113146219478,
+          "jump": 0.0000020162651167985553
+        },
+        {
+          "receiver": 0,
+          "T": 23.57697803611213,
+          "breakpoint": 13.99523403010803,
+          "jump": 4.750326092345517e-8
+        },
+        {
+          "receiver": 1,
+          "T": 24.87874088799458,
+          "breakpoint": 14.201450990918634,
+          "jump": 2.1317879313553618e-8
+        },
+        {
+          "receiver": 0,
+          "T": 42.342031229739575,
+          "breakpoint": 24.87874088799458,
+          "jump": 1.9886069117247687e-10
+        },
+        {
+          "receiver": 1,
+          "T": 42.53037191717485,
+          "breakpoint": 23.57697803611213,
+          "jump": 3.6690954560443185e-10
+        }
+      ],
+      "steps": 161002,
+      "shortenedSteps": 3986,
+      "nodes": 170007,
+      "selfRootCensus": "none: max member speed 0.508256 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 5.035,
+      "error": null
+    },
+    {
+      "recordedAtUtc": "2026-10-06T03:34:41.236Z",
+      "label": "SC-2",
+      "preparation": {
+        "X0": [
+          [
+            625,
+            0,
+            0
+          ],
+          [
+            -625,
+            0,
+            0
+          ]
+        ],
+        "V0": [
+          [
+            0,
+            0.02,
+            0
+          ],
+          [
+            0,
+            -0.02,
+            0
+          ]
+        ],
+        "past": "rigid mirror circle rho=625 Omega=0.000032 for all S<0",
+        "window": 196350,
+        "step": 24.54369260617026,
+        "stepsPerPeriod": 8000,
+        "period": 196349.5408493621
+      },
+      "termination": "window complete",
+      "endTime": 196350,
+      "firstEvent": null,
+      "firstEvents": {},
+      "rMin": 1250,
+      "rMax": 1588.6340328105482,
+      "h0": 50,
+      "hEnd": 55.33799246807821,
+      "rhoH2Start": 390625,
+      "rhoH2End": 586102.5582100865,
+      "slopeRhoH2": {
+        "full": 1.0016364901076036,
+        "firstHalf": 1.06404782649763,
+        "secondHalf": 0.9318358185653186
+      },
+      "speedExtremes": {
+        "max": [
+          0.020276803527806322,
+          0.020276803527806322
+        ],
+        "min": [
+          0.017402154167108188,
+          0.017402154167108188
+        ]
+      },
+      "detMExtremes": {
+        "min": 1.0006290629291756,
+        "max": 1.000799520389
+      },
+      "DtMin": 1.0003998933845035,
+      "bracketExtremes": {
+        "min": 0.9999415935968314,
+        "max": 1.000060914564495
+      },
+      "delayMin": 1249.7501061954276,
+      "delayOverStep": 50.9194001998396,
+      "rootResidualMax": 8.731149137020111e-11,
+      "mirrorAsymmetryMax": 0,
+      "firstAsymmetry": null,
+      "rdotSignChanges": 0,
+      "escapeRadius": 10000,
+      "tinyIntervals": 0,
+      "crossingCorrections": 1,
+      "missedCrossings": 0,
+      "compatibilityDefect": [
+        1.2797227223324397e-8,
+        1.2797227223324397e-8
+      ],
+      "accelerationJumpAtFirstReceptionOfRelease": [
+        {
+          "receiver": 0,
+          "T": 1249.750274614067,
+          "S": -4.56025729082071e-15,
+          "jump": 3.0673251358683034e-13,
+          "jumpVector": [
+            -3.066711445952756e-13,
+            -6.135467701702682e-15,
+            0
+          ]
+        },
+        {
+          "receiver": 1,
+          "T": 1249.750274614067,
+          "S": -4.56025729082071e-15,
+          "jump": 3.0673251358683034e-13,
+          "jumpVector": [
+            3.066711445952756e-13,
+            6.135467701702682e-15,
+            0
+          ]
+        }
+      ],
+      "jumpGenerations": 8,
+      "jumpsFirstTen": [
+        {
+          "receiver": 0,
+          "T": 1249.750274614067,
+          "breakpoint": 0,
+          "jump": 3.0673251358683034e-13
+        },
+        {
+          "receiver": 1,
+          "T": 1249.750274614067,
+          "breakpoint": 0,
+          "jump": 3.0673251358683034e-13
+        },
+        {
+          "receiver": 0,
+          "T": 2499.502678336048,
+          "breakpoint": 1249.750274614067,
+          "jump": 2.4484377846262513e-16
+        },
+        {
+          "receiver": 1,
+          "T": 2499.502678336048,
+          "breakpoint": 1249.750274614067,
+          "jump": 2.4484377846262513e-16
+        },
+        {
+          "receiver": 0,
+          "T": 3749.2623981748798,
+          "breakpoint": 2499.502678336048,
+          "jump": 1.9558513923407813e-19
+        },
+        {
+          "receiver": 1,
+          "T": 3749.2623981748798,
+          "breakpoint": 2499.502678336048,
+          "jump": 1.9558513923407813e-19
+        },
+        {
+          "receiver": 0,
+          "T": 4999.0378053029945,
+          "breakpoint": 3749.2623981748798,
+          "jump": 1.067030928447678e-22
+        },
+        {
+          "receiver": 1,
+          "T": 4999.0378053029945,
+          "breakpoint": 3749.2623981748798,
+          "jump": 1.067030928447678e-22
+        }
+      ],
+      "steps": 8070,
+      "shortenedSteps": 280,
+      "nodes": 8071,
+      "selfRootCensus": "none: max member speed 0.0202768 c_f over the whole stored history (proof: |X(T)-X(S)| < c_f (T-S) when speed < c_f)",
+      "wallSeconds": 0.645,
+      "error": null
+    }
+  ],
+  "updatedAtUtc": "2026-10-06T03:34:41.237Z"
+}

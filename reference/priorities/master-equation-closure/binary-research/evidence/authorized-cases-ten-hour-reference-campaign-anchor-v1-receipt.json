@@ -1,0 +1,26 @@
+{
+  "time": "2026-10-06T09:29:35.516Z",
+  "scope": "reference/priorities/master-equation-closure/**/authorized-cases-ten-hour-*.md",
+  "instrumentSha256": "c9e82ada481683f682fa4fb3257e1e945bfc34e5d4b76b8285d35b281dbcd109",
+  "knownSha256": "c47aec0f03ae07656428df14b16519fb08819a493e2f5c9ede9b52b67b6ed8e3",
+  "policySha256": "271cb9e663c3a120bc332a666b3839a34338994c5784a63873ddbbc5ebb83eb2",
+  "markdownFiles": 388,
+  "links": 44,
+  "uniqueTargets": 32,
+  "statusCounts": {
+    "unique-reader-section-match": 40,
+    "no-reader-section-match": 4
+  },
+  "changedSources": [],
+  "verbose": {
+    "path": ".local-data/master-equation-closure/binary-research/authorized-cases-ten-hour/reference/authorized-cases-ten-hour-reference-campaign-anchor-v1.json",
+    "sha256": "7c634876df2cda94dfec650b634d0356bfa552edca71ecb70390d9f549b4f295",
+    "bytes": 135458,
+    "lines": 2383
+  },
+  "limitations": [
+    "Actual main-reader section selection only; reference surface drops indexed-link fragments.",
+    "No general browser/GitHub slug or external-renderer assertion.",
+    "Navigation validation only, not proof acceptance."
+  ]
+}

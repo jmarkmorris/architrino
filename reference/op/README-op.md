@@ -90,6 +90,9 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Technical Closure
 
+- [ ] Verify in practice that research handoffs keep the [current account](operator-explanation-standard.md#research-checkpoint-and-handoff-completion) integrated and [required evidence](machine-artifact-retention.md#preservation-from-creation-through-closeout) retained and accessible; `.local-data/` is accepted storage for now, separate backup is not a publication prerequisite, and size warnings must not prompt evidence loss (operator direction implemented, 2026-10-06).
+- [ ] Use retention reviews to identify [verified reproducible output eligible for scoped deletion](machine-artifact-retention.md#deleting-verified-reproducible-output), with measured recovery cost and space savings; obtain explicit cleanup approval rather than accumulating every payload in archives (operator direction implemented, 2026-10-06; no cleanup performed).
+
 - [x] Keep each Master Equation scenario on its named baseline and expressly selected modifications; prevent temporary side-study changes from carrying into later analyses through the [scenario assumptions procedure](theory-orientation.md#scenario-assumptions) (operator direction implemented, 2026-10-02).
 - [ ] Keep substantive theory discussion captured as it develops under the operator explanation standard, with the full treatment in its subject owner.
 - [ ] Require scorecard increases to separate hard mathematical closure from auditability, terminology, and priority-queue improvements.

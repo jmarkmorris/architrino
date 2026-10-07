@@ -55,8 +55,8 @@
         "reference/priorities/development-process-review/analysis/review-and-repair-plan.md"
       ],
       "regenerationCommand": "No single byte-identical regeneration command: use the per-run commands, original inputs and source identities retained in the linked recovery analyses and evidence receipts. Historical observations must not be regenerated and relabeled as originals.",
-      "retentionReason": "Retain original scientific results, independent reviews and operational observations used by the listed recovery consumers. Option A/B migration records and source archives are retired and excluded. The existing collection ceiling remains unchanged.",
-      "compactAlternativeInsufficient": "The remaining scientific and operational records support scoped recovery findings that a summary alone cannot reproduce. Keep new records tied to current consumers; review consolidation when those consumers retire.",
+      "retentionReason": "Retain original scientific results, independent reviews and operational observations used by the listed recovery consumers and historical verification. Option A/B migration records and source archives are retired and excluded. The existing numerical collection threshold remains unchanged and is advisory for priority research records.",
+      "compactAlternativeInsufficient": "The remaining scientific and operational records support scoped recovery findings that a summary alone cannot reproduce. Consumer retirement alone does not justify removal; preservation and explicit disposition requirements govern any consolidation.",
       "budget": {
         "lineCount": 125000,
         "byteCount": 10485760

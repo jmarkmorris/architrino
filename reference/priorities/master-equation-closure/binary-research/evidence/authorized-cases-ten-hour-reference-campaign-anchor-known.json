@@ -1,0 +1,15 @@
+{
+  "time": "2026-10-06T09:29:31.276Z",
+  "passed": true,
+  "instrumentSha256": "c9e82ada481683f682fa4fb3257e1e945bfc34e5d4b76b8285d35b281dbcd109",
+  "policySha256": "271cb9e663c3a120bc332a666b3839a34338994c5784a63873ddbbc5ebb83eb2",
+  "controls": [
+    "actual helper punctuation and math normalization",
+    "first repeated heading selected and flagged",
+    "explicit HTML and attribute IDs unsupported",
+    "decimal-heading mismatch detected",
+    "level-four unsupported",
+    "actual helper fenced-heading false match detected",
+    "fenced/inline link examples and math applications excluded"
+  ]
+}

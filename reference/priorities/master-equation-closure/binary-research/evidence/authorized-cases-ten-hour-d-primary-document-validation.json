@@ -1,0 +1,144 @@
+{
+  "passed": true,
+  "time": "2026-10-06T05:42:49.791Z",
+  "boundary": "TeX syntax, local link-file existence and named input preservation only; anchors and mathematics not certified",
+  "knownReceipt": ".tmp/authorized-cases-ten-hour/d/document-known.json",
+  "preserved": [
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/slow-binary-wider-regime.md",
+      "sha256": "d8fc54a977a7aef6aabe9af3c645fad3aa8f34db841025413d33033e3c41d689"
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/slow-binary-wider-regime-independent-adjudication.md",
+      "sha256": "94f279458db71131c0f83879745d380313e1b6627e84a62523675706d4716640"
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/historical-binary-exact-source-binding.md",
+      "sha256": "dffd06a20c0a7df9774e6267586677d39fedd691f9ce62f071187b09f0f92a6b"
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/historical-binary-source-binding-independent-adjudication.md",
+      "sha256": "e9ab245a34696bd996499a1d83744cd49af199d0391403aca988bd007d05c0dc"
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-common-center-control.md",
+      "sha256": "35b4b9975ae9185b968f27aac4ba1dc17865c0eb9e00a00e8c1b6c2b8f4e95b0"
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-center-variation.md",
+      "sha256": "3c502ae4f8e3b7d2d883a8f03f1e3beca5a0e775cc622b937cc71d10dba2cadd"
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-reference-d-center-adjudication.md",
+      "sha256": "0d6660883657323f98f400aaaa6a6fe5f55e55cf958849242706240bc82ccba2"
+    },
+    {
+      "file": "content/markdown/aaa/dynamics/master-equation.md",
+      "sha256": "8a106d615611efe5b6baf8705a47f03edcf53ffe13d7998fb7af86432c139f7f"
+    }
+  ],
+  "results": [
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-followup-n02-method.md",
+      "sha256": "d8cb7d86cdcc3f643ef471592e69d4d1c4f726bd092332c56240cf16d3f0e4fe",
+      "mathSpans": 5,
+      "existingLocalLinkFiles": 4
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-followup-n02-neighborhood.md",
+      "sha256": "9f7fc31c5e7db90de58b6fd33d1e36b986058d1b66306fec794891a50c4c52e9",
+      "mathSpans": 97,
+      "existingLocalLinkFiles": 2
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-followup-signed-center.md",
+      "sha256": "49db1e75dc5e42db406e18139eeb3a1d0a4065fbcc474d103dbc4e8203a788c6",
+      "mathSpans": 105,
+      "existingLocalLinkFiles": 7
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-angular-floor-control.md",
+      "sha256": "c6adaae781216f8828d91fcf4603e8850b6de012433b0f1b264a1b1e80c9a0a7",
+      "mathSpans": 36,
+      "existingLocalLinkFiles": 4
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-anisotropic-account.md",
+      "sha256": "2cc51820a0122215e5501747e78605894f71df6016d972d0801c9d8c5f223e16",
+      "mathSpans": 81,
+      "existingLocalLinkFiles": 2
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-bv-relative.md",
+      "sha256": "aafa51d4b802a0be615be0f3486f7c778953c7318034c1130ea09085f6a796ae",
+      "mathSpans": 84,
+      "existingLocalLinkFiles": 4
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-center-state-correction.md",
+      "sha256": "6a6b6a8dc7d1ec6c204b45fed18b9fdd9b3218f1ffdc32da9d4906ed2cf03a1b",
+      "mathSpans": 126,
+      "existingLocalLinkFiles": 4
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-method.md",
+      "sha256": "ee0456936f83c915a13c51f387597b2b34e2d8bc3332abd875ef05d84b72e3bf",
+      "mathSpans": 10,
+      "existingLocalLinkFiles": 8
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-nominal-entry.md",
+      "sha256": "7a3a3e4a84430ebb8ed2fa912254f26f7dcd287e4073a454f979de23e3fe691a",
+      "mathSpans": 67,
+      "existingLocalLinkFiles": 2
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-nonlinear-center.md",
+      "sha256": "57ffe219be389bf85be624e76873b1dda11ede15f7da40ed368bf5310128b03b",
+      "mathSpans": 58,
+      "existingLocalLinkFiles": 2
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-parabolic-tail.md",
+      "sha256": "5403a33d1824816a00aafb4df58ad205dc7137a3c8cd7e51917b94d76251288b",
+      "mathSpans": 105,
+      "existingLocalLinkFiles": 1
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-planar-region.md",
+      "sha256": "2c75dfbf3306d1f5fc9602b8dd98f5551d14b4d8460b18a2242f215593ecbb87",
+      "mathSpans": 82,
+      "existingLocalLinkFiles": 2
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-positive-account-continuation.md",
+      "sha256": "9342375278e2e5e6f0c9254c8e2480a80726cb1bb916c84d7ebb5b870e28462a",
+      "mathSpans": 76,
+      "existingLocalLinkFiles": 1
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-region-admission.md",
+      "sha256": "eff7852ffd1d461d83c6aaccd6909638c82b72aa5e93486a1f1bfea661fdc7f5",
+      "mathSpans": 46,
+      "existingLocalLinkFiles": 4
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-route-boundary.md",
+      "sha256": "44c4ea82e1a076c070537b645a98ae92ef00d0ceb40110fa4fc44bf9f4ded270",
+      "mathSpans": 13,
+      "existingLocalLinkFiles": 12
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-seam-regularity.md",
+      "sha256": "4dc96b7b12d92ee6b97e3cfd8d7f4bfee762ad30d50be81094244d9ec9cecd15",
+      "mathSpans": 61,
+      "existingLocalLinkFiles": 2
+    },
+    {
+      "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-zero-speed-tail.md",
+      "sha256": "dca47a0d53dd54143eed4d37cec603003799d21a8ec4044bad1b833bc62a182f",
+      "mathSpans": 59,
+      "existingLocalLinkFiles": 2
+    }
+  ]
+}

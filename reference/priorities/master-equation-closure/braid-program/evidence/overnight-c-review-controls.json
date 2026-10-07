@@ -1,0 +1,11 @@
+{
+  "mode": "controls",
+  "passed": true,
+  "instrumentSha256": "4c4d9b629939b37ddc238819ec187b38987d1be4e9109197832204f2211ce6e1",
+  "controls": {
+    "rationalArithmetic": "passed",
+    "perpendicularInversionSquared": "5/4",
+    "staticNeutralBinaryVirial": "-1/1",
+    "directedBinaryRows": 2
+  }
+}

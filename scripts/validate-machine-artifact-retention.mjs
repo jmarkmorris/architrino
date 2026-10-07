@@ -9,6 +9,9 @@ import { isGeneratedRuntimeAsset, readRuntimeAssetFamilies } from "./prepare-run
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const REGISTRY_PATH = "reference/op/machine-artifact-retention-registry.v1.json";
 const MACHINE_EXTENSION = /\.(?:json|jsonl|ndjson|csv|tsv)$/i;
+// Priority material includes research records outside evidence/ (for example
+// analysis inputs). Location selects advisory storage review, not claim grade.
+const isResearchRecord = (name) => name.startsWith("reference/priorities/");
 const git = (rootDir, args, options = {}) => execFileSync("git", args, {
   cwd: rootDir, encoding: "utf8", maxBuffer: 256 * 1024 * 1024, ...options,
 });
@@ -23,7 +26,7 @@ export function measureMachineFile(bytes) {
 export function machineCollection(relativePath, registry) {
   const explicit = registry.collections.find((entry) => relativePath.startsWith(`${entry.path}/`));
   if (explicit) return explicit.path;
-  return relativePath.match(/^(content\/(?:assets|generated)\/[^/]+|reference\/priorities\/[^/]+\/evidence)(?:\/|$)/)?.[1]
+  return relativePath.match(/^(content\/(?:assets|generated)\/[^/]+|reference\/priorities\/.+?\/evidence)(?:\/|$)/)?.[1]
     ?? path.posix.dirname(relativePath);
 }
 
@@ -31,6 +34,7 @@ const exceeds = (value, limit) => value.lineCount >= limit.lineCount || value.by
 
 export function auditMachineFiles(files, { registry, families, allPaths = [...files.keys()] }) {
   const errors = [];
+  const warnings = [];
   for (const record of registry.records) {
     if (!files.has(record.path)) errors.push(`registered machine file is absent: ${record.path}`);
   }
@@ -43,7 +47,7 @@ export function auditMachineFiles(files, { registry, families, allPaths = [...fi
       ? { lineCount: registry.thresholds.evidenceLineCount, byteCount: registry.thresholds.evidenceByteCount }
       : registry.thresholds;
     if (exceeds(value, threshold) && !registry.records.some((entry) => entry.path === name)) {
-      errors.push(`unregistered large machine file: ${name} (${value.lineCount} lines, ${value.byteCount} bytes)`);
+      (isResearchRecord(name) ? warnings : errors).push(`unregistered large machine file: ${name} (${value.lineCount} lines, ${value.byteCount} bytes)`);
     }
     const collection = machineCollection(name, registry);
     const total = totals.get(collection) ?? { lineCount: 0, byteCount: 0, fileCount: 0 };
@@ -56,10 +60,10 @@ export function auditMachineFiles(files, { registry, families, allPaths = [...fi
     const retained = registry.collections.find((entry) => entry.path === name);
     const limit = retained?.budget ?? registry.collectionThresholds;
     if (exceeds(value, limit)) {
-      errors.push(`machine collection budget exceeded: ${name} (${value.fileCount} files, ${value.lineCount} lines, ${value.byteCount} bytes)`);
+      (isResearchRecord(name) ? warnings : errors).push(`machine collection budget exceeded: ${name} (${value.fileCount} files, ${value.lineCount} lines, ${value.byteCount} bytes)`);
     }
   }
-  return { errors, totals };
+  return { errors, warnings, totals };
 }
 
 function validateRegistry(registry) {
@@ -125,22 +129,35 @@ export function auditBranchGrowth({ rootDir, base, files, cached = false, otherP
   const rows = git(rootDir, args).split("\0").filter(Boolean).map((row) => row.match(/^([^\t]+)\t([^\t]+)\t([\s\S]+)$/).slice(1));
   let lineCount = 0;
   let byteCount = 0;
+  const nonResearch = { lineCount: 0, byteCount: 0 };
   for (const [added, , name] of rows) {
     if (!MACHINE_EXTENSION.test(name)) continue;
     lineCount += Number(added) || 0;
     const current = files.get(name)?.byteCount ?? 0;
     let previous = 0;
     try { previous = Number(git(rootDir, ["cat-file", "-s", `${base}:${name}`], { stdio: ["pipe", "pipe", "pipe"] }).trim()); } catch { /* newly added file */ }
-    byteCount += Math.max(0, current - previous);
+    const addedBytes = Math.max(0, current - previous);
+    byteCount += addedBytes;
+    if (!isResearchRecord(name)) {
+      nonResearch.lineCount += Number(added) || 0;
+      nonResearch.byteCount += addedBytes;
+    }
   }
   for (const name of otherPaths) {
     const file = files.get(name);
-    if (file) { lineCount += file.lineCount; byteCount += file.byteCount; }
+    if (file) {
+      lineCount += file.lineCount; byteCount += file.byteCount;
+      if (!isResearchRecord(name)) {
+        nonResearch.lineCount += file.lineCount; nonResearch.byteCount += file.byteCount;
+      }
+    }
   }
   return {
-    lineCount, byteCount,
-    errors: exceeds({ lineCount, byteCount }, thresholds)
-      ? [`branch machine-output budget exceeded: ${lineCount} added lines, ${byteCount} positive byte growth; deletions do not offset additions`] : [],
+    lineCount, byteCount, nonResearch,
+    errors: exceeds(nonResearch, thresholds)
+      ? [`branch machine-output budget exceeded outside priority research records: ${nonResearch.lineCount} added lines, ${nonResearch.byteCount} positive byte growth; deletions do not offset additions`] : [],
+    warnings: exceeds({ lineCount, byteCount }, thresholds) && (lineCount !== nonResearch.lineCount || byteCount !== nonResearch.byteCount)
+      ? [`branch machine-output review threshold exceeded including research: ${lineCount} added lines, ${byteCount} positive byte growth; preserve evidence pending storage review`] : [],
   };
 }
 
@@ -152,24 +169,27 @@ export function validateMachineArtifactRetention({ rootDir = ROOT, baseRef = "or
   const index = readIndex(rootDir);
   const working = readWorking(rootDir, index.allPaths);
   const errors = [];
+  const warnings = [];
   const results = {};
   for (const [label, snapshot] of [["index", index], ["working tree", working]]) {
     const audit = auditMachineFiles(snapshot.files, { registry, families, allPaths: snapshot.allPaths });
     const growth = auditBranchGrowth({ rootDir, base, files: snapshot.files, cached: label === "index", otherPaths: snapshot.otherPaths, thresholds: registry.branchThresholds });
     errors.push(...[...audit.errors, ...growth.errors].map((error) => `${label}: ${error}`));
+    warnings.push(...[...audit.warnings, ...growth.warnings].map((warning) => `${label}: ${warning}`));
     results[label] = { fileCount: snapshot.files.size, collectionCount: audit.totals.size, growth };
   }
-  return { errors, results, base };
+  return { errors, warnings, results, base };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2);
   if (args.length && (args.length !== 2 || args[0] !== "--base")) throw new Error("Usage: validate-machine-artifact-retention.mjs [--base <ref>]");
   const result = validateMachineArtifactRetention({ baseRef: args[1] ?? "origin/main" });
+  result.warnings.forEach((warning) => process.stderr.write(`[machine-artifact-retention] REVIEW: ${warning}\n`));
   if (result.errors.length) {
     result.errors.forEach((error) => process.stderr.write(`[machine-artifact-retention] ${error}\n`));
     process.exitCode = 1;
   } else {
-    process.stdout.write(`[machine-artifact-retention] index and working tree passed file, collection, branch, and generated-output checks (${result.results["working tree"].fileCount} machine files)\n`);
+    process.stdout.write(`[machine-artifact-retention] blocking checks passed; ${result.warnings.length} advisory storage findings (${result.results["working tree"].fileCount} machine files). This does not verify research currency, reproducibility, or backup recovery.\n`);
   }
 }

@@ -1,0 +1,7 @@
+{
+  "knownCase": "static square with all12 nonzero completed X/V/A source contributions",
+  "compactRowBytes": 11242,
+  "2345RowProjectionBytes": 26362490,
+  "32MiBBudgetBytes": 33554432,
+  "scope": "measured synthetic serialization cost; not target cost guarantee"
+}

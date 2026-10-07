@@ -1,0 +1,96 @@
+{
+ "utc": "2026-10-06T23:41:16.128Z",
+ "stratum": "free",
+ "tags": [
+  "free-direct-80",
+  "free-direct-580",
+  "free-both-0"
+ ],
+ "poolNonHexagon": 1,
+ "includeBoxLimited": false,
+ "refined": [
+  {
+   "tag": "free-direct-580",
+   "start": 583,
+   "type": "great-circle-pairs",
+   "route": "direct2",
+   "M3": {
+    "score": 2766.15255054747,
+    "omega": 0.8477633220278806,
+    "v": 1.3180300452828078,
+    "boxLimited": false,
+    "detOneSigned": false,
+    "fine": {
+     "Nf": 256,
+     "maxE": 2766.15255054747,
+     "maxEspeed": 2340.7503348963896,
+     "maxS": 0.48567110053029516,
+     "maxV": 0.9136815786889202,
+     "minSep": 0.0662180789512183,
+     "det": [
+      -82.48397695899362,
+      371145.01189292537
+     ],
+     "singular": false,
+     "radius": [
+      0.8412479352821399,
+      1.2188810854756484
+     ],
+     "speed": [
+      0.3872371853834633,
+      1.2483658091107015
+     ],
+     "speedLabel": "unrestricted only (v>1 reached)",
+     "H": 1.1154556784198957,
+     "Hplus3v2": 6.327065279224497,
+     "sigDVariation": 12.152871637189211,
+     "pairDistanceSpread": 1.922269866864846,
+     "dominantHarmonic": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+     ]
+    }
+   },
+   "M5": {
+    "ok": true,
+    "M": 5,
+    "Nc": 24,
+    "iter": 60,
+    "tailSteps": 0,
+    "reason": "stalled",
+    "omega": 0.9378331682824371,
+    "v": 1.434625582906278,
+    "boxLimited": false,
+    "score": 829.3139708680081,
+    "fine": {
+     "maxE": 829.3139708680081,
+     "maxEspeed": 660.2829344583686,
+     "maxS": 0.3442178075048212,
+     "maxV": 0.8354956563199636,
+     "minSep": 0.14141733719935315,
+     "det": [
+      -145.3737687423829,
+      23367.225443837222
+     ],
+     "speed": [
+      0.5818717277736243,
+      1.409841524741489
+     ],
+     "Hplus3v2": 7.718996447646289,
+     "sigDVariation": 11.865126799365031,
+     "pairDistanceSpread": 1.9127034269551004
+    },
+    "classification": "non-convergence",
+    "hexagon": false,
+    "exactHexagon": false,
+    "candidate": false,
+    "detOneSigned": false,
+    "separationOK": false
+   }
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "time": "2026-10-06T05:55:38.148664+00:00",
+  "helper_sha256": "73ffb3275981a367ef039b9d06dc7d37817b1bb7e514557ecb30fbb4cfd634fa",
+  "instrument_sha256": "a1b850177383f0aa2fff17e6014b9e3305f9240010b33a25c8b480b0533284ba",
+  "cases": [
+    "stationary source with nonzero receiver velocity",
+    "affine collinear source moving-root Jacobian",
+    "nonzero transverse acceleration and independent normal jerk",
+    "signed directed sum",
+    "isotropic restoring block with nonzero skew response",
+    "zero-growth forced recurrence",
+    "directed matrix spectral upper bound",
+    "positive exponential recurrence",
+    "static source-forcing coefficients",
+    "directed kernel partial source coefficients"
+  ],
+  "scope": "Known analytical controls only; no retained trial target, root certificate or departure claim"
+}

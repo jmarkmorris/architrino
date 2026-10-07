@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "controls": [
+    "original independent exact endpoint/sign controls",
+    "streamed valid synthetic ancestry chain for both refresh producers",
+    "missing/duplicate/overlapping/mismatched tree leaves rejected",
+    "zero-containing exact sign rejected",
+    "display-only final and false completion rejected",
+    "duplicate keys and trailing JSON rejected",
+    "changed inherited and exact refresh witnesses rejected",
+    "1024-leaf complete tree across reader chunks",
+    "numeric exponent spanning reader chunks"
+  ],
+  "peak_rss_bytes": 26001408,
+  "boundary": "Synthetic only; no real cover receipt inspected.",
+  "mode": "controls",
+  "checker_sha256": "54567e2a95fbdd364be24ad425da7847c3d3065ff5914964a99a257e1d1909f5",
+  "reference_checker_sha256": "601b32127cab24f9c40ca27824f7d908d0af5523c41b5a4f5661524708986df8",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

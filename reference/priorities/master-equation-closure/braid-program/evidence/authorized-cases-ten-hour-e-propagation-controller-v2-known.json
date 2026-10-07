@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "time": "2026-10-06T06:23:03.159856+00:00",
+  "instrumentSha256": "34f430d602502f6e54a9ebeb3d969a7c9b0b70d69dff15d3a413d528e7754f50",
+  "geometrySha256": "bd12fbb0a60d7b6ca2d264f46570be9b8ce7cd7912c0e8f8bc194e5f05155c5c",
+  "cases": [
+    "two contiguous static-source forced comparison cells",
+    "acceleration error retained",
+    "noncontiguous row rejection",
+    "cap failure leaves completed prefix unchanged",
+    "exact clipped terminal cell",
+    "independent pilot seed norm conversion"
+  ],
+  "scope": "controller controls only; no retained trial target"
+}

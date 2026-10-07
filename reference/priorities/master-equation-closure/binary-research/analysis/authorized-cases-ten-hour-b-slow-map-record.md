@@ -1,0 +1,19 @@
+# B finite slow-map construction record
+
+The [prospective method](authorized-cases-ten-hour-b-finite-slow-map-protocol.md) is frozen at SHA-256 `4dfb34dc2db6891ede0ec08254ca8e777e80a26e44232826f7013b1064466f3a`. The [exact constructor](../evidence/authorized-cases-ten-hour-coordinator-b-slow-map.py) is frozen at SHA-256 `7fda5d1aa2da7dd3843580a2c6bccd5917560bc161a45dfa5ef1938aa8c64fde`. No target expression or scalar phase has yet been evaluated.
+
+Measured by the frozen instrument, known mode passed Laurent arithmetic, resonant and logarithmic primitive controls, the exact leading slow/phase equation, the separately solvable equation $k'=2\delta_0b^{-2}k^2$, all its coefficients through five, its phase cancellation above cubic order, and the normalized endpoint conversion. The receipt `coordinator-b-slow-map/known-v1.json` under the ignored campaign owner has SHA-256 `31ae4dafd1336b74663b851e096a490f5c11774567d2abb3acd2d585f7eaefab`, with 1,384 operations and about 0.019 seconds internal time.
+
+Supervisor lease `18818b4a-2396-4b44-8f70-721b56613dc8` reports completion at 04:35:34.285 UTC, exit zero, `processGroupClosed: true`, 0.122 seconds elapsed and empty stderr. Its internal/outer limits were 120/180 seconds. The independent method reference, full normal-form input acceptance and a frozen target budget are still required before the finite target. A subsequent scalar interval evaluation has additional proof and known-case obligations.
+
+## Finite target admission at 04:50 UTC
+
+The [independent method assessment](authorized-cases-ten-hour-reference-b-next-map-admission.md), SHA-256 `49416e7567174389345bd13c28ec3dd8836d5fd637e667fa14e5c176b78b86cd`, admits the finite Laurent-logarithmic construction and its uniform analytical truncation proof. The independently accepted normal-form input has digest `a607884e8b14a96cb11033efedcd2ec00b5e18e802c5c6508600283f552f9782`. The target will retain all degree-thirteen slow coefficients, phase primitives and endpoint expressions in new `coefficients-v1.json` and `checkpoints-v1.json` files. Internal/outer deadlines are 900/960 seconds, with two GiB resident memory and 32 MiB output limits. Its full independent coefficient audit remains required before any scalar use. This launch computes finite expressions only.
+
+## Producer completion, independent output audit pending
+
+The frozen constructor emitted all finite coefficients and endpoint expressions to `coordinator-b-slow-map/coefficients-v1.json`, SHA-256 `fd25ff2326dd62a17a219ec8160201b5889fddfaff4fec13f860ab86b78446b0`, in 1.032 seconds internal time. Supervisor lease `6999c3fe-984f-4d83-84d7-959152b93183` reports completion at 04:50:33.895 UTC, exit zero, process group closed, 1.129 seconds elapsed, 2,705 stdout bytes and empty stderr. These measurements establish bounded construction and closure. Full independently authored coefficient checking remains required before the expressions can enter a scalar target.
+
+## Independent acceptance at 05:00 UTC
+
+The [input and slow acceptance](authorized-cases-ten-hour-reference-b-input-slow-acceptance.md), SHA-256 `52504d6238f712e692ce23d93b94b8f21a672dcf9c155d5ba1a61e6b4622c0f3`, checks both quotient identities, every retained slow and phase differential coefficient, the lower endpoint conditions and normalized endpoint substitutions. Its separately authored audit counts 210 slow and 238 phase-primitive terms. Receipt `reference/b-slow-audit-target-v1.json` has SHA-256 `bf451961f7bdd599e46006edfb4630d52a8291622bf0114f20087b460e8b6d71`. The associated lease `26e181f0-884a-4ff2-93bc-042af6053b2a` closed at 04:57:50.969 UTC, exit zero and process group closed, after 0.842 seconds. The finite algebra and uniform analytical tail are admitted. Directed scalar evaluation and its independent result audit remain separate.

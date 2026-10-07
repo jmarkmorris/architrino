@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "static_inner_contraction": "-2",
+  "directed_internal_rows": 12,
+  "directed_outer_rows": 8,
+  "finite_exact_cases": {
+    "M=2,s=20,d=1/5": {
+      "H": "2231/2025",
+      "upper_expression": "29231/2025",
+      "necessary_d_bound": "5400/1819"
+    },
+    "M=6,s=100,d=1/10": {
+      "H": "803631/1380625",
+      "upper_expression": "64253631/1380625",
+      "necessary_d_bound": "6345000/1957619"
+    },
+    "M=3/2,s=50,d=1/50": {
+      "H": "6219681/23522500",
+      "upper_expression": "660969681/23522500",
+      "necessary_d_bound": "13095000/40825319"
+    }
+  },
+  "cross_chord_squared": "17/16",
+  "limsup_s_times_d": "6",
+  "limit_reference": "Analytical fixed-M then fixed-epsilon argument in the review; not a numerical sequence.",
+  "mode": "target",
+  "checker_sha256": "561a7607a4b8c594784de77afeed02349aadcd8b56c4f4ac02fc537e01a21fcc",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "instrumentSha256": "ef4f107da49b2f67ca9a99d24d2703e5af25b305f0a4fc103a18b1ca63ce4e57",
+  "time": "2026-10-06T08:21:26.353000+00:00",
+  "controls": [
+    "closed/live/unrelated exact owner selection",
+    "closed failed run is operationally closed, not scientific acceptance",
+    "marked unrelated owner reported without broadening selection",
+    "status counts and outstanding live exception"
+  ]
+}
