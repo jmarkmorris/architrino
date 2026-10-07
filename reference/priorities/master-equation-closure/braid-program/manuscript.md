@@ -326,9 +326,75 @@ Two further results constrain finite amplitude. First, on a complete finite peri
 
 Second, the [independent finite-amplitude test](analysis/overnight-b-independent-fold.md) excludes its explicitly listed nine-parameter Fourier box, of halfwidth $2^{-20}$ around the specified centers, from the all-phase ordinary-root domain. For every parameter vector and every positive length scale, source $j=2$ has three positive ordinary roots at deformation phase zero and one at phase $\pi/4$. The complete root counts require an intermediate zero transmitter derivative. This is a geometric domain obstruction, not an acceleration-residual exclusion, a generic-fold classification or an actual evolution into that event.
 
-No exact spatial reference, stability verdict or retained evolution follows from these exclusions. Sign-changing finite-amplitude histories outside the certified neighborhoods and box, as well as nonperiodic histories, remain open. A nonzero exact periodic height satisfying every neighborhood bound, an omitted root, a failed outward estimate or an invalid inherited flat-reference admission would overturn the corresponding result; the linked independent reports state the more detailed falsifiers.
+No exact spatial reference, stability verdict or retained evolution follows from these first-window exclusions. The second investigation below extends the local exclusion to aperiodic histories and adds separate finite-amplitude results; the uncovered general class remains open. A nonzero exact periodic height satisfying every neighborhood bound, an omitted root, a failed outward estimate or an invalid inherited flat-reference admission would overturn the corresponding result; the linked independent reports state the more detailed falsifiers.
 
 Two declared complete histories with fixed exact planar radius/rate and height $0.001\cos(\nu T)$, $\nu=3$ at T02 or $10$ at T04, retain complete 48/72-hit charts, including six self hits. Independent full vector residuals have nonzero axial components, rejecting both histories as exact balances. This supplies two bounded negatives and no exact three-dimensional structure, spectrum about an imbalanced trial, or nonlinear destination.
+
+#### 3.9.1. Complete ordinary geometry at finite height
+
+The second investigation separates three questions: whether a prescribed complete history has all its causal roots in the ordinary domain, whether its geometric acceleration equals the canonical sum, and whether any admitted exact history persists after disturbance. The following results are derived or computer-assisted derived within their stated domains and independently reconstructed in the linked assessments. They use the unchanged canonical equation with $K=c_f=1$, every ordinary positive-delay partner and self root, and the absolute source divisor. They introduce no cap, receiver factor, smoothing or event continuation. No exact nonzero-height spatial reference was found, so no stability verdict about such a reference follows.
+
+For finite-amplitude comparisons, write $\tau=T/R$, $\phi=\kappa\tau$, where $T$ is absolute time, and
+
+$$
+X_j(T)=R\big(\rho(\phi)\cos[\beta\tau+j\pi/3+p(\phi)],\rho(\phi)\sin[\beta\tau+j\pi/3+p(\phi)],(-1)^j\zeta(\phi)\big),\quad j=0,\ldots,5.
+$$
+
+Here $R>0$ is the common length/time scale, $\beta$ is planar rotation rate in normalized time, and $\kappa$ is deformation frequency, not coupling. With $\rho=1+a\cos2\phi+b\sin2\phi$, $p=c\cos2\phi+d\sin2\phi$ and $\zeta=H\cos\phi+e\cos3\phi+f\sin3\phi$, the [complete finite-height chart](analysis/overnight2-b-independent-chart.md) admits the entire box $|a|,|b|\le.06$, $|c|,|d|\le.1$, $|e|,|f|\le.04$, $H\in[.25,.75]$, $\beta\in[.15,.5]$, $\kappa\in[.08,.35]$. Every receiver has exactly five partner roots and no positive self root at every reception; speed is below $.801$, the source divisor exceeds $.199$, and normalized delays lie in $(.488,2.789)$. A complete-past monotone-gap argument proves this without a phase grid. Sign-changing finite height is therefore compatible with ordinary geometry; balance remains a separate requirement.
+
+Above wake speed, the [functional chart](analysis/overnight2-b-independent-superwake-norm-chart.md) allows arbitrary complete $C^1$ profiles around a unit rotating hexagon with $\beta\in[1.825,1.828]$. Global planar position and velocity errors may be at most $.001$ and $.01$, while $|z_j|\le1/8$ and $|\dot z_j|\le1/2$, with dots denoting normalized time. The complete source-offset counts are $(1,3,1,1,1,1)$; all eight roots have $7/20<d<2$ and $|D|>1/20$. The positive-delay self root and the partner root with negative signed divisor both remain in the acceleration sum. These bounds admit geometry for every reception, not an exact motion. More generally, the [ordered-root theorem](analysis/overnight2-b-independent-exact-root-chart-structure.md) supplies local $C^1$ root labels and compact floors under its recent-delay, remote-delay and collision guards. Its parity conclusion requires a negative remote gap, not merely a chosen finite search cutoff.
+
+#### 3.9.2. Slow families and necessary period identities
+
+The slow limit has additional hypotheses. Set $\beta=\epsilon b$ and $\kappa=\epsilon k$ with positive $b,k$ in fixed compact intervals. Require a common positive radius floor, finite radius/height and $C^2$ profile bounds, and periodic profiles in the declared common phase coordinate. The [compact exact-family reduction](analysis/overnight2-b-independent-compact-slow-scale.md) proves that exact balance bounds $R\epsilon^2$ above and away from zero and upgrades a $C^1$ subsequence to $C^2$ convergence. This upgrade uses the exact equation; bounded $C^2$ profiles alone do not give $C^2$ compactness. The resulting normalized limiting equation has positive angular constant $\ell=r^2\dot\theta$, where the dot now denotes limiting dynamical time, and a derived mathematical first integral $\mathcal I<0$. Neither is imported as a physical conservation law for arbitrary finite-speed delayed histories.
+
+The [slow tangential condition](analysis/overnight2-b-independent-slow-mean.md), [constant-radius axial obstruction](analysis/overnight2-b-independent-constant-radius-axial.md) and [coupled period identities](analysis/overnight2-b-independent-coupled-period.md) constrain the same limit. Constant radius cannot support the required nonconstant periodic height; allowing radius to vary introduces a second necessary mean condition. The [height-confinement proof](analysis/overnight2-b-independent-height-confinement.md) gives $|z/r|<h_U$, where $1.1<h_U<1.125$. Zero torque mean requires an excursion above $h_C$, where $5/12<h_C<1/2$, and the [angular/first-integral bound](analysis/overnight2-b-independent-angular-integral-bound.md) requires $0<|\mathcal I|\ell^2<2809/31250$. These necessary inequalities do not construct an orbit.
+
+Further exclusions retain their individual premises. The [bounded coupled region](analysis/overnight2-b-independent-bounded-coupled.md) has $r\in[1,1.2]$, $|z/r|\le.77$, $|\ell|\le.15$, period at most seven and excursions reaching both $.74$ and $-.74$; its quadratic mean is positive. The [full-distance quadratic identity](analysis/overnight2-b-independent-log-radius-quadratic.md) and [sharp constant-multiplier refinement](analysis/overnight2-b-independent-sharp-log-radius.md) exclude joint mean zero whenever $|\mathcal I|r_{\min}^2\ge27\ell^2/25$. The logarithm here is an auxiliary proof function; the acceleration law remains canonical. The [angular zero-spacing result](analysis/overnight2-b-independent-angular-zero-spacing.md) supplies separate rate-restricted exclusions. The [finite radius/phase Fourier theorem](analysis/overnight2-b-independent-finite-fourier.md), [finite meridional Fourier extension](analysis/overnight2-b-independent-finite-meridional-fourier.md) and [rational meridional theorem](analysis/overnight2-b-independent-rational-meridional.md) exclude their declared compact slow families for sufficiently small common speed. Their threshold is existential; the rational-family application additionally requires closure of the limiting rational class. The [explicit slow box](analysis/overnight2-b-independent-explicit-slow.md) has its own quantitative domain. The [reciprocal-phase chart](analysis/overnight2-b-independent-reciprocal-phase-chart.md) is a separately checked change of variables, not an existence result. Failed shooting and mean searches establish neither uniqueness nor branch termination.
+
+#### 3.9.3. Finite-speed means, crossings and the cosine domain
+
+A positive necessary mean rejects a prescribed history even when its roots are ordinary. The [finite-speed mean calculation](analysis/overnight2-b-independent-finite-speed.md) excludes its full nine-parameter box by a strictly positive tangential mean. The separate [finite-speed work box](analysis/overnight2-b-independent-finite-speed-work.md), with height amplitude in $[.8,.85]$, contains a torque-zero prescribed member but still has positive work mean. Torque cancellation alone is therefore insufficient. These means are mathematical diagnostics obtained from the acceleration equation, not primitive physical energy accounts.
+
+The [midpoint axial-work identity](analysis/overnight2-b-independent-midpoint-axial-work.md) retains the emission/reception Jacobian and proves positivity for the stated below-wake cosine-height family when every delay spans less than half a height cycle. Its [quantitative neighborhood](analysis/overnight2-b-independent-axial-work-neighborhood.md) admits the specified $C^1$ perturbations of size $10^{-4}$ around $H\in[.8,.85]$, $\beta=.2$, $\kappa=.15$, with mean margin above $1/2500$. The [reflection-height extension](analysis/overnight2-b-independent-reflection-height.md) allows the stated common reflection center, even radius and odd phase correction. Removing the half-cycle delay hypothesis removes this proof.
+
+At a height zero, all preceding-lobe contributions can constrain the sign of the required curvature. The [crossing theorem](analysis/overnight2-b-independent-zero-crossing.md) and [lobe-endpoint bounds](analysis/overnight2-b-independent-lobe-endpoint.md) make the necessary reach and rate conditions explicit. For $\zeta=H\cos\phi+e\cos3\phi+f\sin3\phi$, $\sqrt{e^2+f^2}\le H/4$, a nonempty complete root list and the stated half-lobe delay bounds, the [third-harmonic theorem](analysis/overnight2-b-independent-third-harmonic-skew.md) requires $f<0$. The [quantitative refinement](analysis/overnight2-b-independent-quantitative-skew.md) strengthens this to $f<-(H-3|e|)\beta^2/(10224\kappa)$ and excludes the original box's closed portion $f\ge-1/1250000$. Negative skew is necessary in this domain, not sufficient for balance.
+
+The complete cosine cover concerns constant unit normalized radius and no phase correction. Its domain is $H\in[1/10,5/6]$, $\beta\in[1/20,4/5]$, $\eta\in[1/10,1]$, with $\kappa=\eta\sqrt{(19/20)^2-\beta^2}/H$. The [first independent audit](analysis/overnight2-b-independent-domain-cover.md) excluded 3,875 of 4,019 partition leaves. The [completing speed-coordinate assessment](analysis/overnight2-b-independent-speed-coordinate.md) excludes the remaining 144 unchanged leaves; together they establish the whole declared domain exclusion at every $R>0$. This does not retroactively complete the earlier, different cover whose [centered assessment](analysis/overnight2-b-independent-centered-crossing.md) accepted only its 473 assigned leaves.
+
+Combining the completed cover with the endpoint theorem and [small-height assessment](analysis/overnight2-b-independent-small-height-profile.md) excludes every cosine amplitude $H>0$ and frequency $\kappa>0$ at $\beta\in[.19,.21]$ subject to total speed $\sqrt{\beta^2+H^2\kappa^2}\le.95$. The same assessment excludes every periodic $C^2$ height with $|z|\le.1$, $|\dot z|\le.95$ and $|z\dot z|\le19/400$ at those fixed planar rates; $|z|\le.05$ and $|\dot z|\le.95$ suffice. Its pointwise zero-reception estimate permits aperiodic profiles, but applying it to every periodic profile additionally uses the necessary-zero argument. The [earlier thin-height calculation](analysis/overnight2-b-independent-thin-height.md) supplies its separate frequency-independent bound. None of these statements admits arbitrary varying radius or phase.
+
+#### 3.9.4. Above-wake residual exclusions and functional neighborhoods
+
+The [two fifteen-parameter determinant boxes](analysis/overnight2-b-independent-superwake-determinant.md) reject their stated higher-harmonic preparations at a single reception, retaining every self and partner root. A larger complete exclusion holds for $\rho=1$, $p=0$ and $\zeta=H(\cos\phi-\sin3\phi/8)$ with $H\in[1/20,1/9]$, $\beta\in[1.825,1.828]$ and $\kappa\in[.5,3]$. The [independent 624-leaf cover](analysis/overnight2-b-independent-superwake-torque-cover.md) certifies a nonzero tangential acceleration at one of four deciding phases for every parameter point, with common absolute margin above $1/200$. Since the prescribed tangential demand is zero, every positive scale is excluded. The complete ordinary chart in §3.9.1 applies throughout this family.
+
+The [functional transfer](analysis/overnight2-b-independent-superwake-functional-transfer.md) and its [pointwise residual refinement](analysis/overnight2-b-independent-pointwise-functional-residual.md) extend that exclusion to the specified complete-past $C^2$ neighborhood, including aperiodic perturbations, with explicit size at most $1/(30\times10^9)$ in the stated nine scalar derivative bounds. Let $L$ denote normalized geometric acceleration and $A$ the complete normalized canonical acceleration; exact balance is $RL=A$. At the certified deciding reception the refinement gives $|RL-A|>1/400$ for every $R>0$. It requires the neighborhood bounds only through that reception, not an exact future interval or future norm bounds. The one-reference-cycle supremum bound is a corollary.
+
+For the same skew-height waveform at $\beta\in[1.82643,1.82644]$, $H\in[.049,.051]\cup[.099,.101]$ and $\kappa\in[8,32]$, the [complete fast-height determinant cover](analysis/overnight2-b-independent-fast-height-complete-cover.md) excludes all scales on an exact 512-cell partition using one of three ordinary deciding receptions. The gap between the two height slabs is outside the result. Its [functional extension](analysis/overnight2-b-independent-fast-height-functional-exclusion.md) proves uniform positive, uncomputed complete-past Cartesian $C^2$ neighborhood and normalized residual constants. This follows from finite uniform certificates and global derivative bounds, not compactness of a ball in the whole-past norm. It preserves roots at each selected reception; it does not assert that every reference is ordinary at all other receptions.
+
+The [moderate radial-deformation certificate](analysis/overnight2-b-independent-moderate-radial-determinant.md) separately excludes its listed six-coordinate box of halfwidth $2^{-20}$, at fixed height $.05$, using all eight reception-zero roots. Its determinant exceeds $24/5$ and $|L|<5$, so $|RL-A|>24/25$ at every positive scale. The physical residual is divided by $R^2$; no scale-uniform physical residual gap follows. Sampled optimization results preceding these certificates remain failed proposals rather than whole-family exclusions.
+
+#### 3.9.5. Nonordinary receptions and crossing the wake speed
+
+A change in complete positive-root count along a guarded continuous family forces a nonordinary member. The [fast-height topology assessment](analysis/overnight2-b-independent-fast-height-root-topology.md) establishes such receptions in three exact prescribed preparations and nonordinary parameter values in four connecting frequency segments. The [radial-deformation topology assessment](analysis/overnight2-b-independent-fast-radial-topology.md) extends the argument uniformly to two listed six-parameter boxes of halfwidth $2^{-24}$: source-offset three counts change from one to three, or one to five, between the specified receptions. Complete recent and remote guards prevent roots from escaping the counted domain. These are prescribed-history domain obstructions, not generic-fold classifications, full-box balance tests or evidence of an actual evolved event.
+
+The [wake-speed crossing theorem](analysis/overnight2-b-independent-wake-speed-crossing.md) proves that a bounded, collision-free, complete $C^2$ exact history with every positive-delay root ordinary and included and a well-defined finite canonical acceleration sum cannot contain both a strictly below-one and a strictly above-one speed for the same member. It does not impose a ceiling and does not exclude every contact with speed one. The [tangency assessment](analysis/overnight2-b-independent-wake-speed-tangency.md) treats an interior contact from above under its additional $C^3$ regularity: with $S=|dX/dT|^2$, necessarily $2S''\ge|d^2X/dT^2|^2$ at contact, where primes denote absolute-time derivatives. A unit-speed plateau is excluded under the stated bounded collision-free ordinary premises. Crossing, touching and an interval at equality are distinct cases.
+
+#### 3.9.6. Bounded projections, self roots and angular balance
+
+The [unit-planar-speed theorem](analysis/overnight2-b-independent-unit-planar-speed.md) forces strictly monotone height when planar speed never exceeds one and there is a strict above-wake reception on the connected exact interval, under its complete-past, collision and ordinary-root hypotheses. At identically unit planar speed, height is either constant or strictly monotone. The [bounded-projection theorem](analysis/overnight2-b-independent-bounded-projection-root-collapse.md) shows that an exact future with planar speed at most one, bounded planar diameter and axial range, and at least one strict above-wake reception must have arbitrarily short positive self delays in every future tail, under the same complete-root hypotheses. With a uniform acceleration bound $M$, reception and emission speeds along a sequence of such roots approach one and the short-root divisor obeys $|D|\le Md/2$, so that individual row has magnitude at least $2/(Md^3)$. This does not prove divergence of the total acceleration. Under the further uniform speed, simultaneous-separation and root-count bounds, the [coupled-degeneration theorem](analysis/overnight2-b-independent-coupled-root-degeneration.md) requires another nonrecent root's divisor to collapse at least cubically in that short delay. The compensating root may itself be a self root. These are necessary conditions, not constructions or finite-time event theorems.
+
+The [unit-circle exclusion](analysis/overnight2-b-independent-unit-circle-bounded-height.md) rejects constant unit planar speed with any bounded $C^2$ height whose future second derivative is uniformly bounded, over an unbounded exact future. A [separate periodic-height result](analysis/overnight2-b-independent-near-unit-periodic-exclusion.md) covers $\beta\in[1,1.00005]$, $|z|\le.2$, $|\dot z|\le.4$, using a stronger recent-self-row estimate above equality and the separate equality argument. The [broad partner-torque assessment](analysis/overnight2-b-independent-broad-partner-torque.md) excludes constant unit radius/rate on $\beta\in[169/320,7/5]$ with the same height and axial-speed bounds for arbitrary complete $C^2$ profiles, without periodicity or a second-derivative bound. It accepts 62 cells; its two lower-rate cells remain unresolved, not physical boundaries. All self rows are retained and have the required positive tangential sign.
+
+The [variable-planar extension](analysis/overnight2-b-independent-variable-planar-torque.md) allows $|\rho-1|,|\dot\rho|,|\dot p|\le.001$ on $\beta\in[.6,1.4]$ with those same height norms. Its 64-cell bound forces the bounded kinematic angular quantity $J=\rho^2(\beta+\dot p)$ to increase along any exact retained history, yielding a scale-dependent finite-duration bound and residual inequality. The [self angular-budget theorem](analysis/overnight2-b-independent-self-angular-budget.md) more generally requires a negative radius-weighted partner mean when every self angular increment is below $\pi$ and the stated self-root persistence conditions hold. Neither statement supplies retention, a physical conservation law or stability.
+
+#### 3.9.7. Aperiodic flat-neighborhood exclusion and remaining existence question
+
+The [aperiodic extension](analysis/overnight2-b-independent-aperiodic-flat-neighborhood.md) removes periodicity from the explicit T02/T04 neighborhoods above. The bounds are still in absolute physical time: planar deviations and derivatives are at most $2^{-20}$, and $(|z|,|z'|,|z''|)\le(h,4h,16h)$ with $h=1/32$ or $1/128$. There remains no bound on accumulated phase. The same complete eight- or twelve-root charts, including one self root per receiver, apply. An exact history satisfying these bounds on the whole real line has $z\equiv0$. The proof combines the inherited continuous-frequency inverse estimate with cutoffs; no assumed square-integrability or Fourier truncation replaces the whole-line argument.
+
+If exactness holds only on the unbounded future, continued retention of the complete history in that neighborhood instead implies $z,z',z''\to0$. No rate, planar convergence or theorem that initial data remain in the neighborhood is supplied. The conclusion is therefore conditional flattening, not a stability verdict for the whole ring.
+
+The general exact sign-changing spatial-history question remains open outside these certified parameter and functional domains. A counterexample inside a stated domain, an omitted positive-delay root, a failed outward interval or partition bound, an invalid slow-limit premise, or a failure of an inherited flat-reference admission would overturn the corresponding result. The linked independent assessments give the precise instruments, domains and falsifiers. Failed searches do not close the uncovered families, and no general existence, retention or actual-fate conclusion follows from this collection of bounded exclusions.
 
 ### 3.10. The exact ring as a prescribed source
 
@@ -378,21 +444,233 @@ For each fixed finite positive coupling the six-member ordinary circles cannot f
 The [unequal-radius investigation](analysis/overnight-c-logarithmic-braids-2026-10-06.md) considers three persistent neutral antipodal pairs with a common center, plane and angular rate. In planar complex coordinates their complete paths and polarities are
 
 $$
-X_{a,s}(t)=s r_a e^{i(\omega t+\phi_a)},\qquad q_{a,s}=s,\qquad a=1,2,3,\quad s=\pm1.
+X_{a,s}(T)=s r_a e^{i(\omega T+\phi_a)},\qquad q_{a,s}=s,\qquad a=1,2,3,\quad s=\pm1.
 $$
 
 The scale and orientation gauges are $r_1=1$ and $\phi_1=0$. Pair membership stays fixed; the strictly ordered-radius theorems assume $1<r_2<r_3$. The selected equation has $K_{\log}=c_f=1$, its original transmitter weight and every ordinary positive-delay hit, without a ceiling. In the strictly subfield domain $|\omega|r_3<1$, distance minus delay decreases strictly for each source. It crosses zero once in each partner channel and never at positive delay in a self channel. This proves the complete census of thirty partner hits and no self hits, rather than imposing that census as an exclusion rule.
 
-Claim grade: derived, independently reconstructed. Every exact configuration in this strictly subfield, strictly ordered class must satisfy $r_3/r_1<35$, at all phases. The [outer-radius proof and independent review](analysis/overnight-c-outer-radius-thirty-five-independent-review.md) combine bounds on the four inner members' acceleration equations with a separate argument for nearly coincident inner radii. A sufficiently distant outer pair makes the inner equations demand a close cross-pair separation; at that separation one acceleration contribution exceeds the sum of all the others and the required circular acceleration. Exact rational inequalities close the intervening radius bands. Thirty-five is a sufficient upper bound, not an optimal value or a demonstrated solution below it. The remaining domain is not compact: radius gaps, member separation and the margin below wake speed can approach zero.
+Claim grade: derived, independently reconstructed. Every exact configuration in this strictly subfield, strictly ordered class must satisfy $r_3/r_1<35$, at all phases. The [outer-radius proof and independent review](analysis/overnight-c-outer-radius-thirty-five-independent-review.md) combine bounds on the four inner members' acceleration equations with a separate argument for nearly coincident inner radii. A sufficiently distant outer pair makes the inner equations demand a close cross-pair separation; at that separation one acceleration contribution exceeds the sum of all the others and the required circular acceleration. Exact rational inequalities close the intervening radius bands. Thirty-five is a sufficient upper bound, not an optimal value or a demonstrated solution below it. That radius bound alone does not establish compactness. The second-window separation, rate and closed-root estimates below now give a compact containing domain for this exact class, without excluding its interior.
 
 Two additional continuous exclusions have separate proof reconstructions:
 
 - For $r_2\in[6/5,7/5]$, $r_3\in[8/5,9/5]$ and $|\omega|\le3/100$, no phases balance. The [curvature-refined argument](analysis/overnight-c-curvature-independent-review.md) bounds the complete delayed correction to an instantaneous comparison and leaves the strict exact margin $4679079917/72711925000$. The comparison is an analytical bound on the selected equation, not a replacement of its source weighting.
 - For $r_2\in[26/25,53/50]$, $r_3\in[109/100,111/100]$, $\omega\in[51/50,26/25]$ and $\phi_2,\phi_3\in[-1/1000,1/1000]$, every member is above wake speed. The [aligned-sector proof](analysis/overnight-c-superfield-independent-review.md) establishes thirty partner and six positive-delay self hits, all ordinary, with strictly forward tangential contributions. The zero tangential acceleration required by the circular paths is impossible throughout this box.
 
-The higher-rate interval calculation in the first radius box, with $\omega\in[1/10,1/2]$ and all phases, remains partial. The [independent saved-evidence audit](analysis/overnight-c-cover-independent-review.md#final-disposition-valid-partial-cover) verifies a complete partition with 114,308 excluded leaves and 35,693 unresolved leaves, 150,001 in total. It checks the exact stored residual signs, ancestry, source identities and partition coverage; it does not independently recompute the target residuals or formally verify the arithmetic library. The retained leaf limit was crossed by one because the driver checked it after processing. The explicit result is `complete_exclusion: false`, and the unresolved region cannot be discarded. The finite numerical searches likewise found no accepted candidate but provide no continuous absence proof.
+The higher-rate interval calculation in the first radius box, with $\omega\in[1/10,1/2]$ and all phases, remains partial. The [independent saved-evidence audit](analysis/overnight-c-cover-independent-review.md#final-disposition-valid-partial-cover) verifies a complete partition with 114,308 excluded leaves and 35,693 unresolved leaves, 150,001 in total. It checks the exact stored residual signs, ancestry, source identities and partition coverage; it does not independently recompute the target residuals or formally verify the arithmetic library. The retained leaf limit was crossed by one because the driver checked it after processing. The explicit result is `complete_exclusion: false`, and the unresolved region cannot be discarded. The finite numerical searches likewise found no accepted candidate but provide no continuous absence proof. One mid-run diagnostic is retained with the run's receipts (measured; local `unresolved-projections.json`, listed in the [artifact manifest](evidence/overnight-c-artifact-manifest.json) and bound to a checkpoint whose SHA-256 begins `11208ac8`; the script that wrote it is not among the tracked sources, so the receipt alone is the instrument of record). At a checkpoint holding 30,307 unresolved leaves, the union of those leaves projected onto each of the first three chart coordinates was the whole chart range: $[6/5,7/5]$ in the first radius, $[8/5,9/5]$ in the second and $[1/10,1/2]$ in the angular rate. The unresolved set was therefore not confined to a sub-range of either radius or of the angular rate, so no coordinate could be trimmed from the cover at that stage. The diagnostic says nothing about the two phase coordinates, about the final 35,693 unresolved leaves, or about whether a balance exists.
 
 No first exact logarithmic three-binary reference, stability spectrum or retained motion is admitted. The [reproduction record](analysis/overnight-c-reproduction.md) separates frozen analytical subjects, independent reviews, dependent proposal instruments and the partial-cover audit. A missing root, wrong polarity or directed multiplicity, failed comparison inequality, incorrect exact margin or exact solution inside an excluded domain would refute its corresponding theorem. A new solution outside those domains would resolve an open case without contradicting these results.
+
+#### 3.12.1. Complete-root reduction and uniform separation
+
+The [second logarithmic three-binary investigation](analysis/overnight2-c-followup-and-research-2026-10-07.md) retains the same complete paths, with absolute time $T$,
+
+$$
+X_{a,s}(T)=s r_a e^{i(\omega T+\phi_a)},\qquad q_{a,s}=s,
+\qquad T\in\mathbb R,\quad a=1,2,3,\quad s=\pm1.
+$$
+
+The equation is the fixed inverse-distance logarithmic response with $K_{\log}=c_f=1$, unchanged transmitter weighting, no ceiling and every ordinary positive-delay root. Scaling lengths and time together permits $r_1=1$ without tuning the coupling; reflection permits $\omega\ge0$. The [uniform-separation reconstruction](analysis/overnight2-c-uniform-separation-independent-review.md), [constructive refinement](analysis/overnight2-c-explicit-separation-independent-review.md) and [compact-domain reconstruction](analysis/overnight2-c-compact-domain-independent-review.md) give a new necessary containing domain for exact strictly ordered, strictly subfield configurations. With $R=35$, define
+
+$$
+M=1+768R^2,\qquad \eta=[448R^2(760M)^3]^{-1},\qquad
+\delta=\min\left\{\eta,[1792R^2(1+1024R^2/\eta^3)^3]^{-1}\right\},
+\qquad u_0=\frac{\delta}{100R^2}.
+$$
+
+Claim grade: derived, independently reconstructed, with the magnitude of the explicit constant checked by exact integer arithmetic. Every exact configuration has simultaneous separation at least $\delta$ and $\omega>u_0$. At $R=35$, $10^{-316}\le\delta<10^{-315}$. The cancellation argument uses the exact inverse from an unsigned received acceleration row to its source position and covers arbitrary collision-distance hierarchies. The rate bound uses the neutral static scalar sum $-3$ only as an auxiliary comparison to the complete moving response. Neither argument imports a conserved physical energy.
+
+The resulting compact containing set retains equal-radius and wake-speed boundaries:
+
+$$
+1\le r_2\le r_3\le R,\qquad u_0\le\omega\le1/r_3,
+\qquad (\phi_2,\phi_3)\in\mathbb T^2,\qquad d_{\min}\ge\delta.
+$$
+
+At every prescribed configuration in this set, the [complete circular-root bounds](analysis/overnight2-c-root-bound-independent-review.md) give thirty ordinary partner roots and no positive self roots, with $\delta/2\le\tau\le2R$ and $D\ge\delta^2/(128R^2)$. Thus root singularity cannot enter this closed comparison domain. This is a compact reduction of the exact-solution question, not an exclusion of its interior, evidence that a solution exists, or a feasible numerical-cover estimate.
+
+A separate [endpoint-separation restriction](analysis/overnight2-c-separation-independent-review.md) is substantially stronger for one pair of radii: the closest distance $d$ between the radius-one and middle pairs must satisfy $d>1/21$ for $r_3\ge2$, and $d>(r_3-1)^3/24$ for $1<r_3\le2$. Its geometric identity is $d^2=(r_2-1)^2+4r_2\sin^2(\rho/2)$, where $\rho$ is the distance of the pair-phase difference from $\pi\mathbb Z$. It constrains endpoint separation, not radial gap alone. The [constructive-separation review](analysis/overnight2-c-explicit-separation-independent-review.md) also checks a phase-order sign restriction: in the strictly subfield class with positive angular rate, if the three same-polarity endpoints fit in an angular interval of width less than $\pi-2$, the maximal-phase endpoint receives five positive tangential contributions and cannot balance.
+
+#### 3.12.2. Full-phase equal-radius exclusion
+
+Every distinct-member configuration with all three radii equal is excluded throughout $0\le v\le1$, where $v=\omega a$ and $a$ is the common radius. This is computer-assisted derived with independent analytical reconstruction, not a sampled phase search. For clockwise present angle $\gamma\in(0,2\pi)$, the complete emission angle is $\alpha\in(0,2\pi)$; the paired response $Q_v$ is defined on $\gamma\in(0,\pi)$. The chart is
+
+$$
+\gamma=\alpha-2v\sin(\alpha/2),\qquad
+D_v=1-v\cos(\alpha/2)>0,\qquad
+B_v(\gamma)=\frac{\cot(\alpha/2)}{D_v},\qquad
+Q_v(\gamma)=B_v(\gamma)-B_v(\gamma+\pi).
+$$
+
+The [radial polarity and margin arguments](analysis/overnight2-c-radial-margin-independent-review.md) exclude nonalternating cyclic polarity for positive speed. The alternating radial equations require $2v^2(1+v)>1$, hence $v>9/16$; static balance is separately impossible. Independently reconstructed [strict convexity](analysis/overnight2-c-tangential-convexity-independent-review.md) and the finite order-preserving three-cycle argument reduce the remaining phase problem to two speed signs. The [completing certificate and reconstruction](analysis/overnight2-c-speed-sign-independent-review.md) certify both on every one of the 448 closed cells of width $1/1024$ covering $[9/16,1]$, with zero unresolved cells:
+
+$$
+Q_v'(\pi/2)\ge0.058906929447920082>0,\qquad
+S(v)\ge0.466441426429203602>0.
+$$
+
+Here $S$ is the five signed regular-hexagon rows at one positive receiver,
+
+$$
+S(v)=\sum_{k=1}^{5}(-1)^kB_v(k\pi/3)=2aA_t.
+$$
+
+The first sign locates the convex response minimum on the required side of $\pi/2$; the cycle forces equal gaps, and the second sign contradicts their tangential balance. Seven complete angle channels per cell are enclosed. The independently authored interval instrument passed static, manufactured moving-root and signed-rounding controls before its pilot and completing run. Its factor floor applies to those certificate channels, not to arbitrary phases. The frozen review preserves the earlier pilot/pending stages and the separate completing verdict. Both this certificate and the separate 512-cell value certificate below use `mpmath.iv` at 80 decimal digits. Their validity depends on that library's directed arithmetic and elementary functions; neither is a formal verification of the arithmetic library. Independently reconstructed geometry and exact coverage checks do not remove that implementation boundary.
+
+This proof does not use a universal positive-total-tangential assertion. A [separate certified counterexample](analysis/overnight2-c-equal-radius-sign-independent-review.md) at $a=1$, $v=3/4$, phases $(0,\pi/8,\pi/4)$ has negative total tangential acceleration. It is nonalternating and already excluded by radial balance. That failed shortcut remains an explicit limitation, not an exact solution.
+
+#### 3.12.3. Radius spread and partial-equality restrictions
+
+The [constructive spread reconstruction](analysis/overnight2-c-explicit-spread-independent-review.md) transfers a quantitative equal-radius residual margin to nearby unequal radii. Define
+
+$$
+t_0=\frac\delta4,\qquad d_0=\frac{\delta^2}{512R^2},\qquad
+\varepsilon(\mu)=\min\left\{\frac\delta4,\frac{\mu d_0^3t_0^2}{212}\right\}.
+$$
+
+Every exact strictly ordered strictly subfield configuration requires $r_3>1+\varepsilon(u_0/16)$. Along the radius comparison, all roots persist and each scalar residual changes by at most $106h/(d_0^3t_0^2)$ for radius displacement at most $h$. The derivation includes the changing emission time in both the chord and source velocity. These widths are explicit and positive but extremely small; they are not practical covering budgets.
+
+The two partial-equality branches have distinct speed normalizations and independently reconstructed necessary restrictions:
+
+| Branch, normalized by $r_1=1$ | Necessary restrictions for exact balance | Independent evidence |
+| --- | --- | --- |
+| Inner equal: $r_2=1$, $r_3=b>1$ | $b<4$; if $b\ge2$, $\omega>1/80$; if $b\ge3$, $\omega>1/12$ | [Tangential bound](analysis/overnight2-c-inner-tangent-independent-review.md), [neutral-pair comparison](analysis/overnight2-c-inner-low-speed-independent-review.md), [common shifted comparison](analysis/overnight2-c-centered-response-independent-review.md) |
+| Outer equal: $r_2=r_3=b>1$ | $b<5$; if $b\ge2$, $v=\omega b>1/40$; if $b\ge3$, $v>1/8$ | [Completed paired-value certificate](analysis/overnight2-c-paired-value-full-independent-review.md), [smaller-pair comparison](analysis/overnight2-c-outer-low-speed-independent-review.md) |
+
+The radius-five theorem uses a separate full 512-cell certificate of $Q_v(\pi/2)>21/20$ on $[0,1]$, with zero unresolved cells. Convexity supplies the arbitrary-phase inequality; the opposing smaller-pair contribution is at most $25/24$ for $b\ge5$, leaving a positive scaled difference exceeding $1/120$. A separately authored exact coverage auditor checks all cells, endpoints, channels and strict recorded bounds; it does not independently recompute the transcendental intervals. This certificate is distinct from the completing 448-cell equal-radius certificate.
+
+The inner-equal [phase-gap theorem](analysis/overnight2-c-inner-phase-independent-review.md) gives $\rho\ge\min\{1/16,(b-1)^2(b+1)/(24b^2)\}$, with closest cross-pair separation at least half that bound. For its $b\ge2$ branch, the [regular containing domain](analysis/overnight2-c-inner-regular-domain-independent-review.md) has $2\le b\le4$, $1/80\le\omega\le1/b$, $1/32\le\beta\le\pi-1/32$ and the remaining phase on its torus; every partner has $1/128\le\tau\le8$ and $D\ge1/2$, with separation at least $1/64$. For the outer-equal $b\ge2$ branch, the [regular-domain reconstruction](analysis/overnight2-c-outer-regular-domain-independent-review.md) together with the low-speed result gives $2\le b\le5$, $1/(40b)\le\omega\le1/b$, the same phase-gap interval, separation at least $1/32$, $1/64\le\tau\le10$ and $D\ge1/128$. Exact configurations exclude the stated low-speed and upper-radius endpoints; the closed endpoints merely make containing domains compact. In particular the outer-equal exact branch has $\omega>1/200$. Neither interior has been fully excluded.
+
+#### 3.12.4. Correlated responses and unequal-boundary transfers
+
+The [six linked response equations](analysis/overnight2-c-linked-response-independent-review.md) retain both inner receivers' radial and signed-tangential requirements from the same outer neutral pair, as well as that pair's own two receiver equations. In the inner-equal branch, the [common rotated comparison](analysis/overnight2-c-centered-response-independent-review.md) compares the two actual responses to one static pair at phases $s=\chi-\omega b$ and $s+\beta$, each with vector error at most
+
+$$
+E(b,\omega)=\frac{2\omega(2b-1)}{(b-1)^2(1-\omega)}.
+$$
+
+The reciprocal static response traces a known ellipse. Taking arbitrary linear combinations of both vector requirements gives a joint necessary support inequality; the shared comparison phase cannot be chosen separately at each receiver. Its scalar consequence is the inner-equal low-speed strip above. The analogous outer-equal comparison scales to smaller radius $a=1/b$ and common rate $v=\omega b$, with error $2av/[(1-a)^2(1-av)]$ per complete pair. It gives positive original-unit tangential differences $11/(1896b)$ and $2819/(118404b)$ on its two speed strips. These are bounds on the unchanged moving equation, not replacements by a static law.
+
+##### 3.12.4.1. Joint vector exclusions and their unequal-radius transfers
+
+For the inner-equal class, use positive phases $0,-\beta,\chi$, with $0<\beta<\pi$, $b=r_3>1$ and $v=\omega$. In the complete circle chart above, define $R_v(\gamma)=1/D_v$ and $P_v(\gamma)=R_v(\gamma)-R_v(\gamma+\pi)$. Encode each radial-plus-$i$-tangential vector as a complex number. The two inner receivers require the outer neutral pair to supply
+
+$$
+W_1=-v^2+\frac{R_v(\pi)-P_v(\beta)}2
++\frac i2[B_v(\pi)-Q_v(\beta)],
+$$
+
+$$
+W_2=-v^2+\frac{R_v(\pi)+P_v(\pi-\beta)}2
++\frac i2[B_v(\pi)+Q_v(\pi-\beta)].
+$$
+
+These expressions retain the own antipode, the other inner pair and the required circular acceleration. The [joint-vector proof](analysis/overnight2-c-joint-vector-strip.md) and [independent reconstruction](analysis/overnight2-c-joint-vector-independent-review.md) exclude
+
+$$
+3\le b\le4,\qquad 0\le v\le1/8,\qquad
+\lvert\beta-\pi/2\rvert\le1/100,
+$$
+
+at every outer phase. The complete circle response satisfies $Q_v(\pi/2)\ge219373/116402>15/8$ throughout this rate range. Convexity therefore bounds the required tangential difference below by $15/8$. In the narrow phase band, the required radial average exceeds $19/40$, so the joint four-component Euclidean norm satisfies
+
+$$
+\|(W_1,W_2)\|>\frac{297}{200}.
+$$
+
+The same static pair seen at two right-angle-separated phases has joint squared norm at most $369/400$ for $b\ge3$. Its phase derivative has magnitude at most $15/16$, so the band adds at most $3/320$ to its joint norm. The simultaneous delayed errors add at most $\sqrt2 E\le5\sqrt2/14<25/49$. Since $\sqrt{369}/20<77/80$, the complete outer-pair response has joint norm below $77/80+3/320+25/49<1483/1000$. Thus the full four-component residual norm exceeds $1/500$, and some component exceeds $1/1000$ in magnitude. Every source row and all thirty partner roots are included; all speeds here are at most $1/2$, so no positive self root occurs.
+
+The separately reconstructed [all-phase corollary](analysis/overnight2-c-joint-corollaries-independent-review.md) uses the same circle lower bound without the radial-average or near-right-angle restriction. On $13/4\le b\le4$, $0\le v\le1/8$, the opposing static tangential difference is at most $185/153$ and the total delayed error is at most $352/567$. Hence
+
+$$
+A_{1,t}-A_{2,t}>\frac{15}{8}-\frac{185}{153}-\frac{352}{567}
+=\frac{3473}{77112}>0.
+$$
+
+Some tangential component exceeds $3473/154224$ in magnitude. This excludes every noncollision phase in that closed radius/rate strip. The joint-vector result remains separately useful for $3\le b<13/4$. Both are derived continuous exclusions with independent analytical reconstruction; neither is a sampled phase result or an exact reference.
+
+The [earlier boundary-transfer reconstruction](analysis/overnight2-c-boundary-strips-independent-review.md) and [refined transfer](analysis/overnight2-c-refined-boundary-strips-independent-review.md) apply the same complete-root sensitivity to exact strictly ordered, strictly subfield configurations:
+
+| Sector | Necessary gap, with $\varepsilon$ defined above |
+| --- | --- |
+| $r_3\ge4$ | $r_2-1>\varepsilon(2/585)$ |
+| $r_3\ge9$ | $r_3-r_2>\varepsilon(9/(320R))$ |
+| $r_3\ge5$ | $r_3-r_2>\varepsilon(1/(240R))$ |
+| $r_3\ge2$, $\omega r_3\le1/40$ | $r_3-r_2>\varepsilon(11/(3792R))$ |
+| $r_3\ge3$, $\omega r_3\le1/8$ | $r_3-r_2>\varepsilon(2819/(236808R))$ |
+| $3\le r_3\le4$, $\omega\le1/8$, $\lvert\beta-\pi/2\rvert\le1/100$ | $r_2-1>\varepsilon(1/1000)$ |
+| $13/4\le r_3\le4$, $\omega\le1/8$, every noncollision phase | $r_2-1>\varepsilon(3473/154224)$ |
+
+The last two rows follow from the separately reconstructed joint-vector corollaries. Only the middle radius moves toward the corresponding equality boundary, preserving the largest radius, the upper speed bound and the required separation floor. Endpoint residuals exceed the possible change from zero, so these are exclusions of genuine unequal-radius neighborhoods. The older radius-nine strip retains its stronger margin; the strips are not added to create a larger unproved domain.
+
+##### 3.12.4.2. Exact static phase elimination and moving necessary conditions
+
+The [phase-eliminated formulation](analysis/overnight2-c-phase-eliminated-response.md) and [independent reconstruction](analysis/overnight2-c-phase-elimination-independent-review.md) make the shared phase relation explicit. For $b>1$, put
+
+$$
+u=\frac{b^2-1}{2b},\qquad w=\frac{b^2+1}{2b},\qquad k=\frac wu>1,
+\qquad F(s)=\frac1{G_b^{(0)}(s)}=-u\cos s+iw\sin s.
+$$
+
+Here $G_b^{(0)}$ is the static signed response of the whole outer neutral pair at a unit receiver, and $u$ is an ellipse semiaxis, distinct from the angular-rate cutoff $u_0$. Trigonometric addition gives $F(s+\beta)=AF(s)+B\overline{F(s)}$, where
+
+$$
+A=\cos\beta-\frac i2(k+k^{-1})\sin\beta,\qquad
+B=\frac i2(k^{-1}-k)\sin\beta.
+$$
+
+These letters denote algebraic coefficients, not acceleration components. The real-linear map is invertible. Its Euclidean norm is $\kappa=|A|+|B|=\sqrt{1+q^2\sin^2\beta}+q|\sin\beta|$, where $q=(k-k^{-1})/2$. For complex responses define
+
+$$
+H_\beta(z_1,z_2)=|z_1|^2-z_2(A\bar z_1+Bz_1),\qquad
+J(z_1)=|z_1|^4-\frac{(\operatorname{Re}z_1)^2}{u^2}
+-\frac{(\operatorname{Im}z_1)^2}{w^2}.
+$$
+
+The equations $H_\beta=J=0$, together with $z_1\ne0$, characterize exactly the two responses of one static pair at phases separated by $\beta$. The first equation retains the phase relation; the second places the reciprocal response on its ellipse. Clearing denominators introduces an artificial $z_1=0$ branch, which must be excluded from this static characterization.
+
+For the actual moving problem, retain $\omega\ge0$ and $\omega b\le1$ with $b>1$, $0<\beta<\pi$, all thirty ordinary partner roots and no positive self roots. The simultaneous comparison errors $|W_j-z_j|\le E$ yield the necessary inequalities
+
+$$
+|H_\beta(W_1,W_2)|\le
+E[(2+\kappa)|W_1|+\kappa|W_2|]+(1+\kappa)E^2,
+$$
+
+$$
+|J(W_1)|\le(|W_1|+E)^4-|W_1|^4
++\frac{2|W_1|E+E^2}{u^2}.
+$$
+
+They remain valid when a required response vanishes because they divide by neither $W_1$ nor $W_2$. The proof uses the norm of $z\mapsto A\bar z+Bz$, the full product error including $E^2$, and the norm $u^{-2}$ of the weighted quadratic form. These error-inflated inequalities are only necessary; passing them neither produces a common actual phase nor satisfies the outer receiver's two equations. No moving-box performance gain is claimed for this formulation.
+
+The omission of ellipse membership has a precise limitation. At $b=\sqrt3$, $v=0$ and $\beta=\pi/2$, the required values are $W_1=1/2-i$, $W_2=1/2+i$. Direct exact substitution gives $H=0$ but $J(W_1)=1/16$. Thus the phase relation alone admits values no single static pair supplies. The signed static-axis values and this mismatch are analytical controls, not exact six-member references.
+
+##### 3.12.4.3. A lower-radius exclusion from ellipse distance
+
+The [lower-radius proof](analysis/overnight2-c-lower-radius-ellipse-strip.md) and its [independent reconstruction](analysis/overnight2-c-lower-ellipse-independent-review.md) turn ellipse membership into a continuous exclusion below radius two:
+
+$$
+\sqrt3\le b\le7/4,\qquad 0\le\omega\le1/10000,\qquad
+\lvert\beta-\pi/2\rvert\le1/1000,\qquad\chi\in\mathbb T.
+$$
+
+The static required first-inner response is $W_0=1/2-i\csc\beta$. Since $u^{-2}\le3$, $w^{-2}\le3/4$ and $\csc^2\beta\ge1$, it has $J(W_0)\ge1/16$ and $|W_0|<9/8$. Every static outer-pair response has $J=0$. On $|z|\le5/4$, the gradient satisfies $|\nabla J(z)|\le245/16<16$. If a static response is within $1/8$ of $W_0$, their joining segment lies in this disk, so their distance exceeds $1/256$. A more distant point already satisfies that bound. This proves distance from the entire static curve, uniformly over its phase.
+
+Set $v=\omega$ and $W(v)=W_1$ at fixed $b$ and $\beta$. Write $G_{1,b}(\chi;v)$ for the actual complete contribution of the outer neutral pair at the positive unit receiver, in its local radial/tangential frame. Differentiating the complete implicit circle roots at fixed present angle bounds the change in the inner requirement by $|W(v)-W_0|\le16v$. The own-antipode and both other-inner rows, and the circular term, are all retained. The checked common shifted outer-pair comparison has $E<12v$ for positive $v$ in this radius range, with zero error at rest. Therefore
+
+$$
+|G_{1,b}(\chi;v)-W(v)|>\frac1{256}-28v
+\ge\frac{177}{160000}>0.
+$$
+
+Some radial or tangential component exceeds $177/240000$ in magnitude. All thirty ordinary partner roots and no self roots are present, and every outer phase is covered. This is a derived, independently reconstructed moving exclusion, obtained without a numerical target. It does not decide other lower-radius phases, higher rates or the general unequal-radius interior. A failed static distance, total root derivative, delayed comparison or root inventory would reopen the conclusion.
+
+#### 3.12.5. Superfield scope, method limits and open regions
+
+The [independently reconstructed superfield box](analysis/overnight2-c-superfield-independent-review.md) has $r_2\in[1.15,1.2]$, $r_3\in[1.3,1.35]$, $\omega\in[1.05,1.08]$ and $\phi_2,\phi_3\in[-0.01,0.01]$. It is everywhere ordinary with thirty partner and six positive self roots, delays above $1/2$, and a positive complete tangential sum, excluding circular balance. The broader first-half-turn sign criterion assumes $|\phi_b-\phi_a|<\omega|r_b-r_a|$ and $\omega(r_a+r_b)+|\phi_b-\phi_a|<\pi$ for every interpair phase difference, and $2\omega r_a<\pi$ for every pair. It applies only to the everywhere-ordinary subset of that region; it does not claim every parameter point is ordinary. The [self-onset reconstruction](analysis/overnight2-c-self-onset-independent-review.md) separately assumes bounded superfield radii $1\le r_a\le R$. For a receiver of radius $a$ and speed $v=\omega a\downarrow1$, its unique positive self root gives $A_{t,\mathrm{self}}\sim[4\sqrt6\,a(v-1)^{3/2}]^{-1}$. A complete all-lobe count bounds each partner channel by $N_R=\lceil R\rceil+4$ roots. Exact balance therefore requires some partner root with $\tau|D|\le5N_R/A_{t,\mathrm{self}}$. A present-separation floor then forces a partner factor of order $(v-1)^{3/2}$ or smaller. The strictly subfield radius bound 35 is not imported into arbitrary superfield histories. These are parameter-boundary restrictions, not an actual singular-event evolution or continuation rule.
+
+The [second-window account and reproduction map](analysis/overnight2-c-reproduction.md) preserve the failed methods as well as the theorems. Two reviewed joint contractions, including coordinate telescoping, each excluded the same eighteen of thirty-two frozen leaves as the old natural residual and added zero exclusions. A later analytic phase test also added zero on that same subset. Target residuals were not independently replayed; these measured zero-gain pilots justify no enlarged cover. At $b=2$, $\omega=1/8$, $\beta=\pi/2$, the independent-row cap and the common-shift scalar envelope both contain zero, with excess allowances at least $479/777$ and $246/259$, respectively. This is a limitation of those estimates, not proof that their allowed response is attainable. The old 35,693 unresolved leaves remain unresolved, and its saved partition audit remains distinct from independent residual recomputation.
+
+The remaining general unequal-radius interior, the unexcluded portions of the partial-equality branches with $1<b<2$, the higher-speed portions of the regular containing domains and arbitrary superfield configurations are open. No exact logarithmic three-binary reference, stability spectrum or retained actual motion is admitted. An omitted root, failed factor/separation bound, invalid signed response or exact configuration inside a stated exclusion would falsify the corresponding conclusion. An exact solution elsewhere would answer an open case without contradicting the exclusions.
 
 ### 3.13. The low-speed endpoint and its self-root birth
 
@@ -917,7 +1195,7 @@ A later operator selection on 2026-10-06 reopened two bounded items of the six-m
 
 **Great circles (derived and independently confirmed).** Let six members move on great circles of one sphere at one common rate without collision. Their accelerations are then centripetal, the implicit solve disappears, and each member's equation is an identity between analytic functions of time. Every pair on different oriented circles has complex collision times at which its weight has a square-root branch point; carrying the identity once around such a time changes the sign of exactly the pairs that vanish there. So for each member the partners sharing its complex collision times sum to zero by themselves, and the partners on its own circle balance its centripetal term as an inverse-square ring. A class that sums to zero needs at least four partners on four different oriented circles, and no member can sit alone on its circle, so a solution that is not planar needs at least ten members. With at most nine members, in particular six, every great-circle solution is one planar ring in inverse-square balance. This turns the measured negatives of Section 12.1 for three antipodal great-circle pairs and for six independent great circles into a derived exclusion at every radius and rate. A separate reviewer re-derived every lemma, found no gap, and confirmed the mechanism with its own code; its falsifier search of 700 starts found planar hexagons and nothing else below residual $1.0$.
 
-**Rings on one circle (measured).** The planar question that remains was checked from 4000 random arrangements of three positive and three negative members on one circle with free angles and rate: every converged case is the alternating regular hexagon, and no other balanced ring appeared. This is one instrument's bounded result; a proof is open.
+**Rings on one circle (derived, computer-assisted for the alternating ordering, and independently confirmed by two blind lanes with cross-review).** The planar question that remains is which arrangements of three positive and three negative members on one circle are in inverse-square ring balance. Two lanes working blind to each other [classified](analysis/weber-binding-sphere-ring-classification.md) them [independently](analysis/weber-binding-sphere-ring-classification-independent.md): only the alternating regular hexagon, at $\Omega^2=(5/4-1/\sqrt3)K/R^3$. The two orderings with adjacent like members are excluded by hand, by two different arguments (one from the pair of tangential conditions of two like neighbours, one from the vanishing of the sum of positions). For the alternating ordering each lane proved by hand that no solution comes near a collision and then excluded the remaining region by interval arithmetic with a certified uniqueness box about the hexagon; the two used different margins, coordinates, codes and arithmetic. The six tangential conditions alone already force the hexagon. By the same methods the only balanced ring of two and two is the alternating square. With the great-circle theorem above: a six-member great-circle history that satisfies the law is the alternating hexagon, which Section 12.1 shows unstable at every regular radius.
 
 **Uniform circular motions (derived; partly independently confirmed).** The same method covers every history in which each member moves uniformly on some circle of the sphere, about its own axis, at one common speed. Such a history that satisfies the law is a rigid rotation. The statement is derived and independently confirmed when all circles have equal radius about any axes and when all axes are parallel with any radii and rates; the second case is the stacked-latitude family, so no arrangement of members lapping parallel circles at different rates satisfies the law, for integer or any other rate ratio. For unequal radii about non-parallel axes the statement is derived, with two independent readings of its odd-ratio lemmas and a falsifier search of 333 starts that found no non-rigid state below residual $0.23$.
 
@@ -957,7 +1235,19 @@ These results change one premise of the assembly problem and leave another in pl
 
 ### 15.1. Selected histories and the distinction between a stopping threshold and fate
 
-The [completed eight-member investigation](analysis/overnight-d-ceiling-eight-member-2026-10-06.md) and its finite-history successor examine two existing neutral mirror preparations, each with its original seeds 1 and 2. They use the separately selected [inclusive ceiling response](../equation-variants/field-speed-ceiling/definition.md#13-the-velocity-constraint-and-response-order), with $K=c_f=c_a=1$, original-weight ordinary partner contributions, zero self acceleration, and removal of the positive forward acceleration only after summing all partners. No contact response, smoothing, new kick, or change to the canonical Master Equation is inferred from this investigation.
+The [completed eight-member investigation](analysis/overnight-d-ceiling-eight-member-2026-10-06.md) and its [completed second-window investigation](analysis/overnight2-d-followup-and-research-2026-10-07.md) examine two existing neutral mirror preparations, each with its original seeds 1 and 2. They use the separately selected [inclusive ceiling response](../equation-variants/field-speed-ceiling/definition.md#13-the-velocity-constraint-and-response-order), with $K=c_f=c_a=1$, original-weight ordinary partner contributions, zero self acceleration, and removal of the positive forward acceleration only after summing all partners. No contact response, smoothing, new kick, or change to the canonical Master Equation is inferred from this investigation.
+
+We use absolute time $T$, emission time $S$, positions $\mathbf X_i(T)$ and velocities $\mathbf V_i=d\mathbf X_i/dT$ in the Euclidean void. In normalized wake-speed units, each positive-delay partner root satisfies $R_{ij}=\|\mathbf X_i(T)-\mathbf X_j(S)\|=T-S$, with direction $\hat{\mathbf r}_{ij}=(\mathbf X_i(T)-\mathbf X_j(S))/R_{ij}$ and nonzero transmitter factor $D_{t,ij}=1-\hat{\mathbf r}_{ij}\cdot\mathbf V_j(S)$. The selected ordinary acceleration and its ceiling response are
+
+$$
+\mathbf A_i^{\mathrm{ord}}=\sum_{j\ne i}\ \sum_{S\in\mathcal C_{i\leftarrow j}(T)}\frac{\sigma_{ij}}{R_{ij}^2|D_{t,ij}|}\hat{\mathbf r}_{ij},\qquad
+\frac{d\mathbf V_i}{dT}=\begin{cases}
+\mathbf A_i^{\mathrm{ord}},&\|\mathbf V_i\|<1,\\
+\mathbf A_i^{\mathrm{ord}}-(\mathbf V_i\cdot\mathbf A_i^{\mathrm{ord}})_+\mathbf V_i,&\|\mathbf V_i\|=1
+\end{cases}
+$$
+
+Here $\mathcal C_{i\leftarrow j}(T)$ contains every ordinary positive-delay partner root, $\sigma_{ij}=\operatorname{sign}(q_iq_j)\in\{-1,1\}$ is the original unit-magnitude polarity weight, and $(x)_+=\max(x,0)$. The equation holds almost everywhere on regular positive-time intervals; it does not define a singular contact event. The source-zero kick is part of the fixed preparation, not an acceleration impulse supplied by this regular law.
 
 Each complete prescribed past has eight persistent members with four positive and four negative polarities. Two positive two-member circles lie at opposite axial heights, while two negative two-member circles lie in the central plane. The full assembly is spatial although each member's rigid past is planar. Component-braid membership is unassigned; this is not a three-binary configuration. For source time $S\le0$, the paths are
 
@@ -994,7 +1284,9 @@ Projection after the complete sum cannot increase its norm, so the remaining int
 
 **Computer-assisted conditional result:** the separately authored [outward-interval checker and review](analysis/overnight-d-tail-interval-independent-review-2026-10-06.md) admit a neighborhood of the retained balance-1 seed-1 history at $T_0=2732.383882001036$, approximately forty periods. The required uniform position and velocity errors are $\epsilon_x=0.1$ and $\epsilon_v=0.001$, with initial center error at most $0.001$. The checker covers all 56 ordered partner channels and 1,088,168 full or clipped source segments under its explicit binary64 outward-arithmetic contract. Its largest total allowance divided by the corresponding velocity radius is $0.9390466349354595<1$; its largest cutoff-gap upper bound is negative, $-0.8010801597283715$.
 
-The earliest required source cutoff is $66.97634712446597$. Thus the admitted object is a set of exact regular histories within the specified errors on the required retained intervals through $T_0$. **No validated finite evolution yet places the original kicked release in that set.** The arithmetic certificate proves the implication from neighborhood membership to complete separation, not the membership premise. A separate seed-2 history also passes the analytical whole-segment formulas in ordinary binary64 arithmetic, with ratio approximately $0.95210$ under the same hypothetical errors; it has no independent interval admission. Agreement of those two different preparations is not independent evidence for either exact fate.
+The earliest required source cutoff is $66.97634712446597$. The admitted object is therefore a set of exact regular histories within the specified errors on all required retained intervals through $T_0$, not an endpoint near time $67$. The original trajectory is certified only through $T=46.53742538935399$ as detailed below. Actual membership in the tail neighborhood remains unproved. The arithmetic certificate proves the implication from complete neighborhood membership to separation; even admission through $67$ would leave later required history through entry near $2732.38$ missing.
+
+The distinct balance-1 seed-2 history has a separately accepted [conditional interval tail admission](analysis/overnight2-d-interval-applications-independent-review.md) at $T_0=1230.3317169023526$, with the same hypothetical position and velocity errors $0.1$ and $0.001$. The frozen outward-interval construction covers all 56 ordered channels and 686,421 full or clipped channel-segment uses; its maximum budget/radius upper endpoint is $0.9520953090081342<1$, maximum cutoff-gap upper endpoint is $-0.6384634953271869$, and earliest required source cutoff is $61.9480232189851$. Independent review derives the adaptation and checks identities, coverage, margins and exact center projection; it does not claim a third complete interval implementation. Actual seed-2 entry remains unproved. Seed-1 admission supplies no seed-2 trajectory history, and agreement between different preparations is not independent evidence for either fate.
 
 ### 15.4. Finite-history comparison, initialization, and source-kick crossings
 
@@ -1014,10 +1306,120 @@ The scale $\alpha$ balances the position and velocity terms; it changes no motio
 
 The derivative comparison moves the receiver along an affine translation at each fixed reception. That segment can cross the source-zero sphere twice even when its endpoint source times lie on the same side. The independently checked correction includes both crossings. On the separately certified translation radius $0.2$ and velocity-addition radius $0.001$, integrated kick contributions are at most $7.69821865678055\times10^{-6}$ per receiver before subsequent amplification. The record supplies smaller-error adaptive coefficients. An integrated allowance cannot be injected early and then allowed to decay before a possible later crossing; its timing requires a valid pointwise, integral, or event-bracket comparison.
 
-**Measured diagnostic limitation:** the geometry-preserving floating screen first exceeds the velocity allowance at $T\approx46$ on one grid and $T\approx47$ on its refinement, before the earliest tail source cutoff near $67$. These are sampled nominal-coefficient experiments that omit kick and complementarity contributions and use an unvalidated smaller initialization allowance. They are not exact error lower bounds, interval enclosures, or evidence that the release fails to escape. The earlier scalar estimate was still more conservative. The remaining research obligation is a validated finite-history bound preserving enough of the coupled signed delayed variation, with off-front root and matrix coverage, joined-reference residuals, and correctly propagated event contributions.
+**Measured diagnostic limitation:** the geometry-preserving floating screen first exceeds the velocity allowance at $T\approx46$ on one grid and $T\approx47$ on its refinement, before the earliest tail source cutoff near $67$. These are sampled nominal-coefficient experiments that omit kick and complementarity contributions and use an unvalidated smaller initialization allowance. They are not exact error lower bounds, interval enclosures, or evidence that the release fails to escape. The earlier scalar estimate was still more conservative. The current actual-trajectory certificate below covers the coarse boundary and stops before the refined boundary. Its later continuation must retain off-front root and matrix coverage, joined-reference residuals, delayed history errors and correctly propagated event contributions.
 
-### 15.5. Approaching preparations, independent evidence, and falsifiers
+#### 15.4.1. Actual original history on the certified interval
 
-For balance 0's original seeds, the [independently reviewed snapshot and external-six estimate](analysis/overnight-d-snapshot-independent-review-2026-10-06.md) bounds the other six members' contribution to either receiver of the approaching pair on a declared short window, conditional on exact retained-history and ordinary-root margins. The numerical bound is about two over a window of length $0.001$; it is not itself a validated exact-history bound. At fixed receiver velocity the post-summation ceiling map is nonexpansive in its total acceleration input, so the same conditional external contribution also bounds its absolute effect on the projected response. A separately evolved isolated pair has different positions, velocities, and source times, so no trajectory comparison or coincidence theorem follows from this fixed-state inequality. A preparation-specific delayed-range/present-distance estimate remains missing; the separate three-member [C1 contact study](analysis/ceiling-contact-two-hour-2026-10-06.md), in which coincidence of the approaching pair is inferred and not proved and the unproved step is a bound of that same kind, is not transferred to these eight-member histories.
+**Claim grade: derived, computer-assisted and independently reviewed.** The [final admission review](analysis/overnight2-d-eighth-prefix-admission-independent-review.md) accepts the original balance-1 seed-1 trajectory on all 864 complete reception cells through $T_*=46.53742538935399$. Let $\mathbf Q_i(T)$ be the exact-increment, piecewise Hermite reference with its factored polynomial correction, and let $\mathbf V_i=d\mathbf X_i/dT$. Its nodes are defined by the encoded initial position plus exact sums of encoded increments; rounded absolute-position caches do not define a different reference. With $\alpha=1/5$, the comparison controls the weighted error $Y_i=(\alpha^2\|\mathbf X_i-\mathbf Q_i\|^2+\|\mathbf V_i-\mathbf Q_i'\|^2)^{1/2}$ throughout each cell, not only at its endpoint. Uniformly for every member and $0\le T\le T_*$,
 
-The theorem reviews independently reconstruct the mathematical implications. The interval instruments certify their declared input neighborhoods and front regions after known-case controls; numerical refinement and separate discretizations remain finite measured evidence. This manuscript integration inspected those sources without rerunning scientific targets or independently revalidating the interval library. Actual escape of either outward candidate and actual coincidence of either approaching candidate remain open. A nonpositive recomputed interval margin, a missed root or homotopy kick crossing, failure of the reference initialization, or an exact history satisfying the complete theorem premises while violating its separation conclusion would overturn the corresponding conditional claim. A diagnostic allowance failure alone overturns none of those actual-fate possibilities.
+$$
+\|\mathbf X_i-\mathbf Q_i\|\le3.4477818468965258\times10^{-6},\qquad
+\|\mathbf V_i-\mathbf Q_i'\|\le6.895563693793051\times10^{-7}
+$$
+
+The proof encloses the reference acceleration defect over reception cells, retains the signed sum of receiver derivative matrices before bounding growth, and uses already admitted errors at every delayed source time. It closes all eight trial bounds together, includes both possible displaced source-zero crossings, and preserves complete negative history with its independently bounded initialization discrepancy. This establishes membership of an actual original trajectory on the stated interval. The [reference and residual account](analysis/overnight2-d-followup-and-research-2026-10-07.md) separately records a reference through $T=67$ and accepted residual inputs through $T=50.237425389354044$. A small reference defect beyond $T_*$ does not supply actual trajectory membership there.
+
+The final continuation stopped at its declared wall budget after flushing 864 complete cells. The review checks the closed partial, its association with the executed producer, all resumed cells and all bound dependencies; it does not interpret the timeout as a failed mathematical trial. The accepted endpoint exceeds the old coarse diagnostic boundary $45.99609375$ and precedes the refined boundary $47.16796875$. Because the reference construction also differs, these times compare attained coverage; dividing the old and new error estimates would not measure error reduction on one fixed reference.
+
+The finite-interval geometric corollary follows from complete speed and position bounds, not from a sampled root census. Actual speed is below $U=0.726$ and present pair separation exceeds $d_*=3.51$. For a partner source, the delay function $\tau-\|\mathbf X_i(T)-\mathbf X_j(T-\tau)\|$ has lower slope $1-U>0$, is negative at zero and tends to infinity. Complete source history therefore gives exactly one positive-delay root per partner. At those roots the transmitter and receiver factors are $D_t=1-\hat{\mathbf r}\cdot\mathbf V_j(S)$ and $D_r=1-\hat{\mathbf r}\cdot\mathbf V_i(T)$, with source time $S=T-\tau$ and delayed unit direction $\hat{\mathbf r}$. The checked bounds are
+
+$$
+\tau>\frac{1755}{863}>2.03,\qquad D_t,D_r\ge\frac{137}{500}=0.274,\qquad
+S(T_2)-S(T_1)\ge\frac{137}{863}(T_2-T_1)\quad(T_2>T_1)
+$$
+
+The last inequality is a two-time statement and remains valid across source-kick receptions and ordinary interpolation knots. It does not assume a classical source-clock derivative at a jump. The ceiling is inactive on this interval; seven unit-magnitude partner contributions and zero self acceleration give positive-time almost-everywhere acceleration below $5000000/806519<6.3$, including finite one-sided source-kick reception traces. This bound excludes the imposed initial velocity jump. Root uniqueness excludes root creation or loss here but permits reception of the existing root through source time zero. No all-future regularity is asserted.
+
+#### 15.4.2. Transfer to the reference used by the tail theorem
+
+The tail theorem uses a different retained reference from the one used for actual admission. The [independent final transfer review](analysis/overnight2-d-reference-transfer-final-independent-review.md) compares the two references on their complete union partition and adds their whole-interval discrepancy to the accepted trajectory error. Write $\mathbf Q_i^B$ for the retained seed-1 tail reference and $\mathbf W_i^B=\Pi_{\mathcal B_1}(\mathbf Q_i^{B\prime})$ for projection of its raw derivative onto the closed unit velocity ball. Uniformly on the same interval $0\le T\le T_*$,
+
+$$
+\begin{aligned}
+\left(\alpha^2\|\mathbf X_i-\mathbf Q_i^B\|^2+\|\mathbf V_i-\mathbf W_i^B\|^2\right)^{1/2}&\le1.301051012530988\times10^{-6},\\
+\|\mathbf X_i-\mathbf Q_i^B\|&\le5.860492164474166\times10^{-6},\\
+\|\mathbf V_i-\mathbf Q_i^{B\prime}\|&\le1.0222328782052327\times10^{-6}
+\end{aligned}
+$$
+
+The third inequality separately controls the raw derivative; projected and raw reference velocities are not identified. The review checks all 4,134 common intervals, 33,072 member combinations, incoming accepted envelopes and 81 dependency identities. Polynomial coefficient enclosures not exported by the producer rely on the frozen, independently reviewed polynomial construction; this is not a claim of separate recomputation of every coefficient. Transfer adds no later existence and does not close the missing history through the tail entry $T_0\approx2732.38$.
+
+#### 15.4.3. The original birth cannot be received again on a later existing continuation
+
+The [independent birth-nonreturn review](analysis/overnight2-d-birth-nonreturn-output-independent-review.md) uses the earlier admitted endpoint $T_b=14.713681572972876$. Define the actual common birth margin as the minimum over all ordered partner pairs. Its certified lower bound is
+
+$$
+\gamma:=\min_{i\ne j}\left[T_b-\|\mathbf X_i(T_b)-\mathbf X_j(0)\|\right]\ge2.492573310924761
+$$
+
+For every later existing unit-speed continuation, $T-\|\mathbf X_i(T)-\mathbf X_j(0)\|$ is nondecreasing by the speed bound. The source path also moves by at most $S$ between birth and a positive source time $S$. The causal equality then implies $2S\ge\gamma$. The review's separate direct exact-rational half-margin check certifies the displayed source-time floor $S\ge1.2462866554623806$; that rounded floor is not obtained by halving the printed decimal lower bound above. Negative and zero source times contradict the positive birth margin. This derived conditional statement covers all later roots of any such existing continuation, including nonunique or nonordinary roots. It proves neither that continuation exists nor that future roots remain ordinary. Auxiliary homotopy crossings used by an error comparison still require their own coverage and cannot simply be deleted.
+
+#### 15.4.4. A reciprocal weight removes free-drift amplification from a conditional comparison
+
+The [strict-interior Duhamel comparison](analysis/overnight2-d-interior-duhamel-comparison.md), accepted by its [independent derivation](analysis/overnight2-d-interior-duhamel-independent-review.md), isolates a limitation of a fixed-weight scalar estimate. With zero interaction and zero defect, velocity error is constant and position error grows at most linearly. The fixed-weight logarithmic-norm estimate nevertheless contributes $\exp(\alpha T/2)$, equal to $\exp(T/10)$ at $\alpha=1/5$. That exponential belongs to the comparison bound; it is neither physical instability nor a prediction for the original interacting release.
+
+Choose a fixed switching instant $A$ with admitted complete earlier history and weight $\alpha_*>0$. For $T\ge A$, set $\alpha(T)=\alpha_*/[1+\alpha_*(T-A)]$, retaining weight $\alpha_*$ on earlier sources, and let $\mathbf z_i=(\alpha\mathbf e_i^x,\mathbf e_i^v)$. On an ordinary strict-interior interval with exact reference kinematics $\mathbf Q_i'$ and errors $\mathbf e_i^x=\mathbf X_i-\mathbf Q_i$, $\mathbf e_i^v=\mathbf V_i-\mathbf Q_i'$, the exact free transport from $s$ to $T$ is
+
+$$
+P(T,s)=\begin{pmatrix}\theta I&(1-\theta)I\\0&I\end{pmatrix},\qquad
+\theta=\frac{\alpha(T)}{\alpha(s)},\qquad \|P(T,s)\|_2\le\sqrt2
+$$
+
+Here $I$ is the three-dimensional identity and $A\le s\le T$. The free drift remains inside this bounded propagator. For interacting errors, let $B_i=\sum_{j\ne i}\overline B_{ij}$ be the complete signed receiver-position matrix and let $\overline B_{ij},\overline C_{ij}$ be the mean-value position and source-velocity matrices over the admissible root homotopy. A sufficient nonnegative interaction bound is
+
+$$
+k(T)\ge\max_i\left\{\frac{\|B_i(T)\|_2}{\alpha(T)}+
+\sum_{j\ne i}\left\|\left[-\frac{\overline B_{ij}(T)}{\alpha(S_{ij}(T))}\quad\overline C_{ij}(T)\right]\right\|_2\right\}
+$$
+
+Each source weight is evaluated at its own causal time $S_{ij}(T)$, enclosing both branches if its bracket crosses $A$. Let $E_0$ bound the complete weighted history through $A$, and let nondecreasing $G(T)$ bound every receiver's accumulated reference defect and finite source-kick crossing remainder on every prefix $[A,T]$. Variation of constants and the complete-history supremum give, for any fixed $c\ge\sqrt2$,
+
+$$
+\|\mathbf e_i^v(T)\|\le\Phi(T),\qquad
+\|\mathbf e_i^x(T)\|\le\frac{\Phi(T)}{\alpha(T)},\qquad
+\Phi(T)=c[E_0+G(T)]\exp\left(c\int_A^T k(s)\,ds\right)
+$$
+
+The result is derived and independently reviewed under its trial-domain, complete-root, regularity and strict-interior hypotheses. A first-exit application must separately enclose the roots and coefficients, establish continuation, and verify both $\Phi(B)<R$ for its chosen trial radius $R$ and a complete reference-speed bound $L+R<1$ on the proposed block ending at $B$. Keeping one fixed origin avoids multiplying a fresh $\sqrt2$ factor at every cell. Prefix defect budgets cannot be placed after their possible occurrence. At an active ceiling, transported reaction terms need a separate valid estimate; dropping them is not justified. The original interaction integral and complete application allowances remain unevaluated, so this theorem supplies no extension of the accepted trajectory interval.
+
+<a id="155-approaching-preparations-independent-evidence-and-falsifiers"></a>
+### 15.5. Approaching preparations and a conditional finite horizon
+
+For balance 0's original seeds, the [independently reviewed snapshot and external-six estimate](analysis/overnight-d-snapshot-independent-review-2026-10-06.md) bounds the other six members' acceleration contribution on a declared short window, conditional on exact retained history and ordinary-root margins. The numerical allowance is about two over a window of length $0.001$; it is not a validated actual-history bound. At fixed receiver velocity, projection after the complete sum is nonexpansive in total acceleration, so this bounds the external contribution's absolute effect on the response at that same state. A separately evolved isolated pair has different history and source times and supplies no trajectory comparison by that inequality alone.
+
+The [complete-source geometry](analysis/overnight2-d-approach-delay-geometry.md), [ceiling-direction estimate](analysis/overnight2-d-attractive-ceiling-direction.md) and [vanishing-deficit approach theorem](analysis/overnight2-d-vanishing-deficit-approach.md) provide a preparation-independent conditional argument for this selected eight-member investigation. Its [independent review](analysis/overnight2-d-vanishing-deficit-independent-review.md) accepts the stronger bound obtained by retaining the same delayed range in the inward and error terms. This is not a transferred conclusion from the separate three-member [C1 study](analysis/ceiling-contact-two-hour-2026-10-06.md).
+
+Let $r(T)=\|\mathbf X_i(T)-\mathbf X_j(T)\|>0$ be the present pair separation. In the channel received by $i$, let $R_i=T-S_i$ be the delayed range and $\mathbf n_i$ its unit direction from the earlier partner position to the receiver; define $R_j,\mathbf n_j$ for the reverse channel. Require all source velocities on both complete delay intervals to have norm at most one, both receivers to be on the unit ceiling, and bounds $\|\mathbf V_i+\mathbf n_i\|\le kR_i$, $\|\mathbf V_j+\mathbf n_j\|\le kR_j$, with $k\ge0$. Define each complete mean directional deficit by
+
+$$
+\eta_i(T)=\frac1{R_i}\int_{T-R_i}^{T}[1-\mathbf n_i\cdot\mathbf V_j(s)]\,ds,\qquad
+\eta_j(T)=\frac1{R_j}\int_{T-R_j}^{T}[1-\mathbf n_j\cdot\mathbf V_i(s)]\,ds
+$$
+
+The delayed direction is held fixed within its reception's integral. These deficits measure full-path departure from forward motion along that direction; an endpoint transmitter factor cannot replace them. With present unit direction $\mathbf u=(\mathbf X_i-\mathbf X_j)/r$, exact source-path integration gives $\mathbf u\cdot\mathbf n_i=R_i\eta_i/r$ and $-\mathbf u\cdot\mathbf n_j=R_j\eta_j/r$, while $r^2\le2R_i^2\eta_i$ and its reverse counterpart bound the ranges below. Whenever both deficits exceed $kr$, combining the inward and error terms before substituting those range bounds yields
+
+$$
+\frac{dr}{dT}\le-\frac{\eta_i-kr}{\sqrt{2\eta_i}}-\frac{\eta_j-kr}{\sqrt{2\eta_j}}
+$$
+
+For a length $\ell>0$, put $\rho=r/\ell$ and suppose throughout the proposed interval that $\eta_i,\eta_j\ge a\rho^p$, with $a>0$, $0\le p\le1$ and an initial upper radius $\bar\rho\ge\rho(T_a)>0$. If
+
+$$
+\nu=\sqrt{2a}\left(1-\frac{k\ell}{a}\bar\rho^{1-p}\right)>0
+$$
+
+then $d\rho/dT\le-(\nu/\ell)\rho^{p/2}$ almost everywhere while all premises hold. The upper-radius barrier and absolute-continuity integration exclude a positive-separation continuation satisfying every premise past
+
+$$
+T_a+\frac{\ell\,\rho(T_a)^{1-p/2}}{(1-p/2)\nu}
+$$
+
+This allows a deficit decreasing linearly with separation: at $p=1$, the sufficient condition is $a>k\ell$. By the stated horizon, contact or loss of ordinary continuation or a named premise must intervene. If the limiting endpoint is excluded from the continuation, attained contact is not asserted. Actual capped entry, a complete external-six bound and persistent complete-source deficits remain unproved for the original balance-0 histories. The separately checked snapshot arithmetic is numerical motivation only: all four sampled source speeds exceed one and the encoded receiver vectors are not exactly unit vectors. Those samples do not satisfy the theorem's premises.
+
+### 15.6. Evidence boundaries and checkable falsifiers
+
+The current mathematical findings are actual finite-history membership and its geometric corollary, a separately checked same-interval reference transfer, conditional birth nonreturn, two conditional tail neighborhoods, and the conditional comparison and approach theorems above. The [second-window account](analysis/overnight2-d-followup-and-research-2026-10-07.md) preserves exact sources, initialization, failed methods, residual coverage, wall-budget stop and independent-check boundaries. No escape, contact, stability or C1 transfer claim follows.
+
+The final admission review independently checks every new scalar/history step and remainder contract, the complete cached source-piece enclosure inventory, and six representative complete causal gaps. Other full causal-gap and signed-matrix computations rely on their frozen independently reviewed constructions; it does not claim an independently regenerated matrix on every channel. The transfer review separately checks all exported combination inequalities and coverage, with its polynomial-enclosure boundary stated above. This documentation integration reads those completed sources and preserves their identities; it performs no scientific target replay or additional mathematical acceptance.
+
+A missed source interval or root, invalid initial join, omitted homotopy kick crossing, inward error bound or changed bound dependency would overturn the corresponding trajectory certificate. An incorrect whole-interval polynomial discrepancy or wrong incoming envelope would overturn the transfer. A nonpositive tail margin or uncovered source segment would invalidate that conditional admission. An exact history satisfying all stated theorem premises while violating its conclusion would falsify the respective birth, separation, reciprocal-weight or approach theorem. Failure of a sufficient estimate alone proves no actual fate.

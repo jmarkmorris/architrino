@@ -1,0 +1,12 @@
+{
+  "mode": "known",
+  "passed": true,
+  "source_sha256": "0f980822c7c016c7bbc9ed3d05357472d52c514105485ad49cf64beaaecf96d5",
+  "utc": "2026-10-07T03:47:40.036570+00:00",
+  "result": {
+    "fraction_and_sha_controls": true,
+    "winding_1_2_reverse_outside": true,
+    "valid_contour": true,
+    "rejected_gap_zero_box_wrong_winding_image_seam": true
+  }
+}

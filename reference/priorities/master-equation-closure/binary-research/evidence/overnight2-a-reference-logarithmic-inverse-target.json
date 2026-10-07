@@ -1,0 +1,26 @@
+{
+  "source_sha256": "8fbfec3846eac485bb233d6ab3049a9e8678086ef1b4549ce551387528ed6217",
+  "arithmetic_sha256": "a9f806f220149bae96af13912a34f9e0a95c162106102e14554e9959782c134b",
+  "mode": "target",
+  "c_f": 1,
+  "utc": "2026-10-07T04:31:55.497061+00:00",
+  "result": {
+    "passed": true,
+    "pairs_independently_enclosed": 1440,
+    "finite_worst": [
+      721,
+      1,
+      6556
+    ],
+    "tail_upper": 60000,
+    "global_inverse_upper": 60000,
+    "root_second_column_real_floor": "112838389442643212798203101236034644093009/10000000000000000000000000000000000000000",
+    "result_rows_sha256": "39d15d3d7fad66d9207d38a4fb151c113f3f1614e92bec215a555fb8311fba5a",
+    "subject_known_sha256": "570b1a63020efe72114bc30d56dad4ce1e82edc4854da9ba2592329da40f309f",
+    "subject_target_sha256": "e400079d8677504b4a455cdc08e106ad66be40bb4a07ab3eb4103aaa42424a7e",
+    "limits": "Independent Cartesian inverse enclosure; not a rerun of balance, root uniqueness, spectrum census, analytic chart or physical trajectory."
+  },
+  "wall_seconds": 11.914927292149514,
+  "rss_platform_units": 24739840,
+  "known_sha256": "3359a99ae592c9f9b55d295d6f7aef8d270608c4ae3e12f73324d9fbe9a9e58c"
+}
