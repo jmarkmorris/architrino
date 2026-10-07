@@ -1,0 +1,675 @@
+{
+ "utc": "2026-10-06T23:40:47.506Z",
+ "tags": {
+  "free-direct-80": {
+   "starts": 67,
+   "reachStarts": 0,
+   "targetStarts": 67,
+   "reach": [],
+   "routes": {
+    "direct2": {
+     "solves": 67,
+     "invalid": 0,
+     "hexagon": 2,
+     "exactHexagon": 2,
+     "candidates": 0,
+     "nonHexagon": 65,
+     "boxLimited": 65,
+     "boxLimitedOmegaHigh": 0,
+     "boxLimitedOmegaLow": 0,
+     "boxLimitedVHigh": 65,
+     "boxLimitedVLow": 0,
+     "notBoxLimited": 0,
+     "notBoxLimitedDetOneSigned": 0,
+     "notBoxLimitedDetOneSignedSeparationOK": 0,
+     "detSignChangeAmongNonHexagon": 62,
+     "separationBelowAmongNonHexagon": 54,
+     "floorNotBoxLimited": null,
+     "floorNotBoxLimitedDetOneSigned": null,
+     "bestBoxLimited": {
+      "tag": "free-direct-80",
+      "start": 91,
+      "type": "great-circle-pairs",
+      "route": "direct2",
+      "score": 9.589540834210306,
+      "iter": 250,
+      "reason": "max-iterations",
+      "omega": 1.3399096859577482,
+      "v": 1.5,
+      "maxE": 9.589540834210306,
+      "maxEspeed": 8.728984260390916,
+      "maxS": 0.2725855888812272,
+      "maxV": 0.5929797250430939,
+      "minSep": 0.1324126088582077,
+      "speed": [
+       0.9569721096526473,
+       1.8754175767001318
+      ],
+      "det": [
+       307.16144416610354,
+       111197.85402330398
+      ],
+      "detOneSigned": true,
+      "separationOK": false,
+      "Hplus3v2": 12.907395791157798,
+      "sigDVariation": 3.400651278566647,
+      "pairDistanceSpread": 0.9494970425388984,
+      "dominantHarmonic": "111111",
+      "radius": [
+       0.8840171857467172,
+       1.1280893532345864
+      ],
+      "penalisedRows": 0
+     },
+     "medianScoreNonHexagon": 485.3021133155209,
+     "notBoxLimitedDetOneSignedResults": [],
+     "hexagonFromTargets": [
+      {
+       "start": 115,
+       "type": "great-circle-pairs",
+       "iter": 76,
+       "score": 8.260059303211165e-14
+      },
+      {
+       "start": 122,
+       "type": "stacked-latitude",
+       "iter": 9,
+       "score": 2.488205063764087e-15
+      }
+     ]
+    }
+   },
+   "reachRecovered": 0
+  },
+  "free-direct-580": {
+   "starts": 68,
+   "reachStarts": 0,
+   "targetStarts": 68,
+   "reach": [],
+   "routes": {
+    "direct2": {
+     "solves": 68,
+     "invalid": 0,
+     "hexagon": 0,
+     "exactHexagon": 0,
+     "candidates": 0,
+     "nonHexagon": 68,
+     "boxLimited": 67,
+     "boxLimitedOmegaHigh": 0,
+     "boxLimitedOmegaLow": 0,
+     "boxLimitedVHigh": 67,
+     "boxLimitedVLow": 0,
+     "notBoxLimited": 1,
+     "notBoxLimitedDetOneSigned": 0,
+     "notBoxLimitedDetOneSignedSeparationOK": 0,
+     "detSignChangeAmongNonHexagon": 64,
+     "separationBelowAmongNonHexagon": 50,
+     "floorNotBoxLimited": {
+      "tag": "free-direct-580",
+      "start": 583,
+      "type": "great-circle-pairs",
+      "route": "direct2",
+      "score": 2766.15255054747,
+      "iter": 70,
+      "reason": "stalled",
+      "omega": 0.8477633220278806,
+      "v": 1.3180300452828078,
+      "maxE": 2766.15255054747,
+      "maxEspeed": 2340.7503348963896,
+      "maxS": 0.48567110053029516,
+      "maxV": 0.9136815786889202,
+      "minSep": 0.0662180789512183,
+      "speed": [
+       0.3872371853834633,
+       1.2483658091107015
+      ],
+      "det": [
+       -82.48397695899362,
+       371145.01189292537
+      ],
+      "detOneSigned": false,
+      "separationOK": false,
+      "Hplus3v2": 6.327065279224497,
+      "sigDVariation": 12.152871637189211,
+      "pairDistanceSpread": 1.922269866864846,
+      "dominantHarmonic": "111111",
+      "radius": [
+       0.8412479352821399,
+       1.2188810854756484
+      ],
+      "penalisedRows": 8
+     },
+     "floorNotBoxLimitedDetOneSigned": null,
+     "bestBoxLimited": {
+      "tag": "free-direct-580",
+      "start": 586,
+      "type": "stacked-latitude",
+      "route": "direct2",
+      "score": 0.6736118152987222,
+      "iter": 68,
+      "reason": "stalled",
+      "omega": 1.5763446052524857,
+      "v": 1.5,
+      "maxE": 0.6588546611546405,
+      "maxEspeed": 0.6736118152987222,
+      "maxS": 0.03884297777760937,
+      "maxV": 0.10233004114645598,
+      "minSep": 0.591974401667721,
+      "speed": [
+       1.544920803547648,
+       1.574878596139882
+      ],
+      "det": [
+       0.08187988224781563,
+       0.08187999100472526
+      ],
+      "detOneSigned": true,
+      "separationOK": true,
+      "Hplus3v2": 17.85667885937148,
+      "sigDVariation": 8.352003533218522e-10,
+      "pairDistanceSpread": 1.9950441298988153e-10,
+      "dominantHarmonic": "111111",
+      "radius": [
+       0.9895687569744825,
+       1.0192364680375254
+      ],
+      "penalisedRows": 0
+     },
+     "medianScoreNonHexagon": 423.88441203174534,
+     "notBoxLimitedDetOneSignedResults": [],
+     "hexagonFromTargets": []
+    }
+   },
+   "reachRecovered": 0
+  },
+  "free-both-0": {
+   "starts": 33,
+   "reachStarts": 3,
+   "targetStarts": 30,
+   "reach": [
+    {
+     "start": 0,
+     "direct2": {
+      "score": 3.926434542808343e-14,
+      "exactHexagon": true,
+      "iter": 18,
+      "tailSteps": 3
+     },
+     "stage1": {
+      "score": 1.6224773274925635e-11,
+      "iter": 250,
+      "classification": "hexagon family member, r=1.000"
+     },
+     "stage1then2": {
+      "score": 1.865174681370263e-14,
+      "exactHexagon": true,
+      "iter": 17
+     }
+    },
+    {
+     "start": 1,
+     "direct2": {
+      "score": 3.947699517032676e-14,
+      "exactHexagon": true,
+      "iter": 18,
+      "tailSteps": 3
+     },
+     "stage1": {
+      "score": 1.1577912589302791e-11,
+      "iter": 250,
+      "classification": "hexagon family member, r=1.000"
+     },
+     "stage1then2": {
+      "score": 1.9317880628477724e-14,
+      "exactHexagon": true,
+      "iter": 17
+     }
+    },
+    {
+     "start": 2,
+     "direct2": {
+      "score": 4.0546812737552143e-14,
+      "exactHexagon": true,
+      "iter": 18,
+      "tailSteps": 3
+     },
+     "stage1": {
+      "score": 1.1435933107272504e-11,
+      "iter": 250,
+      "classification": "hexagon family member, r=1.000"
+     },
+     "stage1then2": {
+      "score": 1.8207657603852567e-14,
+      "exactHexagon": true,
+      "iter": 17
+     }
+    }
+   ],
+   "routes": {
+    "direct2": {
+     "solves": 30,
+     "invalid": 0,
+     "hexagon": 0,
+     "exactHexagon": 0,
+     "candidates": 0,
+     "nonHexagon": 30,
+     "boxLimited": 30,
+     "boxLimitedOmegaHigh": 0,
+     "boxLimitedOmegaLow": 0,
+     "boxLimitedVHigh": 30,
+     "boxLimitedVLow": 0,
+     "notBoxLimited": 0,
+     "notBoxLimitedDetOneSigned": 0,
+     "notBoxLimitedDetOneSignedSeparationOK": 0,
+     "detSignChangeAmongNonHexagon": 29,
+     "separationBelowAmongNonHexagon": 21,
+     "floorNotBoxLimited": null,
+     "floorNotBoxLimitedDetOneSigned": null,
+     "bestBoxLimited": {
+      "tag": "free-both-0",
+      "start": 22,
+      "type": "stacked-latitude",
+      "route": "direct2",
+      "score": 0.7073729680568741,
+      "iter": 250,
+      "reason": "max-iterations",
+      "omega": 1.70320830134313,
+      "v": 1.5,
+      "maxE": 0.5211382439244607,
+      "maxEspeed": 0.7073729680568741,
+      "maxS": 0.16745237356465315,
+      "maxV": 0.11993064011014799,
+      "minSep": 0.7157119566217407,
+      "speed": [
+       1.4071801802726498,
+       1.5564881938939883
+      ],
+      "det": [
+       4417.884481745001,
+       4417.884481889242
+      ],
+      "detOneSigned": true,
+      "separationOK": true,
+      "Hplus3v2": 15.254052610328932,
+      "sigDVariation": 7.346301345023676e-11,
+      "pairDistanceSpread": 2.1849411169228006e-11,
+      "dominantHarmonic": "111111",
+      "radius": [
+       0.9124404782972678,
+       1.076273020538899
+      ],
+      "penalisedRows": 0
+     },
+     "medianScoreNonHexagon": 462.0905959917036,
+     "notBoxLimitedDetOneSignedResults": [],
+     "hexagonFromTargets": []
+    },
+    "stage1then2": {
+     "solves": 30,
+     "invalid": 0,
+     "hexagon": 0,
+     "exactHexagon": 0,
+     "candidates": 0,
+     "nonHexagon": 30,
+     "boxLimited": 30,
+     "boxLimitedOmegaHigh": 6,
+     "boxLimitedOmegaLow": 0,
+     "boxLimitedVHigh": 30,
+     "boxLimitedVLow": 0,
+     "notBoxLimited": 0,
+     "notBoxLimitedDetOneSigned": 0,
+     "notBoxLimitedDetOneSignedSeparationOK": 0,
+     "detSignChangeAmongNonHexagon": 29,
+     "separationBelowAmongNonHexagon": 21,
+     "floorNotBoxLimited": null,
+     "floorNotBoxLimitedDetOneSigned": null,
+     "bestBoxLimited": {
+      "tag": "free-both-0",
+      "start": 22,
+      "type": "stacked-latitude",
+      "route": "stage1then2",
+      "score": 0.7392139364570303,
+      "iter": 132,
+      "reason": "stalled",
+      "omega": 1.4582252635921207,
+      "v": 1.5,
+      "maxE": 0.719773041029483,
+      "maxEspeed": 0.7392139364570303,
+      "maxS": 0.06461579573533505,
+      "maxV": 0.1078544610225336,
+      "minSep": 0.6711617023256155,
+      "speed": [
+       1.4168018431309648,
+       1.4764361694668189
+      ],
+      "det": [
+       1237.8961734741056,
+       1237.8961736542904
+      ],
+      "detOneSigned": true,
+      "separationOK": true,
+      "Hplus3v2": 16.558927016212582,
+      "sigDVariation": 4.3147707629032084e-11,
+      "pairDistanceSpread": 3.9177550092972524e-11,
+      "dominantHarmonic": "111111",
+      "radius": [
+       1.0108462758455916,
+       1.031802207661592
+      ],
+      "penalisedRows": 0
+     },
+     "medianScoreNonHexagon": 448.19830273747374,
+     "notBoxLimitedDetOneSignedResults": [],
+     "hexagonFromTargets": []
+    }
+   },
+   "reachRecovered": 3,
+   "stage1": {
+    "solves": 30,
+    "hexagon": 0,
+    "periodicNonHexagon": [],
+    "boxLimited": 26
+   }
+  },
+  "c2-both-0": {
+   "starts": 33,
+   "reachStarts": 3,
+   "targetStarts": 30,
+   "reach": [
+    {
+     "start": 0,
+     "direct2": {
+      "score": 2.211714569389897e-15,
+      "exactHexagon": true,
+      "iter": 7,
+      "tailSteps": 0
+     },
+     "stage1": {
+      "score": 3.2773249210354864e-14,
+      "iter": 7,
+      "classification": "hexagon family member, r=1.000"
+     },
+     "stage1then2": {
+      "score": 5.611774019708436e-15,
+      "exactHexagon": true,
+      "iter": 1
+     }
+    },
+    {
+     "start": 1,
+     "direct2": {
+      "score": 2.0151411839646623e-15,
+      "exactHexagon": true,
+      "iter": 7,
+      "tailSteps": 0
+     },
+     "stage1": {
+      "score": 2.211714569081853e-15,
+      "iter": 8,
+      "classification": "hexagon family member, r=1.000"
+     },
+     "stage1then2": {
+      "score": 3.301043541005047e-14,
+      "exactHexagon": true,
+      "iter": 0
+     }
+    },
+    {
+     "start": 2,
+     "direct2": {
+      "score": 2.734033771570767e-15,
+      "exactHexagon": true,
+      "iter": 7,
+      "tailSteps": 0
+     },
+     "stage1": {
+      "score": 2.143088871658607e-14,
+      "iter": 8,
+      "classification": "hexagon family member, r=1.000"
+     },
+     "stage1then2": {
+      "score": 2.886579864025407e-15,
+      "exactHexagon": true,
+      "iter": 1
+     }
+    }
+   ],
+   "routes": {
+    "direct2": {
+     "solves": 30,
+     "invalid": 0,
+     "hexagon": 1,
+     "exactHexagon": 1,
+     "candidates": 0,
+     "nonHexagon": 29,
+     "boxLimited": 28,
+     "boxLimitedOmegaHigh": 0,
+     "boxLimitedOmegaLow": 0,
+     "boxLimitedVHigh": 28,
+     "boxLimitedVLow": 0,
+     "notBoxLimited": 1,
+     "notBoxLimitedDetOneSigned": 1,
+     "notBoxLimitedDetOneSignedSeparationOK": 0,
+     "detSignChangeAmongNonHexagon": 27,
+     "separationBelowAmongNonHexagon": 27,
+     "floorNotBoxLimited": {
+      "tag": "c2-both-0",
+      "start": 27,
+      "type": "great-circle-pairs",
+      "route": "direct2",
+      "score": 260.84446293738307,
+      "iter": 150,
+      "reason": "stalled",
+      "omega": 1.3455150581032378,
+      "v": 1.3753085828554295,
+      "maxE": 260.84446293738307,
+      "maxEspeed": 258.9720389623764,
+      "maxS": 0.13596951802684742,
+      "maxV": 0.17836601304822397,
+      "minSep": 0.0220329687695784,
+      "speed": [
+       1.2466351012884431,
+       1.4750071013324575
+      ],
+      "det": [
+       3152.4527648464727,
+       1235258.3483086945
+      ],
+      "detOneSigned": true,
+      "separationOK": false,
+      "Hplus3v2": 15.22068603595385,
+      "sigDVariation": 1.1787661833805014,
+      "pairDistanceSpread": 1.0378954824728919,
+      "dominantHarmonic": "111111",
+      "radius": [
+       0.937005213187447,
+       1.065818707861167
+      ],
+      "penalisedRows": 16
+     },
+     "floorNotBoxLimitedDetOneSigned": {
+      "tag": "c2-both-0",
+      "start": 27,
+      "type": "great-circle-pairs",
+      "route": "direct2",
+      "score": 260.84446293738307,
+      "iter": 150,
+      "reason": "stalled",
+      "omega": 1.3455150581032378,
+      "v": 1.3753085828554295,
+      "maxE": 260.84446293738307,
+      "maxEspeed": 258.9720389623764,
+      "maxS": 0.13596951802684742,
+      "maxV": 0.17836601304822397,
+      "minSep": 0.0220329687695784,
+      "speed": [
+       1.2466351012884431,
+       1.4750071013324575
+      ],
+      "det": [
+       3152.4527648464727,
+       1235258.3483086945
+      ],
+      "detOneSigned": true,
+      "separationOK": false,
+      "Hplus3v2": 15.22068603595385,
+      "sigDVariation": 1.1787661833805014,
+      "pairDistanceSpread": 1.0378954824728919,
+      "dominantHarmonic": "111111",
+      "radius": [
+       0.937005213187447,
+       1.065818707861167
+      ],
+      "penalisedRows": 16
+     },
+     "bestBoxLimited": {
+      "tag": "c2-both-0",
+      "start": 14,
+      "type": "stacked-latitude",
+      "route": "direct2",
+      "score": 1.9466675140160825,
+      "iter": 65,
+      "reason": "stalled",
+      "omega": 1.8840285743057197,
+      "v": 1.5,
+      "maxE": 1.1382297236750403,
+      "maxEspeed": 1.9466675140160825,
+      "maxS": 0.6878865651740105,
+      "maxV": 0.9755521469349957,
+      "minSep": 0.3772301428813839,
+      "speed": [
+       0.23453713862895884,
+       1.9037142795979876
+      ],
+      "det": [
+       -2.3811758443818976,
+       4632.894630633032
+      ],
+      "detOneSigned": false,
+      "separationOK": true,
+      "Hplus3v2": 13.244855776828654,
+      "sigDVariation": 2.7735948745671433,
+      "pairDistanceSpread": 0.7140101343456163,
+      "dominantHarmonic": "111111",
+      "radius": [
+       0.5586711329807452,
+       1.24885605560946
+      ],
+      "penalisedRows": 0
+     },
+     "medianScoreNonHexagon": 443.93624283262506,
+     "notBoxLimitedDetOneSignedResults": [
+      {
+       "tag": "c2-both-0",
+       "start": 27,
+       "type": "great-circle-pairs",
+       "route": "direct2",
+       "score": 260.84446293738307,
+       "iter": 150,
+       "reason": "stalled",
+       "omega": 1.3455150581032378,
+       "v": 1.3753085828554295,
+       "maxE": 260.84446293738307,
+       "maxEspeed": 258.9720389623764,
+       "maxS": 0.13596951802684742,
+       "maxV": 0.17836601304822397,
+       "minSep": 0.0220329687695784,
+       "speed": [
+        1.2466351012884431,
+        1.4750071013324575
+       ],
+       "det": [
+        3152.4527648464727,
+        1235258.3483086945
+       ],
+       "detOneSigned": true,
+       "separationOK": false,
+       "Hplus3v2": 15.22068603595385,
+       "sigDVariation": 1.1787661833805014,
+       "pairDistanceSpread": 1.0378954824728919,
+       "dominantHarmonic": "111111",
+       "radius": [
+        0.937005213187447,
+        1.065818707861167
+       ],
+       "penalisedRows": 16
+      }
+     ],
+     "hexagonFromTargets": [
+      {
+       "start": 18,
+       "type": "stacked-latitude",
+       "iter": 13,
+       "score": 2.1520170994917037e-15
+      }
+     ]
+    },
+    "stage1then2": {
+     "solves": 30,
+     "invalid": 0,
+     "hexagon": 0,
+     "exactHexagon": 0,
+     "candidates": 0,
+     "nonHexagon": 30,
+     "boxLimited": 30,
+     "boxLimitedOmegaHigh": 5,
+     "boxLimitedOmegaLow": 0,
+     "boxLimitedVHigh": 30,
+     "boxLimitedVLow": 0,
+     "notBoxLimited": 0,
+     "notBoxLimitedDetOneSigned": 0,
+     "notBoxLimitedDetOneSignedSeparationOK": 0,
+     "detSignChangeAmongNonHexagon": 25,
+     "separationBelowAmongNonHexagon": 26,
+     "floorNotBoxLimited": null,
+     "floorNotBoxLimitedDetOneSigned": null,
+     "bestBoxLimited": {
+      "tag": "c2-both-0",
+      "start": 18,
+      "type": "stacked-latitude",
+      "route": "stage1then2",
+      "score": 0.9876843841875252,
+      "iter": 250,
+      "reason": "max-iterations",
+      "omega": 2.5747742730581256,
+      "v": 1.5,
+      "maxE": 0.22456956189656738,
+      "maxEspeed": 0.8564629297348977,
+      "maxS": 0.9876843841875252,
+      "maxV": 0.9645717979135182,
+      "minSep": 0.22154173388770143,
+      "speed": [
+       0.2823357127509446,
+       1.6697778889505306
+      ],
+      "det": [
+       1000.070953431491,
+       1308.432669803375
+      ],
+      "detOneSigned": true,
+      "separationOK": true,
+      "Hplus3v2": 5.708850604471468,
+      "sigDVariation": 0.015401565892438018,
+      "pairDistanceSpread": 0.005997306642527955,
+      "dominantHarmonic": "111111",
+      "radius": [
+       0.11097574425285371,
+       0.6466837612239238
+      ],
+      "penalisedRows": 0
+     },
+     "medianScoreNonHexagon": 505.3022210907867,
+     "notBoxLimitedDetOneSignedResults": [],
+     "hexagonFromTargets": []
+    }
+   },
+   "reachRecovered": 3,
+   "stage1": {
+    "solves": 30,
+    "hexagon": 0,
+    "periodicNonHexagon": [],
+    "boxLimited": 28
+   }
+  }
+ }
+}

@@ -1,0 +1,877 @@
+{
+ "subject": "F3 reach repair: periodic-orbit Newton (multiple shooting) and staged least-squares shooting in symmetry strata",
+ "law": {
+  "lambda": -0.5,
+  "mu": 1,
+  "K": 1,
+  "cf": 1
+ },
+ "R": 3,
+ "started": "2026-10-06T03:21:29.621Z",
+ "settings": {
+  "reanchorPhaseConditions": true,
+  "flowMethod": "gbs",
+  "rk4StepsPerUnitTime": 600,
+  "segments": 8,
+  "jacobianFlowRtol": 1e-13,
+  "fdStepNewton": 0.00001,
+  "nodeInitialisation": "rigid rotation of the seed about its total-moment axis sum X x V by 2 pi j / m",
+  "flowRtol": 1e-13,
+  "fdStep": 0.000001,
+  "lmIter": 15,
+  "shootingStages": [
+   0.015625,
+   0.03125,
+   0.0625,
+   0.125,
+   0.25,
+   0.5,
+   1
+  ],
+  "shootingSamples": 256
+ },
+ "knownCases": [
+  {
+   "id": "KN1-hexagon-is-a-zero",
+   "initialResidual": 1.7763568394002505e-14,
+   "finalResidual": 1.7763568394002505e-14,
+   "periodChange": 0,
+   "pass": true,
+   "note": "the initial residual is the accuracy floor of the one-period GBS flow of an orbit whose instability amplifies round-off by e^{2.46 P/m} per segment; the Newton must return to the hexagon with the period unchanged"
+  }
+ ],
+ "round": 3,
+ "part": "r4shooting",
+ "prefilter": {
+  "stratum": "c2",
+  "R": 3,
+  "vRange": [
+   0.2,
+   1
+  ],
+  "poolSize": 2002,
+  "tries": 3753,
+  "minSepFloor": 1.5,
+  "scoreDefinition": "jet score (|X.A+v^2|/v^2 + |V.A| R/v^3, max over members) + |H+3v^2|/(3v^2) + |sum sigma d-dot|/(6v)",
+  "scoreQuantiles": [
+   {
+    "q": 0,
+    "score": 2.603962107624818e-15
+   },
+   {
+    "q": 0.01,
+    "score": 2.039371668788215
+   },
+   {
+    "q": 0.1,
+    "score": 3.249137257429049
+   },
+   {
+    "q": 0.5,
+    "score": 6.329270759082497
+   },
+   {
+    "q": 0.9,
+    "score": 44.79786257364216
+   },
+   {
+    "q": 1,
+    "score": 285048.5569452913
+   }
+  ],
+  "includedRanks": [
+   {
+    "kind": "exact hexagon",
+    "rank": 1,
+    "score": 2.603962107624818e-15
+   },
+   {
+    "kind": "perturbed hexagon (0.2 rad in every angle, 20 % in v)",
+    "rank": 2,
+    "score": 0.9430487390227225
+   }
+  ]
+ },
+ "starts": [
+  {
+   "index": 0,
+   "kind": "exact hexagon",
+   "prefilterScore": 2.603962107624818e-15,
+   "J_rk4": 2.446069984902219e-9,
+   "J_gbs": 3.174113563779746e-8,
+   "reason": "final-time",
+   "minSep": 3.000000000034684,
+   "v": 0.47351513039268434,
+   "history": [
+    {
+     "frac": 0.03125,
+     "J": 2.3639097068696216e-14,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.0625,
+     "J": 1.518515424893431e-12,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.125,
+     "J": 9.71612661196459e-11,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.25,
+     "J": 1.9432634292266069e-10,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.5,
+     "J": 4.1796212967742453e-10,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 1,
+     "J": 2.446069984902219e-9,
+     "failed": false,
+     "reason": "final-time"
+    }
+   ],
+   "p": [
+    1.5707987276745414,
+    8.367258218863002e-12,
+    -1.5707973037448206,
+    1.5707987982318978,
+    2.094395102384788,
+    -1.570797282276754,
+    4.188790204786311,
+    0.47351513039268434
+   ],
+   "branch": 1,
+   "newton": {
+    "residual": 8.793200510792863e-14,
+    "converged": true,
+    "period": 39.80771632340795,
+    "characterisation": {
+     "rMean": 2.9999999988797503,
+     "sMean": 0.4735151286074703,
+     "sphereDeviation": 4.765876584048559e-11,
+     "speedDeviation": 1.9460321706152835e-10,
+     "zMax": 1.9972247772183007e-12,
+     "minSep": 2.9999999985118757,
+     "HPlus3v2": -2.2102319974237616e-12,
+     "isHexagonLike": true,
+     "detRange": [
+      4.813124642600888,
+      4.813124642628959
+     ]
+    }
+   }
+  },
+  {
+   "index": 1,
+   "kind": "perturbed hexagon (0.2 rad in every angle, 20 % in v)",
+   "prefilterScore": 0.9430487390227225,
+   "J_rk4": 2.037771478596581e-9,
+   "J_gbs": 2.694432016948827e-8,
+   "reason": "final-time",
+   "minSep": 3.0000000001675473,
+   "v": 0.4735151300754554,
+   "history": [
+    {
+     "frac": 0.03125,
+     "J": 1.311725306804486e-8,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.0625,
+     "J": 6.202890575613652e-13,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.125,
+     "J": 6.70322687436741e-11,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.25,
+     "J": 1.6979445581692984e-10,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.5,
+     "J": 3.320539250336337e-10,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 1,
+     "J": 2.037771478596581e-9,
+     "failed": false,
+     "reason": "final-time"
+    }
+   ],
+   "p": [
+    1.5708079641778716,
+    -0.011879529982530198,
+    -1.5708038908959798,
+    1.5707850519349786,
+    2.0825155725733877,
+    -1.570801223330691,
+    4.176910674908136,
+    0.4735151300754554
+   ],
+   "branch": 1,
+   "newton": {
+    "residual": 2.531308496145357e-14,
+    "converged": true,
+    "period": 39.37831372455107,
+    "characterisation": {
+     "rMean": 2.978387188525405,
+     "sMean": 0.4752300657903768,
+     "sphereDeviation": 1.6641190481847595e-11,
+     "speedDeviation": 7.036609516602802e-11,
+     "zMax": 1.174026630626316e-10,
+     "minSep": 2.978387188412626,
+     "HPlus3v2": -1.0369483049998962e-13,
+     "isHexagonLike": true,
+     "detRange": [
+      4.8308199542883,
+      4.830819954292342
+     ]
+    }
+   }
+  },
+  {
+   "index": 2,
+   "kind": "random",
+   "prefilterScore": 1.056797320535378,
+   "J_rk4": 2.1597602810103442,
+   "J_gbs": 1.9395433343386272,
+   "reason": "final-time",
+   "minSep": 0.7273039058995118,
+   "v": 0.4352797511708331,
+   "history": [
+    {
+     "frac": 0.03125,
+     "J": 0.027314801727479757,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.0625,
+     "J": 0.10614033702016609,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.125,
+     "J": 0.25762458328457494,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.25,
+     "J": 10.125,
+     "failed": true,
+     "reason": "contact"
+    },
+    {
+     "frac": 0.5,
+     "J": 1.025522987032761,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 1,
+     "J": 2.1597602810103442,
+     "failed": false,
+     "reason": "final-time"
+    }
+   ],
+   "p": [
+    0.5059381137892095,
+    -4181.5776375622145,
+    -1.3896694084347134,
+    2.5753236411537306,
+    -4181.652889536794,
+    5.29336865843799,
+    -4178.829496743114,
+    0.4352797511708331
+   ],
+   "branch": 0
+  },
+  {
+   "index": 3,
+   "kind": "random",
+   "prefilterScore": 1.0718902422154932,
+   "J_rk4": 10.76171875,
+   "J_gbs": 10.764041913582535,
+   "reason": "contact",
+   "minSep": 0.5952242073316365,
+   "v": 0.45020089009841097,
+   "history": [
+    {
+     "frac": 0.03125,
+     "J": 0.021576817695681733,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.0625,
+     "J": 0.023952874933193986,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.125,
+     "J": 0.06316097144204702,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.25,
+     "J": 10.125,
+     "failed": true,
+     "reason": "contact"
+    },
+    {
+     "frac": 0.5,
+     "J": 10.5546875,
+     "failed": true,
+     "reason": "contact"
+    },
+    {
+     "frac": 1,
+     "J": 10.76171875,
+     "failed": true,
+     "reason": "contact"
+    }
+   ],
+   "p": [
+    0.38827225570630897,
+    -2.1391760385819856,
+    1.690729871848949,
+    1.8807346547896733,
+    2.16603676575826,
+    2.4588229134597888,
+    -0.12712281012750934,
+    0.45020089009841097
+   ],
+   "branch": 0
+  },
+  {
+   "index": 4,
+   "kind": "random",
+   "prefilterScore": 1.5096676414412413,
+   "J_rk4": 10.60546875,
+   "J_gbs": 10.606560411950815,
+   "reason": "contact",
+   "minSep": 0.5937269373307273,
+   "v": 0.4217699269889482,
+   "history": [
+    {
+     "frac": 0.03125,
+     "J": 0.012031520620627978,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.0625,
+     "J": 0.04726151416780045,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.125,
+     "J": 0.16539579866207604,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.25,
+     "J": 0.3356802095144602,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.5,
+     "J": 10.2109375,
+     "failed": true,
+     "reason": "contact"
+    },
+    {
+     "frac": 1,
+     "J": 10.60546875,
+     "failed": true,
+     "reason": "contact"
+    }
+   ],
+   "p": [
+    2.050511544967319,
+    324.81278436819713,
+    2.3263202501931786,
+    2.05051182747425,
+    327.3311376962736,
+    3.956865686212682,
+    322.93036843358993,
+    0.4217699269889482
+   ],
+   "branch": 0
+  },
+  {
+   "index": 5,
+   "kind": "random",
+   "prefilterScore": 1.551084869435912,
+   "J_rk4": 10.68359375,
+   "J_gbs": 10.68362473315964,
+   "reason": "contact",
+   "minSep": 0.5995792194274963,
+   "v": 0.45362818615529305,
+   "history": [
+    {
+     "frac": 0.03125,
+     "J": 0.021347828189642683,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.0625,
+     "J": 0.02390703435710155,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.125,
+     "J": 0.06226282370313084,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.25,
+     "J": 0.42120188741774134,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.5,
+     "J": 10.3671875,
+     "failed": true,
+     "reason": "contact"
+    },
+    {
+     "frac": 1,
+     "J": 10.68359375,
+     "failed": true,
+     "reason": "contact"
+    }
+   ],
+   "p": [
+    0.796272124018349,
+    5.008379869679989,
+    2.507329525750404,
+    1.915338591388767,
+    2.2581319459482154,
+    2.866032710022941,
+    6.216510274717011,
+    0.45362818615529305
+   ],
+   "branch": 1
+  },
+  {
+   "index": 6,
+   "kind": "random",
+   "prefilterScore": 1.629276655704339,
+   "J_rk4": 10.26171875,
+   "J_gbs": 10.275137606844563,
+   "reason": "step-underflow",
+   "minSep": 0.8788818765823272,
+   "v": 0.5169996618759782,
+   "history": [
+    {
+     "frac": 0.03125,
+     "J": 0.01506969142682274,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.0625,
+     "J": 0.028890244807718027,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.125,
+     "J": 0.39453129936505993,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.25,
+     "J": 0.9306503179122319,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.5,
+     "J": 0.8440771952819277,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 1,
+     "J": 10.26171875,
+     "failed": true,
+     "reason": "contact"
+    }
+   ],
+   "p": [
+    1.888326667212218,
+    571.5646700054028,
+    2.957770070393918,
+    1.8952478214405302,
+    574.0483669640456,
+    -0.3032779996908137,
+    569.8744236621596,
+    0.5169996618759782
+   ],
+   "branch": 0
+  },
+  {
+   "index": 7,
+   "kind": "random",
+   "prefilterScore": 1.6422157213333353,
+   "J_rk4": 1.9290779810864163,
+   "J_gbs": 1.970480488936005,
+   "reason": "final-time",
+   "minSep": 0.6345714821436473,
+   "v": 0.5017157603313254,
+   "history": [
+    {
+     "frac": 0.03125,
+     "J": 0.009554467429562069,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.0625,
+     "J": 0.029933663626665878,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.125,
+     "J": 0.41344459208026274,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.25,
+     "J": 0.7953265070977752,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.5,
+     "J": 0.9827253718719396,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 1,
+     "J": 1.9290779810864163,
+     "failed": false,
+     "reason": "final-time"
+    }
+   ],
+   "p": [
+    1.9846221729593547,
+    278.33697860155644,
+    -0.4226330315140626,
+    0.6546562780558299,
+    280.46714044495246,
+    1.1694677008101728,
+    282.15072788571337,
+    0.5017157603313254
+   ],
+   "branch": 1
+  },
+  {
+   "index": 8,
+   "kind": "random",
+   "prefilterScore": 1.8224925213934076,
+   "J_rk4": 1.0076892527988863,
+   "J_gbs": 0.9469193329175876,
+   "reason": "final-time",
+   "minSep": 0.850217233608015,
+   "v": 0.5403077757044155,
+   "history": [
+    {
+     "frac": 0.03125,
+     "J": 0.008731230074271392,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.0625,
+     "J": 0.027854903794424023,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.125,
+     "J": 0.38291579779805796,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.25,
+     "J": 0.9030167204794968,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.5,
+     "J": 0.8441450481302342,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 1,
+     "J": 1.0076892527988863,
+     "failed": false,
+     "reason": "final-time"
+    }
+   ],
+   "p": [
+    1.9165382801536335,
+    685.9423146094689,
+    2.926272688569506,
+    1.9092694271043715,
+    688.5262107512036,
+    -0.585381335009879,
+    690.8459900353026,
+    0.5403077757044155
+   ],
+   "branch": 0
+  },
+  {
+   "index": 9,
+   "kind": "random",
+   "prefilterScore": 1.85834235190038,
+   "J_rk4": 10.19921875,
+   "J_gbs": 10.201581599018704,
+   "reason": "contact",
+   "minSep": 0.597687493118916,
+   "v": 0.4674612258729144,
+   "history": [
+    {
+     "frac": 0.03125,
+     "J": 0.018398970665812146,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.0625,
+     "J": 0.0414360835894289,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.125,
+     "J": 0.19685244665528073,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.25,
+     "J": 0.7457957549142055,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.5,
+     "J": 0.909746662202928,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 1,
+     "J": 10.19921875,
+     "failed": true,
+     "reason": "contact"
+    }
+   ],
+   "p": [
+    2.0692665068574843,
+    348.5301734523497,
+    4.243021635474941,
+    1.2491417791432509,
+    350.5461960672622,
+    3.5330340941588494,
+    346.16760110993636,
+    0.4674612258729144
+   ],
+   "branch": 0
+  },
+  {
+   "index": 10,
+   "kind": "random",
+   "prefilterScore": 1.8617489707631063,
+   "J_rk4": 0.9782288020198092,
+   "J_gbs": 0.9765232096643169,
+   "reason": "final-time",
+   "minSep": 0.6985070133882904,
+   "v": 0.48518750528203675,
+   "history": [
+    {
+     "frac": 0.03125,
+     "J": 0.02226941728335037,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.0625,
+     "J": 0.057577316769693694,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.125,
+     "J": 0.08994386681908431,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.25,
+     "J": 0.21434507713241707,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.5,
+     "J": 0.819434008194352,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 1,
+     "J": 0.9782288020198092,
+     "failed": false,
+     "reason": "final-time"
+    }
+   ],
+   "p": [
+    2.3301085165473574,
+    753.305350952167,
+    -0.7298340979442083,
+    1.7445212096580418,
+    750.3662349414697,
+    3.883408636032309,
+    753.6943244928475,
+    0.48518750528203675
+   ],
+   "branch": 0
+  },
+  {
+   "index": 11,
+   "kind": "random",
+   "prefilterScore": 1.877171732391982,
+   "J_rk4": 10.5859375,
+   "J_gbs": 10.586449138894118,
+   "reason": "contact",
+   "minSep": 0.5191533406235382,
+   "v": 0.43488926448013954,
+   "history": [
+    {
+     "frac": 0.03125,
+     "J": 0.004455834615494981,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.0625,
+     "J": 0.017501429403443083,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.125,
+     "J": 0.057369161503259714,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.25,
+     "J": 0.3190049083162052,
+     "failed": false,
+     "reason": "final-time"
+    },
+    {
+     "frac": 0.5,
+     "J": 10.171875,
+     "failed": true,
+     "reason": "contact"
+    },
+    {
+     "frac": 1,
+     "J": 10.5859375,
+     "failed": true,
+     "reason": "contact"
+    }
+   ],
+   "p": [
+    1.0589283055512229,
+    -3714.9140969652444,
+    6.077271058315951,
+    1.0725683111732849,
+    -3712.960222019807,
+    3.70613337247242,
+    -3708.947854369176,
+    0.43488926448013954
+   ],
+   "branch": 1
+  }
+ ],
+ "summary": {
+  "stratum": "c2",
+  "randomStarts": 10,
+  "floorJ_gbs": 0.9469193329175876,
+  "histogram": {
+   "below1e_8": 0,
+   "below1e_6": 0,
+   "below1e_3": 0,
+   "below1e_1": 0,
+   "below1": 2,
+   "collided": 6
+  },
+  "reach": [
+   {
+    "kind": "exact hexagon",
+    "J_gbs": 3.174113563779746e-8,
+    "newton": {
+     "residual": 8.793200510792863e-14,
+     "rMean": 2.9999999988797503,
+     "zMax": 1.9972247772183007e-12
+    }
+   },
+   {
+    "kind": "perturbed hexagon (0.2 rad in every angle, 20 % in v)",
+    "J_gbs": 2.694432016948827e-8,
+    "newton": {
+     "residual": 2.531308496145357e-14,
+     "rMean": 2.978387188525405,
+     "zMax": 1.174026630626316e-10
+    }
+   }
+  ]
+ },
+ "finished": "2026-10-06T03:27:35.517Z"
+}

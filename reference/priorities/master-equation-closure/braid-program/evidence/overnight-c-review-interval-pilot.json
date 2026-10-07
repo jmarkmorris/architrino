@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "source": ".local-data/master-equation-closure/overnight-c/interval-pilot-weighted.json",
+  "sourceSha256": "4c364cf02a35d5fb9a301e3a0f071b19e5717b0376e8e40572591030ef0d387d",
+  "subjectSha256": "c1c0f341a2f60a2cba948138f4ab9575019eb18bc6ad94f4460f1d37d7b73be7",
+  "excludedLeaves": 1080,
+  "unresolvedLeaves": 7448,
+  "completeExclusion": false,
+  "partition": {
+    "leaves": 8528,
+    "internalNodes": 8527,
+    "normalizedVolume": "1",
+    "maxDepth": 15
+  },
+  "printedSigns": {
+    "positive": 526,
+    "negative": 554
+  },
+  "scope": "Exact path/cover audit and printed-sign check only. No target residual replay or proof of rounded decimal endpoint enclosure.",
+  "mode": "target",
+  "instrumentSha256": "42375ac7ce71fa4e8bd29c8d36daed5bf68ed6ca6495526348e8250452da8dab",
+  "python": "/Users/markmorris/vibe/.venv/bin/python",
+  "mpmathVersion": "1.3.0",
+  "ivDps": 30
+}

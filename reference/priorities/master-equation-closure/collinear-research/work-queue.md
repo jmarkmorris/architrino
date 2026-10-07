@@ -1,5 +1,7 @@
 # Collinear research work queue
 
+**Authorization correction, 2026-10-05:** growing-distance linear response, added finite velocity memory and future-supported interaction are withdrawn from the active agenda. Historical completed entries below retain their evidence and original provenance, but supply no new execution authority. The [variant approval rule](../equation-variants/README.md#operator-approval-for-deviations) controls any later selection.
+
 ## LPR-006 — Research disposition
 
 - **Progress / lifecycle:** ○ Not done — Queued; execution Deferred during the current discussion. LPR-004's independent collinear noncontinuation result supplies the decisive earlier obstruction contemplated by this plan.
@@ -10,13 +12,6 @@
 ## Supplied-review follow-ups
 
 These tasks were captured by the operator's 2026-10-03 queue-reconciliation request. They have no new score or assignment; existing blocked scenarios and ranked objects retain their status. Numerical examples use $c_f=1$. The [reconciliation record](../evidence/review-recommendation-queue-reconciliation-2026-10-03.md) distinguishes completed corrections from unfinished work.
-
-### Complete the full-cycle delay-balance comparison
-
-- **Status:** ○ Queued — analytical review first; numerical comparison unassigned.
-- **Request:** Independently check the local $n+1$ expansion and its explicit slow-history remainder in the [collinear assessment](analysis/collinear-review-integration-2026-10-03.md#local-leading-order-delay-balance), then prove a controlled full-cycle estimate for the selected multiplier-free linear comparison.
-- **Scope:** State the complete one-root history, speed and acceleration bounds, the comparison scalar and the error between the true delayed history and the instantaneous comparison over the cycle. Separate local sign, comparison-path integration and actual cycle growth. The moderate-speed retained trajectory lies outside the local small-speed lemma.
-- **Completion / falsifier:** A separately constructed derivation accepts or corrects the remainder and a full-cycle estimate gives the leading coefficient with a bounded error, or identifies a precise obstruction. An optional small-amplitude comparison must pass analytical root/acceleration controls before target use; wrong leading order under the declared bounds refutes the result. No postfold family continuation or production campaign is duplicated by this entry.
 
 ### Independently review collinear endpoint and exponent proofs
 
@@ -42,6 +37,15 @@ These tasks were captured by the operator's 2026-10-03 queue-reconciliation requ
 - **Status:** ○ Deferred — discussion-scoped; no self-response exception or event rule selected.
 - **Decision:** Choose whether the historical both-source cancellation remains an explicitly conditional separate model, whether to withdraw its transfer to the no-self scenario, or whether to investigate a named event-only own-source exception. The [carrier clarification](analysis/common-impulse-event-measure-and-mirror-cancellation.md) already exposes the extra hypothesis; frozen-root suppression is a separate added rule.
 - **Completion:** Record the selected scope and its consequences for event aggregation and uniqueness. A request to investigate an exception must declare its event map and ordinary self clause before derivation. The current capped approach has no contact update; the frozen ceiling archive remains dormant. This decision is also indexed in the Operator Discussion Queue.
+
+## Withdrawn linear-response follow-up — 2026-10-05
+
+### Complete the full-cycle delay-balance comparison
+
+- **Status:** ○ Withdrawn — the operator rejected further growing-distance linear-response work. The former specification is preserved below as historical provenance; no review or target run is queued.
+- **Request:** Independently check the local $n+1$ expansion and its explicit slow-history remainder in the [collinear assessment](analysis/collinear-review-integration-2026-10-03.md#local-leading-order-delay-balance), then prove a controlled full-cycle estimate for the selected multiplier-free linear comparison.
+- **Scope:** State the complete one-root history, speed and acceleration bounds, the comparison scalar and the error between the true delayed history and the instantaneous comparison over the cycle. Separate local sign, comparison-path integration and actual cycle growth. The moderate-speed retained trajectory lies outside the local small-speed lemma.
+- **Completion / falsifier:** A separately constructed derivation accepts or corrects the remainder and a full-cycle estimate gives the leading coefficient with a bounded error, or identifies a precise obstruction. An optional small-amplitude comparison must pass analytical root/acceleration controls before target use; wrong leading order under the declared bounds refutes the result. No postfold family continuation or production campaign is duplicated by this entry.
 
 ## Shim repair disposition, 2026-10-02
 

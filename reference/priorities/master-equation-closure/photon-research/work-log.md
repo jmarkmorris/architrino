@@ -43,3 +43,15 @@ The ordinary contra-rotating mean and exact full-phase fold boundary are indepen
 ## 2026-10-03 — Far coaxial mean independently accepted
 
 The [far calculation](analysis/coaxial-ring-far-mean-2026-10-03.md) and [separate density/Cartesian adjudication](analysis/coaxial-ring-far-mean-independent-adjudication-2026-10-03.md) accept the fixed-rung co-rotating inverse-fifth-power axial mean, propagation phases and explicit conservative remainder. Twelve additional full residual comparisons passed after known controls, with complete six-cross-root-per-receiver covers; none balances. Both zero-phase gap signs persist arbitrarily far away, while phase $\pi/6$ has exact zero gap acceleration without necessarily zero common acceleration. Owners and both cross-geometry indexes are updated together. No released trajectory, spectrum about an imbalance, photon branch, rank, task activation or equation change follows.
+
+## 2026-10-05 — Assessment queued: finite travelling balances
+
+At the operator's instruction a separate Claude session added one unscored queue entry and one paragraph to the priorities page. The Braid Program's search found four finite exact balances of the unchanged delayed equation that rotate and travel along their axis below wake speed; whether they bear on the translating carrier is [queued for assessment](work-queue.md#assess-whether-finite-travelling-balances-bear-on-the-translating-carrier). No ranked object, task status or completion criterion is changed.
+
+## 2026-10-05 — Assessment of the travelling balances written
+
+The same separate Claude session wrote the [assessment](analysis/travelling-balances-assessment-2026-10-05.md) queued earlier in the day. It checks this owner's axial balance identity on the four travelling balances, which satisfy it to rounding with nonzero translation speed, compares them with the twelve-member candidate, and recommends treating them as controls and not as candidates. A follow-up search in the Braid Program found two rigid travelling arrangements of twelve members and none made of two alternating hexagons. The ruling awaits the operator; no ranked object, task status or completion criterion is changed.
+
+## 2026-10-06 — More travelling balances recorded as controls, from a separate session
+
+A separate Claude session's second search campaign in the Braid Program found six more rigid travelling balances below wake speed, of seven to sixteen members, one of them travelling at $0.81$ of wake speed; all are enclosed and all are unstable, and none has zero net polarity. The [assessment](analysis/travelling-balances-assessment-2026-10-05.md) gains a dated line recording them as further controls. Its recommended ruling, controls and not candidates, is unchanged and remains a recommendation for this owner to adopt or decline. No task status is changed.

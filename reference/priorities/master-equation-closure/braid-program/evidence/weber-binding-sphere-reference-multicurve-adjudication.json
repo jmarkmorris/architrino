@@ -1,0 +1,1768 @@
+{
+ "script": "weber-binding-sphere-reference-multicurve-adjudication.mjs",
+ "startedUTC": "2026-10-06T23:28:12.723Z",
+ "law": {
+  "K": 1,
+  "c_f": 1
+ },
+ "knownRelation": {
+  "relDiff_closed_vs_M_times_solved": 1.6296809048045803e-15,
+  "closedResidualMax": 0.37468848149574263,
+  "frozenLawResidualOfCandidate": 0.468074274271195,
+  "solvedResidualMax": 0.27857771213649873
+ },
+ "known": {
+  "hexagon": {
+   "E": 2.3143255e-15,
+   "S": 8.8817842e-16,
+   "V": 8.2526089e-16,
+   "det": [
+    -137.09615,
+    -137.09615
+   ]
+  },
+  "pairCircle": {
+   "E": 6.5281114e-16,
+   "E_at_1p05_omega": 0.038281979,
+   "det": [
+    2.4285714,
+    2.4285714
+   ]
+  },
+  "relation": {
+   "relDiff_closed_vs_M_times_solved": 1.6296809e-15,
+   "closedResidualMax": 0.37468848,
+   "frozenLawResidualOfCandidate": 0.46807427,
+   "solvedResidualMax": 0.27857771
+  }
+ },
+ "item1": {
+  "KC1": {
+   "maxE": 2.3143255e-15,
+   "maxS": 8.8817842e-16,
+   "maxV": 8.2526089e-16,
+   "det": [
+    -137.09615,
+    -137.09615
+   ],
+   "lane": {
+    "value": 2.7e-15,
+    "det": -137.096
+   }
+  },
+  "KC5": {
+   "maxE_at_1p01_omega": 0.015540016,
+   "maxV_vKept": 0.0201,
+   "maxV_vScaled": 8.0899999e-16,
+   "lane": {
+    "maxE": 0.015540016,
+    "maxV_vKept": 0.0201
+   }
+  }
+ },
+ "item2": {
+  "Phi=2pi": {
+   "A": 0.72634076,
+   "epsilon": -1.3767643,
+   "h": 1.1497566,
+   "PhiOverPi": 2,
+   "periodQuadrature": 5.3117585,
+   "quadratureChangeOnDoubling": 1.1546319e-14,
+   "lanePeriodQuadrature": 5.3117585,
+   "periodDiff": 0,
+   "storedM": 40,
+   "storedOmega": 1.1828823,
+   "periodFromStoredOmega": 5.3117585,
+   "periodStoredMinusMyQuadrature": 1.5099033e-14,
+   "fine1024": {
+    "maxAbsResidual": 9.9722504e-15,
+    "maxLawAcc": 4.7936013,
+    "relResidual": 2.0803254e-15,
+    "rPeri": 0.50843853,
+    "det": [
+     3.1180989,
+     4.9336122
+    ],
+    "speed": [
+     0.60882452,
+     1.1306741
+    ],
+    "pairSpread": 0.43580446
+   },
+   "relAngularMomentum": [
+    1.1497566,
+    1.1497566
+   ],
+   "rPeriQuadrature": 0.50843853,
+   "rApoQuadrature": 0.94424299
+  },
+  "Phi=3pi/2": {
+   "A": 1.7471586,
+   "epsilon": -0.57235789,
+   "h": 1.7832074,
+   "PhiOverPi": 1.5,
+   "periodQuadrature": 30.002284,
+   "quadratureChangeOnDoubling": 7.283063e-14,
+   "lanePeriodQuadrature": 30.002284,
+   "periodDiff": 0,
+   "storedM": 72,
+   "storedOmega": 0.20942356,
+   "periodFromStoredOmega": 30.002284,
+   "periodStoredMinusMyQuadrature": -3.1619152e-13,
+   "fine1024": {
+    "maxAbsResidual": 4.1078252e-15,
+    "maxLawAcc": 0.79301797,
+    "relResidual": 5.17999e-15,
+    "rPeri": 1.223011,
+    "det": [
+     1.8805506,
+     2.6353083
+    ],
+    "speed": [
+     0.39255109,
+     0.72902345
+    ],
+    "pairSpread": 1.0482951
+   },
+   "relAngularMomentum": [
+    1.7832074,
+    1.7832074
+   ],
+   "rPeriQuadrature": 1.223011,
+   "rApoQuadrature": 2.2713062
+  }
+ },
+ "item3": {
+  "P1": {
+   "laneClassification": "rigid periodic configuration, not the hexagon (pair distances constant)",
+   "omega": 0.81345579,
+   "fineE_omegaNorm": 4.9994174e-15,
+   "fineAbsResidual": 3.3081661e-15,
+   "pairDistanceSpread": 3.5527137e-15,
+   "rigidFitRelResidual": 3.6331272e-16,
+   "absW": 0.81345579,
+   "absW_minus_omega": -6.6613381e-16,
+   "inverseSquareBalanceRel": 9.4976773e-15,
+   "axialDistances": [
+    0.52197713,
+    0.52197713,
+    1.4375591,
+    1.4375591,
+    0.52197713,
+    0.52197713
+   ],
+   "heights": [
+    0.44074009,
+    0.44074009,
+    3.2254263e-15,
+    1.6676471e-15,
+    -0.44074009,
+    -0.44074009
+   ],
+   "speeds": [
+    0.42460532,
+    0.42460532,
+    1.1693907,
+    1.1693907,
+    0.42460532,
+    0.42460532
+   ],
+   "radii": [
+    0.6831632,
+    0.6831632,
+    1.4375591,
+    1.4375591,
+    0.6831632,
+    0.6831632
+   ],
+   "det": [
+    99.943104,
+    99.943104
+   ],
+   "minSep": 1.0439543,
+   "q": [
+    1,
+    -1,
+    1,
+    -1,
+    1,
+    -1
+   ]
+  },
+  "P2": {
+   "laneClassification": "rigid periodic configuration, not the hexagon (pair distances constant)",
+   "omega": 0.89886515,
+   "fineE_omegaNorm": 6.5933177e-14,
+   "fineAbsResidual": 5.3271275e-14,
+   "pairDistanceSpread": 1.6224799e-12,
+   "rigidFitRelResidual": 3.1925934e-13,
+   "absW": 0.89886515,
+   "absW_minus_omega": 4.9960036e-15,
+   "inverseSquareBalanceRel": 2.8199929e-13,
+   "axialDistances": [
+    1.3687348,
+    1.3687348,
+    0.47685821,
+    0.47685821,
+    0.47685821,
+    0.47685821
+   ],
+   "heights": [
+    -5.4661137e-15,
+    5.3897858e-15,
+    0.57955911,
+    -0.57955911,
+    -0.57955911,
+    0.57955911
+   ],
+   "speeds": [
+    1.230308,
+    1.230308,
+    0.42863123,
+    0.42863123,
+    0.42863123,
+    0.42863123
+   ],
+   "radii": [
+    1.3687348,
+    1.3687348,
+    0.7505215,
+    0.7505215,
+    0.7505215,
+    0.7505215
+   ],
+   "det": [
+    -33.980974,
+    -33.980974
+   ],
+   "minSep": 0.95371642,
+   "q": [
+    1,
+    -1,
+    1,
+    -1,
+    1,
+    -1
+   ]
+  }
+ },
+ "item6_coverage": {
+  "c2 | specified": {
+   "files": [
+    "search-c2-nobox-0.jsonl"
+   ],
+   "starts": 40,
+   "reach": 3,
+   "targets": 37,
+   "stage2FromTargets": 74,
+   "laneHexagonStage2": 1,
+   "myCandidates": 1,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 1
+  },
+  "c2 | speed-normalized, box 3": {
+   "files": [
+    "search-c2-vnorm-box3-0.jsonl"
+   ],
+   "starts": 25,
+   "reach": 3,
+   "targets": 22,
+   "stage2FromTargets": 44,
+   "laneHexagonStage2": 0,
+   "myCandidates": 0,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 0
+  },
+  "c3 | specified": {
+   "files": [
+    "search-c3-nobox-0.jsonl"
+   ],
+   "starts": 34,
+   "reach": 3,
+   "targets": 31,
+   "stage2FromTargets": 60,
+   "laneHexagonStage2": 5,
+   "myCandidates": 5,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 5
+  },
+  "c3 | speed-normalized, box 3": {
+   "files": [
+    "search-c3-vnorm-box3-b.jsonl"
+   ],
+   "starts": 30,
+   "reach": 3,
+   "targets": 27,
+   "stage2FromTargets": 54,
+   "laneHexagonStage2": 2,
+   "myCandidates": 2,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 2
+  },
+  "d3 | specified": {
+   "files": [
+    "search-d3-nobox-0.jsonl"
+   ],
+   "starts": 34,
+   "reach": 3,
+   "targets": 31,
+   "stage2FromTargets": 60,
+   "laneHexagonStage2": 0,
+   "myCandidates": 0,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 0
+  },
+  "d3 | speed-normalized, box 3": {
+   "files": [
+    "search-d3-vnorm-box3-b.jsonl"
+   ],
+   "starts": 34,
+   "reach": 3,
+   "targets": 31,
+   "stage2FromTargets": 60,
+   "laneHexagonStage2": 0,
+   "myCandidates": 0,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 0
+  },
+  "development | specified, box 3": {
+   "files": [
+    "search-dev-box-c3.jsonl",
+    "search-dev-box-free.jsonl"
+   ],
+   "starts": 6,
+   "reach": 6,
+   "targets": 0,
+   "stage2FromTargets": 0,
+   "laneHexagonStage2": 0,
+   "myCandidates": 0,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 0
+  },
+  "development | specified": {
+   "files": [
+    "search-dev-c2.jsonl",
+    "search-dev-c3.jsonl",
+    "search-dev-d3.jsonl",
+    "search-dev-free.jsonl",
+    "search-dev-w112233.jsonl",
+    "search-dev-w222222.jsonl"
+   ],
+   "starts": 39,
+   "reach": 15,
+   "targets": 24,
+   "stage2FromTargets": 30,
+   "laneHexagonStage2": 1,
+   "myCandidates": 1,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 1
+  },
+  "development | speed-normalized, box 3": {
+   "files": [
+    "search-dev-vnorm-free.jsonl"
+   ],
+   "starts": 3,
+   "reach": 3,
+   "targets": 0,
+   "stage2FromTargets": 0,
+   "laneHexagonStage2": 0,
+   "myCandidates": 0,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 0
+  },
+  "free | specified, box 3": {
+   "files": [
+    "search-free-box3-0.jsonl"
+   ],
+   "starts": 20,
+   "reach": 3,
+   "targets": 17,
+   "stage2FromTargets": 34,
+   "laneHexagonStage2": 1,
+   "myCandidates": 1,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 1
+  },
+  "free | specified": {
+   "files": [
+    "search-free-nobox-0.jsonl"
+   ],
+   "starts": 40,
+   "reach": 3,
+   "targets": 37,
+   "stage2FromTargets": 74,
+   "laneHexagonStage2": 2,
+   "myCandidates": 2,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 2
+  },
+  "free | speed-normalized, box 3": {
+   "files": [
+    "search-free-vnorm-box3-0.jsonl",
+    "search-free-vnorm-box3-120.jsonl",
+    "search-free-vnorm-box3-160.jsonl",
+    "search-free-vnorm-box3-60.jsonl"
+   ],
+   "starts": 89,
+   "reach": 3,
+   "targets": 86,
+   "stage2FromTargets": 172,
+   "laneHexagonStage2": 4,
+   "myCandidates": 4,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 4
+  },
+  "w111111 | specified, box 3": {
+   "files": [
+    "search-w111111-box3-0.jsonl"
+   ],
+   "starts": 17,
+   "reach": 3,
+   "targets": 14,
+   "stage2FromTargets": 28,
+   "laneHexagonStage2": 0,
+   "myCandidates": 0,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 0
+  },
+  "w111111 | specified": {
+   "files": [
+    "search-w111111-nobox-0.jsonl"
+   ],
+   "starts": 1,
+   "reach": 1,
+   "targets": 0,
+   "stage2FromTargets": 0,
+   "laneHexagonStage2": 0,
+   "myCandidates": 0,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 0
+  },
+  "w111111 | speed-normalized, box 3": {
+   "files": [
+    "search-w111111-vnorm-box3-0.jsonl"
+   ],
+   "starts": 0,
+   "reach": 0,
+   "targets": 0,
+   "stage2FromTargets": 0,
+   "laneHexagonStage2": 0,
+   "myCandidates": 0,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 0
+  },
+  "w111122 | speed-normalized, box 3": {
+   "files": [
+    "search-w111122-vnorm-box3-0.jsonl",
+    "search-w111122-vnorm-box3-5.jsonl"
+   ],
+   "starts": 13,
+   "reach": 0,
+   "targets": 13,
+   "stage2FromTargets": 22,
+   "laneHexagonStage2": 0,
+   "myCandidates": 0,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 0
+  },
+  "w112233 | speed-normalized, box 3": {
+   "files": [
+    "search-w112233-vnorm-box3-0.jsonl",
+    "search-w112233-vnorm-box3-1.jsonl",
+    "search-w112233-vnorm-box3-6.jsonl"
+   ],
+   "starts": 10,
+   "reach": 0,
+   "targets": 10,
+   "stage2FromTargets": 20,
+   "laneHexagonStage2": 0,
+   "myCandidates": 0,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 0
+  },
+  "w222222 | speed-normalized, box 3": {
+   "files": [
+    "search-w222222-vnorm-box3-0.jsonl"
+   ],
+   "starts": 8,
+   "reach": 3,
+   "targets": 5,
+   "stage2FromTargets": 8,
+   "laneHexagonStage2": 0,
+   "myCandidates": 0,
+   "myCandidatesNotHexagon": 0,
+   "myHexagons": 0
+  }
+ },
+ "item6_totals": {
+  "starts": 443,
+  "targets": 385,
+  "stage2": 740,
+  "cands": 16,
+  "candsNotHex": 0
+ },
+ "agreementWithLaneFineE": {
+  "compared": 856,
+  "nonStartLinesInDumps": 15,
+  "worstRelDiff": 0.29221336,
+  "countAbove1em6": 132,
+  "countAbove1em9": 132,
+  "medianRelDiff_nonHexagon": 1.8334215e-14,
+  "comparedNonHexagon": 724,
+  "worstRelDiff_nonHexagon": 5.3788382e-10,
+  "worstNonHexagon": {
+   "rel": 5.3788382e-10,
+   "relS": 0,
+   "file": "search-c2-nobox-0.jsonl",
+   "start": 28,
+   "route": "stage1then2",
+   "laneE": 44728.29,
+   "myE": 44728.29,
+   "det": [
+    -244442130,
+    7491620800
+   ],
+   "speedMax": 2395.5058,
+   "minSep": 0.12576136,
+   "hex": false
+  },
+  "countNonHexagonAbove1em9": 0,
+  "worstRelDiff_S_nonHexagon": 3.3972093e-9,
+  "worstThree": [
+   {
+    "rel": 0.29221336,
+    "relS": 0.33333333,
+    "file": "search-c3-nobox-0.jsonl",
+    "start": 1,
+    "route": "direct2",
+    "laneE": 1.9913427e-15,
+    "myE": 2.5732397e-15,
+    "det": [
+     -137.09615,
+     -137.09615
+    ],
+    "speedMax": 0.82015226,
+    "minSep": 1,
+    "hex": true
+   },
+   {
+    "rel": 0.29221336,
+    "relS": 0.33333333,
+    "file": "search-dev-box-c3.jsonl",
+    "start": 1,
+    "route": "direct2",
+    "laneE": 1.9913427e-15,
+    "myE": 2.5732397e-15,
+    "det": [
+     -137.09615,
+     -137.09615
+    ],
+    "speedMax": 0.82015226,
+    "minSep": 1,
+    "hex": true
+   },
+   {
+    "rel": 0.29221336,
+    "relS": 0.33333333,
+    "file": "search-dev-c3.jsonl",
+    "start": 1,
+    "route": "direct2",
+    "laneE": 1.9913427e-15,
+    "myE": 2.5732397e-15,
+    "det": [
+     -137.09615,
+     -137.09615
+    ],
+    "speedMax": 0.82015226,
+    "minSep": 1,
+    "hex": true
+   }
+  ]
+ },
+ "item4": {
+  "microLoop": {
+   "file": "search-free-nobox-0.jsonl",
+   "start": 26,
+   "type": "stacked-latitude",
+   "route": "stage1then2",
+   "omega": 5756.2387,
+   "v": 0.022818089,
+   "laneScore": 0.0000084281742,
+   "my": {
+    "E_vNorm": 536355.3,
+    "E_omegaNorm": 0.0000084281742,
+    "S": 0.0000057911063,
+    "V": 1.343783e-7,
+    "loopExtent": 0.000011245116,
+    "speed": [
+     0.022818089,
+     0.02281809
+    ],
+    "pairSpread": 0.000017452276,
+    "minSep": 0.58894557,
+    "det": [
+     -203.64008,
+     -203.62671
+    ],
+    "detSignChange": false
+   },
+   "kind": "micro-loop",
+   "prediction_v_over_omegaR": 0.0000039640622,
+   "maxLawAcc": 1.7190534,
+   "maxCurveAcc": 278.62996,
+   "absResidualOverLawAcc": 162.45076
+  },
+  "fastRigid": {
+   "file": "search-c3-nobox-0.jsonl",
+   "start": 32,
+   "type": "smooth-spherical",
+   "route": "stage1then2",
+   "omega": 13718.333,
+   "v": 1584.0006,
+   "laneScore": 0.0082594588,
+   "my": {
+    "E_vNorm": 0.61950326,
+    "E_omegaNorm": 0.0082594588,
+    "S": 1.3077433e-7,
+    "V": 3.7819584e-11,
+    "loopExtent": 0.32658705,
+    "speed": [
+     1584.0006,
+     1584.0006
+    ],
+    "pairSpread": 6.0840222e-14,
+    "minSep": 0.19999292,
+    "det": [
+     54672880,
+     54672880
+    ],
+    "detSignChange": false
+   },
+   "kind": "fast rigid",
+   "rigidFitRelResidual": 1.5420507e-13,
+   "absW": 13718.333,
+   "axialDistances": [
+    0.11546597,
+    0.11546597,
+    0.11546597,
+    0.11546597,
+    0.11546597,
+    0.11546597
+   ],
+   "E_measured_phase0": 0.0082594588,
+   "norm_Minv_Xperp_over_R": 0.0082594424,
+   "norm_Minv_g_over_omega2R": 0.0082594588,
+   "max_vector_diff_E_plus_Minv_g_over_omega2": 3.8615625e-14,
+   "laneHandEstimate": 0.0082,
+   "laneMeasured": 0.0083
+  }
+ },
+ "item5": {
+  "pooledUnconstrained_allModes_tenLowest": [
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 26,
+    "type": "stacked-latitude",
+    "route": "stage1then2",
+    "omega": 5756.2387,
+    "v": 0.022818089,
+    "laneScore": 0.0000084281742,
+    "my": {
+     "E_vNorm": 536355.3,
+     "E_omegaNorm": 0.0000084281742,
+     "S": 0.0000057911063,
+     "V": 1.343783e-7,
+     "loopExtent": 0.000011245116,
+     "speed": [
+      0.022818089,
+      0.02281809
+     ],
+     "pairSpread": 0.000017452276,
+     "minSep": 0.58894557,
+     "det": [
+      -203.64008,
+      -203.62671
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 18,
+    "type": "stacked-latitude",
+    "route": "direct2",
+    "omega": 10258.734,
+    "v": 0.26821314,
+    "laneScore": 0.00002683131,
+    "my": {
+     "E_vNorm": 39252.68,
+     "E_omegaNorm": 0.00002683131,
+     "S": 0.0000056985517,
+     "V": 0.0000020926048,
+     "loopExtent": 0.00007394945,
+     "speed": [
+      0.26821315,
+      0.26821342
+     ],
+     "pairSpread": 0.00010368381,
+     "minSep": 0.19999933,
+     "det": [
+      -152397.22,
+      -152055.21
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 30,
+    "type": "stacked-latitude",
+    "route": "stage1then2",
+    "omega": 12378.51,
+    "v": 0.41300732,
+    "laneScore": 0.000068284281,
+    "my": {
+     "E_vNorm": 61339.752,
+     "E_omegaNorm": 0.000068284281,
+     "S": 0.0000091123463,
+     "V": 0.0000086914308,
+     "loopExtent": 0.000094374278,
+     "speed": [
+      0.41300729,
+      0.41300912
+     ],
+     "pairSpread": 0.00013213772,
+     "minSep": 0.20033597,
+     "det": [
+      -3235.7377,
+      -3231.3538
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 20,
+    "type": "smooth-spherical",
+    "route": "direct2",
+    "omega": 18082.532,
+    "v": 1.5765511,
+    "laneScore": 0.00010038825,
+    "my": {
+     "E_vNorm": 13206.425,
+     "E_omegaNorm": 0.00010038825,
+     "S": 0.000013214066,
+     "V": 0.0000039089287,
+     "loopExtent": 0.00024665364,
+     "speed": [
+      1.5765487,
+      1.5765542
+     ],
+     "pairSpread": 0.00029643351,
+     "minSep": 0.20147298,
+     "det": [
+      -0.1761384,
+      -0.0314465
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 14,
+    "type": "stacked-latitude",
+    "route": "direct2",
+    "omega": 3190.6098,
+    "v": 0.19026681,
+    "laneScore": 0.00014238442,
+    "my": {
+     "E_vNorm": 36723.744,
+     "E_omegaNorm": 0.00013059473,
+     "S": 0.00014238442,
+     "V": 0.0000096054291,
+     "loopExtent": 0.00016860855,
+     "speed": [
+      0.1902668,
+      0.19026772
+     ],
+     "pairSpread": 0.00017569202,
+     "minSep": 0.20016646,
+     "det": [
+      -5920.3551,
+      -5903.6343
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-box3-0.jsonl",
+    "start": 14,
+    "type": "stacked-latitude",
+    "route": "direct2",
+    "omega": 224.01185,
+    "v": 0.0057060202,
+    "laneScore": 0.00016185061,
+    "my": {
+     "E_vNorm": 249453.56,
+     "E_omegaNorm": 0.00016185061,
+     "S": 0.00014244043,
+     "V": 0.0000019610713,
+     "loopExtent": 0.000072022381,
+     "speed": [
+      0.0057060202,
+      0.0057060258
+     ],
+     "pairSpread": 0.000068135422,
+     "minSep": 0.19999967,
+     "det": [
+      -4886.0021,
+      -4880.8362
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 14,
+    "type": "stacked-latitude",
+    "route": "stage1then2",
+    "omega": 9262.9688,
+    "v": 1.3679208,
+    "laneScore": 0.00031349912,
+    "my": {
+     "E_vNorm": 14375.231,
+     "E_omegaNorm": 0.00031349912,
+     "S": 0.00021258948,
+     "V": 0.000077500966,
+     "loopExtent": 0.000417677,
+     "speed": [
+      1.3679172,
+      1.3679738
+     ],
+     "pairSpread": 0.00057422941,
+     "minSep": 0.20068208,
+     "det": [
+      -7576.5642,
+      -7513.1027
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 4,
+    "type": "smooth-spherical",
+    "route": "stage1then2",
+    "omega": 5405.405,
+    "v": 624.14032,
+    "laneScore": 0.0082595709,
+    "my": {
+     "E_vNorm": 0.61951167,
+     "E_omegaNorm": 0.0082595709,
+     "S": 1.3124744e-7,
+     "V": 6.3729245e-11,
+     "loopExtent": 0.32658436,
+     "speed": [
+      624.14032,
+      624.14032
+     ],
+     "pairSpread": 1.682432e-12,
+     "minSep": 0.19999292,
+     "det": [
+      54670592,
+      54670592
+     ],
+     "detSignChange": false
+    },
+    "kind": "fast rigid"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 12,
+    "type": "smooth-spherical",
+    "route": "stage1then2",
+    "omega": 6838.5892,
+    "v": 789.6063,
+    "laneScore": 0.012173719,
+    "my": {
+     "E_vNorm": 0.91313526,
+     "E_omegaNorm": 0.012173719,
+     "S": 0.000085417659,
+     "V": 0.000041707865,
+     "loopExtent": 0.32657758,
+     "speed": [
+      789.58983,
+      789.61754
+     ],
+     "pairSpread": 2.0470292e-12,
+     "minSep": 0.19997841,
+     "det": [
+      -1913282.9,
+      -1913282.9
+     ],
+     "detSignChange": false
+    },
+    "kind": "fast rigid"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 13,
+    "type": "random-coefficients",
+    "route": "direct2",
+    "omega": 4474.7561,
+    "v": 445.51508,
+    "laneScore": 0.12792214,
+    "my": {
+     "E_vNorm": 12.905048,
+     "E_omegaNorm": 0.12792214,
+     "S": 0.012830306,
+     "V": 0.0082261703,
+     "loopExtent": 0.28175216,
+     "speed": [
+      443.67886,
+      446.70789
+     ],
+     "pairSpread": 0.31780275,
+     "minSep": 0.19887191,
+     "det": [
+      -5612.7,
+      -1224.6476
+     ],
+     "detSignChange": false
+    },
+    "kind": "fast, non-rigid"
+   }
+  ],
+  "specifiedResidual_noBox_tenLowest": [
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 26,
+    "type": "stacked-latitude",
+    "route": "stage1then2",
+    "omega": 5756.2387,
+    "v": 0.022818089,
+    "laneScore": 0.0000084281742,
+    "my": {
+     "E_vNorm": 536355.3,
+     "E_omegaNorm": 0.0000084281742,
+     "S": 0.0000057911063,
+     "V": 1.343783e-7,
+     "loopExtent": 0.000011245116,
+     "speed": [
+      0.022818089,
+      0.02281809
+     ],
+     "pairSpread": 0.000017452276,
+     "minSep": 0.58894557,
+     "det": [
+      -203.64008,
+      -203.62671
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 18,
+    "type": "stacked-latitude",
+    "route": "direct2",
+    "omega": 10258.734,
+    "v": 0.26821314,
+    "laneScore": 0.00002683131,
+    "my": {
+     "E_vNorm": 39252.68,
+     "E_omegaNorm": 0.00002683131,
+     "S": 0.0000056985517,
+     "V": 0.0000020926048,
+     "loopExtent": 0.00007394945,
+     "speed": [
+      0.26821315,
+      0.26821342
+     ],
+     "pairSpread": 0.00010368381,
+     "minSep": 0.19999933,
+     "det": [
+      -152397.22,
+      -152055.21
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 30,
+    "type": "stacked-latitude",
+    "route": "stage1then2",
+    "omega": 12378.51,
+    "v": 0.41300732,
+    "laneScore": 0.000068284281,
+    "my": {
+     "E_vNorm": 61339.752,
+     "E_omegaNorm": 0.000068284281,
+     "S": 0.0000091123463,
+     "V": 0.0000086914308,
+     "loopExtent": 0.000094374278,
+     "speed": [
+      0.41300729,
+      0.41300912
+     ],
+     "pairSpread": 0.00013213772,
+     "minSep": 0.20033597,
+     "det": [
+      -3235.7377,
+      -3231.3538
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 20,
+    "type": "smooth-spherical",
+    "route": "direct2",
+    "omega": 18082.532,
+    "v": 1.5765511,
+    "laneScore": 0.00010038825,
+    "my": {
+     "E_vNorm": 13206.425,
+     "E_omegaNorm": 0.00010038825,
+     "S": 0.000013214066,
+     "V": 0.0000039089287,
+     "loopExtent": 0.00024665364,
+     "speed": [
+      1.5765487,
+      1.5765542
+     ],
+     "pairSpread": 0.00029643351,
+     "minSep": 0.20147298,
+     "det": [
+      -0.1761384,
+      -0.0314465
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 14,
+    "type": "stacked-latitude",
+    "route": "direct2",
+    "omega": 3190.6098,
+    "v": 0.19026681,
+    "laneScore": 0.00014238442,
+    "my": {
+     "E_vNorm": 36723.744,
+     "E_omegaNorm": 0.00013059473,
+     "S": 0.00014238442,
+     "V": 0.0000096054291,
+     "loopExtent": 0.00016860855,
+     "speed": [
+      0.1902668,
+      0.19026772
+     ],
+     "pairSpread": 0.00017569202,
+     "minSep": 0.20016646,
+     "det": [
+      -5920.3551,
+      -5903.6343
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 14,
+    "type": "stacked-latitude",
+    "route": "stage1then2",
+    "omega": 9262.9688,
+    "v": 1.3679208,
+    "laneScore": 0.00031349912,
+    "my": {
+     "E_vNorm": 14375.231,
+     "E_omegaNorm": 0.00031349912,
+     "S": 0.00021258948,
+     "V": 0.000077500966,
+     "loopExtent": 0.000417677,
+     "speed": [
+      1.3679172,
+      1.3679738
+     ],
+     "pairSpread": 0.00057422941,
+     "minSep": 0.20068208,
+     "det": [
+      -7576.5642,
+      -7513.1027
+     ],
+     "detSignChange": false
+    },
+    "kind": "micro-loop"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 4,
+    "type": "smooth-spherical",
+    "route": "stage1then2",
+    "omega": 5405.405,
+    "v": 624.14032,
+    "laneScore": 0.0082595709,
+    "my": {
+     "E_vNorm": 0.61951167,
+     "E_omegaNorm": 0.0082595709,
+     "S": 1.3124744e-7,
+     "V": 6.3729245e-11,
+     "loopExtent": 0.32658436,
+     "speed": [
+      624.14032,
+      624.14032
+     ],
+     "pairSpread": 1.682432e-12,
+     "minSep": 0.19999292,
+     "det": [
+      54670592,
+      54670592
+     ],
+     "detSignChange": false
+    },
+    "kind": "fast rigid"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 12,
+    "type": "smooth-spherical",
+    "route": "stage1then2",
+    "omega": 6838.5892,
+    "v": 789.6063,
+    "laneScore": 0.012173719,
+    "my": {
+     "E_vNorm": 0.91313526,
+     "E_omegaNorm": 0.012173719,
+     "S": 0.000085417659,
+     "V": 0.000041707865,
+     "loopExtent": 0.32657758,
+     "speed": [
+      789.58983,
+      789.61754
+     ],
+     "pairSpread": 2.0470292e-12,
+     "minSep": 0.19997841,
+     "det": [
+      -1913282.9,
+      -1913282.9
+     ],
+     "detSignChange": false
+    },
+    "kind": "fast rigid"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 13,
+    "type": "random-coefficients",
+    "route": "direct2",
+    "omega": 4474.7561,
+    "v": 445.51508,
+    "laneScore": 0.12792214,
+    "my": {
+     "E_vNorm": 12.905048,
+     "E_omegaNorm": 0.12792214,
+     "S": 0.012830306,
+     "V": 0.0082261703,
+     "loopExtent": 0.28175216,
+     "speed": [
+      443.67886,
+      446.70789
+     ],
+     "pairSpread": 0.31780275,
+     "minSep": 0.19887191,
+     "det": [
+      -5612.7,
+      -1224.6476
+     ],
+     "detSignChange": false
+    },
+    "kind": "fast, non-rigid"
+   },
+   {
+    "file": "search-free-nobox-0.jsonl",
+    "start": 18,
+    "type": "stacked-latitude",
+    "route": "stage1then2",
+    "omega": 3896.3972,
+    "v": 549.25297,
+    "laneScore": 0.15428598,
+    "my": {
+     "E_vNorm": 7.7644032,
+     "E_omegaNorm": 0.15428598,
+     "S": 0.0164725,
+     "V": 0.018513507,
+     "loopExtent": 0.40139611,
+     "speed": [
+      544.14492,
+      552.78296
+     ],
+     "pairSpread": 0.19924052,
+     "minSep": 0.19770562,
+     "det": [
+      -680443.96,
+      -95965.862
+     ],
+     "detSignChange": false
+    },
+    "kind": "fast, non-rigid"
+   }
+  ],
+  "speedNormalized_tenLowest": [
+   {
+    "file": "search-free-vnorm-box3-60.jsonl",
+    "start": 71,
+    "type": "great-circle-pairs",
+    "route": "direct2",
+    "omega": 3.0351924,
+    "v": 3.136333,
+    "laneScore": 0.33280378,
+    "my": {
+     "E_vNorm": 0.30473926,
+     "E_omegaNorm": 0.32538707,
+     "S": 0.028280944,
+     "V": 0.08497451,
+     "loopExtent": 2.7986907,
+     "speed": [
+      3.0001209,
+      3.0033012
+     ],
+     "pairSpread": 8.4618682e-9,
+     "minSep": 0.45280132,
+     "det": [
+      37108.534,
+      37108.534
+     ],
+     "detSignChange": false
+    },
+    "kind": "box-limited (rigid, on the speed box)"
+   },
+   {
+    "file": "search-free-vnorm-box3-160.jsonl",
+    "start": 179,
+    "type": "great-circle-pairs",
+    "route": "direct2",
+    "omega": 3.0352581,
+    "v": 3.1362717,
+    "laneScore": 0.33528145,
+    "my": {
+     "E_vNorm": 0.30701937,
+     "E_omegaNorm": 0.32779465,
+     "S": 0.028277832,
+     "V": 0.084925043,
+     "loopExtent": 2.798493,
+     "speed": [
+      3.0001434,
+      3.0032471
+     ],
+     "pairSpread": 1.0455968e-8,
+     "minSep": 0.45290975,
+     "det": [
+      36923.873,
+      36923.875
+     ],
+     "detSignChange": false
+    },
+    "kind": "box-limited (rigid, on the speed box)"
+   },
+   {
+    "file": "search-free-vnorm-box3-0.jsonl",
+    "start": 22,
+    "type": "stacked-latitude",
+    "route": "direct2",
+    "omega": 3.0352582,
+    "v": 3.1362717,
+    "laneScore": 0.33528149,
+    "my": {
+     "E_vNorm": 0.3070194,
+     "E_omegaNorm": 0.32779468,
+     "S": 0.028277796,
+     "V": 0.084925046,
+     "loopExtent": 2.7985074,
+     "speed": [
+      3.0001434,
+      3.0032471
+     ],
+     "pairSpread": 4.4990123e-11,
+     "minSep": 0.45290991,
+     "det": [
+      36923.469,
+      36923.469
+     ],
+     "detSignChange": false
+    },
+    "kind": "box-limited (rigid, on the speed box)"
+   },
+   {
+    "file": "search-free-vnorm-box3-0.jsonl",
+    "start": 22,
+    "type": "stacked-latitude",
+    "route": "stage1then2",
+    "omega": 3.0352582,
+    "v": 3.1362717,
+    "laneScore": 0.33528152,
+    "my": {
+     "E_vNorm": 0.30701943,
+     "E_omegaNorm": 0.32779471,
+     "S": 0.028277806,
+     "V": 0.084925045,
+     "loopExtent": 2.7985671,
+     "speed": [
+      3.0001434,
+      3.0032471
+     ],
+     "pairSpread": 4.5382587e-11,
+     "minSep": 0.45291006,
+     "det": [
+      36923.35,
+      36923.35
+     ],
+     "detSignChange": false
+    },
+    "kind": "box-limited (rigid, on the speed box)"
+   },
+   {
+    "file": "search-free-vnorm-box3-120.jsonl",
+    "start": 127,
+    "type": "great-circle-pairs",
+    "route": "direct2",
+    "omega": 2.9761729,
+    "v": 3.1709162,
+    "laneScore": 0.42021946,
+    "my": {
+     "E_vNorm": 0.37018853,
+     "E_omegaNorm": 0.42021946,
+     "S": 0.033363066,
+     "V": 0.10635932,
+     "loopExtent": 2.860846,
+     "speed": [
+      2.9975485,
+      3.0059344
+     ],
+     "pairSpread": 0.047705524,
+     "minSep": 0.43855249,
+     "det": [
+      2521.651,
+      55973.719
+     ],
+     "detSignChange": false
+    },
+    "kind": "box-limited (on the speed box)"
+   },
+   {
+    "file": "search-free-vnorm-box3-0.jsonl",
+    "start": 11,
+    "type": "great-circle-pairs",
+    "route": "stage1then2",
+    "omega": 2.9761662,
+    "v": 3.1709146,
+    "laneScore": 0.42035435,
+    "my": {
+     "E_vNorm": 0.37030606,
+     "E_omegaNorm": 0.42035435,
+     "S": 0.033213829,
+     "V": 0.1063934,
+     "loopExtent": 2.8605252,
+     "speed": [
+      2.9974899,
+      3.0058916
+     ],
+     "pairSpread": 0.047520233,
+     "minSep": 0.43855409,
+     "det": [
+      2525.99,
+      55859.266
+     ],
+     "detSignChange": false
+    },
+    "kind": "box-limited (on the speed box)"
+   },
+   {
+    "file": "search-free-vnorm-box3-60.jsonl",
+    "start": 75,
+    "type": "great-circle-pairs",
+    "route": "direct2",
+    "omega": 2.9761638,
+    "v": 3.1709141,
+    "laneScore": 0.42047874,
+    "my": {
+     "E_vNorm": 0.37041514,
+     "E_omegaNorm": 0.42047874,
+     "S": 0.033212849,
+     "V": 0.10642847,
+     "loopExtent": 2.8552559,
+     "speed": [
+      2.9974306,
+      3.0058885
+     ],
+     "pairSpread": 0.047537673,
+     "minSep": 0.43833869,
+     "det": [
+      2526.8606,
+      55831.469
+     ],
+     "detSignChange": false
+    },
+    "kind": "box-limited (on the speed box)"
+   },
+   {
+    "file": "search-free-vnorm-box3-160.jsonl",
+    "start": 171,
+    "type": "great-circle-pairs",
+    "route": "direct2",
+    "omega": 2.4243479,
+    "v": 2.8407976,
+    "laneScore": 0.71650706,
+    "my": {
+     "E_vNorm": 0.52183089,
+     "E_omegaNorm": 0.71650706,
+     "S": 0.17362658,
+     "V": 0.30126847,
+     "loopExtent": 3.0640697,
+     "speed": [
+      2.3746273,
+      2.6266713
+     ],
+     "pairSpread": 0.00037199546,
+     "minSep": 0.22774348,
+     "det": [
+      112698.67,
+      112800.23
+     ],
+     "detSignChange": false
+    },
+    "kind": "other"
+   },
+   {
+    "file": "search-free-vnorm-box3-0.jsonl",
+    "start": 11,
+    "type": "great-circle-pairs",
+    "route": "direct2",
+    "omega": 2.96247,
+    "v": 3.140442,
+    "laneScore": 0.90364342,
+    "my": {
+     "E_vNorm": 0.80412481,
+     "E_omegaNorm": 0.90364342,
+     "S": 0.044392978,
+     "V": 0.13506863,
+     "loopExtent": 2.8748435,
+     "speed": [
+      2.920664,
+      3.0078895
+     ],
+     "pairSpread": 0.04972832,
+     "minSep": 0.41764081,
+     "det": [
+      -20.035501,
+      2529.6659
+     ],
+     "detSignChange": true
+    },
+    "kind": "box-limited (on the speed box)"
+   },
+   {
+    "file": "search-free-vnorm-box3-160.jsonl",
+    "start": 171,
+    "type": "great-circle-pairs",
+    "route": "stage1then2",
+    "omega": 2.6031725,
+    "v": 3.4035596,
+    "laneScore": 1.228079,
+    "my": {
+     "E_vNorm": 0.71839866,
+     "E_omegaNorm": 1.228079,
+     "S": 0.4644754,
+     "V": 0.58472913,
+     "loopExtent": 3.1104199,
+     "speed": [
+      2.1933053,
+      3.0388466
+     ],
+     "pairSpread": 0.37354514,
+     "minSep": 0.17423725,
+     "det": [
+      29140.389,
+      81214.891
+     ],
+     "detSignChange": false
+    },
+    "kind": "box-limited (on the speed box)"
+   }
+  ]
+ },
+ "reach": {
+  "reachStartsWithStage2": 58,
+  "reachStage2Results": 116,
+  "myHexagonCandidates": 116,
+  "notHexagon": [],
+  "worstResidualAmongThem": 5.313659e-12
+ },
+ "perDumpCounts": {
+  "c2-nobox-0": {
+   "nonHexStage2": 73,
+   "omegaAbove100": 62,
+   "speedAbove3p1": 71,
+   "detSignChange": 54,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 0.20533435,
+   "minMyScore_vNorm": 0.25214894
+  },
+  "c2-vnorm-box3-0": {
+   "nonHexStage2": 44,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 6,
+   "detSignChange": 36,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 0.32779468,
+   "minMyScore_vNorm": 0.30701939
+  },
+  "c3-nobox-0": {
+   "nonHexStage2": 55,
+   "omegaAbove100": 48,
+   "speedAbove3p1": 50,
+   "detSignChange": 33,
+   "singular": 0,
+   "microLoop": 2,
+   "minMyScore": 0.0082594588,
+   "minMyScore_vNorm": 0.61947851
+  },
+  "c3-vnorm-box3-b": {
+   "nonHexStage2": 52,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 6,
+   "detSignChange": 47,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 2.0824047,
+   "minMyScore_vNorm": 0.85523659
+  },
+  "d3-nobox-0": {
+   "nonHexStage2": 60,
+   "omegaAbove100": 60,
+   "speedAbove3p1": 60,
+   "detSignChange": 49,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 0.96953792,
+   "minMyScore_vNorm": 0.98384872
+  },
+  "d3-vnorm-box3-b": {
+   "nonHexStage2": 60,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 6,
+   "detSignChange": 59,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 2.39285,
+   "minMyScore_vNorm": 0.80743002
+  },
+  "dev-c2": {
+   "nonHexStage2": 4,
+   "omegaAbove100": 4,
+   "speedAbove3p1": 4,
+   "detSignChange": 4,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 12.340078,
+   "minMyScore_vNorm": 20.853303
+  },
+  "dev-c3": {
+   "nonHexStage2": 3,
+   "omegaAbove100": 3,
+   "speedAbove3p1": 3,
+   "detSignChange": 2,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 0.0083423563,
+   "minMyScore_vNorm": 0.62572232
+  },
+  "dev-d3": {
+   "nonHexStage2": 4,
+   "omegaAbove100": 4,
+   "speedAbove3p1": 4,
+   "detSignChange": 4,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 1.0094552,
+   "minMyScore_vNorm": 2.4734654
+  },
+  "dev-free": {
+   "nonHexStage2": 4,
+   "omegaAbove100": 4,
+   "speedAbove3p1": 4,
+   "detSignChange": 2,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 0.0082595709,
+   "minMyScore_vNorm": 0.61951167
+  },
+  "dev-w112233": {
+   "nonHexStage2": 10,
+   "omegaAbove100": 9,
+   "speedAbove3p1": 5,
+   "detSignChange": 5,
+   "singular": 0,
+   "microLoop": 5,
+   "minMyScore": 0.000013375273,
+   "minMyScore_vNorm": 6.9149544
+  },
+  "dev-w222222": {
+   "nonHexStage2": 4,
+   "omegaAbove100": 1,
+   "speedAbove3p1": 3,
+   "detSignChange": 4,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 64.222089,
+   "minMyScore_vNorm": 176.64538
+  },
+  "free-box3-0": {
+   "nonHexStage2": 33,
+   "omegaAbove100": 2,
+   "speedAbove3p1": 3,
+   "detSignChange": 26,
+   "singular": 0,
+   "microLoop": 2,
+   "minMyScore": 0.00016185061,
+   "minMyScore_vNorm": 0.42204763
+  },
+  "free-nobox-0": {
+   "nonHexStage2": 72,
+   "omegaAbove100": 63,
+   "speedAbove3p1": 65,
+   "detSignChange": 42,
+   "singular": 0,
+   "microLoop": 6,
+   "minMyScore": 0.0000084281742,
+   "minMyScore_vNorm": 0.25216122
+  },
+  "free-vnorm-box3-0": {
+   "nonHexStage2": 62,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 10,
+   "detSignChange": 56,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 0.32779468,
+   "minMyScore_vNorm": 0.3070194
+  },
+  "free-vnorm-box3-120": {
+   "nonHexStage2": 22,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 6,
+   "detSignChange": 18,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 0.42021946,
+   "minMyScore_vNorm": 0.37018853
+  },
+  "free-vnorm-box3-160": {
+   "nonHexStage2": 40,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 5,
+   "detSignChange": 36,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 0.32779465,
+   "minMyScore_vNorm": 0.30701937
+  },
+  "free-vnorm-box3-60": {
+   "nonHexStage2": 44,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 7,
+   "detSignChange": 40,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 0.32538707,
+   "minMyScore_vNorm": 0.30473926
+  },
+  "w111111-box3-0": {
+   "nonHexStage2": 28,
+   "omegaAbove100": 1,
+   "speedAbove3p1": 0,
+   "detSignChange": 23,
+   "singular": 0,
+   "microLoop": 1,
+   "minMyScore": 0.0125335,
+   "minMyScore_vNorm": 0.74121979
+  },
+  "w111122-vnorm-box3-0": {
+   "nonHexStage2": 10,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 0,
+   "detSignChange": 9,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 0.32779479,
+   "minMyScore_vNorm": 0.30701952
+  },
+  "w111122-vnorm-box3-5": {
+   "nonHexStage2": 12,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 0,
+   "detSignChange": 9,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 0.32538705,
+   "minMyScore_vNorm": 0.30473923
+  },
+  "w112233-vnorm-box3-0": {
+   "nonHexStage2": 2,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 0,
+   "detSignChange": 2,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 566.87935,
+   "minMyScore_vNorm": 85.377965
+  },
+  "w112233-vnorm-box3-1": {
+   "nonHexStage2": 8,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 0,
+   "detSignChange": 8,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 116.86036,
+   "minMyScore_vNorm": 19.337949
+  },
+  "w112233-vnorm-box3-6": {
+   "nonHexStage2": 10,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 0,
+   "detSignChange": 10,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 115.12379,
+   "minMyScore_vNorm": 25.224616
+  },
+  "w222222-vnorm-box3-0": {
+   "nonHexStage2": 8,
+   "omegaAbove100": 0,
+   "speedAbove3p1": 2,
+   "detSignChange": 8,
+   "singular": 0,
+   "microLoop": 0,
+   "minMyScore": 159.52747,
+   "minMyScore_vNorm": 24.804517
+  }
+ },
+ "finishedUTC": "2026-10-06T23:28:15.412Z"
+}

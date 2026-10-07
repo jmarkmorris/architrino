@@ -1,0 +1,2815 @@
+{
+ "schema": "weber-delayed-pair-runs.v1",
+ "ownerTask": "claude-weber-delayed-pair-20261006",
+ "instrument": "weber-delayed-pair-instrument.mjs",
+ "law": "equation-variants/manuscript.md Section 9a, frozen: Weber bracket on ordinary causal roots, transmitter weight c_f/|D_t|, lambda=-1/2, mu=1, K=c_f=1, self roots admitted when they exist, same-time endpoint excluded, no boundary response, no softening",
+ "runs": [
+  {
+   "label": "SC-1",
+   "name": "SC-1",
+   "refine": false,
+   "method": "dp54",
+   "rtol": 1e-10,
+   "hmax": 50,
+   "past": "rigid-circle,rigid-circle",
+   "pastRecords": null,
+   "tEnd": 25133,
+   "termination": {
+    "reason": "final-time",
+    "T": 25133
+   },
+   "firstEvent": {
+    "type": "event",
+    "name": "turning",
+    "T": 16519.86642816633,
+    "r": 358.36222185943194,
+    "h": 25.312933952269447,
+    "turn": "maximum"
+   },
+   "eventCounts": {
+    "acceleration-jump": 12,
+    "turning": 1
+   },
+   "initial": {
+    "r": 200,
+    "h": 20,
+    "rhoH": 100,
+    "eps": -0.005,
+    "speeds": [
+     0.05,
+     0.05
+    ],
+    "det": [
+     1.0049813445458469,
+     1.0049813445458469
+    ]
+   },
+   "final": {
+    "T": 25133,
+    "r": 334.20064911425237,
+    "rdot": -0.00024902560736594914,
+    "h": 27.18922766247429,
+    "rhoH": 184.8135252204643,
+    "eps": -0.002674998355308358,
+    "speeds": [
+     0.040678190043545844,
+     0.040678190043545844
+    ],
+    "det": [
+     1.0029865979212467,
+     1.0029865979212467
+    ]
+   },
+   "hStart": 20,
+   "hEnd": 27.18922766247429,
+   "hChangeRelative": 0.35946138312371456,
+   "rhoH2Slope": {
+    "full": 0.9015500837805822,
+    "firstHalf": 1.0259148831136473,
+    "secondHalf": 0.902155965067411,
+    "grid": "uniform",
+    "points": 2077
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 0.906856801885356,
+    "firstHalf": 1.0416667079138255,
+    "secondHalf": 0.8971020684957408
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 200,
+    "max": 358.36190001778425
+   },
+   "turningCount": 1,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.0517585856378945,
+     0.0517585856378945
+    ],
+    "min": [
+     0.035122413798504705,
+     0.035122413798504705
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.0027838133831934,
+     1.0027838133831934
+    ],
+    "max": [
+     1.0049813445458469,
+     1.0049813445458469
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.0000012483094333291074,
+     "tangential": 0.0000012479177552783677
+    },
+    {
+     "member": 1,
+     "magnitude": 0.0000012483094333291074,
+     "tangential": 0.0000012479177552783677
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 199.7517038011279,
+    "magnitude": 4.64298977102373e-10,
+    "member": 0,
+    "geometricFactor": 0.004981256979084632
+   },
+   "jumpCount": 12,
+   "jumpsFirst": [
+    {
+     "T": 199.7517038011279,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 4.64298977102373e-10,
+     "geometricFactor": 0.004981256979084632
+    },
+    {
+     "T": 199.7517038011279,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 4.64298977102373e-10,
+     "geometricFactor": 0.004981256979084632
+    },
+    {
+     "T": 399.5165779278386,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 2.2887481605255373e-12,
+     "geometricFactor": 0.004980373354939517
+    },
+    {
+     "T": 399.5165779278386,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 2.2887481605255373e-12,
+     "geometricFactor": 0.004980373354939517
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 5.9117155615240335e-12,
+    "maxResidualFloor": 2.2620144917896516e-11,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.9992356121263959,
+    "bracketMax": 1.0008877612076617,
+    "RdotMax": 0.017299547614671118,
+    "RddotMax": 0.000004423421873762009,
+    "pMin": 0.9827004523853289,
+    "pMax": 1.0042269558367563,
+    "DtMin": 0.9993279527114517
+   },
+   "steps": 518,
+   "rejects": 5,
+   "nfev": 3675,
+   "wallSeconds": 0.152,
+   "stepSizes": {
+    "min": 0.06514072142317673,
+    "max": 50
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/SC-1.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/SC-1.summary.json",
+    "lines": 532,
+    "case": "reference/priorities/master-equation-closure/binary-research/evidence/weber-delayed-pair-cases/SC-1.json"
+   },
+   "recordedAt": "2026-10-06T03:30:50.743Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "SC-1-refine",
+   "name": "SC-1",
+   "refine": true,
+   "method": "dp54",
+   "rtol": 1e-12,
+   "hmax": 50,
+   "past": "rigid-circle,rigid-circle",
+   "pastRecords": null,
+   "tEnd": 25133,
+   "termination": {
+    "reason": "final-time",
+    "T": 25133
+   },
+   "firstEvent": {
+    "type": "event",
+    "name": "turning",
+    "T": 16519.866428283523,
+    "r": 358.36222185675445,
+    "h": 25.312933952291367,
+    "turn": "maximum"
+   },
+   "eventCounts": {
+    "acceleration-jump": 14,
+    "turning": 1
+   },
+   "initial": {
+    "r": 200,
+    "h": 20,
+    "rhoH": 100,
+    "eps": -0.005,
+    "speeds": [
+     0.05,
+     0.05
+    ],
+    "det": [
+     1.0049813445458469,
+     1.0049813445458469
+    ]
+   },
+   "final": {
+    "T": 25133,
+    "r": 334.20064911554186,
+    "rdot": -0.00024902560685478164,
+    "h": 27.189227662483507,
+    "rhoH": 184.81352522058958,
+    "eps": -0.002674998355308691,
+    "speeds": [
+     0.040678190043401896,
+     0.040678190043401896
+    ],
+    "det": [
+     1.0029865979212345,
+     1.0029865979212345
+    ]
+   },
+   "hStart": 20,
+   "hEnd": 27.189227662483507,
+   "hChangeRelative": 0.35946138312417536,
+   "rhoH2Slope": {
+    "full": 0.9015321007582933,
+    "firstHalf": 1.0258673149431046,
+    "secondHalf": 0.9021460814668312,
+    "grid": "uniform",
+    "points": 2625
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 0.9126148466630315,
+    "firstHalf": 1.1136209489805966,
+    "secondHalf": 0.8648608613364361
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 200,
+    "max": 358.3620842520048
+   },
+   "turningCount": 1,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.05175867399867944,
+     0.05175867399867944
+    ],
+    "min": [
+     0.03512238470036739,
+     0.03512238470036739
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.0027838111336609,
+     1.0027838111336609
+    ],
+    "max": [
+     1.0049813445458469,
+     1.0049813445458469
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.0000012483094333291074,
+     "tangential": 0.0000012479177552783677
+    },
+    {
+     "member": 1,
+     "magnitude": 0.0000012483094333291074,
+     "tangential": 0.0000012479177552783677
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 199.75170380092348,
+    "magnitude": 4.6429897709559464e-10,
+    "member": 0,
+    "geometricFactor": 0.004981256979084379
+   },
+   "jumpCount": 14,
+   "jumpsFirst": [
+    {
+     "T": 199.75170380092348,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 4.6429897709559464e-10,
+     "geometricFactor": 0.004981256979084379
+    },
+    {
+     "T": 199.75170380092348,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 4.6429897709559464e-10,
+     "geometricFactor": 0.004981256979084379
+    },
+    {
+     "T": 399.5165779277569,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 2.288748170765551e-12,
+     "geometricFactor": 0.004980373354938573
+    },
+    {
+     "T": 399.5165779277569,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 2.288748170765551e-12,
+     "geometricFactor": 0.004980373354938573
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 6.821210263296962e-12,
+    "maxResidualFloor": 2.2620144917897586e-11,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.999235611981429,
+    "bracketMax": 1.0008877939622896,
+    "RdotMax": 0.017299423058104613,
+    "RddotMax": 0.000004423579875445558,
+    "pMin": 0.9827005769418954,
+    "pMax": 1.0042269400037196,
+    "DtMin": 0.9993278901339315
+   },
+   "steps": 655,
+   "rejects": 13,
+   "nfev": 4695,
+   "wallSeconds": 0.19,
+   "stepSizes": {
+    "min": 1.686385784834556,
+    "max": 50
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/SC-1-refine.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/SC-1-refine.summary.json",
+    "lines": 671,
+    "case": "reference/priorities/master-equation-closure/binary-research/evidence/weber-delayed-pair-cases/SC-1.json"
+   },
+   "recordedAt": "2026-10-06T03:30:51.065Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "SC-2",
+   "name": "SC-2",
+   "refine": false,
+   "method": "dp54",
+   "rtol": 1e-10,
+   "hmax": 312,
+   "past": "rigid-circle,rigid-circle",
+   "pastRecords": null,
+   "tEnd": 196350,
+   "termination": {
+    "reason": "final-time",
+    "T": 196350
+   },
+   "firstEvent": null,
+   "eventCounts": {
+    "acceleration-jump": 10
+   },
+   "initial": {
+    "r": 1250,
+    "h": 50,
+    "rhoH": 625,
+    "eps": -0.0008,
+    "speeds": [
+     0.02,
+     0.02
+    ],
+    "det": [
+     1.000799520389,
+     1.000799520389
+    ]
+   },
+   "final": {
+    "T": 196350,
+    "r": 1588.6340328107349,
+    "rdot": 0.00032050395647510027,
+    "h": 55.337992468079776,
+    "rhoH": 765.5733525993135,
+    "eps": -0.0006521986318305574,
+    "speeds": [
+     0.017417584439165495,
+     0.017417584439165495
+    ],
+    "det": [
+     1.0006290629291754,
+     1.0006290629291754
+    ]
+   },
+   "hStart": 50,
+   "hEnd": 55.337992468079776,
+   "hChangeRelative": 0.10675984936159551,
+   "rhoH2Slope": {
+    "full": 1.0016489789280645,
+    "firstHalf": 1.0640213083365555,
+    "secondHalf": 0.9318200337983795,
+    "grid": "uniform",
+    "points": 2557
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 1.002400461111556,
+    "firstHalf": 1.06380141215781,
+    "secondHalf": 0.9325097612070127
+   },
+   "initialViolations": [
+    {
+     "name": "escape",
+     "r": 1250,
+     "threshold": 1000,
+     "note": "initial separation already above the frozen escape threshold; the escape event is reported only on a crossing"
+    }
+   ],
+   "rExtremes": {
+    "min": 1250,
+    "max": 1588.6340328107349
+   },
+   "turningCount": 0,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.02027680256074494,
+     0.02027680256074494
+    ],
+    "min": [
+     0.017402158064063044,
+     0.017402158064063044
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.0006290629291754,
+     1.0006290629291754
+    ],
+    "max": [
+     1.000799520389,
+     1.000799520389
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 1.2797227223324396e-8,
+     "tangential": 1.2796586941725516e-8
+    },
+    {
+     "member": 1,
+     "magnitude": 1.2797227223324396e-8,
+     "tangential": 1.2796586941725516e-8
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 1249.750274614413,
+    "magnitude": 3.0673251358683034e-13,
+    "member": 0,
+    "geometricFactor": 0.0007995200269766619
+   },
+   "jumpCount": 10,
+   "jumpsFirst": [
+    {
+     "T": 1249.750274614413,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 3.0673251358683034e-13,
+     "geometricFactor": 0.0007995200269766619
+    },
+    {
+     "T": 1249.750274614413,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 3.0673251358683034e-13,
+     "geometricFactor": 0.0007995200269766619
+    },
+    {
+     "T": 2499.5026783407952,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 2.4484377846262513e-16,
+     "geometricFactor": 0.0007995163656520413
+    },
+    {
+     "T": 2499.5026783407952,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 2.4484377846262513e-16,
+     "geometricFactor": 0.0007995163656520413
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 2.9103830456733704e-11,
+    "maxResidualFloor": 1.7580525539562324e-10,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.9999415936080991,
+    "bracketMax": 1.0000609140239798,
+    "RdotMax": 0.0030115060474713573,
+    "RddotMax": 4.86259239992318e-8,
+    "pMin": 0.9969884939525286,
+    "pMax": 1.0000000093292727,
+    "DtMin": 1.0003998933845035
+   },
+   "steps": 638,
+   "rejects": 1,
+   "nfev": 4478,
+   "wallSeconds": 0.19,
+   "stepSizes": {
+    "min": 1.7597198388243669,
+    "max": 312
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/SC-2.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/SC-2.summary.json",
+    "lines": 649,
+    "case": "reference/priorities/master-equation-closure/binary-research/evidence/weber-delayed-pair-cases/SC-2.json"
+   },
+   "recordedAt": "2026-10-06T03:30:51.392Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "SC-2-refine",
+   "name": "SC-2",
+   "refine": true,
+   "method": "dp54",
+   "rtol": 1e-12,
+   "hmax": 312,
+   "past": "rigid-circle,rigid-circle",
+   "pastRecords": null,
+   "tEnd": 196350,
+   "termination": {
+    "reason": "final-time",
+    "T": 196350
+   },
+   "firstEvent": null,
+   "eventCounts": {
+    "acceleration-jump": 10
+   },
+   "initial": {
+    "r": 1250,
+    "h": 50,
+    "rhoH": 625,
+    "eps": -0.0008,
+    "speeds": [
+     0.02,
+     0.02
+    ],
+    "det": [
+     1.000799520389,
+     1.000799520389
+    ]
+   },
+   "final": {
+    "T": 196350,
+    "r": 1588.6340328107522,
+    "rdot": 0.00032050395647486435,
+    "h": 55.337992468079804,
+    "rhoH": 765.5733525993143,
+    "eps": -0.0006521986318305563,
+    "speeds": [
+     0.01741758443916532,
+     0.01741758443916532
+    ],
+    "det": [
+     1.0006290629291754,
+     1.0006290629291754
+    ]
+   },
+   "hStart": 50,
+   "hEnd": 55.337992468079804,
+   "hChangeRelative": 0.10675984936159608,
+   "rhoH2Slope": {
+    "full": 1.0016491108273649,
+    "firstHalf": 1.0640213514613979,
+    "secondHalf": 0.9318197661421235,
+    "grid": "uniform",
+    "points": 2605
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 1.002957855371347,
+    "firstHalf": 1.0636912272820511,
+    "secondHalf": 0.933391766194301
+   },
+   "initialViolations": [
+    {
+     "name": "escape",
+     "r": 1250,
+     "threshold": 1000,
+     "note": "initial separation already above the frozen escape threshold; the escape event is reported only on a crossing"
+    }
+   ],
+   "rExtremes": {
+    "min": 1250,
+    "max": 1588.6340328107522
+   },
+   "turningCount": 0,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.0202768009956048,
+     0.0202768009956048
+    ],
+    "min": [
+     0.017402155666489318,
+     0.017402155666489318
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.0006290629291754,
+     1.0006290629291754
+    ],
+    "max": [
+     1.000799520389,
+     1.000799520389
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 1.2797227223324396e-8,
+     "tangential": 1.2796586941725516e-8
+    },
+    {
+     "member": 1,
+     "magnitude": 1.2797227223324396e-8,
+     "tangential": 1.2796586941725516e-8
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 1249.7502746142331,
+    "magnitude": 3.0673251358683034e-13,
+    "member": 0,
+    "geometricFactor": 0.0007995200269766615
+   },
+   "jumpCount": 10,
+   "jumpsFirst": [
+    {
+     "T": 1249.7502746142331,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 3.0673251358683034e-13,
+     "geometricFactor": 0.0007995200269766615
+    },
+    {
+     "T": 1249.7502746142331,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 3.0673251358683034e-13,
+     "geometricFactor": 0.0007995200269766615
+    },
+    {
+     "T": 2499.502678336196,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 2.4484388454803397e-16,
+     "geometricFactor": 0.0007995163656520411
+    },
+    {
+     "T": 2499.502678336196,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 2.4484388454803397e-16,
+     "geometricFactor": 0.0007995163656520411
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 2.9331204132176936e-11,
+    "maxResidualFloor": 1.7580525539175924e-10,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.9999415936487318,
+    "bracketMax": 1.0000609137349084,
+    "RdotMax": 0.0030115081477386507,
+    "RddotMax": 4.8625697149791114e-8,
+    "pMin": 0.9969884918522613,
+    "pMax": 1.0000000093292727,
+    "DtMin": 1.0003998933845035
+   },
+   "steps": 650,
+   "rejects": 10,
+   "nfev": 4628,
+   "wallSeconds": 0.182,
+   "stepSizes": {
+    "min": 1.8026390832819743,
+    "max": 312
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/SC-2-refine.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/SC-2-refine.summary.json",
+    "lines": 661,
+    "case": "reference/priorities/master-equation-closure/binary-research/evidence/weber-delayed-pair-cases/SC-2.json"
+   },
+   "recordedAt": "2026-10-06T03:30:51.715Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "SC-3",
+   "name": "SC-3",
+   "refine": false,
+   "method": "dp54",
+   "rtol": 1e-10,
+   "hmax": 12.5,
+   "past": "rigid-circle,rigid-circle",
+   "pastRecords": null,
+   "tEnd": 3142,
+   "termination": {
+    "reason": "final-time",
+    "T": 3142
+   },
+   "firstEvent": null,
+   "eventCounts": {
+    "acceleration-jump": 18
+   },
+   "initial": {
+    "r": 50,
+    "h": 10,
+    "rhoH": 25,
+    "eps": -0.02,
+    "speeds": [
+     0.1,
+     0.1
+    ],
+    "det": [
+     1.0197059558177204,
+     1.0197059558177204
+    ]
+   },
+   "final": {
+    "T": 3142,
+    "r": 159.80800261787712,
+    "rdot": 0.004193324531831608,
+    "h": 14.966953000752014,
+    "rhoH": 56.002420531679924,
+    "eps": -0.00812040745414223,
+    "speeds": [
+     0.046874835096336505,
+     0.046874835096336505
+    ],
+    "det": [
+     1.006206556887318,
+     1.006206556887318
+    ]
+   },
+   "hStart": 10,
+   "hEnd": 14.966953000752014,
+   "hChangeRelative": 0.49669530007520135,
+   "rhoH2Slope": {
+    "full": 0.7628449960604272,
+    "firstHalf": 1.1271348964219272,
+    "secondHalf": 0.5100091158386816,
+    "grid": "uniform",
+    "points": 1193
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 0.805741744966325,
+    "firstHalf": 1.2413026411068349,
+    "secondHalf": 0.5298274644334863
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 50,
+    "max": 159.80800261787712
+   },
+   "turningCount": 0,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.10723902870725234,
+     0.10723902870725234
+    ],
+    "min": [
+     0.04687456554176599,
+     0.04687456554176599
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.006206556887318,
+     1.006206556887318
+    ],
+    "max": [
+     1.0197059558177204,
+     1.0197059558177204
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.00003978446089556575,
+     "tangential": 0.00003973395893251957
+    },
+    {
+     "member": 1,
+     "magnitude": 0.00003978446089556575,
+     "tangential": 0.00003973395893251957
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 49.7566427603588,
+    "magnitude": 1.1547194636255114e-7,
+    "member": 0,
+    "geometricFactor": 0.019700532805957953
+   },
+   "jumpCount": 18,
+   "jumpsFirst": [
+    {
+     "T": 49.7566427603588,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 1.1547194636255114e-7,
+     "geometricFactor": 0.019700532805957953
+    },
+    {
+     "T": 49.7566427603588,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 1.1547194636255114e-7,
+     "geometricFactor": 0.019700532805957953
+    },
+    {
+     "T": 99.56412230971337,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 2.170515267354173e-9,
+     "geometricFactor": 0.019646310893790698
+    },
+    {
+     "T": 99.56412230971337,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 2.170515267354173e-9,
+     "geometricFactor": 0.019646310893790698
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 3.410605131648481e-13,
+    "maxResidualFloor": 2.9328998495075723e-12,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.9955177043612247,
+    "bracketMax": 1.0063449604219334,
+    "RdotMax": 0.060932479451341615,
+    "RddotMax": 0.00012663665797508797,
+    "pMin": 0.9390675205486584,
+    "pMax": 1.000005858319271,
+    "DtMin": 1.006164599958526
+   },
+   "steps": 297,
+   "rejects": 14,
+   "nfev": 2221,
+   "wallSeconds": 0.072,
+   "stepSizes": {
+    "min": 0.23887085285333903,
+    "max": 12.5
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/SC-3.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/SC-3.summary.json",
+    "lines": 316,
+    "case": "reference/priorities/master-equation-closure/binary-research/evidence/weber-delayed-pair-cases/SC-3.json"
+   },
+   "recordedAt": "2026-10-06T03:30:51.943Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "SC-3-refine",
+   "name": "SC-3",
+   "refine": true,
+   "method": "dp54",
+   "rtol": 1e-12,
+   "hmax": 12.5,
+   "past": "rigid-circle,rigid-circle",
+   "pastRecords": null,
+   "tEnd": 3142,
+   "termination": {
+    "reason": "final-time",
+    "T": 3142
+   },
+   "firstEvent": null,
+   "eventCounts": {
+    "acceleration-jump": 18
+   },
+   "initial": {
+    "r": 50,
+    "h": 10,
+    "rhoH": 25,
+    "eps": -0.02,
+    "speeds": [
+     0.1,
+     0.1
+    ],
+    "det": [
+     1.0197059558177204,
+     1.0197059558177204
+    ]
+   },
+   "final": {
+    "T": 3142,
+    "r": 159.8080026092792,
+    "rdot": 0.004193324529074446,
+    "h": 14.966953000765585,
+    "rhoH": 56.00242053178149,
+    "eps": -0.008120407454347386,
+    "speeds": [
+     0.04687483509883415,
+     0.04687483509883415
+    ],
+    "det": [
+     1.0062065568876597,
+     1.0062065568876597
+    ]
+   },
+   "hStart": 10,
+   "hEnd": 14.966953000765585,
+   "hChangeRelative": 0.4966953000765585,
+   "rhoH2Slope": {
+    "full": 0.7628101769876626,
+    "firstHalf": 1.1268808226079043,
+    "secondHalf": 0.5099927367813392,
+    "grid": "uniform",
+    "points": 1925
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 0.833954693539049,
+    "firstHalf": 1.363901493978932,
+    "secondHalf": 0.6021453035339952
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 50,
+    "max": 159.8080026092792
+   },
+   "turningCount": 0,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.1072410053126561,
+     0.1072410053126561
+    ],
+    "min": [
+     0.046874616868369835,
+     0.046874616868369835
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.0062065568876597,
+     1.0062065568876597
+    ],
+    "max": [
+     1.0197059558177204,
+     1.0197059558177204
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.00003978446089556575,
+     "tangential": 0.00003973395893251957
+    },
+    {
+     "member": 1,
+     "magnitude": 0.00003978446089556575,
+     "tangential": 0.00003973395893251957
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 49.756642760182224,
+    "magnitude": 1.1547194636167251e-7,
+    "member": 0,
+    "geometricFactor": 0.01970053280595492
+   },
+   "jumpCount": 18,
+   "jumpsFirst": [
+    {
+     "T": 49.756642760182224,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 1.1547194636167251e-7,
+     "geometricFactor": 0.01970053280595492
+    },
+    {
+     "T": 49.756642760182224,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 1.1547194636167251e-7,
+     "geometricFactor": 0.01970053280595492
+    },
+    {
+     "T": 99.56412230957716,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 2.1705152654849846e-9,
+     "geometricFactor": 0.019646310893775845
+    },
+    {
+     "T": 99.56412230957716,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 2.1705152654849846e-9,
+     "geometricFactor": 0.019646310893775845
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 3.694822225952521e-13,
+    "maxResidualFloor": 2.9329015098093376e-12,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.9955177026224918,
+    "bracketMax": 1.006345771199245,
+    "RdotMax": 0.06093331929882584,
+    "RddotMax": 0.00012665209170263162,
+    "pMin": 0.9390666807011742,
+    "pMax": 1.00000604489623,
+    "DtMin": 1.0061645999572297
+   },
+   "steps": 480,
+   "rejects": 11,
+   "nfev": 3484,
+   "wallSeconds": 0.127,
+   "stepSizes": {
+    "min": 0.17504217878729522,
+    "max": 12.5
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/SC-3-refine.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/SC-3-refine.summary.json",
+    "lines": 499,
+    "case": "reference/priorities/master-equation-closure/binary-research/evidence/weber-delayed-pair-cases/SC-3.json"
+   },
+   "recordedAt": "2026-10-06T03:30:52.210Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "WP-2",
+   "name": "WP-2",
+   "refine": false,
+   "method": "dp54",
+   "rtol": 1e-10,
+   "hmax": 0.476,
+   "past": "section9-backward",
+   "pastRecords": 2025,
+   "tEnd": 476.09,
+   "termination": {
+    "reason": "final-time",
+    "T": 476.09
+   },
+   "firstEvent": {
+    "type": "event",
+    "name": "turning",
+    "T": 0.884447979415924,
+    "r": 2.998231370603655,
+    "h": 2.3901086839618078,
+    "turn": "minimum"
+   },
+   "eventCounts": {
+    "turning": 1,
+    "acceleration-jump": 16
+   },
+   "initial": {
+    "r": 3,
+    "h": 2.20454076850488,
+    "rhoH": 1.2150000000000216,
+    "eps": -0.39666666666666184,
+    "speeds": [
+     0.36742346141748,
+     0.36742346141748
+    ],
+    "det": [
+     1.266279625017393,
+     1.266279625017393
+    ]
+   },
+   "final": {
+    "T": 476.09,
+    "r": 308.8333529982147,
+    "rdot": 0.6301010420198659,
+    "h": 6.1968255532594725,
+    "rhoH": 9.600161734382391,
+    "eps": 0.19352455608227936,
+    "speeds": [
+     0.31521022284234956,
+     0.3152102228420242
+    ],
+    "det": [
+     1.0024462556519016,
+     1.002446255651901
+    ]
+   },
+   "hStart": 2.20454076850488,
+   "hEnd": 6.1968255532594725,
+   "hChangeRelative": 1.8109371538010437,
+   "rhoH2Slope": {
+    "full": 0.059697745333823576,
+    "firstHalf": 0.17735932224560233,
+    "secondHalf": 0.008193631656548897,
+    "grid": "uniform",
+    "points": 4001
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 0.10577075856094895,
+    "firstHalf": 0.3338780378464478,
+    "secondHalf": 0.00887469842827591
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 2.9982315600036364,
+    "max": 308.8333529982147
+   },
+   "turningCount": 1,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.5441308356901785,
+     0.5441308356899747
+    ],
+    "min": [
+     0.31521022284234956,
+     0.3152102228420242
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.0024462556519016,
+     1.002446255651901
+    ],
+    "max": [
+     1.27418752469562,
+     1.2741875246956118
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.034894169596515597,
+     "tangential": 0.03438203231123304
+    },
+    {
+     "member": 1,
+     "magnitude": 0.034894169596515597,
+     "tangential": 0.03438203231123304
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 2.8046726270213522,
+    "magnitude": 0.003978658379307605,
+    "member": 0,
+    "geometricFactor": 0.274138250876341
+   },
+   "jumpCount": 16,
+   "jumpsFirst": [
+    {
+     "T": 2.8046726270213522,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 0.003978658379307605,
+     "geometricFactor": 0.274138250876341
+    },
+    {
+     "T": 2.8046726270213522,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 0.0039786583793066654,
+     "geometricFactor": 0.27413825087633276
+    },
+    {
+     "T": 5.830028170603834,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 0.00030062390097290774,
+     "geometricFactor": 0.20828115833204305
+    },
+    {
+     "T": 5.830028170603834,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 0.00030062390103583153,
+     "geometricFactor": 0.20828115833206365
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 9.947598300641403e-14,
+    "maxResidualFloor": 6.320208625126889e-13,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.8468094469878873,
+    "bracketMax": 1.2021794132206731,
+    "RdotMax": 0.5368031379397737,
+    "RddotMax": 0.07146200220431952,
+    "pMin": 0.46319686206022626,
+    "pMax": 0.9987372521787816,
+    "DtMin": 1.1404405595568043
+   },
+   "steps": 1102,
+   "rejects": 7,
+   "nfev": 7801,
+   "wallSeconds": 0.373,
+   "stepSizes": {
+    "min": 0.001757362224708814,
+    "max": 0.476
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/WP-2.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/WP-2.summary.json",
+    "lines": 129,
+    "case": "reference/priorities/master-equation-closure/binary-research/evidence/weber-delayed-pair-cases/WP-2.json"
+   },
+   "recordedAt": "2026-10-06T03:30:52.725Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "WP-2-refine",
+   "name": "WP-2",
+   "refine": true,
+   "method": "dp54",
+   "rtol": 1e-12,
+   "hmax": 0.476,
+   "past": "section9-backward",
+   "pastRecords": 2025,
+   "tEnd": 476.09,
+   "termination": {
+    "reason": "final-time",
+    "T": 476.09
+   },
+   "firstEvent": {
+    "type": "event",
+    "name": "turning",
+    "T": 0.8844479794067226,
+    "r": 2.9982313706044983,
+    "h": 2.3901086839606975,
+    "turn": "minimum"
+   },
+   "eventCounts": {
+    "turning": 1,
+    "acceleration-jump": 16
+   },
+   "initial": {
+    "r": 3,
+    "h": 2.20454076850488,
+    "rhoH": 1.2150000000000216,
+    "eps": -0.39666666666666184,
+    "speeds": [
+     0.36742346141748,
+     0.36742346141748
+    ],
+    "det": [
+     1.266279625017393,
+     1.266279625017393
+    ]
+   },
+   "final": {
+    "T": 476.09,
+    "r": 308.83335298976834,
+    "rdot": 0.6301010420010273,
+    "h": 6.196825553225054,
+    "rhoH": 9.600161734275748,
+    "eps": 0.1935245560701991,
+    "speeds": [
+     0.31521022283275085,
+     0.31521022283280775
+    ],
+    "det": [
+     1.002446255651985,
+     1.0024462556519853
+    ]
+   },
+   "hStart": 2.20454076850488,
+   "hEnd": 6.196825553225054,
+   "hChangeRelative": 1.810937153785431,
+   "rhoH2Slope": {
+    "full": 0.05969774533424027,
+    "firstHalf": 0.17735932224580475,
+    "secondHalf": 0.008193631656824404,
+    "grid": "uniform",
+    "points": 4001
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 0.1463062005670949,
+    "firstHalf": 0.554893564583103,
+    "secondHalf": 0.01101008772264129
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 2.998232316886816,
+    "max": 308.83335298976834
+   },
+   "turningCount": 1,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.5441323236752945,
+     0.5441323236752972
+    ],
+    "min": [
+     0.31521022283275085,
+     0.31521022283280775
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.002446255651985,
+     1.0024462556519853
+    ],
+    "max": [
+     1.274187974426579,
+     1.2741879744265785
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.034894169596515597,
+     "tangential": 0.03438203231123304
+    },
+    {
+     "member": 1,
+     "magnitude": 0.034894169596515597,
+     "tangential": 0.03438203231123304
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 2.804672627028497,
+    "magnitude": 0.003978658379295283,
+    "member": 0,
+    "geometricFactor": 0.27413825087596133
+   },
+   "jumpCount": 16,
+   "jumpsFirst": [
+    {
+     "T": 2.804672627028497,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 0.003978658379295283,
+     "geometricFactor": 0.27413825087596133
+    },
+    {
+     "T": 2.804672627028497,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 0.003978658379295154,
+     "geometricFactor": 0.27413825087595994
+    },
+    {
+     "T": 5.830028170631352,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 0.00030062390088788786,
+     "geometricFactor": 0.20828115833172212
+    },
+    {
+     "T": 5.830028170631352,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 0.0003006239010379085,
+     "geometricFactor": 0.2082811583317252
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 9.947598300641403e-14,
+    "maxResidualFloor": 6.320208623885702e-13,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.8468094469498326,
+    "bracketMax": 1.2022736248111034,
+    "RdotMax": 0.5368060692904334,
+    "RddotMax": 0.07149319687857661,
+    "pMin": 0.4631939307095666,
+    "pMax": 0.9987374358366649,
+    "DtMin": 1.1404287744312427
+   },
+   "steps": 1326,
+   "rejects": 8,
+   "nfev": 9369,
+   "wallSeconds": 0.298,
+   "stepSizes": {
+    "min": 0.0014726814952541467,
+    "max": 0.476
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/WP-2-refine.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/WP-2-refine.summary.json",
+    "lines": 151,
+    "case": "reference/priorities/master-equation-closure/binary-research/evidence/weber-delayed-pair-cases/WP-2.json"
+   },
+   "recordedAt": "2026-10-06T03:30:53.155Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "WP-3",
+   "name": "WP-3",
+   "refine": false,
+   "method": "dp54",
+   "rtol": 1e-10,
+   "hmax": 0.0889,
+   "past": "section9-backward",
+   "pastRecords": 2001,
+   "tEnd": 88.86,
+   "termination": {
+    "reason": "speed-equality",
+    "T": 0.5684620176966276,
+    "message": "speed-equality: receiver 0 speed 1.0000000000202272 reached c_f (census change outside the regular chart; a self root may appear)",
+    "info": {
+     "T": 0.5684620178066533,
+     "i": 0,
+     "speed": 1.0000000000202272,
+     "retry": true,
+     "event": "speed-equality"
+    },
+    "event": {
+     "type": "event",
+     "name": "speed-equality",
+     "T": 0.5684620176966276,
+     "boundaryBefore": 0.5684620178341596,
+     "message": "speed-equality: receiver 0 speed 1.0000000000202272 reached c_f (census change outside the regular chart; a self root may appear)",
+     "info": {
+      "T": 0.5684620178066533,
+      "i": 0,
+      "speed": 1.0000000000202272,
+      "retry": true,
+      "event": "speed-equality"
+     },
+     "speeds": [
+      0.9999999999726227,
+      0.999999999972628
+     ],
+     "stop": true
+    }
+   },
+   "firstEvent": {
+    "type": "event",
+    "name": "speed-equality",
+    "T": 0.5684620176966276,
+    "boundaryBefore": 0.5684620178341596,
+    "message": "speed-equality: receiver 0 speed 1.0000000000202272 reached c_f (census change outside the regular chart; a self root may appear)",
+    "info": {
+     "T": 0.5684620178066533,
+     "i": 0,
+     "speed": 1.0000000000202272,
+     "retry": true,
+     "event": "speed-equality"
+    },
+    "speeds": [
+     0.9999999999726227,
+     0.999999999972628
+    ],
+    "stop": true
+   },
+   "eventCounts": {
+    "speed-equality": 1
+   },
+   "initial": {
+    "r": 1,
+    "h": 1.4142142694797046,
+    "rhoH": 0.5000005000000036,
+    "eps": -0.9999959999999928,
+    "speeds": [
+     0.7071074882929778,
+     0.7071074882929778
+    ],
+    "det": [
+     1.6193556021312805,
+     1.619355602131277
+    ]
+   },
+   "final": {
+    "T": 0.5684620176966276,
+    "r": 1.1244626809992613,
+    "rdot": 0.5205363732813298,
+    "h": 2.1714192178185012,
+    "rhoH": 1.1787653548778778,
+    "eps": 0.4623394680580044,
+    "speeds": [
+     0.9999999999726227,
+     0.999999999972628
+    ],
+    "det": [
+     1.5592069236456063,
+     1.5592069236455999
+    ]
+   },
+   "hStart": 1.4142142694797046,
+   "hEnd": 2.1714192178185012,
+   "hChangeRelative": 0.5354244860061944,
+   "rhoH2Slope": {
+    "full": 1.9124034997106603,
+    "firstHalf": 1.1642037703692263,
+    "secondHalf": 2.794681010249358,
+    "grid": "uniform",
+    "points": 229
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 2.2035754529593765,
+    "firstHalf": 1.5072862824116116,
+    "secondHalf": 3.7040735205121065
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 1,
+    "max": 1.1244626809992613
+   },
+   "turningCount": 0,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.9999999999726227,
+     0.999999999972628
+    ],
+    "min": [
+     0.7071074882929778,
+     0.7071074882929778
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.5592069236456063,
+     1.5592069236455999
+    ],
+    "max": [
+     1.6193556021312805,
+     1.619355602131277
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.5692983744902674,
+     "tangential": 0.5325911224535718
+    },
+    {
+     "member": 1,
+     "magnitude": 0.5692983744903161,
+     "tangential": 0.5325911224536918
+    }
+   ],
+   "firstGenerationJump": null,
+   "jumpCount": 0,
+   "jumpsFirst": [],
+   "rootDiagnostics": {
+    "maxResidual": 4.9960036108132044e-15,
+    "maxResidualFloor": 2.170233403947578e-15,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.9242049690412595,
+    "bracketMax": 1.3072856696678803,
+    "RdotMax": 0.07957221078658216,
+    "RddotMax": 0.3688895937081259,
+    "pMin": 0.9204277892134178,
+    "pMax": 1.0043131760652966,
+    "DtMin": 1.39362262777833
+   },
+   "steps": 56,
+   "rejects": 43,
+   "nfev": 517,
+   "wallSeconds": 0.035,
+   "stepSizes": {
+    "min": 1.1002561775692827e-10,
+    "max": 0.021336358636225027
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/WP-3.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/WP-3.summary.json",
+    "lines": 16,
+    "case": "reference/priorities/master-equation-closure/binary-research/evidence/weber-delayed-pair-cases/WP-3.json"
+   },
+   "recordedAt": "2026-10-06T03:30:53.388Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "WP-3-refine",
+   "name": "WP-3",
+   "refine": true,
+   "method": "dp54",
+   "rtol": 1e-12,
+   "hmax": 0.0889,
+   "past": "section9-backward",
+   "pastRecords": 2001,
+   "tEnd": 88.86,
+   "termination": {
+    "reason": "speed-equality",
+    "T": 0.568462017715149,
+    "message": "speed-equality: receiver 0 speed 1.0000000000312204 reached c_f (census change outside the regular chart; a self root may appear)",
+    "info": {
+     "T": 0.5684620178325631,
+     "i": 0,
+     "speed": 1.0000000000312204,
+     "retry": true,
+     "event": "speed-equality"
+    },
+    "event": {
+     "type": "event",
+     "name": "speed-equality",
+     "T": 0.568462017715149,
+     "boundaryBefore": 0.5684620178619165,
+     "message": "speed-equality: receiver 0 speed 1.0000000000312204 reached c_f (census change outside the regular chart; a self root may appear)",
+     "info": {
+      "T": 0.5684620178325631,
+      "i": 0,
+      "speed": 1.0000000000312204,
+      "retry": true,
+      "event": "speed-equality"
+     },
+     "speeds": [
+      0.9999999999804193,
+      0.9999999999804278
+     ],
+     "stop": true
+    }
+   },
+   "firstEvent": {
+    "type": "event",
+    "name": "speed-equality",
+    "T": 0.568462017715149,
+    "boundaryBefore": 0.5684620178619165,
+    "message": "speed-equality: receiver 0 speed 1.0000000000312204 reached c_f (census change outside the regular chart; a self root may appear)",
+    "info": {
+     "T": 0.5684620178325631,
+     "i": 0,
+     "speed": 1.0000000000312204,
+     "retry": true,
+     "event": "speed-equality"
+    },
+    "speeds": [
+     0.9999999999804193,
+     0.9999999999804278
+    ],
+    "stop": true
+   },
+   "eventCounts": {
+    "speed-equality": 1
+   },
+   "initial": {
+    "r": 1,
+    "h": 1.4142142694797046,
+    "rhoH": 0.5000005000000036,
+    "eps": -0.9999959999999928,
+    "speeds": [
+     0.7071074882929778,
+     0.7071074882929778
+    ],
+    "det": [
+     1.6193556021312805,
+     1.619355602131277
+    ]
+   },
+   "final": {
+    "T": 0.568462017715149,
+    "r": 1.124462681009114,
+    "rdot": 0.5205363732989368,
+    "h": 2.171419217850355,
+    "rhoH": 1.1787653549124617,
+    "eps": 0.46233946811897275,
+    "speeds": [
+     0.9999999999804193,
+     0.9999999999804278
+    ],
+    "det": [
+     1.5592069236414745,
+     1.5592069236414714
+    ]
+   },
+   "hStart": 1.4142142694797046,
+   "hEnd": 2.171419217850355,
+   "hChangeRelative": 0.5354244860287183,
+   "rhoH2Slope": {
+    "full": 1.9118994592582879,
+    "firstHalf": 1.1660167387599152,
+    "secondHalf": 2.794347412227033,
+    "grid": "uniform",
+    "points": 389
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 2.0394364738453397,
+    "firstHalf": 1.1456584566398194,
+    "secondHalf": 2.987873589651947
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 1,
+    "max": 1.124462681009114
+   },
+   "turningCount": 0,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.9999999999804193,
+     0.9999999999804278
+    ],
+    "min": [
+     0.7071074882929778,
+     0.7071074882929778
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.5592069236414745,
+     1.5592069236414714
+    ],
+    "max": [
+     1.6193556021312805,
+     1.619355602131277
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.5692983744902674,
+     "tangential": 0.5325911224535718
+    },
+    {
+     "member": 1,
+     "magnitude": 0.5692983744903161,
+     "tangential": 0.5325911224536918
+    }
+   ],
+   "firstGenerationJump": null,
+   "jumpCount": 0,
+   "jumpsFirst": [],
+   "rootDiagnostics": {
+    "maxResidual": 5.551115123125783e-15,
+    "maxResidualFloor": 2.1702334039654763e-15,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.9242049690412595,
+    "bracketMax": 1.307285669678445,
+    "RdotMax": 0.07957221079198729,
+    "RddotMax": 0.36888959372020963,
+    "pMin": 0.9204277892080127,
+    "pMax": 1.004315770303645,
+    "DtMin": 1.39362262777833
+   },
+   "steps": 96,
+   "rejects": 31,
+   "nfev": 745,
+   "wallSeconds": 0.04,
+   "stepSizes": {
+    "min": 1.1741403054101226e-10,
+    "max": 0.008602997311755416
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/WP-3-refine.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/WP-3-refine.summary.json",
+    "lines": 26,
+    "case": "reference/priorities/master-equation-closure/binary-research/evidence/weber-delayed-pair-cases/WP-3.json"
+   },
+   "recordedAt": "2026-10-06T03:30:53.569Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "WP-1",
+   "name": "WP-1",
+   "refine": false,
+   "method": "dp54",
+   "rtol": 1e-10,
+   "hmax": 0.71,
+   "past": "section9-backward",
+   "pastRecords": 2001,
+   "tEnd": 710.86,
+   "termination": {
+    "reason": "final-time",
+    "T": 710.86
+   },
+   "firstEvent": null,
+   "eventCounts": {
+    "acceleration-jump": 20
+   },
+   "initial": {
+    "r": 4,
+    "h": 2.828709953317913,
+    "rhoH": 2.0003999999999573,
+    "eps": -0.24993125000000532,
+    "speeds": [
+     0.35794552658190515,
+     0.3570714214271388
+    ],
+    "det": [
+     1.2172169888501319,
+     1.2066160485189894
+    ]
+   },
+   "final": {
+    "T": 710.86,
+    "r": 340.90769804059636,
+    "rdot": 0.4549853047011954,
+    "h": 6.6718963172124495,
+    "rhoH": 11.128550116908261,
+    "eps": 0.09843787124625612,
+    "speeds": [
+     0.1712073427775103,
+     0.28590300785811323
+    ],
+    "det": [
+     1.0022709414499664,
+     1.002494753615993
+    ]
+   },
+   "hStart": 2.828709953317913,
+   "hEnd": 6.6718963172124495,
+   "hChangeRelative": 1.3586357128579767,
+   "rhoH2Slope": {
+    "full": 0.05435594660620251,
+    "firstHalf": 0.15743631430844252,
+    "secondHalf": 0.008168098452141273,
+    "grid": "uniform",
+    "points": 4001
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 0.10047125642222775,
+    "firstHalf": 0.3166119034435575,
+    "secondHalf": 0.009054361292264383
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 4,
+    "max": 340.90769804059636
+   },
+   "turningCount": 0,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.4040494361185471,
+     0.5082557479458808
+    ],
+    "min": [
+     0.1712073427775103,
+     0.28590300785811323
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.0022709414499664,
+     1.002494753615993
+    ],
+    "max": [
+     1.218091020431038,
+     1.2066160485189894
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.020347805772077694,
+     "tangential": 0.019897836898726422
+    },
+    {
+     "member": 1,
+     "magnitude": 0.0218194645831484,
+     "tangential": 0.021581964126246772
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 3.633374198820583,
+    "magnitude": 0.002117931662271492,
+    "member": 1,
+    "geometricFactor": 0.19747590717366187
+   },
+   "jumpCount": 20,
+   "jumpsFirst": [
+    {
+     "T": 3.633374198820583,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 0.002117931662271492,
+     "geometricFactor": 0.19747590717366187
+    },
+    {
+     "T": 4.02602268718885,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 0.0013036087392457826,
+     "geometricFactor": 0.2119234401947881
+    },
+    {
+     "T": 8.049783075642225,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 0.00015480255126411405,
+     "geometricFactor": 0.16308851974419705
+    },
+    {
+     "T": 8.193113146224396,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 0.00006549263220135274,
+     "geometricFactor": 0.14697075076315255
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 1.1368683772161603e-13,
+    "maxResidualFloor": 8.908567029150346e-13,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.8786680066755289,
+    "bracketMax": 1.1558869708008284,
+    "RdotMax": 0.47045573975508737,
+    "RddotMax": 0.04281643737105224,
+    "pMin": 0.5295442602449126,
+    "pMax": 1.0050479823439926,
+    "DtMin": 1.0752408896521641
+   },
+   "steps": 1128,
+   "rejects": 6,
+   "nfev": 8037,
+   "wallSeconds": 0.266,
+   "stepSizes": {
+    "min": 0.00251525378311257,
+    "max": 0.71
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/WP-1.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/WP-1.summary.json",
+    "lines": 134,
+    "case": "reference/priorities/master-equation-closure/binary-research/evidence/weber-delayed-pair-cases/WP-1.json"
+   },
+   "recordedAt": "2026-10-06T03:30:53.978Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "WP-1-refine",
+   "name": "WP-1",
+   "refine": true,
+   "method": "dp54",
+   "rtol": 1e-12,
+   "hmax": 0.71,
+   "past": "section9-backward",
+   "pastRecords": 2001,
+   "tEnd": 710.86,
+   "termination": {
+    "reason": "final-time",
+    "T": 710.86
+   },
+   "firstEvent": null,
+   "eventCounts": {
+    "acceleration-jump": 20
+   },
+   "initial": {
+    "r": 4,
+    "h": 2.828709953317913,
+    "rhoH": 2.0003999999999573,
+    "eps": -0.24993125000000532,
+    "speeds": [
+     0.35794552658190515,
+     0.3570714214271388
+    ],
+    "det": [
+     1.2172169888501319,
+     1.2066160485189894
+    ]
+   },
+   "final": {
+    "T": 710.86,
+    "r": 340.90769803827294,
+    "rdot": 0.4549853046976846,
+    "h": 6.671896317224658,
+    "rhoH": 11.12855011694899,
+    "eps": 0.09843787124461685,
+    "speeds": [
+     0.17120734277714905,
+     0.285903007855373
+    ],
+    "det": [
+     1.0022709414499869,
+     1.002494753616012
+    ]
+   },
+   "hStart": 2.828709953317913,
+   "hEnd": 6.671896317224658,
+   "hChangeRelative": 1.3586357128622928,
+   "rhoH2Slope": {
+    "full": 0.05435594660699111,
+    "firstHalf": 0.1574363143109714,
+    "secondHalf": 0.008168098452184741,
+    "grid": "uniform",
+    "points": 4001
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 0.13290289368975172,
+    "firstHalf": 0.5723498525352695,
+    "secondHalf": 0.012158020808198371
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 4,
+    "max": 340.90769803827294
+   },
+   "turningCount": 0,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.40404944751449534,
+     0.5082550950245046
+    ],
+    "min": [
+     0.17120734277714905,
+     0.285903007855373
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.0022709414499869,
+     1.002494753616012
+    ],
+    "max": [
+     1.218091266785944,
+     1.2066160485189894
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.020347805772077694,
+     "tangential": 0.019897836898726422
+    },
+    {
+     "member": 1,
+     "magnitude": 0.0218194645831484,
+     "tangential": 0.021581964126246772
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 3.6333741988206794,
+    "magnitude": 0.002117931662300958,
+    "member": 1,
+    "geometricFactor": 0.19747590717364147
+   },
+   "jumpCount": 20,
+   "jumpsFirst": [
+    {
+     "T": 3.6333741988206794,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 0.002117931662300958,
+     "geometricFactor": 0.19747590717364147
+    },
+    {
+     "T": 4.026022687189641,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 0.0013036087392467326,
+     "geometricFactor": 0.21192344019475548
+    },
+    {
+     "T": 8.049783075642958,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 0.00015480255139541327,
+     "geometricFactor": 0.16308851974423402
+    },
+    {
+     "T": 8.193113146235861,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 0.00006549263219739524,
+     "geometricFactor": 0.14697075076309232
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 9.947598300641403e-14,
+    "maxResidualFloor": 8.910408900539619e-13,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.8786675824752604,
+    "bracketMax": 1.1558961040188689,
+    "RdotMax": 0.4704554076302643,
+    "RddotMax": 0.04281877951755186,
+    "pMin": 0.5295445923697357,
+    "pMax": 1.0050488338562378,
+    "DtMin": 1.0752405406758379
+   },
+   "steps": 1419,
+   "rejects": 11,
+   "nfev": 10092,
+   "wallSeconds": 0.335,
+   "stepSizes": {
+    "min": 0.001123931482013063,
+    "max": 0.71
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/WP-1-refine.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/WP-1-refine.summary.json",
+    "lines": 163,
+    "case": "reference/priorities/master-equation-closure/binary-research/evidence/weber-delayed-pair-cases/WP-1.json"
+   },
+   "recordedAt": "2026-10-06T03:30:54.467Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "SC-1-rk4",
+   "name": "SC-1-rk4",
+   "refine": false,
+   "method": "rk4",
+   "rtol": 1e-10,
+   "hmax": 50,
+   "past": "rigid-circle,rigid-circle",
+   "pastRecords": null,
+   "tEnd": 25133,
+   "termination": {
+    "reason": "final-time",
+    "T": 25133
+   },
+   "firstEvent": {
+    "type": "event",
+    "name": "turning",
+    "T": 16519.866428570764,
+    "r": 358.3622218614903,
+    "h": 25.312933952366677,
+    "turn": "maximum"
+   },
+   "eventCounts": {
+    "acceleration-jump": 22,
+    "turning": 1
+   },
+   "initial": {
+    "r": 200,
+    "h": 20,
+    "rhoH": 100,
+    "eps": -0.005,
+    "speeds": [
+     0.05,
+     0.05
+    ],
+    "det": [
+     1.0049813445458469,
+     1.0049813445458469
+    ]
+   },
+   "final": {
+    "T": 25133,
+    "r": 334.20064911688297,
+    "rdot": -0.0002490256082132575,
+    "h": 27.189227662452694,
+    "rhoH": 184.8135252201707,
+    "eps": -0.002674998355318397,
+    "speeds": [
+     0.040678190043194645,
+     0.040678190043194645
+    ],
+    "det": [
+     1.0029865979212245,
+     1.0029865979212245
+    ]
+   },
+   "hStart": 20,
+   "hEnd": 27.189227662452694,
+   "hChangeRelative": 0.3594613831226347,
+   "rhoH2Slope": {
+    "full": 0.9015086574275614,
+    "firstHalf": 1.02580531288837,
+    "secondHalf": 0.902133196454429,
+    "grid": "uniform",
+    "points": 4001
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 0.9019355777852367,
+    "firstHalf": 1.027010563052106,
+    "secondHalf": 0.9018737423384341
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 200,
+    "max": 358.36222169802505
+   },
+   "turningCount": 1,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.051758717286352486,
+     0.051758717286352486
+    ],
+    "min": [
+     0.03512238641730192,
+     0.03512238641730192
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.0027838111320997,
+     1.0027838111320997
+    ],
+    "max": [
+     1.0049813445458469,
+     1.0049813445458469
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.0000012483094333291074,
+     "tangential": 0.0000012479177552783677
+    },
+    {
+     "member": 1,
+     "magnitude": 0.0000012483094333291074,
+     "tangential": 0.0000012479177552783677
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 199.75170380088997,
+    "magnitude": 4.642989770989998e-10,
+    "member": 0,
+    "geometricFactor": 0.004981256979084551
+   },
+   "jumpCount": 22,
+   "jumpsFirst": [
+    {
+     "T": 199.75170380088997,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 4.642989770989998e-10,
+     "geometricFactor": 0.004981256979084551
+    },
+    {
+     "T": 199.75170380088997,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 4.642989770989998e-10,
+     "geometricFactor": 0.004981256979084551
+    },
+    {
+     "T": 399.516577930464,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 2.288748167479156e-12,
+     "geometricFactor": 0.004980373354939556
+    },
+    {
+     "T": 399.516577930464,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 2.288748167479156e-12,
+     "geometricFactor": 0.004980373354939556
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 7.048583938740194e-12,
+    "maxResidualFloor": 2.2620145155061043e-11,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.9992356114116164,
+    "bracketMax": 1.0008877950636026,
+    "RdotMax": 0.017299550711763145,
+    "RddotMax": 0.000004423585185006703,
+    "pMin": 0.9827004492882369,
+    "pMax": 1.0042269555528038,
+    "DtMin": 0.9993278905016052
+   },
+   "steps": 2520,
+   "rejects": 0,
+   "nfev": 10101,
+   "wallSeconds": 0.478,
+   "stepSizes": {
+    "min": 0.07363801123221947,
+    "max": 10
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/SC-1-rk4.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/SC-1-rk4.summary.json",
+    "lines": 2544,
+    "case": ".tmp/weber-delayed-pair/SC-1-rk4.json"
+   },
+   "recordedAt": "2026-10-06T03:32:01.422Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "WP-2-rk4",
+   "name": "WP-2-rk4",
+   "refine": false,
+   "method": "rk4",
+   "rtol": 1e-10,
+   "hmax": 0.476,
+   "past": "section9-backward",
+   "pastRecords": 2025,
+   "tEnd": 476.09,
+   "termination": {
+    "reason": "final-time",
+    "T": 476.09
+   },
+   "firstEvent": {
+    "type": "event",
+    "name": "turning",
+    "T": 0.8844479878482363,
+    "r": 2.9982313705450094,
+    "h": 2.3901086854317657,
+    "turn": "minimum"
+   },
+   "eventCounts": {
+    "turning": 1,
+    "acceleration-jump": 16
+   },
+   "initial": {
+    "r": 3,
+    "h": 2.20454076850488,
+    "rhoH": 1.2150000000000216,
+    "eps": -0.39666666666666184,
+    "speeds": [
+     0.36742346141748,
+     0.36742346141748
+    ],
+    "det": [
+     1.266279625017393,
+     1.266279625017393
+    ]
+   },
+   "final": {
+    "T": 476.09,
+    "r": 308.8333531822383,
+    "rdot": 0.6301010424394565,
+    "h": 6.196825554135529,
+    "rhoH": 9.600161737096776,
+    "eps": 0.19352455635128585,
+    "speeds": [
+     0.3152102230517501,
+     0.3152102230517113
+    ],
+    "det": [
+     1.0024462556500588,
+     1.0024462556500588
+    ]
+   },
+   "hStart": 2.20454076850488,
+   "hEnd": 6.196825554135529,
+   "hChangeRelative": 1.810937154198431,
+   "rhoH2Slope": {
+    "full": 0.05969774534629313,
+    "firstHalf": 0.17735932231410356,
+    "secondHalf": 0.008193631650931016,
+    "grid": "uniform",
+    "points": 4001
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 0.059771009294370875,
+    "firstHalf": 0.1775910112875295,
+    "secondHalf": 0.008194963295679316
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 2.9982330459748887,
+    "max": 308.8333531822383
+   },
+   "turningCount": 1,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.5441320873270779,
+     0.5441320873270272
+    ],
+    "min": [
+     0.3152102230517501,
+     0.3152102230517113
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.0024462556500588,
+     1.0024462556500588
+    ],
+    "max": [
+     1.2741886854101494,
+     1.274188685410146
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.034894169596515597,
+     "tangential": 0.03438203231123304
+    },
+    {
+     "member": 1,
+     "magnitude": 0.034894169596515597,
+     "tangential": 0.03438203231123304
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 2.8046726268697166,
+    "magnitude": 0.003978658380076598,
+    "member": 0,
+    "geometricFactor": 0.2741382509017831
+   },
+   "jumpCount": 16,
+   "jumpsFirst": [
+    {
+     "T": 2.8046726268697166,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 0.003978658380076598,
+     "geometricFactor": 0.2741382509017831
+    },
+    {
+     "T": 2.8046726268697166,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 0.003978658380076259,
+     "geometricFactor": 0.27413825090177557
+    },
+    {
+     "T": 5.8300281695283855,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 0.00030062390164919847,
+     "geometricFactor": 0.20828115843607034
+    },
+    {
+     "T": 5.8300281695283855,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 0.00030062390146032015,
+     "geometricFactor": 0.20828115843607803
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 9.947598300641403e-14,
+    "maxResidualFloor": 6.319941025572051e-13,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.8468092955262893,
+    "bracketMax": 1.202243914603402,
+    "RdotMax": 0.5368064511786627,
+    "RddotMax": 0.07148336619937924,
+    "pMin": 0.46319354882133734,
+    "pMax": 0.9987408791209266,
+    "DtMin": 1.1404287138876956
+   },
+   "steps": 9526,
+   "rejects": 0,
+   "nfev": 38125,
+   "wallSeconds": 0.907,
+   "stepSizes": {
+    "min": 0.004672626869718648,
+    "max": 0.05
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/WP-2-rk4.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/WP-2-rk4.summary.json",
+    "lines": 971,
+    "case": ".tmp/weber-delayed-pair/WP-2-rk4.json"
+   },
+   "recordedAt": "2026-10-06T03:32:02.573Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "WP-2-pastrefine",
+   "name": "WP-2-pastrefine",
+   "refine": false,
+   "method": "dp54",
+   "rtol": 1e-10,
+   "hmax": 0.476,
+   "past": "section9-backward",
+   "pastRecords": 4001,
+   "tEnd": 476.09,
+   "termination": {
+    "reason": "final-time",
+    "T": 476.09
+   },
+   "firstEvent": {
+    "type": "event",
+    "name": "turning",
+    "T": 0.8844479793384757,
+    "r": 2.998231370604109,
+    "h": 2.390108683944068,
+    "turn": "minimum"
+   },
+   "eventCounts": {
+    "turning": 1,
+    "acceleration-jump": 16
+   },
+   "initial": {
+    "r": 3,
+    "h": 2.20454076850488,
+    "rhoH": 1.2150000000000216,
+    "eps": -0.39666666666666184,
+    "speeds": [
+     0.36742346141748,
+     0.36742346141748
+    ],
+    "det": [
+     1.2662796250173987,
+     1.2662796250173987
+    ]
+   },
+   "final": {
+    "T": 476.09,
+    "r": 308.833352995419,
+    "rdot": 0.6301010420136,
+    "h": 6.196825553248843,
+    "rhoH": 9.600161734349456,
+    "eps": 0.1935245560782616,
+    "speeds": [
+     0.31521022283898087,
+     0.3152102228391347
+    ],
+    "det": [
+     1.002446255651929,
+     1.0024462556519294
+    ]
+   },
+   "hStart": 2.20454076850488,
+   "hEnd": 6.196825553248843,
+   "hChangeRelative": 1.8109371537962218,
+   "rhoH2Slope": {
+    "full": 0.05969774533392885,
+    "firstHalf": 0.17735932224541096,
+    "secondHalf": 0.008193631656791458,
+    "grid": "uniform",
+    "points": 4001
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 0.10576818584261619,
+    "firstHalf": 0.33386883592595884,
+    "secondHalf": 0.008874698428889303
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 2.998231529425763,
+    "max": 308.833352995419
+   },
+   "turningCount": 1,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.544130847577962,
+     0.5441308475781141
+    ],
+    "min": [
+     0.31521022283898087,
+     0.3152102228391347
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.002446255651929,
+     1.0024462556519294
+    ],
+    "max": [
+     1.2741876163771333,
+     1.2741876163771417
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.03489416959649677,
+     "tangential": 0.03438203231119555
+    },
+    {
+     "member": 1,
+     "magnitude": 0.034894169596496764,
+     "tangential": 0.03438203231119555
+    }
+   ],
+   "firstGenerationJump": {
+    "T": 2.804672627023114,
+    "magnitude": 0.0039786583793788586,
+    "member": 1,
+    "geometricFactor": 0.2741382508761797
+   },
+   "jumpCount": 16,
+   "jumpsFirst": [
+    {
+     "T": 2.804672627023114,
+     "member": 0,
+     "generation": 1,
+     "magnitude": 0.003978658379377612,
+     "geometricFactor": 0.27413825087616195
+    },
+    {
+     "T": 2.804672627023114,
+     "member": 1,
+     "generation": 1,
+     "magnitude": 0.0039786583793788586,
+     "geometricFactor": 0.2741382508761797
+    },
+    {
+     "T": 5.830028170612559,
+     "member": 0,
+     "generation": 2,
+     "magnitude": 0.0003006239009844692,
+     "geometricFactor": 0.20828115833170524
+    },
+    {
+     "T": 5.830028170612559,
+     "member": 1,
+     "generation": 2,
+     "magnitude": 0.0003006239010127553,
+     "geometricFactor": 0.2082811583316881
+    }
+   ],
+   "rootDiagnostics": {
+    "maxResidual": 9.947598300641403e-14,
+    "maxResidualFloor": 6.320208624755603e-13,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.8468094469893388,
+    "bracketMax": 1.2021850350584955,
+    "RdotMax": 0.5368031380101976,
+    "RddotMax": 0.07146386527931933,
+    "pMin": 0.4631968619898023,
+    "pMax": 0.9987369544133953,
+    "DtMin": 1.1404401866451341
+   },
+   "steps": 1102,
+   "rejects": 7,
+   "nfev": 7801,
+   "wallSeconds": 0.221,
+   "stepSizes": {
+    "min": 0.0019440694597251174,
+    "max": 0.476
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/WP-2-pastrefine.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/WP-2-pastrefine.summary.json",
+    "lines": 129,
+    "case": ".tmp/weber-delayed-pair/WP-2-pastrefine.json"
+   },
+   "recordedAt": "2026-10-06T03:32:03.169Z",
+   "node": "v26.3.0"
+  },
+  {
+   "label": "WP-3-pastrefine",
+   "name": "WP-3-pastrefine",
+   "refine": false,
+   "method": "dp54",
+   "rtol": 1e-10,
+   "hmax": 0.0889,
+   "past": "section9-backward",
+   "pastRecords": 4862,
+   "tEnd": 88.86,
+   "termination": {
+    "reason": "speed-equality",
+    "T": 0.5684620177563974,
+    "message": "speed-equality: receiver 0 speed 1.000000000021587 reached c_f (census change outside the regular chart; a self root may appear)",
+    "info": {
+     "T": 0.568462017809877,
+     "i": 0,
+     "speed": 1.000000000021587,
+     "retry": true,
+     "event": "speed-equality"
+    },
+    "event": {
+     "type": "event",
+     "name": "speed-equality",
+     "T": 0.5684620177563974,
+     "boundaryBefore": 0.5684620180237959,
+     "message": "speed-equality: receiver 0 speed 1.000000000021587 reached c_f (census change outside the regular chart; a self root may appear)",
+     "info": {
+      "T": 0.568462017809877,
+      "i": 0,
+      "speed": 1.000000000021587,
+      "retry": true,
+      "event": "speed-equality"
+     },
+     "speeds": [
+      0.9999999999984479,
+      0.9999999999985137
+     ],
+     "stop": true
+    }
+   },
+   "firstEvent": {
+    "type": "event",
+    "name": "speed-equality",
+    "T": 0.5684620177563974,
+    "boundaryBefore": 0.5684620180237959,
+    "message": "speed-equality: receiver 0 speed 1.000000000021587 reached c_f (census change outside the regular chart; a self root may appear)",
+    "info": {
+     "T": 0.568462017809877,
+     "i": 0,
+     "speed": 1.000000000021587,
+     "retry": true,
+     "event": "speed-equality"
+    },
+    "speeds": [
+     0.9999999999984479,
+     0.9999999999985137
+    ],
+    "stop": true
+   },
+   "eventCounts": {
+    "speed-equality": 1
+   },
+   "initial": {
+    "r": 1,
+    "h": 1.4142142694797046,
+    "rhoH": 0.5000005000000036,
+    "eps": -0.9999959999999928,
+    "speeds": [
+     0.7071074882929778,
+     0.7071074882929778
+    ],
+    "det": [
+     1.6193556021309234,
+     1.6193556021309272
+    ]
+   },
+   "final": {
+    "T": 0.5684620177563974,
+    "r": 1.1244626810304736,
+    "rdot": 0.5205363733536499,
+    "h": 2.171419217917076,
+    "rhoH": 1.1787653549849018,
+    "eps": 0.46233946827106487,
+    "speeds": [
+     0.9999999999984479,
+     0.9999999999985137
+    ],
+    "det": [
+     1.5592069236318997,
+     1.5592069236319008
+    ]
+   },
+   "hStart": 1.4142142694797046,
+   "hEnd": 2.171419217917076,
+   "hChangeRelative": 0.5354244860758974,
+   "rhoH2Slope": {
+    "full": 1.912342450368673,
+    "firstHalf": 1.1644235056887946,
+    "secondHalf": 2.7946406493546236,
+    "grid": "uniform",
+    "points": 241
+   },
+   "rhoH2SlopeStepSamples": {
+    "full": 2.2145447050790152,
+    "firstHalf": 1.6148062468717799,
+    "secondHalf": 3.884485021506873
+   },
+   "initialViolations": [],
+   "rExtremes": {
+    "min": 1,
+    "max": 1.1244626810304736
+   },
+   "turningCount": 0,
+   "cyclesFirst": [],
+   "cyclesLast": [],
+   "speedExtremes": {
+    "max": [
+     0.9999999999984479,
+     0.9999999999985137
+    ],
+    "min": [
+     0.7071074882929778,
+     0.7071074882929778
+    ]
+   },
+   "detExtremes": {
+    "min": [
+     1.5592069236318997,
+     1.5592069236319008
+    ],
+    "max": [
+     1.6193556021309234,
+     1.6193556021309272
+    ]
+   },
+   "releaseDefect": [
+    {
+     "member": 0,
+     "magnitude": 0.5692983744689004,
+     "tangential": 0.5325911224007546
+    },
+    {
+     "member": 1,
+     "magnitude": 0.5692983744689181,
+     "tangential": 0.5325911224007981
+    }
+   ],
+   "firstGenerationJump": null,
+   "jumpCount": 0,
+   "jumpsFirst": [],
+   "rootDiagnostics": {
+    "maxResidual": 5.218048215738236e-15,
+    "maxResidualFloor": 2.1702334040007005e-15,
+    "maxSelfRootCensus": 0,
+    "bracketMin": 0.9242049689496975,
+    "bracketMax": 1.3072856696663337,
+    "RdotMax": 0.07957221080846666,
+    "RddotMax": 0.3688895937062268,
+    "pMin": 0.9204277891915333,
+    "pMax": 1.0043128877669838,
+    "DtMin": 1.3936226277787243
+   },
+   "steps": 59,
+   "rejects": 46,
+   "nfev": 542,
+   "wallSeconds": 0.035,
+   "stepSizes": {
+    "min": 1.3690807881794624e-10,
+    "max": 0.021332449510557402
+   },
+   "files": {
+    "trajectory": ".local-data/master-equation-closure/weber-delayed-pair/WP-3-pastrefine.trajectory.jsonl",
+    "summary": ".local-data/master-equation-closure/weber-delayed-pair/WP-3-pastrefine.summary.json",
+    "lines": 16,
+    "case": ".tmp/weber-delayed-pair/WP-3-pastrefine.json"
+   },
+   "recordedAt": "2026-10-06T03:32:03.578Z",
+   "node": "v26.3.0"
+  }
+ ]
+}

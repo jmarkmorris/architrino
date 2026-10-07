@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": [
+    "exact endpoint extraction",
+    "outward rational conversion and arithmetic",
+    "sqrt square and trigonometric known values",
+    "complete and deliberately malformed covers",
+    "exact rational path reconstruction",
+    "positive-integral identity 22/7-pi"
+  ],
+  "piBoundIntegral": [
+    "22/7",
+    "-1",
+    "0"
+  ],
+  "mode": "controls",
+  "instrumentSha256": "42375ac7ce71fa4e8bd29c8d36daed5bf68ed6ca6495526348e8250452da8dab",
+  "python": "/Users/markmorris/vibe/.venv/bin/python",
+  "mpmathVersion": "1.3.0",
+  "ivDps": 30
+}

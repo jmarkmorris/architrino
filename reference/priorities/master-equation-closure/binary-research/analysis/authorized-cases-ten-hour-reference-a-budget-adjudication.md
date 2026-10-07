@@ -1,0 +1,27 @@
+# Independent closure of the present A event budget
+
+**Derived grade: the frozen Cartesian scalar-norm/physical-companion method cannot satisfy its terminal speed contradiction anywhere in the original comparison or its existing residual-covered extension through 59.57. Measured grade: both complete comparison speed upper bounds pass an independent polynomial audit.** This is an obstruction to this method and criterion, not a physical noncontinuation theorem or a verdict on the original E pair.
+
+The [blind trace reference](authorized-cases-ten-hour-reference-a-trace-budget.md) preceded the [Cartesian norm obstruction](authorized-cases-ten-hour-a-cartesian-norm-obstruction.md). The subject's determinant-one coordinate transformation, explicitly time-dependent divergence identity and simultaneous nominal-Jacobian inclusion agree with that derivation. The full current-variable nominal Jacobian has trace zero; its symmetric part has a nonnegative largest eigenvalue. Every valid whole-family upper logarithmic norm is therefore nonnegative. The common rotation and fixed metric do not alter the trace argument. This uses only current receiving variables at fixed completed nominal source history, not a volume measure for the delay system.
+
+With nonnegative scalar forcing, W cannot decrease. The inverse shear norm is at least one. The transformed physical velocity cap is consequently at least the initial W, while the original-E physical integral cap is at least the previous stored V. Their minimum cannot reduce the inherited V because the admitted W initializer is strictly larger than that V. The same reasoning gives the subject's position floor with fixed nu one. All these inequalities concern sufficient computed bounds; they give no lower bound on actual trajectory error. The synthetic negative-diagonal matrix control is outside the nominal-inclusion hypothesis and remains a valid arithmetic control.
+
+The [physical-only corollary](authorized-cases-ten-hour-a-incoming-physical-only-corollary.md) is also valid on its complete conditional incoming premises. Under the no-unit-event hypothesis the non-strict receiver speed ceiling one yields the source guard $s'\le2/(1-b_s)$; it neither modifies E nor supplies a uniform transverse w margin. Its original-E integration must retain delayed source acceleration and complete source regularity. The terminal inequality $v_{c,-}-V>1$ would contradict the no-prior-unit-event hypothesis, but the inherited-error floor supplies a necessary nominal-speed excess which the measured comparisons do not have.
+
+## Independent full-interval speed audit
+
+The [independent speed instrument](../evidence/authorized-cases-ten-hour-reference-speed-audit.mjs) reconstructs Hermite power coefficients separately from the subject and bounds each exact clipped polynomial segment by rational Bernstein conversion. It checks norm upper bounds by exact squared inequalities and never queries a rounded time beyond the final knot. Before target use it passes constant velocity (3/5,4/5), non-grid quintic velocity and out-of-support rejection controls.
+
+For the original interval it verifies all 256 exact touching cells and 1064 closed Hermite intersections. For the extension tail it verifies all 64 cells and 109 intersections, with exact adjacency to the original interval and final endpoint 5957/100. Original rows and both comparison inputs are bound by their recorded digests. Every local upper norm, global maximum, inherited V and strict budget subtraction passes. The accepted upper bounds are
+
+$$
+v_{c,+}^{\rm original}=1.020822910328407711025427,
+\qquad
+v_{c,+}^{\rm tail}=1.103353875660070063408592.
+$$
+
+Both are below $1+22771060530077803400771/200000000000000000000000$. The exact strict gaps are respectively $23258098080495326494607/250000000000000000000000$ and $10501426990318953595263/10^{24}$. The extension's status as a same-history comparison and its original-E residual coverage through 59.57 are inherited from the already recorded independent extension/join admissions; this speed audit proves no new residual or actual continuation. The curve's existence through 59.58 does not enlarge the admitted residual endpoint.
+
+Local receipt `reference/speed-budget-independent-v1.json` under the investigation's ignored evidence owner reports pass and binds subject receipts `2b32bce76a22cb26713f8239c0563f4ee5cea8142d1f66558d2306d1f4d9ff40` and `27468fcbc2e2f597b9be6b7d2241050cd69ed86923850085d78a75e7806c2aee`. Supervisor lease `282a3396-75ee-4fb2-8111-68209cce3151` exited zero after 3.129 seconds and closed its process group at 2026-10-06 02:31:55.836 UTC. No reference compute remains active.
+
+The accepted one-cell physical gain remains a valid method validation, but no number of further cells in this frozen scalar-norm scheme can overcome the terminal budget on these comparisons. A directional correlated-set proof, smaller independently justified initial set, fully accounted changing metric, later independently certified comparison/residual, or a different event argument could change the premises. Merely extending this cell loop or optimizing a still-valid complete scalar logarithmic norm cannot do so. Falsifiers are a failed source/polynomial enclosure, a false inherited digest, an omitted nominal Jacobian, a nonnegative-recurrence violation or a genuinely different terminal criterion. No physical endpoint/fate beyond the accepted finite prefix is inferred.

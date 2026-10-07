@@ -1,0 +1,94 @@
+{
+ "utc": "2026-10-06T23:41:24.422Z",
+ "stratum": "c2",
+ "tags": [
+  "c2-both-0"
+ ],
+ "poolNonHexagon": 1,
+ "includeBoxLimited": false,
+ "refined": [
+  {
+   "tag": "c2-both-0",
+   "start": 27,
+   "type": "great-circle-pairs",
+   "route": "direct2",
+   "M3": {
+    "score": 260.84446293738307,
+    "omega": 1.3455150581032378,
+    "v": 1.3753085828554295,
+    "boxLimited": false,
+    "detOneSigned": true,
+    "fine": {
+     "Nf": 256,
+     "maxE": 260.84446293738307,
+     "maxEspeed": 258.9720389623764,
+     "maxS": 0.13596951802684742,
+     "maxV": 0.17836601304822397,
+     "minSep": 0.0220329687695784,
+     "det": [
+      3152.4527648464727,
+      1235258.3483086945
+     ],
+     "singular": false,
+     "radius": [
+      0.937005213187447,
+      1.065818707861167
+     ],
+     "speed": [
+      1.2466351012884431,
+      1.4750071013324575
+     ],
+     "speedLabel": "unrestricted only (v>1 reached)",
+     "H": 9.54626494172642,
+     "Hplus3v2": 15.22068603595385,
+     "sigDVariation": 1.1787661833805014,
+     "pairDistanceSpread": 1.0378954824728919,
+     "dominantHarmonic": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+     ]
+    }
+   },
+   "M5": {
+    "ok": true,
+    "M": 5,
+    "Nc": 24,
+    "iter": 47,
+    "tailSteps": 0,
+    "reason": "stalled",
+    "omega": 1.1014716402075242,
+    "v": 1.1447575046175664,
+    "boxLimited": false,
+    "score": 95.23655685164327,
+    "fine": {
+     "maxE": 95.23655685164327,
+     "maxEspeed": 92.00328381782509,
+     "maxS": 0.2188804442949015,
+     "maxV": 0.26462186559216466,
+     "minSep": 0.03086897137390527,
+     "det": [
+      4540.309029442202,
+      478936.40141657344
+     ],
+     "speed": [
+      0.9816775416697588,
+      1.2592946400394318
+     ],
+     "Hplus3v2": 9.707089423953372,
+     "sigDVariation": 1.9721620404877704,
+     "pairDistanceSpread": 1.3461619931848938
+    },
+    "classification": "non-convergence",
+    "hexagon": false,
+    "exactHexagon": false,
+    "candidate": false,
+    "detOneSigned": true,
+    "separationOK": false
+   }
+  }
+ ]
+}

@@ -1,0 +1,157 @@
+{
+  "passed": true,
+  "time": "2026-10-06T04:49:19.811Z",
+  "boundary": "Exact rational constants only; no trajectory or independent theorem validation",
+  "knownReceipt": ".tmp/authorized-cases-ten-hour/d/center-correction-arithmetic-known.json",
+  "subject": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-center-state-correction.md",
+  "subjectSha256": "6a6b6a8dc7d1ec6c204b45fed18b9fdd9b3218f1ffdc32da9d4906ed2cf03a1b",
+  "rows": [
+    {
+      "name": "own source window coverage",
+      "numerator": "20000",
+      "denominator": "9801",
+      "approximate": 2.0406081012141617,
+      "strictUpper": 2.06
+    },
+    {
+      "name": "local acceleration dimensionless argument",
+      "numerator": "1089",
+      "denominator": "97000",
+      "approximate": 0.01122680412371134,
+      "strictUpper": 0.012
+    },
+    {
+      "name": "nonlinear midpoint coefficient",
+      "numerator": "1846381",
+      "denominator": "441045",
+      "approximate": 4.186377807253228,
+      "strictUpper": 5
+    },
+    {
+      "name": "current window midpoint acceleration",
+      "numerator": "1846381",
+      "denominator": "423405",
+      "approximate": 4.360791676999563,
+      "strictUpper": 6
+    },
+    {
+      "name": "fixed-delay homotopy remainder",
+      "numerator": "10000",
+      "denominator": "3267",
+      "approximate": 3.0609121518212428,
+      "strictUpper": 3.1
+    },
+    {
+      "name": "actual clock derivative",
+      "numerator": "103069",
+      "denominator": "98010",
+      "approximate": 1.0516171819202123,
+      "strictUpper": 1.06
+    },
+    {
+      "name": "affine clock derivative",
+      "numerator": "10000",
+      "denominator": "9801",
+      "approximate": 1.0203040506070808,
+      "strictUpper": 1.03
+    },
+    {
+      "name": "direction discrepancy",
+      "numerator": "4",
+      "denominator": "7",
+      "approximate": 0.5714285714285714,
+      "strictUpper": 0.58
+    },
+    {
+      "name": "transmitter discrepancy",
+      "numerator": "5529",
+      "denominator": "5000",
+      "approximate": 1.1058,
+      "strictUpper": 1.106
+    },
+    {
+      "name": "clock derivative difference",
+      "numerator": "5267366",
+      "denominator": "970299",
+      "approximate": 5.428600874575775,
+      "strictUpper": 5.5
+    },
+    {
+      "name": "chord derivative difference",
+      "numerator": "4881",
+      "denominator": "1000",
+      "approximate": 4.881,
+      "strictUpper": 5
+    },
+    {
+      "name": "affine chord derivative",
+      "numerator": "1010197",
+      "denominator": "990000",
+      "approximate": 1.0204010101010101,
+      "strictUpper": 1.03
+    },
+    {
+      "name": "sampled velocity derivative difference",
+      "numerator": "297223",
+      "denominator": "41250",
+      "approximate": 7.205406060606061,
+      "strictUpper": 7.3
+    },
+    {
+      "name": "spatial Hessian",
+      "numerator": "147635000000000",
+      "denominator": "5593580645499",
+      "approximate": 26.393648247263194,
+      "strictUpper": 30
+    },
+    {
+      "name": "mixed Hessian",
+      "numerator": "497500000000",
+      "denominator": "114154707051",
+      "approximate": 4.3581207718200865,
+      "strictUpper": 10
+    },
+    {
+      "name": "velocity Hessian",
+      "numerator": "5000000000",
+      "denominator": "2329687899",
+      "approximate": 2.1462102293385352,
+      "strictUpper": 3
+    },
+    {
+      "name": "actual affine homotopy derivative difference",
+      "numerator": "14141",
+      "denominator": "250",
+      "approximate": 56.564,
+      "strictUpper": 60
+    },
+    {
+      "name": "fourth derivative of affine even function",
+      "numerator": "4711724164160000000",
+      "denominator": "304505749161213633",
+      "approximate": 15.47335042815722,
+      "strictUpper": 32
+    },
+    {
+      "name": "cubic relative remainder",
+      "numerator": "101",
+      "denominator": "1875",
+      "approximate": 0.05386666666666667,
+      "strictUpper": 0.054
+    },
+    {
+      "name": "corrected total remainder",
+      "numerator": "30630193073",
+      "denominator": "485149500",
+      "approximate": 63.135575885371416,
+      "strictUpper": 66
+    },
+    {
+      "name": "near identity distortion",
+      "numerator": "1",
+      "denominator": "198",
+      "approximate": 0.005050505050505051,
+      "strictUpper": 0.0051
+    }
+  ]
+}

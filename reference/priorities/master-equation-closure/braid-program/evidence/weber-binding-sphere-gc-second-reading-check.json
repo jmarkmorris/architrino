@@ -1,0 +1,42 @@
+{
+ "K": 0,
+ "A": 7.162521181060309e-16,
+ "G": 9.729187677775558e-16,
+ "known_cases_pass": true,
+ "B_moduli": 1.7763568394002505e-15,
+ "B_other_terms": 2.00822763860438e-15,
+ "r5": {
+  "e_closed_forms": 8.006013186310196e-12,
+  "h_vs_recurrence": 3.212789978187898e-11,
+  "P2_left_sup_on_P1": 60,
+  "at_beta2": 0,
+  "P2_required_excess_over": 60
+ },
+ "r7": {
+  "e_closed_forms": 8.481234999156085e-12,
+  "h_vs_recurrence": 2.1394142072038856e-11,
+  "P2_left_sup_on_P1": 63.11269837220808,
+  "at_beta2": 0,
+  "P2_required_excess_over": 112
+ },
+ "r9": {
+  "e_closed_forms": 3.961930403974971e-11,
+  "h_vs_recurrence": 3.132978685250268e-10,
+  "P2_left_sup_on_P1": 76.34733192202056,
+  "at_beta2": 0,
+  "P2_required_excess_over": 180
+ },
+ "E_nondistinct_exponent_cases": [],
+ "E_5_3": {
+  "coefficients_off_stated_exponents": 2.7638430546453516e-15,
+  "h_off_multiples_of_s_below_r": 1.9592798083354108e-11
+ },
+ "E_7_3": {
+  "coefficients_off_stated_exponents": 2.8306555158139772e-15,
+  "h_off_multiples_of_s_below_r": 1.7905019458229686e-11
+ },
+ "E_7_5": {
+  "coefficients_off_stated_exponents": 2.168316375005091e-15,
+  "h_off_multiples_of_s_below_r": 4.376561141340306e-11
+ }
+}

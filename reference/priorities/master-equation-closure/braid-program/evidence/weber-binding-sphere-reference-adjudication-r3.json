@@ -1,0 +1,840 @@
+{
+  "startedAt": "2026-10-06T03:22:01.204Z",
+  "prefiltered": {
+    "free": [
+      {
+        "index": 0,
+        "kind": "exact hexagon",
+        "subjectPrefilterScore": 3.39592125818895e-15,
+        "subjectJ_gbs": 1.56686244239426e-7,
+        "subjectReason": "final-time",
+        "referenceScoreOnStoredState": 3.07277771052672e-8,
+        "radial": 8.82486149278327e-9,
+        "tangential": 6.67749764155367e-10,
+        "member5Radius": 1.00000000003429,
+        "member5SpeedOverV": 1.00000000017003,
+        "minSep": 0.999999999945344,
+        "newton": {
+          "residual": 1.30340183090993e-13,
+          "period": 7.66099857719686,
+          "rMean": 0.99999999952234,
+          "zMax": 0.00000178905939291502,
+          "sphereDeviation": 2.677832767919e-8
+        }
+      },
+      {
+        "index": 1,
+        "kind": "perturbed hexagon (20 %, 0.5 rad)",
+        "subjectPrefilterScore": 1.00262130475479,
+        "subjectJ_gbs": 1.83798704258332e-7,
+        "subjectReason": "final-time",
+        "referenceScoreOnStoredState": 2.99499573175131e-8,
+        "radial": 8.44214296503676e-9,
+        "tangential": 3.26215466555723e-10,
+        "member5Radius": 1.00000000010616,
+        "member5SpeedOverV": 1.00000000023233,
+        "minSep": 0.999999999903605,
+        "newton": {
+          "residual": 2.73225886360251e-13,
+          "period": 7.66099858785019,
+          "rMean": 1.00000000044886,
+          "zMax": 0.14361929592779,
+          "sphereDeviation": 1.86889112990187e-8
+        }
+      },
+      {
+        "index": 2,
+        "kind": "random",
+        "subjectPrefilterScore": 2.53919071398367,
+        "subjectJ_gbs": 10.7589416699486,
+        "subjectReason": "step-underflow",
+        "referenceScoreOnStoredState": 0.492123292991836,
+        "radial": 0.115256426340981,
+        "tangential": 0.338280571127419,
+        "member5Radius": 0.974569257721293,
+        "member5SpeedOverV": 0.954384432151133,
+        "minSep": 0.813371753213973,
+        "newton": null
+      },
+      {
+        "index": 3,
+        "kind": "random",
+        "subjectPrefilterScore": 3.07475396435088,
+        "subjectJ_gbs": 10.8429697467194,
+        "subjectReason": "contact",
+        "referenceScoreOnStoredState": 3.51439312739276,
+        "radial": 0.334386100817779,
+        "tangential": 0.480529823697081,
+        "member5Radius": 1.01498652292392,
+        "member5SpeedOverV": 1.00412389879892,
+        "minSep": 0.608184751446458,
+        "newton": null
+      },
+      {
+        "index": 4,
+        "kind": "random",
+        "subjectPrefilterScore": 3.5119703303292,
+        "subjectJ_gbs": 10.9051712143939,
+        "subjectReason": "step-underflow",
+        "referenceScoreOnStoredState": 1.11224685126925,
+        "radial": 0.434290140604678,
+        "tangential": 0.615224444799014,
+        "member5Radius": 1.03083812490939,
+        "member5SpeedOverV": 1.10399593898147,
+        "minSep": 0.600581163403437,
+        "newton": null
+      },
+      {
+        "index": 5,
+        "kind": "random",
+        "subjectPrefilterScore": 3.73032426233359,
+        "subjectJ_gbs": 10.9995,
+        "subjectReason": "contact",
+        "referenceScoreOnStoredState": 2.93289130445787,
+        "radial": 0.713118396409981,
+        "tangential": 1.93547081280556,
+        "member5Radius": 1.12364631169569,
+        "member5SpeedOverV": 0.954323291790105,
+        "minSep": 0.184594608800158,
+        "newton": null
+      },
+      {
+        "index": 6,
+        "kind": "random",
+        "subjectPrefilterScore": 3.79784347609375,
+        "subjectJ_gbs": 10.9364142043116,
+        "subjectReason": "contact",
+        "referenceScoreOnStoredState": 4.00366533316097,
+        "radial": 2.24089722629647,
+        "tangential": 1.1338969904991,
+        "member5Radius": 1.0654990472389,
+        "member5SpeedOverV": 1.00757778684478,
+        "minSep": 0.514107231405029,
+        "newton": null
+      },
+      {
+        "index": 7,
+        "kind": "random",
+        "subjectPrefilterScore": 3.81297938973657,
+        "subjectJ_gbs": 10.8518151771074,
+        "subjectReason": "step-underflow",
+        "referenceScoreOnStoredState": 2.22399163350754,
+        "radial": 0.788696041659292,
+        "tangential": 0.721393515368384,
+        "member5Radius": 0.946936619547184,
+        "member5SpeedOverV": 0.996798262710956,
+        "minSep": 0.376629546611907,
+        "newton": null
+      },
+      {
+        "index": 8,
+        "kind": "random",
+        "subjectPrefilterScore": 3.96139289823703,
+        "subjectJ_gbs": 10.8366480898266,
+        "subjectReason": "step-underflow",
+        "referenceScoreOnStoredState": 2.12779061550266,
+        "radial": 0.912436951764516,
+        "tangential": 1.08350827982182,
+        "member5Radius": 1.01312757323061,
+        "member5SpeedOverV": 1.06249340810861,
+        "minSep": 0.926327679137887,
+        "newton": null
+      },
+      {
+        "index": 9,
+        "kind": "random",
+        "subjectPrefilterScore": 4.09483869338951,
+        "subjectJ_gbs": 10.8122665401107,
+        "subjectReason": "contact",
+        "referenceScoreOnStoredState": 5.42109205019861,
+        "radial": 1.81881663951069,
+        "tangential": 1.81095336611101,
+        "member5Radius": 1.02775800328002,
+        "member5SpeedOverV": 1.05941449668845,
+        "minSep": 0.535302170391307,
+        "newton": null
+      },
+      {
+        "index": 10,
+        "kind": "random",
+        "subjectPrefilterScore": 4.10369854501973,
+        "subjectJ_gbs": 10.8758976521971,
+        "subjectReason": "step-underflow",
+        "referenceScoreOnStoredState": 6.319159554758,
+        "radial": 2.07755573157561,
+        "tangential": 2.98170460651129,
+        "member5Radius": 1.00785605650391,
+        "member5SpeedOverV": 0.995343984331212,
+        "minSep": 0.510949730708612,
+        "newton": null
+      },
+      {
+        "index": 11,
+        "kind": "random",
+        "subjectPrefilterScore": 4.11243397176524,
+        "subjectJ_gbs": 10.9995,
+        "subjectReason": "contact",
+        "referenceScoreOnStoredState": 2.36196079446012,
+        "radial": 0.872832910769486,
+        "tangential": 0.704943323748391,
+        "member5Radius": 1.00279973240849,
+        "member5SpeedOverV": 0.997386172088894,
+        "minSep": 0.177965436402283,
+        "newton": null
+      }
+    ],
+    "c2": [
+      {
+        "index": 0,
+        "kind": "exact hexagon",
+        "subjectPrefilterScore": 2.55337238608513e-15,
+        "subjectJ_gbs": 4.36333180446017e-8,
+        "subjectReason": "final-time",
+        "referenceScoreOnStoredState": 3.13010808792561e-8,
+        "radial": 9.08973573576157e-9,
+        "tangential": 4.55790301277145e-10,
+        "sumConstraintCheck": {
+          "sumX": 8.54283549282797e-17,
+          "sumV": 6.43634889360322e-17
+        },
+        "minSep": 1.00000000002564,
+        "separationsSorted": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          2,
+          2,
+          2
+        ],
+        "newton": {
+          "residual": 1.37889699658444e-13,
+          "period": 7.6609985768944,
+          "rMean": 0.999999999496017,
+          "zMax": 8.35013197855366e-15,
+          "sphereDeviation": 7.56374407932364e-10
+        }
+      },
+      {
+        "index": 1,
+        "kind": "perturbed hexagon (0.2 rad in every angle, 20 % in v)",
+        "subjectPrefilterScore": 0.699700084281406,
+        "subjectJ_gbs": 3.69260649208707e-8,
+        "subjectReason": "final-time",
+        "referenceScoreOnStoredState": 2.64441948095794e-8,
+        "radial": 7.65976446980057e-9,
+        "tangential": 3.67790790485643e-10,
+        "sumConstraintCheck": {
+          "sumX": 4.82851131582314e-17,
+          "sumV": 1.39110762026416e-16
+        },
+        "minSep": 1.00000000002135,
+        "separationsSorted": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          2,
+          2,
+          2
+        ],
+        "newton": {
+          "residual": 7.41073868937292e-15,
+          "period": 7.64208855158939,
+          "rMean": 0.998353755160265,
+          "zMax": 1.60151245211467e-11,
+          "sphereDeviation": 3.44071072176172e-9
+        }
+      },
+      {
+        "index": 2,
+        "kind": "random",
+        "subjectPrefilterScore": 1.64876228934689,
+        "subjectJ_gbs": 1.13553391425597e-8,
+        "subjectReason": "final-time",
+        "referenceScoreOnStoredState": 8.08894302480926e-9,
+        "radial": 2.31906016039754e-9,
+        "tangential": 9.90418767086059e-11,
+        "sumConstraintCheck": {
+          "sumX": 5.30971073315831e-17,
+          "sumV": 1.44373377727706e-16
+        },
+        "minSep": 1.00000000000013,
+        "separationsSorted": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          2,
+          2,
+          2
+        ],
+        "newton": {
+          "residual": 7.99360577730113e-15,
+          "period": 7.3946453900651,
+          "rMean": 0.97668529010571,
+          "zMax": 1.11444768442565e-9,
+          "sphereDeviation": 5.55466449090223e-9
+        }
+      },
+      {
+        "index": 3,
+        "kind": "random",
+        "subjectPrefilterScore": 1.66094177166317,
+        "subjectJ_gbs": 10.8460988870481,
+        "subjectReason": "contact",
+        "referenceScoreOnStoredState": 1.88505511684751,
+        "radial": 0.329048431580149,
+        "tangential": 0.157884000646026,
+        "sumConstraintCheck": {
+          "sumX": 2.98936698014091e-16,
+          "sumV": 2.95045815910518e-16
+        },
+        "minSep": 0.376174306890145,
+        "separationsSorted": [
+          0.3762,
+          0.3762,
+          1.1132,
+          1.1132,
+          1.2063,
+          1.3966,
+          1.3966,
+          1.6433,
+          1.8274,
+          1.8274,
+          1.8674,
+          1.8674,
+          1.9475,
+          1.9668,
+          1.9668
+        ],
+        "newton": null
+      },
+      {
+        "index": 4,
+        "kind": "random",
+        "subjectPrefilterScore": 1.67385085256225,
+        "subjectJ_gbs": 10.8935542508058,
+        "subjectReason": "contact",
+        "referenceScoreOnStoredState": 32.4264045927027,
+        "radial": 14.1730932430656,
+        "tangential": 18.0733219996359,
+        "sumConstraintCheck": {
+          "sumX": 6.93889390390723e-17,
+          "sumV": 1.01031820261007e-16
+        },
+        "minSep": 0.942583269538651,
+        "separationsSorted": [
+          0.9426,
+          0.9426,
+          1.2563,
+          1.2563,
+          1.3771,
+          1.3771,
+          1.4831,
+          1.5115,
+          1.5699,
+          1.5699,
+          1.752,
+          1.752,
+          1.9649,
+          1.9649,
+          1.9997
+        ],
+        "newton": null
+      },
+      {
+        "index": 5,
+        "kind": "random",
+        "subjectPrefilterScore": 1.86420975853682,
+        "subjectJ_gbs": 10.8600036741327,
+        "subjectReason": "step-underflow",
+        "referenceScoreOnStoredState": 1.13701688769019,
+        "radial": 0.532333117477882,
+        "tangential": 0.343338985082357,
+        "sumConstraintCheck": {
+          "sumX": 2.08166817117217e-16,
+          "sumV": 1.2490009027033e-16
+        },
+        "minSep": 0.958743394483778,
+        "separationsSorted": [
+          0.9587,
+          0.9587,
+          1.1361,
+          1.3965,
+          1.4706,
+          1.4706,
+          1.4798,
+          1.4798,
+          1.6067,
+          1.6067,
+          1.6655,
+          1.6655,
+          1.9429,
+          1.9429,
+          1.9885
+        ],
+        "newton": null
+      },
+      {
+        "index": 6,
+        "kind": "random",
+        "subjectPrefilterScore": 2.08875123079339,
+        "subjectJ_gbs": 10.9554958651403,
+        "subjectReason": "step-underflow",
+        "referenceScoreOnStoredState": 4.79245582613035,
+        "radial": 2.2316986413855,
+        "tangential": 1.3917899029021,
+        "sumConstraintCheck": {
+          "sumX": 1.11886302282795e-16,
+          "sumV": 2.48253415324727e-16
+        },
+        "minSep": 1.06376226040445,
+        "separationsSorted": [
+          1.0638,
+          1.0824,
+          1.0824,
+          1.3042,
+          1.3042,
+          1.3591,
+          1.4025,
+          1.4025,
+          1.7279,
+          1.7279,
+          1.7922,
+          1.7922,
+          1.8707,
+          1.8707,
+          1.9871
+        ],
+        "newton": null
+      },
+      {
+        "index": 7,
+        "kind": "random",
+        "subjectPrefilterScore": 2.10165542377467,
+        "subjectJ_gbs": 10.8284922815013,
+        "subjectReason": "contact",
+        "referenceScoreOnStoredState": 0.991897969335627,
+        "radial": 0.626636764748087,
+        "tangential": 0.216814956568341,
+        "sumConstraintCheck": {
+          "sumX": 2.4980018054066e-16,
+          "sumV": 1.11022302462516e-16
+        },
+        "minSep": 0.741072262762969,
+        "separationsSorted": [
+          0.7411,
+          0.7411,
+          1.365,
+          1.4152,
+          1.4152,
+          1.4959,
+          1.4959,
+          1.5216,
+          1.5216,
+          1.566,
+          1.7833,
+          1.7833,
+          1.8923,
+          1.8923,
+          1.9881
+        ],
+        "newton": null
+      },
+      {
+        "index": 8,
+        "kind": "random",
+        "subjectPrefilterScore": 2.11136465839015,
+        "subjectJ_gbs": 6.17971475629376e-9,
+        "subjectReason": "final-time",
+        "referenceScoreOnStoredState": 4.37371218296532e-9,
+        "radial": 1.25243440337746e-9,
+        "tangential": 3.48956098705834e-11,
+        "sumConstraintCheck": {
+          "sumX": 8.06523596551863e-17,
+          "sumV": 5.83952984166587e-17
+        },
+        "minSep": 1.00000000000112,
+        "separationsSorted": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          2,
+          2,
+          2
+        ],
+        "newton": {
+          "residual": 9.65894031423886e-15,
+          "period": 7.13551221718339,
+          "rMean": 0.953732351827185,
+          "zMax": 2.30123041367378e-9,
+          "sphereDeviation": 3.29722468973785e-9
+        }
+      },
+      {
+        "index": 9,
+        "kind": "random",
+        "subjectPrefilterScore": 2.12407019159833,
+        "subjectJ_gbs": 10.8793284066543,
+        "subjectReason": "step-underflow",
+        "referenceScoreOnStoredState": 6.06099115797443,
+        "radial": 1.59615274843739,
+        "tangential": 2.42784350219114,
+        "sumConstraintCheck": {
+          "sumX": 2.77555756156289e-17,
+          "sumV": 2.2377260456559e-16
+        },
+        "minSep": 0.487324368454664,
+        "separationsSorted": [
+          0.4873,
+          0.4873,
+          0.5184,
+          1.4616,
+          1.4755,
+          1.4755,
+          1.7079,
+          1.7079,
+          1.7289,
+          1.7289,
+          1.7302,
+          1.7302,
+          1.9088,
+          1.9088,
+          1.9181
+        ],
+        "newton": null
+      },
+      {
+        "index": 10,
+        "kind": "random",
+        "subjectPrefilterScore": 2.20063231633971,
+        "subjectJ_gbs": 1.16374423947552e-8,
+        "subjectReason": "final-time",
+        "referenceScoreOnStoredState": 8.29268844842461e-9,
+        "radial": 2.37401032116564e-9,
+        "tangential": 1.05028897614478e-10,
+        "sumConstraintCheck": {
+          "sumX": 6.27642943585964e-17,
+          "sumV": 1.61356756168747e-16
+        },
+        "minSep": 0.999999999999666,
+        "separationsSorted": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          1.7321,
+          2,
+          2,
+          2
+        ],
+        "newton": {
+          "residual": 1.81521464526213e-14,
+          "period": 7.40166784233269,
+          "rMean": 0.977303542939748,
+          "zMax": 1.62161198136575e-9,
+          "sphereDeviation": 1.19921396399988e-8
+        }
+      },
+      {
+        "index": 11,
+        "kind": "random",
+        "subjectPrefilterScore": 2.24265441320598,
+        "subjectJ_gbs": 10.9996707747045,
+        "subjectReason": "contact",
+        "referenceScoreOnStoredState": 159.890376285161,
+        "radial": 109.241812249164,
+        "tangential": 49.1532554131862,
+        "sumConstraintCheck": {
+          "sumX": 0,
+          "sumV": 4.57756679852224e-16
+        },
+        "minSep": 0.166236526051606,
+        "separationsSorted": [
+          0.1662,
+          0.1662,
+          0.5454,
+          1.518,
+          1.518,
+          1.6209,
+          1.6209,
+          1.6656,
+          1.7515,
+          1.7515,
+          1.8077,
+          1.8077,
+          1.8255,
+          1.8716,
+          1.8716
+        ],
+        "newton": null
+      }
+    ]
+  },
+  "multipliers": {
+    "x": 1.0064,
+    "P": 7.73466171680167,
+    "k3rates": [
+      2.45830604177992,
+      1.183500253739
+    ],
+    "k3multipliers": [
+      181028607.556134,
+      9451.92878997138
+    ],
+    "quartetRealParts": [
+      1.061348,
+      0.941038
+    ],
+    "quartetModuli": [
+      3674.48308203499,
+      1448.97341157925
+    ],
+    "unitCircleCount": 24,
+    "subject": {
+      "largest": 181028726.19589,
+      "second": 9451.92967736535,
+      "quartets": [
+        3674.47278069241,
+        1448.9
+      ],
+      "unit": 24
+    }
+  },
+  "f2EndState": {
+    "x": 1.876,
+    "hexagonPeriod": 19.6849643704063,
+    "hexagonDet": 2.40558467913782,
+    "subject": {
+      "P": 19.683311382533,
+      "rMean": 1.87589274385928,
+      "det": 2.4
+    }
+  },
+  "newtonStates": [
+    {
+      "file": "weber-binding-sphere-r3-newton-a2.json",
+      "seed": "F2 best (free normals, residual 0.68, R = 2)",
+      "P": 19.683311382533,
+      "subjectResidual": 0.00000900195193655196,
+      "subjectCharacterisation": {
+        "rMean": 1.87589274385928,
+        "sMean": 0.598812150708903,
+        "sphereDeviation": 0.00124486884658948,
+        "speedDeviation": 0.00081955100974681,
+        "zMax": 1.84733603582751,
+        "minSep": 1.87468287822018,
+        "HPlus3v2": 0.00000259792993961838,
+        "isHexagonLike": false,
+        "detRange": [
+          2.40425877455748,
+          2.40435191987256
+        ],
+        "note": "end state of an unconverged run (residual 9.00e-6); descriptive only"
+      },
+      "reference": {
+        "rMin": 1.87467676766523,
+        "rMax": 1.87747627466855,
+        "vMin": 0.598442226096644,
+        "vMax": 0.599097624495442,
+        "radial151": 0.0033777724017008,
+        "tangential152": 0.000679416527198893,
+        "det": 2.40428452031006,
+        "zMax": 1.81235554985689
+      },
+      "subjectMultipliers": null,
+      "subjectUnitCount": null
+    },
+    {
+      "file": "weber-binding-sphere-r3-newton-a2.json",
+      "seed": "C3 tilted triangles theta+=80 phi-=60",
+      "P": 7.73466200515356,
+      "subjectResidual": 2.22305694360693e-13,
+      "subjectCharacterisation": {
+        "rMean": 1.00640002501258,
+        "sMean": 0.817540294080322,
+        "sphereDeviation": 1.97881873338507e-8,
+        "speedDeviation": 1.03060272600512e-8,
+        "zMax": 0.000182222072995807,
+        "minSep": 1.00640001930923,
+        "HPlus3v2": -4.52082815627364e-13,
+        "isHexagonLike": false,
+        "detRange": [
+          132.269951316879,
+          132.269951321492
+        ]
+      },
+      "reference": {
+        "rMin": 1.00640001672163,
+        "rMax": 1.00640003113179,
+        "vMin": 0.81754028986061,
+        "vMax": 0.817540299797631,
+        "radial151": 3.29528804763812e-8,
+        "tangential152": 1.3948609168939e-8,
+        "det": -132.26995131909,
+        "zMax": 0.000111809412592523
+      },
+      "subjectMultipliers": [
+        181028726.19589,
+        9451.92967736535,
+        3674.47278069241,
+        3674.47278069241,
+        1448.97510318932,
+        1448.97510318932
+      ],
+      "subjectUnitCount": 24
+    },
+    {
+      "file": "weber-binding-sphere-r3-newton-a2.json",
+      "seed": "C3 tilted triangles theta+=70 phi-=60",
+      "P": 7.38032858523387,
+      "subjectResidual": 1.48055222654302e-7,
+      "subjectCharacterisation": {
+        "rMean": 0.975424273406192,
+        "sMean": 0.830419832447889,
+        "sphereDeviation": 0.0000885067329528156,
+        "speedDeviation": 0.0000753549346609689,
+        "zMax": 0.0167536333125778,
+        "minSep": 0.975413056958097,
+        "HPlus3v2": 1.3439990764752e-7,
+        "isHexagonLike": false,
+        "detRange": [
+          157.547878093938,
+          157.549386863675
+        ],
+        "note": "end state of an unconverged run (residual 1.48e-7); descriptive only"
+      },
+      "reference": {
+        "rMin": 0.975361833917895,
+        "rMax": 0.97550545206407,
+        "vMin": 0.830360741490617,
+        "vMax": 0.830465292962342,
+        "radial151": 0.000332954124506709,
+        "tangential152": 0.000148347011380295,
+        "det": -157.548662499557,
+        "zMax": 0.012388654197362
+      },
+      "subjectMultipliers": null,
+      "subjectUnitCount": null
+    },
+    {
+      "file": "weber-binding-sphere-r3-newton-b.json",
+      "seed": "C3 tilted triangles theta+=80 phi-=180",
+      "P": 7.73466200515356,
+      "subjectResidual": 2.22630833039694e-13,
+      "subjectCharacterisation": {
+        "rMean": 1.00640002501258,
+        "sMean": 0.817540294080321,
+        "sphereDeviation": 2.16094205693592e-8,
+        "speedDeviation": 1.08338928017688e-8,
+        "zMax": 0.000182221877317578,
+        "minSep": 1.0064000185509,
+        "HPlus3v2": -4.49418280368263e-13,
+        "isHexagonLike": false,
+        "detRange": [
+          132.269951316879,
+          132.26995132149
+        ]
+      },
+      "reference": {
+        "rMin": 1.00640001672163,
+        "rMax": 1.00640003113178,
+        "vMin": 0.817540289860621,
+        "vMax": 0.817540299797628,
+        "radial151": 3.29528097141527e-8,
+        "tangential152": 1.39485863801036e-8,
+        "det": -132.269951319101,
+        "zMax": 0.000111809369639704
+      },
+      "subjectMultipliers": [
+        181028726.198372,
+        9451.92967465639,
+        3674.47278188966,
+        3674.47278188966,
+        1448.97510326582,
+        1448.97510326582
+      ],
+      "subjectUnitCount": 24
+    },
+    {
+      "file": "weber-binding-sphere-r3-newton-b.json",
+      "seed": "C3 tilted triangles theta+=70 phi-=180",
+      "P": 7.38032858523387,
+      "subjectResidual": 2.43998170766559e-7,
+      "subjectCharacterisation": null,
+      "reference": {
+        "rMin": 0.97533376320053,
+        "rMax": 0.975535345862936,
+        "vMin": 0.8303390018729,
+        "vMax": 0.830485757277928,
+        "radial151": 0.000455461312233085,
+        "tangential152": 0.000207881831074592,
+        "det": -157.548627772846,
+        "zMax": 0.0145470761512809
+      },
+      "subjectMultipliers": null,
+      "subjectUnitCount": null
+    },
+    {
+      "file": "weber-binding-sphere-r3-newton-b.json",
+      "seed": "C2 random 0",
+      "P": 5.59508663569005,
+      "subjectResidual": 0.427992679533589,
+      "subjectCharacterisation": null,
+      "reference": {
+        "rMin": 0.855377377375003,
+        "rMax": 0.910666533391061,
+        "vMin": 0.451024924647578,
+        "vMax": 1.03406488764778,
+        "radial151": 3.79302910486611,
+        "tangential152": 4.02804363361116,
+        "det": -43.195056090122,
+        "zMax": 0.688351908238328
+      },
+      "subjectMultipliers": null,
+      "subjectUnitCount": null
+    }
+  ],
+  "finishedAt": "2026-10-06T03:22:01.219Z"
+}

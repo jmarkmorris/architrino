@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": [
+    "exact fractions",
+    "signed dyadic extraction",
+    "radial identity value -3/52",
+    "large endpoint string round-trip without binary floats"
+  ],
+  "mode": "controls",
+  "sha256": "e036c7bfe079902270481fee7eb5fefcb9c81ebf99e82594e64b7b9dfa45ffd4"
+}

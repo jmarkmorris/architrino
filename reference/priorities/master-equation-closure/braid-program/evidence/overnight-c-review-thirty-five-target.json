@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "bands": [
+    {
+      "L": "2",
+      "M": "3",
+      "A": "44/3",
+      "Q": "392509/376320",
+      "margin": "360131/376320"
+    },
+    {
+      "L": "3",
+      "M": "4",
+      "A": "14",
+      "Q": "1462249/1177225",
+      "margin": "892201/1177225"
+    },
+    {
+      "L": "4",
+      "M": "5",
+      "A": "218/15",
+      "Q": "1333/882",
+      "margin": "431/882"
+    },
+    {
+      "L": "5",
+      "M": "6",
+      "A": "46/3",
+      "Q": "5646527/3090675",
+      "margin": "534823/3090675"
+    }
+  ],
+  "H_near": "108263/266805",
+  "near_separation_upper": "2600/5247",
+  "near_row_lower": "66/37",
+  "cancellation_terms": [
+    "18/35",
+    "74/99",
+    "35/578",
+    "1/1225"
+  ],
+  "cancellation_sum": "92747407/70096950",
+  "exact_comparison_gap": "1194744641/2593587150",
+  "coarse_strict_gap": "5/12",
+  "boundary": "Exact finite sums and inequalities; analytical monotonicity supplies continuous coverage.",
+  "mode": "target",
+  "checker_sha256": "4ffea3a92825053fee158e0ed58c42bb1bcb84acc24f386195fd9f17a2922c34",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

@@ -1,0 +1,28 @@
+{
+  "mode": "target",
+  "passed": true,
+  "instrumentSha256": "4c4d9b629939b37ddc238819ec187b38987d1be4e9109197832204f2211ce6e1",
+  "controlReceipt": "reference/priorities/master-equation-closure/braid-program/evidence/overnight-c-review-controls.json",
+  "directedCounts": {
+    "sameBinary": 6,
+    "cross12": 8,
+    "cross13": 8,
+    "cross23": 8
+  },
+  "staticSixMemberCheck": {
+    "rows": 30,
+    "virial": "-3/1"
+  },
+  "pairBounds": [
+    "6/1",
+    "8/3",
+    "56/5"
+  ],
+  "maxSpeed": "81/5000",
+  "sourceClockFloor": "4919/5000",
+  "coefficient": "4894/15",
+  "inertiaUpper": "62/5",
+  "delayCorrectionUpper": "14682/4919",
+  "circularUpper": "2511/2500000",
+  "strictMargin": "175148391/12297500000"
+}

@@ -1,0 +1,525 @@
+{
+ "test": "ext-loopu",
+ "utc": "2026-10-06T23:26:43Z",
+ "nconf": 30,
+ "targetPairWindingOne": 30,
+ "othersWindingZero": 30,
+ "monodromyMatchesWinding": 30,
+ "maxHalfJumpRel": 0.0,
+ "growthExponentRange": [
+  -2.500010904635285,
+  -2.4999884482718473
+ ],
+ "rows": [
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.5000000348670306,
+   "absImT": 0.15907584628262728,
+   "ratesOfPair": [
+    1.008941761437513,
+    -1.0258601813207733
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.4999997659392337,
+   "absImT": 1.086933969481348,
+   "ratesOfPair": [
+    1.0792321374592357,
+    -1.0135916153072722
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.4999995891245415,
+   "absImT": 0.11475973458065959,
+   "ratesOfPair": [
+    1.1113257416585247,
+    -1.2947777810419798
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.49999886247029,
+   "absImT": 0.15017390408138145,
+   "ratesOfPair": [
+    -1.4772398619830454,
+    -1.0162691220229283
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.4999996916812353,
+   "absImT": 1.1591658568417509,
+   "ratesOfPair": [
+    -1.0002850403600305,
+    1.0634607160290102
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.5000001480530183,
+   "absImT": 0.8743818825504927,
+   "ratesOfPair": [
+    -1.048640832224287,
+    -1.0807224057771354
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.4999999799257058,
+   "absImT": 0.1936929864210448,
+   "ratesOfPair": [
+    -1.1075753747372634,
+    -1.0258905053495013
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.4999972096120984,
+   "absImT": 1.418378601869061,
+   "ratesOfPair": [
+    -1.5181695560234785,
+    -1.1818532245191442
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.4999998964375245,
+   "absImT": 0.39359395835787536,
+   "ratesOfPair": [
+    1.2167269521085369,
+    1.2430615781916436
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.499999967285921,
+   "absImT": 0.7272672246866393,
+   "ratesOfPair": [
+    -1.029606452650975,
+    1.037988298591111
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.4999994455705803,
+   "absImT": 0.3120678806862114,
+   "ratesOfPair": [
+    -1.2683974832223208,
+    -1.0817747086397163
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.500010904635285,
+   "absImT": 1.125887390720262,
+   "ratesOfPair": [
+    2.140473296098833,
+    -1.001164292344664
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.5000008100248023,
+   "absImT": 0.37250319253380126,
+   "ratesOfPair": [
+    1.0219534106417318,
+    1.3875382122062279
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.4999884482718473,
+   "absImT": 0.4883946836248819,
+   "ratesOfPair": [
+    -1.0165246868442461,
+    1.0332507801717181
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.4999997261779687,
+   "absImT": 0.35989016113104705,
+   "ratesOfPair": [
+    1.1286313824321945,
+    -1.0041574411796745
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.499999914467,
+   "absImT": 1.5215685512342596,
+   "ratesOfPair": [
+    -1.1329124795557808,
+    1.1204281285978952
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.500000857459385,
+   "absImT": 0.6090234610683616,
+   "ratesOfPair": [
+    -1.0101914809786954,
+    1.1430174399093929
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.500000144449209,
+   "absImT": 0.26146737903017175,
+   "ratesOfPair": [
+    1.6350434016003956,
+    -1.4186108393573487
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.500000012436806,
+   "absImT": 1.7043344466093304,
+   "ratesOfPair": [
+    -1.0000031445677509,
+    1.2244281947799707
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.49999910453593,
+   "absImT": 0.8578101294479347,
+   "ratesOfPair": [
+    -1.5111953813544368,
+    -1.3441398540028873
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.499998666108934,
+   "absImT": 0.7540401840856006,
+   "ratesOfPair": [
+    -1.3106549818719402,
+    -1.9573916862150633
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.499998145089943,
+   "absImT": 0.07938260179300707,
+   "ratesOfPair": [
+    -1.3904763109294942,
+    -1.311877054976062
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.500000145224592,
+   "absImT": 0.07920398174022464,
+   "ratesOfPair": [
+    1.020104939163513,
+    1.0015782719702528
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.50000044503292,
+   "absImT": 0.5718977995259249,
+   "ratesOfPair": [
+    -1.1684269859514307,
+    -1.3786278271822012
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.500000606435371,
+   "absImT": 0.07868478866497618,
+   "ratesOfPair": [
+    1.0094170860638472,
+    1.1415670460143628
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.5000000125790987,
+   "absImT": 0.7928369171840045,
+   "ratesOfPair": [
+    1.0086196664913392,
+    -1.01251960883205
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.4999998144706215,
+   "absImT": 0.1520099222207562,
+   "ratesOfPair": [
+    -1.1630344149221126,
+    1.1579751187775362
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.4999997114757107,
+   "absImT": 0.10350258324371217,
+   "ratesOfPair": [
+    1.2196544099199547,
+    1.0793748590457521
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.50000090013575,
+   "absImT": 0.24369430493004035,
+   "ratesOfPair": [
+    -1.9489911915005014,
+    -1.0226276760065975
+   ]
+  },
+  {
+   "windingOfTargetPair": 1,
+   "otherWindings": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "monodromyMatchesWinding": true,
+   "halfJumpRel": 0.0,
+   "growthExponent": -2.4999993858278047,
+   "absImT": 0.16147765639753756,
+   "ratesOfPair": [
+    1.7871560567628393,
+    1.0434614631179946
+   ]
+  }
+ ]
+}

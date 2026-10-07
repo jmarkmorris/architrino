@@ -1,0 +1,358 @@
+{
+  "schema": "weber-delayed-pair-reference.known.v1",
+  "generatedAtUtc": "2026-10-06T03:34:18.175Z",
+  "lane": "C (ramon-e-moore)",
+  "cases": [
+    {
+      "name": "1 stationary pair range 2 (prescribed evaluation)",
+      "pass": true,
+      "lag": 2,
+      "Dt": 1,
+      "Rdot": 0,
+      "Rddot": 0,
+      "bracket": 1,
+      "magnitude": 0.25,
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "residual": 0,
+      "note": "solved (implicit) stationary value for information only",
+      "solvedMagnitude": 0.16666666666666666,
+      "solvedDetM": 1.5,
+      "expectedSolved": 0.16666666666666666
+    },
+    {
+      "name": "2 affine source controls",
+      "pass": true,
+      "transverse": {
+        "S": -1,
+        "Rdot": 0,
+        "Rddot": 0.09,
+        "bracket": 1.09,
+        "residual": 0
+      },
+      "general": {
+        "S": -2.5322022578383008,
+        "tauQuadratic": 2.5322022578383003,
+        "Rdot": -0.6691296487679443,
+        "RdotClosedForm": -0.6691296487679443,
+        "Rddot": 0.06829812661989035,
+        "RddotClosedForm": 0.06829812661989035,
+        "residual": 0
+      }
+    },
+    {
+      "name": "3 zero-coefficient canonical circle vs closed form",
+      "pass": true,
+      "rows": [
+        {
+          "beta": 0.05,
+          "rho": 99.99999999999999,
+          "dScalar": 0.09987533737220838,
+          "dInstrument": 0.09987533737220837,
+          "R": 199.75067474441673,
+          "RInstrument": 199.7506747444167,
+          "Dt": 1.0024958457878823,
+          "DtInstrument": 1.0024958457878823,
+          "ar": -0.000024968886068247575,
+          "at": 0.0000012479254791261123,
+          "AiInstrument": [
+            -0.00002496888606824757,
+            0.0000012479254791261121,
+            0
+          ],
+          "maxRel": 1.6968820683256143e-16,
+          "detM": 1,
+          "residual": 0
+        },
+        {
+          "beta": 0.3,
+          "rho": 2.7777777777777777,
+          "dScalar": 0.5753441705168663,
+          "dInstrument": 0.5753441705168663,
+          "R": 5.327260838119132,
+          "RInstrument": 5.327260838119132,
+          "Dt": 1.0851162226785516,
+          "DtInstrument": 1.0851162226785516,
+          "ar": -0.03113811277149017,
+          "at": 0.009213123817929814,
+          "AiInstrument": [
+            -0.03113811277149016,
+            0.009213123817929813,
+            0
+          ],
+          "maxRel": 3.342637022430802e-16,
+          "detM": 1,
+          "residual": 0
+        }
+      ],
+      "PIprintedD": 0.0998753
+    },
+    {
+      "name": "4 rigid-circle bracket equals one",
+      "pass": true,
+      "rows": [
+        {
+          "beta": 0.05,
+          "rho": 99.99999999999999,
+          "Rdot": 0,
+          "Rddot": 1.3518786350099629e-20,
+          "bracket": 1,
+          "hit": [
+            -0.00002496888606824757,
+            0.0000012479254791261121,
+            0
+          ],
+          "canonical": [
+            -0.00002496888606824757,
+            0.0000012479254791261121,
+            0
+          ],
+          "detM": 1.0049813445458469,
+          "detMClosedForm": 1.0049813445458469,
+          "solvedAi": [
+            -0.000024968731527068987,
+            0.000001247917755278368,
+            0
+          ],
+          "note": "solved Ai differs from canonical because the rigid acceleration is not the solution of the implicit block on an unbalanced circle"
+        },
+        {
+          "beta": 0.1,
+          "rho": 24.999999999999996,
+          "Rdot": 0,
+          "Rddot": 1.0735375199659419e-19,
+          "bracket": 1,
+          "hit": [
+            -0.00039803434367442515,
+            0.000039737782499351776,
+            0
+          ],
+          "canonical": [
+            -0.00039803434367442515,
+            0.000039737782499351776,
+            0
+          ],
+          "detM": 1.0197059558177204,
+          "detMClosedForm": 1.0197059558177204,
+          "solvedAi": [
+            -0.00039799604483591863,
+            0.00003973395893251957,
+            0
+          ],
+          "note": "solved Ai differs from canonical because the rigid acceleration is not the solution of the implicit block on an unbalanced circle"
+        },
+        {
+          "beta": 0.5,
+          "rho": 1,
+          "Rdot": 0,
+          "Rddot": 0,
+          "bracket": 1,
+          "hit": [
+            -0.22804892202710347,
+            0.11021183452083953,
+            0
+          ],
+          "canonical": [
+            -0.22804892202710347,
+            0.11021183452083953,
+            0
+          ],
+          "detM": 1.3745982211688044,
+          "detMClosedForm": 1.3745982211688044,
+          "solvedAi": [
+            -0.2211315075049337,
+            0.10686877576900373,
+            0
+          ],
+          "note": "solved Ai differs from canonical because the rigid acceleration is not the solution of the implicit block on an unbalanced circle"
+        },
+        {
+          "beta": 0.9,
+          "rho": 0.30864197530864196,
+          "Rdot": -2.220446049250313e-16,
+          "Rddot": 0,
+          "bracket": 1,
+          "hit": [
+            -2.1656120312709057,
+            1.7969128813504698,
+            0
+          ],
+          "canonical": [
+            -2.1656120312709057,
+            1.7969128813504698,
+            0
+          ],
+          "detM": 1.8489224538981943,
+          "detMClosedForm": 1.8489224538981945,
+          "solvedAi": [
+            -1.8849293598682857,
+            1.5640169145141387,
+            0
+          ],
+          "note": "solved Ai differs from canonical because the rigid acceleration is not the solution of the implicit block on an unbalanced circle"
+        }
+      ]
+    },
+    {
+      "name": "5 slow approach: 9a minus 9 first order in beta; Section 9 bracket deviation second order",
+      "pass": true,
+      "rows": [
+        {
+          "pair": [
+            0.05,
+            0.025
+          ],
+          "kepler": [
+            {
+              "beta": 0.05,
+              "rho": 99.99999999999999,
+              "A9a": [
+                -0.000024968731527068987,
+                0.000001247917755278368,
+                0
+              ],
+              "A9": [
+                -0.00002500000000000001,
+                0,
+                0
+              ],
+              "normalizedDifference": 0.04993237733316431,
+              "firstOrderPrediction": 0.05,
+              "bracket9MinusOne": 0,
+              "bracket9a": 0.9999938106498559,
+              "tangential9a": 0.000001247917755278368,
+              "tangentialFirstOrder": 0.0000012500000000000005
+            },
+            {
+              "beta": 0.025,
+              "rho": 399.99999999999994,
+              "A9a": [
+                -0.0000015620116434992027,
+                3.904622601600145e-8,
+                0
+              ],
+              "A9": [
+                -0.0000015625000000000003,
+                0,
+                0
+              ],
+              "normalizedDifference": 0.02499153911515245,
+              "firstOrderPrediction": 0.025,
+              "bracket9MinusOne": 0,
+              "bracket9a": 0.9999996103290619,
+              "tangential9a": 3.904622601600145e-8,
+              "tangentialFirstOrder": 3.9062500000000016e-8
+            }
+          ],
+          "differenceRatio": 0.5005076956060223,
+          "offKeplerRhoScale": 1.2,
+          "offKeplerBracket9MinusOne": [
+            0.0016528925619834212,
+            0.0004158004158003603
+          ],
+          "bracketRatio": 0.2515592515592256
+        },
+        {
+          "pair": [
+            0.02,
+            0.01
+          ],
+          "kepler": [
+            {
+              "beta": 0.02,
+              "rho": 625,
+              "A9a": [
+                -6.398719873121325e-7,
+                1.2796586941725516e-8,
+                0
+              ],
+              "A9": [
+                -6.4e-7,
+                0,
+                0
+              ],
+              "normalizedDifference": 0.01999566753644437,
+              "firstOrderPrediction": 0.02,
+              "bracket9MinusOne": 0,
+              "bracket9a": 0.9999998402503048,
+              "tangential9a": 1.2796586941725516e-8,
+              "tangentialFirstOrder": 1.28e-8
+            },
+            {
+              "beta": 0.01,
+              "rho": 2500,
+              "A9a": [
+                -3.999799995010965e-8,
+                3.999733338676409e-10,
+                0
+              ],
+              "A9": [
+                -4e-8,
+                0,
+                0
+              ],
+              "normalizedDifference": 0.009999458360480057,
+              "firstOrderPrediction": 0.01,
+              "bracket9MinusOne": 0,
+              "bracket9a": 0.9999999900039153,
+              "tangential9a": 3.999733338676409e-10,
+              "tangentialFirstOrder": 4e-10
+            }
+          ],
+          "differenceRatio": 0.500081247212923,
+          "offKeplerRhoScale": 1.2,
+          "offKeplerBracket9MinusOne": [
+            0.00026631158455403536,
+            0.00006664445184934031
+          ],
+          "bracketRatio": 0.25024991669417207
+        }
+      ],
+      "note": "On an exact Kepler circle the Section 9 bracket is exactly one (derived in the reference document), so its scaling is tested on a circle with radius scaled by 1.2."
+    },
+    {
+      "name": "6 integrator order on closed-form delayed problem",
+      "pass": true,
+      "beta": 0.3,
+      "rho": 1,
+      "Tend": 6,
+      "errors": [
+        {
+          "h": 0.1,
+          "error": 5.45289457881066e-9,
+          "steps": 60
+        },
+        {
+          "h": 0.05,
+          "error": 3.3813471449379536e-10,
+          "steps": 121
+        },
+        {
+          "h": 0.025,
+          "error": 2.1049274266093546e-11,
+          "steps": 240
+        },
+        {
+          "h": 0.0125,
+          "error": 1.3270609466053543e-12,
+          "steps": 480
+        }
+      ],
+      "ratios": [
+        16.12639680304318,
+        16.06396069618739,
+        15.861573140207287
+      ],
+      "observedOrders": [
+        4.011352221224708,
+        4.005755739440271,
+        3.9874639585537905
+      ],
+      "nominalOrder": 4
+    }
+  ],
+  "allPassed": true
+}

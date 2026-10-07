@@ -1,0 +1,108 @@
+{
+  "passed": true,
+  "time": "2026-10-06T04:17:48.725Z",
+  "boundary": "Exact rational inequalities for declared analytical constants only; no trajectory, theorem verification or independent reference",
+  "knownReceipt": ".tmp/authorized-cases-ten-hour/d/arithmetic-known.json",
+  "subject": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-followup-signed-center.md",
+  "subjectSha256": "49db1e75dc5e42db406e18139eeb3a1d0a4065fbcc474d103dbc4e8203a788c6",
+  "rows": [
+    {
+      "name": "B/source inverse coefficient",
+      "exactNumerator": "401000",
+      "exactDenominator": "99599",
+      "approximate": 4.0261448408116545,
+      "strictUpper": 4.03
+    },
+    {
+      "name": "source mixed bracket coefficient",
+      "exactNumerator": "40100000000",
+      "exactDenominator": "9919960801",
+      "approximate": 4.042354683090849,
+      "strictUpper": 4.05
+    },
+    {
+      "name": "moving source acceleration coefficient",
+      "exactNumerator": "340000000000",
+      "exactDenominator": "9919960801",
+      "approximate": 34.27432898381269,
+      "strictUpper": 35
+    },
+    {
+      "name": "bracket coefficient",
+      "exactNumerator": "2429",
+      "exactDenominator": "200",
+      "approximate": 12.145,
+      "strictUpper": 12.2
+    },
+    {
+      "name": "outside transmitter coefficient",
+      "exactNumerator": "162138397",
+      "exactDenominator": "9959900",
+      "approximate": 16.2791189670579,
+      "strictUpper": 16.3
+    },
+    {
+      "name": "relative inverse-range-square coefficient",
+      "exactNumerator": "818319000",
+      "exactDenominator": "99181681",
+      "approximate": 8.25070710386528,
+      "strictUpper": 8.3
+    },
+    {
+      "name": "full instantaneous coefficient",
+      "exactNumerator": "42532079523",
+      "exactDenominator": "991816810",
+      "approximate": 42.88299925366258,
+      "strictUpper": 43
+    },
+    {
+      "name": "memory-window coefficient",
+      "exactNumerator": "13400",
+      "exactDenominator": "3267",
+      "approximate": 4.101622283440466,
+      "strictUpper": 4.2
+    },
+    {
+      "name": "instantaneous plus memory coefficient",
+      "exactNumerator": "27211",
+      "exactDenominator": "625",
+      "approximate": 43.5376,
+      "strictUpper": 50
+    },
+    {
+      "name": "matrix transformed coefficient",
+      "exactNumerator": "5103",
+      "exactDenominator": "100",
+      "approximate": 51.03,
+      "strictUpper": 52
+    },
+    {
+      "name": "release coefficient",
+      "exactNumerator": "800000",
+      "exactDenominator": "9801",
+      "approximate": 81.62432404856648,
+      "strictUpper": 82
+    },
+    {
+      "name": "planar global supremum factor",
+      "exactNumerator": "791802000000",
+      "exactDenominator": "770589776177",
+      "approximate": 1.0275272583140627,
+      "strictUpper": 1.03
+    },
+    {
+      "name": "difference coefficient after division by epsilon/h0",
+      "exactNumerator": "728058024841",
+      "exactDenominator": "13199729400",
+      "approximate": 55.15704169215772,
+      "strictUpper": 60
+    },
+    {
+      "name": "maximal terminal relative difference factor",
+      "exactNumerator": "60",
+      "exactDenominator": "1999",
+      "approximate": 0.030015007503751877,
+      "strictUpper": 0.031
+    }
+  ]
+}

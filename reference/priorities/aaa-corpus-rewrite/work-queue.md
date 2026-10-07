@@ -46,11 +46,13 @@ No rows.
 
 No rows.
 
-## Deferred / discussion-scoped
+## Completed OPS-031 document repairs
+
+The operator approved all eight October 4–5 corrections on October 6. The [consolidated before/after proposal](analysis/ops-031-eight-change-proposal-2026-10-06.md) is implemented; the [closure receipt](evidence/ops-031-eight-correction-closure-2026-10-06.md) records source versions, scoped validation and separate mathematical verification. Scientific questions remain distinct.
 
 ### OPS-031 — October 5 Master Equation and three-binary referrals
 
-- **Status:** Discussion-scoped; six proposed corrections, not accepted for implementation. CRW-005 remains closed. Together with the two October 4 proposals, eight bounded editorial repairs await disposition; separate scientific questions are not counted as repairs.
+- **Status:** ✓ Done — six accepted corrections implemented October 6 and separately verified with the two October 4 corrections. CRW-005 remains closed; separate scientific questions are not counted as repairs.
 - **Master Equation, SP-01–SP-03:** The [spiral receipt](../aaa-operations/evidence/ops-031-master-spiral-review-2026-10-05.md) proposes signed-sheet restrictions for circular shortcuts, an oriented tangent-normal description with the Frenet curvature condition, and explicit definitions of the transported radial residual and branch sum. Independent Cartesian chord projections, tangent differentiation and the radial-jet derivation support the corrections. Preserve the valid general Jacobians, projections and jet coefficient. SP-O1's tangential-negativity concern remains an unresolved recurrence/target question; resolve the intended cycle before any substantive change.
 - **Master Equation, ME-T1–ME-T2:** The [tail receipt](../aaa-operations/evidence/ops-031-master-tail-review-2026-10-05.md) demonstrates that the explicit candidate wake charge fails the asserted off-shell action-residual identity by a factor of two on a compact static-pair perturbation. Proposed correction: label that functional an unverified diagnostic and reserve conditional conservation for an independently derived boundary charge; no replacement charge is supplied. Separately, distinguish available geometry reductions from the still-open continuum wave/dispersion recovery target in the analytic summary. This does not invalidate the canonical Master Equation or import an effective physics law.
 - **Zero-Axial-Offset Three-Binary Dynamics and Interpretation:** The [whole-chapter receipt](../aaa-operations/evidence/ops-031-nested-shell-dynamics-review-2026-10-05.md) proposes clarifying the retuning criterion: continuous root/constraint data can change with fixed discrete identities, so a nonzero constraint change alone is insufficient to declare a ledger event. Define which discrete data the ledger encodes and require their preservation alongside continuous closure and margins. An explicitly discrete, injective encoding could resolve the concern by definition; no retained EOM counterexample is claimed. Optional scaling exposition is not an additional repair.
@@ -58,11 +60,13 @@ No rows.
 
 ### OPS-031 — October 4 circular-root referrals
 
-- **Status:** ○ Proposed corrections; not accepted for implementation. CRW-005 remains closed.
+- **Status:** ✓ Done — both bounded corrections accepted and implemented October 6 with separate verification. CRW-005 remains closed.
 - **Evidence:** The [October 4 bounded pilot](../aaa-operations/evidence/ops-031-master-equation-continuation-review-2026-10-04.md) preserves the current source hash, before text, independent fold expansion, minimal proposed replacements and falsifiers. The coordinator independently checked both against the declared branch kernel and current scalar definition.
 - **Circular amplitude:** Replace the denial of singular receiver-evaluated amplitude with the distinction between unit signed playback and the diverging transmitter-weighted acceleration on nondegenerate circular roots approaching a birth. A finite transition or locked orbit is not established.
 - **Scalar counting:** Remove the extra coarea multiplier and the resulting inverse-first-power fold claim for the declared receiver-time scalar. Its branch magnitudes scale as the inverse square root of the speed-parameter offset at positive separation. A different variational functional needs its own integrand and measure; no reception-time integrability conclusion follows from that parameter scaling alone.
 - **Owner / next action:** Corpus integration coordinates with the Master Equation and Causal Action Functional owners after acceptance of the bounded corrections. Preserve historical evidence and independently verify any consequential repair. Both sentences occur in preserved October 2/3 pre-repair snapshots by exact-text `rg`; earliest causal attribution remains unresolved.
+
+## Deferred / discussion-scoped
 
 ### OPS-031 — Separate scientific follow-ups
 
@@ -3717,3 +3721,7 @@ Four bounded mathematical and scope corrections integrated. Coordinator read the
 ### 2026-09-13 — Well-posedness and Regularization integrated
 
 Nine bounded mathematical protocol repairs integrated. Coordinator read the full source and receipt, and reviewed the final diff; SHA-256 verified: `ac7c3706d43a6007e59b92a95d26d1a1d341c16caa0ed1cc1aeb75aaa9caf8a4`. [Receipt](evidence/crw-005-well-posedness-and-regularization-review-2026-09-13.md). Independent continuous-emission, Gaussian, coercivity and bounded non-Cauchy counterexamples support repairs. Valid compatible-history continuation replaces scalar-bound implication; full Cauchy tails replace adjacent closeness. Parent read complete final source and receipt; independent reviewer separately checked three proof domains at its recorded snapshot. All viewer IDs preserved,118 KaTeX expressions pass. Actual functional theorem applicability, sharp-limit solution and runtime implementation remain open. Final joined `node scripts/validate-content.mjs --check --strict` passed: 1826 repository Markdown files, 199 corpus files, 391 scenes, zero errors, zero warnings and 30 informational notes. `node scripts/validate-equation-mapping-links.mjs` passed for its 23 registered equation links; this is its declared registry scope, not a claim that it enumerates every viewer link. Scoped `git diff --check HEAD` passed for corpus and campaign records.
+
+### OPS-031 — October 6 Energy notation referral
+
+**Status: ✓ Done — accepted and implemented October 6.** The operator explicitly approved EN06-01 after the report-only review. The [Energy chapter](../../../content/markdown/aaa/dynamics/energy.md#energy-and-self-hit-in-the-noether-sea) now uses `$\|\mathbf V_a\|>c_f$` in its generic super-field-speed passage, consistent with the opening's symbolic wake-speed convention. Exact before/after and [implementation evidence](../aaa-operations/evidence/ops-031-energy-review-2026-10-06.md#accepted-integration--october-6) preserve the reviewed source and separate adjudication. This completes only EN06-01; the earlier eight-change proposal was subsequently accepted and implemented with separate verification. CRW-005 remains closed.

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": [
+    "rational arithmetic",
+    "concave quadratic maximum 1/3 and square completion",
+    "two-member channel counts",
+    "both polarity tangential signs at exact right angles"
+  ],
+  "mode": "controls",
+  "sha256": "3de1303a4bc361c656250fd0b2fccda9a1cea28ae1e70358265c0894137879f7"
+}

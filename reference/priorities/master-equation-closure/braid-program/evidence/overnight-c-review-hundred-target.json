@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "C": "793/8",
+  "I": "457/8",
+  "O": "25",
+  "B_corner": "-68357663383/16663366170000",
+  "H": "3329083937/11491280000",
+  "coarse_separation_upper": "3965/6443",
+  "near_lower_comparison": "3032/2105",
+  "other_terms": [
+    "101/200",
+    "3368/4169",
+    "200/9801",
+    "1/10000"
+  ],
+  "other_sum": "49529218529/37145790000",
+  "simple_other_ceiling": "671/500",
+  "exact_comparison_gap": "1673406055291/15638377590000",
+  "coarse_strict_margin": "1/20",
+  "boundary": "Exact sums and rational comparisons; root coverage, phase geometry and continuous bounds are analytical in the report.",
+  "mode": "target",
+  "checker_sha256": "839e0af48e4eefb6650dc7a96dd0aac95f87b2e5fbd04ec492cd3980774e2827",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

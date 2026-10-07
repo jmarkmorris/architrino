@@ -222,6 +222,28 @@ Plainly: moving the cells apart creates separately owned candidate assemblies, b
 - **Acceptance:** Fresh source union and current-generation manifest; full 160-cell coverage; M05/M06 and all three rungs; independent numerical reference and arithmetic closure; complete process/resource/output closure; measured reproducibility under fixed inputs; no balance, retention, stability, binding, score, or physical-realization claim unless separately established.
 - **Completion:** A new full-domain F6c result is independently accepted at its actual grade, or the campaign is explicitly closed with a measured fail-closed disposition and its falsifier.
 
+### Rigid-balance follow-ups from the slow-motion session
+
+These three entries were added on 2026-10-05 at the operator's instruction. They record proposals from a separate Claude session under the unchanged delayed equation. They carry no score and change no assignment, gate or ranked object.
+
+<a id="decide-the-evolved-fate-of-two-slow-pairs"></a>**Decide the evolved fate of two slow pairs over a declared family of starts.**
+
+- **Status:** ○ Queued — unassigned (ledger route R55).
+- **Request:** Replace the six float releases of the [two-pair analysis](analysis/slow-pair-far-field-and-two-pair-coupling.md) by a declared family of starts, with separation, relative phase and plane orientation as coordinates, and classify each outcome as unbinding, close approach or separation.
+- **Completion / falsifier:** A table over the declared family with a stated error control, or one certified bound four-member motion, which would overturn the recorded picture.
+
+<a id="look-for-a-persistent-motion-that-is-not-rigid"></a>**Look for a persistent motion that is not rigid.**
+
+- **Status:** ◐ Partial — a [first search](analysis/released-balances-and-nonrigid-search-2026-10-05.md#a-search-for-periodic-motions-that-are-not-rigid) of 1,828 starts over breathing arrangements of one to three pairs, and of two or three members with no symmetry, found none, and a mirror opposite pair turning in one sense is excluded by an exact identity. Wider families are unassigned (ledger route R56).
+- **Request:** The [wider search](analysis/rigid-balance-search-2026-10-04.md) found 93 rigid balances and none without growing characteristic roots. Examine complete periodic histories in which members breathe or exchange places, beginning with the smallest arrangements.
+- **Completion / falsifier:** A complete periodic history that is not a rigid motion, with its residual and its causal-root census stated, or a bounded negative over a declared family. A rigid balance with no growing root would close the route from the other side.
+
+<a id="follow-one-disturbed-rigid-balance"></a>**Follow one disturbed rigid balance to its first decisive event.**
+
+- **Status:** ◐ Partial — [all 93 balances released](analysis/released-balances-and-nonrigid-search-2026-10-05.md) at measured grade. Every run of the 65 below wake speed reached a member's arrival at wake speed within 1.4 periods, which under the curved-path theorem's hypotheses cannot be continued with continuous velocity. Balances with a member above wake speed need an integrator that resolves root births; that and a certified trajectory are unassigned (related to ledger routes R17 and R56). **Update, 2026-10-06:** the integrator that resolves root births was written (`release4.py`) and applied to all 28 such balances and to the ring reference T02; 38 of 55 runs converged. The statement about the 65 was checked in every census run for rate and regular rows. A second campaign's 61 new balances below wake speed were released, and two runs disperse without any member reaching wake speed, as does one three-member rotor above it. A certified trajectory, and the later motion of the dispersed histories, remain unassigned.
+- **Request:** Release a small exact balance with a small disturbance from its complete rigid past and follow the delayed equation until a member reaches wake speed, two members approach closely, or the arrangement separates.
+- **Completion / falsifier:** The outcome and its time for a declared set of disturbances, with step-size refinement, at measured grade; a disturbed history that returns to the balance would be the first sign of persistence.
+
 ## Co-spherical research controls
 
 These controls support the reader-facing [Spatial (3D) Braid Assemblies](../../../../content/markdown/aaa/noether-braid/3d-braid-assemblies.md) chapter. Operational status, task ordering, reproduction instructions, and unbooked questions remain here so they cannot be mistaken for accepted reader-facing results. This separation creates no new run authorization, candidate, score, registry entry, or queue rank.
@@ -264,6 +286,14 @@ The exact octahedral coloured-axis and residual-channel census is produced by `s
 - **Completion:** A bounded packet names required carriers, interactions, authority labels, and browser acceptance.
 
 ## Stopped historical campaigns
+
+### Six-member binding sphere under the instantaneous Weber law
+
+- **Status:** Closed with a bounded negative on 2026-10-06 and stopped by the operator the same day; no further six-member search under this law is selected.
+- **Result:** the [frozen synthesis](analysis/weber-binding-sphere-investigation.md#frozen-checkpoint-synthesis-pi-2026-10-06t035702z) and its [blind reference](analysis/weber-binding-sphere-independent-reference.md) find no equal-speed sphere of three members of each polarity. The planar alternating hexagon is the only exact history found; it is exact at every radius except $\sqrt3$ and linearly unstable at every regular radius (derived). Rigid two-circle arrangements, named solids, great-circle, latitude-circle, choreography and shooting families are bounded negatives on their stated boxes.
+- **Not selected:** the synthesis's next step, a periodic-orbit continuation from the hexagon's unstable manifold and from the residual floors, and the four relayed companion tasks, whose dispositions are in [preregistration Section 10](analysis/weber-binding-sphere-preregistration.md). An analytical obstruction for the great-circle class, and the unconstrained stratum at $R=1$, remain open and unassigned.
+- **Boundary:** the negatives concern this instantaneous law, this population and the stated boxes. They are not a theorem over all spherical histories and say nothing about a delayed law. Resuming requires an explicit operator selection.
+- **Later bounded continuation:** on 2026-10-06 at about 21:54Z the operator's reply in the investigating session selected two of the items left open above, the analytical obstruction for the great-circle class and the unconstrained stratum at $R=1$; the reading is recorded in the [authorization index](../equation-variants/README.md). Both closed on 2026-10-07 in the [continuation synthesis](analysis/weber-binding-sphere-continuation-2026-10-06.md): the great-circle class reduces to the planar ring by derivation with independent confirmation, uniform circular motions at one speed reduce to rigid rotations by derivation, and the collocation search found no candidate. The multi-curve collocation at $R=1$ found no candidate other than the hexagon in 625 target starts at three harmonics and no residual falling with the number of harmonics on 47 laddered states, a measured weak negative. The campaign is stopped again at that point; the periodic-orbit continuation and the companion tasks remain unselected, and resuming still requires an explicit operator selection.
 
 ### Complete braid registry closure campaign
 

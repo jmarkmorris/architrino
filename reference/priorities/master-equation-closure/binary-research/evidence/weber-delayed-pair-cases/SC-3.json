@@ -1,0 +1,13 @@
+{
+ "name": "SC-3",
+ "description": "Mirror circle beta=0.1, rho=25, Omega=4e-3, rigid-circle past; window two orbital periods",
+ "members": [
+  {"q": -1, "x": [25, 0, 0], "v": [0, 0.1, 0], "past": {"kind": "rigid-circle", "rho": 25, "Omega": 0.004, "phi0": 0, "sign": 1}},
+  {"q": 1, "x": [-25, 0, 0], "v": [0, -0.1, 0], "past": {"kind": "rigid-circle", "rho": 25, "Omega": 0.004, "phi0": 0, "sign": -1}}
+ ],
+ "coefficients": {"lambda": -0.5, "mu": 1, "K": 1, "cf": 1},
+ "integrator": {"method": "dp54", "rtol": 1e-10, "atol": 1e-14, "hmax": 12.5},
+ "events": {"rContact": 1e-6, "rEscape": 1000, "detMin": 1e-8},
+ "tEnd": 3142,
+ "output": {"every": 1}
+}

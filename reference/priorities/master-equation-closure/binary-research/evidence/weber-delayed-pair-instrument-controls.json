@@ -1,0 +1,543 @@
+{
+ "schema": "weber-delayed-pair-instrument-controls.v1",
+ "instrument": "weber-delayed-pair-instrument.mjs",
+ "recordedAt": "2026-10-06T03:30:50.450Z",
+ "node": "v26.3.0",
+ "wallSeconds": 0.119,
+ "allPass": true,
+ "results": [
+  {
+   "name": "1 stationary pair range 2",
+   "pass": true,
+   "measured": {
+    "lag": 2,
+    "Dt": 1,
+    "Rdot": 0,
+    "Rddot": 0,
+    "bracket": 1,
+    "hitMagnitude": 0.25,
+    "hitDirection": [
+     -1,
+     0,
+     0
+    ],
+    "rootCount": 1,
+    "selfCensus": 0,
+    "implicitSolveForComparison": {
+     "A": [
+      -0.16666666666666666,
+      0,
+      0
+     ],
+     "det": 1.5,
+     "Rddot": -0.16666666666666666,
+     "bracket": 0.6666666666666667
+    }
+   },
+   "reference": {
+    "lag": 2,
+    "Dt": 1,
+    "Rdot": 0,
+    "Rddot": 0,
+    "bracket": 1,
+    "hitMagnitude": 0.25,
+    "direction": "toward partner",
+    "roots": 1
+   },
+   "tolerance": 1e-13,
+   "note": "prescribed stationary paths; the implicit solve on a held stationary receiver is reported for comparison only (det M = 1 + 1/(R D_t^2) = 1.5)"
+  },
+  {
+   "name": "2 transverse affine source and affine closed forms",
+   "pass": true,
+   "measured": {
+    "S": -0.9999999999999989,
+    "Rdot": 0,
+    "Rddot": 0.09,
+    "bracket": 1.09,
+    "Dt": 1,
+    "randomAffineWorstAbsErr": {
+     "root": 7.283063041541027e-13,
+     "Rdot": 1.1501910535116622e-13,
+     "Rddot": 3.391731340229853e-14,
+     "bracket": 2.984279490192421e-13
+    },
+    "randomCases": 200
+   },
+   "reference": {
+    "S": -1,
+    "Rddot": 0.09,
+    "bracket": 1.09,
+    "closedForms": "tau from the causal quadratic; Rdot=-(n.v)/Dt; Rddot=|v_perp|^2/(R Dt^3)"
+   },
+   "tolerance": 1e-11,
+   "note": "stationary receiver, prescribed affine transmitter"
+  },
+  {
+   "name": "3 zero-coefficient canonical control on rigid circle beta=0.05",
+   "pass": true,
+   "measured": {
+    "dInstrument": 0.09987533737220836,
+    "dScalar": 0.09987533737220838,
+    "R": 199.75067474441667,
+    "n": [
+     0.9987533737220838,
+     -0.049916915757645085,
+     0
+    ],
+    "Dt": 1.0024958457878823,
+    "radial": -0.00002496888606824759,
+    "tangential": 0.0000012479254791261126,
+    "bracket": 1,
+    "relErrors": {
+     "d": 2.7755575615628914e-17,
+     "R": 5.684341886080802e-14,
+     "n": 1.1123893155135927e-16,
+     "Dt": 0,
+     "radial": 5.427766028098178e-16,
+     "tangential": 1.6968820683256143e-16,
+     "bracket": 0
+    },
+    "closedForm": {
+     "R": 199.75067474441673,
+     "n": [
+      0.9987533737220837,
+      -0.04991691575764509,
+      0
+     ],
+     "Dt": 1.0024958457878823,
+     "radial": -0.000024968886068247575,
+     "tang": 0.0000012479254791261123
+    },
+    "preregisteredD": 0.0998753
+   },
+   "reference": {
+    "d": "2 beta cos(d/2) fixed point",
+    "radial": "-1/(4 rho^2 cos(d/2) D_t)",
+    "tangential": "+sin(d/2)/(4 rho^2 cos^2(d/2) D_t)"
+   },
+   "tolerance": 1e-10,
+   "note": "lambda=mu=0 control only; tangential coefficient strictly positive, so no exact circle at this radius"
+  },
+  {
+   "name": "4 rigid-circle bracket, frozen coefficients",
+   "pass": true,
+   "measured": {
+    "rows": [
+     {
+      "beta": 0.02,
+      "rho": 625,
+      "Rdot": 0,
+      "Rddot": -2.1167358994528186e-22,
+      "bracket": 1,
+      "p": 1,
+      "hitMinusCanonical": 0,
+      "implicitSolve": {
+       "A": [
+        -6.398719873121325e-7,
+        1.2796586941725516e-8,
+        0
+       ],
+       "det": 1.000799520389,
+       "detPredicted": 1.000799520389,
+       "bracket": 0.9999998402503048,
+       "Rddot": -1.278253101970461e-10,
+       "defectFromCircle": 1.2797227223324396e-8,
+       "defectFromCanonical": 1.0223981042160252e-13
+      }
+     },
+     {
+      "beta": 0.05,
+      "rho": 99.99999999999999,
+      "Rdot": 0,
+      "Rddot": 6.7593931750498145e-21,
+      "bracket": 1,
+      "p": 1,
+      "hitMinusCanonical": 0,
+      "implicitSolve": {
+       "A": [
+        -0.000024968731527069004,
+        0.0000012479177552783684,
+        0
+       ],
+       "det": 1.0049813445458469,
+       "detPredicted": 1.0049813445458469,
+       "bracket": 0.9999938106498559,
+       "Rddot": -3.098537790678413e-8,
+       "defectFromCircle": 0.0000012483094333291079,
+       "defectFromCanonical": 1.5473407414687549e-10
+      }
+     },
+     {
+      "beta": 0.1,
+      "rho": 24.999999999999996,
+      "Rdot": 0,
+      "Rddot": 0,
+      "bracket": 1,
+      "p": 1,
+      "hitMinusCanonical": 0,
+      "implicitSolve": {
+       "A": [
+        -0.0003979960448359189,
+        0.0000397339589325196,
+        0
+       ],
+       "det": 1.0197059558177204,
+       "detPredicted": 1.0197059558177204,
+       "bracket": 0.9999037800654262,
+       "Rddot": -0.000001933965191720142,
+       "defectFromCircle": 0.00003978446089556576,
+       "defectFromCanonical": 3.848922828881321e-8
+      }
+     },
+     {
+      "beta": 0.3,
+      "rho": 2.7777777777777777,
+      "Rdot": 0,
+      "Rddot": 1.2789217890004332e-17,
+      "bracket": 1,
+      "p": 1,
+      "hitMinusCanonical": 0,
+      "implicitSolve": {
+       "A": [
+        -0.03095300610817907,
+        0.009158354583161986,
+        0
+       ],
+       "det": 1.1594202646516076,
+       "detPredicted": 1.1594202646516076,
+       "bracket": 0.9940553024305123,
+       "Rddot": -0.0011159013515821183,
+       "defectFromCircle": 0.009271960418050285,
+       "defectFromCanonical": 0.00019303923404123094
+      }
+     },
+     {
+      "beta": 0.7,
+      "rho": 0.5102040816326532,
+      "Rdot": 1.1102230246251565e-16,
+      "Rddot": -1.6021119944535463e-16,
+      "bracket": 0.9999999999999999,
+      "p": 0.9999999999999999,
+      "hitMinusCanonical": 1.1102230246251565e-16,
+      "implicitSolve": {
+       "A": [
+        -0.769073404810079,
+        0.5082687932987149,
+        0
+       ],
+       "det": 1.6115398560346597,
+       "detPredicted": 1.6115398560346599,
+       "bracket": 0.9259117541482119,
+       "Rddot": -0.08702996047294011,
+       "defectFromCircle": 0.5430865789800919,
+       "defectFromCanonical": 0.07376339660256886
+      }
+     }
+    ]
+   },
+   "reference": {
+    "Rdot": 0,
+    "Rddot": 0,
+    "bracket": 1,
+    "detM": "1 + K/(R D_t^2)"
+   },
+   "tolerance": 1e-12,
+   "note": "prescribed rigid circle (receiver acceleration centripetal): Section 9a hit equals the canonical hit; the implicit solve is reported, and its defect from the circle is the release compatibility defect of the SC preparations"
+  },
+  {
+   "name": "5 slow weakly coupled: 9a minus 9 first order in beta, Section 9 bracket deviation second order",
+   "pass": true,
+   "measured": {
+    "keplerCircle": {
+     "rows": [
+      {
+       "beta": 0.05,
+       "rho": 99.99999999999999,
+       "A9a": [
+        -0.000024968731527069004,
+        0.0000012479177552783684,
+        0
+       ],
+       "A9": [
+        -0.00002500000000000001,
+        0,
+        0
+       ],
+       "normalizedDifference": 0.04993237733316431,
+       "predictedFirstOrder": 0.05,
+       "bracket9Deviation": 0,
+       "bracket9a": 0.9999938106498559,
+       "det9a": 1.0049813445458469
+      },
+      {
+       "beta": 0.025,
+       "rho": 399.99999999999994,
+       "A9a": [
+        -0.0000015620116434992027,
+        3.904622601600145e-8,
+        0
+       ],
+       "A9": [
+        -0.0000015625000000000003,
+        0,
+        0
+       ],
+       "normalizedDifference": 0.02499153911515245,
+       "predictedFirstOrder": 0.025,
+       "bracket9Deviation": 0,
+       "bracket9a": 0.9999996103290619,
+       "det9a": 1.0012488296082032
+      },
+      {
+       "beta": 0.0125,
+       "rho": 1599.9999999999998,
+       "A9a": [
+        -9.764862030846658e-8,
+        1.2205759724094621e-9,
+        0
+       ],
+       "A9": [
+        -9.765625000000004e-8,
+        0,
+        0
+       ],
+       "normalizedDifference": 0.012498942140156295,
+       "predictedFirstOrder": 0.0125,
+       "bracket9Deviation": 0,
+       "bracket9a": 0.99999997560087,
+       "det9a": 1.0003124267810108
+      },
+      {
+       "beta": 0.00625,
+       "rho": 6399.999999999999,
+       "A9a": [
+        -6.1033964145472945e-9,
+        3.814597925327031e-11,
+        0
+       ],
+       "A9": [
+        -6.103515625000003e-9,
+        0,
+        0
+       ],
+       "normalizedDifference": 0.0062498677597497155,
+       "predictedFirstOrder": 0.00625,
+       "bracket9Deviation": 0,
+       "bracket9a": 0.9999999984743545,
+       "det9a": 1.0000781204227258
+      }
+     ],
+     "ratios": [
+      {
+       "betaFrom": 0.05,
+       "betaTo": 0.025,
+       "differenceRatio": 0.5005076956060223,
+       "bracket9DeviationBoth": [
+        0,
+        0
+       ]
+      },
+      {
+       "betaFrom": 0.025,
+       "betaTo": 0.0125,
+       "differenceRatio": 0.5001269462663125,
+       "bracket9DeviationBoth": [
+        0,
+        0
+       ]
+      },
+      {
+       "betaFrom": 0.0125,
+       "betaTo": 0.00625,
+       "differenceRatio": 0.500031737859662,
+       "bracket9DeviationBoth": [
+        0,
+        0
+       ]
+      }
+     ],
+     "note": "Section 9 bracket deviation is identically zero on the Kepler circle (it is the exact Section 9 circle h^2 = 2Kr); measured |deviation| < 1e-12 at every beta"
+    },
+    "offBalanceCircle": {
+     "rows": [
+      {
+       "beta": 0.05,
+       "rho": 119.99999999999997,
+       "normalizedDifference": 0.05000117417599012,
+       "bracket9Deviation": 0.0016528925619834212,
+       "predictedBracketDeviationLeading": 0.0016666666666666668,
+       "bracket9a": 1.000820597510434
+      },
+      {
+       "beta": 0.025,
+       "rho": 479.9999999999999,
+       "normalizedDifference": 0.0250001993075662,
+       "bracket9Deviation": 0.0004158004158003603,
+       "predictedBracketDeviationLeading": 0.0004166666666666667,
+       "bracket9a": 1.000207532133569
+      },
+      {
+       "beta": 0.0125,
+       "rho": 1919.9999999999995,
+       "normalizedDifference": 0.012500026572264173,
+       "bracket9Deviation": 0.00010411244143671006,
+       "predictedBracketDeviationLeading": 0.00010416666666666667,
+       "bracket9a": 1.000052033176284
+      },
+      {
+       "beta": 0.00625,
+       "rho": 7679.999999999998,
+       "normalizedDifference": 0.006250003373505767,
+       "bracket9Deviation": 0.00002603827626601607,
+       "predictedBracketDeviationLeading": 0.00002604166666666667,
+       "bracket9a": 1.000013017697233
+      }
+     ],
+     "ratios": [
+      {
+       "betaFrom": 0.05,
+       "betaTo": 0.025,
+       "differenceRatio": 0.49999224457354746,
+       "bracketRatio": 0.2515592515592256
+      },
+      {
+       "betaFrom": 0.025,
+       "betaTo": 0.0125,
+       "differenceRatio": 0.49999707676254784,
+       "bracketRatio": 0.2503904216553211
+      },
+      {
+       "betaFrom": 0.0125,
+       "betaTo": 0.00625,
+       "differenceRatio": 0.4999992069915802,
+       "bracketRatio": 0.2500976435351844
+      }
+     ]
+    }
+   },
+   "reference": {
+    "differenceRatio": 0.5,
+    "bracketRatio": 0.25,
+    "within": "10% (0.05 and 0.025 absolute)"
+   },
+   "tolerance": 0.05,
+   "note": "Section 9 side from the frozen weber-overnight-pair-instrument.mjs solveAccelerations; both laws solved implicitly on identical prescribed rigid-circle histories: the Kepler circle rho = 1/(4 beta^2) as frozen, plus the off-balance circle rho = 1.2/(4 beta^2) added because the frozen case is degenerate for the second-order half"
+  },
+  {
+   "name": "6 integrator order on the closed-form circle about a stationary source; Hermite order",
+   "pass": true,
+   "measured": {
+    "period": 50.26548245743669,
+    "rk4": [
+     {
+      "h": 1,
+      "err": 0.0004274315385947592,
+      "nfev": 205,
+      "releaseDefect": 0,
+      "jump1": null
+     },
+     {
+      "h": 0.5,
+      "err": 0.000023793754301075445,
+      "nfev": 405,
+      "releaseDefect": 0,
+      "jump1": null
+     },
+     {
+      "h": 0.25,
+      "err": 0.0000013922316486565973,
+      "nfev": 809,
+      "releaseDefect": 0,
+      "jump1": null
+     },
+     {
+      "h": 0.125,
+      "err": 8.40357587795026e-8,
+      "nfev": 1613,
+      "releaseDefect": 0,
+      "jump1": null
+     }
+    ],
+    "rk4Orders": [
+     4.167038532375721,
+     4.095111744216912,
+     4.050252113888801
+    ],
+    "dp54": [
+     {
+      "rtol": 1e-8,
+      "err": 4.3536086192078517e-7,
+      "nfev": 626,
+      "steps": 85,
+      "rejects": 5
+     },
+     {
+      "rtol": 1e-10,
+      "err": 1.028663089542835e-9,
+      "nfev": 1536,
+      "steps": 215,
+      "rejects": 5
+     },
+     {
+      "rtol": 1e-12,
+      "err": 2.776877819717964e-12,
+      "nfev": 3831,
+      "steps": 542,
+      "rejects": 6
+     }
+    ],
+    "hermite": [
+     {
+      "h": 0.4,
+      "ex": 0.000004159943321978414,
+      "ev": 0.0000010906073360717188,
+      "ea": 0.0006245875296550195
+     },
+     {
+      "h": 0.2,
+      "ex": 5.2213872385495003e-8,
+      "ev": 2.0499242085248832e-8,
+      "ea": 0.00003133578552909529
+     },
+     {
+      "h": 0.1,
+      "ex": 7.010523483871855e-10,
+      "ev": 3.424044763290509e-10,
+      "ea": 0.00000168262565791803
+     },
+     {
+      "h": 0.05,
+      "ex": 1.00087482717674e-11,
+      "ev": 5.501018762320467e-12,
+      "ea": 9.608552669116436e-8
+     }
+    ],
+    "hermiteOrders": [
+     {
+      "x": 6.315986903399002,
+      "v": 5.733417384584327,
+      "a": 4.3170207008504375
+     },
+     {
+      "x": 6.2187671723887545,
+      "v": 5.903725197457989,
+      "a": 4.219025005273909
+     },
+     {
+      "x": 6.130188713759976,
+      "v": 5.959858928716245,
+      "a": 4.13025130359205
+     }
+    ]
+   },
+   "reference": {
+    "rk4Order": 4,
+    "dp54": "error below 1e-7 at rtol 1e-10 and 1e-9 at 1e-12 after one period",
+    "hermite": "x order 6, v order 5, a order 4"
+   },
+   "tolerance": "orders in [3.7, 4.6]",
+   "note": "the circle is an exact Section 9a solution (derived above); the release defect must be at round-off since the past is compatible"
+  }
+ ]
+}

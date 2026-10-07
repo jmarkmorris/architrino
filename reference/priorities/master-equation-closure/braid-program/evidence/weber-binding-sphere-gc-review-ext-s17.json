@@ -1,0 +1,18 @@
+{
+ "test": "ext-s17",
+ "utc": "2026-10-06T23:14:15Z",
+ "coefficientModuliMaxError": 8.881784197001252e-16,
+ "maxCoefficientOutsideNineTerms": 5.551115123125783e-16,
+ "minSquareObstruction_over_sin2gamma_400pairs": 0.014143921634370947,
+ "forcedConfiguration": {
+  "maxModulusConditionDefect": 3.3306690738754696e-16,
+  "min_p00_minus_R2_over_1_minus_abscos": 0.9999999999999978
+ },
+ "irrationalRatioZeros": {
+  "pairs": 40,
+  "zerosFound": 974,
+  "min_absDdot_scaled": 0.005036885518305994,
+  "median_absDdot_scaled": 2.285722834798023,
+  "minAbsImT": 0.0014687917488266924
+ }
+}

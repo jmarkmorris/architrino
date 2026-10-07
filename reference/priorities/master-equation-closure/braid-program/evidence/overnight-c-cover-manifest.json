@@ -1,0 +1,57 @@
+{
+  "frozen": true,
+  "require_complete": false,
+  "target_sha256": "bcc6e3100518f4167cefdc8a19d517f7e0e6e955cf9cc521c26a3b1a88a8c6cc",
+  "receipts": [
+    {
+      "path": ".local-data/master-equation-closure/overnight-c/interval-pilot-weighted.json",
+      "sha256": "4c364cf02a35d5fb9a301e3a0f071b19e5717b0376e8e40572591030ef0d387d"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight-c/interval-continued.json",
+      "sha256": "04f8ac3489be894568168188306305ddf5b593eec809d140f789a804f230e720"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight-c/tight-cover.json",
+      "sha256": "c0d78a01e9f7d49295c7f2943a54f6bea4601fe39eb4b099d4279894ed26e2b7"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight-c/tight-cover-2.json",
+      "sha256": "740acb5acf857458ab81381f7499f90675819aadc126c9d389a78449e8e07ceb"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight-c/tight-cover-3.json",
+      "sha256": "e82c326fe269c6a2084f9591cfb1542c82effe8e979c4c21025684822b979ac2"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight-c/exact-witness-cover-stream.json",
+      "sha256": "bcc6e3100518f4167cefdc8a19d517f7e0e6e955cf9cc521c26a3b1a88a8c6cc"
+    }
+  ],
+  "subject_controls": [
+    {
+      "path": ".local-data/master-equation-closure/overnight-c/interval-known.json",
+      "sha256": "f52e7e0085eebbd332b443573f5479f438c7c17e783e255106dd7ee343af2b75"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight-c/continue-known.json",
+      "sha256": "6ef7ffa865eb0f0776a9ab67f3841ff2b9121d4ab74479a57d4aaffc2fbcb503"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight-c/tight-known.json",
+      "sha256": "ec540622a4707ac9f71b51bd9a18f4112cb1728fa15c1561abc95534d1d9e39d"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight-c/tight-cover-known.json",
+      "sha256": "34cbc38c6e8790720989a2d00f79a43ade34cd6957ab66bdcb7a57d383964ac6"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight-c/witness-refresh-stream-known.json",
+      "sha256": "d27f1958bf4017a79ae4d4918bac86bf2575e7928eb8691f0d0eadcb9e2b734f"
+    }
+  ],
+  "runtime_identity": {
+    "path": ".local-data/master-equation-closure/overnight-c/runtime-identity.json",
+    "sha256": "f5de98f995fda3a28615ea345fb493656b30e88a75726a4eabaf86155370b33f"
+  }
+}

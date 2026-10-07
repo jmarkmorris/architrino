@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { auditMachineFiles, measureMachineFile, validateMachineArtifactRetention } from "../scripts/validate-machine-artifact-retention.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
@@ -113,4 +113,89 @@ test("the retired Pages exception cannot permit tracked runtime outputs", (t) =>
   assert.ok(auditMachineFiles(files, { registry: policy, families }).errors.some((error) => error.includes("must not be tracked")));
   fixture.write(policyPath, JSON.stringify(policy));
   assert.throws(fixture.validate, /runtimeTransition is retired/);
+});
+
+test("research file and nested collection thresholds warn without rejecting evidence", () => {
+  const owner = "reference/priorities/closure/braid/evidence";
+  const files = new Map([
+    [`${owner}/one/raw.json`, { lineCount: 60000, byteCount: 600 }],
+    [`${owner}/two/raw.json`, { lineCount: 60000, byteCount: 600 }],
+  ]);
+  const result = auditMachineFiles(files, { registry, families });
+  assert.deepEqual(result.errors, []);
+  assert.equal(result.warnings.filter((message) => message.includes("large machine file")).length, 2);
+  assert.ok(result.warnings.some((message) => message.includes(`collection budget exceeded: ${owner} (2 files, 120000 lines`)));
+});
+
+test("research byte thresholds warn even for a compact one-line record", () => {
+  const result = auditMachineFiles(new Map([
+    ["reference/priorities/closure/evidence/raw.json", { lineCount: 1, byteCount: registry.thresholds.evidenceByteCount }],
+  ]), { registry, families });
+  assert.deepEqual(result.errors, []);
+  assert.equal(result.warnings.length, 1);
+});
+
+test("research additions warn at the branch threshold and never offset non-research growth", (t) => {
+  const fixture = repository(t);
+  fixture.write("reference/priorities/closure/analysis/result.csv", "x\n".repeat(101));
+  let result = fixture.validate();
+  assert.deepEqual(result.errors, []);
+  assert.ok(result.warnings.some((message) => message.includes("branch machine-output review threshold exceeded")));
+  assert.equal(result.results["working tree"].growth.nonResearch.lineCount, 0);
+  fixture.write("one/a.csv", "y\n".repeat(60));
+  fixture.write("two/b.csv", "z\n".repeat(60));
+  result = fixture.validate();
+  assert.ok(result.errors.some((message) => message.includes("budget exceeded outside priority research records: 120 added lines")));
+});
+
+test("large staged research remains visible as a warning after working-file shrinkage", (t) => {
+  const fixture = repository(t);
+  const name = "reference/priorities/closure/evidence/result.jsonl";
+  fixture.write(name, "{}\n".repeat(101));
+  git(fixture.cwd, "add", name);
+  fixture.write(name, "{}\n");
+  const result = fixture.validate();
+  assert.deepEqual(result.errors, []);
+  assert.ok(result.warnings.some((message) => message.startsWith("index:") && message.includes("large machine file")));
+  assert.ok(!result.warnings.some((message) => message.startsWith("working tree:") && message.includes("large machine file")));
+});
+
+test("research warnings do not excuse missing registered evidence or forbidden runtime output", () => {
+  const name = "reference/priorities/closure/evidence/missing.json";
+  const policy = { ...registry, records: [{ path: name }] };
+  const runtime = families[0].path ?? `${families[0].directory}/tiny.json`;
+  const result = auditMachineFiles(new Map([
+    [runtime, { lineCount: 1, byteCount: 2 }],
+    ["reference/priorities/closure/evidence/large.json", { lineCount: 100001, byteCount: 2000000 }],
+  ]), { registry: policy, families });
+  assert.ok(result.errors.some((message) => message.includes(`registered machine file is absent: ${name}`)));
+  assert.ok(result.errors.some((message) => message.includes(`must not be tracked: ${runtime}`)));
+  assert.ok(result.warnings.length > 0);
+});
+
+test("CLI prints research review warnings and exits successfully without modifying evidence", (t) => {
+  const fixture = repository(t);
+  const name = "reference/priorities/closure/evidence/result.jsonl";
+  const bytes = "{}\n".repeat(101);
+  fixture.write(name, bytes);
+  // Copy the actual CLI so its root is the fixture; resolve the real runtime
+  // helper and its imports without copying or rebuilding generated assets.
+  const source = "scripts/validate-machine-artifact-retention.mjs";
+  fixture.write(source, fs.readFileSync(path.join(root, source), "utf8"));
+  fs.symlinkSync(path.join(root, "scripts/prepare-runtime-assets.mjs"), path.join(fixture.cwd, "scripts/prepare-runtime-assets.mjs"));
+  const output = spawnSync(process.execPath, [source, "--base", "HEAD"], {
+    cwd: fixture.cwd, encoding: "utf8", env: GIT_FIXTURE_ENV, stdio: ["pipe", "pipe", "pipe"],
+  });
+  assert.equal(output.status, 0, output.stderr);
+  assert.match(output.stdout, /blocking checks passed; [1-9]\d* advisory storage findings/);
+  assert.match(output.stdout, /does not verify research currency/);
+  assert.match(output.stderr, /REVIEW: working tree: unregistered large machine file/);
+  assert.equal(fs.readFileSync(path.join(fixture.cwd, name), "utf8"), bytes);
+});
+
+test("invalid policy and unavailable comparison base still reject", (t) => {
+  const fixture = repository(t);
+  assert.throws(() => validateMachineArtifactRetention({ rootDir: fixture.cwd, baseRef: "missing-base" }));
+  fixture.write(policyPath, JSON.stringify({ ...registry, schema: "invalid" }));
+  assert.throws(fixture.validate, /invalid retention registry schema/);
 });

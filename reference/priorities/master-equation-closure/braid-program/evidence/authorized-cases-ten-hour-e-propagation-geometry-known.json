@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "time": "2026-10-06T06:14:16.009019+00:00",
+  "instrumentSha256": "bd12fbb0a60d7b6ca2d264f46570be9b8ce7cd7912c0e8f8bc194e5f05155c5c",
+  "cases": [
+    "local completed-history maxima",
+    "exact supplied past has zero error",
+    "history gap rejection",
+    "C2 cubic source seam with jerk union"
+  ],
+  "scope": "source-window and error-transport controls only; target geometry needs admission"
+}

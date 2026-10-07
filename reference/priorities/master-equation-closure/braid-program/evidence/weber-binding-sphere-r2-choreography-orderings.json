@@ -1,0 +1,415 @@
+{
+ "subject": "single-curve choreographies with other polarity orderings",
+ "law": {
+  "lambda": -0.5,
+  "mu": 1,
+  "K": 1,
+  "cf": 1
+ },
+ "started": "2026-10-06T01:16:13.741Z",
+ "orderings": {
+  "alternating +-+-+-": [
+   1,
+   -1,
+   1,
+   -1,
+   1,
+   -1
+  ],
+  "blocked +++---": [
+   1,
+   1,
+   1,
+   -1,
+   -1,
+   -1
+  ],
+  "mixed ++--+-": [
+   1,
+   1,
+   -1,
+   -1,
+   1,
+   -1
+  ]
+ },
+ "harmonics": 4,
+ "gauge": "a_0 = 0, b_x1 = 0, a_y1 = 0, a_z1 = b_z1 = 0, a_x1 = rho = 1 (scale); w in [0.3, 3] Omega_hex",
+ "results": {
+  "alternating +-+-+-": {
+   "enforcedMembers": [
+    0
+   ],
+   "circleResidual": 1.6505217705024818e-15,
+   "circleReproducible": true,
+   "circleBestRate": {
+    "w": 0.8201522607481947,
+    "r": 1.4854695934522324e-15
+   },
+   "runs": [
+    {
+     "label": "circle seed (planar)",
+     "residual": 1.4854695934522361e-15,
+     "iter": 1,
+     "reason": "step",
+     "sphereDeviation": 1.5543122344752192e-15,
+     "speedDeviation": 5.9561883105636125e-15,
+     "vMean": 0.8201522607481899,
+     "zMax": 0,
+     "w": 0.8201522607481937,
+     "wOverOmegaHex": 0.9999999999999992
+    },
+    {
+     "label": "circle seed + out-of-plane 0.05",
+     "residual": 1.7330478590276088e-15,
+     "iter": 9,
+     "reason": "step",
+     "sphereDeviation": 1.7763568394002505e-15,
+     "speedDeviation": 5.685452478265267e-15,
+     "vMean": 0.8201522607481899,
+     "zMax": 6.003164094655925e-28,
+     "w": 0.8201522607481937,
+     "wOverOmegaHex": 0.9999999999999992
+    },
+    {
+     "label": "circle seed + out-of-plane 0.2",
+     "residual": 1.4854695934522335e-15,
+     "iter": 10,
+     "reason": "step",
+     "sphereDeviation": 2.220446049250313e-16,
+     "speedDeviation": 5.550084562116094e-15,
+     "vMean": 0.8201522607481899,
+     "zMax": 2.6921954376272034e-21,
+     "w": 0.8201522607481944,
+     "wOverOmegaHex": 1
+    },
+    {
+     "label": "random seed 0",
+     "residual": 0.6412766213257438,
+     "iter": 201,
+     "reason": "max-iter",
+     "sphereDeviation": 0.1805930719982426,
+     "speedDeviation": 0.04256561390277484,
+     "vMean": 2.2684936591407356,
+     "zMax": 0.0015809205838197042,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 1",
+     "residual": 0.6412743219733712,
+     "iter": 201,
+     "reason": "max-iter",
+     "sphereDeviation": 0.1805929283177008,
+     "speedDeviation": 0.04256615195740495,
+     "vMean": 2.2684926229046485,
+     "zMax": 0.001501158115297717,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 2",
+     "residual": 1.322817855535435,
+     "iter": 106,
+     "reason": "step",
+     "sphereDeviation": 0.22602741492425604,
+     "speedDeviation": 0.9273786632430429,
+     "vMean": 0.9767746399143921,
+     "zMax": 0.27487395180681873,
+     "w": 0.8163390957291758,
+     "wOverOmegaHex": 0.9953506620642124
+    },
+    {
+     "label": "random seed 3",
+     "residual": 0.6412702640329174,
+     "iter": 201,
+     "reason": "max-iter",
+     "sphereDeviation": 0.18059267547673452,
+     "speedDeviation": 0.04256710238766585,
+     "vMean": 2.2684907925245885,
+     "zMax": 0.0013488795204300852,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 4",
+     "residual": 1.1065780341046056,
+     "iter": 168,
+     "reason": "step",
+     "sphereDeviation": 0.7881011365201092,
+     "speedDeviation": 0.7313710704278843,
+     "vMean": 2.253273062867943,
+     "zMax": 0.11063850396114515,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 5",
+     "residual": 0.641269905457216,
+     "iter": 201,
+     "reason": "max-iter",
+     "sphereDeviation": 0.18059265349469988,
+     "speedDeviation": 0.04256718660540797,
+     "vMean": 2.268490630064782,
+     "zMax": 0.001334566533625972,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    }
+   ],
+   "floor": 1.4854695934522335e-15
+  },
+  "blocked +++---": {
+   "enforcedMembers": [
+    0,
+    1,
+    2
+   ],
+   "circleResidual": 6.3444874528355335,
+   "circleReproducible": true,
+   "circleBestRate": {
+    "w": 2.4604567822445667,
+    "r": 2.2761456461669427
+   },
+   "runs": [
+    {
+     "label": "circle seed (planar)",
+     "residual": 1.9763258454083426,
+     "iter": 46,
+     "reason": "no-descent",
+     "sphereDeviation": 0.28367156362085477,
+     "speedDeviation": 0.04739248375113051,
+     "vMean": 2.183540675764307,
+     "zMax": 0,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "circle seed + out-of-plane 0.05",
+     "residual": 1.2968013188698138,
+     "iter": 64,
+     "reason": "no-descent",
+     "sphereDeviation": 0.47610282767182344,
+     "speedDeviation": 0.5019581283051352,
+     "vMean": 1.9860990297662342,
+     "zMax": 0.21968187709161593,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "circle seed + out-of-plane 0.2",
+     "residual": 1.296801292876002,
+     "iter": 67,
+     "reason": "no-descent",
+     "sphereDeviation": 0.47610282425854866,
+     "speedDeviation": 0.5019581449008943,
+     "vMean": 1.9860990251195314,
+     "zMax": 0.21968187605144407,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 0",
+     "residual": 6.403509604393373,
+     "iter": 201,
+     "reason": "max-iter",
+     "sphereDeviation": 0.9067635278425801,
+     "speedDeviation": 0.8737574256084009,
+     "vMean": 4.1140413659889274,
+     "zMax": 0.021583827772569408,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 1",
+     "residual": 2.161339791779462,
+     "iter": 163,
+     "reason": "no-descent",
+     "sphereDeviation": 0.4390298031270452,
+     "speedDeviation": 0.8818628701594455,
+     "vMean": 2.0593680881458853,
+     "zMax": 0.19865416474411188,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 2",
+     "residual": 3.589311178682129,
+     "iter": 201,
+     "reason": "max-iter",
+     "sphereDeviation": 0.5151326393647235,
+     "speedDeviation": 0.9264208413596922,
+     "vMean": 2.4734604173610464,
+     "zMax": 0.015424760074305896,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 3",
+     "residual": 3.1445063025115743,
+     "iter": 201,
+     "reason": "max-iter",
+     "sphereDeviation": 0.3608586555901797,
+     "speedDeviation": 0.8613312242494552,
+     "vMean": 1.9792099341878824,
+     "zMax": 0.0004936976285062728,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 4",
+     "residual": 5.456665547062021,
+     "iter": 133,
+     "reason": "step",
+     "sphereDeviation": 0.6446758919566233,
+     "speedDeviation": 1.02978349980651,
+     "vMean": 3.2134668738501135,
+     "zMax": 0.2982374482091317,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 5",
+     "residual": 2.161339593780954,
+     "iter": 139,
+     "reason": "step",
+     "sphereDeviation": 0.4390298096711118,
+     "speedDeviation": 0.8818628566245488,
+     "vMean": 2.0593681023299495,
+     "zMax": 0.19865415386352922,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    }
+   ],
+   "floor": 1.296801292876002
+  },
+  "mixed ++--+-": {
+   "enforcedMembers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "circleResidual": 12.574053752388947,
+   "circleReproducible": true,
+   "circleBestRate": {
+    "w": 2.4604567822445667,
+    "r": 3.77346869325214
+   },
+   "runs": [
+    {
+     "label": "circle seed (planar)",
+     "residual": 2.1057747465949124,
+     "iter": 41,
+     "reason": "step",
+     "sphereDeviation": 0.33216213563200947,
+     "speedDeviation": 0.1615790687538177,
+     "vMean": 2.1020617016705248,
+     "zMax": 0,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "circle seed + out-of-plane 0.05",
+     "residual": 1.8354243250948592,
+     "iter": 94,
+     "reason": "no-descent",
+     "sphereDeviation": 0.43276048490470787,
+     "speedDeviation": 0.1334237115809661,
+     "vMean": 2.131059134425448,
+     "zMax": 0.20375242257663104,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "circle seed + out-of-plane 0.2",
+     "residual": 1.83542419309073,
+     "iter": 99,
+     "reason": "step",
+     "sphereDeviation": 0.43276048503014486,
+     "speedDeviation": 0.1334236972617696,
+     "vMean": 2.1310591344139684,
+     "zMax": 0.20375241825500234,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 0",
+     "residual": 5.3576005376559435,
+     "iter": 201,
+     "reason": "max-iter",
+     "sphereDeviation": 0.2577308190827563,
+     "speedDeviation": 0.7123317842127703,
+     "vMean": 2.5588262130956294,
+     "zMax": 0.027774263121385576,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 1",
+     "residual": 5.466668776983658,
+     "iter": 92,
+     "reason": "no-descent",
+     "sphereDeviation": 0.21731685441751125,
+     "speedDeviation": 0.6210821930450298,
+     "vMean": 2.598329856181484,
+     "zMax": 0.10268111055615523,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 2",
+     "residual": 4.527687581468357,
+     "iter": 201,
+     "reason": "max-iter",
+     "sphereDeviation": 0.25818777187165454,
+     "speedDeviation": 0.9084653226793331,
+     "vMean": 2.238869522316623,
+     "zMax": 0.12142879361220618,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 3",
+     "residual": 14.155538038525343,
+     "iter": 201,
+     "reason": "max-iter",
+     "sphereDeviation": 0.8381992320105236,
+     "speedDeviation": 1.0559154678200369,
+     "vMean": 3.599345300977119,
+     "zMax": 0.000130416556859967,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 4",
+     "residual": 4.613366509674569,
+     "iter": 201,
+     "reason": "max-iter",
+     "sphereDeviation": 0.7336965492124674,
+     "speedDeviation": 0.8464884836881559,
+     "vMean": 2.191691898932586,
+     "zMax": 0.16036861368430072,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    },
+    {
+     "label": "random seed 5",
+     "residual": 2.4400862334607365,
+     "iter": 104,
+     "reason": "step",
+     "sphereDeviation": 0.36030115745034386,
+     "speedDeviation": 0.46408476057731995,
+     "vMean": 2.0791259037481016,
+     "zMax": 0.10088144738773774,
+     "w": 2.460456782244582,
+     "wOverOmegaHex": 2.999999999999999
+    }
+   ],
+   "floor": 1.83542419309073
+  }
+ },
+ "finished": "2026-10-06T01:17:13.860Z",
+ "wallSeconds": 60.117
+}

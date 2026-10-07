@@ -1,0 +1,58 @@
+{
+ "test": "ext-s18",
+ "utc": "2026-10-06T23:20:27Z",
+ "5:3": {
+  "maxCoefficientOutsideStatedExponents": 1.3611940438149343e-15,
+  "nWithMinD_ge_0p01": 119,
+  "minSquareDefect": 0.18846779171530215,
+  "minRelativeRootGap": 0.055506156100171206,
+  "max_h_k_off_multiples_of_s_below_r": 3.14593679694553e-11
+ },
+ "7:3": {
+  "maxCoefficientOutsideStatedExponents": 2.1545051099355777e-15,
+  "nWithMinD_ge_0p01": 123,
+  "minSquareDefect": 0.6677196608409387,
+  "minRelativeRootGap": 0.02764565284192647,
+  "max_h_k_off_multiples_of_s_below_r": 2.092199345895681e-10
+ },
+ "7:5": {
+  "maxCoefficientOutsideStatedExponents": 2.3319531831529194e-15,
+  "nWithMinD_ge_0p01": 122,
+  "minSquareDefect": 0.6022679226290543,
+  "minRelativeRootGap": 0.02933078117352273,
+  "max_h_k_off_multiples_of_s_below_r": 4.796498809718872e-10
+ },
+ "5:1": {
+  "maxCoefficientOutsideStatedExponents": 2.3801361836035438e-15,
+  "nWithMinD_ge_0p01": 144,
+  "minSquareDefect": 1.4051462392451048,
+  "minRelativeRootGap": 0.12377131604972692,
+  "max_e1_e2_er_formula_error": 2.295887789420495e-08,
+  "max_h_vs_recurrence": 9.715076511551828e-11,
+  "P2_left_side_sup_on_P1": 60.0,
+  "P2_sup_at_beta2": 0.0,
+  "P2_required_excess_over": 60
+ },
+ "7:1": {
+  "maxCoefficientOutsideStatedExponents": 1.1585159381820607e-15,
+  "nWithMinD_ge_0p01": 139,
+  "minSquareDefect": 2.1455055927392768,
+  "minRelativeRootGap": 0.1477608747628984,
+  "max_e1_e2_er_formula_error": 2.7974575110975564e-09,
+  "max_h_vs_recurrence": 2.957884026148378e-11,
+  "P2_left_side_sup_on_P1": 63.11269837220808,
+  "P2_sup_at_beta2": 0.0,
+  "P2_required_excess_over": 112
+ },
+ "9:1": {
+  "maxCoefficientOutsideStatedExponents": 1.9974836939006127e-15,
+  "nWithMinD_ge_0p01": 142,
+  "minSquareDefect": 2.4884125543696634,
+  "minRelativeRootGap": 0.1204411094183733,
+  "max_e1_e2_er_formula_error": 2.049964461432048e-09,
+  "max_h_vs_recurrence": 1.144878014821597e-11,
+  "P2_left_side_sup_on_P1": 76.34733192202056,
+  "P2_sup_at_beta2": 0.0,
+  "P2_required_excess_over": 180
+ }
+}

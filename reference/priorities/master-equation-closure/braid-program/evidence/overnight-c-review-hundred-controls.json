@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": [
+    "exact rational product",
+    "explicit ordered radius products at r=2 give C=26,I=10,O=12",
+    "six unordered polarity products sum to -2",
+    "stationary source row bound is exact"
+  ],
+  "mode": "controls",
+  "checker_sha256": "839e0af48e4eefb6650dc7a96dd0aac95f87b2e5fbd04ec492cd3980774e2827",
+  "python": "/Users/markmorris/vibe/.venv/bin/python"
+}

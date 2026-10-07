@@ -1,0 +1,7 @@
+# Closure of the C synthesis scope corrections
+
+Claim grade: measured read-only fidelity recheck. The coordinator's revised [investigation C section](../../analysis/authorized-cases-ten-hour-codex-investigation.md), full-file SHA-256 `f4aea65803a664e075545b6ffdacbee73c50171f59a1ce546b1dc55f83969e3b`, now explicitly retains all four qualifications in the [frozen fidelity assessment](authorized-cases-ten-hour-reference-c-synthesis-fidelity.md): amplitudes tending to zero in the long-survival sequence; a uniform post-departure similarity lifetime rather than a parameter-independent physical arrival time; complete normalized limiting trajectories in the finite-window rigidity statement; and an actual forever-surviving member, distinct from an attained limit of finite members, for actual infinite-branch selection.
+
+The corresponding paragraph in the [binary manuscript](../manuscript.md), full-file SHA-256 `3c08027737a265d55aca1b649084372e292d17e9b3dfb5b013ad41f590449491`, likewise retains the vanishing-amplitude sequence and similarity-time lifespan. Its event and unresolved-connection claims remain consistent with the cited accepted assessments. No new mathematical claim was added by these wording changes.
+
+This closes the requested editorial fidelity pass. The earlier note remains immutable. No shared owner was edited by this reference worker, no new proof target was attempted, and no computation was launched. The separate skeptical compactness audit remains independent of this scoped wording check.

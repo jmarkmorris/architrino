@@ -908,7 +908,7 @@ The ordered sum and factor $1/2$ count each pair once. The positive sign is requ
 
 The energy row uses a $1/r$ action kernel. Its delta function supplies the moving-transmitter weight during root evaluation; that weight is not inserted by hand a second time.
 
-This expression remains a diagnostic unless it is derived from the same time-translation-invariant action regularization as the acceleration and boundary charge. If the auxiliary dual-mollified regulator uses a core cutoff $\epsilon_c$, the energy diagnostic must carry the same cutoff convention. The theorem-level nonlocal charge is the boundary functional in [Action-Level Wake-Energy Functional at a Time Boundary](#action-level-wake-energy-functional-at-a-time-boundary).
+This expression remains a diagnostic unless it is derived from the same time-translation-invariant action regularization as the acceleration and boundary charge. If the auxiliary dual-mollified regulator uses a core cutoff $\epsilon_c$, the energy diagnostic must carry the same cutoff convention. The theorem-level nonlocal charge remains an independently derived boundary-functional target, as described in [Action-Level Wake-Energy Functional at a Time Boundary](#action-level-wake-energy-functional-at-a-time-boundary); that subsection supplies a candidate statistic, not a derived charge.
 
 ### Causal Interaction Set (The Geometry of Delay)
 
@@ -3505,7 +3505,7 @@ Thus every higher-winding interior branch birth occurs on a Jacobian-null bounda
 
 > [View →](../../../../equation-mapping.html#corpus-equation-268dd099077af803)
 >
-> The causal-action coarea weight is a separate collapse factor:
+> The transmitter-side root derivative is:
 > $$
 > g_{\beta_f,s_n}'(\xi_{n,\pm})
 > =
@@ -3516,9 +3516,11 @@ Thus every higher-winding interior branch birth occurs on a Jacobian-null bounda
 
 > [View →](../../../../equation-mapping.html#corpus-equation-0b3537df58b39163)
 >
-> so the action-counting density carries an additional $|g_{\beta_f,s_n}'|^{-1}$ and scales as $O(\mu^{-1})$ at fixed nonzero $r_n^\star$. Under the transmitter-side law the acceleration weight is already $W^{\mathrm{acc}}=c_f/|D_t|=1/|J^t|$. Action counting remains a separate variational question and may not be inferred by multiplying the acceleration by signed root playback.
+> The statistic defined in [Causal Action Functional](causal-action-functional.md#core-functional-definitions) sums the magnitudes of the received contributions. Each contribution already contains the root weight $W^{\mathrm{acc}}=c_f/|D_t|=1/|J^t|$. Multiplying by $|g_{\beta_f,s_n}'|^{-1}$ again would count the same root-selection factor twice. Because the chord length tends to a positive value while $|J^t|$ decreases in proportion to $\sqrt{\mu}$, each contribution grows as $O(\mu^{-1/2})$.
 >
-> Consequently the circular self-hit combinatorics remain linearly bounded in $\beta_f$. A one-sign subchart has
+> This result compares uniform circles at different speeds. It does not describe how quickly an evolving trajectory approaches a root birth, so it does not establish whether the contribution has a finite integral over reception time. The statistic is also distinct from a variational action, whose defining integral and measure require their own analysis. Neither the statistic nor the acceleration receives an additional signed root-playback factor.
+
+> Circular self-hit counts remain linearly bounded in $\beta_f$. A one-sign subchart has
 > $$
 > N_{\text{self}}^{(+)}(\beta_f)=\frac{\beta_f}{\pi}+O(1),
 > $$
@@ -3575,7 +3577,7 @@ The benchmark does not provide an elementary closed-form sum, but it gives the f
 
 Near a circular transmitter-side degeneracy, $D_r$ approaches zero with $D_t$, so the signed root-playback derivative stays equal to $1$ on the nondegenerate roots. The acceleration weight $W_n^{\mathrm{acc}}=c_f/|D_t|$ instead grows without bound as the simple-root chart approaches $D_t=0$. The pointwise simple-root formula does not continue through the birth event; only an accepted finite transition rule could replace it there.
 
-This is therefore a root-transversality and branch-birth statement, not a closure theorem. A circular self branch born on $D_t=0$ marks a chart boundary; it does not supply a singular receiver-side amplitude on the uniform circular ansatz. Any locked-orbit claim must still control the signed radial and tangential sums on a retained branch chart.
+This is therefore a root-transversality and branch-birth statement, not a closure theorem. A circular self branch born on $D_t=0$ marks a chart boundary. Its signed root-playback derivative remains one on the nondegenerate circular roots, while its receiver-evaluated branch acceleration diverges as the transmitter Jacobian vanishes. The pointwise simple-root formula does not define the birth event itself. Any locked-orbit claim must still control the signed radial and tangential sums on a retained branch chart.
 
 The circular benchmark is therefore useful for:
 
@@ -4040,9 +4042,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ae1bfb2daf45a500)
 
-which is the non-circular analogue of the circular partner equation $\cos\xi=\xi/\beta_f$.
+which is the non-circular analogue of the complete circular partner equation $|\cos\xi|=\xi/\beta_f$, with $\xi=\Delta/2$. On the principal partner sheet, $0<\Delta<\pi$, the cosine is positive.
 
-The receiver Frenet frame for the variable-pitch spiral is
+For $r>0$ and $\dot\theta>0$, the receiver oriented tangent-normal frame for the variable-pitch spiral is
 $$
 \hat{\mathbf{T}}
 =
@@ -4055,7 +4057,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7236f16ff7fc1049)
 
-where $p=p(\theta)$ and $\hat{\mathbf{N}}$ points inward in the circular limit. Using the branch unit vector
+where $p=p(\theta)$ and $\hat{\mathbf{N}}$ points inward in the circular limit. This is an orthonormal tangent and oriented normal. The normal is the Frenet principal normal, the direction in which the unit tangent turns, when $1+p^2+p'>0$, where the prime denotes an angular derivative. It is opposite to the principal normal when that quantity is negative; at zero curvature the principal normal is undefined. These orientation distinctions leave the displayed projection algebra unchanged. Using the branch unit vector
 $$
 \hat{\mathbf{r}}_{12}
 =
@@ -4086,7 +4088,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0192f990113be677)
 
-The sign is fixed by the circular limit: when $p_0=0$ and $\rho=1$, this gives $J_{12}=1+\beta_f\sin(\Delta/2)$.
+For a uniform circular history, $p_0=0$, $\rho=1$, and $\omega_0=\omega$, the positive chord length gives $J_{12}=1+\beta_f\operatorname{sign}(\cos(\Delta/2))\sin(\Delta/2)$. On the principal partner sheet $0<\Delta<\pi$, this reduces to $J_{12}=1+\beta_f\sin(\Delta/2)$. Wrapped sheets retain the cosine sign; zero-chord roots are excluded.
 
 ##### Closed Transmitter-Side Spiral Factors
 
@@ -4132,7 +4134,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-80e47ebf46f47d03)
 
-This expression is algebraic once a delayed root $\Delta$ is known. The receiver-side expression remains useful for signed root playback but does not enter this weight. In the uniform circular limit, $W_p^{\mathrm{acc}}=(1+\beta_f\sin(\Delta/2))^{-1}$.
+This expression is algebraic once a delayed root $\Delta$ is known. The receiver-side expression remains useful for signed root playback but does not enter this weight. On the principal uniform circular partner sheet, $0<\Delta<\pi$, $W_p^{\mathrm{acc}}=(1+\beta_f\sin(\Delta/2))^{-1}$. Other noncoincident simple circular roots use $W_p^{\mathrm{acc}}=|1+\beta_f\operatorname{sign}(\cos(\Delta/2))\sin(\Delta/2)|^{-1}$.
 
 For opposite polarities, the branch acceleration is
 $$
@@ -4145,7 +4147,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-dfe30a522a7d6e68)
 
-Projecting onto the variable-pitch Frenet frame gives
+Projecting onto the variable-pitch oriented tangent-normal frame gives
 $$
 a_T^{p}
 =
@@ -4211,7 +4213,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-11f291c20b7a12ad)
 
-Again the circular limit agrees with the uniform circular self-hit formula, $J_{11}=1-\beta_f\cos(\Delta/2)$.
+For a uniform circular history, the complete noncoincident self-hit formula is $J_{11}=1-\beta_f\operatorname{sign}(\sin(\Delta/2))\cos(\Delta/2)$. On sheets with $\sin(\Delta/2)>0$, it reduces to $J_{11}=1-\beta_f\cos(\Delta/2)$.
 
 The receiver projection on the same self line of action gives the companion closed-form records
 $$
@@ -4438,7 +4440,7 @@ For fixed $p_\star\ne0$, the left-hand side is analytic in $\Delta$ and is not i
 
 The proposition does not say that binaries cannot spiral. It says that the simple logarithmic picture is too rigid: a real spiral cannot preserve both its tightness and its angular rate while responding only to one delayed partner wake. At least one feature must evolve. The spiral can change tightness, change angular rate, acquire another delayed root, cross into the self-hit regime, or receive multi-body contributions.
 
-The Frenet tangential sum used below is the same information in a rotated basis:
+The tangent projection used below is the same information in the oriented frame:
 $$
 B_T
 =
@@ -4447,7 +4449,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4f628aa4c8decf73)
 
-so the polar pitch flow and the Frenet obstruction are equivalent statements, not separate tests.
+so the displayed tangential sum is the tangent projection of the same polar acceleration record.
 
 The circular obstruction yields a branch-chart test. A non-circular spiral can beat the isolated circular tangential obstruction only if the certified active roots satisfy a negative weighted tangential sum on enough of the controlled cycle:
 $$
@@ -4605,7 +4607,7 @@ $$
 
 Since $b'(\theta)/b(\theta)=k_\ast$ at the turn center, the first $\theta$-derivative of $H/b$ cancels at the retained endpoints. Thus the retained-memory witness inherits the constant-chart first-order root-transport identity at $\theta=0$. This is still only a branch-chart existence target, not an orbit certificate: the active roots, inactive gaps, transmitter-speed Jacobians, finite-memory depth, generalized root-transport residuals, and acceleration-balance records still have to be recomputed on a finite $\theta$ interval for the chosen nonconstant time law.
 
-The finite-collar target can be stated without adding a new law. Let
+To test the proposed motion over a finite angular interval around the turn, write
 $$
 Q(\theta)=\frac{\omega_\ast}{\dot\theta(\theta)},
 \qquad
@@ -4629,18 +4631,32 @@ $$
 
 At each retained endpoint, $K_Q(0,\Delta_\alpha)=\Delta_\alpha$ and $\partial_\theta K_Q(0,\Delta_\alpha)=0$, so the first memory drift begins at second order in $\theta$. The branch-chart certificate must bound that drift while satisfying the tangential transport equation for $Q$ and the radial residual on the same active root ledger.
 
-A local convergence diagnostic can sharpen this finite-collar target, but it does not by itself fix the full continuation class. After the tangential record is imposed on the retained ledger, the transported radial record should be tested through the leading one-sided jet of $\mathcal R_R^{\mathrm{tr}}(\theta)$ near $\theta=0$. For a specified tangential-transport profile, the jet coefficient is
+The radial test compares the acceleration supplied by the delayed interactions with the acceleration required by the proposed path. Their dimensionless difference is
+$$
+\mathcal R_R^{\mathrm{tr}}(\theta)
+=B_r^{\mathrm{rec}}(C_{\mathrm{rs}};\theta)
+-\Gamma(\theta)\left[
+\frac{r''(\theta)}{r(\theta)}-1
++\frac{r'(\theta)}{r(\theta)}k(\theta)
+\right]
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-cdcf492380b52365)
+
+Here $B_r^{\mathrm{rec}}$ is the radial acceleration sum evaluated on the tracked roots of the supplied history $C_{\mathrm{rs}}$. The angular rate is $\omega=\dot\theta$, its logarithmic angular derivative is $k=d\log\omega/d\theta$, and $\Gamma=r^3\omega^2/(\kappa q_1^2)$ sets the acceleration normalization. Primes denote angular derivatives along this same history, including the movement of its delayed roots. The bracket follows from the radial kinematic acceleration $\ddot r-r\omega^2=\omega^2(r''-r+r'k)$. Thus a vanishing residual means that the supplied and required radial accelerations agree.
+
+The derivative of this residual tests whether that agreement persists to first order just after the turn. At the stated even turn, $r'=r'''=0$ and $r''/r=a_{\mathrm{rs}}$. The bracket then equals $a_{\mathrm{rs}}-1$, its derivative is $a_{\mathrm{rs}}k$, and $\Gamma'=2k\Gamma$. Differentiating their product gives $(3a_{\mathrm{rs}}-2)\Gamma k$. Using the center tangential balance $\Gamma k=B_\theta^{\mathrm{rec}}$ therefore gives
 $$
 \left(\mathcal R_R^{\mathrm{tr}}\right)'_+(0)
 =
-B'_+(0)-(3a_{\mathrm{rs}}-2)B_\theta^{\mathrm{rec}}(C_{\mathrm{rs}};0)
+\left(B_r^{\mathrm{rec}}(C_{\mathrm{rs}};\theta)\right)'_+(0)-(3a_{\mathrm{rs}}-2)B_\theta^{\mathrm{rec}}(C_{\mathrm{rs}};0)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bfda6cac91258e09)
 
-The retained endpoint and moment constraints do not yet fix all transmitter-side endpoint-slope data entering $B'_+(0)$. A nonzero sampled coefficient is therefore a local obstruction candidate for that profile, not a theorem that every positive $C^2$ variable-rate continuation fails.
+The subscript $+$ means that the derivative is taken from positive $\theta$. Its value depends on transmitter-history slopes that the endpoint and integral constraints above do not fully determine. A sampled nonzero value therefore identifies a possible failure of the chosen profile; it does not rule out every positive $C^2$ variable-rate continuation.
 
-Endpoint-slope variation is a possible construction method: vary a positive retained inverse-rate profile while preserving its endpoint values, moments, center slope, and declared smooth tail, then evaluate the resulting radial jet and complete root set. No profile, instrument, or archived calculation is supplied here that proves cancellation of that jet with a retained $3+1$ inventory. The example therefore remains a conditional construction. A populated result requires the actual history and root data, followed by finite-interval positivity, inactive-gap, Jacobian, memory, and full acceleration-residual bounds.
+One possible construction varies the slopes of the positive inverse-rate profile while preserving its endpoint values, integral constraints, center slope, and declared smooth tail. Each choice requires a fresh calculation of the residual derivative and the complete root set. No supplied history here achieves a zero derivative with exactly three partner roots and one self root. Even that local agreement would still require positive time rate, complete root coverage, nonzero transmitter Jacobians, sufficient history coverage, and acceleration balance throughout a finite angular interval.
 
 ---
 
@@ -4697,13 +4713,9 @@ These targets keep the bridge between the formal law and the broader closure pro
 
 ### Analytic Summary
 
-- **General N‑body analytic solution:** No; the structure is too complex (DDE with state‑dependent delays and self‑hit multiplicity).
-- **Idealized / symmetric cases:** Yes, in several important classes:
-  - 1D radial two‑body,
-  - sub‑$c_f$ circular orbit,
-  - uniform circular self‑hit,
-  - algebraic maximum‑curvature conditions,
-  - continuum/wave limits of the Noether sea.
+- **General N‑body analytic solution:** No general closed-form solution is supplied; the law has state-dependent delays and self-hit multiplicity.
+- **Idealized / symmetric cases:** Explicit geometric reductions and diagnostic checks are available for one-dimensional radial two-body histories, sub-$c_f$ circular partner geometry, uniform circular self-hit geometry, and algebraic maximum-curvature conditions. These checks do not by themselves establish retained EOM solutions.
+- **Effective continuum target:** Derive the Noether sea response equation and its wave solutions from a declared coarse-graining limit.
 
 ---
 
@@ -4820,7 +4832,7 @@ with $j=i$ included for self-hit.
 
 ##### Action-Level Wake-Energy Functional at a Time Boundary
 
-Let $\mathcal{K}_{ij}(T_1,T_t)$ denote the causal-delay interaction kernel appearing in the nonlocal action scaffold below:
+An interaction statistic can have the correct static normalization without providing a conserved energy. The example below shows this distinction for the candidate nonlocal action, whose interaction kernel is $\mathcal{K}_{ij}(T_1,T_t)$:
 
 $$
 \mathcal{K}_{ij}(T_1,T_t)
@@ -4836,10 +4848,10 @@ $$
 
 The tilde marks this as the time-normalized action constraint. The length-valued Master Equation constraint remains $g_{ij}=r_{ij}-c_f(T_r-T_t)$. Because $[\delta(\tilde g)]=T^{-1}$, the prefactor $\mu_{\text{arch}}\kappa$ gives this kernel the required energy-per-time dimension. A $\kappa/c_f$ prefactor would not.
 
-For the candidate nonlocal action, the proposed time-translation boundary charge has the form
+Define the interaction statistic $E_{\mathrm{stat}}$ and add it to the quadratic kinetic bookkeeping quantity $K_\mu$ to form the diagnostic $E_{\mathrm{diag}}$:
 
 $$
-E_{\text{tot}}(T)=K_{\mu}(T)+E_{\text{wake}}(T)
+E_{\mathrm{diag}}(T)=K_{\mu}(T)+E_{\mathrm{stat}}(T)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2d00bde3ebf3177a)
@@ -4847,7 +4859,7 @@ $$
 with
 
 $$
-E_{\text{wake}}(T)
+E_{\mathrm{stat}}(T)
 =
 -\frac{1}{2}\sum_{i,j}
 \int_{-\infty}^{T} dT_t
@@ -4857,25 +4869,48 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-60df624ac580a2e5)
 
-The outer minus sign follows the convention that the interaction enters the action as $-\tfrac12\sum S_{ij}$. It also makes the static like-polarity interaction charge positive, as required by the work integral.
+The outer minus sign follows the action convention $-\tfrac12\sum S_{ij}$. The derivative includes the dependence of the kernel on the worldlines, not just its explicit time arguments. Self terms exclude the zero-delay coincidence $T_1=T_t$; including them in an action also requires a specified self-history extension and its boundary treatment.
 
-One action convention fixes the interaction units, the static sign, and the boundary charge together.
+Although the integral includes future reception times, integrating its derivative over $T_1$ leaves only the kernel at the current reception time when the upper-time boundary vanishes:
+$$
+E_{\mathrm{stat}}(T)
+=\frac12\sum_{i,j}\int_{-\infty}^{T}\mathcal K_{ij}(T,s)\,ds
+$$
 
-For $i=j$, the same rule applies with the trivial coincidence branch ($T_1=T_t$) excluded, matching the self-hit convention used throughout this chapter.
+[View →](../../../../equation-mapping.html#corpus-equation-7e64838ff3e5ec87)
 
-The double integral measures interaction links that cross the absolute-time boundary $T$ (past emission side $T_t\le T$ and future reception side $T_1\ge T$). It is the candidate in-flight interaction term for this action scaffold, not yet an energy charge of the canonical Master Equation.
+Here $s$ is the emission time. This reduction uses the derivative of the composed two-time kernel, interpreted distributionally for the sharp delta or with a compatible smooth regularization. It shows that the statistic is half the sum of the ordered interaction contributions received at $T$.
 
-For solutions of an action whose complete variation and boundary treatment are valid, the symmetry-to-conservation argument of [Noether (1918)](https://eudml.org/doc/59024) would give
+First consider a stationary pair with $\mathbf X_1=R\mathbf e_x$ and $\mathbf X_2=0$, where $R>0$ and $\mathbf e_x$ is a fixed unit vector. Set $c_f=1$ and write $C=\mu_{\mathrm{arch}}\kappa\sigma_{12}|q_1q_2|\ne0$. Both delayed roots have delay $R$ and unit transmitter Jacobian, so each ordered contribution is $C/R$ and $E_{\mathrm{stat}}=C/R$. The static sign and normalization are correct, including the positive sign for like polarities.
+
+Now move only member 1 during a short interval around $T=R$, leaving the incoming emission history near $s=0$ unchanged. An explicit smooth path is $\mathbf X_1(T)=[R+\varepsilon y(T)]\mathbf e_x$, with $y(T)=(T-R)\chi(T-R)$, while $\mathbf X_2(T)=0$. The cutoff $\chi(u)$ equals one near $u=0$ and vanishes for $|u|\ge R/4$. At $T=R$, member 1 is again at $R\mathbf e_x$ but has velocity $\varepsilon\mathbf e_x$. Choose the speed parameter $\varepsilon$ small enough to keep the complete paths below wake speed and the pair separated. There are then no self roots, and both partner roots remain simple.
+
+Near this reception time, the contribution received by member 1 is $C/[R+\varepsilon y(T)]$. The contribution received by member 2 remains $C/R$, because its incoming emission history is unchanged. Only one half of the ordered sum therefore changes.
+
+Variation of the complete action includes member 1 both as receiver and as transmitter. At the static pair those two appearances each supply half of the same radial acceleration, giving $\mathbf A_{1,\mathrm{act}}^{(0)}=C\mathbf e_x/(\mu_{\mathrm{arch}}R^2)$; the superscript $0$ denotes the unperturbed static history. The terms from differentiating the delta constraint integrate to zero there because separation and direction are constant. Consequently the two rates at $T=R$ are
+$$
+\begin{aligned}
+E_{\mathrm{stat}}'(R)&=-\frac{C\varepsilon}{2R^2}+O(\varepsilon^2)\\
+-\sum_i\mu_{\mathrm{arch}}\mathbf V_i(R)\cdot\mathbf A_{i,\mathrm{act}}(R)
+&=-\frac{C\varepsilon}{R^2}+O(\varepsilon^2)
+\end{aligned}
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-075c984d641f8e7e)
+
+The first line is the statistic's rate of change; the second is the interaction-energy rate required to balance the action-derived kinetic power. Their leading terms differ by a factor of two. This is a derived counterexample to a general balance for $E_{\mathrm{stat}}$, using a prescribed path rather than an EOM solution. A valid charge formula must pass this test with the same action and boundary convention; the discrepancy does not rule out a different conserved history functional.
+
+Denote the interaction part of such an independently derived conserved quantity by $E_{\mathrm{Noether}}$. Its derivation must include both receiver and transmitter variations and all boundary contributions. With that derivation and zero boundary flux, time-translation symmetry gives the conditional conservation statement associated with [Noether (1918)](https://eudml.org/doc/59024):
 
 $$
-\frac{d}{dT}\Big(K_{\mu}(T)+E_{\text{wake}}(T)\Big)=0
+\frac{d}{dT}\Big(K_{\mu}(T)+E_{\mathrm{Noether}}(T)\Big)=0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d18167db9d725e17)
 
-This implication applies to the generating action. Because the scalar action displayed below leaves a nonzero constraint-variation residual on generic branches, the displayed $E_{\text{wake}}$ has not been established as a conserved charge of the canonical Master Equation.
+No such charge is derived here. There is also a separate obstacle to transferring an action's conserved quantity to the Master Equation: the scalar action below produces additional acceleration terms when its causal constraint is varied. Its evolution law therefore differs from the canonical law on generic branches.
 
-For proof and simulation, the same statement can be written as a residual balance. Let
+For a symmetry-preserving regularization with width $\eta$, compare the acceleration of a supplied path with the acceleration required by the action:
 $$
 \mathbf{R}_{A,i}^{(\eta)}(T)
 =
@@ -4886,11 +4921,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4452811dbf16959b)
 
-be the acceleration residual of the symmetry-preserving regularized action, where $\mathbf A_{i,\mathrm{act}}^{(\eta)}$ includes the scale term and any nonzero constraint-variation residual from the action. Let $\mathcal{B}_{E}^{(\eta)}(T)$ collect energy flux through finite history-window endpoints, period cuts, and excluded self-coincidence boundaries. Then the candidate action-level energy balance is
+Here $\mathbf A_i$ is the path's acceleration and $\mathbf A_{i,\mathrm{act}}^{(\eta)}$ is the full action-derived acceleration, including terms from variation of the causal constraint. Their difference $\mathbf R_{A,i}^{(\eta)}$ is the acceleration residual. Write $\mathcal B_E^{(\eta)}$ for energy flux through finite history-window endpoints, period cuts, and excluded self-coincidence boundaries. Once the action-derived charge $E_{\mathrm{Noether}}^{(\eta)}$ has been obtained with that same boundary convention, its required balance is
 $$
 \frac{d}{dT}
 \left(
-K_{\mu}(T)+E_{\text{wake}}^{(\eta)}(T)
+K_{\mu}(T)+E_{\mathrm{Noether}}^{(\eta)}(T)
 \right)
 =
 \sum_i\mu_{\text{arch}}\mathbf V_i(T)\cdot\mathbf{R}_{A,i}^{(\eta)}(T)
@@ -4900,9 +4935,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5504bf1156900600)
 
-For isolated compactly supported or period-matched histories, $\mathbf{R}_{A,i}^{(\eta)}=\mathbf{0}$ and $\mathcal{B}_{E}^{(\eta)}=0$ would give the conserved charge of that action-derived model. A nonzero residual identifies branch-chart loss, nonsymmetric regularization, leakage through the finite memory window, or an unaccounted derivative-of-delta term.
+For a path satisfying the action-derived equation, $\mathbf R_{A,i}^{(\eta)}=\mathbf0$. If the boundary flux also vanishes, the derived total energy is conserved. A nonzero acceleration residual means that the supplied path does not satisfy that equation; it does not identify the cause. A failure of the complete energy-balance identity requires a separate check of the charge derivation, boundary flux, root regularity, and regularization. Neither diagnostic alone singles out a missing constraint-variation term or loss of history coverage.
 
-##### Equivalent work-integral form
+##### Trajectory work-integral reconstruction
 
 For direct trajectory evaluation, one may reconstruct a compatible interaction contribution through the accumulated power exchange along the realized trajectory:
 
@@ -4914,15 +4949,15 @@ $$
 
 This work-integral form is a practical trajectory-level reconstruction when the same action-derived acceleration law and boundary convention are used. It should not be treated as an independent off-shell Noether functional; outside the symmetry-preserving action model it is a diagnostic bookkeeping quantity rather than a proved conserved charge.
 
-In short-delay effective limits, $E_{\text{wake}}$ reduces to an approximate instantaneous pair form
+For a separated, slowly varying partner history with controlled delay corrections, the candidate reception-time statistic has an approximate instantaneous pair form
 
 $$
-E_{\text{wake}}(T)\approx\sum_{i<j}U_{ij}\big(\mathbf X_i(T),\mathbf X_j(T)\big)
+E_{\mathrm{stat}}(T)\approx\sum_{i<j}U_{ij}\big(\mathbf X_i(T),\mathbf X_j(T)\big)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-81b824130cd58e2d)
 
-with leading $1/r_{ij}$ behavior plus geometry-dependent self-hit corrections.
+with leading $1/r_{ij}$ behavior. Self-hit contributions and delay corrections require their own root and limit analysis. This approximation does not establish an action-derived charge. Elsewhere in this chapter, $E_{\mathrm{wake}}$ in conditional conservation and no-runaway targets denotes an independently derived interaction charge, not the statistic $E_{\mathrm{stat}}$ displayed here.
 
 ---
 

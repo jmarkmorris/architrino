@@ -1,0 +1,8 @@
+import fs from 'node:fs';import crypto from 'node:crypto';import assert from 'node:assert/strict';
+const digest=b=>crypto.createHash('sha256').update(b).digest('hex');assert(digest('abc')==='ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');console.log('Known SHA256 abc passed before provenance checks.');
+const [input,out]=process.argv.slice(2);assert(!fs.existsSync(out));const s=JSON.parse(fs.readFileSync(input)),base='reference/priorities/master-equation-closure/binary-research/evidence/',pins={
+ 'authorized-cases-ten-hour-a-cartesian-receiving-cell.mjs':'0644354b636f9025c73e6b7ef2aefaac48ad59b8b45afd0a0514e3d118e79b61',
+ 'authorized-cases-ten-hour-a-transverse-physical-u-coefficients-v2.mjs':'a986e75dc8eb5c699f85db905ca0f95b84e8d06d781d965d8f7643cf1b5d5b6d',
+ 'authorized-cases-ten-hour-a-cartesian-lognorm.mjs':'78e4ac91b5b90e6ba635eb9ea28b898d9aa61e48f93020290f4069e62add920f',
+ 'authorized-cases-ten-hour-a-cartesian-companion.mjs':'266da8c8115a2ee7deec10294af3982e95a3de29a90812a4963f86f09d2debd2'};
+for(const [p,expected]of Object.entries(pins)){assert(digest(fs.readFileSync(base+p))===expected);assert((p.includes('receiving-cell')?s.sourceSHA:s.dependencySHA[p])===expected);}const rowsSHA=digest(fs.readFileSync(s.bindings.receipt.path+'.jsonl'));assert(rowsSHA==='c1daec244121579ad7803561e06adc84eea51277a2d17f2405c23d354dd251bd');const result={passed:true,knownFirst:'SHA256 abc',subjectSHA:digest(fs.readFileSync(input)),rowsSHA,sourcePins:pins,scope:'current immutable original rows and exact frozen producer/dependency identities supplement the full independent bound audit'};fs.writeFileSync(out,JSON.stringify(result,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(result));

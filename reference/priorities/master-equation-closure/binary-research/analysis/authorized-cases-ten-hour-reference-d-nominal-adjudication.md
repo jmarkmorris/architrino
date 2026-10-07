@@ -1,0 +1,11 @@
+# Assessment of exact nominal-prefix finite entry
+
+Claim grade: derived. The [frozen nominal-entry subject](authorized-cases-ten-hour-d-primary-nominal-entry.md), SHA-256 `7a3a3e4a84430ebb8ed2fa912254f26f7dcd287e4073a454f979de23e3fe691a`, agrees with the [independent finite-entry reference](authorized-cases-ten-hour-reference-d-nominal-entry.md). Its mathematical prefix-completion class reaches the conditional planar entry region at physical time ten.
+
+The phase and coupling tokens remain exact and unchanged. The boundary gap at source time minus three excludes all older roots for every declared globally strict completion, while accessible recent histories have the much smaller speed bound used in the local derivative estimates. The ordinary clock comparison transports source velocity using the ideal acceleration bound across its permitted release seam. The subject's sharper row estimate $K(P+V)$ follows from its explicit 0.3 and 0.28 derivative constants and has slack relative to the independent reference's $2KP+KV$.
+
+The running-supremum comparison closes its bootstrap with $P+20V<3\times10^{-16}$. The exact algebraic changes in separation, account and angular quantity are respectively below $10^{-22}$, $10^{-19}$ and $10^{-16}$, far below the retained ideal entry margins. The inherited tiny difference between $w$ and $\epsilon$ is already within those ideal preparation margins. No equality of these two speeds is assumed.
+
+The midpoint supremum may be localized to generated times $[0,T]$ because every later nested window begins after $t-3d(t)>0$. Complete older extensions may have different midpoint velocities, but their roots are excluded by the exact prefix gap. The planar common future can therefore be constructed from the complete nominal circles and transferred by causal equivalence without demanding that every inaccessible remote extension itself lie in that plane.
+
+The conclusion is finite region admission of explicitly specified exact-prefix mathematical problems. The missing historical request/build binding remains missing, and no retained numerical future is certified. The later angular and account exits remain separate questions. No numerical target or new physical equation was used.

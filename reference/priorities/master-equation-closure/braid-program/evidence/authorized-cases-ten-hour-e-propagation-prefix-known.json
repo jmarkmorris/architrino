@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "time": "2026-10-06T06:26:08.871448+00:00",
+  "instrumentSha256": "24d0fab9df7e438eaeac92eac0fa1b544bd5299f15b196411e5a112f17f5dbb9",
+  "cases": [
+    "complete newline-delimited JSON record",
+    "partial line deferred",
+    "unknown record rejected",
+    "incremental prefix digest"
+  ],
+  "scope": "stream wrapper controls only; target not evaluated"
+}

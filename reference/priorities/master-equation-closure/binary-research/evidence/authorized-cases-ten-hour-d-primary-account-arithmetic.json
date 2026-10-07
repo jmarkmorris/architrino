@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "time": "2026-10-06T04:32:02.782Z",
+  "boundary": "Exact rational constants only; no trajectory or independent theorem validation",
+  "knownReceipt": ".tmp/authorized-cases-ten-hour/d/account-arithmetic-known.json",
+  "subject": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-anisotropic-account.md",
+  "subjectSha256": "2cc51820a0122215e5501747e78605894f71df6016d972d0801c9d8c5f223e16",
+  "derivativeLowerApproximate": 1.6727024701923119,
+  "rows": [
+    {
+      "name": "generated source acceleration",
+      "numerator": "1009899",
+      "denominator": "940900",
+      "approximate": 1.0733329790625996,
+      "strictUpper": 1.08
+    },
+    {
+      "name": "actual affine chord discrepancy",
+      "numerator": "51005000",
+      "denominator": "92217609",
+      "approximate": 0.5530939324180483,
+      "strictUpper": 0.56
+    },
+    {
+      "name": "source velocity discrepancy",
+      "numerator": "10201",
+      "denominator": "9409",
+      "approximate": 1.0841747263258583,
+      "strictUpper": 1.1
+    },
+    {
+      "name": "minimum comparison range cost",
+      "numerator": "616",
+      "denominator": "625",
+      "approximate": 0.9856,
+      "strictUpper": 0.9900990099009901
+    },
+    {
+      "name": "spatial row derivative",
+      "numerator": "2487500000",
+      "denominator": "1153077849",
+      "approximate": 2.157269782050943,
+      "strictUpper": 2.2
+    },
+    {
+      "name": "velocity row derivative",
+      "numerator": "25000000",
+      "denominator": "23532201",
+      "approximate": 1.062374063522575,
+      "strictUpper": 1.1
+    },
+    {
+      "name": "single actual affine row error",
+      "numerator": "1221",
+      "denominator": "500",
+      "approximate": 2.442,
+      "strictUpper": 3
+    },
+    {
+      "name": "negative account derivative lower bound",
+      "numerator": "-13256028379967",
+      "denominator": "7924917082500",
+      "approximate": -1.6727024701923119,
+      "strictUpper": -1.5
+    }
+  ]
+}

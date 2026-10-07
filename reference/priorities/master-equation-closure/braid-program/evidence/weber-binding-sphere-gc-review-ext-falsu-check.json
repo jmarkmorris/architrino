@@ -1,0 +1,8 @@
+{
+ "test": "ext-falsu-check",
+ "utc": "2026-10-06T23:52:00Z",
+ "maxRel_fast_vs_anchored_residual": 6.815862873131312e-13,
+ "maxAbs_D_difference": 1.3322676295501878e-15,
+ "tiltedHexagonResidual": 9.688975423292195e-14,
+ "pass": true
+}

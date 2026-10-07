@@ -1,0 +1,8 @@
+{
+ "test": "k1py",
+ "utc": "2026-10-06T22:59:02Z",
+ "worstRelDiffVsNodeClosedResidual": 9.226716205434086e-16,
+ "hexagonNormalized": 8.714754948253104e-15,
+ "hexagonPerturbedNormalized": 0.2262194187652222,
+ "pass": true
+}

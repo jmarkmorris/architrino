@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "time": "2026-10-06T07:07:51.381461+00:00",
+  "instrumentSha256": "6baa0e383028b9a79e49173afb483b80b8180878e613453826ba2698a3d48203",
+  "cases": [
+    "exact decimal maxima",
+    "source contribution count",
+    "strict observation containment rejects uncertain faces"
+  ],
+  "scope": "JSON receipt summarization only"
+}

@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "pairBounds": [
+    "72/11",
+    "128/39",
+    "896/75"
+  ],
+  "leadingCoefficient": "979157/10725",
+  "orderedRadiusProducts": "1454/25",
+  "curvatureCoefficient": "727/25",
+  "maxSpeed": "27/500",
+  "sourceClockFloor": "473/500",
+  "inertiaUpper": "62/5",
+  "endpointTerms": [
+    "979157/338195",
+    "6543/223729",
+    "279/25000"
+  ],
+  "strictMargin": "4679079917/72711925000",
+  "crossPairDistanceMultiplicity": {
+    "difference": 4,
+    "sum": 4
+  },
+  "mode": "target",
+  "sha256": "1a1f6ab9d620001c3ab69526f2f2e52cf075ab1b0fb5374f6132c1bbdfc5dd84"
+}

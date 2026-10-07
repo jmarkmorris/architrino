@@ -1,0 +1,34 @@
+{
+ "test": "review-s20-check",
+ "utc": "2026-10-06T23:50:56Z",
+ "circle_M2": {
+  "sphereDefect": 2.220446049250313e-16,
+  "speedSpread": 6.394884621840902e-14,
+  "kSpread": 1.1102230246251565e-13,
+  "k": 1.56,
+  "expected_k": 1.56,
+  "DSpread": 5.46229728115577e-14,
+  "normD_over_M_omega": 1.0000000000000004,
+  "D_parallel_axis": 1.0,
+  "maxOtherHarmonic": 8.174395468389255e-17,
+  "XdotMinusDxX": 8.215650382226158e-15
+ },
+ "circle_M3": {
+  "sphereDefect": 2.220446049250313e-16,
+  "speedSpread": 8.171241461241152e-14,
+  "kSpread": 8.526512829121202e-14,
+  "k": 2.3400000000000003,
+  "expected_k": 2.34,
+  "DSpread": 6.039613253960852e-14,
+  "normD_over_M_omega": 0.9999999999999999,
+  "D_parallel_axis": 0.9999999999999999,
+  "maxOtherHarmonic": 9.397691333308769e-17,
+  "XdotMinusDxX": 1.1324274851176597e-14
+ },
+ "seamCurve_degree3_notEqualSpeed": {
+  "sphereDefect": 3.3306690738754696e-16,
+  "speedSpread": 0.3170815588961915,
+  "kSpread": 5.361613552062485,
+  "DSpread": 2.382939361377045
+ }
+}

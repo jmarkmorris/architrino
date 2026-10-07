@@ -58,6 +58,8 @@ Name the live sources and independent checks used. Do not count repeated use of 
 
 ## Synthesis evidence
 
+Before each substantive milestone, handoff or closeout, fulfill the [research checkpoint contract](../../../op/operator-explanation-standard.md#research-checkpoint-and-handoff-completion). The Principal Investigator owns worker integration into the current operator-facing account and the explicit status of [evidence preservation](../../../op/machine-artifact-retention.md#preservation-from-creation-through-closeout); do not substitute collected worker reports for synthesis or treat a storage warning as permission to discard evidence.
+
 The deliverable is one accountable synthesis whose strength is capped by its evidence. Preserve the following coverage in the authorized research record; use the [operator explanation standard](../../../op/operator-explanation-standard.md) for response structure and authorized capture, and the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md) for writing style:
 
 1. the research question and claim boundary;

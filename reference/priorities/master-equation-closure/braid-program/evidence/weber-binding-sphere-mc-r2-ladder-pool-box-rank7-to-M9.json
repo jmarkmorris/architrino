@@ -1,0 +1,172 @@
+{
+ "utc": "2026-10-07T00:01:32.191Z",
+ "mode": "pool",
+ "Ms": [
+  3,
+  5,
+  7,
+  9
+ ],
+ "args": [
+  "--mode",
+  "pool",
+  "--tags",
+  "free-direct-80,free-direct-580",
+  "--top",
+  "10",
+  "--allow-box-limited",
+  "--part",
+  "7/10",
+  "--Ms",
+  "3,5,7,9",
+  "--tag",
+  "pool-box-rank7-to-M9"
+ ],
+ "ladders": [
+  {
+   "label": "free-direct-580:611:direct2:great-circle-pairs",
+   "rungs": [
+    {
+     "ok": true,
+     "M": 3,
+     "Nc": 16,
+     "iter": 25,
+     "reason": "stalled",
+     "omega": 1.041881881316978,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 15.185466794221282,
+     "maxE": 18.11627288854153,
+     "maxEspeed": 15.185466794221282,
+     "maxS": 0.5324810220262892,
+     "maxV": 0.7486518546342465,
+     "minSep": 0.5998211953495868,
+     "det": [
+      -2.158635470848313,
+      3810.516049412323
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      0.7520194991308039,
+      1.3249433872204859
+     ],
+     "Hplus3v2": 10.333416580488873,
+     "sigDVariation": 4.8493529064980825,
+     "pairDistanceSpread": 1.1924619663793523,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 5,
+     "Nc": 24,
+     "iter": 150,
+     "reason": "max-iterations",
+     "omega": 0.9566043514198933,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 12.286377381461552,
+     "maxE": 14.687829890385837,
+     "maxEspeed": 12.286377381461552,
+     "maxS": 0.46616499643415565,
+     "maxV": 0.7831875841755477,
+     "minSep": 0.5728210763400353,
+     "det": [
+      -0.8913078302635068,
+      3592.072726156571
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      0.6984468022727414,
+      1.287402179721473
+     ],
+     "Hplus3v2": 9.900681806453537,
+     "sigDVariation": 4.853521282105893,
+     "pairDistanceSpread": 1.0981172616548698,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 7,
+     "Nc": 32,
+     "iter": 150,
+     "reason": "max-iterations",
+     "omega": 0.9742334612053271,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 3.41210113848561,
+     "maxE": 4.05749296432483,
+     "maxEspeed": 3.41210113848561,
+     "maxS": 0.40441431535538896,
+     "maxV": 0.823115303478894,
+     "minSep": 0.5520536315244398,
+     "det": [
+      -0.4360285723504433,
+      5114.879825507849
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      0.6308649357608079,
+      1.3051168153801618
+     ],
+     "Hplus3v2": 10.227213626527556,
+     "sigDVariation": 4.868737634879877,
+     "pairDistanceSpread": 1.0850600759464357,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    },
+    {
+     "ok": true,
+     "M": 9,
+     "Nc": 40,
+     "iter": 90,
+     "reason": "stalled",
+     "omega": 0.9741465282912981,
+     "v": 1.5,
+     "boxLimited": true,
+     "combined": 3.3723117435965015,
+     "maxE": 4.016659909021118,
+     "maxEspeed": 3.3723117435965015,
+     "maxS": 0.3900903108830456,
+     "maxV": 0.8171220235301476,
+     "minSep": 0.5545905045708914,
+     "det": [
+      -0.37073166968626936,
+      5467.081236341251
+     ],
+     "detOneSigned": false,
+     "separationOK": true,
+     "speed": [
+      0.6414635196620052,
+      1.3018563634780518
+     ],
+     "Hplus3v2": 10.299130990200005,
+     "sigDVariation": 4.864868711724775,
+     "pairDistanceSpread": 1.0563478388758685,
+     "rigid": false,
+     "exactHexagon": false,
+     "hexagon": false,
+     "candidate": false,
+     "dominantHarmonic": "111111"
+    }
+   ],
+   "trend": "stalls; box-limited at M=3,5,7,9; determinant changes sign at M=3,5,7,9",
+   "rank": 7,
+   "M3searchScore": 18.121734541753828,
+   "M3boxLimited": true
+  }
+ ]
+}

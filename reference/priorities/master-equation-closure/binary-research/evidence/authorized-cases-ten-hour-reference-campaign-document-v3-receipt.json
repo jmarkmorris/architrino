@@ -1,0 +1,55 @@
+{
+  "time": "2026-10-06T09:09:59.372Z",
+  "scope": "reference/priorities/master-equation-closure/**/authorized-cases-ten-hour-*; exact basename prefix; all current native files, not Git tracked-only",
+  "instrumentSha256": "48c32d1bd49b6ef4f8544bc78767e10d0d4942c9993b9969ef002887f54b1266",
+  "knownReceiptSha256": "ccd3c29773948956d1929dd648d80081b3c218ae6125253a928fcd73c04820fe",
+  "summary": {
+    "files": 563,
+    "markdown": 381,
+    "bytes": 3924340,
+    "lines": 40212,
+    "mathSpans": 13758,
+    "links": 1420,
+    "localLinks": 1413,
+    "anchorLinksNotValidated": 44,
+    "defects": [
+      {
+        "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-b-final-grazing-section.md",
+        "type": "math",
+        "line": 65,
+        "message": "KaTeX parse error: Expected 'EOF', got '\\right' at position 62: …_1}-\\pi\\right\\}\\̲r̲i̲g̲h̲t̲|\n\\le2^{50010}\\…"
+      },
+      {
+        "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-circle-flow-reference.md",
+        "type": "trailing-whitespace",
+        "line": 65
+      },
+      {
+        "file": "reference/priorities/master-equation-closure/binary-research/analysis/authorized-cases-ten-hour-d-primary-center-state-correction.md",
+        "type": "carriage-return",
+        "line": 51
+      }
+    ],
+    "warnings": [],
+    "machineFiles": 29,
+    "machineBytes": 154800,
+    "machineLines": 3790,
+    "machineIndividualThresholds": [],
+    "changedDuringRead": [],
+    "addedDuringRead": [],
+    "removedDuringRead": []
+  },
+  "verbose": {
+    "path": ".local-data/master-equation-closure/binary-research/authorized-cases-ten-hour/reference/authorized-cases-ten-hour-reference-campaign-document-v3-inventory.json",
+    "sha256": "30133172e712122fed4b4ba00a6bedff3e00c5bbdc44a1305ede4523c7a7be45",
+    "bytes": 356364,
+    "lines": 9170
+  },
+  "reproduction": "node reference/priorities/master-equation-closure/binary-research/evidence/authorized-cases-ten-hour-reference-campaign-document-check.mjs target NEW_UNIQUE_LABEL",
+  "limitations": [
+    "Corpus syntax/binding validation only, not proof acceptance.",
+    "External links not fetched; local link files checked, anchors counted but not validated.",
+    "Machine footprint is the selected current working-tree prefix collection only, not whole-priority, staged-index or branch-growth retention compliance.",
+    "Snapshot precedes creation of this compact receipt and any later closeout note; later writes require another snapshot."
+  ]
+}

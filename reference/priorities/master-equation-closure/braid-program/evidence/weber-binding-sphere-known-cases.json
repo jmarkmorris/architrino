@@ -1,0 +1,319 @@
+{
+ "instrument": "reference/priorities/master-equation-closure/braid-program/evidence/weber-binding-sphere-instrument.mjs",
+ "importedInstrument": "reference/priorities/master-equation-closure/binary-research/evidence/weber-overnight-pair-instrument.mjs (unmodified)",
+ "node": "v26.3.0",
+ "law": "equation-variants manuscript Section 9, lambda=-1/2, mu=1, K=1, cf=1, unit weights, instantaneous",
+ "utc": "2026-10-06T00:20:56.404Z",
+ "wallSeconds": 1.323,
+ "allPass": true,
+ "cases": [
+  {
+   "id": "K1-circle-rho=0.25",
+   "reference": "A_i = -Omega^2 X_i with Omega^2 = K/(4 rho^3); det M = 1 + 2/(2 rho)",
+   "tolerance": "1e-13",
+   "measured": {
+    "maxRel": 5.117875266520903e-16,
+    "detMin": 4.999999999999997,
+    "detRef": 5,
+    "detErr": 2.6645352591003757e-15,
+    "radialRel": 6.661338147750939e-16,
+    "tangentialRel": 4.996003610813203e-16
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.087Z"
+  },
+  {
+   "id": "K1-circle-rho=1",
+   "reference": "A_i = -Omega^2 X_i with Omega^2 = K/(4 rho^3); det M = 1 + 2/(2 rho)",
+   "tolerance": "1e-13",
+   "measured": {
+    "maxRel": 4.577566798522237e-16,
+    "detMin": 1.9999999999999991,
+    "detRef": 2,
+    "detErr": 8.881784197001252e-16,
+    "radialRel": 6.661338147750939e-16,
+    "tangentialRel": 2.775557561562891e-16
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.094Z"
+  },
+  {
+   "id": "K1-circle-rho=3",
+   "reference": "A_i = -Omega^2 X_i with Omega^2 = K/(4 rho^3); det M = 1 + 2/(2 rho)",
+   "tolerance": "1e-13",
+   "measured": {
+    "maxRel": 6.245004513516505e-16,
+    "detMin": 1.3333333333333326,
+    "detRef": 1.3333333333333333,
+    "detErr": 6.661338147750939e-16,
+    "radialRel": 8.326672684688673e-16,
+    "tangentialRel": 3.244999533272262e-16
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.095Z"
+  },
+  {
+   "id": "K2-zero-coefficient-square",
+   "reference": "A = -Omega^2 X with Omega^2 = (2 sqrt2 - 1) K /(4 rho^3); det M = 1",
+   "tolerance": "1e-13",
+   "measured": {
+    "maxRel": 6.883757075475918e-16,
+    "det": 1
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.098Z"
+  },
+  {
+   "id": "K3-frozen-square-rho=1.7",
+   "reference": "A = -Omega^2 X; det M = (1+(sqrt2-1)/x)(1-1/x)(1+sqrt2/x)^3",
+   "tolerance": "1e-12",
+   "measured": {
+    "maxRel": 1.1244835604489222e-15,
+    "det": 3.14809234069744,
+    "detRef": 3.1480923406974415,
+    "detErr": 1.3322676295501878e-15
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.103Z"
+  },
+  {
+   "id": "K3b-rigid-balance-rho=1.7",
+   "reference": "inverse-square balance residual of the square ring is zero",
+   "tolerance": "1e-13",
+   "measured": {
+    "maxRel": 2.835700479391506e-16
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.103Z"
+  },
+  {
+   "id": "K3-frozen-square-rho=0.8",
+   "reference": "A = -Omega^2 X; det M = (1+(sqrt2-1)/x)(1-1/x)(1+sqrt2/x)^3",
+   "tolerance": "1e-12",
+   "measured": {
+    "maxRel": 2.4131319011425213e-15,
+    "det": -8.045140997574073,
+    "detRef": -8.045140997574082,
+    "detErr": 8.881784197001252e-15
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.106Z"
+  },
+  {
+   "id": "K3b-rigid-balance-rho=0.8",
+   "reference": "inverse-square balance residual of the square ring is zero",
+   "tolerance": "1e-13",
+   "measured": {
+    "maxRel": 7.578895180060775e-16
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.107Z"
+  },
+  {
+   "id": "K4-sensitivity-1.1Omega",
+   "reference": "relative residual >= 1e-2",
+   "tolerance": ">= 1e-2",
+   "measured": {
+    "maxRel": 0.1395513336802562
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.109Z"
+  },
+  {
+   "id": "K5-wrong-law-sensitivity",
+   "reference": "mu = 0 keeps the circle balanced; static opposite pair at d = 2 gives A_i = -e_ij/(d^2 Delta), |A_i| = 1/8",
+   "tolerance": "1e-13",
+   "measured": {
+    "circleResidualMu0": 4.0029660424867215e-16,
+    "staticA0": [
+     -0.125,
+     0,
+     0
+    ],
+    "staticA1": [
+     0.12500000000000003,
+     0,
+     0
+    ]
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.110Z"
+  },
+  {
+   "id": "K6-integrator-kepler",
+   "reference": "relative position after 1/4, 1/2, 3/4, 1 radial period against Kepler equation; period 2 pi sqrt(a^3/2)",
+   "tolerance": "1e-9 (GBS); 1e-6 (RK4 comparison)",
+   "measured": {
+    "gbsPositionError": 6.285924731257218e-13,
+    "rk4PositionError4000Steps": 3.453931938915759e-10,
+    "period": 23.085896942913553
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.224Z"
+  },
+  {
+   "id": "K7-linearization-circle-rho=1",
+   "reference": "spectrum 0 (x4), +-i Omega (x3 each; the preregistration count \"x4 each\" would exceed the 12 states), +-i omega_r with omega_r^2 = Omega^2/2, Omega = 1/2",
+   "tolerance": "1e-5",
+   "measured": {
+    "balanceResidual": 5.551115123125783e-17,
+    "counts": {
+     "zero": 4,
+     "plusIOm": 3,
+     "minusIOm": 3,
+     "plusIwr": 1,
+     "minusIwr": 1,
+     "other": 0
+    },
+    "maxDistance": 3.4328267363103917e-7,
+    "eigenvalues": [
+     {
+      "re": -3.4328267363090137e-7,
+      "im": -0.5000000000003076
+     },
+     {
+      "re": 2.7781167495891666e-17,
+      "im": -0.49999999999999994
+     },
+     {
+      "re": 3.432826733984484e-7,
+      "im": -0.4999999999997989
+     },
+     {
+      "re": 0,
+      "im": -0.3535533905909651
+     },
+     {
+      "re": -2.0568528629900805e-8,
+      "im": 0
+     },
+     {
+      "re": -2.419646934204156e-9,
+      "im": 0
+     },
+     {
+      "re": 2.4196471146153975e-9,
+      "im": 0
+     },
+     {
+      "re": 2.0568528629900805e-8,
+      "im": 0
+     },
+     {
+      "re": 0,
+      "im": 0.3535533905909651
+     },
+     {
+      "re": 3.432826733984484e-7,
+      "im": 0.4999999999997989
+     },
+     {
+      "re": 2.7781167495891666e-17,
+      "im": 0.49999999999999994
+     },
+     {
+      "re": -3.4328267363090137e-7,
+      "im": 0.5000000000003076
+     }
+    ],
+    "jacobianErrorEstimate": 9.765624420232655e-11
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.226Z"
+  },
+  {
+   "id": "K7a-linearization-refuses-non-equilibrium",
+   "reference": "frame rate off by 1 percent: helper must decline",
+   "tolerance": "—",
+   "measured": {
+    "balanced": false,
+    "balanceResidual": 0.0025125000000000286,
+    "reported": false
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:55.226Z"
+  },
+  {
+   "id": "K7b-monodromy-circle-rho=1",
+   "reference": "Floquet multipliers of the circle over P = 2 pi/Omega: 1 (x10, defective, splitting of order sqrt(error) expected) and exp(+-2 pi i/sqrt2)",
+   "tolerance": "1e-3 (unit cluster), 1e-6 (radial pair)",
+   "measured": {
+    "nUnit": 10,
+    "maxUnitDeviation": 0.00006492324062571621,
+    "radialPairDistance": 4.080356182898356e-9,
+    "jacobianErrorEstimate": 5.316608309158255e-8,
+    "target": {
+     "re": -0.26625534204141565,
+     "im": -0.9639025328498773
+    }
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:56.360Z"
+  },
+  {
+   "id": "K8-levenberg-marquardt-square",
+   "reference": "from angle offsets 0.05, -0.04, 0.03 and 1.1 Omega the solver returns the square and Omega^2 = (2 sqrt2 - 1)K/(4 rho^3)",
+   "tolerance": "1e-10",
+   "measured": {
+    "angleError": 2.640439103672382e-16,
+    "omegaRelError": 0,
+    "rmax": 1.2619958505861063e-16,
+    "iter": 6,
+    "converged": true
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:56.361Z"
+  },
+  {
+   "id": "K8b-nelder-mead-bowl",
+   "reference": "minimum of (p0-1)^2 + 3(p1+2)^2 + (p0 p1 + 2)^2 is at (1,-2) with value 0",
+   "tolerance": "1e-5",
+   "measured": {
+    "p": [
+     1.0000000000002276,
+     -1.999999999999652
+    ],
+    "f": 4.264491334620689e-25
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:56.363Z"
+  },
+  {
+   "id": "K9-shooting-objective-circle",
+   "reference": "J on the exact circle over one period: RK4-512 <= 1e-6, GBS <= 1e-10; jet conditions and their derivatives zero",
+   "tolerance": "1e-6 / 1e-10 / 1e-12 / 1e-8",
+   "measured": {
+    "J_rk4_512": 4.3038943520201656e-9,
+    "J_gbs": 1.1324274851176597e-14,
+    "jetRadial": 2.220446049250313e-16,
+    "jetTangential": 0,
+    "jetRadialDot": 0,
+    "jetTangentialDot": 2.710505431213761e-16
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:56.387Z"
+  },
+  {
+   "id": "K9a-shooting-objective-sensitivity",
+   "reference": "radius of one member scaled by 1.01: J >= 5e-3",
+   "tolerance": ">= 5e-3",
+   "measured": {
+    "J": 0.02801309436469046
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:56.393Z"
+  },
+  {
+   "id": "K10-identity-Gddot",
+   "reference": "PI identity: G-ddot = T_kin + H with G = I - sum sigma d, 50 random six-member states (own assembly from solved A and kinematic d-ddot), and a fourth-order finite-difference d^2G/dT^2 along the flow (step 1e-4, RK4 substeps) on five of them; own H equals the instrument candidate",
+   "tolerance": "1e-12 / 1e-3 (finite-difference side) / 1e-14",
+   "measured": {
+    "worstAlgebraic": 1.6599455146461777e-13,
+    "worstFiniteDifference": 0.00009827295034714031,
+    "HAgreement": 0
+   },
+   "pass": true,
+   "utc": "2026-10-06T00:20:56.404Z"
+  }
+ ]
+}

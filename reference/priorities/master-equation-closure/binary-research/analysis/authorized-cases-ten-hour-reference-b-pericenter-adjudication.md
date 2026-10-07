@@ -1,0 +1,13 @@
+# Independent assessment of the finite pericenter certificate
+
+**Derived conditional acceptance:** the [pericenter candidate](authorized-cases-ten-hour-b-pericenter-test.md) correctly proves a positive account crossing within two further units of angle under its exact finite-state hypotheses. Those hypotheses have not been established for the selected complete history, so no terminal branch is classified.
+
+Direct reconstruction of the initial account identity gives $|w_p-2|\le(25/4)\delta_p^2+8\delta_p^3<8\delta_p^2$ on $3/2\le w_p\le5/2$. The angular radial equation gives $u_\theta>1/4$ there because its leading term is at least one half and all corrections are tiny under the admitted bound. Thus the actual state is an outward-starting inner turn, not a pericenter inferred from a picture.
+
+The central comparison integral is exact: expanding $(1+\cos\psi)^2$ and integrating to two gives $3+2\sin2+\sin4/4$. The alternating lower Taylor bound $\sin2\ge286/315>9/10$, together with $\sin4\ge-1$, makes this strictly greater than $91/20$. Also $\cos2\ge-19/45>-1/2$, so the central comparison has the required positive distance from the lower compact-box face.
+
+The already assessed compact polar comparison remains valid with the candidate's initial error and shorter angular duration. The variation of $\log h$ is below $6\delta_p^2$, preserving its provisional ratio. The very conservative $2^{13}\delta_p^2$ state error keeps the actual path inside the box. Since h stays comparable with $h_p$ and w stays bounded away from zero, this finite angular interval takes finite actual time.
+
+Changing variables in the exact account rate gives $d\mathcal E/d\theta=\gamma w^2h^{-5}(1+\eta_E)$, confirming both the fifth power and the source-scale factor in the subject's integral. The geometry error integrates to less than $2^{17}\delta_p^2$; the fifth-power angular factor contributes less than $2^{12}\delta_p^2$; the admitted rate error is below the stated $2^{50029}\delta_p$. Their sum lies within $2^{50040}\delta_p<1/100$. Therefore the residual account margin is strictly greater than $[-9/2+91/20-1/100]\gamma/h_p^5=(1/25)\gamma/h_p^5>0$.
+
+This validates a useful finite event certificate. It leaves the actual normalized inner-turn deficit, actual $p=0$ event and required w interval unproved for the selected member. A monotone account or a smaller nominal epsilon does not supply that missing history-dependent information. Falsifiers are a failure of the admitted compact estimates, the exact account change of variables or the initial deficit bound. No numerical target, new preparation or physical energy assumption was used, and no owned computation is active.

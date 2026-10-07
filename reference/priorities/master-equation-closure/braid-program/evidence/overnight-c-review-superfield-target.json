@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "constants": {
+    "minimumRadiusGap": "3/100",
+    "minimumInterpairRadiusProduct": "26/25",
+    "maximumSpeed": "1443/1250",
+    "initialAngleUpper": "131/500",
+    "sineSquareSlack": "154362499921/36000000000000",
+    "interpairCoefficientSlack": "37/1250",
+    "selfCoefficientSlack": "7499/250000",
+    "initialInterpairGapUpper": "-809/1010000",
+    "initialCosineLower": "482839/500000",
+    "initialOppositeGapUpper": "-31/16",
+    "laterAngleLower": "253/1000",
+    "laterAngleUpper": "5777/2500",
+    "samePolarityDerivativeAtQuarterUpper": "-530697291/50000000000",
+    "samePolarityDerivativeAtRangeEndLower": "89827/62500",
+    "piLowerFromAlternatingIntegral": "135904/45045",
+    "piLowerSlackAboveThree": "769/45045"
+  },
+  "channelCounts": {
+    "self": 6,
+    "samePolarityPartner": 12,
+    "oppositePolarityPartner": 18
+  },
+  "totalPositiveRootsIfAnalyticalChartHolds": 36,
+  "scope": "Exact inequality and multiplicity checks; root count and signs derive analytically in companion review.",
+  "mode": "target",
+  "sha256": "3de1303a4bc361c656250fd0b2fccda9a1cea28ae1e70358265c0894137879f7"
+}

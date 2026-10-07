@@ -1,0 +1,117 @@
+{
+ "script": "weber-binding-sphere-gc-res-checks.py",
+ "startedUTC": "2026-10-06T23:02:17.240017+00:00",
+ "knownCase": {
+  "mirrorPair_lineIsSquare_maxErr": 2.220446049250313e-15,
+  "mirrorPair_torusSquareDefect_p10": 0.00529928111247518,
+  "pass": true
+ },
+ "R1": {
+  "pairs": 300,
+  "maxAbsErr": {
+   "modP11": 3.3306690738754696e-16,
+   "modP1m1": 2.220446049250313e-16,
+   "modP10": 1.0824674490095276e-15,
+   "modP01": 7.771561172376096e-16,
+   "P00": 4.440892098500626e-16,
+   "offSupport": 2.6645352591003757e-15,
+   "id10": 6.938893903907228e-16,
+   "id01": 7.771561172376096e-16
+  },
+  "min_(p00 - 2|p11| - 2|p1,-1|)/(1-|cos gamma|)": 0.24159752625941197,
+  "minSquareDefectOverSin2": 0.39336826903951566
+ },
+ "R2_symbolic": {
+  "squaredCondition": "-16*(q - 1)*(3*q - 1)**3",
+  "allRealRootsWithMultiplicity": [
+   0.3333333333333333,
+   0.3333333333333333,
+   0.3333333333333333,
+   1.0
+  ],
+  "rootsIn(0,1)": [
+   0.3333333333333333,
+   0.3333333333333333,
+   0.3333333333333333
+  ],
+  "unsquaredResidualAtRoots": [
+   8.881784197001252e-16,
+   8.881784197001252e-16,
+   8.881784197001252e-16
+  ]
+ },
+ "R2_exactSolution": {
+  "minD_over_period": 1.3436884816420428e-32,
+  "maxD": 1.9999996512901523,
+  "fourSmallestRootGaps": [
+   1.0333579144420671e-08,
+   1.6566053455248258e-07,
+   0.0002329581934031505,
+   0.0002329700595026024
+  ],
+  "fifthRootGap": 0.00023302133121490468,
+  "rootModuli": [
+   3.7320508378812933,
+   0.2679491900768117,
+   0.26794919478543333,
+   3.732050777256458,
+   1.0000186888410352,
+   0.9998363344724642,
+   1.0001637111849522,
+   0.9999812926450448
+  ],
+  "higherHarmonics": 6.421361819777136e-17
+ },
+ "R2_random": {
+  "collisionFreePairs": 293,
+  "minRootGap": 0.04999522142052201,
+  "medianRootGap": 0.3034992481192738
+ },
+ "R2_conditionsAB": {
+  "sameSignHeights": {
+   "smallestResidual": 4.900433392407422e-10,
+   "at_a2_cosGamma": [
+    0.0740220444804935,
+    0.7775279514679542
+   ],
+   "countBelow1e-8": 279,
+   "spreadOfSolutions_a2": [
+    0.07400711309393475,
+    0.07413161121620329
+   ]
+  },
+  "oppositeSignHeights": {
+   "smallestResidual": 0.0010961909408951605,
+   "at_a2_cosGamma": [
+    1.3366428972318108e-06,
+    -0.9989999999999999
+   ],
+   "countBelow1e-8": 0,
+   "spreadOfSolutions_a2": null
+  }
+ },
+ "R2_reductionIdentity": {
+  "gridPoints": 197,
+  "maxAbsErr": 1.4432899320127035e-14,
+  "signOfReducedConditionBelowOneThird": [
+   -1.0
+  ],
+  "signAboveOneThird": [
+   1.0
+  ]
+ },
+ "R3_directDefect": {
+  "samples": 20000,
+  "collisionFreeWithMargin0.01": 18866,
+  "defectAtTangentConfiguration": 6.707008781236939e-14,
+  "minDefectAmongCollisionFreeSamples": 0.4144251500669314,
+  "bestRefinedWithMargin": {
+   "defect": 0.008684099139894173,
+   "minD": 0.010000000000003315,
+   "a_i^2": 0.061018747203406144,
+   "cosGamma": 0.7089778480519634,
+   "phi": 3.1415926535899437
+  }
+ },
+ "finishedUTC": "2026-10-06T23:03:24.418374+00:00"
+}

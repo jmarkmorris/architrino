@@ -1,0 +1,35 @@
+{
+ "test": "ext-s166a",
+ "utc": "2026-10-06T23:26:43Z",
+ "note": "odd-sum ratios: squareness defect of zeta^(r+s) D as a polynomial, random pairs",
+ "2:1": {
+  "n": 358,
+  "minDefect_minD_ge_0p01": 0.3232687223758008,
+  "minDefect_all": 0.3232687223758008,
+  "minD_at_minDefect": 0.0895968388987253
+ },
+ "3:2": {
+  "n": 333,
+  "minDefect_minD_ge_0p01": 0.13339630765640054,
+  "minDefect_all": 0.13339630765640054,
+  "minD_at_minDefect": 0.052891506552441646
+ },
+ "4:1": {
+  "n": 377,
+  "minDefect_minD_ge_0p01": 0.9499519589016899,
+  "minDefect_all": 0.9499519589016899,
+  "minD_at_minDefect": 0.17106450338406978
+ },
+ "4:3": {
+  "n": 328,
+  "minDefect_minD_ge_0p01": 0.07383653971871305,
+  "minDefect_all": 0.06266790745652441,
+  "minD_at_minDefect": 0.001711726000308788
+ },
+ "5:2": {
+  "n": 340,
+  "minDefect_minD_ge_0p01": 0.45677290365766243,
+  "minDefect_all": 0.45677290365766243,
+  "minD_at_minDefect": 0.09799348409025288
+ }
+}

@@ -1,0 +1,107 @@
+{
+ "utc": "2026-10-06T23:35:14.174Z",
+ "command": "node reference/priorities/master-equation-closure/braid-program/evidence/weber-binding-sphere-mc-r2-ladder.mjs --mode known --Ms 3,5,7,9",
+ "hexagon": [
+  {
+   "M": 3,
+   "Nc": 16,
+   "combined": 2.7470157004066655e-15,
+   "maxE": 2.7470157004065945e-15
+  },
+  {
+   "M": 5,
+   "Nc": 24,
+   "combined": 2.7470157004066655e-15,
+   "maxE": 2.7470157004065945e-15
+  },
+  {
+   "M": 7,
+   "Nc": 32,
+   "combined": 2.7470157004066655e-15,
+   "maxE": 2.7470157004065945e-15
+  },
+  {
+   "M": 9,
+   "Nc": 40,
+   "combined": 2.7470157004066655e-15,
+   "maxE": 2.7470157004065945e-15
+  }
+ ],
+ "rosette": [
+  {
+   "M": 6,
+   "Nc": 26,
+   "fineMaxEspeed": 1.3058053383525317e-15,
+   "fineMaxE": 5.223221353410133e-15,
+   "periodError": 0.6058984295596055,
+   "iter": 24
+  },
+  {
+   "M": 10,
+   "Nc": 42,
+   "fineMaxEspeed": 0.001984551221192298,
+   "fineMaxE": 0.006967197848128287,
+   "periodError": 0.12713093398441178,
+   "iter": 26
+  },
+  {
+   "M": 14,
+   "Nc": 58,
+   "fineMaxEspeed": 0.00009610510113598305,
+   "fineMaxE": 0.000325236518526951,
+   "periodError": 0.00041394203311462263,
+   "iter": 12
+  },
+  {
+   "M": 18,
+   "Nc": 74,
+   "fineMaxEspeed": 0.000001564567010496689,
+   "fineMaxE": 0.000005294124133319225,
+   "periodError": 1.753271039461879e-7,
+   "iter": 12
+  },
+  {
+   "M": 24,
+   "Nc": 98,
+   "fineMaxEspeed": 2.7363978905838535e-9,
+   "fineMaxE": 9.259321757324604e-9,
+   "periodError": 6.217248937900877e-14,
+   "iter": 5
+  }
+ ],
+ "hexagonLadderFromPerturbedStart": [
+  {
+   "M": 3,
+   "combined": 3.727208352258722e-14,
+   "exactHexagon": true,
+   "iter": 18
+  },
+  {
+   "M": 5,
+   "combined": 3.717427391016327e-14,
+   "exactHexagon": true,
+   "iter": 0
+  },
+  {
+   "M": 7,
+   "combined": 3.7646505494114956e-14,
+   "exactHexagon": true,
+   "iter": 0
+  },
+  {
+   "M": 9,
+   "combined": 3.7311336294682614e-14,
+   "exactHexagon": true,
+   "iter": 0
+  }
+ ],
+ "rosetteClassChangeAtLowM": [
+  {
+   "M": 6,
+   "fineMaxEspeed": 1.3058053383525317e-15,
+   "periodError": 0.6058984295596055
+  }
+ ],
+ "rosetteDecayPerHarmonic": 0.3814117488525026,
+ "pass": true
+}
