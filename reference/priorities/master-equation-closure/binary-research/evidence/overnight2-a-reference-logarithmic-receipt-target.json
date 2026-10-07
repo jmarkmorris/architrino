@@ -1,0 +1,67 @@
+{
+  "mode": "target",
+  "passed": true,
+  "source_sha256": "0f980822c7c016c7bbc9ed3d05357472d52c514105485ad49cf64beaaecf96d5",
+  "utc": "2026-10-07T03:47:50.306082+00:00",
+  "result": {
+    "contours": [
+      {
+        "receipt": ".local-data/master-equation-closure/binary-research/logarithmic-actual-fate/spectrum-target.json",
+        "contour": "contour",
+        "edges": 164,
+        "exact_directed_cover": true,
+        "endpoint_containment_and_seams": true,
+        "all_boxes_exclude_zero": true,
+        "independent_negative_ray_winding": 2
+      },
+      {
+        "receipt": ".local-data/master-equation-closure/binary-research/logarithmic-actual-fate/cartesian-target.json",
+        "contour": "cartesian_contour",
+        "edges": 216,
+        "exact_directed_cover": true,
+        "endpoint_containment_and_seams": true,
+        "all_boxes_exclude_zero": true,
+        "independent_negative_ray_winding": 2
+      },
+      {
+        "receipt": ".local-data/master-equation-closure/binary-research/logarithmic-actual-fate/full-spectrum-target.json",
+        "contour": "reduced_contour",
+        "edges": 126,
+        "exact_directed_cover": true,
+        "endpoint_containment_and_seams": true,
+        "all_boxes_exclude_zero": true,
+        "independent_negative_ray_winding": 3
+      },
+      {
+        "receipt": ".local-data/master-equation-closure/binary-research/logarithmic-actual-fate/full-spectrum-target.json",
+        "contour": "cartesian_contour",
+        "edges": 168,
+        "exact_directed_cover": true,
+        "endpoint_containment_and_seams": true,
+        "all_boxes_exclude_zero": true,
+        "independent_negative_ray_winding": 3
+      }
+    ],
+    "source_and_receipt_identities": {
+      "reference/priorities/master-equation-closure/binary-research/analysis/logarithmic-actual-fate-two-hour-spectrum.py": "e56c6b447107e9ffdd14ecc94353d26f8813b19d083c990b1ac8d2434c0efef0",
+      "reference/priorities/master-equation-closure/binary-research/evidence/alternatives-screen-2026-10-05-logarithmic-spiral-perturbation-certificate.py": "4e86e5d94ff67dc3dfa6099618568fc2cc520ae053b55e377d4027b532504292",
+      ".local-data/master-equation-closure/binary-research/logarithmic-actual-fate/spectrum-known.json": "9a5c59dc1ae32669567ad9744c34bf2dd9691c70b1b02de3b1df1e6c71861800",
+      ".local-data/master-equation-closure/binary-research/logarithmic-actual-fate/spectrum-target.json": "e1e87a1a32029961a35175512a198023c8469d483d19e523922a88c319deac7e",
+      "reference/priorities/master-equation-closure/binary-research/analysis/logarithmic-actual-fate-two-hour-cartesian.py": "a20d285d7568676f658105b2e45f932e684d99059ebb83ee311623ea9fee6870",
+      "reference/priorities/master-equation-closure/binary-research/evidence/alternatives-screen-2026-10-05-logarithmic-spiral-perturbation-independent.py": "a9f806f220149bae96af13912a34f9e0a95c162106102e14554e9959782c134b",
+      ".local-data/master-equation-closure/binary-research/logarithmic-actual-fate/cartesian-known.json": "470d49e915b7bffab4b1154e48d3aab95a227362bab4235213cd5d331e95c326",
+      ".local-data/master-equation-closure/binary-research/logarithmic-actual-fate/cartesian-target.json": "035c06e58fdb3c01eaed7a125142eaf507974492ed803060974beb0f0475fbcd",
+      "reference/priorities/master-equation-closure/binary-research/analysis/logarithmic-actual-fate-two-hour-full-spectrum.py": "de5a98bfc19095f988e93809fdfea77aa42373e2a79140512b87dc44cbc54bb1",
+      ".local-data/master-equation-closure/binary-research/logarithmic-actual-fate/full-spectrum-known.json": "37c69c51b9ee5be5671536fbcb0756d9d5f0e9f586f574acb2d4d17d63611810",
+      ".local-data/master-equation-closure/binary-research/logarithmic-actual-fate/full-spectrum-target.json": "d0e96a36fcec10e4a9ccdd3cfcfdace0b8460ebb5e135a21a486ca8fbfaadb01"
+    },
+    "retained_known_receipts_precede_and_bind_targets": true,
+    "not_evaluated": [
+      "determinant image enclosure arithmetic",
+      "transcendental functions",
+      "parameter balance",
+      "simple-pair inclusion",
+      "physical trajectory"
+    ]
+  }
+}

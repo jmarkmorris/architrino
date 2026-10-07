@@ -1,0 +1,21 @@
+{
+  "source_sha256": "8fbfec3846eac485bb233d6ab3049a9e8678086ef1b4549ce551387528ed6217",
+  "arithmetic_sha256": "a9f806f220149bae96af13912a34f9e0a95c162106102e14554e9959782c134b",
+  "mode": "known",
+  "c_f": 1,
+  "utc": "2026-10-07T04:31:23.537197+00:00",
+  "result": {
+    "controls": [
+      "frozen independent endpoint arithmetic",
+      "known enumeration",
+      "integer square-root enclosure",
+      "singular rejection",
+      "diagonal and orthogonal inverse bounds",
+      "new Cartesian radial derivative matrix",
+      "nonzero exponential product"
+    ],
+    "passed": true
+  },
+  "wall_seconds": 0.1334317079745233,
+  "rss_platform_units": 22511616
+}

@@ -6,6 +6,24 @@ The [H3 velocity-domain rule](analysis/braid-candidate-requirement-adjudication.
 
 The detailed planar common-center three-binary constraint investigation is maintained in the subordinate [planar common-center three-binary constraint work queue](campaigns/planar-three-binary-work-queue.md). This parent queue owns only its aggregate BP-011 status and candidate disposition; the subordinate queue owns individual planar common-center three-binary constraint task status and acceptance.
 
+## Nonrigid spatial research disposition
+
+**B second window, 2026-10-07: ✓ Selected bounded work complete.** Ordinary-chart admission, slow-limit conditions, continuous finite-speed exclusions, functional extensions, root-topology and wake-speed restrictions, and the aperiodic T02/T04 extension are integrated in the [mathematical synthesis](manuscript.md#391-complete-ordinary-geometry-at-finite-height) and [evidence account](analysis/overnight2-b-followup-and-research-2026-10-07.md). No bounded B task remains active. No exact spatial reference, stability result or proved retention was obtained; future flattening requires continued neighborhood retention. Historical partial covers and failed searches retain their scope.
+
+**R43 remains open and unassigned:** seek an exact sign-changing complete radial/phase/alternating-height history outside the certified exclusions, with a complete ordinary-root census and independently verified full-vector balance. This is the existing general problem, not a newly selected run or ranked object. Its [ledger route](../configurations/findings-ledger.md) retains the existing ratings. The first-window and second-window completed tasks are disposition history, not pending executions.
+
+## Logarithmic three-binary second-window disposition
+
+**C, 2026-10-07: ✓ Bounded allocation closed; checked findings integrated.** The [grouped mathematical account](manuscript.md#3121-complete-root-reduction-and-uniform-separation) and [current C report](analysis/overnight2-c-followup-and-research-2026-10-07.md) include every independently checked result through the joint-vector, all-phase and lower-radius strips, seven declared unequal-boundary transfers, and phase-eliminated necessary conditions. Full-phase equal-radius exclusion is complete; compactness and response compatibility remain necessary conditions in their stated domains. Historical cover and target-residual limitations remain unchanged. No exact reference or stability admission follows.
+
+Exploration ended at the original 13:55:15 UTC on October 7. Final checking, documentation, local evidence preservation and owned-process closeout are complete; terminal closeout occurred 2026-10-07 14:20:57 UTC before the original 15:25:15 UTC deadline. The existing C heartbeat is PAUSED. No bounded C task remains active. Remaining general unequal-radius, partial-equality and arbitrary superfield existence questions stay open without a new run, assignment or ranking. The earlier first-window bounded work remains completed history.
+
+## Eight-member inclusive-ceiling second-window disposition
+
+**D, 2026-10-07: ✓ Bounded allocation closed; checked findings integrated.** The [mathematical account](manuscript.md#15-eight-member-releases-under-the-inclusive-field-speed-ceiling) distinguishes actual original balance-1 seed-1 history through $T=46.53742538935399$ from residual coverage through $50.237425389354044$ and reference construction through $67$. Same-interval transfer to the retained tail comparison is independently accepted. The wall-budget stop preserved 864 complete cells and supplies no mathematical obstruction. Conditional seed-2 tail admission, birth nonreturn, the strict-interior reciprocal-weight comparison and balance-0 vanishing-deficit approach are complete at their reviewed scopes. The [D report](analysis/overnight2-d-followup-and-research-2026-10-07.md) records the closed original clock, PAUSED heartbeat and evidence retention.
+
+**◐ Open science; unassigned.** Establish later actual history and tail entry for the unchanged original seed-1 preparation; admission through the earliest source cutoff near 67 alone would leave the required history through entry near 2732.38 missing. Separately establish actual seed-2 entry, or balance-0 capped entry, complete external-six control and persistent source-history deficits before any approaching-pair fate claim. The reciprocal-weight theorem requires evaluated interaction and defect budgets before application. These are remaining mathematical obligations, not pending executions in the completed allocation. No bounded D task remains active, and no new rank, production run or C1 transfer is selected.
+
 ## Ranked Next Objects
 
 This assembly workstream is unranked globally pending its own scored object. The order below preserves the existing local order after BP-001 transfers to the [binary queue](../binary-research/work-queue.md).

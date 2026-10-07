@@ -1,0 +1,2317 @@
+{
+ "schema": "weber-binding-sphere-ring-b consolidated receipt",
+ "assembled_utc": "2026-10-07T04:02:52Z",
+ "note": "Assembled from runtime receipts under .local-data (local retention, not backed up). K = R = c_f = 1; unit numerical weights. A Node run of record has the frozen instrument hash and ended inside the final ordered driver sequence (03:59:44Z to 04:02:33Z); the others are exploratory or superseded.",
+ "frozenInstrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+ "kb1": {
+  "case": "KB1",
+  "utc": "2026-10-07T03:59:44.814Z",
+  "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+  "hexagonResidual": 1.5779233923431831e-15,
+  "hexagonDetuned10pctResidual": 0.06726497308103754,
+  "squareResidual": 1.6653345369377348e-16,
+  "pairResidual": 1.5308084989341915e-17,
+  "componentVsComplexWorstRelDiff": 1.8701520819302583e-14,
+  "pass": true
+ },
+ "kb4": {
+  "case": "KB4",
+  "utc": "2026-10-07T04:01:38.657Z",
+  "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+  "pass": true,
+  "rows": [
+   {
+    "kind": "hexagon-inside",
+    "w": 1e-12,
+    "off": 0.5,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 1e-12,
+    "off": 0.1,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 1e-12,
+    "off": 0.9,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 1e-09,
+    "off": 0.5,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 1e-09,
+    "off": 0.1,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 1e-09,
+    "off": 0.9,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 1e-06,
+    "off": 0.5,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 1e-06,
+    "off": 0.1,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 1e-06,
+    "off": 0.9,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 0.001,
+    "off": 0.5,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 0.001,
+    "off": 0.1,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 0.001,
+    "off": 0.9,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 0.01,
+    "off": 0.5,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 0.01,
+    "off": 0.1,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 0.01,
+    "off": 0.9,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 0.05,
+    "off": 0.5,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 0.05,
+    "off": 0.1,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 0.05,
+    "off": 0.9,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 0.1,
+    "off": 0.5,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 0.1,
+    "off": 0.1,
+    "excludedBy": null
+   },
+   {
+    "kind": "hexagon-inside",
+    "w": 0.1,
+    "off": 0.9,
+    "excludedBy": null
+   },
+   {
+    "kind": "non-solution",
+    "point": [
+     0.45,
+     0.5,
+     0.55,
+     0.6,
+     0.5
+    ],
+    "residual": 0.3537495396081046,
+    "excludedBy": "T1"
+   }
+  ]
+ },
+ "kb2_wide": {
+  "case": "KB2-enclosure",
+  "points": 100000,
+  "function_values_checked": 2920000,
+  "jacobian_entries_checked": 456000,
+  "failures": 0,
+  "smallest_slack": 2.7584210645778023e-08,
+  "pi_enclosure_ok": true,
+  "elapsed_s": 92.9,
+  "pass": true
+ },
+ "kb2_tiny": {
+  "case": "KB2-enclosure",
+  "points": 100000,
+  "function_values_checked": 2920000,
+  "jacobian_entries_checked": 456000,
+  "failures": 0,
+  "smallest_slack": 4.526433193968672e-16,
+  "pi_enclosure_ok": true,
+  "elapsed_s": 93.8,
+  "pass": true
+ },
+ "lemma_checks": {
+  "L1_like_pair_identity_worst_rel_error": 7.695531353676665e-29,
+  "L2_g_shape_violations": 0,
+  "L2_samples": 20000,
+  "L3_rho_monotone_violations": 0,
+  "L3_rho_max": 0.9999999989719162,
+  "L4_ratio_step_counterexamples": 0,
+  "L4_samples": 181320,
+  "chain": [
+   "1.0",
+   "1.154700538379251529018297561",
+   "1.3676708371059737927722340023",
+   "1.67547420075066957380710043308"
+  ],
+  "six_sum": "7.72021695172112021738816355969",
+  "six_delta": "0.406930617783923381210223305597",
+  "four_sum": "4.67707191386447685080882912431",
+  "four_delta": "0.671700737437244424998629720837",
+  "utc": "2026-10-07T04:01:38Z",
+  "pass": true
+ },
+ "node_runs": {
+  "generic_+++---_0.01": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "generic_+++---_0.01",
+    "word": "+++---",
+    "delta": 0.01,
+    "lo": [
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01
+    ],
+    "hi": [
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934
+    ],
+    "lastLo": 0.01,
+    "lastHi": 3.0915926545897934,
+    "symmetric": false,
+    "kraw": null,
+    "minWidth": 1e-06,
+    "maxBoxes": 50000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 3235,
+    "prunedDomain": 265,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 1353,
+    "excludedMeanValue": 0,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 0,
+    "undecided": 0,
+    "maxDepth": 33,
+    "exclBy": {
+     "T3": 107,
+     "T1": 577,
+     "T6": 333,
+     "U1-U2": 16,
+     "U2-U3": 35,
+     "T2": 57,
+     "T4": 136,
+     "T5": 34,
+     "U4-U5": 51,
+     "U5-U6": 7
+    },
+    "elapsedSeconds": 0.034
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:02:06.215Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": null
+  },
+  "generic_+++---_0.01_tangentialonly": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "generic_+++---_0.01_tangentialonly",
+    "word": "+++---",
+    "delta": 0.01,
+    "lo": [
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01
+    ],
+    "hi": [
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934
+    ],
+    "lastLo": 0.01,
+    "lastHi": 3.0915926545897934,
+    "symmetric": false,
+    "kraw": null,
+    "minWidth": 1e-06,
+    "maxBoxes": 200000000,
+    "useU": false
+   },
+   "complete": true,
+   "stats": {
+    "processed": 3757,
+    "prunedDomain": 265,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 1614,
+    "excludedMeanValue": 0,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 0,
+    "undecided": 0,
+    "maxDepth": 33,
+    "exclBy": {
+     "T3": 167,
+     "T1": 720,
+     "T6": 386,
+     "T2": 83,
+     "T4": 209,
+     "T5": 49
+    },
+    "elapsedSeconds": 0.038
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:02:14.665Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": null
+  },
+  "generic_+++---_0.05": {
+   "runOfRecord": false,
+   "cfg": {
+    "name": "generic_+++---_0.05",
+    "word": "+++---",
+    "delta": 0.05,
+    "lo": [
+     0.05,
+     0.05,
+     0.05,
+     0.05,
+     0.05
+    ],
+    "hi": [
+     2.891592654589793,
+     2.891592654589793,
+     2.891592654589793,
+     2.891592654589793,
+     2.891592654589793
+    ],
+    "lastLo": 0.05,
+    "lastHi": 2.891592654589793,
+    "symmetric": false,
+    "kraw": null,
+    "minWidth": 1e-06,
+    "maxBoxes": 50000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 725,
+    "prunedDomain": 80,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 283,
+    "excludedMeanValue": 0,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 0,
+    "undecided": 0,
+    "maxDepth": 21,
+    "exclBy": {
+     "T1": 172,
+     "T3": 30,
+     "T6": 48,
+     "T4": 33
+    },
+    "elapsedSeconds": 0.018
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T03:45:03.256Z",
+   "instrumentSha256": "absent: exploratory run before provenance fields were added",
+   "node": null,
+   "krawczyk": null
+  },
+  "generic_+++---_0.2": {
+   "runOfRecord": false,
+   "cfg": {
+    "name": "generic_+++---_0.2",
+    "word": "+++---",
+    "delta": 0.2,
+    "lo": [
+     0.2,
+     0.2,
+     0.2,
+     0.2,
+     0.2
+    ],
+    "hi": [
+     2.141592654589793,
+     2.141592654589793,
+     2.141592654589793,
+     2.141592654589793,
+     2.141592654589793
+    ],
+    "lastLo": 0.2,
+    "lastHi": 2.141592654589793,
+    "symmetric": false,
+    "kraw": null,
+    "minWidth": 1e-06,
+    "maxBoxes": 30000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 65,
+    "prunedDomain": 10,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 23,
+    "excludedMeanValue": 0,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 0,
+    "undecided": 0,
+    "maxDepth": 9,
+    "exclBy": {
+     "T1": 18,
+     "T3": 4,
+     "T4": 1
+    },
+    "elapsedSeconds": 0.003
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T03:44:43.988Z",
+   "instrumentSha256": "absent: exploratory run before provenance fields were added",
+   "node": null,
+   "krawczyk": null
+  },
+  "generic_++-+--_0.01": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "generic_++-+--_0.01",
+    "word": "++-+--",
+    "delta": 0.01,
+    "lo": [
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01
+    ],
+    "hi": [
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934
+    ],
+    "lastLo": 0.01,
+    "lastHi": 3.0915926545897934,
+    "symmetric": false,
+    "kraw": null,
+    "minWidth": 1e-06,
+    "maxBoxes": 50000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 127271,
+    "prunedDomain": 4369,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 52751,
+    "excludedMeanValue": 6516,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 0,
+    "undecided": 0,
+    "maxDepth": 43,
+    "exclBy": {
+     "T1": 18926,
+     "T6": 10977,
+     "T2": 5667,
+     "T5": 2033,
+     "T3": 4938,
+     "U3-U4": 7521,
+     "U4-U5": 623,
+     "U1-U2": 3395,
+     "T4": 3681,
+     "U2-U3": 1237,
+     "U5-U6": 269
+    },
+    "elapsedSeconds": 1.209
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:02:06.102Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": null
+  },
+  "generic_++-+--_0.01_tangentialonly": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "generic_++-+--_0.01_tangentialonly",
+    "word": "++-+--",
+    "delta": 0.01,
+    "lo": [
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01
+    ],
+    "hi": [
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934
+    ],
+    "lastLo": 0.01,
+    "lastHi": 3.0915926545897934,
+    "symmetric": false,
+    "kraw": null,
+    "minWidth": 1e-06,
+    "maxBoxes": 200000000,
+    "useU": false
+   },
+   "complete": true,
+   "stats": {
+    "processed": 252765,
+    "prunedDomain": 4651,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 102127,
+    "excludedMeanValue": 19605,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 0,
+    "undecided": 0,
+    "maxDepth": 43,
+    "exclBy": {
+     "T1": 44220,
+     "T6": 21743,
+     "T2": 21695,
+     "T5": 8791,
+     "T3": 12449,
+     "T4": 12834
+    },
+    "elapsedSeconds": 2.104
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:02:14.543Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": null
+  },
+  "generic_++-+--_0.05": {
+   "runOfRecord": false,
+   "cfg": {
+    "name": "generic_++-+--_0.05",
+    "word": "++-+--",
+    "delta": 0.05,
+    "lo": [
+     0.05,
+     0.05,
+     0.05,
+     0.05,
+     0.05
+    ],
+    "hi": [
+     2.891592654589793,
+     2.891592654589793,
+     2.891592654589793,
+     2.891592654589793,
+     2.891592654589793
+    ],
+    "lastLo": 0.05,
+    "lastHi": 2.891592654589793,
+    "symmetric": false,
+    "kraw": null,
+    "minWidth": 1e-06,
+    "maxBoxes": 50000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 11811,
+    "prunedDomain": 673,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 5042,
+    "excludedMeanValue": 191,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 0,
+    "undecided": 0,
+    "maxDepth": 28,
+    "exclBy": {
+     "T1": 2097,
+     "T2": 656,
+     "T6": 961,
+     "U1-U2": 29,
+     "U3-U4": 314,
+     "T3": 486,
+     "U4-U5": 87,
+     "T5": 137,
+     "T4": 350,
+     "U5-U6": 19,
+     "U2-U3": 97
+    },
+    "elapsedSeconds": 0.215
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T03:45:02.877Z",
+   "instrumentSha256": "absent: exploratory run before provenance fields were added",
+   "node": null,
+   "krawczyk": null
+  },
+  "generic_++-+--_0.2": {
+   "runOfRecord": false,
+   "cfg": {
+    "name": "generic_++-+--_0.2",
+    "word": "++-+--",
+    "delta": 0.2,
+    "lo": [
+     0.2,
+     0.2,
+     0.2,
+     0.2,
+     0.2
+    ],
+    "hi": [
+     2.141592654589793,
+     2.141592654589793,
+     2.141592654589793,
+     2.141592654589793,
+     2.141592654589793
+    ],
+    "lastLo": 0.2,
+    "lastHi": 2.141592654589793,
+    "symmetric": false,
+    "kraw": null,
+    "minWidth": 1e-06,
+    "maxBoxes": 30000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 581,
+    "prunedDomain": 40,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 251,
+    "excludedMeanValue": 0,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 0,
+    "undecided": 0,
+    "maxDepth": 17,
+    "exclBy": {
+     "T1": 166,
+     "T6": 30,
+     "T2": 29,
+     "T5": 4,
+     "T3": 6,
+     "U3-U4": 9,
+     "T4": 2,
+     "U4-U5": 2,
+     "U2-U3": 3
+    },
+    "elapsedSeconds": 0.014
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T03:44:43.688Z",
+   "instrumentSha256": "absent: exploratory run before provenance fields were added",
+   "node": null,
+   "krawczyk": null
+  },
+  "generic_++--_0.01": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "generic_++--_0.01",
+    "word": "++--",
+    "delta": 0.01,
+    "lo": [
+     0.01,
+     0.01,
+     0.01
+    ],
+    "hi": [
+     3.1115926545897934,
+     3.1115926545897934,
+     3.1115926545897934
+    ],
+    "lastLo": 0.01,
+    "lastHi": 3.1115926545897934,
+    "symmetric": false,
+    "kraw": null,
+    "minWidth": 1e-06,
+    "maxBoxes": 50000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 123,
+    "prunedDomain": 22,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 40,
+    "excludedMeanValue": 0,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 0,
+    "undecided": 0,
+    "maxDepth": 21,
+    "exclBy": {
+     "T1": 24,
+     "T4": 2,
+     "T2": 8,
+     "T3": 6
+    },
+    "elapsedSeconds": 0.004
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:01:39.068Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": null
+  },
+  "generic_++--_0.05": {
+   "runOfRecord": false,
+   "cfg": {
+    "name": "generic_++--_0.05",
+    "word": "++--",
+    "delta": 0.05,
+    "lo": [
+     0.05,
+     0.05,
+     0.05
+    ],
+    "hi": [
+     2.9915926545897933,
+     2.9915926545897933,
+     2.9915926545897933
+    ],
+    "lastLo": 0.05,
+    "lastHi": 2.9915926545897933,
+    "symmetric": false,
+    "kraw": null,
+    "minWidth": 1e-06,
+    "maxBoxes": 50000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 75,
+    "prunedDomain": 14,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 24,
+    "excludedMeanValue": 0,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 0,
+    "undecided": 0,
+    "maxDepth": 14,
+    "exclBy": {
+     "T1": 14,
+     "T2": 6,
+     "T3": 3,
+     "T4": 1
+    },
+    "elapsedSeconds": 0.005
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T03:45:03.840Z",
+   "instrumentSha256": "absent: exploratory run before provenance fields were added",
+   "node": null,
+   "krawczyk": null
+  },
+  "generic_+-+-+-_0.01_polygonbox": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "generic_+-+-+-_0.01_polygonbox",
+    "word": "+-+-+-",
+    "delta": 0.01,
+    "lo": [
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01
+    ],
+    "hi": [
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934
+    ],
+    "lastLo": 0.01,
+    "lastHi": 3.0915926545897934,
+    "symmetric": false,
+    "kraw": {
+     "c": [
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988
+     ],
+     "r": 0.005
+    },
+    "minWidth": 1e-06,
+    "maxBoxes": 200000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 645637,
+    "prunedDomain": 30837,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 236525,
+    "excludedMeanValue": 55456,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 47,
+    "exclBy": {
+     "T1": 35779,
+     "T2": 25079,
+     "U3-U4": 36420,
+     "T3": 66279,
+     "T6": 11271,
+     "T4": 53145,
+     "U5-U6": 10261,
+     "U2-U3": 13174,
+     "T5": 12937,
+     "U4-U5": 9180,
+     "U1-U2": 18456
+    },
+    "elapsedSeconds": 6.057
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:02:12.353Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": {
+    "ok": true,
+    "lo": [
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988
+    ],
+    "hi": [
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988
+    ],
+    "image": [
+     [
+      0.5221106035461474,
+      0.5250869476504505
+     ],
+     [
+      0.521831381952487,
+      0.525366169244111
+     ],
+     [
+      0.521933574030643,
+      0.525263977165955
+     ],
+     [
+      0.5216482019792454,
+      0.5255493492173524
+     ],
+     [
+      0.5219081706696426,
+      0.5252893805269552
+     ]
+    ],
+    "normBound_I_minus_YJ": 0.3901147238098503,
+    "centreResidual": [
+     1.2989609388114335e-14,
+     4.857225732735061e-15,
+     4.289666729796197e-15,
+     4.302114220422482e-15,
+     4.8849813083506896e-15
+    ]
+   }
+  },
+  "generic_+-+-+-_0.01_polygonbox_tangentialonly": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "generic_+-+-+-_0.01_polygonbox_tangentialonly",
+    "word": "+-+-+-",
+    "delta": 0.01,
+    "lo": [
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01
+    ],
+    "hi": [
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934,
+     3.0915926545897934
+    ],
+    "lastLo": 0.01,
+    "lastHi": 3.0915926545897934,
+    "symmetric": false,
+    "kraw": {
+     "c": [
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988
+     ],
+     "r": 0.005
+    },
+    "minWidth": 1e-06,
+    "maxBoxes": 200000000,
+    "useU": false
+   },
+   "complete": true,
+   "stats": {
+    "processed": 1760681,
+    "prunedDomain": 72112,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 670034,
+    "excludedMeanValue": 138194,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 53,
+    "exclBy": {
+     "T1": 176867,
+     "T2": 140396,
+     "T3": 213209,
+     "T6": 51842,
+     "T4": 162689,
+     "T5": 63225
+    },
+    "elapsedSeconds": 18.388
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:02:33.134Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": {
+    "ok": true,
+    "lo": [
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988
+    ],
+    "hi": [
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988
+    ],
+    "image": [
+     [
+      0.5221106035461474,
+      0.5250869476504505
+     ],
+     [
+      0.521831381952487,
+      0.525366169244111
+     ],
+     [
+      0.521933574030643,
+      0.525263977165955
+     ],
+     [
+      0.5216482019792454,
+      0.5255493492173524
+     ],
+     [
+      0.5219081706696426,
+      0.5252893805269552
+     ]
+    ],
+    "normBound_I_minus_YJ": 0.3901147238098503,
+    "centreResidual": [
+     1.2989609388114335e-14,
+     4.857225732735061e-15,
+     4.289666729796197e-15,
+     4.302114220422482e-15,
+     4.8849813083506896e-15
+    ]
+   }
+  },
+  "generic_+-+-+-_0.1_polygonbox": {
+   "runOfRecord": false,
+   "cfg": {
+    "name": "generic_+-+-+-_0.1_polygonbox",
+    "word": "+-+-+-",
+    "delta": 0.1,
+    "lo": [
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1
+    ],
+    "hi": [
+     2.641592654589793,
+     2.641592654589793,
+     2.641592654589793,
+     2.641592654589793,
+     2.641592654589793
+    ],
+    "lastLo": 0.1,
+    "lastHi": 2.641592654589793,
+    "symmetric": false,
+    "kraw": {
+     "c": [
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988
+     ],
+     "r": 0.005
+    },
+    "minWidth": 1e-06,
+    "maxBoxes": 200000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 47033,
+    "prunedDomain": 1757,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 19699,
+    "excludedMeanValue": 2060,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 44,
+    "exclBy": {
+     "T1": 2565,
+     "T2": 3175,
+     "U3-U4": 2405,
+     "T3": 3803,
+     "T6": 814,
+     "U2-U3": 1250,
+     "U1-U2": 1086,
+     "U5-U6": 649,
+     "T4": 3218,
+     "T5": 1699,
+     "U4-U5": 1095
+    },
+    "elapsedSeconds": 0.399
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T03:54:26.964Z",
+   "instrumentSha256": "2023007460980ba9fd5e6668a717a39ef756c79ee9074c18920c56ad48fce918",
+   "node": "v26.3.0",
+   "krawczyk": {
+    "ok": true,
+    "lo": [
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988
+    ],
+    "hi": [
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988
+    ],
+    "image": [
+     [
+      0.5221106035461474,
+      0.5250869476504505
+     ],
+     [
+      0.521831381952487,
+      0.525366169244111
+     ],
+     [
+      0.521933574030643,
+      0.525263977165955
+     ],
+     [
+      0.5216482019792454,
+      0.5255493492173524
+     ],
+     [
+      0.5219081706696426,
+      0.5252893805269552
+     ]
+    ],
+    "normBound_I_minus_YJ": 0.3901147238098503,
+    "centreResidual": [
+     1.2989609388114335e-14,
+     4.857225732735061e-15,
+     4.289666729796197e-15,
+     4.302114220422482e-15,
+     4.8849813083506896e-15
+    ]
+   }
+  },
+  "generic_+-+-_0.01_polygonbox": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "generic_+-+-_0.01_polygonbox",
+    "word": "+-+-",
+    "delta": 0.01,
+    "lo": [
+     0.01,
+     0.01,
+     0.01
+    ],
+    "hi": [
+     3.1115926545897934,
+     3.1115926545897934,
+     3.1115926545897934
+    ],
+    "lastLo": 0.01,
+    "lastHi": 3.1115926545897934,
+    "symmetric": false,
+    "kraw": {
+     "c": [
+      0.7853981633974483,
+      0.7853981633974483,
+      0.7853981633974483
+     ],
+     "r": 0.02
+    },
+    "minWidth": 1e-06,
+    "maxBoxes": 50000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 1363,
+    "prunedDomain": 55,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 616,
+    "excludedMeanValue": 10,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 24,
+    "exclBy": {
+     "T2": 166,
+     "T1": 127,
+     "T4": 14,
+     "U3-U4": 81,
+     "T3": 77,
+     "U2-U3": 61,
+     "U1-U2": 100
+    },
+    "elapsedSeconds": 0.015
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:01:39.166Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": {
+    "ok": true,
+    "lo": [
+     0.7653981633974483,
+     0.7653981633974483,
+     0.7653981633974483
+    ],
+    "hi": [
+     0.8053981633974483,
+     0.8053981633974483,
+     0.8053981633974483
+    ],
+    "image": [
+     [
+      0.7779892093927949,
+      0.7928071174021017
+     ],
+     [
+      0.7758318176250937,
+      0.794964509169803
+     ],
+     [
+      0.7765098860117138,
+      0.7942864407831829
+     ]
+    ],
+    "normBound_I_minus_YJ": 0.47831728861760003,
+    "centreResidual": [
+     2.2759572004815713e-15,
+     1.0700199583832412e-15,
+     1.054711873393899e-15
+    ]
+   }
+  },
+  "generic_+-+-_0.05_polygonbox": {
+   "runOfRecord": false,
+   "cfg": {
+    "name": "generic_+-+-_0.05_polygonbox",
+    "word": "+-+-",
+    "delta": 0.05,
+    "lo": [
+     0.05,
+     0.05,
+     0.05
+    ],
+    "hi": [
+     2.9915926545897933,
+     2.9915926545897933,
+     2.9915926545897933
+    ],
+    "lastLo": 0.05,
+    "lastHi": 2.9915926545897933,
+    "symmetric": false,
+    "kraw": {
+     "c": [
+      0.7853981633974483,
+      0.7853981633974483,
+      0.7853981633974483
+     ],
+     "r": 0.02
+    },
+    "minWidth": 1e-06,
+    "maxBoxes": 50000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 879,
+    "prunedDomain": 35,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 395,
+    "excludedMeanValue": 9,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 17,
+    "exclBy": {
+     "T2": 104,
+     "T1": 97,
+     "U1-U2": 57,
+     "T4": 9,
+     "U3-U4": 39,
+     "U2-U3": 50,
+     "T3": 48
+    },
+    "elapsedSeconds": 0.01
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T03:54:26.358Z",
+   "instrumentSha256": "2023007460980ba9fd5e6668a717a39ef756c79ee9074c18920c56ad48fce918",
+   "node": "v26.3.0",
+   "krawczyk": {
+    "ok": true,
+    "lo": [
+     0.7653981633974483,
+     0.7653981633974483,
+     0.7653981633974483
+    ],
+    "hi": [
+     0.8053981633974483,
+     0.8053981633974483,
+     0.8053981633974483
+    ],
+    "image": [
+     [
+      0.7779892093927949,
+      0.7928071174021017
+     ],
+     [
+      0.7758318176250937,
+      0.794964509169803
+     ],
+     [
+      0.7765098860117138,
+      0.7942864407831829
+     ]
+    ],
+    "normBound_I_minus_YJ": 0.47831728861760003,
+    "centreResidual": [
+     2.2759572004815713e-15,
+     1.0700199583832412e-15,
+     1.054711873393899e-15
+    ]
+   }
+  },
+  "n2like": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "n2like",
+    "word": "++",
+    "delta": 0.01,
+    "lo": [
+     0.01
+    ],
+    "hi": [
+     3.13
+    ],
+    "lastLo": 0.01,
+    "lastHi": 3.14,
+    "symmetric": false,
+    "kraw": null,
+    "minWidth": 1e-09,
+    "maxBoxes": 10000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 1,
+    "prunedDomain": 0,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 0,
+    "excludedMeanValue": 0,
+    "excludedUsign": 1,
+    "coveredByKrawczyk": 0,
+    "undecided": 0,
+    "maxDepth": 0,
+    "exclBy": {
+     "U1>0": 1
+    },
+    "elapsedSeconds": 0
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:01:38.820Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": null
+  },
+  "n2unlike": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "n2unlike",
+    "word": "+-",
+    "delta": 0.01,
+    "lo": [
+     0.01
+    ],
+    "hi": [
+     3.13
+    ],
+    "lastLo": 0.01,
+    "lastHi": 3.14,
+    "symmetric": false,
+    "kraw": {
+     "c": [
+      1.5707963267948966
+     ],
+     "r": 0.05
+    },
+    "minWidth": 1e-09,
+    "maxBoxes": 10000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 5,
+    "prunedDomain": 0,
+    "prunedSymmetry": 0,
+    "infeasible": 0,
+    "excludedNatural": 2,
+    "excludedMeanValue": 0,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 2,
+    "exclBy": {
+     "T1": 2
+    },
+    "elapsedSeconds": 0.001
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:01:38.741Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": {
+    "ok": true,
+    "lo": [
+     1.5207963267948965
+    ],
+    "hi": [
+     1.6207963267948966
+    ],
+    "image": [
+     [
+      1.57048303101879,
+      1.571109622571003
+     ]
+    ],
+    "normBound_I_minus_YJ": 0.006265915522110534,
+    "centreResidual": [
+     1.5308084989341946e-17
+    ]
+   }
+  },
+  "n4alt": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "n4alt",
+    "word": "+-+-",
+    "delta": 0.6717,
+    "lemma": {
+     "chain": [
+      [
+       1,
+       1
+      ],
+      [
+       1.15470053837925,
+       1.154700538379253
+      ],
+      [
+       1.3676708371059685,
+       1.3676708371059791
+      ]
+     ],
+     "sum": 4.677071913864486,
+     "deltaRigorousLowerBound": 0.671700737437243
+    },
+    "lo": [
+     0.6717,
+     0.6717,
+     0.6717
+    ],
+    "hi": [
+     0.7853981633974487,
+     0.9068996821171108,
+     1.0741661635952875
+    ],
+    "lastLo": 0.6717,
+    "lastHi": 0.9068996821171108,
+    "symmetric": true,
+    "kraw": {
+     "c": [
+      0.7853981633974483,
+      0.7853981633974483,
+      0.7853981633974483
+     ],
+     "r": 0.02
+    },
+    "minWidth": 1e-07,
+    "maxBoxes": 200000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 43,
+    "prunedDomain": 0,
+    "prunedSymmetry": 2,
+    "infeasible": 0,
+    "excludedNatural": 17,
+    "excludedMeanValue": 2,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 8,
+    "exclBy": {
+     "T2": 5,
+     "U2-U3": 4,
+     "T4": 1,
+     "T3": 1,
+     "U1-U2": 2,
+     "T1": 6
+    },
+    "elapsedSeconds": 0.002
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:01:38.904Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": {
+    "ok": true,
+    "lo": [
+     0.7653981633974483,
+     0.7653981633974483,
+     0.7653981633974483
+    ],
+    "hi": [
+     0.8053981633974483,
+     0.8053981633974483,
+     0.8053981633974483
+    ],
+    "image": [
+     [
+      0.7779892093927949,
+      0.7928071174021017
+     ],
+     [
+      0.7758318176250937,
+      0.794964509169803
+     ],
+     [
+      0.7765098860117138,
+      0.7942864407831829
+     ]
+    ],
+    "normBound_I_minus_YJ": 0.47831728861760003,
+    "centreResidual": [
+     2.2759572004815713e-15,
+     1.0700199583832412e-15,
+     1.054711873393899e-15
+    ]
+   }
+  },
+  "n4altTonly": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "n4altTonly",
+    "word": "+-+-",
+    "delta": 0.6717,
+    "lemma": {
+     "chain": [
+      [
+       1,
+       1
+      ],
+      [
+       1.15470053837925,
+       1.154700538379253
+      ],
+      [
+       1.3676708371059685,
+       1.3676708371059791
+      ]
+     ],
+     "sum": 4.677071913864486,
+     "deltaRigorousLowerBound": 0.671700737437243
+    },
+    "lo": [
+     0.6717,
+     0.6717,
+     0.6717
+    ],
+    "hi": [
+     0.7853981633974487,
+     0.9068996821171108,
+     1.0741661635952875
+    ],
+    "lastLo": 0.6717,
+    "lastHi": 0.9068996821171108,
+    "symmetric": true,
+    "kraw": {
+     "c": [
+      0.7853981633974483,
+      0.7853981633974483,
+      0.7853981633974483
+     ],
+     "r": 0.02
+    },
+    "minWidth": 1e-07,
+    "maxBoxes": 200000000,
+    "useU": false
+   },
+   "complete": true,
+   "stats": {
+    "processed": 85,
+    "prunedDomain": 1,
+    "prunedSymmetry": 9,
+    "infeasible": 0,
+    "excludedNatural": 28,
+    "excludedMeanValue": 4,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 11,
+    "exclBy": {
+     "T2": 7,
+     "T3": 11,
+     "T4": 2,
+     "T1": 12
+    },
+    "elapsedSeconds": 0.003
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:01:38.985Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": {
+    "ok": true,
+    "lo": [
+     0.7653981633974483,
+     0.7653981633974483,
+     0.7653981633974483
+    ],
+    "hi": [
+     0.8053981633974483,
+     0.8053981633974483,
+     0.8053981633974483
+    ],
+    "image": [
+     [
+      0.7779892093927949,
+      0.7928071174021017
+     ],
+     [
+      0.7758318176250937,
+      0.794964509169803
+     ],
+     [
+      0.7765098860117138,
+      0.7942864407831829
+     ]
+    ],
+    "normBound_I_minus_YJ": 0.47831728861760003,
+    "centreResidual": [
+     2.2759572004815713e-15,
+     1.0700199583832412e-15,
+     1.054711873393899e-15
+    ]
+   }
+  },
+  "n6alt": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "n6alt",
+    "word": "+-+-+-",
+    "delta": 0.4069,
+    "lemma": {
+     "chain": [
+      [
+       1,
+       1
+      ],
+      [
+       1.15470053837925,
+       1.154700538379253
+      ],
+      [
+       1.3676708371059685,
+       1.3676708371059791
+      ],
+      [
+       1.6754742007506547,
+       1.6754742007506844
+      ]
+     ],
+     "sum": 7.7202169517211505,
+     "deltaRigorousLowerBound": 0.40693061778392164
+    },
+    "lo": [
+     0.4069,
+     0.4069,
+     0.4069,
+     0.4069,
+     0.4069
+    ],
+    "hi": [
+     0.5235987755982991,
+     0.6045997880780738,
+     0.7161107757301917,
+     0.8772762400595975,
+     0.7161107757301917
+    ],
+    "lastLo": 0.4069,
+    "lastHi": 0.6045997880780738,
+    "symmetric": true,
+    "kraw": {
+     "c": [
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988
+     ],
+     "r": 0.005
+    },
+    "minWidth": 1e-07,
+    "maxBoxes": 200000000,
+    "useU": true
+   },
+   "complete": true,
+   "stats": {
+    "processed": 2941,
+    "prunedDomain": 5,
+    "prunedSymmetry": 382,
+    "infeasible": 0,
+    "excludedNatural": 790,
+    "excludedMeanValue": 293,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 28,
+    "exclBy": {
+     "T5": 175,
+     "T2": 180,
+     "T4": 199,
+     "U4-U5": 52,
+     "U3-U4": 50,
+     "T3": 174,
+     "T6": 11,
+     "U5-U6": 6,
+     "U2-U3": 55,
+     "T1": 166,
+     "U1-U2": 15
+    },
+    "elapsedSeconds": 0.04
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:01:50.307Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": {
+    "ok": true,
+    "lo": [
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988
+    ],
+    "hi": [
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988
+    ],
+    "image": [
+     [
+      0.5221106035461474,
+      0.5250869476504505
+     ],
+     [
+      0.521831381952487,
+      0.525366169244111
+     ],
+     [
+      0.521933574030643,
+      0.525263977165955
+     ],
+     [
+      0.5216482019792454,
+      0.5255493492173524
+     ],
+     [
+      0.5219081706696426,
+      0.5252893805269552
+     ]
+    ],
+    "normBound_I_minus_YJ": 0.3901147238098503,
+    "centreResidual": [
+     1.2989609388114335e-14,
+     4.857225732735061e-15,
+     4.289666729796197e-15,
+     4.302114220422482e-15,
+     4.8849813083506896e-15
+    ]
+   }
+  },
+  "n6altTonly": {
+   "runOfRecord": true,
+   "cfg": {
+    "name": "n6altTonly",
+    "word": "+-+-+-",
+    "delta": 0.4069,
+    "lemma": {
+     "chain": [
+      [
+       1,
+       1
+      ],
+      [
+       1.15470053837925,
+       1.154700538379253
+      ],
+      [
+       1.3676708371059685,
+       1.3676708371059791
+      ],
+      [
+       1.6754742007506547,
+       1.6754742007506844
+      ]
+     ],
+     "sum": 7.7202169517211505,
+     "deltaRigorousLowerBound": 0.40693061778392164
+    },
+    "lo": [
+     0.4069,
+     0.4069,
+     0.4069,
+     0.4069,
+     0.4069
+    ],
+    "hi": [
+     0.5235987755982991,
+     0.6045997880780738,
+     0.7161107757301917,
+     0.8772762400595975,
+     0.7161107757301917
+    ],
+    "lastLo": 0.4069,
+    "lastHi": 0.6045997880780738,
+    "symmetric": true,
+    "kraw": {
+     "c": [
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988,
+      0.5235987755982988
+     ],
+     "r": 0.005
+    },
+    "minWidth": 1e-07,
+    "maxBoxes": 200000000,
+    "useU": false
+   },
+   "complete": true,
+   "stats": {
+    "processed": 4083,
+    "prunedDomain": 6,
+    "prunedSymmetry": 511,
+    "infeasible": 0,
+    "excludedNatural": 1128,
+    "excludedMeanValue": 396,
+    "excludedUsign": 0,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 30,
+    "exclBy": {
+     "T5": 285,
+     "T2": 262,
+     "T4": 338,
+     "T3": 296,
+     "T6": 33,
+     "T1": 310
+    },
+    "elapsedSeconds": 0.055
+   },
+   "undecidedCount": 0,
+   "utcEnd": "2026-10-07T04:01:50.444Z",
+   "instrumentSha256": "928e823c2aa84bd2b2b3e194e772997245e6bf5971258d4339dc6da900e8f2bd",
+   "node": "v26.3.0",
+   "krawczyk": {
+    "ok": true,
+    "lo": [
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988,
+     0.5185987755982988
+    ],
+    "hi": [
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988,
+     0.5285987755982988
+    ],
+    "image": [
+     [
+      0.5221106035461474,
+      0.5250869476504505
+     ],
+     [
+      0.521831381952487,
+      0.525366169244111
+     ],
+     [
+      0.521933574030643,
+      0.525263977165955
+     ],
+     [
+      0.5216482019792454,
+      0.5255493492173524
+     ],
+     [
+      0.5219081706696426,
+      0.5252893805269552
+     ]
+    ],
+    "normBound_I_minus_YJ": 0.3901147238098503,
+    "centreResidual": [
+     1.2989609388114335e-14,
+     4.857225732735061e-15,
+     4.289666729796197e-15,
+     4.302114220422482e-15,
+     4.8849813083506896e-15
+    ]
+   }
+  }
+ },
+ "mpmath_iv": [
+  {
+   "word": "+-+-",
+   "tangential_only": false,
+   "delta": "[0.6716999999999999999999999999999533, 0.67170000000000000000000000000005191]",
+   "lemma_lower_bound": "[0.67170073743724442499862972083709111, 0.67170073743724442499862972083709111]",
+   "hi": [
+    0.7853981633974493,
+    0.9068996821171099,
+    1.0741661635952835
+   ],
+   "krawczyk_ok": true,
+   "krawczyk_radius": 0.02,
+   "krawczyk_image": [
+    [
+     "[0.77798920939279752401077369247322206, 0.77798920939279752401077369247322206]",
+     "[0.79280711740209909522054799916654321, 0.79280711740209909522054799916654321]"
+    ],
+    [
+     "[0.77583181762509662314124918181814154, 0.77583181762509662314124918181814154]",
+     "[0.79496450916979999609007250982162372, 0.79496450916979999609007250982162372]"
+    ],
+    [
+     "[0.77650988601171699006014314199601086, 0.77650988601171699006014314199601086]",
+     "[0.79428644078317962917117854964385301, 0.79428644078317962917117854964385301]"
+    ]
+   ],
+   "contraction": 0.4783172886175838,
+   "stats": {
+    "processed": 43,
+    "prunedDomain": 0,
+    "prunedSymmetry": 2,
+    "infeasible": 0,
+    "excludedNatural": 18,
+    "excludedMeanValue": 1,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 8,
+    "elapsed_s": 0.0
+   },
+   "undecided": [],
+   "complete": true,
+   "utc_end": "2026-10-07T04:01:39Z"
+  },
+  {
+   "word": "+-+-+-",
+   "tangential_only": false,
+   "delta": "[0.40689999999999999999999999999995511, 0.40690000000000000000000000000000442]",
+   "lemma_lower_bound": "[0.40693061778392338121022330559650895, 0.40693061778392338121022330559650895]",
+   "hi": [
+    0.5235987755982998,
+    0.6045997880780736,
+    0.7161107757301893,
+    0.8772762400595899,
+    0.7161107757301893
+   ],
+   "krawczyk_ok": true,
+   "krawczyk_radius": 0.005,
+   "krawczyk_image": [
+    [
+     "[0.52211060354615151927902561292177957, 0.52211060354615151927902561292177957]",
+     "[0.52508694765044622687518884817156162, 0.52508694765044622687518884817156162]"
+    ],
+    [
+     "[0.52183138195249072782982072861698333, 0.52183138195249072782982072861698333]",
+     "[0.52536616924410701832439373247645647, 0.52536616924410701832439373247645647]"
+    ],
+    [
+     "[0.52193357403064676753588525756344029, 0.52193357403064676753588525756344029]",
+     "[0.5252639771659509786183292035299009, 0.5252639771659509786183292035299009]"
+    ],
+    [
+     "[0.52164820197924985957931875437800644, 0.52164820197924985957931875437800644]",
+     "[0.52554934921734788657489570671513753, 0.52554934921734788657489570671513753]"
+    ],
+    [
+     "[0.52190817066964748185182440637872642, 0.52190817066964748185182440637872642]",
+     "[0.52528938052695026430239005471451616, 0.52528938052695026430239005471451616]"
+    ]
+   ],
+   "contraction": 0.3901147238098023,
+   "stats": {
+    "processed": 2935,
+    "prunedDomain": 5,
+    "prunedSymmetry": 381,
+    "infeasible": 0,
+    "excludedNatural": 847,
+    "excludedMeanValue": 234,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 28,
+    "elapsed_s": 10.9
+   },
+   "undecided": [],
+   "complete": true,
+   "utc_end": "2026-10-07T04:01:50Z"
+  }
+ ],
+ "mpmath_iv_tangential_only": [
+  {
+   "word": "+-+-",
+   "tangential_only": true,
+   "delta": "[0.6716999999999999999999999999999533, 0.67170000000000000000000000000005191]",
+   "lemma_lower_bound": "[0.67170073743724442499862972083709111, 0.67170073743724442499862972083709111]",
+   "hi": [
+    0.7853981633974493,
+    0.9068996821171099,
+    1.0741661635952835
+   ],
+   "krawczyk_ok": true,
+   "krawczyk_radius": 0.02,
+   "krawczyk_image": [
+    [
+     "[0.77798920939279752401077369247322206, 0.77798920939279752401077369247322206]",
+     "[0.79280711740209909522054799916654321, 0.79280711740209909522054799916654321]"
+    ],
+    [
+     "[0.77583181762509662314124918181814154, 0.77583181762509662314124918181814154]",
+     "[0.79496450916979999609007250982162372, 0.79496450916979999609007250982162372]"
+    ],
+    [
+     "[0.77650988601171699006014314199601086, 0.77650988601171699006014314199601086]",
+     "[0.79428644078317962917117854964385301, 0.79428644078317962917117854964385301]"
+    ]
+   ],
+   "contraction": 0.4783172886175838,
+   "stats": {
+    "processed": 85,
+    "prunedDomain": 1,
+    "prunedSymmetry": 9,
+    "infeasible": 0,
+    "excludedNatural": 30,
+    "excludedMeanValue": 2,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 11,
+    "elapsed_s": 0.1
+   },
+   "undecided": [],
+   "complete": true,
+   "utc_end": "2026-10-07T04:01:50Z"
+  },
+  {
+   "word": "+-+-+-",
+   "tangential_only": true,
+   "delta": "[0.40689999999999999999999999999995511, 0.40690000000000000000000000000000442]",
+   "lemma_lower_bound": "[0.40693061778392338121022330559650895, 0.40693061778392338121022330559650895]",
+   "hi": [
+    0.5235987755982998,
+    0.6045997880780736,
+    0.7161107757301893,
+    0.8772762400595899,
+    0.7161107757301893
+   ],
+   "krawczyk_ok": true,
+   "krawczyk_radius": 0.005,
+   "krawczyk_image": [
+    [
+     "[0.52211060354615151927902561292177957, 0.52211060354615151927902561292177957]",
+     "[0.52508694765044622687518884817156162, 0.52508694765044622687518884817156162]"
+    ],
+    [
+     "[0.52183138195249072782982072861698333, 0.52183138195249072782982072861698333]",
+     "[0.52536616924410701832439373247645647, 0.52536616924410701832439373247645647]"
+    ],
+    [
+     "[0.52193357403064676753588525756344029, 0.52193357403064676753588525756344029]",
+     "[0.5252639771659509786183292035299009, 0.5252639771659509786183292035299009]"
+    ],
+    [
+     "[0.52164820197924985957931875437800644, 0.52164820197924985957931875437800644]",
+     "[0.52554934921734788657489570671513753, 0.52554934921734788657489570671513753]"
+    ],
+    [
+     "[0.52190817066964748185182440637872642, 0.52190817066964748185182440637872642]",
+     "[0.52528938052695026430239005471451616, 0.52528938052695026430239005471451616]"
+    ]
+   ],
+   "contraction": 0.3901147238098023,
+   "stats": {
+    "processed": 4081,
+    "prunedDomain": 6,
+    "prunedSymmetry": 512,
+    "infeasible": 0,
+    "excludedNatural": 1198,
+    "excludedMeanValue": 324,
+    "coveredByKrawczyk": 1,
+    "undecided": 0,
+    "maxDepth": 30,
+    "elapsed_s": 14.2
+   },
+   "undecided": [],
+   "complete": true,
+   "utc_end": "2026-10-07T04:02:04Z"
+  }
+ ],
+ "multistart": {
+  "utc_end": "2026-10-07T03:44:43Z",
+  "results": [
+   {
+    "N": 2,
+    "mode": "full",
+    "starts": 200,
+    "seed": 20261009,
+    "accepted": 200,
+    "rejected": {
+     "collision": 0,
+     "nonpositive_Omega2": 0,
+     "not_converged": 0
+    },
+    "distinct": [
+     {
+      "word": "+-",
+      "gaps_rad": [
+       3.141593,
+       3.141593
+      ],
+      "count": 200,
+      "Omega2": 0.25,
+      "max_residual": 4.718447854656915e-16
+     }
+    ],
+    "elapsed_s": 0.2
+   },
+   {
+    "N": 2,
+    "mode": "tan",
+    "starts": 200,
+    "seed": 20261009,
+    "accepted": 200,
+    "rejected": {
+     "collision": 0,
+     "nonpositive_Omega2": 0,
+     "not_converged": 0
+    },
+    "distinct": [
+     {
+      "word": "+-",
+      "gaps_rad": [
+       3.141593,
+       3.141593
+      ],
+      "count": 200,
+      "Omega2": null,
+      "max_residual": 3.814961349967448e-15
+     }
+    ],
+    "elapsed_s": 0.2
+   },
+   {
+    "N": 4,
+    "mode": "full",
+    "starts": 3000,
+    "seed": 20261011,
+    "accepted": 1143,
+    "rejected": {
+     "collision": 0,
+     "nonpositive_Omega2": 0,
+     "not_converged": 1857
+    },
+    "distinct": [
+     {
+      "word": "+-+-",
+      "gaps_rad": [
+       1.570796,
+       1.570796,
+       1.570796,
+       1.570796
+      ],
+      "count": 1143,
+      "Omega2": 0.45710678118654746,
+      "max_residual": 1.714480235100908e-14
+     }
+    ],
+    "elapsed_s": 20.1
+   },
+   {
+    "N": 4,
+    "mode": "tan",
+    "starts": 3000,
+    "seed": 20261011,
+    "accepted": 1159,
+    "rejected": {
+     "collision": 0,
+     "nonpositive_Omega2": 0,
+     "not_converged": 1841
+    },
+    "distinct": [
+     {
+      "word": "+-+-",
+      "gaps_rad": [
+       1.570796,
+       1.570796,
+       1.570796,
+       1.570796
+      ],
+      "count": 1159,
+      "Omega2": null,
+      "max_residual": 1.6806426219270767e-15
+     }
+    ],
+    "elapsed_s": 16.8
+   },
+   {
+    "N": 6,
+    "mode": "full",
+    "starts": 6000,
+    "seed": 20261013,
+    "accepted": 807,
+    "rejected": {
+     "collision": 0,
+     "nonpositive_Omega2": 0,
+     "not_converged": 5193
+    },
+    "distinct": [
+     {
+      "word": "+-+-+-",
+      "gaps_rad": [
+       1.047198,
+       1.047198,
+       1.047198,
+       1.047198,
+       1.047198,
+       1.047198
+      ],
+      "count": 807,
+      "Omega2": 0.6726497308103742,
+      "max_residual": 2.3655869718064728e-14
+     }
+    ],
+    "elapsed_s": 66.9
+   },
+   {
+    "N": 6,
+    "mode": "tan",
+    "starts": 6000,
+    "seed": 20261013,
+    "accepted": 918,
+    "rejected": {
+     "collision": 0,
+     "nonpositive_Omega2": 0,
+     "not_converged": 5082
+    },
+    "distinct": [
+     {
+      "word": "+-+-+-",
+      "gaps_rad": [
+       1.047198,
+       1.047198,
+       1.047198,
+       1.047198,
+       1.047198,
+       1.047198
+      ],
+      "count": 918,
+      "Omega2": null,
+      "max_residual": 3.743672798962699e-15
+     }
+    ],
+    "elapsed_s": 55.6
+   }
+  ]
+ },
+ "runtime_sha256": {
+  "freeze-run-supervisor.json": "37d76a5a59ca779e759a303cbbfb5bdecc87ed1ba693ce313c2174fea5cb0958",
+  "freeze-run.log": "f0ad6322b1e2e48ec7d936489e45c6bdde56d6e2dc645a90e5e7767a1fb24376",
+  "ivcheck-receipt.json": "56c79d8cb23929d5ae5b732295862646182cb8b3b13b8fc260e15d14d6e9f156",
+  "ivcheck-supervisor.json": "b9709ecca46859bf60be721309fcca3f51ae36aaaf093a18466534b51d60e74d",
+  "ivcheck-tangential-only-receipt.json": "aa84a60dd29528ce1558909ec2b7ac3924f7c1aebfa880710448566aa2c56096",
+  "ivcheck-tangential-only-supervisor.json": "36efcdb84ca3c185f5c5304806dc27e5dd47d93dfc2a98f55c30a0f0dbdee61e",
+  "kb1.json": "4e5e5ce178b146211d12e43c7011c95bfdfeeb81ca21a751412a2e388f470e92",
+  "kb2-check-tiny.log": "309edc014583cc7a59c4f48a7b39b01fc6cf9964dfa66dba053ffa5bb86e6c7d",
+  "kb2-check-wide.log": "5143b4e8d16153569f1630d3508d319e796a009628f2a146c171e25554f7c2c6",
+  "kb4.json": "3f1798361c5b1599f4893c3a8f821e0787f3b1949a5cb7981db905553b5cb959",
+  "lemma-checks.json": "a493574dee4138fbeff0f124011c5200a34c195f12ef6110caeb69d5d9fac0e3",
+  "multistart-census.json": "d9188111873ea4b9302178068ab9d079ad280a7383fe62950e3128f609711539",
+  "multistart-supervisor.json": "8cf1a5a546cdf7c44569097095fa0ae098a7631547f801f3f69c327fc4b02afa",
+  "receipt-generic_+++---_0.01.json": "de1013e7415636b24794ccaa53af0132a96ed86cb99b17df092b4c4cb1d95b8e",
+  "receipt-generic_+++---_0.01_tangentialonly.json": "394baca3b96b3d8e57dfa5cdc61d8546955974788a428ba77e7443bbc5b1bc65",
+  "receipt-generic_+++---_0.05.json": "fc603f350a32913d8c145d6fdb640d0a92deece6471c6b5b753e370b14c0e368",
+  "receipt-generic_+++---_0.2.json": "49b44ed17c32d50a7026b1b63557174c2be3e578ee30cfd47c5d83f1f3e69172",
+  "receipt-generic_++-+--_0.01.json": "73f226c7f04fb16000beeb67f45f89a2eeff42f2db6981f1e4d7baa8b2870716",
+  "receipt-generic_++-+--_0.01_tangentialonly.json": "cc22e754a25e24a6216835b913aeaf30d2c1b00adaaba97be7ddb6e9e68f56b9",
+  "receipt-generic_++-+--_0.05.json": "4ec1ecdaade0a5202bcb186b30acdc0080a40673e327af22f100287a05138766",
+  "receipt-generic_++-+--_0.2.json": "4d1b388db4362c6d383b6903369daf4a86ee82fb4ff7760289523a7b9e9fe089",
+  "receipt-generic_++--_0.01.json": "578c5640c39a4f5ea0d8f71cb359f358bf37c4a6925b0b190f2326b26771d858",
+  "receipt-generic_++--_0.05.json": "e588445527f4fdc21f511a9140da93a48fb83cab0e3218b9120512131fc006a6",
+  "receipt-generic_+-+-+-_0.01_polygonbox.json": "f4f2bbf08d71a43f8ff4ae253825f177c25377ebb111e0c40739ad44de5a0513",
+  "receipt-generic_+-+-+-_0.01_polygonbox_tangentialonly.json": "29179c5045ac6e89dfc960151d918bf3ac931eaa1048aa660ba988bdad79d214",
+  "receipt-generic_+-+-+-_0.1_polygonbox.json": "46e9051e18c8eb86c9c83cfc97a16e58ac91191eb3d08a63e29d7dcecf428156",
+  "receipt-generic_+-+-_0.01_polygonbox.json": "43f561bcc727b1583cab1eed2291d4e10f7ec875b38d59d7a814238f30cb4fa1",
+  "receipt-generic_+-+-_0.05_polygonbox.json": "f9a457230a45d4cb7996fdf9405b5b00181a8cd9c484033e4f9543ac9a9990e8",
+  "receipt-n2like.json": "aec4958d1c058cbe1c4b12616b871d018314a9573cc6d218147cc4fb9352922e",
+  "receipt-n2unlike.json": "50ce9a5425105e31bbc628e9e07250b280fba3d22d61484c862e5e4957ddb6a7",
+  "receipt-n4alt.json": "26cee6de069fbe9eccfd020d3ebe6018d13891dee8c0c4746d509f7ba1b2d05c",
+  "receipt-n4altTonly.json": "c6a8c3af150ad804bac02d4510b97211ba8b677637c77afce36dba33febf3dd9",
+  "receipt-n6alt.json": "c1ed1e8357036f400e5714a618ba08f4d01a1f8b6cb061ebdd0ee5c76b99a016",
+  "receipt-n6altTonly.json": "1e2c1038cb21d3448c6d95c711fd41d0e1e486c67f151f064346cf0682ee7b76",
+  "run-n2like.log": "93a288c93bcb3e0a1c4d3565e39c13fbaea9e1637b5d3650eeb6c93687fc4aab",
+  "run-n2unlike.log": "309cecb78e3d69a39e17699085e5c940fc8c6cbf6868463690cd3976b1a9d046",
+  "run-n4alt.log": "b300c928587cd7a0da202bd20c2eb66a79e80afa60729f37205fd13206f4741c",
+  "run-n4altTonly.log": "d623bf1f82d212bfe2ee70b5ee2b86149876000ac747216793a42623c5b3b297",
+  "run-n6alt.log": "aae6e7ce2f0a13b86fe2196d1e1e8dc5533b2d857c9a38eba467c3d9ef373dcf",
+  "run-n6altTonly.log": "b64835d5a888b22229a8ebfa2f295a757597248ed6f84e715635399205fabcea",
+  "sup-generic-+++----0.01.json": "c89cf0e0af20f5a2ed3c22616a30fd59ea44baad24ccea5a1fade20b29df36e5",
+  "sup-generic-+++----0.05.json": "84b8e45a7c8a3f905152e2c1fd3cfccf6eaa5694223c78e20fcf74699b1e0053",
+  "sup-generic-+++----0.2.json": "b265322ef9e59ad08a995ac520bccabe3caa51c5c28b93d6de4146d6d69060af",
+  "sup-generic-++-+---0.01.json": "49dec26e0d2eebe48175a85e17ab8c9339872a803c26d868c7db367fd661b622",
+  "sup-generic-++-+---0.05.json": "fa402abf7f49e34f52430a4fe8dbe44c8d064c0e64550c4a2266521cf3966a43",
+  "sup-generic-++-+---0.2.json": "7ae7abed29e1297d5e8c5fa5f267ed7efabd504d7edadfa5e70f95d36bb0bbc5",
+  "sup-generic-++---0.01.json": "b9fec2f4aefff9bd86fa866417e4cb115ec2839c20850a732133b1628fccc808",
+  "sup-generic-++---0.05.json": "cb62350795ebda4d6b44ab9b74975392ee862d7ff6bc45e3cf92c5c796e22bb4",
+  "sup-generic-alt-0.01.json": "570f806a3a33b24f2b55e4a21e5bfa5a34215573facac1fa74c59e37655f181b",
+  "sup-generic-alt-0.1.json": "f2458d8ae8f15f2093a6d4dbecfe26bf8b92d2365f27145b009adf3934e403c3",
+  "sup-probe.json": "15fc7f4cb746b7f01908922251f7e85d3b47accfc6b7239f2b0eafe61961e26a"
+ },
+ "runtime_large_files": {
+  "kb2-enclosures-tiny.jsonl": {
+   "bytes": 152911872,
+   "sha256": "88b75b757f98106653d664b01e3edee62241ac2c35594cb200fe71a6a75978e2"
+  },
+  "kb2-enclosures.jsonl": {
+   "bytes": 152888291,
+   "sha256": "ce56445a8fa8de270a1bad58245734bdc3cae06d349f4e4761d9a7824afaa005"
+  }
+ }
+}

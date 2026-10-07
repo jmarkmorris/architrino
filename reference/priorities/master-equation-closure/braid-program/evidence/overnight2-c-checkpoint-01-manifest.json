@@ -1,0 +1,168 @@
+{
+  "checkpoint_utc": "2026-10-07T03:53:11.956Z",
+  "boundary": "Byte inventory only; no scientific or remote backup claim",
+  "entries": [
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/analysis/overnight2-c-collision-independent-review.md",
+      "bytes": 14176,
+      "sha256": "c223bdc9c97c515c608141bb8ef7e0d0a46f872bf1befd1f9292cc3c9e1c03c2",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/analysis/overnight2-c-collision-speed-boundary.md",
+      "bytes": 11221,
+      "sha256": "5a25380ca532125e401f4232fad674ca55e84f468da434009aeebfe1912bb5b9",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/analysis/overnight2-c-followup-and-research-2026-10-07.md",
+      "bytes": 23524,
+      "sha256": "b67a4787f0cf1ae6016fa0dd16e7ba30b2ba2bbec39c8bd4c77832b6460a5d33",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/analysis/overnight2-c-inner-separation-bound.md",
+      "bytes": 7088,
+      "sha256": "3f5179f1f9ca26a43f1288f50b54e286b1d12d77b42e77715846e3a5f816fa73",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/analysis/overnight2-c-joint-independent-review.md",
+      "bytes": 16874,
+      "sha256": "d5134c573bd5d0aafa790cf168970d351e0146fef0f5963074257986daf0edd0",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/analysis/overnight2-c-reproduction.md",
+      "bytes": 5469,
+      "sha256": "e118e49b44051c824cba2c463d8ecaf61b92de31ebf6dc927f9a5e098439e2e2",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/analysis/overnight2-c-self-onset-independent-review.md",
+      "bytes": 12265,
+      "sha256": "446498050dfb7446159567280ef84d7f7cc53c2d81428a92e1dbf1c46c27f2bc",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/analysis/overnight2-c-separation-independent-review.md",
+      "bytes": 11787,
+      "sha256": "a1c5209673cc4dfa114ea906ad644761c69c8c8d6059e6da1dc9e0d213afc41c",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/analysis/overnight2-c-superfield-independent-review.md",
+      "bytes": 13144,
+      "sha256": "2c3b86f74d396f1fc5ac343ce2a83c2a81aaec9c41f487f2c9c75f24cbc13886",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/analysis/overnight2-c-superfield-phase-sector.md",
+      "bytes": 8256,
+      "sha256": "c54916488668544525a3e5c963505371ffd87f84893ac4b772ca6ec3b1804ff8",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/analysis/overnight2-c-superfield-self-onset.md",
+      "bytes": 7227,
+      "sha256": "5b6d3774566809bf647e3a7db8332cdd08e22e90484ad0843e2bccf1b32ef09d",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/analysis/overnight2-c-wake-collision-next-step.md",
+      "bytes": 6065,
+      "sha256": "2f71db50ab8d38d675bf68d87d67be1c959c5c3f54672c66c06a8ed7a4b7119b",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/evidence/overnight2-c-frozen-subset.json",
+      "bytes": 1628,
+      "sha256": "4d234ee78f55bb13a1ad2c1cd41f5e21f9271fe87574078f083a8091f26041e6",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/evidence/overnight2-c-joint-contraction.py",
+      "bytes": 9564,
+      "sha256": "27f8d16789771c4b953e88f7f44ef319963a6f3b3cbc064b5a4b1cb90aed44be",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/evidence/overnight2-c-separation-independent-check.py",
+      "bytes": 2876,
+      "sha256": "d08324dbaa40d74fce6754815fd6991717ac4b67de87f887a750117af3a49ca5",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/evidence/overnight2-c-superfield-constants.py",
+      "bytes": 1362,
+      "sha256": "536c041124b390183e89ef18c634be6289aa841bde599bca888c3811921efc3e",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/evidence/overnight2-c-superfield-independent-check.py",
+      "bytes": 2927,
+      "sha256": "4a257d8ca5134891a1ae222bddb9111ae88c58ca3480150b1043d7d2e1e49622",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/evidence/overnight2-c-telescoping-contraction.py",
+      "bytes": 5859,
+      "sha256": "523c27e7841efd3f5775667f226b5f10ab7559accb52502d43db684be098d934",
+      "storage": "authored source or proof"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight2-c/joint-known.json",
+      "bytes": 825,
+      "sha256": "4fd83785d88656595127a52411d3c69a44a254eaa14f2b29a58c14c333ec3c89",
+      "storage": "ignored local receipt"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight2-c/joint-pilot.json",
+      "bytes": 265579,
+      "sha256": "7791b54741e20386f525eac7ceecf02e267348bad7262157d78d3ad9b0d14215",
+      "storage": "ignored local receipt"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight2-c/review-separation-exact.json",
+      "bytes": 663,
+      "sha256": "3dc0c5e151652cebcdd0cf5f27ddaccdf2ca7aa7d8445c16a59cb310610f938d",
+      "storage": "ignored local receipt"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight2-c/review-separation-known.json",
+      "bytes": 201,
+      "sha256": "9785477ab0050e483a7e4eb0354b14cb0ec0fc665a77fc9535f3585d50eaa18c",
+      "storage": "ignored local receipt"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight2-c/review-superfield-exact.json",
+      "bytes": 832,
+      "sha256": "623d5bcfd419ba634ca803aa5ff723bb816ef2b60bbf02fd354b6a1a76aa30ce",
+      "storage": "ignored local receipt"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight2-c/review-superfield-known.json",
+      "bytes": 204,
+      "sha256": "b656de20cedc9b5d9c26ac5716b72253a812f5aaa3a97ea282ea4ec80af7e5b2",
+      "storage": "ignored local receipt"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight2-c/superfield-constants.json",
+      "bytes": 542,
+      "sha256": "e88bf17f2521bafe0168718b5d2843054e0d157448b6026bad87710242a238e2",
+      "storage": "ignored local receipt"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight2-c/telescoping-known.json",
+      "bytes": 363,
+      "sha256": "690e390c305d1b5650c6b52c4b26faf020ad556b8931113591509969177cec13",
+      "storage": "ignored local receipt"
+    },
+    {
+      "path": ".local-data/master-equation-closure/overnight2-c/telescoping-pilot.json",
+      "bytes": 619965,
+      "sha256": "39b4beb89deeec9c339107dae58115989c9aebe1e68722a5545c0bde48b6c280",
+      "storage": "ignored local receipt"
+    }
+  ]
+}
