@@ -46,6 +46,15 @@ No rows.
 
 No rows.
 
+## Proposed OPS-031 document repairs
+
+### OPS-031 — October 8 Entropy referral
+
+- **Status:** proposed; awaiting operator disposition. The [whole-chapter receipt](../aaa-operations/evidence/ops-031-entropy-review-2026-10-08.md) supplies exact passages, before/after text, independent references and falsifiers. CRW-005 remains closed; these are subsequent bounded review findings.
+- **ENT08-01 — positive reference bath:** specify strictly positive $T_R>0$ in Entropy's line-290 bath assumption. The effective balance gives $W=-\Delta A-T_R\Delta S_{\mathrm{tot}}$, so the printed work upper bound and the entropy/availability direction require that sign. No physical negative-temperature history or new research scenario is asserted.
+- **ENT08-02 — temperature notation:** replace bare `T` with `T_{\mathrm{temp}}` only in the same-record tuple at line 743, preserving the viewer identity and every other entry. The current mathematics style guide reserves bare $T$ for absolute time.
+- **Owner and next step:** corpus review coordinates these two bounded replacements; implement only after acceptance, then obtain separate verification. Two earlier Entropy repairs and one prior no-change Energy claim survived retrospective checks. No other consequential defect was established in this full read; physical entropy and horizon recovery remain with existing scientific owners.
+
 ## Completed OPS-031 document repairs
 
 The operator approved all eight October 4–5 corrections on October 6. The [consolidated before/after proposal](analysis/ops-031-eight-change-proposal-2026-10-06.md) is implemented; the [closure receipt](evidence/ops-031-eight-correction-closure-2026-10-06.md) records source versions, scoped validation and separate mathematical verification. Scientific questions remain distinct.

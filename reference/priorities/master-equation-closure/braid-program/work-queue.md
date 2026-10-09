@@ -262,6 +262,15 @@ These three entries were added on 2026-10-05 at the operator's instruction. They
 - **Request:** Release a small exact balance with a small disturbance from its complete rigid past and follow the delayed equation until a member reaches wake speed, two members approach closely, or the arrangement separates.
 - **Completion / falsifier:** The outcome and its time for a declared set of disturbances, with step-size refinement, at measured grade; a disturbed history that returns to the balance would be the first sign of persistence.
 
+### Ceiling-contact open research
+
+<a id="ceiling-contact-open-research"></a>This entry was added on 2026-10-07 at the operator's instruction: "Start a named left panel thread to do open-research problems 1 thru 6, 8, and 9". It concerns the field-speed ceiling variant, an authorized and unadopted equation variation, not the Master Equation. It carries no score and changes no ranked object, gate or candidate standing.
+
+- **Status:** ○ Queued — [launch brief](analysis/ceiling-contact-open-research-launch-brief.md) prepared 2026-10-07 for a thread titled `ceiling contact open research`. The preparing session could not start a session in the existing checkout, so the operator starts it. Check the session list and files under `analysis/` with the prefix `ceiling-contact-open-research-` for live state before treating this line as current.
+- **Request:** Work eight obligations of the [ceiling contact study](analysis/ceiling-contact-two-hour-2026-10-06.md#10-validation-files-remaining-obligations-and-review-status) of release C1, numbered there 1 to 6, 8 and 9: the delay-ratio bound; uniqueness of the spiral root and a brief for an outside reader of the characteristic function; an integrator that treats the lock implicitly; the same analysis for C3 and for contacts with one member at the ceiling; degenerate roots for a dissociating member in the spiral's plane; the fall of the negative member's orbit radius; what the frozen specification determines at and after coincidence and whether the association is more than transient; and the growing directions of the balance.
+- **Boundary:** The frozen specification only. No contact rule, event map, smoothing, softening or continuation is selected; for the coincidence question the thread may analyse and may list candidate rules as proposals, and may not execute one.
+- **Completion / falsifier:** For each obligation, a self-contained record with a proof, a refutation, a measured result with its control, or a precisely named obstruction, graded and with its falsifier. A proof or refutation of the delay-ratio bound would change the study's inferred coincidence to derived or overturn it.
+
 ## Co-spherical research controls
 
 These controls support the reader-facing [Spatial (3D) Braid Assemblies](../../../../content/markdown/aaa/noether-braid/3d-braid-assemblies.md) chapter. Operational status, task ordering, reproduction instructions, and unbooked questions remain here so they cannot be mistaken for accepted reader-facing results. This separation creates no new run authorization, candidate, score, registry entry, or queue rank.

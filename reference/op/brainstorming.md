@@ -340,6 +340,7 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 
 - Default meta-optimization wrapper for any Codex thread: [codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md).
 - Multiple parallel Codex threads: start from [codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md), then use [codex-multiprompt.md](codex-multiprompt.md) for worker boundaries and integration.
+- Codex–Claude coordinator chat: [codex-claude-protocol.md](codex-claude-protocol.md) is the draft CLI design for a bidirectional text queue and repository-retained conversation, one coordinator pair per task. It is not an implemented transport or an adopted execution procedure.
 
 ## Issue Resolution and Publication
 

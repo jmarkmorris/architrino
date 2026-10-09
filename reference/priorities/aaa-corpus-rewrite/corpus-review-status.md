@@ -2,6 +2,10 @@
 
 This file is the authoritative priority-ordered document board for the 199-file AAA corpus inventory. The Foundations campaign remains recorded as historical provenance, but its nine documents use the same denominator, status symbols, and reopening rules as every other document. The active queue contains only in-progress reviews and unopened backlog documents; completed documents are retained in the audit appendix. Unopened documents follow the live phase order: any remaining `foundations/` files first, then `dynamics/` files, then the remaining live textbook traversal, with `validation/simulations/action-energy/` intentionally held until the end. All 199 documents have completed review dispositions, including the sixteen accepted supplementary repairs, and the phase order remains the rule for any explicitly reopened review. Any live corpus files omitted from the generated navigation surface are appended afterward in path order. Use the symbols exactly as follows: ○ open/unopened, ◐ review in progress or complete but adjudication or repair pending, and ● review disposition complete at the recorded claim level.
 
+The subsequent [OPS-031 Entropy review, October 8](../aaa-operations/evidence/ops-031-entropy-review-2026-10-08.md), covers the whole unchanged chapter and routes two bounded proposals to the [current corpus queue](work-queue.md#ops-031--october-8-entropy-referral). These subsequent proposals do not reopen the historical CRW-005 dispositions below; the operations cycle owns their later coverage date.
+
+The [OPS-031 Binary Dynamics review, October 9](../aaa-operations/evidence/ops-031-binary-dynamics-review-2026-10-09.md), completes the whole chapter with a bounded no-change disposition and preserves two accepted repairs under independent rechecking. The historical disposition below remains complete; operations retains the periodic coverage cursor.
+
 ## Active priority queue
 
 No active or unopened rows.

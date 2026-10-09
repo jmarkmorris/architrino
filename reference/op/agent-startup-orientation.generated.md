@@ -77,12 +77,12 @@ A changed hash means a startup source was edited after the last regeneration. It
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| AGENTS.md | 170 | `679920441e69b3eb` |
+| AGENTS.md | 170 | `77640341a6391648` |
 | README.md | 220 | `d4d70d3ce6813fe6` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 111 | `cb6eccb992abdf30` |
-| [reference/op/brainstorming.md](brainstorming.md) | 380 | `a64f54974e729b23` |
+| [reference/op/brainstorming.md](brainstorming.md) | 381 | `47f00e977bd1009c` |
 | [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 214 | `dccd330a886933a3` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 142 | `5da12922fc9cadb4` |

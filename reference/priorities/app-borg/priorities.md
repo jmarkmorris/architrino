@@ -35,6 +35,10 @@ Maintain Borg as an app-facing surface for EOM-solver simulation and sealed-reco
 
 The locally ranked execution order, including deferred workflows, lives in [work-queue.md](work-queue.md).
 
+## Proposed research integration
+
+The [alternative-equation assembly proposal](brainstorming.md#assemblies-under-alternative-master-equations) describes source-bound equation selection, research-record replay and comparisons, followed separately by validated EOM support for selected variants. The recommended first step is an intake inventory for one released-balance comparison under the canonical and field-speed-ceiling equations. This remains a provisional design: no implementation task, new research execution, score change or reactivation is selected.
+
 ## Promotion Boundary
 
 Promote only stable, evidence-bound explanatory material into the corpus. Design notes, implementation obligations, and execution evidence remain in this priority directory and its linked queue.
