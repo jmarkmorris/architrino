@@ -287,7 +287,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9e9e516ea1e74787)
 
-Here $S_{\mathcal Q,W}$ must be thermodynamic entropy for the same effective state and reservoir model. The usual work bound additionally assumes a closed material system, one fixed-temperature bath $T_R$, the first- and second-law thermal comparison, and a declared useful-work channel with control, reset, and boundary costs included. Under these assumptions,
+Here $S_{\mathcal Q,W}$ must be thermodynamic entropy for the same effective state and reservoir model. The usual work bound additionally assumes a closed material system, one bath at fixed strictly positive temperature $T_R>0$, the first- and second-law thermal comparison, and a declared useful-work channel with control, reset, and boundary costs included. Under these assumptions,
 
 $$
 W_{\mathrm{useful}}
@@ -740,7 +740,7 @@ The admissible comparison has the form
 $$
 \left(
 S,\,
-T,\,
+T_{\mathrm{temp}},\,
 dQ,\,
 \Delta E,\,
 \{p_i\},\,

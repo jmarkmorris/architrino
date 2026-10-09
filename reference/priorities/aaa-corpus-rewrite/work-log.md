@@ -4,6 +4,10 @@ This is the chronological completion log for the CRW-005 assurance campaign. The
 
 ## Completed milestones
 
+### 2026-10-09 — OPS-031 Entropy corrections implemented and separately verified
+
+The operator accepted both October 8 Entropy corrections. The [existing receipt](../aaa-operations/evidence/ops-031-entropy-review-2026-10-08.md#accepted-integration-and-separate-verification--october-9-2026) records the exact two replacements and separate report-only verification: ENT08-01 explicitly requires a strictly positive fixed bath temperature for the effective work bound; ENT08-02 distinguishes temperature from absolute time in the same-record tuple. Full-source snapshot comparison establishes no other edits and preservation of all viewer identities. Known-case-first strict KaTeX, local links/fragments, finite mathematical references and scoped whitespace checks passed. Both findings are done; physical thermodynamic and horizon recovery remain open with their existing owners. CRW-005 remains closed; review coverage and due dates are unchanged.
+
 ### 2026-10-06 — Eight-change before/after proposal prepared
 
 The operator selected preparation of the [October 6 consolidated before/after proposal](analysis/ops-031-eight-change-proposal-2026-10-06.md). It contains eight numbered corrections in sixteen exact-match source passages, measured by known-case-first block extraction and unique-before assertions against the two current chapters. Candidate energy-statistic identification is propagated through its local total, conservation and residual displays while preserving the conditional charge targets elsewhere. The spiral recurrence question and older scientific follow-ups remain excluded. Implementation is unaccepted; CRW-005 and scheduled review coverage remain unchanged.

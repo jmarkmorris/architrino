@@ -799,3 +799,47 @@ The final account must explain each investigated case in plain language: what ch
 **A decision this opens (ledger D-OP-8).** Under the unchanged equation the released histories stop at wake speed. Of the two authorized research variations, the logarithmic potential keeps the self-root obstruction on a line and is expected to stop at the same place (inferred, not tested), while the field-speed ceiling has a stated response at the boundary and would carry a member along it. Whether that produces anything that persists is not known, because the ceiling has been applied only to a collinear pair and to a circular pair, where the capped circle is unstable. Running the releases under the existing ceiling definition would be its first multi-member test. That is a scope enlargement for the variation and is the operator's to authorize; it has not been done.
 
 Falsifiers for the picture as a whole: a rigid balance with no growing root; a released balance that returns; a complete periodic history below wake speed that is not rigid.
+
+## Proposed Weber follow-ups from the 2026-10-09 review — proposals only, none selected
+
+The Codex review of the Weber investigations on 2026-10-09, recorded in the [correction addendum](analysis/weber-review-corrections-2026-10-09.md), suggests four follow-up inquiries. Each is a proposal. None is selected, ranked or started, and none introduces an equation variant. One is a new mathematical opening, one would raise an existing inference to a derived result, and two clarify existing uncertainty. The queued [review of the case for closing the delayed Weber family](binary-research/work-queue.md#review-the-case-for-closing-the-delayed-weber-family-codex) is separate and already assigned; nothing here replaces it.
+
+### P-W-1. No scalar factor of any kind admits an exact subfield mirror circle (new mathematical opening, small)
+
+**Motivation.** The review restricted the statement "no scalar bracket removes the forward push" to regular brackets with unit leading limit, because that statement is about the leading-order term. For the narrower question of an exact rigid circle the restriction appears unnecessary. On a rigid mirror circle every rotation-invariant scalar of the history is constant, so a scalar factor $B$ multiplying each hit reduces to one number $B_c$. Under a law along the delayed line of action the acceleration is then $B_c$ times the canonical acceleration, whose tangential part is strictly positive for $0<\beta\le1$ (finding F-W-D-1). Balance needs a purely radial, nonzero acceleration, so it needs $B_c=0$, and then there is no acceleration at all. The same argument applies along the extrapolated direction of the first proposed adaptation, whose tangential numerator is strictly positive for $0<\beta<1$ by the adjudicated positivity lemma and by Codex's separate proof.
+
+**Smallest decisive step.** Write the two-case proposition with its hypotheses (one partner root, no self root, scalar factor constant along a rigid rotation) and have it checked separately. No computation is needed.
+
+**Limitations.** It concerns exact rigid mirror circles only. It says nothing about bounded histories of another shape, and it does not sharpen the coefficient statement, for which the unit-limit class remains necessary. Grade now: argued in outline from two results already graded derived; not written as a proposition and not independently checked.
+
+**Recommendation.** Worth doing if the closing case is to be stated cleanly: it removes a class qualification from the circle part of that case at the cost of a short proof.
+
+### P-W-2. All-future dispersal of slow mirror pairs under Section 9a (would raise an inference to derived; moderate)
+
+**Motivation.** "No bound class survives under Section 9a" is an inference over the preparations examined. For the canonical law the corresponding statement is a theorem for sufficiently slow supplied mirror preparations ([global continuation](binary-research/analysis/alternatives-screen-2026-10-05-radial-global-dispersal.md), with the [controlled secular comparison](binary-research/analysis/slow-binary-controlled-secular-comparison.md)). By Corollary 4.3 of the pair investigation, Section 9a equals the canonical law plus a correction that is second order in the speed ratio and radial at that order, with an implicit solve whose determinant exceeds one below the wake speed. The canonical argument may therefore extend.
+
+**Smallest decisive step.** A feasibility reading of the canonical proof, with no new estimate: list each place where it uses the explicit canonical form of a hit, and say whether a second-order radial multiplicative perturbation and the implicit present-acceleration dependence pass through. That reading settles whether an extension is a short perturbation argument or a new proof.
+
+**Limitations.** At best it covers sufficiently slow mirror preparations of the supplied class. It would not cover the eccentric bound-class preparations, the first proposed adaptation, or histories that are not mirror pairs.
+
+**Recommendation.** Defer unless the operator wants the closing case at derived grade for slow pairs. It changes the grade of a conclusion that the agenda recommendation already rests on at inferred grade.
+
+### P-W-3. Finite-window persistence of the pairs in the six-member runs (clarifies existing uncertainty)
+
+**Motivation.** The addendum's identity $\dot\varepsilon=\mathbf w\cdot\mathbf f_{\mathrm{ext}}$, $\dot{\mathbf h}=\mathbf r\times\mathbf f_{\mathrm{ext}}$ says exactly what would turn the endpoint diagnostic into a statement over a window: the two time integrals of the external terms, compared with the starting margins.
+
+**Smallest decisive step.** Evaluate the two integrals along one recorded run. The existing receipts cannot supply this: `braid-program/evidence/weber-binding-sphere-r5-fate-rtol1e-12.json` holds per-run summaries and end states only (inspected 2026-10-09 by listing its fields; 23,232 bytes, no time series). It would therefore need a rerun that writes the pair quantities and external terms along the trajectory, which is a new run under the instantaneous law and needs the operator's approval. A paper alternative is an asymptotic lemma for two receding neutral pairs, for which the external terms may be integrable in time; that is speculative and unexamined.
+
+**Limitations.** A finite window stays a finite window. The instantaneous law is a comparison benchmark, and the operator stopped the six-member search under it on 2026-10-06.
+
+**Recommendation.** Do not pursue now. The honest labels are already in place, and the result would not bear on the delayed law.
+
+### P-W-4. Audit of root-census hypotheses across the lanes (clarifies existing uncertainty; not specific to Weber)
+
+**Motivation.** The review found that a root-census lemma stated for speeds "below $c_f$" needs one bound below $c_f$ over the whole past, with a one-line counterexample otherwise. The causal-root geometry is shared by every law in this workstream, so the same wording may occur in other lemmas.
+
+**Smallest decisive step.** A read-only search of the lane manuscripts and analysis documents for partner-root existence statements, classifying each as already uniform, uniform by construction of its supplied history, or pointwise only. No calculation.
+
+**Limitations.** It may find nothing: the results checked during the review rest on supplied histories with compact preparations, where the bound is uniform by construction.
+
+**Recommendation.** Do it as a bounded read-only pass when convenient. It is cheap and protects statements outside the Weber work.

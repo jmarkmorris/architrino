@@ -127,7 +127,7 @@ test("Pages excludes Archie-service protocol code, tests, records, and local sou
   assert.equal(fs.readFileSync(path.join(f.output, "content/markdown/aaa/archie/public-example.md"), "utf8"), "public example");
 });
 
-test("Pages excludes iOS and design sources but preserves all shared KaTeX assets and public artwork", (t) => {
+test("Pages excludes iOS, design sources, and agent chats but preserves shared assets and adjacent documents", (t) => {
   const f = fixture(t);
   const excluded = [
     "apps/ios/ArchitrinoReader/GeneratedTextbookPackage/reading-copies/dynamics.html",
@@ -135,11 +135,14 @@ test("Pages excludes iOS and design sources but preserves all shared KaTeX asset
     "apps/ios/ArchitrinoReader/ArchitrinoReader/Reader.swift",
     "reference/design/banners/working/master.png",
     "reference/design/logo-exports/icon.png",
+    "reference/op/agent-chats/example/chat.jsonl",
+    "reference/op/agent-chats/example/nested/transcript.md",
   ];
   const retained = [
     `${WEB_KATEX_DIRECTORY}katex.min.js`, `${WEB_KATEX_DIRECTORY}katex.min.css`,
     `${WEB_KATEX_DIRECTORY}fonts/KaTeX_Main-Regular.woff2`, `${WEB_KATEX_DIRECTORY}LICENSE.txt`,
     "content/assets/images/brand/banners/public.png", "reference/design-notes.md",
+    "reference/op/agent-chats-notes.md", "reference/op/codex-claude-protocol.md",
   ];
   for (const name of [...excluded, ...retained]) f.write(name, `original ${name}`);
   f.write("index.html", '<img src="content/assets/images/brand/banners/public.png">');

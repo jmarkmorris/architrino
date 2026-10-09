@@ -37,6 +37,7 @@ export const isPagesDeploymentExcluded = (name) => isPowerPointOriginal(name) ||
     (internalPath.endsWith("/") && name.startsWith(internalPath))) ||
   INTERNAL_SERVICE_PROTOCOL_PATHS.some((internalPath) => name === internalPath || name.startsWith(internalPath)) ||
   name.startsWith("reference/design/") ||
+  name.startsWith("reference/op/agent-chats/") ||
   (name.startsWith("apps/ios/") && !name.startsWith(WEB_KATEX_DIRECTORY));
 
 export function buildStaticSite({ rootDir = ROOT, outputDir = path.join(rootDir, ".tmp/site"), trackedPaths, prepare = prepareRuntimeAssets, maxBytes = PAGES_MAX_BYTES } = {}) {
