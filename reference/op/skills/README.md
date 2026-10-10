@@ -4,9 +4,9 @@ This document owns repository skill authoring and maintenance policy. Repository
 
 ## Canonical Definitions
 
-Maintain each skill's full instructions here in `skill-<skill-name>.md`. Codex discovers `.agents/skills/<skill-name>/SKILL.md`, which contains only its name, trigger description, and an instruction to read the current owner here. Both locations are repository sources, with distinct responsibilities: discovery in `.agents`, maintained instructions in this directory. Move instructions rather than copying them between these locations. Metadata and executable helper resources remain in the discovery package; detailed research procedures remain with their existing live owners.
+Maintain each skill's full instructions here in `skill-<skill-name>.md`. Codex discovers `.agents/skills/<skill-name>/SKILL.md`; Claude Code discovers `.claude/skills/<skill-name>/SKILL.md`. A discovery file contains the name, trigger description, and instructions for locating and reading the current owner here. Both locations are repository sources, with distinct responsibilities: discovery in the host's skill directory, maintained instructions in this directory. Move instructions rather than copying them between these locations. Metadata and executable helper resources remain in the discovery package; detailed research procedures remain with their existing live owners.
 
-| Skill | Maintained instructions | Codex discovery file |
+| Skill | Maintained instructions | Discovery file |
 | --- | --- | --- |
 | Research Exploration | [skill-architrino-explore.md](skill-architrino-explore.md) | [SKILL.md](../../../.agents/skills/architrino-explore/SKILL.md) |
 | Corpus Convergence | [skill-architrino-converge.md](skill-architrino-converge.md) | [SKILL.md](../../../.agents/skills/architrino-converge/SKILL.md) |
@@ -17,6 +17,8 @@ Maintain each skill's full instructions here in `skill-<skill-name>.md`. Codex d
 | Managed Computation | [skill-architrino-compute.md](skill-architrino-compute.md) | [SKILL.md](../../../.agents/skills/architrino-compute/SKILL.md) |
 | Mathematical Preview | [skill-architrino-math-preview.md](skill-architrino-math-preview.md) | [SKILL.md](../../../.agents/skills/architrino-math-preview/SKILL.md) |
 | Research Coordination | [skill-architrino-coordinate.md](skill-architrino-coordinate.md) | [SKILL.md](../../../.agents/skills/architrino-coordinate/SKILL.md) |
+| Codex–Claude Collaboration | [skill-codex-claude-collaborate.md](skill-codex-claude-collaborate.md) | [SKILL.md](../../../.agents/skills/codex-claude-collaborate/SKILL.md) |
+| Claude–Codex Collaboration | [skill-claude-codex-collaborate.md](skill-claude-codex-collaborate.md) | [SKILL.md](../../../.claude/skills/claude-codex-collaborate/SKILL.md) |
 
 ## Authoring and Authority
 

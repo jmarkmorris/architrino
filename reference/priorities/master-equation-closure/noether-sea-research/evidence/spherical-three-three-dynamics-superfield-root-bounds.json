@@ -1,0 +1,82 @@
+{
+  "schema": "spherical-superfield-root-admission/v1",
+  "scale": "1000000000000000000000000",
+  "gridSpacing": 0.01,
+  "cf": 1,
+  "R": 1,
+  "bounds": [
+    {
+      "beta": 1.5,
+      "epsilon": -1,
+      "minGridLower": 4,
+      "minGridU": 0,
+      "derivativeUpper": 53.77777777777778,
+      "continuousLower": 3.731111111111111,
+      "signChanges": []
+    },
+    {
+      "beta": 1.5,
+      "epsilon": 1,
+      "minGridLower": 0.9587518592719211,
+      "minGridU": 1.05,
+      "derivativeUpper": 53.77777777777778,
+      "continuousLower": 0.6898629703830322,
+      "signChanges": []
+    },
+    {
+      "beta": 3,
+      "epsilon": -1,
+      "minGridLower": 1.6653199267906966,
+      "minGridU": 1.33,
+      "derivativeUpper": 59.11111111111111,
+      "continuousLower": 1.3697643712351413,
+      "signChanges": []
+    },
+    {
+      "beta": 3,
+      "epsilon": 1,
+      "minGridLower": -0.5831071699751488,
+      "minGridU": 0.68,
+      "derivativeUpper": 59.11111111111111,
+      "continuousLower": -0.8786627255307043,
+      "signChanges": [
+        {
+          "u": [
+            0.43,
+            0.44
+          ],
+          "left": [
+            0.04762497272931919,
+            0.04762497272931919
+          ],
+          "right": [
+            -0.0050522442934321605,
+            -0.0050522442934321605
+          ]
+        },
+        {
+          "u": [
+            1.15,
+            1.16
+          ],
+          "left": [
+            -0.002905151546901289,
+            -0.002905151546901289
+          ],
+          "right": [
+            0.0018391722594320254,
+            0.0018391722594320254
+          ]
+        }
+      ]
+    }
+  ],
+  "wallSeconds": 0.05104833300000001,
+  "memory": {
+    "rss": 57737216,
+    "heapTotal": 10108928,
+    "heapUsed": 6212928,
+    "external": 2149770,
+    "arrayBuffers": 71931
+  }
+}

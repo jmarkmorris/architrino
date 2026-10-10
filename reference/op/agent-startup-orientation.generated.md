@@ -82,7 +82,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 111 | `cb6eccb992abdf30` |
-| [reference/op/brainstorming.md](brainstorming.md) | 381 | `47f00e977bd1009c` |
+| [reference/op/brainstorming.md](brainstorming.md) | 381 | `dbdc5997bf604c5e` |
 | [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 214 | `dccd330a886933a3` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 142 | `5da12922fc9cadb4` |
@@ -90,7 +90,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `aea014967bca3b04` |
 | [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 877 | `83fc664747cd16cb` |
-| [reference/priorities/README.md](../priorities/README.md) | 137 | `d48aba614c49d73e` |
+| [reference/priorities/README.md](../priorities/README.md) | 139 | `2b561c6acbdc8771` |
 | [reference/office-of-research/cto/prompts/README.md](../office-of-research/cto/prompts/README.md) | 64 | `44455776ef041094` |
 | [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md) | 74 | `4a2c87f56a6537f7` |
 | [reference/office-of-research/cto/prompts/start-research.md](../office-of-research/cto/prompts/start-research.md) | 107 | `fff97ddc57be409d` |

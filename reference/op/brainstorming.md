@@ -82,7 +82,7 @@ Baseline comparisons preserve mathematical spans in the edited procedure sources
 
 ### Current Organization
 
-The [repository skills policy and index](skills/README.md) owns the current nine-skill catalog and its maintained instruction paths. Codex discovery files point to those visible owners, which select existing live procedures. The [architecture design](../priorities/aaa-operations/analysis/skills-architecture.md) records the rationale, reviewed instruction snapshots, and migration evidence. It is a design record, not a second current instruction owner.
+The [repository skills policy and index](skills/README.md) owns the current skill catalog and its maintained instruction paths. Codex discovery files point to those visible owners, which select existing live procedures. The [architecture design](../priorities/aaa-operations/analysis/skills-architecture.md) records the rationale, reviewed instruction snapshots, and migration evidence. It is a design record, not a second current instruction owner.
 
 ### 2026-09-05 Routing Refinement (Historical)
 
@@ -340,7 +340,7 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 
 - Default meta-optimization wrapper for any Codex thread: [codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md).
 - Multiple parallel Codex threads: start from [codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md), then use [codex-multiprompt.md](codex-multiprompt.md) for worker boundaries and integration.
-- Codex–Claude coordinator chat: [codex-claude-protocol.md](codex-claude-protocol.md) is the draft CLI design for a bidirectional text queue and repository-retained conversation, one coordinator pair per task. It is not an implemented transport or an adopted execution procedure.
+- Codex–Claude coordinator chat: [Codex–Claude Collaboration](skills/skill-codex-claude-collaborate.md) reads the live [desktop collaboration protocol](codex-claude-protocol.md) and the selected conversation's coordinator bindings. The protocol governs the demonstrated desktop delivery routes and the repository-retained text conversation.
 
 ## Issue Resolution and Publication
 

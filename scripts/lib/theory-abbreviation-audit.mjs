@@ -20,6 +20,11 @@ export function findTheoryAbbreviationCandidates(text) {
     if (diagnostic) continue;
 
     const span = spans.find(item => item.start <= index && index < item.end);
+    // In d_A^3 the A is a one-token TeX subscript, not the cubed base.
+    // Limit this lexical distinction to math and an actual subscripted symbol.
+    const subscript = span && /(?:[a-zA-Z]|\\[a-zA-Z]+)_$/.test(text.slice(span.start, index))
+      && !/\\(?:text|textrm|textbf|mathrm|operatorname)\b/.test(span.body);
+    if (subscript) continue;
     const definedA = span && spans.some(item => item.start < span.start
       && !/\\(?:text|mathrm|operatorname)\b/.test(item.body)
       && (/(?:^|[\s,;])A(?:\([^()\n]*\))?\s*=/.test(item.body)

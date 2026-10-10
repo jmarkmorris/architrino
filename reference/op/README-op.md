@@ -53,7 +53,6 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Clarity
 
-- [ ] Make long internal references easy to navigate by spoken section number; implement the [queued numbering convention](../priorities/aaa-operations/work-queue.md#ops-025--internal-reference-section-numbering) while preserving reader-facing numbering and promotion format.
 
 - [ ] Use [architrino-math-preview](../../.agents/skills/architrino-math-preview/SKILL.md) for substantial mathematics whose normal view is inadequate, with verified KaTeX, the project theme, and unchanged source.
 - [ ] Agent response shape — leading with the decision, explanation density, question format, live priority capture, and recommended next actions — is owned by [operator-explanation-standard.md](operator-explanation-standard.md) and is not tracked as backlog here. Items below concern how the operator frames requests, not how the agent answers. Free-association brainstorming remains welcome when no immediate decision is needed.
@@ -74,6 +73,8 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [x] Keep authored Markdown prose unwrapped in source so Codex Review controls visual wrapping; preserve only structural, mathematical, code, table, quotation, and explicit hard breaks.
 
 ## Multi-Agent Use
+
+- [x] For authorized overnight multi-agent campaigns, reconcile live agent status, completion messages and durable reports at every watchdog wake, advance ready dependencies immediately, and investigate missed checkpoints without duplicating possibly delivered assignments.
 
 - [ ] Distinguish unassigned standby from returned work awaiting integration or an operator decision; the coordinator follows through on authorized work and promptly reminds the operator of concrete pending decisions with a recommendation.
 - [x] Split parallel agents by disjoint write ownership, not just broad topic.
@@ -110,4 +111,5 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Resolved
 
+- OPS-025 internal manuscript numbering completed September 10; the [completion record](../priorities/aaa-operations/work-log.md#2026-09-10--ops-025-internal-manuscript-section-numbering-completed) preserves the rollout scope and checks. This replaces the stale queued link reconciled October 10.
 - [ ] Move items here only after the improved behavior survives repeated sessions.

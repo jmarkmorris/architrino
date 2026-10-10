@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex–Claude Collaboration"
+  short_description: "Collaborate with Claude using the live protocol."
+  default_prompt: "Use $codex-claude-collaborate for the specified collaboration, following the live protocol and current conversation bindings."

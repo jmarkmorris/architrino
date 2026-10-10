@@ -2,6 +2,15 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { findTheoryAbbreviationCandidates as audit } from "../scripts/lib/theory-abbreviation-audit.mjs";
 
+test("a cubed subscripted distance is not a cubed theory abbreviation", () => {
+  for (const text of ["$d_A^3$", "$x=1/d_A^3$", "$$\\frac{\\sin z}{2d_A^3}$$", "$r_A³$"]) {
+    assert.deepEqual(audit(text), []);
+  }
+  for (const text of ["d_A^3 in prose", "$A^3$", "$\\text{d_A^3}$"]) {
+    assert.equal(audit(text).length, 1);
+  }
+});
+
 test("ordinary prose, inline code and standalone math names remain findings", () => {
   for (const text of ["A^3 theory", "A³ theory", "`A^3` theory", "$A^3$ theory", "$$A^3$$", "\\(A^3\\)"]) {
     assert.equal(audit(text).length, 1, text);
