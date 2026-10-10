@@ -1,0 +1,164 @@
+{
+  "instrument": "codex-weber-pair-external-review.mjs",
+  "author": "Codex",
+  "ran": "2026-10-09T21:57:49.743Z",
+  "knownBeforeTarget": {
+    "reference": "analytic isolated circles at radii 0.25,1,3; K=cf=1",
+    "passed": true,
+    "maxAccelerationError": 4.440892098500626e-16
+  },
+  "independence": "Separately assembled frozen reference law; separately differentiated energy identity. Original trajectory evolution is not rerun by this diagnostic.",
+  "reference": "reference/priorities/master-equation-closure/binary-research/evidence/weber-frequency-reference-law.mjs",
+  "referenceSha256": "52c9bda909b86ca80757ca6396965b3580753f876bfd9e31063671e1cb4c121c",
+  "targets": [
+    {
+      "mode": "target",
+      "trajectory": ".local-data/master-equation-closure/weber-binding-sphere/r5-fate/survivor-free-R3-i8-rtol1e-12.trajectory.jsonl",
+      "pair": [
+        1,
+        2
+      ],
+      "requestedWindow": [
+        398.07716345781955,
+        796.1543269156391
+      ],
+      "sampleWindow": [
+        398.08535565134224,
+        796.1543269156391
+      ],
+      "samples": 1265,
+      "epsStart": -1.026290913796256,
+      "epsEnd": -1.3234590758975462,
+      "hStart": 1.2317766497617884,
+      "hEnd": 1.120485811663471,
+      "epsMax": -0.9015318189667991,
+      "hMin": 1.099037699830568,
+      "rMin": 0.4455839712476802,
+      "rMax": 1.618532596374841,
+      "otherMin": 129.60609531546393,
+      "signedEnergy": -0.3203277552588727,
+      "absEnergy": 3.973359529332894,
+      "absAngular": 2.708519243708783,
+      "signedAngular": [
+        -0.01284382979973227,
+        0.09339628511711764,
+        0.06820426760928573
+      ],
+      "maxIdentityResidual": 4.765719069377283e-15,
+      "maxLawResidual": 3.303319311158043e-14,
+      "boundary": "sampled states and trapezoid quadrature only; no continuous-window or trajectory-error certificate"
+    },
+    {
+      "mode": "target",
+      "trajectory": ".local-data/master-equation-closure/weber-binding-sphere/r5-fate/survivor-free-R3-i8-rtol1e-12.trajectory.jsonl",
+      "pair": [
+        0,
+        3
+      ],
+      "requestedWindow": [
+        398.07716345781955,
+        796.1543269156391
+      ],
+      "sampleWindow": [
+        398.08535565134224,
+        796.1543269156391
+      ],
+      "samples": 1265,
+      "epsStart": -0.7156181394516188,
+      "epsEnd": -0.41886045623157,
+      "hStart": 1.1469585338708526,
+      "hEnd": 1.2663157661515256,
+      "epsMax": -0.3696327912388204,
+      "hMin": 1.0935824664095957,
+      "rMin": 0.3682867703997369,
+      "rMax": 4.6828087517478965,
+      "otherMin": 129.60609531546393,
+      "signedEnergy": 0.29198017847766927,
+      "absEnergy": 4.605858233651077,
+      "absAngular": 14.402586079997674,
+      "signedAngular": [
+        -0.00837511838354851,
+        0.08821203624957163,
+        0.11178531269496406
+      ],
+      "maxIdentityResidual": 9.508886733566868e-15,
+      "maxLawResidual": 3.303319311158043e-14,
+      "boundary": "sampled states and trapezoid quadrature only; no continuous-window or trajectory-error certificate"
+    },
+    {
+      "mode": "target",
+      "trajectory": ".local-data/master-equation-closure/weber-binding-sphere/r5-fate/survivor-free-R3-i8-rtol1e-10.trajectory.jsonl",
+      "pair": [
+        1,
+        2
+      ],
+      "requestedWindow": [
+        398.07716345781955,
+        796.1543269156391
+      ],
+      "sampleWindow": [
+        398.5387383698099,
+        796.1543269156391
+      ],
+      "samples": 1012,
+      "epsStart": -0.9141480235310686,
+      "epsEnd": -1.0653465138366816,
+      "hStart": 1.4099403826678085,
+      "hEnd": 1.3183950927462935,
+      "epsMax": -0.8611970868638195,
+      "hMin": 1.2697692116786161,
+      "rMin": 0.6505712864688374,
+      "rMax": 1.402789756519557,
+      "otherMin": 128.59653544932604,
+      "signedEnergy": -0.1551221220745851,
+      "absEnergy": 5.908725190907779,
+      "absAngular": 4.238223951033476,
+      "signedAngular": [
+        -0.00564425619410568,
+        0.06783617276232769,
+        0.06765069090872904
+      ],
+      "maxIdentityResidual": 1.2559397966072083e-15,
+      "maxLawResidual": 1.3905666371664377e-13,
+      "boundary": "sampled states and trapezoid quadrature only; no continuous-window or trajectory-error certificate"
+    },
+    {
+      "mode": "target",
+      "trajectory": ".local-data/master-equation-closure/weber-binding-sphere/r5-fate/survivor-free-R3-i8-rtol1e-10.trajectory.jsonl",
+      "pair": [
+        0,
+        3
+      ],
+      "requestedWindow": [
+        398.07716345781955,
+        796.1543269156391
+      ],
+      "sampleWindow": [
+        398.5387383698099,
+        796.1543269156391
+      ],
+      "samples": 1012,
+      "epsStart": -0.8202980295389881,
+      "epsEnd": -0.6770778019440118,
+      "hStart": 0.9195547025695417,
+      "hEnd": 1.000374738591505,
+      "epsMax": -0.6028793821268796,
+      "hMin": 0.8823156622459738,
+      "rMin": 0.23508406572373744,
+      "rMax": 2.9336044802185133,
+      "otherMin": 128.59653544932604,
+      "signedEnergy": 0.14687521107390042,
+      "absEnergy": 3.421129831563885,
+      "absAngular": 7.972486990735645,
+      "signedAngular": [
+        0.015229113487348461,
+        -0.007611566610462492,
+        0.09749944147352237
+      ],
+      "maxIdentityResidual": 4.081457394278232e-14,
+      "maxLawResidual": 1.3905666371664377e-13,
+      "boundary": "sampled states and trapezoid quadrature only; no continuous-window or trajectory-error certificate"
+    }
+  ],
+  "limits": "Sampled states and trapezoid estimates only; no continuous-window certificate. All four original grids fail Claude preregistered angular-period sampling rule."
+}

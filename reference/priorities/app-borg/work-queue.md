@@ -11,7 +11,7 @@ This is the canonical execution ledger for accepted Borg work. `priorities.md` o
 
 ## Next real work
 
-No active row. The remaining accepted Borg rows are intentionally parked under `Deferred / blocked`.
+No implementation is in progress. [BORG-019](#borg-019--instantaneous-weber-bound-pair-visualizations) is the accepted Weber bound-pair catalog addition; implementation is queued. The earlier seven accepted rows remain parked under `Deferred / blocked`.
 
 ## Ranked Next Objects
 
@@ -32,6 +32,17 @@ No rows.
 No rows.
 
 ## Queued
+
+### BORG-019 — Instantaneous Weber bound-pair visualizations
+
+- **Status:** ○ Queued — accepted by the operator on 2026-10-09; implementation not started.
+- **Request / acceptance:** Add the independently confirmed two-member opposite-polarity bound configurations under the instantaneous Section 9 Weber comparison law to Borg's flat Assembly Library and workbench. These configurations are required in the app despite Weber research being dormant; dormancy does not defer or cancel this visualization requirement. Include circular and noncircular motion; the noncircular cases are required visualization coverage, not merely a linked explanation.
+- **Required examples:** A source-defined stable circle; a near-circular bound rosette such as WP-1 or WP-3; and the visibly eccentric WP-2 case. Preserve each exact preparation, orbital plane and any uniform center drift. Show actual time-dependent separation and member paths for noncircular cases rather than substituting circles or a static ellipse. Where a closed rosette is offered, establish closure from that finite-amplitude source history; a small-amplitude frequency ratio alone is insufficient.
+- **Source and scientific scope:** The [pair persistence account](../master-equation-closure/binary-research/analysis/weber-overnight-persistence.md) defines the preparations, all-time confinement and circular orbital stability; the [independent adjudication](../master-equation-closure/binary-research/analysis/weber-overnight-independent-adjudication.md#138-closing-grades-and-falsifiers) confirms these derived claims and bounds the recorded checks. The [equation owner](../master-equation-closure/equation-variants/manuscript.md#9-weber-inspired-relative-motion-response) fixes instantaneous support, no self term and coefficients $\lambda_{\mathrm W}=-1/2$, $\mu_{\mathrm W}=1$. Every new numerical example uses $c_f=1$. These are lasting mathematical bound-pair solutions under this comparison law; no delayed Section 9a binding, physical realization or phase convergence is claimed.
+- **Display and provenance:** Bind each configuration and record to its exact equation, preparation, producer, units, claim grade and available coverage. Use source-owned analytical samples or qualified sealed research records under the existing [intake design](brainstorming.md#assemblies-under-alternative-master-equations); amend the record contract if the existing producer vocabulary cannot represent the source honestly. Borg must not evolve the Weber law locally, relabel a research integrator as the EOM solver, or continue the record with the canonical equation. Show a plain-language explanation of lasting confinement and precession during playback and pause; retain theorem-versus-finite-record scope in inspection. Generic rosettes must not be reset or looped as if their full configuration had returned.
+- **Execution owner / dependency:** Borg owns catalog, rendering and replay integration; Master-Equation Closure remains the scientific source owner. First inventory and adapt the retained source carriers. Missing import-ready data is an explicit dependency, not permission to invent motion or launch a new Weber research campaign. Reusing the completed benchmark leaves the [Weber dormant disposition](../master-equation-closure/brainstorming.md#weber-research-disposition--dormant-2026-10-09) intact.
+- **Completion / falsifier:** The Library and workbench expose all three required motion types with loadable inspection, honest playback/scrubbing, polarity-owned paths, and source-bound findings. Compare sampled turning separations and angular advance with the independently confirmed invariants and quadratures before accepting the visual records; a rendered circle for an eccentric source, false closed-loop return, incorrect equation/producer identity, unsupported continuation or samples outside source bounds beyond the declared error defeats acceptance. Select focused implementation checks under the testing regime; the queue entry itself adds no regular test gate.
+- **Ranking:** Accepted catalog addition, unscored; the existing seven deferred scored objects and global metadata retain their current ranks.
 
 ### BORG-001 — Native wake history and boundary residuals
 

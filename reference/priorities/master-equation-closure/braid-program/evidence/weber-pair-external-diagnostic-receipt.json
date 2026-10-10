@@ -1,0 +1,630 @@
+{
+ "instrument": "weber-pair-external-diagnostic.mjs",
+ "law": {
+  "lambda": -0.5,
+  "mu": 1,
+  "K": 1,
+  "cf": 1
+ },
+ "known": {
+  "ran": "2026-10-09T21:51:16.138Z",
+  "cases": [
+   {
+    "name": "K1 isolated pair: f_ext = 0 and D rddot = h^2/r^3 - 2/r^2 + rdot^2/r^2 (200 random states)",
+    "pass": true,
+    "maxFext": 1.2732278508692698e-14,
+    "maxRelRadial": 4.945780564804803e-16
+   },
+   {
+    "name": "K2 three members: d(eps)/dT = w.f_ext and d(h)/dT = r x f_ext, central differences along own RK4 flow (12 random states)",
+    "pass": true,
+    "maxRelEpsRate": 0.00000764279485395591,
+    "maxRelTorque": 0.000002883499820199422
+   },
+   {
+    "name": "K3 solver agreement on the recorded t = 0 state: this solver vs reference law vs subject instrument",
+    "pass": true,
+    "maxAbsDiffReference": 5.551115123125783e-17,
+    "maxAbsDiffSubject": 6.938893903907228e-17,
+    "maxAbsAcceleration": 0.121088446328947
+   },
+   {
+    "name": "K4 isolated pair evolved to T = 4: eps and h unchanged, quadrature of w.f_ext zero",
+    "pass": true,
+    "eps0": -1.3899999999999997,
+    "dEps": -1.414099948249259e-10,
+    "dH": -2.9901858766834266e-11,
+    "quadrature": -3.6960487722539657e-16
+   }
+  ],
+  "allPassed": true
+ },
+ "target": {
+  "ran": "2026-10-09T21:51:41.466Z",
+  "prereg": {
+   "run": "survivor-free-R3-i8",
+   "tolerances": [
+    "1e-12",
+    "1e-10"
+   ],
+   "pairs": [
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     3
+    ]
+   ],
+   "tFinal": 796.1543269156391,
+   "windowStart": 398.07716345781955,
+   "maxStepOverAngularPeriod": 0.125
+  },
+  "evaluations": [
+   {
+    "rtol": "1e-12",
+    "pair": [
+     1,
+     2
+    ],
+    "window": [
+     398.08535565134224,
+     796.1543269156391
+    ],
+    "sampledStates": 1265,
+    "start": {
+     "eps": -1.0262909137962555,
+     "h": 1.2317766497617884,
+     "r": 0.535030973685904
+    },
+    "end": {
+     "eps": -1.3234590758975462,
+     "h": 1.120485811663471,
+     "r": 0.937636976243875
+    },
+    "sampledPersistence": {
+     "epsMax": -0.9015318189667996,
+     "epsMin": -1.3751180722999914,
+     "hMin": 1.099037699830568,
+     "hMax": 1.3041250071858344,
+     "holdsAtEverySample": true
+    },
+    "signedChange": {
+     "dEps": -0.2971681621012907,
+     "dH": -0.1112908380983173,
+     "normOfVectorChangeOfH": 0.11198120438175178
+    },
+    "quadrature": {
+     "trapezoidOfEpsRate": -0.3203277552588574,
+     "minusStateDifference": -0.023159593157566716,
+     "absIntegralEpsRate": 3.973359529332876,
+     "absIntegralTorque": 2.708519243708785
+    },
+    "sufficientBound": {
+     "epsMargin": 1.0262909137962555,
+     "hMargin": 1.2317766497617884,
+     "epsBoundHolds": false,
+     "hBoundHolds": false
+    },
+    "sampling": {
+     "maxStepOverAngularPeriod": 0.19742602955279343,
+     "medianStepOverAngularPeriod": 0.08282790882909291,
+     "quadratureAdmissibleByPreregisteredRule": false
+    },
+    "separation": {
+     "pairSeparationMin": 0.4455839712476802,
+     "pairSeparationMax": 1.618532596374841,
+     "nearestOtherMemberMin": 129.60609531546393,
+     "minOfNearestOtherOverPairSeparation": 94.19657321287531,
+     "maxExternalDifferentialAcceleration": 0.2779169722361488
+    }
+   },
+   {
+    "rtol": "1e-12",
+    "pair": [
+     0,
+     3
+    ],
+    "window": [
+     398.08535565134224,
+     796.1543269156391
+    ],
+    "sampledStates": 1265,
+    "start": {
+     "eps": -0.715618139451619,
+     "h": 1.1469585338708526,
+     "r": 1.1679807440363659
+    },
+    "end": {
+     "eps": -0.41886045623157,
+     "h": 1.2663157661515256,
+     "r": 2.2890854786703554
+    },
+    "sampledPersistence": {
+     "epsMax": -0.3696327912388204,
+     "epsMin": -0.8247221831063056,
+     "hMin": 1.0935824664095957,
+     "hMax": 1.3690998712083737,
+     "holdsAtEverySample": true
+    },
+    "signedChange": {
+     "dEps": 0.29675768322004903,
+     "dH": 0.11935723228067308,
+     "normOfVectorChangeOfH": 0.12707787468411735
+    },
+    "quadrature": {
+     "trapezoidOfEpsRate": 0.2919801784776841,
+     "minusStateDifference": -0.004777504742364935,
+     "absIntegralEpsRate": 4.605858233651057,
+     "absIntegralTorque": 14.402586079997668
+    },
+    "sufficientBound": {
+     "epsMargin": 0.715618139451619,
+     "hMargin": 1.1469585338708526,
+     "epsBoundHolds": false,
+     "hBoundHolds": false
+    },
+    "sampling": {
+     "maxStepOverAngularPeriod": 0.19699846746708727,
+     "medianStepOverAngularPeriod": 0.017055740150476482,
+     "quadratureAdmissibleByPreregisteredRule": false
+    },
+    "separation": {
+     "pairSeparationMin": 0.3682867703997369,
+     "pairSeparationMax": 4.6828087517478965,
+     "nearestOtherMemberMin": 129.60609531546393,
+     "minOfNearestOtherOverPairSeparation": 39.759040471347994,
+     "maxExternalDifferentialAcceleration": 0.15864009590520686
+    }
+   },
+   {
+    "rtol": "1e-10",
+    "pair": [
+     1,
+     2
+    ],
+    "window": [
+     398.5387383698099,
+     796.1543269156391
+    ],
+    "sampledStates": 1012,
+    "start": {
+     "eps": -0.9141480235310686,
+     "h": 1.4099403826678085,
+     "r": 0.7909596074720212
+    },
+    "end": {
+     "eps": -1.0653465138366816,
+     "h": 1.3183950927462935,
+     "r": 0.8655226502115747
+    },
+    "sampledPersistence": {
+     "epsMax": -0.8611970868638197,
+     "epsMin": -1.1373645922525604,
+     "hMin": 1.2697692116786161,
+     "hMax": 1.4506570572297839,
+     "holdsAtEverySample": true
+    },
+    "signedChange": {
+     "dEps": -0.15119849030561294,
+     "dH": -0.091545289921515,
+     "normOfVectorChangeOfH": 0.09300960726971653
+    },
+    "quadrature": {
+     "trapezoidOfEpsRate": -0.15512212207458637,
+     "minusStateDifference": -0.0039236317689734235,
+     "absIntegralEpsRate": 5.908725190907781,
+     "absIntegralTorque": 4.23822395103347
+    },
+    "sufficientBound": {
+     "epsMargin": 0.9141480235310686,
+     "hMargin": 1.4099403826678085,
+     "epsBoundHolds": false,
+     "hBoundHolds": false
+    },
+    "sampling": {
+     "maxStepOverAngularPeriod": 0.26074930808989716,
+     "medianStepOverAngularPeriod": 0.09167133856792392,
+     "quadratureAdmissibleByPreregisteredRule": false
+    },
+    "separation": {
+     "pairSeparationMin": 0.6505712864688374,
+     "pairSeparationMax": 1.402789756519557,
+     "nearestOtherMemberMin": 128.59653544932604,
+     "minOfNearestOtherOverPairSeparation": 93.06714672422954,
+     "maxExternalDifferentialAcceleration": 0.6973019673929161
+    }
+   },
+   {
+    "rtol": "1e-10",
+    "pair": [
+     0,
+     3
+    ],
+    "window": [
+     398.5387383698099,
+     796.1543269156391
+    ],
+    "sampledStates": 1012,
+    "start": {
+     "eps": -0.8202980295389881,
+     "h": 0.9195547025695417,
+     "r": 2.004092677469856
+    },
+    "end": {
+     "eps": -0.6770778019440118,
+     "h": 1.000374738591505,
+     "r": 1.9506252502454533
+    },
+    "sampledPersistence": {
+     "epsMax": -0.6028793821268796,
+     "epsMin": -0.8310915807466586,
+     "hMin": 0.8823156622459738,
+     "hMax": 1.0850013126315776,
+     "holdsAtEverySample": true
+    },
+    "signedChange": {
+     "dEps": 0.14322022759497632,
+     "dH": 0.08082003602196319,
+     "normOfVectorChangeOfH": 0.09858237495280663
+    },
+    "quadrature": {
+     "trapezoidOfEpsRate": 0.14687521107396248,
+     "minusStateDifference": 0.003654983478986157,
+     "absIntegralEpsRate": 3.421129831563864,
+     "absIntegralTorque": 7.972486990735646
+    },
+    "sufficientBound": {
+     "epsMargin": 0.8202980295389881,
+     "hMargin": 0.9195547025695417,
+     "epsBoundHolds": false,
+     "hBoundHolds": false
+    },
+    "sampling": {
+     "maxStepOverAngularPeriod": 0.2676001555116082,
+     "medianStepOverAngularPeriod": 0.03706283370390725,
+     "quadratureAdmissibleByPreregisteredRule": false
+    },
+    "separation": {
+     "pairSeparationMin": 0.23508406572373744,
+     "pairSeparationMax": 2.9336044802185133,
+     "nearestOtherMemberMin": 128.59653544932604,
+     "minOfNearestOtherOverPairSeparation": 55.82621535096393,
+     "maxExternalDifferentialAcceleration": 0.058498851077121446
+    }
+   }
+  ]
+ },
+ "knownDense": {
+  "ran": "2026-10-09T22:01:40.504Z",
+  "pass": true,
+  "dEps_dt0002": 0.6685524325122048,
+  "dEps_dt0001": 0.668552432432727,
+  "integralMinusStateDifference_dt0002": -5.394107382983293e-11,
+  "integralMinusStateDifference_dt0001": -3.3696379020398126e-12,
+  "absIntegralEpsRate": 0.6685524324293574
+ },
+ "decomposition": {
+  "ran": "2026-10-09T21:53:43.085Z",
+  "note": "post hoc, explanatory; same run, pairs and window as the preregistered target",
+  "rows": [
+   {
+    "rtol": "1e-12",
+    "pair": [
+     1,
+     2
+    ],
+    "otherPair": [
+     0,
+     3
+    ],
+    "states": 1265,
+    "rms": {
+     "fext": 0.042015761122458715,
+     "fromOtherPair": 0.04206552673862164,
+     "accelerationCouplingPart": 0.04206530456608374,
+     "fromSingles": 0.00014959161190664983,
+     "leadingForm": 0.04206563346570223,
+     "fextMinusLeading": 0.00014077754342689896
+    },
+    "atLargestFext": {
+     "t": 399.62209226474346,
+     "fext": 0.2779169722361488,
+     "fromOtherPair": 0.2780971205776656,
+     "accelerationCouplingPart": 0.2781311842712107,
+     "fromSingles": 0.0002133649350354327,
+     "leadingForm": 0.2781358303678557,
+     "fextMinusLeading": 0.0002461156293463107,
+     "centreDistance": 130.51161389640492,
+     "pairSeparation": 0.9001877019966481,
+     "otherPairRelativeAcceleration": 20.341676350682235
+    }
+   },
+   {
+    "rtol": "1e-12",
+    "pair": [
+     0,
+     3
+    ],
+    "otherPair": [
+     1,
+     2
+    ],
+    "states": 1265,
+    "rms": {
+     "fext": 0.03896699320348492,
+     "fromOtherPair": 0.0390158854126493,
+     "accelerationCouplingPart": 0.03901576871877696,
+     "fromSingles": 0.0003350939111875239,
+     "leadingForm": 0.039016394071770745,
+     "fextMinusLeading": 0.0003375577654209807
+    },
+    "atLargestFext": {
+     "t": 412.58701551687807,
+     "fext": 0.15864009590520686,
+     "fromOtherPair": 0.15892537823570232,
+     "accelerationCouplingPart": 0.15889787990604112,
+     "fromSingles": 0.00048621271185702046,
+     "leadingForm": 0.15889697842259085,
+     "fextMinusLeading": 0.000468543906750109,
+     "centreDistance": 135.22627609024482,
+     "pairSeparation": 0.942916448579923,
+     "otherPairRelativeAcceleration": 11.306794325023453
+    }
+   },
+   {
+    "rtol": "1e-10",
+    "pair": [
+     1,
+     2
+    ],
+    "otherPair": [
+     0,
+     3
+    ],
+    "states": 1012,
+    "rms": {
+     "fext": 0.10980735487309196,
+     "fromOtherPair": 0.10993823763147335,
+     "accelerationCouplingPart": 0.10993827506688728,
+     "fromSingles": 0.00032055751048031315,
+     "leadingForm": 0.10993855928679423,
+     "fextMinusLeading": 0.00030478433669337777
+    },
+    "atLargestFext": {
+     "t": 455.9886610397262,
+     "fext": 0.6973019673929161,
+     "fromOtherPair": 0.6975761395390832,
+     "accelerationCouplingPart": 0.6976176066731781,
+     "fromSingles": 0.00034086447190899937,
+     "leadingForm": 0.6976197356441125,
+     "fextMinusLeading": 0.0003798930182129562,
+     "centreDistance": 150.709063495255,
+     "pairSeparation": 0.9505514532155391,
+     "otherPairRelativeAcceleration": 61.27544239771367
+    }
+   },
+   {
+    "rtol": "1e-10",
+    "pair": [
+     0,
+     3
+    ],
+    "otherPair": [
+     1,
+     2
+    ],
+    "states": 1012,
+    "rms": {
+     "fext": 0.01992011986616824,
+     "fromOtherPair": 0.01991620337560129,
+     "accelerationCouplingPart": 0.019916252975801293,
+     "fromSingles": 0.0008864559433407123,
+     "leadingForm": 0.019916503998202523,
+     "fextMinusLeading": 0.0008874878495705441
+    },
+    "atLargestFext": {
+     "t": 415.20903934586465,
+     "fext": 0.058498851077121446,
+     "fromOtherPair": 0.05867656925732525,
+     "accelerationCouplingPart": 0.058654620844786155,
+     "fromSingles": 0.000301806646214104,
+     "leadingForm": 0.05865439551237899,
+     "fextMinusLeading": 0.00028941496986521927,
+     "centreDistance": 135.8962588515508,
+     "pairSeparation": 0.7527298291898231,
+     "otherPairRelativeAcceleration": 4.177999489730787
+    }
+   }
+  ]
+ },
+ "rerun": {
+  "dt0.002": {
+   "ran": "2026-10-09T22:02:05.113Z",
+   "from": 398.08535565134224,
+   "to": 796.1543269156391,
+   "dt": 0.0020000048798913595,
+   "steps": 199034,
+   "wallSeconds": 9.428,
+   "maxAbsPositionDifferenceFromRecordedEnd": 3.277494540023021,
+   "maxAbsVelocityDifferenceFromRecordedEnd": 1.004251254821141,
+   "pairs": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "start": {
+      "eps": -1.0262909137962555,
+      "h": 1.2317766497617884
+     },
+     "end": {
+      "eps": -1.3234774949267014,
+      "h": 1.1598381830100806
+     },
+     "dEps": -0.29718658113044594,
+     "integralEpsRate": -0.297186579878334,
+     "integralMinusStateDifference": 1.2521119141517545e-9,
+     "absIntegralEpsRate": 3.207679621816206,
+     "absIntegralTorque": 2.0444840570952345,
+     "everyStep": {
+      "epsMax": -0.9659905134423594,
+      "epsMin": -1.4328761859256922,
+      "hMin": 1.101975578739891,
+      "rMin": 0.4570280243606382,
+      "rMax": 1.4765618795190165,
+      "nearestMin": 129.60609531546393
+     }
+    },
+    {
+     "pair": [
+      0,
+      3
+     ],
+     "start": {
+      "eps": -0.715618139451619,
+      "h": 1.1469585338708526
+     },
+     "end": {
+      "eps": -0.4155624955095081,
+      "h": 1.2457953652832894
+     },
+     "dEps": 0.30005564394211093,
+     "integralEpsRate": 0.30005564751430214,
+     "integralMinusStateDifference": 3.5721912094999198e-9,
+     "absIntegralEpsRate": 4.450849874881937,
+     "absIntegralTorque": 17.3737403687498,
+     "everyStep": {
+      "epsMax": -0.3205398268780557,
+      "epsMin": -0.7485872843520391,
+      "hMin": 1.0932056403393966,
+      "rMin": 0.3797139532748489,
+      "rMax": 5.503747482940189,
+      "nearestMin": 129.60609531546393
+     }
+    }
+   ]
+  },
+  "dt0.001": {
+   "ran": "2026-10-09T22:02:30.719Z",
+   "from": 398.08535565134224,
+   "to": 796.1543269156391,
+   "dt": 0.0009999999278122557,
+   "steps": 398069,
+   "wallSeconds": 19.112,
+   "maxAbsPositionDifferenceFromRecordedEnd": 1.580651248547941,
+   "maxAbsVelocityDifferenceFromRecordedEnd": 0.5613700826339048,
+   "pairs": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "start": {
+      "eps": -1.0262909137962555,
+      "h": 1.2317766497617884
+     },
+     "end": {
+      "eps": -1.2125652987325277,
+      "h": 1.1975975287751768
+     },
+     "dEps": -0.18627438493627224,
+     "integralEpsRate": -0.18627438490594792,
+     "integralMinusStateDifference": 3.0324326383279754e-11,
+     "absIntegralEpsRate": 3.9203579437258034,
+     "absIntegralTorque": 2.4497399287615007,
+     "everyStep": {
+      "epsMax": -0.9659904528405852,
+      "epsMin": -1.348170996371168,
+      "hMin": 1.1148714557553525,
+      "rMin": 0.45701774159115843,
+      "rMax": 1.4765620442314122,
+      "nearestMin": 129.60609531546393
+     }
+    },
+    {
+     "pair": [
+      0,
+      3
+     ],
+     "start": {
+      "eps": -0.715618139451619,
+      "h": 1.1469585338708526
+     },
+     "end": {
+      "eps": -0.5267673965392102,
+      "h": 1.197430904915417
+     },
+     "dEps": 0.18885074291240878,
+     "integralEpsRate": 0.18885074307740776,
+     "integralMinusStateDifference": 1.6499898669586344e-10,
+     "absIntegralEpsRate": 4.501513416388572,
+     "absIntegralTorque": 12.853060059501784,
+     "everyStep": {
+      "epsMax": -0.3906884687202581,
+      "epsMin": -0.7485873055559712,
+      "hMin": 1.0932055979333037,
+      "rMin": 0.3795233731439655,
+      "rMax": 4.433435680639328,
+      "nearestMin": 129.60609531546393
+     }
+    }
+   ]
+  }
+ },
+ "denseConvergence": {
+  "reviewer": "Codex",
+  "ran": "2026-10-09T22:03:28.100Z",
+  "knownComparisonControlsPassed": true,
+  "predeclaredIntegralTolerance": 0.001,
+  "predeclaredSignedIdentityTolerance": 0.000001,
+  "integralAgreementPass": false,
+  "signedIdentityPass": true,
+  "endpointStateComponentAgreement": "not evaluated: prepared receipt omits x and v; integral criterion already fails",
+  "errors": [
+   {
+    "pair": [
+     1,
+     2
+    ],
+    "relativeScaledErrors": {
+     "integralEpsRate": 0.11091219497238611,
+     "absIntegralEpsRate": 0.18178909480706426,
+     "absIntegralTorque": 0.16542812031118292
+    },
+    "signedIdentityResiduals": [
+     1.2521119141517545e-9,
+     3.0324326383279754e-11
+    ],
+    "endpointEpsScaledError": 0.08380361329855207,
+    "endpointHScaledError": 0.03152924489057184
+   },
+   {
+    "pair": [
+     0,
+     3
+    ],
+    "relativeScaledErrors": {
+     "integralEpsRate": 0.11120490443689438,
+     "absIntegralEpsRate": 0.011254779630820284,
+     "absIntegralTorque": 0.2602019031767838
+    },
+    "signedIdentityResiduals": [
+     3.5721912094999198e-9,
+     1.6499898669586344e-10
+    ],
+    "endpointEpsScaledError": 0.11120490102970215,
+    "endpointHScaledError": 0.03882215467776639
+   }
+  ],
+  "operationalRunIds": [
+   "04801a6b-5dc3-4a65-beed-89606c444297",
+   "226da8bf-fd32-40c5-9093-91c8776bcb96"
+  ],
+  "supervisorDeadlineSeconds": 600,
+  "progressCadenceSeconds": 15,
+  "terminalStates": "both completed, exit 0, processGroupClosed true by supervisor leases",
+  "boundary": "No converged full-window evolution or controlled integral result. Identity agreement alone is insufficient. No further target run under this preregistration."
+ }
+}
