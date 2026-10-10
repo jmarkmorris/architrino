@@ -65,3 +65,51 @@ AWT-016 places the common Noether sea response owner under Master-Equation Closu
 The new manuscript explains constituent and population distinctions, the proposed dense energetic population with embedded matter-containing regions, the difference between acceleration weight and signed playback, and the common response target. It preserves the missing retained-branch and causal-wake-account blocker. No numerical experiment, new response coefficient, physical population selection, task activation or corpus promotion is represented by this editorial migration.
 
 Validation and exact source snapshots are recorded in the AWT-016 migration evidence. The response packet's original proof, claim and numerical content remains the source of its scientific contract.
+
+## 2026-10-10 — Actual hexagon feedback extension launched
+
+The operator selected a fresh 90-minute continuation of the identical hexagon beyond the prior physical feedback interval $1/10$, with signed radial support and any zeros/sign changes. Clock-tool start 19:00:39 UTC; exploration cutoff 20:15:39 UTC and hard closeout 20:30:39 UTC / 4:30:39 p.m. EDT are fixed. The [plan](analysis/spherical-three-three-hexagon-extension-plan.md) assigns the three existing workers disjoint subject/reference scopes; the [synthesis](analysis/spherical-three-three-hexagon-extension-synthesis.md) owns same-wake reconciliation, independent joins and preservation. Previous studies remain completed with frozen evidence; AWT-005 remains deferred. Launch is not a scientific extension result. Dispatch, watchdog and scoped validation receipts follow in the synthesis.
+
+## 2026-10-10 — Physical feedback length 0.2 independently accepted
+
+At clock-tool wake 19:21:04 UTC the coordinator consumed all three frozen adjudications and integrated them into the [extension synthesis](analysis/spherical-three-three-hexagon-extension-synthesis.md). Actual hexagon motion through $T_F+1/5$, complete roots and strictly inward support throughout are independently verified; no new zero or source seam occurs there. Earlier intermediate support zeros remain unresolved. The next useful bounded slice, actual motion through $T_F+1/2$ with fresh phase/source/support bounds, was immediately dispatched to the same three independent roles with disjoint new reports. The original 20:15:39 exploration and 20:30:39 hard cutoffs remain. Earlier evidence is frozen, no heavy job or law change is allocated, and AWT-005 remains deferred.
+
+
+### 2026-10-10 19:29 UTC — Physical feedback length one half independently accepted
+
+Root integrated three frozen half-unit verdicts into the [current synthesis](analysis/spherical-three-three-hexagon-extension-synthesis.md): actual normally constrained motion through $T_F+1/2$, increasing equal speeds, complete roots and $-19/600<\lambda<-583/4000000$ throughout, excluding a new support zero or nonleading seam. The stronger support route independently checks the corrected event phase threshold $49/200$. Next selected actual slice seeks $T_F+7/10$ with fresh domains and independent references. Same team, evidence preservation, 20:15:39 exploration cutoff and 20:30:39 hard closeout remain unchanged. No instrument, numerical evolution or job was launched.
+
+
+## 2026-10-10 19:36 UTC — Physical feedback length 0.7 independently accepted
+
+Root integrated the independent seven-tenths verdicts into the [extension synthesis](analysis/spherical-three-three-hexagon-extension-synthesis.md): actual normally constrained motion through $T_F+7/10$, increasing equal speeds, complete roots and strictly inward support throughout, with no new zero/seam. Source syntax at one frozen conditional display is separately rejected; its intended inequality is mathematically valid and an author-owned erratum is pending. The next selected bounded actual step seeks $T_F+4/5$ with blind references and fresh bounds. All deadlines, normal-only interaction and preservation limits remain unchanged. No scientific job was launched.
+
+
+## 2026-10-10 19:46 UTC — Eight-tenths actual feedback accepted
+
+Root consumed and integrated all three independently scoped eight-tenths verdicts into the [extension synthesis](analysis/spherical-three-three-hexagon-extension-synthesis.md): actual motion through $T_F+4/5$, complete roots, increasing equal speeds and strictly inward support $-19/600<\lambda<-67/1000000$ throughout, with no new zero/seam and preparation margin above $1/200$. The stronger $F>7/1000$ drift is independently accepted. Original subjects and the earlier rendering defect/erratum remain preserved. The next selected blind actual step seeks $T_F+17/20$ with fresh endpoint/source/support margins. All deadlines, canonical normal-only law and evidence limits remain fixed; no scientific job is allocated.
+
+
+## 2026-10-10 19:54 UTC — Seventeen-twentieths primary continuation accepted
+
+Root consumed the independently frozen review verdict and dynamics companion, integrating actual motion through $T_F+17/20$, complete roots, increasing common speed and strictly inward support $-19/600<\lambda<-883/16000000$ into the [synthesis](analysis/spherical-three-three-hexagon-extension-synthesis.md). Four nonleading stationary sources retain margin above $3/3200$; no new support zero or seam is reached. The remaining separate symmetry comparison stays active until its saved verdict is consumed. Next selected actual step seeks $T_F+9/10$, with fresh source-domain proofs rather than extrapolating a conditional preparation bound. Original cutoffs and law remain fixed, frozen evidence preserved, no scientific job allocated.
+
+
+## 2026-10-10 20:06 UTC — Nine-tenths actual continuation accepted
+
+Root consumed all three independent nine-tenths verdicts and integrated them into the [extension synthesis](analysis/spherical-three-three-hexagon-extension-synthesis.md). Actual motion reaches $T_F+9/10$, complete ordinary roots persist, speed increases and support stays strictly inward, $-19/600<\lambda<-7/160000$. The independently reconstructed new first-feedback phase $q_F>1/5$ yields a stronger stationary margin, without promoting conditional later arrival into reached motion. Next selected bounded actual step seeks $T_F+1$ with fresh domains and blind references. Same-wake ready successors are dispatched as each prior comparison completes. All cutoffs, canonical normal-only law and evidence preservation remain; no scientific job is allocated.
+
+
+## 2026-10-10 20:14 UTC — Unit-interval continuation accepted
+
+Root consumed all three independently scoped unit verdicts and integrated actual normally constrained motion through $T_F+1$, complete roots, increasing common speed and strictly inward support $-19/600<\lambda<-11/500000$ into the [synthesis](analysis/spherical-three-three-hexagon-extension-synthesis.md). Fresh source/phase/derivative bounds retain stationary margin $309/28000$ with no new seam or support zero. Every ready role received the final small selected $T_F+21/20$ exploration in this same wake, with mandatory attained-proof/gap freeze at20:15:39UTC; verification/preservation only afterward. All earlier evidence is preserved and hard closeout20:30:39UTC remains fixed. No scientific job is allocated.
+
+
+## 2026-10-10 20:19 UTC — Final bounded extension independently accepted
+
+Root consumed all three final saved adjudications, read them in full and matched shasum -a 256 identities. The [synthesis](analysis/spherical-three-three-hexagon-extension-synthesis.md) accepts actual normal-only motion through $T_F+21/20$, stronger $F>7/250$, complete roots and $-19/600<\lambda<-187/16000000<0$ throughout feedback, excluding a new zero/seam. All new science froze before20:15:39UTC and post-cutoff work verified/preserved it only. Later preparation reception and earlier intermediate signs remain unresolved. All selected scientific assignments are complete; four exact-owner supervisor closeouts returned clear. Final preservation/watchdog pause follows within hard20:30:39UTC ceiling. No scientific job, equation change, production edit or publication was launched; earlier evidence and AWT-005 remain unchanged.
+
+
+## 2026-10-10 20:21 UTC — Hexagon extension closed and watchdog paused
+
+All three selected workers are completed by collaboration.list_agents and their durable evidence is consumed. Exact four-owner supervisor closeout is clear; all collectors are terminal. Scoped source validation preserves only the known frozen rendering defect/erratum and tracker whitespace check passes. Retained extension evidence measures4780KiB before final prose receipts, below50MiB in the named scope. The existing heartbeat returned PAUSED and a controlled saved-file comparison verifies preserved identity,prompt,thread and original deadline/cadence. No useful selected science or verification remains after the fixed exploration cutoff. The [final synthesis](analysis/spherical-three-three-hexagon-extension-synthesis.md) retains the accepted endpoint, strictly inward feedback support, independent verdicts and unresolved earlier signs/later seam; AWT-005 remains deferred. No further exploration is authorized by closeout.

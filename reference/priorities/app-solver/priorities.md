@@ -6,7 +6,7 @@
 
 EOM is the only engine. No other engine may be introduced or cited.
 
-EOM is endorsed now, while canonical authority for any particular output remains gated by the frozen EOM contract, independent validation, and consumer migration requirements.
+EOM is endorsed now, while canonical authority for any particular output remains gated by the frozen EOM contract, independent validation, and consumer migration requirements. The default remains the canonical Master Equation with no speed limit. The operator-selected [equation and speed modes](#equation-and-speed-modes) extend the shared solver's design; they do not establish that alternative modes are implemented or canonically accepted.
 
 ## Objective
 
@@ -20,14 +20,14 @@ $$
 
 where $h_{i,T_0}(\theta)=\mathbf X_i(T_0+\theta)$ contains the retained prehistory required by the delayed interaction law and $h_{i,T_1}$ contains that input history followed by the path segment evolved on $[T_0,T_1]$.
 
-The future segment must be determined by the Master EOM. EOM must not accept a prescribed future path, path constraint, analytic orbit, or display curve as a substitute for evolution.
+The future segment must be determined by the bound Master Equation. Under the existing canonical contract, EOM must not accept a prescribed future path, path constraint, analytic orbit, or display curve as a substitute for evolution. A selected constrained experiment requires an explicit versioned extension. Independently established analytical solutions remain analytical evidence; they are not supplied as future instructions and relabeled numerical evolution.
 
 ## Non-Negotiable Boundary
 
 1. Treat EOM as the sole forward solver target. All new solver capabilities, app integrations, simulation work, and solver-derived evidence paths must use or extend EOM.
 2. Treat current prescribed-path evaluation and current model-specific stepping as separate compatibility or analysis capabilities, not as EOM evolution.
 3. EOM input may contain retained **past** path history. It may not contain a prescribed **future** path that constrains the answer.
-4. Every EOM acceleration record must come from the canonical Master EOM, including the declared causal-root condition, all admitted active roots, same-transmitter roots when present, transmitter-side-factor transversality, receiver-side factor for root playback and transmitter-side acceleration weight, polarity convention, and declared regularization.
+4. In canonical mode, every EOM acceleration record must come from the canonical Master EOM, including the declared causal-root condition, all admitted active roots, same-transmitter roots when present, transmitter-side-factor transversality, receiver-side factor for root playback and transmitter-side acceleration weight, polarity convention, and declared regularization. A selected alternative mode must bind its own exact definition through an explicit contract extension or successor and retain distinct evidence authority; no law is changed implicitly.
 5. Every accepted step must extend the same retained history that supplies later causal-root evaluations. The evolution loop is therefore history $\to$ roots $\to$ acceleration $\to$ next state $\to$ extended history.
 6. Architrino primitives do not have physical mass. EOM must not introduce a physical architrino mass field.
 7. Performance optimizations may change representation, scheduling, indexing, and evaluation order only when deterministic and precision-controlled validation shows that they preserve the declared mathematical result.
@@ -40,6 +40,12 @@ The future segment must be determined by the Master EOM. EOM must not accept a p
 14. The production language and runtime stack must be selected against the actual EOM workload: CPU threads, SIMD, GPU and multi-GPU support, deterministic reductions, precision escalation, memory control, diagnostics, portability, safety, and maintainability. A language is not selected merely because one isolated kernel benchmarks well.
 15. The supported velocity domain includes $\|\mathbf V\|<c_f$, $\|\mathbf V\|=c_f$, and $\|\mathbf V\|>c_f$. Field-speed magnitude alone is not a reason to reject or clamp a path; actual transmitter-side-factor, receiver-side-factor, root, and branch geometry determines the event route.
 16. Every ordered receiver-transmitter pair, including self-pairs, must be logically accounted for at every accepted receiver event. A zero-root pair is explicitly or certifiably inactive; it is not silently skipped. Large certified exclusion or aggregation records may cover many pairs when membership and error bounds remain traceable. Only the coincident same-transmitter endpoint is excluded by the canonical convention.
+
+## Equation and Speed Modes
+
+The operator requires reusable equation and speed-regime selection in the standard EOM solver, defaulting to **canonical Master Equation and no speed limit**. The [mode and analytical-method design](manuscript.md#9-equation-modes-and-precise-analytical-methods) records exact interaction binding, separate speed-domain/boundary rules and optional geometry, complete request/output/checkpoint identity, valid combinations and unsupported-mode rejection. This requirement applies across consumers, including [Surface](../app-surface/manuscript.md#shared-solver-modes) and Borg. The mode design is accepted; implementation and acceptance remain open. Existing rankings and the frozen canonical contract are unchanged.
+
+The operator permits precise analytical methods for direct results or proved reductions where matched measurements establish substantially lower cost. Such methods must cover the selected equation, speed regime, geometry and retained-history domain, with independent mathematical checking and explicit error or exactness. Distinguish analytical evidence from numerical EOM evolution and record fallback or halt when a reduction leaves its proved domain. This is a method-selection requirement, not a measured cost saving or a second solver. The common contract design is recorded as a dependency of [EOM-007](work-queue.md#eom-007--eom-application-surface) and [SURFACE-001](../app-surface/work-queue.md#surface-001--normal-constrained-evolution-specification).
 
 ## Workstream Metadata
 

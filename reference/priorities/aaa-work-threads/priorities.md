@@ -8,6 +8,8 @@ Current owner discovery includes the research children declared by [Master-Equat
 
 The [proposed advancement sequence for Master-Equation Closure and the Braid Program](brainstorming.md#advancing-master-equation-closure-and-the-braid-program--2026-09-14) targets the next physically decisive feedback event and a current diagnosis of the binary history-error barrier. It preserves the ranking and existing acceptance boundaries; the proposal does not dispatch either campaign.
 
+The [October 10 Claude workload assessment](analysis/claude-workload-allocation-2026-10-10.md) proposes the open nonrigid two-member periodicity question first, a localized nonlinear lattice preparation second, and one EOM continuous-history certification barrier as the engineering alternative. These are inferred allocation recommendations with proof-or-counterexample milestones, existing owner routes and explicit limitations. Selection and dispatch remain pending; numeric ranks, scores and queue states are unchanged.
+
 ## Scoring System
 
 - The scored unit is exactly one **next unresolved evidence object**, decision object, or implementation artifact with an independently checkable completion boundary. Score the nearest object that would materially change what the workstream can claim or do, not the workstream's lifetime ambition.

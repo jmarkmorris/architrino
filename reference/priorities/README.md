@@ -2,7 +2,7 @@
 
 This directory holds the repo's developer-facing priority material.
 
-[Shell](app-shell/README.md) owns the proposed closed-surface path research app: supplied histories and solver-calculated motion on fixed spheres and ellipsoids, with explicit artificial normal support and separate scientific qualification.
+[Surface](app-surface/README.md) owns the proposed closed-surface path research app: supplied histories and solver-calculated motion on fixed spheres and ellipsoids, with explicit artificial normal support and separate scientific qualification.
 
 Use it for live workstream priority lists and for supporting guidance on priority-list structure, triage practice, ranking conventions, and related developer workflow.
 

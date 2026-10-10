@@ -4,6 +4,10 @@ This is the single execution home for the existing AWT-005 response object. Its 
 
 Both operator-selected spherical 3:3 campaigns are removed from active execution after bounded proofs, independent reviews, preservation and exact-owner process checks. The [first final synthesis](analysis/spherical-three-three-synthesis.md) and [post-release feedback synthesis](analysis/spherical-three-three-feedback-synthesis.md) retain scientific results and unresolved theory questions. AWT-005's score and acceptance boundary are unchanged.
 
+## Completed bounded hexagon extension
+
+Actual motion through $T_F+21/20$ with complete roots, increasing common speed and strictly inward support is independently verified in the [extension synthesis](analysis/spherical-three-three-hexagon-extension-synthesis.md). All selected derivations and independent comparisons are complete; no active scientific assignment remains. Exploration stopped at20:15:39UTC and exact four-owner process closeout returned clear before the fixed20:30:39UTC hard ceiling. Final scoped preservation and watchdog pause completed at20:21:16UTC; the existing heartbeat is PAUSED. No active campaign remains. Earlier intermediate zeros and later preparation reception are unresolved. No equation change, competing solver, further exploration or physical confinement claim is authorized; AWT-005 retains its existing blocker/score.
+
 ## Completed feedback continuation
 
 The [selected feedback investigation](analysis/spherical-three-three-feedback-plan.md) launched at 14:52:29 UTC on 2026-10-10 and finishes early after independent verification of both actual feedback targets and the one bounded primary support refinement. Exact-owner process checks completed at 15:28:01 UTC. The [final synthesis](analysis/spherical-three-three-feedback-synthesis.md) retains evidence, unresolved intermediate signs, preservation and watchdog disposition; no ready selected assignment remains. Original exploration/hard-closeout ceilings are unchanged. No production solver, Shell implementation, publication or further motion is authorized by this completion.
