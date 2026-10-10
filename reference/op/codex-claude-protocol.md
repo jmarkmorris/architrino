@@ -1,0 +1,100 @@
+# Codex–Claude Collaboration Protocol
+
+**Status: desktop-session delivery demonstrated in both directions on October 9, 2026.** Use the existing Codex and Claude desktop chats and their existing account arrangements. Codex sends through Claude's desktop composer after verifying the destination. While Codex waits for a requested reply, Claude appends it to the shared Markdown file without a queue notification; Codex reads it during the same active turn. Claude uses the bundled `codex queue` command when a notification must wake the exact existing Codex thread. There is no custom relay, new model session, credential setup, separate runtime home, or background watcher.
+
+## 1. Collaboration and standing authorization
+
+One task conversation has three participants: Op, one Codex coordinator, and one Claude coordinator. They may ask questions, challenge reasoning, propose changes, and perform work within Op's direction. Op can direct the collaboration from either desktop chat.
+
+**Standing authorization belongs to the bound coordinator pair and covers ordinary repository collaborations Op directs from either chat. Do not require Op to repeat a direction in both chats when a new task begins.** The coordinator receiving Op's direction records it with attribution and relays it to the peer; the peer may exchange messages and perform the work and revisions that direction authorizes. A peer's own proposal does not authorize new work. This is Op's explicit decision of October 9, 2026. Standing authorization lasts until Op revokes it or changes the pair; each task stops on completion, pause, or its applicable limit. A task-specific “send once,” “read-only,” or “do not reply” instruction narrows that authority. Do not ask for approval for individual messages, shared-chat reads, or ordinary continuation. Acknowledgments do not require acknowledgment in return.
+
+Op's direction establishes the task and edit boundaries. A new ordinary task explicitly directed by Op is covered by the pair's standing authorization, rather than being a permission expansion merely because its subject differs. Ask only for work beyond that direction, a new participant or destination, an otherwise unapproved consequential action, or an actual platform permission. Git publication remains governed by the designated runner and the [publication procedure](git/pr-lifecycle.md). Messaging permission alone does not authorize publication, credential changes, or unrelated repository edits.
+
+Every agent-authored message sent through a native composer or queue begins with `Codex:` or `Claude:`. Neither agent writes as Op or disguises a peer request as a human instruction. Speaker prefixes provide cooperative attribution, not cryptographic authentication: both delivery methods can appear as user-role messages in the receiving app. The receiver applies the established task authority rather than interpreting the UI role as fresh permission. Quoted operator directions retain their attribution and cannot silently expand scope.
+
+The speaker prefix must be the first characters of peer text, before any greeting or quotation. Unprefixed native-chat text is ordinarily Op's input, but a missing prefix is not proof of human origin. Known peer deliveries remain peer text even when malformed. Record relayed Op directions as quotations or attributed summaries, distinct from the sender's proposals. Restrictions (pause, stop, no reply, or narrower scope) take effect on receipt. Ordinary task directions use the standing authorization above. Work beyond that authorization needs Op's approval; direct confirmation in the receiving chat is required only when an actual host rule requires it. Neither coordinator may invent authorization or claim that this protocol overrides host rules.
+
+Each direction from Op has one reporting coordinator: the agent that received it, unless Op names another. That coordinator reports the combined outcome to Op in the originating chat; the peer contributes through the shared conversation rather than duplicating the final report. Until Op sets another budget, each Codex agent has a separate allowance of 20 outgoing peer messages per Op direction, and Claude has its own allowance of 20. A shared contribution and its delivery notification count as one message; file-only contributions also count. Stop when any participating agent exhausts its allowance or thirty minutes have elapsed from the initiating direction, whichever comes first. The reporting coordinator reports any unfinished work; restarting requires a new Op direction. Every notification states `Reply requested: yes` or `Reply requested: no`; a missing flag defaults to no reply. A message needs a reply only when it asks for a substantive contribution, decision, or correction. An operator stop or a blocking safety issue may still be reported without starting an acknowledgment loop.
+
+A receiving host may require direct human confirmation to establish standing authorization initially. If so, request it once for the bound pair across Op-directed ordinary repository tasks, identify the actual host requirement, and retain the accepted scope. Do not introduce task-by-task confirmation through a protocol interpretation. If the host imposes a narrower restriction, identify that rule and the blocked action explicitly; a peer's report or this document cannot override it.
+
+## 2. Bound coordinator pair
+
+The conversation file header owns the bindings: participant, exact destination ID, display title, and observed desktop URL when applicable. The [first conversation](agent-chats/2026-10-09-protocol-pilot/chat.md) is one record of the selected pair in the existing Architrino checkout, not a default destination for every task. Titles help locate a chat; exact IDs establish the destination. Do not use the currently selected chat, the most recent session, or a matching title as sufficient routing evidence. Replacing either participant requires Op's direction and an explicit binding update. A new task records its pair in its own conversation header without editing this protocol.
+
+The coordinator receiving Op's new task creates `reference/op/agent-chats/<local-date>-<brief-task-slug>/chat.md`, unless Op selects another conversation. Do not overwrite an existing file at that path; inspect and resume it only if it belongs to this task, otherwise choose a distinct name. Its header names the task, participants, reporting coordinator, exact destination IDs, display titles and observed desktop URL where applicable; its first entry attributes Op's initiating direction. An unchanged bound pair may be reused after confirming its live destinations; the historical command example alone is not a binding check.
+
+## 3. Codex to Claude
+
+1. Inspect Claude's desktop UI. Record the current selected chat and locate the bound chat, using its title as a navigation aid.
+2. Verify that the selected content URL contains the exact Claude destination from the conversation header before entering text. Stop if the ID is different, unavailable, or ambiguous.
+3. Preserve any existing composer draft. If the composer is nonempty, stop rather than overwrite it.
+4. Enter the message with the `Codex:` prefix. Recheck the destination ID and exact composer text immediately before clicking Send.
+5. Verify that the submitted message appears in that chat. If submission is uncertain, inspect the chat before retrying; never blindly resend.
+6. If delivery changed the selected chat, restore the prior selection when its identity is known and the operator has not navigated in the meantime. Otherwise leave the verified destination selected and disclose that in the delivery receipt. Never override a detected operator navigation merely to restore an earlier view.
+
+This route can activate the existing idle Claude chat. It uses desktop control available to Codex and does not require that Claude itself have desktop-control tools. Concurrent operator navigation can interrupt delivery or change the destination between observations; the checks reduce that risk but do not provide an atomic routing guarantee. Stop and re-observe after any reported UI change.
+
+## 4. Claude to Codex
+
+Every Codex request states the return route, both in its shared entry and its native notification. If the line is omitted, retain the last explicitly selected route; if none has been selected, use `shared-file` for a requested reply while Codex remains active:
+
+- `Return via: shared-file` is the default for a reply Codex requests while remaining active. Claude appends the reply and stops; it does **not** call `codex queue` or send a later completion notification. Codex checks the shared file during the active turn, normally at intervals of 15–30 seconds while waiting, reads and handles the response, and reports it to Op. These checks are bounded by the task limit, not a background service.
+- `Return via: queue` is for a reply Codex will receive in a later turn, or an authorized unsolicited message that needs to wake Codex. Claude appends its contribution and queues one short pointer. Do not also queue a contribution already delivered through `shared-file`.
+
+The requested route applies until Codex explicitly changes it. For work expected to outlast Codex's active waiting budget, select `queue` at the outset and yield rather than also consuming the reply through the file during that turn. If Codex must end its active turn before an expected file-only reply arrives, it checks for the reply first and notifies Claude to use `queue` for the outstanding response before yielding. If that route change cannot be delivered, report the outstanding file-only reply; do not imply that it will wake Codex. On resuming an open conversation after an interruption, Codex first rereads recent shared entries and outstanding requests and processes any unread reply before continuing. Claude does not infer whether Codex is busy from silence or inspect unrelated chats to decide the route.
+
+The Weber exchange demonstrated why these routes are separate: Codex read and processed replies from the file while active, but their queue notifications arrived afterward as redundant new turns. The installed `codex queue --help` exposes no steering option. [OpenAI's Queue/Steer explanation](https://developers.openai.com/blog/mastering-codex-remote-for-engineering#2-learn-the-difference-between-queue-and-steer) distinguishes next-turn delivery from active-turn guidance; a verified steering integration for this bound desktop pair is not established. Do not describe `queue` as an active-turn reply channel.
+
+The successful invocation, executed from Claude's shell tool in the repository checkout, was:
+
+```bash
+/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex queue \
+  --thread 01a11437-e086-7d20-90e8-154e8a5626f5 \
+  --message 'Claude: reverse-direction test CLAUDE-TO-CODEX-01. Please acknowledge receipt in this Codex chat. Do not send another message back.' \
+  </dev/null
+```
+
+The ID in that command is historical test evidence. For subsequent messages, use the current conversation header's exact Codex destination. Supply text as one argument using a process argument array; for text prepared in a file, read its UTF-8 contents into that argument rather than interpolating it into shell code. Never interpolate unescaped chat into a shell command. The command above is a literal tested example, not a shell template for arbitrary interpolation.
+
+Long, multiline, or mathematical contributions belong in the shared chat entry. When the return route is `queue`, send a short pointer containing its heading, sender prefix, and reply flag; short plain-text messages may travel inline. With `shared-file`, send no queue pointer. Broad arbitrary-input fidelity is not established.
+
+Claude reported using its ordinary session environment, no environment overrides, and only `--thread` and `--message`. It supplied no credentials, remote endpoint, profile, model, or permission override. The executable reported version `0.162.0-alpha.17.2`. `queue` submits to an existing session; it is not the earlier `exec` attempt to run a separately authenticated model session.
+
+Retain the returned queue message ID and destination as the submission receipt. Queue acceptance alone does not establish that the receiving model read the message. A visible arrival or corresponding response establishes that additional step. On failure or ambiguous output, report the result and inspect before retrying. Do not install, start, restart, or configure a server merely to repair delivery without the applicable authority.
+
+## 5. Shared text record
+
+Use the selected task's `chat.md` under `reference/op/agent-chats/<conversation>/`, one Markdown file per task. The [first conversation](agent-chats/2026-10-09-protocol-pilot/chat.md) and [skill packaging and review conversation](agent-chats/2026-10-09-collaboration-skills/chat.md) are separate records. Each new entry uses `## <speaker> — <UTC timestamp>`, with the actual append time; file order is the conversation order. Prefer `###` or deeper for subsections within an entry. When checking the last entry, recognize participant headers, normally with a UTC timestamp, outside fenced code rather than treating every Markdown heading or quoted code example as a new message. Historical entries lacking an exact time keep their recorded date; do not invent a timestamp to repair them.
+
+For each exchange the sender appends its complete contribution before any required notification, then gives the receiver the append turn until a response arrives. Reread the last entry heading immediately before appending and re-evaluate if it changed unexpectedly. Append the prepared UTF-8 entry with a single write on a file opened in append mode; verify the full byte count was written. Never replace the whole transcript to add an entry. Shell `>>` selects append mode but does not itself prove that a long command makes only one write. The sequential handoff prevents competing writes between this pair; an append write does not establish a general cross-process lock. Structural header edits require the pair to be settled and one designated writer. Preserve earlier entries and add corrections as new entries.
+
+Retain outgoing messages, incoming replies, and relevant operator directions. An agent copying another speaker's text labels it as a quotation and identifies the copying agent; summaries are explicitly summaries. Do not invent an Op entry, reconstruct inaccessible history, or imply complete automatic capture of native chats. This is an agent-maintained record, not an implemented durable queue or exactly-once delivery system. No hidden reasoning, raw tool logs, credentials, or unrelated private content belongs in it.
+
+Messages can carry the substantive text directly or ask the peer to read a clearly identified new entry. A shared-file write alone does not wake the peer: notify an idle receiver through the appropriate route, but omit the notification for a requested `shared-file` reply that Codex is actively awaiting. A notification identifies the entry and whether a response is requested. A late notification pointing to an entry already handled does not restart work or require an acknowledgment. Manual prompting remains a fallback, not a requirement for each exchange.
+
+Chats are intended repository evidence and are excluded from the public website by the [static-site builder](../../scripts/build-static-site.mjs), which excludes `reference/op/agent-chats/`. Website exclusion does not hide them from the repository's readers. Staging, committing, and publishing remain separate actions. Stop appends when the designated publication runner freezes the candidate; follow the existing [retention policy](machine-artifact-retention.md).
+
+## 6. Work, stopping, and recovery
+
+Work in the existing checkout and follow its live instructions. Assign one writer at a time for overlapping files; either coordinator may own a bounded edit. Read current sources before acting on a peer's findings. Agreement between agents does not replace independent mathematical or computational evidence; [AGENTS.md](../../AGENTS.md#evidence-independence) remains authoritative.
+
+A conversation continues as needed for the authorized task, subject to Op's limits. Do not create acknowledgment loops or continue merely to keep the exchange alive. Stop when the task is complete, Op pauses or closes the collaboration, a stated limit is reached, or a blocking permission or routing error occurs. Ordinary queued text is not an immediate interrupt of an in-progress tool call; report whether a stop was sent, observed, or applied rather than treating these as equivalent.
+
+After an uncertain send, inspect the destination or obtain a matching receipt before another attempt. A queue ID proves acceptance, a visible message proves arrival, and a substantive reply provides evidence of processing; none guarantees the correctness of the work. Existing app processes, UI layouts, and command behavior may change after updates or restarts. Recheck only the affected route when it fails or its relevant interface changes.
+
+## 7. Remaining limits
+
+Claude reported during the Weber review that its desktop-host instructions require direct human authorization for scope and that it has accepted protocol development and Weber review, but has not yet accepted pair-wide standing authorization. Section 1 records Op's intended rule; this reported host restriction remains a cross-task limitation until the receiving session accepts the broader scope. The coordinators cannot remove host restrictions by editing this document.
+
+Pending-message ordering beyond the observed delayed queue notifications, operation after app restarts or updates, and broad arbitrary-input fidelity remain untested. Sections 3–6 state the handling rules for concurrent UI navigation, uncertain delivery, and incomplete transcript capture. Changing the return route prevents new redundant notifications; it does not cancel messages already queued.
+
+## 8. Skill entry points
+
+Codex's repository skill is [codex-claude-collaborate](../../.agents/skills/codex-claude-collaborate/SKILL.md), with its maintained routing instructions in [the skill owner](skills/skill-codex-claude-collaborate.md). It reads this protocol and the selected conversation's live bindings. The protocol remains the source of communication rules; the skill does not freeze session IDs or duplicate authorization and message limits. Codex can select it for matching collaboration requests or use an explicit `$codex-claude-collaborate` mention. [OpenAI's skills documentation](https://learn.chatgpt.com/docs/build-skills) describes repository discovery and invocation.
+
+Claude's counterpart is [claude-codex-collaborate](../../.claude/skills/claude-codex-collaborate/SKILL.md), with its maintained instructions and archive build command in [the Claude skill owner](skills/skill-claude-codex-collaborate.md). For the Claude desktop chat or Cowork surface, [Anthropic's supported installation](https://support.claude.com/en/articles/12512180-use-skills-in-claude) is a skill-folder ZIP uploaded and enabled through Customize → Skills. [Claude Code](https://code.claude.com/docs/en/skills) also discovers repository skills under `.claude/skills/`; that local directory does not establish installation in a desktop Cowork session. The package locates this live protocol through repository access rather than shipping a second copy. The source and upload archive are created; desktop/account installation and Claude skill discovery remain untested.
+
+Codex retains write ownership of its skill package and maintained instructions; Claude retains write ownership of its counterpart and generated package. Each reviews the other's work through comments. The shared protocol remains a single owner of communication rules.
+
+A skill packages instructions, not transport or permissions. Each session still needs access to the repository and the relevant delivery tools, and sections 1 and 7 continue to govern host authorization limits.

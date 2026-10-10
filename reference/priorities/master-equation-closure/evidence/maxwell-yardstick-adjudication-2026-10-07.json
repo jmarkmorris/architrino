@@ -1,0 +1,1390 @@
+{
+ "utc_start": "2026-10-08T00:00:41.331707+00:00",
+ "known": {
+  "K1_static_rows_equal": 3.1031676915590914e-17,
+  "K2_G_vs_finite_difference": 8.592363536288658e-12,
+  "K2_E_vs_finite_difference": 8.616801028292672e-12,
+  "K3_uniform_motion_closed_form": 4.39073555834512e-16,
+  "pass": true
+ },
+ "partA": [
+  {
+   "host": "two members on circles of radii 0.5 and 0.3, rates 0.8 and 1.6 (speeds 0.40, 0.48), opposite polarity",
+   "probe": [
+    1.6,
+    0.3,
+    0.2
+   ],
+   "N256": {
+    "avg_canonical": [
+     0.007879525399562883,
+     0.0014774110124180797,
+     0.043522654883159
+    ],
+    "avg_G": [
+     0.007879525399562859,
+     0.001477411012418113,
+     0.043522654883159
+    ],
+    "avg_E": [
+     0.007879525399563056,
+     0.001477411012417871,
+     0.043522654883159005
+    ],
+    "static_integral": [
+     0.007879525399562807,
+     0.0014774110124180422,
+     0.043522654883158984
+    ],
+    "max_abs_difference_among_the_four": 3.034868385718946e-16,
+    "largest_instantaneous_canonical_minus_E": 1.9218959322618447,
+    "min_D": 0.5204490890197173,
+    "min_R": 1.1454798234768222
+   },
+   "N512": {
+    "avg_canonical": [
+     0.007879525399562807,
+     0.0014774110124180211,
+     0.04352265488315901
+    ],
+    "avg_G": [
+     0.007879525399563016,
+     0.0014774110124179582,
+     0.04352265488315898
+    ],
+    "avg_E": [
+     0.007879525399562859,
+     0.0014774110124179925,
+     0.04352265488315897
+    ],
+    "static_integral": [
+     0.007879525399562997,
+     0.0014774110124180495,
+     0.04352265488315904
+    ],
+    "max_abs_difference_among_the_four": 1.9490867433494212e-16,
+    "largest_instantaneous_canonical_minus_E": 1.9218959322618443,
+    "min_D": 0.5203050412250392,
+    "min_R": 1.1454798234768222
+   },
+   "N2048": {
+    "avg_canonical": [
+     0.007879525399562983,
+     0.0014774110124180268,
+     0.04352265488315893
+    ],
+    "avg_G": [
+     0.007879525399562926,
+     0.0014774110124180307,
+     0.04352265488315907
+    ],
+    "avg_E": [
+     0.007879525399562869,
+     0.001477411012417975,
+     0.04352265488315907
+    ],
+    "static_integral": [
+     0.007879525399562808,
+     0.0014774110124179509,
+     0.04352265488315914
+    ],
+    "max_abs_difference_among_the_four": 2.824727665137857e-16,
+    "largest_instantaneous_canonical_minus_E": 1.9218959322618456,
+    "min_D": 0.5202411046000004,
+    "min_R": 1.1454772061637972
+   }
+  },
+  {
+   "host": "two members on circles of radii 0.5 and 0.3, rates 0.8 and 1.6 (speeds 0.40, 0.48), opposite polarity",
+   "probe": [
+    0.2,
+    -1.1,
+    0.9
+   ],
+   "N256": {
+    "avg_canonical": [
+     -0.019219301691553135,
+     0.1057061593035423,
+     0.005790453551004782
+    ],
+    "avg_G": [
+     -0.01921930169155319,
+     0.10570615930354237,
+     0.00579045355100478
+    ],
+    "avg_E": [
+     -0.01921930169155321,
+     0.10570615930354217,
+     0.005790453551004777
+    ],
+    "static_integral": [
+     -0.019219301691553135,
+     0.10570615930354242,
+     0.005790453551004742
+    ],
+    "max_abs_difference_among_the_four": 2.634953026054921e-16,
+    "largest_instantaneous_canonical_minus_E": 1.742522505917569,
+    "min_D": 0.6048175296387124,
+    "min_R": 1.0917730957112572
+   },
+   "N512": {
+    "avg_canonical": [
+     -0.0192193016915532,
+     0.10570615930354225,
+     0.005790453551004753
+    ],
+    "avg_G": [
+     -0.01921930169155314,
+     0.10570615930354242,
+     0.005790453551004633
+    ],
+    "avg_E": [
+     -0.01921930169155311,
+     0.10570615930354231,
+     0.005790453551004652
+    ],
+    "static_integral": [
+     -0.019219301691553184,
+     0.1057061593035423,
+     0.005790453551004814
+    ],
+    "max_abs_difference_among_the_four": 2.2471365789775076e-16,
+    "largest_instantaneous_canonical_minus_E": 1.7425225059175689,
+    "min_D": 0.6045233866165254,
+    "min_R": 1.0917730957112572
+   },
+   "N2048": {
+    "avg_canonical": [
+     -0.019219301691553017,
+     0.10570615930354221,
+     0.005790453551004877
+    ],
+    "avg_G": [
+     -0.019219301691553083,
+     0.10570615930354227,
+     0.005790453551004838
+    ],
+    "avg_E": [
+     -0.01921930169155325,
+     0.10570615930354216,
+     0.005790453551004828
+    ],
+    "static_integral": [
+     -0.01921930169155309,
+     0.10570615930354213,
+     0.005790453551004674
+    ],
+    "max_abs_difference_among_the_four": 2.311612600764485e-16,
+    "largest_instantaneous_canonical_minus_E": 1.742791817795057,
+    "min_D": 0.6045233866165254,
+    "min_R": 1.0917721955187791
+   }
+  },
+  {
+   "host": "two members on circles of radii 0.5 and 0.3, rates 0.8 and 1.6 (speeds 0.40, 0.48), opposite polarity",
+   "probe": [
+    0.05,
+    0.02,
+    0.75
+   ],
+   "N256": {
+    "avg_canonical": [
+     -0.07885467725603389,
+     -0.03154187090241346,
+     -0.9552097850458644
+    ],
+    "avg_G": [
+     -0.07885467725603394,
+     -0.03154187090241367,
+     -0.9552097850458634
+    ],
+    "avg_E": [
+     -0.07885467725603375,
+     -0.03154187090241369,
+     -0.9552097850458634
+    ],
+    "static_integral": [
+     -0.07885467725603419,
+     -0.03154187090241355,
+     -0.9552097850458633
+    ],
+    "max_abs_difference_among_the_four": 1.1549663318604614e-15,
+    "largest_instantaneous_canonical_minus_E": 1.6906708844376583,
+    "min_D": 0.9615659952876449,
+    "min_R": 0.6485353021388645
+   },
+   "N512": {
+    "avg_canonical": [
+     -0.07885467725603398,
+     -0.03154187090241316,
+     -0.9552097850458637
+    ],
+    "avg_G": [
+     -0.0788546772560343,
+     -0.03154187090241389,
+     -0.9552097850458631
+    ],
+    "avg_E": [
+     -0.07885467725603408,
+     -0.0315418709024137,
+     -0.9552097850458631
+    ],
+    "static_integral": [
+     -0.07885467725603418,
+     -0.03154187090241323,
+     -0.9552097850458633
+    ],
+    "max_abs_difference_among_the_four": 7.131886835281874e-16,
+    "largest_instantaneous_canonical_minus_E": 1.6907150445251669,
+    "min_D": 0.9615659952876449,
+    "min_R": 0.6485283530581437
+   },
+   "N2048": {
+    "avg_canonical": [
+     -0.07885467725603336,
+     -0.03154187090241414,
+     -0.9552097850458644
+    ],
+    "avg_G": [
+     -0.07885467725603341,
+     -0.03154187090241331,
+     -0.9552097850458648
+    ],
+    "avg_E": [
+     -0.0788546772560336,
+     -0.03154187090241243,
+     -0.9552097850458648
+    ],
+    "static_integral": [
+     -0.07885467725603396,
+     -0.0315418709024136,
+     -0.9552097850458618
+    ],
+    "max_abs_difference_among_the_four": 3.238977267798396e-15,
+    "largest_instantaneous_canonical_minus_E": 1.6907150445251669,
+    "min_D": 0.9615659952876449,
+    "min_R": 0.6485283530581437
+   }
+  },
+  {
+   "host": "one member on a non-circular accelerated path (max speed about 0.62)",
+   "probe": [
+    1.6,
+    0.3,
+    0.2
+   ],
+   "N256": {
+    "avg_canonical": [
+     0.3962506545298079,
+     0.07826842651188907,
+     0.05304615258785162
+    ],
+    "avg_G": [
+     0.3962506545298079,
+     0.07826842651188898,
+     0.05304615258785165
+    ],
+    "avg_E": [
+     0.3962506545298077,
+     0.078268426511889,
+     0.053046152587851655
+    ],
+    "static_integral": [
+     0.3962506545298081,
+     0.078268426511889,
+     0.05304615258785163
+    ],
+    "max_abs_difference_among_the_four": 4.449557262054371e-16,
+    "largest_instantaneous_canonical_minus_E": 1.4584851028407944,
+    "min_D": 0.62721947357921,
+    "min_R": 1.140136305354756
+   },
+   "N512": {
+    "avg_canonical": [
+     0.39625065452980823,
+     0.07826842651188902,
+     0.05304615258785159
+    ],
+    "avg_G": [
+     0.39625065452980773,
+     0.07826842651188903,
+     0.05304615258785156
+    ],
+    "avg_E": [
+     0.39625065452980834,
+     0.07826842651188895,
+     0.05304615258785162
+    ],
+    "static_integral": [
+     0.3962506545298083,
+     0.07826842651188895,
+     0.053046152587851676
+    ],
+    "max_abs_difference_among_the_four": 5.735825858147626e-16,
+    "largest_instantaneous_canonical_minus_E": 1.4584851028407941,
+    "min_D": 0.62721947357921,
+    "min_R": 1.1401044515455554
+   },
+   "N2048": {
+    "avg_canonical": [
+     0.3962506545298084,
+     0.07826842651188891,
+     0.05304615258785174
+    ],
+    "avg_G": [
+     0.3962506545298083,
+     0.07826842651188898,
+     0.05304615258785172
+    ],
+    "avg_E": [
+     0.3962506545298074,
+     0.078268426511889,
+     0.05304615258785164
+    ],
+    "static_integral": [
+     0.3962506545298086,
+     0.07826842651188899,
+     0.05304615258785157
+    ],
+    "max_abs_difference_among_the_four": 1.223293736920484e-15,
+    "largest_instantaneous_canonical_minus_E": 1.4584950619589347,
+    "min_D": 0.6272107982402549,
+    "min_R": 1.140101834829619
+   }
+  },
+  {
+   "host": "one member on a non-circular accelerated path (max speed about 0.62)",
+   "probe": [
+    0.2,
+    -1.1,
+    0.9
+   ],
+   "N256": {
+    "avg_canonical": [
+     0.06557749572066789,
+     -0.34176192280212014,
+     0.29805853925088927
+    ],
+    "avg_G": [
+     0.06557749572066794,
+     -0.34176192280211976,
+     0.2980585392508892
+    ],
+    "avg_E": [
+     0.0655774957206679,
+     -0.3417619228021198,
+     0.29805853925088915
+    ],
+    "static_integral": [
+     0.06557749572066793,
+     -0.34176192280212003,
+     0.29805853925088927
+    ],
+    "max_abs_difference_among_the_four": 2.833924464077117e-16,
+    "largest_instantaneous_canonical_minus_E": 1.420540228739687,
+    "min_D": 0.5616342859297971,
+    "min_R": 1.1517159595755477
+   },
+   "N512": {
+    "avg_canonical": [
+     0.06557749572066784,
+     -0.34176192280212,
+     0.29805853925088943
+    ],
+    "avg_G": [
+     0.06557749572066793,
+     -0.34176192280212,
+     0.29805853925088893
+    ],
+    "avg_E": [
+     0.06557749572066791,
+     -0.3417619228021199,
+     0.29805853925088927
+    ],
+    "static_integral": [
+     0.06557749572066782,
+     -0.34176192280211976,
+     0.2980585392508893
+    ],
+    "max_abs_difference_among_the_four": 4.611102534756203e-16,
+    "largest_instantaneous_canonical_minus_E": 1.4205402287396878,
+    "min_D": 0.5614718668880352,
+    "min_R": 1.1516901196604024
+   },
+   "N2048": {
+    "avg_canonical": [
+     0.0655774957206678,
+     -0.34176192280212053,
+     0.29805853925088893
+    ],
+    "avg_G": [
+     0.0655774957206678,
+     -0.34176192280212014,
+     0.29805853925088927
+    ],
+    "avg_E": [
+     0.06557749572066777,
+     -0.3417619228021201,
+     0.29805853925088893
+    ],
+    "static_integral": [
+     0.06557749572066805,
+     -0.3417619228021202,
+     0.29805853925088893
+    ],
+    "max_abs_difference_among_the_four": 4.2001807449902774e-16,
+    "largest_instantaneous_canonical_minus_E": 1.4209887055846224,
+    "min_D": 0.5614718668880352,
+    "min_R": 1.151685364333057
+   }
+  },
+  {
+   "host": "one member on a non-circular accelerated path (max speed about 0.62)",
+   "probe": [
+    0.05,
+    0.02,
+    0.75
+   ],
+   "N256": {
+    "avg_canonical": [
+     0.03417268431408452,
+     0.007288008398859716,
+     1.2008673281510016
+    ],
+    "avg_G": [
+     0.03417268431408424,
+     0.00728800839885968,
+     1.2008673281510012
+    ],
+    "avg_E": [
+     0.03417268431408435,
+     0.007288008398859703,
+     1.200867328151002
+    ],
+    "static_integral": [
+     0.03417268431408442,
+     0.007288008398859722,
+     1.2008673281510018
+    ],
+    "max_abs_difference_among_the_four": 6.913868759218039e-16,
+    "largest_instantaneous_canonical_minus_E": 1.6597365654503025,
+    "min_D": 0.682265334765549,
+    "min_R": 0.6640004686044273
+   },
+   "N512": {
+    "avg_canonical": [
+     0.034172684314084364,
+     0.007288008398859689,
+     1.2008673281510038
+    ],
+    "avg_G": [
+     0.034172684314084475,
+     0.007288008398859545,
+     1.2008673281510016
+    ],
+    "avg_E": [
+     0.03417268431408444,
+     0.0072880083988597875,
+     1.2008673281510012
+    ],
+    "static_integral": [
+     0.03417268431408449,
+     0.007288008398859503,
+     1.2008673281510034
+    ],
+    "max_abs_difference_among_the_four": 2.239124187651518e-15,
+    "largest_instantaneous_canonical_minus_E": 1.6597365654503027,
+    "min_D": 0.6822400183086266,
+    "min_R": 0.6639932256418993
+   },
+   "N2048": {
+    "avg_canonical": [
+     0.03417268431408442,
+     0.007288008398859274,
+     1.200867328151001
+    ],
+    "avg_G": [
+     0.03417268431408411,
+     0.00728800839886001,
+     1.2008673281510007
+    ],
+    "avg_E": [
+     0.03417268431408433,
+     0.007288008398859665,
+     1.200867328151002
+    ],
+    "static_integral": [
+     0.03417268431408404,
+     0.007288008398860087,
+     1.2008673281510012
+    ],
+    "max_abs_difference_among_the_four": 1.0254211508097803e-15,
+    "largest_instantaneous_canonical_minus_E": 1.6597365654503027,
+    "min_D": 0.6822067588024341,
+    "min_R": 0.6639829995320136
+   }
+  },
+  {
+   "host": "three members: two circles and the non-circular path, mixed polarity, common period",
+   "probe": [
+    1.6,
+    0.3,
+    0.2
+   ],
+   "N256": {
+    "avg_canonical": [
+     -0.3571821379293588,
+     -0.07094316364783736,
+     -0.08817469904795126
+    ],
+    "avg_G": [
+     -0.3570933671735723,
+     -0.07089040186983782,
+     -0.08816365393889408
+    ],
+    "avg_E": [
+     -0.35720429324213665,
+     -0.07090802278763687,
+     -0.08816365393889426
+    ],
+    "static_integral": [
+     -0.35718193120966124,
+     -0.07094304088936157,
+     -0.08817466240679198
+    ],
+    "max_abs_difference_among_the_four": 0.00010361293949232792,
+    "largest_instantaneous_canonical_minus_E": 22.591201997365065,
+    "min_D": 0.19738104729923855,
+    "min_R": 1.140136305354756
+   },
+   "N512": {
+    "avg_canonical": [
+     -0.3571819312102472,
+     -0.07094304088970908,
+     -0.08817466240681913
+    ],
+    "avg_G": [
+     -0.35718193240980434,
+     -0.07094304160351558,
+     -0.08817466260298736
+    ],
+    "avg_E": [
+     -0.3571819314327051,
+     -0.0709430404630695,
+     -0.08817466260298742
+    ],
+    "static_integral": [
+     -0.3571819312096616,
+     -0.07094304088936153,
+     -0.08817466240679206
+    ],
+    "max_abs_difference_among_the_four": 1.4102663792447642e-09,
+    "largest_instantaneous_canonical_minus_E": 24.39384800849375,
+    "min_D": 0.19738104729923855,
+    "min_R": 1.1401044515455554
+   },
+   "N2048": {
+    "avg_canonical": [
+     -0.35718193120966074,
+     -0.07094304088936143,
+     -0.08817466240679228
+    ],
+    "avg_G": [
+     -0.3571819312096609,
+     -0.07094304088936142,
+     -0.08817466240679209
+    ],
+    "avg_E": [
+     -0.3571819312096617,
+     -0.07094304088936144,
+     -0.08817466240679207
+    ],
+    "static_integral": [
+     -0.35718193120966146,
+     -0.07094304088936124,
+     -0.08817466240679203
+    ],
+    "max_abs_difference_among_the_four": 7.879846534485585e-16,
+    "largest_instantaneous_canonical_minus_E": 24.52166200175634,
+    "min_D": 0.19662235139781103,
+    "min_R": 1.140101834829619
+   }
+  },
+  {
+   "host": "three members: two circles and the non-circular path, mixed polarity, common period",
+   "probe": [
+    0.2,
+    -1.1,
+    0.9
+   ],
+   "N256": {
+    "avg_canonical": [
+     -0.0536783923561239,
+     0.27631685429712843,
+     -0.260524409787579
+    ],
+    "avg_G": [
+     -0.053678392356120236,
+     0.2763168542971249,
+     -0.2605244097875751
+    ],
+    "avg_E": [
+     -0.05367839235612675,
+     0.2763168542971309,
+     -0.26052440978757474
+    ],
+    "static_integral": [
+     -0.05367839235612404,
+     0.2763168542971285,
+     -0.26052440978757874
+    ],
+    "max_abs_difference_among_the_four": 6.395417063408813e-15,
+    "largest_instantaneous_canonical_minus_E": 7.239336878791711,
+    "min_D": 0.3825121297244227,
+    "min_R": 1.1208986266574543
+   },
+   "N512": {
+    "avg_canonical": [
+     -0.05367839235612398,
+     0.2763168542971285,
+     -0.2605244097875791
+    ],
+    "avg_G": [
+     -0.053678392356123796,
+     0.27631685429712816,
+     -0.26052440978757874
+    ],
+    "avg_E": [
+     -0.053678392356123886,
+     0.27631685429712816,
+     -0.2605244097875794
+    ],
+    "static_integral": [
+     -0.053678392356124004,
+     0.2763168542971282,
+     -0.26052440978757896
+    ],
+    "max_abs_difference_among_the_four": 4.628299450818522e-16,
+    "largest_instantaneous_canonical_minus_E": 7.265193390245836,
+    "min_D": 0.3816139280706644,
+    "min_R": 1.1208469177881453
+   },
+   "N2048": {
+    "avg_canonical": [
+     -0.053678392356124024,
+     0.2763168542971286,
+     -0.2605244097875787
+    ],
+    "avg_G": [
+     -0.053678392356124385,
+     0.2763168542971272,
+     -0.26052440978757896
+    ],
+    "avg_E": [
+     -0.05367839235612396,
+     0.27631685429712805,
+     -0.2605244097875775
+    ],
+    "static_integral": [
+     -0.05367839235612395,
+     0.27631685429712843,
+     -0.2605244097875782
+    ],
+    "max_abs_difference_among_the_four": 1.5121217471569992e-15,
+    "largest_instantaneous_canonical_minus_E": 7.271735068895793,
+    "min_D": 0.3815960647650488,
+    "min_R": 1.1208346598501595
+   }
+  },
+  {
+   "host": "three members: two circles and the non-circular path, mixed polarity, common period",
+   "probe": [
+    0.05,
+    0.02,
+    0.75
+   ],
+   "N256": {
+    "avg_canonical": [
+     -0.036566042494258065,
+     -0.008245351670928849,
+     -1.0805000040706874
+    ],
+    "avg_G": [
+     -0.03656604249425833,
+     -0.008245351670929029,
+     -1.0805000040706865
+    ],
+    "avg_E": [
+     -0.03656604249425848,
+     -0.008245351670929275,
+     -1.0805000040706871
+    ],
+    "static_integral": [
+     -0.03656604249425815,
+     -0.008245351670929227,
+     -1.080500004070688
+    ],
+    "max_abs_difference_among_the_four": 1.5771947099938885e-15,
+    "largest_instantaneous_canonical_minus_E": 2.172714804540673,
+    "min_D": 0.682265334765549,
+    "min_R": 0.6640004686044273
+   },
+   "N512": {
+    "avg_canonical": [
+     -0.03656604249425831,
+     -0.008245351670928828,
+     -1.080500004070689
+    ],
+    "avg_G": [
+     -0.036566042494258294,
+     -0.008245351670929057,
+     -1.080500004070687
+    ],
+    "avg_E": [
+     -0.036566042494258356,
+     -0.0082453516709297,
+     -1.0805000040706871
+    ],
+    "static_integral": [
+     -0.036566042494258294,
+     -0.00824535167092884,
+     -1.0805000040706891
+    ],
+    "max_abs_difference_among_the_four": 2.231008837199937e-15,
+    "largest_instantaneous_canonical_minus_E": 2.172783103805388,
+    "min_D": 0.6822400183086266,
+    "min_R": 0.6639932256418993
+   },
+   "N2048": {
+    "avg_canonical": [
+     -0.036566042494258134,
+     -0.008245351670928254,
+     -1.0805000040706845
+    ],
+    "avg_G": [
+     -0.036566042494258426,
+     -0.008245351670929173,
+     -1.080500004070691
+    ],
+    "avg_E": [
+     -0.03656604249425817,
+     -0.008245351670929296,
+     -1.0805000040706898
+    ],
+    "static_integral": [
+     -0.036566042494257794,
+     -0.008245351670929026,
+     -1.0805000040706867
+    ],
+    "max_abs_difference_among_the_four": 4.2683874899426194e-15,
+    "largest_instantaneous_canonical_minus_E": 2.172783103805388,
+    "min_D": 0.6822067588024341,
+    "min_R": 0.6639829995320136
+   }
+  }
+ ],
+ "partB": {
+  "generic_circle_folds": [
+   {
+    "label": "uniform circle, speed 1.5, fixed off-plane receiver; annihilation fold (two roots before)",
+    "S_fold": 2.818403557746018,
+    "D_prime": -1.33497340964123,
+    "R_fold": 3.7018809135326474,
+    "speed_at_fold": 1.5,
+    "n_minus_v_norm": 1.118033988749895,
+    "rows": [
+     {
+      "tau": 0.01,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.992194139572832,
+       0.9967970913586189
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.0230621884623587,
+       1.0159100914390633
+      ],
+      "single_branch_E_times_tau12": [
+       9.454820656623484,
+       9.388723213636501
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.05012082827532391,
+       0.04081054115335257
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9944956012339482,
+      "two_branch_E_magnitude_weight_times_tau32": 0.18843540612021606,
+      "two_branch_G_signed_weight_norm": 0.38149606245419854,
+      "two_branch_E_signed_weight_norm": 0.6701988864917426,
+      "two_branch_G_signed_weight_vector": [
+       0.3479406203329552,
+       0.15193734727057281,
+       0.03730432809684974
+      ]
+     },
+     {
+      "tau": 0.001,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.9994277545582888,
+       0.9995671024896639
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.001989461396637,
+       1.0017712933467862
+      ],
+      "single_branch_E_times_tau12": [
+       92.60073106181974,
+       92.58056865324275
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.04617914463684098,
+       0.04329636105999084
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9994974285110048,
+      "two_branch_E_magnitude_weight_times_tau32": 0.18518129968155245,
+      "two_branch_G_signed_weight_norm": 0.36521919162680694,
+      "two_branch_E_signed_weight_norm": 0.6472507946375996,
+      "two_branch_G_signed_weight_vector": [
+       0.3328834760199822,
+       0.14592474877015377,
+       0.03577173495596474
+      ]
+     },
+     {
+      "tau": 0.0001,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.9999480090038103,
+       0.9999523966287067
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.0001908154302268,
+       1.0001839408441349
+      ],
+      "single_branch_E_times_tau12": [
+       924.3450582909243,
+       924.3387050135457
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.04512123940716732,
+       0.0442115229528102
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999502028162457,
+      "two_branch_E_magnitude_weight_times_tau32": 0.1848683763304134,
+      "two_branch_G_signed_weight_norm": 0.36364917920766743,
+      "two_branch_E_signed_weight_norm": 0.6450310440029525,
+      "two_branch_G_signed_weight_vector": [
+       0.3314313180361424,
+       0.14534424652667038,
+       0.03562382580282625
+      ]
+     },
+     {
+      "tau": 1e-05,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.999994955518594,
+       0.9999950942077835
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.0000188398979188,
+       1.0000186225816259
+      ],
+      "single_branch_E_times_tau12": [
+       9241.861238846255,
+       9241.859230477068
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.04480306674455418,
+       0.044515449089816944
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999950248631887,
+      "two_branch_E_magnitude_weight_times_tau32": 0.1848372046932332,
+      "two_branch_G_signed_weight_norm": 0.36349273594588166,
+      "two_branch_E_signed_weight_norm": 0.6448097960264935,
+      "two_branch_G_signed_weight_vector": [
+       0.33128662034767414,
+       0.14528639719950812,
+       0.035609086660924286
+      ]
+     },
+     {
+      "tau": 1e-06,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.9999995003393423,
+       0.9999995047248907
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.00000187649421,
+       1.0000018696223094
+      ],
+      "single_branch_E_times_tau12": [
+       92417.0446837658,
+       92417.04404868625
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.04470402112620576,
+       0.044613070333077744
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999995025321164,
+      "two_branch_E_magnitude_weight_times_tau32": 0.18483408873245205,
+      "two_branch_G_signed_weight_norm": 0.363477097181322,
+      "two_branch_E_signed_weight_norm": 0.6447876784769341,
+      "two_branch_G_signed_weight_vector": [
+       0.3312721557430157,
+       0.1452806142692915,
+       0.035607613262793575
+      ]
+     },
+     {
+      "tau": 1e-07,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.9999999501843283,
+       0.9999999503230109
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.0000001874138227,
+       1.000000187196515
+      ],
+      "single_branch_E_times_tau12": [
+       924168.8858424108,
+       924168.8856415818
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.04467285506537197,
+       0.0446440939591769
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999999502536696,
+      "two_branch_E_magnitude_weight_times_tau32": 0.18483377714839927,
+      "two_branch_G_signed_weight_norm": 0.36347553336046406,
+      "two_branch_E_signed_weight_norm": 0.6447854667944363,
+      "two_branch_G_signed_weight_vector": [
+       0.33127070933417485,
+       0.1452800359962884,
+       0.035607465928139424
+      ]
+     },
+     {
+      "tau": 1e-08,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.9999999950231788,
+       0.9999999950275643
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.0000000187339462,
+       1.0000000187270743
+      ],
+      "single_branch_E_times_tau12": [
+       9241687.299537467,
+       9241687.299473958
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.04466301491978407,
+       0.04465391986131908
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999999950253715,
+      "two_branch_E_magnitude_weight_times_tau32": 0.18483374599011423,
+      "two_branch_G_signed_weight_norm": 0.36347537697893423,
+      "two_branch_E_signed_weight_norm": 0.644785245626911,
+      "two_branch_G_signed_weight_vector": [
+       0.331270564693807,
+       0.14527997816918825,
+       0.0356074511947256
+      ]
+     }
+    ]
+   },
+   {
+    "label": "uniform circle, speed 1.5, fixed off-plane receiver; birth fold (two roots after)",
+    "S_fold": 3.9369079382971557,
+    "D_prime": 2.228371290903717,
+    "R_fold": 2.217724041499509,
+    "speed_at_fold": 1.5,
+    "n_minus_v_norm": 1.118033988749895,
+    "rows": [
+     {
+      "tau": 0.01,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.9888782333645637,
+       0.9854264859615307
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.01080740857641,
+       1.0154676300796515
+      ],
+      "single_branch_E_times_tau12": [
+       12.06916285683715,
+       12.124806465890993
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.09719500079071541,
+       0.09524354726338871
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9871523563630739,
+      "two_branch_E_magnitude_weight_times_tau32": 0.24193968063583532,
+      "two_branch_G_signed_weight_norm": 0.3690346767141581,
+      "two_branch_E_signed_weight_norm": 0.5618842086333288,
+      "two_branch_G_signed_weight_vector": [
+       -0.34803075271096134,
+       -0.12136367877388268,
+       -0.018222109083053363
+      ]
+     },
+     {
+      "tau": 0.001,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.998800473967079,
+       0.9986954724874418
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.0011989533314563,
+       1.0013413693965463
+      ],
+      "single_branch_E_times_tau12": [
+       119.54436737726783,
+       119.56137202789087
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.0966290107167934,
+       0.09597339819569631
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9987479732243629,
+      "two_branch_E_magnitude_weight_times_tau32": 0.23910573939231577,
+      "two_branch_G_signed_weight_norm": 0.35498061241622947,
+      "two_branch_E_signed_weight_norm": 0.5434149191120795,
+      "two_branch_G_signed_weight_vector": [
+       -0.3348004647136365,
+       -0.11667678635619361,
+       -0.017504614949364217
+      ]
+     },
+     {
+      "tau": 0.0001,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.9998767663834834,
+       0.9998734586328747
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.0001243499771557,
+       1.0001288384024765
+      ],
+      "single_branch_E_times_tau12": [
+       1194.1605843552964,
+       1194.1659435894794
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.09641434188160979,
+       0.09620581469672239
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9998751125081762,
+      "two_branch_E_magnitude_weight_times_tau32": 0.23883265279446472,
+      "two_branch_G_signed_weight_norm": 0.35362273381464615,
+      "two_branch_E_signed_weight_norm": 0.5416279511479463,
+      "two_branch_G_signed_weight_vector": [
+       -0.3335220891979694,
+       -0.11622419303979259,
+       -0.017435333085859313
+      ]
+     },
+     {
+      "tau": 1e-05,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.9999875666710188,
+       0.9999874621107467
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.0000125842687033,
+       1.0000127261573675
+      ],
+      "single_branch_E_times_tau12": [
+       11940.271347460359,
+       11940.273041628188
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.09634396241992829,
+       0.0962779822919639
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999875143908827,
+      "two_branch_E_magnitude_weight_times_tau32": 0.23880544389088548,
+      "two_branch_G_signed_weight_norm": 0.3534874060592647,
+      "two_branch_E_signed_weight_norm": 0.5414498353237067,
+      "two_branch_G_signed_weight_vector": [
+       -0.3333946839357268,
+       -0.11617908949618966,
+       -0.017428428780032545
+      ]
+     },
+     {
+      "tau": 1e-06,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.999998753123657,
+       0.9999987498172973
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.0000012632358763,
+       1.0000012677226389
+      ],
+      "single_branch_E_times_tau12": [
+       119401.36172957542,
+       119401.3622653003
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.0963214948050054,
+       0.09630062885366983
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999987514704771,
+      "two_branch_E_magnitude_weight_times_tau32": 0.23880272399487573,
+      "two_branch_G_signed_weight_norm": 0.35347387787006823,
+      "two_branch_E_signed_weight_norm": 0.5414320295329313,
+      "two_branch_G_signed_weight_vector": [
+       -0.3333819477185908,
+       -0.11617458069469842,
+       -0.01742773858748476
+      ]
+     },
+     {
+      "tau": 1e-07,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.9999998751996395,
+       0.9999998750950837
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.0000001264765637,
+       1.000000126618447
+      ],
+      "single_branch_E_times_tau12": [
+       1194012.25999137,
+       1194012.2601607803
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.09631436999295093,
+       0.09630777156173664
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999998751473615,
+      "two_branch_E_magnitude_weight_times_tau32": 0.23880245201521502,
+      "two_branch_G_signed_weight_norm": 0.35347252509699734,
+      "two_branch_E_signed_weight_norm": 0.5414302490117523,
+      "two_branch_G_signed_weight_vector": [
+       -0.3333806741399543,
+       -0.116174129830073,
+       -0.017427669570609563
+      ]
+     },
+     {
+      "tau": 1e-08,
+      "single_branch_G_times_tau32_over_prediction": [
+       0.9999999875163925,
+       0.9999999875130862
+      ],
+      "single_branch_E_times_tau32_over_prediction": [
+       1.000000012652503,
+       1.0000000126569897
+      ],
+      "single_branch_E_times_tau12": [
+       11940121.240840632,
+       11940121.240894204
+      ],
+      "single_branch_canonical_times_tau12": [
+       0.09631211497633355,
+       0.09631002836796859
+      ],
+      "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999999875147393,
+      "two_branch_E_magnitude_weight_times_tau32": 0.23880242481734834,
+      "two_branch_G_signed_weight_norm": 0.3534723898201487,
+      "two_branch_E_signed_weight_norm": 0.5414300709602133,
+      "two_branch_G_signed_weight_vector": [
+       -0.33338054678252144,
+       -0.11617408474376568,
+       -0.017427662668945836
+      ]
+     }
+    ]
+   }
+  ],
+  "collinear_fold": {
+   "label": "uniformly accelerated transmitter moving straight at the receiver; annihilation fold at speed 1",
+   "S_fold": 2.0,
+   "D_prime": -0.5,
+   "R_fold": 4.0,
+   "speed_at_fold": 1.0,
+   "n_minus_v_norm": 0.0,
+   "rows": [
+    {
+     "tau": 0.01,
+     "single_branch_G_times_tau32_over_prediction": [
+      0.9997145661753956,
+      1.0002221450094269
+     ],
+     "single_branch_E_times_tau32_over_prediction": null,
+     "single_branch_E_times_tau12": [
+      0.14619781260225145,
+      0.1082244917720906
+     ],
+     "single_branch_canonical_times_tau12": [
+      0.06961800600107211,
+      0.056960258827416115
+     ],
+     "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999683555924113,
+     "two_branch_E_magnitude_weight_times_tau32": 0.0025442230437434207,
+     "two_branch_G_signed_weight_norm": 0.06344735425391482,
+     "two_branch_E_signed_weight_norm": 0.37973320830160834,
+     "two_branch_G_signed_weight_vector": [
+      0.06344735425391482,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "tau": 0.001,
+     "single_branch_G_times_tau32_over_prediction": [
+      0.9999917695439443,
+      1.0000076046740551
+     ],
+     "single_branch_E_times_tau32_over_prediction": null,
+     "single_branch_E_times_tau12": [
+      0.1311556739598983,
+      0.11928229521623968
+     ],
+     "single_branch_canonical_times_tau12": [
+      0.06455709961043248,
+      0.060599306778354234
+     ],
+     "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999996871089997,
+     "two_branch_E_magnitude_weight_times_tau32": 0.000250437969176138,
+     "two_branch_G_signed_weight_norm": 0.06259384774421392,
+     "two_branch_E_signed_weight_norm": 0.3754692035178982,
+     "two_branch_G_signed_weight_vector": [
+      0.06259384774421392,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "tau": 0.0001,
+     "single_branch_G_times_tau32_over_prediction": [
+      0.9999997468371055,
+      1.0000002469121132
+     ],
+     "single_branch_E_times_tau32_over_prediction": null,
+     "single_branch_E_times_tau12": [
+      0.12689711174162113,
+      0.1231466429463047
+     ],
+     "single_branch_canonical_times_tau12": [
+      0.06313289141374186,
+      0.061882735148896834
+     ],
+     "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999999968746094,
+     "two_branch_E_magnitude_weight_times_tau32": 2.5004375468792582e-05,
+     "two_branch_G_signed_weight_norm": 0.06250937597665039,
+     "two_branch_E_signed_weight_norm": 0.3750468795316426,
+     "two_branch_G_signed_weight_vector": [
+      0.06250937597665039,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "tau": 1e-05,
+     "single_branch_G_times_tau32_over_prediction": [
+      0.9999999920629369,
+      1.0000000078745623
+     ],
+     "single_branch_E_times_tau32_over_prediction": null,
+     "single_branch_E_times_tau12": [
+      0.1255951219963792,
+      0.12440925305049623
+     ],
+     "single_branch_canonical_times_tau12": [
+      0.06269842608212599,
+      0.062303136433499155
+     ],
+     "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999999999687497,
+     "two_branch_E_magnitude_weight_times_tau32": 2.5000437504687543e-06,
+     "two_branch_G_signed_weight_norm": 0.06250093750976571,
+     "two_branch_E_signed_weight_norm": 0.3750046875453129,
+     "two_branch_G_signed_weight_vector": [
+      0.06250093750976571,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "tau": 1e-06,
+     "single_branch_G_times_tau32_over_prediction": [
+      0.9999999997496871,
+      1.0000000002496878
+     ],
+     "single_branch_E_times_tau32_over_prediction": null,
+     "single_branch_E_times_tau12": [
+      0.1251877189846096,
+      0.12481271851585915
+     ],
+     "single_branch_canonical_times_tau12": [
+      0.0625625782032032,
+      0.06243757804695305
+     ],
+     "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999999999996875,
+     "two_branch_E_magnitude_weight_times_tau32": 2.5000043750046877e-07,
+     "two_branch_G_signed_weight_norm": 0.06250009375009766,
+     "two_branch_E_signed_weight_norm": 0.3750004687504531,
+     "two_branch_G_signed_weight_vector": [
+      0.06250009375009766,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "tau": 1e-07,
+     "single_branch_G_times_tau32_over_prediction": [
+      0.9999999999920912,
+      1.0000000000079026
+     ],
+     "single_branch_E_times_tau32_over_prediction": null,
+     "single_branch_E_times_tau12": [
+      0.12505931458854208,
+      0.1249407291614626
+     ],
+     "single_branch_canonical_times_tau12": [
+      0.06251977205034737,
+      0.0624802435746542
+     ],
+     "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 0.9999999999999969,
+     "two_branch_E_magnitude_weight_times_tau32": 2.5000004375000468e-08,
+     "two_branch_G_signed_weight_norm": 0.06250000937500097,
+     "two_branch_E_signed_weight_norm": 0.37500004687500454,
+     "two_branch_G_signed_weight_vector": [
+      0.06250000937500097,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "tau": 1e-08,
+     "single_branch_G_times_tau32_over_prediction": [
+      0.99999999999975,
+      1.00000000000025
+     ],
+     "single_branch_E_times_tau32_over_prediction": null,
+     "single_branch_E_times_tau12": [
+      0.1250187521877344,
+      0.12498125218726565
+     ],
+     "single_branch_canonical_times_tau12": [
+      0.06250625078132813,
+      0.062493750781171885
+     ],
+     "two_branch_G_magnitude_weight_times_tau32_over_twice_prediction": 1.0,
+     "two_branch_E_magnitude_weight_times_tau32": 2.5000000437500004e-09,
+     "two_branch_G_signed_weight_norm": 0.06250000093750001,
+     "two_branch_E_signed_weight_norm": 0.37500000468750005,
+     "two_branch_G_signed_weight_vector": [
+      0.06250000093750001,
+      0.0,
+      0.0
+     ]
+    }
+   ]
+  }
+ },
+ "partA_worst_difference_N2048": 4.2683874899426194e-15,
+ "partA_negative_control_half_period": 0.12726146562244464,
+ "utc_end": "2026-10-08T00:00:43.420728+00:00"
+}

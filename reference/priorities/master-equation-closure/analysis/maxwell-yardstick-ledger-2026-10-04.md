@@ -200,3 +200,5 @@ Three Node scripts under `.tmp/maxwell-variation/` produced the numbers. `check.
 The slow-drift estimate in Section 3.5 is an algebraic calculation with no instrument; its two known cases are the adjudicated BIN-2 and BIN-8 rates.
 
 All evaluations are double-precision floating point on prescribed histories. They are measured checks of row algebra and of sign changes. They establish no coupled evolution, stability property, secular fate or physical account.
+
+**Adjudication note, 2026-10-08.** At the operator's request the cycle-average identity of Section 3.6 was separately adjudicated: re-derived, checked with separately written code on three hosts, and refereed. It is confirmed, and its grade is now derived and independently confirmed; the [adjudication](maxwell-yardstick-cycle-average-and-fold-adjudication-2026-10-07.md#2-part-a-the-cycle-average-identity) adds only that the host path is to be twice continuously differentiable. The rest of this ledger remains self-reviewed.

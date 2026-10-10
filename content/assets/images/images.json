@@ -25195,6 +25195,56 @@
         "Do not reference from markdown, scenes, or generated outputs until reuse rights are confirmed.",
         "The formulas and force language are observer-level standard-physics material and are not Architrino-level premises."
       ]
+    },
+    {
+      "id": "ceiling-contact-c1-release-and-spiral",
+      "title": "Release C1 under the field-speed ceiling variant: release geometry and the approach of members 0 and 2",
+      "description": "Four-panel research figure. Panels A and B show the three-member rigid balance C1 at release (top view with causal images, and its isosceles triangle face-on). Panels C and D show members 0 and 2 closing on each other, to scale and with separation on a logarithmic scale, drawn from a stored trajectory, with the closed-form pursuit-limit spiral overlaid. The equation is the field-speed ceiling research variant, not the Master Equation.",
+      "path": "content/assets/images/claude-generated/ceiling-contact-c1-release-and-spiral.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1980,
+        "height": 1890
+      },
+      "fileSizeBytes": 492300,
+      "sha256": "6317b1dd2f6df1c16c7132e381ee04671cc2a353700ee48d96c74740caea88fc",
+      "dateCreated": "2026-10-06",
+      "dateImported": "2026-10-07",
+      "status": "needs-review",
+      "category": "research-figure",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "ccth_figure.py in .local-data/master-equation-closure/ceiling-contact-two-hour-20261006/ (local evidence; reads the case file and the stored fine-setting trajectory)",
+        "accessedDate": "2026-10-07"
+      },
+      "creators": [
+        {
+          "name": "Claude (Anthropic), working for the Architrino project",
+          "role": "figure author; matplotlib rendering of project data"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Generated within the project from project-owned research data and code.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created for the Architrino project by Claude, 2026.",
+      "usage": {
+        "intendedUses": [
+          "research record figure"
+        ],
+        "usedBy": [
+          "reference/priorities/master-equation-closure/braid-program/analysis/ceiling-contact-two-hour-2026-10-06.md"
+        ]
+      },
+      "selectionNotes": [
+        "First file in the claude-generated folder created by operator decision on 2026-10-07.",
+        "Working research figure for an authorized, unadopted equation variant. The coincidence it illustrates is inferred and not proved; the record it belongs to has had no human review.",
+        "Do not reference from reader-facing markdown, scenes, or generated outputs until the underlying result is reviewed and the figure is approved."
+      ]
     }
   ]
 }

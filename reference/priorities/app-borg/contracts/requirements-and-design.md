@@ -6,6 +6,20 @@ The app lets the operator build, run, inspect, and replay finite simulation wind
 
 This packet owns the durable app requirements. The live app already consumes EOM-run rows, but no display, replay, or developer-test surface upgrades those rows beyond their source authority.
 
+## Study Explanation Alongside the Visualization
+
+Operator direction recorded on 2026-10-09. This is an accepted presentation requirement; recording it does not assert that the interface has been implemented.
+
+The most important information accompanying each pictured study is its facts, insights and conclusions. Borg's target audience wants to understand what the animation means and what the investigation found. The primary presentation must explain whether an assembly formed, whether stability was established, whether it survived the perturbations actually investigated, and whether the observed pattern is transient or has evidence of persistence. Explain why the result matters and what remains unresolved in ordinary language. Distinguish a prepared assembly from one that formed during evolution, and distinguish surviving the recorded interval from established longer-term persistence. If stability or perturbation survival was not studied, say so plainly.
+
+Provide a concise, one-paragraph description for each selected study explaining what is pictured, how it was prepared or formed, what happens, and the strongest supported conclusion with its relevant limit. Identify the equation choice in understandable terms when it matters to the result. The paragraph and the study's principal insights must be available alongside the animation during playback, scrubbing and pause; understanding the result must not depend on catching a temporary notice or leaving the view. On a study change, update the explanation with the selected result. In comparisons, explain each study and the significant difference between them. The wording should distinguish a conclusion about the whole study from what is visible at the current frame.
+
+Numerical metrics, residual tables, solver settings, verification receipts and review mechanics are supporting material for technical inspection, not the default explanation for this audience. Keep them accessible through secondary details and links to the open-source research and implementation, where interested readers can inspect the work and request changes. Explain substantive uncertainty and stopping conditions in the primary prose; putting technical details behind a link must not hide a limitation that changes the conclusion. Reports of review by multiple LLMs belong with the actual review provenance and do not replace the explanation or independently establish a scientific result.
+
+Use the source-owned findings and exact study binding described in the [Scientific-Status Inspector](#scientific-status-inspector). An attractive or persistent-looking animation supplies no new finding. Prescribed motion must be described as prescribed, and missing findings must remain unknown. The explanation requirement applies across Library inspection, workbench replay, simulation and study comparisons; an unreviewed live run should state that conclusions are not yet established rather than generate a verdict from its appearance.
+
+Acceptance means a reader can understand the pictured study's formation, stability, tested perturbation response and persistence status while playing or paused, without interpreting numerical diagnostics. The explanation must match the selected source result and make untested or unresolved questions explicit. Numerical and review detail remains available for inspection without becoming the main viewing experience.
+
 ## Non-Negotiable Boundaries
 
 1. The EOM solver is the production solver for architrino motion, causal roots, delayed hits, path histories, wake history, simulation-window stepping, and solver-owned geometry.
@@ -215,6 +229,8 @@ Plainly: turning a preview can change which part is in front, but it can never p
 Acceptance fixtures include at least one pair of visually similar configurations with different histories, one pair of differently named configurations with the same coarse shape, capped and uncapped configurations with the same sub-$c_f$ displayed speed, and a record with no declared speed policy. A user must be able to reach each exact leaf through filters and selected-result details without knowing any development code, while the machine contract distinguishes the targets without pixel comparison. Identical-looking records must not require visual discrimination alone.
 
 ### Scientific-Status Inspector
+
+The [study explanation](#study-explanation-alongside-the-visualization) is the primary reader-facing presentation of these findings. The detailed requirement table, numerical diagnostics and provenance remain available in secondary inspection; the reader should not need to decode them to understand the study's conclusion.
 
 Every inspected exact Library record and exact prescribed-record replay in the Borg workbench consumes the same `borg-scientific-status-projection.v1` contract. The Braid Program's [candidate requirement adjudication](../../master-equation-closure/braid-program/analysis/braid-candidate-requirement-adjudication.md) remains the scientific authority; the versioned [machine-readable projection](../../master-equation-closure/braid-program/contracts/braid-candidate-adjudication-projection.v1.json) carries exact identity targets, explicit slice or broader scope, `H1`--`H5` tokens and claim grades, tested realization and domain, assumptions, horizon, instrument, evidence links, boundaries, blocker, falsifier, lifecycle, owner path, owner digest, and source anchor. The browser validates and renders this projection but never parses the Markdown owner, solves a causal root, runs the EOM solver, evaluates stability, or adjudicates a candidate.
 

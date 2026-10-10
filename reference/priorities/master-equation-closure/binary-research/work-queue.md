@@ -25,15 +25,6 @@ This is the execution ledger for isolated two-architrino investigations. BP-001 
 - **Request:** Refine the [endpoint-level assessment](analysis/binary-review-integration-2026-10-03.md#campaign-predictions-and-their-limits) into source-linked hypotheses for all 27 endpoint rows and each of their three prehistories before production use.
 - **Completion / falsifier:** State the root/history hypotheses supporting each prediction, mark unclassified cases explicitly, and apply the frozen finite-window bound/dispersion gates. A lateral prehistory is not a collinear history; the slow lemma does not cover the whole speed grid; an instantaneous escape threshold is only a comparison. A future admitted run may overturn a prediction, but this table books no fate and changes no campaign gate.
 
-## Proposed analytical follow-up
-
-### Decide whether any further delayed Weber adaptation is examined
-
-- **Status:** ○ Proposed — decision required; no adaptation beyond the completed expansion is approved.
-- **What is settled:** Section 9a loses the bound pair, and the [expansion of the first proposal](analysis/weber-delayed-p1-slow-expansion.md#4-verdict) shows that redirecting each hit along the extrapolated line of action removes the first-order forward push and leaves a third-order one, so the pair still expands. No law that is radial about the extrapolated position can change that third-order term by a scalar factor (inferred).
-- **Choices:** close the delayed Weber family at these verdicts; approve an independent adjudication of the expansion; or approve work on the [second or third proposal](analysis/weber-delayed-pair-adaptation-proposals.md), each of which needs its own explicit approval under the [approval rule](../equation-variants/README.md#operator-approval-for-deviations). The open measured items in Section 9a, first-half slopes above $K/c_f$ and an unresolved $1.8\times10^{-4}$ difference between the two instruments in $h$ at the WP-3 stop, refine a rate and an evaluation point within a law that already fails.
-- **Completion:** an explicit selection, rejection or deferral with a revisit condition. Nothing is executable from this entry.
-
 ## Authorized analytical continuation
 
 ### Select the later branch of an admitted logarithmic perturbation
@@ -88,7 +79,7 @@ The operator rejected future-supported interaction, growing-distance linear resp
 
 - **Status:** ✓ Done — 2026-10-06, frozen after 54 minutes of its four-hour window with a separately authored reference.
 - **Selection:** the operator approved the unchanged Section 9a law on one pair on 2026-10-05; the [launch brief](analysis/weber-delayed-pair-launch-brief.md) records the approval.
-- **Result:** the [investigation](analysis/weber-delayed-pair-investigation.md#8-verdict) finds the bound class lost: only the canonical circles exist, the first departure from the instantaneous law is a first-order forward push that no scalar bracket removes, slow pairs expand at $d(\rho_h^2)/dT=K/c_f$, and bound-class preparations unbind or reach the wake speed. Open measured items: first-half slopes above $K/c_f$, and a relative difference of $1.8\times10^{-4}$ between the two instruments in $h$ at the WP-3 stop, unresolved.
+- **Result:** the [investigation](analysis/weber-delayed-pair-investigation.md#8-verdict) finds, on the preparations examined, that the bound class is lost: only the canonical circles exist, the first departure from the instantaneous law is a first-order forward push that no regular unit-limit scalar bracket removes, slow pairs expand at $d(\rho_h^2)/dT=K/c_f$, and bound-class preparations unbind or reach the wake speed. Open measured items: first-half slopes above $K/c_f$, and a relative difference of $1.8\times10^{-4}$ between the two instruments in $h$ at the WP-3 stop, unresolved.
 
 ### Derive the instantaneous Weber circle against frequency
 
@@ -234,3 +225,15 @@ Consume the [existing instrument gate](../braid-program/campaigns/instrument-gat
 ## Ring-session analytical completion: low speed and slow growth
 
 The [independently adjudicated all-even low-speed proof](../braid-program/analysis/ring-arbitrary-inventory-low-speed-independent-adjudication-2026-10-03.md) includes the antipodal binary: its tangential residual is strictly positive for $0<\beta\le1$ and its rest radial residual is $-1/4$ in normalized units. There is no exact low-speed circle to linearise about. At the separately admitted sufficiently high exact superwake binary loci, the [slow-branch theorem](../braid-program/analysis/ring-slow-planar-limit-independent-adjudication-2026-10-03.md) gives normalized $\lambda/\beta\to6\tau_*$, $\tau_*=0.71616422657180624\ldots$, in addition to fast growth. No computable first rung, full spectrum or nonlinear binary fate is supplied. These are completed bounded analytical results of the authorized ring session; BP-001 and deferred numerical tasks retain their status.
+
+## Retired Weber decision references
+
+These settled references preserve links from earlier records; they are outside the live queue. The [operator’s dormancy decision](../brainstorming.md#weber-research-disposition--dormant-2026-10-09) governs future work.
+
+### Review the case for closing the delayed Weber family (Codex)
+
+**Status: Superseded — 2026-10-09.** Op adopted dormancy after the Codex–Claude assessment. The separately specified per-step closing review and general-history expansion adjudication were not completed; the review assignment is retired by this decision. Existing proofs, reviews, limitations and questions remain available from the decision record.
+
+### Decide whether any further delayed Weber adaptation is examined
+
+**Decision closed — 2026-10-09.** Op made Weber dormant. Further adaptation research is deferred; the completed first-proposal expansion and the unexamined second and third proposals are retained. Reopening requires an explicit operator selection under the recorded conditions; any new equation or scope also requires its fixed specification to be approved.

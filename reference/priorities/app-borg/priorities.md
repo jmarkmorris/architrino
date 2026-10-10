@@ -30,10 +30,19 @@ Maintain Borg as an app-facing surface for EOM-solver simulation and sealed-reco
 6. Use normalized field speed $c_f=1$ for Borg EOM runs unless an explicit manifest transform is present.
 7. Borg owns the selected teaching surfaces for prescribed geometry, source-carried classification and polarity rows, and interaction-ledger display; the scientific owner must supply every non-display row.
 8. The assembly catalog is flat: no required family or parent metadata, no family menu headings, and no name-derived classifications. [The accepted decision](../../architectural-decisions/flat-assembly-catalog.md) preserves mathematical constraints and exact source provenance separately.
+9. The primary accompaniment to every pictured study is a plain-language account of its facts, insights and conclusions: assembly formation, stability, tested perturbation survival and transient or persistent behavior. A one-paragraph animation description and principal findings remain available during playback and pause. Numerical metrics and verification details belong in secondary inspection with open-source links. The [study explanation requirement](contracts/requirements-and-design.md#study-explanation-alongside-the-visualization) owns this operator-directed presentation policy; implementation is not claimed.
 
 ## Work Queue
 
 The locally ranked execution order, including deferred workflows, lives in [work-queue.md](work-queue.md).
+
+## Accepted Weber visualization addition
+
+The operator requires circular and noncircular instantaneous Weber bound pairs in Borg. [BORG-019](work-queue.md#borg-019--instantaneous-weber-bound-pair-visualizations) owns the catalog and visualization acceptance, including a stable circle, a near-circular rosette and the eccentric WP-2 case. Reuse the independently confirmed completed benchmark with its exact equation and source records; this app addition leaves Weber research dormant. The [motion explanation](brainstorming.md#noncircular-weber-bound-pairs) describes what the noncircular examples show.
+
+## Proposed research integration
+
+The [alternative-equation assembly proposal](brainstorming.md#assemblies-under-alternative-master-equations) describes source-bound equation selection, research-record replay and comparisons, followed separately by validated EOM support for selected variants. Beyond the accepted Weber pair addition above, this broader design remains provisional. Its proposed first step is an intake inventory for one released-balance comparison under the canonical and field-speed-ceiling equations; no additional implementation task, research execution, score change or reactivation is selected.
 
 ## Promotion Boundary
 
