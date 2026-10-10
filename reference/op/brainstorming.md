@@ -340,7 +340,7 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 
 - Default meta-optimization wrapper for any Codex thread: [codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md).
 - Multiple parallel Codex threads: start from [codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md), then use [codex-multiprompt.md](codex-multiprompt.md) for worker boundaries and integration.
-- Codex–Claude coordinator chat: [Codex–Claude Collaboration](skills/skill-codex-claude-collaborate.md) reads the live [desktop collaboration protocol](codex-claude-protocol.md) and the selected conversation's coordinator bindings. The protocol governs the demonstrated desktop delivery routes and the repository-retained text conversation.
+- Codex–Claude coordinator chat: [Codex–Claude Collaboration](skills/codex-claude-collaborate/SKILL.md) reads the live [desktop collaboration protocol](codex-claude-protocol.md) and the selected conversation's coordinator bindings. The protocol governs the demonstrated desktop delivery routes and the repository-retained text conversation.
 
 ## Issue Resolution and Publication
 

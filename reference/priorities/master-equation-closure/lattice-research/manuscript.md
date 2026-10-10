@@ -977,6 +977,8 @@ The selected pair continues upward and gains upward speed through this extension
 
 ### 1.24. A wake-speed obstruction before the next maximum
 
+The [2026-10-10 chain reconstruction](analysis/lattice-continuation-chain-review-2026-10-10.md) and [separate Codex assessment](analysis/lattice-continuation-chain-codex-assessment-2026-10-10.md) reconstruct the causal joins and the continuation obstructions in Sections 1.24–1.26. The event uses the accepted history through five, independently of the older first-displacement-boundary bracket. The unchanged history audit and independent event arithmetic reference were replayed after their known controls passed; all 48064 positive-kernel propagation steps were checked against preserved inputs. The event residual, field and source-prefix enclosures remain accepted inputs and were not recomputed in that follow-up. The later curved-path theorem's absolute individual-row class excludes this grouped stationary lattice; the lattice-specific weaker-continuation and measure arguments below retain the original summation convention and supply the obstruction.
+
 The [event certificate](analysis/smooth-two-particle-next-event-continuation.md), with its [independent assessment](analysis/smooth-two-particle-next-event-independent-adjudication.md), proves a first global speed-one event under the identical supplied past and unmodified equation:
 
 $$
