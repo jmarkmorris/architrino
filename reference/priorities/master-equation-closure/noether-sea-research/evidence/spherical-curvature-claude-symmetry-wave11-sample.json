@@ -1,0 +1,60 @@
+{
+ "pid": 33165,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: constant-field toy, t_lb <= sqrt(2q/(g f0)) <= t_ub (width < 1e-7) and q_c,ub >= 1/(2 g f0)",
+   "t_lb": 1.1952286093130458,
+   "t_ub": 1.1952286093557414,
+   "exact": 1.1952286093343936,
+   "q_c_ub": 0.7142857143112297,
+   "expected_q_c": 0.7142857142857143,
+   "pass": true
+  },
+  {
+   "name": "known: stationary hexagon envelope straddles zero at release",
+   "flb0": -0.002487831252838557,
+   "fub0": 0.010347614688655173,
+   "pass": true
+  },
+  {
+   "name": "negative: envelope from a polarity-flipped case violates the true W bounds",
+   "max_violation": 1.1685553163195697,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "sample": {
+  "case": "six poles",
+  "g": 1.0,
+  "wall_s": 0.32863283157348633,
+  "result": {
+   "Q_deg": 42.97183463481174,
+   "N": 200,
+   "m": 21,
+   "envelope_positive": true,
+   "min_flb": 0.9994995981157955,
+   "max_fub": 1.290542639170671,
+   "q_c_bounds_deg": [
+    26.97141770068888,
+    27.024439810178972
+   ],
+   "t_c_bounds": [
+    0.962207038662762,
+    0.9639521408918529
+   ],
+   "window_crossing_unique_by_monotonicity": true,
+   "T_w_lb": 1.0909810753964924,
+   "q_star_deg": 34.90778287209115,
+   "T_w_ub": 1.091555649295205,
+   "q_double_star_deg": 34.88231644540429,
+   "q_ub_at_T_w_ub_deg": 34.953589038283965,
+   "max_speed_bound_before_window_end": 1.1536574935404666,
+   "no_crossing_before_window_end_derived": false,
+   "crossing_inside_window_derived": true,
+   "window_ends_before_crossing_derived": false,
+   "t_c_measured": null
+  },
+  "projected_full_runs": 18
+ }
+}

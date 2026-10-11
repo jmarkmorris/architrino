@@ -1,0 +1,7 @@
+# Command receipt, wave 8. Every line: UTC time, cwd, literal command; PID, /usr/bin/time -p wall and thread pin per run.
+2026-10-11T01:28:18Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave8-equilibrium-search.py random50 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave8-equilibrium-search-random50.json
+2026-10-11T01:28:18Z pid=92048 threads=1 (OMP/OPENBLAS/MKL pinned)
+2026-10-11T01:29:25Z END pid=92048 exit=0 real 67.10 user 61.01 sys 0.53 
+2026-10-11T01:29:25Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave8-equilibrium-search.py fromS10 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave8-equilibrium-search-fromS10.json
+2026-10-11T01:29:25Z pid=93022 threads=1 (OMP/OPENBLAS/MKL pinned)
+2026-10-11T01:29:39Z END pid=93022 exit=0 real 14.00 user 13.05 sys 0.11 

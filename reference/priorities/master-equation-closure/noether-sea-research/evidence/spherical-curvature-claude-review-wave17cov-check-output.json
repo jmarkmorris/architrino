@@ -1,0 +1,103 @@
+{
+ "controls": [
+  {
+   "name": "K1 F(0)=1",
+   "val": 0.9999999999999997,
+   "passed": true
+  },
+  {
+   "name": "K2 like identities at release: r^2=2, hit=1/4=afix_like(0), D_t=1",
+   "r2": 2.0,
+   "hit": 0.24999999999999992,
+   "afix": 0.24999999999999994,
+   "passed": true
+  },
+  {
+   "name": "N1 like class with the wrong velocity sign gives D_t<1",
+   "Dt_wrong": 0.9955347743730084,
+   "passed": true
+  }
+ ],
+ "results": {
+  "identities": {
+   "max_abs_diff_unlike": 2.7755575615628914e-16,
+   "max_abs_diff_like": 4.440892098500626e-16,
+   "M_at_q0p17": 0.6066688012423739,
+   "DL_sample": 1.020130593409473,
+   "DU_sample": 0.9769342768988386
+  },
+  "reduction": {
+   "q_red_at_reached": 0.17501434683046424,
+   "speed_red_at_reached": 0.1885271603844526,
+   "coverage_reduction_speed": [
+    0.1885271003,
+    0.1885272398
+   ],
+   "coverage_reduction_q": [
+    0.1750142375,
+    0.1750144915
+   ],
+   "t_antipode_on_reduction": 1.9901007807453137,
+   "antipode_residual_at_reached": 0.12566278617985804
+  },
+  "split": {
+   "unlike_only_first_order": 0.0003898636988102834,
+   "like_only_first_order": -0.00019279487857665778,
+   "sum_first_order": 0.00019706882023362568,
+   "first_like_read_on_reduction": 1.4716845936229999,
+   "coverage": {
+    "unlike": [
+     0.000368922,
+     0.000404956
+    ],
+    "like": [
+     -0.000201878,
+     -0.000177578
+    ],
+    "joint": [
+     0.000181058,
+     0.000213399
+    ],
+    "total_excess_vs_window": [
+     0.000197194,
+     0.000215671
+    ],
+    "wave16_offset_at_start": [
+     1.0598e-05,
+     1.5386e-05
+    ]
+   }
+  },
+  "step1": {
+   "a0": [
+    0.10215529206590764,
+    0.1021553056371503
+   ],
+   "ap_sampled": [
+    0.004449446070348833,
+    0.006438114085504557
+   ],
+   "end_q": [
+    0.1093160546876033,
+    0.10931657935630087
+   ],
+   "end_v": [
+    0.1485083852206591,
+    0.14851335676207578
+   ],
+   "coverage": {
+    "end_q": [
+     0.1093160547,
+     0.1093165795
+    ],
+    "end_v": [
+     0.1485083838,
+     0.1485133963
+    ]
+   },
+   "review_inside_coverage": false,
+   "overlap": true
+  }
+ },
+ "elapsed_s": 0.06664395332336426
+}

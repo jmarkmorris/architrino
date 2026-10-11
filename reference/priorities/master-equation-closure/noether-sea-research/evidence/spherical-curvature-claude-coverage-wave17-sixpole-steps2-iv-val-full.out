@@ -1,0 +1,13 @@
+T* in [1.366622279933, 1.366740606296] (reproduces wave 16: None); start t0 [1.466684593623, 1.466684709182], q0 [0.1078360786, 0.1078365557], qdot0 [0.1474868323, 0.1474914818]; mode full
+controls: ALL PASS
+   pass (0) fast node lookup equals the frozen q_of_t endpoint for endpoint on 60 sample times
+   pass (1) continuity of the like term at its reading instant: hit with zero delayed state intersects the fixed-image like term (at the start state q0)
+   pass (2) negative: like term at the probe t0 + 0.08 with the wrong sign of the velocity term in D_t is disjoint from the correct one
+   pass (3) known: the fixed-image affine step from t = 1.2 intersects the window enclosure at 1.21
+step 1: t_end 1.47668470; tauU [1.3590572, 1.3590593] DU [0.994850, 0.994865]; tauL [1.4670405, 1.4670407] DL [1.0, 1.0]; q [0.109316054, 0.109316579]; qdot [0.148508378, 0.148513403]; red [0.148483657, 0.148507858] -> above (feedback accelerates); antipode 1.99701
+step 2: t_end 1.48668470; tauU [1.3582332, 1.3582359] DU [0.994336, 0.994353]; tauL [1.4677487, 1.4677592] DL [1.0, 1.000883]; q [0.110806247, 0.110806825]; qdot [0.149530151, 0.149535877]; red [0.149503501, 0.149524591] -> above (feedback accelerates); antipode 1.99693
+step 3: t_end 1.49668470; tauU [1.3573988, 1.3574006] DU [0.993828, 0.993838]; tauL [1.4684619, 1.4684751] DL [1.0, 1.000985]; q [0.112306660, 0.112307299]; qdot [0.150552522, 0.150558996]; red [0.150522895, 0.150544097] -> above (feedback accelerates); antipode 1.99685
+step 4: t_end 1.50668470; tauU [1.3565524, 1.3565547] DU [0.993314, 0.993326]; tauL [1.4691972, 1.4691977] DL [1.001208, 1.001213]; q [0.113817300, 0.113818004]; qdot [0.151575433, 0.151582197]; red [0.151542617, 0.151563931] -> above (feedback accelerates); antipode 1.99676
+step 5: t_end 1.51668470; tauU [1.3556948, 1.3556976] DU [0.992801, 0.992814]; tauL [1.4699319, 1.4699333] DL [1.001599, 1.001622]; q [0.115338171, 0.115338944]; qdot [0.152598798, 0.152605865]; red [0.152562673, 0.152584098] -> above (feedback accelerates); antipode 1.99668
+step 6: t_end 1.52668470; tauU [1.3548262, 1.3548294] DU [0.992288, 0.992303]; tauL [1.4706753, 1.4706771] DL [1.002005, 1.002031]; q [0.116869278, 0.116870123]; qdot [0.153622617, 0.153629993]; red [0.153583066, 0.153604601] -> above (feedback accelerates); antipode 1.99659
+reached t in [1.526684593623, 1.526684709182]; stop: plan exhausted (6 steps certified); wall 6.2 s

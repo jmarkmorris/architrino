@@ -1,0 +1,22 @@
+| block | pattern | static slope Delta_k(0)/g | dominant root, g=4 | dominant root, g=2 | dominant root, g=1 | dominant root, g=0.5 | dominant root, g=0.25 | dominant root, g=0.1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| $k=0$, t | all six move the same way around the ring (rigid rotation about e_z; neutral) | $+0.000000$ | $+3.37920+0.00000i$ (zero root present) | $+2.19244-0.00000i$ (zero root present) | $+1.31995-0.00000i$ (zero root present) | $+0.73302-0.00000i$ (zero root present) | $+0.38405+0.00000i$ (zero root present) | $+0.15689-0.00000i$ (zero root present) |
+| $k=0$, z | all six move up together: uniform latitude shift of the ring (the equator-to-latitude mode) | $-0.672650$ | $+0.47437+0.00000i$ | $+0.43740+0.00000i$ | $+0.38790+0.00000i$ | $+0.32995-0.00000i$ | $+0.26983+0.00000i$ | $+0.19653-0.00000i$ |
+| $k=1$, t | azimuthal amplitude cos(phi_j): in-plane translation-like shift of the ring along an in-plane axis (pairs with k=5) | $-1.278312$ | $+3.46817+0.00000i$ | $+2.36978+0.00000i$ | $+1.58895+0.00000i$ | $+1.05367+0.00000i$ | $+0.69917+0.00000i$ | $+0.41239+0.00000i$ |
+| $k=1$, z | vertical amplitude cos(phi_j): rigid tilt of the ring about an in-plane axis (neutral; pairs with k=5) | $+0.000000$ | $-0.00000-0.00000i$ (zero root present) | $-0.00000-0.00000i$ (zero root present) | $-0.00000-0.00000i$ (zero root present) | $-0.00000-0.00000i$ (zero root present) | $-0.00000-0.00000i$ (zero root present) | $-0.00000-0.00000i$ (zero root present) |
+| $k=2$, t | azimuthal amplitude cos(2 phi_j): two-fold in-plane distortion, opposite pairs squeezed (pairs with k=4) | $-4.528312$ | $+3.61278-0.00000i$ | $+2.61170-0.00000i$ | $+1.89785-0.00000i$ | $+1.37920-0.00000i$ | $+0.99875-0.00000i$ | $+0.64684-0.00000i$ |
+| $k=2$, z | vertical amplitude cos(2 phi_j): two-fold saddle warp of the ring (pairs with k=4) | $+1.750000$ | $+0.56739-2.00406i$ | $+0.39951+1.59711i$ | $+0.23817+1.23089i$ | $+0.12310+0.91236i$ | $+0.05909+0.65703i$ | $+0.02221+0.41801i$ |
+| $k=3$, t | alternating azimuthal: positrinos one way, electrinos the other, each toward one unlike neighbour (pairwise approach) | $-7.250000$ | $+3.67396-0.00000i$ | $+2.70497-0.00000i$ | $+2.01086-0.00000i$ | $+1.49822-0.00000i$ | $+1.11279-0.00000i$ | $+0.74383-0.00000i$ |
+| $k=3$, z | alternating vertical: positrinos up, electrinos down (the symmetry worker's mode) | $+3.577350$ | $+0.84674+1.87718i$ | $+0.68657-1.54472i$ | $+0.51471-1.25578i$ | $+0.35827+1.00367i$ | $+0.23137+0.78416i$ | $+0.11618+0.54382i$ |
+| $k=4$, t | conjugate of k=2 (same pattern, opposite phase) | $-4.528312$ | $+3.61278-0.00000i$ | $+2.61170-0.00000i$ | $+1.89785-0.00000i$ | $+1.37920-0.00000i$ | $+0.99875-0.00000i$ | $+0.64684-0.00000i$ |
+| $k=4$, z | conjugate of k=2 (same pattern, opposite phase) | $+1.750000$ | $+0.56739+2.00406i$ | $+0.39951+1.59711i$ | $+0.23817+1.23089i$ | $+0.12310+0.91236i$ | $+0.05909+0.65703i$ | $+0.02221+0.41801i$ |
+| $k=5$, t | conjugate of k=1 (same pattern, opposite phase) | $-1.278312$ | $+3.46817-0.00000i$ | $+2.36978-0.00000i$ | $+1.58895-0.00000i$ | $+1.05367-0.00000i$ | $+0.69917-0.00000i$ | $+0.41239-0.00000i$ |
+| $k=5$, z | conjugate of k=1 (same pattern, opposite phase) | $+0.000000$ | $-0.00000+0.00000i$ (zero root present) | $-0.00000+0.00000i$ (zero root present) | $-0.00000+0.00000i$ (zero root present) | $-0.00000+0.00000i$ (zero root present) | $-0.00000+0.00000i$ (zero root present) | $-0.00000+0.00000i$ (zero root present) |
+
+k=3 vertical block, all roots in box by g:
+4 [(0.84674, 1.87718), (0.84674, -1.87718), (-1.29285, -6.23737), (-1.29285, 6.23737), (-1.84891, 3.49856), (-1.84891, -3.49856)]
+2 [(0.68657, -1.54472), (0.68657, 1.54472), (-1.89917, -6.21127), (-1.89917, 6.21127), (-2.00229, 3.31232), (-2.00229, -3.31232)]
+1 [(0.51471, -1.25578), (0.51471, 1.25578), (-2.22087, 3.1232), (-2.22087, -3.1232), (-2.42912, -6.18817), (-2.42912, 6.18817)]
+0.5 [(0.35827, 1.00367), (0.35827, -1.00367), (-2.49462, -2.93768), (-2.49462, 2.93768), (-2.91128, -6.15526), (-2.91128, 6.15526)]
+0.25 [(0.23137, 0.78416), (0.23137, -0.78416), (-2.81679, -2.76002), (-2.81679, 2.76002), (-3.3629, -6.11167), (-3.3629, 6.11167)]
+0.1 [(0.11618, 0.54382), (0.11618, -0.54382), (-3.30561, 2.54724), (-3.30561, -2.54724), (-3.93001, -6.04168), (-3.93001, 6.04168)]

@@ -4,6 +4,8 @@
 #include "architrino/eom/CertifiedTraversal.hpp"
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/History.hpp"
+#include "architrino/eom/EquationPlan.hpp"
+#include "architrino/eom/SurfaceConstraint.hpp"
 #include "architrino/eom/JointRootBracket.hpp"
 #include "architrino/eom/JointAffineHistory.hpp"
 
@@ -35,6 +37,8 @@ struct NativeCoupledPathInput {
 struct NativePublishedPath {
   std::string path_id;
   RetainedHistory history;
+  // In-memory validated Surface carrier. Not serialized by v1 or v7.
+  std::shared_ptr<const SurfaceEvolutionEvidence> surface_evidence = nullptr;
 };
 
 struct NativeCoupledEvolutionRequest {
@@ -194,6 +198,11 @@ struct NativeCoupledEvolutionRequest {
       const std::vector<NativePublishedPath>&,
       const std::map<std::string, JointAffineRetainedHistory>&)>
       failed_substep_candidate_callback;
+  // Omission preserves legacy canonical parameters/provenance. Stage B adds
+  // explicit typed-C++ Surface selection; this is not a v2 wire/checkpoint.
+  std::optional<EquationSelection> equation_selection;
+  std::optional<SurfaceGeometryDefinition> surface_geometry;
+  SurfaceNumerics surface_numerics;
 };
 
 struct NativeFoldCausticImpulseCertificate {
@@ -336,6 +345,9 @@ struct NativeAccelerationSnapshotCertificate {
   std::vector<NativeSnapshotRootRow> root_certificates;
   NativeAccelerationReconstructionCertificate acceleration;
   NativeSnapshotTiming timing;
+  // Empty for the legacy canonical path; binds complete Surface snapshots.
+  std::string selected_model_identity = {};
+  std::vector<SurfaceReceiverDiagnostic> surface_diagnostics = {};
 };
 
 struct NativeHistoryPhaseTiming {
@@ -596,6 +608,7 @@ struct NativeAtomicStepCertificate {
   std::string reduction_policy;
   bool publication_atomic;
   NativeAtomicStepTiming timing;
+  std::vector<SurfaceSolutionCertificate> surface_solutions = {};
 };
 
 struct NativeEvolutionTiming {

@@ -1,0 +1,10 @@
+controls: ALL PASS
+   pass (a) known: the release tangential acceleration of the six poles encloses K/R^2 = 1 (wave-1 closed form) and the radial part encloses -1/4 ['1.0', '1.0']
+   pass (b) first integral: dU/dq = F (finite difference, 1e-7 relative) and cancellation-free U = Phi(0) - Phi(q) to 1e-12 at three points [[1.4625470091468515e-13, -1.3034693863612812e-30], [1.4590575552565e-13, -1.7379591818150416e-30], [1.4026095038319598e-13, -1.6023737137301802e-30]]
+   pass (c) constant-field toy F == F0: the enclosure contains the closed form sqrt(2 q/(g F0)) at every tenth node 
+   pass (d) negative: the wrong sign F -> -F is rejected 
+F0 in [1.0, 1.0]; t(q_max=1.0) in [1.3834006074, 1.3834008222]; worst cell error 2.01e-09
+window end T* in [1.0912719726, 1.0913269042] (nearest image E2(-e2)); q* in [0.60902703, 0.60909057] rad; speed there in [1.15191659, 1.15198396]
+wake crossing: q_c in [0.47120318, 0.47120318] rad = [26.99795, 26.99795] deg; t_c in [0.9630887042, 0.9630889752]
+order: crossing first (t_c upper < T* lower)
+wall 22.8 s

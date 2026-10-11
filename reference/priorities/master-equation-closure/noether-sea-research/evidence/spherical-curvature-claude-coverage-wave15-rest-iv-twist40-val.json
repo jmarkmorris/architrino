@@ -1,0 +1,117 @@
+{
+ "family": "twisted-hexagon-40",
+ "direction": "azimuth increasing (toward the nearer electrino)",
+ "g": "1/1",
+ "q_max": "0.3",
+ "N": 200,
+ "precision_dps": 30,
+ "controls": [
+  {
+   "name": "(a) known: twist 60 degrees (regular alternating hexagon) has a release field enclosing zero",
+   "pass": true,
+   "value": [
+    "-4.733165431326070832470371e-30",
+    "4.930380657631323783823304e-30"
+   ]
+  },
+  {
+   "name": "(b) first integral: dU/dq = F (finite difference) and cancellation-free U = Phi(0) - Phi(q) to 1e-12 at three points",
+   "pass": true,
+   "value": [
+    [
+     4.486998393188688e-12,
+     -4.708513528037914e-30
+    ],
+    [
+     7.606449159065365e-12,
+     -5.842501079293119e-30
+    ],
+    [
+     1.606224905041397e-11,
+     -7.395570986446986e-30
+    ]
+   ]
+  },
+  {
+   "name": "(c) constant-field toy encloses the closed form at every tenth node",
+   "pass": true
+  },
+  {
+   "name": "(d) negative: the wrong sign F -> -F is rejected",
+   "pass": true,
+   "message": "release acceleration not positive: F(0) in [-1.589523554302419852973984, -1.589523554302419852973984]"
+  }
+ ],
+ "premises": "mpmath iv directed rounding for +,-,*,/,sqrt,sin,cos,pi at 30 digits; exact decimal nodes; family, first integral and residual monotonicity derived in the report",
+ "F0": [
+  "1.589523554302419852973984",
+  "1.589523554302419852973984"
+ ],
+ "r0": {
+  "P1(120)": "1.732050807568877293527446",
+  "P2(240)": "1.732050807568877293527446",
+  "E0(tw)": "0.6840402866513374660881992",
+  "E1(tw+120)": "1.969615506024416118733486",
+  "E2(tw+240)": "1.285575219373078652645287"
+ },
+ "controls_all_pass": true,
+ "q_enclosed_max": "0.3",
+ "worst_cell_error": 0.00038110919853953976,
+ "t_at_q_enclosed_max": [
+  "0.5541090729525167248315759",
+  "0.555260363065998820636317"
+ ],
+ "residual_monotone_cellwise": {
+  "pass": true,
+  "worst": null
+ },
+ "window_end": {
+  "T_star": [
+   "0.48065566901484375",
+   "0.481648282580859375"
+  ],
+  "nearest_image_at_end": "E0(tw)",
+  "q_star_rad": [
+   "0.2110502535145175683976948",
+   "0.2133084066647014595342014"
+  ],
+  "speed_at_T_star": [
+   "1.029561022574432566811484",
+   "1.037924722350184811686086"
+  ]
+ },
+ "crossing": {
+  "q_c_rad": [
+   "0.2030296197736072955637735",
+   "0.2030296197736072955637737"
+  ],
+  "t_c": [
+   "0.4715971638514855308751492",
+   "0.472749679892467108453347"
+  ],
+  "chords_at_q_c": {
+   "P1(120)": [
+    "1.62179331143279100759096",
+    "1.62179331143279100759096"
+   ],
+   "P2(240)": [
+    "1.824474398784926294505073",
+    "1.824474398784926294505073"
+   ],
+   "E0(tw)": [
+    "0.4900607849359861676514878",
+    "0.490060784935986167651488"
+   ],
+   "E1(tw+120)": [
+    "1.924280320352744798589849",
+    "1.924280320352744798589849"
+   ],
+   "E2(tw+240)": [
+    "1.434219535416758630938361",
+    "1.434219535416758630938361"
+   ]
+  }
+ },
+ "which_first": "crossing first",
+ "wall_s": 0.6402039527893066
+}

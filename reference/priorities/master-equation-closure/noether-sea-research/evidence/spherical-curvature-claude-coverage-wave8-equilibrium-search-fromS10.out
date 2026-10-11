@@ -1,0 +1,17 @@
+hexagon perturbed 0.1 rad (control): NM 5.417e-12 (2307 it) -> LM max|PA| 4.344e-16, min chord 1.0000, 0.4 s; notes ['coplanar', 'inversion maps each member to an opposite-polarity member', 'regular alternating hexagon']; distinct chords [1.0, 1.7321, 2.0]
+S perturbed 0.2 rad, draw 0 (seed 20261013 stream): NM 5.075e-01 (6000 it) -> LM max|PA| 6.613e-01, min chord 0.9270, 1.5 s; notes []; distinct chords [0.927, 0.9272, 1.0164, 1.2584, 1.2587, 1.4361, 1.4362, 1.4858, 1.5515, 1.5533, 1.5813, 1.791, 1.7913, 1.9831, 1.9835]
+S perturbed 0.2 rad, draw 1 (seed 20261013 stream): NM 4.867e-01 (6000 it) -> LM max|PA| 6.613e-01, min chord 0.9271, 1.7 s; notes []; distinct chords [0.9271, 1.0164, 1.2585, 1.2586, 1.4361, 1.4858, 1.5522, 1.5525, 1.5814, 1.7911, 1.7912, 1.9833]
+S perturbed 0.2 rad, draw 2 (seed 20261013 stream): NM 4.661e-01 (6000 it) -> LM max|PA| 3.554e-16, min chord 1.0000, 1.0 s; notes ['coplanar', 'inversion maps each member to an opposite-polarity member', 'regular alternating hexagon']; distinct chords [1.0, 1.7321, 2.0]
+S perturbed 0.2 rad, draw 3 (seed 20261013 stream): NM 5.085e-01 (6000 it) -> LM max|PA| 6.614e-01, min chord 0.9266, 1.4 s; notes []; distinct chords [0.9266, 0.9276, 1.0165, 1.2577, 1.2592, 1.436, 1.4363, 1.4858, 1.5476, 1.5571, 1.5815, 1.7903, 1.7919, 1.9824, 1.9842]
+S perturbed 0.2 rad, draw 4 (seed 20261013 stream): NM 5.200e-01 (6000 it) -> LM max|PA| 6.613e-01, min chord 0.9270, 1.4 s; notes []; distinct chords [0.927, 0.9272, 1.0164, 1.2584, 1.2587, 1.4361, 1.4362, 1.4858, 1.5516, 1.5531, 1.5814, 1.791, 1.7913, 1.9832, 1.9835]
+S perturbed 0.2 rad, draw 5 (seed 20261013 stream): NM 5.324e-01 (6000 it) -> LM max|PA| 6.614e-01, min chord 0.9270, 1.6 s; notes []; distinct chords [0.927, 0.9272, 1.0165, 1.2584, 1.2587, 1.4361, 1.4362, 1.4858, 1.5514, 1.5534, 1.5814, 1.791, 1.7913, 1.9831, 1.9835]
+S perturbed 0.2 rad, draw 6 (seed 20261013 stream): NM 4.471e-01 (6000 it) -> LM max|PA| 3.296e-16, min chord 1.0000, 1.1 s; notes ['coplanar', 'inversion maps each member to an opposite-polarity member', 'regular alternating hexagon']; distinct chords [1.0, 1.7321, 2.0]
+S perturbed 0.2 rad, draw 7 (seed 20261013 stream): NM 3.460e-01 (6000 it) -> LM max|PA| 3.422e-16, min chord 1.0000, 1.1 s; notes ['coplanar', 'inversion maps each member to an opposite-polarity member', 'regular alternating hexagon']; distinct chords [1.0, 1.7321, 2.0]
+S perturbed 0.2 rad, draw 8 (seed 20261013 stream): NM 4.414e-01 (6000 it) -> LM max|PA| 2.552e-16, min chord 1.0000, 1.0 s; notes ['coplanar', 'inversion maps each member to an opposite-polarity member', 'regular alternating hexagon']; distinct chords [1.0, 1.7321, 2.0]
+S perturbed 0.2 rad, draw 9 (seed 20261013 stream): NM 4.991e-01 (6000 it) -> LM max|PA| 6.613e-01, min chord 0.9270, 1.4 s; notes []; distinct chords [0.927, 0.9272, 1.0164, 1.2585, 1.2587, 1.4361, 1.4362, 1.4858, 1.5518, 1.5529, 1.5813, 1.7911, 1.7913, 1.9832, 1.9834]
+controls: ALL PASS
+   pass octahedron class A is not an equilibrium: max |PA| = 1 exactly 1.0000000000000002
+   pass octahedron class B is not an equilibrium: max |PA| > 0.05 0.7071067811865477
+   pass unperturbed hexagon is an equilibrium: max |PA| < 1e-12 2.3899149657728803e-15
+   pass hexagon perturbed by 0.1 rad returns to the hexagon with max |PA| < 1e-8 4.344434768182728e-16
+distinct equilibria (max|PA| < 1e-6, up to rotation and polarity-preserving permutation): 1; stalled (> 0.05): 6; intermediate: 0; total wall 13.7 s

@@ -1,0 +1,111 @@
+{
+ "family": "lifted-hexagon-5",
+ "direction": "colatitude decreasing (toward the pole)",
+ "g": "1/1",
+ "q_max": "1.4",
+ "N": 8000,
+ "precision_dps": 30,
+ "controls": [
+  {
+   "name": "(a) known: all six co-moved to the equator (regular alternating hexagon) give a tangential field enclosing zero",
+   "pass": true,
+   "value": [
+    "-2.809657131678053488863013e-30",
+    "2.839168575357112641569387e-30"
+   ]
+  },
+  {
+   "name": "(b) first integral: dU/dq = F (finite difference) and cancellation-free U = Phi(0) - Phi(q) to 1e-12 at three points",
+   "pass": true,
+   "value": [
+    [
+     -6.212437686867823e-14,
+     -5.3841297525289566e-30
+    ],
+    [
+     1.503190384151057e-14,
+     -5.7115378430747866e-30
+    ],
+    [
+     1.0914409648131598e-13,
+     -6.161435078083645e-30
+    ]
+   ]
+  },
+  {
+   "name": "(c) constant-field toy encloses the closed form at every tenth node",
+   "pass": true
+  },
+  {
+   "name": "(d) negative: the wrong sign F -> -F is rejected",
+   "pass": true,
+   "message": "release acceleration not positive: F(0) in [-0.05907402045242807694689426, -0.05907402045242807694689426]"
+  }
+ ],
+ "premises": "mpmath iv directed rounding for +,-,*,/,sqrt,sin,cos,pi at 30 digits; exact decimal nodes; family, first integral and residual monotonicity derived in the report",
+ "F0": [
+  "0.05907402045242807694689426",
+  "0.05907402045242807694689426"
+ ],
+ "r0": {
+  "E1(60)": "0.9961946980917455322950104",
+  "P2(120)": "1.725459831325641752927041",
+  "E3(180)": "1.992389396183491064590021",
+  "P4(240)": "1.725459831325641752927041",
+  "E5(300)": "0.9961946980917455322950104"
+ },
+ "controls_all_pass": true,
+ "turning_point": {
+  "q_z_rad": [
+   "0.05431861127873887095208473",
+   "0.05431861127873887095208589"
+  ],
+  "F_at_q_z": [
+   "-2.224396429301833907741643e-24",
+   "1.66691673527355297363775e-24"
+  ],
+  "U_max": [
+   "0.001608840657401962606814695",
+   "0.001608840657401962606815169"
+  ],
+  "t_to_reach_q_z_minus_eps_lower": "1.469985519128037678705449",
+  "beyond_window": true,
+  "inside_window": false
+ },
+ "q_enclosed_max": "0.0523186112787",
+ "worst_cell_error": 2.134100019837482e-11,
+ "t_at_q_enclosed_max": [
+  "1.469985519128037678705449",
+  "1.470005447063471508654546"
+ ],
+ "residual_monotone_cellwise": {
+  "pass": true,
+  "worst": null
+ },
+ "window_end": {
+  "T_star": [
+   "0.9952097367460432291030884",
+   "0.9952100156923282623291016"
+  ],
+  "nearest_image_at_end": "E5(300)",
+  "q_star_rad": [
+   "0.02673823747600776939801332",
+   "0.02673922472107660859562149"
+  ],
+  "speed_at_T_star": [
+   "0.04884805874190981003056978",
+   "0.04884866741982986509330806"
+  ]
+ },
+ "crossing": {
+  "none_on_enclosed_range": true,
+  "U_max_on_range": [
+   "0.001608840657401962606814695",
+   "0.001608840657401962606815169"
+  ],
+  "threshold_1_over_2g": "0.5",
+  "certified_no_crossing": true
+ },
+ "which_first": "window end (no crossing on the window)",
+ "wall_s": 27.052600860595703
+}

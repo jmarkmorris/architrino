@@ -1,0 +1,16 @@
+T* in [1.366684593623, 1.366684709182]; q(T*) in [0.0935969659, 0.0935971742]; qdot(T*) in [0.1373057801, 0.1373059342]; continuity at T*: True
+controls: ALL PASS
+   pass (1) known: the fixed-image affine step from t = 1.2 intersects the window enclosure's own continuation at 1.21
+   pass (2) negative: at the probe t = T* + 0.05 the delayed hit with the wrong sign of D_t is disjoint from the correct one
+   pass (3) continuity at T*: the delayed term at tau = t with zero history encloses the fixed-image term
+step 1: t_end 1.37668470; tau0 [1.3666845, 1.3666847]; D_t0 [0.999996, 1.0]; q [0.094975101, 0.094975312]; qdot [0.138321323, 0.138321790]; reduction qdot [0.138321476, 0.138321617] -> undecided (enclosures overlap); like chord 1.46086
+step 2: t_end 1.38668470; tau0 [1.3659621, 1.3659754]; D_t0 [0.998947, 1.0]; q [0.096363393, 0.096363613]; qdot [0.139337142, 0.139338531]; reduction qdot [0.139337455, 0.139337584] -> undecided (enclosures overlap); like chord 1.46153
+step 3: t_end 1.39668470; tau0 [1.3652460, 1.3652599]; D_t0 [0.998926, 1.0]; q [0.097761845, 0.097762083]; qdot [0.140353249, 0.140355579]; reduction qdot [0.140353717, 0.140353861] -> undecided (enclosures overlap); like chord 1.46220
+step 4: t_end 1.40668470; tau0 [1.3645130, 1.3645131]; D_t0 [0.998455, 0.998455]; q [0.099170464, 0.099170726]; qdot [0.141370527, 0.141373177]; reduction qdot [0.141370285, 0.141370416] -> above (feedback accelerates); like chord 1.46288
+step 5: t_end 1.41668470; tau0 [1.3637670, 1.3637672]; D_t0 [0.997941, 0.997941]; q [0.100589259, 0.100589548]; qdot [0.142388396, 0.142391369]; reduction qdot [0.142387142, 0.142387287] -> above (feedback accelerates); like chord 1.46356
+step 6: t_end 1.42668470; tau0 [1.3630100, 1.3630102]; D_t0 [0.997427, 0.997427]; q [0.102018235, 0.102018556]; qdot [0.143406862, 0.143410163]; reduction qdot [0.143404314, 0.143404447] -> above (feedback accelerates); like chord 1.46425
+step 7: t_end 1.43668470; tau0 [1.3622419, 1.3622421]; D_t0 [0.996913, 0.996913]; q [0.103457399, 0.103457754]; qdot [0.144425932, 0.144429565]; reduction qdot [0.144421781, 0.144421929] -> above (feedback accelerates); like chord 1.46494
+step 8: t_end 1.44668470; tau0 [1.3614627, 1.3614629]; D_t0 [0.996399, 0.996399]; q [0.104906757, 0.104907149]; qdot [0.145445613, 0.145449581]; reduction qdot [0.145439573, 0.145439709] -> above (feedback accelerates); like chord 1.46564
+step 9: t_end 1.45668470; tau0 [1.3606723, 1.3606726]; D_t0 [0.995885, 0.995885]; q [0.106366314, 0.106366747]; qdot [0.146465910, 0.146470217]; reduction qdot [0.146457667, 0.146457817] -> above (feedback accelerates); like chord 1.46634
+step 10: t_end 1.46668470; tau0 [1.3598709, 1.3598711]; D_t0 [0.995372, 0.995372]; q [0.107836078, 0.107836555]; qdot [0.147486832, 0.147491481]; reduction qdot [0.147476096, 0.147476234] -> above (feedback accelerates); like chord 1.46704
+reached t in [1.466684593623, 1.466684709182]; stop: step 11: another image class is read (the like images +e2, +e3 at chord 1.467749 at the step end is not above the step end 1.47668470); wall 32.4 s

@@ -1,0 +1,10 @@
+controls: ALL PASS
+   pass 60-degree twist (regular alternating hexagon) is stationary: F(0; twist 60) = 0 1.3877787807814457e-15
+   pass first integral is consistent with the force: dU/dpsi = F(psi) (finite difference at three points, 1e-7 relative) and the cancellation-free U equals Phi(0) - Phi(psi) to 1e-12 [1.2559953077584396e-12, -3.129763115339301e-11, -8.47744097143277e-12]
+   pass release azimuthal acceleration F(0) at twist 50 (my derivation) 0.668064615092872
+   pass negative: a flipped sign convention (G -> -G) gives F(0) of the wrong sign and must be rejected (positrinos must accelerate toward the nearer electrino, +) -0.668064615092872
+   pass series control: quadrature / two-term small-psi series -> 1 as psi -> 0 (psi = 1e-3, 1e-4, 1e-5) [1.0000004047989288, 1.0000000040522852, 1.0000000000405267]
+   pass two quadrature rules (adaptive Gauss-Kronrod vs Gauss-Legendre 200 and 400 nodes) agree to 1e-10 at psi = 5, 10, 15 degrees [{'psi_deg': 5, 'adaptive': 0.4915342285909047, 'adaptive_err_est': 5.457126179729873e-15, 'gauss200': 0.4915342285909048, 'gauss400': 0.49153422859090484, 'diff_max': 1.6653345369377348e-16}, {'psi_deg': 10, 'adaptive': 0.6704524872241824, 'adaptive_err_est': 7.443517882334909e-15, 'gauss200': 0.6704524872241826, 'gauss400': 0.6704524872241828, 'diff_max': 4.440892098500626e-16}, {'psi_deg': 15, 'adaptive': 0.7934706394604765, 'adaptive_err_est': 8.809293732930672e-15, 'gauss200': 0.7934706394604768, 'gauss400': 0.793470639460477, 'diff_max': 5.551115123125783e-16}]
+g=1.0: F0=0.668065; t(40deg)=0.491534 t(30deg)=0.670452 t(20deg)=0.793471; window end T*=0.679077 at psi*=10.3025 deg (twist 29.395 deg), speed 0.618705; inside window: [True, True, False]
+g=0.1: F0=0.668065; t(40deg)=1.554368 t(30deg)=2.120157 t(20deg)=2.509174; window end T*=0.824170 at psi*=1.3283 deg (twist 47.343 deg), speed 0.057475; inside window: [False, False, False]
+early (g=1): [(0.015, 7.516e-05, 0.010022386), (0.03, 0.00030071, 0.020053275), (0.0355848897551, 0.00042315, 0.023791927), (0.045, 0.00067685, 0.030101184), (0.06, 0.00120388, 0.040174662)]

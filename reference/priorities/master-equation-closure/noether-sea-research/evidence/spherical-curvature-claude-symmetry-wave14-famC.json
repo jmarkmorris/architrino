@@ -1,0 +1,268 @@
+{
+ "pid": 40463,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: imported wave-11 function reproduces the g=1 six-pole bracket and verdict",
+   "t_c": [
+    0.962207038662762,
+    0.9639521408918529
+   ],
+   "verdict": true,
+   "pass": true
+  },
+  {
+   "name": "known: stationary hexagon simultaneous chord exactly 1",
+   "value": 0.9999999999999996,
+   "pass": true
+  },
+  {
+   "name": "negative: polarity flip changes f(0)",
+   "f0": -1.8691032201027316,
+   "true": 0.668064615092872,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "results": {
+  "family C 5": [
+   {
+    "g": 4.0,
+    "R_at_K1": 0.25,
+    "verdict": "undecided",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": Infinity,
+    "handoff": null,
+    "simultaneous_separation": {
+     "q_end_deg": 2.864788975654116,
+     "grid_min": 0.9905937425035187,
+     "certified_min_chord": 0.9905687425025187,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 2.0,
+    "R_at_K1": 0.5,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.994655447205448,
+     0.9946861352735085
+    ],
+    "speed_bound_before_window_end": 0.08004637054081443,
+    "conservative_actual_bound": 0.994655447205448,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      2.8007973739453424,
+      2.783427384687679
+     ],
+     "t": [
+      0.994655447205448,
+      0.9946861352735085
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 2.8007973739453424,
+     "grid_min": 0.9907459516489253,
+     "certified_min_chord": 0.9907215100799971,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.5,
+    "R_at_K1": 2.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.9956194162779431,
+     0.9956480810738934
+    ],
+    "speed_bound_before_window_end": 0.026951749302973886,
+    "conservative_actual_bound": 0.9956194162779431,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      0.8043972511777667,
+      0.79941979549108
+     ],
+     "t": [
+      0.9956194162779431,
+      0.9956480810738934
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 0.8043972511777667,
+     "grid_min": 0.9948729501806263,
+     "certified_min_chord": 0.9948659304893628,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.25,
+    "R_at_K1": 4.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.9958813189438703,
+     0.995908329809367
+    ],
+    "speed_bound_before_window_end": 0.01412338769004867,
+    "conservative_actual_bound": 0.9958813189438703,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      0.41149473912438084,
+      0.4089482991479342
+     ],
+     "t": [
+      0.9958813189438703,
+      0.995908329809367
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 0.41149473912438084,
+     "grid_min": 0.9955430644600152,
+     "certified_min_chord": 0.9955394734899891,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   }
+  ],
+  "family C 15": [
+   {
+    "g": 4.0,
+    "R_at_K1": 0.25,
+    "verdict": "undecided",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": Infinity,
+    "handoff": null,
+    "simultaneous_separation": {
+     "q_end_deg": 8.021409131831525,
+     "grid_min": 0.9203587886634916,
+     "certified_min_chord": 0.9202887886624916,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 2.0,
+    "R_at_K1": 0.5,
+    "verdict": "undecided",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": Infinity,
+    "handoff": null,
+    "simultaneous_separation": {
+     "q_end_deg": 8.021409131831525,
+     "grid_min": 0.9203587886634916,
+     "certified_min_chord": 0.9202887886624916,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.5,
+    "R_at_K1": 2.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.9610040490766698,
+     0.9610965819537511
+    ],
+    "speed_bound_before_window_end": 0.08200949545222078,
+    "conservative_actual_bound": 0.9610040490766698,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      2.3655630567093264,
+      2.351780167766156
+     ],
+     "t": [
+      0.9610040490766698,
+      0.9610965819537511
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 2.3655630567093264,
+     "grid_min": 0.9544198910404375,
+     "certified_min_chord": 0.9543992476074359,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.25,
+    "R_at_K1": 4.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.9632655513215932,
+     0.9633438499123144
+    ],
+    "speed_bound_before_window_end": 0.043058609425993585,
+    "conservative_actual_bound": 0.9632655513215932,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      1.2155620017755313,
+      1.208473768739309
+     ],
+     "t": [
+      0.9632655513215932,
+      0.9633438499123144
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 1.2155620017755313,
+     "grid_min": 0.9602178739934334,
+     "certified_min_chord": 0.9602072662128368,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   }
+  ]
+ },
+ "wall_s": 1.7448811531066895
+}

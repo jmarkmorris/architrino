@@ -61,6 +61,52 @@ node scripts/eom/run-borg-eom-refinement-ladder.mjs \
 
 Configure a sanitizer build with `-DEOM_ENABLE_SANITIZERS=ON`; the option enables AddressSanitizer and UndefinedBehaviorSanitizer on the library and every native fixture/CLI target.
 
+## Equation providers and read-only inspection
+
+The [Stage A provider boundary](../../reference/priorities/app-solver/manuscript.md#implemented-stage-a-provider-boundary) registers canonical acceleration evaluation through `EquationProvider`. `NativeCoupledEvolutionRequest::equation_selection` is optional: omission preserves legacy semantics; an explicit `EquationSelection{}` selects canonical/unrestricted/unconstrained numerical evaluation and requires exact `field_speed=1`. Public request-bearing operations reject unknown or unavailable selections before evolution/publication/checkpoint work. The immutable plan describes existing canonical dependencies; it is not an executable arbitrary stage graph.
+
+The new CLI inspects selection and model identity, without certifying preparation/history admissibility or starting evolution:
+
+```bash
+cmake --build .tmp/eom-provider-stage-a/build --target eom_equation_inspect_cli
+.tmp/eom-provider-stage-a/build/eom_equation_inspect_cli identity-self-test
+.tmp/eom-provider-stage-a/build/eom_equation_inspect_cli capabilities
+.tmp/eom-provider-stage-a/build/eom_equation_inspect_cli inspect --composition canonical/v1 --field-speed 1
+```
+
+Configure that build directory with the normal CMake command before building. Inspection accepts option/value pairs for composition, speed domain, boundary policy, constraint, method, field speed, coupling, chart policy, causal width and core scale. It rejects duplicate/unknown options and unavailable selections with an error code on stderr and nonzero exit. Exact parameter identities avoid binary64 rounding. Its model/plan digests and actual source/configuration receipt are descriptive; legacy v7 checkpoint identity/bytes and Borg protocol `EOM_BORG_NATIVE_V11` retain their existing meaning.
+
+The built-in `canonical-surface/v1` provider now supplies [Stage B constrained evolution](../../reference/priorities/app-solver/analysis/equation-provider-stage-b-2026-10-10.md) through the typed C++ API. Restricted-speed compositions, full v2 transport, provider-aware checkpoints, analytical/implicit providers, dynamic loading and a general stage interpreter remain later capabilities. The manually invoked `eom_equation_provider_fixture_cli` supplies focused Stage A contract checks without adding a recurring CTest entry; the [migration receipt](../../reference/priorities/app-solver/analysis/equation-provider-stage-a-inventory-2026-10-10.md) records the bounded validation.
+
+## Surface constrained evolution: Stage B
+
+Include `SurfaceConstraint.hpp` for geometry, receiver-total diagnostics and solution certificates. Configure the existing request before calling `evolve_native_coupled_histories`:
+
+```cpp
+request.equation_selection = EquationSelection{
+    "canonical-surface/v1", "unrestricted", "none", "surface", "numerical"};
+request.field_speed = "1";
+request.surface_geometry = SurfaceGeometryDefinition{}; // unit sphere
+request.surface_numerics.position_tolerance = "1e-6";
+request.surface_numerics.tangent_velocity_tolerance = "1e-6";
+```
+
+Geometry kinds are `sphere`, `oblate` and `ring-torus`. The oblate polar radius is `radius * flattening`, with `0 < flattening <= 1`; a ring torus requires `major_radius > radius > 0`. Center and exactly orthogonal orientation are exact decimal-token inputs. Geometry is fixed throughout the request. Select a surface-consistent `RetainedHistory::uniform_circular` preparation from the exactly admitted family; generic cubic histories, unproved preparation reconstruction and nonrepresentable mesh/certificate endpoint mismatches reject. The manual fixture supplies complete executable request examples.
+
+The provider projects the canonical receiver sum into the tangent plane and adds the curvature acceleration required by the surface constraint. Discarded normal interaction, curvature and total support are recorded only after receiver superposition. The existing host predicts/corrects candidate cubics; a full-slab integral-map proof then validates solution/error inclusion, root completeness, contraction and continuous surface/tangency tolerances before atomic publication. Published paths carry immutable in-memory solution evidence, including true source-acceleration bounds for later delayed interactions. No endpoint projection repairs a failed proof.
+
+This initial numerical route requires sharp ordinary charts, coherent solution speeds strictly below the normalized wake speed and partner roots wholly inside already accepted history. These are certification-domain conditions, with no speed modification. The selected speed regime remains unrestricted. Joint/finite-width/event routes and optional publication modes reject. v7 checkpoint creation/resume and canonical requests reject Surface carriers; continuation through the current evolution call is supported, persistent restart is deferred. A complete acceleration snapshot belongs to its selected model and cannot be reused across canonical/Surface modes.
+
+```bash
+cmake --build .tmp/eom-provider-stage-a/build --target eom_surface_fixture_cli
+.tmp/eom-provider-stage-a/build/eom_surface_fixture_cli
+.tmp/eom-provider-stage-a/build/eom_equation_inspect_cli inspect \
+  --composition canonical-surface/v1 --constraint surface \
+  --surface-kind oblate --surface-radius 1 --surface-q 0.5
+```
+
+The fixture checks independent exact circular solutions on all three shapes, geometry/derivative controls, dense-segment rejection and bounded interacting implementation controls. It is manually invoked rather than enrolled in recurring CTest. Its passing receipt establishes the tested implementation scope; six-member assembly dynamics, stability, physical confinement and energy laws require subsequent independent scientific qualification.
+
 Run the independent parity test:
 
 ```bash

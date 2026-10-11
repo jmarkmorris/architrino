@@ -1,0 +1,80 @@
+{
+ "g": "1",
+ "N_window": 4000,
+ "plan": {
+  "phase_A_steps": 30,
+  "phase_B_steps_max": 24,
+  "Delta": "0.005",
+  "adaptation": "none; stop at the first uncertified step"
+ },
+ "controls": [
+  {
+   "name": "(1a) known: fixed-image affine step from t = 0.6 contains the window enclosure's continuation at 0.61",
+   "pass": false,
+   "step_end_psi": [
+    "0.1379536074089891435193533",
+    "0.1379540666446080313006812"
+   ],
+   "window_psi": [
+    "0.1379536628037421136831215",
+    "0.1379540681742319103233025"
+   ],
+   "step_end_v": [
+    "0.5144468097090480608073271",
+    "0.5144854573585045980901155"
+   ],
+   "window_v": [
+    "0.5144816607290793912795481",
+    "0.5144826770620539498172838"
+   ]
+  },
+  {
+   "name": "(1b) known: the affine first post-window step's end sets lie inside the wave-12 zeroth-order step's end sets (containment reproduced, tighter)",
+   "pass": false,
+   "affine_end_psi": [
+    "0.1829207219345077423031075",
+    "0.1829299039927965629310135"
+   ],
+   "affine_end_v": [
+    "0.6263834442047967158496418",
+    "0.6266984245219438129391999"
+   ],
+   "zeroth_order": {
+    "psi": [
+     "0.1860688390",
+     "0.1860905940"
+    ],
+    "v": [
+     "0.6334679960",
+     "0.6361148950"
+    ]
+   }
+  },
+  {
+   "name": "(2) negative: wrong-sign probe at t = T* + 0.05 gives a delayed forcing disjoint from the correct one",
+   "pass": true,
+   "Q_correct": [
+    "2.373767401021454596416168",
+    "2.388920519980788781949084"
+   ],
+   "Q_wrong": [
+    "2.14036628943976734991467",
+    "2.153479870255690584652065"
+   ]
+  }
+ ],
+ "steps": [],
+ "T_star": [
+  "0.6790704345703125",
+  "0.679083251953125"
+ ],
+ "psi_at_T_star": [
+  "0.1798080269135633797903003",
+  "0.1798164424423931265529045"
+ ],
+ "dpsi_at_T_star": [
+  "0.6186945641729482892732458",
+  "0.6187154818734372112928245"
+ ],
+ "controls_all_pass": false
+}

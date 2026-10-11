@@ -1,0 +1,5 @@
+T* in [0.679070434570, 0.679083251953]; psi(T*) in [0.1798080269, 0.1798164424]; psi'(T*) in [0.6186945641, 0.6187154818]
+controls: FAIL
+   FAIL (1a) known: fixed-image affine step from t = 0.6 contains the window enclosure's continuation at 0.61
+   FAIL (1b) known: the affine first post-window step's end sets lie inside the wave-12 zeroth-order step's end sets (containment reproduced, tighter)
+   pass (2) negative: wrong-sign probe at t = T* + 0.05 gives a delayed forcing disjoint from the correct one

@@ -1,0 +1,15 @@
+six poles V1: d2|v|/dT2 = K*(8*K + R*v**2)/(8*R**4*v)   (R=v=1: 1.125000; R=1,v=1/2: 2.062500; R=10,v=1/2: 2.625000e-04)  dspeed=0  vJv/v^2=-K/(8*R**3)
+six poles V2: d2|v|/dT2 = K*v/(8*R**3)   (R=v=1: 0.125000; R=1,v=1/2: 0.062500; R=10,v=1/2: 6.250000e-05)  dspeed=-K/R**2  vJv/v^2=-K/(8*R**3)
+six poles V2R: d2|v|/dT2 = K*v/(8*R**3)   (R=v=1: 0.125000; R=1,v=1/2: 0.062500; R=10,v=1/2: 6.250000e-05)  dspeed=K/R**2  vJv/v^2=-K/(8*R**3)
+six poles V3: d2|v|/dT2 = K*(8*K + R*v**2)/(8*R**4*v)   (R=v=1: 1.125000; R=1,v=1/2: 2.062500; R=10,v=1/2: 2.625000e-04)  dspeed=0  vJv/v^2=-K/(8*R**3)
+six poles V4: d2|v|/dT2 = K*(4*K + R*v**2)/(8*R**4*v)   (R=v=1: 0.625000; R=1,v=1/2: 1.062500; R=10,v=1/2: 1.625000e-04)  dspeed=sqrt(2)*K/(2*R**2)  vJv/v^2=-K/(8*R**3)
+six poles V5: d2|v|/dT2 = K*(8*K*cos(pi/18)**2 + R*v**2*sin(pi/18)**4 + R*v**2*(1 - cos(2*pi/9))/4 + R*v**2*cos(pi/18)**4)/(8*R**4*v)   (R=v=1: 1.094846; R=1,v=1/2: 2.002193; R=10,v=1/2: 2.564693e-04)  dspeed=-K*sin(pi/18)/R**2  vJv/v^2=-K/(8*R**3)
+hexagon V1: d2|v|/dT2 = K*v*(261 - 20*sqrt(3))/(72*R**3) = K*v*(261 - 20*sqrt(3))/(72*R**3)  (R=v=1: 3.143875) PA=0 nA=K*(-15 + 4*sqrt(3))/(12*R**2) vJv/v^2=K*(4*sqrt(3) + 171)/(72*R**3)
+meridional V2: d2|v|/dT2 = K*v*(-20923 + 14472*sqrt(7))/(74088*R**3)
+   (R=v=1: 0.234401; R=1,v=1/2: 0.117201)  dspeed=2*K*(-27*sqrt(21) - 49*sqrt(3))/(441*R**2) (-0.946032) |PA|=2*K*sqrt(7938*sqrt(7) + 22512)/(441*R**2) (0.946032) nA=K*(35 - 24*sqrt(7))/(84*R**2) (-0.339262)
+
+(c) symmetry check
+V1 invariant under ['C3', '-I', '-C3'] orbit of member 0: [0, 1, 2, 3, 4, 5] transitive: True
+V2 invariant under ['C3', 'm23', 'm12', '-I', '-m23', '-m12', '-C3'] orbit of member 0: [0, 1, 2, 3, 4, 5] transitive: True
+V3 invariant under ['C3', '-m23', '-m12'] orbit of member 0: [0, 1, 2, 3, 4, 5] transitive: True
+V4 invariant under ['C3', '-m23', '-m12'] orbit of member 0: [0, 1, 2, 3, 4, 5] transitive: True

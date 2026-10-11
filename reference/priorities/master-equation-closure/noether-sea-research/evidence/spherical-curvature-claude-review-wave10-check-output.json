@@ -1,0 +1,362 @@
+{
+ "controls": [
+  {
+   "name": "K1 twist 60 f(0)=0",
+   "val": 1.4710455076283324e-15,
+   "passed": 1.0
+  },
+  {
+   "name": "K2 six poles f(0)=K/R^2=1",
+   "val": 0.9999999999999999,
+   "passed": 1.0
+  },
+  {
+   "name": "K3 hexagon at rest d_min=1",
+   "val": 0.9999999999999999,
+   "passed": 1.0
+  },
+  {
+   "name": "K4 finite-difference |f'| <= L on six-pole window",
+   "max_fd": 0.48652576913083134,
+   "L": 6.951897582004586,
+   "passed": true
+  },
+  {
+   "name": "N1 L/100 must be refuted by K4",
+   "passed": true
+  }
+ ],
+ "results": [
+  {
+   "name": "six poles",
+   "f0": 0.9999999999999999,
+   "1.0": {
+    "q_hard_deg": 26.998,
+    "repaired_f_lb_on_window": 0.9993629930269017,
+    "repaired_f_ub_on_window": 1.1520209270226247,
+    "L": 6.951964014822247,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.8763002017139846,
+     "Q_deg": 25.704,
+     "f_lb": 0.999373219020502,
+     "f_ub": 1.141161439931278,
+     "T_w_lb": 0.8867077284181935,
+     "T_w_lb_at_least": null,
+     "t_c_lb": 0.8763002017139846
+    }
+   },
+   "0.1": {
+    "q_hard_deg": 5.363,
+    "repaired_f_lb_on_window": 0.9994910565535586,
+    "repaired_f_ub_on_window": 1.0160630811340499,
+    "L": 5.554345045900435,
+    "positive": true,
+    "best": {
+     "actual_lb": 1.3658126224750897,
+     "Q_deg": 5.8695,
+     "f_lb": 0.9994889369802563,
+     "f_ub": 1.0179218312151193,
+     "T_w_lb": 1.3658126224750897,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   }
+  },
+  {
+   "name": "antiprism 30",
+   "f0": 2.2217159052685833,
+   "1.0": {
+    "q_hard_deg": 14.925,
+    "repaired_f_lb_on_window": 1.6734971111892596,
+    "repaired_f_ub_on_window": 2.223516298111116,
+    "L": 10.858411720125018,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.44973923647217084,
+     "Q_deg": 13.186,
+     "f_lb": 1.7201235743353172,
+     "f_ub": 2.223510689981523,
+     "T_w_lb": null,
+     "T_w_lb_at_least": 0.4549782191226847,
+     "t_c_lb": 0.44973923647217084
+    }
+   },
+   "0.1": {
+    "q_hard_deg": 5.492,
+    "repaired_f_lb_on_window": 1.9777411843615167,
+    "repaired_f_ub_on_window": 2.2234897609690694,
+    "L": 10.698362642275185,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.9282005755439546,
+     "Q_deg": 6.783,
+     "f_lb": 1.9281208432452888,
+     "f_ub": 2.2234928777227405,
+     "T_w_lb": 0.9282005755439546,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   }
+  },
+  {
+   "name": "antiprism 45",
+   "f0": 1.1959699001479318,
+   "1.0": {
+    "q_hard_deg": 24.579,
+    "repaired_f_lb_on_window": 1.1526385180336176,
+    "repaired_f_ub_on_window": 1.1967356023306368,
+    "L": 6.749462066439085,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.8356054894915967,
+     "Q_deg": 24.804,
+     "f_lb": 1.152637128355711,
+     "f_ub": 1.1967369920085433,
+     "T_w_lb": 0.8505800360269471,
+     "T_w_lb_at_least": null,
+     "t_c_lb": 0.8356054894915967
+    }
+   },
+   "0.1": {
+    "q_hard_deg": 5.626,
+    "repaired_f_lb_on_window": 1.1672444402683495,
+    "repaired_f_ub_on_window": 1.1966476723444324,
+    "L": 5.974382512277634,
+    "positive": true,
+    "best": {
+     "actual_lb": 1.282732607744244,
+     "Q_deg": 6.396,
+     "f_lb": 1.1645551214762762,
+     "f_ub": 1.1966502591307115,
+     "T_w_lb": 1.282732607744244,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   }
+  },
+  {
+   "name": "antiprism 60",
+   "f0": 0.9460318972094455,
+   "1.0": {
+    "q_hard_deg": 28.131,
+    "repaired_f_lb_on_window": 0.9454427185750321,
+    "repaired_f_ub_on_window": 1.095858132780198,
+    "L": 7.501655362221511,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.9175687201098514,
+     "Q_deg": 26.892,
+     "f_lb": 0.9454525731741749,
+     "f_ub": 1.089836628127733,
+     "T_w_lb": 0.9280781176690382,
+     "T_w_lb_at_least": null,
+     "t_c_lb": 0.9175687201098514
+    }
+   },
+   "0.1": {
+    "q_hard_deg": 4.485,
+    "repaired_f_lb_on_window": 0.9455860200074919,
+    "repaired_f_ub_on_window": 0.9663642289398566,
+    "L": 5.677084856017638,
+    "positive": true,
+    "best": {
+     "actual_lb": 1.2833461211336645,
+     "Q_deg": 5.031,
+     "f_lb": 0.9455836278085155,
+     "f_ub": 0.9690049160725358,
+     "T_w_lb": 1.2833461211336645,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   }
+  },
+  {
+   "name": "twist 40",
+   "f0": 1.5895235543024202,
+   "1.0": {
+    "q_hard_deg": 11.633,
+    "repaired_f_lb_on_window": 1.5874640648985556,
+    "repaired_f_ub_on_window": 3.6757676260812584,
+    "L": 24.842115956003173,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.3203358218474335,
+     "Q_deg": 8.512,
+     "f_lb": 1.5879043699922462,
+     "f_ub": 2.8955293049891524,
+     "T_w_lb": 0.3203358218474335,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   },
+   "0.1": {
+    "q_hard_deg": 1.977,
+    "repaired_f_lb_on_window": 1.5884361727484586,
+    "repaired_f_ub_on_window": 1.822517717569699,
+    "L": 13.116289212796977,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.6461169735447168,
+     "Q_deg": 2.7455000000000003,
+     "f_lb": 1.588391015789399,
+     "f_ub": 1.9219777961315199,
+     "T_w_lb": 0.6461169735447168,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   }
+  },
+  {
+   "name": "twist 50",
+   "f0": 0.668064615092872,
+   "1.0": {
+    "q_hard_deg": 10.302,
+    "repaired_f_lb_on_window": 0.6673158790307566,
+    "repaired_f_ub_on_window": 1.5383854205681184,
+    "L": 12.71093817092358,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.4887100963065987,
+     "Q_deg": 14.24925,
+     "f_lb": 0.667150408269637,
+     "f_ub": 2.046202866602201,
+     "T_w_lb": null,
+     "T_w_lb_at_least": 0.4930322638994595,
+     "t_c_lb": 0.4887100963065987
+    }
+   },
+   "0.1": {
+    "q_hard_deg": 1.328,
+    "repaired_f_lb_on_window": 0.667529380068368,
+    "repaired_f_ub_on_window": 0.7582701152649358,
+    "L": 9.086431985294325,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.8215100825454068,
+     "Q_deg": 1.4985,
+     "f_lb": 0.6675266349502712,
+     "f_ub": 0.7699846461076195,
+     "T_w_lb": 0.8215100825454068,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   }
+  },
+  {
+   "name": "twist 70",
+   "f0": -0.6680646150928686,
+   "1.0": {
+    "q_hard_deg": 10.302,
+    "repaired_f_lb_on_window": 0.6673158790307533,
+    "repaired_f_ub_on_window": 1.5383854205681118,
+    "L": 12.710938170923548,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.49064387993317526,
+     "Q_deg": 11.967749999999999,
+     "f_lb": 0.6672538021957461,
+     "f_ub": 1.7353500779509858,
+     "T_w_lb": 0.49064387993317526,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   },
+   "0.1": {
+    "q_hard_deg": 1.328,
+    "repaired_f_lb_on_window": 0.6675293800683647,
+    "repaired_f_ub_on_window": 0.758270115264932,
+    "L": 9.086431985294313,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.8215100825454077,
+     "Q_deg": 1.4985,
+     "f_lb": 0.6675266349502679,
+     "f_ub": 0.7699846461076156,
+     "T_w_lb": 0.8215100825454077,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   }
+  },
+  {
+   "name": "family C 5",
+   "f0": 0.059074020452428044,
+   "1.0": {
+    "q_hard_deg": 1.532,
+    "repaired_f_lb_on_window": 0.03002003098860793,
+    "repaired_f_ub_on_window": 0.05918275737511873,
+    "L": 8.038924833829078,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.9951203022237491,
+     "Q_deg": 2.8535500000000003,
+     "f_lb": 0.00483354438143478,
+     "f_ub": 0.05918295975577688,
+     "T_w_lb": 0.9951203022237491,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   },
+   "0.1": {
+    "q_hard_deg": 0.166,
+    "repaired_f_lb_on_window": 0.05584560447579752,
+    "repaired_f_ub_on_window": 0.05918249377492425,
+    "L": 8.019436861416093,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.9960548630626116,
+     "Q_deg": 0.55335,
+     "f_lb": 0.04854087227328319,
+     "f_ub": 0.059182574170915776,
+     "T_w_lb": 0.9960548630626116,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   },
+   "field_zero_deg": 3.112227175283447,
+   "turning_deg": null,
+   "max_speed_g1": 0.05672460934057058
+  },
+  {
+   "name": "family C 15",
+   "f0": 0.18659398812441882,
+   "1.0": {
+    "q_hard_deg": 4.473,
+    "repaired_f_lb_on_window": 0.09124152273409303,
+    "repaired_f_ub_on_window": 0.1869206891303644,
+    "L": 8.91361371526725,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.9568032308684519,
+     "Q_deg": 6.879600000000001,
+     "f_lb": 0.03701054444517003,
+     "f_ub": 0.18692419513459826,
+     "T_w_lb": 0.9568032308684519,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   },
+   "0.1": {
+    "q_hard_deg": 0.493,
+    "repaired_f_lb_on_window": 0.1762709820824419,
+    "repaired_f_ub_on_window": 0.18691370182280867,
+    "L": 8.722974080467331,
+    "positive": true,
+    "best": {
+     "actual_lb": 0.9647807068435932,
+     "Q_deg": 7.732200000000001,
+     "f_lb": 0.01740943544676191,
+     "f_ub": 0.1869252992742124,
+     "T_w_lb": 0.9647807068435932,
+     "T_w_lb_at_least": null,
+     "t_c_lb": null
+    }
+   },
+   "field_zero_deg": 8.497843600098522,
+   "turning_deg": null,
+   "max_speed_g1": 0.16826011400821034
+  }
+ ],
+ "elapsed_s": 0.7594101428985596
+}

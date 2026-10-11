@@ -1,0 +1,10 @@
+controls: ALL PASS
+   pass (a) known: with all six members co-moved to colatitude 90 degrees (regular alternating hexagon) the tangential field at P0 encloses zero ['-1.7334076657405925102539e-30', '1.634505832291711942707118e-30']
+   pass (b) first integral: dU/dq = F (finite difference, 1e-7 relative) and cancellation-free U = Phi(0) - Phi(q) to 1e-12 at three points [[8.538063670562669e-14, -4.514379789643681e-30], [7.229624202668058e-14, -4.770143286258306e-30], [4.5719262078712964e-14, -5.053640174072107e-30]]
+   pass (c) constant-field toy F == F0: the enclosure contains the closed form sqrt(2 q/(g F0)) at every tenth node 
+   pass (d) negative: the wrong sign F -> -F is rejected 
+F0 in [0.946031897209, 0.946031897209]; t(q_max=0.9) in [1.3504365263, 1.3504368307]; worst cell error 1.67e-09
+window end T* in [1.0564125061, 1.0564132690] (nearest image E1(-P1)); q* in [0.54170764, 0.54170877] rad; speed there in [1.05441637, 1.05441756]
+wake crossing: q_c in [0.49097088, 0.49097088] rad = [28.13055, 28.13055] deg; t_c in [1.0070168416, 1.0070171728]
+order: crossing first (t_c upper < T* lower)
+wall 24.3 s

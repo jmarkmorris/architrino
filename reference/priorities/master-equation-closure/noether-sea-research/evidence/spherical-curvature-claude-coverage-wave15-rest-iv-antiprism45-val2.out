@@ -1,0 +1,12 @@
+antiprism-45 direction: colatitude increasing (toward the equator) F0 in 1.1959699001 1.1959699001
+controls: ALL PASS
+   pass (a) known: all six co-moved to the equator (regular alternating hexagon) give a tangential field enclosing zero ['-2.856045498418027327907572e-30', '2.757143664969146760360791e-30']
+   pass (b) first integral: dU/dq = F (finite difference) and cancellation-free U = Phi(0) - Phi(q) to 1e-12 at three points [[2.5067643136452726e-13, -5.0043363674957936e-30], [2.5434258331951656e-13, -5.411092771750378e-30], [2.5644576139821063e-13, -5.965760595733902e-30]]
+   pass (c) constant-field toy encloses the closed form at every tenth node 
+   pass (d) negative: the wrong sign F -> -F is rejected 
+t(q=0.9) in [1.2276376088, 1.2391495259]; worst cell error 4.90e-03
+cell-wise monotonicity of the minimal chord: False (21, 'P2', 0.5724058356552603)
+window end T* in [1.1406715829, 1.1479187517] (nearest image E2(-P2)); q* in [0.75976725, 0.78565708]; speed there in [1.35444487, 1.38058426]
+wake crossing: q_c in [0.42897726, 0.42897726] rad; t_c in [0.8470954082, 0.8586572045]
+order: crossing first
+wall 0.7 s

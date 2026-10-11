@@ -1,0 +1,1303 @@
+{
+ "pid": 97208,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: stationary 60-degree twist: f(0)=0 and W'(0)=0",
+   "f0": 1.4710455076283324e-15,
+   "W1": 0.0,
+   "pass": true
+  },
+  {
+   "name": "known: constant-field toy t=sqrt(2q/(g f0)) and linear toy t=(2/sqrt(gb)) asinh(sqrt(bQ/2a)), both rules",
+   "toy0": [
+    1.1952286093343938,
+    1.1952286093343938,
+    1.1952286093343936
+   ],
+   "toy1": [
+    1.117985880173836,
+    1.1179858801738363,
+    1.117985880173836
+   ],
+   "pass": true
+  },
+  {
+   "name": "known: f = dW/dq at q=0.2 for every case",
+   "max_abs_diff": 3.38475025785101e-10,
+   "pass": true
+  },
+  {
+   "name": "negative: flipping one image polarity breaks f = dW/dq of the unflipped W",
+   "abs_diff": 4.333408024819707,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "results": [
+  {
+   "name": "six poles from rest",
+   "f_at_release": 0.9999999999999998,
+   "direction": "positive q",
+   "by_g": {
+    "1.0": {
+     "t_c": {
+      "q_deg": 26.997953888657552,
+      "t_quad": 0.9630889035567064,
+      "t_gauss": 0.9630889035726484,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 34.896495406690256,
+      "T_w_quad": 1.0912994515882533,
+      "T_w_gauss": 1.091299451577376,
+      "agree": true,
+      "speed": 1.1519502129612953,
+      "chord_to_nearest_image": 1.0912994515881869
+     },
+     "hard_boundary": 0.9630889035567064,
+     "hard_boundary_reason": "wake-speed point before T_w",
+     "f_certificate_on_window": {
+      "L": 6.9508843472942585,
+      "grid": 4001,
+      "h": 0.00011780079666467022,
+      "f_lb": 0.9995905901431822,
+      "f_ub": 1.1518141670780462,
+      "f_min_grid": 0.9999999999999998,
+      "f_max_grid": 1.1514047572212285
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 1.280768613171176,
+      "certified_interval_deg": 41.71530242405056,
+      "T_w_lb": 1.0443369087799865,
+      "q_ub_at_T_w_lb_deg": 40.01700365477433,
+      "T_w_lb_valid": true,
+      "t_c_lb": 0.7807811572802409,
+      "t_c_lb_valid": true
+     },
+     "landmarks": {
+      "hexagon great circle (q=35.26)": {
+       "q_deg": 35.264389682754654,
+       "t_quad": 1.0968570613057305,
+       "t_gauss": 1.0968570613070492,
+       "agree": true,
+       "speed": 1.158746373872957,
+       "inside_hard_boundary": false
+      },
+      "-w point (q=125.26)": {
+       "q_deg": 125.26438968275465,
+       "t_quad": 2.0466419827535334,
+       "t_gauss": 2.046641982760182,
+       "agree": true,
+       "speed": 1.8093972035631742,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "t_c": {
+      "q_deg": 169.1947239147298,
+      "t_quad": 7.659117593990368,
+      "t_gauss": 7.659117593991891,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 5.3627169755901685,
+      "T_w_quad": 1.366684651292374,
+      "T_w_gauss": 1.366684651357348,
+      "agree": true,
+      "speed": 0.13730585569706624,
+      "chord_to_nearest_image": 1.3666846512920012
+     },
+     "hard_boundary": 1.366684651292374,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 5.553297487023617,
+      "grid": 4001,
+      "h": 2.3399267019160205e-05,
+      "f_lb": 0.9999350284546319,
+      "f_ub": 1.0156090453174582,
+      "f_min_grid": 0.9999999999999998,
+      "f_max_grid": 1.0155440737720904
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 1.0170658402838297,
+      "certified_interval_deg": 5.758445400490167,
+      "T_w_lb": 1.3660172703642108,
+      "q_ub_at_T_w_lb_deg": 5.436934300659143,
+      "T_w_lb_valid": true,
+      "t_c_lb": 9.832205157150227,
+      "t_c_lb_valid": false
+     },
+     "landmarks": {
+      "hexagon great circle (q=35.26)": {
+       "q_deg": 35.264389682754654,
+       "t_quad": 3.46856658136505,
+       "t_gauss": 3.46856658136922,
+       "agree": true,
+       "speed": 0.36642777718995684,
+       "inside_hard_boundary": false
+      },
+      "-w point (q=125.26)": {
+       "q_deg": 125.26438968275465,
+       "t_quad": 6.472050220424215,
+       "t_gauss": 6.472050220445239,
+       "agree": true,
+       "speed": 0.5721816355198963,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": 1.0425031890470744,
+    "dW": 1.0425031888861014
+   },
+   "first_zero_of_f_deg_(scan,measured)": 97.58760315600419,
+   "turning_point_deg_(reduction)": null,
+   "W_max_minus_W0_before_turning": 1.760566287576216
+  },
+  {
+   "name": "antiprism from rest, colatitude 30 deg",
+   "f_at_release": 2.2217159052685833,
+   "direction": "positive q",
+   "by_g": {
+    "1.0": {
+     "t_c": {
+      "q_deg": 14.924780337208672,
+      "t_quad": 0.49692712037144626,
+      "t_gauss": 0.4969271203650232,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 67.85115910701387,
+      "T_w_quad": 1.1260943405127433,
+      "T_w_gauss": 1.1260943405047847,
+      "agree": true,
+      "speed": 1.9331843480199693,
+      "chord_to_nearest_image": 1.1260943405126684
+     },
+     "hard_boundary": 0.49692712037144626,
+     "hard_boundary_reason": "wake-speed point before T_w",
+     "f_certificate_on_window": {
+      "L": 10.85318379455621,
+      "grid": 4001,
+      "h": 6.512163925530023e-05,
+      "f_lb": 1.675179359430381,
+      "f_ub": 2.2220692938285036,
+      "f_min_grid": 1.6755327479903013,
+      "f_max_grid": 2.2217159052685833
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 2.2242817352725033,
+      "certified_interval_deg": 76.13534023815222,
+      "T_w_lb": 1.0665276117306168,
+      "q_ub_at_T_w_lb_deg": 72.48141104814937,
+      "T_w_lb_valid": true,
+      "t_c_lb": 0.4495833347646885,
+      "t_c_lb_valid": true
+     },
+     "landmarks": {
+      "equator / hexagon configuration": {
+       "q_deg": 60.0,
+       "t_quad": 1.0529177388424193,
+       "t_gauss": 1.0529177388310678,
+       "agree": true,
+       "speed": 1.8140744479131894,
+       "inside_hard_boundary": false
+      },
+      "south pole": {
+       "q_deg": 150.0,
+       "t_quad": 1.6668900437831002,
+       "t_gauss": 1.6668900437806415,
+       "agree": true,
+       "speed": 3.304626896226675,
+       "inside_hard_boundary": false
+      },
+      "colatitude of electrino ring": {
+       "q_deg": 120.0,
+       "t_quad": 1.5062841754317517,
+       "t_gauss": 1.5062841754283425,
+       "agree": true,
+       "speed": 3.0552267101867905,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "t_c": {
+      "q_deg": 124.56971234059898,
+      "t_quad": 4.844389922160478,
+      "t_gauss": 4.8443899221272195,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 5.491758121917814,
+      "T_w_quad": 0.9381144976872166,
+      "T_w_gauss": 0.9381144976360312,
+      "agree": true,
+      "speed": 0.20046306741974082,
+      "chord_to_nearest_image": 0.9381144976882598
+     },
+     "hard_boundary": 0.9381144976872166,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 10.693384574661824,
+      "grid": 4001,
+      "h": 2.396231523765151e-05,
+      "f_lb": 1.9793570090783197,
+      "f_ub": 2.221844024394651,
+      "f_min_grid": 1.9794851282043875,
+      "f_max_grid": 2.2217159052685833
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 2.2218550485901276,
+      "certified_interval_deg": 5.960562103896578,
+      "T_w_lb": 0.9398285580966361,
+      "q_ub_at_T_w_lb_deg": 5.622191503887276,
+      "T_w_lb_valid": true,
+      "t_c_lb": 4.5007436494768065,
+      "t_c_lb_valid": false
+     },
+     "landmarks": {
+      "equator / hexagon configuration": {
+       "q_deg": 60.0,
+       "t_quad": 3.3296182435363866,
+       "t_gauss": 3.3296182435004895,
+       "agree": true,
+       "speed": 0.5736607100518165,
+       "inside_hard_boundary": false
+      },
+      "south pole": {
+       "q_deg": 150.0,
+       "t_quad": 5.2711691474123885,
+       "t_gauss": 5.271169147404614,
+       "agree": true,
+       "speed": 1.0450147809129184,
+       "inside_hard_boundary": false
+      },
+      "colatitude of electrino ring": {
+       "q_deg": 120.0,
+       "t_quad": 4.763288797832976,
+       "t_gauss": 4.763288797822195,
+       "agree": true,
+       "speed": 0.9661475172373419,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": 1.7720840617242526,
+    "dW": 1.7720840617130307
+   },
+   "first_zero_of_f_deg_(scan,measured)": 139.75436948291258,
+   "turning_point_deg_(reduction)": null,
+   "W_max_minus_W0_before_turning": 5.526235653876272
+  },
+  {
+   "name": "antiprism from rest, colatitude 45 deg",
+   "f_at_release": 1.1959699001479318,
+   "direction": "positive q",
+   "by_g": {
+    "1.0": {
+     "t_c": {
+      "q_deg": 24.578586970018353,
+      "t_quad": 0.8528762052251806,
+      "t_gauss": 0.8528762052149975,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 44.295284103143736,
+      "T_w_quad": 1.1447010720606572,
+      "T_w_gauss": 1.1447010720508828,
+      "agree": true,
+      "speed": 1.3679149098645746,
+      "chord_to_nearest_image": 1.1447010720608477
+     },
+     "hard_boundary": 0.8528762052251806,
+     "hard_boundary_reason": "wake-speed point before T_w",
+     "f_certificate_on_window": {
+      "L": 6.747699662876102,
+      "grid": 4001,
+      "h": 0.00010724431702864927,
+      "f_lb": 1.1530423916320118,
+      "f_ub": 1.1963317263688615,
+      "f_min_grid": 1.1534042178529416,
+      "f_max_grid": 1.1959699001479318
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 1.4985404785528291,
+      "certified_interval_deg": 51.366471381787555,
+      "T_w_lb": 1.0809673361876915,
+      "q_ub_at_T_w_lb_deg": 50.1633182989119,
+      "T_w_lb_valid": true,
+      "t_c_lb": 0.6673159746513623,
+      "t_c_lb_valid": true
+     },
+     "landmarks": {
+      "equator / hexagon configuration": {
+       "q_deg": 45.0,
+       "t_quad": 1.153652031052449,
+       "t_gauss": 1.1536520310183156,
+       "agree": true,
+       "speed": 1.3803232389061568,
+       "inside_hard_boundary": false
+      },
+      "south pole": {
+       "q_deg": 135.0,
+       "t_quad": 1.9424918370968696,
+       "t_gauss": 1.9424918370861002,
+       "agree": true,
+       "speed": 2.326103519676128,
+       "inside_hard_boundary": false
+      },
+      "colatitude of electrino ring": {
+       "q_deg": 90.0,
+       "t_quad": 1.6034040046712112,
+       "t_gauss": 1.6034040046703295,
+       "agree": true,
+       "speed": 2.160819768546715,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "t_c": {
+      "q_deg": 167.18861960877047,
+      "t_quad": 6.853103063972349,
+      "t_gauss": 6.8531030639766,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 5.625775015983281,
+      "T_w_quad": 1.2843107888183023,
+      "T_w_gauss": 1.284310788671035,
+      "agree": true,
+      "speed": 0.1522724266948718,
+      "chord_to_nearest_image": 1.2843107888195957
+     },
+     "hard_boundary": 1.2843107888183023,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 5.972992073279851,
+      "grid": 4001,
+      "h": 2.4547074251336217e-05,
+      "f_lb": 1.1678607770785325,
+      "f_ub": 1.1960432098878946,
+      "f_min_grid": 1.1679340868184953,
+      "f_max_grid": 1.1959699001479318
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 1.19604815517277,
+      "certified_interval_deg": 5.994355781132443,
+      "T_w_lb": 1.2846103222796852,
+      "q_ub_at_T_w_lb_deg": 5.654368612568889,
+      "T_w_lb_valid": true,
+      "t_c_lb": 8.360867375407215,
+      "t_c_lb_valid": false
+     },
+     "landmarks": {
+      "equator / hexagon configuration": {
+       "q_deg": 45.0,
+       "t_quad": 3.6481680454050367,
+       "t_gauss": 3.6481680452970977,
+       "agree": true,
+       "speed": 0.43649653422042006,
+       "inside_hard_boundary": false
+      },
+      "south pole": {
+       "q_deg": 135.0,
+       "t_quad": 6.142698541510865,
+       "t_gauss": 6.142698541476809,
+       "agree": true,
+       "speed": 0.7355785195510859,
+       "inside_hard_boundary": false
+      },
+      "colatitude of electrino ring": {
+       "q_deg": 90.0,
+       "t_quad": 5.070408664196287,
+       "t_gauss": 5.070408664193501,
+       "agree": true,
+       "speed": 0.6833112081725486,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": 1.1543845568075535,
+    "dW": 1.1543845566674982
+   },
+   "first_zero_of_f_deg_(scan,measured)": 115.88753286340174,
+   "turning_point_deg_(reduction)": null,
+   "W_max_minus_W0_before_turning": 2.7934380648986386
+  },
+  {
+   "name": "antiprism from rest, colatitude 60 deg",
+   "f_at_release": 0.9460318972094452,
+   "direction": "positive q",
+   "by_g": {
+    "1.0": {
+     "t_c": {
+      "q_deg": 28.130559542659746,
+      "t_quad": 1.0070171190842285,
+      "t_gauss": 1.007017119069867,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 31.037588860349768,
+      "T_w_quad": 1.0564129145407228,
+      "T_w_gauss": 1.0564129145413492,
+      "agree": true,
+      "speed": 1.054416876924739,
+      "chord_to_nearest_image": 1.0564129145407124
+     },
+     "hard_boundary": 1.0070171190842285,
+     "hard_boundary_reason": "wake-speed point before T_w",
+     "f_certificate_on_window": {
+      "L": 7.500027475501193,
+      "grid": 4001,
+      "h": 0.0001227427211119307,
+      "f_lb": 0.9455716103190667,
+      "f_ub": 1.0957130808755282,
+      "f_min_grid": 0.9460318972094452,
+      "f_max_grid": 1.0952527939851495
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 1.121447347268303,
+      "certified_interval_deg": 35.391270811536856,
+      "T_w_lb": 1.031292344751103,
+      "q_ub_at_T_w_lb_deg": 34.16922375323246,
+      "T_w_lb_valid": true,
+      "t_c_lb": 0.891704815599116,
+      "t_c_lb_valid": true
+     },
+     "landmarks": {
+      "equator / hexagon configuration": {
+       "q_deg": 30.0,
+       "t_quad": 1.0390805610974434,
+       "t_gauss": 1.039080561084133,
+       "agree": true,
+       "speed": 1.0352527667577711,
+       "inside_hard_boundary": false
+      },
+      "south pole": {
+       "q_deg": 120.0,
+       "t_quad": 2.1162547545204156,
+       "t_gauss": 2.116254754513309,
+       "agree": true,
+       "speed": 1.5275960872672945,
+       "inside_hard_boundary": false
+      },
+      "colatitude of electrino ring": {
+       "q_deg": 60.0,
+       "t_quad": 1.4531672658835428,
+       "t_gauss": 1.453167265877973,
+       "agree": true,
+       "speed": 1.4824482417906506,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "t_c": {
+      "q_deg": 169.92066240912746,
+      "t_quad": 8.239997131097956,
+      "t_gauss": 8.239997131077544,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 4.4845288282698,
+      "T_w_quad": 1.2842093741092515,
+      "T_w_gauss": 1.2842093739049292,
+      "agree": true,
+      "speed": 0.122314861683635,
+      "chord_to_nearest_image": 1.2842093741092535
+     },
+     "hard_boundary": 1.2842093741092515,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 5.6764006516773025,
+      "grid": 4001,
+      "h": 1.9567448363477846e-05,
+      "f_lb": 0.9459763608711242,
+      "f_ub": 0.9659859448492671,
+      "f_min_grid": 0.9460318972094452,
+      "f_max_grid": 0.9659304085109461
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 0.9677161510673807,
+      "certified_interval_deg": 4.84454484554777,
+      "T_w_lb": 1.2834946965620033,
+      "q_ub_at_T_w_lb_deg": 4.566976565984297,
+      "T_w_lb_valid": true,
+      "t_c_lb": 10.333608660938545,
+      "t_c_lb_valid": false
+     },
+     "landmarks": {
+      "equator / hexagon configuration": {
+       "q_deg": 30.0,
+       "t_quad": 3.2858612454736713,
+       "t_gauss": 3.2858612454315783,
+       "agree": true,
+       "speed": 0.32737566969456056,
+       "inside_hard_boundary": false
+      },
+      "south pole": {
+       "q_deg": 120.0,
+       "t_quad": 6.692185133445028,
+       "t_gauss": 6.692185133422552,
+       "agree": true,
+       "speed": 0.48306829805259915,
+       "inside_hard_boundary": false
+      },
+      "colatitude of electrino ring": {
+       "q_deg": 60.0,
+       "t_quad": 4.595318381391491,
+       "t_gauss": 4.595318381373878,
+       "agree": true,
+       "speed": 0.46879129573704664,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": 1.0021966208335717,
+    "dW": 1.0021966209139421
+   },
+   "first_zero_of_f_deg_(scan,measured)": 86.39393341320282,
+   "turning_point_deg_(reduction)": null,
+   "W_max_minus_W0_before_turning": 1.3199534048737405
+  },
+  {
+   "name": "twisted hexagon from rest, twist 40 deg",
+   "f_at_release": 1.5895235543024202,
+   "direction": "positive q",
+   "by_g": {
+    "1.0": {
+     "t_c": {
+      "q_deg": 11.632740329173538,
+      "t_quad": 0.47217330464349244,
+      "t_gauss": 0.4721733046271743,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 12.157354014101296,
+      "T_w_quad": 0.48117856843327284,
+      "T_w_gauss": 0.481178568430392,
+      "agree": true,
+      "speed": 1.0337646676925492,
+      "chord_to_nearest_image": 0.4811785684333151
+     },
+     "hard_boundary": 0.47217330464349244,
+     "hard_boundary_reason": "wake-speed point before T_w",
+     "f_certificate_on_window": {
+      "L": 24.82172412332647,
+      "grid": 4001,
+      "h": 5.0757404943401804e-05,
+      "f_lb": 1.5888936111510596,
+      "f_ub": 3.6729561998230618,
+      "f_min_grid": 1.5895235543024202,
+      "f_max_grid": 3.672326256671701
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 22.609566821244236,
+      "certified_interval_deg": 102.55319252225576,
+      "T_w_lb": 0.3882094928601704,
+      "q_ub_at_T_w_lb_deg": 97.61513975499302,
+      "T_w_lb_valid": false,
+      "t_c_lb": 0.04422906497529123,
+      "t_c_lb_valid": true
+     },
+     "landmarks": {
+      "twist 30": {
+       "q_deg": 5.0,
+       "t_quad": 0.3219288801595179,
+       "t_gauss": 0.3219288801712192,
+       "agree": true,
+       "speed": 0.5756314048143725,
+       "inside_hard_boundary": true
+      },
+      "twist 20": {
+       "q_deg": 10.0,
+       "t_quad": 0.4420847453725407,
+       "t_gauss": 0.44208474536317854,
+       "agree": true,
+       "speed": 0.896374239960499,
+       "inside_hard_boundary": true
+      },
+      "twist 10": {
+       "q_deg": 15.0,
+       "t_quad": 0.5252859286078772,
+       "t_gauss": 0.5252859286204119,
+       "agree": true,
+       "speed": 1.2233882331222445,
+       "inside_hard_boundary": false
+      },
+      "twist 0 (actual unlike coincidence)": {
+       "q_deg": 20.0,
+       "t_quad": 0.5876772781497238,
+       "t_gauss": 0.5876772781563863,
+       "agree": true,
+       "speed": 1.6041249081642273,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "t_c": {
+      "q_deg": 31.39474063298813,
+      "t_quad": 2.1487028767612135,
+      "t_gauss": 2.1487028767647494,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 1.9773807105679237,
+      "T_w_quad": 0.6515095690660838,
+      "T_w_gauss": 0.6515095690783372,
+      "agree": true,
+      "speed": 0.10841708776519417,
+      "chord_to_nearest_image": 0.6515095690665255
+     },
+     "hard_boundary": 0.6515095690660838,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 13.113375280547018,
+      "grid": 4001,
+      "h": 8.627950991208825e-06,
+      "f_lb": 1.5894669835227953,
+      "f_ub": 1.8216603764393777,
+      "f_min_grid": 1.5895235543024202,
+      "f_max_grid": 1.8216038056597528
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 1.8701642727740937,
+      "certified_interval_deg": 2.358062564848463,
+      "T_w_lb": 0.6471156416585008,
+      "q_ub_at_T_w_lb_deg": 2.243552247035175,
+      "T_w_lb_valid": true,
+      "t_c_lb": 5.347123857289058,
+      "t_c_lb_valid": false
+     },
+     "landmarks": {
+      "twist 30": {
+       "q_deg": 5.0,
+       "t_quad": 1.0180285058914669,
+       "t_gauss": 1.0180285059284695,
+       "agree": true,
+       "speed": 0.18203063319358306,
+       "inside_hard_boundary": false
+      },
+      "twist 20": {
+       "q_deg": 10.0,
+       "t_quad": 1.397994714192812,
+       "t_gauss": 1.3979947141632059,
+       "agree": true,
+       "speed": 0.2834584234177496,
+       "inside_hard_boundary": false
+      },
+      "twist 10": {
+       "q_deg": 15.0,
+       "t_quad": 1.6610999572374918,
+       "t_gauss": 1.6610999572771308,
+       "agree": true,
+       "speed": 0.3868693279315339,
+       "inside_hard_boundary": false
+      },
+      "twist 0 (actual unlike coincidence)": {
+       "q_deg": 20.0,
+       "t_quad": 1.8583987280814305,
+       "t_gauss": 1.8583987281024987,
+       "agree": true,
+       "speed": 0.5072688361207389,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": 3.6223913838311788,
+    "dW": 3.6223913837396537
+   },
+   "first_zero_of_f_deg_(scan,measured)": null,
+   "turning_point_deg_(reduction)": null,
+   "W_max_minus_W0_before_turning": null
+  },
+  {
+   "name": "twisted hexagon from rest, twist 50 deg",
+   "f_at_release": 0.668064615092872,
+   "direction": "positive q",
+   "by_g": {
+    "1.0": {
+     "t_c": {
+      "q_deg": 18.661382579700266,
+      "t_quad": 0.8637478762909089,
+      "t_gauss": 0.8637478763059143,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 10.302479644604817,
+      "T_w_quad": 0.6790770222936383,
+      "T_w_gauss": 0.6790770222207525,
+      "agree": true,
+      "speed": 0.6187049142501474,
+      "chord_to_nearest_image": 0.679077022294101
+     },
+     "hard_boundary": 0.6790770222936383,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 12.70959478943405,
+      "grid": 4001,
+      "h": 4.4953047729512327e-05,
+      "f_lb": 0.6677789475822759,
+      "f_ub": 1.5381431533870398,
+      "f_min_grid": 0.668064615092872,
+      "f_max_grid": 1.5378574858764438
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 5.41332125235989,
+      "certified_interval_deg": 26.43137915345793,
+      "T_w_lb": 0.41146294825956015,
+      "q_ub_at_T_w_lb_deg": 26.25535561446902,
+      "T_w_lb_valid": true,
+      "t_c_lb": 0.18472947630145886,
+      "t_c_lb_valid": true
+     },
+     "landmarks": {
+      "twist 40": {
+       "q_deg": 5.0,
+       "t_quad": 0.49153422859217444,
+       "t_gauss": 0.4915342286631769,
+       "agree": true,
+       "speed": 0.38379211583687256,
+       "inside_hard_boundary": true
+      },
+      "twist 30": {
+       "q_deg": 10.0,
+       "t_quad": 0.670452487222759,
+       "t_gauss": 0.6704524871251095,
+       "agree": true,
+       "speed": 0.605586650799748,
+       "inside_hard_boundary": true
+      },
+      "twist 20": {
+       "q_deg": 15.0,
+       "t_quad": 0.7934706394602946,
+       "t_gauss": 0.7934706394583734,
+       "agree": true,
+       "speed": 0.8264650729454409,
+       "inside_hard_boundary": false
+      },
+      "twist 10": {
+       "q_deg": 20.0,
+       "t_quad": 0.8863611607289761,
+       "t_gauss": 0.8863611607236135,
+       "agree": true,
+       "speed": 1.067492785255629,
+       "inside_hard_boundary": false
+      },
+      "twist 0 (actual unlike coincidence)": {
+       "q_deg": 25.0,
+       "t_quad": 0.9592085042410967,
+       "t_gauss": 0.9592085042368732,
+       "agree": true,
+       "speed": 1.347649500347497,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "t_c": {
+      "q_deg": 41.22578296718534,
+      "t_quad": 3.4944310951303734,
+      "t_gauss": 3.4944310951064215,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 1.328251061771703,
+      "T_w_quad": 0.8241698652793275,
+      "T_w_gauss": 0.8241698650445225,
+      "agree": true,
+      "speed": 0.057474920313615833,
+      "chord_to_nearest_image": 0.8241698653060464
+     },
+     "hard_boundary": 0.8241698652793275,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 9.084599041193137,
+      "grid": 4001,
+      "h": 5.7955885802567015e-06,
+      "f_lb": 0.6680382897936423,
+      "f_ub": 0.7576575277998963,
+      "f_min_grid": 0.668064615092872,
+      "f_max_grid": 0.7576312025006666
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 0.7763591927237795,
+      "certified_interval_deg": 1.5971082096725286,
+      "T_w_lb": 0.8214266208814643,
+      "q_ub_at_T_w_lb_deg": 1.5006965472518252,
+      "T_w_lb_valid": true,
+      "t_c_lb": 12.880635785242637,
+      "t_c_lb_valid": false
+     },
+     "landmarks": {
+      "twist 40": {
+       "q_deg": 5.0,
+       "t_quad": 1.5543677102851308,
+       "t_gauss": 1.55436771050966,
+       "agree": true,
+       "speed": 0.1213657234059697,
+       "inside_hard_boundary": false
+      },
+      "twist 30": {
+       "q_deg": 10.0,
+       "t_quad": 2.120156922548856,
+       "t_gauss": 2.120156922240062,
+       "agree": true,
+       "speed": 0.19150331371202325,
+       "inside_hard_boundary": false
+      },
+      "twist 20": {
+       "q_deg": 15.0,
+       "t_quad": 2.509174477164809,
+       "t_gauss": 2.5091744771587323,
+       "agree": true,
+       "speed": 0.2613512037084798,
+       "inside_hard_boundary": false
+      },
+      "twist 10": {
+       "q_deg": 20.0,
+       "t_quad": 2.802920097414155,
+       "t_gauss": 2.8029200973971977,
+       "agree": true,
+       "speed": 0.3375708587204797,
+       "inside_hard_boundary": false
+      },
+      "twist 0 (actual unlike coincidence)": {
+       "q_deg": 25.0,
+       "t_quad": 3.0332836244051458,
+       "t_gauss": 3.03328362439179,
+       "agree": true,
+       "speed": 0.4261641908685969,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": 1.6720500288726463,
+    "dW": 1.6720500287670248
+   },
+   "first_zero_of_f_deg_(scan,measured)": null,
+   "turning_point_deg_(reduction)": null,
+   "W_max_minus_W0_before_turning": null
+  },
+  {
+   "name": "twisted hexagon from rest, twist 70 deg",
+   "f_at_release": -0.6680646150928686,
+   "direction": "negative q",
+   "by_g": {
+    "1.0": {
+     "t_c": {
+      "q_deg": 18.661382579700305,
+      "t_quad": 0.8637478762927834,
+      "t_gauss": 0.8637478762692917,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 10.30247964461375,
+      "T_w_quad": 0.6790770222939165,
+      "T_w_gauss": 0.6790770222717377,
+      "agree": true,
+      "speed": 0.6187049142505343,
+      "chord_to_nearest_image": 0.6790770222939554
+     },
+     "hard_boundary": 0.6790770222939165,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 12.709594789439224,
+      "grid": 4001,
+      "h": 4.495304772955131e-05,
+      "f_lb": -1.5381431533880296,
+      "f_ub": -0.6677789475822722,
+      "f_min_grid": -1.5378574858774332,
+      "f_max_grid": -0.6680646150928686
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 5.413321252360643,
+      "certified_interval_deg": 26.43137915345949,
+      "T_w_lb": 0.4114629482595409,
+      "q_ub_at_T_w_lb_deg": 26.255355614470215,
+      "T_w_lb_valid": true,
+      "t_c_lb": 0.18472947630143316,
+      "t_c_lb_valid": true
+     },
+     "landmarks": {
+      "twist 80": {
+       "q_deg": 5.0,
+       "t_quad": 0.4915342285924387,
+       "t_gauss": 0.4915342285811076,
+       "agree": true,
+       "speed": 0.38379211583687256,
+       "inside_hard_boundary": true
+      },
+      "twist 90": {
+       "q_deg": 10.0,
+       "t_quad": 0.6704524872246184,
+       "t_gauss": 0.6704524871252122,
+       "agree": true,
+       "speed": 0.6055866507997469,
+       "inside_hard_boundary": true
+      },
+      "twist 100": {
+       "q_deg": 15.0,
+       "t_quad": 0.7934706394602448,
+       "t_gauss": 0.7934706394564396,
+       "agree": true,
+       "speed": 0.8264650729454387,
+       "inside_hard_boundary": false
+      },
+      "twist 110": {
+       "q_deg": 20.0,
+       "t_quad": 0.8863611607271407,
+       "t_gauss": 0.8863611607232107,
+       "agree": true,
+       "speed": 1.0674927852556266,
+       "inside_hard_boundary": false
+      },
+      "twist 120 (actual unlike coincidence)": {
+       "q_deg": 25.0,
+       "t_quad": 0.9592085042410734,
+       "t_gauss": 0.959208504235088,
+       "agree": true,
+       "speed": 1.3476495003474938,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "t_c": {
+      "q_deg": 41.225782967185395,
+      "t_quad": 3.494431095127874,
+      "t_gauss": 3.4944310950937068,
+      "agree": true
+     },
+     "T_w": {
+      "q_deg": 1.3282510618025043,
+      "T_w_quad": 0.8241698653055697,
+      "T_w_gauss": 0.8241698658897036,
+      "agree": true,
+      "speed": 0.057474920314323594,
+      "chord_to_nearest_image": 0.8241698653055575
+     },
+     "hard_boundary": 0.8241698653055697,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 9.084599041201574,
+      "grid": 4001,
+      "h": 5.795588580391097e-06,
+      "f_lb": -0.7576575278020233,
+      "f_ub": -0.6680382897936383,
+      "f_min_grid": -0.757631202502793,
+      "f_max_grid": -0.6680646150928686
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 0.7763591927240623,
+      "certified_interval_deg": 1.5971082096766227,
+      "T_w_lb": 0.821426620881457,
+      "q_ub_at_T_w_lb_deg": 1.500696547252345,
+      "T_w_lb_valid": true,
+      "t_c_lb": 12.880635785237946,
+      "t_c_lb_valid": false
+     },
+     "landmarks": {
+      "twist 80": {
+       "q_deg": 5.0,
+       "t_quad": 1.5543677102859665,
+       "t_gauss": 1.5543677102501343,
+       "agree": true,
+       "speed": 0.1213657234059697,
+       "inside_hard_boundary": false
+      },
+      "twist 90": {
+       "q_deg": 10.0,
+       "t_quad": 2.120156922554736,
+       "t_gauss": 2.1201569222403864,
+       "agree": true,
+       "speed": 0.19150331371202292,
+       "inside_hard_boundary": false
+      },
+      "twist 100": {
+       "q_deg": 15.0,
+       "t_quad": 2.5091744771646503,
+       "t_gauss": 2.5091744771526177,
+       "agree": true,
+       "speed": 0.2613512037084791,
+       "inside_hard_boundary": false
+      },
+      "twist 110": {
+       "q_deg": 20.0,
+       "t_quad": 2.8029200974083515,
+       "t_gauss": 2.802920097395923,
+       "agree": true,
+       "speed": 0.3375708587204789,
+       "inside_hard_boundary": false
+      },
+      "twist 120 (actual unlike coincidence)": {
+       "q_deg": 25.0,
+       "t_quad": 3.0332836244050734,
+       "t_gauss": 3.033283624386145,
+       "agree": true,
+       "speed": 0.42616419086859586,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": -1.672050028872639,
+    "dW": -1.672050029211114
+   },
+   "first_zero_of_f_deg_(scan,measured)": null,
+   "turning_point_deg_(reduction)": null,
+   "W_max_minus_W0_before_turning": null
+  },
+  {
+   "name": "family C from rest, latitude 5 deg",
+   "f_at_release": 0.05907402045242805,
+   "direction": "positive q",
+   "by_g": {
+    "1.0": {
+     "max_speed_on_reduction": 0.05672460942839869,
+     "t_c": null,
+     "T_w": {
+      "q_deg": 1.5320227164688425,
+      "T_w_quad": 0.9952099047381194,
+      "T_w_gauss": 0.995209901236551,
+      "agree": false,
+      "speed": 0.04884843060751831,
+      "chord_to_nearest_image": 0.9952099047367962
+     },
+     "hard_boundary": 0.9952099047381194,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 8.038674845944914,
+      "grid": 4001,
+      "h": 6.6847101544322146e-06,
+      "f_lb": 0.03009007380491436,
+      "f_ub": 0.05910088855811348,
+      "f_min_grid": 0.03011694191059979,
+      "f_max_grid": 0.05907402045242805
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 0.05910591478808569,
+      "certified_interval_deg": 1.8178137698584813,
+      "T_w_lb": 0.9951355230210085,
+      "q_ub_at_T_w_lb_deg": 1.6768261526844175,
+      "T_w_lb_valid": true,
+      "t_c_lb": 16.918780524509803,
+      "t_c_lb_valid": false
+     },
+     "landmarks": {
+      "north pole": {
+       "q_deg": 85.0,
+       "time": null,
+       "note": "beyond the scanned path or beyond the reduction's turning point: not reachable from rest"
+      },
+      "equator (if moving back)": {
+       "q_deg": -5.0,
+       "t_quad": 2.1296330674112443,
+       "t_gauss": 2.129633067345244,
+       "agree": true,
+       "speed": 0.04502550085415646,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "max_speed_on_reduction": 0.017937896517720178,
+     "t_c": null,
+     "T_w": {
+      "q_deg": 0.16641669920871188,
+      "T_w_quad": 0.9960702509311496,
+      "T_w_gauss": 0.9960703119286612,
+      "agree": false,
+      "speed": 0.005779898762573217,
+      "chord_to_nearest_image": 0.9960702509215118
+     },
+     "hard_boundary": 0.9960702509311496,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 8.0191887125604,
+      "grid": 4001,
+      "h": 7.261298328732661e-07,
+      "f_lb": 0.05594049885497779,
+      "f_ub": 0.05907693193850787,
+      "f_min_grid": 0.055943410341057605,
+      "f_max_grid": 0.05907402045242805
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 0.05907810797253103,
+      "certified_interval_deg": 0.23360655165076877,
+      "T_w_lb": 0.9960691473280174,
+      "q_ub_at_T_w_lb_deg": 0.16791836291017723,
+      "T_w_lb_valid": true,
+      "t_c_lb": 169.26743836565657,
+      "t_c_lb_valid": false
+     },
+     "landmarks": {
+      "north pole": {
+       "q_deg": 85.0,
+       "time": null,
+       "note": "beyond the scanned path or beyond the reduction's turning point: not reachable from rest"
+      },
+      "equator (if moving back)": {
+       "q_deg": -5.0,
+       "t_quad": 6.734491073430445,
+       "t_gauss": 6.734491073221727,
+       "agree": true,
+       "speed": 0.014238313548899125,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": -0.1584195628918912,
+    "dW": -0.1584195629122931
+   },
+   "first_zero_of_f_deg_(scan,measured)": 3.1122271752835275,
+   "turning_point_deg_(reduction)": 6.215416856321612,
+   "W_max_minus_W0_before_turning": 0.0016088406574021885
+  },
+  {
+   "name": "family C from rest, latitude 15 deg",
+   "f_at_release": 0.18659398812441882,
+   "direction": "positive q",
+   "by_g": {
+    "1.0": {
+     "max_speed_on_reduction": 0.1682601158729852,
+     "t_c": null,
+     "T_w": {
+      "q_deg": 4.472770181991061,
+      "T_w_quad": 0.9574789171568495,
+      "T_w_gauss": 0.9574789170701594,
+      "agree": true,
+      "speed": 0.1477372682406527,
+      "chord_to_nearest_image": 0.9574789171563822
+     },
+     "hard_boundary": 0.9574789171568495,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 8.912795405189271,
+      "grid": 4001,
+      "h": 1.95161415901925e-05,
+      "f_lb": 0.0914863414997194,
+      "f_ub": 0.18668095981296487,
+      "f_min_grid": 0.09157331318826545,
+      "f_max_grid": 0.18659398812441882
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 0.18669541872410605,
+      "certified_interval_deg": 5.198589741259368,
+      "T_w_lb": 0.9568524938484082,
+      "q_ub_at_T_w_lb_deg": 4.8968441712229955,
+      "T_w_lb_valid": true,
+      "t_c_lb": 5.356317829511262,
+      "t_c_lb_valid": false
+     },
+     "landmarks": {
+      "north pole": {
+       "q_deg": 75.0,
+       "time": null,
+       "note": "beyond the scanned path or beyond the reduction's turning point: not reachable from rest"
+      },
+      "equator (if moving back)": {
+       "q_deg": -15.0,
+       "t_quad": 2.1674310215975274,
+       "t_gauss": 2.1674310218411907,
+       "agree": true,
+       "speed": 0.10469867943468351,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "max_speed_on_reduction": 0.05320852055224841,
+     "t_c": null,
+     "T_w": {
+      "q_deg": 0.49314468401726613,
+      "T_w_quad": 0.9648318506567639,
+      "T_w_gauss": 0.9648318517804431,
+      "agree": false,
+      "speed": 0.017679911811057922,
+      "chord_to_nearest_image": 0.9648318506577298
+     },
+     "hard_boundary": 0.9648318506567639,
+     "hard_boundary_reason": "window end T_w",
+     "f_certificate_on_window": {
+      "L": 8.722281150514132,
+      "grid": 4001,
+      "h": 2.151749606202088e-06,
+      "f_lb": 0.17654558662817924,
+      "f_ub": 0.18660337220693424,
+      "f_min_grid": 0.17655497071069465,
+      "f_max_grid": 0.18659398812441882
+     },
+     "f_positive_certified_in_direction_of_motion": true,
+     "derived_lower_bounds": {
+      "f_ub_used": 0.18660502707092239,
+      "certified_interval_deg": 0.5798073283397427,
+      "T_w_lb": 0.9648220734304301,
+      "q_ub_at_T_w_lb_deg": 0.49763444976914134,
+      "T_w_lb_valid": true,
+      "t_c_lb": 53.58912434979221,
+      "t_c_lb_valid": false
+     },
+     "landmarks": {
+      "north pole": {
+       "q_deg": 75.0,
+       "time": null,
+       "note": "beyond the scanned path or beyond the reduction's turning point: not reachable from rest"
+      },
+      "equator (if moving back)": {
+       "q_deg": -15.0,
+       "t_quad": 6.854018699553789,
+       "t_gauss": 6.854018700324319,
+       "agree": true,
+       "speed": 0.03310862950254302,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": -0.06950387286972642,
+    "dW": -0.06950387276827286
+   },
+   "first_zero_of_f_deg_(scan,measured)": 8.497843600094704,
+   "turning_point_deg_(reduction)": 16.800746945567187,
+   "W_max_minus_W0_before_turning": 0.014155733296795203
+  }
+ ]
+}

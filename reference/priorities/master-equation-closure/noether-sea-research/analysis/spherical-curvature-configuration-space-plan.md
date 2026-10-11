@@ -1,0 +1,75 @@
+# Spherical curvature and configuration-space investigation
+
+## Authorization, clock and purpose
+
+The operator directed Codex on October 10, 2026 to guide the existing Claude chat **curvature** through twelve hours of research, using multiple agents and emphasizing broad configuration-space exploration rather than one extended evolution. The operator selected surface acceleration from the Master Equation (or a variant), with radial interaction accelerations ignored. This is a fresh investigation; earlier spherical campaigns remain closed.
+
+Launch clock: **2026-10-10 23:50:14 UTC**. Stop new exploration: **2026-10-11 10:50:14 UTC**. Hard closeout: **2026-10-11 11:50:14 UTC**, October 11 at **7:50:14 a.m. EDT**. The final hour is reserved for independent adjudication, preservation and closeout. Never extend these deadlines. The explicit twelve-hour direction replaces the collaboration protocol's default thirty-minute task limit; its twenty outgoing messages per coordinator remains the limit. A ten-minute watchdog is a recovery cadence, not assurance of uninterrupted execution or transport.
+
+Requested outcome: explain which spherical configurations, complete preparations and velocity patterns have comparable motion as radius changes; derive the radius, wake-delay and coupling relationships; identify qualified recurrence candidates and frequencies where justified; retain negative and inconclusive cases. An atlas with precise blockers is useful even if no repeating actual motion is established. Do not presume that equal initial speeds remain equal or constant.
+
+## Meaning of curvature and frequency
+
+Use sphere curvature $\mathcal C=1/R$, with the reference length $R_0=1$ in normalized units. This is the sphere's normal curvature; Gaussian curvature is $1/R^2$ and is a different quantity. Thus $\mathcal C=1$ at $R=1$, independently of speed. Set $c_f=1$ for every numerical case. The operator's reference case additionally has initial speed $v=c_f=1$. That speed sets a reference clock and does not change geometric curvature, impose a ceiling or authorize continuous speed correction.
+
+For the known control of a constant-speed great circle, the kinematic period is $P_0=2\pi R/v$ and frequency $f_0=v/(2\pi R)$. Hence the reference has $f_0=1/(2\pi)$, and at fixed speed this control gives frequency proportional to curvature. This is a control, not a prediction for the interacting six-member motion. Other closed curves have their own length and varying speed; an actual period must be established from the generated histories. Distinguish a strict labeled return, a return after rotation or a declared polarity-preserving permutation, a scalar oscillation, and a near-return. Record the accepted interval, root chart, error/enclosure, speed change and observation window. A finite-window near-return is not a proof of periodicity.
+
+## Selected equation and surface-only motion
+
+The baseline is the [canonical Master Equation](../../../../../content/markdown/aaa/dynamics/master-equation.md), with its transmitter-weighted **all-root** delayed interaction, including self hits wherever lawful. Use polarity and Euclidean geometry in absolute time. Do not import mass, standard force laws, an energy-radius law, spacetime curvature or quantization. Sphere curvature is geometry of this constrained research surface, not a derived gravitational metric.
+
+For $\mathbf n_i=\mathbf X_i/R$ and $P_i=I-\mathbf n_i\mathbf n_i^{\mathsf T}$, the selected intrinsic surface acceleration is
+
+$$
+\frac{D\mathbf v_i}{dT}=P_i\mathbf A_i^{\mathrm{master}}.
+$$
+
+Here $D/dT$ means differentiation along the surface with the geometric normal part removed. The canonical radial interaction component is discarded. Cartesian coordinates still require the geometric term that keeps the path on the sphere:
+
+$$
+\mathbf X_i''=P_i\mathbf A_i^{\mathrm{master}}-\frac{|\mathbf v_i|^2}{R}\mathbf n_i.
+$$
+
+The last term expresses the bending of a tangent path; it is not retention of the discarded radial interaction or a physical confinement mechanism. Do not implement $\mathbf X_i''=P_i\mathbf A_i$ alone, which leaves a moving path off the sphere, or repair it by tangential speed control. Derive and independently verify this distinction before targets. Speed evolves under the tangent interaction. Optional recording of the discarded radial component is a diagnostic only, not part of the selected motion or its acceptance criterion.
+
+The phrase “or variant” allows identifying relevant existing variants, but does not select an unspecified new law. Start with canonical interaction plus the expressly selected surface restriction. If comparing another variant, name its fixed definition and verify authorization for these geometries and histories against the [variation owner](../../equation-variants/README.md); otherwise keep it a proposal and continue the baseline. No damping, caps, smoothing, changed polarity, omitted roots, event law, numerical contact law or tangential controller is authorized.
+
+## Broad comparison design
+
+Begin with a preregistered matrix and a coverage table. Every case names positions, polarities, tangent initial velocities, **complete admissible preparation**, radius, coupling, exact law, controls and claim grade. Present-state positions and velocities alone are insufficient for delayed motion. Distinguish supplied moving preparation from feedback reading generated post-release history.
+
+1. ○ Radius comparison: initially $R\in\{1/4,1/2,1,2,4,10\}$, giving $\mathcal C\in\{4,2,1,1/2,1/4,1/10\}$. Keep $K=1$ for the physical parameter comparison, with equal dimensionless history conventions and initial speeds across radii. Derive the dimensionless coupling from the exact baseline rather than assuming dilation preserves dynamics. For the inverse-square baseline the candidate parameter is $g=K/(Rc_f^2)$; verify it independently. A separate mathematical similarity comparison may scale $K$ with $R$, explicitly labeled as such, never confused with a fixed-$K$ size comparison.
+2. ○ Speed comparison: initial $v/c_f\in\{1/4,1/2,3/4,1\}$. Include the operator's $R=1,v=1$ reference. Do not carry strict sub-wake root uniqueness bounds into equality at wake speed. No super-wake restriction is assumed by canon; any separately useful above-wake case needs complete all-root and singularity accounting. No event remedy is added where the law leaves continuation unresolved.
+3. ○ Geometry comparison: prioritize the canonical six poles (positrinos at $+x,+y,+z$ and electrinos at the opposite poles), alternating equatorial hexagon, three meridional paths with antipodes, small declared perturbations of six poles, and a reproducibly seeded balanced three-positive/three-negative spherical placement with nonzero separation. Compare polarity arrangements only as explicit different inputs, preserving three of each.
+4. ○ Velocity-pattern comparison: diagonal common rotation, directions toward opposite poles, copied antipodal velocities, balanced counter-motion, one-member directional perturbation, and seeded random tangent directions normalized to the selected **initial** magnitude. Treat zero tangent projection as an excluded seed with a recorded rule. Do not declare arbitrary patterns symmetry-preserving.
+5. ○ History comparison: supply exact reproducible history families, including a stationary past joined by an admitted preparation and moving spherical preparations. State seam regularity and the radius-scaled duration. Do not claim a static old-source release diagnoses later self-generated feedback. Retain full root/domain margins, collisions and excluded/singular cases rather than hiding them.
+
+Breadth comes first: the first six hours produce a coverage atlas across every selected axis, with analytical deductions and admitted diagnostics where evolution is unavailable. A full Cartesian product is not required. Use balanced representatives and explain uncovered cells. Allocate at most one quarter of exploratory effort to deeply continuing any single case; after coverage, select at most two promising recurrence candidates for additional bounded analysis. An early finished batch triggers the next ready comparison while useful selected work remains. Spend time on distinct cases and falsifying patterns rather than automatically extending the best interval.
+
+## Methods and capability boundary
+
+Recheck the live [EOM evolution contract](../../../app-solver/contracts/evolution-contract-v1.md), request construction and executed acceleration path before selecting numerical targets. At launch, direct inspection of `NativeCoupledEvolutionRequest` in `src/eom/include/architrino/eom/CoupledEvolution.hpp` and the contract's request declaration did not establish a sphere-constrained evolution interface. Claude must independently verify current capability; no absence of this capability is a physical failure. Do not bypass it with a competing numerical evolution solver or a projected browser trajectory.
+
+Continue useful analytical work: nondimensionalization and scaling; geometry and polarity symmetry; exact release tangent acceleration; history/root charts; short actual method-of-steps continuations with justified enclosures; separate prescribed-history acceleration/recurrence diagnostics; necessary conditions and exclusions for periodic or relatively periodic histories. Diagnose tangent work $\mathbf v_i\cdot P_i\mathbf A_i$ and speed splitting. A prescribed circular or scrambled path is input, not a solved recurrence. Stability requires a lawful equilibrium or periodic base; do not linearize a configuration merely because it is symmetric.
+
+Each new instrument records known and negative controls **before** target use. Freeze independent mathematical references before exposure to new peer subjects. Shared code, replay or repeated outputs are not independent verification. Retain exact source/control/target inputs, implementation, commands and outputs; analytical references display derivations and falsifiers. Record claim grades where findings occur and distinguish existence, actual reached intervals, near-recurrence, strict recurrence, stability and physical assembly acceptance.
+
+## Agents, ownership and communication
+
+Claude curvature is the Principal Investigator. Use up to three specialists concurrently with the lead, no recursive extra team: (a) geometry, symmetry and scaling; (b) configuration/history coverage and admitted diagnostics; (c) independent surface-law, root and recurrence adjudication. Read live Specialist roles before assignments. Preserve inherited model settings. The independent reviewer freezes its references before reading subjects and does not coauthor the subjects it validates.
+
+Claude owns new `analysis/spherical-curvature-claude-*.md` files, including `spherical-curvature-claude-synthesis.md` and an atlas. Assign exclusive role suffixes, scratch under `.tmp/spherical-curvature/ROLE/`, and retained local evidence under `.local-data/master-equation-closure/spherical-curvature/ROLE/`. Codex alone owns this plan, `spherical-curvature-coordination.md`, shared lane trackers and later integration into the existing manuscript; no worker edits prior frozen science, another role's report or shared manuscript. Corpus, production, generated artifacts, Git publication and worktrees are out of scope.
+
+On every active reconciliation, inspect actual worker roster/status, newly queued completions, durable artifacts and dispatch/session evidence. Record UTC check, assignment and acknowledgment, durable checkpoint, next dependency and action. Missing messages decide neither completion nor incompletion. Consume each saved completed report, verify scope and independence, and dispatch every ready useful successor in the same wake. Recheck statuses/artifacts before returning. A completion without evidence requires its missing exact artifact. After twenty minutes without a meaningful checkpoint, request status and inspect existing evidence while preserving the job; never duplicate a possibly delivered assignment because of silence. Preserve failed and inconclusive work. Claude's internal oversight operates continuously while it is active; Codex's ten-minute heartbeat is a recovery watchdog.
+
+Use the bound [shared conversation](../../../../op/agent-chats/2026-10-10-spherical-curvature/chat.md) and [collaboration protocol](../../../../op/codex-claude-protocol.md). The launch acknowledgment uses `shared-file` while Codex actively waits; Codex will then explicitly select `queue` for substantive later reports before yielding. Each delivery begins with its sender prefix and states reply flag and return route. No acknowledgment loops. If the receiving host has an actual authorization restriction, report the exact restriction without inventing task-specific confirmation requirements.
+
+## Compute, preservation and completion
+
+No heavy job is allocated at launch. At most one CPU-intensive job at a time, one thread initially, owned supervised process, explicit wall/memory/output limits and progress at most sixty seconds apart. Before launch read compute and retention owners, rebuild relevant executable when required, and record exact command/PID/session/deadline. Lead may allocate a bounded admitted job within this brief, with termination no later than exploration cutoff and immediately recorded receipt; no unconstrained or competing solver launch. New retained evidence budget: **50 MiB**, source/report text excluded only if the retention owner permits; reconcile exact size and preserve required inputs before expanding. Do not delete evidence to fit. A larger requirement is a blocker for that job, not the analysis.
+
+At exploration cutoff only verification, preservation and synthesis continue. At hard closeout stop only owned work, reconcile exact processes/worker states, retain all artifacts and unresolved intervals, finish evidence-bounded synthesis and pause the fresh watchdog. Early completion requires independently verified coverage with no useful selected comparison or verification left, not merely a completed batch. The final account explains what curvature changes, what depends on history or coupling, which frequency relationships are derived versus diagnostic, negative results, actual-motion limits and the next justified research step. No periodic branch, support mechanism, energy ladder or sea constitutive law is presumed.
+
+## Selected-work closeout
+
+Claude declared exploration complete at 05:21UTC on October11 after twenty-one adjudications and the final six-pole source-class comparison. Codex independently reconciled that join with durable artifacts, retained numerical premises and narrower unresolved claims, and integrated the explanatory result into the existing manuscript and lane trackers. No further exploratory assignment is selected. The [coordination record](spherical-curvature-coordination.md) owns final process, preservation, native-delivery and watchdog-pause receipts; this statement does not erase scientific or capture gaps or replace those receipts. Original deadlines remain unchanged.

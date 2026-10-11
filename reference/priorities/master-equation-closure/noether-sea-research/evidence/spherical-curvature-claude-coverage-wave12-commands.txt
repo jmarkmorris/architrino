@@ -1,0 +1,13 @@
+# Command receipt, wave 12. Every line: UTC time, cwd, literal command; PID, /usr/bin/time -p wall, thread pin and the internal alarm (perl alarm 110 s) per run.
+2026-10-11T02:14:26Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave12-d1-step-iv.py 1000 0.01 3 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave12-d1-step-iv-val-N1000-D0.01.json
+2026-10-11T02:14:26Z pid=42502 threads=1 alarm=110s
+2026-10-11T02:14:29Z END pid=42502 exit=2 real 2.61 user 2.55 sys 0.02 
+2026-10-11T02:14:59Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave12-d1-step-iv.py 1000 0.01 3 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave12-d1-step-iv-val2-N1000-D0.01.json
+2026-10-11T02:14:59Z pid=42583 threads=1 alarm=110s
+2026-10-11T02:15:02Z END pid=42583 exit=0 real 2.67 user 2.64 sys 0.01 
+2026-10-11T02:15:24Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave12-d1-step-iv.py 4000 0.01 40 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave12-d1-step-iv-target-N4000-D0.01-S40.json
+2026-10-11T02:15:24Z pid=42647 threads=1 alarm=110s
+2026-10-11T02:15:38Z END pid=42647 exit=0 real 13.60 user 13.54 sys 0.02 
+2026-10-11T02:15:38Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave12-d1-step-iv.py 4000 0.02 20 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave12-d1-step-iv-target-N4000-D0.02-S20.json
+2026-10-11T02:15:38Z pid=42685 threads=1 alarm=110s
+2026-10-11T02:15:49Z END pid=42685 exit=0 real 11.62 user 11.55 sys 0.01 

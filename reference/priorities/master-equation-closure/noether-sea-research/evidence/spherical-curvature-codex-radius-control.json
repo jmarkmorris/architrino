@@ -1,0 +1,15 @@
+{
+  "known_control": {
+    "t": 0.125,
+    "value": 0.1339745962155614,
+    "expected": "between t and 2t",
+    "pass": true
+  },
+  "negative_control": {
+    "t": 8.673617379884035e-19,
+    "value": 0,
+    "expected": "strictly greater than positive t",
+    "pass": false
+  },
+  "scope": "Binary64 subtraction counterexample; no campaign target execution"
+}

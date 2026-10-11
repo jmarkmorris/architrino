@@ -1,0 +1,10 @@
+# Command receipt, wave 10. Every line: UTC time, cwd, literal command; PID, /usr/bin/time -p wall, thread pin and the internal alarm (perl alarm 110 s) per run.
+2026-10-11T02:00:43Z START cwd=/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence :: /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- node spherical-curvature-claude-coverage-wave10-instrument.mjs controls /Users/markmorris/vibe/architrino/.local-data/master-equation-closure/spherical-curvature/coverage/wave10
+2026-10-11T02:00:43Z pid=38200 threads=1 (node, single-threaded) alarm=110s
+2026-10-11T02:00:43Z END pid=38200 exit=0 real 0.23 user 0.28 sys 0.01 
+2026-10-11T02:00:43Z START cwd=/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence :: /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- node spherical-curvature-claude-coverage-wave10-instrument.mjs cells /Users/markmorris/vibe/architrino/.local-data/master-equation-closure/spherical-curvature/coverage/wave10 CH-D2-period
+2026-10-11T02:00:43Z pid=38214 threads=1 (node, single-threaded) alarm=110s
+2026-10-11T02:00:44Z END pid=38214 exit=0 real 0.68 user 0.69 sys 0.01 
+2026-10-11T02:00:44Z START cwd=/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence :: /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- node spherical-curvature-claude-coverage-wave10-instrument.mjs summary /Users/markmorris/vibe/architrino/.local-data/master-equation-closure/spherical-curvature/coverage/wave10 .
+2026-10-11T02:00:44Z pid=38234 threads=1 (node, single-threaded) alarm=110s
+2026-10-11T02:00:44Z END pid=38234 exit=0 real 0.06 user 0.05 sys 0.00 

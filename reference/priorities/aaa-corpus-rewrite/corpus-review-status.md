@@ -6,6 +6,8 @@ The subsequent [OPS-031 Entropy review, October 8](../aaa-operations/evidence/op
 
 The [OPS-031 Binary Dynamics review, October 9](../aaa-operations/evidence/ops-031-binary-dynamics-review-2026-10-09.md), completes the whole chapter with a bounded no-change disposition and preserves two accepted repairs under independent rechecking. The historical disposition below remains complete; operations retains the periodic coverage cursor.
 
+The [OPS-031 Causal Action Functional review, October 11](../aaa-operations/evidence/ops-031-causal-action-review-2026-10-11.md), completes the whole chapter with a bounded no-change disposition. Its historical accepted repairs remain intact; operations retains the later coverage date and next cursor. CRW-005 remains closed.
+
 ## Active priority queue
 
 No active or unopened rows.

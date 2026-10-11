@@ -1,0 +1,59 @@
+{
+ "family": "antiprism-30",
+ "direction": "colatitude increasing (toward the equator)",
+ "g": "1/1",
+ "q_max": "0.9",
+ "N": 200,
+ "precision_dps": 30,
+ "controls": [
+  {
+   "name": "(a) known: all six co-moved to the equator (regular alternating hexagon) give a tangential field enclosing zero",
+   "pass": true,
+   "value": [
+    "-2.856045498418027327907572e-30",
+    "2.757143664969146760360791e-30"
+   ]
+  },
+  {
+   "name": "(b) first integral: dU/dq = F (finite difference) and cancellation-free U = Phi(0) - Phi(q) to 1e-12 at three points",
+   "pass": true,
+   "value": [
+    [
+     9.587582192683099e-13,
+     -5.860990006759236e-30
+    ],
+    [
+     8.94843806317236e-13,
+     -5.546678239835239e-30
+    ],
+    [
+     7.832999554939728e-13,
+     -6.261583435191781e-30
+    ]
+   ]
+  },
+  {
+   "name": "(c) constant-field toy encloses the closed form at every tenth node",
+   "pass": true
+  },
+  {
+   "name": "(d) negative: the wrong sign F -> -F is rejected",
+   "pass": true,
+   "message": "release acceleration not positive: F(0) in [-2.221715905268582184822967, -2.221715905268582184822967]"
+  }
+ ],
+ "premises": "mpmath iv directed rounding for +,-,*,/,sqrt,sin,cos,pi at 30 digits; exact decimal nodes; family, first integral and residual monotonicity derived in the report",
+ "F0": [
+  "2.221715905268582184822967",
+  "2.221715905268582184822967"
+ ],
+ "r0": {
+  "P1": "0.8660254037844386467637232",
+  "P2": "0.8660254037844386467637232",
+  "E0(-P0)": "2.0",
+  "E1(-P1)": "1.802775637731994646559611",
+  "E2(-P2)": "1.802775637731994646559611"
+ },
+ "controls_all_pass": true,
+ "rejected": "F not increasing on the first cell"
+}

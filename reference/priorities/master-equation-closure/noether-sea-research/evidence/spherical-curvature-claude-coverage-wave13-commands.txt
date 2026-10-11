@@ -1,0 +1,18 @@
+# Command receipt, wave 13. Every line: UTC time, cwd, literal command; PID, /usr/bin/time -p wall, thread pin and the internal alarm (perl alarm 110 s) per run.
+2026-10-11T02:21:21Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave13-d1-affine-iv.py 1000 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave13-d1-affine-iv-val-N1000.json
+2026-10-11T02:21:21Z pid=43648 threads=1 alarm=110s
+2026-10-11T02:21:25Z END pid=43648 exit=0 real 4.54 user 4.45 sys 0.02 
+# plans stated before the target runs: plan 1 Delta 0.01, 15 + up to 12 steps; plan 2 Delta 0.005, 30 + up to 24 steps; no adaptation
+2026-10-11T02:22:01Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave13-d1-affine-iv.py 4000 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave13-d1-affine-iv-plan1-N4000-D0.01.json
+2026-10-11T02:22:01Z pid=43778 threads=1 alarm=110s
+2026-10-11T02:22:17Z END pid=43778 exit=0 real 16.13 user 15.14 sys 0.06 
+2026-10-11T02:22:17Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave13-d1-affine-iv.py 4000 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave13-d1-affine-iv-plan2-N4000-D0.005.json 0.005 30 24
+2026-10-11T02:22:17Z pid=44065 threads=1 alarm=110s
+2026-10-11T02:22:28Z END pid=44065 exit=2 real 11.57 user 10.77 sys 0.05 
+# control (1a) corrected from containment to non-empty intersection (two enclosures of one value need not nest); (1b) applies to Delta = 0.01 only; both plans rerun with this final script version
+2026-10-11T02:23:10Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave13-d1-affine-iv.py 4000 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave13-d1-affine-iv-plan1v2-N4000-D0.01.json
+2026-10-11T02:23:10Z pid=45022 threads=1 alarm=110s
+2026-10-11T02:23:25Z END pid=45022 exit=0 real 14.74 user 14.59 sys 0.03 
+2026-10-11T02:23:25Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave13-d1-affine-iv.py 4000 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave13-d1-affine-iv-plan2v2-N4000-D0.005.json 0.005 30 24
+2026-10-11T02:23:25Z pid=45063 threads=1 alarm=110s
+2026-10-11T02:23:45Z END pid=45063 exit=0 real 19.80 user 19.54 sys 0.04 

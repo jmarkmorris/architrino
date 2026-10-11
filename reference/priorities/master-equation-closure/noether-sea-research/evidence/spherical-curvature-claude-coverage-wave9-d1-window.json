@@ -1,0 +1,165 @@
+{
+ "controls": [
+  {
+   "name": "60-degree twist (regular alternating hexagon) is stationary: F(0; twist 60) = 0",
+   "pass": true,
+   "value": 1.3877787807814457e-15
+  },
+  {
+   "name": "first integral is consistent with the force: dU/dpsi = F(psi) (finite difference at three points, 1e-7 relative) and the cancellation-free U equals Phi(0) - Phi(psi) to 1e-12",
+   "pass": true,
+   "value": [
+    1.2559953077584396e-12,
+    -3.129763115339301e-11,
+    -8.47744097143277e-12
+   ]
+  },
+  {
+   "name": "release azimuthal acceleration F(0) at twist 50 (my derivation)",
+   "value": 0.668064615092872,
+   "pass": true
+  },
+  {
+   "name": "negative: a flipped sign convention (G -> -G) gives F(0) of the wrong sign and must be rejected (positrinos must accelerate toward the nearer electrino, +)",
+   "pass": true,
+   "value": -0.668064615092872
+  },
+  {
+   "name": "series control: quadrature / two-term small-psi series -> 1 as psi -> 0 (psi = 1e-3, 1e-4, 1e-5)",
+   "pass": true,
+   "value": [
+    1.0000004047989288,
+    1.0000000040522852,
+    1.0000000000405267
+   ]
+  },
+  {
+   "name": "two quadrature rules (adaptive Gauss-Kronrod vs Gauss-Legendre 200 and 400 nodes) agree to 1e-10 at psi = 5, 10, 15 degrees",
+   "pass": true,
+   "value": [
+    {
+     "psi_deg": 5,
+     "adaptive": 0.4915342285909047,
+     "adaptive_err_est": 5.457126179729873e-15,
+     "gauss200": 0.4915342285909048,
+     "gauss400": 0.49153422859090484,
+     "diff_max": 1.6653345369377348e-16
+    },
+    {
+     "psi_deg": 10,
+     "adaptive": 0.6704524872241824,
+     "adaptive_err_est": 7.443517882334909e-15,
+     "gauss200": 0.6704524872241826,
+     "gauss400": 0.6704524872241828,
+     "diff_max": 4.440892098500626e-16
+    },
+    {
+     "psi_deg": 15,
+     "adaptive": 0.7934706394604765,
+     "adaptive_err_est": 8.809293732930672e-15,
+     "gauss200": 0.7934706394604768,
+     "gauss400": 0.793470639460477,
+     "diff_max": 5.551115123125783e-16
+    }
+   ]
+  }
+ ],
+ "results": {
+  "1.0": {
+   "g": 1.0,
+   "F0": 0.668064615092872,
+   "times": {
+    "40": {
+     "psi_deg": 5.0,
+     "t": 0.4915342285909047,
+     "quad_err_est": 5.457126179729873e-15,
+     "speed_at_psi": 0.3837921158368726,
+     "inside_window": true
+    },
+    "30": {
+     "psi_deg": 10.0,
+     "t": 0.6704524872241824,
+     "quad_err_est": 7.443517882334909e-15,
+     "speed_at_psi": 0.6055866507997482,
+     "inside_window": true
+    },
+    "20": {
+     "psi_deg": 15.0,
+     "t": 0.7934706394604765,
+     "quad_err_est": 8.809293732930672e-15,
+     "speed_at_psi": 0.8264650729454409,
+     "inside_window": false
+    }
+   },
+   "window_end": {
+    "psi_star_deg": 10.30247964460426,
+    "twist_at_end_deg": 29.39504071079148,
+    "T_star": 0.6790770222941103,
+    "speed_at_end": 0.6187049142501236,
+    "nearest_fixed_chord_at_end": 0.6790770222941103
+   }
+  },
+  "0.1": {
+   "g": 0.1,
+   "F0": 0.668064615092872,
+   "times": {
+    "40": {
+     "psi_deg": 5.0,
+     "t": 1.5543677102811153,
+     "quad_err_est": 1.725694820687979e-14,
+     "speed_at_psi": 0.12136572340596972,
+     "inside_window": false
+    },
+    "30": {
+     "psi_deg": 10.0,
+     "t": 2.1201569225533574,
+     "quad_err_est": 2.3538470312371523e-14,
+     "speed_at_psi": 0.1915033137120233,
+     "inside_window": false
+    },
+    "20": {
+     "psi_deg": 15.0,
+     "t": 2.509174477165383,
+     "quad_err_est": 2.7857432773507974e-14,
+     "speed_at_psi": 0.2613512037084798,
+     "inside_window": false
+    }
+   },
+   "window_end": {
+    "psi_star_deg": 1.328251061666721,
+    "twist_at_end_deg": 47.34349787666656,
+    "T_star": 0.8241698653077159,
+    "speed_at_end": 0.05747492031119977,
+    "nearest_fixed_chord_at_end": 0.8241698653077159
+   }
+  }
+ },
+ "controls_all_pass": true,
+ "early_g1": [
+  {
+   "T": 0.015,
+   "psi_rad": 7.516258141898146e-05,
+   "speed": 0.010022385860396922
+  },
+  {
+   "T": 0.03,
+   "psi_rad": 0.00030071408735522624,
+   "speed": 0.02005327453072146
+  },
+  {
+   "T": 0.0355848897551,
+   "psi_rad": 0.0004231481961629756,
+   "speed": 0.02379192730357399
+  },
+  {
+   "T": 0.045,
+   "psi_rad": 0.0006768459156546744,
+   "speed": 0.03010118386932732
+  },
+  {
+   "T": 0.06,
+   "psi_rad": 0.0012038774394166117,
+   "speed": 0.0401746619198444
+  }
+ ]
+}

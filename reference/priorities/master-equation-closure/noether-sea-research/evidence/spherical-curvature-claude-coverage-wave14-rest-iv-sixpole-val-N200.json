@@ -1,0 +1,106 @@
+{
+ "family": "sixpole",
+ "g": "1",
+ "q_max": "0.9",
+ "N": 200,
+ "precision_dps": 30,
+ "controls": [
+  {
+   "name": "(a) known: the release tangential acceleration of the six poles encloses K/R^2 = 1 (wave-1 closed form) and the radial part encloses -1/4",
+   "pass": true,
+   "F0": [
+    "1.0",
+    "1.0"
+   ],
+   "nA": [
+    "-0.25",
+    "-0.25"
+   ]
+  },
+  {
+   "name": "(b) first integral: dU/dq = F (finite difference, 1e-7 relative) and cancellation-free U = Phi(0) - Phi(q) to 1e-12 at three points",
+   "pass": true,
+   "value": [
+    [
+     1.4625470091468515e-13,
+     -1.3034693863612812e-30
+    ],
+    [
+     1.4590575552565e-13,
+     -1.7379591818150416e-30
+    ],
+    [
+     1.4026095038319598e-13,
+     -1.6023737137301802e-30
+    ]
+   ]
+  },
+  {
+   "name": "(c) constant-field toy F == F0: the enclosure contains the closed form sqrt(2 q/(g F0)) at every tenth node",
+   "pass": true
+  },
+  {
+   "name": "(d) negative: the wrong sign F -> -F is rejected",
+   "pass": true,
+   "message": "release acceleration not positive: F(0) in [-1.0, -1.0]"
+  }
+ ],
+ "premises": "mpmath iv directed rounding for +,-,*,/,sqrt,sin,cos,pi at 30 digits; exact decimal nodes; the fixed-image field, its gradient structure and the symmetry family are derived in the report",
+ "controls_all_pass": true,
+ "F0": [
+  "1.0",
+  "1.0"
+ ],
+ "worst_cell_error": 0.0053533925955197206,
+ "t_at_q_max": [
+  "1.309813306427673895707417",
+  "1.322402859032638864611135"
+ ],
+ "nearest_image": "P2(+e2)",
+ "dchord_dq_range": [
+  "-0.2919707759624323526425341",
+  "1.265810075705438984875326"
+ ],
+ "residual_monotone": false,
+ "window_end": {
+  "error": "bracket failed"
+ },
+ "crossing": {
+  "q_c_rad": [
+   "0.4712031866587285286804572",
+   "0.4712031866587285286804579"
+  ],
+  "q_c_deg": [
+   "26.9979538886602828156742",
+   "26.99795388866028281567425"
+  ],
+  "t_c": [
+   "0.954061492136987893631022",
+   "0.9731280928013054598836412"
+  ],
+  "speed_at_q_c": "1 by definition (U(q_c) = 1/(2g))",
+  "chords_at_q_c": {
+   "P2(+e2)": [
+    "1.625421336929959810513116",
+    "1.625421336929959810513117"
+   ],
+   "P3(+e3)": [
+    "1.625421336929959810513116",
+    "1.625421336929959810513117"
+   ],
+   "E1(-e1)": [
+    "1.944748177141373585743421",
+    "1.944748177141373585743422"
+   ],
+   "E2(-e2)": [
+    "1.165334920721430225120878",
+    "1.165334920721430225120878"
+   ],
+   "E3(-e3)": [
+    "1.165334920721430225120878",
+    "1.165334920721430225120878"
+   ]
+  }
+ },
+ "wall_s": 0.6753060817718506
+}

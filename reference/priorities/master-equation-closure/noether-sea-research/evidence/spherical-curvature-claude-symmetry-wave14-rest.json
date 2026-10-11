@@ -1,0 +1,1360 @@
+{
+ "pid": 40411,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: imported wave-11 function reproduces the g=1 six-pole bracket and verdict",
+   "t_c": [
+    0.962207038662762,
+    0.9639521408918529
+   ],
+   "verdict": true,
+   "pass": true
+  },
+  {
+   "name": "known: stationary hexagon simultaneous chord exactly 1",
+   "value": 0.9999999999999996,
+   "pass": true
+  },
+  {
+   "name": "negative: polarity flip changes f(0)",
+   "f0": -1.8691032201027316,
+   "true": 0.668064615092872,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "results": {
+  "six poles": [
+   {
+    "g": 4.0,
+    "R_at_K1": 0.25,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.24818639186813485,
+     0.24857993151312754
+    ],
+    "q_c_bracket_deg": [
+     7.085412350494998,
+     7.097044619790519
+    ],
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": 0.24818639186813485,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      7.085412350494998,
+      7.097044619790519
+     ],
+     "t": [
+      0.24818639186813485,
+      0.24857993151312754
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 7.097044619790519,
+     "grid": 2001,
+     "h": 6.193339788814683e-05,
+     "grid_min": 1.29170007350467,
+     "at_q_deg": 7.097044619790519,
+     "certified_min_chord": 1.2916381401057817,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 2.0,
+    "R_at_K1": 0.5,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.49202624568764486,
+     0.49285387735688063
+    ],
+    "q_c_bracket_deg": [
+     13.976355460217077,
+     14.001278556301683
+    ],
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": 0.49202624568764486,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      13.976355460217077,
+      14.001278556301683
+     ],
+     "t": [
+      0.49202624568764486,
+      0.49285387735688063
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 14.001278556301683,
+     "grid": 2001,
+     "h": 0.0001221842051481713,
+     "grid_min": 1.1809097769194228,
+     "at_q_deg": 14.001278556301683,
+     "certified_min_chord": 1.1807875927132745,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.5,
+    "R_at_K1": 2.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     1.2170900706871834,
+     1.2176680386189263
+    ],
+    "speed_bound_before_window_end": 0.6264406913688493,
+    "conservative_actual_bound": 1.2170900706871834,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      21.486696465452418,
+      21.47123966781936
+     ],
+     "t": [
+      1.2170900706871834,
+      1.2176680386189263
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 21.486696465452418,
+     "grid": 2001,
+     "h": 0.00018750679934938637,
+     "grid_min": 1.0817365268374235,
+     "at_q_deg": 21.486696465452418,
+     "certified_min_chord": 1.081549020037074,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.25,
+    "R_at_K1": 4.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     1.3035990879165422,
+     1.303974275010089
+    ],
+    "speed_bound_before_window_end": 0.3307068879710233,
+    "conservative_actual_bound": 1.3035990879165422,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      12.251037332540028,
+      12.23865719756808
+     ],
+     "t": [
+      1.3035990879165422,
+      1.303974275010089
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 12.251037332540028,
+     "grid": 2001,
+     "h": 0.00010691046911878347,
+     "grid_min": 1.2076901372669613,
+     "at_q_deg": 12.251037332540028,
+     "certified_min_chord": 1.2075832267968425,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   }
+  ],
+  "antiprism 30": [
+   {
+    "g": 4.0,
+    "R_at_K1": 0.25,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.1146549377996297,
+     0.11605157777970472
+    ],
+    "q_c_bracket_deg": [
+     3.321707469064692,
+     3.3623812019479984
+    ],
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": 0.1146549377996297,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      3.321707469064692,
+      3.3623812019479984
+     ],
+     "t": [
+      0.1146549377996297,
+      0.11605157777970472
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 3.3623812019479984,
+     "grid": 2001,
+     "h": 2.9342311340578476e-05,
+     "grid_min": 0.8660254037844384,
+     "at_q_deg": 0.0,
+     "certified_min_chord": 0.8659960614720978,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 2.0,
+    "R_at_K1": 0.5,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.2349662871958913,
+     0.23784476321770223
+    ],
+    "q_c_bracket_deg": [
+     6.890269502436592,
+     6.975274459930666
+    ],
+    "T_w_bracket": [
+     0.8656259539345496,
+     0.9013481872109541
+    ],
+    "speed_bound_before_window_end": 3.175366893027109,
+    "conservative_actual_bound": 0.2349662871958913,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      6.890269502436592,
+      6.975274459930666
+     ],
+     "t": [
+      0.2349662871958913,
+      0.23784476321770223
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 85.11533518526551,
+     "grid": 2001,
+     "h": 0.0007427714214607304,
+     "grid_min": 0.8660254037844384,
+     "at_q_deg": 0.0,
+     "certified_min_chord": 0.8652826323619777,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.5,
+    "R_at_K1": 2.0,
+    "verdict": "undecided",
+    "t_c_bracket": [
+     1.0846965261886046,
+     1.0965928835165306
+    ],
+    "q_c_bracket_deg": [
+     33.81282759305993,
+     34.156184555006526
+    ],
+    "T_w_bracket": [
+     0.8656259539345496,
+     1.3474385758491072
+    ],
+    "speed_bound_before_window_end": 1.182886844309518,
+    "conservative_actual_bound": 0.8656259539345496,
+    "handoff": null,
+    "simultaneous_separation": {
+     "q_end_deg": 49.774164073297065,
+     "grid": 2001,
+     "h": 0.00043436152275345296,
+     "grid_min": 0.8660254037844384,
+     "at_q_deg": 0.0,
+     "certified_min_chord": 0.865591042260685,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.25,
+    "R_at_K1": 4.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": [
+     2.318253023785227,
+     2.336852423128783
+    ],
+    "q_c_bracket_deg": [
+     71.86223271452144,
+     72.29092798722749
+    ],
+    "T_w_bracket": [
+     0.8656259539345494,
+     1.4144995797717015
+    ],
+    "speed_bound_before_window_end": 0.6649011697737717,
+    "conservative_actual_bound": 0.8656259539345494,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      11.508138815831677,
+      28.82001607982364
+     ],
+     "t": [
+      0.8656259539345494,
+      1.4144995797717015
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 72.29092798722749,
+     "grid": 2001,
+     "h": 0.0006308573563496185,
+     "grid_min": 0.8660254037844384,
+     "at_q_deg": 0.0,
+     "certified_min_chord": 0.8653945464270888,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   }
+  ],
+  "antiprism 45": [
+   {
+    "g": 4.0,
+    "R_at_K1": 0.25,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.21072844826171203,
+     0.21126020994889955
+    ],
+    "q_c_bracket_deg": [
+     6.063480606384055,
+     6.078165087873109
+    ],
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": 0.21072844826171203,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      6.063480606384055,
+      6.078165087873109
+     ],
+     "t": [
+      0.21072844826171203,
+      0.21126020994889955
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 6.078165087873109,
+     "grid": 2001,
+     "h": 5.304199663157811e-05,
+     "grid_min": 1.2247448713915887,
+     "at_q_deg": 0.0,
+     "certified_min_chord": 1.224691829393957,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 2.0,
+    "R_at_K1": 0.5,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.42426760097675137,
+     0.4252391653712433
+    ],
+    "q_c_bracket_deg": [
+     12.239891854916964,
+     12.265182746799695
+    ],
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": 0.42426760097675137,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      12.239891854916964,
+      12.265182746799695
+     ],
+     "t": [
+      0.42426760097675137,
+      0.4252391653712433
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 12.265182746799695,
+     "grid": 2001,
+     "h": 0.00010703391114522833,
+     "grid_min": 1.2247448713915887,
+     "at_q_deg": 0.0,
+     "certified_min_chord": 1.2246378374794433,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.5,
+    "R_at_K1": 2.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": [
+     1.6637094134931196,
+     1.6675352335317377
+    ],
+    "q_c_bracket_deg": [
+     46.87405191882792,
+     46.983760899147136
+    ],
+    "T_w_bracket": [
+     1.224495358951567,
+     1.30900313904394
+    ],
+    "speed_bound_before_window_end": 0.7696659081114583,
+    "conservative_actual_bound": 1.224495358951567,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      25.35513491217847,
+      28.891547038171332
+     ],
+     "t": [
+      1.224495358951567,
+      1.30900313904394
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 46.983760899147136,
+     "grid": 2001,
+     "h": 0.0004100106613299445,
+     "grid_min": 1.000000049830088,
+     "at_q_deg": 45.010442941382955,
+     "certified_min_chord": 0.9995900391677581,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.25,
+    "R_at_K1": 4.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     1.224495358951567,
+     1.4144139082821818
+    ],
+    "speed_bound_before_window_end": 0.4155149726381824,
+    "conservative_actual_bound": 1.224495358951567,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      12.740851852675513,
+      16.922643633754713
+     ],
+     "t": [
+      1.224495358951567,
+      1.4144139082821818
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 16.922643633754713,
+     "grid": 2001,
+     "h": 0.00014767792477533858,
+     "grid_min": 1.2247448713915887,
+     "at_q_deg": 0.0,
+     "certified_min_chord": 1.2245971934658133,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   }
+  ],
+  "antiprism 60": [
+   {
+    "g": 4.0,
+    "R_at_K1": 0.25,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.2609560070085442,
+     0.2614936775299362
+    ],
+    "q_c_bracket_deg": [
+     7.4320309884963125,
+     7.4475094453967
+    ],
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": 0.2609560070085442,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      7.4320309884963125,
+      7.4475094453967
+     ],
+     "t": [
+      0.2609560070085442,
+      0.2614936775299362
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 7.4475094453967,
+     "grid": 2001,
+     "h": 6.499178044777463e-05,
+     "grid_min": 1.200535305242878,
+     "at_q_deg": 7.4475094453967,
+     "certified_min_chord": 1.20047031346143,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 2.0,
+    "R_at_K1": 0.5,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.5155095373769549,
+     0.5165849068439837
+    ],
+    "q_c_bracket_deg": [
+     14.586671714349475,
+     14.617541951083487
+    ],
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": 0.5155095373769549,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      14.586671714349475,
+      14.617541951083487
+     ],
+     "t": [
+      0.5155095373769549,
+      0.5165849068439837
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 14.617541951083487,
+     "grid": 2001,
+     "h": 0.00012756211779740137,
+     "grid_min": 1.1004953828492627,
+     "at_q_deg": 14.617541951083487,
+     "certified_min_chord": 1.1003678207304652,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.5,
+    "R_at_K1": 2.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     1.161387729521632,
+     1.1619489286022129
+    ],
+    "speed_bound_before_window_end": 0.5676686566126135,
+    "conservative_actual_bound": 1.161387729521632,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      18.57187694826613,
+      18.550594682115985
+     ],
+     "t": [
+      1.161387729521632,
+      1.1619489286022129
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 18.57187694826613,
+     "grid": 2001,
+     "h": 0.00016207020051124026,
+     "grid_min": 1.057249527357161,
+     "at_q_deg": 18.57187694826613,
+     "certified_min_chord": 1.0570874571556497,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.25,
+    "R_at_K1": 4.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     1.2324967107957705,
+     1.2330594673791906
+    ],
+    "speed_bound_before_window_end": 0.2969287968485083,
+    "conservative_actual_bound": 1.2324967107957705,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      10.386097859206878,
+      10.374072727305535
+     ],
+     "t": [
+      1.2324967107957705,
+      1.2330594673791906
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 10.386097859206878,
+     "grid": 2001,
+     "h": 9.063580203874723e-05,
+     "grid_min": 1.156738288041142,
+     "at_q_deg": 10.386097859206878,
+     "certified_min_chord": 1.1566476522381033,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   }
+  ],
+  "twist 40": [
+   {
+    "g": 4.0,
+    "R_at_K1": 0.25,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.14298177902738812,
+     0.14392034455688146
+    ],
+    "q_c_bracket_deg": [
+     3.911189007829114,
+     3.935669365247594
+    ],
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": 0.14298177902738812,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      3.911189007829114,
+      3.935669365247594
+     ],
+     "t": [
+      0.14298177902738812,
+      0.14392034455688146
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 3.935669365247594,
+     "grid": 2001,
+     "h": 3.43451943467229e-05,
+     "grid_min": 0.5534329371807463,
+     "at_q_deg": 3.935669365247594,
+     "certified_min_chord": 0.5533985919853995,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 2.0,
+    "R_at_K1": 0.5,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.2653674723847108,
+     0.26701012951762876
+    ],
+    "q_c_bracket_deg": [
+     6.98087339154555,
+     7.020591798847716
+    ],
+    "T_w_bracket": [
+     0.39279072341490306,
+     0.39379561816526
+    ],
+    "speed_bound_before_window_end": 1.9853365697956362,
+    "conservative_actual_bound": 0.2653674723847108,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      6.98087339154555,
+      7.020591798847716
+     ],
+     "t": [
+      0.2653674723847108,
+      0.26701012951762876
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 17.337495538152957,
+     "grid": 2001,
+     "h": 0.00015129819059529764,
+     "grid_min": 0.09290549312472268,
+     "at_q_deg": 17.337495538152957,
+     "certified_min_chord": 0.09275419493312738,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.5,
+    "R_at_K1": 2.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": [
+     0.7901420540475839,
+     0.7943312204938133
+    ],
+    "q_c_bracket_deg": [
+     17.596975273586256,
+     17.672417592520695
+    ],
+    "T_w_bracket": [
+     0.55575978675164,
+     0.5565591522861673
+    ],
+    "speed_bound_before_window_end": 0.5345015635152802,
+    "conservative_actual_bound": 0.55575978675164,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      7.721497940577901,
+      7.685399305391602
+     ],
+     "t": [
+      0.55575978675164,
+      0.5565591522861673
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 17.672417592520695,
+     "grid": 2001,
+     "h": 0.00015422093688842787,
+     "grid_min": 0.08122560773716483,
+     "at_q_deg": 17.672417592520695,
+     "certified_min_chord": 0.0810713867992764,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.25,
+    "R_at_K1": 4.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.6099221776906824,
+     0.6105588894602885
+    ],
+    "speed_bound_before_window_end": 0.27079125650810043,
+    "conservative_actual_bound": 0.6099221776906824,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      4.477318832888154,
+      4.453578082971577
+     ],
+     "t": [
+      0.6099221776906824,
+      0.6105588894602885
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 4.477318832888154,
+     "grid": 2001,
+     "h": 3.907197764772403e-05,
+     "grid_min": 0.535239637773787,
+     "at_q_deg": 4.477318832888154,
+     "certified_min_chord": 0.5352005657951393,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   }
+  ],
+  "twist 50": [
+   {
+    "g": 4.0,
+    "R_at_K1": 0.25,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.295261124883186,
+     0.29819192317505094
+    ],
+    "q_c_bracket_deg": [
+     7.542542668823902,
+     7.6051222660377045
+    ],
+    "T_w_bracket": [
+     0.46522613618481456,
+     0.4671686906790527
+    ],
+    "speed_bound_before_window_end": 2.508442149288336,
+    "conservative_actual_bound": 0.295261124883186,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      7.542542668823902,
+      7.6051222660377045
+     ],
+     "t": [
+      0.295261124883186,
+      0.29819192317505094
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 23.08914096323999,
+     "grid": 2001,
+     "h": 0.00020149076563281642,
+     "grid_min": 0.06668919907727576,
+     "at_q_deg": 23.08914096323999,
+     "certified_min_chord": 0.06648770831064293,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 2.0,
+    "R_at_K1": 0.5,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.5155714169846406,
+     0.5201392221463969
+    ],
+    "q_c_bracket_deg": [
+     12.288302499797705,
+     12.371131386402013
+    ],
+    "T_w_bracket": [
+     0.5786295016598401,
+     0.5806493902828298
+    ],
+    "speed_bound_before_window_end": 1.270412166508397,
+    "conservative_actual_bound": 0.5155714169846406,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      12.288302499797705,
+      12.371131386402013
+     ],
+     "t": [
+      0.5155714169846406,
+      0.5201392221463969
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 16.3478992934652,
+     "grid": 2001,
+     "h": 0.00014266233422771123,
+     "grid_min": 0.3008687724405989,
+     "at_q_deg": 16.3478992934652,
+     "certified_min_chord": 0.3007261101053712,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.5,
+    "R_at_K1": 2.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.7499676520172882,
+     0.7511514982676547
+    ],
+    "speed_bound_before_window_end": 0.30391003090084184,
+    "conservative_actual_bound": 0.7499676520172882,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      5.943285000164556,
+      5.882521819391355
+     ],
+     "t": [
+      0.7499676520172882,
+      0.7511514982676547
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 5.943285000164556,
+     "grid": 2001,
+     "h": 5.1864945818631616e-05,
+     "grid_min": 0.6530078582271291,
+     "at_q_deg": 5.943285000164556,
+     "certified_min_chord": 0.6529559932803105,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.25,
+    "R_at_K1": 4.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.7941556019350162,
+     0.7949441450979204
+    ],
+    "speed_bound_before_window_end": 0.14819667306051884,
+    "conservative_actual_bound": 0.7941556019350162,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      3.1982692200341853,
+      3.162068813238557
+     ],
+     "t": [
+      0.7941556019350162,
+      0.7949441450979204
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 3.1982692200341853,
+     "grid": 2001,
+     "h": 2.7910164127393763e-05,
+     "grid_min": 0.7427917658066763,
+     "at_q_deg": 3.1982692200341853,
+     "certified_min_chord": 0.7427638556415489,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   }
+  ],
+  "twist 70": [
+   {
+    "g": 4.0,
+    "R_at_K1": 0.25,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.29526112488318734,
+     0.29819192317505205
+    ],
+    "q_c_bracket_deg": [
+     7.54254266882393,
+     7.605122266037729
+    ],
+    "T_w_bracket": [
+     0.4652261361848161,
+     0.467168690679054
+    ],
+    "speed_bound_before_window_end": 2.5084421492883306,
+    "conservative_actual_bound": 0.29526112488318734,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      7.54254266882393,
+      7.605122266037729
+     ],
+     "t": [
+      0.29526112488318734,
+      0.29819192317505205
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 23.08914096323999,
+     "grid": 2001,
+     "h": 0.00020149076563281642,
+     "grid_min": 0.06668919907727575,
+     "at_q_deg": 23.08914096323999,
+     "certified_min_chord": 0.06648770831064292,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 2.0,
+    "R_at_K1": 0.5,
+    "verdict": "crossing inside window",
+    "t_c_bracket": [
+     0.5155714169846426,
+     0.5201392221463988
+    ],
+    "q_c_bracket_deg": [
+     12.288302499797743,
+     12.371131386402043
+    ],
+    "T_w_bracket": [
+     0.5786295016598408,
+     0.5806493902828308
+    ],
+    "speed_bound_before_window_end": 1.270412166508394,
+    "conservative_actual_bound": 0.5155714169846426,
+    "handoff": {
+     "type": "wake crossing",
+     "q_deg": [
+      12.288302499797743,
+      12.371131386402043
+     ],
+     "t": [
+      0.5155714169846426,
+      0.5201392221463988
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 16.347899293465144,
+     "grid": 2001,
+     "h": 0.00014266233422771074,
+     "grid_min": 0.30086877244060156,
+     "at_q_deg": 16.347899293465144,
+     "certified_min_chord": 0.30072611010537387,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.5,
+    "R_at_K1": 2.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.7499676520172892,
+     0.7511514982676556
+    ],
+    "speed_bound_before_window_end": 0.3039100309008411,
+    "conservative_actual_bound": 0.7499676520172892,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      5.943285000164532,
+      5.8825218193913384
+     ],
+     "t": [
+      0.7499676520172892,
+      0.7511514982676556
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 5.943285000164532,
+     "grid": 2001,
+     "h": 5.1864945818631406e-05,
+     "grid_min": 0.6530078582271296,
+     "at_q_deg": 5.943285000164532,
+     "certified_min_chord": 0.652955993280311,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.25,
+    "R_at_K1": 4.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.7941556019350172,
+     0.7949441450979214
+    ],
+    "speed_bound_before_window_end": 0.14819667306051848,
+    "conservative_actual_bound": 0.7941556019350172,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      3.198269220034173,
+      3.162068813238544
+     ],
+     "t": [
+      0.7941556019350172,
+      0.7949441450979214
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 3.198269220034173,
+     "grid": 2001,
+     "h": 2.791016412739365e-05,
+     "grid_min": 0.7427917658066766,
+     "at_q_deg": 3.198269220034173,
+     "certified_min_chord": 0.7427638556415492,
+     "positive": true
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   }
+  ],
+  "family C 5": [
+   {
+    "g": 4.0,
+    "R_at_K1": 0.25,
+    "verdict": "undecided",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": Infinity,
+    "handoff": null,
+    "simultaneous_separation": {
+     "q_end_deg": 2.864788975654116,
+     "grid_min": 0.9905937425035187,
+     "certified_min_chord": 0.9905687425025187,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 2.0,
+    "R_at_K1": 0.5,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.994655447205448,
+     0.9946861352735085
+    ],
+    "speed_bound_before_window_end": 0.08004637054081443,
+    "conservative_actual_bound": 0.994655447205448,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      2.8007973739453424,
+      2.783427384687679
+     ],
+     "t": [
+      0.994655447205448,
+      0.9946861352735085
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 2.8007973739453424,
+     "grid_min": 0.9907459516489253,
+     "certified_min_chord": 0.9907215100799971,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.5,
+    "R_at_K1": 2.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.9956194162779431,
+     0.9956480810738934
+    ],
+    "speed_bound_before_window_end": 0.026951749302973886,
+    "conservative_actual_bound": 0.9956194162779431,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      0.8043972511777667,
+      0.79941979549108
+     ],
+     "t": [
+      0.9956194162779431,
+      0.9956480810738934
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 0.8043972511777667,
+     "grid_min": 0.9948729501806263,
+     "certified_min_chord": 0.9948659304893628,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.25,
+    "R_at_K1": 4.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.9958813189438703,
+     0.995908329809367
+    ],
+    "speed_bound_before_window_end": 0.01412338769004867,
+    "conservative_actual_bound": 0.9958813189438703,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      0.41149473912438084,
+      0.4089482991479342
+     ],
+     "t": [
+      0.9958813189438703,
+      0.995908329809367
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 0.41149473912438084,
+     "grid_min": 0.9955430644600152,
+     "certified_min_chord": 0.9955394734899891,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   }
+  ],
+  "family C 15": [
+   {
+    "g": 4.0,
+    "R_at_K1": 0.25,
+    "verdict": "undecided",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": Infinity,
+    "handoff": null,
+    "simultaneous_separation": {
+     "q_end_deg": 8.021409131831525,
+     "grid_min": 0.9203587886634916,
+     "certified_min_chord": 0.9202887886624916,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 2.0,
+    "R_at_K1": 0.5,
+    "verdict": "undecided",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     null,
+     null
+    ],
+    "speed_bound_before_window_end": null,
+    "conservative_actual_bound": Infinity,
+    "handoff": null,
+    "simultaneous_separation": {
+     "q_end_deg": 8.021409131831525,
+     "grid_min": 0.9203587886634916,
+     "certified_min_chord": 0.9202887886624916,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.5,
+    "R_at_K1": 2.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.9610040490766698,
+     0.9610965819537511
+    ],
+    "speed_bound_before_window_end": 0.08200949545222078,
+    "conservative_actual_bound": 0.9610040490766698,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      2.3655630567093264,
+      2.351780167766156
+     ],
+     "t": [
+      0.9610040490766698,
+      0.9610965819537511
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 2.3655630567093264,
+     "grid_min": 0.9544198910404375,
+     "certified_min_chord": 0.9543992476074359,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   },
+   {
+    "g": 0.25,
+    "R_at_K1": 4.0,
+    "verdict": "window ends before crossing",
+    "t_c_bracket": null,
+    "q_c_bracket_deg": null,
+    "T_w_bracket": [
+     0.9632655513215932,
+     0.9633438499123144
+    ],
+    "speed_bound_before_window_end": 0.043058609425993585,
+    "conservative_actual_bound": 0.9632655513215932,
+    "handoff": {
+     "type": "window end",
+     "q_deg": [
+      1.2155620017755313,
+      1.208473768739309
+     ],
+     "t": [
+      0.9632655513215932,
+      0.9633438499123144
+     ]
+    },
+    "simultaneous_separation": {
+     "q_end_deg": 1.2155620017755313,
+     "grid_min": 0.9602178739934334,
+     "certified_min_chord": 0.9602072662128368,
+     "positive": true,
+     "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+    },
+    "f_lb_on_window": null,
+    "envelope_positive": true
+   }
+  ]
+ },
+ "wall_s": 10.454026937484741
+}

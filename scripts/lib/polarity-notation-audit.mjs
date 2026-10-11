@@ -15,10 +15,50 @@ export function maskFractionalChangeRatios(text) {
 
 const blank = value => value.replace(/[^\n\r]/g, " ");
 
+// A local event-gap explanation may use q_E as an angle. Require the
+// immediately preceding event description and a trigonometric occurrence;
+// recognize only that occurrence and its next-paragraph angular bound.
+// This is not a file-wide declaration of q_E's meaning.
+function maskEventPhase(text) {
+  const contextText = text.replace(/^\s*(`{3,}|~{3,})[^\n]*\n[\s\S]*?^\s*\1\s*$/gm, blank)
+    .replace(/`[^`]*`/g, blank);
+  const paragraphs = [...contextText.matchAll(/[^\n]+(?:\n(?![ \t]*\n)[^\n]+)*/g)];
+  const charge = /\b(?:charge|charges|inventory|inventories|positrino|electrino)\b/i;
+  let result = text;
+  const hide = (paragraph, span, match) => {
+    const start = paragraph.index + span.bodyStart + match.index;
+    result = result.slice(0, start) + blank(match[0]) + result.slice(start + match[0].length);
+  };
+  for (let i = 1; i < paragraphs.length; i++) {
+    const previous = paragraphs[i - 1][0];
+    const paragraph = paragraphs[i];
+    if (!/\b(?:at|after)\s+(?:the\s+)?(?:reached\s+)?event\b/i.test(previous) ||
+        !/\b(?:distance\s+)?gap\b/i.test(previous) || charge.test(previous + paragraph[0])) continue;
+    let angular = false;
+    for (const span of mathSpans(paragraph[0])) {
+      if (/\\(?:text|textrm|textbf|mathrm|operatorname)\b/.test(span.body)) continue;
+      for (const trig of span.body.matchAll(/\\(?:sin|cos)\s*\([^()]*\)/g)) {
+        for (const token of trig[0].matchAll(/\bq_(?:E\b|\{E\})/g)) {
+          hide(paragraph, span, {0: token[0], index: trig.index + token.index});
+          angular = true;
+        }
+      }
+    }
+    const next = paragraphs[i + 1];
+    if (!angular || !next || charge.test(next[0]) ||
+        !/\b(?:sine|cosine)\s+(?:argument|lower\s+bound)\b/i.test(next[0])) continue;
+    for (const span of mathSpans(next[0])) {
+      if (/\\(?:text|textrm|textbf|mathrm|operatorname)\b/.test(span.body)) continue;
+      for (const token of span.body.matchAll(/\bq_(?:E\b|\{E\})(?=\s*(?:<|>|\\leq?\b|\\geq?\b)\s*\d)/g)) hide(next, span, token);
+    }
+  }
+  return result;
+}
+
 // Classify only the matched notation, never exempt a file or an entire line.
 // These are lexical contexts, not a claim to infer the meaning of arbitrary TeX.
 export function maskNonPolarityNotation(text) {
-  let result = maskFractionalChangeRatios(text);
+  let result = maskEventPhase(maskFractionalChangeRatios(text));
   // E/E+M names the two response laws. A bare E/E or E/P stays ambiguous.
   result = result.replace(/\bE[ \t]*\/[ \t]*E[ \t]*\+[ \t]*M\b/g, blank);
   // Explicit scalar enclosure prose distinguishes this use from inventories.

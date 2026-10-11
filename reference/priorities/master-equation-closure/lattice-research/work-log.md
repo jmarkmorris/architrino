@@ -2,6 +2,10 @@
 
 Chronology and validation belong here. Scientific exposition belongs in the [manuscript](manuscript.md), and executable work in the [queue](work-queue.md).
 
+## 2026-10-10 — Serial staggered residual review completed
+
+The [reviewed closeout](analysis/serial-staggered-reviewed-closeout-2026-10-10.md) accepts a separately authored corrected defect enclosure on one selected reception cell, after exact moving-source/negative controls, independent mathematical review and Codex's fresh supervised replay. Its bound `0.0015550587367998904` is below the frozen `0.023476976833088595`; the other 657 cells retain their existing subject-produced bounds. The three-owner coverage search locates nine separate high-precision acceleration point checks and separates them from full-cell independence. All four comments are resolved, current reproduction routes to version 2, and original evidence and review receipts remain unchanged. Known-first exact-rational/provenance and receipt audits pass; final report/companion presentation checks find no issues. The completed bounded investigation is recorded in the queue and the broad residual-independence wording in priorities is narrowed. No event recertification or new physical conclusion follows. The parent serial plan subsequently releases the separate root-birth/nonmirror proof review.
+
 ## 2026-10-02 — Localized preparation recommendation queued
 
 The operator requested capture of unfinished thread recommendations. The localized self-consistent preparation question now has a queued, unassigned entry with a specified construction-or-obstruction outcome. The strategy and brainstorming pointers agree with that disposition. The signed-error and preparation studies, finite ringing and first-event investigations, and sublattice displacement/decomposition work remain completed at their recorded scopes; the existing returned-pulse coupling classification remains in progress. Recording the follow-up launches no new evolution and changes no scientific claim.

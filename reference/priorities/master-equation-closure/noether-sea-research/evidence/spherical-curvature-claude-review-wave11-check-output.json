@@ -1,0 +1,133 @@
+{
+ "controls": [
+  {
+   "name": "K1 toy brackets contain closed form",
+   "t_lb": 1.1952286084806552,
+   "t_ub": 1.1952286101881302,
+   "exact": 1.1952286093343936,
+   "passed": true
+  },
+  {
+   "name": "K2 six poles f(0)=1",
+   "val": 0.9999999999999999,
+   "passed": 1.0
+  },
+  {
+   "name": "N1 true envelope contains W; flipped envelope violates it",
+   "true_ok": true,
+   "flipped_violation": 1.4953900474032504,
+   "passed": true
+  }
+ ],
+ "results": [
+  {
+   "name": "six poles",
+   "g": 1.0,
+   "Q_deg": 42.97183463481174,
+   "min_flb": 0.9994995981157956,
+   "t_c_bracket": [
+    0.962207038662762,
+    0.9639521408918527
+   ],
+   "T_w_lb": 1.0909810753964924,
+   "T_w_ub_index_above(wave)": 1.091555649295205,
+   "T_w_ub_index_below(conservative)": 1.0916584899720336,
+   "t_c_review_GL_at_wave10_q": 0.963089708345844,
+   "t_c_review_GL_own_root": 0.9630889035726975,
+   "q_c_review_deg": 26.997953888660284,
+   "T_w_review_GL_at_wave10_q": 1.0912995211777794,
+   "dmin_at_wave10_q": 1.0912994089835397
+  },
+  {
+   "name": "antiprism 30",
+   "g": 1.0,
+   "Q_deg": 91.67324722093171,
+   "min_flb": 1.3765254595351706,
+   "t_c_bracket": [
+    0.49410344624141433,
+    0.5001186270628549
+   ],
+   "T_w_lb": 0.8656259539345498,
+   "T_w_ub_index_above(wave)": 1.1279277926868365,
+   "T_w_ub_index_below(conservative)": 1.1279826989506077,
+   "t_c_review_GL_at_wave10_q": 0.4969274635384253,
+   "t_c_review_GL_own_root": 0.49692712036502334,
+   "q_c_review_deg": 14.924780337208675,
+   "T_w_review_GL_at_wave10_q": 1.1260947097007226,
+   "dmin_at_wave10_q": 1.1260938184161267
+  },
+  {
+   "name": "twist 40",
+   "g": 1.0,
+   "Q_deg": 18.907607239317166,
+   "min_flb": 1.589030893792931,
+   "t_c_bracket": [
+    0.4707620451802637,
+    0.47346555464142676
+   ],
+   "T_w_lb": 0.48066815076462127,
+   "T_w_ub_index_above(wave)": 0.4816085599094733,
+   "T_w_ub_index_below(conservative)": 0.48163440103178284,
+   "t_c_review_GL_at_wave10_q": 0.4721726007642888,
+   "t_c_review_GL_own_root": 0.4721733046271741,
+   "q_c_review_deg": 11.632740329173533,
+   "T_w_review_GL_at_wave10_q": 0.48117934478771784,
+   "dmin_at_wave10_q": 0.48117778940285155
+  },
+  {
+   "name": "twist 50",
+   "g": 1.0,
+   "Q_deg": 24.064227395494573,
+   "min_flb": 0.6676042429053284,
+   "t_c_bracket": [
+    0.8601513001707762,
+    0.8669830653786411
+   ],
+   "T_w_lb": 0.6781453835637035,
+   "T_w_ub_index_above(wave)": 0.6797388827288047,
+   "T_w_ub_index_below(conservative)": 0.6799364805463806,
+   "t_c_review_GL_at_wave10_q": 0.8637481803130652,
+   "t_c_review_GL_own_root": 0.8637478763056985,
+   "q_c_review_deg": 18.66138257968757,
+   "T_w_review_GL_at_wave10_q": 0.6790775965036518,
+   "dmin_at_wave10_q": 0.6790766881311702
+  },
+  {
+   "name": "twist 50",
+   "g": 0.1,
+   "Q_deg": 24.064227395494573,
+   "min_flb": 0.6676042429053284,
+   "t_c_bracket": null,
+   "T_w_lb": 0.8237455755395706,
+   "T_w_ub_index_above(wave)": 0.8243385638416698,
+   "T_w_ub_index_below(conservative)": 0.8245299920732996,
+   "T_w_review_GL_at_wave10_q": 0.8241695434558093,
+   "dmin_at_wave10_q": 0.824169882190858
+  },
+  {
+   "name": "six poles",
+   "g": 0.1,
+   "Q_deg": 42.97183463481174,
+   "min_flb": 0.9994995981157956,
+   "t_c_bracket": null,
+   "T_w_lb": 1.366393666730342,
+   "T_w_ub_index_above(wave)": 1.366768853823889,
+   "T_w_ub_index_below(conservative)": 1.366962122335552,
+   "T_w_review_GL_at_wave10_q": 1.366682493580779,
+   "dmin_at_wave10_q": 1.3666848039128392
+  },
+  {
+   "name": "family C 15",
+   "g": 1.0,
+   "Q_deg": 8.021409131831525,
+   "min_flb": 0.010895574162789636,
+   "t_c_bracket": null,
+   "T_w_lb": 0.9574235384276021,
+   "T_w_ub_index_above(wave)": 0.9575299995976551,
+   "T_w_ub_index_below(conservative)": 0.9575360802822069,
+   "T_w_review_GL_at_wave10_q": 0.9574824399678796,
+   "dmin_at_wave10_q": 0.9574788720351652
+  }
+ ],
+ "elapsed_s": 0.692141056060791
+}

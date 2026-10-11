@@ -1,0 +1,104 @@
+{
+ "_order": [
+  "control_K1_single_source_field_and_quadratic_form",
+  "control_K2_antipodal_source_second_derivative",
+  "control_N1_nontangent_rejected",
+  "controls_complete_before_targets",
+  "target_six_poles_V1_second_derivative",
+  "target_subject_V2_own_side_pole",
+  "target_subject_V4_toward_minus_y",
+  "target_hexagon_B1_second_derivative"
+ ],
+ "_utc": "2026-10-11T00:21:45Z",
+ "control_K1_single_source_field_and_quadratic_form": {
+  "F": [
+   "-1/4",
+   "0",
+   "0"
+  ],
+  "expected_vJv": "-1/8",
+  "pass": true,
+  "vJv": "-1/8"
+ },
+ "control_K2_antipodal_source_second_derivative": {
+  "d1": "0",
+  "d2": "1/8",
+  "expected_d2": "1/8",
+  "pass": true
+ },
+ "control_N1_nontangent_rejected": {
+  "message": "non-tangent velocity",
+  "pass": true
+ },
+ "controls_complete_before_targets": {
+  "utc": "2026-10-11T00:21:45Z"
+ },
+ "target_hexagon_B1_second_derivative": {
+  "d1": "0",
+  "d2": "29/8 - 5*sqrt(3)/18",
+  "d2_f": 3.143874775675312
+ },
+ "target_six_poles_V1_second_derivative": {
+  "R=1,v=1": {
+   "aA": "5/4",
+   "d1": "0",
+   "d2_exact": "9/8",
+   "d2_f": 1.125,
+   "match": true,
+   "subject_closed_form": "9/8",
+   "vJv": "-1/8"
+  },
+  "R=1,v=1/4": {
+   "aA": "65/64",
+   "d1": "0",
+   "d2_exact": "129/32",
+   "d2_f": 4.03125,
+   "match": true,
+   "subject_closed_form": "129/32",
+   "vJv": "-1/128"
+  },
+  "R=1,v=3/4": {
+   "aA": "73/64",
+   "d1": "0",
+   "d2_exact": "137/96",
+   "d2_f": 1.4270833333333333,
+   "match": true,
+   "subject_closed_form": "137/96",
+   "vJv": "-9/128"
+  },
+  "R=1/2,v=1": {
+   "aA": "18",
+   "d1": "0",
+   "d2_exact": "17",
+   "d2_f": 17.0,
+   "match": true,
+   "subject_closed_form": "17",
+   "vJv": "-1"
+  },
+  "R=10,v=1": {
+   "aA": "7/20000",
+   "d1": "0",
+   "d2_exact": "9/40000",
+   "d2_f": 0.000225,
+   "match": true,
+   "subject_closed_form": "9/40000",
+   "vJv": "-1/8000"
+  }
+ },
+ "target_subject_V2_own_side_pole": {
+  "d1": "-1",
+  "d2": "1/8",
+  "d2_f": 0.125,
+  "v_dir": [
+   "0",
+   "sqrt(2)/2",
+   "sqrt(2)/2"
+  ]
+ },
+ "target_subject_V4_toward_minus_y": {
+  "d1": "sqrt(2)/2",
+  "d1_f": 0.7071067811865476,
+  "d2": "5/8",
+  "d2_f": 0.625
+ }
+}

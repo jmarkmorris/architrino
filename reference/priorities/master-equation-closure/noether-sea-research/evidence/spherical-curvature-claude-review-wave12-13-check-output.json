@@ -1,0 +1,139 @@
+{
+ "controls": [
+  {
+   "name": "K1 six poles V2 f(0)=-1",
+   "val": -0.9999999999999999,
+   "passed": 1.0
+  },
+  {
+   "name": "K2 antiprism V2 f(0)=-0.9460319",
+   "val": -0.9460318972094455,
+   "passed": 1.0
+  },
+  {
+   "name": "K3 hexagon at rest min chord 1",
+   "val": 0.9999999999999996,
+   "passed": 1.0
+  },
+  {
+   "name": "N1 toy f=-f0: t*=v/f0 by the turn substitution",
+   "val": 0.35714285714107635,
+   "exact": 0.35714285714285715,
+   "passed": true
+  }
+ ],
+ "results": {
+  "six poles V2 v=1/2": {
+   "T": 0.061275,
+   "q_deg": 1.6479636254887964,
+   "speed_review": 0.4388299178642782,
+   "wave12_bracket": [
+    0.438774,
+    0.438885
+   ],
+   "inside_wave12": true
+  },
+  "antiprism V2 v=1/2": {
+   "T": 0.05991,
+   "q_deg": 1.6192510571441645,
+   "speed_review": 0.44352126412551046,
+   "wave12_bracket": [
+    0.443449,
+    0.443592
+   ],
+   "inside_wave12": true
+  },
+  "six poles V2 v=1/2 at exact v3 end time": {
+   "T": 0.06127497497226,
+   "q_deg": 1.6479629962137532,
+   "speed_review": 0.43882994281107573,
+   "wave12_bracket": [
+    0.438829937796,
+    0.438829947825
+   ],
+   "inside_wave12": true
+  },
+  "antiprism V2 v=1/2 at exact v3 end time": {
+   "T": 0.05990980250292,
+   "q_deg": 1.619246038367747,
+   "speed_review": 0.4435214496977004,
+   "wave12_bracket": [
+    0.443521444676,
+    0.443521454719
+   ],
+   "inside_wave12": true
+  },
+  "six poles V2 v=1/4 turn": {
+   "q_star_deg": 1.7937469031398168,
+   "t_star": 0.2505966384495532,
+   "return_2t": 0.5011932768991064,
+   "wave12": {
+    "q": [
+     1.7926,
+     1.7949
+    ],
+    "t": [
+     0.25043,
+     0.25076
+    ],
+    "ret": [
+     0.50087,
+     0.50152
+    ]
+   }
+  },
+  "six poles V2 v=1/2 turn": {
+   "q_star_deg": 7.202097089833966,
+   "t_star": 0.5034363510427791,
+   "wave12": {
+    "q": [
+     7.1969,
+     7.2072
+    ],
+    "t": [
+     0.50309,
+     0.50378
+    ]
+   }
+  },
+  "separations": {
+   "six poles": {
+    "q_end_deg": 34.908,
+    "grid_min": 1.0000580334029805,
+    "at_q_deg": 34.908,
+    "certified_minus_h": 0.9997534036353374,
+    "wave13": 0.99975,
+    "review_crude_bound_d0_minus_2q": 0.4708980082551999,
+    "exact_at_qend": 1.0000580334029805
+   },
+   "antiprism 45": {
+    "q_end_deg": 44.311,
+    "grid_min": 1.0002168784554986,
+    "at_q_deg": 44.311,
+    "certified_minus_h": 0.999830192033073,
+    "wave13": 0.99983,
+    "review_crude_bound_d0_minus_2q": 0.36600810143374995,
+    "exact_at_qend": 1.0002168784554986
+   },
+   "twist 40": {
+    "q_end_deg": 12.182,
+    "grid_min": 0.2720536366912159,
+    "at_q_deg": 12.182,
+    "certified_minus_h": 0.2719473286864769,
+    "wave13": 0.27195,
+    "review_crude_bound_d0_minus_2q": 0.27695969191618,
+    "exact_at_qend": 0.2720536366912159
+   },
+   "twist 50": {
+    "q_end_deg": 18.712,
+    "grid_min": 0.21905226798023364,
+    "at_q_deg": 18.712,
+    "certified_minus_h": 0.21888897497541704,
+    "wave13": 0.2189,
+    "review_crude_bound_d0_minus_2q": 0.4817542534610598,
+    "exact_at_qend": 0.21905226798023364
+   }
+  }
+ },
+ "elapsed_s": 0.31381678581237793
+}

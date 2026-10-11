@@ -1,0 +1,183 @@
+{
+ "pid": 40311,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: imported wave-11 function reproduces the g=1 six-pole bracket and verdict",
+   "t_c": [
+    0.962207038662762,
+    0.9639521408918529
+   ],
+   "verdict": true,
+   "pass": true
+  },
+  {
+   "name": "known: stationary hexagon simultaneous chord exactly 1",
+   "value": 0.9999999999999996,
+   "pass": true
+  },
+  {
+   "name": "negative: polarity flip changes f(0)",
+   "f0": -1.8691032201027316,
+   "true": 0.668064615092872,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "sample": [
+  {
+   "g": 4.0,
+   "R_at_K1": 0.25,
+   "verdict": "crossing inside window",
+   "t_c_bracket": [
+    0.24818639186813485,
+    0.24857993151312754
+   ],
+   "q_c_bracket_deg": [
+    7.085412350494998,
+    7.097044619790519
+   ],
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": 0.24818639186813485,
+   "handoff": {
+    "type": "wake crossing",
+    "q_deg": [
+     7.085412350494998,
+     7.097044619790519
+    ],
+    "t": [
+     0.24818639186813485,
+     0.24857993151312754
+    ]
+   },
+   "simultaneous_separation": {
+    "q_end_deg": 7.097044619790519,
+    "grid": 2001,
+    "h": 6.193339788814683e-05,
+    "grid_min": 1.29170007350467,
+    "at_q_deg": 7.097044619790519,
+    "certified_min_chord": 1.2916381401057817,
+    "positive": true
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  {
+   "g": 2.0,
+   "R_at_K1": 0.5,
+   "verdict": "crossing inside window",
+   "t_c_bracket": [
+    0.49202624568764486,
+    0.49285387735688063
+   ],
+   "q_c_bracket_deg": [
+    13.976355460217077,
+    14.001278556301683
+   ],
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": 0.49202624568764486,
+   "handoff": {
+    "type": "wake crossing",
+    "q_deg": [
+     13.976355460217077,
+     14.001278556301683
+    ],
+    "t": [
+     0.49202624568764486,
+     0.49285387735688063
+    ]
+   },
+   "simultaneous_separation": {
+    "q_end_deg": 14.001278556301683,
+    "grid": 2001,
+    "h": 0.0001221842051481713,
+    "grid_min": 1.1809097769194228,
+    "at_q_deg": 14.001278556301683,
+    "certified_min_chord": 1.1807875927132745,
+    "positive": true
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  {
+   "g": 0.5,
+   "R_at_K1": 2.0,
+   "verdict": "window ends before crossing",
+   "t_c_bracket": null,
+   "q_c_bracket_deg": null,
+   "T_w_bracket": [
+    1.2170900706871834,
+    1.2176680386189263
+   ],
+   "speed_bound_before_window_end": 0.6264406913688493,
+   "conservative_actual_bound": 1.2170900706871834,
+   "handoff": {
+    "type": "window end",
+    "q_deg": [
+     21.486696465452418,
+     21.47123966781936
+    ],
+    "t": [
+     1.2170900706871834,
+     1.2176680386189263
+    ]
+   },
+   "simultaneous_separation": {
+    "q_end_deg": 21.486696465452418,
+    "grid": 2001,
+    "h": 0.00018750679934938637,
+    "grid_min": 1.0817365268374235,
+    "at_q_deg": 21.486696465452418,
+    "certified_min_chord": 1.081549020037074,
+    "positive": true
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  {
+   "g": 0.25,
+   "R_at_K1": 4.0,
+   "verdict": "window ends before crossing",
+   "t_c_bracket": null,
+   "q_c_bracket_deg": null,
+   "T_w_bracket": [
+    1.3035990879165422,
+    1.303974275010089
+   ],
+   "speed_bound_before_window_end": 0.3307068879710233,
+   "conservative_actual_bound": 1.3035990879165422,
+   "handoff": {
+    "type": "window end",
+    "q_deg": [
+     12.251037332540028,
+     12.23865719756808
+    ],
+    "t": [
+     1.3035990879165422,
+     1.303974275010089
+    ]
+   },
+   "simultaneous_separation": {
+    "q_end_deg": 12.251037332540028,
+    "grid": 2001,
+    "h": 0.00010691046911878347,
+    "grid_min": 1.2076901372669613,
+    "at_q_deg": 12.251037332540028,
+    "certified_min_chord": 1.2075832267968425,
+    "positive": true
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  }
+ ],
+ "wall_s": 1.447721004486084,
+ "projected_rest_s": 10.134047031402588
+}

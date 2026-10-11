@@ -1,0 +1,100 @@
+{
+ "controls": [
+  {
+   "name": "K1 twist 60 F(0)=0",
+   "val": 1.4710455076283324e-15,
+   "passed": true
+  },
+  {
+   "name": "K2 F(0)=0.668064615",
+   "val": 0.668064615092872,
+   "passed": true
+  },
+  {
+   "name": "N1 polarity flip changes F(0)",
+   "val": -1.8691032201027316,
+   "passed": true
+  }
+ ],
+ "results": {
+  "nodes": {
+   "0.0355848897551": {
+    "psi": 0.00042314819328154066,
+    "twist_deg": 49.95151078883276,
+    "speed": 0.02379192722246722,
+    "psi_inside": true,
+    "speed_inside": true
+   },
+   "0.1": {
+    "psi": 0.0033508433187962516,
+    "twist_deg": 49.61602164004673,
+    "speed": 0.06722782616942932,
+    "psi_inside": true,
+    "speed_inside": true
+   },
+   "0.2": {
+    "psi": 0.01353096631284217,
+    "twist_deg": 48.4494654750809,
+    "speed": 0.1370246592957724,
+    "psi_inside": true,
+    "speed_inside": true
+   },
+   "0.3": {
+    "psi": 0.03093371862262055,
+    "twist_deg": 46.45525695655721,
+    "speed": 0.21217573006213641,
+    "psi_inside": true,
+    "speed_inside": true
+   },
+   "0.4": {
+    "psi": 0.05625295505067626,
+    "twist_deg": 43.55388618091425,
+    "speed": 0.29596203633023493,
+    "psi_inside": true,
+    "speed_inside": true
+   },
+   "0.5": {
+    "psi": 0.09055276072348145,
+    "twist_deg": 39.623417974573016,
+    "speed": 0.3926026859425984,
+    "psi_inside": true,
+    "speed_inside": true
+   },
+   "0.6": {
+    "psi": 0.13539739294462888,
+    "twist_deg": 34.484601654396755,
+    "speed": 0.5080674718914198,
+    "psi_inside": true,
+    "speed_inside": true
+   }
+  },
+  "window_ends": {
+   "1.0": {
+    "T_star": 0.6790770222903219,
+    "psi_deg": 10.30247964483502,
+    "twist_deg": 29.39504071032996,
+    "speed": 0.6187049142601343,
+    "inside": true
+   },
+   "0.1": {
+    "T_star": 0.8241698653069891,
+    "psi_deg": 1.3282510617123924,
+    "twist_deg": 47.34349787657521,
+    "speed": 0.05747492031225098,
+    "inside": true
+   }
+  },
+  "first_cell": {
+   "Fprime_min_on_first_cell": 3.769452623396275,
+   "Fprime_max": 3.7696446926740825,
+   "U_over_psi_range": [
+    0.6680693268789045,
+    0.6681117340552966
+   ],
+   "F0": 0.668064615092872,
+   "F_at_cell_end": 0.6681588538092518,
+   "bound_holds": true
+  }
+ },
+ "elapsed_s": 0.04109597206115723
+}

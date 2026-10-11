@@ -1,0 +1,321 @@
+{
+ "pid": 38130,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: stationary alternating hexagon, minimum simultaneous chord 1",
+   "value": 0.9999999999999996,
+   "pass": true
+  },
+  {
+   "name": "known: six poles min chord sqrt2 at q=0 and 1 at the hexagon circle q=35.26 deg",
+   "q0": 1.4142135623730951,
+   "q_hex": 0.9999999999999994,
+   "pass": true
+  },
+  {
+   "name": "negative: wrong assignment (no inversion, all at the receiver) gives chord 0",
+   "value": 0.0,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "results": {
+  "six poles | g=1.0": {
+   "excursion": {
+    "q_end_deg": 34.90778287209115,
+    "grid": 2001,
+    "h": 0.00030462787284463654,
+    "grid_min": 1.0000581041344385,
+    "at_q_deg": 34.90778287209115,
+    "certified_min_chord": 0.9997534762605939,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 42.97183463481174,
+    "grid": 2001,
+    "h": 0.000375,
+    "grid_min": 1.000000016445858,
+    "at_q_deg": 35.25839031786303,
+    "certified_min_chord": 0.999625016444858,
+    "positive": true
+   },
+   "wave11_verdict": "crossing inside window"
+  },
+  "six poles | g=0.1": {
+   "excursion": {
+    "q_end_deg": 5.364721737912079,
+    "grid": 2001,
+    "h": 4.681602888993904e-05,
+    "grid_min": 1.3211567104269286,
+    "at_q_deg": 5.364721737912079,
+    "certified_min_chord": 1.3211098943970385,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 42.97183463481174,
+    "grid": 2001,
+    "h": 0.000375,
+    "grid_min": 1.000000016445858,
+    "at_q_deg": 35.25839031786303,
+    "certified_min_chord": 0.999625016444858,
+    "positive": true
+   },
+   "wave11_verdict": "window ends before crossing"
+  },
+  "antiprism 30 | g=1.0": {
+   "excursion": {
+    "q_end_deg": 67.73457531451379,
+    "grid": 2001,
+    "h": 0.0005910956783391697,
+    "grid_min": 0.8660254037844384,
+    "at_q_deg": 0.0,
+    "certified_min_chord": 0.8654343081050992,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 91.67324722093171,
+    "grid": 2001,
+    "h": 0.0008,
+    "grid_min": 0.8660254037844384,
+    "at_q_deg": 0.0,
+    "certified_min_chord": 0.8652254037834384,
+    "positive": true
+   },
+   "wave11_verdict": "crossing inside window"
+  },
+  "antiprism 30 | g=0.1": {
+   "excursion": {
+    "q_end_deg": 12.124619883812954,
+    "grid": 2001,
+    "h": 0.00010580726876265419,
+    "grid_min": 0.8660254037844384,
+    "at_q_deg": 0.0,
+    "certified_min_chord": 0.8659195965146758,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 91.67324722093171,
+    "grid": 2001,
+    "h": 0.0008,
+    "grid_min": 0.8660254037844384,
+    "at_q_deg": 0.0,
+    "certified_min_chord": 0.8652254037834384,
+    "positive": true
+   },
+   "wave11_verdict": "window ends before crossing"
+  },
+  "antiprism 45 | g=1.0": {
+   "excursion": {
+    "q_end_deg": 44.31087058014524,
+    "grid": 2001,
+    "h": 0.00038668529302431223,
+    "grid_min": 1.0002169599260833,
+    "at_q_deg": 44.31087058014524,
+    "certified_min_chord": 0.999830274632059,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 57.29577951308232,
+    "grid": 2001,
+    "h": 0.0005,
+    "grid_min": 1.0000000155560398,
+    "at_q_deg": 45.00583480752616,
+    "certified_min_chord": 0.9995000155550399,
+    "positive": true
+   },
+   "wave11_verdict": "crossing inside window"
+  },
+  "antiprism 45 | g=0.1": {
+   "excursion": {
+    "q_end_deg": 6.807830616046161,
+    "grid": 2001,
+    "h": 5.940952958403971e-05,
+    "grid_min": 1.2247448713915887,
+    "at_q_deg": 0.0,
+    "certified_min_chord": 1.2246854618610046,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 57.29577951308232,
+    "grid": 2001,
+    "h": 0.0005,
+    "grid_min": 1.0000000155560398,
+    "at_q_deg": 45.00583480752616,
+    "certified_min_chord": 0.9995000155550399,
+    "positive": true
+   },
+   "wave11_verdict": "window ends before crossing"
+  },
+  "antiprism 60 | g=1.0": {
+   "excursion": {
+    "q_end_deg": 31.04887532240089,
+    "grid": 2001,
+    "h": 0.0002709525517085557,
+    "grid_min": 1.000000021044074,
+    "at_q_deg": 29.99321356143926,
+    "certified_min_chord": 0.9997290684913656,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 42.97183463481174,
+    "grid": 2001,
+    "h": 0.000375,
+    "grid_min": 1.0000000146349277,
+    "at_q_deg": 29.994340575098594,
+    "certified_min_chord": 0.9996250146339277,
+    "positive": true
+   },
+   "wave11_verdict": "crossing inside window"
+  },
+  "antiprism 60 | g=0.1": {
+   "excursion": {
+    "q_end_deg": 4.487653384535495,
+    "grid": 2001,
+    "h": 3.916216362420579e-05,
+    "grid_min": 1.2476064686067498,
+    "at_q_deg": 4.487653384535495,
+    "certified_min_chord": 1.2475673064421255,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 42.97183463481174,
+    "grid": 2001,
+    "h": 0.000375,
+    "grid_min": 1.0000000146349277,
+    "at_q_deg": 29.994340575098594,
+    "certified_min_chord": 0.9996250146339277,
+    "positive": true
+   },
+   "wave11_verdict": "window ends before crossing"
+  },
+  "twist 40 | g=1.0": {
+   "excursion": {
+    "q_end_deg": 12.18179502108721,
+    "grid": 2001,
+    "h": 0.00010630621596051193,
+    "grid_min": 0.27206072529765346,
+    "at_q_deg": 12.18179502108721,
+    "certified_min_chord": 0.27195441908069296,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 18.907607239317166,
+    "grid": 2001,
+    "h": 0.000165,
+    "grid_min": 0.0381293906519081,
+    "at_q_deg": 18.907607239317166,
+    "certified_min_chord": 0.037964390650908106,
+    "positive": true
+   },
+   "wave11_verdict": "crossing inside window"
+  },
+  "twist 40 | g=0.1": {
+   "excursion": {
+    "q_end_deg": 1.984331179829623,
+    "grid": 2001,
+    "h": 1.7316556269005307e-05,
+    "grid_min": 0.6185541412427656,
+    "at_q_deg": 1.984331179829623,
+    "certified_min_chord": 0.6185368246854966,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 18.907607239317166,
+    "grid": 2001,
+    "h": 0.000165,
+    "grid_min": 0.0381293906519081,
+    "at_q_deg": 18.907607239317166,
+    "certified_min_chord": 0.037964390650908106,
+    "positive": true
+   },
+   "wave11_verdict": "window ends before crossing"
+  },
+  "twist 50 | g=1.0": {
+   "excursion": {
+    "q_end_deg": 18.711612378594285,
+    "grid": 2001,
+    "h": 0.000163289622181699,
+    "grid_min": 0.2190657171139246,
+    "at_q_deg": 18.711612378594285,
+    "certified_min_chord": 0.2189024274907429,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 24.064227395494573,
+    "grid": 2001,
+    "h": 0.00020999999999999998,
+    "grid_min": 0.03266317383192824,
+    "at_q_deg": 24.064227395494573,
+    "certified_min_chord": 0.03245317383092824,
+    "positive": true
+   },
+   "wave11_verdict": "window ends before crossing"
+  },
+  "twist 50 | g=0.1": {
+   "excursion": {
+    "q_end_deg": 1.337601878296675,
+    "grid": 2001,
+    "h": 1.167277842856873e-05,
+    "grid_min": 0.8026935244471142,
+    "at_q_deg": 1.337601878296675,
+    "certified_min_chord": 0.8026818516676856,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 24.064227395494573,
+    "grid": 2001,
+    "h": 0.00020999999999999998,
+    "grid_min": 0.03266317383192824,
+    "at_q_deg": 24.064227395494573,
+    "certified_min_chord": 0.03245317383092824,
+    "positive": true
+   },
+   "wave11_verdict": "window ends before crossing"
+  },
+  "twist 70 | g=1.0": {
+   "excursion": {
+    "q_end_deg": 18.711612378594317,
+    "grid": 2001,
+    "h": 0.00016328962218169928,
+    "grid_min": 0.21906571711392367,
+    "at_q_deg": 18.711612378594317,
+    "certified_min_chord": 0.21890242749074196,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 24.064227395494573,
+    "grid": 2001,
+    "h": 0.00020999999999999998,
+    "grid_min": 0.03266317383192824,
+    "at_q_deg": 24.064227395494573,
+    "certified_min_chord": 0.03245317383092824,
+    "positive": true
+   },
+   "wave11_verdict": "window ends before crossing"
+  },
+  "twist 70 | g=0.1": {
+   "excursion": {
+    "q_end_deg": 1.3376018782966699,
+    "grid": 2001,
+    "h": 1.1672778428568686e-05,
+    "grid_min": 0.8026935244471142,
+    "at_q_deg": 1.3376018782966699,
+    "certified_min_chord": 0.8026818516676856,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 24.064227395494573,
+    "grid": 2001,
+    "h": 0.00020999999999999998,
+    "grid_min": 0.03266317383192824,
+    "at_q_deg": 24.064227395494573,
+    "certified_min_chord": 0.03245317383092824,
+    "positive": true
+   },
+   "wave11_verdict": "window ends before crossing"
+  }
+ },
+ "wall_s_targets": 2.2163259983062744,
+ "projected_full_s": null
+}
