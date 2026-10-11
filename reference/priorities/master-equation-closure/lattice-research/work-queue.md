@@ -39,13 +39,6 @@ No independent score is assigned to this geometry workstream. The existing in-pr
 - **Scope:** Declare the actual source-history retention and causal search interval, including radius excursions. For the recorded preparation require history strictly beyond the stated maximum range bound, not merely a changed delay-horizon metadata field. Retain every source and applicable root; compare central-core residuals separately from boundary maxima. Use the unchanged equation and $c_f=1$.
 - **Completion / falsifier:** The admitted current build passes a finite static/simple-root analytical control before each target family; fresh ladder outputs demonstrate history/search completeness and controlled residuals, or report a precise failure. Preserve old receipts and their source identities. A required emission outside the retained/search interval defeats completeness. This task owns the lattice scientific comparison; reusable capability repairs stay with App Solver, and no Mapping Electromagnetism recovery conclusion follows automatically.
 
-### Restore current-source lattice boundary reproducibility
-
-- **Status:** ○ Queued — unassigned; original certified input and proof remain preserved.
-- **Request:** Resolve the subject-byte mismatch and old reference path identified in the [boundary reproduction assessment](analysis/lattice-review-integration-2026-10-03.md#independence-and-current-reproduction).
-- **Scope:** Preserve the frozen subject/reference/receipts. Run current-source analytical known controls before a new target; create a separately versioned reference with current paths and complete literal hashes. Identify shared residual inputs explicitly. Independently reconstruct at least one complete residual enclosure if an independent-residual claim is sought; replay of its saved input does not meet that condition.
-- **Completion / falsifier:** Source-bound current controls, target and reference yield an accepted reproduction or a documented discrepancy, with a separate verdict on residual independence. Missing input, mismatched identity or failed analytical control stops the target. An old hash is not repaired by repinning its receipt.
-
 ### Review the rotating ladder balance and its stability
 
 - **Status:** ○ Queued — unassigned for the remaining items. A separately constructed check within the same session already reproduces the first-order condition, the exact balance to eight digits, its isolation and the zero-delay growth rate; the delayed characteristic roots have a [second construction and census](analysis/rotating-ladder-delayed-stability-independent-adjudication-2026-10-03.md), which corrected the first statement of how the delay changes the spectrum; the twisted variants have had no second construction. Existence at every sufficiently small speed is proved in a [separate document](analysis/rotating-ladder-small-speed-existence.md), with an [independent adjudication](analysis/rotating-ladder-small-speed-existence-independent-adjudication-2026-10-03.md) that accepts it with minor corrections.
@@ -54,6 +47,18 @@ No independent score is assigned to this geometry workstream. The existing in-pr
 - **Completion / falsifier:** Accept or correct each item. Replace the float balance by an interval enclosure at one or more speeds, or prove existence at small speed by controlling the delayed tail uniformly. Bound or count the growing characteristic roots that were not tracked. A nonvanishing tangential residual at the tabulated spacing under tighter arithmetic, or a spectrum without growing roots, overturns the corresponding statement. A connection from formal growing modes to nearby solutions needs its own history-flow argument. No population, sea constituent or retained assembly is claimed, and no ranking changes.
 
 ## Completed supplied-review investigation
+
+### Trace staggered residual coverage and check one complete cell
+
+- **Status:** ✓ Done — serial task 3 reviewed and integrated on 2026-10-10; all four review comments resolved in the [reviewed closeout](analysis/serial-staggered-reviewed-closeout-2026-10-10.md).
+- **Result:** A separately authored corrected evaluator bounds the fixed comparison defect on `[149/16,2385/256]` by `0.0015550587367998904`, below the frozen `0.023476976833088595`. Exact moving-source and negative controls precede the target; Codex independently reviewed the arithmetic and replayed the computation into a fresh retained owner. A three-owner coverage search also identifies a separate 65-digit acceleration reference at nine reception times.
+- **Boundary / falsifier:** This is one cell of 658, with the archive, source groups and named stationary references shared. The other whole-cell bounds remain subject-produced with checked ingredients and propagation. No event recertification, all-cell independent evaluation or new physical conclusion is claimed. Failed outward arithmetic, root coverage, source/tail completeness, input identity or exact controls overturns the affected acceptance; another evaluator outside the searched owners changes coverage.
+
+### Restore current-source lattice boundary reproducibility
+
+- **Status:** ✓ Done — serial task 2 independently reviewed, corrected, replayed and retained on 2026-10-10. The [reviewed closeout](analysis/serial-boundary-reviewed-closeout-2026-10-10.md) supersedes the older reproduction gap without editing frozen evidence.
+- **Result:** The original bracket `5121/1024 < tau <= 10339/2048` reproduces with zero scientific differences. Git-blob comparison authenticates the one-line root-index relocation. Fresh run owners and separately versioned references provide a repeatable current route; read-only verification preserves original manifests and reference bytes.
+- **Boundary / falsifier:** Measured reproduction with shared residual inputs; no independent complete residual evaluator is claimed. An unexpected scientific difference, failed input identity/control, altered frozen receipt or invalid bracket margin defeats the affected result. The [serial plan](../analysis/reciprocal-review-plan-2026-10-09.md#operator-selected-serial-follow-up-through-residuals) retains the distinct staggered evaluator review as task 3.
 
 ### Independently adjudicate logarithmic collective growth
 

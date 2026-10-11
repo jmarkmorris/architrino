@@ -1,0 +1,10 @@
+T* in [1.366622279933, 1.366740606296] (reproduces wave 16: None); start t0 [1.466684593623, 1.466684709182], q0 [0.1078360786, 0.1078365557], qdot0 [0.1474868323, 0.1474914818]; mode unlike
+controls: ALL PASS
+   pass (0) fast node lookup equals the frozen q_of_t endpoint for endpoint on 60 sample times
+   pass (1) continuity of the like term at its reading instant: hit with zero delayed state intersects the fixed-image like term (at the start state q0)
+   pass (2) negative: like term at the probe t0 + 0.08 with the wrong sign of the velocity term in D_t is disjoint from the correct one
+   pass (3) known: the fixed-image affine step from t = 1.2 intersects the window enclosure at 1.21
+step 1: t_end 1.47668470; tauU [1.3590572, 1.3590593] DU [0.994850, 0.994865]; tauL [, ] DL [, ]; q [0.109316054, 0.109316579]; qdot [0.148508378, 0.148513391]; red [0.148483657, 0.148507858] -> above (feedback accelerates); antipode 1.99701
+step 2: t_end 1.48668470; tauU [1.3582332, 1.3582359] DU [0.994336, 0.994353]; tauL [, ] DL [, ]; q [0.110806249, 0.110806825]; qdot [0.149530560, 0.149535942]; red [0.149503501, 0.149524591] -> above (feedback accelerates); antipode 1.99693
+step 3: t_end 1.49668470; tauU [1.3573988, 1.3574006] DU [0.993828, 0.993838]; tauL [, ] DL [, ]; q [0.112306669, 0.112307300]; qdot [0.150553388, 0.150559137]; red [0.150522895, 0.150544097] -> above (feedback accelerates); antipode 1.99685
+reached t in [1.496684593623, 1.496684709182]; stop: plan exhausted (3 steps certified); wall 3.4 s

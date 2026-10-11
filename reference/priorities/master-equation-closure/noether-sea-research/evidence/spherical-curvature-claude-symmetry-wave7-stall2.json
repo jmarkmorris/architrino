@@ -1,0 +1,39 @@
+{
+ "pid": 87548,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: hexagon recovered from nearby seed",
+   "residual": 1.879915276801212e-16,
+   "pass": true
+  }
+ ],
+ "stall2": {
+  "seed": 1450560595,
+  "objective": 0.47529120046038875,
+  "residual_norm": 0.9749781540736068,
+  "gradient_norm_tangent": 2.480373476939765e-05,
+  "gradient_components": [
+   8.087835956516187e-06,
+   6.117745199318847e-06,
+   -9.30908128360386e-06,
+   4.305888978706207e-06,
+   -9.669459677397185e-06,
+   -1.1852463455142015e-05,
+   -3.0488389590743736e-06,
+   -2.5699442574023124e-06,
+   -3.1433189384699745e-07,
+   3.227501599312177e-06,
+   1.0247719339773198e-05,
+   -6.463357626884658e-06
+  ],
+  "symmetry_order_by_tolerance": {
+   "1e-06": 1,
+   "0.0001": 1,
+   "0.001": 2,
+   "0.01": 2,
+   "0.05": 2
+  },
+  "verdict": "not a critical point: iteration budget or tolerance stop"
+ }
+}

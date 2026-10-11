@@ -1,0 +1,10 @@
+controls: ALL PASS (5.2 s)
+   pass (i) known: K=0 great circle at v=1/2 lies inside the outward-rounded Taylor enclosure (interval components widened by the tail bound) at 50 points
+   pass (ii) negative: a provably invalid majorant constant min(M/20, 0.9 |c_1|) is caught by the coefficient-domination check; the true M passes
+antiprism-V2 member 0 (q=+1): interval [0, 0.059910] (lower-rounded); speed enclosure at end [0.4435214447, 0.4435214547]; eps_end 5.021e-09; max coefficient width 5.00e-38; 7.4 s
+antiprism-V2 member 1 (q=+1): interval [0, 0.059910] (lower-rounded); speed enclosure at end [0.4435214447, 0.4435214547]; eps_end 5.021e-09; max coefficient width 9.40e-38; 6.3 s
+antiprism-V2 member 2 (q=+1): interval [0, 0.059910] (lower-rounded); speed enclosure at end [0.4435214447, 0.4435214547]; eps_end 5.021e-09; max coefficient width 9.40e-38; 6.5 s
+antiprism-V2 member 3 (q=-1): interval [0, 0.059910] (lower-rounded); speed enclosure at end [0.4435214447, 0.4435214547]; eps_end 5.021e-09; max coefficient width 5.00e-38; 7.6 s
+antiprism-V2 member 4 (q=-1): interval [0, 0.059910] (lower-rounded); speed enclosure at end [0.4435214447, 0.4435214547]; eps_end 5.021e-09; max coefficient width 9.40e-38; 6.2 s
+antiprism-V2 member 5 (q=-1): interval [0, 0.059910] (lower-rounded); speed enclosure at end [0.4435214447, 0.4435214547]; eps_end 5.021e-09; max coefficient width 9.40e-38; 6.1 s
+total wall 45.3 s

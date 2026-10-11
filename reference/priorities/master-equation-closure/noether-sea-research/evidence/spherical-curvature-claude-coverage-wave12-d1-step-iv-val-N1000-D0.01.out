@@ -1,0 +1,4 @@
+T* in [0.679070434570, 0.679083251953]; psi(T*) in [0.1798064586, 0.1798181311]; psi'(T*) in [0.6186906660, 0.6187196794]
+controls: FAIL
+   pass (1) known: with the delayed term held at its fixed-image value, the step from t = 0.6 reproduces (contains) the window enclosure's continuation at t = 0.6 + Delta
+   FAIL (2) negative: a wrong sign of D_t (weight below one instead of above one) gives a delayed forcing interval on the second step disjoint from the correct one

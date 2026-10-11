@@ -1,0 +1,307 @@
+{
+ "order": "controls run and recorded before the first target",
+ "items": [
+  {
+   "name": "(i) stationary opposite polarities, distance d=1.6: |A|=K/d^2 attractive, D_t=1, delay=d, one partner root, no self root",
+   "pass": true,
+   "expected": {
+    "mag": 0.39062499999999994,
+    "direction": "toward -x",
+    "Dt": 1,
+    "tau": 1.6
+   },
+   "got": {
+    "mag": 0.39062499999999994,
+    "A": [
+     -0.39062499999999994,
+     0,
+     0
+    ],
+    "Dt": 1,
+    "tau": 1.6,
+    "counts": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "name": "(i') stationary like polarities at chord sqrt2 (R=1): |A|=K/2 repulsive along chord away from the partner",
+   "pass": true,
+   "expected": {
+    "mag": 0.5,
+    "direction": "along (1,-1,0)/sqrt2"
+   },
+   "got": {
+    "mag": 0.4999999999999999,
+    "A": [
+     0.3535533905932737,
+     -0.3535533905932737,
+     0
+    ]
+   }
+  },
+  {
+   "name": "(ii) stationary source, receiver moving at v=0.5 (H2 past): delay=d=1.4, D_t=1, |A|=K/d^2, receiver velocity absent from the multiplier, no self root",
+   "pass": true,
+   "expected": {
+    "tau": 1.4,
+    "Dt": 1,
+    "mag": 0.5102040816326532,
+    "selfRoots": 0
+   },
+   "got": {
+    "tau": 1.4,
+    "Dt": 1,
+    "mag": 0.5102040816326532,
+    "selfRoots": 0,
+    "vA": 0
+   }
+  },
+  {
+   "name": "(ii) stationary source, receiver moving at v=1 (H2 past): delay=d=1.4, D_t=1, |A|=K/d^2, receiver velocity absent from the multiplier, no self root",
+   "pass": true,
+   "expected": {
+    "tau": 1.4,
+    "Dt": 1,
+    "mag": 0.5102040816326532,
+    "selfRoots": 0
+   },
+   "got": {
+    "tau": 1.4,
+    "Dt": 1,
+    "mag": 0.5102040816326532,
+    "selfRoots": 0,
+    "vA": 0
+   }
+  },
+  {
+   "name": "(ii') moving source at speed 1/2: root satisfies tau=|r| to 1e-12 (hand recomputation), D_t recomputed by hand matches, |A| = K/r^2/|D_t|",
+   "pass": true,
+   "expected": {
+    "tau": 1.8007344451794942,
+    "Dt": 1.2175654295183547
+   },
+   "got": {
+    "tau": 1.8007344451794944,
+    "Dt": 1.2175654295183547,
+    "mag": 0.25328434477119355,
+    "hand": 0.25328434477119355
+   }
+  },
+  {
+   "name": "(iii) zero interaction (K=0): P A = 0 and finite-difference acceleration of the prescribed unit-sphere great circle at v=1/2 equals -(v^2/R) n = -X/4 (manuscript analytical control)",
+   "pass": true,
+   "expected": {
+    "PA": [
+     0,
+     0,
+     0
+    ],
+    "geom": [
+     -0.25,
+     0,
+     0
+    ]
+   },
+   "got": {
+    "PA": [
+     0,
+     0,
+     0
+    ],
+    "fd": [
+     -0.24999999848063226,
+     0,
+     0
+    ],
+    "geometricTerm": [
+     -0.25,
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "name": "(iv) negative: omitting the (0,1) root at A3-like cell v=1/2 is flagged (partner count 4 != 5 expected under certificate)",
+   "pass": true,
+   "expected": {
+    "partnerCount0": 4,
+    "censusComplete": false
+   },
+   "got": {
+    "partnerRootCounts": [
+     4,
+     5,
+     5,
+     5,
+     5,
+     5
+    ],
+    "censusComplete": false
+   }
+  },
+  {
+   "name": "(v) negative: preparation validator rejects a radial release velocity (t0 = n0)",
+   "pass": true,
+   "expected": {
+    "pass": false
+   },
+   "got": {
+    "pass": false,
+    "failing": [
+     "release tangent orthogonal to position",
+     "|X| = R on samples s in [-0.5, 0.1]",
+     "velocity tangent (|n.V|) on samples"
+    ]
+   }
+  },
+  {
+   "name": "(vi) known: H1 preparation at v=1/2 passes tangent, unit-norm, release-derivative, nonzero-interior and C^2-seam checks",
+   "pass": true,
+   "expected": {
+    "pass": true
+   },
+   "got": {
+    "pass": true,
+    "checks": [
+     [
+      "release tangent orthogonal to position",
+      true
+     ],
+     [
+      "unit n0",
+      true
+     ],
+     [
+      "unit t0",
+      true
+     ],
+     [
+      "|X| = R on samples s in [-0.5, 0.1]",
+      true
+     ],
+     [
+      "velocity tangent (|n.V|) on samples",
+      true
+     ],
+     [
+      "release velocity = v t0",
+      true
+     ],
+     [
+      "nonzero displacement inside preparation (s=-1/8)",
+      true
+     ],
+     [
+      "C^2 seam at s=-1/4 (theta, theta', theta'' -> 0)",
+      true
+     ],
+     [
+      "theta' matches finite difference of theta",
+      true
+     ]
+    ]
+   }
+  },
+  {
+   "name": "(vii) known: six poles H1 v=1/2 census complete at s=-0.2 and s=0 (5 partner roots each, 0 self roots), all delays <= 2R",
+   "pass": true,
+   "expected": {
+    "complete": true
+   },
+   "got": {
+    "complete": [
+     true,
+     true
+    ],
+    "counts": [
+     [
+      5,
+      5,
+      5,
+      5,
+      5,
+      5
+     ],
+     [
+      5,
+      5,
+      5,
+      5,
+      5,
+      5
+     ]
+    ]
+   }
+  },
+  {
+   "name": "(viii) known: H1L with duration L = 1/4 reproduces H1 (theta and theta' at 400 points in s in [-0.3, 0.1])",
+   "pass": true,
+   "expected": {
+    "maxdiff": 0
+   },
+   "got": {
+    "maxdiff": 1.214306433183765e-17
+   }
+  },
+  {
+   "name": "(ix) negative: H1L with a wrong release derivative (0.9 nu) is rejected by the release-velocity check",
+   "pass": true,
+   "expected": {
+    "pass": false
+   },
+   "got": {
+    "pass": false,
+    "failing": [
+     "release velocity = v t0"
+    ]
+   }
+  },
+  {
+   "name": "(x) known: H1L with L = 1 passes the validator (tangent, norm, release derivative, nonzero interior, C^2 seam at s = -1)",
+   "pass": true,
+   "expected": {
+    "pass": true
+   },
+   "got": {
+    "pass": true,
+    "checks": [
+     [
+      "release tangent orthogonal to position",
+      true
+     ],
+     [
+      "unit n0",
+      true
+     ],
+     [
+      "unit t0",
+      true
+     ],
+     [
+      "|X| = R on samples s in [-0.5, 0.1]",
+      true
+     ],
+     [
+      "velocity tangent (|n.V|) on samples",
+      true
+     ],
+     [
+      "release velocity = v t0",
+      true
+     ],
+     [
+      "nonzero displacement inside preparation (s=-L/2)",
+      true
+     ],
+     [
+      "C^2 seam at s=-L (theta, theta', theta'' -> 0)",
+      true
+     ]
+    ]
+   }
+  }
+ ],
+ "allPass": true
+}

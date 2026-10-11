@@ -1,0 +1,31 @@
+# Reviewed current-source boundary reproduction
+
+Serial task 2 is complete at measured reproduction grade. This dated account supersedes the current-source reproducibility gap in the preserved [October 3 integration assessment](lattice-review-integration-2026-10-03.md#independence-and-current-reproduction), without changing that assessment, its historical sources or their receipts. The [corrected reproduction report](serial-boundary-reproduction-2026-10-10.md), SHA-256 `875f046cf25e12f92b8ddce140c5050aea092a0ffda4c856ea86513ff9d51a6a`, and [first Codex review](serial-boundary-codex-review-2026-10-10.md) give the mathematical and source-transition account.
+
+The scenario is the unchanged canonical Master Equation, infinite alternating cubic lattice with stationary eight-source blocks, the original two smooth supplied past pulses, $g=16$ and numerical $c_f=1$. The environmental displacement boundary remains $1/16$. No trajectory was evolved or preparing history changed. The original bracket is $5121/1024<\tau\le10339/2048$. The tight lower-bracket environmental position bound remains `0.06247922174669456`, below `0.0625`; the witness endpoint position is at least `0.06442299062249991`. Source-byte drift is a single root-index change accompanying the directory move, authenticated from Git blobs in the initial independent audit. It is not a numerical discrepancy.
+
+## Review dispositions
+
+| Comment | Disposition | Corrected evidence |
+| --- | --- | --- |
+| R2-01, P2 | ✓ Resolved, independently replayed | The [new driver](../evidence/serial-boundary-replay-2026-10-10.py), SHA-256 `a9155ffd0cdfc85bbf0f1ba0b10b24d360d0361cd70ae3e35d771aa62000f993`, separates fresh `new --run` reproduction from read-only `verify`. It refuses occupied owners before writes and places versioned references and timer-bound receipts inside each fresh owner. Codex's fresh full run passed after known controls, preserving earlier evidence. |
+| R2-02, P3 | ✓ Resolved | Report Section 2 identifies the missing old source path and frozen/live identity conflict as execution barriers. The original `.replace` expression evaluates to the correct archive digest and is described only as a readability defect. |
+| R2-03, P3 | ✓ Resolved | Report Section 3 distinguishes unchanged mathematical arithmetic from changed execution text, including additional literal guards. It states both history metadata differences and preserves the earlier driver and first failed declaration receipt. |
+
+Claude also withdrew the unmeasured claim that all directly run references took less than one second. Codex's stopped-reference target took `15.716` seconds in the supervised full replay. The stationary supervisor anomaly is reported as observed launcher failure with a completed exit-zero target and closed group; no unproved causal attribution is adopted.
+
+## Independent correction verification
+
+Codex ran `new --run codex-r3-2026-10-10` under the owned compute supervisor, run `3263ef06-9640-4b92-9ab1-33b0ee62980f`. The lease records `24.209` wall seconds, exit zero and a closed process group; the driver records `24.112` seconds for its sequence. Six driver controls passed before thirteen stages, with each component's known controls preceding its target. The fresh comparison reports zero scientific differences in nine documents against the frozen receipts and against the first replay. The original 32 residual cells, 328 relationships, 836 source points and boundary bracket are unchanged by this measured replay.
+
+Before this target, Codex copied the retained open-audit hook unchanged to a correctly named `sitecustomize.py` and tested it on a known scratch read in a parent interpreter and spawned child. Both distinct process IDs logged the expected read before target execution. During the fresh complete replay, the hook recorded only three accesses to the driver's own occupied-owner known-case probe; it recorded no historical scratch file open. This is a measured Python `open` audit across the inheriting interpreters, not a claim about every possible operating-system access mechanism. Claude's earlier child control followed its target; that original record is retained and is not relabelled known-first.
+
+An initial supervised attempt was blocked before target spawn by the sandbox's loopback restriction; supervisor inspection was also restricted. The approved escalated replay then completed, and explicit owner `closeout` returned `clear`. Neither initial failure produced scientific evidence or justified a law conclusion.
+
+The read-only replay `verify` command passes all 43 entries of the first owner's manifest, all 47 entries in each of Claude's two subsequent owners and Codex's new owner, the frozen 11-entry reference manifest and all three first versioned references. Standard `shasum -a 256 -c` also verifies the ten-file Claude supplement and the fourteen-file first Codex review manifest. The latter binds the first review and audit source, so this closeout is a companion rather than an alteration of that frozen checkpoint. Supplemental logs, hook controls, returned-byte snapshots, operational receipt and verification outputs are retained in `.local-data/master-equation-closure/serial-boundary-replays/codex-review-2026-10-10/`; the separate fresh scientific run has its own immutable 47-file manifest.
+
+## Evidence boundary and falsifiers
+
+The residual remains a shared input to the independent bracket propagation. The initial Codex review independently reconstructed source transitions, scientific fields, endpoint histories and preserved reference results; this correction pass additionally demonstrates repeatability and retained-location execution. Neither pass authors an independent complete residual evaluator. Reconstruction of a residual cell remains an open stronger scientific obligation, and task 3 concerns a different staggered ancient branch.
+
+A nonmetadata scientific difference, a failed literal input identity, missing known-first control, overwritten historical receipt, or failure of the bracket margins defeats the corresponding reproduction claim. A Python historical scratch open in the retained target audit defeats its scoped retained-location statement. No new actionable comment remains in this correction pass. Task 3 may be released after the plan and queue are reconciled.

@@ -1,0 +1,17 @@
+# Command receipt, wave 14. Every line: UTC time, cwd, literal command; PID, /usr/bin/time -p wall, thread pin and the internal alarm (perl alarm 110 s) per run.
+2026-10-11T02:29:16Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave14-rest-iv.py sixpole 0.9 200 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave14-rest-iv-sixpole-val-N200.json 0.5 1.3
+2026-10-11T02:29:16Z pid=45841 threads=1 alarm=110s
+2026-10-11T02:29:16Z END pid=45841 exit=0 real 0.73 user 0.69 sys 0.01 
+2026-10-11T02:29:42Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave14-rest-iv.py antiprism 0.9 200 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave14-rest-iv-antiprism-val-N200.json 0.5 1.3
+2026-10-11T02:29:42Z pid=45952 threads=1 alarm=110s
+2026-10-11T02:29:42Z END pid=45952 exit=0 real 0.72 user 0.70 sys 0.01 
+2026-10-11T02:30:27Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave14-rest-iv.py sixpole 1.0 8000 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave14-rest-iv-sixpole-N8000.json 0.9 1.35
+2026-10-11T02:30:27Z pid=46155 threads=1 alarm=110s
+2026-10-11T02:30:51Z END pid=46155 exit=0 real 23.96 user 23.15 sys 0.08 
+2026-10-11T02:30:51Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave14-rest-iv.py antiprism 0.9 8000 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave14-rest-iv-antiprism-N8000.json 0.9 1.3
+2026-10-11T02:30:51Z pid=46447 threads=1 alarm=110s
+2026-10-11T02:31:16Z END pid=46447 exit=0 real 24.34 user 23.02 sys 0.08 
+# nearest-image selection fixed (tie at q = 0 for the six poles picked a receding positrino image); six-pole target rerun; the earlier output is retained
+2026-10-11T02:31:47Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave14-rest-iv.py sixpole 1.0 8000 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave14-rest-iv-sixpole-N8000-v2.json 0.9 1.35
+2026-10-11T02:31:47Z pid=46959 threads=1 alarm=110s
+2026-10-11T02:32:10Z END pid=46959 exit=0 real 22.83 user 22.70 sys 0.04 

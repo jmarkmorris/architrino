@@ -1,0 +1,15 @@
+T* in [1.366622279933, 1.366740606296]; q(T*) in [0.0935743471, 0.0936194302]; qdot(T*) in [0.1372890498, 0.1373223942]; continuity at T*: True
+controls: ALL PASS
+   pass (1) known: the fixed-image affine step from t = 1.2 intersects the window enclosure's own continuation at 1.21
+   pass (2) negative: at the probe t = T* + 0.05 the delayed hit with the wrong sign of D_t is disjoint from the correct one
+   pass (3) continuity at T*: the delayed term at tau = t with zero history encloses the fixed-image term
+step 1: t_end 1.37674060; tau0 [1.3666730, 1.3666963]; D_t0 [0.999916, 1.0]; q [0.094952314, 0.094997733]; qdot [0.138304483, 0.138338405]; reduction qdot [0.138304703, 0.138338163] -> undecided (enclosures overlap); like chord 1.46009
+step 2: t_end 1.38674060; tau0 [1.3659505, 1.3659872]; D_t0 [0.998944, 1.0]; q [0.096340438, 0.096386201]; qdot [0.139320190, 0.139355259]; reduction qdot [0.139320637, 0.139354212] -> undecided (enclosures overlap); like chord 1.46075
+step 3: t_end 1.39674060; tau0 [1.3652344, 1.3652718]; D_t0 [0.998925, 1.0]; q [0.097738720, 0.097784839]; qdot [0.140336185, 0.140372420]; reduction qdot [0.140336855, 0.140370544] -> undecided (enclosures overlap); like chord 1.46142
+step 4: t_end 1.40674060; tau0 [1.3645010, 1.3645259]; D_t0 [0.998448, 0.998478]; q [0.099147167, 0.099193651]; qdot [0.141353335, 0.141390137]; reduction qdot [0.141353362, 0.141387164] -> undecided (enclosures overlap); like chord 1.46210
+step 5: t_end 1.41674060; tau0 [1.3637546, 1.3637796]; D_t0 [0.997928, 0.997949]; q [0.100565789, 0.100612644]; qdot [0.142371083, 0.142408454]; reduction qdot [0.142370162, 0.142404075] -> undecided (enclosures overlap); like chord 1.46277
+step 6: t_end 1.42674060; tau0 [1.3629972, 1.3630229]; D_t0 [0.997412, 0.997436]; q [0.101994592, 0.102041822]; qdot [0.143389427, 0.143427374]; reduction qdot [0.143387258, 0.143421282] -> undecided (enclosures overlap); like chord 1.46345
+step 7: t_end 1.43674060; tau0 [1.3622287, 1.3622551]; D_t0 [0.996897, 0.996924]; q [0.103433581, 0.103481193]; qdot [0.144408371, 0.144446904]; reduction qdot [0.144404654, 0.144438788] -> undecided (enclosures overlap); like chord 1.46414
+step 8: t_end 1.44674060; tau0 [1.3614493, 1.3614764]; D_t0 [0.996384, 0.996413]; q [0.104882762, 0.104930762]; qdot [0.145427923, 0.145467050]; reduction qdot [0.145422355, 0.145456598] -> undecided (enclosures overlap); like chord 1.46483
+step 9: t_end 1.45674060; tau0 [1.3606592, 1.3606858]; D_t0 [0.995875, 0.995894]; q [0.106342142, 0.106390536]; qdot [0.146448094, 0.146487815]; reduction qdot [0.146440365, 0.146474715] -> undecided (enclosures overlap); like chord 1.46553
+reached t in [1.456622279933, 1.456740606296]; stop: step 10: another image class is read (the like images +e2, +e3 at chord 1.466228 would be read before the step end 1.46674060); wall 7.3 s

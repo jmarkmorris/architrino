@@ -1,0 +1,53 @@
+{
+ "g": "1",
+ "N_window": 1000,
+ "Delta": "0.01",
+ "controls": [
+  {
+   "name": "(1) known: with the delayed term held at its fixed-image value, the step from t = 0.6 reproduces (contains) the window enclosure's continuation at t = 0.6 + Delta",
+   "pass": true,
+   "step_end_psi": [
+    "0.1405381514085515869658304",
+    "0.140547309424586918330723"
+   ],
+   "window_psi": [
+    "0.1405409647390433177395635",
+    "0.1405440681082441719915028"
+   ],
+   "step_end_v": [
+    "0.5203758969293345891067156",
+    "0.5215583490799236387863563"
+   ],
+   "window_v": [
+    "0.5209634965024181250855404",
+    "0.5209712654439822741819062"
+   ]
+  },
+  {
+   "name": "(2) negative: a wrong sign of D_t (weight below one instead of above one) gives a delayed forcing interval on the second step disjoint from the correct one",
+   "pass": false,
+   "Q_correct": [
+    "2.071676360344288336831321",
+    "2.257404588779610550211747"
+   ],
+   "Q_wrong": [
+    "1.968444565563394856878989",
+    "2.138934722540695115415098"
+   ]
+  }
+ ],
+ "steps": [],
+ "T_star": [
+  "0.6790704345703125",
+  "0.679083251953125"
+ ],
+ "psi_at_T_star": [
+  "0.1798064586301464542425724",
+  "0.1798181311883532896622098"
+ ],
+ "dpsi_at_T_star": [
+  "0.6186906660388185704522114",
+  "0.6187196794357771285595904"
+ ],
+ "controls_all_pass": false
+}

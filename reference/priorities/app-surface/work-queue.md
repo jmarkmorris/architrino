@@ -1,31 +1,25 @@
 # Surface Work Queue
 
-[Priorities](priorities.md) owns the current scope. The operator selected the constrained app direction; this queue separates its next design artifact from implementation dependent on solver capability. The lane is unranked globally and has no assigned numerical scores. Local ordering below follows dependencies.
+[Priorities](priorities.md) owns the current scope. The operator selected the constrained app direction; implementation depends on qualified EOM capability. The lane is unranked globally and has no assigned numerical scores. Local ordering below follows dependencies.
 
-Legend: ✓ Done, ◐ Partial, ○ Not done. Queue lifecycle labels remain explicit; completed objects are removed from the live list and recorded in [work-log.md](work-log.md).
+Legend: ✓ Done, ◐ Partial, ○ Not done. Completed objects are removed from the live list and recorded in [work-log.md](work-log.md).
+
+<a id="surface-001--normal-constrained-evolution-specification"></a>
+
+SURFACE-001's completed specification/review is recorded in the [work log](work-log.md); this anchor preserves existing research references without retaining a completed queue object.
 
 ## Ranked Next Objects
 
-1. SURFACE-001 — Specify the EOM-owned normal-constrained experiment and independently reviewed controls.
-
-## Queued
-
-### SURFACE-001 — Normal-constrained evolution specification
-
-- **Status:** ○ Not done — Queued; design scope.
-- **Request:** Translate the operator-selected fixed-surface study into an EOM experimental-mode proposal using [the manuscript's application brief](manuscript.md#application-brief) and [the constrained equation](manuscript.md#the-normal-only-constrained-equation).
-- **Owner boundary:** Surface supplies app requirements; EOM owns the evolution interface, implementation and acceptance. Existing spherical research retains scientific ownership.
-- **Shared mode dependency:** Use the standard EOM solver with a common equation/speed-mode contract; default to canonical interaction and no speed limit. Specify geometric support independently, retain mode identity through output and restart, and distinguish precise analytical results or reductions from numerical evolution. The [solver owner](../app-solver/manuscript.md#9-equation-modes-and-precise-analytical-methods) owns reusable modes across consumers.
-- **Completion:** A concrete EOM contract proposal identifies the selected equation variant and speed regime, sphere/oblate-spheroid/ring-torus definitions, ordinary-chart support, dense-history consistency, numerical errors, restart, singular-event boundaries and distinguishable output authority. Specify tangent projection of the receiver total and records of the discarded normal vector only after superposition, separately from curvature and total support. A separately authored mathematical review checks the general support equation, spherical reduction, acceleration split and named analytical controls. Record any unresolved event or history obligation explicitly.
-- **Evidence / blocker:** The current canonical evolution contract excludes future constraints; this folder does not change it. Implementation follows the reviewed experimental design and the applicable owner decision.
+No runnable Surface app object is selected. SURFACE-001's specification and separately authored review are complete; its closure is recorded in the work log. The EOM owner records the operator-selected [Stage B capability](../app-solver/analysis/equation-provider-stage-b-2026-10-10.md). The first remaining app object depends on Stage C transport and the Stage D independently qualified interacting gate in the [EOM delivery sequence](../app-solver/contracts/equation-provider-design-v1.md#11-delivery-sequence-and-acceptance).
 
 ## Deferred / blocked
 
 ### SURFACE-002 — First spherical six-member evolution and viewer
 
-- **Status:** ○ Not done — Deferred behind SURFACE-001 and EOM experimental capability.
+- **Status:** ○ Not done — Deferred behind EOM transport and the independently qualified interacting gate; SURFACE-001's design/review dependency is complete.
 - **Scope:** Surface/history setup, the 3:3 population, actual solver evolution, path display and the separate support/readout inspection specified in the design.
 - **Completion:** A controlled finite spherical calculation with retained input/output records, independently checked interaction and geometry, visible evidence labels and operator-viewport verification. No future curve is supplied as an evolution result.
+- **Boundary:** Stage B's typed C++ constrained route and geometry-only controls do not deliver a six-member scientific result or browser app. Its [qualification record](../app-solver/analysis/equation-provider-stage-b-2026-10-10.md) and the [reviewed design](../app-solver/contracts/equation-provider-design-v1.md) retain dense-history errors, ordinary-chart domain limits and singular-event obligations.
 
 ### SURFACE-003 — Oblate spheroid and ring torus comparisons
 

@@ -1,0 +1,10 @@
+controls: ALL PASS (5.0 s)
+   pass (i) known: K=0 great circle at v=1/2 lies inside the outward-rounded Taylor enclosure (interval components widened by the tail bound) at 50 points
+   pass (ii) negative: a provably invalid majorant constant min(M/20, 0.9 |c_1|) is caught by the coefficient-domination check; the true M passes
+D1 member 0 (q=+1): interval [0, 0.060608] (lower-rounded); speed enclosure at end [0.5009993753, 0.5009993853]; eps_end 5.010e-09; max coefficient width 4.59e-41; 6.7 s
+D1 member 1 (q=+1): interval [0, 0.059321] (lower-rounded); speed enclosure at end [0.5059306794, 0.5059306894]; eps_end 5.016e-09; max coefficient width 1.47e-39; 6.3 s
+D1 member 2 (q=+1): interval [0, 0.061061] (lower-rounded); speed enclosure at end [0.5054108756, 0.5054108856]; eps_end 5.007e-09; max coefficient width 0.00e+00; 6.4 s
+D1 member 3 (q=-1): interval [0, 0.061043] (lower-rounded); speed enclosure at end [0.5034215461, 0.5034215561]; eps_end 5.007e-09; max coefficient width 0.00e+00; 6.2 s
+D1 member 4 (q=-1): interval [0, 0.062591] (lower-rounded); speed enclosure at end [0.5018816783, 0.5018816890]; eps_end 5.339e-09; max coefficient width 0.00e+00; 7.3 s
+D1 member 5 (q=-1): interval [0, 0.061033] (lower-rounded); speed enclosure at end [0.5053230465, 0.5053230566]; eps_end 5.007e-09; max coefficient width 0.00e+00; 6.4 s
+total wall 44.3 s

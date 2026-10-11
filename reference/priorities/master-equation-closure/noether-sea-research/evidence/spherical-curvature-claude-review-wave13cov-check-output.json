@@ -1,0 +1,98 @@
+{
+ "controls": [
+  {
+   "name": "K1 F(0)=0.668064615",
+   "val": 0.6680646150928709,
+   "passed": true
+  },
+  {
+   "name": "K2 tau' formula vs finite difference",
+   "formula": -0.8455257304121476,
+   "finite_difference": -0.8455239270066527,
+   "passed": true
+  },
+  {
+   "name": "K2b a' formula vs finite difference along a straight path",
+   "formula": 11.022795318450042,
+   "finite_difference": 11.02273674573606,
+   "passed": true
+  },
+  {
+   "name": "N1 wrong-sign probe disjoint",
+   "Q_ok": 2.377108378771543,
+   "Q_bad": 2.143884846992557,
+   "passed": true
+  }
+ ],
+ "results": {
+  "step1": {
+   "S": [
+    0.1793080269,
+    0.18341001980899999
+   ],
+   "VS": [
+    0.6176945641,
+    0.6497154818
+   ],
+   "a0_sampled": [
+    1.5378298740382594,
+    1.5378987719093533
+   ],
+   "ap_sampled": [
+    3.940096375895907,
+    6.411470558835271
+   ],
+   "ap_sampled_at_negative_delayed_argument": [
+    3.940097375895907,
+    4.144349673287217
+   ],
+   "n_negative_delayed_samples": 5,
+   "tau_sampled": [
+    0.6756695794290577,
+    0.6795512134325026
+   ],
+   "delayed_arg_sampled": [
+    -0.0004807788625025289,
+    0.008413672523942317
+   ],
+   "end_psi": [
+    0.18292072259392547,
+    0.18292937711595214
+   ],
+   "end_v": [
+    0.6263837134701913,
+    0.6264851190415323
+   ],
+   "coverage": {
+    "a0": [
+     1.537776,
+     1.579016
+    ],
+    "ap_original": [
+     5.801593,
+     7.028696
+    ],
+    "ap_repaired": [
+     3.779219,
+     7.028696
+    ],
+    "end_psi": [
+     0.1829207219,
+     0.182929904
+    ],
+    "end_v": [
+     0.6263834442,
+     0.6266984245
+    ],
+    "tau_range": [
+     0.645816,
+     0.70908
+    ]
+   },
+   "review_sets_inside_coverage": true,
+   "sampled_ap_inside_original_range": false,
+   "sampled_ap_inside_repaired_range": true
+  }
+ },
+ "elapsed_s": 37.49406886100769
+}

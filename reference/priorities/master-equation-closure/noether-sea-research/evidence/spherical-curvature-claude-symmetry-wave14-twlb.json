@@ -1,0 +1,449 @@
+{
+ "pid": 41518,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: imported wave-11 function reproduces the g=1 six-pole bracket and verdict",
+   "t_c": [
+    0.962207038662762,
+    0.9639521408918529
+   ],
+   "verdict": true,
+   "pass": true
+  },
+  {
+   "name": "known: stationary hexagon simultaneous chord exactly 1",
+   "value": 0.9999999999999996,
+   "pass": true
+  },
+  {
+   "name": "negative: polarity flip changes f(0)",
+   "f0": -1.8691032201027316,
+   "true": 0.668064615092872,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "results": {
+  "six poles | g=4.0": {
+   "g": 4.0,
+   "R_at_K1": 0.25,
+   "verdict": "crossing inside window",
+   "T_w_lb_from_interval_end": 0.602964553140534,
+   "note_tw": "t_lb(q) < D(q) on the whole certified interval: T_w exceeds the interval's time span (lower bound = t_lb(Q))",
+   "t_c_bracket": [
+    0.24818639186813485,
+    0.24857993151312754
+   ],
+   "q_c_bracket_deg": [
+    7.085412350494998,
+    7.097044619790519
+   ],
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": 0.24818639186813485,
+   "handoff": {
+    "type": "wake crossing",
+    "q_deg": [
+     7.085412350494998,
+     7.097044619790519
+    ],
+    "t": [
+     0.24818639186813485,
+     0.24857993151312754
+    ]
+   },
+   "simultaneous_separation": {
+    "q_end_deg": 7.097044619790519,
+    "grid": 2001,
+    "h": 6.193339788814683e-05,
+    "grid_min": 1.29170007350467,
+    "at_q_deg": 7.097044619790519,
+    "certified_min_chord": 1.2916381401057817,
+    "positive": true
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  "six poles | g=2.0": {
+   "g": 2.0,
+   "R_at_K1": 0.5,
+   "verdict": "crossing inside window",
+   "T_w_lb_from_interval_end": 0.8527206486815766,
+   "note_tw": "t_lb(q) < D(q) on the whole certified interval: T_w exceeds the interval's time span (lower bound = t_lb(Q))",
+   "t_c_bracket": [
+    0.49202624568764486,
+    0.49285387735688063
+   ],
+   "q_c_bracket_deg": [
+    13.976355460217077,
+    14.001278556301683
+   ],
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": 0.49202624568764486,
+   "handoff": {
+    "type": "wake crossing",
+    "q_deg": [
+     13.976355460217077,
+     14.001278556301683
+    ],
+    "t": [
+     0.49202624568764486,
+     0.49285387735688063
+    ]
+   },
+   "simultaneous_separation": {
+    "q_end_deg": 14.001278556301683,
+    "grid": 2001,
+    "h": 0.0001221842051481713,
+    "grid_min": 1.1809097769194228,
+    "at_q_deg": 14.001278556301683,
+    "certified_min_chord": 1.1807875927132745,
+    "positive": true
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  "antiprism 30 | g=4.0": {
+   "g": 4.0,
+   "R_at_K1": 0.25,
+   "verdict": "crossing inside window",
+   "T_w_lb_from_interval_end": 0.659322084390668,
+   "note_tw": "t_lb(q) < D(q) on the whole certified interval: T_w exceeds the interval's time span (lower bound = t_lb(Q))",
+   "t_c_bracket": [
+    0.1146549377996297,
+    0.11605157777970472
+   ],
+   "q_c_bracket_deg": [
+    3.321707469064692,
+    3.3623812019479984
+   ],
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": 0.1146549377996297,
+   "handoff": {
+    "type": "wake crossing",
+    "q_deg": [
+     3.321707469064692,
+     3.3623812019479984
+    ],
+    "t": [
+     0.1146549377996297,
+     0.11605157777970472
+    ]
+   },
+   "simultaneous_separation": {
+    "q_end_deg": 3.3623812019479984,
+    "grid": 2001,
+    "h": 2.9342311340578476e-05,
+    "grid_min": 0.8660254037844384,
+    "at_q_deg": 0.0,
+    "certified_min_chord": 0.8659960614720978,
+    "positive": true
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  "antiprism 45 | g=4.0": {
+   "g": 4.0,
+   "R_at_K1": 0.25,
+   "verdict": "crossing inside window",
+   "T_w_lb_from_interval_end": 0.6486861924561415,
+   "note_tw": "t_lb(q) < D(q) on the whole certified interval: T_w exceeds the interval's time span (lower bound = t_lb(Q))",
+   "t_c_bracket": [
+    0.21072844826171203,
+    0.21126020994889955
+   ],
+   "q_c_bracket_deg": [
+    6.063480606384055,
+    6.078165087873109
+   ],
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": 0.21072844826171203,
+   "handoff": {
+    "type": "wake crossing",
+    "q_deg": [
+     6.063480606384055,
+     6.078165087873109
+    ],
+    "t": [
+     0.21072844826171203,
+     0.21126020994889955
+    ]
+   },
+   "simultaneous_separation": {
+    "q_end_deg": 6.078165087873109,
+    "grid": 2001,
+    "h": 5.304199663157811e-05,
+    "grid_min": 1.2247448713915887,
+    "at_q_deg": 0.0,
+    "certified_min_chord": 1.224691829393957,
+    "positive": true
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  "antiprism 45 | g=2.0": {
+   "g": 2.0,
+   "R_at_K1": 0.5,
+   "verdict": "crossing inside window",
+   "T_w_lb_from_interval_end": 0.9173808110956395,
+   "note_tw": "t_lb(q) < D(q) on the whole certified interval: T_w exceeds the interval's time span (lower bound = t_lb(Q))",
+   "t_c_bracket": [
+    0.42426760097675137,
+    0.4252391653712433
+   ],
+   "q_c_bracket_deg": [
+    12.239891854916964,
+    12.265182746799695
+   ],
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": 0.42426760097675137,
+   "handoff": {
+    "type": "wake crossing",
+    "q_deg": [
+     12.239891854916964,
+     12.265182746799695
+    ],
+    "t": [
+     0.42426760097675137,
+     0.4252391653712433
+    ]
+   },
+   "simultaneous_separation": {
+    "q_end_deg": 12.265182746799695,
+    "grid": 2001,
+    "h": 0.00010703391114522833,
+    "grid_min": 1.2247448713915887,
+    "at_q_deg": 0.0,
+    "certified_min_chord": 1.2246378374794433,
+    "positive": true
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  "antiprism 60 | g=4.0": {
+   "g": 4.0,
+   "R_at_K1": 0.25,
+   "verdict": "crossing inside window",
+   "T_w_lb_from_interval_end": 0.6180245987199571,
+   "note_tw": "t_lb(q) < D(q) on the whole certified interval: T_w exceeds the interval's time span (lower bound = t_lb(Q))",
+   "t_c_bracket": [
+    0.2609560070085442,
+    0.2614936775299362
+   ],
+   "q_c_bracket_deg": [
+    7.4320309884963125,
+    7.4475094453967
+   ],
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": 0.2609560070085442,
+   "handoff": {
+    "type": "wake crossing",
+    "q_deg": [
+     7.4320309884963125,
+     7.4475094453967
+    ],
+    "t": [
+     0.2609560070085442,
+     0.2614936775299362
+    ]
+   },
+   "simultaneous_separation": {
+    "q_end_deg": 7.4475094453967,
+    "grid": 2001,
+    "h": 6.499178044777463e-05,
+    "grid_min": 1.200535305242878,
+    "at_q_deg": 7.4475094453967,
+    "certified_min_chord": 1.20047031346143,
+    "positive": true
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  "antiprism 60 | g=2.0": {
+   "g": 2.0,
+   "R_at_K1": 0.5,
+   "verdict": "crossing inside window",
+   "T_w_lb_from_interval_end": 0.8740187693899519,
+   "note_tw": "t_lb(q) < D(q) on the whole certified interval: T_w exceeds the interval's time span (lower bound = t_lb(Q))",
+   "t_c_bracket": [
+    0.5155095373769549,
+    0.5165849068439837
+   ],
+   "q_c_bracket_deg": [
+    14.586671714349475,
+    14.617541951083487
+   ],
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": 0.5155095373769549,
+   "handoff": {
+    "type": "wake crossing",
+    "q_deg": [
+     14.586671714349475,
+     14.617541951083487
+    ],
+    "t": [
+     0.5155095373769549,
+     0.5165849068439837
+    ]
+   },
+   "simultaneous_separation": {
+    "q_end_deg": 14.617541951083487,
+    "grid": 2001,
+    "h": 0.00012756211779740137,
+    "grid_min": 1.1004953828492627,
+    "at_q_deg": 14.617541951083487,
+    "certified_min_chord": 1.1003678207304652,
+    "positive": true
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  "twist 40 | g=4.0": {
+   "g": 4.0,
+   "R_at_K1": 0.25,
+   "verdict": "crossing inside window",
+   "T_w_lb_from_interval_end": 0.2871672331541669,
+   "note_tw": "t_lb(q) < D(q) on the whole certified interval: T_w exceeds the interval's time span (lower bound = t_lb(Q))",
+   "t_c_bracket": [
+    0.14298177902738812,
+    0.14392034455688146
+   ],
+   "q_c_bracket_deg": [
+    3.911189007829114,
+    3.935669365247594
+   ],
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": 0.14298177902738812,
+   "handoff": {
+    "type": "wake crossing",
+    "q_deg": [
+     3.911189007829114,
+     3.935669365247594
+    ],
+    "t": [
+     0.14298177902738812,
+     0.14392034455688146
+    ]
+   },
+   "simultaneous_separation": {
+    "q_end_deg": 3.935669365247594,
+    "grid": 2001,
+    "h": 3.43451943467229e-05,
+    "grid_min": 0.5534329371807463,
+    "at_q_deg": 3.935669365247594,
+    "certified_min_chord": 0.5533985919853995,
+    "positive": true
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  "family C 5 | g=4.0": {
+   "g": 4.0,
+   "R_at_K1": 0.25,
+   "verdict": "undecided",
+   "T_w_lb_from_interval_end": 0.713184135946617,
+   "note_tw": "t_lb(q) < D(q) on the whole certified interval: T_w exceeds the interval's time span (lower bound = t_lb(Q))",
+   "t_c_bracket": null,
+   "q_c_bracket_deg": null,
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": Infinity,
+   "handoff": null,
+   "simultaneous_separation": {
+    "q_end_deg": 2.864788975654116,
+    "grid_min": 0.9905937425035187,
+    "certified_min_chord": 0.9905687425025187,
+    "positive": true,
+    "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  "family C 15 | g=4.0": {
+   "g": 4.0,
+   "R_at_K1": 0.25,
+   "verdict": "undecided",
+   "T_w_lb_from_interval_end": 0.6705008658088001,
+   "note_tw": "t_lb(q) < D(q) on the whole certified interval: T_w exceeds the interval's time span (lower bound = t_lb(Q))",
+   "t_c_bracket": null,
+   "q_c_bracket_deg": null,
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": Infinity,
+   "handoff": null,
+   "simultaneous_separation": {
+    "q_end_deg": 8.021409131831525,
+    "grid_min": 0.9203587886634916,
+    "certified_min_chord": 0.9202887886624916,
+    "positive": true,
+    "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  },
+  "family C 15 | g=2.0": {
+   "g": 2.0,
+   "R_at_K1": 0.5,
+   "verdict": "undecided",
+   "T_w_lb_from_interval_end": 0.9482314180097081,
+   "note_tw": "t_lb(q) < D(q) on the whole certified interval: T_w exceeds the interval's time span (lower bound = t_lb(Q))",
+   "t_c_bracket": null,
+   "q_c_bracket_deg": null,
+   "T_w_bracket": [
+    null,
+    null
+   ],
+   "speed_bound_before_window_end": null,
+   "conservative_actual_bound": Infinity,
+   "handoff": null,
+   "simultaneous_separation": {
+    "q_end_deg": 8.021409131831525,
+    "grid_min": 0.9203587886634916,
+    "certified_min_chord": 0.9202887886624916,
+    "positive": true,
+    "note": "six members on one latitude circle; neighbour chord cos(latitude), closed form"
+   },
+   "f_lb_on_window": null,
+   "envelope_positive": true
+  }
+ },
+ "wall_s": 3.9653711318969727
+}

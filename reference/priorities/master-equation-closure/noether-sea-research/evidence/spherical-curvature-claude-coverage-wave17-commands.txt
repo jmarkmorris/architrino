@@ -1,0 +1,22 @@
+# Command receipt, wave 17. Every line: UTC time, cwd, literal command; PID, /usr/bin/time -p wall, thread pin and the internal alarm (perl alarm 110 s) per run.
+2026-10-11T05:05:47Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv.py 500 full reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv-val-full.json 6
+2026-10-11T05:05:47Z pid=62655 threads=1 alarm=110s
+2026-10-11T05:05:54Z END pid=62655 exit=0 real 6.20 user 6.15 sys 0.02 
+2026-10-11T05:06:30Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv.py 500 unlike reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv-val-unlike.json 3
+2026-10-11T05:06:30Z pid=62725 threads=1 alarm=110s
+2026-10-11T05:06:34Z END pid=62725 exit=0 real 3.49 user 3.47 sys 0.01 
+2026-10-11T05:06:34Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv.py 4000 full reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv-N4000-full.json 40
+2026-10-11T05:06:34Z pid=62746 threads=1 alarm=110s
+2026-10-11T05:07:22Z END pid=62746 exit=0 real 48.31 user 47.72 sys 0.07 
+2026-10-11T05:07:22Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv.py 4000 unlike reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv-N4000-unlike.json 40
+2026-10-11T05:07:22Z pid=62896 threads=1 alarm=110s
+2026-10-11T05:07:52Z END pid=62896 exit=0 real 30.22 user 30.04 sys 0.04 
+2026-10-11T05:07:52Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv.py 4000 like reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv-N4000-like.json 40
+2026-10-11T05:07:52Z pid=62986 threads=1 alarm=110s
+2026-10-11T05:08:22Z END pid=62986 exit=0 real 29.28 user 29.13 sys 0.05 
+2026-10-11T05:08:22Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv.py 4000 fixed reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv-N4000-fixed.json 40
+2026-10-11T05:08:22Z pid=63077 threads=1 alarm=110s
+2026-10-11T05:08:35Z END pid=63077 exit=0 real 12.94 user 12.90 sys 0.02 
+2026-10-11T05:09:24Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-split.py
+2026-10-11T05:09:24Z pid=63163 threads=1 alarm=110s
+2026-10-11T05:09:25Z END pid=63163 exit=0 real 0.03 user 0.02 sys 0.00 

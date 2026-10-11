@@ -90,7 +90,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `aea014967bca3b04` |
 | [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 877 | `83fc664747cd16cb` |
-| [reference/priorities/README.md](../priorities/README.md) | 139 | `f49e05ec138a4ee7` |
+| [reference/priorities/README.md](../priorities/README.md) | 141 | `08d1117de1c7f856` |
 | [reference/office-of-research/cto/prompts/README.md](../office-of-research/cto/prompts/README.md) | 64 | `44455776ef041094` |
 | [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md) | 74 | `4a2c87f56a6537f7` |
 | [reference/office-of-research/cto/prompts/start-research.md](../office-of-research/cto/prompts/start-research.md) | 107 | `fff97ddc57be409d` |

@@ -1,0 +1,546 @@
+{
+ "pid": 36333,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: constant-field toy q* = v^2/(2 g f0), t* = v/(g f0), return at 2 t*",
+   "q_star": 0.15625000000244188,
+   "expected_q": 0.15625,
+   "t_star": 0.6249999956539051,
+   "expected_t": 0.625,
+   "t_back": 0.6249999956539051,
+   "pass": true
+  },
+  {
+   "name": "known: stationary hexagon f(0)=0 (no reduction)",
+   "f0": 1.4710455076283324e-15,
+   "pass": true
+  },
+  {
+   "name": "known: release fields f(0) = -1 (six poles V2) and -0.94603 (antiprism V2)",
+   "f6": -0.9999999999999998,
+   "fa": -0.9460318972094452,
+   "pass": true
+  },
+  {
+   "name": "negative: flipping one image polarity changes f(0)",
+   "f0_flipped": -0.4999999999999999,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "results": {
+  "six poles V2 v=0.25": {
+   "case": "six poles V2 (own-cap) release",
+   "v": 0.25,
+   "g": 1.0,
+   "f0": -0.9999999999999998,
+   "delta_prep_rad": 0.006591796875,
+   "envelope_range_deg": [
+    -34.37746770784939,
+    5.550528640329851
+   ],
+   "envelope_certified": true,
+   "absf_lb_min": 0.9914937800597896,
+   "absf_ub_max": 1.2171471628338184,
+   "turning_point": {
+    "q_deg": [
+     1.79255794952709,
+     1.7949305331671184
+    ],
+    "t": [
+     0.25043451734716543,
+     0.25076239381219323
+    ]
+   },
+   "return_to_release_site_t": [
+    0.5008690346943309,
+    0.5015247876243865
+   ],
+   "qc_ub": -0.44355,
+   "qc_lb": -0.44445,
+   "wake_crossing": {
+    "q_deg": [
+     -25.413543003027662,
+     -25.46510920458944
+    ],
+    "t": [
+     1.2194509743318016,
+     1.2214515820945504
+    ]
+   },
+   "simultaneous_separation": {
+    "min_chord_lb_on_segment": 1.000043675075483,
+    "positive": true,
+    "grid_spacing": 0.00031566372382418884
+   },
+   "window": {
+    "D_segment": 1.096039214669327,
+    "T_w_lb": 0.839447417794327,
+    "stays_in_segment_until_T_w_lb": true,
+    "t_reach_qmin_lb": 1.3637706655983053,
+    "T_w_ub_coarse": 1.1709248210956478
+   },
+   "turn_inside_window": true,
+   "return_inside_window": true,
+   "wake_crossing_inside_window": false,
+   "wake_crossing_after_window_ub": true,
+   "speed_brackets": {
+    "0.1": {
+     "q_deg": [
+      1.1459814516670153,
+      1.146366096053644
+     ],
+     "speed": [
+      0.1500168934903437,
+      0.15023941184515113
+     ],
+     "first_order": 0.15000000000000002
+    },
+    "0.25": {
+     "q_deg": [
+      1.7925525565962481,
+      1.7925579497063457
+     ],
+     "speed": [
+      2.497738388564766e-06,
+      0.009091549707693493
+     ],
+     "first_order": 5.551115123125783e-17
+    }
+   }
+  },
+  "antiprism V2 v=0.25": {
+   "case": "antiprism V2 (meridional, pole-ward) release",
+   "v": 0.25,
+   "g": 1.0,
+   "f0": -0.9460318972094452,
+   "delta_prep_rad": 0.006591796875,
+   "envelope_range_deg": [
+    -34.37746770784939,
+    5.703741523235214
+   ],
+   "envelope_certified": true,
+   "absf_lb_min": 0.9249231581743288,
+   "absf_ub_max": 1.119165203916562,
+   "turning_point": {
+    "q_deg": [
+     1.8984659253449638,
+     1.9019888929763789
+    ],
+    "t": [
+     0.2654204482677802,
+     0.2659142703752995
+    ]
+   },
+   "return_to_release_site_t": [
+    0.5308408965355604,
+    0.531828540750599
+   ],
+   "qc_ub": -0.46199999999999997,
+   "qc_lb": -0.4629,
+   "wake_crossing": {
+    "q_deg": [
+     -26.470650135044032,
+     -26.522216336605805
+    ],
+    "t": [
+     1.2806185906775156,
+     1.28307003311496
+    ]
+   },
+   "simultaneous_separation": {
+    "min_chord_lb_on_segment": 0.9996834173496473,
+    "positive": true,
+    "grid_spacing": 0.00031659798425942576
+   },
+   "window": {
+    "D_segment": 1.029568366524273,
+    "T_w_lb": 0.772976569649273,
+    "stays_in_segment_until_T_w_lb": true,
+    "t_reach_qmin_lb": 1.4094716026869227,
+    "T_w_ub_coarse": 1.0958739297094002
+   },
+   "turn_inside_window": true,
+   "return_inside_window": true,
+   "wake_crossing_inside_window": false,
+   "wake_crossing_after_window_ub": true,
+   "speed_brackets": {
+    "0.1": {
+     "q_deg": [
+      1.1616217909930786,
+      1.1621255450346362
+     ],
+     "speed": [
+      0.155507922272347,
+      0.15578943484182803
+     ],
+     "first_order": 0.15539681027905547
+    },
+    "0.25": {
+     "q_deg": [
+      1.8920682445671668,
+      1.8951880252486812
+     ],
+     "speed": [
+      0.010366657445150255,
+      0.01801945920541217
+     ],
+     "first_order": 0.013492025697638688
+    }
+   }
+  },
+  "six poles V2 v=0.5": {
+   "case": "six poles V2 (own-cap) release",
+   "v": 0.5,
+   "g": 1.0,
+   "f0": -0.9999999999999998,
+   "delta_prep_rad": 0.01318359375,
+   "envelope_range_deg": [
+    -34.37746770784939,
+    13.607747634357054
+   ],
+   "envelope_certified": true,
+   "absf_lb_min": 0.9903689921651269,
+   "absf_ub_max": 1.2172674120031388,
+   "turning_point": {
+    "q_deg": [
+     7.196928155083856,
+     7.207232012905878
+    ],
+    "t": [
+     0.5030936733091068,
+     0.5037779281747999
+    ]
+   },
+   "return_to_release_site_t": [
+    1.0061873466182136,
+    1.0075558563495999
+   ],
+   "qc_ub": -0.35985,
+   "qc_lb": -0.36060000000000003,
+   "wake_crossing": {
+    "q_deg": [
+     -20.617886257782672,
+     -20.660858092417488
+    ],
+    "t": [
+     1.4884771571205042,
+     1.490837144781041
+    ]
+   },
+   "simultaneous_separation": {
+    "min_chord_lb_on_segment": 0.9999964438350172,
+    "positive": true,
+    "grid_spacing": 0.00036289496429020573
+   },
+   "window": {
+    "D_segment": 1.0960274068592104,
+    "T_w_lb": 0.8328438131092104,
+    "stays_in_segment_until_T_w_lb": true,
+    "t_reach_qmin_lb": 1.7025568527192951,
+    "T_w_ub_coarse": 1.1775551916855593
+   },
+   "turn_inside_window": true,
+   "return_inside_window": false,
+   "wake_crossing_inside_window": false,
+   "wake_crossing_after_window_ub": true,
+   "speed_brackets": {
+    "0.061275": {
+     "q_deg": [
+      1.6478767414453663,
+      1.6480494064707498
+     ],
+     "speed": [
+      0.4387741058777619,
+      0.43888509454444696
+     ],
+     "first_order": 0.43872500000000003
+    },
+    "0.1": {
+     "q_deg": [
+      2.578602978657691,
+      2.579056712145319
+     ],
+     "speed": [
+      0.40016240893556787,
+      0.40035748453820647
+     ],
+     "first_order": 0.4
+    },
+    "0.25": {
+     "q_deg": [
+      5.37681074786151,
+      5.379515404882872
+     ],
+     "speed": [
+      0.25088357054715354,
+      0.2516202837883861
+     ],
+     "first_order": 0.25000000000000006
+    }
+   }
+  },
+  "antiprism V2 v=0.5": {
+   "case": "antiprism V2 (meridional, pole-ward) release",
+   "v": 0.5,
+   "g": 1.0,
+   "f0": -0.9460318972094452,
+   "delta_prep_rad": 0.01318359375,
+   "envelope_range_deg": [
+    -34.37746770784939,
+    14.220599165978507
+   ],
+   "envelope_certified": true,
+   "absf_lb_min": 0.9044283787088819,
+   "absf_ub_max": 1.119306293869581,
+   "turning_point": {
+    "q_deg": [
+     7.676688066051824,
+     7.693255356982832
+    ],
+    "t": [
+     0.5384122262149912,
+     0.53955399382565
+    ]
+   },
+   "return_to_release_site_t": [
+    1.0768244524299824,
+    1.0791079876513
+   ],
+   "qc_ub": -0.37470000000000003,
+   "qc_lb": -0.3756,
+   "wake_crossing": {
+    "q_deg": [
+     -21.468728583551947,
+     -21.52029478511372
+    ],
+    "t": [
+     1.5795940475589503,
+     1.5830867974036227
+    ]
+   },
+   "simultaneous_separation": {
+    "min_chord_lb_on_segment": 0.9996328657200333,
+    "positive": true,
+    "grid_spacing": 0.00036713631808804603
+   },
+   "window": {
+    "D_segment": 1.0295557319408157,
+    "T_w_lb": 0.7663721381908157,
+    "stays_in_segment_until_T_w_lb": true,
+    "t_reach_qmin_lb": 1.7825638029961874,
+    "T_w_ub_coarse": 1.1512259007420718
+   },
+   "turn_inside_window": true,
+   "return_inside_window": false,
+   "wake_crossing_inside_window": false,
+   "wake_crossing_after_window_ub": true,
+   "speed_brackets": {
+    "0.05991": {
+     "q_deg": [
+      1.6191403209710848,
+      1.6193590058117875
+     ],
+     "speed": [
+      0.4434491623360842,
+      0.4435920468934869
+     ],
+     "first_order": 0.4433232290381821
+    },
+    "0.1": {
+     "q_deg": [
+      2.5945039580863525,
+      2.595108848920855
+     ],
+     "speed": [
+      0.40579708002059006,
+      0.40605503981968655
+     ],
+     "first_order": 0.4053968102790555
+    },
+    "0.25": {
+     "q_deg": [
+      5.480758877271566,
+      5.484448162344122
+     ],
+     "speed": [
+      0.26586284219787026,
+      0.26681609335745504
+     ],
+     "first_order": 0.2634920256976387
+    }
+   }
+  },
+  "six poles V2 v=0.75": {
+   "case": "six poles V2 (own-cap) release",
+   "v": 0.75,
+   "g": 1.0,
+   "f0": -0.9999999999999998,
+   "delta_prep_rad": 0.019775390625,
+   "envelope_range_deg": [
+    -34.37746770784939,
+    27.036445957735726
+   ],
+   "envelope_certified": true,
+   "absf_lb_min": 0.9902097083789866,
+   "absf_ub_max": 1.2174678934354013,
+   "turning_point": {
+    "q_deg": [
+     16.202591624217582,
+     16.231327783236754
+    ],
+    "t": [
+     0.7534709341199721,
+     0.7548480551347266
+    ]
+   },
+   "return_to_release_site_t": [
+    1.5069418682399442,
+    1.5096961102694533
+   ],
+   "qc_ub": -0.2142,
+   "qc_lb": -0.2148,
+   "wake_crossing": {
+    "q_deg": [
+     -12.272755971702233,
+     -12.307133439410082
+    ],
+    "t": [
+     1.751997156478113,
+     1.7554318295192108
+    ]
+   },
+   "simultaneous_separation": {
+    "min_chord_lb_on_segment": 0.9999176937434134,
+    "positive": true,
+    "grid_spacing": 0.00044164505589394665
+   },
+   "window": {
+    "D_segment": 1.0960077193363094,
+    "T_w_lb": 0.8262323287113094,
+    "stays_in_segment_until_T_w_lb": true,
+    "t_reach_qmin_lb": 2.07922300498287,
+    "T_w_ub_coarse": 1.1841971796869206
+   },
+   "turn_inside_window": true,
+   "return_inside_window": false,
+   "wake_crossing_inside_window": false,
+   "wake_crossing_after_window_ub": true,
+   "speed_brackets": {
+    "0.1": {
+     "q_deg": [
+      4.011177560932647,
+      4.011747438286034
+     ],
+     "speed": [
+      0.6502618359162462,
+      0.6504858414086699
+     ],
+     "first_order": 0.65
+    },
+    "0.25": {
+     "q_deg": [
+      8.959947660459218,
+      8.96324433202675
+     ],
+     "speed": [
+      0.5013022252339487,
+      0.501962076390687
+     ],
+     "first_order": 0.5
+    }
+   }
+  },
+  "antiprism V2 v=0.75": {
+   "case": "antiprism V2 (meridional, pole-ward) release",
+   "v": 0.75,
+   "g": 1.0,
+   "f0": -0.9460318972094452,
+   "delta_prep_rad": 0.019775390625,
+   "envelope_range_deg": [
+    -34.37746770784939,
+    28.415361903883994
+   ],
+   "envelope_certified": true,
+   "absf_lb_min": 0.895422163270302,
+   "absf_ub_max": 1.1195415070961439,
+   "turning_point": {
+    "q_deg": [
+     17.515888522719614,
+     17.560493559376567
+    ],
+    "t": [
+     0.8213348228699968,
+     0.8233020054753335
+    ]
+   },
+   "return_to_release_site_t": [
+    1.6426696457399936,
+    1.646604010950667
+   ],
+   "qc_ub": -0.2238,
+   "qc_lb": -0.22455000000000003,
+   "wake_crossing": {
+    "q_deg": [
+     -12.822795455027823,
+     -12.865767289662637
+    ],
+    "t": [
+     1.8988216345940627,
+     1.90361280845723
+    ]
+   },
+   "simultaneous_separation": {
+    "min_chord_lb_on_segment": 0.9995468140254303,
+    "positive": true,
+    "grid_spacing": 0.0004532442154432381
+   },
+   "window": {
+    "D_segment": 1.029534204966477,
+    "T_w_lb": 0.7597588143414771,
+    "stays_in_segment_until_T_w_lb": true,
+    "t_reach_qmin_lb": 2.2206474837167,
+    "T_w_ub_coarse": 1.184166144012336
+   },
+   "turn_inside_window": false,
+   "return_inside_window": false,
+   "wake_crossing_inside_window": false,
+   "wake_crossing_after_window_ub": true,
+   "speed_brackets": {
+    "0.1": {
+     "q_deg": [
+      4.027334752301831,
+      4.0281087744098505
+     ],
+     "speed": [
+      0.6560405090195562,
+      0.6563452327934244
+     ],
+     "first_order": 0.6553968102790555
+    },
+    "0.25": {
+     "q_deg": [
+      9.06859771848713,
+      9.073243608726242
+     ],
+     "speed": [
+      0.5173310438285391,
+      0.5182455807927185
+     ],
+     "first_order": 0.5134920256976387
+    }
+   }
+  },
+  "v=1 first order": {
+   "six poles V2": {
+    "dspeed_dT_release": -1.0,
+    "note": "speed decreases at first order; sub-wake immediately; no window computation requested"
+   },
+   "antiprism V2": {
+    "dspeed_dT_release": -0.9460318972094452
+   }
+  }
+ },
+ "wall_s_targets": 1.9472458362579346
+}

@@ -1,0 +1,785 @@
+{
+ "pid": 94381,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: alternating hexagon (twist 60) gives f(0)=0",
+   "f0": 1.4710455076283324e-15,
+   "pass": true
+  },
+  {
+   "name": "known: G(d) d^2 -> 1",
+   "value": 0.9999999995833332,
+   "pass": true
+  },
+  {
+   "name": "known: f = dW/dq at q_test for every case",
+   "max_abs_diff": 3.38475025785101e-10,
+   "pass": true
+  },
+  {
+   "name": "known: quadrature equals solve_ivp at q_test for every case (g=1)",
+   "pairs": [
+    {
+     "t_quad": 0.6307811756346793,
+     "t_ode": 0.6307811756338114
+    },
+    {
+     "t_quad": 0.43294615096544525,
+     "t_ode": 0.43294615096431543
+    },
+    {
+     "t_quad": 0.5807593505762313,
+     "t_ode": 0.580759350574958
+    },
+    {
+     "t_quad": 0.647367819475172,
+     "t_ode": 0.6473678194750737
+    },
+    {
+     "t_quad": 0.469126720003634,
+     "t_ode": 0.4691267200037622
+    },
+    {
+     "t_quad": 0.7104488154656318,
+     "t_ode": 0.7104488154346384
+    },
+    {
+     "t_quad": 0.7104488154349557,
+     "t_ode": 0.7104488154346428
+    }
+   ],
+   "pass": true
+  },
+  {
+   "name": "known: twist-50 case reproduces wave-8 T_w=0.67908 and t(twist 0)=0.95921",
+   "T_w": 0.6790770222940633,
+   "t0": 0.9592085042885237,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "results": [
+  {
+   "name": "six poles from rest",
+   "note": "q = arc from e_x along the great circle through e_x and w, away from the +w cap; the hexagon great circle (perp. w) is at q = 35.26 deg, the -w point at 125.26 deg, the fixed image of E_x at 180 deg",
+   "f_at_release": 0.9999999999999998,
+   "direction": "positive q",
+   "first_zero_of_f_deg": 97.58760315600419,
+   "turning_point_deg": null,
+   "min_image_chord_initial": 1.4142135623730951,
+   "by_g": {
+    "1.0": {
+     "integration_end_time": 2.4614300866145813,
+     "end_reason": "image collision",
+     "T_w": 1.0912994515866232,
+     "q_deg_at_T_w": 34.89649540685882,
+     "speed_at_T_w": 1.151950212989631,
+     "chord_to_nearest_image_at_T_w": 1.0912994515866234,
+     "W_minus_W0_at_T_w": 0.6634946465743798,
+     "t_wake_crossing": 0.9630889035277294,
+     "q_deg_at_wake_crossing": 26.997953887088933,
+     "hard_boundary": 0.9630889035277294,
+     "hard_boundary_reason": "wake-speed crossing before T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 0.6307811756346793,
+      "t_ode": 0.6307811756338114
+     },
+     "landmarks": {
+      "hexagon great circle (q=35.26)": {
+       "q_deg": 35.264389682754654,
+       "time": 1.0968570613065658,
+       "speed": 1.158746373872957,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "-w point (q=125.26)": {
+       "q_deg": 125.26438968275465,
+       "time": 2.0466419827565754,
+       "speed": 1.8093972035631742,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "integration_end_time": 7.78372537496949,
+     "end_reason": "image collision",
+     "T_w": 1.3666846512919928,
+     "q_deg_at_T_w": 5.362716975591123,
+     "speed_at_T_w": 0.13730585569707474,
+     "chord_to_nearest_image_at_T_w": 1.3666846512919928,
+     "W_minus_W0_at_T_w": 0.09426449004353465,
+     "t_wake_crossing": 7.659117593997277,
+     "q_deg_at_wake_crossing": 169.19472391489128,
+     "hard_boundary": 1.3666846512919928,
+     "hard_boundary_reason": "window end T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 1.9947052201642521,
+      "t_ode": 1.9947052201633317
+     },
+     "landmarks": {
+      "hexagon great circle (q=35.26)": {
+       "q_deg": 35.264389682754654,
+       "time": 3.468566581367698,
+       "speed": 0.36642777718995684,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "-w point (q=125.26)": {
+       "q_deg": 125.26438968275465,
+       "time": 6.4720502204339,
+       "speed": 0.5721816355198963,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": 1.0425031890470744,
+    "dW": 1.0425031888861014
+   }
+  },
+  {
+   "name": "antiprism from rest, colatitude 30 deg",
+   "note": "q = polar-angle increase (southward) of P_0 along the azimuth-0 meridian; the equator (alternating hexagon configuration) is at q = 60 deg; the antipodal electrino image is never reached (antipodal for all q)",
+   "f_at_release": 2.2217159052685833,
+   "direction": "positive q",
+   "first_zero_of_f_deg": 139.75436948291258,
+   "turning_point_deg": null,
+   "min_image_chord_initial": 0.8660254037844385,
+   "by_g": {
+    "1.0": {
+     "integration_end_time": 1.798608911933296,
+     "end_reason": "image collision",
+     "T_w": 1.1260943405134771,
+     "q_deg_at_T_w": 67.8511591069503,
+     "speed_at_T_w": 1.9331843480001354,
+     "chord_to_nearest_image_at_T_w": 1.1260943405134802,
+     "W_minus_W0_at_T_w": 1.8686008617127867,
+     "t_wake_crossing": 0.4969271203714009,
+     "q_deg_at_wake_crossing": 14.924780337204927,
+     "hard_boundary": 0.4969271203714009,
+     "hard_boundary_reason": "wake-speed crossing before T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 0.43294615096544525,
+      "t_ode": 0.43294615096431543
+     },
+     "landmarks": {
+      "equator / hexagon configuration": {
+       "q_deg": 60.0,
+       "time": 1.052917738842798,
+       "speed": 1.8140744479131894,
+       "inside_window": true,
+       "inside_hard_boundary": false
+      },
+      "south pole": {
+       "q_deg": 150.0,
+       "time": 1.6668900437822773,
+       "speed": 3.304626896226675,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "colatitude of electrino ring": {
+       "q_deg": 120.0,
+       "time": 1.5062841754303777,
+       "speed": 3.0552267101867905,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "integration_end_time": 5.687700781586274,
+     "end_reason": "image collision",
+     "T_w": 0.9381144976885081,
+     "q_deg_at_T_w": 5.4917581219367015,
+     "speed_at_T_w": 0.2004630674199523,
+     "chord_to_nearest_image_at_T_w": 0.9381144976885081,
+     "W_minus_W0_at_T_w": 0.20092720699730993,
+     "t_wake_crossing": 4.844389922032324,
+     "q_deg_at_wake_crossing": 124.56971233329968,
+     "hard_boundary": 0.9381144976885081,
+     "hard_boundary_reason": "window end T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 1.369095941253915,
+      "t_ode": 1.3690959412501333
+     },
+     "landmarks": {
+      "equator / hexagon configuration": {
+       "q_deg": 60.0,
+       "time": 3.329618243537565,
+       "speed": 0.5736607100518165,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "south pole": {
+       "q_deg": 150.0,
+       "time": 5.271169147409768,
+       "speed": 1.0450147809129184,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "colatitude of electrino ring": {
+       "q_deg": 120.0,
+       "time": 4.763288797828611,
+       "speed": 0.9661475172373419,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": 1.7720840617242526,
+    "dW": 1.7720840617130307
+   }
+  },
+  {
+   "name": "antiprism from rest, colatitude 45 deg",
+   "note": "q = polar-angle increase (southward) of P_0 along the azimuth-0 meridian; the equator (alternating hexagon configuration) is at q = 45 deg; the antipodal electrino image is never reached (antipodal for all q)",
+   "f_at_release": 1.1959699001479318,
+   "direction": "positive q",
+   "first_zero_of_f_deg": 115.88753286340174,
+   "turning_point_deg": null,
+   "min_image_chord_initial": 1.2247448713915887,
+   "by_g": {
+    "1.0": {
+     "integration_end_time": 2.215572590516803,
+     "end_reason": "image collision",
+     "T_w": 1.1447010720607247,
+     "q_deg_at_T_w": 44.29528410315509,
+     "speed_at_T_w": 1.3679149098641668,
+     "chord_to_nearest_image_at_T_w": 1.1447010720607245,
+     "W_minus_W0_at_T_w": 0.9355956003151775,
+     "t_wake_crossing": 0.8528762052269052,
+     "q_deg_at_wake_crossing": 24.578586969982382,
+     "hard_boundary": 0.8528762052269052,
+     "hard_boundary_reason": "wake-speed crossing before T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 0.5807593505762313,
+      "t_ode": 0.580759350574958
+     },
+     "landmarks": {
+      "equator / hexagon configuration": {
+       "q_deg": 45.0,
+       "time": 1.1536520310524625,
+       "speed": 1.3803232389061568,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "south pole": {
+       "q_deg": 135.0,
+       "time": 1.9424918370948154,
+       "speed": 2.326103519676128,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "colatitude of electrino ring": {
+       "q_deg": 90.0,
+       "time": 1.603404004670108,
+       "speed": 2.160819768546715,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "integration_end_time": 7.006255707474183,
+     "end_reason": "image collision",
+     "T_w": 1.2843107888199956,
+     "q_deg_at_T_w": 5.62577501602149,
+     "speed_at_T_w": 0.1522724266954471,
+     "chord_to_nearest_image_at_T_w": 1.2843107888199956,
+     "W_minus_W0_at_T_w": 0.1159344596585038,
+     "t_wake_crossing": 6.8531030639585335,
+     "q_deg_at_wake_crossing": 167.18861960790687,
+     "hard_boundary": 1.2843107888199956,
+     "hard_boundary_reason": "window end T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 1.8365223202670438,
+      "t_ode": 1.83652232026197
+     },
+     "landmarks": {
+      "equator / hexagon configuration": {
+       "q_deg": 45.0,
+       "time": 3.6481680454050833,
+       "speed": 0.43649653422042006,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "south pole": {
+       "q_deg": 135.0,
+       "time": 6.142698541504328,
+       "speed": 0.7355785195510859,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "colatitude of electrino ring": {
+       "q_deg": 90.0,
+       "time": 5.070408664192834,
+       "speed": 0.6833112081725486,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": 1.1543845568075535,
+    "dW": 1.1543845566674982
+   }
+  },
+  {
+   "name": "antiprism from rest, colatitude 60 deg",
+   "note": "q = polar-angle increase (southward) of P_0 along the azimuth-0 meridian; the equator (alternating hexagon configuration) is at q = 30 deg; the antipodal electrino image is never reached (antipodal for all q)",
+   "f_at_release": 0.9460318972094452,
+   "direction": "positive q",
+   "first_zero_of_f_deg": 86.39393341320282,
+   "turning_point_deg": null,
+   "min_image_chord_initial": 1.3228756555322956,
+   "by_g": {
+    "1.0": {
+     "integration_end_time": 2.641928436366215,
+     "end_reason": "image collision",
+     "T_w": 1.0564129145398933,
+     "q_deg_at_T_w": 31.037588860388915,
+     "speed_at_T_w": 1.0544168769249764,
+     "chord_to_nearest_image_at_T_w": 1.0564129145403942,
+     "W_minus_W0_at_T_w": 0.5558974751726171,
+     "t_wake_crossing": 1.0070171191060822,
+     "q_deg_at_wake_crossing": 28.130559543719567,
+     "hard_boundary": 1.0070171191060822,
+     "hard_boundary_reason": "wake-speed crossing before T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 0.647367819475172,
+      "t_ode": 0.6473678194750737
+     },
+     "landmarks": {
+      "equator / hexagon configuration": {
+       "q_deg": 30.0,
+       "time": 1.0390805610972111,
+       "speed": 1.0352527667577711,
+       "inside_window": true,
+       "inside_hard_boundary": false
+      },
+      "south pole": {
+       "q_deg": 120.0,
+       "time": 2.116254754522807,
+       "speed": 1.5275960872672945,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "colatitude of electrino ring": {
+       "q_deg": 60.0,
+       "time": 1.4531672658868426,
+       "speed": 1.4824482417906506,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "integration_end_time": 8.354511274083979,
+     "end_reason": "image collision",
+     "T_w": 1.2842093741092628,
+     "q_deg_at_T_w": 4.484528828268743,
+     "speed_at_T_w": 0.12231486168362081,
+     "chord_to_nearest_image_at_T_w": 1.2842093741092626,
+     "W_minus_W0_at_T_w": 0.07480462694341594,
+     "t_wake_crossing": 8.23999713110962,
+     "q_deg_at_wake_crossing": 169.9206624095204,
+     "hard_boundary": 1.2842093741092628,
+     "hard_boundary_reason": "window end T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 2.047156793437798,
+      "t_ode": 2.04715679343969
+     },
+     "landmarks": {
+      "equator / hexagon configuration": {
+       "q_deg": 30.0,
+       "time": 3.285861245472941,
+       "speed": 0.32737566969456056,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "south pole": {
+       "q_deg": 120.0,
+       "time": 6.692185133452611,
+       "speed": 0.48306829805259915,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "colatitude of electrino ring": {
+       "q_deg": 60.0,
+       "time": 4.5953183814018965,
+       "speed": 0.46879129573704664,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": 1.0021966208335717,
+    "dW": 1.0021966209139421
+   }
+  },
+  {
+   "name": "twisted hexagon from rest, twist 40 deg",
+   "note": "q = psi, the azimuth of P_0; actual twist Phi = 40 - 2 psi; actual unlike coincidence at psi = 20.0 deg (if psi increases) or psi = -40.0 deg (if psi decreases)",
+   "f_at_release": 1.5895235543024202,
+   "direction": "positive q",
+   "first_zero_of_f_deg": null,
+   "turning_point_deg": null,
+   "min_image_chord_initial": 0.6840402866513374,
+   "by_g": {
+    "1.0": {
+     "integration_end_time": 0.709308563574587,
+     "end_reason": "image collision",
+     "T_w": 0.4811785684331402,
+     "q_deg_at_T_w": 12.15735401411162,
+     "speed_at_T_w": 1.0337646677020609,
+     "chord_to_nearest_image_at_T_w": 0.4811785684331403,
+     "W_minus_W0_at_T_w": 0.534334694085433,
+     "t_wake_crossing": 0.47217330464626417,
+     "q_deg_at_wake_crossing": 11.632740329309883,
+     "hard_boundary": 0.47217330464626417,
+     "hard_boundary_reason": "wake-speed crossing before T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 0.469126720003634,
+      "t_ode": 0.4691267200037622
+     },
+     "landmarks": {
+      "twist 30": {
+       "q_deg": 5.0,
+       "time": 0.3219288801599436,
+       "speed": 0.5756314048143725,
+       "inside_window": true,
+       "inside_hard_boundary": true
+      },
+      "twist 20": {
+       "q_deg": 10.0,
+       "time": 0.4420847453717754,
+       "speed": 0.896374239960499,
+       "inside_window": true,
+       "inside_hard_boundary": true
+      },
+      "twist 10": {
+       "q_deg": 15.0,
+       "time": 0.5252859286074087,
+       "speed": 1.2233882331222445,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 0 (actual unlike coincidence)": {
+       "q_deg": 20.0,
+       "time": 0.5876772781495191,
+       "speed": 1.6041249081642273,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "integration_end_time": 2.2430306247580103,
+     "end_reason": "image collision",
+     "T_w": 0.6515095690677994,
+     "q_deg_at_T_w": 1.9773807104907197,
+     "speed_at_T_w": 0.10841708776303925,
+     "chord_to_nearest_image_at_T_w": 0.6515095690677996,
+     "W_minus_W0_at_T_w": 0.05877132459497414,
+     "t_wake_crossing": 2.1487028767658662,
+     "q_deg_at_wake_crossing": 31.39474063329055,
+     "hard_boundary": 0.6515095690677994,
+     "hard_boundary_reason": "window end T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 1.4835089464555626,
+      "t_ode": 1.483508946459541
+     },
+     "landmarks": {
+      "twist 30": {
+       "q_deg": 5.0,
+       "time": 1.0180285058928102,
+       "speed": 0.18203063319358306,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 20": {
+       "q_deg": 10.0,
+       "time": 1.3979947141903935,
+       "speed": 0.2834584234177496,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 10": {
+       "q_deg": 15.0,
+       "time": 1.661099957236012,
+       "speed": 0.3868693279315339,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 0 (actual unlike coincidence)": {
+       "q_deg": 20.0,
+       "time": 1.8583987280807759,
+       "speed": 0.5072688361207389,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": 3.6223913838311788,
+    "dW": 3.6223913837396537
+   }
+  },
+  {
+   "name": "twisted hexagon from rest, twist 50 deg",
+   "note": "q = psi, the azimuth of P_0; actual twist Phi = 50 - 2 psi; actual unlike coincidence at psi = 25.0 deg (if psi increases) or psi = -35.0 deg (if psi decreases)",
+   "f_at_release": 0.668064615092872,
+   "direction": "positive q",
+   "first_zero_of_f_deg": null,
+   "turning_point_deg": null,
+   "min_image_chord_initial": 0.8452365234813989,
+   "by_g": {
+    "1.0": {
+     "integration_end_time": 1.1355922806744734,
+     "end_reason": "image collision",
+     "T_w": 0.6790770222940633,
+     "q_deg_at_T_w": 10.302479644607114,
+     "speed_at_T_w": 0.6187049142475953,
+     "chord_to_nearest_image_at_T_w": 0.6790770222940633,
+     "W_minus_W0_at_T_w": 0.1913978854587035,
+     "t_wake_crossing": 0.8637478762943122,
+     "q_deg_at_wake_crossing": 18.66138257983389,
+     "hard_boundary": 0.6790770222940633,
+     "hard_boundary_reason": "window end T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 0.7104488154656318,
+      "t_ode": 0.7104488154346384
+     },
+     "landmarks": {
+      "twist 40": {
+       "q_deg": 5.0,
+       "time": 0.4915342285853053,
+       "speed": 0.38379211583687256,
+       "inside_window": true,
+       "inside_hard_boundary": true
+      },
+      "twist 30": {
+       "q_deg": 10.0,
+       "time": 0.6704524872630322,
+       "speed": 0.605586650799748,
+       "inside_window": true,
+       "inside_hard_boundary": true
+      },
+      "twist 20": {
+       "q_deg": 15.0,
+       "time": 0.7934706394500577,
+       "speed": 0.8264650729454409,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 10": {
+       "q_deg": 20.0,
+       "time": 0.8863611608192477,
+       "speed": 1.067492785255629,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 0 (actual unlike coincidence)": {
+       "q_deg": 25.0,
+       "time": 0.9592085042885237,
+       "speed": 1.347649500347497,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "integration_end_time": 3.591058100236461,
+     "end_reason": "image collision",
+     "T_w": 0.8241698653076608,
+     "q_deg_at_T_w": 1.3282510616701813,
+     "speed_at_T_w": 0.05747492031120545,
+     "chord_to_nearest_image_at_T_w": 0.8241698653076609,
+     "W_minus_W0_at_T_w": 0.016516832323939745,
+     "t_wake_crossing": 3.4944310951314628,
+     "q_deg_at_wake_crossing": 41.22578296735706,
+     "hard_boundary": 0.8241698653076608,
+     "hard_boundary_reason": "window end T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 2.2466364178402563,
+      "t_ode": 2.2466364177462457
+     },
+     "landmarks": {
+      "twist 40": {
+       "q_deg": 5.0,
+       "time": 1.5543677102633622,
+       "speed": 0.1213657234059697,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 30": {
+       "q_deg": 10.0,
+       "time": 2.120156922679908,
+       "speed": 0.19150331371202325,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 20": {
+       "q_deg": 15.0,
+       "time": 2.509174477132431,
+       "speed": 0.2613512037084798,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 10": {
+       "q_deg": 20.0,
+       "time": 2.802920097663841,
+       "speed": 0.3375708587204797,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 0 (actual unlike coincidence)": {
+       "q_deg": 25.0,
+       "time": 3.033283624556291,
+       "speed": 0.4261641908685969,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": 1.6720500288726463,
+    "dW": 1.6720500287670248
+   }
+  },
+  {
+   "name": "twisted hexagon from rest, twist 70 deg",
+   "note": "q = psi, the azimuth of P_0; actual twist Phi = 70 - 2 psi; actual unlike coincidence at psi = 35.0 deg (if psi increases) or psi = -25.0 deg (if psi decreases)",
+   "f_at_release": -0.6680646150928686,
+   "direction": "negative q",
+   "first_zero_of_f_deg": null,
+   "turning_point_deg": null,
+   "min_image_chord_initial": 0.8452365234813998,
+   "by_g": {
+    "1.0": {
+     "integration_end_time": 1.1355922806744765,
+     "end_reason": "image collision",
+     "T_w": 0.6790770222940642,
+     "q_deg_at_T_w": -10.302479644607125,
+     "speed_at_T_w": 0.6187049142475992,
+     "chord_to_nearest_image_at_T_w": 0.6790770222940642,
+     "W_minus_W0_at_T_w": 0.19139788545870262,
+     "t_wake_crossing": 0.863747876294328,
+     "q_deg_at_wake_crossing": -18.661382579834548,
+     "hard_boundary": 0.6790770222940642,
+     "hard_boundary_reason": "window end T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 0.7104488154349557,
+      "t_ode": 0.7104488154346428
+     },
+     "landmarks": {
+      "twist 80": {
+       "q_deg": 5.0,
+       "time": 0.49153422858415163,
+       "speed": 0.38379211583687256,
+       "inside_window": true,
+       "inside_hard_boundary": true
+      },
+      "twist 90": {
+       "q_deg": 10.0,
+       "time": 0.6704524870976482,
+       "speed": 0.6055866507997469,
+       "inside_window": true,
+       "inside_hard_boundary": true
+      },
+      "twist 100": {
+       "q_deg": 15.0,
+       "time": 0.7934706394517428,
+       "speed": 0.8264650729454387,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 110": {
+       "q_deg": 20.0,
+       "time": 0.8863611607267465,
+       "speed": 1.0674927852556266,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 120 (actual unlike coincidence)": {
+       "q_deg": 25.0,
+       "time": 0.9592085042336965,
+       "speed": 1.3476495003474938,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    },
+    "0.1": {
+     "integration_end_time": 3.591058100236472,
+     "end_reason": "image collision",
+     "T_w": 0.8241698653076619,
+     "q_deg_at_T_w": -1.3282510616701786,
+     "speed_at_T_w": 0.057474920311205234,
+     "chord_to_nearest_image_at_T_w": 0.8241698653076619,
+     "W_minus_W0_at_T_w": 0.016516832323939523,
+     "t_wake_crossing": 3.4944310951314725,
+     "q_deg_at_wake_crossing": -41.225782967357084,
+     "hard_boundary": 0.8241698653076619,
+     "hard_boundary_reason": "window end T_w",
+     "quadrature_vs_ode_at_q_test": {
+      "t_quad": 2.246636417743049,
+      "t_ode": 2.246636417746251
+     },
+     "landmarks": {
+      "twist 80": {
+       "q_deg": 5.0,
+       "time": 1.5543677102597544,
+       "speed": 0.1213657234059697,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 90": {
+       "q_deg": 10.0,
+       "time": 2.120156922158011,
+       "speed": 0.19150331371202292,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 100": {
+       "q_deg": 15.0,
+       "time": 2.5091744771377695,
+       "speed": 0.2613512037084791,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 110": {
+       "q_deg": 20.0,
+       "time": 2.802920097407103,
+       "speed": 0.3375708587204789,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      },
+      "twist 120 (actual unlike coincidence)": {
+       "q_deg": 25.0,
+       "time": 3.0332836243817387,
+       "speed": 0.42616419086859586,
+       "inside_window": false,
+       "inside_hard_boundary": false
+      }
+     }
+    }
+   },
+   "check_f_equals_dW": {
+    "f": -1.672050028872639,
+    "dW": -1.672050029211114
+   }
+  }
+ ]
+}

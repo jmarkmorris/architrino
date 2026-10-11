@@ -1,0 +1,14 @@
+controls: ALL PASS
+   pass (a) stationary 60-degree twist: the interval enclosure of F(0) contains zero
+   pass (b) constant-field toy F == F0: the enclosure of t(psi) contains the closed form sqrt(2 psi/(g F0)) at every tenth node
+   pass (c) negative: a deliberately wrong sign (F -> -F) is rejected (release acceleration not positive)
+F0 in [0.6680646150928716723833734, 0.6680646150928716723833734]; t(psi_max=0.03) in [0.934649725327, 0.934651913497] width 2.19e-06; worst cell error 1.02e-10
+t=0.0355848897551: psi in [0.0000422978, 0.0000423057] rad (width 7.9e-09); twist in [49.995152, 49.995153] deg; speed in [0.00237743932, 0.00237766081] (width 2.2e-07)
+t=0.1: psi in [0.0003341339, 0.0003341513] rad (width 1.7e-08); twist in [49.961709, 49.961711] deg; speed in [0.00668481190, 0.00668498634] (width 1.7e-07)
+t=0.2: psi in [0.0013378040, 0.0013378364] rad (width 3.2e-08); twist in [49.846695, 49.846698] deg; speed in [0.01339489250, 0.01339505571] (width 1.6e-07)
+t=0.3: psi in [0.0030148021, 0.0030148491] rad (width 4.7e-08); twist in [49.654523, 49.654529] deg; speed in [0.02015563561, 0.02015579413] (width 1.6e-07)
+t=0.4: psi in [0.0053714809, 0.0053715434] rad (width 6.3e-08); twist in [49.384466, 49.384473] deg; speed in [0.02699287435, 0.02699303394] (width 1.6e-07)
+t=0.5: psi in [0.0084168088, 0.0084168859] rad (width 7.7e-08); twist in [49.035495, 49.035504] deg; speed in [0.03393307010, 0.03393322923] (width 1.6e-07)
+t=0.6: psi in [0.0121624370, 0.0121625293] rad (width 9.2e-08); twist in [48.606276, 48.606287] deg; speed in [0.04100352696, 0.04100368773] (width 1.6e-07)
+window end T* in [0.824169731140, 0.824169921875] (width 1.9e-07); psi* in [1.3282494, 1.3282574] deg; twist in [47.343485, 47.343501] deg; speed in [0.0574748834, 0.0574750679]
+wall 10.0 s

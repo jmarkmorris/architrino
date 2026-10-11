@@ -1,0 +1,117 @@
+{
+ "pid": 87084,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: no-delay Family A g=1 counts 2 (justified)",
+   "count": 2,
+   "justified": true,
+   "pass": true
+  },
+  {
+   "name": "known: out-of-plane m=1 h(0)=0",
+   "h0": 1.1102230246251566e-17,
+   "pass": true
+  }
+ ],
+ "strip": {
+  "g": 0.1,
+  "mode": "out-of-plane m=1",
+  "strip": [
+   [
+    -0.05,
+    4.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "modulus_bound_Re>=0": 0.48835439789764884,
+  "right_count": 1,
+  "raw": 0.9999999999999997,
+  "right_justified": false,
+  "newton_right": 1,
+  "roots_right": [
+   [
+    1.0124389407947796e-16,
+    1.222514124855179e-36
+   ]
+  ],
+  "nearest_left_root": [
+   -0.11473799964181013,
+   -7.052966104933725e-38
+  ],
+  "certified": false,
+  "segments": [
+   {
+    "segment": [
+     [
+      -0.05,
+      -40.0
+     ],
+     [
+      4.0,
+      -40.0
+     ]
+    ],
+    "Lip": 80.56811012417302,
+    "samples": 2000,
+    "spacing": 0.002025,
+    "min_abs_h": 1599.8466024584545,
+    "justified": true
+   },
+   {
+    "segment": [
+     [
+      4.0,
+      -40.0
+     ],
+     [
+      4.0,
+      40.0
+     ]
+    ],
+    "Lip": 80.40087757807804,
+    "samples": 2000,
+    "spacing": 0.04,
+    "min_abs_h": 16.10489878288293,
+    "justified": true
+   },
+   {
+    "segment": [
+     [
+      4.0,
+      40.0
+     ],
+     [
+      -0.05,
+      40.0
+     ]
+    ],
+    "Lip": 80.56811012417302,
+    "samples": 2000,
+    "spacing": 0.002025,
+    "min_abs_h": 1599.8466024584545,
+    "justified": true
+   },
+   {
+    "segment": [
+     [
+      -0.05,
+      40.0
+     ],
+     [
+      -0.05,
+      -40.0
+     ]
+    ],
+    "Lip": 80.16916765518148,
+    "samples": 2048000,
+    "spacing": 3.90625e-05,
+    "min_abs_h": 0.0030534378434627137,
+    "justified": false
+   }
+  ]
+ }
+}

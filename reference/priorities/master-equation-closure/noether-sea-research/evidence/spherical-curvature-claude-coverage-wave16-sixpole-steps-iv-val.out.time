@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave16-sixpole-steps-iv.py", line 23, in <module>
+    exec(open(W15).read().split('if __name__ == "__main__":')[0])      # Family('sixpole'), the generalized enclose, q_of_t, window_end_min, I, lo, up, pt, s45, S2, ...
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 12
+    exec(open(W14).read().split('
+                                ^
+SyntaxError: unterminated string literal (detected at line 12)
+real 0.05
+user 0.01
+sys 0.01

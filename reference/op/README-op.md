@@ -74,6 +74,8 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Multi-Agent Use
 
+- [ ] Verify a supported [Codex-to-Claude route that works with the Mac locked](codex-claude-protocol.md#32-alternatives-investigated-replacement-delivery-remains-unverified), preserving exact session identity and arrival/processing receipts; the current desktop composer route blocks behind the lock screen (October 10).
+
 - [x] For authorized overnight multi-agent campaigns, reconcile live agent status, completion messages and durable reports at every watchdog wake, advance ready dependencies immediately, and investigate missed checkpoints without duplicating possibly delivered assignments.
 
 - [ ] Distinguish unassigned standby from returned work awaiting integration or an operator decision; the coordinator follows through on authorized work and promptly reminds the operator of concrete pending decisions with a recommendation.

@@ -1,0 +1,1130 @@
+{
+ "controls": [
+  {
+   "name": "known: no-delay Family A g=1, exactly 2 roots (+-i sqrt(gC)) in rectangle",
+   "count": 2,
+   "raw": 2.0,
+   "pass": true
+  },
+  {
+   "name": "known: m=0 has h(0)=0 exactly and a real root near (19/12) g at g=1e-3",
+   "h_at_0": [
+    5.551115123125783e-17,
+    0.0
+   ],
+   "small_real_root": 0.0015832268597017968,
+   "predicted": 0.0015833333333333333,
+   "pass": true
+  },
+  {
+   "name": "known: receiver coefficient c = 29/8 - 5/(6 sqrt3) = 3.1439",
+   "c": 3.143874775675312,
+   "pass": true
+  },
+  {
+   "name": "known: m=0 static sum is exactly 0 (rigid rotation neutral)",
+   "static_sums": {
+    "0": 0.0,
+    "1": 1.2783121635129673,
+    "2": 4.528312163512966,
+    "3": 7.25
+   },
+   "pass": true
+  },
+  {
+   "name": "negative: contour Re<=0.4 at g=1 (Family A) misses the dominant pair: count differs by 2",
+   "count_full": 12,
+   "count_shifted": 10,
+   "pass": true
+  }
+ ],
+ "targets": {
+  "family_A_counts": {
+   "4.0": {
+    "right_half_count_Re>-0.01": 2,
+    "newton_roots_Re>-0.01": 2,
+    "dominant_certified": true,
+    "argument_principle_count": 22,
+    "raw_winding": 22.000000000000014,
+    "max_phase_step": 0.613292706112226,
+    "newton_roots_in_rectangle": 22,
+    "match": true,
+    "dominant": [
+     0.8467357285070785,
+     -1.8771796695179748
+    ],
+    "bound_on_|L|_for_Re>=0": 3.7827769002094884,
+    "roots": [
+     [
+      0.8467357285070785,
+      -1.8771796695179748
+     ],
+     [
+      0.8467357285070783,
+      1.8771796695179748
+     ],
+     [
+      -1.2928515772855564,
+      -6.237365037436606
+     ],
+     [
+      -1.2928515772855567,
+      6.237365037436606
+     ],
+     [
+      -1.8489058384702337,
+      -3.4985644853794313
+     ],
+     [
+      -1.8489058384702337,
+      3.4985644853794313
+     ],
+     [
+      -2.715759052839649,
+      -18.3368896251904
+     ],
+     [
+      -2.715759052839649,
+      18.3368896251904
+     ],
+     [
+      -3.0107819416440735,
+      -25.105351481090963
+     ],
+     [
+      -3.010781941644074,
+      25.105351481090963
+     ],
+     [
+      -3.1274389487201173,
+      11.538373708331289
+     ],
+     [
+      -3.127438948720119,
+      -11.538373708331289
+     ],
+     [
+      -3.1982746630875103,
+      -21.714317696425997
+     ],
+     [
+      -3.1982746630875103,
+      21.714317696425997
+     ],
+     [
+      -3.4951698524760273,
+      14.584558190404696
+     ],
+     [
+      -3.4951698524760277,
+      -14.584558190404694
+     ],
+     [
+      -3.5768649676263276,
+      -28.601253590404387
+     ],
+     [
+      -3.5768649676263276,
+      28.601253590404387
+     ],
+     [
+      -3.705619163365995,
+      -31.80391464954428
+     ],
+     [
+      -3.705619163365995,
+      31.80391464954428
+     ],
+     [
+      -3.9920562519924436,
+      -10.791627070042603
+     ],
+     [
+      -3.992056251992447,
+      10.7916270700426
+     ]
+    ]
+   },
+   "2.0": {
+    "right_half_count_Re>-0.01": 2,
+    "newton_roots_Re>-0.01": 2,
+    "dominant_certified": true,
+    "argument_principle_count": 20,
+    "raw_winding": 20.00000000000001,
+    "max_phase_step": 0.24017798948602476,
+    "newton_roots_in_rectangle": 20,
+    "match": true,
+    "dominant": [
+     0.6865747598255395,
+     -1.5447183737170935
+    ],
+    "bound_on_|L|_for_Re>=0": 2.6748271978539573,
+    "roots": [
+     [
+      0.6865747598255395,
+      -1.5447183737170935
+     ],
+     [
+      0.6865747598255394,
+      1.5447183737170933
+     ],
+     [
+      -1.8991681332171757,
+      -6.211272947421195
+     ],
+     [
+      -1.8991681332171757,
+      6.211272947421194
+     ],
+     [
+      -2.002286527461456,
+      -3.312321516365925
+     ],
+     [
+      -2.002286527461456,
+      3.312321516365925
+     ],
+     [
+      -3.161646009121219,
+      -18.3130426007431
+     ],
+     [
+      -3.161646009121219,
+      18.3130426007431
+     ],
+     [
+      -3.43124633500914,
+      -25.09055996646392
+     ],
+     [
+      -3.43124633500914,
+      25.09055996646392
+     ],
+     [
+      -3.526023119663588,
+      -21.706235656013035
+     ],
+     [
+      -3.526023119663588,
+      21.706235656013035
+     ],
+     [
+      -3.768400624239979,
+      -14.68987931438244
+     ],
+     [
+      -3.7684006242399795,
+      14.68987931438244
+     ],
+     [
+      -3.8353340684431227,
+      11.67057204118911
+     ],
+     [
+      -3.8353340684431236,
+      -11.67057204118911
+     ],
+     [
+      -3.863412252144274,
+      -10.459287288852932
+     ],
+     [
+      -3.863412252144274,
+      10.459287288852932
+     ],
+     [
+      -3.9095652850777998,
+      -28.546628072561134
+     ],
+     [
+      -3.9095652850777998,
+      28.546628072561138
+     ]
+    ]
+   },
+   "1.0": {
+    "right_half_count_Re>-0.01": 2,
+    "newton_roots_Re>-0.01": 2,
+    "dominant_certified": true,
+    "argument_principle_count": 12,
+    "raw_winding": 11.999999999999998,
+    "max_phase_step": 0.7552264601580845,
+    "newton_roots_in_rectangle": 12,
+    "match": true,
+    "dominant": [
+     0.5147061078675431,
+     -1.255779242670771
+    ],
+    "bound_on_|L|_for_Re>=0": 1.8913884501047442,
+    "roots": [
+     [
+      0.5147061078675431,
+      -1.255779242670771
+     ],
+     [
+      0.5147061078675431,
+      1.255779242670771
+     ],
+     [
+      -2.220866196054725,
+      -3.123199702115302
+     ],
+     [
+      -2.220866196054725,
+      3.123199702115302
+     ],
+     [
+      -2.4291216401319935,
+      -6.188168281609002
+     ],
+     [
+      -2.4291216401319935,
+      6.188168281609002
+     ],
+     [
+      -3.588882447066206,
+      18.298038743347735
+     ],
+     [
+      -3.5888824470662066,
+      -18.298038743347735
+     ],
+     [
+      -3.8379370531184316,
+      -25.074349861205675
+     ],
+     [
+      -3.8379370531184316,
+      25.074349861205675
+     ],
+     [
+      -3.865881417709588,
+      -21.696570861782302
+     ],
+     [
+      -3.865881417709588,
+      21.696570861782302
+     ]
+    ]
+   },
+   "0.5": {
+    "right_half_count_Re>-0.01": 2,
+    "newton_roots_Re>-0.01": 2,
+    "dominant_certified": true,
+    "argument_principle_count": 6,
+    "raw_winding": 6.0,
+    "max_phase_step": 0.6989306494809568,
+    "newton_roots_in_rectangle": 6,
+    "match": true,
+    "dominant": [
+     0.3582657890232847,
+     -1.0036721640630657
+    ],
+    "bound_on_|L|_for_Re>=0": 1.3374135989269786,
+    "roots": [
+     [
+      0.3582657890232847,
+      -1.0036721640630657
+     ],
+     [
+      0.3582657890232847,
+      1.0036721640630657
+     ],
+     [
+      -2.4946169981081727,
+      -2.9376783287832353
+     ],
+     [
+      -2.4946169981081727,
+      2.9376783287832353
+     ],
+     [
+      -2.91127608963828,
+      -6.155264583342041
+     ],
+     [
+      -2.9112760896382803,
+      6.155264583342041
+     ]
+    ]
+   },
+   "0.25": {
+    "right_half_count_Re>-0.01": 2,
+    "newton_roots_Re>-0.01": 2,
+    "dominant_certified": true,
+    "argument_principle_count": 6,
+    "raw_winding": 6.0,
+    "max_phase_step": 0.053961144704025354,
+    "newton_roots_in_rectangle": 6,
+    "match": true,
+    "dominant": [
+     0.23136561331263214,
+     0.7841638044007032
+    ],
+    "bound_on_|L|_for_Re>=0": 0.9456942250523721,
+    "roots": [
+     [
+      0.23136561331263214,
+      0.7841638044007032
+     ],
+     [
+      0.2313656133126321,
+      -0.7841638044007032
+     ],
+     [
+      -2.8167866126936785,
+      -2.7600248896151185
+     ],
+     [
+      -2.8167866126936785,
+      2.7600248896151185
+     ],
+     [
+      -3.3628965925762087,
+      -6.111674578497068
+     ],
+     [
+      -3.3628965925762087,
+      6.111674578497068
+     ]
+    ]
+   },
+   "0.1": {
+    "right_half_count_Re>-0.01": 2,
+    "newton_roots_Re>-0.01": 2,
+    "dominant_certified": true,
+    "argument_principle_count": 6,
+    "raw_winding": 6.0,
+    "max_phase_step": 0.30020371304994686,
+    "newton_roots_in_rectangle": 6,
+    "match": true,
+    "dominant": [
+     0.11617718157848758,
+     -0.5438161180176002
+    ],
+    "bound_on_|L|_for_Re>=0": 0.5981095442466728,
+    "roots": [
+     [
+      0.11617718157848758,
+      -0.5438161180176002
+     ],
+     [
+      0.11617718157848758,
+      0.5438161180176002
+     ],
+     [
+      -3.3056059890659815,
+      -2.5472389819106103
+     ],
+     [
+      -3.3056059890659815,
+      2.5472389819106103
+     ],
+     [
+      -3.9300148886628117,
+      -6.041682363265857
+     ],
+     [
+      -3.9300148886628117,
+      6.041682363265857
+     ]
+    ]
+   }
+  },
+  "inplane_modes": {
+   "m=0": {
+    "coefficients": {
+     "a0": 3.143874775675312,
+     "a": [
+      -3.5,
+      0.4811252243246881,
+      -0.125
+     ],
+     "b": [
+      -1.5,
+      0.16666666666666666,
+      0.0
+     ]
+    },
+    "rows": {
+     "4.0": {
+      "right_half_count_Re>-0.01": 2,
+      "newton_roots_Re>-0.01": 2,
+      "dominant_certified": true,
+      "argument_principle_count": 24,
+      "raw_winding": 24.000000000000014,
+      "newton_roots_in_rectangle": 24,
+      "match": true,
+      "dominant": [
+       3.3792005943464987,
+       2.407412430484045e-35
+      ],
+      "real_positive_roots": [
+       3.3792005943464987
+      ],
+      "bound_on_|L|_for_Re>=0": 9.666666666666668,
+      "roots_Re_ge_0": [
+       [
+        3.3792005943464987,
+        2.407412430484045e-35
+       ],
+       [
+        9.803077909343665e-18,
+        0.0
+       ]
+      ],
+      "static_sum": 0.0,
+      "static_root": null
+     },
+     "2.0": {
+      "right_half_count_Re>-0.01": 2,
+      "newton_roots_Re>-0.01": 2,
+      "dominant_certified": true,
+      "argument_principle_count": 24,
+      "raw_winding": 24.000000000000014,
+      "newton_roots_in_rectangle": 24,
+      "match": true,
+      "dominant": [
+       2.1924360100127314,
+       3.76158192263132e-37
+      ],
+      "real_positive_roots": [
+       2.1924360100127314
+      ],
+      "bound_on_|L|_for_Re>=0": 5.823321304446642,
+      "roots_Re_ge_0": [
+       [
+        2.1924360100127314,
+        3.76158192263132e-37
+       ],
+       [
+        8.742413730215323e-18,
+        9.860761315262648e-32
+       ]
+      ],
+      "static_sum": 0.0,
+      "static_root": null
+     },
+     "1.0": {
+      "right_half_count_Re>-0.01": 2,
+      "newton_roots_Re>-0.01": 2,
+      "dominant_certified": true,
+      "argument_principle_count": 24,
+      "raw_winding": 24.00000000000001,
+      "newton_roots_in_rectangle": 24,
+      "match": true,
+      "dominant": [
+       1.3199497521363035,
+       -3.851859888774472e-34
+      ],
+      "real_positive_roots": [
+       1.3199497521363035
+      ],
+      "bound_on_|L|_for_Re>=0": 3.651922420881294,
+      "roots_Re_ge_0": [
+       [
+        1.3199497521363035,
+        -3.851859888774472e-34
+       ],
+       [
+        1.084814616491167e-16,
+        9.183549615799121e-41
+       ]
+      ],
+      "static_sum": 0.0,
+      "static_root": null
+     },
+     "0.5": {
+      "right_half_count_Re>-0.01": 2,
+      "newton_roots_Re>-0.01": 2,
+      "dominant_certified": true,
+      "argument_principle_count": 24,
+      "raw_winding": 24.00000000000001,
+      "newton_roots_in_rectangle": 24,
+      "match": true,
+      "dominant": [
+       0.7330199294475661,
+       7.52316384526264e-37
+      ],
+      "real_positive_roots": [
+       0.7330199294475661
+      ],
+      "bound_on_|L|_for_Re>=0": 2.36566926058775,
+      "roots_Re_ge_0": [
+       [
+        0.7330199294475661,
+        7.52316384526264e-37
+       ],
+       [
+        -6.710451947044859e-17,
+        -1.925929944387236e-34
+       ]
+      ],
+      "static_sum": 0.0,
+      "static_root": null
+     },
+     "0.25": {
+      "right_half_count_Re>-0.01": 2,
+      "newton_roots_Re>-0.01": 2,
+      "dominant_certified": true,
+      "argument_principle_count": 20,
+      "raw_winding": 20.000000000000004,
+      "newton_roots_in_rectangle": 20,
+      "match": true,
+      "dominant": [
+       0.38404989862433286,
+       9.4039548065783e-38
+      ],
+      "real_positive_roots": [
+       0.38404989862433286
+      ],
+      "bound_on_|L|_for_Re>=0": 1.5706485603559845,
+      "roots_Re_ge_0": [
+       [
+        0.38404989862433286,
+        9.4039548065783e-38
+       ],
+       [
+        -1.5944821625843227e-16,
+        3.4666738998970245e-33
+       ]
+      ],
+      "static_sum": 0.0,
+      "static_root": null
+     },
+     "0.1": {
+      "right_half_count_Re>-0.01": 2,
+      "newton_roots_Re>-0.01": 2,
+      "dominant_certified": true,
+      "argument_principle_count": 12,
+      "raw_winding": 12.0,
+      "newton_roots_in_rectangle": 12,
+      "match": true,
+      "dominant": [
+       0.15689400041092816,
+       1.1479437019748901e-41
+      ],
+      "real_positive_roots": [
+       0.15689400041092816
+      ],
+      "bound_on_|L|_for_Re>=0": 0.9388708511807067,
+      "roots_Re_ge_0": [
+       [
+        0.15689400041092816,
+        1.1479437019748901e-41
+       ],
+       [
+        -2.826904917551527e-16,
+        2.633107345841924e-36
+       ]
+      ],
+      "static_sum": 0.0,
+      "static_root": null
+     }
+    }
+   },
+   "m=1": {
+    "coefficients": {
+     "a0": 3.143874775675312,
+     "a": [
+      -1.7500000000000004,
+      -0.24056261216234398,
+      0.125
+     ],
+     "b": [
+      -0.7500000000000002,
+      -0.0833333333333333,
+      0.0
+     ]
+    },
+    "rows": {
+     "4.0": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 25,
+      "raw_winding": 25.000000000000014,
+      "newton_roots_in_rectangle": 25,
+      "match": true,
+      "dominant": [
+       3.4681698937641148,
+       0.0
+      ],
+      "real_positive_roots": [
+       3.4681698937641148
+      ],
+      "bound_on_|L|_for_Re>=0": 6.546782170333399,
+      "roots_Re_ge_0": [
+       [
+        3.4681698937641148,
+        0.0
+       ]
+      ],
+      "static_sum": 1.2783121635129673,
+      "static_root": 2.261249356893633
+     },
+     "2.0": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 23,
+      "raw_winding": 23.000000000000007,
+      "newton_roots_in_rectangle": 23,
+      "match": true,
+      "dominant": [
+       2.3697810363833782,
+       0.0
+      ],
+      "real_positive_roots": [
+       2.3697810363833782
+      ],
+      "bound_on_|L|_for_Re>=0": 4.181962787321899,
+      "roots_Re_ge_0": [
+       [
+        2.3697810363833782,
+        0.0
+       ]
+      ],
+      "static_sum": 1.2783121635129673,
+      "static_root": 1.5989447542132076
+     },
+     "1.0": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 23,
+      "raw_winding": 23.000000000000014,
+      "newton_roots_in_rectangle": 23,
+      "match": true,
+      "dominant": [
+       1.588953175894634,
+       0.0
+      ],
+      "real_positive_roots": [
+       1.588953175894634
+      ],
+      "bound_on_|L|_for_Re>=0": 2.7475567324888983,
+      "roots_Re_ge_0": [
+       [
+        1.588953175894634,
+        0.0
+       ]
+      ],
+      "static_sum": 1.2783121635129673,
+      "static_root": 1.1306246784468166
+     },
+     "0.5": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 19,
+      "raw_winding": 19.00000000000001,
+      "newton_roots_in_rectangle": 19,
+      "match": true,
+      "dominant": [
+       1.0536747542576699,
+       4.591774807899561e-41
+      ],
+      "real_positive_roots": [
+       1.0536747542576699
+      ],
+      "bound_on_|L|_for_Re>=0": 1.8433016729951772,
+      "roots_Re_ge_0": [
+       [
+        1.0536747542576699,
+        4.591774807899561e-41
+       ]
+      ],
+      "static_sum": 1.2783121635129673,
+      "static_root": 0.7994723771066038
+     },
+     "0.25": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 15,
+      "raw_winding": 15.000000000000004,
+      "newton_roots_in_rectangle": 15,
+      "match": true,
+      "dominant": [
+       0.6991731776256211,
+       0.0
+      ],
+      "real_positive_roots": [
+       0.6991731776256211
+      ],
+      "bound_on_|L|_for_Re>=0": 1.2555614909575608,
+      "roots_Re_ge_0": [
+       [
+        0.6991731776256211,
+        0.0
+       ]
+      ],
+      "static_sum": 1.2783121635129673,
+      "static_root": 0.5653123392234083
+     },
+     "0.1": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 7,
+      "raw_winding": 7.000000000000001,
+      "newton_roots_in_rectangle": 7,
+      "match": true,
+      "dominant": [
+       0.4123946386057679,
+       1.1479437019748901e-41
+      ],
+      "real_positive_roots": [
+       0.4123946386057679
+      ],
+      "bound_on_|L|_for_Re>=0": 0.7680824222053779,
+      "roots_Re_ge_0": [
+       [
+        0.4123946386057679,
+        1.1479437019748901e-41
+       ]
+      ],
+      "static_sum": 1.2783121635129673,
+      "static_root": 0.35753491626874256
+     }
+    }
+   },
+   "m=2": {
+    "coefficients": {
+     "a0": 3.143874775675312,
+     "a": [
+      1.7499999999999993,
+      -0.24056261216234429,
+      -0.125
+     ],
+     "b": [
+      0.7499999999999998,
+      -0.08333333333333341,
+      0.0
+     ]
+    },
+    "rows": {
+     "4.0": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 22,
+      "raw_winding": 22.000000000000014,
+      "newton_roots_in_rectangle": 22,
+      "match": true,
+      "dominant": [
+       3.612783316636595,
+       5.877471754111438e-39
+      ],
+      "real_positive_roots": [
+       3.612783316636595
+      ],
+      "bound_on_|L|_for_Re>=0": 6.5467821703333975,
+      "roots_Re_ge_0": [
+       [
+        3.612783316636595,
+        5.877471754111438e-39
+       ]
+      ],
+      "static_sum": 4.528312163512966,
+      "static_root": 4.255966242118453
+     },
+     "2.0": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 22,
+      "raw_winding": 22.000000000000014,
+      "newton_roots_in_rectangle": 22,
+      "match": true,
+      "dominant": [
+       2.6117003790187203,
+       -1.1754943508222875e-38
+      ],
+      "real_positive_roots": [
+       2.6117003790187203
+      ],
+      "bound_on_|L|_for_Re>=0": 4.181962787321899,
+      "roots_Re_ge_0": [
+       [
+        2.6117003790187203,
+        -1.1754943508222875e-38
+       ]
+      ],
+      "static_sum": 4.528312163512966,
+      "static_root": 3.009422590302986
+     },
+     "1.0": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 22,
+      "raw_winding": 22.000000000000014,
+      "newton_roots_in_rectangle": 22,
+      "match": true,
+      "dominant": [
+       1.8978492068687962,
+       0.0
+      ],
+      "real_positive_roots": [
+       1.8978492068687962
+      ],
+      "bound_on_|L|_for_Re>=0": 2.747556732488898,
+      "roots_Re_ge_0": [
+       [
+        1.8978492068687962,
+        0.0
+       ]
+      ],
+      "static_sum": 4.528312163512966,
+      "static_root": 2.1279831210592266
+     },
+     "0.5": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 18,
+      "raw_winding": 18.00000000000001,
+      "newton_roots_in_rectangle": 18,
+      "match": true,
+      "dominant": [
+       1.379201619092613,
+       -1.1210387714598537e-44
+      ],
+      "real_positive_roots": [
+       1.379201619092613
+      ],
+      "bound_on_|L|_for_Re>=0": 1.8433016729951768,
+      "roots_Re_ge_0": [
+       [
+        1.379201619092613,
+        -1.1210387714598537e-44
+       ]
+      ],
+      "static_sum": 4.528312163512966,
+      "static_root": 1.504711295151493
+     },
+     "0.25": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 12,
+      "raw_winding": 12.000000000000002,
+      "newton_roots_in_rectangle": 12,
+      "match": true,
+      "dominant": [
+       0.9987503644139509,
+       -9.860761315262648e-32
+      ],
+      "real_positive_roots": [
+       0.9987503644139509
+      ],
+      "bound_on_|L|_for_Re>=0": 1.2555614909575605,
+      "roots_Re_ge_0": [
+       [
+        0.9987503644139509,
+        -9.860761315262648e-32
+       ]
+      ],
+      "static_sum": 4.528312163512966,
+      "static_root": 1.0639915605296133
+     },
+     "0.1": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 4,
+      "raw_winding": 4.0,
+      "newton_roots_in_rectangle": 4,
+      "match": true,
+      "dominant": [
+       0.6468445870548492,
+       0.0
+      ],
+      "real_positive_roots": [
+       0.6468445870548492
+      ],
+      "bound_on_|L|_for_Re>=0": 0.7680824222053779,
+      "roots_Re_ge_0": [
+       [
+        0.6468445870548492,
+        0.0
+       ]
+      ],
+      "static_sum": 4.528312163512966,
+      "static_root": 0.6729273484940975
+     }
+    }
+   },
+   "m=3": {
+    "coefficients": {
+     "a0": 3.143874775675312,
+     "a": [
+      3.5,
+      0.4811252243246881,
+      0.125
+     ],
+     "b": [
+      1.5,
+      0.16666666666666666,
+      0.0
+     ]
+    },
+    "rows": {
+     "4.0": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 21,
+      "raw_winding": 21.000000000000007,
+      "newton_roots_in_rectangle": 21,
+      "match": true,
+      "dominant": [
+       3.6739618718424545,
+       -5.605193857299268e-45
+      ],
+      "real_positive_roots": [
+       3.6739618718424545
+      ],
+      "bound_on_|L|_for_Re>=0": 9.666666666666668,
+      "roots_Re_ge_0": [
+       [
+        3.6739618718424545,
+        -5.605193857299268e-45
+       ]
+      ],
+      "static_sum": 7.25,
+      "static_root": 5.385164807134504
+     },
+     "2.0": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 21,
+      "raw_winding": 21.000000000000007,
+      "newton_roots_in_rectangle": 19,
+      "match": false,
+      "dominant": [
+       2.704966884854633,
+       0.0
+      ],
+      "real_positive_roots": [
+       2.704966884854633
+      ],
+      "bound_on_|L|_for_Re>=0": 5.823321304446642,
+      "roots_Re_ge_0": [
+       [
+        2.704966884854633,
+        0.0
+       ]
+      ],
+      "static_sum": 7.25,
+      "static_root": 3.8078865529319543
+     },
+     "1.0": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 23,
+      "raw_winding": 23.000000000000007,
+      "newton_roots_in_rectangle": 23,
+      "match": true,
+      "dominant": [
+       2.0108578076470773,
+       -3.851859888774472e-34
+      ],
+      "real_positive_roots": [
+       2.0108578076470773
+      ],
+      "bound_on_|L|_for_Re>=0": 3.651922420881294,
+      "roots_Re_ge_0": [
+       [
+        2.0108578076470773,
+        -3.851859888774472e-34
+       ]
+      ],
+      "static_sum": 7.25,
+      "static_root": 2.692582403567252
+     },
+     "0.5": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 23,
+      "raw_winding": 23.000000000000014,
+      "newton_roots_in_rectangle": 23,
+      "match": true,
+      "dominant": [
+       1.498224988194729,
+       9.860761315262648e-32
+      ],
+      "real_positive_roots": [
+       1.498224988194729
+      ],
+      "bound_on_|L|_for_Re>=0": 2.36566926058775,
+      "roots_Re_ge_0": [
+       [
+        1.498224988194729,
+        9.860761315262648e-32
+       ]
+      ],
+      "static_sum": 7.25,
+      "static_root": 1.9039432764659772
+     },
+     "0.25": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 20,
+      "raw_winding": 20.000000000000007,
+      "newton_roots_in_rectangle": 20,
+      "match": true,
+      "dominant": [
+       1.1127879951044704,
+       0.0
+      ],
+      "real_positive_roots": [
+       1.1127879951044704
+      ],
+      "bound_on_|L|_for_Re>=0": 1.5706485603559845,
+      "roots_Re_ge_0": [
+       [
+        1.1127879951044704,
+        0.0
+       ]
+      ],
+      "static_sum": 7.25,
+      "static_root": 1.346291201783626
+     },
+     "0.1": {
+      "right_half_count_Re>-0.01": 1,
+      "newton_roots_Re>-0.01": 1,
+      "dominant_certified": true,
+      "argument_principle_count": 6,
+      "raw_winding": 6.0,
+      "newton_roots_in_rectangle": 6,
+      "match": true,
+      "dominant": [
+       0.7438263819128866,
+       0.0
+      ],
+      "real_positive_roots": [
+       0.7438263819128866
+      ],
+      "bound_on_|L|_for_Re>=0": 0.9388708511807067,
+      "roots_Re_ge_0": [
+       [
+        0.7438263819128866,
+        0.0
+       ]
+      ],
+      "static_sum": 7.25,
+      "static_root": 0.8514693182963201
+     }
+    }
+   }
+  }
+ },
+ "controls_all_pass_before_targets": true
+}

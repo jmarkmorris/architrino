@@ -1,4 +1,5 @@
 #include "architrino/eom/Checkpoint.hpp"
+#include "architrino/eom/EquationRegistry.hpp"
 
 #include <algorithm>
 #include <bit>
@@ -661,12 +662,19 @@ bool checkpoint_model_matches(
 
 std::string native_evolution_model_fingerprint(
     const NativeCoupledEvolutionRequest& request) {
+  require_canonical_equation_operation(request);
   return model_fingerprint(request, true);
 }
 
 NativeEvolutionCheckpoint create_native_evolution_checkpoint(
     const NativeCoupledEvolutionRequest& request,
     const NativeCoupledEvolutionCertificate& certificate) {
+  require_canonical_equation_operation(request);
+  if (certificate.schema == "eom_surface_coupled_evolution_certificate/v1" ||
+      certificate.evidence_status == "constrained_solution_enclosure" ||
+      std::any_of(certificate.histories.begin(), certificate.histories.end(),
+          [](const auto& path) { return path.surface_evidence != nullptr; }))
+    throw EquationAdmissionError("unsupported_model_combination", "v7 cannot serialize a Surface result under a canonical request");
   if (certificate.run_id != request.run_id ||
       certificate.histories.size() != request.paths.size() ||
       !certificate.all_steps_atomic) {
@@ -923,6 +931,7 @@ NativeCoupledEvolutionCertificate resume_native_coupled_histories(
     const NativeCoupledEvolutionRequest& request_template,
     const NativeEvolutionCheckpoint& checkpoint,
     const std::string& requested_end_time) {
+  require_canonical_equation_operation(request_template);
   require_checkpoint_consistency(checkpoint);
   if (!checkpoint_model_matches(request_template, checkpoint)) {
     throw std::invalid_argument(

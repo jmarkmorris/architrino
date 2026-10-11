@@ -5,6 +5,33 @@ import { maskNonPolarityNotation } from "../scripts/lib/polarity-notation-audit.
 
 const ratios = text => [...mask(text).matchAll(/\b[PE]\s*\/\s*[PE]\b/g)].map(m => m[0]);
 
+const eventPhase = (q = "q_E") => `At the reached event the next stationary distance gap is\n\n$$\nd_2-d_5=2\\sin(\\pi/12-${q}/2).\n$$\n\nSince $${q}<103/200$, the sine argument exceeds the bound.`;
+
+test("event-phase trig occurrence and adjacent angular bound are not charge symbols", () => {
+  for (const q of ["q_E", "q_{E}"]) {
+    const text = eventPhase(q);
+    const classified = maskNonPolarityNotation(text);
+    assert(!classified.includes(q));
+    assert.deepEqual(classified.split("\n").map(s => s.length), text.split("\n").map(s => s.length));
+  }
+});
+
+test("event context preserves charge, ambiguous, code and unrelated notation", () => {
+  for (const text of [
+    eventPhase().replace("distance gap", "charge gap"),
+    eventPhase().replace("At the reached event", "In this calculation"),
+    eventPhase().replace("\\sin", "f"),
+    "```tex\n" + eventPhase() + "\n```\n\n$q_E<1$",
+    eventPhase().replace("q_E/2", "\\text{q_E}/2"),
+  ]) assert(maskNonPolarityNotation(text).includes("q_E"), text);
+  const text = eventPhase().replace(").", ") + q_P + q_E.") + "\n\nCharge $q_E<1$; E/P.";
+  const classified = maskNonPolarityNotation(text);
+  assert(classified.includes("q_P + q_E"));
+  assert(classified.endsWith("Charge $q_E<1$; E/P."));
+  assert(maskNonPolarityNotation(eventPhase().replace("Since", "The charge is known. Since")).includes("$q_E<103/200$"));
+  assert(maskNonPolarityNotation(eventPhase().replace("Since", "An unrelated paragraph.\n\nSince")).includes("$q_E<103/200$"));
+});
+
 test("fractional-change math is not a polarity inventory", () => {
   for (const text of ["$\\Delta E/E=1$", "$$\n\\Delta E/E=1\n$$", "\\(\\Delta P/P\\)", "\\[\\Delta E / E\\]"])
     assert.deepEqual(ratios(text), [], text);

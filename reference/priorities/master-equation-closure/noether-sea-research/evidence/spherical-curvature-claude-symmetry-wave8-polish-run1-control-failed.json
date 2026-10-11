@@ -1,0 +1,11 @@
+{
+ "pid": 90293,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: hexagon polish keeps F=0 and position",
+   "F": 0.7271219382890646,
+   "pass": false
+  }
+ ]
+}

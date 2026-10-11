@@ -3,6 +3,8 @@
 #include "architrino/eom/JointAccelerationSnapshot.hpp"
 #include "architrino/eom/JointEndpointCorrector.hpp"
 #include "architrino/eom/MultiprecisionAcceleration.hpp"
+#include "architrino/eom/EquationRegistry.hpp"
+#include "CanonicalEquationEvaluation.hpp"
 
 #include <algorithm>
 #include <array>
@@ -89,6 +91,17 @@ std::uint64_t estimate_coupled_working_set_bytes(
   const std::uint64_t pair_workspace = 1024U;
   bytes = saturating_add(
       bytes, saturating_multiply(pair_count, pair_workspace));
+  if (request.surface_geometry) {
+    // Conservative admission allowance for persistent two-half carriers,
+    // duplicated step diagnostics and temporary interval proof workspace.
+    std::uint64_t largest_id = 0;
+    for (const auto& path : request.paths) largest_id = std::max(largest_id, static_cast<std::uint64_t>(path.path_id.size()));
+    const auto diagnostic_bytes = saturating_add(sizeof(SurfaceReceiverDiagnostic) + 512U, largest_id);
+    const auto per_path_step = saturating_multiply(512U,
+        saturating_multiply(saturating_add(path_count, 1U), diagnostic_bytes));
+    bytes = saturating_add(bytes, saturating_multiply(path_count,
+        saturating_multiply(saturating_add(request.max_step_attempts, 1U), per_path_step)));
+  }
   return bytes;
 }
 
@@ -329,6 +342,7 @@ Interval evaluate_cubic_velocity(
 
 const char* integration_method(
     const NativeCoupledEvolutionRequest& request) {
+  if (request.surface_geometry) return "coupled_cubic_corrector_with_validated_surface_tube/v1";
   if (request.use_synchronized_multirate_publication) {
     return kNativeMultirateIntegrationMethod;
   }
@@ -3283,6 +3297,10 @@ SubstepAttempt corrected_substep_impl(
     bool defer_endpoint_root_precision_escalation) {
   NativeAccelerationSnapshotCertificate start_snapshot;
   if (reusable_start_snapshot != nullptr) {
+    const auto expected_model = request.surface_geometry
+        ? surface_request_identity(request) : std::string{};
+    if (reusable_start_snapshot->selected_model_identity != expected_model)
+      throw EquationAdmissionError("snapshot_model_identity_mismatch", "reused acceleration snapshot belongs to a different selected model");
     if (!snapshot_evaluation_succeeded(request, *reusable_start_snapshot) ||
         !numeric_equal(reusable_start_snapshot->reception_time, start_time) ||
         reusable_start_snapshot->root_certificates.size() !=
@@ -3566,6 +3584,12 @@ SubstepAttempt corrected_substep_impl(
       };
       append_finite_width_pairs(start_snapshot);
       append_finite_width_pairs(endpoint_snapshot);
+      if (request.surface_geometry && !event_pairs.empty()) {
+        return {failed_substep_certificate(start_time, end_time,
+            std::move(start_snapshot), std::move(endpoint_snapshot), iteration,
+            correction_error, "unsupported_surface_event_chart", candidate_histories,
+            pinned_fold_onset_certificates), std::nullopt, std::nullopt};
+      }
       if (joint_enabled && !event_pairs.empty()) {
         // The current joint endpoint contraction represents the smooth cubic
         // candidate. A finite-width event replaces that candidate with an
@@ -4037,6 +4061,14 @@ SubstepAttempt corrected_substep(
 }
 
 void validate_request(const NativeCoupledEvolutionRequest& request) {
+  (void)require_equation_provider(request);
+  if (request.surface_geometry) {
+    const SurfaceGeometry shape(*request.surface_geometry);
+    for (const auto& path : request.paths) for (const auto& segment : path.history.segments()) {
+      const auto geometry = certify_surface_segment(shape, segment, request.surface_numerics);
+      if (!geometry.certified) throw EquationAdmissionError(geometry.failure_code, "prepared history does not certify dense Surface tolerances");
+    }
+  }
   if (request.run_id.empty() || request.paths.empty()) {
     throw std::invalid_argument(
         "coupled evolution requires a run identity and paths");
@@ -4339,7 +4371,7 @@ NativeAtomicStepCertificate rejected_step(
   // Rejection publishes input_histories directly; there is no second
   // publication path whose equality could be independently rechecked here.
   return {
-      .schema = "eom_native_atomic_coupled_step_certificate/v1",
+      .schema = request.surface_geometry ? "eom_surface_atomic_coupled_step_certificate/v1" : "eom_native_atomic_coupled_step_certificate/v1",
       .status = "rejected",
       .run_id = request.run_id,
       .step_index = step_index,
@@ -5106,6 +5138,7 @@ certify_native_pinned_fold_temporal_onset(
     const std::vector<NativePublishedPath>& histories,
     const NativeAccelerationSnapshotCertificate& start_snapshot,
     const std::string& start_time) {
+  require_canonical_equation_operation(request);
   return certified_pinned_fold_onset_certificates(
       request, histories, start_snapshot, start_time);
 }
@@ -5118,6 +5151,7 @@ NativeCommonDomainChartCertificate certify_native_common_domain_chart(
     const std::string& reception_lower,
     const std::string& reception_upper,
     const std::string& event_end) {
+  require_canonical_equation_operation(request);
   const auto endpoint_snapshot = certify_native_acceleration_snapshot(
       request, histories, reception_upper);
   const Interval common(
@@ -5641,6 +5675,7 @@ NativeFoldCausticImpulseCertificate certify_native_fold_caustic_impulse(
     const std::string& reception_upper_token,
     const JointAffineRetainedHistory* joint_receiver,
     const JointAffineRetainedHistory* joint_source) {
+  require_canonical_equation_operation(request);
   tolerance_value(request.causal_width, "causal width");
   tolerance_value(request.core_scale, "core scale");
   tolerance_value(request.event_impulse_tolerance, "event impulse tolerance");
@@ -5731,6 +5766,7 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
     const std::string& reception_upper,
     const JointAffineRetainedHistory* joint_receiver,
     const JointAffineRetainedHistory* joint_source) {
+  require_canonical_equation_operation(request);
   const double ratio = exact_decimal_value(request.regulator_refinement_ratio);
   const double tolerance = tolerance_value(
       request.regulator_convergence_tolerance,
@@ -6030,7 +6066,7 @@ ExactPairCertificate enclosed_pair_marker(
   };
 }
 
-NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
+NativeAccelerationSnapshotCertificate detail::certify_canonical_acceleration_snapshot(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
     const std::string& reception_time,
@@ -6845,6 +6881,21 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
   };
 }
 
+NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<NativePublishedPath>& histories,
+    const std::string& reception_time,
+    const NativeAccelerationSnapshotCertificate* warm_snapshot,
+    const std::vector<NativePublishedPath>* warm_histories,
+    bool defer_root_precision_escalation) {
+  if (!request.surface_geometry && std::any_of(histories.begin(), histories.end(),
+      [](const auto& path) { return path.surface_evidence != nullptr; }))
+    throw EquationAdmissionError("unsupported_model_combination", "canonical evaluation cannot implicitly consume Surface continuation carriers");
+  return require_equation_provider(request).evaluate({
+      request, histories, reception_time, warm_snapshot, warm_histories,
+      defer_root_precision_escalation});
+}
+
 NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
@@ -6883,7 +6934,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       (scalar_token(start_time) + scalar_token(end_time)) * 0.5;
   const std::string midpoint = decimal_token(midpoint_value);
   auto first_half_request = request;
-  first_half_request.allow_pending_finite_width_exit = true;
+  first_half_request.allow_pending_finite_width_exit = !request.surface_geometry;
   auto first_half = corrected_substep(
       first_half_request, histories, start_time, midpoint,
       &full.certificate.start_snapshot,
@@ -7109,6 +7160,15 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   if (!substeps.back().endpoint_snapshot.has_value()) {
     throw std::runtime_error("accepted candidate substep lacks endpoint snapshot");
   }
+  std::vector<SurfaceSolutionCertificate> surface_solutions;
+  if (request.surface_geometry) {
+    auto surface = certify_surface_publication(request, histories, accepted_histories, start_time, end_time);
+    if (!surface.certified)
+      return rejected_step(request, histories, step_index, start_time, end_time,
+          std::move(substeps), surface.failure_code, accepted_histories, std::move(local_errors));
+    accepted_histories = std::move(surface.histories);
+    surface_solutions = std::move(surface.solutions);
+  }
   const auto recertification_timing_start = SteadyClock::now();
   auto recertification_request = request;
   recertification_request.joint_histories = accepted_joint_histories;
@@ -7167,7 +7227,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   // Acceptance moves accepted_histories directly into the published field;
   // atomicity is structural rather than a same-vector replay comparison.
   return {
-      .schema = "eom_native_atomic_coupled_step_certificate/v1",
+      .schema = request.surface_geometry ? "eom_surface_atomic_coupled_step_certificate/v1" : "eom_native_atomic_coupled_step_certificate/v1",
       .status = "accepted",
       .run_id = request.run_id,
       .step_index = step_index,
@@ -7193,10 +7253,11 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       .failure_code = "",
       .correction_residual = std::nullopt,
       .correction_retry_scale = 0.0,
-      .evidence_status = "executable_architecture_evidence",
+      .evidence_status = request.surface_geometry ? "constrained_solution_enclosure" : "executable_architecture_evidence",
       .integration_method = integration_method(request),
       .reduction_policy = kDeterministicReductionPolicy,
       .publication_atomic = publication_atomic,
+      .surface_solutions = std::move(surface_solutions),
   };
 }
 
@@ -7421,7 +7482,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     NativeEvolutionTiming memory_timing;
     memory_timing.total_wall_seconds = elapsed_seconds(timing_start);
     return {
-        .schema = "eom_native_coupled_evolution_certificate/v1",
+        .schema = request.surface_geometry ? "eom_surface_coupled_evolution_certificate/v1" : "eom_native_coupled_evolution_certificate/v1",
         .status = "halted",
         .run_id = request.run_id,
         .start_time = request.start_time,
@@ -7773,7 +7834,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   NativeEvolutionTiming timing = summarize_evolution_timing(steps);
   timing.total_wall_seconds = elapsed_seconds(timing_start);
   return {
-      .schema = "eom_native_coupled_evolution_certificate/v1",
+      .schema = request.surface_geometry ? "eom_surface_coupled_evolution_certificate/v1" : "eom_native_coupled_evolution_certificate/v1",
       .status = completed ? "completed" : "halted",
       .run_id = request.run_id,
       .start_time = request.start_time,
@@ -7792,7 +7853,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
           consecutive_growth_headroom_steps,
       .halt_code = completed ? "" : halt_code,
       .evidence_status =
-          completed ? "executable_architecture_evidence" : "failed",
+          completed ? (request.surface_geometry ? "constrained_solution_enclosure" : "executable_architecture_evidence") : "failed",
       .memory_budget_bytes = request.memory_budget_bytes,
       .memory_estimate_bytes = memory_estimate_bytes,
       .all_steps_atomic = all_atomic,
@@ -7815,6 +7876,7 @@ std::optional<std::string> native_nonretryable_halt_code(
 bool native_joint_event_fallback_is_available(
     const NativeCoupledEvolutionRequest& request,
     const NativeAtomicStepCertificate& rejected_step) {
+  (void)require_equation_provider(request);
   return rejected_step.status == "rejected" &&
       rejected_step.failure_code ==
           "unsupported_caustic_or_singular_chart" &&

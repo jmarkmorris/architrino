@@ -1,0 +1,125 @@
+{
+ "pid": 36327,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: constant-field toy q* = v^2/(2 g f0), t* = v/(g f0), return at 2 t*",
+   "q_star": 0.15625000000244188,
+   "expected_q": 0.15625,
+   "t_star": 0.6249999956539051,
+   "expected_t": 0.625,
+   "t_back": 0.6249999956539051,
+   "pass": true
+  },
+  {
+   "name": "known: stationary hexagon f(0)=0 (no reduction)",
+   "f0": 1.4710455076283324e-15,
+   "pass": true
+  },
+  {
+   "name": "known: release fields f(0) = -1 (six poles V2) and -0.94603 (antiprism V2)",
+   "f6": -0.9999999999999998,
+   "fa": -0.9460318972094452,
+   "pass": true
+  },
+  {
+   "name": "negative: flipping one image polarity changes f(0)",
+   "f0_flipped": -0.4999999999999999,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "sample": {
+  "case": "six poles V2 (own-cap) release",
+  "v": 0.5,
+  "g": 1.0,
+  "f0": -0.9999999999999998,
+  "delta_prep_rad": 0.01318359375,
+  "envelope_range_deg": [
+   -34.37746770784939,
+   13.607747634357054
+  ],
+  "envelope_certified": true,
+  "absf_lb_min": 0.9903689921651269,
+  "absf_ub_max": 1.2172674120031388,
+  "turning_point": {
+   "q_deg": [
+    7.196928155083856,
+    7.207232012905878
+   ],
+   "t": [
+    0.5030936733091068,
+    0.5037779281747999
+   ]
+  },
+  "return_to_release_site_t": [
+   1.0061873466182136,
+   1.0075558563495999
+  ],
+  "qc_ub": -0.35985,
+  "qc_lb": -0.36060000000000003,
+  "wake_crossing": {
+   "q_deg": [
+    -20.617886257782672,
+    -20.660858092417488
+   ],
+   "t": [
+    1.4884771571205042,
+    1.490837144781041
+   ]
+  },
+  "simultaneous_separation": {
+   "min_chord_lb_on_segment": 0.9999964438350172,
+   "positive": true,
+   "grid_spacing": 0.00036289496429020573
+  },
+  "window": {
+   "D_segment": 1.0960274068592104,
+   "T_w_lb": 0.8328438131092104,
+   "stays_in_segment_until_T_w_lb": true,
+   "t_reach_qmin_lb": 1.7025568527192951,
+   "T_w_ub_coarse": 1.1775551916855593
+  },
+  "turn_inside_window": true,
+  "return_inside_window": false,
+  "wake_crossing_inside_window": false,
+  "wake_crossing_after_window_ub": true,
+  "speed_brackets": {
+   "0.061275": {
+    "q_deg": [
+     1.6478767414453663,
+     1.6480494064707498
+    ],
+    "speed": [
+     0.4387741058777619,
+     0.43888509454444696
+    ],
+    "first_order": 0.43872500000000003
+   },
+   "0.1": {
+    "q_deg": [
+     2.578602978657691,
+     2.579056712145319
+    ],
+    "speed": [
+     0.40016240893556787,
+     0.40035748453820647
+    ],
+    "first_order": 0.4
+   },
+   "0.25": {
+    "q_deg": [
+     5.37681074786151,
+     5.379515404882872
+    ],
+    "speed": [
+     0.25088357054715354,
+     0.2516202837883861
+    ],
+    "first_order": 0.25000000000000006
+   }
+  }
+ },
+ "sample_wall_s": 0.32447290420532227,
+ "projected_cells": 6
+}

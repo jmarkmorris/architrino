@@ -1,0 +1,69 @@
+{
+ "pid": 38123,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: stationary alternating hexagon, minimum simultaneous chord 1",
+   "value": 0.9999999999999996,
+   "pass": true
+  },
+  {
+   "name": "known: six poles min chord sqrt2 at q=0 and 1 at the hexagon circle q=35.26 deg",
+   "q0": 1.4142135623730951,
+   "q_hex": 0.9999999999999994,
+   "pass": true
+  },
+  {
+   "name": "negative: wrong assignment (no inversion, all at the receiver) gives chord 0",
+   "value": 0.0,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "results": {
+  "six poles | g=1.0": {
+   "excursion": {
+    "q_end_deg": 34.90778287209115,
+    "grid": 2001,
+    "h": 0.00030462787284463654,
+    "grid_min": 1.0000581041344385,
+    "at_q_deg": 34.90778287209115,
+    "certified_min_chord": 0.9997534762605939,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 42.97183463481174,
+    "grid": 2001,
+    "h": 0.000375,
+    "grid_min": 1.000000016445858,
+    "at_q_deg": 35.25839031786303,
+    "certified_min_chord": 0.999625016444858,
+    "positive": true
+   },
+   "wave11_verdict": "crossing inside window"
+  },
+  "six poles | g=0.1": {
+   "excursion": {
+    "q_end_deg": 5.364721737912079,
+    "grid": 2001,
+    "h": 4.681602888993904e-05,
+    "grid_min": 1.3211567104269286,
+    "at_q_deg": 5.364721737912079,
+    "certified_min_chord": 1.3211098943970385,
+    "positive": true
+   },
+   "full_certified_interval": {
+    "q_end_deg": 42.97183463481174,
+    "grid": 2001,
+    "h": 0.000375,
+    "grid_min": 1.000000016445858,
+    "at_q_deg": 35.25839031786303,
+    "certified_min_chord": 0.999625016444858,
+    "positive": true
+   },
+   "wave11_verdict": "window ends before crossing"
+  }
+ },
+ "wall_s_targets": 0.4288172721862793,
+ "projected_full_s": 3.00172758102417
+}

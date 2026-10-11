@@ -1,0 +1,47 @@
+T* in [1.366684593623, 1.366684709182] (reproduces wave 16: True); start t0 [1.466684593623, 1.466684709182], q0 [0.1078360786, 0.1078365557], qdot0 [0.1474868323, 0.1474914818]; mode fixed
+controls: ALL PASS
+   pass (0) fast node lookup equals the frozen q_of_t endpoint for endpoint on 60 sample times
+   pass (1) continuity of the like term at its reading instant: hit with zero delayed state intersects the fixed-image like term (at the start state q0)
+   pass (2) negative: like term at the probe t0 + 0.08 with the wrong sign of the velocity term in D_t is disjoint from the correct one
+   pass (3) known: the fixed-image affine step from t = 1.2 intersects the window enclosure at 1.21
+step 1: t_end 1.47668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.109316039, 0.109316564]; qdot [0.148505414, 0.148510241]; red [0.148494831, 0.148494984] -> above (feedback accelerates); antipode 1.99701
+step 2: t_end 1.48668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.110806188, 0.110806761]; qdot [0.149524322, 0.149529330]; red [0.149513913, 0.149514054] -> above (feedback accelerates); antipode 1.99693
+step 3: t_end 1.49668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.112306527, 0.112307151]; qdot [0.150543560, 0.150548751]; red [0.150533322, 0.150533452] -> above (feedback accelerates); antipode 1.99685
+step 4: t_end 1.50668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.113817061, 0.113817737]; qdot [0.151563132, 0.151568509]; red [0.151553059, 0.151553203] -> above (feedback accelerates); antipode 1.99676
+step 5: t_end 1.51668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.115337792, 0.115338522]; qdot [0.152583043, 0.152588607]; red [0.152573147, 0.152573279] -> above (feedback accelerates); antipode 1.99668
+step 6: t_end 1.52668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.116868723, 0.116869510]; qdot [0.153603296, 0.153609052]; red [0.153593569, 0.153593715] -> above (feedback accelerates); antipode 1.99659
+step 7: t_end 1.53668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.118409859, 0.118410705]; qdot [0.154623897, 0.154629846]; red [0.154614352, 0.154614487] -> above (feedback accelerates); antipode 1.99650
+step 8: t_end 1.54668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.119961203, 0.119962109]; qdot [0.155644850, 0.155650994]; red [0.155635475, 0.155635624] -> above (feedback accelerates); antipode 1.99640
+step 9: t_end 1.55668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.121522758, 0.121523726]; qdot [0.156666158, 0.156672501]; red [0.156656972, 0.156657110] -> above (feedback accelerates); antipode 1.99631
+step 10: t_end 1.56668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.123094528, 0.123095560]; qdot [0.157687827, 0.157694371]; red [0.157678815, 0.157678967] -> above (feedback accelerates); antipode 1.99621
+step 11: t_end 1.57668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.124676517, 0.124677614]; qdot [0.158709861, 0.158716609]; red [0.158701043, 0.158701184] -> above (feedback accelerates); antipode 1.99612
+step 12: t_end 1.58668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.126268727, 0.126269893]; qdot [0.159732264, 0.159739219]; red [0.159723638, 0.159723768] -> above (feedback accelerates); antipode 1.99602
+step 13: t_end 1.59668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.127871164, 0.127872400]; qdot [0.160755041, 0.160762206]; red [0.160746601, 0.160746745] -> above (feedback accelerates); antipode 1.99591
+step 14: t_end 1.60668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.129483830, 0.129485138]; qdot [0.161778198, 0.161785574]; red [0.161769955, 0.161770089] -> above (feedback accelerates); antipode 1.99581
+step 15: t_end 1.61668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.131106730, 0.131108113]; qdot [0.162801737, 0.162809329]; red [0.162793683, 0.162793830] -> above (feedback accelerates); antipode 1.99570
+step 16: t_end 1.62668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.132739867, 0.132741326]; qdot [0.163825665, 0.163833474]; red [0.163817815, 0.163817952] -> above (feedback accelerates); antipode 1.99560
+step 17: t_end 1.63668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.134383245, 0.134384783]; qdot [0.164849985, 0.164858015]; red [0.164842327, 0.164842477] -> above (feedback accelerates); antipode 1.99549
+step 18: t_end 1.64668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.136036868, 0.136038488]; qdot [0.165874703, 0.165882957]; red [0.165867255, 0.165867396] -> above (feedback accelerates); antipode 1.99538
+step 19: t_end 1.65668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.137700741, 0.137702444]; qdot [0.166899823, 0.166908305]; red [0.166892585, 0.166892715] -> above (feedback accelerates); antipode 1.99526
+step 20: t_end 1.66668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.139374867, 0.139376655]; qdot [0.167925351, 0.167934062]; red [0.167918316, 0.167918460] -> above (feedback accelerates); antipode 1.99515
+step 21: t_end 1.67668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.141059250, 0.141061126]; qdot [0.168951291, 0.168960235]; red [0.168944472, 0.168944606] -> above (feedback accelerates); antipode 1.99503
+step 22: t_end 1.68668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.142753895, 0.142755861]; qdot [0.169977649, 0.169986829]; red [0.169971036, 0.169971183] -> above (feedback accelerates); antipode 1.99491
+step 23: t_end 1.69668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.144458805, 0.144460864]; qdot [0.171004428, 0.171013848]; red [0.170998038, 0.170998175] -> above (feedback accelerates); antipode 1.99479
+step 24: t_end 1.70668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.146173986, 0.146176140]; qdot [0.172031635, 0.172041297]; red [0.172025455, 0.172025605] -> above (feedback accelerates); antipode 1.99466
+step 25: t_end 1.71668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.147899440, 0.147901692]; qdot [0.173059275, 0.173069182]; red [0.173053323, 0.173053465] -> above (feedback accelerates); antipode 1.99453
+step 26: t_end 1.72668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.149635173, 0.149637525]; qdot [0.174087352, 0.174097508]; red [0.174081628, 0.174081760] -> above (feedback accelerates); antipode 1.99440
+step 27: t_end 1.73668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.151381189, 0.151383643]; qdot [0.175115871, 0.175126280]; red [0.175110370, 0.175110515] -> above (feedback accelerates); antipode 1.99427
+step 28: t_end 1.74668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.153137493, 0.153140052]; qdot [0.176144839, 0.176155503]; red [0.176139573, 0.176139709] -> above (feedback accelerates); antipode 1.99414
+step 29: t_end 1.75668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.154904088, 0.154906755]; qdot [0.177174260, 0.177185183]; red [0.177169219, 0.177169368] -> above (feedback accelerates); antipode 1.99400
+step 30: t_end 1.76668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.156680980, 0.156683757]; qdot [0.178204140, 0.178215325]; red [0.178199342, 0.178199481] -> above (feedback accelerates); antipode 1.99387
+step 31: t_end 1.77668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.158468174, 0.158471063]; qdot [0.179234484, 0.179245935]; red [0.179229927, 0.179230058] -> above (feedback accelerates); antipode 1.99373
+step 32: t_end 1.78668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.160265672, 0.160268677]; qdot [0.180265297, 0.180277017]; red [0.180260977, 0.180261121] -> above (feedback accelerates); antipode 1.99358
+step 33: t_end 1.79668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.162073482, 0.162076605]; qdot [0.181296586, 0.181308578]; red [0.181292515, 0.181292650] -> above (feedback accelerates); antipode 1.99344
+step 34: t_end 1.80668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.163891607, 0.163894850]; qdot [0.182328354, 0.182340623]; red [0.182324524, 0.182324672] -> above (feedback accelerates); antipode 1.99329
+step 35: t_end 1.81668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.165720051, 0.165723419]; qdot [0.183360609, 0.183373158]; red [0.183357036, 0.183357175] -> above (feedback accelerates); antipode 1.99314
+step 36: t_end 1.82668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.167558821, 0.167562315]; qdot [0.184393355, 0.184406188]; red [0.184390038, 0.184390169] -> above (feedback accelerates); antipode 1.99298
+step 37: t_end 1.83668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.169407921, 0.169411544]; qdot [0.185426599, 0.185439719]; red [0.185423535, 0.185423678] -> above (feedback accelerates); antipode 1.99283
+step 38: t_end 1.84668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.171267356, 0.171271111]; qdot [0.186460346, 0.186473757]; red [0.186457546, 0.186457681] -> above (feedback accelerates); antipode 1.99267
+step 39: t_end 1.85668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.173137130, 0.173141021]; qdot [0.187494601, 0.187508307]; red [0.187492058, 0.187492205] -> above (feedback accelerates); antipode 1.99251
+step 40: t_end 1.86668470; tauU [, ] DU [, ]; tauL [, ] DL [, ]; q [0.175017250, 0.175021279]; qdot [0.188529371, 0.188543375]; red [0.188527100, 0.188527239] -> above (feedback accelerates); antipode 1.99235
+reached t in [1.866684593623, 1.866684709182]; stop: plan exhausted (40 steps certified); wall 12.9 s

@@ -1,0 +1,149 @@
+{
+ "sixpole-V1": {
+  "d2speed": "K*(8*K + R*v**2)/(8*R**4*v)",
+  "dspeed": "0",
+  "absPA": "K/R**2",
+  "nA": "-K/(4*R**2)",
+  "vJv_over_v2": "-K/(8*R**3)",
+  "num_R1_v1": 1.125,
+  "num_R1_v05": 2.0625,
+  "num_R10_v05": 0.0002625
+ },
+ "sixpole-V2": {
+  "d2speed": "K*v/(8*R**3)",
+  "dspeed": "-K/R**2",
+  "absPA": "K/R**2",
+  "nA": "-K/(4*R**2)",
+  "vJv_over_v2": "-K/(8*R**3)",
+  "num_R1_v1": 0.125,
+  "num_R1_v05": 0.0625,
+  "num_R10_v05": 6.25e-05
+ },
+ "sixpole-V2R": {
+  "d2speed": "K*v/(8*R**3)",
+  "dspeed": "K/R**2",
+  "absPA": "K/R**2",
+  "nA": "-K/(4*R**2)",
+  "vJv_over_v2": "-K/(8*R**3)",
+  "num_R1_v1": 0.125,
+  "num_R1_v05": 0.0625,
+  "num_R10_v05": 6.25e-05
+ },
+ "sixpole-V3": {
+  "d2speed": "K*(8*K + R*v**2)/(8*R**4*v)",
+  "dspeed": "0",
+  "absPA": "K/R**2",
+  "nA": "-K/(4*R**2)",
+  "vJv_over_v2": "-K/(8*R**3)",
+  "num_R1_v1": 1.125,
+  "num_R1_v05": 2.0625,
+  "num_R10_v05": 0.0002625
+ },
+ "sixpole-V4": {
+  "d2speed": "K*(4*K + R*v**2)/(8*R**4*v)",
+  "dspeed": "sqrt(2)*K/(2*R**2)",
+  "absPA": "K/R**2",
+  "nA": "-K/(4*R**2)",
+  "vJv_over_v2": "-K/(8*R**3)",
+  "num_R1_v1": 0.625,
+  "num_R1_v05": 1.0625,
+  "num_R10_v05": 0.0001625
+ },
+ "sixpole-V5": {
+  "d2speed": "K*(8*K*cos(pi/18)**2 + R*v**2*sin(pi/18)**4 + R*v**2*(1 - cos(2*pi/9))/4 + R*v**2*cos(pi/18)**4)/(8*R**4*v)",
+  "dspeed": "-K*sin(pi/18)/R**2",
+  "absPA": "K/R**2",
+  "nA": "-K/(4*R**2)",
+  "vJv_over_v2": "-K/(8*R**3)",
+  "num_R1_v1": 1.0948463103929542,
+  "num_R1_v05": 2.0021926207859084,
+  "num_R10_v05": 0.0002564692620785908
+ },
+ "hexagon-V1": {
+  "d2speed": "K*v*(261 - 20*sqrt(3))/(72*R**3)",
+  "dspeed": "0",
+  "absPA": "0",
+  "nA": "K*(-15 + 4*sqrt(3))/(12*R**2)",
+  "vJv_over_v2": "K*(4*sqrt(3) + 171)/(72*R**3)",
+  "num_R1_v1": 3.143874775675312
+ },
+ "meridional-V2": {
+  "d2speed": "K*v*(-20923 + 14472*sqrt(7))/(74088*R**3)",
+  "dspeed": "2*K*(-27*sqrt(21) - 49*sqrt(3))/(441*R**2)",
+  "absPA": "2*K*sqrt(7938*sqrt(7) + 22512)/(441*R**2)",
+  "nA": "K*(35 - 24*sqrt(7))/(84*R**2)",
+  "vJv_over_v2": "K*(9947 - 6696*sqrt(7))/(74088*R**3)",
+  "num_R1_v1": 0.2344011577276584,
+  "num_R1_v05": 0.1172005788638292
+ },
+ "symmetry": {
+  "V1": {
+   "invariant_elements": [
+    "C3",
+    "-I",
+    "-C3"
+   ],
+   "orbit_of_member0": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "transitive": true
+  },
+  "V2": {
+   "invariant_elements": [
+    "C3",
+    "m23",
+    "m12",
+    "-I",
+    "-m23",
+    "-m12",
+    "-C3"
+   ],
+   "orbit_of_member0": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "transitive": true
+  },
+  "V3": {
+   "invariant_elements": [
+    "C3",
+    "-m23",
+    "-m12"
+   ],
+   "orbit_of_member0": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "transitive": true
+  },
+  "V4": {
+   "invariant_elements": [
+    "C3",
+    "-m23",
+    "-m12"
+   ],
+   "orbit_of_member0": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "transitive": true
+  }
+ }
+}

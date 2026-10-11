@@ -1,0 +1,8 @@
+lifted-hexagon-5 direction: colatitude decreasing (toward the pole) F0 in 0.0590740204 0.0590740204
+controls: ALL PASS
+   pass (a) known: all six co-moved to the equator (regular alternating hexagon) give a tangential field enclosing zero ['-2.809657131678053488863013e-30', '2.839168575357112641569387e-30']
+   pass (b) first integral: dU/dq = F (finite difference) and cancellation-free U = Phi(0) - Phi(q) to 1e-12 at three points [[-6.212437686867823e-14, -5.3841297525289566e-30], [1.503190384151057e-14, -5.7115378430747866e-30], [1.0914409648131598e-13, -6.161435078083645e-30]]
+   pass (c) constant-field toy encloses the closed form at every tenth node 
+   pass (d) negative: the wrong sign F -> -F is rejected 
+turning point: F = 0 at q_z in [0.05431861, 0.05431861] rad; U_max in [0.00160884, 0.00160884]; enclosure restricted to q <= 0.0523186112787
+rejected: F not increasing on the first cell

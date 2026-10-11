@@ -1,0 +1,1660 @@
+{
+ "_elapsed_s": 3.2057337760925293,
+ "_order": [
+  "control_K1_two_opposite_unlike",
+  "control_K1b_two_opposite_like",
+  "control_K2_two_unlike_sides",
+  "control_K3_tangent_work",
+  "control_N1_nontangent_velocity_rejected",
+  "control_N2_certificate_refuses_at_cf",
+  "control_N3_zero_separation_rejected",
+  "controls_complete_before_targets",
+  "target_six_poles_R1_K1",
+  "target_six_poles_velocity_patterns_tangent_work",
+  "target_hexagon_rest_R1_K1",
+  "target_three_meridional_pairs_colatitude_family",
+  "target_preparation_history_regularity",
+  "target_six_poles_tangent_work_table"
+ ],
+ "_python": "3.13.2 (main, Feb  4 2025, 14:51:09) [Clang 16.0.0 (clang-1600.0.26.6)]",
+ "_sympy": "1.14.0",
+ "_utc": "2026-10-11T00:06:57Z",
+ "control_K1_two_opposite_unlike": {
+  "A": [
+   -0.25,
+   0.0,
+   0.0
+  ],
+  "expected_A": [
+   -0.25,
+   0,
+   0
+  ],
+  "pass": true,
+  "radial": "-1/4",
+  "roots": [
+   {
+    "Dt": "1",
+    "j": 1,
+    "sigma": -1,
+    "tau": "2",
+    "tau_f": 2.0
+   }
+  ],
+  "tangent": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "control_K1b_two_opposite_like": {
+  "A": [
+   0.25,
+   0.0,
+   0.0
+  ],
+  "expected_A": [
+   0.25,
+   0,
+   0
+  ],
+  "pass": true
+ },
+ "control_K2_two_unlike_sides": {
+  "A": [
+   -0.7071067811865476,
+   0.0,
+   0.0
+  ],
+  "expected_A": [
+   -0.7071067811865475,
+   0,
+   0
+  ],
+  "pass": true,
+  "roots": [
+   {
+    "Dt": "1",
+    "j": 1,
+    "sigma": -1,
+    "tau": "sqrt(2)",
+    "tau_f": 1.4142135623730951
+   },
+   {
+    "Dt": "1",
+    "j": 2,
+    "sigma": -1,
+    "tau": "sqrt(2)",
+    "tau_f": 1.4142135623730951
+   }
+  ]
+ },
+ "control_K3_tangent_work": {
+  "expected": 2,
+  "pass": true,
+  "work_A": "2",
+  "work_PA": "2"
+ },
+ "control_N1_nontangent_velocity_rejected": {
+  "message": "velocity has normal component 1",
+  "pass": true
+ },
+ "control_N2_certificate_refuses_at_cf": {
+  "accepted_lower_bound_at_v_half": 0.5,
+  "message": "v_max=1.0 >= c_f: monotonicity bound 0.0 not positive; all-root accounting required",
+  "pass": true
+ },
+ "control_N3_zero_separation_rejected": {
+  "message": "zero separation: law undefined",
+  "pass": true
+ },
+ "controls_complete_before_targets": {
+  "all_pass": true,
+  "utc": "2026-10-11T00:06:54Z"
+ },
+ "target_hexagon_rest_R1_K1": {
+  "members": [
+   {
+    "A": [
+     -0.6726497308103743,
+     0.0,
+     0.0
+    ],
+    "A_exact": [
+     "-5/4 + sqrt(3)/3",
+     "0",
+     "0"
+    ],
+    "i": 0,
+    "pol": "+",
+    "radial": -0.6726497308103743,
+    "radial_exact": "-5/4 + sqrt(3)/3",
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     }
+    ],
+    "tangent": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tangent_is_zero": true
+   },
+   {
+    "A": [
+     -0.33632486540518713,
+     -0.5825317547305483,
+     0.0
+    ],
+    "A_exact": [
+     "-5/8 + sqrt(3)/6",
+     "1/2 - 5*sqrt(3)/8",
+     "0"
+    ],
+    "i": 1,
+    "pol": "-",
+    "radial": -0.6726497308103743,
+    "radial_exact": "-5/4 + sqrt(3)/3",
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 0,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     }
+    ],
+    "tangent": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tangent_is_zero": true
+   },
+   {
+    "A": [
+     0.33632486540518713,
+     -0.5825317547305483,
+     0.0
+    ],
+    "A_exact": [
+     "5/8 - sqrt(3)/6",
+     "1/2 - 5*sqrt(3)/8",
+     "0"
+    ],
+    "i": 2,
+    "pol": "+",
+    "radial": -0.6726497308103743,
+    "radial_exact": "-5/4 + sqrt(3)/3",
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 0,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     },
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     }
+    ],
+    "tangent": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tangent_is_zero": true
+   },
+   {
+    "A": [
+     0.6726497308103743,
+     0.0,
+     0.0
+    ],
+    "A_exact": [
+     "5/4 - sqrt(3)/3",
+     "0",
+     "0"
+    ],
+    "i": 3,
+    "pol": "-",
+    "radial": -0.6726497308103743,
+    "radial_exact": "-5/4 + sqrt(3)/3",
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 0,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     }
+    ],
+    "tangent": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tangent_is_zero": true
+   },
+   {
+    "A": [
+     0.33632486540518713,
+     0.5825317547305483,
+     0.0
+    ],
+    "A_exact": [
+     "5/8 - sqrt(3)/6",
+     "-1/2 + 5*sqrt(3)/8",
+     "0"
+    ],
+    "i": 4,
+    "pol": "+",
+    "radial": -0.6726497308103743,
+    "radial_exact": "-5/4 + sqrt(3)/3",
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 0,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     },
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     }
+    ],
+    "tangent": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tangent_is_zero": true
+   },
+   {
+    "A": [
+     -0.33632486540518713,
+     0.5825317547305483,
+     0.0
+    ],
+    "A_exact": [
+     "-5/8 + sqrt(3)/6",
+     "-1/2 + 5*sqrt(3)/8",
+     "0"
+    ],
+    "i": 5,
+    "pol": "-",
+    "radial": -0.6726497308103743,
+    "radial_exact": "-5/4 + sqrt(3)/3",
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 0,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     },
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     }
+    ],
+    "tangent": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tangent_is_zero": true
+   }
+  ],
+  "radial_closed_form": "-5/4 + sqrt(3)/3",
+  "radial_closed_form_f": -0.6726497308103743
+ },
+ "target_preparation_history_regularity": {
+  "max_abs_speed_on_window_over_u": "1 (attained only at s=0)",
+  "seam_minus_quarter": {
+   "d1": "0",
+   "d2": "0",
+   "d3": "-96*u",
+   "theta": "0"
+  },
+  "self_root_grid_check_R1": {
+   "0.5": {
+    "at_tau": 0.0001,
+    "grid": 20000,
+    "min_f_self_on_grid": 5.005997600838961e-05,
+    "note": "grid evidence only; the derived argument (chord < arc, speed <= u) is the certificate",
+    "positive": true
+   },
+   "1.0": {
+    "at_tau": 0.0001,
+    "grid": 20000,
+    "min_f_self_on_grid": 1.199520479168919e-07,
+    "note": "grid evidence only; the derived argument (chord < arc, speed <= u) is the certificate",
+    "positive": true
+   }
+  },
+  "theta": "s*u*(4*s + 1)**3",
+  "theta_0": "0",
+  "theta_extreme_at_s_minus_1_16": "-27/1024",
+  "theta_prime_0": "u",
+  "theta_prime_at_s_minus_1_8_over_u": "-1/4",
+  "theta_prime_factored": "u*(4*s + 1)**2*(16*s + 1)"
+ },
+ "target_six_poles_R1_K1": {
+  "members": [
+   {
+    "A": [
+     -0.25,
+     -0.7071067811865476,
+     -0.7071067811865476
+    ],
+    "A_exact": [
+     "-1/4",
+     "-sqrt(2)/2",
+     "-sqrt(2)/2"
+    ],
+    "X": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "i": 0,
+    "pol": "+",
+    "radial": -0.25,
+    "radial_exact": "-1/4",
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     }
+    ],
+    "tangent": [
+     0.0,
+     -0.7071067811865476,
+     -0.7071067811865476
+    ],
+    "tangent_exact": [
+     "0",
+     "-sqrt(2)/2",
+     "-sqrt(2)/2"
+    ],
+    "tangent_norm_exact": "1"
+   },
+   {
+    "A": [
+     -0.7071067811865476,
+     -0.25,
+     -0.7071067811865476
+    ],
+    "A_exact": [
+     "-sqrt(2)/2",
+     "-1/4",
+     "-sqrt(2)/2"
+    ],
+    "X": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "i": 1,
+    "pol": "+",
+    "radial": -0.25,
+    "radial_exact": "-1/4",
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 0,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     }
+    ],
+    "tangent": [
+     -0.7071067811865476,
+     0.0,
+     -0.7071067811865476
+    ],
+    "tangent_exact": [
+     "-sqrt(2)/2",
+     "0",
+     "-sqrt(2)/2"
+    ],
+    "tangent_norm_exact": "1"
+   },
+   {
+    "A": [
+     -0.7071067811865476,
+     -0.7071067811865476,
+     -0.25
+    ],
+    "A_exact": [
+     "-sqrt(2)/2",
+     "-sqrt(2)/2",
+     "-1/4"
+    ],
+    "X": [
+     0.0,
+     0.0,
+     1.0
+    ],
+    "i": 2,
+    "pol": "+",
+    "radial": -0.25,
+    "radial_exact": "-1/4",
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 0,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     }
+    ],
+    "tangent": [
+     -0.7071067811865476,
+     -0.7071067811865476,
+     0.0
+    ],
+    "tangent_exact": [
+     "-sqrt(2)/2",
+     "-sqrt(2)/2",
+     "0"
+    ],
+    "tangent_norm_exact": "1"
+   },
+   {
+    "A": [
+     0.25,
+     0.7071067811865476,
+     0.7071067811865476
+    ],
+    "A_exact": [
+     "1/4",
+     "sqrt(2)/2",
+     "sqrt(2)/2"
+    ],
+    "X": [
+     -1.0,
+     0.0,
+     0.0
+    ],
+    "i": 3,
+    "pol": "-",
+    "radial": -0.25,
+    "radial_exact": "-1/4",
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 0,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     }
+    ],
+    "tangent": [
+     0.0,
+     0.7071067811865476,
+     0.7071067811865476
+    ],
+    "tangent_exact": [
+     "0",
+     "sqrt(2)/2",
+     "sqrt(2)/2"
+    ],
+    "tangent_norm_exact": "1"
+   },
+   {
+    "A": [
+     0.7071067811865476,
+     0.25,
+     0.7071067811865476
+    ],
+    "A_exact": [
+     "sqrt(2)/2",
+     "1/4",
+     "sqrt(2)/2"
+    ],
+    "X": [
+     0.0,
+     -1.0,
+     0.0
+    ],
+    "i": 4,
+    "pol": "-",
+    "radial": -0.25,
+    "radial_exact": "-1/4",
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 0,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     }
+    ],
+    "tangent": [
+     0.7071067811865476,
+     0.0,
+     0.7071067811865476
+    ],
+    "tangent_exact": [
+     "sqrt(2)/2",
+     "0",
+     "sqrt(2)/2"
+    ],
+    "tangent_norm_exact": "1"
+   },
+   {
+    "A": [
+     0.7071067811865476,
+     0.7071067811865476,
+     0.25
+    ],
+    "A_exact": [
+     "sqrt(2)/2",
+     "sqrt(2)/2",
+     "1/4"
+    ],
+    "X": [
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "i": 5,
+    "pol": "-",
+    "radial": -0.25,
+    "radial_exact": "-1/4",
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 0,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     }
+    ],
+    "tangent": [
+     0.7071067811865476,
+     0.7071067811865476,
+     0.0
+    ],
+    "tangent_exact": [
+     "sqrt(2)/2",
+     "sqrt(2)/2",
+     "0"
+    ],
+    "tangent_norm_exact": "1"
+   }
+  ]
+ },
+ "target_six_poles_tangent_work_table": {
+  "1": {
+   "V1": {
+    "0": 0.0,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   },
+   "V2": {
+    "0": 1.0,
+    "1": 1.0,
+    "2": 1.0,
+    "3": 1.0,
+    "4": 1.0,
+    "5": 1.0
+   },
+   "V3_copied_V2base": {
+    "0": 1.0,
+    "1": 1.0,
+    "2": 1.0,
+    "3": -1.0,
+    "4": -1.0,
+    "5": -1.0
+   },
+   "V4": {
+    "0": 0.0,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   },
+   "V5_member0_plus10deg": {
+    "0": 0.17364817766693036,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   }
+  },
+  "1/2": {
+   "V1": {
+    "0": 0.0,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   },
+   "V2": {
+    "0": 0.5,
+    "1": 0.5,
+    "2": 0.5,
+    "3": 0.5,
+    "4": 0.5,
+    "5": 0.5
+   },
+   "V3_copied_V2base": {
+    "0": 0.5,
+    "1": 0.5,
+    "2": 0.5,
+    "3": -0.5,
+    "4": -0.5,
+    "5": -0.5
+   },
+   "V4": {
+    "0": 0.0,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   },
+   "V5_member0_plus10deg": {
+    "0": 0.08682408883346518,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   }
+  },
+  "1/4": {
+   "V1": {
+    "0": 0.0,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   },
+   "V2": {
+    "0": 0.25,
+    "1": 0.25,
+    "2": 0.25,
+    "3": 0.25,
+    "4": 0.25,
+    "5": 0.25
+   },
+   "V3_copied_V2base": {
+    "0": 0.25,
+    "1": 0.25,
+    "2": 0.25,
+    "3": -0.25,
+    "4": -0.25,
+    "5": -0.25
+   },
+   "V4": {
+    "0": 0.0,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   },
+   "V5_member0_plus10deg": {
+    "0": 0.04341204441673259,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   }
+  },
+  "3/4": {
+   "V1": {
+    "0": 0.0,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   },
+   "V2": {
+    "0": 0.75,
+    "1": 0.75,
+    "2": 0.75,
+    "3": 0.75,
+    "4": 0.75,
+    "5": 0.75
+   },
+   "V3_copied_V2base": {
+    "0": 0.75,
+    "1": 0.75,
+    "2": 0.75,
+    "3": -0.75,
+    "4": -0.75,
+    "5": -0.75
+   },
+   "V4": {
+    "0": 0.0,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   },
+   "V5_member0_plus10deg": {
+    "0": 0.13023613325019776,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   }
+  }
+ },
+ "target_six_poles_velocity_patterns_tangent_work": {
+  "0": {
+   "V1": {
+    "v_dir": [
+     "0",
+     "sqrt(2)/2",
+     "-sqrt(2)/2"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   },
+   "V2": {
+    "v_dir": [
+     "0",
+     "-sqrt(2)/2",
+     "-sqrt(2)/2"
+    ],
+    "work_exact": "v",
+    "work_over_v": "1",
+    "work_over_v_f": 1.0
+   },
+   "V3_copied_V1base_equals_V4": true,
+   "V3_copied_V2base": {
+    "v_dir": [
+     "0",
+     "-sqrt(2)/2",
+     "-sqrt(2)/2"
+    ],
+    "work_exact": "v",
+    "work_over_v": "1",
+    "work_over_v_f": 1.0
+   },
+   "V4": {
+    "v_dir": [
+     "0",
+     "sqrt(2)/2",
+     "-sqrt(2)/2"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   },
+   "V5_member0_plus10deg": {
+    "v_dir": [
+     "0",
+     "-sqrt(2)*sin(pi/18)/2 + sqrt(2)*cos(pi/18)/2",
+     "-sqrt(2)*cos(pi/18)/2 - sqrt(2)*sin(pi/18)/2"
+    ],
+    "work_exact": "v*sin(pi/18)",
+    "work_over_v": "sin(pi/18)",
+    "work_over_v_f": 0.17364817766693036
+   }
+  },
+  "1": {
+   "V1": {
+    "v_dir": [
+     "-sqrt(2)/2",
+     "0",
+     "sqrt(2)/2"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   },
+   "V2": {
+    "v_dir": [
+     "-sqrt(2)/2",
+     "0",
+     "-sqrt(2)/2"
+    ],
+    "work_exact": "v",
+    "work_over_v": "1",
+    "work_over_v_f": 1.0
+   },
+   "V3_copied_V1base_equals_V4": true,
+   "V3_copied_V2base": {
+    "v_dir": [
+     "-sqrt(2)/2",
+     "0",
+     "-sqrt(2)/2"
+    ],
+    "work_exact": "v",
+    "work_over_v": "1",
+    "work_over_v_f": 1.0
+   },
+   "V4": {
+    "v_dir": [
+     "-sqrt(2)/2",
+     "0",
+     "sqrt(2)/2"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   },
+   "V5_member0_plus10deg": {
+    "v_dir": [
+     "-sqrt(2)/2",
+     "0",
+     "sqrt(2)/2"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   }
+  },
+  "2": {
+   "V1": {
+    "v_dir": [
+     "sqrt(2)/2",
+     "-sqrt(2)/2",
+     "0"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   },
+   "V2": {
+    "v_dir": [
+     "-sqrt(2)/2",
+     "-sqrt(2)/2",
+     "0"
+    ],
+    "work_exact": "v",
+    "work_over_v": "1",
+    "work_over_v_f": 1.0
+   },
+   "V3_copied_V1base_equals_V4": true,
+   "V3_copied_V2base": {
+    "v_dir": [
+     "-sqrt(2)/2",
+     "-sqrt(2)/2",
+     "0"
+    ],
+    "work_exact": "v",
+    "work_over_v": "1",
+    "work_over_v_f": 1.0
+   },
+   "V4": {
+    "v_dir": [
+     "sqrt(2)/2",
+     "-sqrt(2)/2",
+     "0"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   },
+   "V5_member0_plus10deg": {
+    "v_dir": [
+     "sqrt(2)/2",
+     "-sqrt(2)/2",
+     "0"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   }
+  },
+  "3": {
+   "V1": {
+    "v_dir": [
+     "0",
+     "-sqrt(2)/2",
+     "sqrt(2)/2"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   },
+   "V2": {
+    "v_dir": [
+     "0",
+     "sqrt(2)/2",
+     "sqrt(2)/2"
+    ],
+    "work_exact": "v",
+    "work_over_v": "1",
+    "work_over_v_f": 1.0
+   },
+   "V3_copied_V1base_equals_V4": true,
+   "V3_copied_V2base": {
+    "v_dir": [
+     "0",
+     "-sqrt(2)/2",
+     "-sqrt(2)/2"
+    ],
+    "work_exact": "-v",
+    "work_over_v": "-1",
+    "work_over_v_f": -1.0
+   },
+   "V4": {
+    "v_dir": [
+     "0",
+     "sqrt(2)/2",
+     "-sqrt(2)/2"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   },
+   "V5_member0_plus10deg": {
+    "v_dir": [
+     "0",
+     "-sqrt(2)/2",
+     "sqrt(2)/2"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   }
+  },
+  "4": {
+   "V1": {
+    "v_dir": [
+     "sqrt(2)/2",
+     "0",
+     "-sqrt(2)/2"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   },
+   "V2": {
+    "v_dir": [
+     "sqrt(2)/2",
+     "0",
+     "sqrt(2)/2"
+    ],
+    "work_exact": "v",
+    "work_over_v": "1",
+    "work_over_v_f": 1.0
+   },
+   "V3_copied_V1base_equals_V4": true,
+   "V3_copied_V2base": {
+    "v_dir": [
+     "-sqrt(2)/2",
+     "0",
+     "-sqrt(2)/2"
+    ],
+    "work_exact": "-v",
+    "work_over_v": "-1",
+    "work_over_v_f": -1.0
+   },
+   "V4": {
+    "v_dir": [
+     "-sqrt(2)/2",
+     "0",
+     "sqrt(2)/2"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   },
+   "V5_member0_plus10deg": {
+    "v_dir": [
+     "sqrt(2)/2",
+     "0",
+     "-sqrt(2)/2"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   }
+  },
+  "5": {
+   "V1": {
+    "v_dir": [
+     "-sqrt(2)/2",
+     "sqrt(2)/2",
+     "0"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   },
+   "V2": {
+    "v_dir": [
+     "sqrt(2)/2",
+     "sqrt(2)/2",
+     "0"
+    ],
+    "work_exact": "v",
+    "work_over_v": "1",
+    "work_over_v_f": 1.0
+   },
+   "V3_copied_V1base_equals_V4": true,
+   "V3_copied_V2base": {
+    "v_dir": [
+     "-sqrt(2)/2",
+     "-sqrt(2)/2",
+     "0"
+    ],
+    "work_exact": "-v",
+    "work_over_v": "-1",
+    "work_over_v_f": -1.0
+   },
+   "V4": {
+    "v_dir": [
+     "sqrt(2)/2",
+     "-sqrt(2)/2",
+     "0"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   },
+   "V5_member0_plus10deg": {
+    "v_dir": [
+     "-sqrt(2)/2",
+     "sqrt(2)/2",
+     "0"
+    ],
+    "work_exact": "0",
+    "work_over_v": "0",
+    "work_over_v_f": 0.0
+   }
+  }
+ },
+ "target_three_meridional_pairs_colatitude_family": {
+  "F_alpha": "sqrt(3)*cos(alpha)/(3*sin(alpha)**2) + 3*sin(alpha)*cos(alpha)/(4 - 3*sin(alpha)**2)**(3/2)",
+  "cases": [
+   {
+    "A_tan_meridional_direct": "6*sqrt(39)/169 + 2",
+    "F_closed_f": 2.221715905268582,
+    "F_closed_form": "6*sqrt(39)/169 + 2",
+    "alpha": "pi/6",
+    "alpha_deg": 30.0,
+    "direct_f": 2.221715905268582,
+    "match": true,
+    "radial": 0.3500003421540224,
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": 1,
+      "tau": "sqrt(3)/2",
+      "tau_f": 0.8660254037844386
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": 1,
+      "tau": "sqrt(3)/2",
+      "tau_f": 0.8660254037844386
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": -1,
+      "tau": "sqrt(13)/2",
+      "tau_f": 1.8027756377319946
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": -1,
+      "tau": "sqrt(13)/2",
+      "tau_f": 1.8027756377319946
+     }
+    ],
+    "zonal_part": "0"
+   },
+   {
+    "A_tan_meridional_direct": "3*sqrt(10)/25 + sqrt(6)/3",
+    "F_closed_f": 1.1959699001479316,
+    "F_closed_form": "3*sqrt(10)/25 + sqrt(6)/3",
+    "alpha": "pi/4",
+    "alpha_deg": 45.0,
+    "direct_f": 1.1959699001479316,
+    "match": true,
+    "radial": -0.06595895110594983,
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": 1,
+      "tau": "sqrt(6)/2",
+      "tau_f": 1.224744871391589
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": 1,
+      "tau": "sqrt(6)/2",
+      "tau_f": 1.224744871391589
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": -1,
+      "tau": "sqrt(10)/2",
+      "tau_f": 1.5811388300841898
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": -1,
+      "tau": "sqrt(10)/2",
+      "tau_f": 1.5811388300841898
+     }
+    ],
+    "zonal_part": "0"
+   },
+   {
+    "A_tan_meridional_direct": "1",
+    "F_closed_f": 1.0,
+    "F_closed_form": "1",
+    "alpha": "acos(sqrt(3)/3)",
+    "alpha_deg": 54.735610317245346,
+    "direct_f": 1.0,
+    "match": true,
+    "radial": -0.25,
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": 1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": -1,
+      "tau": "sqrt(2)",
+      "tau_f": 1.4142135623730951
+     }
+    ],
+    "zonal_part": "0"
+   },
+   {
+    "A_tan_meridional_direct": "2*sqrt(3)/9 + 6*sqrt(21)/49",
+    "F_closed_f": 0.9460318972094452,
+    "F_closed_form": "2*sqrt(3)/9 + 6*sqrt(21)/49",
+    "alpha": "pi/3",
+    "alpha_deg": 60.0,
+    "direct_f": 0.9460318972094452,
+    "match": true,
+    "radial": -0.33926227935178777,
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": 1,
+      "tau": "3/2",
+      "tau_f": 1.5
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": 1,
+      "tau": "3/2",
+      "tau_f": 1.5
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": -1,
+      "tau": "sqrt(7)/2",
+      "tau_f": 1.3228756555322954
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": -1,
+      "tau": "sqrt(7)/2",
+      "tau_f": 1.3228756555322954
+     }
+    ],
+    "zonal_part": "0"
+   },
+   {
+    "A_tan_meridional_direct": "0",
+    "F_closed_f": 0.0,
+    "F_closed_form": "0",
+    "alpha": "pi/2",
+    "alpha_deg": 90.0,
+    "direct_f": 0.0,
+    "match": true,
+    "radial": -0.6726497308103743,
+    "roots": [
+     {
+      "Dt": "1",
+      "j": 1,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     },
+     {
+      "Dt": "1",
+      "j": 2,
+      "sigma": 1,
+      "tau": "sqrt(3)",
+      "tau_f": 1.7320508075688772
+     },
+     {
+      "Dt": "1",
+      "j": 3,
+      "sigma": -1,
+      "tau": "2",
+      "tau_f": 2.0
+     },
+     {
+      "Dt": "1",
+      "j": 4,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     },
+     {
+      "Dt": "1",
+      "j": 5,
+      "sigma": -1,
+      "tau": "1",
+      "tau_f": 1.0
+     }
+    ],
+    "zonal_part": "0"
+   }
+  ],
+  "note": "alpha=acos(1/sqrt3) is the six-pole configuration about axis (1,1,1)/sqrt3; alpha=pi/2 is the alternating hexagon"
+ }
+}

@@ -1,0 +1,11 @@
+controls: ALL PASS (5.2 s)
+   pass (i) known: K=0 great circle at v=1/2 lies inside the outward-rounded Taylor enclosure (interval components widened by the tail bound) at 50 points
+   pass (ii) negative: a provably invalid majorant constant min(M/20, 0.9 |c_1|) is caught by the coefficient-domination check; the true M passes
+antiprism-V2 member 0 (q=+1): T_end exact [0.05990980250292, 0.05990980250292] printed 0.05990980250293 (allowance 1.1e-11); speed enclosure [0.443521444676, 0.443521454719]; eps_end 5.021e-09; continuous speed bound 0.6700; max coefficient width 8.51e-37; 7.2 s
+antiprism-V2 member 1 (q=+1): T_end exact [0.05990980250292, 0.05990980250292] printed 0.05990980250293 (allowance 1.1e-11); speed enclosure [0.443521444676, 0.443521454719]; eps_end 5.021e-09; continuous speed bound 0.6700; max coefficient width 1.32e-36; 6.2 s
+antiprism-V2 member 2 (q=+1): T_end exact [0.05990980250292, 0.05990980250292] printed 0.05990980250293 (allowance 1.1e-11); speed enclosure [0.443521444676, 0.443521454719]; eps_end 5.021e-09; continuous speed bound 0.6700; max coefficient width 1.32e-36; 7.3 s
+antiprism-V2 member 3 (q=-1): T_end exact [0.05990980250292, 0.05990980250292] printed 0.05990980250293 (allowance 1.1e-11); speed enclosure [0.443521444676, 0.443521454719]; eps_end 5.021e-09; continuous speed bound 0.6700; max coefficient width 8.51e-37; 7.2 s
+antiprism-V2 member 4 (q=-1): T_end exact [0.05990980250292, 0.05990980250292] printed 0.05990980250293 (allowance 1.1e-11); speed enclosure [0.443521444676, 0.443521454719]; eps_end 5.021e-09; continuous speed bound 0.6700; max coefficient width 1.32e-36; 6.2 s
+antiprism-V2 member 5 (q=-1): T_end exact [0.05990980250292, 0.05990980250292] printed 0.05990980250293 (allowance 1.1e-11); speed enclosure [0.443521444676, 0.443521454719]; eps_end 5.021e-09; continuous speed bound 0.6700; max coefficient width 1.32e-36; 6.2 s
+common T: 0.05990980250292 all in domain: True speeds at T_common: [(0, 4, '0.44352144467', '0.44352145471'), (1, 4, '0.44352144467', '0.44352145471'), (2, 4, '0.44352144467', '0.44352145471'), (3, 4, '0.44352144467', '0.44352145471'), (4, 4, '0.44352144467', '0.44352145471'), (5, 4, '0.44352144467', '0.44352145471')]
+total wall 45.6 s

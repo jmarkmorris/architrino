@@ -1,0 +1,331 @@
+{
+ "pid": 40922,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: imported wave-11 function reproduces the g=1 six-pole bracket and verdict",
+   "t_c": [
+    0.962207038662762,
+    0.9639521408918529
+   ],
+   "verdict": true,
+   "pass": true
+  },
+  {
+   "name": "known: stationary hexagon simultaneous chord exactly 1",
+   "value": 0.9999999999999996,
+   "pass": true
+  },
+  {
+   "name": "negative: polarity flip changes f(0)",
+   "f0": -1.8691032201027316,
+   "true": 0.668064615092872,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "results": {
+  "six poles": {
+   "sweep_verdicts": {
+    "4.0": "crossing inside window",
+    "2.0": "crossing inside window",
+    "1.0": "crossing inside window",
+    "0.5": "window ends before crossing",
+    "0.25": "window ends before crossing",
+    "0.1": "window ends before crossing"
+   },
+   "switch_bracket_g": [
+    0.8408964152537146,
+    0.859309649061239
+   ],
+   "switch_bracket_R_at_K1": [
+    1.1637248587775775,
+    1.189207115002721
+   ],
+   "bisection": [
+    [
+     0.7071067811865476,
+     "window ends before crossing"
+    ],
+    [
+     0.8408964152537146,
+     "window ends before crossing"
+    ],
+    [
+     0.9170040432046712,
+     "crossing inside window"
+    ],
+    [
+     0.8781260801866497,
+     "crossing inside window"
+    ],
+    [
+     0.859309649061239,
+     "crossing inside window"
+    ],
+    [
+     0.8500531768592617,
+     "undecided"
+    ]
+   ]
+  },
+  "antiprism 30": {
+   "sweep_verdicts": {
+    "4.0": "crossing inside window",
+    "2.0": "crossing inside window",
+    "1.0": "crossing inside window",
+    "0.5": "undecided",
+    "0.25": "window ends before crossing",
+    "0.1": "window ends before crossing"
+   },
+   "switch_bracket_g": [
+    null,
+    null
+   ],
+   "switch_bracket_R_at_K1": [
+    null,
+    null
+   ],
+   "bisection": []
+  },
+  "antiprism 45": {
+   "sweep_verdicts": {
+    "4.0": "crossing inside window",
+    "2.0": "crossing inside window",
+    "1.0": "crossing inside window",
+    "0.5": "window ends before crossing",
+    "0.25": "window ends before crossing",
+    "0.1": "window ends before crossing"
+   },
+   "switch_bracket_g": [
+    0.6771277734684464,
+    0.7071067811865476
+   ],
+   "switch_bracket_R_at_K1": [
+    1.414213562373095,
+    1.4768261459394991
+   ],
+   "bisection": [
+    [
+     0.7071067811865476,
+     "crossing inside window"
+    ],
+    [
+     0.5946035575013605,
+     "window ends before crossing"
+    ],
+    [
+     0.6484197773255048,
+     "window ends before crossing"
+    ],
+    [
+     0.6771277734684464,
+     "window ends before crossing"
+    ],
+    [
+     0.691954940981916,
+     "undecided"
+    ]
+   ]
+  },
+  "antiprism 60": {
+   "sweep_verdicts": {
+    "4.0": "crossing inside window",
+    "2.0": "crossing inside window",
+    "1.0": "crossing inside window",
+    "0.5": "window ends before crossing",
+    "0.25": "window ends before crossing",
+    "0.1": "window ends before crossing"
+   },
+   "switch_bracket_g": [
+    0.93708381705515,
+    0.9472879907934828
+   ],
+   "switch_bracket_R_at_K1": [
+    1.0556451783605572,
+    1.0671404006768235
+   ],
+   "bisection": [
+    [
+     0.7071067811865476,
+     "window ends before crossing"
+    ],
+    [
+     0.8408964152537146,
+     "window ends before crossing"
+    ],
+    [
+     0.9170040432046712,
+     "window ends before crossing"
+    ],
+    [
+     0.9576032806985736,
+     "crossing inside window"
+    ],
+    [
+     0.93708381705515,
+     "window ends before crossing"
+    ],
+    [
+     0.9472879907934828,
+     "crossing inside window"
+    ]
+   ]
+  },
+  "twist 40": {
+   "sweep_verdicts": {
+    "4.0": "crossing inside window",
+    "2.0": "crossing inside window",
+    "1.0": "crossing inside window",
+    "0.5": "window ends before crossing",
+    "0.25": "window ends before crossing",
+    "0.1": "window ends before crossing"
+   },
+   "switch_bracket_g": [
+    0.9576032806985736,
+    0.9785720620877001
+   ],
+   "switch_bracket_R_at_K1": [
+    1.0218971486541166,
+    1.044273782427414
+   ],
+   "bisection": [
+    [
+     0.7071067811865476,
+     "window ends before crossing"
+    ],
+    [
+     0.8408964152537146,
+     "window ends before crossing"
+    ],
+    [
+     0.9170040432046712,
+     "window ends before crossing"
+    ],
+    [
+     0.9576032806985736,
+     "window ends before crossing"
+    ],
+    [
+     0.9785720620877001,
+     "crossing inside window"
+    ],
+    [
+     0.9680308967461472,
+     "undecided"
+    ]
+   ]
+  },
+  "twist 50": {
+   "sweep_verdicts": {
+    "4.0": "crossing inside window",
+    "2.0": "crossing inside window",
+    "1.0": "window ends before crossing",
+    "0.5": "window ends before crossing",
+    "0.25": "window ends before crossing",
+    "0.1": "window ends before crossing"
+   },
+   "switch_bracket_g": [
+    1.542210825407941,
+    1.6817928305074292
+   ],
+   "switch_bracket_R_at_K1": [
+    0.5946035575013605,
+    0.6484197773255048
+   ],
+   "bisection": [
+    [
+     1.4142135623730951,
+     "window ends before crossing"
+    ],
+    [
+     1.6817928305074292,
+     "crossing inside window"
+    ],
+    [
+     1.542210825407941,
+     "window ends before crossing"
+    ],
+    [
+     1.6104903319492545,
+     "undecided"
+    ]
+   ]
+  },
+  "twist 70": {
+   "sweep_verdicts": {
+    "4.0": "crossing inside window",
+    "2.0": "crossing inside window",
+    "1.0": "window ends before crossing",
+    "0.5": "window ends before crossing",
+    "0.25": "window ends before crossing",
+    "0.1": "window ends before crossing"
+   },
+   "switch_bracket_g": [
+    1.542210825407941,
+    1.6817928305074292
+   ],
+   "switch_bracket_R_at_K1": [
+    0.5946035575013605,
+    0.6484197773255048
+   ],
+   "bisection": [
+    [
+     1.4142135623730951,
+     "window ends before crossing"
+    ],
+    [
+     1.6817928305074292,
+     "crossing inside window"
+    ],
+    [
+     1.542210825407941,
+     "window ends before crossing"
+    ],
+    [
+     1.6104903319492545,
+     "undecided"
+    ]
+   ]
+  },
+  "family C 5": {
+   "sweep_verdicts": {
+    "4.0": "undecided",
+    "2.0": "window ends before crossing",
+    "1.0": "window ends before crossing",
+    "0.5": "window ends before crossing",
+    "0.25": "window ends before crossing",
+    "0.1": "window ends before crossing"
+   },
+   "switch_bracket_g": [
+    null,
+    null
+   ],
+   "switch_bracket_R_at_K1": [
+    null,
+    null
+   ],
+   "bisection": []
+  },
+  "family C 15": {
+   "sweep_verdicts": {
+    "4.0": "undecided",
+    "2.0": "undecided",
+    "1.0": "window ends before crossing",
+    "0.5": "window ends before crossing",
+    "0.25": "window ends before crossing",
+    "0.1": "window ends before crossing"
+   },
+   "switch_bracket_g": [
+    null,
+    null
+   ],
+   "switch_bracket_R_at_K1": [
+    null,
+    null
+   ],
+   "bisection": []
+  }
+ },
+ "wall_s": 24.64612603187561
+}

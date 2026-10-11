@@ -1,0 +1,340 @@
+# Hierarchical Acceleration for Equal and Opposite Point Transceivers
+
+This manuscript develops one question: how a hierarchical many-body algorithm in the spirit of Barnes-Hut can be adapted to populations of architrinos, the equal and opposite point transceivers of $\mathbb{A}\mathbb{A}\mathbb{A}$, whose acceleration is governed by the delayed Master Equation rather than by an instantaneous inverse-square law. It has three parts. The first is a primer on the Barnes-Hut treecode, written from published sources. The second surveys the rival methods that solve the same many-body cost problem differently. The third states where the architrino problem departs from every one of them and proposes a candidate algorithm.
+
+The first two parts describe standard numerical methods for gravity and electrostatics. They are imported as comparison material at effective grade: they explain what the classical algorithms do and why, and they never enter architrino-level reasoning as premises. Where a classical method speaks of mass, the mass is a positive numerical weight in that method's own kernel; architrinos have no mass, and the architrino kernel weights are polarities. The third part reasons only from the Master Equation and the EOM solver's existing certified contracts. Every claim there is graded in place, and nothing in it is implemented, measured or independently reviewed. Every numerical instance sets $c_f=1$.
+
+## Part I: a primer on the Barnes-Hut treecode
+
+### The cost problem
+
+A many-body simulation advances $N$ bodies under a pairwise interaction. If every body's acceleration is the sum of contributions from every other body, one acceleration pass costs $N(N-1)$ ordered-pair evaluations, which grows as $N^2$. Doubling the population quadruples the work. At a thousand bodies that is about a million pair evaluations per step; at a million bodies it is about $10^{12}$, which no single machine performs at interactive rates and which the EOM solver's own million-path architecture declines to materialize as rows [S1]. Every method in this manuscript exists to break that square.
+
+The way to break it is to notice that distant bodies affect a target almost identically. A cluster of bodies far from the target produces nearly the same acceleration as a single body of their combined weight placed at their combined center, and the approximation improves as the cluster's size shrinks relative to its distance. The cost of a distant cluster can therefore be paid once rather than once per member. A hierarchical algorithm organizes the bodies so that this replacement can be made at every scale at once.
+
+### Origin
+
+Josh Barnes and Piet Hut, both then at the Institute for Advanced Study, published the algorithm in *Nature* in December 1986 under the title "A hierarchical O(N log N) force-calculation algorithm" [B1]. The abstract states the two ideas that define it: space is divided into cubic cells recursively subdivided until each holds one body, and the tree so formed is constructed anew at every time step, which avoids ambiguity and tangling. The paper claimed applicability from planetary systems to cosmology.
+
+Andrew Appel had published a hierarchical method a year earlier in the *SIAM Journal on Scientific and Statistical Computing* [B2]. Appel's tree is binary and is built by repeatedly joining mutually nearest neighbors and clusters, so its cells have arbitrary shape; each node stores total weight and weighted center. Warren and Salmon later recorded two reasons the Barnes-Hut form displaced it: regular cubic cells are much faster to build, and their fixed geometry makes error estimation tractable [B3]. They also noted that Appel's method, first thought to cost $N\log N$, had since been shown to be linear in $N$, an observation that foreshadows the Fast Multipole Method discussed in Part II.
+
+### The algorithm
+
+Picture the bodies scattered in a cubic region. Divide the cube into eight equal children. Any child containing more than one body is divided again, and the division continues until every innermost cell holds at most one body. The result is an octree, or a quadtree in two dimensions: a tree whose root is the whole region, whose internal nodes are cells, and whose leaves are empty or hold one body [B4, B5]. Each internal node records two summary quantities: the total weight of the bodies inside it and their weighted center, the center of mass in the gravitational case. The summaries are computed in one pass from the leaves upward, each parent combining its children [B5].
+
+The acceleration pass then walks the tree once for each target body. The walk starts at the root and asks, at each cell, whether the cell is far enough away to be treated as a single body at its weighted center. The test compares the cell's width $s$ to the distance $d$ from the target to the cell's weighted center: if $s/d<\theta$ for a chosen opening parameter $\theta$, the cell is accepted whole and contributes one term; otherwise it is opened and the test is applied to each child [B4]. A leaf holding a body other than the target always contributes exactly. The target's own body is excluded from its own sum. The walk therefore descends deep only where the tree is near the target and stops early everywhere else.
+
+The parameter $\theta$ is the accuracy control. With $\theta=0$ no cell is ever accepted, every leaf is visited, and the method reduces to direct summation [B4]. Larger $\theta$ accepts larger cells at a given distance and is faster but less accurate. Barnes' own treecode defaults to $\theta=1$ and notes that values below one give more accurate accelerations [B6]; production and teaching codes commonly use values between $0.5$ and $1$, with Burtscher and Pingali's GPU implementation at $0.5$, the Bonsai GPU code at $0.5$ and $0.75$, and the d3 graph-layout library at $0.9$ [B5, B8, B9]. Dubinski, citing Hernquist, puts the acceleration error at $\theta=1$ near one percent [B10].
+
+A small instance makes the saving visible. For a target at the edge of a population spread over a region of width $L$, the far half of the population sits in a handful of cells of width near $L/2$ at distance near $L/2$ or more, so with $\theta$ near one each such cell is accepted whole. The nearer bodies are resolved more finely, down to individual leaves in the immediate neighborhood. The number of accepted cells and visited leaves for one target grows like the depth of the tree rather than like the population, which is where the logarithm comes from [B11].
+
+### Why the cost is $N\log N$ and what the monopole buys
+
+The tree has depth proportional to $\log N$ for a reasonably spread population, because each level divides the population among eight times as many cells. Building it costs about $N\log N$, one insertion per body descending to its leaf. For each target the walk visits a number of cells that also scales with the depth, because at each distance scale a bounded number of cells pass the opening test [B11]. Salmon's thesis confirms the $N\log N$ operation count even for non-uniform distributions [B12]. One pass therefore costs about $N\log N$ cell evaluations instead of $N^2$ pair evaluations.
+
+The 1986 algorithm represents an accepted cell by its monopole alone: its total weight at its weighted center. That choice is better than it looks. The expansion of a cell's contribution about an arbitrary center has a first-order term, the dipole, proportional to the weighted offset of the bodies from the center. Expanding about the weighted center makes that offset zero by definition, so the dipole vanishes and the monopole is already accurate to second order in the cell's size over its distance [B11]. Barnes' code offers an optional quadrupole correction that improves accuracy further at modest cost [B6]. Part III shows that this gift is exactly what signed polarities take away.
+
+### Accuracy, failure modes and improved acceptance tests
+
+Barnes and Hut analyzed the error of the tree code against $\theta$, $N$ and multipole order in 1989 [B13]; a later summary records that monopole accuracy at $\theta$ near $0.3$ matches quadrupole accuracy at $\theta$ near $0.7$ [B14]. Dehnen and Read give the relative truncation error of an order-$p$ expansion under the geometric test as about $(p+1)\theta^p/(1-\theta)^2$ [B11].
+
+The geometric test has a documented worst case. Because $d$ is measured to the weighted center, a cell whose weighted center sits near one of its faces can pass the test for a target just outside that face, while bodies in the far corner of the cell are much farther away and bodies near the face are much closer than $d$. Salmon and Warren's 1994 paper "Skeletons from the treecode closet" showed that the resulting error is unbounded for commonly used $\theta$ [B15, B3]; Dehnen and Read call the consequence the exploding-galaxies bug, since a simulated galaxy can fly apart from a single catastrophically wrong acceleration [B11]. Three remedies followed. One measures distance to the farthest point of the cell rather than to its weighted center, available in Barnes' code as the Salmon-Warren option [B6]. One adds the offset $\delta$ between the weighted center and the geometric center to the required distance, $d>s/\theta+\delta$, a test Dubinski attributes to Barnes' 1994 contribution to *Computational Astrophysics* and adopted to avoid the pathology [B10, B16]. The third replaces the geometric ratio with an absolute error bound computed from the cell's moments, which Warren and Salmon's 1993 hashed octree code already used per interaction [B3] and which later codes restate as an explicit distance inequality [B17].
+
+Barnes' 1990 paper "A modified tree code: Don't laugh; it runs" introduced a separate efficiency device: one tree walk builds a common interaction list for a small group of nearby targets, amortizing the walk [B18]. GADGET-2 introduced a relative criterion that compares the cell's estimated truncation error with the target's acceleration on the previous step, so that the accepted error is a fixed fraction of the acceleration actually experienced [B19]. Part III's budget-derived acceptance test is the certified descendant of these absolute and relative criteria.
+
+### Variants and implementations
+
+The treecode family grew in three directions. Dehnen's falcON code of 2000 and 2002 computes mutual cell-cell interactions by symmetric Cartesian Taylor expansions, so each interaction is evaluated once and applied to both cells, conserving momentum by construction; it reported a fourfold speedup over a standard treecode at $10^5$ bodies and empirically sub-linear cost growth above $10^4$ [B20, B21]. Warren and Salmon's hashed octree of 1993 identified cells by keys formed from interleaved coordinate bits, stored them in a hash table, and ran on 512 processors; the paper received the Supercomputing Test of Time award in 2018, and their 1992 and 1997 runs won Gordon Bell prizes [B3, B22]. GADGET-2 pairs a monopole treecode with a Fourier-space split of the potential, treated in Part II [B19]. On graphics processors, Burtscher and Pingali's 2011 implementation ran the whole algorithm in six kernels and reported 5.2 seconds per step for five million bodies, 74 times faster than optimized serial code [B5], and the Bonsai code of Bédorf, Gaburov and Portegies Zwart ran tree build and walk entirely on the GPU at more than 2.8 million bodies per second [B8]. Barnes' original treecode remains available with its parameters documented [B6].
+
+### Parallelization
+
+Salmon's 1991 thesis partitioned space by orthogonal recursive bisection and built a local tree in each processor, reaching a speedup above 380 on 512 processors [B12]; the pruned remote tree grafted onto each local tree is what Dubinski calls the locally essential tree [B10]. Space-filling curves became the standard decomposition: the hashed octree sorts bodies by Morton key and splits the sorted list by estimated work, noting that Z-order domains can be discontiguous and that Peano-Hilbert ordering avoids this [B3]; GADGET-2 cuts a Peano-Hilbert curve into one segment per processor, giving compact domains and an acceleration result independent of the processor count [B19].
+
+### Time integration
+
+The treecode supplies accelerations; an integrator decides when to ask for them. The common choice is the leapfrog, which is symplectic at fixed step, in its kick-drift-kick form because its energy error grows about four times more slowly than the drift-kick-drift form under adaptive steps [B19]. Individual time steps are arranged in a power-of-two hierarchy, $\Delta t_n=\Delta t_0/2^n$, at the cost of breaking exact symplecticity [B11]. Gravitational codes also soften the kernel at short range, replacing $1/r^2$ by a form such as $r/(r^2+\epsilon^2)^{3/2}$, to suppress large accelerations from close pairs that the step cannot resolve; Dehnen and Read note that practical convergence studies for the softening length are lacking [B11]. None of these devices is part of the acceleration algorithm itself, and Part II returns to how far they are independent of it.
+
+### Applications beyond gravity
+
+The algorithm accelerates any sum of smooth pairwise kernels. Van der Maaten's 2014 paper applied it to the repulsive terms of t-distributed stochastic neighbor embedding, a dimensionality-reduction method, using a quadtree over the two-dimensional embedding with $\theta=0.5$ and reporting $N\log N$ gradient cost [B23]. The d3 graph-layout library uses a quadtree Barnes-Hut approximation for its many-body repulsion [B9]. In electrostatics and molecular dynamics, treecodes compete with the Fast Multipole Method and with Ewald-based mesh methods; Li, Johnston and Krasny's Cartesian treecode for screened Coulomb interactions is a representative modern instance [B24], and Kurzak and Pettitt's review explains why mesh methods dominated periodic molecular dynamics [B25]. Hernquist and Katz's TreeSPH of 1989 reused the same octree for neighbor search in smoothed-particle hydrodynamics [B26].
+
+### The two explainer videos
+
+The operator supplied two videos as background [V1, V2]. The first, from the channel Keyframe Codes, is a thirty-minute explanation of the two-dimensional Fast Multipole Method and treats Barnes-Hut as a stepping stone: a quadtree, a node accepted as a single mass when its size over its distance is below $\theta$, and two criticisms, that the interaction is body-to-cluster rather than cluster-to-cluster and that the monopole ignores cluster shape. Its author rejected Barnes-Hut for the series because its error is difficult to bound, and centers expansions on box centers rather than weighted centers so that the convergence radius is predictable. The second, by William Y. Feng, is a seventeen-minute walkthrough of a quadtree gravity simulation written in Processing: one body per leaf, total mass and center of mass propagated upward on insertion, an opening test with $\theta=0.7$ chosen for speed, a tree rebuilt every frame, and a demonstration that a thousand bodies run at sixty frames per second under Barnes-Hut against twenty under direct summation. Neither video addresses delayed interaction or signed weights; both describe the classical picture that Part III departs from.
+
+## Part II: rival approaches to many-body acceleration
+
+Barnes-Hut is one answer to a general question: how to evaluate a sum of $N$ pairwise kernel contributions at each of $N$ targets without paying for all $N^2$ pairs. The rivals below answer the same question with different trade-offs between cost, accuracy control, boundary conditions and conservation. Each is stated in the comparison standard's order: what it is and who introduced it, its strongest insight, its limiting tension, and what it contributes to the architrino design. All of them are standard numerical apparatus, imported here as comparison material at effective grade; none is an architrino-level premise.
+
+### Direct summation and purpose-built hardware
+
+Direct summation evaluates every pair exactly to rounding error, at cost proportional to $N^2$ per acceleration pass. It has no inventor and no approximation parameter. Its history in astrophysics is a hardware history: the GRAPE project, begun in 1989 under Sugimoto's group, placed the pairwise inverse-square pipeline in custom silicon, with GRAPE-4 reaching about one teraflop in 1995 and GRAPE-6 about 64 teraflops across 2048 chips [R1, R2]. When graphics processors arrived, Sapporo emulated the GRAPE-6 library so existing codes could relink unchanged [R3], and the collisional codes NBODY6 and NBODY6++GPU moved their far-force work to the GPU [R4, R5]. Those codes pair direct summation with the Ahmad–Cohen neighbour scheme, which evaluates near and far contributions on different cadences and reduces the constant without changing the exponent.
+
+The strongest insight is that exactness has a price worth paying when close encounters matter: Dehnen and Read's review states that every existing collisional code uses brute-force summation because both close and distant encounters must be modelled accurately [R6]. The limiting tension is scale; a million bodies is the practical frontier for collisional runs. For this lane, direct summation is the role the EOM solver's exact-pair route already plays. It is the independent reference against which every approximate route is tested, and it is what a hierarchical route must fall back to when its certificate fails.
+
+### The Fast Multipole Method
+
+Greengard and Rokhlin introduced the Fast Multipole Method, FMM, in 1987 [R7]. The idea extends Barnes-Hut in one decisive way. Barnes-Hut represents a distant *source* cell by its moments and evaluates them once per target body, which costs $N\log N$ because every body walks the tree. FMM also represents the field *received* by a target cell as a local Taylor expansion about the cell's center, built by translating the multipole expansions of well-separated source cells. The translation is done once per pair of cells, not once per body, and the local expansion is passed down to children and evaluated at each body at the end. The result is cost proportional to $N$ for fixed expansion order $p$, with a truncation error that falls geometrically in $p$ by a known bound. Two cells are well separated when their distance exceeds their diameters, and the set of same-level cells that are well separated from a cell but whose parents are not forms its interaction list.
+
+Three later developments matter here. Kernel-independent FMM replaces analytic expansions by equivalent densities on a surface enclosing each box, so the method needs only kernel evaluations [R8]; black-box FMM interpolates the kernel with Chebyshev polynomials and compresses the translation operators [R9]; both extend FMM to kernels without a convenient analytic expansion. Dehnen's falcON code introduced mutual cell-cell interactions with Cartesian Taylor expansions, so that each interaction is computed once and applied to both cells, conserving momentum by construction [R10, R11]; his 2014 Fast Multipole Method for stellar dynamics reports empirical cost near $N^{0.87}$ at relative accuracy near $10^{-7}$ [R49]. The dual tree traversal that falcON uses, later adopted by ExaFMM [R12, R13], is the clearest statement that treecode and FMM are two ends of one continuum: a treecode is a dual traversal in which the target is always a single body, and the classical FMM is a dual traversal with a fixed, level-based interaction list.
+
+The strongest insight is the receiver-side expansion: the field over a region, not just the sources in a region, can be compressed. The limiting tension is the constant: translation costs grow as $p^2$ or worse, so FMM overtakes Barnes-Hut only at large $N$ or tight tolerance, and the force is discontinuous when a body crosses a leaf boundary, which causes energy drift in long integrations [R14]. Production cosmology has nonetheless moved to FMM: PKDGRAV3 ran two trillion particles with FMM and individual time steps [R15], and GADGET-4 and SWIFT offer FMM gravity [R16, R17]. For this lane, the receiver-side expansion is the half of FMM that survives the loss of pairwise symmetry under delay; the mutual interaction is the half that does not.
+
+### Particle-mesh, Ewald and particle-mesh Ewald
+
+Mesh methods replace the pairwise sum by a field equation solved on a grid. Particle-mesh, PM, deposits the sources on a grid, solves the field equation by fast Fourier transform, and interpolates accelerations back to the bodies [R18]. The transform imposes periodic boundaries, which is what bulk molecular dynamics and cosmology want. Ewald's 1921 summation splits the inverse-distance kernel into a short-range piece summed directly and a smooth long-range piece summed in reciprocal space [R19]; particle-mesh Ewald and its smooth variant put the reciprocal-space sum on a mesh with B-spline interpolation, giving cost proportional to $N\log N$ and analytic gradients [R20, R21]. The particle-particle particle-mesh method, P3M, adds direct corrections inside a cutoff to recover sub-grid resolution.
+
+The strongest insight is that a smooth, periodic, long-range field is cheap to represent globally. The limiting tension is resolution: accuracy is tied to the mesh spacing, inhomogeneous distributions are served poorly, and at scale the transform's all-to-all communication dominates [R22]. Molecular dynamics nonetheless prefers particle-mesh Ewald to treecodes for three reasons the literature records: periodicity is native, the forces are smooth in position so energy is conserved, and FMM becomes competitive only at large $N$ [R14, R22, R23]. The one head-to-head benchmark of FMM, P3M, multigrid and Barnes-Hut on identical charge systems concluded that FMM and transform-based methods are the most efficient depending on size and tolerance [R24]. For this lane, mesh methods are a conceptual rival rather than a candidate: the architrino law has sharp causal roots and a velocity weight below any practical mesh resolution, and the repository has no certification discipline for a mesh. The one place a mesh idea reappears is the brainstorming note on discretizing the wake transport law directly.
+
+### TreePM hybrids and adaptive-mesh Poisson solvers
+
+TreePM splits the potential in Fourier space into a smooth long-range part solved by PM and a short-range part evaluated by a Barnes-Hut tree over only the nearest periodic image [R25, R26, R27]. The split kernel makes the short-range acceleration negligible beyond a few splitting lengths, so tree walks stay local. GADGET-2 also replaced the geometric opening angle with a relative criterion comparing the cell's estimated truncation error with the body's previous acceleration, which gives more accurate accelerations at equal cost [R27]. Adaptive-mesh codes such as ART, RAMSES and ENZO deposit bodies on nested grids refined where density is high and solve the field equation level by level with multigrid relaxation [R28, R29, R30], the multigrid idea itself being Brandt's 1977 observation that smooth error relaxes fast once restricted to a coarser grid [R31].
+
+The strongest insight shared by these hybrids is that different length scales deserve different solvers, and that a near/far split can be exact in the sense that the two pieces sum to the original kernel. The limiting tension is that two solvers must be tuned together, and a one-sided tree does not conserve momentum, which motivated GADGET-4's FMM option. For this lane, the exact near/far split is already present in the EOM solver's budget: the far-field enclosure owns a declared fraction of the acceleration tolerance and the exact route owns the rest. What the hybrids add is the lesson that the acceptance criterion should be relative to the receiver's actual acceleration scale rather than purely geometric.
+
+### Time stepping and its independence from the force method
+
+Block time steps quantized in powers of two [R32], Wisdom–Holman splitting of the Hamiltonian into Kepler drifts and perturbation kicks [R33], and symplectic multiple-step schemes for close encounters [R34] are integrator choices. They are mostly independent of the force method: block steps run with direct summation, trees, FMM and meshes alike. Two couplings are real. A split-force scheme ties integrator cadence to the split, since the long-range piece is kicked on a long step and the short-range piece is subcycled [R27, R6]. And the force method's continuity constrains the integrator, since discontinuous FMM or treecode forces at cell boundaries make energy conservation depend on cell structure as well as step size [R14]. For this lane the second coupling is the relevant one: a certified remainder interval is continuous by construction, because the published acceleration carries the approximation width rather than a point value that jumps when a body changes cell.
+
+### Learned surrogates and neural operators
+
+Learned emulators predict the outcome of structure formation from linear-theory inputs [R35, R36], and learned message-passing simulators reproduce particle dynamics for a fixed class of systems [R37]. Neural operators, including one that borrows the FMM hierarchy to reach long-range interactions in linear time [R38, R39], are a conceptual bridge. None offers an a priori error bound, and none replaces a force solver in a general dynamical setting. They are outside this lane's scope, because the repository's evidence rules require certified remainders.
+
+### Mixed-sign charges: the closest classical analog
+
+The classical case nearest the architrino problem is electrostatics with positive and negative charges, in plasmas, electrolytes and molecular systems. Two facts from that literature organize the design section. First, a neutral cluster's monopole vanishes, the dipole leads, and the truncation error at a given order falls one power of distance faster, which is why neutral clusters are easier to approximate than same-sign clusters; a colloid treecode paper uses same-sign clusters as its stress test precisely because no cancellation helps [R40]. Second, the acceptance bounds used in practice are built from the absolute moments $\sum_i|q_i|\,|\mathbf r_i-\mathbf r_c|^n$, so the test is as conservative for a neutral cell as for a fully charged cell of the same absolute content [R41, R42]. Practitioners respond by using Ewald methods in periodic systems, by raising the expansion order in FMM until it matches particle-mesh Ewald accuracy [R22], and by carrying full Cartesian Taylor tensors in treecodes, as in Li, Johnston and Krasny's screened-Coulomb treecode [R43]. Barnes-Hut-style treecodes are in production for plasmas: PEPC at Jülich runs a non-recursive Barnes-Hut on a hashed octree for Coulomb and magnetoinductive kernels at full-machine scale [R44, R45], and the Krasny group's boundary-integral treecodes offer a grid-free alternative to particle-in-cell for trapped plasmas and Vlasov–Poisson problems [R46, R47]. The textbook of the field is Pfalzner and Gibbon's *Many-Body Tree Methods in Physics* [R48].
+
+The gap in this literature, as far as the sources gathered record, is that no method exploits the exact equality of the two charge magnitudes to tighten the acceptance bound itself. The design section's matched-pair enclosure is built on that gap.
+
+## Part III: the architrino problem and a candidate algorithm
+
+### Where the architrino problem departs from the treecode problem
+
+The methods above all accelerate the same mathematical object: a sum over sources of an instantaneous, positive-weighted, inverse-square kernel evaluated at the source's present position. The architrino problem accelerates a different object. The [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md) gives the acceleration of receiver $r$ at absolute time $T_r$ as a sum over transmitters $t$ and over the causal roots $T_t$ of each transmitter's retained history,
+
+$$
+\mathbf A_r(T_r)=\kappa\,q_r\sum_{t}\sum_{T_t\in\mathcal C_{r\leftarrow t}(T_r)}\frac{q_t}{|D_t|}\,\frac{\hat{\mathbf r}_t}{r_t^{2}},
+\qquad
+r_t=\|\mathbf X_r(T_r)-\mathbf X_t(T_t)\|=c_f\,(T_r-T_t),
+\qquad
+D_t=c_f-\hat{\mathbf r}_t\cdot\mathbf V_t(T_t).
+$$
+
+Here $\kappa$ is the universal coupling, $q_r$ and $q_t$ are the polarities of receiver and transmitter, each equal to $+\epsilon$ or $-\epsilon$, $\hat{\mathbf r}_t$ is the unit vector from the emission site to the receiver, $\mathcal C_{r\leftarrow t}(T_r)$ is the set of emission times whose expanding wake sphere reaches the receiver event, and $D_t$ is the transmitter-side factor that converts emission density into arrival density. The identity $\kappa\sigma_{tr}|q_tq_r|=\kappa q_tq_r$ has been used to absorb the attraction-or-repulsion sign into the product of polarities. Every numerical instance below sets $c_f=1$.
+
+Five features of this object have no counterpart in the gravitational treecode, and each one changes what a hierarchical algorithm may do. They are listed here and developed in the subsections that follow.
+
+| Feature of the architrino sum | Classical treecode assumption it breaks | Consequence for a hierarchical algorithm |
+| --- | --- | --- |
+| Polarity takes exactly two values, $+\epsilon$ and $-\epsilon$ | All weights positive, so the monopole dominates and the center of mass kills the dipole | A neutral cell has zero monopole and a translation-invariant dipole; the dipole is the leading term and cannot be removed by a choice of center |
+| The source position is the delayed position $\mathbf X_t(T_t)$ on the receiver's past cone | All sources are read at one instant | A cell must be aggregated along the receiver's past cone; members of one cell have different roots, so the aggregation point is a space-time event, not a point |
+| Each hit carries the weight $1/\lvert D_t\rvert$ | The kernel depends on position only | Cell moments are moments of a velocity-weighted emission measure; a velocity-dipole moment enters at the same order as the position dipole |
+| The hit from $t$ to $r$ at $T_r$ and the hit from $r$ to $t$ occur at different absolute times | Pairwise symmetry halves the work and permits mutual cell-cell interactions | No mutual-interaction saving; receiver-side local expansions remain available because receivers in one cell see a source cell through nearby cone slices |
+| A transmitter can receive its own wake when its history is faster than $c_f$ | There is no self-term | The self-hit term is never aggregated; fast transmitters also violate the sub-field-speed condition every far-field route requires |
+
+#### Signed polarity and the vanishing monopole
+
+Let a cell $C$ contain $N_+$ positrinos and $N_-$ electrinos. Its monopole moment is $Q_C=\epsilon\,(N_+-N_-)$, an integer multiple of $\epsilon$ that can be stored exactly with no rounding. For a neutral cell, $Q_C=0$ and the leading far-field term is the dipole $\mathbf p_C=\sum_{t\in C}q_t\,\mathbf X_t$. The dipole of a neutral distribution does not depend on the origin, because shifting every position by $\mathbf a$ changes $\mathbf p_C$ by $Q_C\,\mathbf a=\mathbf 0$. In the gravitational treecode the corresponding choice of the center of mass makes the dipole vanish identically, so a monopole-only tree is already accurate to quadrupole order. For architrinos no choice of center removes the dipole of a neutral cell, so the cheapest useful expansion carries the dipole explicitly and the first neglected term is the quadrupole. The [electrostatic multipole falloff analysis](../mapping-electromagnetism/analysis/electrostatic-multipole-falloff.md) develops the comparison-model version of this cancellation in detail; it is used here only as the mathematics of signed sums, not as a physical premise.
+
+The same feature changes the error picture. The classical opening test estimates the error of the monopole from the net mass of the cell. For signed polarities the worst-case truncation error of a cell is controlled by the absolute sum $\sum_{t\in C}|q_t|=N_C\,\epsilon$, not by $|Q_C|$, because the remainder of each member's expansion is bounded individually and signs do not help a worst-case bound. Salmon and Warren's absolute-error criterion makes the same point for gravity in a different guise. A neutral cell whose actual contribution is tiny therefore carries a large certified worst-case bound unless the algorithm can prove cancellation rather than hope for it. The matched-pair construction below is the lane's answer to that problem, and it is the place where the equality of the two magnitudes does real work.
+
+#### Delay: aggregating on the past cone
+
+In a treecode every source is read at the current step time. In the architrino sum the receiver at $(\mathbf X_r,T_r)$ reads each transmitter at its own root $T_t$, which solves $\|\mathbf X_r(T_r)-\mathbf X_t(T_t)\|=T_r-T_t$. Two members of one spatial cell at distance $d$ from the receiver have roots that differ by about their separation along the line of sight, because the member nearer the receiver is read at a later emission time. A cell is therefore not a point in space; it is a slice of a space-time tube cut by the receiver's past cone.
+
+The natural reference for a cell is a center history $\mathbf X_C(T)$ built from the members' retained histories, for example their unsigned mean position as a function of emission time. The reference root $T_C$ solves $\|\mathbf X_r-\mathbf X_C(T_C)\|=T_r-T_C$. Writing each member as $\mathbf X_t(T)=\mathbf X_C(T)+\boldsymbol\delta_t(T)$ and expanding the member's causal residual about $T_C$ gives the first-order root shift
+
+$$
+\tau_t\equiv T_t-T_C\approx\frac{\hat{\mathbf r}_C\cdot\boldsymbol\delta_t(T_C)}{D_C},
+\qquad
+D_C=1-\hat{\mathbf r}_C\cdot\mathbf V_C(T_C).
+$$
+
+A member displaced toward the receiver has a later root; the factor $1/D_C$ enlarges the shift when the center is moving toward the receiver. The member's effective delayed position is then $\mathbf X_t(T_t)\approx\mathbf X_t(T_C)+\mathbf V_t(T_C)\,\tau_t$, so the quantity the kernel actually sees is the spatial offset plus a velocity-times-root-shift correction. This is the same first-order propagation the EOM solver already certifies in `DelayedRootSensitivity.hpp` for one pair; the design reuses it for a cell about its center. The expansion is legitimate only when every member has exactly one simple root in the slab, which the implemented [far-field enclosure theorem](../app-solver/contracts/far-field-contribution-enclosure.md#enclosure-theorem) guarantees whenever the cell's certified distance bracket satisfies $r^->0$ and its certified speed bound satisfies $\nu_s=1-v^+>0$. Cells that fail either condition are not far-field cells and take the exact route.
+
+A consequence that classical trees do not have is that cell moments are functions of emission time. Because accepted histories are piecewise cubic, the signed position moment $\sum_t q_t\mathbf X_t(T)$ is piecewise cubic in $T$, the signed velocity moment $\sum_t q_t\mathbf V_t(T)$ is piecewise quadratic, and the signed second moment $\sum_t q_t\mathbf X_t(T)\otimes\mathbf X_t(T)$ is piecewise of degree six. Each is an exact polynomial on the slab with no sampling error, computed once per cell and slab and reused for every receiver and every reception time whose cone cuts that slab. Classical Barnes-Hut rebuilds its tree each step; here the moment polynomials are built once per accepted history slab, which the [million-path architecture](../app-solver/contracts/million-path-certified-execution-architecture.md#certified-causal-index) already organizes as a hierarchy over receiver membership, source membership and source time slabs.
+
+#### The velocity weight
+
+The factor $1/|D_t|$ has no gravitational analog. Expanding it about the cell center to first order gives
+
+$$
+\frac{1}{D_t}\approx\frac{1}{D_C}+\frac{\hat{\mathbf r}_C\cdot(\mathbf V_t-\mathbf V_C)}{D_C^{2}},
+$$
+
+so a signed velocity moment $\sum_tq_t(\mathbf V_t-\mathbf V_C)$ enters the cell's far field at the same order as the position dipole, scaled by $1/D_C$. For a slow population, with every speed much less than one, the correction is small and the kernel reduces to the inverse-square kernel evaluated at the delayed position. For a population with members near the wake speed the velocity moment can dominate, and when any member approaches $D_t=0$ the expansion fails; such members are exactly the ones the transversality floor $\kappa_{\mathrm{hit}}$ in the Master Equation excludes from regular charts. The design therefore admits a cell to a moment route only under the same $\nu_s>0$ condition that makes its roots simple.
+
+#### No mutual interaction, but receiver-side expansions survive
+
+Dehnen's mutual cell-cell interactions and every FMM translation rely on the symmetry that the kernel from $i$ to $j$ equals minus the kernel from $j$ to $i$, evaluated at one instant. The architrino hit from $t$ to $r$ at $T_r$ reads $t$'s past; the hit from $r$ to $t$ is a different event at a different absolute time, reading $r$'s past. There is no pairwise symmetry to exploit and no halving of the work.
+
+What survives is the receiver-side half of FMM. Receivers that occupy one cell over one reception slab see a distant source cell through nearly the same cone slice, so the source cell's contribution can be expanded in the receiver position as well, producing a local expansion stored at the receiver cell. The well-separated test must include time: the union of the receivers' past cones over the reception slab must cut the source tube within one emission slab, with the distance bracket and speed condition holding across the whole cut. When that holds, one source-cell evaluation serves every receiver in the cell, which is the step that turns a Barnes-Hut cost into an FMM-like cost. Whether the translation remainders can be certified outward at acceptable width is the open question that BHL-001 would begin to answer.
+
+#### Self-hit stays exact
+
+A transmitter can receive its own earlier wake only when its history has exceeded $c_f$, because a sub-field-speed path never catches its own expanding spheres. Such a path violates the $\nu_s>0$ condition and cannot belong to any far-field cell. The self-hit term is therefore never aggregated: it is computed on the exact route for each path that needs it, and no cell moment includes a receiver's own history. This is simpler than the gravitational case, where the body's own cell must be opened or its self-contribution subtracted, but it means that a population with many super-field-speed members has a large irreducible exact workload regardless of hierarchy.
+
+### A candidate algorithm: certified space-time multipoles on the past cone
+
+The EOM solver already has a hierarchy over receiver membership, source membership and emission slabs, with two routes at each node: prove the node root-free and exclude it, or subdivide toward exact tiles. The implemented far-field enclosure adds a third: prove a pair's whole contribution smaller than its budget slice and replace it by a zero-centered interval. The candidate algorithm adds two more routes between zero-centered enclosure and exact evaluation, ordered by cost, so that each cell is resolved by the cheapest route whose certified remainder fits the budget its members own.
+
+| Route | What is computed | What is certified | Cost per receiver and cell |
+| --- | --- | --- | --- |
+| Excluded | Nothing | Zero lies outside the residual enclosure; no root exists | One interval residual |
+| Zero-centered enclosure (implemented) | Nothing | Whole pair contribution inside $[-B,B]^3$ with $B\propto1/(r^-)^2$ | One bound per pair |
+| Matched-pair enclosure (proposed) | Nothing | Each electrino–positrino pair's net contribution inside a bound $\propto\ell/(r^-)^3$ | One bound per pair, after a matching |
+| Moment expansion (proposed) | Reference root, signed dipole, velocity dipole, mixed moment | Truncated expansion plus an outward remainder $\propto s\sum\ell/(r^-)^4$ | One root and a few polynomial evaluations per cell |
+| Exact tile (implemented) | Every root and every hit | Complete certificates | Full ordered-pair work |
+
+The budget rule is the existing one: each ordered pair owns the slice $\varepsilon_{ij}=f_{\mathrm{FF}}\tau_A/N$, and a cell of $N_C$ members may be admitted to an approximate route only when its certified remainder width fits the sum of its members' slices. Unused slices remain unused. The published receiver acceleration carries the approximate routes' widths as intervals, so the approximation is visible in the result rather than hidden in metadata, exactly as the implemented enclosure does.
+
+#### The matched-pair enclosure: where equal magnitudes do the work
+
+Fix a receiver and a far cell whose members are all sub-field-speed over the slab, and suppose the cell is neutral. Choose any pairing of its electrinos with its positrinos. For one pair with members at delayed positions $\mathbf x_+$ and $\mathbf x_-$ and separation $\boldsymbol\ell=\mathbf x_+-\mathbf x_-$, the pair's net contribution to the receiver is $\epsilon\,[K(\mathbf x_+)-K(\mathbf x_-)]$, where $K$ denotes the weighted kernel $\hat{\mathbf r}/(r^2|D|)$ as a function of the delayed source event. Because the two magnitudes are exactly equal, the difference has no monopole part, and the mean-value theorem bounds it by the kernel's gradient:
+
+$$
+\bigl\|K(\mathbf x_+)-K(\mathbf x_-)\bigr\|\le\|\boldsymbol\ell\|\sup_{\xi\in C}\|\nabla K(\xi)\|.
+$$
+
+For the static inverse-square kernel at unit transmitter factor the gradient is bounded by $2/d^3$ at distance $d$, so a neutral pair's whole contribution is enclosed in a zero-centered interval of radius about $2\kappa\epsilon\,\ell/d^3$, compared with $2\kappa\epsilon/d^2$ for the two members enclosed separately. The gain is the factor $\ell/d$, the pair separation over the distance. If the pair is a bound binary with separation small compared with the cell, that factor is small for every far cell.
+
+A worked instance at $c_f=1$ with $\kappa=1$ and $\epsilon=1$, a budget slice of $10^{-6}$ per pair, and a pair separation $\ell=0.01$ gives the admission distances below. The constants are the static-kernel derivative bounds and ignore the velocity-weight factors $1/\nu_s$ that an actual certificate carries, so the numbers are illustrative of scaling, not certified values.
+
+| Route | Admission inequality | Admission distance $d$ |
+| --- | ---: | ---: |
+| Zero-centered enclosure, each member | $2/d^2\le10^{-6}$ | $d\ge1414$ |
+| Matched-pair enclosure | $2\ell/d^3\le10^{-6}$ | $d\ge27$ |
+| Moment expansion to dipole order, cell size $s=0.1$ | $6\,s\,\ell/d^4\le10^{-6}$ | $d\ge8.8$ |
+
+The admission distance falls from over a thousand units to a few tens by pairing alone, and to under ten with the dipole carried explicitly. Because the cost of the matched-pair route is one bound per pair with no root solve, it is nearly free, and it applies to any neutral cell at any distance where the gradient bound holds, which is the whole sub-field-speed far field.
+
+Two details carry the certification. First, the two members have different roots, so $\boldsymbol\ell$ is the separation of the delayed events, not the equal-time separation; by the root-shift estimate above its length is bounded by $\ell(T_C)\,(1+v^+/\nu_s)$, which the certificate must use. Second, the gradient of the weighted kernel includes the derivative of $1/|D|$ with respect to the emission velocity, so the supremum is taken over the cell's position box, velocity box and root-shift interval together, with outward interval arithmetic. For a cell that is not neutral, the unmatched members take the ordinary zero-centered route; the matched pairs still take the pair route.
+
+The choice of matching does not affect correctness, only tightness. For a population of bound binaries the matching is the assembly identity itself. For a general neutral cell any perfect matching gives a valid bound, and a nearest-neighbor greedy matching in the cell's own coordinates is cheap and close to the minimum-total-separation matching that would give the tightest bound.
+
+**Claim grade: inferred.** The mean-value bound is elementary for the static kernel; extending it to the weighted delayed kernel with different roots requires the certificate construction sketched above, which has not been written out or checked. Falsifier: an independently evaluated exact neutral-pair contribution, under the solver's existing exact-pair certificate, lying outside the matched-pair interval for a cell admitted by the proposed test.
+
+#### The moment expansion: Barnes-Hut with a dipole, on the cone
+
+When a cell's matched-pair bound still exceeds its budget, the next route computes the cell's leading moments and bounds the remainder. The algorithm for one receiver event and one far cell is:
+
+1. Solve the reference root $T_C$ of the cell's center history on the receiver's past cone, with the existing simple-root certificate.
+2. Evaluate the cell's moment polynomials at $T_C$: the signed dipole $\mathbf p_C=\sum_tq_t\boldsymbol\delta_t(T_C)$, the signed velocity dipole $\mathbf u_C=\sum_tq_t(\mathbf V_t(T_C)-\mathbf V_C)$, and the signed mixed moment $\mathsf M_C=\sum_tq_t\,\mathbf V_t(T_C)\otimes\boldsymbol\delta_t(T_C)$ that carries the root-shift correction.
+3. Form the first-order contribution $\kappa q_r\,[\,Q_C\,K_C+\nabla_{\mathbf x}K_C\cdot\mathbf p_C^{\mathrm{eff}}+\partial_{\mathbf v}K_C\cdot\mathbf u_C\,]$, where $K_C$ and its derivatives are evaluated at the reference event and $\mathbf p_C^{\mathrm{eff}}$ is the dipole corrected by the root shift through $\mathsf M_C$ and $\hat{\mathbf r}_C/D_C$.
+4. Bound the second-order remainder outward over the cell's position box, velocity box and root-shift interval. For a neutral cell expanded about its center, the remainder of each matched pair is bounded by $\|\boldsymbol\ell\|\,s\,\sup\|\nabla^2K\|$, so the cell remainder is $\propto s\sum_{\mathrm{pairs}}\ell$ rather than $\propto N_C\,s^2$; this is the same equal-magnitude gain as the previous route, one order higher.
+5. Admit the cell if the remainder width fits the members' budget slices; otherwise subdivide and retry, falling through to exact tiles.
+
+Step 2 is where the exact moment polynomials pay: each evaluation is a handful of cubic-or-lower polynomial evaluations in $T_C$, and the moments were built once for the slab. Step 1 is the one root solve per cell that replaces $N_C$ root solves per member. Step 4 is the Barnes-Hut opening test rewritten as a certified inequality against a budget, with no free parameter $\theta$; the equivalent of $\theta$ is derived from the budget, the cell size and the pair separations, exactly as the implemented enclosure derives its cutoff radius from the budget rather than fixing a distance constant.
+
+**Claim grade: guessed** for the algorithm's cost advantage and **inferred** for its correctness structure, which reuses certified components the solver already has. Falsifier for correctness: an exact-tile evaluation of an admitted cell disagreeing with the expanded value by more than the certified remainder. Falsifier for usefulness: matched measurements under BHL-002 showing no reduction in exact-pair work at equal budget, or a remainder width that forces subdivision down to exact tiles for the populations of interest.
+
+#### What is new relative to Barnes-Hut and its rivals
+
+The classical ingredients are reused: a spatial hierarchy, cell moments, an acceptance test, and exact evaluation of near neighbors. Four departures are specific to equal and opposite point transceivers under a delayed law and do not appear in the surveyed methods.
+
+- **Pairing as a certification device.** The exact equality of the two polarity magnitudes lets a neutral pair's contribution be bounded by a gradient times a separation, producing certified far-field enclosures that decay one power faster than any unsigned bound. Electrostatic treecodes and FMM use signed moments, but they bound truncation error by absolute charge sums; none of the sources gathered for Part II exploits a perfect matching to tighten the bound.
+- **Moment polynomials in emission time.** Because retained histories are exact piecewise cubics, cell moments are exact polynomials on each slab, built once and read at whatever emission time each receiver's cone selects. No surveyed method aggregates sources along a past cone, because none has delay.
+- **Velocity-weighted moments.** The transmitter-side factor makes the signed velocity moment a leading-order term, which has no analog in the position-only kernels of gravity and electrostatics.
+- **Budget-derived acceptance.** The opening criterion is a certified remainder inequality against a declared acceleration budget, inheriting the solver's ledger discipline; there is no tunable $\theta$ whose failure modes Salmon and Warren catalogued.
+
+The departures also set limits. There is no mutual-interaction saving. Super-field-speed members and their self-hits are never aggregated. And the design gives no worst-case subquadratic bound; a dense, fast population degrades to exact tiles, and the million-path architecture's rule that no uncertified multipole claim may conceal that limit continues to govern.
+
+#### Relation to the two videos
+
+The two explainers the operator supplied frame the classical picture that this section departs from. The quadtree walkthrough shows the acceptance test as a fixed ratio with $\theta=0.7$ and no error analysis, which is the free parameter the budget-derived test replaces. The FMM explainer motivates expansions centered on box centers rather than centers of mass so that the convergence radius is predictable, and introduces the local expansion and the translation operators; the receiver-side expansion above is that idea carried onto the past cone, with the caveat that the multipole-to-local translation's remainder must be certified rather than bounded asymptotically. Both videos treat positive masses only, so neither encounters the vanishing monopole or the pairing opportunity that organize the architrino design.
+
+## Status, limits and open questions
+
+What this manuscript establishes is background and a design. The primer and rival survey are factual accounts of published methods, each statement traceable to a source in the list below, with items the research could not confirm marked there. The design in Part III identifies five structural differences between the architrino sum and the classical sums, derives from them a cheap matched-pair enclosure whose bound decays one power faster than any unsigned bound, and specifies a moment-expansion route that carries the dipole, the velocity dipole and the root-shift correction with a certified remainder. The matched-pair bound is elementary for the static kernel and inferred for the weighted delayed kernel; the moment route's correctness structure reuses certified components and its cost advantage is a guess.
+
+What remains open is listed in the [work queue](work-queue.md). The first object, BHL-001, is the certified remainder bound for one space-time cell, stated and proved against the EOM solver's cubic history representation and transmitter-factor floor, with a separately authored check. The second, BHL-002, is the matched measurement that would show whether the new routes admit more pairs than the implemented zero-centered enclosure at equal budget. Beyond those, the receiver-side local expansion and its translation remainder, the treatment of cells that straddle an emission-slab boundary, the matching strategy for neutral cells that are not composed of known binaries, and the irreducible exact workload of super-field-speed members are unresolved. The lane claims no reduction of any population's cost until BHL-002 reports.
+
+## Sources
+
+Sources are listed by the marker used in the text. Items marked unverified were reported by secondary sources or from memory and were not confirmed from a fetched primary page; their use in the text is correspondingly limited. The two videos and the repository document are listed last.
+
+### Barnes-Hut primer
+
+- B1. J. Barnes and P. Hut, "A hierarchical O(N log N) force-calculation algorithm," *Nature* 324, 446–449 (1986), doi:10.1038/324446a0. <https://www.doi.org/10.1038/324446A0>
+- B2. A. W. Appel, "An efficient program for many-body simulation," *SIAM Journal on Scientific and Statistical Computing* 6, 85–103 (1985), doi:10.1137/0906008. Abstract wording unverified; the tree construction is described from University of Maryland lecture notes and from B3. <https://www.astro.umd.edu/~ricotti/NEWWEB/teaching/ASTR415/class21.pdf>
+- B3. M. S. Warren and J. K. Salmon, "A parallel hashed oct-tree N-body algorithm," *Supercomputing '93*, 12–21 (1993), doi:10.1145/169627.169640. <https://www.cs.umd.edu/class/fall2019/cmsc714/readings/Warren-nbody.pdf>
+- B4. Wikipedia, "Barnes–Hut simulation." <https://en.wikipedia.org/wiki/Barnes%E2%80%93Hut_simulation>
+- B5. M. Burtscher and K. Pingali, "An efficient CUDA implementation of the tree-based Barnes Hut n-body algorithm," chapter 6 in *GPU Computing Gems Emerald Edition*, Morgan Kaufmann (2011), 75–92. <https://userweb.cs.txstate.edu/~mb92/papers/gcg11.pdf>
+- B6. NEMO manual page for Barnes' treecode, parameters `theta`, `eps`, `usequad`, and the `bh86` and `sw94` acceptance options. <https://bima.astro.umd.edu/nemo/man_html/treecode1.1.html>
+- B8. J. Bédorf, E. Gaburov and S. Portegies Zwart, "A sparse octree gravitational N-body code that runs entirely on the GPU processor," *Journal of Computational Physics* 231, 2825–2839 (2012), doi:10.1016/j.jcp.2011.12.024. <https://arxiv.org/abs/1106.1900>
+- B9. d3-force documentation, many-body force. <https://d3js.org/d3-force/many-body>
+- B10. J. Dubinski, "A parallel tree code," *New Astronomy* 1, 133 (1996). <https://ar5iv.labs.arxiv.org/html/astro-ph/9603097>
+- B11. W. Dehnen and J. I. Read, "N-body simulations of gravitational dynamics," *European Physical Journal Plus* 126, 55 (2011), doi:10.1140/epjp/i2011-11055-3. Same source as R6. <https://ar5iv.labs.arxiv.org/html/1105.1082>
+- B12. J. K. Salmon, *Parallel Hierarchical N-body Methods*, PhD thesis, California Institute of Technology (1991), doi:10.7907/3J5V-VR08. <https://thesis.caltech.edu/6291>
+- B13. J. Barnes and P. Hut, "Error analysis of a tree code," *Astrophysical Journal Supplement* 70, 389–417 (1989), doi:10.1086/191343.
+- B14. Secondary summary of monopole versus quadrupole accuracy at given $\theta$. <https://arxiv.org/pdf/1812.07313>
+- B15. J. K. Salmon and M. S. Warren, "Skeletons from the treecode closet," *Journal of Computational Physics* 111, 136–155 (1994), doi:10.1006/jcph.1994.1050. Contents reported from B3, B10, B11 and B17 because the available PDF is a scan. <https://www.thesalmons.org/john/pubs/skeletons.pdf>
+- B16. J. E. Barnes, contribution to *Computational Astrophysics*, eds. J. Barnes et al., Springer (1994), as cited by B10 for the $\delta$ offset criterion. Page numbers unverified.
+- B17. GOTHIC code paper restating the absolute-error acceptance inequality. <https://arxiv.org/pdf/1610.07279>
+- B18. J. E. Barnes, "A modified tree code: Don't laugh; it runs," *Journal of Computational Physics* 87, 161–170 (1990), doi:10.1016/0021-9991(90)90232-P. Grouping device described via <https://arxiv.org/pdf/astro-ph/0004249>.
+- B19. V. Springel, "The cosmological simulation code GADGET-2," *Monthly Notices of the Royal Astronomical Society* 364, 1105–1134 (2005), doi:10.1111/j.1365-2966.2005.09655.x. Same source as R27. <https://ar5iv.labs.arxiv.org/html/astro-ph/0505010>
+- B20. W. Dehnen, "A very fast and momentum-conserving tree code," *Astrophysical Journal Letters* 536, L39 (2000), doi:10.1086/312724 (DOI unverified via Crossref). <https://arxiv.org/abs/astro-ph/0003209>
+- B21. W. Dehnen, "A hierarchical O(N) force calculation algorithm," *Journal of Computational Physics* 179, 27–42 (2002), doi:10.1006/jcph.2002.7026. <https://arxiv.org/abs/astro-ph/0202512>
+- B22. SC18 Test of Time award announcement for B3, and Salmon's publication list recording the 1992 and 1997 Gordon Bell prizes. <https://sc18.supercomputing.org/sc-18-names-john-salmon-mike-warren-test-of-time-award-winners-for-their-paper-titled-a-parallel-hashed-oct-tree-n-body-algorithm/> and <https://www.thesalmons.org/john/pubs/references.html>
+- B23. L. van der Maaten, "Accelerating t-SNE using tree-based algorithms," *Journal of Machine Learning Research* 15, 3221–3245 (2014). <https://jmlr.org/papers/v15/vandermaaten14a.html>
+- B24. P. Li, H. Johnston and R. Krasny, "A Cartesian treecode for screened Coulomb interactions," *Journal of Computational Physics* 228, 3858–3868 (2009), doi:10.1016/j.jcp.2009.02.022. Same source as R43. <https://dept.math.lsa.umich.edu/~krasny/paper_jcp_2009.pdf>
+- B25. J. Kurzak and B. M. Pettitt, "Fast multipole methods for particle dynamics," *Molecular Simulation* 32, 775–790 (2006), doi:10.1080/08927020600991161. Same source as R23. <https://pmc.ncbi.nlm.nih.gov/articles/PMC2634295>
+- B26. L. Hernquist and N. Katz, "TreeSPH: a unification of SPH with the hierarchical tree method," *Astrophysical Journal Supplement* 70, 419–446 (1989). <https://inspirehep.net/literature/24800>
+
+### Rival methods
+
+- R1. D. Sugimoto, Y. Chikada, J. Makino, T. Ito, T. Ebisuzaki and M. Umemura, *Nature* 345, 33 (1990). Title unverified; author list, volume and page confirmed from GRAPE-4 reference lists.
+- R2. J. Makino, T. Fukushige, M. Koga and K. Namura, "GRAPE-6: massively-parallel special-purpose computer for astrophysical particle simulations," *Publications of the Astronomical Society of Japan* 55, 1163 (2003). <https://arxiv.org/pdf/astro-ph/0310702>. GRAPE-4 figures from the GRAPE-4 teraflops paper, <https://resolve.cambridge.org/core/services/aop-cambridge-core/content/view/439380C80924D4655786944CA626939D/S1539299600018244a.pdf/grape-4-a-teraflops-machine-for-n-body-simulations.pdf>
+- R3. E. Gaburov, S. Harfst and S. Portegies Zwart, "SAPPORO: a way to turn your graphics cards into a GRAPE-6," *New Astronomy* 14, 630–637 (2009). <https://arxiv.org/pdf/0902.4463>
+- R4. K. Nitadori and S. J. Aarseth, "Accelerating NBODY6 with graphics processing units," *Monthly Notices of the Royal Astronomical Society* (2012). <https://pdf.arxiv.org/pdf/1205.1222>
+- R5. L. Wang et al., "NBODY6++GPU," *Monthly Notices of the Royal Astronomical Society* 450, 4070 (2015). <https://academic.oup.com/mnras/article/450/4/4070/990854>
+- R6. W. Dehnen and J. I. Read (2011), as B11.
+- R7. L. Greengard and V. Rokhlin, "A fast algorithm for particle simulations," *Journal of Computational Physics* 73, 325–348 (1987), doi:10.1016/0021-9991(87)90140-9. <https://math.nyu.edu/~greengar/cgr_88.pdf>
+- R8. L. Ying, G. Biros and D. Zorin, "A kernel-independent adaptive fast multipole algorithm in two and three dimensions," *Journal of Computational Physics* 196, 591–626 (2004). DOI unverified. <https://perso.ensta.fr/~mbonnet/biros_jcp.pdf>
+- R9. W. Fong and E. Darve, "The black-box fast multipole method," *Journal of Computational Physics* 228, 8712–8725 (2009). DOI unverified. <https://perso.ensta.fr/~mbonnet/fong_darve_09.pdf>
+- R10. W. Dehnen (2000), as B20.
+- R11. W. Dehnen (2002), as B21.
+- R12. R. Yokota, "An FMM based on dual tree traversal for many-core architectures," *Journal of Algorithms and Computational Technology* 7, 301 (2013). Journal details unverified. <https://arxiv.org/abs/1209.3516v3>
+- R13. R. Yokota and L. A. Barba, "A tuned and scalable fast multipole method as a preeminent algorithm for exascale systems," *International Journal of High Performance Computing Applications* (2012), doi:10.1177/1094342011429952, <https://arxiv.org/abs/1106.2176v2>; T. Wang, R. Yokota and L. A. Barba, "ExaFMM," *Journal of Open Source Software* 6, 3145 (2021), doi:10.21105/joss.03145.
+- R14. D. S. Shamshirgar et al. (2019), regularization of FMM force discontinuities, mechanism explained in <https://arxiv.org/pdf/2212.13080>.
+- R15. D. Potter, J. Stadel and R. Teyssier, "PKDGRAV3: beyond trillion particle cosmological simulations," *Computational Astrophysics and Cosmology* 4, 2 (2017), doi:10.1186/s40668-017-0021-1. <https://arxiv.org/pdf/1609.08621>
+- R16. V. Springel, R. Pakmor, O. Zier and M. Reinecke, "Simulating cosmic structure formation with the GADGET-4 code," *Monthly Notices of the Royal Astronomical Society* 506, 2871–2949 (2021), doi:10.1093/mnras/stab1855. <https://arxiv.org/abs/2010.03567>
+- R17. M. Schaller et al., "SWIFT," *Monthly Notices of the Royal Astronomical Society* 530, 2378 (2024). <https://arxiv.org/html/2305.13380v2>
+- R18. R. W. Hockney and J. W. Eastwood, *Computer Simulation Using Particles*, Institute of Physics Publishing (1988), ISBN 978-0-85274-392-8. Earlier 1981 edition unverified.
+- R19. P. P. Ewald, *Annalen der Physik* 369, 253–287 (1921), doi:10.1002/andp.19213690304.
+- R20. T. Darden, D. York and L. Pedersen, "Particle mesh Ewald: an N·log(N) method for Ewald sums in large systems," *Journal of Chemical Physics* 98, 10089–10092 (1993), doi:10.1063/1.464397.
+- R21. U. Essmann, L. Perera, M. L. Berkowitz, T. Darden, H. Lee and L. G. Pedersen, "A smooth particle mesh Ewald method," *Journal of Chemical Physics* 103, 8577–8593 (1995), doi:10.1063/1.470117.
+- R22. B. Kohnke, C. Kutzner and H. Grubmüller, "A GPU-accelerated fast multipole method for GROMACS," *Journal of Chemical Theory and Computation* 16, 6938–6949 (2020), doi:10.1021/acs.jctc.0c00744. <https://pmc.ncbi.nlm.nih.gov/articles/PMC7660746>
+- R23. J. Kurzak and B. M. Pettitt (2006), as B25.
+- R24. A. Arnold et al., "Comparison of scalable fast methods for long-range interactions," *Physical Review E* 88, 063308 (2013), doi:10.1103/PhysRevE.88.063308. <https://lammps.org/abstracts/abstract.3750.html>
+- R25. G. Xu, "A new parallel N-body gravity solver: TPM," *Astrophysical Journal Supplement* 98, 355 (1995), doi:10.1086/192166. <https://arxiv.org/abs/astro-ph/9409021>
+- R26. J. S. Bagla, "TreePM: a code for cosmological N-body simulations," *Journal of Astrophysics and Astronomy* 23, 185–196 (2002), doi:10.1007/BF02702282. <https://arxiv.org/abs/astro-ph/9911025v2>
+- R27. V. Springel (2005), as B19.
+- R28. A. V. Kravtsov, A. A. Klypin and A. M. Khokhlov, "Adaptive Refinement Tree," *Astrophysical Journal Supplement* 111, 73 (1997). <https://arxiv.org/abs/astro-ph/9701195>
+- R29. R. Teyssier, "Cosmological hydrodynamics with adaptive mesh refinement: RAMSES," *Astronomy and Astrophysics* 385, 337–364 (2002); T. Guillet and R. Teyssier, *Journal of Computational Physics* 230, 4756–4771 (2011), <https://arxiv.org/pdf/1104.1703>.
+- R30. G. L. Bryan et al., "ENZO," *Astrophysical Journal Supplement* 211, 19 (2014); J.-C. Passy and G. L. Bryan (2014), <https://arxiv.org/pdf/1410.0010>; ENZO gravity documentation, <https://enzo.readthedocs.io/en/latest/physics/gravity.html>.
+- R31. A. Brandt, "Multi-level adaptive solutions to boundary-value problems," *Mathematics of Computation* 31, 333–390 (1977), doi:10.1090/S0025-5718-1977-0431719-X.
+- R32. S. L. W. McMillan, in P. Hut and S. L. W. McMillan (eds.), *The Use of Supercomputers in Stellar Dynamics*, Lecture Notes in Physics 267, Springer (1986). <https://link.springer.com/chapter/10.1007/BFb0116405>
+- R33. J. Wisdom and M. Holman, "Symplectic maps for the n-body problem," *Astronomical Journal* 102, 1528–1538 (1991), doi:10.1086/115978.
+- R34. M. J. Duncan, H. F. Levison and M. H. Lee, "A multiple time step symplectic algorithm for integrating close encounters," *Astronomical Journal* 116, 2067–2077 (1998), doi:10.1086/300541.
+- R35. S. He et al., "Learning to predict the cosmological structure formation," *Proceedings of the National Academy of Sciences* 116, 13825–13832 (2019). <https://arxiv.org/pdf/1811.06533>
+- R36. D. Jamieson et al., *Astrophysical Journal* 952, 145 (2023); COCA (2024), <https://arxiv.org/pdf/2409.02154>.
+- R37. A. Sanchez-Gonzalez et al., "Learning to simulate complex physics with graph networks," *ICML*, PMLR 119, 8459–8468 (2020). <https://arxiv.org/abs/2002.09405v2>
+- R38. Z. Li et al., "Fourier neural operator for parametric partial differential equations," *ICLR* (2021). <https://arxiv.org/pdf/2010.08895v2>
+- R39. Z. Li et al., "Multipole graph neural operator for parametric partial differential equations," *NeurIPS* (2020). <https://papers.neurips.cc/paper_files/paper/2020/file/4b21cf96d4cf612f239a6c322b10c8fe-Paper.pdf>
+- R40. Colloid treecode paper using same-sign clusters as the stress test. <https://arxiv.org/pdf/1305.1825>. Dust-plasma treecode note on cancellation. <https://arxiv.org/pdf/1605.06173>
+- R41. A. Ihler, lecture notes on the Greengard–Rokhlin error bound in terms of total absolute charge. <https://ics.uci.edu/~ihler/papers/ihler_area.pdf>
+- R42. A. Grama, V. Sarin and A. Sameh, "Improving error bounds for multipole-based treecodes," *HiPC* (1998). <https://people.engr.tamu.edu/sarin/Publications/HiPC98-91940073.pdf>
+- R43. P. Li, H. Johnston and R. Krasny (2009), as B24.
+- R44. M. Winkel, R. Speck, H. Hübner, L. Arnold, R. Krause and P. Gibbon, "A massively parallel, multi-disciplinary Barnes–Hut tree code for extreme-scale N-body simulations," *Computer Physics Communications* 183, 880–889 (2012). <https://search.usi.ch/en/publications/17496>. PEPC 2.1.0 release, <https://zenodo.org/records/11035167>.
+- R45. P. Gibbon et al., "Progress in mesh-free plasma simulation with parallel tree codes," *IEEE Transactions on Plasma Science* 38, 2367–2376 (2010).
+- R46. A. J. Christlieb, R. Krasny and J. P. Verboncoeur, *Computer Physics Communications* 164, 306–310 (2004), <https://dept.math.lsa.umich.edu/~krasny/paper_cpc_2004.pdf>; A. J. Christlieb, R. Krasny, J. P. Verboncoeur, J. W. Emhoff and I. D. Boyd, "Grid-free plasma simulation techniques," *IEEE Transactions on Plasma Science* 34, 149 (2006), <https://dept.math.lsa.umich.edu/~krasny/paper_ieee_2006.pdf>.
+- R47. R. Sandberg, R. Krasny and A. Thomas, FARRSIGHT Vlasov–Poisson treecode, *Journal of Computational Physics* 523, 113664 (2025). <https://dept.math.lsa.umich.edu/~krasny/publications.html>
+- R48. S. Pfalzner and P. Gibbon, *Many-Body Tree Methods in Physics*, Cambridge University Press (1996). <https://www.cambridge.org/core/books/many-body-tree-methods-in-physics/74A783F229C08A4BE8D2982FA0F58960>
+- R49. W. Dehnen, "A fast multipole method for stellar dynamics," *Computational Astrophysics and Cosmology* 1, 1 (2014), doi:10.1186/s40668-014-0001-7. <https://arxiv.org/pdf/1405.2255>
+
+### Videos and repository documents
+
+- V1. Keyframe Codes, "The Fastest Gravity Algorithm You've Never Heard Of: Fast Multipole Method," YouTube, uploaded 2026-07-26, 30:32. Content summarized from the published description, chapter list and automatic captions. <https://www.youtube.com/watch?v=FhMftauQZqU>
+- V2. William Y. Feng, "Quadtrees and The Barnes-Hut Algorithm: The Making of a Gravity Simulation," YouTube, uploaded 2022-01-19, 17:20. Content summarized from the published description, chapter list, automatic captions and the linked Processing source, which sets `theta = 0.7`. <https://www.youtube.com/watch?v=tOlKLJ4WmSE>
+- S1. [Million-path certified execution architecture](../app-solver/contracts/million-path-certified-execution-architecture.md), scale model and complexity limit.

@@ -1,0 +1,10 @@
+controls: ALL PASS (4.6 s)
+   pass (i) known: K=0 great circle at v=1/2 lies inside the outward-rounded Taylor enclosure (interval components widened by the tail bound) at 50 points
+   pass (ii) negative: a provably invalid majorant constant min(M/20, 0.9 |c_1|) is caught by the coefficient-domination check; the true M passes
+sixpole-V2 member 0 (q=+1): interval [0, 0.061275] (lower-rounded); speed enclosure at end [0.4388299378, 0.4388299478]; eps_end 5.014e-09; max coefficient width 2.81e-41; 6.0 s
+sixpole-V2 member 1 (q=+1): interval [0, 0.061275] (lower-rounded); speed enclosure at end [0.4388299378, 0.4388299478]; eps_end 5.014e-09; max coefficient width 2.81e-41; 6.5 s
+sixpole-V2 member 2 (q=+1): interval [0, 0.061275] (lower-rounded); speed enclosure at end [0.4388299378, 0.4388299478]; eps_end 5.014e-09; max coefficient width 2.81e-41; 6.4 s
+sixpole-V2 member 3 (q=-1): interval [0, 0.061275] (lower-rounded); speed enclosure at end [0.4388299378, 0.4388299478]; eps_end 5.014e-09; max coefficient width 2.81e-41; 6.1 s
+sixpole-V2 member 4 (q=-1): interval [0, 0.061275] (lower-rounded); speed enclosure at end [0.4388299378, 0.4388299478]; eps_end 5.014e-09; max coefficient width 2.81e-41; 6.0 s
+sixpole-V2 member 5 (q=-1): interval [0, 0.061275] (lower-rounded); speed enclosure at end [0.4388299378, 0.4388299478]; eps_end 5.014e-09; max coefficient width 2.81e-41; 6.0 s
+total wall 41.6 s

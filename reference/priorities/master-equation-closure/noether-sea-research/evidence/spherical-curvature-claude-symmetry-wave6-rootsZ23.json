@@ -1,0 +1,2152 @@
+{
+ "controls": [
+  {
+   "name": "known: no-delay Family A g=1 counts 2 (justified)",
+   "count": 2,
+   "justified": true,
+   "pass": true
+  },
+  {
+   "name": "known: out-of-plane m=1 h(0)=0 and real root near -(13/12)g at g=1e-3",
+   "root": -0.001083917408540997,
+   "pass": true
+  },
+  {
+   "name": "negative: shifted contour Re<=0.4 (Family A, g=1) counts 2 fewer",
+   "full": 12,
+   "shifted": 10,
+   "pass": true
+  }
+ ],
+ "results": {
+  "z m=2": [
+   {
+    "label": "z m=2",
+    "g": 4.0,
+    "rectangle": [
+     [
+      -4.0,
+      5.0
+     ],
+     [
+      -40.0,
+      40.0
+     ]
+    ],
+    "right_strip_from": -0.01,
+    "modulus_bound_Re>=0": 3.088624405433429,
+    "full_count": 21,
+    "full_justified": true,
+    "newton_full": 21,
+    "full_match": true,
+    "right_count": 2,
+    "right_justified": true,
+    "newton_right": 2,
+    "dominant_certified": true,
+    "dominant": [
+     0.5673941323412721,
+     -2.0040579958816713
+    ],
+    "roots_right": [
+     [
+      0.5673941323412721,
+      -2.0040579958816713
+     ],
+     [
+      0.567394132341272,
+      2.004057995881671
+     ]
+    ],
+    "max_samples": 2000,
+    "segments": [
+     {
+      "segment": [
+       [
+        -4.0,
+        -40.0
+       ],
+       [
+        5.0,
+        -40.0
+       ]
+      ],
+      "Lip": 4640.851088535679,
+      "samples": 2000,
+      "spacing": 0.0045,
+      "min_abs_h": 1597.6931770970177,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        5.0,
+        -40.0
+       ],
+       [
+        5.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.64980579126669,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 29.29659600955173,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        5.0,
+        40.0
+       ],
+       [
+        -4.0,
+        40.0
+       ]
+      ],
+      "Lip": 4640.851088535679,
+      "samples": 2000,
+      "spacing": 0.0045,
+      "min_abs_h": 1597.6931770970177,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 4640.627516021661,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 237.45491935897937,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        -40.0
+       ],
+       [
+        5.0,
+        -40.0
+       ]
+      ],
+      "Lip": 87.03960799516774,
+      "samples": 2000,
+      "spacing": 0.002505,
+      "min_abs_h": 1597.6931676262632,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        5.0,
+        -40.0
+       ],
+       [
+        5.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.64980579126669,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 29.29659600955173,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        5.0,
+        40.0
+       ],
+       [
+        -0.01,
+        40.0
+       ]
+      ],
+      "Lip": 87.03960799516774,
+      "samples": 2000,
+      "spacing": 0.002505,
+      "min_abs_h": 1597.6931676262632,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        40.0
+       ],
+       [
+        -0.01,
+        -40.0
+       ]
+      ],
+      "Lip": 86.41703301218222,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 4.321191331151645,
+      "justified": true
+     }
+    ]
+   },
+   {
+    "label": "z m=2",
+    "g": 2.0,
+    "rectangle": [
+     [
+      -4.0,
+      4.0
+     ],
+     [
+      -40.0,
+      40.0
+     ]
+    ],
+    "right_strip_from": -0.01,
+    "modulus_bound_Re>=0": 2.183987261620246,
+    "full_count": 19,
+    "full_justified": true,
+    "newton_full": 19,
+    "full_match": true,
+    "right_count": 2,
+    "right_justified": true,
+    "newton_right": 2,
+    "dominant_certified": true,
+    "dominant": [
+     0.39950893914044205,
+     -1.5971119452148608
+    ],
+    "roots_right": [
+     [
+      0.39950893914044205,
+      -1.5971119452148608
+     ],
+     [
+      0.39950893914044205,
+      1.5971119452148608
+     ]
+    ],
+    "max_samples": 8000,
+    "segments": [
+     {
+      "segment": [
+       [
+        -4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 2360.513260495314,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1599.0489430909106,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.43645715118546,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 18.17107048189959,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        40.0
+       ]
+      ],
+      "Lip": 2360.513260495314,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1599.0489430909106,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 2360.513260495314,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 102.59419447406047,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 83.60752022505824,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.0489386638324,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.43645715118546,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 18.17107048189959,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -0.01,
+        40.0
+       ]
+      ],
+      "Lip": 83.60752022505824,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.0489386638324,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        40.0
+       ],
+       [
+        -0.01,
+        -40.0
+       ]
+      ],
+      "Lip": 83.20851775609108,
+      "samples": 8000,
+      "spacing": 0.01,
+      "min_abs_h": 1.9038383484918984,
+      "justified": true
+     }
+    ]
+   },
+   {
+    "label": "z m=2",
+    "g": 1.0,
+    "rectangle": [
+     [
+      -4.0,
+      4.0
+     ],
+     [
+      -40.0,
+      40.0
+     ]
+    ],
+    "right_strip_from": -0.01,
+    "modulus_bound_Re>=0": 1.5443122027167144,
+    "full_count": 17,
+    "full_justified": true,
+    "newton_full": 17,
+    "full_match": true,
+    "right_count": 2,
+    "right_justified": true,
+    "newton_right": 2,
+    "dominant_certified": true,
+    "dominant": [
+     0.2381685333617231,
+     -1.230889065550661
+    ],
+    "roots_right": [
+     [
+      0.2381685333617231,
+      -1.230889065550661
+     ],
+     [
+      0.2381685333617231,
+      1.230889065550661
+     ]
+    ],
+    "max_samples": 32000,
+    "segments": [
+     {
+      "segment": [
+       [
+        -4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 1220.4561327321405,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1599.6115051182035,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.41773106007629,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 17.085535240949795,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        40.0
+       ]
+      ],
+      "Lip": 1220.4561327321405,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1599.6115051182035,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 1220.4561327321405,
+      "samples": 8000,
+      "spacing": 0.01,
+      "min_abs_h": 13.796116901484048,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 82.0032625970127,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.6115031147535,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.41773106007629,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 17.085535240949795,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -0.01,
+        40.0
+       ]
+      ],
+      "Lip": 82.0032625970127,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.6115031147535,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        40.0
+       ],
+       [
+        -0.01,
+        -40.0
+       ]
+      ],
+      "Lip": 81.60426012804554,
+      "samples": 32000,
+      "spacing": 0.0025,
+      "min_abs_h": 0.7313583507897705,
+      "justified": true
+     }
+    ]
+   },
+   {
+    "label": "z m=2",
+    "g": 0.5,
+    "rectangle": [
+     [
+      -4.0,
+      4.0
+     ],
+     [
+      -40.0,
+      40.0
+     ]
+    ],
+    "right_strip_from": -0.01,
+    "modulus_bound_Re>=0": 1.091993630810123,
+    "full_count": 7,
+    "full_justified": true,
+    "newton_full": 7,
+    "full_match": true,
+    "right_count": 2,
+    "right_justified": true,
+    "newton_right": 2,
+    "dominant_certified": true,
+    "dominant": [
+     0.12310395865564602,
+     -0.9123557955206871
+    ],
+    "roots_right": [
+     [
+      0.12310395865564602,
+      -0.9123557955206871
+     ],
+     [
+      0.12310395865564601,
+      0.9123557955206871
+     ]
+    ],
+    "max_samples": 32000,
+    "segments": [
+     {
+      "segment": [
+       [
+        -4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 650.4275688505538,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1599.8384607601731,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.40836801452171,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 16.542767620474898,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        40.0
+       ]
+      ],
+      "Lip": 650.4275688505538,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1599.8384607601731,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 650.4275688505538,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 27.64723895387164,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 81.2011337829899,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.8384595424168,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.40836801452171,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 16.542767620474898,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -0.01,
+        40.0
+       ]
+      ],
+      "Lip": 81.2011337829899,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.8384595424168,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        40.0
+       ],
+       [
+        -0.01,
+        -40.0
+       ]
+      ],
+      "Lip": 80.80213131402274,
+      "samples": 32000,
+      "spacing": 0.0025,
+      "min_abs_h": 0.25868681138954425,
+      "justified": true
+     }
+    ]
+   },
+   {
+    "label": "z m=2",
+    "g": 0.25,
+    "rectangle": [
+     [
+      -4.0,
+      4.0
+     ],
+     [
+      -40.0,
+      40.0
+     ]
+    ],
+    "right_strip_from": -0.01,
+    "modulus_bound_Re>=0": 0.7721561013583572,
+    "full_count": 7,
+    "full_justified": true,
+    "newton_full": 7,
+    "full_match": true,
+    "right_count": 2,
+    "right_justified": true,
+    "newton_right": 2,
+    "dominant_certified": true,
+    "dominant": [
+     0.059089004850084725,
+     0.6570254339248977
+    ],
+    "roots_right": [
+     [
+      0.059089004850084725,
+      0.6570254339248977
+     ],
+     [
+      0.05908900485008472,
+      -0.6570254339248977
+     ]
+    ],
+    "max_samples": 128000,
+    "segments": [
+     {
+      "segment": [
+       [
+        -4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 365.4132869097605,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1599.930046231282,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.40368649174441,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 16.27138381023745,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        40.0
+       ]
+      ],
+      "Lip": 365.4132869097605,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1599.930046231282,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 365.4132869097605,
+      "samples": 32000,
+      "spacing": 0.0025,
+      "min_abs_h": 1.0324639757164555,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 80.80006937597851,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.9300420634806,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.40368649174441,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 16.27138381023745,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -0.01,
+        40.0
+       ]
+      ],
+      "Lip": 80.80006937597851,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.9300420634806,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        40.0
+       ],
+       [
+        -0.01,
+        -40.0
+       ]
+      ],
+      "Lip": 80.40106690701136,
+      "samples": 128000,
+      "spacing": 0.000625,
+      "min_abs_h": 0.09218902484786123,
+      "justified": true
+     }
+    ]
+   },
+   {
+    "label": "z m=2",
+    "g": 0.1,
+    "rectangle": [
+     [
+      -4.0,
+      4.0
+     ],
+     [
+      -40.0,
+      40.0
+     ]
+    ],
+    "right_strip_from": -0.01,
+    "modulus_bound_Re>=0": 0.48835439789764873,
+    "full_count": 5,
+    "full_justified": true,
+    "newton_full": 5,
+    "full_match": true,
+    "right_count": 2,
+    "right_justified": true,
+    "newton_right": 2,
+    "dominant_certified": true,
+    "dominant": [
+     0.02220526133138577,
+     0.4180086878864869
+    ],
+    "roots_right": [
+     [
+      0.02220526133138577,
+      0.4180086878864869
+     ],
+     [
+      0.022205261331385763,
+      -0.4180086878864869
+     ]
+    ],
+    "max_samples": 512000,
+    "segments": [
+     {
+      "segment": [
+       [
+        -4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 194.40471774528447,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1599.9751485022332,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.40087757807804,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 16.10855352409498,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        40.0
+       ]
+      ],
+      "Lip": 194.40471774528447,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1599.9751485022332,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 194.40471774528447,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 19.908736362814157,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 80.55943073177167,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.9751486600726,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.40087757807804,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 16.10855352409498,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -0.01,
+        40.0
+       ]
+      ],
+      "Lip": 80.55943073177167,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.9751486600726,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        40.0
+       ],
+       [
+        -0.01,
+        -40.0
+       ]
+      ],
+      "Lip": 80.16042826280452,
+      "samples": 512000,
+      "spacing": 0.00015625,
+      "min_abs_h": 0.026936266731612448,
+      "justified": true
+     }
+    ]
+   }
+  ],
+  "z m=3": [
+   {
+    "label": "z m=3",
+    "g": 4.0,
+    "rectangle": [
+     [
+      -4.0,
+      5.0
+     ],
+     [
+      -40.0,
+      40.0
+     ]
+    ],
+    "right_strip_from": -0.01,
+    "modulus_bound_Re>=0": 3.7827769002094884,
+    "full_count": 22,
+    "full_justified": true,
+    "newton_full": 22,
+    "full_match": true,
+    "right_count": 2,
+    "right_justified": true,
+    "newton_right": 2,
+    "dominant_certified": true,
+    "dominant": [
+     0.8467357285070785,
+     -1.8771796695179748
+    ],
+    "roots_right": [
+     [
+      0.8467357285070785,
+      -1.8771796695179748
+     ],
+     [
+      0.8467357285070783,
+      1.8771796695179748
+     ]
+    ],
+    "max_samples": 512000,
+    "segments": [
+     {
+      "segment": [
+       [
+        -4.0,
+        -40.0
+       ],
+       [
+        5.0,
+        -40.0
+       ]
+      ],
+      "Lip": 6220.121612546642,
+      "samples": 2000,
+      "spacing": 0.0045,
+      "min_abs_h": 749.7242527058133,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        5.0,
+        -40.0
+       ],
+       [
+        5.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.67698869961812,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 29.323993509675525,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        5.0,
+        40.0
+       ],
+       [
+        -4.0,
+        40.0
+       ]
+      ],
+      "Lip": 6220.121612546642,
+      "samples": 2000,
+      "spacing": 0.0045,
+      "min_abs_h": 749.7242527058129,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 6219.898040032624,
+      "samples": 512000,
+      "spacing": 0.00015625,
+      "min_abs_h": 2.9056536409446685,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        -40.0
+       ],
+       [
+        5.0,
+        -40.0
+       ]
+      ],
+      "Lip": 92.43643716732325,
+      "samples": 2000,
+      "spacing": 0.002505,
+      "min_abs_h": 1598.291990136098,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        5.0,
+        -40.0
+       ],
+       [
+        5.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.67698869961812,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 29.323993509675525,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        5.0,
+        40.0
+       ],
+       [
+        -0.01,
+        40.0
+       ]
+      ],
+      "Lip": 92.43643716732325,
+      "samples": 2000,
+      "spacing": 0.002505,
+      "min_abs_h": 1598.291990136098,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        40.0
+       ],
+       [
+        -0.01,
+        -40.0
+       ]
+      ],
+      "Lip": 91.81386218433772,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 8.132691209270133,
+      "justified": true
+     }
+    ]
+   },
+   {
+    "label": "z m=3",
+    "g": 2.0,
+    "rectangle": [
+     [
+      -4.0,
+      4.0
+     ],
+     [
+      -40.0,
+      40.0
+     ]
+    ],
+    "right_strip_from": -0.01,
+    "modulus_bound_Re>=0": 2.6748271978539573,
+    "full_count": 20,
+    "full_justified": true,
+    "newton_full": 20,
+    "full_match": true,
+    "right_count": 2,
+    "right_justified": true,
+    "newton_right": 2,
+    "dominant_certified": true,
+    "dominant": [
+     0.6865747598255395,
+     -1.5447183737170935
+    ],
+    "roots_right": [
+     [
+      0.6865747598255395,
+      -1.5447183737170935
+     ],
+     [
+      0.6865747598255394,
+      1.5447183737170933
+     ]
+    ],
+    "max_samples": 8000,
+    "segments": [
+     {
+      "segment": [
+       [
+        -4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 3150.1485225007955,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1042.8175424951496,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.47374160208983,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 18.209000820032966,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        40.0
+       ]
+      ],
+      "Lip": 3150.1485225007955,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1042.8175424951496,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 3150.1485225007955,
+      "samples": 8000,
+      "spacing": 0.01,
+      "min_abs_h": 34.620340449176666,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 86.30593481113598,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.3779596748454,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.47374160208983,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 18.209000820032966,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -0.01,
+        40.0
+       ]
+      ],
+      "Lip": 86.30593481113598,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.3779596748454,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        40.0
+       ],
+       [
+        -0.01,
+        -40.0
+       ]
+      ],
+      "Lip": 85.90693234216883,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 4.564085047551201,
+      "justified": true
+     }
+    ]
+   },
+   {
+    "label": "z m=3",
+    "g": 1.0,
+    "rectangle": [
+     [
+      -4.0,
+      4.0
+     ],
+     [
+      -40.0,
+      40.0
+     ]
+    ],
+    "right_strip_from": -0.01,
+    "modulus_bound_Re>=0": 1.8913884501047442,
+    "full_count": 12,
+    "full_justified": true,
+    "newton_full": 12,
+    "full_match": true,
+    "right_count": 2,
+    "right_justified": true,
+    "newton_right": 2,
+    "dominant_certified": true,
+    "dominant": [
+     0.5147061078675431,
+     -1.255779242670771
+    ],
+    "roots_right": [
+     [
+      0.5147061078675431,
+      -1.255779242670771
+     ],
+     [
+      0.5147061078675431,
+      1.255779242670771
+     ]
+    ],
+    "max_samples": 32000,
+    "segments": [
+     {
+      "segment": [
+       [
+        -4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 1615.2737637348814,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1313.043205491055,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.43637328552849,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 17.104500410016485,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        40.0
+       ]
+      ],
+      "Lip": 1615.2737637348814,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1313.043205491055,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 1615.2737637348814,
+      "samples": 32000,
+      "spacing": 0.0025,
+      "min_abs_h": 5.64998312580493,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 83.35246989005155,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.776298913656,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.43637328552849,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 17.104500410016485,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -0.01,
+        40.0
+       ]
+      ],
+      "Lip": 83.35246989005155,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.776298913656,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        40.0
+       ],
+       [
+        -0.01,
+        -40.0
+       ]
+      ],
+      "Lip": 82.9534674210844,
+      "samples": 8000,
+      "spacing": 0.01,
+      "min_abs_h": 2.3360549881183013,
+      "justified": true
+     }
+    ]
+   },
+   {
+    "label": "z m=3",
+    "g": 0.5,
+    "rectangle": [
+     [
+      -4.0,
+      4.0
+     ],
+     [
+      -40.0,
+      40.0
+     ]
+    ],
+    "right_strip_from": -0.01,
+    "modulus_bound_Re>=0": 1.3374135989269786,
+    "full_count": 6,
+    "full_justified": true,
+    "newton_full": 6,
+    "full_match": true,
+    "right_count": 2,
+    "right_justified": true,
+    "newton_right": 2,
+    "dominant_certified": true,
+    "dominant": [
+     0.3582657890232847,
+     -1.0036721640630657
+    ],
+    "roots_right": [
+     [
+      0.3582657890232847,
+      -1.0036721640630657
+     ],
+     [
+      0.3582657890232847,
+      1.0036721640630657
+     ]
+    ],
+    "max_samples": 128000,
+    "segments": [
+     {
+      "segment": [
+       [
+        -4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 847.8363843519242,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1461.651220793701,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.41768912724781,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 16.552250205008242,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        40.0
+       ]
+      ],
+      "Lip": 847.8363843519242,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1461.651220793701,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 847.8363843519242,
+      "samples": 128000,
+      "spacing": 0.000625,
+      "min_abs_h": 1.017764751541175,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 81.87573742950936,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.9162975942215,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.41768912724781,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 16.552250205008242,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -0.01,
+        40.0
+       ]
+      ],
+      "Lip": 81.87573742950936,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.9162975942215,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        40.0
+       ],
+       [
+        -0.01,
+        -40.0
+       ]
+      ],
+      "Lip": 81.4767349605422,
+      "samples": 8000,
+      "spacing": 0.01,
+      "min_abs_h": 1.111471149266967,
+      "justified": true
+     }
+    ]
+   },
+   {
+    "label": "z m=3",
+    "g": 0.25,
+    "rectangle": [
+     [
+      -4.0,
+      4.0
+     ],
+     [
+      -40.0,
+      40.0
+     ]
+    ],
+    "right_strip_from": -0.01,
+    "modulus_bound_Re>=0": 0.9456942250523721,
+    "full_count": 6,
+    "full_justified": true,
+    "newton_full": 6,
+    "full_match": true,
+    "right_count": 2,
+    "right_justified": true,
+    "newton_right": 2,
+    "dominant_certified": true,
+    "dominant": [
+     0.23136561331263214,
+     0.7841638044007032
+    ],
+    "roots_right": [
+     [
+      0.23136561331263214,
+      0.7841638044007032
+     ],
+     [
+      0.2313656133126321,
+      -0.7841638044007032
+     ]
+    ],
+    "max_samples": 32000,
+    "segments": [
+     {
+      "segment": [
+       [
+        -4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 464.1176946604457,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1538.2145204749595,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.40834704810746,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 16.27612510250412,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        40.0
+       ]
+      ],
+      "Lip": 464.1176946604457,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1538.2145204749595,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 464.1176946604457,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 76.4283892658402,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 81.13737119923822,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.9662473758342,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.40834704810746,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 16.27612510250412,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -0.01,
+        40.0
+       ]
+      ],
+      "Lip": 81.13737119923822,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.9662473758342,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        40.0
+       ],
+       [
+        -0.01,
+        -40.0
+       ]
+      ],
+      "Lip": 80.73836873027106,
+      "samples": 32000,
+      "spacing": 0.0025,
+      "min_abs_h": 0.49606835215911504,
+      "justified": true
+     }
+    ]
+   },
+   {
+    "label": "z m=3",
+    "g": 0.1,
+    "rectangle": [
+     [
+      -4.0,
+      4.0
+     ],
+     [
+      -40.0,
+      40.0
+     ]
+    ],
+    "right_strip_from": -0.01,
+    "modulus_bound_Re>=0": 0.5981095442466728,
+    "full_count": 6,
+    "full_justified": true,
+    "newton_full": 6,
+    "full_match": true,
+    "right_count": 2,
+    "right_justified": true,
+    "newton_right": 2,
+    "dominant_certified": true,
+    "dominant": [
+     0.11617718157848758,
+     -0.5438161180176002
+    ],
+    "roots_right": [
+     [
+      0.11617718157848758,
+      -0.5438161180176002
+     ],
+     [
+      0.11617718157848758,
+      0.5438161180176002
+     ]
+    ],
+    "max_samples": 128000,
+    "segments": [
+     {
+      "segment": [
+       [
+        -4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 233.88648084555854,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1584.750601227297,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.40274180062325,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 16.11045004100165,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        40.0
+       ]
+      ],
+      "Lip": 233.88648084555854,
+      "samples": 2000,
+      "spacing": 0.004,
+      "min_abs_h": 1584.750601227297,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -4.0,
+        40.0
+       ],
+       [
+        -4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 233.88648084555854,
+      "samples": 8000,
+      "spacing": 0.01,
+      "min_abs_h": 6.384675081806588,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        -40.0
+       ],
+       [
+        4.0,
+        -40.0
+       ]
+      ],
+      "Lip": 80.69435146107557,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.9885987906223,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        -40.0
+       ],
+       [
+        4.0,
+        40.0
+       ]
+      ],
+      "Lip": 80.40274180062325,
+      "samples": 2000,
+      "spacing": 0.04,
+      "min_abs_h": 16.11045004100165,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        4.0,
+        40.0
+       ],
+       [
+        -0.01,
+        40.0
+       ]
+      ],
+      "Lip": 80.69435146107557,
+      "samples": 2000,
+      "spacing": 0.002005,
+      "min_abs_h": 1599.9885987906223,
+      "justified": true
+     },
+     {
+      "segment": [
+       [
+        -0.01,
+        40.0
+       ],
+       [
+        -0.01,
+        -40.0
+       ]
+      ],
+      "Lip": 80.29534899210842,
+      "samples": 128000,
+      "spacing": 0.000625,
+      "min_abs_h": 0.15788306618783185,
+      "justified": true
+     }
+    ]
+   }
+  ]
+ },
+ "controls_all_pass_before_targets": true
+}

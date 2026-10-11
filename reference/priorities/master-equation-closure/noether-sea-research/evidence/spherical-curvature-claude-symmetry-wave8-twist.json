@@ -1,0 +1,127 @@
+{
+ "pid": 90288,
+ "omp_threads": "1",
+ "controls": [
+  {
+   "name": "known: initial twist 60 deg (alternating hexagon) gives f(0)=0",
+   "f0": 1.4030868657707876e-15,
+   "pass": true
+  },
+  {
+   "name": "known: small-twist limit G(Phi) Phi^2 -> 1",
+   "values": {
+    "0.01": 0.9999958332968751,
+    "0.001": 0.9999999583333298,
+    "0.0001": 0.9999999995833332
+   },
+   "pass": true
+  },
+  {
+   "name": "known: f equals dW/dpsi (first-integral identity) at psi=0.3",
+   "f": 2.5377862617141704,
+   "dW": 2.537786261469499,
+   "pass": true
+  },
+  {
+   "name": "known: quadrature time to psi=15 deg equals direct ODE integration",
+   "t_quad": 0.7934706394581643,
+   "t_ode": 0.7934706394605016,
+   "pass": true
+  }
+ ],
+ "controls_all_pass_before_targets": true,
+ "twist": {
+  "f_at_release": 0.668064615092872,
+  "W_minus_W0_at_psi": {
+   "5": 0.0736481940892717,
+   "10": 0.18336759581342799,
+   "15": 0.34152225839935646,
+   "20": 0.56977042328641,
+   "25": 0.9080795878934289
+  },
+  "f_positive_on_0_to_25deg": true,
+  "no_turning_point_before_psi_25deg": true,
+  "results_by_g": {
+   "1.0": {
+    "40": {
+     "psi_deg": 5.0,
+     "time": 0.4915342285993239,
+     "speed_at_arrival": 0.38379211583687256,
+     "nearest_fixed_image_chord": 0.7653668647301796
+    },
+    "30": {
+     "psi_deg": 10.0,
+     "time": 0.6704524872202133,
+     "speed_at_arrival": 0.605586650799748,
+     "nearest_fixed_image_chord": 0.6840402866513374
+    },
+    "20": {
+     "psi_deg": 15.0,
+     "time": 0.7934706394581643,
+     "speed_at_arrival": 0.8264650729454409,
+     "nearest_fixed_image_chord": 0.6014115990085462
+    },
+    "10": {
+     "psi_deg": 20.0,
+     "time": 0.8863611607225153,
+     "speed_at_arrival": 1.0674927852556289,
+     "nearest_fixed_image_chord": 0.5176380902050416
+    },
+    "0": {
+     "psi_deg": 25.0,
+     "time": 0.9592085042427664,
+     "speed_at_arrival": 1.3476495003474969,
+     "nearest_fixed_image_chord": 0.43287922787620575
+    },
+    "window_end": {
+     "T_w": 0.6790770222940068,
+     "psi_deg_at_window_end": 10.302479644605157,
+     "twist_deg_at_window_end": 29.395040710789686,
+     "speed_at_window_end": 0.6187049142475158,
+     "reaches_twist_zero_within_window": false,
+     "t_twist_zero_ode": 0.9592085042404387
+    }
+   },
+   "0.1": {
+    "40": {
+     "psi_deg": 5.0,
+     "time": 1.5543677103077407,
+     "speed_at_arrival": 0.1213657234059697,
+     "nearest_fixed_image_chord": 0.7653668647301796
+    },
+    "30": {
+     "psi_deg": 10.0,
+     "time": 2.1201569225408097,
+     "speed_at_arrival": 0.19150331371202325,
+     "nearest_fixed_image_chord": 0.6840402866513374
+    },
+    "20": {
+     "psi_deg": 15.0,
+     "time": 2.5091744771580706,
+     "speed_at_arrival": 0.2613512037084798,
+     "nearest_fixed_image_chord": 0.6014115990085462
+    },
+    "10": {
+     "psi_deg": 20.0,
+     "time": 2.802920097393715,
+     "speed_at_arrival": 0.33757085872047965,
+     "nearest_fixed_image_chord": 0.5176380902050416
+    },
+    "0": {
+     "psi_deg": 25.0,
+     "time": 3.0332836244104353,
+     "speed_at_arrival": 0.42616419086859675,
+     "nearest_fixed_image_chord": 0.43287922787620575
+    },
+    "window_end": {
+     "T_w": 0.8241698653076608,
+     "psi_deg_at_window_end": 1.328251061670182,
+     "twist_deg_at_window_end": 47.34349787665963,
+     "speed_at_window_end": 0.05747492031120546,
+     "reaches_twist_zero_within_window": false,
+     "t_twist_zero_ode": 3.033283624400489
+    }
+   }
+  }
+ }
+}
