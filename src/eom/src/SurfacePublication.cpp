@@ -246,7 +246,9 @@ std::string surface_request_identity(const NativeCoupledEvolutionRequest& r) {
         ",\"history\":" + equation_json_quote(path.history.provenance_fingerprint()) +
         ",\"id\":" + equation_json_quote(path.path_id) + '}';
   }
-  identity += "],\"surfaceDefinition\":" + equation_json_quote(detail::kSurfaceDefinitionDigest) + '}';
+  identity += "],\"speedDomain\":" + equation_json_quote(r.equation_selection->speed_domain) +
+      ",\"boundaryPolicy\":" + equation_json_quote(r.equation_selection->boundary_policy) +
+      ",\"surfaceDefinition\":" + equation_json_quote(detail::kSurfaceDefinitionDigest) + '}';
   return equation_identity_sha256(identity);
 }
 

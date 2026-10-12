@@ -3736,3 +3736,41 @@ Nine bounded mathematical protocol repairs integrated. Coordinator read the full
 ### OPS-031 — October 6 Energy notation referral
 
 **Status: ✓ Done — accepted and implemented October 6.** The operator explicitly approved EN06-01 after the report-only review. The [Energy chapter](../../../content/markdown/aaa/dynamics/energy.md#energy-and-self-hit-in-the-noether-sea) now uses `$\|\mathbf V_a\|>c_f$` in its generic super-field-speed passage, consistent with the opening's symbolic wake-speed convention. Exact before/after and [implementation evidence](../aaa-operations/evidence/ops-031-energy-review-2026-10-06.md#accepted-integration--october-6) preserve the reviewed source and separate adjudication. This completes only EN06-01; the earlier eight-change proposal was subsequently accepted and implemented with separate verification. CRW-005 remains closed.
+
+### OPS-031 — October 11 Effective Lagrangian referral
+
+**Status:** ○ Proposed — nine bounded correction groups, awaiting operator disposition; no implementation authorized by this report-only review. CRW-005 remains closed. The [whole-chapter receipt](../aaa-operations/evidence/ops-031-effective-lagrangian-review-2026-10-11.md) supplies exact passages, independent references/counterexamples, smallest repairs and falsifiers. Current source hash by native `shasum` is `fbf1be86d20fb7115b464ff9940d83c83447b8b6fb2bbcc835cb9a045c22138c`. The September bounded closeout is preserved; this later referral identifies surviving defects and missed upstream propagation without assigning an introduced regression to its editor.
+
+| Group | Status | Bounded proposed repair |
+| --- | --- | --- |
+| ELO11-01 | ○ Proposed | Separate arriving-hit transmitter weight from receiver root playback. |
+| ELO11-02 | ○ Proposed | Restore the universal conversion in all three conservation residuals and declare matching floors/units and the variation normalizer's action acceleration. |
+| ELO11-03 | ○ Proposed | Propagate the Master Equation's interaction statistic distinction; preserve an independently derived wake charge as the separate conservation target. |
+| ELO11-04 | ○ Proposed | Remove universal off-lock multivalued-action and symplectic-leakage implications; preserve periodic replay as a restricted candidate construction. |
+| ELO11-05 | ○ Proposed | Separate odd temporal response from spatial tensor antisymmetry. |
+| ELO11-06 | ○ Proposed | Define disjoint dissipative/wake accounts and the corresponding signed window balance. |
+| ELO11-07 | ○ Proposed | State first-derivative field-action, endpoint and time-generator conventions for the local mathematical templates. |
+| ELO11-08 | ○ Proposed | Inherit the regular excess-height barrier definition and keep fold crossing outside its positive-floor domain until a finite extension is defined. |
+| ELO11-09 | ○ Proposed | Normalize action-valued phase circulation by the effective action scale and preserve the unconstructed sign-bundle boundary. |
+
+The existing scientific action, kinetic-moment, envelope, assembly-spring and symplectic construction obligations remain with their owners; no new executable scientific successor follows from this referral. Acceptance may authorize bounded corpus replacements and their separate verification, without adopting an equation variation, deriving a physical conserved account or reactivating dormant work.
+
+### OPS-031 — October 12 core symmetry and frequency-lock referral
+
+**Status:** ○ Proposed — eleven bounded correction groups awaiting disposition; no substantive implementation authorized. CRW-005 remains closed. The [two-chapter receipt](../aaa-operations/evidence/ops-031-core-symmetry-lock-review-2026-10-12.md) contains exact scopes, independent counterexamples, smallest repairs and falsifiers, with unchanged source hashes and complete read coverage. The first five groups belong to Coordinate-Axis Six-Point Symmetry and Return Response; the remaining six belong to Three-Binary 4:2:1 Frequency Lock.
+
+| Group | Status | Proposed bounded correction |
+| --- | --- | --- |
+| AXS12-01 | ○ Proposed | Construct the conditional no-return bound from actual delayed geometry, all adverse rows and declared speed/weight margins; narrow the retention conclusion. |
+| AXS12-02 | ○ Proposed | Require root coverage/bracketing within the retained history instead of inferring existence from subfield speed. |
+| AXS12-03 | ○ Proposed | Scope the two-equal-component acceleration template to the nonrotating reflection stabilizer. |
+| AXS12-04 | ○ Proposed | Preserve equal-time ring/dipole geometry without promoting it into derived binding, delayed shielding or wake conservation. |
+| AXS12-05 | ○ Proposed | Distinguish environmental conjugation symmetry from net polarity neutrality. |
+| FL12-01 | ○ Proposed | Distinguish specified integer degrees from modular relative holonomy. |
+| FL12-02 | ○ Proposed | Restrict depth-four necessity to a three-way cancellation block, retaining smaller-depth pairwise selection. |
+| FL12-03 | ○ Proposed | Correct phase-cover map direction and common harmonic index terminology. |
+| FL12-04 | ○ Proposed | Control every omitted harmonic and cross term before accepting the winner-gap stopping criterion. |
+| FL12-05 | ○ Proposed | Distinguish dependent plane normals from a common-plane cyclic configuration and phase-torus collapse. |
+| FL12-06 | ○ Proposed | Separate finite relabeling identifications from continuous Floquet-neutral tangent directions. |
+
+Existing scientific branch, event, response, action and stability obligations retain their owners. These report-only referrals neither select a new equation nor supply retained assembly evidence. The nine October 11 Effective Lagrangian proposals remain separately awaiting disposition.

@@ -1,0 +1,33 @@
+PID 30353
+{"name": "(K) known: this instrument on the frozen wave-17 full JSON reproduces the Phase A instrument's per-step lambda_hat enclosures (40 steps) to 1e-20", "pass": true, "signs_end": ["positive"]}
+{"name": "(W) negative: like-class polarity flipped moves the release radial sum off -g/4 and makes every wave-17 step enclosure disjoint from the correct one", "release_correct": ["-0.025", "-0.025"], "release_wrong": ["-0.1664213562373095048801689", "-0.1664213562373095048801689"], "pass": true, "wrong_signs_end": ["positive"]}
+step 12: t_end 1.98668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0396136, -0.0394876] lambda_end [-0.0010281, -0.0008928] negative; range [-0.0011347, -0.0004707] negative; cont-intersect end=True range=True
+step 13: t_end 1.99668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0398068, -0.0396751] lambda_end [-0.0012640, -0.0011228] negative; range [-0.0013713, -0.0006982] negative; cont-intersect end=True range=True
+step 14: t_end 2.00668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0400008, -0.0398666] lambda_end [-0.0014984, -0.0013544] negative; range [-0.0016063, -0.0009273] negative; cont-intersect end=True range=True
+step 15: t_end 2.01668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0401958, -0.0400590] lambda_end [-0.0017344, -0.0015876] negative; range [-0.0018430, -0.0011579] negative; cont-intersect end=True range=True
+step 16: t_end 2.02668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0403847, -0.0402508] lambda_end [-0.0019734, -0.0018293] negative; range [-0.0020826, -0.0013971] negative; cont-intersect end=True range=True
+step 17: t_end 2.03668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0405787, -0.0404435] lambda_end [-0.0022140, -0.0020683] negative; range [-0.0023239, -0.0016336] negative; cont-intersect end=True range=True
+step 18: t_end 2.04668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0407735, -0.0406369] lambda_end [-0.0024562, -0.0023089] negative; range [-0.0025668, -0.0018717] negative; cont-intersect end=True range=True
+step 19: t_end 2.05668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0409692, -0.0408312] lambda_end [-0.0027002, -0.0025512] negative; range [-0.0028115, -0.0021114] negative; cont-intersect end=True range=True
+step 20: t_end 2.06668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0411657, -0.0410263] lambda_end [-0.0029458, -0.0027951] negative; range [-0.0030577, -0.0023528] negative; cont-intersect end=True range=True
+step 21: t_end 2.07668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0413630, -0.0412222] lambda_end [-0.0031930, -0.0030407] negative; range [-0.0033057, -0.0025959] negative; cont-intersect end=True range=True
+summary {"all_steps_certified_in_chain": true, "n_steps": 10, "signs_end": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "signs_range": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "last_positive_end": null, "first_non_positive_end": [12, "1.986684709182828044891357", "negative"], "first_negative_end": [12, "1.986684709182828044891357"], "sign_change_bracket": null}
+wall 0.04870486259460449
+        0.08 real         0.07 user         0.00 sys
+            21790720  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2335  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   1  voluntary context switches
+                  17  involuntary context switches
+          1151525688  instructions retired
+           318213817  cycles elapsed
+            14123488  peak memory footprint

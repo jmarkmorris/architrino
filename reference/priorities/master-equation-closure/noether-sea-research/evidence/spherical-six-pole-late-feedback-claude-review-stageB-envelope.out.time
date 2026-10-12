@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-stageB-envelope.py", line 99, in <module>
+    print("g=%s T* %s like %s anti %s zero %s q(T*) %s B %s -> %s" % (gs[:6], [x[:12] for x in c["T_star"]], [x[:10] for x in c["t_like"]], [x[:10] for x in c["t_anti"]], [x[:10] for x in c["lambda_zero_bracket"]], [x[:8] for x in c["q_at_Tstar"]], [x[:6] for x in c["post_box"]["B"]], c["ordering_envelope"]), flush=True)
+                                                                                                                                                                                            ~^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not iterable
+        0.16 real         0.14 user         0.00 sys
+            22331392  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2368  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  26  involuntary context switches
+          2513480582  instructions retired
+           588148282  cycles elapsed
+            14549496  peak memory footprint

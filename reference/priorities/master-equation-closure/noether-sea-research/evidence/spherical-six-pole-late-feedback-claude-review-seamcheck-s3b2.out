@@ -1,0 +1,13 @@
+PID 74413
+controls K True W True
+crossing certificate: {"steps": [70, 71], "t_lo_exclusive": "2.566684593623649597167969", "t_hi": "2.576684709182828044891357", "s_end_prev": ["1.364317433117144893708839", "1.364335338795864490589767"], "s_end_this": ["1.375573617369030106350516", "1.377071746176688706829075"]}
+70 2.566684709182 ok [] s_end ['1.3643174', '1.3643353'] below seam None dlam ['-0.034570', '-0.033221'] True
+71 2.576684709182 FAIL ['seam hull not contained'] s_end ['1.3755736', '1.3770717'] above seam (['w16-1(window side)', 'w16-1'], True, True, False) dlam ['-0.034795', '-0.033424'] True
+72 2.586684709182 ok [] s_end ['1.3879881', '1.3889468'] above seam (['w16-1', 'w16-2', 'w16-3'], True, True, True) dlam ['-0.035329', '-0.033319'] True
+73 2.596684709182 ok [] s_end ['1.3998600', '1.4008274'] above seam (['w16-3', 'w16-4'], True, True, True) dlam ['-0.035372', '-0.033691'] True
+74 2.606684709182 FAIL ['seam hull not contained'] s_end ['1.4117373', '1.4127134'] above seam (['w16-4', 'w16-5'], True, True, False) dlam ['-0.035600', '-0.033902'] True
+75 2.616684709182 FAIL ['seam hull not contained'] s_end ['1.4236197', '1.4246047'] above seam (['w16-5', 'w16-6'], True, True, False) dlam ['-0.035831', '-0.034114'] True
+76 2.626684709182 ok [] s_end ['1.4355072', '1.4365011'] above seam (['w16-6', 'w16-7'], True, True, True) dlam ['-0.036064', '-0.034326'] True
+77 2.636684709182 FAIL ['seam hull not contained'] s_end ['1.4479634', '1.4489730'] above seam (['w16-7', 'w16-8', 'w16-9'], True, True, False) dlam ['-0.036478', '-0.034333'] True
+78 2.646684709182 ok [] s_end ['1.4598625', '1.4608810'] above seam (['w16-9', 'w16-10'], True, True, True) dlam ['-0.036510', '-0.034724'] True
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-seamcheck-s3b2.json

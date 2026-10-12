@@ -1,4 +1,5 @@
 #include "architrino/eom/CoupledEvolution.hpp"
+#include "architrino/eom/ProviderTransport.hpp"
 #include "architrino/eom/Decimal.hpp"
 #include "architrino/eom/DisplayEvaluation.hpp"
 #include "architrino/eom/ShadowAffineDiagnostic.hpp"
@@ -3478,6 +3479,8 @@ void print_engine_exception_response(const std::exception& error) {
 }  // namespace
 
 int main(int argc, char** argv) {
+  if (argc >= 2 && (std::string(argv[1]) == "eom-v2" || std::string(argv[1]) == "eom-v2-server"))
+    return architrino::eom::run_eom_v2_cli(argc, argv);
   std::cout.imbue(std::locale::classic());
   try {
     if (argc < 2) {

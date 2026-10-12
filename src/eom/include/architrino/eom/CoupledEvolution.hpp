@@ -70,6 +70,11 @@ struct NativeCoupledEvolutionRequest {
   // Evolution can instead require exact pair fallback so that an optional
   // pruning width is not integrated into every later retained state.
   bool use_far_field_enclosure_in_evolution = true;
+  // Execution-method selection for the grouped two-source far-field
+  // enclosure. "disabled" preserves the individual routes exactly. The
+  // non-disabled value is qualified for acceleration snapshots only: the
+  // evolution entry points reject it.
+  std::string matched_pair_enclosure_policy = "disabled";
   std::string chart_policy = "sharp";
   std::string causal_width = "0.2";
   std::string core_scale = "0.2";
@@ -203,6 +208,9 @@ struct NativeCoupledEvolutionRequest {
   std::optional<EquationSelection> equation_selection;
   std::optional<SurfaceGeometryDefinition> surface_geometry;
   SurfaceNumerics surface_numerics;
+  // Validated provider-aware restart state; original preparation stays bound
+  // in paths. Surface carriers can only be minted by publication proof.
+  std::vector<NativePublishedPath> continuation_histories;
 };
 
 struct NativeFoldCausticImpulseCertificate {
@@ -348,6 +356,16 @@ struct NativeAccelerationSnapshotCertificate {
   // Empty for the legacy canonical path; binds complete Surface snapshots.
   std::string selected_model_identity = {};
   std::vector<SurfaceReceiverDiagnostic> surface_diagnostics = {};
+  // Every grouped attempt of this snapshot, admitted or declined, in
+  // receiver-major leader order. Admitted groups own two logical
+  // relationships and one numerical interval each.
+  std::vector<NativeMatchedPairEnclosureCertificate>
+      matched_pair_enclosure_certificates = {};
+  // Present groups add two relationships to traversal_enclosed_pairs and one
+  // width to the receiver's enclosed width. Absent groups add two
+  // relationships to traversal_excluded_pairs and no width.
+  std::uint64_t matched_pair_enclosed_groups = 0;
+  std::uint64_t matched_pair_absent_groups = 0;
 };
 
 struct NativeHistoryPhaseTiming {

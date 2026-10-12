@@ -1,0 +1,400 @@
+--- src/eom/include/architrino/eom/MatchedPairEnclosure.hpp	2026-10-11 18:24:04
++++ .tmp/eom-matched-pair/stage3-tree/src/eom/include/architrino/eom/MatchedPairEnclosure.hpp	2026-10-11 19:43:39
+@@ -15,20 +15,42 @@
+ inline constexpr const char* kMatchedPairPolicyDisabled = "disabled";
+ inline constexpr const char* kMatchedPairPolicySnapshotSingleSlab =
+     "canonical_snapshot_single_slab/v1";
+-// Stage 2 policy. Admits a window spanning several cubic segments of each
+-// source, provided every segment the window meets has zero error tokens and
+-// the history carries no analytic certificate. Such a history is exactly its
+-// piecewise cubic, and the history layer's exact join validation makes it
+-// continuously differentiable across joins, so the piecewise theorem's
+-// hypotheses hold by construction. Histories with declared error radii are
+-// not admitted: no carrier evidence binds such radii to a continuously
+-// differentiable true path.
++// Stage 2 policies. Both admit a window spanning several cubic segments of
++// each source. The exact policy requires zero error tokens and no analytic
++// certificate on every segment the window meets; the hypotheses of the
++// piecewise theorem then hold by construction. The tube-conditional policy
++// also admits declared position and velocity error radii; its enclosure is
++// conditional on those radii enclosing the true path and its derivative, and
++// the certificate says so in history_grade.
+ inline constexpr const char* kMatchedPairPolicySnapshotPiecewiseExact =
+     "canonical_snapshot_piecewise_exact/v1";
++inline constexpr const char* kMatchedPairPolicySnapshotPiecewiseTube =
++    "canonical_snapshot_piecewise_validated_tube/v1";
++
++// Scratch candidate seam, not production. A validated far-step producer
++// registers each population it has certified: the coupling and, per path,
++// its identifier, charge and the provenance fingerprint of its complete
++// history. The validated-tube policy admits declared radii only when the
++// receiver and both members belong to one registered population under the
++// request's coupling. The registry lives in this process.
++struct MatchedPairValidatedMember {
++  std::string path_id;
++  std::string charge;
++  std::string history_fingerprint;
++};
++struct MatchedPairValidatedPopulation {
++  std::string coupling;
++  std::vector<MatchedPairValidatedMember> members;
++};
++void matched_pair_register_validated_population(
++    MatchedPairValidatedPopulation population);
++void matched_pair_clear_validated_populations();
++[[nodiscard]] std::size_t matched_pair_validated_population_count();
+ [[nodiscard]] inline bool matched_pair_policy_is_known(
+     const std::string& policy) {
+   return policy == kMatchedPairPolicySnapshotSingleSlab ||
+-      policy == kMatchedPairPolicySnapshotPiecewiseExact;
++      policy == kMatchedPairPolicySnapshotPiecewiseExact ||
++      policy == kMatchedPairPolicySnapshotPiecewiseTube;
+ }
+ inline constexpr const char* kMatchedPairCertificateSchema =
+     "eom_native_matched_pair_enclosure_certificate/v1";
+@@ -56,8 +78,12 @@
+   // proves that interval holds no causal root for this receiver event.
+   std::string history_start;
+   std::optional<Interval> prefix_residual;
+-  // Piecewise policy only: last segment the window meets.
++  // Piecewise policies only: last segment the window meets, and upper bounds
++  // of the Euclidean norms of the declared position and velocity radius
++  // vectors over the segments the window meets.
+   std::optional<std::size_t> last_segment_index;
++  std::optional<double> position_radius_upper;
++  std::optional<double> velocity_radius_upper;
+ };
+ 
+ struct NativeMatchedPairEnclosureCertificate {
+@@ -107,7 +133,7 @@
+   std::optional<double> admission_width_threshold;
+   std::optional<double> emitted_width;
+   std::optional<IntervalVector> acceleration;
+-  // Piecewise policy only. Window start, every interior segment boundary
++  // Piecewise policies only. Window start, every interior segment boundary
+   // of either source, and the reception time, in increasing order.
+   std::vector<std::string> cell_boundaries;
+   // Upper bound of the summed nominal velocity jumps of one source across
+@@ -115,7 +141,9 @@
+   std::optional<double> join_velocity_jump_upper;
+   // exact_cubic: one error-free cubic slab. exact_piecewise_cubic: several
+   // error-free cubic segments, continuous with continuous derivative by the
+-  // history layer's exact join validation.
++  // history layer's exact join validation. carrier_declared_tubes: the
++  // enclosure covers every path consistent with the declared radii and is
++  // conditional on those radii enclosing the true path and its derivative.
+   std::string history_grade = "exact_cubic";
+ };
+ 
+--- src/eom/src/MatchedPairEnclosure.cpp	2026-10-11 18:24:04
++++ .tmp/eom-matched-pair/stage3-tree/src/eom/src/MatchedPairEnclosure.cpp	2026-10-11 19:58:30
+@@ -3,11 +3,22 @@
+ #include <algorithm>
+ #include <array>
+ #include <cmath>
++#include <mutex>
+ #include <stdexcept>
+ #include <utility>
+ 
+ namespace architrino::eom {
+ namespace {
++
++std::mutex& validated_population_mutex() {
++  static std::mutex mutex;
++  return mutex;
++}
++
++std::vector<MatchedPairValidatedPopulation>& validated_populations() {
++  static std::vector<MatchedPairValidatedPopulation> populations;
++  return populations;
++}
+ 
+ // Sign, significant digits without leading or trailing zeros, and the decimal
+ // exponent of the last retained digit. Zero is {0, "", 0}.
+@@ -315,9 +326,9 @@
+ 
+ 
+ // ---------------------------------------------------------------- Stage 2
+-// Window spanning several error-free cubic segments of each source. The
+-// history is exactly its piecewise cubic and is continuously differentiable
+-// across joins, so every bound below is a bound on the source itself.
++// Window spanning several cubic segments of each source, with optional
++// declared position and velocity error radii. See the Stage 2 design record:
++// the radius needs no bound on the true acceleration.
+ 
+ // Inclusive range of segment indices of one history that meet [lower, T_r].
+ struct SegmentRange {
+@@ -374,10 +385,41 @@
+     last = low;
+   }
+   return SegmentRange{first, last};
++}
++
++double radius_norm_upper(const HistoryErrorTokens& tokens) {
++  IntervalVector radii = zero_vector();
++  bool any = false;
++  for (std::size_t axis = 0U; axis < 3U; ++axis) {
++    // An exactly zero token contributes exactly zero, not its padded
++    // enclosure, so error-free histories keep their exact-policy values.
++    if (exact_decimal_token_is_zero(tokens[axis])) continue;
++    radii[axis] = Interval::decimal_token(tokens[axis]);
++    any = true;
++  }
++  return any ? norm(radii).upper() : 0.0;
+ }
+ 
++IntervalVector widened(
++    const IntervalVector& box,
++    const HistoryErrorTokens& tokens) {
++  IntervalVector result = box;
++  for (std::size_t axis = 0U; axis < 3U; ++axis) {
++    // An exactly zero radius leaves the box unchanged.
++    if (exact_decimal_token_is_zero(tokens[axis])) continue;
++    // Outward: use the upper endpoint of the radius token's enclosure.
++    result[axis] =
++        box[axis].inflate(Interval::decimal_token(tokens[axis]).upper());
++  }
++  return result;
++}
++
+ struct MemberCells {
+-  std::vector<SlabControls> controls;
++  std::vector<SlabControls> nominal;
++  std::vector<std::array<IntervalVector, 4>> position;
++  std::vector<std::array<IntervalVector, 3>> velocity;
++  double position_radius_upper = 0.0;
++  double velocity_radius_upper = 0.0;
+   double join_jump_upper = 0.0;
+   bool exact = true;
+ };
+@@ -410,18 +452,32 @@
+         : cell_lower - segment->t_start_interval();
+     const Interval duration = Interval::decimal_token(upper) - cell_lower;
+     SlabControls controls = slab_controls(*segment, offset, duration);
++    std::array<IntervalVector, 4> position = controls.position;
++    std::array<IntervalVector, 3> velocity = controls.velocity;
++    for (auto& box : position) {
++      box = widened(box, segment->position_error_tokens());
++    }
++    for (auto& box : velocity) {
++      box = widened(box, segment->velocity_error_tokens());
++    }
++    cells.position_radius_upper = std::max(
++        cells.position_radius_upper,
++        radius_norm_upper(segment->position_error_tokens()));
++    cells.velocity_radius_upper = std::max(
++        cells.velocity_radius_upper,
++        radius_norm_upper(segment->velocity_error_tokens()));
+     cells.exact = cells.exact && exact_cubic_segment(*segment);
+-    if (!cells.controls.empty()) {
+-      // Upper bound of the velocity change across the boundary just crossed.
+-      // The velocity is exactly continuous there; this is the outward
+-      // rounding of that zero and keeps the radius rigorous.
++    if (!cells.nominal.empty()) {
++      // Jump of the nominal velocity across the boundary just crossed.
+       const double jump = norm(subtract(
+-          controls.velocity[0], cells.controls.back().velocity[2])).upper();
++          controls.velocity[0], cells.nominal.back().velocity[2])).upper();
+       cells.join_jump_upper =
+           (Interval::point(cells.join_jump_upper) + Interval::point(jump))
+               .upper();
+     }
+-    cells.controls.push_back(std::move(controls));
++    cells.nominal.push_back(std::move(controls));
++    cells.position.push_back(position);
++    cells.velocity.push_back(velocity);
+   }
+   return cells;
+ }
+@@ -429,6 +485,8 @@
+ NativeMatchedPairEnclosureCertificate certify_piecewise_window(
+     const MatchedPairEnclosureRequest& request,
+     NativeMatchedPairEnclosureCertificate certificate) {
++  const bool tubes_admitted =
++      request.policy == kMatchedPairPolicySnapshotPiecewiseTube;
+   const auto leader_range = window_segments(
+       *request.leader_history, request.emission_lower, request.reception_time);
+   const auto follower_range = window_segments(
+@@ -486,17 +544,63 @@
+       *request.leader_history, *leader_range, boundaries);
+   const MemberCells follower = member_cells(
+       *request.follower_history, *follower_range, boundaries);
+-  // Histories: every segment the window meets must be the source itself.
++  certificate.leader.position_radius_upper = leader.position_radius_upper;
++  certificate.leader.velocity_radius_upper = leader.velocity_radius_upper;
++  certificate.follower.position_radius_upper = follower.position_radius_upper;
++  certificate.follower.velocity_radius_upper = follower.velocity_radius_upper;
+   const bool analytic =
+       request.leader_history->uniform_circular_endpoint_certificate()
+           .has_value() ||
+       request.follower_history->uniform_circular_endpoint_certificate()
+           .has_value();
+-  if (!leader.exact || !follower.exact || analytic) {
++  const bool exact = leader.exact && follower.exact && !analytic;
++  if (!exact && (!tubes_admitted || analytic)) {
+     certificate.failure_code = "MPE-HISTORY-01";
+     return certificate;
+   }
+-  certificate.history_grade = "exact_piecewise_cubic";
++  if (!exact) {
++    // Declared radii are admitted only as the tubes of one registered
++    // validated population that contains the receiver and both members with
++    // exactly these charges and history fingerprints, under this coupling.
++    bool bound = false;
++    {
++      const std::lock_guard<std::mutex> lock(validated_population_mutex());
++      for (const auto& population : validated_populations()) {
++        if (compare_exact_decimal_tokens(
++                population.coupling, request.coupling) != 0) {
++          continue;
++        }
++        const auto holds = [&](const std::string& path_id,
++                               const std::string& charge,
++                               const RetainedHistory& history) {
++          for (const auto& member : population.members) {
++            if (member.path_id == path_id &&
++                compare_exact_decimal_tokens(member.charge, charge) == 0 &&
++                member.history_fingerprint ==
++                    history.provenance_fingerprint()) {
++              return true;
++            }
++          }
++          return false;
++        };
++        if (holds(request.receiver_path_id, request.receiver_charge,
++                  *request.receiver_history) &&
++            holds(request.leader_path_id, request.leader_charge,
++                  *request.leader_history) &&
++            holds(request.follower_path_id, request.follower_charge,
++                  *request.follower_history)) {
++          bound = true;
++          break;
++        }
++      }
++    }
++    if (!bound) {
++      certificate.failure_code = "MPE-EVIDENCE-01";
++      return certificate;
++    }
++  }
++  certificate.history_grade =
++      exact ? "exact_piecewise_cubic" : "validated_far_step_tubes";
+ 
+   // Coverage of retained history before the window: same re-proof as the
+   // single-slab route, from each member's own position hull.
+@@ -540,8 +644,9 @@
+   certificate.window_coverage =
+       any_prefix ? "member_prefix_reproved" : "whole_retained_history";
+ 
+-  // Whole-window bounds over all cells.
+-  IntervalVector domain = leader.controls.front().position[0];
++  // Whole-window bounds over all cells. Widened boxes enclose the true
++  // positions and velocities; nominal boxes bound the nominal acceleration.
++  IntervalVector domain = leader.position.front()[0];
+   double speed_upper = 0.0;
+   double acceleration_upper = 0.0;
+   double separation_upper = 0.0;
+@@ -549,29 +654,40 @@
+   const std::size_t cell_count = boundaries.size() - 1U;
+   for (std::size_t cell = 0U; cell < cell_count; ++cell) {
+     for (const auto* member : {&leader, &follower}) {
+-      for (const auto& box : member->controls[cell].position) {
++      for (const auto& box : member->position[cell]) {
+         domain = hull(domain, box);
+       }
+-      for (const auto& box : member->controls[cell].velocity) {
++      for (const auto& box : member->velocity[cell]) {
+         speed_upper = maximum_norm_upper(speed_upper, box);
+       }
+-      for (const auto& box : member->controls[cell].acceleration) {
++      for (const auto& box : member->nominal[cell].acceleration) {
+         acceleration_upper = maximum_norm_upper(acceleration_upper, box);
+       }
+     }
+     for (std::size_t index = 0U; index < 4U; ++index) {
+       separation_upper = maximum_norm_upper(
+           separation_upper,
+-          subtract(leader.controls[cell].position[index],
+-                   follower.controls[cell].position[index]));
++          subtract(leader.position[cell][index],
++                   follower.position[cell][index]));
+     }
+     for (std::size_t index = 0U; index < 3U; ++index) {
++      // Nominal equal-time relative velocity. The declared velocity radii
++      // are added once below as window maxima, because the two members'
++      // emission times may lie in different cells with different radii.
+       relative_speed_upper = maximum_norm_upper(
+           relative_speed_upper,
+-          subtract(leader.controls[cell].velocity[index],
+-                   follower.controls[cell].velocity[index]));
++          subtract(leader.nominal[cell].velocity[index],
++                   follower.nominal[cell].velocity[index]));
+     }
+   }
++  if (leader.velocity_radius_upper > 0.0 ||
++      follower.velocity_radius_upper > 0.0) {
++    relative_speed_upper =
++        (Interval::point(relative_speed_upper) +
++         Interval::point(leader.velocity_radius_upper) +
++         Interval::point(follower.velocity_radius_upper))
++            .upper();
++  }
+   certificate.source_domain_hull = domain;
+   const double distance_floor = norm(subtract(receiver_box, domain)).lower();
+   certificate.distance_floor = distance_floor;
+@@ -594,14 +710,13 @@
+     return certificate;
+   }
+ 
+-  // Membership at the window start, uniformly over the receiver box. The
+-  // residual at reception is at least the distance floor, hence strictly
+-  // positive.
++  // Membership at the window start, uniformly over the receiver box and over
++  // the widened start box. The residual at reception is at least the
++  // distance floor, hence strictly positive.
+   const auto classify = [&](MatchedPairMemberEvidence& evidence,
+                             const MemberCells& member) {
+     const Interval residual =
+-        norm(subtract(receiver_box, member.controls.front().position[0])) -
+-        duration;
++        norm(subtract(receiver_box, member.position.front()[0])) - duration;
+     evidence.window_start_residual = residual;
+     evidence.disposition = residual.upper() < 0.0
+         ? "present"
+@@ -1211,7 +1326,15 @@
+   }
+   if (supplied.last_segment_index != fresh.last_segment_index) {
+     return role + ".last_segment_index";
++  }
++  if (!same_optional_double(
++          supplied.position_radius_upper, fresh.position_radius_upper)) {
++    return role + ".position_radius_upper";
+   }
++  if (!same_optional_double(
++          supplied.velocity_radius_upper, fresh.velocity_radius_upper)) {
++    return role + ".velocity_radius_upper";
++  }
+   return {};
+ }
+ 
+@@ -1328,4 +1451,20 @@
+   return {};
+ }
+ 
++void matched_pair_register_validated_population(
++    MatchedPairValidatedPopulation population) {
++  const std::lock_guard<std::mutex> lock(validated_population_mutex());
++  validated_populations().push_back(std::move(population));
++}
++
++void matched_pair_clear_validated_populations() {
++  const std::lock_guard<std::mutex> lock(validated_population_mutex());
++  validated_populations().clear();
++}
++
++std::size_t matched_pair_validated_population_count() {
++  const std::lock_guard<std::mutex> lock(validated_population_mutex());
++  return validated_populations().size();
++}
++
+ }  // namespace architrino::eom

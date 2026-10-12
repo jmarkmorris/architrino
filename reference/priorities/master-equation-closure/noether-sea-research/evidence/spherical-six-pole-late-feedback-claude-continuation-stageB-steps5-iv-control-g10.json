@@ -1,0 +1,136 @@
+{
+ "g": "1/10",
+ "R": "10/1 (K = 1, c_f = 1)",
+ "N_window": 4000,
+ "runmode": "control",
+ "plan": {
+  "Delta": "0.01",
+  "max_step": 0,
+  "adaptation": "none; stop at the first uncertified step",
+  "moving_classes": "unlike, like, antipode from T* (two-regime hull)"
+ },
+ "v10_diff": {
+  "from": "g = iv.mpf(1)/10",
+  "to": "g = iv.mpf(1)/10",
+  "other_changes": "none (definition block executed as text)"
+ },
+ "controls": [
+  {
+   "name": "(0) closed forms of all three classes vs direct vector computation at 100 random points each",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "6.9025e-31",
+    "like": "3.9443e-31",
+    "antipode": "3.9443e-31"
+   }
+  },
+  {
+   "name": "(R) the g in effect equals the argument",
+   "pass": true,
+   "g": [
+    "0.1",
+    "0.1"
+   ]
+  },
+  {
+   "name": "(K1) at g = 1/10, N = 4000: T* and the window state at T* reproduce the frozen wave-16 run-2 strings exactly",
+   "pass": true,
+   "T_star": [
+    "1.366684593623649597167969",
+    "1.366684709182828044891357"
+   ],
+   "frozen": [
+    "1.366684593623649597167969",
+    "1.366684709182828044891357"
+   ],
+   "q": [
+    "0.0935969659738805924504719",
+    "0.09359717429472312322322282"
+   ],
+   "frozen_q": [
+    "0.0935969659738805924504719",
+    "0.09359717429472312322322282"
+   ]
+  },
+  {
+   "name": "(K2) at g = 1/10 the first three steps from T* (all classes in the moving form) intersect the frozen wave-16 steps 1-3 and agree to 1e-15",
+   "pass": false,
+   "steps": [
+    {
+     "step": 1,
+     "end_q": [
+      "0.09497510149285028920153503",
+      "0.09497531246002231878130367"
+     ],
+     "frozen_end_q": [
+      "0.09497510149349203742704175",
+      "0.09497531240358474050374513"
+     ],
+     "end_v": [
+      "0.1383213236143228395051844",
+      "0.1383218077746042386833058"
+     ],
+     "frozen_end_v": [
+      "0.1383213237426724846065294",
+      "0.138321790907505577966415"
+     ],
+     "max_abs_diff": "1.6867e-8",
+     "intersects": true
+    },
+    {
+     "step": 2,
+     "end_q": [
+      "0.09636339381964645825606063",
+      "0.09636361377559173921682872"
+     ],
+     "frozen_end_q": [
+      "0.09636339382222169754196085",
+      "0.09636361349388745323641248"
+     ],
+     "end_v": [
+      "0.1393371417449109713999355",
+      "0.139338565110367244660249"
+     ],
+     "frozen_end_v": [
+      "0.1393371420032595383772891",
+      "0.1393385313295579546474154"
+     ],
+     "max_abs_diff": "3.3781e-8",
+     "intersects": true
+    },
+    {
+     "step": 3,
+     "end_q": [
+      "0.0977618457755263228896034",
+      "0.09776208419513350533255578"
+     ],
+     "frozen_end_q": [
+      "0.09776184578136479049153207",
+      "0.09776208351883618069534633"
+     ],
+     "end_v": [
+      "0.1403532494310619553086189",
+      "0.1403556298281649172276996"
+     ],
+     "frozen_end_v": [
+      "0.1403532498253590515369556",
+      "0.1403555790798755446794373"
+     ],
+     "max_abs_diff": "5.0748e-8",
+     "intersects": true
+    }
+   ]
+  },
+  {
+   "name": "(N) negative: g = 1/5 gives a T* that differs from the frozen g = 1/10 string (detected by K1)",
+   "pass": true,
+   "T_star_wrong_g": [
+    "1.323758005553593444824219",
+    "1.323758589423838043212891"
+   ]
+  }
+ ],
+ "steps": [],
+ "controls_all_pass": false,
+ "wall_s": 26.48680090904236
+}

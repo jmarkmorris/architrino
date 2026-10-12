@@ -1,0 +1,31 @@
+PID 20997
+[{"name": "(K1) regression: frozen late-feedback slice s3d reproduces s", "pass": true}, {"name": "(K2) chain continuity: every record join in exact end/resume", "pass": true}, {"name": "(K3) known: a delayed box straddling the b3 / late-feedback ", "pass": true}, {"name": "(K4) known: own unlike residual at T* negative at the end of", "pass": true}, {"name": "(W1) negative: a delayed box beyond covered history (2.8067 ", "pass": true}, {"name": "(W2) negative: the like residual computed with the unlike ch", "pass": true}]
+step 87 t_end 2.73668470 q 0.379285 qdot 0.281361 qdd [0.105766,0.110053] lam_end [-0.0237924,-0.0232599] nega rng nega dlam [-0.03953,-0.03577] nega | rhoL -0.245413 nega rhoA nega rhoU(1.87/1.98/2.08) neg/neg/neg | srcU records:w17#9,w17#10,w srcL window srcA window | tan 0.07411/0.02841/0.00438 rad -0.09116/0.060269/-0.02506 | cont True/True
+step 88 t_end 2.74668470 q 0.382104 qdot 0.282437 qdd [0.105914,0.109824] lam_end [-0.0240848,-0.0236796] nega rng nega dlam [-0.03955,-0.03619] nega | rhoL -0.236435 nega rhoA nega rhoU(1.87/1.98/2.08) neg/neg/neg | srcU records:w17#11,w17#12 srcL window srcA window | tan 0.07439/0.02826/0.00441 rad -0.09130/0.060216/-0.02505 | cont True/True
+step 89 t_end 2.75668470 q 0.384933 qdot 0.283513 qdd [0.105866,0.109814] lam_end [-0.0244850,-0.0240741] nega rng nega dlam [-0.03981,-0.03640] nega | rhoL -0.227459 nega rhoA nega rhoU(1.87/1.98/2.08) neg/neg/neg | srcU records:w17#12,w17#13 srcL window srcA window | tan 0.07447/0.02811/0.00444 rad -0.09146/0.060163/-0.02505 | cont True/True
+step 90 t_end 2.76668470 q 0.387774 qdot 0.284589 qdd [0.105815,0.109800] lam_end [-0.0248878,-0.0244710] nega rng nega dlam [-0.04006,-0.03662] nega | rhoL -0.218485 nega rhoA nega rhoU(1.87/1.98/2.08) neg/neg/neg | srcU records:w17#13,w17#14 srcL window srcA window | tan 0.07455/0.02797/0.00446 rad -0.09163/0.060110/-0.02505 | cont True/True
+step 91 t_end 2.77668470 q 0.390625 qdot 0.285664 qdd [0.105523,0.109988] lam_end [-0.0253229,-0.0247599] nega rng nega dlam [-0.04054,-0.03659] nega | rhoL -0.209512 nega rhoA nega rhoU(1.87/1.98/2.08) neg/neg/neg | srcU records:w17#14,w17#15, srcL window srcA window | tan 0.07439/0.02782/0.00449 rad -0.09190/0.060058/-0.02505 | cont True/True
+step 92 t_end 2.78668470 q 0.393487 qdot 0.286736 qdd [0.105461,0.109968] lam_end [-0.0257322,-0.0251596] nega rng nega dlam [-0.04081,-0.03680] nega | rhoL -0.200541 nega rhoA nega rhoU(1.87/1.98/2.08) neg/neg/neg | srcU records:w17#15,w17#16, srcL window srcA window | tan 0.07446/0.02767/0.00451 rad -0.09207/0.060006/-0.02505 | cont True/True
+step 93 t_end 2.79668470 q 0.396360 qdot 0.287809 qdd [0.105595,0.109701] lam_end [-0.0260332,-0.0255939] nega rng nega dlam [-0.04082,-0.03724] nega | rhoL -0.191572 nega rhoA nega rhoU(1.87/1.98/2.08) neg/neg/neg | srcU records:w17#17,w17#18 srcL window srcA window | tan 0.07473/0.02753/0.00454 rad -0.09220/0.059954/-0.02505 | cont True/True
+step 94 t_end 2.80668470 q 0.399243 qdot 0.288883 qdd [0.105527,0.109670] lam_end [-0.0264455,-0.0260000] nega rng nega dlam [-0.04108,-0.03746] nega | rhoL -0.182604 nega rhoA nega rhoU(1.87/1.98/2.08) neg/neg/neg | srcU records:w17#18,w17#19 srcL window srcA window | tan 0.07479/0.02738/0.00456 rad -0.09237/0.059902/-0.02504 | cont True/True
+{"like_crossing_Tstar": {"crossed": false, "last_negative_step": 94, "first_positive_step": null}, "antipode_crossing_Tstar": {"crossed": false, "last_negative_step": 94, "first_positive_step": null}, "unlike_crossing_1.8667": {"crossed": false, "last_negative_step": 94, "first_positive_step": null}, "unlike_crossing_1.9767": {"crossed": false, "last_negative_step": 94, "first_positive_step": null}, "unlike_crossing_2.0767": {"crossed": false, "last_negative_step": 94, "first_positive_step": null}}
+{"n": 8, "lambda_end_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "lambda_range_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "dlambda_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "qddot_signs": ["positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive"], "zero_brackets": [], "all_dlambda_negative": true, "all_qddot_positive": true, "steps_using_records": [87, 88, 89, 90, 91, 92, 93, 94], "refused": [], "reached_time": ["2.806684593623649597167969", "2.806684709182828044891357"], "stop_reason": "plan exhausted (step 94 certified)"}
+wall 0.09750223159790039
+        0.32 real         0.29 user         0.01 sys
+            27852800  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2680  page reclaims
+                  69  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  63  voluntary context switches
+                 163  involuntary context switches
+          5029630404  instructions retired
+          1171513138  cycles elapsed
+            20201976  peak memory footprint

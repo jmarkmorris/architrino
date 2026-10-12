@@ -21,6 +21,10 @@ The accepted [Master Equation naming convention](../../../content/markdown/aaa/a
 
 The [September 27 validation follow-ups](work-queue.md#ops-031--september-27-validation-follow-ups) are accepted and implemented: the duplicated Attraction preparation block is removed, and both reviewed chapters distinguish justified chart extension from genuine singular continuation. Independent affine-root checks and full-document review preserve the existing equations and claim boundaries.
 
+The [October 11 Effective Lagrangian maintenance referral](work-queue.md#ops-031--october-11-effective-lagrangian-referral) contains nine proposed correction groups, including missed propagation of the Master Equation’s interaction-statistic boundary. They await operator disposition; no substantive change is made and CRW-005 remains closed. The detailed receipt supplies exact passages, independent counterexamples, smallest repairs and falsifiers.
+
+The [October 12 core maintenance referral](work-queue.md#ops-031--october-12-core-symmetry-and-frequency-lock-referral) proposes eleven bounded corrections across the symmetry and doubling-frequency chapters. Delayed geometry and harmonic truncation are the most consequential proof gaps; exact equal-time symmetry and fixed-frequency algebra remain useful. No proposal is implemented; CRW-005 remains closed.
+
 ### How the assurance corrections relate to the rewrite
 
 The [six-group before/after proposal](analysis/ops-031-six-group-proposal-2026-10-03.md) consolidates the operator-requested review text for the October 3, October 2, September 28–30 and September 25 correction groups. The operator accepted all six groups on October 3, including the fixed-identity braid chart choice. All six groups are implemented and separately verified in the [October 3 six-group closure](evidence/ops-031-six-group-closure-2026-10-03.md); scientific owner limits remain explicit.

@@ -1,0 +1,39 @@
+{
+ "controls": [
+  {
+   "name": "(K) regression on the frozen antipodal b3 JSON: lambda_hat ranges and derivative ranges equal dlambda3-iv-v2-b3 to 1e-20; lambda_hat ranges/ends intersect the antipodal support step enclosures (different D_t source)",
+   "pass": true,
+   "n": 10
+  },
+  {
+   "name": "(W) negative: like polarity flipped moves the release radial sum off -g/4",
+   "release": [
+    "-0.025",
+    "-0.025"
+   ],
+   "release_wrong": [
+    "-0.1664213562373095048801689",
+    "-0.1664213562373095048801689"
+   ],
+   "pass": false
+  }
+ ],
+ "controls_all_pass": false,
+ "target_file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2b.json",
+ "resumed_from": {},
+ "target": {
+  "records": [],
+  "n": 0,
+  "lambda_end_signs": [],
+  "lambda_range_signs": [],
+  "dlambda_signs": [],
+  "qddot_signs": [],
+  "zero_brackets": [],
+  "all_dlambda_negative": true,
+  "all_qddot_positive": true,
+  "any_beyond_window": false,
+  "reached_time": null,
+  "stop_reason": null
+ },
+ "wall_s": 0.05034589767456055
+}

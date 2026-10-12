@@ -1,0 +1,326 @@
+{
+ "file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json",
+ "mode": "three",
+ "N_window": 4000,
+ "controls_all_pass": true,
+ "control_order": [
+  "(0a) fast node lookup equals the frozen ",
+  "(0b) closed forms (hit, D_t, r, radial) ",
+  "(0c) known: radial sum at release enclos",
+  "(1) continuity of the antipode term at i",
+  "(2) negative: antipode term at the probe",
+  "(4) negative: wrong antipode path map (q",
+  "(3) regression (not independent evidence"
+ ],
+ "n_steps": 11,
+ "stop_reason": "plan exhausted (11 steps certified)",
+ "reached_time": [
+  "1.976684593623649597167969",
+  "1.976684709182828044891357"
+ ],
+ "per_step": [
+  {
+   "step": 1,
+   "t_end": "1.8766847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.11549262",
+    "0.11549320"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.001515141",
+    "0.001522589"
+   ],
+   "lam_range": [
+    "0.001307522",
+    "0.001942637"
+   ]
+  },
+  {
+   "step": 2,
+   "t_end": "1.8866847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.10532356",
+    "0.10532417"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.001301072",
+    "0.001308720"
+   ],
+   "lam_range": [
+    "0.001092097",
+    "0.001731606"
+   ]
+  },
+  {
+   "step": 3,
+   "t_end": "1.8966847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.09515176",
+    "0.09515239"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.001085519",
+    "0.001093368"
+   ],
+   "lam_range": [
+    "0.000875177",
+    "0.001519104"
+   ]
+  },
+  {
+   "step": 4,
+   "t_end": "1.9066847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.08497719",
+    "0.08497784"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000868475",
+    "0.000876527"
+   ],
+   "lam_range": [
+    "0.000656762",
+    "0.001305127"
+   ]
+  },
+  {
+   "step": 5,
+   "t_end": "1.9166847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.07479981",
+    "0.07480048"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000649931",
+    "0.000658195"
+   ],
+   "lam_range": [
+    "0.000436842",
+    "0.001089673"
+   ]
+  },
+  {
+   "step": 6,
+   "t_end": "1.9266847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.06461959",
+    "0.06462029"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000429885",
+    "0.000438362"
+   ],
+   "lam_range": [
+    "0.000215410",
+    "0.000872729"
+   ]
+  },
+  {
+   "step": 7,
+   "t_end": "1.9366847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.05443651",
+    "0.05443723"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "UNDECIDED",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000208329",
+    "0.000217022"
+   ],
+   "lam_range": [
+    "-0.00000753",
+    "0.000654291"
+   ]
+  },
+  {
+   "step": 8,
+   "t_end": "1.9466847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.04425053",
+    "0.04425128"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "UNDECIDED",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00001474",
+    "-0.00000582"
+   ],
+   "lam_range": [
+    "-0.00023200",
+    "0.000434357"
+   ]
+  },
+  {
+   "step": 9,
+   "t_end": "1.9566847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.03406162",
+    "0.03406240"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "UNDECIDED",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00023933",
+    "-0.00023020"
+   ],
+   "lam_range": [
+    "-0.00045801",
+    "0.000212917"
+   ]
+  },
+  {
+   "step": 10,
+   "t_end": "1.9666847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.02386975",
+    "0.02387056"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00046546",
+    "-0.00045609"
+   ],
+   "lam_range": [
+    "-0.00068555",
+    "-0.00001003"
+   ]
+  },
+  {
+   "step": 11,
+   "t_end": "1.9766847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.01367489",
+    "0.01367573"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00069312",
+    "-0.00068352"
+   ],
+   "lam_range": [
+    "-0.00091463",
+    "-0.00023450"
+   ]
+  }
+ ],
+ "fail": [],
+ "residual_last_proved_positive_end": [
+  11,
+  "1.976684709182828044891357"
+ ],
+ "residual_first_proved_negative_end": null,
+ "attained_reception_certificate": false,
+ "generated_antipodal_history_last_step": null,
+ "lambda_last_positive_end": [
+  7,
+  "1.936684709182828044891357"
+ ],
+ "lambda_first_negative_end": [
+  8,
+  "1.946684709182828044891357"
+ ],
+ "lambda_sign_change_certificate": true
+}

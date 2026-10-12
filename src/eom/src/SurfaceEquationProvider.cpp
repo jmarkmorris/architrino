@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <set>
+#include "architrino/eom/SpeedDomain.hpp"
 
 namespace architrino::eom {
 namespace {
@@ -24,8 +25,9 @@ class SurfaceEquationProvider final : public EquationProvider {
   void admit(const NativeCoupledEvolutionRequest& r) const override {
     const auto& s = r.equation_selection;
     if (!s || s->composition_id != "canonical-surface/v1" || s->constraint != "surface" ||
-        s->speed_domain != "unrestricted" || s->boundary_policy != "none" || s->method != "numerical")
-      throw EquationAdmissionError("unsupported_model_combination", "Surface requires canonical-surface/v1, surface constraint, unrestricted speed and numerical method");
+        s->method != "numerical")
+      throw EquationAdmissionError("unsupported_model_combination", "Surface requires canonical-surface/v1, surface constraint and numerical method with a supported speed-domain policy");
+    admit_speed_selection(*s);
     if (equation_decimal_identity(r.field_speed) != "1e0")
       throw EquationAdmissionError("invalid_normalized_field_speed", "Surface requires exact field_speed=1");
     if (!r.surface_geometry) throw EquationAdmissionError("invalid_geometry", "Surface requires a fixed geometry definition");
@@ -39,7 +41,10 @@ class SurfaceEquationProvider final : public EquationProvider {
         !(Interval::decimal_token(r.surface_numerics.tangent_velocity_tolerance).lower() > 0) ||
         r.surface_numerics.maximum_cells == 0 || r.surface_numerics.maximum_depth == 0)
       throw EquationAdmissionError("invalid_surface_numerics", "surface tolerances/depth/cell budgets must be positive");
-    for (const auto& path : r.paths) admit_surface_preparation(shape, path.history);
+    for (const auto& path : r.paths) {
+      admit_surface_preparation(shape, path.history);
+      require_prepared_speed_domain(path.history, *s);
+    }
   }
   NativeAccelerationSnapshotCertificate evaluate(const EquationEvaluationContext& c) const override {
     admit(c.request);

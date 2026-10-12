@@ -33,7 +33,7 @@ v_i^+=\sup\|\mathbf V_i(I_T)\|,\qquad
 v_j^+=\sup\|\mathbf V_j(I_S)\|,
 $$
 
-and outward run-input bounds $c_f^-\le c_f\le c_f^+$, $\kappa^+=\sup\kappa$, and $Q_{ij}^+=\sup|q_iq_j|$. If
+and outward run-input bounds $c_f^-\le c_f\le c_f^+$, $\kappa^+=\sup|\kappa|$, and $Q_{ij}^+=\sup|q_iq_j|$. If
 
 $$
 r^-_{ij}>0,\qquad \nu_{s,ij}=c_f^- - v_j^+>0,
@@ -49,12 +49,10 @@ $$
 =\nu_{s,ij}>0.
 $$
 
-Therefore the interval contains at most one retained causal root. At that root,
+Therefore the interval contains at most one retained causal root. The canonical per-root acceleration weight in [Master EOM Binding v1](./master-eom-binding-v1.md) is the transmitter-side quantity $c_f/|D_{s,ij}|$; the receiver-side factor governs root playback only and does not multiply the instantaneous acceleration. At that root,
 
 $$
-|D_{T,ij}|\le c_f^+ + v_i^+,
-\qquad
-|D_{s,ij}|\ge\nu_{s,ij},
+\frac{c_f}{|D_{s,ij}|}\le\frac{c_f^+}{\nu_{s,ij}},
 $$
 
 so the frozen sharp simple-root law gives the total ordered-pair bound
@@ -63,7 +61,7 @@ $$
 \boxed{
 B_{ij}
 =
-\frac{\kappa^+Q_{ij}^+(c_f^+ + v_i^+)}
+\frac{\kappa^+Q_{ij}^+c_f^+}
 {(r^-_{ij})^2\nu_{s,ij}}
 }
 $$
@@ -75,7 +73,7 @@ $$
 \subseteq[-B_{ij},B_{ij}]^3.
 $$
 
-If there is no root, the exact contribution is zero and is still contained. The factor $\nu_{s,ij}$ is the certified transmitter-side-factor lower-bound factor. In the equivalent unnormalized residual derivative, its geometric lower bound is $r^-_{ij}\nu_{s,ij}\ge r^-_{ij}(c_f^- - v_j^+)$; this is the stated far, subluminal growth with distance. The receiver-side-factor numerator is retained explicitly because dropping it would not enclose the frozen law.
+If there is no root, the exact contribution is zero and is still contained. The factor $\nu_{s,ij}$ is the certified transmitter-side-factor lower-bound factor. In the equivalent unnormalized residual derivative, its geometric lower bound is $r^-_{ij}\nu_{s,ij}\ge r^-_{ij}(c_f^- - v_j^+)$; this is the stated far, subluminal growth with distance. The bound contains no receiver-speed factor, because the canonical acceleration weight is independent of receiver velocity at fixed geometry; the certificate still records the receiver speed bound $v_i^+$ as a diagnostic value. This is the bound the classifier `certify_far_field_enclosure` evaluates, with $\kappa^+$ the upper endpoint of the absolute coupling enclosure.
 
 The theorem is falsified by any admitted history for which the independently evaluated sharp contribution lies outside $[-B_{ij},B_{ij}]^3$, or by a pair accepted with $r^-_{ij}\le0$ or $\nu_{s,ij}\le0$.
 
@@ -110,7 +108,7 @@ $$
 r_{\mathrm{cut},ij}
 =
 \sqrt{
-\frac{2\kappa^+Q_{ij}^+(c_f^+ + v_i^+)}
+\frac{2\kappa^+Q_{ij}^+c_f^+}
 {\varepsilon_{ij}\nu_{s,ij}}
 }.
 $$
@@ -144,7 +142,7 @@ with disjoint membership and $P_{\mathrm{unresolved}}=0$. An enclosed pair does 
 | Row | Emitted values | Acceptance obligation | Failure action |
 | --- | --- | --- | --- |
 | `FFE-GEO-01` | reception interval, emission interval, axis displacement hull, $[r^-,r^+]$ | $r^->0$ | exact-root fallback |
-| `FFE-NORMAL-01` | $v_i^+$, $v_j^+$, $[c_f^-,c_f^+]$, $\nu_s$ | $\nu_s>0$ | exact-root fallback |
+| `FFE-NORMAL-01` | $v_j^+$, $[c_f^-,c_f^+]$, $\nu_s$, and the diagnostic receiver speed bound $v_i^+$ | $\nu_s>0$ | exact-root fallback |
 | `FFE-BOUND-01` | $\kappa^+$, $Q^+$, $B_{ij}$, symmetric vector interval | outward finite bound from the theorem | exact-root fallback |
 | `FFE-BUDGET-01` | $\varepsilon_{ij}$, $2B_{ij}$, derived $r_{\mathrm{cut}}$ | $2B_{ij}\le\varepsilon_{ij}$ | exact-root fallback |
 | `FFE-LEDGER-01` | logical, excluded, exact, enclosed, unresolved counts | disjoint sum equals logical and unresolved is zero | reject snapshot |

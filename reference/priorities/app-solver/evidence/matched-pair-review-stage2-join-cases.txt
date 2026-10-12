@@ -1,0 +1,15 @@
+case reviewer-nontrivial-C1-root-at-join
+reception 0
+tolerance 1
+fraction 0.5
+policy canonical_snapshot_piecewise_exact/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -15 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -15 -12.5 0 0 0 0 0 0 0 0 13.6 -0.48 0.016 0
+path plus 1 -12.5 0 0 0 0 0 0 0 0 0 12.5 -0.4 0 0
+path minus -1 -15 -13 0 0 0 0 0 0 0 0 12.825 -0.48 0.016 0
+path minus -1 -13 0 0 0 0 0 0 0 0 0 11.929 -0.416 0.016 0
+end

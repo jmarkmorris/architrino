@@ -1,5 +1,7 @@
 # Descriptive source/configuration receipt, not an executable binary hash.
 # Generated output is excluded from the source inventory it identifies.
+# External Boost receipt covers the linked library, entry headers and version;
+# it does not claim a complete transitive-header or system-SDK source inventory.
 file(GLOB_RECURSE EOM_IDENTITY_INPUTS CONFIGURE_DEPENDS
   "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
@@ -28,11 +30,16 @@ file(SHA256 "${MPFR_LIBRARY}" EOM_MPFR_LIBRARY_DIGEST)
 file(SHA256 "${GMP_LIBRARY}" EOM_GMP_LIBRARY_DIGEST)
 file(SHA256 "${MPFR_INCLUDE_DIR}/mpfr.h" EOM_MPFR_HEADER_DIGEST)
 file(SHA256 "${EOM_GMP_INCLUDE_DIR}/gmp.h" EOM_GMP_HEADER_DIGEST)
+file(SHA256 "${EOM_BOOST_JSON_LIBRARY}" EOM_BOOST_JSON_DIGEST)
+file(SHA256 "${EOM_BOOST_INCLUDE_DIR}/boost/json.hpp" EOM_BOOST_JSON_HEADER_DIGEST)
+file(SHA256 "${EOM_BOOST_INCLUDE_DIR}/boost/property_tree/json_parser.hpp" EOM_BOOST_DUPLICATE_HEADER_DIGEST)
+file(SHA256 "${EOM_BOOST_INCLUDE_DIR}/boost/version.hpp" EOM_BOOST_VERSION_DIGEST)
 file(SHA256 "${CMAKE_CXX_COMPILER}" EOM_COMPILER_DIGEST)
 set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
   ${EOM_IDENTITY_INPUTS} "${EOM_BINDING_SOURCE}" "${EOM_SURFACE_SOURCE}"
   "${MPFR_LIBRARY}" "${GMP_LIBRARY}" "${MPFR_INCLUDE_DIR}/mpfr.h"
   "${EOM_GMP_INCLUDE_DIR}/gmp.h" "${CMAKE_CXX_COMPILER}")
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${EOM_BOOST_JSON_LIBRARY}" "${EOM_BOOST_INCLUDE_DIR}/boost/json.hpp" "${EOM_BOOST_INCLUDE_DIR}/boost/property_tree/json_parser.hpp" "${EOM_BOOST_INCLUDE_DIR}/boost/version.hpp")
 file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/generated")
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/generated/equation-source-identity.inputs"
   "${EOM_SOURCE_PREIMAGE}")
@@ -54,6 +61,7 @@ foreach(EOM_IDENTITY_CONFIG IN LISTS EOM_IDENTITY_CONFIGS)
   string(TOUPPER "${EOM_IDENTITY_BUILD_TYPE}" EOM_BUILD_TYPE_UPPER)
   set(EOM_CONFIG_PREIMAGE
     "eom-build-configuration/v1\ncompiler=${CMAKE_CXX_COMPILER}\ncompilerDigest=${EOM_COMPILER_DIGEST}\ncompilerId=${CMAKE_CXX_COMPILER_ID}\ncompilerVersion=${CMAKE_CXX_COMPILER_VERSION}\ncompilerTarget=${CMAKE_CXX_COMPILER_TARGET}\nstandard=${CMAKE_CXX_STANDARD}\ngenerator=${CMAKE_GENERATOR}\nplatform=${CMAKE_GENERATOR_PLATFORM}\narchitecture=${CMAKE_OSX_ARCHITECTURES}\nsysroot=${CMAKE_OSX_SYSROOT}\ngenericSysroot=${CMAKE_SYSROOT}\ndeploymentTarget=${CMAKE_OSX_DEPLOYMENT_TARGET}\nbuildType=${EOM_IDENTITY_BUILD_TYPE}\nflags=${CMAKE_CXX_FLAGS}\nconfigurationFlags=${CMAKE_CXX_FLAGS_${EOM_BUILD_TYPE_UPPER}}\nlinkerFlags=${CMAKE_EXE_LINKER_FLAGS}\nconfigurationLinkerFlags=${CMAKE_EXE_LINKER_FLAGS_${EOM_BUILD_TYPE_UPPER}}\nsanitizers=${EOM_ENABLE_SANITIZERS}\nmpfr=${EOM_MPFR_LIBRARY_DIGEST}\ngmp=${EOM_GMP_LIBRARY_DIGEST}\nmpfrHeader=${EOM_MPFR_HEADER_DIGEST}\ngmpHeader=${EOM_GMP_HEADER_DIGEST}\n")
+  string(APPEND EOM_CONFIG_PREIMAGE "boostJson=${EOM_BOOST_JSON_DIGEST}\nboostJsonHeader=${EOM_BOOST_JSON_HEADER_DIGEST}\nboostDuplicateHeader=${EOM_BOOST_DUPLICATE_HEADER_DIGEST}\nboostVersion=${EOM_BOOST_VERSION_DIGEST}\n")
   string(SHA256 EOM_CONFIGURATION_DIGEST "${EOM_CONFIG_PREIMAGE}")
   string(SHA256 EOM_BUILD_DIGEST "${EOM_SOURCE_DIGEST}|${EOM_CONFIGURATION_DIGEST}")
   file(MAKE_DIRECTORY "${EOM_IDENTITY_OUTPUT}")

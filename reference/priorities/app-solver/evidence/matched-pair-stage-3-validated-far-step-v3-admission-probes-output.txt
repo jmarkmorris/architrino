@@ -1,0 +1,67 @@
+Known cases, before any target
+  PASS  known static kernel contains -1/100: exact -1/100
+  PASS  known quadratic peak speed is exactly 2: [0, 2]
+  PASS  known static step certified: certified
+  PASS  known static velocity tube contains analytic bracket: closed-form bracket
+  PASS  known static acceleration box contains -1/100000: exact
+
+Known cases passed before any target.
+
+Genuine inherited continuation
+  PASS  three genuine static steps chain: each step admitted the layers before it
+  PASS  radii are inherited and do not shrink: position and velocity, z axis
+  PASS  three-step tube contains the analytic bracket: velocity and position at 3h
+  PASS  two genuine steps on the oscillating past contain the true bracket: at 2h
+  PASS  an unaltered deep copy of a genuine history is admitted: binding is to content, not object identity
+
+VFS-R1 and VFS-R2 remain closed (reviewer's constructions)
+  PASS  R1 unequal retained starts decline: retained histories do not start at one common time; a shorter history cannot remove another path's emissions
+  PASS  R1 in the other order: VFS-H0-01
+  PASS  R2 in-place speed-2 arch after a genuine step declines H1: with and without a budget
+  PASS  R2 caller-supplied cache field is ignored: VFS-H1-01
+  PASS  R2 nothing is written into caller segments: keys unchanged
+
+VFS-R3 altered ancestor (reviewer's construction) and variants
+  PASS  R3 reproduction: version 2 certifies on the altered ancestor: source past moved from 10 to 11 under its generated segment
+  PASS  R3 closed: version 3 declines the altered ancestor: generated layer 0 was published from a different preceding history or different charges
+  PASS  altering the other path's prescribed past declines: generated layer 0 was published from a different preceding history or different charges
+  PASS  altering an earlier generated layer declines: generated layer 0 was not published by this carrier as one step for these paths
+  PASS  a genuine later layer on a different genuine ancestor declines: generated layer 1 was published from a different preceding history or different charges
+  PASS  removing a generated layer from one path declines: paths carry different numbers of generated layers
+
+Transferred segments and paths
+  PASS  generated segments swapped between the two paths decline: generated layer 0 was not published by this carrier as one step for these paths
+  PASS  a renamed path declines: generated layer 0 was not published by this carrier as one step for these paths
+  PASS  a genuine segment transplanted into another population declines: generated layer 0 was not published by this carrier as one step for these paths
+  PASS  adding a path with an invented generated segment declines: generated layer 0 was not published by this carrier as one step for these paths
+
+Changed coupling and changed charge
+  PASS  continuing under a different coupling declines: generated layer 0 was published under a different coupling
+  PASS  continuing with a changed source charge declines: generated layer 0 was published from a different preceding history or different charges
+  PASS  continuing with a changed receiver charge declines: generated layer 0 was published from a different preceding history or different charges
+  PASS  the same history under the same scalars is admitted: control for the three refusals
+
+Altered, forged and misapplied certificates at append
+  PASS  a genuine certificate appends to its own history: appended
+  PASS  a certificate with an altered published segment is refused: the certificate's published segments were altered
+  PASS  a genuine certificate is refused on a different history: the certificate was issued for a different preceding history
+  PASS  a declined certificate edited to look certified is refused: the certificate was not issued by this carrier
+  PASS  a genuine digest with substituted segments is refused: the certificate's published segments were altered
+  PASS  a declined certificate is refused: a declined step has no continuation to append
+  PASS  hand-appending altered segments is refused at admission: generated layer 0 was not published by this carrier as one step for these paths
+
+VFS-H4-01 branch and total-radius budget
+  PASS  reviewer's fast affine source declines on the chart: conservative refusal
+  PASS  increment budget met, total budget refused: VFS-BUDGET-02 on the second step
+
+Long run with blocking assertions: 512 steps of 1/256 to t = 2
+  PASS  all 512 steps certified, each admitting every earlier layer: 512 of 512; receipts SHA-256 c85ef2b0c52906ef377d1e21bdfe401c90fb4dda7affcf53e48d3822224afd2e
+  PASS  end velocity tube contains the whole frozen true bracket: half-width 2.081454e-07
+  PASS  end position tube contains the whole frozen true bracket: half-width 1.670257e-07
+  PASS  end velocity tube is disjoint from the solver's aliased interval: separation 1.760351e-07
+  PASS  after 512 layers, a 1e-9 shift of the prescribed past declines on ancestry: generated layer 0 was published from a different preceding history or different charges
+  PASS  a 1e-9 change of one prescribed source segment declines on its join: path source join 3 is not exactly continuously differentiable
+  PASS  the unaltered 512-layer history is admitted for step 513: control for the two refusals
+
+45 of 45 rows passed.
+probes-exit 0

@@ -1,0 +1,43 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-review-dlambda-check.py", line 49, in <module>
+    fd = diff(lam_t, mpf(0))
+  File "/Users/markmorris/vibe/.venv/lib/python3.13/site-packages/mpmath/calculus/differentiation.py", line 188, in diff
+    values, norm, workprec = hsteps(ctx, f, x, n, prec, **options)
+                             ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/.venv/lib/python3.13/site-packages/mpmath/calculus/differentiation.py", line 61, in hsteps
+    values = [f(x+k*h) for k in steps]
+              ~^^^^^^^
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-review-dlambda-check.py", line 48, in lam_t
+    return mp.mpf(str(((-qdd**2 - g*(1/(rL*DL) - 1/(rU*DU) - 1/(2*rA))).mid)))
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/.venv/lib/python3.13/site-packages/mpmath/ctx_mp_python.py", line 79, in __new__
+    v._mpf_ = mpf_pos(cls.mpf_convert_arg(val, prec, rounding), prec, rounding)
+                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/.venv/lib/python3.13/site-packages/mpmath/ctx_mp_python.py", line 86, in mpf_convert_arg
+    if isinstance(x, basestring): return from_str(x, prec, rounding)
+                                         ~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/.venv/lib/python3.13/site-packages/mpmath/libmp/libmpf.py", line 1331, in from_str
+    man, exp = str_to_man_exp(x, base=10)
+               ~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/.venv/lib/python3.13/site-packages/mpmath/libmp/libmpf.py", line 1294, in str_to_man_exp
+    float(x)
+    ~~~~~^^^
+ValueError: could not convert string to float: '[-0.0007600994832156576039488070582631348, -0.0007600994832156576039488070582631348]'
+        0.04 real         0.03 user         0.00 sys
+            22544384  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2400  page reclaims
+                  47  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   8  voluntary context switches
+                  15  involuntary context switches
+           465432395  instructions retired
+           162116774  cycles elapsed
+            14713336  peak memory footprint

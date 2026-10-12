@@ -1,0 +1,6572 @@
+{
+ "g": "1/10",
+ "N_window": 4000,
+ "mode": "three (all classes moving, generated history)",
+ "plan": {
+  "Delta": "0.01",
+  "max_step_number": 104,
+  "adaptation": "none; stop at the first uncertified step"
+ },
+ "controls": [
+  {
+   "name": "(0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the EXPANDED box q <= 0.7, q' <= 0.4, v' <= 0.4",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "8.8747e-31",
+    "like": "5.9165e-31",
+    "antipode": "3.9443e-31"
+   }
+  },
+  {
+   "name": "(E) expanded-domain box q in [0.39, 0.62], q' in [0, 0.31], v' in [0, 0.30] (144 cells): unlike/like N > 0 and M > 0, every separation r > 0.9, D_t > 0.5 with unlike <= 1 (approaching), like >= 1 and antipode >= 1 (receding; q' <= q on the box)",
+   "pass": true,
+   "box": {
+    "N_min": {
+     "unlike": "0.2969164",
+     "like": "0.2969164",
+     "antipode": "0.079914694"
+    },
+    "M_min": {
+     "unlike": "0.14386591",
+     "like": "0.14386591",
+     "antipode": "-0.58103516"
+    },
+    "r_min": {
+     "unlike": "1.0123403",
+     "like": "1.5897771",
+     "antipode": "1.9046671"
+    },
+    "D_range": {
+     "unlike": [
+      "0.88252912",
+      "1.0"
+     ],
+     "like": [
+      "1.0",
+      "1.0875554"
+     ],
+     "antipode": [
+      "1.0",
+      "1.0915176"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(2) reconciliation at the accepted step-94 state: g F(q) (five-image field) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum intersects g n.A",
+   "pass": true,
+   "gF": [
+    "0.1117529946038295211893916",
+    "0.1117886674043152678785005"
+   ],
+   "tangent_sum_fixed": [
+    "0.1117657953736971650594194",
+    "0.1117758654950383246120421"
+   ],
+   "radial_sum_fixed": [
+    "-0.04592180810548503296753518",
+    "-0.04591874721005770291827163"
+   ],
+   "g_nA": [
+    "-0.04593753265221183695827679",
+    "-0.04590302248490977112777242"
+   ]
+  },
+  {
+   "name": "(3) record lookup: window case; frozen end strings contained at record ends in every family; continuity and two-part hull at T*; exact-string joins; hull across each family join; negatives: uncertified record, gap, wrong record file, range beyond covered history all refused",
+   "pass": true,
+   "detail": {
+    "window_lookup_equals_window": true,
+    "wave16_step5_end_contained": true,
+    "wave17_step40_end_contained": true,
+    "antipodal_b3_step21_end_contained": true,
+    "late_feedback_step60_end_contained": true,
+    "late_feedback_step94_end_contained": true,
+    "continuity_at_T_star": true,
+    "straddle_T_star_two_part_hull": true,
+    "family_and_file_joins_exact_strings": true,
+    "hull_across_each_family_join": true,
+    "neg_uncertified_record_refused": [
+     true,
+     "uncertified record refused: synthetic uncertified copy of wave16 step 5"
+    ],
+    "wave16_step11_certified_flag": false,
+    "neg_wave16_step11_refused": [
+     true,
+     "uncertified record refused: wave16 step 11"
+    ],
+    "neg_gap_refused": [
+     true,
+     "gap refused before wave16 step 3"
+    ],
+    "neg_wrong_record_file_detected": [
+     true,
+     "gap refused before antipodal-a step 1"
+    ],
+    "neg_wrong_record_state_at_the_right_time_detected": [
+     true,
+     "state discontinuity refused at wave17 step 2"
+    ],
+    "neg_beyond_covered_history_refused": true
+   }
+  },
+  {
+   "name": "(4) negative: like and unlike terms at the step-94 state with the wrong sign of the velocity term in D_t are disjoint from the correct ones",
+   "pass": true,
+   "detail": {
+    "like": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.1370686406868744588937701",
+      "0.1370799803502139532965351"
+     ],
+     "hit_wrong": [
+      "0.1462025369835815581784895",
+      "0.1462146731798032820643067"
+     ],
+     "Dt_correct": [
+      "1.032242258557322857108923",
+      "1.032246590287877271113721"
+     ],
+     "Dt_wrong": [
+      "0.9677534097121227288862786",
+      "0.9677577414426771428910767"
+     ]
+    },
+    "unlike": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.3765589932525459976457177",
+      "0.3789009306396596260689919"
+     ],
+     "hit_wrong": [
+      "0.3339826809415615220516747",
+      "0.3360381401432138410127796"
+     ],
+     "Dt_correct": [
+      "0.9397948480410760471617022",
+      "0.9403311707969756935384406"
+     ],
+     "Dt_wrong": [
+      "1.059668829203024306461559",
+      "1.060205151958923952838298"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(5) delay-root bracket: frozen narrow vs wide (+-0.15) agree to 1e-15 at the b3 step-21 state; +-0.12 vs +-0.15 intersect and agree to 1e-9 at the step-94 state (bisection resolution on record hulls); a non-straddling bracket (+-1e-4) is refused",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "b3_state_narrow_vs_wide": true,
+     "step94_state_0.12_vs_0.15": true,
+     "step94_endpoint_abs_diff": "1.2973e-15",
+     "tau_step94": [
+      "1.152932937030810666717737",
+      "1.154121274960548915675959"
+     ],
+     "chord_minus_tau_step94": "0.0513067",
+     "frozen_narrow_bracket_at_step94": "fails (root outside +-0.03)"
+    },
+    "like": {
+     "b3_state_narrow_vs_wide": true,
+     "step94_state_0.12_vs_0.15": true,
+     "step94_endpoint_abs_diff": "1.8599e-17",
+     "tau_step94": [
+      "1.616524745177800132014824",
+      "1.616546584221758055304568"
+     ],
+     "chord_minus_tau_step94": "-0.0197356",
+     "frozen_narrow_bracket_at_step94": "straddles"
+    },
+    "antipode": {
+     "b3_state_narrow_vs_wide": true,
+     "step94_state_0.12_vs_0.15": true,
+     "step94_endpoint_abs_diff": "1.7295e-18",
+     "tau_step94": [
+      "1.966964630319131613941345",
+      "1.966974417237014995018184"
+     ],
+     "chord_minus_tau_step94": "-0.00669224",
+     "frozen_narrow_bracket_at_step94": "straddles"
+    }
+   },
+   "non_straddling_refused": true
+  },
+  {
+   "name": "(1) restart regression (same-code, not independent): the step from the frozen step-93 strings intersects the frozen step-94 end strings and agrees to 1e-15 at N = 4000",
+   "pass": true,
+   "intersects": true,
+   "max_endpoint_abs_diff": "8.764e-22",
+   "end_q": [
+    "0.3992437701157277106661832",
+    "0.3992985410325688180050578"
+   ],
+   "frozen_end_q": [
+    "0.3992437701157277106661817",
+    "0.3992985410325688180050535"
+   ],
+   "end_v": [
+    "0.2888830859193191819274853",
+    "0.2890560052917000141660627"
+   ],
+   "frozen_end_v": [
+    "0.2888830859193191819271821",
+    "0.2890560052917000141651863"
+   ],
+   "reconcile_tangent": true,
+   "reconcile_radial": true
+  },
+  {
+   "name": "(6) self-append: after certifying the control step (from step 93), appending it through the checked path, a lookup inside it returns that step's box, a lookup beyond it is refused, and its box agrees with the frozen step-94 box",
+   "pass": true,
+   "detail": {
+    "records_before": 143,
+    "records_after": 144,
+    "lookup_inside_returns_its_box": true,
+    "lookup_beyond_refused": true,
+    "box_agrees_with_frozen_step94_S_to_1e-15": true
+   }
+  },
+  {
+   "name": "(7) restart wrapper: default and explicit selection of step 94 reproduce the exact frozen strings with t0 an interval; wrong g, wrong window, uncertified step, missing step and wrong Delta refused",
+   "pass": true,
+   "detail": {
+    "default_selects_last_certified_step_94_exact_strings": true,
+    "explicit_step_94_exact_strings": true,
+    "t0_interval": [
+     "2.806684593623649597167969",
+     "2.806684709182828044891357"
+    ],
+    "t0_is_interval_not_point": true,
+    "neg_wrong_g": [
+     true,
+     "g mismatch: 1/9"
+    ],
+    "neg_wrong_window": [
+     true,
+     "window mismatch (N or T* strings differ)"
+    ],
+    "neg_uncertified_step": [
+     true,
+     "requested step 94 is not certified"
+    ],
+    "neg_missing_step": [
+     true,
+     "requested step 999 not in the record"
+    ],
+    "neg_wrong_Delta": [
+     true,
+     "Delta mismatch"
+    ]
+   }
+  }
+ ],
+ "steps": [
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "2.806684593623649597167969",
+    "2.816684709182828044891357"
+   ],
+   "S": [
+    "0.3992437684149891488977329",
+    "0.4021944924507719101019238"
+   ],
+   "VS": [
+    "0.2888825756977506513925475",
+    "0.2901342783489184052088701"
+   ],
+   "a0": [
+    "0.1073101511681670846345234",
+    "0.1078273057218391043683818"
+   ],
+   "ap": [
+    "-0.01020443137061069269270699",
+    "-0.00276779260541873051979604"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.152932937030810666717737",
+      "1.154121274960548915675959"
+     ],
+     "tau_range": [
+      "1.150803160431980101540599",
+      "1.154121274960548915675959"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9397948480410760471617022",
+      "0.9403311707969756935384406"
+     ],
+     "Dt_range": [
+      "0.9392600037021325170568626",
+      "0.9408112252909195078338974"
+     ],
+     "delayed_arg_range": [
+      "1.65256331866310068149201",
+      "1.665881548750847943350758"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1360426759605256774501217",
+      "0.1393843231888043887412086"
+     ],
+     "history_qdot_range": [
+      "0.1659452501009828562481191",
+      "0.1680171876118723309825127"
+     ],
+     "hit0": [
+      "0.3765589932525459976457177",
+      "0.3789009306396596260689919"
+     ],
+     "hit_fixed0": [
+      "0.3730192464577612196316231",
+      "0.3730554028223895110977932"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.140803160431980101540599",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.2858786094802726366006526",
+     "delayed_arg_start": [
+      "1.65256331866310068149201",
+      "1.65375177215201737817362"
+     ],
+     "r0": [
+      "1.152932937030810817677773",
+      "1.154121274960548073684767"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1360426759605256774501217",
+       "0.1377093058807698027871205"
+      ],
+      "history_qdot": [
+       "0.1659452501009828562481191",
+       "0.1669863738288030058481416"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1030007281432114715617936",
+       "0.1030614869803209243891789"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.65256331866310068149201",
+       "1.665881548750847943350758"
+      ],
+      "history_q": [
+       "0.1360426759605256774501217",
+       "0.1393843231888043887412086"
+      ],
+      "history_qdot": [
+       "0.1659452501009828562481191",
+       "0.1680171876118723309825127"
+      ],
+      "history_qddot": [
+       "0.1030007281432114715617936",
+       "0.1031113284343763173422403"
+      ],
+      "dhit_dt": [
+       "0.0202530395247076527735804",
+       "0.03594537507155135825039342"
+      ],
+      "taudot": [
+       "-0.2123125770801132030066731",
+       "-0.2069006938956477936780304"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1030007281432114715617936",
+      "0.1031113284343763173422403"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.616524745177800132014824",
+      "1.616546584221758055304568"
+     ],
+     "tau_range": [
+      "1.616524745177800132014824",
+      "1.617913548358095661095073"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.032242258557322857108923",
+      "1.032246590287877271113721"
+     ],
+     "Dt_range": [
+      "1.031964723871981783121921",
+      "1.032543417108470562975178"
+     ],
+     "delayed_arg_range": [
+      "1.188771045265553936072896",
+      "1.200159964005027912876533"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07077315270676235133788903",
+      "0.07213834308793197592177887"
+     ],
+     "history_qdot_range": [
+      "0.1192795212270040188961285",
+      "0.1204312778193872559908684"
+     ],
+     "hit0": [
+      "0.1370686406868744588937701",
+      "0.1370799803502139532965351"
+     ],
+     "hit_fixed0": [
+      "0.160007794272127229688875",
+      "0.1600182100123330684756441"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.606524745177800132014824",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1665246296186216842914357",
+     "delayed_arg_start": [
+      "1.190138009401891541863401",
+      "1.190159964005027912876533"
+     ],
+     "r0": [
+      "1.616523728248780785437048",
+      "1.616547601629124132999168"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.07093631179409136928958606",
+       "0.07093907554675002253038951"
+      ],
+      "history_qdot": [
+       "0.119417741100241162547556",
+       "0.1194200810654713343834725"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1011070255360397512847169",
+       "0.1011079584175842757798199"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.188771045265553936072896",
+       "1.200159964005027912876533"
+      ],
+      "history_q": [
+       "0.07077315270676235133788903",
+       "0.07213834308793197592177887"
+      ],
+      "history_qdot": [
+       "0.1192795212270040188961285",
+       "0.1204312778193872559908684"
+      ],
+      "history_qddot": [
+       "0.1008866925343015547115096",
+       "0.1013480535827625019154818"
+      ],
+      "dhit_dt": [
+       "-0.07477556130211826366674502",
+       "-0.07222499164459080415033583"
+      ],
+      "taudot": [
+       "0.1338889862818858870652924",
+       "0.1363162922821425165742097"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1008866925343015547115096",
+      "0.1013480535827625019154818"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.966964630319131613941345",
+      "1.966974417237014995018184"
+     ],
+     "tau_range": [
+      "1.966586793981887823879589",
+      "1.966974417237014995018184"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.015220823122600454016721",
+      "1.015223332879653740239744"
+     ],
+     "Dt_range": [
+      "1.015176227836995851210753",
+      "1.015541505839238880979571"
+     ],
+     "delayed_arg_range": [
+      "0.8397101763866346021497849",
+      "0.8500979152009402210117683"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.03528278974744344064533653",
+      "0.03616197677117923641129812"
+     ],
+     "history_qdot_range": [
+      "0.08410351784551554468416003",
+      "0.08514765194233361624586733"
+     ],
+     "hit0": [
+      "0.0460749527149179674927638",
+      "0.04608251493246285676195369"
+     ],
+     "hit_fixed0": [
+      "0.05160387227719475195319832",
+      "0.05161142928093808697354662"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.956586793981887823879589",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.5165866784227093761562007",
+     "delayed_arg_start": [
+      "0.8397101763866346021497849",
+      "0.8397200788636964309500125"
+     ],
+     "r0": [
+      "1.966964481391689592915573",
+      "1.966974566250123655825018"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.03528278974744344064533653",
+       "0.03528373906744611594844678"
+      ],
+      "history_qdot": [
+       "0.08410351784551554468416003",
+       "0.08410465218380466707229002"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1004954533374316425199016",
+       "0.1004957480170978264638645"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "0.8397101763866346021497849",
+       "0.8500979152009402210117683"
+      ],
+      "history_q": [
+       "0.03528278974744344064533653",
+       "0.03616197677117923641129812"
+      ],
+      "history_qdot": [
+       "0.08410351784551554468416003",
+       "0.08514765194233361624586733"
+      ],
+      "history_qddot": [
+       "0.1003659197760338733429778",
+       "0.1006391155068775606519187"
+      ],
+      "dhit_dt": [
+       "0.02532791399320129331109087",
+       "0.02640106833638572513395566"
+      ],
+      "taudot": [
+       "-0.03759698120644134830710331",
+       "-0.03599113572890290854821803"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1003659197760338733429778",
+      "0.1006391155068775606519187"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4021379647817407490712365",
+    "0.4021944924507719101019238"
+   ],
+   "end_v_str": [
+    "0.2899556772094323222388927",
+    "0.2901342783489184052088701"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-0.8464123156786980561894379",
+    "-0.8464013383807190190160233"
+   ],
+   "antipode_residual_end": [
+    "-0.8569887117098233229344499",
+    "-0.8569773058375816234727819"
+   ],
+   "a_rad_start": [
+    "-0.0574027614161461764729003",
+    "-0.05725382178165735715381852"
+   ],
+   "lambda_hat_start": [
+    "-0.0262995524135379494373347",
+    "-0.02605067591412257212184868"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.05774589354221056552362235",
+    "-0.05712307741212808691418359"
+   ],
+   "lambda_hat_range": [
+    "-0.0270548220609195763599344",
+    "-0.02570724899955606972764652"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07531179865050919952914355",
+      "0.07578018612793192521379838"
+     ],
+     "radial": [
+      "-0.09229175272473040685863765",
+      "-0.09214413988500221898736291"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02741372813737489177875401",
+      "0.02741599607004279065930702"
+     ],
+     "radial": [
+      "0.05992776008808447489869212",
+      "0.0599288966081870315945728"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.00460749527149179674927638",
+      "0.004608251493246285676195369"
+     ],
+     "radial": [
+      "-0.02503876877950024451295477",
+      "-0.02503857850484216976102842"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1073330220593758880571739",
+    "0.1078044336912210015493008"
+   ],
+   "radial_sum_start": [
+    "-0.0574027614161461764729003",
+    "-0.05725382178165735715381852"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.596789120052406555204796",
+     "1.597991823520564614014729"
+    ],
+    "unlike_pair_chord": [
+     "1.202672911460726580894682",
+     "1.204269283043564623851641"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 95,
+   "certified": true,
+   "self_appended_record_index": 144,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.150962356349122523080807",
+      "1.152160384683841262782492"
+     ],
+     "Dt": [
+      "0.9397465047742153649859044",
+      "0.9402841673131436527763036"
+     ],
+     "r": [
+      "1.150962356349125469512012",
+      "1.152160384683839868478781"
+     ],
+     "hist_q": [
+      "0.1377072784979426665861811",
+      "0.1393843231888043887412086"
+     ],
+     "hist_qdot": [
+      "0.1669752573824149709637371",
+      "0.1680171876118723309825127"
+     ],
+     "delayed_arg": [
+      "1.664524208939808334385477",
+      "1.66572235283370552181055"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.617871977741225768322091",
+      "1.617894473668284241218669"
+     ],
+     "Dt": [
+      "1.03225955659610800477361",
+      "1.032264052737073730362405"
+     ],
+     "r": [
+      "1.617870925701494908991692",
+      "1.617895526197435452550509"
+     ],
+     "hist_q": [
+      "0.07197330887590983723070011",
+      "0.07197618242330879690896884"
+     ],
+     "hist_qdot": [
+      "0.1202926155529127019420156",
+      "0.1202950312473305772297444"
+     ],
+     "delayed_arg": [
+      "1.1987901199553653559493",
+      "1.198812731441602276569266"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.966598236361092614945692",
+      "1.966608390040851971004284"
+     ],
+     "Dt": [
+      "1.015493807122092716269265",
+      "1.015496429099927424878951"
+     ],
+     "r": [
+      "1.96659807909188244653193",
+      "1.966608547398536091411427"
+     ],
+     "hist_q": [
+      "0.03616000643051671899536",
+      "0.03616100226860586591412304"
+     ],
+     "hist_qdot": [
+      "0.08514532609651875248103417",
+      "0.08514650161980045275667178"
+     ],
+     "delayed_arg": [
+      "0.8500762035827976261636847",
+      "0.8500864728217354299456649"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.05761440516226132733425585",
+    "-0.05746408949699548579120302"
+   ],
+   "lambda_hat_end": [
+    "-0.02671380997605217748291497",
+    "-0.02645988958371918327052662"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07537455556418404941597319",
+      "0.0758483933582498772109136"
+     ],
+     "radial": [
+      "-0.0924545227627272647299537",
+      "-0.09230557627276675150968155"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02726698720103240896394086",
+      "0.02726932395237295644342231"
+     ],
+     "radial": [
+      "0.05987681927178869398988093",
+      "0.05987799053251997478736913"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004633221753909664830959928",
+      "0.004634003144156842396260789"
+     ],
+     "radial": [
+      "-0.02503670167132275659418308",
+      "-0.0250365037567487090688906"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.107274764519126123210874",
+    "0.1077517204547796760505967"
+   ],
+   "radial_sum_end": [
+    "-0.05761440516226132733425585",
+    "-0.05746408949699548579120302"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "2.816684593623649597167969",
+    "2.826684709182828044891357"
+   ],
+   "S": [
+    "0.4021379628973367441929998",
+    "0.4051012240061376146310682"
+   ],
+   "VS": [
+    "0.2899551118882308587679005",
+    "0.2912120327242225006200051"
+   ],
+   "a0": [
+    "0.1072510486655430940008858",
+    "0.1077754375304095411134989"
+   ],
+   "ap": [
+    "-0.01130642402926941984431605",
+    "-0.002885420464467079117024006"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.150962356349122523080807",
+      "1.152160384683841262782492"
+     ],
+     "tau_range": [
+      "1.14883030397532720626274",
+      "1.152160384683841262782492"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9397465047742153649859044",
+      "0.9402841673131436527763036"
+     ],
+     "Dt_range": [
+      "0.9387866926668001935567863",
+      "0.9408767476541842986396061"
+     ],
+     "delayed_arg_range": [
+      "1.664524208939808334385477",
+      "1.677854405207500838628617"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1377072784979426665861811",
+      "0.1427652947118880786185626"
+     ],
+     "history_qdot_range": [
+      "0.1669752573824149709637371",
+      "0.1700803168368146219047726"
+     ],
+     "hit0": [
+      "0.3768727778209202470798659",
+      "0.379241966791249386054568"
+     ],
+     "hit_fixed0": [
+      "0.3740188540615596677058459",
+      "0.3740563816338378609073737"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.13883030397532720626274",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.2978394997569802894941196",
+     "delayed_arg_start": [
+      "1.664524208939808334385477",
+      "1.66572235283370552181055"
+     ],
+     "r0": [
+      "1.150962356349125469512012",
+      "1.152160384683839868478781"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1377072784979426665861811",
+       "0.1393843231888043887412086"
+      ],
+      "history_qdot": [
+       "0.1669752573824149709637371",
+       "0.1680171876118723309825127"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1030501010272232327028437",
+       "0.1031113284343763173422403"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.664524208939808334385477",
+       "1.677854405207500838628617"
+      ],
+      "history_q": [
+       "0.1377072784979426665861811",
+       "0.1427652947118880786185626"
+      ],
+      "history_qdot": [
+       "0.1669752573824149709637371",
+       "0.1700803168368146219047726"
+      ],
+      "history_qddot": [
+       "0.1030501010272232327028437",
+       "0.1032119435486135410020817"
+      ],
+      "dhit_dt": [
+       "0.01488422737628453074057811",
+       "0.03529154775306546164769602"
+      ],
+      "taudot": [
+       "-0.2132052373795316818067196",
+       "-0.2065545215311441942878792"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1030501010272232327028437",
+      "0.1032119435486135410020817"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.617871977741225768322091",
+      "1.617894473668284241218669"
+     ],
+     "tau_range": [
+      "1.617871977741225768322091",
+      "1.619261577194961788020114"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.03225955659610800477361",
+      "1.032264052737073730362405"
+     ],
+     "Dt_range": [
+      "1.031979379783206690035217",
+      "1.032559380472532595687696"
+     ],
+     "delayed_arg_range": [
+      "1.197423016428687809147855",
+      "1.208812731441602276569266"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07180895377074835124614106",
+      "0.07318419462247343550468454"
+     ],
+     "history_qdot_range": [
+      "0.1201543690792832597374826",
+      "0.1213064191625452990396984"
+     ],
+     "hit0": [
+      "0.1363349360051620448197043",
+      "0.1363466197618647822171116"
+     ],
+     "hit_fixed0": [
+      "0.1594577219771110208823768",
+      "0.1594684469759765773206857"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.607871977741225768322091",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1578718621820473205987027",
+     "delayed_arg_start": [
+      "1.1987901199553653559493",
+      "1.198812731441602276569266"
+     ],
+     "r0": [
+      "1.617870925701494908991692",
+      "1.617895526197435452550509"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.07197330887590983723070011",
+       "0.07197618242330879690896884"
+      ],
+      "history_qdot": [
+       "0.1202926155529127019420156",
+       "0.1202950312473305772297444"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1011264755428845156303911",
+       "0.1011274478131707730171006"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.197423016428687809147855",
+       "1.208812731441602276569266"
+      ],
+      "history_q": [
+       "0.07180895377074835124614106",
+       "0.07318419462247343550468454"
+      ],
+      "history_qdot": [
+       "0.1201543690792832597374826",
+       "0.1213064191625452990396984"
+      ],
+      "history_qddot": [
+       "0.1009040258474887588779536",
+       "0.1013699026574876069688145"
+      ],
+      "dhit_dt": [
+       "-0.07481551432490146438724469",
+       "-0.07225965381591963966010456"
+      ],
+      "taudot": [
+       "0.1338991250816488218244664",
+       "0.1363307462385675353572343"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1009040258474887588779536",
+      "0.1013699026574876069688145"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.966598236361092614945692",
+      "1.966608390040851971004284"
+     ],
+     "tau_range": [
+      "1.966218336286502577416772",
+      "1.966608390040851971004284"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.015493807122092716269265",
+      "1.015496429099927424878951"
+     ],
+     "Dt_range": [
+      "1.015448207693233394122363",
+      "1.015817717074480389802445"
+     ],
+     "delayed_arg_range": [
+      "0.8500762035827976261636847",
+      "0.8604663728963254674745847"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.03616000643051671899536",
+      "0.03705023026539247701891097"
+     ],
+     "history_qdot_range": [
+      "0.08514532609651875248103417",
+      "0.08618985182877368540886865"
+     ],
+     "hit0": [
+      "0.04633221753909664830959928",
+      "0.04634003144156842396260789"
+     ],
+     "hit_fixed0": [
+      "0.05200347693373626735015485",
+      "0.05201128744742810142723795"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.956218336286502577416772",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.5062182207273241296933837",
+     "delayed_arg_start": [
+      "0.8500762035827976261636847",
+      "0.8500864728217354299456649"
+     ],
+     "r0": [
+      "1.96659807909188244653193",
+      "1.966608547398536091411427"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.03616000643051671899536",
+       "0.03616100226860586591412304"
+      ],
+      "history_qdot": [
+       "0.08514532609651875248103417",
+       "0.08514650161980045275667178"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.100509160006936324816587",
+       "0.1005094697739936136088552"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "0.8500762035827976261636847",
+       "0.8604663728963254674745847"
+      ],
+      "history_q": [
+       "0.03616000643051671899536",
+       "0.03705023026539247701891097"
+      ],
+      "history_qdot": [
+       "0.08514532609651875248103417",
+       "0.08618985182877368540886865"
+      ],
+      "history_qddot": [
+       "0.100377749653294665383181",
+       "0.1006549579127289891391082"
+      ],
+      "dhit_dt": [
+       "0.02532163954771236594717988",
+       "0.02640373334982351227063544"
+      ],
+      "taudot": [
+       "-0.03780106940637831236659117",
+       "-0.03618134014479433726286055"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.100377749653294665383181",
+      "0.1006549579127289891391082"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4050428822218643445700888",
+    "0.4051012240061376146310682"
+   ],
+   "end_v_str": [
+    "0.2910276223748862897079093",
+    "0.2912120327242225006200051"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-0.8569887117098233229344499",
+    "-0.8569773058375816234727819"
+   ],
+   "antipode_residual_end": [
+    "-0.8675713850998511865085915",
+    "-0.8675595338478234490649746"
+   ],
+   "a_rad_start": [
+    "-0.05761440516226132733425585",
+    "-0.05746408949699548579120302"
+   ],
+   "lambda_hat_start": [
+    "-0.02671380997605217748291497",
+    "-0.02645988958371918327052662"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.0580730920609239459980422",
+    "-0.05729824747393881931355909"
+   ],
+   "lambda_hat_range": [
+    "-0.02750620052943481726228503",
+    "-0.02600087484919253028625568"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07537455556418404941597319",
+      "0.0758483933582498772109136"
+     ],
+     "radial": [
+      "-0.0924545227627272647299537",
+      "-0.09230557627276675150968155"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02726698720103240896394086",
+      "0.02726932395237295644342231"
+     ],
+     "radial": [
+      "0.05987681927178869398988093",
+      "0.05987799053251997478736913"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004633221753909664830959928",
+      "0.004634003144156842396260789"
+     ],
+     "radial": [
+      "-0.02503670167132275659418308",
+      "-0.0250365037567487090688906"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.107274764519126123210874",
+    "0.1077517204547796760505967"
+   ],
+   "radial_sum_start": [
+    "-0.05761440516226132733425585",
+    "-0.05746408949699548579120302"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.59796880493863894497884",
+     "1.599174238027294487480652"
+    ],
+    "unlike_pair_chord": [
+     "1.201100227470556294525156",
+     "1.202703495647608932535879"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 96,
+   "certified": true,
+   "self_appended_record_index": 145,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.148384570620198395721997",
+      "1.150197594526320566060966"
+     ],
+     "Dt": [
+      "0.9392840950670657519219691",
+      "0.9403512462851849067581376"
+     ],
+     "r": [
+      "1.148098239897873822520853",
+      "1.150485141623051061840112"
+     ],
+     "hist_q": [
+      "0.1393821835768181774574537",
+      "0.1427652947118880786185626"
+     ],
+     "hist_qdot": [
+      "0.1680057583926872032907656",
+      "0.1700803168368146219047726"
+     ],
+     "delayed_arg": [
+      "1.676486999097329031107003",
+      "1.67830013856262964916936"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.619219334219140283172836",
+      "1.61924250648884175789155"
+     ],
+     "Dt": [
+      "1.032272692133274623519217",
+      "1.032277358663869477809558"
+     ],
+     "r": [
+      "1.619218245955453768570886",
+      "1.619243595253159233628294"
+     ],
+     "hist_q": [
+      "0.07301785559090126828588506",
+      "0.07302084243635109416343824"
+     ],
+     "hist_qdot": [
+      "0.1211676422904548709969668",
+      "0.1211701355828313174960373"
+     ],
+     "delayed_arg": [
+      "1.207442087134807839276419",
+      "1.207465374963687761718521"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.966229873634901050222577",
+      "1.966240407642501152747223"
+     ],
+     "Dt": [
+      "1.015768893150128055258599",
+      "1.015771632025728320624646"
+     ],
+     "r": [
+      "1.966229707589059548812218",
+      "1.966240573779668465749225"
+     ],
+     "hist_q": [
+      "0.03704819130049822563740411",
+      "0.0370492357269095618932925"
+     ],
+     "hist_qdot": [
+      "0.08618747374995371857918584",
+      "0.0861886918900279251323528"
+     ],
+     "delayed_arg": [
+      "0.8604441859811484444207459",
+      "0.8604548355479269946687802"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.05793920624393942127076788",
+    "-0.05764038896844694459501087"
+   ],
+   "lambda_hat_end": [
+    "-0.02716405903492669198083326",
+    "-0.02675787074123999369796371"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.0751733434660409501072232",
+      "0.07612375037347307119220676"
+     ],
+     "radial": [
+      "-0.09273079442056264140638609",
+      "-0.09243339004955424516853916"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02712016979105296150325443",
+      "0.02712257744059864459606414"
+     ],
+     "radial": [
+      "0.05982619885438138406589123",
+      "0.05982740590642528028693923"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004658945949493870393216233",
+      "0.004659753363829507141807256"
+     ],
+     "radial": [
+      "-0.02503461067775816393027302",
+      "-0.02503440482531797971341093"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1069524592065877820036939",
+    "0.1079060811779012229300782"
+   ],
+   "radial_sum_end": [
+    "-0.05793920624393942127076788",
+    "-0.05764038896844694459501087"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "2.826684593623649597167969",
+    "2.836684709182828044891357"
+   ],
+   "S": [
+    "0.4050428802481717742719655",
+    "0.408018740867137805547688"
+   ],
+   "VS": [
+    "0.2910270302671152002709299",
+    "0.2922913394758156827039551"
+   ],
+   "a0": [
+    "0.1069278665359179078772345",
+    "0.1079306751593182083950011"
+   ],
+   "ap": [
+    "-0.01184215542178873958963",
+    "-0.003318084567101926982155019"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.148384570620198395721997",
+      "1.150197594526320566060966"
+     ],
+     "tau_range": [
+      "1.146243777611954412307762",
+      "1.150197594526320566060966"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9392840950670657519219691",
+      "0.9403512462851849067581376"
+     ],
+     "Dt_range": [
+      "0.9387482448414655562506486",
+      "0.9408475456249333635082606"
+     ],
+     "delayed_arg_range": [
+      "1.676486999097329031107003",
+      "1.690440931570873632583595"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1393821835768181774574537",
+      "0.1444712589797157539381085"
+     ],
+     "history_qdot_range": [
+      "0.1680057583926872032907656",
+      "0.1711126385863581092302216"
+     ],
+     "hit0": [
+      "0.375866717330204750536116",
+      "0.3806187518673653559610338"
+     ],
+     "hit_fixed0": [
+      "0.3750231378470779694455804",
+      "0.3750620896557462881409899"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.136243777611954412307762",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.3098022899145009862156456",
+     "delayed_arg_start": [
+      "1.676486999097329031107003",
+      "1.67830013856262964916936"
+     ],
+     "r0": [
+      "1.148098239897873822520853",
+      "1.150485141623051061840112"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1393821835768181774574537",
+       "0.1427652947118880786185626"
+      ],
+      "history_qdot": [
+       "0.1680057583926872032907656",
+       "0.1700803168368146219047726"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1030997750008469287807791",
+       "0.1032119435486135410020817"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.676486999097329031107003",
+       "1.690440931570873632583595"
+      ],
+      "history_q": [
+       "0.1393821835768181774574537",
+       "0.1444712589797157539381085"
+      ],
+      "history_qdot": [
+       "0.1680057583926872032907656",
+       "0.1711126385863581092302216"
+      ],
+      "history_qddot": [
+       "0.1030997750008469287807791",
+       "0.1032627322456489002879289"
+      ],
+      "dhit_dt": [
+       "0.01234679625451008603656844",
+       "0.03306018681573289654982687"
+      ],
+      "taudot": [
+       "-0.2134121650609699362419829",
+       "-0.2067225054331336564500215"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1030997750008469287807791",
+      "0.1032627322456489002879289"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.619219334219140283172836",
+      "1.61924250648884175789155"
+     ],
+     "tau_range": [
+      "1.619219334219140283172836",
+      "1.62060966000880016637513"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.032272692133274623519217",
+      "1.032277358663869477809558"
+     ],
+     "Dt_range": [
+      "1.031989855905621328041855",
+      "1.032571179265193665873101"
+     ],
+     "delayed_arg_range": [
+      "1.206074933614849430792839",
+      "1.217465374963687761718521"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07285230104160722937565768",
+      "0.07423759303164139613934837"
+     ],
+     "history_qdot_range": [
+      "0.1210293662029474931231521",
+      "0.1221817106420255809233081"
+     ],
+     "hit0": [
+      "0.1356008489552648075162722",
+      "0.1356128872029932229803207"
+     ],
+     "hit_fixed0": [
+      "0.1589068788657230730736039",
+      "0.1589179224341764511064489"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.609219334219140283172836",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1492192186599618354494477",
+     "delayed_arg_start": [
+      "1.207442087134807839276419",
+      "1.207465374963687761718521"
+     ],
+     "r0": [
+      "1.619218245955453768570886",
+      "1.619243595253159233628294"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.07301785559090126828588506",
+       "0.07302084243635109416343824"
+      ],
+      "history_qdot": [
+       "0.1211676422904548709969668",
+       "0.1211701355828313174960373"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1011461621362719222338539",
+       "0.1011471751826299389323109"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.206074933614849430792839",
+       "1.217465374963687761718521"
+      ],
+      "history_q": [
+       "0.07285230104160722937565768",
+       "0.07423759303164139613934837"
+      ],
+      "history_qdot": [
+       "0.1210293662029474931231521",
+       "0.1221817106420255809233081"
+      ],
+      "history_qddot": [
+       "0.1009215842081791543212926",
+       "0.1013920032127854540356047"
+      ],
+      "dhit_dt": [
+       "-0.07485423056866422047452192",
+       "-0.07229310439542025541703834"
+      ],
+      "taudot": [
+       "0.1339002585572868738459702",
+       "0.1363362560857748837862821"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1009215842081791543212926",
+      "0.1013920032127854540356047"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.966229873634901050222577",
+      "1.966240407642501152747223"
+     ],
+     "tau_range": [
+      "1.96584791272265873269177",
+      "1.966240407642501152747223"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.015768893150128055258599",
+      "1.015771632025728320624646"
+     ],
+     "Dt_range": [
+      "1.015722278238583815710733",
+      "1.016096046279213204315898"
+     ],
+     "delayed_arg_range": [
+      "0.8604441859811484444207459",
+      "0.8708367964601693121995872"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.03704819130049822563740411",
+      "0.03794946157172066435359149"
+     ],
+     "history_qdot_range": [
+      "0.08618747374995371857918584",
+      "0.08723239478647870971273679"
+     ],
+     "hit0": [
+      "0.04658945949493870393216233",
+      "0.04659753363829507141807256"
+     ],
+     "hit_fixed0": [
+      "0.05240513692836328811470477",
+      "0.05241320972049130335384751"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.95584791272265873269177",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.4958477971634802849683817",
+     "delayed_arg_start": [
+      "0.8604441859811484444207459",
+      "0.8604548355479269946687802"
+     ],
+     "r0": [
+      "1.966229707589059548812218",
+      "1.966240573779668465749225"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.03704819130049822563740411",
+       "0.0370492357269095618932925"
+      ],
+      "history_qdot": [
+       "0.08618747374995371857918584",
+       "0.0861886918900279251323528"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1005231066983745536094912",
+       "0.1005234322680708613814308"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "0.8604441859811484444207459",
+       "0.8708367964601693121995872"
+      ],
+      "history_q": [
+       "0.03704819130049822563740411",
+       "0.03794946157172066435359149"
+      ],
+      "history_qdot": [
+       "0.08618747374995371857918584",
+       "0.08723239478647870971273679"
+      ],
+      "history_qddot": [
+       "0.1003898084851963674637275",
+       "0.1006710548814374787079653"
+      ],
+      "dhit_dt": [
+       "0.02531511876405045448644715",
+       "0.02640626893759151943438099"
+      ],
+      "taudot": [
+       "-0.03800485333588925313191888",
+       "-0.03637115931712228960624441"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1003898084851963674637275",
+      "0.1006710548814374787079653"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4079585028652474330644385",
+    "0.408018740867137805547688"
+   ],
+   "end_v_str": [
+    "0.2920963089324743793497022",
+    "0.2922913394758156827039551"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-0.8675713850998511865085915",
+    "-0.8675595338478234490649746"
+   ],
+   "antipode_residual_end": [
+    "-0.8781603817134923510648554",
+    "-0.8781480629937421040919954"
+   ],
+   "a_rad_start": [
+    "-0.05793920624393942127076788",
+    "-0.05764038896844694459501087"
+   ],
+   "lambda_hat_start": [
+    "-0.02716405903492669198083326",
+    "-0.02675787074123999369796371"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.05828630912773357095835999",
+    "-0.05750556865192352914890549"
+   ],
+   "lambda_hat_range": [
+    "-0.02792865848064299810697144",
+    "-0.02641042321836281591839837"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.0751733434660409501072232",
+      "0.07612375037347307119220676"
+     ],
+     "radial": [
+      "-0.09273079442056264140638609",
+      "-0.09243339004955424516853916"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02712016979105296150325443",
+      "0.02712257744059864459606414"
+     ],
+     "radial": [
+      "0.05982619885438138406589123",
+      "0.05982740590642528028693923"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004658945949493870393216233",
+      "0.004659753363829507141807256"
+     ],
+     "radial": [
+      "-0.02503461067775816393027302",
+      "-0.02503440482531797971341093"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1069524592065877820036939",
+    "0.1079060811779012229300782"
+   ],
+   "radial_sum_start": [
+    "-0.05793920624393942127076788",
+    "-0.05764038896844694459501087"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.599150527712587782721496",
+     "1.600358681852043457648761"
+    ],
+    "unlike_pair_chord": [
+     "1.199521608567678096331909",
+     "1.201131795314965431769014"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 97,
+   "certified": true,
+   "self_appended_record_index": 146,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.146409993101834203931166",
+      "1.147634436056726011252416"
+     ],
+     "Dt": [
+      "0.9393621820596215600326734",
+      "0.9399049479795092580727261"
+     ],
+     "r": [
+      "1.146409993101835112625677",
+      "1.147634436056725333349335"
+     ],
+     "hist_q": [
+      "0.1427629211989034248261718",
+      "0.1444712589797157539381085"
+     ],
+     "hist_qdot": [
+      "0.1700682537389709252956618",
+      "0.1711126385863581092302216"
+     ],
+     "delayed_arg": [
+      "1.689050157566923585915553",
+      "1.690274716080993840960191"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.620566729357714454349075",
+      "1.620590588431305714504851"
+     ],
+     "Dt": [
+      "1.032281648262480725168274",
+      "1.032286483565653358083538"
+     ],
+     "r": [
+      "1.620565603611157071126528",
+      "1.620591714689623257404149"
+     ],
+     "hist_q": [
+      "0.07406998381780690323131158",
+      "0.07407305091365146412127365"
+     ],
+     "hist_qdot": [
+      "0.122042848940357592233959",
+      "0.1220453913627607101683614"
+     ],
+     "delayed_arg": [
+      "1.216094005192343882663118",
+      "1.216117979825113590542282"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.965859543508493280442712",
+      "1.965870476042366637286112"
+     ],
+     "Dt": [
+      "1.01604608036902844307714",
+      "1.016048942078254170070029"
+     ],
+     "r": [
+      "1.965859368163372093305243",
+      "1.965870651481730915088149"
+     ],
+     "hist_q": [
+      "0.03794735140157420524021373",
+      "0.03794844693297468909114778"
+     ],
+     "hist_qdot": [
+      "0.08722996272971036388252704",
+      "0.08723122538249143398170288"
+     ],
+     "delayed_arg": [
+      "0.8708141175812829598818573",
+      "0.8708251656743347644486445"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.05811622639866183497748621",
+    "-0.05796212823292517103891608"
+   ],
+   "lambda_hat_end": [
+    "-0.02747209889964135621696085",
+    "-0.02720402729331367691730116"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07543270554673286849398519",
+      "0.07592089896966411610191312"
+     ],
+     "radial": [
+      "-0.09285963345521327599144951",
+      "-0.09270699259900860800197557"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02697327909664057265140292",
+      "0.02697575816284028392490714"
+     ],
+     "radial": [
+      "0.05977590292122840914746958",
+      "0.05977714605035410416059075"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004684667480422774594315939",
+      "0.004685502119655829972834706"
+     ],
+     "radial": [
+      "-0.02503249586467696813350628",
+      "-0.02503228168427066719753125"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.107090652123796215739704",
+    "0.107582159252160229999655"
+   ],
+   "radial_sum_end": [
+    "-0.05811622639866183497748621",
+    "-0.05796212823292517103891608"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "2.836684593623649597167969",
+    "2.846684709182828044891357"
+   ],
+   "S": [
+    "0.4079585008505378812810495",
+    "0.4109470346455405923281106"
+   ],
+   "VS": [
+    "0.2920957045196088443329953",
+    "0.293367416204741673380576"
+   ],
+   "a0": [
+    "0.1070651398903837503213879",
+    "0.1076076728925990676620852"
+   ],
+   "ap": [
+    "-0.01208825731070033413842991",
+    "-0.004363907167318536251128236"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.146409993101834203931166",
+      "1.147634436056726011252416"
+     ],
+     "tau_range": [
+      "1.144267336655453819664169",
+      "1.147634436056726011252416"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9393621820596215600326734",
+      "0.9399049479795092580727261"
+     ],
+     "Dt_range": [
+      "0.9388278921547635411731439",
+      "0.9404123342273736004020492"
+     ],
+     "delayed_arg_range": [
+      "1.689050157566923585915553",
+      "1.702417372527374225227188"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1427629211989034248261718",
+      "0.1461875490068497918427585"
+     ],
+     "history_qdot_range": [
+      "0.1700682537389709252956618",
+      "0.172145469392830630699523"
+     ],
+     "hit0": [
+      "0.3771635277336643424699259",
+      "0.3796044948483205805095656"
+     ],
+     "hit_fixed0": [
+      "0.376032074990851770256716",
+      "0.3760725214797077625923129"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.134267336655453819664169",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.3223654483840955410241956",
+     "delayed_arg_start": [
+      "1.689050157566923585915553",
+      "1.690274716080993840960191"
+     ],
+     "r0": [
+      "1.146409993101835112625677",
+      "1.147634436056725333349335"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1427629211989034248261718",
+       "0.1444712589797157539381085"
+      ],
+      "history_qdot": [
+       "0.1700682537389709252956618",
+       "0.1711126385863581092302216"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1032000527909129823800332",
+       "0.1032627322456489002879289"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.689050157566923585915553",
+       "1.702417372527374225227188"
+      ],
+      "history_q": [
+       "0.1427629211989034248261718",
+       "0.1461875490068497918427585"
+      ],
+      "history_qdot": [
+       "0.1700682537389709252956618",
+       "0.172145469392830630699523"
+      ],
+      "history_qddot": [
+       "0.1032000527909129823800332",
+       "0.1033138463615998468443847"
+      ],
+      "dhit_dt": [
+       "0.01126018175558265645235489",
+       "0.02775804433360369076536548"
+      ],
+      "taudot": [
+       "-0.2130354112331427373522955",
+       "-0.2075114014056141113174753"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1032000527909129823800332",
+      "0.1033138463615998468443847"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.620566729357714454349075",
+      "1.620590588431305714504851"
+     ],
+     "tau_range": [
+      "1.620566729357714454349075",
+      "1.621957709400348997363186"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.032281648262480725168274",
+      "1.032286483565653358083538"
+     ],
+     "Dt_range": [
+      "1.031996131169142037965057",
+      "1.032578798777420000397544"
+     ],
+     "delayed_arg_range": [
+      "1.214726884223300599804783",
+      "1.226117979825113590542282"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07390322028098715771678854",
+      "0.07529857666924719014999871"
+     ],
+     "history_qdot_range": [
+      "0.1219045352332001847409621",
+      "0.1230571851038451862408269"
+     ],
+     "hit0": [
+      "0.1348663954832028632570146",
+      "0.1348787908142014196245357"
+     ],
+     "hit_fixed0": [
+      "0.1583552736489168380617101",
+      "0.1583666496949500393195711"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.610566729357714454349075",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1405666137985360066256867",
+     "delayed_arg_start": [
+      "1.216094005192343882663118",
+      "1.216117979825113590542282"
+     ],
+     "r0": [
+      "1.620565603611157071126528",
+      "1.620591714689623257404149"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.07406998381780690323131158",
+       "0.07407305091365146412127365"
+      ],
+      "history_qdot": [
+       "0.122042848940357592233959",
+       "0.1220453913627607101683614"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1011660938541181294109125",
+       "0.1011671366478888374604636"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.214726884223300599804783",
+       "1.226117979825113590542282"
+      ],
+      "history_q": [
+       "0.07390322028098715771678854",
+       "0.07529857666924719014999871"
+      ],
+      "history_qdot": [
+       "0.1219045352332001847409621",
+       "0.1230571851038451862408269"
+      ],
+      "history_qddot": [
+       "0.1009393680215284529787124",
+       "0.1014143602266824050155861"
+      ],
+      "dhit_dt": [
+       "-0.07489211248061076386050962",
+       "-0.07232495097948197287912511"
+      ],
+      "taudot": [
+       "0.133891412990740988547419",
+       "0.1363335158882483022652467"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1009393680215284529787124",
+      "0.1014143602266824050155861"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.965859543508493280442712",
+      "1.965870476042366637286112"
+     ],
+     "tau_range": [
+      "1.965475520873797930242092",
+      "1.965870476042366637286112"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.01604608036902844307714",
+      "1.016048942078254170070029"
+     ],
+     "Dt_range": [
+      "1.015998439347748714646038",
+      "1.01637649121387080843541"
+     ],
+     "delayed_arg_range": [
+      "0.8708141175812829598818573",
+      "0.8812091883090301146492648"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.03794735140157420524021373",
+      "0.03885966136265272577238479"
+     ],
+     "history_qdot_range": [
+      "0.08722996272971036388252704",
+      "0.08827526405671624081620725"
+     ],
+     "hit0": [
+      "0.04684667480422774594315939",
+      "0.04685502119655829972834706"
+     ],
+     "hit_fixed0": [
+      "0.05280886081214858870807172",
+      "0.05281720812813149747166477"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.955475520873797930242092",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.4854754053146194825187037",
+     "delayed_arg_start": [
+      "0.8708141175812829598818573",
+      "0.8708251656743347644486445"
+     ],
+     "r0": [
+      "1.965859368163372093305243",
+      "1.965870651481730915088149"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.03794735140157420524021373",
+       "0.03794844693297468909114778"
+      ],
+      "history_qdot": [
+       "0.08722996272971036388252704",
+       "0.08723122538249143398170288"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1005372960259870791447558",
+       "0.100537638258482625275608"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "0.8708141175812829598818573",
+       "0.8812091883090301146492648"
+      ],
+      "history_q": [
+       "0.03794735140157420524021373",
+       "0.03885966136265272577238479"
+      ],
+      "history_qdot": [
+       "0.08722996272971036388252704",
+       "0.08827526405671624081620725"
+      ],
+      "history_qddot": [
+       "0.1004021012262663490314598",
+       "0.1006874065954351859341573"
+      ],
+      "dhit_dt": [
+       "0.02530800459632127214019122",
+       "0.02640895689231989339774838"
+      ],
+      "taudot": [
+       "-0.03820871025346811405710266",
+       "-0.03656011867112369466305074"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1004021012262663490314598",
+      "0.1006874065954351859341573"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4108848171968571442620626",
+    "0.4109470346455405923281106"
+   ],
+   "end_v_str": [
+    "0.2931663559185126818362092",
+    "0.293367416204741673380576"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-0.8781603817134923510648554",
+    "-0.8781480629937421040919954"
+   ],
+   "antipode_residual_end": [
+    "-0.888755744813470661433373",
+    "-0.888742935929631228136251"
+   ],
+   "a_rad_start": [
+    "-0.05811622639866183497748621",
+    "-0.05796212823292517103891608"
+   ],
+   "lambda_hat_start": [
+    "-0.02747209889964135621696085",
+    "-0.02720402729331367691730116"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.058464468352104763508725",
+    "-0.05782487237619896515403907"
+   ],
+   "lambda_hat_range": [
+    "-0.0282395685144471622222312",
+    "-0.02685543224670187514141369"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07543270554673286849398519",
+      "0.07592089896966411610191312"
+     ],
+     "radial": [
+      "-0.09285963345521327599144951",
+      "-0.09270699259900860800197557"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02697327909664057265140292",
+      "0.02697575816284028392490714"
+     ],
+     "radial": [
+      "0.05977590292122840914746958",
+      "0.05977714605035410416059075"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004684667480422774594315939",
+      "0.004685502119655829972834706"
+     ],
+     "radial": [
+      "-0.02503249586467696813350628",
+      "-0.02503228168427066719753125"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.107090652123796215739704",
+    "0.107582159252160229999655"
+   ],
+   "radial_sum_start": [
+    "-0.05811622639866183497748621",
+    "-0.05796212823292517103891608"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.600334249726921696362842",
+     "1.601545120544494212443068"
+    ],
+    "unlike_pair_chord": [
+     "1.197937071327255279081164",
+     "1.199554204340500248163181"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 98,
+   "certified": true,
+   "self_appended_record_index": 147,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.144433915890076682755694",
+      "1.14566818246594115983309"
+     ],
+     "Dt": [
+      "0.9393419642126936136747844",
+      "0.93988615831756000685691"
+     ],
+     "r": [
+      "1.144433915890076788352591",
+      "1.145668182465941079644186"
+     ],
+     "hist_q": [
+      "0.1444687637389326797282475",
+      "0.1461875490068497918427585"
+     ],
+     "hist_qdot": [
+      "0.1711002542668800551194622",
+      "0.172145469392830630699523"
+     ],
+     "delayed_arg": [
+      "1.701016411157708437334879",
+      "1.702250793292751362135663"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.621914055263504846669163",
+      "1.621938648996087878400786"
+     ],
+     "Dt": [
+      "1.032286395650566933009246",
+      "1.032291417696787926102239"
+     ],
+     "r": [
+      "1.621912890118366212367555",
+      "1.621939814664782933046051"
+     ],
+     "hist_q": [
+      "0.0751296759997353595200511",
+      "0.07513286598549284223094694"
+     ],
+     "hist_qdot": [
+      "0.1229182217296940449712123",
+      "0.1229208477115130596870729"
+     ],
+     "delayed_arg": [
+      "1.224745944627561718767183",
+      "1.224770653919323198222194"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.965487253283303633939233",
+      "1.965498599516787230192783"
+     ],
+     "Dt": [
+      "1.016325369160746593969342",
+      "1.016328355212103518350899"
+     ],
+     "r": [
+      "1.965487064640338334636504",
+      "1.965498781441726045058586"
+     ],
+     "hist_q": [
+      "0.03885749393211161510476487",
+      "0.03885862499127142296039073"
+     ],
+     "hist_qdot": [
+      "0.08827279516183861835902207",
+      "0.08827408354665940810017339"
+     ],
+     "delayed_arg": [
+      "0.8811859941068623669751863",
+      "0.8811974558995244109521242"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.05832639837121506884217455",
+    "-0.05817087618985965179352684"
+   ],
+   "lambda_hat_end": [
+    "-0.02789356470078647558274342",
+    "-0.02762011387132498691188329"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07548016857625733498674045",
+      "0.07597395900583784657219274"
+     ],
+     "radial": [
+      "-0.09302197492612342720428065",
+      "-0.09286795754691970643383953"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02682631458446693263288008",
+      "0.02682887075140842058809675"
+     ],
+     "radial": [
+      "0.05972593379078092943248917",
+      "0.05972721584038681595836666"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004710386370019291220485065",
+      "0.004711249189907027468857489"
+     ],
+     "radial": [
+      "-0.02503035723587257107038307",
+      "-0.02503013448332676131805398"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1070168695307435588401056",
+    "0.107514078947153294629147"
+   ],
+   "radial_sum_end": [
+    "-0.05832639837121506884217455",
+    "-0.05817087618985965179352684"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "2.846684593623649597167969",
+    "2.856684709182828044891357"
+   ],
+   "S": [
+    "0.4108848150890662033415109",
+    "0.4138860858353903628797411"
+   ],
+   "VS": [
+    "0.2931657235812304056707254",
+    "0.2944428217652124369455238"
+   ],
+   "a0": [
+    "0.106990393942274576128719",
+    "0.1075405560470763564947793"
+   ],
+   "ap": [
+    "-0.01264674564552330967548664",
+    "-0.004832081417325115851410918"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.144433915890076682755694",
+      "1.14566818246594115983309"
+     ],
+     "tau_range": [
+      "1.142289623433017946631409",
+      "1.14566818246594115983309"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9393419642126936136747844",
+      "0.93988615831756000685691"
+     ],
+     "Dt_range": [
+      "0.9388083530816378382433261",
+      "0.9404012892584295993894484"
+     ],
+     "delayed_arg_range": [
+      "1.701016411157708437334879",
+      "1.714395085749810098259948"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1444687637389326797282475",
+      "0.1479141699001692991188653"
+     ],
+     "history_qdot_range": [
+      "0.1711002542668800551194622",
+      "0.173178812527480002870614"
+     ],
+     "hit0": [
+      "0.3774008428812866749337022",
+      "0.3798697950291892328609637"
+     ],
+     "hit_fixed0": [
+      "0.3770456489723303524252224",
+      "0.3770876624439173522920965"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.132289623433017946631409",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.3343317019748803924435216",
+     "delayed_arg_start": [
+      "1.701016411157708437334879",
+      "1.702250793292751362135663"
+     ],
+     "r0": [
+      "1.144433915890076788352591",
+      "1.145668182465941079644186"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1444687637389326797282475",
+       "0.1461875490068497918427585"
+      ],
+      "history_qdot": [
+       "0.1711002542668800551194622",
+       "0.172145469392830630699523"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1032506628096402804749001",
+       "0.1033138463615998468443847"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.701016411157708437334879",
+       "1.714395085749810098259948"
+      ],
+      "history_q": [
+       "0.1444687637389326797282475",
+       "0.1479141699001692991188653"
+      ],
+      "history_qdot": [
+       "0.1711002542668800551194622",
+       "0.173178812527480002870614"
+      ],
+      "history_qddot": [
+       "0.1032506628096402804749001",
+       "0.1033652903876907217388106"
+      ],
+      "dhit_dt": [
+       "0.008609297204401489102082936",
+       "0.02534438400317346706727885"
+      ],
+      "taudot": [
+       "-0.2131906866487255366968042",
+       "-0.207635533904872129111092"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1032506628096402804749001",
+      "0.1033652903876907217388106"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.621914055263504846669163",
+      "1.621938648996087878400786"
+     ],
+     "tau_range": [
+      "1.621914055263504846669163",
+      "1.623305637472761983833888"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.032286395650566933009246",
+      "1.032291417696787926102239"
+     ],
+     "Dt_range": [
+      "1.031998192571247682258117",
+      "1.032582213584051836136795"
+     ],
+     "delayed_arg_range": [
+      "1.223378956150887613334081",
+      "1.234770653919323198222194"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07496174456037925426054474",
+      "0.07636714143181795761407364"
+     ],
+     "history_qdot_range": [
+      "0.1227799042619488398755786",
+      "0.1239328398795635521165942"
+     ],
+     "hit0": [
+      "0.1341315729223346631644004",
+      "0.1341443537570421029404837"
+     ],
+     "hit_fixed0": [
+      "0.1578029175573103808323144",
+      "0.1578146400937343602543477"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.611914055263504846669163",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1319139397043263989457747",
+     "delayed_arg_start": [
+      "1.224745944627561718767183",
+      "1.224770653919323198222194"
+     ],
+     "r0": [
+      "1.621912890118366212367555",
+      "1.621939814664782933046051"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.0751296759997353595200511",
+       "0.07513286598549284223094694"
+      ],
+      "history_qdot": [
+       "0.1229182217296940449712123",
+       "0.1229208477115130596870729"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1011862603153069176494757",
+       "0.1011873475440558418224525"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.223378956150887613334081",
+       "1.234770653919323198222194"
+      ],
+      "history_q": [
+       "0.07496174456037925426054474",
+       "0.07636714143181795761407364"
+      ],
+      "history_qdot": [
+       "0.1227799042619488398755786",
+       "0.1239328398795635521165942"
+      ],
+      "history_qddot": [
+       "0.1009573858487477698862341",
+       "0.1014369698756486399373374"
+      ],
+      "dhit_dt": [
+       "-0.07492838117252387853512703",
+       "-0.0723560107451878216898503"
+      ],
+      "taudot": [
+       "0.1338741910609185907389942",
+       "0.1363207735885048926629845"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1009573858487477698862341",
+      "0.1014369698756486399373374"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.965487253283303633939233",
+      "1.965498599516787230192783"
+     ],
+     "tau_range": [
+      "1.965101176903398746349471",
+      "1.965498599516787230192783"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.016325369160746593969342",
+      "1.016328355212103518350899"
+     ],
+     "Dt_range": [
+      "1.016276688994948167776828",
+      "1.01665905757075092810193"
+     ],
+     "delayed_arg_range": [
+      "0.8811859941068623669751863",
+      "0.8915835322794292985418864"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.03885749393211161510476487",
+      "0.0397808746334674723883208"
+     ],
+     "history_qdot_range": [
+      "0.08827279516183861835902207",
+      "0.08931850493458382405126563"
+     ],
+     "hit0": [
+      "0.04710386370019291220485065",
+      "0.04711249189907027468857489"
+     ],
+     "hit_fixed0": [
+      "0.05321465866377860027510052",
+      "0.05322329297031213567949284"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.955101176903398746349471",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.4751010613442202986260827",
+     "delayed_arg_start": [
+      "0.8811859941068623669751863",
+      "0.8811974558995244109521242"
+     ],
+     "r0": [
+      "1.965487064640338334636504",
+      "1.965498781441726045058586"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.03885749393211161510476487",
+       "0.03885862499127142296039073"
+      ],
+      "history_qdot": [
+       "0.08827279516183861835902207",
+       "0.08827408354665940810017339"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1005517333945969876156708",
+       "0.1005520874919215856945551"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "0.8811859941068623669751863",
+       "0.8915835322794292985418864"
+      ],
+      "history_q": [
+       "0.03885749393211161510476487",
+       "0.0397808746334674723883208"
+      ],
+      "history_qdot": [
+       "0.08827279516183861835902207",
+       "0.08931850493458382405126563"
+      ],
+      "history_qddot": [
+       "0.1004146248280127793085626",
+       "0.1007040221874919067135946"
+      ],
+      "dhit_dt": [
+       "0.02530090746057124457682263",
+       "0.02641115360369229912903115"
+      ],
+      "taudot": [
+       "-0.03841175753375401463809138",
+       "-0.03674903123282979543140721"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1004146248280127793085626",
+      "0.1007040221874919067135946"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4138218281679484438886795",
+    "0.4138860858353903628797411"
+   ],
+   "end_v_str": [
+    "0.2942356275206531514320126",
+    "0.2944428217652124369455238"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-0.888755744813470661433373",
+    "-0.888742935929631228136251"
+   ],
+   "antipode_residual_end": [
+    "-0.8993575154638265517075208",
+    "-0.8993441979477375052261902"
+   ],
+   "a_rad_start": [
+    "-0.05832639837121506884217455",
+    "-0.05817087618985965179352684"
+   ],
+   "lambda_hat_start": [
+    "-0.02789356470078647558274342",
+    "-0.02762011387132498691188329"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.05867605058871850487167596",
+    "-0.05803170063979167207732585"
+   ],
+   "lambda_hat_range": [
+    "-0.0286648746492689867052735",
+    "-0.02727009089418788868223584"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07548016857625733498674045",
+      "0.07597395900583784657219274"
+     ],
+     "radial": [
+      "-0.09302197492612342720428065",
+      "-0.09286795754691970643383953"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02682631458446693263288008",
+      "0.02682887075140842058809675"
+     ],
+     "radial": [
+      "0.05972593379078092943248917",
+      "0.05972721584038681595836666"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004710386370019291220485065",
+      "0.004711249189907027468857489"
+     ],
+     "radial": [
+      "-0.02503035723587257107038307",
+      "-0.02503013448332676131805398"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1070168695307435588401056",
+    "0.107514078947153294629147"
+   ],
+   "radial_sum_start": [
+    "-0.05832639837121506884217455",
+    "-0.05817087618985965179352684"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.601519936261062154717727",
+     "1.602733515003186882990165"
+    ],
+    "unlike_pair_chord": [
+     "1.196346638681920369212227",
+     "1.197970739942492674444381"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 99,
+   "certified": true,
+   "self_appended_record_index": 148,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.142456531135505794960353",
+      "1.14370065594864347239857"
+     ],
+     "Dt": [
+      "0.9393302425380748104528434",
+      "0.9398758847384296797231738"
+     ],
+     "r": [
+      "1.142456531135506490638782",
+      "1.143700655948642615196959"
+     ],
+     "hist_q": [
+      "0.146184928814741962293466",
+      "0.1479141699001692991188653"
+     ],
+     "hist_qdot": [
+      "0.1721327608949764579242113",
+      "0.173178812527480002870614"
+     ],
+     "delayed_arg": [
+      "1.712983937675006124769399",
+      "1.714228178047322249931004"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.623261231905550078773251",
+      "1.623286580482797890591456"
+     ],
+     "Dt": [
+      "1.032286917111357833913169",
+      "1.032292132424098353373152"
+     ],
+     "r": [
+      "1.623260026191529191725865",
+      "1.623287786732253321067343"
+     ],
+     "hist_q": [
+      "0.07619695530095552955686354",
+      "0.07620027197286566279861838"
+     ],
+     "hist_qdot": [
+      "0.123793780616649423877876",
+      "0.1237964921222020073032458"
+     ],
+     "delayed_arg": [
+      "1.233398013140851706576513",
+      "1.233423477277277966118106"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.965113002834069257966592",
+      "1.965124777539165286634679"
+     ],
+     "Dt": [
+      "1.016606762727034513278363",
+      "1.016609878251137172828894"
+     ],
+     "r": [
+      "1.965112807276046698206012",
+      "1.965124973197345627409916"
+     ],
+     "hist_q": [
+      "0.03977864921032254733658719",
+      "0.03977981775031030630955178"
+     ],
+     "hist_qdot": [
+      "0.08931599922310329972280375",
+      "0.08931731494740895379739606"
+     ],
+     "delayed_arg": [
+      "0.8915598160844843105332899",
+      "0.8915717063487587869247646"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.05853604023934652571118825",
+    "-0.05837908128881275498450592"
+   ],
+   "lambda_hat_end": [
+    "-0.02831749400024790379809343",
+    "-0.02803856426312601648213979"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07552313598320508640473031",
+      "0.07602256358857067879480119"
+     ],
+     "radial": [
+      "-0.09318414187725832020993032",
+      "-0.09302873664432018854396985"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02667928087295741866394158",
+      "0.02668191631500542821727808"
+     ],
+     "radial": [
+      "0.05967629628213069975754913",
+      "0.05967761835084644120857803"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004736101971062169649833822",
+      "0.004736993880258410697785886"
+     ],
+     "radial": [
+      "-0.02502819464421890525880706",
+      "-0.02502796299533900764911411"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1069385188272246747185057",
+    "0.1074414737838345177098652"
+   ],
+   "radial_sum_end": [
+    "-0.05853604023934652571118825",
+    "-0.05837908128881275498450592"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "2.856684593623649597167969",
+    "2.866684709182828044891357"
+   ],
+   "S": [
+    "0.4138218259647922908811074",
+    "0.4168358875004986018241176"
+   ],
+   "VS": [
+    "0.2942349665738072491604011",
+    "0.2955175112564353519297755"
+   ],
+   "a0": [
+    "0.1069110451122131637201542",
+    "0.1074689491222914984251701"
+   ],
+   "ap": [
+    "-0.01321893691804543222922789",
+    "-0.0053130482549282643913861"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.142456531135505794960353",
+      "1.14370065594864347239857"
+     ],
+     "tau_range": [
+      "1.14031665768155433362522",
+      "1.14370065594864347239857"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9393302425380748104528434",
+      "0.9398758847384296797231738"
+     ],
+     "Dt_range": [
+      "0.938797352690118135037612",
+      "0.9403988461830506117501552"
+     ],
+     "delayed_arg_range": [
+      "1.712983937675006124769399",
+      "1.726368051501273711266137"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.146184928814741962293466",
+      "0.1496511267993073762538574"
+     ],
+     "history_qdot_range": [
+      "0.1721327608949764579242113",
+      "0.1742126712694489604314538"
+     ],
+     "hit0": [
+      "0.3776156799160254320236515",
+      "0.380112817942853393974006"
+     ],
+     "hit_fixed0": [
+      "0.3780638506030108905882737",
+      "0.3781074892340438039958804"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.13031665768155433362522",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.3462992284921780798780416",
+     "delayed_arg_start": [
+      "1.712983937675006124769399",
+      "1.714228178047322249931004"
+     ],
+     "r0": [
+      "1.142456531135506490638782",
+      "1.143700655948642615196959"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.146184928814741962293466",
+       "0.1479141699001692991188653"
+      ],
+      "history_qdot": [
+       "0.1721327608949764579242113",
+       "0.173178812527480002870614"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1033015944054533123418509",
+       "0.1033652903876907217388106"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.712983937675006124769399",
+       "1.726368051501273711266137"
+      ],
+      "history_q": [
+       "0.146184928814741962293466",
+       "0.1496511267993073762538574"
+      ],
+      "history_qdot": [
+       "0.1721327608949764579242113",
+       "0.1742126712694489604314538"
+      ],
+      "history_qddot": [
+       "0.1033015944054533123418509",
+       "0.1034170649909566471696304"
+      ],
+      "dhit_dt": [
+       "0.005890102615607873863544213",
+       "0.02286449081360472366044405"
+      ],
+      "taudot": [
+       "-0.213324135904029428262566",
+       "-0.2077377194273466873455764"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1033015944054533123418509",
+      "0.1034170649909566471696304"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.623261231905550078773251",
+      "1.623286580482797890591456"
+     ],
+     "tau_range": [
+      "1.623261231905550078773251",
+      "1.624653345174523427682651"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.032286917111357833913169",
+      "1.032292132424098353373152"
+     ],
+     "Dt_range": [
+      "1.031996011801509386876245",
+      "1.032581399981698324539585"
+     ],
+     "delayed_arg_range": [
+      "1.232031248449126169485318",
+      "1.243423477277277966118106"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07602785753080995438839084",
+      "0.07744328743647303838514328"
+     ],
+     "history_qdot_range": [
+      "0.1236554602213804641379772",
+      "0.1248086758580611787033793"
+     ],
+     "hit0": [
+      "0.1333964043647870933197079",
+      "0.1334095815750271410863904"
+     ],
+     "hit_fixed0": [
+      "0.1572498238523020417195033",
+      "0.1572619025617092285506636"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.613261231905550078773251",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1232611163463716310498627",
+     "delayed_arg_start": [
+      "1.233398013140851706576513",
+      "1.233423477277277966118106"
+     ],
+     "r0": [
+      "1.623260026191529191725865",
+      "1.623287786732253321067343"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.07619695530095552955686354",
+       "0.07620027197286566279861838"
+      ],
+      "history_qdot": [
+       "0.123793780616649423877876",
+       "0.1237964921222020073032458"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1012066702823394238869665",
+       "0.1012078034713964493489955"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.232031248449126169485318",
+       "1.243423477277277966118106"
+      ],
+      "history_q": [
+       "0.07602785753080995438839084",
+       "0.07744328743647303838514328"
+      ],
+      "history_qdot": [
+       "0.1236554602213804641379772",
+       "0.1248086758580611787033793"
+      ],
+      "history_qddot": [
+       "0.1009756367486059494688758",
+       "0.1014598370355519886031563"
+      ],
+      "dhit_dt": [
+       "-0.07496350391092255221839995",
+       "-0.07238596019540550183792114"
+      ],
+      "taudot": [
+       "0.1338477861157399180054802",
+       "0.1362988967123997897216254"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1009756367486059494688758",
+      "0.1014598370355519886031563"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.965113002834069257966592",
+      "1.965124777539165286634679"
+     ],
+     "tau_range": [
+      "1.964724876060643584755098",
+      "1.965124777539165286634679"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.016606762727034513278363",
+      "1.016609878251137172828894"
+     ],
+     "Dt_range": [
+      "1.016557032987117956745838",
+      "1.016943740276167754996689"
+     ],
+     "delayed_arg_range": [
+      "0.8915598160844843105332899",
+      "0.9019598331221844601362588"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.03977864921032254733658719",
+      "0.04071308798785082521148467"
+     ],
+     "history_qdot_range": [
+      "0.08931599922310329972280375",
+      "0.09036209577085503576965188"
+     ],
+     "hit0": [
+      "0.04736101971062169649833822",
+      "0.04736993880258410697785886"
+     ],
+     "hit_fixed0": [
+      "0.05362254243621269372440298",
+      "0.05363147314583474244199762"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.954724876060643584755098",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.4647247605014651370317097",
+     "delayed_arg_start": [
+      "0.8915598160844843105332899",
+      "0.8915717063487587869247646"
+     ],
+     "r0": [
+      "1.965112807276046698206012",
+      "1.965124973197345627409916"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.03977864921032254733658719",
+       "0.03977981775031030630955178"
+      ],
+      "history_qdot": [
+       "0.08931599922310329972280375",
+       "0.08931731494740895379739606"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1005664193308704860791568",
+       "0.1005667859646286740925471"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "0.8915598160844843105332899",
+       "0.9019598331221844601362588"
+      ],
+      "history_q": [
+       "0.03977864921032254733658719",
+       "0.04071308798785082521148467"
+      ],
+      "history_qdot": [
+       "0.08931599922310329972280375",
+       "0.09036209577085503576965188"
+      ],
+      "history_qddot": [
+       "0.1004273887418422223480929",
+       "0.1007208977819659902874399"
+      ],
+      "dhit_dt": [
+       "0.0252935467517560635324205",
+       "0.02641319634250233656661925"
+      ],
+      "taudot": [
+       "-0.03861444640710475364827244",
+       "-0.03693751663934684082225251"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1004273887418422223480929",
+      "0.1007208977819659902874399"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4167695277922544330536136",
+    "0.4168358875004986018241176"
+   ],
+   "end_v_str": [
+    "0.2953040770249293807976027",
+    "0.2955175112564353519297755"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-0.8993575154638265517075208",
+    "-0.8993441979477375052261902"
+   ],
+   "antipode_residual_end": [
+    "-0.9099657373499319158699747",
+    "-0.9099518922253404487805041"
+   ],
+   "a_rad_start": [
+    "-0.05853604023934652571118825",
+    "-0.05837908128881275498450592"
+   ],
+   "lambda_hat_start": [
+    "-0.02831749400024790379809343",
+    "-0.02803856426312601648213979"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.05888709199778219248865415",
+    "-0.05823796449870102345287054"
+   ],
+   "lambda_hat_range": [
+    "-0.02909263496049637148228114",
+    "-0.02768712355690727673512892"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07552313598320508640473031",
+      "0.07602256358857067879480119"
+     ],
+     "radial": [
+      "-0.09318414187725832020993032",
+      "-0.09302873664432018854396985"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02667928087295741866394158",
+      "0.02668191631500542821727808"
+     ],
+     "radial": [
+      "0.05967629628213069975754913",
+      "0.05967761835084644120857803"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004736101971062169649833822",
+      "0.004736993880258410697785886"
+     ],
+     "radial": [
+      "-0.02502819464421890525880706",
+      "-0.02502796299533900764911411"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1069385188272246747185057",
+    "0.1074414737838345177098652"
+   ],
+   "radial_sum_start": [
+    "-0.05853604023934652571118825",
+    "-0.05837908128881275498450592"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.602707557536971810289166",
+     "1.60392383107002768649452"
+    ],
+    "unlike_pair_chord": [
+     "1.194750327108406900476467",
+     "1.196381412850381169870466"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 100,
+   "certified": true,
+   "self_appended_record_index": 149,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.1404780265976407746778",
+      "1.141732043797383424174729"
+     ],
+     "Dt": [
+      "0.9393271460028793666278352",
+      "0.939874256351059310955557"
+     ],
+     "r": [
+      "1.140478026597641602155876",
+      "1.141732043797381317945771"
+     ],
+     "hist_q": [
+      "0.1479114215034119995383253",
+      "0.1496511267993073762538574"
+     ],
+     "hist_qdot": [
+      "0.1731657768390309910476299",
+      "0.1742126712694489604314538"
+     ],
+     "delayed_arg": [
+      "1.72495254982626617299324",
+      "1.726206682585187270213557"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.624608167589413243178413",
+      "1.624634291418859329136883"
+     ],
+     "Dt": [
+      "1.032283191257259791936873",
+      "1.032288606525262782922733"
+     ],
+     "r": [
+      "1.624606920121264313426798",
+      "1.624635539434384759163324"
+     ],
+     "hist_q": [
+      "0.07727183495908638519561091",
+      "0.07727528219921893715998148"
+     ],
+     "hist_qdot": [
+      "0.1246695370155693953525678",
+      "0.124672336039511291117108"
+     ],
+     "delayed_arg": [
+      "1.242050302204790268031086",
+      "1.242076541593414801712944"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.964736798561277809139172",
+      "1.964749020212651414327436"
+     ],
+     "Dt": [
+      "1.016890252970930971184438",
+      "1.016893508034658210644826"
+     ],
+     "r": [
+      "1.964736592131187223208288",
+      "1.964749226745917794804969"
+     ],
+     "hist_q": [
+      "0.04071078312918833854104496",
+      "0.04071201012214018573019921"
+     ],
+     "hist_qdot": [
+      "0.09035953020886012252434526",
+      "0.09036089599634376386618513"
+     ],
+     "delayed_arg": [
+      "0.9019355734109981828405331",
+      "0.9019479106215502357521851"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.05874511997379881364697598",
+    "-0.05858671134452672784025318"
+   ],
+   "lambda_hat_end": [
+    "-0.02874388811467066709489849",
+    "-0.02845937793374661092688065"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07556148577500753987636491",
+      "0.07606659016912917330182427"
+     ],
+     "radial": [
+      "-0.09334610571145246145968229",
+      "-0.09318930132451038076373639"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02653218021229976856735553",
+      "0.02653489713379476602501468"
+     ],
+     "radial": [
+      "0.05962699413959379194295264",
+      "0.0596283573409886160303472"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004761814378883392344947304",
+      "0.004762736580747944135644408"
+     ],
+     "radial": [
+      "-0.02502600840194014413024634",
+      "-0.025025767361004963106864"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1068554803661907007886677",
+    "0.1073642238836718834624834"
+   ],
+   "radial_sum_end": [
+    "-0.05874511997379881364697598",
+    "-0.05858671134452672784025318"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "2.866684593623649597167969",
+    "2.876684709182828044891357"
+   ],
+   "S": [
+    "0.4167695253829672535586892",
+    "0.41979643224972002990293"
+   ],
+   "VS": [
+    "0.2953033542387755323202929",
+    "0.2965914385878502638326953"
+   ],
+   "a0": [
+    "0.1068269728518705208142489",
+    "0.107392733141491190291983"
+   ],
+   "ap": [
+    "-0.01445572307696954619511734",
+    "-0.005476258505183627439620264"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.1404780265976407746778",
+      "1.141732043797383424174729"
+     ],
+     "tau_range": [
+      "1.138337049254246783973654",
+      "1.141732043797383424174729"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9393271460028793666278352",
+      "0.939874256351059310955557"
+     ],
+     "Dt_range": [
+      "0.9383754795117646654739304",
+      "0.9405233031235186521570427"
+     ],
+     "delayed_arg_range": [
+      "1.72495254982626617299324",
+      "1.738347659928581260917703"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1479114215034119995383253",
+      "0.1531560693411672449171254"
+     ],
+     "history_qdot_range": [
+      "0.1731657768390309910476299",
+      "0.1762819491727346727372799"
+     ],
+     "hit0": [
+      "0.3778074288750376993818246",
+      "0.3803329508456458665091213"
+     ],
+     "hit_fixed0": [
+      "0.3790866622003808962694887",
+      "0.379131985763477000567967"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.128337049254246783973654",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.3582678406434381281018826",
+     "delayed_arg_start": [
+      "1.72495254982626617299324",
+      "1.726206682585187270213557"
+     ],
+     "r0": [
+      "1.140478026597641602155876",
+      "1.141732043797381317945771"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1479114215034119995383253",
+       "0.1496511267993073762538574"
+      ],
+      "history_qdot": [
+       "0.1731657768390309910476299",
+       "0.1742126712694489604314538"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1033528560805721470859989",
+       "0.1034170649909566471696304"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.72495254982626617299324",
+       "1.738347659928581260917703"
+      ],
+      "history_q": [
+       "0.1479114215034119995383253",
+       "0.1531560693411672449171254"
+      ],
+      "history_qdot": [
+       "0.1731657768390309910476299",
+       "0.1762819491727346727372799"
+      ],
+      "history_qddot": [
+       "0.1033528560805721470859989",
+       "0.1035216411936929722488129"
+      ],
+      "dhit_dt": [
+       "-0.0001518021001887816395728171",
+       "0.02197112007217606772954903"
+      ],
+      "taudot": [
+       "-0.2140977343393990704145897",
+       "-0.2072237169153153130574575"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1033528560805721470859989",
+      "0.1035216411936929722488129"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.624608167589413243178413",
+      "1.624634291418859329136883"
+     ],
+     "tau_range": [
+      "1.624608167589413243178413",
+      "1.626000740358130407536307"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.032283191257259791936873",
+      "1.032288606525262782922733"
+     ],
+     "Dt_range": [
+      "1.031989568437999911201418",
+      "1.032576343785454191413543"
+     ],
+     "delayed_arg_range": [
+      "1.240683853265519189631662",
+      "1.252076541593414801712944"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07710158243029107319861348",
+      "0.07852706241270901840845682"
+     ],
+     "history_qdot_range": [
+      "0.1245312226403950732205046",
+      "0.1256847323222935434912778"
+     ],
+     "hit0": [
+      "0.1326609010614988428367776",
+      "0.1326744856689738301250734"
+     ],
+     "hit_fixed0": [
+      "0.1566960033589082909453984",
+      "0.156708448041658367568951"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.614608167589413243178413",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1146080520302347954550247",
+     "delayed_arg_start": [
+      "1.242050302204790268031086",
+      "1.242076541593414801712944"
+     ],
+     "r0": [
+      "1.624606920121264313426798",
+      "1.624635539434384759163324"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.07727183495908638519561091",
+       "0.07727528219921893715998148"
+      ],
+      "history_qdot": [
+       "0.1246695370155693953525678",
+       "0.124672336039511291117108"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1012273261154419428092095",
+       "0.1012285068319525162808573"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.240683853265519189631662",
+       "1.252076541593414801712944"
+      ],
+      "history_q": [
+       "0.07710158243029107319861348",
+       "0.07852706241270901840845682"
+      ],
+      "history_qdot": [
+       "0.1245312226403950732205046",
+       "0.1256847323222935434912778"
+      ],
+      "history_qddot": [
+       "0.1009941192078434894319454",
+       "0.1014829688673214635725096"
+      ],
+      "dhit_dt": [
+       "-0.07499752185692061136955435",
+       "-0.07241482490598172340947786"
+      ],
+      "taudot": [
+       "0.1338121308769759038312188",
+       "0.1362678291489032456300169"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1009941192078434894319454",
+      "0.1014829688673214635725096"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.964736798561277809139172",
+      "1.964749020212651414327436"
+     ],
+     "tau_range": [
+      "1.96434662489667280177247",
+      "1.964749020212651414327436"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.016890252970930971184438",
+      "1.016893508034658210644826"
+     ],
+     "Dt_range": [
+      "1.0168394622939751240099",
+      "1.017230540858929908283509"
+     ],
+     "delayed_arg_range": [
+      "0.9019355734109981828405331",
+      "0.9123380842861552431188873"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.04071078312918833854104496",
+      "0.04165630850996594839297462"
+     ],
+     "history_qdot_range": [
+      "0.09035953020886012252434526",
+      "0.09140603854990246130387764"
+     ],
+     "hit0": [
+      "0.04761814378883392344947304",
+      "0.04762736580747944135644408"
+     ],
+     "hit_fixed0": [
+      "0.05403252271367852886884858",
+      "0.05404175943946321475545529"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.95434662489667280177247",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.4543465093374943540490817",
+     "delayed_arg_start": [
+      "0.9019355734109981828405331",
+      "0.9019479106215502357521851"
+     ],
+     "r0": [
+      "1.964736592131187223208288",
+      "1.964749226745917794804969"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.04071078312918833854104496",
+       "0.04071201012214018573019921"
+      ],
+      "history_qdot": [
+       "0.09035953020886012252434526",
+       "0.09036089599634376386618513"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1005813531245576299095203",
+       "0.1005817389519627797926498"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "0.9019355734109981828405331",
+       "0.9123380842861552431188873"
+      ],
+      "history_q": [
+       "0.04071078312918833854104496",
+       "0.04165630850996594839297462"
+      ],
+      "history_qdot": [
+       "0.09035953020886012252434526",
+       "0.09140603854990246130387764"
+      ],
+      "history_qddot": [
+       "0.1004403888150540201753605",
+       "0.1007380424934608343329006"
+      ],
+      "dhit_dt": [
+       "0.02528591292712022498390359",
+       "0.02641508924806756355947354"
+      ],
+      "taudot": [
+       "-0.0388167774041129211155192",
+       "-0.03712555823826158598158761"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1004403888150540201753605",
+      "0.1007380424934608343329006"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4197279075018591408927059",
+    "0.41979643224972002990293"
+   ],
+   "end_v_str": [
+    "0.2963716239672942375284354",
+    "0.2965914385878502638326953"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-0.9099657373499319158699747",
+    "-0.9099518922253404487805041"
+   ],
+   "antipode_residual_end": [
+    "-0.9205804541541280144506256",
+    "-0.9205660619025820021846803"
+   ],
+   "a_rad_start": [
+    "-0.05874511997379881364697598",
+    "-0.05858671134452672784025318"
+   ],
+   "lambda_hat_start": [
+    "-0.02874388811467066709489849",
+    "-0.02845937793374661092688065"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.05921507550534064388657825",
+    "-0.05840668261428602200152481"
+   ],
+   "lambda_hat_range": [
+    "-0.0295597988293245325016801",
+    "-0.02798899551933110326507129"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07556148577500753987636491",
+      "0.07606659016912917330182427"
+     ],
+     "radial": [
+      "-0.09334610571145246145968229",
+      "-0.09318930132451038076373639"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02653218021229976856735553",
+      "0.02653489713379476602501468"
+     ],
+     "radial": [
+      "0.05962699413959379194295264",
+      "0.0596283573409886160303472"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004761814378883392344947304",
+      "0.004762736580747944135644408"
+     ],
+     "radial": [
+      "-0.02502600840194014413024634",
+      "-0.025025767361004963106864"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1068554803661907007886677",
+    "0.1073642238836718834624834"
+   ],
+   "radial_sum_start": [
+    "-0.05874511997379881364697598",
+    "-0.05858671134452672784025318"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.603897079108114277664509",
+     "1.605116034239051905121131"
+    ],
+    "unlike_pair_chord": [
+     "1.193148153679457676177135",
+     "1.194786240140243417383197"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 101,
+   "certified": true,
+   "self_appended_record_index": 150,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.137889745042403772714939",
+      "1.139160582613707295285904"
+     ],
+     "Dt": [
+      "0.9390367953149323602926658",
+      "0.9395878727083897437263924"
+     ],
+     "r": [
+      "1.137889745042404711192236",
+      "1.139160582613706988589585"
+     ],
+     "hist_q": [
+      "0.1513954101908449844476954",
+      "0.1531560693411672449171254"
+     ],
+     "hist_qdot": [
+      "0.1752333498478925657893717",
+      "0.1762819491727346727372799"
+     ],
+     "delayed_arg": [
+      "1.737524011009942301882065",
+      "1.738794964140424272176418"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.625954781471249785934612",
+      "1.625981682650200097054811"
+     ],
+     "Dt": [
+      "1.032275202759860532276763",
+      "1.032280815630769380674677"
+     ],
+     "r": [
+      "1.6259534913078438000806",
+      "1.62598297337259766261865"
+     ],
+     "hist_q": [
+      "0.07835435609940570022704328",
+      "0.0783579002121164975889339"
+     ],
+     "hist_qdot": [
+      "0.125545524583674832495276",
+      "0.1255483827758415589397869"
+     ],
+     "delayed_arg": [
+      "1.250702910973449500113158",
+      "1.250729927711578258956745"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.964358644352671366374746",
+      "1.964371328425525827839383"
+     ],
+     "Dt": [
+      "1.017175843388262565945496",
+      "1.017179243505573461096443"
+     ],
+     "r": [
+      "1.964358426506537043689647",
+      "1.964371546377863901106696"
+     ],
+     "hist_q": [
+      "0.04165392149554219868670475",
+      "0.04165520942493751350847001"
+     ],
+     "hist_qdot": [
+      "0.09140341148769026346907672",
+      "0.09140482894570889691451898"
+     ],
+     "delayed_arg": [
+      "0.9123132651981237693285863",
+      "0.9123260648301566785166114"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.05903312899195937618050979",
+    "-0.05887224007866956839703428"
+   ],
+   "lambda_hat_end": [
+    "-0.02909424136494098610617063",
+    "-0.02880301050105187994484816"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07552754248529395027538074",
+      "0.07604174652516016217421633"
+     ],
+     "radial": [
+      "-0.09358736216181071280989291",
+      "-0.09342812825981459048329653"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02638501558726819026141871",
+      "0.0263878137156037305737257"
+     ],
+     "radial": [
+      "0.05957803156286373883738816",
+      "0.05957943579602390294416078"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004787523371036015670435752",
+      "0.004788476818186358954124399"
+     ],
+     "radial": [
+      "-0.02502379839301240220800504",
+      "-0.02502354761487888085789854"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1067000814435981562072352",
+    "0.1072180370589502517020664"
+   ],
+   "radial_sum_end": [
+    "-0.05903312899195937618050979",
+    "-0.05887224007866956839703428"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "2.876684593623649597167969",
+    "2.886684709182828044891357"
+   ],
+   "S": [
+    "0.4197279050445273254284274",
+    "0.4227677090164428795598593"
+   ],
+   "VS": [
+    "0.2963708867677495982448793",
+    "0.2976639147567196675531802"
+   ],
+   "a0": [
+    "0.1066705034877571992347592",
+    "0.1072476168869403720484911"
+   ],
+   "ap": [
+    "-0.01474399089278567112162669",
+    "-0.006630247784193201899481311"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.137889745042403772714939",
+      "1.139160582613707295285904"
+     ],
+     "tau_range": [
+      "1.135741243429449660506204",
+      "1.139160582613707295285904"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9390367953149323602926658",
+      "0.9395878727083897437263924"
+     ],
+     "Dt_range": [
+      "0.9385043025875483402911645",
+      "0.9401317698445446317348179"
+     ],
+     "delayed_arg_range": [
+      "1.737524011009942301882065",
+      "1.750943465753378384385153"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1513954101908449844476954",
+      "0.1549240654318461282036628"
+     ],
+     "history_qdot_range": [
+      "0.1752333498478925657893717",
+      "0.1773173751193533502804637"
+     ],
+     "hit0": [
+      "0.3776377124264697513769037",
+      "0.3802087326258008108710817"
+     ],
+     "hit_fixed0": [
+      "0.3801140649041299902666543",
+      "0.3801611348821956316564439"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.125741243429449660506204",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.3708393018271142569907076",
+     "delayed_arg_start": [
+      "1.737524011009942301882065",
+      "1.738794964140424272176418"
+     ],
+     "r0": [
+      "1.137889745042404711192236",
+      "1.139160582613706988589585"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1513954101908449844476954",
+       "0.1531560693411672449171254"
+      ],
+      "history_qdot": [
+       "0.1752333498478925657893717",
+       "0.1762819491727346727372799"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1034563675823263986267408",
+       "0.1035216411936929722488129"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.737524011009942301882065",
+       "1.750943465753378384385153"
+      ],
+      "history_q": [
+       "0.1513954101908449844476954",
+       "0.1549240654318461282036628"
+      ],
+      "history_qdot": [
+       "0.1752333498478925657893717",
+       "0.1773173751193533502804637"
+      ],
+      "history_qddot": [
+       "0.1034563675823263986267408",
+       "0.1035744415552774673917021"
+      ],
+      "dhit_dt": [
+       "-0.001450795073685228490943841",
+       "0.01612160588538967909006831"
+      ],
+      "taudot": [
+       "-0.2135792857706044002794735",
+       "-0.2079123084466311418507062"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1034563675823263986267408",
+      "0.1035744415552774673917021"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.625954781471249785934612",
+      "1.625981682650200097054811"
+     ],
+     "tau_range": [
+      "1.625954781471249785934612",
+      "1.627347723347441953883732"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.032275202759860532276763",
+      "1.032280815630769380674677"
+     ],
+     "Dt_range": [
+      "1.031978841938593331456541",
+      "1.032567018377996980053753"
+     ],
+     "delayed_arg_range": [
+      "1.249336870276207643284237",
+      "1.260729927711578258956745"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07818293407931833161928155",
+      "0.07961845606520431321338412"
+     ],
+     "history_qdot_range": [
+      "0.1254072037839987915509888",
+      "0.1265610011304305171875875"
+     ],
+     "hit0": [
+      "0.1319250779363409513070936",
+      "0.1319390685780186528686285"
+     ],
+     "hit_fixed0": [
+      "0.1561414669295302585336497",
+      "0.1561542875257457517335805"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.615954781471249785934612",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1059546659120713382112237",
+     "delayed_arg_start": [
+      "1.250702910973449500113158",
+      "1.250729927711578258956745"
+     ],
+     "r0": [
+      "1.6259534913078438000806",
+      "1.62598297337259766261865"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.07835435609940570022704328",
+       "0.0783579002121164975889339"
+      ],
+      "history_qdot": [
+       "0.125545524583674832495276",
+       "0.1255483827758415589397869"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1012482368356282528944239",
+       "0.1012494537567470196495027"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.249336870276207643284237",
+       "1.260729927711578258956745"
+      ],
+      "history_q": [
+       "0.07818293407931833161928155",
+       "0.07961845606520431321338412"
+      ],
+      "history_qdot": [
+       "0.1254072037839987915509888",
+       "0.1265610011304305171875875"
+      ],
+      "history_qddot": [
+       "0.1010128395858462235915402",
+       "0.1015063633984611901035928"
+      ],
+      "dhit_dt": [
+       "-0.07503045890445978162914317",
+       "-0.07244263985305944220330304"
+      ],
+      "taudot": [
+       "0.1337671573325574126799499",
+       "0.1362275033474989556758785"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1010128395858462235915402",
+      "0.1015063633984611901035928"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.964358644352671366374746",
+      "1.964371328425525827839383"
+     ],
+     "tau_range": [
+      "1.963966427527931061980305",
+      "1.964371328425525827839383"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.017175843388262565945496",
+      "1.017179243505573461096443"
+     ],
+     "Dt_range": [
+      "1.017123980391292279935833",
+      "1.017519458216758751592277"
+     ],
+     "delayed_arg_range": [
+      "0.9123132651981237693285863",
+      "0.9227182816548969829110519"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.04165392149554219868670475",
+      "0.04261054351022452772441412"
+     ],
+     "history_qdot_range": [
+      "0.09140341148769026346907672",
+      "0.09245033553173385396416301"
+     ],
+     "hit0": [
+      "0.04787523371036015670435752",
+      "0.04788476818186358954124399"
+     ],
+     "hit_fixed0": [
+      "0.05444461014559697343361251",
+      "0.05445416272082829995401751"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.953966427527931061980305",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.4439663119687526142569167",
+     "delayed_arg_start": [
+      "0.9123132651981237693285863",
+      "0.9123260648301566785166114"
+     ],
+     "r0": [
+      "1.964358426506537043689647",
+      "1.964371546377863901106696"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.04165392149554219868670475",
+       "0.04165520942493751350847001"
+      ],
+      "history_qdot": [
+       "0.09140341148769026346907672",
+       "0.09140482894570889691451898"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1005965406376151414024185",
+       "0.1005969465345439839705838"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "0.9123132651981237693285863",
+       "0.9227182816548969829110519"
+      ],
+      "history_q": [
+       "0.04165392149554219868670475",
+       "0.04261054351022452772441412"
+      ],
+      "history_qdot": [
+       "0.09140341148769026346907672",
+       "0.09245033553173385396416301"
+      ],
+      "history_qddot": [
+       "0.1004536307471524078351363",
+       "0.1007554565957242689505068"
+      ],
+      "dhit_dt": [
+       "0.02527799608152961391962982",
+       "0.02641682223001688376312186"
+      ],
+      "taudot": [
+       "-0.03901872920635727536609538",
+       "-0.03731313554083639078336913"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1004536307471524078351363",
+      "0.1007554565957242689505068"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4226969548093746556636735",
+    "0.4227677090164428795598593"
+   ],
+   "end_v_str": [
+    "0.2974375918026271702372269",
+    "0.2976639147567196675531802"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-0.9205804541541280144506256",
+    "-0.9205660619025820021846803"
+   ],
+   "antipode_residual_end": [
+    "-0.9312017088757838096308986",
+    "-0.9311867493770671392077092"
+   ],
+   "a_rad_start": [
+    "-0.05903312899195937618050979",
+    "-0.05887224007866956839703428"
+   ],
+   "lambda_hat_start": [
+    "-0.02909424136494098610617063",
+    "-0.02880301050105187994484816"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.05938775270525385123083792",
+    "-0.05872620623543008522211322"
+   ],
+   "lambda_hat_range": [
+    "-0.02987759991286558743982828",
+    "-0.02844794981824840267455938"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07552754248529395027538074",
+      "0.07604174652516016217421633"
+     ],
+     "radial": [
+      "-0.09358736216181071280989291",
+      "-0.09342812825981459048329653"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02638501558726819026141871",
+      "0.0263878137156037305737257"
+     ],
+     "radial": [
+      "0.05957803156286373883738816",
+      "0.05957943579602390294416078"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004787523371036015670435752",
+      "0.004788476818186358954124399"
+     ],
+     "radial": [
+      "-0.02502379839301240220800504",
+      "-0.02502354761487888085789854"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1067000814435981562072352",
+    "0.1072180370589502517020664"
+   ],
+   "radial_sum_start": [
+    "-0.05903312899195937618050979",
+    "-0.05887224007866956839703428"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.605088466286531233725699",
+     "1.606310088365366637507505"
+    ],
+    "unlike_pair_chord": [
+     "1.191540137811415912426886",
+     "1.193185239346326680460308"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 102,
+   "certified": true,
+   "self_appended_record_index": 151,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.13590975263159524771837",
+      "1.137190545295357846524421"
+     ],
+     "Dt": [
+      "0.9390552141008644989738676",
+      "0.9396078240528685837705395"
+     ],
+     "r": [
+      "1.135909752631595319253059",
+      "1.137190545295357667398276"
+     ],
+     "hist_q": [
+      "0.1531529165077030264255205",
+      "0.1549240654318461282036628"
+     ],
+     "hist_qdot": [
+      "0.1762679135237158297756392",
+      "0.1773173751193533502804637"
+     ],
+     "delayed_arg": [
+      "1.749494048328291750643548",
+      "1.750774956551232797172987"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.62730095911005463143645",
+      "1.627328677245293854906349"
+     ],
+     "Dt": [
+      "1.032262919841690235618981",
+      "1.032268746702226097345534"
+     ],
+     "r": [
+      "1.627299624753623870305276",
+      "1.627330012172734161429317"
+     ],
+     "hist_q": [
+      "0.07944448882240312321294633",
+      "0.07944817158675603920032934"
+     ],
+     "hist_qdot": [
+      "0.1264217192406182898449963",
+      "0.1264246692818879956420954"
+     ],
+     "delayed_arg": [
+      "1.25935591637835574226162",
+      "1.259383750072773413454907"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.963978544839662839959307",
+      "1.963991707238791308258219"
+     ],
+     "Dt": [
+      "1.017463533350260270090045",
+      "1.017467084214906614624914"
+     ],
+     "r": [
+      "1.96397831500998759727389",
+      "1.963991937177699776942999"
+     ],
+     "hist_q": [
+      "0.04260807148279677216134018",
+      "0.04260942292023370922452181"
+     ],
+     "hist_qdot": [
+      "0.09244764522505919873857587",
+      "0.0924491160035659305745894"
+     ],
+     "delayed_arg": [
+      "0.9226928863848582889097505",
+      "0.9227061643431652049320501"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.05924080787731447887889533",
+    "-0.0590784381652627169531796"
+   ],
+   "lambda_hat_end": [
+    "-0.0295253679830329557087619",
+    "-0.02922831314003178673833038"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.0755533191309987823864666",
+      "0.07607328871455590307469123"
+     ],
+     "radial": [
+      "-0.0937486544762402376332479",
+      "-0.09358799329354912024936504"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.0262377870327636964585375",
+      "0.02624067117617229239623039"
+     ],
+     "radial": [
+      "0.05952941123657130288246186",
+      "0.05953085889507654011215608"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004813228670080066577953758",
+      "0.004814214338647913747752809"
+     ],
+     "radial": [
+      "-0.02502156463764554412810928",
+      "-0.02502130376679013681597064"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1066043348338425454229579",
+    "0.1071281742293761092186744"
+   ],
+   "radial_sum_end": [
+    "-0.05924080787731447887889533",
+    "-0.0590784381652627169531796"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "2.886684593623649597167969",
+    "2.896684709182828044891357"
+   ],
+   "S": [
+    "0.4226969522484702792069716",
+    "0.4257497061071285107189077"
+   ],
+   "VS": [
+    "0.2974368235313142332266645",
+    "0.2987355033804065642564965"
+   ],
+   "a0": [
+    "0.1065736487045035988259763",
+    "0.1071588623686896703316256"
+   ],
+   "ap": [
+    "-0.01536542625874021124891198",
+    "-0.007157576480828864744012776"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.13590975263159524771837",
+      "1.137190545295357846524421"
+     ],
+     "tau_range": [
+      "1.133760616314855402001437",
+      "1.137190545295357846524421"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9390552141008644989738676",
+      "0.9396078240528685837705395"
+     ],
+     "Dt_range": [
+      "0.9385235863546572239353089",
+      "0.9401598652482958265926531"
+     ],
+     "delayed_arg_range": [
+      "1.749494048328291750643548",
+      "1.76292409286797264288992"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1531529165077030264255205",
+      "0.1567024184247753226102297"
+     ],
+     "history_qdot_range": [
+      "0.1762679135237158297756392",
+      "0.1783533303662069443684201"
+     ],
+     "hit0": [
+      "0.377766595654993911932333",
+      "0.3803664435727795153734561"
+     ],
+     "hit_fixed0": [
+      "0.3811460374676830888463846",
+      "0.3811949172518681903926931"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.123760616314855402001437",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.3828093391454637057521906",
+     "delayed_arg_start": [
+      "1.749494048328291750643548",
+      "1.750774956551232797172987"
+     ],
+     "r0": [
+      "1.135909752631595319253059",
+      "1.137190545295357667398276"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1531529165077030264255205",
+       "0.1549240654318461282036628"
+      ],
+      "history_qdot": [
+       "0.1762679135237158297756392",
+       "0.1773173751193533502804637"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1035086318740703157691411",
+       "0.1035744415552774673917021"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.749494048328291750643548",
+       "1.76292409286797264288992"
+      ],
+      "history_q": [
+       "0.1531529165077030264255205",
+       "0.1567024184247753226102297"
+      ],
+      "history_qdot": [
+       "0.1762679135237158297756392",
+       "0.1783533303662069443684201"
+      ],
+      "history_qddot": [
+       "0.1035086318740703157691411",
+       "0.1036275946017834094352053"
+      ],
+      "dhit_dt": [
+       "-0.004415358023515350954571248",
+       "0.01340317674743021965165488"
+      ],
+      "taudot": [
+       "-0.2136342667057056589653036",
+       "-0.2079356249590370201814588"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1035086318740703157691411",
+      "0.1036275946017834094352053"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.62730095911005463143645",
+      "1.627328677245293854906349"
+     ],
+     "tau_range": [
+      "1.62730095911005463143645",
+      "1.628694214240230627467506"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.032262919841690235618981",
+      "1.032268746702226097345534"
+     ],
+     "Dt_range": [
+      "1.031963817274673176322212",
+      "1.032553399155732025962813"
+     ],
+     "delayed_arg_range": [
+      "1.257990379383418969700463",
+      "1.269383750072773413454907"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07927195342585459521791084",
+      "0.08071747041964985529533352"
+     ],
+     "history_qdot_range": [
+      "0.1262834366006339590462627",
+      "0.1274374842138034377861975"
+     ],
+     "hit0": [
+      "0.1311889351638184822926875",
+      "0.131203355880861461981152"
+     ],
+     "hit_fixed0": [
+      "0.1555862260434294058081767",
+      "0.1555994326766550873970015"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.61730095911005463143645",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.09730084355087618371306175",
+     "delayed_arg_start": [
+      "1.25935591637835574226162",
+      "1.259383750072773413454907"
+     ],
+     "r0": [
+      "1.627299624753623870305276",
+      "1.627330012172734161429317"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.07944448882240312321294633",
+       "0.07944817158675603920032934"
+      ],
+      "history_qdot": [
+       "0.1264217192406182898449963",
+       "0.1264246692818879956420954"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1012693918114228747335293",
+       "0.1012706595105387575093363"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.257990379383418969700463",
+       "1.269383750072773413454907"
+      ],
+      "history_q": [
+       "0.07927195342585459521791084",
+       "0.08071747041964985529533352"
+      ],
+      "history_qdot": [
+       "0.1262834366006339590462627",
+       "0.1274374842138034377861975"
+      ],
+      "history_qddot": [
+       "0.1010318070393011676190766",
+       "0.1015300166325207520055493"
+      ],
+      "dhit_dt": [
+       "-0.07506224398009048017729859",
+       "-0.07246936531447029870478007"
+      ],
+      "taudot": [
+       "0.1337125958064698200308913",
+       "0.1361776254785292058605874"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1010318070393011676190766",
+      "0.1015300166325207520055493"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.963978544839662839959307",
+      "1.963991707238791308258219"
+     ],
+     "tau_range": [
+      "1.963584289808484945182935",
+      "1.963991707238791308258219"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.017463533350260270090045",
+      "1.017467084214906614624914"
+     ],
+     "Dt_range": [
+      "1.01741058664623606667719",
+      "1.0178104915479668926223"
+     ],
+     "delayed_arg_range": [
+      "0.9226928863848582889097505",
+      "0.9331004193743430997084224"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.04260807148279677216134018",
+      "0.0435758001480503109444172"
+     ],
+     "history_qdot_range": [
+      "0.09244764522505919873857587",
+      "0.09349498883249875505429539"
+     ],
+     "hit0": [
+      "0.04813228670080066577953758",
+      "0.04814214338647913747752809"
+     ],
+     "hit_fixed0": [
+      "0.05485881498156731604948706",
+      "0.05486869349595433674499901"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.953584289808484945182935",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.4335841742493064974595467",
+     "delayed_arg_start": [
+      "0.9226928863848582889097505",
+      "0.9227061643431652049320501"
+     ],
+     "r0": [
+      "1.96397831500998759727389",
+      "1.963991937177699776942999"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.04260807148279677216134018",
+       "0.04260942292023370922452181"
+      ],
+      "history_qdot": [
+       "0.09244764522505919873857587",
+       "0.0924491160035659305745894"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1006119847095317141548996",
+       "0.1006124115866865712745524"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "0.9226928863848582889097505",
+       "0.9331004193743430997084224"
+      ],
+      "history_q": [
+       "0.04260807148279677216134018",
+       "0.0435758001480503109444172"
+      ],
+      "history_qdot": [
+       "0.09244764522505919873857587",
+       "0.09349498883249875505429539"
+      ],
+      "history_qddot": [
+       "0.1004671172304571686436394",
+       "0.1007731431440920223856943"
+      ],
+      "dhit_dt": [
+       "0.02526970848104524553647525",
+       "0.02641830526690366666110335"
+      ],
+      "taudot": [
+       "-0.03922016533013525387615921",
+       "-0.03750011660233495781196906"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1004671172304571686436394",
+      "0.1007731431440920223856943"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4256766568489317760892852",
+    "0.4257497061071285107189077"
+   ],
+   "end_v_str": [
+    "0.2985025600183592692149242",
+    "0.2987355033804065642564965"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-0.9312017088757838096308986",
+    "-0.9311867493770671392077092"
+   ],
+   "antipode_residual_end": [
+    "-0.9418295444476184556077338",
+    "-0.9418139970222961660002063"
+   ],
+   "a_rad_start": [
+    "-0.05924080787731447887889533",
+    "-0.0590784381652627169531796"
+   ],
+   "lambda_hat_start": [
+    "-0.0295253679830329557087619",
+    "-0.02922831314003178673833038"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.05959679250145551794775236",
+    "-0.05893038668794732298512635"
+   ],
+   "lambda_hat_range": [
+    "-0.03031251429199757879491539",
+    "-0.02887187149094264642578269"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.0755533191309987823864666",
+      "0.07607328871455590307469123"
+     ],
+     "radial": [
+      "-0.0937486544762402376332479",
+      "-0.09358799329354912024936504"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.0262377870327636964585375",
+      "0.02624067117617229239623039"
+     ],
+     "radial": [
+      "0.05952941123657130288246186",
+      "0.05953085889507654011215608"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004813228670080066577953758",
+      "0.004814214338647913747752809"
+     ],
+     "radial": [
+      "-0.02502156463764554412810928",
+      "-0.02502130376679013681597064"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1066043348338425454229579",
+    "0.1071281742293761092186744"
+   ],
+   "radial_sum_start": [
+    "-0.05924080787731447887889533",
+    "-0.0590784381652627169531796"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.606281682458454909986056",
+     "1.607505956901779750955573"
+    ],
+    "unlike_pair_chord": [
+     "1.189926299619137513692729",
+     "1.191578430737328942493128"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 103,
+   "certified": true,
+   "self_appended_record_index": 152,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.133929316141969181587306",
+      "1.135220096197693755547285"
+     ],
+     "Dt": [
+      "0.9390827175515453580383635",
+      "0.9396368807343449273399565"
+     ],
+     "r": [
+      "1.13392931614196997735386",
+      "1.135220096197693334257187"
+     ],
+     "hist_q": [
+      "0.1549207710745338882390655",
+      "0.1567024184247753226102297"
+     ],
+     "hist_qdot": [
+      "0.1773029998424565329333307",
+      "0.1783533303662069443684201"
+     ],
+     "delayed_arg": [
+      "1.761464497425955841620684",
+      "1.762755393040858863304051"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.628646614494434042473481",
+      "1.628675170862794909530345"
+     ],
+     "Dt": [
+      "1.032246325398306391405675",
+      "1.032252373493777778030493"
+     ],
+     "r": [
+      "1.628645234706182571877445",
+      "1.628676551234080263919163"
+     ],
+     "hist_q": [
+      "0.08054226443145058367420474",
+      "0.08054609001968686783228785"
+     ],
+     "hist_qdot": [
+      "0.1272981463109828964945696",
+      "0.1273011903049141625473352"
+     ],
+     "delayed_arg": [
+      "1.268009422760854687637624",
+      "1.268038094688394002417876"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.96359650484532987708243",
+      "1.963610161863376381904991"
+     ],
+     "Dt": [
+      "1.017753322178499383268944",
+      "1.017757029654920479509601"
+     ],
+     "r": [
+      "1.963596262441152752964866",
+      "1.963610404379807766463059"
+     ],
+     "hist_q": [
+      "0.04357324025792196657353431",
+      "0.04357465786100599833092462"
+     ],
+     "hist_qdot": [
+      "0.09349223360226802985157889",
+      "0.09349375938970248493582462"
+     ],
+     "delayed_arg": [
+      "0.9330744317602732152629781",
+      "0.9330882043374981678089273"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.05944780795746042220742884",
+    "-0.05928394476885662064799871"
+   ],
+   "lambda_hat_end": [
+    "-0.02995895621108828113204302",
+    "-0.02965597038005375551367636"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.075574038620845664875319",
+      "0.07609981096506880540945884"
+     ],
+     "radial": [
+      "-0.093909638428191123087103",
+      "-0.09374753882200365965845365"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02609049807501880336607579",
+      "0.02609347055133247957388629"
+     ],
+     "radial": [
+      "0.05948113762591435240065546",
+      "0.05948262987961277826930479"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004838929993467554097593402",
+      "0.004839948879771936134776859"
+     ],
+     "radial": [
+      "-0.02501930715518365152098131",
+      "-0.02501903582646573925884985"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1065034666893320223389882",
+    "0.107033230396173221118122"
+   ],
+   "radial_sum_end": [
+    "-0.05944780795746042220742884",
+    "-0.05928394476885662064799871"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "2.896684593623649597167969",
+    "2.906684709182828044891357"
+   ],
+   "S": [
+    "0.4256766541820402110793254",
+    "0.42874241439421191995251"
+   ],
+   "VS": [
+    "0.2985017599508897662269908",
+    "0.2998061540362752824639554"
+   ],
+   "a0": [
+    "0.1064716336562080551688596",
+    "0.1070650655868718207458988"
+   ],
+   "ap": [
+    "-0.01600134939005975866820446",
+    "-0.007698498391476834334018951"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.133929316141969181587306",
+      "1.135220096197693755547285"
+     ],
+     "tau_range": [
+      "1.131779779464357283824593",
+      "1.135220096197693755547285"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9390827175515453580383635",
+      "0.9396368807343449273399565"
+     ],
+     "Dt_range": [
+      "0.9385520015831786917249103",
+      "0.9401971529258173855083512"
+     ],
+     "delayed_arg_range": [
+      "1.761464497425955841620684",
+      "1.774904929718470761066764"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1549207710745338882390655",
+      "0.1584911336303625982522043"
+     ],
+     "history_qdot_range": [
+      "0.1773029998424565329333307",
+      "0.179389818400662763105439"
+     ],
+     "hit0": [
+      "0.377870193104228324376595",
+      "0.3804990548253440270472942"
+     ],
+     "hit_fixed0": [
+      "0.3821825575426625034294048",
+      "0.3822333122936322455424828"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.121779779464357283824593",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.3947797882431277967293266",
+     "delayed_arg_start": [
+      "1.761464497425955841620684",
+      "1.762755393040858863304051"
+     ],
+     "r0": [
+      "1.13392931614196997735386",
+      "1.135220096197693334257187"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1549207710745338882390655",
+       "0.1567024184247753226102297"
+      ],
+      "history_qdot": [
+       "0.1773029998424565329333307",
+       "0.1783533303662069443684201"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1035612341282052606481354",
+       "0.1036275946017834094352053"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.761464497425955841620684",
+       "1.774904929718470761066764"
+      ],
+      "history_q": [
+       "0.1549207710745338882390655",
+       "0.1584911336303625982522043"
+      ],
+      "history_qdot": [
+       "0.1773029998424565329333307",
+       "0.179389818400662763105439"
+      ],
+      "history_qddot": [
+       "0.1035612341282052606481354",
+       "0.1036810982699555973812039"
+      ],
+      "dhit_dt": [
+       "-0.007451942867989281610270442",
+       "0.01061457977763307405745053"
+      ],
+      "taudot": [
+       "-0.2136657867808153118583478",
+       "-0.2079353855123044916307554"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1035612341282052606481354",
+      "0.1036810982699555973812039"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.628646614494434042473481",
+      "1.628675170862794909530345"
+     ],
+     "tau_range": [
+      "1.628646614494434042473481",
+      "1.630040110318047367829052"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.032246325398306391405675",
+      "1.032252373493777778030493"
+     ],
+     "Dt_range": [
+      "1.031944461981797520790465",
+      "1.032535474708742376359248"
+     ],
+     "delayed_arg_range": [
+      "1.266644483305602229338917",
+      "1.278038094688394002417876"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.08036861111107390637163894",
+      "0.08182416045389371334044982"
+     ],
+     "history_qdot_range": [
+      "0.1271598972182551882077781",
+      "0.1283142253260402246383871"
+     ],
+     "hit0": [
+      "0.130452490375094016830379",
+      "0.1304673527566623978694314"
+     ],
+     "hit_fixed0": [
+      "0.1550302922303558954747652",
+      "0.1550438951589607475147903"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.618646614494434042473481",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.08864649893525559475009275",
+     "delayed_arg_start": [
+      "1.268009422760854687637624",
+      "1.268038094688394002417876"
+     ],
+     "r0": [
+      "1.628645234706182571877445",
+      "1.628676551234080263919163"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.08054226443145058367420474",
+       "0.08054609001968686783228785"
+      ],
+      "history_qdot": [
+       "0.1272981463109828964945696",
+       "0.1273011903049141625473352"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1012907999014740179075267",
+       "0.1012921200851951656769455"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.266644483305602229338917",
+       "1.278038094688394002417876"
+      ],
+      "history_q": [
+       "0.08036861111107390637163894",
+       "0.08182416045389371334044982"
+      ],
+      "history_qdot": [
+       "0.1271598972182551882077781",
+       "0.1283142253260402246383871"
+      ],
+      "history_qddot": [
+       "0.1010510093872565876526666",
+       "0.1015539456811604202918918"
+      ],
+      "dhit_dt": [
+       "-0.07509302422975944474402558",
+       "-0.07249509357841646131482981"
+      ],
+      "taudot": [
+       "0.1336485837826047914882362",
+       "0.1361183665240021397727794"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1010510093872565876526666",
+      "0.1015539456811604202918918"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.96359650484532987708243",
+      "1.963610161863376381904991"
+     ],
+     "tau_range": [
+      "1.963200215640253516000084",
+      "1.963610161863376381904991"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.017753322178499383268944",
+      "1.017757029654920479509601"
+     ],
+     "Dt_range": [
+      "1.017699280367450345839035",
+      "1.018103640600095789984898"
+     ],
+     "delayed_arg_range": [
+      "0.9330744317602732152629781",
+      "0.9434844935425745288912726"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.04357324025792196657353431",
+      "0.04455208577207372128517139"
+     ],
+     "history_qdot_range": [
+      "0.09349223360226802985157889",
+      "0.09454000079620168349117784"
+     ],
+     "hit0": [
+      "0.04838929993467554097593402",
+      "0.04839948879771936134776859"
+     ],
+     "hit_fixed0": [
+      "0.05527514756388761889803374",
+      "0.0552853623312443825820026"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.953200215640253516000084",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.4232001000810750682766957",
+     "delayed_arg_start": [
+      "0.9330744317602732152629781",
+      "0.9330882043374981678089273"
+     ],
+     "r0": [
+      "1.963596262441152752964866",
+      "1.963610404379807766463059"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.04357324025792196657353431",
+       "0.04357465786100599833092462"
+      ],
+      "history_qdot": [
+       "0.09349223360226802985157889",
+       "0.09349375938970248493582462"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1006276882141330822827453",
+       "0.1006281370167768023472307"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "0.9330744317602732152629781",
+       "0.9434844935425745288912726"
+      ],
+      "history_q": [
+       "0.04357324025792196657353431",
+       "0.04455208577207372128517139"
+      ],
+      "history_qdot": [
+       "0.09349223360226802985157889",
+       "0.09454000079620168349117784"
+      ],
+      "history_qddot": [
+       "0.1004808509607809012038165",
+       "0.1007911052621419550192988"
+      ],
+      "dhit_dt": [
+       "0.02526112393705371207016781",
+       "0.02641961236972920878070148"
+      ],
+      "taudot": [
+       "-0.03942118419375250213657171",
+       "-0.03768659989535043159262874"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1004808509607809012038165",
+      "0.1007911052621419550192988"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4286670033639066141742331",
+    "0.42874241439421191995251"
+   ],
+   "end_v_str": [
+    "0.2995664762874518467786794",
+    "0.2998061540362752824639554"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-0.9418295444476184556077338",
+    "-0.9418139970222961660002063"
+   ],
+   "antipode_residual_end": [
+    "-0.952464004409214613319664",
+    "-0.952447847819181654697827"
+   ],
+   "a_rad_start": [
+    "-0.05944780795746042220742884",
+    "-0.05928394476885662064799871"
+   ],
+   "lambda_hat_start": [
+    "-0.02995895621108828113204302",
+    "-0.02965597038005375551367636"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.05980514119102588009464251",
+    "-0.05913385321969990752504425"
+   ],
+   "lambda_hat_range": [
+    "-0.0307498767783229143178359",
+    "-0.02929815950275273747725994"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.075574038620845664875319",
+      "0.07609981096506880540945884"
+     ],
+     "radial": [
+      "-0.093909638428191123087103",
+      "-0.09374753882200365965845365"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02609049807501880336607579",
+      "0.02609347055133247957388629"
+     ],
+     "radial": [
+      "0.05948113762591435240065546",
+      "0.05948262987961277826930479"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004838929993467554097593402",
+      "0.004839948879771936134776859"
+     ],
+     "radial": [
+      "-0.02501930715518365152098131",
+      "-0.02501903582646573925884985"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1065034666893320223389882",
+    "0.107033230396173221118122"
+   ],
+   "radial_sum_start": [
+    "-0.05944780795746042220742884",
+    "-0.05928394476885662064799871"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.607476690821519959783989",
+     "1.608703604177979963281745"
+    ],
+    "unlike_pair_chord": [
+     "1.188306658192563173869291",
+     "1.189965834999263971675332"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 104,
+   "certified": true,
+   "self_appended_record_index": 153,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.131948637234889485628232",
+      "1.133249436410734868621588"
+     ],
+     "Dt": [
+      "0.9391194400249919903096078",
+      "0.9396751772576240672114772"
+     ],
+     "r": [
+      "1.131948637234890248232756",
+      "1.133249436410732124505001"
+     ],
+     "hist_q": [
+      "0.1566989791346648638314313",
+      "0.1584911336303625982522043"
+     ],
+     "hist_qdot": [
+      "0.1783386121837385855398122",
+      "0.179389818400662763105439"
+     ],
+     "delayed_arg": [
+      "1.773435157212914728546381",
+      "1.774736071947938559263125"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.62999166401868962325512",
+      "1.630021061560545414570325"
+     ],
+     "Dt": [
+      "1.032225403127994004326431",
+      "1.032231670969037170276112"
+     ],
+     "r": [
+      "1.629990237763851140687851",
+      "1.630022488410062358481595"
+     ],
+     "hist_q": [
+      "0.0816477221525768295757229",
+      "0.08165165725080669188436378"
+     ],
+     "hist_qdot": [
+      "0.1281748367727540665360791",
+      "0.1281779471520886579235798"
+     ],
+     "delayed_arg": [
+      "1.276663532063104182597644",
+      "1.276693045164138421636237"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.963212528788454862057113",
+      "1.963226697101596336313446"
+     ],
+     "Dt": [
+      "1.01804520929089524496901",
+      "1.01804907941486412865668"
+     ],
+     "r": [
+      "1.963212273194785645900192",
+      "1.963226952810522027762552"
+     ],
+     "hist_q": [
+      "0.04454943503377021115338963",
+      "0.04455092154735958681488971"
+     ],
+     "hist_qdot": [
+      "0.09453717887300823919029867",
+      "0.09453876139598638458019026"
+     ],
+     "delayed_arg": [
+      "0.9434578965220532608545229",
+      "0.9434721803943731828342435"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.05965409348238358059752",
+    "-0.05948872537771798816894088"
+   ],
+   "lambda_hat_end": [
+    "-0.03039500462030483367393927",
+    "-0.03008598023289686900347045"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07558957122285101676640987",
+      "0.07612118280754761406771249"
+     ],
+     "radial": [
+      "-0.09407028253105400074442909",
+      "-0.09390673341618549725674803"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02594315166258671867486083",
+      "0.02594621234778467326072992"
+     ],
+     "radial": [
+      "0.05943321501678452837777333",
+      "0.05943475184527444322410364"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.004864627092230764069682368",
+      "0.004865680212293087921983665"
+     ],
+     "radial": [
+      "-0.02501702596811410823086425",
+      "-0.0250167438068069341362965"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1063973499776684995109531",
+    "0.1069330753676253752504261"
+   ],
+   "radial_sum_end": [
+    "-0.05965409348238358059752",
+    "-0.05948872537771798816894088"
+   ],
+   "qddot_end_sign": "positive"
+  }
+ ],
+ "v10_sha256_expected": "1352182139423cb3088be03eae81ee7624bd8d09d67d86c864da32caf085b024",
+ "sample_mode_not_target_evidence": false,
+ "T_star": [
+  "1.366684593623649597167969",
+  "1.366684709182828044891357"
+ ],
+ "record_chain": {
+  "count_frozen": 144,
+  "first": "wave16 step 1",
+  "last": "late-feedback-s3d step 94",
+  "t_lo": "1.366684593623649597167969",
+  "t_hi_frozen": "2.806684709182828044891357",
+  "joins": [
+   {
+    "join": "wave16 step 10 -> wave17 start",
+    "pass": true,
+    "end_q": [
+     "0.1078360786236463737425584",
+     "0.1078365557293226335681814"
+    ],
+    "start_q": [
+     "0.1078360786236463737425584",
+     "0.1078365557293226335681814"
+    ]
+   },
+   {
+    "join": "wave17 step 40 -> antipodal-a start",
+    "pass": true,
+    "end_q": [
+     "0.1750516801723775893710754",
+     "0.175056763736205971059134"
+    ],
+    "start_q": [
+     "0.1750516801723775893710754",
+     "0.175056763736205971059134"
+    ]
+   },
+   {
+    "join": "antipodal-a step 11 -> antipodal-b3 resume",
+    "pass": true,
+    "end_q": [
+     "0.1964426619820381217168754",
+     "0.196449994294162961493939"
+    ],
+    "start_q": [
+     "0.1964426619820381217168754",
+     "0.196449994294162961493939"
+    ]
+   },
+   {
+    "join": "step 21 -> late-feedback-s1a2 resume",
+    "pass": true,
+    "end_q": [
+     "0.2169889763507186775076704",
+     "0.2169987970109094562817074"
+    ],
+    "start_q": [
+     "0.2169889763507186775076704",
+     "0.2169987970109094562817074"
+    ]
+   },
+   {
+    "join": "step 30 -> late-feedback-s1b resume",
+    "pass": true,
+    "end_q": [
+     "0.2363815274827344393252612",
+     "0.2363939808878887293542157"
+    ],
+    "start_q": [
+     "0.2363815274827344393252612",
+     "0.2363939808878887293542157"
+    ]
+   },
+   {
+    "join": "step 44 -> late-feedback-s2a resume",
+    "pass": true,
+    "end_q": [
+     "0.2682548897108832844147014",
+     "0.2682722348201430693813555"
+    ],
+    "start_q": [
+     "0.2682548897108832844147014",
+     "0.2682722348201430693813555"
+    ]
+   },
+   {
+    "join": "step 56 -> late-feedback-s2b3 resume",
+    "pass": true,
+    "end_q": [
+     "0.2972397409585767836906",
+     "0.2972620976810700998649981"
+    ],
+    "start_q": [
+     "0.2972397409585767836906",
+     "0.2972620976810700998649981"
+    ]
+   },
+   {
+    "join": "step 64 -> late-feedback-s3a resume",
+    "pass": true,
+    "end_q": [
+     "0.3174215050973258168151511",
+     "0.3174476357049886764715778"
+    ],
+    "start_q": [
+     "0.3174215050973258168151511",
+     "0.3174476357049886764715778"
+    ]
+   },
+   {
+    "join": "step 69 -> late-feedback-s3b2 resume",
+    "pass": true,
+    "end_q": [
+     "0.3303850460494271208234513",
+     "0.3304137105118107545698485"
+    ],
+    "start_q": [
+     "0.3303850460494271208234513",
+     "0.3304137105118107545698485"
+    ]
+   },
+   {
+    "join": "step 78 -> late-feedback-s3c resume",
+    "pass": true,
+    "end_q": [
+     "0.3543985590884071228124339",
+     "0.3544332051883565299139656"
+    ],
+    "start_q": [
+     "0.3543985590884071228124339",
+     "0.3544332051883565299139656"
+    ]
+   },
+   {
+    "join": "step 86 -> late-feedback-s3d resume",
+    "pass": true,
+    "end_q": [
+     "0.3764767902921476837096419",
+     "0.3765197152663271911605447"
+    ],
+    "start_q": [
+     "0.3764767902921476837096419",
+     "0.3765197152663271911605447"
+    ]
+   }
+  ],
+  "joins_all_exact": true,
+  "families": {
+   "wave16": [
+    1.3666845936236496,
+    1.4666847091828281
+   ],
+   "wave17": [
+    1.4666845936236497,
+    1.866684709182828
+   ],
+   "antipodal": [
+    1.8666845936236496,
+    2.076684709182828
+   ],
+   "late-feedback": [
+    2.0766845936236495,
+    2.806684709182828
+   ]
+  },
+  "pad": "1e-23"
+ },
+ "controls_all_pass": true,
+ "campaign": "like-reception",
+ "own_chain": [],
+ "resumed_from": {
+  "file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3d.json",
+  "after_step": 94,
+  "t0": [
+   "2.806684593623649597167969",
+   "2.806684709182828044891357"
+  ],
+  "q": [
+   "0.3992437701157277106661817",
+   "0.3992985410325688180050535"
+  ],
+  "qdot": [
+   "0.2888830859193191819271821",
+   "0.2890560052917000141651863"
+  ],
+  "resumed_end_strings_equal_source": true,
+  "records_loaded": 144,
+  "coverage_end": "2.806684709182828044891357"
+ },
+ "reached_time": [
+  "2.906684593623649597167969",
+  "2.906684709182828044891357"
+ ],
+ "partial": false,
+ "reached_q": [
+  "0.4286670033639066141742331",
+  "0.42874241439421191995251"
+ ],
+ "reached_qdot": [
+  "0.2995664762874518467786794",
+  "0.2998061540362752824639554"
+ ],
+ "stop_reason": "plan exhausted (step 104 certified)",
+ "wall_s": 37.80533027648926
+}

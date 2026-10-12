@@ -1,0 +1,16 @@
+# Review adjudication 2, dated companion 1 (correction of the domain claim in section 1; scoping of "monotone decreasing")
+
+Role: independent review (`ramon-e-moore` lens). Written 2026-10-11 18:24 UTC after the PI's coordinator correction of 18:24 UTC. [Adjudication 2](spherical-six-pole-antipodal-claude-review-adjudication-2.md) (`bb80ecac…`) is preserved byte for byte; this companion corrects its section 1.
+
+## 1. Correction (derived)
+
+Adjudication 2 section 1 stated that $\sqrt2\sin(q+q')>\sin q\sin q'$ holds for every $q,q'\in[0,\pi/2]$ with $q+q'>0$. That is false: at $q=q'=\pi/2$ the left side is $0$ and the right side $1$. The review's claim is withdrawn and replaced by the small-angle statement that the certified domain needs. On $0\le q,p\le0.3$ with $q+p>0$: $\Phi(q,p)=\sqrt2\sin(q+p)-\sin q\sin p=\sin q\,(\sqrt2\cos p-\sin p)+\sqrt2\cos q\sin p>0$, because $\cos p\ge1-p^2/2\ge0.955$ gives $\sqrt2\cos p-\sin p\ge1.35-0.3>0$ and both remaining factors are nonnegative with at least one of $\sin q,\sin p$ positive. Hence $r_L(q,p_L)^2=2+\Phi(q,p_L)>2$ and $r_U(q,p_U)^2=2-\Phi(q,p_U)<2$, so $r_L>\sqrt2>r_U$ even when the two classes read different delayed arguments $p_L\ne p_U$. Likewise $M(q,p)=\cos(q+p)/\sqrt2-\sin q\cos p/2\ge\cos(0.6)/\sqrt2-0.3/2>0.82/1.4143-0.15>0$ on that domain, so with nonnegative delayed speeds $D_L=1+v'M/r_L\ge1$ and $D_U=1-v'M/r_U\le1$; with the antipode's radial hit negative, the total canonical radial acceleration $a_{\rm rad}=g[1/(r_LD_L)-1/(r_UD_U)-1/(2r_AD_A)]$ is strictly inward on the certified history domain ($q\le0.217$ reached, delayed arguments below $0.09$, speeds nonnegative). This countercheck is written after exposure to the support reference (it restates the support's section 2 argument with the explicit domain) and is valid only on that domain and for those speed signs; it decides nothing about the sign of the additional support $\hat\lambda$, which remains the enclosed competition $|a_{\rm rad}|-\dot q^2$.
+
+## 2. Scoping of "monotone decreasing" in adjudications 3 and 4
+
+Where adjudication 3 section 4 and adjudication 4 section 5 say the step-end values of $\hat\lambda$ are "monotone decreasing", that describes the finite sequence of step-end enclosures only (each later enclosure lies entirely below the earlier one); it is not a claim that $\hat\lambda(t)$ is monotone on any interval, and no zero-count or uniqueness conclusion is drawn from it. The admitted statement remains zero-existence by opposite proved signs at adjacent certified step ends plus continuity, with uniqueness and firstness undecided on the steps whose whole-step ranges span zero.
+
+## 3. Part b status (recorded, not adjudicated)
+
+The first part-b invocation (PID 23889, 19.4 s, exit 2) stopped on its own new control (5) for the residual-reception refinement (the same-sign test condition was too strict: the bisection returns $\Delta-\Delta/2^{40}$, not $\Delta$); the continuation's receipt records a v6 correcting only that test condition with `-v5.py` retained and `three-b.json` retained as controls only; part b2 started 18:23:00 UTC. The review will adjudicate part b2 on the PI's message, checking first the `resumed_from` strings against adjudication 5 section 4.
+Save stamp: 2026-10-11T18:23:56Z.

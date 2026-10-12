@@ -1,0 +1,346 @@
+{
+ "schema": "validated_far_step_cpp_candidate_check/v1",
+ "all_passed": true,
+ "rows": [
+  {
+   "check": "K1 static step certified",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "K1 receiver tube contains the closed-form bracket",
+   "passed": true,
+   "detail": "velocity [-7.812500000e-08, -7.812499999e-08]"
+  },
+  {
+   "check": "K1 source tube contains the closed-form bracket",
+   "passed": true,
+   "detail": "velocity [7.812499999e-08, 7.812500000e-08]"
+  },
+  {
+   "check": "K1 history layer's end interval contains the rebuilt tube",
+   "passed": true,
+   "detail": "published segment evaluated by the solver's history type"
+  },
+  {
+   "check": "K2 three-path acceleration boxes contain the exact initial values",
+   "passed": true,
+   "detail": "receiver -1.735537190e-06; plus 1.010000000e-03; minus -1.008264463e-03"
+  },
+  {
+   "check": "C0-exact-histories-disabled, traversal False: totals contain the exact initial values",
+   "passed": true,
+   "detail": "enclosed groups 0"
+  },
+  {
+   "check": "C0-exact-histories-validated-policy, traversal False: totals contain the exact initial values",
+   "passed": true,
+   "detail": "enclosed groups 1"
+  },
+  {
+   "check": "C0-exact-histories-disabled, traversal True: totals contain the exact initial values",
+   "passed": true,
+   "detail": "enclosed groups 0"
+  },
+  {
+   "check": "C0-exact-histories-validated-policy, traversal True: totals contain the exact initial values",
+   "passed": true,
+   "detail": "enclosed groups 1"
+  },
+  {
+   "check": "K1 second step inherits and does not shrink radii",
+   "passed": true,
+   "detail": "velocity radius 4.471e-18 then 1.788e-17"
+  },
+  {
+   "check": "K2-three-path: C++ and Python tubes intersect at every step",
+   "passed": true,
+   "detail": "2 steps; largest C++ to Python velocity radius ratio 1.112"
+  },
+  {
+   "check": "T1 control step 1: certified within 1e-8 budgets and contains the true bracket",
+   "passed": true,
+   "detail": "growth position 5.634e-12, velocity 1.442e-09; velocity tube [-7.818294925e-08, -7.529818736e-08]"
+  },
+  {
+   "check": "T1 control step 2: certified within 1e-8 budgets and contains the true bracket",
+   "passed": true,
+   "detail": "growth position 1.650e-11, velocity 1.338e-09; velocity tube [-1.537173540e-07, -1.481563930e-07]"
+  },
+  {
+   "check": "T4 adversarial step without a budget contains the frozen bracket",
+   "passed": true,
+   "detail": "velocity tube [-5.285348924e-05, -1.148629120e-05]"
+  },
+  {
+   "check": "T4 adversarial step under budgets declines",
+   "passed": true,
+   "detail": "VFS-BUDGET-01"
+  },
+  {
+   "check": "T3 long run: step 512 certified",
+   "passed": true,
+   "detail": "step 512 certified"
+  },
+  {
+   "check": "T3 end tubes contain the frozen true brackets",
+   "passed": true,
+   "detail": "velocity [-1.979445531e-05, -1.941684088e-05], half-width 1.888072156e-07; position half-width 1.528371787e-07"
+  },
+  {
+   "check": "T3 end velocity tube is disjoint from the aliased interval",
+   "passed": true,
+   "detail": "separation 2.060047147e-07"
+  },
+  {
+   "check": "N-R1-unequal-starts",
+   "passed": true,
+   "detail": "VFS-H0-01: retained histories do not start at one common time"
+  },
+  {
+   "check": "N-R2-arch-after-genuine-step",
+   "passed": true,
+   "detail": "VFS-H1-01: retained past is not below field speed"
+  },
+  {
+   "check": "N-R2-arch-budgeted",
+   "passed": true,
+   "detail": "VFS-H1-01: retained past is not below field speed"
+  },
+  {
+   "check": "N-R3-altered-ancestor-joins-intact",
+   "passed": true,
+   "detail": "VFS-H0-01: histories carry declared radii but are not the published state of a step of this producer for this population and these charges"
+  },
+  {
+   "check": "N-transfer-between-populations",
+   "passed": true,
+   "detail": "VFS-H0-01: histories carry declared radii but are not the published state of a step of this producer for this population and these charges"
+  },
+  {
+   "check": "N-changed-coupling",
+   "passed": true,
+   "detail": "VFS-H0-01: generated history was published under a different coupling"
+  },
+  {
+   "check": "N-changed-charge",
+   "passed": true,
+   "detail": "VFS-H0-01: histories carry declared radii but are not the published state of a step of this producer for this population and these charges"
+  },
+  {
+   "check": "N-renamed-path",
+   "passed": true,
+   "detail": "VFS-H0-01: histories carry declared radii but are not the published state of a step of this producer for this population and these charges"
+  },
+  {
+   "check": "N-H2-step-longer-than-separation",
+   "passed": true,
+   "detail": "VFS-H2-01: step boxes are not farther apart than the step"
+  },
+  {
+   "check": "N-H3-root-on-boundary",
+   "passed": true,
+   "detail": "VFS-H3-01: lower sign is neither uniformly present nor absent"
+  },
+  {
+   "check": "N-fast-affine-budgeted",
+   "passed": true,
+   "detail": "VFS-BUDGET-01: radius growth exceeds the declared increment budget"
+  },
+  {
+   "check": "N-H4-crossing-near-root",
+   "passed": true,
+   "detail": "VFS-H4-01: distance floor is not positive"
+  },
+  {
+   "check": "N-H5-one-pass",
+   "passed": true,
+   "detail": "VFS-H5-01: no a priori enclosure was found"
+  },
+  {
+   "check": "N-BUDGET-01-wide-step",
+   "passed": true,
+   "detail": "VFS-BUDGET-01: radius growth exceeds the declared increment budget"
+  },
+  {
+   "check": "N-BUDGET-02-total",
+   "passed": true,
+   "detail": "VFS-BUDGET-02: total published radius exceeds the declared budget"
+  },
+  {
+   "check": "N-R3-reviewer-source-at-11",
+   "passed": true,
+   "detail": "refused-by-history-layer: retained-history position is discontinuous"
+  },
+  {
+   "check": "N-append-on-different-base",
+   "passed": true,
+   "detail": "refused: certificate was issued for a different preceding population"
+  },
+  {
+   "check": "N-append-declined",
+   "passed": true,
+   "detail": "refused: a declined step has no continuation"
+  },
+  {
+   "check": "N-append-altered-segment",
+   "passed": true,
+   "detail": "refused: certificate's published segments were altered"
+  },
+  {
+   "check": "N-append-forged-status",
+   "passed": true,
+   "detail": "refused: certificate was not issued by this producer"
+  },
+  {
+   "check": "P-genuine-second-step",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "P-same-population-control",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "P-total-budget-first",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "P-absent-equal-shallow-starts",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "reviewer's fast affine source, no budget: certified and the acceleration box contains -199/10000000",
+   "passed": true,
+   "detail": "box [-0.00026012298793368115, -1.5636908851384143e-06]"
+  },
+  {
+   "check": "absent pairs give exactly zero acceleration",
+   "passed": true,
+   "detail": "finite retained domain"
+  },
+  {
+   "check": "G1-static-large-steps: four steps certified",
+   "passed": true,
+   "detail": "h = 4"
+  },
+  {
+   "check": "G1-static-large-steps: at step 4 every root window lies on generated segments",
+   "passed": true,
+   "detail": "receiver [1.9985, 5.9993]; source [1.9985, 5.9993]"
+  },
+  {
+   "check": "G2-zero-coupling-straight-line: four steps certified",
+   "passed": true,
+   "detail": "h = 4"
+  },
+  {
+   "check": "G2-zero-coupling-straight-line: at step 4 every root window lies on generated segments",
+   "passed": true,
+   "detail": "receiver [1.4141, 5.8586]; source [0.3500, 4.8500]"
+  },
+  {
+   "check": "G1-static-large-steps: C++ and Python tubes intersect at every step",
+   "passed": true,
+   "detail": "4 steps; largest C++ to Python velocity radius ratio 1.111"
+  },
+  {
+   "check": "G2 step 1: tubes contain the exact straight lines",
+   "passed": true,
+   "detail": "source position radius 7.271960811e-15"
+  },
+  {
+   "check": "G2 step 2: tubes contain the exact straight lines",
+   "passed": true,
+   "detail": "source position radius 1.276756478e-14"
+  },
+  {
+   "check": "G2 step 3: tubes contain the exact straight lines",
+   "passed": true,
+   "detail": "source position radius 1.826316876e-14"
+  },
+  {
+   "check": "G2 step 4: tubes contain the exact straight lines",
+   "passed": true,
+   "detail": "source position radius 2.375877273e-14"
+  },
+  {
+   "check": "traversal False: one group certified from validated tubes",
+   "passed": true,
+   "detail": "radius 2.010890e-06, declared member radii position 9.920e-14, velocity 7.231e-12, join term 9.656e-20"
+  },
+  {
+   "check": "traversal False: two identities, one interval",
+   "passed": true,
+   "detail": "exact 7 -> 6, enclosed 2 -> 3"
+  },
+  {
+   "check": "traversal False: receiver width equals the one emitted width",
+   "passed": true,
+   "detail": "total width 4.021779063e-06, emitted 4.021779063e-06"
+  },
+  {
+   "check": "traversal False: grouped and disabled totals intersect for every receiver and axis",
+   "passed": true,
+   "detail": "receiver z grouped [-2.010889532e-06, 2.010889532e-06]"
+  },
+  {
+   "check": "traversal False: exact-only policy declines tubes and equals the disabled totals",
+   "passed": true,
+   "detail": "MPE-HISTORY-01, atomic exact fallback"
+  },
+  {
+   "check": "traversal True: one group certified from validated tubes",
+   "passed": true,
+   "detail": "radius 2.010890e-06, declared member radii position 9.920e-14, velocity 7.231e-12, join term 9.656e-20"
+  },
+  {
+   "check": "traversal True: two identities, one interval",
+   "passed": true,
+   "detail": "exact 7 -> 6, enclosed 2 -> 3"
+  },
+  {
+   "check": "traversal True: receiver width equals the one emitted width",
+   "passed": true,
+   "detail": "total width 4.021779063e-06, emitted 4.021779063e-06"
+  },
+  {
+   "check": "traversal True: grouped and disabled totals intersect for every receiver and axis",
+   "passed": true,
+   "detail": "receiver z grouped [-2.010889532e-06, 2.010889532e-06]"
+  },
+  {
+   "check": "traversal True: exact-only policy declines tubes and equals the disabled totals",
+   "passed": true,
+   "detail": "MPE-HISTORY-01, atomic exact fallback"
+  },
+  {
+   "check": "both scheduling routes give identical totals and groups",
+   "passed": true,
+   "detail": "certified_far_field_then_exact_pair_batch and certified_traversal_then_far_field_then_exact_pair_batch"
+  },
+  {
+   "check": "N-consumer-changed-coupling",
+   "passed": true,
+   "detail": "no group; exact fallback"
+  },
+  {
+   "check": "N-consumer-changed-receiver-charge",
+   "passed": true,
+   "detail": "no group; exact fallback"
+  },
+  {
+   "check": "N-consumer-altered-member-radius",
+   "passed": true,
+   "detail": "no group; exact fallback"
+  },
+  {
+   "check": "N-consumer-registry-cleared",
+   "passed": true,
+   "detail": "no group; exact fallback; totals identical to the disabled route"
+  }
+ ]
+}

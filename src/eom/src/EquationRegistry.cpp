@@ -9,6 +9,16 @@ void require_canonical_equation_operation(const NativeCoupledEvolutionRequest& r
   if (p.descriptor().id != "canonical/v1")
     throw EquationAdmissionError("unsupported_model_combination", "this event/checkpoint operation is canonical-only; Surface transport and persistence require Stage C");
 }
+void require_legacy_checkpoint_equation(const NativeCoupledEvolutionRequest& r) {
+  require_canonical_equation_operation(r);
+  if (r.equation_selection && r.equation_selection->speed_domain != "unrestricted")
+    throw EquationAdmissionError("unsupported_model_combination", "v7 binds legacy unrestricted canonical evolution only; selected domains require v8");
+}
+std::string equation_snapshot_identity(const NativeCoupledEvolutionRequest& r) {
+  if (r.surface_geometry) return surface_request_identity(r);
+  if (r.equation_selection && r.equation_selection->speed_domain != "unrestricted") return inspect_equation_model(r).digest;
+  return {};
+}
 
 std::string equation_build_identity_json() {
   return "{\"buildDigest\":" +
@@ -30,18 +40,19 @@ ResolvedEquationModel inspect_equation_model(
     return equation_json_quote(equation_decimal_identity(token));
   };
   const bool surface = descriptor.id == "canonical-surface/v1";
+  const bool legacy = !surface && selected.speed_domain == "unrestricted";
   const std::string json =
       "{\"build\":" + equation_build_identity_json() +
       ",\"compositionId\":" + equation_json_quote(descriptor.id) +
-      (surface ? ",\"contractId\":\"eom_surface_cpp_stage_b/v1\"" : ",\"contractId\":\"eom_evolution_contract/v1\"") +
+      ",\"contractId\":\"eom_evolution_contract/v2\"" +
       ",\"definition\":{\"digest\":" +
       equation_json_quote(descriptor.definition_digest) +
       ",\"path\":" + equation_json_quote(descriptor.scientific_definition) +
       "},\"executionProfile\":" +
       equation_json_quote(descriptor.evaluation_profile) +
-      (surface ? ",\"identityScope\":\"stage-b-in-memory-not-persistent-restart-binding\"" : ",\"identityScope\":\"stage-a-descriptive-not-v7-restart-binding\"") +
+      ",\"identityScope\":\"resolved-model-bound-by-v8-with-original-preparation-and-numerics;v7-unchanged\"" +
       ",\"legacyModelFingerprint\":" +
-      (surface ? "null" : equation_json_quote(native_evolution_model_fingerprint(request))) +
+      (legacy ? equation_json_quote(native_evolution_model_fingerprint(request)) : "null") +
       (surface ? ",\"modelBindingId\":\"master_equation_surface/v1\"" : ",\"modelBindingId\":\"master_eom_binding/v1\"") +
       ",\"parameters\":{\"causalWidth\":" + number(request.causal_width) +
       ",\"chartPolicy\":" + equation_json_quote(request.chart_policy) +
@@ -82,7 +93,7 @@ std::string equation_capabilities_json() {
       ",\"jointAffine\":\"existing-domain-exclusions-unchanged\""
       ",\"mpfrReplay\":\"existing-domain-exclusions-unchanged\""
       ",\"ordinaryInterval\":\"existing-domain-exclusions-unchanged\"}"
-      ",\"speedDomain\":\"unrestricted\"},"
+      ",\"defaultSpeedDomain\":\"unrestricted\",\"speedDomains\":[\"unrestricted\",\"inclusive\",\"strict\"]},"
       "{\"definitionDigest\":" +
       equation_json_quote(detail::kSurfaceDefinitionDigest) +
       ",\"id\":\"canonical-surface/v1\",\"implemented\":true"
@@ -92,18 +103,18 @@ std::string equation_capabilities_json() {
       ",\"geometries\":[\"sphere\",\"oblate\",\"ring-torus\"]"
       ",\"preparation\":\"exactly-admitted-circular-factory-family\""
       ",\"solutionDomain\":\"coherent-subwake-paths-and-strictly-past-partner-roots\""
-      ",\"speedDomain\":\"unrestricted\",\"speedModification\":false"
-      ",\"checkpoint\":false,\"wireEvolution\":false"
-      ",\"reason\":\"Typed C++ Stage B only; full-slab root, derivative, inclusion, contraction and dense geometry gates required\"}]"
-      ",\"inspectionScope\":\"selection-and-model-controls-not-history-admission\""
-      ",\"providerAwareCheckpoint\":false"
+      ",\"speedDomains\":[\"unrestricted\",\"inclusive\",\"strict\"],\"speedModification\":false"
+      ",\"checkpoint\":\"v8-revalidated-publication\",\"wireEvolution\":\"v2\""
+      ",\"reason\":\"Full-slab root, derivative, inclusion, contraction and dense geometry gates; coherent subwake chart remains required\"}]"
+      ",\"inspectionScope\":\"selection-model-controls-and-supplied-preparation-admission\""
+      ",\"providerAwareCheckpoint\":true"
       ",\"schema\":\"eom_equation_capabilities/v1\""
       ",\"speedDomains\":[{\"domain\":\"unrestricted\",\"implemented\":true},"
-      "{\"domain\":\"inclusive\",\"implemented\":false,"
-      "\"reason\":\"Stage C domain/boundary certification required\"},"
-      "{\"domain\":\"strict\",\"implemented\":false,"
-      "\"reason\":\"Stage C domain/boundary certification required\"}]"
-      ",\"stage\":\"B\",\"v2Evolution\":false}";
+      "{\"domain\":\"inclusive\",\"implemented\":true,\"boundaryPolicy\":\"halt\"},"
+      "{\"domain\":\"strict\",\"implemented\":true,\"boundaryPolicy\":\"halt\"}]"
+      ",\"checkpointSchema\":\"eom_provider_checkpoint/v8\""
+      ",\"wireLimits\":{\"requestBytes\":33554432,\"maximumDepth\":64,\"population\":1024,\"combinedHistorySegments\":100000,\"memoryBytes\":2147483648,\"concurrentWorkers\":4}"
+      ",\"stage\":\"C\",\"v2Evolution\":true}";
 }
 
 }  // namespace architrino::eom

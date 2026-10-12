@@ -1,0 +1,475 @@
+start Sun Oct 11 18:10:51 UTC 2026 cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -p perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-geometry-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-geometry-iv.json
+exit 0 end Sun Oct 11 18:10:51 UTC 2026
+c1c34785845a39cbf842d7bde842d8751ee26490ba2050b674d5aa4676e78d75  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-antipodal-claude-support-reference.md
+Phase A reference saved (file mtime above, local clock); hash recorded Sun Oct 11 18:12:41 UTC 2026
+start Sun Oct 11 18:13:16 UTC 2026 cmd: ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-extrap-a1.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-geometry-iv.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-extrap-a1.json
+exit 0 end Sun Oct 11 18:13:16 UTC 2026
+NOTE Sun Oct 11 18:13:35 UTC 2026: PI instruction (18:13 UTC) received after runs 1-2 above; those two runs (PIDs 15751, 17295, each < 1 s wall) were made without the pgrep serialization check and with /usr/bin/time -p (no peak RSS). From here: pgrep check before every run, /usr/bin/time -l (peak RSS measured; the 1 GiB cap is measured, not OS-enforced). Re-measuring both instruments below into new -rss output files (originals untouched).
+pgrep check Sun Oct 11 18:13:35 UTC 2026:
+15840 /bin/sh -c "/Users/markmorris/vibe/architrino/../.venv/bin/python" -B "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/evidence/serial-characteristic-tail-cross-action-accuracy-2026-10-11.py" "/Users/markmorris/vibe/architrino/.local-data/master-equation-closure/serial-characteristic-tail-action-2026-10-10/limit.json" > "/Users/markmorris/vibe/architrino/.local-data/master-equation-closure/serial-characteristic-tail-action-supplement-2026-10-11/accuracy.json" 2> "/Users/markmorris/vibe/architrino/.local-data/master-equation-closure/serial-characteristic-tail-action-supplement-2026-10-11/accuracy.err"
+start Sun Oct 11 18:13:35 UTC 2026 cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-geometry-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-geometry-iv-rss.json
+exit 0 end Sun Oct 11 18:13:35 UTC 2026
+PID 17428
+        0.54 real         0.52 user         0.01 sys
+            23511040  maximum resident set size
+start Sun Oct 11 18:13:35 UTC 2026 cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-extrap-a1.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-geometry-iv.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-extrap-a1-rss.json
+exit 0 end Sun Oct 11 18:13:35 UTC 2026
+PID 17450
+        0.07 real         0.05 user         0.01 sys
+            26460160  maximum resident set size
+rss rerun JSON identical to original except wall_s
+NOTE Sun Oct 11 18:13:53 UTC 2026: the pgrep hit at 18:13:35 (PID 15840, serial-characteristic-tail accuracy script) belongs to another campaign, not six-pole-antipodal; judged not a campaign process; the two re-measurement runs (0.54 s and 0.07 s wall, peak RSS 23.5 MB and 26.5 MB) proceeded. Both well under the measured (not OS-enforced) 1 GiB cap.
+a6df679ff694a28889d96e848c9eb49b7bd40bda67f42a5ed61f7af147b7b8bd  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-antipodal-claude-support-reference.md
+appendix A1 appended Sun Oct 11 18:13:53 UTC 2026
+EXPOSURE Sun Oct 11 18:14:00 UTC 2026: Phase B released by PI (18:14 UTC); opening codex reference and continuation wave1 now
+pgrep check Sun Oct 11 18:14:37 UTC 2026:
+(no campaign python process running)
+start Sun Oct 11 18:14:37 UTC 2026 cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-pathmap-adjudication.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-pathmap-adjudication.json
+exit 0 end Sun Oct 11 18:14:37 UTC 2026
+PID 18032
+        0.06 real         0.02 user         0.01 sys
+            20152320  maximum resident set size
+EXPOSURE Sun Oct 11 18:14:41 UTC 2026: PI released review reference (18:16 UTC); opening it now
+1718ad9103e7a714e6d78f81b7da7bfff5fd1e160ca9be50dd383be0eeddbbcb  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-antipodal-claude-support-wave1.md
+wave1 comparison saved Sun Oct 11 18:15:55 UTC 2026
+EXPOSURE Sun Oct 11 18:16:10 UTC 2026: reading continuation evidence (steps3-iv.py header, val2-three.json, commands)
+pgrep check Sun Oct 11 18:17:13 UTC 2026:
+20076 tee -a reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-commands.txt
+start Sun Oct 11 18:17:24 UTC 2026 cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-val3-three.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-val3.json
+exit 0 end Sun Oct 11 18:17:24 UTC 2026
+PID 20180
+        0.12 real         0.08 user         0.01 sys
+            21987328  maximum resident set size
+b7a8535f4c8f81582be9deacb97f4146ee31adab7e6977664a8917a054559827  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv.py
+f07d61bdbf78d5919ac78410535f5dbdb15a543dd9543a3ee902209196e71540  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-val3.json
+fb029ff877b84aca7e7e7fd6c81f978149c92ed4a9bfb5472e4a38545daf8aff  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-val3.out
+93c618b80e8d08fe523b8531b14b3d4ef1972b050ecfd6c2616dad967d7f9690  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-val3-three.json
+ab20f7b71bb38165ea2969cc88c1f8757128ef6b576c325bde7120a43f7183b5  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-antipodal-claude-support-wave1.md
+wave1 section 3.1 appended Sun Oct 11 18:18:21 UTC 2026
+pgrep check Sun Oct 11 18:20:02 UTC 2026:
+start Sun Oct 11 18:20:15 UTC 2026 (pgrep clean at 18:20:02) cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-dlambda-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-val3-three.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-val3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-dlambda-iv-val3.json
+exit 0 end Sun Oct 11 18:20:15 UTC 2026
+PID 21829
+        0.10 real         0.08 user         0.01 sys
+            22331392  maximum resident set size
+NOTE Sun Oct 11 18:20:50 UTC 2026: dlambda-iv v1 run (PID 21829) had a bug (moving hits in qddot lacked the factor g; qddot ~1.02 instead of ~0.104, so dlambda/dt ~ -0.37 was wrong and control K failed as designed); exact v1 bytes copied to -dlambda-iv-v1.py; v2 patched; v1 outputs retained, superseded.
+82370c9536fd0db79005182c4f25af2e776c6b044d38d7096532c7aecc0c3232  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-dlambda-iv-v1.py
+98467c7f0f53d36d477eaa34470efacef365a32bdcce8d07f57b888b06266c2e  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-dlambda-iv.py
+pgrep check Sun Oct 11 18:21:58 UTC 2026:
+C=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-val3-three.json; S=$E/spherical-six-pole-antipodal-claude-support-steps-iv-val3.json
+NOTE Sun Oct 11 18:22:11 UTC 2026: the 18:21:58 pgrep hit was my own shell command line (pattern self-match); corrected filter excludes own PID/PPID and matches python processes only.
+pgrep check Sun Oct 11 18:22:11 UTC 2026:
+23634 /opt/homebrew/bin/bash -c source /Users/markmorris/.claude/shell-snapshots/snapshot-bash-1791741693587-8ev8a5.sh 2>/dev/null || true && shopt -u extglob 2>/dev/null || true && { \builtin unalias -- 'unsetenv'; \builtin unset -f -- 'unsetenv'; } >/dev/null 2>&1 || true && eval 'E=reference/priorities/master-equation-closure/noether-sea-research/evidence; R=$E/spherical-six-pole-antipodal-claude-support-commands.txt; echo "NOTE $(date -u): the 18:21:58 pgrep hit was my own shell command line (pattern self-match); corrected filter excludes own PID/PPID and matches python processes only." >> $R; echo "pgrep check $(date -u):" | tee -a $R; pgrep -fl "python -I .*(spherical-six-pole-antipodal|spherical-curvature-claude)" | grep -v "^$$ \|^$PPID " | tee -a $R || echo "(none)" | tee -a $R; ls -la $E | grep "N4000-three-[ab]"; tail -2 $E/spherical-six-pole-antipodal-claude-continuation-commands.txt | cut -c1-200' < /dev/null && pwd -P >| /tmp/claude-6a33-cwd
+pgrep check Sun Oct 11 18:22:28 UTC 2026:
+p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv.py"
+s=open(p).read()
+# residual_bracket: refuse unless the residual is certified positive at s = 0
+old='"'"''"'"''"'"'    def res(s): return 2*iv.cos(qs(s)/2) - (t0 + s)
+    a = ZERO; b = iv.mpf(up(Delta))'"'"''"'"''"'"'
+new='"'"''"'"''"'"'    def res(s): return 2*iv.cos(qs(s)/2) - (t0 + s)
+    if not lo(res(ZERO)) > 0: return {"refused": "residual not certified positive at the step start"}
+    a = ZERO; b = iv.mpf(up(Delta))'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+# lambda_bracket: generic sign-change bracket of a certified-interval function with opposite certified endpoint signs
+old='"'"''"'"''"'"'def lambda_bracket(enc, t0, Q0, V0, a0, ap, Delta, moving):'"'"''"'"''"'"'
+new='"'"''"'"''"'"'def sign_bracket(fun, Delta, nbis=8):
+    """generic: fun(s) returns an interval; requires certified opposite signs at s = 0 and s = Delta (else refused); returns the largest s certified of the start
+    sign and the smallest s certified of the end sign (valid without monotonicity: it is a pair of certified-sign times, not a unique zero)."""
+    f0 = fun(ZERO); f1 = fun(iv.mpf(up(Delta)))
+    if f0 is None or f1 is None: return {"refused": "evaluation failed at an endpoint"}
+    if not ((lo(f0) > 0 and up(f1) < 0) or (up(f0) < 0 and lo(f1) > 0)): return {"refused": "endpoint signs not certified opposite", "f_start": [s45(f0.a), s45(f0.b)], "f_end": [s45(f1.a), s45(f1.b)]}
+    flip = -1 if up(f0) < 0 else 1
+    def pos(x): return lo(flip*x) > 0
+    def neg(x): return up(flip*x) < 0
+    a = ZERO; b = iv.mpf(up(Delta))
+    for _ in range(nbis):
+        m = iv.mpf(pt((a + b)/2)); L = fun(m)
+        if L is None: break
+        if pos(L): a = m
+        else: b = m
+    s_pos = a
+    a = ZERO; b = iv.mpf(up(Delta))
+    for _ in range(nbis):
+        m = iv.mpf(pt((a + b)/2)); L = fun(m)
+        if L is None: break
+        if neg(L): b = m
+        else: a = m
+    s_neg = b
+    return {"s_last_certified_start_sign": s45(s_pos), "s_first_certified_end_sign": s45(s_neg), "f_at_s_pos": [s45(x) for x in (fun(s_pos).a, fun(s_pos).b)], "f_at_s_neg": [s45(x) for x in (fun(s_neg).a, fun(s_neg).b)]}
+def lambda_bracket(enc, t0, Q0, V0, a0, ap, Delta, moving):'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+old='"'"''"'"''"'"'    a = ZERO; b = iv.mpf(up(Delta))
+    for _ in range(8):
+        m = iv.mpf(pt((a + b)/2)); L = lam(m)
+        if L is None: break
+        if lo(L) > 0: a = m
+        else: b = m
+    s_pos = a
+    a = ZERO; b = iv.mpf(up(Delta))
+    for _ in range(8):
+        m = iv.mpf(pt((a + b)/2)); L = lam(m)
+        if L is None: break
+        if up(L) < 0: b = m
+        else: a = m
+    s_neg = b
+    return {"s_last_certified_positive": s45(s_pos), "s_first_certified_negative": s45(s_neg), "t_zero_bracket": [s45((t0 + s_pos).a), s45((t0 + s_neg).b)], "lambda_at_s_pos": [s45(x) for x in (lam(s_pos).a, lam(s_pos).b)], "lambda_at_s_neg": [s45(x) for x in (lam(s_neg).a, lam(s_neg).b)]}'"'"''"'"''"'"'
+new='"'"''"'"''"'"'    sb = sign_bracket(lam, Delta)
+    if "refused" in sb: return sb
+    s_pos = iv.mpf(sb["s_last_certified_start_sign"]); s_neg = iv.mpf(sb["s_first_certified_end_sign"])
+    return {"s_last_certified_start_sign": sb["s_last_certified_start_sign"], "s_first_certified_end_sign": sb["s_first_certified_end_sign"], "t_zero_bracket": [s45((t0 + s_pos).a), s45((t0 + s_neg).b)], "lambda_at_s_pos": sb["f_at_s_pos"], "lambda_at_s_neg": sb["f_at_s_neg"]}'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+old='"'"''"'"''"'"'            lb = lambda_bracket(enc, t0, Q, V, st["a0_iv"], st["ap_iv"], DELTA, moving); lb["step"] = k + 1; lb["from_sign"] = rec["lambda_hat_start_sign"]; lb["to_sign"] = rec["lambda_hat_end_sign"]
+            out.setdefault("lambda_hat_sign_changes", []).append(lb); print(f"lambda_hat sign change {lb['"'"'from_sign'"'"']} -> {lb['"'"'to_sign'"'"']} in step {k+1}: zero bracketed in t [{lb['"'"'t_zero_bracket'"'"'][0][:12]}, {lb['"'"'t_zero_bracket'"'"'][1][:12]}]", flush=True)'"'"''"'"''"'"'
+new='"'"''"'"''"'"'            lb = lambda_bracket(enc, t0, Q, V, st["a0_iv"], st["ap_iv"], DELTA, moving); lb["step"] = k + 1; lb["from_sign"] = rec["lambda_hat_start_sign"]; lb["to_sign"] = rec["lambda_hat_end_sign"]
+            out.setdefault("lambda_hat_sign_changes", []).append(lb); print(f"lambda_hat sign change {lb['"'"'from_sign'"'"']} -> {lb['"'"'to_sign'"'"']} in step {k+1}: " + (f"zero bracketed in t [{lb['"'"'t_zero_bracket'"'"'][0][:12]}, {lb['"'"'t_zero_bracket'"'"'][1][:12]}]" if "refused" not in lb else lb["refused"]), flush=True)'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+# controls (5), (6) for the two refinements, recorded before the target
+old='"'"''"'"''"'"'out["controls_all_pass"] = all(c["pass"] for c in out["controls"])'"'"''"'"''"'"'
+new='"'"''"'"''"'"'# (5) residual-reception bracket (refinement): known: synthetic affine step (point start, a0 = ap = 0, q(s) = Q0 + V0 s) with the residual zero placed at s* = 0.004 by
+#     the choice t0 = 2 cos((Q0 + V0 s*)/2) - s*; the bracket must contain s* with width below 1e-9. Negative: same-sign step (t0 lowered by 0.1; residual positive
+#     throughout) must report no certified-negative end; wrong ordering (t0 raised by 0.1; residual negative at the start) must be refused.
+Qs = iv.mpf("0.19"); Vs = iv.mpf("0.197"); sstar = iv.mpf("0.004"); t0s = 2*iv.cos((Qs + Vs*sstar)/2) - sstar
+b5 = residual_bracket(t0s, Qs, Vs, ZERO, ZERO, DELTA); b5n = residual_bracket(t0s - iv.mpf("0.1"), Qs, Vs, ZERO, ZERO, DELTA); b5w = residual_bracket(t0s + iv.mpf("0.1"), Qs, Vs, ZERO, ZERO, DELTA)
+ok5 = bool("refused" not in b5 and mp.mpf(b5["s_lo"]) <= lo(sstar) <= up(sstar) <= mp.mpf(b5["s_hi"]) and mp.mpf(b5["s_hi"]) - mp.mpf(b5["s_lo"]) < mp.mpf("1e-9") and b5["end_certified_negative"])
+ok5n = bool("refused" not in b5n and not b5n["end_certified_negative"] and mp.mpf(b5n["s_lo"]) == up(DELTA)); ok5w = bool("refused" in b5w)
+out["controls"].append({"name": "(5) residual-reception bracket: known synthetic zero at s* = 0.004 is enclosed (width < 1e-9); same-sign step gives no certified-negative end; negative-at-start step is refused", "pass": ok5 and ok5n and ok5w, "known": b5, "same_sign": b5n, "wrong_order": b5w})
+# (6) sign bracket (refinement used for lambda_hat): known: f(s) = 0.003 - s must be bracketed around 0.003 (width <= 2 * 0.01/256); negative: f = 1 + s (no sign change) refused;
+#     wrong ordering (negative start, positive end) is accepted with the flipped sign and must bracket 0.003 for f = s - 0.003; an uncertified endpoint (interval spanning zero) is refused.
+b6 = sign_bracket(lambda s: iv.mpf("0.003") - s, DELTA); b6n = sign_bracket(lambda s: ONE + s, DELTA); b6f = sign_bracket(lambda s: s - iv.mpf("0.003"), DELTA); b6u = sign_bracket(lambda s: I(-1, 1), DELTA)
+def inb(b): return "refused" not in b and mp.mpf(b["s_last_certified_start_sign"]) <= mp.mpf("0.003") <= mp.mpf(b["s_first_certified_end_sign"]) and mp.mpf(b["s_first_certified_end_sign"]) - mp.mpf(b["s_last_certified_start_sign"]) <= mp.mpf("0.01")/128
+out["controls"].append({"name": "(6) sign bracket: known zero of 0.003 - s enclosed (width <= 0.01/128); no-sign-change function refused; flipped ordering s - 0.003 enclosed; uncertified endpoint refused", "pass": bool(inb(b6) and "refused" in b6n and inb(b6f) and "refused" in b6u), "known": b6, "no_change": b6n, "flipped": b6f, "uncertified": b6u})
+out["controls_all_pass"] = all(c["pass"] for c in out["controls"])'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+s=s.replace("# Modes: three", "# v5 (after N4000-three-a, v4 retained): refinements made refusing (residual bracket needs a certified-positive start; sign_bracket needs certified opposite endpoint signs)\n#   and given recorded known/negative controls (5), (6) before the target. The refinements bracket, on the step'"'"'s affine enclosure, the last s certified of the start sign and the\n#   first s certified of the end sign; they are diagnostics of the step certificate, not independent evidence.\n# Modes: three",1)
+open(p,"w").write(s); print("edited v5")
+EOF
+O=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b; A=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) NOTE v5: refinement controls (5),(6) added before the target; prior bytes retained as -v4.py. CHOICE (PI option a): N = 4000 kept, the SAME 21-step plan split in two invocations: steps 1-11 (done, three-a, 60.5 s) and steps 12-21 resumed from three-a'"'"'s exact end strings; estimate 18 s setup + 10 x 3.5 s + reading bracket ~ 60 s" >> $R
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) PGREP-BEFORE :: $(pgrep -fl '"'"'spherical-six-pole-antipodal|spherical-curvature-claude'"'"' | tr '"'"'\n'"'"' '"'"';'"'"')" >> $R
+CMD="OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 three $O.json 21 $A"
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) START cwd=$(pwd) :: $CMD" >> $R
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 three $O.json 21 $A > $O.out 2> $O.out.time; EX=$?
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) END pid=$(head -1 $O.out | awk '"'"'{print $2}'"'"') exit=$EX $(grep -E '"'"'real|maximum resident'"'"' $O.out.time | tr '"'"'\n'"'"' '"'"' '"'"')" >> $R
+grep -vE "^step (1[4-9]|20)" $O.out | cut -c1-330; tail -1 $R; ls -la $O.json' && pwd -P >| /tmp/claude-4e4b-cwd
+23887 /usr/bin/time -l perl -e alarm 110; exec @ARGV -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv.py 4000 three reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b.json 21 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json
+C=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-val3-three.json; S=$E/spherical-six-pole-antipodal-claude-support-steps-iv-val3.json
+run(){ name=$1; shift; chk || { echo "SKIP $name: busy"; return; }; echo "start $(date -u) cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I $*" >> $R; OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I "$@" > $E/spherical-six-pole-antipodal-claude-support-$name.out 2>&1; echo "exit $? end $(date -u)" >> $R; grep -E "^PID|real|maximum resident" $E/spherical-six-pole-antipodal-claude-support-$name.out | tee -a $R; }
+run dlambda-iv-v2-val3 $E/spherical-six-pole-antipodal-claude-support-dlambda-iv.py $C $S $E/spherical-six-pole-antipodal-claude-support-dlambda-iv-v2-val3.json
+grep -v "maximum\|real\|page\|faults\|swaps\|block\|messages\|signals\|context\|instructions\|cycles\|peak\|footprint\|average" $E/spherical-six-pole-antipodal-claude-support-dlambda-iv-v2-val3.out | cut -c1-300 | sed -n '"'"'2p;8,10p;14,16p'"'"'
+run stepend-iv-val3 $E/spherical-six-pole-antipodal-claude-support-stepend-iv.py $C $S 500 $E/spherical-six-pole-antipodal-claude-support-stepend-iv-val3.json 7,8,9
+grep -v "maximum\|real\|page\|faults\|swaps\|block\|messages\|signals\|context\|instructions\|cycles\|peak\|footprint\|average" $E/spherical-six-pole-antipodal-claude-support-stepend-iv-val3.out | cut -c1-700
+A=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json; shasum -a 256 $A | tee -a $R
+run steps-iv-N4000a $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $A $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.json
+grep -v "maximum\|real\|page\|faults\|swaps\|block\|messages\|signals\|context\|instructions\|cycles\|peak\|footprint\|average" $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.out | cut -c1-330' < /dev/null && pwd -P >| /tmp/claude-4c68-cwd
+pgrep check Sun Oct 11 18:22:28 UTC 2026:
+p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv.py"
+s=open(p).read()
+# residual_bracket: refuse unless the residual is certified positive at s = 0
+old='"'"''"'"''"'"'    def res(s): return 2*iv.cos(qs(s)/2) - (t0 + s)
+    a = ZERO; b = iv.mpf(up(Delta))'"'"''"'"''"'"'
+new='"'"''"'"''"'"'    def res(s): return 2*iv.cos(qs(s)/2) - (t0 + s)
+    if not lo(res(ZERO)) > 0: return {"refused": "residual not certified positive at the step start"}
+    a = ZERO; b = iv.mpf(up(Delta))'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+# lambda_bracket: generic sign-change bracket of a certified-interval function with opposite certified endpoint signs
+old='"'"''"'"''"'"'def lambda_bracket(enc, t0, Q0, V0, a0, ap, Delta, moving):'"'"''"'"''"'"'
+new='"'"''"'"''"'"'def sign_bracket(fun, Delta, nbis=8):
+    """generic: fun(s) returns an interval; requires certified opposite signs at s = 0 and s = Delta (else refused); returns the largest s certified of the start
+    sign and the smallest s certified of the end sign (valid without monotonicity: it is a pair of certified-sign times, not a unique zero)."""
+    f0 = fun(ZERO); f1 = fun(iv.mpf(up(Delta)))
+    if f0 is None or f1 is None: return {"refused": "evaluation failed at an endpoint"}
+    if not ((lo(f0) > 0 and up(f1) < 0) or (up(f0) < 0 and lo(f1) > 0)): return {"refused": "endpoint signs not certified opposite", "f_start": [s45(f0.a), s45(f0.b)], "f_end": [s45(f1.a), s45(f1.b)]}
+    flip = -1 if up(f0) < 0 else 1
+    def pos(x): return lo(flip*x) > 0
+    def neg(x): return up(flip*x) < 0
+    a = ZERO; b = iv.mpf(up(Delta))
+    for _ in range(nbis):
+        m = iv.mpf(pt((a + b)/2)); L = fun(m)
+        if L is None: break
+        if pos(L): a = m
+        else: b = m
+    s_pos = a
+    a = ZERO; b = iv.mpf(up(Delta))
+    for _ in range(nbis):
+        m = iv.mpf(pt((a + b)/2)); L = fun(m)
+        if L is None: break
+        if neg(L): b = m
+        else: a = m
+    s_neg = b
+    return {"s_last_certified_start_sign": s45(s_pos), "s_first_certified_end_sign": s45(s_neg), "f_at_s_pos": [s45(x) for x in (fun(s_pos).a, fun(s_pos).b)], "f_at_s_neg": [s45(x) for x in (fun(s_neg).a, fun(s_neg).b)]}
+def lambda_bracket(enc, t0, Q0, V0, a0, ap, Delta, moving):'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+old='"'"''"'"''"'"'    a = ZERO; b = iv.mpf(up(Delta))
+    for _ in range(8):
+        m = iv.mpf(pt((a + b)/2)); L = lam(m)
+        if L is None: break
+        if lo(L) > 0: a = m
+        else: b = m
+    s_pos = a
+    a = ZERO; b = iv.mpf(up(Delta))
+    for _ in range(8):
+        m = iv.mpf(pt((a + b)/2)); L = lam(m)
+        if L is None: break
+        if up(L) < 0: b = m
+        else: a = m
+    s_neg = b
+    return {"s_last_certified_positive": s45(s_pos), "s_first_certified_negative": s45(s_neg), "t_zero_bracket": [s45((t0 + s_pos).a), s45((t0 + s_neg).b)], "lambda_at_s_pos": [s45(x) for x in (lam(s_pos).a, lam(s_pos).b)], "lambda_at_s_neg": [s45(x) for x in (lam(s_neg).a, lam(s_neg).b)]}'"'"''"'"''"'"'
+new='"'"''"'"''"'"'    sb = sign_bracket(lam, Delta)
+    if "refused" in sb: return sb
+    s_pos = iv.mpf(sb["s_last_certified_start_sign"]); s_neg = iv.mpf(sb["s_first_certified_end_sign"])
+    return {"s_last_certified_start_sign": sb["s_last_certified_start_sign"], "s_first_certified_end_sign": sb["s_first_certified_end_sign"], "t_zero_bracket": [s45((t0 + s_pos).a), s45((t0 + s_neg).b)], "lambda_at_s_pos": sb["f_at_s_pos"], "lambda_at_s_neg": sb["f_at_s_neg"]}'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+old='"'"''"'"''"'"'            lb = lambda_bracket(enc, t0, Q, V, st["a0_iv"], st["ap_iv"], DELTA, moving); lb["step"] = k + 1; lb["from_sign"] = rec["lambda_hat_start_sign"]; lb["to_sign"] = rec["lambda_hat_end_sign"]
+            out.setdefault("lambda_hat_sign_changes", []).append(lb); print(f"lambda_hat sign change {lb['"'"'from_sign'"'"']} -> {lb['"'"'to_sign'"'"']} in step {k+1}: zero bracketed in t [{lb['"'"'t_zero_bracket'"'"'][0][:12]}, {lb['"'"'t_zero_bracket'"'"'][1][:12]}]", flush=True)'"'"''"'"''"'"'
+new='"'"''"'"''"'"'            lb = lambda_bracket(enc, t0, Q, V, st["a0_iv"], st["ap_iv"], DELTA, moving); lb["step"] = k + 1; lb["from_sign"] = rec["lambda_hat_start_sign"]; lb["to_sign"] = rec["lambda_hat_end_sign"]
+            out.setdefault("lambda_hat_sign_changes", []).append(lb); print(f"lambda_hat sign change {lb['"'"'from_sign'"'"']} -> {lb['"'"'to_sign'"'"']} in step {k+1}: " + (f"zero bracketed in t [{lb['"'"'t_zero_bracket'"'"'][0][:12]}, {lb['"'"'t_zero_bracket'"'"'][1][:12]}]" if "refused" not in lb else lb["refused"]), flush=True)'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+# controls (5), (6) for the two refinements, recorded before the target
+old='"'"''"'"''"'"'out["controls_all_pass"] = all(c["pass"] for c in out["controls"])'"'"''"'"''"'"'
+new='"'"''"'"''"'"'# (5) residual-reception bracket (refinement): known: synthetic affine step (point start, a0 = ap = 0, q(s) = Q0 + V0 s) with the residual zero placed at s* = 0.004 by
+#     the choice t0 = 2 cos((Q0 + V0 s*)/2) - s*; the bracket must contain s* with width below 1e-9. Negative: same-sign step (t0 lowered by 0.1; residual positive
+#     throughout) must report no certified-negative end; wrong ordering (t0 raised by 0.1; residual negative at the start) must be refused.
+Qs = iv.mpf("0.19"); Vs = iv.mpf("0.197"); sstar = iv.mpf("0.004"); t0s = 2*iv.cos((Qs + Vs*sstar)/2) - sstar
+b5 = residual_bracket(t0s, Qs, Vs, ZERO, ZERO, DELTA); b5n = residual_bracket(t0s - iv.mpf("0.1"), Qs, Vs, ZERO, ZERO, DELTA); b5w = residual_bracket(t0s + iv.mpf("0.1"), Qs, Vs, ZERO, ZERO, DELTA)
+ok5 = bool("refused" not in b5 and mp.mpf(b5["s_lo"]) <= lo(sstar) <= up(sstar) <= mp.mpf(b5["s_hi"]) and mp.mpf(b5["s_hi"]) - mp.mpf(b5["s_lo"]) < mp.mpf("1e-9") and b5["end_certified_negative"])
+ok5n = bool("refused" not in b5n and not b5n["end_certified_negative"] and mp.mpf(b5n["s_lo"]) == up(DELTA)); ok5w = bool("refused" in b5w)
+out["controls"].append({"name": "(5) residual-reception bracket: known synthetic zero at s* = 0.004 is enclosed (width < 1e-9); same-sign step gives no certified-negative end; negative-at-start step is refused", "pass": ok5 and ok5n and ok5w, "known": b5, "same_sign": b5n, "wrong_order": b5w})
+# (6) sign bracket (refinement used for lambda_hat): known: f(s) = 0.003 - s must be bracketed around 0.003 (width <= 2 * 0.01/256); negative: f = 1 + s (no sign change) refused;
+#     wrong ordering (negative start, positive end) is accepted with the flipped sign and must bracket 0.003 for f = s - 0.003; an uncertified endpoint (interval spanning zero) is refused.
+b6 = sign_bracket(lambda s: iv.mpf("0.003") - s, DELTA); b6n = sign_bracket(lambda s: ONE + s, DELTA); b6f = sign_bracket(lambda s: s - iv.mpf("0.003"), DELTA); b6u = sign_bracket(lambda s: I(-1, 1), DELTA)
+def inb(b): return "refused" not in b and mp.mpf(b["s_last_certified_start_sign"]) <= mp.mpf("0.003") <= mp.mpf(b["s_first_certified_end_sign"]) and mp.mpf(b["s_first_certified_end_sign"]) - mp.mpf(b["s_last_certified_start_sign"]) <= mp.mpf("0.01")/128
+out["controls"].append({"name": "(6) sign bracket: known zero of 0.003 - s enclosed (width <= 0.01/128); no-sign-change function refused; flipped ordering s - 0.003 enclosed; uncertified endpoint refused", "pass": bool(inb(b6) and "refused" in b6n and inb(b6f) and "refused" in b6u), "known": b6, "no_change": b6n, "flipped": b6f, "uncertified": b6u})
+out["controls_all_pass"] = all(c["pass"] for c in out["controls"])'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+s=s.replace("# Modes: three", "# v5 (after N4000-three-a, v4 retained): refinements made refusing (residual bracket needs a certified-positive start; sign_bracket needs certified opposite endpoint signs)\n#   and given recorded known/negative controls (5), (6) before the target. The refinements bracket, on the step'"'"'s affine enclosure, the last s certified of the start sign and the\n#   first s certified of the end sign; they are diagnostics of the step certificate, not independent evidence.\n# Modes: three",1)
+open(p,"w").write(s); print("edited v5")
+EOF
+O=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b; A=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) NOTE v5: refinement controls (5),(6) added before the target; prior bytes retained as -v4.py. CHOICE (PI option a): N = 4000 kept, the SAME 21-step plan split in two invocations: steps 1-11 (done, three-a, 60.5 s) and steps 12-21 resumed from three-a'"'"'s exact end strings; estimate 18 s setup + 10 x 3.5 s + reading bracket ~ 60 s" >> $R
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) PGREP-BEFORE :: $(pgrep -fl '"'"'spherical-six-pole-antipodal|spherical-curvature-claude'"'"' | tr '"'"'\n'"'"' '"'"';'"'"')" >> $R
+CMD="OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 three $O.json 21 $A"
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) START cwd=$(pwd) :: $CMD" >> $R
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 three $O.json 21 $A > $O.out 2> $O.out.time; EX=$?
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) END pid=$(head -1 $O.out | awk '"'"'{print $2}'"'"') exit=$EX $(grep -E '"'"'real|maximum resident'"'"' $O.out.time | tr '"'"'\n'"'"' '"'"' '"'"')" >> $R
+grep -vE "^step (1[4-9]|20)" $O.out | cut -c1-330; tail -1 $R; ls -la $O.json' && pwd -P >| /tmp/claude-4e4b-cwd
+23887 /usr/bin/time -l perl -e alarm 110; exec @ARGV -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv.py 4000 three reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b.json 21 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json
+C=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-val3-three.json; S=$E/spherical-six-pole-antipodal-claude-support-steps-iv-val3.json
+run(){ name=$1; shift; chk || { echo "SKIP $name: busy"; return; }; echo "start $(date -u) cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I $*" >> $R; OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I "$@" > $E/spherical-six-pole-antipodal-claude-support-$name.out 2>&1; echo "exit $? end $(date -u)" >> $R; grep -E "^PID|real|maximum resident" $E/spherical-six-pole-antipodal-claude-support-$name.out | tee -a $R; }
+run dlambda-iv-v2-val3 $E/spherical-six-pole-antipodal-claude-support-dlambda-iv.py $C $S $E/spherical-six-pole-antipodal-claude-support-dlambda-iv-v2-val3.json
+grep -v "maximum\|real\|page\|faults\|swaps\|block\|messages\|signals\|context\|instructions\|cycles\|peak\|footprint\|average" $E/spherical-six-pole-antipodal-claude-support-dlambda-iv-v2-val3.out | cut -c1-300 | sed -n '"'"'2p;8,10p;14,16p'"'"'
+run stepend-iv-val3 $E/spherical-six-pole-antipodal-claude-support-stepend-iv.py $C $S 500 $E/spherical-six-pole-antipodal-claude-support-stepend-iv-val3.json 7,8,9
+grep -v "maximum\|real\|page\|faults\|swaps\|block\|messages\|signals\|context\|instructions\|cycles\|peak\|footprint\|average" $E/spherical-six-pole-antipodal-claude-support-stepend-iv-val3.out | cut -c1-700
+A=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json; shasum -a 256 $A | tee -a $R
+run steps-iv-N4000a $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $A $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.json
+grep -v "maximum\|real\|page\|faults\|swaps\|block\|messages\|signals\|context\|instructions\|cycles\|peak\|footprint\|average" $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.out | cut -c1-330' < /dev/null && pwd -P >| /tmp/claude-4c68-cwd
+f573be3207dc871f3fde670a176ddf77df512153bfa291bf57db927630f6a396  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json
+pgrep check Sun Oct 11 18:22:28 UTC 2026:
+p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv.py"
+s=open(p).read()
+# residual_bracket: refuse unless the residual is certified positive at s = 0
+old='"'"''"'"''"'"'    def res(s): return 2*iv.cos(qs(s)/2) - (t0 + s)
+    a = ZERO; b = iv.mpf(up(Delta))'"'"''"'"''"'"'
+new='"'"''"'"''"'"'    def res(s): return 2*iv.cos(qs(s)/2) - (t0 + s)
+    if not lo(res(ZERO)) > 0: return {"refused": "residual not certified positive at the step start"}
+    a = ZERO; b = iv.mpf(up(Delta))'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+# lambda_bracket: generic sign-change bracket of a certified-interval function with opposite certified endpoint signs
+old='"'"''"'"''"'"'def lambda_bracket(enc, t0, Q0, V0, a0, ap, Delta, moving):'"'"''"'"''"'"'
+new='"'"''"'"''"'"'def sign_bracket(fun, Delta, nbis=8):
+    """generic: fun(s) returns an interval; requires certified opposite signs at s = 0 and s = Delta (else refused); returns the largest s certified of the start
+    sign and the smallest s certified of the end sign (valid without monotonicity: it is a pair of certified-sign times, not a unique zero)."""
+    f0 = fun(ZERO); f1 = fun(iv.mpf(up(Delta)))
+    if f0 is None or f1 is None: return {"refused": "evaluation failed at an endpoint"}
+    if not ((lo(f0) > 0 and up(f1) < 0) or (up(f0) < 0 and lo(f1) > 0)): return {"refused": "endpoint signs not certified opposite", "f_start": [s45(f0.a), s45(f0.b)], "f_end": [s45(f1.a), s45(f1.b)]}
+    flip = -1 if up(f0) < 0 else 1
+    def pos(x): return lo(flip*x) > 0
+    def neg(x): return up(flip*x) < 0
+    a = ZERO; b = iv.mpf(up(Delta))
+    for _ in range(nbis):
+        m = iv.mpf(pt((a + b)/2)); L = fun(m)
+        if L is None: break
+        if pos(L): a = m
+        else: b = m
+    s_pos = a
+    a = ZERO; b = iv.mpf(up(Delta))
+    for _ in range(nbis):
+        m = iv.mpf(pt((a + b)/2)); L = fun(m)
+        if L is None: break
+        if neg(L): b = m
+        else: a = m
+    s_neg = b
+    return {"s_last_certified_start_sign": s45(s_pos), "s_first_certified_end_sign": s45(s_neg), "f_at_s_pos": [s45(x) for x in (fun(s_pos).a, fun(s_pos).b)], "f_at_s_neg": [s45(x) for x in (fun(s_neg).a, fun(s_neg).b)]}
+def lambda_bracket(enc, t0, Q0, V0, a0, ap, Delta, moving):'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+old='"'"''"'"''"'"'    a = ZERO; b = iv.mpf(up(Delta))
+    for _ in range(8):
+        m = iv.mpf(pt((a + b)/2)); L = lam(m)
+        if L is None: break
+        if lo(L) > 0: a = m
+        else: b = m
+    s_pos = a
+    a = ZERO; b = iv.mpf(up(Delta))
+    for _ in range(8):
+        m = iv.mpf(pt((a + b)/2)); L = lam(m)
+        if L is None: break
+        if up(L) < 0: b = m
+        else: a = m
+    s_neg = b
+    return {"s_last_certified_positive": s45(s_pos), "s_first_certified_negative": s45(s_neg), "t_zero_bracket": [s45((t0 + s_pos).a), s45((t0 + s_neg).b)], "lambda_at_s_pos": [s45(x) for x in (lam(s_pos).a, lam(s_pos).b)], "lambda_at_s_neg": [s45(x) for x in (lam(s_neg).a, lam(s_neg).b)]}'"'"''"'"''"'"'
+new='"'"''"'"''"'"'    sb = sign_bracket(lam, Delta)
+    if "refused" in sb: return sb
+    s_pos = iv.mpf(sb["s_last_certified_start_sign"]); s_neg = iv.mpf(sb["s_first_certified_end_sign"])
+    return {"s_last_certified_start_sign": sb["s_last_certified_start_sign"], "s_first_certified_end_sign": sb["s_first_certified_end_sign"], "t_zero_bracket": [s45((t0 + s_pos).a), s45((t0 + s_neg).b)], "lambda_at_s_pos": sb["f_at_s_pos"], "lambda_at_s_neg": sb["f_at_s_neg"]}'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+old='"'"''"'"''"'"'            lb = lambda_bracket(enc, t0, Q, V, st["a0_iv"], st["ap_iv"], DELTA, moving); lb["step"] = k + 1; lb["from_sign"] = rec["lambda_hat_start_sign"]; lb["to_sign"] = rec["lambda_hat_end_sign"]
+            out.setdefault("lambda_hat_sign_changes", []).append(lb); print(f"lambda_hat sign change {lb['"'"'from_sign'"'"']} -> {lb['"'"'to_sign'"'"']} in step {k+1}: zero bracketed in t [{lb['"'"'t_zero_bracket'"'"'][0][:12]}, {lb['"'"'t_zero_bracket'"'"'][1][:12]}]", flush=True)'"'"''"'"''"'"'
+new='"'"''"'"''"'"'            lb = lambda_bracket(enc, t0, Q, V, st["a0_iv"], st["ap_iv"], DELTA, moving); lb["step"] = k + 1; lb["from_sign"] = rec["lambda_hat_start_sign"]; lb["to_sign"] = rec["lambda_hat_end_sign"]
+            out.setdefault("lambda_hat_sign_changes", []).append(lb); print(f"lambda_hat sign change {lb['"'"'from_sign'"'"']} -> {lb['"'"'to_sign'"'"']} in step {k+1}: " + (f"zero bracketed in t [{lb['"'"'t_zero_bracket'"'"'][0][:12]}, {lb['"'"'t_zero_bracket'"'"'][1][:12]}]" if "refused" not in lb else lb["refused"]), flush=True)'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+# controls (5), (6) for the two refinements, recorded before the target
+old='"'"''"'"''"'"'out["controls_all_pass"] = all(c["pass"] for c in out["controls"])'"'"''"'"''"'"'
+new='"'"''"'"''"'"'# (5) residual-reception bracket (refinement): known: synthetic affine step (point start, a0 = ap = 0, q(s) = Q0 + V0 s) with the residual zero placed at s* = 0.004 by
+#     the choice t0 = 2 cos((Q0 + V0 s*)/2) - s*; the bracket must contain s* with width below 1e-9. Negative: same-sign step (t0 lowered by 0.1; residual positive
+#     throughout) must report no certified-negative end; wrong ordering (t0 raised by 0.1; residual negative at the start) must be refused.
+Qs = iv.mpf("0.19"); Vs = iv.mpf("0.197"); sstar = iv.mpf("0.004"); t0s = 2*iv.cos((Qs + Vs*sstar)/2) - sstar
+b5 = residual_bracket(t0s, Qs, Vs, ZERO, ZERO, DELTA); b5n = residual_bracket(t0s - iv.mpf("0.1"), Qs, Vs, ZERO, ZERO, DELTA); b5w = residual_bracket(t0s + iv.mpf("0.1"), Qs, Vs, ZERO, ZERO, DELTA)
+ok5 = bool("refused" not in b5 and mp.mpf(b5["s_lo"]) <= lo(sstar) <= up(sstar) <= mp.mpf(b5["s_hi"]) and mp.mpf(b5["s_hi"]) - mp.mpf(b5["s_lo"]) < mp.mpf("1e-9") and b5["end_certified_negative"])
+ok5n = bool("refused" not in b5n and not b5n["end_certified_negative"] and mp.mpf(b5n["s_lo"]) == up(DELTA)); ok5w = bool("refused" in b5w)
+out["controls"].append({"name": "(5) residual-reception bracket: known synthetic zero at s* = 0.004 is enclosed (width < 1e-9); same-sign step gives no certified-negative end; negative-at-start step is refused", "pass": ok5 and ok5n and ok5w, "known": b5, "same_sign": b5n, "wrong_order": b5w})
+# (6) sign bracket (refinement used for lambda_hat): known: f(s) = 0.003 - s must be bracketed around 0.003 (width <= 2 * 0.01/256); negative: f = 1 + s (no sign change) refused;
+#     wrong ordering (negative start, positive end) is accepted with the flipped sign and must bracket 0.003 for f = s - 0.003; an uncertified endpoint (interval spanning zero) is refused.
+b6 = sign_bracket(lambda s: iv.mpf("0.003") - s, DELTA); b6n = sign_bracket(lambda s: ONE + s, DELTA); b6f = sign_bracket(lambda s: s - iv.mpf("0.003"), DELTA); b6u = sign_bracket(lambda s: I(-1, 1), DELTA)
+def inb(b): return "refused" not in b and mp.mpf(b["s_last_certified_start_sign"]) <= mp.mpf("0.003") <= mp.mpf(b["s_first_certified_end_sign"]) and mp.mpf(b["s_first_certified_end_sign"]) - mp.mpf(b["s_last_certified_start_sign"]) <= mp.mpf("0.01")/128
+out["controls"].append({"name": "(6) sign bracket: known zero of 0.003 - s enclosed (width <= 0.01/128); no-sign-change function refused; flipped ordering s - 0.003 enclosed; uncertified endpoint refused", "pass": bool(inb(b6) and "refused" in b6n and inb(b6f) and "refused" in b6u), "known": b6, "no_change": b6n, "flipped": b6f, "uncertified": b6u})
+out["controls_all_pass"] = all(c["pass"] for c in out["controls"])'"'"''"'"''"'"'
+assert s.count(old)==1; s=s.replace(old,new)
+s=s.replace("# Modes: three", "# v5 (after N4000-three-a, v4 retained): refinements made refusing (residual bracket needs a certified-positive start; sign_bracket needs certified opposite endpoint signs)\n#   and given recorded known/negative controls (5), (6) before the target. The refinements bracket, on the step'"'"'s affine enclosure, the last s certified of the start sign and the\n#   first s certified of the end sign; they are diagnostics of the step certificate, not independent evidence.\n# Modes: three",1)
+open(p,"w").write(s); print("edited v5")
+EOF
+O=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b; A=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) NOTE v5: refinement controls (5),(6) added before the target; prior bytes retained as -v4.py. CHOICE (PI option a): N = 4000 kept, the SAME 21-step plan split in two invocations: steps 1-11 (done, three-a, 60.5 s) and steps 12-21 resumed from three-a'"'"'s exact end strings; estimate 18 s setup + 10 x 3.5 s + reading bracket ~ 60 s" >> $R
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) PGREP-BEFORE :: $(pgrep -fl '"'"'spherical-six-pole-antipodal|spherical-curvature-claude'"'"' | tr '"'"'\n'"'"' '"'"';'"'"')" >> $R
+CMD="OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 three $O.json 21 $A"
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) START cwd=$(pwd) :: $CMD" >> $R
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 three $O.json 21 $A > $O.out 2> $O.out.time; EX=$?
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) END pid=$(head -1 $O.out | awk '"'"'{print $2}'"'"') exit=$EX $(grep -E '"'"'real|maximum resident'"'"' $O.out.time | tr '"'"'\n'"'"' '"'"' '"'"')" >> $R
+grep -vE "^step (1[4-9]|20)" $O.out | cut -c1-330; tail -1 $R; ls -la $O.json' && pwd -P >| /tmp/claude-4e4b-cwd
+23887 /usr/bin/time -l perl -e alarm 110; exec @ARGV -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv.py 4000 three reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b.json 21 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json
+C=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-val3-three.json; S=$E/spherical-six-pole-antipodal-claude-support-steps-iv-val3.json
+run(){ name=$1; shift; chk || { echo "SKIP $name: busy"; return; }; echo "start $(date -u) cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I $*" >> $R; OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I "$@" > $E/spherical-six-pole-antipodal-claude-support-$name.out 2>&1; echo "exit $? end $(date -u)" >> $R; grep -E "^PID|real|maximum resident" $E/spherical-six-pole-antipodal-claude-support-$name.out | tee -a $R; }
+run dlambda-iv-v2-val3 $E/spherical-six-pole-antipodal-claude-support-dlambda-iv.py $C $S $E/spherical-six-pole-antipodal-claude-support-dlambda-iv-v2-val3.json
+grep -v "maximum\|real\|page\|faults\|swaps\|block\|messages\|signals\|context\|instructions\|cycles\|peak\|footprint\|average" $E/spherical-six-pole-antipodal-claude-support-dlambda-iv-v2-val3.out | cut -c1-300 | sed -n '"'"'2p;8,10p;14,16p'"'"'
+run stepend-iv-val3 $E/spherical-six-pole-antipodal-claude-support-stepend-iv.py $C $S 500 $E/spherical-six-pole-antipodal-claude-support-stepend-iv-val3.json 7,8,9
+grep -v "maximum\|real\|page\|faults\|swaps\|block\|messages\|signals\|context\|instructions\|cycles\|peak\|footprint\|average" $E/spherical-six-pole-antipodal-claude-support-stepend-iv-val3.out | cut -c1-700
+A=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json; shasum -a 256 $A | tee -a $R
+run steps-iv-N4000a $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $A $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.json
+grep -v "maximum\|real\|page\|faults\|swaps\|block\|messages\|signals\|context\|instructions\|cycles\|peak\|footprint\|average" $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.out | cut -c1-330' < /dev/null && pwd -P >| /tmp/claude-4c68-cwd
+f573be3207dc871f3fde670a176ddf77df512153bfa291bf57db927630f6a396  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json
+7d0b1fa98384314b247b20e93a863bb8bdb14ea719974ba35b721f774ec55c20  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json
+pgrep check Sun Oct 11 18:25:29 UTC 2026:
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) CHOICE mode two (antipode held fixed, reduction premise) split like mode three: steps 1-11 then 12-21 resumed; estimate ~60 s and ~45 s" >> $R
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) PGREP-BEFORE :: $(pgrep -fl '"'"'spherical-six-pole-antipodal|spherical-curvature-claude'"'"' | tr '"'"'\n'"'"' '"'"';'"'"')" >> $R
+CMD="OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 two $O.json 11"
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) START cwd=$(pwd) :: $CMD" >> $R
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 two $O.json 11 > $O.out 2> $O.out.time; EX=$?
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) END pid=$(head -1 $O.out | awk '"'"'{print $2}'"'"') exit=$EX $(grep -E '"'"'real|maximum resident'"'"' $O.out.time | tr '"'"'\n'"'"' '"'"' '"'"')" >> $R
+grep -E "^(controls|lambda|reached)" $O.out | cut -c1-200; tail -1 $R
+O2=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-two-b
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) PGREP-BEFORE :: $(pgrep -fl '"'"'spherical-six-pole-antipodal|spherical-curvature-claude'"'"' | tr '"'"'\n'"'"' '"'"';'"'"')" >> $R
+CMD="OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 two $O2.json 21 $O.json"
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) START cwd=$(pwd) :: $CMD" >> $R
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 two $O2.json 21 $O.json > $O2.out 2> $O2.out.time; EX=$?
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) END pid=$(head -1 $O2.out | awk '"'"'{print $2}'"'"') exit=$EX $(grep -E '"'"'real|maximum resident'"'"' $O2.out.time | tr '"'"'\n'"'"' '"'"' '"'"')" >> $R
+grep -E "^(controls|resumed|lambda|reached|step 21)" $O2.out | cut -c1-330; tail -1 $R; ls -la $O.json $O2.json' < /dev/null && pwd -P >| /tmp/claude-fdbe-cwd
+26483 /usr/bin/time -l perl -e alarm 110; exec @ARGV -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv.py 4000 two reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-two-a.json 11
+run(){ name=$1; shift; chk || { echo "SKIP $name: busy"; return; }; echo "start $(date -u) cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I $*" >> $R; OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I "$@" > $E/spherical-six-pole-antipodal-claude-support-$name.out 2>&1; echo "exit $? end $(date -u)" >> $R; grep -E "^PID|real|maximum resident" $E/spherical-six-pole-antipodal-claude-support-$name.out | tee -a $R; }
+F(){ grep -v "maximum\|real\|page\|faults\|swaps\|block\|messages\|signals\|context\|instructions\|cycles\|peak\|footprint\|average" $1 | cut -c1-${2:-330}; }
+A=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json; B=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json; shasum -a 256 $A $B | tee -a $R
+run steps-iv-N4000a $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $A $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.json; F $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.out | sed -n '"'"'4,30p'"'"'
+run steps-iv-N4000b3 $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $B $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.json; F $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.out | sed -n '"'"'4,30p'"'"'' < /dev/null && pwd -P >| /tmp/claude-d38c-cwd
+pgrep check Sun Oct 11 18:25:29 UTC 2026:
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) CHOICE mode two (antipode held fixed, reduction premise) split like mode three: steps 1-11 then 12-21 resumed; estimate ~60 s and ~45 s" >> $R
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) PGREP-BEFORE :: $(pgrep -fl '"'"'spherical-six-pole-antipodal|spherical-curvature-claude'"'"' | tr '"'"'\n'"'"' '"'"';'"'"')" >> $R
+CMD="OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 two $O.json 11"
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) START cwd=$(pwd) :: $CMD" >> $R
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 two $O.json 11 > $O.out 2> $O.out.time; EX=$?
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) END pid=$(head -1 $O.out | awk '"'"'{print $2}'"'"') exit=$EX $(grep -E '"'"'real|maximum resident'"'"' $O.out.time | tr '"'"'\n'"'"' '"'"' '"'"')" >> $R
+grep -E "^(controls|lambda|reached)" $O.out | cut -c1-200; tail -1 $R
+O2=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-two-b
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) PGREP-BEFORE :: $(pgrep -fl '"'"'spherical-six-pole-antipodal|spherical-curvature-claude'"'"' | tr '"'"'\n'"'"' '"'"';'"'"')" >> $R
+CMD="OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 two $O2.json 21 $O.json"
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) START cwd=$(pwd) :: $CMD" >> $R
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 110; exec @ARGV'"'"' -- ../.venv/bin/python -I $S 4000 two $O2.json 21 $O.json > $O2.out 2> $O2.out.time; EX=$?
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) END pid=$(head -1 $O2.out | awk '"'"'{print $2}'"'"') exit=$EX $(grep -E '"'"'real|maximum resident'"'"' $O2.out.time | tr '"'"'\n'"'"' '"'"' '"'"')" >> $R
+grep -E "^(controls|resumed|lambda|reached|step 21)" $O2.out | cut -c1-330; tail -1 $R; ls -la $O.json $O2.json' < /dev/null && pwd -P >| /tmp/claude-fdbe-cwd
+26483 /usr/bin/time -l perl -e alarm 110; exec @ARGV -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv.py 4000 two reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-two-a.json 11
+run(){ name=$1; shift; chk || { echo "SKIP $name: busy"; return; }; echo "start $(date -u) cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I $*" >> $R; OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I "$@" > $E/spherical-six-pole-antipodal-claude-support-$name.out 2>&1; echo "exit $? end $(date -u)" >> $R; grep -E "^PID|real|maximum resident" $E/spherical-six-pole-antipodal-claude-support-$name.out | tee -a $R; }
+F(){ grep -v "maximum\|real\|page\|faults\|swaps\|block\|messages\|signals\|context\|instructions\|cycles\|peak\|footprint\|average" $1 | cut -c1-${2:-330}; }
+A=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json; B=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json; shasum -a 256 $A $B | tee -a $R
+run steps-iv-N4000a $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $A $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.json; F $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.out | sed -n '"'"'4,30p'"'"'
+run steps-iv-N4000b3 $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $B $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.json; F $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.out | sed -n '"'"'4,30p'"'"'' < /dev/null && pwd -P >| /tmp/claude-d38c-cwd
+pgrep check Sun Oct 11 18:29:53 UTC 2026:
+run(){ name=$1; shift; chk || { echo "SKIP $name: busy"; return; }; echo "start $(date -u) cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec 
+A=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json; B=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json
+run steps-iv-N4000a $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $A $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.json; F $E/spherical-six-pole-antipodal-claude-support-
+run steps-iv-N4000b3 $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $B $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.json; F $E/spherical-six-pole-antipodal-claude-suppor
+run(){ name=$1; shift; chk || { echo "SKIP $name: busy"; return; }; echo "start $(date -u) cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec 
+A=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json; B=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json
+run steps-iv-N4000a $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $A $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.json; F $E/spherical-six-pole-antipodal-claude-support-
+run steps-iv-N4000b3 $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $B $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.json; F $E/spherical-six-pole-antipodal-claude-suppor
+pgrep check Sun Oct 11 18:29:53 UTC 2026:
+run(){ name=$1; shift; chk || { echo "SKIP $name: busy"; return; }; echo "start $(date -u) cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec 
+A=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json; B=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json
+run steps-iv-N4000a $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $A $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.json; F $E/spherical-six-pole-antipodal-claude-support-
+run steps-iv-N4000b3 $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $B $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.json; F $E/spherical-six-pole-antipodal-claude-suppor
+run(){ name=$1; shift; chk || { echo "SKIP $name: busy"; return; }; echo "start $(date -u) cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec 
+A=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json; B=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json
+run steps-iv-N4000a $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $A $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.json; F $E/spherical-six-pole-antipodal-claude-support-
+run steps-iv-N4000b3 $E/spherical-six-pole-antipodal-claude-support-steps-iv.py $B $E/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.json; F $E/spherical-six-pole-antipodal-claude-suppor
+NOTE Sun Oct 11 18:30:15 UTC 2026: earlier BUSY verdicts at 18:21:58, 18:22:xx, 18:26, 18:31 were self-matches of my own shell wrapper (its argv contains the pattern); anchored check adopted: pgrep -f '^\.\./\.venv/bin/python -I reference/.*(spherical-six-pole-antipodal|spherical-curvature-claude)'. The stale background waiter was stopped.
+pgrep check (anchored) Sun Oct 11 18:30:15 UTC 2026:
+(none)
+start Sun Oct 11 18:30:15 UTC 2026 cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.json
+exit 0 end Sun Oct 11 18:30:15 UTC 2026
+PID 30334
+        0.13 real         0.08 user         0.01 sys
+            21626880  maximum resident set size
+pgrep check (anchored) Sun Oct 11 18:30:15 UTC 2026:
+(none)
+start Sun Oct 11 18:30:15 UTC 2026 cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.json
+exit 0 end Sun Oct 11 18:30:16 UTC 2026
+PID 30353
+        0.08 real         0.07 user         0.00 sys
+            21790720  maximum resident set size
+pgrep check (anchored) Sun Oct 11 18:30:16 UTC 2026:
+(none)
+start Sun Oct 11 18:30:16 UTC 2026 cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-dlambda-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-val3-three.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-val3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-dlambda-iv-v2-val3.json
+exit 0 end Sun Oct 11 18:30:16 UTC 2026
+PID 30367
+        0.08 real         0.07 user         0.00 sys
+            22347776  maximum resident set size
+pgrep check (anchored) Sun Oct 11 18:30:16 UTC 2026:
+(none)
+start Sun Oct 11 18:30:16 UTC 2026 cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-stepend-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-val3-three.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-val3.json 500 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-stepend-iv-val3.json 7,8,9
+exit 0 end Sun Oct 11 18:30:23 UTC 2026
+PID 30381
+        7.23 real         7.08 user         0.04 sys
+            23953408  maximum resident set size
+pgrep check (anchored) Sun Oct 11 18:30:52 UTC 2026:
+(none)
+start Sun Oct 11 18:30:52 UTC 2026 cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-dlambda-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-dlambda-iv-v2-N4000a.json
+exit 0 end Sun Oct 11 18:30:52 UTC 2026
+PID 31103
+        0.08 real         0.07 user         0.00 sys
+            22216704  maximum resident set size
+5120ea212a99ebbf02b0182ddb0b30cf32dd103b1c617e506413a7548e849938  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.json
+cc0a48907ea5700dedf1421e7d4d1d3226e29d1a84e307d70e27cda02b7d5b17  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-N4000a.out
+dd2d04afa868781f097c01ba91fc8d09a8cab22d746066a525ca4c6d192a5af0  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.json
+2d6f30bbd496cee6183409e7600614d2533543409f917ad3e0705bfbf3920546  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.out
+98467c7f0f53d36d477eaa34470efacef365a32bdcce8d07f57b888b06266c2e  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-dlambda-iv.py
+792f856759b686dadf8e7d1de377f3ac946e44c9069bb9819fc0d7fe917a76f1  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-dlambda-iv-v2-val3.json
+c1e90162ed68326cd0c8c7f38cc3489b0a4af1dee4466061c20403731473df78  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-dlambda-iv-v2-N4000a.json
+a461a55daf1d3ecb21b22e34680b62c16e4e2ad382d402d217c1599589d2bfc5  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-stepend-iv.py
+b96db32f6e4890037021cdad7bdaf9a55755275e2b1cfb5e6acc36390c30b701  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-stepend-iv-val3.json
+025954501334689ba52d13a82d5235012e02f03c55938472ac32c2c955e61a9a  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-antipodal-claude-support-wave1.md
+wave1 sections 3.2-3.5 and 4 appended Sun Oct 11 18:31:42 UTC 2026

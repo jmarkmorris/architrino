@@ -1,0 +1,108 @@
+# Command receipt, six-pole late-feedback STAGE B (Claude continuation role). Same format and limits as the Stage A receipt (alarm 110 s, one thread, peak RSS measured, 1 GiB cap not OS-enforced); SLOT-BUSY/IDLE lines; census = pgrep -x Python with ps -o command= per PID (count of 'spherical-six-pole-late-feedback').
+2026-10-11T19:45:12Z CENSUS-BEFORE :: 77787:0;
+SLOT-BUSY 2026-10-11T19:45:13Z
+2026-10-11T19:45:13Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 10 4000 control reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-control-g10.json (control run K1, K2, N at g = 1/10, N = 4000; estimate 2 windows x 16 s + 3 steps = 50 s)
+2026-10-11T19:45:39Z END pid=78285 exit=2        26.54 real        26.21 user         0.06 sys             38469632  maximum resident set size 
+SLOT-IDLE 2026-10-11T19:45:39Z
+2026-10-11T19:46:21Z NOTE control-g10 run 1 (v1): K1, N pass exactly; K2 intersects with max diff 5e-8 (wider remainder slope of the unread classes in the moving form; contains the frozen enclosure); v2 sets K2 to 1e-6 + containment; v1 retained
+2026-10-11T19:46:21Z CENSUS-BEFORE :: 77787:0;
+SLOT-BUSY 2026-10-11T19:46:21Z
+2026-10-11T19:46:21Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 10 4000 control reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-control-g10-2.json
+2026-10-11T19:46:48Z END pid=78878 exit=0        27.69 real        27.35 user         0.10 sys             38305792  maximum resident set size 
+SLOT-IDLE 2026-10-11T19:46:48Z
+2026-10-11T19:46:48Z R = 8 cell (g = 1/8): target from T*, steps 1-14, Delta = 0.01, N = 4000 (estimate 16 + 14 x 4 = 72 s)
+2026-10-11T19:46:48Z CENSUS-BEFORE :: 77787:0;
+SLOT-BUSY 2026-10-11T19:46:48Z
+2026-10-11T19:46:48Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 8 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-a.json 14
+2026-10-11T19:47:02Z END pid=79250 exit=1        13.24 real        13.00 user         0.05 sys             33554432  maximum resident set size 
+SLOT-IDLE 2026-10-11T19:47:02Z
+2026-10-11T19:47:52Z NOTE R8-a (v2) exit 1: RESUME had been reset to '-' by the frozen exec; v3 restores it; v2 retained; the R = 8 window record of that run is in R8-a.out (T* in [1.355542060597, 1.355542461449])
+2026-10-11T19:47:52Z CENSUS-BEFORE :: 79323:0;
+SLOT-BUSY 2026-10-11T19:47:52Z
+2026-10-11T19:47:52Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 8 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-a2.json 14
+2026-10-11T19:48:30Z END pid=79910 exit=0        37.76 real        36.23 user         0.17 sys             32849920  maximum resident set size 
+SLOT-IDLE 2026-10-11T19:48:30Z
+2026-10-11T19:49:05Z R = 8 continuation: steps 15-32, 33-50, 51-68 (18 steps per invocation, estimate 13 + 18 x 2 = 50 s each), each resumed from the previous JSON's exact end strings
+2026-10-11T19:49:05Z CENSUS-BEFORE :: 79323:0;
+SLOT-BUSY 2026-10-11T19:49:05Z
+2026-10-11T19:49:05Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 8 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-b.json 32 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-a2.json 14
+2026-10-11T19:50:08Z END pid=81190 exit=0        63.03 real        62.80 user         0.09 sys             32964608  maximum resident set size 
+SLOT-IDLE 2026-10-11T19:50:08Z
+2026-10-11T19:50:08Z CENSUS-BEFORE :: 79323:0;
+SLOT-BUSY 2026-10-11T19:50:08Z
+2026-10-11T19:50:08Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 8 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-c.json 50 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-b.json 32
+2026-10-11T19:51:13Z END pid=81648 exit=0        65.30 real        64.56 user         0.18 sys             33456128  maximum resident set size 
+SLOT-IDLE 2026-10-11T19:51:13Z
+2026-10-11T19:51:13Z CENSUS-BEFORE :: 79323:0;
+SLOT-BUSY 2026-10-11T19:51:13Z
+2026-10-11T19:51:13Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 8 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-d.json 68 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-c.json 50
+2026-10-11T19:52:24Z END pid=82575 exit=0        71.33 real        70.96 user         0.16 sys             33177600  maximum resident set size 
+SLOT-IDLE 2026-10-11T19:52:24Z
+2026-10-11T19:53:21Z NOTE (PI 19:51): R8-a2/b/c/d were run before a recorded wrapper control; they stay provisional until the wrapper control run below passes; v4 adds resume_state + mode wrappercontrol; v3 retained
+2026-10-11T19:53:21Z CENSUS-BEFORE :: 79323:0;
+SLOT-BUSY 2026-10-11T19:53:21Z
+2026-10-11T19:53:21Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 8 4000 wrappercontrol reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-wrappercontrol-R8.json 0 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-a2.json 14
+2026-10-11T19:53:33Z END pid=84234 exit=0        12.19 real        12.15 user         0.02 sys             33685504  maximum resident set size 
+SLOT-IDLE 2026-10-11T19:53:33Z
+2026-10-11T19:53:33Z R = 12 cell (g = 1/12): window + steps 1-18 (estimate 13 + 18 x 2.5 = 60 s)
+2026-10-11T19:53:33Z CENSUS-BEFORE :: 79323:0;
+SLOT-BUSY 2026-10-11T19:53:33Z
+2026-10-11T19:53:33Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 12 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-a.json 18
+2026-10-11T19:54:22Z END pid=84373 exit=0        49.29 real        49.13 user         0.08 sys             33128448  maximum resident set size 
+SLOT-IDLE 2026-10-11T19:54:22Z
+2026-10-11T19:55:31Z R = 12 continuation: steps 19-36, 37-54, 55-72, 73-90 (18 per invocation), resumed by exact strings
+2026-10-11T19:55:31Z CENSUS-BEFORE :: 79323:0;
+SLOT-BUSY 2026-10-11T19:55:31Z
+2026-10-11T19:55:31Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 12 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-b.json 36 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-a.json 18
+2026-10-11T19:56:37Z END pid=85711 exit=0        65.36 real        64.64 user         0.18 sys             33193984  maximum resident set size 
+SLOT-IDLE 2026-10-11T19:56:37Z
+2026-10-11T19:56:37Z CENSUS-BEFORE :: 86230:0;
+SLOT-BUSY 2026-10-11T19:56:37Z
+2026-10-11T19:56:37Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 12 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-c.json 54 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-b.json 36
+2026-10-11T19:57:46Z END pid=86270 exit=0        68.89 real        67.54 user         0.15 sys             33357824  maximum resident set size 
+SLOT-IDLE 2026-10-11T19:57:46Z
+2026-10-11T19:57:46Z CENSUS-BEFORE :: 86230:0;
+SLOT-BUSY 2026-10-11T19:57:46Z
+2026-10-11T19:57:46Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 12 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-d.json 72 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-c.json 54
+2026-10-11T19:59:01Z END pid=87342 exit=0        75.71 real        75.43 user         0.11 sys             33259520  maximum resident set size 
+SLOT-IDLE 2026-10-11T19:59:01Z
+2026-10-11T19:59:02Z CENSUS-BEFORE :: 86230:0;
+SLOT-BUSY 2026-10-11T19:59:02Z
+2026-10-11T19:59:02Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 12 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-e.json 90 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-d.json 72
+2026-10-11T20:00:34Z END pid=88432 exit=0        92.92 real        90.34 user         0.31 sys             33685504  maximum resident set size 
+SLOT-IDLE 2026-10-11T20:00:34Z
+2026-10-11T20:00:35Z REPORT stageB checkpoint 2 saved sha256 73f9cf1a0e7afc4811ad180c745ec366854592d8ad762f5137cfb4f66c5d973f
+2026-10-11T20:02:16Z CORRECTION: the 'stageB checkpoint 2 saved' line above is wrong: the rewrite script failed (f-string syntax) before writing and a stale 'Checkpoint 2 saved' stamp was appended to the checkpoint-1 file; intermediate copy kept in .tmp/six-pole-late-feedback/continuation/stageB-before-final-rewrite.md; the report is now regenerated in full
+2026-10-11T20:02:16Z REPORT stageB (both cells, regenerated) saved sha256 ddc38aec2b27a6b5048006ce65d1bbbc97e16a74aff1b3391064921572b64f53
+2026-10-11T20:03:39Z PI ALLOCATION 20:03 (chronology audit): ALL of R8-a2/b/c/d (ended 19:48:30 .. 19:52:24) preceded the wrapper control run (19:53:21-19:53:33); they stay preserved as provisional. POST-CONTROL RERUN CHAIN R8p-a/-b/-c/-d: same admitted plan (steps 1-14, 15-32, 33-50, 51-68; identical split), script v4 UNCHANGED sha256 87824227daebf1afabe9a02ae8fce8fcc3b836b60ed76f97a23c1861a4f5db94, wrapper control record wrappercontrol-R8.json sha256 1a86acc5b7e000b7e11557cdfa3f61d7375cf30e051595043acd94147d22aa6d (exists before each rerun), new filenames, exact-string resumption, t0 as an interval
+2026-10-11T20:03:39Z PRE-RUN: script sha256 87824227daebf1afabe9a02ae8fce8fcc3b836b60ed76f97a23c1861a4f5db94; wrappercontrol-R8.json present sha256 1a86acc5b7e000b7e11557cdfa3f61d7375cf30e051595043acd94147d22aa6d
+2026-10-11T20:03:39Z CENSUS-BEFORE :: 86230:0;
+SLOT-BUSY 2026-10-11T20:03:39Z
+2026-10-11T20:03:39Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 8 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-a.json 14
+2026-10-11T20:04:14Z END pid=91905 exit=0        35.21 real        34.07 user         0.10 sys             33095680  maximum resident set size 
+SLOT-IDLE 2026-10-11T20:04:14Z
+2026-10-11T20:04:14Z PRE-RUN: script sha256 87824227daebf1afabe9a02ae8fce8fcc3b836b60ed76f97a23c1861a4f5db94; wrappercontrol-R8.json present sha256 1a86acc5b7e000b7e11557cdfa3f61d7375cf30e051595043acd94147d22aa6d
+2026-10-11T20:04:14Z CENSUS-BEFORE :: 86230:0;
+SLOT-BUSY 2026-10-11T20:04:14Z
+2026-10-11T20:04:14Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 8 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-b.json 32 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-a.json 14
+2026-10-11T20:05:23Z END pid=92458 exit=0        68.35 real        66.71 user         0.28 sys             33505280  maximum resident set size 
+SLOT-IDLE 2026-10-11T20:05:23Z
+2026-10-11T20:05:23Z PRE-RUN: script sha256 87824227daebf1afabe9a02ae8fce8fcc3b836b60ed76f97a23c1861a4f5db94; wrappercontrol-R8.json present sha256 1a86acc5b7e000b7e11557cdfa3f61d7375cf30e051595043acd94147d22aa6d
+2026-10-11T20:05:23Z CENSUS-BEFORE :: 
+SLOT-BUSY 2026-10-11T20:05:23Z
+2026-10-11T20:05:23Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 8 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-c.json 50 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-b.json 32
+2026-10-11T20:06:25Z END pid=93037 exit=0        62.52 real        60.86 user         0.25 sys             33587200  maximum resident set size 
+SLOT-IDLE 2026-10-11T20:06:25Z
+2026-10-11T20:06:25Z PRE-RUN: script sha256 87824227daebf1afabe9a02ae8fce8fcc3b836b60ed76f97a23c1861a4f5db94; wrappercontrol-R8.json present sha256 1a86acc5b7e000b7e11557cdfa3f61d7375cf30e051595043acd94147d22aa6d
+2026-10-11T20:06:25Z CENSUS-BEFORE :: 
+SLOT-BUSY 2026-10-11T20:06:25Z
+2026-10-11T20:06:25Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py 1 8 4000 target reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-d.json 68 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-c.json 50
+2026-10-11T20:07:38Z END pid=94206 exit=0        72.68 real        70.97 user         0.28 sys             33619968  maximum resident set size 
+SLOT-IDLE 2026-10-11T20:07:38Z
+2026-10-11T20:08:15Z RERUN CHAIN DONE: R8p-a (PID 91905, 35.21 s), R8p-b (92458, 68.35 s), R8p-c (93037, 62.52 s), R8p-d (94206, 72.68 s), all exit 0, all under script v4 unchanged, all after the wrapper control. Next: comparison script (strings only)
+2026-10-11T20:08:15Z CENSUS-BEFORE :: 95124:0;95937:0;
+SLOT-BUSY 2026-10-11T20:08:15Z
+2026-10-11T20:08:15Z START cwd=/Users/markmorris/vibe/architrino :: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-compare.py
+2026-10-11T20:08:15Z END pid=96465 exit=0         0.04 real         0.03 user         0.00 sys             20447232  maximum resident set size 
+SLOT-IDLE 2026-10-11T20:08:15Z
+2026-10-11T20:09:12Z REPORT stageB with section 9 (rerun chain, full-uncertainty brackets, corrections) saved sha256 6a105a123ff2e9327e235d9a2824661f22181d3376678413bedde1b04107eabb

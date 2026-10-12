@@ -1,0 +1,33 @@
+PID 87219
+[{"name": "(K1) regression: frozen late-feedback slice s3d reproduces s", "pass": true}, {"name": "(K2) chain continuity: every record join in exact end/resume", "pass": true}, {"name": "(K3) known: a delayed box straddling the b3 / late-feedback ", "pass": true}, {"name": "(K4) known: own unlike residual at T* negative at the end of", "pass": true}, {"name": "(W1) negative: a delayed box beyond covered history (2.8067 ", "pass": true}, {"name": "(W2) negative: the like residual computed with the unlike ch", "pass": true}]
+step 145 t_end 3.31668470 q 0.560174 qdot 0.341048 qdd [0.090382,0.097784] lam_end [-0.0499516,-0.0486653] nega rng nega dlam [-0.05423,-0.04682] nega | rhoL 0.2734743 posi rhoA posi rhoU(1.87/1.98/2.08) pos/pos/pos | srcU records:lf#39,lf#40,lf srcL records:w17#16,w17#17 srcA records:wind | tan 0.06667/0.01980/0.00584 rad -0.10062/0.057765/-0.02492 | cont True/True
+step 146 t_end 3.32668470 q 0.563589 qdot 0.341973 qdd [0.089845,0.097309] lam_end [-0.0504766,-0.0491681] nega rng nega dlam [-0.05444,-0.04696] nega | rhoL 0.2824111 posi rhoA posi rhoU(1.87/1.98/2.08) pos/pos/pos | srcU records:lf#40,lf#41,lf srcL records:w17#17,w17#18 srcA records:w16# | tan 0.06629/0.01965/0.00587 rad -0.10072/0.057733/-0.02492 | cont True/True
+step 147 t_end 3.33668470 q 0.567013 qdot 0.342895 qdd [0.089517,0.096286] lam_end [-0.0508661,-0.0497605] nega rng nega dlam [-0.05414,-0.04751] nega | rhoL 0.2913485 posi rhoA posi rhoU(1.87/1.98/2.08) pos/pos/pos | srcU records:lf#42,lf#43 srcL records:w17#18,w17#19 srcA records:w16# | tan 0.06611/0.01949/0.00590 rad -0.10073/0.057702/-0.02491 | cont True/True
+step 148 t_end 3.34668470 q 0.570447 qdot 0.343812 qdd [0.088955,0.095776] lam_end [-0.0513897,-0.0502685] nega rng nega dlam [-0.05433,-0.04763] nega | rhoL 0.3002865 posi rhoA posi rhoU(1.87/1.98/2.08) pos/pos/pos | srcU records:lf#43,lf#44 srcL records:w17#19,w17#20 srcA records:w16# | tan 0.06570/0.01933/0.00592 rad -0.10083/0.057671/-0.02491 | cont True/True
+step 149 t_end 3.35668470 q 0.573889 qdot 0.344723 qdd [0.088381,0.095254] lam_end [-0.0519147,-0.0507777] nega rng nega dlam [-0.05451,-0.04776] nega | rhoL 0.3092252 posi rhoA posi rhoU(1.87/1.98/2.08) pos/pos/pos | srcU records:lf#44,lf#45 srcL records:w17#20,w17#21 srcA records:w16# | tan 0.06527/0.01917/0.00595 rad -0.10092/0.057641/-0.02491 | cont True/True
+step 150 t_end 3.36668470 q 0.577341 qdot 0.345629 qdd [0.087784,0.094801] lam_end [-0.0524686,-0.0512739] nega rng nega dlam [-0.05476,-0.04783] nega | rhoL 0.3181647 posi rhoA posi rhoU(1.87/1.98/2.08) pos/pos/pos | srcU records:lf#45,lf#46 srcL records:w17#20,w17#21, srcA records:w16# | tan 0.06484/0.01900/0.00597 rad -0.10101/0.057598/-0.02490 | cont True/True
+step 151 t_end 3.37668470 q 0.580802 qdot 0.346528 qdd [0.086639,0.094482] lam_end [-0.0530881,-0.0516498] nega rng nega dlam [-0.05537,-0.04744] nega | rhoL 0.3271051 posi rhoA posi rhoU(1.87/1.98/2.08) pos/pos/pos | srcU records:lf#46,lf#47,lf srcL records:w17#21,w17#22, srcA records:w16# | tan 0.06385/0.01885/0.00600 rad -0.10124/0.057569/-0.02490 | cont True/True
+step 152 t_end 3.38668470 q 0.584272 qdot 0.347417 qdd [0.086105,0.093911] lam_end [-0.0536055,-0.0521864] nega rng nega dlam [-0.05549,-0.04761] nega | rhoL 0.3360462 posi rhoA posi rhoU(1.87/1.98/2.08) pos/pos/pos | srcU records:lf#47,lf#48,lf srcL records:w17#22,w17#23 srcA records:w16# | tan 0.06338/0.01877/0.00602 rad -0.10132/0.057568/-0.02490 | cont True/True
+step 153 t_end 3.39668470 q 0.587750 qdot 0.348302 qdd [0.085687,0.092774] lam_end [-0.0540028,-0.0527927] nega rng nega dlam [-0.05513,-0.04814] nega | rhoL 0.3449883 posi rhoA posi rhoU(1.87/1.98/2.08) pos/pos/pos | srcU records:lf#49,lf#50 srcL records:w17#23,w17#24 srcA records:w16# | tan 0.06312/0.01861/0.00605 rad -0.10131/0.057540/-0.02490 | cont True/True
+step 154 t_end 3.40668470 q 0.591238 qdot 0.349180 qdd [0.085044,0.092183] lam_end [-0.0545330,-0.0533062] nega rng nega dlam [-0.05529,-0.04824] nega | rhoL 0.3539313 posi rhoA posi rhoU(1.87/1.98/2.08) pos/pos/pos | srcU records:lf#50,lf#51 srcL records:w17#24,w17#25 srcA records:w16# | tan 0.06262/0.01845/0.00608 rad -0.10138/0.057513/-0.02489 | cont True/True
+{"like_crossing_Tstar": {"crossed": false, "last_negative_step": null, "first_positive_step": 145}, "antipode_crossing_Tstar": {"crossed": false, "last_negative_step": null, "first_positive_step": 145}, "unlike_crossing_1.8667": {"crossed": false, "last_negative_step": null, "first_positive_step": 145}, "unlike_crossing_1.9767": {"crossed": false, "last_negative_step": null, "first_positive_step": 145}, "unlike_crossing_2.0767": {"crossed": false, "last_negative_step": null, "first_positive_step": 145}}
+{"n": 10, "lambda_end_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "lambda_range_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "dlambda_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "qddot_signs": ["positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive"], "zero_brackets": [], "all_dlambda_negative": true, "all_qddot_positive": true, "steps_using_records": [145, 146, 147, 148, 149, 150, 151, 152, 153, 154], "refused": [], "reached_time": ["3.406684593623649597167969", "3.406684709182828044891357"], "stop_reason": "plan exhausted (step 154 certified)"}
+wall 0.12006020545959473
+        0.32 real         0.31 user         0.00 sys
+            27623424  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2692  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  41  involuntary context switches
+          5523086909  instructions retired
+          1227810778  cycles elapsed
+            19972600  peak memory footprint

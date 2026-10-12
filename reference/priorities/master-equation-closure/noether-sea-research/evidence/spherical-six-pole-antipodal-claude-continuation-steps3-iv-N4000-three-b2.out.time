@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv.py", line 342, in <module>
+    out["controls"].append({"name": "(5) residual-reception bracket: known synthetic zero at s* = 0.004 is enclosed (width < 1e-9); same-sign step gives no certified-negative end; negative-at-start step is refused", "pass": ok5 and ok5n and ok5w, "known": b5, "same_sign": b5n, "wrong_order": b5w})
+                                                                                                                                                                                                                                                 ^^^^
+NameError: name 'ok5w' is not defined. Did you mean: 'ok5'?
+       15.57 real        15.34 user         0.06 sys
+            34242560  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                3101  page reclaims
+                  51  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   8  voluntary context switches
+                5849  involuntary context switches
+        248037665335  instructions retired
+         53729116313  cycles elapsed
+            26395104  peak memory footprint

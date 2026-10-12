@@ -1,0 +1,12 @@
+pid 21395
+T* [1.366622279933, 1.366740606296]; frozen records 144 to t = 2.8066847091; joins exact True; setup+controls 9.5 s
+controls: FAIL
+   pass (0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on th
+   pass (E) expanded-domain box q in [0.39, 0.62], q' in [0, 0.31], v' in [0, 0.30] (144 cells): unlike/like N > 0 and M > 0, ev
+   pass (2) reconciliation at the accepted step-94 state: g F(q) (five-image field) intersects the fixed-form class tangent sum 
+   pass (3) record lookup: window case; frozen end strings contained at record ends in every family; continuity and two-part hul
+   pass (4) negative: like and unlike terms at the step-94 state with the wrong sign of the velocity term in D_t are disjoint fr
+   FAIL (5) delay-root bracket: frozen narrow vs wide (+-0.15) agree to 1e-15 at the b3 step-21 state; +-0.12 vs +-0.15 agree to
+   pass (1) restart regression (same-code, not independent): the step from the frozen step-93 strings intersects the frozen step
+   pass (6) self-append: after certifying the control step (from step 93), appending it through the checked path, a lookup insid
+   pass (7) restart wrapper: default and explicit selection of step 94 reproduce the exact frozen strings with t0 an interval; w

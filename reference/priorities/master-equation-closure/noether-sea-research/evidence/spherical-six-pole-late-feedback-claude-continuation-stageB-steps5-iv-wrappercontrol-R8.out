@@ -1,0 +1,4 @@
+pid 84234
+quick controls: ALL PASS
+g = 1/8: T* in [1.355542060597, 1.355542461449], q* [0.1151627720, 0.1151630247], qdot* [0.1704516440, 0.1704518331]; setup 12.1 s
+wrapper controls: ALL PASS {'name': '(W) restart wrapper: (W1) no-resume start equals the window state at T*; (W2) resume from the given certified record reproduces its exact end strings; negatives: wrong g, wrong window, nonexistent step and uncertified step refused', 'pass': True, 'W1': True, 'W2': True, 'W2_t0': ['1.495542060597858190536499', '1.495542461449684119224548'], 'W3': [True, 'g mismatch: 1/9 vs 1/8'], 'W4': [True, 'window mismatch (T* strings differ)'], 'W5': [True, 'requested step 999 not in the record', True, 'requested step 14 is not certified']}

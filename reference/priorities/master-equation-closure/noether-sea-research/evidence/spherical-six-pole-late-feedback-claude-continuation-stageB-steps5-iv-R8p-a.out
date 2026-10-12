@@ -1,0 +1,18 @@
+pid 91905
+quick controls: ALL PASS
+g = 1/8: T* in [1.355542060597, 1.355542461449], q* [0.1151627720, 0.1151630247], qdot* [0.1704516440, 0.1704518331]; setup 12.1 s
+step 1: t_end 1.36554246; q [0.11687366, 0.11687392]; qdot [0.17172691, 0.17172764]; likeres 0.105820 pos; antires 0.631043 pos; a_rad_end [-0.038733, -0.038622] lambda_end [0.0091320, 0.0092431] positive; sU up 0.01091; 13 s
+step 2: t_end 1.37554246; q [0.11859731, 0.11859758]; qdot [0.17300264, 0.17300479]; likeres 0.096642 pos; antires 0.620942 pos; a_rad_end [-0.038853, -0.038853] lambda_end [0.0089224, 0.0089232] positive; sU up 0.02182; 14 s
+step 3: t_end 1.38554246; q [0.12033372, 0.12033401]; qdot [0.17427981, 0.17428250]; likeres 0.087470 pos; antires 0.610838 pos; a_rad_end [-0.039025, -0.039025] lambda_end [0.0086507, 0.0086517] positive; sU up 0.03273; 16 s
+step 4: t_end 1.39554246; q [0.12208291, 0.12208323]; qdot [0.17555794, 0.17556119]; likeres 0.078303 pos; antires 0.600732 pos; a_rad_end [-0.039198, -0.039198] lambda_end [0.0083769, 0.0083781] positive; sU up 0.04366; 17 s
+step 5: t_end 1.40554246; q [0.12384488, 0.12384524]; qdot [0.17683705, 0.17684086]; likeres 0.069142 pos; antires 0.590624 pos; a_rad_end [-0.039373, -0.039373] lambda_end [0.0081009, 0.0081023] positive; sU up 0.05461; 19 s
+step 6: t_end 1.41554246; q [0.12561965, 0.12562005]; qdot [0.17811715, 0.17812152]; likeres 0.059986 pos; antires 0.580513 pos; a_rad_end [-0.039550, -0.039550] lambda_end [0.0078228, 0.0078244] positive; sU up 0.06557; 20 s
+step 7: t_end 1.42554246; q [0.12740723, 0.12740767]; qdot [0.17939825, 0.17940319]; likeres 0.050836 pos; antires 0.570400 pos; a_rad_end [-0.039728, -0.039728] lambda_end [0.0075426, 0.0075444] positive; sU up 0.07655; 22 s
+step 8: t_end 1.43554246; q [0.12920762, 0.12920812]; qdot [0.18068036, 0.18068588]; likeres 0.041691 pos; antires 0.560285 pos; a_rad_end [-0.039907, -0.039907] lambda_end [0.0072602, 0.0072622] positive; sU up 0.08754; 23 s
+step 9: t_end 1.44554246; q [0.13102084, 0.13102139]; qdot [0.18196349, 0.18196960]; likeres 0.032551 pos; antires 0.550167 pos; a_rad_end [-0.040088, -0.040088] lambda_end [0.0069756, 0.0069779] positive; sU up 0.09854; 25 s
+step 10: t_end 1.45554246; q [0.13284690, 0.13284751]; qdot [0.18324766, 0.18325436]; likeres 0.023417 pos; antires 0.540047 pos; a_rad_end [-0.040271, -0.040271] lambda_end [0.0066889, 0.0066914] positive; sU up 0.10956; 28 s
+step 11: t_end 1.46554246; q [0.13468580, 0.13468649]; qdot [0.18453287, 0.18454017]; likeres 0.014288 pos; antires 0.529924 pos; a_rad_end [-0.040455, -0.040455] lambda_end [0.0064000, 0.0064027] positive; sU up 0.12059; 29 s
+step 12: t_end 1.47554246; q [0.13653756, 0.13653832]; qdot [0.18581914, 0.18582705]; likeres 0.005164 pos; antires 0.519798 pos; a_rad_end [-0.040640, -0.040640] lambda_end [0.0061089, 0.0061119] positive; sU up 0.13164; 31 s
+step 13: t_end 1.48554246; q [0.13840219, 0.13840303]; qdot [0.18710647, 0.18711500]; likeres -0.00395 neg; antires 0.509670 pos; a_rad_end [-0.040884, -0.040827] lambda_end [0.0058155, 0.0058756] positive; sU up 0.14270; 33 s
+step 14: t_end 1.49554246; q [0.14027970, 0.14028062]; qdot [0.18839452, 0.18840392]; likeres -0.01306 neg; antires 0.499539 pos; a_rad_end [-0.041106, -0.041016] lambda_end [0.0055201, 0.0056139] positive; sU up 0.15377; 35 s
+reached t in [1.495542060597, 1.495542461449]; stop: plan exhausted (step 14 certified); wall 35.2 s

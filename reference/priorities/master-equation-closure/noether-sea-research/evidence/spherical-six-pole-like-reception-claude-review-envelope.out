@@ -1,0 +1,9 @@
+PID 20145
+controls K True ['2.56438366643744034061470132519', '2.57124298187866294209769076688'] S True W True
+like_Tstar t in 3.01022773338561 3.01105256450690 q 0.459287 0.461710 qdot 0.301106 0.321723 B 0.60051 1.59846 box ok True
+unlike_exit_antipodal_records t in 3.15585771055078 3.15844005822080 q 0.503455 0.511540 qdot 0.308020 0.349128 B 0.54807 1.70779 box ok True
+antipode_Tstar t in 3.31038039046017 3.31442772295518 q 0.550532 0.570850 qdot 0.311831 0.386687 B 0.45559 1.92284 box ok True
+envelope at t = 3.0 q 0.455940 0.458770 qdot 0.297690 0.326227
+envelope at t = 3.2 q 0.516389 0.527861 qdot 0.306802 0.364684
+envelope at t = 3.4 q 0.578661 0.604644 qdot 0.315914 0.403141
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-review-envelope-output.json

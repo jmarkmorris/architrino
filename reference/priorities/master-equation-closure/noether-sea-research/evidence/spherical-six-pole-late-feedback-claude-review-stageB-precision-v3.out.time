@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-stageB-precision.py", line 26, in <module>
+    okK3 = bool(mp.mpf(bnd.a) <= mp.mpf(exact.a) and mp.mpf(exact.b) <= mp.mpf(bnd.b)); out["controls"]["K3_toy_linear_bound_contains_exact"] = {"exact": [str(mp.mpf(exact.a)), str(mp.mpf(exact.b))], "bound": [str(mp.mpf(bnd.a)), str(mp.mpf(bnd.b))], "pass": okK3}
+                       ^^^
+NameError: name 'bnd' is not defined
+        0.05 real         0.03 user         0.00 sys
+            21741568  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2318  page reclaims
+                  58  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  72  voluntary context switches
+                  29  involuntary context switches
+           407147981  instructions retired
+           150130228  cycles elapsed
+            13943264  peak memory footprint

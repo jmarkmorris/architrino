@@ -1,0 +1,476 @@
+{
+ "schema": "validated_far_step_cpp_candidate_check/v2",
+ "all_passed": true,
+ "rows": [
+  {
+   "check": "K0 SHA-256 of abc",
+   "passed": true,
+   "detail": "standard test vector"
+  },
+  {
+   "check": "K0 exact token of the binary64 nearest 0.1",
+   "passed": true,
+   "detail": "0.1000000000000000055511151231257827021181583404541015625"
+  },
+  {
+   "check": "K0 exact decimal sum",
+   "passed": true,
+   "detail": "10000000000.0002987"
+  },
+  {
+   "check": "K1 static step certified",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "K1 whole-step coverage holds exactly",
+   "passed": true,
+   "detail": "smallest exact slack 2.470328229e-323"
+  },
+  {
+   "check": "K1 receiver tube contains the closed-form bracket",
+   "passed": true,
+   "detail": "velocity [-7.812500000e-08, -7.812499999e-08]"
+  },
+  {
+   "check": "K1 source tube contains the closed-form bracket",
+   "passed": true,
+   "detail": "velocity [7.812499999e-08, 7.812500000e-08]"
+  },
+  {
+   "check": "K1 history layer's end interval contains the rebuilt tube",
+   "passed": true,
+   "detail": "published segment evaluated by the solver's history type"
+  },
+  {
+   "check": "K2 three-path acceleration boxes contain the exact initial values",
+   "passed": true,
+   "detail": "receiver -1.735537190e-06; plus 1.010000000e-03; minus -1.008264463e-03"
+  },
+  {
+   "check": "C0-exact-histories-disabled, traversal False: totals contain the exact initial values",
+   "passed": true,
+   "detail": "enclosed groups 0"
+  },
+  {
+   "check": "C0-exact-histories-validated-policy, traversal False: totals contain the exact initial values",
+   "passed": true,
+   "detail": "enclosed groups 1"
+  },
+  {
+   "check": "C0-exact-histories-disabled, traversal True: totals contain the exact initial values",
+   "passed": true,
+   "detail": "enclosed groups 0"
+  },
+  {
+   "check": "C0-exact-histories-validated-policy, traversal True: totals contain the exact initial values",
+   "passed": true,
+   "detail": "enclosed groups 1"
+  },
+  {
+   "check": "K1 second step inherits and does not shrink radii",
+   "passed": true,
+   "detail": "velocity radius 4.471e-18 then 1.788e-17"
+  },
+  {
+   "check": "K2-three-path: C++ and Python tubes intersect at every step",
+   "passed": true,
+   "detail": "2 steps; largest C++ to Python velocity radius ratio 1.112"
+  },
+  {
+   "check": "T1 control step 1: growth is recorded in the local-error form",
+   "passed": true,
+   "detail": "position 5.634e-12, velocity 1.442e-09"
+  },
+  {
+   "check": "T1 control step 1: certified within 1e-8 budgets and contains the true bracket",
+   "passed": true,
+   "detail": "growth position 5.634e-12, velocity 1.442e-09; velocity tube [-7.818294925e-08, -7.529818736e-08]"
+  },
+  {
+   "check": "T1 control step 2: growth is recorded in the local-error form",
+   "passed": true,
+   "detail": "position 1.650e-11, velocity 1.338e-09"
+  },
+  {
+   "check": "T1 control step 2: certified within 1e-8 budgets and contains the true bracket",
+   "passed": true,
+   "detail": "growth position 1.650e-11, velocity 1.338e-09; velocity tube [-1.537173540e-07, -1.481563930e-07]"
+  },
+  {
+   "check": "T4 adversarial step without a budget contains the frozen bracket",
+   "passed": true,
+   "detail": "velocity tube [-5.285348924e-05, -1.148629120e-05]"
+  },
+  {
+   "check": "T4 adversarial step under budgets declines",
+   "passed": true,
+   "detail": "VFS-BUDGET-01"
+  },
+  {
+   "check": "T3 long run: step 512 certified",
+   "passed": true,
+   "detail": "step 512 certified"
+  },
+  {
+   "check": "T3 end tubes contain the frozen true brackets",
+   "passed": true,
+   "detail": "velocity [-1.979445531e-05, -1.941684088e-05], half-width 1.888072156e-07; position half-width 1.528371787e-07"
+  },
+  {
+   "check": "T3 end velocity tube is disjoint from the aliased interval",
+   "passed": true,
+   "detail": "separation 2.060047147e-07"
+  },
+  {
+   "check": "every published segment covers the theorem's sets over the whole step, exactly",
+   "passed": true,
+   "detail": "23 certified steps; smallest exact slack 1.976262583e-323"
+  },
+  {
+   "check": "the producer's own certified slack is nonnegative everywhere",
+   "passed": true,
+   "detail": "lower bounds of Bernstein coefficients"
+  },
+  {
+   "check": "every end token is the exact sum of start and step",
+   "passed": true,
+   "detail": "23 certified steps"
+  },
+  {
+   "check": "the duration cover is at least the exact step",
+   "passed": true,
+   "detail": "every duration-dependent bound uses the cover"
+  },
+  {
+   "check": "reviewer's late-time case ends at the exact token",
+   "passed": true,
+   "detail": "end 10000000000.0002987, cover 3.032684326e-04"
+  },
+  {
+   "check": "every certified step carries issued evidence for its whole population",
+   "passed": true,
+   "detail": "coupling, step and members"
+  },
+  {
+   "check": "every declined step carries no evidence and no ledger entry",
+   "passed": true,
+   "detail": "nothing issued"
+  },
+  {
+   "check": "each step's evidence is generated from the previous step's published content",
+   "passed": true,
+   "detail": "digest chain across steps"
+  },
+  {
+   "check": "N-P2-exponent-start-token",
+   "passed": true,
+   "detail": "VFS-H0-01: step start and length must be plain decimal tokens"
+  },
+  {
+   "check": "N-P2-history-does-not-end-at-start",
+   "passed": true,
+   "detail": "VFS-H0-01: a history does not end exactly at the step start"
+  },
+  {
+   "check": "N-evidence-missing",
+   "passed": true,
+   "detail": "VFS-H0-01: histories declare radii but no evidence was supplied"
+  },
+  {
+   "check": "N-evidence-of-other-population",
+   "passed": true,
+   "detail": "VFS-H0-01: evidence does not bind path receiver: identifier, charge or history content differs"
+  },
+  {
+   "check": "N-evidence-stale-previous-step",
+   "passed": true,
+   "detail": "VFS-H0-01: evidence does not bind path receiver: identifier, charge or history content differs"
+  },
+  {
+   "check": "N-R1-unequal-starts",
+   "passed": true,
+   "detail": "VFS-H0-01: retained histories do not start at one common time"
+  },
+  {
+   "check": "N-R2-arch-after-genuine-step",
+   "passed": true,
+   "detail": "VFS-H1-01: retained past is not below field speed"
+  },
+  {
+   "check": "N-R2-arch-budgeted",
+   "passed": true,
+   "detail": "VFS-H1-01: retained past is not below field speed"
+  },
+  {
+   "check": "N-R3-altered-ancestor-joins-intact",
+   "passed": true,
+   "detail": "VFS-H0-01: evidence does not bind path source: identifier, charge or history content differs"
+  },
+  {
+   "check": "N-transfer-between-populations",
+   "passed": true,
+   "detail": "VFS-H0-01: evidence does not bind path source: identifier, charge or history content differs"
+  },
+  {
+   "check": "N-changed-coupling",
+   "passed": true,
+   "detail": "VFS-H0-01: generated history was published under a different coupling"
+  },
+  {
+   "check": "N-changed-charge",
+   "passed": true,
+   "detail": "VFS-H0-01: evidence does not bind path source: identifier, charge or history content differs"
+  },
+  {
+   "check": "N-renamed-path",
+   "passed": true,
+   "detail": "VFS-H0-01: evidence does not bind path other: identifier, charge or history content differs"
+  },
+  {
+   "check": "N-H2-step-longer-than-separation",
+   "passed": true,
+   "detail": "VFS-H2-01: step boxes are not farther apart than the step"
+  },
+  {
+   "check": "N-H3-root-on-boundary",
+   "passed": true,
+   "detail": "VFS-H3-01: lower sign is neither uniformly present nor absent"
+  },
+  {
+   "check": "N-fast-affine-budgeted",
+   "passed": true,
+   "detail": "VFS-BUDGET-01: radius growth exceeds the declared increment budget"
+  },
+  {
+   "check": "N-H4-crossing-near-root",
+   "passed": true,
+   "detail": "VFS-H4-01: distance floor is not positive"
+  },
+  {
+   "check": "N-H5-one-pass",
+   "passed": true,
+   "detail": "VFS-H5-01: no a priori enclosure was found"
+  },
+  {
+   "check": "N-BUDGET-01-wide-step",
+   "passed": true,
+   "detail": "VFS-BUDGET-01: radius growth exceeds the declared increment budget"
+  },
+  {
+   "check": "N-BUDGET-02-total",
+   "passed": true,
+   "detail": "VFS-BUDGET-02: total published radius exceeds the declared budget"
+  },
+  {
+   "check": "N-R3-reviewer-source-at-11",
+   "passed": true,
+   "detail": "refused-by-history-layer: retained-history position is discontinuous"
+  },
+  {
+   "check": "N-append-on-different-base",
+   "passed": true,
+   "detail": "refused: certificate was issued for a different preceding history"
+  },
+  {
+   "check": "N-append-declined",
+   "passed": true,
+   "detail": "refused: a declined step has no continuation"
+  },
+  {
+   "check": "N-append-altered-segment",
+   "passed": true,
+   "detail": "refused: certificate's published segments were altered"
+  },
+  {
+   "check": "N-append-forged-status-no-evidence",
+   "passed": true,
+   "detail": "refused: certificate carries no producer evidence"
+  },
+  {
+   "check": "N-append-borrowed-evidence-other-segments",
+   "passed": true,
+   "detail": "refused: certificate's published segments were altered"
+  },
+  {
+   "check": "P-genuine-second-step",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "P-same-population-control",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "P-evidence-current",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "P2-exact-end-token",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "P-total-budget-first",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "P-absent-equal-shallow-starts",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "reviewer's fast affine source, no budget: certified and the acceleration box contains -199/10000000",
+   "passed": true,
+   "detail": "box [-0.00026012298793368115, -1.5636908851384143e-06]"
+  },
+  {
+   "check": "absent pairs give exactly zero acceleration",
+   "passed": true,
+   "detail": "finite retained domain"
+  },
+  {
+   "check": "G1-static-large-steps: four steps certified",
+   "passed": true,
+   "detail": "h = 4"
+  },
+  {
+   "check": "G1-static-large-steps: at step 4 every root window lies on generated segments",
+   "passed": true,
+   "detail": "receiver [1.9985, 5.9993]; source [1.9985, 5.9993]"
+  },
+  {
+   "check": "G2-zero-coupling-straight-line: four steps certified",
+   "passed": true,
+   "detail": "h = 4"
+  },
+  {
+   "check": "G2-zero-coupling-straight-line: at step 4 every root window lies on generated segments",
+   "passed": true,
+   "detail": "receiver [1.4141, 5.8586]; source [0.3500, 4.8500]"
+  },
+  {
+   "check": "G1-static-large-steps: C++ and Python tubes intersect at every step",
+   "passed": true,
+   "detail": "4 steps; largest C++ to Python velocity radius ratio 1.111"
+  },
+  {
+   "check": "G2 step 1: tubes contain the exact straight lines",
+   "passed": true,
+   "detail": "source position radius 7.271960811e-15"
+  },
+  {
+   "check": "G2 step 2: tubes contain the exact straight lines",
+   "passed": true,
+   "detail": "source position radius 1.276756478e-14"
+  },
+  {
+   "check": "G2 step 3: tubes contain the exact straight lines",
+   "passed": true,
+   "detail": "source position radius 1.826316876e-14"
+  },
+  {
+   "check": "G2 step 4: tubes contain the exact straight lines",
+   "passed": true,
+   "detail": "source position radius 2.375877273e-14"
+  },
+  {
+   "check": "traversal False: one group certified from validated tubes",
+   "passed": true,
+   "detail": "radius 2.010890e-06, declared member radii position 9.920e-14, velocity 7.231e-12, join term 9.656e-20"
+  },
+  {
+   "check": "traversal False: two identities, one interval",
+   "passed": true,
+   "detail": "exact 7 -> 6, enclosed 2 -> 3"
+  },
+  {
+   "check": "traversal False: receiver width equals the one emitted width",
+   "passed": true,
+   "detail": "total width 4.021779063e-06, emitted 4.021779063e-06"
+  },
+  {
+   "check": "traversal False: grouped and disabled totals intersect for every receiver and axis",
+   "passed": true,
+   "detail": "receiver z grouped [-2.010889532e-06, 2.010889532e-06]"
+  },
+  {
+   "check": "traversal False: exact-only policy declines tubes and equals the disabled totals",
+   "passed": true,
+   "detail": "MPE-HISTORY-01, atomic exact fallback"
+  },
+  {
+   "check": "traversal True: one group certified from validated tubes",
+   "passed": true,
+   "detail": "radius 2.010890e-06, declared member radii position 9.920e-14, velocity 7.231e-12, join term 9.656e-20"
+  },
+  {
+   "check": "traversal True: two identities, one interval",
+   "passed": true,
+   "detail": "exact 7 -> 6, enclosed 2 -> 3"
+  },
+  {
+   "check": "traversal True: receiver width equals the one emitted width",
+   "passed": true,
+   "detail": "total width 4.021779063e-06, emitted 4.021779063e-06"
+  },
+  {
+   "check": "traversal True: grouped and disabled totals intersect for every receiver and axis",
+   "passed": true,
+   "detail": "receiver z grouped [-2.010889532e-06, 2.010889532e-06]"
+  },
+  {
+   "check": "traversal True: exact-only policy declines tubes and equals the disabled totals",
+   "passed": true,
+   "detail": "MPE-HISTORY-01, atomic exact fallback"
+  },
+  {
+   "check": "both scheduling routes give identical totals and groups",
+   "passed": true,
+   "detail": "certified_far_field_then_exact_pair_batch and certified_traversal_then_far_field_then_exact_pair_batch"
+  },
+  {
+   "check": "traversal False: grouped receiver total contains the reviewer's independent true bracket at t = 1/32",
+   "passed": true,
+   "detail": "bracket [-1.735537190e-06, -1.735537185e-06]"
+  },
+  {
+   "check": "traversal True: grouped receiver total contains the reviewer's independent true bracket at t = 1/32",
+   "passed": true,
+   "detail": "bracket [-1.735537190e-06, -1.735537185e-06]"
+  },
+  {
+   "check": "N-consumer-no-evidence",
+   "passed": true,
+   "detail": "no group; exact fallback; totals identical to the disabled route"
+  },
+  {
+   "check": "N-consumer-stale-evidence",
+   "passed": true,
+   "detail": "no group; exact fallback; totals identical to the disabled route"
+  },
+  {
+   "check": "N-consumer-evidence-of-other-population",
+   "passed": true,
+   "detail": "no group; exact fallback; totals identical to the disabled route"
+  },
+  {
+   "check": "N-consumer-changed-coupling",
+   "passed": true,
+   "detail": "no group; exact fallback"
+  },
+  {
+   "check": "N-consumer-changed-receiver-charge",
+   "passed": true,
+   "detail": "no group; exact fallback"
+  },
+  {
+   "check": "N-consumer-altered-member-radius",
+   "passed": true,
+   "detail": "no group; exact fallback; totals identical to the disabled route"
+  }
+ ]
+}

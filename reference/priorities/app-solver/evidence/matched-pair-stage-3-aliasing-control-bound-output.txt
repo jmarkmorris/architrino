@@ -1,0 +1,35 @@
+Known checks passed before targets: closed-form Riemann bracket; static I = 1/R^2; static weighted integral = 2/R^2.
+
+.local-data/eom-matched-pair/2026-10-11/aliasing-control/final/known-static-evolve-rt1e-7.jsonl
+  amplitude 0 coupling 0.001 step 2 status completed accepted 1
+  I in [1.000000000000e-02, 1.000000000000e-02]; L = 2.000000000000e-03
+  receiver-motion corrections: velocity 2.666666666667e-11, position 1.333333333333e-11
+  true end velocity in [-2.000002666667e-05, -1.999997333333e-05]
+  published end velocity [-1.999998000004e-05, -1.999996000012e-05], half-width 9.999961001609e-12
+  VELOCITY: published interval intersects the true bracket
+  true end position in [-2.000126333333e-05, -1.999873666667e-05]
+  published end position [-1.999999333332e-05, -1.999997333341e-05], half-width 9.999952682051e-12
+  POSITION: published interval intersects the true bracket
+
+.local-data/eom-matched-pair/2026-10-11/aliasing-control/final/target-A0.2-k0.001-evolve-rt1e-7.jsonl
+  amplitude 0.2 coupling 0.001 step 2 status completed accepted 1
+  I in [9.804312410203e-03, 9.804409488250e-03]; L = 7.625000000000e-01
+  receiver-motion corrections: velocity 2.541666666667e-08, position 1.270833333333e-08
+  true end velocity in [-1.963423564317e-05, -1.958320815374e-05]
+  published end velocity [-2.000092009421e-05, -2.000046002588e-05], half-width 2.300341650002e-10
+  VELOCITY: published interval EXCLUDES the true value; separation >= 3.662243827162e-07 = 1592.0 published half-widths
+  true end position in [-1.768122117492e-05, -1.765219809314e-05]
+  published end position [-2.000061339614e-05, -2.000015331899e-05], half-width 2.300385743437e-10
+  POSITION: published interval EXCLUDES the true value; separation >= 2.318932144075e-06 = 10080.6 published half-widths
+
+.local-data/eom-matched-pair/2026-10-11/aliasing-control/final/target-A0.2-k0.001-evolve-step4-rt1e-7.jsonl
+  amplitude 0.2 coupling 0.001 step 4 status completed accepted 1
+  I in [9.804312410203e-03, 9.804409488250e-03]; L = 7.625000000000e-01
+  receiver-motion corrections: velocity 2.033333333333e-07, position 2.033333333333e-07
+  true end velocity in [-3.942097128633e-05, -3.901391630748e-05]
+  published end velocity [-4.000736301558e-05, -4.000368082863e-05], half-width 1.841093472647e-09
+  VELOCITY: published interval EXCLUDES the true value; separation >= 5.827095422988e-07 = 316.5 published half-widths
+
+.local-data/eom-matched-pair/2026-10-11/aliasing-control/final/target-A0.2-k0.001-evolve-step1-rt1e-7.jsonl
+  amplitude 0.2 coupling 0.001 step 1 status halted accepted 0
+  not completed; no published end state to compare

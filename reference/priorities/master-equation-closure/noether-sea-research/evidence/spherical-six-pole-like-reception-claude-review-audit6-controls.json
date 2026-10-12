@@ -1,0 +1,59 @@
+{
+ "controls": {
+  "K_known_frozen_s3b2_s3d": {
+   "pass": true,
+   "events_s3b2": [
+    {
+     "class": "unlike",
+     "boundary": "Tstar",
+     "steps": [
+      70,
+      71
+     ],
+     "t_lo": "2.566684593623649597167969",
+     "t_hi": "2.576684709182828044891357",
+     "s_end_before": [
+      "1.364317433117144893708839",
+      "1.364335338795864490589767"
+     ],
+     "s_end_after": [
+      "1.375573617369030106350516",
+      "1.377071746176688706829075"
+     ]
+    }
+   ],
+   "fails": [
+    0,
+    0
+   ],
+   "derivative_matches_stageA": true,
+   "events_s3d": []
+  },
+  "W2_message": "uncertified record offered to the table: w16 step 11",
+  "W1_corrupted_refused": true,
+  "W2_uncertified_table_refused": true,
+  "W3_shrunk_box_fails": true
+ },
+ "targets": {},
+ "record_table": {
+  "counts": {
+   "w16": 10,
+   "w17": 40,
+   "ant-a": 11,
+   "ant-b3": 10,
+   "lf-s1a2": 9,
+   "lf-s1b": 14,
+   "lf-s2a": 12,
+   "lf-s2b3": 8,
+   "lf-s3a": 5,
+   "lf-s3b2": 9,
+   "lf-s3c": 8,
+   "lf-s3d": 8
+  },
+  "total": 144,
+  "t_lo": "1.366684593623649597167969",
+  "t_hi": "2.806684709182828044891357",
+  "appended": [],
+  "total_with_appended": 144
+ }
+}

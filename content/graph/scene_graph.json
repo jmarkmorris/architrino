@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 608,
-      "edges": 1377,
-      "scenes": 391,
+      "nodes": 609,
+      "edges": 1378,
+      "scenes": 392,
       "markdownIndexes": 0,
       "markdownDocs": 200,
       "runtimeEdges": 476,
@@ -2471,6 +2471,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "surface",
+      "name": "Surface",
+      "path": "content/scenes/archie/surface.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -4147,6 +4153,15 @@
       "name": "Support Architrino Research",
       "path": "content/scenes/archie/support_architrino_research.json",
       "searchTarget": "content/scenes/archie/support_architrino_research.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/surface.json",
+      "nodeType": "scene",
+      "id": "surface",
+      "name": "Surface",
+      "path": "content/scenes/archie/surface.json",
+      "searchTarget": "content/scenes/archie/surface.json",
       "implicit": false
     },
     {
@@ -9172,7 +9187,7 @@
       "to": "scene:content/scenes/archie/equation_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[13]"
+      "field": "scene.children[14]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
@@ -9186,14 +9201,14 @@
       "to": "scene:content/scenes/archie/ideal_braid.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/lattice_lab.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
@@ -9207,14 +9222,21 @@
       "to": "scene:content/scenes/archie/photon.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[13]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/surface.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/topo.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",

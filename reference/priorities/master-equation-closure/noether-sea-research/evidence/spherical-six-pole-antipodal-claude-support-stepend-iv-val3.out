@@ -1,0 +1,25 @@
+PID 30381
+window built 1.5749669075012207
+[{"name": "(K) known: start of step 1: re-bracketed tau and D_t intersect the continuation's step-1 tau0/Dt0 (consistency, shared inputs) and the tight lambda_hat lies inside the outer step-1 enclosure of support-steps-iv-val3", "pass": true, "detail": {"unlike": {"tau_mine": ["1.317315756533384461766221", "1.317326236795159826282009"], "tau_cont": ["1.317315756533384461766221", "1.317326236795159826282009"], "Dt_mine": ["0.9746516239637604273701327", "0.9746631513425410063233378"], "Dt_cont": ["0.9746516239637604273701327", "0.9746631513425410063233378"], "intersect": true}, "like": {"tau_mine": ["1.501470231203674942004648", "1.501477168711439055926942"], "tau_cont": ["1.501470231203674942004648", "1.501477168711439055926942"], "Dt_mine": ["1.014797332691610338551129", "1.014807745563450959377653"], "Dt_cont": ["1.014797332691610338551129", "1.014807745563450959377653"], "intersect": true}}, "lambda_tight": ["0.001726683518154935265124969", "0.001736142768399823691869089"], "lambda_outer_step1": ["0.001316859557068794548586871", "0.001933716064504785037472624"]}, {"name": "(W) negative: unlike-class delay bracketed with the wrong (like) chord lies outside the record's unlike tau_range", "pass": true, "tau_wrong": ["1.501470231203674942004648", "1.501477168711439055926942"], "tau_range_record": ["1.316015908460805487773604", "1.317326236795159826282009"]}]
+step 7 end t 1.9366847091: lambda_hat tight [0.0002071369, 0.0002182845] positive; inside outer True; intersects continuation True; 4.6 s
+step 8 end t 1.9466847091: lambda_hat tight [-0.000015852, -0.000004632] negative; inside outer True; intersects continuation True; 5.9 s
+step 9 end t 1.9566847091: lambda_hat tight [-0.000240485, -0.000228963] negative; inside outer True; intersects continuation True; 7.2 s
+wall 7.194278001785278
+        7.23 real         7.08 user         0.04 sys
+            23953408  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2467  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   1  voluntary context switches
+                4411  involuntary context switches
+        122127862634  instructions retired
+         25360967790  cycles elapsed
+            16286176  peak memory footprint

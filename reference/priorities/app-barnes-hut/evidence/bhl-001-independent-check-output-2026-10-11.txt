@@ -1,0 +1,60 @@
+## 0. Known case: static source at distance 2 on the z axis, zero velocity
+K = (0, 0, 1/4)  expected (0, 0, 1/4)
+PASS  known case K = (0,0,1/4)
+PASS  grad_x D sign: moving source along +v raises D (numerator -(Xr-x).v > 0)
+
+## 1. Static control: receiver at origin, +eps at z = R + l/2, -eps at z = R - l/2, R = 10, l = 1/100
+PASS  static: both roots strictly interior to slab [-20, 0]
+PASS  static: exact difference equals closed form 2Rl/(R^2 - l^2/4)^2 in z and vanishes in x,y
+|pair| = 320000000/15999992000001 ≈ 0.00002000001000000375, radius B = 160000/7988005999 ≈ 0.000020030030025018763
+PASS  static: |pair contribution|^2 <= B^2
+unpaired absolute bound sum = 0.02000001500000625; pair radius / unpaired = 0.0010015007501250625
+PASS  static: two-slice admission 2B <= 2e-6 fails at d = 10 (expected; cutoff ~27)
+PASS  static: two-slice admission 2B <= 2e-6 holds at r- = 28
+
+## 2. Mixed membership: same static pair, slab [-R, 0] so only the nearer root is inside
+farther member: g(lo) = 1/200, g(hi) = 2001/200, present = false; nearer member: present = true
+PASS  mixed: membership test rejects the pair (one present, one absent, none ambiguous)
+PASS  mixed: retained single contribution exceeds the pair radius, so admitting it would be wrong
+
+## 3. Affine moving control: X±(S) = (±a, 0, ±u S), receiver (0,0,R), T_r = L, a^2 + R^2 = L^2, roots exactly S = 0
+PASS  affine: a^2 + R^2 = L^2 exactly
+PASS  affine: residuals vanish at S = 0 for both members
+K+ - K- = (-0.03998423917670503, 0, 0.20186103306983058)
+PASS  affine: exact difference equals the reviewed closed form
+hypotheses: r- = 999/1000, v+ = 1/10, nu_s = 9/10, l+ = 1061/25500, w+ = 1/5, a+ = 0; B = 13202620000000/37067574499821 ≈ 0.3561770679131907
+PASS  affine: |K+ - K-|^2 <= B^2
+PASS  affine: position-only radius fails to enclose (velocity dipole is real)
+z component ≈ 0.20186103306983058 versus 2u/((1-u^2) R^2) ≈ 0.20202020202020202 (large-R limit)
+
+## 3b. Route branches: both roots absent emits zero; an exact endpoint root is ambiguous and rejected
+slab [-5,-1]: g(lo) = 1001/200, 999/200; g(hi) = 1801/200, 1799/200
+PASS  both-absent: both members certified absent on [-5, -1]
+PASS  both-absent: emitted pair interval is exactly zero
+boundary slab [-(R+l/2), 0]: farther member g(lo) = 0, g(hi) = 2001/200
+PASS  boundary: exact endpoint root is ambiguous, neither present nor absent
+PASS  boundary: pair is rejected when one member is ambiguous
+
+## 3c. Nonzero-acceleration control: receiver at origin, T_r = 0, members on the z axis with z_±(S) = R_± + c S^2
+PASS  quadratic: residuals vanish exactly at the claimed roots
+endpoint residuals: + (-7/5, 8/5), - (-87/40, 33/40)
+PASS  quadratic: both roots strictly interior by the sign rule
+Bernstein inputs: r- = 433/40, v+ = 12/25, a+ = 4/125 (exact 2c = 4/125), l+ = 31/40, w+ = 0
+PASS  quadratic: a+ from Bernstein equals the exact acceleration 2c
+PASS  quadratic: w+ from Bernstein is exactly zero (equal velocity functions)
+PASS  quadratic: sampled positions, speeds, separation and acceleration respect the Bernstein bounds
+PASS  quadratic: speed bound below the wake speed
+K+ - K- = (0, 0, 17/10125) ≈ 0.0016790123456790125; B = 1446460000/178358473189 ≈ 0.008109847399664825
+PASS  quadratic: |K+ - K-|^2 <= B^2 with Bernstein-derived inputs
+radius without the acceleration term ≈ 0.006604676407785327 (reported for scale; enclosure holds there)
+
+## 4. Review table: radius coefficients and admission widths, exact rationals
+v+ = 1/200, w+ = 1/100: A ≈ 0.020252267625849252, C ≈ 0.0101007550314386, width at d = 102: 0.0000019798744088483812
+PASS  table: width at d = 102 <= 2e-6
+PASS  table: width at d = 101 > 2e-6 (so 102 is the conservative integer cutoff)
+v+ = 1/4, w+ = 1/2: A ≈ 0.04148148148148148, C ≈ 0.8888888888888888, width at d = 943: 0.0000019992890129414246
+PASS  table: width at d = 943 <= 2e-6
+PASS  table: width at d = 942 > 2e-6 (so 943 is the conservative integer cutoff)
+PASS  table: static 1414^2 < 2e6 <= 1415^2
+
+ALL CHECKS PASSED

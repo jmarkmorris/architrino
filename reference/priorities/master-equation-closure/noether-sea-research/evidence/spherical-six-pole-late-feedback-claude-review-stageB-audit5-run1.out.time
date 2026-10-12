@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-stageB-audit5.py", line 80, in <module>
+    rK = audit(ctl, "K: continuation control g=1/10"); okK = bool(len(rK["fail"]) == 0 and rK["T_star"] == ["1.366684593623649597167969", "1.366684709182828044891357"] and all(v is None for v in rK["events"].values()))
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-stageB-audit5.py", line 46, in audit
+    g = g_override if g_override is not None else gval(d); Tlo = mpf(d["window"]["T_star"][0]); rep = {"label": label, "g": d["g"], "T_star": d["window"]["T_star"], "q_at_T_star": d["window"].get("q_at_T_star"), "n_steps": len(d["steps"]), "controls_all_pass": d.get("controls_all_pass"), "control_order": [c["name"][:40] for c in d.get("controls", [])], "resumed_from": d.get("resumed_from"), "steps": [], "fail": []}
+                                                                     ~^^^^^^^^^^
+KeyError: 'window'
+        0.05 real         0.03 user         0.01 sys
+            22151168  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2319  page reclaims
+                  81  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  62  voluntary context switches
+                  90  involuntary context switches
+           419407068  instructions retired
+           163916280  cycles elapsed
+            14352864  peak memory footprint

@@ -1,0 +1,33 @@
+PID 61840
+{"name": "(K) exact known control: local model q(s) = 0.1 + 0.2 s + 0.05 s^2 for all members, delays solved to 40 digits, lambda_hat and a_rad differentiated by Richardson central differences (h = 1e-7) vs the closed forms at t = 1.3 (all three classes moving)", "closed_dlambda": "-0.04220821463164819679782887", "fd_dlambda": "-0.04220821463164819679782887", "abs_err": "3.6557e-31", "closed_darad": "-0.02379178536835180320217113", "fd_darad": "-0.02379178536835180320217113", "identity_1+r_qp_vp=D_max_dev": "0.0", "taudot": {"unlike": "-0.244854150523369", "like": "0.158945003617633", "antipode": "-0.0424963939219011"}, "pass": true}
+{"name": "(W) negative: velocity sign flipped in D_t of all classes; its d lambda_hat/dt must differ from the correct finite difference by > 1e-6", "wrong_dlambda": "-0.038363828441083192534", "correct_fd": "-0.042208214631648196798", "pass": true}
+step 12 moving ['unlike', 'like']: qddot [0.1040136,0.1056670] lambda [-0.0011337,-0.0004718] negative; dlambda/dt [-0.0235056,-0.0223225] negative; mv-consistent None
+step 13 moving ['unlike', 'like', 'antipode']: qddot [0.1040394,0.1057621] lambda [-0.0013702,-0.0006993] negative; dlambda/dt [-0.0239410,-0.0224598] negative; mv-consistent True
+step 14 moving ['unlike', 'like', 'antipode']: qddot [0.1040915,0.1058317] lambda [-0.0016053,-0.0009284] negative; dlambda/dt [-0.0241082,-0.0228646] negative; mv-consistent True
+step 15 moving ['unlike', 'like', 'antipode']: qddot [0.1041438,0.1059017] lambda [-0.0018418,-0.0011591] negative; dlambda/dt [-0.0242762,-0.0230162] negative; mv-consistent True
+step 16 moving ['unlike', 'like', 'antipode']: qddot [0.1041958,0.1059708] lambda [-0.0020815,-0.0013983] negative; dlambda/dt [-0.0244464,-0.0231787] negative; mv-consistent True
+step 17 moving ['unlike', 'like', 'antipode']: qddot [0.1042479,0.1060408] lambda [-0.0023227,-0.0016348] negative; dlambda/dt [-0.0246178,-0.0233353] negative; mv-consistent True
+step 18 moving ['unlike', 'like', 'antipode']: qddot [0.1043001,0.1061109] lambda [-0.0025656,-0.0018729] negative; dlambda/dt [-0.0247899,-0.0234925] negative; mv-consistent True
+step 19 moving ['unlike', 'like', 'antipode']: qddot [0.1043522,0.1061812] lambda [-0.0028102,-0.0021127] negative; dlambda/dt [-0.0249629,-0.0236504] negative; mv-consistent True
+step 20 moving ['unlike', 'like', 'antipode']: qddot [0.1044044,0.1062517] lambda [-0.0030565,-0.0023541] negative; dlambda/dt [-0.0251368,-0.0238089] negative; mv-consistent True
+step 21 moving ['unlike', 'like', 'antipode']: qddot [0.1044565,0.1063223] lambda [-0.0033044,-0.0025972] negative; dlambda/dt [-0.0253114,-0.0239680] negative; mv-consistent True
+{"file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json", "all_dlambda_negative": true, "all_qddot_positive": true, "all_mean_value_consistent": true}
+wall 0.43183183670043945
+        0.47 real         0.45 user         0.00 sys
+            22511616  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2380  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  43  involuntary context switches
+          8427758433  instructions retired
+          1734180033  cycles elapsed
+            14844384  peak memory footprint

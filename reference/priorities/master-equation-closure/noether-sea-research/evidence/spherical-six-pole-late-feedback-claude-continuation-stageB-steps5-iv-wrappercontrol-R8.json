@@ -1,0 +1,83 @@
+{
+ "g": "1/8",
+ "R": "8/1 (K = 1, c_f = 1)",
+ "N_window": 4000,
+ "runmode": "wrappercontrol",
+ "plan": {
+  "Delta": "0.01",
+  "max_step": 0,
+  "adaptation": "none; stop at the first uncertified step",
+  "moving_classes": "unlike, like, antipode from T* (two-regime hull)"
+ },
+ "v10_diff": {
+  "from": "g = iv.mpf(1)/10",
+  "to": "g = iv.mpf(1)/8",
+  "other_changes": "none (definition block executed as text)"
+ },
+ "controls": [
+  {
+   "name": "(0) closed forms of all three classes vs direct vector computation at 100 random points each",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "6.9025e-31",
+    "like": "3.9443e-31",
+    "antipode": "3.9443e-31"
+   }
+  },
+  {
+   "name": "(R) the g in effect equals the argument",
+   "pass": true,
+   "g": [
+    "0.125",
+    "0.125"
+   ]
+  },
+  {
+   "name": "(W) restart wrapper: (W1) no-resume start equals the window state at T*; (W2) resume from the given certified record reproduces its exact end strings; negatives: wrong g, wrong window, nonexistent step and uncertified step refused",
+   "pass": true,
+   "W1": true,
+   "W2": true,
+   "W2_t0": [
+    "1.495542060597858190536499",
+    "1.495542461449684119224548"
+   ],
+   "W3": [
+    true,
+    "g mismatch: 1/9 vs 1/8"
+   ],
+   "W4": [
+    true,
+    "window mismatch (T* strings differ)"
+   ],
+   "W5": [
+    true,
+    "requested step 999 not in the record",
+    true,
+    "requested step 14 is not certified"
+   ]
+  }
+ ],
+ "steps": [],
+ "controls_all_pass": true,
+ "window": {
+  "T_star": [
+   "1.355542060597858190536499",
+   "1.355542461449684119224548"
+  ],
+  "q_at_T_star": [
+   "0.1151627720383544839406466",
+   "0.1151630247308890051554131"
+  ],
+  "qdot_at_T_star": [
+   "0.1704516440965398062640324",
+   "0.1704518331535869906689782"
+  ],
+  "physical_T_star": [
+   "10.84433648478286552429199",
+   "10.84433969159747295379639"
+  ],
+  "nearest_image": "unlike -e2,-e3 (chord sqrt(2 - sqrt2 sin q))",
+  "worst_cell_error": 8.033850403230472e-09
+ },
+ "wall_s": 12.14923906326294
+}

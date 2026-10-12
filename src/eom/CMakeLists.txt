@@ -24,6 +24,8 @@ find_package(Threads REQUIRED)
 find_path(MPFR_INCLUDE_DIR mpfr.h REQUIRED)
 find_library(MPFR_LIBRARY mpfr REQUIRED)
 find_library(GMP_LIBRARY gmp REQUIRED)
+find_path(EOM_BOOST_INCLUDE_DIR boost/json.hpp HINTS ${MPFR_INCLUDE_DIR} REQUIRED)
+find_library(EOM_BOOST_JSON_LIBRARY boost_json REQUIRED)
 include(cmake/EquationSourceIdentity.cmake)
 
 add_library(eom_native STATIC
@@ -56,17 +58,23 @@ add_library(eom_native STATIC
   src/SurfaceConstraint.cpp
   src/SurfacePublication.cpp
   src/SurfaceEquationProvider.cpp
+  src/SpeedDomain.cpp
+  src/ProviderTransport.cpp
+  src/MatchedPairEnclosure.cpp
 )
 target_include_directories(eom_native
   PUBLIC include
-  PRIVATE ${MPFR_INCLUDE_DIR} ${EOM_GMP_INCLUDE_DIR} "${EOM_IDENTITY_INCLUDE_DIR}"
+  PRIVATE ${MPFR_INCLUDE_DIR} ${EOM_GMP_INCLUDE_DIR} ${EOM_BOOST_INCLUDE_DIR} "${EOM_IDENTITY_INCLUDE_DIR}"
 )
-target_link_libraries(eom_native PUBLIC Threads::Threads ${MPFR_LIBRARY} ${GMP_LIBRARY})
+target_link_libraries(eom_native PUBLIC Threads::Threads ${MPFR_LIBRARY} ${GMP_LIBRARY} ${EOM_BOOST_JSON_LIBRARY})
 target_compile_options(
   eom_native PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
 )
 
 add_executable(eom_equation_inspect_cli native/eom_equation_inspect_cli.cpp)
+add_executable(eom_provider_transport_fixture_cli native/eom_provider_transport_fixture_cli.cpp)
+target_link_libraries(eom_provider_transport_fixture_cli PRIVATE eom_native)
+target_compile_options(eom_provider_transport_fixture_cli PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
 add_executable(eom_surface_fixture_cli native/eom_surface_fixture_cli.cpp)
 target_link_libraries(eom_surface_fixture_cli PRIVATE eom_native)
 target_compile_options(eom_surface_fixture_cli PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
@@ -110,6 +118,17 @@ add_executable(eom_f5_enclosed_root_cli native/eom_f5_enclosed_root_cli.cpp)
 target_include_directories(eom_f5_enclosed_root_cli PRIVATE ${F5_ADAPTER_BOOST_INCLUDE_DIR})
 target_link_libraries(eom_f5_enclosed_root_cli PRIVATE eom_native)
 target_compile_options(eom_f5_enclosed_root_cli
+  PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
+)
+
+# Focused matched-pair enclosure fixture; no recurring test enrollment.
+add_executable(eom_matched_pair_fixture_cli
+  native/eom_matched_pair_fixture_cli.cpp
+)
+target_link_libraries(eom_matched_pair_fixture_cli PRIVATE eom_native)
+target_compile_definitions(eom_matched_pair_fixture_cli
+  PRIVATE EOM_MATCHED_PAIR_SNAPSHOT_FIXTURE)
+target_compile_options(eom_matched_pair_fixture_cli
   PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
 )
 

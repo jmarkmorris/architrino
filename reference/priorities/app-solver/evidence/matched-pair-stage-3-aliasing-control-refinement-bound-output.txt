@@ -1,0 +1,34 @@
+Known checks passed before targets: closed-form Riemann bracket; static I = 1/R^2; static weighted integral = 2/R^2.
+
+.local-data/eom-matched-pair/2026-10-11/aliasing-control/refinement/known-static-step0.015625-end2.as-interval.jsonl
+  amplitude 0 coupling 0.001 step 2 status completed accepted 128
+  I in [1.000000000000e-02, 1.000000000000e-02]; L = 2.000000000000e-03
+  receiver-motion corrections: velocity 2.666666666667e-11, position 1.333333333333e-11
+  true end velocity in [-2.000002666667e-05, -1.999997333333e-05]
+  published end velocity [-1.999997333380e-05, -1.999997333258e-05], half-width 6.122066151552e-16
+  VELOCITY: published interval intersects the true bracket
+  true end position in [-2.000126333333e-05, -1.999873666667e-05]
+  published end position [-1.999998666710e-05, -1.999998666587e-05], half-width 6.130282371140e-16
+  POSITION: published interval intersects the true bracket
+
+.local-data/eom-matched-pair/2026-10-11/aliasing-control/refinement/target-A0.2-step0.015625-end2.as-interval.jsonl
+  amplitude 0.2 coupling 0.001 step 2 status completed accepted 128
+  I in [9.804312410203e-03, 9.804409488250e-03]; L = 7.625000000000e-01
+  receiver-motion corrections: velocity 2.541666666667e-08, position 1.270833333333e-08
+  true end velocity in [-1.963423564317e-05, -1.958320815374e-05]
+  published end velocity [-1.962777641163e-05, -1.958965036628e-05], half-width 1.906302267372e-08
+  VELOCITY: published interval intersects the true bracket
+  true end position in [-1.768122117492e-05, -1.765219809314e-05]
+  published end position [-1.768101145310e-05, -1.765332672354e-05], half-width 1.384236477767e-08
+  POSITION: published interval intersects the true bracket
+
+.local-data/eom-matched-pair/2026-10-11/aliasing-control/refinement/target-A0.2-step0.0078125-end2.as-interval.jsonl
+  amplitude 0.2 coupling 0.001 step 2 status completed accepted 256
+  I in [9.804312410203e-03, 9.804409488250e-03]; L = 7.625000000000e-01
+  receiver-motion corrections: velocity 2.541666666667e-08, position 1.270833333333e-08
+  true end velocity in [-1.963423564317e-05, -1.958320815374e-05]
+  published end velocity [-1.961345941964e-05, -1.960396395846e-05], half-width 4.747730590752e-09
+  VELOCITY: published interval intersects the true bracket
+  true end position in [-1.768122117492e-05, -1.765219809314e-05]
+  published end position [-1.767025077437e-05, -1.766335264021e-05], half-width 3.449067080554e-09
+  POSITION: published interval intersects the true bracket

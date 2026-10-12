@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-stageB-audit5.py", line 98, in <module>
+    print("controls K", okK, "K2", same, "W", okW, flush=True); assert okK and same and okW, "control failure"
+                                                                       ^^^^^^^^^^^^^^^^^^^^
+AssertionError: control failure
+        0.08 real         0.07 user         0.00 sys
+            22872064  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2402  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  17  involuntary context switches
+          1071197554  instructions retired
+           298858965  cycles elapsed
+            15073760  peak memory footprint

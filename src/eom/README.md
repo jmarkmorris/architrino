@@ -76,7 +76,7 @@ cmake --build .tmp/eom-provider-stage-a/build --target eom_equation_inspect_cli
 
 Configure that build directory with the normal CMake command before building. Inspection accepts option/value pairs for composition, speed domain, boundary policy, constraint, method, field speed, coupling, chart policy, causal width and core scale. It rejects duplicate/unknown options and unavailable selections with an error code on stderr and nonzero exit. Exact parameter identities avoid binary64 rounding. Its model/plan digests and actual source/configuration receipt are descriptive; legacy v7 checkpoint identity/bytes and Borg protocol `EOM_BORG_NATIVE_V11` retain their existing meaning.
 
-The built-in `canonical-surface/v1` provider now supplies [Stage B constrained evolution](../../reference/priorities/app-solver/analysis/equation-provider-stage-b-2026-10-10.md) through the typed C++ API. Restricted-speed compositions, full v2 transport, provider-aware checkpoints, analytical/implicit providers, dynamic loading and a general stage interpreter remain later capabilities. The manually invoked `eom_equation_provider_fixture_cli` supplies focused Stage A contract checks without adding a recurring CTest entry; the [migration receipt](../../reference/priorities/app-solver/analysis/equation-provider-stage-a-inventory-2026-10-10.md) records the bounded validation.
+The built-in `canonical-surface/v1` provider supplies [Stage B constrained evolution](../../reference/priorities/app-solver/analysis/equation-provider-stage-b-2026-10-10.md). [Stage C](../../reference/priorities/app-solver/analysis/equation-provider-stage-c-2026-10-11.md) adds inclusive/strict domain admission with halt policies, v2 transport and provider-aware v8 persistence. Analytical/implicit providers, dynamic loading and a general stage interpreter remain later capabilities. The manually invoked provider/Surface/transport fixtures supply focused qualification without adding recurring CTest entries.
 
 ## Surface constrained evolution: Stage B
 
@@ -95,7 +95,7 @@ Geometry kinds are `sphere`, `oblate` and `ring-torus`. The oblate polar radius 
 
 The provider projects the canonical receiver sum into the tangent plane and adds the curvature acceleration required by the surface constraint. Discarded normal interaction, curvature and total support are recorded only after receiver superposition. The existing host predicts/corrects candidate cubics; a full-slab integral-map proof then validates solution/error inclusion, root completeness, contraction and continuous surface/tangency tolerances before atomic publication. Published paths carry immutable in-memory solution evidence, including true source-acceleration bounds for later delayed interactions. No endpoint projection repairs a failed proof.
 
-This initial numerical route requires sharp ordinary charts, coherent solution speeds strictly below the normalized wake speed and partner roots wholly inside already accepted history. These are certification-domain conditions, with no speed modification. The selected speed regime remains unrestricted. Joint/finite-width/event routes and optional publication modes reject. v7 checkpoint creation/resume and canonical requests reject Surface carriers; continuation through the current evolution call is supported, persistent restart is deferred. A complete acceleration snapshot belongs to its selected model and cannot be reused across canonical/Surface modes.
+This numerical route requires sharp ordinary charts, coherent solution speeds strictly below the normalized wake speed and partner roots wholly inside already accepted history. These are certification-domain conditions, with no speed modification. The default selector remains unrestricted; explicit inclusive/strict selectors require `halt`. Joint/finite-width/event Surface routes and optional publication modes reject. v7 checkpoint creation/resume and canonical requests reject Surface carriers; provider-aware v8 restart revalidates chronological publications and restores the immutable carriers. A complete acceleration snapshot belongs to its selected model and cannot be reused across modes.
 
 ```bash
 cmake --build .tmp/eom-provider-stage-a/build --target eom_surface_fixture_cli
@@ -114,3 +114,39 @@ PYTHONPATH=. "${AAA_VENV:-../.venv}/bin/python" tests/test_eom_native_history_la
 PYTHONPATH=. "${AAA_VENV:-../.venv}/bin/python" tests/test_eom_native_acceleration.py -v
 PYTHONPATH=. "${AAA_VENV:-../.venv}/bin/python" tests/test_eom_native_coupled_evolution.py -v
 ```
+
+## Provider-aware v2 transport and v8 checkpoints
+
+The [v2 implementation contract](../../reference/priorities/app-solver/contracts/evolution-contract-v2.md) documents request fields, limits, response ledgers, speed domains and restart. Include `ProviderTransport.hpp` for typed persistence or execute the existing CLI's `eom-v2`/`eom-v2-server` dispatch. Build dependencies now include Boost.JSON and Boost property-tree entry headers in addition to MPFR/GMP. Readiness/progress are separate stderr JSON events. A trusted launcher may supply `--checkpoint-file PATH`; request JSON cannot select a filesystem path. Durability requires file and directory fsync; size/storage exhaustion returns accepted coverage with an explicit non-durable receipt.
+
+The local dev server exposes `/api/eom/v2/` through the shared EOM executable. `scripts/eom/EomV2ProcessClient.mjs` owns watched workers/server-generated checkpoint identities; `src/apps/shared/EomV2HttpClient.js` supplies consumer-neutral inspection, run, generation-scoped cancellation and restart. Borg shares their JSON POST/error adapter and retains its own grading/retention rules. These interfaces do not deliver the Surface UI or qualify interacting 3:3 physics. V8 rejects typed joint preparation until its full affine binding exists; existing supported v7 joint continuation remains with its owner.
+
+Manual Stage C qualification, after rebuilding:
+
+```bash
+.tmp/eom-provider-stage-a/build/eom_provider_transport_fixture_cli
+node scripts/eom/fixtures/eom-v2-qualification.mjs .tmp/eom-provider-stage-a/build/eom_borg_shadow_cli
+```
+
+Use the repository compute supervisor for these commands and builds. The qualification fixture uses retained ignored local checkpoint storage and loopback HTTP; it is not enrolled in recurring tests. On the current machine, SDK 27 linking failed with the installed compiler; this qualification configured `CMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk`. Select a compatible installed toolchain/SDK rather than assuming that path exists elsewhere.
+
+## Optional matched-pair acceleration snapshots
+
+`NativeCoupledEvolutionRequest::matched_pair_enclosure_policy` defaults to `"disabled"`. The optional `"canonical_snapshot_single_slab/v1"` policy groups two eligible opposite, equal-magnitude source charges during canonical acceleration snapshots, preserving two logical source identities and emitting one numerical interval with one debit against their two budget slices. It requires complete common-window coverage, exact error-free cubic sources, outward distance/speed bounds and certified member presence or absence. The `"canonical_snapshot_piecewise_exact/v1"` policy extends the same snapshot capability across several exact cubic segments: it partitions the window at every boundary of either member and uses the history layer's exact position/velocity join continuity. Source segments within the admitted search window must have zero reconstruction radii, and analytic factory histories decline grouping. Earlier retained history must be re-proved root free; unresolved geometry, arithmetic or budget admission takes the existing exact fallback. Enable a positive `far_field_enclosure_fraction` to reserve the acceleration-width allocation; numerical requests use `field_speed="1"`.
+
+Use either policy with `certify_native_acceleration_snapshot`; both evolution entry points reject a non-disabled matched-pair policy as `unsupported_execution_policy`. Typed snapshot controls do not expose a grouped evolution, checkpoint or transport capability. The [single-slab live review](../../reference/priorities/app-solver/analysis/matched-pair-review-stage-1-live-2026-10-11.md) and [piecewise live review](../../reference/priorities/app-solver/analysis/matched-pair-review-stage-2-live-2026-10-11.md) record bounded containment, accounting, mutation and compatibility evidence, together with their limitations. Generated-history true-solution and derivative inclusion remains an independent obligation before evolution admission. Pairing is deterministic, can be looser than individual enclosures, and has no accepted speed-benefit result.
+
+The manually invoked fixture is not enrolled in recurring CTest:
+
+```bash
+cmake --build .tmp/eom-matched-pair/build-live --target eom_matched_pair_fixture_cli --parallel 2
+.tmp/eom-matched-pair/build-live/eom_matched_pair_fixture_cli all
+.tmp/eom-matched-pair/build-live/eom_matched_pair_fixture_cli snapshot-file reference/priorities/app-solver/evidence/matched-pair-stage-1-snapshot-cases.txt
+.tmp/eom-matched-pair/build-live/eom_matched_pair_fixture_cli matrix-negatives
+.tmp/eom-matched-pair/build-live/eom_matched_pair_fixture_cli piecewise
+.tmp/eom-matched-pair/build-live/eom_matched_pair_fixture_cli snapshot-file reference/priorities/app-solver/evidence/matched-pair-stage-2-snapshot-cases.txt
+.tmp/eom-matched-pair/build-live/eom_matched_pair_fixture_cli matrix-negatives-piecewise
+.tmp/eom-matched-pair/build-live/eom_matched_pair_fixture_cli evolution-guard
+```
+
+Configure the chosen build directory first and use the live compute owner for builds or prolonged fixture runs. The recorded live qualification used per-process `DEVELOPER_DIR=/Library/Developer/CommandLineTools` with the installed 26.5 SDK; it left system toolchain selection unchanged.

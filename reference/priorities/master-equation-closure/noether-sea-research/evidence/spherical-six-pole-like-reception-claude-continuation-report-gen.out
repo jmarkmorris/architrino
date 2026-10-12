@@ -1,0 +1,30 @@
+pid 89959
+control: outward rounding known cases pass
+report written: 68780 chars; 60 steps; tokens 61
+REACHED_T_LO = 3.406684593623649597167969
+MIN_MARGIN_U = 0.4335
+MAX_QP = 0.285
+MAX_VP = 0.243
+MAX_Q = 0.5916
+D_U = $[0.9381,\,0.9574]$
+D_L = $[1.0248,\,1.0326]$
+D_A = $[1.0151,\,1.0356]$
+TAN_95 = $[0.107274,\,0.107752]$
+TAN_154 = $[0.087790,\,0.088790]$
+ARAD_FIRST = $[-0.057615,\,-0.057464]$
+ARAD_LAST = $[-0.068500,\,-0.068178]$
+LAM_FIRST = $[-0.026714,\,-0.026459]$
+LAM_LAST = $[-0.054372,\,-0.053427]$
+C_TU = $[0.063173,\,0.064042]$
+C_TL = $[0.018486,\,0.018591]$
+C_TA = $[0.006130,\,0.006158]$
+C_RU = $[-0.101169,\,-0.100910]$
+C_RL = $[0.057551,\,0.057599]$
+C_RA = $[-0.024882,\,-0.024867]$
+FAM_U = from step 95: wave17; from step 112: antipodal; from step 129: antipodal/late-feedback; from step 130: late-feedback
+FAM_L = from step 95: window; from step 115: wave16; from step 126: wave17
+FAM_A = from step 95: window; from step 145: wave16
+MARG_U = 1.023
+MARG_L = 1.606
+MARG_A = 1.931
+UNLIKE_BOTH = step 130

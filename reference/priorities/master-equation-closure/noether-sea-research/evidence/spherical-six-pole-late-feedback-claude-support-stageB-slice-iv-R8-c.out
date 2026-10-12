@@ -1,0 +1,25 @@
+PID 83984
+[{"name": "(K1) regression: on s2b3 (window only) every output equals slice-iv v2 to 1e-20", "pass": true}, {"name": "(K2) known: a delayed box straddling T* (+-0.005) yields a source hull containing the window state at T* and the wave-16 step-1 candidate sets, with the window part and record w16#1 both touched", "pass": true, "hull_q": ["0.09291042043562835203220492", "0.09497531240358474050374513"], "hull_qdot": ["0.136305757067780821162763", "0.138321790907505577966415"], "hull_qddot": ["0.1012290917528929545774185", "0.1019673245041114712706306"], "touched": "records:window[s_lo,T*],w16#1", "q_at_Tstar": ["0.0935969659738805924504719", "0.09359717429472312322322282"], "w16_step1_S": ["0.0935969659738805924504719", "0.09497531240358474050374513"]}, {"name": "(W1) negative: a delayed box reaching above the last retained record end (2.0767) is refused", "pass": true}, {"name": "(W2) negative: like polarity flipped moves the release radial sum off -g/4", "release": ["-0.025", "-0.025"], "release_wrong": ["-0.1664213562373095048801689", "-0.1664213562373095048801689"], "pass": true}]
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py", line 141, in <module>
+    d = json.load(open(sys.argv[1])); g = g_of(d); TSTAR_LO = mp.mpf(d["T_star"][0]); TSTAR_HI = mp.mpf(d["T_star"][1]); RECORDS = []; REC_END = TSTAR_LO; out["g"] = d["g"]; out["T_star"] = d["T_star"]   # Stage B: the cell's own g and window; no retained records -> beyond-window boxes refused
+                                                                     ~^^^^^^^^^^
+KeyError: 'T_star'
+        0.16 real         0.15 user         0.00 sys
+            25542656  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2564  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  21  involuntary context switches
+          2458855932  instructions retired
+           601349249  cycles elapsed
+            17760760  peak memory footprint

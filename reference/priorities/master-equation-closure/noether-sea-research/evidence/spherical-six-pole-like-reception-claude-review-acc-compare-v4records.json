@@ -1,0 +1,3840 @@
+{
+ "controls": {
+  "K_frozen_s3b2_boxes_equal_review_hull": {
+   "pass": true,
+   "max_abs_diff": "4.81699915883810504642861093332e-26"
+  },
+  "W_shrunk_box_detected": true
+ },
+ "targets": {
+  "spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s1a2.json": [
+   {
+    "step": 95,
+    "class": "unlike",
+    "records_met": [
+     "w17-19",
+     "w17-20"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1030007281432114715617936",
+     "0.1031113284343763173422403"
+    ],
+    "review_hull": [
+     "0.1030007281432114715618036",
+     "0.10311132843437631734223016682"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01331799828653971348668609238e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.65256331866310068149201",
+     "1.665881548750847943350758"
+    ],
+    "record_delayed_arg_range": [
+     "1.65256331866310068149201",
+     "1.665881548750847943350758"
+    ]
+   },
+   {
+    "step": 95,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1008866925343015547115096",
+     "0.1013480535827625019154818"
+    ],
+    "review_hull": [
+     "0.10103093565748873846107495291",
+     "0.101203525606032754241685953189"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.00014424312318718374956535290975",
+    "hi_diff_consumed_minus_review": "0.000144527976729747673795846810986",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.188771045265553936072896",
+     "1.200159964005027912876533"
+    ],
+    "record_delayed_arg_range": [
+     "1.188771045265553936072896",
+     "1.200159964005027912876533"
+    ]
+   },
+   {
+    "step": 95,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1003659197760338733429778",
+     "0.1006391155068775606519187"
+    ],
+    "review_hull": [
+     "0.100448698655797793184154464412",
+     "0.100556234145039863175429255852"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000827788797639198411766644120342",
+    "hi_diff_consumed_minus_review": "0.0000828813618376974764894441482236",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.8397101763866346021497849",
+     "0.8500979152009402210117683"
+    ],
+    "record_delayed_arg_range": [
+     "0.8397101763866346021497849",
+     "0.8500979152009402210117683"
+    ]
+   },
+   {
+    "step": 96,
+    "class": "unlike",
+    "records_met": [
+     "w17-20",
+     "w17-21",
+     "w17-22"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1030501010272232327028437",
+     "0.1032119435486135410020817"
+    ],
+    "review_hull": [
+     "0.1030501010272232327028537",
+     "0.10321194354861354100207159992"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01000799955799056834272577711e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.664524208939808334385477",
+     "1.677854405207500838628617"
+    ],
+    "record_delayed_arg_range": [
+     "1.664524208939808334385477",
+     "1.677854405207500838628617"
+    ]
+   },
+   {
+    "step": 96,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1009040258474887588779536",
+     "0.1013699026574876069688145"
+    ],
+    "review_hull": [
+     "0.101049802710793696980346364872",
+     "0.101223835607524446963743832401"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000145776863304938102392764872149",
+    "hi_diff_consumed_minus_review": "0.000146067049963160005070667598831",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.197423016428687809147855",
+     "1.208812731441602276569266"
+    ],
+    "record_delayed_arg_range": [
+     "1.197423016428687809147855",
+     "1.208812731441602276569266"
+    ]
+   },
+   {
+    "step": 96,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.100377749653294665383181",
+     "0.1006549579127289891391082"
+    ],
+    "review_hull": [
+     "0.100461815126486255246312670201",
+     "0.100570786973793866522934269183"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000840654731915898631316702009911",
+    "hi_diff_consumed_minus_review": "0.0000841709389351226161739308169276",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.8500762035827976261636847",
+     "0.8604663728963254674745847"
+    ],
+    "record_delayed_arg_range": [
+     "0.8500762035827976261636847",
+     "0.8604663728963254674745847"
+    ]
+   },
+   {
+    "step": 97,
+    "class": "unlike",
+    "records_met": [
+     "w17-21",
+     "w17-22",
+     "w17-23"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1030997750008469287807791",
+     "0.1032627322456489002879289"
+    ],
+    "review_hull": [
+     "0.1030997750008469287807891",
+     "0.10326273224564890028791882362"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00763800008853179441910840186e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.676486999097329031107003",
+     "1.690440931570873632583595"
+    ],
+    "record_delayed_arg_range": [
+     "1.676486999097329031107003",
+     "1.690440931570873632583595"
+    ]
+   },
+   {
+    "step": 97,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1009215842081791543212926",
+     "0.1013920032127854540356047"
+    ],
+    "review_hull": [
+     "0.101068905833591744140452015762",
+     "0.101244385994674628973588251368"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000147321625412589819159415762251",
+    "hi_diff_consumed_minus_review": "0.000147617218110825062016448632167",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.206074933614849430792839",
+     "1.217465374963687761718521"
+    ],
+    "record_delayed_arg_range": [
+     "1.206074933614849430792839",
+     "1.217465374963687761718521"
+    ]
+   },
+   {
+    "step": 97,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1003898084851963674637275",
+     "0.1006710548814374787079653"
+    ],
+    "review_hull": [
+     "0.100475171019871929561637850538",
+     "0.100585583837932914517582583488"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000853625346755620979103505376852",
+    "hi_diff_consumed_minus_review": "0.0000854710435045641903827165115578",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.8604441859811484444207459",
+     "0.8708367964601693121995872"
+    ],
+    "record_delayed_arg_range": [
+     "0.8604441859811484444207459",
+     "0.8708367964601693121995872"
+    ]
+   },
+   {
+    "step": 98,
+    "class": "unlike",
+    "records_met": [
+     "w17-23",
+     "w17-24"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1032000527909129823800332",
+     "0.1033138463615998468443847"
+    ],
+    "review_hull": [
+     "0.1032000527909129823800432",
+     "0.1033138463615998468443746427"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.00572999947340603487499229736e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.689050157566923585915553",
+     "1.702417372527374225227188"
+    ],
+    "record_delayed_arg_range": [
+     "1.689050157566923585915553",
+     "1.702417372527374225227188"
+    ]
+   },
+   {
+    "step": 98,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1009393680215284529787124",
+     "0.1014143602266824050155861"
+    ],
+    "review_hull": [
+     "0.101088246889239932360004678358",
+     "0.101265180281064586768005063811"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000148878867711479381292278357677",
+    "hi_diff_consumed_minus_review": "0.000149179945617818247581036188579",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.214726884223300599804783",
+     "1.226117979825113590542282"
+    ],
+    "record_delayed_arg_range": [
+     "1.214726884223300599804783",
+     "1.226117979825113590542282"
+    ]
+   },
+   {
+    "step": 98,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1004021012262663490314598",
+     "0.1006874065954351859341573"
+    ],
+    "review_hull": [
+     "0.100488769880609253771346448879",
+     "0.10060062633290937039096125244"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000866686543429047398866488787489",
+    "hi_diff_consumed_minus_review": "0.0000867802625258155431960475604155",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.8708141175812829598818573",
+     "0.8812091883090301146492648"
+    ],
+    "record_delayed_arg_range": [
+     "0.8708141175812829598818573",
+     "0.8812091883090301146492648"
+    ]
+   },
+   {
+    "step": 99,
+    "class": "unlike",
+    "records_met": [
+     "w17-24",
+     "w17-25"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1032506628096402804749001",
+     "0.1033652903876907217388106"
+    ],
+    "review_hull": [
+     "0.1032506628096402804749101",
+     "0.10336529038769072173880051994"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00800599877043673879500918942e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.701016411157708437334879",
+     "1.714395085749810098259948"
+    ],
+    "record_delayed_arg_range": [
+     "1.701016411157708437334879",
+     "1.714395085749810098259948"
+    ]
+   },
+   {
+    "step": 99,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1009573858487477698862341",
+     "0.1014369698756486399373374"
+    ],
+    "review_hull": [
+     "0.101107830585512850526891972311",
+     "0.101286218511841296732131951791"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000150444736765080640657872310802",
+    "hi_diff_consumed_minus_review": "0.000150751363807343205205448208868",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.223378956150887613334081",
+     "1.234770653919323198222194"
+    ],
+    "record_delayed_arg_range": [
+     "1.223378956150887613334081",
+     "1.234770653919323198222194"
+    ]
+   },
+   {
+    "step": 99,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1004146248280127793085626",
+     "0.1007040221874919067135946"
+    ],
+    "review_hull": [
+     "0.100502612398535435998899596271",
+     "0.1006159198430770286995392054"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000879875705226566903369962705359",
+    "hi_diff_consumed_minus_review": "0.0000881023444148780140553945999159",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.8811859941068623669751863",
+     "0.8915835322794292985418864"
+    ],
+    "record_delayed_arg_range": [
+     "0.8811859941068623669751863",
+     "0.8915835322794292985418864"
+    ]
+   },
+   {
+    "step": 100,
+    "class": "unlike",
+    "records_met": [
+     "w17-25",
+     "w17-26"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1033015944054533123418509",
+     "0.1034170649909566471696304"
+    ],
+    "review_hull": [
+     "0.1033015944054533123418609",
+     "0.10341706499095664716962034607"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00539300055988594744738229883e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.712983937675006124769399",
+     "1.726368051501273711266137"
+    ],
+    "record_delayed_arg_range": [
+     "1.712983937675006124769399",
+     "1.726368051501273711266137"
+    ]
+   },
+   {
+    "step": 100,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1009756367486059494688758",
+     "0.1014598370355519886031563"
+    ],
+    "review_hull": [
+     "0.101127657820689465097261589771",
+     "0.101307503715672083014724342728"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000152021072083515628385789770816",
+    "hi_diff_consumed_minus_review": "0.000152333319879905588431957272043",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.232031248449126169485318",
+     "1.243423477277277966118106"
+    ],
+    "record_delayed_arg_range": [
+     "1.232031248449126169485318",
+     "1.243423477277277966118106"
+    ]
+   },
+   {
+    "step": 100,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1004273887418422223480929",
+     "0.1007208977819659902874399"
+    ],
+    "review_hull": [
+     "0.100516704017364171080738447366",
+     "0.100631464510386710826115119223"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000893152755219487326455473657739",
+    "hi_diff_consumed_minus_review": "0.0000894332715792794613247807770292",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.8915598160844843105332899",
+     "0.9019598331221844601362588"
+    ],
+    "record_delayed_arg_range": [
+     "0.8915598160844843105332899",
+     "0.9019598331221844601362588"
+    ]
+   },
+   {
+    "step": 101,
+    "class": "unlike",
+    "records_met": [
+     "w17-26",
+     "w17-27",
+     "w17-28"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1033528560805721470859989",
+     "0.1035216411936929722488129"
+    ],
+    "review_hull": [
+     "0.1033528560805721470860089",
+     "0.10352164119369297224880284797"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.00520299971307797353055604614e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.72495254982626617299324",
+     "1.738347659928581260917703"
+    ],
+    "record_delayed_arg_range": [
+     "1.72495254982626617299324",
+     "1.738347659928581260917703"
+    ]
+   },
+   {
+    "step": 101,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1009941192078434894319454",
+     "0.1014829688673214635725096"
+    ],
+    "review_hull": [
+     "0.101147729828983931378545399896",
+     "0.101329040294367619232474984784"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000153610621140441946599999896069",
+    "hi_diff_consumed_minus_review": "0.000153928572953844340034615215574",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.240683853265519189631662",
+     "1.252076541593414801712944"
+    ],
+    "record_delayed_arg_range": [
+     "1.240683853265519189631662",
+     "1.252076541593414801712944"
+    ]
+   },
+   {
+    "step": 101,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1004403888150540201753605",
+     "0.1007380424934608343329006"
+    ],
+    "review_hull": [
+     "0.100531044655034099741877730528",
+     "0.100647265367612218142902880815"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000906558399800795665172305276049",
+    "hi_diff_consumed_minus_review": "0.0000907771258486161899977191852518",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.9019355734109981828405331",
+     "0.9123380842861552431188873"
+    ],
+    "record_delayed_arg_range": [
+     "0.9019355734109981828405331",
+     "0.9123380842861552431188873"
+    ]
+   },
+   {
+    "step": 102,
+    "class": "unlike",
+    "records_met": [
+     "w17-28",
+     "w17-29"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1034563675823263986267408",
+     "0.1035744415552774673917021"
+    ],
+    "review_hull": [
+     "0.1034563675823263986267508",
+     "0.10357444155527746739169202109"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00789100010678781698341340277e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.737524011009942301882065",
+     "1.750943465753378384385153"
+    ],
+    "record_delayed_arg_range": [
+     "1.737524011009942301882065",
+     "1.750943465753378384385153"
+    ]
+   },
+   {
+    "step": 102,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1010128395858462235915402",
+     "0.1015063633984611901035928"
+    ],
+    "review_hull": [
+     "0.101168050379429214190624469897",
+     "0.101350828876062622771556118101"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000155210793582990599084269896862",
+    "hi_diff_consumed_minus_review": "0.000155534522398567332036681899049",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.249336870276207643284237",
+     "1.260729927711578258956745"
+    ],
+    "record_delayed_arg_range": [
+     "1.249336870276207643284237",
+     "1.260729927711578258956745"
+    ]
+   },
+   {
+    "step": 102,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1004536307471524078351363",
+     "0.1007554565957242689505068"
+    ],
+    "review_hull": [
+     "0.100545638403558076661411983379",
+     "0.10066332429966921860640653606"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000920076564056688262756833791806",
+    "hi_diff_consumed_minus_review": "0.0000921322960550503441002639399168",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.9123132651981237693285863",
+     "0.9227182816548969829110519"
+    ],
+    "record_delayed_arg_range": [
+     "0.9123132651981237693285863",
+     "0.9227182816548969829110519"
+    ]
+   },
+   {
+    "step": 103,
+    "class": "unlike",
+    "records_met": [
+     "w17-29",
+     "w17-30"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1035086318740703157691411",
+     "0.1036275946017834094352053"
+    ],
+    "review_hull": [
+     "0.1035086318740703157691511",
+     "0.10362759460178340943519515532"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.01446799971417090449661531028e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.749494048328291750643548",
+     "1.76292409286797264288992"
+    ],
+    "record_delayed_arg_range": [
+     "1.749494048328291750643548",
+     "1.76292409286797264288992"
+    ]
+   },
+   {
+    "step": 103,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1010318070393011676190766",
+     "0.1015300166325207520055493"
+    ],
+    "review_hull": [
+     "0.101188624515742212622635716306",
+     "0.101372869594314183111118504891"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000156817476441045003559116305543",
+    "hi_diff_consumed_minus_review": "0.000157147038206568894430795108837",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.257990379383418969700463",
+     "1.269383750072773413454907"
+    ],
+    "record_delayed_arg_range": [
+     "1.257990379383418969700463",
+     "1.269383750072773413454907"
+    ]
+   },
+   {
+    "step": 103,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1004671172304571686436394",
+     "0.1007731431440920223856943"
+    ],
+    "review_hull": [
+     "0.100560488106016959835788091526",
+     "0.10067964421020620257432717389"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000933708755597911921486915257162",
+    "hi_diff_consumed_minus_review": "0.0000934989338858198113671261095432",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.9226928863848582889097505",
+     "0.9331004193743430997084224"
+    ],
+    "record_delayed_arg_range": [
+     "0.9226928863848582889097505",
+     "0.9331004193743430997084224"
+    ]
+   },
+   {
+    "step": 104,
+    "class": "unlike",
+    "records_met": [
+     "w17-30",
+     "w17-31"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1035612341282052606481354",
+     "0.1036810982699555973812039"
+    ],
+    "review_hull": [
+     "0.1035612341282052606481454",
+     "0.10368109826995559738119378147"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.01185299976907311483153218744e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.761464497425955841620684",
+     "1.774904929718470761066764"
+    ],
+    "record_delayed_arg_range": [
+     "1.761464497425955841620684",
+     "1.774904929718470761066764"
+    ]
+   },
+   {
+    "step": 104,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1010510093872565876526666",
+     "0.1015539456811604202918918"
+    ],
+    "review_hull": [
+     "0.101209449286302879831209063628",
+     "0.101395170292449635314309803578"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000158439899046292178542463628467",
+    "hi_diff_consumed_minus_review": "0.000158775388710784977581996422166",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.266644483305602229338917",
+     "1.278038094688394002417876"
+    ],
+    "record_delayed_arg_range": [
+     "1.266644483305602229338917",
+     "1.278038094688394002417876"
+    ]
+   },
+   {
+    "step": 104,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1004808509607809012038165",
+     "0.1007911052621419550192988"
+    ],
+    "review_hull": [
+     "0.100575596628931532609834071786",
+     "0.100696228051101398627315130437"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000947456681506314060175717862251",
+    "hi_diff_consumed_minus_review": "0.0000948772110405563919836695627135",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.9330744317602732152629781",
+     "0.9434844935425745288912726"
+    ],
+    "record_delayed_arg_range": [
+     "0.9330744317602732152629781",
+     "0.9434844935425745288912726"
+    ]
+   }
+  ],
+  "spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s1b2.json": [
+   {
+    "step": 105,
+    "class": "unlike",
+    "records_met": [
+     "w17-31",
+     "w17-32",
+     "w17-33"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1036141801311087040153803",
+     "0.1037891642908842657694203"
+    ],
+    "review_hull": [
+     "0.1036141801311087040153903",
+     "0.10378916429088426576941024854"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00514599834969993338846031897e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.773435157212914728546381",
+     "1.786879401430804228933322"
+    ],
+    "record_delayed_arg_range": [
+     "1.773435157212914728546381",
+     "1.786879401430804228933322"
+    ]
+   },
+   {
+    "step": 105,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1010704567723864416452962",
+     "0.1015781452074133680001448"
+    ],
+    "review_hull": [
+     "0.101230529992098075205265714647",
+     "0.101417730495120003427271268766"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000160073219711633559969514646601",
+    "hi_diff_consumed_minus_review": "0.000160414712293364572873531234305",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.275299284681155400171113",
+     "1.286693045164138421636237"
+    ],
+    "record_delayed_arg_range": [
+     "1.275299284681155400171113",
+     "1.286693045164138421636237"
+    ]
+   },
+   {
+    "step": 105,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1004948346821906218992345",
+     "0.1008093460939047664328966"
+    ],
+    "review_hull": [
+     "0.100590966878831749430037168087",
+     "0.100713078802941807535522584678"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000961321966411275308026680867593",
+    "hi_diff_consumed_minus_review": "0.0000962672909629588973740153219013",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.9434578965220532608545229",
+     "0.953870499577897805197903"
+    ],
+    "record_delayed_arg_range": [
+     "0.9434578965220532608545229",
+     "0.953870499577897805197903"
+    ]
+   },
+   {
+    "step": 106,
+    "class": "unlike",
+    "records_met": [
+     "w17-32",
+     "w17-33",
+     "w17-34"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1036674767200205241543462",
+     "0.1038437324479837921049637"
+    ],
+    "review_hull": [
+     "0.1036674767200205241543562",
+     "0.10384373244798379210495357127"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.01287299815211904750376049843e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.785405823368296295300455",
+     "1.799476931175769233183786"
+    ],
+    "record_delayed_arg_range": [
+     "1.785405823368296295300455",
+     "1.799476931175769233183786"
+    ]
+   },
+   {
+    "step": 106,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1010901583366363786142467",
+     "0.1016026112690312344035347"
+    ],
+    "review_hull": [
+     "0.101251871672945030797180829301",
+     "0.101440550379586077053252152864"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000161713336308652182934129300769",
+    "hi_diff_consumed_minus_review": "0.000162060889445157350282547135706",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.28395486027808217173197",
+     "1.295348715048859052567955"
+    ],
+    "record_delayed_arg_range": [
+     "1.28395486027808217173197",
+     "1.295348715048859052567955"
+    ]
+   },
+   {
+    "step": 106,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1005090733814202259119103",
+     "0.1008278663624858550632299"
+    ],
+    "review_hull": [
+     "0.100606602578739904849962822623",
+     "0.100730198455609456445845690842"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000975291973196789380525226225696",
+    "hi_diff_consumed_minus_review": "0.000097667906876398617384209157932",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.9538432756750575758199214",
+     "0.9642584327302678174343135"
+    ],
+    "record_delayed_arg_range": [
+     "0.9538432756750575758199214",
+     "0.9642584327302678174343135"
+    ]
+   },
+   {
+    "step": 107,
+    "class": "unlike",
+    "records_met": [
+     "w17-34",
+     "w17-35"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1037751075868201926413327",
+     "0.1038986596055510981109374"
+    ],
+    "review_hull": [
+     "0.1037751075868201926413427",
+     "0.1038986596055510981109273172"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00827999974510394198297138569e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.797979210143165839541195",
+     "1.811456469210386347052865"
+    ],
+    "record_delayed_arg_range": [
+     "1.797979210143165839541195",
+     "1.811456469210386347052865"
+    ]
+   },
+   {
+    "step": 107,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1011101016760215628479471",
+     "0.1016273616045691437152697"
+    ],
+    "review_hull": [
+     "0.10127347144642713560495042584",
+     "0.101463638121689861415867479583"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.00016336977040557275700332583992",
+    "hi_diff_consumed_minus_review": "0.000163723482879282299402220416804",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.292611304585497446907204",
+     "1.304005197817304823826555"
+    ],
+    "record_delayed_arg_range": [
+     "1.292611304585497446907204",
+     "1.304005197817304823826555"
+    ]
+   },
+   {
+    "step": 107,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1005235680185506911834498",
+     "0.1008466720593324369327444"
+    ],
+    "review_hull": [
+     "0.100622506267428662630859639708",
+     "0.100747591416932286497938380686"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000989382488779714474098397083461",
+    "hi_diff_consumed_minus_review": "0.0000990806424001504348060193136167",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.9642305642703847572735547",
+     "0.9746482904520828778407985"
+    ],
+    "record_delayed_arg_range": [
+     "0.9642305642703847572735547",
+     "0.9746482904520828778407985"
+    ]
+   },
+   {
+    "step": 108,
+    "class": "unlike",
+    "records_met": [
+     "w17-35",
+     "w17-36"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1038294574108314933608288",
+     "0.1039539453254755023483889"
+    ],
+    "review_hull": [
+     "0.1038294574108314933608388",
+     "0.10395394532547550234837876247"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01375299960898670314497809267e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.809948566785381134063528",
+     "1.823435267407791732681811"
+    ],
+    "record_delayed_arg_range": [
+     "1.809948566785381134063528",
+     "1.823435267407791732681811"
+    ]
+   },
+   {
+    "step": 108,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1011302974323169071021664",
+     "0.1016523904822010306775937"
+    ],
+    "review_hull": [
+     "0.101295334818565823844640123689",
+     "0.10148699314700547639622606516"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000165037386248916742473723688955",
+    "hi_diff_consumed_minus_review": "0.000165397335195554281367634839522",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.301268742349570682194991",
+     "1.312662581042206772602863"
+    ],
+    "record_delayed_arg_range": [
+     "1.301268742349570682194991",
+     "1.312662581042206772602863"
+    ]
+   },
+   {
+    "step": 108,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1005383184380123424803687",
+     "0.1008657685015679101845927"
+    ],
+    "review_hull": [
+     "0.100638679503446196904072137409",
+     "0.100765261284370509652042551012"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000100361065433854423703437409418",
+    "hi_diff_consumed_minus_review": "0.000100507217197400532550148987589",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.9746197489196846924242738",
+     "0.9850400638025921846132271"
+    ],
+    "record_delayed_arg_range": [
+     "0.9746197489196846924242738",
+     "0.9850400638025921846132271"
+    ]
+   },
+   {
+    "step": 109,
+    "class": "unlike",
+    "records_met": [
+     "w17-36",
+     "w17-37"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1038841553684744427791205",
+     "0.1040095872714419914631657"
+    ],
+    "review_hull": [
+     "0.1038841553684744427791305",
+     "0.10400958727144199146315560708"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00929199981812803224019138932e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.821917196034181731289333",
+     "1.835406282003009981042635"
+    ],
+    "record_delayed_arg_range": [
+     "1.821917196034181731289333",
+     "1.835406282003009981042635"
+    ]
+   },
+   {
+    "step": 109,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1011507514902319163288766",
+     "0.1016776976910883716890276"
+    ],
+    "review_hull": [
+     "0.10131746577097775515643144972",
+     "0.101510617155893750313302929267"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000166714280745838827554849720297",
+    "hi_diff_consumed_minus_review": "0.00016708053519462137572467073254",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.30992724646517493111526",
+     "1.321320974536727555229477"
+    ],
+    "record_delayed_arg_range": [
+     "1.30992724646517493111526",
+     "1.321320974536727555229477"
+    ]
+   },
+   {
+    "step": 109,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1005533301474640543354512",
+     "0.1008851565991257401426688"
+    ],
+    "review_hull": [
+     "0.100655126430618434822278319567",
+     "0.100783210335010621793059642488"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000101796283154380486827119566984",
+    "hi_diff_consumed_minus_review": "0.000101946264115118349609157512025",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.9850108302020198244595014",
+     "0.9954337472095215689200525"
+    ],
+    "record_delayed_arg_range": [
+     "0.9850108302020198244595014",
+     "0.9954337472095215689200525"
+    ]
+   },
+   {
+    "step": 110,
+    "class": "unlike",
+    "records_met": [
+     "w17-37",
+     "w17-38",
+     "w17-39"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1039392118850679433755514",
+     "0.1041219518976200355296908"
+    ],
+    "review_hull": [
+     "0.1039392118850679433755614",
+     "0.10412195189762003552968067478"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.01252199942272161593226633362e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.833884879184731765938642",
+     "1.847382847354927872512333"
+    ],
+    "record_delayed_arg_range": [
+     "1.833884879184731765938642",
+     "1.847382847354927872512333"
+    ]
+   },
+   {
+    "step": 110,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1011714618844357123666526",
+     "0.1017032896817764983367604"
+    ],
+    "review_hull": [
+     "0.10133986501445740492857736527",
+     "0.10153451391081543380669541927"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000168403130021692561924765270086",
+    "hi_diff_consumed_minus_review": "0.00016877577096106453006498073023",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.318586926228793475655561",
+     "1.329980468642218839881802"
+    ],
+    "record_delayed_arg_range": [
+     "1.318586926228793475655561",
+     "1.329980468642218839881802"
+    ]
+   },
+   {
+    "step": 110,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1005686060517595605882328",
+     "0.1009048396789729772972092"
+    ],
+    "review_hull": [
+     "0.100671850124126169969771564187",
+     "0.100801441724430943456903205856"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.00010324407236660938153876418657",
+    "hi_diff_consumed_minus_review": "0.000103397954542033840305994144043",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "0.9954038023219258429688548",
+     "1.005829335247494253364449"
+    ],
+    "record_delayed_arg_range": [
+     "0.9954038023219258429688548",
+     "1.005829335247494253364449"
+    ]
+   },
+   {
+    "step": 111,
+    "class": "unlike",
+    "records_met": [
+     "w17-38",
+     "w17-39",
+     "w17-40"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1039946223645886990647408",
+     "0.1041786696342874907453094"
+    ],
+    "review_hull": [
+     "0.1039946223645886990647508",
+     "0.10417866963428749074529932712"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00728799976121753319068046128e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.845851394159797241922944",
+     "1.859973555623039405261397"
+    ],
+    "record_delayed_arg_range": [
+     "1.845851394159797241922944",
+     "1.859973555623039405261397"
+    ]
+   },
+   {
+    "step": 111,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1011924290040820012848882",
+     "0.1017291722452233224908212"
+    ],
+    "review_hull": [
+     "0.101362534674128029808063844883",
+     "0.101558687458700615481725746106"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000170105670046028523175644883108",
+    "hi_diff_consumed_minus_review": "0.000170484786522707009095453894157",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.327247889340137475254845",
+     "1.338641152087264027473587"
+    ],
+    "record_delayed_arg_range": [
+     "1.327247889340137475254845",
+     "1.338641152087264027473587"
+    ]
+   },
+   {
+    "step": 111,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.10058414909086117754511",
+     "0.1009248211014466835453451"
+    ],
+    "review_hull": [
+     "0.100688853693943803961245753846",
+     "0.100819958641883695852166594077"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000104704603082626416135753845705",
+    "hi_diff_consumed_minus_review": "0.000104862459562987693178505923262",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.005798659260828819405244",
+     "1.016226822099965010427301"
+    ],
+    "record_delayed_arg_range": [
+     "1.005798659260828819405244",
+     "1.016226822099965010427301"
+    ]
+   },
+   {
+    "step": 112,
+    "class": "unlike",
+    "records_met": [
+     "w17-40",
+     "ant-a-1"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1041065033422211600356147",
+     "0.1042357480743780657689691"
+    ],
+    "review_hull": [
+     "0.1041065033422211600356247",
+     "0.10423574807437806576895895413"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.01458699938172349412746166953e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.858417568184211108875683",
+     "1.8719459494772137808068"
+    ],
+    "record_delayed_arg_range": [
+     "1.858417568184211108875683",
+     "1.8719459494772137808068"
+    ]
+   },
+   {
+    "step": 112,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.101213661448421262548812",
+     "0.1017553422075570289226318"
+    ],
+    "review_hull": [
+     "0.101385479646699721337702862891",
+     "0.101583138344371562568702296611"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000171818198278458788890862890845",
+    "hi_diff_consumed_minus_review": "0.000172203863185466353929503389431",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.33591020215432140933221",
+     "1.347303146333856576140529"
+    ],
+    "record_delayed_arg_range": [
+     "1.33591020215432140933221",
+     "1.347303146333856576140529"
+    ]
+   },
+   {
+    "step": 112,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1005999645308470016339551",
+     "0.1009451016965928585312565"
+    ],
+    "review_hull": [
+     "0.100706141082767051506169706906",
+     "0.100838763244267244173664965523"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000106176551920049872214606906462",
+    "hi_diff_consumed_minus_review": "0.000106338452325614357591534477102",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.016195391620370340070557",
+     "1.02662620858223147396841"
+    ],
+    "record_delayed_arg_range": [
+     "1.016195391620370340070557",
+     "1.02662620858223147396841"
+    ]
+   },
+   {
+    "step": 113,
+    "class": "unlike",
+    "records_met": [
+     "ant-a-1",
+     "ant-a-2"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1041629721242506515724394",
+     "0.1042931793747058746250833"
+    ],
+    "review_hull": [
+     "0.1041629721242506515724494",
+     "0.10429317937470587462507321657"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.00834300014914715503828107986e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.870379820101628871589865",
+     "1.883916359174300942321148"
+    ],
+    "record_delayed_arg_range": [
+     "1.870379820101628871589865",
+     "1.883916359174300942321148"
+    ]
+   },
+   {
+    "step": 113,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1012351585341340683860282",
+     "0.1017818050134905629832986"
+    ],
+    "review_hull": [
+     "0.10140870120765626393773008961",
+     "0.101607870044730885495521337548"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000173542673522195551701889610242",
+    "hi_diff_consumed_minus_review": "0.000173934968759677487777262452203",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.344573996884250608423191",
+     "1.355966545828365663841077"
+    ],
+    "record_delayed_arg_range": [
+     "1.344573996884250608423191",
+     "1.355966545828365663841077"
+    ]
+   },
+   {
+    "step": 113,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1006160529888916370014399",
+     "0.1009656882494680687997783"
+    ],
+    "review_hull": [
+     "0.100723714845121563959136669924",
+     "0.100857860372901741387310760212"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000107661856229926957696769923745",
+    "hi_diff_consumed_minus_review": "0.000107827876566327412467539787613",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.026593995456788283058323",
+     "1.037027472650407273801222"
+    ],
+    "record_delayed_arg_range": [
+     "1.026593995456788283058323",
+     "1.037027472650407273801222"
+    ]
+   },
+   {
+    "step": 114,
+    "class": "unlike",
+    "records_met": [
+     "ant-a-2",
+     "ant-a-3"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1042197932997835153664303",
+     "0.1043509643140497063714446"
+    ],
+    "review_hull": [
+     "0.1042197932997835153664403",
+     "0.10435096431404970637143445893"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.01410699970760946778482565991e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.882340107504602342125655",
+     "1.895877135135352853453996"
+    ],
+    "record_delayed_arg_range": [
+     "1.882340107504602342125655",
+     "1.895877135135352853453996"
+    ]
+   },
+   {
+    "step": 114,
+    "class": "like",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1012569064254141016881278",
+     "0.101808579420099686870499"
+    ],
+    "review_hull": [
+     "0.101432195886008137849925888642",
+     "0.1016328909044742623304263523"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000175289460594036161798088642056",
+    "hi_diff_consumed_minus_review": "0.000175688515625424540072647699664",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.353238844661931419773509",
+     "1.364631437070215935976988"
+    ],
+    "record_delayed_arg_range": [
+     "1.353238844661931419773509",
+     "1.364631437070215935976988"
+    ]
+   },
+   {
+    "step": 114,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1006324153195140517489045",
+     "0.100986585506039387207168"
+    ],
+    "review_hull": [
+     "0.100741577073405953689116279788",
+     "0.100877253531394594953196829343"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000109161753891901940211779787999",
+    "hi_diff_consumed_minus_review": "0.000109331974644792253971170657362",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.036994457995377224090761",
+     "1.04743061760859925784423"
+    ],
+    "record_delayed_arg_range": [
+     "1.036994457995377224090761",
+     "1.04743061760859925784423"
+    ]
+   }
+  ],
+  "spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s2a3.json": [
+   {
+    "step": 115,
+    "class": "unlike",
+    "records_met": [
+     "ant-a-3",
+     "ant-a-4",
+     "ant-a-5"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1042769624345658219871763",
+     "0.1044675729656915797014307"
+    ],
+    "review_hull": [
+     "0.1042769624345658219871863",
+     "0.10446757296569157970142057198"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.0128019994380539920334424969e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.894298193380185029225371",
+     "1.907842763390767593359574"
+    ],
+    "record_delayed_arg_range": [
+     "1.894298193380185029225371",
+     "1.907842763390767593359574"
+    ]
+   },
+   {
+    "step": 115,
+    "class": "like",
+    "records_met": [
+     "window part",
+     "w16-1"
+    ],
+    "source": "two-part hull: window law on the consumed window-part coordinate box, and certified records",
+    "consumed": [
+     "0.1014312846903093394769085",
+     "0.101664052548643007841198"
+    ],
+    "review_hull": [
+     "0.101505333221762806323769036735",
+     "0.10161668295645583723977384832"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.0000740485314534668468605367352709",
+    "hi_diff_consumed_minus_review": "0.0000473695921871706014241516799911",
+    "trace_identity": true,
+    "trace_source": "window+records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.361905565857500111816983",
+     "1.373297936975172470980472"
+    ],
+    "record_delayed_arg_range": [
+     "1.361905565857500111816983",
+     "1.373297936975172470980472"
+    ],
+    "two_part": {
+     "consumed_record_part": [
+      "0.1015543563055973899088729",
+      "0.1016166829564558372397839"
+     ],
+     "review_record_part": [
+      "0.1015543563055973899088829",
+      "0.10161668295645583723977384832"
+     ],
+     "record_part_records": [
+      "w16-1"
+     ],
+     "record_part_contains_review": true,
+     "record_part_max_abs_diff": "1.00516799894078944876301468451e-23",
+     "consumed_window_part": [
+      "0.1014312846903093394769085",
+      "0.101664052548643007841198"
+     ],
+     "window_q_box": [
+      "0.09294195497644190803250564",
+      "0.09359717429472312322322282"
+     ],
+     "window_part_inside_gF_of_window_q_box": false,
+     "parts_overlap": true
+    }
+   },
+   {
+    "step": 115,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1006490568638288088318153",
+     "0.1010077949151174409635697"
+    ],
+    "review_hull": [
+     "0.100759731954507648365721894928",
+     "0.100896945325705798094867281589"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000110675090678839533906594927993",
+    "hi_diff_consumed_minus_review": "0.00011084958941164286870241841107",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.047396776989988645993641",
+     "1.057835633997170486190748"
+    ],
+    "record_delayed_arg_range": [
+     "1.047396776989988645993641",
+     "1.057835633997170486190748"
+    ]
+   },
+   {
+    "step": 116,
+    "class": "unlike",
+    "records_met": [
+     "ant-a-4",
+     "ant-a-5",
+     "ant-a-6"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1043344827781114798728068",
+     "0.1045263968719436036699035"
+    ],
+    "review_hull": [
+     "0.1043344827781114798728168",
+     "0.10452639687194360366989341775"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00822500011627290015833189078e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.906253837223165994351505",
+     "1.920416708203745412321613"
+    ],
+    "record_delayed_arg_range": [
+     "1.906253837223165994351505",
+     "1.920416708203745412321613"
+    ]
+   },
+   {
+    "step": 116,
+    "class": "like",
+    "records_met": [
+     "w16-1",
+     "w16-2"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1015543563055973899088729",
+     "0.1017052951615334922084166"
+    ],
+    "review_hull": [
+     "0.1015543563055973899088829",
+     "0.10170529516153349220840647"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01299999859488380836527705695e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.370236860457975638123288",
+     "1.38231943023743375346774"
+    ],
+    "record_delayed_arg_range": [
+     "1.370236860457975638123288",
+     "1.38231943023743375346774"
+    ]
+   },
+   {
+    "step": 116,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1006659807209530071237815",
+     "0.1010293200218596807043761"
+    ],
+    "review_hull": [
+     "0.100778182766547562027791095526",
+     "0.10091693912082676097648427703"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000112202045594554904009595526187",
+    "hi_diff_consumed_minus_review": "0.000112380901032919727891822969966",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.057800945237810096240277",
+     "1.068242515022639357784582"
+    ],
+    "record_delayed_arg_range": [
+     "1.057800945237810096240277",
+     "1.068242515022639357784582"
+    ]
+   },
+   {
+    "step": 117,
+    "class": "unlike",
+    "records_met": [
+     "ant-a-6",
+     "ant-a-7"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1044505492889265940616688",
+     "0.1045855570714379586312228"
+    ],
+    "review_hull": [
+     "0.1044505492889265940616788",
+     "0.10458555707143795863121270445"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00955499988095289553696092985e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.918802898180390951247334",
+     "1.932374957009868934819283"
+    ],
+    "record_delayed_arg_range": [
+     "1.918802898180390951247334",
+     "1.932374957009868934819283"
+    ]
+   },
+   {
+    "step": 117,
+    "class": "like",
+    "records_met": [
+     "w16-2",
+     "w16-3"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1015818260587053770759602",
+     "0.1017364009381612652265661"
+    ],
+    "review_hull": [
+     "0.1015818260587053770759702",
+     "0.10173640093816126522655595183"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.01481699917421166656631513473e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.378860199931158910441575",
+     "1.39094945803691989141469"
+    ],
+    "record_delayed_arg_range": [
+     "1.378860199931158910441575",
+     "1.39094945803691989141469"
+    ]
+   },
+   {
+    "step": 117,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1006831898120127102348783",
+     "0.1010511646270119846248077"
+    ],
+    "review_hull": [
+     "0.100796932743815057214365934115",
+     "0.100937238402732370176228326952"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000113742931802346979487634114518",
+    "hi_diff_consumed_minus_review": "0.0001139262242796144485793730483",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.068206951384783445412289",
+     "1.078651261906298794472945"
+    ],
+    "record_delayed_arg_range": [
+     "1.068206951384783445412289",
+     "1.078651261906298794472945"
+    ]
+   },
+   {
+    "step": 118,
+    "class": "unlike",
+    "records_met": [
+     "ant-a-7",
+     "ant-a-8"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.104509089530081510968129",
+     "0.1046450479267631008193875"
+    ],
+    "review_hull": [
+     "0.104509089530081510968139",
+     "0.10464504792676310081937744834"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00516599967143277926122034416e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.930751077441575225265657",
+     "1.944329877345296005362982"
+    ],
+    "record_delayed_arg_range": [
+     "1.930751077441575225265657",
+     "1.944329877345296005362982"
+    ]
+   },
+   {
+    "step": 118,
+    "class": "like",
+    "records_met": [
+     "w16-3",
+     "w16-4"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1016107822099513159666355",
+     "0.1017917147419877185842807"
+    ],
+    "review_hull": [
+     "0.1016107822099513159666455",
+     "0.10179171474198771858427058858"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01114199943519741689131459648e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.3874889816203478896957",
+     "1.399581631573022887606817"
+    ],
+    "record_delayed_arg_range": [
+     "1.3874889816203478896957",
+     "1.399581631573022887606817"
+    ]
+   },
+   {
+    "step": 118,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.10070068941538307723186",
+     "0.1010733299805626491397075"
+    ],
+    "review_hull": [
+     "0.10081598596053456146069252638",
+     "0.10095784562886616458730908685"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000115296545151484228832526379773",
+    "hi_diff_consumed_minus_review": "0.000115484351696484552398413150453",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.07861478598807078992031",
+     "1.089061853467719249129278"
+    ],
+    "record_delayed_arg_range": [
+     "1.07861478598807078992031",
+     "1.089061853467719249129278"
+    ]
+   },
+   {
+    "step": 119,
+    "class": "unlike",
+    "records_met": [
+     "ant-a-8",
+     "ant-a-9"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1045679640227234548206886",
+     "0.10470487026041860123998"
+    ],
+    "review_hull": [
+     "0.1045679640227234548206986",
+     "0.10470487026041860123996990699"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.00930099899542337381392781281e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.942695950547125053658121",
+     "1.956273184277166970713703"
+    ],
+    "record_delayed_arg_range": [
+     "1.942695950547125053658121",
+     "1.956273184277166970713703"
+    ]
+   },
+   {
+    "step": 119,
+    "class": "like",
+    "records_met": [
+     "w16-3",
+     "w16-4",
+     "w16-5"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1016107822099513159666355",
+     "0.1018515341109421617201289"
+    ],
+    "review_hull": [
+     "0.1016107822099513159666455",
+     "0.10185153411094216172011881499"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.0085010003602967728480884274e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.396120138159913496984592",
+     "1.408216073162874779372448"
+    ],
+    "record_delayed_arg_range": [
+     "1.396120138159913496984592",
+     "1.408216073162874779372448"
+    ]
+   },
+   {
+    "step": 119,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1007184817342619033236591",
+     "0.1010958216990118037623631"
+    ],
+    "review_hull": [
+     "0.100835345716903265180740162376",
+     "0.100978765314647217180669953478"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000116863982641361857081062376248",
+    "hi_diff_consumed_minus_review": "0.000117056384364586581693146522215",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.089024446062399293641024",
+     "1.099474280582823618240572"
+    ],
+    "record_delayed_arg_range": [
+     "1.089024446062399293641024",
+     "1.099474280582823618240572"
+    ]
+   },
+   {
+    "step": 120,
+    "class": "unlike",
+    "records_met": [
+     "ant-a-9",
+     "ant-a-10",
+     "ant-a-11"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1046271624439037264784494",
+     "0.1048254679316204333280131"
+    ],
+    "review_hull": [
+     "0.1046271624439037264784594",
+     "0.10482546793162043332800295361"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01463900010651953169940965392e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.954637261243337769370525",
+     "1.968220572137139254642867"
+    ],
+    "record_delayed_arg_range": [
+     "1.954637261243337769370525",
+     "1.968220572137139254642867"
+    ]
+   },
+   {
+    "step": 120,
+    "class": "like",
+    "records_met": [
+     "w16-4",
+     "w16-5",
+     "w16-6"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.101727779544323091839482",
+     "0.101911995646599809310552"
+    ],
+    "review_hull": [
+     "0.101727779544323091839492",
+     "0.10191199564659980931054194765"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00523499911614116522974400534e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.405069852765981466879505",
+     "1.416852909170005453887638"
+    ],
+    "record_delayed_arg_range": [
+     "1.405069852765981466879505",
+     "1.416852909170005453887638"
+    ]
+   },
+   {
+    "step": 120,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1007365663005049588684748",
+     "0.1011186461742816912394032"
+    ],
+    "review_hull": [
+     "0.100855013707567446843129642415",
+     "0.101000001681408667559055027686"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000118447407062487974654842415222",
+    "hi_diff_consumed_minus_review": "0.000118644492873023680348172313557",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.099435915838884471686212",
+     "1.109888543035273172128288"
+    ],
+    "record_delayed_arg_range": [
+     "1.099435915838884471686212",
+     "1.109888543035273172128288"
+    ]
+   },
+   {
+    "step": 121,
+    "class": "unlike",
+    "records_met": [
+     "ant-a-11",
+     "ant-b3-12"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1047465243217488205176211",
+     "0.1048862300651877918474297"
+    ],
+    "review_hull": [
+     "0.1047465243217488205176311",
+     "0.10488623006518779184741964847"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00515299825763860546040240211e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.967164929337015247157961",
+     "1.980767022712081292256899"
+    ],
+    "record_delayed_arg_range": [
+     "1.967164929337015247157961",
+     "1.980767022712081292256899"
+    ]
+   },
+   {
+    "step": 121,
+    "class": "like",
+    "records_met": [
+     "w16-5",
+     "w16-6"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1017868650884108411323967",
+     "0.101911995646599809310552"
+    ],
+    "review_hull": [
+     "0.1017868650884108411324067",
+     "0.10191199564659980931054194765"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00523499911614116522974400534e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.413707887378741374926347",
+     "1.425803180155744775643923"
+    ],
+    "record_delayed_arg_range": [
+     "1.413707887378741374926347",
+     "1.425803180155744775643923"
+    ]
+   },
+   {
+    "step": 121,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1007549490870737555849948",
+     "0.1011418046881959762067663"
+    ],
+    "review_hull": [
+     "0.100874994498343456737490173054",
+     "0.101021557422061597496902162683"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000120045411269701152495373054057",
+    "hi_diff_consumed_minus_review": "0.000120247266134378709864137316541",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.109849190780295184369506",
+     "1.12030463155826851926378"
+    ],
+    "record_delayed_arg_range": [
+     "1.109849190780295184369506",
+     "1.12030463155826851926378"
+    ]
+   },
+   {
+    "step": 122,
+    "class": "unlike",
+    "records_met": [
+     "ant-b3-12",
+     "ant-b3-13"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1048066723661537272118864",
+     "0.1049478910587889842355974"
+    ],
+    "review_hull": [
+     "0.1048066723661537272118964",
+     "0.10494789105878898423558732369"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00763099894799795793933537277e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.979095993246137716328129",
+     "1.992703545204378690881186"
+    ],
+    "record_delayed_arg_range": [
+     "1.979095993246137716328129",
+     "1.992703545204378690881186"
+    ]
+   },
+   {
+    "step": 122,
+    "class": "like",
+    "records_met": [
+     "w16-6",
+     "w16-7"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1018466158675781468384489",
+     "0.1019731143681539076365528"
+    ],
+    "review_hull": [
+     "0.1018466158675781468384589",
+     "0.10197311436815390763654266501"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.01349899872345718142194497563e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.422346165615507417648458",
+     "1.434444442074263246373797"
+    ],
+    "record_delayed_arg_range": [
+     "1.422346165615507417648458",
+     "1.434444442074263246373797"
+    ]
+   },
+   {
+    "step": 122,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1007736334664930208460844",
+     "0.1011653009096693982271112"
+    ],
+    "review_hull": [
+     "0.10089529159572273701597356073",
+     "0.101043436070461492189738294747"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000121658129229716169889160730272",
+    "hi_diff_consumed_minus_review": "0.000121864839207906037372905253188",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.12026426107108392650624",
+     "1.13072253198903083055336"
+    ],
+    "record_delayed_arg_range": [
+     "1.12026426107108392650624",
+     "1.13072253198903083055336"
+    ]
+   },
+   {
+    "step": 123,
+    "class": "unlike",
+    "records_met": [
+     "ant-b3-13",
+     "ant-b3-14"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1048670250725956037277438",
+     "0.1050089968459954005589931"
+    ],
+    "review_hull": [
+     "0.1048670250725956037277538",
+     "0.10500899684599540055898303567"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00643299903206956158453968905e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.991022581218286781665417",
+     "2.004635296221251258719963"
+    ],
+    "record_delayed_arg_range": [
+     "1.991022581218286781665417",
+     "2.004635296221251258719963"
+    ]
+   },
+   {
+    "step": 123,
+    "class": "like",
+    "records_met": [
+     "w16-7",
+     "w16-8"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1019070154610565657590067",
+     "0.1020348929932668538114055"
+    ],
+    "review_hull": [
+     "0.1019070154610565657590167",
+     "0.10203489299326685381139535062"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.01493800057631125451461772625e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.430987283254002170880826",
+     "1.4430884308383523505912"
+    ],
+    "record_delayed_arg_range": [
+     "1.430987283254002170880826",
+     "1.4430884308383523505912"
+    ]
+   },
+   {
+    "step": 123,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1007926245454632279386297",
+     "0.1011891366407249938670369"
+    ],
+    "review_hull": [
+     "0.100915909121130302468851450568",
+     "0.101065640416651483009671772188"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000123284575667074530221750568025",
+    "hi_diff_consumed_minus_review": "0.000123496224073510857365127812209",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.130681116736818584369463",
+     "1.141142236739084579732003"
+    ],
+    "record_delayed_arg_range": [
+     "1.130681116736818584369463",
+     "1.141142236739084579732003"
+    ]
+   },
+   {
+    "step": 124,
+    "class": "unlike",
+    "records_met": [
+     "ant-b3-14",
+     "ant-b3-15"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1049271305828024087397658",
+     "0.1050706336246256043562217"
+    ],
+    "review_hull": [
+     "0.1049271305828024087397758",
+     "0.10507063362462560435621159771"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01022899894058823480001187287e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "2.002944421332719707166142",
+     "2.016553322109219080405748"
+    ],
+    "record_delayed_arg_range": [
+     "2.002944421332719707166142",
+     "2.016553322109219080405748"
+    ]
+   },
+   {
+    "step": 124,
+    "class": "like",
+    "records_met": [
+     "w16-8",
+     "w16-9"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1019680679318072501198288",
+     "0.1020973429748549948054063"
+    ],
+    "review_hull": [
+     "0.1019680679318072501198388",
+     "0.10209734297485499480539622627"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.00737299952375509721271357503e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.439627911609861904606356",
+     "1.451735276229354868069761"
+    ],
+    "record_delayed_arg_range": [
+     "1.439627911609861904606356",
+     "1.451735276229354868069761"
+    ]
+   },
+   {
+    "step": 124,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1008119249342527165840835",
+     "0.1012133174410778235613674"
+    ],
+    "review_hull": [
+     "0.100936850643341830488666591618",
+     "0.101088175058005359750381982847"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000124925709089113904583091617897",
+    "hi_diff_consumed_minus_review": "0.000125142383072463810985417153179",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.141099751000169030519119",
+     "1.151563731405246186338262"
+    ],
+    "record_delayed_arg_range": [
+     "1.141099751000169030519119",
+     "1.151563731405246186338262"
+    ]
+   }
+  ],
+  "spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s2b2.json": [
+   {
+    "step": 125,
+    "class": "unlike",
+    "records_met": [
+     "ant-b3-15",
+     "ant-b3-16",
+     "ant-b3-17"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1049878862513729529533999",
+     "0.1051922949820856365095307"
+    ],
+    "review_hull": [
+     "0.1049878862513729529534099",
+     "0.10519229498208563650952057202"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01279799843415032421419192429e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "2.014861238133742896072013",
+     "2.029069240422116018873727"
+    ],
+    "record_delayed_arg_range": [
+     "2.014861238133742896072013",
+     "2.029069240422116018873727"
+    ]
+   },
+   {
+    "step": 125,
+    "class": "like",
+    "records_met": [
+     "w16-9",
+     "w16-10"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1020297698197320650751006",
+     "0.1021604499086585308159169"
+    ],
+    "review_hull": [
+     "0.1020297698197320650751106",
+     "0.10216044990865853081590675819"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01418099979089985632349706387e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.448275067039150315470126",
+     "1.460385108782234983252973"
+    ],
+    "record_delayed_arg_range": [
+     "1.448275067039150315470126",
+     "1.460385108782234983252973"
+    ]
+   },
+   {
+    "step": 125,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.100831534179895227061975",
+     "0.1012378499969623902629151"
+    ],
+    "review_hull": [
+     "0.100958117969509828127159255244",
+     "0.101111044412087624828445294413"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000126583789614601065184255244003",
+    "hi_diff_consumed_minus_review": "0.000126805584874765434469805587167",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.151520146481238011838337",
+     "1.161987014630919799327368"
+    ],
+    "record_delayed_arg_range": [
+     "1.151520146481238011838337",
+     "1.161987014630919799327368"
+    ]
+   },
+   {
+    "step": 126,
+    "class": "unlike",
+    "records_met": [
+     "ant-b3-17",
+     "ant-b3-18"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1051097500542116441573168",
+     "0.10525371597917239887016"
+    ],
+    "review_hull": [
+     "0.1051097500542116441573268",
+     "0.10525371597917239887014994186"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00581399960126526414612824094e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "2.027351753275665533059743",
+     "2.040981960586390845512161"
+    ],
+    "record_delayed_arg_range": [
+     "2.027351753275665533059743",
+     "2.040981960586390845512161"
+    ]
+   },
+   {
+    "step": 126,
+    "class": "like",
+    "records_met": [
+     "w16-10",
+     "w17-1"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1020921399264416947358196",
+     "0.1022274496754912763519164"
+    ],
+    "review_hull": [
+     "0.1020921399264416947358296",
+     "0.10222744967549127635190633504"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00649599820351761023201843727e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.456925443947804671119782",
+     "1.469038067203037859842038"
+    ],
+    "record_delayed_arg_range": [
+     "1.456925443947804671119782",
+     "1.469038067203037859842038"
+    ]
+   },
+   {
+    "step": 126,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.100851458248384584183491",
+     "0.101262735944951529855235"
+    ],
+    "review_hull": [
+     "0.100979715764571424699513830783",
+     "0.101134251420304462869292261372"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000128257516186840516022830783117",
+    "hi_diff_consumed_minus_review": "0.000128484524647066985942738627935",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.161942293229277936202447",
+     "1.172412080700457514631321"
+    ],
+    "record_delayed_arg_range": [
+     "1.161942293229277936202447",
+     "1.172412080700457514631321"
+    ]
+   },
+   {
+    "step": 127,
+    "class": "unlike",
+    "records_met": [
+     "ant-b3-18",
+     "ant-b3-19"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1051707100481124743686839",
+     "0.1053152261017640482675959"
+    ],
+    "review_hull": [
+     "0.1051707100481124743686939",
+     "0.10531522610176404826758575346"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01465399955707521059419099036e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "2.03925464596456887716779",
+     "2.052888636466819999520367"
+    ],
+    "record_delayed_arg_range": [
+     "2.03925464596456887716779",
+     "2.052888636466819999520367"
+    ]
+   },
+   {
+    "step": 127,
+    "class": "like",
+    "records_met": [
+     "w16-10",
+     "w17-1",
+     "w17-2"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1020921399264416947358196",
+     "0.1022739375121181318059557"
+    ],
+    "review_hull": [
+     "0.1020921399264416947358296",
+     "0.10227393751211813180594562671"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00732899957417123087143578992e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.465579198180627793193922",
+     "1.477694286269847143971968"
+    ],
+    "record_delayed_arg_range": [
+     "1.465579198180627793193922",
+     "1.477694286269847143971968"
+    ]
+   },
+   {
+    "step": 127,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1008717033457538393330523",
+     "0.1012879761339747881228758"
+    ],
+    "review_hull": [
+     "0.10100164860553014143275210045",
+     "0.101157798565754140368312173436"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000129945259776302099699800449796",
+    "hi_diff_consumed_minus_review": "0.000130177568220647754563626563513",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.172366178808781424448364",
+     "1.182838904056829181748749"
+    ],
+    "record_delayed_arg_range": [
+     "1.172366178808781424448364",
+     "1.182838904056829181748749"
+    ]
+   },
+   {
+    "step": 128,
+    "class": "unlike",
+    "records_met": [
+     "ant-b3-19",
+     "ant-b3-20"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1052317688496497686974908",
+     "0.1053768141022554727655378"
+    ],
+    "review_hull": [
+     "0.1052317688496497686975008",
+     "0.1053768141022554727655277291"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00708999937179255245101495528e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "2.051151531971006113677416",
+     "2.064788982251521963701895"
+    ],
+    "record_delayed_arg_range": [
+     "2.051151531971006113677416",
+     "2.064788982251521963701895"
+    ]
+   },
+   {
+    "step": 128,
+    "class": "like",
+    "records_met": [
+     "w17-1",
+     "w17-2"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1021551476482643037087539",
+     "0.1022739375121181318059557"
+    ],
+    "review_hull": [
+     "0.1021551476482643037087639",
+     "0.10227393751211813180594562671"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00732899957417123087143578992e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.474546136611601962690016",
+     "1.486656883572986988786261"
+    ],
+    "record_delayed_arg_range": [
+     "1.474546136611601962690016",
+     "1.486656883572986988786261"
+    ]
+   },
+   {
+    "step": 128,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1008922666273991937397527",
+     "0.101313581637598371302642"
+    ],
+    "review_hull": [
+     "0.101023918032466237092422556769",
+     "0.101181692520984910881871228186"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000131651405067043352669856768756",
+    "hi_diff_consumed_minus_review": "0.000131889116613460420770771813928",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.182791794622964527618617",
+     "1.193267473966360132481975"
+    ],
+    "record_delayed_arg_range": [
+     "1.182791794622964527618617",
+     "1.193267473966360132481975"
+    ]
+   },
+   {
+    "step": 129,
+    "class": "unlike",
+    "records_met": [
+     "ant-b3-20",
+     "ant-b3-21"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1052929119585304719949711",
+     "0.1054384669799037136446854"
+    ],
+    "review_hull": [
+     "0.1052929119585304719949811",
+     "0.1054384669799037136446752786"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01213999969234416300465043385e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "2.063042121512892030928182",
+     "2.07667336285170081748579"
+    ],
+    "record_delayed_arg_range": [
+     "2.063042121512892030928182",
+     "2.07667336285170081748579"
+    ]
+   },
+   {
+    "step": 129,
+    "class": "like",
+    "records_met": [
+     "w17-2",
+     "w17-3"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1021780215330022120181649",
+     "0.1023392300100704350976279"
+    ],
+    "review_hull": [
+     "0.1021780215330022120181749",
+     "0.10233923001007043509761779115"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01088500087822805532342091487e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.483205898861544750286953",
+     "1.495318907382185396523117"
+    ],
+    "record_delayed_arg_range": [
+     "1.483205898861544750286953",
+     "1.495318907382185396523117"
+    ]
+   },
+   {
+    "step": 129,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1009131601021530467323879",
+     "0.1013395480343010412879966"
+    ],
+    "review_hull": [
+     "0.101046530969769030879374369723",
+     "0.101205933966525426735378333723"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000133370867615984146986469723452",
+    "hi_diff_consumed_minus_review": "0.000133614067775614552618266276571",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.193219132166946181429112",
+     "1.20369778820644940418356"
+    ],
+    "record_delayed_arg_range": [
+     "1.193219132166946181429112",
+     "1.20369778820644940418356"
+    ]
+   },
+   {
+    "step": 130,
+    "class": "unlike",
+    "records_met": [
+     "ant-b3-21",
+     "lf-s1a2-22",
+     "lf-s1a2-23"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1053541228997485356146463",
+     "0.105561899222295813116431"
+    ],
+    "review_hull": [
+     "0.1053541228997485356146563",
+     "0.10556189922229581311642085904"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01409599879576712789363300416e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "2.074926121279350842335244",
+     "2.08914013797995996219081"
+    ],
+    "record_delayed_arg_range": [
+     "2.074926121279350842335244",
+     "2.08914013797995996219081"
+    ]
+   },
+   {
+    "step": 130,
+    "class": "like",
+    "records_met": [
+     "w17-3",
+     "w17-4"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1022374853997242668559012",
+     "0.1023467662498880910561439"
+    ],
+    "review_hull": [
+     "0.1022374853997242668559112",
+     "0.10234676624988809105613384466"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00553399835333772363712113171e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.491869378146499245976132",
+     "1.503984529725099175479114"
+    ],
+    "record_delayed_arg_range": [
+     "1.491869378146499245976132",
+     "1.503984529725099175479114"
+    ]
+   },
+   {
+    "step": 130,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1009343792902419013683686",
+     "0.101365886559907449542872"
+    ],
+    "review_hull": [
+     "0.101069487885487231709482390445",
+     "0.101230529171731053096069836602"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000135108595245330341113790444832",
+    "hi_diff_consumed_minus_review": "0.00013535738817639644680216339819",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.203648174421957003111586",
+     "1.214129832136183314859033"
+    ],
+    "record_delayed_arg_range": [
+     "1.203648174421957003111586",
+     "1.214129832136183314859033"
+    ]
+   },
+   {
+    "step": 131,
+    "class": "unlike",
+    "records_met": [
+     "lf-s1a2-23",
+     "lf-s1a2-24"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1054766998827294172851548",
+     "0.1056236455520639832867296"
+    ],
+    "review_hull": [
+     "0.1054766998827294172851648",
+     "0.10562364555206398328671947644"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01235599966895499129961973277e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "2.087367281004992064952344",
+     "2.101015941322860870128419"
+    ],
+    "record_delayed_arg_range": [
+     "2.087367281004992064952344",
+     "2.101015941322860870128419"
+    ]
+   },
+   {
+    "step": 131,
+    "class": "like",
+    "records_met": [
+     "w17-4",
+     "w17-5"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1022917892302929735984482",
+     "0.1023927558495223782276339"
+    ],
+    "review_hull": [
+     "0.1022917892302929735984582",
+     "0.10239275584952237822762379226"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01077399952069730810758286297e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.500536698724108585428943",
+     "1.512653893505531674791097"
+    ],
+    "record_delayed_arg_range": [
+     "1.500536698724108585428943",
+     "1.512653893505531674791097"
+    ]
+   },
+   {
+    "step": 131,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1009559337024435442486675",
+     "0.1013925953697704146702767"
+    ],
+    "review_hull": [
+     "0.101092794783151605303735254494",
+     "0.101255479811342593576946789208"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000136861080708061055067754493767",
+    "hi_diff_consumed_minus_review": "0.000137115558427821093329910791608",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.214078908734511513674098",
+     "1.224563601948300081961951"
+    ],
+    "record_delayed_arg_range": [
+     "1.214078908734511513674098",
+     "1.224563601948300081961951"
+    ]
+   },
+   {
+    "step": 132,
+    "class": "unlike",
+    "records_met": [
+     "lf-s1a2-24",
+     "lf-s1a2-25"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1055380342308082187720395",
+     "0.1056853901560404367029267"
+    ],
+    "review_hull": [
+     "0.1055380342308082187720495",
+     "0.10568539015604043670291655271"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01472900050763909829159051046e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "2.099233442311885844153241",
+     "2.112884057725143207128549"
+    ],
+    "record_delayed_arg_range": [
+     "2.099233442311885844153241",
+     "2.112884057725143207128549"
+    ]
+   },
+   {
+    "step": 132,
+    "class": "like",
+    "records_met": [
+     "w17-5",
+     "w17-6"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1023374551205041150836652",
+     "0.1024389444749106227838249"
+    ],
+    "review_hull": [
+     "0.1023374551205041150836752",
+     "0.10243894447491062278381484558"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-1.00000000105255391214509190877e-23",
+    "hi_diff_consumed_minus_review": "1.00544199868286148754314593482e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.509204313542803722539871",
+     "1.521327136967234435308028"
+    ],
+    "record_delayed_arg_range": [
+     "1.509204313542803722539871",
+     "1.521327136967234435308028"
+    ]
+   },
+   {
+    "step": 132,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1009778200366154809847893",
+     "0.101419686322594033955202"
+    ],
+    "review_hull": [
+     "0.101116453152465842775125691477",
+     "0.101280792933700652554414263257"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000138633115850361790336391476761",
+    "hi_diff_consumed_minus_review": "0.000138893388893381400787736743298",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.224511320556890276630024",
+     "1.234999069047821451604139"
+    ],
+    "record_delayed_arg_range": [
+     "1.224511320556890276630024",
+     "1.234999069047821451604139"
+    ]
+   },
+   {
+    "step": 133,
+    "class": "unlike",
+    "records_met": [
+     "lf-s1a2-25",
+     "lf-s1a2-26"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.105599376943412694074672",
+     "0.105747115581327294571293"
+    ],
+    "review_hull": [
+     "0.105599376943412694074682",
+     "0.10574711558132729457128294985"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00501499936822183352335507975e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "2.111091963400685129164144",
+     "2.124744182223531145698533"
+    ],
+    "record_delayed_arg_range": [
+     "2.111091963400685129164144",
+     "2.124744182223531145698533"
+    ]
+   },
+   {
+    "step": 133,
+    "class": "like",
+    "records_met": [
+     "w17-6",
+     "w17-7"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1023833211523006723359971",
+     "0.1024853341739744490040245"
+    ],
+    "review_hull": [
+     "0.1023833211523006723360071",
+     "0.10248533417397444900401441494"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00850599853368844660257427827e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.51787973641784634202887",
+     "1.530004391767025377117357"
+    ],
+    "record_delayed_arg_range": [
+     "1.51787973641784634202887",
+     "1.530004391767025377117357"
+    ]
+   },
+   {
+    "step": 133,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1010000508661484483305452",
+     "0.1014471545985519055702105"
+    ],
+    "review_hull": [
+     "0.101140470160636577451216648388",
+     "0.101306469144650065379964781032"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000140419294488129120671448388258",
+    "hi_diff_consumed_minus_review": "0.000140685453901840190245718968193",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.234945402078229719091997",
+     "1.245436219718026311173631"
+    ],
+    "record_delayed_arg_range": [
+     "1.234945402078229719091997",
+     "1.245436219718026311173631"
+    ]
+   },
+   {
+    "step": 134,
+    "class": "unlike",
+    "records_met": [
+     "lf-s1a2-26",
+     "lf-s1a2-27"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1056607076749468373363525",
+     "0.1058087988549737336038712"
+    ],
+    "review_hull": [
+     "0.1056607076749468373363625",
+     "0.10580879885497373360386113697"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.00630299968526979647033162001e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "2.122942533964987909998465",
+     "2.136585969573598442434304"
+    ],
+    "record_delayed_arg_range": [
+     "2.122942533964987909998465",
+     "2.136585969573598442434304"
+    ]
+   },
+   {
+    "step": 134,
+    "class": "like",
+    "records_met": [
+     "w17-6",
+     "w17-7",
+     "w17-8"
+    ],
+    "source": "certified records a0 + ap*[0, Delta]",
+    "consumed": [
+     "0.1023833211523006723359971",
+     "0.1025319535616244227940173"
+    ],
+    "review_hull": [
+     "0.1023833211523006723360071",
+     "0.10253195356162442279400717099"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-9.99999999819958747737260962818e-24",
+    "hi_diff_consumed_minus_review": "1.01290099901646890019935977692e-23",
+    "trace_identity": true,
+    "trace_source": "records",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.526559432327074473401503",
+     "1.538685795176812510350436"
+    ],
+    "record_delayed_arg_range": [
+     "1.526559432327074473401503",
+     "1.538685795176812510350436"
+    ]
+   },
+   {
+    "step": 134,
+    "class": "antipode",
+    "records_met": [
+     "window"
+    ],
+    "source": "window law gF(q') on the consumed delayed-coordinate box",
+    "consumed": [
+     "0.1010226221719075951863302",
+     "0.1014750113220777241019214"
+    ],
+    "review_hull": [
+     "0.101164846576953551552456566844",
+     "0.101332514761416755574981705892"
+    ],
+    "consumed_contains_review": true,
+    "review_contains_consumed": false,
+    "lo_diff_consumed_minus_review": "-0.000142224405045956366126366843883",
+    "hi_diff_consumed_minus_review": "0.000142496560660968526939694107921",
+    "trace_identity": true,
+    "trace_source": "window",
+    "consumed_range_equals_delayed_arg_range": true,
+    "consumed_range": [
+     "1.245381133031158860040392",
+     "1.255875050594023506760447"
+    ],
+    "record_delayed_arg_range": [
+     "1.245381133031158860040392",
+     "1.255875050594023506760447"
+    ]
+   }
+  ]
+ }
+}

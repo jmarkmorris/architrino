@@ -2,6 +2,7 @@
 #include "CanonicalEquationEvaluation.hpp"
 #include "EquationSourceIdentity.hpp"
 #include <algorithm>
+#include "architrino/eom/SpeedDomain.hpp"
 
 namespace architrino::eom {
 const EquationProvider& require_surface_equation_provider(const NativeCoupledEvolutionRequest&);
@@ -45,9 +46,8 @@ class CanonicalEquationProvider final : public EquationProvider {
           "composition is not executable in Stage A: " +
               selection.composition_id);
     }
-    if (selection.speed_domain != "unrestricted" ||
-        selection.boundary_policy != "none" ||
-        selection.constraint != "none" || selection.method != "numerical") {
+    admit_speed_selection(selection);
+    if (selection.constraint != "none" || selection.method != "numerical") {
       throw EquationAdmissionError(
           "unsupported_model_combination",
           "Stage A implements canonical/unrestricted/unconstrained numerical "
@@ -63,6 +63,7 @@ class CanonicalEquationProvider final : public EquationProvider {
       throw EquationAdmissionError("unsupported_model_combination",
                                    "unknown canonical chart policy");
     }
+    for (const auto& path : request.paths) require_prepared_speed_domain(path.history, selection);
   }
 
   NativeAccelerationSnapshotCertificate evaluate(
@@ -71,10 +72,12 @@ class CanonicalEquationProvider final : public EquationProvider {
     if (std::any_of(context.histories.begin(), context.histories.end(),
         [](const auto& path) { return path.surface_evidence != nullptr; }))
       throw EquationAdmissionError("unsupported_model_combination", "canonical provider cannot implicitly consume Surface continuation carriers");
-    return detail::certify_canonical_acceleration_snapshot(
+    auto result = detail::certify_canonical_acceleration_snapshot(
         context.request, context.histories, context.reception_time,
         context.warm_snapshot, context.warm_histories,
         context.defer_root_precision_escalation);
+    result.selected_model_identity = equation_snapshot_identity(context.request);
+    return result;
   }
 
  private:

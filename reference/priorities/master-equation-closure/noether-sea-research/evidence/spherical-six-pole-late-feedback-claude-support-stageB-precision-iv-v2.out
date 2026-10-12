@@ -1,0 +1,83 @@
+PID 99423
+[{"name": "(K1) known toy: delta'' = +-K0 delta - eps0 (K0 = 0.5, eps0 = 1e-5, T = 0.09): exact sinh and sin solutions for speed and position lie inside the bound, and the bound proves the negative sign", "bound_v": ["-0.0000009018237304366369917089661", "-0.0000008981762695633630082910339"], "exact_v_plus": ["-0.0000009006076230306131896128773", "-0.0000009006076230306131896128773"], "exact_v_minus": ["-0.0000008993926230068881449208851", "-0.0000008993926230068881449208851"], "bound_x": ["-4.055471191309910975126898e-8", "-4.044528808690089024873102e-8"], "exact_x_plus": ["-4.051367059541470938170226e-8", "-4.051367059541470938170226e-8"], "exact_x_minus": ["-4.04863330951478026291016e-8", "-4.04863330951478026291016e-8"], "eta": ["0.002026367151818879676628974", "0.002026367151818879676628974"], "pass": true}, {"name": "(K2) known: total dPsi_c/dq (current-coordinate derivative of a delayed-class hit on a fixed model history, delay re-solved) vs Richardson finite difference, both classes; H' vs finite difference", "detail": {"unlike": {"closed": "0.28932760978413431382", "fd": "0.28932760978413431382", "abs_err": "4.3741e-33"}, "like": {"closed": "-0.17384696509606814452", "fd": "-0.17384696509606814452", "abs_err": "4.2881e-34"}}, "pass": true}, {"name": "(W) negative: wrong-sign eps (toy) gives a proved POSITIVE speed difference (conclusion flips)", "bound_v_wrong": ["0.0000008981762695633630082910339", "0.0000009018237304366369917089661"], "pass": true}]
+{
+"common_history": {
+"max_recorded_delayed_argument": "0.7885300446011936091574964",
+"step13_start_lower": "1.986684593623649597167969",
+"holds": true
+},
+"I_eps": [
+"0.0000002068204560971855575199673",
+"0.0000002987574429605623080151101"
+],
+"E2": [
+"4.451467798385244795518229e-9",
+"8.118867056062048141273817e-9"
+],
+"k_range": [
+"0.03416839054002559845414944",
+"0.03745040193885878660923351"
+],
+"K": "0.03745040193885878660923351",
+"T": "0.09",
+"sigma": [
+"1.000050558809457699900986",
+"1.000050558809457699900986"
+],
+"eta": [
+"0.00015168179631570783696453",
+"0.00015168179631570783696453"
+],
+"speed_difference_full_minus_held": [
+"-0.0000002988027590261732537292538",
+"-0.0000002067751400315746118058235"
+],
+"speed_sign": "negative",
+"position_difference_full_minus_held": [
+"-8.12022653803037651269813e-9",
+"-4.450108316416916424093916e-9"
+],
+"position_sign": "negative",
+"predecessor_speed_difference_from_end_strings": [
+"-0.0000274057360233235162712",
+"0.0000269668618201181202195"
+],
+"predecessor_position_difference": [
+"-0.0000098246017475879166551",
+"0.0000098147245768608267651"
+],
+"inside_predecessor_speed": true,
+"inside_predecessor_position": true,
+"wrong_sign_eps_speed": [
+"0.0000002067751400315746118058235",
+"0.0000002988027590261732537292538"
+],
+"wrong_sign_flips": true
+}
+13 eps 0.0 0.0000006314 naive -0.0000259 0.00002658 k 0.0341683 0.0362159 p 0.0 0.00001504
+14 eps 0.0 0.0000008976 naive -0.0000261 0.00002699 k 0.0343107 0.0363826 p 0.0 0.000025
+15 eps 0.0 0.0000011875 naive -0.0000262 0.00002743 k 0.0344496 0.0365461 p 0.0 0.00003684
+16 eps 0.0000011854 0.0000018982 naive -0.0000252 0.00002829 k 0.0345848 0.0367061 p 0.00003678 0.00006975
+17 eps 0.0000018959 0.0000027544 naive -0.0000246 0.00002930 k 0.0347161 0.0368625 p 0.00006969 0.00011307
+18 eps 0.0000027517 0.0000037566 naive -0.0000239 0.00003045 k 0.0348436 0.0370153 p 0.00011302 0.00016684
+19 eps 0.0000037532 0.0000049052 naive -0.0000230 0.00003175 k 0.0349670 0.0371643 p 0.00016678 0.00023104
+20 eps 0.0000049008 0.0000062006 naive -0.0000220 0.00003319 k 0.0350863 0.0373093 p 0.00023099 0.00030570
+21 eps 0.0000061948 0.0000076438 naive -0.0000209 0.00003478 k 0.0352013 0.0374504 p 0.00030562 0.00039082
+        0.32 real         0.30 user         0.01 sys
+            22511616  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2341  page reclaims
+                  81  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  50  involuntary context switches
+          5204640712  instructions retired
+          1108223374  cycles elapsed
+            14844384  peak memory footprint

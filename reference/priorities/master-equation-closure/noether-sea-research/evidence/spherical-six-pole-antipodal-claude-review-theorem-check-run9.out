@@ -1,0 +1,2 @@
+PID 31430
+controls {'K_kernel_identity_max': '6.31088724176809444329382852226e-30', 'K_derivative_vs_fd_max': '2.65883795175133127503357268078e-12', 'W_sum_kernel_violations_of_200': 196}

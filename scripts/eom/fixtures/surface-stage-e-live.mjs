@@ -1,0 +1,22 @@
+// Explicit-use local-service continuation verification; run the known-case consumer qualification first.
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createSurfaceExperiment} from '../../../src/apps/surface/SurfaceExperiment.js';
+import {createEomResponseView} from '../EomResponseRecord.mjs';
+import {validateSurfaceRecord} from '../../../src/apps/surface/SurfaceRecord.js';
+import {createEomV2HttpClient} from '../../../src/apps/shared/EomV2HttpClient.js';
+const root='.local-data/eom/surface-stage-e-2026-10-11';
+const paused=JSON.parse(fs.readFileSync(root+'/records/ea8fd53f-9b61-40ae-ba28-6262b66acd25.json'));
+const request=createSurfaceExperiment();request.runId=paused.runId;
+const first=createEomResponseView(paused,{id:'ea8fd53f-9b61-40ae-ba28-6262b66acd25'});
+validateSurfaceRecord({schema:'surface_playback_record/v1',request,results:[first]});
+assert.equal(paused.halt.code,'cancelled_at_accepted_boundary');assert.equal(paused.checkpoint.durable,true);
+console.log('Retained actual pause has durable accepted prefix '+first.acceptedCoverage.end+' with '+first.record.acceptedSurface.certifiedCount+' certified path segments.');
+const client=createEomV2HttpClient({endpoint:'http://127.0.0.1:5188/api/eom/v2'});
+const resumed=await client.resumeRecord(request,paused.checkpoint.data,'0.25',{expectedModelDigest:paused.modelDigest});
+const record={schema:'surface_playback_record/v1',request,results:[first,resumed],provenance:{kind:'eom-live-numerical',scope:'engineering continuation check'}};
+validateSurfaceRecord(record);assert.equal(resumed.acceptedCoverage.start,paused.acceptedCoverage.end);assert.equal(resumed.acceptedCoverage.end,'0.25');assert.equal(resumed.status,'completed');assert.equal(resumed.checkpoint.durable,true);
+fs.mkdirSync(root+'/reproductions',{recursive:true});fs.writeFileSync(root+'/reproductions/'+resumed.record.artifact.id+'-playback.json',JSON.stringify(record),{flag:'wx'});
+const raw=await fetch('http://127.0.0.1:5188'+resumed.record.artifact.rawHref);assert.equal(raw.status,200);let bytes=0;for await(const b of raw.body)bytes+=b.length;assert.equal(bytes,resumed.record.artifact.bytes);
+console.log(JSON.stringify({status:'passed',pausedEnd:paused.acceptedCoverage.end,resumedEnd:resumed.acceptedCoverage.end,modelDigest:resumed.modelDigest,playbackBytes:Buffer.byteLength(JSON.stringify(record)),rawBytes:bytes,artifact:resumed.record.artifact,checkpointId:resumed.checkpoint.id}));
+await client.dispose();

@@ -15,6 +15,8 @@ struct ResolvedEquationModel {
     const NativeCoupledEvolutionRequest& request);
 // V7 checkpoints and canonical event maps retain their own admission boundary.
 void require_canonical_equation_operation(const NativeCoupledEvolutionRequest&);
+void require_legacy_checkpoint_equation(const NativeCoupledEvolutionRequest&);
+[[nodiscard]] std::string equation_snapshot_identity(const NativeCoupledEvolutionRequest&);
 [[nodiscard]] ResolvedEquationModel inspect_equation_model(
     const NativeCoupledEvolutionRequest& request);
 [[nodiscard]] std::string equation_capabilities_json();

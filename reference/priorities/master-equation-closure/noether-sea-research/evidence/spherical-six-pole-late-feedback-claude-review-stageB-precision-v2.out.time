@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-stageB-precision.py", line 25, in <module>
+    e0 = I("5e-5"); Lt = I("5"); Tt = I("0.0866"); exact = -e0*iv.sinh(iv.sqrt(Lt)*Tt)/iv.sqrt(Lt); fbt = Lt*e0*Tt**3/6/(1 - Lt*Tt**2/2); bnd = -e0*Tt + iv.mpf([-mp.mpf(fbt.b), mp.mpf(fbt.b)])
+                                                               ^^^^^^^
+AttributeError: 'MPIntervalContext' object has no attribute 'sinh'. Did you mean: 'sin'?
+        0.06 real         0.04 user         0.01 sys
+            22052864  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2350  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  41  involuntary context switches
+           408714606  instructions retired
+           158831645  cycles elapsed
+            14270968  peak memory footprint

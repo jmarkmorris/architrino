@@ -1,0 +1,6604 @@
+{
+ "g": "1/10",
+ "N_window": 4000,
+ "mode": "three (all classes moving, generated history)",
+ "plan": {
+  "Delta": "0.01",
+  "max_step_number": 124,
+  "adaptation": "none; stop at the first uncertified step"
+ },
+ "controls": [
+  {
+   "name": "(0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the EXPANDED box q <= 0.7, q' <= 0.4, v' <= 0.4",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "8.8747e-31",
+    "like": "5.9165e-31",
+    "antipode": "3.9443e-31"
+   }
+  },
+  {
+   "name": "(E) expanded-domain box q in [0.39, 0.62], q' in [0, 0.31], v' in [0, 0.30] (144 cells): unlike/like N > 0 and M > 0, every separation r > 0.9, D_t > 0.5 with unlike <= 1 (approaching), like >= 1 and antipode >= 1 (receding; q' <= q on the box)",
+   "pass": true,
+   "box": {
+    "N_min": {
+     "unlike": "0.2969164",
+     "like": "0.2969164",
+     "antipode": "0.079914694"
+    },
+    "M_min": {
+     "unlike": "0.14386591",
+     "like": "0.14386591",
+     "antipode": "-0.58103516"
+    },
+    "r_min": {
+     "unlike": "1.0123403",
+     "like": "1.5897771",
+     "antipode": "1.9046671"
+    },
+    "D_range": {
+     "unlike": [
+      "0.88252912",
+      "1.0"
+     ],
+     "like": [
+      "1.0",
+      "1.0875554"
+     ],
+     "antipode": [
+      "1.0",
+      "1.0915176"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(2) reconciliation at the accepted step-94 state: g F(q) (five-image field) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum intersects g n.A",
+   "pass": true,
+   "gF": [
+    "0.1117529946038295211893916",
+    "0.1117886674043152678785005"
+   ],
+   "tangent_sum_fixed": [
+    "0.1117657953736971650594194",
+    "0.1117758654950383246120421"
+   ],
+   "radial_sum_fixed": [
+    "-0.04592180810548503296753518",
+    "-0.04591874721005770291827163"
+   ],
+   "g_nA": [
+    "-0.04593753265221183695827679",
+    "-0.04590302248490977112777242"
+   ]
+  },
+  {
+   "name": "(3) record lookup: window case; frozen end strings contained at record ends in every family; continuity and two-part hull at T*; exact-string joins; hull across each family join; negatives: uncertified record, gap, wrong record file, range beyond covered history all refused",
+   "pass": true,
+   "detail": {
+    "window_lookup_equals_window": true,
+    "wave16_step5_end_contained": true,
+    "wave17_step40_end_contained": true,
+    "antipodal_b3_step21_end_contained": true,
+    "late_feedback_step60_end_contained": true,
+    "late_feedback_step94_end_contained": true,
+    "continuity_at_T_star": true,
+    "straddle_T_star_two_part_hull": true,
+    "family_and_file_joins_exact_strings": true,
+    "hull_across_each_family_join": true,
+    "neg_uncertified_record_refused": [
+     true,
+     "uncertified record refused: synthetic uncertified copy of wave16 step 5"
+    ],
+    "wave16_step11_certified_flag": false,
+    "neg_wave16_step11_refused": [
+     true,
+     "uncertified record refused: wave16 step 11"
+    ],
+    "neg_gap_refused": [
+     true,
+     "gap refused before wave16 step 3"
+    ],
+    "neg_wrong_record_file_detected": [
+     true,
+     "gap refused before antipodal-a step 1"
+    ],
+    "neg_wrong_record_state_at_the_right_time_detected": [
+     true,
+     "state discontinuity refused at wave17 step 2"
+    ],
+    "neg_beyond_covered_history_refused": true
+   }
+  },
+  {
+   "name": "(4) negative: like and unlike terms at the step-94 state with the wrong sign of the velocity term in D_t are disjoint from the correct ones",
+   "pass": true,
+   "detail": {
+    "like": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.1370686406868744588937701",
+      "0.1370799803502139532965351"
+     ],
+     "hit_wrong": [
+      "0.1462025369835815581784895",
+      "0.1462146731798032820643067"
+     ],
+     "Dt_correct": [
+      "1.032242258557322857108923",
+      "1.032246590287877271113721"
+     ],
+     "Dt_wrong": [
+      "0.9677534097121227288862786",
+      "0.9677577414426771428910767"
+     ]
+    },
+    "unlike": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.3765589932525459976457177",
+      "0.3789009306396596260689919"
+     ],
+     "hit_wrong": [
+      "0.3339826809415615220516747",
+      "0.3360381401432138410127796"
+     ],
+     "Dt_correct": [
+      "0.9397948480410760471617022",
+      "0.9403311707969756935384406"
+     ],
+     "Dt_wrong": [
+      "1.059668829203024306461559",
+      "1.060205151958923952838298"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(5) delay-root bracket: frozen narrow vs wide (+-0.15) agree to 1e-15 at the b3 step-21 state; +-0.12 vs +-0.15 intersect and agree to 1e-9 at the step-94 state (bisection resolution on record hulls); a non-straddling bracket (+-1e-4) is refused",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "b3_state_narrow_vs_wide": true,
+     "step94_state_0.12_vs_0.15": true,
+     "step94_endpoint_abs_diff": "1.2973e-15",
+     "tau_step94": [
+      "1.152932937030810666717737",
+      "1.154121274960548915675959"
+     ],
+     "chord_minus_tau_step94": "0.0513067",
+     "frozen_narrow_bracket_at_step94": "fails (root outside +-0.03)"
+    },
+    "like": {
+     "b3_state_narrow_vs_wide": true,
+     "step94_state_0.12_vs_0.15": true,
+     "step94_endpoint_abs_diff": "1.8599e-17",
+     "tau_step94": [
+      "1.616524745177800132014824",
+      "1.616546584221758055304568"
+     ],
+     "chord_minus_tau_step94": "-0.0197356",
+     "frozen_narrow_bracket_at_step94": "straddles"
+    },
+    "antipode": {
+     "b3_state_narrow_vs_wide": true,
+     "step94_state_0.12_vs_0.15": true,
+     "step94_endpoint_abs_diff": "1.7295e-18",
+     "tau_step94": [
+      "1.966964630319131613941345",
+      "1.966974417237014995018184"
+     ],
+     "chord_minus_tau_step94": "-0.00669224",
+     "frozen_narrow_bracket_at_step94": "straddles"
+    }
+   },
+   "non_straddling_refused": true
+  },
+  {
+   "name": "(1) restart regression (same-code, not independent): the step from the frozen step-93 strings intersects the frozen step-94 end strings and agrees to 1e-15 at N = 4000",
+   "pass": true,
+   "intersects": true,
+   "max_endpoint_abs_diff": "8.764e-22",
+   "end_q": [
+    "0.3992437701157277106661832",
+    "0.3992985410325688180050578"
+   ],
+   "frozen_end_q": [
+    "0.3992437701157277106661817",
+    "0.3992985410325688180050535"
+   ],
+   "end_v": [
+    "0.2888830859193191819274853",
+    "0.2890560052917000141660627"
+   ],
+   "frozen_end_v": [
+    "0.2888830859193191819271821",
+    "0.2890560052917000141651863"
+   ],
+   "reconcile_tangent": true,
+   "reconcile_radial": true
+  },
+  {
+   "name": "(6) self-append: after certifying the control step (from step 93), appending it through the checked path, a lookup inside it returns that step's box, a lookup beyond it is refused, and its box agrees with the frozen step-94 box",
+   "pass": true,
+   "detail": {
+    "records_before": 143,
+    "records_after": 144,
+    "lookup_inside_returns_its_box": true,
+    "lookup_beyond_refused": true,
+    "box_agrees_with_frozen_step94_S_to_1e-15": true
+   }
+  },
+  {
+   "name": "(7) restart wrapper: default and explicit selection of step 94 reproduce the exact frozen strings with t0 an interval; wrong g, wrong window, uncertified step, missing step and wrong Delta refused",
+   "pass": true,
+   "detail": {
+    "default_selects_last_certified_step_94_exact_strings": true,
+    "explicit_step_94_exact_strings": true,
+    "t0_interval": [
+     "2.806684593623649597167969",
+     "2.806684709182828044891357"
+    ],
+    "t0_is_interval_not_point": true,
+    "neg_wrong_g": [
+     true,
+     "g mismatch: 1/9"
+    ],
+    "neg_wrong_window": [
+     true,
+     "window mismatch (N or T* strings differ)"
+    ],
+    "neg_uncertified_step": [
+     true,
+     "requested step 94 is not certified"
+    ],
+    "neg_missing_step": [
+     true,
+     "requested step 999 not in the record"
+    ],
+    "neg_wrong_Delta": [
+     true,
+     "Delta mismatch"
+    ]
+   }
+  }
+ ],
+ "steps": [
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.006684593623649597167969",
+    "3.016684709182828044891357"
+   ],
+   "S": [
+    "0.4591525298611156327782116",
+    "0.4623658660844546790592373"
+   ],
+   "VS": [
+    "0.3101164267419209548748908",
+    "0.3114974241364592409369872"
+   ],
+   "a0": [
+    "0.1047422578570016709440055",
+    "0.105441989243890191432729"
+   ],
+   "ap": [
+    "-0.02574820883052626981069793",
+    "-0.01499633642993840556595866"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.110969888442431789879295",
+      "1.112386400243464567942598"
+     ],
+     "tau_range": [
+      "1.108841945792060451531783",
+      "1.112386400243464567942598"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9395483905072946300440537",
+      "0.9401268178112349869734659"
+     ],
+     "Dt_range": [
+      "0.9386307342426138116258068",
+      "0.940956411617733969715004"
+     ],
+     "delayed_arg_range": [
+      "1.894298193380185029225371",
+      "1.907842763390767593359574"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1788470042950914461120884",
+      "0.1846242369329325123281549"
+     ],
+     "history_qdot_range": [
+      "0.190808262015751840045321",
+      "0.1939585828360195020971759"
+     ],
+     "hit0": [
+      "0.3760086467423150204986376",
+      "0.3790031992248366426232848"
+     ],
+     "hit_fixed0": [
+      "0.3938766656146472346336982",
+      "0.393953379312795897999236"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.098841945792060451531783",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.5276134841973569843340136",
+     "delayed_arg_start": [
+      "1.894298193380185029225371",
+      "1.895714820740396255012062"
+     ],
+     "r0": [
+      "1.110969888442432440940033",
+      "1.112386400243464312195373"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1788470042950914461120884",
+       "0.1807659499517135849973771"
+      ],
+      "history_qdot": [
+       "0.190808262015751840045321",
+       "0.1918705245909817401396452"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1042769624345658219871763",
+       "0.1043509643140497063714446"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.894298193380185029225371",
+       "1.907842763390767593359574"
+      ],
+      "history_q": [
+       "0.1788470042950914461120884",
+       "0.1846242369329325123281549"
+      ],
+      "history_qdot": [
+       "0.190808262015751840045321",
+       "0.1939585828360195020971759"
+      ],
+      "history_qddot": [
+       "0.1042769624345658219871763",
+       "0.1044675729656915797014307"
+      ],
+      "dhit_dt": [
+       "-0.05442010976407633939385531",
+       "-0.02707100605466526682624217"
+      ],
+      "taudot": [
+       "-0.2127942650371338347511617",
+       "-0.2052711531792357827761384"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1042769624345658219871763",
+      "0.1044675729656915797014307"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.643386772207655573910885",
+      "1.643426198297983536128305"
+     ],
+     "tau_range": [
+      "1.643386772207655573910885",
+      "1.644779027766149485350986"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.031773021728763419426591",
+      "1.0317820617392075630187"
+     ],
+     "Dt_range": [
+      "1.031421977721511155106952",
+      "1.032129629819246399831514"
+     ],
+     "delayed_arg_range": [
+      "1.361905565857500111816983",
+      "1.373297936975172470980472"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.09294195497644190803250564",
+      "0.09497531240358474050375513"
+     ],
+     "history_qdot_range": [
+      "0.1368204942484215529489367",
+      "0.138321790907505577966425"
+     ],
+     "hit0": [
+      "0.1223342357746092915023147",
+      "0.1223548549049232419189663"
+     ],
+     "hit_fixed0": [
+      "0.1488724622635614475745323",
+      "0.1488912598294169801855227"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.633386772207655573910885",
+     "families_read_over_step": [
+      "window",
+      "wave16"
+     ],
+     "position_vs_T_star_over_step": "straddles T*",
+     "margin_to_T_star": "0 (straddles)",
+     "delayed_arg_start": [
+      "1.363258395325666061039664",
+      "1.363297936975172470980472"
+     ],
+     "r0": [
+      "1.643384794538049218206653",
+      "1.643428176677871133349773"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.09312714102074708638150761",
+       "0.09313272559774169722728067"
+      ],
+      "history_qdot": [
+       "0.1369578630576030696062788",
+       "0.1369620035708261896111794"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1015437476345639656887285",
+       "0.1015457309377796738608819"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.361905565857500111816983",
+       "1.373297936975172470980472"
+      ],
+      "history_q": [
+       "0.09294195497644190803250564",
+       "0.09497531240358474050375513"
+      ],
+      "history_qdot": [
+       "0.1368204942484215529489367",
+       "0.138321790907505577966425"
+      ],
+      "history_qddot": [
+       "0.1014312846903093394769085",
+       "0.101664052548643007841198"
+      ],
+      "dhit_dt": [
+       "-0.07551821919294714843571532",
+       "-0.07259413345429643997009872"
+      ],
+      "taudot": [
+       "0.1321886954381686796377344",
+       "0.1349122478357257022354009"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": true,
+      "source": "window+records",
+      "window_part": {
+       "history_q": [
+        "0.09294195497644190803250564",
+        "0.09359717429472312322322282"
+       ],
+       "history_qdot": [
+        "0.1368204942484215529489367",
+        "0.1373059342582563074100607"
+       ],
+       "history_qddot": [
+        "0.1014312846903093394769085",
+        "0.101664052548643007841198"
+       ]
+      },
+      "record_part": {
+       "history_q": [
+        "0.0935969659738805924504619",
+        "0.09497531240358474050375513"
+       ],
+       "history_qdot": [
+        "0.1373057801796165107074306",
+        "0.138321790907505577966425"
+       ],
+       "history_qddot": [
+        "0.1015543563055973899088729",
+        "0.1016166829564558372397839"
+       ]
+      }
+     },
+     "history_qddot_range": [
+      "0.1014312846903093394769085",
+      "0.101664052548643007841198"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.959267412058661363525038",
+      "1.959287816633660951174328"
+     ],
+     "tau_range": [
+      "1.958849075185657558700609",
+      "1.959287816633660951174328"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.021079295420657207733156",
+      "1.021085184420503344976168"
+     ],
+     "Dt_range": [
+      "1.021012451870576829552957",
+      "1.021467746962996785767568"
+     ],
+     "delayed_arg_range": [
+      "1.047396776989988645993641",
+      "1.057835633997170486190748"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.05491947824489985737924093",
+      "0.05602126177594092330097973"
+     ],
+     "history_qdot_range": [
+      "0.1050068483182379767506395",
+      "0.1060595124246121770703746"
+     ],
+     "hit0": [
+      "0.0512129538003272008205476",
+      "0.05122759695510821862747517"
+     ],
+     "hit_fixed0": [
+      "0.05999829146845183637950702",
+      "0.0600130476802117149664439"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.948849075185657558700609",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.3088489596264791109772207",
+     "delayed_arg_start": [
+      "1.047396776989988645993641",
+      "1.047417297124166681366319"
+     ],
+     "r0": [
+      "1.95926698192448119595327",
+      "1.959288246909045512140061"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.05491947824489985737924093",
+       "0.05492176662956571462391523"
+      ],
+      "history_qdot": [
+       "0.1050068483182379767506395",
+       "0.1050090454106986448680287"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.100818415880429379515669",
+       "0.1008191600126092896677373"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.047396776989988645993641",
+       "1.057835633997170486190748"
+      ],
+      "history_q": [
+       "0.05491947824489985737924093",
+       "0.05602126177594092330097973"
+      ],
+      "history_qdot": [
+       "0.1050068483182379767506395",
+       "0.1060595124246121770703746"
+      ],
+      "history_qddot": [
+       "0.1006490568638288088318153",
+       "0.1010077949151174409635697"
+      ],
+      "dhit_dt": [
+       "0.02514247189768621579179853",
+       "0.02641969949606401215054718"
+      ],
+      "taudot": [
+       "-0.04159865180060211728304357",
+       "-0.03969631353172654469812944"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1006490568638288088318153",
+      "0.1010077949151174409635697"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4622589441155321076736426",
+    "0.4623658660844546790592373"
+   ],
+   "end_v_str": [
+    "0.3111638493204909715843308",
+    "0.3114974241364592409369872"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.059182475954169447805025",
+    "-1.059158775274884178303835"
+   ],
+   "antipode_residual_end": [
+    "-1.069892645818241458602739",
+    "-1.069868034101697175039009"
+   ],
+   "a_rad_start": [
+    "-0.06182169705514814033513743",
+    "-0.06163834371786248794356901"
+   ],
+   "lambda_hat_start": [
+    "-0.03473651516619034228256284",
+    "-0.03435129957593826441909452"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06233142713379013275371097",
+    "-0.06140973329460579051829364"
+   ],
+   "lambda_hat_range": [
+    "-0.0356209119490433895660612",
+    "-0.03384077100138709359735253"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07520172934846300409972751",
+      "0.07580063984496732852465696"
+     ],
+     "radial": [
+      "-0.09580287870181289391220206",
+      "-0.0956220142889507555972194"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02446684715492185830046293",
+      "0.02447097098098464838379327"
+     ],
+     "radial": [
+      "0.05897409678698829745265574",
+      "0.05897617031031941181583067"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.00512129538003272008205476",
+      "0.005122759695510821862747517"
+     ],
+     "radial": [
+      "-0.02499291514032354387559111",
+      "-0.02499249973923114416218028"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1047898718834175824822452",
+    "0.1053943705214627987711977"
+   ],
+   "radial_sum_start": [
+    "-0.06182169705514814033513743",
+    "-0.06163834371786248794356901"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.62072924519789560020703",
+     "1.621984501208933465812093"
+    ],
+    "unlike_pair_chord": [
+     "1.170113788414617098849869",
+     "1.171851830975341183101972"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 115,
+   "certified": true,
+   "self_appended_record_index": 164,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.108399330692419530731122",
+      "1.110430756400483602816464"
+     ],
+     "Dt": [
+      "0.9393112717372327278225198",
+      "0.940448422333859113630327"
+     ],
+     "r": [
+      "1.108018626390546920762369",
+      "1.110812679468329581076414"
+     ],
+     "hist_q": [
+      "0.1807603007633706928036411",
+      "0.1846242369329325123281549"
+     ],
+     "hist_qdot": [
+      "0.1918510316400974982651929",
+      "0.1939585828360195020971759"
+     ],
+     "delayed_arg": [
+      "1.906253837223165994351505",
+      "1.908285378490408514160235"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.644365278945394291423617",
+      "1.64509624369204634574422"
+     ],
+     "Dt": [
+      "1.031552541281311821376132",
+      "1.031853262091129079094848"
+     ],
+     "r": [
+      "1.644365278945394650221888",
+      "1.645096243692045903543308"
+     ],
+     "hist_q": [
+      "0.0935969659738805924504619",
+      "0.09497531240358474050375513"
+     ],
+     "hist_qdot": [
+      "0.1373057801796165107074306",
+      "0.138321790907505577966425"
+     ],
+     "delayed_arg": [
+      "1.371588349931603251423749",
+      "1.37231943023743375346774"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave16"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.958862498169820502671348",
+      "1.958883648385839500927692"
+     ],
+     "Dt": [
+      "1.021394199674787770393479",
+      "1.021400337201039027926714"
+     ],
+     "r": [
+      "1.958862045699598096790932",
+      "1.958884100999017704334095"
+     ],
+     "hist_q": [
+      "0.05601744118618390744327094",
+      "0.05601983781200992321437605"
+     ],
+     "hist_qdot": [
+      "0.1060558798721935428524401",
+      "0.1060581585579439393905266"
+     ],
+     "delayed_arg": [
+      "1.057800945237810096240277",
+      "1.057822211013007542220009"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06216244374066468067938937",
+    "-0.0617610792176571644201153"
+   ],
+   "lambda_hat_end": [
+    "-0.03526956602599201566423953",
+    "-0.0346604973832805289991851"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07479310308950635410542267",
+      "0.07598262283858808825090468"
+     ],
+     "radial": [
+      "-0.09608230317265535616422377",
+      "-0.09572473866666810003017343"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02427755415949794912164061",
+      "0.0243681015475383264729144"
+     ],
+     "radial": [
+      "0.05891023399637028788171685",
+      "0.05895360248011713901902285"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005146924691827043774977101",
+      "0.005148437485821427330993201"
+     ],
+     "radial": [
+      "-0.02499037456437961239688245",
+      "-0.02498994303110620340896472"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1042175819408313470020404",
+    "0.1054991618719478420548123"
+   ],
+   "radial_sum_end": [
+    "-0.06216244374066468067938937",
+    "-0.0617610792176571644201153"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.016684593623649597167969",
+    "3.026684709182828044891357"
+   ],
+   "S": [
+    "0.4622589396755328378998767",
+    "0.4654861177524333295323962"
+   ],
+   "VS": [
+    "0.3111625173207100394545496",
+    "0.3125529094592708536947811"
+   ],
+   "a0": [
+    "0.1041682165669802325106458",
+    "0.1055485322811612757793889"
+   ],
+   "ap": [
+    "-0.02663999561864259562431537",
+    "-0.01568009888267878851314689"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.108399330692419530731122",
+      "1.110430756400483602816464"
+     ],
+     "tau_range": [
+      "1.106268000979082632569744",
+      "1.110430756400483602816464"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9393112717372327278225198",
+      "0.940448422333859113630327"
+     ],
+     "Dt_range": [
+      "0.9387911994981196353819295",
+      "0.9411276456410624093784942"
+     ],
+     "delayed_arg_range": [
+      "1.906253837223165994351505",
+      "1.920416708203745412321613"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1807603007633706928036411",
+      "0.1865690466966465315705298"
+     ],
+     "history_qdot_range": [
+      "0.1918510316400974982651929",
+      "0.1950034891312729943168338"
+     ],
+     "hit0": [
+      "0.3739655154475317705271133",
+      "0.3799131141929404412545234"
+     ],
+     "hit_fixed0": [
+      "0.3949655313529410898632218",
+      "0.3950451425837665202194519"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.096268000979082632569744",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.5395691280403379494601476",
+     "delayed_arg_start": [
+      "1.906253837223165994351505",
+      "1.908285378490408514160235"
+     ],
+     "r0": [
+      "1.108018626390546920762369",
+      "1.110812679468329581076414"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1807603007633706928036411",
+       "0.1846242369329325123281549"
+      ],
+      "history_qdot": [
+       "0.1918510316400974982651929",
+       "0.1939585828360195020971759"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1043344827781114798728068",
+       "0.1044675729656915797014307"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.906253837223165994351505",
+       "1.920416708203745412321613"
+      ],
+      "history_q": [
+       "0.1807603007633706928036411",
+       "0.1865690466966465315705298"
+      ],
+      "history_qdot": [
+       "0.1918510316400974982651929",
+       "0.1950034891312729943168338"
+      ],
+      "history_qddot": [
+       "0.1043344827781114798728068",
+       "0.1045263968719436036699035"
+      ],
+      "dhit_dt": [
+       "-0.05851455148619020842090961",
+       "-0.03081356038158676505991185"
+      ],
+      "taudot": [
+       "-0.2124861667331698857182167",
+       "-0.2049220288113080163380437"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1043344827781114798728068",
+      "0.1045263968719436036699035"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.644365278945394291423617",
+      "1.64509624369204634574422"
+     ],
+     "tau_range": [
+      "1.644365278945394291423617",
+      "1.646447733165673959044681"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.031552541281311821376132",
+      "1.031853262091129079094848"
+     ],
+     "Dt_range": [
+      "1.031249377188348497808262",
+      "1.032110559885309998418886"
+     ],
+     "delayed_arg_range": [
+      "1.370236860457975638123288",
+      "1.38231943023743375346774"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.0935969659738805924504619",
+      "0.09636361349388745323642248"
+     ],
+     "history_qdot_range": [
+      "0.1373057801796165107074306",
+      "0.1393385313295579546474254"
+     ],
+     "hit0": [
+      "0.121387770797489745608203",
+      "0.121840507737691632364572"
+     ],
+     "hit_fixed0": [
+      "0.148309092275726588098055",
+      "0.1483284402435877971369805"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.634365278945394291423617",
+     "families_read_over_step": [
+      "wave16"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.003552151275147593231930578",
+     "delayed_arg_start": [
+      "1.371588349931603251423749",
+      "1.37231943023743375346774"
+     ],
+     "r0": [
+      "1.644365278945394650221888",
+      "1.645096243692045903543308"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.0935969659738805924504619",
+       "0.09497531240358474050375513"
+      ],
+      "history_qdot": [
+       "0.1373057801796165107074306",
+       "0.138321790907505577966425"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1015543563055973899088729",
+       "0.1016166829564558372397839"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.370236860457975638123288",
+       "1.38231943023743375346774"
+      ],
+      "history_q": [
+       "0.0935969659738805924504619",
+       "0.09636361349388745323642248"
+      ],
+      "history_qdot": [
+       "0.1373057801796165107074306",
+       "0.1393385313295579546474254"
+      ],
+      "history_qddot": [
+       "0.1015543563055973899088729",
+       "0.1017052951615334922084166"
+      ],
+      "dhit_dt": [
+       "-0.07575156839286117785815926",
+       "-0.07239554229254936396897549"
+      ],
+      "taudot": [
+       "0.131865057240540491008426",
+       "0.1348934105542706829553189"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1015543563055973899088729",
+      "0.1017052951615334922084166"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.958862498169820502671348",
+      "1.958883648385839500927692"
+     ],
+     "tau_range": [
+      "1.958442194160188687106775",
+      "1.958883648385839500927692"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.021394199674787770393479",
+      "1.021400337201039027926714"
+     ],
+     "Dt_range": [
+      "1.021326123567137743889854",
+      "1.021786230247093450458513"
+     ],
+     "delayed_arg_range": [
+      "1.057800945237810096240277",
+      "1.068242515022639357784582"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.05601744118618390744327094",
+      "0.05713047334748207451910748"
+     ],
+     "history_qdot_range": [
+      "0.1060558798721935428524401",
+      "0.107109022907175335409251"
+     ],
+     "hit0": [
+      "0.05146924691827043774977101",
+      "0.05148437485821427330993201"
+     ],
+     "hit_fixed0": [
+      "0.06044099791988616357012061",
+      "0.06045624958645651012309469"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.948442194160188687106775",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.2984420786010102393833867",
+     "delayed_arg_start": [
+      "1.057800945237810096240277",
+      "1.057822211013007542220009"
+     ],
+     "r0": [
+      "1.958862045699598096790932",
+      "1.958884100999017704334095"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.05601744118618390744327094",
+       "0.05601983781200992321437605"
+      ],
+      "history_qdot": [
+       "0.1060558798721935428524401",
+       "0.1060581585579439393905266"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1008374688713215907164631",
+       "0.1008382502106053842328143"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.057800945237810096240277",
+       "1.068242515022639357784582"
+      ],
+      "history_q": [
+       "0.05601744118618390744327094",
+       "0.05713047334748207451910748"
+      ],
+      "history_qdot": [
+       "0.1060558798721935428524401",
+       "0.107109022907175335409251"
+      ],
+      "history_qddot": [
+       "0.1006659807209530071237815",
+       "0.1010293200218596807043761"
+      ],
+      "dhit_dt": [
+       "0.02512937093962782353222943",
+       "0.02641806587562448238606133"
+      ],
+      "taudot": [
+       "-0.04179280319755040608551405",
+       "-0.03987485193453745800786561"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1006659807209530071237815",
+      "0.1010293200218596807043761"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4653757865795660966273455",
+    "0.4654861177524333295323962"
+   ],
+   "end_v_str": [
+    "0.3122041994863798417796561",
+    "0.3125529094592708536947811"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.069892645818241458602739",
+    "-1.069868034101697175039009"
+   ],
+   "antipode_residual_end": [
+    "-1.080609955366195913344625",
+    "-1.080584395160487632525106"
+   ],
+   "a_rad_start": [
+    "-0.06216244374066468067938937",
+    "-0.0617610792176571644201153"
+   ],
+   "lambda_hat_start": [
+    "-0.03526956602599201566423953",
+    "-0.0346604973832805289991851"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06253603717698928411593199",
+    "-0.061586328072921787958413"
+   ],
+   "lambda_hat_range": [
+    "-0.03610299313853337593495117",
+    "-0.03428607500837189119461687"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07479310308950635410542267",
+      "0.07598262283858808825090468"
+     ],
+     "radial": [
+      "-0.09608230317265535616422377",
+      "-0.09572473866666810003017343"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02427755415949794912164061",
+      "0.0243681015475383264729144"
+     ],
+     "radial": [
+      "0.05891023399637028788171685",
+      "0.05895360248011713901902285"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005146924691827043774977101",
+      "0.005148437485821427330993201"
+     ],
+     "radial": [
+      "-0.02499037456437961239688245",
+      "-0.02498994303110620340896472"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1042175819408313470020404",
+    "0.1054991618719478420548123"
+   ],
+   "radial_sum_start": [
+    "-0.06216244374066468067938937",
+    "-0.0617610792176571644201153"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.621942779382196777329995",
+     "1.623200545804231746610013"
+    ],
+    "unlike_pair_chord": [
+     "1.168426286977849602482185",
+     "1.170171620066883416876295"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 116,
+   "certified": true,
+   "self_appended_record_index": 165,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.10643770372104543898875",
+      "1.107881695443258645920635"
+     ],
+     "Dt": [
+      "0.9396480386067300277183873",
+      "0.9402331737364801309385836"
+     ],
+     "r": [
+      "1.106437703721048913577883",
+      "1.107881695443255827380032"
+     ],
+     "hist_q": [
+      "0.1846181911859525335703621",
+      "0.1865690466966465315705298"
+     ],
+     "hist_qdot": [
+      "0.1939382999405134289511245",
+      "0.1950034891312729943168338"
+     ],
+     "delayed_arg": [
+      "1.918802898180390951247334",
+      "1.920247005461782605902607"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.645735251145908153476667",
+      "1.646471661998019137184399"
+     ],
+     "Dt": [
+      "1.031502928234438097330858",
+      "1.031803222580758857709333"
+     ],
+     "r": [
+      "1.64573525114590852134846",
+      "1.646471661998018684980291"
+     ],
+     "hist_q": [
+      "0.09497510149349203742703175",
+      "0.09636361349388745323642248"
+     ],
+     "hist_qdot": [
+      "0.1383213237426724846065194",
+      "0.1393385313295579546474254"
+     ],
+     "delayed_arg": [
+      "1.38021293162563045998357",
+      "1.38094945803691989141469"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave16"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.958455717327662598591058",
+      "1.95847764223886615175568"
+     ],
+     "Dt": [
+      "1.021711187897171167691515",
+      "1.021717584512461132430793"
+     ],
+     "r": [
+      "1.958455241379745366948531",
+      "1.958478118331235979597061"
+     ],
+     "hist_q": [
+      "0.05712651504390858386716838",
+      "0.05712902471596090556687483"
+     ],
+     "hist_qdot": [
+      "0.107105295578452157115538",
+      "0.1071076588209230140333897"
+     ],
+     "delayed_arg": [
+      "1.068206951384783445412289",
+      "1.068228991855165446300299"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06230903863524055138654839",
+    "-0.06207995976160230855448344"
+   ],
+   "lambda_hat_end": [
+    "-0.03560936144985285533888073",
+    "-0.03516242354169070767514547"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07495312244951273841694666",
+      "0.07556795258186898591466087"
+     ],
+     "radial": [
+      "-0.09618510463497570460391217",
+      "-0.09599995797833023456406782"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02412049659280385581822662",
+      "0.02421142019608315316270567"
+     ],
+     "radial": [
+      "0.05886387655701568098216181",
+      "0.05890736045370743537514105"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005172545583567070608698506",
+      "0.005174108642043166990260476"
+     ],
+     "radial": [
+      "-0.02498781055728052776479803",
+      "-0.02498736223697950936555667"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1042461646258836648438718",
+    "0.104953481419995306067627"
+   ],
+   "radial_sum_end": [
+    "-0.06230903863524055138654839",
+    "-0.06207995976160230855448344"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.026684593623649597167969",
+    "3.036684709182828044891357"
+   ],
+   "S": [
+    "0.4653757820617267170608765",
+    "0.468616897080725412107878"
+   ],
+   "VS": [
+    "0.3122028441345659718389335",
+    "0.3136029561991456614015828"
+   ],
+   "a0": [
+    "0.1041949774589384475728026",
+    "0.1050046739874807706801736"
+   ],
+   "ap": [
+    "-0.02710703627739881445081858",
+    "-0.01727178398483893492709861"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.10643770372104543898875",
+      "1.107881695443258645920635"
+     ],
+     "tau_range": [
+      "1.104309752172959110072074",
+      "1.107881695443258645920635"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9396480386067300277183873",
+      "0.9402331737364801309385836"
+     ],
+     "Dt_range": [
+      "0.9391309842773421632731815",
+      "0.9409262159068854270710564"
+     ],
+     "delayed_arg_range": [
+      "1.918802898180390951247334",
+      "1.932374957009868934819283"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1846181911859525335703621",
+      "0.1885243084661048279248075"
+     ],
+     "history_qdot_range": [
+      "0.1939382999405134289511245",
+      "0.1960489847457865508798225"
+     ],
+     "hit0": [
+      "0.3747656122475636920847333",
+      "0.3778397629093449295733044"
+     ],
+     "hit_fixed0": [
+      "0.3960585223277526626401237",
+      "0.3961411503062914298179329"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.094309752172959110072074",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.5521181889975629063559766",
+     "delayed_arg_start": [
+      "1.918802898180390951247334",
+      "1.920247005461782605902607"
+     ],
+     "r0": [
+      "1.106437703721048913577883",
+      "1.107881695443255827380032"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1846181911859525335703621",
+       "0.1865690466966465315705298"
+      ],
+      "history_qdot": [
+       "0.1939382999405134289511245",
+       "0.1950034891312729943168338"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1044505492889265940616688",
+       "0.1045263968719436036699035"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.918802898180390951247334",
+       "1.932374957009868934819283"
+      ],
+      "history_q": [
+       "0.1846181911859525335703621",
+       "0.1885243084661048279248075"
+      ],
+      "history_qdot": [
+       "0.1939382999405134289511245",
+       "0.1960489847457865508798225"
+      ],
+      "history_qddot": [
+       "0.1044505492889265940616688",
+       "0.1045855570714379586312228"
+      ],
+      "dhit_dt": [
+       "-0.06068525843635436154221414",
+       "-0.03888201721805590992747353"
+      ],
+      "taudot": [
+       "-0.2113718634018860305391405",
+       "-0.2051597960627531118592772"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1044505492889265940616688",
+      "0.1045855570714379586312228"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.645735251145908153476667",
+      "1.646471661998019137184399"
+     ],
+     "tau_range": [
+      "1.645735251145908153476667",
+      "1.647824393692490686726394"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.031502928234438097330858",
+      "1.031803222580758857709333"
+     ],
+     "Dt_range": [
+      "1.031196139073615227410622",
+      "1.032058777517216841364823"
+     ],
+     "delayed_arg_range": [
+      "1.378860199931158910441575",
+      "1.39094945803691989141469"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.09497510149349203742703175",
+      "0.09776208351883618069535633"
+     ],
+     "history_qdot_range": [
+      "0.1383213237426724846065194",
+      "0.1403555790798755446794473"
+     ],
+     "hit0": [
+      "0.1206024829640192790911331",
+      "0.1210571009804157658135283"
+     ],
+     "hit_fixed0": [
+      "0.1477451762141971892782004",
+      "0.1477650928581482938753625"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.635735251145908153476667",
+     "families_read_over_step": [
+      "wave16"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.01217549074833086555021758",
+     "delayed_arg_start": [
+      "1.38021293162563045998357",
+      "1.38094945803691989141469"
+     ],
+     "r0": [
+      "1.64573525114590852134846",
+      "1.646471661998018684980291"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.09497510149349203742703175",
+       "0.09636361349388745323642248"
+      ],
+      "history_qdot": [
+       "0.1383213237426724846065194",
+       "0.1393385313295579546474254"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1015818260587053770759602",
+       "0.1017052951615334922084166"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.378860199931158910441575",
+       "1.39094945803691989141469"
+      ],
+      "history_q": [
+       "0.09497510149349203742703175",
+       "0.09776208351883618069535633"
+      ],
+      "history_qdot": [
+       "0.1383213237426724846065194",
+       "0.1403555790798755446794473"
+      ],
+      "history_qddot": [
+       "0.1015818260587053770759602",
+       "0.1017364009381612652265661"
+      ],
+      "dhit_dt": [
+       "-0.07578006976602157337921598",
+       "-0.07241525834524868630085155"
+      ],
+      "taudot": [
+       "0.1316588635110304137211656",
+       "0.1346969365776667664044851"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1015818260587053770759602",
+      "0.1017364009381612652265661"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.958455717327662598591058",
+      "1.95847764223886615175568"
+     ],
+     "tau_range": [
+      "1.958033447276529250418412",
+      "1.95847764223886615175568"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.021711187897171167691515",
+      "1.021717584512461132430793"
+     ],
+     "Dt_range": [
+      "1.021641867696140189989646",
+      "1.022106819892693715230139"
+     ],
+     "delayed_arg_range": [
+      "1.068206951384783445412289",
+      "1.078651261906298794472945"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.05712651504390858386716838",
+      "0.05825080862952567024175003"
+     ],
+     "history_qdot_range": [
+      "0.107105295578452157115538",
+      "0.1081589235797632588680596"
+     ],
+     "hit0": [
+      "0.05172545583567070608698506",
+      "0.05174108642043166990260476"
+     ],
+     "hit_fixed0": [
+      "0.06088597258298763531650919",
+      "0.0609017383894357198031515"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.948033447276529250418412",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.2880333317173508026950237",
+     "delayed_arg_start": [
+      "1.068206951384783445412289",
+      "1.068228991855165446300299"
+     ],
+     "r0": [
+      "1.958455241379745366948531",
+      "1.958478118331235979597061"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.05712651504390858386716838",
+       "0.05712902471596090556687483"
+      ],
+      "history_qdot": [
+       "0.107105295578452157115538",
+       "0.1071076588209230140333897"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1008568215987468287117516",
+       "0.1008576419219314511801736"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.068206951384783445412289",
+       "1.078651261906298794472945"
+      ],
+      "history_q": [
+       "0.05712651504390858386716838",
+       "0.05825080862952567024175003"
+      ],
+      "history_qdot": [
+       "0.107105295578452157115538",
+       "0.1081589235797632588680596"
+      ],
+      "history_qddot": [
+       "0.1006831898120127102348783",
+       "0.1010511646270119846248077"
+      ],
+      "dhit_dt": [
+       "0.02511531928134193412586824",
+       "0.02641653858465660767822371"
+      ],
+      "taudot": [
+       "-0.04198683099039168364791251",
+       "-0.04005183014965770011414937"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1006831898120127102348783",
+      "0.1010511646270119846248077"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4685030338054634624010517",
+    "0.468616897080725412107878"
+   ],
+   "end_v_str": [
+    "0.3132447939091553563146615",
+    "0.3136029561991456614015828"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.080609955366195913344625",
+    "-1.080584395160487632525106"
+   ],
+   "antipode_residual_end": [
+    "-1.091334445828783932509435",
+    "-1.091307897741676629294048"
+   ],
+   "a_rad_start": [
+    "-0.06230903863524055138654839",
+    "-0.06207995976160230855448344"
+   ],
+   "lambda_hat_start": [
+    "-0.03560936144985285533888073",
+    "-0.03516242354169070767514547"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06268326949312389256548367",
+    "-0.06190206358640660992007422"
+   ],
+   "lambda_hat_range": [
+    "-0.03644475055043666229980773",
+    "-0.03478734639258820168010224"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07495312244951273841694666",
+      "0.07556795258186898591466087"
+     ],
+     "radial": [
+      "-0.09618510463497570460391217",
+      "-0.09599995797833023456406782"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02412049659280385581822662",
+      "0.02421142019608315316270567"
+     ],
+     "radial": [
+      "0.05886387655701568098216181",
+      "0.05890736045370743537514105"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005172545583567070608698506",
+      "0.005174108642043166990260476"
+     ],
+     "radial": [
+      "-0.02498781055728052776479803",
+      "-0.02498736223697950936555667"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1042461646258836648438718",
+    "0.104953481419995306067627"
+   ],
+   "radial_sum_start": [
+    "-0.06230903863524055138654839",
+    "-0.06207995976160230855448344"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.623157593005372385536073",
+     "1.624417866430958691625838"
+    ],
+    "unlike_pair_chord": [
+     "1.166733300810383164167665",
+     "1.168485955529207845279196"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 117,
+   "certified": true,
+   "self_appended_record_index": 166,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.104479095250895138288388",
+      "1.105933516182074371902312"
+     ],
+     "Dt": [
+      "0.9398323299236344476460074",
+      "0.9404194307927401149532655"
+     ],
+     "r": [
+      "1.104479095250897985201997",
+      "1.105933516182073488064827"
+     ],
+     "hist_q": [
+      "0.1865627967128221141895765",
+      "0.1885243084661048279248075"
+     ],
+     "hist_qdot": [
+      "0.1949828054334026948917413",
+      "0.1960489847457865508798225"
+     ],
+     "delayed_arg": [
+      "1.930751077441575225265657",
+      "1.932205613931932906602969"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.64710307760980515728454",
+      "1.647844954540314709877734"
+     ],
+     "Dt": [
+      "1.031447919842902855064438",
+      "1.031747807136307494398795"
+     ],
+     "r": [
+      "1.647103077609805278887559",
+      "1.64784495454031187254495"
+     ],
+     "hist_q": [
+      "0.09636339382222169754195085",
+      "0.09776208351883618069535633"
+     ],
+     "hist_qdot": [
+      "0.1393371420032595383772791",
+      "0.1403555790798755446794473"
+     ],
+     "delayed_arg": [
+      "1.388839639083334887290235",
+      "1.389581631573022887606817"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave16"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.958047077504211880982184",
+      "1.958069807635578807247659"
+     ],
+     "Dt": [
+      "1.022030258054822142825386",
+      "1.022036924868065866411809"
+     ],
+     "r": [
+      "1.958046576872447451199567",
+      "1.958070308412999769072242"
+     ],
+     "hist_q": [
+      "0.05824670660325944294069023",
+      "0.05824933437649097296268207"
+     ],
+     "hist_qdot": [
+      "0.108155097662450563290876",
+      "0.1081575485745268198455985"
+     ],
+     "delayed_arg": [
+      "1.07861478598807078992031",
+      "1.078637631678616163909173"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06250402245550175079722664",
+    "-0.06227319876508894767427592"
+   ],
+   "lambda_hat_end": [
+    "-0.03607361537175432454560602",
+    "-0.03561827845568746181659162"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07487652746206800653538397",
+      "0.07549761903317451767114448"
+     ],
+     "radial": [
+      "-0.09633677844679696799638284",
+      "-0.09615002162193507933269295"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02396338442728096017410914",
+      "0.02405468582319354246213059"
+     ],
+     "radial": [
+      "0.05881797912763497801575851",
+      "0.05886158019748889932102389"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005198157570817170536793021",
+      "0.005199772770207419419341022"
+     ],
+     "radial": [
+      "-0.02498522313633976081660231",
+      "-0.02498475734064276766260686"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1040380694601661372462861",
+    "0.1047520776265754795526161"
+   ],
+   "radial_sum_end": [
+    "-0.06250402245550175079722664",
+    "-0.06227319876508894767427592"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.036684593623649597167969",
+    "3.046684709182828044891357"
+   ],
+   "S": [
+    "0.4685030291411657174609732",
+    "0.4717581669010411456708224"
+   ],
+   "VS": [
+    "0.3132433946198318742911062",
+    "0.314651007864001051187306"
+   ],
+   "a0": [
+    "0.1039849863949411703899595",
+    "0.1048051664855389785723226"
+   ],
+   "ap": [
+    "-0.02798578646964047110702978",
+    "-0.01804275812875742300151494"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.104479095250895138288388",
+      "1.105933516182074371902312"
+     ],
+     "tau_range": [
+      "1.102354831837532039528375",
+      "1.105933516182074371902312"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9398323299236344476460074",
+      "0.9404194307927401149532655"
+     ],
+     "Dt_range": [
+      "0.9393170035791950250817392",
+      "0.9411220953918838306486191"
+     ],
+     "delayed_arg_range": [
+      "1.930751077441575225265657",
+      "1.944329877345296005362982"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1865627967128221141895765",
+      "0.1904900281511511889169656"
+     ],
+     "history_qdot_range": [
+      "0.1949828054334026948917413",
+      "0.1970950730038777811358701"
+     ],
+     "hit0": [
+      "0.3743826373103400326769198",
+      "0.3774880951658725883557224"
+     ],
+     "hit_fixed0": [
+      "0.3971555926042201649468331",
+      "0.3972413627977329971682808"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.092354831837532039528375",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.5640663682587471803742996",
+     "delayed_arg_start": [
+      "1.930751077441575225265657",
+      "1.932205613931932906602969"
+     ],
+     "r0": [
+      "1.104479095250897985201997",
+      "1.105933516182073488064827"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1865627967128221141895765",
+       "0.1885243084661048279248075"
+      ],
+      "history_qdot": [
+       "0.1949828054334026948917413",
+       "0.1960489847457865508798225"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.104509089530081510968129",
+       "0.1045855570714379586312228"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.930751077441575225265657",
+       "1.944329877345296005362982"
+      ],
+      "history_q": [
+       "0.1865627967128221141895765",
+       "0.1904900281511511889169656"
+      ],
+      "history_qdot": [
+       "0.1949828054334026948917413",
+       "0.1970950730038777811358701"
+      ],
+      "history_qddot": [
+       "0.104509089530081510968129",
+       "0.1046450479267631008193875"
+      ],
+      "dhit_dt": [
+       "-0.06491601168159976985337627",
+       "-0.04284574630111760621832607"
+      ],
+      "taudot": [
+       "-0.2109942988132287068743598",
+       "-0.2047494374279631797361684"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.104509089530081510968129",
+      "0.1046450479267631008193875"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.64710307760980515728454",
+      "1.647844954540314709877734"
+     ],
+     "tau_range": [
+      "1.64710307760980515728454",
+      "1.649195612003301707472269"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.031447919842902855064438",
+      "1.031747807136307494398795"
+     ],
+     "Dt_range": [
+      "1.031137486548402122013151",
+      "1.032001665231830362731956"
+     ],
+     "delayed_arg_range": [
+      "1.3874889816203478896957",
+      "1.399581631573022887606817"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.09636339382222169754195085",
+      "0.09917072676844450277359275"
+     ],
+     "history_qdot_range": [
+      "0.1393371420032595383772791",
+      "0.1413731771881655086922142"
+     ],
+     "hit0": [
+      "0.1198169221364048008705457",
+      "0.120273429115967712310653"
+     ],
+     "hit_fixed0": [
+      "0.1471807264113803329741942",
+      "0.1472012309145043770309646"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.63710307760980515728454",
+     "families_read_over_step": [
+      "wave16"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.02080427243751984480434258",
+     "delayed_arg_start": [
+      "1.388839639083334887290235",
+      "1.389581631573022887606817"
+     ],
+     "r0": [
+      "1.647103077609805278887559",
+      "1.64784495454031187254495"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.09636339382222169754195085",
+       "0.09776208351883618069535633"
+      ],
+      "history_qdot": [
+       "0.1393371420032595383772791",
+       "0.1403555790798755446794473"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1016107822099513159666355",
+       "0.1017364009381612652265661"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.3874889816203478896957",
+       "1.399581631573022887606817"
+      ],
+      "history_q": [
+       "0.09636339382222169754195085",
+       "0.09917072676844450277359275"
+      ],
+      "history_qdot": [
+       "0.1393371420032595383772791",
+       "0.1413731771881655086922142"
+      ],
+      "history_qddot": [
+       "0.1016107822099513159666355",
+       "0.1017917147419877185842807"
+      ],
+      "dhit_dt": [
+       "-0.07580795378464513819037159",
+       "-0.0724347150769298507996104"
+      ],
+      "taudot": [
+       "0.1314417572677018257667725",
+       "0.1344877705496275887203874"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1016107822099513159666355",
+      "0.1017917147419877185842807"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.958047077504211880982184",
+      "1.958069807635578807247659"
+     ],
+     "tau_range": [
+      "1.957622855715108795762079",
+      "1.958069807635578807247659"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.022030258054822142825386",
+      "1.022036924868065866411809"
+     ],
+     "Dt_range": [
+      "1.021959682944961058440537",
+      "1.022429508331542144958044"
+     ],
+     "delayed_arg_range": [
+      "1.07861478598807078992031",
+      "1.089061853467719249129278"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.05824670660325944294069023",
+      "0.05938226087571470996765654"
+     ],
+     "history_qdot_range": [
+      "0.108155097662450563290876",
+      "0.1092092041010580852908902"
+     ],
+     "hit0": [
+      "0.05198157570817170536793021",
+      "0.05199772770207419419341022"
+     ],
+     "hit_fixed0": [
+      "0.06133322583147576064083387",
+      "0.0613495254250493563607851"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.947622855715108795762079",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.2776227401559303480386907",
+     "delayed_arg_start": [
+      "1.07861478598807078992031",
+      "1.078637631678616163909173"
+     ],
+     "r0": [
+      "1.958046576872447451199567",
+      "1.958070308412999769072242"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.05824670660325944294069023",
+       "0.05824933437649097296268207"
+      ],
+      "history_qdot": [
+       "0.108155097662450563290876",
+       "0.1081575485745268198455985"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1008764773842179913337647",
+       "0.1008773385656830458939711"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.07861478598807078992031",
+       "1.089061853467719249129278"
+      ],
+      "history_q": [
+       "0.05824670660325944294069023",
+       "0.05938226087571470996765654"
+      ],
+      "history_qdot": [
+       "0.108155097662450563290876",
+       "0.1092092041010580852908902"
+      ],
+      "history_qddot": [
+       "0.10070068941538307723186",
+       "0.1010733299805626491397075"
+      ],
+      "dhit_dt": [
+       "0.02510114025073182102571705",
+       "0.02641422540234807168181652"
+      ],
+      "taudot": [
+       "-0.04217941549612759591318565",
+       "-0.04022843194591884749954048"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.10070068941538307723186",
+      "0.1010733299805626491397075"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4716406763295770180826393",
+    "0.4717581669010411456708224"
+   ],
+   "end_v_str": [
+    "0.3142832444837812859950058",
+    "0.314651007864001051187306"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.091334445828783932509435",
+    "-1.091307897741676629294048"
+   ],
+   "antipode_residual_end": [
+    "-1.102066154842167951171394",
+    "-1.102038585348419427980512"
+   ],
+   "a_rad_start": [
+    "-0.06250402245550175079722664",
+    "-0.06227319876508894767427592"
+   ],
+   "lambda_hat_start": [
+    "-0.03607361537175432454560602",
+    "-0.03561827845568746181659162"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06287931170647914974133173",
+    "-0.06209287079866118767360878"
+   ],
+   "lambda_hat_range": [
+    "-0.03691238595117046368317782",
+    "-0.03524211256647656666751472"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07487652746206800653538397",
+      "0.07549761903317451767114448"
+     ],
+     "radial": [
+      "-0.09633677844679696799638284",
+      "-0.09615002162193507933269295"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02396338442728096017410914",
+      "0.02405468582319354246213059"
+     ],
+     "radial": [
+      "0.05881797912763497801575851",
+      "0.05886158019748889932102389"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005198157570817170536793021",
+      "0.005199772770207419419341022"
+     ],
+     "radial": [
+      "-0.02498522313633976081660231",
+      "-0.02498475734064276766260686"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1040380694601661372462861",
+    "0.1047520776265754795526161"
+   ],
+   "radial_sum_start": [
+    "-0.06250402245550175079722664",
+    "-0.06227319876508894767427592"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.624373641583152180765473",
+     "1.625636414537281771712834"
+    ],
+    "unlike_pair_chord": [
+     "1.165034869748700259202773",
+     "1.166794871659062896656908"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 118,
+   "certified": true,
+   "self_appended_record_index": 167,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.102523768895919352345517",
+      "1.103988643076524543509848"
+     ],
+     "Dt": [
+      "0.9400280547631104479832181",
+      "0.9406171461447688046670444"
+     ],
+     "r": [
+      "1.102523768895919495913685",
+      "1.103988643076523693222914"
+     ],
+     "hist_q": [
+      "0.1885178502216326452140424",
+      "0.1904900281511511889169656"
+     ],
+     "hist_qdot": [
+      "0.1960278963287035100014227",
+      "0.1970950730038777811358701"
+     ],
+     "delayed_arg": [
+      "1.942695950547125053658121",
+      "1.94416094028690869254584"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.648468636019953265518909",
+      "1.64921598812233233745964"
+     ],
+     "Dt": [
+      "1.031387490084117077186665",
+      "1.031687038864646174157712"
+     ],
+     "r": [
+      "1.64846863601995356142352",
+      "1.64921598812232863715035"
+     ],
+     "hist_q": [
+      "0.09776184578136479049152207",
+      "0.09917072676844450277359275"
+     ],
+     "hist_qdot": [
+      "0.1403532498253590515369456",
+      "0.1413731771881655086922142"
+     ],
+     "delayed_arg": [
+      "1.397468605501317259708329",
+      "1.398216073162874779372448"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave16"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.957636594597177248756371",
+      "1.957660147561250303526945"
+     ],
+     "Dt": [
+      "1.022351414130896335476622",
+      "1.02235835202946993863764"
+     ],
+     "r": [
+      "1.957636068035526462999499",
+      "1.957660674269344861013006"
+     ],
+     "hist_q": [
+      "0.05937804562470953510396214",
+      "0.0593807597632480835132778"
+     ],
+     "hist_qdot": [
+      "0.1092053096182893330851152",
+      "0.1092078172344389867303758"
+     ],
+     "delayed_arg": [
+      "1.089024446062399293641024",
+      "1.089048114585650796134986"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06269760590464928995113417",
+    "-0.06246502315070257667587863"
+   ],
+   "lambda_hat_end": [
+    "-0.03654023359912907468090797",
+    "-0.03607635185860295018091454"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07479255081445499160258304",
+      "0.07541992440373156695909172"
+     ],
+     "radial": [
+      "-0.09648753774467888755677355",
+      "-0.09629916095559123540322097"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02380621929331511993921024",
+      "0.02389790031281516804738726"
+     ],
+     "radial": [
+      "0.05877254391067814518665237",
+      "0.05881626632987634395546072"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005223760631716852681002524",
+      "0.005225428924926136547532332"
+     ],
+     "radial": [
+      "-0.02498261207064854758101299",
+      "-0.02498212852498768522811838"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1038225307394869642227958",
+    "0.1045432536414728715540113"
+   ],
+   "radial_sum_end": [
+    "-0.06269760590464928995113417",
+    "-0.06246502315070257667587863"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.046684593623649597167969",
+    "3.056684709182828044891357"
+   ],
+   "S": [
+    "0.4716406715028740229201478",
+    "0.4749099068947269654236329"
+   ],
+   "VS": [
+    "0.3142817964728827372475512",
+    "0.3156969908731628993747802"
+   ],
+   "a0": [
+    "0.1037674896785455035314377",
+    "0.104598300916184818747412"
+   ],
+   "ap": [
+    "-0.02896021797097494909193453",
+    "-0.01874400329008623797158773"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.102523768895919352345517",
+      "1.103988643076524543509848"
+     ],
+     "tau_range": [
+      "1.100411524905661074177654",
+      "1.103988643076524543509848"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9400280547631104479832181",
+      "0.9406171461447688046670444"
+     ],
+     "Dt_range": [
+      "0.9395145202108696284242222",
+      "0.9413295190439455985170723"
+     ],
+     "delayed_arg_range": [
+      "1.942695950547125053658121",
+      "1.956273184277166970713703"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1885178502216326452140424",
+      "0.1924662116949342730776877"
+     ],
+     "history_qdot_range": [
+      "0.1960278963287035100014227",
+      "0.198141757241174780043495"
+     ],
+     "hit0": [
+      "0.3739627540722749580129152",
+      "0.3770996220186578347954586"
+     ],
+     "hit_fixed0": [
+      "0.398256707975496735576537",
+      "0.3983457267870408551110529"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.090411524905661074177654",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.5760112413642970087667636",
+     "delayed_arg_start": [
+      "1.942695950547125053658121",
+      "1.94416094028690869254584"
+     ],
+     "r0": [
+      "1.102523768895919495913685",
+      "1.103988643076523693222914"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1885178502216326452140424",
+       "0.1904900281511511889169656"
+      ],
+      "history_qdot": [
+       "0.1960278963287035100014227",
+       "0.1970950730038777811358701"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1045679640227234548206886",
+       "0.1046450479267631008193875"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.942695950547125053658121",
+       "1.956273184277166970713703"
+      ],
+      "history_q": [
+       "0.1885178502216326452140424",
+       "0.1924662116949342730776877"
+      ],
+      "history_qdot": [
+       "0.1960278963287035100014227",
+       "0.198141757241174780043495"
+      ],
+      "history_qddot": [
+       "0.1045679640227234548206886",
+       "0.10470487026041860123998"
+      ],
+      "dhit_dt": [
+       "-0.06922727013647656177637366",
+       "-0.04688962156022351280084356"
+      ],
+      "taudot": [
+       "-0.210587011639829528656466",
+       "-0.2043093934498026577755343"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1045679640227234548206886",
+      "0.10470487026041860123998"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.648468636019953265518909",
+      "1.64921598812233233745964"
+     ],
+     "tau_range": [
+      "1.648468636019953265518909",
+      "1.650564455463736100183377"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.031387490084117077186665",
+      "1.031687038864646174157712"
+     ],
+     "Dt_range": [
+      "1.030842238070023921547996",
+      "1.031995012380111802863581"
+     ],
+     "delayed_arg_range": [
+      "1.396120138159913496984592",
+      "1.408216073162874779372448"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.09636339382222169754195085",
+      "0.1005895489666722676323527"
+     ],
+     "history_qdot_range": [
+      "0.1393371420032595383772791",
+      "0.1423913699753593298722037"
+     ],
+     "hit0": [
+      "0.1190310964665755996960512",
+      "0.1194895015640758402369363"
+     ],
+     "hit_fixed0": [
+      "0.1466157578549792258254281",
+      "0.1466368642674520864447977"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.638468636019953265518909",
+     "families_read_over_step": [
+      "wave16"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.02943542897708545209323458",
+     "delayed_arg_start": [
+      "1.397468605501317259708329",
+      "1.398216073162874779372448"
+     ],
+     "r0": [
+      "1.64846863601995356142352",
+      "1.64921598812232863715035"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.09776184578136479049152207",
+       "0.09917072676844450277359275"
+      ],
+      "history_qdot": [
+       "0.1403532498253590515369456",
+       "0.1413731771881655086922142"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.101727779544323091839482",
+       "0.1017917147419877185842807"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.396120138159913496984592",
+       "1.408216073162874779372448"
+      ],
+      "history_q": [
+       "0.09636339382222169754195085",
+       "0.1005895489666722676323527"
+      ],
+      "history_qdot": [
+       "0.1393371420032595383772791",
+       "0.1423913699753593298722037"
+      ],
+      "history_qddot": [
+       "0.1016107822099513159666355",
+       "0.1018515341109421617201289"
+      ],
+      "dhit_dt": [
+       "-0.07623200188605545712364642",
+       "-0.07202675436267000367324055"
+      ],
+      "taudot": [
+       "0.1309701020994980546083126",
+       "0.1345984086194534646793529"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1016107822099513159666355",
+      "0.1018515341109421617201289"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.957636594597177248756371",
+      "1.957660147561250303526945"
+     ],
+     "tau_range": [
+      "1.957210428600004426650785",
+      "1.957660147561250303526945"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.022351414130896335476622",
+      "1.02235835202946993863764"
+     ],
+     "Dt_range": [
+      "1.022279570839859309713165",
+      "1.022754299788144120724791"
+     ],
+     "delayed_arg_range": [
+      "1.089024446062399293641024",
+      "1.099474280582823618240572"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.05937804562470953510396214",
+      "0.06052486897466515687212703"
+     ],
+     "history_qdot_range": [
+      "0.1092053096182893330851152",
+      "0.1102598964097146709140038"
+     ],
+     "hit0": [
+      "0.05223760631716852681002524",
+      "0.05225428924926136547532332"
+     ],
+     "hit_fixed0": [
+      "0.06178277081385707875630345",
+      "0.06179961999714953517081951"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.947210428600004426650785",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.2672103130408259789273967",
+     "delayed_arg_start": [
+      "1.089024446062399293641024",
+      "1.089048114585650796134986"
+     ],
+     "r0": [
+      "1.957636068035526462999499",
+      "1.957660674269344861013006"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.05937804562470953510396214",
+       "0.0593807597632480835132778"
+      ],
+      "history_qdot": [
+       "0.1092053096182893330851152",
+       "0.1092078172344389867303758"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1008964457478785951648717",
+       "0.1008973375895242912357727"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.089024446062399293641024",
+       "1.099474280582823618240572"
+      ],
+      "history_q": [
+       "0.05937804562470953510396214",
+       "0.06052486897466515687212703"
+      ],
+      "history_qdot": [
+       "0.1092053096182893330851152",
+       "0.1102598964097146709140038"
+      ],
+      "history_qddot": [
+       "0.1007184817342619033236591",
+       "0.1010958216990118037623631"
+      ],
+      "dhit_dt": [
+       "0.02508650108721375884349422",
+       "0.02641159178469961779016448"
+      ],
+      "taudot": [
+       "-0.04237122788594502663162974",
+       "-0.04040416744456505123840951"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1007184817342619033236591",
+      "0.1010958216990118037623631"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4747886923221957630552744",
+    "0.4749099068947269654236329"
+   ],
+   "end_v_str": [
+    "0.3153194713696681922828656",
+    "0.3156969908731628993747802"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.102066154842167951171394",
+    "-1.102038585348419427980512"
+   ],
+   "antipode_residual_end": [
+    "-1.112805123892171009481862",
+    "-1.112776498628509415463977"
+   ],
+   "a_rad_start": [
+    "-0.06269760590464928995113417",
+    "-0.06246502315070257667587863"
+   ],
+   "lambda_hat_start": [
+    "-0.03654023359912907468090797",
+    "-0.03607635185860295018091454"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06308390822408892189066381",
+    "-0.06225097972859237536904788"
+   ],
+   "lambda_hat_range": [
+    "-0.03741361031777752361794752",
+    "-0.03568913937013356625206724"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07479255081445499160258304",
+      "0.07541992440373156695909172"
+     ],
+     "radial": [
+      "-0.09648753774467888755677355",
+      "-0.09629916095559123540322097"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02380621929331511993921024",
+      "0.02389790031281516804738726"
+     ],
+     "radial": [
+      "0.05877254391067814518665237",
+      "0.05881626632987634395546072"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005223760631716852681002524",
+      "0.005225428924926136547532332"
+     ],
+     "radial": [
+      "-0.02498261207064854758101299",
+      "-0.02498212852498768522811838"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1038225307394869642227958",
+    "0.1045432536414728715540113"
+   ],
+   "radial_sum_start": [
+    "-0.06269760590464928995113417",
+    "-0.06246502315070257667587863"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.625590887704144435019397",
+     "1.626856148032790655976404"
+    ],
+    "unlike_pair_chord": [
+     "1.163331024948578742001636",
+     "1.165098393189713259723635"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 119,
+   "certified": true,
+   "self_appended_record_index": 168,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.100571981989543596073918",
+      "1.102047332380311827797444"
+     ],
+     "Dt": [
+      "0.9402353631786382062566661",
+      "0.9408264699657749302194053"
+     ],
+     "r": [
+      "1.100571981989543936689609",
+      "1.10204733238031103908218"
+     ],
+     "hist_q": [
+      "0.1904833575831208164867978",
+      "0.1924662116949342730776877"
+     ],
+     "hist_qdot": [
+      "0.1970735759689307445496297",
+      "0.198141757241174780043495"
+     ],
+     "delayed_arg": [
+      "1.954637261243337769370525",
+      "1.956112727193284448817439"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.649831800012822591003719",
+      "1.650268580290293817253048"
+     ],
+     "Dt": [
+      "1.031090068632067301141105",
+      "1.031677260518882640185183"
+     ],
+     "r": [
+      "1.649324508857510801565623",
+      "1.650778746574401929559018"
+     ],
+     "hist_q": [
+      "0.09776184578136479049152207",
+      "0.1005895489666722676323527"
+     ],
+     "hist_qdot": [
+      "0.1403532498253590515369456",
+      "0.1423913699753593298722037"
+     ],
+     "delayed_arg": [
+      "1.406416013333355779914921",
+      "1.406852909170005453887638"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave16"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.957224268519058325768234",
+      "1.957248677784765125481757"
+     ],
+     "Dt": [
+      "1.022674645266783499760203",
+      "1.022681873035561280950703"
+     ],
+     "r": [
+      "1.957223714977229177591978",
+      "1.95724923147353152102628"
+     ],
+     "hist_q": [
+      "0.0605205008750453308927902",
+      "0.06052334244767542823046199"
+     ],
+     "hist_qdot": [
+      "0.1102558983615681062018575",
+      "0.1102584992213532320927613"
+     ],
+     "delayed_arg": [
+      "1.099435915838884471686212",
+      "1.099460440663769719123123"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06289985577339674890789831",
+    "-0.06262410673723969625998184"
+   ],
+   "lambda_hat_end": [
+    "-0.03704048330913020272701356",
+    "-0.03652651325145024990107517"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.0747010407220072107334784",
+      "0.07533471536232892984478299"
+     ],
+     "radial": [
+      "-0.09663733975140648764254069",
+      "-0.09644733339935966109050924"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02363937006884436489357284",
+      "0.02381861913927638109649"
+     ],
+     "radial": [
+      "0.05871746167129762705849211",
+      "0.05880270215067828108261726"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005249353848188119271400101",
+      "0.005251077292474897866865651"
+     ],
+     "radial": [
+      "-0.02497997769328788832384973",
+      "-0.02497947548855831625208986"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1035897646390396948984513",
+    "0.1044044117940802088081386"
+   ],
+   "radial_sum_end": [
+    "-0.06289985577339674890789831",
+    "-0.06262410673723969625998184"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.056684593623649597167969",
+    "3.066684709182828044891357"
+   ],
+   "S": [
+    "0.4747886871919903600154607",
+    "0.4780720998775141741063323"
+   ],
+   "VS": [
+    "0.3153179323080472803387634",
+    "0.3167416056842788371651099"
+   ],
+   "a0": [
+    "0.1035327019838110402819263",
+    "0.1044614811115937790329785"
+   ],
+   "ap": [
+    "-0.0307812324182388820431353",
+    "-0.01911810078740012837257587"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.100571981989543596073918",
+      "1.102047332380311827797444"
+     ],
+     "tau_range": [
+      "1.09846413704568879024849",
+      "1.102047332380311827797444"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9402353631786382062566661",
+      "0.9408264699657749302194053"
+     ],
+     "Dt_range": [
+      "0.9393348493088396623742647",
+      "0.9417276787188381596066125"
+     ],
+     "delayed_arg_range": [
+      "1.954637261243337769370525",
+      "1.968220572137139254642867"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1904833575831208164867978",
+      "0.196449994294162961493949"
+     ],
+     "history_qdot_range": [
+      "0.1970735759689307445496297",
+      "0.2002369264643334036730841"
+     ],
+     "hit0": [
+      "0.373505203610036053667392",
+      "0.3766735768116446492239149"
+     ],
+     "hit_fixed0": [
+      "0.3993618226406168683424042",
+      "0.3994541992063809804705546"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.08846413704568879024849",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.5879525520605097244791676",
+     "delayed_arg_start": [
+      "1.954637261243337769370525",
+      "1.956112727193284448817439"
+     ],
+     "r0": [
+      "1.100571981989543936689609",
+      "1.10204733238031103908218"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1904833575831208164867978",
+       "0.1924662116949342730776877"
+      ],
+      "history_qdot": [
+       "0.1970735759689307445496297",
+       "0.198141757241174780043495"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1046271624439037264784494",
+       "0.10470487026041860123998"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.954637261243337769370525",
+       "1.968220572137139254642867"
+      ],
+      "history_q": [
+       "0.1904833575831208164867978",
+       "0.196449994294162961493949"
+      ],
+      "history_qdot": [
+       "0.1970735759689307445496297",
+       "0.2002369264643334036730841"
+      ],
+      "history_qddot": [
+       "0.1046271624439037264784494",
+       "0.1048254679316204333280131"
+      ],
+      "dhit_dt": [
+       "-0.07816553724709472086046448",
+       "-0.04887199927890723983509071"
+      ],
+      "taudot": [
+       "-0.210784494385480582542795",
+       "-0.2030264065223410113313725"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1046271624439037264784494",
+      "0.1048254679316204333280131"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.649831800012822591003719",
+      "1.650268580290293817253048"
+     ],
+     "tau_range": [
+      "1.649831800012822591003719",
+      "1.651614740857668130288464"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.031090068632067301141105",
+      "1.031677260518882640185183"
+     ],
+     "Dt_range": [
+      "1.030774597909248405810689",
+      "1.031928128250641682036642"
+     ],
+     "delayed_arg_range": [
+      "1.405069852765981466879505",
+      "1.416852909170005453887638"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.09776184578136479049152207",
+      "0.1020185560923044131818192"
+     ],
+     "history_qdot_range": [
+      "0.1403532498253590515369456",
+      "0.1434101638462586670071643"
+     ],
+     "hit0": [
+      "0.1181968503442218244678642",
+      "0.11909309569638190548245"
+     ],
+     "hit_fixed0": [
+      "0.1460502823924963642157755",
+      "0.1460720049160305485647098"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.639831800012822591003719",
+     "families_read_over_step": [
+      "wave16"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.03838514358315342198814758",
+     "delayed_arg_start": [
+      "1.406416013333355779914921",
+      "1.406852909170005453887638"
+     ],
+     "r0": [
+      "1.649324508857510801565623",
+      "1.650778746574401929559018"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.09776184578136479049152207",
+       "0.1005895489666722676323527"
+      ],
+      "history_qdot": [
+       "0.1403532498253590515369456",
+       "0.1423913699753593298722037"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.101727779544323091839482",
+       "0.1018515341109421617201289"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.405069852765981466879505",
+       "1.416852909170005453887638"
+      ],
+      "history_q": [
+       "0.09776184578136479049152207",
+       "0.1020185560923044131818192"
+      ],
+      "history_qdot": [
+       "0.1403532498253590515369456",
+       "0.1434101638462586670071643"
+      ],
+      "history_qddot": [
+       "0.101727779544323091839482",
+       "0.101911995646599809310552"
+      ],
+      "dhit_dt": [
+       "-0.07626019782875217986852444",
+       "-0.07204594172104179476483332"
+      ],
+      "taudot": [
+       "0.1307310581766953263776331",
+       "0.1343692572140924915010033"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.101727779544323091839482",
+      "0.101911995646599809310552"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.957224268519058325768234",
+      "1.957248677784765125481757"
+     ],
+     "tau_range": [
+      "1.956796166147554872763069",
+      "1.957248677784765125481757"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.022674645266783499760203",
+      "1.022681873035561280950703"
+     ],
+     "Dt_range": [
+      "1.022601523357035689030312",
+      "1.023081191151744734260599"
+     ],
+     "delayed_arg_range": [
+      "1.099435915838884471686212",
+      "1.109888543035273172128288"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.0605205008750453308927902",
+      "0.06167862131082888637763081"
+     ],
+     "history_qdot_range": [
+      "0.1102558983615681062018575",
+      "0.1113109855923603354688473"
+     ],
+     "hit0": [
+      "0.05249353848188119271400101",
+      "0.05251077292474897866865651"
+     ],
+     "hit_fixed0": [
+      "0.06223461907654446029224799",
+      "0.06225203397859922772673033"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.946796166147554872763069",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.2567960505883764250396807",
+     "delayed_arg_start": [
+      "1.099435915838884471686212",
+      "1.099460440663769719123123"
+     ],
+     "r0": [
+      "1.957223714977229177591978",
+      "1.95724923147353152102628"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.0605205008750453308927902",
+       "0.06052334244767542823046199"
+      ],
+      "history_qdot": [
+       "0.1102558983615681062018575",
+       "0.1102584992213532320927613"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1009167181463555554213621",
+       "0.1009176543570205154818884"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.099435915838884471686212",
+       "1.109888543035273172128288"
+      ],
+      "history_q": [
+       "0.0605205008750453308927902",
+       "0.06167862131082888637763081"
+      ],
+      "history_qdot": [
+       "0.1102558983615681062018575",
+       "0.1113109855923603354688473"
+      ],
+      "history_qddot": [
+       "0.1007365663005049588684748",
+       "0.1011186461742816912394032"
+      ],
+      "dhit_dt": [
+       "0.02507139152957076255350978",
+       "0.02640863523945362866587065"
+      ],
+      "taudot": [
+       "-0.04256225483298318898850954",
+       "-0.04057901389701278038377792"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1007365663005049588684748",
+      "0.1011186461742816912394032"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4779470585407862324903035",
+    "0.4780720998775141741063323"
+   ],
+   "end_v_str": [
+    "0.3163532593278853907415827",
+    "0.3167416056842788371651099"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.112805123892171009481862",
+    "-1.112776498628509415463977"
+   ],
+   "antipode_residual_end": [
+    "-1.123551395194039928857656",
+    "-1.123521677871079341652746"
+   ],
+   "a_rad_start": [
+    "-0.06289985577339674890789831",
+    "-0.06262410673723969625998184"
+   ],
+   "lambda_hat_start": [
+    "-0.03704048330913020272701356",
+    "-0.03652651325145024990107517"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06340621271485872746694523",
+    "-0.06238496771037300501597655"
+   ],
+   "lambda_hat_range": [
+    "-0.03794027706108217475468213",
+    "-0.03601918572016355941723417"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.0747010407220072107334784",
+      "0.07533471536232892984478299"
+     ],
+     "radial": [
+      "-0.09663733975140648764254069",
+      "-0.09644733339935966109050924"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02363937006884436489357284",
+      "0.02381861913927638109649"
+     ],
+     "radial": [
+      "0.05871746167129762705849211",
+      "0.05880270215067828108261726"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005249353848188119271400101",
+      "0.005251077292474897866865651"
+     ],
+     "radial": [
+      "-0.02497997769328788832384973",
+      "-0.02497947548855831625208986"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1035897646390396948984513",
+    "0.1044044117940802088081386"
+   ],
+   "radial_sum_start": [
+    "-0.06289985577339674890789831",
+    "-0.06262410673723969625998184"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.626809288958068473198464",
+     "1.628077025923547202929718"
+    ],
+    "unlike_pair_chord": [
+     "1.161621796308909403790949",
+     "1.163396552066295094881469"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 120,
+   "certified": true,
+   "self_appended_record_index": 169,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.098027186954783261572529",
+      "1.099519664286634350010008"
+     ],
+     "Dt": [
+      "0.9402516939524013972755095",
+      "0.9408478805353256809176693"
+     ],
+     "r": [
+      "1.098027186954784553364746",
+      "1.099519664286632551170369"
+     ],
+     "hist_q": [
+      "0.1944457575112067901104067",
+      "0.196449994294162961493949"
+     ],
+     "hist_qdot": [
+      "0.1991667144615244165432721",
+      "0.2002369264643334036730841"
+     ],
+     "delayed_arg": [
+      "1.967164929337015247157961",
+      "1.968657522228044783318828"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.650881529027083269247434",
+      "1.651635420278611002788287"
+     ],
+     "Dt": [
+      "1.031077790762203365627929",
+      "1.03137551438660047812855"
+     ],
+     "r": [
+      "1.650881529027084433226074",
+      "1.651635420278609157061296"
+     ],
+     "hist_q": [
+      "0.0991704646685955971614836",
+      "0.1005895489666722676323527"
+     ],
+     "hist_qdot": [
+      "0.1413705276208022824553405",
+      "0.1423913699753593298722037"
+     ],
+     "delayed_arg": [
+      "1.415049173345038594379682",
+      "1.415803180155744775643923"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave16"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.956810109975408997740169",
+      "1.956835402843354412798463"
+     ],
+     "Dt": [
+      "1.022999953619156000283731",
+      "1.023007481745544319574746"
+     ],
+     "r": [
+      "1.956809528224747328738657",
+      "1.956835984741032166255779"
+     ],
+     "hist_q": [
+      "0.06167409486693425430540592",
+      "0.06167706883743916541109983"
+     ],
+     "hist_qdot": [
+      "0.1113068808963917110805427",
+      "0.1113095777861670401169875"
+     ],
+     "delayed_arg": [
+      "1.109849190780295184369506",
+      "1.109874599207419047151188"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06313276879603375690073734",
+    "-0.06289571090524286405178525"
+   ],
+   "lambda_hat_end": [
+    "-0.03742953386621231571887342",
+    "-0.03694661589134254808594771"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07445793770986220496834666",
+      "0.0751013958782906296924318"
+     ],
+     "radial": [
+      "-0.09685962474912776357923834",
+      "-0.09666685475852337510079695"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02356013515690614634873154",
+      "0.02365210114294355693574994"
+     ],
+     "radial": [
+      "0.05870417583958610599994587",
+      "0.05874794224413206253906603"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.00527493709834280270139206",
+      "0.005276717305127998083031929"
+     ],
+     "radial": [
+      "-0.02497731988649209932144487",
+      "-0.02497679839085155149005433"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1032930099651111540184703",
+    "0.1040302143263621847112137"
+   ],
+   "radial_sum_end": [
+    "-0.06313276879603375690073734",
+    "-0.06289571090524286405178525"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.066684593623649597167969",
+    "3.076684709182828044891357"
+   ],
+   "S": [
+    "0.4779470533393664295275198",
+    "0.4812447204030064082890704"
+   ],
+   "VS": [
+    "0.3163516989019445019064866",
+    "0.3177824994141679993825054"
+   ],
+   "a0": [
+    "0.1032338584440950113906015",
+    "0.1040893729889162217395432"
+   ],
+   "ap": [
+    "-0.03120851881777670192086231",
+    "-0.02091502490716740642682959"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.098027186954783261572529",
+      "1.099519664286634350010008"
+     ],
+     "tau_range": [
+      "1.095917686470746752634458",
+      "1.099519664286634350010008"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9402516939524013972755095",
+      "0.9408478805353256809176693"
+     ],
+     "Dt_range": [
+      "0.9397410469850093270558697",
+      "0.9415861820600141530769243"
+     ],
+     "delayed_arg_range": [
+      "1.967164929337015247157961",
+      "1.980767022712081292256899"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1944457575112067901104067",
+      "0.198457605396687489599824"
+     ],
+     "history_qdot_range": [
+      "0.1991667144615244165432721",
+      "0.2012854177216754835243403"
+     ],
+     "hit0": [
+      "0.3722896885493110248417333",
+      "0.375506979391453148462159"
+     ],
+     "hit_fixed0": [
+      "0.40047088781872037483218",
+      "0.4005667375380206865474863"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.085917686470746752634458",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.6004802201541872022666036",
+     "delayed_arg_start": [
+      "1.967164929337015247157961",
+      "1.968657522228044783318828"
+     ],
+     "r0": [
+      "1.098027186954784553364746",
+      "1.099519664286632551170369"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1944457575112067901104067",
+       "0.196449994294162961493949"
+      ],
+      "history_qdot": [
+       "0.1991667144615244165432721",
+       "0.2002369264643334036730841"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1047465243217488205176211",
+       "0.1048254679316204333280131"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.967164929337015247157961",
+       "1.980767022712081292256899"
+      ],
+      "history_q": [
+       "0.1944457575112067901104067",
+       "0.198457605396687489599824"
+      ],
+      "history_qdot": [
+       "0.1991667144615244165432721",
+       "0.2012854177216754835243403"
+      ],
+      "history_qddot": [
+       "0.1047465243217488205176211",
+       "0.1048862300651877918474297"
+      ],
+      "dhit_dt": [
+       "-0.08058378130661287828735068",
+       "-0.05758486207493489398386659"
+      ],
+      "taudot": [
+       "-0.2094839434134014532714854",
+       "-0.203122432049479298346119"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1047465243217488205176211",
+      "0.1048862300651877918474297"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.650881529027083269247434",
+      "1.651635420278611002788287"
+     ],
+     "tau_range": [
+      "1.650881529027083269247434",
+      "1.652976706244908222241622"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.031077790762203365627929",
+      "1.03137551438660047812855"
+     ],
+     "Dt_range": [
+      "1.03075917547419629072583",
+      "1.031624201164250639057186"
+     ],
+     "delayed_arg_range": [
+      "1.413707887378741374926347",
+      "1.425803180155744775643923"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.0991704646685955971614836",
+      "0.1020185560923044131818192"
+     ],
+     "history_qdot_range": [
+      "0.1413705276208022824553405",
+      "0.1434101638462586670071643"
+     ],
+     "hit0": [
+      "0.1178006757845307317436577",
+      "0.1182605057147177846787497"
+     ],
+     "hit_fixed0": [
+      "0.1454843112193451816390572",
+      "0.145506665017882090633037"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.640881529027083269247434",
+     "families_read_over_step": [
+      "wave16"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.04702317819591333003498958",
+     "delayed_arg_start": [
+      "1.415049173345038594379682",
+      "1.415803180155744775643923"
+     ],
+     "r0": [
+      "1.650881529027084433226074",
+      "1.651635420278609157061296"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.0991704646685955971614836",
+       "0.1005895489666722676323527"
+      ],
+      "history_qdot": [
+       "0.1413705276208022824553405",
+       "0.1423913699753593298722037"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1017868650884108411323967",
+       "0.1018515341109421617201289"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.413707887378741374926347",
+       "1.425803180155744775643923"
+      ],
+      "history_q": [
+       "0.0991704646685955971614836",
+       "0.1020185560923044131818192"
+      ],
+      "history_qdot": [
+       "0.1413705276208022824553405",
+       "0.1434101638462586670071643"
+      ],
+      "history_qddot": [
+       "0.1017868650884108411323967",
+       "0.101911995646599809310552"
+      ],
+      "dhit_dt": [
+       "-0.07583756566590523827905438",
+       "-0.07245066974251022443481869"
+      ],
+      "taudot": [
+       "0.1308184604073362355529997",
+       "0.1338838251833585071593102"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1017868650884108411323967",
+      "0.101911995646599809310552"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.956810109975408997740169",
+      "1.956835402843354412798463"
+     ],
+     "tau_range": [
+      "1.956380077624559525627577",
+      "1.956835402843354412798463"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.022999953619156000283731",
+      "1.023007481745544319574746"
+     ],
+     "Dt_range": [
+      "1.022925541550280638654988",
+      "1.023410180518624676091489"
+     ],
+     "delayed_arg_range": [
+      "1.109849190780295184369506",
+      "1.12030463155826851926378"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.06167409486693425430540592",
+      "0.06284352478017968875901149"
+     ],
+     "history_qdot_range": [
+      "0.1113068808963917110805427",
+      "0.1123624740416459975704002"
+     ],
+     "hit0": [
+      "0.0527493709834280270139206",
+      "0.05276717305127998083031929"
+     ],
+     "hit_fixed0": [
+      "0.06268878212596957042571582",
+      "0.06270677986053635596424765"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.946380077624559525627577",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.2463799620653810779041887",
+     "delayed_arg_start": [
+      "1.109849190780295184369506",
+      "1.109874599207419047151188"
+     ],
+     "r0": [
+      "1.956809528224747328738657",
+      "1.956835984741032166255779"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.06167409486693425430540592",
+       "0.06167706883743916541109983"
+      ],
+      "history_qdot": [
+       "0.1113068808963917110805427",
+       "0.1113095777861670401169875"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1009373039187525033813848",
+       "0.1009382863918689905850316"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.109849190780295184369506",
+       "1.12030463155826851926378"
+      ],
+      "history_q": [
+       "0.06167409486693425430540592",
+       "0.06284352478017968875901149"
+      ],
+      "history_qdot": [
+       "0.1113068808963917110805427",
+       "0.1123624740416459975704002"
+      ],
+      "history_qddot": [
+       "0.1007549490870737555849948",
+       "0.1011418046881959762067663"
+      ],
+      "dhit_dt": [
+       "0.02505578037213328592471627",
+       "0.0264054478044355603106813"
+      ],
+      "taudot": [
+       "-0.04275262462329854134701948",
+       "-0.0407529167896603943678006"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1007549490870737555849948",
+      "0.1011418046881959762067663"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4811157476255674881855052",
+    "0.4812447204030064082890704"
+   ],
+   "end_v_str": [
+    "0.3173840374863854520203926",
+    "0.3177824994141679993825054"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.123551395194039928857656",
+    "-1.123521677871079341652746"
+   ],
+   "antipode_residual_end": [
+    "-1.134305008999113118239932",
+    "-1.134274162349756939111481"
+   ],
+   "a_rad_start": [
+    "-0.06313276879603375690073734",
+    "-0.06289571090524286405178525"
+   ],
+   "lambda_hat_start": [
+    "-0.03742953386621231571887342",
+    "-0.03694661589134254808594771"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06351173805463651942914476",
+    "-0.06270696222423811880456521"
+   ],
+   "lambda_hat_range": [
+    "-0.03827875470967756606617596",
+    "-0.03656665934351003474412169"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07445793770986220496834666",
+      "0.0751013958782906296924318"
+     ],
+     "radial": [
+      "-0.09685962474912776357923834",
+      "-0.09666685475852337510079695"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02356013515690614634873154",
+      "0.02365210114294355693574994"
+     ],
+     "radial": [
+      "0.05870417583958610599994587",
+      "0.05874794224413206253906603"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.00527493709834280270139206",
+      "0.005276717305127998083031929"
+     ],
+     "radial": [
+      "-0.02497731988649209932144487",
+      "-0.02497679839085155149005433"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1032930099651111540184703",
+    "0.1040302143263621847112137"
+   ],
+   "radial_sum_start": [
+    "-0.06313276879603375690073734",
+    "-0.06289571090524286405178525"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.6280288024786304520952",
+     "1.629299003914035028397828"
+    ],
+    "unlike_pair_chord": [
+     "1.159907218636358547433521",
+     "1.161689381160039902996569"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 121,
+   "certified": true,
+   "self_appended_record_index": 170,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.096085619883059468302505",
+      "1.09758860037751188083984"
+     ],
+     "Dt": [
+      "0.9404880286976315839675195",
+      "0.9410863074104848975601127"
+     ],
+     "r": [
+      "1.096085619883061550692065",
+      "1.097588600377511689994683"
+     ],
+     "hist_q": [
+      "0.1964426619820381217168654",
+      "0.198457605396687489599824"
+     ],
+     "hist_qdot": [
+      "0.2002141797047419047484484",
+      "0.2012854177216754835243403"
+     ],
+     "delayed_arg": [
+      "1.979095993246137716328129",
+      "1.980599089299768576588852"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.65224026710856479851756",
+      "1.652999671684370148718893"
+     ],
+     "Dt": [
+      "1.031004081711001665700617",
+      "1.031301367403380391310561"
+     ],
+     "r": [
+      "1.652240267108564872761696",
+      "1.652999671684367299057931"
+     ],
+     "hist_q": [
+      "0.1005892592880580405280937",
+      "0.1020185560923044131818192"
+     ],
+     "hist_qdot": [
+      "0.1423883962716863908666646",
+      "0.1434101638462586670071643"
+     ],
+     "delayed_arg": [
+      "1.423684921939279448449076",
+      "1.424444442074263246373797"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave16"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.956394128136896000630902",
+      "1.956420332552565670661729"
+     ],
+     "Dt": [
+      "1.023327336990038150444622",
+      "1.023335176258690205522914"
+     ],
+     "r": [
+      "1.956393516901972185703055",
+      "1.956420943934125118238842"
+     ],
+     "hist_q": [
+      "0.06283883434016903684196802",
+      "0.0628419458302810062886134"
+     ],
+     "hist_qdot": [
+      "0.1123582595582942258286918",
+      "0.1123610553310120400113891"
+     ],
+     "delayed_arg": [
+      "1.12026426107108392650624",
+      "1.120290581045932044260455"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06332151084730199880497927",
+    "-0.06308266398163288348691239"
+   ],
+   "lambda_hat_end": [
+    "-0.03790305295228280138382877",
+    "-0.03741111640385732703219558"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07434648687505972239326238",
+      "0.07499627429180229153823664"
+     ],
+     "radial": [
+      "-0.09700681552329448707639207",
+      "-0.09681239356542609515239347"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02340295867029702636627917",
+      "0.0234953048623362563589468"
+     ],
+     "radial": [
+      "0.05865994333307895988352022",
+      "0.05870382680607234812595462"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005300509903735856465705403",
+      "0.005302348518422924788035835"
+     ],
+     "radial": [
+      "-0.02497463865708647161210742",
+      "-0.02497409722227913646047354"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.103049955449092605225247",
+    "0.1037939276725614726852193"
+   ],
+   "radial_sum_end": [
+    "-0.06332151084730199880497927",
+    "-0.06308266398163288348691239"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.076684593623649597167969",
+    "3.086684709182828044891357"
+   ],
+   "S": [
+    "0.4811157422654739898226728",
+    "0.4844277381593855567970724"
+   ],
+   "VS": [
+    "0.3173824294583359431706918",
+    "0.3188210518616617022178903"
+   ],
+   "a0": [
+    "0.1029886460257500173407106",
+    "0.1038552447493702835384964"
+   ],
+   "ap": [
+    "-0.03216056099017699401737763",
+    "-0.02175678086539528398311433"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.096085619883059468302505",
+      "1.09758860037751188083984"
+     ],
+     "tau_range": [
+      "1.093981163978449354010171",
+      "1.09758860037751188083984"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9404880286976315839675195",
+      "0.9410863074104848975601127"
+     ],
+     "Dt_range": [
+      "0.9399793904690064574114049",
+      "0.9418346302965837933875442"
+     ],
+     "delayed_arg_range": [
+      "1.979095993246137716328129",
+      "1.992703545204378690881186"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1964426619820381217168654",
+      "0.2004757044638821416075882"
+     ],
+     "history_qdot_range": [
+      "0.2002141797047419047484484",
+      "0.2023345209460070318630683"
+     ],
+     "hit0": [
+      "0.3717324343752986119663119",
+      "0.3749813714590114576911832"
+     ],
+     "hit_fixed0": [
+      "0.4015838525349742082799804",
+      "0.4016832939994989065258519"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.083981163978449354010171",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.6124112840633096714367716",
+     "delayed_arg_start": [
+      "1.979095993246137716328129",
+      "1.980599089299768576588852"
+     ],
+     "r0": [
+      "1.096085619883061550692065",
+      "1.097588600377511689994683"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1964426619820381217168654",
+       "0.198457605396687489599824"
+      ],
+      "history_qdot": [
+       "0.2002141797047419047484484",
+       "0.2012854177216754835243403"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1048066723661537272118864",
+       "0.1048862300651877918474297"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.979095993246137716328129",
+       "1.992703545204378690881186"
+      ],
+      "history_q": [
+       "0.1964426619820381217168654",
+       "0.2004757044638821416075882"
+      ],
+      "history_qdot": [
+       "0.2002141797047419047484484",
+       "0.2023345209460070318630683"
+      ],
+      "history_qddot": [
+       "0.1048066723661537272118864",
+       "0.1049478910587889842355974"
+      ],
+      "dhit_dt": [
+       "-0.08517588345383924431000291",
+       "-0.06190923400576115438963184"
+      ],
+      "taudot": [
+       "-0.2089707712135294049447297",
+       "-0.2025766918245156430130512"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1048066723661537272118864",
+      "0.1049478910587889842355974"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.65224026710856479851756",
+      "1.652999671684370148718893"
+     ],
+     "tau_range": [
+      "1.65224026710856479851756",
+      "1.654338428008142179519511"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.031004081711001665700617",
+      "1.031301367403380391310561"
+     ],
+     "Dt_range": [
+      "1.030681751362367967739247",
+      "1.031548332262451550561597"
+     ],
+     "delayed_arg_range": [
+      "1.422346165615507417648458",
+      "1.434444442074263246373797"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1005892592880580405280937",
+      "0.103457754188925765821987"
+     ],
+     "history_qdot_range": [
+      "0.1423883962716863908666646",
+      "0.1444295653559939472906961"
+     ],
+     "hit0": [
+      "0.1170147933514851318313959",
+      "0.117476524311681281794734"
+     ],
+     "hit_fixed0": [
+      "0.144917856917533199301367",
+      "0.1449408573680658690910567"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.64224026710856479851756",
+     "families_read_over_step": [
+      "wave16"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.05566145643267937275710058",
+     "delayed_arg_start": [
+      "1.423684921939279448449076",
+      "1.424444442074263246373797"
+     ],
+     "r0": [
+      "1.652240267108564872761696",
+      "1.652999671684367299057931"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1005892592880580405280937",
+       "0.1020185560923044131818192"
+      ],
+      "history_qdot": [
+       "0.1423883962716863908666646",
+       "0.1434101638462586670071643"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1018466158675781468384489",
+       "0.101911995646599809310552"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.422346165615507417648458",
+       "1.434444442074263246373797"
+      ],
+      "history_q": [
+       "0.1005892592880580405280937",
+       "0.103457754188925765821987"
+      ],
+      "history_qdot": [
+       "0.1423883962716863908666646",
+       "0.1444295653559939472906961"
+      ],
+      "history_qddot": [
+       "0.1018466158675781468384489",
+       "0.1019731143681539076365528"
+      ],
+      "dhit_dt": [
+       "-0.07586344219656920224710775",
+       "-0.07246891191281307818616079"
+      ],
+      "taudot": [
+       "0.1305588974293548699182673",
+       "0.133632406189754180612849"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1018466158675781468384489",
+      "0.1019731143681539076365528"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.956394128136896000630902",
+      "1.956420332552565670661729"
+     ],
+     "tau_range": [
+      "1.955962177193797214337997",
+      "1.956420332552565670661729"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.023327336990038150444622",
+      "1.023335176258690205522914"
+     ],
+     "Dt_range": [
+      "1.023251623243784439745336",
+      "1.023741264552240235623239"
+     ],
+     "delayed_arg_range": [
+      "1.12026426107108392650624",
+      "1.13072253198903083055336"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.06283883434016903684196802",
+      "0.06401958572036610740927581"
+     ],
+     "history_qdot_range": [
+      "0.1123582595582942258286918",
+      "0.1134143636938008750044365"
+     ],
+     "hit0": [
+      "0.05300509903735856465705403",
+      "0.05302348518422924788035835"
+     ],
+     "hit_fixed0": [
+      "0.06314527103832721581761771",
+      "0.06316386911478567597405788"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.945962177193797214337997",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.2359620616346187666146087",
+     "delayed_arg_start": [
+      "1.12026426107108392650624",
+      "1.120290581045932044260455"
+     ],
+     "r0": [
+      "1.956393516901972185703055",
+      "1.956420943934125118238842"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.06283883434016903684196802",
+       "0.0628419458302810062886134"
+      ],
+      "history_qdot": [
+       "0.1123582595582942258286918",
+       "0.1123610553310120400113891"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1009582065378976055828264",
+       "0.1009592372365776836046777"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.12026426107108392650624",
+       "1.13072253198903083055336"
+      ],
+      "history_q": [
+       "0.06283883434016903684196802",
+       "0.06401958572036610740927581"
+      ],
+      "history_qdot": [
+       "0.1123582595582942258286918",
+       "0.1134143636938008750044365"
+      ],
+      "history_qddot": [
+       "0.1007736334664930208460844",
+       "0.1011653009096693982271112"
+      ],
+      "dhit_dt": [
+       "0.02503960024655471891461061",
+       "0.02640171470367984580709361"
+      ],
+      "taudot": [
+       "-0.04294184315601047280982589",
+       "-0.04092574985038408020122009"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1007736334664930208460844",
+      "0.1011653009096693982271112"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4842947320726391318437438",
+    "0.4844277381593855567970724"
+   ],
+   "end_v_str": [
+    "0.3184123159185934433440989",
+    "0.3188210518616617022178903"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.134305008999113118239932",
+    "-1.134274162349756939111481"
+   ],
+   "antipode_residual_end": [
+    "-1.145066004344216540024681",
+    "-1.145033991241879130787082"
+   ],
+   "a_rad_start": [
+    "-0.06332151084730199880497927",
+    "-0.06308266398163288348691239"
+   ],
+   "lambda_hat_start": [
+    "-0.03790305295228280138382877",
+    "-0.03741111640385732703219558"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06370142238560930656338283",
+    "-0.06289138585151045319243459"
+   ],
+   "lambda_hat_range": [
+    "-0.03875547725866592756513996",
+    "-0.03703018414326628452972924"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07434648687505972239326238",
+      "0.07499627429180229153823664"
+     ],
+     "radial": [
+      "-0.09700681552329448707639207",
+      "-0.09681239356542609515239347"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02340295867029702636627917",
+      "0.0234953048623362563589468"
+     ],
+     "radial": [
+      "0.05865994333307895988352022",
+      "0.05870382680607234812595462"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005300509903735856465705403",
+      "0.005302348518422924788035835"
+     ],
+     "radial": [
+      "-0.02497463865708647161210742",
+      "-0.02497409722227913646047354"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.103049955449092605225247",
+    "0.1037939276725614726852193"
+   ],
+   "radial_sum_start": [
+    "-0.06332151084730199880497927",
+    "-0.06308266398163288348691239"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.629249383449539792226",
+     "1.630522035749664096605881"
+    ],
+    "unlike_pair_chord": [
+     "1.158187329811015985502869",
+     "1.159976916377776223099806"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 122,
+   "certified": true,
+   "self_appended_record_index": 171,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.094148509989894014607837",
+      "1.095662012405362815502552"
+     ],
+     "Dt": [
+      "0.9407364783125663225074493",
+      "0.9413368754664071984466487"
+     ],
+     "r": [
+      "1.09414850998989449871496",
+      "1.095662012405361184276361"
+     ],
+     "hist_q": [
+      "0.1984500441127038484507106",
+      "0.2004757044638821416075882"
+     ],
+     "hist_qdot": [
+      "0.2012622464284034420205674",
+      "0.2023345209460070318630683"
+     ],
+     "delayed_arg": [
+      "1.991022581218286781665417",
+      "1.99253619919293403028352"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.653596278344475694300157",
+      "1.654361202755753663114025"
+     ],
+     "Dt": [
+      "1.030924910385168194980492",
+      "1.031221773020808739445481"
+     ],
+     "r": [
+      "1.653596278344479315703248",
+      "1.654361202755752596729434"
+     ],
+     "hist_q": [
+      "0.1020182355815682833441024",
+      "0.103457754188925765821987"
+     ],
+     "hist_qdot": [
+      "0.1434068624303621723350492",
+      "0.1444295653559939472906961"
+     ],
+     "delayed_arg": [
+      "1.432323390867895934053944",
+      "1.4330884308383523505912"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave16"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.955976333289877597029754",
+      "1.956003476886831012798506"
+     ],
+     "Dt": [
+      "1.023656793121220824586216",
+      "1.023664954330555505567903"
+     ],
+     "r": [
+      "1.955975691269962141894985",
+      "1.956004119052496548467647"
+     ],
+     "hist_q": [
+      "0.06401472601116098179386696",
+      "0.06401798019475731121800426"
+     ],
+     "hist_qdot": [
+      "0.1134100367046452874063005",
+      "0.1134129341833319035675358"
+     ],
+     "delayed_arg": [
+      "1.130681116736818584369463",
+      "1.130708375892950447861603"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06350863761521896380020954",
+    "-0.06326799118007546837912053"
+   ],
+   "lambda_hat_end": [
+    "-0.03837887193010091237845402",
+    "-0.03787776531342319172163611"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07422696963342942514966228",
+      "0.07488309933192597714420294"
+     ],
+     "radial": [
+      "-0.09715289402132812009828629",
+      "-0.09695681120265647478860636"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02324573644217471145821597",
+      "0.02333846341014442393115947"
+     ],
+     "radial": [
+      "0.058616190405181488001504",
+      "0.05866019200270174690569362"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005326071786519481725432273",
+      "0.005327970421388004041937489"
+     ],
+     "radial": [
+      "-0.02497193399907233170342725",
+      "-0.0249713719801207404962078"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1027987778621236183333105",
+    "0.1035495331634584051172999"
+   ],
+   "radial_sum_end": [
+    "-0.06350863761521896380020954",
+    "-0.06326799118007546837912053"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.086684593623649597167969",
+    "3.096684709182828044891357"
+   ],
+   "S": [
+    "0.4842947265511438385112524",
+    "0.4876211293318651647932688"
+   ],
+   "VS": [
+    "0.3184106594700054435966824",
+    "0.3198571826342598970213925"
+   ],
+   "a0": [
+    "0.1027352419652945452327412",
+    "0.1036130772598194803502191"
+   ],
+   "ap": [
+    "-0.03312897175999494832882441",
+    "-0.02261434774029806997057097"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.094148509989894014607837",
+      "1.095662012405362815502552"
+     ],
+     "tau_range": [
+      "1.092049412961576786171394",
+      "1.095662012405362815502552"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9407364783125663225074493",
+      "0.9413368754664071984466487"
+     ],
+     "Dt_range": [
+      "0.9402299186873545096794296",
+      "0.9420953035965032431447802"
+     ],
+     "delayed_arg_range": [
+      "1.991022581218286781665417",
+      "2.004635296221251258719963"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1984500441127038484507106",
+      "0.202504297613112066160171"
+     ],
+     "history_qdot_range": [
+      "0.2012622464284034420205674",
+      "0.203384234403600155457293"
+     ],
+     "hit0": [
+      "0.3711348481671471257483114",
+      "0.3744154966596298857210147"
+     ],
+     "hit_fixed0": [
+      "0.4027006651470973153266359",
+      "0.4028038165318704813480458"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.082049412961576786171394",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.6243378720354587367740596",
+     "delayed_arg_start": [
+      "1.991022581218286781665417",
+      "1.99253619919293403028352"
+     ],
+     "r0": [
+      "1.09414850998989449871496",
+      "1.095662012405361184276361"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1984500441127038484507106",
+       "0.2004757044638821416075882"
+      ],
+      "history_qdot": [
+       "0.2012622464284034420205674",
+       "0.2023345209460070318630683"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1048670250725956037277438",
+       "0.1049478910587889842355974"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.991022581218286781665417",
+       "2.004635296221251258719963"
+      ],
+      "history_q": [
+       "0.1984500441127038484507106",
+       "0.202504297613112066160171"
+      ],
+      "history_qdot": [
+       "0.2012622464284034420205674",
+       "0.203384234403600155457293"
+      ],
+      "history_qddot": [
+       "0.1048670250725956037277438",
+       "0.1050089968459954005589931"
+      ],
+      "dhit_dt": [
+       "-0.0898484886239601816935014",
+       "-0.06631449279516433930952917"
+      ],
+      "taudot": [
+       "-0.2084261911802388052557402",
+       "-0.2019996295816039621164093"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1048670250725956037277438",
+      "0.1050089968459954005589931"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.653596278344475694300157",
+      "1.654361202755753663114025"
+     ],
+     "tau_range": [
+      "1.653596278344475694300157",
+      "1.655697310369647426287143"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.030924910385168194980492",
+      "1.031221773020808739445481"
+     ],
+     "Dt_range": [
+      "1.03059884278621645085839",
+      "1.03146700717647270444309"
+     ],
+     "delayed_arg_range": [
+      "1.430987283254002170880826",
+      "1.4430884308383523505912"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1020182355815682833441024",
+      "0.1049071493658086780305749"
+     ],
+     "history_qdot_range": [
+      "0.1434068624303621723350492",
+      "0.1454495810869230247773779"
+     ],
+     "hit0": [
+      "0.1162286822108735572910799",
+      "0.1166923170507221196557973"
+     ],
+     "hit_fixed0": [
+      "0.1443509328329769081193599",
+      "0.1443745946828317891090135"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.643596278344475694300157",
+     "families_read_over_step": [
+      "wave16"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.06430257407117412598946858",
+     "delayed_arg_start": [
+      "1.432323390867895934053944",
+      "1.4330884308383523505912"
+     ],
+     "r0": [
+      "1.653596278344479315703248",
+      "1.654361202755752596729434"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1020182355815682833441024",
+       "0.103457754188925765821987"
+      ],
+      "history_qdot": [
+       "0.1434068624303621723350492",
+       "0.1444295653559939472906961"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1019070154610565657590067",
+       "0.1019731143681539076365528"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.430987283254002170880826",
+       "1.4430884308383523505912"
+      ],
+      "history_q": [
+       "0.1020182355815682833441024",
+       "0.1049071493658086780305749"
+      ],
+      "history_qdot": [
+       "0.1434068624303621723350492",
+       "0.1454495810869230247773779"
+      ],
+      "history_qddot": [
+       "0.1019070154610565657590067",
+       "0.1020348929932668538114055"
+      ],
+      "dhit_dt": [
+       "-0.07588884394273754540410618",
+       "-0.07248673159957927958099126"
+      ],
+      "taudot": [
+       "0.1302873628285448753396315",
+       "0.1333690880581652468194618"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1019070154610565657590067",
+      "0.1020348929932668538114055"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.955976333289877597029754",
+      "1.956003476886831012798506"
+     ],
+     "tau_range": [
+      "1.955542472443743465159354",
+      "1.956003476886831012798506"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.023656793121220824586216",
+      "1.023664954330555505567903"
+     ],
+     "Dt_range": [
+      "1.023579766796700011030577",
+      "1.024074439625571783876489"
+     ],
+     "delayed_arg_range": [
+      "1.130681116736818584369463",
+      "1.141142236739084579732003"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.06401472601116098179386696",
+      "0.06520679962887676688761266"
+     ],
+     "history_qdot_range": [
+      "0.1134100367046452874063005",
+      "0.1144666469785009263118211"
+     ],
+     "hit0": [
+      "0.05326071786519481725432273",
+      "0.05327970421388004041937489"
+     ],
+     "hit_fixed0": [
+      "0.06360409702957123396892743",
+      "0.06362331267522271288709869"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.945542472443743465159354",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.2255423568845650174359657",
+     "delayed_arg_start": [
+      "1.130681116736818584369463",
+      "1.130708375892950447861603"
+     ],
+     "r0": [
+      "1.955975691269962141894985",
+      "1.956004119052496548467647"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.06401472601116098179386696",
+       "0.06401798019475731121800426"
+      ],
+      "history_qdot": [
+       "0.1134100367046452874063005",
+       "0.1134129341833319035675358"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1009794295270733698436123",
+       "0.1009805104498652022502561"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.130681116736818584369463",
+       "1.141142236739084579732003"
+      ],
+      "history_q": [
+       "0.06401472601116098179386696",
+       "0.06520679962887676688761266"
+      ],
+      "history_qdot": [
+       "0.1134100367046452874063005",
+       "0.1144666469785009263118211"
+      ],
+      "history_qddot": [
+       "0.1007926245454632279386297",
+       "0.1011891366407249938670369"
+      ],
+      "dhit_dt": [
+       "0.02502291516455881982067946",
+       "0.02639761895749189677524631"
+      ],
+      "taudot": [
+       "-0.04313017922035238627954924",
+       "-0.04109760614060677342306773"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1007926245454632279386297",
+      "0.1011891366407249938670369"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.487483986472428037671955",
+    "0.4876211293318651647932688"
+   ],
+   "end_v_str": [
+    "0.3194380118896583890490099",
+    "0.3198571826342598970213925"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.145066004344216540024681",
+    "-1.145033991241879130787082"
+   ],
+   "antipode_residual_end": [
+    "-1.155834421755043031957897",
+    "-1.155801204165693521041944"
+   ],
+   "a_rad_start": [
+    "-0.06350863761521896380020954",
+    "-0.06326799118007546837912053"
+   ],
+   "lambda_hat_start": [
+    "-0.03837887193010091237845402",
+    "-0.03787776531342319172163611"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06388946181430896180974619",
+    "-0.06307416249108255130326064"
+   ],
+   "lambda_hat_range": [
+    "-0.03923445479164373973277059",
+    "-0.03749588624981480546957291"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07422696963342942514966228",
+      "0.07488309933192597714420294"
+     ],
+     "radial": [
+      "-0.09715289402132812009828629",
+      "-0.09695681120265647478860636"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02324573644217471145821597",
+      "0.02333846341014442393115947"
+     ],
+     "radial": [
+      "0.058616190405181488001504",
+      "0.05866019200270174690569362"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005326071786519481725432273",
+      "0.005327970421388004041937489"
+     ],
+     "radial": [
+      "-0.02497193399907233170342725",
+      "-0.0249713719801207404962078"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1027987778621236183333105",
+    "0.1035495331634584051172999"
+   ],
+   "radial_sum_start": [
+    "-0.06350863761521896380020954",
+    "-0.06326799118007546837912053"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.630470987073862759932374",
+     "1.6317460775904275636271"
+    ],
+    "unlike_pair_chord": [
+     "1.156462164650558012041366",
+     "1.158259193924392579788088"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 123,
+   "certified": true,
+   "self_appended_record_index": 172,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.092216130458817064782869",
+      "1.093740172290929890001827"
+     ],
+     "Dt": [
+      "0.9409971968110332598213636",
+      "0.9415997377062624380725628"
+     ],
+     "r": [
+      "1.092216130458818572212808",
+      "1.09374017229092981658503"
+     ],
+     "hist_q": [
+      "0.2004679099282415126511027",
+      "0.202504297613112066160171"
+     ],
+     "hist_qdot": [
+      "0.2023109166791293980578449",
+      "0.203384234403600155457293"
+     ],
+     "delayed_arg": [
+      "2.002944421332719707166142",
+      "2.004468578724010980108488"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.654949432953473176821596",
+      "1.65571988352432364799209"
+     ],
+     "Dt": [
+      "1.030840245703037802926632",
+      "1.031136700500955385824689"
+     ],
+     "r": [
+      "1.654949432953473248793547",
+      "1.655719883524322354058099"
+     ],
+     "hist_q": [
+      "0.1034573995566449578957409",
+      "0.1049071493658086780305749"
+     ],
+     "hist_qdot": [
+      "0.1444259325849727379926393",
+      "0.1454495810869230247773779"
+     ],
+     "delayed_arg": [
+      "1.440964710099325949175879",
+      "1.441735276229354868069761"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave16"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.955556739546348724839491",
+      "1.95558484262348056664885"
+     ],
+     "Dt": [
+      "1.023988324816573975820815",
+      "1.023996810341407714780721"
+     ],
+     "r": [
+      "1.955556065223718394977845",
+      "1.955585517090326323388255"
+     ],
+     "hist_q": [
+      "0.06520179973267454001842839",
+      "0.06520516581271904183632487"
+     ],
+     "hist_qdot": [
+      "0.1144622351515471584081124",
+      "0.1144652053440068140980995"
+     ],
+     "delayed_arg": [
+      "1.141099751000169030519119",
+      "1.141127969636479320051866"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06369409784447844008084458",
+    "-0.06345164188259810860863966"
+   ],
+   "lambda_hat_end": [
+    "-0.03885697540012818242739158",
+    "-0.03834654559553909424520725"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07409923142756422016356749",
+      "0.07476171453915686032846361"
+     ],
+     "radial": [
+      "-0.09729781425203002085989407",
+      "-0.09710006204433236486871926"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02308847036486388615077794",
+      "0.02318157874420675335413396"
+     ],
+     "radial": [
+      "0.05857292214438125486158747",
+      "0.05861704294428491885258191"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005351622489728567591406329",
+      "0.005353582248695686341638615"
+     ],
+     "radial": [
+      "-0.02496920573682967408253798",
+      "-0.02496862278255066259250231"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1025393242821566739057518",
+    "0.1032968755320593000242362"
+   ],
+   "radial_sum_end": [
+    "-0.06369409784447844008084458",
+    "-0.06345164188259810860863966"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.096684593623649597167969",
+    "3.106684709182828044891357"
+   ],
+   "S": [
+    "0.4874839807868045488689551",
+    "0.4908248692940519963879255"
+   ],
+   "VS": [
+    "0.3194363062026117481490332",
+    "0.3208908098031064219099503"
+   ],
+   "a0": [
+    "0.1024734917113470605611436",
+    "0.1033627168846524888557804"
+   ],
+   "ap": [
+    "-0.03411374093281799953268976",
+    "-0.02348769644620762758183813"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.092216130458817064782869",
+      "1.093740172290929890001827"
+     ],
+     "tau_range": [
+      "1.090131387073608964485609",
+      "1.093740172290929890001827"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9409971968110332598213636",
+      "0.9415997377062624380725628"
+     ],
+     "Dt_range": [
+      "0.9404927849162198691977063",
+      "0.9423683543513913222247406"
+     ],
+     "delayed_arg_range": [
+      "2.002944421332719707166142",
+      "2.016553322109219080405748"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.2004679099282415126511027",
+      "0.2045433909651260393457415"
+     ],
+     "history_qdot_range": [
+      "0.2023109166791293980578449",
+      "0.204434562184357464117842"
+     ],
+     "hit0": [
+      "0.3704961571378211008178374",
+      "0.373808572695784301642318"
+     ],
+     "hit_fixed0": [
+      "0.4038212721951244042867338",
+      "0.4039282546614906012033627"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.080131387073608964485609",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.6362597121498916622747846",
+     "delayed_arg_start": [
+      "2.002944421332719707166142",
+      "2.004468578724010980108488"
+     ],
+     "r0": [
+      "1.092216130458818572212808",
+      "1.09374017229092981658503"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.2004679099282415126511027",
+       "0.202504297613112066160171"
+      ],
+      "history_qdot": [
+       "0.2023109166791293980578449",
+       "0.203384234403600155457293"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1049271305828024087397658",
+       "0.1050089968459954005589931"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "2.002944421332719707166142",
+       "2.016553322109219080405748"
+      ],
+      "history_q": [
+       "0.2004679099282415126511027",
+       "0.2045433909651260393457415"
+      ],
+      "history_qdot": [
+       "0.2023109166791293980578449",
+       "0.204434562184357464117842"
+      ],
+      "history_qddot": [
+       "0.1049271305828024087397658",
+       "0.1050706336246256043562217"
+      ],
+      "dhit_dt": [
+       "-0.09460148117978407964112576",
+       "-0.07080045796650773833620158"
+      ],
+      "taudot": [
+       "-0.207849835134481360835652",
+       "-0.2013908876140270524182817"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1049271305828024087397658",
+      "0.1050706336246256043562217"
+     ]
+    },
+    "like": {
+     "tau0": [
+      "1.654949432953473176821596",
+      "1.65571988352432364799209"
+     ],
+     "tau_range": [
+      "1.654949432953473176821596",
+      "1.657056682013787692561613"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.030840245703037802926632",
+      "1.031136700500955385824689"
+     ],
+     "Dt_range": [
+      "1.030510418701008331885166",
+      "1.031380195142390374677759"
+     ],
+     "delayed_arg_range": [
+      "1.439627911609861904606356",
+      "1.451735276229354868069761"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1034573995566449578957409",
+      "0.1063667477986285724889521"
+     ],
+     "history_qdot_range": [
+      "0.1444259325849727379926393",
+      "0.1464702177369597938549178"
+     ],
+     "hit0": [
+      "0.1154423518243194307538897",
+      "0.1159078937210337667706698"
+     ],
+     "hit_fixed0": [
+      "0.1437835510481675263160048",
+      "0.143807889201652166303975"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.644949432953473176821596",
+     "families_read_over_step": [
+      "wave16"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.07294320242703385971499858",
+     "delayed_arg_start": [
+      "1.440964710099325949175879",
+      "1.441735276229354868069761"
+     ],
+     "r0": [
+      "1.654949432953473248793547",
+      "1.655719883524322354058099"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.1034573995566449578957409",
+       "0.1049071493658086780305749"
+      ],
+      "history_qdot": [
+       "0.1444259325849727379926393",
+       "0.1454495810869230247773779"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1019680679318072501198288",
+       "0.1020348929932668538114055"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.439627911609861904606356",
+       "1.451735276229354868069761"
+      ],
+      "history_q": [
+       "0.1034573995566449578957409",
+       "0.1063667477986285724889521"
+      ],
+      "history_qdot": [
+       "0.1444259325849727379926393",
+       "0.1464702177369597938549178"
+      ],
+      "history_qddot": [
+       "0.1019680679318072501198288",
+       "0.1020973429748549948054063"
+      ],
+      "dhit_dt": [
+       "-0.07591381359876441890689057",
+       "-0.07250417180693644106042593"
+      ],
+      "taudot": [
+       "0.1300037800544956751041896",
+       "0.1330937941851803262200327"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "records"
+     },
+     "history_qddot_range": [
+      "0.1019680679318072501198288",
+      "0.1020973429748549948054063"
+     ]
+    },
+    "antipode": {
+     "tau0": [
+      "1.955556739546348724839491",
+      "1.95558484262348056664885"
+     ],
+     "tau_range": [
+      "1.955120977777581858553095",
+      "1.95558484262348056664885"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.023988324816573975820815",
+      "1.023996810341407714780721"
+     ],
+     "Dt_range": [
+      "1.023909972572105652027342",
+      "1.024409708095704817164056"
+     ],
+     "delayed_arg_range": [
+      "1.141099751000169030519119",
+      "1.151563731405246186338262"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.06520179973267454001842839",
+      "0.06640520391387167279682715"
+     ],
+     "history_qdot_range": [
+      "0.1144622351515471584081124",
+      "0.1155193533749560157141987"
+     ],
+     "hit0": [
+      "0.05351622489728567591406329",
+      "0.05353582248695686341638615"
+     ],
+     "hit_fixed0": [
+      "0.064065271780674542561638",
+      "0.06408512257740478061766089"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.945120977777581858553095",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.2151208622184034108297067",
+     "delayed_arg_start": [
+      "1.141099751000169030519119",
+      "1.141127969636479320051866"
+     ],
+     "r0": [
+      "1.955556065223718394977845",
+      "1.955585517090326323388255"
+     ],
+     "start_consumed": {
+      "tau0_equals_frozen_record": true,
+      "history_q": [
+       "0.06520179973267454001842839",
+       "0.06520516581271904183632487"
+      ],
+      "history_qdot": [
+       "0.1144622351515471584081124",
+       "0.1144652053440068140980995"
+      ],
+      "history_qddot_available_not_consumed": [
+       "0.1010009825366812520896027",
+       "0.1010021037194583511012118"
+      ],
+      "hit0_equals_frozen_record": true
+     },
+     "remainder_consumed": {
+      "delayed_range": [
+       "1.141099751000169030519119",
+       "1.151563731405246186338262"
+      ],
+      "history_q": [
+       "0.06520179973267454001842839",
+       "0.06640520391387167279682715"
+      ],
+      "history_qdot": [
+       "0.1144622351515471584081124",
+       "0.1155193533749560157141987"
+      ],
+      "history_qddot": [
+       "0.1008119249342527165840835",
+       "0.1012133174410778235613674"
+      ],
+      "dhit_dt": [
+       "0.02500570882679655461630044",
+       "0.0263931477189916463000688"
+      ],
+      "taudot": [
+       "-0.04331759835625838650941599",
+       "-0.04126844749068398401224738"
+      ],
+      "is_the_object_returned_by_the_history_call": true,
+      "history_q_equals_frozen_record": true,
+      "history_qdot_equals_frozen_record": true,
+      "two_part_hull_at_T_star": false,
+      "source": "window"
+     },
+     "history_qddot_range": [
+      "0.1008119249342527165840835",
+      "0.1012133174410778235613674"
+     ]
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4906834845802867001124733",
+    "0.4908248692940519963879255"
+   ],
+   "end_v_str": [
+    "0.3204610411197252187546447",
+    "0.3208908098031064219099503"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.155834421755043031957897",
+    "-1.155801204165693521041944"
+   ],
+   "antipode_residual_end": [
+    "-1.166610301518906096449657",
+    "-1.166575840483191786522909"
+   ],
+   "a_rad_start": [
+    "-0.06369409784447844008084458",
+    "-0.06345164188259810860863966"
+   ],
+   "lambda_hat_start": [
+    "-0.03885697540012818242739158",
+    "-0.03834654559553909424520725"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06407580441204483494618829",
+    "-0.0632552414362128169031199"
+   ],
+   "lambda_hat_range": [
+    "-0.0397156703798806036214186",
+    "-0.03796374930832389785672225"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07409923142756422016356749",
+      "0.07476171453915686032846361"
+     ],
+     "radial": [
+      "-0.09729781425203002085989407",
+      "-0.09710006204433236486871926"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02308847036486388615077794",
+      "0.02318157874420675335413396"
+     ],
+     "radial": [
+      "0.05857292214438125486158747",
+      "0.05861704294428491885258191"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005351622489728567591406329",
+      "0.005353582248695686341638615"
+     ],
+     "radial": [
+      "-0.02496920573682967408253798",
+      "-0.02496862278255066259250231"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1025393242821566739057518",
+    "0.1032968755320593000242362"
+   ],
+   "radial_sum_start": [
+    "-0.06369409784447844008084458",
+    "-0.06345164188259810860863966"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "trace_identity_all_classes": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.631693569243616575999056",
+     "1.632971085190437609491797"
+    ],
+    "unlike_pair_chord": [
+     "1.154731758865219985844485",
+     "1.156536249362304699837587"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 124,
+   "certified": true,
+   "self_appended_record_index": 173,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.089700345396298959693467",
+      "1.091823355489906701095956"
+     ],
+     "Dt": [
+      "0.9408945406666773314589866",
+      "0.9420711777774308498735931"
+     ],
+     "r": [
+      "1.089268518602993344649672",
+      "1.092256373149324757019449"
+     ],
+     "hist_q": [
+      "0.2024962654515619467521183",
+      "0.2065929906113871020435622"
+     ],
+     "hist_qdot": [
+      "0.2033601879849574221452427",
+      "0.2054854932946700288953589"
+     ],
+     "delayed_arg": [
+      "2.014861238133742896072013",
+      "2.01698436378652908519789"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.656299600400593061638384",
+      "1.657075583261252500156474"
+     ],
+     "Dt": [
+      "1.030750056578466042774243",
+      "1.03104611912274189626043"
+     ],
+     "r": [
+      "1.656299600400596403256908",
+      "1.657075583261249573053215"
+     ],
+     "hist_q": [
+      "0.1049067572858912756381734",
+      "0.1063667477986285724889521"
+     ],
+     "hist_qdot": [
+      "0.1454456132642908104938377",
+      "0.1464702177369597938549178"
+     ],
+     "delayed_arg": [
+      "1.449609010362397097011495",
+      "1.450385108782234983252973"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave16"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.955135347921296348345695",
+      "1.955164447142411585329632"
+     ],
+     "Dt": [
+      "1.024321920745768951635319",
+      "1.024330750671473661317132"
+     ],
+     "r": [
+      "1.95513464006042458431102",
+      "1.955165155145448226648025"
+     ],
+     "hist_q": [
+      "0.06640002373361589799667497",
+      "0.06640354335980408784853663"
+     ],
+     "hist_qdot": [
+      "0.1155148231384235066993468",
+      "0.1155179011851655376699456"
+     ],
+     "delayed_arg": [
+      "1.151520146481238011838337",
+      "1.151549361261531696545662"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06400806165299457709810136",
+    "-0.06357477655085470720559233"
+   ],
+   "lambda_hat_end": [
+    "-0.03939613526523871331894617",
+    "-0.03868721722254364038836507"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07356418776018429544664547",
+      "0.07487175888539980637975834"
+     ],
+     "radial": [
+      "-0.09757175110328580012455715",
+      "-0.09718331197838384915180913"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02293116224683272598945296",
+      "0.02302465273990191231621659"
+     ],
+     "radial": [
+      "0.05853014365080752651230908",
+      "0.05857438475387236409424089"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005377161043610901010709262",
+      "0.005379184136665930776772103"
+     ],
+     "radial": [
+      "-0.02496645420051630348585329",
+      "-0.02496584932634322214802409"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1018725110506279224468077",
+    "0.103275595761967649472747"
+   ],
+   "radial_sum_end": [
+    "-0.06400806165299457709810136",
+    "-0.06357477655085470720559233"
+   ],
+   "qddot_end_sign": "positive"
+  }
+ ],
+ "v10_sha256_expected": "1352182139423cb3088be03eae81ee7624bd8d09d67d86c864da32caf085b024",
+ "sample_mode_not_target_evidence": false,
+ "T_star": [
+  "1.366684593623649597167969",
+  "1.366684709182828044891357"
+ ],
+ "record_chain": {
+  "count_frozen": 144,
+  "first": "wave16 step 1",
+  "last": "late-feedback-s3d step 94",
+  "t_lo": "1.366684593623649597167969",
+  "t_hi_frozen": "2.806684709182828044891357",
+  "joins": [
+   {
+    "join": "wave16 step 10 -> wave17 start",
+    "pass": true,
+    "end_q": [
+     "0.1078360786236463737425584",
+     "0.1078365557293226335681814"
+    ],
+    "start_q": [
+     "0.1078360786236463737425584",
+     "0.1078365557293226335681814"
+    ]
+   },
+   {
+    "join": "wave17 step 40 -> antipodal-a start",
+    "pass": true,
+    "end_q": [
+     "0.1750516801723775893710754",
+     "0.175056763736205971059134"
+    ],
+    "start_q": [
+     "0.1750516801723775893710754",
+     "0.175056763736205971059134"
+    ]
+   },
+   {
+    "join": "antipodal-a step 11 -> antipodal-b3 resume",
+    "pass": true,
+    "end_q": [
+     "0.1964426619820381217168754",
+     "0.196449994294162961493939"
+    ],
+    "start_q": [
+     "0.1964426619820381217168754",
+     "0.196449994294162961493939"
+    ]
+   },
+   {
+    "join": "step 21 -> late-feedback-s1a2 resume",
+    "pass": true,
+    "end_q": [
+     "0.2169889763507186775076704",
+     "0.2169987970109094562817074"
+    ],
+    "start_q": [
+     "0.2169889763507186775076704",
+     "0.2169987970109094562817074"
+    ]
+   },
+   {
+    "join": "step 30 -> late-feedback-s1b resume",
+    "pass": true,
+    "end_q": [
+     "0.2363815274827344393252612",
+     "0.2363939808878887293542157"
+    ],
+    "start_q": [
+     "0.2363815274827344393252612",
+     "0.2363939808878887293542157"
+    ]
+   },
+   {
+    "join": "step 44 -> late-feedback-s2a resume",
+    "pass": true,
+    "end_q": [
+     "0.2682548897108832844147014",
+     "0.2682722348201430693813555"
+    ],
+    "start_q": [
+     "0.2682548897108832844147014",
+     "0.2682722348201430693813555"
+    ]
+   },
+   {
+    "join": "step 56 -> late-feedback-s2b3 resume",
+    "pass": true,
+    "end_q": [
+     "0.2972397409585767836906",
+     "0.2972620976810700998649981"
+    ],
+    "start_q": [
+     "0.2972397409585767836906",
+     "0.2972620976810700998649981"
+    ]
+   },
+   {
+    "join": "step 64 -> late-feedback-s3a resume",
+    "pass": true,
+    "end_q": [
+     "0.3174215050973258168151511",
+     "0.3174476357049886764715778"
+    ],
+    "start_q": [
+     "0.3174215050973258168151511",
+     "0.3174476357049886764715778"
+    ]
+   },
+   {
+    "join": "step 69 -> late-feedback-s3b2 resume",
+    "pass": true,
+    "end_q": [
+     "0.3303850460494271208234513",
+     "0.3304137105118107545698485"
+    ],
+    "start_q": [
+     "0.3303850460494271208234513",
+     "0.3304137105118107545698485"
+    ]
+   },
+   {
+    "join": "step 78 -> late-feedback-s3c resume",
+    "pass": true,
+    "end_q": [
+     "0.3543985590884071228124339",
+     "0.3544332051883565299139656"
+    ],
+    "start_q": [
+     "0.3543985590884071228124339",
+     "0.3544332051883565299139656"
+    ]
+   },
+   {
+    "join": "step 86 -> late-feedback-s3d resume",
+    "pass": true,
+    "end_q": [
+     "0.3764767902921476837096419",
+     "0.3765197152663271911605447"
+    ],
+    "start_q": [
+     "0.3764767902921476837096419",
+     "0.3765197152663271911605447"
+    ]
+   }
+  ],
+  "joins_all_exact": true,
+  "families": {
+   "wave16": [
+    1.3666845936236496,
+    1.4666847091828281
+   ],
+   "wave17": [
+    1.4666845936236497,
+    1.866684709182828
+   ],
+   "antipodal": [
+    1.8666845936236496,
+    2.076684709182828
+   ],
+   "late-feedback": [
+    2.0766845936236495,
+    2.806684709182828
+   ]
+  },
+  "pad": "1e-23"
+ },
+ "controls_all_pass": true,
+ "campaign": "like-reception",
+ "own_chain": [
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s1a2.json",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s1b2.json"
+ ],
+ "resumed_from": {
+  "file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s1b2.json",
+  "after_step": 114,
+  "t0": [
+   "3.006684593623649597167969",
+   "3.006684709182828044891357"
+  ],
+  "q": [
+   "0.4591525341524837711992566",
+   "0.4592561639425522811594391"
+  ],
+  "qdot": [
+   "0.3101177141523624811883813",
+   "0.3104430042440203390226599"
+  ],
+  "resumed_end_strings_equal_source": true,
+  "records_loaded": 164,
+  "coverage_end": "3.006684709182828044891357"
+ },
+ "reached_time": [
+  "3.106684593623649597167969",
+  "3.106684709182828044891357"
+ ],
+ "partial": false,
+ "reached_q": [
+  "0.4906834845802867001124733",
+  "0.4908248692940519963879255"
+ ],
+ "reached_qdot": [
+  "0.3204610411197252187546447",
+  "0.3208908098031064219099503"
+ ],
+ "stop_reason": "plan exhausted (step 124 certified)",
+ "wall_s": 29.013123035430908
+}

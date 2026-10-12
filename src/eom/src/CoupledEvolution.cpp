@@ -5,6 +5,7 @@
 #include "architrino/eom/MultiprecisionAcceleration.hpp"
 #include "architrino/eom/EquationRegistry.hpp"
 #include "CanonicalEquationEvaluation.hpp"
+#include "architrino/eom/SpeedDomain.hpp"
 
 #include <algorithm>
 #include <array>
@@ -75,6 +76,23 @@ std::uint64_t estimate_coupled_working_set_bytes(
         for (const auto& token : axis) {
           token_bytes = saturating_add(token_bytes, token.size());
         }
+      }
+    }
+  }
+  for (const auto& path : request.continuation_histories) {
+    segment_count = saturating_add(segment_count, path.history.segments().size());
+    for (const auto& segment : path.history.segments()) {
+      token_bytes = saturating_add(token_bytes, segment.t_start_token().size() + segment.t_end_token().size());
+      for (const auto& token : segment.position_error_tokens()) token_bytes = saturating_add(token_bytes, token.size());
+      for (const auto& token : segment.velocity_error_tokens()) token_bytes = saturating_add(token_bytes, token.size());
+      for (const auto& axis : segment.coefficient_tokens()) for (const auto& token : axis) token_bytes = saturating_add(token_bytes, token.size());
+    }
+    for (auto carrier = path.surface_evidence; carrier; carrier = carrier->previous()) {
+      for (const auto& solution : carrier->solutions()) {
+        bytes = saturating_add(bytes, sizeof(SurfaceSolutionCertificate) + 512U);
+        bytes = saturating_add(bytes, saturating_multiply(solution.diagnostics.size(), sizeof(SurfaceReceiverDiagnostic) + 512U));
+        bytes = saturating_add(bytes, saturating_multiply(solution.partner_roots.size(), sizeof(SurfaceSolutionCertificate::SlabRoot) + 512U));
+        bytes = saturating_add(bytes, saturating_multiply(solution.geometry.size(), sizeof(SurfaceHistoryCertificate) + 512U));
       }
     }
   }
@@ -1214,7 +1232,8 @@ std::vector<std::pair<std::string, std::string>> changed_topology_pairs(
   std::set<std::pair<std::string, std::string>> enclosed_pairs;
   for (const auto* snapshot : {&start, &end}) {
     for (const auto& row : snapshot->root_certificates) {
-      if (row.certificate.schema == "eom_native_enclosed_pair_marker/v1") {
+      if (row.certificate.schema == "eom_native_enclosed_pair_marker/v1" ||
+          row.certificate.schema == kMatchedPairMemberMarkerSchema) {
         enclosed_pairs.emplace(row.receiver_path_id, row.transmitter_path_id);
       }
     }
@@ -3297,8 +3316,7 @@ SubstepAttempt corrected_substep_impl(
     bool defer_endpoint_root_precision_escalation) {
   NativeAccelerationSnapshotCertificate start_snapshot;
   if (reusable_start_snapshot != nullptr) {
-    const auto expected_model = request.surface_geometry
-        ? surface_request_identity(request) : std::string{};
+    const auto expected_model = equation_snapshot_identity(request);
     if (reusable_start_snapshot->selected_model_identity != expected_model)
       throw EquationAdmissionError("snapshot_model_identity_mismatch", "reused acceleration snapshot belongs to a different selected model");
     if (!snapshot_evaluation_succeeded(request, *reusable_start_snapshot) ||
@@ -4062,6 +4080,19 @@ SubstepAttempt corrected_substep(
 
 void validate_request(const NativeCoupledEvolutionRequest& request) {
   (void)require_equation_provider(request);
+  if (!request.continuation_histories.empty()) {
+    if (!request.surface_geometry || request.continuation_histories.size() != request.paths.size())
+      throw EquationAdmissionError("surface_history_identity_mismatch", "continuation carrier population mismatch");
+    std::set<std::string> ids;
+    for (const auto& path : request.continuation_histories) {
+      if (!ids.insert(path.path_id).second || !path.surface_evidence ||
+          path.surface_evidence->history_fingerprint() != path.history.provenance_fingerprint() ||
+          path.surface_evidence->model_identity() != surface_request_identity(request))
+        throw EquationAdmissionError("surface_solution_provenance_not_certified", "restart history lacks bound immutable solution evidence");
+    }
+    for (const auto& path : request.paths) if (!ids.contains(path.path_id))
+      throw EquationAdmissionError("surface_history_identity_mismatch", "restart path identities differ");
+  }
   if (request.surface_geometry) {
     const SurfaceGeometry shape(*request.surface_geometry);
     for (const auto& path : request.paths) for (const auto& segment : path.history.segments()) {
@@ -4091,7 +4122,10 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
     if (charge.contains_zero()) {
       throw std::invalid_argument("coupled evolution charges require certified sign");
     }
-    if (!numeric_equal(path.history.segments().back().t_end_token(),
+    const auto restart = std::find_if(request.continuation_histories.begin(), request.continuation_histories.end(),
+        [&](const auto& p) { return p.path_id == path.path_id; });
+    const auto& active_history = restart == request.continuation_histories.end() ? path.history : restart->history;
+    if (!numeric_equal(active_history.segments().back().t_end_token(),
                        request.start_time)) {
       throw std::invalid_argument(
           "input histories must end exactly at the evolution start");
@@ -6066,6 +6100,192 @@ ExactPairCertificate enclosed_pair_marker(
   };
 }
 
+// The grouped proof covers the canonical sharp kernel with identity receiver
+// response, no Surface constraint and no joint-correlation state.
+bool matched_pair_route_selected(const NativeCoupledEvolutionRequest& request) {
+  if (request.matched_pair_enclosure_policy == kMatchedPairPolicyDisabled) {
+    return false;
+  }
+  if (!matched_pair_policy_is_known(request.matched_pair_enclosure_policy)) {
+    throw EquationAdmissionError(
+        "unsupported_execution_policy",
+        "unknown matched-pair enclosure policy");
+  }
+  const bool canonical_selection = !request.equation_selection ||
+      (request.equation_selection->composition_id == "canonical/v1" &&
+       request.equation_selection->speed_domain == "unrestricted" &&
+       request.equation_selection->boundary_policy == "none" &&
+       request.equation_selection->constraint == "none" &&
+       request.equation_selection->method == "numerical");
+  return request.chart_policy == "sharp" && !request.surface_geometry &&
+      canonical_selection && request.joint_histories.empty() &&
+      request.joint_root_point_states.empty();
+}
+
+// Snapshot-wide grouped state. Certificates are appended in receiver-major
+// leader order; owner maps a logical ordered-pair index to its admitted
+// group's position in that list.
+struct MatchedPairSnapshotState {
+  std::vector<NativeMatchedPairEnclosureCertificate> certificates;
+  std::map<std::size_t, std::size_t> owner;
+  std::uint64_t enclosed_groups = 0;
+  std::uint64_t absent_groups = 0;
+};
+
+// Deterministic disjoint pairing for one receiver over the sources its
+// scheduling path presents, in canonical path order. Each source is offered
+// at most once per receiver event. Nothing is recorded for a declined pair
+// except its diagnostic certificate: no owner entry, no width, no marker.
+void admit_matched_pairs_for_receiver(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<NativePublishedPath>& histories,
+    std::size_t receiver_index,
+    const std::vector<std::size_t>& candidate_sources,
+    const std::string& search_lower,
+    const std::string& reception_time,
+    MatchedPairSnapshotState& state,
+    double& receiver_enclosed_width,
+    double& enclosed_error_width_total) {
+  const auto& receiver = histories[receiver_index];
+  const std::string& receiver_charge = path_charge(request, receiver.path_id);
+  std::vector<bool> offered(candidate_sources.size(), false);
+  for (std::size_t first = 0U; first < candidate_sources.size(); ++first) {
+    const std::size_t leader_index = candidate_sources[first];
+    if (offered[first] || leader_index == receiver_index) {
+      continue;
+    }
+    const auto& leader = histories[leader_index];
+    const std::string& leader_charge = path_charge(request, leader.path_id);
+    for (std::size_t second = first + 1U; second < candidate_sources.size();
+         ++second) {
+      const std::size_t follower_index = candidate_sources[second];
+      if (offered[second] || follower_index == receiver_index) {
+        continue;
+      }
+      const auto& follower = histories[follower_index];
+      const std::string& follower_charge =
+          path_charge(request, follower.path_id);
+      bool opposite = false;
+      try {
+        opposite =
+            exact_decimal_tokens_are_opposite(leader_charge, follower_charge);
+      } catch (const std::invalid_argument&) {
+        opposite = false;
+      }
+      if (!opposite) {
+        continue;
+      }
+      offered[first] = true;
+      offered[second] = true;
+      auto certificate = certify_matched_pair_enclosure({
+          .policy = request.matched_pair_enclosure_policy,
+          .receiver_path_id = receiver.path_id,
+          .receiver_history = &receiver.history,
+          .receiver_charge = receiver_charge,
+          .leader_path_id = leader.path_id,
+          .leader_history = &leader.history,
+          .leader_charge = leader_charge,
+          .follower_path_id = follower.path_id,
+          .follower_history = &follower.history,
+          .follower_charge = follower_charge,
+          .coupling = request.coupling,
+          .field_speed = request.field_speed,
+          .reception_time = reception_time,
+          .emission_lower = search_lower,
+          .far_field_enclosure_fraction = request.far_field_enclosure_fraction,
+          .acceleration_tolerance = request.acceleration_tolerance,
+          .transmitter_count = histories.size(),
+      });
+      const bool enclosed = certificate.status == "certified_enclosed";
+      const bool absent = certificate.status == "certified_absent";
+      const std::size_t certificate_index = state.certificates.size();
+      if (enclosed || absent) {
+        state.owner.emplace(
+            receiver_index * histories.size() + leader_index,
+            certificate_index);
+        state.owner.emplace(
+            receiver_index * histories.size() + follower_index,
+            certificate_index);
+      }
+      if (enclosed) {
+        ++state.enclosed_groups;
+        const double width = *certificate.emitted_width;
+        enclosed_error_width_total =
+            upward_nonnegative_sum(enclosed_error_width_total, width);
+        receiver_enclosed_width =
+            upward_nonnegative_sum(receiver_enclosed_width, width);
+      } else if (absent) {
+        ++state.absent_groups;
+      }
+      state.certificates.push_back(std::move(certificate));
+      break;
+    }
+  }
+}
+
+// Root-row marker for one logical relationship owned by a group. It records
+// that the root search was bypassed and names the group. A present member
+// makes no root-free claim; an absent member's window is certified root free.
+ExactPairCertificate matched_pair_member_marker(
+    const NativeCoupledEvolutionRequest& request,
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const NativeMatchedPairEnclosureCertificate& group) {
+  const bool absent = group.status == "certified_absent";
+  return {
+      .schema = kMatchedPairMemberMarkerSchema,
+      .row_id = group.group_id + "/member/" + source.path_id,
+      .receiver_history_id = receiver.history.history_id(),
+      .transmitter_history_id = source.history.history_id(),
+      .receiver_history_fingerprint =
+          receiver.history.provenance_fingerprint(),
+      .transmitter_history_fingerprint = source.history.provenance_fingerprint(),
+      .reception_time = group.reception_time,
+      .searched_lower = group.emission_lower,
+      .searched_upper = group.emission_upper,
+      .field_speed = request.field_speed,
+      .root_tolerance = request.root_tolerance,
+      .status = absent ? "certified_absent" : "certified_enclosed",
+      .failure_code = "",
+      .root_free_complement = absent,
+      .memory_boundary_contact = false,
+      .coincident_endpoint_excluded = false,
+      .precision_escalated = false,
+      .achieved_precision_bits = 53,
+      .visited_cells = 0,
+      .excluded_cells = 0,
+      .difficult_cells = 0,
+      .diagnostic_detail =
+          "root search bypassed by matched-pair group " + group.group_id,
+      .roots = {},
+  };
+}
+
+// Placeholder kept at a grouped member's position so the individual
+// enclosure list stays indexed by logical ordered pair.
+NativeFarFieldEnclosureCertificate far_field_superseded_by_group(
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const NativeMatchedPairEnclosureCertificate& group) {
+  return {
+      .schema = "eom_native_far_field_enclosure_certificate/v1",
+      .row_id = receiver.path_id + "/" + source.path_id + "/" +
+          group.reception_time + "/far-field",
+      .receiver_path_id = receiver.path_id,
+      .transmitter_path_id = source.path_id,
+      .receiver_history_id = receiver.history.history_id(),
+      .transmitter_history_id = source.history.history_id(),
+      .receiver_history_fingerprint =
+          receiver.history.provenance_fingerprint(),
+      .transmitter_history_fingerprint = source.history.provenance_fingerprint(),
+      .reception_time = group.reception_time,
+      .emission_lower = group.emission_lower,
+      .emission_upper = group.emission_upper,
+      .status = "superseded_by_matched_pair_group",
+      .failure_code = "far_field_enclosure_not_attempted",
+  };
+}
+
 NativeAccelerationSnapshotCertificate detail::certify_canonical_acceleration_snapshot(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
@@ -6074,6 +6294,13 @@ NativeAccelerationSnapshotCertificate detail::certify_canonical_acceleration_sna
     const std::vector<NativePublishedPath>* warm_histories,
     bool defer_root_precision_escalation) {
   const auto total_timing_start = SteadyClock::now();
+  // Rejects an unknown policy before any work; false when disabled or when
+  // any path carries a Surface continuation carrier.
+  const bool matched_pair_selected = matched_pair_route_selected(request) &&
+      std::none_of(histories.begin(), histories.end(), [](const auto& path) {
+        return path.surface_evidence != nullptr;
+      });
+  MatchedPairSnapshotState matched_pairs;
   NativeSnapshotTiming timing;
   const std::size_t logical_pair_count = histories.size() * histories.size();
   std::vector<ExactPairCertificate> root_certificates;
@@ -6171,8 +6398,36 @@ NativeAccelerationSnapshotCertificate detail::certify_canonical_acceleration_sna
     std::size_t logical_index = 0U;
     std::size_t receiver_index = 0U;
     std::vector<double> receiver_enclosed_widths(histories.size(), 0.0);
+    std::vector<std::size_t> all_sources(histories.size());
+    for (std::size_t source_index = 0U; source_index < histories.size();
+         ++source_index) {
+      all_sources[source_index] = source_index;
+    }
     for (const auto& receiver : histories) {
+      if (matched_pair_selected) {
+        admit_matched_pairs_for_receiver(
+            request, histories, receiver_index, all_sources,
+            active_search_lower, reception_time,
+            matched_pairs,
+            receiver_enclosed_widths[receiver_index],
+            enclosed_error_width_total);
+      }
       for (const auto& source : histories) {
+        if (const auto owned = matched_pairs.owner.find(logical_index);
+            owned != matched_pairs.owner.end()) {
+          const auto& group = matched_pairs.certificates[owned->second];
+          far_field_enclosure_certificates.push_back(
+              far_field_superseded_by_group(receiver, source, group));
+          selected_certificates[logical_index] =
+              matched_pair_member_marker(request, receiver, source, group);
+          if (group.status == "certified_absent") {
+            ++traversal_excluded_pairs;
+          } else {
+            ++traversal_enclosed_pairs;
+          }
+          ++logical_index;
+          continue;
+        }
         auto enclosure = certify_far_field_enclosure(
             request, receiver, source, common_start, reception_time,
             histories.size());
@@ -6331,6 +6586,35 @@ NativeAccelerationSnapshotCertificate detail::certify_canonical_acceleration_sna
       std::vector<ExactPairRequest> root_requests;
       std::vector<std::pair<std::size_t, std::size_t>> root_coordinates;
       std::vector<double> receiver_enclosed_widths(histories.size(), 0.0);
+      if (matched_pair_selected) {
+        // Only sources of a receiver's exact tiles are candidates, so a
+        // source consumed by a certified excluded block is never grouped.
+        std::vector<std::vector<std::size_t>> tile_sources(histories.size());
+        for (const auto& tile : traversal_certificate->exact_tiles) {
+          for (std::size_t receiver_index = tile.receiver_begin;
+               receiver_index < tile.receiver_end; ++receiver_index) {
+            for (std::size_t transmitter_index = tile.transmitter_begin;
+                 transmitter_index < tile.transmitter_end;
+                 ++transmitter_index) {
+              tile_sources[receiver_index].push_back(transmitter_index);
+            }
+          }
+        }
+        for (std::size_t receiver_index = 0U;
+             receiver_index < histories.size(); ++receiver_index) {
+          auto& candidates = tile_sources[receiver_index];
+          std::sort(candidates.begin(), candidates.end());
+          candidates.erase(
+              std::unique(candidates.begin(), candidates.end()),
+              candidates.end());
+          admit_matched_pairs_for_receiver(
+              request, histories, receiver_index, candidates,
+              active_search_lower, reception_time,
+              matched_pairs,
+              receiver_enclosed_widths[receiver_index],
+              enclosed_error_width_total);
+        }
+      }
       for (const auto& tile : traversal_certificate->exact_tiles) {
         for (std::size_t receiver_index = tile.receiver_begin;
              receiver_index < tile.receiver_end; ++receiver_index) {
@@ -6340,6 +6624,22 @@ NativeAccelerationSnapshotCertificate detail::certify_canonical_acceleration_sna
                 receiver_index * histories.size() + transmitter_index;
             const auto& receiver = histories[receiver_index];
             const auto& source = histories[transmitter_index];
+            if (const auto owned = matched_pairs.owner.find(logical_index);
+                owned != matched_pairs.owner.end()) {
+              const auto& group = matched_pairs.certificates[owned->second];
+              far_field_enclosure_certificates[logical_index] =
+                  far_field_superseded_by_group(receiver, source, group);
+              certificates_by_index.emplace(
+                  std::make_pair(receiver_index, transmitter_index),
+                  matched_pair_member_marker(
+                      request, receiver, source, group));
+              if (group.status == "certified_absent") {
+                ++traversal_excluded_pairs;
+              } else {
+                ++traversal_enclosed_pairs;
+              }
+              continue;
+            }
             auto enclosure = certify_far_field_enclosure(
                 request, receiver, source, common_start, reception_time,
                 histories.size());
@@ -6605,7 +6905,8 @@ NativeAccelerationSnapshotCertificate detail::certify_canonical_acceleration_sna
         elapsed_seconds(exact_root_timing_start);
   }
   for (const auto& root : root_certificates) {
-    if (root.schema == "eom_native_enclosed_pair_marker/v1") {
+    if (root.schema == "eom_native_enclosed_pair_marker/v1" ||
+        root.schema == kMatchedPairMemberMarkerSchema) {
       continue;
     }
     ++timing.root_pair_count;
@@ -6667,11 +6968,18 @@ NativeAccelerationSnapshotCertificate detail::certify_canonical_acceleration_sna
                       index < far_field_enclosure_certificates.size()
                   ? &far_field_enclosure_certificates[index]
                   : nullptr,
+          .matched_pair_enclosure =
+              root.schema == kMatchedPairMemberMarkerSchema &&
+                      matched_pairs.owner.contains(index)
+                  ? &matched_pairs.certificates[matched_pairs.owner.at(index)]
+                  : nullptr,
           .receiver_charge = path_charge(request, receiver.path_id),
           .transmitter_charge = path_charge(request, source.path_id),
           .coupling = request.coupling,
           .chart = root.schema == "eom_native_enclosed_pair_marker/v1"
               ? "far_field_enclosure"
+              : root.schema == kMatchedPairMemberMarkerSchema
+              ? "matched_pair_enclosure"
               : request.chart_policy == "finite_width" ||
                       (request.chart_policy ==
                            "sharp_with_finite_width_fallback" &&
@@ -6878,6 +7186,10 @@ NativeAccelerationSnapshotCertificate detail::certify_canonical_acceleration_sna
       .root_certificates = std::move(root_rows),
       .acceleration = std::move(acceleration),
       .timing = timing,
+      .matched_pair_enclosure_certificates =
+          std::move(matched_pairs.certificates),
+      .matched_pair_enclosed_groups = matched_pairs.enclosed_groups,
+      .matched_pair_absent_groups = matched_pairs.absent_groups,
   };
 }
 
@@ -7169,6 +7481,14 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
     accepted_histories = std::move(surface.histories);
     surface_solutions = std::move(surface.solutions);
   }
+  if (request.equation_selection && request.equation_selection->speed_domain != "unrestricted") {
+    for (const auto& path : accepted_histories) {
+      const auto domain = certify_speed_domain(path.history, *request.equation_selection);
+      if (!domain.certified)
+        return rejected_step(request, histories, step_index, start_time, end_time,
+            std::move(substeps), domain.failure_code, accepted_histories, std::move(local_errors));
+    }
+  }
   const auto recertification_timing_start = SteadyClock::now();
   auto recertification_request = request;
   recertification_request.joint_histories = accepted_joint_histories;
@@ -7269,6 +7589,11 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step(
     const std::string& end_time,
     const NativeAccelerationSnapshotCertificate* reusable_start_snapshot,
     bool defer_endpoint_root_precision_escalation) {
+  if (request.matched_pair_enclosure_policy != kMatchedPairPolicyDisabled) {
+    throw EquationAdmissionError(
+        "unsupported_execution_policy",
+        "matched-pair enclosure is qualified for acceleration snapshots only");
+  }
   const auto timing_start = SteadyClock::now();
   NativeAtomicStepTiming timing;
   auto certificate = certify_native_atomic_coupled_step_impl(
@@ -7466,12 +7791,18 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     const NativeCoupledEvolutionRequest& request,
     const NativeAccelerationSnapshotCertificate* reusable_initial_snapshot) {
   const auto timing_start = SteadyClock::now();
+  if (request.matched_pair_enclosure_policy != kMatchedPairPolicyDisabled) {
+    throw EquationAdmissionError(
+        "unsupported_execution_policy",
+        "matched-pair enclosure is qualified for acceleration snapshots only");
+  }
   validate_request(request);
   std::vector<NativePublishedPath> histories;
   histories.reserve(request.paths.size());
   for (const auto& path : request.paths) {
     histories.push_back({path.path_id, path.history});
   }
+  if (!request.continuation_histories.empty()) histories = request.continuation_histories;
   auto joint_histories = request.joint_histories;
   const auto boundary_joint_histories = lift_joint_endpoint_remainders(
       histories, condense_joint_histories(joint_histories, 220U),
@@ -7811,7 +8142,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
           steps.back().failure_code == "coupled_correction_failed") {
         halt_code = "coupled_correction_failed";
       } else {
-        halt_code = "minimum_step_exhausted";
+        halt_code = steps.back().failure_code.starts_with("speed_domain_")
+            ? steps.back().failure_code : "minimum_step_exhausted";
       }
       break;
     }

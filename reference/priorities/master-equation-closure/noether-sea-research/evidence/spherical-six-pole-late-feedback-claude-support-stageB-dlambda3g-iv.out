@@ -1,0 +1,24 @@
+PID 77832
+PID 77832
+{"GDEN": 8, "g": "0.125", "closed_dlambda": "-0.03626026828956024599728609", "fd_dlambda": "-0.03626026828956024599728609", "abs_err_dlambda": "4.5696e-31", "closed_darad": "-0.02973973171043975400271391", "abs_err_darad": "4.5694e-31", "a_rad_times_GDEN": "-0.6102954752513533401974373", "darad_times_GDEN": "-0.2379178536835180320217113", "identity_dev": "0.0", "wrong_sign_dlambda": "-0.031454785551353990668", "pass_K": true, "pass_W": true}
+{"GDEN": 10, "g": "0.1", "closed_dlambda": "-0.04220821463164819679782887", "fd_dlambda": "-0.04220821463164819679782887", "abs_err_dlambda": "3.6557e-31", "closed_darad": "-0.02379178536835180320217113", "abs_err_darad": "3.6555e-31", "a_rad_times_GDEN": "-0.6102954752513533401974373", "darad_times_GDEN": "-0.2379178536835180320217113", "identity_dev": "0.0", "wrong_sign_dlambda": "-0.038363828441083192534", "pass_K": true, "pass_W": true}
+{"GDEN": 12, "g": "0.083333333333333333333", "closed_dlambda": "-0.04617351219304016399819073", "fd_dlambda": "-0.04617351219304016399819073", "abs_err_dlambda": "3.0464e-31", "closed_darad": "-0.01982648780695983600180927", "abs_err_darad": "3.0462e-31", "a_rad_times_GDEN": "-0.6102954752513533401974373", "darad_times_GDEN": "-0.2379178536835180320217113", "identity_dev": "0.0", "wrong_sign_dlambda": "-0.042969857034235993778", "pass_K": true, "pass_W": true}
+{"a_rad_times_GDEN_equal_across_g": true, "darad_times_GDEN_equal_across_g": true} all pass True
+        1.34 real         1.29 user         0.01 sys
+            21807104  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2325  page reclaims
+                  55  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  54  voluntary context switches
+                1053  involuntary context switches
+         22653822080  instructions retired
+          4648392031  cycles elapsed
+            14139872  peak memory footprint

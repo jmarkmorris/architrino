@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv.py", line 416, in <module>
+    out["controls_post"].append({"name": "(c) negative: wrong support assembly (-qdot^2 + a_rad) is negative at every step end with no sign change, while the correct column changes sign", "pass": bool(all(w == "negative" for w in wrong) and len(set(right)) > 1), "wrong_signs": wrong, "correct_signs": right})
+    ~~~^^^^^^^^^^^^^^^^^
+KeyError: 'controls_post'
+       32.70 real        30.43 user         0.17 sys
+            29835264  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2836  page reclaims
+                  49  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   2  voluntary context switches
+               28619  involuntary context switches
+        390272219678  instructions retired
+         90991937569  cycles elapsed
+            21987856  peak memory footprint
