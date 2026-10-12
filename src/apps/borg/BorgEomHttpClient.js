@@ -1,6 +1,7 @@
 import {
   applyBorgCausalHistoryRetention,
 } from "./BorgCausalHistoryRetention.js";
+import { postEomJson } from "../shared/EomJsonHttp.js";
 
 export const BORG_EOM_HTTP_CLIENT_VERSION = "borg-eom-http-client.v0";
 export const BORG_EOM_HTTP_HISTORY_TRANSPORT_SCHEMA =
@@ -120,32 +121,7 @@ export function createBorgEomHttpClient({
   });
 
   async function postRequest(wireRequest, signal) {
-    const response = await fetchImpl(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(wireRequest),
-      signal,
-    });
-    const responseText = await response.text();
-    let payload;
-    try {
-      payload = JSON.parse(responseText);
-    } catch {
-      payload = { error: responseText || `HTTP ${response.status}` };
-    }
-    if (!response.ok) {
-      const error = new Error(
-        payload?.error ?? `Borg EOM service returned HTTP ${response.status}.`,
-      );
-      error.httpStatus = response.status;
-      error.retryable = response.status >= 500 || response.status === 408 ||
-        response.status === 429;
-      if (typeof payload?.code === "string") {
-        error.code = payload.code;
-      }
-      throw error;
-    }
-    return payload;
+    return postEomJson(fetchImpl, endpoint, wireRequest, signal, "Borg EOM");
   }
 
   async function releaseRemoteRun() {

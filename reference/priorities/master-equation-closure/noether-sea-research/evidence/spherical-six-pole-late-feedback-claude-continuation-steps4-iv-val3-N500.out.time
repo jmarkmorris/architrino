@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv.py", line 141, in <module>
+    ok_c = bool(hw is not None and (up(hw[0]) < lo(hr[0]) or lo(hw[0]) > up(hr[0])))
+                ^^
+NameError: name 'hw' is not defined. Did you mean: 'hr'?
+        2.15 real         1.95 user         0.02 sys
+            30162944  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2844  page reclaims
+                  59  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  71  voluntary context switches
+                2028  involuntary context switches
+         30116114152  instructions retired
+          6952488669  cycles elapsed
+            22331896  peak memory footprint

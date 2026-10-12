@@ -1,0 +1,163 @@
+PID 32118
+controls {'K_kernel_identity_max': '6.31088724176809444329382852226e-30', 'K_derivative_vs_fd_max': '5.04870979341447555463506281781e-29', 'W_sum_kernel_violations_of_200': 196}
+{
+"controls": {
+"K_kernel_identity_max": "6.31088724176809444329382852226e-30",
+"K_derivative_vs_fd_max": "5.04870979341447555463506281781e-29",
+"W_sum_kernel_violations_of_200": 196
+},
+"targets": {
+"inequality_random_domain_violations_of_2000": 0,
+"min_margin_p_above_0.01": "0.00143919765906662065036791490003",
+"Hprime_min_on_grid": "0.125",
+"b3_domain_rows": [
+{
+"step": 13,
+"p_hi": "0.0000150438",
+"q_lo": "0.19845004",
+"p_le_q": true,
+"v_lo_ge_0": true,
+"D_lo_ge_1": true,
+"q_lt_pi": true,
+"moving_hit_range": null,
+"fixed_hit_at_q0": [
+"0.02501101156104589773123778",
+"0.02501198022125447640726247"
+],
+"hit0": [
+"0.02501101156104589773123778",
+"0.02501198022125447640726247"
+]
+},
+{
+"step": 14,
+"p_hi": "0.000025",
+"q_lo": "0.20046790",
+"p_le_q": true,
+"v_lo_ge_0": true,
+"D_lo_ge_1": true,
+"q_lt_pi": true,
+"moving_hit_range": null,
+"fixed_hit_at_q0": [
+"0.02526958050449537283690474",
+"0.02527057954632966019503135"
+],
+"hit0": [
+"0.02526326949613785271313114",
+"0.02527057954632966019503135"
+]
+},
+{
+"step": 15,
+"p_hi": "0.0000368458",
+"q_lo": "0.20249626",
+"p_le_q": true,
+"v_lo_ge_0": true,
+"D_lo_ge_1": true,
+"q_lt_pi": true,
+"moving_hit_range": null,
+"fixed_hit_at_q0": [
+"0.0255296247928116750835618",
+"0.02553065481530182734955309"
+],
+"hit0": [
+"0.02552065069153406568072088",
+"0.02553065481530182734955309"
+]
+},
+{
+"step": 16,
+"p_hi": "0.0000697535",
+"q_lo": "0.20453511",
+"p_le_q": true,
+"v_lo_ge_0": true,
+"D_lo_ge_1": true,
+"q_lt_pi": true,
+"moving_hit_range": null,
+"fixed_hit_at_q0": [
+"0.02579114863905952468852035",
+"0.02579221025287896108419565"
+],
+"hit0": [
+"0.02577928261910900321233641",
+"0.02578035248991405135342646"
+]
+},
+{
+"step": 17,
+"p_hi": "0.0001130779",
+"q_lo": "0.20658446",
+"p_le_q": true,
+"v_lo_ge_0": true,
+"D_lo_ge_1": true,
+"q_lt_pi": true,
+"moving_hit_range": null,
+"fixed_hit_at_q0": [
+"0.02605415631937873405003535",
+"0.02605525013733887068341889"
+],
+"hit0": [
+"0.0260351840024272974065401",
+"0.02603628432317886887176989"
+]
+},
+{
+"step": 18,
+"p_hi": "0.0001668440",
+"q_lo": "0.20864433",
+"p_le_q": true,
+"v_lo_ge_0": true,
+"D_lo_ge_1": true,
+"q_lt_pi": true,
+"moving_hit_range": null,
+"fixed_hit_at_q0": [
+"0.02631865216855253560681002",
+"0.02631977880281132287994596"
+],
+"hit0": [
+"0.02629112009774361072228942",
+"0.02629225201124621165158977"
+]
+},
+{
+"step": 19,
+"p_hi": "0.0002310497",
+"q_lo": "0.21071470",
+"p_le_q": true,
+"v_lo_ge_0": true,
+"D_lo_ge_1": true,
+"q_lt_pi": true,
+"moving_hit_range": null,
+"fixed_hit_at_q0": [
+"0.02658464057979744027156609",
+"0.02658580064868948595147393"
+],
+"hit0": [
+"0.02654709072421823752010804",
+"0.02654825511172807954653956"
+]
+},
+{
+"step": 20,
+"p_hi": "0.0003057012",
+"q_lo": "0.21279560",
+"p_le_q": true,
+"v_lo_ge_0": true,
+"D_lo_ge_1": true,
+"q_lt_pi": true,
+"moving_hit_range": null,
+"fixed_hit_at_q0": [
+"0.02685212600715024068500226",
+"0.0268533201352381520312868"
+],
+"hit0": [
+"0.02680309565202321524892419",
+"0.0268042932930648925468591"
+]
+},
+{
+"step": 21,
+"p_hi": "0.0003908289",
+"q_lo": "0.21488702",
+"p_le_q
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-review-theorem-check-output.json

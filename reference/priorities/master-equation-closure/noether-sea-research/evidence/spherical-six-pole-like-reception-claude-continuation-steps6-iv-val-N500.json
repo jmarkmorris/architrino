@@ -1,0 +1,432 @@
+{
+ "g": "1/10",
+ "N_window": 500,
+ "mode": "three (all classes moving, generated history)",
+ "plan": {
+  "Delta": "0.01",
+  "max_step_number": 96,
+  "adaptation": "none; stop at the first uncertified step"
+ },
+ "controls": [
+  {
+   "name": "(0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the EXPANDED box q <= 0.7, q' <= 0.4, v' <= 0.4",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "8.8747e-31",
+    "like": "5.9165e-31",
+    "antipode": "3.9443e-31"
+   }
+  },
+  {
+   "name": "(E) expanded-domain box q in [0.39, 0.62], q' in [0, 0.31], v' in [0, 0.30] (144 cells): unlike/like N > 0 and M > 0, every separation r > 0.9, D_t > 0.5 with unlike <= 1 (approaching), like >= 1 and antipode >= 1 (receding; q' <= q on the box)",
+   "pass": true,
+   "box": {
+    "N_min": {
+     "unlike": "0.2969164",
+     "like": "0.2969164",
+     "antipode": "0.079914694"
+    },
+    "M_min": {
+     "unlike": "0.14386591",
+     "like": "0.14386591",
+     "antipode": "-0.58103516"
+    },
+    "r_min": {
+     "unlike": "1.0123403",
+     "like": "1.5897771",
+     "antipode": "1.9046671"
+    },
+    "D_range": {
+     "unlike": [
+      "0.88252912",
+      "1.0"
+     ],
+     "like": [
+      "1.0",
+      "1.0875554"
+     ],
+     "antipode": [
+      "1.0",
+      "1.0915176"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(2) reconciliation at the accepted step-94 state: g F(q) (five-image field) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum intersects g n.A",
+   "pass": true,
+   "gF": [
+    "0.1117529946038295211893916",
+    "0.1117886674043152678785005"
+   ],
+   "tangent_sum_fixed": [
+    "0.1117657953736971650594194",
+    "0.1117758654950383246120421"
+   ],
+   "radial_sum_fixed": [
+    "-0.04592180810548503296753518",
+    "-0.04591874721005770291827163"
+   ],
+   "g_nA": [
+    "-0.04593753265221183695827679",
+    "-0.04590302248490977112777242"
+   ]
+  },
+  {
+   "name": "(3) record lookup: window case; frozen end strings contained at record ends in every family; continuity and two-part hull at T*; exact-string joins; hull across each family join; negatives: uncertified record, gap, wrong record file, range beyond covered history all refused",
+   "pass": true,
+   "detail": {
+    "window_lookup_equals_window": true,
+    "wave16_step5_end_contained": true,
+    "wave17_step40_end_contained": true,
+    "antipodal_b3_step21_end_contained": true,
+    "late_feedback_step60_end_contained": true,
+    "late_feedback_step94_end_contained": true,
+    "continuity_at_T_star": true,
+    "straddle_T_star_two_part_hull": true,
+    "family_and_file_joins_exact_strings": true,
+    "hull_across_each_family_join": true,
+    "neg_uncertified_record_refused": [
+     true,
+     "uncertified record refused: synthetic uncertified copy of wave16 step 5"
+    ],
+    "wave16_step11_certified_flag": false,
+    "neg_wave16_step11_refused": [
+     true,
+     "uncertified record refused: wave16 step 11"
+    ],
+    "neg_gap_refused": [
+     true,
+     "gap refused before wave16 step 3"
+    ],
+    "neg_wrong_record_file_detected": [
+     true,
+     "gap refused before antipodal-a step 1"
+    ],
+    "neg_wrong_record_state_at_the_right_time_detected": [
+     true,
+     "state discontinuity refused at wave17 step 2"
+    ],
+    "neg_beyond_covered_history_refused": true
+   }
+  },
+  {
+   "name": "(4) negative: like and unlike terms at the step-94 state with the wrong sign of the velocity term in D_t are disjoint from the correct ones",
+   "pass": true,
+   "detail": {
+    "like": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.1370638151611415054071336",
+      "0.1370846802845468832150107"
+     ],
+     "hit_wrong": [
+      "0.1461973689308309519400487",
+      "0.1462197342920877242703656"
+     ],
+     "Dt_correct": [
+      "1.032238652180155962956762",
+      "1.032250288946631082100969"
+     ],
+     "Dt_wrong": [
+      "0.967749711053368917899031",
+      "0.9677613478198440370432375"
+     ]
+    },
+    "unlike": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.3765589932525459976457177",
+      "0.3789009306396596260689919"
+     ],
+     "hit_wrong": [
+      "0.3339826809415615220516747",
+      "0.3360381401432138410127796"
+     ],
+     "Dt_correct": [
+      "0.9397948480410760471617022",
+      "0.9403311707969756935384406"
+     ],
+     "Dt_wrong": [
+      "1.059668829203024306461559",
+      "1.060205151958923952838298"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(5) delay-root bracket: frozen narrow vs wide (+-0.15) agree to 1e-15 at the b3 step-21 state; +-0.12 vs +-0.15 agree to 1e-15 at the step-94 state; a non-straddling bracket (+-1e-4) is refused",
+   "pass": false,
+   "detail": {
+    "unlike": {
+     "b3_state_narrow_vs_wide": true,
+     "step94_state_0.12_vs_0.15": false,
+     "tau_step94": [
+      "1.152932937030810666717737",
+      "1.154121274960548915675959"
+     ],
+     "chord_minus_tau_step94": "0.0513067",
+     "frozen_narrow_bracket_at_step94": "fails (root outside +-0.03)"
+    },
+    "like": {
+     "b3_state_narrow_vs_wide": true,
+     "step94_state_0.12_vs_0.15": true,
+     "tau_step94": [
+      "1.616518335565962206108114",
+      "1.616553111328593073658049"
+     ],
+     "chord_minus_tau_step94": "-0.0197292",
+     "frozen_narrow_bracket_at_step94": "straddles"
+    },
+    "antipode": {
+     "b3_state_narrow_vs_wide": true,
+     "step94_state_0.12_vs_0.15": true,
+     "tau_step94": [
+      "1.966963061993596627722827",
+      "1.966976096033752019655098"
+     ],
+     "chord_minus_tau_step94": "-0.00669067",
+     "frozen_narrow_bracket_at_step94": "straddles"
+    }
+   },
+   "non_straddling_refused": true
+  },
+  {
+   "name": "(1) restart regression (same-code, not independent): the step from the frozen step-93 strings intersects the frozen step-94 end strings and agrees to 1e-15 at N = 4000",
+   "pass": true,
+   "intersects": true,
+   "max_endpoint_abs_diff": "1.2633e-8",
+   "end_q": [
+    "0.3992437700527351065979825",
+    "0.3992985410878082324955839"
+   ],
+   "frozen_end_q": [
+    "0.3992437701157277106661817",
+    "0.3992985410325688180050535"
+   ],
+   "end_v": [
+    "0.2888830732863238799337273",
+    "0.2890560163395829122712679"
+   ],
+   "frozen_end_v": [
+    "0.2888830859193191819271821",
+    "0.2890560052917000141651863"
+   ],
+   "reconcile_tangent": true,
+   "reconcile_radial": true
+  },
+  {
+   "name": "(6) self-append: after certifying the control step (from step 93), appending it through the checked path, a lookup inside it returns that step's box, a lookup beyond it is refused, and its box agrees with the frozen step-94 box",
+   "pass": true,
+   "detail": {
+    "records_before": 143,
+    "records_after": 144,
+    "lookup_inside_returns_its_box": true,
+    "lookup_beyond_refused": true,
+    "box_agrees_with_frozen_step94_S_to_1e-15": null
+   }
+  },
+  {
+   "name": "(7) restart wrapper: default and explicit selection of step 94 reproduce the exact frozen strings with t0 an interval; wrong g, wrong window, uncertified step, missing step and wrong Delta refused",
+   "pass": true,
+   "detail": {
+    "default_selects_last_certified_step_94_exact_strings": true,
+    "explicit_step_94_exact_strings": true,
+    "t0_interval": [
+     "2.806684593623649597167969",
+     "2.806684709182828044891357"
+    ],
+    "t0_is_interval_not_point": true,
+    "neg_wrong_g": [
+     true,
+     "g mismatch: 1/9"
+    ],
+    "neg_wrong_window": [
+     true,
+     "not enforced in sample mode (N != 4000)"
+    ],
+    "neg_uncertified_step": [
+     true,
+     "requested step 94 is not certified"
+    ],
+    "neg_missing_step": [
+     true,
+     "requested step 999 not in the record"
+    ],
+    "neg_wrong_Delta": [
+     true,
+     "Delta mismatch"
+    ]
+   }
+  }
+ ],
+ "steps": [],
+ "v10_sha256_expected": "1352182139423cb3088be03eae81ee7624bd8d09d67d86c864da32caf085b024",
+ "sample_mode_not_target_evidence": true,
+ "T_star": [
+  "1.366622279933447265625",
+  "1.36674060629608154296875"
+ ],
+ "record_chain": {
+  "count_frozen": 144,
+  "first": "wave16 step 1",
+  "last": "late-feedback-s3d step 94",
+  "t_lo": "1.366684593623649597167969",
+  "t_hi_frozen": "2.806684709182828044891357",
+  "joins": [
+   {
+    "join": "wave16 step 10 -> wave17 start",
+    "pass": true,
+    "end_q": [
+     "0.1078360786236463737425584",
+     "0.1078365557293226335681814"
+    ],
+    "start_q": [
+     "0.1078360786236463737425584",
+     "0.1078365557293226335681814"
+    ]
+   },
+   {
+    "join": "wave17 step 40 -> antipodal-a start",
+    "pass": true,
+    "end_q": [
+     "0.1750516801723775893710754",
+     "0.175056763736205971059134"
+    ],
+    "start_q": [
+     "0.1750516801723775893710754",
+     "0.175056763736205971059134"
+    ]
+   },
+   {
+    "join": "antipodal-a step 11 -> antipodal-b3 resume",
+    "pass": true,
+    "end_q": [
+     "0.1964426619820381217168754",
+     "0.196449994294162961493939"
+    ],
+    "start_q": [
+     "0.1964426619820381217168754",
+     "0.196449994294162961493939"
+    ]
+   },
+   {
+    "join": "step 21 -> late-feedback-s1a2 resume",
+    "pass": true,
+    "end_q": [
+     "0.2169889763507186775076704",
+     "0.2169987970109094562817074"
+    ],
+    "start_q": [
+     "0.2169889763507186775076704",
+     "0.2169987970109094562817074"
+    ]
+   },
+   {
+    "join": "step 30 -> late-feedback-s1b resume",
+    "pass": true,
+    "end_q": [
+     "0.2363815274827344393252612",
+     "0.2363939808878887293542157"
+    ],
+    "start_q": [
+     "0.2363815274827344393252612",
+     "0.2363939808878887293542157"
+    ]
+   },
+   {
+    "join": "step 44 -> late-feedback-s2a resume",
+    "pass": true,
+    "end_q": [
+     "0.2682548897108832844147014",
+     "0.2682722348201430693813555"
+    ],
+    "start_q": [
+     "0.2682548897108832844147014",
+     "0.2682722348201430693813555"
+    ]
+   },
+   {
+    "join": "step 56 -> late-feedback-s2b3 resume",
+    "pass": true,
+    "end_q": [
+     "0.2972397409585767836906",
+     "0.2972620976810700998649981"
+    ],
+    "start_q": [
+     "0.2972397409585767836906",
+     "0.2972620976810700998649981"
+    ]
+   },
+   {
+    "join": "step 64 -> late-feedback-s3a resume",
+    "pass": true,
+    "end_q": [
+     "0.3174215050973258168151511",
+     "0.3174476357049886764715778"
+    ],
+    "start_q": [
+     "0.3174215050973258168151511",
+     "0.3174476357049886764715778"
+    ]
+   },
+   {
+    "join": "step 69 -> late-feedback-s3b2 resume",
+    "pass": true,
+    "end_q": [
+     "0.3303850460494271208234513",
+     "0.3304137105118107545698485"
+    ],
+    "start_q": [
+     "0.3303850460494271208234513",
+     "0.3304137105118107545698485"
+    ]
+   },
+   {
+    "join": "step 78 -> late-feedback-s3c resume",
+    "pass": true,
+    "end_q": [
+     "0.3543985590884071228124339",
+     "0.3544332051883565299139656"
+    ],
+    "start_q": [
+     "0.3543985590884071228124339",
+     "0.3544332051883565299139656"
+    ]
+   },
+   {
+    "join": "step 86 -> late-feedback-s3d resume",
+    "pass": true,
+    "end_q": [
+     "0.3764767902921476837096419",
+     "0.3765197152663271911605447"
+    ],
+    "start_q": [
+     "0.3764767902921476837096419",
+     "0.3765197152663271911605447"
+    ]
+   }
+  ],
+  "joins_all_exact": true,
+  "families": {
+   "wave16": [
+    1.3666845936236496,
+    1.4666847091828281
+   ],
+   "wave17": [
+    1.4666845936236497,
+    1.866684709182828
+   ],
+   "antipodal": [
+    1.8666845936236496,
+    2.076684709182828
+   ],
+   "late-feedback": [
+    2.0766845936236495,
+    2.806684709182828
+   ]
+  },
+  "pad": "1e-23"
+ },
+ "controls_all_pass": false
+}

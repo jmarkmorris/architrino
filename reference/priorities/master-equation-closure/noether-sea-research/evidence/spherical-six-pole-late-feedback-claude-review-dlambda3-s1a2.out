@@ -1,0 +1,13 @@
+PID 69286
+controls K1 True K2 worst 1.39234029656001188926693699169e-22 W True
+22 2.086684709182 -0.025209 -0.024403 neg qddot 0.10515 0.10574 antipode d(1/rD) -0.000621
+23 2.096684709182 -0.025381 -0.024568 neg qddot 0.10521 0.10580 antipode d(1/rD) -0.000674
+24 2.106684709182 -0.025554 -0.024733 neg qddot 0.10527 0.10587 antipode d(1/rD) -0.000726
+25 2.116684709182 -0.025729 -0.024898 neg qddot 0.10533 0.10593 antipode d(1/rD) -0.000779
+26 2.126684709182 -0.025903 -0.025065 neg qddot 0.10538 0.10600 antipode d(1/rD) -0.000831
+27 2.136684709182 -0.026079 -0.025232 neg qddot 0.10544 0.10606 antipode d(1/rD) -0.000884
+28 2.146684709182 -0.026256 -0.025400 neg qddot 0.10550 0.10613 antipode d(1/rD) -0.000936
+29 2.156684709182 -0.026434 -0.025569 neg qddot 0.10556 0.10619 antipode d(1/rD) -0.000989
+30 2.166684709182 -0.026612 -0.025738 neg qddot 0.10561 0.10626 antipode d(1/rD) -0.001041
+all negative proved: True
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-dlambda3-s1a2.json

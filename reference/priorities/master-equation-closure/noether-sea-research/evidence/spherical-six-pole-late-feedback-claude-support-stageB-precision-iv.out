@@ -1,0 +1,27 @@
+PID 99235
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-iv.py", line 44, in <module>
+    dv, dx, eta, sig = bound(e0*T, e0*T*T/2, K0, T)
+                       ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-iv.py", line 38, in bound
+    Ihi = iv.mpf(max(abs(lo(I_eps)), abs(up(I_eps)))); kap = iv.sqrt(K); x = kap*T; sigma = iv.sinh(x)/x if lo(x) > 0 else ONE
+                                                                                            ^^^^^^^
+AttributeError: 'MPIntervalContext' object has no attribute 'sinh'. Did you mean: 'sin'?
+        0.08 real         0.04 user         0.01 sys
+            23461888  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2390  page reclaims
+                  90  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 102  voluntary context switches
+                  75  involuntary context switches
+           448030122  instructions retired
+           180187771  cycles elapsed
+            15663584  peak memory footprint

@@ -1,0 +1,260 @@
+{
+ "schema": "validated_far_step_prototype_admission_probes/v2",
+ "all_passed": true,
+ "rows": [
+  {
+   "check": "known static kernel contains -1/100",
+   "passed": true,
+   "detail": "exact -1/100",
+   "exact": [
+    "-1/100",
+    "-4999999999999999999999999999999999/500000000000000000000000000000000000"
+   ]
+  },
+  {
+   "check": "known quadratic peak speed is exactly 2",
+   "passed": true,
+   "detail": "[0, 2]",
+   "exact": null
+  },
+  {
+   "check": "known static step certified",
+   "passed": true,
+   "detail": "certified",
+   "exact": null
+  },
+  {
+   "check": "known static velocity tube contains analytic bracket",
+   "passed": true,
+   "detail": "closed-form bracket",
+   "exact": [
+    "-1000000000003814697265635913943/12800000000000000000000000000000000000",
+    "-4999999999504089355501218960819/64000000000000000000000000000000000000"
+   ]
+  },
+  {
+   "check": "known static acceleration box contains -1/100000",
+   "passed": true,
+   "detail": "exact",
+   "exact": [
+    "-10000000000038146972656359139367/1000000000000000000000000000000000000",
+    "-9999999999008178711002437921699/1000000000000000000000000000000000000"
+   ]
+  },
+  {
+   "check": "R1 reproduction: version 1 certifies zero acceleration",
+   "passed": true,
+   "detail": "the source's retained root at -10 gives exactly -1/100000, outside the certified box [0, 0]",
+   "exact": null
+  },
+  {
+   "check": "R1 closed: version 2 declines unequal starts",
+   "passed": true,
+   "detail": "VFS-H0-01: retained histories do not start at one common time; a shorter history cannot remove another path's emissions",
+   "exact": null
+  },
+  {
+   "check": "R1 closed in the other order",
+   "passed": true,
+   "detail": "VFS-H0-01",
+   "exact": null
+  },
+  {
+   "check": "R1 boundary: equal shallow starts remain a finite retained domain",
+   "passed": true,
+   "detail": "both pairs absent; conditional on the retained window being the complete emission domain",
+   "exact": null
+  },
+  {
+   "check": "R1 same geometry with full common history sees the root",
+   "passed": true,
+   "detail": "acceleration box contains -1/100000",
+   "exact": [
+    "-10000000000038146972656359139367/1000000000000000000000000000000000000",
+    "-9999999999008178711002437921699/1000000000000000000000000000000000000"
+   ]
+  },
+  {
+   "check": "R2 reproduction: version 1 certifies after the mutation",
+   "passed": true,
+   "detail": "unbudgeted certified, budgeted VFS-BUDGET-01; true peak speed 2",
+   "exact": null
+  },
+  {
+   "check": "R2 closed: version 2 declines H1 after the mutation",
+   "passed": true,
+   "detail": "past speed bound 2.000000",
+   "exact": {
+    "receiver": "1/1000000000000000000000000000000000000",
+    "source": "2000000000000000000000000000000000001/1000000000000000000000000000000000000"
+   }
+  },
+  {
+   "check": "R2 a caller-supplied cache field is ignored",
+   "passed": true,
+   "detail": "VFS-H1-01",
+   "exact": null
+  },
+  {
+   "check": "R2 version 2 writes nothing into caller segments",
+   "passed": true,
+   "detail": "segment keys unchanged after a step",
+   "exact": null
+  },
+  {
+   "check": "R2 restoring the static data certifies again",
+   "passed": true,
+   "detail": "no stale refusal",
+   "exact": null
+  },
+  {
+   "check": "R2 a mutated velocity radius on prescribed data declines",
+   "passed": true,
+   "detail": "path source segment 0: prescribed with radius",
+   "exact": null
+  },
+  {
+   "check": "genuine published segment is admitted",
+   "passed": true,
+   "detail": "certified",
+   "exact": {
+    "input_digest": "b73535336cc5429348bd2ff393a36bd130833098717625c6fd603226b289bf6c",
+    "published_digests": {
+     "receiver": "b8419f8d4f70432bbbd76a270159d2ce69a40e30d4ae8a18beffc3704122235f",
+     "source": "d8f8e29d06c18fee1ea31b97b1615b7f9f9caff664b663c9e755737cdeae2135"
+    },
+    "certificate_digest": "b67f78e32e3653c8520bfbbbfc323ba9650032d4ec6518e795fcfc65f9dd3637"
+   }
+  },
+  {
+   "check": "published segment with shrunken radius is refused",
+   "passed": true,
+   "detail": "path receiver segment 1 is labelled validated but its payload is not one this carrier published",
+   "exact": null
+  },
+  {
+   "check": "published segment with altered coefficients is refused",
+   "passed": true,
+   "detail": "VFS-H0-01",
+   "exact": null
+  },
+  {
+   "check": "invented segment carrying the validated label is refused",
+   "passed": true,
+   "detail": "VFS-H0-01",
+   "exact": null
+  },
+  {
+   "check": "reproduction: version 1 trusted the invented label",
+   "passed": true,
+   "detail": "certified",
+   "exact": null
+  },
+  {
+   "check": "fast affine source declines on the chart",
+   "passed": true,
+   "detail": "VFS-H4-01: chart is not regular; the real root -1000/199 is regular, the refusal is conservative",
+   "exact": null
+  },
+  {
+   "check": "first step within increment and total budgets",
+   "passed": true,
+   "detail": "certified",
+   "exact": {
+    "receiver": {
+     "position": "5544730809293766540659507/1000000000000000000000000000000000000",
+     "velocity": "8871569294870026465055211/6250000000000000000000000000000000"
+    },
+    "source": {
+     "position": "982254277852937/62500000000000000000000000000000000",
+     "velocity": "4023313522085629757/1000000000000000000000000000000000000"
+    }
+   }
+  },
+  {
+   "check": "second step meets the increment budget and is refused on the total",
+   "passed": true,
+   "detail": "increment 1.337e-09 <= 1e-08; total 2.756e-09 > 2e-09",
+   "exact": {
+    "growth": {
+     "receiver": {
+      "position": "16311194855449521009664301/1000000000000000000000000000000000000",
+      "velocity": "1336763708636668909656393443/1000000000000000000000000000000000000"
+     },
+     "source": {
+      "position": "39290171109381267/500000000000000000000000000000000000",
+      "velocity": "12069940563831949023/1000000000000000000000000000000000000"
+     }
+    },
+    "total": {
+     "receiver": {
+      "position": "682997677023227735947619/31250000000000000000000000000000000",
+      "velocity": "2756214795815873144065227203/1000000000000000000000000000000000000"
+     },
+     "source": {
+      "position": "47148205332204763/500000000000000000000000000000000000",
+      "velocity": "804662704295878939/50000000000000000000000000000000000"
+     }
+    },
+    "total_budgets": {
+     "position": "1/100000000",
+     "velocity": "1/500000000"
+    }
+   }
+  },
+  {
+   "check": "all 512 steps certified within the increment budgets",
+   "passed": true,
+   "detail": "512 of 512; receipts SHA-256 3a8d6e4c7290ebed6fb4cb5cbe11fcda83f3d20448e6dbb332989e56f13ec9e1",
+   "exact": null
+  },
+  {
+   "check": "end velocity tube contains the whole frozen true bracket",
+   "passed": true,
+   "detail": "half-width 2.081454e-07",
+   "exact": {
+    "tube": [
+     "-2537526394061950184251777436107951/128000000000000000000000000000000000000",
+     "-496848234819048277893103897569571/25600000000000000000000000000000000000"
+    ],
+    "true": [
+     "-147256767323743696725314741365752529403/7500000000000000000000000000000000000000000",
+     "-146874061153040121177448536060100844971/7500000000000000000000000000000000000000000"
+    ]
+   }
+  },
+  {
+   "check": "end position tube contains the whole frozen true bracket",
+   "passed": true,
+   "detail": "half-width 1.670257e-07",
+   "exact": {
+    "tube": [
+     "-233811742885352128145062982989561379/13107200000000000000000000000000000000000",
+     "-1147166319910998043695916951675319983/65536000000000000000000000000000000000000"
+    ],
+    "true": [
+     "-106087327049511358331935244781170697563/6000000000000000000000000000000000000000000",
+     "-105913188558837230790405735221682329743/6000000000000000000000000000000000000000000"
+    ]
+   }
+  },
+  {
+   "check": "end velocity tube is disjoint from the solver's aliased interval",
+   "passed": true,
+   "detail": "separation 1.760351e-07",
+   "exact": {
+    "aliased": [
+     "-2951614833733145/147573952589676412928",
+     "-5903093879262451/295147905179352825856"
+    ],
+    "separation": "756064878361503525016736754720427183043/4294967296000000000000000000000000000000000000"
+   }
+  },
+  {
+   "check": "every long-run segment is bound to a certificate",
+   "passed": true,
+   "detail": "512 receiver segments",
+   "exact": null
+  }
+ ]
+}

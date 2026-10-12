@@ -1,0 +1,35 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-envelope.py", line 71, in <module>
+    okW = bool(mpf(cW["t_cross"][0]) > mpf(cU["t_cross"][1]) or mpf(cW["t_cross"][1]) < mpf(cU["t_cross"][0]))
+               ~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/.venv/lib/python3.13/site-packages/mpmath/ctx_mp_python.py", line 79, in __new__
+    v._mpf_ = mpf_pos(cls.mpf_convert_arg(val, prec, rounding), prec, rounding)
+                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/.venv/lib/python3.13/site-packages/mpmath/ctx_mp_python.py", line 86, in mpf_convert_arg
+    if isinstance(x, basestring): return from_str(x, prec, rounding)
+                                         ~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/.venv/lib/python3.13/site-packages/mpmath/libmp/libmpf.py", line 1331, in from_str
+    man, exp = str_to_man_exp(x, base=10)
+               ~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/.venv/lib/python3.13/site-packages/mpmath/libmp/libmpf.py", line 1294, in str_to_man_exp
+    float(x)
+    ~~~~~^^^
+ValueError: could not convert string to float: '[3.0029227425995549627616724695354842, 3.0029227425995549627616724695354842]'
+        0.11 real         0.09 user         0.00 sys
+            22233088  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2362  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  26  involuntary context switches
+          1588109363  instructions retired
+           402330296  cycles elapsed
+            14434784  peak memory footprint

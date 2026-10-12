@@ -2,6 +2,7 @@
 
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/Interval.hpp"
+#include "architrino/eom/MatchedPairEnclosure.hpp"
 
 #include <cstddef>
 #include <optional>
@@ -46,6 +47,11 @@ struct NativePairAccelerationRequest {
   const RetainedHistory* transmitter_history;
   const ExactPairCertificate* root_certificate;
   const NativeFarFieldEnclosureCertificate* far_field_enclosure = nullptr;
+  // Group certificate owning this logical relationship when the chart is
+  // matched_pair_enclosure. The leader's row carries the single grouped
+  // interval; the follower's row carries the additive identity.
+  const NativeMatchedPairEnclosureCertificate* matched_pair_enclosure =
+      nullptr;
   std::string receiver_charge;
   std::string transmitter_charge;
   std::string coupling;

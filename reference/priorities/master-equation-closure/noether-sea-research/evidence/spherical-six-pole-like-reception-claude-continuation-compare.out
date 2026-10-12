@@ -1,0 +1,93 @@
+pid 87321
+controls: self-identical True ; flipped digit detected True ; removed field detected True
+s1a (v2) vs s1a2 (v4): identical True ; differences 0 [] ; trace identity True 
+s1b (v2) vs s1b2 (v4): identical True ; differences 0 [] ; trace identity True 
+s2a (v2) vs s2a3 (v4): identical True ; differences 0 [] ; trace identity True 
+s2a2 (v3) vs s2a3 (v4): identical True ; differences 0 [] ; trace identity True True
+s2b (v3) vs s2b2 (v4): identical True ; differences 0 [] ; trace identity True True
+s1b2 step-114 end strings == s2a2 start strings == s2a3 start strings: True ; all replays identical: True
+{
+ "remainder_consumed": {
+  "delayed_range": [
+   "1.361905565857500111816983",
+   "1.373297936975172470980472"
+  ],
+  "history_q": [
+   "0.09294195497644190803250564",
+   "0.09497531240358474050375513"
+  ],
+  "history_qdot": [
+   "0.1368204942484215529489367",
+   "0.138321790907505577966425"
+  ],
+  "history_qddot": [
+   "0.1014312846903093394769085",
+   "0.101664052548643007841198"
+  ],
+  "dhit_dt": [
+   "-0.07551821919294714843571532",
+   "-0.07259413345429643997009872"
+  ],
+  "taudot": [
+   "0.1321886954381686796377344",
+   "0.1349122478357257022354009"
+  ],
+  "is_the_object_returned_by_the_history_call": true,
+  "history_q_equals_frozen_record": true,
+  "history_qdot_equals_frozen_record": true,
+  "two_part_hull_at_T_star": true,
+  "source": "window+records",
+  "window_part": {
+   "history_q": [
+    "0.09294195497644190803250564",
+    "0.09359717429472312322322282"
+   ],
+   "history_qdot": [
+    "0.1368204942484215529489367",
+    "0.1373059342582563074100607"
+   ],
+   "history_qddot": [
+    "0.1014312846903093394769085",
+    "0.101664052548643007841198"
+   ]
+  },
+  "record_part": {
+   "history_q": [
+    "0.0935969659738805924504619",
+    "0.09497531240358474050375513"
+   ],
+   "history_qdot": [
+    "0.1373057801796165107074306",
+    "0.138321790907505577966425"
+   ],
+   "history_qddot": [
+    "0.1015543563055973899088729",
+    "0.1016166829564558372397839"
+   ]
+  }
+ },
+ "start_consumed": {
+  "tau0_equals_frozen_record": true,
+  "history_q": [
+   "0.09312714102074708638150761",
+   "0.09313272559774169722728067"
+  ],
+  "history_qdot": [
+   "0.1369578630576030696062788",
+   "0.1369620035708261896111794"
+  ],
+  "history_qddot_available_not_consumed": [
+   "0.1015437476345639656887285",
+   "0.1015457309377796738608819"
+  ],
+  "hit0_equals_frozen_record": true
+ },
+ "delayed_arg_range": [
+  "1.361905565857500111816983",
+  "1.373297936975172470980472"
+ ],
+ "tau_range": [
+  "1.643386772207655573910885",
+  "1.644779027766149485350986"
+ ]
+}

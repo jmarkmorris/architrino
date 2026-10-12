@@ -1,0 +1,230 @@
+# Stage 2 snapshot-level controls: piecewise windows of error-free cubic segments. c_f = 1 throughout.
+case known-static-source-distance-2-two-segments
+reception 0
+tolerance 1e-5
+fraction 0
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path source 1 -20 -10 0 0 0 0 0 0 0 0 2 0 0 0
+path source 1 -10 0 0 0 0 0 0 0 0 0 2 0 0 0
+end
+
+case static-two-segments-piecewise/traversal=0/tile=4096/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_piecewise_exact/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 -10 0 0 0 0 0 0 0 0 0 0 0 0
+path receiver 1 -10 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 -10 0 0 0 0 0 0 0 0 10.005 0 0 0
+path plus 1 -10 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 -10 0 0 0 0 0 0 0 0 9.995 0 0 0
+path minus -1 -10 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-two-segments-piecewise/traversal=0/tile=4096/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_piecewise_exact/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 4
+path receiver 1 -20 -10 0 0 0 0 0 0 0 0 0 0 0 0
+path receiver 1 -10 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 -10 0 0 0 0 0 0 0 0 10.005 0 0 0
+path plus 1 -10 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 -10 0 0 0 0 0 0 0 0 9.995 0 0 0
+path minus -1 -10 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-two-segments-piecewise/traversal=1/tile=1/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_piecewise_exact/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -20 -10 0 0 0 0 0 0 0 0 0 0 0 0
+path receiver 1 -10 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 -10 0 0 0 0 0 0 0 0 10.005 0 0 0
+path plus 1 -10 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 -10 0 0 0 0 0 0 0 0 9.995 0 0 0
+path minus -1 -10 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-two-segments-piecewise/traversal=1/tile=1/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_piecewise_exact/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 4
+path receiver 1 -20 -10 0 0 0 0 0 0 0 0 0 0 0 0
+path receiver 1 -10 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 -10 0 0 0 0 0 0 0 0 10.005 0 0 0
+path plus 1 -10 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 -10 0 0 0 0 0 0 0 0 9.995 0 0 0
+path minus -1 -10 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-two-segments-piecewise/traversal=1/tile=4096/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_piecewise_exact/v1
+far_field 1
+traversal 1
+tile_limit 4096
+threads 1
+path receiver 1 -20 -10 0 0 0 0 0 0 0 0 0 0 0 0
+path receiver 1 -10 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 -10 0 0 0 0 0 0 0 0 10.005 0 0 0
+path plus 1 -10 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 -10 0 0 0 0 0 0 0 0 9.995 0 0 0
+path minus -1 -10 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-two-segments-piecewise/traversal=1/tile=4096/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_piecewise_exact/v1
+far_field 1
+traversal 1
+tile_limit 4096
+threads 4
+path receiver 1 -20 -10 0 0 0 0 0 0 0 0 0 0 0 0
+path receiver 1 -10 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 -10 0 0 0 0 0 0 0 0 10.005 0 0 0
+path plus 1 -10 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 -10 0 0 0 0 0 0 0 0 9.995 0 0 0
+path minus -1 -10 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-two-segments-disabled
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 -10 0 0 0 0 0 0 0 0 0 0 0 0
+path receiver 1 -10 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 -10 0 0 0 0 0 0 0 0 10.005 0 0 0
+path plus 1 -10 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 -10 0 0 0 0 0 0 0 0 9.995 0 0 0
+path minus -1 -10 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-two-segments-single-slab-policy-declines
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 -10 0 0 0 0 0 0 0 0 0 0 0 0
+path receiver 1 -10 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 -10 0 0 0 0 0 0 0 0 10.005 0 0 0
+path plus 1 -10 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 -10 0 0 0 0 0 0 0 0 9.995 0 0 0
+path minus -1 -10 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case quadratic-unequal-segmentation-piecewise/traversal=0
+reception 0
+tolerance 0.1
+fraction 0.5
+policy canonical_snapshot_piecewise_exact/v1
+far_field 1
+traversal 0
+tile_limit 1
+threads 1
+path receiver 1 -15 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -15 -12 0 0 0 0 0 0 0 0 13.6 -0.48 0.016 0
+path plus 1 -12 0 0 0 0 0 0 0 0 0 12.304 -0.384 0.016 0
+path minus -1 -15 -13 0 0 0 0 0 0 0 0 12.825 -0.48 0.016 0
+path minus -1 -13 -5 0 0 0 0 0 0 0 0 11.929 -0.416 0.016 0
+path minus -1 -5 0 0 0 0 0 0 0 0 0 9.625 -0.16 0.016 0
+end
+
+case quadratic-unequal-segmentation-piecewise/traversal=1
+reception 0
+tolerance 0.1
+fraction 0.5
+policy canonical_snapshot_piecewise_exact/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -15 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -15 -12 0 0 0 0 0 0 0 0 13.6 -0.48 0.016 0
+path plus 1 -12 0 0 0 0 0 0 0 0 0 12.304 -0.384 0.016 0
+path minus -1 -15 -13 0 0 0 0 0 0 0 0 12.825 -0.48 0.016 0
+path minus -1 -13 -5 0 0 0 0 0 0 0 0 11.929 -0.416 0.016 0
+path minus -1 -5 0 0 0 0 0 0 0 0 0 9.625 -0.16 0.016 0
+end
+
+case quadratic-unequal-segmentation-disabled
+reception 0
+tolerance 0.1
+fraction 0.5
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -15 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -15 -12 0 0 0 0 0 0 0 0 13.6 -0.48 0.016 0
+path plus 1 -12 0 0 0 0 0 0 0 0 0 12.304 -0.384 0.016 0
+path minus -1 -15 -13 0 0 0 0 0 0 0 0 12.825 -0.48 0.016 0
+path minus -1 -13 -5 0 0 0 0 0 0 0 0 11.929 -0.416 0.016 0
+path minus -1 -5 0 0 0 0 0 0 0 0 0 9.625 -0.16 0.016 0
+end
+
+case tube-radii-exact-policy-declines
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_piecewise_exact/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0 1e-10 1e-10
+end
+
+case tube-radii-disabled
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0 1e-10 1e-10
+end
+

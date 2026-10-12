@@ -1,4 +1,6 @@
 const standaloneAppPathBySceneToken = Object.freeze({
+  surface: "surface.html",
+  "content/scenes/archie/surface.json": "surface.html",
   "assembly-explorer": "borg-library.html",
   "causal-delay-feedback": "causal-delay-feedback.html",
   "equation-mapping": "equation-mapping.html",

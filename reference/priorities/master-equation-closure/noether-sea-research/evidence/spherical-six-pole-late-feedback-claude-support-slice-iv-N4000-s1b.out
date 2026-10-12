@@ -1,0 +1,36 @@
+PID 68876
+[{"name": "(K) regression on the frozen antipodal b3 JSON: lambda_hat ranges and derivative ranges equal dlambda3-iv-v2-b3 to 1e-20; lambda_hat ranges/ends intersect the antipodal support step enclosures (different D_t source)", "pass": true, "n": 10}, {"name": "(W) negative: like polarity flipped moves the release radial sum off -g/4", "release": ["-0.025", "-0.025"], "release_wrong": ["-0.1664213562373095048801689", "-0.1664213562373095048801689"], "pass": false}]
+step 31 t_end 2.17668470 mv 3 beyond False: qddot [0.104973,0.107033]; lambda range [-0.0058778,-0.0051204] negative; end [-0.0057549,-0.0056055] negative; dlambda [-0.027106,-0.025596] negative; tanU/L/A [0.06637,0.03633,0.00295] radU/L/A [-0.08187,0.063612,-0.02512]; cont-int True/True
+step 32 t_end 2.18668470 mv 3 beyond False: qddot [0.105023,0.107104]; lambda range [-0.0061447,-0.0053822] negative; end [-0.0060211,-0.0058702] negative; dlambda [-0.027290,-0.025762] negative; tanU/L/A [0.06654,0.03620,0.00298] radU/L/A [-0.08201,0.063548,-0.02512]; cont-int True/True
+step 33 t_end 2.19668470 mv 3 beyond False: qddot [0.105074,0.107175]; lambda range [-0.0064134,-0.0056457] negative; end [-0.0062889,-0.0061366] negative; dlambda [-0.027476,-0.025930] negative; tanU/L/A [0.06671,0.03606,0.00301] radU/L/A [-0.08215,0.063484,-0.02512]; cont-int True/True
+step 34 t_end 2.20668470 mv 3 beyond False: qddot [0.105124,0.107246]; lambda range [-0.0066838,-0.0059109] negative; end [-0.0065586,-0.0064049] negative; dlambda [-0.027662,-0.026098] negative; tanU/L/A [0.06687,0.03593,0.00303] radU/L/A [-0.08230,0.063420,-0.02512]; cont-int True/True
+step 35 t_end 2.21668470 mv 3 beyond False: qddot [0.105174,0.107317]; lambda range [-0.0069561,-0.0061779] negative; end [-0.0068301,-0.0066748] negative; dlambda [-0.027850,-0.026267] negative; tanU/L/A [0.06704,0.03579,0.00306] radU/L/A [-0.08244,0.063356,-0.02512]; cont-int True/True
+step 36 t_end 2.22668470 mv 3 beyond False: qddot [0.105223,0.107388]; lambda range [-0.0072301,-0.0064467] negative; end [-0.0071033,-0.0069466] negative; dlambda [-0.028038,-0.026436] negative; tanU/L/A [0.06720,0.03566,0.00308] radU/L/A [-0.08259,0.063293,-0.02512]; cont-int True/True
+step 37 t_end 2.23668470 mv 3 beyond False: qddot [0.105272,0.107458]; lambda range [-0.0075060,-0.0067173] negative; end [-0.0073784,-0.0072202] negative; dlambda [-0.028228,-0.026607] negative; tanU/L/A [0.06737,0.03552,0.00311] radU/L/A [-0.08273,0.063229,-0.02512]; cont-int True/True
+step 38 t_end 2.24668470 mv 3 beyond False: qddot [0.105321,0.107528]; lambda range [-0.0077837,-0.0069896] negative; end [-0.0076553,-0.0074955] negative; dlambda [-0.028418,-0.026778] negative; tanU/L/A [0.06754,0.03538,0.00313] radU/L/A [-0.08288,0.063166,-0.02511]; cont-int True/True
+step 39 t_end 2.25668470 mv 3 beyond False: qddot [0.105369,0.107598]; lambda range [-0.0080632,-0.0072638] negative; end [-0.0079340,-0.0077727] negative; dlambda [-0.028610,-0.026950] negative; tanU/L/A [0.06770,0.03525,0.00316] radU/L/A [-0.08303,0.063102,-0.02511]; cont-int True/True
+step 40 t_end 2.26668470 mv 3 beyond False: qddot [0.105417,0.107668]; lambda range [-0.0083446,-0.0075397] negative; end [-0.0082145,-0.0080517] negative; dlambda [-0.028802,-0.027122] negative; tanU/L/A [0.06787,0.03511,0.00318] radU/L/A [-0.08318,0.063039,-0.02511]; cont-int True/True
+step 41 t_end 2.27668470 mv 3 beyond False: qddot [0.105464,0.107738]; lambda range [-0.0086278,-0.0078175] negative; end [-0.0084969,-0.0083325] negative; dlambda [-0.028996,-0.027296] negative; tanU/L/A [0.06804,0.03497,0.00321] radU/L/A [-0.08333,0.062976,-0.02511]; cont-int True/True
+step 42 t_end 2.28668470 mv 3 beyond False: qddot [0.105511,0.107807]; lambda range [-0.0089128,-0.0080971] negative; end [-0.0087811,-0.0086151] negative; dlambda [-0.029190,-0.027470] negative; tanU/L/A [0.06820,0.03483,0.00323] radU/L/A [-0.08348,0.062913,-0.02511]; cont-int True/True
+step 43 t_end 2.29668470 mv 3 beyond False: qddot [0.105557,0.107876]; lambda range [-0.0091997,-0.0083785] negative; end [-0.0090672,-0.0088996] negative; dlambda [-0.029386,-0.027645] negative; tanU/L/A [0.06837,0.03470,0.00326] radU/L/A [-0.08363,0.062851,-0.02511]; cont-int True/True
+step 44 t_end 2.30668470 mv 3 beyond False: qddot [0.105603,0.107944]; lambda range [-0.0094885,-0.0086618] negative; end [-0.0093552,-0.0091860] negative; dlambda [-0.029583,-0.027821] negative; tanU/L/A [0.06853,0.03456,0.00329] radU/L/A [-0.08379,0.062788,-0.02511]; cont-int True/True
+{"n": 14, "lambda_end_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "lambda_range_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "dlambda_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "qddot_signs": ["positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive"], "zero_brackets": [], "all_dlambda_negative": true, "all_qddot_positive": true, "any_beyond_window": false, "reached_time": ["2.306684593623649597167969", "2.306684709182828044891357"], "stop_reason": "plan exhausted (step 44 certified)"}
+wall 0.12021088600158691
+        0.16 real         0.14 user         0.01 sys
+            23576576  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2444  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   1  voluntary context switches
+                  18  involuntary context switches
+          2465117872  instructions retired
+           602645530  cycles elapsed
+            15925752  peak memory footprint

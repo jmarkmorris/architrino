@@ -1,0 +1,14 @@
+pid 18911
+T* in [1.366622279933, 1.366740606296] (reproduces wave 17: None); start t0 [1.866684593623, 1.866684709182], q0 [0.1750516801, 0.1750567637], qdot0 [0.1887244343, 0.1887427709]; mode three; setup 3.6 s
+controls: ALL PASS
+   pass (0a) fast node lookup equals the frozen q_of_t endpoint for endpoint on 60 sample times 
+   pass (0b) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random (q, q', v') each; max abs diff {'unlike': '6.4095e-31', 'like': '5.9165e-31', 'antipode': '5.9165e-31'}
+   pass (0c) known: radial sum at release encloses -g/4 
+   pass (1) continuity of the antipode term at its reading instant: hit with zero delayed state intersects the fixed antipode term (at the start state q0) 
+   pass (2) negative: antipode term at the probe t0 + 0.19 (post-reading, generated history) with the wrong sign of the velocity term in D_t is disjoint from the correct one 
+   pass (4) negative: wrong antipode path map (q' sign flipped in the chord and D_t) at the probe changes r and D_t by amounts exceeding the correct enclosures' widths ['-0.00004853643170221373730517863', '-0.00004853643170221373730517863']
+   pass (3) regression (not independent evidence: same formulas, same frozen inputs): the two-class step from the frozen wave-17 step-39 end state intersects the frozen step-40 end state 
+step 1: t_end 1.87668470; moving ['unlike', 'like']; tauA [, ] DA [, ]; q [0.176944132, 0.176949401]; qdot [0.189766045, 0.189784800]; red [0.189551588, 0.189574026] -> above (feedback accelerates); res_end [0.115492, 0.115493]; a_rad_end [-0.037534, -0.037532] lambda_end [0.0015140, 0.0015237] positive; 5 s
+step 2: t_end 1.88668470; moving ['unlike', 'like']; tauA [, ] DA [, ]; q [0.178847003, 0.178852461]; qdot [0.190808224, 0.190827402]; red [0.190587585, 0.190610124] -> above (feedback accelerates); res_end [0.105323, 0.105324]; a_rad_end [-0.037717, -0.037715] lambda_end [0.0013000, 0.0013098] positive; 7 s
+step 3: t_end 1.89668470; moving ['unlike', 'like']; tauA [, ] DA [, ]; q [0.180760299, 0.180765950]; qdot [0.191850976, 0.191870578]; red [0.191624782, 0.191646176] -> above (feedback accelerates); res_end [0.095151, 0.095152]; a_rad_end [-0.037901, -0.037898] lambda_end [0.0010844, 0.0010945] positive; 9 s
+reached t in [1.896684593623, 1.896684709182]; q [0.1807602999, 0.1807659507]; qdot [0.1918509765, 0.1918705789]; stop: plan exhausted (3 steps certified); wall 9.1 s

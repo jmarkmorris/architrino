@@ -662,14 +662,14 @@ bool checkpoint_model_matches(
 
 std::string native_evolution_model_fingerprint(
     const NativeCoupledEvolutionRequest& request) {
-  require_canonical_equation_operation(request);
+  require_legacy_checkpoint_equation(request);
   return model_fingerprint(request, true);
 }
 
 NativeEvolutionCheckpoint create_native_evolution_checkpoint(
     const NativeCoupledEvolutionRequest& request,
     const NativeCoupledEvolutionCertificate& certificate) {
-  require_canonical_equation_operation(request);
+  require_legacy_checkpoint_equation(request);
   if (certificate.schema == "eom_surface_coupled_evolution_certificate/v1" ||
       certificate.evidence_status == "constrained_solution_enclosure" ||
       std::any_of(certificate.histories.begin(), certificate.histories.end(),
@@ -846,10 +846,13 @@ NativeEvolutionCheckpoint deserialize_native_evolution_checkpoint(
 void write_native_evolution_checkpoint_atomic(
     const std::string& path,
     const NativeEvolutionCheckpoint& checkpoint) {
+  write_evolution_checkpoint_bytes_atomic(path, serialize_native_evolution_checkpoint(checkpoint));
+}
+void write_evolution_checkpoint_bytes_atomic(const std::string& path,
+    const std::vector<unsigned char>& bytes) {
   if (path.empty()) {
     throw std::invalid_argument("checkpoint path cannot be empty");
   }
-  const auto bytes = serialize_native_evolution_checkpoint(checkpoint);
   const std::string temporary =
       path + ".tmp." + std::to_string(static_cast<long long>(::getpid()));
   const int descriptor =
@@ -931,7 +934,7 @@ NativeCoupledEvolutionCertificate resume_native_coupled_histories(
     const NativeCoupledEvolutionRequest& request_template,
     const NativeEvolutionCheckpoint& checkpoint,
     const std::string& requested_end_time) {
-  require_canonical_equation_operation(request_template);
+  require_legacy_checkpoint_equation(request_template);
   require_checkpoint_consistency(checkpoint);
   if (!checkpoint_model_matches(request_template, checkpoint)) {
     throw std::invalid_argument(

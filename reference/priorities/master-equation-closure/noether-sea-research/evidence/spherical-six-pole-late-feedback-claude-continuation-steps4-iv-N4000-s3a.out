@@ -1,0 +1,16 @@
+pid 71202
+T* in [1.366684593623, 1.366684709182] (reproduces wave 17: True); records 71 to t = 2.0766847091; setup 18.0 s
+controls: ALL PASS
+   pass (0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random (q <= 0
+   pass (2) reconciliation on the accepted endpoint state: g F(q0) (wave-14 five-image field) intersects the sum of th
+   pass (3) history lookup: seam at T* (window enclosure at up(T*) intersects wave-16 step-1 candidate sets); record l
+   pass (4) negative: unlike term at the accepted endpoint with the wrong sign of the velocity term in D_t is disjoint
+   pass (1) regression (not independent evidence): the resumed step from the frozen b3 step-20 end state reproduces th
+   pass (5) delay-root bracket: wide (+-0.12) and frozen narrow (+-0.03) brackets return intersecting delay intervals 
+resumed after step 64 of spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2b3.json: t0 [2.506684593623, 2.506684709182], q [0.3174215050, 0.3174476357], qdot [0.2565765660, 0.2566259535]
+step 65: t_end 2.51668470; q [0.31999265, 0.32001928]; qdot [0.25765388, 0.25770381]; sU [1.29263, 1.30461] margin 0.7720 DU [0.94702, 0.94703]; sA up 0.53997; a_rad_end [-0.050706, -0.050704] lambda_end [-0.015707, -0.015679] negative; qddot positive; recon T True R True; 22 s
+step 66: t_end 2.52668470; q [0.32257458, 0.32260171]; qdot [0.25873153, 0.25878199]; sU [1.30456, 1.31654] margin 0.7601 DU [0.94670, 0.94670]; sA up 0.55027; a_rad_end [-0.050932, -0.050930] lambda_end [-0.016037, -0.016009] negative; qddot positive; recon T True R True; 26 s
+step 67: t_end 2.53668470; q [0.32516728, 0.32519492]; qdot [0.25980949, 0.25986048]; sU [1.31650, 1.32849] margin 0.7481 DU [0.94638, 0.94638]; sA up 0.56058; a_rad_end [-0.051159, -0.051156] lambda_end [-0.016370, -0.016341] negative; qddot positive; recon T True R True; 30 s
+step 68: t_end 2.54668470; q [0.32777077, 0.32779892]; qdot [0.26088775, 0.26093927]; sU [1.32844, 1.34044] margin 0.7362 DU [0.94606, 0.94607]; sA up 0.57090; a_rad_end [-0.051386, -0.051383] lambda_end [-0.016705, -0.016676] negative; qddot positive; recon T True R True; 34 s
+step 69: t_end 2.55668470; q [0.33038504, 0.33041371]; qdot [0.26196627, 0.26201832]; sU [1.34039, 1.35240] margin 0.7242 DU [0.94575, 0.94576]; sA up 0.58121; a_rad_end [-0.051613, -0.051610] lambda_end [-0.017042, -0.017013] negative; qddot positive; recon T True R True; 38 s
+reached t in [2.556684593623, 2.556684709182]; q [0.3303850460, 0.3304137105]; qdot [0.2619662792, 0.2620183274]; stop: step 70 did not close: history range unavailable; wall 39.3 s

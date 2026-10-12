@@ -1,0 +1,27 @@
+PID 73095
+[{"name": "(K1) regression: on s2b3 (window only) every output equals slice-iv v2 to 1e-20", "pass": true}, {"name": "(K2) known: a delayed box straddling T* (+-0.005) yields a source hull containing the window state at T* and the wave-16 step-1 candidate sets, with the window part and record w16#1 both touched", "pass": true, "hull_q": ["0.09291042043562835203220492", "0.09497531240358474050374513"], "hull_qdot": ["0.136305757067780821162763", "0.138321790907505577966415"], "hull_qddot": ["0.1012290917528929545774185", "0.1019673245041114712706306"], "touched": "records:window[s_lo,T*],w16#1", "q_at_Tstar": ["0.0935969659738805924504719", "0.09359717429472312322322282"], "w16_step1_S": ["0.0935969659738805924504719", "0.09497531240358474050374513"]}, {"name": "(W1) negative: a delayed box reaching above the last retained record end (2.0767) is refused", "pass": true}, {"name": "(W2) negative: like polarity flipped moves the release radial sum off -g/4", "release": ["-0.025", "-0.025"], "release_wrong": ["-0.1664213562373095048801689", "-0.1664213562373095048801689"], "pass": true}]
+step 65 t_end 2.51668470 srcU window: qddot [0.106328,0.109198]; lambda range [-0.0160029,-0.0150545] negative; end [-0.0158515,-0.0156449] negative; dlambda [-0.033976,-0.031712] negative; tanU/L/A [0.07184,0.03160,0.00382] radU/L/A [-0.08719,0.061509,-0.02509]; cont-int True/True
+step 66 t_end 2.52668470 srcU window: qddot [0.106346,0.109244]; lambda range [-0.0163354,-0.0153809] negative; end [-0.0161831,-0.0159746] negative; dlambda [-0.034198,-0.031907] negative; tanU/L/A [0.07199,0.03145,0.00385] radU/L/A [-0.08736,0.061450,-0.02509]; cont-int True/True
+step 67 t_end 2.53668470 srcU window: qddot [0.106363,0.109289]; lambda range [-0.0166700,-0.0157094] negative; end [-0.0165168,-0.0163063] negative; dlambda [-0.034421,-0.032103] negative; tanU/L/A [0.07213,0.03131,0.00387] radU/L/A [-0.08753,0.061391,-0.02509]; cont-int True/True
+step 68 t_end 2.54668470 srcU window: qddot [0.106377,0.109332]; lambda range [-0.0170067,-0.0160400] negative; end [-0.0168526,-0.0166401] negative; dlambda [-0.034646,-0.032300] negative; tanU/L/A [0.07227,0.03116,0.00390] radU/L/A [-0.08770,0.061333,-0.02509]; cont-int True/True
+step 69 t_end 2.55668470 srcU window: qddot [0.106389,0.109372]; lambda range [-0.0173455,-0.0163727] negative; end [-0.0171906,-0.0169761] negative; dlambda [-0.034872,-0.032498] negative; tanU/L/A [0.07241,0.03102,0.00392] radU/L/A [-0.08787,0.061275,-0.02508]; cont-int True/True
+{"n": 5, "lambda_end_signs": ["negative", "negative", "negative", "negative", "negative"], "lambda_range_signs": ["negative", "negative", "negative", "negative", "negative"], "dlambda_signs": ["negative", "negative", "negative", "negative", "negative"], "qddot_signs": ["positive", "positive", "positive", "positive", "positive"], "zero_brackets": [], "all_dlambda_negative": true, "all_qddot_positive": true, "steps_using_records": [], "refused": [], "reached_time": ["2.556684593623649597167969", "2.556684709182828044891357"], "stop_reason": "step 70 did not close: history range unavailable"}
+wall 0.07085108757019043
+        0.18 real         0.17 user         0.00 sys
+            24018944  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2472  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  23  involuntary context switches
+          2861201235  instructions retired
+           686008136  cycles elapsed
+            16368120  peak memory footprint

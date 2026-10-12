@@ -1,0 +1,44 @@
+PID 20180
+{"name": "(K) known: this instrument on the frozen wave-17 full JSON reproduces the Phase A instrument's per-step lambda_hat enclosures (40 steps) to 1e-20", "pass": true, "signs_end": ["positive"]}
+{"name": "(W) negative: like-class polarity flipped moves the release radial sum off -g/4 and makes every wave-17 step enclosure disjoint from the correct one", "release_correct": ["-0.025", "-0.025"], "release_wrong": ["-0.1664213562373095048801689", "-0.1664213562373095048801689"], "pass": true, "wrong_signs_end": ["positive"]}
+step 1: t_end 1.87668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0375498, -0.0374345] lambda_end [0.00141625, 0.00153866] positive; range [0.00131685, 0.00193371] positive; cont-intersect end=True range=True
+step 2: t_end 1.88668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0377329, -0.0376165] lambda_end [0.00120142, 0.00132513] positive; range [0.00110138, 0.00172261] positive; cont-intersect end=True range=True
+step 3: t_end 1.89668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0379170, -0.0377995] lambda_end [0.00098523, 0.00111021] positive; range [0.00088456, 0.00151013] positive; cont-intersect end=True range=True
+step 4: t_end 1.90668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0381020, -0.0379832] lambda_end [0.00076734, 0.00089380] positive; range [0.00066602, 0.00129616] positive; cont-intersect end=True range=True
+step 5: t_end 1.91668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0382878, -0.0381680] lambda_end [0.00054804, 0.00067582] positive; range [0.00044607, 0.00108062] positive; cont-intersect end=True range=True
+step 6: t_end 1.92668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0384747, -0.0383537] lambda_end [0.00032735, 0.00045654] positive; range [0.00022473, 0.00086379] positive; cont-intersect end=True range=True
+step 7: t_end 1.93668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0386625, -0.0385402] lambda_end [0.00010504, 0.00023566] positive; range [0.00000177, 0.00064537] positive; cont-intersect end=True range=True
+step 8: t_end 1.94668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0388511, -0.0387277] lambda_end [-0.0001188, 0.00001320] spans zero (undecided); range [-0.0002227, 0.00042538] spans zero (undecided); cont-intersect end=True range=True
+step 9: t_end 1.95668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0390407, -0.0389161] lambda_end [-0.0003440, -0.0002106] negative; range [-0.0004486, 0.00020396] spans zero (undecided); cont-intersect end=True range=True
+step 10: t_end 1.96668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0392311, -0.0391053] lambda_end [-0.0005709, -0.0004361] negative; range [-0.0006762, -0.0000189] negative; cont-intersect end=True range=True
+step 11: t_end 1.97668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0394225, -0.0392953] lambda_end [-0.0007995, -0.0006631] negative; range [-0.0009054, -0.0002435] negative; cont-intersect end=True range=True
+step 12: t_end 1.98668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'fixed'} a_rad_end [-0.0396150, -0.0394865] lambda_end [-0.0010294, -0.0008913] negative; range [-0.0011359, -0.0004692] negative; cont-intersect end=True range=True
+step 13: t_end 1.99668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0398082, -0.0396740] lambda_end [-0.0012653, -0.0011213] negative; range [-0.0013725, -0.0006967] negative; cont-intersect end=True range=True
+step 14: t_end 2.00668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0400021, -0.0398654] lambda_end [-0.0014997, -0.0013531] negative; range [-0.0016076, -0.0009260] negative; cont-intersect end=True range=True
+step 15: t_end 2.01668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0401971, -0.0400579] lambda_end [-0.0017356, -0.0015862] negative; range [-0.0018442, -0.0011566] negative; cont-intersect end=True range=True
+step 16: t_end 2.02668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0403860, -0.0402497] lambda_end [-0.0019747, -0.0018278] negative; range [-0.0020839, -0.0013957] negative; cont-intersect end=True range=True
+step 17: t_end 2.03668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0405799, -0.0404423] lambda_end [-0.0022153, -0.0020669] negative; range [-0.0023252, -0.0016322] negative; cont-intersect end=True range=True
+step 18: t_end 2.04668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0407748, -0.0406357] lambda_end [-0.0024576, -0.0023075] negative; range [-0.0025682, -0.0018703] negative; cont-intersect end=True range=True
+step 19: t_end 2.05668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0409705, -0.0408300] lambda_end [-0.0027016, -0.0025498] negative; range [-0.0028129, -0.0021100] negative; cont-intersect end=True range=True
+step 20: t_end 2.06668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0411670, -0.0410251] lambda_end [-0.0029471, -0.0027936] negative; range [-0.0030591, -0.0023514] negative; cont-intersect end=True range=True
+step 21: t_end 2.07668470 modes {'unlike': 'moving', 'like': 'moving', 'antipode': 'moving'} a_rad_end [-0.0413643, -0.0412209] lambda_end [-0.0031944, -0.0030392] negative; range [-0.0033071, -0.0025944] negative; cont-intersect end=True range=True
+summary {"all_steps_certified_in_chain": true, "n_steps": 21, "signs_end": ["positive", "positive", "positive", "positive", "positive", "positive", "positive", "spans zero (undecided)", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "signs_range": ["positive", "positive", "positive", "positive", "positive", "positive", "positive", "spans zero (undecided)", "spans zero (undecided)", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "last_positive_end": [7, "1.936684709182828044891357"], "first_non_positive_end": [8, "1.946684709182828044891357", "spans zero (undecided)"], "first_negative_end": [9, "1.956684709182828044891357"], "sign_change_bracket": {"last_positive_end_step": 7, "t_lo": "1.936684709182828044891357", "first_negative_end_step": 9, "t_hi": "1.956684709182828044891357", "note": "lambda_hat has at least one zero in (t_lo, t_hi) by continuity (section 3 of the support reference); uniqueness not claimed"}}
+wall 0.0570981502532959
+        0.12 real         0.08 user         0.01 sys
+            21987328  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2118  page reclaims
+                 273  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 175  voluntary context switches
+                 152  involuntary context switches
+          1296576675  instructions retired
+           369453104  cycles elapsed
+            14336504  peak memory footprint

@@ -1,0 +1,12 @@
+pid 23889
+T* in [1.366684593623, 1.366684709182] (reproduces wave 17: True); start t0 [1.866684593623, 1.866684709182], q0 [0.1750516801, 0.1750567637], qdot0 [0.1887244343, 0.1887427709]; mode three; setup 19.3 s
+controls: FAIL
+   pass (0a) fast node lookup equals the frozen q_of_t endpoint for endpoint on 60 sample times 
+   pass (0b) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random (q, q', v') each; max abs diff {'unlike': '6.4095e-31', 'like': '5.9165e-31', 'antipode': '5.9165e-31'}
+   pass (0c) known: radial sum at release encloses -g/4 
+   pass (1) continuity of the antipode term at its reading instant: hit with zero delayed state intersects the fixed antipode term (at the start state q0) 
+   pass (2) negative: antipode term at the probe t0 + 0.19 (post-reading, generated history) with the wrong sign of the velocity term in D_t is disjoint from the correct one 
+   pass (4) negative: wrong antipode path map (q' sign flipped in the chord and D_t) at the probe changes r and D_t by amounts exceeding the correct enclosures' widths ['-0.00004869602952720535204717757', '-0.00004869602952720535204717757']
+   pass (3) regression (not independent evidence: same formulas, same frozen inputs): the two-class step from the frozen wave-17 step-39 end state intersects the frozen step-40 end state 
+   FAIL (5) residual-reception bracket: known synthetic zero at s* = 0.004 is enclosed (width < 1e-9); same-sign step gives no certified-negative end; negative-at-start step is refused 
+   pass (6) sign bracket: known zero of 0.003 - s enclosed (width <= 0.01/128); no-sign-change function refused; flipped ordering s - 0.003 enclosed; uncertified endpoint refused 

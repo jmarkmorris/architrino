@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv.py", line 123, in <module>
+    prev = json.load(open(RESUME)); cert = [s_ for s_ in prev["steps"] if s_.get("certified")]; last = cert[-1] if RESUME_AFTER is None else [s_ for s_ in cert if s_["step"] == RESUME_AFTER][0]
+                     ~~~~^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '-'
+       13.24 real        13.00 user         0.05 sys
+            33554432  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                3067  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   7  voluntary context switches
+                9265  involuntary context switches
+        206759226849  instructions retired
+         45076739430  cycles elapsed
+            25706976  peak memory footprint

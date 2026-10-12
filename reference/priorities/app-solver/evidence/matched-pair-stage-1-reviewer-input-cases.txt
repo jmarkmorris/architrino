@@ -1,0 +1,259 @@
+# Generated from the INPUT fields of matched-pair-review-affine-controls-2026-10-11.json by the Stage 1 adapter.
+# Kinematics per the reference instrument: z(S) = p + u*S, reception at the window upper end. Segment local time is S - lower.
+# acceleration_tolerance 0.01 and far-field fraction 0.5 are this adapter's choices; they are not part of the reference.
+case reviewer/static-complete/enabled/traversal=0
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 10.1 0 0 0
+end
+
+case reviewer/static-complete/enabled/traversal=1
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 10.1 0 0 0
+end
+
+case reviewer/static-complete/disabled/traversal=0
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 10.1 0 0 0
+end
+
+case reviewer/static-complete/disabled/traversal=1
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy disabled
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 10.1 0 0 0
+end
+
+case reviewer/affine-complete/enabled/traversal=0
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -200 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -200 0 0 0 0 0 0 0 0 0 98.00 0.01 0 0
+path minus -1 -200 0 0 0 0 0 0 0 0 0 94.10 0.03 0 0
+end
+
+case reviewer/affine-complete/enabled/traversal=1
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -200 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -200 0 0 0 0 0 0 0 0 0 98.00 0.01 0 0
+path minus -1 -200 0 0 0 0 0 0 0 0 0 94.10 0.03 0 0
+end
+
+case reviewer/affine-complete/disabled/traversal=0
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -200 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -200 0 0 0 0 0 0 0 0 0 98.00 0.01 0 0
+path minus -1 -200 0 0 0 0 0 0 0 0 0 94.10 0.03 0 0
+end
+
+case reviewer/affine-complete/disabled/traversal=1
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy disabled
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -200 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -200 0 0 0 0 0 0 0 0 0 98.00 0.01 0 0
+path minus -1 -200 0 0 0 0 0 0 0 0 0 94.10 0.03 0 0
+end
+
+case reviewer/mixed-root-window/enabled/traversal=0
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -10.05 0 0 0 0 0 0 0 0 0 0.00 0 0 0
+path plus 1 -10.05 0 0 0 0 0 0 0 0 0 10.00 0 0 0
+path minus -1 -10.05 0 0 0 0 0 0 0 0 0 10.10 0 0 0
+end
+
+case reviewer/mixed-root-window/enabled/traversal=1
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -10.05 0 0 0 0 0 0 0 0 0 0.00 0 0 0
+path plus 1 -10.05 0 0 0 0 0 0 0 0 0 10.00 0 0 0
+path minus -1 -10.05 0 0 0 0 0 0 0 0 0 10.10 0 0 0
+end
+
+case reviewer/mixed-root-window/disabled/traversal=0
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -10.05 0 0 0 0 0 0 0 0 0 0.00 0 0 0
+path plus 1 -10.05 0 0 0 0 0 0 0 0 0 10.00 0 0 0
+path minus -1 -10.05 0 0 0 0 0 0 0 0 0 10.10 0 0 0
+end
+
+case reviewer/mixed-root-window/disabled/traversal=1
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy disabled
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -10.05 0 0 0 0 0 0 0 0 0 0.00 0 0 0
+path plus 1 -10.05 0 0 0 0 0 0 0 0 0 10.00 0 0 0
+path minus -1 -10.05 0 0 0 0 0 0 0 0 0 10.10 0 0 0
+end
+
+case reviewer/lower-boundary-root/enabled/traversal=0
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -10.1 0 0 0 0 0 0 0 0 0 0.0 0 0 0
+path plus 1 -10.1 0 0 0 0 0 0 0 0 0 10.0 0 0 0
+path minus -1 -10.1 0 0 0 0 0 0 0 0 0 10.1 0 0 0
+end
+
+case reviewer/lower-boundary-root/enabled/traversal=1
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -10.1 0 0 0 0 0 0 0 0 0 0.0 0 0 0
+path plus 1 -10.1 0 0 0 0 0 0 0 0 0 10.0 0 0 0
+path minus -1 -10.1 0 0 0 0 0 0 0 0 0 10.1 0 0 0
+end
+
+case reviewer/lower-boundary-root/disabled/traversal=0
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -10.1 0 0 0 0 0 0 0 0 0 0.0 0 0 0
+path plus 1 -10.1 0 0 0 0 0 0 0 0 0 10.0 0 0 0
+path minus -1 -10.1 0 0 0 0 0 0 0 0 0 10.1 0 0 0
+end
+
+case reviewer/lower-boundary-root/disabled/traversal=1
+reception 0
+tolerance 0.01
+fraction 0.5
+coupling 1
+field_speed 1
+policy disabled
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -10.1 0 0 0 0 0 0 0 0 0 0.0 0 0 0
+path plus 1 -10.1 0 0 0 0 0 0 0 0 0 10.0 0 0 0
+path minus -1 -10.1 0 0 0 0 0 0 0 0 0 10.1 0 0 0
+end
+

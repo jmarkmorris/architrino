@@ -1,0 +1,640 @@
+{
+ "file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-val3-three.json",
+ "mode": "three",
+ "N_window": 500,
+ "controls_all_pass": true,
+ "control_order": [
+  "(0a) fast node lookup equals the frozen ",
+  "(0b) closed forms (hit, D_t, r, radial) ",
+  "(0c) known: radial sum at release enclos",
+  "(1) continuity of the antipode term at i",
+  "(2) negative: antipode term at the probe",
+  "(4) negative: wrong antipode path map (q",
+  "(3) regression (not independent evidence"
+ ],
+ "n_steps": 21,
+ "stop_reason": "plan exhausted (21 steps certified)",
+ "reached_time": [
+  "2.076684593623649597167969",
+  "2.076684709182828044891357"
+ ],
+ "per_step": [
+  {
+   "step": 1,
+   "t_end": "1.8766847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.11549262",
+    "0.11549320"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.001514041",
+    "0.001523767"
+   ],
+   "lam_range": [
+    "0.001306490",
+    "0.001943823"
+   ]
+  },
+  {
+   "step": 2,
+   "t_end": "1.8866847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.10532356",
+    "0.10532417"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.001300062",
+    "0.001309822"
+   ],
+   "lam_range": [
+    "0.001091008",
+    "0.001732732"
+   ]
+  },
+  {
+   "step": 3,
+   "t_end": "1.8966847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.09515176",
+    "0.09515239"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.001084472",
+    "0.001094507"
+   ],
+   "lam_range": [
+    "0.000874169",
+    "0.001520264"
+   ]
+  },
+  {
+   "step": 4,
+   "t_end": "1.9066847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.08497719",
+    "0.08497784"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000867361",
+    "0.000877677"
+   ],
+   "lam_range": [
+    "0.000655618",
+    "0.001306306"
+   ]
+  },
+  {
+   "step": 5,
+   "t_end": "1.9166847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.07479981",
+    "0.07480048"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000648811",
+    "0.000659379"
+   ],
+   "lam_range": [
+    "0.000435661",
+    "0.001090780"
+   ]
+  },
+  {
+   "step": 6,
+   "t_end": "1.9266847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.06461959",
+    "0.06462029"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000428743",
+    "0.000439599"
+   ],
+   "lam_range": [
+    "0.000214313",
+    "0.000873962"
+   ]
+  },
+  {
+   "step": 7,
+   "t_end": "1.9366847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.05443651",
+    "0.05443723"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "UNDECIDED",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000207136",
+    "0.000218284"
+   ],
+   "lam_range": [
+    "-0.00000866",
+    "0.000655555"
+   ]
+  },
+  {
+   "step": 8,
+   "t_end": "1.9466847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.04425053",
+    "0.04425128"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "UNDECIDED",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00001585",
+    "-0.00000463"
+   ],
+   "lam_range": [
+    "-0.00023318",
+    "0.000435572"
+   ]
+  },
+  {
+   "step": 9,
+   "t_end": "1.9566847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.03406162",
+    "0.03406240"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "UNDECIDED",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00024048",
+    "-0.00022896"
+   ],
+   "lam_range": [
+    "-0.00045911",
+    "0.000214167"
+   ]
+  },
+  {
+   "step": 10,
+   "t_end": "1.9666847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.02386975",
+    "0.02387056"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00046667",
+    "-0.00045484"
+   ],
+   "lam_range": [
+    "-0.00068670",
+    "-0.00000876"
+   ]
+  },
+  {
+   "step": 11,
+   "t_end": "1.9766847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.01367489",
+    "0.01367573"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00069434",
+    "-0.00068224"
+   ],
+   "lam_range": [
+    "-0.00091591",
+    "-0.00023328"
+   ]
+  },
+  {
+   "step": 12,
+   "t_end": "1.9866847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.00347701",
+    "0.00347787"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00092357",
+    "-0.00091116"
+   ],
+   "lam_range": [
+    "-0.00114647",
+    "-0.00045900"
+   ]
+  },
+  {
+   "step": 13,
+   "t_end": "1.9966847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "res_end": [
+    "-0.0067239",
+    "-0.0067230"
+   ],
+   "anti_s_range": [
+    "-0.0034778",
+    "0.00672781"
+   ],
+   "two_regime": true,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00115878",
+    "-0.00114144"
+   ],
+   "lam_range": [
+    "-0.00138333",
+    "-0.00068622"
+   ]
+  },
+  {
+   "step": 14,
+   "t_end": "2.0066847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "res_end": [
+    "-0.0169279",
+    "-0.0169270"
+   ],
+   "anti_s_range": [
+    "0.00672152",
+    "0.01693187"
+   ],
+   "two_regime": false,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00139232",
+    "-0.00137376"
+   ],
+   "lam_range": [
+    "-0.00161847",
+    "-0.00091551"
+   ]
+  },
+  {
+   "step": 15,
+   "t_end": "2.0166847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "res_end": [
+    "-0.0271350",
+    "-0.0271341"
+   ],
+   "anti_s_range": [
+    "0.01692449",
+    "0.02713906"
+   ],
+   "two_regime": false,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00162756",
+    "-0.00161424"
+   ],
+   "lam_range": [
+    "-0.00185505",
+    "-0.00114609"
+   ]
+  },
+  {
+   "step": 16,
+   "t_end": "2.0266847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "res_end": [
+    "-0.0373453",
+    "-0.0373443"
+   ],
+   "anti_s_range": [
+    "0.02713035",
+    "0.03734575"
+   ],
+   "two_regime": false,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00186573",
+    "-0.00185236"
+   ],
+   "lam_range": [
+    "-0.00209476",
+    "-0.00138520"
+   ]
+  },
+  {
+   "step": 17,
+   "t_end": "2.0366847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "res_end": [
+    "-0.0475588",
+    "-0.0475578"
+   ],
+   "anti_s_range": [
+    "0.03733715",
+    "0.04755230"
+   ],
+   "two_regime": false,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00210569",
+    "-0.00209180"
+   ],
+   "lam_range": [
+    "-0.00233612",
+    "-0.00162171"
+   ]
+  },
+  {
+   "step": 18,
+   "t_end": "2.0466847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "res_end": [
+    "-0.0577755",
+    "-0.0577744"
+   ],
+   "anti_s_range": [
+    "0.04754598",
+    "0.05776332"
+   ],
+   "two_regime": false,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00234722",
+    "-0.00233298"
+   ],
+   "lam_range": [
+    "-0.00257911",
+    "-0.00185978"
+   ]
+  },
+  {
+   "step": 19,
+   "t_end": "2.0566847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "res_end": [
+    "-0.0679955",
+    "-0.0679944"
+   ],
+   "anti_s_range": [
+    "0.05775684",
+    "0.06797637"
+   ],
+   "two_regime": false,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00259031",
+    "-0.00257592"
+   ],
+   "lam_range": [
+    "-0.00282379",
+    "-0.00209948"
+   ]
+  },
+  {
+   "step": 20,
+   "t_end": "2.0666847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "res_end": [
+    "-0.0782187",
+    "-0.0782175"
+   ],
+   "anti_s_range": [
+    "0.06796973",
+    "0.07819145"
+   ],
+   "two_regime": false,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00283515",
+    "-0.00282039"
+   ],
+   "lam_range": [
+    "-0.00307004",
+    "-0.00234080"
+   ]
+  },
+  {
+   "step": 21,
+   "t_end": "2.0766847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "res_end": [
+    "-0.0884452",
+    "-0.0884441"
+   ],
+   "anti_s_range": [
+    "0.07818466",
+    "0.08840857"
+   ],
+   "two_regime": false,
+   "lam_range_sign": "negative",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00308168",
+    "-0.00306656"
+   ],
+   "lam_range": [
+    "-0.00331806",
+    "-0.00258379"
+   ]
+  }
+ ],
+ "fail": [],
+ "residual_last_proved_positive_end": [
+  12,
+  "1.986684709182828044891357"
+ ],
+ "residual_first_proved_negative_end": [
+  13,
+  "1.996684709182828044891357"
+ ],
+ "attained_reception_certificate": true,
+ "generated_antipodal_history_last_step": [
+  21,
+  "0.07818466641358425281270221",
+  "0.08840857541173383710509099"
+ ],
+ "lambda_last_positive_end": [
+  7,
+  "1.936684709182828044891357"
+ ],
+ "lambda_first_negative_end": [
+  8,
+  "1.946684709182828044891357"
+ ],
+ "lambda_sign_change_certificate": true,
+ "reading": {
+  "t_anti": [
+   "1.990093452083992850850337",
+   "1.990094428329821710963733"
+  ],
+  "end_certified_negative": true,
+  "inside_review_apriori_t": true,
+  "inside_review_apriori_q": true,
+  "inside_review_apriori_qdot": true,
+  "step": 13
+ }
+}

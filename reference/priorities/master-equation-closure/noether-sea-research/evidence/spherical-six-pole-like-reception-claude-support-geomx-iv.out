@@ -1,0 +1,64 @@
+PID 20048
+[{"name": "(K1) known: closed forms (chord, D_t, tangential N/(r^3 D), radial sigma/(2 r D), identity 1 + r_q' v' = D) vs direct vector computation from the path maps, 300 random points of the expanded box, three classes", "max_abs_diff": {"unlike": "5.7397e-41", "like": "4.5918e-41", "antipode": "4.5918e-41"}, "pass": true}, {"name": "(W1) negative: source velocity sign flipped (wrong path map) at (0.6, 0.3, 0.3) gives a D_t differing by > 1e-3 in every class", "detail": {"unlike": {"D_closed": "0.950491444748807", "D_wrong_velocity": "1.04950855525119"}, "like": {"D_closed": "1.02970986799865", "D_wrong_velocity": "0.970290132001355"}, "antipode": {"D_closed": "1.04483143974208", "D_wrong_velocity": "0.95516856025792"}}, "pass": true}, {"name": "(K2) exact known: d(lambda_hat)/dt and d(a_rad)/dt closed forms vs Richardson differences on a prescribed history with an acceleration jump at s1 = 1 (generated segment), delays solved to 40 digits, at t = 2.4 and t = 2.7", "detail": {"2.4": {"q": "0.4472", "delayed_args": {"unlike": "1.272012", "like": "0.76684116", "antipode": "0.44295187"}, "beyond_seam": {"unlike": true, "like": false, "antipode": false}, "closed_dlambda": "-0.07136041665998619131755414", "fd_dlambda": "-0.07136041665998619131755414", "abs_err": "1.8662e-32", "abs_err_darad": "1.8683e-32"}, "2.7": {"q": "0.5573", "delayed_args": {"unlike": "1.6411673", "like": "1.0227121", "antipode": "0.75983239"}, "beyond_seam": {"unlike": true, "like": true, "antipode": false}, "closed_dlambda": "-0.09064362853518243577508496", "fd_dlambda": "-0.09064362853518243577508496", "abs_err": "3.9681e-30", "abs_err_darad": "3.968e-30"}}, "pass": true}, {"name": "(W2) negative: the pre-seam (window-type) acceleration used for the unlike source beyond the seam at t = 2.4 changes d(lambda_hat)/dt detectably (> 1e-6)", "correct": "-0.071360416659986191318", "wrong": "-0.073006010952941686604", "pass": true}]
+{
+"cells": [
+62,
+80
+],
+"min_N": "0.1711937937019974364552421",
+"min_M": "0.02343553736877136612395466",
+"argmin_cells": {
+"N": [
+"0.695",
+"0.395"
+],
+"M": [
+"0.695",
+"0.395"
+]
+},
+"max_N": "0.6540094682059804394618017",
+"max_M": "0.4639176368170438792418608",
+"min_chord_unlike": "0.9930095798327166727025724",
+"min_chord_like": "1.592401827428332621758696",
+"min_chord_antipode": "1.878745425694757840070065",
+"min_sin_q_minus_qp": "-0.009999833334166664682542438",
+"max_M_over_rU": "0.385358407882457704767053",
+"max_M_over_rL": "0.2913320173503272879929603",
+"D_unlike_range_for_v_le_0.40": [
+"0.8458566368470169180931788",
+"1"
+],
+"D_like_range_for_v_le_0.40": [
+"1",
+"1.116532806940130915197184"
+],
+"D_antipode_range_for_q_ge_qp": [
+"1",
+"1.137159122982180539675854"
+],
+"N_positive_on_box": true,
+"M_positive_on_box": true,
+"M_zero_q_at_qp_0.40": "0.724484834885",
+"M_zero_q_at_qp_0": "0.955316618125",
+"N_zero_q_at_qp_0.40": "1.02810475163",
+"N_zero_q_at_qp_0": "1.57079632679"
+}
+        2.35 real         2.28 user         0.02 sys
+            23117824  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2143  page reclaims
+                 331  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 119  voluntary context switches
+                1037  involuntary context switches
+         40379631891  instructions retired
+          8661074894  cycles elapsed
+            15417848  peak memory footprint

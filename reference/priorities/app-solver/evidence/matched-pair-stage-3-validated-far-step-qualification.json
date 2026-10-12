@@ -1,0 +1,232 @@
+{
+ "schema": "validated_far_step_prototype_qualification/v1",
+ "long_step_denominator": 256,
+ "all_passed": true,
+ "checks": [
+  {
+   "check": "K1 certified within budgets",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "K1 receiver velocity tube contains analytic bracket",
+   "passed": true,
+   "detail": "tube [-7.812500000e-08, -7.812499999e-08], bracket [-7.812500000e-08, -7.812500000e-08]"
+  },
+  {
+   "check": "K1 receiver position tube contains analytic bracket",
+   "passed": true,
+   "detail": "tube [-3.051757813e-10, -3.051757812e-10]"
+  },
+  {
+   "check": "K1 source velocity tube contains analytic bracket",
+   "passed": true,
+   "detail": "tube [7.812499999e-08, 7.812500000e-08]"
+  },
+  {
+   "check": "K1 source position tube contains analytic bracket",
+   "passed": true,
+   "detail": "tube [1.000000000e+01, 1.000000000e+01]"
+  },
+  {
+   "check": "K1 radius growth",
+   "passed": true,
+   "detail": "position 1.571606845e-20, velocity 4.023313522e-18"
+  },
+  {
+   "check": "K2 certified within budgets",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "K2 receiver velocity axis 0 contains bracket",
+   "passed": true,
+   "detail": "tube [-1.875000001e-07, -1.874999999e-07]"
+  },
+  {
+   "check": "K2 receiver position axis 0 contains bracket",
+   "passed": true,
+   "detail": "tube [-7.324218752e-10, -7.324218744e-10]"
+  },
+  {
+   "check": "K2 receiver velocity axis 1 contains bracket",
+   "passed": true,
+   "detail": "tube [-2.500000001e-07, -2.499999998e-07]"
+  },
+  {
+   "check": "K2 receiver position axis 1 contains bracket",
+   "passed": true,
+   "detail": "tube [-9.765625003e-10, -9.765624992e-10]"
+  },
+  {
+   "check": "K2 receiver z components contain zero",
+   "passed": true,
+   "detail": "exact zero"
+  },
+  {
+   "check": "K3 velocity bracket contains -kappa t / R^2 minus correction",
+   "passed": true,
+   "detail": "[-7.812500000e-08, -7.812500000e-08]"
+  },
+  {
+   "check": "K3 position bracket contains -kappa t^2 / (2 R^2)",
+   "passed": true,
+   "detail": "[-3.053283691e-10, -3.050231934e-10], exact -3.051757813e-10"
+  },
+  {
+   "check": "T1 first step certified within budgets",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "T1 receiver radius growth",
+   "passed": true,
+   "detail": "position 5.544730809e-12, velocity 1.419451087e-09; budgets 1.000000000e-08, 1.000000000e-08"
+  },
+  {
+   "check": "T1 receiver velocity tube contains true bracket",
+   "passed": true,
+   "detail": "tube [-7.817938163e-08, -7.534047945e-08], true [-7.672586649e-08, -7.672586239e-08]"
+  },
+  {
+   "check": "T1 receiver position tube contains true bracket",
+   "passed": true,
+   "detail": "tube [-3.053882095e-10, -2.942987479e-10], true [-3.016406733e-10, -3.013409542e-10]"
+  },
+  {
+   "check": "T1 source tubes contain analytic bracket",
+   "passed": true,
+   "detail": "velocity tube [7.812499999e-08, 7.812500000e-08]"
+  },
+  {
+   "check": "T2 second step certified within budgets",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "T2 second step inherits nonzero position and velocity radii",
+   "passed": true,
+   "detail": "inherited radii position 5.544730809e-12, velocity 1.419451087e-09"
+  },
+  {
+   "check": "T2 radii do not shrink across the join",
+   "passed": true,
+   "detail": "second-step radii position 2.185592566e-11, velocity 2.756214796e-09"
+  },
+  {
+   "check": "T2 start tube of step two contains end tube of step one",
+   "passed": true,
+   "detail": "position, z axis"
+  },
+  {
+   "check": "T2 receiver velocity tube contains true bracket at 2h",
+   "passed": true,
+   "detail": "tube [-1.537128665e-07, -1.482004369e-07], true [-1.508898941e-07, -1.508898618e-07]"
+  },
+  {
+   "check": "T2 receiver position tube contains true bracket at 2h",
+   "passed": true,
+   "detail": "tube [-1.211217304e-09, -1.167505452e-09]"
+  },
+  {
+   "check": "T4 hypotheses hold without a budget",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "check": "T4 unbudgeted tube contains the frozen true bracket",
+   "passed": true,
+   "detail": "velocity tube [-5.000003125e-05, -1.177884146e-05]"
+  },
+  {
+   "check": "T4 declined under the declared budgets",
+   "passed": true,
+   "detail": "VFS-BUDGET-01"
+  },
+  {
+   "check": "N1 unvalidated provenance",
+   "passed": true,
+   "detail": "VFS-H0-01: path source segment 0 has provenance 'step_doubling_estimate'"
+  },
+  {
+   "check": "N2 prescribed segment carrying a radius",
+   "passed": true,
+   "detail": "VFS-H0-01: path source segment 0: prescribed with radius"
+  },
+  {
+   "check": "N3 prescribed join with a velocity corner",
+   "passed": true,
+   "detail": "VFS-H0-01: path source join 1 is not exactly continuously differentiable"
+  },
+  {
+   "check": "N4 past at or above field speed",
+   "passed": true,
+   "detail": "VFS-H1-01: retained past is not sub-wake-speed"
+  },
+  {
+   "check": "N5 step longer than the separation",
+   "passed": true,
+   "detail": "VFS-H2-01: step boxes are not farther apart than h"
+  },
+  {
+   "check": "N6 root on the retained boundary: neither present nor absent",
+   "passed": true,
+   "detail": "VFS-H3-01: lower sign is neither uniformly present nor absent"
+  },
+  {
+   "check": "N7 strong coupling: step velocity box reaches field speed",
+   "passed": true,
+   "detail": "VFS-H1-01: step velocity box is not sub-wake-speed"
+  },
+  {
+   "check": "N8 enclosure iteration limit",
+   "passed": true,
+   "detail": "VFS-H5-01: no a priori enclosure was found"
+  },
+  {
+   "check": "N9 budget exceeded on a wide step",
+   "passed": true,
+   "detail": "VFS-BUDGET-01: the validated radius growth exceeds the declared budget"
+  },
+  {
+   "check": "P1 both pairs certified absent: zero acceleration",
+   "passed": true,
+   "detail": "conditional on the retained window being the complete emission domain"
+  },
+  {
+   "check": "T3 every step certified within budgets",
+   "passed": true,
+   "detail": "512 of 512; last code none"
+  },
+  {
+   "check": "T3 receiver velocity tube intersects the frozen true bracket",
+   "passed": true,
+   "detail": "tube [-1.982442495e-05, -1.940813417e-05], half-width 2.081453905e-07; true [-1.963423564e-05, -1.958320815e-05]"
+  },
+  {
+   "check": "T3 receiver position tube intersects the frozen true bracket",
+   "passed": true,
+   "detail": "tube [-1.783842033e-05, -1.750436890e-05], half-width 1.670257150e-07; true [-1.768122117e-05, -1.765219809e-05]"
+  },
+  {
+   "check": "T3 velocity tube contains the whole true bracket",
+   "passed": true,
+   "detail": "True"
+  },
+  {
+   "check": "T3 validated velocity tube versus the solver's aliased interval",
+   "passed": true,
+   "detail": "aliased [-2.000092009e-05, -2.000046003e-05]; disjoint, separation 1.760350723e-07"
+  },
+  {
+   "check": "T3 source tubes contain analytic bracket",
+   "passed": true,
+   "detail": "velocity tube [1.999997316e-05, 1.999997342e-05]"
+  },
+  {
+   "check": "T3 largest per-step velocity radius growth",
+   "passed": true,
+   "detail": "1.713785517e-09"
+  }
+ ]
+}

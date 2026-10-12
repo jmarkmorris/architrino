@@ -1,0 +1,35 @@
+Known checks passed before targets: closed-form Riemann bracket; static I = 1/R^2; static weighted integral = 2/R^2.
+
+Known static case: A = 0, kappa = 1/1000, h = 2, trial radius 1/1000
+  PASS  H1 sub-wake speed: v+ = 2.000400060e-05
+  PASS  H2 isolation: box separation 9.998000000e+00 > h
+  PASS  H3 present, receiver <- source: sup distance 1.000100000e+01 < T - S_min = 20
+  PASS  H3 present, source <- receiver: sup distance 1.000100000e+01 < T - S_min = 20
+  PASS  H5 receiver position box: 2.000400060e-05 <= 1.000000000e-03
+  PASS  H5 source position box: 2.000400060e-05 <= 1.000000000e-03
+  far-field: A = [-1.000200030e-05, 1.000200030e-05]
+    velocity tube at T+h [-2.000400060e-05, 2.000400060e-05], half-width 2.000400060e-05
+  PASS  far-field velocity tube contains true bracket: true in [-2.000002667e-05, -1.999997333e-05]
+  PASS  far-field position tube contains true bracket: tube [-2.000400060e-05, 2.000400060e-05], true in [-2.000126333e-05, -1.999873667e-05]
+  range: A = [-1.000200030e-05, -9.998000300e-06]
+    velocity tube at T+h [-2.000400060e-05, -1.999600060e-05], half-width 4.000000080e-09
+  PASS  range velocity tube contains true bracket: true in [-2.000002667e-05, -1.999997333e-05]
+  PASS  range position tube contains true bracket: tube [-2.000400060e-05, -1.999600060e-05], true in [-2.000126333e-05, -1.999873667e-05]
+
+Target: A = 1/5, kappa = 1/1000, h = 2, trial radius 1/1000
+  PASS  H1 sub-wake speed: v+ = 6.000000000e-01
+  PASS  H2 isolation: box separation 9.998000000e+00 > h
+  PASS  H3 present, receiver <- source: sup distance 1.000100000e+01 < T - S_min = 20
+  PASS  H3 present, source <- receiver: sup distance 1.000100000e+01 < T - S_min = 20
+  PASS  H5 receiver position box: 5.001000150e-05 <= 1.000000000e-03
+  PASS  H5 source position box: 2.000400060e-05 <= 1.000000000e-03
+  far-field: A = [-2.500500075e-05, 2.500500075e-05]
+    velocity tube at T+h [-5.001000150e-05, 5.001000150e-05], half-width 5.001000150e-05
+  PASS  far-field velocity tube contains true bracket: true in [-1.963423564e-05, -1.958320815e-05]
+  PASS  far-field position tube contains true bracket: tube [-5.001000150e-05, 5.001000150e-05], true in [-1.768122117e-05, -1.765219809e-05]
+  range: A = [-2.500500075e-05, -6.006127153e-06]
+    velocity tube at T+h [-5.001000150e-05, -1.201225431e-05], half-width 1.899887360e-05
+  PASS  range velocity tube contains true bracket: true in [-1.963423564e-05, -1.958320815e-05]
+  PASS  range position tube contains true bracket: tube [-5.001000150e-05, -1.201225431e-05], true in [-1.768122117e-05, -1.765219809e-05]
+
+All checks passed.

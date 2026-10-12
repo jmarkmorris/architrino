@@ -1,0 +1,69 @@
+PID 17450
+{
+ "last20_deg1_lo": {
+  "zero_t": 1.940545970725175,
+  "slope_at_end": -0.019943509012245866
+ },
+ "last20_deg1_mid": {
+  "zero_t": 1.9568195943514342,
+  "slope_at_end": -0.019736464211100833
+ },
+ "last20_deg1_hi": {
+  "zero_t": 1.9734382737212237,
+  "slope_at_end": -0.0195294194099558
+ },
+ "last20_deg2_lo": {
+  "zero_t": 1.9319576942079342,
+  "slope_at_end": -0.021300033728461835
+ },
+ "last20_deg2_mid": {
+  "zero_t": 1.9464101620243197,
+  "slope_at_end": -0.02108358854499945
+ },
+ "last20_deg2_hi": {
+  "zero_t": 1.961021480472298,
+  "slope_at_end": -0.020867143361537048
+ },
+ "last40_deg1_lo": {
+  "zero_t": 1.953833512064471,
+  "slope_at_end": -0.018529179417353697
+ },
+ "last40_deg1_mid": {
+  "zero_t": 1.9711583142434552,
+  "slope_at_end": -0.018351300863991928
+ },
+ "last40_deg1_hi": {
+  "zero_t": 1.9888222612126945,
+  "slope_at_end": -0.018173422310630166
+ },
+ "last40_deg2_lo": {
+  "zero_t": 1.9318690407984702,
+  "slope_at_end": -0.021313913663293653
+ },
+ "last40_deg2_mid": {
+  "zero_t": 1.9467298761513685,
+  "slope_at_end": -0.021036917300711964
+ },
+ "last40_deg2_hi": {
+  "zero_t": 1.9618839176467344,
+  "slope_at_end": -0.02075992093813029
+ }
+}
+        0.07 real         0.05 user         0.01 sys
+            26460160  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2710  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  88  involuntary context switches
+           564270935  instructions retired
+           242266918  cycles elapsed
+            16515552  peak memory footprint

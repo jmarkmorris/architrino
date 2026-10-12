@@ -1,0 +1,5550 @@
+{
+ "g": "1/10",
+ "N_window": 4000,
+ "mode": "three (all classes moving, generated history)",
+ "plan": {
+  "Delta": "0.01",
+  "max_step_number": 134,
+  "adaptation": "none; stop at the first uncertified step"
+ },
+ "controls": [
+  {
+   "name": "(0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the EXPANDED box q <= 0.7, q' <= 0.4, v' <= 0.4",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "8.8747e-31",
+    "like": "5.9165e-31",
+    "antipode": "3.9443e-31"
+   }
+  },
+  {
+   "name": "(E) expanded-domain box q in [0.39, 0.62], q' in [0, 0.31], v' in [0, 0.30] (144 cells): unlike/like N > 0 and M > 0, every separation r > 0.9, D_t > 0.5 with unlike <= 1 (approaching), like >= 1 and antipode >= 1 (receding; q' <= q on the box)",
+   "pass": true,
+   "box": {
+    "N_min": {
+     "unlike": "0.2969164",
+     "like": "0.2969164",
+     "antipode": "0.079914694"
+    },
+    "M_min": {
+     "unlike": "0.14386591",
+     "like": "0.14386591",
+     "antipode": "-0.58103516"
+    },
+    "r_min": {
+     "unlike": "1.0123403",
+     "like": "1.5897771",
+     "antipode": "1.9046671"
+    },
+    "D_range": {
+     "unlike": [
+      "0.88252912",
+      "1.0"
+     ],
+     "like": [
+      "1.0",
+      "1.0875554"
+     ],
+     "antipode": [
+      "1.0",
+      "1.0915176"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(2) reconciliation at the accepted step-94 state: g F(q) (five-image field) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum intersects g n.A",
+   "pass": true,
+   "gF": [
+    "0.1117529946038295211893916",
+    "0.1117886674043152678785005"
+   ],
+   "tangent_sum_fixed": [
+    "0.1117657953736971650594194",
+    "0.1117758654950383246120421"
+   ],
+   "radial_sum_fixed": [
+    "-0.04592180810548503296753518",
+    "-0.04591874721005770291827163"
+   ],
+   "g_nA": [
+    "-0.04593753265221183695827679",
+    "-0.04590302248490977112777242"
+   ]
+  },
+  {
+   "name": "(3) record lookup: window case; frozen end strings contained at record ends in every family; continuity and two-part hull at T*; exact-string joins; hull across each family join; negatives: uncertified record, gap, wrong record file, range beyond covered history all refused",
+   "pass": true,
+   "detail": {
+    "window_lookup_equals_window": true,
+    "wave16_step5_end_contained": true,
+    "wave17_step40_end_contained": true,
+    "antipodal_b3_step21_end_contained": true,
+    "late_feedback_step60_end_contained": true,
+    "late_feedback_step94_end_contained": true,
+    "continuity_at_T_star": true,
+    "straddle_T_star_two_part_hull": true,
+    "family_and_file_joins_exact_strings": true,
+    "hull_across_each_family_join": true,
+    "neg_uncertified_record_refused": [
+     true,
+     "uncertified record refused: synthetic uncertified copy of wave16 step 5"
+    ],
+    "wave16_step11_certified_flag": false,
+    "neg_wave16_step11_refused": [
+     true,
+     "uncertified record refused: wave16 step 11"
+    ],
+    "neg_gap_refused": [
+     true,
+     "gap refused before wave16 step 3"
+    ],
+    "neg_wrong_record_file_detected": [
+     true,
+     "gap refused before antipodal-a step 1"
+    ],
+    "neg_wrong_record_state_at_the_right_time_detected": [
+     true,
+     "state discontinuity refused at wave17 step 2"
+    ],
+    "neg_beyond_covered_history_refused": true
+   }
+  },
+  {
+   "name": "(4) negative: like and unlike terms at the step-94 state with the wrong sign of the velocity term in D_t are disjoint from the correct ones",
+   "pass": true,
+   "detail": {
+    "like": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.1370686406868744588937701",
+      "0.1370799803502139532965351"
+     ],
+     "hit_wrong": [
+      "0.1462025369835815581784895",
+      "0.1462146731798032820643067"
+     ],
+     "Dt_correct": [
+      "1.032242258557322857108923",
+      "1.032246590287877271113721"
+     ],
+     "Dt_wrong": [
+      "0.9677534097121227288862786",
+      "0.9677577414426771428910767"
+     ]
+    },
+    "unlike": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.3765589932525459976457177",
+      "0.3789009306396596260689919"
+     ],
+     "hit_wrong": [
+      "0.3339826809415615220516747",
+      "0.3360381401432138410127796"
+     ],
+     "Dt_correct": [
+      "0.9397948480410760471617022",
+      "0.9403311707969756935384406"
+     ],
+     "Dt_wrong": [
+      "1.059668829203024306461559",
+      "1.060205151958923952838298"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(5) delay-root bracket: frozen narrow vs wide (+-0.15) agree to 1e-15 at the b3 step-21 state; +-0.12 vs +-0.15 intersect and agree to 1e-9 at the step-94 state (bisection resolution on record hulls); a non-straddling bracket (+-1e-4) is refused",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "b3_state_narrow_vs_wide": true,
+     "step94_state_0.12_vs_0.15": true,
+     "step94_endpoint_abs_diff": "1.2973e-15",
+     "tau_step94": [
+      "1.152932937030810666717737",
+      "1.154121274960548915675959"
+     ],
+     "chord_minus_tau_step94": "0.0513067",
+     "frozen_narrow_bracket_at_step94": "fails (root outside +-0.03)"
+    },
+    "like": {
+     "b3_state_narrow_vs_wide": true,
+     "step94_state_0.12_vs_0.15": true,
+     "step94_endpoint_abs_diff": "1.8599e-17",
+     "tau_step94": [
+      "1.616524745177800132014824",
+      "1.616546584221758055304568"
+     ],
+     "chord_minus_tau_step94": "-0.0197356",
+     "frozen_narrow_bracket_at_step94": "straddles"
+    },
+    "antipode": {
+     "b3_state_narrow_vs_wide": true,
+     "step94_state_0.12_vs_0.15": true,
+     "step94_endpoint_abs_diff": "1.7295e-18",
+     "tau_step94": [
+      "1.966964630319131613941345",
+      "1.966974417237014995018184"
+     ],
+     "chord_minus_tau_step94": "-0.00669224",
+     "frozen_narrow_bracket_at_step94": "straddles"
+    }
+   },
+   "non_straddling_refused": true
+  },
+  {
+   "name": "(1) restart regression (same-code, not independent): the step from the frozen step-93 strings intersects the frozen step-94 end strings and agrees to 1e-15 at N = 4000",
+   "pass": true,
+   "intersects": true,
+   "max_endpoint_abs_diff": "8.764e-22",
+   "end_q": [
+    "0.3992437701157277106661832",
+    "0.3992985410325688180050578"
+   ],
+   "frozen_end_q": [
+    "0.3992437701157277106661817",
+    "0.3992985410325688180050535"
+   ],
+   "end_v": [
+    "0.2888830859193191819274853",
+    "0.2890560052917000141660627"
+   ],
+   "frozen_end_v": [
+    "0.2888830859193191819271821",
+    "0.2890560052917000141651863"
+   ],
+   "reconcile_tangent": true,
+   "reconcile_radial": true
+  },
+  {
+   "name": "(6) self-append: after certifying the control step (from step 93), appending it through the checked path, a lookup inside it returns that step's box, a lookup beyond it is refused, and its box agrees with the frozen step-94 box",
+   "pass": true,
+   "detail": {
+    "records_before": 143,
+    "records_after": 144,
+    "lookup_inside_returns_its_box": true,
+    "lookup_beyond_refused": true,
+    "box_agrees_with_frozen_step94_S_to_1e-15": true
+   }
+  },
+  {
+   "name": "(7) restart wrapper: default and explicit selection of step 94 reproduce the exact frozen strings with t0 an interval; wrong g, wrong window, uncertified step, missing step and wrong Delta refused",
+   "pass": true,
+   "detail": {
+    "default_selects_last_certified_step_94_exact_strings": true,
+    "explicit_step_94_exact_strings": true,
+    "t0_interval": [
+     "2.806684593623649597167969",
+     "2.806684709182828044891357"
+    ],
+    "t0_is_interval_not_point": true,
+    "neg_wrong_g": [
+     true,
+     "g mismatch: 1/9"
+    ],
+    "neg_wrong_window": [
+     true,
+     "window mismatch (N or T* strings differ)"
+    ],
+    "neg_uncertified_step": [
+     true,
+     "requested step 94 is not certified"
+    ],
+    "neg_missing_step": [
+     true,
+     "requested step 999 not in the record"
+    ],
+    "neg_wrong_Delta": [
+     true,
+     "Delta mismatch"
+    ]
+   }
+  }
+ ],
+ "steps": [
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.106684593623649597167969",
+    "3.116684709182828044891357"
+   ],
+   "S": [
+    "0.4906834785644028345409397",
+    "0.4940389445823966678033915"
+   ],
+   "VS": [
+    "0.3204592363545655472945774",
+    "0.3219242478658278611832431"
+   ],
+   "a0": [
+    "0.1018043099428307320345419",
+    "0.1033438062721439273292762"
+   ],
+   "ap": [
+    "-0.03609530319342920134690121",
+    "-0.0239217895343167190710711"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.089700345396298959693467",
+      "1.091823355489906701095956"
+     ],
+     "tau_range": [
+      "1.08761546876071202601763",
+      "1.091823355489906701095956"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9408945406666773314589866",
+      "0.9420711777774308498735931"
+     ],
+     "Dt_range": [
+      "0.9403899518630368235598523",
+      "0.9428518654396994229849961"
+     ],
+     "delayed_arg_range": [
+      "2.014861238133742896072013",
+      "2.029069240422116018873727"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.2024962654515619467521183",
+      "0.2086531026262110532638417"
+     ],
+     "history_qdot_range": [
+      "0.2033601879849574221452427",
+      "0.2065370363137128826855435"
+     ],
+     "hit0": [
+      "0.3678209388009214772332274",
+      "0.3743587944269990318987917"
+     ],
+     "hit_fixed0": [
+      "0.4049456182336985903011858",
+      "0.405056555994985486714661"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.07761546876071202601763",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.6481765289509148511806556",
+     "delayed_arg_start": [
+      "2.014861238133742896072013",
+      "2.01698436378652908519789"
+     ],
+     "r0": [
+      "1.089268518602993344649672",
+      "1.092256373149324757019449"
+     ],
+     "history_qddot_range": [
+      "0.1049878862513729529533999",
+      "0.1051922949820856365095307"
+     ],
+     "history_qddot_start": [
+      "0.1049878862513729529533999",
+      "0.1051309790757425124690069"
+     ],
+     "history_q_range_recomputed": [
+      "0.2024962654515619467521183",
+      "0.2086531026262110532638417"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.2033601879849574221452427",
+      "0.2065370363137128826855435"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "like": {
+     "tau0": [
+      "1.656299600400593061638384",
+      "1.657075583261252500156474"
+     ],
+     "tau_range": [
+      "1.656299600400593061638384",
+      "1.658409526584499281697843"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.030750056578466042774243",
+      "1.03104611912274189626043"
+     ],
+     "Dt_range": [
+      "1.030416448061045715446111",
+      "1.031287865357556329781309"
+     ],
+     "delayed_arg_range": [
+      "1.448275067039150315470126",
+      "1.460385108782234983252973"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1049067572858912756381734",
+      "0.1078365557293226335681914"
+     ],
+     "history_qdot_range": [
+      "0.1454456132642908104938377",
+      "0.1474914818604009112854969"
+     ],
+     "hit0": [
+      "0.1146558112341636299472648",
+      "0.115123263699509561581083"
+     ],
+     "hit_fixed0": [
+      "0.1432157236896991998412331",
+      "0.1432407532100182731149286"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.646299600400593061638384",
+     "families_read_over_step": [
+      "wave16"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.08159035785632227057876858",
+     "delayed_arg_start": [
+      "1.449609010362397097011495",
+      "1.450385108782234983252973"
+     ],
+     "r0": [
+      "1.656299600400596403256908",
+      "1.657075583261249573053215"
+     ],
+     "history_qddot_range": [
+      "0.1020297698197320650751006",
+      "0.1021604499086585308159169"
+     ],
+     "history_qddot_start": [
+      "0.1020297698197320650751006",
+      "0.1020973429748549948054063"
+     ],
+     "history_q_range_recomputed": [
+      "0.1049067572858912756381734",
+      "0.1078365557293226335681914"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1454456132642908104938377",
+      "0.1474914818604009112854969"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "antipode": {
+     "tau0": [
+      "1.955135347921296348345695",
+      "1.955164447142411585329632"
+     ],
+     "tau_range": [
+      "1.954697694551908245563989",
+      "1.955164447142411585329632"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.024321920745768951635319",
+      "1.024330750671473661317132"
+     ],
+     "Dt_range": [
+      "1.024242232159873715870467",
+      "1.024747066568123055016808"
+     ],
+     "delayed_arg_range": [
+      "1.151520146481238011838337",
+      "1.161987014630919799327368"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.06640002373361589799667497",
+      "0.06761478694604145140159156"
+     ],
+     "history_qdot_range": [
+      "0.1155148231384235066993468",
+      "0.1165724689457398427791605"
+     ],
+     "hit0": [
+      "0.05377161043610901010709263",
+      "0.05379184136665930776772102"
+     ],
+     "hit_fixed0": [
+      "0.06452880701719066620984196",
+      "0.06454931090903025098997318"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.944697694551908245563989",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.2046975789927297978406007",
+     "delayed_arg_start": [
+      "1.151520146481238011838337",
+      "1.151549361261531696545662"
+     ],
+     "r0": [
+      "1.95513464006042458431102",
+      "1.955165155145448226648025"
+     ],
+     "history_qddot_range": [
+      "0.1008315341798952270619746",
+      "0.1012378499969623902629155"
+     ],
+     "history_qddot_start": [
+      "0.1010228570784039476020787",
+      "0.1010240326737850111348998"
+     ],
+     "history_q_range_recomputed": [
+      "0.06640002373361589799667381",
+      "0.06761478694604145140159269"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1155148231384235066993458",
+      "0.1165724689457398427791615"
+     ],
+     "history_two_part_hull_at_T_star": false
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4938931791910972282650879",
+    "0.4940389445823966678033915"
+   ],
+   "end_v_str": [
+    "0.3214772794539938546149228",
+    "0.3219242478658278611832431"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.166610301518906096449657",
+    "-1.166575840483191786522909"
+   ],
+   "antipode_residual_end": [
+    "-1.177393686604582681733323",
+    "-1.177357934372260968204733"
+   ],
+   "a_rad_start": [
+    "-0.06400806165299457709810136",
+    "-0.06357477655085470720559233"
+   ],
+   "lambda_hat_start": [
+    "-0.03939613526523871331894615",
+    "-0.0386872172225436403883651"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06439179557137139923376587",
+    "-0.06337533870779664574081977"
+   ],
+   "lambda_hat_range": [
+    "-0.04025988265618232849491022",
+    "-0.03830232659357990568783511"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07356418776018429544664548",
+      "0.07487175888539980637975834"
+     ],
+     "radial": [
+      "-0.09757175110328580012455715",
+      "-0.09718331197838384915180913"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02293116224683272598945296",
+      "0.02302465273990191231621659"
+     ],
+     "radial": [
+      "0.05853014365080752651230908",
+      "0.05857438475387236409424089"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005377161043610901010709263",
+      "0.005379184136665930776772102"
+     ],
+     "radial": [
+      "-0.02496645420051630348585329",
+      "-0.02496584932634322214802409"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1018725110506279224468077",
+    "0.103275595761967649472747"
+   ],
+   "radial_sum_start": [
+    "-0.06400806165299457709810136",
+    "-0.06357477655085470720559233"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.632917085382501553181458",
+     "1.634197018464368843365673"
+    ],
+    "unlike_pair_chord": [
+     "1.152996142596395383805235",
+     "1.154808119241424511208051"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 125,
+   "certified": true,
+   "self_appended_record_index": 174,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.087781162904992599185481",
+      "1.089332840347984064108226"
+     ],
+     "Dt": [
+      "0.9413833795622546841365225",
+      "0.9419934761002111282246433"
+     ],
+     "r": [
+      "1.087781162904993577838903",
+      "1.089332840347983366374707"
+     ],
+     "hist_q": [
+      "0.2065844698390127924779937",
+      "0.2086531026262110532638417"
+     ],
+     "hist_qdot": [
+      "0.2054605558102694196802405",
+      "0.2065370363137128826855435"
+     ],
+     "delayed_arg": [
+      "2.027351753275665533059743",
+      "2.028903546277835445705876"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.657646641979790185049319",
+      "1.658428175261434548396228"
+     ],
+     "Dt": [
+      "1.03065431093283224859734",
+      "1.030949999766784810261431"
+     ],
+     "r": [
+      "1.657646641979790256470731",
+      "1.658428175261434264607787"
+     ],
+     "hist_q": [
+      "0.1063663149070251703463657",
+      "0.1078365557293226335681914"
+     ],
+     "hist_qdot": [
+      "0.1464659109624881311445888",
+      "0.1474914818604009112854969"
+     ],
+     "delayed_arg": [
+      "1.458256418362215048771741",
+      "1.459038067203037859842038"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave16"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.95471216900627624207331",
+      "1.954742300394371660965522"
+     ],
+     "Dt": [
+      "1.02465758127661636304847",
+      "1.024666769268849458359601"
+     ],
+     "r": [
+      "1.954711425998869870015983",
+      "1.95474304354120469874005"
+     ],
+     "hist_q": [
+      "0.0676094197000830818213468",
+      "0.06761309928929705149666441"
+     ],
+     "hist_qdot": [
+      "0.1165678164928719965809571",
+      "0.1165710060653838087990505"
+     ],
+     "delayed_arg": [
+      "1.161942293229277936202447",
+      "1.161972540176551802818047"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06413024735728148553809421",
+    "-0.06388299751561125781383843"
+   ],
+   "lambda_hat_end": [
+    "-0.03975222384836771642189156",
+    "-0.03921739384785977379667014"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07364933545639621930881815",
+      "0.074327969175328165616653"
+     ],
+     "radial": [
+      "-0.09765442781418469918696679",
+      "-0.09745216870325974108059655"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02277381335464366229894671",
+      "0.02286768787412820779600676"
+     ],
+     "radial": [
+      "0.05848785977812323953573016",
+      "0.0585322228858521658063775"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005402686994950605804492872",
+      "0.00540477558399954153929814"
+     ],
+     "radial": [
+      "-0.02496367932122002588685758",
+      "-0.02496305169820368253961938"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1018258358059904874122577",
+    "0.1026004326334559149519579"
+   ],
+   "radial_sum_end": [
+    "-0.06413024735728148553809421",
+    "-0.06388299751561125781383843"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.116684593623649597167969",
+    "3.126684709182828044891357"
+   ],
+   "S": [
+    "0.4938931730787569366666755",
+    "0.4972633206161281437382745"
+   ],
+   "VS": [
+    "0.3214754457519063750912051",
+    "0.3229509588804673257933682"
+   ],
+   "a0": [
+    "0.1017551770435253481831612",
+    "0.1026711014639464610125096"
+   ],
+   "ap": [
+    "-0.03667404174959047435339561",
+    "-0.02579706488689846800067962"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.087781162904992599185481",
+      "1.089332840347984064108226"
+     ],
+     "tau_range": [
+      "1.085702748596437199379196",
+      "1.089332840347984064108226"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9413833795622546841365225",
+      "0.9419934761002111282246433"
+     ],
+     "Dt_range": [
+      "0.9408827023768936728263208",
+      "0.9427893093133643154218935"
+     ],
+     "delayed_arg_range": [
+      "2.027351753275665533059743",
+      "2.040981960586390845512161"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.2065844698390127924779937",
+      "0.2107237331342847392167343"
+     ],
+     "history_qdot_range": [
+      "0.2054605558102694196802405",
+      "0.2075891923441443825883134"
+     ],
+     "hit0": [
+      "0.3682466772819810965440907",
+      "0.371639845876640828083265"
+     ],
+     "hit_fixed0": [
+      "0.4060736316943495437750295",
+      "0.4061886774164969070907053"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.075702748596437199379196",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.6606670440928374881683856",
+     "delayed_arg_start": [
+      "2.027351753275665533059743",
+      "2.028903546277835445705876"
+     ],
+     "r0": [
+      "1.087781162904993577838903",
+      "1.089332840347983366374707"
+     ],
+     "history_qddot_range": [
+      "0.1051097500542116441573168",
+      "0.10525371597917239887016"
+     ],
+     "history_qddot_start": [
+      "0.1051097500542116441573168",
+      "0.1051922949820856365095307"
+     ],
+     "history_q_range_recomputed": [
+      "0.2065844698390127924779937",
+      "0.2107237331342847392167343"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.2054605558102694196802405",
+      "0.2075891923441443825883134"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "like": {
+     "tau0": [
+      "1.657646641979790185049319",
+      "1.658428175261434548396228"
+     ],
+     "tau_range": [
+      "1.657646641979790185049319",
+      "1.659759149675844926048187"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.03065431093283224859734",
+      "1.030949999766784810261431"
+     ],
+     "Dt_range": [
+      "1.030316896899210372541051",
+      "1.031189992110037771646984"
+     ],
+     "delayed_arg_range": [
+      "1.456925443947804671119782",
+      "1.469038067203037859842038"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1063663149070251703463657",
+      "0.1093165795203926841398247"
+     ],
+     "history_qdot_range": [
+      "0.1464659109624881311445888",
+      "0.148513396354495858293139"
+     ],
+     "hit0": [
+      "0.1138690667732183114947335",
+      "0.1143384393706410389800338"
+     ],
+     "hit_fixed0": [
+      "0.1426474608115757832349791",
+      "0.142673202591548643420086"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.647646641979790185049319",
+     "families_read_over_step": [
+      "wave16",
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.09024073476497662622842458",
+     "delayed_arg_start": [
+      "1.458256418362215048771741",
+      "1.459038067203037859842038"
+     ],
+     "r0": [
+      "1.657646641979790256470731",
+      "1.658428175261434264607787"
+     ],
+     "history_qddot_range": [
+      "0.1020921399264416947358196",
+      "0.1022274496754912763519164"
+     ],
+     "history_qddot_start": [
+      "0.1020921399264416947358196",
+      "0.1021604499086585308159169"
+     ],
+     "history_q_range_recomputed": [
+      "0.1063663149070251703463657",
+      "0.1093165795203926841398247"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1464659109624881311445888",
+      "0.148513396354495858293139"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "antipode": {
+     "tau0": [
+      "1.95471216900627624207331",
+      "1.954742300394371660965522"
+     ],
+     "tau_range": [
+      "1.954272628482370530260036",
+      "1.954742300394371660965522"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.02465758127661636304847",
+      "1.024666769268849458359601"
+     ],
+     "Dt_range": [
+      "1.024576544753294402298636",
+      "1.025086514149127119059565"
+     ],
+     "delayed_arg_range": [
+      "1.161942293229277936202447",
+      "1.172412080700457514631321"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.0676094197000830818213468",
+      "0.06883555602640652662461082"
+     ],
+     "history_qdot_range": [
+      "0.1165678164928719965809571",
+      "0.1176259966360348252294899"
+     ],
+     "hit0": [
+      "0.05402686994950605804492872",
+      "0.0540477558399954153929814"
+     ],
+     "hit_fixed0": [
+      "0.06499471158551975416055883",
+      "0.06501589155043305927925347"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.944272628482370530260036",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1942725129231920825366477",
+     "delayed_arg_start": [
+      "1.161942293229277936202447",
+      "1.161972540176551802818047"
+     ],
+     "r0": [
+      "1.954711425998869870015983",
+      "1.95474304354120469874005"
+     ],
+     "history_qddot_range": [
+      "0.1008514582483845841834906",
+      "0.1012627359449515298552354"
+     ],
+     "history_qddot_start": [
+      "0.1010450625890784556462191",
+      "0.1010462950693700367740415"
+     ],
+     "history_q_range_recomputed": [
+      "0.06760941970008308182134563",
+      "0.06883555602640652662461199"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1165678164928719965809561",
+      "0.1176259966360348252294909"
+     ],
+     "history_two_part_hull_at_T_star": false
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.4971130336321490514802339",
+    "0.4972633206161281437382745"
+   ],
+   "end_v_str": [
+    "0.3224929975223416285730367",
+    "0.3229509588804673257933682"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.177393686604582681733323",
+    "-1.177357934372260968204733"
+   ],
+   "antipode_residual_end": [
+    "-1.188184614804335662213601",
+    "-1.188147522408673378625949"
+   ],
+   "a_rad_start": [
+    "-0.06413024735728148553809421",
+    "-0.06388299751561125781383843"
+   ],
+   "lambda_hat_start": [
+    "-0.03975222384836771642189156",
+    "-0.03921739384785977379667014"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06451425109619287144995431",
+    "-0.06368009158773911697334892"
+   ],
+   "lambda_hat_range": [
+    "-0.0406172302540741805072065",
+    "-0.03883221112519402717697304"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07364933545639621930881815",
+      "0.074327969175328165616653"
+     ],
+     "radial": [
+      "-0.09765442781418469918696679",
+      "-0.09745216870325974108059655"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02277381335464366229894671",
+      "0.02286768787412820779600676"
+     ],
+     "radial": [
+      "0.05848785977812323953573016",
+      "0.0585322228858521658063775"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005402686994950605804492872",
+      "0.00540477558399954153929814"
+     ],
+     "radial": [
+      "-0.02496367932122002588685758",
+      "-0.02496305169820368253961938"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1018258358059904874122577",
+    "0.1026004326334559149519579"
+   ],
+   "radial_sum_start": [
+    "-0.06413024735728148553809421",
+    "-0.06388299751561125781383843"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.634141483060750378372028",
+     "1.635423829168841041518638"
+    ],
+    "unlike_pair_chord": [
+     "1.151255357853645532273194",
+     "1.153074851577299505620594"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 126,
+   "certified": true,
+   "self_appended_record_index": 175,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.085867676013921148178036",
+      "1.087429947659080720000179"
+     ],
+     "Dt": [
+      "0.9416876760835613355628606",
+      "0.942300027274769411130838"
+     ],
+     "r": [
+      "1.085867676013921332254494",
+      "1.087429947659080587179579"
+     ],
+     "hist_q": [
+      "0.208644330884618197257004",
+      "0.2107237331342847392167343"
+     ],
+     "hist_qdot": [
+      "0.2065116533108115361218137",
+      "0.2075891923441443825883134"
+     ],
+     "delayed_arg": [
+      "2.03925464596456887716779",
+      "2.040817033168906896713321"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.658990422912980900919389",
+      "1.659777524621305669750471"
+     ],
+     "Dt": [
+      "1.030552978341321433455038",
+      "1.030848315814260731102202"
+     ],
+     "r": [
+      "1.658990422912980904426124",
+      "1.659777524621305179830658"
+     ],
+     "hist_q": [
+      "0.1078360786236463737425484",
+      "0.1093165795203926841398247"
+     ],
+     "hist_qdot": [
+      "0.1474868323617525480919471",
+      "0.148513396354495858293139"
+     ],
+     "delayed_arg": [
+      "1.466907069002343927417498",
+      "1.467694286269847143971968"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.954287214457591231745397",
+      "1.954318414814868172719605"
+     ],
+     "Dt": [
+      "1.024995303332195293442235",
+      "1.025004863434159623769684"
+     ],
+     "r": [
+      "1.954286434633781469999241",
+      "1.95431919477460665270154"
+     ],
+     "hist_q": [
+      "0.06882999402579837801157057",
+      "0.06883384019933457538545902"
+     ],
+     "hist_qdot": [
+      "0.1176212174784909597812962",
+      "0.1176245223291859755722"
+     ],
+     "delayed_arg": [
+      "1.172366178808781424448364",
+      "1.17239749472523681314596"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06430970579507197310131694",
+    "-0.06406060865623552739441536"
+   ],
+   "lambda_hat_end": [
+    "-0.04023671318557777008614007",
+    "-0.03969202765587307068428273"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07349117789941425394980776",
+      "0.07417618666760567829310333"
+     ],
+     "radial": [
+      "-0.09779490021346035440912521",
+      "-0.09759094132830782629029286"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02261642547989995660250746",
+      "0.02271068609262558368168769"
+     ],
+     "radial": [
+      "0.05844607551504548809742223",
+      "0.0584905625475557240953398"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005428199740832551147128449",
+      "0.005430356026806546436132882"
+     ],
+     "radial": [
+      "-0.02496088109665710678961397",
+      "-0.0249602298754834251994623"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1015358031201467616994437",
+    "0.1023172287870378084109239"
+   ],
+   "radial_sum_end": [
+    "-0.06430970579507197310131694",
+    "-0.06406060865623552739441536"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.126684593623649597167969",
+    "3.136684709182828044891357"
+   ],
+   "S": [
+    "0.4971130273328142530120779",
+    "0.500497949727296268664882"
+   ],
+   "VS": [
+    "0.3224911077219020881262438",
+    "0.3239748633531576595281294"
+   ],
+   "a0": [
+    "0.1014625954198397349352277",
+    "0.1023904472690333734761215"
+   ],
+   "ap": [
+    "-0.03779600879080893585820148",
+    "-0.02663843101346639720891406"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.085867676013921148178036",
+      "1.087429947659080720000179"
+     ],
+     "tau_range": [
+      "1.08379607271600804537099",
+      "1.087429947659080720000179"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9416876760835613355628606",
+      "0.942300027274769411130838"
+     ],
+     "Dt_range": [
+      "0.9411893872130277518331043",
+      "0.9431063507565421682571796"
+     ],
+     "delayed_arg_range": [
+      "2.03925464596456887716779",
+      "2.052888636466819999520367"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.208644330884618197257004",
+      "0.2128048882705499139362539"
+     ],
+     "history_qdot_range": [
+      "0.2065116533108115361218137",
+      "0.2086419623329584267544643"
+     ],
+     "hit0": [
+      "0.3674558894970712697490388",
+      "0.3708809333380283914655167"
+     ],
+     "hit_fixed0": [
+      "0.4072052496478984823594617",
+      "0.4073245599657208887116664"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.07379607271600804537099",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.6725699367817408322764326",
+     "delayed_arg_start": [
+      "2.03925464596456887716779",
+      "2.040817033168906896713321"
+     ],
+     "r0": [
+      "1.085867676013921332254494",
+      "1.087429947659080587179579"
+     ],
+     "history_qddot_range": [
+      "0.1051707100481124743686839",
+      "0.1053152261017640482675959"
+     ],
+     "history_qddot_start": [
+      "0.1051707100481124743686839",
+      "0.10525371597917239887016"
+     ],
+     "history_q_range_recomputed": [
+      "0.208644330884618197257004",
+      "0.2128048882705499139362539"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.2065116533108115361218137",
+      "0.2086419623329584267544643"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "like": {
+     "tau0": [
+      "1.658990422912980900919389",
+      "1.659777524621305669750471"
+     ],
+     "tau_range": [
+      "1.658990422912980900919389",
+      "1.661105395443021803974047"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.030552978341321433455038",
+      "1.030848315814260731102202"
+     ],
+     "Dt_range": [
+      "1.02999550208069213235092",
+      "1.03114942677362879369864"
+     ],
+     "delayed_arg_range": [
+      "1.465579198180627793193922",
+      "1.477694286269847143971968"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1063663149070251703463657",
+      "0.1108068253574295505253547"
+     ],
+     "history_qdot_range": [
+      "0.1464659109624881311445888",
+      "0.1495358622220623240124639"
+     ],
+     "hit0": [
+      "0.1130821273994997830125373",
+      "0.1135534304631279184084384"
+     ],
+     "hit_fixed0": [
+      "0.1420787761052983396937309",
+      "0.1421052512340048682285421"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.648990422912980900919389",
+     "families_read_over_step": [
+      "wave16",
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.09889448899779974830256458",
+     "delayed_arg_start": [
+      "1.466907069002343927417498",
+      "1.467694286269847143971968"
+     ],
+     "r0": [
+      "1.658990422912980904426124",
+      "1.659777524621305179830658"
+     ],
+     "history_qddot_range": [
+      "0.1020921399264416947358196",
+      "0.1022739375121181318059557"
+     ],
+     "history_qddot_start": [
+      "0.1021551476482643037087539",
+      "0.1022274496754912763519164"
+     ],
+     "history_q_range_recomputed": [
+      "0.1063663149070251703463657",
+      "0.1108068253574295505253547"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1464659109624881311445888",
+      "0.1495358622220623240124639"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "antipode": {
+     "tau0": [
+      "1.954287214457591231745397",
+      "1.954318414814868172719605"
+     ],
+     "tau_range": [
+      "1.953845805125998863142608",
+      "1.954318414814868172719605"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.024995303332195293442235",
+      "1.025004863434159623769684"
+     ],
+     "Dt_range": [
+      "1.024912908269201763812028",
+      "1.025428041153046353320094"
+     ],
+     "delayed_arg_range": [
+      "1.172366178808781424448364",
+      "1.182838904056829181748749"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.06882999402579837801157057",
+      "0.07006750030552378800966649"
+     ],
+     "history_qdot_range": [
+      "0.1176212174784909597812962",
+      "0.1186799239587784118368383"
+     ],
+     "hit0": [
+      "0.05428199740832551147128449",
+      "0.05430356026806546436132882"
+     ],
+     "hit_fixed0": [
+      "0.06546299600950512247779153",
+      "0.06548487549233155631144072"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.943845805125998863142608",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1838456895668204154192197",
+     "delayed_arg_start": [
+      "1.172366178808781424448364",
+      "1.17239749472523681314596"
+     ],
+     "r0": [
+      "1.954286434633781469999241",
+      "1.95431919477460665270154"
+     ],
+     "history_qddot_range": [
+      "0.1008717033457538393330519",
+      "0.1012879761339747881228762"
+     ],
+     "history_qddot_start": [
+      "0.1010676026980166419275506",
+      "0.1010688946273830766367991"
+     ],
+     "history_q_range_recomputed": [
+      "0.06882999402579837801156938",
+      "0.07006750030552378800966767"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1176212174784909597812952",
+      "0.1186799239587784118368393"
+     ],
+     "history_two_part_hull_at_T_star": false
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.5003430304378086612845551",
+    "0.500497949727296268664882"
+   ],
+   "end_v_str": [
+    "0.3235057336761004854755961",
+    "0.3239748633531576595281294"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.188184614804335662213601",
+    "-1.188147522408673378625949"
+   ],
+   "antipode_residual_end": [
+    "-1.198983120555719116172725",
+    "-1.198944645793354942644564"
+   ],
+   "a_rad_start": [
+    "-0.06430970579507197310131694",
+    "-0.06406060865623552739441536"
+   ],
+   "lambda_hat_start": [
+    "-0.04023671318557777008614007",
+    "-0.03969202765587307068428273"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06470540460079638564913878",
+    "-0.06382456253987665627254672"
+   ],
+   "lambda_hat_range": [
+    "-0.04113514954482052157822633",
+    "-0.03929510995890307096289169"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07349117789941425394980776",
+      "0.07417618666760567829310333"
+     ],
+     "radial": [
+      "-0.09779490021346035440912521",
+      "-0.09759094132830782629029286"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02261642547989995660250746",
+      "0.02271068609262558368168769"
+     ],
+     "radial": [
+      "0.05844607551504548809742223",
+      "0.0584905625475557240953398"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005428199740832551147128449",
+      "0.005430356026806546436132882"
+     ],
+     "radial": [
+      "-0.02496088109665710678961397",
+      "-0.0249602298754834251994623"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1015358031201467616994437",
+    "0.1023172287870378084109239"
+   ],
+   "radial_sum_start": [
+    "-0.06430970579507197310131694",
+    "-0.06406060865623552739441536"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.635366713572279466530739",
+     "1.636651464047324706116928"
+    ],
+    "unlike_pair_chord": [
+     "1.149509454172408538046158",
+     "1.15133648953718219695389"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 127,
+   "certified": true,
+   "self_appended_record_index": 176,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.083960184825644990913339",
+      "1.085533061652643483490553"
+     ],
+     "Dt": [
+      "0.9420049370685734782405958",
+      "0.9426195683227376978712385"
+     ],
+     "r": [
+      "1.083960184825645484040114",
+      "1.085533061652643367095192"
+     ],
+     "hist_q": [
+      "0.2107147059532287182419407",
+      "0.2128048882705499139362539"
+     ],
+     "hist_qdot": [
+      "0.2075633604112926608655007",
+      "0.2086419623329584267544643"
+     ],
+     "delayed_arg": [
+      "2.051151531971006113677416",
+      "2.052724524357183053978018"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.660027825609841056105096",
+      "1.660816155211163627085798"
+     ],
+     "Dt": [
+      "1.030292427896329096279998",
+      "1.030586430560699563631231"
+     ],
+     "r": [
+      "1.660027825609844701729628",
+      "1.66081615521116042098474"
+     ],
+     "hist_q": [
+      "0.1078360786236463737425484",
+      "0.1093165795203926841398247"
+     ],
+     "hist_qdot": [
+      "0.1474868323617525480919471",
+      "0.148513396354495858293139"
+     ],
+     "delayed_arg": [
+      "1.475868438412485970082171",
+      "1.476656883572986988786261"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.953860503028969536298774",
+      "1.953892799000685069549352"
+     ],
+     "Dt": [
+      "1.025335085976091374058723",
+      "1.025345026422119119317448"
+     ],
+     "r": [
+      "1.953859680609228849908726",
+      "1.953893613661327112163019"
+     ],
+     "hist_q": [
+      "0.07006175354552581390355093",
+      "0.07006575512597763962321674"
+     ],
+     "hist_qdot": [
+      "0.118675028786300854441257",
+      "0.1186784374106440149514286"
+     ],
+     "delayed_arg": [
+      "1.182791794622964527618617",
+      "1.182824206153858508592583"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.0644676914003713697855302",
+    "-0.06421692524187017428149504"
+   ],
+   "lambda_hat_end": [
+    "-0.04074278684282700356927801",
+    "-0.04018826832094068594245879"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07332410567512422853236757",
+      "0.07401549151125317332821403"
+     ],
+     "radial": [
+      "-0.09793399945944989978647757",
+      "-0.09772833361957890038879659"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02252796402308221223825643",
+      "0.02262215279053006073981627"
+     ],
+     "radial": [
+      "0.05842436749272587473357299",
+      "0.05846879241001168285816594"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005453699201176926049531704",
+      "0.005455924703667384353697998"
+     ],
+     "radial": [
+      "-0.02495805943364734473262562",
+      "-0.02495738403230295675086439"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1013057688993833668201557",
+    "0.1020935690054506184217283"
+   ],
+   "radial_sum_end": [
+    "-0.0644676914003713697855302",
+    "-0.06421692524187017428149504"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.136684593623649597167969",
+    "3.146684709182828044891357"
+   ],
+   "S": [
+    "0.5003430239761500739398322",
+    "0.5037428068315706665438122"
+   ],
+   "VS": [
+    "0.323503795178524282058749",
+    "0.324996557501721916257914"
+   ],
+   "a0": [
+    "0.1012299345900999930845513",
+    "0.1021694148564256729784624"
+   ],
+   "ap": [
+    "-0.0387699515240683369419758",
+    "-0.02766065591577814463344485"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.083960184825644990913339",
+      "1.085533061652643483490553"
+     ],
+     "tau_range": [
+      "1.081895726931306081189462",
+      "1.085533061652643483490553"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9420049370685734782405958",
+      "0.9426195683227376978712385"
+     ],
+     "Dt_range": [
+      "0.941509110769786758282191",
+      "0.9434364621118909821941084"
+     ],
+     "delayed_arg_range": [
+      "2.051151531971006113677416",
+      "2.064788982251521963701895"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.2107147059532287182419407",
+      "0.2148965741788809957731338"
+     ],
+     "history_qdot_range": [
+      "0.2075633604112926608655007",
+      "0.2096953471184387008366811"
+     ],
+     "hit0": [
+      "0.3666205283756211426618379",
+      "0.3700774575562658666410701"
+     ],
+     "hit_fixed0": [
+      "0.4083404213253573660882749",
+      "0.408464131118170078181091"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.071895726931306081189462",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.6844668227881780687860586",
+     "delayed_arg_start": [
+      "2.051151531971006113677416",
+      "2.052724524357183053978018"
+     ],
+     "r0": [
+      "1.083960184825645484040114",
+      "1.085533061652643367095192"
+     ],
+     "history_qddot_range": [
+      "0.1052317688496497686974908",
+      "0.1053768141022554727655378"
+     ],
+     "history_qddot_start": [
+      "0.1052317688496497686974908",
+      "0.1053152261017640482675959"
+     ],
+     "history_q_range_recomputed": [
+      "0.2107147059532287182419407",
+      "0.2148965741788809957731338"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.2075633604112926608655007",
+      "0.2096953471184387008366811"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "like": {
+     "tau0": [
+      "1.660027825609841056105096",
+      "1.660816155211163627085798"
+     ],
+     "tau_range": [
+      "1.660027825609841056105096",
+      "1.662138457012047634477953"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.030292427896329096279998",
+      "1.030586430560699563631231"
+     ],
+     "Dt_range": [
+      "1.02995034947744737408956",
+      "1.03082281727029611031643"
+     ],
+     "delayed_arg_range": [
+      "1.474546136611601962690016",
+      "1.486656883572986988786261"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1078360786236463737425484",
+      "0.1108068253574295505253547"
+     ],
+     "history_qdot_range": [
+      "0.1474868323617525480919471",
+      "0.1495358622220623240124639"
+     ],
+     "hit0": [
+      "0.1126398201154110611912821",
+      "0.1131107639526503036990813"
+     ],
+     "hit_fixed0": [
+      "0.1415096854426527907096763",
+      "0.1415369095273434104856198"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.650027825609841056105096",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.1078614274287739177986586",
+     "delayed_arg_start": [
+      "1.475868438412485970082171",
+      "1.476656883572986988786261"
+     ],
+     "r0": [
+      "1.660027825609844701729628",
+      "1.66081615521116042098474"
+     ],
+     "history_qddot_range": [
+      "0.1021551476482643037087539",
+      "0.1022739375121181318059557"
+     ],
+     "history_qddot_start": [
+      "0.1021551476482643037087539",
+      "0.1022274496754912763519164"
+     ],
+     "history_q_range_recomputed": [
+      "0.1078360786236463737425484",
+      "0.1108068253574295505253547"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1474868323617525480919471",
+      "0.1495358622220623240124639"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "antipode": {
+     "tau0": [
+      "1.953860503028969536298774",
+      "1.953892799000685069549352"
+     ],
+     "tau_range": [
+      "1.953417235216467912409382",
+      "1.953892799000685069549352"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.025335085976091374058723",
+      "1.025345026422119119317448"
+     ],
+     "Dt_range": [
+      "1.025251318437406402580364",
+      "1.025771653556063539645272"
+     ],
+     "delayed_arg_range": [
+      "1.182791794622964527618617",
+      "1.193267473966360132481975"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07006175354552581390355093",
+      "0.07131066661689376985655743"
+     ],
+     "history_qdot_range": [
+      "0.118675028786300854441257",
+      "0.1197342876988759945435242"
+     ],
+     "hit0": [
+      "0.05453699201176926049531704",
+      "0.05455924703667384353697998"
+     ],
+     "hit_fixed0": [
+      "0.06593367377170781990786872",
+      "0.06595627197901000566190538"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.943417235216467912409382",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1734171196572894646859937",
+     "delayed_arg_start": [
+      "1.182791794622964527618617",
+      "1.182824206153858508592583"
+     ],
+     "r0": [
+      "1.953859680609228849908726",
+      "1.953893613661327112163019"
+     ],
+     "history_qddot_range": [
+      "0.1008922666273991937397523",
+      "0.1013135816375983713026424"
+     ],
+     "history_qddot_start": [
+      "0.1010904839410816047267884",
+      "0.1010918319122091713796936"
+     ],
+     "history_q_range_recomputed": [
+      "0.07006175354552581390354975",
+      "0.07131066661689376985655857"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.118675028786300854441256",
+      "0.1197342876988759945435252"
+     ],
+     "history_two_part_hull_at_T_star": false
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.5035831428096405837942424",
+    "0.5037428068315706665438122"
+   ],
+   "end_v_str": [
+    "0.3245160945244252819895945",
+    "0.324996557501721916257914"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.198983120555719116172725",
+    "-1.198944645793354942644564"
+   ],
+   "antipode_residual_end": [
+    "-1.209789243726272898819479",
+    "-1.2097493433904041226069"
+   ],
+   "a_rad_start": [
+    "-0.0644676914003713697855302",
+    "-0.06421692524187017428149504"
+   ],
+   "lambda_hat_start": [
+    "-0.04074278684282700356927801",
+    "-0.04018826832094068594245879"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06485318570091627773814676",
+    "-0.06400895871425029604919844"
+   ],
+   "lambda_hat_range": [
+    "-0.04161380367371974391305519",
+    "-0.03980151979399231278503557"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07332410567512422853236757",
+      "0.07401549151125317332821403"
+     ],
+     "radial": [
+      "-0.09793399945944989978647757",
+      "-0.09772833361957890038879659"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02252796402308221223825643",
+      "0.02262215279053006073981627"
+     ],
+     "radial": [
+      "0.05842436749272587473357299",
+      "0.05846879241001168285816594"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005453699201176926049531704",
+      "0.005455924703667384353697998"
+     ],
+     "radial": [
+      "-0.02495805943364734473262562",
+      "-0.02495738403230295675086439"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1013057688993833668201557",
+    "0.1020935690054506184217283"
+   ],
+   "radial_sum_start": [
+    "-0.0644676914003713697855302",
+    "-0.06421692524187017428149504"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.636592735619759166103927",
+     "1.63787987838119326884457"
+    ],
+    "unlike_pair_chord": [
+     "1.147758469362786948594472",
+     "1.149593066139768032145417"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 128,
+   "certified": true,
+   "self_appended_record_index": 177,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.082058980684859191736647",
+      "1.083642472110757566239787"
+     ],
+     "Dt": [
+      "0.9423353174314541689482726",
+      "0.9429522542398955809050509"
+     ],
+     "r": [
+      "1.082058980684859912079807",
+      "1.083642472110749495702405"
+     ],
+     "hist_q": [
+      "0.2127956011457841273390307",
+      "0.2148965741788809957731338"
+     ],
+     "hist_qdot": [
+      "0.2086156780997891585524757",
+      "0.2096953471184387008366811"
+     ],
+     "delayed_arg": [
+      "2.063042121512892030928182",
+      "2.06462572849796885315471"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "like": {
+     "tau": [
+      "1.66136580180064264836824",
+      "1.662159725904926909928795"
+     ],
+     "Dt": [
+      "1.030182811089953681649343",
+      "1.030476466164335036739102"
+     ],
+     "r": [
+      "1.661365801800643181351504",
+      "1.662159725904926655406446"
+     ],
+     "hist_q": [
+      "0.1093160547046463124386534",
+      "0.1108068253574295505253547"
+     ],
+     "hist_qdot": [
+      "0.1485083838382351911290347",
+      "0.1495358622220623240124639"
+     ],
+     "delayed_arg": [
+      "1.484524867718722687239174",
+      "1.485318907382185396523117"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.953432038105877141621777",
+      "1.953465461456703415738857"
+     ],
+     "Dt": [
+      "1.025676929038670076227631",
+      "1.02568726215637214339784"
+     ],
+     "r": [
+      "1.953431179678103386762372",
+      "1.953466320010816281463847"
+     ],
+     "hist_q": [
+      "0.07130473185377800073912218",
+      "0.07130889357304962949853179"
+     ],
+     "hist_qdot": [
+      "0.1197292757449313994888161",
+      "0.1197327903708577683230121"
+     ],
+     "delayed_arg": [
+      "1.193219132166946181429112",
+      "1.19325267107695090326958"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06464351938614488141544007",
+    "-0.06439088929264167350848695"
+   ],
+   "lambda_hat_end": [
+    "-0.04123187309532836645376668",
+    "-0.04066717621924084307180532"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07314796386435487073246377",
+      "0.07384572661945994320860192"
+     ],
+     "radial": [
+      "-0.09807167615699349251850318",
+      "-0.09786429650949542088088667"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02237063536281886138319593",
+      "0.022465213461270692825722"
+     ],
+     "radial": [
+      "0.05838337097726882819389704",
+      "0.05842792110856408178941001"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005479184284491763779115284",
+      "0.005481480789992088729346706"
+     ],
+     "radial": [
+      "-0.02495521420642021709083393",
+      "-0.02495451389171033441701029"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.100997783511665495894775",
+    "0.1017924208707227247636706"
+   ],
+   "radial_sum_end": [
+    "-0.06464351938614488141544007",
+    "-0.06439088929264167350848695"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.146684593623649597167969",
+    "3.156684709182828044891357"
+   ],
+   "S": [
+    "0.5035831361659164032556009",
+    "0.5069978659552687685929085"
+   ],
+   "VS": [
+    "0.3245141014071711203971239",
+    "0.3260152672378984935613416"
+   ],
+   "a0": [
+    "0.1009192431154641781061873",
+    "0.1018709736176577303427646"
+   ],
+   "ap": [
+    "-0.03986234508323184941153212",
+    "-0.02861982429357752061327223"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.082058980684859191736647",
+      "1.083642472110757566239787"
+     ],
+     "tau_range": [
+      "1.080011346331127227405567",
+      "1.083642472110757566239787"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9423353174314541689482726",
+      "0.9429522542398955809050509"
+     ],
+     "Dt_range": [
+      "0.9418420287062098195640068",
+      "0.9437797986971716479952952"
+     ],
+     "delayed_arg_range": [
+      "2.063042121512892030928182",
+      "2.07667336285170081748579"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.2127956011457841273390307",
+      "0.2169987970109094562817174"
+     ],
+     "history_qdot_range": [
+      "0.2086156780997891585524757",
+      "0.2107493474124994851533259"
+     ],
+     "hit0": [
+      "0.3657398193217743536623188",
+      "0.3692286330972997160430096"
+     ],
+     "hit_fixed0": [
+      "0.409479083927190629711169",
+      "0.4096073314147673492639199"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.070011346331127227405567",
+     "families_read_over_step": [
+      "antipodal"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.6963574123300639860368246",
+     "delayed_arg_start": [
+      "2.063042121512892030928182",
+      "2.06462572849796885315471"
+     ],
+     "r0": [
+      "1.082058980684859912079807",
+      "1.083642472110749495702405"
+     ],
+     "history_qddot_range": [
+      "0.1052929119585304719949711",
+      "0.1054384669799037136446854"
+     ],
+     "history_qddot_start": [
+      "0.1052929119585304719949711",
+      "0.1053768141022554727655378"
+     ],
+     "history_q_range_recomputed": [
+      "0.2127956011457841273390307",
+      "0.2169987970109094562817174"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.2086156780997891585524757",
+      "0.2107493474124994851533259"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "like": {
+     "tau0": [
+      "1.66136580180064264836824",
+      "1.662159725904926909928795"
+     ],
+     "tau_range": [
+      "1.66136580180064264836824",
+      "1.663478694762104846881016"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.030182811089953681649343",
+      "1.030476466164335036739102"
+     ],
+     "Dt_range": [
+      "1.029836883213365974332686",
+      "1.030711070221559353987067"
+     ],
+     "delayed_arg_range": [
+      "1.483205898861544750286953",
+      "1.495318907382185396523117"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1093160547046463124386534",
+      "0.112307299088216613247833"
+     ],
+     "history_qdot_range": [
+      "0.1485083838382351911290347",
+      "0.1505589765820534224532779"
+     ],
+     "hit0": [
+      "0.1118531768140943069159797",
+      "0.11232606730635346412861"
+     ],
+     "hit_fixed0": [
+      "0.1409402005944301427965546",
+      "0.140968189408248682294452"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.65136580180064264836824",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.1165211896787167053955956",
+     "delayed_arg_start": [
+      "1.484524867718722687239174",
+      "1.485318907382185396523117"
+     ],
+     "r0": [
+      "1.661365801800643181351504",
+      "1.662159725904926655406446"
+     ],
+     "history_qddot_range": [
+      "0.1021780215330022120181649",
+      "0.1023392300100704350976279"
+     ],
+     "history_qddot_start": [
+      "0.1021780215330022120181649",
+      "0.1022739375121181318059557"
+     ],
+     "history_q_range_recomputed": [
+      "0.1093160547046463124386534",
+      "0.112307299088216613247833"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1485083838382351911290347",
+      "0.1505589765820534224532779"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "antipode": {
+     "tau0": [
+      "1.953432038105877141621777",
+      "1.953465461456703415738857"
+     ],
+     "tau_range": [
+      "1.952986920976378640707797",
+      "1.953465461456703415738857"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.025676929038670076227631",
+      "1.02568726215637214339784"
+     ],
+     "Dt_range": [
+      "1.025591778863277267198501",
+      "1.026117343524069202385558"
+     ],
+     "delayed_arg_range": [
+      "1.193219132166946181429112",
+      "1.20369778820644940418356"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07130473185377800073912218",
+      "0.07256503843238160698170409"
+     ],
+     "history_qdot_range": [
+      "0.1197292757449313994888161",
+      "0.1207890704680045895796041"
+     ],
+     "hit0": [
+      "0.05479184284491763779115284",
+      "0.05481480789992088729346706"
+     ],
+     "hit_fixed0": [
+      "0.06640675717122618123681526",
+      "0.06643009370462926563670527"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.942986920976378640707797",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1629868054172001929844087",
+     "delayed_arg_start": [
+      "1.193219132166946181429112",
+      "1.19325267107695090326958"
+     ],
+     "r0": [
+      "1.953431179678103386762372",
+      "1.953466320010816281463847"
+     ],
+     "history_qddot_range": [
+      "0.1009131601021530467323875",
+      "0.101339548034301041287997"
+     ],
+     "history_qddot_start": [
+      "0.1011137080436639250144917",
+      "0.1011151139968466449138674"
+     ],
+     "history_q_range_recomputed": [
+      "0.07130473185377800073912094",
+      "0.07256503843238160698170535"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.119729275744931399488815",
+      "0.1207890704680045895796052"
+     ],
+     "history_two_part_hull_at_T_star": false
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.5068333430733164292844021",
+    "0.5069978659552687685929085"
+   ],
+   "end_v_str": [
+    "0.3255232938383257621781858",
+    "0.3260152672378984935613416"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.209789243726272898819479",
+    "-1.2097493433904041226069"
+   ],
+   "antipode_residual_end": [
+    "-1.220603023901833335932569",
+    "-1.220561653772460970664062"
+   ],
+   "a_rad_start": [
+    "-0.06464351938614488141544007",
+    "-0.06439088929264167350848695"
+   ],
+   "lambda_hat_start": [
+    "-0.04123187309532836645376668",
+    "-0.04066717621924084307180532"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06502971698415040273758799",
+    "-0.06418024059470456689666773"
+   ],
+   "lambda_hat_range": [
+    "-0.04210571387749380395452511",
+    "-0.04027968502795333860587119"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07314796386435487073246377",
+      "0.07384572661945994320860192"
+     ],
+     "radial": [
+      "-0.09807167615699349251850318",
+      "-0.09786429650949542088088667"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02237063536281886138319593",
+      "0.022465213461270692825722"
+     ],
+     "radial": [
+      "0.05838337097726882819389704",
+      "0.05842792110856408178941001"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005479184284491763779115284",
+      "0.005481480789992088729346706"
+     ],
+     "radial": [
+      "-0.02495521420642021709083393",
+      "-0.02495451389171033441701029"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.100997783511665495894775",
+    "0.1017924208707227247636706"
+   ],
+   "radial_sum_start": [
+    "-0.06464351938614488141544007",
+    "-0.06439088929264167350848695"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.637819504203501821163874",
+     "1.639109027030666321240909"
+    ],
+    "unlike_pair_chord": [
+     "1.14600244219049654827047",
+     "1.147844619994620822614098"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 129,
+   "certified": true,
+   "self_appended_record_index": 178,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.07959034804116660497043",
+      "1.081758472344298754832725"
+     ],
+     "Dt": [
+      "0.9423150693716007407853272",
+      "0.9435144371452889560585068"
+     ],
+     "r": [
+      "1.07912867810320698141755",
+      "1.082221310002298559409388"
+     ],
+     "hist_q": [
+      "0.2148870225723799454481553",
+      "0.2191115629244755578916327"
+     ],
+     "hist_qdot": [
+      "0.2096686072193744632724255",
+      "0.2118039637434512703131685"
+     ],
+     "delayed_arg": [
+      "2.074926121279350842335244",
+      "2.077094361141661439920927"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "antipodal",
+      "late-feedback"
+     ],
+     "position_vs_antipodal_records_end": "straddles"
+    },
+    "like": {
+     "tau": [
+      "1.662700179457728869412243",
+      "1.663499704076224803518518"
+     ],
+     "Dt": [
+      "1.030067453846506378145917",
+      "1.030360861367782121011888"
+     ],
+     "r": [
+      "1.662700179457729298172922",
+      "1.663499704076224396217621"
+     ],
+     "hist_q": [
+      "0.1108062474441053144605448",
+      "0.112307299088216613247833"
+     ],
+     "hist_qdot": [
+      "0.1495301640535652132492165",
+      "0.1505589765820534224532779"
+     ],
+     "delayed_arg": [
+      "1.493184889547424793649451",
+      "1.493984529725099175479114"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.953001832465085075883003",
+      "1.953036419201692594056383"
+     ],
+     "Dt": [
+      "1.026020822998313696253906",
+      "1.026031566262088842254142"
+     ],
+     "r": [
+      "1.953000932356978896737896",
+      "1.953037319430014359439939"
+     ],
+     "hist_q": [
+      "0.07255888989680754380864765",
+      "0.07256323686656699204544269"
+     ],
+     "hist_qdot": [
+      "0.1207839221212729503070485",
+      "0.1207875619869403851171009"
+     ],
+     "delayed_arg": [
+      "1.203648174421957003111586",
+      "1.203682876717742969008354"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06494955467526487523194155",
+    "-0.06449847385941743408143181"
+   ],
+   "lambda_hat_end": [
+    "-0.04178748061278093676976103",
+    "-0.04101586015608809989280432"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07253583791722686154473092",
+      "0.07390757155089085932515927"
+     ],
+     "radial": [
+      "-0.09834009635402730573590233",
+      "-0.09793442295663247990833922"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02221327211142276933617697",
+      "0.02230824245388796372392403"
+     ],
+     "radial": [
+      "0.0583428873903254832097433",
+      "0.0583875686576430688090151"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005504654861905352212312048",
+      "0.005507024491685509533254974"
+     ],
+     "radial": [
+      "-0.02495234571156305270578252",
+      "-0.02495161956042802298210769"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1002537648905549830932199",
+    "0.1017228384964643325823383"
+   ],
+   "radial_sum_end": [
+    "-0.06494955467526487523194155",
+    "-0.06449847385941743408143181"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.156684593623649597167969",
+    "3.166684709182828044891357"
+   ],
+   "S": [
+    "0.5068333360640973699687898",
+    "0.5102631088366223866745025"
+   ],
+   "VS": [
+    "0.3255211910726079674945009",
+    "0.3270333090328251227574659"
+   ],
+   "a0": [
+    "0.1001724371060041749182561",
+    "0.1018041794926629196124225"
+   ],
+   "ap": [
+    "-0.04205531435589367369766206",
+    "-0.02911267788314511369126853"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.07959034804116660497043",
+      "1.081758472344298754832725"
+     ],
+     "tau_range": [
+      "1.077544571202868082700547",
+      "1.081758472344298754832725"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9423150693716007407853272",
+      "0.9435144371452889560585068"
+     ],
+     "Dt_range": [
+      "0.9418219768044171854820666",
+      "0.9443545847612241723571979"
+     ],
+     "delayed_arg_range": [
+      "2.074926121279350842335244",
+      "2.08914013797995996219081"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.2148870225723799454481553",
+      "0.2212348780821441213668127"
+     ],
+     "history_qdot_range": [
+      "0.2096686072193744632724255",
+      "0.2128591965266146256532121"
+     ],
+     "hit0": [
+      "0.3626791895861343077236546",
+      "0.3695378577544542966257963"
+     ],
+     "hit_fixed0": [
+      "0.4106211724680222001490153",
+      "0.4107540992512636387445135"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.067544571202868082700547",
+     "families_read_over_step": [
+      "antipodal",
+      "late-feedback"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.7082414120965227974438866",
+     "delayed_arg_start": [
+      "2.074926121279350842335244",
+      "2.077094361141661439920927"
+     ],
+     "r0": [
+      "1.07912867810320698141755",
+      "1.082221310002298559409388"
+     ],
+     "history_qddot_range": [
+      "0.1053541228997485356146463",
+      "0.105561899222295813116431"
+     ],
+     "history_qddot_start": [
+      "0.1053541228997485356146463",
+      "0.1055001659143085610065001"
+     ],
+     "history_q_range_recomputed": [
+      "0.2148870225723799454481553",
+      "0.2212348780821441213668127"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.2096686072193744632724255",
+      "0.2128591965266146256532121"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "like": {
+     "tau0": [
+      "1.662700179457728869412243",
+      "1.663499704076224803518518"
+     ],
+     "tau_range": [
+      "1.662700179457728869412243",
+      "1.664815215477150351191837"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.030067453846506378145917",
+      "1.030360861367782121011888"
+     ],
+     "Dt_range": [
+      "1.029717655860957934141838",
+      "1.030593557692674671717189"
+     ],
+     "delayed_arg_range": [
+      "1.491869378146499245976132",
+      "1.503984529725099175479114"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1108062474441053144605448",
+      "0.1138180043735539926970462"
+     ],
+     "history_qdot_range": [
+      "0.1495301640535652132492165",
+      "0.1515821714252049263829824"
+     ],
+     "hit0": [
+      "0.1110663605571138466808849",
+      "0.1115412122694398186196201"
+     ],
+     "hit_fixed0": [
+      "0.1403703333833892785860819",
+      "0.1403991028607077476337948"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.652700179457728869412243",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.1251846689636712010847746",
+     "delayed_arg_start": [
+      "1.493184889547424793649451",
+      "1.493984529725099175479114"
+     ],
+     "r0": [
+      "1.662700179457729298172922",
+      "1.663499704076224396217621"
+     ],
+     "history_qddot_range": [
+      "0.1022374853997242668559012",
+      "0.1023467662498880910561439"
+     ],
+     "history_qddot_start": [
+      "0.1022374853997242668559012",
+      "0.1023392300100704350976279"
+     ],
+     "history_q_range_recomputed": [
+      "0.1108062474441053144605448",
+      "0.1138180043735539926970462"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1495301640535652132492165",
+      "0.1515821714252049263829824"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "antipode": {
+     "tau0": [
+      "1.953001832465085075883003",
+      "1.953036419201692594056383"
+     ],
+     "tau_range": [
+      "1.952554877046644730032324",
+      "1.953036419201692594056383"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.026020822998313696253906",
+      "1.026031566262088842254142"
+     ],
+     "Dt_range": [
+      "1.025934278614904996753495",
+      "1.0264651107524810653274"
+     ],
+     "delayed_arg_range": [
+      "1.203648174421957003111586",
+      "1.214129832136183314859033"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07255888989680754380864765",
+      "0.07383062195630281335734277"
+     ],
+     "history_qdot_range": [
+      "0.1207839221212729503070485",
+      "0.1218442744700418563234003"
+     ],
+     "hit0": [
+      "0.05504654861905352212312048",
+      "0.05507024491685509533254974"
+     ],
+     "hit_fixed0": [
+      "0.06688225855041090104946193",
+      "0.06690635340938940024016196"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.942554877046644730032324",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1525547614874662823089357",
+     "delayed_arg_start": [
+      "1.203648174421957003111586",
+      "1.203682876717742969008354"
+     ],
+     "r0": [
+      "1.953000932356978896737896",
+      "1.953037319430014359439939"
+     ],
+     "history_qddot_range": [
+      "0.1009343792902419013683682",
+      "0.1013658865599074495428724"
+     ],
+     "history_qddot_start": [
+      "0.1011372746642402543232386",
+      "0.101138747463536414355195"
+     ],
+     "history_q_range_recomputed": [
+      "0.07255888989680754380864641",
+      "0.07383062195630281335734394"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1207839221212729503070475",
+      "0.1218442744700418563234013"
+     ],
+     "history_two_part_hull_at_T_star": false
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.5100935776243359277993176",
+    "0.5102631088366223866745025"
+   ],
+   "end_v_str": [
+    "0.3265229154436680092436835",
+    "0.3270333090328251227574659"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.220603023901833335932569",
+    "-1.220561653772460970664062"
+   ],
+   "antipode_residual_end": [
+    "-1.231424502548422283582629",
+    "-1.231381608890981157800743"
+   ],
+   "a_rad_start": [
+    "-0.06494955467526487523194155",
+    "-0.06449847385941743408143181"
+   ],
+   "lambda_hat_start": [
+    "-0.04178748061278093676976103",
+    "-0.04101586015608809989280432"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06533757617902004801298579",
+    "-0.06428467546675661359808203"
+   ],
+   "lambda_hat_range": [
+    "-0.04266610975020268443040599",
+    "-0.04062646965830929710208457"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07253583791722686154473092",
+      "0.07390757155089085932515927"
+     ],
+     "radial": [
+      "-0.09834009635402730573590233",
+      "-0.09793442295663247990833922"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02221327211142276933617697",
+      "0.02230824245388796372392403"
+     ],
+     "radial": [
+      "0.0583428873903254832097433",
+      "0.0583875686576430688090151"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005504654861905352212312048",
+      "0.005507024491685509533254974"
+     ],
+     "radial": [
+      "-0.02495234571156305270578252",
+      "-0.02495161956042802298210769"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1002537648905549830932199",
+    "0.1017228384964643325823383"
+   ],
+   "radial_sum_start": [
+    "-0.06494955467526487523194155",
+    "-0.06449847385941743408143181"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.639046973872714267575391",
+     "1.640338867675580629699736"
+    ],
+    "unlike_pair_chord": [
+     "1.144241407742611795560767",
+     "1.146091190716819842493434"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 130,
+   "certified": true,
+   "self_appended_record_index": 179,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.077706230126606211922355",
+      "1.079317312618657532215625"
+     ],
+     "Dt": [
+      "0.9428959308896125832013141",
+      "0.9435208905970667780951303"
+     ],
+     "r": [
+      "1.077706230126607144596029",
+      "1.079317312618655541857658"
+     ],
+     "hist_q": [
+      "0.219101468604784721063732",
+      "0.2212348780821441213668127"
+     ],
+     "hist_qdot": [
+      "0.2117763023648367625857333",
+      "0.2128591965266146256532121"
+     ],
+     "delayed_arg": [
+      "2.087367281004992064952344",
+      "2.088978479056221832969002"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "late-feedback"
+     ],
+     "position_vs_antipodal_records_end": "above"
+    },
+    "like": {
+     "tau": [
+      "1.66403081567729637010026",
+      "1.664835958878959979045687"
+     ],
+     "Dt": [
+      "1.029946398493378284983733",
+      "1.030239472888361485202854"
+     ],
+     "r": [
+      "1.664030815677296531245209",
+      "1.664835958878959782743444"
+     ],
+     "hist_q": [
+      "0.1123066609589109528063798",
+      "0.1138180043735539926970462"
+     ],
+     "hist_qdot": [
+      "0.1505525389075624559177756",
+      "0.1515821714252049263829824"
+     ],
+     "delayed_arg": [
+      "1.501848634744689618122282",
+      "1.502653893505531674791097"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.952569894923689348178941",
+      "1.952605684889138083493871"
+     ],
+     "Dt": [
+      "1.026366766835386693637659",
+      "1.026377935750828548040934"
+     ],
+     "r": [
+      "1.95256895121979822859073",
+      "1.952606628706050257958925"
+     ],
+     "hist_q": [
+      "0.07382425226662142955133776",
+      "0.07382879190914548403103493"
+     ],
+     "hist_qdot": [
+      "0.121838985880128228021781",
+      "0.1218427550516955839471807"
+     ],
+     "delayed_arg": [
+      "1.214078908734511513674098",
+      "1.214114814259138696712416"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06505575830720189001388265",
+    "-0.06479821700481526017448292"
+   ],
+   "lambda_hat_end": [
+    "-0.0421525682121440378540051",
+    "-0.0415614560026308785239476"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07257125225266927579753795",
+      "0.07328508322863166238291574"
+     ],
+     "radial": [
+      "-0.09840923255979426458226917",
+      "-0.0981972524151410578168567"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02205587775298442170126432",
+      "0.02215124039121189681150033"
+     ],
+     "radial": [
+      "0.05830292813744364328678336",
+      "0.05834773637908231018188913"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005530110091561449255736267",
+      "0.005532555203957267351405883"
+     ],
+     "radial": [
+      "-0.02494945388485126871839684",
+      "-0.02494870096875651253951534"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.1001572400972151467545385",
+    "0.100968878823800826545822"
+   ],
+   "radial_sum_end": [
+    "-0.06505575830720189001388265",
+    "-0.06479821700481526017448292"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.166684593623649597167969",
+    "3.176684709182828044891357"
+   ],
+   "S": [
+    "0.5100935705092520208153222",
+    "0.5135384945823499988013339"
+   ],
+   "VS": [
+    "0.3265207809184959140450499",
+    "0.3280438401126973026087974"
+   ],
+   "a0": [
+    "0.1000730250668154631797154",
+    "0.1010531079872179851331519"
+   ],
+   "ap": [
+    "-0.04269050344190397267224585",
+    "-0.03114149213003279279179582"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.077706230126606211922355",
+      "1.079317312618657532215625"
+     ],
+     "tau_range": [
+      "1.075668767859967174762938",
+      "1.079317312618657532215625"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9428959308896125832013141",
+      "0.9435208905970667780951303"
+     ],
+     "Dt_range": [
+      "0.9424072943554634033791686",
+      "0.9443768941460175189863329"
+     ],
+     "delayed_arg_range": [
+      "2.087367281004992064952344",
+      "2.101015941322860870128419"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.219101468604784721063732",
+      "0.2233687486495934415995069"
+     ],
+     "history_qdot_range": [
+      "0.2117763023648367625857333",
+      "0.2139150459679708820357536"
+     ],
+     "hit0": [
+      "0.3628562612633463789876898",
+      "0.3664254161431583119145787"
+     ],
+     "hit_fixed0": [
+      "0.4117666031689917104345261",
+      "0.4119043816205552587926883"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.065668767859967174762938",
+     "families_read_over_step": [
+      "late-feedback"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.7206825718221640200609866",
+     "delayed_arg_start": [
+      "2.087367281004992064952344",
+      "2.088978479056221832969002"
+     ],
+     "r0": [
+      "1.077706230126607144596029",
+      "1.079317312618655541857658"
+     ],
+     "history_qddot_range": [
+      "0.1054766998827294172851548",
+      "0.1056236455520639832867296"
+     ],
+     "history_qddot_start": [
+      "0.1054766998827294172851548",
+      "0.105561899222295813116431"
+     ],
+     "history_q_range_recomputed": [
+      "0.219101468604784721063732",
+      "0.2233687486495934415995069"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.2117763023648367625857333",
+      "0.2139150459679708820357536"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "like": {
+     "tau0": [
+      "1.66403081567729637010026",
+      "1.664835958878959979045687"
+     ],
+     "tau_range": [
+      "1.66403081567729637010026",
+      "1.666147894899541011739026"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.029946398493378284983733",
+      "1.030239472888361485202854"
+     ],
+     "Dt_range": [
+      "1.029592707035949953935627",
+      "1.03047032889932226877406"
+     ],
+     "delayed_arg_range": [
+      "1.500536698724108585428943",
+      "1.512653893505531674791097"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1123066609589109528063798",
+      "0.1153389438978353308262374"
+     ],
+     "history_qdot_range": [
+      "0.1505525389075624559177756",
+      "0.1526058248192220621327798"
+     ],
+     "hit0": [
+      "0.1102793887649221085063216",
+      "0.1107562019560594840575016"
+     ],
+     "hit_fixed0": [
+      "0.1398000941817497993172495",
+      "0.1398296662844347008576318"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.65403081567729637010026",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.1338519895412805405375856",
+     "delayed_arg_start": [
+      "1.501848634744689618122282",
+      "1.502653893505531674791097"
+     ],
+     "r0": [
+      "1.664030815677296531245209",
+      "1.664835958878959782743444"
+     ],
+     "history_qddot_range": [
+      "0.1022917892302929735984482",
+      "0.1023927558495223782276339"
+     ],
+     "history_qddot_start": [
+      "0.1022917892302929735984482",
+      "0.1023467662498880910561439"
+     ],
+     "history_q_range_recomputed": [
+      "0.1123066609589109528063798",
+      "0.1153389438978353308262374"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1505525389075624559177756",
+      "0.1526058248192220621327798"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "antipode": {
+     "tau0": [
+      "1.952569894923689348178941",
+      "1.952605684889138083493871"
+     ],
+     "tau_range": [
+      "1.952121107234527962929406",
+      "1.952605684889138083493871"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.026366766835386693637659",
+      "1.026377935750828548040934"
+     ],
+     "Dt_range": [
+      "1.026278817676920192150627",
+      "1.026814950498585539306114"
+     ],
+     "delayed_arg_range": [
+      "1.214078908734511513674098",
+      "1.224563601948300081961951"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07382425226662142955133776",
+      "0.07510740688638718431128447"
+     ],
+     "history_qdot_range": [
+      "0.121838985880128228021781",
+      "0.1228998883775114907880644"
+     ],
+     "hit0": [
+      "0.05530110091561449255736267",
+      "0.05532555203957267351405883"
+     ],
+     "hit_fixed0": [
+      "0.06736018661867467529718491",
+      "0.06738506514220259718556164"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.942121107234527962929406",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1421209916753495152060177",
+     "delayed_arg_start": [
+      "1.214078908734511513674098",
+      "1.214114814259138696712416"
+     ],
+     "r0": [
+      "1.95256895121979822859073",
+      "1.952606628706050257958925"
+     ],
+     "history_qddot_range": [
+      "0.1009559337024435442486671",
+      "0.1013925953697704146702771"
+     ],
+     "history_qddot_start": [
+      "0.1011611907543768363752396",
+      "0.1011627333329138316415057"
+     ],
+     "history_q_range_recomputed": [
+      "0.07382425226662142955133655",
+      "0.07510740688638718431128569"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.12183898588012822802178",
+      "0.1228998883775114907880654"
+     ],
+     "history_two_part_hull_at_T_star": false
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.513363803314942041680918",
+    "0.5135384945823499988013339"
+   ],
+   "end_v_str": [
+    "0.327521511169164068676847",
+    "0.3280438401126973026087974"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.231424502548422283582629",
+    "-1.231381608890981157800743"
+   ],
+   "antipode_residual_end": [
+    "-1.242253715365565763241633",
+    "-1.242209243106892720487564"
+   ],
+   "a_rad_start": [
+    "-0.06505575830720189001388265",
+    "-0.06479821700481526017448292"
+   ],
+   "lambda_hat_start": [
+    "-0.0421525682121440378540051",
+    "-0.0415614560026308785239476"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06544380001860456863423387",
+    "-0.06458078218944930875670907"
+   ],
+   "lambda_hat_range": [
+    "-0.04303197884643560306685544",
+    "-0.04117202035301983677100614"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07257125225266927579753795",
+      "0.07328508322863166238291574"
+     ],
+     "radial": [
+      "-0.09840923255979426458226917",
+      "-0.0981972524151410578168567"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02205587775298442170126432",
+      "0.02215124039121189681150033"
+     ],
+     "radial": [
+      "0.05830292813744364328678336",
+      "0.05834773637908231018188913"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005530110091561449255736267",
+      "0.005532555203957267351405883"
+     ],
+     "radial": [
+      "-0.02494945388485126871839684",
+      "-0.02494870096875651253951534"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.1001572400972151467545385",
+    "0.100968878823800826545822"
+   ],
+   "radial_sum_start": [
+    "-0.06505575830720189001388265",
+    "-0.06479821700481526017448292"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.640275089578807135001379",
+     "1.641569349394408562126343"
+    ],
+    "unlike_pair_chord": [
+     "1.142475413796208651569012",
+     "1.144332832049852631033335"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 131,
+   "certified": true,
+   "self_appended_record_index": 180,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.075829430630130502772865",
+      "1.077451151311763753014728"
+     ],
+     "Dt": [
+      "0.9432729037748681451454424",
+      "0.9439002837534288542334529"
+     ],
+     "r": [
+      "1.075829430630137233557066",
+      "1.077451151311760322296514"
+     ],
+     "hist_q": [
+      "0.2212245054634272251604537",
+      "0.2233687486495934415995069"
+     ],
+     "hist_qdot": [
+      "0.212831069363664056758585",
+      "0.2139150459679708820357536"
+     ],
+     "delayed_arg": [
+      "2.099233442311885844153241",
+      "2.100855278552697542118492"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "late-feedback"
+     ],
+     "position_vs_antipodal_records_end": "above"
+    },
+    "like": {
+     "tau": [
+      "1.665357572215593609583329",
+      "1.666168350353576803264973"
+     ],
+     "Dt": [
+      "1.029819603975658067135144",
+      "1.030112348149650495859052"
+     ],
+     "r": [
+      "1.665357572215593661293529",
+      "1.666168350353575821684313"
+     ],
+     "hist_q": [
+      "0.1138173009374480920142376",
+      "0.1153389438978353308262374"
+     ],
+     "hist_qdot": [
+      "0.1515754567998653856537602",
+      "0.1526058248192220621327798"
+     ],
+     "delayed_arg": [
+      "1.510516243270072793902996",
+      "1.511327136967234435308028"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.952136239187669013214779",
+      "1.952173273066759320537945"
+     ],
+     "Dt": [
+      "1.026714756721979786065177",
+      "1.026726367209381884910362"
+     ],
+     "r": [
+      "1.952135249902013367724942",
+      "1.95217426245707243659634"
+     ],
+     "hist_q": [
+      "0.07510082503919229600964056",
+      "0.07510556500504400218855136"
+     ],
+     "hist_qdot": [
+      "0.1228944692728991069147873",
+      "0.122898371904495170518248"
+     ],
+     "delayed_arg": [
+      "1.224511320556890276630024",
+      "1.224548469995159031676578"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.0652245562077276211340865",
+    "-0.06496512148064908916787736"
+   ],
+   "lambda_hat_end": [
+    "-0.04264763955523582265568715",
+    "-0.04204578407080524265442739"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07236174994269026860950611",
+      "0.07308193662567892050764787"
+     ],
+     "radial": [
+      "-0.09854151162359584530594464",
+      "-0.09832779354583151826250815"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02189845232572118024283847",
+      "0.02199420914353169827249612"
+     ],
+     "radial": [
+      "0.05826349413282625105377542",
+      "0.05830843015034174056869692"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005555549283418058795247843",
+      "0.005558072279280850851772948"
+     ],
+     "radial": [
+      "-0.02494653871695802688191728",
+      "-0.02494575808515931147406613"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.09981575155182950764759242",
+    "0.1006342180484914696319169"
+   ],
+   "radial_sum_end": [
+    "-0.0652245562077276211340865",
+    "-0.06496512148064908916787736"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.176684593623649597167969",
+    "3.186684709182828044891357"
+   ],
+   "S": [
+    "0.513363796008506617003333",
+    "0.5168239690553615511785253"
+   ],
+   "VS": [
+    "0.3275193192385366654013676",
+    "0.329051054489613172829498"
+   ],
+   "a0": [
+    "0.09972854702743358828096286",
+    "0.1007214376915870220700614"
+   ],
+   "ap": [
+    "-0.04383861254806550958744437",
+    "-0.0321460427674088081798977"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.075829430630130502772865",
+      "1.077451151311763753014728"
+     ],
+     "tau_range": [
+      "1.073800651457684837762808",
+      "1.077451151311763753014728"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9432729037748681451454424",
+      "0.9439002837534288542334529"
+     ],
+     "Dt_range": [
+      "0.942787061908183722818365",
+      "0.9447672241276799568499316"
+     ],
+     "delayed_arg_range": [
+      "2.099233442311885844153241",
+      "2.112884057725143207128549"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.2212245054634272251604537",
+      "0.225513180793853574112467"
+     ],
+     "history_qdot_range": [
+      "0.212831069363664056758585",
+      "0.2149715121304245370179148"
+     ],
+     "hit0": [
+      "0.3618087497134513430475305",
+      "0.3654096831283946025382394"
+     ],
+     "hit_fixed0": [
+      "0.4129153013518584949120589",
+      "0.4130581082606303274450506"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.063800651457684837762808",
+     "families_read_over_step": [
+      "late-feedback"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.7325487331290577992618836",
+     "delayed_arg_start": [
+      "2.099233442311885844153241",
+      "2.100855278552697542118492"
+     ],
+     "r0": [
+      "1.075829430630137233557066",
+      "1.077451151311760322296514"
+     ],
+     "history_qddot_range": [
+      "0.1055380342308082187720395",
+      "0.1056853901560404367029267"
+     ],
+     "history_qddot_start": [
+      "0.1055380342308082187720395",
+      "0.1056236455520639832867296"
+     ],
+     "history_q_range_recomputed": [
+      "0.2212245054634272251604537",
+      "0.225513180793853574112467"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.212831069363664056758585",
+      "0.2149715121304245370179148"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "like": {
+     "tau0": [
+      "1.665357572215593609583329",
+      "1.666168350353576803264973"
+     ],
+     "tau_range": [
+      "1.665357572215593609583329",
+      "1.667480280080845874628098"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.029819603975658067135144",
+      "1.030112348149650495859052"
+     ],
+     "Dt_range": [
+      "1.029462001397708026518405",
+      "1.030341354573378634367662"
+     ],
+     "delayed_arg_range": [
+      "1.509204313542803722539871",
+      "1.521327136967234435308028"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1138173009374480920142376",
+      "0.1168701222562091924010133"
+     ],
+     "history_qdot_range": [
+      "0.1515754567998653856537602",
+      "0.1536299387076554817069625"
+     ],
+     "hit0": [
+      "0.1094922616286059012141924",
+      "0.1099710457176584913624806"
+     ],
+     "hit_fixed0": [
+      "0.1392294972070301754863127",
+      "0.1392598941068739142212521"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.655357572215593609583329",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.1425196043599756776485136",
+     "delayed_arg_start": [
+      "1.510516243270072793902996",
+      "1.511327136967234435308028"
+     ],
+     "r0": [
+      "1.665357572215593661293529",
+      "1.666168350353575821684313"
+     ],
+     "history_qddot_range": [
+      "0.1023374551205041150836652",
+      "0.1024389444749106227838249"
+     ],
+     "history_qddot_start": [
+      "0.1023374551205041150836652",
+      "0.1023927558495223782276339"
+     ],
+     "history_q_range_recomputed": [
+      "0.1138173009374480920142376",
+      "0.1168701222562091924010133"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1515754567998653856537602",
+      "0.1536299387076554817069625"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "antipode": {
+     "tau0": [
+      "1.952136239187669013214779",
+      "1.952173273066759320537945"
+     ],
+     "tau_range": [
+      "1.951685640135006593287218",
+      "1.952173273066759320537945"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.026714756721979786065177",
+      "1.026726367209381884910362"
+     ],
+     "Dt_range": [
+      "1.0266253896656303545289",
+      "1.027166862904676882694646"
+     ],
+     "delayed_arg_range": [
+      "1.224511320556890276630024",
+      "1.234999069047821451604139"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07510082503919229600964056",
+      "0.07639544243043377041529905"
+     ],
+     "history_qdot_range": [
+      "0.1228944692728991069147873",
+      "0.123955949961542001608005"
+     ],
+     "hit0": [
+      "0.05555549283418058795247843",
+      "0.05558072279280850851772948"
+     ],
+     "hit_fixed0": [
+      "0.0678405517656526246362642",
+      "0.06786623981174315438783283"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.941685640135006593287218",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1316855245758281455638297",
+     "delayed_arg_start": [
+      "1.224511320556890276630024",
+      "1.224548469995159031676578"
+     ],
+     "r0": [
+      "1.952135249902013367724942",
+      "1.95217426245707243659634"
+     ],
+     "history_qddot_range": [
+      "0.1009778200366154809847889",
+      "0.1014196863225940339552024"
+     ],
+     "history_qddot_start": [
+      "0.1011854601031914000900636",
+      "0.1011870755002876098448704"
+     ],
+     "history_q_range_recomputed": [
+      "0.07510082503919229600963934",
+      "0.07639544243043377041530026"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1228944692728991069147863",
+      "0.123955949961542001608006"
+     ],
+     "history_two_part_hull_at_T_star": false
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.5166439975475496293695156",
+    "0.5168239690553615511785253"
+   ],
+   "end_v_str": [
+    "0.3285166047088110012841773",
+    "0.329051054489613172829498"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.242253715365565763241633",
+    "-1.242209243106892720487564"
+   ],
+   "antipode_residual_end": [
+    "-1.253090694504005178718324",
+    "-1.253044595849011916707936"
+   ],
+   "a_rad_start": [
+    "-0.0652245562077276211340865",
+    "-0.06496512148064908916787736"
+   ],
+   "lambda_hat_start": [
+    "-0.04264763955523582265568715",
+    "-0.04204578407080524265442739"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06561317024266912264788071",
+    "-0.06474493806549915350052285"
+   ],
+   "lambda_hat_range": [
+    "-0.04352965839522722388285917",
+    "-0.04165573423180537082659261"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07236174994269026860950611",
+      "0.07308193662567892050764787"
+     ],
+     "radial": [
+      "-0.09854151162359584530594464",
+      "-0.09832779354583151826250815"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02189845232572118024283847",
+      "0.02199420914353169827249612"
+     ],
+     "radial": [
+      "0.05826349413282625105377542",
+      "0.05830843015034174056869692"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005555549283418058795247843",
+      "0.005558072279280850851772948"
+     ],
+     "radial": [
+      "-0.02494653871695802688191728",
+      "-0.02494575808515931147406613"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.09981575155182950764759242",
+    "0.1006342180484914696319169"
+   ],
+   "radial_sum_start": [
+    "-0.0652245562077276211340865",
+    "-0.06496512148064908916787736"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.64150379992995098656508",
+     "1.642800416288579813524663"
+    ],
+    "unlike_pair_chord": [
+     "1.140704515745453191682152",
+     "1.142569592985710189678676"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 132,
+   "certified": true,
+   "self_appended_record_index": 181,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.073960269733458725850216",
+      "1.075592630222964468003825"
+     ],
+     "Dt": [
+      "0.9436636942133150301673634",
+      "0.9442935205213714885978032"
+     ],
+     "r": [
+      "1.073960269733460513975906",
+      "1.07559263022296398836225"
+     ],
+     "hist_q": [
+      "0.2233580930587754061389783",
+      "0.225513180793853574112467"
+     ],
+     "hist_qdot": [
+      "0.2138864497059721389463055",
+      "0.2149715121304245370179148"
+     ],
+     "delayed_arg": [
+      "2.111091963400685129164144",
+      "2.112724439449369319041141"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "late-feedback"
+     ],
+     "position_vs_antipodal_records_end": "above"
+    },
+    "like": {
+     "tau": [
+      "1.666680317415802667774",
+      "1.667496733806248854379992"
+     ],
+     "Dt": [
+      "1.029687023991989217187204",
+      "1.029979456240819115000079"
+     ],
+     "r": [
+      "1.666680317415803044806517",
+      "1.667496733806248812140149"
+     ],
+     "hist_q": [
+      "0.1153381723782027710765295",
+      "0.1168701222562091924010133"
+     ],
+     "hist_qdot": [
+      "0.1525988313510704268045969",
+      "0.1536299387076554817069625"
+     ],
+     "delayed_arg": [
+      "1.519187859817400742787977",
+      "1.520004391767025377117357"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.951700887768751534163563",
+      "1.951739191545419878075972"
+     ],
+     "Dt": [
+      "1.027064795242420087385355",
+      "1.027076852868360618035003"
+     ],
+     "r": [
+      "1.951699850751474562954705",
+      "1.951740228657641960913405"
+     ],
+     "hist_q": [
+      "0.07638864009659589110613184",
+      "0.07639355170931925957539693"
+     ],
+     "hist_qdot": [
+      "0.123950395681181251478116",
+      "0.1239544061634261341318134"
+     ],
+     "delayed_arg": [
+      "1.234945402078229719091997",
+      "1.234983821414076510727794"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06539114694969243931717695",
+    "-0.06512981184739836014029548"
+   ],
+   "lambda_hat_end": [
+    "-0.04314478461332801724308653",
+    "-0.0425320126197127432246712"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07214249218123482424399172",
+      "0.07286902380199520020980594"
+     ],
+     "radial": [
+      "-0.09867213790179507167673799",
+      "-0.09845667668271107921459513"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02174099781348392738566609",
+      "0.0218371499500805210806145"
+     ],
+     "radial": [
+      "0.0582245908836772316106526",
+      "0.05826965590422245696037755"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005580972198944623733245754",
+      "0.005583574498008112306508655"
+     ],
+     "radial": [
+      "-0.02494359993157459925109156",
+      "-0.0249427910689097378860779"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.09946446219366337536290357",
+    "0.1002897482500838335969291"
+   ],
+   "radial_sum_end": [
+    "-0.06539114694969243931717695",
+    "-0.06512981184739836014029548"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.186684593623649597167969",
+    "3.196684709182828044891357"
+   ],
+   "S": [
+    "0.5166439900471470131653652",
+    "0.520119498602565406848028"
+   ],
+   "VS": [
+    "0.3285143545880261400390701",
+    "0.3300548549511579610710281"
+   ],
+   "a0": [
+    "0.09937418045596126507810632",
+    "0.1003800461544788241530117"
+   ],
+   "ap": [
+    "-0.04500241569722490214376659",
+    "-0.03315287062785577767139711"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.073960269733458725850216",
+      "1.075592630222964468003825"
+     ],
+     "tau_range": [
+      "1.071940526959296899192824",
+      "1.075592630222964468003825"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9436636942133150301673634",
+      "0.9442935205213714885978032"
+     ],
+     "Dt_range": [
+      "0.9431807261009381943043719",
+      "0.9451714723365000498441283"
+     ],
+     "delayed_arg_range": [
+      "2.111091963400685129164144",
+      "2.124744182223531145698533"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.2233580930587754061389783",
+      "0.227668180681740519126772"
+     ],
+     "history_qdot_range": [
+      "0.2138864497059721389463055",
+      "0.2160285949067828018732446"
+     ],
+     "hit0": [
+      "0.3607124609061741212199586",
+      "0.3643451190099760010490297"
+     ],
+     "hit_fixed0": [
+      "0.4140672055074829569216957",
+      "0.4142151943598177668430482"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.061940526959296899192824",
+     "families_read_over_step": [
+      "late-feedback"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.7444072542178570842727866",
+     "delayed_arg_start": [
+      "2.111091963400685129164144",
+      "2.112724439449369319041141"
+     ],
+     "r0": [
+      "1.073960269733460513975906",
+      "1.07559263022296398836225"
+     ],
+     "history_qddot_range": [
+      "0.105599376943412694074672",
+      "0.105747115581327294571293"
+     ],
+     "history_qddot_start": [
+      "0.105599376943412694074672",
+      "0.1056853901560404367029267"
+     ],
+     "history_q_range_recomputed": [
+      "0.2233580930587754061389783",
+      "0.227668180681740519126772"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.2138864497059721389463055",
+      "0.2160285949067828018732446"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "like": {
+     "tau0": [
+      "1.666680317415802667774",
+      "1.667496733806248854379992"
+     ],
+     "tau_range": [
+      "1.666680317415802667774",
+      "1.668804857205803255139099"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.029687023991989217187204",
+      "1.029979456240819115000079"
+     ],
+     "Dt_range": [
+      "1.029325489420572050212778",
+      "1.030206603812868861530046"
+     ],
+     "delayed_arg_range": [
+      "1.51787973641784634202887",
+      "1.530004391767025377117357"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1153381723782027710765295",
+      "0.1184115440633670762919441"
+     ],
+     "history_qdot_range": [
+      "0.1525988313510704268045969",
+      "0.1546545150552897789086763"
+     ],
+     "hit0": [
+      "0.1087049890674196369283305",
+      "0.1091857497504026054030725"
+     ],
+     "hit_fixed0": [
+      "0.1386585588436228270514434",
+      "0.1386897970534993882813729"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.656680317415802667774",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.1511950272350182971375126",
+     "delayed_arg_start": [
+      "1.519187859817400742787977",
+      "1.520004391767025377117357"
+     ],
+     "r0": [
+      "1.666680317415803044806517",
+      "1.667496733806248812140149"
+     ],
+     "history_qddot_range": [
+      "0.1023833211523006723359971",
+      "0.1024853341739744490040245"
+     ],
+     "history_qddot_start": [
+      "0.1023833211523006723359971",
+      "0.1024389444749106227838249"
+     ],
+     "history_q_range_recomputed": [
+      "0.1153381723782027710765295",
+      "0.1184115440633670762919441"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1525988313510704268045969",
+      "0.1546545150552897789086763"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "antipode": {
+     "tau0": [
+      "1.951700887768751534163563",
+      "1.951739191545419878075972"
+     ],
+     "tau_range": [
+      "1.951248489464801733717726",
+      "1.951739191545419878075972"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.027064795242420087385355",
+      "1.027076852868360618035003"
+     ],
+     "Dt_range": [
+      "1.02697399807700221831572",
+      "1.027520839696012289660812"
+     ],
+     "delayed_arg_range": [
+      "1.234945402078229719091997",
+      "1.245436219718026311173631"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07638864009659589110613184",
+      "0.07769470804896864842592673"
+     ],
+     "history_qdot_range": [
+      "0.123950395681181251478116",
+      "0.1250124394049271963018175"
+     ],
+     "hit0": [
+      "0.05580972198944623733245754",
+      "0.05583574498008112306508655"
+     ],
+     "hit_fixed0": [
+      "0.0683233675649418264808583",
+      "0.06834988653749413625579471"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.941248489464801733717726",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1212483739056232859943377",
+     "delayed_arg_start": [
+      "1.234945402078229719091997",
+      "1.234983821414076510727794"
+     ],
+     "r0": [
+      "1.951699850751474562954705",
+      "1.951740228657641960913405"
+     ],
+     "history_qddot_range": [
+      "0.1010000508661484483305448",
+      "0.1014471545985519055702109"
+     ],
+     "history_qddot_start": [
+      "0.1012100929255601456137852",
+      "0.1012117717930053822610485"
+     ],
+     "history_q_range_recomputed": [
+      "0.07638864009659589110613061",
+      "0.07769470804896864842592803"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.123950395681181251478115",
+      "0.1250124394049271963018185"
+     ],
+     "history_two_part_hull_at_T_star": false
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.5199341248032579212414609",
+    "0.520119498602565406848028"
+   ],
+   "end_v_str": [
+    "0.3295080963925857526898511",
+    "0.3300548549511579610710281"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.253090694504005178718324",
+    "-1.253044595849011916707936"
+   ],
+   "antipode_residual_end": [
+    "-1.263935477130473101488496",
+    "-1.263887703171114115074696"
+   ],
+   "a_rad_start": [
+    "-0.06539114694969243931717695",
+    "-0.06512981184739836014029548"
+   ],
+   "lambda_hat_start": [
+    "-0.04314478461332801724308653",
+    "-0.0425320126197127432246712"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06578029327618361628141289",
+    "-0.0649068620605998434614844"
+   ],
+   "lambda_hat_range": [
+    "-0.04402934521623007738768881",
+    "-0.04214138789420375512445914"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07214249218123482424399172",
+      "0.07286902380199520020980594"
+     ],
+     "radial": [
+      "-0.09867213790179507167673799",
+      "-0.09845667668271107921459513"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02174099781348392738566609",
+      "0.0218371499500805210806145"
+     ],
+     "radial": [
+      "0.0582245908836772316106526",
+      "0.05826965590422245696037755"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005580972198944623733245754",
+      "0.005583574498008112306508655"
+     ],
+     "radial": [
+      "-0.02494359993157459925109156",
+      "-0.0249427910689097378860779"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.09946446219366337536290357",
+    "0.1002897482500838335969291"
+   ],
+   "radial_sum_start": [
+    "-0.06539114694969243931717695",
+    "-0.06512981184739836014029548"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.6427330613790236652657",
+     "1.644032020137510616262884"
+    ],
+    "unlike_pair_chord": [
+     "1.138928758422832998370068",
+     "1.140801511680406596045726"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 133,
+   "certified": true,
+   "self_appended_record_index": 182,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.072099059595878803121201",
+      "1.073742059658661687169504"
+     ],
+     "Dt": [
+      "0.9440684558019428334557754",
+      "0.9447007545873645186132985"
+     ],
+     "r": [
+      "1.072099059595880078977385",
+      "1.073742059658657180020917"
+     ],
+     "hist_q": [
+      "0.2255022375246822981631452",
+      "0.227668180681740519126772"
+     ],
+     "hist_qdot": [
+      "0.2149424434754062658870523",
+      "0.2160285949067828018732446"
+     ],
+     "delayed_arg": [
+      "2.122942533964987909998465",
+      "2.124585649586949241770156"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "late-feedback"
+     ],
+     "position_vs_antipodal_records_end": "above"
+    },
+    "like": {
+     "tau": [
+      "1.667998914006015534540921",
+      "1.668820971674871330512013"
+     ],
+     "Dt": [
+      "1.029548628324710556503526",
+      "1.029840767364266154860617"
+     ],
+     "r": [
+      "1.66799891400601647142748",
+      "1.668820971674870523557495"
+     ],
+     "hist_q": [
+      "0.1168692798577710903781924",
+      "0.1184115440633670762919441"
+     ],
+     "hist_qdot": [
+      "0.153622664562593433527957",
+      "0.1546545150552897789086763"
+     ],
+     "delayed_arg": [
+      "1.527863621948778266655956",
+      "1.528685795176812510350436"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.951263843580106280081041",
+      "1.951303460592490737127577"
+     ],
+     "Dt": [
+      "1.027416869666895538144862",
+      "1.027429397395897347297263"
+     ],
+     "r": [
+      "1.951262757175923532043187",
+      "1.951304547080729163208802"
+     ],
+     "hist_q": [
+      "0.07768766196199320360124169",
+      "0.0776927881372832479160319"
+     ],
+     "hist_qdot": [
+      "0.1250067333024811732800063",
+      "0.1250108846361224054786669"
+     ],
+     "delayed_arg": [
+      "1.245381133031158860040392",
+      "1.245420865602721764810316"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06555547296310245263334433",
+    "-0.0652922302854686712473594"
+   ],
+   "lambda_hat_end": [
+    "-0.0436439769913612496018138",
+    "-0.0430201126251631312918987"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07191332776120444889211996",
+      "0.07264619104547388657588471"
+     ],
+     "radial": [
+      "-0.09880105867157396132989614",
+      "-0.09858384950915095381165311"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02158351539414750297630922",
+      "0.02168006406409269345491366"
+     ],
+     "radial": [
+      "0.05818622357503695518294814",
+      "0.05823141885020971644068106"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005606377797477865212229813",
+      "0.005609061926719111844239849"
+     ],
+     "radial": [
+      "-0.02494063786656544648639633",
+      "-0.02493979962652743387638734"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.099103220952829817080659",
+    "0.09993531703628569187503821"
+   ],
+   "radial_sum_end": [
+    "-0.06555547296310245263334433",
+    "-0.0652922302854686712473594"
+   ],
+   "qddot_end_sign": "positive"
+  },
+  {
+   "closed": true,
+   "iterations": 1,
+   "t_int": [
+    "3.196684593623649597167969",
+    "3.206684709182828044891357"
+   ],
+   "S": [
+    "0.5199341170926257042923485",
+    "0.5234250485912267569427141"
+   ],
+   "VS": [
+    "0.3295057832029206679561466",
+    "0.3310551427811120578661957"
+   ],
+   "a0": [
+    "0.09900977227423353607121134",
+    "0.1000287829954096795167537"
+   ],
+   "ap": [
+    "-0.04626379330169467409174521",
+    "-0.03408605583993329074805526"
+   ],
+   "classes": {
+    "unlike": {
+     "tau0": [
+      "1.072099059595878803121201",
+      "1.073742059658661687169504"
+     ],
+     "tau_range": [
+      "1.070098739609229602457053",
+      "1.073742059658661687169504"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "0.9440684558019428334557754",
+      "0.9447007545873645186132985"
+     ],
+     "Dt_range": [
+      "0.9435884413300069712037092",
+      "0.9455897912560528357957579"
+     ],
+     "delayed_arg_range": [
+      "2.122942533964987909998465",
+      "2.136585969573598442434304"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.2255022375246822981631452",
+      "0.2298337544778809786493931"
+     ],
+     "history_qdot_range": [
+      "0.2149424434754062658870523",
+      "0.2170862939648149617905619"
+     ],
+     "hit0": [
+      "0.3595666388060222444605998",
+      "0.3632309552273694328794235"
+     ],
+     "hit_fixed0": [
+      "0.4152222399200048505587611",
+      "0.4153755679465678230354161"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.060098739609229602457053",
+     "families_read_over_step": [
+      "late-feedback"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.7562578247821598651071076",
+     "delayed_arg_start": [
+      "2.122942533964987909998465",
+      "2.124585649586949241770156"
+     ],
+     "r0": [
+      "1.072099059595880078977385",
+      "1.073742059658657180020917"
+     ],
+     "history_qddot_range": [
+      "0.1056607076749468373363525",
+      "0.1058087988549737336038712"
+     ],
+     "history_qddot_start": [
+      "0.1056607076749468373363525",
+      "0.105747115581327294571293"
+     ],
+     "history_q_range_recomputed": [
+      "0.2255022375246822981631452",
+      "0.2298337544778809786493931"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.2149424434754062658870523",
+      "0.2170862939648149617905619"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "like": {
+     "tau0": [
+      "1.667998914006015534540921",
+      "1.668820971674871330512013"
+     ],
+     "tau_range": [
+      "1.667998914006015534540921",
+      "1.670125161296575123766466"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.029548628324710556503526",
+      "1.029840767364266154860617"
+     ],
+     "Dt_range": [
+      "1.028980674907698789035975",
+      "1.030135509985627170358014"
+     ],
+     "delayed_arg_range": [
+      "1.526559432327074473401503",
+      "1.538685795176812510350436"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": false,
+     "history_q_range": [
+      "0.1153381723782027710765295",
+      "0.1199632139550928323330146"
+     ],
+     "history_qdot_range": [
+      "0.1525988313510704268045969",
+      "0.1556795561151225777632361"
+     ],
+     "hit0": [
+      "0.1079175769707375148815461",
+      "0.1084003203204634672745683"
+     ],
+     "hit_fixed0": [
+      "0.1380872917747726079540309",
+      "0.1381193879875554928206379"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.657998914006015534540921",
+     "families_read_over_step": [
+      "wave17"
+     ],
+     "position_vs_T_star_over_step": "above T*",
+     "margin_to_T_star": "0.1598747231442464285101456",
+     "delayed_arg_start": [
+      "1.527863621948778266655956",
+      "1.528685795176812510350436"
+     ],
+     "r0": [
+      "1.66799891400601647142748",
+      "1.668820971674870523557495"
+     ],
+     "history_qddot_range": [
+      "0.1023833211523006723359971",
+      "0.1025319535616244227940173"
+     ],
+     "history_qddot_start": [
+      "0.1024293932421303036122238",
+      "0.1024853341739744490040245"
+     ],
+     "history_q_range_recomputed": [
+      "0.1153381723782027710765295",
+      "0.1199632139550928323330146"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1525988313510704268045969",
+      "0.1556795561151225777632361"
+     ],
+     "history_two_part_hull_at_T_star": false
+    },
+    "antipode": {
+     "tau0": [
+      "1.951263843580106280081041",
+      "1.951303460592490737127577"
+     ],
+     "tau_range": [
+      "1.95080965858880453813091",
+      "1.951303460592490737127577"
+     ],
+     "tau_containment_asserted": true,
+     "Dt0": [
+      "1.027416869666895538144862",
+      "1.027429397395897347297263"
+     ],
+     "Dt_range": [
+      "1.02732463192647462695147",
+      "1.02787688034827877877162"
+     ],
+     "delayed_arg_range": [
+      "1.245381133031158860040392",
+      "1.255875050594023506760447"
+     ],
+     "two_regime": false,
+     "delayed_arg_in_window": true,
+     "history_q_range": [
+      "0.07768766196199320360124169",
+      "0.07900521127631305382623882"
+     ],
+     "history_qdot_range": [
+      "0.1250067333024811732800063",
+      "0.1260693602195235231319581"
+     ],
+     "hit0": [
+      "0.05606377797477865212229813",
+      "0.05609061926719111844239849"
+     ],
+     "hit_fixed0": [
+      "0.06880864586460290451222781",
+      "0.06883601761111947034799339"
+     ],
+     "delayed_arg_in_covered_history": true,
+     "margin_to_coverage_end": "1.94080965858880453813091",
+     "families_read_over_step": [
+      "window"
+     ],
+     "position_vs_T_star_over_step": "below T*",
+     "margin_to_T_star": "0.1108095430296260904075217",
+     "delayed_arg_start": [
+      "1.245381133031158860040392",
+      "1.245420865602721764810316"
+     ],
+     "r0": [
+      "1.951262757175923532043187",
+      "1.951304547080729163208802"
+     ],
+     "history_qddot_range": [
+      "0.1010226221719075951863298",
+      "0.1014750113220777241019218"
+     ],
+     "history_qddot_start": [
+      "0.1012350807899284392132424",
+      "0.1012368382427051714591127"
+     ],
+     "history_q_range_recomputed": [
+      "0.0776876619619932036012404",
+      "0.07900521127631305382624006"
+     ],
+     "history_qdot_range_recomputed": [
+      "0.1250067333024811732800053",
+      "0.1260693602195235231319591"
+     ],
+     "history_two_part_hull_at_T_star": false
+    }
+   },
+   "moving": [
+    "unlike",
+    "like",
+    "antipode"
+   ],
+   "end_q_str": [
+    "0.5232341485451652734960506",
+    "0.5234250485912267569427141"
+   ],
+   "end_v_str": [
+    "0.3304958809256630033168587",
+    "0.3310551427811120578661957"
+   ],
+   "subwake": true,
+   "root_uniqueness": true,
+   "delayed_args_in_window": false,
+   "other_images_fixed": true,
+   "fixed_chords_at_end": {},
+   "reduction_premise_holds": true,
+   "reduction_premise_chords_at_end": {},
+   "antipode_residual_start": [
+    "-1.263935477130473101488496",
+    "-1.263887703171114115074696"
+   ],
+   "antipode_residual_end": [
+    "-1.274788100034838552531731",
+    "-1.274738600725982165668911"
+   ],
+   "a_rad_start": [
+    "-0.06555547296310245263334433",
+    "-0.0652922302854686712473594"
+   ],
+   "lambda_hat_start": [
+    "-0.0436439769913612496018138",
+    "-0.0430201126251631312918987"
+   ],
+   "lambda_hat_start_sign": "negative",
+   "a_rad_range": [
+    "-0.06595689124014127716814449",
+    "-0.065036768793262015789352"
+   ],
+   "lambda_hat_range": [
+    "-0.04456073876856047529039528",
+    "-0.04261716992402887903657847"
+   ],
+   "lambda_hat_range_sign": "negative",
+   "class_contributions_start": {
+    "unlike": {
+     "tangent": [
+      "0.07191332776120444889211996",
+      "0.07264619104547388657588471"
+     ],
+     "radial": [
+      "-0.09880105867157396132989614",
+      "-0.09858384950915095381165311"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02158351539414750297630922",
+      "0.02168006406409269345491366"
+     ],
+     "radial": [
+      "0.05818622357503695518294814",
+      "0.05823141885020971644068106"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005606377797477865212229813",
+      "0.005609061926719111844239849"
+     ],
+     "radial": [
+      "-0.02494063786656544648639633",
+      "-0.02493979962652743387638734"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_start": [
+    "0.099103220952829817080659",
+    "0.09993531703628569187503821"
+   ],
+   "radial_sum_start": [
+    "-0.06555547296310245263334433",
+    "-0.0652922302854686712473594"
+   ],
+   "reconcile_tangent_sum_intersects_a0": true,
+   "reconcile_radial_sum_intersects_a_rad_start": true,
+   "qddot_start_sign": "positive",
+   "qddot_range_sign": "positive",
+   "delayed_args_in_covered_history": true,
+   "simultaneous_separations_over_step": {
+    "like_pair_chord": [
+     "1.643962825432477718441052",
+     "1.645264112310258640726506"
+    ],
+    "unlike_pair_chord": [
+     "1.137148187680012372209358",
+     "1.139028633791119753032266"
+    ],
+    "antipodal_pair_chord": "2 (exactly antipodal at equal times)"
+   },
+   "step": 134,
+   "certified": true,
+   "self_appended_record_index": 183,
+   "end_classes": {
+    "unlike": {
+     "tau": [
+      "1.069690541802993631070744",
+      "1.071899753378756543622149"
+     ],
+     "Dt": [
+      "0.9441366336934995812380921",
+      "0.945359657338137597253725"
+     ],
+     "r": [
+      "1.069197868798627808294892",
+      "1.072393564499500008173244"
+     ],
+     "hist_q": [
+      "0.2276569449948201081638826",
+      "0.2320099083428004088201267"
+     ],
+     "hist_qdot": [
+      "0.2159990505521557342604159",
+      "0.218144608815017697024935"
+     ],
+     "delayed_arg": [
+      "2.13478484024489305354582",
+      "2.136994167379834413820613"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "late-feedback"
+     ],
+     "position_vs_antipodal_records_end": "above"
+    },
+    "like": {
+     "tau": [
+      "1.669313224024359613745567",
+      "1.67000011555917933430263"
+     ],
+     "Dt": [
+      "1.029201466725704430797629",
+      "1.029766357682858749836295"
+     ],
+     "r": [
+      "1.66878979322375258777507",
+      "1.670369891876589305389238"
+     ],
+     "hist_q": [
+      "0.1168692798577710903781924",
+      "0.1199632139550928323330146"
+     ],
+     "hist_qdot": [
+      "0.153622664562593433527957",
+      "0.1556795561151225777632361"
+     ],
+     "delayed_arg": [
+      "1.536684478064470262865339",
+      "1.53737148515846843114579"
+     ],
+     "position_vs_T_star": "above T*",
+     "families_read": [
+      "wave17"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    },
+    "antipode": {
+     "tau": [
+      "1.950825123384333141239332",
+      "1.950866089355986580081482"
+     ],
+     "Dt": [
+      "1.027770980488625010657472",
+      "1.027783993095229953296468"
+     ],
+     "r": [
+      "1.950823985603354368385059",
+      "1.950867227208726927154725"
+     ],
+     "hist_q": [
+      "0.07899791329641055877505442",
+      "0.07900326141986113184343564"
+     ],
+     "hist_qdot": [
+      "0.126063498203256371184292",
+      "0.126067794046210293499657"
+     ],
+     "delayed_arg": [
+      "1.255818504267663017086487",
+      "1.255859585798494903652025"
+     ],
+     "position_vs_T_star": "below T*",
+     "families_read": [
+      "window"
+     ],
+     "position_vs_antipodal_records_end": "below"
+    }
+   },
+   "a_rad_end": [
+    "-0.06586317803491007020215366",
+    "-0.06535234652664002162815141"
+   ],
+   "lambda_hat_end": [
+    "-0.04424516103518246945159587",
+    "-0.04336434927391994838399459"
+   ],
+   "lambda_hat_end_sign": "negative",
+   "class_contributions_end": {
+    "unlike": {
+     "tangent": [
+      "0.07121900394309287217224153",
+      "0.07265345544553313470555126"
+     ],
+     "radial": [
+      "-0.09906199420117888559296281",
+      "-0.09863901704891811452813291"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "like": {
+     "tangent": [
+      "0.02141573838024125240072788",
+      "0.02160242494530990265394712"
+     ],
+     "radial": [
+      "0.05813646853852710265505186",
+      "0.05822345441879865449639996"
+     ],
+     "multiplicity": 2,
+     "moving": true
+    },
+    "antipode": {
+     "tangent": [
+      "0.005631765761925761282435868",
+      "0.005634533748433503424655274"
+     ],
+     "radial": [
+      "-0.02493765237225828726424271",
+      "-0.02493678389652056159641846"
+     ],
+     "multiplicity": 1,
+     "moving": true
+    }
+   },
+   "tangent_sum_end": [
+    "0.09826650808525988585540527",
+    "0.09989041413927654078415366"
+   ],
+   "radial_sum_end": [
+    "-0.06586317803491007020215366",
+    "-0.06535234652664002162815141"
+   ],
+   "qddot_end_sign": "positive"
+  }
+ ],
+ "v10_sha256_expected": "1352182139423cb3088be03eae81ee7624bd8d09d67d86c864da32caf085b024",
+ "sample_mode_not_target_evidence": false,
+ "T_star": [
+  "1.366684593623649597167969",
+  "1.366684709182828044891357"
+ ],
+ "record_chain": {
+  "count_frozen": 144,
+  "first": "wave16 step 1",
+  "last": "late-feedback-s3d step 94",
+  "t_lo": "1.366684593623649597167969",
+  "t_hi_frozen": "2.806684709182828044891357",
+  "joins": [
+   {
+    "join": "wave16 step 10 -> wave17 start",
+    "pass": true,
+    "end_q": [
+     "0.1078360786236463737425584",
+     "0.1078365557293226335681814"
+    ],
+    "start_q": [
+     "0.1078360786236463737425584",
+     "0.1078365557293226335681814"
+    ]
+   },
+   {
+    "join": "wave17 step 40 -> antipodal-a start",
+    "pass": true,
+    "end_q": [
+     "0.1750516801723775893710754",
+     "0.175056763736205971059134"
+    ],
+    "start_q": [
+     "0.1750516801723775893710754",
+     "0.175056763736205971059134"
+    ]
+   },
+   {
+    "join": "antipodal-a step 11 -> antipodal-b3 resume",
+    "pass": true,
+    "end_q": [
+     "0.1964426619820381217168754",
+     "0.196449994294162961493939"
+    ],
+    "start_q": [
+     "0.1964426619820381217168754",
+     "0.196449994294162961493939"
+    ]
+   },
+   {
+    "join": "step 21 -> late-feedback-s1a2 resume",
+    "pass": true,
+    "end_q": [
+     "0.2169889763507186775076704",
+     "0.2169987970109094562817074"
+    ],
+    "start_q": [
+     "0.2169889763507186775076704",
+     "0.2169987970109094562817074"
+    ]
+   },
+   {
+    "join": "step 30 -> late-feedback-s1b resume",
+    "pass": true,
+    "end_q": [
+     "0.2363815274827344393252612",
+     "0.2363939808878887293542157"
+    ],
+    "start_q": [
+     "0.2363815274827344393252612",
+     "0.2363939808878887293542157"
+    ]
+   },
+   {
+    "join": "step 44 -> late-feedback-s2a resume",
+    "pass": true,
+    "end_q": [
+     "0.2682548897108832844147014",
+     "0.2682722348201430693813555"
+    ],
+    "start_q": [
+     "0.2682548897108832844147014",
+     "0.2682722348201430693813555"
+    ]
+   },
+   {
+    "join": "step 56 -> late-feedback-s2b3 resume",
+    "pass": true,
+    "end_q": [
+     "0.2972397409585767836906",
+     "0.2972620976810700998649981"
+    ],
+    "start_q": [
+     "0.2972397409585767836906",
+     "0.2972620976810700998649981"
+    ]
+   },
+   {
+    "join": "step 64 -> late-feedback-s3a resume",
+    "pass": true,
+    "end_q": [
+     "0.3174215050973258168151511",
+     "0.3174476357049886764715778"
+    ],
+    "start_q": [
+     "0.3174215050973258168151511",
+     "0.3174476357049886764715778"
+    ]
+   },
+   {
+    "join": "step 69 -> late-feedback-s3b2 resume",
+    "pass": true,
+    "end_q": [
+     "0.3303850460494271208234513",
+     "0.3304137105118107545698485"
+    ],
+    "start_q": [
+     "0.3303850460494271208234513",
+     "0.3304137105118107545698485"
+    ]
+   },
+   {
+    "join": "step 78 -> late-feedback-s3c resume",
+    "pass": true,
+    "end_q": [
+     "0.3543985590884071228124339",
+     "0.3544332051883565299139656"
+    ],
+    "start_q": [
+     "0.3543985590884071228124339",
+     "0.3544332051883565299139656"
+    ]
+   },
+   {
+    "join": "step 86 -> late-feedback-s3d resume",
+    "pass": true,
+    "end_q": [
+     "0.3764767902921476837096419",
+     "0.3765197152663271911605447"
+    ],
+    "start_q": [
+     "0.3764767902921476837096419",
+     "0.3765197152663271911605447"
+    ]
+   }
+  ],
+  "joins_all_exact": true,
+  "families": {
+   "wave16": [
+    1.3666845936236496,
+    1.4666847091828281
+   ],
+   "wave17": [
+    1.4666845936236497,
+    1.866684709182828
+   ],
+   "antipodal": [
+    1.8666845936236496,
+    2.076684709182828
+   ],
+   "late-feedback": [
+    2.0766845936236495,
+    2.806684709182828
+   ]
+  },
+  "pad": "1e-23"
+ },
+ "controls_all_pass": true,
+ "campaign": "like-reception",
+ "own_chain": [
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s1a.json",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s1b.json",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s2a2.json"
+ ],
+ "resumed_from": {
+  "file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s2a2.json",
+  "after_step": 124,
+  "t0": [
+   "3.106684593623649597167969",
+   "3.106684709182828044891357"
+  ],
+  "q": [
+   "0.4906834845802867001124733",
+   "0.4908248692940519963879255"
+  ],
+  "qdot": [
+   "0.3204610411197252187546447",
+   "0.3208908098031064219099503"
+  ],
+  "resumed_end_strings_equal_source": true,
+  "records_loaded": 174,
+  "coverage_end": "3.106684709182828044891357"
+ },
+ "reached_time": [
+  "3.206684593623649597167969",
+  "3.206684709182828044891357"
+ ],
+ "partial": false,
+ "reached_q": [
+  "0.5232341485451652734960506",
+  "0.5234250485912267569427141"
+ ],
+ "reached_qdot": [
+  "0.3304958809256630033168587",
+  "0.3310551427811120578661957"
+ ],
+ "stop_reason": "plan exhausted (step 134 certified)",
+ "wall_s": 38.06710195541382
+}

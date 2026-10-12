@@ -1,0 +1,66 @@
+Subject: /Users/markmorris/vibe/architrino/reference/priorities/app-solver/evidence/matched_pair_stage_3_validated_far_step_carrier_v2.py (validated_far_step_prototype_certificate/v2)
+
+K1 known case: static past on the axis, one step of 1/128
+  PASS  K1 certified within budgets: certified
+  PASS  K1 receiver velocity tube contains analytic bracket: tube [-7.812500000e-08, -7.812499999e-08], bracket [-7.812500000e-08, -7.812500000e-08]
+  PASS  K1 receiver position tube contains analytic bracket: tube [-3.051757813e-10, -3.051757812e-10]
+  PASS  K1 source velocity tube contains analytic bracket: tube [7.812499999e-08, 7.812500000e-08]
+  PASS  K1 source position tube contains analytic bracket: tube [1.000000000e+01, 1.000000000e+01]
+  PASS  K1 radius growth: position 1.571606845e-20, velocity 4.023313522e-18
+
+K2 known case: static past off the axes, source at (3, 4, 0)
+  PASS  K2 certified within budgets: certified
+  PASS  K2 receiver velocity axis 0 contains bracket: tube [-1.875000001e-07, -1.874999999e-07]
+  PASS  K2 receiver position axis 0 contains bracket: tube [-7.324218752e-10, -7.324218744e-10]
+  PASS  K2 receiver velocity axis 1 contains bracket: tube [-2.500000001e-07, -2.499999998e-07]
+  PASS  K2 receiver position axis 1 contains bracket: tube [-9.765625003e-10, -9.765624992e-10]
+  PASS  K2 receiver z components contain zero: exact zero
+
+K3 known case for the oscillating-truth bracket: amplitude 0
+  PASS  K3 velocity bracket contains -kappa t / R^2 minus correction: [-7.812500000e-08, -7.812500000e-08]
+  PASS  K3 position bracket contains -kappa t^2 / (2 R^2): [-3.053283691e-10, -3.050231934e-10], exact -3.051757813e-10
+
+Known cases passed before any target.
+
+T1/T2 adversarial control past, steps of 1/128 with budgets 1e-8
+  PASS  T1 first step certified within budgets: certified
+  PASS  T1 receiver radius growth: position 5.544730809e-12, velocity 1.419451087e-09; budgets 1.000000000e-08, 1.000000000e-08
+  PASS  T1 receiver velocity tube contains true bracket: tube [-7.817938163e-08, -7.534047945e-08], true [-7.672586649e-08, -7.672586239e-08]
+  PASS  T1 receiver position tube contains true bracket: tube [-3.053882095e-10, -2.942987479e-10], true [-3.016406733e-10, -3.013409542e-10]
+  PASS  T1 source tubes contain analytic bracket: velocity tube [7.812499999e-08, 7.812500000e-08]
+  PASS  T2 second step certified within budgets: certified
+  PASS  T2 second step inherits nonzero position and velocity radii: inherited radii position 5.544730809e-12, velocity 1.419451087e-09
+  PASS  T2 radii do not shrink across the join: second-step radii position 2.185592566e-11, velocity 2.756214796e-09
+  PASS  T2 start tube of step two contains end tube of step one: position, z axis
+  PASS  T2 receiver velocity tube contains true bracket at 2h: tube [-1.537128665e-07, -1.482004369e-07], true [-1.508898941e-07, -1.508898618e-07]
+  PASS  T2 receiver position tube contains true bracket at 2h: tube [-1.211217304e-09, -1.167505452e-09]
+
+T4 the adversarial step itself: one step of 2
+  PASS  T4 hypotheses hold without a budget: certified
+  PASS  T4 unbudgeted tube contains the frozen true bracket: velocity tube [-5.000003125e-05, -1.177884146e-05]
+  PASS  T4 declined under the declared budgets: VFS-BUDGET-01
+
+N decline cases: each must return no published continuation
+  PASS  N1 unvalidated provenance: VFS-H0-01: path source segment 0 has provenance 'step_doubling_estimate'
+  PASS  N2 prescribed segment carrying a radius: VFS-H0-01: path source segment 0: prescribed with radius
+  PASS  N3 prescribed join with a velocity corner: VFS-H0-01: path source join 1 is not exactly continuously differentiable
+  PASS  N4 past at or above field speed: VFS-H1-01: retained past is not sub-wake-speed
+  PASS  N5 step longer than the separation: VFS-H2-01: step boxes are not farther apart than h
+  PASS  N6 root on the retained boundary: neither present nor absent: VFS-H3-01: lower sign is neither uniformly present nor absent
+  PASS  N7 strong coupling: step velocity box reaches field speed: VFS-H1-01: step velocity box is not sub-wake-speed
+  PASS  N8 enclosure iteration limit: VFS-H5-01: no a priori enclosure was found
+  PASS  N9 budget exceeded on a wide step: VFS-BUDGET-01: the validated radius growth exceeds the declared budget
+  PASS  P1 both pairs certified absent: zero acceleration: conditional on the retained window being the complete emission domain
+
+T3 adversarial control past, 512 steps of 1/256 to t = 2 with budgets 1e-8
+  PASS  T3 every step certified within budgets: 512 of 512; last code none
+  PASS  T3 receiver velocity tube intersects the frozen true bracket: tube [-1.982442495e-05, -1.940813417e-05], half-width 2.081453905e-07; true [-1.963423564e-05, -1.958320815e-05]
+  PASS  T3 receiver position tube intersects the frozen true bracket: tube [-1.783842033e-05, -1.750436890e-05], half-width 1.670257150e-07; true [-1.768122117e-05, -1.765219809e-05]
+  PASS  T3 velocity tube contains the whole true bracket: True
+  PASS  T3 validated velocity tube versus the solver's aliased interval: aliased [-2.000092009e-05, -2.000046003e-05]; disjoint, separation 1.760350723e-07
+  PASS  T3 source tubes contain analytic bracket: velocity tube [1.999997316e-05, 1.999997342e-05]
+  PASS  T3 largest per-step velocity radius growth: 1.713785517e-09
+
+45 of 45 rows passed.
+528 exact receipts; full set SHA-256 d56b2fdcdb5940bede1901029c7bf583bad058aad3a5e4293f679bb4a99c1bf7
+adapter-exit 0

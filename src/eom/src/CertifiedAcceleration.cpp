@@ -1473,10 +1473,16 @@ void validate_pair_request(const NativePairAccelerationRequest& request) {
         "pair acceleration request requires row, path, history, and root identities");
   }
   if (request.chart != "sharp" && request.chart != "finite_width" &&
-      request.chart != "far_field_enclosure") {
+      request.chart != "far_field_enclosure" &&
+      request.chart != "matched_pair_enclosure") {
     throw std::invalid_argument(
-        "pair acceleration chart must be sharp, finite_width, or "
-        "far_field_enclosure");
+        "pair acceleration chart must be sharp, finite_width, "
+        "far_field_enclosure, or matched_pair_enclosure");
+  }
+  if (request.chart == "matched_pair_enclosure" &&
+      request.matched_pair_enclosure == nullptr) {
+    throw std::invalid_argument(
+        "matched-pair acceleration requires a group certificate");
   }
   if (request.chart == "far_field_enclosure" &&
       request.far_field_enclosure == nullptr) {
@@ -1554,10 +1560,13 @@ NativePairAccelerationCertificate certify_pair_acceleration(
   std::size_t precision_escalation_attempt_count = 0U;
   try {
     const bool far_field_chart = request.chart == "far_field_enclosure";
-    if ((!far_field_chart &&
+    const bool matched_pair_chart = request.chart == "matched_pair_enclosure";
+    if ((!far_field_chart && !matched_pair_chart &&
          root_certificate.schema != "eom_native_exact_pair_certificate/v1") ||
         (far_field_chart &&
-         root_certificate.schema != "eom_native_enclosed_pair_marker/v1")) {
+         root_certificate.schema != "eom_native_enclosed_pair_marker/v1") ||
+        (matched_pair_chart &&
+         root_certificate.schema != kMatchedPairMemberMarkerSchema)) {
       throw AccelerationCertificationError("unsupported root certificate schema");
     }
     if (root_certificate.receiver_history_id !=
@@ -1664,6 +1673,67 @@ NativePairAccelerationCertificate certify_pair_acceleration(
           .acceleration_precision_route = "binary64_outward_far_field_bound",
           .acceleration_precision_bits = 53,
           .acceleration = *enclosure.acceleration,
+      };
+      contributions.push_back(row.acceleration);
+      rows.push_back(std::move(row));
+    } else if (request.chart == "matched_pair_enclosure") {
+      const auto& group = *request.matched_pair_enclosure;
+      // The request's own identities, event and mathematical scalars are
+      // compared with the certified ones; a changed coupling, charge, wake
+      // speed or tolerance is refused rather than relabelled.
+      const std::string refusal = matched_pair_certificate_refusal(
+          group,
+          {.receiver_path_id = request.receiver_path_id,
+           .receiver_history = request.receiver_history,
+           .member_path_id = request.transmitter_path_id,
+           .member_history = request.transmitter_history,
+           .reception_time = root_certificate.reception_time,
+           .receiver_charge = request.receiver_charge,
+           .member_charge = request.transmitter_charge,
+           .coupling = request.coupling,
+           .field_speed = root_certificate.field_speed,
+           .acceleration_tolerance = request.acceleration_tolerance});
+      if (!refusal.empty()) {
+        throw AccelerationCertificationError(refusal);
+      }
+      // One numerical interval per group. The leader's slot owns it. The
+      // follower's slot is the additive identity of the reduction and refers
+      // to the group; it is not a claim about the follower's own acceleration.
+      const bool leader = group.leader.path_id == request.transmitter_path_id;
+      const bool absent = group.status == "certified_absent";
+      NativeAccelerationRow row{
+          .row_id = request.row_id + "/matched-pair-enclosure",
+          .receiver_path_id = request.receiver_path_id,
+          .transmitter_path_id = request.transmitter_path_id,
+          .row_index = 0,
+          .chart = "matched_pair_enclosure",
+          .reception_time = root_certificate.reception_time,
+          .emission_lower = group.emission_lower,
+          .emission_upper = group.emission_upper,
+          .transmitter_segment_indices = {},
+          .separation = std::nullopt,
+          .transmitter_factor = std::nullopt,
+          .receiver_factor = std::nullopt,
+          .root_playback = std::nullopt,
+          .acceleration_weight = std::nullopt,
+          .polarity = charge_polarity(receiver_charge, transmitter_charge),
+          .charge_product_magnitude =
+              interval_absolute(receiver_charge * transmitter_charge),
+          .coupling = coupling,
+          .accumulation_group = group.group_id,
+          .acceptance_status = !leader
+              ? "matched_pair_group_reduction_identity"
+              : (absent ? "consumed_certified_matched_pair_absence"
+                        : "consumed_certified_matched_pair_group"),
+          .root_precision_route = "root_search_bypassed_by_matched_pair_group",
+          .root_precision_bits = 53,
+          .acceleration_precision_route =
+              "binary64_outward_matched_pair_bound",
+          .acceleration_precision_bits = 53,
+          .acceleration = leader
+              ? *group.acceleration
+              : IntervalVector{Interval::point(0.0), Interval::point(0.0),
+                               Interval::point(0.0)},
       };
       contributions.push_back(row.acceleration);
       rows.push_back(std::move(row));
@@ -1915,6 +1985,116 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
         throw std::invalid_argument("ordered-pair acceleration domain is incomplete");
       }
       canonical_requests.push_back(pair_requests[found->second]);
+    }
+  }
+  // Group ownership and reproduction. Every matched-pair group must be
+  // referenced by exactly its leader's and its follower's requests for its
+  // receiver, both through one certificate object; a missing, repeated or
+  // foreign reference would drop or duplicate the group's single interval.
+  // Each group is then certified afresh from the two requests' own histories
+  // and scalar tokens, and every retained field of the supplied certificate
+  // must equal the fresh one. A certificate therefore cannot be carried over
+  // to changed histories, charges, coupling, tolerance or path count, and no
+  // recorded bound, hull, residual or accounting field can be false. The
+  // window start and the far-field fraction are the caller's declared
+  // inputs: the window is bound to the root markers here and the fraction to
+  // the snapshot's receiver-total test.
+  {
+    struct GroupReferences {
+      const NativePairAccelerationRequest* leader = nullptr;
+      const NativePairAccelerationRequest* follower = nullptr;
+      std::size_t leader_count = 0U;
+      std::size_t follower_count = 0U;
+    };
+    std::map<const NativeMatchedPairEnclosureCertificate*, GroupReferences>
+        references;
+    for (const auto& request : canonical_requests) {
+      if (request.chart != "matched_pair_enclosure") {
+        if (request.matched_pair_enclosure != nullptr) {
+          throw std::invalid_argument(
+              "matched-pair certificate attached to a non-group request");
+        }
+        continue;
+      }
+      const auto& group = *request.matched_pair_enclosure;
+      if (group.receiver_path_id != request.receiver_path_id) {
+        throw std::invalid_argument(
+            "matched-pair request names another receiver's group");
+      }
+      auto& entry = references[request.matched_pair_enclosure];
+      if (request.transmitter_path_id == group.leader.path_id) {
+        entry.leader = &request;
+        ++entry.leader_count;
+      } else if (request.transmitter_path_id == group.follower.path_id) {
+        entry.follower = &request;
+        ++entry.follower_count;
+      } else {
+        throw std::invalid_argument(
+            "matched-pair request does not name a group member");
+      }
+    }
+    std::set<std::string> group_ids;
+    for (const auto& [group, entry] : references) {
+      if (entry.leader_count != 1U || entry.follower_count != 1U ||
+          !group_ids.insert(group->group_id).second) {
+        throw std::invalid_argument(
+            "matched-pair group ownership is incomplete or duplicated");
+      }
+      const auto& leader = *entry.leader;
+      const auto& follower = *entry.follower;
+      if (leader.receiver_history != follower.receiver_history ||
+          leader.receiver_charge != follower.receiver_charge ||
+          leader.coupling != follower.coupling ||
+          leader.acceleration_tolerance != follower.acceleration_tolerance ||
+          leader.root_certificate->reception_time !=
+              follower.root_certificate->reception_time ||
+          leader.root_certificate->field_speed !=
+              follower.root_certificate->field_speed) {
+        throw std::invalid_argument(
+            "matched-pair member requests disagree on receiver inputs");
+      }
+      const auto fresh = certify_matched_pair_enclosure({
+          .policy = group->policy,
+          .receiver_path_id = leader.receiver_path_id,
+          .receiver_history = leader.receiver_history,
+          .receiver_charge = leader.receiver_charge,
+          .leader_path_id = leader.transmitter_path_id,
+          .leader_history = leader.transmitter_history,
+          .leader_charge = leader.transmitter_charge,
+          .follower_path_id = follower.transmitter_path_id,
+          .follower_history = follower.transmitter_history,
+          .follower_charge = follower.transmitter_charge,
+          .coupling = leader.coupling,
+          .field_speed = leader.root_certificate->field_speed,
+          .reception_time = leader.root_certificate->reception_time,
+          .emission_lower = group->emission_lower,
+          .far_field_enclosure_fraction = group->far_field_enclosure_fraction,
+          .acceleration_tolerance = leader.acceleration_tolerance,
+          .transmitter_count = path_ids.size(),
+      });
+      // The declared window must be the one the two root markers record.
+      if (group->emission_lower != leader.root_certificate->searched_lower ||
+          group->emission_lower != follower.root_certificate->searched_lower ||
+          group->emission_upper != leader.root_certificate->searched_upper ||
+          group->emission_upper != follower.root_certificate->searched_upper) {
+        throw std::invalid_argument(
+            "matched-pair group window differs from its root markers");
+      }
+      if (fresh.status != "certified_enclosed" &&
+          fresh.status != "certified_absent") {
+        throw std::invalid_argument(
+            "matched-pair group does not reproduce from its request inputs: "
+            "fresh certification declined with " + fresh.failure_code);
+      }
+      // Every retained field of the supplied certificate must equal the fresh
+      // one: no proof field is accepted on the supplied certificate's word.
+      const std::string difference =
+          matched_pair_certificate_difference(*group, fresh);
+      if (!difference.empty()) {
+        throw std::invalid_argument(
+            "matched-pair group does not reproduce from its request inputs: " +
+            difference);
+      }
     }
   }
   const std::size_t finite_width_request_count = static_cast<std::size_t>(

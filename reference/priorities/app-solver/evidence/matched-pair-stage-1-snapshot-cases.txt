@@ -1,0 +1,692 @@
+# Stage 1 snapshot-level controls for eom_matched_pair_fixture_cli snapshot-file. c_f = 1 throughout.
+# Known case first: one static source at distance 2 on the exact route, policy disabled.
+case known-static-source-distance-2
+reception 0
+tolerance 1e-5
+fraction 0
+policy disabled
+far_field 0
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path source 1 -20 0 0 0 0 0 0 0 0 0 2 0 0 0
+end
+
+case static-pair-enabled/traversal=0/tile=4096/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-disabled/traversal=0/tile=4096/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-enabled/traversal=0/tile=4096/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 4
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-disabled/traversal=0/tile=4096/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 4
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-enabled/traversal=1/tile=1/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-disabled/traversal=1/tile=1/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-enabled/traversal=1/tile=1/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 4
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-disabled/traversal=1/tile=1/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 1
+tile_limit 1
+threads 4
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-enabled/traversal=1/tile=4096/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-disabled/traversal=1/tile=4096/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 1
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-enabled/traversal=1/tile=4096/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 4096
+threads 4
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-disabled/traversal=1/tile=4096/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 1
+tile_limit 4096
+threads 4
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-enabled-repeat
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-policy-enabled-far-field-off
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 0
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case static-pair-policy-enabled-fraction-zero
+reception 0
+tolerance 0.001
+fraction 0
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case both-absent/traversal=0
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 1
+threads 1
+path receiver 1 -5 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -5 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -5 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case one-missing/traversal=0
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 1
+threads 1
+path receiver 1 -10 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -10 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -10 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case endpoint-root/traversal=0
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 1
+threads 1
+path receiver 1 -10.005 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -10.005 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -10.005 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case both-absent/traversal=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -5 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -5 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -5 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case one-missing/traversal=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -10 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -10 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -10 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case endpoint-root/traversal=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path receiver 1 -10.005 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -10.005 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -10.005 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case endpoint-root-disabled/traversal=0
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 0
+tile_limit 1
+threads 1
+path receiver 1 -10.005 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -10.005 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -10.005 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case one-missing-disabled
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -10 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -10 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -10 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case both-absent-disabled
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -5 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -5 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -5 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case same-polarity
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus 1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case unequal-magnitude
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1.0000000001 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case budget-declines-group-then-individual-or-exact
+reception 0
+tolerance 0.0001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case affine-7-24-25
+reception 1
+tolerance 100
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -0.5 1 0 0 0 0 0 0 0 0 0.96 0 0 0
+path plus 1 -0.5 1 0.28 0 0 0 0 0 0 0 -0.05 0.1 0 0
+path minus -1 -0.5 1 -0.28 0 0 0 0 0 0 0 0.05 -0.1 0 0
+end
+
+case affine-7-24-25-disabled
+reception 1
+tolerance 100
+fraction 0.5
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -0.5 1 0 0 0 0 0 0 0 0 0.96 0 0 0
+path plus 1 -0.5 1 0.28 0 0 0 0 0 0 0 -0.05 0.1 0 0
+path minus -1 -0.5 1 -0.28 0 0 0 0 0 0 0 0.05 -0.1 0 0
+end
+
+case quadratic-pair
+reception 0
+tolerance 0.1
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -15 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -15 0 0 0 0 0 0 0 0 0 13.6 -0.48 0.016 0
+path minus -1 -15 0 0 0 0 0 0 0 0 0 12.825 -0.48 0.016 0
+end
+
+case quadratic-pair-disabled
+reception 0
+tolerance 0.1
+fraction 0.5
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -15 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -15 0 0 0 0 0 0 0 0 0 13.6 -0.48 0.016 0
+path minus -1 -15 0 0 0 0 0 0 0 0 0 12.825 -0.48 0.016 0
+end
+
+case nonzero-error-token
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 0 0 0 0 0 0 0 0 0 9.995 0 0 0 1e-12 0
+end
+
+case two-segment-follower
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -20 -10 0 0 0 0 0 0 0 0 9.995 0 0 0
+path minus -1 -10 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case six-path-enabled/traversal=0/tile=4096/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path r0 1 -40 0 0 0 0 0 0 0 0 0 0 0 0 0
+path p1 1 -40 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path e1 -1 -40 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+path p2 1 -40 0 0 0 0 0 0 0 0 0 20.005 0 0 0
+path e2 -1 -40 0 0 0 0 0 0 0 0 0 19.995 0 0 0
+path e3 -1 -40 0 0 0 0 0 0 0 0 0 30 0 0 0
+end
+
+case six-path-enabled/traversal=0/tile=4096/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 4
+path r0 1 -40 0 0 0 0 0 0 0 0 0 0 0 0 0
+path p1 1 -40 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path e1 -1 -40 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+path p2 1 -40 0 0 0 0 0 0 0 0 0 20.005 0 0 0
+path e2 -1 -40 0 0 0 0 0 0 0 0 0 19.995 0 0 0
+path e3 -1 -40 0 0 0 0 0 0 0 0 0 30 0 0 0
+end
+
+case six-path-enabled/traversal=1/tile=1/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path r0 1 -40 0 0 0 0 0 0 0 0 0 0 0 0 0
+path p1 1 -40 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path e1 -1 -40 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+path p2 1 -40 0 0 0 0 0 0 0 0 0 20.005 0 0 0
+path e2 -1 -40 0 0 0 0 0 0 0 0 0 19.995 0 0 0
+path e3 -1 -40 0 0 0 0 0 0 0 0 0 30 0 0 0
+end
+
+case six-path-enabled/traversal=1/tile=1/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 1
+threads 4
+path r0 1 -40 0 0 0 0 0 0 0 0 0 0 0 0 0
+path p1 1 -40 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path e1 -1 -40 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+path p2 1 -40 0 0 0 0 0 0 0 0 0 20.005 0 0 0
+path e2 -1 -40 0 0 0 0 0 0 0 0 0 19.995 0 0 0
+path e3 -1 -40 0 0 0 0 0 0 0 0 0 30 0 0 0
+end
+
+case six-path-enabled/traversal=1/tile=4/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 4
+threads 1
+path r0 1 -40 0 0 0 0 0 0 0 0 0 0 0 0 0
+path p1 1 -40 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path e1 -1 -40 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+path p2 1 -40 0 0 0 0 0 0 0 0 0 20.005 0 0 0
+path e2 -1 -40 0 0 0 0 0 0 0 0 0 19.995 0 0 0
+path e3 -1 -40 0 0 0 0 0 0 0 0 0 30 0 0 0
+end
+
+case six-path-enabled/traversal=1/tile=4/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 4
+threads 4
+path r0 1 -40 0 0 0 0 0 0 0 0 0 0 0 0 0
+path p1 1 -40 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path e1 -1 -40 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+path p2 1 -40 0 0 0 0 0 0 0 0 0 20.005 0 0 0
+path e2 -1 -40 0 0 0 0 0 0 0 0 0 19.995 0 0 0
+path e3 -1 -40 0 0 0 0 0 0 0 0 0 30 0 0 0
+end
+
+case six-path-enabled/traversal=1/tile=4096/threads=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 4096
+threads 1
+path r0 1 -40 0 0 0 0 0 0 0 0 0 0 0 0 0
+path p1 1 -40 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path e1 -1 -40 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+path p2 1 -40 0 0 0 0 0 0 0 0 0 20.005 0 0 0
+path e2 -1 -40 0 0 0 0 0 0 0 0 0 19.995 0 0 0
+path e3 -1 -40 0 0 0 0 0 0 0 0 0 30 0 0 0
+end
+
+case six-path-enabled/traversal=1/tile=4096/threads=4
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 1
+tile_limit 4096
+threads 4
+path r0 1 -40 0 0 0 0 0 0 0 0 0 0 0 0 0
+path p1 1 -40 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path e1 -1 -40 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+path p2 1 -40 0 0 0 0 0 0 0 0 0 20.005 0 0 0
+path e2 -1 -40 0 0 0 0 0 0 0 0 0 19.995 0 0 0
+path e3 -1 -40 0 0 0 0 0 0 0 0 0 30 0 0 0
+end
+
+case six-path-enabled-repeat
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path r0 1 -40 0 0 0 0 0 0 0 0 0 0 0 0 0
+path p1 1 -40 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path e1 -1 -40 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+path p2 1 -40 0 0 0 0 0 0 0 0 0 20.005 0 0 0
+path e2 -1 -40 0 0 0 0 0 0 0 0 0 19.995 0 0 0
+path e3 -1 -40 0 0 0 0 0 0 0 0 0 30 0 0 0
+end
+
+case six-path-disabled/traversal=0
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path r0 1 -40 0 0 0 0 0 0 0 0 0 0 0 0 0
+path p1 1 -40 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path e1 -1 -40 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+path p2 1 -40 0 0 0 0 0 0 0 0 0 20.005 0 0 0
+path e2 -1 -40 0 0 0 0 0 0 0 0 0 19.995 0 0 0
+path e3 -1 -40 0 0 0 0 0 0 0 0 0 30 0 0 0
+end
+
+case six-path-disabled/traversal=1
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 1
+tile_limit 1
+threads 1
+path r0 1 -40 0 0 0 0 0 0 0 0 0 0 0 0 0
+path p1 1 -40 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path e1 -1 -40 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+path p2 1 -40 0 0 0 0 0 0 0 0 0 20.005 0 0 0
+path e2 -1 -40 0 0 0 0 0 0 0 0 0 19.995 0 0 0
+path e3 -1 -40 0 0 0 0 0 0 0 0 0 30 0 0 0
+end
+
+case unequal-history-starts-enabled
+reception 0
+tolerance 0.001
+fraction 0.5
+policy canonical_snapshot_single_slab/v1
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -30 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end
+
+case unequal-history-starts-disabled
+reception 0
+tolerance 0.001
+fraction 0.5
+policy disabled
+far_field 1
+traversal 0
+tile_limit 4096
+threads 1
+path receiver 1 -20 0 0 0 0 0 0 0 0 0 0 0 0 0
+path plus 1 -20 0 0 0 0 0 0 0 0 0 10.005 0 0 0
+path minus -1 -30 0 0 0 0 0 0 0 0 0 9.995 0 0 0
+end

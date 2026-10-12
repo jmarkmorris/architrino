@@ -1,0 +1,36 @@
+PID 96173
+[{"name": "(K1) regression: on s2b3 (window only) every output equals slice-iv v2 to 1e-20", "pass": true}, {"name": "(K2) known: a delayed box straddling T* (+-0.005) yields a source hull containing the window state at T* and the wave-16 step-1 candidate sets, with the window part and record w16#1 both touched", "pass": true, "hull_q": ["0.09291042043562835203220492", "0.09497531240358474050374513"], "hull_qdot": ["0.136305757067780821162763", "0.138321790907505577966415"], "hull_qddot": ["0.1012290917528929545774185", "0.1019673245041114712706306"], "touched": "records:window[s_lo,T*],w16#1", "q_at_Tstar": ["0.0935969659738805924504719", "0.09359717429472312322322282"], "w16_step1_S": ["0.0935969659738805924504719", "0.09497531240358474050374513"]}, {"name": "(W1) negative: a delayed box reaching above the last retained record end (2.0767) is refused", "pass": true}, {"name": "(W2) negative: like polarity flipped moves the release radial sum off -g/4", "release": ["-0.025", "-0.025"], "release_wrong": ["-0.1664213562373095048801689", "-0.1664213562373095048801689"], "pass": true}]
+step 1 t_end 1.36554246 srcU window: qddot [0.126867,0.128320]; lambda range [0.00902298,0.00967965] positive; end [0.00913209,0.00924311] positive; dlambda [-0.033461,-0.021892] negative; tanU/L/A [0.07048,0.05511,0.00180] radU/L/A [-0.09238,0.084955,-0.03130]; cont-int True/True
+step 2 t_end 1.37554246 srcU window: qddot [0.126908,0.128384]; lambda range [0.00869180,0.00936348] positive; end [0.00880177,0.00892351] positive; dlambda [-0.027773,-0.022143] negative; tanU/L/A [0.07060,0.05501,0.00183] radU/L/A [-0.09245,0.084907,-0.03130]; cont-int True/True
+step 3 t_end 1.38554246 srcU window: qddot [0.127042,0.128488]; lambda range [0.00847841,0.00909581] positive; end [0.00858940,0.00865199] positive; dlambda [-0.027928,-0.022388] negative; tanU/L/A [0.07082,0.05491,0.00185] radU/L/A [-0.09257,0.084860,-0.03130]; cont-int True/True
+step 4 t_end 1.39554246 srcU window: qddot [0.127131,0.128593]; lambda range [0.00820296,0.00882594] positive; end [0.00831489,0.00837842] positive; dlambda [-0.028150,-0.022609] negative; tanU/L/A [0.07099,0.05480,0.00188] radU/L/A [-0.09270,0.084812,-0.03130]; cont-int True/True
+step 5 t_end 1.40554246 srcU window: qddot [0.127221,0.128700]; lambda range [0.00792537,0.00855396] positive; end [0.00803825,0.00810272] positive; dlambda [-0.028374,-0.022830] negative; tanU/L/A [0.07117,0.05470,0.00191] radU/L/A [-0.09282,0.084763,-0.03131]; cont-int True/True
+step 6 t_end 1.41554246 srcU window: qddot [0.127311,0.128809]; lambda range [0.00764562,0.00827986] positive; end [0.00775945,0.00782489] positive; dlambda [-0.028598,-0.023051] negative; tanU/L/A [0.07134,0.05459,0.00194] radU/L/A [-0.09295,0.084715,-0.03131]; cont-int True/True
+step 7 t_end 1.42554246 srcU window: qddot [0.127403,0.128918]; lambda range [0.00736371,0.00800363] positive; end [0.00747850,0.00754491] positive; dlambda [-0.028823,-0.023274] negative; tanU/L/A [0.07152,0.05448,0.00196] radU/L/A [-0.09308,0.084666,-0.03131]; cont-int True/True
+step 8 t_end 1.43554246 srcU window: qddot [0.127496,0.129029]; lambda range [0.00707965,0.00772527] positive; end [0.00719540,0.00726279] positive; dlambda [-0.029049,-0.023496] negative; tanU/L/A [0.07170,0.05438,0.00199] radU/L/A [-0.09321,0.084617,-0.03131]; cont-int True/True
+step 9 t_end 1.44554246 srcU window: qddot [0.127590,0.129140]; lambda range [0.00679340,0.00744477] positive; end [0.00691011,0.00697852] positive; dlambda [-0.029276,-0.023720] negative; tanU/L/A [0.07188,0.05427,0.00202] radU/L/A [-0.09334,0.084568,-0.03131]; cont-int True/True
+step 10 t_end 1.45554246 srcU window: qddot [0.127685,0.129254]; lambda range [0.00650497,0.00716212] positive; end [0.00662265,0.00669207] positive; dlambda [-0.029504,-0.023944] negative; tanU/L/A [0.07206,0.05416,0.00205] radU/L/A [-0.09347,0.084518,-0.03131]; cont-int True/True
+step 11 t_end 1.46554246 srcU window: qddot [0.127781,0.129368]; lambda range [0.00621435,0.00687733] positive; end [0.00633301,0.00640347] positive; dlambda [-0.029732,-0.024169] negative; tanU/L/A [0.07224,0.05405,0.00208] radU/L/A [-0.09360,0.084469,-0.03132]; cont-int True/True
+step 12 t_end 1.47554246 srcU window: qddot [0.127878,0.129483]; lambda range [0.00592154,0.00659038] positive; end [0.00604118,0.00611269] positive; dlambda [-0.029961,-0.024394] negative; tanU/L/A [0.07242,0.05394,0.00211] radU/L/A [-0.09373,0.084419,-0.03132]; cont-int True/True
+step 13 t_end 1.48554246 srcU window: qddot [0.127935,0.129600]; lambda range [0.00562649,0.00636418] positive; end [0.00574712,0.00588251] positive; dlambda [-0.030214,-0.024562] negative; tanU/L/A [0.07261,0.05379,0.00214] radU/L/A [-0.09387,0.084305,-0.03132]; cont-int True/True
+step 14 t_end 1.49554246 srcU window: qddot [0.128016,0.129719]; lambda range [0.00532928,0.00610036] positive; end [0.00545090,0.00561491] positive; dlambda [-0.026389,-0.024763] negative; tanU/L/A [0.07280,0.05366,0.00217] radU/L/A [-0.09401,0.084227,-0.03132]; cont-int True/True
+{"n": 14, "lambda_end_signs": ["positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive"], "lambda_range_signs": ["positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive"], "dlambda_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "qddot_signs": ["positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive"], "zero_brackets": [], "all_dlambda_negative": true, "all_qddot_positive": true, "steps_using_records": [], "refused": [], "reached_time": ["1.495542060597858190536499", "1.495542461449684119224548"], "stop_reason": "plan exhausted (step 14 certified)"}
+wall 0.12333297729492188
+        0.27 real         0.24 user         0.01 sys
+            24330240  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2481  page reclaims
+                  52  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  54  voluntary context switches
+                  61  involuntary context switches
+          3449300450  instructions retired
+           832436268  cycles elapsed
+            16663008  peak memory footprint

@@ -1,0 +1,180 @@
+# Review (ramon-e-moore) late-feedback receipt. Every run: UTC, cwd, literal command, PID (printed), exit, wall, peak RSS (measured, the 1 GiB cap is not OS-enforced), pgrep check (campaign filter).
+=== run 1 (envelope sample to scratch) UTC 2026-10-11T19:16:25Z cwd /Users/markmorris/vibe/architrino
+pgrep: 
+cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-envelope.py .tmp/six-pole-late-feedback/review/envelope-sample.json
+exit 1
+        0.04 real         0.03 user         0.00 sys
+            22134784  maximum resident set size
+script edited after run 1 (t0 literal strings; v1 copied)
+=== run 2 (envelope sample 2, scratch) UTC 2026-10-11T19:16:38Z
+pgrep: p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-lat
+p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-lat
+cmd: ... envelope.py .tmp/six-pole-late-feedback/review/envelope-sample2.json
+exit 1
+        0.06 real         0.05 user         0.00 sys
+            21889024  maximum resident set size
+script edited after run 2 (interval construction from mpf endpoints; v2 copied)
+=== run 3 (envelope sample 3, scratch) UTC 2026-10-11T19:16:53Z
+pgrep: p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-lat
+p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-lat
+exit 1
+        0.11 real         0.09 user         0.00 sys
+            22085632  maximum resident set size
+=== run 4 (envelope, evidence output) UTC 2026-10-11T19:17:11Z cwd /Users/markmorris/vibe/architrino
+pgrep: import json;d=json.load(open('"'"'$O'"'"'));print(json.dumps(d['"'"'controls'"'"']));t=d['"'"'target
+import json;d=json.load(open('"'"'$O'"'"'));print(json.dumps(d['"'"'controls'"'"']));t=d['"'"'target
+cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-envelope.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-envelope-output.json
+exit 1
+        0.11 real         0.09 user         0.00 sys
+            22233088  maximum resident set size
+script edited after run 4 (control W string parsing only; v3 copied)
+=== run 5 (envelope v4, evidence output) UTC 2026-10-11T19:17:40Z cwd /Users/markmorris/vibe/architrino
+pgrep: p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-lat
+print('"'"'U t'"'"',[f(x) for x in u['"'"'t_cross'"'"']],'"'"'q'"'"',[f(x) for x in u['"'"'q_at_cros
+p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-lat
+print('"'"'U t'"'"',[f(x) for x in u['"'"'t_cross'"'"']],'"'"'q'"'"',[f(x) for x in u['"'"'q_at_cros
+cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-envelope.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-envelope-output.json
+exit 0
+        0.10 real         0.09 user         0.00 sys
+            20660224  maximum resident set size
+=== run 6 (three-class d lambda/dt, controls then b3 target) UTC 2026-10-11T19:21:21Z cwd /Users/markmorris/vibe/architrino
+pgrep: p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-lat
+B3=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json; O=$E/spherical
+66567 /usr/bin/time -l perl -e alarm 110; exec @ARGV -- ../.venv/bin/python -I reference/priorities/
+cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-dlambda3.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv-v2-b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-dlambda3-b3.json
+exit 0
+        0.23 real         0.22 user         0.01 sys
+            21282816  maximum resident set size
+=== run 7 (antipodal-campaign dlambda-check.py f3093e96, UNCHANGED, on b3 step 12 only (antipode fixed), filtered JSON in scratch) UTC 2026-10-11T19:21:49Z
+pgrep: 
+cmd: ... dlambda-check.py .tmp/six-pole-late-feedback/review/b3-step12-only.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-dlambda-b3-step12.json
+exit 0
+        0.18 real         0.16 user         0.01 sys
+            20545536  maximum resident set size
+=== run 8 (audit4 on s1a2) 2026-10-11T19:27:27Z :: BEFORE census 19:27:27: pids-with-continuation-match=none
+cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-audit4.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s1a2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-audit4-s1a2.json
+exit 0         0.05 real         0.04 user         0.00 sys             21446656  maximum resident set size  :: AFTER census 19:27:27: pids-with-continuation-match=none release
+=== run 9 (review dlambda3 on s1a2) 2026-10-11T19:27:27Z :: BEFORE census 19:27:27: pids-with-continuation-match=none
+cmd: ... dlambda3.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s1a2.json /dev/null reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-dlambda3-s1a2.json
+exit 0         0.20 real         0.19 user         0.00 sys             21315584  maximum resident set size  :: AFTER census 19:27:27: pids-with-continuation-match=none release
+=== run (audit4 on s1b) 2026-10-11T19:29:22Z :: BEFORE census 19:29:22: pids-with-continuation-match=none
+cmd: ... audit4.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s1b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-audit4-s1b.json
+exit 0         0.06 real         0.04 user         0.00 sys             21774336  maximum resident set size  :: AFTER census 19:29:22: pids-with-continuation-match=none release
+=== run (dlambda3 on s1b) 2026-10-11T19:29:22Z :: BEFORE census 19:29:22: pids-with-continuation-match=none
+cmd: ... dlambda3.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s1b.json /dev/null reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-dlambda3-s1b.json
+exit 0         0.20 real         0.19 user         0.00 sys             21839872  maximum resident set size  :: AFTER census 19:29:22: pids-with-continuation-match=none release
+=== run (audit4 on s2a) 2026-10-11T19:29:22Z :: BEFORE census 19:29:22: pids-with-continuation-match=none
+cmd: ... audit4.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2a.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-audit4-s2a.json
+exit 0         0.05 real         0.04 user         0.00 sys             21561344  maximum resident set size  :: AFTER census 19:29:23: pids-with-continuation-match=none release
+=== run (dlambda3 on s2a) 2026-10-11T19:29:23Z :: BEFORE census 19:29:23: pids-with-continuation-match=none
+cmd: ... dlambda3.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2a.json /dev/null reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-dlambda3-s2a.json
+exit 0         0.20 real         0.19 user         0.00 sys             21594112  maximum resident set size  :: AFTER census 19:29:23: pids-with-continuation-match=none release
+=== run (audit4 on s2b3) 2026-10-11T19:32:48Z :: BEFORE census 19:32:48: pids-with-continuation-match= [71653 0 ] [71680 1 ]
+live; skip
+=== run (dlambda3 on s2b3) 2026-10-11T19:32:48Z :: BEFORE census 19:32:48: pids-with-continuation-match= [71653 0 ] [71680 1 ]
+live; skip
+=== run (audit4 on s2b3) 2026-10-11T19:33:42Z :: BEFORE census 19:33:42: pids-with-continuation-match= [71653 0 ]
+cmd: ... audit4.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-audit4-s2b3.json
+exit 0         0.06 real         0.04 user         0.00 sys             21299200  maximum resident set size  :: AFTER census 19:33:42: pids-with-continuation-match= [71653 0 ] release
+=== run (dlambda3 on s2b3) 2026-10-11T19:33:42Z :: BEFORE census 19:33:42: pids-with-continuation-match= [71653 0 ]
+cmd: ... dlambda3.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2b3.json /dev/null reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-dlambda3-s2b3.json
+exit 0         0.20 real         0.19 user         0.00 sys             21413888  maximum resident set size  :: AFTER census 19:33:42: pids-with-continuation-match= [71653 0 ] release
+=== run (audit4 on s3a) 2026-10-11T19:33:42Z :: BEFORE census 19:33:42: pids-with-continuation-match= [71653 0 ]
+cmd: ... audit4.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3a.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-audit4-s3a.json
+exit 0         0.05 real         0.04 user         0.01 sys             21037056  maximum resident set size  :: AFTER census 19:33:42: pids-with-continuation-match= [71653 0 ] release
+=== run (dlambda3 on s3a) 2026-10-11T19:33:42Z :: BEFORE census 19:33:42: pids-with-continuation-match= [71653 0 ]
+cmd: ... dlambda3.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3a.json /dev/null reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-dlambda3-s3a.json
+exit 0         0.20 real         0.18 user         0.00 sys             21479424  maximum resident set size  :: AFTER census 19:33:43: pids-with-continuation-match= [71653 0 ] release
+=== run (audit4 on s3b2) 2026-10-11T19:37:27Z :: BEFORE census 19:37:27: pids-with-continuation-match= [73173 0 ] [73697 1 ]
+live; skip audit4
+=== run (seamcheck on s3b2) 2026-10-11T19:37:27Z :: BEFORE census 19:37:27: pids-with-continuation-match= [73173 0 ] [73697 1 ]
+live; skip seamcheck
+=== run (audit4 on s3b2) 2026-10-11T19:37:54Z :: BEFORE census 19:37:54: pids-with-continuation-match= [73173 0 ]
+cmd: ... audit4.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3b2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-audit4-s3b2.json
+exit 0         0.06 real         0.04 user         0.00 sys             21299200  maximum resident set size  :: AFTER census 19:37:54: pids-with-continuation-match= [73173 0 ] release
+=== run (seamcheck on s3b2) 2026-10-11T19:37:54Z :: BEFORE census 19:37:54: pids-with-continuation-match= [73173 0 ]
+cmd: ... seamcheck.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3b2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-seamcheck-s3b2.json
+exit 0         0.08 real         0.06 user         0.00 sys             22052864  maximum resident set size  :: AFTER census 19:37:54: pids-with-continuation-match= [73173 0 ] release
+=== read (seam qddot boxes, s3b2 vs review hull) 2026-10-11T19:38:15Z :: BEFORE census 19:38:15: pids-with-continuation-match= [73173 0 ] [74464 0 ]
+exit 0 :: AFTER census 19:38:15: pids-with-continuation-match= [73173 0 ] [74464 0 ] release
+script edited after the s3b2 run (containment tolerance 1e-24 for printed strings; v1 copied; v1 output retained)
+=== run (seamcheck v2 on s3b2) 2026-10-11T19:38:40Z :: BEFORE census 19:38:40: pids-with-continuation-match= [73173 0 ] [74751 0 ]
+cmd: ... seamcheck.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3b2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-seamcheck-v2-s3b2.json
+exit 0         0.10 real         0.07 user         0.01 sys             22315008  maximum resident set size  :: AFTER census 19:38:40: pids-with-continuation-match= [73173 0 ] [74751 0 ] release
+=== run (audit4 on s3c) 2026-10-11T19:40:05Z :: BEFORE census 19:40:05: pids-with-continuation-match= [73173 0 ]
+cmd: ... audit4.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-audit4-s3c.json
+exit 0         0.05 real         0.04 user         0.00 sys             21233664  maximum resident set size  :: AFTER census 19:40:05: pids-with-continuation-match= [73173 0 ] release
+=== run (seamcheck on s3c) 2026-10-11T19:40:05Z :: BEFORE census 19:40:05: pids-with-continuation-match= [73173 0 ]
+cmd: ... seamcheck.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-seamcheck-s3c.json
+exit 0         0.07 real         0.06 user         0.00 sys             22069248  maximum resident set size  :: AFTER census 19:40:05: pids-with-continuation-match= [73173 0 ] release
+=== run (audit4 on s3d) 2026-10-11T19:40:05Z :: BEFORE census 19:40:05: pids-with-continuation-match= [73173 0 ]
+cmd: ... audit4.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-audit4-s3d.json
+exit 0         0.06 real         0.04 user         0.01 sys             21446656  maximum resident set size  :: AFTER census 19:40:06: pids-with-continuation-match= [73173 0 ] release
+=== run (seamcheck on s3d) 2026-10-11T19:40:06Z :: BEFORE census 19:40:06: pids-with-continuation-match= [73173 0 ]
+cmd: ... seamcheck.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-seamcheck-s3d.json
+exit 0         0.07 real         0.06 user         0.00 sys             22052864  maximum resident set size  :: AFTER census 19:40:06: pids-with-continuation-match= [73173 0 ] release
+=== read (wave-16 record 11 status) 2026-10-11T19:40:24Z :: BEFORE census 19:40:24: pids-with-continuation-match= [73173 0 ]
+exit 0 :: AFTER census 19:40:24: pids-with-continuation-match= [73173 0 ] release
+=== run (stageB envelope sample, scratch) 2026-10-11T19:44:23Z :: BEFORE census 19:44:23: pids-with-continuation-match= [77787 0 ]
+exit 1         0.05 real         0.04 user         0.00 sys             22577152  maximum resident set size  :: AFTER census 19:44:23: pids-with-continuation-match= [77787 0 ]
+script edited after the sample run (tighter post-window box with a-posteriori checks; v1 copied)
+=== run (stageB envelope sample 2, scratch) 2026-10-11T19:45:02Z :: BEFORE census 19:45:02: pids-with-continuation-match= [77787 0 ]
+exit 1         0.05 real         0.04 user         0.00 sys             22446080  maximum resident set size  :: AFTER census 19:45:02: pids-with-continuation-match= [77787 0 ]
+script edited after sample 2 (iv-context arithmetic in the post-window envelopes; v2 copied)
+=== run (stageB envelope sample 3, scratch) 2026-10-11T19:46:10Z :: BEFORE census 19:46:10: pids-with-continuation-match= [77787 0 ]
+exit 1         0.07 real         0.06 user         0.00 sys             21921792  maximum resident set size  :: AFTER census 19:46:10: pids-with-continuation-match= [77787 0 ]
+script edited after sample 3 (assert diagnostic only; v3 copied)
+=== run (stageB envelope sample 4, scratch) 2026-10-11T19:46:25Z :: BEFORE census 19:46:25: pids-with-continuation-match= [77787 0 ] [78878 1 ]
+=== run (stageB envelope sample 4, scratch) 2026-10-11T19:47:22Z :: BEFORE census 19:47:22: pids-with-continuation-match= [79323 0 ]
+exit 1 :: AFTER census 19:47:22: pids-with-continuation-match= [79323 0 ]
+script edited after sample 4 (F evaluated without the interval power; v4 copied)
+=== run (stageB envelope sample 5, scratch) 2026-10-11T19:47:54Z :: BEFORE census 19:47:54: pids-with-continuation-match= [79323 0 ] [79910 1 ]
+=== run (stageB envelope sample 5, scratch) 2026-10-11T19:48:27Z :: BEFORE census 19:48:27: pids-with-continuation-match= [79323 0 ] [79910 1 ]
+=== run (stageB envelope sample 5, scratch) 2026-10-11T19:48:51Z :: BEFORE census 19:48:51: pids-with-continuation-match= [79323 0 ]
+exit 1 :: AFTER census 19:48:51: pids-with-continuation-match= [79323 0 ]
+script edited after sample 5 (window bisection range to 1.6 for the wrong-chord control; the failing bracket was the control cell's; v5 copied)
+=== run (stageB envelope sample 6, scratch) 2026-10-11T19:49:46Z :: BEFORE census 19:49:46: pids-with-continuation-match= [79323 0 ] [81190 1 ]
+=== run (stageB envelope sample 6, scratch) 2026-10-11T19:50:10Z :: BEFORE census 19:50:10: pids-with-continuation-match= [79323 0 ] [81648 1 ]
+=== run (stageB envelope sample 6, scratch) 2026-10-11T19:51:41Z :: BEFORE census 19:51:39: pids-with-continuation-match= [79323 0 ] [82575 1 ]
+=== run (stageB envelope sample 6, scratch) 2026-10-11T19:52:41Z :: BEFORE census 19:52:41: pids-with-continuation-match= [79323 0 ]
+exit 1 :: AFTER census 19:52:41: pids-with-continuation-match= [79323 0 ]
+script edited after the evidence attempt (zero-bracket limit reported instead of asserting; v6 copied; no output had been written)
+=== run (stageB envelope v7, evidence) 2026-10-11T19:53:07Z :: BEFORE census 19:53:07: pids-with-continuation-match= [79323 0 ]
+cmd: ... stageB-envelope.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-stageB-envelope-output.json
+exit 1         0.16 real         0.14 user         0.00 sys             22331392  maximum resident set size  :: AFTER census 19:53:07: pids-with-continuation-match= [79323 0 ] release
+script edited after the v7 run (progress print only; v7 copied)
+=== run (stageB envelope v8, evidence) 2026-10-11T19:53:27Z :: BEFORE census 19:53:27: pids-with-continuation-match= [79323 0 ] [84234 1 ]
+=== run (stageB envelope v8, evidence) 2026-10-11T19:54:23Z :: BEFORE census 19:54:23: pids-with-continuation-match= [79323 0 ]
+cmd: ... stageB-envelope.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-stageB-envelope-output.json
+exit 0         0.15 real         0.14 user         0.00 sys             20742144  maximum resident set size  :: AFTER census 19:54:23: pids-with-continuation-match= [79323 0 ] release
+=== run (stageB audit5 run1: R8-a2,b,c,d; R12-a) 2026-10-11T19:58:21Z :: BEFORE census 19:58:19: pids-with-continuation-match= [86230 0 ] [87342 1 ]
+=== run (stageB audit5 run1) 2026-10-11T20:00:27Z :: BEFORE census 20:00:25: pids-with-continuation-match= [86230 0 ] [88432 1 ]
+=== run (stageB audit5 run1, R8 a2-d, R12 a-e) 2026-10-11T20:00:39Z :: BEFORE census 20:00:39: pids-with-continuation-match= [86230 0 ]
+cmd: ... stageB-audit5.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-a2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-a.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-e.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-stageB-audit5-run1.json
+exit 1         0.05 real         0.03 user         0.01 sys             22151168  maximum resident set size  :: AFTER census 20:00:40: pids-with-continuation-match= [86230 0 ] release
+script edited after run1 KeyError (control-mode record's T* location; negative control on the first target record; v1 copied)
+=== run (stageB audit5 run2) 2026-10-11T20:01:18Z :: BEFORE census 20:01:18: pids-with-continuation-match= [86230 0 ]
+cmd: ... stageB-audit5.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-a2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-a.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-e.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-stageB-audit5-run2.json
+exit 1         0.08 real         0.07 user         0.00 sys             22872064  maximum resident set size  :: AFTER census 20:01:18: pids-with-continuation-match= [86230 0 ] release
+script edited after run2 (K2 agreement to 1e-20 instead of string identity: F evaluation form changed; v2 copied)
+=== run (stageB audit5 run3) 2026-10-11T20:01:36Z :: BEFORE census 20:01:36: pids-with-continuation-match= [86230 0 ]
+cmd: ... stageB-audit5.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-a2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-a.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-e.json  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-stageB-audit5-run3.json
+exit 0         0.37 real         0.36 user         0.00 sys             23052288  maximum resident set size  :: AFTER census 20:01:36: pids-with-continuation-match= [86230 0 ] release
+=== run (stageB audit5 on R8p-a..d) 2026-10-11T20:07:39Z :: BEFORE census 20:07:39: pids-with-continuation-match= [95121 0 ] [95124 0 ]
+exit 0         0.28 real         0.24 user         0.01 sys             22708224  maximum resident set size  :: AFTER census 20:07:39: pids-with-continuation-match= [95121 0 ] [95124 0 ] release
+=== run (replaycheck R8p vs R8) 2026-10-11T20:07:39Z :: BEFORE census 20:07:39: pids-with-continuation-match= [95121 0 ] [95124 0 ]
+exit 0         0.03 real         0.02 user         0.00 sys             16449536  maximum resident set size  :: AFTER census 20:07:40: pids-with-continuation-match= [95121 0 ] [95124 0 ] release
+=== run (stageB precision account) 2026-10-11T20:11:12Z :: BEFORE census 20:11:12: pids-with-continuation-match= [97975 0 ]
+cmd: ... stageB-precision.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-stageB-precision-output.json
+exit 0         0.07 real         0.03 user         0.01 sys             20545536  maximum resident set size  :: AFTER census 20:11:12: pids-with-continuation-match= [97975 0 ] release
+script edited after run (toy linear control K3 added; v1 copied; v1 output retained)
+=== run (stageB precision v2) 2026-10-11T20:11:45Z :: BEFORE census 20:11:45: pids-with-continuation-match= [97975 0 ]
+exit 1         0.06 real         0.04 user         0.01 sys             22052864  maximum resident set size  :: AFTER census 20:11:45: pids-with-continuation-match= [97975 0 ] release
+script edited after the v2 run (sinh via exp; v2 copied)
+=== run (stageB precision v3) 2026-10-11T20:12:07Z :: BEFORE census 20:12:07: pids-with-continuation-match= [97975 0 ]
+exit 1         0.05 real         0.03 user         0.00 sys             21741568  maximum resident set size  :: AFTER census 20:12:08: pids-with-continuation-match= [97975 0 ] release
+script edited after the v3 run (comment swallowed the K3 line; v3 copied)
+=== run (stageB precision v4) 2026-10-11T20:12:32Z :: BEFORE census 20:12:32: pids-with-continuation-match= [97975 0 ]
+exit 0         0.18 real         0.04 user         0.01 sys             20938752  maximum resident set size  :: AFTER census 20:12:32: pids-with-continuation-match= [97975 0 ] release
+=== run (precision L enclosure + coordinator closure) 2026-10-11T20:16:45Z :: BEFORE census 20:16:45: pids-with-match= [97975 0 ]
+exit 0         0.11 real         0.08 user         0.01 sys             21446656  maximum resident set size  :: AFTER census 20:16:45: pids-with-match= [97975 0 ] release

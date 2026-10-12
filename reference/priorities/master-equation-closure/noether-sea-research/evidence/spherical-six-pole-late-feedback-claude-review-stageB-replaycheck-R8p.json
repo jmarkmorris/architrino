@@ -1,0 +1,182 @@
+{
+ "controls": {
+  "W_corrupted_copy_differs": {
+   "pass": true,
+   "n_diffs": 1
+  }
+ },
+ "pairs": {
+  "spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-a.json": {
+   "steps_common": [
+    1,
+    14
+   ],
+   "n_common": 14,
+   "only_in_rerun": [],
+   "only_in_original": [],
+   "n_diffs": 0,
+   "diffs": [],
+   "identical": true,
+   "rerun_T_star": [
+    "1.355542060597858190536499",
+    "1.355542461449684119224548"
+   ],
+   "original_T_star": [
+    "1.355542060597858190536499",
+    "1.355542461449684119224548"
+   ],
+   "rerun_resumed_from": null,
+   "rerun_controls": [
+    [
+     "(0) closed forms of ",
+     true
+    ],
+    [
+     "(R) the g in effect ",
+     true
+    ]
+   ]
+  },
+  "spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-b.json": {
+   "steps_common": [
+    15,
+    32
+   ],
+   "n_common": 18,
+   "only_in_rerun": [],
+   "only_in_original": [],
+   "n_diffs": 0,
+   "diffs": [],
+   "identical": true,
+   "rerun_T_star": [
+    "1.355542060597858190536499",
+    "1.355542461449684119224548"
+   ],
+   "original_T_star": [
+    "1.355542060597858190536499",
+    "1.355542461449684119224548"
+   ],
+   "rerun_resumed_from": {
+    "file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-a.json",
+    "after_step": 14,
+    "t0": [
+     "1.495542060597858190536499",
+     "1.495542461449684119224548"
+    ],
+    "q": [
+     "0.1402797009098975111228417",
+     "0.1402806287464524065951367"
+    ],
+    "qdot": [
+     "0.1883945273785143325147675",
+     "0.1884039225947417508360666"
+    ],
+    "resumed_end_strings_equal_source": true
+   },
+   "rerun_controls": [
+    [
+     "(0) closed forms of ",
+     true
+    ],
+    [
+     "(R) the g in effect ",
+     true
+    ]
+   ]
+  },
+  "spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-c.json": {
+   "steps_common": [
+    33,
+    50
+   ],
+   "n_common": 18,
+   "only_in_rerun": [],
+   "only_in_original": [],
+   "n_diffs": 0,
+   "diffs": [],
+   "identical": true,
+   "rerun_T_star": [
+    "1.355542060597858190536499",
+    "1.355542461449684119224548"
+   ],
+   "original_T_star": [
+    "1.355542060597858190536499",
+    "1.355542461449684119224548"
+   ],
+   "rerun_resumed_from": {
+    "file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-b.json",
+    "after_step": 32,
+    "t0": [
+     "1.675542060597858190536499",
+     "1.675542461449684119224548"
+    ],
+    "q": [
+     "0.1762866534623806117135626",
+     "0.1762902087950737485102018"
+    ],
+    "qdot": [
+     "0.2117299803538508349649962",
+     "0.2117496628597076320597128"
+    ],
+    "resumed_end_strings_equal_source": true
+   },
+   "rerun_controls": [
+    [
+     "(0) closed forms of ",
+     true
+    ],
+    [
+     "(R) the g in effect ",
+     true
+    ]
+   ]
+  },
+  "spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-d.json": {
+   "steps_common": [
+    51,
+    68
+   ],
+   "n_common": 18,
+   "only_in_rerun": [],
+   "only_in_original": [],
+   "n_diffs": 0,
+   "diffs": [],
+   "identical": true,
+   "rerun_T_star": [
+    "1.355542060597858190536499",
+    "1.355542461449684119224548"
+   ],
+   "original_T_star": [
+    "1.355542060597858190536499",
+    "1.355542461449684119224548"
+   ],
+   "rerun_resumed_from": {
+    "file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-c.json",
+    "after_step": 50,
+    "t0": [
+     "1.855542060597858190536499",
+     "1.855542461449684119224548"
+    ],
+    "q": [
+     "0.2165206127548149324389873",
+     "0.2165287082216593650435813"
+    ],
+    "qdot": [
+     "0.2353672240507950822073268",
+     "0.2353985530287981650926475"
+    ],
+    "resumed_end_strings_equal_source": true
+   },
+   "rerun_controls": [
+    [
+     "(0) closed forms of ",
+     true
+    ],
+    [
+     "(R) the g in effect ",
+     true
+    ]
+   ]
+  }
+ }
+}

@@ -1,0 +1,47 @@
+Known cases, before any target
+  PASS  known static kernel contains -1/100: exact -1/100
+  PASS  known quadratic peak speed is exactly 2: [0, 2]
+  PASS  known static step certified: certified
+  PASS  known static velocity tube contains analytic bracket: closed-form bracket
+  PASS  known static acceleration box contains -1/100000: exact
+
+Known cases passed before any target.
+
+VFS-R1 unequal retained starts
+  PASS  R1 reproduction: version 1 certifies zero acceleration: the source's retained root at -10 gives exactly -1/100000, outside the certified box [0, 0]
+  PASS  R1 closed: version 2 declines unequal starts: VFS-H0-01: retained histories do not start at one common time; a shorter history cannot remove another path's emissions
+  PASS  R1 closed in the other order: VFS-H0-01
+  PASS  R1 boundary: equal shallow starts remain a finite retained domain: both pairs absent; conditional on the retained window being the complete emission domain
+  PASS  R1 same geometry with full common history sees the root: acceleration box contains -1/100000
+
+VFS-R2 speed evidence bound to the data
+  PASS  R2 reproduction: version 1 certifies after the mutation: unbudgeted certified, budgeted VFS-BUDGET-01; true peak speed 2
+  PASS  R2 closed: version 2 declines H1 after the mutation: past speed bound 2.000000
+  PASS  R2 a caller-supplied cache field is ignored: VFS-H1-01
+  PASS  R2 version 2 writes nothing into caller segments: segment keys unchanged after a step
+  PASS  R2 restoring the static data certifies again: no stale refusal
+  PASS  R2 a mutated velocity radius on prescribed data declines: path source segment 0: prescribed with radius
+
+Label binding for validated segments
+  PASS  genuine published segment is admitted: certified
+  PASS  published segment with shrunken radius is refused: path receiver segment 1 is labelled validated but its payload is not one this carrier published
+  PASS  published segment with altered coefficients is refused: VFS-H0-01
+  PASS  invented segment carrying the validated label is refused: VFS-H0-01
+  PASS  reproduction: version 1 trusted the invented label: certified
+
+VFS-H4-01 branch (reviewer's fast affine source)
+  PASS  fast affine source declines on the chart: VFS-H4-01: chart is not regular; the real root -1000/199 is regular, the refusal is conservative
+
+Increment budget versus total published radius
+  PASS  first step within increment and total budgets: certified
+  PASS  second step meets the increment budget and is refused on the total: increment 1.337e-09 <= 1e-08; total 2.756e-09 > 2e-09
+
+Long run with blocking assertions: 512 steps of 1/256 to t = 2
+  PASS  all 512 steps certified within the increment budgets: 512 of 512; receipts SHA-256 3a8d6e4c7290ebed6fb4cb5cbe11fcda83f3d20448e6dbb332989e56f13ec9e1
+  PASS  end velocity tube contains the whole frozen true bracket: half-width 2.081454e-07
+  PASS  end position tube contains the whole frozen true bracket: half-width 1.670257e-07
+  PASS  end velocity tube is disjoint from the solver's aliased interval: separation 1.760351e-07
+  PASS  every long-run segment is bound to a certificate: 512 receiver segments
+
+29 of 29 rows passed.
+probes-exit 0

@@ -13,6 +13,7 @@ import { createPdgLiveArtifactRuntime } from "./PdgLiveArtifactRuntime.mjs";
 import { createBorgLibraryService } from "./BorgLibraryService.mjs";
 import { prepareRuntimeAssets } from "../prepare-runtime-assets.mjs";
 import { createBorgNativeEomProcessClient } from "../eom/BorgNativeEomProcessClient.mjs";
+import { createEomV2Service } from './EomV2Service.mjs';
 import {
   createBorgDisplayHostMemoryEnvelope,
 } from "../../src/apps/borg/BorgDisplayHostMemoryEnvelope.js";
@@ -294,9 +295,11 @@ function serveFile(request, response) {
 }
 
 const serveBorgLibrary = createBorgLibraryService({ repoRoot: REPO_ROOT });
+const eomV2Service = createEomV2Service({ repoRoot: REPO_ROOT, prepareBinary: prepareEomBorgNativeBinary, checkpointRoot: resolve(REPO_ROOT, '.local-data/eom-v2/checkpoints') });
 const server = createServer(async (request, response) => {
   try {
     if (await serveBorgLibrary(request, response)) return;
+    if (await eomV2Service.serve(request, response)) return;
     if (new URL(request.url, `http://${HOST}:${PORT}`).pathname === "/api/eom/borg-shadow/v0") {
       await serveEomBorgShadow(request, response);
       return;
@@ -333,15 +336,16 @@ server.listen(PORT, HOST, () => {
 });
 pdgLiveArtifactRuntime?.start();
 
-function shutdown(exitCode = 0) {
+let shuttingDown = false;
+async function shutdown(exitCode = 0) {
+  if (shuttingDown) return;
+  shuttingDown = true;
   pdgLiveArtifactRuntime?.close();
   eomBorgClient?.dispose?.();
-  server.close(() => {
-    process.exit(exitCode);
-  });
-  setTimeout(() => {
-    process.exit(exitCode);
-  }, 250).unref();
+  const closed = new Promise(resolveClosed => server.close(resolveClosed));
+  await eomV2Service.dispose();
+  await closed;
+  process.exit(exitCode);
 }
 
 process.on("SIGINT", () => shutdown(0));

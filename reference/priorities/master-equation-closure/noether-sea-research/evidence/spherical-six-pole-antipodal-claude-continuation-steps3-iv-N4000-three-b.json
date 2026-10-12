@@ -1,0 +1,257 @@
+{
+ "g": "1/10",
+ "N_window": 4000,
+ "mode": "three",
+ "plan": {
+  "Delta": "0.01",
+  "max_steps": 21,
+  "adaptation": "none; stop at the first uncertified step"
+ },
+ "controls": [
+  {
+   "name": "(0a) fast node lookup equals the frozen q_of_t endpoint for endpoint on 60 sample times",
+   "pass": true
+  },
+  {
+   "name": "(0b) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random (q, q', v') each; max abs diff",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "6.4095e-31",
+    "like": "5.9165e-31",
+    "antipode": "5.9165e-31"
+   }
+  },
+  {
+   "name": "(0c) known: radial sum at release encloses -g/4",
+   "pass": true,
+   "value": [
+    "-0.025",
+    "-0.025"
+   ]
+  },
+  {
+   "name": "(1) continuity of the antipode term at its reading instant: hit with zero delayed state intersects the fixed antipode term (at the start state q0)",
+   "pass": true,
+   "hit": [
+    "0.02202180626296330449878739",
+    "0.02202245397414708096036311"
+   ],
+   "fixed": [
+    "0.02202180626296330449878739",
+    "0.02202245397414708096036311"
+   ],
+   "D_t": [
+    "1.0",
+    "1.0"
+   ],
+   "r": [
+    "1.992343672306608204570745",
+    "1.992344116688354959124939"
+   ]
+  },
+  {
+   "name": "(2) negative: antipode term at the probe t0 + 0.19 (post-reading, generated history) with the wrong sign of the velocity term in D_t is disjoint from the correct one",
+   "pass": true,
+   "t_probe": [
+    "2.056684593623649597167969",
+    "2.056684709182828044891357"
+   ],
+   "q_probe": "0.2118479227010647740625044",
+   "hit_correct": [
+    "0.0266815587700053358487551",
+    "0.02668156331845604879290909"
+   ],
+   "hit_wrong": [
+    "0.02671983554773279788815453",
+    "0.02671984010430664481775977"
+   ],
+   "Dt_correct": [
+    "1.000716754030118411610566",
+    "1.00071679574943062952371"
+   ],
+   "Dt_wrong": [
+    "0.9992832042505693704762903",
+    "0.9992832459698815883894344"
+   ],
+   "tau": [
+    "1.98881493580754583668695",
+    "1.988814938628742545495336"
+   ],
+   "delayed_arg": [
+    "0.06786965499490705167263266",
+    "0.06786977337528220820440742"
+   ],
+   "history_q": [
+    "0.0002302935473615967174505814",
+    "0.0002303202986283341316406989"
+   ],
+   "history_qdot": [
+    "0.006786705590161457940318449",
+    "0.006787099761682118628732432"
+   ]
+  },
+  {
+   "name": "(4) negative: wrong antipode path map (q' sign flipped in the chord and D_t) at the probe changes r and D_t by amounts exceeding the correct enclosures' widths",
+   "pass": true,
+   "r_correct_point_state": [
+    "1.988814935805541728931647",
+    "1.988814935805541728931647"
+   ],
+   "r_wrong": [
+    "1.9887662397760145235796",
+    "1.9887662397760145235796"
+   ],
+   "delta_r": [
+    "-0.00004869602952720535204717757",
+    "-0.00004869602952720535204717757"
+   ],
+   "Dt_correct_point_state": [
+    "1.000716754120387227019776",
+    "1.000716754120387227019776"
+   ],
+   "Dt_correct_enclosure_width": "4.1719e-8",
+   "Dt_wrong": [
+    "1.000718308295110790179356",
+    "1.000718308295110790179356"
+   ],
+   "delta_Dt": [
+    "0.000001554174723563159580241898",
+    "0.000001554174723563159580241898"
+   ]
+  },
+  {
+   "name": "(3) regression (not independent evidence: same formulas, same frozen inputs): the two-class step from the frozen wave-17 step-39 end state intersects the frozen step-40 end state",
+   "pass": true,
+   "identical_strings": false,
+   "step_end_q": [
+    "0.1750516801723775893710753",
+    "0.175056763736205971059134"
+   ],
+   "frozen_end_q": [
+    "0.1750516801723775893710754",
+    "0.175056763736205971059134"
+   ],
+   "step_end_v": [
+    "0.1887244343615114983759421",
+    "0.1887427709142402428322806"
+   ],
+   "frozen_end_v": [
+    "0.1887244343615114983759421",
+    "0.1887427709142402428322806"
+   ]
+  },
+  {
+   "name": "(5) residual-reception bracket: known synthetic zero at s* = 0.004 is enclosed (width < 1e-9); same-sign step gives no certified-negative end; negative-at-start step is refused",
+   "pass": false,
+   "known": {
+    "s_lo": "0.003999999999996362021192908",
+    "s_hi": "0.004000000000005456968210638",
+    "end_certified_negative": true,
+    "t_anti": [
+     "1.990906883527514477590682",
+     "1.990906883527523572537699"
+    ],
+    "q_at_reading": [
+     "0.190787999999999283318175",
+     "0.1907880000000010750227375"
+    ],
+    "qdot_at_reading": [
+     "0.197",
+     "0.197"
+    ]
+   },
+   "same_sign": {
+    "s_lo": "0.009999999999990905052982271",
+    "s_hi": "0.01",
+    "end_certified_negative": false,
+    "t_anti": [
+     "1.896906883527509020622471",
+     "1.896906883527518115569489"
+    ],
+    "q_at_reading": [
+     "0.1919699999999982082954375",
+     "0.19197"
+    ],
+    "qdot_at_reading": [
+     "0.197",
+     "0.197"
+    ]
+   },
+   "wrong_order": {
+    "refused": "residual not certified positive at the step start"
+   }
+  },
+  {
+   "name": "(6) sign bracket: known zero of 0.003 - s enclosed (width <= 0.01/128); no-sign-change function refused; flipped ordering s - 0.003 enclosed; uncertified endpoint refused",
+   "pass": true,
+   "known": {
+    "s_last_certified_start_sign": "0.00296875",
+    "s_first_certified_end_sign": "0.0030078125",
+    "f_at_s_pos": [
+     "0.00003125",
+     "0.00003125"
+    ],
+    "f_at_s_neg": [
+     "-0.0000078125",
+     "-0.0000078125"
+    ]
+   },
+   "no_change": {
+    "refused": "endpoint signs not certified opposite",
+    "f_start": [
+     "1.0",
+     "1.0"
+    ],
+    "f_end": [
+     "1.01",
+     "1.01"
+    ]
+   },
+   "flipped": {
+    "s_last_certified_start_sign": "0.00296875",
+    "s_first_certified_end_sign": "0.0030078125",
+    "f_at_s_pos": [
+     "-0.00003125",
+     "-0.00003125"
+    ],
+    "f_at_s_neg": [
+     "0.0000078125",
+     "0.0000078125"
+    ]
+   },
+   "uncertified": {
+    "refused": "endpoint signs not certified opposite",
+    "f_start": [
+     "-1.0",
+     "1.0"
+    ],
+    "f_end": [
+     "-1.0",
+     "1.0"
+    ]
+   }
+  }
+ ],
+ "steps": [],
+ "T_star": [
+  "1.366684593623649597167969",
+  "1.366684709182828044891357"
+ ],
+ "T_star_reproduces_wave17": true,
+ "start": {
+  "t0": [
+   "1.866684593623649597167969",
+   "1.866684709182828044891357"
+  ],
+  "q0": [
+   "0.1750516801723775893710754",
+   "0.175056763736205971059134"
+  ],
+  "qdot0": [
+   "0.1887244343615114983759421",
+   "0.1887427709142402428322806"
+  ],
+  "source": "wave-17 N4000 full step 40 end (frozen JSON)"
+ },
+ "controls_all_pass": false
+}

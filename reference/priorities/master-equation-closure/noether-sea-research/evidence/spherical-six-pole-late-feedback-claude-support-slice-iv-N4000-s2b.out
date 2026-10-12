@@ -1,0 +1,22 @@
+PID 71147
+[{"name": "(K) regression on the frozen antipodal b3 JSON: lambda_hat ranges and derivative ranges equal dlambda3-iv-v2-b3 to 1e-20; lambda_hat ranges/ends intersect the antipodal support step enclosures (different D_t source)", "pass": true, "n": 10}, {"name": "(W) negative: like polarity flipped moves the release radial sum off -g/4", "release": ["-0.025", "-0.025"], "release_wrong": ["-0.1664213562373095048801689", "-0.1664213562373095048801689"], "pass": false}]
+{"n": 0, "lambda_end_signs": [], "lambda_range_signs": [], "dlambda_signs": [], "qddot_signs": [], "zero_brackets": [], "all_dlambda_negative": true, "all_qddot_positive": true, "any_beyond_window": false, "reached_time": null, "stop_reason": null}
+wall 0.05034589767456055
+        0.08 real         0.07 user         0.00 sys
+            22577152  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2383  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  15  involuntary context switches
+          1243971903  instructions retired
+           319866782  cycles elapsed
+            14909920  peak memory footprint

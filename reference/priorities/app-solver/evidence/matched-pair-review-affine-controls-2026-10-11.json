@@ -1,0 +1,532 @@
+{
+  "schema": "eom_matched_pair_reviewer_affine_controls/v1",
+  "claim": "exact algebraic canonical acceleration for prescribed affine histories; no evolved-state or cost claim",
+  "boundaryConvention": "closed retained window for nonself roots; grouped strict-interior admission must decline boundary cases",
+  "knownControlsPassedBeforeTargets": true,
+  "fixtures": [
+    {
+      "id": "static-complete",
+      "lower": "-20",
+      "paths": [
+        {
+          "id": "receiver",
+          "p": "0",
+          "u": "0",
+          "charge": "1"
+        },
+        {
+          "id": "plus",
+          "p": "10",
+          "u": "0",
+          "charge": "1"
+        },
+        {
+          "id": "minus",
+          "p": "10.1",
+          "u": "0",
+          "charge": "-1"
+        }
+      ],
+      "fieldSpeed": "1",
+      "coupling": "1",
+      "receptionTime": "0",
+      "upper": "0",
+      "rows": [
+        {
+          "receiver": "receiver",
+          "source": "receiver",
+          "disposition": "coincident_self_endpoint_excluded",
+          "root": "0",
+          "accelerationZ": "0"
+        },
+        {
+          "receiver": "receiver",
+          "source": "plus",
+          "disposition": "present",
+          "root": "-10",
+          "transmitterFactor": "1",
+          "distance": "10",
+          "accelerationZ": "-1/100"
+        },
+        {
+          "receiver": "receiver",
+          "source": "minus",
+          "disposition": "present",
+          "root": "-101/10",
+          "transmitterFactor": "1",
+          "distance": "101/10",
+          "accelerationZ": "100/10201"
+        },
+        {
+          "receiver": "plus",
+          "source": "receiver",
+          "disposition": "present",
+          "root": "-10",
+          "transmitterFactor": "1",
+          "distance": "10",
+          "accelerationZ": "1/100"
+        },
+        {
+          "receiver": "plus",
+          "source": "plus",
+          "disposition": "coincident_self_endpoint_excluded",
+          "root": "0",
+          "accelerationZ": "0"
+        },
+        {
+          "receiver": "plus",
+          "source": "minus",
+          "disposition": "present",
+          "root": "-1/10",
+          "transmitterFactor": "1",
+          "distance": "1/10",
+          "accelerationZ": "100"
+        },
+        {
+          "receiver": "minus",
+          "source": "receiver",
+          "disposition": "present",
+          "root": "-101/10",
+          "transmitterFactor": "1",
+          "distance": "101/10",
+          "accelerationZ": "-100/10201"
+        },
+        {
+          "receiver": "minus",
+          "source": "plus",
+          "disposition": "present",
+          "root": "-1/10",
+          "transmitterFactor": "1",
+          "distance": "1/10",
+          "accelerationZ": "-100"
+        },
+        {
+          "receiver": "minus",
+          "source": "minus",
+          "disposition": "coincident_self_endpoint_excluded",
+          "root": "0",
+          "accelerationZ": "0"
+        }
+      ],
+      "receiverTotals": [
+        {
+          "receiver": "receiver",
+          "acceleration": [
+            "0",
+            "0",
+            "-201/1020100"
+          ]
+        },
+        {
+          "receiver": "plus",
+          "acceleration": [
+            "0",
+            "0",
+            "10001/100"
+          ]
+        },
+        {
+          "receiver": "minus",
+          "acceleration": [
+            "0",
+            "0",
+            "-1020200/10201"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "affine-complete",
+      "lower": "-200",
+      "paths": [
+        {
+          "id": "receiver",
+          "p": "0",
+          "u": "0",
+          "charge": "1"
+        },
+        {
+          "id": "plus",
+          "p": "100",
+          "u": "0.01",
+          "charge": "1"
+        },
+        {
+          "id": "minus",
+          "p": "100.1",
+          "u": "0.03",
+          "charge": "-1"
+        }
+      ],
+      "fieldSpeed": "1",
+      "coupling": "1",
+      "receptionTime": "0",
+      "upper": "0",
+      "rows": [
+        {
+          "receiver": "receiver",
+          "source": "receiver",
+          "disposition": "coincident_self_endpoint_excluded",
+          "root": "0",
+          "accelerationZ": "0"
+        },
+        {
+          "receiver": "receiver",
+          "source": "plus",
+          "disposition": "present",
+          "root": "-10000/101",
+          "transmitterFactor": "101/100",
+          "distance": "10000/101",
+          "accelerationZ": "-101/1000000"
+        },
+        {
+          "receiver": "receiver",
+          "source": "minus",
+          "disposition": "present",
+          "root": "-10010/103",
+          "transmitterFactor": "103/100",
+          "distance": "10010/103",
+          "accelerationZ": "103/1002001"
+        },
+        {
+          "receiver": "plus",
+          "source": "receiver",
+          "disposition": "present",
+          "root": "-100",
+          "transmitterFactor": "1",
+          "distance": "100",
+          "accelerationZ": "1/10000"
+        },
+        {
+          "receiver": "plus",
+          "source": "plus",
+          "disposition": "coincident_self_endpoint_excluded",
+          "root": "0",
+          "accelerationZ": "0"
+        },
+        {
+          "receiver": "plus",
+          "source": "minus",
+          "disposition": "present",
+          "root": "-10/103",
+          "transmitterFactor": "103/100",
+          "distance": "10/103",
+          "accelerationZ": "103"
+        },
+        {
+          "receiver": "minus",
+          "source": "receiver",
+          "disposition": "present",
+          "root": "-1001/10",
+          "transmitterFactor": "1",
+          "distance": "1001/10",
+          "accelerationZ": "-100/1002001"
+        },
+        {
+          "receiver": "minus",
+          "source": "plus",
+          "disposition": "present",
+          "root": "-10/99",
+          "transmitterFactor": "99/100",
+          "distance": "10/99",
+          "accelerationZ": "-99"
+        },
+        {
+          "receiver": "minus",
+          "source": "minus",
+          "disposition": "coincident_self_endpoint_excluded",
+          "root": "0",
+          "accelerationZ": "0"
+        }
+      ],
+      "receiverTotals": [
+        {
+          "receiver": "receiver",
+          "acceleration": [
+            "0",
+            "0",
+            "1797899/1002001000000"
+          ]
+        },
+        {
+          "receiver": "plus",
+          "acceleration": [
+            "0",
+            "0",
+            "1030001/10000"
+          ]
+        },
+        {
+          "receiver": "minus",
+          "acceleration": [
+            "0",
+            "0",
+            "-99198199/1002001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mixed-root-window",
+      "lower": "-10.05",
+      "paths": [
+        {
+          "id": "receiver",
+          "p": "0",
+          "u": "0",
+          "charge": "1"
+        },
+        {
+          "id": "plus",
+          "p": "10",
+          "u": "0",
+          "charge": "1"
+        },
+        {
+          "id": "minus",
+          "p": "10.1",
+          "u": "0",
+          "charge": "-1"
+        }
+      ],
+      "fieldSpeed": "1",
+      "coupling": "1",
+      "receptionTime": "0",
+      "upper": "0",
+      "rows": [
+        {
+          "receiver": "receiver",
+          "source": "receiver",
+          "disposition": "coincident_self_endpoint_excluded",
+          "root": "0",
+          "accelerationZ": "0"
+        },
+        {
+          "receiver": "receiver",
+          "source": "plus",
+          "disposition": "present",
+          "root": "-10",
+          "transmitterFactor": "1",
+          "distance": "10",
+          "accelerationZ": "-1/100"
+        },
+        {
+          "receiver": "receiver",
+          "source": "minus",
+          "disposition": "absent",
+          "root": "-101/10",
+          "transmitterFactor": "1",
+          "distance": "101/10",
+          "accelerationZ": "0"
+        },
+        {
+          "receiver": "plus",
+          "source": "receiver",
+          "disposition": "present",
+          "root": "-10",
+          "transmitterFactor": "1",
+          "distance": "10",
+          "accelerationZ": "1/100"
+        },
+        {
+          "receiver": "plus",
+          "source": "plus",
+          "disposition": "coincident_self_endpoint_excluded",
+          "root": "0",
+          "accelerationZ": "0"
+        },
+        {
+          "receiver": "plus",
+          "source": "minus",
+          "disposition": "present",
+          "root": "-1/10",
+          "transmitterFactor": "1",
+          "distance": "1/10",
+          "accelerationZ": "100"
+        },
+        {
+          "receiver": "minus",
+          "source": "receiver",
+          "disposition": "absent",
+          "root": "-101/10",
+          "transmitterFactor": "1",
+          "distance": "101/10",
+          "accelerationZ": "0"
+        },
+        {
+          "receiver": "minus",
+          "source": "plus",
+          "disposition": "present",
+          "root": "-1/10",
+          "transmitterFactor": "1",
+          "distance": "1/10",
+          "accelerationZ": "-100"
+        },
+        {
+          "receiver": "minus",
+          "source": "minus",
+          "disposition": "coincident_self_endpoint_excluded",
+          "root": "0",
+          "accelerationZ": "0"
+        }
+      ],
+      "receiverTotals": [
+        {
+          "receiver": "receiver",
+          "acceleration": [
+            "0",
+            "0",
+            "-1/100"
+          ]
+        },
+        {
+          "receiver": "plus",
+          "acceleration": [
+            "0",
+            "0",
+            "10001/100"
+          ]
+        },
+        {
+          "receiver": "minus",
+          "acceleration": [
+            "0",
+            "0",
+            "-100"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lower-boundary-root",
+      "lower": "-10.1",
+      "paths": [
+        {
+          "id": "receiver",
+          "p": "0",
+          "u": "0",
+          "charge": "1"
+        },
+        {
+          "id": "plus",
+          "p": "10",
+          "u": "0",
+          "charge": "1"
+        },
+        {
+          "id": "minus",
+          "p": "10.1",
+          "u": "0",
+          "charge": "-1"
+        }
+      ],
+      "fieldSpeed": "1",
+      "coupling": "1",
+      "receptionTime": "0",
+      "upper": "0",
+      "rows": [
+        {
+          "receiver": "receiver",
+          "source": "receiver",
+          "disposition": "coincident_self_endpoint_excluded",
+          "root": "0",
+          "accelerationZ": "0"
+        },
+        {
+          "receiver": "receiver",
+          "source": "plus",
+          "disposition": "present",
+          "root": "-10",
+          "transmitterFactor": "1",
+          "distance": "10",
+          "accelerationZ": "-1/100"
+        },
+        {
+          "receiver": "receiver",
+          "source": "minus",
+          "disposition": "lower_boundary",
+          "root": "-101/10",
+          "transmitterFactor": "1",
+          "distance": "101/10",
+          "accelerationZ": "100/10201"
+        },
+        {
+          "receiver": "plus",
+          "source": "receiver",
+          "disposition": "present",
+          "root": "-10",
+          "transmitterFactor": "1",
+          "distance": "10",
+          "accelerationZ": "1/100"
+        },
+        {
+          "receiver": "plus",
+          "source": "plus",
+          "disposition": "coincident_self_endpoint_excluded",
+          "root": "0",
+          "accelerationZ": "0"
+        },
+        {
+          "receiver": "plus",
+          "source": "minus",
+          "disposition": "present",
+          "root": "-1/10",
+          "transmitterFactor": "1",
+          "distance": "1/10",
+          "accelerationZ": "100"
+        },
+        {
+          "receiver": "minus",
+          "source": "receiver",
+          "disposition": "lower_boundary",
+          "root": "-101/10",
+          "transmitterFactor": "1",
+          "distance": "101/10",
+          "accelerationZ": "-100/10201"
+        },
+        {
+          "receiver": "minus",
+          "source": "plus",
+          "disposition": "present",
+          "root": "-1/10",
+          "transmitterFactor": "1",
+          "distance": "1/10",
+          "accelerationZ": "-100"
+        },
+        {
+          "receiver": "minus",
+          "source": "minus",
+          "disposition": "coincident_self_endpoint_excluded",
+          "root": "0",
+          "accelerationZ": "0"
+        }
+      ],
+      "receiverTotals": [
+        {
+          "receiver": "receiver",
+          "acceleration": [
+            "0",
+            "0",
+            "-201/1020100"
+          ]
+        },
+        {
+          "receiver": "plus",
+          "acceleration": [
+            "0",
+            "0",
+            "10001/100"
+          ]
+        },
+        {
+          "receiver": "minus",
+          "acceleration": [
+            "0",
+            "0",
+            "-1020200/10201"
+          ]
+        }
+      ]
+    }
+  ]
+}

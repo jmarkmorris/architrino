@@ -1,0 +1,328 @@
+{
+ "file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-fine.json",
+ "mode": "three",
+ "N_window": 4000,
+ "controls_all_pass": true,
+ "control_order": [
+  "(0a) fast node lookup equals the frozen ",
+  "(0b) closed forms (hit, D_t, r, radial) ",
+  "(0c) known: radial sum at release enclos",
+  "(1) continuity of the antipode term at i",
+  "(2) negative: antipode term at the probe",
+  "(4) negative: wrong antipode path map (q",
+  "(3) regression (not independent evidence",
+  "(5) residual-reception bracket: known sy",
+  "(6) sign bracket: known zero of 0.003 - "
+ ],
+ "n_steps": 11,
+ "stop_reason": "plan exhausted (18 steps certified)",
+ "reached_time": [
+  "1.947684593623649597167969",
+  "1.947684709182828044891357"
+ ],
+ "per_step": [
+  {
+   "step": 8,
+   "t_end": "1.9376847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.05341804",
+    "0.05341877"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000186094",
+    "0.000194793"
+   ],
+   "lam_range": [
+    "0.000154133",
+    "0.000248986"
+   ]
+  },
+  {
+   "step": 9,
+   "t_end": "1.9386847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.05239955",
+    "0.05240027"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000163840",
+    "0.000172553"
+   ],
+   "lam_range": [
+    "0.000131864",
+    "0.000226778"
+   ]
+  },
+  {
+   "step": 10,
+   "t_end": "1.9396847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.05138102",
+    "0.05138175"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000141574",
+    "0.000150294"
+   ],
+   "lam_range": [
+    "0.000109579",
+    "0.000204552"
+   ]
+  },
+  {
+   "step": 11,
+   "t_end": "1.9406847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.05036247",
+    "0.05036320"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000119292",
+    "0.000128022"
+   ],
+   "lam_range": [
+    "0.000087280",
+    "0.000182312"
+   ]
+  },
+  {
+   "step": 12,
+   "t_end": "1.9416847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.04934388",
+    "0.04934462"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000096996",
+    "0.000105732"
+   ],
+   "lam_range": [
+    "0.000064967",
+    "0.000160055"
+   ]
+  },
+  {
+   "step": 13,
+   "t_end": "1.9426847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.04832527",
+    "0.04832601"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000074683",
+    "0.000083430"
+   ],
+   "lam_range": [
+    "0.000042637",
+    "0.000137784"
+   ]
+  },
+  {
+   "step": 14,
+   "t_end": "1.9436847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.04730663",
+    "0.04730737"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "positive",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000052355",
+    "0.000061112"
+   ],
+   "lam_range": [
+    "0.000020293",
+    "0.000115497"
+   ]
+  },
+  {
+   "step": 15,
+   "t_end": "1.9446847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.04628796",
+    "0.04628870"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "UNDECIDED",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000030014",
+    "0.000038777"
+   ],
+   "lam_range": [
+    "-0.00000206",
+    "0.000093196"
+   ]
+  },
+  {
+   "step": 16,
+   "t_end": "1.9456847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.04526926",
+    "0.04527001"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "UNDECIDED",
+   "lam_end_sign": "positive",
+   "lam_end": [
+    "0.000007655",
+    "0.000016428"
+   ],
+   "lam_range": [
+    "-0.00002444",
+    "0.000070878"
+   ]
+  },
+  {
+   "step": 17,
+   "t_end": "1.9466847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.04425053",
+    "0.04425128"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "UNDECIDED",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00001471",
+    "-0.00000593"
+   ],
+   "lam_range": [
+    "-0.00004683",
+    "0.000048549"
+   ]
+  },
+  {
+   "step": 18,
+   "t_end": "1.9476847091",
+   "ok": true,
+   "why": [],
+   "moving": [
+    "unlike",
+    "like"
+   ],
+   "res_end": [
+    "0.04323177",
+    "0.04323252"
+   ],
+   "anti_s_range": null,
+   "two_regime": null,
+   "lam_range_sign": "UNDECIDED",
+   "lam_end_sign": "negative",
+   "lam_end": [
+    "-0.00003710",
+    "-0.00002831"
+   ],
+   "lam_range": [
+    "-0.00006923",
+    "0.000026201"
+   ]
+  }
+ ],
+ "fail": [],
+ "residual_last_proved_positive_end": [
+  18,
+  "1.947684709182828044891357"
+ ],
+ "residual_first_proved_negative_end": null,
+ "attained_reception_certificate": false,
+ "generated_antipodal_history_last_step": null,
+ "lambda_last_positive_end": [
+  16,
+  "1.945684709182828044891357"
+ ],
+ "lambda_first_negative_end": [
+  17,
+  "1.946684709182828044891357"
+ ],
+ "lambda_sign_change_certificate": true
+}

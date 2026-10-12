@@ -1,0 +1,8 @@
+pid 62891
+T* in [1.366622279933, 1.366740606296] (reproduces wave 17: None); records 71 to t = 2.0766847091; setup 5.1 s
+controls: FAIL
+   pass (0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random (q <= 0
+   pass (2) reconciliation on the accepted endpoint state: g F(q0) (wave-14 five-image field) intersects the sum of th
+   FAIL (3) history lookup: seam at T* (window enclosure at up(T*) intersects wave-16 step-1 candidate sets); record l
+   pass (4) negative: unlike term at the accepted endpoint with the wrong sign of the velocity term in D_t is disjoint
+   FAIL (1) regression (not independent evidence): the resumed step from the frozen b3 step-20 end state reproduces th

@@ -1,0 +1,294 @@
+{
+ "events": {
+  "like_crossing_of_T_star": [
+   {
+    "earlier_step": 114,
+    "later_step": 115,
+    "delayed_arg_at_earlier_end": [
+     "1.363258395325666061039664",
+     "1.363297936975172470980472"
+    ],
+    "delayed_arg_at_later_end": [
+     "1.371588349931603251423749",
+     "1.37231943023743375346774"
+    ],
+    "T_star": [
+     "1.366684593623649597167969",
+     "1.366684709182828044891357"
+    ],
+    "t_bracket_full_uncertainty": [
+     "3.006684593623649597167969",
+     "3.016684709182828044891357"
+    ]
+   }
+  ],
+  "like_positions_seen": [
+   "above T*",
+   "below T*"
+  ],
+  "unlike_positions_seen": [
+   "above T*"
+  ],
+  "antipode_positions_seen": [
+   "below T*"
+  ],
+  "lambda_hat_end_sign_values_seen": [
+   "negative"
+  ],
+  "lambda_hat_end_sign_changes": [],
+  "qddot_end_sign_values_seen": [
+   "positive"
+  ],
+  "qddot_end_sign_changes": [],
+  "qddot_start_sign_values_seen": [
+   "positive"
+  ],
+  "qddot_start_sign_changes": [],
+  "lambda_hat_start_sign_values_seen": [
+   "negative"
+  ],
+  "lambda_hat_start_sign_changes": [],
+  "lambda_hat_range_sign_values_seen": [
+   "negative"
+  ],
+  "lambda_hat_range_sign_changes": []
+ },
+ "summary": {
+  "parts": [
+   "s1a",
+   "s1b",
+   "s2a"
+  ],
+  "n_certified_steps": 30,
+  "first_step": 95,
+  "last_step": 124,
+  "reached_t": [
+   "3.096684593623649597167969 + 0.01",
+   "3.106684709182828044891357"
+  ],
+  "reached_q": [
+   "0.4906834845802867001124733",
+   "0.4908248692940519963879255"
+  ],
+  "reached_qdot": [
+   "0.3204610411197252187546447",
+   "0.3208908098031064219099503"
+  ],
+  "controls_all_pass_per_part": [
+   [
+    "s1a",
+    true,
+    [
+     "(0) ",
+     "(E) ",
+     "(2) ",
+     "(3) ",
+     "(4) ",
+     "(5) ",
+     "(1) ",
+     "(6) ",
+     "(7) "
+    ],
+    true,
+    94
+   ],
+   [
+    "s1b",
+    true,
+    [
+     "(0) ",
+     "(E) ",
+     "(2) ",
+     "(3) ",
+     "(4) ",
+     "(5) ",
+     "(1) ",
+     "(6) ",
+     "(7) "
+    ],
+    true,
+    104
+   ],
+   [
+    "s2a",
+    true,
+    [
+     "(0) ",
+     "(E) ",
+     "(2) ",
+     "(3) ",
+     "(4) ",
+     "(5) ",
+     "(1) ",
+     "(6) ",
+     "(7) "
+    ],
+    true,
+    114
+   ]
+  ],
+  "iterations_seen": [
+   1
+  ],
+  "all_subwake": true,
+  "all_delayed_args_in_covered_history": true,
+  "all_reconciled": true,
+  "end_eval_present_all": true,
+  "min_margin_to_coverage_end": {
+   "unlike": "1.08013138",
+   "like": "1.60652474",
+   "antipode": "1.94512097"
+  },
+  "Dt0_first_last": {
+   "unlike": [
+    [
+     "0.9397948480410760471617022",
+     "0.9403311707969756935384406"
+    ],
+    [
+     "0.9409971968110332598213636",
+     "0.9415997377062624380725628"
+    ]
+   ],
+   "like": [
+    [
+     "1.032242258557322857108923",
+     "1.032246590287877271113721"
+    ],
+    [
+     "1.030840245703037802926632",
+     "1.031136700500955385824689"
+    ]
+   ],
+   "antipode": [
+    [
+     "1.015220823122600454016721",
+     "1.015223332879653740239744"
+    ],
+    [
+     "1.023988324816573975820815",
+     "1.023996810341407714780721"
+    ]
+   ]
+  },
+  "Dt_range_extremes": {
+   "unlike": [
+    "0.9381753934",
+    "0.9423683543"
+   ],
+   "like": [
+    "1.0305104187",
+    "1.0325822135"
+   ],
+   "antipode": [
+    "1.0151762278",
+    "1.0244097080"
+   ]
+  },
+  "max_delayed_arg_end": {
+   "unlike": "2.0169843637",
+   "like": "1.4503851087",
+   "antipode": "1.1515493612"
+  },
+  "families_read_at_step_ends": {
+   "unlike": [
+    [
+     95,
+     "wave17"
+    ],
+    [
+     112,
+     "antipodal"
+    ]
+   ],
+   "like": [
+    [
+     95,
+     "window"
+    ],
+    [
+     115,
+     "wave16"
+    ]
+   ],
+   "antipode": [
+    [
+     95,
+     "window"
+    ]
+   ]
+  },
+  "a_rad_end_first_last": [
+   [
+    "-0.05761440516226132733425585",
+    "-0.05746408949699548579120302"
+   ],
+   [
+    "-0.06400806165299457709810136",
+    "-0.06357477655085470720559233"
+   ]
+  ],
+  "lambda_hat_end_first_last": [
+   [
+    "-0.02671380997605217748291497",
+    "-0.02645988958371918327052662"
+   ],
+   [
+    "-0.03939613526523871331894617",
+    "-0.03868721722254364038836507"
+   ]
+  ],
+  "class_contributions_end_last": {
+   "unlike": {
+    "tangent": [
+     "0.07356418776018429544664547",
+     "0.07487175888539980637975834"
+    ],
+    "radial": [
+     "-0.09757175110328580012455715",
+     "-0.09718331197838384915180913"
+    ],
+    "multiplicity": 2,
+    "moving": true
+   },
+   "like": {
+    "tangent": [
+     "0.02293116224683272598945296",
+     "0.02302465273990191231621659"
+    ],
+    "radial": [
+     "0.05853014365080752651230908",
+     "0.05857438475387236409424089"
+    ],
+    "multiplicity": 2,
+    "moving": true
+   },
+   "antipode": {
+    "tangent": [
+     "0.005377161043610901010709262",
+     "0.005379184136665930776772103"
+    ],
+    "radial": [
+     "-0.02496645420051630348585329",
+     "-0.02496584932634322214802409"
+    ],
+    "multiplicity": 1,
+    "moving": true
+   }
+  },
+  "tangent_sum_end_last": [
+   "0.1018725110506279224468077",
+   "0.103275595761967649472747"
+  ],
+  "qdot_width_first_last": [
+   "0.0001786",
+   "0.0004298"
+  ],
+  "min_separations": {
+   "r_unlike_delayed_min": "1.08926851",
+   "r_like_delayed_min": "1.61787092",
+   "r_antipode_delayed_min": "1.95513464",
+   "simultaneous_unlike_pair_chord_min": "1.15473175"
+  }
+ }
+}

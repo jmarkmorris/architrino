@@ -1,0 +1,614 @@
+# Support role (emmy-noether) commands receipt, six-pole late-feedback Stage A. Started Sun Oct 11 19:14:44 UTC 2026. 1 GiB cap is measured (peak RSS), not OS-enforced.
+2b16eae5225c91901b4ef8ac15f786fb54542837c1643c70ed9adbc451d98f78  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-antipodal-claude-continuation-wave1.md
+025954501334689ba52d13a82d5235012e02f03c55938472ac32c2c955e61a9a  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-antipodal-claude-support-wave1.md
+1352182139423cb3088be03eae81ee7624bd8d09d67d86c864da32caf085b024  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv.py
+7d0b1fa98384314b247b20e93a863bb8bdb14ea719974ba35b721f774ec55c20  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json
+pgrep check Sun Oct 11 19:16:45 UTC 2026: none
+start Sun Oct 11 19:16:45 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv-b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.json
+exit 1 end Sun Oct 11 19:16:45 UTC 2026
+PID 61438
+        0.45 real         0.43 user         0.00 sys
+            23445504  maximum resident set size
+NOTE Sun Oct 11 19:17:07 UTC 2026: v1 (PID 61438) passed both controls, then stopped at b3 step 13 (two-regime antipode box) on an over-strict assertion; bytes retained as -v1.py; v2 takes the acceleration hull including rest on two-regime boxes. v1 outputs retained (-b3.json/.out, superseded).
+755be8b1d2a70fbd192b84246992bdc034326f3ae264d809079b92a7a8263616  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv-v1.py
+14b4660bac619eaafa5cae7041b8a04f6a11c9cebc42093de5883811ef6a61a5  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv.py
+pgrep check Sun Oct 11 19:17:07 UTC 2026: p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv.py"
+p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv.py"
+start Sun Oct 11 19:17:07 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv-v2-b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-support-steps-iv-N4000b3.json
+exit 0 end Sun Oct 11 19:17:07 UTC 2026
+PID 61840
+        0.47 real         0.45 user         0.00 sys
+            22511616  maximum resident set size
+4bc0297e7a7bcad6416f81118fbd230d6817f614c36a8f70d1e644d3804ecbc0  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv-v2-b3.json
+5836b16c02d58c06ae687b0888c515ebeb31f2337b3ede2133e645fa2d6995bc  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv-v2-b3.out
+7ee960ea9075d356f438b500da8020c2f78036cbe2e96a006c27a8ef8ee49d79  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-reference.md
+Phase A reference saved (mtime above, local clock = UTC-4); hash recorded Sun Oct 11 19:18:24 UTC 2026
+EXPOSURE Sun Oct 11 19:19:50 UTC 2026: Phase B released (PI 19:19) for continuation files only; listing them now
+pgrep check Sun Oct 11 19:19:50 UTC 2026: P=$E/spherical-six-pole-late-feedback-claude-support-slice-iv.py; B=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json; O=$E/spherical-six-pole-late-feedback-claude-support-slice-iv-ctrl-b3.json; echo "start $(date -u) cwd=$(pwd) cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I $P $B $O" >> $R; OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I $P $B $O > ${O%.json}.out 2>&1; echo "exit $? end $(date -u)" >> $R; grep -E "^PID|real|maximum resident" ${O%.json}.out | tee -a $R; grep -E "^\[|^step 13|^step 21|^\{\"n" ${O%.json}.out | cut -c1-400' < /dev/null && pwd -P >| /tmp/claude-9c1a-cwd
+P=$E/spherical-six-pole-late-feedback-claude-support-slice-iv.py; B=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json; O=$E/spherical-six-pole-late-feedback-claude-support-slice-iv-ctrl-b3.json; echo "start $(date -u) cwd=$(pwd) cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I $P $B $O" >> $R; OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e '"'"'alarm 30; exec @ARGV'"'"' -- ../.venv/bin/python -I $P $B $O > ${O%.json}.out 2>&1; echo "exit $? end $(date -u)" >> $R; grep -E "^PID|real|maximum resident" ${O%.json}.out | tee -a $R; grep -E "^\[|^step 13|^step 21|^\{\"n" ${O%.json}.out | cut -c1-400' < /dev/null && pwd -P >| /tmp/claude-9c1a-cwd
+start Sun Oct 11 19:19:50 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-ctrl-b3.json
+exit 0 end Sun Oct 11 19:19:50 UTC 2026
+PID 64751
+        0.13 real         0.12 user         0.00 sys
+            22921216  maximum resident set size
+NOTE Sun Oct 11 19:20:20 UTC 2026: slice-iv v1 (PID 64751) control K failed by design error (required equality with an instrument using a different D_t source); v1 bytes retained; v2 requires intersection there and equality with dlambda3. v1 outputs retained (-ctrl-b3.*, superseded).
+1cce5328371c8724b3c074c53f993f689eed0cc159b289fb914c17fcae1221cd  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-v1.py
+12d464d9422387deee833dff99feeef1eaab7efad89e01c37c37f0d4920a171b  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv.py
+pgrep check Sun Oct 11 19:20:20 UTC 2026: p="reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv.py"
+B3=$E/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json; O=$E/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-val4-N500
+65032 /usr/bin/time -l perl -e alarm 110; exec @ARGV -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv.py 500 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-val4-N500.json 24 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json 21
+echo ===== continuation status; tail -6 $E/spherical-six-pole-late-feedback-claude-continuation-commands.txt | cut -c1-300; cat $E/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-val3-N500.out; tail -3 $E/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-val3-N500.out.time; sed -n 1,30p $E/spherical-six-pole-late-feedback-claude-continuation-steps4-iv.py | cut -c1-250' && pwd -P >| /tmp/claude-7968-cwd
+echo ===== continuation status; tail -6 $E/spherical-six-pole-late-feedback-claude-continuation-commands.txt | cut -c1-300; cat $E/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-val3-N500.out; tail -3 $E/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-val3-N500.out.time; sed -n 1,30p $E/spherical-six-pole-late-feedback-claude-continuation-steps4-iv.py | cut -c1-250' && pwd -P >| /tmp/claude-7968-cwd
+echo ===== continuation status; tail -6 $E/spherical-six-pole-late-feedback-claude-continuation-commands.txt | cut -c1-300; cat $E/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-val3-N500.out; tail -3 $E/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-val3-N500.out.time; sed -n 1,30p $E/spherical-six-pole-late-feedback-claude-continuation-steps4-iv.py | cut -c1-250' && pwd -P >| /tmp/claude-7968-cwd
+start Sun Oct 11 19:20:20 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-v2-ctrl-b3.json
+exit 0 end Sun Oct 11 19:20:20 UTC 2026
+PID 66350
+        0.18 real         0.15 user         0.01 sys
+            23117824  maximum resident set size
+63dd7d1ec747cf373a1962395bff711c3af3deddda36fe59affe7a9d3aa86c11  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-v2-ctrl-b3.json
+EXPOSURE Sun Oct 11 19:20:30 UTC 2026: PI released the review reference (19:20); opening it now
+ba3c12b9ee81479b2681dcc7f3182d8bb0d607b18c2207ccedb52cb12fa14b67  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-review-reference.md
+20e388360136c2685d9ec8332d02471cd91aebd7371b5b6e90b4151fb8c5b385  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-val4-N500.json
+pgrep check Sun Oct 11 19:20:43 UTC 2026: none
+start Sun Oct 11 19:20:43 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-val4-N500.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-val4-N500.json
+exit 0 end Sun Oct 11 19:20:43 UTC 2026
+PID 66512
+        0.10 real         0.09 user         0.00 sys
+            22970368  maximum resident set size
+20f70493fb21035d733ac122d773e2735afa3aaebde61b91b8bd1de85e3b0252  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-val4-N500.json
+8bd187e9474f64dd6665f53ee9125989c12497f13584f6208fa1e40aac68ab68  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-val4-N500.out
+81a9cbd591b55ccfbb9505eb4119aeef873ca126d6910043b8741ecb309c95c2  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-wave1.md
+wave1 saved (sections 1-3.1) Sun Oct 11 19:21:28 UTC 2026
+3378a9820f91feb98fb0ebc4e20c2b2eb78795495eabf733b5b362101f956f88  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-wave1.md
+wave1 time label corrected and re-hashed Sun Oct 11 19:21:41 UTC 2026
+CENSUS Sun Oct 11 19:26:02 UTC 2026: pgrep -x Python/python:
+  68397 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -I reference/priorities/master-equation-closure/noether-sea-researc
+CENSUS Sun Oct 11 19:26:41 UTC 2026: pgrep -x Python/python:
+  (no continuation python live)
+c1e6cb51cb9fba49c6b779a1b2cc72718426fc0154800397fd23fa9c4b85e5c5  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s1a2.json
+start Sun Oct 11 19:26:41 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s1a2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s1a2.json
+exit 0 end Sun Oct 11 19:26:41 UTC 2026
+PID 68804
+        0.13 real         0.12 user         0.01 sys
+            22970368  maximum resident set size
+RELEASE Sun Oct 11 19:26:41 UTC 2026: support run finished; slot released
+CENSUS Sun Oct 11 19:26:41 UTC 2026: pgrep -x Python/python:
+  (no continuation python live)
+24282467a7061538590948e64f8d533ab844beb42ea7dbc8f03dc89204c1c8b8  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s1a2.json
+4376e12b405be3806057c79cbdbe587cd5070b3fe36e1694add04c53230a6f77  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s1a2.out
+CENSUS Sun Oct 11 19:26:56 UTC 2026: pgrep -x Python/python:
+  (no continuation python live)
+97643d7c01eda6ac1f8ad52980c6bb48537f16e7aed13f0bc1641e781a7c60ae  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s1b.json
+start Sun Oct 11 19:26:56 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s1b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s1b.json
+exit 0 end Sun Oct 11 19:26:57 UTC 2026
+PID 68876
+        0.16 real         0.14 user         0.01 sys
+            23576576  maximum resident set size
+RELEASE Sun Oct 11 19:26:57 UTC 2026: support run finished; slot released
+3801415756bcce6716e4209951d0197632637b06bd12e62d5b33b930abf9995b  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s1b.json
+806c58ccb7ff893d6b6b074c4cd1542bb337808bed7e7edc671b0168aabbf210  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s1b.out
+CENSUS Sun Oct 11 19:26:57 UTC 2026: pgrep -x Python/python:
+  (no continuation python live)
+d44513232f30bf7e7361448d0a539294ee97822c99e43b063dc818531fe0f4d6  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2a.json
+start Sun Oct 11 19:26:57 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2a.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s2a.json
+exit 0 end Sun Oct 11 19:26:57 UTC 2026
+PID 68901
+        0.14 real         0.13 user         0.00 sys
+            23085056  maximum resident set size
+RELEASE Sun Oct 11 19:26:57 UTC 2026: support run finished; slot released
+b47d9a8a6970972694be7702d1525121440f1add9fa1d83c36df166dc1542b51  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s2a.json
+c42f7b829e87a83ab347b693b20466615d26769a0fe4dd050cc6b2224c57bafa  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s2a.out
+CENSUS Sun Oct 11 19:26:57 UTC 2026: pgrep -x Python/python:
+  (no continuation python live)
+ba810233d48bdde154734cd78d8dd4517c1bef1ad23d6338393b867d0a007410  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-wave1.md
+wave1 sections 3.2-3.5 appended Sun Oct 11 19:27:58 UTC 2026
+CENSUS Sun Oct 11 19:31:18 UTC 2026: pgrep -x Python/python:
+  (no continuation python live)
+95d4cd7c7508d3d02219fa04cb5af2a9fa2f18d27910a12597f08c846f46c47b  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2b3.json
+start Sun Oct 11 19:31:18 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s2b3.json
+exit 0 end Sun Oct 11 19:31:19 UTC 2026
+PID 71121
+        0.12 real         0.11 user         0.00 sys
+            23199744  maximum resident set size
+RELEASE Sun Oct 11 19:31:19 UTC 2026: support run finished; slot released
+82bb98c099487577081178d4a903287eab11f1f6e28c18c4d8d0d1375e6a68d2  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s2b3.json
+529ce61c83666b41f70ebe5d6019ec65e005634f3d011eb487507a6e520166db  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s2b3.out
+CENSUS Sun Oct 11 19:31:19 UTC 2026: pgrep -x Python/python:
+  (no continuation python live)
+69aa3a6099b2ab1c73e778e22d204860c1e3d9f4c2a09423eae7f8c3868c47f5  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2b.json
+start Sun Oct 11 19:31:19 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s2b.json
+exit 0 end Sun Oct 11 19:31:19 UTC 2026
+PID 71147
+        0.08 real         0.07 user         0.00 sys
+            22577152  maximum resident set size
+RELEASE Sun Oct 11 19:31:19 UTC 2026: support run finished; slot released
+98b845177d45ec877dcdbd58c1bd668717062637a17f88f0f8c8ebda75178b1a  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s2b.json
+4ffa53b451ab29166bb5f73ad8c920edaa78db33a7221dedc3727eadd0ca8501  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice-iv-N4000-s2b.out
+CENSUS Sun Oct 11 19:31:19 UTC 2026: pgrep -x Python/python:
+  (no continuation python live)
+bd210816dedcc7dbb026259832b7b12b92da837cb9f6527b5f3e1426ab4acea6  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-wave1.md
+wave1 section 3.6 appended Sun Oct 11 19:31:42 UTC 2026
+CENSUS Sun Oct 11 19:33:48 UTC 2026: pgrep -x Python/python:
+  71653 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-4 1500 repro-1e-2-to-1e-4
+  (no continuation python live)
+c517b101181d45d89ca2d1dafb90929278908f5850e79434b053217c8464daca  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv.py
+start Sun Oct 11 19:33:48 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-ctrl-s2b3.json
+exit 0 end Sun Oct 11 19:33:48 UTC 2026
+PID 72642
+        0.20 real         0.18 user         0.00 sys
+            24526848  maximum resident set size
+RELEASE Sun Oct 11 19:33:48 UTC 2026: support run finished; slot released
+CENSUS Sun Oct 11 19:33:48 UTC 2026: pgrep -x Python/python:
+  71653 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-4 1500 repro-1e-2-to-1e-4
+  (no continuation python live)
+2f996986fdba8284fff008ba229e7281082fdfcca4d7ac8d230103fa3ffaf540  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-ctrl-s2b3.json
+NOTE Sun Oct 11 19:34:33 UTC 2026: slice2-iv v1 (PID 72642): K1, K2, W1 passed; W2 reported fail only because its pass criterion demanded exact equality of a rounding-width interval with -0.025 (values printed -0.025 to 25 digits); v1 bytes retained; v2 uses a 1e-25 tolerance. v1 outputs retained (-ctrl-s2b3.*).
+c517b101181d45d89ca2d1dafb90929278908f5850e79434b053217c8464daca  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-v1.py
+57e44106fc518691fdf944c5b33497331d578787d55d59e5667425153c562d1b  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv.py
+CENSUS Sun Oct 11 19:34:33 UTC 2026: pgrep -x Python/python:
+  71653 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-4 1500 repro-1e-2-to-1e-4
+  72743 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -I reference/priorities/master-equation-closure/noether-sea-researc
+CENSUS Sun Oct 11 19:34:34 UTC 2026: pgrep -x Python/python:
+  71653 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-4 1500 repro-1e-2-to-1e-4
+  72743 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -I reference/priorities/master-equation-closure/noether-sea-researc
+CENSUS Sun Oct 11 19:34:34 UTC 2026: pgrep -x Python/python:
+  71653 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-4 1500 repro-1e-2-to-1e-4
+  72743 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -I reference/priorities/master-equation-closure/noether-sea-researc
+CENSUS Sun Oct 11 19:35:29 UTC 2026: pgrep -x Python/python:
+  71653 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-4 1500 repro-1e-2-to-1e-4
+  (no continuation python live)
+45374b5ed8e5567fae67235226675d185e10e7503d13392f0aaf74fa88e202d1  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3a.json
+start Sun Oct 11 19:35:29 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3a.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3a.json
+exit 0 end Sun Oct 11 19:35:29 UTC 2026
+PID 73095
+        0.18 real         0.17 user         0.00 sys
+            24018944  maximum resident set size
+RELEASE Sun Oct 11 19:35:29 UTC 2026: support run finished; slot released
+932f4aa627df4adf5f4897125c3dbd2db42e54398e1e42089e7ab17209d53c2e  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3a.json
+628052646f6e751059cc4ac76df345a9a480d1c5a76c66f461354e5a7f3a26c6  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3a.out
+CENSUS Sun Oct 11 19:35:29 UTC 2026: pgrep -x Python/python:
+  71653 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-4 1500 repro-1e-2-to-1e-4
+  (no continuation python live)
+552ade93eb0873ecfc3cea01d74ca8113649296e44316afebc9d5e0ffc1de21c  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3b.json
+start Sun Oct 11 19:35:30 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3b.json
+exit 0 end Sun Oct 11 19:35:30 UTC 2026
+PID 73130
+        0.21 real         0.19 user         0.00 sys
+            24444928  maximum resident set size
+RELEASE Sun Oct 11 19:35:30 UTC 2026: support run finished; slot released
+b51d70e876bfe61ad27015f4546bb979b0c7b74ad50a07cfec52cf81436cc3b4  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3b.json
+c7cbd383f11f64b41ac706745bd301458817ff113fe0d022380f683b3e7b17b6  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3b.out
+CENSUS Sun Oct 11 19:35:30 UTC 2026: pgrep -x Python/python:
+  71653 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-4 1500 repro-1e-2-to-1e-4
+  (no continuation python live)
+CENSUS Sun Oct 11 19:35:45 UTC 2026: pgrep -x Python/python:
+  73173 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+2d11c6c370703a9cf853eaa4a38d8da9c93461d5668d57d9f12c8af17f73d18f  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3b2.json
+start Sun Oct 11 19:35:45 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3b2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3b2.json
+exit 0 end Sun Oct 11 19:35:45 UTC 2026
+PID 73242
+        0.20 real         0.19 user         0.00 sys
+            24576000  maximum resident set size
+RELEASE Sun Oct 11 19:35:45 UTC 2026: support run finished; slot released
+784f25004ba07ae5774e335f3c0e08c0f68b3c653680376ece7cd6f02904ae71  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3b2.json
+f85a9724f5c7b0799d97480e9bb8374d94b24dc5f13848ab96b430e072218953  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3b2.out
+CENSUS Sun Oct 11 19:35:45 UTC 2026: pgrep -x Python/python:
+  73173 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+63568ddb2892fc65f44abcd1eef6ca631923a3aea6f88553f0dc7d1e625a3d14  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-wave1.md
+wave1 sections 4.1-4.3 appended Sun Oct 11 19:36:27 UTC 2026
+6b2a2e4af475065ca782b3487794620f2d3256b353025883663ee63662e32efe  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-wave1.md
+wave1 4.3 speed figure corrected (0.2717) and re-hashed Sun Oct 11 19:36:34 UTC 2026
+CENSUS Sun Oct 11 19:37:14 UTC 2026: pgrep -x Python/python:
+  73173 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  73697 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -I reference/priorities/master-equation-closure/noether-sea-researc
+CENSUS Sun Oct 11 19:37:15 UTC 2026: pgrep -x Python/python:
+  73173 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  73697 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -I reference/priorities/master-equation-closure/noether-sea-researc
+CENSUS Sun Oct 11 19:38:13 UTC 2026: pgrep -x Python/python:
+  73173 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  74464 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -B reference/priorities/master-equation-closure/braid-program/evide
+  (no continuation python live)
+1f9e6628c97fe1f6d042143eb1a26e6857ce2db6f7f66251977574716bd05ba6  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3c.json
+start Sun Oct 11 19:38:13 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3c.json
+exit 0 end Sun Oct 11 19:38:13 UTC 2026
+PID 74574
+        0.23 real         0.21 user         0.01 sys
+            24182784  maximum resident set size
+RELEASE Sun Oct 11 19:38:13 UTC 2026: support run finished; slot released
+215fa1d84393ea3bb6a4849af44f4840e02bde7dbbae20d74722d41fa6c38cba  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3c.json
+a5d0a0aa1f81361d246cd47e0c6903e80bf9b183a6f318eb3faaa37593f7e122  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3c.out
+CENSUS Sun Oct 11 19:38:13 UTC 2026: pgrep -x Python/python:
+  73173 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  74464 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -B reference/priorities/master-equation-closure/braid-program/evide
+  (no continuation python live)
+2763577d643ccfbddc8f71385af6174c90771d965e93b0e939d4ec5fc14f5edb  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3d.json
+start Sun Oct 11 19:38:13 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3d.json
+exit 0 end Sun Oct 11 19:38:14 UTC 2026
+PID 74618
+        0.22 real         0.21 user         0.01 sys
+            24264704  maximum resident set size
+RELEASE Sun Oct 11 19:38:14 UTC 2026: support run finished; slot released
+49af7e6cdf834d64ba2434a8edad1cb58706a8f85f4a7c568db40b662d933933  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3d.json
+8761fcbbc15b483428929122fbe9b95edade7e5fea94bbcbff91c3ae783d4420  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-slice2-iv-N4000-s3d.out
+CENSUS Sun Oct 11 19:38:14 UTC 2026: pgrep -x Python/python:
+  73173 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  74464 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -B reference/priorities/master-equation-closure/braid-program/evide
+  (no continuation python live)
+754fca308d9d314f999dc73f67f4903ed216487c2a8de7ec96c9e1bf02d1d34b  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-wave1.md
+wave1 sections 4.4-4.6 appended Sun Oct 11 19:38:44 UTC 2026
+aeed524f8dbc5cfa8a1a17506ad2de80d2c02277e4f2964af5d45ee04ba8e514  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-wave1.md
+wave1 section 5 (Stage A hand-back summary) appended Sun Oct 11 19:39:36 UTC 2026
+STAGE B Sun Oct 11 19:44:07 UTC 2026: activated by PI (J = 19:41:53); briefs read; Phase A reference in progress
+CENSUS Sun Oct 11 19:44:07 UTC 2026: pgrep -x Python/python:
+  77787 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-4 1500 repro-1e-2-to-1e-4
+  (no continuation python live)
+start Sun Oct 11 19:44:07 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-dlambda3g-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-dlambda3g-iv.json
+exit 0 end Sun Oct 11 19:44:08 UTC 2026
+PID 77832
+PID 77832
+        1.34 real         1.29 user         0.01 sys
+            21807104  maximum resident set size
+RELEASE Sun Oct 11 19:44:08 UTC 2026
+f88916a8edb87dea2f8841bd928d85ab393c20decfdbc4168bc948bcdd96603a  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-dlambda3g-iv.py
+5335fa00f2b63afee65eb28ba5e4d445a2220e0886f414de095641e7c77a83f1  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-dlambda3g-iv.json
+68598c3b33ed7d1351e97ff883214ccf57d9fa26ed6c9cebf135281029210274  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-reference.md
+Stage B Phase A reference saved (mtime above, local = UTC-4); hash recorded Sun Oct 11 19:45:09 UTC 2026
+CENSUS Sun Oct 11 19:46:01 UTC 2026: pgrep -x Python/python:
+  77787 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-4 1500 repro-1e-2-to-1e-4
+  (no continuation python live)
+start Sun Oct 11 19:46:01 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s1a2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-ctrl-s1a2.json
+exit 2 end Sun Oct 11 19:46:01 UTC 2026
+        0.02 real         0.01 user         0.00 sys
+            14057472  maximum resident set size
+RELEASE Sun Oct 11 19:46:01 UTC 2026
+CENSUS Sun Oct 11 19:46:35 UTC 2026: pgrep -x Python/python:
+  77787 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-4 1500 repro-1e-2-to-1e-4
+  78878 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -I reference/priorities/master-equation-closure/noether-sea-researc
+CENSUS Sun Oct 11 19:47:30 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+start Sun Oct 11 19:47:30 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2b3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-ctrl-s2b3.json
+exit 0 end Sun Oct 11 19:47:30 UTC 2026
+PID 79742
+        0.20 real         0.19 user         0.00 sys
+            24526848  maximum resident set size
+RELEASE Sun Oct 11 19:47:30 UTC 2026
+526fbbba35a600a142aa5c57b77f255f45666dc12b963a54d3cb8c9c348b8032  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py
+822a2c42980f58374d11f223d0516fd1dd392a8bc06bba0bfb70e0eb85bd60a2  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-ctrl-s2b3.json
+EXPOSURE Sun Oct 11 19:52:55 UTC 2026: Stage B Phase B released by PI (19:53); opening R8 cell records now
+CENSUS Sun Oct 11 19:52:55 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+455e1d61b6f550c9ccdea188972e206fca8d0719fce91e4b79a2cf38a2f952ea  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-a2.json
+start Sun Oct 11 19:52:55 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-a2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-R8-a2.json
+exit 1 end Sun Oct 11 19:52:56 UTC 2026
+PID 83914
+        0.16 real         0.15 user         0.00 sys
+            25739264  maximum resident set size
+RELEASE Sun Oct 11 19:52:56 UTC 2026
+6e35011b6f791beb924a1e8ec650488279a7cc5b959acce03270d10c286f0e59  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-R8-a2.out
+CENSUS Sun Oct 11 19:52:56 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+f121ac0551bdff78729754dfa4b2eb5fa5b25fb9a670cac9fe799ff9722be59f  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-b.json
+start Sun Oct 11 19:52:56 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-R8-b.json
+exit 1 end Sun Oct 11 19:52:56 UTC 2026
+PID 83949
+        0.16 real         0.15 user         0.00 sys
+            25460736  maximum resident set size
+RELEASE Sun Oct 11 19:52:56 UTC 2026
+654ebe03af385b5f52abfca646041cf396dba08fc6ca9d89fc62d0e033f5713a  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-R8-b.out
+CENSUS Sun Oct 11 19:52:56 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+6041c92b3720a16e4c4693aa79c3fe259a3e2e97950341d1acaa971593d38da0  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-c.json
+start Sun Oct 11 19:52:56 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-R8-c.json
+exit 1 end Sun Oct 11 19:52:56 UTC 2026
+PID 83984
+        0.16 real         0.15 user         0.00 sys
+            25542656  maximum resident set size
+RELEASE Sun Oct 11 19:52:56 UTC 2026
+eb6b364c49274f45eb913a4d99f31530ca37900fb6a0c86a68f512b7eafeefd3  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-R8-c.out
+CENSUS Sun Oct 11 19:52:56 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+dd0b780838c710eca43f0c5bb1187338452c1c77f7a2fd8f4c6b166620dfccf3  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-d.json
+start Sun Oct 11 19:52:56 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-R8-d.json
+exit 1 end Sun Oct 11 19:52:57 UTC 2026
+PID 84021
+        0.18 real         0.16 user         0.00 sys
+            25657344  maximum resident set size
+RELEASE Sun Oct 11 19:52:57 UTC 2026
+29ecb1dd7e2af30fc8644dd461526ebce0363ca901f3c211fe36af0224dedc71  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-R8-d.out
+CENSUS Sun Oct 11 19:52:57 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+NOTE Sun Oct 11 19:53:10 UTC 2026: stageB-slice-iv v1 (PIDs 83914, 83949, 83984, 84021): controls passed, targets failed on a missing T_star key (the cell records carry the window end as start t0); v1 bytes retained as -v1.py; v2 reads T_star, window_end or start.t0. v1 .out files retained.
+526fbbba35a600a142aa5c57b77f255f45666dc12b963a54d3cb8c9c348b8032  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v1.py
+a17b748343b4eaec052f54f495ea096ca21e2b8127875392e4fff10c16eacb1f  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py
+CENSUS Sun Oct 11 19:53:35 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  84373 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -I reference/priorities/master-equation-closure/noether-sea-researc
+CENSUS Sun Oct 11 19:53:35 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  84373 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -I reference/priorities/master-equation-closure/noether-sea-researc
+CENSUS Sun Oct 11 19:53:35 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  84373 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -I reference/priorities/master-equation-closure/noether-sea-researc
+CENSUS Sun Oct 11 19:53:35 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  84373 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -I reference/priorities/master-equation-closure/noether-sea-researc
+CENSUS Sun Oct 11 19:53:35 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  84373 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -I reference/priorities/master-equation-closure/noether-sea-researc
+CENSUS Sun Oct 11 19:55:01 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+455e1d61b6f550c9ccdea188972e206fca8d0719fce91e4b79a2cf38a2f952ea  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-a2.json
+start Sun Oct 11 19:55:01 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-a2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8-a2.json
+exit 0 end Sun Oct 11 19:55:01 UTC 2026
+PID 85289
+        0.22 real         0.21 user         0.00 sys
+            24330240  maximum resident set size
+RELEASE Sun Oct 11 19:55:01 UTC 2026
+f94fddc0ede5d81ef49d1f1283a75e2b57f9c531a5e1de665dba60fe5b21f1d0  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8-a2.json
+b2b175ba0849f1e4c3e7fe478a9fac04e19275dcc402fd3c53b8a3aadd49f264  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8-a2.out
+CENSUS Sun Oct 11 19:55:01 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+f121ac0551bdff78729754dfa4b2eb5fa5b25fb9a670cac9fe799ff9722be59f  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-b.json
+start Sun Oct 11 19:55:02 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8-b.json
+exit 0 end Sun Oct 11 19:55:02 UTC 2026
+PID 85321
+        0.24 real         0.23 user         0.00 sys
+            24772608  maximum resident set size
+RELEASE Sun Oct 11 19:55:02 UTC 2026
+5a2e35f4f69e2374305f0e366b14356946dab00eba555b7cb19d50bcbf57ebde  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8-b.json
+3e0c2538bd5ebcc715630694201d406b62ef2e2239d116ae09a2f6d035f5fdbf  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8-b.out
+CENSUS Sun Oct 11 19:55:02 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+6041c92b3720a16e4c4693aa79c3fe259a3e2e97950341d1acaa971593d38da0  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-c.json
+start Sun Oct 11 19:55:02 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8-c.json
+exit 0 end Sun Oct 11 19:55:02 UTC 2026
+PID 85353
+        0.24 real         0.23 user         0.00 sys
+            24870912  maximum resident set size
+RELEASE Sun Oct 11 19:55:02 UTC 2026
+92de1a351dae1e2bdefc99eddd7bcfc3d06c7f8e92ffce086524cb8b995e75fe  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8-c.json
+04bb1854747d1324218b4ed7a3233253df9d23a0f74335be2ca75781b3df9627  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8-c.out
+CENSUS Sun Oct 11 19:55:02 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+dd0b780838c710eca43f0c5bb1187338452c1c77f7a2fd8f4c6b166620dfccf3  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-d.json
+start Sun Oct 11 19:55:02 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8-d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8-d.json
+exit 0 end Sun Oct 11 19:55:03 UTC 2026
+PID 85392
+        0.25 real         0.24 user         0.00 sys
+            24526848  maximum resident set size
+RELEASE Sun Oct 11 19:55:03 UTC 2026
+b70233c928d0e3e9e54e20c4fda998e1cfe30e85d239857079b9484983cd4b5e  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8-d.json
+cb8c1c267d14d9b5d6c05b060ae0e14623c7d98cdca6182b2c201f2c95993afd  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8-d.out
+CENSUS Sun Oct 11 19:55:03 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+dde84215e7ff39e487f3375c4b7ef737207a8f32b2059843d09c089fcba312da  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-a.json
+start Sun Oct 11 19:55:03 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-a.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-a.json
+exit 0 end Sun Oct 11 19:55:03 UTC 2026
+PID 85427
+        0.24 real         0.23 user         0.00 sys
+            24510464  maximum resident set size
+RELEASE Sun Oct 11 19:55:03 UTC 2026
+65a8e762b90ef4ac9ca3ba811f4579cdb8fdfd8a3726c4ff0befa5f14eb630df  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-a.json
+ad77e45401ee059f264061d1a3a696fa6d7e718cc32011a990674fa6625d430d  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-a.out
+CENSUS Sun Oct 11 19:55:03 UTC 2026: pgrep -x Python/python:
+  79323 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-10 3300 deep-1e-2-to-1e-10
+  (no continuation python live)
+23455f7312c7ced840077400f01013802ec9b5d9275b8d6a60204c34730a37ad  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-wave1.md
+stageB-wave1 sections 2.1 and 3.1 appended Sun Oct 11 19:56:13 UTC 2026
+CENSUS Sun Oct 11 20:01:12 UTC 2026: pgrep -x Python/python:
+  86230 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 3e-8 1500 deep-1e-2-to-3e-8
+  (no continuation python live)
+bbd5837f5ad62a4edfc8654b6d3dc427e464162e6e4fb66280da0284dbf4cac0  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-b.json
+start Sun Oct 11 20:01:13 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-b.json
+exit 0 end Sun Oct 11 20:01:13 UTC 2026
+PID 90365
+        0.25 real         0.23 user         0.00 sys
+            24690688  maximum resident set size
+RELEASE Sun Oct 11 20:01:13 UTC 2026
+c969c087198d1bdb8ad50080390f343c79e02a6245ee4d2633b5865af07d7de2  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-b.json
+2dd19c99bdc5d95b884ff49d766578396322e4aa56c038b0107279899e1beb4f  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-b.out
+CENSUS Sun Oct 11 20:01:13 UTC 2026: pgrep -x Python/python:
+  86230 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 3e-8 1500 deep-1e-2-to-3e-8
+  (no continuation python live)
+f42e3500841d9bbd2270f9fa1f144b10c3384decffb4b2fd44d5b653ef4e9795  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-c.json
+start Sun Oct 11 20:01:13 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-c.json
+exit 0 end Sun Oct 11 20:01:13 UTC 2026
+PID 90397
+        0.24 real         0.23 user         0.00 sys
+            24936448  maximum resident set size
+RELEASE Sun Oct 11 20:01:13 UTC 2026
+6ec01dd3f72c81c75c859b7815cb4ad7f5f37599c8e46ca435376af8ad22d722  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-c.json
+dbb65ec3991bdbcce0af8f9eafe3445d5e26d814540f28838b61531c5dd5031e  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-c.out
+CENSUS Sun Oct 11 20:01:13 UTC 2026: pgrep -x Python/python:
+  86230 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 3e-8 1500 deep-1e-2-to-3e-8
+  (no continuation python live)
+dd7558548ea931d66e321d8e62b64b757b16606235851c9c34c356dd90da68ef  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-d.json
+start Sun Oct 11 20:01:13 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-d.json
+exit 0 end Sun Oct 11 20:01:14 UTC 2026
+PID 90429
+        0.25 real         0.24 user         0.00 sys
+            24707072  maximum resident set size
+RELEASE Sun Oct 11 20:01:14 UTC 2026
+14da9a9d3dcd9fadc983edb85d368cd7d7e6dde51dfef6e20b15b7b127f939e5  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-d.json
+3ff150e331755d1e0eeb98174a4bd2d40cddbf264bb601f0817b4a2cf68f9db2  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-d.out
+CENSUS Sun Oct 11 20:01:14 UTC 2026: pgrep -x Python/python:
+  86230 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 3e-8 1500 deep-1e-2-to-3e-8
+  (no continuation python live)
+8b0615ee0dbfc7c8e23b7e2b9a902c28fb8fa8e2c81e9e8293cc75deccf48632  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-e.json
+start Sun Oct 11 20:01:14 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R12-e.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-e.json
+exit 0 end Sun Oct 11 20:01:14 UTC 2026
+PID 90466
+        0.26 real         0.25 user         0.00 sys
+            24477696  maximum resident set size
+RELEASE Sun Oct 11 20:01:14 UTC 2026
+e03261f98a7321ab0c3f56c5e62357a080e1d5db488b0e0e8174c2ca1bc8b971  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-e.json
+306004776e12156e7456eb2b1bb18a399a987e7e5ca971e8e1af6a7d7ac82d39  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R12-e.out
+CENSUS Sun Oct 11 20:01:14 UTC 2026: pgrep -x Python/python:
+  86230 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 3e-8 1500 deep-1e-2-to-3e-8
+  (no continuation python live)
+f1424cc03e9235f9aed0f3324da681bd200dadd45420208bea5f527487a3f2eb  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-wave1.md
+stageB-wave1 sections 3.2, 4, 5 appended Sun Oct 11 20:02:12 UTC 2026; evidence KiB 1732
+CENSUS Sun Oct 11 20:03:10 UTC 2026: pgrep -x Python/python:
+  86230 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 3e-8 1500 deep-1e-2-to-3e-8
+  (no continuation python live)
+start Sun Oct 11 20:03:10 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-table-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-table-iv.json
+exit 0 end Sun Oct 11 20:03:10 UTC 2026
+PID 91644
+        0.07 real         0.04 user         0.01 sys
+            25214976  maximum resident set size
+RELEASE Sun Oct 11 20:03:10 UTC 2026
+3acd89da533807818097da84bd2ad729a3ab740cd2eba64b1a1e85d93a15bea5  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-table-iv.py
+2b78b9f2317e6f7dc65cb840c1eaff6111266762bec34f943b06cfc7c6ca0513  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-table-iv.json
+INCIDENT Sun Oct 11 20:04:26 UTC 2026: serialization lapse disclosed by the support role: besides the census-gated instrument runs, several short JSON-inspection one-liners (../.venv/bin/python -I -c, each well under 1 s, reading saved JSON and printing fields; one a no-op print at 20:03:39 UTC) were run WITHOUT the census gate, and at least three overlapped a live continuation invocation (about 19:37:15, 19:52-19:53 and 20:03:39 UTC, when the census taken immediately afterwards or the continuation's SLOT line showed BUSY). No instrument, enclosure or target run was affected (all of those are census-gated and recorded above). From this line on every python invocation, including inspections, is census-gated; arithmetic checks use bc.
+133994c99557b8e46422be09929fe40390ba1e299a120089b650ba20c95110f4  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-wave1.md
+stageB-wave1 section 6 (dated companion) appended Sun Oct 11 20:04:26 UTC 2026
+INCIDENT (addendum) Sun Oct 11 20:04:57 UTC 2026: the disclosure above understated the lapse. My background file watchers (armed about 19:22, 19:28, 19:37, 19:39, 19:47 and 19:56 UTC) each polled every 10-20 s with a tiny ../.venv/bin/python -I -c JSON step-count (about 30 ms each) to detect new slice files; these polls were NOT census-gated and ran repeatedly while continuation invocations were live. They read files only and wrote nothing; no instrument or target run was affected. All such watchers have exited; new watchers use ls/grep/ps only (no python).
+997f96fc9abb33fe5e2b37feca4db2177d32b1962f11c94b14493df1e63d4dfb  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-wave1.md
+stageB-wave1 section 6.6 appended Sun Oct 11 20:04:57 UTC 2026
+CENSUS Sun Oct 11 20:08:08 UTC 2026: pgrep -x Python/python:
+  95124 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py control 1e-8
+  95937 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-5 2400 refine-hfrac0.04
+  (no continuation python live)
+07c01131212be5d8e73f3703797964dba94dfadf7ed24d6640e820223ebbe18c  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-a.json
+start Sun Oct 11 20:08:08 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-a.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8p-a.json
+exit 0 end Sun Oct 11 20:08:09 UTC 2026
+PID 96173
+        0.27 real         0.24 user         0.01 sys
+            24330240  maximum resident set size
+RELEASE Sun Oct 11 20:08:09 UTC 2026
+e7674ab462ffe5d59f0a73bd73afbc79ed9af7c6167c771dbb25a7d8ca4f7102  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8p-a.json
+bd56cec0e27066c80e893cc0434843e4f958d0a9cd7839699e5866964912b27f  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8p-a.out
+CENSUS Sun Oct 11 20:08:09 UTC 2026: pgrep -x Python/python:
+  95124 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py control 1e-8
+  95937 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-5 2400 refine-hfrac0.04
+  (no continuation python live)
+49e478dc868c6e0c612fa2adcb539d50c745a503659894a6de95cd82ade6fe84  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-b.json
+start Sun Oct 11 20:08:09 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8p-b.json
+exit 0 end Sun Oct 11 20:08:09 UTC 2026
+PID 96208
+        0.28 real         0.27 user         0.01 sys
+            24707072  maximum resident set size
+RELEASE Sun Oct 11 20:08:09 UTC 2026
+3545cf97022e8917592962423527adc891e9de8c766e8749ff0d47a01200a4a3  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8p-b.json
+3972ae3fe3d0eec352f1f3e1e60d1053c908c33494d5c651db5df40ee0cc6647  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8p-b.out
+CENSUS Sun Oct 11 20:08:09 UTC 2026: pgrep -x Python/python:
+  95124 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py control 1e-8
+  95937 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-5 2400 refine-hfrac0.04
+  (no continuation python live)
+12862b9b60ce7b9cbd2ef01399b41a0a8e7e5054720a5fa3fcecea43520e6759  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-c.json
+start Sun Oct 11 20:08:09 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-c.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8p-c.json
+exit 0 end Sun Oct 11 20:08:10 UTC 2026
+PID 96243
+        0.30 real         0.28 user         0.01 sys
+            24657920  maximum resident set size
+RELEASE Sun Oct 11 20:08:10 UTC 2026
+d80cacf0ade17d1299e989124530f6e446266059336b20f8c5199daf5dfb6ced  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8p-c.json
+ae1d049b5dfc8f3626dd03ee8665b8df09dfd6c99796128e234254cf8276c2a8  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8p-c.out
+CENSUS Sun Oct 11 20:08:10 UTC 2026: pgrep -x Python/python:
+  95124 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py control 1e-8
+  95937 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-5 2400 refine-hfrac0.04
+  (no continuation python live)
+fc0d1912dace088624cd0cdada2fb31f85bde15c395b58468f3501210999e6d6  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-d.json
+start Sun Oct 11 20:08:10 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-stageB-steps5-iv-R8p-d.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8p-d.json
+exit 0 end Sun Oct 11 20:08:10 UTC 2026
+PID 96283
+        0.30 real         0.28 user         0.01 sys
+            24707072  maximum resident set size
+RELEASE Sun Oct 11 20:08:10 UTC 2026
+63a8522b59a5263389075e3c64e18500bb1eec46b019d5cc6b2fa39103f0db54  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8p-d.json
+007b2597894889f5ea59669801607c3d386ff0ad34371c2afa23267cf1ea2c3e  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-slice-iv-v2-R8p-d.out
+CENSUS Sun Oct 11 20:08:10 UTC 2026: pgrep -x Python/python:
+  95124 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py control 1e-8
+  95937 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-5 2400 refine-hfrac0.04
+  (no continuation python live)
+start Sun Oct 11 20:08:10 UTC 2026 inspection (census-gated): summary of R8p enclosures and own residuals
+end Sun Oct 11 20:08:10 UTC 2026 inspection
+CENSUS Sun Oct 11 20:08:10 UTC 2026: pgrep -x Python/python:
+  95124 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py control 1e-8
+  95937 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-5 2400 refine-hfrac0.04
+  (no continuation python live)
+565bac1791b3a64deeff30cf02769bce657d2f154b9772729d5f57ef0c7f7d90  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-wave1.md
+stageB-wave1 section 7 (R8p verdict) appended Sun Oct 11 20:08:35 UTC 2026; evidence KiB 2096
+94d4c54986fb99d28507f55ac1ec5c8d998e0b400654a20dcedf177a65b189b6  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-two-b.json
+7d0b1fa98384314b247b20e93a863bb8bdb14ea719974ba35b721f774ec55c20  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json
+CENSUS Sun Oct 11 20:11:42 UTC 2026: pgrep -x Python/python:
+  97975 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-5 2400 refine-hfrac0.01
+  (no continuation python live)
+start Sun Oct 11 20:11:42 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-iv.json
+exit 1 end Sun Oct 11 20:11:42 UTC 2026
+PID 99235
+        0.08 real         0.04 user         0.01 sys
+            23461888  maximum resident set size
+RELEASE Sun Oct 11 20:11:42 UTC 2026
+CENSUS Sun Oct 11 20:11:42 UTC 2026: pgrep -x Python/python:
+  97975 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-5 2400 refine-hfrac0.01
+  (no continuation python live)
+932cc7539a1273afe8e242f3bf0ce3f39b82a5b82ff415707959e3e9839b87ea  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-iv.py
+4aa1d981248d339954f4c0fec85ec73ddb41a2cdd8361519520110b316f856c9  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-iv.out
+NOTE Sun Oct 11 20:11:55 UTC 2026: precision-iv v1 (PID 99235) stopped in control K1 on a missing iv.sinh (no target touched); v1 bytes retained as -v1.py; v2 builds sinh/cosh from iv.exp.
+932cc7539a1273afe8e242f3bf0ce3f39b82a5b82ff415707959e3e9839b87ea  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-iv-v1.py
+76eca8523e63d5db1cc3a81aba1513a6aae0f9ef188dacbabd7afc33685fff70  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-iv.py
+CENSUS Sun Oct 11 20:11:55 UTC 2026: pgrep -x Python/python:
+  97975 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-5 2400 refine-hfrac0.01
+  (no continuation python live)
+start Sun Oct 11 20:11:55 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-iv-v2.json
+exit 0 end Sun Oct 11 20:11:55 UTC 2026
+PID 99423
+        0.32 real         0.30 user         0.01 sys
+            22511616  maximum resident set size
+RELEASE Sun Oct 11 20:11:55 UTC 2026
+CENSUS Sun Oct 11 20:11:55 UTC 2026: pgrep -x Python/python:
+  97975 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-5 2400 refine-hfrac0.01
+  (no continuation python live)
+567026ca02ae0bdbfa959ac991f0ca43af7ef09881c7d1bb1f01fce96b7a0dc5  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-iv-v2.json
+49f00f9b271755d4be92dd96b0fe5eea92e68a6a47a2d6165f317bc7a8d2e2cf  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-iv-v2.out
+5118a10ab01dc9ec56befeb32893440ae4d73314c868c64fc1584168dcb55482  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-precision.md
+stageB-precision.md saved and hashed Sun Oct 11 20:13:26 UTC 2026
+manifest reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-manifest-20261011T201414Z.txt sha256 696d3b33ec0f8c7f94ec06d48a9af0eb31f4ef845ec65d4ca7a3a8619d934cee (reported externally; not self-listed) Sun Oct 11 20:14:14 UTC 2026
+40295e52cd92dfc13b45a7f693989d07d594338eaa6d00a2dd29e2eecf06737f  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-wave1.md
+stageB-wave1 section 8 (final hand-back) appended Sun Oct 11 20:14:14 UTC 2026
+EXPOSURE Sun Oct 11 20:14:21 UTC 2026: PI released the review's precision reference (20:14); opening it now
+add4cc7beddbf7ea1c938d85334ccb8f3fcf3546b74136ac4bcd8de0c92cceb1  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-review-stageB-precision-reference.md
+b214cba540df8e6c3e5d086cf4e60fa46db68ee529724339588f57791fd8205f  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-precision.md (with comparison note)
+precision.md section 5 appended Sun Oct 11 20:15:29 UTC 2026
+final manifest reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-manifest-20261011T201529Z.txt sha256 f50f988f62b1e97a3012a0ced250374a93b1b9261b39df38d4149e00a8d93ce2 Sun Oct 11 20:15:29 UTC 2026
+b0868240bb11f1f083b0d63c8318e977ea17f975a826a2cb903ccd13ae18313b  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-wave1.md (final, with section 9)
+stageB-wave1 section 9 appended Sun Oct 11 20:15:29 UTC 2026; manifest f50f988f62b1e97a3012a0ced250374a93b1b9261b39df38d4149e00a8d93ce2; precision b214cba540df8e6c3e5d086cf4e60fa46db68ee529724339588f57791fd8205f
+CENSUS Sun Oct 11 20:16:49 UTC 2026: pgrep -x Python/python:
+  97975 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-5 2400 refine-hfrac0.01
+  (no continuation python live)
+start Sun Oct 11 20:16:49 UTC 2026 cwd=/Users/markmorris/vibe/architrino cmd: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 30; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-companion-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-companion-iv.json
+exit 0 end Sun Oct 11 20:16:49 UTC 2026
+PID 3310
+        0.06 real         0.05 user         0.01 sys
+            22298624  maximum resident set size
+RELEASE Sun Oct 11 20:16:49 UTC 2026
+CENSUS Sun Oct 11 20:16:49 UTC 2026: pgrep -x Python/python:
+  97975 /opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python ccor_implicit.py run 1e-8 1e-2 1e-5 2400 refine-hfrac0.01
+  (no continuation python live)
+1409865a0db434064591aa80ca766ddea05bb4df6a294c5ba1fc69af7c621d55  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-companion-iv.py
+8b1e3ed56cff88f767017fde5afeadffe102b9c7372717d22f14af0e4ed7bfdb  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-companion-iv.json
+3ea24a3a4f980063988accead66291a02c5847479e1a46fbbd413025e951a2db  reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-stageB-precision-companion-iv.out
+0138e599a67bf0a93a83bd2d1e04fd1f61dbeebea068dc1aea6282276adf6123  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-precision.md (with sections 5 and 6)
+precision.md section 6 appended Sun Oct 11 20:17:47 UTC 2026
+635562722fa26d759e49f6314555c13ad31ac579e9ec2e7e8f40a91adc9951dd  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-precision.md (section 6 corrected before reporting: root-function slope bound 0.9 -> 0.78 with the reason; the 0138e599 bytes are retained in .tmp/six-pole-late-feedback/support/)
+final manifest v3 reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-manifest-20261011T201834Z.txt sha256 0774e49062babb0698b7fd169b7b28751deae370e9ea5ec73faaa5681f15d3cb Sun Oct 11 20:18:34 UTC 2026
+470af0a5b611e763fa7820d4b7fd538b4080bd74e7a84e606c86d2da94326cfe  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-wave1.md (final, with section 10)
+stageB-wave1 section 10 appended Sun Oct 11 20:18:34 UTC 2026; manifest v3 0774e49062babb0698b7fd169b7b28751deae370e9ea5ec73faaa5681f15d3cb; precision 635562722fa26d759e49f6314555c13ad31ac579e9ec2e7e8f40a91adc9951dd
+FINAL CHECK Sun Oct 11 20:18:44 UTC 2026: no support-role watcher, background loop or python process found (ps for support-prefix/watcher patterns, pgrep for sleep 2/10/20, executable-anchored python census); all six earlier watchers and the two census waiters had exited or were stopped (task ids bluhnnoyg stopped, bwuk7ybvh stopped, bcjlylc61, b0dseujm4, b1ofyx3mk, b4to6pmcs, bua9sjagf, by2utmz0c?, bi3cg7cwq, bvywrnhe7, b275tv99w, b7vsrl11i, bhn4axqo1 completed).
+CORRECTION Sun Oct 11 20:19:04 UTC 2026: the FINAL CHECK line above was wrong on one point: watcher by2utmz0c (armed 19:39 UTC, waiting for an N4000 Stage A slice beyond s3d) had NOT exited; it was still looping every 20 s (bash PID 75388 with a 'sleep 20' child) when checked at 20:18:44. Its python step-count is reached only for an N4000 file whose tag is not in its known list; no such file ever appeared (listing checked), so from 19:39 it used ls/grep/pgrep/ps only and ran no python. Stopped by TaskStop at about 20:18:50 UTC; re-check after the stop: no support-role bash loop, no sleep 2/10/20, no python process.
+8914241ff06877eaf7eb0942eb8aedf22470a2f31d16ba6fe1be7cd333a0cc23  reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-late-feedback-claude-support-stageB-wave1.md
+stageB-wave1 section 11 appended Sun Oct 11 20:19:04 UTC 2026

@@ -1,0 +1,266 @@
+{
+ "controls": {
+  "K_b3_known": {
+   "pass": true,
+   "residual": [
+    12,
+    13
+   ],
+   "n": 10
+  },
+  "W_corrupted_flagged": {
+   "pass": true,
+   "n_fail": 2
+  }
+ },
+ "target": {
+  "label": "target",
+  "n_steps": 8,
+  "controls_all_pass": true,
+  "control_order": [
+   "(0) closed forms (hit, D_t, r,",
+   "(2) reconciliation on the acce",
+   "(3) history lookup: seam at T*",
+   "(4) negative: unlike term at t",
+   "(1) regression (not independen",
+   "(5) delay-root bracket: wide ("
+  ],
+  "resumed_from": {
+   "file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2a.json",
+   "after_step": 56,
+   "t0": [
+    "2.426684593623649597167969",
+    "2.426684709182828044891357"
+   ],
+   "q": [
+    "0.2972397409585767836906",
+    "0.2972620976810700998649981"
+   ],
+   "qdot": [
+    "0.2479718343835074482606617",
+    "0.2480168935562701779519413"
+   ],
+   "resumed_end_strings_equal_source": true
+  },
+  "plan": {
+   "Delta": "0.01",
+   "max_step_number": 64,
+   "adaptation": "none; stop at the first uncertified step"
+  },
+  "per_step": [
+   {
+    "step": 57,
+    "t_end": "2.436684709182828044891357",
+    "ok": true,
+    "why": [],
+    "sU_hi": "1.20941940166461756990449",
+    "sA_hi": "0.4575766572622843442781561",
+    "lam_range_sign_record": "negative",
+    "lam_range_sign_review": "negative",
+    "lam_end_sign": "negative",
+    "lam_end": [
+     "-0.01313573418673875310501484",
+     "-0.01311120766190149384503824"
+    ],
+    "qddot_range_sign": "positive",
+    "qddot_end_sign": "positive",
+    "tan_rec_review": true,
+    "rad_rec_review": true,
+    "rec_flags_record": [
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "step": 58,
+    "t_end": "2.446684709182828044891357",
+    "ok": true,
+    "why": [],
+    "sU_hi": "1.221289253674081333496427",
+    "sA_hi": "0.4678688765278123475999842",
+    "lam_range_sign_record": "negative",
+    "lam_range_sign_review": "negative",
+    "lam_end_sign": "negative",
+    "lam_end": [
+     "-0.01345003531728020971796762",
+     "-0.01342509515203774175720116"
+    ],
+    "qddot_range_sign": "positive",
+    "qddot_end_sign": "positive",
+    "tan_rec_review": true,
+    "rad_rec_review": true,
+    "rec_flags_record": [
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "step": 59,
+    "t_end": "2.456684709182828044891357",
+    "ok": true,
+    "why": [],
+    "sU_hi": "1.233167706362239849906264",
+    "sA_hi": "0.4781631215283528805296401",
+    "lam_range_sign_record": "negative",
+    "lam_range_sign_review": "negative",
+    "lam_end_sign": "negative",
+    "lam_end": [
+     "-0.01376635280032365440012952",
+     "-0.0137409958398568835679868"
+    ],
+    "qddot_range_sign": "positive",
+    "qddot_end_sign": "positive",
+    "tan_rec_review": true,
+    "rad_rec_review": true,
+    "rec_flags_record": [
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "step": 60,
+    "t_end": "2.466684709182828044891357",
+    "ok": true,
+    "why": [],
+    "sU_hi": "1.245054660796157885129574",
+    "sA_hi": "0.4884593917209072431348947",
+    "lam_range_sign_record": "negative",
+    "lam_range_sign_review": "negative",
+    "lam_end_sign": "negative",
+    "lam_end": [
+     "-0.01408469707195340134114144",
+     "-0.01405891869779259842902256"
+    ],
+    "qddot_range_sign": "positive",
+    "qddot_end_sign": "positive",
+    "tan_rec_review": true,
+    "rad_rec_review": true,
+    "rec_flags_record": [
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "step": 61,
+    "t_end": "2.476684709182828044891357",
+    "ok": true,
+    "why": [],
+    "sU_hi": "1.256950023448309109268444",
+    "sA_hi": "0.4987576866053506451239791",
+    "lam_range_sign_record": "negative",
+    "lam_range_sign_review": "negative",
+    "lam_end_sign": "negative",
+    "lam_end": [
+     "-0.01440507723625997603065432",
+     "-0.01437887601523160219601463"
+    ],
+    "qddot_range_sign": "positive",
+    "qddot_end_sign": "positive",
+    "tan_rec_review": true,
+    "rad_rec_review": true,
+    "rec_flags_record": [
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "step": 62,
+    "t_end": "2.486684709182828044891357",
+    "ok": true,
+    "why": [],
+    "sU_hi": "1.268853656487115285183885",
+    "sA_hi": "0.5090580054063400742992729",
+    "lam_range_sign_record": "negative",
+    "lam_range_sign_review": "negative",
+    "lam_end_sign": "negative",
+    "lam_end": [
+     "-0.01472750523037903905871935",
+     "-0.01470087671679254372752554"
+    ],
+    "qddot_range_sign": "positive",
+    "qddot_end_sign": "positive",
+    "tan_rec_review": true,
+    "rad_rec_review": true,
+    "rec_flags_record": [
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "step": 63,
+    "t_end": "2.496684709182828044891357",
+    "ok": true,
+    "why": [],
+    "sU_hi": "1.280765454670892307784656",
+    "sA_hi": "0.5193603475528169281189105",
+    "lam_range_sign_record": "negative",
+    "lam_range_sign_review": "negative",
+    "lam_end_sign": "negative",
+    "lam_end": [
+     "-0.01505199099625687373225904",
+     "-0.015024934062228165371987"
+    ],
+    "qddot_range_sign": "positive",
+    "qddot_end_sign": "positive",
+    "tan_rec_review": true,
+    "rad_rec_review": true,
+    "rec_flags_record": [
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "step": 64,
+    "t_end": "2.506684709182828044891357",
+    "ok": true,
+    "why": [],
+    "sU_hi": "1.292685315016996622155366",
+    "sA_hi": "0.5296647123501797388503656",
+    "lam_range_sign_record": "negative",
+    "lam_range_sign_review": "negative",
+    "lam_end_sign": "negative",
+    "lam_end": [
+     "-0.01537854443845248693030901",
+     "-0.01535105646409644105211113"
+    ],
+    "qddot_range_sign": "positive",
+    "qddot_end_sign": "positive",
+    "tan_rec_review": true,
+    "rad_rec_review": true,
+    "rec_flags_record": [
+     true,
+     true,
+     true
+    ]
+   }
+  ],
+  "fail": [],
+  "unlike_delayed_arg_max": "1.292685315016996622155366",
+  "unlike_margin_to_Tstar": "0.073999278606652975012603",
+  "steps_with_unlike_range_reaching_Tstar": [],
+  "residual_last_pos": null,
+  "residual_first_neg": 57,
+  "lambda_last_positive_end": null,
+  "lambda_first_negative_end": 57,
+  "reached_time": [
+   "2.506684593623649597167969",
+   "2.506684709182828044891357"
+  ],
+  "reached_q": [
+   "0.3174215050973258168151511",
+   "0.3174476357049886764715778"
+  ],
+  "reached_qdot": [
+   "0.2565765660388612651467905",
+   "0.2566259535089066442444665"
+  ],
+  "stop_reason": "plan exhausted (step 64 certified)"
+ }
+}

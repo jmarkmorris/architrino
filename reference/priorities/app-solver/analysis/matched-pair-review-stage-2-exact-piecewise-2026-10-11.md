@@ -1,0 +1,41 @@
+# Independent Review: Exact Piecewise Matched-Pair Candidate
+
+## Disposition
+
+Accept the [exact piecewise candidate](matched-pair-stage-2-exact-piecewise-packet.md), SHA-256 `a4b4d461ef439397e90dbc162621c013add4e9c102e195d6b3d9466359e820ca`, for narrow live integration and subsequent independent live verification. S2-1 is closed: the corrected true-path hypothesis is continuously differentiable everywhere on the window, including joins. Error-carrying, factory and generated histories remain outside admission. This completes the candidate review of the exact piecewise portion of Stage 2; it does not complete the selected uncertainty stage or release Stage 3.
+
+## Mathematical review
+
+**Derived:** finitely many exact cubic segments with exact position and velocity equality at joins define a continuously differentiable path. The existing exact-rational history join validator supplies those equalities when all relevant error tokens vanish. Within each cell velocity has derivative bounded by the maximum cell acceleration. Integrating across finitely many continuous joins bounds velocity change by that maximum times the elapsed time. Thus the accepted single-slab pair proof applies across the complete window. One strictly monotone residual per member gives one causal event, including when that event is exactly at a join. A separate segment root count or join ownership rule is unnecessary.
+
+**Measured by source reads of `window_segments`, `member_cells` and `certify_piecewise_window`:** the candidate compares exact time tokens, includes every interior endpoint from both members, re-expands both cubics over each resulting cell, and requires each cell's source segment to be exact. The convex whole-window domain and maximum cell bounds cover all cells. The maximum of the two members' summed outward velocity-jump bounds conservatively bounds the one member whose velocity is compared at different emission times in the pair proof. It is additional rounding allowance, not a true acceleration estimate. Earlier retained history is separately excluded from each member's own position hull; failure declines. A radius on a strictly excluded earlier segment does not require admission of that segment as an exact source within the window.
+
+The carrier restriction is accepted. A declared tube is not evidence of true-path or true-solution inclusion. The strengthened general tube theorem remains conditional preparation; its hypotheses must be established independently for the actual carrier before any ordinary evolution release.
+
+## Independent analytical check at a nontrivial join
+
+The separately authored [input](../evidence/matched-pair-review-stage2-join-cases.txt) has receiver at the origin and reception at zero. The positive source is $z_+(S)=10+2S^2/125$ on $[-15,-25/2]$, followed by its tangent $z_+(S)=25/2-2(S+25/2)/5$ on $[-25/2,0]$. The negative source is $z_-(S)=369/40+2S^2/125$, represented with an additional segment boundary at $-13$. The positive source genuinely changes its polynomial at the join while preserving position and velocity exactly. Every numerical instance uses $c_f=1$.
+
+**Derived:** the positive root is $S_+=-25/2$ exactly at the polynomial change, with position $25/2$ and velocity $-2/5$. The negative root is $S_-=-45/4$, with position $45/4$ and velocity $-9/25$. Both residuals are strictly increasing because speeds stay below one. Their lower residuals are negative and their reception distances positive. For positive source positions, the receiver-point direction is negative z, so the transmitter factor is $1+v_z$. The complete receiver z acceleration is
+
+$$
+-\frac{1}{(25/2)^2(3/5)}+\frac{1}{(45/4)^2(16/25)}=\frac{17}{10125}.
+$$
+
+**Measured by the independently authored [rational containment instrument](../evidence/matched-pair-review-stage2-piecewise.mjs):** known exact $-1/4$, rational $17/10125$, an escaping interval and signed binary conversion pass before target reads. All eight admitted module intervals and all fourteen author's snapshot receiver intervals contain their independent exact static/quadratic references. The new nontrivial join snapshot is complete, its admitted group and receiver total contain $17/10125$, and its cells are exactly `[-15,-13,-12.5,0]`, with both last segment indices one. Raw output and receipt are retained under `.local-data/eom-matched-pair/2026-10-11/reviewer-targets/stage2-nontrivial-join-scratch.jsonl` and `stage2-independent-piecewise-scratch-receipt.json`. This checks the origin receiver independently; it does not claim an independent reference for every other receiver in the fourteen cases.
+
+## Certificate integrity, accounting and compatibility
+
+The new [piecewise matrix adapter](../evidence/matched-pair-review-stage2-matrix.cpp) is prepared separately from the unchanged Stage 1 reviewer source and linked against the frozen candidate library. A separate `--known-only` execution records the analytical static complete nine-slot matrix before the targets. All thirteen retained matrix mutations plus ten newly authored piecewise mutations are refused: removing, moving or adding boundaries; zeroing/removing the jump allowance; changing the grade; changing either last segment index; removing the leader's last index; and relabelling the policy. The original reviewer instruments and their scientific references are unchanged. `stage2-matrix-scratch-known.stdout` and `stage2-matrix-scratch-targets.stdout` retain the executions. The compilation uses per-process Command Line Tools, C++20, `-O2 -ffp-contract=off`, arm64 and the installed MacOSX26.5 SDK; no global toolchain or license change is made.
+
+**Measured by the unchanged exact-debit instrument:** all fourteen complete Stage 2 snapshot records pass actual grouped-width and receiver-allocation accounting, with known pass/failure controls before target reads. The receipt is `stage2-accounting-scratch-receipt.json`. This is bounded accounting evidence, not a new scale-wide roundoff theorem.
+
+**Measured by `shasum -c` at the manifests' proper roots:** all six frozen prepared-source files, three binary/case identities and fourteen scratch output identities verify. The live Stage 1 source inventory's 82 files still match. Two initial manifest attempts used the wrong working directory and reported missing relative paths; rerunning at the specified roots verifies the actual files, so those missing-path errors are not source mismatches. By `diff -rq`, candidate differences are the three matched-pair files, the one `CoupledEvolution.cpp` policy statement, and the concurrent live README addition. The README is excluded from integration. By `cmp`, all three deterministic disabled baseline outputs and all five Stage 1 module/snapshot/reviewer/matrix/guard outputs remain byte-identical. These comparisons establish compatibility, not the mathematical enclosure rule.
+
+## Release and remaining obligation
+
+Claude may re-observe exact live bytes, integrate the three frozen matched-pair files and the unique one-statement snapshot patch, rebuild separately and return a live receipt with these independent inputs unchanged. Preserve Codex's live README and other writers' work. The reviewer will bind and rerun the independent instruments against that live build before reporting live acceptance.
+
+The successor mathematical obligation is a real inclusion certificate for the actual generated history and its derivative, including inherited uncertainty, under the selected canonical equation. Step-doubling discrepancy alone is insufficient. Prepare a bounded proof route or a precise retained obstruction while exact fallback remains available. Stage 3 implementation is not released. The fixed substantial-work cutoff is 2026-10-12T01:42:02Z and hard closeout 02:02:02Z.
+
+**Falsifiers:** an exact admitted pair escaping the independent rational reference; a missing common cell; a forged retained field accepted by the complete matrix; a missing or duplicated debit; changed disabled output; or grouped admission of a non-exact/generated carrier without the separate inclusion proof. Check the named source functions, frozen inputs and retained output receipts. Scratch acceptance is overturned if the live integration changes those bound bytes or behaviors.

@@ -1,0 +1,30 @@
+PID 74618
+[{"name": "(K1) regression: on s2b3 (window only) every output equals slice-iv v2 to 1e-20", "pass": true}, {"name": "(K2) known: a delayed box straddling T* (+-0.005) yields a source hull containing the window state at T* and the wave-16 step-1 candidate sets, with the window part and record w16#1 both touched", "pass": true, "hull_q": ["0.09291042043562835203220492", "0.09497531240358474050374513"], "hull_qdot": ["0.136305757067780821162763", "0.138321790907505577966415"], "hull_qddot": ["0.1012290917528929545774185", "0.1019673245041114712706306"], "touched": "records:window[s_lo,T*],w16#1", "q_at_Tstar": ["0.0935969659738805924504719", "0.09359717429472312322322282"], "w16_step1_S": ["0.0935969659738805924504719", "0.09497531240358474050374513"]}, {"name": "(W1) negative: a delayed box reaching above the last retained record end (2.0767) is refused", "pass": true}, {"name": "(W2) negative: like polarity flipped moves the release radial sum off -g/4", "release": ["-0.025", "-0.025"], "release_wrong": ["-0.1664213562373095048801689", "-0.1664213562373095048801689"], "pass": true}]
+step 87 t_end 2.73668470 srcU records:w17#9,w17#10,w17#11: qddot [0.105766,0.110053]; lambda range [-0.0239632,-0.0226009] negative; end [-0.0237924,-0.0232599] negative; dlambda [-0.039531,-0.035772] negative; tanU/L/A [0.07411,0.02841,0.00438] radU/L/A [-0.09116,0.060269,-0.02506]; cont-int True/True
+step 88 t_end 2.74668470 srcU records:w17#11,w17#12: qddot [0.105914,0.109824]; lambda range [-0.0242566,-0.0230162] negative; end [-0.0240848,-0.0236796] negative; dlambda [-0.039555,-0.036192] negative; tanU/L/A [0.07439,0.02826,0.00441] radU/L/A [-0.09130,0.060216,-0.02505]; cont-int True/True
+step 89 t_end 2.75668470 srcU records:w17#12,w17#13: qddot [0.105866,0.109814]; lambda range [-0.0246578,-0.0234077] negative; end [-0.0244850,-0.0240741] negative; dlambda [-0.039810,-0.036407] negative; tanU/L/A [0.07447,0.02811,0.00444] radU/L/A [-0.09146,0.060163,-0.02505]; cont-int True/True
+step 90 t_end 2.76668470 srcU records:w17#13,w17#14: qddot [0.105815,0.109800]; lambda range [-0.0250613,-0.0238015] negative; end [-0.0248878,-0.0244710] negative; dlambda [-0.040067,-0.036624] negative; tanU/L/A [0.07455,0.02797,0.00446] radU/L/A [-0.09163,0.060110,-0.02505]; cont-int True/True
+step 91 t_end 2.77668470 srcU records:w17#14,w17#15,w17#16: qddot [0.105523,0.109988]; lambda range [-0.0254972,-0.0240871] negative; end [-0.0253229,-0.0247599] negative; dlambda [-0.040548,-0.036592] negative; tanU/L/A [0.07439,0.02782,0.00449] radU/L/A [-0.09190,0.060058,-0.02505]; cont-int True/True
+step 92 t_end 2.78668470 srcU records:w17#15,w17#16,w17#17: qddot [0.105461,0.109968]; lambda range [-0.0259074,-0.0244851] negative; end [-0.0257322,-0.0251596] negative; dlambda [-0.040810,-0.036806] negative; tanU/L/A [0.07446,0.02767,0.00451] radU/L/A [-0.09207,0.060006,-0.02505]; cont-int True/True
+step 93 t_end 2.79668470 srcU records:w17#17,w17#18: qddot [0.105595,0.109701]; lambda range [-0.0262095,-0.0249151] negative; end [-0.0260332,-0.0255939] negative; dlambda [-0.040822,-0.037245] negative; tanU/L/A [0.07473,0.02753,0.00454] radU/L/A [-0.09220,0.059954,-0.02505]; cont-int True/True
+step 94 t_end 2.80668470 srcU records:w17#18,w17#19: qddot [0.105527,0.109670]; lambda range [-0.0266226,-0.0253182] negative; end [-0.0264455,-0.0260000] negative; dlambda [-0.041082,-0.037464] negative; tanU/L/A [0.07479,0.02738,0.00456] radU/L/A [-0.09237,0.059902,-0.02504]; cont-int True/True
+{"n": 8, "lambda_end_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "lambda_range_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "dlambda_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "qddot_signs": ["positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive"], "zero_brackets": [], "all_dlambda_negative": true, "all_qddot_positive": true, "steps_using_records": [87, 88, 89, 90, 91, 92, 93, 94], "refused": [], "reached_time": ["2.806684593623649597167969", "2.806684709182828044891357"], "stop_reason": "plan exhausted (step 94 certified)"}
+wall 0.09755420684814453
+        0.22 real         0.21 user         0.01 sys
+            24264704  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2486  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                 112  involuntary context switches
+          3148289215  instructions retired
+           751870041  cycles elapsed
+            16613880  peak memory footprint

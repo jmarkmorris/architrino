@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-review-theorem-check.py", line 25, in <module>
+    assert mK < mpf("1e-28") and mD < mpf("1e-14") and viol > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+        0.10 real         0.05 user         0.01 sys
+            21626880  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2044  page reclaims
+                 337  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 177  voluntary context switches
+                 314  involuntary context switches
+           794705882  instructions retired
+           263415905  cycles elapsed
+            13779424  peak memory footprint

@@ -1,0 +1,12 @@
+PID 76064
+controls K True W True
+crossing certificate: null
+87 2.736684709182 ok [] s_end ['1.5683158', '1.5694306'] above seam (['w17-9', 'w17-10', 'w17-11'], True, True, True) dlam ['-0.038867', '-0.036432'] True
+88 2.746684709182 ok [] s_end ['1.5802576', '1.5813819'] above seam (['w17-11', 'w17-12'], True, True, True) dlam ['-0.038880', '-0.036863'] True
+89 2.756684709182 ok [] s_end ['1.5922026', '1.5933363'] above seam (['w17-12', 'w17-13'], True, True, True) dlam ['-0.039127', '-0.037087'] True
+90 2.766684709182 ok [] s_end ['1.6041506', '1.6052938'] above seam (['w17-13', 'w17-14'], True, True, True) dlam ['-0.039374', '-0.037312'] True
+91 2.776684709182 ok [] s_end ['1.6161014', '1.6178533'] above seam (['w17-14', 'w17-15', 'w17-16'], True, True, True) dlam ['-0.039849', '-0.037286'] True
+92 2.786684709182 ok [] s_end ['1.6286479', '1.6298171'] above seam (['w17-15', 'w17-16', 'w17-17'], True, True, True) dlam ['-0.040102', '-0.037510'] True
+93 2.796684709182 ok [] s_end ['1.6406045', '1.6417833'] above seam (['w17-17', 'w17-18'], True, True, True) dlam ['-0.040102', '-0.037960'] True
+94 2.806684709182 ok [] s_end ['1.6525633', '1.6537517'] above seam (['w17-18', 'w17-19'], True, True, True) dlam ['-0.040354', '-0.038188'] True
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-seamcheck-s3d.json

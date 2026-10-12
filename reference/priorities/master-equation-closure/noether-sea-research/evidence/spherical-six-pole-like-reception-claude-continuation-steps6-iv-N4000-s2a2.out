@@ -1,0 +1,24 @@
+pid 82059
+T* [1.366684593623, 1.366684709182]; frozen records 144 to t = 2.8066847091; joins exact True; setup+controls 21.1 s
+controls: ALL PASS
+   pass (0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on th
+   pass (E) expanded-domain box q in [0.39, 0.62], q' in [0, 0.31], v' in [0, 0.30] (144 cells): unlike/like N > 0 and M > 0, ev
+   pass (2) reconciliation at the accepted step-94 state: g F(q) (five-image field) intersects the fixed-form class tangent sum 
+   pass (3) record lookup: window case; frozen end strings contained at record ends in every family; continuity and two-part hul
+   pass (4) negative: like and unlike terms at the step-94 state with the wrong sign of the velocity term in D_t are disjoint fr
+   pass (5) delay-root bracket: frozen narrow vs wide (+-0.15) agree to 1e-15 at the b3 step-21 state; +-0.12 vs +-0.15 intersec
+   pass (1) restart regression (same-code, not independent): the step from the frozen step-93 strings intersects the frozen step
+   pass (6) self-append: after certifying the control step (from step 93), appending it through the checked path, a lookup insid
+   pass (7) restart wrapper: default and explicit selection of step 94 reproduce the exact frozen strings with t0 an interval; w
+resumed after step 114 of spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s1b.json: t0 [3.006684593623, 3.006684709182]; records 164
+step 115: t_end 3.01668470; q [0.46225894, 0.46236586]; qdot [0.31116384, 0.31149742]; sL [1.371588, 1.372319] above T*; sU [1.90625, 1.90828] antipodal; sA up 1.05782 below T*; DU [0.93954, 0.94012] DL [1.03177, 1.03178]; a_rad [-0.062162, -0.061761] lam [-0.035269, -0.034660] negative; qddot pos; recon TT; it 1; 23 s
+step 116: t_end 3.02668470; q [0.46537578, 0.46548611]; qdot [0.31220419, 0.31255290]; sL [1.380212, 1.380949] above T*; sU [1.91880, 1.92024] antipodal; sA up 1.06822 below T*; DU [0.93931, 0.94044] DL [1.03155, 1.03185]; a_rad [-0.062309, -0.062079] lam [-0.035609, -0.035162] negative; qddot pos; recon TT; it 1; 25 s
+step 117: t_end 3.03668470; q [0.46850303, 0.46861689]; qdot [0.31324479, 0.31360295]; sL [1.388839, 1.389581] above T*; sU [1.93075, 1.93220] antipodal; sA up 1.07863 below T*; DU [0.93964, 0.94023] DL [1.03150, 1.03180]; a_rad [-0.062504, -0.062273] lam [-0.036073, -0.035618] negative; qddot pos; recon TT; it 1; 27 s
+step 118: t_end 3.04668470; q [0.47164067, 0.47175816]; qdot [0.31428324, 0.31465100]; sL [1.397468, 1.398216] above T*; sU [1.94269, 1.94416] antipodal; sA up 1.08904 below T*; DU [0.93983, 0.94041] DL [1.03144, 1.03174]; a_rad [-0.062697, -0.062465] lam [-0.036540, -0.036076] negative; qddot pos; recon TT; it 1; 28 s
+step 119: t_end 3.05668470; q [0.47478869, 0.47490990]; qdot [0.31531947, 0.31569699]; sL [1.406416, 1.406852] above T*; sU [1.95463, 1.95611] antipodal; sA up 1.09946 below T*; DU [0.94002, 0.94061] DL [1.03138, 1.03168]; a_rad [-0.062899, -0.062624] lam [-0.037040, -0.036526] negative; qddot pos; recon TT; it 1; 30 s
+step 120: t_end 3.06668470; q [0.47794705, 0.47807209]; qdot [0.31635325, 0.31674160]; sL [1.415049, 1.415803] above T*; sU [1.96716, 1.96865] antipodal; sA up 1.10987 below T*; DU [0.94023, 0.94082] DL [1.03109, 1.03167]; a_rad [-0.063132, -0.062895] lam [-0.037429, -0.036946] negative; qddot pos; recon TT; it 1; 31 s
+step 121: t_end 3.07668470; q [0.48111574, 0.48124472]; qdot [0.31738403, 0.31778249]; sL [1.423684, 1.424444] above T*; sU [1.97909, 1.98059] antipodal; sA up 1.12029 below T*; DU [0.94025, 0.94084] DL [1.03107, 1.03137]; a_rad [-0.063321, -0.063082] lam [-0.037903, -0.037411] negative; qddot pos; recon TT; it 1; 33 s
+step 122: t_end 3.08668470; q [0.48429473, 0.48442773]; qdot [0.31841231, 0.31882105]; sL [1.432323, 1.433088] above T*; sU [1.99102, 1.99253] antipodal; sA up 1.13070 below T*; DU [0.94048, 0.94108] DL [1.03100, 1.03130]; a_rad [-0.063508, -0.063267] lam [-0.038378, -0.037877] negative; qddot pos; recon TT; it 1; 34 s
+step 123: t_end 3.09668470; q [0.48748398, 0.48762112]; qdot [0.31943801, 0.31985718]; sL [1.440964, 1.441735] above T*; sU [2.00294, 2.00446] antipodal; sA up 1.14112 below T*; DU [0.94073, 0.94133] DL [1.03092, 1.03122]; a_rad [-0.063694, -0.063451] lam [-0.038856, -0.038346] negative; qddot pos; recon TT; it 1; 36 s
+step 124: t_end 3.10668470; q [0.49068348, 0.49082486]; qdot [0.32046104, 0.32089080]; sL [1.449609, 1.450385] above T*; sU [2.01486, 2.01698] antipodal; sA up 1.15154 below T*; DU [0.94099, 0.94159] DL [1.03084, 1.03113]; a_rad [-0.064008, -0.063574] lam [-0.039396, -0.038687] negative; qddot pos; recon TT; it 1; 37 s
+reached t in [3.106684593623, 3.106684709182]; q [0.4906834845, 0.4908248692]; qdot [0.3204610411, 0.3208908098]; stop: plan exhausted (step 124 certified); wall 37.3 s

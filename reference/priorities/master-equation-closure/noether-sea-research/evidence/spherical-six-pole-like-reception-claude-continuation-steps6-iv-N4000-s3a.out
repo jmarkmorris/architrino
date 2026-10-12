@@ -1,0 +1,24 @@
+pid 86095
+T* [1.366684593623, 1.366684709182]; frozen records 144 to t = 2.8066847091; joins exact True; setup+controls 18.4 s
+controls: ALL PASS
+   pass (0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on th
+   pass (E) expanded-domain box q in [0.39, 0.62], q' in [0, 0.31], v' in [0, 0.30] (144 cells): unlike/like N > 0 and M > 0, ev
+   pass (2) reconciliation at the accepted step-94 state: g F(q) (five-image field) intersects the fixed-form class tangent sum 
+   pass (3) record lookup: window case; frozen end strings contained at record ends in every family; continuity and two-part hul
+   pass (4) negative: like and unlike terms at the step-94 state with the wrong sign of the velocity term in D_t are disjoint fr
+   pass (5) delay-root bracket: frozen narrow vs wide (+-0.15) agree to 1e-15 at the b3 step-21 state; +-0.12 vs +-0.15 intersec
+   pass (1) restart regression (same-code, not independent): the step from the frozen step-93 strings intersects the frozen step
+   pass (6) self-append: after certifying the control step (from step 93), appending it through the checked path, a lookup insid
+   pass (7) restart wrapper: default and explicit selection of step 94 reproduce the exact frozen strings with t0 an interval; w
+resumed after step 134 of spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s2b2.json: t0 [3.206684593623, 3.206684709182]; records 184
+step 135: t_end 3.21668470; q [0.52654400, 0.52674059]; qdot [0.33147514, 0.33205501]; sL [1.545523, 1.546352] above T*; sU [2.14716, 2.14883] late-feedback; sA up 1.26629 below T*; DU [0.94413, 0.94535] DL [1.02920, 1.02976]; a_rad [-0.065921, -0.065653] lam [-0.044607, -0.043954] negative; qddot pos; recon TT; it 1; 19 s
+step 136: t_end 3.22668470; q [0.52986365, 0.53006610]; qdot [0.33245362, 0.33304643]; sL [1.554211, 1.555046] above T*; sU [2.15898, 2.16066] late-feedback; sA up 1.27674 below T*; DU [0.94481, 0.94545] DL [1.02912, 1.02941]; a_rad [-0.066078, -0.065808] lam [-0.045111, -0.044447] negative; qddot pos; recon TT; it 1; 20 s
+step 137: t_end 3.23668470; q [0.53319306, 0.53340150]; qdot [0.33342802, 0.33403398]; sL [1.562903, 1.563743] above T*; sU [2.17079, 2.17248] late-feedback; sA up 1.28718 below T*; DU [0.94526, 0.94591] DL [1.02897, 1.02926]; a_rad [-0.066231, -0.065960] lam [-0.045618, -0.044942] negative; qddot pos; recon TT; it 1; 21 s
+step 138: t_end 3.24668470; q [0.53653220, 0.53674676]; qdot [0.33439825, 0.33501755]; sL [1.571600, 1.572446] above T*; sU [2.18259, 2.18429] late-feedback; sA up 1.29763 below T*; DU [0.94573, 0.94638] DL [1.02881, 1.02910]; a_rad [-0.066383, -0.066109] lam [-0.046127, -0.045438] negative; qddot pos; recon TT; it 1; 22 s
+step 139: t_end 3.25668470; q [0.53988102, 0.54010183]; qdot [0.33536418, 0.33599704]; sL [1.580301, 1.581153] above T*; sU [2.19438, 2.19610] late-feedback; sA up 1.30807 below T*; DU [0.94622, 0.94687] DL [1.02864, 1.02893]; a_rad [-0.066531, -0.066256] lam [-0.046637, -0.045937] negative; qddot pos; recon TT; it 1; 23 s
+step 140: t_end 3.26668470; q [0.54323947, 0.54346668]; qdot [0.33632566, 0.33697234]; sL [1.589008, 1.589866] above T*; sU [2.20616, 2.20841] late-feedback; sA up 1.31852 below T*; DU [0.94672, 0.94737] DL [1.02847, 1.02876]; a_rad [-0.066812, -0.066322] lam [-0.047227, -0.046302] negative; qddot pos; recon TT; it 1; 24 s
+step 141: t_end 3.27668470; q [0.54660749, 0.54684127]; qdot [0.33727773, 0.33794570]; sL [1.597720, 1.598584] above T*; sU [2.21845, 2.22019] late-feedback; sA up 1.32897 below T*; DU [0.94690, 0.94815] DL [1.02830, 1.02859]; a_rad [-0.066876, -0.066595] lam [-0.047611, -0.046879] negative; qddot pos; recon TT; it 1; 25 s
+step 142: t_end 3.28668470; q [0.54998502, 0.55022555]; qdot [0.33822746, 0.33890967]; sL [1.606684, 1.607307] above T*; sU [2.23020, 2.23195] late-feedback; sA up 1.33942 below T*; DU [0.94770, 0.94836] DL [1.02811, 1.02840]; a_rad [-0.067029, -0.066704] lam [-0.048155, -0.047368] negative; qddot pos; recon TT; it 1; 26 s
+step 143: t_end 3.29668470; q [0.55337203, 0.55361945]; qdot [0.33917228, 0.33986986]; sL [1.615441, 1.616312] above T*; sU [2.24195, 2.24371] late-feedback; sA up 1.34988 below T*; DU [0.94825, 0.94891] DL [1.02774, 1.02829]; a_rad [-0.067136, -0.066852] lam [-0.048659, -0.047901] negative; qddot pos; recon TT; it 1; 27 s
+step 144: t_end 3.30668470; q [0.55676846, 0.55702292]; qdot [0.34011300, 0.34082524]; sL [1.624168, 1.625044] above T*; sU [2.25368, 2.25545] late-feedback; sA up 1.36033 below T*; DU [0.94882, 0.94949] DL [1.02762, 1.02791]; a_rad [-0.067270, -0.066983] lam [-0.049178, -0.048406] negative; qddot pos; recon TT; it 1; 28 s
+reached t in [3.306684593623, 3.306684709182]; q [0.5567684619, 0.5570229266]; qdot [0.3401130021, 0.3408252472]; stop: plan exhausted (step 144 certified); wall 27.6 s

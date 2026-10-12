@@ -8,6 +8,10 @@ The [OPS-031 Binary Dynamics review, October 9](../aaa-operations/evidence/ops-0
 
 The [OPS-031 Causal Action Functional review, October 11](../aaa-operations/evidence/ops-031-causal-action-review-2026-10-11.md), completes the whole chapter with a bounded no-change disposition. Its historical accepted repairs remain intact; operations retains the later coverage date and next cursor. CRW-005 remains closed.
 
+The [OPS-031 Effective Lagrangian review, October 11](../aaa-operations/evidence/ops-031-effective-lagrangian-review-2026-10-11.md), completes later whole-chapter coverage and proposes nine bounded corrections in the [maintenance referral](work-queue.md#ops-031--october-11-effective-lagrangian-referral). They await disposition and are not implemented. Historical CRW-005 audit counts below remain its closed campaign accounting; the separate OPS-031 referral is current unfinished maintenance.
+
+The [October 12 core review](../aaa-operations/evidence/ops-031-core-symmetry-lock-review-2026-10-12.md) completes Coordinate-Axis Six-Point Symmetry and Return Response and Three-Binary 4:2:1 Frequency Lock at whole-chapter review scope. Its eleven [maintenance correction groups](work-queue.md#ops-031--october-12-core-symmetry-and-frequency-lock-referral) await disposition; sources are unchanged and historical CRW-005 accounting remains closed.
+
 ## Active priority queue
 
 No active or unopened rows.

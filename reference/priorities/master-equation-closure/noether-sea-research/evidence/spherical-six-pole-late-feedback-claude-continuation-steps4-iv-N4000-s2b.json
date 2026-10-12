@@ -1,0 +1,176 @@
+{
+ "g": "1/10",
+ "N_window": 4000,
+ "mode": "three (all classes moving, generated history)",
+ "plan": {
+  "Delta": "0.01",
+  "max_step_number": 64,
+  "adaptation": "none; stop at the first uncertified step"
+ },
+ "controls": [
+  {
+   "name": "(0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random (q <= 0.4, q', v' <= 0.25) each; max abs diff",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "6.9025e-31",
+    "like": "5.9165e-31",
+    "antipode": "3.9443e-31"
+   }
+  },
+  {
+   "name": "(2) reconciliation on the accepted endpoint state: g F(q0) (wave-14 five-image field) intersects the sum of the fixed-form class tangents 2U + 2L + A; the fixed radial sum intersects the wave-14 n.A",
+   "pass": true,
+   "gF": [
+    "0.1047681885496193767522395",
+    "0.1047727363785766618197956"
+   ],
+   "tangent_sum_fixed": [
+    "0.1047697392508242623732173",
+    "0.1047711856541620232997745"
+   ],
+   "radial_sum_fixed": [
+    "-0.0360717067215975615196568",
+    "-0.03607119226404268045061411"
+   ],
+   "g_nA_wave14": [
+    "-0.03607360673338865128446385",
+    "-0.03606929223892115506806526"
+   ]
+  },
+  {
+   "name": "(3) history lookup: seam at T* (window enclosure at up(T*) intersects wave-16 step-1 candidate sets); record lookup at s = 1.5 intersects the frozen wave-17 step-3 end state (t_end 1.4967..) and step-4 start; negative: records shifted by -0.5 (the lookup at s = 1.5 reads the t = 2.0 record) give a disjoint q",
+   "pass": true,
+   "seam_window_q": [
+    "0.09359698183390833308564525",
+    "0.09359717429472312322322282"
+   ],
+   "seam_record_S": [
+    "0.0935969659738805924504719",
+    "0.09497531240358474050374513"
+   ],
+   "seam_window_qdot": [
+    "0.1373057919100448753052573",
+    "0.1373059342582563074100607"
+   ],
+   "seam_record_VS": [
+    "0.1373057801796165107074406",
+    "0.138321790907505577966415"
+   ],
+   "lookup_1_5_q": [
+    "0.1123066609589109528063898",
+    "0.1138180043735539926970362"
+   ],
+   "wave17_step3_end_q": [
+    "0.1123066609589109528063898",
+    "0.112307299088216613247823"
+   ],
+   "shifted_lookup_q": [
+    "0.2004679099282415126511127",
+    "0.202504297613112066160161"
+   ]
+  },
+  {
+   "name": "(4) negative: unlike term at the accepted endpoint with the wrong sign of the velocity term in D_t is disjoint from the correct one",
+   "pass": true,
+   "hit_correct": [
+    "0.3250677979052344257369918",
+    "0.325073406137866259811272"
+   ],
+   "hit_wrong": [
+    "0.3028278434904483245928601",
+    "0.3028330493264503056555641"
+   ],
+   "Dt_correct": [
+    "0.9645797231606774763705293",
+    "0.9645805938395167377837454"
+   ],
+   "Dt_wrong": [
+    "1.035419406160483262216255",
+    "1.035420276839322523629471"
+   ],
+   "tau": [
+    "1.288180453576593180197509",
+    "1.288186056018741077841647"
+   ],
+   "delayed_arg": [
+    "0.7884985376049085193263219",
+    "0.7885042556062348646938485"
+   ]
+  },
+  {
+   "name": "(1) regression (not independent evidence): the resumed step from the frozen b3 step-20 end state reproduces the frozen step-21 end strings at N = 4000 to 1e-24 and intersects them (identity is not expected: 25-digit restart strings vs the frozen in-memory 30-digit state); intersects at another N",
+   "pass": false,
+   "identical_strings": false,
+   "intersects": true,
+   "max_endpoint_abs_diff": "5.099e-22",
+   "note": "the frozen step 21 was computed in-memory from the 30-digit step-20 state; the control restarts from the 25-digit printed strings, so agreement is expected only to about 1e-25 (diagnostic -diag-regression.out: a0 and tau0 identical, ap differs at 1e-26)",
+   "end_q": [
+    "0.2169889763507186775076695",
+    "0.2169987970109094562817099"
+   ],
+   "frozen": [
+    "0.2169889763507186775076704",
+    "0.2169987970109094562817074"
+   ],
+   "reconcile_tangent": true,
+   "reconcile_radial": true
+  },
+  {
+   "name": "(5) delay-root bracket: wide (+-0.12) and frozen narrow (+-0.03) brackets return identical delay intervals for all classes at the accepted endpoint; a non-straddling bracket (+-1e-4) is refused",
+   "pass": false,
+   "values": {
+    "unlike": {
+     "wide": [
+      "1.288180453576593180197509",
+      "1.288186056018741077841647"
+     ],
+     "narrow": [
+      "1.288180453576593180974775",
+      "1.288186056018741077373662"
+     ]
+    },
+    "like": {
+     "wide": [
+      "1.52389214189111878365347",
+      "1.523896573407827199970541"
+     ],
+     "narrow": [
+      "1.523892141891118784266291",
+      "1.523896573407827210331081"
+     ]
+    },
+    "antipode": {
+     "wide": [
+      "1.988281698426317714375719",
+      "1.988282763442764665745064"
+     ],
+     "narrow": [
+      "1.98828169842631771515822",
+      "1.988282763442764666175401"
+     ]
+    }
+   },
+   "non_straddling_refused": true
+  }
+ ],
+ "steps": [],
+ "v10_sha256_expected": "1352182139423cb3088be03eae81ee7624bd8d09d67d86c864da32caf085b024",
+ "T_star": [
+  "1.366684593623649597167969",
+  "1.366684709182828044891357"
+ ],
+ "T_star_reproduces_wave17": true,
+ "records": {
+  "count": 71,
+  "first": "wave16 step 1",
+  "last": "antipodal-b3 step 21",
+  "t_lo": "1.366684593623649597167969",
+  "t_hi": "2.076684709182828044891357",
+  "window_T_star": [
+   "1.366684593623649597167969",
+   "1.366684709182828044891357"
+  ],
+  "seam_T_star_inside_first_record": false
+ },
+ "controls_all_pass": false
+}

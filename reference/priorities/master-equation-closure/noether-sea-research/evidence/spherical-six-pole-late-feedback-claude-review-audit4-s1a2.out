@@ -1,0 +1,13 @@
+PID 69266
+controls K True W True
+{"label": "target", "n_steps": 9, "controls_all_pass": true, "control_order": ["(0) closed forms (hit, D_t, r,", "(2) reconciliation on the acce", "(3) history lookup: seam at T*", "(4) negative: unlike term at t", "(1) regression (not independen"], "resumed_from": {"file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json", "after_step": 21, "t0": ["2.076684593623649597167969", "2.076684709182828044891357"], "q": ["0.2169889763507186775076704", "0.2169987970109094562817074"], "qdot": ["0.210722148448371948628582", "0.2107493474124994851533159"], "resumed_end_strings_equal_source": true}, "plan": {"Delta": "0.01", "max_step_number": 30, "adaptation": "none; stop at the first uncertified step"}, "fail": [], "unlike_delayed_arg_max": "0.8925059244570250623860102", "unlike_margin_to_Tstar": "0.4741786691666245347819588", "steps_with_unlike_range_reaching_Tstar": [], "residual_last_pos": null, "residual_first_neg": 22, "lambda_last_positive_end": null, "lambda_first_negative_end": 22, "reached_time": ["2.166684593623649597167969", "2.166684709182828044891357"], "reached_q": ["0.2363815274827344393252612", "0.2363939808878887293542157"], "reached_qdot": ["0.2202316033428779209781163", "0.2202630827041735661296476"], "stop_reason": "plan exhausted (step 30 certified)"}
+22 2.086684709182 ok [] sU 0.800039 sA 0.098627 lam negative negative negative qdd positive rec True True [True, True, True]
+23 2.096684709182 ok [] sU 0.811560 sA 0.108848 lam negative negative negative qdd positive rec True True [True, True, True]
+24 2.106684709182 ok [] sU 0.823091 sA 0.119071 lam negative negative negative qdd positive rec True True [True, True, True]
+25 2.116684709182 ok [] sU 0.834633 sA 0.129297 lam negative negative negative qdd positive rec True True [True, True, True]
+26 2.126684709182 ok [] sU 0.846186 sA 0.139524 lam negative negative negative qdd positive rec True True [True, True, True]
+27 2.136684709182 ok [] sU 0.857750 sA 0.149753 lam negative negative negative qdd positive rec True True [True, True, True]
+28 2.146684709182 ok [] sU 0.869324 sA 0.159984 lam negative negative negative qdd positive rec True True [True, True, True]
+29 2.156684709182 ok [] sU 0.880910 sA 0.170218 lam negative negative negative qdd positive rec True True [True, True, True]
+30 2.166684709182 ok [] sU 0.892505 sA 0.180453 lam negative negative negative qdd positive rec True True [True, True, True]
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-review-audit4-s1a2.json

@@ -1,0 +1,13 @@
+pid 65033
+T* in [1.366622279933, 1.366740606296] (reproduces wave 17: None); records 71 to t = 2.0766847091; setup 5.3 s
+controls: ALL PASS
+   pass (0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random (q <= 0
+   pass (2) reconciliation on the accepted endpoint state: g F(q0) (wave-14 five-image field) intersects the sum of th
+   pass (3) history lookup: seam at T* (window enclosure at up(T*) intersects wave-16 step-1 candidate sets); record l
+   pass (4) negative: unlike term at the accepted endpoint with the wrong sign of the velocity term in D_t is disjoint
+   pass (1) regression (not independent evidence): the resumed step from the frozen b3 step-20 end state reproduces th
+resumed after step 21 of spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json: t0 [2.076684593623, 2.076684709182], q [0.2169889763, 0.2169987970], qdot [0.2107221484, 0.2107493474]
+step 22: t_end 2.08668470; q [0.21910146, 0.21911156]; qdot [0.21177627, 0.21180398]; sU [0.78849, 0.80004] margin 1.2766 DU [0.96457, 0.96458]; sA up 0.09862; a_rad_end [-0.041534, -0.041531] lambda_end [-0.003329, -0.003314] negative; qddot positive; recon T True R True; 14 s
+step 23: t_end 2.09668470; q [0.22122450, 0.22123487]; qdot [0.21283101, 0.21285924]; sU [0.80000, 0.81156] margin 1.2651 DU [0.96411, 0.96412]; sA up 0.10884; a_rad_end [-0.041732, -0.041729] lambda_end [-0.003579, -0.003564] negative; qddot positive; recon T True R True; 21 s
+step 24: t_end 2.10668470; q [0.22335809, 0.22336874]; qdot [0.21388637, 0.21391512]; sU [0.81152, 0.82309] margin 1.2535 DU [0.96364, 0.96366]; sA up 0.11907; a_rad_end [-0.041932, -0.041928] lambda_end [-0.003831, -0.003815] negative; qddot positive; recon T True R True; 27 s
+reached t in [2.106684593623, 2.106684709182]; q [0.2233580919, 0.2233687497]; qdot [0.2138863738, 0.2139151219]; stop: plan exhausted (step 24 certified); wall 26.6 s

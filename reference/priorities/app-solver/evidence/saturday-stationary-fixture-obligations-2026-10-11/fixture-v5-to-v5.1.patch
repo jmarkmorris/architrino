@@ -1,0 +1,244 @@
+--- .local-data/aaa-work-threads/saturday-quantitative/claude-task-2/preserved-v5-first/eom_stationary_joint_frontier_fixture_cli.v5-first.cpp	2026-10-11 19:15:48
++++ src/eom/native/eom_stationary_joint_frontier_fixture_cli.cpp	2026-10-11 19:17:14
+@@ -693,6 +693,90 @@
+   std::cout << ",\"returned_digest\":";
+   print_json_string(comparison.returned_digest);
+   std::cout << '}';
++}
++
++// ---- v5.1 known cases for the two comparison functions --------------------
++// Small carriers written out by hand.  They are compared before either
++// function sees an evolved history, and the fixture refuses to continue if a
++// control fails.
++eom::RetainedHistory control_ordinary_history(
++    const std::string& position, const std::string& position_error) {
++  std::vector<eom::CubicHistorySegment> segments;
++  for (int index = 0; index < 2; ++index) {
++    eom::CubicCoefficientTokens coefficients{};
++    coefficients[0] = {position, "0", "0", "0"};
++    coefficients[1] = {"0", "0", "0", "0"};
++    coefficients[2] = {"0", "0", "0", "0"};
++    segments.emplace_back(
++        index == 0 ? "-1" : "-0.5", index == 0 ? "-0.5" : "0", coefficients,
++        position_error, "1e-14");
++  }
++  return eom::RetainedHistory("comparator-control", std::move(segments));
++}
++
++eom::JointAffineRetainedHistory control_joint_history(
++    double coefficient, double radius) {
++  std::vector<eom::JointAffineCubicSegment> segments(2U);
++  for (std::size_t index = 0; index < 2U; ++index) {
++    auto& segment = segments[index];
++    segment.start_time = index == 0U ? -1.0 : -0.5;
++    segment.end_time = index == 0U ? -0.5 : 0.0;
++    for (auto& axis : segment.position_coefficients) {
++      for (auto& row : axis) row.assign(2U, 0.0);
++    }
++    segment.position_coefficients[0][0] = {coefficient, 0.0};
++    segment.position_remainder_radii = {radius, 0.0, 0.0};
++    segment.velocity_remainder_radii = {0.0, 0.0, 0.0};
++  }
++  return eom::JointAffineRetainedHistory(
++      "comparator-control", {"s0", "s1"}, std::move(segments));
++}
++
++struct ComparatorKnownCases {
++  bool ordinary_equal_copy = false;
++  bool ordinary_coefficient_detected = false;
++  bool ordinary_error_radius_detected = false;
++  bool joint_equal_copy = false;
++  bool joint_coefficient_detected = false;
++  bool joint_radius_one_ulp_detected = false;
++  [[nodiscard]] bool passed() const {
++    return ordinary_equal_copy && ordinary_coefficient_detected &&
++        ordinary_error_radius_detected && joint_equal_copy &&
++        joint_coefficient_detected && joint_radius_one_ulp_detected;
++  }
++};
++
++ComparatorKnownCases comparator_known_cases() {
++  ComparatorKnownCases result;
++  const auto ordinary = [](const std::string& position,
++                           const std::string& position_error) {
++    return std::vector<eom::NativePublishedPath>{eom::NativePublishedPath{
++        "control", control_ordinary_history(position, position_error)}};
++  };
++  const auto ordinary_base = ordinary("0.5", "1e-14");
++  result.ordinary_equal_copy =
++      compare_ordinary(ordinary_base, ordinary("0.5", "1e-14")).equal;
++  result.ordinary_coefficient_detected =
++      !compare_ordinary(ordinary_base, ordinary("0.25", "1e-14")).equal;
++  result.ordinary_error_radius_detected =
++      !compare_ordinary(ordinary_base, ordinary("0.5", "2e-14")).equal;
++  const auto joint = [](double coefficient, double radius) {
++    std::map<std::string, eom::JointAffineRetainedHistory> carriers;
++    carriers.emplace("control", control_joint_history(coefficient, radius));
++    return carriers;
++  };
++  const double radius = 1e-8;
++  const auto joint_base = joint(1e-7, radius);
++  result.joint_equal_copy =
++      compare_joint(joint_base, joint(1e-7, radius)).equal;
++  result.joint_coefficient_detected =
++      !compare_joint(joint_base, joint(2e-7, radius)).equal;
++  result.joint_radius_one_ulp_detected = !compare_joint(
++      joint_base,
++      joint(1e-7, std::nextafter(
++                      radius, std::numeric_limits<double>::infinity())))
++      .equal;
++  return result;
+ }
+ 
+ void print_interval_vector(const eom::IntervalVector& value) {
+@@ -1182,6 +1266,13 @@
+     //     only in a root tolerance derived from the accepted input, is refused
+     //     and leaves the ordinary and the joint carrier exactly unchanged.
+     // (3) Diagnostic only: where fixed replay steps stop being certified.
++    // Known cases first: the comparison functions are exercised on
++    // hand-written carriers before they see any evolved history.
++    const ComparatorKnownCases comparator_controls = comparator_known_cases();
++    if (!comparator_controls.passed()) {
++      throw std::runtime_error(
++          "carrier comparison known cases failed before first target use");
++    }
+     const std::string reach = kFrontierStart;
+     const auto prefix_request = validation_request;
+     // Deep copies taken before any further solver call; these are the
+@@ -1285,10 +1376,58 @@
+       receiver_radii.emplace_back(path.path_id, radius);
+       smallest_radius = std::min(smallest_radius, radius);
+     }
+-    if (!std::isfinite(smallest_radius) || !(smallest_radius > 0.0)) {
++    // Hypotheses of the width bound, checked on the accepted input: a
++    // positive receiver radius, a line of sight within sixty degrees of the
++    // x axis for every admissible emission point, and transmitters below
++    // wake speed over the whole retained history (so the factor floor is
++    // below 2).  If one fails the control does not apply; that is a
++    // fixture-maintenance condition and not by itself a solver regression.
++    const bool receiver_radius_positive =
++        std::isfinite(smallest_radius) && smallest_radius > 0.0;
++    bool line_of_sight_dominant = true;
++    bool transmitters_subwake = true;
++    for (const auto& [receiver, transmitter] : std::array{
++             std::pair<std::string, std::string>{"positive", "negative"},
++             std::pair<std::string, std::string>{"negative", "positive"}}) {
++      const auto receiver_state =
++          published_path(preimage_histories, receiver)
++              .history.endpoint_state_hull();
++      const auto& source = published_path(preimage_histories, transmitter)
++          .history;
++      const auto& source_hull = source.full_position_hull();
++      const double axial_lower = std::max(
++          receiver_state.position[0].lower() - source_hull[0].upper(),
++          source_hull[0].lower() - receiver_state.position[0].upper());
++      double transverse_squared_upper = 0.0;
++      for (std::size_t axis = 1; axis < 3U; ++axis) {
++        const double gap = std::max(
++            std::abs(receiver_state.position[axis].upper() -
++                     source_hull[axis].lower()),
++            std::abs(receiver_state.position[axis].lower() -
++                     source_hull[axis].upper()));
++        transverse_squared_upper += gap * gap;
++      }
++      // |d_x| / |d| >= 1/2 exactly when transverse^2 <= 3 d_x^2.
++      line_of_sight_dominant = line_of_sight_dominant && axial_lower > 0.0 &&
++          transverse_squared_upper <= 2.99 * axial_lower * axial_lower;
++      const eom::Interval retained(
++          std::stod(source.segments().front().t_start_token()),
++          std::stod(reach));
++      const auto velocity = source.velocity_hull(retained);
++      double speed_squared_upper = 0.0;
++      for (std::size_t axis = 0; axis < 3U; ++axis) {
++        const double magnitude = std::max(
++            std::abs(velocity[axis].lower()), std::abs(velocity[axis].upper()));
++        speed_squared_upper += magnitude * magnitude;
++      }
++      transmitters_subwake = transmitters_subwake && speed_squared_upper < 0.99;
++    }
++    if (!receiver_radius_positive || !line_of_sight_dominant ||
++        !transmitters_subwake) {
+       throw std::runtime_error(
+-          "rejection control cannot be constructed: a receiver joint "
+-          "remainder radius at the accepted endpoint is not positive");
++          "rejection control not applicable to this accepted input (radius, "
++          "line-of-sight or sub-wake hypothesis); a fixture-maintenance "
++          "condition, not by itself a solver regression");
+     }
+     auto negative_request = prefix_request;
+     negative_request.root_tolerance = token(smallest_radius / 4.0);
+@@ -1388,7 +1527,7 @@
+         joint_invariance.symbols > 0U &&
+         path_ids_unchanged && input_fingerprints_match &&
+         cross_path_ordinary_detected && cross_path_joint_detected &&
+-        perturbed_joint_radius != "not_detected";
++        perturbed_joint_radius == "detected";
+ 
+     // ---- natural-frontier diagnostic (not an obligation) --------------------
+     auto current_histories = prefix.histories;
+@@ -1442,6 +1581,26 @@
+     std::cout << ",\"record_scope\":\"minimum accepted reach and one derived "
+                  "rejection control; the natural frontier is diagnostic; no "
+                  "physical-trajectory or generated-history-inclusion claim\""
++              << ",\"record_revision\":\"v5.1\""
++              << ",\"comparator_known_cases\":{"
++                 "\"ran_before_first_target_use\":true"
++              << ",\"ordinary_equal_copy\":"
++              << (comparator_controls.ordinary_equal_copy ? "true" : "false")
++              << ",\"ordinary_coefficient_detected\":"
++              << (comparator_controls.ordinary_coefficient_detected
++                      ? "true" : "false")
++              << ",\"ordinary_error_radius_detected\":"
++              << (comparator_controls.ordinary_error_radius_detected
++                      ? "true" : "false")
++              << ",\"joint_equal_copy\":"
++              << (comparator_controls.joint_equal_copy ? "true" : "false")
++              << ",\"joint_coefficient_detected\":"
++              << (comparator_controls.joint_coefficient_detected
++                      ? "true" : "false")
++              << ",\"joint_radius_one_ulp_detected\":"
++              << (comparator_controls.joint_radius_one_ulp_detected
++                      ? "true" : "false")
++              << ",\"passed\":true}"
+               << ",\"minimum_reach\":";
+     print_json_string(reach);
+     std::cout << ",\"model_fingerprint\":";
+@@ -1492,6 +1651,12 @@
+       print_root_rows(snapshot);
+       std::cout << ']';
+     }
++    std::cout << ",\"consumed_snapshot_role\":\"endpoint acceleration "
++                 "evaluated by the accepted corrector at the reach, used for "
++                 "its convergence and joint-contraction tests; not a trace of "
++                 "every acceleration used to construct the candidate; the "
++                 "recertification snapshot is evaluated on the published "
++                 "history\"";
+     std::cout << ",\"logical_ordered_pairs\":"
+               << (recertified == nullptr ? 0U
+                                          : recertified->logical_ordered_pairs)
+@@ -1615,11 +1780,20 @@
+                  "\"tightened_root_tolerance_refusal\""
+               << ",\"rule\":\"root_tolerance = (smaller receiver joint "
+                  "independent remainder radius on the line of sight at the "
+-                 "accepted endpoint) / 4; every other request field as in "
+-                 "the positive request\""
+-              << ",\"failure_route_claim\":\"root-time enclosure budget; a "
+-                 "refusal by this implementation's sufficient certificate, "
+-                 "not a theorem that no sound certificate exists\""
++                 "accepted endpoint) / 4; every other numerical-policy field "
++                 "as in the positive request\""
++              << ",\"request_scope\":\"numerical policy differs in "
++                 "root_tolerance only; start, end and history inputs are "
++                 "those of the next step from the accepted endpoint\""
++              << ",\"failure_route_claim\":\"joint root-time budget "
++                 "obstruction derived (width > radius/2 > tolerance); "
++                 "whole-step refusal measured; exclusion of the ordinary "
++                 "enclosure route inferred; not a theorem that no sound "
++                 "certificate exists\""
++              << ",\"hypotheses_checked\":{"
++                 "\"receiver_radius_positive\":true"
++                 ",\"line_of_sight_dominant\":true"
++                 ",\"transmitters_subwake_over_retained_history\":true}"
+               << ",\"receiver_remainder_radii_x\":[";
+     for (std::size_t index = 0; index < receiver_radii.size(); ++index) {
+       if (index) std::cout << ',';

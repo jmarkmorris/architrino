@@ -1,0 +1,30 @@
+PID 61438
+{"name": "(K) exact known control: local model q(s) = 0.1 + 0.2 s + 0.05 s^2 for all members, delays solved to 40 digits, lambda_hat and a_rad differentiated by Richardson central differences (h = 1e-7) vs the closed forms at t = 1.3 (all three classes moving)", "closed_dlambda": "-0.04220821463164819679782887", "fd_dlambda": "-0.04220821463164819679782887", "abs_err": "3.6557e-31", "closed_darad": "-0.02379178536835180320217113", "fd_darad": "-0.02379178536835180320217113", "identity_1+r_qp_vp=D_max_dev": "0.0", "taudot": {"unlike": "-0.244854150523369", "like": "0.158945003617633", "antipode": "-0.0424963939219011"}, "pass": true}
+{"name": "(W) negative: velocity sign flipped in D_t of all classes; its d lambda_hat/dt must differ from the correct finite difference by > 1e-6", "wrong_dlambda": "-0.038363828441083192534", "correct_fd": "-0.042208214631648196798", "pass": true}
+step 12 moving ['unlike', 'like']: qddot [0.1040136,0.1056670] lambda [-0.0011337,-0.0004718] negative; dlambda/dt [-0.0235056,-0.0223225] negative; mv-consistent None
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv.py", line 110, in <module>
+    res, qdd, S, VS = step_eval(st, Tstar_lo)
+                      ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-support-dlambda3-iv.py", line 92, in step_eval
+    cl = st["classes"][name]; assert up(iv_of(cl["delayed_arg_range"])) < Tstar_lo and lo(iv_of(cl["delayed_arg_range"])) > 0
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+        0.45 real         0.43 user         0.00 sys
+            23445504  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2435  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  52  involuntary context switches
+          7974253474  instructions retired
+          1651480073  cycles elapsed
+            15647200  peak memory footprint

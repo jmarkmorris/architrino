@@ -1,0 +1,347 @@
+{
+ "schema": "validated_far_step_prototype_admission_probes/v3",
+ "all_passed": true,
+ "rows": [
+  {
+   "check": "known static kernel contains -1/100",
+   "passed": true,
+   "detail": "exact -1/100",
+   "exact": [
+    "-1/100",
+    "-4999999999999999999999999999999999/500000000000000000000000000000000000"
+   ]
+  },
+  {
+   "check": "known quadratic peak speed is exactly 2",
+   "passed": true,
+   "detail": "[0, 2]",
+   "exact": null
+  },
+  {
+   "check": "known static step certified",
+   "passed": true,
+   "detail": "certified",
+   "exact": null
+  },
+  {
+   "check": "known static velocity tube contains analytic bracket",
+   "passed": true,
+   "detail": "closed-form bracket",
+   "exact": [
+    "-1000000000003814697265635913943/12800000000000000000000000000000000000",
+    "-4999999999504089355501218960819/64000000000000000000000000000000000000"
+   ]
+  },
+  {
+   "check": "known static acceleration box contains -1/100000",
+   "passed": true,
+   "detail": "exact",
+   "exact": [
+    "-10000000000038146972656359139367/1000000000000000000000000000000000000",
+    "-9999999999008178711002437921699/1000000000000000000000000000000000000"
+   ]
+  },
+  {
+   "check": "three genuine static steps chain",
+   "passed": true,
+   "detail": "each step admitted the layers before it",
+   "exact": [
+    "7e9b0e1870f7086f6f51a49d01ed0bf4318157b45486fc5755e56cc1686c8aa8",
+    "dd4c8fd042bace3cbd5396ecae52250300fb31d151c50f40159f146bdfaa7178",
+    "7af918f783e2dc4c83e8f9c77c0107ca185330f5e7cac77b179e35f807db53f6"
+   ]
+  },
+  {
+   "check": "radii are inherited and do not shrink",
+   "passed": true,
+   "detail": "position and velocity, z axis",
+   "exact": [
+    "4023313522085629757/1000000000000000000000000000000000000",
+    "16093254085917578779/1000000000000000000000000000000000000",
+    "36209821685049803373/1000000000000000000000000000000000000"
+   ]
+  },
+  {
+   "check": "three-step tube contains the analytic bracket",
+   "passed": true,
+   "detail": "velocity and position at 3h",
+   "exact": [
+    "-14999999998645782471139191329711/64000000000000000000000000000000000000",
+    "-14999999994010925295452816497967/64000000000000000000000000000000000000"
+   ]
+  },
+  {
+   "check": "two genuine steps on the oscillating past contain the true bracket",
+   "passed": true,
+   "detail": "at 2h",
+   "exact": [
+    "-9837623454871866632537133837183/64000000000000000000000000000000000000",
+    "-9484827961007434870096784755199/64000000000000000000000000000000000000"
+   ]
+  },
+  {
+   "check": "an unaltered deep copy of a genuine history is admitted",
+   "passed": true,
+   "detail": "binding is to content, not object identity",
+   "exact": null
+  },
+  {
+   "check": "R1 unequal retained starts decline",
+   "passed": true,
+   "detail": "retained histories do not start at one common time; a shorter history cannot remove another path's emissions",
+   "exact": null
+  },
+  {
+   "check": "R1 in the other order",
+   "passed": true,
+   "detail": "VFS-H0-01",
+   "exact": null
+  },
+  {
+   "check": "R2 in-place speed-2 arch after a genuine step declines H1",
+   "passed": true,
+   "detail": "with and without a budget",
+   "exact": {
+    "receiver": "1/1000000000000000000000000000000000000",
+    "source": "2000000000000000000000000000000000001/1000000000000000000000000000000000000"
+   }
+  },
+  {
+   "check": "R2 caller-supplied cache field is ignored",
+   "passed": true,
+   "detail": "VFS-H1-01",
+   "exact": null
+  },
+  {
+   "check": "R2 nothing is written into caller segments",
+   "passed": true,
+   "detail": "keys unchanged",
+   "exact": null
+  },
+  {
+   "check": "R3 reproduction: version 2 certifies on the altered ancestor",
+   "passed": true,
+   "detail": "source past moved from 10 to 11 under its generated segment",
+   "exact": null
+  },
+  {
+   "check": "R3 closed: version 3 declines the altered ancestor",
+   "passed": true,
+   "detail": "generated layer 0 was published from a different preceding history or different charges",
+   "exact": null
+  },
+  {
+   "check": "altering the other path's prescribed past declines",
+   "passed": true,
+   "detail": "generated layer 0 was published from a different preceding history or different charges",
+   "exact": null
+  },
+  {
+   "check": "altering an earlier generated layer declines",
+   "passed": true,
+   "detail": "generated layer 0 was not published by this carrier as one step for these paths",
+   "exact": null
+  },
+  {
+   "check": "a genuine later layer on a different genuine ancestor declines",
+   "passed": true,
+   "detail": "generated layer 1 was published from a different preceding history or different charges",
+   "exact": null
+  },
+  {
+   "check": "removing a generated layer from one path declines",
+   "passed": true,
+   "detail": "paths carry different numbers of generated layers",
+   "exact": null
+  },
+  {
+   "check": "generated segments swapped between the two paths decline",
+   "passed": true,
+   "detail": "generated layer 0 was not published by this carrier as one step for these paths",
+   "exact": null
+  },
+  {
+   "check": "a renamed path declines",
+   "passed": true,
+   "detail": "generated layer 0 was not published by this carrier as one step for these paths",
+   "exact": null
+  },
+  {
+   "check": "a genuine segment transplanted into another population declines",
+   "passed": true,
+   "detail": "generated layer 0 was not published by this carrier as one step for these paths",
+   "exact": null
+  },
+  {
+   "check": "adding a path with an invented generated segment declines",
+   "passed": true,
+   "detail": "generated layer 0 was not published by this carrier as one step for these paths",
+   "exact": null
+  },
+  {
+   "check": "continuing under a different coupling declines",
+   "passed": true,
+   "detail": "generated layer 0 was published under a different coupling",
+   "exact": null
+  },
+  {
+   "check": "continuing with a changed source charge declines",
+   "passed": true,
+   "detail": "generated layer 0 was published from a different preceding history or different charges",
+   "exact": null
+  },
+  {
+   "check": "continuing with a changed receiver charge declines",
+   "passed": true,
+   "detail": "generated layer 0 was published from a different preceding history or different charges",
+   "exact": null
+  },
+  {
+   "check": "the same history under the same scalars is admitted",
+   "passed": true,
+   "detail": "control for the three refusals",
+   "exact": null
+  },
+  {
+   "check": "a genuine certificate appends to its own history",
+   "passed": true,
+   "detail": "appended",
+   "exact": null
+  },
+  {
+   "check": "a certificate with an altered published segment is refused",
+   "passed": true,
+   "detail": "the certificate's published segments were altered",
+   "exact": null
+  },
+  {
+   "check": "a genuine certificate is refused on a different history",
+   "passed": true,
+   "detail": "the certificate was issued for a different preceding history",
+   "exact": null
+  },
+  {
+   "check": "a declined certificate edited to look certified is refused",
+   "passed": true,
+   "detail": "the certificate was not issued by this carrier",
+   "exact": null
+  },
+  {
+   "check": "a genuine digest with substituted segments is refused",
+   "passed": true,
+   "detail": "the certificate's published segments were altered",
+   "exact": null
+  },
+  {
+   "check": "a declined certificate is refused",
+   "passed": true,
+   "detail": "a declined step has no continuation to append",
+   "exact": null
+  },
+  {
+   "check": "hand-appending altered segments is refused at admission",
+   "passed": true,
+   "detail": "generated layer 0 was not published by this carrier as one step for these paths",
+   "exact": null
+  },
+  {
+   "check": "reviewer's fast affine source declines on the chart",
+   "passed": true,
+   "detail": "conservative refusal",
+   "exact": null
+  },
+  {
+   "check": "increment budget met, total budget refused",
+   "passed": true,
+   "detail": "VFS-BUDGET-02 on the second step",
+   "exact": {
+    "growth": {
+     "receiver": {
+      "position": "16311194855449521009664301/1000000000000000000000000000000000000",
+      "velocity": "1336763708636668909656393443/1000000000000000000000000000000000000"
+     },
+     "source": {
+      "position": "39290171109381267/500000000000000000000000000000000000",
+      "velocity": "12069940563831949023/1000000000000000000000000000000000000"
+     }
+    },
+    "total": {
+     "receiver": {
+      "position": "682997677023227735947619/31250000000000000000000000000000000",
+      "velocity": "2756214795815873144065227203/1000000000000000000000000000000000000"
+     },
+     "source": {
+      "position": "47148205332204763/500000000000000000000000000000000000",
+      "velocity": "804662704295878939/50000000000000000000000000000000000"
+     }
+    }
+   }
+  },
+  {
+   "check": "all 512 steps certified, each admitting every earlier layer",
+   "passed": true,
+   "detail": "512 of 512; receipts SHA-256 c85ef2b0c52906ef377d1e21bdfe401c90fb4dda7affcf53e48d3822224afd2e",
+   "exact": null
+  },
+  {
+   "check": "end velocity tube contains the whole frozen true bracket",
+   "passed": true,
+   "detail": "half-width 2.081454e-07",
+   "exact": {
+    "tube": [
+     "-2537526394061950184251777436107951/128000000000000000000000000000000000000",
+     "-496848234819048277893103897569571/25600000000000000000000000000000000000"
+    ],
+    "true": [
+     "-147256767323743696725314741365752529403/7500000000000000000000000000000000000000000",
+     "-146874061153040121177448536060100844971/7500000000000000000000000000000000000000000"
+    ]
+   }
+  },
+  {
+   "check": "end position tube contains the whole frozen true bracket",
+   "passed": true,
+   "detail": "half-width 1.670257e-07",
+   "exact": {
+    "tube": [
+     "-233811742885352128145062982989561379/13107200000000000000000000000000000000000",
+     "-1147166319910998043695916951675319983/65536000000000000000000000000000000000000"
+    ],
+    "true": [
+     "-106087327049511358331935244781170697563/6000000000000000000000000000000000000000000",
+     "-105913188558837230790405735221682329743/6000000000000000000000000000000000000000000"
+    ]
+   }
+  },
+  {
+   "check": "end velocity tube is disjoint from the solver's aliased interval",
+   "passed": true,
+   "detail": "separation 1.760351e-07",
+   "exact": {
+    "aliased": [
+     "-2951614833733145/147573952589676412928",
+     "-5903093879262451/295147905179352825856"
+    ],
+    "separation": "756064878361503525016736754720427183043/4294967296000000000000000000000000000000000000"
+   }
+  },
+  {
+   "check": "after 512 layers, a 1e-9 shift of the prescribed past declines on ancestry",
+   "passed": true,
+   "detail": "generated layer 0 was published from a different preceding history or different charges",
+   "exact": null
+  },
+  {
+   "check": "a 1e-9 change of one prescribed source segment declines on its join",
+   "passed": true,
+   "detail": "path source join 3 is not exactly continuously differentiable",
+   "exact": null
+  },
+  {
+   "check": "the unaltered 512-layer history is admitted for step 513",
+   "passed": true,
+   "detail": "control for the two refusals",
+   "exact": null
+  }
+ ]
+}

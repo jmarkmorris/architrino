@@ -1,0 +1,25 @@
+PID 66512
+[{"name": "(K) regression on the frozen antipodal b3 JSON: lambda_hat ranges and derivative ranges equal dlambda3-iv-v2-b3 to 1e-20; lambda_hat ranges/ends intersect the antipodal support step enclosures (different D_t source)", "pass": true, "n": 10}, {"name": "(W) negative: like polarity flipped moves the release radial sum off -g/4", "release": ["-0.025", "-0.025"], "release_wrong": ["-0.1664213562373095048801689", "-0.1664213562373095048801689"], "pass": false}]
+step 22 t_end 2.08668470 mv 3 beyond False: qddot [0.104506,0.106395]; lambda range [-0.0035553,-0.0028407] negative; end [-0.0034394,-0.0032996] negative; dlambda [-0.025489,-0.024125] negative; tanU/L/A [0.06489,0.03752,0.00272] radU/L/A [-0.08062,0.064191,-0.02512]; cont-int True/True
+step 23 t_end 2.09668470 mv 3 beyond False: qddot [0.104558,0.106466]; lambda range [-0.0038067,-0.0030870] negative; end [-0.0036900,-0.0035488] negative; dlambda [-0.025666,-0.024285] negative; tanU/L/A [0.06505,0.03739,0.00275] radU/L/A [-0.08076,0.064126,-0.02512]; cont-int True/True
+step 24 t_end 2.10668470 mv 3 beyond False: qddot [0.104609,0.106537]; lambda range [-0.0040597,-0.0033347] negative; end [-0.0039423,-0.0037994] negative; dlambda [-0.025843,-0.024445] negative; tanU/L/A [0.06522,0.03726,0.00278] radU/L/A [-0.08089,0.064062,-0.02512]; cont-int True/True
+{"n": 3, "lambda_end_signs": ["negative", "negative", "negative"], "lambda_range_signs": ["negative", "negative", "negative"], "dlambda_signs": ["negative", "negative", "negative"], "qddot_signs": ["positive", "positive", "positive"], "zero_brackets": [], "all_dlambda_negative": true, "all_qddot_positive": true, "any_beyond_window": false, "reached_time": ["2.106684593623649597167969", "2.106684709182828044891357"], "stop_reason": "plan exhausted (step 24 certified)"}
+wall 0.06637072563171387
+        0.10 real         0.09 user         0.00 sys
+            22970368  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2406  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   2  voluntary context switches
+                  20  involuntary context switches
+          1514927247  instructions retired
+           384491574  cycles elapsed
+            15303136  peak memory footprint

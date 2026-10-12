@@ -47,6 +47,10 @@ struct NativeEvolutionCheckpoint {
 void write_native_evolution_checkpoint_atomic(
     const std::string& path,
     const NativeEvolutionCheckpoint& checkpoint);
+// Shared durable publication for versioned checkpoint owners. No format
+// interpretation occurs here; callers must validate their own payload.
+void write_evolution_checkpoint_bytes_atomic(const std::string&,
+    const std::vector<unsigned char>&);
 
 [[nodiscard]] NativeEvolutionCheckpoint read_native_evolution_checkpoint(
     const std::string& path);

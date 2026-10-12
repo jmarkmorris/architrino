@@ -1,0 +1,3 @@
+PID 21517
+controls K True W1 True W2 True W3 True | table {'w16': 10, 'w17': 40, 'ant-a': 11, 'ant-b3': 10, 'lf-s1a2': 9, 'lf-s1b': 14, 'lf-s2a': 12, 'lf-s2b3': 8, 'lf-s3a': 5, 'lf-s3b2': 9, 'lf-s3c': 8, 'lf-s3d': 8}
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-review-audit6-controls.json

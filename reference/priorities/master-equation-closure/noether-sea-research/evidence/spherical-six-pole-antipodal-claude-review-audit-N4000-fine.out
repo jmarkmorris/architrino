@@ -1,0 +1,53 @@
+PID 40601
+{
+ "file": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-fine.json",
+ "mode": "three",
+ "N_window": 4000,
+ "controls_all_pass": true,
+ "control_order": [
+  "(0a) fast node lookup equals the frozen ",
+  "(0b) closed forms (hit, D_t, r, radial) ",
+  "(0c) known: radial sum at release enclos",
+  "(1) continuity of the antipode term at i",
+  "(2) negative: antipode term at the probe",
+  "(4) negative: wrong antipode path map (q",
+  "(3) regression (not independent evidence",
+  "(5) residual-reception bracket: known sy",
+  "(6) sign bracket: known zero of 0.003 - "
+ ],
+ "n_steps": 11,
+ "stop_reason": "plan exhausted (18 steps certified)",
+ "reached_time": [
+  "1.947684593623649597167969",
+  "1.947684709182828044891357"
+ ],
+ "fail": [],
+ "residual_last_proved_positive_end": [
+  18,
+  "1.947684709182828044891357"
+ ],
+ "residual_first_proved_negative_end": null,
+ "attained_reception_certificate": false,
+ "generated_antipodal_history_last_step": null,
+ "lambda_last_positive_end": [
+  16,
+  "1.945684709182828044891357"
+ ],
+ "lambda_first_negative_end": [
+  17,
+  "1.946684709182828044891357"
+ ],
+ "lambda_sign_change_certificate": true
+}
+8 1.9376847091 ok [] res_end ['0.05341804', '0.05341877'] s None two None lam_range positive lam_end positive ['0.000186094', '0.000194793']
+9 1.9386847091 ok [] res_end ['0.05239955', '0.05240027'] s None two None lam_range positive lam_end positive ['0.000163840', '0.000172553']
+10 1.9396847091 ok [] res_end ['0.05138102', '0.05138175'] s None two None lam_range positive lam_end positive ['0.000141574', '0.000150294']
+11 1.9406847091 ok [] res_end ['0.05036247', '0.05036320'] s None two None lam_range positive lam_end positive ['0.000119292', '0.000128022']
+12 1.9416847091 ok [] res_end ['0.04934388', '0.04934462'] s None two None lam_range positive lam_end positive ['0.000096996', '0.000105732']
+13 1.9426847091 ok [] res_end ['0.04832527', '0.04832601'] s None two None lam_range positive lam_end positive ['0.000074683', '0.000083430']
+14 1.9436847091 ok [] res_end ['0.04730663', '0.04730737'] s None two None lam_range positive lam_end positive ['0.000052355', '0.000061112']
+15 1.9446847091 ok [] res_end ['0.04628796', '0.04628870'] s None two None lam_range UNDECIDED lam_end positive ['0.000030014', '0.000038777']
+16 1.9456847091 ok [] res_end ['0.04526926', '0.04527001'] s None two None lam_range UNDECIDED lam_end positive ['0.000007655', '0.000016428']
+17 1.9466847091 ok [] res_end ['0.04425053', '0.04425128'] s None two None lam_range UNDECIDED lam_end negative ['-0.00001471', '-0.00000593']
+18 1.9476847091 ok [] res_end ['0.04323177', '0.04323252'] s None two None lam_range UNDECIDED lam_end negative ['-0.00003710', '-0.00002831']
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-review-audit-N4000-fine.json

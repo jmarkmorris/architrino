@@ -1954,6 +1954,11 @@
       "id": "archie__feedback",
       "name": "Webapp Feedback",
       "path": "content/scenes/archie/feedback.json"
+    },
+    {
+      "id": "surface",
+      "name": "Surface",
+      "path": "content/scenes/archie/surface.json"
     }
   ]
 }

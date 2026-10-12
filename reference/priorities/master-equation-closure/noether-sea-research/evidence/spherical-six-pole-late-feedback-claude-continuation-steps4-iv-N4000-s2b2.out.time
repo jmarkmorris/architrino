@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv.py", line 192, in <module>
+    out["controls"].append({"name": "(1) regression (not independent evidence): the resumed step from the frozen b3 step-20 end state reproduces the frozen step-21 end strings at N = 4000 to 1e-20 and intersects them (identity is not expected: 25-digit restart strings vs the frozen in-memory 30-digit state); intersects at another N", "pass": (bool(inter and close24) if N_window == 4000 else inter), "identical_strings": ident, "intersects": inter, "max_endpoint_abs_diff": mp.nstr(maxdiff, 5), "note": "the frozen step 21 was computed in-memory from the 30-digit step-20 state; the control restarts from the 25-digit printed strings, so agreement is expected only to about 1e-25 (diagnostic -diag-regression.out: a0 and tau0 identical, ap differs at 1e-26)", "end_q": st1.get("end_q_str"), "frozen": s21["end_q_str"], "reconcile_tangent": st1.get("reconcile_tangent_sum_intersects_a0"), "reconcile_radial": st1.get("reconcile_radial_sum_intersects_a_rad_start")})
+                                                                                                                                                                                                                                                                                                                                                              ^^^^^
+NameError: name 'inter' is not defined. Did you mean: 'iter'?
+       14.99 real        14.93 user         0.04 sys
+            35586048  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                3191  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   4  voluntary context switches
+                 839  involuntary context switches
+        262104384305  instructions retired
+         56178972423  cycles elapsed
+            27755000  peak memory footprint

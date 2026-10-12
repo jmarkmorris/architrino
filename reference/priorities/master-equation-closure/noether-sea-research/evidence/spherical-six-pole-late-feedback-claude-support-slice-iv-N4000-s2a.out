@@ -1,0 +1,34 @@
+PID 68901
+[{"name": "(K) regression on the frozen antipodal b3 JSON: lambda_hat ranges and derivative ranges equal dlambda3-iv-v2-b3 to 1e-20; lambda_hat ranges/ends intersect the antipodal support step enclosures (different D_t source)", "pass": true, "n": 10}, {"name": "(W) negative: like polarity flipped moves the release radial sum off -g/4", "release": ["-0.025", "-0.025"], "release_wrong": ["-0.1664213562373095048801689", "-0.1664213562373095048801689"], "pass": false}]
+step 45 t_end 2.31668470 mv 3 beyond False: qddot [0.105648,0.108012]; lambda range [-0.0097792,-0.0089469] negative; end [-0.0096450,-0.0094742] negative; dlambda [-0.029781,-0.027998] negative; tanU/L/A [0.06870,0.03442,0.00331] radU/L/A [-0.08394,0.062725,-0.02511]; cont-int True/True
+step 46 t_end 2.32668470 mv 3 beyond False: qddot [0.105692,0.108079]; lambda range [-0.0100717,-0.0092339] negative; end [-0.0099367,-0.0097643] negative; dlambda [-0.029980,-0.028175] negative; tanU/L/A [0.06886,0.03428,0.00334] radU/L/A [-0.08410,0.062663,-0.02511]; cont-int True/True
+step 47 t_end 2.33668470 mv 3 beyond False: qddot [0.105735,0.108146]; lambda range [-0.0103662,-0.0095228] negative; end [-0.0102304,-0.0100562] negative; dlambda [-0.030180,-0.028354] negative; tanU/L/A [0.06903,0.03414,0.00336] radU/L/A [-0.08425,0.062601,-0.02511]; cont-int True/True
+step 48 t_end 2.34668470 mv 3 beyond False: qddot [0.105778,0.108212]; lambda range [-0.0106625,-0.0098136] negative; end [-0.0105259,-0.0103501] negative; dlambda [-0.030381,-0.028533] negative; tanU/L/A [0.06919,0.03400,0.00339] radU/L/A [-0.08441,0.062539,-0.02511]; cont-int True/True
+step 49 t_end 2.35668470 mv 3 beyond False: qddot [0.105820,0.108278]; lambda range [-0.0109608,-0.0101062] negative; end [-0.0108233,-0.0106459] negative; dlambda [-0.030583,-0.028713] negative; tanU/L/A [0.06935,0.03386,0.00341] radU/L/A [-0.08456,0.062477,-0.02511]; cont-int True/True
+step 50 t_end 2.36668470 mv 3 beyond False: qddot [0.105860,0.108343]; lambda range [-0.0112611,-0.0104008] negative; end [-0.0111227,-0.0109435] negative; dlambda [-0.030786,-0.028894] negative; tanU/L/A [0.06952,0.03372,0.00344] radU/L/A [-0.08472,0.062415,-0.02511]; cont-int True/True
+step 51 t_end 2.37668470 mv 3 beyond False: qddot [0.105900,0.108407]; lambda range [-0.0115632,-0.0106972] negative; end [-0.0114240,-0.0112431] negative; dlambda [-0.030991,-0.029076] negative; tanU/L/A [0.06968,0.03358,0.00346] radU/L/A [-0.08488,0.062353,-0.02511]; cont-int True/True
+step 52 t_end 2.38668470 mv 3 beyond False: qddot [0.105939,0.108470]; lambda range [-0.0118673,-0.0109956] negative; end [-0.0117273,-0.0115447] negative; dlambda [-0.031196,-0.029258] negative; tanU/L/A [0.06984,0.03344,0.00349] radU/L/A [-0.08504,0.062292,-0.02510]; cont-int True/True
+step 53 t_end 2.39668470 mv 3 beyond False: qddot [0.105977,0.108533]; lambda range [-0.0121734,-0.0112959] negative; end [-0.0120325,-0.0118481] negative; dlambda [-0.031403,-0.029442] negative; tanU/L/A [0.07000,0.03330,0.00352] radU/L/A [-0.08520,0.062230,-0.02510]; cont-int True/True
+step 54 t_end 2.40668470 mv 3 beyond False: qddot [0.106014,0.108595]; lambda range [-0.0124815,-0.0115982] negative; end [-0.0123397,-0.0121535] negative; dlambda [-0.031611,-0.029626] negative; tanU/L/A [0.07016,0.03316,0.00354] radU/L/A [-0.08536,0.062169,-0.02510]; cont-int True/True
+step 55 t_end 2.41668470 mv 3 beyond False: qddot [0.106049,0.108655]; lambda range [-0.0127915,-0.0119024] negative; end [-0.0126489,-0.0124609] negative; dlambda [-0.031820,-0.029811] negative; tanU/L/A [0.07032,0.03302,0.00357] radU/L/A [-0.08553,0.062108,-0.02510]; cont-int True/True
+step 56 t_end 2.42668470 mv 3 beyond False: qddot [0.106084,0.108715]; lambda range [-0.0131035,-0.0122086] negative; end [-0.0129600,-0.0127703] negative; dlambda [-0.032030,-0.029997] negative; tanU/L/A [0.07048,0.03288,0.00359] radU/L/A [-0.08569,0.062047,-0.02510]; cont-int True/None
+{"n": 12, "lambda_end_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "lambda_range_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "dlambda_signs": ["negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative", "negative"], "qddot_signs": ["positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive", "positive"], "zero_brackets": [], "all_dlambda_negative": true, "all_qddot_positive": true, "any_beyond_window": false, "reached_time": ["2.426684593623649597167969", "2.426684709182828044891357"], "stop_reason": "step 57 did not close: tau bracket failed at t0 for class unlike"}
+wall 0.11068010330200195
+        0.14 real         0.13 user         0.00 sys
+            23085056  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2414  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  17  involuntary context switches
+          2285747347  instructions retired
+           554184381  cycles elapsed
+            15417824  peak memory footprint
