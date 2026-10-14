@@ -1,0 +1,79 @@
+pid 47363
+controls: self difference zero True ; shifted digit detected True
+{
+ "first_differing_step": 155,
+ "first_step_reading_a_rate_jump_record": 155,
+ "target_steps_reading_rate_jump_records": {
+  "wave17 step 1 (like first reading of s = 0)": [
+   [
+    155,
+    "antipode"
+   ],
+   [
+    156,
+    "antipode"
+   ]
+  ],
+  "antipodal-b3 step 13 (antipode first reading of s = 0)": [
+   [
+    185,
+    "like"
+   ],
+   [
+    186,
+    "like"
+   ],
+   [
+    204,
+    "antipode"
+   ],
+   [
+    205,
+    "antipode"
+   ]
+  ]
+ },
+ "steps_identical_before_first_read": true,
+ "max_end_state_abs_diff_by_slice": {
+  "155-174": "1.952728010989100473E-7",
+  "175-194": "6.685623027439559904E-7",
+  "195-214": "9.540807065187996142E-7"
+ },
+ "new_end_contains_old_end_at_every_step": true,
+ "same_iterations_all": true,
+ "same_lambda_signs_all": true,
+ "same_unlike_position_vs_boundary_all": true,
+ "same_families_all": true,
+ "same_D_sides_all": true,
+ "last_step_widths_old_new": {
+  "q": [
+   "0.0011140695",
+   "0.0011145205"
+  ],
+  "qdot": [
+   "0.0018785287",
+   "0.0018801531"
+  ]
+ },
+ "min_margin_to_guaranteed_coverage_end_new_chain": "0.974844374696351876774003",
+ "new_chain_controls": [
+  [
+   "s1w",
+   true
+  ],
+  [
+   "s2w",
+   true
+  ],
+  [
+   "s3w",
+   true
+  ]
+ ]
+}
+step 155 reads {'antipode': ['wave17 step 1 (like first reading of s = 0)']} diff 1.9699192643
+step 156 reads {'antipode': ['wave17 step 1 (like first reading of s = 0)']} diff 1.9257944579
+step 185 reads {'like': ['antipodal-b3 step 13 (antipode first reading of s = 0)']} diff 1.9975071547
+step 186 reads {'like': ['antipodal-b3 step 13 (antipode first reading of s = 0)']} diff 6.6063481355
+step 204 reads {'antipode': ['antipodal-b3 step 13 (antipode first reading of s = 0)']} diff 6.8936648614
+step 205 reads {'antipode': ['antipodal-b3 step 13 (antipode first reading of s = 0)']} diff 9.2552737178

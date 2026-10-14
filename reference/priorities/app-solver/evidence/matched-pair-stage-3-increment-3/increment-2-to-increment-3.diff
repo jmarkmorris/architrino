@@ -1,0 +1,647 @@
+diff -ruN stage3h-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp stage3i-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp
+--- stage3h-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp	2026-10-12 15:45:28
++++ stage3i-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp	2026-10-12 16:18:08
+@@ -8,10 +8,17 @@
+ // single-time snapshot, predictor, corrector, step-doubling comparison,
+ // root-pressure, cost-feedback or growth heuristic of the ordinary
+ // controller, and the ordinary evolution entry points do not call it; they
+-// continue to refuse every grouped policy. It uses one thread and no
+-// persistence. The default behaviour of every existing entry point is
+-// unchanged.
++// continue to refuse every grouped policy. It uses no persistence. The
++// default behaviour of every existing entry point is unchanged.
+ //
++// Workers. The request's worker count is passed to the step producer, which
++// evaluates the receivers of a step on that many threads and merges their
++// results in a fixed order. It is execution metadata: it is recorded in the
++// certificate, it is not a bound control of the continuation, and a run may
++// be resumed with a different count. Every other field of every certificate
++// is the same for every count. No worker outlives a step, so cancellation
++// is still observed only between steps, with nothing running.
++//
+ // Groups. By default no matched pair is used. A request may select the
+ // whole-step pair policy and declare pairs; the producer then encloses a
+ // declared pair by one whole-step interval where its conditions hold and
+@@ -187,6 +194,8 @@
+   // pairwise disjoint.
+   std::string pair_policy = "disabled";
+   std::vector<ValidatedFarStepGroup> groups = {};
++  // Threads used inside one step, at least one. Execution metadata only.
++  std::size_t worker_count = 1;
+   std::function<bool()> cancellation_requested = {};
+   // Invoked after an accepted step is published, with its index and the
+   // accepted time token.
+@@ -214,6 +223,8 @@
+ struct ValidatedEvolutionCertificate {
+   std::string schema;
+   std::string policy;
++  // Execution metadata: the worker count the run was made with.
++  std::size_t worker_count = 1;
+   // The run in the existing certificate shape. Its histories are the
+   // accepted boundary; its steps are every attempt, in order.
+   NativeCoupledEvolutionCertificate run;
+diff -ruN stage3h-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp stage3i-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp
+--- stage3h-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp	2026-10-12 15:45:28
++++ stage3i-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp	2026-10-12 16:18:08
+@@ -36,6 +36,17 @@
+ // path never receives from itself; that exclusion follows from H1 and is
+ // counted separately from the N (N - 1) receiver-source relationships.
+ //
++// Workers. A producer may be given a worker count. Within one enclosure
++// iteration the work for each receiver is independent, and with more than
++// one worker the receivers are evaluated on several threads. Each receiver
++// writes only its own record, its acceleration box is summed inside its own
++// task in the serial order, and the records are merged on the calling thread
++// in receiver order, so every result is the same for every worker count and
++// schedule. The first refusal or exception in receiver order decides the
++// step, whichever kind it is. All workers are joined before step() returns
++// or throws. The worker count is execution metadata, not a mathematical
++// control.
++//
+ // Evidence. A certified step issues a sealed ValidatedPopulationEvidence. A
+ // population with declared radii is admitted only with such evidence whose
+ // content chains equal those recomputed from the histories supplied.
+@@ -185,6 +196,9 @@
+   std::string status = "declined";
+   std::string code;
+   std::string reason;
++  // Execution metadata: the producer's worker count. No other field of the
++  // certificate depends on it.
++  std::size_t worker_count = 1;
+   // Which origin a refusal had, where one code has more than one. For
+   // VFS-H1-01: "retained_past_speed" or "step_velocity_box". Empty otherwise.
+   std::string cause;
+@@ -212,6 +226,10 @@
+ 
+ class ValidatedFarStepProducer {
+  public:
++  // worker_count must be at least one. It changes how a step is executed
++  // and nothing about what the step returns.
++  explicit ValidatedFarStepProducer(std::size_t worker_count = 1);
++
+   // `inherited` is the evidence issued by the step that published the
+   // supplied histories. It is required when any history declares a radius.
+   ValidatedFarStepCertificate step(
+@@ -252,6 +270,7 @@
+   // Keyed by every token that determines the value; nothing is read from or
+   // written to caller data.
+   std::map<std::string, double> speed_cache_;
++  std::size_t worker_count_ = 1;
+ };
+ 
+ }  // namespace architrino::eom
+diff -ruN stage3h-tree/src/eom/include/architrino/eom/ValidatedWorkers.hpp stage3i-tree/src/eom/include/architrino/eom/ValidatedWorkers.hpp
+--- stage3h-tree/src/eom/include/architrino/eom/ValidatedWorkers.hpp	1969-12-31 19:00:00
++++ stage3i-tree/src/eom/include/architrino/eom/ValidatedWorkers.hpp	2026-10-12 16:18:02
+@@ -0,0 +1,101 @@
++// Deterministic execution of indexed tasks for the validated far step.
++//
++// validated_run_indexed runs task(i) for i in [0, count) and returns the
++// lowest index whose task ended terminally, or count if none did. A task ends
++// terminally by returning true or by throwing. A thrown exception is caught
++// on the thread that ran the task and stored in errors[i]; it never crosses
++// a thread. The caller decides what the terminal index means: it inspects
++// errors[index] and its own per-index records. Because the lowest terminal
++// index is returned whatever its kind, an exception at a higher index never
++// displaces a refusal at a lower one.
++//
++// With worker_count 1 the tasks run in index order on the calling thread and
++// stop at the first terminal one, exactly as a plain loop would. With more,
++// up to worker_count - 1 helper threads share the indices with the calling
++// thread and every task runs. Every helper that was started is joined before
++// this function returns or throws. If a helper cannot be started, the work is
++// completed by the calling thread and the helpers already running, and the
++// result is the same.
++//
++// Each task must write only to state owned by its own index and may read
++// shared state that no task writes. Under that rule the returned index, the
++// stored errors and every per-index record are independent of worker_count
++// and of scheduling, except that with worker_count 1 the tasks after the
++// first terminal one are not run at all.
++//
++// before_launch, if set, is called on the calling thread before each helper
++// is started, with that helper's ordinal. It exists so that a test can make
++// a launch fail.
++#pragma once
++
++#include <algorithm>
++#include <atomic>
++#include <cstddef>
++#include <exception>
++#include <functional>
++#include <thread>
++#include <vector>
++
++namespace architrino::eom {
++
++inline std::size_t validated_run_indexed(
++    std::size_t count,
++    std::size_t worker_count,
++    const std::function<bool(std::size_t)>& task,
++    std::vector<std::exception_ptr>& errors,
++    const std::function<void(std::size_t)>& before_launch = {}) {
++  errors.assign(count, nullptr);
++  std::vector<char> terminal(count, 0);
++  const auto run = [&](std::size_t index) {
++    try {
++      terminal[index] = task(index) ? 1 : 0;
++    } catch (...) {
++      errors[index] = std::current_exception();
++      terminal[index] = 1;
++    }
++  };
++  if (worker_count <= 1U || count <= 1U) {
++    for (std::size_t index = 0; index < count; ++index) {
++      run(index);
++      if (terminal[index] != 0) return index;
++    }
++    return count;
++  }
++  std::atomic<std::size_t> next{0U};
++  const auto drain = [&] {
++    for (;;) {
++      const std::size_t index = next.fetch_add(1U);
++      if (index >= count) return;
++      run(index);
++    }
++  };
++  std::vector<std::thread> helpers;
++  // Joins whatever was started, on every way out of this function.
++  struct Joiner {
++    std::vector<std::thread>& threads;
++    ~Joiner() {
++      for (auto& thread : threads) {
++        if (thread.joinable()) thread.join();
++      }
++    }
++  } joiner{helpers};
++  const std::size_t helper_count = std::min(worker_count, count) - 1U;
++  helpers.reserve(helper_count);
++  try {
++    for (std::size_t ordinal = 0; ordinal < helper_count; ++ordinal) {
++      if (before_launch) before_launch(ordinal);
++      helpers.emplace_back(drain);
++    }
++  } catch (...) {
++    // A helper could not be started. The calling thread and the helpers
++    // already running complete the work below.
++  }
++  drain();
++  for (auto& helper : helpers) helper.join();
++  for (std::size_t index = 0; index < count; ++index) {
++    if (terminal[index] != 0) return index;
++  }
++  return count;
++}
++
++}  // namespace architrino::eom
+diff -ruN stage3h-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp stage3i-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp
+--- stage3h-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 15:49:38
++++ stage3i-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 16:19:02
+@@ -5,11 +5,13 @@
+ #include "architrino/eom/Decimal.hpp"
+ #include "architrino/eom/EquationPlan.hpp"
+ #include "architrino/eom/MatchedPairEnclosure.hpp"
++#include "architrino/eom/ValidatedWorkers.hpp"
+ 
+ #include <cmath>
+ #include <iostream>
+ #include <limits>
+ #include <sstream>
++#include <system_error>
+ #include <type_traits>
+ 
+ namespace eom = architrino::eom;
+@@ -40,6 +42,9 @@
+ const std::string kFine = "0.00390625";     // 1/256
+ const std::string kKappa = "0.001";
+ const Budgets kBudgets{1e-8, 1e-8};
++// Worker count for every request and producer of this run: the optional
++// second program argument. No output row depends on it.
++std::size_t g_workers = 1;
+ 
+ std::string num(double value) { return vfs::token(value); }
+ 
+@@ -443,6 +448,7 @@
+   request.minimum_step = minimum;
+   request.coupling = kappa;
+   request.increment_budget = budgets;
++  request.worker_count = g_workers;
+   return request;
+ }
+ 
+@@ -840,7 +846,7 @@
+     refuses_request("N-total-budget-both-infinity", both);
+   }
+   // The public producer applies the same rule to both budgets.
+-  eom::ValidatedFarStepProducer producer;
++  eom::ValidatedFarStepProducer producer(g_workers);
+   const auto pair = static_pair();
+   emit("K-producer-finite-budgets", "1",
+        producer.step(pair, nullptr, "0", kStep, kKappa, kBudgets,
+@@ -958,7 +964,7 @@
+     run_case("N-foreign-evidence-exact-prefix-zero-length", r);
+   }
+   // The public producer refuses the same object on the exact prefix.
+-  eom::ValidatedFarStepProducer producer;
++  eom::ValidatedFarStepProducer producer(g_workers);
+   emit("N-producer-stale-evidence-exact-prefix", "1",
+        producer.step(static_pair(), grown.run.evidence, "0", kStep, kKappa,
+                      kBudgets));
+@@ -1036,7 +1042,7 @@
+   run_case("N-ledger-budget-below-declared-growth",
+            ledger_request("l3", Budgets{5e-15, 1e-25}));
+   // The public producer applies the same charge.
+-  eom::ValidatedFarStepProducer producer;
++  eom::ValidatedFarStepProducer producer(g_workers);
+   const auto pair = static_pair();
+   emit("K-producer-ledger-large-budget", "1",
+        producer.step(pair, nullptr, "0", "0.125", "0", Budgets{1e-6, 1e-6}));
+@@ -1232,7 +1238,7 @@
+     run_case("N-continuation-groups-added", r);
+   }
+   // The public producer with and without the declaration.
+-  eom::ValidatedFarStepProducer producer;
++  eom::ValidatedFarStepProducer producer(g_workers);
+   emit("G-producer-ungrouped", "1",
+        producer.step(three_static(), nullptr, "0", kStep, kKappa, roomy));
+   emit("G-producer-grouped", "1",
+@@ -1242,6 +1248,138 @@
+   return 0;
+ }
+ 
++// ------------------------------------------------------------ increment 3
++// Eight static paths on the z axis at 0, 2, ..., 14 with alternating
++// charges, and three disjoint opposite pairs among them.
++std::vector<Path> line_of_eight() {
++  std::vector<Path> paths;
++  for (int i = 0; i < 8; ++i) {
++    paths.push_back(static_path("p" + std::to_string(i),
++                                i % 2 == 0 ? "1" : "-1",
++                                std::to_string(2 * i)));
++  }
++  return paths;
++}
++
++// One synthetic use of the indexed runner: eight tasks, of which one index
++// refuses and one throws, with an optional failed helper launch. Reports
++// the terminal index, whether it holds an exception, and how many tasks
++// ran, each at most once.
++std::string runner_probe(std::size_t workers, int refuse_at, int throw_at,
++                         int fail_launch_at) {
++  std::vector<int> ran(8, 0);
++  std::vector<std::exception_ptr> errors;
++  const std::size_t terminal = eom::validated_run_indexed(
++      8, workers,
++      [&](std::size_t index) {
++        ++ran[index];
++        if (static_cast<int>(index) == throw_at) {
++          throw std::runtime_error("task " + std::to_string(index));
++        }
++        return static_cast<int>(index) == refuse_at;
++      },
++      errors,
++      [&](std::size_t ordinal) {
++        if (static_cast<int>(ordinal) == fail_launch_at) {
++          throw std::system_error(
++              std::make_error_code(std::errc::resource_unavailable_try_again));
++        }
++      });
++  int total = 0;
++  bool once = true;
++  for (const int n : ran) {
++    total += n;
++    once = once && n <= 1;
++  }
++  std::string kind = "none";
++  if (terminal < 8U) {
++    kind = errors[terminal] != nullptr ? "exception" : "refusal";
++  }
++  return "terminal=" + std::to_string(terminal) + " kind=" + kind +
++      " ran=" + std::to_string(total) + " once=" + (once ? "true" : "false");
++}
++
++int worker_cases() {
++  // Known first: the indexed runner on synthetic tasks, at fixed worker
++  // counts that do not depend on this run's own count.
++  for (const std::size_t workers : {1U, 2U, 3U, 4U, 8U}) {
++    const std::string w = std::to_string(workers);
++    note("R-none-w" + w, runner_probe(workers, -1, -1, -1), "");
++    note("R-refusal-2-exception-5-w" + w, runner_probe(workers, 2, 5, -1), "");
++    note("R-exception-2-refusal-5-w" + w, runner_probe(workers, 5, 2, -1), "");
++    note("R-refusal-0-w" + w, runner_probe(workers, 0, -1, -1), "");
++    note("R-exception-7-w" + w, runner_probe(workers, -1, 7, -1), "");
++    note("R-launch-fails-at-0-w" + w, runner_probe(workers, 2, 5, 0), "");
++    note("R-launch-fails-at-1-w" + w, runner_probe(workers, 2, 5, 1), "");
++  }
++  try {
++    eom::ValidatedFarStepProducer zero(0);
++    note("N-producer-zero-workers", "NOT-REFUSED", "");
++  } catch (const std::invalid_argument& error) {
++    note("N-producer-zero-workers", "refused", error.what());
++  }
++  refuses_request("N-request-zero-workers", [] {
++    Request r = make("w", static_pair(), "0", kStep, kStep, kStep);
++    r.worker_count = 0;
++    return r;
++  }());
++
++  // Eight paths, without and with three disjoint declared pairs.
++  const Budgets wide{1e-3, 1e-2};
++  const std::vector<Group> pairs{{"p1", "p2"}, {"p3", "p4"}, {"p5", "p6"}};
++  const Request eight = make("w0", line_of_eight(), "0", "0.03125", kStep,
++                             kStep, kKappa, wide);
++  run_case("W-eight-ungrouped", eight);
++  run_case("W-eight-grouped", grouped(eight, pairs));
++
++  // Refusals at chosen receivers. A path exactly 20 from another sits at
++  // the edge of the retained past, so each of the two is undecided for the
++  // other and the step declines on the lower sign.
++  {
++    // First and last receivers refuse; the first decides.
++    std::vector<Path> paths = line_of_eight();
++    paths[7] = static_path("p7", "-1", "20");
++    run_case("W-refusal-first-and-last",
++             make("w1", paths, "0", kStep, kStep, kStep, kKappa, wide));
++  }
++  {
++    // Receivers 2 and 5 refuse; the middle one decides.
++    std::vector<Path> paths{
++        static_path("p0", "1", "2"),  static_path("p1", "-1", "4"),
++        static_path("p2", "1", "0"),  static_path("p3", "-1", "6"),
++        static_path("p4", "1", "8"),  static_path("p5", "-1", "20"),
++        static_path("p6", "1", "10"), static_path("p7", "-1", "12")};
++    run_case("W-refusal-middle",
++             make("w2", paths, "0", kStep, kStep, kStep, kKappa, wide));
++  }
++  {
++    // Only the last receiver refuses. It sits just inside the edge of the
++    // first path's retained past and is pulled outward by a near neighbour
++    // beyond that edge, so its own step box crosses the edge while the
++    // first path's box does not.
++    std::vector<Path> paths{
++        static_path("p0", "1", "0"),   static_path("p1", "-1", "2"),
++        static_path("p2", "1", "4"),   static_path("p3", "-1", "6"),
++        static_path("p4", "1", "8"),   static_path("p5", "-1", "10"),
++        static_path("p6", "-1", "20.099999"),
++        static_path("p7", "1", "19.999999")};
++    run_case("W-refusal-last-only",
++             make("w3", paths, "0", kStep, kStep, kStep, kKappa, wide));
++  }
++
++  // Cancellation at an accepted boundary, then resumption with a different
++  // worker count.
++  const Request whole = grouped(eight, pairs);
++  const Observed cut = cancelled_after("W-eight-grouped-cancelled-after-two",
++                                       whole, 2);
++  {
++    Request r = resumed_from("w-resumed", cut, whole);
++    r.worker_count = g_workers == 1U ? 4U : 1U;
++    run_case("W-eight-grouped-resumed-other-worker-count", r);
++  }
++  return 0;
++}
++
+ int aliasing_cases() {
+   // Resolved from the start.
+   run_case("A-control-fine",
+@@ -1256,6 +1394,16 @@
+ 
+ int main(int argc, char** argv) {
+   const std::string command = argc > 1 ? argv[1] : "";
++  if (argc > 2) {
++    const std::string count = argv[2];
++    if (count.empty() ||
++        count.find_first_not_of("0123456789") != std::string::npos ||
++        count.size() > 3U || std::stoul(count) == 0U) {
++      std::cerr << "worker count must be a positive integer\n";
++      return 2;
++    }
++    g_workers = std::stoul(count);
++  }
+   try {
+     if (command == "known") return known_cases();
+     if (command == "controller") return controller_cases();
+@@ -1268,6 +1416,7 @@
+     if (command == "ledger") return ledger_cases();
+     if (command == "admission-b") return admission_b_cases();
+     if (command == "grouping") return grouping_cases();
++    if (command == "workers") return worker_cases();
+   } catch (const std::exception& error) {
+     std::cout << "{\"case\":\"FATAL\",\"exception\":\"" << error.what()
+               << "\"}\n";
+@@ -1275,6 +1424,6 @@
+   }
+   std::cerr << "usage: <known|controller|refusals|cancellation|aliasing|"
+                "continuation|budgets|admission|ledger|admission-b|"
+-               "grouping>\n";
++               "grouping|workers> [worker count]\n";
+   return 2;
+ }
+diff -ruN stage3h-tree/src/eom/src/ValidatedEvolution.cpp stage3i-tree/src/eom/src/ValidatedEvolution.cpp
+--- stage3h-tree/src/eom/src/ValidatedEvolution.cpp	2026-10-12 15:45:28
++++ stage3i-tree/src/eom/src/ValidatedEvolution.cpp	2026-10-12 16:18:08
+@@ -306,6 +306,11 @@
+         "validated evolution request has an empty population, reversed "
+         "times, a nonpositive step or budget, or no attempt allowance");
+   }
++  if (request.worker_count == 0U) {
++    throw EquationAdmissionError(
++        "unsupported_execution_policy",
++        "validated evolution requires a worker count of at least one");
++  }
+   if (request.total_budget.has_value() &&
+       !finite_positive(*request.total_budget)) {
+     throw EquationAdmissionError(
+@@ -313,10 +318,11 @@
+         "a declared total budget must be finite and positive in both fields");
+   }
+ 
+-  ValidatedFarStepProducer producer;
++  ValidatedFarStepProducer producer(request.worker_count);
+   ValidatedEvolutionCertificate out;
+   out.schema = kRunSchema;
+   out.policy = request.policy;
++  out.worker_count = request.worker_count;
+ 
+   // Admission of the initial state, before any early return can describe an
+   // accepted boundary. A refusal reports no accepted time, no evidence and
+diff -ruN stage3h-tree/src/eom/src/ValidatedFarStep.cpp stage3i-tree/src/eom/src/ValidatedFarStep.cpp
+--- stage3h-tree/src/eom/src/ValidatedFarStep.cpp	2026-10-12 15:45:28
++++ stage3i-tree/src/eom/src/ValidatedFarStep.cpp	2026-10-12 16:18:41
+@@ -2,6 +2,7 @@
+ 
+ #include "architrino/eom/Decimal.hpp"
+ #include "architrino/eom/MatchedPairEnclosure.hpp"
++#include "architrino/eom/ValidatedWorkers.hpp"
+ 
+ #include <gmp.h>
+ 
+@@ -130,6 +131,24 @@
+   return result;
+ }
+ 
++// What one receiver contributes to one enclosure iteration. Written only by
++// that receiver's task.
++struct ReceiverRecord {
++  std::vector<ValidatedFarStepPairInfo> pairs;
++  std::vector<ValidatedFarStepGroupInfo> groups;
++  IntervalVector acceleration{Interval::point(0.0), Interval::point(0.0),
++                              Interval::point(0.0)};
++  // Set when the receiver refuses the step.
++  std::string code;
++  std::string reason;
++};
++
++bool refuse(ReceiverRecord& record, std::string code, std::string reason) {
++  record.code = std::move(code);
++  record.reason = std::move(reason);
++  return true;
++}
++
+ // A binary64 value not above the declared radius `token`, given `value`,
+ // the nearest binary64 value to it. Equal to `value` unless `value` was
+ // rounded up.
+@@ -284,6 +303,13 @@
+   return admission_reason(paths, inherited, start, coupling, groups, nullptr);
+ }
+ 
++ValidatedFarStepProducer::ValidatedFarStepProducer(std::size_t worker_count)
++    : worker_count_(worker_count) {
++  if (worker_count == 0U) {
++    throw std::invalid_argument("worker count must be at least one");
++  }
++}
++
+ double ValidatedFarStepProducer::segment_speed_upper(
+     const eom::CubicHistorySegment& segment) {
+   std::string key = segment.t_start_token() + "|" + segment.t_end_token();
+@@ -330,6 +356,7 @@
+     std::size_t max_iterations,
+     const std::vector<ValidatedFarStepGroup>& groups) {
+   ValidatedFarStepCertificate certificate;
++  certificate.worker_count = worker_count_;
+   certificate.start = start;
+   certificate.step = step_token;
+   certificate.coupling = coupling;
+@@ -447,7 +474,15 @@
+       while (paths[index].id != id) ++index;
+       return index;
+     };
+-    for (std::size_t a = 0; a < paths.size(); ++a) {
++    // The work for one receiver. It reads the step boxes, histories,
++    // charges, coupling and declared groups, none of which changes while
++    // receivers are being evaluated, and writes only that receiver's record.
++    // The record's acceleration box is summed here in a fixed order:
++    // individual sources in path order, then group intervals in declared
++    // order. Returns true when the receiver refuses the step.
++    std::vector<ReceiverRecord> records(paths.size());
++    const auto evaluate = [&](std::size_t a) -> bool {
++      ReceiverRecord& record = records[a];
+       // Declared groups for this receiver. A group replaces its two members'
+       // individual boxes only when the receiver is neither member, the
+       // charges are exact opposites, both members are uniformly present, and
+@@ -519,7 +554,7 @@
+             }
+           }
+         }
+-        certificate.groups.push_back(std::move(g));
++        record.groups.push_back(std::move(g));
+       }
+       for (std::size_t b = 0; b < paths.size(); ++b) {
+         if (a == b) continue;
+@@ -533,20 +568,19 @@
+         const double latest = (T + h - S_min).upper();
+         if (start_distance.lower() > latest) {
+           info.state = "absent";
+-          certificate.pairs.push_back(info);
++          record.pairs.push_back(info);
+           continue;
+         }
+         if (!(start_distance.upper() < earliest)) {
+           info.state = "VFS-H3-01";
+-          certificate.pairs.push_back(info);
+-          return decline(
+-              certificate, "VFS-H3-01",
++          record.pairs.push_back(info);
++          return refuse(record, "VFS-H3-01",
+               "lower sign is neither uniformly present nor absent");
+         }
+         if (consumed[b]) {
+           // Present, and enclosed with its partner by one group interval.
+           info.state = "grouped";
+-          certificate.pairs.push_back(info);
++          record.pairs.push_back(info);
+           continue;
+         }
+         double lo = s_min;
+@@ -559,7 +593,7 @@
+           const double new_hi =
+               std::min(hi, (T + h - Interval::point(r.lower())).upper());
+           if (new_lo > new_hi) {
+-            return decline(certificate, "VFS-H4-01", "empty root window");
++            return refuse(record, "VFS-H4-01", "empty root window");
+           }
+           if (new_lo == lo && new_hi == hi) break;
+           lo = new_lo;
+@@ -575,8 +609,8 @@
+         info.distance_upper = r.upper();
+         if (!(r.lower() > 0.0)) {
+           info.state = "VFS-H4-01";
+-          certificate.pairs.push_back(info);
+-          return decline(certificate, "VFS-H4-01",
++          record.pairs.push_back(info);
++          return refuse(record, "VFS-H4-01",
+                          "distance floor is not positive");
+         }
+         IntervalVector n = eom::divide(d, r);
+@@ -592,20 +626,43 @@
+         info.factor_upper = D.upper();
+         if (!(D.lower() > 0.0)) {
+           info.state = "VFS-H4-01";
+-          certificate.pairs.push_back(info);
+-          return decline(certificate, "VFS-H4-01",
++          record.pairs.push_back(info);
++          return refuse(record, "VFS-H4-01",
+                          "transmitter factor floor is not positive");
+         }
+         info.state = "present";
+-        certificate.pairs.push_back(info);
++        record.pairs.push_back(info);
+         const Interval weight =
+             kappa * charges[a] * charges[b] / (eom::interval_square(r) * D);
+-        accelerations[a] = eom::add(accelerations[a], eom::scale(weight, n));
++        record.acceleration =
++            eom::add(record.acceleration, eom::scale(weight, n));
+       }
+       for (const Interval& component : group_boxes) {
+-        accelerations[a] = eom::add(
+-            accelerations[a], IntervalVector{component, component, component});
++        record.acceleration = eom::add(
++            record.acceleration, IntervalVector{component, component, component});
+       }
++      return false;
++    };
++    std::vector<std::exception_ptr> errors;
++    const std::size_t terminal = eom::validated_run_indexed(
++        paths.size(), worker_count_, evaluate, errors);
++    // Merge on the calling thread, in receiver order. A step that ends at
++    // receiver `terminal` holds the complete entries of every lower
++    // receiver and that receiver's entries up to its refusal, as a plain
++    // loop over receivers would. Records of higher receivers are dropped.
++    for (std::size_t a = 0; a < paths.size() && a <= terminal; ++a) {
++      for (auto& group : records[a].groups) {
++        certificate.groups.push_back(std::move(group));
++      }
++      for (auto& pair : records[a].pairs) {
++        certificate.pairs.push_back(std::move(pair));
++      }
++      accelerations[a] = records[a].acceleration;
++    }
++    if (terminal < paths.size()) {
++      if (errors[terminal] != nullptr) std::rethrow_exception(errors[terminal]);
++      return decline(certificate, records[terminal].code,
++                     records[terminal].reason);
+     }
+     // Accounting. Self relationships are excluded by H1, not counted as
+     // contributions; every other ordered relationship is in exactly one

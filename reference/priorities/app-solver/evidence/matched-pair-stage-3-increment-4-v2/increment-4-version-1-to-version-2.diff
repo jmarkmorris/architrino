@@ -1,0 +1,204 @@
+diff -ruN stage3j-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp stage3k-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp
+--- stage3j-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp	2026-10-12 16:56:01
++++ stage3k-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp	2026-10-12 17:09:26
+@@ -114,13 +114,18 @@
+  public:
+   // Opens a record at the start of a run. Throws std::invalid_argument
+   // unless the request is an origin: no continuation, no evidence, histories
+-  // with zero radii and no analytic carrier, ending at its start time.
++  // with zero radii and no analytic carrier, ending at its start time, and
++  // admitted by the driver itself. Admission is a zero-length call of the
++  // real entry point, which applies its whole request and population domain
++  // and takes no step; this unit keeps no admission rules of its own.
+   [[nodiscard]] static ValidatedRunRecord open(
+       const ValidatedEvolutionRequest& origin);
+ 
+   // Appends the leg that `request` asked for and `certificate` returned.
+   // Returns an empty string, or the reason for refusing; a refused leg
+-  // leaves the record unchanged. Only a record opened or restored in this
++  // leaves the record unchanged. The request must be the continuation of
++  // the record's last boundary: its controls, start, continuation, evidence
++  // and its whole ordered population, identifier, charge and chain. Only a record opened or restored in this
+   // process can be extended, because only it holds the continuation of its
+   // last boundary; a record merely read from bytes cannot.
+   [[nodiscard]] std::string append(
+@@ -222,8 +227,9 @@
+     const std::string& bytes, std::size_t worker_count = 1);
+ 
+ // Reads a record without replaying it. The result is plain data: it holds
+-// no evidence and no continuation, and its step log and final state are
+-// claims.
++// no evidence and no continuation, its step log and final state are claims,
++// and its origin and controls are well formed but have not been admitted by
++// the driver. Only a restore admits them.
+ struct ValidatedRunRecordClaims {
+   // read | refused
+   std::string status = "refused";
+diff -ruN stage3j-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp stage3k-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp
+--- stage3j-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 16:54:49
++++ stage3k-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 17:09:26
+@@ -10,6 +10,7 @@
+ 
+ #include <cmath>
+ #include <filesystem>
++#include <functional>
+ #include <iostream>
+ #include <limits>
+ #include <sstream>
+@@ -1945,6 +1946,80 @@
+     note("N-open-not-an-origin", "NOT-REFUSED", "");
+   } catch (const std::invalid_argument& error) {
+     note("N-open-not-an-origin", "refused", error.what());
++  }
++
++  // ---- I4-R1: a record with no leg. Known first: a genuine exact origin
++  // restores as itself, with no evidence and no continuation. Then single
++  // resealed changes that the driver's admission refuses.
++  {
++    const Record empty = Record::open(origin);
++    const std::string zero = empty.serialize();
++    save_record("zero-leg", zero);
++    emit_restore("K-zero-leg-replay-record-only",
++                 eom::replay_validated_run_record(zero, g_workers));
++    emit_restore("K-zero-leg-restore-expected-record",
++                 eom::restore_validated_run(
++                     zero, by_record(eom::validated_run_record_identity(zero)),
++                     g_workers));
++    const auto unadmitted = [&](const std::string& label,
++                                const std::string& from,
++                                const std::string& to) {
++      emit_restore("N-zero-leg-" + label + "/record-only",
++                   eom::replay_validated_run_record(
++                       eom::validated_run_record_reseal(
++                           replaced(zero, from, to)), g_workers));
++    };
++    unadmitted("minimum-step-zero", "\"minimum_step\":\"0.0078125\"",
++               "\"minimum_step\":\"0\"");
++    unadmitted("no-attempt-allowance", "\"max_attempts_per_step\":64",
++               "\"max_attempts_per_step\":0");
++    unadmitted("charge-not-a-number", "\"id\":\"receiver\",\"charge\":\"1\"",
++               "\"id\":\"receiver\",\"charge\":\"not-a-number\"");
++    unadmitted("coupling-beyond-binary64", "\"coupling\":\"0.001\"",
++               "\"coupling\":\"1e400\"");
++    unadmitted("duplicate-identifier", "\"id\":\"plus\"",
++               "\"id\":\"receiver\"");
++    unadmitted("initial-below-minimum", "\"initial_step\":\"0.0078125\"",
++               "\"initial_step\":\"0.00390625\"");
++  }
++  // Opening a record applies the same admission.
++  for (const auto& [label, change] :
++       std::vector<std::pair<std::string, std::function<void(Request&)>>>{
++           {"minimum-step-zero", [](Request& r) { r.minimum_step = "0"; }},
++           {"no-attempt-allowance",
++            [](Request& r) { r.max_attempts_per_step = 0; }},
++           {"charge-not-a-number",
++            [](Request& r) { r.paths[0].charge = "not-a-number"; }},
++           {"coupling-beyond-binary64",
++            [](Request& r) { r.coupling = "1e400"; }},
++           {"duplicate-identifier",
++            [](Request& r) { r.paths[1].id = r.paths[0].id; }}}) {
++    Request changed = origin;
++    change(changed);
++    try {
++      (void)Record::open(changed);
++      note("N-open-" + label, "NOT-REFUSED", "");
++    } catch (const std::invalid_argument& error) {
++      note("N-open-" + label, "refused", error.what());
++    }
++  }
++
++  // ---- I4-R2: the request passed to append must be the record's own
++  // continuation in its whole population and its evidence.
++  {
++    Request changed = origin;
++    changed.paths[0].charge = "2";
++    append_outcome("N-append-request-charge-changed", changed, first.run);
++    changed = origin;
++    changed.paths[0].id = "someone-else";
++    append_outcome("N-append-request-identifier-changed", changed, first.run);
++    changed = origin;
++    changed.evidence = first.run.evidence;
++    append_outcome("N-append-request-given-later-evidence", changed,
++                   first.run);
++    changed = origin;
++    changed.field_speed = "2";
++    append_outcome("N-append-request-field-speed-changed", changed, first.run);
+   }
+ 
+   // ---- Reading without replay: claims only.
+diff -ruN stage3j-tree/src/eom/src/ValidatedRunRecord.cpp stage3k-tree/src/eom/src/ValidatedRunRecord.cpp
+--- stage3j-tree/src/eom/src/ValidatedRunRecord.cpp	2026-10-12 16:56:01
++++ stage3k-tree/src/eom/src/ValidatedRunRecord.cpp	2026-10-12 17:09:26
+@@ -140,6 +140,33 @@
+   return c;
+ }
+ 
++// Admission of an origin by the driver itself: a zero-length call of the
++// real entry point, which applies its whole request and population domain
++// and takes no step. Empty when admitted; otherwise the reason. This is the
++// only admission this unit uses, so that a record's origin and controls are
++// admitted by exactly the rules that would govern its first leg.
++std::string origin_admission_refusal(const ValidatedEvolutionRequest& origin) {
++  ValidatedEvolutionRequest probe = origin;
++  probe.end_time = origin.start_time;
++  probe.cancellation_requested = {};
++  probe.accepted_step_callback = {};
++  try {
++    const ValidatedEvolutionCertificate certificate =
++        evolve_validated_far_step_histories(probe);
++    if (certificate.continuation == nullptr) {
++      return certificate.run.halt_code + ": " + certificate.halt_reason;
++    }
++    if (certificate.run.status != "completed" ||
++        certificate.run.accepted_step_count != 0U ||
++        certificate.evidence != nullptr) {
++      return "the driver did not admit the origin as a zero-length run";
++    }
++  } catch (const std::exception& error) {
++    return error.what();
++  }
++  return {};
++}
++
+ std::vector<std::string> chains_of(
+     const std::vector<ValidatedFarStepPath>& paths) {
+   std::vector<std::string> chains;
+@@ -849,6 +876,13 @@
+           "an origin history does not end at the origin time");
+     }
+   }
++  {
++    const std::string refusal = origin_admission_refusal(origin);
++    if (!refusal.empty()) {
++      throw std::invalid_argument(
++          "the driver does not admit the origin: " + refusal);
++    }
++  }
+   ValidatedRunRecord record;
+   record.controls_ = controls_of(origin);
+   record.origin_time_ = origin.start_time;
+@@ -895,6 +929,24 @@
+   if (request.paths.size() != origin_.size() ||
+       chains_of(request.paths) != last_chains_) {
+     return "the leg's population is not the record's last population";
++  }
++  // A content chain does not bind a path's identifier or charge, so both
++  // are compared, in order, with the record's own.
++  for (std::size_t i = 0; i < origin_.size(); ++i) {
++    if (request.paths[i].id != origin_[i].id ||
++        request.paths[i].charge != origin_[i].charge) {
++      return "the leg's path " + std::to_string(i + 1U) +
++          " does not have the record's identifier and charge";
++    }
++  }
++  // The evidence the leg was given must be the evidence of the record's
++  // last boundary: none at the origin, and otherwise the sealed evidence of
++  // the continuation the leg carries.
++  if (request.evidence != (last_continuation_ != nullptr
++                               ? last_continuation_->state().evidence
++                               : ValidatedFarStepEvidence{})) {
++    return "the leg's evidence is not the evidence of the record's last "
++           "boundary";
+   }
+   // Boundary fields, against the seals the certificate carries.
+   if (certificate.continuation == nullptr) {

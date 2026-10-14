@@ -107,3 +107,7 @@ All following paths are **○ Not reviewed in the next cycle**, open October 14 
 ```
 
 Final source preservation: native `cmp` returns zero against the frozen source; final `shasum` retains the recorded Effective Lagrangian hash and CAF hash `9d3f86ff4ca93124bcbca63d028db5fae7d25d169fd780ee44ae9e3035b8d0ea`. Native `rg` enumerates exactly nine proposal-table rows in the receiving queue. The known-case-first syntax checker passes this receipt's 37 math expressions and two local-file occurrences; scoped `git diff --check` emits no whitespace diagnostics for the five changed owner/control/status/log files. No whole-repository, external-source or browser-navigation verdict is claimed.
+
+## Accepted implementation — October 12, 2026
+
+The operator subsequently approved all nine ELO11 groups. All 44 approved replacements are implemented and separately verified at source SHA-256 `f75607cf421cd7b0ef5f4dfe507e44164b95c24db0eac83e3f9363334735b850`; the [closure record](../../aaa-corpus-rewrite/evidence/ops-031-effective-correction-closure-2026-10-12.md) records independent per-group references, preservation and syntax checks, and the additionally requested new-thread Claude assessment. The original review-time observations, source identity and proposed dispositions above remain historical evidence. Scientific derivations, periodic coverage dates and CRW-005 closure are unchanged.

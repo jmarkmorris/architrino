@@ -6195,6 +6195,7 @@ void admit_matched_pairs_for_receiver(
           .far_field_enclosure_fraction = request.far_field_enclosure_fraction,
           .acceleration_tolerance = request.acceleration_tolerance,
           .transmitter_count = histories.size(),
+          .validated_evidence = request.validated_population_evidence,
       });
       const bool enclosed = certificate.status == "certified_enclosed";
       const bool absent = certificate.status == "certified_absent";

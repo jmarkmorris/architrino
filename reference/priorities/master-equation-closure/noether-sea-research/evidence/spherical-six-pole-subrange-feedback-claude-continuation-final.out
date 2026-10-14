@@ -1,0 +1,455 @@
+pid 47389
+controls: known passages found True ; negatives give none True ; position classifier True
+{
+ "events": {
+  "source_time_passages": [
+   {
+    "class": "unlike",
+    "seam": "late-feedback to like-reception records (start of the preceding extension; PRIMARY for the unlike class)",
+    "seam_time": [
+     "2.806684593623649597167969",
+     "2.806684709182828044891357"
+    ],
+    "last_step_end_below": 192,
+    "first_step_end_above": 193,
+    "delayed_arg_at_last_below": [
+     "2.796216158497028966919134",
+     "2.796591082870105237578012"
+    ],
+    "delayed_arg_at_first_above": [
+     "2.806796973708182079008354",
+     "2.807175852804471335292615"
+    ],
+    "margin_below": "0.010093510753544359589957",
+    "margin_above": "0.000112264525354034116997",
+    "t_bracket_full_uncertainty": [
+     "3.786684593623649597167969",
+     "3.796684709182828044891357"
+    ],
+    "first_step_whose_whole_source_range_is_above": 194
+   },
+   {
+    "class": "like",
+    "seam": "wave-17 to antipodal-campaign records",
+    "seam_time": [
+     "1.866684593623649597167969",
+     "1.866684709182828044891357"
+    ],
+    "last_step_end_below": 171,
+    "first_step_end_above": 172,
+    "delayed_arg_at_last_below": [
+     "1.863440544169876442064167",
+     "1.863599750617450694206385"
+    ],
+    "delayed_arg_at_first_above": [
+     "1.872395953007333162863074",
+     "1.872557889192710903223757"
+    ],
+    "margin_below": "0.003084843006198902961584",
+    "margin_above": "0.005711243824505117971717",
+    "t_bracket_full_uncertainty": [
+     "3.576684593623649597167969",
+     "3.586684709182828044891357"
+    ],
+    "first_step_whose_whole_source_range_is_above": 173
+   },
+   {
+    "class": "like",
+    "seam": "antipodal-campaign to late-feedback records",
+    "seam_time": [
+     "2.076684593623649597167969",
+     "2.076684709182828044891357"
+    ],
+    "last_step_end_below": 194,
+    "first_step_end_above": 195,
+    "delayed_arg_at_last_below": [
+     "2.071906205628112700059769",
+     "2.072129470692555006703926"
+    ],
+    "delayed_arg_at_first_above": [
+     "2.081101397331146929528429",
+     "2.081327479510245004395419"
+    ],
+    "margin_below": "0.004555122931094590464043",
+    "margin_above": "0.004416688148318884637072",
+    "t_bracket_full_uncertainty": [
+     "3.806684593623649597167969",
+     "3.816684709182828044891357"
+    ],
+    "first_step_whose_whole_source_range_is_above": 196
+   },
+   {
+    "class": "antipode",
+    "seam": "wave-17 to antipodal-campaign records",
+    "seam_time": [
+     "1.866684593623649597167969",
+     "1.866684709182828044891357"
+    ],
+    "last_step_end_below": 192,
+    "first_step_end_above": 193,
+    "delayed_arg_at_last_below": [
+     "1.863231232866538569762071",
+     "1.86343001274244707766231"
+    ],
+    "delayed_arg_at_first_above": [
+     "1.873720975439694238805558",
+     "1.873924019102546473481641"
+    ],
+    "margin_below": "0.003254580881202519505659",
+    "margin_above": "0.007036266256866193914201",
+    "t_bracket_full_uncertainty": [
+     "3.786684593623649597167969",
+     "3.796684709182828044891357"
+    ],
+    "first_step_whose_whole_source_range_is_above": 194
+   },
+   {
+    "class": "antipode",
+    "seam": "antipodal-campaign to late-feedback records",
+    "seam_time": [
+     "2.076684593623649597167969",
+     "2.076684709182828044891357"
+    ],
+    "last_step_end_below": 212,
+    "first_step_end_above": 213,
+    "delayed_arg_at_last_below": [
+     "2.072929654382306104927199",
+     "2.073227645712719754481157"
+    ],
+    "delayed_arg_at_first_above": [
+     "2.083405705035840801732691",
+     "2.083709500082135179236161"
+    ],
+    "margin_below": "0.003456947910929842686812",
+    "margin_above": "0.006720995853012756841334",
+    "t_bracket_full_uncertainty": [
+     "3.986684593623649597167969",
+     "3.996684709182828044891357"
+    ],
+    "first_step_whose_whole_source_range_is_above": 214
+   }
+  ],
+  "D_side_of_one_changes": [
+   {
+    "class": "unlike",
+    "from": "below one",
+    "to": "above one",
+    "D_at_start_of_step": 192,
+    "D_start_value": [
+     "0.9993532286957892806663483",
+     "0.9995997069016017073051512"
+    ],
+    "D_at_start_of_next_step": 193,
+    "D_next_start_value": [
+     "1.000874698952325629042419",
+     "1.001127855095928074027605"
+    ],
+    "t_bracket_full_uncertainty": [
+     "3.776684593623649597167969",
+     "3.786684709182828044891357"
+    ],
+    "note": "the crossing lies inside step 192 (between its start and its end = the next step's start)"
+   },
+   {
+    "class": "like",
+    "from": "above one",
+    "to": "below one",
+    "D_at_start_of_step": 212,
+    "D_start_value": [
+     "1.000158261244742477244316",
+     "1.000296229700279164548814"
+    ],
+    "D_at_start_of_next_step": 213,
+    "D_next_start_value": [
+     "0.9995323244687234581559327",
+     "0.9996734096114228055438686"
+    ],
+    "t_bracket_full_uncertainty": [
+     "3.976684593623649597167969",
+     "3.986684709182828044891357"
+    ],
+    "note": "the crossing lies inside step 212 (between its start and its end = the next step's start)"
+   }
+  ],
+  "sign_changes": {
+   "lambda_hat_start_sign": {
+    "values_seen": [
+     "negative"
+    ],
+    "changes": [],
+    "undecided_steps": []
+   },
+   "lambda_hat_range_sign": {
+    "values_seen": [
+     "negative"
+    ],
+    "changes": [],
+    "undecided_steps": []
+   },
+   "lambda_hat_end_sign": {
+    "values_seen": [
+     "negative"
+    ],
+    "changes": [],
+    "undecided_steps": []
+   },
+   "qddot_start_sign": {
+    "values_seen": [
+     "positive"
+    ],
+    "changes": [],
+    "undecided_steps": []
+   },
+   "qddot_range_sign": {
+    "values_seen": [
+     "positive"
+    ],
+    "changes": [],
+    "undecided_steps": []
+   },
+   "qddot_end_sign": {
+    "values_seen": [
+     "positive"
+    ],
+    "changes": [],
+    "undecided_steps": []
+   },
+   "qddot_rate_sign_over_step": {
+    "values_seen": [
+     "negative"
+    ],
+    "changes": [],
+    "undecided_steps": []
+   }
+  },
+  "D_sides_seen_at_step_starts": {
+   "unlike": [
+    "above",
+    "below"
+   ],
+   "like": [
+    "above",
+    "below"
+   ],
+   "antipode": [
+    "above"
+   ]
+  },
+  "D_sides_seen_over_steps": {
+   "unlike": [
+    "above one",
+    "below one",
+    "straddles one"
+   ],
+   "like": [
+    "above one",
+    "below one",
+    "straddles one"
+   ],
+   "antipode": [
+    "above one"
+   ]
+  }
+ },
+ "summary": {
+  "parts": [
+   "s1w",
+   "s2w",
+   "s3w"
+  ],
+  "n_certified_steps": 60,
+  "first_step": 155,
+  "last_step": 214,
+  "reached_t": [
+   "4.006684593623649597167969",
+   "4.006684709182828044891357"
+  ],
+  "reached_q": [
+   "0.8133846082509829763113406",
+   "0.8144991287777617099871676"
+  ],
+  "reached_qdot": [
+   "0.3850091496059063693672473",
+   "0.3868893027880675261383852"
+  ],
+  "iterations_seen": [
+   1
+  ],
+  "all_subwake": true,
+  "all_delayed_args_in_covered_history": true,
+  "all_reconciled": true,
+  "trace_identity_all": true,
+  "lookup_values": [
+   "new"
+  ],
+  "families_read_at_step_ends": {
+   "unlike": [
+    [
+     155,
+     "late-feedback"
+    ],
+    [
+     193,
+     "like-reception"
+    ]
+   ],
+   "like": [
+    [
+     155,
+     "wave17"
+    ],
+    [
+     172,
+     "antipodal"
+    ],
+    [
+     195,
+     "late-feedback"
+    ]
+   ],
+   "antipode": [
+    [
+     155,
+     "wave17"
+    ],
+    [
+     193,
+     "antipodal"
+    ],
+    [
+     213,
+     "late-feedback"
+    ]
+   ]
+  },
+  "Dt_range_extremes": {
+   "unlike": [
+    "0.9560912748",
+    "1.0387554985"
+   ],
+   "like": [
+    "0.9981946838",
+    "1.0254063855"
+   ],
+   "antipode": [
+    "1.0351374593",
+    "1.0624503269"
+   ]
+  },
+  "max_delayed_arg_end": {
+   "unlike": "3.021372301881",
+   "like": "2.258568241821",
+   "antipode": "2.094190217964"
+  },
+  "min_margin_to_coverage_end_over_step": {
+   "unlike": "0.97484449",
+   "like": "1.68415392",
+   "antipode": "1.90246885"
+  },
+  "min_margin_to_predecessor_coverage_end_3.4067": {
+   "unlike": "0.38515501",
+   "like": "1.14757064",
+   "antipode": "1.31246885"
+  },
+  "max_history_q": "0.463876",
+  "max_history_qdot": "0.312008",
+  "max_q_over_steps": "0.814499",
+  "max_qdot_over_steps": "0.386889",
+  "min_separations": {
+   "r_unlike_delayed_min": "0.98484242",
+   "r_like_delayed_min": "1.69531887",
+   "r_antipode_delayed_min": "1.91247523",
+   "simultaneous_unlike_pair_chord_min": "0.98555900"
+  },
+  "a0_first_last": [
+   [
+    "0.08801675275188291781437945",
+    "0.08850946324294158533698034"
+   ],
+   [
+    "0.02739711694121513616790182",
+    "0.02928994191714590668278314"
+   ]
+  ],
+  "qddot_rate_first_last": [
+   [
+    "-0.07579424170537450005558121",
+    "-0.06201847770288532787265151"
+   ],
+   [
+    "-0.126998819092013448088153",
+    "-0.1068513453548968677447202"
+   ]
+  ],
+  "a_rad_end_first_last": [
+   [
+    "-0.06846657436792044179594705",
+    "-0.06841059832765114373410742"
+   ],
+   [
+    "-0.06511253387853375155350058",
+    "-0.06498781653224399041182115"
+   ]
+  ],
+  "lambda_hat_end_first_last": [
+   [
+    "-0.05475970251643424866014138",
+    "-0.05407343379749667281868843"
+   ],
+   [
+    "-0.08469551607959300444232252",
+    "-0.08311951140172944110114901"
+   ]
+  ],
+  "tangent_sum_end_first_last": [
+   [
+    "0.08751050148688348328098917",
+    "0.08765537905847070191580684"
+   ],
+   [
+    "0.02701745751890498328422161",
+    "0.02733355355146863803776484"
+   ]
+  ],
+  "q_width_first_last": [
+   "0.00034332",
+   "0.00111452"
+  ],
+  "qdot_width_first_last": [
+   "0.00089911",
+   "0.00188015"
+  ],
+  "a0_width_first_last": [
+   "0.00049271",
+   "0.00189282"
+  ],
+  "qdot_width_added_per_step_mean": "0.00001662",
+  "two_part_or_multi_family_steps": {
+   "unlike": [
+    193
+   ],
+   "like": [
+    172,
+    195
+   ],
+   "antipode": [
+    155,
+    193,
+    213
+   ]
+  },
+  "steps_with_unlike_source_range_wholly_beyond_the_boundary": [
+   194,
+   214,
+   21
+  ],
+  "post_reception_interval_t": [
+   "3.796684593623649597167969",
+   "4.006684709182828044891357"
+  ],
+  "post_reception_unlike_source_range": [
+   "2.806796973708182079008354",
+   "3.021529691699504576327611"
+  ]
+ }
+}

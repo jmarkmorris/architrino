@@ -1,0 +1,25 @@
+PID 37809
+PID 37809
+[{"name": "(K) known: wave-17 step 5 (no first reading inside; unlike source long past its release): my post-side rate enclosure meets the record's ap", "mine": ["0.004372965753497107692351312", "0.004804677192537712091707226"], "ap": ["0.00374962081946689874504251", "0.005483289561760649577079226"], "pass": true}, {"name": "(W) negative: on wave-17 step 1 the pre-side and post-side rate enclosures are disjoint (a single-regime bound cannot serve), and an ap shrunk to the post side alone does not contain the pre side", "pre": ["0.006063146671290396320902186", "0.006544461280645745835593255"], "post": ["0.004229018259117668106997574", "0.004728214758994240831317004"], "predicted_jump": ["-0.001834128412172728213904612", "-0.001816246521651505004276251"], "pass": true}]
+w16#1 {"where": "unlike first reading at the slab START (only the post side lies in the slab)", "t_int": ["1.366684593623649597167969", "1.376684709182828044891357"], "ap": ["0.002465895023123449789239771", "0.006203606305756320868284832"], "ap_width": "0.0037377", "my_pre_side_rate": ["0.002744147204408950698874931", "0.003020847449802174265587314"], "my_post_side_rate": ["0.005576053668028233112199735", "0.005882341143854350694858681"], "my_two_regime_rate": ["0.002744147204408950698874931", "0.005882341143854350694858681"], "predicted_jump": ["0.002831906463619282413324804", "0.002861493694052176429271368"], "sides_needed": "post only", "needed_hull": ["0.005576053668028233112199735", "0.005882341143854350694858681"], "ap_contains_needed_hull": true, "ap_meets_pre": true, "ap_meets_post": true, "needed_hull_contains_ap": false}
+w17#1 {"where": "like first reading INSIDE the slab", "t_int": ["1.466684593623649597167969", "1.476684709182828044891357"], "ap": ["0.003622972849399951557446924", "0.007200053199315117540043504"], "ap_width": "0.0035771", "my_pre_side_rate": ["0.006063146671290396320902186", "0.006544461280645745835593255"], "my_post_side_rate": ["0.004229018259117668106997574", "0.004728214758994240831317004"], "my_two_regime_rate": ["0.004229018259117668106997574", "0.006544461280645745835593255"], "predicted_jump": ["-0.001834128412172728213904612", "-0.001816246521651505004276251"], "sides_needed": "both", "needed_hull": ["0.004229018259117668106997574", "0.006544461280645745835593255"], "ap_contains_needed_hull": true, "ap_meets_pre": true, "ap_meets_post": true, "needed_hull_contains_ap": false}
+b3#13 {"where": "own-antipode first reading INSIDE the slab", "t_int": ["1.986684593623649597167969", "1.996684709182828044891357"], "ap": ["0.004683379686019355669352441", "0.007513725126830072557712369"], "ap_width": "0.0028303", "my_pre_side_rate": ["0.005662159615445102988579837", "0.006484038336628453566660459"], "my_post_side_rate": ["0.005636350817833047695402957", "0.006458793174833714673736741"], "my_two_regime_rate": ["0.005636350817833047695402957", "0.006484038336628453566660459"], "predicted_jump": ["-0.00002580879761205529317688056", "-0.00002524516179473889292371794"], "sides_needed": "both", "needed_hull": ["0.005636350817833047695402957", "0.006484038336628453566660459"], "ap_contains_needed_hull": true, "ap_meets_pre": true, "ap_meets_post": true, "needed_hull_contains_ap": false}
+{"w16#1": [], "w17#1": [[155, "antipode"], [156, "antipode"]], "b3#13": [[185, "like"], [186, "like"], [204, "antipode"], [205, "antipode"]]}
+        0.38 real         0.34 user         0.01 sys
+            32473088  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2991  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                 702  involuntary context switches
+          5331783503  instructions retired
+          1305194007  cycles elapsed
+            24822264  peak memory footprint

@@ -12,7 +12,7 @@ The [manuscript](manuscript.md) brings together the infinite alternating lattice
 - [Proposed investigations](brainstorming.md)
 - [Work log](work-log.md)
 
-The active returned-pulse coupling classification retains its `1-mec` assignment. The proposed localized self-consistent disturbance has not been activated.
+The active returned-pulse coupling classification retains its `1-mec` assignment. The [localized complete-past family, fixed-point extension and evolved-history barrier](manuscript.md#130-localized-nonlinear-histories-and-a-guaranteed-forward-interval) are independently accepted at their bounded scopes. The latest guaranteed interval reaches at least 2.542 for amplitude 0.0001, with small motion and complete roots; its endpoint growth lower bound is empty. [Further evolved-history continuation](work-queue.md#continue-the-localized-family-beyond-the-evolved-history-interval) retains larger-amplitude fate. This is a different preparation from the supplied two-target pulse and the coherent ancient staggered branch.
 
 The [rotating alternating ladder](analysis/rotating-alternating-ladder.md) is an infinite line of stacked opposite pairs that balances exactly under the unchanged equation at every speed examined below wake speed, at one spacing for each speed. It is unstable at every speed examined and is recorded as a reference solution only.
 

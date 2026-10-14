@@ -74,6 +74,8 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Multi-Agent Use
 
+- [x] Address each Claude chat by its requested name and bound ID, preserving the recipient across foreground changes and re-resolving it from fresh UI state under the [collaboration delivery procedure](codex-claude-protocol.md#3-codex-to-claude) (October 12).
+
 - [ ] Verify a supported [Codex-to-Claude route that works with the Mac locked](codex-claude-protocol.md#32-alternatives-investigated-replacement-delivery-remains-unverified), preserving exact session identity and arrival/processing receipts; the current desktop composer route blocks behind the lock screen (October 10).
 
 - [x] For authorized overnight multi-agent campaigns, reconcile live agent status, completion messages and durable reports at every watchdog wake, advance ready dependencies immediately, and investigate missed checkpoints without duplicating possibly delivered assignments.

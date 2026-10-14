@@ -308,3 +308,128 @@ $$
 On $0\le q\le0.7$, $0\le q'\le0.4$, $0\le v'\le0.4$, both numerators remain positive. Independent monotonicity analysis places their minima at the upper corner, while separately authored interval subdivision gives enclosing bounds. Thus both non-antipodal tangent contributions remain forward on this domain. The unlike source's transmitter factor is $D_U=1-v'M/r_U$, and the like source's is $D_L=1+v'M/r_L$. Positive $M$ gives approaching unlike sources and receding like sources when the source speed is positive. These labels describe the sampled geometry, rather than permanent properties of a partner class: outside the proved box $M$ can change sign and reverse the line-of-sight labels. Root completeness instead depends on the source remaining below wake speed. The chord is one-Lipschitz in source arc length, so $D\ge1-v'>0$; coherent sub-wake histories have one ordinary root for each separated partner and no positive-delay self root. The continuation must retain that domain and check every source-history interval before using it.
 
 The like-partner reception need not produce a sudden change in speed, acceleration or support. The source's coordinate and speed are continuous at the original window end. Its acceleration is continuous there too: the first arriving moving-source contribution matches the stationary-source contribution at its initial reading, although its rate of change can change. The like contribution depends on source coordinate and speed, and its first derivative uses source acceleration. Consequently the like tangent and radial contributions, receiver acceleration, signed support and first support derivative remain continuous at this reception under the proved ordinary-root conditions. A change can appear in higher derivatives through the source's changing jerk. This smooth passage still changes which actual portion of history governs subsequent motion; continuity does not eliminate delayed feedback. A wrong source-side acceleration, omitted root, uncovered history interval, noncontaining remainder or observed discontinuity contradicting these premises would overturn the affected conclusion.
+
+### 5.8 Local information in the delayed source history
+
+A retained step contains more information than the range of positions visited over its whole duration. It also records an enclosure of the initial coordinate, speed and acceleration, together with a bound on the acceleration's rate of change. A delayed interaction usually reads only part of that duration. Evaluating the local enclosure on the time range actually read can therefore reduce uncertainty without changing the Master Equation, the trajectory or the spherical constraint. It sharpens the description of the same generated history.
+
+The [independently frozen support derivation](analysis/spherical-six-pole-subrange-feedback-claude-support-reference.md), [review derivation](analysis/spherical-six-pole-subrange-feedback-claude-review-reference.md) and [coordinator derivation](analysis/spherical-six-pole-subrange-feedback-codex-reference.md) give the local inclusion rule. Let a certified step of duration $d$ begin at a true time $\theta\in[a,b]$. Its initial coordinate, speed and acceleration lie in intervals $Q_0,V_0,A_0$. Suppose its acceleration is absolutely continuous and its derivative lies in the interval $J$ almost everywhere on the step. For an offset $h\in[0,d]$, repeated integration with nonnegative weights gives
+
+$$
+\ddot q(\theta+h)\in A_0+Jh,
+\qquad
+\dot q(\theta+h)\in V_0+A_0h+\frac12 Jh^2,
+$$
+
+$$
+q(\theta+h)\in Q_0+V_0h+\frac12 A_0h^2+\frac16 Jh^3.
+$$
+
+For example, the coordinate remainder is the integral of the acceleration derivative against the weight $(h-z)^2/2$ over $0\le z\le h$. This weight is nonnegative and integrates to $h^3/6$, so a derivative bounded by $J$ gives the stated remainder. Correlations between the initial data and the derivative bound can make ordinary interval evaluation wider than necessary, but dropping those correlations preserves containment.
+
+If the requested source time lies in $[u,w]$, its possible offsets into this particular step belong to
+
+$$
+H=[\max(0,u-b),\ \min(d,w-a)]
+$$
+
+when this interval is nonempty. The three local formulas are evaluated over $H$. Subtracting the full uncertain start interval is essential: substituting its lower endpoint or a midpoint would discard admissible offsets. The initial state and its uncertainty remain those of the original certificate. A sharper source read does not justify replacing the receiver's inherited endpoint enclosure by a point or a tighter replay value.
+
+A source-time request can meet several records because it spans a join or because the join time is uncertain. Each potentially applicable record contributes its own enclosure, and their hull contains the requested true source history. At the uncertain boundary of the original motion window, the independently valid window enclosure and the applicable generated records must both be included. An old whole-step box can be intersected with its corresponding local box only when both have been proved to contain the same true values. Empty intersections, missing records and uncovered source times require refusal. An interval hull preserves containment of a continuous true history; it need not vary continuously as records enter or leave the query.
+
+The regularity premise matters at the first reception of release-time motion. The source acceleration changes from zero before release to its post-release value, which can change a receiver's one-sided acceleration rates when that history first arrives. The [dated regularity clarification](analysis/spherical-six-pole-subrange-feedback-claude-review-reference-companion-1.md) replaces an unnecessarily strong continuous-derivative assumption by Lipschitz acceleration and an almost-everywhere derivative bound. The integration rule still holds across such a reception, provided the retained rate interval includes both sides. A record flag or matching endpoint output does not establish that condition. If the rate premise is unavailable, only a separately certified whole-step enclosure can be used there.
+
+Guaranteed source coverage must also be distinguished from possible coverage. If the last accepted true end time is enclosed by $[E_-,E_+]$, a source query wholly below $E_-$ is covered for every allowed end time. A query in the final uncertainty strip $(E_-,E_+]$ needs an explicit correlation proof or refusal. Finding a possible polynomial record for it is insufficient. The [coverage clarification](analysis/spherical-six-pole-subrange-feedback-codex-reference-companion-1.md) makes this distinction explicit. These are conditions for reading a certified past, rather than changes to the dynamics.
+
+The [independent lookup review](analysis/spherical-six-pole-subrange-feedback-claude-review-adjudication-2.md) admits this inclusion rule and the controlled implementation on ordinary records. Its separate one-sided derivative enclosures also verify the rate premise on the two older reception records consumed in the present continuation. The repaired continuation uses their whole-step coordinate and speed boxes, retaining a conservative treatment at these exceptional records. Those boxes are also Taylor images using the stored rate, and the whole-step acceleration enclosure is constructed as $A_0+J[0,d]$. All three therefore retain the original certificate's one-sided rate premise. The [code-path adjudication](analysis/spherical-six-pole-subrange-feedback-claude-review-adjudication-4.md) closes that premise through the original two-regime construction and two separately authored one-sided evaluations. Using a whole-step box confines the lookup to the original certificate; it does not make that certificate premise-free. The coverage policy refuses requests above the guaranteed lower endpoint. These precautions preserve the same actual history rather than supplying a new motion law.
+
+The controlled matched-input comparison measures the gain on two steps, each started from the same original state enclosure. Delayed coordinate and speed widths fall to roughly $0.53$–$0.60$ of the old whole-step lookup widths, and the initial acceleration width to about $0.35$. The next receiver-speed width falls only to about $0.99$, while its coordinate width barely changes. The inherited uncertainty dominates the receiver endpoint; a sharper source read chiefly reduces the new uncertainty added during a step. This distinction explains why substantially sharper delayed inputs need not immediately produce a comparably sharper trajectory. The recorded per-step wall times, approximately $0.11$ seconds with the local lookup and $0.08$ seconds with the older lookup, establish no general speed advantage. These are implementation measurements on the stated matched cases, rather than a claim of global accuracy or efficiency.
+
+The local inclusion rule is derived under these stated premises. Its use on a longer trajectory requires independent checks of the actual consumed source boxes and the repaired target records. Width reductions at particular matched inputs do not prove a longer attained interval. The extension begins from the same uncertain radius-ten endpoint described above; later reception, partner signs and radial support must be established from the newly certified motion. A true source state outside a returned enclosure, an uncovered query or an unbounded one-sided rate would overturn the affected inclusion.
+
+### 5.9 Reception of the preceding extension's generated motion
+
+The radius-ten six-pole motion now reaches the history produced during its preceding extension. The [independent slice adjudication](analysis/spherical-six-pole-subrange-feedback-claude-review-adjudication-3.md) admits sixty further steps of the same stationary-past rest release, from $t\approx3.4067$ to the uncertain endpoint
+
+$$
+t\in[4.006684593623649597167969,\ 4.006684709182828044891357],
+\qquad t=\frac{Tc_f}{R}.
+$$
+
+At $R=10$, $c_f=1$, this is physical time $T\approx40.0668$. The final path coordinate is $q\in[0.8133846082,0.8144991288]$ radians and the speed is $v/c_f\in[0.3850091496,0.3868893028]$, rounded outward. These are measured interval enclosures under the retained arithmetic and earlier-history premises, checked with separately authored inclusion and derivative instruments. The uncertain initial time and state are retained. The [dated correction](analysis/spherical-six-pole-subrange-feedback-claude-review-adjudication-3-companion-1.md) preserves the distinction between the repaired target chain and earlier provisional outputs; their endpoint differences do not change the admitted signs.
+
+The relevant source boundary is the start of the preceding like-reception extension, at $t\in[2.806684593623649597167969,2.806684709182828044891357]$. The unlike pair's source time is proved below this boundary at one certified receiver endpoint and above it at the next. Its first reception is therefore enclosed by
+
+$$
+t_{\rm reception}\in(3.786684593623649597167969,\ 3.796684709182828044891357).
+$$
+
+The receiver then completes a nonzero interval of duration $0.21$ in dimensionless time, or $2.1$ at the stated radius and wake speed, with unlike source arguments wholly in that preceding extension. At the final endpoint these arguments lie near $t=3.021$, while the like pair reads near $2.258$ and the antipode near $2.094$. Only the unlike pair has reached the selected newer portion of history. The six members respond together, but their partner classes read different ages of the same actual motion. This is assembly feedback through partner roots; it adds no self-pair interaction. It also does not mean that the motion beginning at $t\approx3.4067$ has already returned.
+
+The reception crossing is unique on this admitted history. Differentiating an ordinary root gives $\dot s=(1-\partial_q r\,\dot q)/D$. The chord changes by no more than the receiver's arc displacement, the receiver remains below wake speed, and $D>0$, so $\dot s>0$. The source time moves forward through the boundary once. Each separated partner retains one ordinary root, and the sub-wake complete history supplies no positive-delay self root. The measured source requests stay at least $0.3851549$ below the guaranteed end of the inherited history; no extrapolation of the old window or an unaccepted new source record supplies this result.
+
+Speed increases strictly throughout the new interval, although the total forward acceleration decreases strictly. At the final endpoint the three tangent contributions are all positive and have become comparable:
+
+| Partner class | Multiplicity | Dimensionless tangent contribution at the final endpoint |
+| --- | ---: | --- |
+| Unlike pair | 2 | $[0.01008973,0.01034853]$ |
+| Like pair | 2 | $[0.00941394,0.00945290]$ |
+| Own antipode | 1 | $[0.00751376,0.00753215]$ |
+
+The first two rows are pair sums, so their multiplicity is already included. Acceleration units are $c_f^2/R$; physical values at the stated parameters are one tenth of these numbers. Independently controlled derivatives prove that the unlike and like contributions decrease, while the antipode contribution increases. The unlike pair's forward contribution falls by about a factor of six across the extension, chiefly accounting for the decreasing total. The final total tangent acceleration remains positive near $0.0272$. A smaller positive acceleration still increases speed: neither a speed maximum nor a reversal of a tangent contribution is reached.
+
+The [separate partner account](analysis/spherical-six-pole-subrange-feedback-claude-support-wave1.md), checked in the code-path adjudication, also resolves the canonical radial contributions. On the final step the unlike pair contributes approximately $[-0.098139,-0.097514]$ inward, the like pair $[+0.057225,+0.057348]$ outward, and the antipode $[-0.024642,-0.024588]$ inward, in the same dimensionless acceleration units. The unlike contribution is weaker inward at the listed later endpoints, while the like and antipode radial terms remain comparatively steady. These attained differences are not a proof that every radial class term is monotone. Their sum stays inward; the additional support is a separate quantity determined by the geometric bending requirement.
+
+The sampled source geometry changes before the tangent contributions reverse. The unlike transmitter factor passes through one at some $t\in(3.7766845936,3.7866847092)$, before reception of the selected source boundary. The like factor passes through one later, at some $t\in(3.9766845936,3.9866847092)$. These existence brackets describe the source's line-of-sight velocity component changing sign: the unlike sources become receding and the like sources become approaching. The transmitter factors remain positive, so neither passage is a root singularity. The tangent numerator remains positive on the actual sampled states, so neither passage reverses the corresponding acceleration contribution. Uniqueness of these two geometry changes is unresolved; the factor side is undecided within its crossing step.
+
+The canonical radial component is inward at every certified endpoint, but it is less inward at the final endpoint than near the beginning: approximately $-0.06505$ rather than $-0.06844$ in dimensionless units. The additional normal support remains inward and decreases strictly throughout the extension. Its final enclosure, rounded outward, is
+
+$$
+\widehat\lambda\in[-0.084696,-0.083119],
+\qquad
+\lambda\in[-0.0084696,-0.0083119]
+$$
+
+at the stated parameters. The rising speed requires a larger inward bending acceleration, while the canonical inward radial contribution no longer keeps pace. The sphere therefore requires more additional inward support even as its forward acceleration fades. No new support zero or support turning point occurs on this admitted extension. Joined to the earlier certificates, the previous outward-to-inward reversal remains the sole support zero on the attained history. The radial interaction is still discarded in the prescribed spherical evolution; this signed account does not identify a physical supplier of the constraint.
+
+The result is finite delayed motion under an explicit spherical constraint. It establishes reception of the selected earlier generated history, positive but decreasing forward acceleration, class-dependent geometry changes and strengthening inward support through the stated endpoint. A later speed maximum, tangent reversal, return of the newer history, repeating orbit or free confinement remains unestablished. The enclosures still widen overall: the speed width grows from about $0.00089$ to $0.00188$. A sharper local source lookup slows uncertainty growth without eliminating the inherited uncertainty. An uncovered source argument, failure of an independently checked remainder or contradiction of a certified sign would overturn the affected claim.
+
+### 5.10 A speed maximum caused by changing delayed geometry
+
+The same radius-ten six-pole motion reaches a local speed maximum. The continuation retains the complete stationary past, release from rest, $K=1$, $R=10$, $c_f=1$ and $g=1/10$. The master-equation interaction supplies only the acceleration along the sphere; its radial component is recorded and discarded, and the prescribed sphere supplies the geometric normal bookkeeping. No speed controller or damping is added. In the common great-circle coordinate $q(t)$, scaled time is $t=T/10$ and speed is $|\dot q|$ in wake-speed units.
+
+**Measured with interval enclosure:** the steps8 continuation and separately authored audit8 endpoint, delayed-history and acceleration-rate checks admit sixty new steps through $t\in[4.606684593623649597167969,\,4.606684709182828044891357]$. Their arithmetic premise remains directed mpmath interval evaluation, with outward padding of the retained printed states and the inherited history-inclusion premises. Within that actual motion a unique local speed maximum lies at
+
+$$
+t_{\max}\in(4.246684593623649597167969,\,4.266684709182828044891357),\qquad
+v_{\max}/c_f\in[0.3879708757258596256892283,\,0.390643373309802866052836].
+$$
+
+Physical time is $T_{\max}\in(42.46684593623649597167969,\,42.66684709182828044891357)$. This is a change from speeding up to slowing down while continuing forward. It is not a reversal of the path: velocity stays positive throughout the event neighborhood. The total tangent acceleration is proved positive at the earlier endpoint and negative at the later endpoint. Its independently enclosed derivative is negative throughout the bracket, so its zero is unique there. The intervening endpoint whose acceleration enclosure contains zero remains undecided. The speed boxes themselves are too wide to resolve the small rise and fall nearest the peak; the acceleration signs and their rate establish the maximum. Nothing here establishes a global maximum, repetition or a frequency.
+
+The partner account explains the change. The unlike pair first stops contributing forward acceleration and begins contributing backward acceleration at $t\in(4.106684593623649597167969,\,4.116684709182828044891357)$. The total remains forward for a while because the like pair and the opposite partner still contribute forward. At the speed maximum the unlike pair's backward contribution, about $-0.0134$, balances the like pair's contribution of about $+0.0054$ and the opposite partner's contribution of about $+0.0080$. These are class sums with multiplicities already included, in acceleration units $c_f^2/R$; physical values here are one tenth of them. The unlike contribution decreases fastest, the like contribution also decreases, and the opposite partner's contribution rises slowly. The maximum occurs when their sum changes sign.
+
+Polarity does not assign a permanent forward or backward direction along the orbit. The tangent projection depends on the receiver's current position and the partner's sampled past position. For a meridional class, write $p=q(s)$ for that sampled coordinate. The signed tangent numerator is
+
+$$
+N(q,p)=\frac{\cos(q+p)}{\sqrt2}-\frac{\cos q\sin p}{2}=\frac{\cos q\cos p}{\sqrt2}\left[1-\tan p\left(\tan q+\frac1{\sqrt2}\right)\right].
+$$
+
+On the positive-quadrant chart its zero satisfies $\tan q=\cot p-1/\sqrt2$. As both coordinates advance, the delayed chord's tangent projection can pass through zero and reverse. The unlike class reaches this geometric threshold first. Its transmitter factor remains positive and above1 throughout the new interval; no root disappears and no denominator becomes singular. A transmitter factor passing through1 concerns a different numerator, $M(q,p)=N(p,q)$, and is a separate event.
+
+All three classes are still sampling motion older than the source boundary $t\approx3.4067$ throughout the interval to $4.4067$. Thus the speed maximum is already caused by the older delayed history. The unlike partners first receive the beginning of that newer extension at $t\in(4.426684593623649597167969,\,4.436684709182828044891357)$, after the speed has begun falling. Seventeen subsequent certified receiver steps, spanning $0.17$ in scaled time, read only actual motion from the newer source records. The reception is of the extension's beginning; no partner has yet sampled its final source endpoint $4.0067$. The like and antipodal partners are still reading earlier motion at the attained endpoint. The independently controlled root and history lookup checks distinguish those source boundaries and retain every touched record and uncertain origin.
+
+The like pair's tangent contribution also reverses, at $t\in(4.556684593623649597167969,\,4.566684709182828044891357)$. Both meridional pairs then oppose the forward motion, while the antipodal partner continues contributing forward. The certified event order is unlike tangent reversal, speed maximum, unlike reception of the newer extension, then like tangent reversal. The like reversal shares a time bracket with that class's reception of a different, older source boundary near $2.8067$; their mutual ordering remains unresolved, and the overlapping brackets establish no causal connection.
+
+At the attained endpoint, speed remains forward in $v/c_f\in[0.3821099822311932454794886,\,0.3863400661206562789504872]$, below the speed enclosure at the maximum. The class sums are approximately $-0.0346$ from the unlike pair, $-0.00092$ from the like pair and $+0.00847$ from the antipode, giving total tangent acceleration near $-0.027$. The slowdown follows the canonical delayed interaction itself. Neither a path turn nor a repeating motion has been reached.
+
+Radial support continues to point inward and strengthens across the maximum. With outward taken positive, define $a_{rad}=R\,\mathbf n\cdot\mathbf A/c_f^2$ for the canonical radial acceleration and $\hat\lambda=R\lambda/c_f^2$ for the additional support. Then
+
+$$
+\hat\lambda=-\dot q^2-a_{rad},\qquad
+\frac{d\hat\lambda}{dt}=-2\dot q\ddot q-\frac{da_{rad}}{dt}.
+$$
+
+The canonical radial acceleration is inward, but it supplies less inward acceleration than the sphere's required bend. At the maximum, $\dot q^2$ is about $0.151$ while $a_{rad}$ is about $-0.0585$, leaving additional support near $-0.093$. The canonical inward contribution is becoming weaker, so the additional support continues becoming more negative. At the peak the first derivative term vanishes exactly; the support derivative is then determined by the change in canonical radial acceleration. After the peak, slowing reduces the required bend, but on the admitted interval that reduction is smaller than the loss of canonical inward acceleration. Independently enclosed support derivatives remain negative through $4.6067$; no new support zero or turning point is reached there. At the endpoint $a_{rad}\in[-0.0464983,-0.0462340]$ and $\hat\lambda\in[-0.1030246,-0.0995098]$, rounded outward. Physical accelerations are one tenth of these scaled values. The support's inward magnitude still increases, although its rate of increase becomes smaller.
+
+The independent [maximum adjudication](analysis/spherical-six-pole-speed-maximum-feedback-claude-review-adjudication-1.md) and [reception and support adjudication](analysis/spherical-six-pole-speed-maximum-feedback-claude-review-adjudication-2.md) supply the attained signs, endpoint uncertainty, class columns and rate scope. An uncovered delayed argument, a true state outside its consumed history enclosure, a failed stored-rate premise or a nonnegative acceleration-rate bound in the maximum neighborhood overturns the corresponding conclusion. The sphere remains an imposed constraint, and its support is a measured diagnostic rather than a derived confinement mechanism.

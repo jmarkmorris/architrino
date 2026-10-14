@@ -2071,6 +2071,7 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
           .far_field_enclosure_fraction = group->far_field_enclosure_fraction,
           .acceleration_tolerance = leader.acceleration_tolerance,
           .transmitter_count = path_ids.size(),
+          .validated_evidence = group->validated_evidence,
       });
       // The declared window must be the one the two root markers record.
       if (group->emission_lower != leader.root_certificate->searched_lower ||

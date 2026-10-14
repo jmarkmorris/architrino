@@ -1,5 +1,8 @@
 #pragma once
 
+#include "architrino/eom/ValidatedEvidence.hpp"
+#include <memory>
+
 #include "architrino/eom/History.hpp"
 #include "architrino/eom/Interval.hpp"
 
@@ -15,20 +18,29 @@ namespace architrino::eom {
 inline constexpr const char* kMatchedPairPolicyDisabled = "disabled";
 inline constexpr const char* kMatchedPairPolicySnapshotSingleSlab =
     "canonical_snapshot_single_slab/v1";
-// Stage 2 policy. Admits a window spanning several cubic segments of each
-// source, provided every segment the window meets has zero error tokens and
-// the history carries no analytic certificate. Such a history is exactly its
-// piecewise cubic, and the history layer's exact join validation makes it
-// continuously differentiable across joins, so the piecewise theorem's
-// hypotheses hold by construction. Histories with declared error radii are
-// not admitted: no carrier evidence binds such radii to a continuously
-// differentiable true path.
+// Stage 2 policies. Both admit a window spanning several cubic segments of
+// each source. The exact policy requires zero error tokens and no analytic
+// certificate on every segment the window meets; the hypotheses of the
+// piecewise theorem then hold by construction. The tube-conditional policy
+// also admits declared position and velocity error radii; its enclosure is
+// conditional on those radii enclosing the true path and its derivative, and
+// the certificate says so in history_grade.
 inline constexpr const char* kMatchedPairPolicySnapshotPiecewiseExact =
     "canonical_snapshot_piecewise_exact/v1";
+inline constexpr const char* kMatchedPairPolicySnapshotPiecewiseTube =
+    "canonical_snapshot_piecewise_validated_tube/v1";
+
+// Evidence seam. The validated-tube policy admits
+// declared radii only when the request carries evidence issued by a validated
+// far-step producer whose coupling equals the request's and whose population
+// contains the receiver and both members with exactly these charges and
+// exactly this history content. There is no registry: the evidence object is
+// passed explicitly and rechecked against the histories actually supplied.
 [[nodiscard]] inline bool matched_pair_policy_is_known(
     const std::string& policy) {
   return policy == kMatchedPairPolicySnapshotSingleSlab ||
-      policy == kMatchedPairPolicySnapshotPiecewiseExact;
+      policy == kMatchedPairPolicySnapshotPiecewiseExact ||
+      policy == kMatchedPairPolicySnapshotPiecewiseTube;
 }
 inline constexpr const char* kMatchedPairCertificateSchema =
     "eom_native_matched_pair_enclosure_certificate/v1";
@@ -56,8 +68,12 @@ struct MatchedPairMemberEvidence {
   // proves that interval holds no causal root for this receiver event.
   std::string history_start;
   std::optional<Interval> prefix_residual;
-  // Piecewise policy only: last segment the window meets.
+  // Piecewise policies only: last segment the window meets, and upper bounds
+  // of the Euclidean norms of the declared position and velocity radius
+  // vectors over the segments the window meets.
   std::optional<std::size_t> last_segment_index;
+  std::optional<double> position_radius_upper;
+  std::optional<double> velocity_radius_upper;
 };
 
 struct NativeMatchedPairEnclosureCertificate {
@@ -107,7 +123,7 @@ struct NativeMatchedPairEnclosureCertificate {
   std::optional<double> admission_width_threshold;
   std::optional<double> emitted_width;
   std::optional<IntervalVector> acceleration;
-  // Piecewise policy only. Window start, every interior segment boundary
+  // Piecewise policies only. Window start, every interior segment boundary
   // of either source, and the reception time, in increasing order.
   std::vector<std::string> cell_boundaries;
   // Upper bound of the summed nominal velocity jumps of one source across
@@ -115,8 +131,12 @@ struct NativeMatchedPairEnclosureCertificate {
   std::optional<double> join_velocity_jump_upper;
   // exact_cubic: one error-free cubic slab. exact_piecewise_cubic: several
   // error-free cubic segments, continuous with continuous derivative by the
-  // history layer's exact join validation.
+  // history layer's exact join validation. carrier_declared_tubes: the
+  // enclosure covers every path consistent with the declared radii and is
+  // conditional on those radii enclosing the true path and its derivative.
   std::string history_grade = "exact_cubic";
+  // The evidence the group was certified with; a recheck uses it again.
+  std::shared_ptr<const ValidatedPopulationEvidence> validated_evidence = {};
 };
 
 struct MatchedPairEnclosureRequest {
@@ -139,6 +159,9 @@ struct MatchedPairEnclosureRequest {
   std::string acceleration_tolerance;
   // Full source-path count N of the snapshot. Never the number of groups.
   std::size_t transmitter_count = 0;
+  // Producer-issued evidence for histories with declared radii. Null for
+  // exact histories.
+  std::shared_ptr<const ValidatedPopulationEvidence> validated_evidence = {};
 };
 
 // Exact decimal-token predicates. Interval enclosures of tokens are always
@@ -150,6 +173,62 @@ struct MatchedPairEnclosureRequest {
 [[nodiscard]] bool exact_decimal_tokens_are_opposite(
     const std::string& left,
     const std::string& right);
+
+// Whole-step tube-form bound, for use inside a validated far step. The slab
+// is [slab_lower, slab_upper], exact tokens: the retained past of both
+// members up to the step start. The receiver set is a box that holds for the
+// whole step. The radius is that of the piecewise tube-form theorem, from
+// bounds over the whole slab: the distance floor between the receiver box and
+// the box hull of both members' position tubes, the speed bound of their
+// velocity tubes, the equal-time separation, the nominal equal-time relative
+// velocity with both members' largest velocity radii, the nominal
+// acceleration bound and the nominal velocity jumps at joins.
+//
+// This function checks nothing about reception. The caller must have
+// established that, for every reception time of the step and every receiver
+// point in the box, each member has exactly one causal root and that root
+// lies in the slab. It also does not check evidence: the caller supplies
+// histories whose tubes are already admitted.
+struct WholeStepPairBoundRequest {
+  IntervalVector receiver_box{Interval::point(0.0), Interval::point(0.0),
+                              Interval::point(0.0)};
+  std::string receiver_charge;
+  std::string coupling;
+  const RetainedHistory* leader_history = nullptr;
+  std::string leader_charge;
+  const RetainedHistory* follower_history = nullptr;
+  std::string follower_charge;
+  std::string slab_lower;
+  std::string slab_upper;
+};
+
+struct WholeStepPairBound {
+  // certified | declined
+  std::string status = "declined";
+  // MPE-CHARGE-01 charges are not exact opposites; MPE-WINDOW-01 the slab is
+  // not covered by both histories; MPE-HISTORY-01 an analytic carrier;
+  // MPE-GEO-01 no positive distance floor; MPE-SPEED-01 speed bound not
+  // below 1; MPE-BOUND-01 radius not finite.
+  std::string failure_code;
+  std::size_t cell_count = 0;
+  IntervalVector source_domain_hull{Interval::point(0.0), Interval::point(0.0),
+                                    Interval::point(0.0)};
+  double distance_floor = 0.0;
+  double speed_upper = 0.0;
+  double factor_floor = 0.0;
+  double separation_upper = 0.0;
+  double relative_speed_upper = 0.0;
+  double acceleration_upper = 0.0;
+  double join_jump_upper = 0.0;
+  double leader_velocity_radius_upper = 0.0;
+  double follower_velocity_radius_upper = 0.0;
+  double prefactor_upper = 0.0;
+  // B. The pair's acceleration has every component in [-B, B].
+  double radius_upper = 0.0;
+};
+
+[[nodiscard]] WholeStepPairBound whole_step_pair_bound(
+    const WholeStepPairBoundRequest& request);
 
 // Pure function: reads the three histories and the run tokens, mutates
 // nothing, and returns a certificate whose status is certified_enclosed,

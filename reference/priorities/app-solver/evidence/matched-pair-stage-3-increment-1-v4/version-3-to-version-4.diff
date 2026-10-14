@@ -1,0 +1,258 @@
+diff -ru stage3f-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp stage3g-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp
+--- stage3f-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp	2026-10-12 15:05:49
++++ stage3g-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp	2026-10-12 15:26:27
+@@ -35,10 +35,12 @@
+ //
+ // Admission. Before anything else, including a zero-length, cancelled or
+ // step-limited return, the initial population is admitted by the producer's
+-// H0 check: histories ending at exactly start_time, one common start, and
+-// evidence binding any declared radii under this coupling. A refused
+-// initial population returns no accepted time, no evidence and no
+-// continuation.
++// H0 check: a coupling and charges that are exact finite decimal tokens,
++// histories ending at exactly start_time, one common start, evidence where
++// any radius is declared, and any supplied evidence binding every path's
++// content and charge under this coupling, whether or not a radius is
++// declared. A refused initial population returns no accepted time, no
++// evidence and no continuation.
+ //
+ // Cancellation is observed after admission and before the first attempt,
+ // and after an accepted step, so the returned state is always an accepted
+@@ -145,7 +147,8 @@
+   // Must equal kValidatedFarStepEvolutionPolicy.
+   std::string policy;
+   std::vector<ValidatedFarStepPath> paths;
+-  // Evidence issued for `paths`. Null for exact prescribed histories.
++  // Evidence issued for exactly `paths`. Null for exact prescribed
++  // histories; evidence that does not bind `paths` is refused.
+   ValidatedFarStepEvidence evidence;
+   // The continuation returned by the run being resumed. Null for a new run.
+   std::shared_ptr<const ValidatedEvolutionContinuation> continuation = {};
+diff -ru stage3f-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp stage3g-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp
+--- stage3f-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp	2026-10-12 15:05:49
++++ stage3g-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp	2026-10-12 15:26:27
+@@ -153,11 +153,14 @@
+       std::size_t max_iterations = 12);
+ 
+   // Empty when the population may begin a step at `start`: a nonempty
+-  // population with distinct identifiers, one common history start token,
+-  // every history ending at exactly `start`, no analytic carrier, and, where
+-  // any history declares a radius, evidence that binds every path's content
+-  // and charge under this coupling. Otherwise the reason. This is the H0
+-  // admission that step() applies, callable without taking a step.
++  // population with distinct identifiers, a coupling and charges that are
++  // exact finite decimal tokens, one common history start token, every
++  // history ending at exactly `start`, no analytic carrier, and evidence
++  // that binds every path's content and charge under this coupling. Evidence
++  // is required where any history declares a radius; evidence that is
++  // supplied must bind whether or not a radius is declared. Otherwise the
++  // reason. This is the H0 admission that step() applies, callable without
++  // taking a step.
+   [[nodiscard]] static std::string admission_refusal(
+       const std::vector<ValidatedFarStepPath>& paths,
+       const ValidatedFarStepEvidence& inherited,
+diff -ru stage3f-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp stage3g-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp
+--- stage3f-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 15:09:42
++++ stage3g-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 15:26:27
+@@ -868,6 +868,112 @@
+   return 0;
+ }
+ 
++// I1-R3b. Supplied evidence must bind the population it is supplied with
++// even when that population declares no radius, and the coupling and charges
++// must be exact finite decimal tokens, before any early return.
++int admission_b_cases() {
++  // Known first: an exact prefix without evidence, and a generated
++  // population with its own evidence, at zero length.
++  run_case("K-exact-prefix-zero-length-without-evidence",
++           make("b0", static_pair(), "0", "0", kStep, kStep));
++  Request first = make("b-first", static_pair(), "0", kStep, kStep, kStep);
++  const Observed grown = evolve(first);
++  {
++    Request own = make("b1", grown.run.paths, kStep, kStep, kStep, kStep);
++    own.evidence = grown.run.evidence;
++    run_case("K-generated-zero-length-with-own-evidence", own);
++  }
++  // The reviewer's targets: the generated population's evidence supplied
++  // with the original exact prefix.
++  {
++    Request r = make("b2", static_pair(), "0", "0", kStep, kStep);
++    r.evidence = grown.run.evidence;
++    run_case("N-stale-evidence-exact-prefix-zero-length", r);
++  }
++  {
++    Request r = make("b3", static_pair(), "0", "0.015625", kStep, kStep);
++    r.evidence = grown.run.evidence;
++    r.cancellation_requested = [] { return true; };
++    run_case("N-stale-evidence-exact-prefix-early-cancellation", r);
++  }
++  {
++    Request r = make("b4", static_pair(), "0", "0.015625", kStep, kStep);
++    r.evidence = grown.run.evidence;
++    r.max_accepted_steps = 0;
++    run_case("N-stale-evidence-exact-prefix-step-limit", r);
++  }
++  {
++    Request r = make("b5", static_pair(), "0", "0.015625", kStep, kStep);
++    r.evidence = grown.run.evidence;
++    run_case("N-stale-evidence-exact-prefix-positive-run", r);
++  }
++  {
++    // Evidence of another exact population's run, same identifiers.
++    Request other_first =
++        make("b-other", static_pair("10.5"), "0", kStep, kStep, kStep);
++    const Observed other = evolve(other_first);
++    Request r = make("b6", static_pair(), "0", "0", kStep, kStep);
++    r.evidence = other.run.evidence;
++    run_case("N-foreign-evidence-exact-prefix-zero-length", r);
++  }
++  // The public producer refuses the same object on the exact prefix.
++  eom::ValidatedFarStepProducer producer;
++  emit("N-producer-stale-evidence-exact-prefix", "1",
++       producer.step(static_pair(), grown.run.evidence, "0", kStep, kKappa,
++                     kBudgets));
++
++  // Scalars. Known first: signed and exponent forms are admitted.
++  const std::vector<std::pair<std::string, std::string>> good{
++      {"zero", "0"}, {"negative", "-0.001"}, {"exponent", "1e-3"},
++      {"explicit-plus", "+0.001"}};
++  for (const auto& [name, token] : good) {
++    run_case("K-coupling-" + name + "-zero-length",
++             make("s", static_pair(), "0", "0", kStep, kStep, token));
++  }
++  run_case("K-coupling-exponent-one-step",
++           make("s1", static_pair(), "0", kStep, kStep, kStep, "1e-3"));
++  {
++    std::vector<Path> signedCharges{static_path("receiver", "+1", "0"),
++                                    static_path("source", "-1e0", "10")};
++    run_case("K-charges-signed-and-exponent-one-step",
++             make("s2", signedCharges, "0", kStep, kStep, kStep));
++  }
++  const std::vector<std::pair<std::string, std::string>> bad{
++      {"not-a-number", "not-a-number"}, {"nan", "nan"}, {"infinity", "inf"},
++      {"empty", ""}, {"dangling-exponent", "1e"}, {"hexadecimal", "0x10"},
++      {"two-points", "1.0.0"}, {"leading-space", " 1"},
++      {"binary64-overflow", "1e400"}};
++  for (const auto& [name, token] : bad) {
++    run_case("N-coupling-" + name + "-zero-length",
++             make("s", static_pair(), "0", "0", kStep, kStep, token));
++    std::vector<Path> charged{static_path("receiver", "1", "0"),
++                              static_path("source", token, "10")};
++    run_case("N-charge-" + name + "-zero-length",
++             make("s", charged, "0", "0", kStep, kStep));
++  }
++  {
++    Request r = make("s3", static_pair(), "0", "0.015625", kStep, kStep,
++                     "not-a-number");
++    r.cancellation_requested = [] { return true; };
++    run_case("N-coupling-not-a-number-early-cancellation", r);
++    Request l = make("s4", static_pair(), "0", "0.015625", kStep, kStep,
++                     "not-a-number");
++    l.max_accepted_steps = 0;
++    run_case("N-coupling-not-a-number-step-limit", l);
++    run_case("N-coupling-not-a-number-positive-run",
++             make("s5", static_pair(), "0", "0.015625", kStep, kStep,
++                  "not-a-number"));
++  }
++  emit("N-producer-coupling-not-a-number", "1",
++       producer.step(static_pair(), nullptr, "0", kStep, "not-a-number",
++                     kBudgets));
++  emit("N-producer-charge-not-a-number", "1",
++       producer.step({static_path("receiver", "1", "0"),
++                      static_path("source", "not-a-number", "10")},
++                     nullptr, "0", kStep, kKappa, kBudgets));
++  return 0;
++}
++
+ // I1-R4. The reviewer's case: coupling 0, static exact histories at z = 0
+ // and z = 10 on [-20, 0], one step of 0.125. The published source position
+ // radius on z is a few units in the last place of 10, all of it newly
+@@ -931,12 +1037,13 @@
+     if (command == "budgets") return budget_cases();
+     if (command == "admission") return admission_cases();
+     if (command == "ledger") return ledger_cases();
++    if (command == "admission-b") return admission_b_cases();
+   } catch (const std::exception& error) {
+     std::cout << "{\"case\":\"FATAL\",\"exception\":\"" << error.what()
+               << "\"}\n";
+     return 3;
+   }
+   std::cerr << "usage: <known|controller|refusals|cancellation|aliasing|"
+-               "continuation|budgets|admission|ledger>\n";
++               "continuation|budgets|admission|ledger|admission-b>\n";
+   return 2;
+ }
+diff -ru stage3f-tree/src/eom/src/ValidatedFarStep.cpp stage3g-tree/src/eom/src/ValidatedFarStep.cpp
+--- stage3f-tree/src/eom/src/ValidatedFarStep.cpp	2026-10-12 15:05:49
++++ stage3g-tree/src/eom/src/ValidatedFarStep.cpp	2026-10-12 15:29:24
+@@ -153,6 +153,19 @@
+   return certificate;
+ }
+ 
++// True when `token` is in the scalar grammar a step uses for the coupling
++// and the charges: an exact finite decimal, optionally signed and with an
++// exponent, that is also a finite binary64 value. No sign is excluded.
++bool admitted_scalar(const std::string& token) {
++  try {
++    (void)eom::exact_decimal_token_is_zero(token);
++    (void)Interval::decimal_token(token);
++    return true;
++  } catch (const std::exception&) {
++    return false;
++  }
++}
++
+ // H0 admission. Empty when admitted; otherwise the reason. When `digests`
+ // is given it receives each path's content chain, in path order.
+ std::string admission_reason(
+@@ -165,6 +178,15 @@
+   if (!validated_far_step_plain_decimal(start)) {
+     return "step start and length must be plain decimal tokens";
+   }
++  if (!admitted_scalar(coupling)) {
++    return "coupling is not an exact finite decimal token";
++  }
++  for (const auto& path : paths) {
++    if (!admitted_scalar(path.charge)) {
++      return "charge of path " + path.id +
++          " is not an exact finite decimal token";
++    }
++  }
+   bool any_radius = false;
+   const std::string start_of_history =
+       paths.front().history.segments().front().t_start_token();
+@@ -197,10 +219,12 @@
+   for (const auto& path : paths) {
+     computed.push_back(eom::validated_history_digest(path.history));
+   }
+-  if (any_radius) {
+-    if (inherited == nullptr) {
+-      return "histories declare radii but no evidence was supplied";
+-    }
++  if (any_radius && inherited == nullptr) {
++    return "histories declare radii but no evidence was supplied";
++  }
++  // Supplied evidence must bind the population it is supplied with, whether
++  // or not that population declares a radius.
++  if (inherited != nullptr) {
+     if (eom::compare_exact_decimal_tokens(inherited->coupling(), coupling) !=
+         0) {
+       return "generated history was published under a different coupling";
+@@ -316,15 +340,15 @@
+       (E - T).upper(), Interval::decimal_token(step_token).upper());
+   certificate.duration_cover = cover;
+   const Interval h = Interval::point(cover);
+-  const Interval kappa = Interval::decimal_token(coupling);
+ 
+-  // H0.
++  // H0. The coupling is read only after admission has accepted its token.
+   std::vector<std::string> digest_before;
+   {
+     const std::string reason =
+         admission_reason(paths, inherited, start, coupling, &digest_before);
+     if (!reason.empty()) return decline(certificate, "VFS-H0-01", reason);
+   }
++  const Interval kappa = Interval::decimal_token(coupling);
+   const std::string start_of_history =
+       paths.front().history.segments().front().t_start_token();
+   const double s_min = paths.front().history.t_start();

@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-subrange-feedback-claude-review-audit7.py", line 283, in <module>
+    eqold = all(all(float(x) == 1.0 for x in r["compare"][n]["width_ratio_stored_over_old"][:2]) for r in rK4["steps"] for n in NAMES)
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-subrange-feedback-claude-review-audit7.py", line 283, in <genexpr>
+    eqold = all(all(float(x) == 1.0 for x in r["compare"][n]["width_ratio_stored_over_old"][:2]) for r in rK4["steps"] for n in NAMES)
+                                             ~~~~~~~~~~~~^^^
+KeyError: 'antipode'
+        0.39 real         0.35 user         0.01 sys
+            38174720  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                3043  page reclaims
+                 336  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  98  voluntary context switches
+                 150  involuntary context switches
+          6099288753  instructions retired
+          1404514449  cycles elapsed
+            30392824  peak memory footprint

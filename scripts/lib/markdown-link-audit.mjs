@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import path from "node:path";
+
 function stripMarkdownLinkTarget(linkTarget) {
   const trimmed = String(linkTarget || "").trim();
   const match = trimmed.match(/^(\S+)(?:\s+["'][^"']*["'])?$/);
@@ -28,4 +31,11 @@ export function extractMarkdownLinks(markdownText) {
     }
   }
   return links;
+}
+// Repository reference directories are browsed on GitHub, which presents a
+// README landing page. This does not admit directory routes in the web corpus.
+export function hasReferenceDirectoryIndex(rootDir, relativePath) {
+  if (!relativePath.startsWith("reference/") || relativePath.split("/").includes("..")) return false;
+  const index = path.join(rootDir, relativePath, "README.md");
+  return fs.existsSync(index) && fs.lstatSync(index).isFile();
 }

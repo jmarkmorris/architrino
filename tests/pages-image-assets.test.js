@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import { selectPagesImages, IMAGE_LIBRARY, IMAGE_CATALOG } from "../scripts/pages-image-assets.mjs";
 import { buildStaticSite } from "../scripts/build-static-site.mjs";
 import { runtimeAssetPaths } from "../scripts/prepare-runtime-assets.mjs";
@@ -21,6 +22,26 @@ function fixture(t) {
   const select = () => selectPagesImages({ rootDir, paths });
   return { directory, rootDir, paths, write, select };
 }
+
+test("Pages accepts tracked and deleted path inventories larger than one MiB", (t) => {
+  const f = fixture(t);
+  f.write("index.html", "<h1>Known page</h1>");
+  f.write("scripts/config/generated-runtime-assets.json", fs.readFileSync(new URL("../scripts/config/generated-runtime-assets.json", import.meta.url), "utf8"));
+  const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => !key.startsWith("GIT_")));
+  const git = (args, options = {}) => execFileSync("git", args, { cwd: f.rootDir, env, encoding: "utf8", maxBuffer: 8 * 1024 * 1024, ...options });
+  git(["init", "--quiet"]);
+  git(["add", "--", ...f.paths]);
+  const emptyBlob = git(["hash-object", "-w", "--stdin"], { input: "" }).trim();
+  const names = Array.from({ length: 6000 }, (_, i) => `.inventory/${i}-${"x".repeat(180)}`);
+  git(["update-index", "--index-info"], { input: names.map(name => `100644 ${emptyBlob}\t${name}\n`).join("") });
+  assert.ok(Buffer.byteLength(git(["ls-files", "-z"])) > 1024 * 1024);
+  assert.ok(Buffer.byteLength(git(["ls-files", "--deleted", "-z"])) > 1024 * 1024);
+  const result = buildStaticSite({ rootDir: f.rootDir, outputDir: path.join(f.directory, "site"),
+    prepare: () => { for (const name of runtimeAssetPaths(f.rootDir)) f.write(name, "{}"); },
+  });
+  assert.equal(fs.readFileSync(path.join(result.outputDir, "index.html"), "utf8"), "<h1>Known page</h1>");
+  assert.equal(fs.existsSync(path.join(result.outputDir, ".inventory")), false);
+});
 
 test("image selection uses website references, not catalogs, tests, or unlinked production documents", (t) => {
   const f = fixture(t);

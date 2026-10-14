@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-subrange-feedback-claude-review-audit7.py", line 293, in <module>
+    assert okK4 and okW3, "control failure K4/W3"
+           ^^^^^^^^^^^^^
+AssertionError: control failure K4/W3
+        0.52 real         0.47 user         0.01 sys
+            38961152  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                3087  page reclaims
+                 339  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  95  voluntary context switches
+                 239  involuntary context switches
+          8058018086  instructions retired
+          1861274167  cycles elapsed
+            31179256  peak memory footprint

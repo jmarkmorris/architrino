@@ -1,0 +1,281 @@
+diff -ru stage3e-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp stage3f-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp
+--- stage3e-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp	2026-10-12 14:52:53
++++ stage3f-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp	2026-10-12 15:05:49
+@@ -71,11 +71,17 @@
+     "canonical_validated_far_step_evolution/v1";
+ 
+ // Declared radii per axis: what the step inherited, the certified upper
+-// bound of what it added, and what the published segment declares.
++// bound of what it added, and what the published segment declares, with
++// inherited + increment never below total. The increment is the whole growth
++// from the inherited declared radius and is what the increment budget is
++// compared with; its two parts are the widening of the evaluated starting
++// section and the growth over the step.
+ struct ValidatedAxisLedger {
+   std::array<double, 3> inherited{};
+   std::array<double, 3> increment{};
+   std::array<double, 3> total{};
++  std::array<double, 3> section_allowance{};
++  std::array<double, 3> step_growth{};
+ };
+ 
+ struct ValidatedPathLedger {
+diff -ru stage3e-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp stage3f-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp
+--- stage3e-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp	2026-10-12 14:51:57
++++ stage3f-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp	2026-10-12 15:05:49
+@@ -19,6 +19,13 @@
+ // common token; every duration-dependent bound uses an upper bound of the
+ // emitted segment's extent.
+ //
++// Growth. The growth a step reports, and the increment budget is compared
++// with, is measured from the radius the supplied history declares at the
++// step start to the radius the step publishes, rounded upward: declared plus
++// growth is never below the published radius. It therefore includes the
++// widening of the evaluated and recentred starting section beyond the
++// declared radius, which is also reported on its own.
++//
+ // Evidence. A certified step issues a sealed ValidatedPopulationEvidence. A
+ // population with declared radii is admitted only with such evidence whose
+ // content chains equal those recomputed from the histories supplied.
+@@ -85,8 +92,21 @@
+                               Interval::point(0)};
+   std::array<double, 3> position_radius{};
+   std::array<double, 3> velocity_radius{};
++  // A binary64 value not above the radius the supplied history declares at
++  // the step start; equal to it when that radius is a binary64 value.
++  std::array<double, 3> declared_position{};
++  std::array<double, 3> declared_velocity{};
++  // The charge: an upper bound of the published radius minus the declared
++  // radius. This is what the increment budget is compared with.
+   std::array<double, 3> growth_position{};
+   std::array<double, 3> growth_velocity{};
++  // The two parts of the charge, each rounded upward: the widening of the
++  // evaluated and recentred starting section beyond the declared radius, and
++  // the growth over the step from that section.
++  std::array<double, 3> section_allowance_position{};
++  std::array<double, 3> section_allowance_velocity{};
++  std::array<double, 3> step_growth_position{};
++  std::array<double, 3> step_growth_velocity{};
+   // Smallest certified lower bound of the Bernstein coefficients of the
+   // position and velocity slack polynomials over the whole step.
+   double whole_step_slack = 0.0;
+diff -ru stage3e-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp stage3f-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp
+--- stage3e-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 14:54:35
++++ stage3f-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 15:09:42
+@@ -156,8 +156,18 @@
+               << ",\"inherited_velocity\":" << vector3(p.inherited_velocity)
+               << ",\"acceleration\":" << vector3(p.acceleration)
+               << ",\"position_box\":" << vector3(p.position_box)
++              << ",\"declared_position\":" << array3(p.declared_position)
++              << ",\"declared_velocity\":" << array3(p.declared_velocity)
+               << ",\"growth_position\":" << array3(p.growth_position)
+               << ",\"growth_velocity\":" << array3(p.growth_velocity)
++              << ",\"section_allowance_position\":"
++              << array3(p.section_allowance_position)
++              << ",\"section_allowance_velocity\":"
++              << array3(p.section_allowance_velocity)
++              << ",\"step_growth_position\":"
++              << array3(p.step_growth_position)
++              << ",\"step_growth_velocity\":"
++              << array3(p.step_growth_velocity)
+               << ",\"total_position\":" << array3(p.position_radius)
+               << ",\"total_velocity\":" << array3(p.velocity_radius)
+               << ",\"whole_step_slack\":" << num(p.whole_step_slack);
+@@ -199,7 +209,9 @@
+ 
+ std::string axis_ledger(const eom::ValidatedAxisLedger& value) {
+   return "{\"inherited\":" + array3(value.inherited) + ",\"increment\":" +
+-      array3(value.increment) + ",\"total\":" + array3(value.total) + "}";
++      array3(value.increment) + ",\"total\":" + array3(value.total) +
++      ",\"section_allowance\":" + array3(value.section_allowance) +
++      ",\"step_growth\":" + array3(value.step_growth) + "}";
+ }
+ 
+ std::string ledger_json(const std::vector<eom::ValidatedPathLedger>& ledger) {
+@@ -326,7 +338,14 @@
+             << "\",\"initial_step\":\"" << request.initial_step
+             << "\",\"minimum_step\":\"" << request.minimum_step
+             << "\",\"coupling\":\"" << request.coupling
+-            << "\",\"accepted_steps\":" << run.run.accepted_step_count
++            << "\",\"increment_budget\":["
++            << num(request.increment_budget.position) << ","
++            << num(request.increment_budget.velocity) << "],\"total_budget\":"
++            << (request.total_budget.has_value()
++                    ? "[" + num(request.total_budget->position) + "," +
++                          num(request.total_budget->velocity) + "]"
++                    : std::string("null"))
++            << ",\"accepted_steps\":" << run.run.accepted_step_count
+             << ",\"rejected_steps\":" << run.run.rejected_step_count
+             << ",\"run_step_records\":" << run.run.steps.size()
+             << ",\"controller_step_size\":\"" << run.run.controller_step_size
+@@ -849,6 +868,45 @@
+   return 0;
+ }
+ 
++// I1-R4. The reviewer's case: coupling 0, static exact histories at z = 0
++// and z = 10 on [-20, 0], one step of 0.125. The published source position
++// radius on z is a few units in the last place of 10, all of it newly
++// declared, so the increment budget must be compared with all of it.
++Request ledger_request(const std::string& id, const Budgets& budgets) {
++  return make(id, static_pair(), "0", "0.125", "0.125", "0.125", "0",
++              budgets);
++}
++
++int ledger_cases() {
++  // Known first: a large budget accepts the step.
++  run_case("K-ledger-large-budget", ledger_request("l0", Budgets{1e-6, 1e-6}));
++  // The reviewer's target: budgets far below the newly declared radius.
++  run_case("N-ledger-tiny-budget", ledger_request("l1", Budgets{1e-25, 1e-25}));
++  // A position budget just above the newly declared radius accepts and
++  // charges all of it; one just below refuses.
++  run_case("K-ledger-tight-budget-accepted",
++           ledger_request("l2", Budgets{6e-15, 1e-25}));
++  run_case("N-ledger-budget-below-declared-growth",
++           ledger_request("l3", Budgets{5e-15, 1e-25}));
++  // The public producer applies the same charge.
++  eom::ValidatedFarStepProducer producer;
++  const auto pair = static_pair();
++  emit("K-producer-ledger-large-budget", "1",
++       producer.step(pair, nullptr, "0", "0.125", "0", Budgets{1e-6, 1e-6}));
++  emit("N-producer-ledger-tiny-budget", "1",
++       producer.step(pair, nullptr, "0", "0.125", "0",
++                     Budgets{1e-25, 1e-25}));
++  emit("K-producer-ledger-tight-budget-accepted", "1",
++       producer.step(pair, nullptr, "0", "0.125", "0", Budgets{6e-15, 1e-25}));
++  emit("N-producer-ledger-budget-below-declared-growth", "1",
++       producer.step(pair, nullptr, "0", "0.125", "0", Budgets{5e-15, 1e-25}));
++  // A second step on a generated layer inherits its declared total.
++  Request two = make("l4", static_pair(), "0", "0.25", "0.125", "0.125", "0",
++                     Budgets{6e-15, 1e-25});
++  run_case("K-ledger-second-step-inherits-declared-total", two);
++  return 0;
++}
++
+ int aliasing_cases() {
+   // Resolved from the start.
+   run_case("A-control-fine",
+@@ -872,12 +930,13 @@
+     if (command == "continuation") return continuation_cases();
+     if (command == "budgets") return budget_cases();
+     if (command == "admission") return admission_cases();
++    if (command == "ledger") return ledger_cases();
+   } catch (const std::exception& error) {
+     std::cout << "{\"case\":\"FATAL\",\"exception\":\"" << error.what()
+               << "\"}\n";
+     return 3;
+   }
+   std::cerr << "usage: <known|controller|refusals|cancellation|aliasing|"
+-               "continuation|budgets|admission>\n";
++               "continuation|budgets|admission|ledger>\n";
+   return 2;
+ }
+diff -ru stage3e-tree/src/eom/native/eom_validated_far_step_fixture_cli.cpp stage3f-tree/src/eom/native/eom_validated_far_step_fixture_cli.cpp
+--- stage3e-tree/src/eom/native/eom_validated_far_step_fixture_cli.cpp	2026-10-12 14:51:04
++++ stage3f-tree/src/eom/native/eom_validated_far_step_fixture_cli.cpp	2026-10-12 15:05:49
+@@ -158,8 +158,18 @@
+               << ",\"inherited_velocity\":" << vector3(p.inherited_velocity)
+               << ",\"acceleration\":" << vector3(p.acceleration)
+               << ",\"position_box\":" << vector3(p.position_box)
++              << ",\"declared_position\":" << array3(p.declared_position)
++              << ",\"declared_velocity\":" << array3(p.declared_velocity)
+               << ",\"growth_position\":" << array3(p.growth_position)
+               << ",\"growth_velocity\":" << array3(p.growth_velocity)
++              << ",\"section_allowance_position\":"
++              << array3(p.section_allowance_position)
++              << ",\"section_allowance_velocity\":"
++              << array3(p.section_allowance_velocity)
++              << ",\"step_growth_position\":"
++              << array3(p.step_growth_position)
++              << ",\"step_growth_velocity\":"
++              << array3(p.step_growth_velocity)
+               << ",\"total_position\":" << array3(p.position_radius)
+               << ",\"total_velocity\":" << array3(p.velocity_radius)
+               << ",\"whole_step_slack\":" << num(p.whole_step_slack);
+diff -ru stage3e-tree/src/eom/src/ValidatedEvolution.cpp stage3f-tree/src/eom/src/ValidatedEvolution.cpp
+--- stage3e-tree/src/eom/src/ValidatedEvolution.cpp	2026-10-12 14:52:53
++++ stage3f-tree/src/eom/src/ValidatedEvolution.cpp	2026-10-12 15:05:49
+@@ -232,16 +232,19 @@
+     const std::vector<ValidatedFarStepPath>& input) {
+   std::vector<ValidatedPathLedger> ledger;
+   for (std::size_t a = 0; a < input.size(); ++a) {
+-    const auto prior = input[a].history.segments().back();
+     const auto& result = producer.paths[a];
+     ValidatedPathLedger entry;
+     entry.path_id = input[a].id;
+-    entry.position.inherited = prior.position_errors();
++    entry.position.inherited = result.declared_position;
+     entry.position.increment = result.growth_position;
+     entry.position.total = result.position_radius;
+-    entry.velocity.inherited = prior.velocity_errors();
++    entry.position.section_allowance = result.section_allowance_position;
++    entry.position.step_growth = result.step_growth_position;
++    entry.velocity.inherited = result.declared_velocity;
+     entry.velocity.increment = result.growth_velocity;
+     entry.velocity.total = result.velocity_radius;
++    entry.velocity.section_allowance = result.section_allowance_velocity;
++    entry.velocity.step_growth = result.step_growth_velocity;
+     ledger.push_back(std::move(entry));
+   }
+   return ledger;
+diff -ru stage3e-tree/src/eom/src/ValidatedFarStep.cpp stage3f-tree/src/eom/src/ValidatedFarStep.cpp
+--- stage3e-tree/src/eom/src/ValidatedFarStep.cpp	2026-10-12 14:51:57
++++ stage3f-tree/src/eom/src/ValidatedFarStep.cpp	2026-10-12 15:05:49
+@@ -130,6 +130,18 @@
+   return result;
+ }
+ 
++// A binary64 value not above the declared radius `token`, given `value`,
++// the nearest binary64 value to it. Equal to `value` unless `value` was
++// rounded up.
++double declared_lower(const std::string& token, double value) {
++  if (eom::compare_exact_decimal_tokens(
++          validated_far_step_exact_token(value), token) <= 0) {
++    return value;
++  }
++  return std::max(
++      0.0, std::nextafter(value, -std::numeric_limits<double>::infinity()));
++}
++
+ ValidatedFarStepCertificate decline(
+     ValidatedFarStepCertificate certificate, std::string code, std::string reason) {
+   certificate.status = "declined";
+@@ -499,11 +511,16 @@
+   //   R_v - (rho_v + tau (rho_a + 2 d2))
+   // are certified nonnegative on [0, H] by lower bounds of their Bernstein
+   // coefficients, where H bounds the emitted extent from above.
++  //
++  // Growth is charged from the radius the supplied history declares at the
++  // step start, not from rho: rho already holds the widening of the
++  // evaluated and recentred section, and that widening is published.
+   std::vector<ValidatedFarStepPath> next;
+   const Interval hu = Interval::point(cover);
+   std::vector<eom::ValidatedPopulationEvidence::Member> members;
+   for (std::size_t a = 0; a < paths.size(); ++a) {
+     auto& result = certificate.paths[a];
++    const eom::CubicHistorySegment prior = paths[a].history.segments().back();
+     eom::CubicCoefficientTokens coefficients;
+     eom::HistoryErrorTokens position_errors;
+     eom::HistoryErrorTokens velocity_errors;
+@@ -548,8 +565,20 @@
+       velocity_errors[axis] = validated_far_step_exact_token(radius_v);
+       result.position_radius[axis] = radius_x;
+       result.velocity_radius[axis] = radius_v;
+-      result.growth_position[axis] = (Rx - rho_x).upper();
+-      result.growth_velocity[axis] = (Rv - rho_v).upper();
++      const double declared_x = declared_lower(
++          prior.position_error_tokens()[axis], prior.position_errors()[axis]);
++      const double declared_v = declared_lower(
++          prior.velocity_error_tokens()[axis], prior.velocity_errors()[axis]);
++      result.declared_position[axis] = declared_x;
++      result.declared_velocity[axis] = declared_v;
++      result.growth_position[axis] = (Rx - Interval::point(declared_x)).upper();
++      result.growth_velocity[axis] = (Rv - Interval::point(declared_v)).upper();
++      result.section_allowance_position[axis] =
++          (rho_x - Interval::point(declared_x)).upper();
++      result.section_allowance_velocity[axis] =
++          (rho_v - Interval::point(declared_v)).upper();
++      result.step_growth_position[axis] = (Rx - rho_x).upper();
++      result.step_growth_velocity[axis] = (Rv - rho_v).upper();
+     }
+     result.whole_step_slack = slack;
+     if (!(slack >= 0.0)) {

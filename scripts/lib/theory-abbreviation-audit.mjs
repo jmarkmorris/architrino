@@ -3,7 +3,14 @@
 import { mathSpans } from "./markdown-math-spans.mjs";
 
 export function findTheoryAbbreviationCandidates(text) {
+  if (!/A\^3|A³/.test(text)) return [];
   const spans = mathSpans(text);
+  // Historical conversations also record plain algebra in code spans. Do not
+  // interpret dollar-delimited examples inside code as rendered mathematics.
+  const codeSpans = [...text.matchAll(/(?<!`)(`)([^`\n]+)\1(?!`)/g)]
+    .filter(match => !/[\$]/.test(match[2]))
+    .map(match => ({ start: match.index, end: match.index + match[0].length,
+      bodyStart: match.index + 1, bodyEnd: match.index + match[0].length - 1, body: match[2] }));
   const findings = [];
   for (const match of text.matchAll(/A\^3|A³/g)) {
     const index = match.index;
@@ -19,20 +26,30 @@ export function findTheoryAbbreviationCandidates(text) {
         column > code.index && column < code.index + code[0].length - 1);
     if (diagnostic) continue;
 
-    const span = spans.find(item => item.start <= index && index < item.end);
+    const mathSpan = spans.find(item => item.start <= index && index < item.end);
+    const span = mathSpan ?? codeSpans.find(item => item.start <= index && index < item.end);
     // In d_A^3 the A is a one-token TeX subscript, not the cubed base.
     // Limit this lexical distinction to math and an actual subscripted symbol.
-    const subscript = span && /(?:[a-zA-Z]|\\[a-zA-Z]+)_$/.test(text.slice(span.start, index))
+    const subscript = mathSpan && /(?:[a-zA-Z]|\\[a-zA-Z]+)_$/.test(text.slice(span.start, index))
       && !/\\(?:text|textrm|textbf|mathrm|operatorname)\b/.test(span.body);
     if (subscript) continue;
-    const definedA = span && spans.some(item => item.start < span.start
+    const definitionSpans = mathSpan ? spans : codeSpans;
+    const definedA = span && definitionSpans.some(item =>
+      (item.start < span.start || (item.start >= span.end && item.start - span.end < 1000
+        && !/\n\s*#|\n\s*\n\s*\n/.test(text.slice(span.end, item.start))))
       && !/\\(?:text|mathrm|operatorname)\b/.test(item.body)
       && (/(?:^|[\s,;])A(?:\([^()\n]*\))?\s*=/.test(item.body)
-        || (item.body.trim() === "A"
+        || (item.start < span.start && item.body.trim() === "A"
           && /\b(?:scale|parameter|variable|constant)\s*$/.test(text.slice(0, item.start)))));
+    // A coefficient times a power evaluated to a number is unambiguously an
+    // arithmetic term even when its variable definition is in a linked note.
+    const numericTerm = mathSpan && /^\s*(?:[a-zA-Z]_(?:\{[a-zA-Z0-9]+\}|[a-zA-Z0-9])|\d+(?:\.\d+)?)\s*A(?:\^3|³)\s*=\s*-?\d+(?:\.\d+)?\s*$/.test(span.body);
+    if (numericTerm) continue;
     // Require a defined mathematical A in a relation or an arithmetic operation.
     // Text-bearing TeX and standalone badges such as $A^3$ remain prohibited.
     const algebra = span && definedA
+      && (mathSpan || (/^[a-zA-Z](?:\/[a-zA-Z])?\s*=/.test(span.body)
+        && /[a-zA-Z][a-zA-Z0-9_]*\s+A(?:\^3|³)\s*[+*-]/.test(span.body)))
       && !/\\(?:text|textrm|textbf|mathrm|operatorname)\b/.test(span.body)
       && (/[=<>]|\\(?:leq?|geq?|equiv)\b/.test(span.body)
         || /^\s*[-+*/]\s*(?:\d|[a-zA-Z](?![a-zA-Z]))/.test(text.slice(index + match[0].length, span.bodyEnd)))

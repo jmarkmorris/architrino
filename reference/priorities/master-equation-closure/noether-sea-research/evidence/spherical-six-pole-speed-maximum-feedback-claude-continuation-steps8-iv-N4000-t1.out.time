@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv.py", line 293, in <module>
+    dj, hj, _ = resume8(pth, None)
+                ~~~~~~~^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv.py", line 252, in resume8
+    elif not (prev_.get("campaign") == "speed-maximum-feedback" and prev_.get("controls_all_pass") is True and prev_.get("steps7_v5_sha256_verified") == S7_SHA and prev_.get("partial") is False): raise ValueError("resume file refused (neither an accepted predecessor record nor a completed record of this campaign): " + name)
+                                                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: resume file refused (neither an accepted predecessor record nor a completed record of this campaign): spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s1a2.json
+       15.05 real        14.65 user         0.07 sys
+            59080704  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                4629  page reclaims
+                 120  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  81  voluntary context switches
+               11041  involuntary context switches
+        244246183653  instructions retired
+         53474233179  cycles elapsed
+            45924880  peak memory footprint

@@ -1,0 +1,90 @@
+{
+ "controls": [
+  {
+   "name": "(A0) known hand zero N(pi/4, arctan[1/(1+1/sqrt2)]) = 0; just below pi/4 positive, just above negative; negative: wrong sign of the source sine term is nonzero there",
+   "N": "5.7397e-42",
+   "wrong": "0.35740674",
+   "pass": true
+  }
+ ],
+ "targets": {
+  "A1_factorisation_max_abs_diff": "2.2959e-41",
+  "A1_M_equals_N_swapped_max_abs_diff": "0.0",
+  "A2_zero_formula_vs_bisection": {
+   "0.1": {
+    "bisection": "1.46321652593",
+    "formula": "1.46321652593",
+    "abs_diff": "3.32e-12"
+   },
+   "0.2": {
+    "bisection": "1.33844242104",
+    "formula": "1.33844242104",
+    "abs_diff": "2.44e-12"
+   },
+   "0.3": {
+    "bisection": "1.19379296728",
+    "formula": "1.19379296728",
+    "abs_diff": "1.84e-12"
+   },
+   "0.4": {
+    "bisection": "1.02810475163",
+    "formula": "1.02810475163",
+    "abs_diff": "3.69e-12"
+   },
+   "0.5": {
+    "bisection": "0.843438791903",
+    "formula": "0.843438791903",
+    "abs_diff": "1.47e-13"
+   },
+   "0.55": {
+    "bisection": "0.745882392075",
+    "formula": "0.745882392075",
+    "abs_diff": "4.58e-13"
+   },
+   "0.6": {
+    "bisection": "0.646431711026",
+    "formula": "0.646431711026",
+    "abs_diff": "1.05e-13"
+   },
+   "0.65": {
+    "bisection": "0.546521202729",
+    "formula": "0.546521202729",
+    "abs_diff": "2.91e-13"
+   },
+   "0.7": {
+    "bisection": "0.447629731192",
+    "formula": "0.447629731192",
+    "abs_diff": "4.39e-13"
+   },
+   "0.75": {
+    "bisection": "0.35113861922",
+    "formula": "0.35113861922",
+    "abs_diff": "4.68e-15"
+   },
+   "0.8": {
+    "bisection": "0.258211908192",
+    "formula": "0.258211908192",
+    "abs_diff": "1.47e-13"
+   },
+   "0.85": {
+    "bisection": "0.169722348867",
+    "formula": "0.169722348867",
+    "abs_diff": "4.28e-13"
+   }
+  },
+  "A2_max_abs_diff": "3.69e-12",
+  "A3_max_upper_bound_dN_dq": "-0.3221004",
+  "A3_max_upper_bound_dN_dp": "-0.80655661",
+  "A3_both_partials_proved_negative_on_box": true,
+  "A4_exact_cell_classification_58x85": {
+   "pos": 2513,
+   "neg": 2343,
+   "und": 74
+  },
+  "A4_geomz_interval_counts": {
+   "N_pos": 2508,
+   "N_neg": 2338,
+   "N_und": 84
+  }
+ }
+}

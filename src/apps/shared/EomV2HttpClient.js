@@ -12,7 +12,7 @@ export function createEomV2HttpClient({ endpoint = '/api/eom/v2', fetchImpl = gl
   async function run(request, body, route, { expectedModelDigest, signal, onProgress } = {}) {
     const model = await inspect(request);
     if (disposing) throw new Error('EOM client disposed during inspection.');
-    if (expectedModelDigest && model.modelDigest !== expectedModelDigest) throw new Error('Edited request no longer matches the inspected model.');
+    if (expectedModelDigest && model.modelDigest !== expectedModelDigest) throw new Error('The EOM service model differs from the inspected or retained model. Inspect a new preparation to start a new run.');
     if (signal?.aborted) throw new DOMException('Calculation cancelled before launch.', 'AbortError');
     const executionId = globalThis.crypto.randomUUID();
     let cancellationTimer;

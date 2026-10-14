@@ -1,0 +1,11 @@
+Known exact-origin zero-leg replay passes BEFORE malformed-origin/control targets.
+zero_minimum: status=refused stage=admission paths=0 evidence=0 continuation=0 reason=the driver does not admit the origin: unsupported_execution_policy: validated evolution request has an empty population, reversed times, a nonpositive step or budget, or no attempt allowance
+no_attempt_allowance: status=refused stage=admission paths=0 evidence=0 continuation=0 reason=the driver does not admit the origin: unsupported_execution_policy: validated evolution request has an empty population, reversed times, a nonpositive step or budget, or no attempt allowance
+bad_charge: status=refused stage=admission paths=0 evidence=0 continuation=0 reason=the driver does not admit the origin: initial_population_refused: charge of path r is not an exact finite decimal token
+unrepresentable_coupling: status=refused stage=admission paths=0 evidence=0 continuation=0 reason=the driver does not admit the origin: initial_population_refused: coupling is not an exact finite decimal token
+duplicate_identifier: status=refused stage=admission paths=0 evidence=0 continuation=0 reason=the driver does not admit the origin: initial_population_refused: duplicate path identifier
+Known genuine one-leg append/selected restore binds all paths BEFORE request mutations.
+request_charge_changed: appended=0 reason=the leg's path 1 does not have the record's identifier and charge
+request_id_changed: appended=0 reason=the leg's path 1 does not have the record's identifier and charge
+request_field_speed_changed: appended=0 reason=the request's control differs from the record's: field_speed
+request_stale_evidence: appended=0 reason=the leg's evidence is not the evidence of the record's last boundary

@@ -11,6 +11,8 @@
 
 ## Objective
 
+The [October 13 supporting-chapter review](../aaa-operations/evidence/ops-031-bremsstrahlung-synchrotron-review-2026-10-13.md) completes Bremsstrahlung and Synchrotron at unchanged whole-source scope. One low Bremsstrahlung terminology correction, BRS13-01, is [proposed in the maintenance queue](work-queue.md#ops-031--october-13-supporting-chapter-referral); no new mathematical correction or substantive edit is made. CRW-005 remains closed.
+
 Bring all 199 documents under `content/markdown/aaa` into line with edition 1.0 of the academic style guide, so that a reader who knows neither $\mathbb{A}\mathbb{A}\mathbb{A}$ nor established physics can arrive at any page and follow it.
 
 This is an editorial program, not a theory program. It changes how the corpus explains, never what it claims. A rewrite that alters a claim, a claim grade, a falsifier, or an equation has failed, and the physics content of a converted document must survive the conversion exactly.
@@ -21,9 +23,9 @@ The accepted [Master Equation naming convention](../../../content/markdown/aaa/a
 
 The [September 27 validation follow-ups](work-queue.md#ops-031--september-27-validation-follow-ups) are accepted and implemented: the duplicated Attraction preparation block is removed, and both reviewed chapters distinguish justified chart extension from genuine singular continuation. Independent affine-root checks and full-document review preserve the existing equations and claim boundaries.
 
-The [October 11 Effective Lagrangian maintenance referral](work-queue.md#ops-031--october-11-effective-lagrangian-referral) contains nine proposed correction groups, including missed propagation of the Master Equation’s interaction-statistic boundary. They await operator disposition; no substantive change is made and CRW-005 remains closed. The detailed receipt supplies exact passages, independent counterexamples, smallest repairs and falsifiers.
+The [October 11 Effective Lagrangian maintenance referral](work-queue.md#ops-031--october-11-effective-lagrangian-referral) contains nine proposed correction groups, including missed propagation of the Master Equation’s interaction-statistic boundary. The [single before/after proposal](analysis/ops-031-effective-repair-proposal-2026-10-12.md) preserves the exact approved replacements. All nine groups are implemented and separately verified in the [closure record](evidence/ops-031-effective-correction-closure-2026-10-12.md), which also tracks the additional new-thread Claude review. The scientific derivations remain open and CRW-005 remains closed. The original receipt supplies independent counterexamples and falsifiers.
 
-The [October 12 core maintenance referral](work-queue.md#ops-031--october-12-core-symmetry-and-frequency-lock-referral) proposes eleven bounded corrections across the symmetry and doubling-frequency chapters. Delayed geometry and harmonic truncation are the most consequential proof gaps; exact equal-time symmetry and fixed-frequency algebra remain useful. No proposal is implemented; CRW-005 remains closed.
+The operator approved all eleven [October 12 core correction groups](work-queue.md#ops-031--october-12-core-symmetry-and-frequency-lock-referral). They are implemented and separately verified in the [exact-state closure](evidence/ops-031-core-correction-closure-2026-10-12.md). Delayed geometry, harmonic score error, symmetry and phase-map distinctions are corrected while actual retention, stability and physical wake-account derivations remain open. The before/after proposal and original review preserve their historical evidence; CRW-005 remains closed.
 
 ### How the assurance corrections relate to the rewrite
 

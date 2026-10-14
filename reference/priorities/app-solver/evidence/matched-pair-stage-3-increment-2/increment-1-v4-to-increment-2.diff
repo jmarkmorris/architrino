@@ -1,0 +1,958 @@
+diff -ru stage3g-tree/src/eom/include/architrino/eom/MatchedPairEnclosure.hpp stage3h-tree/src/eom/include/architrino/eom/MatchedPairEnclosure.hpp
+--- stage3g-tree/src/eom/include/architrino/eom/MatchedPairEnclosure.hpp	2026-10-12 15:25:47
++++ stage3h-tree/src/eom/include/architrino/eom/MatchedPairEnclosure.hpp	2026-10-12 15:45:28
+@@ -174,6 +174,62 @@
+     const std::string& left,
+     const std::string& right);
+ 
++// Whole-step tube-form bound, for use inside a validated far step. The slab
++// is [slab_lower, slab_upper], exact tokens: the retained past of both
++// members up to the step start. The receiver set is a box that holds for the
++// whole step. The radius is that of the piecewise tube-form theorem, from
++// bounds over the whole slab: the distance floor between the receiver box and
++// the box hull of both members' position tubes, the speed bound of their
++// velocity tubes, the equal-time separation, the nominal equal-time relative
++// velocity with both members' largest velocity radii, the nominal
++// acceleration bound and the nominal velocity jumps at joins.
++//
++// This function checks nothing about reception. The caller must have
++// established that, for every reception time of the step and every receiver
++// point in the box, each member has exactly one causal root and that root
++// lies in the slab. It also does not check evidence: the caller supplies
++// histories whose tubes are already admitted.
++struct WholeStepPairBoundRequest {
++  IntervalVector receiver_box{Interval::point(0.0), Interval::point(0.0),
++                              Interval::point(0.0)};
++  std::string receiver_charge;
++  std::string coupling;
++  const RetainedHistory* leader_history = nullptr;
++  std::string leader_charge;
++  const RetainedHistory* follower_history = nullptr;
++  std::string follower_charge;
++  std::string slab_lower;
++  std::string slab_upper;
++};
++
++struct WholeStepPairBound {
++  // certified | declined
++  std::string status = "declined";
++  // MPE-CHARGE-01 charges are not exact opposites; MPE-WINDOW-01 the slab is
++  // not covered by both histories; MPE-HISTORY-01 an analytic carrier;
++  // MPE-GEO-01 no positive distance floor; MPE-SPEED-01 speed bound not
++  // below 1; MPE-BOUND-01 radius not finite.
++  std::string failure_code;
++  std::size_t cell_count = 0;
++  IntervalVector source_domain_hull{Interval::point(0.0), Interval::point(0.0),
++                                    Interval::point(0.0)};
++  double distance_floor = 0.0;
++  double speed_upper = 0.0;
++  double factor_floor = 0.0;
++  double separation_upper = 0.0;
++  double relative_speed_upper = 0.0;
++  double acceleration_upper = 0.0;
++  double join_jump_upper = 0.0;
++  double leader_velocity_radius_upper = 0.0;
++  double follower_velocity_radius_upper = 0.0;
++  double prefactor_upper = 0.0;
++  // B. The pair's acceleration has every component in [-B, B].
++  double radius_upper = 0.0;
++};
++
++[[nodiscard]] WholeStepPairBound whole_step_pair_bound(
++    const WholeStepPairBoundRequest& request);
++
+ // Pure function: reads the three histories and the run tokens, mutates
+ // nothing, and returns a certificate whose status is certified_enclosed,
+ // certified_absent or declined. A declined certificate carries no
+diff -ru stage3g-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp stage3h-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp
+--- stage3g-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp	2026-10-12 15:26:27
++++ stage3h-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp	2026-10-12 15:45:28
+@@ -8,10 +8,16 @@
+ // single-time snapshot, predictor, corrector, step-doubling comparison,
+ // root-pressure, cost-feedback or growth heuristic of the ordinary
+ // controller, and the ordinary evolution entry points do not call it; they
+-// continue to refuse every grouped policy. It uses no matched-pair grouping,
+-// one thread, and no persistence. The default behaviour of every existing
+-// entry point is unchanged.
++// continue to refuse every grouped policy. It uses one thread and no
++// persistence. The default behaviour of every existing entry point is
++// unchanged.
+ //
++// Groups. By default no matched pair is used. A request may select the
++// whole-step pair policy and declare pairs; the producer then encloses a
++// declared pair by one whole-step interval where its conditions hold and
++// one by one otherwise. The policy token and the declared pairs, in their
++// declared order, are bound controls of the continuation.
++//
+ // Time. Boundaries are plain decimal tokens. Advance, remaining time,
+ // comparison and termination are exact decimal operations; no boundary is
+ // formed in binary64.
+@@ -115,6 +121,8 @@
+   std::size_t max_attempts_per_step = 0;
+   std::size_t max_lower_sign_retries = 0;
+   std::size_t growth_cooldown_steps = 0;
++  std::string pair_policy;
++  std::vector<ValidatedFarStepGroup> groups;
+   // Accepted controller state.
+   std::string accepted_time;
+   std::string controller_step_size;
+@@ -174,6 +182,11 @@
+   // After a step that needed a shorter retry, the controller keeps that
+   // step length for this many accepted steps before trying a longer one.
+   std::size_t growth_cooldown_steps = 4;
++  // "disabled", or kValidatedWholeStepPairPolicy together with at least one
++  // declared pair. Declared pairs name two different paths each and are
++  // pairwise disjoint.
++  std::string pair_policy = "disabled";
++  std::vector<ValidatedFarStepGroup> groups = {};
+   std::function<bool()> cancellation_requested = {};
+   // Invoked after an accepted step is published, with its index and the
+   // accepted time token.
+diff -ru stage3g-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp stage3h-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp
+--- stage3g-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp	2026-10-12 15:26:27
++++ stage3h-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp	2026-10-12 15:45:28
+@@ -26,6 +26,16 @@
+ // widening of the evaluated and recentred starting section beyond the
+ // declared radius, which is also reported on its own.
+ //
++// Groups. A caller may declare matched pairs of paths. For a receiver that
++// is neither member, a declared pair whose charges are exact opposites and
++// whose members are both uniformly present is enclosed by one zero-centred
++// box from the whole-step tube-form bound, in place of its two individual
++// boxes, when that bound is certified over the whole retained slab. In every
++// other case the members are enclosed one by one exactly as without the
++// declaration. Nothing is inferred: a pair is grouped only if declared. A
++// path never receives from itself; that exclusion follows from H1 and is
++// counted separately from the N (N - 1) receiver-source relationships.
++//
+ // Evidence. A certified step issues a sealed ValidatedPopulationEvidence. A
+ // population with declared radii is admitted only with such evidence whose
+ // content chains equal those recomputed from the histories supplied.
+@@ -67,9 +77,67 @@
+   double velocity;
+ };
+ 
++inline constexpr const char* kValidatedWholeStepPairPolicy =
++    "canonical_whole_step_piecewise_tube/v1";
++inline constexpr std::size_t kValidatedFarStepEnclosureIterations = 12;
++
++// A declared matched pair, in the declared order.
++struct ValidatedFarStepGroup {
++  std::string leader;
++  std::string follower;
++};
++
++// What one declared pair did for one receiver in one step.
++struct ValidatedFarStepGroupInfo {
++  std::string receiver;
++  std::string leader;
++  std::string follower;
++  // grouped: one interval [-B, B] per axis replaced both members' boxes.
++  // both_absent: both members contribute exactly zero.
++  // receiver_is_member, not_opposite_ungrouped, mixed_ungrouped,
++  // undecided_ungrouped, bound_declined_ungrouped: the pair was not grouped
++  // for this receiver and its members were treated one by one.
++  std::string disposition;
++  // The bound's refusal, when it declined.
++  std::string failure_code;
++  std::string slab_lower;
++  std::string slab_upper;
++  std::size_t cell_count = 0;
++  double distance_floor = 0.0;
++  double speed_upper = 0.0;
++  double factor_floor = 0.0;
++  double separation_upper = 0.0;
++  double relative_speed_upper = 0.0;
++  double acceleration_upper = 0.0;
++  double join_jump_upper = 0.0;
++  double prefactor_upper = 0.0;
++  // B, and an upper bound of the width 2B that the one interval adds to
++  // every axis of the receiver's acceleration box.
++  double radius_upper = 0.0;
++  double interval_width = 0.0;
++};
++
++// Counts for one certified step. A path never receives from itself: by H1
++// every path is slower than the field, so it has no causal root on its own
++// past. Those N relationships are excluded and are not contributions. Of
++// the N (N - 1) others, each is enclosed one by one, is exactly zero, or is
++// one of the two members of a grouped pair:
++//   individual_present + individual_absent + grouped_members = off_diagonal,
++//   grouped_members = 2 * group_intervals.
++struct ValidatedFarStepAccounting {
++  std::size_t paths = 0;
++  std::size_t self_excluded = 0;
++  std::size_t off_diagonal = 0;
++  std::size_t individual_present = 0;
++  std::size_t individual_absent = 0;
++  std::size_t grouped_members = 0;
++  std::size_t group_intervals = 0;
++};
++
+ struct ValidatedFarStepPairInfo {
+   std::string receiver;
+   std::string source;
++  // present | absent | grouped, or the refusal code that stopped the step.
+   std::string state;
+   double window_lower = 0.0;
+   double window_upper = 0.0;
+@@ -129,6 +197,10 @@
+   double speed_upper = 0.0;
+   std::size_t enclosure_iterations = 0;
+   std::vector<ValidatedFarStepPairInfo> pairs;
++  // One entry per receiver and declared pair, in receiver then declared
++  // order; empty when no pair is declared.
++  std::vector<ValidatedFarStepGroupInfo> groups;
++  ValidatedFarStepAccounting accounting;
+   std::vector<ValidatedFarStepPathResult> paths;
+   // The step's growth in the solver's own per-path local-error record.
+   std::vector<eom::NativePathLocalError> local_errors;
+@@ -150,7 +222,8 @@
+       const std::string& coupling,
+       const std::optional<ValidatedFarStepBudgets>& increment,
+       const std::optional<ValidatedFarStepBudgets>& total = std::nullopt,
+-      std::size_t max_iterations = 12);
++      std::size_t max_iterations = kValidatedFarStepEnclosureIterations,
++      const std::vector<ValidatedFarStepGroup>& groups = {});
+ 
+   // Empty when the population may begin a step at `start`: a nonempty
+   // population with distinct identifiers, a coupling and charges that are
+@@ -160,12 +233,14 @@
+   // is required where any history declares a radius; evidence that is
+   // supplied must bind whether or not a radius is declared. Otherwise the
+   // reason. This is the H0 admission that step() applies, callable without
+-  // taking a step.
++  // taking a step. Declared groups must name two different existing paths
++  // each, and no path may belong to two groups.
+   [[nodiscard]] static std::string admission_refusal(
+       const std::vector<ValidatedFarStepPath>& paths,
+       const ValidatedFarStepEvidence& inherited,
+       const std::string& start,
+-      const std::string& coupling);
++      const std::string& coupling,
++      const std::vector<ValidatedFarStepGroup>& groups = {});
+ 
+   // Appends a certified step onto the population that generated it.
+   static std::vector<ValidatedFarStepPath> extend(
+diff -ru stage3g-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp stage3h-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp
+--- stage3g-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 15:26:27
++++ stage3h-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 15:49:38
+@@ -134,6 +134,34 @@
+               << ",\"velocity_errors\":" << array3(e.velocity_errors) << "}";
+     first = false;
+   }
++  std::cout << "],\"accounting\":{\"paths\":" << c.accounting.paths
++            << ",\"self_excluded\":" << c.accounting.self_excluded
++            << ",\"off_diagonal\":" << c.accounting.off_diagonal
++            << ",\"individual_present\":" << c.accounting.individual_present
++            << ",\"individual_absent\":" << c.accounting.individual_absent
++            << ",\"grouped_members\":" << c.accounting.grouped_members
++            << ",\"group_intervals\":" << c.accounting.group_intervals
++            << "},\"groups\":[";
++  first = true;
++  for (const auto& g : c.groups) {
++    std::cout << (first ? "" : ",") << "{\"receiver\":\"" << g.receiver
++              << "\",\"leader\":\"" << g.leader << "\",\"follower\":\""
++              << g.follower << "\",\"disposition\":\"" << g.disposition
++              << "\",\"failure_code\":\"" << g.failure_code
++              << "\",\"slab\":[\"" << g.slab_lower << "\",\""
++              << g.slab_upper << "\"],\"cells\":" << g.cell_count
++              << ",\"distance_floor\":" << num(g.distance_floor)
++              << ",\"speed_upper\":" << num(g.speed_upper)
++              << ",\"factor_floor\":" << num(g.factor_floor)
++              << ",\"separation_upper\":" << num(g.separation_upper)
++              << ",\"relative_speed_upper\":" << num(g.relative_speed_upper)
++              << ",\"acceleration_upper\":" << num(g.acceleration_upper)
++              << ",\"join_jump_upper\":" << num(g.join_jump_upper)
++              << ",\"prefactor_upper\":" << num(g.prefactor_upper)
++              << ",\"radius_upper\":" << num(g.radius_upper)
++              << ",\"interval_width\":" << num(g.interval_width) << "}";
++    first = false;
++  }
+   std::cout << "],\"pairs\":[";
+   first = true;
+   for (const auto& p : c.pairs) {
+@@ -248,6 +276,16 @@
+   return out + "}}";
+ }
+ 
++std::string groups_json(const std::string& policy,
++                        const std::vector<eom::ValidatedFarStepGroup>& groups) {
++  std::string out = "{\"policy\":\"" + policy + "\",\"groups\":[";
++  for (std::size_t i = 0; i < groups.size(); ++i) {
++    out += std::string(i ? "," : "") + "[\"" + groups[i].leader + "\",\"" +
++        groups[i].follower + "\"]";
++  }
++  return out + "]}";
++}
++
+ std::string continuation_json(
+     const std::shared_ptr<const eom::ValidatedEvolutionContinuation>& value) {
+   if (value == nullptr) return "null";
+@@ -260,7 +298,8 @@
+       "\",\"cooldown_remaining\":" + std::to_string(s.cooldown_remaining) +
+       ",\"accepted_step_count\":" + std::to_string(s.accepted_step_count) +
+       ",\"growth_cooldown_steps\":" +
+-      std::to_string(s.growth_cooldown_steps) + ",\"has_evidence\":" +
++      std::to_string(s.growth_cooldown_steps) + ",\"pairing\":" +
++      groups_json(s.pair_policy, s.groups) + ",\"has_evidence\":" +
+       (s.evidence != nullptr ? "true" : "false") + ",\"ledger\":" +
+       ledger_json(s.ledger) + ",\"members\":{";
+   for (std::size_t i = 0; i < s.members.size(); ++i) {
+@@ -338,7 +377,9 @@
+             << "\",\"initial_step\":\"" << request.initial_step
+             << "\",\"minimum_step\":\"" << request.minimum_step
+             << "\",\"coupling\":\"" << request.coupling
+-            << "\",\"increment_budget\":["
++            << "\",\"pairing\":"
++            << groups_json(request.pair_policy, request.groups)
++            << ",\"increment_budget\":["
+             << num(request.increment_budget.position) << ","
+             << num(request.increment_budget.velocity) << "],\"total_budget\":"
+             << (request.total_budget.has_value()
+@@ -1013,6 +1054,194 @@
+   return 0;
+ }
+ 
++// ------------------------------------------------------------ increment 2
++using Group = eom::ValidatedFarStepGroup;
++
++Request grouped(Request request, std::vector<Group> groups) {
++  request.pair_policy = eom::kValidatedWholeStepPairPolicy;
++  request.groups = std::move(groups);
++  return request;
++}
++
++std::vector<Path> three_static(const std::string& plus_z = "10",
++                               const std::string& minus_z = "11",
++                               const std::string& minus_charge = "-1") {
++  return {static_path("receiver", "1", "0"),
++          static_path("plus", "1", plus_z),
++          static_path("minus", minus_charge, minus_z)};
++}
++
++// The follower rests at z = 11 except for one smooth bump of height 0.0025
++// on [-10.96875, -10.90625], two cubic pieces with zero velocity at every
++// join: z = 11 + H s(u), s(u) = 3 u^2 - 2 u^3, peak speed 0.12. A hit
++// received at 0 during the first step [0, 0.125] left the follower between
++// about -11 and -10.875, so the bump is seen only at reception times
++// strictly inside the step; at both step ends the follower is seen at rest.
++std::vector<Path> bump_population(bool with_bump) {
++  std::vector<eom::CubicHistorySegment> minus;
++  if (with_bump) {
++    minus.emplace_back("-20", "-10.96875", on_z("11"));
++    minus.emplace_back("-10.96875", "-10.9375",
++                       on_z("11", "0", "7.68", "-163.84"));
++    minus.emplace_back("-10.9375", "-10.90625",
++                       on_z("11.0025", "0", "-7.68", "163.84"));
++    minus.emplace_back("-10.90625", "0", on_z("11"));
++  } else {
++    minus.emplace_back("-20", "0", on_z("11"));
++  }
++  return {static_path("receiver", "1", "0"), static_path("plus", "1", "10"),
++          Path{"minus", "-1",
++               eom::RetainedHistory("minus-history", std::move(minus))}};
++}
++
++int grouping_cases() {
++  const std::vector<Group> pair{{"plus", "minus"}};
++  const Budgets wide{1e-3, 1e-2};
++  // A grouped interval is zero-centred with the size of the pair's whole
++  // contribution, so grouped runs need a larger increment budget than the
++  // individual route. The same budget is used for both in each comparison.
++  const Budgets roomy{1e-6, 1e-6};
++  // Known first: the three-path static population without groups, then with
++  // the pair declared, four steps of 1/128 to 1/32.
++  const Request plain = make("g0", three_static(), "0", "0.03125", kStep,
++                             kStep, kKappa, roomy);
++  run_case("G-three-path-ungrouped", plain);
++  run_case("G-three-path-grouped", grouped(plain, pair));
++  // Refinement: eight steps of 1/256 to the same end.
++  const Request fine = make("g1", three_static(), "0", "0.03125", kFine,
++                            kFine, kKappa, roomy);
++  // The same declaration under the default, tighter budget: every step is
++  // refused on the increment budget and nothing is published.
++  run_case("N-three-path-grouped-tight-budget",
++           grouped(make("g1b", three_static(), "0", "0.03125", kStep, kStep),
++                   pair));
++  run_case("G-three-path-ungrouped-fine", fine);
++  run_case("G-three-path-grouped-fine", grouped(fine, pair));
++  // Two paths: the only pair's receivers are its own members, so nothing is
++  // grouped and the run must equal the undeclared one.
++  const Request two = make("g2", static_pair(), "0", "0.015625", kStep, kStep);
++  run_case("G-two-path-undeclared", two);
++  run_case("G-two-path-declared",
++           grouped(two, {{"receiver", "source"}}));
++
++  // Between-node coverage: one long step of 0.125 with and without the
++  // bump in the follower's past.
++  const Request rest = make("g3", bump_population(false), "0", "0.125",
++                            "0.125", "0.125", kKappa, wide);
++  const Request bump = make("g4", bump_population(true), "0", "0.125",
++                            "0.125", "0.125", kKappa, wide);
++  run_case("G-bump-absent-grouped", grouped(rest, pair));
++  run_case("G-bump-present-grouped", grouped(bump, pair));
++  run_case("G-bump-present-ungrouped", bump);
++
++  // Exact individual fallbacks: each must equal the undeclared run.
++  {
++    // Mixed dispositions: plus at 19.5 is present, minus at 20.5 is absent.
++    const Request mixed = make("g5", three_static("19.5", "20.5"), "0",
++                               "0.015625", kStep, kStep, kKappa, roomy);
++    run_case("G-mixed-undeclared", mixed);
++    run_case("G-mixed-declared", grouped(mixed, pair));
++  }
++  {
++    // Polarity: equal charges.
++    const Request same = make("g6", three_static("10", "11", "1"), "0",
++                              "0.015625", kStep, kStep, kKappa, roomy);
++    run_case("G-same-charge-undeclared", same);
++    run_case("G-same-charge-declared", grouped(same, pair));
++  }
++  {
++    // Geometry: the members straddle the receiver, so the source domain
++    // contains the receiver box and there is no distance floor.
++    const Request straddle = make("g7", three_static("5", "-5"), "0",
++                                  "0.015625", kStep, kStep, kKappa, roomy);
++    run_case("G-straddle-undeclared", straddle);
++    run_case("G-straddle-declared", grouped(straddle, pair));
++  }
++  {
++    // Both members absent for the receiver: beyond the retained past.
++    std::vector<Path> far{static_path("receiver", "1", "0"),
++                          static_path("plus", "1", "30"),
++                          static_path("minus", "-1", "31")};
++    const Request absent =
++        make("g8", far, "0", "0.015625", kStep, kStep, kKappa, roomy);
++    run_case("G-both-absent-undeclared", absent);
++    run_case("G-both-absent-declared", grouped(absent, pair));
++  }
++  // Endpoint: minus exactly at the edge of the retained past. The step
++  // declines on the lower sign with the group declared, atomically.
++  run_case("N-endpoint-declared",
++           grouped(make("g9", three_static("19", "20"), "0", "0.015625",
++                        kStep, kStep, kKappa, roomy), pair));
++  // Uncertainty: a generated population supplied without its evidence.
++  Request first_grouped = grouped(
++      make("g10", three_static(), "0", kStep, kStep, kStep, kKappa, roomy),
++      pair);
++  const Observed grown = evolve(first_grouped);
++  {
++    Request r = grouped(make("g11", grown.run.paths, kStep, "0.015625", kStep,
++                             kStep, kKappa, roomy), pair);
++    run_case("N-generated-without-evidence-declared", r);
++    r.evidence = grown.run.evidence;
++    run_case("K-generated-with-evidence-declared", r);
++  }
++
++  // Declarations that are refused before anything else.
++  run_case("N-group-unknown-path",
++           grouped(plain, {{"plus", "nobody"}}));
++  run_case("N-group-one-path-twice", grouped(plain, {{"plus", "plus"}}));
++  run_case("N-group-overlapping",
++           grouped(plain, {{"plus", "minus"}, {"minus", "receiver"}}));
++  refuses_request("N-policy-without-groups", [&] {
++    Request r = plain;
++    r.pair_policy = eom::kValidatedWholeStepPairPolicy;
++    return r;
++  }());
++  refuses_request("N-groups-without-policy", [&] {
++    Request r = plain;
++    r.groups = pair;
++    return r;
++  }());
++  refuses_request("N-unknown-pair-policy", [&] {
++    Request r = grouped(plain, pair);
++    r.pair_policy = "canonical_snapshot_piecewise_validated_tube/v1";
++    return r;
++  }());
++
++  // Continuation: cancel the grouped run after two steps, then resume with
++  // the same declaration, with none, with the members swapped, and with a
++  // second pair-free run's continuation.
++  const Request whole = grouped(plain, pair);
++  const Observed cut = cancelled_after("G-grouped-cancelled-after-two", whole, 2);
++  run_case("G-grouped-resumed", resumed_from("g-resumed", cut, whole));
++  {
++    Request r = resumed_from("g-n1", cut, whole);
++    r.pair_policy = "disabled";
++    r.groups.clear();
++    run_case("N-continuation-groups-removed", r);
++  }
++  {
++    Request r = resumed_from("g-n2", cut, whole);
++    r.groups = {{"minus", "plus"}};
++    run_case("N-continuation-members-swapped", r);
++  }
++  {
++    const Observed plain_cut = cancelled_after("", plain, 2);
++    Request r = resumed_from("g-n3", plain_cut, plain);
++    r.pair_policy = eom::kValidatedWholeStepPairPolicy;
++    r.groups = pair;
++    run_case("N-continuation-groups-added", r);
++  }
++  // The public producer with and without the declaration.
++  eom::ValidatedFarStepProducer producer;
++  emit("G-producer-ungrouped", "1",
++       producer.step(three_static(), nullptr, "0", kStep, kKappa, roomy));
++  emit("G-producer-grouped", "1",
++       producer.step(three_static(), nullptr, "0", kStep, kKappa, roomy,
++                     std::nullopt, eom::kValidatedFarStepEnclosureIterations,
++                     pair));
++  return 0;
++}
++
+ int aliasing_cases() {
+   // Resolved from the start.
+   run_case("A-control-fine",
+@@ -1038,12 +1267,14 @@
+     if (command == "admission") return admission_cases();
+     if (command == "ledger") return ledger_cases();
+     if (command == "admission-b") return admission_b_cases();
++    if (command == "grouping") return grouping_cases();
+   } catch (const std::exception& error) {
+     std::cout << "{\"case\":\"FATAL\",\"exception\":\"" << error.what()
+               << "\"}\n";
+     return 3;
+   }
+   std::cerr << "usage: <known|controller|refusals|cancellation|aliasing|"
+-               "continuation|budgets|admission|ledger|admission-b>\n";
++               "continuation|budgets|admission|ledger|admission-b|"
++               "grouping>\n";
+   return 2;
+ }
+diff -ru stage3g-tree/src/eom/src/MatchedPairEnclosure.cpp stage3h-tree/src/eom/src/MatchedPairEnclosure.cpp
+--- stage3g-tree/src/eom/src/MatchedPairEnclosure.cpp	2026-10-12 15:25:47
++++ stage3h-tree/src/eom/src/MatchedPairEnclosure.cpp	2026-10-12 15:45:28
+@@ -758,6 +758,158 @@
+ 
+ }  // namespace
+ 
++WholeStepPairBound whole_step_pair_bound(
++    const WholeStepPairBoundRequest& request) {
++  WholeStepPairBound bound;
++  const auto declined = [&bound](const char* code) {
++    bound.status = "declined";
++    bound.failure_code = code;
++    return bound;
++  };
++  if (request.leader_history == nullptr ||
++      request.follower_history == nullptr) {
++    return declined("MPE-WINDOW-01");
++  }
++  if (!exact_decimal_tokens_are_opposite(
++          request.leader_charge, request.follower_charge)) {
++    return declined("MPE-CHARGE-01");
++  }
++  if (request.leader_history->uniform_circular_endpoint_certificate()
++          .has_value() ||
++      request.follower_history->uniform_circular_endpoint_certificate()
++          .has_value()) {
++    return declined("MPE-HISTORY-01");
++  }
++  const auto leader_range = window_segments(
++      *request.leader_history, request.slab_lower, request.slab_upper);
++  const auto follower_range = window_segments(
++      *request.follower_history, request.slab_lower, request.slab_upper);
++  if (!leader_range.has_value() || !follower_range.has_value()) {
++    return declined("MPE-WINDOW-01");
++  }
++  // Cells: the slab split at every segment boundary of either member that
++  // lies strictly inside it, exactly as the snapshot piecewise route does.
++  std::vector<std::string> boundaries{request.slab_lower};
++  const auto add_interior = [&](const RetainedHistory& history,
++                                const SegmentRange& range) {
++    for (std::size_t index = range.first; index < range.last; ++index) {
++      const std::string token = history.segments().pin(index)->t_end_token();
++      if (compare_exact_decimal_tokens(request.slab_lower, token) < 0 &&
++          compare_exact_decimal_tokens(token, request.slab_upper) < 0) {
++        boundaries.push_back(token);
++      }
++    }
++  };
++  add_interior(*request.leader_history, *leader_range);
++  add_interior(*request.follower_history, *follower_range);
++  boundaries.push_back(request.slab_upper);
++  std::sort(
++      boundaries.begin(), boundaries.end(),
++      [](const std::string& left, const std::string& right) {
++        return compare_exact_decimal_tokens(left, right) < 0;
++      });
++  boundaries.erase(
++      std::unique(
++          boundaries.begin(), boundaries.end(),
++          [](const std::string& left, const std::string& right) {
++            return compare_exact_decimal_tokens(left, right) == 0;
++          }),
++      boundaries.end());
++  if (boundaries.size() < 2U) {
++    return declined("MPE-WINDOW-01");
++  }
++  std::optional<MemberCells> leader_cells;
++  std::optional<MemberCells> follower_cells;
++  try {
++    leader_cells = member_cells(
++        *request.leader_history, *leader_range, boundaries);
++    follower_cells = member_cells(
++        *request.follower_history, *follower_range, boundaries);
++  } catch (const std::invalid_argument&) {
++    return declined("MPE-WINDOW-01");
++  }
++  const MemberCells& leader = *leader_cells;
++  const MemberCells& follower = *follower_cells;
++  const std::size_t cell_count = boundaries.size() - 1U;
++  bound.cell_count = cell_count;
++
++  // Whole-slab bounds over all cells. Widened boxes enclose the true
++  // positions and velocities; nominal boxes bound the nominal acceleration.
++  IntervalVector domain = leader.position.front()[0];
++  double speed_upper = 0.0;
++  double acceleration_upper = 0.0;
++  double separation_upper = 0.0;
++  double relative_speed_upper = 0.0;
++  for (std::size_t cell = 0U; cell < cell_count; ++cell) {
++    for (const auto* member : {&leader, &follower}) {
++      for (const auto& box : member->position[cell]) {
++        domain = hull(domain, box);
++      }
++      for (const auto& box : member->velocity[cell]) {
++        speed_upper = maximum_norm_upper(speed_upper, box);
++      }
++      for (const auto& box : member->nominal[cell].acceleration) {
++        acceleration_upper = maximum_norm_upper(acceleration_upper, box);
++      }
++    }
++    for (std::size_t index = 0U; index < 4U; ++index) {
++      separation_upper = maximum_norm_upper(
++          separation_upper,
++          subtract(leader.position[cell][index],
++                   follower.position[cell][index]));
++    }
++    for (std::size_t index = 0U; index < 3U; ++index) {
++      // Nominal equal-time relative velocity; the declared velocity radii
++      // are added once below as slab maxima, because the two members'
++      // emission times may lie in different cells with different radii.
++      relative_speed_upper = maximum_norm_upper(
++          relative_speed_upper,
++          subtract(leader.nominal[cell].velocity[index],
++                   follower.nominal[cell].velocity[index]));
++    }
++  }
++  if (leader.velocity_radius_upper > 0.0 ||
++      follower.velocity_radius_upper > 0.0) {
++    relative_speed_upper =
++        (Interval::point(relative_speed_upper) +
++         Interval::point(leader.velocity_radius_upper) +
++         Interval::point(follower.velocity_radius_upper))
++            .upper();
++  }
++  bound.source_domain_hull = domain;
++  bound.speed_upper = speed_upper;
++  bound.acceleration_upper = acceleration_upper;
++  bound.separation_upper = separation_upper;
++  bound.relative_speed_upper = relative_speed_upper;
++  bound.leader_velocity_radius_upper = leader.velocity_radius_upper;
++  bound.follower_velocity_radius_upper = follower.velocity_radius_upper;
++  bound.join_jump_upper =
++      std::max(leader.join_jump_upper, follower.join_jump_upper);
++  bound.distance_floor = norm(subtract(request.receiver_box, domain)).lower();
++  if (!(bound.distance_floor > 0.0)) {
++    return declined("MPE-GEO-01");
++  }
++  // Any positive nu <= 1 - v+ is admissible in the radius; round it down.
++  bound.factor_floor =
++      (Interval::point(1.0) - Interval::point(speed_upper)).lower();
++  if (!(speed_upper < 1.0) || !(bound.factor_floor > 0.0)) {
++    return declined("MPE-SPEED-01");
++  }
++  const RadiusEvaluation evaluation = radius_from_bounds(
++      request.coupling, request.receiver_charge, request.leader_charge,
++      bound.distance_floor, speed_upper, bound.factor_floor, separation_upper,
++      relative_speed_upper, acceleration_upper,
++      std::optional<double>(bound.join_jump_upper));
++  bound.prefactor_upper = evaluation.prefactor_upper;
++  bound.radius_upper = evaluation.radius_upper;
++  if (!std::isfinite(bound.radius_upper) || !(bound.radius_upper >= 0.0)) {
++    return declined("MPE-BOUND-01");
++  }
++  bound.status = "certified";
++  bound.failure_code.clear();
++  return bound;
++}
++
+ int compare_exact_decimal_tokens(
+     const std::string& left,
+     const std::string& right) {
+diff -ru stage3g-tree/src/eom/src/ValidatedEvolution.cpp stage3h-tree/src/eom/src/ValidatedEvolution.cpp
+--- stage3g-tree/src/eom/src/ValidatedEvolution.cpp	2026-10-12 15:25:47
++++ stage3h-tree/src/eom/src/ValidatedEvolution.cpp	2026-10-12 15:45:28
+@@ -206,6 +206,16 @@
+       state.growth_cooldown_steps != request.growth_cooldown_steps) {
+     return "an attempt limit or the cooldown length differs";
+   }
++  if (state.pair_policy != request.pair_policy ||
++      state.groups.size() != request.groups.size()) {
++    return "the pair policy or the declared groups differ";
++  }
++  for (std::size_t i = 0; i < state.groups.size(); ++i) {
++    if (state.groups[i].leader != request.groups[i].leader ||
++        state.groups[i].follower != request.groups[i].follower) {
++      return "the pair policy or the declared groups differ";
++    }
++  }
+   if (compare_exact_decimal_tokens(
+           state.accepted_time, request.start_time) != 0) {
+     return "accepted time differs from the requested start";
+@@ -273,6 +283,14 @@
+         "unsupported_execution_policy",
+         "validated evolution is qualified for field speed 1 only");
+   }
++  if ((request.pair_policy != "disabled" &&
++       request.pair_policy != kValidatedWholeStepPairPolicy) ||
++      (request.pair_policy == "disabled") != request.groups.empty()) {
++    throw EquationAdmissionError(
++        "unsupported_execution_policy",
++        "the pair policy must be disabled with no declared group, or the "
++        "whole-step pair policy with at least one declared group");
++  }
+   if (request.paths.empty() ||
+       compare_exact_decimal_tokens(request.start_time, request.end_time) > 0 ||
+       compare_exact_decimal_tokens(request.minimum_step, "0") <= 0 ||
+@@ -328,7 +346,8 @@
+   };
+   {
+     const std::string reason = ValidatedFarStepProducer::admission_refusal(
+-        request.paths, request.evidence, request.start_time, request.coupling);
++        request.paths, request.evidence, request.start_time, request.coupling,
++        request.groups);
+     if (!reason.empty()) {
+       return refuse_initial("initial_population_refused", "VFS-H0-01", reason);
+     }
+@@ -388,7 +407,8 @@
+       record.attempt_index = attempt;
+       record.producer = producer.step(
+           paths, evidence, current, attempt_step, request.coupling,
+-          request.increment_budget, request.total_budget);
++          request.increment_budget, request.total_budget,
++          kValidatedFarStepEnclosureIterations, request.groups);
+       if (record.producer.status == "certified") {
+         std::vector<ValidatedFarStepPath> next;
+         try {
+@@ -507,6 +527,8 @@
+     state.max_attempts_per_step = request.max_attempts_per_step;
+     state.max_lower_sign_retries = request.max_lower_sign_retries;
+     state.growth_cooldown_steps = request.growth_cooldown_steps;
++    state.pair_policy = request.pair_policy;
++    state.groups = request.groups;
+     state.accepted_time = current;
+     state.controller_step_size = step_size;
+     state.cooldown_remaining = cooldown;
+diff -ru stage3g-tree/src/eom/src/ValidatedFarStep.cpp stage3h-tree/src/eom/src/ValidatedFarStep.cpp
+--- stage3g-tree/src/eom/src/ValidatedFarStep.cpp	2026-10-12 15:29:24
++++ stage3h-tree/src/eom/src/ValidatedFarStep.cpp	2026-10-12 15:45:28
+@@ -173,6 +173,7 @@
+     const ValidatedFarStepEvidence& inherited,
+     const std::string& start,
+     const std::string& coupling,
++    const std::vector<ValidatedFarStepGroup>& groups,
+     std::vector<std::string>* digests) {
+   if (paths.empty()) return "empty population";
+   if (!validated_far_step_plain_decimal(start)) {
+@@ -215,6 +216,28 @@
+       }
+     }
+   }
++  // Declared groups: two different existing paths each, pairwise disjoint.
++  {
++    std::vector<std::string> used;
++    for (const auto& group : groups) {
++      if (group.leader == group.follower) {
++        return "a declared group names one path twice";
++      }
++      for (const std::string* member : {&group.leader, &group.follower}) {
++        bool exists = false;
++        for (const auto& path : paths) exists = exists || path.id == *member;
++        if (!exists) {
++          return "a declared group names an unknown path " + *member;
++        }
++        for (const auto& taken : used) {
++          if (taken == *member) {
++            return "path " + *member + " is declared in two groups";
++          }
++        }
++        used.push_back(*member);
++      }
++    }
++  }
+   std::vector<std::string> computed;
+   for (const auto& path : paths) {
+     computed.push_back(eom::validated_history_digest(path.history));
+@@ -256,8 +279,9 @@
+     const std::vector<ValidatedFarStepPath>& paths,
+     const ValidatedFarStepEvidence& inherited,
+     const std::string& start,
+-    const std::string& coupling) {
+-  return admission_reason(paths, inherited, start, coupling, nullptr);
++    const std::string& coupling,
++    const std::vector<ValidatedFarStepGroup>& groups) {
++  return admission_reason(paths, inherited, start, coupling, groups, nullptr);
+ }
+ 
+ double ValidatedFarStepProducer::segment_speed_upper(
+@@ -303,7 +327,8 @@
+     const std::string& coupling,
+     const std::optional<ValidatedFarStepBudgets>& increment,
+     const std::optional<ValidatedFarStepBudgets>& total,
+-    std::size_t max_iterations) {
++    std::size_t max_iterations,
++    const std::vector<ValidatedFarStepGroup>& groups) {
+   ValidatedFarStepCertificate certificate;
+   certificate.start = start;
+   certificate.step = step_token;
+@@ -345,7 +370,8 @@
+   std::vector<std::string> digest_before;
+   {
+     const std::string reason =
+-        admission_reason(paths, inherited, start, coupling, &digest_before);
++        admission_reason(paths, inherited, start, coupling, groups,
++                         &digest_before);
+     if (!reason.empty()) return decline(certificate, "VFS-H0-01", reason);
+   }
+   const Interval kappa = Interval::decimal_token(coupling);
+@@ -406,7 +432,95 @@
+     // H3 and H4.
+     accelerations.assign(paths.size(), IntervalVector{zero, zero, zero});
+     certificate.pairs.clear();
++    certificate.groups.clear();
++    // H3 for one ordered pair: 1 present, 0 absent, -1 undecided.
++    const auto presence = [&](std::size_t receiver, std::size_t source) {
++      const Interval start_distance = eom::norm(eom::subtract(
++          boxes[receiver],
++          paths[source].history.position_hull(Interval::point(s_min))));
++      if (start_distance.lower() > (T + h - S_min).upper()) return 0;
++      if (!(start_distance.upper() < (T - S_min).lower())) return -1;
++      return 1;
++    };
++    const auto index_of = [&](const std::string& id) {
++      std::size_t index = 0;
++      while (paths[index].id != id) ++index;
++      return index;
++    };
+     for (std::size_t a = 0; a < paths.size(); ++a) {
++      // Declared groups for this receiver. A group replaces its two members'
++      // individual boxes only when the receiver is neither member, the
++      // charges are exact opposites, both members are uniformly present, and
++      // the whole-step bound is certified over the whole retained slab. The
++      // slab [S_min, T] contains both members' roots for every reception
++      // time of the step and every receiver point, by H2, H3 and H1. In
++      // every other case the members are enclosed one by one below, exactly
++      // as without the declaration.
++      std::vector<bool> consumed(paths.size(), false);
++      std::vector<Interval> group_boxes;
++      for (const auto& group : groups) {
++        ValidatedFarStepGroupInfo g;
++        g.receiver = paths[a].id;
++        g.leader = group.leader;
++        g.follower = group.follower;
++        const std::size_t l = index_of(group.leader);
++        const std::size_t f = index_of(group.follower);
++        if (a == l || a == f) {
++          g.disposition = "receiver_is_member";
++        } else if (!eom::exact_decimal_tokens_are_opposite(
++                       paths[l].charge, paths[f].charge)) {
++          g.disposition = "not_opposite_ungrouped";
++        } else {
++          const int leader_presence = presence(a, l);
++          const int follower_presence = presence(a, f);
++          if (leader_presence < 0 || follower_presence < 0) {
++            // The pair loop below declines the step on H3.
++            g.disposition = "undecided_ungrouped";
++          } else if (leader_presence == 0 && follower_presence == 0) {
++            g.disposition = "both_absent";
++          } else if (leader_presence != follower_presence) {
++            g.disposition = "mixed_ungrouped";
++          } else {
++            eom::WholeStepPairBoundRequest request;
++            request.receiver_box = boxes[a];
++            request.receiver_charge = paths[a].charge;
++            request.coupling = coupling;
++            request.leader_history = &paths[l].history;
++            request.leader_charge = paths[l].charge;
++            request.follower_history = &paths[f].history;
++            request.follower_charge = paths[f].charge;
++            request.slab_lower = start_of_history;
++            request.slab_upper = start;
++            const eom::WholeStepPairBound bound =
++                eom::whole_step_pair_bound(request);
++            g.slab_lower = request.slab_lower;
++            g.slab_upper = request.slab_upper;
++            g.cell_count = bound.cell_count;
++            g.distance_floor = bound.distance_floor;
++            g.speed_upper = bound.speed_upper;
++            g.factor_floor = bound.factor_floor;
++            g.separation_upper = bound.separation_upper;
++            g.relative_speed_upper = bound.relative_speed_upper;
++            g.acceleration_upper = bound.acceleration_upper;
++            g.join_jump_upper = bound.join_jump_upper;
++            g.prefactor_upper = bound.prefactor_upper;
++            if (bound.status == "certified") {
++              const Interval component(-bound.radius_upper,
++                                       bound.radius_upper);
++              g.disposition = "grouped";
++              g.radius_upper = bound.radius_upper;
++              g.interval_width = component.width();
++              consumed[l] = true;
++              consumed[f] = true;
++              group_boxes.push_back(component);
++            } else {
++              g.disposition = "bound_declined_ungrouped";
++              g.failure_code = bound.failure_code;
++            }
++          }
++        }
++        certificate.groups.push_back(std::move(g));
++      }
+       for (std::size_t b = 0; b < paths.size(); ++b) {
+         if (a == b) continue;
+         const auto& source = paths[b].history;
+@@ -429,6 +543,12 @@
+               certificate, "VFS-H3-01",
+               "lower sign is neither uniformly present nor absent");
+         }
++        if (consumed[b]) {
++          // Present, and enclosed with its partner by one group interval.
++          info.state = "grouped";
++          certificate.pairs.push_back(info);
++          continue;
++        }
+         double lo = s_min;
+         double hi = source.t_end();
+         for (int pass = 0; pass < 64; ++pass) {
+@@ -481,6 +601,27 @@
+         const Interval weight =
+             kappa * charges[a] * charges[b] / (eom::interval_square(r) * D);
+         accelerations[a] = eom::add(accelerations[a], eom::scale(weight, n));
++      }
++      for (const Interval& component : group_boxes) {
++        accelerations[a] = eom::add(
++            accelerations[a], IntervalVector{component, component, component});
++      }
++    }
++    // Accounting. Self relationships are excluded by H1, not counted as
++    // contributions; every other ordered relationship is in exactly one
++    // class.
++    certificate.accounting = ValidatedFarStepAccounting{};
++    certificate.accounting.paths = paths.size();
++    certificate.accounting.self_excluded = paths.size();
++    certificate.accounting.off_diagonal = paths.size() * (paths.size() - 1U);
++    for (const auto& pair : certificate.pairs) {
++      if (pair.state == "present") ++certificate.accounting.individual_present;
++      if (pair.state == "absent") ++certificate.accounting.individual_absent;
++      if (pair.state == "grouped") ++certificate.accounting.grouped_members;
++    }
++    for (const auto& group : certificate.groups) {
++      if (group.disposition == "grouped") {
++        ++certificate.accounting.group_intervals;
+       }
+     }
+     // H5.

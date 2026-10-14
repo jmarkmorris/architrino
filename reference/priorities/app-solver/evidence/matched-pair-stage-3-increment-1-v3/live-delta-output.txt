@@ -1,0 +1,39 @@
+Known difference cases passed before any target.
+  PASS  byte-identical: eom_native_fixture_cli-all.stdout
+  PASS  byte-identical: eom_native_acceleration_fixture_cli-all.stdout
+  PASS  byte-identical: eom_native_evolution_fixture_cli-all.stdout
+  PASS  byte-identical: matched-pair-module.jsonl
+  PASS  byte-identical: matched-pair-piecewise.jsonl
+  PASS  byte-identical: matched-pair-evolution-guard.jsonl
+  rows   10, differing    8: known
+  rows    9, differing    9: controller
+  rows   49, differing   43: refusals
+  rows   12, differing   12: cancellation
+  rows    4, differing    4: aliasing
+  rows   78, differing   78: continuation
+  rows   35, differing    3: budgets
+  rows    9, differing    9: admission
+  rows   44, differing   22: candidate-producer
+  rows    8, differing    8: candidate-generated-source
+  rows   17, differing    0: candidate-consumer
+  rows    1, differing    1: candidate-long
+    changed  growth_position: 737
+    changed  growth_velocity: 729
+    changed  increment: 1583
+    changed  local_errors.position_error: 185
+    changed  local_errors.position_errors: 583
+    changed  local_errors.velocity_error: 173
+    changed  local_errors.velocity_errors: 575
+    new      declared_position: 296
+    new      declared_velocity: 296
+    new      increment_budget: 52
+    new      section_allowance: 544
+    new      section_allowance_position: 296
+    new      section_allowance_velocity: 296
+    new      step_growth: 544
+    new      step_growth_position: 296
+    new      step_growth_velocity: 296
+    new      total_budget: 52
+  PASS  only charge fields changed and only declared, part and budget fields are new: 0 other differences in 276 rows
+  PASS  no charge is below its former value: 0 lowered
+ALL PASSED

@@ -26,14 +26,16 @@ The coordinator receiving Op's new task creates `reference/op/agent-chats/<local
 
 ## 3. Codex to Claude
 
-1. Inspect Claude's desktop UI. Record the current selected chat and locate the bound chat, using its title as a navigation aid.
+**Address the named chat explicitly.** Resolve the requested Claude chat name against the conversation header, then select that named chat and verify its exact bound destination ID. The foreground app or selected chat never determines the recipient. Inspecting the existing selection serves only draft preservation and optional restoration. For example, a request for **saturday** always targets the bound Saturday session even when **Barnes-Hut** or **curvature** is displayed. This rule applies to every collaboration, not only Saturday campaigns. If names are duplicated, use the bound ID to disambiguate; do not choose whichever matching chat is foreground.
+
+1. Inspect Claude's desktop UI and record the current selection for preservation. Locate and select the requested named chat from a fresh sidebar/search observation; do not reuse a previous numeric accessibility index or screen coordinate after the UI changes.
 2. Verify that the selected content URL contains the exact Claude destination from the conversation header before entering text. Stop if the ID is different, unavailable, or ambiguous.
 3. Preserve any existing composer draft. If the composer is nonempty, stop rather than overwrite it.
-4. Enter the message with the `Codex:` prefix. Recheck the destination ID and exact composer text immediately before clicking Send.
+4. Enter the message with the `Codex:` prefix. Recheck the destination ID and exact composer text immediately before clicking Send. If selection changes during entry, do not send there or treat that foreground chat as a substitute recipient. Remove only an exact, still-unmodified draft just entered by this delivery attempt, preserving all other text, and resolve the original named destination again from fresh UI state.
 5. Verify that the submitted message appears in that chat. If submission is uncertain, inspect the chat before retrying; never blindly resend.
 6. If delivery changed the selected chat, restore the prior selection when its identity is known and the operator has not navigated in the meantime. Otherwise leave the verified destination selected and disclose that in the delivery receipt. Never override a detected operator navigation merely to restore an earlier view.
 
-This route can activate the existing idle Claude chat. It uses desktop control available to Codex and does not require that Claude itself have desktop-control tools. Concurrent operator navigation can interrupt delivery or change the destination between observations; the checks reduce that risk but do not provide an atomic routing guarantee. Stop and re-observe after any reported UI change.
+This route can activate the existing idle Claude chat. It uses desktop control available to Codex and does not require that Claude itself have desktop-control tools. The available desktop API controls an app/window rather than exposing an atomic send-to-named-session operation; selecting a named chat does not eliminate a race between observation and input. Navigation by Op or another coordinator can change the destination between those steps. Do not attribute such a change to Op without evidence. Stop and resolve the same named destination again after any reported UI change; retain prepared/unsent status while stable verified delivery is unavailable.
 
 ### 3.1 Mac lock, sleep and unattended delivery
 
