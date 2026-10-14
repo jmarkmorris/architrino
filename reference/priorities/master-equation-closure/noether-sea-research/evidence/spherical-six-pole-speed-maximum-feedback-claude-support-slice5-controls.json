@@ -1,0 +1,91 @@
+{
+ "controls": [
+  {
+   "name": "(L1) known: hand cubic slab q = 0.3 + 0.25 s + 0.05 s^2 + 0.05 s^3 (rate 0.3 inside AP = [0.2, 0.4]): point request s = 0.004 and interior sub-range [0.002, 0.006] contain the exact q, v, a; the point box has the remainder width AP-width * s^3/6",
+   "point_q_width": "2.13333e-9",
+   "expected_width": "2.13333e-9",
+   "range_q": [
+    "0.3005002002666666666666664",
+    "0.3015018144000000000000003"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(L2) known: uncertain origin T = [1, 1 + 1e-7]: the point request s = 1.004 contains the true state for every admissible origin; box width about v * 1e-7",
+   "q_width": "2.71735e-8",
+   "pass": true
+  },
+  {
+   "name": "(L3) known: two consecutive cubic slabs, request [1.008, 1.013] straddling the join: hull contains the exact state on both sides; both slabs touched",
+   "touched": [
+    "syn#1",
+    "syn#2"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(L4) known, REAL records: on each of the 263 joins of the 264-record chain the polynomial box of slab k at sigma = Delta meets the start strings (q, qdot) and the a0 of slab k+1, and both start-time endpoints step by exactly Delta; the appended records are steps 155..214, all certified",
+   "joins": 263,
+   "failures": [],
+   "max_poly_end_q_width": "0.0010958",
+   "pass": true
+  },
+  {
+   "name": "(L5) known: request straddling T* (+-0.004): hull of the window part and wave-16 step 1 contains the window state at T*",
+   "touched": [
+    "window",
+    "w16#1"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(L6) known, self-append: s = 3.5 is refused with the 204-record chain and answered after appending the w-chain records 155-214; a request at the guaranteed (lower) end time of step 214 meets the step-214 end strings; the chain end equals the campaign's restart endpoint strings",
+   "refusal": "beyond coverage",
+   "touched_after": [
+    "sw#164"
+   ],
+   "end_matches_restart": true,
+   "pass": true
+  },
+  {
+   "name": "(N1-N9) negatives",
+   "detail": {
+    "N1 missing remainder (AP = 0) excludes the true cubic state": true,
+    "N2 wrong initial state (q0 + 1e-6) excludes the true state": true,
+    "N3 wrong time origin (+0.003) excludes the true state": true,
+    "N4 wrong acceleration (a0 + 0.01) excludes the true state": true,
+    "N5 gap (w-chain step 180 removed): request across it refused": true,
+    "N5 reason": "gap before sw#181",
+    "N6 uncertified record (w-chain step 190 flagged): refused": true,
+    "N6 reason": "uncertified record sw#190",
+    "N7 beyond guaranteed coverage (past step 214): refused": true,
+    "N8 provisional record (file s1, not on the allow-list) refused": true,
+    "N8 reason": "uncertified record sw_provisional#159",
+    "N9 read into the possible (uncertain) end of step 214 (its upper end time, and guaranteed end + 1e-9) refused": true
+   },
+   "pass": true
+  },
+  {
+   "name": "(E1-E7) event-detector controls on synthetic step sequences",
+   "detail": {
+    "E1 positive-to-negative qddot with qdot > 0 -> exactly one event, a local speed maximum, adjacent ends 1 -> 2, bracket [4.01, 4.02 + 1e-7], speed hull [0.38, 0.39], unique": true,
+    "E2 negative-to-positive qddot with qdot > 0 -> a minimum, NOT a maximum": true,
+    "E3 zero-containing boxes are UNDECIDED: the crossing is bracketed only by the proved ends 0 -> 3 (not adjacent, undecided ends 1, 2 listed), and a sequence ending undecided reports no event and lists the trailing undecided ends": true,
+    "E4 source times crossing the WRONG boundary (2.8067) are not reported as the target reception at L (while the same detector does report the crossing when handed 2.8067)": true,
+    "E5 source times crossing L: one upward crossing, adjacent ends 1 -> 2, bracket = earlier end's lower time to later end's upper time": true,
+    "E6 qdot through zero is reported as a coordinate turn, and a qddot crossing where qdot has no proved sign is NOT called a speed maximum": true,
+    "E7 uniqueness requires a proved one-signed rate on every bracket step: an undecided rate box gives unique = False": true
+   },
+   "pass": true
+  }
+ ],
+ "controls_all_pass": true,
+ "chain": {
+  "slabs": 264,
+  "guaranteed_coverage_end": "4.006684593623649597167969",
+  "possible_end": "4.006684709182828044891357"
+ },
+ "targets": [],
+ "appended": [],
+ "wall_s": 0.15981793403625488
+}

@@ -27,12 +27,24 @@ test("defined function cubes in algebra are not theory abbreviations", () => {
 
 test("definition is required and does not excuse subsequent branding", () => {
   assert.equal(audit("$$A^3-B^3=C^3$$").length, 1);
-  assert.equal(audit("$$A^3=8$$\n$A=2$").length, 1);
+  assert.deepEqual(audit("$$A^3=8$$\n$A=2$"), []);
   assert.equal(audit("$A=2$\n$A^3$ theory").length, 1);
   assert.equal(audit("$A=2$\n$\\text{A^3 theory}=1$").length, 1);
   assert.equal(audit("$A=2$\nA^3=8 outside math").length, 1);
   assert.equal(audit("`$A=2$`\n$A^3=8$").length, 1);
   assert.equal(audit("$A=2$\n`$A^3=8$`").length, 1);
+});
+
+test("following local definitions and recorded plain algebra preserve genuine powers", () => {
+  assert.deepEqual(audit("$$F/g=c_{E3}A^3 + B$$\nwhere\n$$A=d+y, B=2$$"), []);
+  assert.deepEqual(audit("`F/g = cE3 A^3 + B`,\n`A = d+y`, `B = 2`."), []);
+  assert.deepEqual(audit("$c_{E3}A^3=16$"), []);
+  assert.deepEqual(audit("$2A³=16$"), []);
+  for (const text of ["$c_{E3}A^3$", "$c_{E3}A^3=theory$", "`A^3 theory`\n`A=2`",
+    "$$A^3=8$$\n## Other section\n$A=2$", "$A=2$\n$\\text{A^3}=1$",
+    "`A=2`\n`A^3`", "`A=2`\n`A^3 theory=1`", "c_{E3}A^3=16"]) {
+    assert.equal(audit(text).length, 1, text);
+  }
 });
 
 test("diagnostic exemption applies only to quoted tokens", () => {

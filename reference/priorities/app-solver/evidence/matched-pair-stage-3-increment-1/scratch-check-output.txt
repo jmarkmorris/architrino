@@ -1,0 +1,63 @@
+Known cases, before any target
+  PASS  exact halving: 0.00390625 1 0.00014935 5
+  PASS  exact difference: 0.0002987 0.004375
+  PASS  K1 static run completes at the exact end: 0.015625
+  PASS  K1 step 1: both paths' tubes contain the closed-form brackets: receiver velocity [-7.812500000e-08, -7.812499999e-08]
+  PASS  K1 step 2: both paths' tubes contain the closed-form brackets: receiver velocity [-1.562500000e-07, -1.562500000e-07]
+  PASS  K2 t = 1/128: reviewer's position and velocity brackets for all three paths inside the tubes: step ends at 0.0078125
+  PASS  K2 t = 1/64: reviewer's position and velocity brackets for all three paths inside the tubes: step ends at 0.015625
+  PASS  K2 t = 1/32: reviewer's position and velocity brackets for all three paths inside the tubes: step ends at 0.03125
+
+Known cases passed before any target.
+
+Exact time, atomic shape, ledger, evidence and callbacks
+  PASS  accepted steps sum exactly to the accepted end, and completed runs end exactly at the requested end: 24 runs
+  PASS  every attempt has the validated step shape: no substeps, no snapshot, atomic; refusals publish their inputs: 57 emitted attempts
+  PASS  ledger: totals equal the published radius tokens, never below the inherited radius, and each step inherits the previous total: per path and per axis
+  PASS  every published segment covers the theorem's sets over the whole step, exactly: exact Bernstein coefficients
+  PASS  each accepted step starts at the previous end and is generated from its published content: time and digest chains
+  PASS  returned state is the accepted boundary: histories, evidence and ledger agree, or all equal the inputs when nothing was accepted: 24 runs
+  PASS  one callback per accepted step, in order, with the accepted time: 24 runs
+
+Controller extent
+  PASS  last step is shortened to end exactly at the requested end: 0.004375
+  PASS  large epoch: three exact boundaries from 10000000000: 10000000000.0002987, 10000000000.0005974, 10000000000.0008961
+  PASS  zero-length run completes with no attempt: state equals the inputs
+
+Fixed response to each refusal
+  PASS  N-H0-unequal-starts: validated_step_refused, 1 attempt(s), nothing published
+  PASS  N-H0-evidence-missing: validated_step_refused, 1 attempt(s), nothing published
+  PASS  N-H0-evidence-of-other-population: validated_step_refused, 1 attempt(s), nothing published
+  PASS  N-H0-changed-coupling: validated_step_refused, 1 attempt(s), nothing published
+  PASS  N-H1-retained-past: validated_step_refused, 1 attempt(s), nothing published
+  PASS  N-H3-lower-sign-unresolved: lower_sign_unresolved, 5 attempt(s), nothing published
+  PASS  N-H4-minimum-step: minimum_step_exhausted, 4 attempt(s), nothing published
+  PASS  N-BUDGET-01-minimum-step: minimum_step_exhausted, 4 attempt(s), nothing published
+  PASS  N-BUDGET-02-inherited-total: validated_step_refused, 1 attempt(s), nothing published
+  PASS  N-attempt-limit: attempt_limit_exhausted, 3 attempt(s), nothing published
+  PASS  R-H1-step-velocity-box: first attempt VFS-H1-01 step_velocity_box at step 0.5, accepted at 0.25
+  PASS  R-H2-step-longer-than-separation: first attempt VFS-H2-01 - at step 12, accepted at 6
+  PASS  R-BUDGET-02-new-growth: first attempt VFS-BUDGET-02 new_growth at step 0.0078125, accepted at 0.00390625
+  PASS  total budget holds on every accepted step after the retries: declared velocity radius at most 2e-9
+  PASS  minimum step bounds the retries exactly: last attempted step 0.0009765625
+  PASS  N-request-wrong-policy: unsupported_execution_policy: validated evolution requires its own policy token
+  PASS  N-request-field-speed: unsupported_execution_policy: validated evolution is qualified for field speed 1 only
+  PASS  N-request-exponent-token: unsupported_execution_policy: validated evolution requires plain decimal time and speed to
+  PASS  N-request-zero-budget: unsupported_execution_policy: validated evolution request has an empty population, reverse
+  PASS  N-ordinary-entry-refuses-validated-token: unsupported_execution_policy: matched-pair enclosure is qualified for acceleration snapsho
+
+Cancellation and resumption
+  PASS  cancellation stops at an accepted boundary: after two accepted steps
+  PASS  resuming from the returned state reproduces the uninterrupted run exactly: identical content chains, end states and ledger
+  PASS  cancellation before the first attempt returns the inputs: no attempt
+
+Aliasing control through the driver
+  PASS  A-control-fine: completes at exactly 2 and contains the frozen true brackets: 512 accepted, 0 refused; velocity half-width 1.888072156e-07
+  PASS  A-control-fine: end velocity tube is disjoint from the aliased interval: separation 2.060047147e-07
+  PASS  A-control-fine: the history layer's end interval contains the rebuilt tube: published segment
+  PASS  A-control-from-aliased-step: completes at exactly 2 and contains the frozen true brackets: 142 accepted, 33 refused; velocity half-width 5.853260476e-07
+  NOTE  A-control-from-aliased-step: end velocity tube against the aliased interval: overlapping by 2.139094293e-07; the tube still contains the true bracket
+  PASS  A-control-from-aliased-step: the history layer's end interval contains the rebuilt tube: published segment
+  PASS  the adversarial step of 2 is refused on budget and shortened until certified: 7 refusals, first accepted step 0.015625
+
+47 of 47 assertions passed; 1 recorded quantities.

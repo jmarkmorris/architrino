@@ -1,0 +1,23 @@
+PID 31131
+PID 31131
+[{"name": "(L1) known: hand cubic slab q = 0.3 + 0.25 s + 0.05 s^2 + 0.05 s^3 (ra", "pass": true}, {"name": "(L2) known: uncertain origin T = [1, 1 + 1e-7]: the point request s = ", "pass": true}, {"name": "(L3) known: two consecutive cubic slabs, request [1.008, 1.013] stradd", "pass": true}, {"name": "(L4) known, REAL records: on each of the 203 joins of the 204-record c", "pass": true}, {"name": "(L5) known: request straddling T* (+-0.004): hull of the window part a", "pass": true}, {"name": "(L6) known: appended records: s = 2.9 is refused with the 144-record c", "pass": true}, {"name": "(N1-N7) negatives", "pass": true}]
+{"N1 missing remainder (AP = 0) excludes the true cubic state": true, "N2 wrong initial state (q0 + 1e-6) excludes the true state": true, "N3 wrong time origin (+0.003) excludes the true state": true, "N4 wrong acceleration (a0 + 0.01) excludes the true state": true, "N5 gap (late-feedback step 50 removed): request across it refused": true, "N5 reason": "gap before lf#51", "N6 uncertified record (late-feedback step 60 flagged): refused": true, "N6 reason": "uncertified record lf#60", "N7 beyond coverage (past step 154): refused": true}
+wall 0.021493911743164062
+        0.36 real         0.31 user         0.01 sys
+            32980992  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2737  page reclaims
+                 327  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  89  voluntary context switches
+                 375  involuntary context switches
+          5317347859  instructions retired
+          1260707958  cycles elapsed
+            25330168  peak memory footprint

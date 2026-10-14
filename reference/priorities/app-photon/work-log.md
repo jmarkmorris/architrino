@@ -80,3 +80,7 @@ The next app-photon action is to deepen rejected-root reasons for same-source ro
 Migrated from `priorities.md` so the app tracker keeps current implementation and queue material separate from promotion history.
 
 Promotion note: the named preset descriptions, Virtual Observer branch-sum equations, and analyzer-fit formulas have been promoted into the reader-facing Photon Guide. The remaining app-specific control ranges, verification checklist, and open work queue stay priority-only.
+
+## 2026-10-13 — OPS-032 monthly substantive review
+
+The [bounded monthly receipt](../aaa-operations/evidence/ops-032-photon-substantive-review-2026-10-13.md) traces the app manuscript/contracts into selected implementation and retained fixture/JSON assets. Missing/null/nonfinite status reproduces an above-floor diagnostic admission, and null factor reproduces safe rejection with misleading singular evidence. Both are proposed in the existing software queue as one bounded classifier repair; no source fix or deferred physical research is accepted. Two previous repairs and a no-change root-age interpretation survive. The built-in producer supplies complete status; no browser or physical consequence is established. OPS-028 completion is reused, and monthly scope does not certify the full directory.

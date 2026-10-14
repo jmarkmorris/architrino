@@ -8,11 +8,13 @@ The [OPS-031 Binary Dynamics review, October 9](../aaa-operations/evidence/ops-0
 
 The [OPS-031 Causal Action Functional review, October 11](../aaa-operations/evidence/ops-031-causal-action-review-2026-10-11.md), completes the whole chapter with a bounded no-change disposition. Its historical accepted repairs remain intact; operations retains the later coverage date and next cursor. CRW-005 remains closed.
 
-The [OPS-031 Effective Lagrangian review, October 11](../aaa-operations/evidence/ops-031-effective-lagrangian-review-2026-10-11.md), completes later whole-chapter coverage and proposes nine bounded corrections in the [maintenance referral](work-queue.md#ops-031--october-11-effective-lagrangian-referral). They await disposition and are not implemented. Historical CRW-005 audit counts below remain its closed campaign accounting; the separate OPS-031 referral is current unfinished maintenance.
+The [OPS-031 Effective Lagrangian review, October 11](../aaa-operations/evidence/ops-031-effective-lagrangian-review-2026-10-11.md), completes later whole-chapter coverage and proposes nine bounded corrections in the [maintenance referral](work-queue.md#ops-031--october-11-effective-lagrangian-referral). Their [exact before/after replacements](analysis/ops-031-effective-repair-proposal-2026-10-12.md) were approved, implemented and separately verified in the [closure record](evidence/ops-031-effective-correction-closure-2026-10-12.md); the additional Claude assessment is recorded there separately. Historical CRW-005 audit counts below remain its closed campaign accounting.
 
-The [October 12 core review](../aaa-operations/evidence/ops-031-core-symmetry-lock-review-2026-10-12.md) completes Coordinate-Axis Six-Point Symmetry and Return Response and Three-Binary 4:2:1 Frequency Lock at whole-chapter review scope. Its eleven [maintenance correction groups](work-queue.md#ops-031--october-12-core-symmetry-and-frequency-lock-referral) await disposition; sources are unchanged and historical CRW-005 accounting remains closed.
+The [October 12 core review](../aaa-operations/evidence/ops-031-core-symmetry-lock-review-2026-10-12.md) completes Coordinate-Axis Six-Point Symmetry and Return Response and Three-Binary 4:2:1 Frequency Lock at whole-chapter review scope. Its eleven [maintenance correction groups](work-queue.md#ops-031--october-12-core-symmetry-and-frequency-lock-referral) were approved, implemented and separately verified in the [closure record](evidence/ops-031-core-correction-closure-2026-10-12.md). Historical CRW-005 accounting remains closed.
 
 ## Active priority queue
+
+The later [October 13 supporting review](../aaa-operations/evidence/ops-031-bremsstrahlung-synchrotron-review-2026-10-13.md) completes Bremsstrahlung and Synchrotron at unchanged whole-source scope and proposes one low terminology correction in the [separate maintenance referral](work-queue.md#ops-031--october-13-supporting-chapter-referral). The historical CRW-005 audit rows and counts below remain closed; operations owns the subsequent coverage cursor.
 
 No active or unopened rows.
 

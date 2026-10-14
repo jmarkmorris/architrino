@@ -1,0 +1,838 @@
+{
+ "g": "1/10",
+ "N_window": 500,
+ "campaign": "subrange-feedback",
+ "runmode": "controls",
+ "mode": "three (all classes moving, generated history, sub-range lookup)",
+ "plan": {
+  "Delta": "0.01",
+  "max_step_number": 0,
+  "adaptation": "none; stop at the first uncertified step"
+ },
+ "controls": [
+  {
+   "name": "(L1) sub-range lookup on a hand-known cubic slab (nonzero acceleration-rate remainder): point and interior sub-ranges, uncertain origin, multi-slab join contain the truth; negatives (missing remainder, wrong initial state, wrong time origin, point origin for an uncertain one, wrong acceleration) exclude it",
+   "pass": true,
+   "detail": {
+    "point_subrange_contains_truth": true,
+    "point_box_q_width": "7.4667e-11",
+    "interior_subrange_contains_truth_grid": true,
+    "interior_box_narrower_than_whole_step": true,
+    "interior_vs_whole_q_width": [
+     "0.00075135",
+     "0.002505"
+    ],
+    "uncertain_origin_contains_truth_for_every_origin": true,
+    "multi_slab_join_contains_truth_both_sides": true,
+    "neg_missing_remainder_excludes_truth": true,
+    "neg_wrong_initial_state_excludes_truth": true,
+    "neg_wrong_time_origin_excludes_truth": true,
+    "neg_point_origin_for_an_uncertain_origin_excludes_truth": true,
+    "neg_wrong_acceleration_excludes_truth": true,
+    "outside_slab_not_touched": true
+   }
+  },
+  {
+   "name": "(L2) chain known case: on every certified record the sub-range evaluation at sigma = Delta reproduces the record's certified end strings to 1e-18 and at sigma = 0 returns its start state",
+   "pass": true,
+   "detail": {
+    "max_end_abs_diff": {
+     "wave16": "1.0168e-23",
+     "wave17": "1.0194e-23",
+     "antipodal": "1.0186e-23",
+     "late-feedback": "1.0187e-23",
+     "like-reception": "1.0195e-23"
+    },
+    "all_records": 204
+   }
+  },
+  {
+   "name": "(L3) real chain: window seam (record side contains the window state at T*; two-part hull), new sub-range box inside the old whole-step hull at 8 ranges incl. every family join, point at a record end contains its end strings; negatives refused: beyond coverage, uncertified record, gap, wrong record state, wrong start state (empty intersection)",
+   "pass": true,
+   "detail": {
+    "window_seam_record_side_contains_window_state_at_T_star": true,
+    "window_seam_two_part_hull": true,
+    "new_box_inside_old_hull_at_8_ranges_incl_family_joins": true,
+    "new_over_old_width_ratio_q_and_qddot": [
+     [
+      "1.42",
+      "0.5994",
+      "0.6325"
+     ],
+     [
+      "1.47",
+      "0.5994",
+      "0.6331"
+     ],
+     [
+      "1.8669",
+      "0.301",
+      "0.6367"
+     ],
+     [
+      "2.0767",
+      "0.3016",
+      "0.6314"
+     ],
+     [
+      "2.3",
+      "0.6024",
+      "0.6909"
+     ],
+     [
+      "2.8067",
+      "0.3066",
+      "0.91"
+     ],
+     [
+      "3.1",
+      "0.6162",
+      "0.8978"
+     ],
+     [
+      "3.40",
+      "0.6339",
+      "0.8684"
+     ]
+    ],
+    "point_at_a_record_end_contains_its_end_strings": true,
+    "neg_beyond_coverage_refused": true,
+    "neg_uncertified_record_refused": [
+     true,
+     "uncertified record refused: synthetic uncertified copy"
+    ],
+    "neg_gap_refused": [
+     true,
+     "gap refused before x step 103"
+    ],
+    "neg_wrong_record_state_refused": [
+     true,
+     "state discontinuity refused at x step 102"
+    ],
+    "neg_wrong_start_state_gives_empty_intersection": [
+     true,
+     "empty intersection of the sub-range box with the whole-step box (like-reception-s1a2 step 101 q)"
+    ]
+   }
+  },
+  {
+   "name": "(0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the EXPANDED box q <= 0.85, q' <= 0.55, v' <= 0.40 (signed forms; the sample includes unlike points with D_t > 1)",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "9.8608e-31",
+    "like": "5.9165e-31",
+    "antipode": "3.9443e-31"
+   },
+   "unlike_sample_points_with_Dt_above_one": 19
+  },
+  {
+   "name": "(E7) signed-geometry box q in [0.58, 0.85], q' in [0, 0.55], v' in [0, 0.40] (225 cells): every separation r > 0.8 and every transmitter factor D_c > 0.5 (so one root per sub-wake class); the signs of N and M and the side of one of D_c are reported, not assumed",
+   "pass": true,
+   "box": {
+    "unlike": {
+     "N_range": [
+      "-0.0558035",
+      "0.591468"
+     ],
+     "M_range": [
+      "-0.20704",
+      "0.317641"
+     ],
+     "M_changes_sign_on_box": true,
+     "r_min": "0.945101",
+     "D_range": [
+      "0.882107",
+      "1.08411"
+     ],
+     "D_side_of_one_on_box": "straddles one"
+    },
+    "like": {
+     "N_range": [
+      "-0.0558035",
+      "0.591468"
+     ],
+     "M_range": [
+      "-0.20704",
+      "0.317641"
+     ],
+     "M_changes_sign_on_box": true,
+     "r_min": "1.65963",
+     "D_range": [
+      "0.952072",
+      "1.07656"
+     ],
+     "D_side_of_one_on_box": "straddles one"
+    },
+    "antipode": {
+     "N_range": [
+      "0.0299955",
+      "0.75128"
+     ],
+     "M_range": [
+      "-0.75128",
+      "-0.0299955"
+     ],
+     "M_changes_sign_on_box": false,
+     "r_min": "1.82208",
+     "D_range": [
+      "1.0",
+      "1.16493"
+     ],
+     "D_side_of_one_on_box": "straddles one"
+    }
+   }
+  },
+  {
+   "name": "(2) reconciliation at the accepted step-154 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum intersects g n.A",
+   "pass": true,
+   "gF": [
+    "0.1210654358412568022401426",
+    "0.1213603038562573382297206"
+   ],
+   "tangent_sum_fixed": [
+    "0.1211734725754093417368765",
+    "0.1212522012113986817775901"
+   ],
+   "radial_sum_fixed": [
+    "-0.05711095670796714585124484",
+    "-0.05709069079993991831500517"
+   ],
+   "g_nA": [
+    "-0.05724539330709555893164276",
+    "-0.05695626734389118607477527"
+   ]
+  },
+  {
+   "name": "(4) negative: unlike and like terms at the step-154 state with the wrong sign of the velocity term in D_t are disjoint from the correct ones",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.3177120000147463659630123",
+      "0.3182199768725234686778156"
+     ],
+     "hit_wrong": [
+      "0.2912755900172318462079344",
+      "0.2917386303855783466565075"
+     ],
+     "Dt_correct": [
+      "0.9565347207874568299133038",
+      "0.9566398651955926088256083"
+     ],
+     "Dt_wrong": [
+      "1.043360134804407391174392",
+      "1.043465279212543170086696"
+     ]
+    },
+    "like": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.09263255324254981687215395",
+      "0.09269516769629732407851416"
+     ],
+     "hit_wrong": [
+      "0.09742055394748383554791612",
+      "0.09748658601134658481365155"
+     ],
+     "Dt_correct": [
+      "1.025174994781209048969745",
+      "1.025211857883356480401786"
+     ],
+     "Dt_wrong": [
+      "0.9747881421166435195982139",
+      "0.9748250052187909510302548"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(5) delay-root bracket at the step-154 state with the sub-range lookup: +-0.15 and +-0.20 intersect and agree to 1e-9 for all classes; a non-straddling bracket (+-1e-4) is refused",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "agree": true,
+     "tau": [
+      "1.034512244294058338009588",
+      "1.034719200452213168485591"
+     ],
+     "tau_width": "0.00020696",
+     "chord_minus_tau": "0.0660965"
+    },
+    "like": {
+     "agree": true,
+     "tau": [
+      "1.694153927604374489719685",
+      "1.694267562111170377965875"
+     ],
+     "tau_width": "0.00011363",
+     "chord_minus_tau": "-0.0243432"
+    },
+    "antipode": {
+     "agree": true,
+     "tau": [
+      "1.941723490201176370384051",
+      "1.941800982046321908686112"
+     ],
+     "tau_width": "7.7492e-5",
+     "chord_minus_tau": "-0.028577"
+    }
+   },
+   "non_straddling_refused": true
+  },
+  {
+   "name": "(1) restart regression (same-chain consistency, not independence): from the frozen step-153 strings the sub-range step intersects the frozen step-154 end, is no wider, and (recorded) lies inside it",
+   "pass": true,
+   "intersects": true,
+   "no_wider": true,
+   "new_end_inside_frozen_end": true,
+   "end_q": [
+    "0.5912383294784372888094335",
+    "0.5915726709665957998449591"
+   ],
+   "frozen_end_q": [
+    "0.5912383062043186217382439",
+    "0.5915726917256567880265456"
+   ],
+   "end_v": [
+    "0.3491854444417488419792647",
+    "0.3500670198394861773585056"
+   ],
+   "frozen_end_v": [
+    "0.3491807720407250904899195",
+    "0.3500711716516838136758167"
+   ],
+   "trace_identity": true
+  },
+  {
+   "name": "(6) self-append with the sub-range lookup: the control step (from step 153), appended and enriched through the checked path, is read on a sub-range (inside its whole-step box and narrower), its end point contains its end strings, and a lookup beyond it is refused",
+   "pass": true,
+   "detail": {
+    "records_before": 203,
+    "records_after": 204,
+    "point_at_its_end_contains_its_end_strings": true,
+    "interior_subrange_inside_its_whole_step_box_and_narrower": true,
+    "lookup_beyond_refused": true,
+    "enriched_fields_present": true
+   }
+  },
+  {
+   "name": "(7) restart wrapper: default and explicit selection of step 154 reproduce the exact frozen strings with t0 an interval; wrong g, wrong window, uncertified step, missing step and wrong Delta refused",
+   "pass": true,
+   "detail": {
+    "default_selects_last_certified_step_154_exact_strings": true,
+    "explicit_step_154_exact_strings": true,
+    "t0_interval": [
+     "3.406684593623649597167969",
+     "3.406684709182828044891357"
+    ],
+    "t0_is_interval_not_point": true,
+    "neg_wrong_g": [
+     true,
+     "g mismatch: 1/9"
+    ],
+    "neg_wrong_window": [
+     true,
+     "not enforced in sample mode"
+    ],
+    "neg_uncertified_step": [
+     true,
+     "requested step 154 is not certified"
+    ],
+    "neg_missing_step": [
+     true,
+     "requested step 999 not in the record"
+    ],
+    "neg_wrong_Delta": [
+     true,
+     "Delta mismatch"
+    ]
+   }
+  }
+ ],
+ "steps": [],
+ "T_star": [
+  "1.366622279933447265625",
+  "1.36674060629608154296875"
+ ],
+ "steps6_sha256_expected": "df590c407041a184bc67fd792cd7c25286f7534171696903c61b4d3d6080613e",
+ "sample_mode_not_target_evidence": true,
+ "record_chain": {
+  "count_frozen": 204,
+  "last": "like-reception-s3b step 154",
+  "t_hi_frozen": "3.406684709182828044891357",
+  "joins": [
+   {
+    "join": "wave16 step 10 -> wave17 start",
+    "pass": true,
+    "end_q": [
+     "0.1078360786236463737425584",
+     "0.1078365557293226335681814"
+    ],
+    "start_q": [
+     "0.1078360786236463737425584",
+     "0.1078365557293226335681814"
+    ]
+   },
+   {
+    "join": "wave17 step 40 -> antipodal-a start",
+    "pass": true,
+    "end_q": [
+     "0.1750516801723775893710754",
+     "0.175056763736205971059134"
+    ],
+    "start_q": [
+     "0.1750516801723775893710754",
+     "0.175056763736205971059134"
+    ]
+   },
+   {
+    "join": "antipodal-a step 11 -> antipodal-b3 resume",
+    "pass": true,
+    "end_q": [
+     "0.1964426619820381217168754",
+     "0.196449994294162961493939"
+    ],
+    "start_q": [
+     "0.1964426619820381217168754",
+     "0.196449994294162961493939"
+    ]
+   },
+   {
+    "join": "step 21 -> late-feedback-s1a2 resume",
+    "pass": true,
+    "end_q": [
+     "0.2169889763507186775076704",
+     "0.2169987970109094562817074"
+    ],
+    "start_q": [
+     "0.2169889763507186775076704",
+     "0.2169987970109094562817074"
+    ]
+   },
+   {
+    "join": "step 30 -> late-feedback-s1b resume",
+    "pass": true,
+    "end_q": [
+     "0.2363815274827344393252612",
+     "0.2363939808878887293542157"
+    ],
+    "start_q": [
+     "0.2363815274827344393252612",
+     "0.2363939808878887293542157"
+    ]
+   },
+   {
+    "join": "step 44 -> late-feedback-s2a resume",
+    "pass": true,
+    "end_q": [
+     "0.2682548897108832844147014",
+     "0.2682722348201430693813555"
+    ],
+    "start_q": [
+     "0.2682548897108832844147014",
+     "0.2682722348201430693813555"
+    ]
+   },
+   {
+    "join": "step 56 -> late-feedback-s2b3 resume",
+    "pass": true,
+    "end_q": [
+     "0.2972397409585767836906",
+     "0.2972620976810700998649981"
+    ],
+    "start_q": [
+     "0.2972397409585767836906",
+     "0.2972620976810700998649981"
+    ]
+   },
+   {
+    "join": "step 64 -> late-feedback-s3a resume",
+    "pass": true,
+    "end_q": [
+     "0.3174215050973258168151511",
+     "0.3174476357049886764715778"
+    ],
+    "start_q": [
+     "0.3174215050973258168151511",
+     "0.3174476357049886764715778"
+    ]
+   },
+   {
+    "join": "step 69 -> late-feedback-s3b2 resume",
+    "pass": true,
+    "end_q": [
+     "0.3303850460494271208234513",
+     "0.3304137105118107545698485"
+    ],
+    "start_q": [
+     "0.3303850460494271208234513",
+     "0.3304137105118107545698485"
+    ]
+   },
+   {
+    "join": "step 78 -> late-feedback-s3c resume",
+    "pass": true,
+    "end_q": [
+     "0.3543985590884071228124339",
+     "0.3544332051883565299139656"
+    ],
+    "start_q": [
+     "0.3543985590884071228124339",
+     "0.3544332051883565299139656"
+    ]
+   },
+   {
+    "join": "step 86 -> late-feedback-s3d resume",
+    "pass": true,
+    "end_q": [
+     "0.3764767902921476837096419",
+     "0.3765197152663271911605447"
+    ],
+    "start_q": [
+     "0.3764767902921476837096419",
+     "0.3765197152663271911605447"
+    ]
+   },
+   {
+    "join": "step 94 -> like-reception-s1a2 resume",
+    "pass": true,
+    "end_q": [
+     "0.3992437701157277106661817",
+     "0.3992985410325688180050535"
+    ],
+    "start_q": [
+     "0.3992437701157277106661817",
+     "0.3992985410325688180050535"
+    ]
+   },
+   {
+    "join": "step 104 -> like-reception-s1b2 resume",
+    "pass": true,
+    "end_q": [
+     "0.4286670033639066141742331",
+     "0.42874241439421191995251"
+    ],
+    "start_q": [
+     "0.4286670033639066141742331",
+     "0.42874241439421191995251"
+    ]
+   },
+   {
+    "join": "step 114 -> like-reception-s2a3 resume",
+    "pass": true,
+    "end_q": [
+     "0.4591525341524837711992566",
+     "0.4592561639425522811594391"
+    ],
+    "start_q": [
+     "0.4591525341524837711992566",
+     "0.4592561639425522811594391"
+    ]
+   },
+   {
+    "join": "step 124 -> like-reception-s2b2 resume",
+    "pass": true,
+    "end_q": [
+     "0.4906834845802867001124733",
+     "0.4908248692940519963879255"
+    ],
+    "start_q": [
+     "0.4906834845802867001124733",
+     "0.4908248692940519963879255"
+    ]
+   },
+   {
+    "join": "step 134 -> like-reception-s3a resume",
+    "pass": true,
+    "end_q": [
+     "0.5232341485451652734960506",
+     "0.5234250485912267569427141"
+    ],
+    "start_q": [
+     "0.5232341485451652734960506",
+     "0.5234250485912267569427141"
+    ]
+   },
+   {
+    "join": "step 144 -> like-reception-s3b resume",
+    "pass": true,
+    "end_q": [
+     "0.5567684619494608997950057",
+     "0.5570229266910271962584909"
+    ],
+    "start_q": [
+     "0.5567684619494608997950057",
+     "0.5570229266910271962584909"
+    ]
+   }
+  ],
+  "joins_all_exact": true,
+  "origin_width_first_last": [
+   "1.15559e-7",
+   "1.15559e-7"
+  ],
+  "families": {
+   "wave16": 10,
+   "wave17": 40,
+   "antipodal": 21,
+   "late-feedback": 73,
+   "like-reception": 60
+  }
+ },
+ "matched_input_comparison": {
+  "step_154_from_step_153_strings": {
+   "new": {
+    "closed": true,
+    "end_q": [
+     "0.5912383294784372888094335",
+     "0.5915726709665957998449591"
+    ],
+    "end_v": [
+     "0.3491854444417488419792647",
+     "0.3500670198394861773585056"
+    ],
+    "end_q_width": "0.000334341",
+    "end_v_width": "0.000881575",
+    "a0_width": "0.000477961",
+    "ap_width": "0.0136156",
+    "consumed_widths": {
+     "unlike": {
+      "q": "0.00289382",
+      "qdot": "0.00131643",
+      "qddot": "0.000109878",
+      "tau0": "0.000202261",
+      "Dt0": "0.000102173",
+      "Dt_range": "0.00176535"
+     },
+     "like": {
+      "q": "0.00195123",
+      "qdot": "0.00118106",
+      "qddot": "9.61884e-5",
+      "tau0": "0.000111027",
+      "Dt0": "3.57852e-5",
+      "Dt_range": "0.000691481"
+     },
+     "antipode": {
+      "q": "0.00155068",
+      "qdot": "0.00108269",
+      "qddot": "0.000119069",
+      "tau0": "7.51721e-5",
+      "Dt0": "2.67634e-5",
+      "Dt_range": "0.000669881"
+     }
+    },
+    "iterations": 1,
+    "trace_identity": true
+   },
+   "old": {
+    "closed": true,
+    "end_q": [
+     "0.5912383062043186217382439",
+     "0.5915726917256567880265457"
+    ],
+    "end_v": [
+     "0.3491807720407250904899195",
+     "0.3500711716516838136758167"
+    ],
+    "end_q_width": "0.000334386",
+    "end_v_width": "0.0008904",
+    "a0_width": "0.00135511",
+    "ap_width": "0.0156185",
+    "consumed_widths": {
+     "unlike": {
+      "q": "0.00485092",
+      "qdot": "0.00218419",
+      "qddot": "0.000142293",
+      "tau0": "0.00187446",
+      "Dt0": "0.000703798",
+      "Dt_range": "0.00226333"
+     },
+     "like": {
+      "q": "0.00344541",
+      "qdot": "0.00207856",
+      "qddot": "0.000114628",
+      "tau0": "0.000924589",
+      "Dt0": "0.000287519",
+      "Dt_range": "0.000911845"
+     },
+     "antipode": {
+      "q": "0.0029298",
+      "qdot": "0.00204587",
+      "qddot": "0.00013068",
+      "tau0": "0.000426408",
+      "Dt0": "0.000371222",
+      "Dt_range": "0.000997781"
+     }
+    },
+    "iterations": 1,
+    "trace_identity": true
+   },
+   "wall_s": {
+    "new": 0.11,
+    "old": 0.08
+   },
+   "old_reproduces_frozen_step_154_strings_to_1e-15": true,
+   "new_over_old_width_ratio": {
+    "end_q": "0.9999",
+    "end_v": "0.9901",
+    "a0": "0.3527",
+    "ap": "0.8718",
+    "consumed": {
+     "unlike": {
+      "q": "0.5966",
+      "qdot": "0.6027",
+      "qddot": "0.7722",
+      "tau0": "0.1079",
+      "Dt0": "0.1452",
+      "Dt_range": "0.78"
+     },
+     "like": {
+      "q": "0.5663",
+      "qdot": "0.5682",
+      "qddot": "0.8391",
+      "tau0": "0.1201",
+      "Dt0": "0.1245",
+      "Dt_range": "0.7583"
+     },
+     "antipode": {
+      "q": "0.5293",
+      "qdot": "0.5292",
+      "qddot": "0.9111",
+      "tau0": "0.1763",
+      "Dt0": "0.0721",
+      "Dt_range": "0.6714"
+     }
+    }
+   },
+   "new_end_inside_old_end": true
+  },
+  "step_155_from_step_154_strings": {
+   "new": {
+    "closed": true,
+    "end_q": [
+     "0.594734502130646488981388",
+     "0.5950778289153357732425706"
+    ],
+    "end_v": [
+     "0.350057150053150577374312",
+     "0.3509562662841132295291865"
+    ],
+    "end_q_width": "0.000343327",
+    "end_v_width": "0.000899116",
+    "a0_width": "0.00049271",
+    "ap_width": "0.0137698",
+    "consumed_widths": {
+     "unlike": {
+      "q": "0.00290551",
+      "qdot": "0.00131616",
+      "qddot": "0.000120841",
+      "tau0": "0.000206956",
+      "Dt0": "0.000105144",
+      "Dt_range": "0.0017762"
+     },
+     "like": {
+      "q": "0.00196101",
+      "qdot": "0.00118147",
+      "qddot": "8.95584e-5",
+      "tau0": "0.000113635",
+      "Dt0": "3.68631e-5",
+      "Dt_range": "0.000694114"
+     },
+     "antipode": {
+      "q": "0.00156256",
+      "qdot": "0.00108415",
+      "qddot": "0.000126414",
+      "tau0": "7.74918e-5",
+      "Dt0": "2.77531e-5",
+      "Dt_range": "0.000676281"
+     }
+    },
+    "iterations": 1,
+    "trace_identity": true
+   },
+   "old": {
+    "closed": true,
+    "end_q": [
+     "0.594734481319205266393783",
+     "0.5950778522610380273066223"
+    ],
+    "end_v": [
+     "0.3500529719249846757366538",
+     "0.3509609354245640423395203"
+    ],
+    "end_q_width": "0.000343371",
+    "end_v_width": "0.000907963",
+    "a0_width": "0.00137269",
+    "ap_width": "0.0157913",
+    "consumed_widths": {
+     "unlike": {
+      "q": "0.00487277",
+      "qdot": "0.00218576",
+      "qddot": "0.000141196",
+      "tau0": "0.00188446",
+      "Dt0": "0.000707021",
+      "Dt_range": "0.00227407"
+     },
+     "like": {
+      "q": "0.0034662",
+      "qdot": "0.00207991",
+      "qddot": "0.000115471",
+      "tau0": "0.000930403",
+      "Dt0": "0.000287728",
+      "Dt_range": "0.000914288"
+     },
+     "antipode": {
+      "q": "0.00295026",
+      "qdot": "0.00204749",
+      "qddot": "0.00013531",
+      "tau0": "0.000432736",
+      "Dt0": "0.000374676",
+      "Dt_range": "0.00100633"
+     }
+    },
+    "iterations": 1,
+    "trace_identity": true
+   },
+   "wall_s": {
+    "new": 0.11,
+    "old": 0.08
+   },
+   "new_over_old_width_ratio": {
+    "end_q": "0.9999",
+    "end_v": "0.9903",
+    "a0": "0.3589",
+    "ap": "0.872",
+    "consumed": {
+     "unlike": {
+      "q": "0.5963",
+      "qdot": "0.6022",
+      "qddot": "0.8558",
+      "tau0": "0.1098",
+      "Dt0": "0.1487",
+      "Dt_range": "0.7811"
+     },
+     "like": {
+      "q": "0.5658",
+      "qdot": "0.568",
+      "qddot": "0.7756",
+      "tau0": "0.1221",
+      "Dt0": "0.1281",
+      "Dt_range": "0.7592"
+     },
+     "antipode": {
+      "q": "0.5296",
+      "qdot": "0.5295",
+      "qddot": "0.9343",
+      "tau0": "0.1791",
+      "Dt0": "0.07407",
+      "Dt_range": "0.672"
+     }
+    }
+   },
+   "new_end_inside_old_end": true
+  }
+ },
+ "controls_all_pass": true,
+ "wall_s": 1.0972180366516113
+}

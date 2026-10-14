@@ -9,6 +9,7 @@
 namespace architrino::eom {
 namespace {
 
+
 // Sign, significant digits without leading or trailing zeros, and the decimal
 // exponent of the last retained digit. Zero is {0, "", 0}.
 struct ExactDecimal {
@@ -315,9 +316,9 @@ MatchedPairMemberEvidence member_evidence(
 
 
 // ---------------------------------------------------------------- Stage 2
-// Window spanning several error-free cubic segments of each source. The
-// history is exactly its piecewise cubic and is continuously differentiable
-// across joins, so every bound below is a bound on the source itself.
+// Window spanning several cubic segments of each source, with optional
+// declared position and velocity error radii. See the Stage 2 design record:
+// the radius needs no bound on the true acceleration.
 
 // Inclusive range of segment indices of one history that meet [lower, T_r].
 struct SegmentRange {
@@ -376,8 +377,39 @@ std::optional<SegmentRange> window_segments(
   return SegmentRange{first, last};
 }
 
+double radius_norm_upper(const HistoryErrorTokens& tokens) {
+  IntervalVector radii = zero_vector();
+  bool any = false;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    // An exactly zero token contributes exactly zero, not its padded
+    // enclosure, so error-free histories keep their exact-policy values.
+    if (exact_decimal_token_is_zero(tokens[axis])) continue;
+    radii[axis] = Interval::decimal_token(tokens[axis]);
+    any = true;
+  }
+  return any ? norm(radii).upper() : 0.0;
+}
+
+IntervalVector widened(
+    const IntervalVector& box,
+    const HistoryErrorTokens& tokens) {
+  IntervalVector result = box;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    // An exactly zero radius leaves the box unchanged.
+    if (exact_decimal_token_is_zero(tokens[axis])) continue;
+    // Outward: use the upper endpoint of the radius token's enclosure.
+    result[axis] =
+        box[axis].inflate(Interval::decimal_token(tokens[axis]).upper());
+  }
+  return result;
+}
+
 struct MemberCells {
-  std::vector<SlabControls> controls;
+  std::vector<SlabControls> nominal;
+  std::vector<std::array<IntervalVector, 4>> position;
+  std::vector<std::array<IntervalVector, 3>> velocity;
+  double position_radius_upper = 0.0;
+  double velocity_radius_upper = 0.0;
   double join_jump_upper = 0.0;
   bool exact = true;
 };
@@ -410,18 +442,32 @@ MemberCells member_cells(
         : cell_lower - segment->t_start_interval();
     const Interval duration = Interval::decimal_token(upper) - cell_lower;
     SlabControls controls = slab_controls(*segment, offset, duration);
+    std::array<IntervalVector, 4> position = controls.position;
+    std::array<IntervalVector, 3> velocity = controls.velocity;
+    for (auto& box : position) {
+      box = widened(box, segment->position_error_tokens());
+    }
+    for (auto& box : velocity) {
+      box = widened(box, segment->velocity_error_tokens());
+    }
+    cells.position_radius_upper = std::max(
+        cells.position_radius_upper,
+        radius_norm_upper(segment->position_error_tokens()));
+    cells.velocity_radius_upper = std::max(
+        cells.velocity_radius_upper,
+        radius_norm_upper(segment->velocity_error_tokens()));
     cells.exact = cells.exact && exact_cubic_segment(*segment);
-    if (!cells.controls.empty()) {
-      // Upper bound of the velocity change across the boundary just crossed.
-      // The velocity is exactly continuous there; this is the outward
-      // rounding of that zero and keeps the radius rigorous.
+    if (!cells.nominal.empty()) {
+      // Jump of the nominal velocity across the boundary just crossed.
       const double jump = norm(subtract(
-          controls.velocity[0], cells.controls.back().velocity[2])).upper();
+          controls.velocity[0], cells.nominal.back().velocity[2])).upper();
       cells.join_jump_upper =
           (Interval::point(cells.join_jump_upper) + Interval::point(jump))
               .upper();
     }
-    cells.controls.push_back(std::move(controls));
+    cells.nominal.push_back(std::move(controls));
+    cells.position.push_back(position);
+    cells.velocity.push_back(velocity);
   }
   return cells;
 }
@@ -429,6 +475,8 @@ MemberCells member_cells(
 NativeMatchedPairEnclosureCertificate certify_piecewise_window(
     const MatchedPairEnclosureRequest& request,
     NativeMatchedPairEnclosureCertificate certificate) {
+  const bool tubes_admitted =
+      request.policy == kMatchedPairPolicySnapshotPiecewiseTube;
   const auto leader_range = window_segments(
       *request.leader_history, request.emission_lower, request.reception_time);
   const auto follower_range = window_segments(
@@ -486,17 +534,51 @@ NativeMatchedPairEnclosureCertificate certify_piecewise_window(
       *request.leader_history, *leader_range, boundaries);
   const MemberCells follower = member_cells(
       *request.follower_history, *follower_range, boundaries);
-  // Histories: every segment the window meets must be the source itself.
+  certificate.leader.position_radius_upper = leader.position_radius_upper;
+  certificate.leader.velocity_radius_upper = leader.velocity_radius_upper;
+  certificate.follower.position_radius_upper = follower.position_radius_upper;
+  certificate.follower.velocity_radius_upper = follower.velocity_radius_upper;
   const bool analytic =
       request.leader_history->uniform_circular_endpoint_certificate()
           .has_value() ||
       request.follower_history->uniform_circular_endpoint_certificate()
           .has_value();
-  if (!leader.exact || !follower.exact || analytic) {
+  const bool exact = leader.exact && follower.exact && !analytic;
+  if (!exact && (!tubes_admitted || analytic)) {
     certificate.failure_code = "MPE-HISTORY-01";
     return certificate;
   }
-  certificate.history_grade = "exact_piecewise_cubic";
+  if (!exact) {
+    // Declared radii are admitted only with producer-issued evidence whose
+    // coupling equals the request's and whose population contains the
+    // receiver and both members with exactly these charges and exactly this
+    // history content, recomputed here from the supplied histories.
+    bool bound = false;
+    if (request.validated_evidence != nullptr &&
+        compare_exact_decimal_tokens(
+            request.validated_evidence->coupling(), request.coupling) == 0) {
+      const auto& evidence = *request.validated_evidence;
+      bound =
+          evidence.member_refusal(request.receiver_path_id,
+                                  request.receiver_charge,
+                                  *request.receiver_history).empty() &&
+          evidence.member_refusal(request.leader_path_id,
+                                  request.leader_charge,
+                                  *request.leader_history).empty() &&
+          evidence.member_refusal(request.follower_path_id,
+                                  request.follower_charge,
+                                  *request.follower_history).empty();
+    }
+    if (!bound) {
+      certificate.failure_code = "MPE-EVIDENCE-01";
+      return certificate;
+    }
+  }
+  certificate.history_grade =
+      exact ? "exact_piecewise_cubic" : "validated_far_step_tubes";
+  if (!exact) {
+    certificate.validated_evidence = request.validated_evidence;
+  }
 
   // Coverage of retained history before the window: same re-proof as the
   // single-slab route, from each member's own position hull.
@@ -540,8 +622,9 @@ NativeMatchedPairEnclosureCertificate certify_piecewise_window(
   certificate.window_coverage =
       any_prefix ? "member_prefix_reproved" : "whole_retained_history";
 
-  // Whole-window bounds over all cells.
-  IntervalVector domain = leader.controls.front().position[0];
+  // Whole-window bounds over all cells. Widened boxes enclose the true
+  // positions and velocities; nominal boxes bound the nominal acceleration.
+  IntervalVector domain = leader.position.front()[0];
   double speed_upper = 0.0;
   double acceleration_upper = 0.0;
   double separation_upper = 0.0;
@@ -549,28 +632,39 @@ NativeMatchedPairEnclosureCertificate certify_piecewise_window(
   const std::size_t cell_count = boundaries.size() - 1U;
   for (std::size_t cell = 0U; cell < cell_count; ++cell) {
     for (const auto* member : {&leader, &follower}) {
-      for (const auto& box : member->controls[cell].position) {
+      for (const auto& box : member->position[cell]) {
         domain = hull(domain, box);
       }
-      for (const auto& box : member->controls[cell].velocity) {
+      for (const auto& box : member->velocity[cell]) {
         speed_upper = maximum_norm_upper(speed_upper, box);
       }
-      for (const auto& box : member->controls[cell].acceleration) {
+      for (const auto& box : member->nominal[cell].acceleration) {
         acceleration_upper = maximum_norm_upper(acceleration_upper, box);
       }
     }
     for (std::size_t index = 0U; index < 4U; ++index) {
       separation_upper = maximum_norm_upper(
           separation_upper,
-          subtract(leader.controls[cell].position[index],
-                   follower.controls[cell].position[index]));
+          subtract(leader.position[cell][index],
+                   follower.position[cell][index]));
     }
     for (std::size_t index = 0U; index < 3U; ++index) {
+      // Nominal equal-time relative velocity. The declared velocity radii
+      // are added once below as window maxima, because the two members'
+      // emission times may lie in different cells with different radii.
       relative_speed_upper = maximum_norm_upper(
           relative_speed_upper,
-          subtract(leader.controls[cell].velocity[index],
-                   follower.controls[cell].velocity[index]));
+          subtract(leader.nominal[cell].velocity[index],
+                   follower.nominal[cell].velocity[index]));
     }
+  }
+  if (leader.velocity_radius_upper > 0.0 ||
+      follower.velocity_radius_upper > 0.0) {
+    relative_speed_upper =
+        (Interval::point(relative_speed_upper) +
+         Interval::point(leader.velocity_radius_upper) +
+         Interval::point(follower.velocity_radius_upper))
+            .upper();
   }
   certificate.source_domain_hull = domain;
   const double distance_floor = norm(subtract(receiver_box, domain)).lower();
@@ -594,14 +688,13 @@ NativeMatchedPairEnclosureCertificate certify_piecewise_window(
     return certificate;
   }
 
-  // Membership at the window start, uniformly over the receiver box. The
-  // residual at reception is at least the distance floor, hence strictly
-  // positive.
+  // Membership at the window start, uniformly over the receiver box and over
+  // the widened start box. The residual at reception is at least the
+  // distance floor, hence strictly positive.
   const auto classify = [&](MatchedPairMemberEvidence& evidence,
                             const MemberCells& member) {
     const Interval residual =
-        norm(subtract(receiver_box, member.controls.front().position[0])) -
-        duration;
+        norm(subtract(receiver_box, member.position.front()[0])) - duration;
     evidence.window_start_residual = residual;
     evidence.disposition = residual.upper() < 0.0
         ? "present"
@@ -664,6 +757,158 @@ NativeMatchedPairEnclosureCertificate certify_piecewise_window(
 }
 
 }  // namespace
+
+WholeStepPairBound whole_step_pair_bound(
+    const WholeStepPairBoundRequest& request) {
+  WholeStepPairBound bound;
+  const auto declined = [&bound](const char* code) {
+    bound.status = "declined";
+    bound.failure_code = code;
+    return bound;
+  };
+  if (request.leader_history == nullptr ||
+      request.follower_history == nullptr) {
+    return declined("MPE-WINDOW-01");
+  }
+  if (!exact_decimal_tokens_are_opposite(
+          request.leader_charge, request.follower_charge)) {
+    return declined("MPE-CHARGE-01");
+  }
+  if (request.leader_history->uniform_circular_endpoint_certificate()
+          .has_value() ||
+      request.follower_history->uniform_circular_endpoint_certificate()
+          .has_value()) {
+    return declined("MPE-HISTORY-01");
+  }
+  const auto leader_range = window_segments(
+      *request.leader_history, request.slab_lower, request.slab_upper);
+  const auto follower_range = window_segments(
+      *request.follower_history, request.slab_lower, request.slab_upper);
+  if (!leader_range.has_value() || !follower_range.has_value()) {
+    return declined("MPE-WINDOW-01");
+  }
+  // Cells: the slab split at every segment boundary of either member that
+  // lies strictly inside it, exactly as the snapshot piecewise route does.
+  std::vector<std::string> boundaries{request.slab_lower};
+  const auto add_interior = [&](const RetainedHistory& history,
+                                const SegmentRange& range) {
+    for (std::size_t index = range.first; index < range.last; ++index) {
+      const std::string token = history.segments().pin(index)->t_end_token();
+      if (compare_exact_decimal_tokens(request.slab_lower, token) < 0 &&
+          compare_exact_decimal_tokens(token, request.slab_upper) < 0) {
+        boundaries.push_back(token);
+      }
+    }
+  };
+  add_interior(*request.leader_history, *leader_range);
+  add_interior(*request.follower_history, *follower_range);
+  boundaries.push_back(request.slab_upper);
+  std::sort(
+      boundaries.begin(), boundaries.end(),
+      [](const std::string& left, const std::string& right) {
+        return compare_exact_decimal_tokens(left, right) < 0;
+      });
+  boundaries.erase(
+      std::unique(
+          boundaries.begin(), boundaries.end(),
+          [](const std::string& left, const std::string& right) {
+            return compare_exact_decimal_tokens(left, right) == 0;
+          }),
+      boundaries.end());
+  if (boundaries.size() < 2U) {
+    return declined("MPE-WINDOW-01");
+  }
+  std::optional<MemberCells> leader_cells;
+  std::optional<MemberCells> follower_cells;
+  try {
+    leader_cells = member_cells(
+        *request.leader_history, *leader_range, boundaries);
+    follower_cells = member_cells(
+        *request.follower_history, *follower_range, boundaries);
+  } catch (const std::invalid_argument&) {
+    return declined("MPE-WINDOW-01");
+  }
+  const MemberCells& leader = *leader_cells;
+  const MemberCells& follower = *follower_cells;
+  const std::size_t cell_count = boundaries.size() - 1U;
+  bound.cell_count = cell_count;
+
+  // Whole-slab bounds over all cells. Widened boxes enclose the true
+  // positions and velocities; nominal boxes bound the nominal acceleration.
+  IntervalVector domain = leader.position.front()[0];
+  double speed_upper = 0.0;
+  double acceleration_upper = 0.0;
+  double separation_upper = 0.0;
+  double relative_speed_upper = 0.0;
+  for (std::size_t cell = 0U; cell < cell_count; ++cell) {
+    for (const auto* member : {&leader, &follower}) {
+      for (const auto& box : member->position[cell]) {
+        domain = hull(domain, box);
+      }
+      for (const auto& box : member->velocity[cell]) {
+        speed_upper = maximum_norm_upper(speed_upper, box);
+      }
+      for (const auto& box : member->nominal[cell].acceleration) {
+        acceleration_upper = maximum_norm_upper(acceleration_upper, box);
+      }
+    }
+    for (std::size_t index = 0U; index < 4U; ++index) {
+      separation_upper = maximum_norm_upper(
+          separation_upper,
+          subtract(leader.position[cell][index],
+                   follower.position[cell][index]));
+    }
+    for (std::size_t index = 0U; index < 3U; ++index) {
+      // Nominal equal-time relative velocity; the declared velocity radii
+      // are added once below as slab maxima, because the two members'
+      // emission times may lie in different cells with different radii.
+      relative_speed_upper = maximum_norm_upper(
+          relative_speed_upper,
+          subtract(leader.nominal[cell].velocity[index],
+                   follower.nominal[cell].velocity[index]));
+    }
+  }
+  if (leader.velocity_radius_upper > 0.0 ||
+      follower.velocity_radius_upper > 0.0) {
+    relative_speed_upper =
+        (Interval::point(relative_speed_upper) +
+         Interval::point(leader.velocity_radius_upper) +
+         Interval::point(follower.velocity_radius_upper))
+            .upper();
+  }
+  bound.source_domain_hull = domain;
+  bound.speed_upper = speed_upper;
+  bound.acceleration_upper = acceleration_upper;
+  bound.separation_upper = separation_upper;
+  bound.relative_speed_upper = relative_speed_upper;
+  bound.leader_velocity_radius_upper = leader.velocity_radius_upper;
+  bound.follower_velocity_radius_upper = follower.velocity_radius_upper;
+  bound.join_jump_upper =
+      std::max(leader.join_jump_upper, follower.join_jump_upper);
+  bound.distance_floor = norm(subtract(request.receiver_box, domain)).lower();
+  if (!(bound.distance_floor > 0.0)) {
+    return declined("MPE-GEO-01");
+  }
+  // Any positive nu <= 1 - v+ is admissible in the radius; round it down.
+  bound.factor_floor =
+      (Interval::point(1.0) - Interval::point(speed_upper)).lower();
+  if (!(speed_upper < 1.0) || !(bound.factor_floor > 0.0)) {
+    return declined("MPE-SPEED-01");
+  }
+  const RadiusEvaluation evaluation = radius_from_bounds(
+      request.coupling, request.receiver_charge, request.leader_charge,
+      bound.distance_floor, speed_upper, bound.factor_floor, separation_upper,
+      relative_speed_upper, acceleration_upper,
+      std::optional<double>(bound.join_jump_upper));
+  bound.prefactor_upper = evaluation.prefactor_upper;
+  bound.radius_upper = evaluation.radius_upper;
+  if (!std::isfinite(bound.radius_upper) || !(bound.radius_upper >= 0.0)) {
+    return declined("MPE-BOUND-01");
+  }
+  bound.status = "certified";
+  bound.failure_code.clear();
+  return bound;
+}
 
 int compare_exact_decimal_tokens(
     const std::string& left,
@@ -1211,6 +1456,14 @@ std::string member_difference(
   }
   if (supplied.last_segment_index != fresh.last_segment_index) {
     return role + ".last_segment_index";
+  }
+  if (!same_optional_double(
+          supplied.position_radius_upper, fresh.position_radius_upper)) {
+    return role + ".position_radius_upper";
+  }
+  if (!same_optional_double(
+          supplied.velocity_radius_upper, fresh.velocity_radius_upper)) {
+    return role + ".velocity_radius_upper";
   }
   return {};
 }

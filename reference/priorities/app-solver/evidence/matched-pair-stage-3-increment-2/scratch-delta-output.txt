@@ -1,0 +1,27 @@
+Known difference cases passed before any target.
+  PASS  byte-identical: eom_native_fixture_cli-all.stdout
+  PASS  byte-identical: eom_native_acceleration_fixture_cli-all.stdout
+  PASS  byte-identical: eom_native_evolution_fixture_cli-all.stdout
+  PASS  byte-identical: matched-pair-module.jsonl
+  PASS  byte-identical: matched-pair-piecewise.jsonl
+  PASS  byte-identical: matched-pair-evolution-guard.jsonl
+  PASS  byte-identical: candidate-producer.jsonl
+  PASS  byte-identical: candidate-generated-source.jsonl
+  PASS  byte-identical: candidate-consumer.jsonl
+  PASS  byte-identical: candidate-long.jsonl
+  rows   10, differing    8: known
+  rows    9, differing    9: controller
+  rows   49, differing   44: refusals
+  rows   12, differing   12: cancellation
+  rows    4, differing    4: aliasing
+  rows   78, differing   78: continuation
+  rows   35, differing   23: budgets
+  rows    9, differing    9: admission
+  rows   15, differing   15: ledger
+  rows   39, differing   39: admission-b
+    new      accounting: 150
+    new      groups: 150
+    new      pairing: 150
+  PASS  no existing field changed and only the accounting, group list and pairing fields are new: 0 other differences in 260 rows
+  PASS  no charge is below its former value: 0 lowered
+ALL PASSED

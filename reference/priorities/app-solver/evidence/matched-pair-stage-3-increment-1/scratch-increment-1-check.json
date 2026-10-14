@@ -1,0 +1,293 @@
+{
+ "schema": "validated_evolution_increment_1_check/v1",
+ "all_passed": true,
+ "rows": [
+  {
+   "kind": "assertion",
+   "check": "exact halving",
+   "passed": true,
+   "detail": "0.00390625 1 0.00014935 5"
+  },
+  {
+   "kind": "assertion",
+   "check": "exact difference",
+   "passed": true,
+   "detail": "0.0002987 0.004375"
+  },
+  {
+   "kind": "assertion",
+   "check": "K1 static run completes at the exact end",
+   "passed": true,
+   "detail": "0.015625"
+  },
+  {
+   "kind": "assertion",
+   "check": "K1 step 1: both paths' tubes contain the closed-form brackets",
+   "passed": true,
+   "detail": "receiver velocity [-7.812500000e-08, -7.812499999e-08]"
+  },
+  {
+   "kind": "assertion",
+   "check": "K1 step 2: both paths' tubes contain the closed-form brackets",
+   "passed": true,
+   "detail": "receiver velocity [-1.562500000e-07, -1.562500000e-07]"
+  },
+  {
+   "kind": "assertion",
+   "check": "K2 t = 1/128: reviewer's position and velocity brackets for all three paths inside the tubes",
+   "passed": true,
+   "detail": "step ends at 0.0078125"
+  },
+  {
+   "kind": "assertion",
+   "check": "K2 t = 1/64: reviewer's position and velocity brackets for all three paths inside the tubes",
+   "passed": true,
+   "detail": "step ends at 0.015625"
+  },
+  {
+   "kind": "assertion",
+   "check": "K2 t = 1/32: reviewer's position and velocity brackets for all three paths inside the tubes",
+   "passed": true,
+   "detail": "step ends at 0.03125"
+  },
+  {
+   "kind": "assertion",
+   "check": "accepted steps sum exactly to the accepted end, and completed runs end exactly at the requested end",
+   "passed": true,
+   "detail": "24 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "every attempt has the validated step shape: no substeps, no snapshot, atomic; refusals publish their inputs",
+   "passed": true,
+   "detail": "57 emitted attempts"
+  },
+  {
+   "kind": "assertion",
+   "check": "ledger: totals equal the published radius tokens, never below the inherited radius, and each step inherits the previous total",
+   "passed": true,
+   "detail": "per path and per axis"
+  },
+  {
+   "kind": "assertion",
+   "check": "every published segment covers the theorem's sets over the whole step, exactly",
+   "passed": true,
+   "detail": "exact Bernstein coefficients"
+  },
+  {
+   "kind": "assertion",
+   "check": "each accepted step starts at the previous end and is generated from its published content",
+   "passed": true,
+   "detail": "time and digest chains"
+  },
+  {
+   "kind": "assertion",
+   "check": "returned state is the accepted boundary: histories, evidence and ledger agree, or all equal the inputs when nothing was accepted",
+   "passed": true,
+   "detail": "24 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "one callback per accepted step, in order, with the accepted time",
+   "passed": true,
+   "detail": "24 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "last step is shortened to end exactly at the requested end",
+   "passed": true,
+   "detail": "0.004375"
+  },
+  {
+   "kind": "assertion",
+   "check": "large epoch: three exact boundaries from 10000000000",
+   "passed": true,
+   "detail": "10000000000.0002987, 10000000000.0005974, 10000000000.0008961"
+  },
+  {
+   "kind": "assertion",
+   "check": "zero-length run completes with no attempt",
+   "passed": true,
+   "detail": "state equals the inputs"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H0-unequal-starts",
+   "passed": true,
+   "detail": "validated_step_refused, 1 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H0-evidence-missing",
+   "passed": true,
+   "detail": "validated_step_refused, 1 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H0-evidence-of-other-population",
+   "passed": true,
+   "detail": "validated_step_refused, 1 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H0-changed-coupling",
+   "passed": true,
+   "detail": "validated_step_refused, 1 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H1-retained-past",
+   "passed": true,
+   "detail": "validated_step_refused, 1 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H3-lower-sign-unresolved",
+   "passed": true,
+   "detail": "lower_sign_unresolved, 5 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H4-minimum-step",
+   "passed": true,
+   "detail": "minimum_step_exhausted, 4 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-BUDGET-01-minimum-step",
+   "passed": true,
+   "detail": "minimum_step_exhausted, 4 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-BUDGET-02-inherited-total",
+   "passed": true,
+   "detail": "validated_step_refused, 1 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-attempt-limit",
+   "passed": true,
+   "detail": "attempt_limit_exhausted, 3 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "R-H1-step-velocity-box",
+   "passed": true,
+   "detail": "first attempt VFS-H1-01 step_velocity_box at step 0.5, accepted at 0.25"
+  },
+  {
+   "kind": "assertion",
+   "check": "R-H2-step-longer-than-separation",
+   "passed": true,
+   "detail": "first attempt VFS-H2-01 - at step 12, accepted at 6"
+  },
+  {
+   "kind": "assertion",
+   "check": "R-BUDGET-02-new-growth",
+   "passed": true,
+   "detail": "first attempt VFS-BUDGET-02 new_growth at step 0.0078125, accepted at 0.00390625"
+  },
+  {
+   "kind": "assertion",
+   "check": "total budget holds on every accepted step after the retries",
+   "passed": true,
+   "detail": "declared velocity radius at most 2e-9"
+  },
+  {
+   "kind": "assertion",
+   "check": "minimum step bounds the retries exactly",
+   "passed": true,
+   "detail": "last attempted step 0.0009765625"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-request-wrong-policy",
+   "passed": true,
+   "detail": "unsupported_execution_policy: validated evolution requires its own policy token"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-request-field-speed",
+   "passed": true,
+   "detail": "unsupported_execution_policy: validated evolution is qualified for field speed 1 only"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-request-exponent-token",
+   "passed": true,
+   "detail": "unsupported_execution_policy: validated evolution requires plain decimal time and speed to"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-request-zero-budget",
+   "passed": true,
+   "detail": "unsupported_execution_policy: validated evolution request has an empty population, reverse"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-ordinary-entry-refuses-validated-token",
+   "passed": true,
+   "detail": "unsupported_execution_policy: matched-pair enclosure is qualified for acceleration snapsho"
+  },
+  {
+   "kind": "assertion",
+   "check": "cancellation stops at an accepted boundary",
+   "passed": true,
+   "detail": "after two accepted steps"
+  },
+  {
+   "kind": "assertion",
+   "check": "resuming from the returned state reproduces the uninterrupted run exactly",
+   "passed": true,
+   "detail": "identical content chains, end states and ledger"
+  },
+  {
+   "kind": "assertion",
+   "check": "cancellation before the first attempt returns the inputs",
+   "passed": true,
+   "detail": "no attempt"
+  },
+  {
+   "kind": "assertion",
+   "check": "A-control-fine: completes at exactly 2 and contains the frozen true brackets",
+   "passed": true,
+   "detail": "512 accepted, 0 refused; velocity half-width 1.888072156e-07"
+  },
+  {
+   "kind": "assertion",
+   "check": "A-control-fine: end velocity tube is disjoint from the aliased interval",
+   "passed": true,
+   "detail": "separation 2.060047147e-07"
+  },
+  {
+   "kind": "assertion",
+   "check": "A-control-fine: the history layer's end interval contains the rebuilt tube",
+   "passed": true,
+   "detail": "published segment"
+  },
+  {
+   "kind": "assertion",
+   "check": "A-control-from-aliased-step: completes at exactly 2 and contains the frozen true brackets",
+   "passed": true,
+   "detail": "142 accepted, 33 refused; velocity half-width 5.853260476e-07"
+  },
+  {
+   "kind": "recorded",
+   "check": "A-control-from-aliased-step: end velocity tube against the aliased interval",
+   "detail": "overlapping by 2.139094293e-07; the tube still contains the true bracket"
+  },
+  {
+   "kind": "assertion",
+   "check": "A-control-from-aliased-step: the history layer's end interval contains the rebuilt tube",
+   "passed": true,
+   "detail": "published segment"
+  },
+  {
+   "kind": "assertion",
+   "check": "the adversarial step of 2 is refused on budget and shortened until certified",
+   "passed": true,
+   "detail": "7 refusals, first accepted step 0.015625"
+  }
+ ]
+}

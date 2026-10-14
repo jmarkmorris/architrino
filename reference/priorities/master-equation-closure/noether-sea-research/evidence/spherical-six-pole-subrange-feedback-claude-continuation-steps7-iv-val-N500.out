@@ -1,0 +1,17 @@
+pid 29479
+pid 29479
+T* [1.366622279933, 1.366740606296]; certified records 204 to t = 3.4066847091; joins exact True; setup+controls 1.1 s
+controls: ALL PASS
+   pass (L1) sub-range lookup on a hand-known cubic slab (nonzero acceleration-rate remainder): point and interior sub-ranges, uncertain o
+   pass (L2) chain known case: on every certified record the sub-range evaluation at sigma = Delta reproduces the record's certified end s
+   pass (L3) real chain: window seam (record side contains the window state at T*; two-part hull), new sub-range box inside the old whole-
+   pass (0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the EXPANDED
+   pass (E7) signed-geometry box q in [0.58, 0.85], q' in [0, 0.55], v' in [0, 0.40] (225 cells): every separation r > 0.8 and every trans
+   pass (2) reconciliation at the accepted step-154 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radia
+   pass (4) negative: unlike and like terms at the step-154 state with the wrong sign of the velocity term in D_t are disjoint from the co
+   pass (5) delay-root bracket at the step-154 state with the sub-range lookup: +-0.15 and +-0.20 intersect and agree to 1e-9 for all clas
+   pass (1) restart regression (same-chain consistency, not independence): from the frozen step-153 strings the sub-range step intersects 
+   pass (6) self-append with the sub-range lookup: the control step (from step 153), appended and enriched through the checked path, is re
+   pass (7) restart wrapper: default and explicit selection of step 154 reproduce the exact frozen strings with t0 an interval; wrong g, w
+matched step_154_from_step_153_strings ratios {"end_q": "0.9999", "end_v": "0.9901", "a0": "0.3527", "ap": "0.8718", "consumed": {"unlike": {"q": "0.5966", "qdot": "0.6027", "qddot": "0.7722", "tau0": "0.1079", "Dt0": "0.1452", "Dt_range": "0.78"}, "like": {"q": "0.5663", "qdot": "0.5682", "qddot": "0.8391", "tau0": "0.1201", "Dt0": "0.1245", "Dt_range": "0.7583"}, "antipode": {"q": "0.5293", "qdot": "0.5292", "qddot": "0.9111", "tau0": "0.1763", "Dt0": "0.0721", "Dt_range": "0.6714"}}} wall {'new': 0.11, 'old': 0.08} new inside old True
+matched step_155_from_step_154_strings ratios {"end_q": "0.9999", "end_v": "0.9903", "a0": "0.3589", "ap": "0.872", "consumed": {"unlike": {"q": "0.5963", "qdot": "0.6022", "qddot": "0.8558", "tau0": "0.1098", "Dt0": "0.1487", "Dt_range": "0.7811"}, "like": {"q": "0.5658", "qdot": "0.568", "qddot": "0.7756", "tau0": "0.1221", "Dt0": "0.1281", "Dt_range": "0.7592"}, "antipode": {"q": "0.5296", "qdot": "0.5295", "qddot": "0.9343", "tau0": "0.1791", "Dt0": "0.07407", "Dt_range": "0.672"}}} wall {'new': 0.11, 'old': 0.08} new inside old True

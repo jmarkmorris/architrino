@@ -1240,6 +1240,139 @@ $$
 \rho_e(w)=\frac{(1+w)^4}{(1-w)^2(1-3w)^2}.
 $$
 
-At $w=0.1$, the independently checked rational upper bound for the numerator $\rho_Z+\rho_e$ is 5.4170. The denominator $J_{\min}$ is still essential: this number alone is not a small error fraction. The inequality requires the unresolved combination $\Lambda+B-Z_0$ to balance the gain within that fraction; it does not exclude a repeating solution. The straight term cannot be dropped uniformly for wide pairs, the breathing contribution has no established sufficient bound, and the needed sign and dominance estimate for $\Lambda$ remains open.
+At $w=0.1$, the independently checked rational upper bound for the numerator $\rho_Z+\rho_e$ is 5.4170. The denominator $J_{\min}$ is still essential: this number alone is not a small error fraction. This curvature estimate alone requires $\Lambda+B-Z_0$ to balance the gain within that fraction and excludes no repeating solution. The coupled identities below retain the straight and breathing contributions rather than discarding them independently.
 
-The [separate non-mirror review](analysis/saturday-nonmirror-periodicity-codex-review-2026-10-11.md) supports the restricted constant-$J$ exclusion and exact identities while withdrawing an unsupported sign transfer between differently weighted averages. The [final strength-difference review](analysis/saturday-curved-window-strength-difference-codex-review-2026-10-11.md#final-corrected-byte-disposition--october-11-2357z) reconstructs this theorem and its period consequence independently. Finite floating checks on prescribed paths establish only their reported sample agreement, not solution existence; optimality of $c(w)$ is unestablished. A complete solution satisfying the hypotheses but violating these bounds would refute them. General non-mirror periodicity and the stronger M2 comparison remain unresolved.
+The [separate non-mirror review](analysis/saturday-nonmirror-periodicity-codex-review-2026-10-11.md) supports the restricted constant-$J$ exclusion and exact identities while withdrawing an unsupported sign transfer between differently weighted averages. The [final strength-difference review](analysis/saturday-curved-window-strength-difference-codex-review-2026-10-11.md#final-corrected-byte-disposition--october-11-2357z) reconstructs this theorem and its period consequence independently. Finite floating checks on prescribed paths establish only their reported sample agreement, not solution existence; optimality of $c(w)$ is unestablished.
+
+### 9.1. The straight and breathing terms remain correlated
+
+Write $u_i=v_{i\parallel}$, $b_i=v_{i\perp}$ and $q_i=\hat{\boldsymbol\theta}\cdot\ddot{\mathbf X}_i$, the actual acceleration across the current axis. Define $g(b)=(1-b^2)^{-1/2}-1$ and $\Phi(b)=1-\sqrt{1-b^2}-b^2/2$, so $\Phi'(b)=bg(b)$. Rotating-axis differentiation gives $\dot b_i=q_i-\dot\vartheta u_i$. Applying this identity to the unmixed products in $\zeta_0P_\perp$ and integrating by parts over rigid recurrence gives the [exact straight-term reduction](analysis/saturday-straight-strength-period-average-2026-10-12.md)
+
+$$
+Z_0=B_\Phi+T_1+T_3,\qquad B_\Phi=\oint[\Phi(b_1)+\Phi(b_2)]d(r/J),
+$$
+
+$$
+T_1=\oint\frac rJ[b_1g(b_1)q_1+b_2g(b_2)q_2]dT,\qquad
+T_3=-\frac12\oint[g(b_1)q_1-g(b_2)q_2]dT.
+$$
+
+The [breathing identity](analysis/saturday-combined-breathing-period-average-2026-10-12.md) then retains $\tilde B=B-B_\Phi$ and
+
+$$
+\Lambda+\tilde B=-C_0+T_1+T_3,\qquad
+C_0=\oint\frac{(u_1/S_1+u_2/S_2)P_\perp}{2r}dT,\qquad
+|G+C_0|\le\frac{\rho_Z+\rho_e}{J_{\min}}G.
+$$
+
+The terms are correlated representations of one straight-row common-motion integral. Removing any weight depending only on $J/r$ from $\tilde B$ changes it by a periodic total derivative. The resulting weight vanishes when the velocity sum vanishes and is bounded quadratically in that sum, but also depends on the relative transverse velocity. Its total-variation bound requires radial travel and geometry inputs not shown to be small. No separate sign for $Z_0$, $\tilde B$ or $\Lambda$ follows from this rearrangement.
+
+### 9.2. An exact balance with a nonnegative loss
+
+The [common-motion comparison](analysis/saturday-common-motion-period-comparison-2026-10-12.md) treats the whole straight-row torque $\tau_0=r(a_2^0b_1-a_1^0b_2)$ at once. Put $x=r/J$, $d=J/r=b_1-b_2$, $\Theta=\oint\dot\vartheta dT>0$ and $\sigma(b)=1-\sqrt{1-b^2}$. Since $\dot S_i=-(b_i/S_i)q_i+\dot\vartheta u_ib_i/S_i$, its period integral is
+
+$$
+\oint\tau_0dT=\Theta+\oint x\sum_i\frac{b_iq_i}{S_i}dT-\oint(S_1+S_2)dx.
+$$
+
+On a solution, $q_1=a_1\sin\beta_1$, $q_2=-a_2\sin\beta_2$, where the aberration angles use the same row conventions as the recurrence identities. Set $E_1=\sin\beta_1+b_2$ and $E_2=\sin\beta_2-b_1$. The acceleration part equals $-M_++M_{\rm rel}+R_M$, where
+
+$$
+M_+=\oint\frac{rP_\perp^2}{4J}\left(\frac{a_1}{S_1}+\frac{a_2}{S_2}\right)dT\ge0,\qquad
+M_{\rm rel}=\oint\frac J{4r}\left(\frac{a_1}{S_1}+\frac{a_2}{S_2}\right)dT\ge0,
+$$
+
+$$
+R_M=\oint\frac rJ\left(\frac{b_1a_1E_1}{S_1}-\frac{b_2a_2E_2}{S_2}\right)dT.
+$$
+
+This split follows from $b_1b_2=(P_\perp^2-d^2)/4$; positive row strengths fix both M signs. Removing the null weight $2\sigma(d/2)$ from the remaining integral gives $B_S=\oint W_Sdx$, with
+
+$$
+W_S=\sigma(b_1)+\sigma(b_2)-2\sigma(d/2),\qquad
+\frac{P_\perp^2}{4}\le W_S\le\frac{P_\perp^2}{4(1-w^2)^{3/2}}.
+$$
+
+Indeed, with $c=d/2$ and $m=P_\perp/2$, evenness gives $W_S=\sigma(c+m)+\sigma(c-m)-2\sigma(c)=m^2\int_{-1}^1(1-|s|)\sigma''(c+sm)ds$. The integration segment is between $-b_2$ and $b_1$, and $1\le\sigma''\le(1-w^2)^{-3/2}$ there. A nonnegative weight does not sign $B_S$, because dx changes sign.
+
+The actual rate differs from the straight torque by $\dot J-\tau_0=re_J+r[(a_2-a_2^0)b_1-(a_1-a_1^0)b_2]$, with $e_J=a_1E_1+a_2E_2$. Periodicity of J therefore gives the exact balance
+
+$$
+M_+-B_S=\Theta+M_{\rm rel}+R,\qquad
+R=R_M+\oint re_JdT+\oint r[(a_2-a_2^0)b_1-(a_1-a_1^0)b_2]dT.
+$$
+
+The curved-window bound and $r^3(a_1\epsilon_2+a_2\epsilon_1)\le c_3=(1+w)^3/(1-3w)^2$ imply
+
+$$
+|R|\le\eta\Theta,\qquad
+\eta=\frac{e_1}{J_{\min}}+\frac{e_2}{J_{\min}^2},\qquad
+e_1=c_3+wc(w),\qquad e_2=\frac{wc_3}{\sqrt{1-w^2}}.
+$$
+
+The first two error integrals use $dT/r^2=d\vartheta/J$; the extra factor $r/J$ in $R_M$ gives $dT/(Jr^2)=d\vartheta/J^2$. These identities explain the two different inverse powers of $J_{\min}$.
+
+### 9.3. Quantified exclusion and the remaining geometry bound
+
+Let $\Xi=\sup r/J^2$ and $\mathcal V=\oint|dx|$, the total variation of r/J over a period. Rigid recurrence and J positive give finite positive Xi and Theta, a positive J minimum, and finite nonnegative variation, which may be zero. The strength bound $a_i\le(1+w)^2/[(1-w)r^2]$ gives
+
+$$
+(1-\eta)\Theta\le M_+-B_S
+\le\kappa_M\oint P_\perp^2\frac r{J^2}d\vartheta+\kappa_S\oint P_\perp^2|dx|
+\le4w^2(\kappa_M\Xi\Theta+\kappa_S\mathcal V),
+$$
+
+$$
+\kappa_M=\frac{(1+w)^2}{2(1-w)\sqrt{1-w^2}},\qquad
+\kappa_S=\frac1{4(1-w^2)^{3/2}}.
+$$
+
+The left inequality drops the nonnegative relative contribution and retains the full error allowance. The right inequalities bound the loss and the absolute breathing integral; they transfer no sign between different weights. Consequently no rigidly repeating solution in this complete planar class satisfies
+
+$$
+4w^2\left(\kappa_M\Xi+\kappa_S\frac{\mathcal V}{\Theta}\right)<1-\eta.
+$$
+
+At $w=0.1$, a conservative sufficient test with independently checked upward-rounded coefficients is $0.02703\Xi+0.01016\mathcal V/\Theta<1-3.989/J_{\min}-0.2731/J_{\min}^2$. It implies the exact predicate and is not equivalent to it. The necessary inequality remains valid for every eta; when eta is at least one, only the strict exclusion predicate is empty. This closes the comparison in a quantified class without deriving useful bounds on the geometry and variation from the equation.
+
+The [final straight-term](analysis/saturday-straight-strength-period-average-codex-review-2026-10-12.md#final-corrected-byte-disposition--october-12-1858z), [breathing](analysis/saturday-combined-breathing-period-average-codex-review-2026-10-12.md#final-corrected-byte-disposition--october-12-1919z) and [common-motion](analysis/saturday-common-motion-period-comparison-codex-review-2026-10-12.md#final-corrected-byte-disposition--october-12-2018z) reviews reconstruct the identities and bounds separately. Their rational arithmetic checks do not turn prescribed-path samples into solution evolution. A complete repeating solution satisfying the strict predicate, or a valid solution violating the stated actual-row bounds, would refute the corresponding claim. General non-mirror periodicity, useful unconditional control of signed breathing/radial travel, small J and J zeros or sign changes remain unresolved. A formal circular comparison or a sign on a different weighted average closes none of those obligations.
+
+### 9.4. The radial period identity and a constant-separation exclusion
+
+The [radial-period theorem](analysis/saturday-solution-weighted-geometry-comparison-2026-10-12.md) uses the actual inward acceleration along the pair's present axis, $A_r=a_1\cos\beta_1+a_2\cos\beta_2>0$. The component equations give $\ddot r=J^2/r^3-A_r$. Since rigid recurrence makes $r$, $\dot r$ and $J$ periodic, the derivative of $r\dot r/J$ has zero period integral. Direct differentiation therefore yields
+
+$
+\oint\frac{rA_r}{J}dT=\Theta+\oint\frac{\dot r^2}{J}dT-\oint\frac{r\dot r\dot J}{J^2}dT.
+$
+
+The identity is kinematic when inward relative acceleration replaces $A_r$; identifying it with the received rows uses the equation. No conserved energy, mass or external law enters this derivation. The whole-past speed bound supplies $c_-/r^2\le A_r\le c_+/r^2$ and $|\dot J|\le wc_+/r$, where
+
+$
+c_-=\frac{2(1-w)^2\sqrt{1-w^2}}{1+w},\qquad c_+=\frac{2(1+w)^2}{1-w}.
+$
+
+Put $\mathcal N=\oint dT/(rJ)=\oint(r/J^2)d\vartheta$, $R_1=\oint|\dot r|dT/J$ and $R_2=\oint|\dot r|dT/J^2$. Bounding the two radial derivative terms gives
+
+$
+\frac{\Theta-wc_+R_2}{c_+}\le\mathcal N\le\frac{\Theta+2wR_1+wc_+R_2}{c_-}.
+$
+
+For $R_{\rm var}=\oint|\dot r|dT$ and $\rho_r=R_{\rm var}/(J_{\min}\Theta)$ this implies $\mathcal N/\Theta\le[1+(2w+wc_+/J_{\min})\rho_r]/c_-$. This is an angular-average bound, not a bound on the supremum $\Xi$. It is near one half per radian only when the speed and radial-travel correction terms are small. At closest approach $\ddot r\ge0$ gives $J^2\ge c_-r$, and $J\le2wr$ then implies $r\ge c_-/(4w^2)$ everywhere. The corresponding closest-approach bound $J\ge c_-/(2w)$ is not a global J bound for a breathing pair.
+
+Keep $\mathcal N$ rather than $\Xi\Theta$ in the variation estimate. With $X=\sup r/J$, $c_1=(1+w)^2/(1-w)$, $c_2=(3w+w^3)/(1-w^2)$ and $c_3=(1+w)^3/(1-3w)^2$, the actual angular-momentum equation yields
+
+$
+\mathcal V\le R_1+\left(c_1+c_2P_{\perp\max}X+\frac{c_3}{J_{\min}}\right)\mathcal N.
+$
+
+Substitution into Section 9.3's necessary condition gives a sufficient exclusion without the former supremum: no solution of this class satisfies
+
+$
+4w^2\left\{\left[\kappa_M+\kappa_S\left(c_1+2wc_2X+\frac{c_3}{J_{\min}}\right)\right]\frac{1+(2w+wc_+/J_{\min})\rho_r}{c_-}+\kappa_S\rho_r\right\}<1-\eta.
+$
+
+The loss alone obeys $M_+\le L\Theta$, where $L=(4w^2\kappa_M/c_-)[1+(2w+wc_+/J_{\min})\rho_r]$. Thus the exact correlated balance gives $-B_S\ge(1-\eta-L)\Theta$. Only a positive full bracket signs the breathing integral; small radial travel alone does not. At speed bound .1 and zero radial travel, $L\le.01845$, but eta still matters. The X coefficient in the sufficient test is $8w^3\kappa_Sc_2/c_-$ times its radial factor, of fourth order for fixed geometric inputs as $w\to0$; those inputs are not bounded uniformly by the equation.
+
+One additional subclass closes without an assumed geometry bound. If separation is constant, the radial equation gives $J^2=r^3A_r\ge c_-r$ at every instant, so $J_{\min}\ge\sqrt{c_-r}$ and $X\le\sqrt{r/c_-}$. At whole-past speed at most .1, the separation floor and $r\le10^6$ imply $J_{\min}\ge7.32$ and $X\le826.2$. A conservative upward-rounded sufficient test has upper left side .3788298776… and lower right side .4499578219…, a strict contradiction. Hence no complete planar rigidly repeating solution of this constant-separation class exists through normalized separation one million. Mirror symmetry, constant angular rate and circular motion about a fixed centre are not assumptions.
+
+The [final independent review](analysis/saturday-solution-weighted-geometry-comparison-codex-review-2026-10-12.md#final-corrected-byte-disposition--october-12-2207z) reconstructs the identities, inequalities and subclass proof and audits the decimal weakening directions in exact fractions with a rational square-root enclosure. No solution was integrated or measured. Radial travel, the signed breathing correlation and X remain uncontrolled for general breathing histories; low-J and J-zero regimes are separate. A valid solution violating the radial-average bound or satisfying the strict predicate would refute the affected result. These derived comparisons reduce the remaining proof burden without closing general periodicity.

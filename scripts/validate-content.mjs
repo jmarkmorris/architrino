@@ -5,7 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { frozenResearchSourceOrigin, researchSourceLocation } from "../src/documentation/ResearchSourceLocations.mjs";
 import { findTheoryAbbreviationCandidates } from "./lib/theory-abbreviation-audit.mjs";
-import { extractMarkdownLinks } from "./lib/markdown-link-audit.mjs";
+import { extractMarkdownLinks, hasReferenceDirectoryIndex } from "./lib/markdown-link-audit.mjs";
 
 const SCENES_DIR = "content/scenes";
 const MARKDOWN_DIR = "content/markdown";
@@ -789,7 +789,8 @@ function auditMarkdownRelativeLinks(markdownPaths, markdownTextByPath) {
         );
         continue;
       }
-      if (fs.statSync(resolvedAbsolutePath).isDirectory()) {
+      if (fs.statSync(resolvedAbsolutePath).isDirectory()
+        && !hasReferenceDirectoryIndex(rootDir, resolvedRelativePath)) {
         warnings.push(
           `${markdownPath}:${link.line}: markdown link target "${target}" resolves to a directory "${resolvedRelativePath}"`
         );

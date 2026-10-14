@@ -61,6 +61,9 @@ add_library(eom_native STATIC
   src/SpeedDomain.cpp
   src/ProviderTransport.cpp
   src/MatchedPairEnclosure.cpp
+  src/ValidatedFarStep.cpp
+  src/ValidatedEvolution.cpp
+  src/ValidatedRunRecord.cpp
 )
 target_include_directories(eom_native
   PUBLIC include
@@ -129,6 +132,25 @@ target_link_libraries(eom_matched_pair_fixture_cli PRIVATE eom_native)
 target_compile_definitions(eom_matched_pair_fixture_cli
   PRIVATE EOM_MATCHED_PAIR_SNAPSHOT_FIXTURE)
 target_compile_options(eom_matched_pair_fixture_cli
+  PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
+)
+
+# Manual validated far-step producer and tube-consumer fixture; no recurring
+# test enrollment.
+add_executable(eom_validated_far_step_fixture_cli
+  native/eom_validated_far_step_fixture_cli.cpp
+)
+target_link_libraries(eom_validated_far_step_fixture_cli PRIVATE eom_native)
+target_compile_options(eom_validated_far_step_fixture_cli
+  PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
+)
+
+# Manual validated evolution driver fixture; no recurring test enrollment.
+add_executable(eom_validated_evolution_fixture_cli
+  native/eom_validated_evolution_fixture_cli.cpp
+)
+target_link_libraries(eom_validated_evolution_fixture_cli PRIVATE eom_native)
+target_compile_options(eom_validated_evolution_fixture_cli
   PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
 )
 

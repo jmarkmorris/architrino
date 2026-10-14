@@ -1,0 +1,829 @@
+{
+ "schema": "validated_evolution_increment_2_check/v1",
+ "all_passed": true,
+ "rows": [
+  {
+   "kind": "assertion",
+   "check": "exact halving",
+   "passed": true,
+   "detail": "0.00390625 1 0.00014935 5"
+  },
+  {
+   "kind": "assertion",
+   "check": "exact difference",
+   "passed": true,
+   "detail": "0.0002987 0.004375"
+  },
+  {
+   "kind": "assertion",
+   "check": "K1 static run completes at the exact end",
+   "passed": true,
+   "detail": "0.015625"
+  },
+  {
+   "kind": "assertion",
+   "check": "K1 step 1: both paths' tubes contain the closed-form brackets",
+   "passed": true,
+   "detail": "receiver velocity [-7.812500000e-08, -7.812499999e-08]"
+  },
+  {
+   "kind": "assertion",
+   "check": "K1 step 2: both paths' tubes contain the closed-form brackets",
+   "passed": true,
+   "detail": "receiver velocity [-1.562500000e-07, -1.562500000e-07]"
+  },
+  {
+   "kind": "assertion",
+   "check": "K2 t = 1/128: reviewer's position and velocity brackets for all three paths inside the tubes",
+   "passed": true,
+   "detail": "step ends at 0.0078125"
+  },
+  {
+   "kind": "assertion",
+   "check": "K2 t = 1/64: reviewer's position and velocity brackets for all three paths inside the tubes",
+   "passed": true,
+   "detail": "step ends at 0.015625"
+  },
+  {
+   "kind": "assertion",
+   "check": "K2 t = 1/32: reviewer's position and velocity brackets for all three paths inside the tubes",
+   "passed": true,
+   "detail": "step ends at 0.03125"
+  },
+  {
+   "kind": "assertion",
+   "check": "a refused initial population or continuation returns no accepted time, evidence, ledger or continuation",
+   "passed": true,
+   "detail": "51 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "every admitted run returns a continuation equal to its accepted state: time, ordinal, controller step, content chains, ledger",
+   "passed": true,
+   "detail": "69 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "accepted steps sum exactly to the accepted end, and completed runs end exactly at the requested end",
+   "passed": true,
+   "detail": "69 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "every attempt has the validated step shape: no substeps, no snapshot, atomic; refusals publish their inputs",
+   "passed": true,
+   "detail": "176 emitted attempts"
+  },
+  {
+   "kind": "assertion",
+   "check": "ledger: totals equal the published radius tokens, never below the inherited radius, and each step inherits the previous total",
+   "passed": true,
+   "detail": "per path and per axis"
+  },
+  {
+   "kind": "assertion",
+   "check": "debit (I1-R4): inherited + increment is never below the published total, exactly",
+   "passed": true,
+   "detail": "1908 path-axis records; smallest margin 4.941e-324"
+  },
+  {
+   "kind": "assertion",
+   "check": "debit (I1-R4): every charged increment is within the run's increment budget",
+   "passed": true,
+   "detail": "1908 path-axis records"
+  },
+  {
+   "kind": "assertion",
+   "check": "debit (I1-R4): the driver's ledger is the producer's record, and the two reported parts together cover the charge",
+   "passed": true,
+   "detail": "declared, growth, section allowance and step growth"
+  },
+  {
+   "kind": "assertion",
+   "check": "every published segment covers the theorem's sets over the whole step, exactly",
+   "passed": true,
+   "detail": "exact Bernstein coefficients"
+  },
+  {
+   "kind": "assertion",
+   "check": "each accepted step starts at the previous end and is generated from its published content",
+   "passed": true,
+   "detail": "time and digest chains"
+  },
+  {
+   "kind": "assertion",
+   "check": "returned state is the accepted boundary: histories, evidence and ledger agree, or all equal the inputs when nothing was accepted",
+   "passed": true,
+   "detail": "69 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "one callback per accepted step, in order, with the accepted time",
+   "passed": true,
+   "detail": "69 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "last step is shortened to end exactly at the requested end",
+   "passed": true,
+   "detail": "0.004375"
+  },
+  {
+   "kind": "assertion",
+   "check": "large epoch: three exact boundaries from 10000000000",
+   "passed": true,
+   "detail": "10000000000.0002987, 10000000000.0005974, 10000000000.0008961"
+  },
+  {
+   "kind": "assertion",
+   "check": "zero-length run completes with no attempt",
+   "passed": true,
+   "detail": "state equals the inputs"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H0-unequal-starts",
+   "passed": true,
+   "detail": "refused at admission, no attempt: retained histories do not start at one common time"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H0-evidence-missing",
+   "passed": true,
+   "detail": "refused at admission, no attempt: histories declare radii but no evidence was supplied"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H0-evidence-of-other-population",
+   "passed": true,
+   "detail": "refused at admission, no attempt: evidence does not bind path"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H0-changed-coupling",
+   "passed": true,
+   "detail": "refused at admission, no attempt: generated history was published under a different coupling"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H1-retained-past",
+   "passed": true,
+   "detail": "validated_step_refused, 1 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H3-lower-sign-unresolved",
+   "passed": true,
+   "detail": "lower_sign_unresolved, 5 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-H4-minimum-step",
+   "passed": true,
+   "detail": "minimum_step_exhausted, 4 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-BUDGET-01-minimum-step",
+   "passed": true,
+   "detail": "minimum_step_exhausted, 4 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-BUDGET-02-inherited-total",
+   "passed": true,
+   "detail": "validated_step_refused, 1 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-attempt-limit",
+   "passed": true,
+   "detail": "attempt_limit_exhausted, 3 attempt(s), nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "R-H1-step-velocity-box",
+   "passed": true,
+   "detail": "first attempt VFS-H1-01 step_velocity_box at step 0.5, accepted at 0.25"
+  },
+  {
+   "kind": "assertion",
+   "check": "R-H2-step-longer-than-separation",
+   "passed": true,
+   "detail": "first attempt VFS-H2-01 - at step 12, accepted at 6"
+  },
+  {
+   "kind": "assertion",
+   "check": "R-BUDGET-02-new-growth",
+   "passed": true,
+   "detail": "first attempt VFS-BUDGET-02 new_growth at step 0.0078125, accepted at 0.00390625"
+  },
+  {
+   "kind": "assertion",
+   "check": "total budget holds on every accepted step after the retries",
+   "passed": true,
+   "detail": "declared velocity radius at most 2e-9"
+  },
+  {
+   "kind": "assertion",
+   "check": "minimum step bounds the retries exactly",
+   "passed": true,
+   "detail": "last attempted step 0.0009765625"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-request-wrong-policy",
+   "passed": true,
+   "detail": "unsupported_execution_policy: validated evolution requires its own policy token"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-request-field-speed",
+   "passed": true,
+   "detail": "unsupported_execution_policy: validated evolution is qualified for field speed 1 only"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-request-exponent-token",
+   "passed": true,
+   "detail": "unsupported_execution_policy: validated evolution requires plain decimal time and speed to"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-request-zero-budget",
+   "passed": true,
+   "detail": "unsupported_execution_policy: validated evolution request has an empty population, reverse"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-ordinary-entry-refuses-validated-token",
+   "passed": true,
+   "detail": "unsupported_execution_policy: matched-pair enclosure is qualified for acceleration snapsho"
+  },
+  {
+   "kind": "assertion",
+   "check": "cancellation stops at an accepted boundary",
+   "passed": true,
+   "detail": "after two accepted steps"
+  },
+  {
+   "kind": "assertion",
+   "check": "resuming from the returned state reproduces the uninterrupted run exactly",
+   "passed": true,
+   "detail": "identical content chains, end states and ledger"
+  },
+  {
+   "kind": "assertion",
+   "check": "cancellation before the first attempt returns the inputs",
+   "passed": true,
+   "detail": "no attempt"
+  },
+  {
+   "kind": "assertion",
+   "check": "A-control-fine: completes at exactly 2 and contains the frozen true brackets",
+   "passed": true,
+   "detail": "512 accepted, 0 refused; velocity half-width 1.888072156e-07"
+  },
+  {
+   "kind": "assertion",
+   "check": "A-control-fine: end velocity tube is disjoint from the aliased interval",
+   "passed": true,
+   "detail": "separation 2.060047147e-07"
+  },
+  {
+   "kind": "assertion",
+   "check": "A-control-fine: the history layer's end interval contains the rebuilt tube",
+   "passed": true,
+   "detail": "published segment"
+  },
+  {
+   "kind": "assertion",
+   "check": "A-control-from-aliased-step: completes at exactly 2 and contains the frozen true brackets",
+   "passed": true,
+   "detail": "142 accepted, 33 refused; velocity half-width 5.853260476e-07"
+  },
+  {
+   "kind": "recorded",
+   "check": "A-control-from-aliased-step: end velocity tube against the aliased interval",
+   "detail": "overlapping by 2.139094293e-07; the tube still contains the true bracket"
+  },
+  {
+   "kind": "assertion",
+   "check": "A-control-from-aliased-step: the history layer's end interval contains the rebuilt tube",
+   "passed": true,
+   "detail": "published segment"
+  },
+  {
+   "kind": "assertion",
+   "check": "the adversarial step of 2 is refused on budget and shortened until certified",
+   "passed": true,
+   "detail": "7 refusals, first accepted step 0.015625"
+  },
+  {
+   "kind": "assertion",
+   "check": "reviewer's adaptive case: uninterrupted run shortens to 0.75 and takes four steps",
+   "passed": true,
+   "detail": "initial step 1.5 refused on isolation"
+  },
+  {
+   "kind": "assertion",
+   "check": "cancelled after two at 1.5 with the controller state retained",
+   "passed": true,
+   "detail": "step 0.75, cooldown 3, ordinal 2"
+  },
+  {
+   "kind": "assertion",
+   "check": "resumed with the continuation it reproduces the uninterrupted suffix and final state exactly",
+   "passed": true,
+   "detail": "two steps of 0.75, identical content chains, ledger and continuation"
+  },
+  {
+   "kind": "recorded",
+   "check": "the same population without the continuation is a new run",
+   "detail": "steps ['1.5'], ordinal restarts at 0; content chains differ from the uninterrupted run"
+  },
+  {
+   "kind": "assertion",
+   "check": "immediate cancellation after resume keeps the prior ledger and the same continuation",
+   "passed": true,
+   "detail": "no attempt, nothing changed"
+  },
+  {
+   "kind": "assertion",
+   "check": "cancelled during a cooldown that followed retries, then resumed: identical to the uninterrupted run",
+   "passed": true,
+   "detail": "cooldown 2 at the cut; 11 accepted and 1 refused after it"
+  },
+  {
+   "kind": "assertion",
+   "check": "a run halted on the total budget, resumed, halts again at once with its ledger intact",
+   "passed": true,
+   "detail": "minimum_step_exhausted, ordinal 6"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-continuation-changed-initial-step",
+   "passed": true,
+   "detail": "initial or minimum step differs"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-continuation-changed-increment-budget",
+   "passed": true,
+   "detail": "a budget differs"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-continuation-total-budget-added",
+   "passed": true,
+   "detail": "a budget differs"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-continuation-changed-cooldown-length",
+   "passed": true,
+   "detail": "an attempt limit or the cooldown length differs"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-continuation-changed-attempt-limit",
+   "passed": true,
+   "detail": "an attempt limit or the cooldown length differs"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-continuation-stale",
+   "passed": true,
+   "detail": "accepted time differs from the requested start"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-continuation-foreign",
+   "passed": true,
+   "detail": "evidence is not the continuation's evidence"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-continuation-changed-coupling",
+   "passed": true,
+   "detail": "generated history was published under a different coupling"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: a finite positive total budget is admitted",
+   "passed": true,
+   "detail": "one accepted step"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: the producer certifies with finite positive budgets",
+   "passed": true,
+   "detail": "certified"
+  },
+  {
+   "kind": "assertion",
+   "check": "driver refuses every malformed total budget before any attempt",
+   "passed": true,
+   "detail": "12 requests: each field with NaN, both infinities, zero and a negative value, and both fields together"
+  },
+  {
+   "kind": "assertion",
+   "check": "producer declines every malformed increment or total budget",
+   "passed": true,
+   "detail": "20 steps, VFS-H0-01, nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: zero-length run at the histories' end completes",
+   "passed": true,
+   "detail": "no attempt"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: zero-length run on a generated population with its own evidence completes and keeps it",
+   "passed": true,
+   "detail": "evidence retained"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: a step limit of zero at a valid start halts as a limit",
+   "passed": true,
+   "detail": "state returned"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-zero-length-mismatched-start",
+   "passed": true,
+   "detail": "a history does not end exactly at the step start"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-early-cancellation-mismatched-start",
+   "passed": true,
+   "detail": "a history does not end exactly at the step start"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-step-limit-mismatched-start",
+   "passed": true,
+   "detail": "a history does not end exactly at the step start"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-zero-length-missing-evidence",
+   "passed": true,
+   "detail": "histories declare radii but no evidence was supplied"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-zero-length-foreign-evidence",
+   "passed": true,
+   "detail": "foreign evidence is not returned as a resumable state"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-early-cancellation-foreign-evidence",
+   "passed": true,
+   "detail": "foreign evidence is not returned as a resumable state"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: the reviewer's static case with a large budget accepts one step",
+   "passed": true,
+   "detail": "one accepted step of 0.125"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: the newly declared source radius is all charged",
+   "passed": true,
+   "detail": "declared 0, published 5.3290705182007545e-15, charged 5.3290705182007553e-15"
+  },
+  {
+   "kind": "recorded",
+   "check": "the part the first subject charged",
+   "detail": "step growth alone 2.3665827156630358e-30, below the published radius by a factor 2.252e+15"
+  },
+  {
+   "kind": "assertion",
+   "check": "the reviewer's tiny-budget target publishes nothing",
+   "passed": true,
+   "detail": "halted minimum_step_exhausted, VFS-BUDGET-01, 1 attempt(s), inputs returned"
+  },
+  {
+   "kind": "assertion",
+   "check": "a position budget just above the newly declared radius accepts and charges all of it",
+   "passed": true,
+   "detail": "budget 6e-15, charged 5.329070518200755e-15"
+  },
+  {
+   "kind": "assertion",
+   "check": "a position budget just below the newly declared radius refuses",
+   "passed": true,
+   "detail": "budget 5e-15 lies between the first subject's charge and the published radius"
+  },
+  {
+   "kind": "assertion",
+   "check": "the public producer applies the same charge",
+   "passed": true,
+   "detail": "two certified, two declined VFS-BUDGET-01 without publication"
+  },
+  {
+   "kind": "assertion",
+   "check": "a second step inherits the first step's declared total and charges only the growth beyond it",
+   "passed": true,
+   "detail": "inherited 5.3290705182007545e-15, charged 5.329070518200755e-15, published 1.0658141036401509e-14"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: an exact prefix without evidence completes at zero length and claims no validated evidence",
+   "passed": true,
+   "detail": "no_validated_step_accepted"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: a generated population with its own evidence completes at zero length, and that evidence binds its content chains",
+   "passed": true,
+   "detail": "digest_after of every member equals the history's chain"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-stale-evidence-exact-prefix-zero-length",
+   "passed": true,
+   "detail": "supplied evidence does not bind the exact prefix; refused with no accepted time, evidence or continuation"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-stale-evidence-exact-prefix-early-cancellation",
+   "passed": true,
+   "detail": "supplied evidence does not bind the exact prefix; refused with no accepted time, evidence or continuation"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-stale-evidence-exact-prefix-step-limit",
+   "passed": true,
+   "detail": "supplied evidence does not bind the exact prefix; refused with no accepted time, evidence or continuation"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-stale-evidence-exact-prefix-positive-run",
+   "passed": true,
+   "detail": "supplied evidence does not bind the exact prefix; refused with no accepted time, evidence or continuation"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-foreign-evidence-exact-prefix-zero-length",
+   "passed": true,
+   "detail": "supplied evidence does not bind the exact prefix; refused with no accepted time, evidence or continuation"
+  },
+  {
+   "kind": "assertion",
+   "check": "the public producer declines the same object on the exact prefix",
+   "passed": true,
+   "detail": "evidence does not bind path receiver: identifier, charge or history content differs"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: signed and exponent couplings are admitted at zero length",
+   "passed": true,
+   "detail": "0, -0.001, 1e-3, +0.001"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: an exponent coupling and signed, exponent charges take a certified step",
+   "passed": true,
+   "detail": "one accepted step each"
+  },
+  {
+   "kind": "assertion",
+   "check": "every malformed coupling is refused at zero length",
+   "passed": true,
+   "detail": "9 tokens"
+  },
+  {
+   "kind": "assertion",
+   "check": "every malformed charge is refused at zero length",
+   "passed": true,
+   "detail": "9 tokens"
+  },
+  {
+   "kind": "assertion",
+   "check": "a malformed coupling is refused under early cancellation, a step limit of zero and a positive run",
+   "passed": true,
+   "detail": "three requests"
+  },
+  {
+   "kind": "assertion",
+   "check": "the public producer declines a malformed coupling or charge",
+   "passed": true,
+   "detail": "VFS-H0-01, nothing published"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: the truth reference's own known cases pass",
+   "passed": true,
+   "detail": "static, symmetric, opposite pair, receding, piecewise, box"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: with no declaration the three-path run publishes exactly the increment 1 content",
+   "passed": true,
+   "detail": "content chains equal those of K2-three-path"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: for the static pair at 10 and 11 the first-step bound is the analytic 2 kappa l / r^3 = 2e-9 / 1e-3",
+   "passed": true,
+   "detail": "B = 2.0000000000458464e-06"
+  },
+  {
+   "kind": "assertion",
+   "check": "accounting: N self relationships excluded, and each of the N (N - 1) others is individual, absent or one of two grouped members",
+   "passed": true,
+   "detail": "138 certified attempts"
+  },
+  {
+   "kind": "assertion",
+   "check": "every grouped bound equals the tube-form radius recomputed exactly from the exposed bounds, rounded outward",
+   "passed": true,
+   "detail": "20 receiver-group intervals"
+  },
+  {
+   "kind": "assertion",
+   "check": "two identities, one interval: a receiver whose sources are one grouped pair has [-B, B] on every axis, widened only by the outward rounding of one addition",
+   "passed": true,
+   "detail": "acceleration boxes"
+  },
+  {
+   "kind": "assertion",
+   "check": "truth: the closed-form pair contribution over the whole receiver box lies inside the grouped interval, every step",
+   "passed": true,
+   "detail": "13 grouped steps; smallest margin 2.645e-07; continuous over the box"
+  },
+  {
+   "kind": "assertion",
+   "check": "truth: the exact closed-form contribution at both axis ends of the receiver box lies inside the individual route's acceleration box, every step",
+   "passed": true,
+   "detail": "ungrouped runs; monotone on the axis, so the axis range"
+  },
+  {
+   "kind": "assertion",
+   "check": "G-three-path-grouped: reviewer's position and velocity brackets for all three paths inside the grouped tubes at 1/128, 1/64, 1/32",
+   "passed": true,
+   "detail": "4 steps"
+  },
+  {
+   "kind": "assertion",
+   "check": "G-three-path-grouped-fine: reviewer's position and velocity brackets for all three paths inside the grouped tubes at 1/128, 1/64, 1/32",
+   "passed": true,
+   "detail": "8 steps"
+  },
+  {
+   "kind": "recorded",
+   "check": "receiver position radius at t = 1/32",
+   "detail": "ungrouped 2.336e-19; grouped 9.794e-10; ungrouped-fine 1.142e-19; grouped-fine 9.804e-10"
+  },
+  {
+   "kind": "recorded",
+   "check": "grouped over ungrouped radius at t = 1/32",
+   "detail": "4.193e+09 at step 1/128, 8.588e+09 at step 1/256"
+  },
+  {
+   "kind": "assertion",
+   "check": "under the default increment budget the grouped run is refused and publishes nothing",
+   "passed": true,
+   "detail": "VFS-BUDGET-01"
+  },
+  {
+   "kind": "assertion",
+   "check": "G-two-path-declared: not grouped, and identical to the undeclared run",
+   "passed": true,
+   "detail": "['receiver_is_member'] []"
+  },
+  {
+   "kind": "assertion",
+   "check": "G-mixed-declared: not grouped, and identical to the undeclared run",
+   "passed": true,
+   "detail": "['mixed_ungrouped'] []"
+  },
+  {
+   "kind": "assertion",
+   "check": "G-same-charge-declared: not grouped, and identical to the undeclared run",
+   "passed": true,
+   "detail": "['not_opposite_ungrouped'] []"
+  },
+  {
+   "kind": "assertion",
+   "check": "G-straddle-declared: not grouped, and identical to the undeclared run",
+   "passed": true,
+   "detail": "['bound_declined_ungrouped'] ['MPE-GEO-01']"
+  },
+  {
+   "kind": "assertion",
+   "check": "G-both-absent-declared: not grouped, and identical to the undeclared run",
+   "passed": true,
+   "detail": "['both_absent'] []"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: with the follower at rest the one-step bound contains the static truth",
+   "passed": true,
+   "detail": "B at rest = 2.0000000117e-06"
+  },
+  {
+   "kind": "assertion",
+   "check": "between nodes: at both ends of the step the pair is seen at rest and its contribution is inside the at-rest bound",
+   "passed": true,
+   "detail": "reception times 0 and 0.125, receiver point 0"
+  },
+  {
+   "kind": "assertion",
+   "check": "between nodes: at reception times strictly inside the step the true contribution exceeds the at-rest bound",
+   "passed": true,
+   "detail": "30 of 129 sampled times; largest 2.6225e-06 against 2.0000e-06"
+  },
+  {
+   "kind": "assertion",
+   "check": "between nodes: every sampled true contribution lies inside the whole-step grouped interval",
+   "passed": true,
+   "detail": "129 of 129 sampled times; B = 3.5895e-04; sampled, not continuous"
+  },
+  {
+   "kind": "assertion",
+   "check": "between nodes: every sampled true contribution lies inside the individual route's whole-step box",
+   "passed": true,
+   "detail": "129 of 129 sampled times"
+  },
+  {
+   "kind": "assertion",
+   "check": "endpoint: a member at the edge of the retained past declines the step on the lower sign, nothing published",
+   "passed": true,
+   "detail": "VFS-H3-01"
+  },
+  {
+   "kind": "assertion",
+   "check": "uncertainty: generated histories declared in a group without their evidence are refused",
+   "passed": true,
+   "detail": "histories declare radii but no evidence was supplied"
+  },
+  {
+   "kind": "assertion",
+   "check": "uncertainty: with their evidence the generated tubes are grouped, with radii in the separation and velocity allowance",
+   "passed": true,
+   "detail": "relative speed bound 1.576769219885123e-05"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-group-unknown-path",
+   "passed": true,
+   "detail": "a declared group names an unknown path nobody"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-group-one-path-twice",
+   "passed": true,
+   "detail": "a declared group names one path twice"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-group-overlapping",
+   "passed": true,
+   "detail": "path minus is declared in two groups"
+  },
+  {
+   "kind": "assertion",
+   "check": "policy and declaration must come together, with the whole-step policy token",
+   "passed": true,
+   "detail": "three requests"
+  },
+  {
+   "kind": "assertion",
+   "check": "continuation: a grouped run cancelled after two steps and resumed with the same declaration equals the uninterrupted run",
+   "passed": true,
+   "detail": "content chains, end states, ledger and continuation"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-continuation-groups-removed",
+   "passed": true,
+   "detail": "the pair policy or the declared groups differ"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-continuation-members-swapped",
+   "passed": true,
+   "detail": "the pair policy or the declared groups differ"
+  },
+  {
+   "kind": "assertion",
+   "check": "N-continuation-groups-added",
+   "passed": true,
+   "detail": "the pair policy or the declared groups differ"
+  },
+  {
+   "kind": "assertion",
+   "check": "the public producer: the declaration changes the receiver's box and nothing about the members' own boxes",
+   "passed": true,
+   "detail": "members are receivers of each other individually"
+  }
+ ]
+}

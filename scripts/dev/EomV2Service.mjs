@@ -29,8 +29,14 @@ export function createEomV2Service(options) {
     const path = url.pathname;
     if (!path.startsWith('/api/eom/v2/')) return false;
     try {
-      if (request.method === 'GET' && path === '/api/eom/v2/qualified-sphere') { if (!options.repoRoot) throw new Error('Qualified record unavailable on this host.'); send(response, 200, readQualifiedSurfaceRecord(options.repoRoot)); return true; }
-      if (request.method === 'GET' && path === '/api/eom/v2/qualified-sphere/raw') { if (!options.repoRoot) throw new Error('Qualified record unavailable on this host.'); const stream=streamQualifiedSurfaceRecord(options.repoRoot); response.writeHead(200, {'Content-Type':'application/json', 'Content-Disposition':'attachment; filename="stage-d-complete-record.json"','Cache-Control':'no-store'}); stream.on('error',()=>response.destroy()); response.once('close',()=>stream.destroy()); stream.pipe(response); return true; }
+      const checked=path.match(/^\/api\/eom\/v2\/qualified-(sphere|oblate|sphere-latitude)(\/raw)?$/);
+      if (request.method === 'GET' && checked) {
+        if (!options.repoRoot) throw new Error('Checked record unavailable on this host.');
+        const selection=checked[1];
+        if(!checked[2])send(response,200,readQualifiedSurfaceRecord(options.repoRoot,selection));
+        else {const stream=streamQualifiedSurfaceRecord(options.repoRoot,selection);response.writeHead(200,{'Content-Type':'application/json','Content-Disposition':`attachment; filename="surface-${selection}-complete-record.json"`,'Cache-Control':'no-store'});stream.on('error',()=>response.destroy());response.once('close',()=>stream.destroy());stream.pipe(response);}
+        return true;
+      }
       if (request.method === 'GET' && path === '/api/eom/v2/progress') { send(response, 200, { progress: getClient().progress(url.searchParams.get('runId')) }); return true; }
       if (request.method === 'GET' && /^\/api\/eom\/v2\/records\/[^/]+\/raw$/.test(path)) {
         const raw = getClient().rawRecord(path.split('/')[5]);

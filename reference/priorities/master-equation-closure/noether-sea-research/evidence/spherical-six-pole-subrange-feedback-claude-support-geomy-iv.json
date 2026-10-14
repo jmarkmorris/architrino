@@ -1,0 +1,231 @@
+{
+ "box": {
+  "q": [
+   "0.59",
+   "0.85"
+  ],
+  "q_delayed": [
+   "0",
+   "0.55"
+  ],
+  "v_delayed": [
+   "0",
+   "0.40"
+  ]
+ },
+ "controls": [
+  {
+   "name": "(K1) known: signed closed forms (chord, D_t, tangential N/(r^3 D), radial sigma/(2 r D), identity 1 + r_q' v' = D; both code paths kern and geom) vs direct vector computation, 300 random points of the new box, three classes",
+   "points_with_M_negative": 92,
+   "max_abs_diff": {
+    "unlike": "4.5918e-41",
+    "like": "4.5918e-41",
+    "antipode": "4.5918e-41"
+   },
+   "pass": true
+  },
+  {
+   "name": "(W1) negative: source velocity sign flipped at (0.82, 0.45, 0.3) changes D_t by > 1e-3 in every class",
+   "detail": {
+    "unlike": {
+     "D_closed": "1.03650474711485",
+     "D_wrong_velocity": "0.96349525288515"
+    },
+    "like": {
+     "D_closed": "0.979383393474927",
+     "D_wrong_velocity": "1.02061660652507"
+    },
+    "antipode": {
+     "D_closed": "1.05518396005841",
+     "D_wrong_velocity": "0.944816039941588"
+    }
+   },
+   "pass": true
+  },
+  {
+   "name": "(W3) negative: the OLD LABEL imposed (unlike D computed as 1 - v'|M|/r, i.e. approach assumed) at (0.82, 0.45, 0.3), where M < 0, differs from the vector D_t",
+   "M": "-0.119676857506",
+   "D_vector": "1.03650474711485",
+   "D_old_label": "0.96349525288515",
+   "pass": true
+  },
+  {
+   "name": "(K2) exact known: d(lambda_hat)/dt and d(a_rad)/dt closed forms vs Richardson differences on a prescribed history with a generated segment, new box, t = 3.2 (unlike M > 0) and t = 3.6 (unlike M < 0, flipped-label regime)",
+   "detail": {
+    "3.2": {
+     "q": "0.6422",
+     "qdot": "0.372",
+     "classes": {
+      "unlike": {
+       "delayed_arg": "2.186227",
+       "q_delayed": "0.321602",
+       "beyond_seam": true,
+       "M": "0.11920959",
+       "D": "0.9693695691"
+      },
+      "like": {
+       "delayed_arg": "1.4900521",
+       "q_delayed": "0.166915",
+       "beyond_seam": true,
+       "M": "0.1926849",
+       "D": "1.020723355"
+      },
+      "antipode": {
+       "delayed_arg": "1.2656321",
+       "q_delayed": "0.128413",
+       "beyond_seam": true,
+       "M": "0.21032416",
+       "D": "1.040454058"
+      }
+     },
+     "dlambda_closed": "-0.07836510530799795118863",
+     "dlambda_abs_err": "2.4529e-30",
+     "darad_abs_err": "2.4529e-30",
+     "jerk": {
+      "unlike": {
+       "closed": "-0.38110754771879757702",
+       "abs_err": "1.8374e-29"
+      },
+      "like": {
+       "closed": "-0.075894229786809551981",
+       "abs_err": "2.182e-31"
+      },
+      "antipode": {
+       "closed": "0.026077390023986931048",
+       "abs_err": "1.3197e-34"
+      }
+     },
+     "dqddot_dt_closed": "-0.088792616498722732696",
+     "dqddot_dt_fd": "-0.088792616498722732696"
+    },
+    "3.6": {
+     "q": "0.7998",
+     "qdot": "0.416",
+     "classes": {
+      "unlike": {
+       "delayed_arg": "2.6157555",
+       "q_delayed": "0.443635",
+       "beyond_seam": true,
+       "M": "-0.096526988",
+       "D": "1.030180053"
+      },
+      "like": {
+       "delayed_arg": "1.8538565",
+       "q_delayed": "0.2411",
+       "beyond_seam": true,
+       "M": "0.0091667214",
+       "D": "1.001175534"
+      },
+      "antipode": {
+       "delayed_arg": "1.6876774",
+       "q_delayed": "0.205408",
+       "beyond_seam": true,
+       "M": "0.027878023",
+       "D": "1.06022104"
+      }
+     },
+     "dlambda_closed": "-0.1113049574066089271017",
+     "dlambda_abs_err": "2.3915e-30",
+     "darad_abs_err": "2.3915e-30",
+     "jerk": {
+      "unlike": {
+       "closed": "-0.54142269981594968128",
+       "abs_err": "1.1216e-28"
+      },
+      "like": {
+       "closed": "-0.080707729783443968957",
+       "abs_err": "7.0908e-31"
+      },
+      "antipode": {
+       "closed": "0.025236534957293241438",
+       "abs_err": "3.6157e-34"
+      }
+     },
+     "dqddot_dt_closed": "-0.1219024324241494059",
+     "dqddot_dt_fd": "-0.1219024324241494059"
+    }
+   },
+   "pass": true
+  },
+  {
+   "name": "(K3) exact known: each class's dh_c/dt and d(qddot)/dt closed forms vs Richardson differences, same history and times (values inside the K2 detail)",
+   "pass": true
+  },
+  {
+   "name": "(W2) negative: the pre-seam acceleration used for the unlike source beyond the seam at t = 3.6 changes d(lambda_hat)/dt and dh_U/dt by more than 1e-6",
+   "dlambda": [
+    "-0.111304957406609",
+    "-0.111022548576612"
+   ],
+   "dhU": [
+    "-0.54142269981595",
+    "-0.54119585342329"
+   ],
+   "pass": true
+  }
+ ],
+ "controls_all_pass": true,
+ "target": {
+  "cells": [
+   104,
+   110
+  ],
+  "N_range": [
+   "-0.0527877778310403059355136",
+   "0.5875637889554805123086116"
+  ],
+  "M_range": [
+   "-0.2010352694083956999312336",
+   "0.3093867547482375512303287"
+  ],
+  "cell_sign_counts": {
+   "N_pos": 11188,
+   "N_neg": 192,
+   "N_und": 60,
+   "M_pos": 8205,
+   "M_neg": 3053,
+   "M_und": 182
+  },
+  "min_chord_unlike": "0.9581573157669021812823697",
+  "min_chord_like": "1.668538621861661438422401",
+  "min_chord_antipode_any_order": "1.822077465908067351287462",
+  "M_over_rU_range": [
+   "-0.2015413305438621451486623",
+   "0.2819143376470222726277057"
+  ],
+  "M_over_rL_range": [
+   "-0.1160849923496503472559225",
+   "0.1854237898329504844977368"
+  ],
+  "D_unlike_range_v_le_0.40": [
+   "0.8872342649411910909489177",
+   "1.080616532217544858059465"
+  ],
+  "D_like_range_v_le_0.40": [
+   "0.953566003060139861097631",
+   "1.074169515933180193799095"
+  ],
+  "D_antipode_range_q_ge_qp": [
+   "1",
+   "1.16492831269736990299774"
+  ],
+  "M_zero_q_of_qp": {
+   "0": "0.955316618125",
+   "0.1": "0.891534355212",
+   "0.2": "0.832583967619",
+   "0.3": "0.777243870865",
+   "0.4": "0.724484834885",
+   "0.5": "0.673412704712",
+   "0.55": "0.648254694439"
+  },
+  "N_zero_q_of_qp": {
+   "0": null,
+   "0.1": "1.46321652593",
+   "0.2": "1.33844242104",
+   "0.3": "1.19379296728",
+   "0.4": "1.02810475163",
+   "0.5": "0.843438791903",
+   "0.55": "0.745882392075"
+  }
+ }
+}

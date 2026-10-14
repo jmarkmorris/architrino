@@ -1,0 +1,66 @@
+{
+ "schema": "validated_evolution_increment_3_check/v1",
+ "all_passed": true,
+ "rows": [
+  {
+   "check": "indexed runner: the lowest terminal index decides whatever its kind, every task runs at most once, and a failed helper launch changes nothing",
+   "passed": true,
+   "detail": "35 synthetic cases at 1, 2, 3, 4 and 8 workers"
+  },
+  {
+   "check": "one worker reproduces the accepted increment 2 evolution outputs byte for byte",
+   "passed": true,
+   "detail": "11 of 11 files"
+  },
+  {
+   "check": "far-step and ordinary solver fixture outputs are unchanged",
+   "passed": true,
+   "detail": "10 of 10 files"
+  },
+  {
+   "check": "every output file at 2, 3, 4 and 8 workers, and on two repeats of 4 and of 8, is byte-identical to the one-worker file",
+   "passed": true,
+   "detail": "96 of 96 files; []"
+  },
+  {
+   "check": "no fixture run wrote to its error stream",
+   "passed": true,
+   "detail": "0 nonempty"
+  },
+  {
+   "check": "eight paths, no declaration: 8 self relationships excluded and 56 others, all individual, on each of four steps",
+   "passed": true,
+   "detail": "four certified steps"
+  },
+  {
+   "check": "eight paths, three disjoint pairs: 18 group intervals standing for 36 members, 20 individual, on each of four steps",
+   "passed": true,
+   "detail": "four certified steps"
+  },
+  {
+   "check": "refusal at the first receiver, with the last receiver also refusing: the first decides",
+   "passed": true,
+   "detail": "7 entries, all of receiver p0, ending at source p7"
+  },
+  {
+   "check": "refusal at a middle receiver, with a later one also refusing: the lower decides",
+   "passed": true,
+   "detail": "19 entries: two complete receivers, then p2 up to source p5"
+  },
+  {
+   "check": "refusal at the last receiver only",
+   "passed": true,
+   "detail": "50 entries: seven complete receivers, then p7 at source p0"
+  },
+  {
+   "check": "cancelled after two steps at an accepted boundary and resumed with another worker count: equal to the uninterrupted run",
+   "passed": true,
+   "detail": "content chains, end states, ledger and continuation"
+  },
+  {
+   "check": "a worker count of zero is refused by the producer and by the driver",
+   "passed": true,
+   "detail": "two refusals"
+  }
+ ]
+}

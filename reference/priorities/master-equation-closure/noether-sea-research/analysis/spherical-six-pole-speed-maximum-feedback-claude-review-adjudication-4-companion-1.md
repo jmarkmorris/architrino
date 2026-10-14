@@ -1,0 +1,3 @@
+# Six-pole speed-maximum-feedback review: adjudication 4, dated companion 1 (one digit)
+
+Written 2026-10-12T21:38:37Z by the review role. In the frozen [adjudication 4](spherical-six-pole-speed-maximum-feedback-claude-review-adjudication-4.md) (sha256 0ccd3c404ff9ceb2b85c51082a27793d51acc68f4b420a76a88feeeb1d97e5e3), item 5(a), the hand check reads "$q=\arctan(1.12342)=0.84344$". The argument is $\cot(0.5)-1/\sqrt2=1.830488-0.707107=1.123381$, so it should read $\arctan(1.12338)=0.84344$ (derived by hand; the result $0.84344$ and its agreement with my measured locus $0.843438791903$ are unchanged). No ruling changes. In adjudication 3 item 7 the word "enforced" refers to a software refusal; no mechanical quantity is meant.

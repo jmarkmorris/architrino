@@ -1,0 +1,19 @@
+Known cases, before any target
+  PASS  indexed runner: the lowest terminal index decides whatever its kind, every task runs at most once, and a failed helper launch changes nothing: 35 synthetic cases at 1, 2, 3, 4 and 8 workers
+  PASS  one worker reproduces the accepted increment 2 evolution outputs byte for byte: 11 of 11 files
+  PASS  far-step and ordinary solver fixture outputs are unchanged: 10 of 10 files
+
+Known cases passed before any target.
+
+Targets
+  PASS  every output file at 2, 3, 4 and 8 workers, and on two repeats of 4 and of 8, is byte-identical to the one-worker file: 96 of 96 files; []
+  PASS  no fixture run wrote to its error stream: 0 nonempty
+  PASS  eight paths, no declaration: 8 self relationships excluded and 56 others, all individual, on each of four steps: four certified steps
+  PASS  eight paths, three disjoint pairs: 18 group intervals standing for 36 members, 20 individual, on each of four steps: four certified steps
+  PASS  refusal at the first receiver, with the last receiver also refusing: the first decides: 7 entries, all of receiver p0, ending at source p7
+  PASS  refusal at a middle receiver, with a later one also refusing: the lower decides: 19 entries: two complete receivers, then p2 up to source p5
+  PASS  refusal at the last receiver only: 50 entries: seven complete receivers, then p7 at source p0
+  PASS  cancelled after two steps at an accepted boundary and resumed with another worker count: equal to the uninterrupted run: content chains, end states, ledger and continuation
+  PASS  a worker count of zero is refused by the producer and by the driver: two refusals
+
+12 of 12 assertions passed.

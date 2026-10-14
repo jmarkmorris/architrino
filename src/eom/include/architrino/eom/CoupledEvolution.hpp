@@ -75,6 +75,11 @@ struct NativeCoupledEvolutionRequest {
   // non-disabled value is qualified for acceleration snapshots only: the
   // evolution entry points reject it.
   std::string matched_pair_enclosure_policy = "disabled";
+  // Producer-issued evidence for histories with declared radii, consumed
+  // only by the validated-tube grouped snapshot policy. Evolution entry
+  // points refuse every grouped policy and never read it.
+  std::shared_ptr<const ValidatedPopulationEvidence>
+      validated_population_evidence = {};
   std::string chart_policy = "sharp";
   std::string causal_width = "0.2";
   std::string core_scale = "0.2";

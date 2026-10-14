@@ -1,0 +1,992 @@
+diff -ru stage3d-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp stage3e-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp
+--- stage3d-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp	2026-10-12 14:39:03
++++ stage3e-tree/src/eom/include/architrino/eom/ValidatedEvolution.hpp	2026-10-12 14:52:53
+@@ -29,12 +29,28 @@
+ //   anything else                  halt
+ // A retry never goes below minimum_step and never exceeds
+ // max_attempts_per_step. After a first-attempt acceptance the next step is
+-// doubled, up to initial_step, unless a recent retry imposed a cooldown. Every refusal leaves the accepted population, its
+-// evidence and its ledger exactly as they were. The controller never
+-// substitutes an ordinary step.
++// doubled, up to initial_step, unless a recent retry imposed a cooldown.
++// Every refusal leaves the accepted population, its evidence and its ledger
++// exactly as they were. The controller never substitutes an ordinary step.
+ //
+-// Cancellation is observed before the first attempt and after an accepted
+-// step only, so the returned state is always an accepted boundary.
++// Admission. Before anything else, including a zero-length, cancelled or
++// step-limited return, the initial population is admitted by the producer's
++// H0 check: histories ending at exactly start_time, one common start, and
++// evidence binding any declared radii under this coupling. A refused
++// initial population returns no accepted time, no evidence and no
++// continuation.
++//
++// Cancellation is observed after admission and before the first attempt,
++// and after an accepted step, so the returned state is always an accepted
++// boundary.
++//
++// Continuation. Every admitted run returns a sealed continuation: the
++// controls it ran under and the accepted controller state, namely the
++// accepted time, controller step, cooldown remaining, accepted-step ordinal,
++// ledger, evidence and the content chains of the accepted population. A
++// request that carries a continuation resumes that run and must match it in
++// every bound control and in population content; otherwise it is refused.
++// A request without one is a new run with a fresh controller state.
+ #pragma once
+ 
+ #include "architrino/eom/CoupledEvolution.hpp"
+@@ -43,8 +59,10 @@
+ #include <array>
+ #include <cstddef>
+ #include <functional>
++#include <memory>
+ #include <optional>
+ #include <string>
++#include <utility>
+ #include <vector>
+ 
+ namespace architrino::eom {
+@@ -52,6 +70,70 @@
+ inline constexpr const char* kValidatedFarStepEvolutionPolicy =
+     "canonical_validated_far_step_evolution/v1";
+ 
++// Declared radii per axis: what the step inherited, the certified upper
++// bound of what it added, and what the published segment declares.
++struct ValidatedAxisLedger {
++  std::array<double, 3> inherited{};
++  std::array<double, 3> increment{};
++  std::array<double, 3> total{};
++};
++
++struct ValidatedPathLedger {
++  std::string path_id;
++  ValidatedAxisLedger position;
++  ValidatedAxisLedger velocity;
++};
++
++struct ValidatedEvolutionRequest;
++struct ValidatedEvolutionCertificate;
++
++[[nodiscard]] ValidatedEvolutionCertificate
++evolve_validated_far_step_histories(const ValidatedEvolutionRequest& request);
++
++// The controls a run was produced under and its accepted controller state.
++struct ValidatedEvolutionState {
++  struct Member {
++    std::string path_id;
++    std::string charge;
++    std::string history_digest;
++  };
++  // Bound controls.
++  std::string policy;
++  std::string coupling;
++  std::string initial_step;
++  std::string minimum_step;
++  ValidatedFarStepBudgets increment_budget{0.0, 0.0};
++  std::optional<ValidatedFarStepBudgets> total_budget = std::nullopt;
++  std::size_t max_attempts_per_step = 0;
++  std::size_t max_lower_sign_retries = 0;
++  std::size_t growth_cooldown_steps = 0;
++  // Accepted controller state.
++  std::string accepted_time;
++  std::string controller_step_size;
++  std::size_t cooldown_remaining = 0;
++  std::size_t accepted_step_count = 0;
++  std::vector<ValidatedPathLedger> ledger;
++  ValidatedFarStepEvidence evidence;
++  std::vector<Member> members;
++};
++
++// Sealed: only the evolution entry point can construct one, and it has no
++// mutators, so in this process a continuation is always the state a run
++// actually reached.
++class ValidatedEvolutionContinuation {
++ public:
++  [[nodiscard]] const ValidatedEvolutionState& state() const noexcept {
++    return state_;
++  }
++
++ private:
++  friend ValidatedEvolutionCertificate evolve_validated_far_step_histories(
++      const ValidatedEvolutionRequest& request);
++  explicit ValidatedEvolutionContinuation(ValidatedEvolutionState state)
++      : state_(std::move(state)) {}
++  ValidatedEvolutionState state_;
++};
++
+ struct ValidatedEvolutionRequest {
+   std::string run_id;
+   // Must equal kValidatedFarStepEvolutionPolicy.
+@@ -59,6 +141,8 @@
+   std::vector<ValidatedFarStepPath> paths;
+   // Evidence issued for `paths`. Null for exact prescribed histories.
+   ValidatedFarStepEvidence evidence;
++  // The continuation returned by the run being resumed. Null for a new run.
++  std::shared_ptr<const ValidatedEvolutionContinuation> continuation = {};
+   // Plain decimal tokens. The histories must end at exactly start_time.
+   std::string start_time;
+   std::string end_time;
+@@ -72,7 +156,8 @@
+   std::string coupling;
+   // Largest admissible growth of a declared radius in one step.
+   ValidatedFarStepBudgets increment_budget{0.0, 0.0};
+-  // Largest admissible declared radius, if declared. A separate constraint.
++  // Largest admissible declared radius, if declared: both fields finite and
++  // positive. A separate constraint from the increment budget.
+   std::optional<ValidatedFarStepBudgets> total_budget = std::nullopt;
+   std::size_t max_attempts_per_step = 64;
+   std::size_t max_lower_sign_retries = 4;
+@@ -87,20 +172,6 @@
+       accepted_step_callback = {};
+ };
+ 
+-// Declared radii per axis: what the step inherited, the certified upper
+-// bound of what it added, and what the published segment declares.
+-struct ValidatedAxisLedger {
+-  std::array<double, 3> inherited{};
+-  std::array<double, 3> increment{};
+-  std::array<double, 3> total{};
+-};
+-
+-struct ValidatedPathLedger {
+-  std::string path_id;
+-  ValidatedAxisLedger position;
+-  ValidatedAxisLedger velocity;
+-};
+-
+ struct ValidatedEvolutionAttempt {
+   std::size_t step_index = 0;
+   std::size_t attempt_index = 0;
+@@ -127,16 +198,19 @@
+   // The accepted population with charges, and the evidence issued for it.
+   std::vector<ValidatedFarStepPath> paths;
+   ValidatedFarStepEvidence evidence;
+-  // Ledger of the last accepted step; empty if none was accepted.
++  // Ledger of the last accepted step of the run, including steps accepted
++  // before a resumption; empty if the run has accepted none.
+   std::vector<ValidatedPathLedger> ledger;
+   std::vector<ValidatedEvolutionAttempt> attempts;
+-  // When halted on a refusal: the producer's code and cause.
++  // When halted on a refusal: the producer's code and cause, and for a
++  // refused initial population or continuation, the reason.
+   std::string halt_refusal_code;
+   std::string halt_refusal_cause;
++  std::string halt_reason;
++  // The accepted state to resume from. Null when the initial population or
++  // the supplied continuation was refused.
++  std::shared_ptr<const ValidatedEvolutionContinuation> continuation;
+ };
+-
+-[[nodiscard]] ValidatedEvolutionCertificate
+-evolve_validated_far_step_histories(const ValidatedEvolutionRequest& request);
+ 
+ // Exact half of a plain decimal token, as a plain decimal token.
+ [[nodiscard]] std::string validated_evolution_half(const std::string& token);
+diff -ru stage3d-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp stage3e-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp
+--- stage3d-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp	2026-10-12 14:34:15
++++ stage3e-tree/src/eom/include/architrino/eom/ValidatedFarStep.hpp	2026-10-12 14:51:57
+@@ -132,6 +132,18 @@
+       const std::optional<ValidatedFarStepBudgets>& total = std::nullopt,
+       std::size_t max_iterations = 12);
+ 
++  // Empty when the population may begin a step at `start`: a nonempty
++  // population with distinct identifiers, one common history start token,
++  // every history ending at exactly `start`, no analytic carrier, and, where
++  // any history declares a radius, evidence that binds every path's content
++  // and charge under this coupling. Otherwise the reason. This is the H0
++  // admission that step() applies, callable without taking a step.
++  [[nodiscard]] static std::string admission_refusal(
++      const std::vector<ValidatedFarStepPath>& paths,
++      const ValidatedFarStepEvidence& inherited,
++      const std::string& start,
++      const std::string& coupling);
++
+   // Appends a certified step onto the population that generated it.
+   static std::vector<ValidatedFarStepPath> extend(
+       const std::vector<ValidatedFarStepPath>& paths, const ValidatedFarStepCertificate& certificate);
+diff -ru stage3d-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp stage3e-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp
+--- stage3d-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 14:39:03
++++ stage3e-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 14:54:35
+@@ -6,8 +6,11 @@
+ #include "architrino/eom/EquationPlan.hpp"
+ #include "architrino/eom/MatchedPairEnclosure.hpp"
+ 
++#include <cmath>
+ #include <iostream>
++#include <limits>
+ #include <sstream>
++#include <type_traits>
+ 
+ namespace eom = architrino::eom;
+ using Budgets = eom::ValidatedFarStepBudgets;
+@@ -17,6 +20,14 @@
+ using Request = eom::ValidatedEvolutionRequest;
+ using Run = eom::ValidatedEvolutionCertificate;
+ 
++// A continuation cannot be built by a caller: its constructor is private.
++static_assert(!std::is_constructible_v<eom::ValidatedEvolutionContinuation,
++                                       eom::ValidatedEvolutionState>,
++              "continuation must be issued by the driver only");
++static_assert(!std::is_default_constructible_v<
++                  eom::ValidatedEvolutionContinuation>,
++              "continuation must be issued by the driver only");
++
+ namespace vfs {
+ inline std::string token(double value) {
+   return eom::validated_far_step_number_token(value);
+@@ -225,6 +236,28 @@
+   return out + "}}";
+ }
+ 
++std::string continuation_json(
++    const std::shared_ptr<const eom::ValidatedEvolutionContinuation>& value) {
++  if (value == nullptr) return "null";
++  const auto& s = value->state();
++  std::string out = "{\"policy\":\"" + s.policy + "\",\"coupling\":\"" +
++      s.coupling + "\",\"initial_step\":\"" + s.initial_step +
++      "\",\"minimum_step\":\"" + s.minimum_step +
++      "\",\"accepted_time\":\"" + s.accepted_time +
++      "\",\"controller_step_size\":\"" + s.controller_step_size +
++      "\",\"cooldown_remaining\":" + std::to_string(s.cooldown_remaining) +
++      ",\"accepted_step_count\":" + std::to_string(s.accepted_step_count) +
++      ",\"growth_cooldown_steps\":" +
++      std::to_string(s.growth_cooldown_steps) + ",\"has_evidence\":" +
++      (s.evidence != nullptr ? "true" : "false") + ",\"ledger\":" +
++      ledger_json(s.ledger) + ",\"members\":{";
++  for (std::size_t i = 0; i < s.members.size(); ++i) {
++    out += std::string(i ? "," : "") + "\"" + s.members[i].path_id +
++        "\":\"" + s.members[i].history_digest + "\"";
++  }
++  return out + "}}";
++}
++
+ struct Observed {
+   Run run;
+   std::vector<std::pair<std::size_t, std::string>> callbacks;
+@@ -283,7 +316,11 @@
+             << run.run.status << "\",\"halt_code\":\"" << run.run.halt_code
+             << "\",\"halt_refusal_code\":\"" << run.halt_refusal_code
+             << "\",\"halt_refusal_cause\":\"" << run.halt_refusal_cause
+-            << "\",\"start\":\"" << run.run.start_time
++            << "\",\"halt_reason\":\"" << run.halt_reason
++            << "\",\"continuation\":" << continuation_json(run.continuation)
++            << ",\"input_continuation\":"
++            << continuation_json(request.continuation)
++            << ",\"start\":\"" << run.run.start_time
+             << "\",\"requested_end\":\"" << run.run.requested_end_time
+             << "\",\"accepted_end\":\"" << run.run.accepted_end_time
+             << "\",\"initial_step\":\"" << request.initial_step
+@@ -365,7 +402,7 @@
+ Observed run_case(const std::string& label, Request request,
+                   bool all_attempts = true) {
+   Observed observed = evolve(request);
+-  emit_run(label, request, observed, all_attempts);
++  if (!label.empty()) emit_run(label, request, observed, all_attempts);
+   return observed;
+ }
+ 
+@@ -583,6 +620,235 @@
+   return 0;
+ }
+ 
++// The reviewer's adaptive case: coupling 0, receiver static at 0, source
++// z = -9 + (S + 20) / 2, initial step 1.5, minimum 0.0001, end 3.
++std::vector<Path> reviewer_adaptive() {
++  return {static_path("receiver", "1", "0"),
++          Path{"source", "1",
++               eom::RetainedHistory(
++                   "source-history",
++                   {eom::CubicHistorySegment("-20", "0",
++                                             on_z("-9", "0.5"))})}};
++}
++
++Request adaptive_request(const std::string& id, std::vector<Path> paths,
++                         const std::string& start) {
++  return make(id, std::move(paths), start, "3", "1.5", "0.0001", "0",
++              Budgets{1e-6, 1e-6});
++}
++
++// Runs `request` cancelling after `count` accepted steps.
++Observed cancelled_after(const std::string& label, Request request,
++                         std::size_t count) {
++  auto accepted = std::make_shared<std::size_t>(0U);
++  request.accepted_step_callback =
++      [accepted](std::size_t, const std::string&) { ++*accepted; };
++  request.cancellation_requested = [accepted, count] {
++    return *accepted >= count;
++  };
++  return run_case(label, std::move(request));
++}
++
++Request resumed_from(const std::string& id, const Observed& from,
++                     Request like) {
++  Request request = std::move(like);
++  request.run_id = id;
++  request.paths = from.run.paths;
++  request.evidence = from.run.evidence;
++  request.continuation = from.run.continuation;
++  request.start_time = from.run.run.accepted_end_time;
++  request.cancellation_requested = {};
++  request.accepted_step_callback = {};
++  return request;
++}
++
++int continuation_cases() {
++  // I1-R1, reviewer's adaptive case.
++  const Request adaptive = adaptive_request("r1", reviewer_adaptive(), "0");
++  run_case("R1-uninterrupted", adaptive);
++  const Observed two = cancelled_after("R1-cancelled-after-two", adaptive, 2);
++  run_case("R1-resumed", resumed_from("r1-resumed", two, adaptive));
++  {
++    // The same returned population and evidence without the continuation is
++    // a new run with a fresh controller state.
++    Request fresh = resumed_from("r1-new", two, adaptive);
++    fresh.continuation = {};
++    run_case("R1-new-run-without-continuation", fresh);
++  }
++  {
++    Request stopped = resumed_from("r1-stop", two, adaptive);
++    stopped.cancellation_requested = [] { return true; };
++    run_case("R1-resume-cancelled-immediately", stopped);
++  }
++  // Cancellation during a cooldown that followed retries.
++  const Request cooled =
++      make("r1b", control(), "0", "0.25", "2", kFine);
++  run_case("R1b-uninterrupted", cooled);
++  const Observed three = cancelled_after("R1b-cancelled-after-three", cooled, 3);
++  run_case("R1b-resumed", resumed_from("r1b-resumed", three, cooled));
++  // A run that halts on the total budget; resuming it must halt again at
++  // once and keep the ledger it had.
++  Request tight = make("r1c", control(), "0", "0.0234375", kStep,
++                       "0.0009765625");
++  tight.total_budget = Budgets{1e-8, 2e-9};
++  const Observed halted = run_case("R1c-halted", tight);
++  run_case("R1c-resumed-halts-again", resumed_from("r1c-resumed", halted, tight));
++
++  // Continuations that do not bind.
++  {
++    Request r = resumed_from("n1", two, adaptive);
++    r.initial_step = "0.75";
++    run_case("N-continuation-changed-initial-step", r);
++  }
++  {
++    Request r = resumed_from("n2", two, adaptive);
++    r.increment_budget = Budgets{2e-6, 1e-6};
++    run_case("N-continuation-changed-increment-budget", r);
++  }
++  {
++    Request r = resumed_from("n3", two, adaptive);
++    r.total_budget = Budgets{1.0, 1.0};
++    run_case("N-continuation-total-budget-added", r);
++  }
++  {
++    Request r = resumed_from("n4", two, adaptive);
++    r.growth_cooldown_steps = 2;
++    run_case("N-continuation-changed-cooldown-length", r);
++  }
++  {
++    Request r = resumed_from("n5", two, adaptive);
++    r.max_attempts_per_step = 8;
++    run_case("N-continuation-changed-attempt-limit", r);
++  }
++  {
++    // Stale: the state after one accepted step, offered with the
++    // population after two.
++    const Observed one = cancelled_after("", adaptive, 1);
++    Request r = resumed_from("n6", two, adaptive);
++    r.continuation = one.run.continuation;
++    run_case("N-continuation-stale", r);
++  }
++  {
++    // Foreign: the state of another population's run at the same time.
++    const Request other_request = adaptive_request(
++        "other",
++        {static_path("receiver", "1", "0"),
++         Path{"source", "1",
++              eom::RetainedHistory(
++                  "source-history",
++                  {eom::CubicHistorySegment("-20", "0",
++                                            on_z("-8.5", "0.5"))})}},
++        "0");
++    const Observed other = cancelled_after("", other_request, 2);
++    Request r = resumed_from("n7", two, adaptive);
++    r.continuation = other.run.continuation;
++    run_case("N-continuation-foreign", r);
++  }
++  {
++    Request r = resumed_from("n8", two, adaptive);
++    r.coupling = "0.001";
++    run_case("N-continuation-changed-coupling", r);
++  }
++  return 0;
++}
++
++int budget_cases() {
++  // Known first: a finite positive total budget is admitted.
++  {
++    Request good = make("b-good", static_pair(), "0", kStep, kStep, kStep);
++    good.total_budget = Budgets{1e-6, 1e-6};
++    run_case("K-total-budget-finite-positive", good);
++  }
++  const double nan = std::numeric_limits<double>::quiet_NaN();
++  const double inf = std::numeric_limits<double>::infinity();
++  const std::vector<std::pair<std::string, double>> bad{
++      {"nan", nan}, {"positive-infinity", inf}, {"negative-infinity", -inf},
++      {"zero", 0.0}, {"negative", -1e-8}};
++  for (const auto& [name, value] : bad) {
++    Request position = make("b", static_pair(), "0", kStep, kStep, kStep);
++    position.total_budget = Budgets{value, 1e-6};
++    refuses_request("N-total-budget-position-" + name, position);
++    Request velocity = make("b", static_pair(), "0", kStep, kStep, kStep);
++    velocity.total_budget = Budgets{1e-6, value};
++    refuses_request("N-total-budget-velocity-" + name, velocity);
++  }
++  {
++    Request both = make("b", static_pair(), "0", kStep, kStep, kStep);
++    both.total_budget = Budgets{nan, nan};
++    refuses_request("N-total-budget-both-nan", both);
++    both.total_budget = Budgets{inf, inf};
++    refuses_request("N-total-budget-both-infinity", both);
++  }
++  // The public producer applies the same rule to both budgets.
++  eom::ValidatedFarStepProducer producer;
++  const auto pair = static_pair();
++  emit("K-producer-finite-budgets", "1",
++       producer.step(pair, nullptr, "0", kStep, kKappa, kBudgets,
++                     Budgets{1e-6, 1e-6}));
++  for (const auto& [name, value] : bad) {
++    emit("N-producer-total-position-" + name, "1",
++         producer.step(pair, nullptr, "0", kStep, kKappa, kBudgets,
++                       Budgets{value, 1e-6}));
++    emit("N-producer-total-velocity-" + name, "1",
++         producer.step(pair, nullptr, "0", kStep, kKappa, kBudgets,
++                       Budgets{1e-6, value}));
++    emit("N-producer-increment-position-" + name, "1",
++         producer.step(pair, nullptr, "0", kStep, kKappa,
++                       Budgets{value, 1e-8}));
++    emit("N-producer-increment-velocity-" + name, "1",
++         producer.step(pair, nullptr, "0", kStep, kKappa,
++                       Budgets{1e-8, value}));
++  }
++  return 0;
++}
++
++int admission_cases() {
++  // Known first: genuine zero-length runs.
++  run_case("K-zero-length-at-history-end",
++           make("a0", static_pair(), "0", "0", kStep, kStep));
++  Request first = make("a-first", static_pair(), "0", kStep, kStep, kStep);
++  const Observed grown = evolve(first);
++  {
++    Request own = make("a1", grown.run.paths, kStep, kStep, kStep, kStep);
++    own.evidence = grown.run.evidence;
++    run_case("K-zero-length-grown-with-own-evidence", own);
++  }
++  // I1-R3, reviewer's case and variants.
++  run_case("N-zero-length-mismatched-start",
++           make("a2", static_pair(), "1", "1", kStep, kStep));
++  {
++    Request r = make("a3", static_pair(), "1", "1.5", kStep, kStep);
++    r.cancellation_requested = [] { return true; };
++    run_case("N-early-cancellation-mismatched-start", r);
++  }
++  {
++    Request r = make("a4", static_pair(), "1", "1.5", kStep, kStep);
++    r.max_accepted_steps = 0;
++    run_case("N-step-limit-mismatched-start", r);
++  }
++  {
++    Request other_first =
++        make("a-other", static_pair("10.5"), "0", kStep, kStep, kStep);
++    const Observed other = evolve(other_first);
++    Request r = make("a5", grown.run.paths, kStep, kStep, kStep, kStep);
++    r.evidence = other.run.evidence;
++    run_case("N-zero-length-foreign-evidence", r);
++    Request cancelled = make("a6", grown.run.paths, kStep, "0.015625", kStep,
++                             kStep);
++    cancelled.evidence = other.run.evidence;
++    cancelled.cancellation_requested = [] { return true; };
++    run_case("N-early-cancellation-foreign-evidence", cancelled);
++  }
++  run_case("N-zero-length-missing-evidence",
++           make("a7", grown.run.paths, kStep, kStep, kStep, kStep));
++  {
++    Request r = make("a8", static_pair(), "0", "0.015625", kStep, kStep);
++    r.max_accepted_steps = 0;
++    run_case("K-step-limit-at-valid-start", r);
++  }
++  return 0;
++}
++
+ int aliasing_cases() {
+   // Resolved from the start.
+   run_case("A-control-fine",
+@@ -603,11 +869,15 @@
+     if (command == "refusals") return refusal_cases();
+     if (command == "cancellation") return cancellation_cases();
+     if (command == "aliasing") return aliasing_cases();
++    if (command == "continuation") return continuation_cases();
++    if (command == "budgets") return budget_cases();
++    if (command == "admission") return admission_cases();
+   } catch (const std::exception& error) {
+     std::cout << "{\"case\":\"FATAL\",\"exception\":\"" << error.what()
+               << "\"}\n";
+     return 3;
+   }
+-  std::cerr << "usage: <known|controller|refusals|cancellation|aliasing>\n";
++  std::cerr << "usage: <known|controller|refusals|cancellation|aliasing|"
++               "continuation|budgets|admission>\n";
+   return 2;
+ }
+diff -ru stage3d-tree/src/eom/src/ValidatedEvolution.cpp stage3e-tree/src/eom/src/ValidatedEvolution.cpp
+--- stage3d-tree/src/eom/src/ValidatedEvolution.cpp	2026-10-12 14:39:03
++++ stage3e-tree/src/eom/src/ValidatedEvolution.cpp	2026-10-12 14:52:53
+@@ -5,6 +5,7 @@
+ 
+ #include <algorithm>
+ #include <cmath>
++#include <memory>
+ #include <stdexcept>
+ #include <utility>
+ 
+@@ -158,6 +159,74 @@
+   };
+ }
+ 
++bool finite_positive(const ValidatedFarStepBudgets& budget) {
++  return std::isfinite(budget.position) && std::isfinite(budget.velocity) &&
++      budget.position > 0.0 && budget.velocity > 0.0;
++}
++
++bool same_budget(const std::optional<ValidatedFarStepBudgets>& left,
++                 const std::optional<ValidatedFarStepBudgets>& right) {
++  if (left.has_value() != right.has_value()) return false;
++  return !left.has_value() || (left->position == right->position &&
++                               left->velocity == right->velocity);
++}
++
++std::vector<ValidatedEvolutionState::Member> members_of(
++    const std::vector<ValidatedFarStepPath>& paths) {
++  std::vector<ValidatedEvolutionState::Member> members;
++  for (const auto& path : paths) {
++    members.push_back(
++        {path.id, path.charge, validated_history_digest(path.history)});
++  }
++  return members;
++}
++
++// Empty when the continuation is the accepted state of a run with exactly
++// these controls, at exactly this start, for exactly this population.
++std::string continuation_refusal(
++    const ValidatedEvolutionState& state,
++    const ValidatedEvolutionRequest& request) {
++  if (state.policy != request.policy) return "policy differs";
++  if (compare_exact_decimal_tokens(state.coupling, request.coupling) != 0) {
++    return "coupling differs";
++  }
++  if (compare_exact_decimal_tokens(
++          state.initial_step, request.initial_step) != 0 ||
++      compare_exact_decimal_tokens(
++          state.minimum_step, request.minimum_step) != 0) {
++    return "initial or minimum step differs";
++  }
++  if (state.increment_budget.position != request.increment_budget.position ||
++      state.increment_budget.velocity != request.increment_budget.velocity ||
++      !same_budget(state.total_budget, request.total_budget)) {
++    return "a budget differs";
++  }
++  if (state.max_attempts_per_step != request.max_attempts_per_step ||
++      state.max_lower_sign_retries != request.max_lower_sign_retries ||
++      state.growth_cooldown_steps != request.growth_cooldown_steps) {
++    return "an attempt limit or the cooldown length differs";
++  }
++  if (compare_exact_decimal_tokens(
++          state.accepted_time, request.start_time) != 0) {
++    return "accepted time differs from the requested start";
++  }
++  if (state.evidence != request.evidence) {
++    return "evidence is not the continuation's evidence";
++  }
++  const auto members = members_of(request.paths);
++  if (members.size() != state.members.size()) {
++    return "population differs";
++  }
++  for (std::size_t i = 0; i < members.size(); ++i) {
++    if (members[i].path_id != state.members[i].path_id ||
++        members[i].charge != state.members[i].charge ||
++        members[i].history_digest != state.members[i].history_digest) {
++      return "population content differs for path " + members[i].path_id;
++    }
++  }
++  return {};
++}
++
+ std::vector<ValidatedPathLedger> ledger_of(
+     const ValidatedFarStepCertificate& producer,
+     const std::vector<ValidatedFarStepPath>& input) {
+@@ -216,20 +285,77 @@
+         "validated evolution request has an empty population, reversed "
+         "times, a nonpositive step or budget, or no attempt allowance");
+   }
++  if (request.total_budget.has_value() &&
++      !finite_positive(*request.total_budget)) {
++    throw EquationAdmissionError(
++        "unsupported_execution_policy",
++        "a declared total budget must be finite and positive in both fields");
++  }
+ 
+   ValidatedFarStepProducer producer;
+   ValidatedEvolutionCertificate out;
+   out.schema = kRunSchema;
+   out.policy = request.policy;
++
++  // Admission of the initial state, before any early return can describe an
++  // accepted boundary. A refusal reports no accepted time, no evidence and
++  // no continuation.
++  const auto refuse_initial = [&](const std::string& halt_code,
++                                  const std::string& refusal_code,
++                                  const std::string& reason) {
++    out.paths = request.paths;
++    out.halt_refusal_code = refusal_code;
++    out.halt_reason = reason;
++    out.run = NativeCoupledEvolutionCertificate{
++        .schema = kRunSchema,
++        .status = "halted",
++        .run_id = request.run_id,
++        .start_time = request.start_time,
++        .requested_end_time = request.end_time,
++        .accepted_end_time = "",
++        .histories = published_of(request.paths),
++        .accepted_step_count = 0,
++        .rejected_step_count = 0,
++        .controller_step_size = "",
++        .halt_code = halt_code,
++        .evidence_status = "initial_state_refused",
++        .all_steps_atomic = true,
++    };
++    return out;
++  };
++  {
++    const std::string reason = ValidatedFarStepProducer::admission_refusal(
++        request.paths, request.evidence, request.start_time, request.coupling);
++    if (!reason.empty()) {
++      return refuse_initial("initial_population_refused", "VFS-H0-01", reason);
++    }
++  }
++  if (request.continuation != nullptr) {
++    const std::string reason =
++        continuation_refusal(request.continuation->state(), request);
++    if (!reason.empty()) {
++      return refuse_initial("continuation_refused", "", reason);
++    }
++  }
++  const ValidatedEvolutionState* resumed =
++      request.continuation != nullptr ? &request.continuation->state()
++                                      : nullptr;
+   // The accepted state. These four are replaced together, on acceptance
+   // only, and are what every return path reports.
+   std::vector<ValidatedFarStepPath> paths = request.paths;
+   ValidatedFarStepEvidence evidence = request.evidence;
+-  std::vector<ValidatedPathLedger> ledger;
++  std::vector<ValidatedPathLedger> ledger =
++      resumed != nullptr ? resumed->ledger
++                         : std::vector<ValidatedPathLedger>{};
+   std::string current = request.start_time;
+ 
+-  std::string step_size = request.initial_step;
+-  std::size_t cooldown = 0;
++  // Controller state: restored from the continuation, or fresh for a new
++  // run. `ordinal` counts accepted steps of the whole run.
++  std::string step_size = resumed != nullptr ? resumed->controller_step_size
++                                             : request.initial_step;
++  std::size_t cooldown = resumed != nullptr ? resumed->cooldown_remaining : 0U;
++  const std::size_t ordinal_base =
++      resumed != nullptr ? resumed->accepted_step_count : 0U;
+   std::size_t accepted = 0;
+   std::size_t rejected = 0;
+   std::string status;
+@@ -255,7 +381,7 @@
+     std::size_t lower_sign_retries = 0;
+     for (std::size_t attempt = 0;; ++attempt) {
+       ValidatedEvolutionAttempt record;
+-      record.step_index = accepted;
++      record.step_index = ordinal_base + accepted;
+       record.attempt_index = attempt;
+       record.producer = producer.step(
+           paths, evidence, current, attempt_step, request.coupling,
+@@ -273,7 +399,8 @@
+           record.producer.evidence.reset();
+           record.disposition = "halt";
+           record.atomic = atomic_of(
+-              request, accepted, record.producer, paths, paths, false);
++              request, ordinal_base + accepted, record.producer, paths, paths,
++              false);
+           steps.push_back(record.atomic);
+           out.attempts.push_back(std::move(record));
+           ++rejected;
+@@ -285,7 +412,8 @@
+         record.disposition = "accepted";
+         record.ledger = ledger_of(record.producer, paths);
+         record.atomic = atomic_of(
+-            request, accepted, record.producer, paths, next, true);
++            request, ordinal_base + accepted, record.producer, paths, next,
++            true);
+         // Commit the accepted state together.
+         ledger = record.ledger;
+         evidence = record.producer.evidence;
+@@ -293,7 +421,7 @@
+         paths = std::move(next);
+         steps.push_back(record.atomic);
+         out.attempts.push_back(std::move(record));
+-        const std::size_t index = accepted;
++        const std::size_t index = ordinal_base + accepted;
+         ++accepted;
+         if (retried) {
+           step_size = attempt_step;
+@@ -318,8 +446,9 @@
+       record.disposition = disposition_of(
+           record.producer, paths, request.total_budget, &cause);
+       record.cause = cause;
+-      record.atomic =
+-          atomic_of(request, accepted, record.producer, paths, paths, false);
++      record.atomic = atomic_of(
++          request, ordinal_base + accepted, record.producer, paths, paths,
++          false);
+       steps.push_back(record.atomic);
+       const std::string code = record.producer.code;
+       const bool retry = record.disposition == "retry_shorter_step";
+@@ -361,6 +490,30 @@
+   out.paths = paths;
+   out.evidence = evidence;
+   out.ledger = ledger;
++  if (accepted == 0U && request.continuation != nullptr) {
++    // Nothing changed: the accepted state is exactly the one resumed from.
++    out.continuation = request.continuation;
++  } else {
++    ValidatedEvolutionState state;
++    state.policy = request.policy;
++    state.coupling = request.coupling;
++    state.initial_step = request.initial_step;
++    state.minimum_step = request.minimum_step;
++    state.increment_budget = request.increment_budget;
++    state.total_budget = request.total_budget;
++    state.max_attempts_per_step = request.max_attempts_per_step;
++    state.max_lower_sign_retries = request.max_lower_sign_retries;
++    state.growth_cooldown_steps = request.growth_cooldown_steps;
++    state.accepted_time = current;
++    state.controller_step_size = step_size;
++    state.cooldown_remaining = cooldown;
++    state.accepted_step_count = ordinal_base + accepted;
++    state.ledger = ledger;
++    state.evidence = evidence;
++    state.members = members_of(paths);
++    out.continuation = std::shared_ptr<const ValidatedEvolutionContinuation>(
++        new ValidatedEvolutionContinuation(std::move(state)));
++  }
+   out.run = NativeCoupledEvolutionCertificate{
+       .schema = kRunSchema,
+       .status = status,
+@@ -374,8 +527,8 @@
+       .rejected_step_count = rejected,
+       .controller_step_size = step_size,
+       .halt_code = halt_code,
+-      .evidence_status =
+-          accepted > 0U ? kEvidenceStatus : "no_validated_step_accepted",
++      .evidence_status = evidence != nullptr ? kEvidenceStatus
++                                             : "no_validated_step_accepted",
+       .all_steps_atomic = true,
+   };
+   return out;
+diff -ru stage3d-tree/src/eom/src/ValidatedFarStep.cpp stage3e-tree/src/eom/src/ValidatedFarStep.cpp
+--- stage3d-tree/src/eom/src/ValidatedFarStep.cpp	2026-10-12 14:34:15
++++ stage3e-tree/src/eom/src/ValidatedFarStep.cpp	2026-10-12 14:51:57
+@@ -141,8 +141,89 @@
+   return certificate;
+ }
+ 
++// H0 admission. Empty when admitted; otherwise the reason. When `digests`
++// is given it receives each path's content chain, in path order.
++std::string admission_reason(
++    const std::vector<ValidatedFarStepPath>& paths,
++    const ValidatedFarStepEvidence& inherited,
++    const std::string& start,
++    const std::string& coupling,
++    std::vector<std::string>* digests) {
++  if (paths.empty()) return "empty population";
++  if (!validated_far_step_plain_decimal(start)) {
++    return "step start and length must be plain decimal tokens";
++  }
++  bool any_radius = false;
++  const std::string start_of_history =
++      paths.front().history.segments().front().t_start_token();
++  for (std::size_t i = 0; i < paths.size(); ++i) {
++    const auto& history = paths[i].history;
++    for (std::size_t j = 0; j < i; ++j) {
++      if (paths[j].id == paths[i].id) return "duplicate path identifier";
++    }
++    const auto& segments = history.segments();
++    if (eom::compare_exact_decimal_tokens(
++            segments.front().t_start_token(), start_of_history) != 0) {
++      return "retained histories do not start at one common time";
++    }
++    if (eom::compare_exact_decimal_tokens(
++            segments.back().t_end_token(), start) != 0) {
++      return "a history does not end exactly at the step start";
++    }
++    if (history.uniform_circular_endpoint_certificate().has_value()) {
++      return "analytic carrier is outside this candidate";
++    }
++    for (std::size_t k = 0; k < segments.size(); ++k) {
++      const auto segment = segments.at(k);
++      for (std::size_t axis = 0; axis < 3; ++axis) {
++        any_radius = any_radius || segment.position_errors()[axis] != 0.0 ||
++            segment.velocity_errors()[axis] != 0.0;
++      }
++    }
++  }
++  std::vector<std::string> computed;
++  for (const auto& path : paths) {
++    computed.push_back(eom::validated_history_digest(path.history));
++  }
++  if (any_radius) {
++    if (inherited == nullptr) {
++      return "histories declare radii but no evidence was supplied";
++    }
++    if (eom::compare_exact_decimal_tokens(inherited->coupling(), coupling) !=
++        0) {
++      return "generated history was published under a different coupling";
++    }
++    if (inherited->members().size() != paths.size()) {
++      return "evidence is for a different population";
++    }
++    for (std::size_t i = 0; i < paths.size(); ++i) {
++      bool found = false;
++      for (const auto& member : inherited->members()) {
++        if (member.path_id != paths[i].id) continue;
++        found = member.charge == paths[i].charge &&
++            member.digest_after == computed[i];
++        break;
++      }
++      if (!found) {
++        return "evidence does not bind path " + paths[i].id +
++            ": identifier, charge or history content differs";
++      }
++    }
++  }
++  if (digests != nullptr) *digests = std::move(computed);
++  return {};
++}
++
+ }  // namespace
+ 
++std::string ValidatedFarStepProducer::admission_refusal(
++    const std::vector<ValidatedFarStepPath>& paths,
++    const ValidatedFarStepEvidence& inherited,
++    const std::string& start,
++    const std::string& coupling) {
++  return admission_reason(paths, inherited, start, coupling, nullptr);
++}
++
+ double ValidatedFarStepProducer::segment_speed_upper(
+     const eom::CubicHistorySegment& segment) {
+   std::string key = segment.t_start_token() + "|" + segment.t_end_token();
+@@ -202,6 +283,17 @@
+       step_token[0] == '-') {
+     return decline(certificate, "VFS-H0-01", "step is not positive");
+   }
++  // A declared budget must be finite and positive. A comparison with a
++  // nonfinite budget is false, so it would silently constrain nothing.
++  for (const auto* budget : {&increment, &total}) {
++    if (budget->has_value() &&
++        !(std::isfinite((*budget)->position) &&
++          std::isfinite((*budget)->velocity) &&
++          (*budget)->position > 0.0 && (*budget)->velocity > 0.0)) {
++      return decline(certificate, "VFS-H0-01",
++                     "a declared budget is not finite and positive");
++    }
++  }
+   // CPP-P2: the end is the exact decimal sum, and every duration-dependent
+   // quantity uses an upper bound of the emitted segment's extent as the
+   // history layer represents it, which is at least the exact step.
+@@ -215,75 +307,14 @@
+   const Interval kappa = Interval::decimal_token(coupling);
+ 
+   // H0.
+-  bool any_radius = false;
+-  const std::string start_of_history =
+-      paths.front().history.segments().front().t_start_token();
+-  for (std::size_t i = 0; i < paths.size(); ++i) {
+-    const auto& history = paths[i].history;
+-    for (std::size_t j = 0; j < i; ++j) {
+-      if (paths[j].id == paths[i].id) {
+-        return decline(certificate, "VFS-H0-01", "duplicate path identifier");
+-      }
+-    }
+-    const auto& segments = history.segments();
+-    if (eom::compare_exact_decimal_tokens(
+-            segments.front().t_start_token(), start_of_history) != 0) {
+-      return decline(
+-          certificate, "VFS-H0-01",
+-          "retained histories do not start at one common time");
+-    }
+-    if (eom::compare_exact_decimal_tokens(
+-            segments.back().t_end_token(), start) != 0) {
+-      return decline(certificate, "VFS-H0-01",
+-                     "a history does not end exactly at the step start");
+-    }
+-    if (history.uniform_circular_endpoint_certificate().has_value()) {
+-      return decline(certificate, "VFS-H0-01",
+-                     "analytic carrier is outside this candidate");
+-    }
+-    for (std::size_t k = 0; k < segments.size(); ++k) {
+-      const auto segment = segments.at(k);
+-      for (std::size_t axis = 0; axis < 3; ++axis) {
+-        any_radius = any_radius || segment.position_errors()[axis] != 0.0 ||
+-            segment.velocity_errors()[axis] != 0.0;
+-      }
+-    }
+-  }
+   std::vector<std::string> digest_before;
+-  for (const auto& path : paths) {
+-    digest_before.push_back(eom::validated_history_digest(path.history));
++  {
++    const std::string reason =
++        admission_reason(paths, inherited, start, coupling, &digest_before);
++    if (!reason.empty()) return decline(certificate, "VFS-H0-01", reason);
+   }
+-  if (any_radius) {
+-    if (inherited == nullptr) {
+-      return decline(certificate, "VFS-H0-01",
+-                     "histories declare radii but no evidence was supplied");
+-    }
+-    if (eom::compare_exact_decimal_tokens(inherited->coupling(), coupling) !=
+-        0) {
+-      return decline(
+-          certificate, "VFS-H0-01",
+-          "generated history was published under a different coupling");
+-    }
+-    if (inherited->members().size() != paths.size()) {
+-      return decline(certificate, "VFS-H0-01",
+-                     "evidence is for a different population");
+-    }
+-    for (std::size_t i = 0; i < paths.size(); ++i) {
+-      bool found = false;
+-      for (const auto& member : inherited->members()) {
+-        if (member.path_id != paths[i].id) continue;
+-        found = member.charge == paths[i].charge &&
+-            member.digest_after == digest_before[i];
+-        break;
+-      }
+-      if (!found) {
+-        return decline(
+-            certificate, "VFS-H0-01",
+-            "evidence does not bind path " + paths[i].id +
+-                ": identifier, charge or history content differs");
+-      }
+-    }
+-  }
++  const std::string start_of_history =
++      paths.front().history.segments().front().t_start_token();
+   const double s_min = paths.front().history.t_start();
+   certificate.history_start = s_min;
+   const Interval S_min = Interval::decimal_token(start_of_history);

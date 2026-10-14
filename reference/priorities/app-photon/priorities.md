@@ -13,6 +13,8 @@
 
 This folder owns the priority work ledger for the deployed Photon and Polarization Visualization app.
 
+The [October 13 substantive review](../aaa-operations/evidence/ops-032-photon-substantive-review-2026-10-13.md) proposes one bounded classifier repair covering two findings: missing/null/nonfinite certification status can admit malformed adapter records, and a null factor is misleadingly recorded as measured zero. The normal built-in producer supplies complete status; no observer-field bypass or physical consequence is established. These software proposals await disposition in the [existing queue](work-queue.md#proposed-review-follow-ups); deferred Photon research remains unchanged.
+
 Photon-specific geometry and dynamics research is gathered in [Photon research under Master-Equation Closure](../master-equation-closure/photon-research/README.md#geometry-analyses-and-evidence). This app owner keeps its controls, visualization, software contracts and observer diagnostics; its [manuscript](manuscript.md) links to the extracted research where those details are needed.
 
 The app begins from the candidate photon picture already used in the photon Gate B priority material: a coaxial contra-rotating planar pair whose observer-facing transverse ledger must still be derived, tested, and routed through analyzer behavior. This priority packet does not claim photon closure, Malus-law recovery, helicity recovery, or a physical free photon branch.

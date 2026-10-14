@@ -1,0 +1,282 @@
+{
+ "box": {
+  "q": [
+   "0.81",
+   "1.10"
+  ],
+  "q_delayed": [
+   "0",
+   "0.85"
+  ],
+  "v_delayed": [
+   "0",
+   "0.45"
+  ]
+ },
+ "controls": [
+  {
+   "name": "(K1) known: signed closed forms (chord, D_t, tangential N/(r^3 D), radial sigma/(2 r D), identity 1 + r_q' v' = D; both code paths kern and geom) vs direct vector computation, 400 random points of the NEW box, three classes; the vector tangent hit of each meridional class has the sign of N",
+   "points_with_M_negative": 370,
+   "points_with_N_negative": 198,
+   "max_abs_diff": {
+    "unlike": "4.5918e-41",
+    "like": "6.8877e-41",
+    "antipode": "4.5918e-41"
+   },
+   "pass": true
+  },
+  {
+   "name": "(H1) EXACT HAND-KNOWN: antipode class, static source q' = 0, receiver q = pi/3, qdot = 2/5: h_A = 1/6 and dh_A/dt = 1/(6 sqrt 3)",
+   "h": "0.166666666666666666666666666667",
+   "dh_dt": "0.096225044864937627418191463417",
+   "hand_dh_dt": "0.096225044864937627418191463417",
+   "pass": true
+  },
+  {
+   "name": "(W1) negative (sign flip): source velocity sign flipped at (1.0, 0.7, 0.4) changes D_t by > 1e-3 in every class",
+   "detail": {
+    "unlike": {
+     "D_closed": "1.15471041854992",
+     "D_wrong_velocity": "0.845289581450083"
+    },
+    "like": {
+     "D_closed": "0.902343843450018",
+     "D_wrong_velocity": "1.09765615654998"
+    },
+    "antipode": {
+     "D_closed": "1.05977525298944",
+     "D_wrong_velocity": "0.94022474701056"
+    }
+   },
+   "pass": true
+  },
+  {
+   "name": "(W3) negative: the OLD LABEL imposed (unlike D computed as 1 - v'|M|/r, i.e. approach assumed) at (1.0, 0.7, 0.4), where M < 0, differs from the vector D_t",
+   "M": "-0.412903069913",
+   "N": "-0.265142966583",
+   "D_vector": "1.15471041854992",
+   "D_old_label": "0.845289581450083",
+   "pass": true
+  },
+  {
+   "name": "(K2) NUMERICAL prescribed-history control: d(lambda_hat)/dt and d(a_rad)/dt closed forms vs Richardson differences on an exactly known history with a generated segment, NEW box, t = 3.8 (q = 0.885) and t = 4.2 (q = 1.069)",
+   "detail": {
+    "3.8": {
+     "q": "0.8852",
+     "qdot": "0.438",
+     "classes": {
+      "unlike": {
+       "delayed_arg": "2.8084069",
+       "q_delayed": "0.504961",
+       "v_delayed": "0.328925",
+       "beyond_seam": true,
+       "M": "-0.21168323",
+       "N": "-0.026112192",
+       "D": "1.070218174"
+      },
+      "like": {
+       "delayed_arg": "2.0437238",
+       "q_delayed": "0.285599",
+       "v_delayed": "0.24481",
+       "beyond_seam": true,
+       "M": "-0.095985108",
+       "N": "0.18617151",
+       "D": "0.9866205109"
+      },
+      "antipode": {
+       "delayed_arg": "1.8995718",
+       "q_delayed": "0.251452",
+       "v_delayed": "0.228953",
+       "beyond_seam": true,
+       "M": "-0.077416483",
+       "N": "0.21866809",
+       "D": "1.071341206"
+      }
+     },
+     "dlambda_closed": "-0.1262214566817267545566",
+     "dlambda_abs_err": "3.0661e-30",
+     "darad_abs_err": "3.0661e-30",
+     "jerk": {
+      "unlike": {
+       "closed": "-0.48591518041011480148",
+       "abs_err": "4.9362e-29"
+      },
+      "like": {
+       "closed": "-0.085822980529591316945",
+       "abs_err": "1.2941e-30"
+      },
+      "antipode": {
+       "closed": "0.02478379378911891842",
+       "abs_err": "5.8439e-34"
+      }
+     },
+     "dqddot_dt_closed": "-0.11186925280902933184",
+     "dqddot_dt_fd": "-0.11186925280902933184"
+    },
+    "4.2": {
+     "q": "1.0692",
+     "qdot": "0.482",
+     "classes": {
+      "unlike": {
+       "delayed_arg": "3.1475489",
+       "q_delayed": "0.622839",
+       "v_delayed": "0.36623",
+       "beyond_seam": true,
+       "M": "-0.44160811",
+       "N": "-0.22576537",
+       "D": "1.153670133"
+      },
+      "like": {
+       "delayed_arg": "2.4479321",
+       "q_delayed": "0.393539",
+       "v_delayed": "0.289273",
+       "beyond_seam": true,
+       "M": "-0.32863577",
+       "N": "-0.015929186",
+       "D": "0.9457410853"
+      },
+      "antipode": {
+       "delayed_arg": "2.3248566",
+       "q_delayed": "0.35877",
+       "v_delayed": "0.275734",
+       "beyond_seam": true,
+       "M": "-0.30984382",
+       "N": "0.016236144",
+       "D": "1.095898166"
+      }
+     },
+     "dlambda_closed": "-0.1482938293614236925684",
+     "dlambda_abs_err": "8.2393e-31",
+     "darad_abs_err": "8.2388e-31",
+     "jerk": {
+      "unlike": {
+       "closed": "-0.21434556883981669092",
+       "abs_err": "5.4014e-29"
+      },
+      "like": {
+       "closed": "-0.10729646433934321629",
+       "abs_err": "4.8958e-30"
+      },
+      "antipode": {
+       "closed": "0.023838584243132875234",
+       "abs_err": "8.4501e-34"
+      }
+     },
+     "dqddot_dt_closed": "-0.061944548211518693918",
+     "dqddot_dt_fd": "-0.061944548211518693918"
+    }
+   },
+   "pass": true
+  },
+  {
+   "name": "(K3) NUMERICAL prescribed-history control: each class's dh_c/dt and d(qddot)/dt closed forms vs Richardson differences, same history and times (values inside the K2 detail)",
+   "pass": true
+  },
+  {
+   "name": "(W2) negative: the pre-seam acceleration used for the unlike source beyond the seam at t = 4.2 changes d(lambda_hat)/dt and dh_U/dt by more than 1e-6",
+   "dlambda": [
+    "-0.148293829361424",
+    "-0.147595419607022"
+   ],
+   "dhU": [
+    "-0.214345568839817",
+    "-0.215769089382533"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(W4) negative (acceleration omission): the unlike source acceleration set to zero at t = 4.2 moves dh_U/dt away from the Richardson difference and changes d(lambda_hat)/dt, each by more than 1e-6",
+   "dhU_true_omitted_fd": [
+    "-0.214345568839817",
+    "-0.219565144163108",
+    "-0.214345568839817"
+   ],
+   "dlambda": [
+    "-0.148293829361424",
+    "-0.145732993595284"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(W5) negative (sign flip): the delayed speed entered with the wrong sign in dh_U/dt at t = 4.2 is rejected by the Richardson difference (difference > 1e-6)",
+   "dhU_flipped": "0.0825739732542433",
+   "pass": true
+  }
+ ],
+ "controls_all_pass": true,
+ "target": {
+  "cells": [
+   58,
+   85
+  ],
+  "N_range": [
+   "-0.4338180447856978872589098",
+   "0.4875490175576783876512859"
+  ],
+  "M_range": [
+   "-0.5591812675923575940225992",
+   "0.1254235374010737273991639"
+  ],
+  "cell_sign_counts": {
+   "N_pos": 2508,
+   "N_neg": 2338,
+   "N_und": 84,
+   "M_pos": 310,
+   "M_neg": 4562,
+   "M_und": 58
+  },
+  "min_chord_unlike": "0.856323987116745845671916",
+  "min_chord_like": "1.626099874339135189632909",
+  "min_chord_antipode_any_order": "1.705049044119011485609964",
+  "M_over_rU_range": [
+   "-0.4829721422326206499418349",
+   "0.1279304254211316108558082"
+  ],
+  "M_over_rL_range": [
+   "-0.3438787963867317741390147",
+   "0.07220877523079650077491641"
+  ],
+  "D_unlike_range_v_le_0.45": [
+   "0.9424313085604907751148863",
+   "1.217337464004679292473826"
+  ],
+  "D_like_range_v_le_0.45": [
+   "0.8452545416259707016374434",
+   "1.032493948853858425348712"
+  ],
+  "D_antipode_range_d_in_[-0.04,1.10]": [
+   "0.9910005999880001142850794",
+   "1.23520925301879662550477"
+  ],
+  "M_zero_q_of_qp": {
+   "0": "0.955316618125",
+   "0.1": "0.891534355212",
+   "0.2": "0.832583967619",
+   "0.3": "0.777243870865",
+   "0.4": "0.724484834885",
+   "0.5": "0.673412704712",
+   "0.55": "0.648254694439",
+   "0.6": "0.623220026692",
+   "0.65": "0.598214419458",
+   "0.7": "0.573143954804",
+   "0.75": "0.547913901893",
+   "0.8": "0.522427524377",
+   "0.85": "0.496584849473"
+  },
+  "N_zero_q_of_qp": {
+   "0": null,
+   "0.1": "1.46321652593",
+   "0.2": "1.33844242104",
+   "0.3": "1.19379296728",
+   "0.4": "1.02810475163",
+   "0.5": "0.843438791903",
+   "0.55": "0.745882392075",
+   "0.6": "0.646431711026",
+   "0.65": "0.546521202729",
+   "0.7": "0.447629731192",
+   "0.75": "0.35113861922",
+   "0.8": "0.258211908192",
+   "0.85": "0.169722348867"
+  }
+ }
+}

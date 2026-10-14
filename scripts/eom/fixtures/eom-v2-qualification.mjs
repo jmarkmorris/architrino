@@ -82,7 +82,7 @@ const endpoint=`http://127.0.0.1:${server.address().port}/api/eom/v2`;
 const browser=createEomV2HttpClient({ endpoint });
 try {
   const r=surface();r.runId='browser';const model=await browser.inspect(r);const result=await browser.evolve(r,{expectedModelDigest:model.modelDigest});assert.equal(result.checkpoint.durable,true);assert.deepEqual(await browser.readCheckpoint(result.checkpoint.id),result.checkpoint.data);
-  await assert.rejects(browser.evolve(r,{expectedModelDigest:'stale'}),/no longer matches/);
+  await assert.rejects(browser.evolve(r,{expectedModelDigest:'stale'}),/The EOM service model differs from the inspected or retained model\./);
   const badCancel=await fetch(`${endpoint}/cancel`,{method:'POST',body:'{"runId":"x","run\\u0049d":"y"}'});
   assert.equal(badCancel.status,400);assert.equal((await badCancel.json()).code,'duplicate_json_key');
   const staleExecution=await fetch(`${endpoint}/cancel`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({runId:r.runId,executionId:'old-generation'})});assert.equal(staleExecution.status,200);

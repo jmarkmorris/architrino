@@ -1,0 +1,13 @@
+PID 27975
+controls K True ['3.01022773338561413602405169783', '3.0110525645069077253040339412'] S True W True
+PRIMARY_unlike_at_2.8067 t in 3.795571602329 3.797323684280 q 0.72723 0.73948 qdot 0.35021 0.40721 B 0.02666 1.46277 box ok True True rUmin 0.8838
+antipode_at_1.4667 t in 3.408330692634 3.408405446390 q 0.59181 0.59217 qdot 0.34922 0.35028 B 0.28339 1.22169 box ok True True rUmin 0.9287
+like_at_1.8667 t in 3.579899570700 3.580473730075 q 0.65201 0.65440 qdot 0.35254 0.37304 B 0.19422 1.32197 box ok True True rUmin 0.9079
+like_at_1.9767 t in 3.701510102748 3.702951566286 q 0.69471 0.70146 qdot 0.35278 0.39176 B 0.12230 1.40725 box ok True True rUmin 0.8926
+like_at_2.0767 t in 3.810397536417 3.813009112770 q 0.73222 0.74600 qdot 0.34925 0.41006 B 0.00186 1.47643 box ok True True rUmin 0.8818
+antipode_at_1.8667 t in 3.788555195022 3.791346308844 q 0.72477 0.73705 qdot 0.35019 0.40633 B 0.02666 1.46277 box ok True True rUmin 0.8838
+antipode_at_1.9767 t in 3.892268432389 3.897425964797 q 0.75960 0.78178 qdot 0.34429 0.42513 B -0.1005 1.52960 box ok True True rUmin 0.8744
+envelope at t = 3.6 q 0.65845 0.66215 qdot 0.34621 0.38013
+envelope at t = 3.8 q 0.72738 0.74128 qdot 0.34314 0.41123
+envelope at t = 4.0 q 0.79571 0.82664 qdot 0.34007 0.44233
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-subrange-feedback-claude-review-envelope-output.json

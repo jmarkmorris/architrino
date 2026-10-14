@@ -1,0 +1,18 @@
+Known external SHA-256 abc passes BEFORE identity targets.
+Known genuine selected-record replay passes BEFORE expectation/corruption targets.
+empty expectation: refused, no usable partial state, stage=expectation
+origin-only expectation: refused, no usable partial state, stage=expectation
+contradictory expectation: refused, no usable partial state, stage=expectation
+malformed hash expectation: refused, no usable partial state, stage=expectation
+resealed slack controls selected by full identity: refused, no usable partial state, stage=expectation
+resealed slack controls selected by original controls: refused, no usable partial state, stage=expectation
+Bare replay intentionally accepts self-consistent slack controls without claiming original identity.
+controls with original origin: refused, no usable partial state, stage=expectation
+Controls-only zero-leg restore intentionally accepts another admitted origin.
+Known genuine two-leg continuation reissues evidence and record identically BEFORE post-leg failure targets.
+false final after complete replay: refused, no usable partial state, stage=final
+false second leg after first replay: refused, no usable partial state, stage=replay
+Claims-only record cannot append; rejected append preserves bytes.
+Continued append binding target 0: refused and byte-preserved.
+Continued append binding target 1: refused and byte-preserved.
+Continued append binding target 2: refused and byte-preserved.

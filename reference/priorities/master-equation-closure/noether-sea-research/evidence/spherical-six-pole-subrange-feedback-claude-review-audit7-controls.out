@@ -1,0 +1,5 @@
+PID 39092
+K1 table 204 exact resume-string joins 15 first-reading records [('w16-1', ['unlike']), ('w16-10', ['like']), ('w17-1', ['like']), ('ant-b3-13', ['antipode'])]
+K2 True ['0.401200769746683166266666996002', '0.401200799786666666666669670665'] negatives {'N1_dropped_remainder': True, 'N2_origin_uncertainty_dropped': True, 'N3_wrong_start_state': True, 'N4_wrong_start_acceleration': True, 'N5_gap': True, 'N6_uncertified': True, 'N7_beyond_coverage': True, 'N7b_window_read': True}
+K3 True 203 max endpoint difference 9.951e-9 | W2 shifted table detected on 202 of 202
+KD1 True KD2 True {'3.6': {'U': ('2.8e-22', '1.6e-23', '0.99705853'), 'L': ('1.7e-24', '2.9e-24', '1.0111024'), 'A': ('1.2e-27', '3.7e-28', '1.045941')}, '3.9': {'U': ('3.6e-22', '9.6e-23', '1.0416608'), 'L': ('3.7e-24', '5.5e-24', '0.99504407'), 'A': ('5.1e-28', '3.4e-27', '1.0580982')}} WD True

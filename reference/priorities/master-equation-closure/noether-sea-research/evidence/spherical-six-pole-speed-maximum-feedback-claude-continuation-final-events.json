@@ -1,0 +1,796 @@
+{
+ "events": {
+  "instrument_events_block": {
+   "sequence_from_step": 214,
+   "sequence_to_step": 274,
+   "qddot": {
+    "speed_maxima": [
+     {
+      "last_proved_end_before": 238,
+      "sign_before": "positive",
+      "first_proved_end_after": 240,
+      "sign_after": "negative",
+      "t_bracket_full_uncertainty": [
+       "4.246684593623649597167969",
+       "4.266684709182828044891357"
+      ],
+      "steps_in_bracket": [
+       239,
+       240
+      ],
+      "speed_hull_over_bracket": [
+       "0.3879708757258596256892283",
+       "0.390643373309802866052836"
+      ],
+      "qdot_proved_positive_across_bracket": true,
+      "qddot_rate_proved_negative_on_every_step_of_bracket": true,
+      "kind": "local speed maximum (qddot positive to negative with qdot proved positive)",
+      "unique_zero_in_bracket": true
+     }
+    ],
+    "minima_or_other": [],
+    "undecided_step_ends": [
+     239
+    ],
+    "signs_seen": [
+     "negative",
+     "positive",
+     "spans zero"
+    ]
+   },
+   "reception_of_L": {
+    "unlike": {
+     "passages_through_L": [
+      {
+       "class": "unlike",
+       "boundary": [
+        "3.406684593623649597167969",
+        "3.406684709182828044891357"
+       ],
+       "last_step_end_below": 256,
+       "source_time_at_last_below": [
+        "3.403191275431599626792283",
+        "3.403593268812167657438876"
+       ],
+       "margin_below": "0.003091324811481939729093",
+       "first_step_end_above": 257,
+       "source_time_at_first_above": [
+        "3.411609190669393124831453",
+        "3.412016354895909651863252"
+       ],
+       "margin_above": "0.004924481486565079940096",
+       "t_bracket_full_uncertainty": [
+        "4.426684593623649597167969",
+        "4.436684709182828044891357"
+       ]
+      }
+     ],
+     "positions_at_step_ends_first_last": [
+      "below",
+      "above"
+     ],
+     "crossed_L_by_the_end": true,
+     "steps_whose_whole_source_range_is_above_L": [
+      258,
+      274,
+      17
+     ]
+    },
+    "like": {
+     "passages_through_L": [],
+     "positions_at_step_ends_first_last": [
+      "below",
+      "below"
+     ],
+     "crossed_L_by_the_end": false,
+     "steps_whose_whole_source_range_is_above_L": []
+    },
+    "antipode": {
+     "passages_through_L": [],
+     "positions_at_step_ends_first_last": [
+      "below",
+      "below"
+     ],
+     "crossed_L_by_the_end": false,
+     "steps_whose_whole_source_range_is_above_L": []
+    }
+   }
+  },
+  "speed_maximum_rederived": [
+   {
+    "last_proved_positive_end": 238,
+    "qddot_there": [
+     "0.0007737486932493549690183321",
+     "0.001230866766358312347525124"
+    ],
+    "first_proved_negative_end": 240,
+    "qddot_there_after": [
+     "-0.00118396841564723188340153",
+     "-0.0007110936183994571454766118"
+    ],
+    "undecided_ends_between": [
+     [
+      239,
+      [
+       "-0.0002105219794489539276211374",
+       "0.0002544817164573937159424832"
+      ]
+     ]
+    ],
+    "t_bracket_full_uncertainty": [
+     "4.246684593623649597167969",
+     "4.266684709182828044891357"
+    ],
+    "steps_in_bracket": [
+     239,
+     240
+    ],
+    "speed_hull_over_bracket": [
+     "0.3879708757258596256892283",
+     "0.390643373309802866052836"
+    ],
+    "q_hull_over_bracket": [
+     "0.9062744491579846413248684",
+     "0.9157343087648942156260426"
+    ],
+    "qdot_proved_positive_across_bracket": true,
+    "qddot_rate_over_bracket_steps": [
+     [
+      "-0.109118728901503006096609",
+      "-0.08715724359413405510495291"
+     ],
+     [
+      "-0.1080733280988733680117811",
+      "-0.08604044677304928531159918"
+     ]
+    ],
+    "rate_proved_negative_on_every_bracket_step": true,
+    "class_tangent_at_bracket_ends": {
+     "238": {
+      "unlike": [
+       "-0.01272042920469295678409156",
+       "-0.01234889271215165531122552"
+      ],
+      "like": [
+       "0.005535250245534437098772012",
+       "0.005592690521753756437492409"
+      ],
+      "antipode": [
+       "0.007958927652407874654337882",
+       "0.007987068956756211221258233"
+      ]
+     },
+     "240": {
+      "unlike": [
+       "-0.01437592731372075548526958",
+       "-0.01399148943599731105612886"
+      ],
+      "like": [
+       "0.005199875258149384896661817",
+       "0.0052591899556766459161899"
+      ],
+      "antipode": [
+       "0.007992083639924138705206231",
+       "0.008021205861921207994462344"
+      ]
+     }
+    }
+   }
+  ],
+  "minimum_rederived": [],
+  "qddot_end_signs": {
+   "seen": [
+    "negative",
+    "positive",
+    "spans zero"
+   ],
+   "undecided_step_ends": [
+    239
+   ],
+   "first_proved_negative_end": 240,
+   "last_proved_positive_end": 238,
+   "all_ends_after_first_negative_are_negative": true
+  },
+  "qddot_rate": {
+   "signs_over_steps": [
+    "negative"
+   ],
+   "rate_proved_negative_on_every_step": true,
+   "range": [
+    "-0.1267013704453022980532231",
+    "-0.04502027797828400057053671"
+   ]
+  },
+  "qddot_start_signs_seen": [
+   "negative",
+   "positive",
+   "spans zero"
+  ],
+  "qddot_over_step_signs_seen": [
+   "negative",
+   "positive",
+   "spans zero"
+  ],
+  "steps_with_undecided_qddot_over_step": [
+   238,
+   239,
+   240,
+   241
+  ],
+  "qdot_proved_positive_on_every_step": true,
+  "source_time_passages": [
+   {
+    "class": "unlike",
+    "seam": "like-reception to w-chain records = L, the beginning of the latest extension (TARGET 2)",
+    "seam_time": [
+     "3.406684593623649597167969",
+     "3.406684709182828044891357"
+    ],
+    "last_step_end_below": 256,
+    "source_time_at_last_below": [
+     "3.403191275431599626792283",
+     "3.403593268812167657438876"
+    ],
+    "margin_below": "0.003091324811481939729093",
+    "first_step_end_above": 257,
+    "source_time_at_first_above": [
+     "3.411609190669393124831453",
+     "3.412016354895909651863252"
+    ],
+    "margin_above": "0.004924481486565079940096",
+    "t_bracket_full_uncertainty": [
+     "4.426684593623649597167969",
+     "4.436684709182828044891357"
+    ],
+    "steps_whose_whole_source_range_is_above": [
+     258,
+     274,
+     17
+    ],
+    "whole_range_above_t_interval": [
+     "4.436684593623649597167969",
+     "4.606684709182828044891357"
+    ],
+    "whole_range_above_source_range": [
+     "3.409928277506908600651593",
+     "3.55329105486657095661812"
+    ]
+   },
+   {
+    "class": "like",
+    "seam": "late-feedback to like-reception records (the OLD boundary 2.8067; not target 2)",
+    "seam_time": [
+     "2.806684593623649597167969",
+     "2.806684709182828044891357"
+    ],
+    "last_step_end_below": 269,
+    "source_time_at_last_below": [
+     "2.805225622988529591630657",
+     "2.805563384012479066912571"
+    ],
+    "margin_below": "0.001121209611170530255398",
+    "first_step_end_above": 270,
+    "source_time_at_first_above": [
+     "2.815741870122544422343857",
+     "2.816077673248328140341675"
+    ],
+    "margin_above": "0.009057160939716377452500",
+    "t_bracket_full_uncertainty": [
+     "4.556684593623649597167969",
+     "4.566684709182828044891357"
+    ],
+    "steps_whose_whole_source_range_is_above": [
+     271,
+     274,
+     4
+    ],
+    "whole_range_above_t_interval": [
+     "4.566684593623649597167969",
+     "4.606684709182828044891357"
+    ],
+    "whole_range_above_source_range": [
+     "2.815741870122544422343857",
+     "2.85840478346979084707526"
+    ]
+   }
+  ],
+  "per_class_at_the_end": {
+   "unlike": {
+    "source_time": [
+     "3.550569240898036965719463",
+     "3.551287627824098776661227"
+    ],
+    "position_vs_L": "above",
+    "family_read": [
+     "subrange-feedback"
+    ],
+    "history_age": [
+     "1.05539708135872926823013",
+     "1.056115352725612631448506"
+    ],
+    "crossed_L": true
+   },
+   "like": {
+    "source_time": [
+     "2.85804205221236304625603",
+     "2.85836807672506322528891"
+    ],
+    "position_vs_L": "below",
+    "family_read": [
+     "like-reception"
+    ],
+    "history_age": [
+     "1.748316632457764819602447",
+     "1.748642541411286550911939"
+    ],
+    "crossed_L": false
+   },
+   "antipode": {
+    "source_time": [
+     "2.718213421261167020613199",
+     "2.719088058458872178893524"
+    ],
+    "position_vs_L": "below",
+    "family_read": [
+     "late-feedback"
+    ],
+    "history_age": [
+     "1.887596650723955865997833",
+     "1.88847117236248257655477"
+    ],
+    "crossed_L": false
+   }
+  },
+  "tangent_contribution_reversals": [
+   {
+    "class": "unlike",
+    "from": "positive",
+    "to": "negative",
+    "last_step_end_before": 224,
+    "tangent_there": [
+     "0.00004050070878368479030793317",
+     "0.0003208080323760258816067012"
+    ],
+    "first_step_end_after": 225,
+    "tangent_there_after": [
+     "-0.0009305446767216482179495963",
+     "-0.0006445144421723179455363631"
+    ],
+    "t_bracket_full_uncertainty": [
+     "4.106684593623649597167969",
+     "4.116684709182828044891357"
+    ]
+   },
+   {
+    "class": "like",
+    "from": "positive",
+    "to": "negative",
+    "last_step_end_before": 269,
+    "tangent_there": [
+     "0.000007596854536651012990782079",
+     "0.0001029792505465798753272979"
+    ],
+    "first_step_end_after": 270,
+    "tangent_there_after": [
+     "-0.0001856658281518352516898249",
+     "-0.00008835646518695271496323238"
+    ],
+    "t_bracket_full_uncertainty": [
+     "4.556684593623649597167969",
+     "4.566684709182828044891357"
+    ]
+   }
+  ],
+  "N_sign_changes": [
+   {
+    "class": "unlike",
+    "from": "positive",
+    "to": "negative",
+    "last_step_end_before": 224,
+    "first_step_end_after": 225
+   },
+   {
+    "class": "like",
+    "from": "positive",
+    "to": "negative",
+    "last_step_end_before": 269,
+    "first_step_end_after": 270
+   }
+  ],
+  "M_sign_changes": [],
+  "D_side_of_one_changes": [],
+  "D_sides_seen_at_step_starts": {
+   "unlike": [
+    "above"
+   ],
+   "like": [
+    "below"
+   ],
+   "antipode": [
+    "above"
+   ]
+  },
+  "tangent_signs_seen_at_step_ends": {
+   "unlike": [
+    "negative",
+    "positive"
+   ],
+   "like": [
+    "negative",
+    "positive"
+   ],
+   "antipode": [
+    "positive"
+   ]
+  },
+  "M_signs_seen": {
+   "unlike": [
+    "negative"
+   ],
+   "like": [
+    "negative"
+   ],
+   "antipode": [
+    "negative"
+   ]
+  },
+  "N_signs_seen": {
+   "unlike": [
+    "negative",
+    "positive"
+   ],
+   "like": [
+    "negative",
+    "positive"
+   ],
+   "antipode": [
+    "positive"
+   ]
+  },
+  "lambda_hat": {
+   "signs_at_starts": [
+    "negative"
+   ],
+   "signs_over_steps": [
+    "negative"
+   ],
+   "signs_at_ends": [
+    "negative"
+   ]
+  },
+  "a_rad_end_signs": [
+   "negative"
+  ]
+ },
+ "summary": {
+  "parts": [
+   "t1b",
+   "t2",
+   "t3"
+  ],
+  "controls_per_part": [
+   [
+    "t1b",
+    true,
+    27,
+    true,
+    214,
+    264,
+    "141ac5b5d406d4b9",
+    5.988621234893799
+   ],
+   [
+    "t2",
+    true,
+    27,
+    true,
+    234,
+    284,
+    "6448afe4799f2422",
+    5.7768449783325195
+   ],
+   [
+    "t3",
+    true,
+    27,
+    true,
+    254,
+    304,
+    "34ae3de4955468ae",
+    6.102643966674805
+   ]
+  ],
+  "n_certified_steps": 60,
+  "first_step": 215,
+  "last_step": 274,
+  "reached_t": [
+   "4.606684593623649597167969",
+   "4.606684709182828044891357"
+  ],
+  "reached_q": [
+   "1.045210315569370832259362",
+   "1.048063603726783075030252"
+  ],
+  "reached_qdot": [
+   "0.3821099822311932454794886",
+   "0.3863400661206562789504872"
+  ],
+  "iterations": {
+   "1": [
+    215,
+    216,
+    217,
+    218,
+    219,
+    220,
+    221,
+    222,
+    223,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    260
+   ],
+   "2": [
+    261,
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274
+   ]
+  },
+  "all_subwake": true,
+  "all_reconciled": true,
+  "trace_identity_all": true,
+  "geometry_box_all": true,
+  "guaranteed_coverage_all": true,
+  "min_margin_to_guaranteed_coverage_end": {
+   "unlike": "0.975312291742284414643754",
+   "like": "1.738116351802287081582268",
+   "antipode": "1.877562052130789998249618"
+  },
+  "rate_jump_records_read": {
+   "unlike": [],
+   "like": [],
+   "antipode": []
+  },
+  "families_read_at_step_ends": {
+   "unlike": [
+    [
+     215,
+     "like-reception"
+    ],
+    [
+     257,
+     "subrange-feedback"
+    ]
+   ],
+   "like": [
+    [
+     215,
+     "late-feedback"
+    ],
+    [
+     270,
+     "like-reception"
+    ]
+   ],
+   "antipode": [
+    [
+     215,
+     "late-feedback"
+    ]
+   ]
+  },
+  "Dt_range_extremes": {
+   "unlike": [
+    "1.0376635057",
+    "1.1491650241"
+   ],
+   "like": [
+    "0.9459012681",
+    "0.9984724356"
+   ],
+   "antipode": [
+    "1.0618169977",
+    "1.0928622896"
+   ]
+  },
+  "max_q_over_steps": "1.048064",
+  "min_q_over_steps": "0.813384",
+  "max_history_q": {
+   "unlike": "0.643812",
+   "like": "0.414392",
+   "antipode": "0.374402"
+  },
+  "max_history_qdot": {
+   "unlike": "0.362304",
+   "like": "0.294627",
+   "antipode": "0.279591"
+  },
+  "speed_range_over_steps": [
+   "0.38210998",
+   "0.39064948"
+  ],
+  "min_separations": {
+   "r_unlike_delayed_min": "0.98545951",
+   "r_like_delayed_min": "1.74831232",
+   "r_antipode_delayed_min": "1.88751587",
+   "simultaneous_unlike_pair_chord_min": "0.88013769"
+  },
+  "qddot_end_first_last": [
+   [
+    "0.02585169877279393058967983",
+    "0.02617101410565067207129198"
+   ],
+   [
+    "-0.02745501669757161778245728",
+    "-0.02665092877707533552591725"
+   ]
+  ],
+  "a_rad_end_first_last": [
+   [
+    "-0.06489798740793630443487411",
+    "-0.06477153159093646205029517"
+   ],
+   [
+    "-0.0464982309637866443317701",
+    "-0.04623407387239911332910205"
+   ]
+  ],
+  "lambda_hat_end_first_last": [
+   [
+    "-0.08512962378755199840721778",
+    "-0.08353108114555019563272386"
+   ],
+   [
+    "-0.1030245728177139522315472",
+    "-0.09950980755693617345905816"
+   ]
+  ],
+  "class_contributions_end_first": {
+   "unlike": {
+    "tangent": [
+     "0.00906112190188881426390472",
+     "0.009322135478787040230525486"
+    ],
+    "radial": [
+     "-0.09759240167125539173394304",
+     "-0.09749252130971398344060614"
+    ],
+    "multiplicity": 2,
+    "moving": true
+   },
+   "like": {
+    "tangent": [
+     "0.009256661095489288681118652",
+     "0.009296248505785753677581777"
+    ],
+    "radial": [
+     "0.05730560536845588837389407",
+     "0.0573243266007085406373867"
+    ],
+    "multiplicity": 2,
+    "moving": true
+   },
+   "antipode": {
+    "tangent": [
+     "0.007533915775415827644656459",
+     "0.007552630121077878163184715"
+    ],
+    "radial": [
+     "-0.02461119110513680107482514",
+     "-0.02460333688193101924707573"
+    ],
+    "multiplicity": 1,
+    "moving": true
+   }
+  },
+  "class_contributions_end_last": {
+   "unlike": {
+    "tangent": [
+     "-0.03493216625048200039127685",
+     "-0.03428510056693286875222514"
+    ],
+    "radial": [
+     "-0.08265367356348416542861608",
+     "-0.08245873542866481307438191"
+    ],
+    "multiplicity": 2,
+    "moving": true
+   },
+   "like": {
+    "tangent": [
+     "-0.0009706691022906277789686672",
+     "-0.0008647663725376661063590589"
+    ],
+    "radial": [
+     "0.0604144801680740241585222",
+     "0.06045964339148157089655221"
+    ],
+    "multiplicity": 2,
+    "moving": true
+   },
+   "antipode": {
+    "tangent": [
+     "0.008447818655201010387788233",
+     "0.008498938162395199332666952"
+    ],
+    "radial": [
+     "-0.02425903756837650306167622",
+     "-0.02423498183521587115127234"
+    ],
+    "multiplicity": 1,
+    "moving": true
+   }
+  },
+  "q_width_first_last": [
+   "0.00113343",
+   "0.00285328"
+  ],
+  "qdot_width_first_last": [
+   "0.00190577",
+   "0.00423008"
+  ],
+  "qddot_end_width_first_last": [
+   "0.00031931",
+   "0.00080408"
+  ],
+  "history_age_at_end": {
+   "unlike": [
+    "1.05539708135872926823013",
+    "1.056115352725612631448506"
+   ],
+   "like": [
+    "1.748316632457764819602447",
+    "1.748642541411286550911939"
+   ],
+   "antipode": [
+    "1.887596650723955865997833",
+    "1.88847117236248257655477"
+   ]
+  }
+ }
+}

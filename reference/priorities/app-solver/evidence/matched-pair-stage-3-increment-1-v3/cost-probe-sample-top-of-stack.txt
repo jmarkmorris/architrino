@@ -1,0 +1,12 @@
+Sort by top of stack, same collapsed (when >= 5):
+        architrino::eom::sha256_hex(std::basic_string<char> const&)  (in cost-probe)        3361
+        _platform_memmove  (in libsystem_platform.dylib)        168
+        std::enable_if<!is_trivial_cpp_int<boost::multiprecision::backends::cpp_int_backend<0ul, 0ul, (boost::multiprecision::cpp_integer_type)1, (boost::multip
+        architrino::eom::HistorySegmentSequence::pin(unsigned long) const  (in cost-probe)        72
+        nextafter  (in libsystem_m.dylib)        63
+        _xzm_free_main  (in libsystem_malloc.dylib)        57
+        _xzm_xzone_malloc_tiny  (in libsystem_malloc.dylib)        44
+        mach_absolute_time  (in libsystem_kernel.dylib)        36
+        architrino::eom::(anonymous namespace)::segment_hull(architrino::eom::RetainedHistory const&, architrino::eom::Interval const&, bool)  (in cost-probe)  
+        <deduplicated_symbol>  (in libsystem_malloc.dylib)        18
+        architrino::eom::(anonymous namespace)::require_finite(double, char const*)  (in cost-probe)        17

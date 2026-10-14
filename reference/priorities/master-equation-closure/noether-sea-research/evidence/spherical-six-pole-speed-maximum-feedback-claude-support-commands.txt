@@ -1,0 +1,200 @@
+CENSUS Mon Oct 12 21:20:09 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: none yet; last slot line: 
+SLOT-BUSY(support) Mon Oct 12 21:20:09 UTC 2026 geomz
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-geomz-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-geomz.json
+end Mon Oct 12 21:20:16 UTC 2026 exit 0 PID 12294 wall/peak:  7.51 real 6.47 user 0.08 sys; 28475392 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:20:16 UTC 2026 geomz
+CENSUS Mon Oct 12 21:20:16 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CENSUS Mon Oct 12 21:23:04 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:23:01Z
+SLOT-BUSY(support) Mon Oct 12 21:23:05 UTC 2026 slice5-controls
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5-controls.json
+end Mon Oct 12 21:23:05 UTC 2026 exit 0 PID 14029 wall/peak:  0.49 real 0.46 user 0.01 sys; 39387136 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:23:05 UTC 2026 slice5-controls
+CENSUS Mon Oct 12 21:23:05 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CENSUS Mon Oct 12 21:23:15 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:23:01Z
+SLOT-BUSY(support) Mon Oct 12 21:23:15 UTC 2026 slice5-known-s3w
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5-known-s3w.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s3w.json
+end Mon Oct 12 21:23:16 UTC 2026 exit 1 PID 14403 wall/peak:  0.90 real 0.88 user 0.01 sys; 43089920 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:23:16 UTC 2026 slice5-known-s3w
+CENSUS Mon Oct 12 21:23:16 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+NOTE Mon Oct 12 21:23:35 UTC 2026: slice5-iv v1 (bytes kept as -slice5-iv-v1.py) passed all controls but stopped with AttributeError in post-processing of the replay run slice5-known-s3w (exit 1, no JSON target written beyond controls); repaired as v2 (age line only); rerun under the new name slice5v2-known-s3w after the controls, which rerun at the head of every invocation.
+CENSUS Mon Oct 12 21:23:45 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:23:42Z
+SLOT-BUSY(support) Mon Oct 12 21:23:45 UTC 2026 slice5v2-known-s3w
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v2-known-s3w.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s3w.json
+end Mon Oct 12 21:23:46 UTC 2026 exit 0 PID 14701 wall/peak:  1.19 real 1.18 user 0.01 sys; 42909696 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:23:46 UTC 2026 slice5v2-known-s3w
+CENSUS Mon Oct 12 21:23:46 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+INCIDENT Mon Oct 12 21:25:41 UTC 2026: at about 21:23:30 UTC a stray one-liner '../.venv/bin/python -I -c print(x)' (no computation, under 0.1 s, no file read or written) was executed inside the repair command WITHOUT its own census or SLOT lines; the census taken by run.sh seconds later (next CENSUS line above) shows the slot state. Disclosed to the PI; no result depends on it.
+CENSUS Mon Oct 12 21:27:02 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:25:33Z
+SLOT-BUSY(support) Mon Oct 12 21:27:03 UTC 2026 slice5v2-t1b
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v2-t1b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t1b.json
+end Mon Oct 12 21:27:04 UTC 2026 exit 0 PID 16486 wall/peak:  1.54 real 1.38 user 0.05 sys; 44138496 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:27:04 UTC 2026 slice5v2-t1b
+CENSUS Mon Oct 12 21:27:04 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CENSUS Mon Oct 12 21:27:34 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:27:25Z
+SLOT-BUSY(support) Mon Oct 12 21:27:34 UTC 2026 extract-t1b
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-extract.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v2-t1b.json 215,224,225,234
+end Mon Oct 12 21:27:34 UTC 2026 exit 0 PID 16789 wall/peak:  0.03 real 0.01 user 0.01 sys; 16416768 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:27:34 UTC 2026 extract-t1b
+CENSUS Mon Oct 12 21:27:34 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CENSUS Mon Oct 12 21:27:56 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:27:25Z
+SLOT-BUSY(support) Mon Oct 12 21:27:56 UTC 2026 slice5v2-t1b-t2
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v2-t1b-t2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t1b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t2.json
+end Mon Oct 12 21:27:58 UTC 2026 exit 0 PID 17065 wall/peak:  2.10 real 2.02 user 0.03 sys; 45973504 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:27:58 UTC 2026 slice5v2-t1b-t2
+CENSUS Mon Oct 12 21:27:58 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CENSUS Mon Oct 12 21:27:58 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:27:25Z
+SLOT-BUSY(support) Mon Oct 12 21:27:58 UTC 2026 extract-t2
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-extract.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v2-t1b-t2.json 236,237,238,239,240,241,242,243,254
+end Mon Oct 12 21:27:58 UTC 2026 exit 0 PID 17125 wall/peak:  0.03 real 0.02 user 0.00 sys; 17317888 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:27:58 UTC 2026 extract-t2
+CENSUS Mon Oct 12 21:27:58 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CENSUS Mon Oct 12 21:28:43 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:27:25Z
+SLOT-BUSY(support) Mon Oct 12 21:28:43 UTC 2026 slice5v2-t1b-t2-t3
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v2-t1b-t2-t3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t1b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t3.json
+end Mon Oct 12 21:28:46 UTC 2026 exit 0 PID 17511 wall/peak:  2.81 real 2.76 user 0.02 sys; 47366144 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:28:46 UTC 2026 slice5v2-t1b-t2-t3
+CENSUS Mon Oct 12 21:28:46 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CENSUS Mon Oct 12 21:28:46 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:27:25Z
+SLOT-BUSY(support) Mon Oct 12 21:28:46 UTC 2026 extract-t3
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-extract.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v2-t1b-t2-t3.json 255,256,257,258,263,264,265,266,267,268,269,270,274
+end Mon Oct 12 21:28:46 UTC 2026 exit 0 PID 17565 wall/peak:  0.02 real 0.02 user 0.00 sys; 18382848 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:28:46 UTC 2026 extract-t3
+CENSUS Mon Oct 12 21:28:46 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CENSUS Mon Oct 12 21:29:37 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:29:21Z
+SLOT-BUSY(support) Mon Oct 12 21:29:37 UTC 2026 table-all
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-table.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v2-t1b-t2-t3.json 215,224,225,234,238,239,240,241,254,256,257,258,269,270,271,274
+end Mon Oct 12 21:29:37 UTC 2026 exit 0 PID 18272 wall/peak:  0.05 real 0.02 user 0.01 sys; 18661376 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:29:37 UTC 2026 table-all
+CENSUS Mon Oct 12 21:29:37 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CENSUS Mon Oct 12 21:31:47 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:29:21Z
+SLOT-BUSY(support) Mon Oct 12 21:31:47 UTC 2026 slice5v3-t1b-t2-t3
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v3-t1b-t2-t3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t1b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t3.json
+end Mon Oct 12 21:31:51 UTC 2026 exit 1 PID 19623 wall/peak:  3.40 real 3.29 user 0.04 sys; 48594944 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:31:51 UTC 2026 slice5v3-t1b-t2-t3
+CENSUS Mon Oct 12 21:31:51 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+NOTE Mon Oct 12 21:32:06 UTC 2026: slice5-iv v3 (bytes kept as -slice5-iv-v3.py) passed controls E1-E8 etc. but one of six textual edits had not applied (trailing newline in the anchor); run slice5v3-t1b-t2-t3 exited 1 with NameError in the certificate post-processing (record slice5v3-t1b-t2-t3.json holds controls only, kept). v4 applies the missing edit; rerun under the new name slice5v4-t1b-t2-t3, controls first.
+CENSUS Mon Oct 12 21:32:06 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:29:21Z
+SLOT-BUSY(support) Mon Oct 12 21:32:06 UTC 2026 slice5v4-t1b-t2-t3
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v4-t1b-t2-t3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t1b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t3.json
+end Mon Oct 12 21:32:09 UTC 2026 exit 1 PID 19843 wall/peak:  3.35 real 3.24 user 0.03 sys; 48693248 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:32:09 UTC 2026 slice5v4-t1b-t2-t3
+CENSUS Mon Oct 12 21:32:09 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+NOTE Mon Oct 12 21:32:31 UTC 2026: the v4 edit did not apply either (perl chomp inert under slurp mode); file bytes kept as -slice5-iv-v4.py (v3 + note), run slice5v4-t1b-t2-t3 exited 1 identically, record identical to the v3 record (sha256 94a75497...). v5 applies the edit (verified by grep count 1); rerun as slice5v5-t1b-t2-t3, controls first. Three failed post-processing runs in total (v1 replay, v3, v4); none produced a certificate; no enclosure code changed between v2 and v5.
+CENSUS Mon Oct 12 21:32:31 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:29:21Z
+SLOT-BUSY(support) Mon Oct 12 21:32:31 UTC 2026 slice5v5-t1b-t2-t3
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v5-t1b-t2-t3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t1b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t3.json
+end Mon Oct 12 21:32:34 UTC 2026 exit 0 PID 20102 wall/peak:  3.37 real 3.27 user 0.03 sys; 48136192 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:32:34 UTC 2026 slice5v5-t1b-t2-t3
+CENSUS Mon Oct 12 21:32:34 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CHECK Mon Oct 12 21:32:34 UTC 2026: the 60 printed step rows of slice5v5-t1b-t2-t3 differ from those of slice5v2-t1b-t2-t3 in        0 lines (shell diff).
+CENSUS Mon Oct 12 21:34:08 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:29:21Z
+SLOT-BUSY(support) Mon Oct 12 21:34:08 UTC 2026 table-v5
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-table.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v5-t1b-t2-t3.json 215,224,225,234,238,239,240,241,254,256,257,258,269,270,271,274
+end Mon Oct 12 21:34:08 UTC 2026 exit 0 PID 20447 wall/peak:  0.04 real 0.02 user 0.00 sys; 18644992 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:34:08 UTC 2026 table-v5
+CENSUS Mon Oct 12 21:34:08 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+SAVE Mon Oct 12 21:34:44 UTC 2026: wave1 corrected (section time stamps were written before the save; now state the actual first save 21:34:08; three short decimals replaced by outward-rounded boxes); prior state kept as .tmp/six-pole-speed-maximum-feedback/support/wave1-state-20261012T213408Z.md
+CENSUS Mon Oct 12 21:36:20 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:29:21Z
+SLOT-BUSY(support) Mon Oct 12 21:36:20 UTC 2026 endpoint-t1b-t2-t3
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-endpoint-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-endpoint-t1b-t2-t3.json --v5=reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v5-t1b-t2-t3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t1b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t3.json
+end Mon Oct 12 21:36:24 UTC 2026 exit 0 PID 21053 wall/peak:  4.52 real 4.38 user 0.05 sys; 44056576 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:36:24 UTC 2026 endpoint-t1b-t2-t3
+CENSUS Mon Oct 12 21:36:24 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CENSUS Mon Oct 12 21:38:03 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:29:21Z
+SLOT-BUSY(support) Mon Oct 12 21:38:03 UTC 2026 endpointv2-t1b-t2-t3
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-endpoint-iv.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-endpointv2-t1b-t2-t3.json --v5=reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-slice5v5-t1b-t2-t3.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t1b.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t2.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t3.json
+end Mon Oct 12 21:38:15 UTC 2026 exit 0 PID 22025 wall/peak:  11.54 real 6.82 user 0.33 sys; 39747584 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:38:15 UTC 2026 endpointv2-t1b-t2-t3
+CENSUS Mon Oct 12 21:38:15 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CENSUS Mon Oct 12 21:38:55 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:29:21Z
+SLOT-BUSY(support) Mon Oct 12 21:38:55 UTC 2026 table2
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-table2.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-endpointv2-t1b-t2-t3.json
+end Mon Oct 12 21:38:55 UTC 2026 exit 0 PID 22432 wall/peak:  0.05 real 0.02 user 0.01 sys; 16285696 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:38:55 UTC 2026 table2
+CENSUS Mon Oct 12 21:38:55 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+CENSUS Mon Oct 12 21:38:55 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:29:21Z
+SLOT-BUSY(support) Mon Oct 12 21:38:55 UTC 2026 companion-check
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-companion-check.py reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-geomz.json reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-companion-check.json
+end Mon Oct 12 21:38:56 UTC 2026 exit 0 PID 22471 wall/peak:  0.49 real 0.46 user 0.01 sys; 20430848 maximum resident set size;
+SLOT-IDLE(support) Mon Oct 12 21:38:56 UTC 2026 companion-check
+CENSUS Mon Oct 12 21:38:56 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+SAVE Mon Oct 12 21:40:22 UTC 2026: wave1 section 5 appended (end-instant evaluation, companion paragraph) and editorial repair: heading rows inserted in the first account table and the source table of section 3, presentation only, no number changed, no rerun; prior bytes kept as .tmp/six-pole-speed-maximum-feedback/support/wave1-state-20261012T214022Z.md
+SAVE Mon Oct 12 21:40:44 UTC 2026: wave1 corrected in place (doubled backslashes in the two inserted heading rows; '1.4' -> '1.3' percent; rounding note for width columns); prior bytes kept in scratch (-pre-backslash-fix)
+FINAL CHECK Mon Oct 12 21:41:20 UTC 2026: read-only process census (pgrep -x Python/python/python3.13; ps of each):
+  (end of list; this role started no background process in this campaign; every python invocation of this role was foreground and has ended)

@@ -1,0 +1,2029 @@
+diff -ruN stage3i-tree/src/eom/CMakeLists.txt stage3j-tree/src/eom/CMakeLists.txt
+--- stage3i-tree/src/eom/CMakeLists.txt	2026-10-12 16:16:22
++++ stage3j-tree/src/eom/CMakeLists.txt	2026-10-12 16:51:54
+@@ -63,6 +63,7 @@
+   src/MatchedPairEnclosure.cpp
+   src/ValidatedFarStep.cpp
+   src/ValidatedEvolution.cpp
++  src/ValidatedRunRecord.cpp
+ )
+ target_include_directories(eom_native
+   PUBLIC include
+diff -ruN stage3i-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp stage3j-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp
+--- stage3i-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp	1969-12-31 19:00:00
++++ stage3j-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp	2026-10-12 16:56:01
+@@ -0,0 +1,248 @@
++// A validated run record: a file of claims about a run of the validated
++// far-step evolution driver, and restoration of such a run by replay.
++//
++// A record never holds evidence or a continuation. Both are sealed objects
++// that only the step producer and the evolution entry point can issue.
++// Restoring a run means calling the same entry point again, leg by leg, from
++// an origin population that needs no evidence, and comparing what it issues
++// with what the record claims. The evidence and continuation a restore
++// returns are the ones issued during that replay. c_f = 1.
++//
++// Scope. This unit is separate from the checkpoint unit and does not use,
++// extend or alter it or its format. Nothing here is bound into the ordinary
++// evolution request or the checkpoint identity.
++//
++// What a record is. In order: scalars; both policy tokens and the declared
++// pairs; the bound controls; the origin time and an exact origin population;
++// the legs, one per call of the driver, each with the operational inputs of
++// that call (requested end, accepted-step limit, the count after which it
++// was cancelled) and its outcome; a step log of every accepted step's tokens
++// and each path's content chain after it; and the final controller state and
++// ledger. A digest of that body is stored beside it. The digest detects
++// accidental corruption. It is not a trust anchor: anyone who can change the
++// body can recompute it, and validated_run_record_reseal does exactly that.
++//
++// Two kinds of field. When a leg is appended, the fields of the accepted
++// boundary are compared with the sealed continuation and evidence the
++// driver returned: controls, accepted time, controller state, ledger, and
++// each path's identifier, charge and chain. The accepted steps must also
++// lead from the record's last population to the certificate's, through the
++// sealed evidence each accepted step carries. The rest of the leg's
++// transcript (how it ended, its step tokens) is plain data and is carried
++// as a claim, to be confirmed by replay.
++//
++// Identity. A restore reports an identity basis:
++//   expected_record    the caller named the SHA-256 of the complete record
++//                      bytes; exactly those bytes are selected;
++//   expected_controls  the caller named the complete bound control set and
++//                      optionally the origin members; only those fields are
++//                      selected, so different records can satisfy it;
++//   record_only        the caller named nothing; the result is valid for
++//                      the record's own inputs and claims no original.
++// Every result reports the actual record identity and the fields compared.
++// A refusal returns no population, evidence or continuation.
++#pragma once
++
++#include "architrino/eom/ValidatedEvolution.hpp"
++
++#include <cstddef>
++#include <memory>
++#include <optional>
++#include <string>
++#include <vector>
++
++namespace architrino::eom {
++
++inline constexpr const char* kValidatedRunRecordFormat =
++    "architrino_validated_run_record/v1";
++
++// The complete bound control set of a run.
++struct ValidatedRunControls {
++  std::string policy;
++  std::string field_speed;
++  std::string coupling;
++  std::string initial_step;
++  std::string minimum_step;
++  ValidatedFarStepBudgets increment_budget{0.0, 0.0};
++  std::optional<ValidatedFarStepBudgets> total_budget = std::nullopt;
++  std::size_t max_attempts_per_step = 0;
++  std::size_t max_lower_sign_retries = 0;
++  std::size_t growth_cooldown_steps = 0;
++  std::string pair_policy;
++  std::vector<ValidatedFarStepGroup> groups;
++};
++
++// Empty when equal; otherwise the name of the first field that differs.
++[[nodiscard]] std::string validated_run_controls_difference(
++    const ValidatedRunControls& left, const ValidatedRunControls& right);
++
++struct ValidatedRunOriginMember {
++  std::string path_id;
++  std::string charge;
++  std::string chain;
++};
++
++// One call of the driver. Operational inputs, then the claimed outcome.
++struct ValidatedRunLeg {
++  std::string end_time;
++  std::size_t max_accepted_steps = 0;
++  // Set when the call was cancelled: the accepted count at which it stopped.
++  std::optional<std::size_t> cancelled_after = std::nullopt;
++  std::string status;
++  std::string halt_code;
++  std::size_t accepted_steps = 0;
++};
++
++struct ValidatedRunStep {
++  std::size_t ordinal = 0;
++  std::string start;
++  std::string step;
++  std::string end;
++  // Each path's content chain after the step, in path order.
++  std::vector<std::string> chains;
++};
++
++struct ValidatedRunFinalState {
++  std::string accepted_time;
++  std::string controller_step_size;
++  std::size_t cooldown_remaining = 0;
++  std::size_t accepted_step_count = 0;
++  std::vector<ValidatedPathLedger> ledger;
++};
++
++class ValidatedRunRecord {
++ public:
++  // Opens a record at the start of a run. Throws std::invalid_argument
++  // unless the request is an origin: no continuation, no evidence, histories
++  // with zero radii and no analytic carrier, ending at its start time.
++  [[nodiscard]] static ValidatedRunRecord open(
++      const ValidatedEvolutionRequest& origin);
++
++  // Appends the leg that `request` asked for and `certificate` returned.
++  // Returns an empty string, or the reason for refusing; a refused leg
++  // leaves the record unchanged. Only a record opened or restored in this
++  // process can be extended, because only it holds the continuation of its
++  // last boundary; a record merely read from bytes cannot.
++  [[nodiscard]] std::string append(
++      const ValidatedEvolutionRequest& request,
++      const ValidatedEvolutionCertificate& certificate);
++
++  [[nodiscard]] std::string serialize() const;
++
++  [[nodiscard]] const ValidatedRunControls& controls() const noexcept {
++    return controls_;
++  }
++  [[nodiscard]] const std::string& origin_time() const noexcept {
++    return origin_time_;
++  }
++  [[nodiscard]] const std::vector<ValidatedFarStepPath>& origin() const
++      noexcept {
++    return origin_;
++  }
++  [[nodiscard]] std::vector<ValidatedRunOriginMember> origin_members() const;
++  [[nodiscard]] const std::vector<ValidatedRunLeg>& legs() const noexcept {
++    return legs_;
++  }
++  [[nodiscard]] const std::vector<ValidatedRunStep>& steps() const noexcept {
++    return steps_;
++  }
++  [[nodiscard]] const ValidatedRunFinalState& final_state() const noexcept {
++    return final_;
++  }
++
++ private:
++  friend struct ValidatedRunRecordAccess;
++  ValidatedRunRecord() = default;
++
++  ValidatedRunControls controls_;
++  std::string origin_time_;
++  std::vector<ValidatedFarStepPath> origin_;
++  std::vector<ValidatedRunLeg> legs_;
++  std::vector<ValidatedRunStep> steps_;
++  ValidatedRunFinalState final_;
++  // The chains at the last accepted boundary, and, in the process that
++  // issued it, the continuation of that boundary. Not serialized.
++  std::vector<std::string> last_chains_;
++  std::shared_ptr<const ValidatedEvolutionContinuation> last_continuation_;
++  bool extendable_ = false;
++};
++
++// SHA-256 of the complete record bytes: the record's identity.
++[[nodiscard]] std::string validated_run_record_identity(
++    const std::string& bytes);
++
++// Recomputes the stored digest of an edited record text. It exists to make
++// plain that the digest is not a trust anchor. Throws std::invalid_argument
++// if the text does not have a record's outer shape.
++[[nodiscard]] std::string validated_run_record_reseal(const std::string& bytes);
++
++struct ValidatedRestoreExpectation {
++  // expected_record: set this alone.
++  std::optional<std::string> record_identity = std::nullopt;
++  // expected_controls: set this, and optionally `origin`.
++  std::optional<ValidatedRunControls> controls = std::nullopt;
++  std::optional<std::vector<ValidatedRunOriginMember>> origin = std::nullopt;
++};
++
++struct ValidatedRestoreResult {
++  // restored | refused
++  std::string status = "refused";
++  // Where a refusal arose: read | expectation | admission | replay | final.
++  std::string stage;
++  std::string reason;
++  // expected_record | expected_controls | record_only
++  std::string identity_basis;
++  // The identity of the bytes actually read.
++  std::string record_identity;
++  // The expected fields that were compared, in order.
++  std::vector<std::string> compared_fields;
++  // The controls the record contained; set once the record has been read.
++  std::optional<ValidatedRunControls> controls = std::nullopt;
++  std::size_t replayed_legs = 0;
++  std::size_t replayed_steps = 0;
++  // Set only when restored. All were issued during the replay.
++  std::vector<ValidatedFarStepPath> paths;
++  ValidatedFarStepEvidence evidence;
++  std::shared_ptr<const ValidatedEvolutionContinuation> continuation;
++  std::vector<ValidatedPathLedger> ledger;
++  // The rebuilt record, to which further legs can be appended.
++  std::optional<ValidatedRunRecord> record = std::nullopt;
++};
++
++// Restores against an expectation supplied from outside the record. The
++// expectation is compared before any replay.
++[[nodiscard]] ValidatedRestoreResult restore_validated_run(
++    const std::string& bytes,
++    const ValidatedRestoreExpectation& expectation,
++    std::size_t worker_count = 1);
++
++// Replays the record with no external expectation. The result is valid for
++// the record's own inputs and has identity basis record_only.
++[[nodiscard]] ValidatedRestoreResult replay_validated_run_record(
++    const std::string& bytes, std::size_t worker_count = 1);
++
++// Reads a record without replaying it. The result is plain data: it holds
++// no evidence and no continuation, and its step log and final state are
++// claims.
++struct ValidatedRunRecordClaims {
++  // read | refused
++  std::string status = "refused";
++  std::string reason;
++  std::string record_identity;
++  std::optional<ValidatedRunRecord> record = std::nullopt;
++};
++
++[[nodiscard]] ValidatedRunRecordClaims read_validated_run_record(
++    const std::string& bytes);
++
++// Writes the bytes to a temporary file beside `path` and renames it over
++// `path`, so a reader sees either the previous complete record or the new
++// one. Throws std::runtime_error on failure and leaves no temporary file.
++// The write is not flushed to stable storage.
++void write_validated_run_record_file(
++    const std::string& path, const std::string& bytes);
++
++[[nodiscard]] std::string read_validated_run_record_file(
++    const std::string& path);
++
++}  // namespace architrino::eom
+diff -ruN stage3i-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp stage3j-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp
+--- stage3i-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 16:19:02
++++ stage3j-tree/src/eom/native/eom_validated_evolution_fixture_cli.cpp	2026-10-12 16:54:49
+@@ -5,9 +5,11 @@
+ #include "architrino/eom/Decimal.hpp"
+ #include "architrino/eom/EquationPlan.hpp"
+ #include "architrino/eom/MatchedPairEnclosure.hpp"
++#include "architrino/eom/ValidatedRunRecord.hpp"
+ #include "architrino/eom/ValidatedWorkers.hpp"
+ 
+ #include <cmath>
++#include <filesystem>
+ #include <iostream>
+ #include <limits>
+ #include <sstream>
+@@ -45,6 +47,8 @@
+ // Worker count for every request and producer of this run: the optional
+ // second program argument. No output row depends on it.
+ std::size_t g_workers = 1;
++// Directory for record files: the optional third program argument.
++std::string g_record_directory;
+ 
+ std::string num(double value) { return vfs::token(value); }
+ 
+@@ -1380,6 +1384,595 @@
+   return 0;
+ }
+ 
++// ------------------------------------------------------------ increment 4
++using Record = eom::ValidatedRunRecord;
++using Restore = eom::ValidatedRestoreResult;
++using Expectation = eom::ValidatedRestoreExpectation;
++
++Expectation by_record(const std::string& identity) {
++  Expectation e;
++  e.record_identity = identity;
++  return e;
++}
++
++Expectation by_controls(const Record& record, bool with_origin) {
++  Expectation e;
++  e.controls = record.controls();
++  if (with_origin) e.origin = record.origin_members();
++  return e;
++}
++
++// One row for a restore result. With a reference run, also whether the
++// restored state equals that run's accepted state.
++void emit_restore(const std::string& label, const Restore& r,
++                  const Observed* reference = nullptr) {
++  const bool usable = !r.paths.empty() || r.evidence != nullptr ||
++      r.continuation != nullptr || r.record.has_value() || !r.ledger.empty();
++  std::string compared;
++  for (std::size_t i = 0; i < r.compared_fields.size(); ++i) {
++    compared += std::string(i ? "," : "") + "\"" + r.compared_fields[i] + "\"";
++  }
++  std::string same = "null";
++  if (reference != nullptr) {
++    same = r.status == "restored" &&
++        digests_json(r.paths) == digests_json(reference->run.paths) &&
++        ledger_json(r.ledger) == ledger_json(reference->run.ledger) &&
++        continuation_json(r.continuation) ==
++            continuation_json(reference->run.continuation)
++        ? "true" : "false";
++  }
++  std::cout << "{\"case\":\"" << label << "\",\"restore\":true,\"status\":\""
++            << r.status << "\",\"stage\":\"" << r.stage << "\",\"reason\":\""
++            << r.reason << "\",\"basis\":\"" << r.identity_basis
++            << "\",\"identity\":\"" << r.record_identity
++            << "\",\"compared\":[" << compared << "],\"controls_reported\":"
++            << (r.controls.has_value() ? "true" : "false")
++            << ",\"legs\":" << r.replayed_legs << ",\"steps\":"
++            << r.replayed_steps << ",\"usable\":" << (usable ? "true" : "false")
++            << ",\"has_evidence\":" << (r.evidence != nullptr ? "true" : "false")
++            << ",\"has_continuation\":"
++            << (r.continuation != nullptr ? "true" : "false")
++            << ",\"has_record\":" << (r.record.has_value() ? "true" : "false")
++            << ",\"paths\":" << r.paths.size() << ",\"same_as_reference\":"
++            << same << "}\n";
++}
++
++// Runs one leg, appends it to the record and reports any refusal to append.
++Observed record_leg(Record& record, const std::string& label, Request request,
++                    std::optional<std::size_t> cancel_after = std::nullopt) {
++  if (cancel_after.has_value()) {
++    auto accepted = std::make_shared<std::size_t>(0U);
++    const std::size_t stop = *cancel_after;
++    request.accepted_step_callback =
++        [accepted](std::size_t, const std::string&) { ++*accepted; };
++    request.cancellation_requested = [accepted, stop] {
++      return *accepted >= stop;
++    };
++  }
++  Observed observed = evolve(request);
++  emit_run(label, request, observed, true);
++  const std::string refusal = record.append(request, observed.run);
++  note(label + "/append", refusal.empty() ? "appended" : "REFUSED", refusal);
++  return observed;
++}
++
++void save_record(const std::string& name, const std::string& bytes) {
++  if (g_record_directory.empty()) return;
++  eom::write_validated_run_record_file(
++      g_record_directory + "/" + name + ".json", bytes);
++}
++
++// First occurrence of `from` at or after the first occurrence of `anchor`.
++std::string replaced(const std::string& text, const std::string& from,
++                     const std::string& to, const std::string& anchor = "") {
++  const std::size_t begin = anchor.empty() ? 0U : text.find(anchor);
++  const std::size_t at =
++      begin == std::string::npos ? begin : text.find(from, begin);
++  if (at == std::string::npos) {
++    throw std::runtime_error("mutation target not found: " + from);
++  }
++  return text.substr(0, at) + to + text.substr(at + from.size());
++}
++
++// Recomputes the stored digest from the text alone, without reading the
++// body as a record. Used for bodies the library would refuse to reseal.
++std::string resealed_text(const std::string& text) {
++  const std::string marker = ",\"body\":";
++  const std::size_t at = text.find(marker);
++  const std::string digest_key = "\"digest\":\"";
++  const std::size_t digest_at = text.find(digest_key);
++  if (at == std::string::npos || digest_at == std::string::npos ||
++      text.empty() || text.back() != '}') {
++    throw std::runtime_error("text has no record shape");
++  }
++  const std::string body =
++      text.substr(at + marker.size(), text.size() - at - marker.size() - 1U);
++  return text.substr(0, digest_at + digest_key.size()) + eom::sha256_hex(body) +
++      text.substr(digest_at + digest_key.size() + 64U);
++}
++
++std::string budget_pair(double position, double velocity) {
++  return "[\"" + eom::validated_far_step_exact_token(position) + "\",\"" +
++      eom::validated_far_step_exact_token(velocity) + "\"]";
++}
++
++// The same changed record under each of the three bases, the expectations
++// being those of the original record.
++void restore_family(const std::string& label, const std::string& changed,
++                    const Record& original,
++                    const std::string& original_identity) {
++  emit_restore(label + "/expected-record",
++               eom::restore_validated_run(changed, by_record(original_identity),
++                                          g_workers));
++  emit_restore(label + "/expected-controls-and-origin",
++               eom::restore_validated_run(changed, by_controls(original, true),
++                                          g_workers));
++  emit_restore(label + "/expected-controls",
++               eom::restore_validated_run(changed, by_controls(original, false),
++                                          g_workers));
++  emit_restore(label + "/record-only",
++               eom::replay_validated_run_record(changed, g_workers));
++}
++
++void emit_record_snapshot(const std::string& label,
++                          const std::vector<Path>& paths,
++                          const Evidence& evidence,
++                          const std::string& reception) {
++  std::vector<eom::NativeCoupledPathInput> inputs;
++  std::vector<eom::NativePublishedPath> histories;
++  for (const auto& path : paths) {
++    inputs.push_back({path.id, path.charge, path.history});
++    histories.push_back({path.id, path.history});
++  }
++  eom::NativeCoupledEvolutionRequest request{
++      .run_id = "record-snapshot",
++      .paths = std::move(inputs),
++      .start_time = reception,
++      .end_time = reception,
++      .initial_step = "0.1",
++      .minimum_step = "0.1",
++      .field_speed = "1",
++      .coupling = kKappa,
++      .root_tolerance = "1e-9",
++      .transmitter_factor_floor = "1e-24",
++      .acceleration_tolerance = "1e-4",
++      .far_field_enclosure_fraction = "0.5",
++      .use_far_field_enclosure_in_evolution = true,
++      .matched_pair_enclosure_policy =
++          eom::kMatchedPairPolicySnapshotPiecewiseTube,
++      .validated_population_evidence = evidence,
++      .root_max_depth = 192,
++      .root_max_cells = 300000,
++      .initial_mpfr_bits = 128,
++      .maximum_mpfr_bits = 512,
++      .thread_count = 1,
++  };
++  try {
++    const auto snapshot =
++        eom::certify_native_acceleration_snapshot(request, histories, reception);
++    std::cout << "{\"case\":\"" << label << "\",\"snapshot\":true,\"status\":\""
++              << snapshot.status << "\",\"failure_code\":\""
++              << snapshot.failure_code << "\",\"evidence_supplied\":"
++              << (evidence != nullptr ? "true" : "false")
++              << ",\"enclosed_groups\":" << snapshot.matched_pair_enclosed_groups
++              << ",\"groups\":[";
++    bool first = true;
++    for (const auto& g : snapshot.matched_pair_enclosure_certificates) {
++      std::cout << (first ? "" : ",") << "{\"receiver\":\""
++                << g.receiver_path_id << "\",\"status\":\"" << g.status
++                << "\",\"failure_code\":\"" << g.failure_code
++                << "\",\"grade\":\"" << g.history_grade
++                << "\",\"evidence_bound\":"
++                << (g.validated_evidence != nullptr ? "true" : "false") << "}";
++      first = false;
++    }
++    std::cout << "]}\n";
++  } catch (const std::exception& error) {
++    note(label, "exception", error.what());
++  }
++}
++
++int record_cases() {
++  const Budgets roomy{1e-6, 1e-6};
++  const std::vector<Group> pair{{"plus", "minus"}};
++
++  // ---- Known first: one leg, individual route, two steps to 1/64.
++  const Request origin = make("p0", three_static(), "0", "0.015625", kStep,
++                              kStep, kKappa, roomy);
++  Record single = Record::open(origin);
++  const Observed first = record_leg(single, "P-single-leg", origin);
++  const std::string bytes = single.serialize();
++  const std::string identity = eom::validated_run_record_identity(bytes);
++  note("K-record-identity", identity,
++       std::to_string(bytes.size()) + " bytes, " +
++           std::to_string(single.legs().size()) + " leg, " +
++           std::to_string(single.steps().size()) + " steps");
++  note("K-reseal-is-identity-on-a-sound-record",
++       eom::validated_run_record_reseal(bytes) == bytes &&
++               resealed_text(bytes) == bytes ? "equal" : "DIFFERENT", "");
++  save_record("single", bytes);
++
++  emit_restore("K-restore-expected-record",
++               eom::restore_validated_run(bytes, by_record(identity), g_workers),
++               &first);
++  emit_restore("K-restore-expected-controls-and-origin",
++               eom::restore_validated_run(bytes, by_controls(single, true),
++                                          g_workers), &first);
++  emit_restore("K-restore-expected-controls",
++               eom::restore_validated_run(bytes, by_controls(single, false),
++                                          g_workers), &first);
++  const Restore bare = eom::replay_validated_run_record(bytes, g_workers);
++  emit_restore("K-replay-record-only", bare, &first);
++  emit_restore("K-replay-record-only-other-worker-count",
++               eom::replay_validated_run_record(
++                   bytes, g_workers == 1U ? 4U : 1U), &first);
++
++  // The replayed evidence is genuine: a further leg from the restored state
++  // equals the same leg from the original state, and the restored record
++  // accepts that leg.
++  Request more = resumed_from("p-more", first, origin);
++  more.end_time = "0.03125";
++  run_case("P-continued-from-original", more);
++  if (bare.status == "restored") {
++    Request again = more;
++    again.run_id = "p-more-restored";
++    again.paths = bare.paths;
++    again.evidence = bare.evidence;
++    again.continuation = bare.continuation;
++    Record extended = *bare.record;
++    record_leg(extended, "P-continued-from-restored", again);
++    emit_record_snapshot("K-snapshot-with-replayed-evidence", bare.paths,
++                         bare.evidence, first.run.run.accepted_end_time);
++    emit_record_snapshot("N-snapshot-without-evidence", bare.paths, nullptr,
++                         first.run.run.accepted_end_time);
++  }
++
++  // ---- Known: three legs, grouped, with a cancellation and a resumption
++  // under another worker count.
++  const Request g_origin = grouped(
++      make("p1", three_static(), "0", "0.03125", kStep, kStep, kKappa, roomy),
++      pair);
++  Record multi = Record::open(g_origin);
++  const Observed leg1 =
++      record_leg(multi, "P-multi-leg-1-cancelled", g_origin, 2U);
++  Request second = resumed_from("p1b", leg1, g_origin);
++  second.worker_count = g_workers == 1U ? 4U : 1U;
++  const Observed leg2 =
++      record_leg(multi, "P-multi-leg-2-resumed-other-workers", second);
++  Request third = resumed_from("p1c", leg2, g_origin);
++  third.end_time = "0.046875";
++  const Observed leg3 = record_leg(multi, "P-multi-leg-3", third);
++  const std::string multi_bytes = multi.serialize();
++  save_record("multi", multi_bytes);
++  emit_restore("K-multi-restore-expected-record",
++               eom::restore_validated_run(
++                   multi_bytes,
++                   by_record(eom::validated_run_record_identity(multi_bytes)),
++                   g_workers), &leg3);
++  emit_restore("K-multi-replay-record-only",
++               eom::replay_validated_run_record(multi_bytes, g_workers), &leg3);
++  {
++    Request whole = g_origin;
++    whole.end_time = "0.046875";
++    run_case("P-multi-uninterrupted", whole);
++  }
++
++  // ---- Known: two legs of an adaptive run, where the first leg's
++  // requested end clamps its step.
++  Request adaptive = adaptive_request("p2", reviewer_adaptive(), "0");
++  adaptive.end_time = "1";
++  Record clamped = Record::open(adaptive);
++  const Observed a1 = record_leg(clamped, "P-adaptive-leg-1-to-1", adaptive);
++  Request a2_request = resumed_from("p2b", a1, adaptive);
++  a2_request.end_time = "3";
++  const Observed a2 = record_leg(clamped, "P-adaptive-leg-2-to-3", a2_request);
++  const std::string clamped_bytes = clamped.serialize();
++  save_record("adaptive", clamped_bytes);
++  emit_restore("K-adaptive-replay-record-only",
++               eom::replay_validated_run_record(clamped_bytes, g_workers), &a2);
++  {
++    // The first leg's requested end is an operational input that matters:
++    // claiming another end makes replay take other steps.
++    const std::string changed = eom::validated_run_record_reseal(
++        replaced(clamped_bytes, "\"end_time\":\"1\"", "\"end_time\":\"3\""));
++    emit_restore("N-adaptive-first-leg-end-changed/record-only",
++                 eom::replay_validated_run_record(changed, g_workers));
++  }
++
++  // ---- File: temporary file and rename.
++  if (!g_record_directory.empty()) {
++    const std::string path = g_record_directory + "/atomic.json";
++    eom::write_validated_run_record_file(path, multi_bytes);
++    eom::write_validated_run_record_file(path, bytes);
++    const bool same = eom::read_validated_run_record_file(path) == bytes;
++    const bool clean = !std::filesystem::exists(path + ".writing");
++    bool refused = false;
++    try {
++      eom::write_validated_run_record_file(
++          g_record_directory + "/no-such-directory/x.json", bytes);
++    } catch (const std::runtime_error&) {
++      refused = true;
++    }
++    note("K-file-write-then-rename",
++         std::string(same ? "replaced" : "NOT-REPLACED") +
++             (clean ? " no-temporary" : " TEMPORARY-LEFT") +
++             (refused ? " bad-path-refused" : " BAD-PATH-NOT-REFUSED"), "");
++  }
++
++  // ---- Expectation admission, before any replay.
++  emit_restore("N-expectation-empty",
++               eom::restore_validated_run(bytes, Expectation{}, g_workers));
++  {
++    Expectation e;
++    e.origin = single.origin_members();
++    emit_restore("N-expectation-origin-only",
++                 eom::restore_validated_run(bytes, e, g_workers));
++  }
++  {
++    Expectation e = by_controls(single, false);
++    e.record_identity = identity;
++    emit_restore("N-expectation-identity-with-controls",
++                 eom::restore_validated_run(bytes, e, g_workers));
++  }
++  emit_restore("N-expectation-identity-not-a-hash",
++               eom::restore_validated_run(bytes, by_record("abc"), g_workers));
++  {
++    std::string upper = identity;
++    for (char& c : upper) c = static_cast<char>(std::toupper(c));
++    emit_restore("N-expectation-identity-uppercase",
++                 eom::restore_validated_run(bytes, by_record(upper), g_workers));
++  }
++
++  // ---- Raw corruption: one character changed, stored digest left alone.
++  {
++    const std::string raw =
++        replaced(bytes, "\"coupling\":\"0.001\"", "\"coupling\":\"0.002\"");
++    restore_family("N-raw-corruption", raw, single, identity);
++    emit_restore("N-raw-corruption/expected-record-of-the-corrupt-bytes",
++                 eom::restore_validated_run(
++                     raw, by_record(eom::validated_run_record_identity(raw)),
++                     g_workers));
++  }
++
++  // ---- Selected-record changes, each resealed.
++  const auto resealed = [&](const std::string& from, const std::string& to,
++                            const std::string& anchor = "") {
++    return eom::validated_run_record_reseal(replaced(bytes, from, to, anchor));
++  };
++  restore_family("M-slack-budget",
++                 resealed("\"increment_budget\":" + budget_pair(1e-6, 1e-6),
++                          "\"increment_budget\":" + budget_pair(2e-6, 2e-6)),
++                 single, identity);
++  restore_family("M-binding-budget",
++                 resealed("\"increment_budget\":" + budget_pair(1e-6, 1e-6),
++                          "\"increment_budget\":" + budget_pair(1e-30, 1e-30)),
++                 single, identity);
++  restore_family("M-cooldown-length",
++                 resealed("\"growth_cooldown_steps\":4",
++                          "\"growth_cooldown_steps\":5"), single, identity);
++  restore_family("M-attempt-limit",
++                 resealed("\"max_attempts_per_step\":64",
++                          "\"max_attempts_per_step\":63"), single, identity);
++  restore_family("M-coupling",
++                 resealed("\"coupling\":\"0.001\"", "\"coupling\":\"0.002\""),
++                 single, identity);
++  restore_family("M-origin-charge",
++                 resealed("\"id\":\"minus\",\"charge\":\"-1\"",
++                          "\"id\":\"minus\",\"charge\":\"-2\""),
++                 single, identity);
++  restore_family("M-origin-coefficient",
++                 resealed("[\"11\",\"0\",\"0\",\"0\"]",
++                          "[\"11.5\",\"0\",\"0\",\"0\"]"), single, identity);
++  restore_family("M-leg-limit-slack",
++                 resealed("\"max_accepted_steps\":1000000",
++                          "\"max_accepted_steps\":999999"), single, identity);
++  restore_family("M-leg-end",
++                 resealed("\"end_time\":\"0.015625\"",
++                          "\"end_time\":\"0.0234375\""), single, identity);
++  // False claims: the step log, the leg outcome, the final state.
++  restore_family("M-false-step-chain",
++                 resealed(single.steps().front().chains.front(),
++                          std::string(64, '0')), single, identity);
++  restore_family("M-false-step-end",
++                 resealed("\"end\":\"0.0078125\"", "\"end\":\"0.0078126\""),
++                 single, identity);
++  restore_family("M-false-leg-status",
++                 resealed("\"status\":\"completed\"", "\"status\":\"halted\""),
++                 single, identity);
++  restore_family("M-false-leg-count",
++                 resealed("\"accepted_steps\":2", "\"accepted_steps\":3"),
++                 single, identity);
++  restore_family("M-false-final-controller-step",
++                 resealed("\"controller_step_size\":\"0.0078125\"",
++                          "\"controller_step_size\":\"0.00390625\""),
++                 single, identity);
++  restore_family("M-false-final-cooldown",
++                 resealed("\"cooldown_remaining\":0",
++                          "\"cooldown_remaining\":1"), single, identity);
++  {
++    const double total = first.run.ledger.front().position.total[2];
++    restore_family(
++        "M-false-final-ledger",
++        resealed("\"" + eom::validated_far_step_exact_token(total) + "\"",
++                 "\"" + eom::validated_far_step_exact_token(total * 2.0) + "\"",
++                 "\"final\":"), single, identity);
++  }
++
++  // ---- Weaker-mode intentional acceptance: genuinely different records.
++  {
++    // Same controls, another origin.
++    const Request other_origin =
++        make("p3", three_static("10.5", "11.5"), "0", "0.015625", kStep, kStep,
++             kKappa, roomy);
++    Record other = Record::open(other_origin);
++    record_leg(other, "P-other-origin", other_origin);
++    restore_family("W-other-origin-same-controls", other.serialize(), single,
++                   identity);
++  }
++  {
++    // Same controls and origin, other legs: one leg of three steps.
++    Request longer = origin;
++    longer.end_time = "0.0234375";
++    Record other = Record::open(longer);
++    record_leg(other, "P-other-legs", longer);
++    restore_family("W-other-legs-same-controls-and-origin", other.serialize(),
++                   single, identity);
++  }
++
++  // ---- Malformed records: digest recomputed from the text, so the refusal
++  // is of the content and not of the digest.
++  const auto malformed = [&](const std::string& label, const std::string& from,
++                             const std::string& to) {
++    emit_restore("X-" + label + "/record-only",
++                 eom::replay_validated_run_record(
++                     resealed_text(replaced(bytes, from, to)), g_workers));
++  };
++  malformed("field-speed-2", "\"field_speed\":\"1\"", "\"field_speed\":\"2\"");
++  malformed("evolution-policy-unknown",
++            "\"evolution\":\"canonical_validated_far_step_evolution/v1\"",
++            "\"evolution\":\"canonical_validated_far_step_evolution/v2\"");
++  malformed("pair-policy-without-groups", "\"pair\":\"disabled\"",
++            "\"pair\":\"canonical_whole_step_piecewise_tube/v1\"");
++  malformed("coupling-not-a-number", "\"coupling\":\"0.001\"",
++            "\"coupling\":\"not-a-number\"");
++  malformed("budget-nan", "\"increment_budget\":" + budget_pair(1e-6, 1e-6),
++            "\"increment_budget\":[\"nan\",\"1\"]");
++  malformed("budget-negative", "\"increment_budget\":" + budget_pair(1e-6, 1e-6),
++            "\"increment_budget\":[\"-1\",\"1\"]");
++  malformed("budget-zero", "\"increment_budget\":" + budget_pair(1e-6, 1e-6),
++            "\"increment_budget\":[\"0\",\"1\"]");
++  malformed("budget-infinite", "\"increment_budget\":" + budget_pair(1e-6, 1e-6),
++            "\"increment_budget\":[\"1e400\",\"1\"]");
++  malformed("step-not-plain", "\"initial_step\":\"0.0078125\"",
++            "\"initial_step\":\"7.8125e-3\"");
++  malformed("origin-declares-a-radius", "\"position_error\":[\"0\",\"0\",\"0\"]",
++            "\"position_error\":[\"1e-9\",\"0\",\"0\"]");
++  malformed("missing-legs", "\"legs\":", "\"lags\":");
++  malformed("format-version", "architrino_validated_run_record/v1",
++            "architrino_validated_run_record/v2");
++  emit_restore("X-not-json/record-only",
++               eom::replay_validated_run_record(
++                   bytes.substr(0, bytes.size() / 2U), g_workers));
++  emit_restore("X-not-canonical-trailing-space/record-only",
++               eom::replay_validated_run_record(bytes + " ", g_workers));
++  emit_restore("X-zero-workers/record-only",
++               eom::replay_validated_run_record(bytes, 0U));
++
++  // ---- The record builder: boundary fields are checked against the seals;
++  // the rest of the transcript is carried as a claim.
++  const auto append_outcome = [&](const std::string& label,
++                                  const Request& request, const Run& run) {
++    Record fresh = Record::open(origin);
++    const std::string refusal = fresh.append(request, run);
++    note(label, refusal.empty() ? "appended" : "refused", refusal);
++    return fresh;
++  };
++  append_outcome("K-append-genuine-certificate", origin, first.run);
++  {
++    Run altered = first.run;
++    altered.ledger.front().position.total[2] *= 2.0;
++    append_outcome("N-append-boundary-ledger-altered", origin, altered);
++  }
++  {
++    Run altered = first.run;
++    altered.run.accepted_end_time = "0.0234375";
++    append_outcome("N-append-boundary-time-altered", origin, altered);
++  }
++  {
++    Run altered = first.run;
++    altered.run.controller_step_size = "0.00390625";
++    append_outcome("N-append-boundary-controller-step-altered", origin,
++                   altered);
++  }
++  {
++    Request other_request =
++        make("p4", three_static("10.5", "11.5"), "0", "0.015625", kStep, kStep,
++             kKappa, roomy);
++    const Observed other = evolve(other_request);
++    Run altered = first.run;
++    altered.paths = other.run.paths;
++    append_outcome("N-append-boundary-population-swapped", origin, altered);
++    altered = first.run;
++    altered.evidence = other.run.evidence;
++    append_outcome("N-append-boundary-evidence-swapped", origin, altered);
++    append_outcome("N-append-another-runs-certificate", origin, other.run);
++  }
++  {
++    Run altered = first.run;
++    altered.continuation.reset();
++    append_outcome("N-append-no-continuation", origin, altered);
++  }
++  {
++    Request changed = origin;
++    changed.increment_budget = Budgets{2e-6, 2e-6};
++    append_outcome("N-append-request-control-differs", changed, first.run);
++    Request late = origin;
++    late.start_time = kStep;
++    append_outcome("N-append-request-start-differs", late, first.run);
++  }
++  {
++    // A second leg offered without the first leg's continuation.
++    Record fresh = Record::open(origin);
++    (void)fresh.append(origin, first.run);
++    Request orphan = more;
++    orphan.continuation.reset();
++    Request ran = more;
++    const Observed continued = evolve(ran);
++    const std::string refusal = fresh.append(orphan, continued.run);
++    note("N-append-second-leg-without-continuation",
++         refusal.empty() ? "appended" : "refused", refusal);
++  }
++  {
++    // Transcript altered after the driver returned: appended as claimed,
++    // and then refused at replay.
++    Run altered = first.run;
++    for (auto& attempt : altered.attempts) {
++      if (attempt.disposition == "accepted") {
++        attempt.producer.end = "0.0078126";
++        break;
++      }
++    }
++    const Record carried =
++        append_outcome("K-append-transcript-altered-is-carried", origin,
++                       altered);
++    emit_restore("N-transcript-altered/record-only",
++                 eom::replay_validated_run_record(carried.serialize(),
++                                                  g_workers));
++  }
++  try {
++    Request not_origin = more;
++    (void)Record::open(not_origin);
++    note("N-open-not-an-origin", "NOT-REFUSED", "");
++  } catch (const std::invalid_argument& error) {
++    note("N-open-not-an-origin", "refused", error.what());
++  }
++
++  // ---- Reading without replay: claims only.
++  {
++    const eom::ValidatedRunRecordClaims claims =
++        eom::read_validated_run_record(multi_bytes);
++    std::string detail = "unread";
++    std::string extend = "n/a";
++    if (claims.record.has_value()) {
++      detail = std::to_string(claims.record->legs().size()) + " legs, " +
++          std::to_string(claims.record->steps().size()) + " steps, origin " +
++          std::to_string(claims.record->origin().size()) + " paths";
++      Record copy = *claims.record;
++      extend = copy.append(third, leg3.run);
++    }
++    note("K-read-without-replay", claims.status, detail);
++    note("N-read-without-replay-cannot-be-extended",
++         extend.empty() ? "appended" : "refused", extend);
++    const auto bad = eom::read_validated_run_record(
++        replaced(multi_bytes, "\"coupling\":\"0.001\"",
++                 "\"coupling\":\"0.002\""));
++    note("N-read-without-replay-corrupt",
++         bad.status + (bad.record.has_value() ? " WITH-RECORD" : " no-record"),
++         bad.reason);
++  }
++  return 0;
++}
++
+ int aliasing_cases() {
+   // Resolved from the start.
+   run_case("A-control-fine",
+@@ -1404,6 +1997,7 @@
+     }
+     g_workers = std::stoul(count);
+   }
++  if (argc > 3) g_record_directory = argv[3];
+   try {
+     if (command == "known") return known_cases();
+     if (command == "controller") return controller_cases();
+@@ -1417,6 +2011,7 @@
+     if (command == "admission-b") return admission_b_cases();
+     if (command == "grouping") return grouping_cases();
+     if (command == "workers") return worker_cases();
++    if (command == "record") return record_cases();
+   } catch (const std::exception& error) {
+     std::cout << "{\"case\":\"FATAL\",\"exception\":\"" << error.what()
+               << "\"}\n";
+@@ -1424,6 +2019,7 @@
+   }
+   std::cerr << "usage: <known|controller|refusals|cancellation|aliasing|"
+                "continuation|budgets|admission|ledger|admission-b|"
+-               "grouping|workers> [worker count]\n";
++               "grouping|workers|record> [worker count] [record "
++               "directory]\n";
+   return 2;
+ }
+diff -ruN stage3i-tree/src/eom/src/ValidatedRunRecord.cpp stage3j-tree/src/eom/src/ValidatedRunRecord.cpp
+--- stage3i-tree/src/eom/src/ValidatedRunRecord.cpp	1969-12-31 19:00:00
++++ stage3j-tree/src/eom/src/ValidatedRunRecord.cpp	2026-10-12 16:56:01
+@@ -0,0 +1,1117 @@
++#include "architrino/eom/ValidatedRunRecord.hpp"
++
++#include "architrino/eom/Decimal.hpp"
++#include "architrino/eom/MatchedPairEnclosure.hpp"
++
++#include <boost/json.hpp>
++
++#include <cmath>
++#include <filesystem>
++#include <fstream>
++#include <functional>
++#include <iterator>
++#include <stdexcept>
++#include <system_error>
++#include <utility>
++
++namespace architrino::eom {
++
++namespace json = boost::json;
++
++// Builds and reads records. Declared a friend so that only this unit can
++// construct a record's private state.
++struct ValidatedRunRecordAccess {
++  static ValidatedRunRecord empty() { return ValidatedRunRecord(); }
++  static ValidatedRunControls& controls(ValidatedRunRecord& r) {
++    return r.controls_;
++  }
++  static std::string& origin_time(ValidatedRunRecord& r) {
++    return r.origin_time_;
++  }
++  static std::vector<ValidatedFarStepPath>& origin(ValidatedRunRecord& r) {
++    return r.origin_;
++  }
++  static std::vector<ValidatedRunLeg>& legs(ValidatedRunRecord& r) {
++    return r.legs_;
++  }
++  static std::vector<ValidatedRunStep>& steps(ValidatedRunRecord& r) {
++    return r.steps_;
++  }
++  static ValidatedRunFinalState& final_state(ValidatedRunRecord& r) {
++    return r.final_;
++  }
++  static std::vector<std::string>& last_chains(ValidatedRunRecord& r) {
++    return r.last_chains_;
++  }
++};
++
++namespace {
++
++std::string quoted(const std::string& text) {
++  return json::serialize(json::value(text));
++}
++
++std::string triple(const std::array<double, 3>& values) {
++  return "[" + quoted(validated_far_step_exact_token(values[0])) + "," +
++      quoted(validated_far_step_exact_token(values[1])) + "," +
++      quoted(validated_far_step_exact_token(values[2])) + "]";
++}
++
++std::string budget_text(const ValidatedFarStepBudgets& budget) {
++  return "[" + quoted(validated_far_step_exact_token(budget.position)) + "," +
++      quoted(validated_far_step_exact_token(budget.velocity)) + "]";
++}
++
++std::string axis_text(const ValidatedAxisLedger& axis) {
++  return "{\"inherited\":" + triple(axis.inherited) + ",\"increment\":" +
++      triple(axis.increment) + ",\"total\":" + triple(axis.total) +
++      ",\"section_allowance\":" + triple(axis.section_allowance) +
++      ",\"step_growth\":" + triple(axis.step_growth) + "}";
++}
++
++bool same_budget(const ValidatedFarStepBudgets& a,
++                 const ValidatedFarStepBudgets& b) {
++  return a.position == b.position && a.velocity == b.velocity;
++}
++
++bool same_axis(const ValidatedAxisLedger& a, const ValidatedAxisLedger& b) {
++  return a.inherited == b.inherited && a.increment == b.increment &&
++      a.total == b.total && a.section_allowance == b.section_allowance &&
++      a.step_growth == b.step_growth;
++}
++
++bool same_ledger(const std::vector<ValidatedPathLedger>& a,
++                 const std::vector<ValidatedPathLedger>& b) {
++  if (a.size() != b.size()) return false;
++  for (std::size_t i = 0; i < a.size(); ++i) {
++    if (a[i].path_id != b[i].path_id ||
++        !same_axis(a[i].position, b[i].position) ||
++        !same_axis(a[i].velocity, b[i].velocity)) {
++      return false;
++    }
++  }
++  return true;
++}
++
++// True when two decimal tokens denote the same number. A token that is not
++// an exact decimal equals nothing.
++bool same_number(const std::string& a, const std::string& b) {
++  try {
++    return compare_exact_decimal_tokens(a, b) == 0;
++  } catch (const std::exception&) {
++    return false;
++  }
++}
++
++ValidatedRunControls controls_of(const ValidatedEvolutionRequest& request) {
++  ValidatedRunControls c;
++  c.policy = request.policy;
++  c.field_speed = request.field_speed;
++  c.coupling = request.coupling;
++  c.initial_step = request.initial_step;
++  c.minimum_step = request.minimum_step;
++  c.increment_budget = request.increment_budget;
++  c.total_budget = request.total_budget;
++  c.max_attempts_per_step = request.max_attempts_per_step;
++  c.max_lower_sign_retries = request.max_lower_sign_retries;
++  c.growth_cooldown_steps = request.growth_cooldown_steps;
++  c.pair_policy = request.pair_policy;
++  c.groups = request.groups;
++  return c;
++}
++
++// The controls a sealed continuation binds. It does not bind the field
++// speed, which the driver fixes at 1; the caller's value is carried over.
++ValidatedRunControls controls_of(const ValidatedEvolutionState& state,
++                                 const std::string& field_speed) {
++  ValidatedRunControls c;
++  c.policy = state.policy;
++  c.field_speed = field_speed;
++  c.coupling = state.coupling;
++  c.initial_step = state.initial_step;
++  c.minimum_step = state.minimum_step;
++  c.increment_budget = state.increment_budget;
++  c.total_budget = state.total_budget;
++  c.max_attempts_per_step = state.max_attempts_per_step;
++  c.max_lower_sign_retries = state.max_lower_sign_retries;
++  c.growth_cooldown_steps = state.growth_cooldown_steps;
++  c.pair_policy = state.pair_policy;
++  c.groups = state.groups;
++  return c;
++}
++
++std::vector<std::string> chains_of(
++    const std::vector<ValidatedFarStepPath>& paths) {
++  std::vector<std::string> chains;
++  for (const auto& path : paths) {
++    chains.push_back(validated_history_digest(path.history));
++  }
++  return chains;
++}
++
++std::string body_text(const ValidatedRunRecord& record) {
++  const ValidatedRunControls& c = record.controls();
++  std::string out = "{\"scalars\":{\"field_speed\":" + quoted(c.field_speed) +
++      ",\"coupling\":" + quoted(c.coupling) + "},\"policies\":{\"evolution\":" +
++      quoted(c.policy) + ",\"pair\":" + quoted(c.pair_policy) +
++      ",\"groups\":[";
++  for (std::size_t i = 0; i < c.groups.size(); ++i) {
++    out += std::string(i ? "," : "") + "[" + quoted(c.groups[i].leader) + "," +
++        quoted(c.groups[i].follower) + "]";
++  }
++  out += "]},\"controls\":{\"initial_step\":" + quoted(c.initial_step) +
++      ",\"minimum_step\":" + quoted(c.minimum_step) +
++      ",\"increment_budget\":" + budget_text(c.increment_budget) +
++      ",\"total_budget\":" +
++      (c.total_budget.has_value() ? budget_text(*c.total_budget)
++                                  : std::string("null")) +
++      ",\"max_attempts_per_step\":" + std::to_string(c.max_attempts_per_step) +
++      ",\"max_lower_sign_retries\":" +
++      std::to_string(c.max_lower_sign_retries) +
++      ",\"growth_cooldown_steps\":" + std::to_string(c.growth_cooldown_steps) +
++      "},\"origin\":{\"time\":" + quoted(record.origin_time()) +
++      ",\"paths\":[";
++  for (std::size_t i = 0; i < record.origin().size(); ++i) {
++    const auto& path = record.origin()[i];
++    out += std::string(i ? "," : "") + "{\"id\":" + quoted(path.id) +
++        ",\"charge\":" + quoted(path.charge) + ",\"history_id\":" +
++        quoted(path.history.history_id()) + ",\"segments\":[";
++    const auto& segments = path.history.segments();
++    for (std::size_t k = 0; k < segments.size(); ++k) {
++      const auto segment = segments.at(k);
++      out += std::string(k ? "," : "") + "{\"start\":" +
++          quoted(segment.t_start_token()) + ",\"end\":" +
++          quoted(segment.t_end_token()) + ",\"coefficients\":[";
++      for (std::size_t axis = 0; axis < 3; ++axis) {
++        out += std::string(axis ? "," : "") + "[";
++        for (std::size_t j = 0; j < 4; ++j) {
++          out += std::string(j ? "," : "") +
++              quoted(segment.coefficient_tokens()[axis][j]);
++        }
++        out += "]";
++      }
++      out += "],\"position_error\":[";
++      for (std::size_t axis = 0; axis < 3; ++axis) {
++        out += std::string(axis ? "," : "") +
++            quoted(segment.position_error_tokens()[axis]);
++      }
++      out += "],\"velocity_error\":[";
++      for (std::size_t axis = 0; axis < 3; ++axis) {
++        out += std::string(axis ? "," : "") +
++            quoted(segment.velocity_error_tokens()[axis]);
++      }
++      out += "]}";
++    }
++    out += "]}";
++  }
++  out += "]},\"legs\":[";
++  for (std::size_t i = 0; i < record.legs().size(); ++i) {
++    const auto& leg = record.legs()[i];
++    out += std::string(i ? "," : "") + "{\"end_time\":" +
++        quoted(leg.end_time) + ",\"max_accepted_steps\":" +
++        std::to_string(leg.max_accepted_steps) + ",\"cancelled_after\":" +
++        (leg.cancelled_after.has_value()
++             ? std::to_string(*leg.cancelled_after) : std::string("null")) +
++        ",\"status\":" + quoted(leg.status) + ",\"halt_code\":" +
++        quoted(leg.halt_code) + ",\"accepted_steps\":" +
++        std::to_string(leg.accepted_steps) + "}";
++  }
++  out += "],\"steps\":[";
++  for (std::size_t i = 0; i < record.steps().size(); ++i) {
++    const auto& step = record.steps()[i];
++    out += std::string(i ? "," : "") + "{\"ordinal\":" +
++        std::to_string(step.ordinal) + ",\"start\":" + quoted(step.start) +
++        ",\"step\":" + quoted(step.step) + ",\"end\":" + quoted(step.end) +
++        ",\"chains\":[";
++    for (std::size_t k = 0; k < step.chains.size(); ++k) {
++      out += std::string(k ? "," : "") + quoted(step.chains[k]);
++    }
++    out += "]}";
++  }
++  const ValidatedRunFinalState& f = record.final_state();
++  out += "],\"final\":{\"accepted_time\":" + quoted(f.accepted_time) +
++      ",\"controller_step_size\":" + quoted(f.controller_step_size) +
++      ",\"cooldown_remaining\":" + std::to_string(f.cooldown_remaining) +
++      ",\"accepted_step_count\":" + std::to_string(f.accepted_step_count) +
++      ",\"ledger\":[";
++  for (std::size_t i = 0; i < f.ledger.size(); ++i) {
++    out += std::string(i ? "," : "") + "{\"path\":" +
++        quoted(f.ledger[i].path_id) + ",\"position\":" +
++        axis_text(f.ledger[i].position) + ",\"velocity\":" +
++        axis_text(f.ledger[i].velocity) + "}";
++  }
++  return out + "]}}";
++}
++
++std::string record_text(const std::string& body) {
++  return std::string("{\"format\":") + quoted(kValidatedRunRecordFormat) +
++      ",\"digest\":" + quoted(sha256_hex(body)) + ",\"body\":" + body + "}";
++}
++
++// ----------------------------------------------------------------- reading
++[[noreturn]] void malformed(const std::string& what) {
++  throw std::invalid_argument("malformed record: " + what);
++}
++
++const json::object& object_of(const json::value& value,
++                              const std::string& name) {
++  if (!value.is_object()) malformed(name + " is not an object");
++  return value.get_object();
++}
++
++const json::value& member(const json::object& object,
++                          const std::string& name) {
++  const auto found = object.find(name);
++  if (found == object.end()) malformed("missing " + name);
++  return found->value();
++}
++
++std::string text_of(const json::object& object, const std::string& name) {
++  const json::value& value = member(object, name);
++  if (!value.is_string()) malformed(name + " is not a string");
++  return std::string(value.get_string().c_str(), value.get_string().size());
++}
++
++std::string text_of(const json::value& value, const std::string& name) {
++  if (!value.is_string()) malformed(name + " is not a string");
++  return std::string(value.get_string().c_str(), value.get_string().size());
++}
++
++std::size_t count_of(const json::value& value, const std::string& name) {
++  if (value.is_int64() && value.get_int64() >= 0) {
++    return static_cast<std::size_t>(value.get_int64());
++  }
++  if (value.is_uint64()) return static_cast<std::size_t>(value.get_uint64());
++  malformed(name + " is not a nonnegative integer");
++}
++
++std::size_t count_of(const json::object& object, const std::string& name) {
++  return count_of(member(object, name), name);
++}
++
++const json::array& array_of(const json::object& object,
++                            const std::string& name, std::size_t size = 0) {
++  const json::value& value = member(object, name);
++  if (!value.is_array()) malformed(name + " is not an array");
++  if (size != 0 && value.get_array().size() != size) {
++    malformed(name + " has the wrong length");
++  }
++  return value.get_array();
++}
++
++double finite_of(const json::value& value, const std::string& name) {
++  const std::string token = text_of(value, name);
++  try {
++    return parse_finite_double(token, name);
++  } catch (const std::exception&) {
++    malformed(name + " is not a finite decimal token");
++  }
++}
++
++ValidatedFarStepBudgets budget_of(const json::value& value,
++                                  const std::string& name) {
++  if (!value.is_array() || value.get_array().size() != 2U) {
++    malformed(name + " is not a pair");
++  }
++  const ValidatedFarStepBudgets budget{
++      finite_of(value.get_array()[0], name),
++      finite_of(value.get_array()[1], name)};
++  if (!(budget.position > 0.0) || !(budget.velocity > 0.0)) {
++    malformed(name + " is not finite and positive");
++  }
++  return budget;
++}
++
++std::array<double, 3> triple_of(const json::object& object,
++                                const std::string& name) {
++  const json::array& values = array_of(object, name, 3U);
++  return {finite_of(values[0], name), finite_of(values[1], name),
++          finite_of(values[2], name)};
++}
++
++ValidatedAxisLedger axis_of(const json::object& object,
++                            const std::string& name) {
++  const json::object& axis = object_of(member(object, name), name);
++  ValidatedAxisLedger out;
++  out.inherited = triple_of(axis, "inherited");
++  out.increment = triple_of(axis, "increment");
++  out.total = triple_of(axis, "total");
++  out.section_allowance = triple_of(axis, "section_allowance");
++  out.step_growth = triple_of(axis, "step_growth");
++  return out;
++}
++
++// Parses the body of a record. Throws std::invalid_argument when it is not
++// a well-formed record of this format's admitted domain.
++ValidatedRunRecord record_of_body(const json::value& body_value) {
++  const json::object& body = object_of(body_value, "body");
++  ValidatedRunRecord record = ValidatedRunRecordAccess::empty();
++  ValidatedRunControls& c = ValidatedRunRecordAccess::controls(record);
++  const json::object& scalars = object_of(member(body, "scalars"), "scalars");
++  c.field_speed = text_of(scalars, "field_speed");
++  c.coupling = text_of(scalars, "coupling");
++  const json::object& policies =
++      object_of(member(body, "policies"), "policies");
++  c.policy = text_of(policies, "evolution");
++  c.pair_policy = text_of(policies, "pair");
++  for (const json::value& group : array_of(policies, "groups")) {
++    if (!group.is_array() || group.get_array().size() != 2U) {
++      malformed("a declared group is not a pair");
++    }
++    c.groups.push_back({text_of(group.get_array()[0], "group member"),
++                        text_of(group.get_array()[1], "group member")});
++  }
++  const json::object& controls =
++      object_of(member(body, "controls"), "controls");
++  c.initial_step = text_of(controls, "initial_step");
++  c.minimum_step = text_of(controls, "minimum_step");
++  c.increment_budget =
++      budget_of(member(controls, "increment_budget"), "increment_budget");
++  const json::value& total = member(controls, "total_budget");
++  if (!total.is_null()) c.total_budget = budget_of(total, "total_budget");
++  c.max_attempts_per_step = count_of(controls, "max_attempts_per_step");
++  c.max_lower_sign_retries = count_of(controls, "max_lower_sign_retries");
++  c.growth_cooldown_steps = count_of(controls, "growth_cooldown_steps");
++
++  if (c.policy != kValidatedFarStepEvolutionPolicy) {
++    malformed("unknown evolution policy token");
++  }
++  if ((c.pair_policy != "disabled" &&
++       c.pair_policy != kValidatedWholeStepPairPolicy) ||
++      (c.pair_policy == "disabled") != c.groups.empty()) {
++    malformed("the pair policy and the declared groups do not agree");
++  }
++  if (!same_number(c.field_speed, "1")) malformed("field speed is not 1");
++  if (!same_number(c.coupling, c.coupling)) {
++    malformed("coupling is not an exact decimal token");
++  }
++  if (!validated_far_step_plain_decimal(c.initial_step) ||
++      !validated_far_step_plain_decimal(c.minimum_step)) {
++    malformed("a step control is not a plain decimal token");
++  }
++
++  const json::object& origin = object_of(member(body, "origin"), "origin");
++  ValidatedRunRecordAccess::origin_time(record) = text_of(origin, "time");
++  if (!validated_far_step_plain_decimal(record.origin_time())) {
++    malformed("origin time is not a plain decimal token");
++  }
++  for (const json::value& path_value : array_of(origin, "paths")) {
++    const json::object& path = object_of(path_value, "origin path");
++    std::vector<CubicHistorySegment> segments;
++    for (const json::value& segment_value : array_of(path, "segments")) {
++      const json::object& segment = object_of(segment_value, "segment");
++      CubicCoefficientTokens coefficients;
++      const json::array& rows = array_of(segment, "coefficients", 3U);
++      for (std::size_t axis = 0; axis < 3; ++axis) {
++        if (!rows[axis].is_array() || rows[axis].get_array().size() != 4U) {
++          malformed("a coefficient row does not have four tokens");
++        }
++        for (std::size_t j = 0; j < 4; ++j) {
++          coefficients[axis][j] =
++              text_of(rows[axis].get_array()[j], "coefficient");
++        }
++      }
++      HistoryErrorTokens position;
++      HistoryErrorTokens velocity;
++      const json::array& px = array_of(segment, "position_error", 3U);
++      const json::array& pv = array_of(segment, "velocity_error", 3U);
++      for (std::size_t axis = 0; axis < 3; ++axis) {
++        position[axis] = text_of(px[axis], "position_error");
++        velocity[axis] = text_of(pv[axis], "velocity_error");
++        bool exact = false;
++        try {
++          exact = exact_decimal_token_is_zero(position[axis]) &&
++              exact_decimal_token_is_zero(velocity[axis]);
++        } catch (const std::exception&) {
++          exact = false;
++        }
++        if (!exact) malformed("the origin is not exact: it declares a radius");
++      }
++      try {
++        segments.emplace_back(text_of(segment, "start"),
++                              text_of(segment, "end"), coefficients, position,
++                              velocity);
++      } catch (const std::invalid_argument&) {
++        throw;
++      } catch (const std::exception& error) {
++        malformed(std::string("origin segment: ") + error.what());
++      }
++    }
++    if (segments.empty()) malformed("an origin path has no segment");
++    try {
++      ValidatedRunRecordAccess::origin(record).push_back(
++          {text_of(path, "id"), text_of(path, "charge"),
++           RetainedHistory(text_of(path, "history_id"), std::move(segments))});
++    } catch (const std::invalid_argument& error) {
++      malformed(std::string("origin history: ") + error.what());
++    } catch (const std::exception& error) {
++      malformed(std::string("origin history: ") + error.what());
++    }
++  }
++  if (record.origin().empty()) malformed("the origin has no path");
++
++  for (const json::value& leg_value : array_of(body, "legs")) {
++    const json::object& leg = object_of(leg_value, "leg");
++    ValidatedRunLeg out;
++    out.end_time = text_of(leg, "end_time");
++    out.max_accepted_steps = count_of(leg, "max_accepted_steps");
++    const json::value& cancelled = member(leg, "cancelled_after");
++    if (!cancelled.is_null()) {
++      out.cancelled_after = count_of(cancelled, "cancelled_after");
++    }
++    out.status = text_of(leg, "status");
++    out.halt_code = text_of(leg, "halt_code");
++    out.accepted_steps = count_of(leg, "accepted_steps");
++    if (!validated_far_step_plain_decimal(out.end_time)) {
++      malformed("a leg's end is not a plain decimal token");
++    }
++    ValidatedRunRecordAccess::legs(record).push_back(std::move(out));
++  }
++  for (const json::value& step_value : array_of(body, "steps")) {
++    const json::object& step = object_of(step_value, "step");
++    ValidatedRunStep out;
++    out.ordinal = count_of(step, "ordinal");
++    out.start = text_of(step, "start");
++    out.step = text_of(step, "step");
++    out.end = text_of(step, "end");
++    for (const json::value& chain :
++         array_of(step, "chains", record.origin().size())) {
++      out.chains.push_back(text_of(chain, "chain"));
++    }
++    ValidatedRunRecordAccess::steps(record).push_back(std::move(out));
++  }
++  const json::object& final_value =
++      object_of(member(body, "final"), "final");
++  ValidatedRunFinalState& f = ValidatedRunRecordAccess::final_state(record);
++  f.accepted_time = text_of(final_value, "accepted_time");
++  f.controller_step_size = text_of(final_value, "controller_step_size");
++  f.cooldown_remaining = count_of(final_value, "cooldown_remaining");
++  f.accepted_step_count = count_of(final_value, "accepted_step_count");
++  for (const json::value& entry_value : array_of(final_value, "ledger")) {
++    const json::object& entry = object_of(entry_value, "ledger entry");
++    ValidatedPathLedger entry_out;
++    entry_out.path_id = text_of(entry, "path");
++    entry_out.position = axis_of(entry, "position");
++    entry_out.velocity = axis_of(entry, "velocity");
++    f.ledger.push_back(std::move(entry_out));
++  }
++  ValidatedRunRecordAccess::last_chains(record) =
++      record.steps().empty() ? chains_of(record.origin())
++                             : record.steps().back().chains;
++  return record;
++}
++
++struct Parsed {
++  json::value root;
++  std::string digest;
++};
++
++// The outer shape only: an object with a format, a digest and a body.
++Parsed outer(const std::string& bytes) {
++  Parsed parsed;
++  try {
++    parsed.root = json::parse(bytes);
++  } catch (const std::exception&) {
++    malformed("not a JSON document");
++  }
++  const json::object& root = object_of(parsed.root, "record");
++  if (text_of(root, "format") != kValidatedRunRecordFormat) {
++    malformed("unknown format or version");
++  }
++  parsed.digest = text_of(root, "digest");
++  (void)member(root, "body");
++  return parsed;
++}
++
++// Reads and checks a record: shape, admitted domain, digest and canonical
++// form. Throws std::invalid_argument with the reason otherwise.
++ValidatedRunRecord checked_record(const std::string& bytes) {
++  const Parsed parsed = outer(bytes);
++  ValidatedRunRecord record =
++      record_of_body(member(parsed.root.get_object(), "body"));
++  const std::string body = body_text(record);
++  if (sha256_hex(body) != parsed.digest) {
++    throw std::invalid_argument(
++        "the record's digest does not match its body");
++  }
++  if (record_text(body) != bytes) {
++    throw std::invalid_argument("the record is not in canonical form");
++  }
++  return record;
++}
++
++bool is_identity(const std::string& text) {
++  if (text.size() != 64U) return false;
++  return text.find_first_not_of("0123456789abcdef") == std::string::npos;
++}
++
++ValidatedRestoreResult refused(ValidatedRestoreResult result,
++                               std::string stage, std::string reason) {
++  result.status = "refused";
++  result.stage = std::move(stage);
++  result.reason = std::move(reason);
++  result.paths.clear();
++  result.evidence.reset();
++  result.continuation.reset();
++  result.ledger.clear();
++  result.record.reset();
++  return result;
++}
++
++ValidatedRestoreResult restore(const std::string& bytes,
++                               const ValidatedRestoreExpectation* expectation,
++                               std::size_t worker_count) {
++  ValidatedRestoreResult result;
++  result.record_identity = validated_run_record_identity(bytes);
++  if (expectation == nullptr) {
++    result.identity_basis = "record_only";
++  } else {
++    const bool has_identity = expectation->record_identity.has_value();
++    const bool has_controls = expectation->controls.has_value();
++    const bool has_origin = expectation->origin.has_value();
++    if (has_identity && (has_controls || has_origin)) {
++      return refused(std::move(result), "expectation",
++                     "a record identity cannot be combined with expected "
++                     "controls or an expected origin");
++    }
++    if (has_origin && !has_controls) {
++      return refused(std::move(result), "expectation",
++                     "an expected origin requires expected controls");
++    }
++    if (!has_identity && !has_controls) {
++      return refused(std::move(result), "expectation",
++                     "no expectation was supplied; a record-only replay must "
++                     "be requested as one");
++    }
++    result.identity_basis = has_identity ? "expected_record"
++                                         : "expected_controls";
++    if (has_identity) {
++      result.compared_fields.push_back("record_identity");
++      if (!is_identity(*expectation->record_identity)) {
++        return refused(std::move(result), "expectation",
++                       "the expected record identity is not a SHA-256 value");
++      }
++      if (*expectation->record_identity != result.record_identity) {
++        return refused(std::move(result), "expectation",
++                       "the record's bytes are not the expected record");
++      }
++    }
++  }
++  if (worker_count == 0U) {
++    return refused(std::move(result), "read",
++                   "worker count must be at least one");
++  }
++  std::optional<ValidatedRunRecord> claimed;
++  try {
++    claimed = checked_record(bytes);
++  } catch (const std::exception& error) {
++    return refused(std::move(result), "read", error.what());
++  }
++  result.controls = claimed->controls();
++  if (expectation != nullptr && expectation->controls.has_value()) {
++    for (const char* name :
++         {"policy", "field_speed", "coupling", "initial_step", "minimum_step",
++          "increment_budget", "total_budget", "max_attempts_per_step",
++          "max_lower_sign_retries", "growth_cooldown_steps", "pair_policy",
++          "groups"}) {
++      result.compared_fields.emplace_back(name);
++    }
++    const std::string difference = validated_run_controls_difference(
++        *expectation->controls, claimed->controls());
++    if (!difference.empty()) {
++      return refused(std::move(result), "expectation",
++                     "the record's control differs from the expected one: " +
++                         difference);
++    }
++    if (expectation->origin.has_value()) {
++      result.compared_fields.emplace_back("origin");
++      const auto actual = claimed->origin_members();
++      const auto& expected = *expectation->origin;
++      bool same = actual.size() == expected.size();
++      for (std::size_t i = 0; same && i < actual.size(); ++i) {
++        same = actual[i].path_id == expected[i].path_id &&
++            actual[i].charge == expected[i].charge &&
++            actual[i].chain == expected[i].chain;
++      }
++      if (!same) {
++        return refused(std::move(result), "expectation",
++                       "the record's origin is not the expected origin");
++      }
++    }
++  }
++
++  // Replay: the real entry point, leg by leg, from the exact origin. Only
++  // what it issues is carried forward.
++  const ValidatedRunControls& c = claimed->controls();
++  ValidatedEvolutionRequest base;
++  base.run_id = "validated-run-record-replay";
++  base.policy = c.policy;
++  base.field_speed = c.field_speed;
++  base.coupling = c.coupling;
++  base.initial_step = c.initial_step;
++  base.minimum_step = c.minimum_step;
++  base.increment_budget = c.increment_budget;
++  base.total_budget = c.total_budget;
++  base.max_attempts_per_step = c.max_attempts_per_step;
++  base.max_lower_sign_retries = c.max_lower_sign_retries;
++  base.growth_cooldown_steps = c.growth_cooldown_steps;
++  base.pair_policy = c.pair_policy;
++  base.groups = c.groups;
++  base.worker_count = worker_count;
++
++  std::vector<ValidatedFarStepPath> paths = claimed->origin();
++  ValidatedFarStepEvidence evidence;
++  std::shared_ptr<const ValidatedEvolutionContinuation> continuation;
++  std::string time = claimed->origin_time();
++  std::optional<ValidatedRunRecord> rebuilt;
++  {
++    ValidatedEvolutionRequest origin = base;
++    origin.paths = paths;
++    origin.start_time = time;
++    origin.end_time = time;
++    try {
++      rebuilt = ValidatedRunRecord::open(origin);
++    } catch (const std::exception& error) {
++      return refused(std::move(result), "admission", error.what());
++    }
++  }
++  std::size_t cursor = 0;
++  for (std::size_t index = 0; index < claimed->legs().size(); ++index) {
++    const ValidatedRunLeg& leg = claimed->legs()[index];
++    const std::string label = "leg " + std::to_string(index + 1U);
++    ValidatedEvolutionRequest request = base;
++    request.paths = paths;
++    request.evidence = evidence;
++    request.continuation = continuation;
++    request.start_time = time;
++    request.end_time = leg.end_time;
++    request.max_accepted_steps = leg.max_accepted_steps;
++    const auto accepted = std::make_shared<std::size_t>(0U);
++    request.accepted_step_callback =
++        [accepted](std::size_t, const std::string&) { ++*accepted; };
++    if (leg.cancelled_after.has_value()) {
++      const std::size_t stop = *leg.cancelled_after;
++      request.cancellation_requested = [accepted, stop] {
++        return *accepted >= stop;
++      };
++    }
++    ValidatedEvolutionCertificate certificate;
++    try {
++      certificate = evolve_validated_far_step_histories(request);
++    } catch (const std::exception& error) {
++      return refused(std::move(result), index == 0U ? "admission" : "replay",
++                     label + ": the driver refused the request: " +
++                         error.what());
++    }
++    if (certificate.continuation == nullptr) {
++      return refused(std::move(result), index == 0U ? "admission" : "replay",
++                     label + ": " + certificate.run.halt_code + ": " +
++                         certificate.halt_reason);
++    }
++    if (certificate.run.status != leg.status ||
++        certificate.run.halt_code != leg.halt_code ||
++        certificate.run.accepted_step_count != leg.accepted_steps) {
++      return refused(std::move(result), "replay",
++                     label + " ended differently from its claim: replay gave " +
++                         certificate.run.status + " " +
++                         certificate.run.halt_code + " after " +
++                         std::to_string(certificate.run.accepted_step_count) +
++                         " accepted steps");
++    }
++    const std::string appended = rebuilt->append(request, certificate);
++    if (!appended.empty()) {
++      return refused(std::move(result), "replay", label + ": " + appended);
++    }
++    for (; cursor < rebuilt->steps().size(); ++cursor) {
++      if (cursor >= claimed->steps().size()) {
++        return refused(std::move(result), "replay",
++                       label + ": replay accepted a step the record does not "
++                               "claim");
++      }
++      const ValidatedRunStep& got = rebuilt->steps()[cursor];
++      const ValidatedRunStep& want = claimed->steps()[cursor];
++      const char* field = got.ordinal != want.ordinal ? "ordinal"
++          : got.start != want.start ? "start"
++          : got.step != want.step ? "step"
++          : got.end != want.end ? "end"
++          : got.chains != want.chains ? "content chain" : nullptr;
++      if (field != nullptr) {
++        return refused(std::move(result), "replay",
++                       "step " + std::to_string(cursor + 1U) + ": replayed " +
++                           field + " differs from the claim");
++      }
++    }
++    paths = certificate.paths;
++    evidence = certificate.evidence;
++    continuation = certificate.continuation;
++    time = certificate.run.accepted_end_time;
++    ++result.replayed_legs;
++    result.replayed_steps = cursor;
++  }
++  if (cursor != claimed->steps().size()) {
++    return refused(std::move(result), "replay",
++                   "the record claims a step that replay did not produce");
++  }
++  const ValidatedRunFinalState& got = rebuilt->final_state();
++  const ValidatedRunFinalState& want = claimed->final_state();
++  const char* field = got.accepted_time != want.accepted_time ? "accepted time"
++      : got.controller_step_size != want.controller_step_size
++          ? "controller step"
++      : got.cooldown_remaining != want.cooldown_remaining ? "cooldown"
++      : got.accepted_step_count != want.accepted_step_count
++          ? "accepted-step count"
++      : !same_ledger(got.ledger, want.ledger) ? "ledger" : nullptr;
++  if (field != nullptr) {
++    return refused(std::move(result), "final",
++                   std::string("replayed final ") + field +
++                       " differs from the claim");
++  }
++  if (rebuilt->serialize() != bytes) {
++    return refused(std::move(result), "final",
++                   "the replayed record differs from the record read");
++  }
++  result.status = "restored";
++  result.paths = std::move(paths);
++  result.evidence = std::move(evidence);
++  result.continuation = std::move(continuation);
++  result.ledger = got.ledger;
++  result.record = std::move(rebuilt);
++  return result;
++}
++
++}  // namespace
++
++std::string validated_run_controls_difference(
++    const ValidatedRunControls& a, const ValidatedRunControls& b) {
++  if (a.policy != b.policy) return "policy";
++  if (!same_number(a.field_speed, b.field_speed)) return "field_speed";
++  if (!same_number(a.coupling, b.coupling)) return "coupling";
++  if (!same_number(a.initial_step, b.initial_step)) return "initial_step";
++  if (!same_number(a.minimum_step, b.minimum_step)) return "minimum_step";
++  if (!same_budget(a.increment_budget, b.increment_budget)) {
++    return "increment_budget";
++  }
++  if (a.total_budget.has_value() != b.total_budget.has_value() ||
++      (a.total_budget.has_value() &&
++       !same_budget(*a.total_budget, *b.total_budget))) {
++    return "total_budget";
++  }
++  if (a.max_attempts_per_step != b.max_attempts_per_step) {
++    return "max_attempts_per_step";
++  }
++  if (a.max_lower_sign_retries != b.max_lower_sign_retries) {
++    return "max_lower_sign_retries";
++  }
++  if (a.growth_cooldown_steps != b.growth_cooldown_steps) {
++    return "growth_cooldown_steps";
++  }
++  if (a.pair_policy != b.pair_policy) return "pair_policy";
++  if (a.groups.size() != b.groups.size()) return "groups";
++  for (std::size_t i = 0; i < a.groups.size(); ++i) {
++    if (a.groups[i].leader != b.groups[i].leader ||
++        a.groups[i].follower != b.groups[i].follower) {
++      return "groups";
++    }
++  }
++  return {};
++}
++
++ValidatedRunRecord ValidatedRunRecord::open(
++    const ValidatedEvolutionRequest& origin) {
++  if (origin.continuation != nullptr || origin.evidence != nullptr) {
++    throw std::invalid_argument(
++        "a record opens at an origin, which carries no continuation and no "
++        "evidence");
++  }
++  if (origin.paths.empty()) {
++    throw std::invalid_argument("the origin has no path");
++  }
++  for (const auto& path : origin.paths) {
++    if (path.history.uniform_circular_endpoint_certificate().has_value()) {
++      throw std::invalid_argument("the origin has an analytic carrier");
++    }
++    const auto& segments = path.history.segments();
++    for (std::size_t k = 0; k < segments.size(); ++k) {
++      const auto segment = segments.at(k);
++      for (std::size_t axis = 0; axis < 3; ++axis) {
++        if (!exact_decimal_token_is_zero(
++                segment.position_error_tokens()[axis]) ||
++            !exact_decimal_token_is_zero(
++                segment.velocity_error_tokens()[axis])) {
++          throw std::invalid_argument(
++              "the origin is not exact: it declares a radius");
++        }
++      }
++    }
++    if (compare_exact_decimal_tokens(
++            segments.back().t_end_token(), origin.start_time) != 0) {
++      throw std::invalid_argument(
++          "an origin history does not end at the origin time");
++    }
++  }
++  ValidatedRunRecord record;
++  record.controls_ = controls_of(origin);
++  record.origin_time_ = origin.start_time;
++  record.origin_ = origin.paths;
++  record.final_.accepted_time = origin.start_time;
++  record.final_.controller_step_size = origin.initial_step;
++  record.last_chains_ = chains_of(origin.paths);
++  record.extendable_ = true;
++  return record;
++}
++
++std::vector<ValidatedRunOriginMember> ValidatedRunRecord::origin_members()
++    const {
++  std::vector<ValidatedRunOriginMember> members;
++  for (const auto& path : origin_) {
++    members.push_back(
++        {path.id, path.charge, validated_history_digest(path.history)});
++  }
++  return members;
++}
++
++std::string ValidatedRunRecord::append(
++    const ValidatedEvolutionRequest& request,
++    const ValidatedEvolutionCertificate& certificate) {
++  if (!extendable_) {
++    return "a record read from bytes cannot be extended; restore it by "
++           "replay first";
++  }
++  // The request must continue this record.
++  {
++    const std::string difference =
++        validated_run_controls_difference(controls_, controls_of(request));
++    if (!difference.empty()) {
++      return "the request's control differs from the record's: " + difference;
++    }
++  }
++  if (request.start_time != final_.accepted_time) {
++    return "the leg does not start at the record's accepted time";
++  }
++  if (request.continuation != last_continuation_) {
++    return "the leg does not carry the continuation of the record's last "
++           "boundary";
++  }
++  if (request.paths.size() != origin_.size() ||
++      chains_of(request.paths) != last_chains_) {
++    return "the leg's population is not the record's last population";
++  }
++  // Boundary fields, against the seals the certificate carries.
++  if (certificate.continuation == nullptr) {
++    return "the certificate is not an accepted boundary: it carries no "
++           "continuation";
++  }
++  const ValidatedEvolutionState& sealed = certificate.continuation->state();
++  {
++    const std::string difference = validated_run_controls_difference(
++        controls_, controls_of(sealed, controls_.field_speed));
++    if (!difference.empty()) {
++      return "the sealed continuation's control differs from the record's: " +
++          difference;
++    }
++  }
++  if (sealed.accepted_time != certificate.run.accepted_end_time) {
++    return "the certificate's accepted time differs from its sealed "
++           "continuation";
++  }
++  if (sealed.controller_step_size != certificate.run.controller_step_size) {
++    return "the certificate's controller step differs from its sealed "
++           "continuation";
++  }
++  if (sealed.accepted_step_count !=
++      final_.accepted_step_count + certificate.run.accepted_step_count) {
++    return "the certificate's accepted-step count differs from its sealed "
++           "continuation";
++  }
++  if (!same_ledger(sealed.ledger, certificate.ledger)) {
++    return "the certificate's ledger differs from its sealed continuation";
++  }
++  if (sealed.evidence != certificate.evidence) {
++    return "the certificate's evidence is not its sealed continuation's";
++  }
++  if (certificate.paths.size() != origin_.size() ||
++      sealed.members.size() != origin_.size()) {
++    return "the certificate's population differs from the record's";
++  }
++  const std::vector<std::string> chains = chains_of(certificate.paths);
++  for (std::size_t i = 0; i < origin_.size(); ++i) {
++    const auto& path = certificate.paths[i];
++    if (path.id != origin_[i].id || path.charge != origin_[i].charge ||
++        sealed.members[i].path_id != path.id ||
++        sealed.members[i].charge != path.charge ||
++        sealed.members[i].history_digest != chains[i]) {
++      return "path " + origin_[i].id +
++          ": identifier, charge or content chain differs from the sealed "
++          "continuation";
++    }
++    if (certificate.evidence != nullptr &&
++        !certificate.evidence
++             ->member_refusal(path.id, path.charge, path.history)
++             .empty()) {
++      return "path " + path.id + " is not bound by the certificate's evidence";
++    }
++  }
++  if (certificate.evidence != nullptr &&
++      !same_number(certificate.evidence->coupling(), controls_.coupling)) {
++    return "the certificate's evidence was issued under another coupling";
++  }
++  // The accepted steps must lead from the record's last population to the
++  // certificate's. Each accepted step carries the sealed evidence the
++  // producer issued for it, which binds the chains before and after that
++  // step; the last of them must be the certificate's own evidence. Without
++  // this a genuine certificate of some other run would be accepted.
++  {
++    std::vector<std::string> running = last_chains_;
++    ValidatedFarStepEvidence last;
++    for (const auto& attempt : certificate.attempts) {
++      if (attempt.disposition != "accepted") continue;
++      if (attempt.producer.evidence == nullptr) {
++        return "an accepted attempt carries no evidence";
++      }
++      for (std::size_t i = 0; i < origin_.size(); ++i) {
++        bool linked = false;
++        for (const auto& member : attempt.producer.evidence->members()) {
++          if (member.path_id != origin_[i].id) continue;
++          linked = member.charge == origin_[i].charge &&
++              member.digest_before == running[i];
++          running[i] = member.digest_after;
++          break;
++        }
++        if (!linked) {
++          return "an accepted step does not continue the record's population "
++                 "at path " + origin_[i].id;
++        }
++      }
++      last = attempt.producer.evidence;
++    }
++    if (running != chains) {
++      return "the accepted steps do not lead to the certificate's population";
++    }
++    if (last != nullptr && last != certificate.evidence) {
++      return "the certificate's evidence is not that of its last accepted "
++             "step";
++    }
++  }
++  // The rest of the transcript is plain data, carried as claims.
++  std::vector<ValidatedRunStep> added;
++  for (const auto& attempt : certificate.attempts) {
++    if (attempt.disposition != "accepted") continue;
++    if (attempt.producer.evidence == nullptr) {
++      return "an accepted attempt carries no evidence";
++    }
++    ValidatedRunStep step;
++    step.ordinal = attempt.step_index;
++    step.start = attempt.producer.start;
++    step.step = attempt.producer.step;
++    step.end = attempt.producer.end;
++    for (const auto& path : origin_) {
++      std::string chain;
++      for (const auto& member : attempt.producer.evidence->members()) {
++        if (member.path_id == path.id) chain = member.digest_after;
++      }
++      if (chain.empty()) {
++        return "an accepted attempt's evidence does not name path " + path.id;
++      }
++      step.chains.push_back(std::move(chain));
++    }
++    added.push_back(std::move(step));
++  }
++  if (added.size() != certificate.run.accepted_step_count) {
++    return "the certificate's accepted attempts do not match its count";
++  }
++  ValidatedRunLeg leg;
++  leg.end_time = request.end_time;
++  leg.max_accepted_steps = request.max_accepted_steps;
++  if (certificate.run.status == "cancelled") {
++    leg.cancelled_after = certificate.run.accepted_step_count;
++  }
++  leg.status = certificate.run.status;
++  leg.halt_code = certificate.run.halt_code;
++  leg.accepted_steps = certificate.run.accepted_step_count;
++
++  legs_.push_back(std::move(leg));
++  for (auto& step : added) steps_.push_back(std::move(step));
++  final_.accepted_time = sealed.accepted_time;
++  final_.controller_step_size = sealed.controller_step_size;
++  final_.cooldown_remaining = sealed.cooldown_remaining;
++  final_.accepted_step_count = sealed.accepted_step_count;
++  final_.ledger = sealed.ledger;
++  last_chains_ = chains;
++  last_continuation_ = certificate.continuation;
++  return {};
++}
++
++std::string ValidatedRunRecord::serialize() const {
++  return record_text(body_text(*this));
++}
++
++std::string validated_run_record_identity(const std::string& bytes) {
++  return sha256_hex(bytes);
++}
++
++std::string validated_run_record_reseal(const std::string& bytes) {
++  const Parsed parsed = outer(bytes);
++  const ValidatedRunRecord record =
++      record_of_body(member(parsed.root.get_object(), "body"));
++  return record.serialize();
++}
++
++ValidatedRestoreResult restore_validated_run(
++    const std::string& bytes,
++    const ValidatedRestoreExpectation& expectation,
++    std::size_t worker_count) {
++  return restore(bytes, &expectation, worker_count);
++}
++
++ValidatedRestoreResult replay_validated_run_record(
++    const std::string& bytes, std::size_t worker_count) {
++  return restore(bytes, nullptr, worker_count);
++}
++
++ValidatedRunRecordClaims read_validated_run_record(const std::string& bytes) {
++  ValidatedRunRecordClaims claims;
++  claims.record_identity = validated_run_record_identity(bytes);
++  try {
++    claims.record = checked_record(bytes);
++    claims.status = "read";
++  } catch (const std::exception& error) {
++    claims.status = "refused";
++    claims.reason = error.what();
++    claims.record.reset();
++  }
++  return claims;
++}
++
++void write_validated_run_record_file(
++    const std::string& path, const std::string& bytes) {
++  const std::string temporary = path + ".writing";
++  {
++    std::ofstream out(temporary, std::ios::binary | std::ios::trunc);
++    if (out) {
++      out.write(bytes.data(), static_cast<std::streamsize>(bytes.size()));
++      out.flush();
++    }
++    if (!out) {
++      std::error_code ignored;
++      std::filesystem::remove(temporary, ignored);
++      throw std::runtime_error("could not write the record's temporary file");
++    }
++  }
++  std::error_code failure;
++  std::filesystem::rename(temporary, path, failure);
++  if (failure) {
++    std::error_code ignored;
++    std::filesystem::remove(temporary, ignored);
++    throw std::runtime_error("could not publish the record: " +
++                             failure.message());
++  }
++}
++
++std::string read_validated_run_record_file(const std::string& path) {
++  std::ifstream in(path, std::ios::binary);
++  if (!in) throw std::runtime_error("could not open the record file");
++  return std::string(std::istreambuf_iterator<char>(in),
++                     std::istreambuf_iterator<char>());
++}
++
++}  // namespace architrino::eom

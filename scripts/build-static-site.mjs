@@ -49,8 +49,11 @@ export function buildStaticSite({ rootDir = ROOT, outputDir = path.join(rootDir,
   if (fs.existsSync(outputDir) && (fs.lstatSync(outputDir).isSymbolicLink() || fs.readdirSync(outputDir).length)) throw new Error("site output must be an empty directory");
   prepare({ rootDir });
   const families = readRuntimeAssetFamilies(rootDir);
-  const deleted = trackedPaths ? new Set() : new Set(execFileSync("git", ["ls-files", "--deleted", "-z"], { cwd: rootDir, encoding: "utf8" }).split("\0").filter(Boolean));
-  const tracked = trackedPaths ?? execFileSync("git", ["ls-files", "-z"], { cwd: rootDir, encoding: "utf8" }).split("\0").filter(name => name && !deleted.has(name));
+  // The path inventory alone can exceed Node's default 1 MiB stdout buffer.
+  // Match the bounded Git inventory capacity used by the publication receipt.
+  const gitOptions = { cwd: rootDir, encoding: "utf8", maxBuffer: 256 * 1024 * 1024 };
+  const deleted = trackedPaths ? new Set() : new Set(execFileSync("git", ["ls-files", "--deleted", "-z"], gitOptions).split("\0").filter(Boolean));
+  const tracked = trackedPaths ?? execFileSync("git", ["ls-files", "-z"], gitOptions).split("\0").filter(name => name && !deleted.has(name));
   // Copy only versioned public paths (respecting current deletions) plus declared outputs.
   // Never recursively copy the checkout: it contains local runs and credentials.
   const publicPaths = tracked.filter((name) => !name.split("/").some((part) => part.startsWith(".")) &&

@@ -1,0 +1,43 @@
+PID 40394
+PID 40394
+[{"name": "(L1) known: hand cubic slab q = 0.3 + 0.25 s + 0.05 s^2 + 0.05 s^3 (ra", "pass": true}, {"name": "(L2) known: uncertain origin T = [1, 1 + 1e-7]: the point request s = ", "pass": true}, {"name": "(L3) known: two consecutive cubic slabs, request [1.008, 1.013] stradd", "pass": true}, {"name": "(L4) known, REAL records: on each of the 203 joins of the 204-record c", "pass": true}, {"name": "(L5) known: request straddling T* (+-0.004): hull of the window part a", "pass": true}, {"name": "(L6) known: appended records: s = 2.9 is refused with the 144-record c", "pass": true}, {"name": "(N1-N7) negatives", "pass": true}]
+{"N1 missing remainder (AP = 0) excludes the true cubic state": true, "N2 wrong initial state (q0 + 1e-6) excludes the true state": true, "N3 wrong time origin (+0.003) excludes the true state": true, "N4 wrong acceleration (a0 + 0.01) excludes the true state": true, "N5 gap (late-feedback step 50 removed): request across it refused": true, "N5 reason": "gap before lf#51", "N6 uncertified record (late-feedback step 60 flagged): refused": true, "N6 reason": "uncertified record lf#60", "N7 beyond coverage (past step 154): refused": true}
+175 3.6166847 q 0.66638 v 0.36591 qdd 0.070217 0.072459 pos jerk -0.09994 -0.09284 neg | lam_end -0.0655360 -0.0643088 neg dlam -0.05399 -0.05073 neg | D U/L/A below above above | tanU 0.04827 0.05018 tanL 0.01534 tanA 0.00659 | rhoU94 -0.191456 neg rhoL1.87 pos | srcU lf#74,lf#75 wU 0.003103 0.005379
+176 3.6266847 q 0.67005 v 0.36661 qdd 0.069248 0.071490 pos jerk -0.10117 -0.09404 neg | lam_end -0.0660655 -0.0648255 neg dlam -0.05393 -0.05066 neg | D U/L/A below above above | tanU 0.04743 0.04934 tanL 0.01519 tanA 0.00661 | rhoU94 -0.180768 neg rhoL1.87 pos | srcU lf#75,lf#76 wU 0.003111 0.005402
+177 3.6366847 q 0.67372 v 0.36730 qdd 0.068266 0.070508 pos jerk -0.10237 -0.09522 neg | lam_end -0.0665943 -0.0653414 neg dlam -0.05385 -0.05057 neg | D U/L/A below above above | tanU 0.04658 0.04848 tanL 0.01504 tanA 0.00664 | rhoU94 -0.170085 neg rhoL1.87 pos | srcU lf#76,lf#77 wU 0.003119 0.005424
+178 3.6466847 q 0.67739 v 0.36798 qdd 0.067273 0.069514 pos jerk -0.10355 -0.09637 neg | lam_end -0.0671223 -0.0658563 neg dlam -0.05377 -0.05048 neg | D U/L/A below above above | tanU 0.04571 0.04761 tanL 0.01489 tanA 0.00666 | rhoU94 -0.159406 neg rhoL1.87 pos | srcU lf#77,lf#78 wU 0.003127 0.005446
+179 3.6566847 q 0.68108 v 0.36865 qdd 0.066269 0.068508 pos jerk -0.10470 -0.09750 neg | lam_end -0.0676494 -0.0663701 neg dlam -0.05367 -0.05038 neg | D U/L/A below above above | tanU 0.04483 0.04673 tanL 0.01474 tanA 0.00668 | rhoU94 -0.148733 neg rhoL1.87 pos | srcU lf#78,lf#79 wU 0.003134 0.005469
+180 3.6666847 q 0.68477 v 0.36931 qdd 0.065253 0.067491 pos jerk -0.10582 -0.09861 neg | lam_end -0.0681756 -0.0668828 neg dlam -0.05357 -0.05027 neg | D U/L/A below above above | tanU 0.04394 0.04584 tanL 0.01459 tanA 0.00671 | rhoU94 -0.138065 neg rhoL1.87 pos | srcU lf#79,lf#80,lf#81 wU 0.003142 0.008236
+181 3.6766847 q 0.68846 v 0.36995 qdd 0.064227 0.066463 pos jerk -0.10691 -0.09968 neg | lam_end -0.0687006 -0.0673943 neg dlam -0.05345 -0.05014 neg | D U/L/A below above above | tanU 0.04305 0.04494 tanL 0.01444 tanA 0.00673 | rhoU94 -0.127403 neg rhoL1.87 pos | srcU lf#81,lf#82 wU 0.003149 0.005536
+182 3.6866847 q 0.69216 v 0.37059 qdd 0.063190 0.065424 pos jerk -0.10796 -0.10073 neg | lam_end -0.0692245 -0.0679044 neg dlam -0.05333 -0.05001 neg | D U/L/A below above above | tanU 0.04214 0.04403 tanL 0.01429 tanA 0.00675 | rhoU94 -0.116745 neg rhoL1.87 pos | srcU lf#82,lf#83 wU 0.003156 0.005559
+183 3.6966847 q 0.69587 v 0.37122 qdd 0.062143 0.064375 pos jerk -0.10899 -0.10174 neg | lam_end -0.0697470 -0.0684131 neg dlam -0.05319 -0.04987 neg | D U/L/A below above above | tanU 0.04122 0.04311 tanL 0.01414 tanA 0.00678 | rhoU94 -0.106094 neg rhoL1.87 pos | srcU lf#83,lf#84 wU 0.003164 0.005582
+184 3.7066847 q 0.69959 v 0.37184 qdd 0.061087 0.063315 pos jerk -0.10998 -0.10272 neg | lam_end -0.0702682 -0.0689202 neg dlam -0.05305 -0.04972 neg | D U/L/A below above above | tanU 0.04029 0.04217 tanL 0.01398 tanA 0.00680 | rhoU94 -0.095447 neg rhoL1.87 pos | srcU lf#84,lf#85 wU 0.00317 0.005604
+185 3.7166847 q 0.70331 v 0.37244 qdd 0.059970 0.062252 pos jerk -0.11100 -0.10362 neg | lam_end -0.0707996 -0.0694126 neg dlam -0.05292 -0.04951 neg | D U/L/A below above above | tanU 0.03935 0.04123 tanL 0.01378 tanA 0.00682 | rhoU94 -0.084806 neg rhoL1.87 pos | srcU lf#85,lf#86 wU 0.003177 0.005627
+186 3.7266847 q 0.70704 v 0.37304 qdd 0.058943 0.061184 pos jerk -0.11188 -0.10455 neg | lam_end -0.0713105 -0.0699252 neg dlam -0.05274 -0.04937 neg | D U/L/A below above above | tanU 0.03840 0.04028 tanL 0.01368 tanA 0.00685 | rhoU94 -0.074171 neg rhoL1.87 pos | srcU lf#86,lf#87 wU 0.003184 0.00565
+187 3.7366847 q 0.71077 v 0.37362 qdd 0.057861 0.060078 pos jerk -0.11274 -0.10545 neg | lam_end -0.0718224 -0.0704312 neg dlam -0.05254 -0.04920 neg | D U/L/A below above above | tanU 0.03745 0.03932 tanL 0.01353 tanA 0.00687 | rhoU94 -0.063541 neg rhoL1.87 pos | srcU lf#87,lf#88 wU 0.00319 0.005673
+188 3.7466847 q 0.71451 v 0.37419 qdd 0.056769 0.058981 pos jerk -0.11358 -0.10629 neg | lam_end -0.0723370 -0.0709311 neg dlam -0.05235 -0.04901 neg | D U/L/A below above above | tanU 0.03648 0.03835 tanL 0.01338 tanA 0.00689 | rhoU94 -0.052917 neg rhoL1.87 pos | srcU lf#88,lf#89 wU 0.003197 0.005696
+189 3.7566847 q 0.71825 v 0.37475 qdd 0.055668 0.057876 pos jerk -0.11439 -0.10709 neg | lam_end -0.0728497 -0.0714289 neg dlam -0.05215 -0.04881 neg | D U/L/A below above above | tanU 0.03551 0.03737 tanL 0.01323 tanA 0.00691 | rhoU94 -0.042299 neg rhoL1.87 pos | srcU lf#89,lf#90 wU 0.003203 0.005719
+190 3.7666847 q 0.72201 v 0.37530 qdd 0.054560 0.056762 pos jerk -0.11515 -0.10785 neg | lam_end -0.0733604 -0.0719246 neg dlam -0.05195 -0.04860 neg | D U/L/A below above above | tanU 0.03453 0.03639 tanL 0.01307 tanA 0.00694 | rhoU94 -0.031687 neg rhoL1.87 pos | srcU lf#90,lf#91 wU 0.003209 0.005742
+191 3.7766847 q 0.72576 v 0.37584 qdd 0.053444 0.055642 pos jerk -0.11587 -0.10858 neg | lam_end -0.0738691 -0.0724180 neg dlam -0.05173 -0.04838 neg | D U/L/A below above above | tanU 0.03355 0.03539 tanL 0.01292 tanA 0.00696 | rhoU94 -0.021081 neg rhoL1.87 pos | srcU lf#91,lf#92 wU 0.003215 0.005765
+192 3.7866847 q 0.72952 v 0.37637 qdd 0.052321 0.054513 pos jerk -0.11656 -0.10926 neg | lam_end -0.0743764 -0.0729088 neg dlam -0.05150 -0.04815 neg | D U/L/A strad above above | tanU 0.03255 0.03439 tanL 0.01277 tanA 0.00698 | rhoU94 -0.010481 neg rhoL1.87 pos | srcU lf#92,lf#93 wU 0.003221 0.005788
+193 3.7966847 q 0.73329 v 0.37689 qdd 0.051192 0.053379 pos jerk -0.11720 -0.10990 neg | lam_end -0.0748816 -0.0733963 neg dlam -0.05126 -0.04791 neg | D U/L/A above above above | tanU 0.03156 0.03339 tanL 0.01262 tanA 0.00700 | rhoU94 0.0001126 pos rhoL1.87 pos | srcU lf#93,lf#94,lr#95 wU 0.003227 0.008707
+194 3.8066847 q 0.73706 v 0.37739 qdd 0.050056 0.052238 pos jerk -0.11780 -0.11050 neg | lam_end -0.0753844 -0.0738812 neg dlam -0.05102 -0.04766 neg | D U/L/A above above above | tanU 0.03055 0.03238 tanL 0.01247 tanA 0.00703 | rhoU94 0.0107004 pos rhoL1.87 pos | srcU lr#95,lr#96 wU 0.003232 0.005857
+wall 0.37676095962524414
+        0.94 real         0.72 user         0.01 sys
+            34570240  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                3115  page reclaims
+                  43  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                1044  involuntary context switches
+         11558177541  instructions retired
+          2677837078  cycles elapsed
+            26919416  peak memory footprint
