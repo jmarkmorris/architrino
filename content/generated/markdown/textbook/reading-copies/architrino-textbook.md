@@ -50678,7 +50678,7 @@ Here $\mathbf p_\gamma$ is outgoing photon momentum and no incoming photon is in
 
 For a sufficiently heavy, slowly recoiling target, finite recoil momentum can carry little recoil energy in the effective description. This does not imply that recoil dominates the vector balance. Momentum conservation constrains but does not determine the angular distribution; that distribution requires the encounter dynamics and radiation map.
 
-The radiation-zone benchmark is stronger than total momentum balance. For a classical point-charge comparison with collinear velocity and acceleration, including antiparallel deceleration, let $\mathbf a=d\mathbf v/dt_{\mathrm{eff}}$, $\beta=\|\mathbf{v}\|/c$, $\gamma=(1-\beta^2)^{-1/2}$, and $\theta$ be the angle between the outgoing radiation direction and $\mathbf{v}$. Here $q$ is electric charge, $\epsilon_0$ vacuum permittivity, and $c$ the observer-level light speed, not a new numerical value for $c_f$. The power per unit emission time $t_{\mathrm{eff}}$, evaluated at the retarded source event, is
+The radiation-zone benchmark is stronger than total momentum balance. For a classical point-charge comparison with collinear velocity and acceleration, including antiparallel deceleration, let $\mathbf a=d\mathbf v/dt_{\mathrm{eff}}$, $\beta=\|\mathbf{v}\|/c$, $\gamma=(1-\beta^2)^{-1/2}$, and $\theta$ be the angle between the outgoing radiation direction and $\mathbf{v}$. Here $q$ is electric charge, $\epsilon_0$ vacuum permittivity, and $c$ the observer-level light speed, not a new numerical value for $c_f$. The power per unit emission time $t_{\mathrm{eff}}$, evaluated at the delayed source event, is
 
 $$
 \frac{dP_{\mathrm{br,std}}}{d\Omega}

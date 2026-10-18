@@ -14,6 +14,12 @@ No independent score is assigned to this geometry workstream. The existing in-pr
 
 ## Queued follow-ups
 
+### Independently certify the remaining ancient staggered cells
+
+- **Status:** ◐ In progress — Op selects a fresh October18 window10:51:37Z–16:51:37Z;576 complementary cells0..575 accepted at comparison-defect scope,81 event-band cells576..655 and657 remain. Renewed E/known-only assembly brief is prepared but delivery awaits residuals foreground selection because of an actual desktop approval-review block. Full coefficient/tail assembly, new propagation and extraction remain unfinished; cumulative48-message limit and independent serial review retained.
+- **Scope:** The same exact coherent ancient branch, $a=2^{-40}$, $g=16$, $c_f=1$, complete roots and infinite tails, original grouping and frozen comparison. Separate from Saturday's localized family and the active `1-mec` coupling assignment.
+- **Request / completion:** The [six-hour campaign](analysis/staggered-cell-independent-campaign-2026-10-14.md) revalidates the previously covered complete cell as the new driver pilot, resolves review comments, then reconstructs all 657 previously uncovered cells in serial reviewed packets and independently propagates/extracts the first-event predicates. Exact coverage and shared-input caps are required; wider sufficient bounds establish no physical counterexample. The six-hour window and 48 contributions per coordinator are fixed; unfinished cells remain explicitly partial at closeout. No law, ranking or other assignment changes.
+
 ### Define an EOM solver reproduction of the fixed lattice control
 
 - **Status:** ○ Queued — specification incomplete; numerical execution blocked.
@@ -21,14 +27,6 @@ No independent score is assigned to this geometry workstream. The existing in-pr
 - **Scope:** Name the finite changed-history population, complete supplied pasts, horizon and unchanged Master Equation with numerical $c_f=1$. Specify how the surrounding infinite lattice contributes through the stationary aggregate, receiver-dependent evaluation, subtraction of replaced source rows and certified tails. A bare finite lattice is a different experiment.
 - **Evidence / blocker:** The [existing capability audit](analysis/smooth-two-particle-later-instrument.md#eom-solver-capability-boundary) identifies the missing infinite stationary-field representation. The [EOM solver owner](../../app-solver/priorities.md) retains capability implementation and acceptance; this entry does not commission a new solver or expand its testing obligations.
 - **Completion:** A reproducible protocol defines all inputs, the aggregate interface, independent analytical comparison and error requirements, and names any remaining capability dependency. A production run stays blocked until the required capability is accepted. Existing comparison curves remain comparison evidence.
-
-### Continue the localized family beyond the evolved-history interval
-
-- **Status:** ○ Queued — unassigned; no further lattice work is released in the current binary phase.
-- **Scope:** The same complete ancient nonlinear localized family, unchanged Master Equation, unit spacing, $g=16$, $c_f=1$, all dynamical labels, original eight-source blocks, complete roots and tails, original contour/seed class.
-- **Starting result:** The [accepted actual-history barrier](analysis/saturday-localized-evolved-history-continuation-2026-10-12.md) reaches $T_E\ge T_B+.428$, at least 2.542 for amplitude $10^{-4}$, with all-label displacement at most .027072 and speed at most .09742; the endpoint growth lower bound is empty.
-- **Request:** Derive quantitative continuation beyond the actual $T_E$ using evolved history. A signed or time-dependent bound on the whole seed-dependent linear remainder is an inferred candidate, not a necessary or proved sufficient route. State the next interval and margins or an honest precise failure of the selected estimate.
-- **Boundary / falsifier:** Preserve nonlinear matching, generated emissions, roots and summation. No physical ending follows from a sufficient-method limit; no optimal chart ceiling, order-one fate, universal growth or wake-speed arrival is established. A failed correction, matching or tail bound withdraws the affected claim. Scores and 1-mec assignment remain unchanged.
 
 ### Repair the complete-history site-local release ladder
 
@@ -45,6 +43,18 @@ No independent score is assigned to this geometry workstream. The existing in-pr
 - **Completion / falsifier:** Accept or correct each item. Replace the float balance by an interval enclosure at one or more speeds, or prove existence at small speed by controlling the delayed tail uniformly. Bound or count the growing characteristic roots that were not tracked. A nonvanishing tangential residual at the tabulated spacing under tighter arithmetic, or a spectrum without growing roots, overturns the corresponding statement. A connection from formal growing modes to nearby solutions needs its own history-flow argument. No population, sea constituent or retained assembly is claimed, and no ranking changes.
 
 ## Completed supplied-review investigation
+
+### Continue the localized family beyond the forward-profile interval
+
+- **Status:** ✓ Done at bounded derived and independently reviewed scope — October 18; removed from executable follow-ups.
+- **Result:** The [summed signed-remainder theorem](analysis/saturday-summed-signed-lattice-remainder-2026-10-18.md) and [final review](analysis/saturday-summed-signed-lattice-remainder-codex-review-2026-10-18.md#final-corrected-byte-disposition--october-18) supply the uniform odd cubic, paired-delay cancellation, both source-difference brackets and complete receiver/source/correction assembly. The same ancient nonlinear family continues through $T_N\ge T_S+.0940$, at seed envelope .0277, with translated correction norm below $22.5\Delta^2$ from the accepted earlier start and improved containing bound .010017225 at actual $T_S$. Displacement is at most .044965, speed at most .16773 and separation at least .910071. [The manuscript](manuscript.md#a-summed-signed-remainder-and-continuation-beyond-the-profile-interval) carries the mechanism.
+- **Boundary / falsifier:** Preserve complete nonlinear past, all dynamical labels, original eight-source blocks, all roots/tails, contour/seed class, $g=16$, $c_f=1$ and primitive-enclosure conditionality. The endpoint growth lower bound is empty for every admitted amplitude, not evidence of actual nongrowth. Half the odd sum is the largest bounded contribution; the nearly saturated chart is not an optimum or physical ending. Failed row, correction, matching, root, tail or declared-enclosure bounds withdraw the affected statement. Actual growth, order-one fate and arrival remain open science; no successor research, score, law or production gate is selected. The separate ancient-staggered work and active `1-mec` assignment remain unchanged.
+
+### Continue the localized family beyond the evolved-history interval
+
+- **Status:** ✓ Done at bounded research-and-review scope — October 14; removed from executable follow-ups.
+- **Result:** The [forward-profile theorem](analysis/saturday-localized-beyond-evolved-endpoint-2026-10-14.md) and [final independent review](analysis/saturday-localized-beyond-evolved-endpoint-codex-review-2026-10-14.md#final-corrected-byte-disposition--october-14) reach the same complete-past family at $T_S\ge T_E+.0548$, seed envelope .0211 and correction below $32\Delta^2$, with all-label displacement at most .035347, speed at most .13367 and separation at least .929306. Original roots, nonlinear matching, all labels, eight-source blocks, contour/seed class and tails remain. At amplitude $10^{-4}$, $T_S\ge2.597$; endpoint growth lower bound empty. A separate Fraction/Taylor reference confirms strict barrier and time/root/chart margins without peer imports or rerun.
+- **Boundary / falsifier:** Derived sufficient interval, not optimal survival time, order-one fate or arrival. Reflected-source pairing is exact, with smooth local cubic onset; a uniform summed odd-part bound and assembled larger barrier remain open. Failure of the stated correction, matching, root or tail estimates reopens the affected claim. Original sources and failed/pass evidence remain frozen. Scores, residuals and 1-mec assignments unchanged; further lattice work is unassigned in the current low-J phase.
 
 ### Continue the localized family with evolved-history bounds
 

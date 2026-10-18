@@ -1,0 +1,355 @@
+{
+ "box": {
+  "q": [
+   "1.04",
+   "1.50"
+  ],
+  "q_delayed": [
+   "0",
+   "1.20"
+  ],
+  "w_delayed": [
+   "-0.05",
+   "0.45"
+  ]
+ },
+ "controls": [
+  {
+   "name": "(K1) known: signed closed forms (chord, D_t, tangential N/(r^3 D), radial sigma/(2 r D), identity 1 + r_q' v' = D; both code paths kern and geom) vs direct vector computation, 400 random points of the NEW box (source velocity sampled in [-0.05, 0.45]), three classes; the vector tangent hit of each meridional class has the sign of N",
+   "points_with_M_negative": 400,
+   "points_with_N_negative": 327,
+   "points_with_negative_source_velocity": 32,
+   "max_abs_diff": {
+    "unlike": "4.5918e-41",
+    "like": "4.5918e-41",
+    "antipode": "4.5918e-41"
+   },
+   "pass": true
+  },
+  {
+   "name": "(H1) EXACT HAND-KNOWN: antipode class, static source q' = 0, receiver q = pi/3, qdot = 2/5: h_A = 1/6 and dh_A/dt = 1/(6 sqrt 3)",
+   "h": "0.166666666666666666666666666667",
+   "dh_dt": "0.096225044864937627418191463417",
+   "hand_dh_dt": "0.096225044864937627418191463417",
+   "pass": true
+  },
+  {
+   "name": "(W1) negative (sign flip): source velocity sign flipped at (1.2, 0.9, 0.4) changes D_t by > 1e-3 in every class",
+   "detail": {
+    "unlike": {
+     "D_closed": "1.21054538287617",
+     "D_wrong_velocity": "0.789454617123827"
+    },
+    "like": {
+     "D_closed": "0.836099802844257",
+     "D_wrong_velocity": "1.16390019715574"
+    },
+    "antipode": {
+     "D_closed": "1.05977525298944",
+     "D_wrong_velocity": "0.94022474701056"
+    }
+   },
+   "pass": true
+  },
+  {
+   "name": "(W3) negative: the OLD LABEL imposed (unlike D computed as 1 - v'|M|/r, i.e. approach assumed) at (1.2, 0.9, 0.4), where M < 0, differs from the vector D_t",
+   "M": "-0.646662497346",
+   "N": "-0.498902394015",
+   "D_vector": "1.21054538287617",
+   "D_old_label": "0.789454617123827",
+   "pass": true
+  },
+  {
+   "name": "(K2) NUMERICAL prescribed-history control: d(lambda_hat)/dt and d(a_rad)/dt closed forms vs Richardson differences on an exactly known history with a generated segment, NEW box, t = 4.4 (q = 1.168) and t = 4.8 (q = 1.378)",
+   "detail": {
+    "4.4": {
+     "q": "1.1678",
+     "qdot": "0.504",
+     "classes": {
+      "unlike": {
+       "delayed_arg": "3.2969282",
+       "q_delayed": "0.678774",
+       "v_delayed": "0.382662",
+       "beyond_seam": true,
+       "M": "-0.55053687",
+       "N": "-0.31565374",
+       "D": "1.190984482"
+      },
+      "like": {
+       "delayed_arg": "2.6667951",
+       "q_delayed": "0.459485",
+       "v_delayed": "0.313347",
+       "beyond_seam": true,
+       "M": "-0.45216212",
+       "N": "-0.12688449",
+       "D": "0.9182532592"
+      },
+      "antipode": {
+       "delayed_arg": "2.5381494",
+       "q_delayed": "0.420084",
+       "v_delayed": "0.299196",
+       "beyond_seam": true,
+       "M": "-0.43203723",
+       "N": "-0.092054368",
+       "D": "1.109269409"
+      }
+     },
+     "dlambda_closed": "-0.1570382155393412289849",
+     "dlambda_abs_err": "7.6991e-31",
+     "darad_abs_err": "7.699e-31",
+     "jerk": {
+      "unlike": {
+       "closed": "-0.086802861074384783114",
+       "abs_err": "3.6887e-29"
+      },
+      "like": {
+       "closed": "-0.12847480705525139527",
+       "abs_err": "1.053e-29"
+      },
+      "antipode": {
+       "closed": "0.02335523254295581456",
+       "abs_err": "8.8601e-34"
+      }
+     },
+     "dqddot_dt_closed": "-0.04072001037163165422",
+     "dqddot_dt_fd": "-0.04072001037163165422"
+    },
+    "4.8": {
+     "q": "1.3782",
+     "qdot": "0.548",
+     "classes": {
+      "unlike": {
+       "delayed_arg": "3.5663782",
+       "q_delayed": "0.785875",
+       "v_delayed": "0.412302",
+       "beyond_seam": true,
+       "M": "-0.74218197",
+       "N": "-0.46303644",
+       "D": "1.248052364"
+      },
+      "like": {
+       "delayed_arg": "3.1539382",
+       "q_delayed": "0.625182",
+       "v_delayed": "0.366933",
+       "beyond_seam": true,
+       "M": "-0.69436516",
+       "N": "-0.35244311",
+       "D": "0.8452150244"
+      },
+      "antipode": {
+       "delayed_arg": "2.9658004",
+       "q_delayed": "0.558094",
+       "v_delayed": "0.346238",
+       "beyond_seam": true,
+       "M": "-0.66902119",
+       "N": "-0.30341228",
+       "D": "1.138030469"
+      }
+     },
+     "dlambda_closed": "-0.1786572848356121398908",
+     "dlambda_abs_err": "6.2209e-30",
+     "darad_abs_err": "6.2209e-30",
+     "jerk": {
+      "unlike": {
+       "closed": "0.062949101988294258326",
+       "abs_err": "5.4494e-31"
+      },
+      "like": {
+       "closed": "-0.22312305310238206342",
+       "abs_err": "6.675e-29"
+      },
+      "antipode": {
+       "closed": "0.022386961475867420472",
+       "abs_err": "8.8449e-34"
+      }
+     },
+     "dqddot_dt_closed": "-0.029796094075230818972",
+     "dqddot_dt_fd": "-0.029796094075230818972"
+    }
+   },
+   "pass": true
+  },
+  {
+   "name": "(K3) NUMERICAL prescribed-history control: each class's dh_c/dt and d(qddot)/dt closed forms vs Richardson differences, same history and times (values inside the K2 detail)",
+   "pass": true
+  },
+  {
+   "name": "(W2) negative: the pre-seam acceleration used for the unlike source beyond the seam at t = 4.8 changes d(lambda_hat)/dt and dh_U/dt by more than 1e-6",
+   "dlambda": [
+    "-0.178657284835612",
+    "-0.178059480532154"
+   ],
+   "dhU": [
+    "0.0629491019882943",
+    "0.0611301965583238"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(W4) negative (acceleration omission): the unlike source acceleration set to zero at t = 4.8 moves dh_U/dt away from the Richardson difference and changes d(lambda_hat)/dt, each by more than 1e-6",
+   "dhU_true_omitted_fd": [
+    "0.0629491019882943",
+    "0.0562797820784026",
+    "0.0629491019882943"
+   ],
+   "dlambda": [
+    "-0.178657284835612",
+    "-0.176465335722933"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(W5) negative (sign flip): the delayed speed entered with the wrong sign in dh_U/dt at t = 4.8 is rejected by the Richardson difference (difference > 1e-6)",
+   "dhU_flipped": "0.0524859522632579",
+   "pass": true
+  },
+  {
+   "name": "(H2) EXACT HAND-KNOWN radial account: static sources at q' = 0, receiver q = pi/3, qdot = 2/5, qddot = 0: a_r and da_r/dt from the hand formula; dl/dt = -da_r/dt",
+   "a_r": "-0.08675438035799707473110284",
+   "a_r_hand": "-0.08675438035799707473110284",
+   "da_r_dt": "-0.02649349061098125820568188",
+   "da_r_dt_hand": "-0.02649349061098125820568188",
+   "dl_dt": "0.02649349061098125820568188",
+   "pass": true
+  },
+  {
+   "name": "(K2b) NUMERICAL prescribed-history control, smooth turning history q(s) = 1 + 0.3 sin(0.5 (s - 2)) at t = 6.6 (receiver w < 0, unlike source w' < 0): d(a_r)/dt, dl/dt and each dh_c/dt against Richardson differences",
+   "q": "1.2237116",
+   "w": "-0.099941403",
+   "classes": {
+    "unlike": {
+     "delayed_arg": "5.1554162",
+     "q_delayed": "1.29999",
+     "v_delayed": "-0.00103676",
+     "beyond_seam": true,
+     "M": "-0.70214227",
+     "N": "-0.74024593",
+     "D": "0.9994960835"
+    },
+    "like": {
+     "delayed_arg": "5.2167196",
+     "q_delayed": "1.29979",
+     "v_delayed": "-0.0056332",
+     "beyond_seam": true,
+     "M": "-0.70215113",
+     "N": "-0.74015286",
+     "D": "1.002859402"
+    },
+    "antipode": {
+     "delayed_arg": "4.6010692",
+     "q_delayed": "1.28911",
+     "v_delayed": "0.0400476",
+     "beyond_seam": true,
+     "M": "-0.70257311",
+     "N": "-0.73524918",
+     "D": "0.9986907034"
+    }
+   },
+   "dl_err": "3.5084e-32",
+   "dar_err": "2.1842e-33",
+   "dh_err": {
+    "unlike": "1.1687e-31",
+    "like": "2.1446e-31",
+    "antipode": "8.2145e-33"
+   },
+   "pass": true
+  },
+  {
+   "name": "(W6) negative (sign flip): the unlike delayed velocity entered with the wrong sign in d(a_r)/dt at t = 6.6 is rejected by the Richardson difference (difference > 1e-6)",
+   "dar_true": "-0.0106913663603828",
+   "dar_flipped": "-0.0106321505447925",
+   "dar_fd": "-0.0106913663603828",
+   "pass": true
+  },
+  {
+   "name": "(W7) negative (acceleration omission): the unlike source acceleration set to zero changes d(a_r)/dt at t = 6.6 by more than 1e-6 and is rejected by the Richardson difference",
+   "dar_omitted": "-0.00803469478707641",
+   "pass": true
+  }
+ ],
+ "controls_all_pass": true,
+ "target": {
+  "cells": [
+   46,
+   120
+  ],
+  "N_range": [
+   "-0.6960644967703077966001352",
+   "0.3579517766632960405393353"
+  ],
+  "M_range": [
+   "-0.840171946050666303322483",
+   "-0.07322877703235902609258565"
+  ],
+  "cell_sign_counts": {
+   "N_pos": 1072,
+   "N_neg": 4357,
+   "N_und": 91,
+   "M_pos": 0,
+   "M_neg": 5520,
+   "M_und": 0
+  },
+  "min_chord_unlike": "0.7670718584837601070924076",
+  "min_chord_like": "1.294102819462479093362186",
+  "min_chord_antipode_any_order": "1.463377737747641772623678",
+  "M_over_rU_range": [
+   "-0.6796839330687679978430756",
+   "-0.08243837592794194393502561"
+  ],
+  "M_over_rL_range": [
+   "-0.6372290976813788101861324",
+   "-0.04072228343864911940641317"
+  ],
+  "D_unlike_range_w_in_[-0.05,0.45]": [
+   "0.9660158033465616001078462",
+   "1.305857769880945599029384"
+  ],
+  "D_like_range": [
+   "0.7132469060433795354162404",
+   "1.031861454884068940509307"
+  ],
+  "D_antipode_range_d_in_[-0.16,1.50]": [
+   "0.9640383877138722907119056",
+   "1.306737442010500375029959"
+  ],
+  "M_zero_q_of_qp_on_[0,1.57]": {
+   "0": "0.955316618125",
+   "0.1": "0.891534355212",
+   "0.2": "0.832583967619",
+   "0.3": "0.777243870865",
+   "0.35": "0.750600166238",
+   "0.4": "0.724484834885",
+   "0.5": "0.673412704712",
+   "0.6": "0.623220026692",
+   "0.8": "0.522427524377",
+   "1.0": "0.415843016532",
+   "1.2": "0.295989121038"
+  },
+  "N_zero_q_of_qp_on_[0,1.57]": {
+   "0": null,
+   "0.1": "1.46321652593",
+   "0.2": "1.33844242104",
+   "0.3": "1.19379296728",
+   "0.35": "1.11354677239",
+   "0.4": "1.02810475163",
+   "0.5": "0.843438791903",
+   "0.6": "0.646431711026",
+   "0.8": "0.258211908192",
+   "1.0": null,
+   "1.2": null
+  },
+  "N_zero_formula_q_star": {
+   "0": null,
+   "0.1": "1.46321652593",
+   "0.2": "1.33844242104",
+   "0.3": "1.19379296728",
+   "0.35": "1.11354677239",
+   "0.4": "1.02810475163",
+   "0.5": "0.843438791903",
+   "0.6": "0.646431711026",
+   "0.8": "0.258211908192",
+   "1.0": null,
+   "1.2": null
+  }
+ }
+}

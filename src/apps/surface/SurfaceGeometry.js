@@ -23,13 +23,21 @@ export function decimalRatio(a,b) {const [an,ad]=decimalRational(a),[bn,bd]=deci
 export function decimalSum(a,b) {const [an,ad]=decimalRational(a),[bn,bd]=decimalRational(b);return decimalQuotient(an*bd+bn*ad,ad*bd);}
 export function decimalScale(value,numerator,denominator) {const [vn,vd]=decimalRational(value),[nn,nd]=decimalRational(numerator),[dn,dd]=decimalRational(denominator);return decimalQuotient(vn*nn*dd,vd*nd*dn);}
 export function validateSurfaceGeometry(g) {
-  if(!['sphere','oblate'].includes(g?.kind) || !Number.isFinite(Number(g.radius)) || !(Number(g.radius)>0)) throw new Error('Choose a sphere or oblate spheroid with a positive equatorial radius.');
+  if(!['sphere','oblate','ring-torus'].includes(g?.kind) || !Number.isFinite(Number(g.radius)) || !(Number(g.radius)>0)) throw new Error('Choose a supported surface with a positive radius.');
   decimalRational(g.radius);
   if(g.kind==='oblate' && (!Number.isFinite(Number(g.flattening)) || !(Number(g.flattening)>0) || Number(g.flattening)>1 || decimalRational(g.flattening)[0]>decimalRational(g.flattening)[1])) throw new Error('Polar/equatorial ratio must be greater than zero and at most one.');
+  if(g.kind==='ring-torus'){
+    const [mn,md]=decimalRational(g.majorRadius),[rn,rd]=decimalRational(g.radius);
+    if(mn*rd<=rn*md || !Number.isFinite(Number(g.majorRadius)) || !(Number(g.majorRadius)>Number(g.radius)) || !Number.isFinite(Number(g.majorRadius)+Number(g.radius))) throw new Error('Major radius must exceed the tube radius with a visible positive hole.');
+  }
   if(g.center && (!Array.isArray(g.center)||g.center.length!==3||g.center.some(v=>!sameDecimal(v,'0'))) || g.orientation && (!Array.isArray(g.orientation)||g.orientation.length!==3||g.orientation.some((row,i)=>!Array.isArray(row)||row.length!==3||row.some((v,j)=>!sameDecimal(v,i===j?'1':'0'))))) throw new Error('This viewer supports centered, unrotated surfaces.');
   return g;
 }
 export function circleOnSurface(g,radius,height) {
+  if(g.kind==='ring-torus'){
+    const [dn,dd]=decimalRational(decimalSum(radius,decimalProduct(g.majorRadius,'-1'))),[zn,zd]=decimalRational(height),[rn,rd]=decimalRational(g.radius);
+    return decimalRational(radius)[0]>0n && dn*dn*zd*zd*rd*rd+zn*zn*dd*dd*rd*rd===rn*rn*dd*dd*zd*zd;
+  }
   // rho²/a² + z²/(qa)² = 1 on the exact supplied decimal rationals.
   const [rn,rd]=decimalRational(radius),[hn,hd]=decimalRational(height),[an,ad]=decimalRational(g.radius),[qn,qd]=decimalRational(g.kind==='oblate'?g.flattening:'1');
   if(rn<=0n || an<=0n || qn<=0n) return false;
@@ -37,5 +45,12 @@ export function circleOnSurface(g,radius,height) {
   return xN*yD+yN*xD===xD*yD;
 }
 export function matchingSurfaceGeometry(g,resolved) {
-  return resolved?.kind===g.kind && sameDecimal(resolved.radius,g.radius) && (g.kind!=='oblate'||sameDecimal(resolved.flattening,g.flattening)) && Array.isArray(resolved.center) && resolved.center.every(v=>sameDecimal(v,'0')) && resolved.center.length===3 && Array.isArray(resolved.orientation) && resolved.orientation.length===3 && resolved.orientation.every((row,i)=>Array.isArray(row)&&row.length===3&&row.every((v,j)=>sameDecimal(v,i===j?'1':'0')));
+  return resolved?.kind===g.kind && sameDecimal(resolved.radius,g.radius) && (g.kind!=='oblate'||sameDecimal(resolved.flattening,g.flattening)) && (g.kind!=='ring-torus'||sameDecimal(resolved.majorRadius,g.majorRadius)) && Array.isArray(resolved.center) && resolved.center.every(v=>sameDecimal(v,'0')) && resolved.center.length===3 && Array.isArray(resolved.orientation) && resolved.orientation.length===3 && resolved.orientation.every((row,i)=>Array.isArray(row)&&row.length===3&&row.every((v,j)=>sameDecimal(v,i===j?'1':'0')));
+}
+
+// Display geometry only; future paths are always read from accepted records.
+export function surfaceExtent(g) {return Number(g.radius)+(g.kind==='ring-torus'?Number(g.majorRadius):0);}
+export function surfacePoint(g,longitude,latitude) {
+  const r=Number(g.radius),rho=g.kind==='ring-torus'?Number(g.majorRadius)+r*Math.cos(latitude):r*Math.cos(latitude);
+  return [rho*Math.cos(longitude),rho*Math.sin(longitude),r*Math.sin(latitude)*(g.kind==='oblate'?Number(g.flattening):1)];
 }

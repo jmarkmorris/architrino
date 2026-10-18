@@ -11,7 +11,7 @@
 
 ## Objective
 
-The [October 13 supporting-chapter review](../aaa-operations/evidence/ops-031-bremsstrahlung-synchrotron-review-2026-10-13.md) completes Bremsstrahlung and Synchrotron at unchanged whole-source scope. One low Bremsstrahlung terminology correction, BRS13-01, is [proposed in the maintenance queue](work-queue.md#ops-031--october-13-supporting-chapter-referral); no new mathematical correction or substantive edit is made. CRW-005 remains closed.
+The [October 13 supporting-chapter review](../aaa-operations/evidence/ops-031-bremsstrahlung-synchrotron-review-2026-10-13.md) completes Bremsstrahlung and Synchrotron at whole-source scope. The operator approved the low Bremsstrahlung terminology correction BRS13-01 October 14; its one-word replacement is implemented and self-checked in the [maintenance disposition](work-queue.md#ops-031--october-13-supporting-chapter-referral), with separate verification complete in the [combined repair record](../aaa-operations/evidence/ops-031-032-approved-repairs-2026-10-14.md). No equation or scientific claim changed. CRW-005 remains closed.
 
 Bring all 199 documents under `content/markdown/aaa` into line with edition 1.0 of the academic style guide, so that a reader who knows neither $\mathbb{A}\mathbb{A}\mathbb{A}$ nor established physics can arrive at any page and follow it.
 

@@ -1,0 +1,3 @@
+KNOWN static one-step complete replay and genuine sealed boundary PASS
+TARGET changed public replay counter refused=the restore result differs from the replay that issued it
+TARGET unrelated zero-leg record refused=the restore result differs from the replay that issued it

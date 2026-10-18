@@ -1,0 +1,21 @@
+Known cases, before any target
+PASS  known: frozen defaults differ only at reviewed paths, plus the declared v3-rejection envelope  [72 identical, 11 projected, different: wire-outputs/reject-request-v3.stdout]
+PASS  known: the declared change is the old v3 envelope now refused for lacking execution  [invalid_request: v3 requires an execution object]
+PASS  known: capabilities differ only by build identity; nothing new is advertised  [/build/sourceDigest,/build/buildDigest]
+
+Targets
+PASS  inspection v3 is control-only: preflight not run, no certified domain, bound reported as an estimate  []
+PASS  execution digest: inspection and evolution agree  []
+PASS  evolve v3: completed, eight steps, v9 checkpoint written durably, recorded, progress and readiness on stderr  []
+PASS  the durable v9 file equals the checkpoint the response reports  []
+PASS  per-invocation declared limit: two steps, diagnostic halt, durable v9  []
+PASS  resume v3 from two with limit six equals the uninterrupted run  []
+PASS  resume with runtime.threadCount 4 equals the one-worker resume and reports four workers  []
+PASS  SIGUSR1 cancellation halts at an accepted boundary with a durable v9  []
+PASS  resume after cancellation equals the uninterrupted run, with replayed rejections  []
+PASS  storage failure keeps accepted coverage and is not durable  []
+PASS  every strictness, overlap, limit, domain, runtime and identity refusal has its expected code  [18 requests; ]
+PASS  overlapping ordinary controls are refused by name, not given silent precedence  []
+PASS  a bound over resources.memoryBytes is refused with the bound and the declared limit reported  []
+
+16 of 16 checks passed.

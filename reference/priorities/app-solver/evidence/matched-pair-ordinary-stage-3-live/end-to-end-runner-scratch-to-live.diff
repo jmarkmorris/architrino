@@ -1,0 +1,26 @@
+--- .tmp/eom-ordinary-integration-2026-10-14/o3v3-js/run-end-to-end.mjs	2026-10-14 10:14:19
++++ .tmp/eom-ordinary-integration-2026-10-14/live-o3-js/run-end-to-end.mjs	2026-10-14 11:01:41
+@@ -6,9 +6,9 @@
+ import fs from 'node:fs';
+ import path from 'node:path';
+ import { createHash } from 'node:crypto';
+-import { createEomV2Service } from './scripts/dev/EomV2Service.mjs';
+-import { createEomV2HttpClient } from './src/apps/shared/EomV2HttpClient.js';
+-import { assertEomExecutionBinding, assertEomResponseSchema } from './scripts/eom/EomResponseRecord.mjs';
++import { createEomV2Service } from '../../../scripts/dev/EomV2Service.mjs';
++import { createEomV2HttpClient } from '../../../src/apps/shared/EomV2HttpClient.js';
++import { assertEomExecutionBinding, assertEomResponseSchema } from '../../../scripts/eom/EomResponseRecord.mjs';
+ const [bin, out] = process.argv.slice(2);
+ fs.mkdirSync(out, { recursive: true });
+ const checkpointRoot = path.resolve(out, 'checkpoints'), recordRoot = path.resolve(out, 'records');
+@@ -104,8 +104,8 @@
+ const v99Http = await fetchImpl('/api/eom/v2/evolve', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(v99) });
+ const v99Body = await v99Http.json();
+ check('the service refuses the same v99 request itself', v99Http.status >= 400 && v99Body.schema === 'eom_error/v2', `${v99Http.status} ${v99Body.code}: ${v99Body.error}`);
+-const v99Schema = await caught(() => assertEomResponseSchema(v99, v2.value));
+-const v99Binding = await caught(() => assertEomExecutionBinding(v99, v2.value));
++const v99Schema = await caught(() => assertEomResponseSchema(JSON.stringify({ operation: 'evolve', request: v99 }), v2.value));
++const v99Binding = await caught(() => assertEomExecutionBinding(JSON.stringify({ operation: 'evolve', request: v99 }), v2.value));
+ check('both Node helpers refuse a v99 request answered by a genuine v2 response, rather than classifying it as v2', v99Schema.error !== undefined && v99Binding.error !== undefined, `${v99Schema.code}; ${v99Binding.code}`);
+ for (const [name, call] of [['evolve', () => client.evolve(grouped('e2e-runtime', 8), { runtime: { threadCount: 4 } })], ['evolveRecord', () => client.evolveRecord(grouped('e2e-runtime', 8), { runtime: { threadCount: 4 } })]]) {
+   calls = 0;

@@ -1,0 +1,92 @@
+--- scripts/eom/EomResponseRecord.mjs	2026-10-12 12:42:42
++++ .tmp/eom-ordinary-integration-2026-10-14/o3-js/scripts/eom/EomResponseRecord.mjs	2026-10-14 09:50:05
+@@ -1,7 +1,54 @@
+ // Presentation projection of a retained EOM result. No numerical evolution.
++import { createHash } from 'node:crypto';
+ export const EOM_RECORD_VIEW_LIMIT = 12 * 1024 * 1024;
++// Supported documents that are not evolution responses pass through
++// unchanged. Any other schema is refused; its raw bytes stay retained.
++const EOM_PASSTHROUGH_SCHEMAS = new Set(['eom_error/v2', 'eom_inspection/v2', 'eom_inspection/v3', 'eom_equation_capabilities/v1', 'eom_cancel_request/v2']);
+ export function createEomResponseView(payload, artifact) {
+-  if (payload.schema !== 'eom_evolution_response/v2') return payload;
++  if (payload.schema === 'eom_evolution_response/v3') return createEomV3View(payload, artifact);
++  if (payload.schema !== 'eom_evolution_response/v2') {
++    if (EOM_PASSTHROUGH_SCHEMAS.has(payload.schema)) return payload;
++    throw Object.assign(new Error(`EOM projection does not support schema ${payload.schema}; complete raw evidence remains retained.`), { code: 'record_projection_unsupported' });
++  }
++  return projectEvolution(payload, artifact);
++}
++// The v3 view: the v2 projection of every v2 field, and the validated
++// attempt log sampled by stride, never interpolated, with its last row and
++// original count. The complete log stays in the raw artifact.
++function createEomV3View(payload, artifact) {
++  const attempts = payload.validated?.attempts ?? [];
++  const stride = Math.max(1, Math.ceil(attempts.length / 128));
++  const shown = [];
++  for (let i = 0; i < attempts.length; i += stride) shown.push(attempts[i]);
++  if (attempts.length && shown.at(-1) !== attempts.at(-1)) shown.push(attempts.at(-1));
++  const view = projectEvolution({ ...payload, validated: { ...payload.validated, attempts: shown } }, artifact);
++  view.record.validatedAttempts = { originalCount: attempts.length, displayedCount: shown.length,
++    sampling: 'stride sample of the complete attempt log; never interpolated; last row kept; complete log retained in the raw artifact' };
++  if (Buffer.byteLength(JSON.stringify(view)) > EOM_RECORD_VIEW_LIMIT) throw Object.assign(new Error('EOM playback view exceeds 12 MiB; complete raw evidence remains retained.'), { code: 'record_view_budget_exhausted' });
++  return view;
++}
++const sortedJson = value => Array.isArray(value) ? value.map(sortedJson)
++  : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).sort().map(key => [key, sortedJson(value[key])])) : value;
++// A v3 evolution response must answer a v3 request, report the execution
++// that request declared, and carry that execution's digest; a v3 request
++// must not be answered by a v2 response.
++export function assertEomExecutionBinding(rawRequest, payload) {
++  const fail = message => { throw Object.assign(new Error(`EOM execution binding: ${message}.`), { code: 'execution_binding_mismatch' }); };
++  let request;
++  try { request = JSON.parse(rawRequest)?.request; } catch { fail('the request is not readable JSON'); }
++  const v3Request = request?.schema === 'eom_evolution_request/v3';
++  if (payload?.schema === 'eom_evolution_response/v2' && v3Request) fail('a v3 request was answered by a v2 response');
++  if (payload?.schema !== 'eom_evolution_response/v3') return;
++  if (!v3Request || !request.execution) fail('a v3 response answers a request that is not v3');
++  const digest = createHash('sha256').update(JSON.stringify(sortedJson(payload.execution))).digest('hex');
++  if (digest !== payload.executionDigest) fail('executionDigest is not the digest of the reported execution');
++  for (const [key, value] of Object.entries(request.execution)) {
++    if (key === 'maximumAcceptedSteps') continue;
++    if (JSON.stringify(sortedJson(value)) !== JSON.stringify(sortedJson(payload.execution?.[key]))) fail(`execution.${key} differs from the request`);
++  }
++  if (payload.resources?.maximumAcceptedSteps !== request.execution.maximumAcceptedSteps) fail('maximumAcceptedSteps differs from the request');
++}
++function projectEvolution(payload, artifact) {
+   const grouped = new Map();
+   for (const row of payload.surfaceDiagnostics ?? []) {
+     const rows = grouped.get(row.pathId) ?? []; rows.push(row); grouped.set(row.pathId, rows);
+--- scripts/eom/EomV2ProcessClient.mjs	2026-10-12 12:42:42
++++ .tmp/eom-ordinary-integration-2026-10-14/o3-js/scripts/eom/EomV2ProcessClient.mjs	2026-10-14 09:50:05
+@@ -1,7 +1,7 @@
+ import { spawn, spawnSync } from 'node:child_process';
+ import { mkdirSync, readFileSync, existsSync, openSync, closeSync, statSync, createReadStream, readdirSync, fsyncSync, writeFileSync, writeSync } from 'node:fs';
+ import { resolve, join } from 'node:path';
+-import { createEomResponseView } from './EomResponseRecord.mjs';
++import { assertEomExecutionBinding, createEomResponseView } from './EomResponseRecord.mjs';
+ import { createHash, randomUUID } from 'node:crypto';
+ 
+ // Watched, non-detached workers use the existing EOM executable. They have no
+@@ -97,6 +97,7 @@
+             output = rawBytes.toString('utf8');
+           }
+           const payload = JSON.parse(output);
++          assertEomExecutionBinding(raw, payload);
+           if (payload.checkpoint?.durable) {
+             const retained = JSON.parse(readFileSync(path, 'utf8'));
+             if (retained.digest !== payload.checkpoint.digest || retained.acceptedTime !== payload.checkpoint.acceptedTime) throw new Error('Durable checkpoint receipt mismatch.');
+--- src/apps/shared/EomV2HttpClient.js	2026-10-14 05:53:23
++++ .tmp/eom-ordinary-integration-2026-10-14/o3-js/src/apps/shared/EomV2HttpClient.js	2026-10-14 09:50:05
+@@ -30,7 +30,11 @@
+     try {
+       // Keep receiving after cancellation so durable accepted coverage returns.
+       const result = await postEomJson(fetchImpl, `${endpoint}/${route}`, body, undefined, 'EOM', { 'X-EOM-Execution-Id': executionId });
+-      if (result.schema !== 'eom_evolution_response/v2' || result.modelDigest !== model.modelDigest || result.runId !== request.runId || JSON.stringify(result.resolvedModel)!==JSON.stringify(model.resolvedModel)) throw Object.assign(new Error('EOM response model differs from inspection.'),result.record?.artifact ? {retainedFailure:{recordId:result.record.artifact.id,rawBytes:result.record.artifact.bytes,acceptedTime:result.acceptedCoverage?.end ?? null,checkpointId:result.checkpoint?.id ?? null,completeExport:false}} : {});
++      // A v3 request needs a v3 inspection and a v3 response bound to the
++      // same execution; a v2 request keeps its v2 response check.
++      const v3 = request.schema === 'eom_evolution_request/v3';
++      const executionMismatch = v3 && (model.schema !== 'eom_inspection/v3' || typeof result.executionDigest !== 'string' || result.executionDigest !== model.executionDigest || JSON.stringify(result.execution) !== JSON.stringify(model.execution));
++      if (result.schema !== (v3 ? 'eom_evolution_response/v3' : 'eom_evolution_response/v2') || executionMismatch || result.modelDigest !== model.modelDigest || result.runId !== request.runId || JSON.stringify(result.resolvedModel)!==JSON.stringify(model.resolvedModel)) throw Object.assign(new Error('EOM response model differs from inspection.'),result.record?.artifact ? {retainedFailure:{recordId:result.record.artifact.id,rawBytes:result.record.artifact.bytes,acceptedTime:result.acceptedCoverage?.end ?? null,checkpointId:result.checkpoint?.id ?? null,completeExport:false}} : {});
+       complete({ result });
+       return result;
+     } catch (error) { complete({ error }); throw error; }

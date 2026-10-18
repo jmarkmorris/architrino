@@ -28,6 +28,18 @@ export function findTheoryAbbreviationCandidates(text) {
 
     const mathSpan = spans.find(item => item.start <= index && index < item.end);
     const span = mathSpan ?? codeSpans.find(item => item.start <= index && index < item.end);
+    // A coefficient-weighted cubic summand is arithmetic, including the plain
+    // Unicode algebra retained in research conversations. Classify this token,
+    // not its whole line; a nearby theory nickname must still be reported.
+    const beforeCube = text.slice(mathSpan?.bodyStart ?? start, index);
+    const afterCube = text.slice(index + match[0].length, mathSpan?.bodyEnd ?? (next < 0 ? text.length : next));
+    const cubicCoefficient = /c_(?:\{[a-zA-Z0-9]+\}|[a-zA-Z0-9]+)\s*(?:\\cdot|[·*])?\s*$/.test(beforeCube);
+    const textBearing = mathSpan && /\\(?:text|textrm|textbf|mathrm|operatorname)\b/.test(mathSpan.body);
+    const summedCubic = /[=≤≥<>]/.test(beforeCube) && /^\s*\+\s*(?:[A-Za-zΣ½]|\\[A-Za-z]+)/.test(afterCube);
+    const evaluatedCubic = mathSpan && /^\s*\\approx\s*\d/.test(afterCube);
+    const namedCubic = !span && /\breceiver cubic\s+c_[a-zA-Z0-9]+[·*]\s*$/.test(beforeCube)
+      && /^\s+is unpaired\b/.test(afterCube);
+    if (cubicCoefficient && !textBearing && (summedCubic || evaluatedCubic || namedCubic)) continue;
     // In d_A^3 the A is a one-token TeX subscript, not the cubed base.
     // Limit this lexical distinction to math and an actual subscripted symbol.
     const subscript = mathSpan && /(?:[a-zA-Z]|\\[a-zA-Z]+)_$/.test(text.slice(span.start, index))

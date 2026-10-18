@@ -1,0 +1,73 @@
+pid 51976
+pid 51976
+T* [1.366684593623, 1.366684709182]; certified records 264 to t = 4.0066847091 (guaranteed 4.006684593623); joins exact True; controls 2.5 s
+controls: ALL PASS (27 controls: 14 frozen v5 + 13 new)
+   pass (C1) 264-record chain: 10 + 40 + 21 + 73 + 60 + 60 certified records, every file join exact-string, w-chain files accepted by name and sha25
+   pass (C2) known chain case on the 60 w-chain records: the sub-range form at sigma = Delta reproduces each certified end to 1e-18 and at sigma = 0
+   pass (C3) guaranteed coverage edge at the 264-record end: a range ending just below the lower endpoint of the last uncertain end is accepted, a r
+   pass (C4) signed closed forms (tangent hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the NE
+   pass (C5) signed-geometry box q in [0.81, 1.10], q' in [0, 0.85], v' in [0, 0.45] (400 cells): every separation r > 0.80 (v2: the smallest unlike
+   pass (C6) derivative identities of the rate function on the new box: exact hand-known case (source at rest: d hit/dt = hit_fixed'(q) qdot and tau
+   pass (C7) reconciliation at the accepted step-214 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum int
+   pass (C8) negative: with the wrong sign of the velocity term in D_t the class term is disjoint from the correct one for the unlike and antipode c
+   pass (C9) delay-root bracket at the step-214 state: half-widths 0.15 and 0.30 give intersecting delay enclosures agreeing to 1e-9 for all classes
+   pass (C10) restart regression (same-chain consistency, not independence): from the frozen step-213 strings the step intersects the frozen step-21
+   pass (C11) self-append: the control step (from step 213), appended and enriched through the checked path, is read on a sub-range inside its whole
+   pass (C12) restart wrapper: the accepted terminal record (name and sha256) is resumed with the exact step-214 strings and t0 an interval; refused
+   pass (C13) synthetic EVENT controls: positive-to-negative qddot detected as one maximum (also through an undecided end, with the speed hull over 
+certified records 324 to t = 4.6066847091 (guaranteed 4.606684593623); joins exact True; controls 4.6 s
+turning-point controls: ALL PASS (43 controls: 27 frozen v3 + 16 new)
+   pass (D1) 324-record chain: 10 + 40 + 21 + 73 + 60 + 60 + 60 certified records, every file join exact-string (including the three new t1b, t2, t3
+   pass (D2) known chain case on the 60 records of steps 215-274: the sub-range form at sigma = Delta reproduces each certified end to 1e-18 and at 
+   pass (D3) guaranteed coverage edge at the 324-record end: a range ending just below the lower endpoint of the last uncertain end is accepted, a r
+   pass (D4) signed closed forms (tangent hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the v3
+   pass (D5) signed-geometry box (v3) q in [1.04, 1.80], q' in [0, 1.20], w' in [-0.05, 0.45] (400 cells): every separation r > 0.70 (the smallest u
+   pass (D6) radial-derivative identities on the new box: exact rest-source case for all classes at q = 1.10, 1.30, 1.45, pi/2, 1.75; labelled numer
+   pass (D7) reconciliation at the accepted step-274 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum int
+   pass (D8) negative: at the step-274 state the D_t factor with the wrong sign of the velocity term is disjoint from the correct one for all three 
+   pass (D9) delay-root bracket at the step-274 state: half-widths 0.30 and 0.45 give intersecting delay enclosures agreeing to 1e-9 for all classes
+   pass (D10) restart regression (same-chain consistency, not independence): from the frozen step-273 strings the step intersects the frozen step-27
+   pass (D11) self-append: the control step (from step 273), appended and enriched through the checked path, is read on a sub-range inside its whole
+   pass (D12) restart wrapper: the accepted terminal record (name and sha256) is resumed with the exact step-274 strings and t0 an interval; refused
+   pass (D13) synthetic EVENT controls: w positive-to-negative detected as a PATH TURN (q maximum, |w| minimum), not as a speed maximum; a reversed 
+   pass (D9b) v3 bracket [chord - 0.45, chord + 0.90] at the step-274 state gives delay enclosures intersecting and agreeing to 1e-9 with the v2 bra
+   pass (D15, v3c) like-class bracket [chord - 0.90, chord + 0.90]: agrees with the v3b bracket to 1e-9 at the step-405 end for all classes; at the 
+   pass (D14) with the own records p1-p7 appended (name and sha256): the v2 and v3 brackets agree to 1e-9 at the step-334 state for all classes; at 
+correlated-continuation controls: ALL PASS (60 controls: 43 frozen v3c1 + 17 new); 10.6 s
+   pass (E1) 486-record admitted chain: 324 frozen plus 162 certified steps 275-436 from p1-p4, v3b p5-p7, v3c1 q1-q2 by name and sha256, every file join exac
+   pass (E2) KNOWN exact affine flow: q'' = -q, 60 steps of 0.01 from a 2e-4 box; the exact corner and centre solutions lie in the affine SET (2x2 membership)
+   pass (E3) NEGATIVE with a known truth: on the exact second-order step map (no remainder), the interior near-corner (q0 + 0.9e-4, w0 - 0.9e-4) propagated 60
+   pass (E4) KNOWN explicitly correlated polynomial image: one step q+ = q + w D - q^2 D^2/2, w+ = w - q^2 D from a correlated parallelogram (shared symbols);
+   pass (E5) receiver derivative of the class term including the delay-root dependence tau_q = r_q/(1 + r_q' w'): hand case (source at rest) for all classes a
+   pass (E6) one-sided seam (known Lipschitz mean-value inclusion): a source path with an acceleration jump of 0.8; for receiver intervals whose source times 
+   pass (N-R) NEGATIVE: with the Taylor-remainder and rounding symbols dropped, the exact solution of the known flow from a 1e-12 box (60 steps) is EXCLUDED w
+   pass (N-H) NEGATIVE: on a delayed test path, replacing the delayed-read width (history shifted by 1e-4) or the clock-origin width (time shifted by 1e-4) by
+   pass (E15) KNOWN cubic path with constant jerk: the exact step end lies in the integral (point-weight) remainder form and the frozen zero-hull form is wide
+   pass (E16) membership routines: the known false positive (columns (1,0), (0,1), shared (2,2), centre 0, point (3,-3)) is accepted by the RELAXED outer chec
+   pass (E17) certified membership routine (directed intervals): rank one, a point on the segment inside, beside it and beyond its end outside; rank two, an i
+   pass (E9) intersections: only two PROVED enclosures may be intersected (frozen accepted record, frozen step on a proved start box, reconstructed affine for
+   pass (E10) wider chart receiver q in [0.55, 2.10], source q' in [0, 1.80], w' in [-0.10, 0.45]: closed forms vs direct vectors at 150 points per class (fiv
+   pass (E7) refusals on the reader truncated at the anchor: a read into the possible (unguaranteed) end, a gap at append, an uncertified record, and any read
+   pass (E11) delay roots at the anchor state: the v3c1 bracket encloses the root of every class and agrees with a +-0.30 bracket where that straddles; unique
+   pass (E13) one reconstruction step from the anchor: the frozen step closes on the anchor box, the affine end and the frozen-step end intersect (empty would
+   pass (E12) event directions and first-turn status: the frozen v3c1 synthetic event controls (D13) are carried; a support minimum is called FIRST only if ev
+step 155 widths old/new q 0.000343327/0.000343302 w 0.000899116/0.000894484 a 0.000144878/0.000144869 dl 0.000359458/0.000358561 meets True cost 0.42/0.69 s
+step 156 widths old/new q 0.000352357/0.000352255 w 0.000908286/0.000898874 a 0.00012548/0.000125446 dl 0.000329935/0.000328111 meets True cost 0.45/0.76 s
+step 157 widths old/new q 0.000361479/0.000361237 w 0.000917457/0.000899876 a 0.000128681/0.000128601 dl 0.0003326/0.000329209 meets True cost 0.52/0.67 s
+step 158 widths old/new q 0.000370694/0.000370224 w 0.000926859/0.000900886 a 0.000131892/0.000131736 dl 0.000336042/0.000331043 meets True cost 0.41/0.66 s
+step 159 widths old/new q 0.000380004/0.000379217 w 0.000936493/0.000901905 a 0.000135112/0.000134851 dl 0.000340485/0.000333836 meets True cost 0.42/0.66 s
+step 160 widths old/new q 0.000389412/0.000388215 w 0.000946362/0.000902932 a 0.000138341/0.000137945 dl 0.000344461/0.000336126 meets True cost 0.42/0.67 s
+step 161 widths old/new q 0.000398919/0.000397219 w 0.000956468/0.000903966 a 0.000141577/0.000141014 dl 0.000348391/0.00033833 meets True cost 0.43/0.68 s
+step 162 widths old/new q 0.000408528/0.000406228 w 0.000966813/0.000905007 a 0.00014482/0.000144059 dl 0.000352271/0.000340448 meets True cost 0.42/0.69 s
+step 163 widths old/new q 0.000418242/0.000415242 w 0.000977398/0.000906055 a 0.000148068/0.000147077 dl 0.000356099/0.000342478 meets True cost 0.43/0.66 s
+step 164 widths old/new q 0.000428062/0.000424262 w 0.000988226/0.000907108 a 0.00015132/0.000150066 dl 0.000358865/0.000343412 meets True cost 0.41/0.62 s
+step 165 widths old/new q 0.000437992/0.000433287 w 0.000999299/0.000908168 a 0.000154575/0.000153024 dl 0.000362626/0.000345308 meets True cost 0.40/0.61 s
+step 166 widths old/new q 0.000448034/0.000442316 w 0.00101062/0.000909232 a 0.000157832/0.00015595 dl 0.000366323/0.000347108 meets True cost 0.39/0.63 s
+step 167 widths old/new q 0.00045819/0.000451351 w 0.00102219/0.000910302 a 0.000161089/0.000158843 dl 0.000370299/0.000349149 meets True cost 0.37/0.62 s
+step 168 widths old/new q 0.000468464/0.000460391 w 0.001034/0.000911375 a 0.000164347/0.0001617 dl 0.000374855/0.000351732 meets True cost 0.39/0.60 s
+step 169 widths old/new q 0.000478856/0.000469436 w 0.00104607/0.000912452 a 0.000167603/0.000164521 dl 0.000378985/0.000353859 meets True cost 0.36/0.61 s
+step 170 widths old/new q 0.00048937/0.000478486 w 0.0010584/0.000913533 a 0.000170857/0.000167304 dl 0.000383059/0.000355902 meets True cost 0.36/0.60 s
+step 171 widths old/new q 0.000500009/0.000487541 w 0.00107098/0.000914616 a 0.000174108/0.000170047 dl 0.000387082/0.000357867 meets True cost 0.39/0.63 s
+step 172 widths old/new q 0.000510774/0.0004966 w 0.00108382/0.000915702 a 0.000177359/0.000172754 dl 0.000398725/0.00036738 meets True cost 0.37/0.61 s
+step 173 widths old/new q 0.000521669/0.000505664 w 0.00109691/0.000916789 a 0.00018065/0.000175465 dl 0.000400842/0.000367158 meets True cost 0.39/0.61 s
+step 174 widths old/new q 0.000532697/0.000514733 w 0.00111027/0.000917879 a 0.000183938/0.000178136 dl 0.000406695/0.000370618 meets True cost 0.35/0.60 s

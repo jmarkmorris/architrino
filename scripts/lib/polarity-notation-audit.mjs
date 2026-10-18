@@ -70,6 +70,18 @@ export function maskNonPolarityNotation(text) {
   // Charge/inventory prose keeps the original finding even in mixed contexts.
   for (const paragraph of result.matchAll(/[^\n]+(?:\n(?![ \t]*\n)[^\n]+)*/g)) {
     const context = paragraph[0].replace(/`[^`]*`/g, blank);
+    // H at a shifted history anchor uses P as a period, not a polarity.
+    // Require local history/anchor context and mask only the numeric-period
+    // token in that subscript; real inventories on the same line stay visible.
+    if (/\b(?:history|histories|anchors?|recurrence)\b/i.test(context)) {
+      for (const span of mathSpans(context)) {
+        if (/\\(?:text|textrm|textbf|mathrm|operatorname)\b/.test(span.body)) continue;
+        for (const match of span.body.matchAll(/H_\{[A-Za-z]\s*\+\s*(\d+P)\}/g)) {
+          const start = paragraph.index + span.bodyStart + match.index + match[0].indexOf(match[1]);
+          result = result.slice(0, start) + blank(match[1]) + result.slice(start + match[1].length);
+        }
+      }
+    }
     if (!/\brow[- ]sum\b/i.test(context) ||
         /\b(?:charge|charges|inventory|inventories|positrino|electrino)\b/i.test(context)) continue;
     const spans = mathSpans(context).filter(span =>

@@ -13,7 +13,7 @@
 
 This folder owns the priority work ledger for the deployed Photon and Polarization Visualization app.
 
-The [October 13 substantive review](../aaa-operations/evidence/ops-032-photon-substantive-review-2026-10-13.md) proposes one bounded classifier repair covering two findings: missing/null/nonfinite certification status can admit malformed adapter records, and a null factor is misleadingly recorded as measured zero. The normal built-in producer supplies complete status; no observer-field bypass or physical consequence is established. These software proposals await disposition in the [existing queue](work-queue.md#proposed-review-follow-ups); deferred Photon research remains unchanged.
+The operator approved the October 13 classifier findings OPS032-PHO13-01 and OPS032-PHO13-02 on October 14. The bounded repair requires explicit finite numeric certification status, preserves an absent-factor Jacobian alias, and rejects explicit null/nonfinite factor evidence without manufacturing a measured zero. Implementation, focused checks and separate verification are complete in the [repair record](../aaa-operations/evidence/ops-031-032-approved-repairs-2026-10-14.md). These are display-diagnostic software corrections; deferred Photon research remains unchanged.
 
 Photon-specific geometry and dynamics research is gathered in [Photon research under Master-Equation Closure](../master-equation-closure/photon-research/README.md#geometry-analyses-and-evidence). This app owner keeps its controls, visualization, software contracts and observer diagnostics; its [manuscript](manuscript.md) links to the extracted research where those details are needed.
 

@@ -1376,3 +1376,136 @@ The loss alone obeys $M_+\le L\Theta$, where $L=(4w^2\kappa_M/c_-)[1+(2w+wc_+/J_
 One additional subclass closes without an assumed geometry bound. If separation is constant, the radial equation gives $J^2=r^3A_r\ge c_-r$ at every instant, so $J_{\min}\ge\sqrt{c_-r}$ and $X\le\sqrt{r/c_-}$. At whole-past speed at most .1, the separation floor and $r\le10^6$ imply $J_{\min}\ge7.32$ and $X\le826.2$. A conservative upward-rounded sufficient test has upper left side .3788298776… and lower right side .4499578219…, a strict contradiction. Hence no complete planar rigidly repeating solution of this constant-separation class exists through normalized separation one million. Mirror symmetry, constant angular rate and circular motion about a fixed centre are not assumptions.
 
 The [final independent review](analysis/saturday-solution-weighted-geometry-comparison-codex-review-2026-10-12.md#final-corrected-byte-disposition--october-12-2207z) reconstructs the identities, inequalities and subclass proof and audits the decimal weakening directions in exact fractions with a rational square-root enclosure. No solution was integrated or measured. Radial travel, the signed breathing correlation and X remain uncontrolled for general breathing histories; low-J and J-zero regimes are separate. A valid solution violating the radial-average bound or satisfying the strict predicate would refute the affected result. These derived comparisons reduce the remaining proof burden without closing general periodicity.
+
+### 9.5. Signed breathing and the controlled common-motion integral
+
+The two breathing integrals are exactly related. Let $\mathbf P=\mathbf v_1+\mathbf v_2$ be the velocity sum, $Q=P_\parallel^2-P_\perp^2$ and $x=r/J$ as above. Since $\sigma(b)=b^2/2+\Phi(b)$, the weights of Sections 9.1–9.2 add to $|\mathbf P|^2/8$. Rigid recurrence cancels the boundary term in integration by parts, giving
+
+$$
+B_S+\tilde B=I,\qquad I=\frac18\oint|\mathbf P|^2dx
+=-\frac14\oint x\,\mathbf P\cdot(\mathbf A_1+\mathbf A_2)dT.
+$$
+
+The first equality is kinematic; the last identifies actual accelerations with the received rows and therefore uses the equation. It controls the isotropic part of the weight, which depends only on the size of the velocity sum. It does not sign either breathing integral independently.
+
+The [signed-breathing theorem](analysis/saturday-signed-breathing-radial-travel-2026-10-14.md) combines the row components before bounding them. With $\delta=(a_2-a_1)/2$, the component identities give $A_\parallel=2\delta-\chi$, $A_\perp=-\mu P_\perp-\delta J/r+e_P$ and $2r^2\delta=P_\parallel+\zeta$. In the integrand $A_\parallel P_\parallel-A_\perp P_\perp$ of $\Lambda$, the principal numerator is $P_\parallel^2+r^2\mu P_\perp^2\ge0$. The sharper mixed-product bound $|(J/r)P_\perp|=|b_1^2-b_2^2|\le w^2$ keeps its remainder small. Put
+
+$$
+k_1=\frac{2wz_0+2w^3c_1+w^2c_2}{4},\quad
+k_A=4w^2c_1+4k_1,\quad k_A'=2w(c+c_3),\quad z_0=2wg(w).
+$$
+
+Here c is the curved-window constant of Section 9 and $c_1,c_2,c_3$ are the row bounds of Section 9.4. Then
+
+$$
+|I|\le\frac{k_A}{4}\mathcal N+\frac{k_A'}4\frac\Theta{J_{\min}^2},\qquad
+\Lambda=\Lambda_0+\Lambda_1,\quad
+0\le\Lambda_0\le w^2c_1\mathcal N,\quad
+|\Lambda_1|\le k_1\mathcal N+\frac{k_A'}4\frac\Theta{J_{\min}^2}.
+$$
+
+The curvature coefficient $k_A'$ is first order in w. On the repeating solution class, Section 9.4's separation floor gives $\oint dT/(Jr^2)\le(4w^2/c_-)\mathcal N$, so the alternative bound $|\Lambda_1|\le(k_1+w^2k_A'/c_-)\mathcal N$ is third order in w and the isotropic coefficient is second order. This explains the full speed-order statement while retaining both valid fixed-speed bounds.
+
+The gain can also be compared directly with $\Theta$. The exact straight comparison has $r^2\mu^0=1+\dot r/2+\xi_0/2$, $|\xi_0|\le z_0$. Integrating by parts gives $\oint\dot r\,d\vartheta=\oint\dot JdT/r$, which is bounded using the actual torque estimate. Including the curvature and straight remainders yields the necessary inequality
+
+$$
+\left(1-\frac{z_0}{2}-\frac{h_1}{J_{\min}}-\frac{k_A'}{4J_{\min}^2}\right)\Theta
+\le(w^2c_1+k_1+t_1)\mathcal N+4w^2\kappa_B\mathcal V,
+$$
+
+$$
+h_1=wc_1+2wc+c_3+wgc_1,\qquad t_1=2w^2gc_1,\qquad
+\kappa_B=\frac{2(1-w^2)^{-3/2}-1}{8}.
+$$
+
+The variation and radial-average bounds of Section 9.4 convert this into a sufficient exclusion in X, radial travel and $J_{\min}$. Its leading and variation coefficients are smaller than the preceding test's, but its inverse-J allowance is larger; neither predicate uniformly dominates. At speed .1 the new conservative test's lower envelope is $.015015+.008155\rho_r$, equal to 1.00177 at 121. This defeats that displayed test at and above 121 and proves no radial-travel bound or coverage below that value.
+
+For constant separation, $J_{\min}\ge\sqrt{c_-r}$ and $X\le\sqrt{r/c_-}$ hold at every time. Combining the previously excluded range through $10^6$ with $10^6\le r\le2\times10^7$ gives $J_{\min}\ge1210.4$ and $X\le3694.5$. The new sufficient-test upper left side is .8050076692… while its lower right side is .9950369468…, a strict contradiction checked in exact fractions by a separately authored reference. The exclusion therefore extends through normalized separation 20 million in this complete planar speed-.1 class, without mirror symmetry, constant J or fixed-centre circular motion.
+
+The signed conclusion keeps two distinct margins. Put $\eta_\Lambda=z_0/2+h_1/J_{\min}$, $\eta_\Lambda'=k_A'/(4J_{\min}^2)$, $\lambda_\Lambda=(w^2c_1+k_1+t_1)\mathcal N/\Theta$, $H=1-\eta_\Lambda-\eta_\Lambda'-\lambda_\Lambda$ and $E_I=(k_A/4)\mathcal N/\Theta+k_A'/(4J_{\min}^2)$. The balance then requires $\tilde B\ge H\Theta$ and $B_S\le(-H+E_I)\Theta$. Positive H signs the anisotropic breathing; H exceeding $E_I$ signs the other integral negatively. Nearly-full-gain and nearly-equal-size descriptions additionally require the corresponding error fractions to be small.
+
+The [final independent review](analysis/saturday-signed-breathing-radial-travel-codex-review-2026-10-14.md#final-corrected-byte-disposition--october-14) reconstructs these bounds and retains the first failed checker admission and its repaired exact arithmetic without changing the subject's mathematics. No history is evaluated. A prescribed ellipse with frozen common velocity can meet a scalar comparison balance, but violates the leading common-motion equation and has no proved dropped-error bound; it establishes no limitation of the coupled law. A second recurrence identity is an inferred candidate, not a necessary prerequisite. General signed anisotropic breathing, radial travel, X, low positive J and zeros/sign changes remain open. A solution in the declared class violating a bound or satisfying the strict exclusion predicate would refute the affected result.
+
+### 9.6. Period estimates through small and sign-changing angular momentum
+
+The [low-angular-momentum theorem](analysis/saturday-low-angular-momentum-2026-10-14.md) keeps the same complete planar opposite-unit solution class and whole-past subwake speed bound, but avoids inverse-J weights. For relative recurrence after an orientation-preserving rotation of the fixed plane, r, its derivative and J are periodic; a spatial rotation reversing the plane orientation is handled by period 2T. The actual Cartesian radial equation is regular at J=0:
+
+$$
+\ddot r=J^2/r^3-A_r,\qquad
+\int_0^T\dot Jdt=\int_0^T J\dot Jdt=0,\qquad
+\int_0^T\frac{J^2}{r^3}dt=\int_0^T A_rdt\ge c_-\int_0^T\frac{dt}{r^2}>0.
+$$
+
+At minimum separation $\ddot r\ge0$ gives $J^2\ge c_-r$. With $|J|\le2wr$, this implies $r_{\min}\ge c_-/(4w^2)$ and $|J|\ge c_-/(2w)$ at that instant only. Thus identically zero J, everywhere $J^2<c_-r$ and uniformly small absolute J are excluded. An isolated small minimum remains possible under these necessary conditions.
+
+Set $d=J/r$, $e=c_3+wc$, $\alpha=(1-w)^2/(1+w)$, $z_0=2w[(1-w^2)^{-1/2}-1]$,
+
+$$
+D=\alpha-\frac{2we}{c_-},\qquad k=\frac{w^2+wz_0}{D}\quad(D>0),
+\qquad K_1=-\frac12\int_0^T\frac{P_\parallel P_\perp}{r}dt,\qquad
+K_2=-\frac12\int_0^T dP_\parallel P_\perp dt.
+$$
+
+For $J\ge0$, the radial identity and $0\le d\le2w$ give $\int r^{-2}dt\le(2w/c_-)\Theta$. Integrating the actual J equation and inserting the retained straight-strength difference yields $D\Theta\le K_1+wz_0\int r^{-1}dt$. The size bound $|P_\parallel P_\perp|\le2w^2$ therefore gives $\Theta\le k\int r^{-1}dt$. This controls the mean transverse speed under time weight 1/r without a positive minimum J.
+
+For arbitrary signs, multiply the actual J equation by J before integrating. Put $Q=\int d^2dt$, $L_d=\int|d|dt$. The actual-row remainder is bounded through
+
+$$
+\int_0^T\frac{|d|}{r}dt\le\sqrt{Q\int_0^T r^{-2}dt}
+\le\frac Q{\sqrt{c_-r_{\min}}}\le\frac{2w}{c_-}Q.
+$$
+
+Thus $DQ\le K_2+wz_0L_d\le(w^2+wz_0)L_d$. Cauchy–Schwarz gives $L_d^2\le TQ\le TkL_d$; the radial identity prevents $L_d=0$. Consequently
+
+$$
+\langle|d|\rangle\le k,\quad\langle d^2\rangle\le k^2,
+\quad\langle r^{-2}\rangle\le\frac{k^2}{c_-r_{\min}},
+\quad r_{\max}\ge\frac{\sqrt{c_-r_{\min}}}{k}\ge\frac{c_-}{2wk}.
+$$
+
+Every step is regular through zeros and sign changes. Separate isqrt/Fraction arithmetic confirms necessary maximum separation above 139.229 at w=.1 and 5110.7 at .05, independent of any minimum J. Since $D=1+O(w)$ and $k=w^2(1+O(w))$, the sufficient lower scale has leading order $w^{-3}$, compared with the earlier separation floor of order $w^{-2}$. Explicit monotonicity of D and separate endpoint enclosures prove D positive on $(0,8/75]$ and negative on $[.11,1/3)$; the transition gap and optimal constants remain unresolved.
+
+At a zero of J the transverse velocities agree, $b_1=b_2=b$, and $S=\sqrt{1-b^2}>0$. Direct substitution in the actual row equations gives
+
+$$
+\dot J=\frac{P_\parallel b}{rS}+E,\qquad |E|\le\frac e{r^2}.
+$$
+
+Actual products $P_\parallel b>eS/r$ and $P_\parallel b<-eS/r$ certify positive and negative derivatives respectively. A zero followed by negative J requires the product at most $eS/r$; a zero followed by positive J requires it at least $-eS/r$. In-band products, zero derivatives and flat zero intervals remain unclassified. The coarse product cap permits outside-band values only if $r>eS/(2w^2)$; the displayed upper bound for $e/(2w^2)$ supplies no necessary separation cutoff or sufficient direction. Large separation alone fixes no sign.
+
+The [final independent disposition](analysis/saturday-low-angular-momentum-codex-review-2026-10-14.md#final-corrected-byte-disposition--october-14) reconstructs the proofs and checks conservative decimals with a separate known-first reference. No history is evaluated. The uncontrolled signed quantities are K1/K2 and their actual common-motion correlations; no upper separation or unconditional radial-travel bound is obtained. A wide, slowly turning repeating solution remains neither constructed nor excluded. A complete solution violating these necessary bounds or satisfying their strict exclusion predicate would refute the affected theorem; failure of a sufficient predicate proves neither recurrence nor a global no-go result.
+
+### 9.7. Actual common-motion correlations and necessary radial travel
+
+The [actual-correlation analysis](analysis/saturday-actual-common-motion-correlations-2026-10-17.md), accepted by its [final independent review](analysis/saturday-actual-common-motion-correlations-codex-review-2026-10-18.md#final-corrected-byte-disposition--october-18), reduces the sign-free correlation K2 using the actual common-motion equation. The scope remains complete twice continuously differentiable planar opposite-unit pairs, positive separation, unit reduced coupling, normalized wake speed $c_f=1$ and whole-history speed bound $0<w<1/3$. Relative-vector recurrence is up to an orientation-preserving rotation; an orientation-reversing return uses twice the period. No periodic common velocity, constant J, mirror symmetry or conserved angular momentum is assumed. Here $T$ denotes absolute time and $P_{\mathrm{cyc}}$ the recurrence period, translating the source's time/period notation without changing its mathematical assumptions.
+
+Write $d=J/r$, let $P_\parallel,P_\perp$ be components of the velocity sum in the relative rotating frame, and let $A_\parallel,A_\perp$ be those of the acceleration sum. Define $Q_P=P_\parallel^2-P_\perp^2$ and $H=A_\parallel P_\parallel-A_\perp P_\perp$. The frame equations give the exact identities
+
+$$
+\dot Q_P=2H+4\frac d rP_\parallel P_\perp,
+\qquad K_2=-\frac12\int dP_\parallel P_\perp\,dT
+=-\frac{[rQ_P]}8+\frac18\int\dot rQ_P\,dT+\frac14\int rH\,dT
+$$
+
+In plain language, the formerly size-bounded correlation is a signed radial–anisotropy integral plus an actual-equation term and a boundary term. Under rigid recurrence the boundary term vanishes. Under relative recurrence alone, its absolute contribution is at most $w^2r(0)$ over any integer number of periods; dividing by that number removes it without assuming that K2 per period has a limit. The actual-row expression for H has nonnegative principal part $(P_\parallel^2+r^2\mu P_\perp^2)/r^2$ and an error bounded by $4k_1/r^2+k_A'/r^3$, with the constants and positive coefficient $\mu$ defined in the accepted analysis. This sign does not control the signed radial–anisotropy term.
+
+Put $R_1=\int|\dot r|\,dT$, $R_2=\int\dot r^2\,dT$, $Q_d=\int d^2\,dT$, $L_d=\int|d|\,dT$ and $I_j=\int r^{-j}\,dT$ over one recurrence period. Integrating the derivative of $r\dot r$ in the actual radial equation yields $R_2+Q_d=\int rA_r\,dT\ge c_-I_1$. The existing separation floor gives $I_2\le4w^2I_1/c_-$. Combining these with the K2 identity gives the derived necessary inequality
+
+$$
+(D-m)Q_d\le\frac{w^2}2R_1+mR_2+wz_0L_d,
+\qquad m=\frac{w^2c_1+k_1+w^2k_A'/c_-}{c_-}
+$$
+
+It is useful when $D>m$. Define $\rho_1=R_1/P_{\mathrm{cyc}}$ and $u=I_1/P_{\mathrm{cyc}}$. Using $R_2\le2wR_1$ and either $L_d/P_{\mathrm{cyc}}\le k$ or Cauchy–Schwarz followed by Young's inequality gives three necessary bounds of the form $c_-u\le a_f\rho_1+b_f$:
+
+| Bound | $a_f$ | $b_f$ |
+| --- | --- | --- |
+| Existing mean-square bound | $2w$ | $k^2$ |
+| Mean-absolute transverse bound | $2w+(2wm+w^2/2)/(D-m)$ | $wz_0k/(D-m)$ |
+| Cauchy–Schwarz bound | $2w+(4wm+w^2)/(D-m)$ | $(wz_0/(D-m))^2$ |
+
+All three allow zeros and sign changes of J. At $w=.1$, the independent rational/interval reference verifies $D-m>.16737$, and the last bound has $a_f<.31847$ and $b_f<3.6238\times10^{-7}$. Its positive-numerator cutoff $c_-/b_f$ exceeds $4.0436\times10^6$; with $r_{\max}=1000$, the necessary mean radial speed exceeds .00553. The cutoff says only where this lower bound is positive. It is not a necessary maximum separation, a radial-dominance theorem, or a noncircularity result; the earlier constant-separation exclusion remains stronger. A uniform order-$u/w$ conclusion requires a margin such as $c_-u\ge2b_f$. The analysis checks $D>m$ at three declared speeds, not on a continuous interval.
+
+A proved upper-travel bound $\rho_1\le U$ would exclude a candidate only with the strict margin $a_fU+b_f<c_-u$. Direct control of the signed correlation is a different route, not an equivalent travel bound. The candidate turning term obeys $\int|\dot\vartheta P_\parallel P_\perp|\,dT\le(4w^3/c_-)Q_d$; multiplying it by an excursion supremum introduces another uncontrolled quantity and gives no new exclusion. K1 remains separate. The radial allowance $\rho_1\le\sqrt{c_+u}$ is compatible with these constraints in the checked speed-.1 domain; compatibility establishes no solution.
+
+These are derived necessary conditions, with conservative arithmetic checked by a separately authored rational/interval reference after known controls. No actual history is measured or newly evolved. General periodicity, strongly breathing or widely separated recurrence, signed correlations and useful actual travel/excursion control remain open. A complete admitted solution violating a necessary bound, or satisfying the strict upper-travel contradiction, would refute the affected theorem; a failed sufficient test establishes neither existence nor general exclusion.

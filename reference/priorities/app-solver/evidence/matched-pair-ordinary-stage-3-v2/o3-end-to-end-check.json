@@ -1,0 +1,66 @@
+{
+ "schema": "ordinary_integration_o3_end_to_end/v1",
+ "all_passed": true,
+ "rows": [
+  {
+   "check": "known: a v2 run through the actual service and clients is unchanged in kind",
+   "passed": true,
+   "detail": "completed"
+  },
+  {
+   "check": "known: capabilities answer and advertise no execution method",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "v3 inspect through the service: control-only, preflight not run",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "v3 evolve-record: completed, durable v9 checkpoint with an identity, record view with sampled attempts",
+   "passed": true,
+   "detail": "eb65f22a-50f6-4c74-8e29-1ecc381639b4"
+  },
+  {
+   "check": "complete raw record retained and served: bytes and SHA-256 match the artifact, complete marker written, full attempt log in raw",
+   "passed": true,
+   "detail": "228125 bytes"
+  },
+  {
+   "check": "the durable checkpoint read back through the service is the reported v9",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "cancellation through the service: progress observed, then an accepted boundary with a durable v9 and accepted coverage",
+   "passed": true,
+   "detail": "1 progress events; halted cancelled_at_accepted_boundary at 0.984375; "
+  },
+  {
+   "check": "resume-record with runtime.threadCount 2 through the service equals the uninterrupted run, with replayed rejections and the worker count reported",
+   "passed": true,
+   "detail": "214/42 against 214/42; "
+  },
+  {
+   "check": "the browser client refuses a v3 request without a declared limit before anything is sent",
+   "passed": true,
+   "detail": "EOM execution binding: execution.maximumAcceptedSteps is required."
+  },
+  {
+   "check": "the service returns the strict decoder refusal for the same request",
+   "passed": true,
+   "detail": "invalid_request: v3 execution requires maximumAcceptedSteps"
+  },
+  {
+   "check": "a runtime override on a v2 resume is refused, not dropped",
+   "passed": true,
+   "detail": "A runtime override is supported only on a v3 resume."
+  },
+  {
+   "check": "a domain-refused origin is reported as the service error, with nothing evolved",
+   "passed": true,
+   "detail": "unsupported_validated_domain: the validated origin preflight is not certified: at step 0.0078125 the producer refuses VFS-H1-01 (retained_past_speed): retained past is not below field speed"
+  }
+ ]
+}

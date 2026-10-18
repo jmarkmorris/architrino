@@ -1,0 +1,271 @@
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/include/architrino/eom/ProviderTransport.hpp .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/include/architrino/eom/ProviderTransport.hpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/include/architrino/eom/ProviderTransport.hpp	2026-10-14 07:50:30
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/include/architrino/eom/ProviderTransport.hpp	2026-10-14 07:59:47
+@@ -35,10 +35,11 @@
+   NativeCoupledEvolutionRequest request;
+   // The resumed invocation, as the ordinary entry returns it.
+   NativeCoupledEvolutionCertificate run;
+-  // From the replay: expected_controls (the caller's controls and origin,
+-  // which any genuine record of that origin and those controls satisfies) or
+-  // expected_record (one complete record identity, chosen by the caller);
+-  // the identity of the record actually read; the fields compared.
++  // From the replay. The caller's controls and exact origin are always
++  // compared. expected_controls: nothing more, so any genuine record of that
++  // origin and those controls satisfies it; expected_record: in addition,
++  // the complete record identity the caller named. Then the identity of the
++  // record actually read and the fields compared.
+   std::string identity_basis;
+   std::string record_identity;
+   std::vector<std::string> compared_fields;
+@@ -47,15 +48,20 @@
+   std::size_t replayed_rejected_steps = 0;
+   // The worker count the replay and the new invocation used.
+   std::size_t worker_count = 1;
++  // The resource bound admitted before replay: the accepted steps the
++  // record's legs can reach under their enforced limits, and the bytes.
++  std::uint64_t replay_step_bound = 0;
++  std::uint64_t replay_bound_bytes = 0;
+ };
+ 
+ // Restores by complete replay of the checkpoint's record and continues to
+ // `requested_end_time`. In order: stored digest (corruption only); the
+ // caller's original request against the execution, binding, resolved model,
+ // preparation and run identity; the worker count, `worker_override` or the
+-// original's, at least 1 and at most 32; a resource bound for replay from
+-// the origin to the requested end, refused before any replay when over the
+-// original's memory budget; replay under the caller's expectation; then
++// original's, at least 1 and at most 32; a named record identity against
++// the record's bytes; a resource bound from the record's enforced leg
++// limits, refused before any replay when over the original's memory budget;
++// replay under the caller's controls and exact origin; then
+ // every envelope claim (accepted time, counts, controller step, histories,
+ // record identity) against replay. Every failure throws
+ // EquationAdmissionError, so no partial state is returned.
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp	2026-10-14 07:50:30
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp	2026-10-14 07:59:10
+@@ -168,4 +168,18 @@
+ [[nodiscard]] std::uint64_t estimate_native_validated_growth_bytes(
+     const NativeCoupledEvolutionRequest& request);
+ 
++// The same bound with the quantities it is built from: the accepted steps
++// this invocation can reach, at most floor(span / minimum_step) + 1 within
++// the accepted-step limit; the attempts it can make; the allowance charged
++// for one published segment; and the growth in bytes, which includes a
++// stack allowance of 8 MiB for each of the worker_count - 1 helper threads.
++struct NativeValidatedBound {
++  std::uint64_t reachable_steps = 0;
++  std::uint64_t attempts = 0;
++  std::uint64_t segment_bytes = 0;
++  std::uint64_t growth_bytes = 0;
++};
++[[nodiscard]] NativeValidatedBound native_validated_bound(
++    const NativeCoupledEvolutionRequest& request);
++
+ }  // namespace architrino::eom
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/native/eom_validated_persistence_fixture_cli.cpp .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/native/eom_validated_persistence_fixture_cli.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/native/eom_validated_persistence_fixture_cli.cpp	2026-10-14 07:50:30
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/native/eom_validated_persistence_fixture_cli.cpp	2026-10-14 08:05:49
+@@ -900,7 +900,19 @@
+             << ",\"resumed_from\":" << quoted(r.request.start_time)
+             << ",\"initial_accepted\":" << r.request.initial_accepted_step_count
+             << ",\"initial_rejected\":" << r.request.initial_rejected_step_count
+-            << "}\n";
++            << ",\"replay_step_bound\":" << r.replay_step_bound
++            << ",\"replay_bound_bytes\":" << r.replay_bound_bytes
++            << ",\"legs\":[";
++  const auto claims = eom::read_validated_run_record(record_of(text));
++  for (std::size_t i = 0; claims.record && i < claims.record->legs().size(); ++i) {
++    const auto& leg = claims.record->legs()[i];
++    std::cout << (i ? "," : "") << "[" << quoted(leg.end_time) << ","
++              << leg.max_accepted_steps << "]";
++  }
++  std::cout << "],\"origin_time\":"
++            << quoted(claims.record ? claims.record->origin_time() : "")
++            << ",\"minimum_step\":" << quoted(original.minimum_step)
++            << ",\"requested_end\":" << quoted(end) << "}\n";
+   emit_ordinary(label, r.request, r.run, out.callbacks);
+   return out;
+ }
+@@ -1153,6 +1165,62 @@
+     const std::string at_three = checkpoint("P-three-v9", original, three.run);
+     resume_refused("N-three-record-in-two-envelope", original,
+                    with_record(at_two, record_of(at_three)), kEnd);
++  }
++
++  // O2-R2: a genuine record of another origin or other controls, with its
++  // own consistent claims, inside the caller's resealed envelope, is refused
++  // whether or not the caller names its complete identity.
++  {
++    const auto foreign = [&](const std::string& name, Ordinary other) {
++      const auto run = run_emit("P-foreign-" + name, cancelled_after(other, 2));
++      const std::string theirs = checkpoint("P-foreign-" + name + "-v9", other, run.run);
++      json::object mine = envelope(at_two);
++      const json::object their = envelope(theirs);
++      for (const char* key : {"providerState", "acceptedTime", "acceptedCount",
++                              "rejectedCount", "controllerStep", "histories"}) {
++        mine[key] = their.at(key);
++      }
++      const std::string swapped = reseal(mine);
++      const std::string identity = eom::validated_run_record_identity(record_of(theirs));
++      resume_refused("N-R2-" + name + "-under-expected-record", original, swapped,
++                     kEnd, std::nullopt, identity);
++      resume_refused("N-R2-" + name + "-under-expected-controls", original, swapped,
++                     kEnd);
++    };
++    Ordinary moved = original;
++    moved.paths[1] = {"plus", "1", static_path("plus", "1", "12").history};
++    foreign("changed-origin", moved);
++    Ordinary charged = original;
++    charged.paths[0] = {"receiver", "2", charged.paths[0].history};
++    foreign("changed-charge", charged);
++    Ordinary coupled = original;
++    coupled.coupling = "0.002";
++    foreign("changed-scalar", coupled);
++    Ordinary policy = original;
++    policy.validated = {};
++    foreign("changed-policy", policy);
++    // Every history keeps one common start, as the producer requires.
++    Ordinary ancestry = original;
++    ancestry.paths = {
++        {"receiver", "1", static_path("receiver", "1", "0", "-30").history},
++        {"plus", "1", static_path("plus", "1", "10", "-30").history},
++        {"minus", "-1", static_path("minus", "-1", "11", "-30").history}};
++    foreign("changed-ancestry", ancestry);
++  }
++
++  // Many short legs: ten invocations, each ending at a clipped final step
++  // shorter than the minimum step, then one more from v9.
++  {
++    const Ordinary first =
++        selected("p-short", static_pair(), "0.001", kStep, kRoomyToken);
++    auto leg = run_emit("P-short-leg-1", first);
++    for (int k = 2; k <= 10; ++k) {
++      Ordinary next = resumed("p-short", leg.run, first);
++      next.end_time = "0.0" + std::string(k < 10 ? "0" : "") + std::to_string(k);
++      leg = run_emit("P-short-leg-" + std::to_string(k), next);
++    }
++    const std::string text = checkpoint("P-short-v9", first, leg.run);
++    resume("P-short-resumed", first, text, "0.011");
+   }
+ 
+   // Resources and size.
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/src/ProviderTransport.cpp .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/src/ProviderTransport.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/src/ProviderTransport.cpp	2026-10-14 07:50:30
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/src/ProviderTransport.cpp	2026-10-14 07:59:47
+@@ -461,24 +461,53 @@
+   const std::size_t workers = worker_override.value_or(r.thread_count);
+   if (workers == 0U || workers > 32U) fail("request_budget_exhausted", "the worker count must be between 1 and 32");
+   if (compare_exact_decimal_tokens(end, token(cp.at("acceptedTime"))) <= 0) fail("invalid_request", "the requested end must follow the accepted time");
+-  // Resources, before any replay: replay reruns every step from the origin,
+-  // so the bound is for one run from the origin to the requested end, plus
+-  // the envelope and record copies.
++  // A complete record identity named by the caller selects these bytes; it
++  // adds to the caller's controls and origin below, never replaces them.
++  if (expected_record_identity && *expected_record_identity != validated_run_record_identity(record))
++    fail("checkpoint_replay_refused", "expectation: the record's bytes are not the expected record");
++  // Resources, before any replay, from the record read as plain claims.
++  // Replay passes each leg's requested end and accepted-step limit to the
++  // driver, which enforces them, so a leg reaches at most the steps those
++  // allow from the origin, and one clipped final step each, which the
++  // per-leg bound counts. Replay holds one leg's attempts at a time, the
++  // whole retained history, and the record and envelope copies; the new leg
++  // follows with the caller's own limit.
++  const ValidatedRunRecordClaims claims = read_validated_run_record(record);
++  if (claims.status != "read" || !claims.record) fail("checkpoint_replay_refused", "read: " + claims.reason);
++  std::uint64_t replay_steps = 0;
++  std::uint64_t replay_bytes = 0;
+   {
+-    auto bound = r;
+-    bound.end_time = end;
+-    bound.diagnostic_maximum_accepted_steps = std::numeric_limits<std::size_t>::max();
+-    const std::uint64_t replay = estimate_native_validated_growth_bytes(bound);
+-    const std::uint64_t copies = 4U * static_cast<std::uint64_t>(text.size());
+-    if (replay > r.memory_budget_bytes || copies > r.memory_budget_bytes - replay)
+-      fail("checkpoint_resource_refused", "the replay bound of " + std::to_string(replay) + " bytes and " +
+-           std::to_string(copies) + " bytes of copies exceed the memory budget of " + std::to_string(r.memory_budget_bytes));
++    using U = unsigned __int128;
++    auto origin = r;
++    origin.thread_count = workers;
++    U steps = 0, peak = 0, segment = 0;
++    for (const auto& leg : claims.record->legs()) {
++      auto bound = origin;
++      bound.end_time = leg.end_time;
++      bound.diagnostic_maximum_accepted_steps = leg.max_accepted_steps;
++      const NativeValidatedBound b = native_validated_bound(bound);
++      steps += b.reachable_steps;
++      peak = std::max<U>(peak, b.growth_bytes);
++      segment = std::max<U>(segment, b.segment_bytes);
++    }
++    auto next = origin;
++    next.end_time = end;
++    const NativeValidatedBound b = native_validated_bound(next);
++    segment = std::max<U>(segment, b.segment_bytes);
++    const U bytes = peak + b.growth_bytes + (steps + b.reachable_steps) * U(r.paths.size()) * segment +
++                    4U * U(record.size()) + 4U * U(text.size());
++    if (bytes > std::numeric_limits<std::uint64_t>::max())
++      fail("validated_resource_bound_unavailable", "no finite replay bound can be established");
++    replay_steps = static_cast<std::uint64_t>(steps);
++    replay_bytes = static_cast<std::uint64_t>(bytes);
++    if (replay_bytes > r.memory_budget_bytes)
++      fail("checkpoint_resource_refused", "the replay bound of " + std::to_string(replay_bytes) +
++           " bytes for " + std::to_string(replay_steps) + " reachable replayed steps exceeds the memory budget of " +
++           std::to_string(r.memory_budget_bytes));
+   }
+   ValidatedRestoreExpectation expectation;
+-  if (expected_record_identity) {
+-    expectation.record_identity = *expected_record_identity;
+-  } else {
+-    expectation.controls = validated_controls(r);
++  expectation.controls = validated_controls(r);
++  {
+     std::vector<ValidatedRunOriginMember> origin;
+     for (const auto& p : r.paths) origin.push_back({p.path_id, p.charge, validated_history_digest(p.history)});
+     expectation.origin = std::move(origin);
+@@ -510,9 +539,12 @@
+   ValidatedProviderResume out;
+   out.request = resumed;
+   out.run = evolve_native_coupled_histories(resumed);
+-  out.identity_basis = restored.identity_basis;
++  out.identity_basis = expected_record_identity ? "expected_record" : restored.identity_basis;
+   out.record_identity = restored.record_identity;
+   out.compared_fields = restored.compared_fields;
++  if (expected_record_identity) out.compared_fields.emplace_back("record_identity");
++  out.replay_step_bound = replay_steps;
++  out.replay_bound_bytes = replay_bytes;
+   out.replayed_legs = restored.replayed_legs;
+   out.replayed_steps = restored.replayed_steps;
+   out.replayed_rejected_steps = restored.replayed_rejected_steps;
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/src/ValidatedOrdinaryBridge.cpp .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/src/ValidatedOrdinaryBridge.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/src/ValidatedOrdinaryBridge.cpp	2026-10-14 07:50:30
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/src/ValidatedOrdinaryBridge.cpp	2026-10-14 07:59:10
+@@ -344,6 +344,11 @@
+ 
+ std::uint64_t estimate_native_validated_growth_bytes(
+     const NativeCoupledEvolutionRequest& request) {
++  return native_validated_bound(request).growth_bytes;
++}
++
++NativeValidatedBound native_validated_bound(
++    const NativeCoupledEvolutionRequest& request) {
+   const ValidatedEvolutionRequest translated =
+       native_validated_request(request);
+   using U = unsigned __int128;
+@@ -477,7 +482,16 @@
+                                2U * digest + id) +
+                       sizeof(ValidatedPopulationEvidence),
+                   "population");
+-  return static_cast<std::uint64_t>(bytes);
++  // Helper threads: worker_count - 1, each charged an 8 MiB stack.
++  bytes = checked(
++      bytes + U(translated.worker_count - 1U) * 8U * 1024U * 1024U,
++      "worker stacks");
++  NativeValidatedBound out;
++  out.reachable_steps = static_cast<std::uint64_t>(steps);
++  out.attempts = static_cast<std::uint64_t>(attempts);
++  out.segment_bytes = static_cast<std::uint64_t>(segment);
++  out.growth_bytes = static_cast<std::uint64_t>(bytes);
++  return out;
+ }
+ 
+ namespace {

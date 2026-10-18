@@ -1,0 +1,129 @@
+{
+ "ddl10_sha256": "67a82d348edff01ebdbf0219d213c80910693f57d0aa92f1553161e34a3fc396",
+ "inputs_sha256": {
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C18-r1.json": "7940e277359dd41690b60a0b77af59e5587c3172397c119854d809190538c2d4",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C20-r2.json": "7b1470e81409f6a9361b8f932e5974895698f373e6b0d2dc8d340e53d5aec3c1",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C20-r3.json": "e2dc6540a21e0682a14fce9a5d848785c06839f4c688f64f94ce8606c4cf6cb8",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C20-r4.json": "8182cb08f20b4409e61b3149c800a0a022572d2e23fb0b2ec9f77f3acd55d8d6",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C22-r5.json": "7af6178534c67a97e78800f6a5c7782b4c27fd6f124ed15bad7d82483e54b875"
+ },
+ "range": [
+  435,
+  437
+ ],
+ "ksub": 8,
+ "insertion_controls": {
+  "I1_reproduces_step154_strings": true,
+  "I2_known_append_accepted": true,
+  "I3_gap_refused": true,
+  "I4_frozen_mismatch_refused": true
+ },
+ "refine_controls": {
+  "R1_cubic_origin_and_remainder": true,
+  "R2_frozen_t3": true,
+  "R3_unsplit_undecided_split_decides": true
+ },
+ "rows": [
+  {
+   "step": 435,
+   "ddl": [
+    "0.00129447905540922883625056867103",
+    "0.0327860313729078373656294915651"
+   ],
+   "ddl_sign": "positive",
+   "dl_end": [
+    "-0.000119736106171616603455256108186",
+    "0.00484083217482465519287496993526"
+   ],
+   "reads_frozen_records_through_154": [],
+   "reads_reconstructed_records": [
+    "own-245",
+    "own-246",
+    "own-247",
+    "own-284",
+    "own-285",
+    "own-308",
+    "own-309",
+    "own-310"
+   ],
+   "history": "reconstructed only",
+   "lemma": {
+    "A_up": "0.00462183202872517532745304532",
+    "B_up": "0.00484083217482465519287496993526",
+    "L": "0.00129447905540922883625056867103",
+    "U": "0.0327860313729078373656294915651",
+    "start_only": "0.00494969234245425370110934023565",
+    "end_only": "0.00484083217482465519287496993526",
+    "bound": "0.00484083217482465519287496993526",
+    "sign": "UNDECIDED"
+   }
+  },
+  {
+   "step": 436,
+   "ddl": [
+    "0.00102713051216694281403189054716",
+    "0.0332085470760063253581127236087"
+   ],
+   "ddl_sign": "positive",
+   "dl_end": [
+    "-0.0000002917577727294120136367651673",
+    "0.00504301755535799138171163985044"
+   ],
+   "reads_frozen_records_through_154": [],
+   "reads_reconstructed_records": [
+    "own-246",
+    "own-247",
+    "own-285",
+    "own-286",
+    "own-310",
+    "own-311",
+    "own-312"
+   ],
+   "history": "reconstructed only",
+   "lemma": {
+    "A_up": "0.00484083217482465519287496993526",
+    "B_up": "0.00504301755535799138171163985044",
+    "L": "0.00102713051216694281403189054716",
+    "U": "0.0332085470760063253581127236087",
+    "start_only": "0.00517291764558471844645609717135",
+    "end_only": "0.00504301755535799138171163985044",
+    "bound": "0.00504301755535799138171163985044",
+    "sign": "UNDECIDED"
+   }
+  },
+  {
+   "step": 437,
+   "ddl": [
+    "0.000870393457605455282559325313185",
+    "0.0335847846334268982740846145946"
+   ],
+   "ddl_sign": "positive",
+   "dl_end": [
+    "0.000135755041096460714679185462829",
+    "0.00526719686627275597611822690669"
+   ],
+   "reads_frozen_records_through_154": [],
+   "reads_reconstructed_records": [
+    "own-247",
+    "own-248",
+    "own-286",
+    "own-287",
+    "own-311",
+    "own-312",
+    "own-313"
+   ],
+   "history": "reconstructed only",
+   "lemma": {
+    "A_up": "0.00504301755535799138171163985044",
+    "B_up": "0.00526719686627275597611822690669",
+    "L": "0.000870393457605455282559325313185",
+    "U": "0.0335847846334268982740846145946",
+    "start_only": "0.00537886540169226036445248599639",
+    "end_only": "0.00526719686627275597611822690669",
+    "bound": "0.00526719686627275597611822690669",
+    "sign": "UNDECIDED"
+   }
+  }
+ ],
+ "lemma_negative_steps": []
+}

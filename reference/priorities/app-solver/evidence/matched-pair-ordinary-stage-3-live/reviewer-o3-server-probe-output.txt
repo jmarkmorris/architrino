@@ -1,0 +1,2 @@
+KNOWN exact parser-only cancellation document PASS before server v3 targets.
+{"server_requests":4,"known_control":1,"v3_inspect":true,"v3_prefix_steps":2,"v3_resumed_steps":4,"replayed_steps":2,"worker_override":4,"durable":true,"terminal":{"code":0,"signal":null}}

@@ -1,6 +1,9 @@
 #include "architrino/eom/ProviderTransport.hpp"
 #include "architrino/eom/Checkpoint.hpp"
 #include "architrino/eom/EquationRegistry.hpp"
+#include "architrino/eom/ValidatedOrdinaryBridge.hpp"
+#include "architrino/eom/ValidatedRunRecord.hpp"
+#include "architrino/eom/MatchedPairEnclosure.hpp"
 #include "architrino/eom/Decimal.hpp"
 #include "SurfaceArithmetic.hpp"
 #include <boost/json.hpp>
@@ -13,6 +16,7 @@
 #include <sstream>
 #include <filesystem>
 #include <cmath>
+#include <limits>
 
 namespace architrino::eom {
 namespace {
@@ -233,6 +237,7 @@ void cancel_signal(int){cancellation_flag=1;}
 }
 
 std::string create_provider_checkpoint(const NativeCoupledEvolutionRequest& r,const NativeCoupledEvolutionCertificate& c) {
+  require_native_ordinary_method(r, "the v8 provider checkpoint");
   if(!r.joint_histories.empty() || !r.joint_root_point_states.empty())fail("unsupported_model_combination","v8 does not yet bind typed joint preparation; use its existing v7 owner within that owner's supported domain");
   (void)require_equation_provider(r);
   if(!c.all_steps_atomic || c.run_id!=r.run_id)fail("invalid_checkpoint","only matching atomic accepted history can be checkpointed");
@@ -266,6 +271,7 @@ std::string create_provider_checkpoint(const NativeCoupledEvolutionRequest& r,co
 }
 
 NativeCoupledEvolutionCertificate resume_provider_checkpoint(const NativeCoupledEvolutionRequest& r,const std::string& text,const std::string& end) {
+  require_native_ordinary_method(r, "the v8 provider checkpoint");
   if(!r.joint_histories.empty() || !r.joint_root_point_states.empty())fail("unsupported_model_combination","v8 does not yet bind typed joint preparation");
   if(r.paths.empty())fail("invalid_checkpoint","restart requires a nonempty population");
   const auto cp=sealed_checkpoint(text);
@@ -311,9 +317,353 @@ NativeCoupledEvolutionCertificate resume_provider_checkpoint(const NativeCoupled
   return evolve_native_coupled_histories(resumed);
 }
 
+namespace {
+constexpr const char* kValidatedCheckpointSchema = "eom_provider_checkpoint/v9";
+constexpr const char* kValidatedProviderState = "validated-run-record/v1";
+constexpr std::size_t kMaximumResumeBytes = 32U * 1024U * 1024U;
+
+// The execution identity of a selected request: the method and the bound
+// controls the v2 request encoding does not carry. Worker count and the
+// per-invocation diagnostic limit are not part of it.
+Object validated_execution(const NativeCoupledEvolutionRequest& r) {
+  const auto& v = r.validated;
+  Array groups;
+  for (const auto& [leader, follower] : v.groups) groups.push_back(Array{leader, follower});
+  j::value total = nullptr;
+  if (v.total_position_budget) total = Array{*v.total_position_budget, *v.total_velocity_budget};
+  return Object{{"method", r.integration_method},
+                {"positionIncrementBudget", r.position_increment_budget},
+                {"velocityIncrementBudget", r.velocity_increment_budget},
+                {"totalBudget", total},
+                {"maxAttemptsPerStep", v.max_attempts_per_step},
+                {"maxLowerSignRetries", v.max_lower_sign_retries},
+                {"growthCooldownSteps", v.growth_cooldown_steps},
+                {"pairPolicy", v.pair_policy},
+                {"groups", groups}};
+}
+
+// v8's binding, with the execution digest added.
+std::string validated_binding(const NativeCoupledEvolutionRequest& r, const std::string& execution_digest) {
+  auto encoded = encode_request(r);
+  encoded.erase("interval");
+  encoded.erase("runId");
+  auto legacy = r;
+  legacy.equation_selection.reset();
+  legacy.surface_geometry.reset();
+  legacy.continuation_histories.clear();
+  return equation_identity_sha256(canonical(Object{
+      {"request", encoded},
+      {"model", parse(inspect_equation_model(r).canonical_json)},
+      {"legacyNumerics", native_evolution_model_fingerprint(legacy)},
+      {"execution", execution_digest}}));
+}
+
+// The first request of a selected run.
+void require_validated_original(const NativeCoupledEvolutionRequest& r) {
+  if (!native_validated_method_selected(r)) fail("unsupported_execution_policy", "v9 persists the validated method only");
+  require_native_validated_controls(r);
+  if (r.validated.continuation || r.initial_accepted_step_count != 0U || r.initial_rejected_step_count != 0U)
+    fail("checkpoint_preparation_mismatch", "v9 binds a run's original request, which carries no continuation or restart counters");
+  if (r.paths.empty()) fail("invalid_checkpoint", "persistence requires a nonempty population");
+}
+
+ValidatedRunControls validated_controls(const NativeCoupledEvolutionRequest& r) {
+  const ValidatedEvolutionRequest t = native_validated_request(r);
+  ValidatedRunControls c;
+  c.policy = t.policy;
+  c.field_speed = t.field_speed;
+  c.coupling = t.coupling;
+  c.initial_step = t.initial_step;
+  c.minimum_step = t.minimum_step;
+  c.increment_budget = t.increment_budget;
+  c.total_budget = t.total_budget;
+  c.max_attempts_per_step = t.max_attempts_per_step;
+  c.max_lower_sign_retries = t.max_lower_sign_retries;
+  c.growth_cooldown_steps = t.growth_cooldown_steps;
+  c.pair_policy = t.pair_policy;
+  c.groups = t.groups;
+  return c;
+}
+}  // namespace
+
+std::string create_validated_provider_checkpoint(const NativeCoupledEvolutionRequest& r, const NativeCoupledEvolutionCertificate& c) {
+  require_validated_original(r);
+  if (c.run_id != r.run_id || !c.all_steps_atomic) fail("invalid_checkpoint", "only the matching run's atomic accepted boundary can be checkpointed");
+  const auto& k = c.validated_continuation;
+  if (!k) fail("checkpoint_origin_required", "the run returned no accepted boundary to persist");
+  if (k->record_status() != "recorded" || !k->record()) fail("checkpoint_origin_required", "the run has no complete generating record: " + k->record_status());
+  const auto& sealed = k->driver()->state();
+  const ValidatedRunRecord& generating = *k->record();
+  // The original request must be the generating record's: its controls,
+  // origin time and exact origin members.
+  {
+    const std::string difference = validated_run_controls_difference(validated_controls(r), generating.controls());
+    if (!difference.empty()) fail("checkpoint_origin_mismatch", "the generating record's control differs from the original request: " + difference);
+    if (compare_exact_decimal_tokens(generating.origin_time(), r.start_time) != 0)
+      fail("checkpoint_origin_mismatch", "the generating record's origin time is not the original request's start");
+    const auto members = generating.origin_members();
+    bool same = members.size() == r.paths.size();
+    for (std::size_t i = 0; same && i < members.size(); ++i)
+      same = members[i].path_id == r.paths[i].path_id && members[i].charge == r.paths[i].charge &&
+             members[i].chain == validated_history_digest(r.paths[i].history);
+    if (!same) fail("checkpoint_origin_mismatch", "the generating record's origin is not the original request's");
+  }
+  // Every persisted claim is the sealed accepted boundary's: the scalar
+  // claims are read from it, and the certificate's histories must be the
+  // ones its members name, in order.
+  if (sealed.accepted_time != c.accepted_end_time || k->accepted_step_count() != c.accepted_step_count ||
+      k->rejected_step_count() != c.rejected_step_count || sealed.controller_step_size != c.controller_step_size ||
+      generating.final_state().accepted_time != sealed.accepted_time ||
+      generating.final_state().accepted_step_count != sealed.accepted_step_count ||
+      generating.final_state().controller_step_size != sealed.controller_step_size)
+    fail("checkpoint_controller_mismatch", "the certificate, its continuation and its record disagree");
+  {
+    bool same = sealed.members.size() == c.histories.size();
+    for (std::size_t i = 0; same && i < c.histories.size(); ++i)
+      same = sealed.members[i].path_id == c.histories[i].path_id &&
+             sealed.members[i].history_digest == validated_history_digest(c.histories[i].history);
+    if (!same) fail("checkpoint_claim_mismatch", "the certificate's histories are not the sealed accepted boundary's");
+  }
+  const auto execution = validated_execution(r);
+  const auto execution_digest = equation_identity_sha256(canonical(execution));
+  const Object preparation{{"request", encode_request(r)}, {"execution", execution}};
+  const std::size_t reserved_request_bytes = canonical(preparation).size() + 8192U;
+  if (reserved_request_bytes >= kMaximumResumeBytes) fail("checkpoint_size_exhausted", "original request exceeds symmetric resume envelope budget");
+  const std::string record = k->record()->serialize();
+  Object out{{"schema", kValidatedCheckpointSchema},
+             {"execution", execution},
+             {"executionDigest", execution_digest},
+             {"binding", validated_binding(r, execution_digest)},
+             {"resolvedModel", parse(inspect_equation_model(r).canonical_json)},
+             {"preparation", preparation},
+             {"acceptedTime", sealed.accepted_time},
+             {"runId", r.run_id},
+             {"controllerStep", sealed.controller_step_size},
+             {"acceptedCount", k->accepted_step_count()},
+             {"rejectedCount", k->rejected_step_count()},
+             {"histories", published(c.histories)},
+             {"providerState", Object{{"schema", kValidatedProviderState},
+                                      {"record", record},
+                                      {"recordIdentity", validated_run_record_identity(record)}}}};
+  out["digest"] = equation_identity_sha256(canonical(out));
+  auto serialized = canonical(out);
+  if (serialized.size() > kMaximumResumeBytes - reserved_request_bytes) fail("checkpoint_size_exhausted", "checkpoint plus original request exceeds symmetric 32 MiB resume envelope budget");
+  return serialized;
+}
+
+ValidatedProviderResume resume_validated_provider_checkpoint(
+    const NativeCoupledEvolutionRequest& r, const std::string& text, const std::string& end,
+    std::optional<std::size_t> worker_override, std::optional<std::string> expected_record_identity) {
+  require_validated_original(r);
+  if (text.size() > kMaximumResumeBytes) fail("checkpoint_size_exhausted", "checkpoint exceeds the 32 MiB resume envelope budget");
+  // Corruption only: anyone can recompute this digest.
+  auto value = parse(text);
+  auto cp = object(value);
+  keys(cp, {"schema", "execution", "executionDigest", "binding", "resolvedModel", "preparation", "acceptedTime", "runId",
+            "controllerStep", "acceptedCount", "rejectedCount", "histories", "providerState", "digest"});
+  for (const char* name : {"schema", "execution", "executionDigest", "binding", "resolvedModel", "preparation", "acceptedTime",
+                           "runId", "controllerStep", "acceptedCount", "rejectedCount", "histories", "providerState", "digest"})
+    if (!cp.contains(name)) fail("invalid_checkpoint", std::string("checkpoint lacks ") + name);
+  if (string(cp.at("schema")) != kValidatedCheckpointSchema) fail("checkpoint_schema_mismatch", "validated restart requires v9");
+  const auto digest = string(cp.at("digest"));
+  cp.erase("digest");
+  if (equation_identity_sha256(canonical(cp)) != digest) fail("checkpoint_digest_mismatch", "checkpoint bytes changed");
+  // Identity comes from the caller's original request, never the checkpoint.
+  const auto execution = validated_execution(r);
+  const auto execution_digest = equation_identity_sha256(canonical(execution));
+  if (canonical(cp.at("execution")) != canonical(execution) || string(cp.at("executionDigest")) != execution_digest)
+    fail("checkpoint_execution_mismatch", "execution method or bound controls changed");
+  if (string(cp.at("binding")) != validated_binding(r, execution_digest) ||
+      canonical(cp.at("resolvedModel")) != canonical(parse(inspect_equation_model(r).canonical_json)))
+    fail("checkpoint_model_mismatch", "provider/build/preparation/numerical/execution binding changed");
+  if (canonical(cp.at("preparation")) != canonical(Object{{"request", encode_request(r)}, {"execution", execution}}) ||
+      string(cp.at("runId")) != r.run_id)
+    fail("checkpoint_preparation_mismatch", "original request/run identity changed; branching is not implemented");
+  const auto& state = object(cp.at("providerState"));
+  keys(state, {"schema", "record", "recordIdentity"});
+  if (string(state.at("schema")) != kValidatedProviderState) fail("checkpoint_provider_state_mismatch", "validated state schema mismatch");
+  const std::string record = string(state.at("record"));
+  // The runtime worker count: not part of the preparation.
+  const std::size_t workers = worker_override.value_or(r.thread_count);
+  if (workers == 0U || workers > 32U) fail("request_budget_exhausted", "the worker count must be between 1 and 32");
+  if (compare_exact_decimal_tokens(end, token(cp.at("acceptedTime"))) <= 0) fail("invalid_request", "the requested end must follow the accepted time");
+  // A complete record identity named by the caller selects these bytes; it
+  // adds to the caller's controls and origin below, never replaces them.
+  if (expected_record_identity && *expected_record_identity != validated_run_record_identity(record))
+    fail("checkpoint_replay_refused", "expectation: the record's bytes are not the expected record");
+  // Resources, before any replay, from the record read as plain claims.
+  // Replay passes each leg's requested end and accepted-step limit to the
+  // driver, which enforces them, so a leg reaches at most the steps those
+  // allow from the origin, and one clipped final step each, which the
+  // per-leg bound counts. Replay holds one leg's attempts at a time, the
+  // whole retained history, and the record and envelope copies; the new leg
+  // follows with the caller's own limit.
+  const ValidatedRunRecordClaims claims = read_validated_run_record(record);
+  if (claims.status != "read" || !claims.record) fail("checkpoint_replay_refused", "read: " + claims.reason);
+  std::uint64_t replay_steps = 0;
+  std::uint64_t replay_bytes = 0;
+  {
+    using U = unsigned __int128;
+    auto origin = r;
+    origin.thread_count = workers;
+    U steps = 0, peak = 0, segment = 0;
+    for (const auto& leg : claims.record->legs()) {
+      auto bound = origin;
+      bound.end_time = leg.end_time;
+      bound.diagnostic_maximum_accepted_steps = leg.max_accepted_steps;
+      const NativeValidatedBound b = native_validated_bound(bound);
+      steps += b.reachable_steps;
+      peak = std::max<U>(peak, b.growth_bytes);
+      segment = std::max<U>(segment, b.segment_bytes);
+    }
+    auto next = origin;
+    next.end_time = end;
+    const NativeValidatedBound b = native_validated_bound(next);
+    segment = std::max<U>(segment, b.segment_bytes);
+    const U bytes = peak + b.growth_bytes + (steps + b.reachable_steps) * U(r.paths.size()) * segment +
+                    4U * U(record.size()) + 4U * U(text.size());
+    if (bytes > std::numeric_limits<std::uint64_t>::max())
+      fail("validated_resource_bound_unavailable", "no finite replay bound can be established");
+    replay_steps = static_cast<std::uint64_t>(steps);
+    replay_bytes = static_cast<std::uint64_t>(bytes);
+    if (replay_bytes > r.memory_budget_bytes)
+      fail("checkpoint_resource_refused", "the replay bound of " + std::to_string(replay_bytes) +
+           " bytes for " + std::to_string(replay_steps) + " reachable replayed steps exceeds the memory budget of " +
+           std::to_string(r.memory_budget_bytes));
+  }
+  ValidatedRestoreExpectation expectation;
+  expectation.controls = validated_controls(r);
+  {
+    std::vector<ValidatedRunOriginMember> origin;
+    for (const auto& p : r.paths) origin.push_back({p.path_id, p.charge, validated_history_digest(p.history)});
+    expectation.origin = std::move(origin);
+  }
+  const ValidatedRestoreResult restored = restore_validated_run(record, expectation, workers);
+  if (restored.status != "restored") fail("checkpoint_replay_refused", restored.stage + ": " + restored.reason);
+  // Every claim against replay.
+  const auto& sealed = restored.continuation->state();
+  std::vector<NativePublishedPath> replayed;
+  for (const auto& p : restored.paths) replayed.push_back({p.id, p.history});
+  if (string(state.at("recordIdentity")) != restored.record_identity) fail("checkpoint_claim_mismatch", "the record identity claim differs from the record read");
+  if (token(cp.at("acceptedTime")) != sealed.accepted_time) fail("checkpoint_claim_mismatch", "the accepted time differs from replay");
+  if (count(cp.at("acceptedCount")) != sealed.accepted_step_count) fail("checkpoint_claim_mismatch", "the accepted count differs from replay");
+  if (count(cp.at("rejectedCount")) != restored.replayed_rejected_steps) fail("checkpoint_claim_mismatch", "the rejected count differs from replay");
+  if (token(cp.at("controllerStep")) != sealed.controller_step_size) fail("checkpoint_claim_mismatch", "the controller step differs from replay");
+  if (canonical(published(replayed)) != canonical(cp.at("histories"))) fail("checkpoint_claim_mismatch", "the histories differ from replay");
+  // Only now is a continuation issued, from the replay.
+  const auto continuation = native_validated_continuation_from_replay(restored);
+  auto resumed = r;
+  resumed.paths.clear();
+  for (const auto& p : restored.paths) resumed.paths.push_back({p.id, p.charge, p.history});
+  resumed.validated_population_evidence = restored.evidence;
+  resumed.validated.continuation = continuation;
+  resumed.initial_accepted_step_count = continuation->accepted_step_count();
+  resumed.initial_rejected_step_count = continuation->rejected_step_count();
+  resumed.start_time = sealed.accepted_time;
+  resumed.end_time = end;
+  resumed.thread_count = workers;
+  ValidatedProviderResume out;
+  out.request = resumed;
+  out.run = evolve_native_coupled_histories(resumed);
+  out.identity_basis = expected_record_identity ? "expected_record" : restored.identity_basis;
+  out.record_identity = restored.record_identity;
+  out.compared_fields = restored.compared_fields;
+  if (expected_record_identity) out.compared_fields.emplace_back("record_identity");
+  out.replay_step_bound = replay_steps;
+  out.replay_bound_bytes = replay_bytes;
+  out.replayed_legs = restored.replayed_legs;
+  out.replayed_steps = restored.replayed_steps;
+  out.replayed_rejected_steps = restored.replayed_rejected_steps;
+  out.worker_count = workers;
+  return out;
+}
+
+namespace {
+constexpr const char* kRequestV3 = "eom_evolution_request/v3";
+
+// Decodes eom_evolution_request/v3: the v2 members through the unchanged v2
+// decoder, then the required execution object. Controls the v2 decoder
+// would otherwise default are resolved explicitly: the step controls and
+// the coupling must be supplied; v2's ordinary-controller wire defaults
+// (maximumStep, maxStepAttempts, maxRejectedSteps) are not inherited, so an
+// absent one takes the typed default the validated method requires and a
+// supplied one is refused by name by the bridge unless it is at that
+// default. The bridge's named control refusal runs before return.
+NativeCoupledEvolutionRequest decode_request_v3(const j::value& value) {
+  const auto& o = object(value);
+  if (!o.contains("schema") || string(o.at("schema")) != kRequestV3) fail("unsupported_request_schema", "v3 schema required");
+  if (!o.contains("execution")) fail("invalid_request", "v3 requires an execution object");
+  Object v2 = o;
+  v2.erase("execution");
+  v2["schema"] = "eom_evolution_request/v2";
+  auto r = decode_request(v2);
+  const auto present = [&](const char* section, const char* key) {
+    return o.contains(section) && object(o.at(section)).contains(key);
+  };
+  if (!present("numerics", "initialStep") || !present("numerics", "minimumStep"))
+    fail("invalid_request", "v3 requires numerics.initialStep and numerics.minimumStep");
+  if (!present("model", "coupling")) fail("invalid_request", "v3 requires model.coupling");
+  const NativeCoupledEvolutionRequest typed{};
+  if (!present("numerics", "maximumStep")) r.maximum_step = typed.maximum_step;
+  if (!present("numerics", "maxStepAttempts")) r.max_step_attempts = typed.max_step_attempts;
+  if (!present("numerics", "maxRejectedSteps")) r.max_rejected_steps = typed.max_rejected_steps;
+  const auto& e = object(o.at("execution"));
+  keys(e, {"method", "positionIncrementBudget", "velocityIncrementBudget", "totalBudget", "maxAttemptsPerStep",
+           "maxLowerSignRetries", "growthCooldownSteps", "pairPolicy", "groups", "maximumAcceptedSteps"});
+  for (const char* k : {"method", "positionIncrementBudget", "velocityIncrementBudget", "maximumAcceptedSteps"})
+    if (!e.contains(k)) fail("invalid_request", std::string("v3 execution requires ") + k);
+  r.integration_method = string(e.at("method"));
+  if (r.integration_method != kValidatedFarStepEvolutionPolicy)
+    fail("unsupported_execution_policy", "v3 admits only the validated far-step method");
+  r.position_increment_budget = token(e.at("positionIncrementBudget"));
+  r.velocity_increment_budget = token(e.at("velocityIncrementBudget"));
+  if (e.contains("totalBudget") && !e.at("totalBudget").is_null()) {
+    const auto& total = array(e.at("totalBudget"));
+    if (total.size() != 2U) fail("invalid_request", "totalBudget is null or two decimal tokens");
+    r.validated.total_position_budget = token(total[0]);
+    r.validated.total_velocity_budget = token(total[1]);
+  }
+  if (e.contains("maxAttemptsPerStep")) r.validated.max_attempts_per_step = count(e.at("maxAttemptsPerStep"));
+  if (e.contains("maxLowerSignRetries")) r.validated.max_lower_sign_retries = count(e.at("maxLowerSignRetries"));
+  if (e.contains("growthCooldownSteps")) r.validated.growth_cooldown_steps = count(e.at("growthCooldownSteps"));
+  if (r.validated.max_attempts_per_step == 0U || r.validated.max_attempts_per_step > 1024U ||
+      r.validated.max_lower_sign_retries > 1024U || r.validated.growth_cooldown_steps > 1024U)
+    fail("request_budget_exhausted", "v3 execution attempt, retry or cooldown limit outside 1..1024");
+  if (e.contains("pairPolicy")) r.validated.pair_policy = string(e.at("pairPolicy"));
+  if (e.contains("groups")) {
+    const auto& groups = array(e.at("groups"));
+    if (groups.size() > r.paths.size()) fail("population_budget_exhausted", "more declared groups than paths");
+    for (const auto& item : groups) {
+      const auto& pair = array(item);
+      if (pair.size() != 2U) fail("invalid_request", "a group names exactly two paths");
+      r.validated.groups.emplace_back(string(pair[0]), string(pair[1]));
+    }
+  }
+  const auto maximum = count(e.at("maximumAcceptedSteps"));
+  if (maximum == 0U || maximum > 1000000U)
+    fail("invalid_request", "maximumAcceptedSteps must be a declared positive limit of at most 1000000");
+  r.diagnostic_maximum_accepted_steps = static_cast<std::size_t>(maximum);
+  require_native_validated_controls(r);
+  return r;
+}
+
+bool is_request_v3(const Object& envelope) {
+  if (!envelope.contains("request") || !envelope.at("request").is_object()) return false;
+  const auto& request = envelope.at("request").as_object();
+  return request.contains("schema") && request.at("schema").is_string() &&
+         std::string(request.at("schema").as_string()) == kRequestV3;
+}
+
+Object v3_resources(const NativeCoupledEvolutionRequest& r, std::uint64_t estimate, std::uint64_t budget) {
+  return Object{{"memoryEstimateBytes", estimate}, {"memoryBudgetBytes", budget},
+                {"maximumAcceptedSteps", r.diagnostic_maximum_accepted_steps},
+                {"estimateKind", "admission bound with stated allowances, not a measured resident-set cost"}};
+}
+}  // namespace
+
 std::string execute_eom_v2_request(const std::string& text,const std::string& checkpoint_file,std::function<bool()> cancel,std::function<void(std::size_t,const std::string&)> progress) {
   try {
-    const auto input=parse(text);const auto& o=object(input);keys(o,{"operation","request","checkpoint","endTime"});const auto operation=string(o.at("operation"));
+    const auto input=parse(text);const auto& o=object(input);keys(o,{"operation","request","checkpoint","endTime","runtime"});const auto operation=string(o.at("operation"));
     if(operation=="capabilities"){if(o.size()!=1)fail("unknown_request_field","capabilities takes no request");return equation_capabilities_json();}
     if(operation=="validate-cancel") {
       if(o.size()!=2)fail("unknown_request_field","cancel validation requires request only");
@@ -324,15 +674,40 @@ std::string execute_eom_v2_request(const std::string& text,const std::string& ch
       if(request.contains("executionId")){const auto execution=string(request.at("executionId"));if(execution.empty() || execution.size()>128)fail("invalid_request","invalid cancellation execution identity");validated["executionId"]=execution;}
       return canonical(validated);
     }
-    auto r=decode_request(o.at("request"));const auto model=inspect_equation_model(r);
+    const bool v3=is_request_v3(o);
+    if(o.contains("runtime") && !(v3 && operation=="resume"))fail("unknown_request_field","runtime is admitted only on a v3 resume");
+    auto r=v3?decode_request_v3(o.at("request")):decode_request(o.at("request"));const auto model=inspect_equation_model(r);
+    if(operation=="inspect" && v3) {
+      if(o.size()!=2)fail("unknown_request_field","inspect takes operation and request only");
+      const NativeValidatedBound bound=native_validated_bound(r);
+      const auto execution=validated_execution(r);
+      return canonical(Object{{"schema","eom_inspection/v3"},{"modelDigest",model.digest},{"resolvedModel",parse(model.canonical_json)},
+        {"execution",execution},{"executionDigest",equation_identity_sha256(canonical(execution))},
+        {"admission",Object{{"controls","admitted"},{"originPreflight","not_run"},{"certifiedDomain",false},
+          {"meaning","control-only inspection: the origin preflight, the driver's admission and every step certificate run only on evolve or resume"}}},
+        {"resources",Object{{"maximumAcceptedSteps",r.diagnostic_maximum_accepted_steps},{"reachableSteps",bound.reachable_steps},
+          {"growthBoundBytes",bound.growth_bytes},{"memoryBudgetBytes",r.memory_budget_bytes},
+          {"estimateKind","admission bound with stated allowances, not a measured resident-set cost"}}}});
+    }
     if(operation=="inspect"){if(o.size()!=2)fail("unknown_request_field","inspect takes operation and request only");return canonical(Object{{"schema","eom_inspection/v2"},{"modelDigest",model.digest},{"resolvedModel",parse(model.canonical_json)}});}
     if(operation!="evolve" && operation!="resume")fail("unsupported_operation","unknown v2 operation");
-    if(o.size()!=(operation=="evolve"?2U:4U))fail("unknown_request_field","operation fields mismatch");
+    if(o.size()!=(operation=="evolve"?2U:(o.contains("runtime")?5U:4U)))fail("unknown_request_field","operation fields mismatch");
     if(r.paths.empty() || !object(o.at("request")).contains("interval") || !object(o.at("request")).contains("runId"))fail("invalid_request","evolution requires runId, interval and paths");
     r.cancellation_requested=std::move(cancel);r.accepted_step_callback=std::move(progress);
-    auto c=operation=="resume"?resume_provider_checkpoint(r,canonical(o.at("checkpoint")),token(o.at("endTime"))):evolve_native_coupled_histories(r);
+    std::optional<ValidatedProviderResume> restored;
+    if(v3) {
+      const NativeValidatedBound bound=native_validated_bound(r);
+      if(bound.growth_bytes>r.memory_budget_bytes)fail("request_budget_exhausted","the v3 bound of "+std::to_string(bound.growth_bytes)+" bytes for maximumAcceptedSteps "+std::to_string(r.diagnostic_maximum_accepted_steps)+" exceeds resources.memoryBytes "+std::to_string(r.memory_budget_bytes));
+      if(operation=="resume") {
+        std::optional<std::size_t> workers;
+        if(o.contains("runtime")){const auto& runtime=object(o.at("runtime"));keys(runtime,{"threadCount"});if(!runtime.contains("threadCount"))fail("invalid_request","runtime requires threadCount");workers=static_cast<std::size_t>(count(runtime.at("threadCount")));}
+        restored=resume_validated_provider_checkpoint(r,canonical(o.at("checkpoint")),token(o.at("endTime")),workers);
+      }
+    }
+    auto c=restored?restored->run:(operation=="resume" && !v3?resume_provider_checkpoint(r,canonical(o.at("checkpoint")),token(o.at("endTime"))):evolve_native_coupled_histories(r));
     std::string checkpoint, storage_failure;bool durable=false;
-    try {checkpoint=create_provider_checkpoint(r,c);}catch(const EquationAdmissionError& error){if(error.code()!="checkpoint_size_exhausted")throw;storage_failure=error.code()+": "+error.what();}
+    if(v3){try{checkpoint=create_validated_provider_checkpoint(r,c);}catch(const EquationAdmissionError& error){storage_failure=error.code()+": "+error.what();}}
+    else {try {checkpoint=create_provider_checkpoint(r,c);}catch(const EquationAdmissionError& error){if(error.code()!="checkpoint_size_exhausted")throw;storage_failure=error.code()+": "+error.what();}}
     if(!checkpoint.empty() && !checkpoint_file.empty()) {try{write_evolution_checkpoint_bytes_atomic(checkpoint_file,std::vector<unsigned char>(checkpoint.begin(),checkpoint.end()));durable=true;}catch(const std::exception& error){storage_failure=error.what();}}
     Array steps, diagnostics, roots, point_roots, solutions;
     for(auto& step:c.steps){steps.push_back(Object{{"status",step.status},{"start",step.attempted_start},{"end",step.attempted_end},{"acceptedTime",step.accepted_time},{"failureCode",step.failure_code},{"atomic",step.publication_atomic}});
@@ -347,10 +722,35 @@ std::string execute_eom_v2_request(const std::string& text,const std::string& ch
     }
     Object halt{{"code",c.halt_code},{"boundaryMeaning","attempted slab is possible boundary/uncertainty coverage; no exact contact is claimed"}};
     if(!c.steps.empty() && c.steps.back().status=="rejected")halt["possibleBoundaryInterval"]=Array{c.steps.back().attempted_start,c.steps.back().attempted_end};
-    return canonical(Object{{"schema","eom_evolution_response/v2"},{"contractId","eom_evolution_contract/v2"},{"runId",c.run_id},{"status",c.status},{"modelDigest",model.digest},{"resolvedModel",parse(model.canonical_json)},
+    Object response{{"schema","eom_evolution_response/v2"},{"contractId","eom_evolution_contract/v2"},{"runId",c.run_id},{"status",c.status},{"modelDigest",model.digest},{"resolvedModel",parse(model.canonical_json)},
       {"acceptedCoverage",Object{{"start",c.start_time},{"end",c.accepted_end_time}}},{"acceptedStepCount",c.accepted_step_count},{"rejectedStepCount",c.rejected_step_count},{"publishedExtensions",extensions(c.histories,c.start_time)},
       {"ledgers",Object{{"steps",steps},{"partnerRoots",roots},{"pointRoots",point_roots},{"surfaceSolutions",solutions}}},{"surfaceDiagnostics",diagnostics},{"evidence",Object{{"method","numerical"},{"constraint",r.surface_geometry?"artificial-surface":"none"},{"numericalAcceptance",c.evidence_status},{"scientificAcceptance",false}}},
-      {"halt",halt},{"checkpoint",Object{{"schema","eom_provider_checkpoint/v8"},{"digest",checkpoint.empty()?"":string(object(parse(checkpoint)).at("digest"))},{"durable",durable},{"acceptedTime",c.accepted_end_time},{"storageFailure",storage_failure},{"data",checkpoint.empty()?j::value(nullptr):parse(checkpoint)}}}});
+      {"halt",halt},{"checkpoint",Object{{"schema","eom_provider_checkpoint/v8"},{"digest",checkpoint.empty()?"":string(object(parse(checkpoint)).at("digest"))},{"durable",durable},{"acceptedTime",c.accepted_end_time},{"storageFailure",storage_failure},{"data",checkpoint.empty()?j::value(nullptr):parse(checkpoint)}}}};
+    if(v3) {
+      // v3: every v2 field keeps its meaning; the execution, the validated
+      // run and the v9 checkpoint are added.
+      const auto execution=validated_execution(r);
+      response["schema"]="eom_evolution_response/v3";response["contractId"]="eom_evolution_contract/v3";
+      response["execution"]=execution;response["executionDigest"]=equation_identity_sha256(canonical(execution));
+      response["evidence"].as_object()["integrationMethod"]=r.integration_method;
+      response["checkpoint"].as_object()["schema"]="eom_provider_checkpoint/v9";
+      Object validated{{"recordStatus",c.validated_continuation?c.validated_continuation->record_status():std::string("none")},
+                       {"workerCount",restored?restored->worker_count:r.thread_count}};
+      if(restored){Array fields;for(const auto& f:restored->compared_fields)fields.push_back(j::value(f));
+        validated["identityBasis"]=restored->identity_basis;validated["recordIdentity"]=restored->record_identity;validated["comparedFields"]=fields;
+        validated["replayedLegs"]=restored->replayed_legs;validated["replayedSteps"]=restored->replayed_steps;validated["replayedRejectedSteps"]=restored->replayed_rejected_steps;
+        validated["replayStepBound"]=restored->replay_step_bound;validated["replayBoundBytes"]=restored->replay_bound_bytes;}
+      Array attempts, ledger;
+      if(c.validated_run){
+        for(const auto& a:c.validated_run->attempts)attempts.push_back(Array{a.step_index,a.attempt_index,a.producer.step,a.producer.code,a.disposition});
+        for(const auto& l:c.validated_run->ledger){Array position,velocity;for(std::size_t axis=0;axis<3;++axis){position.push_back(j::value(finite_double_token(l.position.total[axis])));velocity.push_back(j::value(finite_double_token(l.velocity.total[axis])));}
+          ledger.push_back(Object{{"pathId",l.path_id},{"positionTotal",position},{"velocityTotal",velocity}});}
+      }
+      validated["attemptCount"]=attempts.size();validated["attempts"]=attempts;validated["ledgerTotals"]=ledger;
+      response["validated"]=validated;
+      response["resources"]=v3_resources(r,c.memory_estimate_bytes,c.memory_budget_bytes);
+    }
+    return canonical(response);
   } catch(const EquationAdmissionError& error){return canonical(Object{{"schema","eom_error/v2"},{"status","rejected"},{"code",error.code()},{"error",error.what()}});}
     catch(const std::exception& error){return canonical(Object{{"schema","eom_error/v2"},{"status","rejected"},{"code","invalid_request"},{"error",error.what()}});}
 }

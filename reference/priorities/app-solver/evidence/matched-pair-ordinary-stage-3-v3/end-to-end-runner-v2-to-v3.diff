@@ -1,0 +1,43 @@
+--- v2/run-end-to-end.mjs
++++ v3/run-end-to-end.mjs
+@@ -8,6 +8,7 @@
+ import { createHash } from 'node:crypto';
+ import { createEomV2Service } from './scripts/dev/EomV2Service.mjs';
+ import { createEomV2HttpClient } from './src/apps/shared/EomV2HttpClient.js';
++import { assertEomExecutionBinding, assertEomResponseSchema } from './scripts/eom/EomResponseRecord.mjs';
+ const [bin, out] = process.argv.slice(2);
+ fs.mkdirSync(out, { recursive: true });
+ const checkpointRoot = path.resolve(out, 'checkpoints'), recordRoot = path.resolve(out, 'records');
+@@ -15,7 +16,8 @@
+ const server = http.createServer(async (req, res) => { if (!(await service.serve(req, res))) { res.writeHead(404); res.end(); } });
+ await new Promise(r => server.listen(0, '127.0.0.1', r));
+ const base = `http://127.0.0.1:${server.address().port}`;
+-const fetchImpl = (url, init) => fetch(base + url, init);
++let calls = 0;
++const fetchImpl = (url, init) => { calls += 1; return fetch(base + url, init); };
+ const client = createEomV2HttpClient({ fetchImpl });
+ const rows = []; let ok = true;
+ const check = (name, passed, detail = '') => { rows.push({ check: name, passed: !!passed, detail: String(detail) }); console.log(`${passed ? 'PASS' : 'FAIL'}  ${name}  [${detail}]`); ok &&= !!passed; };
+@@ -94,6 +96,22 @@
+ const domain = grouped('e2e-domain', 8); domain.execution.pairPolicy = 'disabled'; domain.execution.groups = []; domain.paths = [{ pathId: 'receiver', charge: '1', history: seg('0') }, { pathId: 'source', charge: '1', history: seg('10', '2') }];
+ const domainRefused = await caught(() => client.evolve(domain));
+ check('a domain-refused origin is reported as the service error, with nothing evolved', /unsupported_validated_domain/.test(domainRefused.error ?? '') || domainRefused.code === 'unsupported_validated_domain', domainRefused.error);
++// Version 3 targets: an unknown request schema and a runtime override on evolve.
++const v99 = { ...v2Envelope.request, schema: 'eom_evolution_request/v99' };
++calls = 0;
++const v99Browser = await caught(() => client.evolve(v99));
++check('an unknown request schema (v99) is refused by the browser client before any call', v99Browser.code === 'unsupported_request_schema' && calls === 0, `${v99Browser.code}; ${calls} calls`);
++const v99Http = await fetchImpl('/api/eom/v2/evolve', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(v99) });
++const v99Body = await v99Http.json();
++check('the service refuses the same v99 request itself', v99Http.status >= 400 && v99Body.schema === 'eom_error/v2', `${v99Http.status} ${v99Body.code}: ${v99Body.error}`);
++const v99Schema = await caught(() => assertEomResponseSchema(v99, v2.value));
++const v99Binding = await caught(() => assertEomExecutionBinding(v99, v2.value));
++check('both Node helpers refuse a v99 request answered by a genuine v2 response, rather than classifying it as v2', v99Schema.error !== undefined && v99Binding.error !== undefined, `${v99Schema.code}; ${v99Binding.code}`);
++for (const [name, call] of [['evolve', () => client.evolve(grouped('e2e-runtime', 8), { runtime: { threadCount: 4 } })], ['evolveRecord', () => client.evolveRecord(grouped('e2e-runtime', 8), { runtime: { threadCount: 4 } })]]) {
++  calls = 0;
++  const refused = await caught(call);
++  check(`a runtime override on ${name} is refused before any call, not dropped`, refused.code === 'unsupported_runtime_override' && calls === 0, `${refused.code}; ${calls} calls`);
++}
+ await service.dispose();
+ server.close();
+ const passed = rows.filter(x => x.passed).length;

@@ -7,6 +7,17 @@ const ratios = text => [...mask(text).matchAll(/\b[PE]\s*\/\s*[PE]\b/g)].map(m =
 
 const eventPhase = (q = "q_E") => `At the reached event the next stationary distance gap is\n\n$$\nd_2-d_5=2\\sin(\\pi/12-${q}/2).\n$$\n\nSince $${q}<103/200$, the sine argument exceeds the bound.`;
 
+test("shifted history anchors do not become polarity counts in composition prose", () => {
+  const text = "Compare history anchors $H_{a+2P}$ and $gH_{a+P}$ under permutation composition; actual inventory 3P/3E remains invalid.";
+  const classified = maskNonPolarityNotation(text);
+  assert(!classified.includes("2P"));
+  assert(classified.includes("3P/3E"));
+  assert.equal(classified.length, text.length);
+  assert.equal(classified.indexOf("3P/3E"), text.indexOf("3P/3E"));
+  for (const ambiguous of ["Composition $2P$", "Composition $H_{a+2P}$", "History composition $\\text{H_{a+2P}}$", "History composition `$H_{a+2P}$`", "History composition $X_{a+2P}$"])
+    assert(maskNonPolarityNotation(ambiguous).includes("2P"), ambiguous);
+});
+
 test("event-phase trig occurrence and adjacent angular bound are not charge symbols", () => {
   for (const q of ["q_E", "q_{E}"]) {
     const text = eventPhase(q);

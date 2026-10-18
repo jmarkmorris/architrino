@@ -1,0 +1,277 @@
+{
+ "controls": [
+  {
+   "name": "(P3) replay consistency: whole-step dl/dt on frozen steps 360-370 (through the intersected lookup) is proved negative, as certified in the turning-point campaign",
+   "pass": true
+  },
+  {
+   "name": "(P5) negative: receiver sub-intervals with a wrong origin (two steps late) refuse",
+   "outcome": "sub-interval outside the receiver step",
+   "pass": true
+  },
+  {
+   "name": "(P6) KNOWN positive control of the sub-interval route: receiver cubic with acceleration 1 and jerk 2000 and an uncertain origin (1e-3), stationary partners (exact roots t - r_c(q(t), 0)); on all 4 sub-intervals the exact q and w ranges and the exact root range of each class lie inside the route's boxes; sub-intervals cover the uncertain step without a gap; the hull of the q boxes contains the exact whole-step range and lies inside the whole-step box",
+   "detail": [
+    [
+     0,
+     true,
+     true,
+     true
+    ],
+    [
+     1,
+     true,
+     true,
+     true
+    ],
+    [
+     2,
+     true,
+     true,
+     true
+    ],
+    [
+     3,
+     true,
+     true,
+     true
+    ]
+   ],
+   "no_gap": true,
+   "whole_step_ok": true,
+   "pass": true
+  },
+  {
+   "name": "(P7) negative: the rate remainder dropped (stored rate bound set to 0) misses the known path on some sub-interval (or refuses)",
+   "pass": true
+  },
+  {
+   "name": "(P8) negative: the origin uncertainty dropped (origin told as the point T0 while the true origin is T0 + 1e-3) misses the known path or roots (or refuses)",
+   "pass": true
+  },
+  {
+   "name": "(P9) negative: an initial source bracket shifted off the true root (by 0.1, beyond the 0.03 search widening) is refused by the residual-sign containment check",
+   "outcome": "start interval not proved to contain the root",
+   "pass": true
+  }
+ ],
+ "n_sub": 2,
+ "range": [
+  371,
+  375
+ ],
+ "controls_all_pass": true,
+ "target": [
+  {
+   "step": 371,
+   "frozen": {
+    "q_width": "0.011112",
+    "w_width": "0.014592",
+    "dl_whole": [
+     "-0.01145684989193031817822764",
+     "0.00006650745374043181440423747"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1160330554437441025791413",
+     "-0.1035648200000642968589777"
+    ],
+    "a_r_whole": [
+     "-0.006933813407466508835537623",
+     "-0.004753795562095172337162889"
+    ],
+    "a_whole": [
+     "-0.06483076646799914709984031",
+     "-0.05995235230818626569610728"
+    ],
+    "dl_whole_width": "0.011523",
+    "dl_sub_hull": [
+     "-0.01075590788320130101534565",
+     "-0.0005820347083403790831484996"
+    ],
+    "dl_sub_signs": [
+     "neg",
+     "neg"
+    ],
+    "dl_sub_all_neg": true,
+    "dl_sub_hull_width": "0.010174",
+    "dl_end": [
+     "-0.00791962172091966737007188",
+     "-0.00335261267793601865056579"
+    ],
+    "dl_end_sign": "neg",
+    "dl_end_width": "0.004567"
+   },
+   "recon": "absent"
+  },
+  {
+   "step": 372,
+   "frozen": {
+    "q_width": "0.011258",
+    "w_width": "0.014762",
+    "dl_whole": [
+     "-0.01147900587726163144273329",
+     "0.0002028705768732622151605913"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1161540452936028567380195",
+     "-0.1035600116914042957531497"
+    ],
+    "a_r_whole": [
+     "-0.006465391021304014477414174",
+     "-0.004258406405446875705362908"
+    ],
+    "a_whole": [
+     "-0.06528660545244787916550377",
+     "-0.06035678871386603157903316"
+    ],
+    "dl_whole_width": "0.011682",
+    "dl_sub_hull": [
+     "-0.0107754978906093584357852",
+     "-0.000446454255970734920209404"
+    ],
+    "dl_sub_signs": [
+     "neg",
+     "neg"
+    ],
+    "dl_sub_all_neg": true,
+    "dl_sub_hull_width": "0.010329",
+    "dl_end": [
+     "-0.007904155196020928669125184",
+     "-0.003255929662916763180621257"
+    ],
+    "dl_end_sign": "neg",
+    "dl_end_width": "0.0046482"
+   },
+   "recon": "absent"
+  },
+  {
+   "step": 373,
+   "frozen": {
+    "q_width": "0.011407",
+    "w_width": "0.014933",
+    "dl_whole": [
+     "-0.01149525004152414801119529",
+     "0.00034452908402172655647321"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1162751853685692163717744",
+     "-0.1035538031359038970723623"
+    ],
+    "a_r_whole": [
+     "-0.005995937898944050336192933",
+     "-0.003761063476392928398960313"
+    ],
+    "a_whole": [
+     "-0.06574965206568118430840772",
+     "-0.06076693428514925147958601"
+    ],
+    "dl_whole_width": "0.01184",
+    "dl_sub_hull": [
+     "-0.01079649018661343677737418",
+     "-0.0003065328603233207139383072"
+    ],
+    "dl_sub_signs": [
+     "neg",
+     "neg"
+    ],
+    "dl_sub_all_neg": true,
+    "dl_sub_hull_width": "0.01049",
+    "dl_end": [
+     "-0.007887627797812390960312968",
+     "-0.003147911514228659599347888"
+    ],
+    "dl_end_sign": "neg",
+    "dl_end_width": "0.0047397"
+   },
+   "recon": "absent"
+  },
+  {
+   "step": 374,
+   "frozen": {
+    "q_width": "0.011557",
+    "w_width": "0.015107",
+    "dl_whole": [
+     "-0.01151641657340594792562435",
+     "0.00048482245576582470171609"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1163962457713080175888481",
+     "-0.1035466619493605611057522"
+    ],
+    "a_r_whole": [
+     "-0.005524955567216101361711685",
+     "-0.003261971520820376586060246"
+    ],
+    "a_whole": [
+     "-0.06621997634397501159588889",
+     "-0.06118311634361288262290496"
+    ],
+    "dl_whole_width": "0.012001",
+    "dl_sub_hull": [
+     "-0.01080937181805337154678527",
+     "-0.0001666225937672768202795648"
+    ],
+    "dl_sub_signs": [
+     "neg",
+     "neg"
+    ],
+    "dl_sub_all_neg": true,
+    "dl_sub_hull_width": "0.010643",
+    "dl_end": [
+     "-0.007863990806830576268142217",
+     "-0.003043661469231991126126126"
+    ],
+    "dl_end_sign": "neg",
+    "dl_end_width": "0.0048203"
+   },
+   "recon": "absent"
+  },
+  {
+   "step": 375,
+   "frozen": {
+    "q_width": "0.011709",
+    "w_width": "0.015282",
+    "dl_whole": [
+     "-0.01153872567486929211985222",
+     "0.0006334508187288688482144071"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1165175153452849476132081",
+     "-0.1035384180152897369287765"
+    ],
+    "a_r_whole": [
+     "-0.005052584440302131502012586",
+     "-0.002760816444126415727259078"
+    ],
+    "a_whole": [
+     "-0.06669782130883214766757424",
+     "-0.06160535061930202540288216"
+    ],
+    "dl_whole_width": "0.012172",
+    "dl_sub_hull": [
+     "-0.01082760753704771125005273",
+     "-0.00001880259655992953150174506"
+    ],
+    "dl_sub_signs": [
+     "neg",
+     "neg"
+    ],
+    "dl_sub_all_neg": true,
+    "dl_sub_hull_width": "0.010809",
+    "dl_end": [
+     "-0.007846501796757338599543792",
+     "-0.002932360766510473365417693"
+    ],
+    "dl_end_sign": "neg",
+    "dl_end_width": "0.0049141"
+   },
+   "recon": "absent"
+  }
+ ],
+ "wall_s": 8.034343957901001
+}

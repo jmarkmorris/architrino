@@ -64,6 +64,7 @@ add_library(eom_native STATIC
   src/ValidatedFarStep.cpp
   src/ValidatedEvolution.cpp
   src/ValidatedRunRecord.cpp
+  src/ValidatedOrdinaryBridge.cpp
 )
 target_include_directories(eom_native
   PUBLIC include
@@ -216,3 +217,21 @@ set_tests_properties(
   eom_borg_shadow_protocol_version
   PROPERTIES PASS_REGULAR_EXPRESSION "^EOM_BORG_NATIVE_V11"
 )
+
+# Focused fixture for gate O1 of the ordinary integration; no recurring
+# suite enrollment.
+add_executable(eom_validated_ordinary_fixture_cli
+  native/eom_validated_ordinary_fixture_cli.cpp)
+target_link_libraries(eom_validated_ordinary_fixture_cli PRIVATE eom_native)
+target_compile_options(eom_validated_ordinary_fixture_cli
+  PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+
+# Focused fixture for gate O2 of the ordinary integration; no recurring
+# suite enrollment.
+add_executable(eom_validated_persistence_fixture_cli
+  native/eom_validated_persistence_fixture_cli.cpp)
+target_link_libraries(eom_validated_persistence_fixture_cli PRIVATE eom_native)
+target_include_directories(eom_validated_persistence_fixture_cli
+  PRIVATE ${EOM_BOOST_INCLUDE_DIR})
+target_compile_options(eom_validated_persistence_fixture_cli
+  PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)

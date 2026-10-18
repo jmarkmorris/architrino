@@ -1,0 +1,126 @@
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/include/architrino/eom/ProviderTransport.hpp .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/include/architrino/eom/ProviderTransport.hpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/include/architrino/eom/ProviderTransport.hpp	2026-10-14 07:59:47
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/include/architrino/eom/ProviderTransport.hpp	2026-10-14 08:13:34
+@@ -23,7 +23,11 @@
+ // count included, and the binding over it are written and compared byte for
+ // byte. The certificate must come from that run, and its continuation must
+ // carry a complete generating record, which exists only for a run that
+-// started at an exact origin.
++// started at an exact origin. Before any bytes are returned, the original
++// request's controls, origin time and exact origin members must be the
++// generating record's, and every persisted claim is the sealed accepted
++// boundary's: its time, counts and controller step, and histories whose
++// digests are the sealed continuation's members, in order.
+ [[nodiscard]] std::string create_validated_provider_checkpoint(
+     const NativeCoupledEvolutionRequest& original,
+     const NativeCoupledEvolutionCertificate& certificate);
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/native/eom_validated_persistence_fixture_cli.cpp .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/native/eom_validated_persistence_fixture_cli.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/native/eom_validated_persistence_fixture_cli.cpp	2026-10-14 08:05:49
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/native/eom_validated_persistence_fixture_cli.cpp	2026-10-14 08:13:56
+@@ -972,8 +972,10 @@
+   const std::string at_two = checkpoint("P-two-v9", original, cut.run);
+   const auto from_two = resume("P-from-two", original, at_two, kEnd);
+   // Changed runtime workers: the override is not part of the preparation.
+-  resume("P-from-two-workers", original, at_two, kEnd,
+-         g_workers == 1U ? 4U : 1U);
++  const auto from_two_workers = resume("P-from-two-workers", original, at_two,
++                                       kEnd, g_workers == 1U ? 4U : 1U);
++  // Creation after a worker-changed resume keeps working.
++  checkpoint("P-after-worker-resume-v9", original, from_two_workers.result.run);
+   // A stale but genuine checkpoint: resuming from two again is valid.
+   resume("P-from-two-again", original, at_two, kEnd);
+   // The next v9 written after a resumed leg keeps the original preparation.
+@@ -1180,6 +1182,11 @@
+                               "rejectedCount", "controllerStep", "histories"}) {
+         mine[key] = their.at(key);
+       }
++      // O2-R3: the foreign certificate cannot be checkpointed under the
++      // caller's original request.
++      refused("N-R3-" + name + "-certificate", [&] {
++        (void)eom::create_validated_provider_checkpoint(original, run.run);
++      });
+       const std::string swapped = reseal(mine);
+       const std::string identity = eom::validated_run_record_identity(record_of(theirs));
+       resume_refused("N-R2-" + name + "-under-expected-record", original, swapped,
+@@ -1206,6 +1213,21 @@
+         {"plus", "1", static_path("plus", "1", "10", "-30").history},
+         {"minus", "-1", static_path("minus", "-1", "11", "-30").history}};
+     foreign("changed-ancestry", ancestry);
++  }
++
++  // O2-R3: a genuine certificate whose public histories were replaced by
++  // another genuine boundary's cannot be checkpointed.
++  {
++    OrdinaryRun changed = cut.run;
++    changed.histories = whole.run.histories;
++    refused("N-R3-changed-public-histories", [&] {
++      (void)eom::create_validated_provider_checkpoint(original, changed);
++    });
++    OrdinaryRun recounted = cut.run;
++    recounted.accepted_step_count += 1U;
++    refused("N-R3-changed-public-count", [&] {
++      (void)eom::create_validated_provider_checkpoint(original, recounted);
++    });
+   }
+ 
+   // Many short legs: ten invocations, each ending at a clipped final step
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/src/ProviderTransport.cpp .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/src/ProviderTransport.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2v3-tree/src/eom/src/ProviderTransport.cpp	2026-10-14 07:59:47
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/src/ProviderTransport.cpp	2026-10-14 08:13:25
+@@ -393,11 +393,37 @@
+   if (!k) fail("checkpoint_origin_required", "the run returned no accepted boundary to persist");
+   if (k->record_status() != "recorded" || !k->record()) fail("checkpoint_origin_required", "the run has no complete generating record: " + k->record_status());
+   const auto& sealed = k->driver()->state();
++  const ValidatedRunRecord& generating = *k->record();
++  // The original request must be the generating record's: its controls,
++  // origin time and exact origin members.
++  {
++    const std::string difference = validated_run_controls_difference(validated_controls(r), generating.controls());
++    if (!difference.empty()) fail("checkpoint_origin_mismatch", "the generating record's control differs from the original request: " + difference);
++    if (compare_exact_decimal_tokens(generating.origin_time(), r.start_time) != 0)
++      fail("checkpoint_origin_mismatch", "the generating record's origin time is not the original request's start");
++    const auto members = generating.origin_members();
++    bool same = members.size() == r.paths.size();
++    for (std::size_t i = 0; same && i < members.size(); ++i)
++      same = members[i].path_id == r.paths[i].path_id && members[i].charge == r.paths[i].charge &&
++             members[i].chain == validated_history_digest(r.paths[i].history);
++    if (!same) fail("checkpoint_origin_mismatch", "the generating record's origin is not the original request's");
++  }
++  // Every persisted claim is the sealed accepted boundary's: the scalar
++  // claims are read from it, and the certificate's histories must be the
++  // ones its members name, in order.
+   if (sealed.accepted_time != c.accepted_end_time || k->accepted_step_count() != c.accepted_step_count ||
+       k->rejected_step_count() != c.rejected_step_count || sealed.controller_step_size != c.controller_step_size ||
+-      k->record()->final_state().accepted_time != c.accepted_end_time ||
+-      k->record()->final_state().accepted_step_count != c.accepted_step_count)
++      generating.final_state().accepted_time != sealed.accepted_time ||
++      generating.final_state().accepted_step_count != sealed.accepted_step_count ||
++      generating.final_state().controller_step_size != sealed.controller_step_size)
+     fail("checkpoint_controller_mismatch", "the certificate, its continuation and its record disagree");
++  {
++    bool same = sealed.members.size() == c.histories.size();
++    for (std::size_t i = 0; same && i < c.histories.size(); ++i)
++      same = sealed.members[i].path_id == c.histories[i].path_id &&
++             sealed.members[i].history_digest == validated_history_digest(c.histories[i].history);
++    if (!same) fail("checkpoint_claim_mismatch", "the certificate's histories are not the sealed accepted boundary's");
++  }
+   const auto execution = validated_execution(r);
+   const auto execution_digest = equation_identity_sha256(canonical(execution));
+   const Object preparation{{"request", encode_request(r)}, {"execution", execution}};
+@@ -410,11 +436,11 @@
+              {"binding", validated_binding(r, execution_digest)},
+              {"resolvedModel", parse(inspect_equation_model(r).canonical_json)},
+              {"preparation", preparation},
+-             {"acceptedTime", c.accepted_end_time},
+-             {"runId", c.run_id},
+-             {"controllerStep", c.controller_step_size},
+-             {"acceptedCount", c.accepted_step_count},
+-             {"rejectedCount", c.rejected_step_count},
++             {"acceptedTime", sealed.accepted_time},
++             {"runId", r.run_id},
++             {"controllerStep", sealed.controller_step_size},
++             {"acceptedCount", k->accepted_step_count()},
++             {"rejectedCount", k->rejected_step_count()},
+              {"histories", published(c.histories)},
+              {"providerState", Object{{"schema", kValidatedProviderState},
+                                       {"record", record},

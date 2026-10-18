@@ -1,0 +1,77 @@
+{
+ "controls": [
+  {
+   "name": "(S1) inclusion: on accepted steps 270, 272, 274 of the closed campaign each of 4 sub-interval enclosures of l'' lies inside the whole-step enclosure",
+   "detail": {
+    "270": {
+     "sub": [
+      [
+       "0.02912836928784104350502791",
+       "0.04030735794601502513883673"
+      ],
+      [
+       "0.02917515070813239204751947",
+       "0.04037032461214470034748274"
+      ],
+      [
+       "0.02921428383405075337270271",
+       "0.04046187451328558436374053"
+      ],
+      [
+       "0.02925072096705859767510453",
+       "0.04053236251422116379970399"
+      ]
+     ],
+     "whole": [
+      "0.02785305553687853960120029",
+      "0.04182009648816997472169585"
+     ],
+     "inside": true
+    },
+    "272": {
+     "sub": [
+      [
+       "0.02782559785608419876651159",
+       "0.03927063994524855221924181"
+      ],
+      [
+       "0.02789346275498594568299227",
+       "0.03932387370678349742238976"
+      ],
+      [
+       "0.02792064356465267801741459",
+       "0.0393868476253673064248242"
+      ],
+      [
+       "0.02794839965699500845339272",
+       "0.03945311871661502849493376"
+      ]
+     ],
+     "whole": [
+      "0.02655115545676011921415619",
+      "0.04076562160014565955024419"
+     ],
+     "inside": true
+    },
+    "274": "receiver lookup refused: beyond coverage"
+   },
+   "pass": false
+  },
+  {
+   "name": "(S2) known: the receiver lookup on the last sub-interval meets the step's end strings (q, w), on the first its start strings",
+   "pass": true
+  },
+  {
+   "name": "(S3) negative: sub-intervals shifted by two steps (wrong origin) no longer meet the step-272 end strings (or are refused)",
+   "outcome": "empty source contraction (unlike)",
+   "pass": true
+  },
+  {
+   "name": "(S4) negative: the unlike source contraction with the like chord on step 272 empties (inconsistent root) or is refused",
+   "outcome": "empty source contraction (unlike)",
+   "pass": true
+  }
+ ],
+ "n_sub": 4,
+ "controls_all_pass": false
+}

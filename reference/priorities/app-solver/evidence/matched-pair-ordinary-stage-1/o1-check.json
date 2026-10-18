@@ -1,0 +1,354 @@
+{
+ "schema": "ordinary_integration_o1_check/v1",
+ "all_passed": true,
+ "rows": [
+  {
+   "kind": "assertion",
+   "check": "exact halving",
+   "passed": true,
+   "detail": "0.00390625 1 0.00014935 5"
+  },
+  {
+   "kind": "assertion",
+   "check": "exact difference",
+   "passed": true,
+   "detail": "0.0002987 0.004375"
+  },
+  {
+   "kind": "assertion",
+   "check": "K1 static run completes at the exact end",
+   "passed": true,
+   "detail": "0.015625"
+  },
+  {
+   "kind": "assertion",
+   "check": "K1 step 1: both paths' tubes contain the closed-form brackets",
+   "passed": true,
+   "detail": "receiver velocity [-7.812500000e-08, -7.812499999e-08]"
+  },
+  {
+   "kind": "assertion",
+   "check": "K1 step 2: both paths' tubes contain the closed-form brackets",
+   "passed": true,
+   "detail": "receiver velocity [-1.562500000e-07, -1.562500000e-07]"
+  },
+  {
+   "kind": "assertion",
+   "check": "K2 t = 1/128: reviewer's position and velocity brackets for all three paths inside the tubes",
+   "passed": true,
+   "detail": "step ends at 0.0078125"
+  },
+  {
+   "kind": "assertion",
+   "check": "K2 t = 1/64: reviewer's position and velocity brackets for all three paths inside the tubes",
+   "passed": true,
+   "detail": "step ends at 0.015625"
+  },
+  {
+   "kind": "assertion",
+   "check": "K2 t = 1/32: reviewer's position and velocity brackets for all three paths inside the tubes",
+   "passed": true,
+   "detail": "step ends at 0.03125"
+  },
+  {
+   "kind": "assertion",
+   "check": "a refused initial population or continuation returns no accepted time, evidence, ledger or continuation",
+   "passed": true,
+   "detail": "4 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "every admitted run returns a continuation equal to its accepted state: time, ordinal, controller step, content chains, ledger",
+   "passed": true,
+   "detail": "22 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "accepted steps sum exactly to the accepted end, and completed runs end exactly at the requested end",
+   "passed": true,
+   "detail": "22 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "every attempt has the validated step shape: no substeps, no snapshot, atomic; refusals publish their inputs",
+   "passed": true,
+   "detail": "559 emitted attempts"
+  },
+  {
+   "kind": "assertion",
+   "check": "ledger: totals equal the published radius tokens, never below the inherited radius, and each step inherits the previous total",
+   "passed": true,
+   "detail": "per path and per axis"
+  },
+  {
+   "kind": "assertion",
+   "check": "debit (I1-R4): inherited + increment is never below the published total, exactly",
+   "passed": true,
+   "detail": "5928 path-axis records; smallest margin 4.941e-324"
+  },
+  {
+   "kind": "assertion",
+   "check": "debit (I1-R4): every charged increment is within the run's increment budget",
+   "passed": true,
+   "detail": "5928 path-axis records"
+  },
+  {
+   "kind": "assertion",
+   "check": "debit (I1-R4): the driver's ledger is the producer's record, and the two reported parts together cover the charge",
+   "passed": true,
+   "detail": "declared, growth, section allowance and step growth"
+  },
+  {
+   "kind": "assertion",
+   "check": "every published segment covers the theorem's sets over the whole step, exactly",
+   "passed": true,
+   "detail": "exact Bernstein coefficients"
+  },
+  {
+   "kind": "assertion",
+   "check": "each accepted step starts at the previous end and is generated from its published content",
+   "passed": true,
+   "detail": "time and digest chains"
+  },
+  {
+   "kind": "assertion",
+   "check": "returned state is the accepted boundary: histories, evidence and ledger agree, or all equal the inputs when nothing was accepted",
+   "passed": true,
+   "detail": "22 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "one callback per accepted step, in order, with the accepted time",
+   "passed": true,
+   "detail": "22 runs"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: the ordinary selection runs the ordinary controller, with no validated run or continuation",
+   "passed": true,
+   "detail": "eom_native_coupled_evolution_certificate/v1"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: the ordinary-view predicates hold on the ordinary controller's own row",
+   "passed": true,
+   "detail": "callbacks [1, 2], attempt indices [0, 1]; []"
+  },
+  {
+   "kind": "assertion",
+   "check": "known: zero-based ordinals in place of counts fail the callback predicate",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "kind": "assertion",
+   "check": "static: the closed-form receiver brackets lie inside the tubes reached through the ordinary entry",
+   "passed": true,
+   "detail": "two steps"
+  },
+  {
+   "kind": "assertion",
+   "check": "frozen brackets: O-K2-three-path, all three paths' position and velocity",
+   "passed": true,
+   "detail": "t = 1/128, 1/64, 1/32"
+  },
+  {
+   "kind": "assertion",
+   "check": "frozen brackets: O-three-path-ungrouped, all three paths' position and velocity",
+   "passed": true,
+   "detail": "t = 1/128, 1/64, 1/32"
+  },
+  {
+   "kind": "assertion",
+   "check": "frozen brackets: O-three-path-grouped, all three paths' position and velocity",
+   "passed": true,
+   "detail": "t = 1/128, 1/64, 1/32"
+  },
+  {
+   "kind": "assertion",
+   "check": "frozen brackets: O-three-path-grouped-fine, all three paths' position and velocity",
+   "passed": true,
+   "detail": "t = 1/128, 1/64, 1/32"
+  },
+  {
+   "kind": "assertion",
+   "check": "grouping reaches the driver: grouped intervals on every grouped step and none without the declaration",
+   "passed": true,
+   "detail": "[1, 1, 1, 1]"
+  },
+  {
+   "kind": "assertion",
+   "check": "parity: O-three-path-ungrouped equals the direct driver run, every row",
+   "passed": true,
+   "detail": "5 rows"
+  },
+  {
+   "kind": "assertion",
+   "check": "parity: O-three-path-grouped equals the direct driver run, every row",
+   "passed": true,
+   "detail": "5 rows"
+  },
+  {
+   "kind": "assertion",
+   "check": "ordinary view of every run: cumulative counts, attempt numbering, callback counts and times, status and halt code, continuation counters, published state",
+   "passed": true,
+   "detail": "26 runs; {}"
+  },
+  {
+   "kind": "assertion",
+   "check": "resumption: cancelled at the second callback and resumed with another worker count equals the uninterrupted run",
+   "passed": true,
+   "detail": "content, continuation, cumulative count 4, callbacks 3 and 4"
+  },
+  {
+   "kind": "assertion",
+   "check": "resumption with rejections: cumulative accepted and rejected counts equal the uninterrupted run's",
+   "passed": true,
+   "detail": "214 accepted, 42 rejected; 7 before the cut"
+  },
+  {
+   "kind": "assertion",
+   "check": "diagnostic limit is per invocation: 1, 1, then 2 to the end",
+   "passed": true,
+   "detail": "cumulative 1, 2, 4; completed equals the uninterrupted run"
+  },
+  {
+   "kind": "assertion",
+   "check": "memory: K-memory-budget-one-byte halts before any step with no validated run or continuation, its counters unchanged",
+   "passed": true,
+   "detail": "estimate 40818697, budget 1"
+  },
+  {
+   "kind": "assertion",
+   "check": "memory: K-memory-budget-one-below-estimate halts before any step with no validated run or continuation, its counters unchanged",
+   "passed": true,
+   "detail": "estimate 40818697, budget 40818696"
+  },
+  {
+   "kind": "assertion",
+   "check": "memory: K-resumed-memory-budget-one-byte halts before any step with no validated run or continuation, its counters unchanged",
+   "passed": true,
+   "detail": "estimate 68401189, budget 1"
+  },
+  {
+   "kind": "assertion",
+   "check": "memory: a budget equal to the estimate is admitted and equals the unbudgeted run",
+   "passed": true,
+   "detail": "40818697 bytes"
+  },
+  {
+   "kind": "assertion",
+   "check": "the default ordinary memory budget leaves the run unchanged, and the estimate is reported with the run",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "kind": "assertion",
+   "check": "above wake speed: the first step is refused, nothing is published",
+   "passed": true,
+   "detail": "VFS-H1-01"
+  },
+  {
+   "kind": "assertion",
+   "check": "above wake speed, early return N-above-wake-speed-cancelled: nothing published",
+   "passed": true,
+   "detail": "halted cancelled_at_accepted_boundary; continuation True"
+  },
+  {
+   "kind": "assertion",
+   "check": "above wake speed, early return N-above-wake-speed-limit: nothing published",
+   "passed": true,
+   "detail": "halted validated_step_refused; continuation True"
+  },
+  {
+   "kind": "assertion",
+   "check": "above wake speed, early return N-above-wake-speed-tiny-memory: nothing published",
+   "passed": true,
+   "detail": "halted memory_budget_exhausted; continuation False"
+  },
+  {
+   "kind": "assertion",
+   "check": "driver admission through the ordinary entry: N-evidence-for-another-population is refused before any early return, with no continuation",
+   "passed": true,
+   "detail": "initial_population_refused: evidence is for a different population"
+  },
+  {
+   "kind": "assertion",
+   "check": "driver admission through the ordinary entry: N-evidence-for-another-population-tiny-memory is refused before any early return, with no continuation",
+   "passed": true,
+   "detail": "initial_population_refused: evidence is for a different population"
+  },
+  {
+   "kind": "assertion",
+   "check": "driver admission through the ordinary entry: N-evidence-for-another-population-cancelled is refused before any early return, with no continuation",
+   "passed": true,
+   "detail": "initial_population_refused: evidence is for a different population"
+  },
+  {
+   "kind": "assertion",
+   "check": "driver admission through the ordinary entry: N-continuation-declaration-removed is refused before any early return, with no continuation",
+   "passed": true,
+   "detail": "continuation_refused: the pair policy or the declared groups differ"
+  },
+  {
+   "kind": "assertion",
+   "check": "maximum step equal to the initial step is admitted and changes nothing",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "kind": "assertion",
+   "check": "an explicit canonical default equation selection is admitted and changes nothing",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "kind": "assertion",
+   "check": "every ordinary-only control off its default is refused, naming the control",
+   "passed": true,
+   "detail": "35 controls"
+  },
+  {
+   "kind": "assertion",
+   "check": "empty, zero, negative, overflowing, nonfinite and malformed budget tokens, and a one-field or zero total budget, are refused",
+   "passed": true,
+   "detail": "16 requests"
+  },
+  {
+   "kind": "assertion",
+   "check": "unknown or empty selections, and validated controls under the ordinary selection, are refused",
+   "passed": true,
+   "detail": "four requests"
+  },
+  {
+   "kind": "assertion",
+   "check": "restart counters that differ from the continuation's are refused",
+   "passed": true,
+   "detail": "3 requests"
+  },
+  {
+   "kind": "assertion",
+   "check": "the ordinary admission still applies under the selection",
+   "passed": true,
+   "detail": "5 requests"
+  },
+  {
+   "kind": "assertion",
+   "check": "atomic step, snapshot, reusable start snapshot, v7 and v8 checkpoint entries refuse the selection before computing",
+   "passed": true,
+   "detail": "7 entries"
+  },
+  {
+   "kind": "assertion",
+   "check": "no request was accepted where a refusal was expected",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "kind": "assertion",
+   "check": "one and four workers produce byte-identical output",
+   "passed": true,
+   "detail": "9367125 bytes"
+  }
+ ]
+}

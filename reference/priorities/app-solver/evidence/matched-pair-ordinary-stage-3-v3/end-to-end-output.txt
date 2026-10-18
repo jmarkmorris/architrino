@@ -1,0 +1,22 @@
+Known cases, before any target
+PASS  known: a v2 run through the actual service and clients is unchanged in kind  [completed]
+PASS  known: capabilities answer and advertise no execution method  []
+
+Targets
+PASS  v3 inspect through the service: control-only, preflight not run  []
+PASS  v3 evolve-record: completed, durable v9 checkpoint with an identity, record view with sampled attempts  [65ebb792-bffa-44f3-bab3-72a6dd5f9807]
+PASS  complete raw record retained and served: bytes and SHA-256 match the artifact, complete marker written, full attempt log in raw  [228125 bytes]
+PASS  the durable checkpoint read back through the service is the reported v9  []
+PASS  cancellation through the service: progress observed, then an accepted boundary with a durable v9 and accepted coverage  [1 progress events; halted cancelled_at_accepted_boundary at 0.9375; ]
+PASS  resume-record with runtime.threadCount 2 through the service equals the uninterrupted run, with replayed rejections and the worker count reported  [214/42 against 214/42; ]
+PASS  the browser client refuses a v3 request without a declared limit before anything is sent  [EOM execution binding: execution.maximumAcceptedSteps is required.]
+PASS  the service returns the strict decoder refusal for the same request  [invalid_request: v3 execution requires maximumAcceptedSteps]
+PASS  a runtime override on a v2 resume is refused, not dropped  [A runtime override is supported only on a v3 resume.]
+PASS  a domain-refused origin is reported as the service error, with nothing evolved  [unsupported_validated_domain: the validated origin preflight is not certified: at step 0.0078125 the producer refuses VFS-H1-01 (retained_past_speed): retained past is not below field speed]
+PASS  an unknown request schema (v99) is refused by the browser client before any call  [unsupported_request_schema; 0 calls]
+PASS  the service refuses the same v99 request itself  [400 execution_binding_mismatch: EOM execution binding: Unsupported EOM request schema "eom_evolution_request/v99"; only eom_evolution_request/v2 and eom_evolution_request/v3 are admitted..]
+PASS  both Node helpers refuse a v99 request answered by a genuine v2 response, rather than classifying it as v2  [unsupported_response_schema; execution_binding_mismatch]
+PASS  a runtime override on evolve is refused before any call, not dropped  [unsupported_runtime_override; 0 calls]
+PASS  a runtime override on evolveRecord is refused before any call, not dropped  [unsupported_runtime_override; 0 calls]
+
+17 of 17 checks passed.

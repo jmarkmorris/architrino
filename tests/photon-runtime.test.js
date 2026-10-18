@@ -923,6 +923,55 @@ test("Photon self-hit roots fail closed across singular, Jacobian, and transvers
   ));
 });
 
+test("Photon self-hit admission requires explicit numeric certification and derivative evidence", async () => {
+  const state = createDefaultPhotonState();
+  async function observe(fields) {
+    return computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(state, {
+      skipSpanSelfHitDiagnostics: true,
+      async solveMovingCircularSameTransmitterRoots(request) {
+        return {
+          roots: [{ rootId: 0, emissionTime: request.hitTime - 0.2,
+            hitTime: request.hitTime, delay: 0.2, distance: 0.2, residual: 0, ...fields }],
+          status: { code: "ok", severity: "ok" },
+        };
+      },
+    });
+  }
+  async function expectDisposition(fields, reason, admitted = false, factor = fields.transmitterFactor) {
+    const result = await observe(fields);
+    assert.equal(result.helicalCandidateRootCount, 12);
+    assert.equal(result.helicalAdmittedRootCount, admitted ? 12 : 0);
+    assert.equal(result.helicalRejectedRootCount, admitted ? 0 : 12);
+    for (const record of result.helicalRecords) {
+      assert.equal(record.rootCount, record.admittedRootCount + record.rejectedRootCount);
+      assert.equal(record.roots[0].admission.reason, reason);
+      assert.equal(record.roots[0].admission.transmitterFactor, factor);
+      if (factor === null) {
+        assert.equal(record.roots[0].admission.jacobianAbs, null);
+        assert.equal(record.roots[0].admission.transversalityMargin, null);
+      }
+    }
+  }
+  // Contract controls precede malformed adapter inputs.
+  await expectDisposition({ transmitterFactor: 1, causalFactorStatusCode: 0 }, "admitted_regular_root", true);
+  await expectDisposition({ transmitterFactor: 1, causalFactorStatusCode: 25 }, "transversality_not_certified");
+  for (const status of [undefined, null, NaN, Infinity, -Infinity, "", "0", false]) {
+    await expectDisposition({ transmitterFactor: 1, causalFactorStatusCode: status }, "transversality_not_certified");
+  }
+  for (const factor of [null, NaN, Infinity, "", "1", false]) {
+    await expectDisposition({ transmitterFactor: factor, jacobian: 1, causalFactorStatusCode: 0 }, "transversality_not_certified", false, null);
+  }
+  await expectDisposition({ causalFactorStatusCode: 0 }, "transversality_not_certified", false, null);
+  await expectDisposition({ jacobian: null, causalFactorStatusCode: 0 }, "transversality_not_certified", false, null);
+  await expectDisposition({ jacobian: 1, causalFactorStatusCode: 0 }, "admitted_regular_root", true, 1);
+  // Measured singular/floor evidence keeps precedence over uncertified status.
+  await expectDisposition({ transmitterFactor: 0, jacobian: 1 }, "singular_root");
+  await expectDisposition({ transmitterFactor: 1e-9, causalFactorStatusCode: null }, "singular_root");
+  await expectDisposition({ transmitterFactor: 5e-5 }, "jacobian_floor_failure");
+  await expectDisposition({ transmitterFactor: 1e-4, causalFactorStatusCode: NaN }, "jacobian_floor_failure");
+  await expectDisposition({ transmitterFactor: -1, causalFactorStatusCode: 0 }, "admitted_regular_root", true);
+});
+
 test("Photon helical self-hit phase-lock sweep summarizes sampled cases", async () => {
   const cases = createPhotonSelfHitPhaseLockSweepCases({
     presetIds: ["balanced_contra_rotating_pair"],

@@ -14,7 +14,7 @@ The [October 12 core review](../aaa-operations/evidence/ops-031-core-symmetry-lo
 
 ## Active priority queue
 
-The later [October 13 supporting review](../aaa-operations/evidence/ops-031-bremsstrahlung-synchrotron-review-2026-10-13.md) completes Bremsstrahlung and Synchrotron at unchanged whole-source scope and proposes one low terminology correction in the [separate maintenance referral](work-queue.md#ops-031--october-13-supporting-chapter-referral). The historical CRW-005 audit rows and counts below remain closed; operations owns the subsequent coverage cursor.
+The later [October 13 supporting review](../aaa-operations/evidence/ops-031-bremsstrahlung-synchrotron-review-2026-10-13.md) completes Bremsstrahlung and Synchrotron at whole-source scope. Its one low terminology correction was approved and implemented October 14, with separate verification complete in the [combined repair record](../aaa-operations/evidence/ops-031-032-approved-repairs-2026-10-14.md) in the [maintenance disposition](work-queue.md#ops-031--october-13-supporting-chapter-referral). The historical CRW-005 audit rows and counts below remain closed; operations owns the subsequent coverage cursor.
 
 No active or unopened rows.
 

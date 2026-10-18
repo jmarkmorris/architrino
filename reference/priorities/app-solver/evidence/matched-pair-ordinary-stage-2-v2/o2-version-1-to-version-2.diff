@@ -1,0 +1,149 @@
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp	2026-10-14 07:23:41
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp	2026-10-14 07:50:30
+@@ -66,10 +66,12 @@
+     std::uint64_t memory_estimate_bytes);
+ 
+ // The continuation of a run restored by complete replay of its generating
+-// record: restore_validated_run's result, status "restored", with its
+-// replayed continuation, record and replayed rejected-step total. Throws
+-// std::invalid_argument for any other result, so no partial or refused
+-// restore yields a continuation.
++// record. The result must carry the sealed replay boundary that
++// restore_validated_run issues on a complete replay, and every public field
++// it reports (status, continuation, replayed rejected-step total, record,
++// record identity) must equal that boundary's; the continuation is built
++// from the boundary alone. Throws std::invalid_argument otherwise, so no
++// refused, partial, edited or recombined result yields a continuation.
+ [[nodiscard]] std::shared_ptr<const NativeValidatedContinuation>
+ native_validated_continuation_from_replay(
+     const ValidatedRestoreResult& restored);
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp	2026-10-14 07:22:49
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp	2026-10-14 07:50:30
+@@ -189,6 +189,44 @@
+   std::optional<std::vector<ValidatedRunOriginMember>> origin = std::nullopt;
+ };
+ 
++// Sealed: only a complete replay constructs one, holding exactly the
++// continuation, rejected-step total, rebuilt record and record identity that
++// replay produced. A restore result is plain, mutable data; issuing an
++// ordinary continuation from one authenticates it against this boundary.
++class ValidatedReplayBoundary {
++ public:
++  [[nodiscard]] const std::shared_ptr<const ValidatedEvolutionContinuation>&
++  continuation() const noexcept {
++    return continuation_;
++  }
++  [[nodiscard]] std::size_t replayed_rejected_steps() const noexcept {
++    return replayed_rejected_steps_;
++  }
++  [[nodiscard]] const std::shared_ptr<const ValidatedRunRecord>& record()
++      const noexcept {
++    return record_;
++  }
++  [[nodiscard]] const std::string& record_identity() const noexcept {
++    return record_identity_;
++  }
++
++ private:
++  friend struct ValidatedRunRecordAccess;
++  ValidatedReplayBoundary(
++      std::shared_ptr<const ValidatedEvolutionContinuation> continuation,
++      std::size_t replayed_rejected_steps,
++      std::shared_ptr<const ValidatedRunRecord> record,
++      std::string record_identity)
++      : continuation_(std::move(continuation)),
++        replayed_rejected_steps_(replayed_rejected_steps),
++        record_(std::move(record)),
++        record_identity_(std::move(record_identity)) {}
++  std::shared_ptr<const ValidatedEvolutionContinuation> continuation_;
++  std::size_t replayed_rejected_steps_ = 0;
++  std::shared_ptr<const ValidatedRunRecord> record_;
++  std::string record_identity_;
++};
++
+ struct ValidatedRestoreResult {
+   // restored | refused
+   std::string status = "refused";
+@@ -216,6 +254,8 @@
+   std::vector<ValidatedPathLedger> ledger;
+   // The rebuilt record, to which further legs can be appended.
+   std::optional<ValidatedRunRecord> record = std::nullopt;
++  // Set only when restored: the sealed boundary of this replay.
++  std::shared_ptr<const ValidatedReplayBoundary> boundary = nullptr;
+ };
+ 
+ // Restores against an expectation supplied from outside the record. The
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/src/ValidatedOrdinaryBridge.cpp .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/src/ValidatedOrdinaryBridge.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/src/ValidatedOrdinaryBridge.cpp	2026-10-14 07:23:41
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/src/ValidatedOrdinaryBridge.cpp	2026-10-14 07:50:30
+@@ -562,17 +562,33 @@
+ std::shared_ptr<const NativeValidatedContinuation>
+ native_validated_continuation_from_replay(
+     const ValidatedRestoreResult& restored) {
+-  if (restored.status != "restored" || restored.continuation == nullptr ||
+-      !restored.record.has_value()) {
++  if (restored.status != "restored" || restored.boundary == nullptr) {
+     throw std::invalid_argument(
+         "only a complete replay of a generating record issues a "
+         "continuation");
+   }
++  const ValidatedReplayBoundary& boundary = *restored.boundary;
++  if (boundary.continuation() == nullptr || boundary.record() == nullptr ||
++      restored.continuation != boundary.continuation() ||
++      restored.replayed_rejected_steps != boundary.replayed_rejected_steps() ||
++      restored.record_identity != boundary.record_identity() ||
++      !restored.record.has_value() ||
++      restored.record->serialize() != boundary.record()->serialize()) {
++    throw std::invalid_argument(
++        "the restore result differs from the replay that issued it");
++  }
++  const ValidatedEvolutionState& sealed = boundary.continuation()->state();
++  const ValidatedRunFinalState& final_state = boundary.record()->final_state();
++  if (sealed.accepted_time != final_state.accepted_time ||
++      sealed.accepted_step_count != final_state.accepted_step_count ||
++      sealed.controller_step_size != final_state.controller_step_size) {
++    throw std::invalid_argument(
++        "the replayed continuation and record disagree");
++  }
+   return std::shared_ptr<const NativeValidatedContinuation>(
+       new NativeValidatedContinuation(
+-          restored.continuation, restored.replayed_rejected_steps,
+-          std::make_shared<const ValidatedRunRecord>(*restored.record),
+-          "recorded"));
++          boundary.continuation(), boundary.replayed_rejected_steps(),
++          boundary.record(), "recorded"));
+ }
+ 
+ NativeCoupledEvolutionCertificate evolve_native_validated_histories(
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/src/ValidatedRunRecord.cpp .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/src/ValidatedRunRecord.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/src/ValidatedRunRecord.cpp	2026-10-14 07:22:55
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v2-tree/src/eom/src/ValidatedRunRecord.cpp	2026-10-14 07:50:30
+@@ -23,6 +23,16 @@
+ // construct a record's private state.
+ struct ValidatedRunRecordAccess {
+   static ValidatedRunRecord empty() { return ValidatedRunRecord(); }
++  static std::shared_ptr<const ValidatedReplayBoundary> boundary(
++      std::shared_ptr<const ValidatedEvolutionContinuation> continuation,
++      std::size_t replayed_rejected_steps,
++      std::shared_ptr<const ValidatedRunRecord> record,
++      std::string record_identity) {
++    return std::shared_ptr<const ValidatedReplayBoundary>(
++        new ValidatedReplayBoundary(std::move(continuation),
++                                    replayed_rejected_steps, std::move(record),
++                                    std::move(record_identity)));
++  }
+   static ValidatedRunControls& controls(ValidatedRunRecord& r) {
+     return r.controls_;
+   }
+@@ -807,6 +817,9 @@
+   }
+   result.status = "restored";
+   result.replayed_rejected_steps = rejected;
++  result.boundary = ValidatedRunRecordAccess::boundary(
++      continuation, rejected, std::make_shared<const ValidatedRunRecord>(*rebuilt),
++      result.record_identity);
+   result.paths = std::move(paths);
+   result.evidence = std::move(evidence);
+   result.continuation = std::move(continuation);

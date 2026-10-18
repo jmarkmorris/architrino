@@ -10,6 +10,7 @@
 #include <fstream>
 #include <functional>
 #include <iterator>
+#include <limits>
 #include <stdexcept>
 #include <system_error>
 #include <utility>
@@ -22,6 +23,16 @@ namespace json = boost::json;
 // construct a record's private state.
 struct ValidatedRunRecordAccess {
   static ValidatedRunRecord empty() { return ValidatedRunRecord(); }
+  static std::shared_ptr<const ValidatedReplayBoundary> boundary(
+      std::shared_ptr<const ValidatedEvolutionContinuation> continuation,
+      std::size_t replayed_rejected_steps,
+      std::shared_ptr<const ValidatedRunRecord> record,
+      std::string record_identity) {
+    return std::shared_ptr<const ValidatedReplayBoundary>(
+        new ValidatedReplayBoundary(std::move(continuation),
+                                    replayed_rejected_steps, std::move(record),
+                                    std::move(record_identity)));
+  }
   static ValidatedRunControls& controls(ValidatedRunRecord& r) {
     return r.controls_;
   }
@@ -703,6 +714,7 @@ ValidatedRestoreResult restore(const std::string& bytes,
     }
   }
   std::size_t cursor = 0;
+  std::size_t rejected = 0;
   for (std::size_t index = 0; index < claimed->legs().size(); ++index) {
     const ValidatedRunLeg& leg = claimed->legs()[index];
     const std::string label = "leg " + std::to_string(index + 1U);
@@ -768,6 +780,12 @@ ValidatedRestoreResult restore(const std::string& bytes,
                            field + " differs from the claim");
       }
     }
+    if (certificate.run.rejected_step_count >
+        std::numeric_limits<std::size_t>::max() - rejected) {
+      return refused(std::move(result), "replay",
+                     label + ": the replayed rejected-step count overflows");
+    }
+    rejected += certificate.run.rejected_step_count;
     paths = certificate.paths;
     evidence = certificate.evidence;
     continuation = certificate.continuation;
@@ -798,6 +816,10 @@ ValidatedRestoreResult restore(const std::string& bytes,
                    "the replayed record differs from the record read");
   }
   result.status = "restored";
+  result.replayed_rejected_steps = rejected;
+  result.boundary = ValidatedRunRecordAccess::boundary(
+      continuation, rejected, std::make_shared<const ValidatedRunRecord>(*rebuilt),
+      result.record_identity);
   result.paths = std::move(paths);
   result.evidence = std::move(evidence);
   result.continuation = std::move(continuation);

@@ -1,7 +1,7 @@
 import { spawn, spawnSync } from 'node:child_process';
 import { mkdirSync, readFileSync, existsSync, openSync, closeSync, statSync, createReadStream, readdirSync, fsyncSync, writeFileSync, writeSync } from 'node:fs';
 import { resolve, join } from 'node:path';
-import { createEomResponseView } from './EomResponseRecord.mjs';
+import { assertEomExecutionBinding, assertEomResponseSchema, createEomResponseView } from './EomResponseRecord.mjs';
 import { createHash, randomUUID } from 'node:crypto';
 
 // Watched, non-detached workers use the existing EOM executable. They have no
@@ -97,6 +97,8 @@ export function createEomV2ProcessClient({ binaryPath, checkpointRoot, recordRoo
             output = rawBytes.toString('utf8');
           }
           const payload = JSON.parse(output);
+          assertEomResponseSchema(raw, payload);
+          assertEomExecutionBinding(raw, payload);
           if (payload.checkpoint?.durable) {
             const retained = JSON.parse(readFileSync(path, 'utf8'));
             if (retained.digest !== payload.checkpoint.digest || retained.acceptedTime !== payload.checkpoint.acceptedTime) throw new Error('Durable checkpoint receipt mismatch.');

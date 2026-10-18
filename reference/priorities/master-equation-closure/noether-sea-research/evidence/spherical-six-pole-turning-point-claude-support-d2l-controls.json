@@ -1,0 +1,70 @@
+{
+ "controls": [
+  {
+   "name": "(J1) EXACT HAND-KNOWN: antipode radial term with a static source at q' = 0, q = pi/3, w = 2/5, a = j = 0: value -g/(4 cos(q/2)) = -1/(20 sqrt3), first derivative -g w sin(q/2)/(8 cos^2(q/2)) = -1/300, second derivative -g/(30 sqrt3)",
+   "value": "-0.02886751345948128822545744",
+   "d1": "-0.003333333333333333333333333",
+   "d2": "-0.001924500897298752548363829",
+   "hand_d2": "-0.001924500897298752548363829",
+   "pass": true
+  },
+  {
+   "name": "(J2) the jet's first derivative of l equals the frozen closed-form dl/dt, and its value equals l, at the prescribed points below",
+   "pass": true
+  },
+  {
+   "name": "(J3, J4) NUMERICAL prescribed-history controls: jet l'' against Richardson second differences of l(t) (cubic history at t = 4.8, positive velocities; turning sine history at t = 6.6, receiver w < 0, unlike source w' < 0); negatives N1-N4 must miss by more than 1e-8",
+   "detail": {
+    "cubic": {
+     "t": "4.8",
+     "q": "1.264896",
+     "w": "0.23856",
+     "src_w": {
+      "unlike": "0.248224",
+      "like": "0.250996",
+      "antipode": "0.255106"
+     },
+     "l": "-0.0359166268364256",
+     "dl_jet": "-0.022492391512451172655",
+     "dl_closed": "-0.022492391512451172655",
+     "d2l_jet": "-0.0054202994503836709605",
+     "d2l_richardson": "-0.0054202994503836709605",
+     "abs_err_d2": "1.324e-29",
+     "negatives_abs_miss": {
+      "N1_source_jerk_omitted": "0.00023415",
+      "N3_sddot_omitted": "0.00059453",
+      "N4_source_accel_omitted_in_jets": "0.0011819",
+      "N2_receiver_jerk_sign_flipped": "0.0028627"
+     },
+     "pass": true
+    },
+    "sine_turning": {
+     "t": "6.6",
+     "q": "1.2237116",
+     "w": "-0.099941403",
+     "src_w": {
+      "unlike": "-0.00103676",
+      "like": "-0.0056332",
+      "antipode": "0.0400476"
+     },
+     "l": "0.0122310696011588",
+     "dl_jet": "-0.00048765743049369394308",
+     "dl_closed": "-0.00048765743049369394308",
+     "d2l_jet": "0.004375599478185575192",
+     "d2l_richardson": "0.004375599478185575192",
+     "abs_err_d2": "3.6247e-30",
+     "negatives_abs_miss": {
+      "N1_source_jerk_omitted": "6.3714e-5",
+      "N3_sddot_omitted": "4.3095e-6",
+      "N4_source_accel_omitted_in_jets": "0.002692",
+      "N2_receiver_jerk_sign_flipped": "0.0099883"
+     },
+     "pass": true
+    }
+   },
+   "pass": true
+  }
+ ],
+ "controls_all_pass": true,
+ "wall_s": 1.3375310897827148
+}

@@ -669,6 +669,7 @@ std::string native_evolution_model_fingerprint(
 NativeEvolutionCheckpoint create_native_evolution_checkpoint(
     const NativeCoupledEvolutionRequest& request,
     const NativeCoupledEvolutionCertificate& certificate) {
+  require_native_ordinary_method(request, "the v7 checkpoint");
   require_legacy_checkpoint_equation(request);
   if (certificate.schema == "eom_surface_coupled_evolution_certificate/v1" ||
       certificate.evidence_status == "constrained_solution_enclosure" ||
@@ -934,6 +935,7 @@ NativeCoupledEvolutionCertificate resume_native_coupled_histories(
     const NativeCoupledEvolutionRequest& request_template,
     const NativeEvolutionCheckpoint& checkpoint,
     const std::string& requested_end_time) {
+  require_native_ordinary_method(request_template, "the v7 checkpoint");
   require_legacy_checkpoint_equation(request_template);
   require_checkpoint_consistency(checkpoint);
   if (!checkpoint_model_matches(request_template, checkpoint)) {

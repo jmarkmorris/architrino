@@ -1,0 +1,25 @@
+Support role incident record, turning-point campaign. Written Wed Oct 14 10:27:10 UTC 2026. Retained evidence (copy of the scratch preservation); no closed-campaign file was written in making it.
+
+1. Exact command executed by mistake at 10:12:50 UTC (inside a longer shell command that was preparing this campaign's runner):
+   .tmp/six-pole-speed-maximum-feedback/support/run.sh 2>/dev/null | head -0
+   (the CLOSED campaign's runner, invoked with NO arguments; 'head -0' then failed with 'illegal line count', which did not stop the runner)
+
+2. Effect: the runner appended the TEN lines below (my earlier reports said nine; the count is ten: two census blocks of two lines each, the continuation-receipt line, SLOT-BUSY, cwd, command, end, SLOT-IDLE) to the CLOSED receipt reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-support-commands.txt and started '../.venv/bin/python -I' with no script: an idle interpreter reading an empty standard input, terminated by the 110 s alarm (exit 142). Window 10:12:50 to 10:14:41 UTC; 0.01 s CPU; peak RSS 14139392 bytes. The process number was NOT captured (no script printed it). Its SLOT-BUSY(support)/SLOT-IDLE(support) lines went to the closed receipt, so they were INVISIBLE to this campaign's continuation and review for that window.
+
+3. The ten appended lines, byte for byte (between the markers):
+----- BEGIN APPENDED LINES -----
+CENSUS Wed Oct 14 10:12:50 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+continuation receipt: reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-speed-maximum-feedback-claude-continuation-commands.txt; last slot line: SLOT-IDLE 2026-10-12T21:29:21Z
+SLOT-BUSY(support) Wed Oct 14 10:12:50 UTC 2026 
+cwd /Users/markmorris/vibe/architrino
+command: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l perl -e 'alarm 110; exec @ARGV' -- ../.venv/bin/python -I 
+end Wed Oct 14 10:14:41 UTC 2026 exit 142  wall/peak:  110.01 real 0.01 user 0.00 sys; 14139392 maximum resident set size;
+SLOT-IDLE(support) Wed Oct 14 10:14:41 UTC 2026 
+CENSUS Wed Oct 14 10:14:41 UTC 2026: pgrep -x Python/python/python3.13:
+  (no campaign python live; any process listed above is foreign)
+----- END APPENDED LINES -----
+
+4. Remedy (10:15:09 UTC): the closed receipt was restored to its frozen bytes (sha256 561d8c8385c6c641abe85a28f3d699bb0f0abdc814c33854d0c7f0c3a24db50a, equal to the closed manifest); the PI verified this at 10:18:17 UTC and ruled that no closed-campaign file is to be touched again, even to repair.
+
+5. Inference (not measured by me): the review's census at 10:13:00 and 10:13:19 UTC lists a foreign process 49924 started with only the isolation flag, consistent with this idle interpreter.

@@ -1,0 +1,27 @@
+diff --git a/src/eom/src/EquationRegistry.cpp b/src/eom/src/EquationRegistry.cpp
+index d4a1100ae..8b9cf60d5 100644
+--- a/src/eom/src/EquationRegistry.cpp
++++ b/src/eom/src/EquationRegistry.cpp
+@@ -107,4 +107,22 @@ std::string equation_capabilities_json() {
+       ",\"checkpoint\":\"v8-revalidated-publication\",\"wireEvolution\":\"v2\""
+       ",\"reason\":\"Full-slab root, derivative, inclusion, contraction and dense geometry gates; coherent subwake chart remains required\"}]"
++      ",\"executionMethods\":[{\"method\":\"ordinary\",\"default\":true,\"requestSchema\":\"eom_evolution_request/v2\""
++      ",\"responseSchema\":\"eom_evolution_response/v2\",\"checkpointSchema\":\"eom_provider_checkpoint/v8\"},"
++      "{\"method\":\"canonical_validated_far_step_evolution/v1\",\"default\":false,\"optIn\":\"execution.method\""
++      ",\"requestSchema\":\"eom_evolution_request/v3\",\"inspectionSchema\":\"eom_inspection/v3\""
++      ",\"responseSchema\":\"eom_evolution_response/v3\",\"contractId\":\"eom_evolution_contract/v3\""
++      ",\"checkpointSchema\":\"eom_provider_checkpoint/v9\",\"compositions\":[\"canonical/v1\"]"
++      ",\"speedDomains\":[\"unrestricted\"],\"constraint\":\"none\""
++      ",\"domain\":\"Bounded canonical far-step execution; evolve and resume run origin preflight and accepted-step producer admission for retained-past speed, separation, whole-step reception-time and receiver-box coverage, and past emission-root coverage. Unsupported origins decline without validated publication; a later refusal retains only the previously accepted prefix. Inspection does not run origin preflight.\""
++      ",\"pairPolicies\":[\"disabled\",\"canonical_whole_step_piecewise_tube/v1\"],\"defaultPairPolicy\":\"disabled\",\"defaultThreadCount\":1"
++      ",\"limits\":{\"maximumAcceptedSteps\":[1,1000000],\"maxAttemptsPerStep\":[1,1024],\"maxLowerSignRetries\":[0,1024],\"growthCooldownSteps\":[0,1024]}"
++      ",\"requiredControls\":[\"numerics.initialStep\",\"numerics.minimumStep\",\"model.coupling\",\"execution.positionIncrementBudget\",\"execution.velocityIncrementBudget\",\"execution.maximumAcceptedSteps\"]"
++      ",\"ordinaryControlRestrictions\":{\"numerics.maximumStep\":\"absent or equal to numerics.initialStep\",\"numerics.maxStepAttempts\":\"absent or 10000\",\"numerics.maxRejectedSteps\":\"absent or 1000\",\"otherwise\":\"refused by name\"}"
++      ",\"runtimeOverride\":{\"operation\":\"resume\",\"fields\":[\"threadCount\"],\"evolve\":\"refused\"}"
++      ",\"scopesOutsideExecutionDigest\":[\"execution.maximumAcceptedSteps (per invocation)\",\"runtime.threadCount (resume worker override)\"]"
++      ",\"restart\":\"full replay from the original request and origin with the record identity; no partial restore; uploaded hashes are never evidence\""
++      ",\"resourceBound\":\"admission estimate, not a measured resident-set cost\""
++      ",\"capabilityMeaning\":\"interface capability only; not a per-request or physical certification\""
++      ",\"independentlyAccepted\":false,\"scientificAcceptance\":false}]"
+       ",\"inspectionScope\":\"selection-model-controls-and-supplied-preparation-admission\""
+       ",\"providerAwareCheckpoint\":true"

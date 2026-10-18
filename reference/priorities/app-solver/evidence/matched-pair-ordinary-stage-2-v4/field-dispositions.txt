@@ -1,0 +1,105 @@
+PASS  known: a field absent from the bridge has no disposition
+| `run_id` | translated |
+| `paths` | translated |
+| `joint_root_point_states` | refused unless default |
+| `joint_histories` | refused unless default |
+| `joint_state_fallback_already_applied` | refused unless default |
+| `start_time` | translated |
+| `end_time` | translated |
+| `initial_step` | translated |
+| `minimum_step` | translated |
+| `maximum_step` | checked |
+| `field_speed` | translated |
+| `coupling` | translated |
+| `root_tolerance` | refused unless default |
+| `transmitter_factor_floor` | refused unless default |
+| `acceleration_tolerance` | refused unless default |
+| `far_field_enclosure_fraction` | refused unless default |
+| `use_far_field_enclosure_in_evolution` | refused unless default |
+| `matched_pair_enclosure_policy` | refused unless default |
+| `validated_population_evidence` | translated |
+| `integration_method` | translated |
+| `validated` | translated |
+| `chart_policy` | refused unless default |
+| `causal_width` | refused unless default |
+| `core_scale` | refused unless default |
+| `quadrature_tolerance` | refused unless default |
+| `event_impulse_tolerance` | refused unless default |
+| `event_position_moment_tolerance` | refused unless default |
+| `regulator_refinement_ratio` | refused unless default |
+| `regulator_convergence_tolerance` | refused unless default |
+| `position_tolerance` | refused unless default |
+| `velocity_tolerance` | refused unless default |
+| `correction_tolerance` | refused unless default |
+| `certified_budget_schema` | refused unless default |
+| `certified_budget_preset_id` | refused unless default |
+| `certified_budget_allocation_hash` | refused unless default |
+| `certified_budget_allocation_json` | refused unless default |
+| `position_increment_budget` | translated |
+| `velocity_increment_budget` | translated |
+| `event_impulse_budget` | refused unless default |
+| `event_position_moment_budget` | refused unless default |
+| `independent_overlap_budget` | refused unless default |
+| `event_quadrature_fraction` | refused unless default |
+| `event_causal_regulator_fraction` | refused unless default |
+| `event_core_regulator_fraction` | refused unless default |
+| `event_state_numerical_fraction` | refused unless default |
+| `event_matching_fraction` | refused unless default |
+| `deterministic_reduction_policy` | refused unless default |
+| `rounding_mode` | refused unless default |
+| `receiver_event_allocation_rule` | refused unless default |
+| `resolved_receiver_event_pair_count` | refused unless default |
+| `resolved_receiver_event_pair_weight` | refused unless default |
+| `root_max_depth` | refused unless default |
+| `root_max_cells` | refused unless default |
+| `quadrature_max_depth` | refused unless default |
+| `quadrature_max_cells` | refused unless default |
+| `event_max_depth` | refused unless default |
+| `event_max_cells` | refused unless default |
+| `regulator_refinement_levels` | refused unless default |
+| `initial_mpfr_bits` | refused unless default |
+| `maximum_mpfr_bits` | refused unless default |
+| `force_event_precision_escalation` | refused unless default |
+| `max_correction_iterations` | refused unless default |
+| `max_step_attempts` | refused unless default |
+| `max_rejected_steps` | refused unless default |
+| `thread_count` | translated |
+| `memory_budget_bytes` | translated |
+| `use_adaptive_step_growth` | refused unless default |
+| `initial_accepted_step_count` | checked |
+| `initial_rejected_step_count` | checked |
+| `initial_consecutive_growth_headroom_steps` | refused unless default |
+| `use_continuous_adaptive_step` | refused unless default |
+| `adaptive_step_safety_factor` | refused unless default |
+| `adaptive_step_minimum_scale` | refused unless default |
+| `adaptive_step_maximum_scale` | refused unless default |
+| `use_synchronized_multirate_publication` | refused unless default |
+| `multirate_synchronization_fraction` | refused unless default |
+| `use_quarter_step_publication` | refused unless default |
+| `use_certificate_cost_feedback` | refused unless default |
+| `certificate_cost_maximum_probe_adjustments` | refused unless default |
+| `certificate_cost_probe_scale` | refused unless default |
+| `certificate_cost_unavoidable_cooldown_steps` | refused unless default |
+| `certificate_cost_initial_cooldown_steps` | refused unless default |
+| `use_analytic_pinned_fold` | refused unless default |
+| `use_correlated_self_chord` | refused unless default |
+| `use_stable_circular_residual` | refused unless default |
+| `use_pinned_fold_aware_temporal_step` | refused unless default |
+| `use_certified_history_window` | refused unless default |
+| `use_warm_root_exclusion` | refused unless default |
+| `adjudicated_finite_width_pairs` | refused unless default |
+| `allow_pending_finite_width_exit` | refused unless default |
+| `use_certified_traversal` | refused unless default |
+| `traversal_exact_tile_pair_limit` | refused unless default |
+| `traversal_maximum_nodes` | refused unless default |
+| `traversal_maximum_exact_pairs` | refused unless default |
+| `diagnostic_maximum_accepted_steps` | translated |
+| `retain_diagnostic_candidate_histories` | refused unless default |
+| `accepted_step_callback` | translated |
+| `cancellation_requested` | translated |
+| `failed_substep_candidate_callback` | refused unless default |
+| `equation_selection` | checked |
+| `surface_geometry` | refused unless default |
+| `surface_numerics` | refused unless default |
+| `continuation_histories` | refused unless default |
+PASS  103 fields: 18 translated, 4 checked, 81 refused unless default; missing []

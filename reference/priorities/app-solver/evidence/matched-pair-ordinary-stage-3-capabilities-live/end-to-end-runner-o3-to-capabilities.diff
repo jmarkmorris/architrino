@@ -1,0 +1,20 @@
+--- .tmp/eom-ordinary-integration-2026-10-14/live-o3-js/run-end-to-end.mjs	2026-10-14 11:01:41
++++ .tmp/eom-ordinary-integration-2026-10-14/live-o3cap-js/run-end-to-end.mjs	2026-10-14 11:30:38
+@@ -40,7 +40,16 @@
+ check('known: a v2 run through the actual service and clients is unchanged in kind', v2.value?.schema === 'eom_evolution_response/v2' && v2.value.status === 'completed', v2.value?.status ?? v2.error);
+ const caps = await (await fetchImpl('/api/eom/v2/capabilities')).json();
+ keep('capabilities', caps);
+-check('known: capabilities answer and advertise no execution method', caps.schema === 'eom_equation_capabilities/v1' && !('executionMethods' in caps));
++// Capabilities now advertise exactly the qualified member; every other member is compared with the O3 live document.
++const o3Caps = JSON.parse(fs.readFileSync('.local-data/eom-matched-pair/2026-10-14/ordinary-integration/o3-live/wire-outputs/capabilities.stdout', 'utf8').trim().split('\n').pop());
++const { build: _b1, executionMethods: methods, ...restNow } = caps; const { build: _b2, ...restBefore } = o3Caps;
++const validatedMethod = methods?.find(m => m.method === 'canonical_validated_far_step_evolution/v1');
++check('capabilities: ordinary stays default; the validated method is advertised opt-in with v3/v9, disabled grouping, one worker, the restrictions and resume-only runtime; every other member unchanged',
++  caps.schema === 'eom_equation_capabilities/v1' && JSON.stringify(restNow) === JSON.stringify(restBefore) && methods?.length === 2
++  && methods[0].method === 'ordinary' && methods[0].default === true && validatedMethod?.default === false && validatedMethod.requestSchema === 'eom_evolution_request/v3'
++  && validatedMethod.checkpointSchema === 'eom_provider_checkpoint/v9' && validatedMethod.defaultPairPolicy === 'disabled' && validatedMethod.defaultThreadCount === 1
++  && validatedMethod.ordinaryControlRestrictions?.['numerics.maxStepAttempts'] === 'absent or 10000' && validatedMethod.runtimeOverride?.evolve === 'refused'
++  && /Inspection does not run origin preflight/.test(validatedMethod.domain) && validatedMethod.scientificAcceptance === false, methods?.map(m => m.method).join(', '));
+ 
+ console.log('\nTargets');
+ const inspection = await caught(() => client.inspect(grouped('e2e-whole', 8)));

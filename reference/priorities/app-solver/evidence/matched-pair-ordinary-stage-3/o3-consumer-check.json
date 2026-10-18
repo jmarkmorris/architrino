@@ -1,0 +1,126 @@
+{
+ "schema": "ordinary_integration_o3_consumer_check/v1",
+ "all_passed": true,
+ "rows": [
+  {
+   "check": "known: every retained v2 evolution view, Surface included, is byte-identical under the new projection",
+   "passed": true,
+   "detail": "8 of 8"
+  },
+  {
+   "check": "known: the Surface stage E fixture view assertions hold",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "known: an error document passes through unchanged",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "eom_inspection/v2 passes through unchanged",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "eom_inspection/v3 passes through unchanged",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "eom_equation_capabilities/v1 passes through unchanged",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "eom_cancel_request/v2 passes through unchanged",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "an unknown evolution schema is refused, raw evidence retained",
+   "passed": true,
+   "detail": "record_projection_unsupported"
+  },
+  {
+   "check": "v3 view: the attempt log is a stride sample of original rows, never interpolated, last row kept, count recorded",
+   "passed": true,
+   "detail": "256 rows, 129 shown, stride 2"
+  },
+  {
+   "check": "v3 view: under 12 MiB, v2 ledgers projected away and counted, ledger totals kept",
+   "passed": true,
+   "detail": "4159656 bytes"
+  },
+  {
+   "check": "v3 view of a 200000-row log stays bounded and keeps the last row",
+   "passed": true,
+   "detail": "129 rows shown"
+  },
+  {
+   "check": "binding: the genuine v3 response binds, including the server digest recomputed in Node",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "binding: a changed executionDigest is refused",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "binding: a changed reported execution is refused",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "binding: a different declared limit is refused",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "binding: a v2 response to a v3 request is refused",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "binding: a v3 response to a v2 request is refused",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "binding: v2 traffic is untouched",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "browser: a v3 run with matching inspection and response is accepted",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "browser: a v3 response with another executionDigest is refused",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "browser: a v2 response to a v3 request is refused",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "browser: a v3 request with a v2 inspection is refused",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "browser: a v2 run is still accepted as before",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "browser: a v3 response to a v2 request is refused",
+   "passed": true,
+   "detail": ""
+  }
+ ]
+}

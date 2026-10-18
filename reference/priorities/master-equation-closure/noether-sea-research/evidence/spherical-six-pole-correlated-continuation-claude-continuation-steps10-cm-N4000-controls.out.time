@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm.py", line 151, in <module>
+    qe = q0*mp.cos(T_) + w0*mp.sin(T_); we = -q0*mp.sin(T_) + w0*mp.cos(T_); okc = okc and bool(lo(Qo_) <= qe <= up(Qo_) and lo(Vo_) <= we <= up(Vo_)); okb = okb and bool(lo(Bo[0]) <= qe <= up(Bo[0]) and lo(Bo[1]) <= we <= up(Bo[1])); okm = okm and aff_contains_point(Fo, qe, we)
+                                                                                                                                                                                                                                                         ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm.py", line 145, in aff_contains_point
+    x1 = (Xq*d - c_*Xw)/det; x2 = (a*Xw - b*Xq)/det
+                 ~~^~~
+  File "<string>", line 25, in __mul__
+  File "/Users/markmorris/vibe/.venv/lib/python3.13/site-packages/mpmath/ctx_mp_python.py", line 671, in convert
+    return ctx._convert_fallback(x, strings)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/.venv/lib/python3.13/site-packages/mpmath/ctx_mp.py", line 633, in _convert_fallback
+    raise ValueError("can only create mpf from zero-width interval")
+ValueError: can only create mpf from zero-width interval
+       24.47 real        23.51 user         0.09 sys
+            86704128  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                9368  page reclaims
+                  57  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 103  voluntary context switches
+               11318  involuntary context switches
+        380139334219  instructions retired
+         82436826889  cycles elapsed
+            77218344  peak memory footprint

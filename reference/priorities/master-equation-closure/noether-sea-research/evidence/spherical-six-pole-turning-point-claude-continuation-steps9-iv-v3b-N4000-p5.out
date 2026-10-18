@@ -1,0 +1,57 @@
+pid 74202
+pid 74203
+T* [1.366684593623, 1.366684709182]; certified records 264 to t = 4.0066847091 (guaranteed 4.006684593623); joins exact True; controls 1.5 s
+controls: ALL PASS (27 controls: 14 frozen v5 + 13 new)
+   pass (C1) 264-record chain: 10 + 40 + 21 + 73 + 60 + 60 certified records, every file join exact-string, w-chain files accepted by name and sha25
+   pass (C2) known chain case on the 60 w-chain records: the sub-range form at sigma = Delta reproduces each certified end to 1e-18 and at sigma = 0
+   pass (C3) guaranteed coverage edge at the 264-record end: a range ending just below the lower endpoint of the last uncertain end is accepted, a r
+   pass (C4) signed closed forms (tangent hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the NE
+   pass (C5) signed-geometry box q in [0.81, 1.10], q' in [0, 0.85], v' in [0, 0.45] (400 cells): every separation r > 0.80 (v2: the smallest unlike
+   pass (C6) derivative identities of the rate function on the new box: exact hand-known case (source at rest: d hit/dt = hit_fixed'(q) qdot and tau
+   pass (C7) reconciliation at the accepted step-214 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum int
+   pass (C8) negative: with the wrong sign of the velocity term in D_t the class term is disjoint from the correct one for the unlike and antipode c
+   pass (C9) delay-root bracket at the step-214 state: half-widths 0.15 and 0.30 give intersecting delay enclosures agreeing to 1e-9 for all classes
+   pass (C10) restart regression (same-chain consistency, not independence): from the frozen step-213 strings the step intersects the frozen step-21
+   pass (C11) self-append: the control step (from step 213), appended and enriched through the checked path, is read on a sub-range inside its whole
+   pass (C12) restart wrapper: the accepted terminal record (name and sha256) is resumed with the exact step-214 strings and t0 an interval; refused
+   pass (C13) synthetic EVENT controls: positive-to-negative qddot detected as one maximum (also through an undecided end, with the speed hull over 
+certified records 324 to t = 4.6066847091 (guaranteed 4.606684593623); joins exact True; controls 2.8 s
+turning-point controls: ALL PASS (42 controls: 27 frozen v3 + 15 new)
+   pass (D1) 324-record chain: 10 + 40 + 21 + 73 + 60 + 60 + 60 certified records, every file join exact-string (including the three new t1b, t2, t3
+   pass (D2) known chain case on the 60 records of steps 215-274: the sub-range form at sigma = Delta reproduces each certified end to 1e-18 and at 
+   pass (D3) guaranteed coverage edge at the 324-record end: a range ending just below the lower endpoint of the last uncertain end is accepted, a r
+   pass (D4) signed closed forms (tangent hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the v3
+   pass (D5) signed-geometry box (v3) q in [1.04, 1.80], q' in [0, 1.20], w' in [-0.05, 0.45] (400 cells): every separation r > 0.70 (the smallest u
+   pass (D6) radial-derivative identities on the new box: exact rest-source case for all classes at q = 1.10, 1.30, 1.45, pi/2, 1.75; labelled numer
+   pass (D7) reconciliation at the accepted step-274 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum int
+   pass (D8) negative: at the step-274 state the D_t factor with the wrong sign of the velocity term is disjoint from the correct one for all three 
+   pass (D9) delay-root bracket at the step-274 state: half-widths 0.30 and 0.45 give intersecting delay enclosures agreeing to 1e-9 for all classes
+   pass (D10) restart regression (same-chain consistency, not independence): from the frozen step-273 strings the step intersects the frozen step-27
+   pass (D11) self-append: the control step (from step 273), appended and enriched through the checked path, is read on a sub-range inside its whole
+   pass (D12) restart wrapper: the accepted terminal record (name and sha256) is resumed with the exact step-274 strings and t0 an interval; refused
+   pass (D13) synthetic EVENT controls: w positive-to-negative detected as a PATH TURN (q maximum, |w| minimum), not as a speed maximum; a reversed 
+   pass (D9b) v3 bracket [chord - 0.45, chord + 0.90] at the step-274 state gives delay enclosures intersecting and agreeing to 1e-9 with the v2 bra
+   pass (D14) with the own records p1-p4 appended (name and sha256): the v2 and v3 brackets agree to 1e-9 at the step-334 state for all classes; at 
+resumed after step 347 of spherical-six-pole-turning-point-claude-continuation-steps9-iv-N4000-p4.json: t0 [5.336684593623, 5.336684709182]; records 397
+step 348: t_end 5.34668470; q [1.316532, 1.324704]; w [0.347518, 0.358625] pos; a_end [-0.055228, -0.052991] neg; l [-0.11278, -0.10402]; dl/dt [-0.009369, -0.003690] neg over spa cons T; sU up 4.0995 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 4 s
+step 349: t_end 5.35668470; q [1.320004, 1.328287]; w [0.346908, 0.358151] pos; a_end [-0.055566, -0.053298] neg; l [-0.11289, -0.10403]; dl/dt [-0.009394, -0.003619] neg over spa cons T; sU up 4.1065 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 4 s
+step 350: t_end 5.36668470; q [1.323470, 1.331867]; w [0.346294, 0.357674] pos; a_end [-0.055906, -0.053607] neg; l [-0.11301, -0.10405]; dl/dt [-0.009421, -0.003549] neg over spa cons T; sU up 4.1136 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 4 s
+step 351: t_end 5.37668470; q [1.326930, 1.335441]; w [0.345676, 0.357194] pos; a_end [-0.056251, -0.053920] neg; l [-0.11312, -0.10407]; dl/dt [-0.009397, -0.003475] neg over spa cons T; sU up 4.1206 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 5 s
+step 352: t_end 5.38668470; q [1.330384, 1.339010]; w [0.345053, 0.356712] pos; a_end [-0.056599, -0.054236] neg; l [-0.11324, -0.10408]; dl/dt [-0.009450, -0.003398] neg over spa cons T; sU up 4.1277 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 5 s
+step 353: t_end 5.39668470; q [1.333831, 1.342575]; w [0.344427, 0.356227] pos; a_end [-0.056952, -0.054555] neg; l [-0.11336, -0.10409]; dl/dt [-0.009482, -0.003323] neg over spa cons T; sU up 4.1347 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 5 s
+step 354: t_end 5.40668470; q [1.337272, 1.346135]; w [0.343797, 0.355739] pos; a_end [-0.057308, -0.054878] neg; l [-0.11347, -0.10411]; dl/dt [-0.009456, -0.003244] neg over spa cons T; sU up 4.1418 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 6 s
+step 355: t_end 5.41668470; q [1.340707, 1.349690]; w [0.343163, 0.355249] pos; a_end [-0.057669, -0.055204] neg; l [-0.11359, -0.10412]; dl/dt [-0.009512, -0.003162] neg over spa cons T; sU up 4.1488 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 6 s
+step 356: t_end 5.42668470; q [1.344136, 1.353240]; w [0.342524, 0.354756] pos; a_end [-0.058034, -0.055534] neg; l [-0.11371, -0.10413]; dl/dt [-0.009545, -0.003079] neg over spa cons T; sU up 4.1559 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 7 s
+step 357: t_end 5.43668470; q [1.347558, 1.356785]; w [0.341882, 0.354260] pos; a_end [-0.058403, -0.055868] neg; l [-0.11383, -0.10414]; dl/dt [-0.009580, -0.002996] neg over spa cons T; sU up 4.1629 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 7 s
+step 358: t_end 5.44668470; q [1.350973, 1.360325]; w [0.341235, 0.353762] pos; a_end [-0.058778, -0.056205] neg; l [-0.11394, -0.10415]; dl/dt [-0.009575, -0.002908] neg over spa cons T; sU up 4.1699 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 8 s
+step 359: t_end 5.45668470; q [1.354382, 1.363860]; w [0.340584, 0.353260] pos; a_end [-0.059157, -0.056547] neg; l [-0.11406, -0.10416]; dl/dt [-0.009610, -0.002817] neg over spa cons T; sU up 4.1770 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 8 s
+step 360: t_end 5.46668470; q [1.357785, 1.367390]; w [0.339928, 0.352756] pos; a_end [-0.059541, -0.056894] neg; l [-0.11418, -0.10417]; dl/dt [-0.009646, -0.002728] neg over spa cons T; sU up 4.1840 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 9 s
+step 361: t_end 5.47668470; q [1.361181, 1.370915]; w [0.339268, 0.352248] pos; a_end [-0.059931, -0.057244] neg; l [-0.11430, -0.10418]; dl/dt [-0.009616, -0.002633] neg over spa cons T; sU up 4.1910 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 9 s
+step 362: t_end 5.48668470; q [1.364570, 1.374435]; w [0.338604, 0.351738] pos; a_end [-0.060326, -0.057600] neg; l [-0.11441, -0.10418]; dl/dt [-0.009675, -0.002534] neg over spa cons T; sU up 4.1981 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 10 s
+step 363: t_end 5.49668470; q [1.367953, 1.377950]; w [0.337935, 0.351225] pos; a_end [-0.060726, -0.057960] neg; l [-0.11453, -0.10419]; dl/dt [-0.009712, -0.002436] neg over spa cons T; sU up 4.2051 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 10 s
+step 364: t_end 5.50668470; q [1.371329, 1.381460]; w [0.337261, 0.350708] pos; a_end [-0.061133, -0.058325] neg; l [-0.11465, -0.10420]; dl/dt [-0.009678, -0.002332] neg over spa cons T; sU up 4.2121 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 11 s
+step 365: t_end 5.51668470; q [1.374698, 1.384964]; w [0.336583, 0.350189] pos; a_end [-0.061545, -0.058694] neg; l [-0.11477, -0.10420]; dl/dt [-0.009737, -0.002227] neg over spa cons T; sU up 4.2191 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 11 s
+step 366: t_end 5.52668470; q [1.378061, 1.388464]; w [0.335900, 0.349666] pos; a_end [-0.061963, -0.059069] neg; l [-0.11489, -0.10420]; dl/dt [-0.009775, -0.002117] neg over spa cons T; sU up 4.2261 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 12 s
+step 367: t_end 5.53668470; q [1.381416, 1.391958]; w [0.335213, 0.349141] pos; a_end [-0.062387, -0.059449] neg; l [-0.11501, -0.10421]; dl/dt [-0.009738, -0.002002] neg over spa cons T; sU up 4.2332 speed-maximum-feedback; D above/below/above; tan neg/neg/pos; it 2; 12 s
+reached t in [5.536684593623, 5.536684709182]; q [1.3814167951, 1.3919581241]; w [0.3352130739, 0.3491410537]; stop: plan exhausted (step 367 certified); wall 12.3 s
+events: w ends ['positive'] path turns 0 ; dl/dt ends ['negative'] support minima 0 maxima 0 seam 0 undecided dl ends []
