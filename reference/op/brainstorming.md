@@ -6,6 +6,26 @@ Use it for repeatable working practices, thread orchestration, run procedures, a
 
 During the current core geometrical theory push, operational guidance should route default effort toward hard mathematical closure: equations, theorem ladders, proof certificates, simulation diagnostics, and durable capture in the corpus or priority staging.
 
+## Repository separation candidates — 2026-10-18
+
+The operator is considering moving portions such as the children's books into another repository and asked which other large areas lie outside `content/markdown/aaa/` and `reference/priorities/`. This is a sizing discussion and provisional architecture recommendation, not an accepted migration or authorization to move files.
+
+Measured by enumerating `git ls-files -z` and summing `fs.lstatSync(path).size` in Node, the tracked working files total 1,438,135,128 bytes at this snapshot; 1,245,602,394 bytes lie outside the two excluded directories. These are logical working-file sizes, including current edits, rather than compressed Git objects, deployed payload size, allocated disk usage, or migration savings in existing history. The aggregation instrument first passed a known case with sizes 3 and 5, total 8, and both excluded prefixes omitted; every enumerated working file was readable. Repeating the inventory after concurrent changes can supersede this snapshot.
+
+| Area outside the excluded directories | Tracked MiB | Provisional separation assessment |
+| --- | ---: | --- |
+| Presentation authoring files (`reference/office-of-learning/presentations/`) | 289.47 | Strong candidate for a learning/media repository; preserve the PDF publishing interface. |
+| [Children's-book manuscripts and production](../office-of-learning/childrens-books/), artwork (`content/assets/images/archie/childrens-books/`), and exporter regression test | 222.14 | Strong candidate with its existing production boundary; preserve originals, QA, baseline, exporter, and local evidence. |
+| Historical images (`content/assets/images/historical/`) | 204.85 | Large asset library supporting corpus content; an external asset source would need stable delivery and attribution. |
+| [Comic authoring](../office-of-learning/comics/) and published images (`content/assets/images/comics/`) | 87.81 | Candidate for the same media repository, with an explicit publication interface for the current gallery. |
+| [iOS application](../../apps/ios/ArchitrinoReader/README.md) | 87.19 | Separate application boundary, but 85.47 MiB is its generated textbook snapshot and the website shares its KaTeX subtree. |
+| Generated web content (`content/generated/`) | 72.23 | Derived publication artifacts rather than a separate authored project; evaluate artifact distribution separately from repository separation. |
+| [Design masters and history](../design/) | 46.70 | Candidate for a media repository while deployed brand assets retain their delivery contract. |
+
+The presentation, children's-book, and comic groups together measure 628,544,090 bytes, or 599.43 MiB and 43.71% of tracked working-file bytes, from the same inventory. The inference is that a coherent learning/media repository offers a more useful first boundary than extracting small code directories for space. The PowerPoint originals are already excluded from Pages by `isPowerPointOriginal` in `scripts/build-static-site.mjs`; presentation PDFs remain addressed by `content/scenes/archie/presentations.json`. Comic image references were observed by `rg` in `content/scenes/archie/comics.json`, corpus comic pages, and `scripts/validate-content.mjs`. Historical-image links were observed in the corpus attribution page. These are demonstrated dependencies, not a complete consumer audit or proof that other consumers are absent. The iOS README and static-site builder establish the saved-snapshot and shared-KaTeX boundaries.
+
+Recommendation, provisional: first define extraction boundaries for the children's books and presentation originals; consider comic production and design masters within the same media owner. Keep corpus assets and public gallery delivery working through an explicit interface. A complete consumer and binder inventory, preservation plan, and reproducible build/publication arrangement are prerequisites to an actual move. Discovering that a proposed group cannot be built or published through a bounded interface would overturn the assessment that it is a practical extraction candidate. Moving current files does not itself remove their earlier Git objects; historical storage reduction would require a separate decision. No migration, history rewrite, or cleanup was performed in this discussion.
+
 ## Proposed continuous manuscript synthesis — 2026-09-09
 
 The operator subsequently authorized the Master-Equation Closure pilot, now drafted as [manuscript.md](../priorities/master-equation-closure/manuscript.md). Its whole-workstream scope includes coincidence and the separate speculative field-speed investigation. Broader layout policy and rollout remain proposals; this pilot does not adopt a field-speed ceiling or any other physical rule.
