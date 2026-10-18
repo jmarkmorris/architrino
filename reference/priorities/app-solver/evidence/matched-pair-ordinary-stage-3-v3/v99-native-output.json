@@ -1,0 +1,2 @@
+{"schema":"eom_ready/v2"}
+{"code":"unsupported_request_schema","error":"unsupported_request_schema: v2 schema required","schema":"eom_error/v2","status":"rejected"}

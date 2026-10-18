@@ -1,0 +1,4 @@
+KNOWN v2 and v3 browser runs and v2 Node schema/binding PASS before version/runtime targets.
+{"case":"unsupported request version accepted as v2 browser","accepted":false,"code":"unsupported_request_schema","launches":0}
+{"case":"unsupported request version mapped to v2 Node","accepted":false,"code":"unsupported_response_schema"}
+{"case":"runtime override on evolve silently omitted","accepted":false,"code":"unsupported_runtime_override","launches":0}

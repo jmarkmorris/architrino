@@ -189,6 +189,44 @@ struct ValidatedRestoreExpectation {
   std::optional<std::vector<ValidatedRunOriginMember>> origin = std::nullopt;
 };
 
+// Sealed: only a complete replay constructs one, holding exactly the
+// continuation, rejected-step total, rebuilt record and record identity that
+// replay produced. A restore result is plain, mutable data; issuing an
+// ordinary continuation from one authenticates it against this boundary.
+class ValidatedReplayBoundary {
+ public:
+  [[nodiscard]] const std::shared_ptr<const ValidatedEvolutionContinuation>&
+  continuation() const noexcept {
+    return continuation_;
+  }
+  [[nodiscard]] std::size_t replayed_rejected_steps() const noexcept {
+    return replayed_rejected_steps_;
+  }
+  [[nodiscard]] const std::shared_ptr<const ValidatedRunRecord>& record()
+      const noexcept {
+    return record_;
+  }
+  [[nodiscard]] const std::string& record_identity() const noexcept {
+    return record_identity_;
+  }
+
+ private:
+  friend struct ValidatedRunRecordAccess;
+  ValidatedReplayBoundary(
+      std::shared_ptr<const ValidatedEvolutionContinuation> continuation,
+      std::size_t replayed_rejected_steps,
+      std::shared_ptr<const ValidatedRunRecord> record,
+      std::string record_identity)
+      : continuation_(std::move(continuation)),
+        replayed_rejected_steps_(replayed_rejected_steps),
+        record_(std::move(record)),
+        record_identity_(std::move(record_identity)) {}
+  std::shared_ptr<const ValidatedEvolutionContinuation> continuation_;
+  std::size_t replayed_rejected_steps_ = 0;
+  std::shared_ptr<const ValidatedRunRecord> record_;
+  std::string record_identity_;
+};
+
 struct ValidatedRestoreResult {
   // restored | refused
   std::string status = "refused";
@@ -205,6 +243,10 @@ struct ValidatedRestoreResult {
   std::optional<ValidatedRunControls> controls = std::nullopt;
   std::size_t replayed_legs = 0;
   std::size_t replayed_steps = 0;
+  // Set only when restored: the rejected attempts of every replayed leg,
+  // summed from the certificates the replay issued. A sum that would
+  // overflow refuses the restore.
+  std::size_t replayed_rejected_steps = 0;
   // Set only when restored. All were issued during the replay.
   std::vector<ValidatedFarStepPath> paths;
   ValidatedFarStepEvidence evidence;
@@ -212,6 +254,8 @@ struct ValidatedRestoreResult {
   std::vector<ValidatedPathLedger> ledger;
   // The rebuilt record, to which further legs can be appended.
   std::optional<ValidatedRunRecord> record = std::nullopt;
+  // Set only when restored: the sealed boundary of this replay.
+  std::shared_ptr<const ValidatedReplayBoundary> boundary = nullptr;
 };
 
 // Restores against an expectation supplied from outside the record. The

@@ -25,7 +25,7 @@ For an unpacked skill, run `scripts/append-entry.mjs` from its directory. The he
 
 ## Discovery and optional upload
 
-The canonical source is this folder, `reference/op/skills/codex-claude-collaborate/`. Both `.agents/skills/codex-claude-collaborate` and `.claude/skills/codex-claude-collaborate` link to it. On 2026-10-10, Codex's live host catalog exposed the consolidated description at its discovery path; Claude automatic discovery remained untested. Explicit invocation remained untested on both hosts; path-resolution and metadata checks do not establish it.
+The canonical source is this folder, `reference/op/skills/codex-claude-collaborate/`. Both `.agents/skills/codex-claude-collaborate` and `.claude/skills/codex-claude-collaborate` link to it. On 2026-10-10, Codex's live host catalog exposed the consolidated description at its discovery path; explicit invocation on Codex remains untested. On 2026-10-12, a Claude Code desktop session listed the skill, and one explicit invocation through `.claude/skills/codex-claude-collaborate` loaded this text. Path-resolution and metadata checks alone do not establish discovery or invocation.
 
 If the top-level `.claude/skills/` directory was created after a Claude Code session started, [Claude Code requires `/reload-skills`](https://code.claude.com/docs/en/skills#edit-a-skill-during-a-session) to discover its skills, and again after later changes there. Do not interpret that session's missing skill as a symlink failure. Reload only when Op requests it.
 

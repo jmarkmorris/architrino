@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-turning-point-claude-review-audit9.py", line 112, in <module>
+    out["controls"]["event_controls_turning_point"] = c; print("event controls", c, flush=True); assert all(c.values())
+                                                                                                        ~~~^^^^^^^^^^^^
+AssertionError
+        2.24 real         2.02 user         0.04 sys
+            58097664  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                4374  page reclaims
+                 301  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 110  voluntary context switches
+                3716  involuntary context switches
+         32137448080  instructions retired
+          7545183095  cycles elapsed
+            48333304  peak memory footprint

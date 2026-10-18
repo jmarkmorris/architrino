@@ -1,0 +1,7 @@
+# Independent forward-profile barrier reference — October 14
+
+The [expanded Fraction/Taylor reference](profile_reference.py) imports no peer code or earlier checker. It passes unit-polynomial controls at both profile factors, exact rounding, square root and exponential controls before target evaluation. One short foreground execution uses the runnable shared venv and exits zero. Primitive lattice sums, contour rates, inverse norm and seed coefficients remain accepted declared inputs; the reference recomputes no lattice sum and evaluates no history.
+
+The target arithmetic reconstructs the chart constants, source-profile factor, expanded quadratic/cubic polynomial, barrier margin, start and root/chart margins, and endpoint comparisons using rational Taylor series rather than the peer's interval logarithm/exponential. It additionally bounds the third-derivative normalization and establishes that the specific contour-minus-correction lower bound is empty at the endpoint throughout the admitted amplitude range. This does not rule out actual growth or a stronger lower bound.
+
+Exact arithmetic results, stdout/exit receipt, input identities and first-reviewed source/README remain under `.local-data/aaa-work-threads/saturday-breathing-lattice-low-angular-momentum-2026-10-14/codex-lattice-review/`. The [review](../../analysis/saturday-localized-beyond-evolved-endpoint-codex-review-2026-10-14.md) supplies separate analytic reconstruction and correction requirements. No trajectory, physical ending, wake-speed arrival or optimum is established.

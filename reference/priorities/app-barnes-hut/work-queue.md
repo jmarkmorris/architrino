@@ -6,7 +6,7 @@ Legend: ✓ Done, ◐ Partial, ○ Not done. Completed objects are removed from 
 
 ## Ranked Next Objects
 
-No runnable object is selected. BHL-001 is complete under its narrowed theorem-and-independent-check boundary; the [work log](work-log.md#2026-10-11--bhl-001-selected-and-executed-with-claude) records its disposition and evidence. Production integration and the full moment remainder require separate selection.
+No runnable object is selected. BHL-001 is complete under its narrowed theorem-and-independent-check boundary; the [work log](work-log.md#2026-10-11--bhl-001-selected-and-executed-with-claude) records its disposition and evidence. The selected bounded EOM integration is complete at its [ordinary interface/replay scope](../app-solver/analysis/matched-pair-review-ordinary-final-live-2026-10-14.md); further production domains and the full moment remainder require separate selection.
 
 ## Deferred / blocked
 

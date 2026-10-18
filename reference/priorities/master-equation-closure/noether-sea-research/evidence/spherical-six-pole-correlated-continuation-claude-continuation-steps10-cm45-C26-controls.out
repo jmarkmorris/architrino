@@ -1,0 +1,57 @@
+pid 65927
+pid 65927
+T* [1.366684593623, 1.366684709182]; certified records 264 to t = 4.0066847091 (guaranteed 4.006684593623); joins exact True; controls 1.4 s
+controls: ALL PASS (27 controls: 14 frozen v5 + 13 new)
+   pass (C1) 264-record chain: 10 + 40 + 21 + 73 + 60 + 60 certified records, every file join exact-string, w-chain files accepted by name and sha25
+   pass (C2) known chain case on the 60 w-chain records: the sub-range form at sigma = Delta reproduces each certified end to 1e-18 and at sigma = 0
+   pass (C3) guaranteed coverage edge at the 264-record end: a range ending just below the lower endpoint of the last uncertain end is accepted, a r
+   pass (C4) signed closed forms (tangent hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the NE
+   pass (C5) signed-geometry box q in [0.81, 1.10], q' in [0, 0.85], v' in [0, 0.45] (400 cells): every separation r > 0.80 (v2: the smallest unlike
+   pass (C6) derivative identities of the rate function on the new box: exact hand-known case (source at rest: d hit/dt = hit_fixed'(q) qdot and tau
+   pass (C7) reconciliation at the accepted step-214 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum int
+   pass (C8) negative: with the wrong sign of the velocity term in D_t the class term is disjoint from the correct one for the unlike and antipode c
+   pass (C9) delay-root bracket at the step-214 state: half-widths 0.15 and 0.30 give intersecting delay enclosures agreeing to 1e-9 for all classes
+   pass (C10) restart regression (same-chain consistency, not independence): from the frozen step-213 strings the step intersects the frozen step-21
+   pass (C11) self-append: the control step (from step 213), appended and enriched through the checked path, is read on a sub-range inside its whole
+   pass (C12) restart wrapper: the accepted terminal record (name and sha256) is resumed with the exact step-214 strings and t0 an interval; refused
+   pass (C13) synthetic EVENT controls: positive-to-negative qddot detected as one maximum (also through an undecided end, with the speed hull over 
+certified records 324 to t = 4.6066847091 (guaranteed 4.606684593623); joins exact True; controls 2.9 s
+turning-point controls: ALL PASS (43 controls: 27 frozen v3 + 16 new)
+   pass (D1) 324-record chain: 10 + 40 + 21 + 73 + 60 + 60 + 60 certified records, every file join exact-string (including the three new t1b, t2, t3
+   pass (D2) known chain case on the 60 records of steps 215-274: the sub-range form at sigma = Delta reproduces each certified end to 1e-18 and at 
+   pass (D3) guaranteed coverage edge at the 324-record end: a range ending just below the lower endpoint of the last uncertain end is accepted, a r
+   pass (D4) signed closed forms (tangent hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the v3
+   pass (D5) signed-geometry box (v3) q in [1.04, 1.80], q' in [0, 1.20], w' in [-0.05, 0.45] (400 cells): every separation r > 0.70 (the smallest u
+   pass (D6) radial-derivative identities on the new box: exact rest-source case for all classes at q = 1.10, 1.30, 1.45, pi/2, 1.75; labelled numer
+   pass (D7) reconciliation at the accepted step-274 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum int
+   pass (D8) negative: at the step-274 state the D_t factor with the wrong sign of the velocity term is disjoint from the correct one for all three 
+   pass (D9) delay-root bracket at the step-274 state: half-widths 0.30 and 0.45 give intersecting delay enclosures agreeing to 1e-9 for all classes
+   pass (D10) restart regression (same-chain consistency, not independence): from the frozen step-273 strings the step intersects the frozen step-27
+   pass (D11) self-append: the control step (from step 273), appended and enriched through the checked path, is read on a sub-range inside its whole
+   pass (D12) restart wrapper: the accepted terminal record (name and sha256) is resumed with the exact step-274 strings and t0 an interval; refused
+   pass (D13) synthetic EVENT controls: w positive-to-negative detected as a PATH TURN (q maximum, |w| minimum), not as a speed maximum; a reversed 
+   pass (D9b) v3 bracket [chord - 0.45, chord + 0.90] at the step-274 state gives delay enclosures intersecting and agreeing to 1e-9 with the v2 bra
+   pass (D15, v3c) like-class bracket [chord - 0.90, chord + 0.90]: agrees with the v3b bracket to 1e-9 at the step-405 end for all classes; at the 
+   pass (D14) with the own records p1-p7 appended (name and sha256): the v2 and v3 brackets agree to 1e-9 at the step-334 state for all classes; at 
+correlated-continuation controls: ALL PASS (64 controls: 43 frozen v3c1 + 21 new); 7.5 s
+   pass (E1) 486-record admitted chain: 324 frozen plus 162 certified steps 275-436 from p1-p4, v3b p5-p7, v3c1 q1-q2 by name and sha256, every file join exac
+   pass (E2) KNOWN exact affine flow: q'' = -q, 60 steps of 0.01 from a 2e-4 box; the exact corner and centre solutions lie in the affine SET (2x2 membership)
+   pass (E3) NEGATIVE with a known truth: on the exact second-order step map (no remainder), the interior near-corner (q0 + 0.9e-4, w0 - 0.9e-4) propagated 60
+   pass (E4) KNOWN explicitly correlated polynomial image: one step q+ = q + w D - q^2 D^2/2, w+ = w - q^2 D from a correlated parallelogram (shared symbols);
+   pass (E5) receiver derivative of the class term including the delay-root dependence tau_q = r_q/(1 + r_q' w'): hand case (source at rest) for all classes a
+   pass (E6) one-sided seam (known Lipschitz mean-value inclusion): a source path with an acceleration jump of 0.8; for receiver intervals whose source times 
+   pass (N-R) NEGATIVE: with the Taylor-remainder and rounding symbols dropped, the exact solution of the known flow from a 1e-12 box (60 steps) is EXCLUDED w
+   pass (N-H) NEGATIVE: on a delayed test path, replacing the delayed-read width (history shifted by 1e-4) or the clock-origin width (time shifted by 1e-4) by
+   pass (E15) KNOWN cubic path with constant jerk: the exact step end lies in the integral (point-weight) remainder form and the frozen zero-hull form is wide
+   pass (E16) membership routines: the known false positive (columns (1,0), (0,1), shared (2,2), centre 0, point (3,-3)) is accepted by the RELAXED outer chec
+   pass (E17) certified membership routine (directed intervals): rank one, a point on the segment inside, beside it and beyond its end outside; rank two, an i
+   pass (E9) intersections: only two PROVED enclosures may be intersected (frozen accepted record, frozen step on a proved start box, reconstructed affine for
+   pass (E10) wider chart receiver q in [0.55, 2.10], source q' in [0, 1.80], w' in [-0.10, 0.45]: closed forms vs direct vectors at 150 points per class (fiv
+   pass (E7) refusals on the reader truncated at the anchor: a read into the possible (unguaranteed) end, a gap at append, an uncertified record, and any read
+   pass (E11) delay roots at the anchor state: the v3c1 bracket encloses the root of every class and agrees with a +-0.30 bracket where that straddles; unique
+   pass (E13) one reconstruction step from the anchor: the frozen step closes on the anchor box, the affine end and the frozen-step end intersect (empty would
+   pass (E18) KNOWN cover: a parallelogram with a linear function of exact range [-1.8, 1.8]; the union over the 8 pieces contains the exact range, is narrowe
+   pass (E19) NEGATIVE: dropping the slab that contains the known interior point (0.5, 0.25) from the cover misses that point (the full cover contains it)
+   pass (E20) NEGATIVE: with the support bounds shrunk by a relative 1e-20 (outward bound omitted) the cover excludes the exact vertex (1.2, 0.2), which the d
+   pass (E21) outer agreement on the first reconstruction step: the cover's l' evaluation on the whole end box reproduces the admitted end evaluation to 1e-25
+   pass (E12) event directions and first-turn status: the frozen v3c1 synthetic event controls (D13) are carried; a support minimum is called FIRST only if ev

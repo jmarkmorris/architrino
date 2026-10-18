@@ -1,0 +1,126 @@
+{
+ "controls": [
+  {
+   "name": "(C1) KNOWN dependent data (shared latent e1, e2 for receiver and sources; clock e3): CORR (latent subdivision) contains all 42 truths and is not wider than BOX for r, l, l'; matched widths and cost",
+   "BOX": {
+    "r": [
+     "-0.016596472619845756878",
+     "-0.0098187168372178984025"
+    ],
+    "l": [
+     "-0.047694210501337557498",
+     "-0.038258540066741487222"
+    ],
+    "lp": [
+     "-0.029308488362449654104",
+     "-0.020140411457324885995"
+    ],
+    "widths": [
+     "0.0067778",
+     "0.0094357",
+     "0.0091681"
+    ],
+    "cost_s": 0.01
+   },
+   "CORR": {
+    "r": [
+     "-0.015719131771633418277",
+     "-0.010699295408223800466"
+    ],
+    "l": [
+     "-0.046812352905282686546",
+     "-0.039137130049905016934"
+    ],
+    "lp": [
+     "-0.02660724499934882953",
+     "-0.022442653443609113072"
+    ],
+    "widths": [
+     "0.0050198",
+     "0.0076752",
+     "0.0041646"
+    ],
+    "cost_s": 0.288
+   },
+   "truth_range_lp": [
+    "-0.0253157276813133",
+    "-0.0236391238281086"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(C2) independent rectangle: the evaluator with SEPARATE parameters for receiver q and w covers every admissible corner (input level) and contains every truth (output level)",
+   "enc_lp": [
+    "-0.025486680960178531031",
+    "-0.02342266480055840218"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(N1) negative, lost-correlation in its dangerous form: TYING w's parameter to q's (eta := xi) leaves admissible rectangle corners uncovered (input level); output-level miss reported",
+   "corners_uncovered": [
+    [
+     "1.3262255",
+     "0.237015"
+    ],
+    [
+     "1.3262255",
+     "0.247015"
+    ],
+    [
+     "1.3362255",
+     "0.227015"
+    ],
+    [
+     "1.3362255",
+     "0.247015"
+    ],
+    [
+     "1.3462255",
+     "0.227015"
+    ],
+    [
+     "1.3462255",
+     "0.237015"
+    ]
+   ],
+   "output_misses_some_truth": false,
+   "pass": true
+  },
+  {
+   "name": "(N2) negative: CORR intersected with a shifted box NOT proved to contain the truth is empty or misses the truth; CORR intersected with BOX (both proved) keeps every truth",
+   "pass": true
+  },
+  {
+   "name": "(N3) negative: the source-history sensitivity entered with the swapped sign misses some truth (or the contraction empties)",
+   "pass": true
+  },
+  {
+   "name": "(N4) negative/known: independent source-history remainder +-0.03: omitted -> the history enclosure misses the true history (input level); kept -> it contains it and the output enclosure contains every truth",
+   "omitted_output_misses": true,
+   "pass": true
+  },
+  {
+   "name": "(K-A) EXACT affine flow with constant w: every latent cell encloses the exact q(t) - Q(s) = 0.33; cell width at most 2 x 0.02 / n; the independent box has width 0.04",
+   "max_cell_width": "0.00333333",
+   "box_width": "0.04",
+   "pass": true
+  },
+  {
+   "name": "(K-B) EXACT correlated polynomial image: F = (e1 + e2)(e1 - e2) has exact range [-1, 1] with known vertices; the latent subdivision contains it with excess at most 4/n + 4/n^2; the independent box gives [-4, 4]",
+   "subdivision": [
+    "-1.0833333333333333333",
+    "1.0833333333333333333"
+   ],
+   "box": [
+    "-4.0",
+    "4.0"
+   ],
+   "excess": "0.166667",
+   "pass": true
+  }
+ ],
+ "n": 3,
+ "controls_all_pass": true,
+ "wall_s": 3.036954879760742
+}

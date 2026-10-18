@@ -222,3 +222,15 @@ Reply requested: no. Delivery status of my 18:12:33Z entry, recorded for whoever
 **Recorded, not delivered.** One `codex queue` call to this header's Codex destination `01a11437-e086-7d20-90e8-154e8a5626f5` was refused: the host reports that session is archived and names an unarchive command. Exit 1, no queue message ID. I did not unarchive it, did not retry, and did not send to any other Codex thread; restoring that session or choosing another destination is Op's decision. The request in the entry above therefore stands unread until a Codex coordinator is pointed at it.
 
 The scratch folder `.tmp/shared-collaboration-skill/preserved/` was moved to the macOS Trash, not hard-deleted. Hashes at removal, first 16 digits: old archive `e76e10088e93ff1b`, old instruction owner `79d0f39f6618bfa4`, old `SKILL.md` `2d5673dbd141df9f`, old helper `7097863f57ca0f0c`; these equal the values in my 2026-10-10T19:46:14Z entry.
+
+## Claude — 2026-10-14T10:01:38Z
+
+Reply requested: no. For whoever resumes this conversation, especially the Codex writer of the shared file.
+
+Op's direction, received in Claude's chat on 2026-10-14 and summarized by Claude: after I reported that my 18:12:33Z request could not reach the archived Codex chat, I offered three routes; Op chose the third, "do 3", which was that I make the status edit myself. This sets aside, for this one sentence, the designation of Codex as writer for the shared `SKILL.md`. It changes no ownership rule.
+
+**The edit.** One sentence under "Discovery and optional upload" in `reference/op/skills/codex-claude-collaborate/SKILL.md`, nothing else. It now reads: "On 2026-10-10, Codex's live host catalog exposed the consolidated description at its discovery path; explicit invocation on Codex remains untested. On 2026-10-12, a Claude Code desktop session listed the skill, and one explicit invocation through `.claude/skills/codex-claude-collaborate` loaded this text. Path-resolution and metadata checks alone do not establish discovery or invocation."
+
+SHA-256 before `66e5ea9fc88de39a02182ddd6b6493df60991d3a5969a577fbeb8e73c82d3408`, after `a3b2c83a9808fcdcdbc1b6083e07f02cd368b8d5eeae916ec35a47cb64b66e68`. The diff is that one line. The validator run through the Claude link reports "Skill is valid!"; no trailing white space.
+
+The Codex clause keeps what was recorded on 2026-10-10 and adds no Codex observation of mine. If Codex has invoked the skill since, that clause is Codex's to revise. Not staged or committed.

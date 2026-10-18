@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-turning-point-claude-continuation-steps9-iv.py", line 240, in <module>
+    st1 = step9(enc, t273, Q273, V273, iv.mpf("0.01"), ALL3)
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-turning-point-claude-continuation-steps9-iv.py", line 75, in step9
+    st = step8(enc, t0, Q0, V0, Delta, moving)
+  File "<string>", line 67, in step8
+  File "<string>", line 143, in step7
+  File "<string>", line 189, in step6
+  File "<string>", line 181, in step
+  File "<string>", line 169, in dhit_dt
+  File "<string>", line 169, in dhit_dt
+  File "<string>", line 169, in dhit_dt
+  [Previous line repeated 991 more times]
+RecursionError: maximum recursion depth exceeded
+       16.15 real        15.98 user         0.06 sys
+            66568192  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                5133  page reclaims
+                  86  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  84  voluntary context switches
+                4104  involuntary context switches
+        274321609415  instructions retired
+         59684105604  cycles elapsed
+            54067728  peak memory footprint

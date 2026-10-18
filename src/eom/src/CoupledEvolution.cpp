@@ -1,4 +1,5 @@
 #include "architrino/eom/CoupledEvolution.hpp"
+#include "architrino/eom/ValidatedOrdinaryBridge.hpp"
 #include "architrino/eom/Decimal.hpp"
 #include "architrino/eom/JointAccelerationSnapshot.hpp"
 #include "architrino/eom/JointEndpointCorrector.hpp"
@@ -7201,6 +7202,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     const NativeAccelerationSnapshotCertificate* warm_snapshot,
     const std::vector<NativePublishedPath>* warm_histories,
     bool defer_root_precision_escalation) {
+  require_native_ordinary_method(request, "an acceleration snapshot");
   if (!request.surface_geometry && std::any_of(histories.begin(), histories.end(),
       [](const auto& path) { return path.surface_evidence != nullptr; }))
     throw EquationAdmissionError("unsupported_model_combination", "canonical evaluation cannot implicitly consume Surface continuation carriers");
@@ -7590,6 +7592,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step(
     const std::string& end_time,
     const NativeAccelerationSnapshotCertificate* reusable_start_snapshot,
     bool defer_endpoint_root_precision_escalation) {
+  require_native_ordinary_method(request, "the ordinary atomic step");
   if (request.matched_pair_enclosure_policy != kMatchedPairPolicyDisabled) {
     throw EquationAdmissionError(
         "unsupported_execution_policy",
@@ -7792,12 +7795,27 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     const NativeCoupledEvolutionRequest& request,
     const NativeAccelerationSnapshotCertificate* reusable_initial_snapshot) {
   const auto timing_start = SteadyClock::now();
+  // The validated method is refused here for every control it does not
+  // consume, then passes the ordinary admission below before it runs.
+  const bool validated_method = native_validated_method_selected(request);
+  if (validated_method) {
+    require_native_validated_controls(request);
+    if (reusable_initial_snapshot != nullptr) {
+      throw EquationAdmissionError(
+          "unsupported_execution_policy",
+          "the validated method does not consume a reusable start snapshot");
+    }
+  }
   if (request.matched_pair_enclosure_policy != kMatchedPairPolicyDisabled) {
     throw EquationAdmissionError(
         "unsupported_execution_policy",
         "matched-pair enclosure is qualified for acceleration snapshots only");
   }
   validate_request(request);
+  if (validated_method) {
+    return evolve_native_validated_histories(
+        request, estimate_coupled_working_set_bytes(request));
+  }
   std::vector<NativePublishedPath> histories;
   histories.reserve(request.paths.size());
   for (const auto& path : request.paths) {

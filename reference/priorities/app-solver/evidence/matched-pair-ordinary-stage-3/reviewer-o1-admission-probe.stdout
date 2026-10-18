@@ -1,0 +1,8 @@
+KNOWN static exact origin completed one step PASS
+KNOWN supported cancellation issued its admitted origin PASS
+TARGET above normal exception=unsupported_validated_domain: the validated origin preflight is not certified: at step 0.00000095367431640625 the producer refuses VFS-H1-01 (retained_past_speed): retained past is not below field speed
+TARGET above cancelled exception=unsupported_validated_domain: the validated origin preflight is not certified: at step 0.00000095367431640625 the producer refuses VFS-H1-01 (retained_past_speed): retained past is not below field speed
+TARGET above tiny-memory exception=unsupported_validated_domain: the validated origin preflight is not certified: at step 0.00000095367431640625 the producer refuses VFS-H1-01 (retained_past_speed): retained past is not below field speed
+TARGET overlap normal exception=unsupported_validated_domain: the validated origin preflight is not certified: at step 0.00000095367431640625 the producer refuses VFS-H2-01: step boxes are not farther apart than the step
+TARGET overlap cancelled exception=unsupported_validated_domain: the validated origin preflight is not certified: at step 0.00000095367431640625 the producer refuses VFS-H2-01: step boxes are not farther apart than the step
+TARGET overlap tiny-memory exception=unsupported_validated_domain: the validated origin preflight is not certified: at step 0.00000095367431640625 the producer refuses VFS-H2-01: step boxes are not farther apart than the step

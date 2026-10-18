@@ -1,0 +1,132 @@
+PASS  known: a file against itself is identical
+PASS  known: a change at named digest paths only is equal after projection
+PASS  known: a changed numerical token is a difference
+PASS  known: a changed legacy model fingerprint is a difference
+PASS  known: a named path that holds anything but a digest is a difference
+{
+ "identical": 72,
+ "projected": [
+  {
+   "file": "outputs/inspect-capabilities.stdout",
+   "removed": [
+    "/build/sourceDigest",
+    "/build/buildDigest"
+   ]
+  },
+  {
+   "file": "wire-outputs/capabilities.stdout",
+   "removed": [
+    "/build/sourceDigest",
+    "/build/buildDigest"
+   ]
+  },
+  {
+   "file": "wire-outputs/checkpoints/evolve-canonical.checkpoint.json",
+   "removed": [
+    "/resolvedModel/build/sourceDigest",
+    "/resolvedModel/build/buildDigest",
+    "/digest",
+    "/binding"
+   ]
+  },
+  {
+   "file": "wire-outputs/checkpoints/evolve-surface.checkpoint.json",
+   "removed": [
+    "/resolvedModel/build/sourceDigest",
+    "/resolvedModel/build/buildDigest",
+    "/digest",
+    "/binding"
+   ]
+  },
+  {
+   "file": "wire-outputs/checkpoints/evolve-three-path.checkpoint.json",
+   "removed": [
+    "/resolvedModel/build/sourceDigest",
+    "/resolvedModel/build/buildDigest",
+    "/digest",
+    "/binding"
+   ]
+  },
+  {
+   "file": "wire-outputs/evolve-canonical.stdout",
+   "removed": [
+    "/resolvedModel/build/sourceDigest",
+    "/resolvedModel/build/buildDigest",
+    "/modelDigest",
+    "/checkpoint/digest",
+    "/checkpoint/data/digest",
+    "/checkpoint/data/resolvedModel/build/sourceDigest",
+    "/checkpoint/data/resolvedModel/build/buildDigest",
+    "/checkpoint/data/binding"
+   ]
+  },
+  {
+   "file": "wire-outputs/evolve-surface.stdout",
+   "removed": [
+    "/resolvedModel/build/sourceDigest",
+    "/resolvedModel/build/buildDigest",
+    "/modelDigest",
+    "/checkpoint/digest",
+    "/checkpoint/data/digest",
+    "/checkpoint/data/resolvedModel/build/sourceDigest",
+    "/checkpoint/data/resolvedModel/build/buildDigest",
+    "/checkpoint/data/binding"
+   ]
+  },
+  {
+   "file": "wire-outputs/evolve-three-path.stdout",
+   "removed": [
+    "/resolvedModel/build/sourceDigest",
+    "/resolvedModel/build/buildDigest",
+    "/modelDigest",
+    "/checkpoint/digest",
+    "/checkpoint/data/digest",
+    "/checkpoint/data/resolvedModel/build/sourceDigest",
+    "/checkpoint/data/resolvedModel/build/buildDigest",
+    "/checkpoint/data/binding"
+   ]
+  },
+  {
+   "file": "wire-outputs/inspect-canonical.stdout",
+   "removed": [
+    "/resolvedModel/build/sourceDigest",
+    "/resolvedModel/build/buildDigest",
+    "/modelDigest"
+   ]
+  },
+  {
+   "file": "wire-outputs/inspect-surface.stdout",
+   "removed": [
+    "/resolvedModel/build/sourceDigest",
+    "/resolvedModel/build/buildDigest",
+    "/modelDigest"
+   ]
+  },
+  {
+   "file": "wire-outputs/inspect-three-path.stdout",
+   "removed": [
+    "/resolvedModel/build/sourceDigest",
+    "/resolvedModel/build/buildDigest",
+    "/modelDigest"
+   ]
+  }
+ ],
+ "different": [
+  {
+   "file": "wire-outputs/reject-request-v3.stdout",
+   "status": "different",
+   "removed": [],
+   "reason": "differs outside named paths"
+  }
+ ],
+ "missing": [],
+ "unnamedInReceipt": [
+  "wire-outputs/checkpoints/evolve-canonical.checkpoint.json",
+  "wire-outputs/checkpoints/evolve-surface.checkpoint.json",
+  "wire-outputs/checkpoints/evolve-three-path.checkpoint.json",
+  "wire-outputs/evolve-canonical.stdout",
+  "wire-outputs/evolve-surface.stdout",
+  "wire-outputs/evolve-three-path.stdout"
+ ]
+}
+FAIL  72 identical, 11 equal after projection, 1 different, 0 missing or extra; 6 needed a path the receipt did not name

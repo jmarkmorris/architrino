@@ -1,0 +1,191 @@
+Known cases, before any target
+  PASS  exact halving: 0.00390625 1 0.00014935 5
+  PASS  exact difference: 0.0002987 0.004375
+  PASS  K1 static run completes at the exact end: 0.015625
+  PASS  K1 step 1: both paths' tubes contain the closed-form brackets: receiver velocity [-7.812500000e-08, -7.812499999e-08]
+  PASS  K1 step 2: both paths' tubes contain the closed-form brackets: receiver velocity [-1.562500000e-07, -1.562500000e-07]
+  PASS  K2 t = 1/128: reviewer's position and velocity brackets for all three paths inside the tubes: step ends at 0.0078125
+  PASS  K2 t = 1/64: reviewer's position and velocity brackets for all three paths inside the tubes: step ends at 0.015625
+  PASS  K2 t = 1/32: reviewer's position and velocity brackets for all three paths inside the tubes: step ends at 0.03125
+
+Known cases passed before any target.
+
+Exact time, atomic shape, ledger, evidence and callbacks
+  PASS  a refused initial population or continuation returns no accepted time, evidence, ledger or continuation: 51 runs
+  PASS  every admitted run returns a continuation equal to its accepted state: time, ordinal, controller step, content chains, ledger: 87 runs
+  PASS  accepted steps sum exactly to the accepted end, and completed runs end exactly at the requested end: 87 runs
+  PASS  every attempt has the validated step shape: no substeps, no snapshot, atomic; refusals publish their inputs: 221 emitted attempts
+  PASS  ledger: totals equal the published radius tokens, never below the inherited radius, and each step inherits the previous total: per path and per axis
+  PASS  debit (I1-R4): inherited + increment is never below the published total, exactly: 2970 path-axis records; smallest margin 4.941e-324
+  PASS  debit (I1-R4): every charged increment is within the run's increment budget: 2970 path-axis records
+  PASS  debit (I1-R4): the driver's ledger is the producer's record, and the two reported parts together cover the charge: declared, growth, section allowance and step growth
+  PASS  every published segment covers the theorem's sets over the whole step, exactly: exact Bernstein coefficients
+  PASS  each accepted step starts at the previous end and is generated from its published content: time and digest chains
+  PASS  returned state is the accepted boundary: histories, evidence and ledger agree, or all equal the inputs when nothing was accepted: 87 runs
+  PASS  one callback per accepted step, in order, with the accepted time: 87 runs
+
+Controller extent
+  PASS  last step is shortened to end exactly at the requested end: 0.004375
+  PASS  large epoch: three exact boundaries from 10000000000: 10000000000.0002987, 10000000000.0005974, 10000000000.0008961
+  PASS  zero-length run completes with no attempt: state equals the inputs
+
+Fixed response to each refusal
+  PASS  N-H0-unequal-starts: refused at admission, no attempt: retained histories do not start at one common time
+  PASS  N-H0-evidence-missing: refused at admission, no attempt: histories declare radii but no evidence was supplied
+  PASS  N-H0-evidence-of-other-population: refused at admission, no attempt: evidence does not bind path
+  PASS  N-H0-changed-coupling: refused at admission, no attempt: generated history was published under a different coupling
+  PASS  N-H1-retained-past: validated_step_refused, 1 attempt(s), nothing published
+  PASS  N-H3-lower-sign-unresolved: lower_sign_unresolved, 5 attempt(s), nothing published
+  PASS  N-H4-minimum-step: minimum_step_exhausted, 4 attempt(s), nothing published
+  PASS  N-BUDGET-01-minimum-step: minimum_step_exhausted, 4 attempt(s), nothing published
+  PASS  N-BUDGET-02-inherited-total: validated_step_refused, 1 attempt(s), nothing published
+  PASS  N-attempt-limit: attempt_limit_exhausted, 3 attempt(s), nothing published
+  PASS  R-H1-step-velocity-box: first attempt VFS-H1-01 step_velocity_box at step 0.5, accepted at 0.25
+  PASS  R-H2-step-longer-than-separation: first attempt VFS-H2-01 - at step 12, accepted at 6
+  PASS  R-BUDGET-02-new-growth: first attempt VFS-BUDGET-02 new_growth at step 0.0078125, accepted at 0.00390625
+  PASS  total budget holds on every accepted step after the retries: declared velocity radius at most 2e-9
+  PASS  minimum step bounds the retries exactly: last attempted step 0.0009765625
+  PASS  N-request-wrong-policy: unsupported_execution_policy: validated evolution requires its own policy token
+  PASS  N-request-field-speed: unsupported_execution_policy: validated evolution is qualified for field speed 1 only
+  PASS  N-request-exponent-token: unsupported_execution_policy: validated evolution requires plain decimal time and speed to
+  PASS  N-request-zero-budget: unsupported_execution_policy: validated evolution request has an empty population, reverse
+  PASS  N-ordinary-entry-refuses-validated-token: unsupported_execution_policy: matched-pair enclosure is qualified for acceleration snapsho
+
+Cancellation and resumption
+  PASS  cancellation stops at an accepted boundary: after two accepted steps
+  PASS  resuming from the returned state reproduces the uninterrupted run exactly: identical content chains, end states and ledger
+  PASS  cancellation before the first attempt returns the inputs: no attempt
+
+Aliasing control through the driver
+  PASS  A-control-fine: completes at exactly 2 and contains the frozen true brackets: 512 accepted, 0 refused; velocity half-width 1.888072156e-07
+  PASS  A-control-fine: end velocity tube is disjoint from the aliased interval: separation 2.060047147e-07
+  PASS  A-control-fine: the history layer's end interval contains the rebuilt tube: published segment
+  PASS  A-control-from-aliased-step: completes at exactly 2 and contains the frozen true brackets: 142 accepted, 33 refused; velocity half-width 5.853260476e-07
+  NOTE  A-control-from-aliased-step: end velocity tube against the aliased interval: overlapping by 2.139094293e-07; the tube still contains the true bracket
+  PASS  A-control-from-aliased-step: the history layer's end interval contains the rebuilt tube: published segment
+  PASS  the adversarial step of 2 is refused on budget and shortened until certified: 7 refusals, first accepted step 0.015625
+
+Continuation and exact resumption (I1-R1)
+  PASS  reviewer's adaptive case: uninterrupted run shortens to 0.75 and takes four steps: initial step 1.5 refused on isolation
+  PASS  cancelled after two at 1.5 with the controller state retained: step 0.75, cooldown 3, ordinal 2
+  PASS  resumed with the continuation it reproduces the uninterrupted suffix and final state exactly: two steps of 0.75, identical content chains, ledger and continuation
+  NOTE  the same population without the continuation is a new run: steps ['1.5'], ordinal restarts at 0; content chains differ from the uninterrupted run
+  PASS  immediate cancellation after resume keeps the prior ledger and the same continuation: no attempt, nothing changed
+  PASS  cancelled during a cooldown that followed retries, then resumed: identical to the uninterrupted run: cooldown 2 at the cut; 11 accepted and 1 refused after it
+  PASS  a run halted on the total budget, resumed, halts again at once with its ledger intact: minimum_step_exhausted, ordinal 6
+  PASS  N-continuation-changed-initial-step: initial or minimum step differs
+  PASS  N-continuation-changed-increment-budget: a budget differs
+  PASS  N-continuation-total-budget-added: a budget differs
+  PASS  N-continuation-changed-cooldown-length: an attempt limit or the cooldown length differs
+  PASS  N-continuation-changed-attempt-limit: an attempt limit or the cooldown length differs
+  PASS  N-continuation-stale: accepted time differs from the requested start
+  PASS  N-continuation-foreign: evidence is not the continuation's evidence
+  PASS  N-continuation-changed-coupling: generated history was published under a different coupling
+
+Declared budgets must be finite and positive (I1-R2)
+  PASS  known: a finite positive total budget is admitted: one accepted step
+  PASS  known: the producer certifies with finite positive budgets: certified
+  PASS  driver refuses every malformed total budget before any attempt: 12 requests: each field with NaN, both infinities, zero and a negative value, and both fields together
+  PASS  producer declines every malformed increment or total budget: 20 steps, VFS-H0-01, nothing published
+
+Initial admission before every early return (I1-R3)
+  PASS  known: zero-length run at the histories' end completes: no attempt
+  PASS  known: zero-length run on a generated population with its own evidence completes and keeps it: evidence retained
+  PASS  known: a step limit of zero at a valid start halts as a limit: state returned
+  PASS  N-zero-length-mismatched-start: a history does not end exactly at the step start
+  PASS  N-early-cancellation-mismatched-start: a history does not end exactly at the step start
+  PASS  N-step-limit-mismatched-start: a history does not end exactly at the step start
+  PASS  N-zero-length-missing-evidence: histories declare radii but no evidence was supplied
+  PASS  N-zero-length-foreign-evidence: foreign evidence is not returned as a resumable state
+  PASS  N-early-cancellation-foreign-evidence: foreign evidence is not returned as a resumable state
+
+The increment budget is compared with all newly declared radius (I1-R4)
+  PASS  known: the reviewer's static case with a large budget accepts one step: one accepted step of 0.125
+  PASS  known: the newly declared source radius is all charged: declared 0, published 5.3290705182007545e-15, charged 5.3290705182007553e-15
+  NOTE  the part the first subject charged: step growth alone 2.3665827156630358e-30, below the published radius by a factor 2.252e+15
+  PASS  the reviewer's tiny-budget target publishes nothing: halted minimum_step_exhausted, VFS-BUDGET-01, 1 attempt(s), inputs returned
+  PASS  a position budget just above the newly declared radius accepts and charges all of it: budget 6e-15, charged 5.329070518200755e-15
+  PASS  a position budget just below the newly declared radius refuses: budget 5e-15 lies between the first subject's charge and the published radius
+  PASS  the public producer applies the same charge: two certified, two declined VFS-BUDGET-01 without publication
+  PASS  a second step inherits the first step's declared total and charges only the growth beyond it: inherited 5.3290705182007545e-15, charged 5.329070518200755e-15, published 1.0658141036401509e-14
+
+Supplied evidence must bind, and scalars must be admitted, before every early return (I1-R3b)
+  PASS  known: an exact prefix without evidence completes at zero length and claims no validated evidence: no_validated_step_accepted
+  PASS  known: a generated population with its own evidence completes at zero length, and that evidence binds its content chains: digest_after of every member equals the history's chain
+  PASS  N-stale-evidence-exact-prefix-zero-length: supplied evidence does not bind the exact prefix; refused with no accepted time, evidence or continuation
+  PASS  N-stale-evidence-exact-prefix-early-cancellation: supplied evidence does not bind the exact prefix; refused with no accepted time, evidence or continuation
+  PASS  N-stale-evidence-exact-prefix-step-limit: supplied evidence does not bind the exact prefix; refused with no accepted time, evidence or continuation
+  PASS  N-stale-evidence-exact-prefix-positive-run: supplied evidence does not bind the exact prefix; refused with no accepted time, evidence or continuation
+  PASS  N-foreign-evidence-exact-prefix-zero-length: supplied evidence does not bind the exact prefix; refused with no accepted time, evidence or continuation
+  PASS  the public producer declines the same object on the exact prefix: evidence does not bind path receiver: identifier, charge or history content differs
+  PASS  known: signed and exponent couplings are admitted at zero length: 0, -0.001, 1e-3, +0.001
+  PASS  known: an exponent coupling and signed, exponent charges take a certified step: one accepted step each
+  PASS  every malformed coupling is refused at zero length: 9 tokens
+  PASS  every malformed charge is refused at zero length: 9 tokens
+  PASS  a malformed coupling is refused under early cancellation, a step limit of zero and a positive run: three requests
+  PASS  the public producer declines a malformed coupling or charge: VFS-H0-01, nothing published
+
+Whole-step matched pairs (increment 2)
+  PASS  known: the truth reference's own known cases pass: static, symmetric, opposite pair, receding, piecewise, box
+  PASS  known: with no declaration the three-path run publishes exactly the increment 1 content: content chains equal those of K2-three-path
+  PASS  known: for the static pair at 10 and 11 the first-step bound is the analytic 2 kappa l / r^3 = 2e-9 / 1e-3: B = 2.0000000000458464e-06
+  PASS  accounting: N self relationships excluded, and each of the N (N - 1) others is individual, absent or one of two grouped members: 179 certified attempts
+  PASS  every grouped bound equals the tube-form radius recomputed exactly from the exposed bounds, rounded outward: 176 receiver-group intervals
+  PASS  two identities, one interval: a receiver whose sources are one grouped pair has [-B, B] on every axis, widened only by the outward rounding of one addition: acceleration boxes
+  PASS  truth: the closed-form pair contribution over the whole receiver box lies inside the grouped interval, every step: 13 grouped steps; smallest margin 2.645e-07; continuous over the box
+  PASS  truth: the exact closed-form contribution at both axis ends of the receiver box lies inside the individual route's acceleration box, every step: ungrouped runs; monotone on the axis, so the axis range
+  PASS  G-three-path-grouped: reviewer's position and velocity brackets for all three paths inside the grouped tubes at 1/128, 1/64, 1/32: 4 steps
+  PASS  G-three-path-grouped-fine: reviewer's position and velocity brackets for all three paths inside the grouped tubes at 1/128, 1/64, 1/32: 8 steps
+  NOTE  receiver position radius at t = 1/32: ungrouped 2.336e-19; grouped 9.794e-10; ungrouped-fine 1.142e-19; grouped-fine 9.804e-10
+  NOTE  grouped over ungrouped radius at t = 1/32: 4.193e+09 at step 1/128, 8.588e+09 at step 1/256
+  PASS  under the default increment budget the grouped run is refused and publishes nothing: VFS-BUDGET-01
+  PASS  G-two-path-declared: not grouped, and identical to the undeclared run: ['receiver_is_member'] []
+  PASS  G-mixed-declared: not grouped, and identical to the undeclared run: ['mixed_ungrouped'] []
+  PASS  G-same-charge-declared: not grouped, and identical to the undeclared run: ['not_opposite_ungrouped'] []
+  PASS  G-straddle-declared: not grouped, and identical to the undeclared run: ['bound_declined_ungrouped'] ['MPE-GEO-01']
+  PASS  G-both-absent-declared: not grouped, and identical to the undeclared run: ['both_absent'] []
+  PASS  known: with the follower at rest the one-step bound contains the static truth: B at rest = 2.0000000117e-06
+  PASS  between nodes: at both ends of the step the pair is seen at rest and its contribution is inside the at-rest bound: reception times 0 and 0.125, receiver point 0
+  PASS  between nodes: at reception times strictly inside the step the true contribution exceeds the at-rest bound: 30 of 129 sampled times; largest 2.6225e-06 against 2.0000e-06
+  PASS  between nodes: every sampled true contribution lies inside the whole-step grouped interval: 129 of 129 sampled times; B = 3.5895e-04; sampled, not continuous
+  PASS  between nodes: every sampled true contribution lies inside the individual route's whole-step box: 129 of 129 sampled times
+  PASS  endpoint: a member at the edge of the retained past declines the step on the lower sign, nothing published: VFS-H3-01
+  PASS  uncertainty: generated histories declared in a group without their evidence are refused: histories declare radii but no evidence was supplied
+  PASS  uncertainty: with their evidence the generated tubes are grouped, with radii in the separation and velocity allowance: relative speed bound 1.576769219885123e-05
+  PASS  N-group-unknown-path: a declared group names an unknown path nobody
+  PASS  N-group-one-path-twice: a declared group names one path twice
+  PASS  N-group-overlapping: path minus is declared in two groups
+  PASS  policy and declaration must come together, with the whole-step policy token: three requests
+  PASS  continuation: a grouped run cancelled after two steps and resumed with the same declaration equals the uninterrupted run: content chains, end states, ledger and continuation
+  PASS  N-continuation-groups-removed: the pair policy or the declared groups differ
+  PASS  N-continuation-members-swapped: the pair policy or the declared groups differ
+  PASS  N-continuation-groups-added: the pair policy or the declared groups differ
+  PASS  the public producer: the declaration changes the receiver's box and nothing about the members' own boxes: members are receivers of each other individually
+
+Validated run records and restoration by replay (increment 4)
+  PASS  known: the record file's identity and stored digest, recomputed here: identity f9a19d7575ae12ba, 70567 bytes
+  PASS  known: the record holds claims only: no evidence and no continuation, and an exact origin: forbidden keys []
+  PASS  known: resealing a sound record changes nothing, by the library and by the text alone: equal
+  PASS  known: restored under each basis, the state equals the original's accepted state: content chains, ledger and continuation: expected record, expected controls with and without origin, record only, and record only with another worker count
+  PASS  known: a further leg from the restored state equals the same leg from the original state, and the restored record accepts it: content chains, end states, ledger, continuation
+  PASS  known: the reviewer's frozen brackets at t = 1/32 lie inside the tubes of the leg continued from the restored state: all three paths, position and velocity
+  PASS  known: the grouped snapshot route admits the replayed evidence, and refuses the same histories without it: certified_enclosed with replayed evidence; MPE-EVIDENCE-01 without
+  PASS  known: a grouped run of three legs, cancelled after two steps and resumed under another worker count, restores to its own accepted state and equals the uninterrupted run: three legs, six steps
+  PASS  known: an adaptive run whose first leg's requested end clamps its step restores from its legs, and a changed first-leg end is refused at replay: leg 1 ended differently from its claim: replay gave completed  after 4 accepted steps
+  PASS  known: a record file is written to a temporary file and renamed: replaced no-temporary bad-path-refused
+  PASS  no refusal returns usable state: no paths, evidence, continuation, ledger or record: 94 refusals, 21 restorations
+  PASS  every result reports the identity of the bytes it read: 115 results
+  PASS  an empty, origin-only, contradictory or malformed expectation is refused before any replay, and is never treated as a record-only replay: 5 expectations
+  PASS  raw corruption with the stored digest left alone is refused on the digest under every basis, and on the bytes under the original's identity: one character changed
+  PASS  resealed changes: the original's record identity refuses every one; expected controls refuse every changed control and, with an origin, every changed origin; false step, leg and final claims are refused at replay or at the final comparison: 18 changes under four bases each
+  PASS  weaker bases accept what they cannot distinguish, and say so: a slack control, a slack operational limit, another origin when none was expected, other legs: 11 intended acceptances, each reporting its basis, the fields compared and an identity that is not the original's
+  PASS  malformed records are refused when read, for their content and not their digest: 15 records: scalars, policies, budgets, steps, origin radius, missing part, format, not JSON, not canonical, zero workers
+  PASS  the record builder refuses a certificate whose boundary fields disagree with its seals, a certificate of another run, and a leg that does not continue the record: 13 cases
+  PASS  a transcript field altered after the driver returned is carried as a claim and then refused at replay: step 1: replayed end differs from the claim
+  PASS  known: a genuine exact origin with no leg restores as itself, with no evidence and no continuation: record only, and by record identity
+  PASS  a record with no leg whose origin or controls the driver does not admit is refused at admission, with no usable state (I4-R1): 6 resealed changes, the reviewer's five and an initial step below the minimum
+  PASS  opening a record applies the driver's own admission (I4-R1): five origins refused
+  PASS  the record builder refuses a request whose population or evidence is not the record's last boundary (I4-R2): changed charge, changed identifier, later evidence; and the field-speed control as before
+  PASS  reading without replay returns claims only, cannot be extended, and returns nothing for a corrupt record: 3 legs, 6 steps, origin 3 paths
+
+157 of 157 assertions passed; 5 recorded quantities.

@@ -2,6 +2,19 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { findTheoryAbbreviationCandidates as audit } from "../scripts/lib/theory-abbreviation-audit.mjs";
 
+test("coefficient-weighted cubic summands retain mathematical meaning", () => {
+  for (const text of [
+    "$F=g[c_{E3}A^3+B]$",
+    "$C_Lgc_{E3}A^3\\approx0.00149$",
+    "The assembled bound is F_sgn = g[c_E3·A³ + Σ_br + ½𝒪].",
+    "The receiver cubic c_E3·A³ is unpaired.",
+  ]) assert.deepEqual(audit(text), [], text);
+  for (const text of ["A³ theory", "$c_{E3}A^3$", "c_E3·A³ branding", "$\\text{c_{E3}A^3+B}$"])
+    assert.equal(audit(text).length, 1, text);
+  const mixed = "F = c_E3·A³ + B; A³ theory";
+  assert.deepEqual(audit(mixed), [{index:mixed.lastIndexOf("A³"),label:"A³"}]);
+});
+
 test("a cubed subscripted distance is not a cubed theory abbreviation", () => {
   for (const text of ["$d_A^3$", "$x=1/d_A^3$", "$$\\frac{\\sin z}{2d_A^3}$$", "$r_A³$"]) {
     assert.deepEqual(audit(text), []);

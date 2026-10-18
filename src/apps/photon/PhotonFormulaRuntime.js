@@ -1095,12 +1095,15 @@ function getPhotonSelfHitRegime(fieldSpeedRatio) {
 }
 
 function classifyPhotonSelfHitRootAdmission(root = {}) {
-  const transmitterFactor = Number.isFinite(Number(root.transmitterFactor))
-    ? Number(root.transmitterFactor)
-    : Number.isFinite(Number(root.jacobian)) ? Number(root.jacobian) : null;
-  const causalFactorStatusCode = Number.isFinite(Number(root.causalFactorStatusCode))
-    ? Number(root.causalFactorStatusCode)
-    : 0;
+  // The Jacobian is a legacy derivative alias only when the factor is absent.
+  // Explicit invalid factor evidence must not be replaced or coerced to zero.
+  const factorEvidence = root.transmitterFactor === undefined
+    ? root.jacobian
+    : root.transmitterFactor;
+  const transmitterFactor = Number.isFinite(factorEvidence) ? factorEvidence : null;
+  const causalFactorStatusCode = Number.isFinite(root.causalFactorStatusCode)
+    ? root.causalFactorStatusCode
+    : null;
   if (transmitterFactor === null) {
     return {
       status: "rejected",

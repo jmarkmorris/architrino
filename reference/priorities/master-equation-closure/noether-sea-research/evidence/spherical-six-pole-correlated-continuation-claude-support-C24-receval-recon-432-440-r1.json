@@ -1,0 +1,656 @@
+{
+ "controls": [
+  {
+   "name": "(P1) reconstructed chain: all joins pass and every reconstructed end box meets the frozen end box of the same step",
+   "recon_steps": [
+    155,
+    492
+   ],
+   "skipped": [
+    [
+     "spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C22-r5.json",
+     493,
+     false
+    ]
+   ],
+   "join_failures": [],
+   "meet_failures": [],
+   "pass": true
+  },
+  {
+   "name": "(P2) known: the intersected lookup is non-empty and lies inside each separate lookup on a request inside both chains",
+   "how": "intersected",
+   "pass": true
+  },
+  {
+   "name": "(P4) negatives: a reconstructed record with a shifted origin fails the join check; an end box shifted off the frozen one is detected as non-meeting (unjustified intersection refused)",
+   "pass": true
+  },
+  {
+   "name": "(P3) replay consistency: whole-step dl/dt on frozen steps 360-370 (through the intersected lookup) is proved negative, as certified in the turning-point campaign",
+   "pass": true
+  },
+  {
+   "name": "(P5) negative: receiver sub-intervals with a wrong origin (two steps late) refuse",
+   "outcome": "sub-interval outside the receiver step",
+   "pass": true
+  },
+  {
+   "name": "(P6) KNOWN positive control of the sub-interval route: receiver cubic with acceleration 1 and jerk 2000 and an uncertain origin (1e-3), stationary partners (exact roots t - r_c(q(t), 0)); on all 4 sub-intervals the exact q and w ranges and the exact root range of each class lie inside the route's boxes; sub-intervals cover the uncertain step without a gap; the hull of the q boxes contains the exact whole-step range and lies inside the whole-step box",
+   "detail": [
+    [
+     0,
+     true,
+     true,
+     true
+    ],
+    [
+     1,
+     true,
+     true,
+     true
+    ],
+    [
+     2,
+     true,
+     true,
+     true
+    ],
+    [
+     3,
+     true,
+     true,
+     true
+    ]
+   ],
+   "no_gap": true,
+   "whole_step_ok": true,
+   "pass": true
+  },
+  {
+   "name": "(P7) negative: the rate remainder dropped (stored rate bound set to 0) misses the known path on some sub-interval (or refuses)",
+   "pass": true
+  },
+  {
+   "name": "(P8) negative: the origin uncertainty dropped (origin told as the point T0 while the true origin is T0 + 1e-3) misses the known path or roots (or refuses)",
+   "pass": true
+  },
+  {
+   "name": "(P9) negative: an initial source bracket shifted off the true root (by 0.1, beyond the 0.03 search widening) is refused by the residual-sign containment check",
+   "outcome": "start interval not proved to contain the root",
+   "pass": true
+  }
+ ],
+ "n_sub": 2,
+ "range": [
+  432,
+  440
+ ],
+ "controls_all_pass": true,
+ "target": [
+  {
+   "step": 432,
+   "frozen": {
+    "q_width": "0.024023",
+    "w_width": "0.029724",
+    "dl_whole": [
+     "-0.01343570115123177116731613",
+     "0.01674002950656614034271859"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1228753480564386944010923",
+     "-0.1001424470428121712364353"
+    ],
+    "a_r_whole": [
+     "0.02427806725102386702905431",
+     "0.02921982239597393358156233"
+    ],
+    "a_whole": [
+     "-0.112105451430929750381538",
+     "-0.09994424714714048217629726"
+    ],
+    "dl_whole_width": "0.030176",
+    "dl_sub_hull": [
+     "-0.01211457627076018004907345",
+     "0.01560805263320428324229016"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.027723",
+    "dl_end": [
+     "-0.004486561772385582164771732",
+     "0.008189923562336033129732063"
+    ],
+    "dl_end_sign": "und",
+    "dl_end_width": "0.012676"
+   },
+   "recon": {
+    "q_width": "0.0034781",
+    "w_width": "0.0015748",
+    "dl_whole": [
+     "-0.002920984879953373284021648",
+     "0.00639902589944961943827494"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1128741396666216314564982",
+     "-0.1092468119377028001861047"
+    ],
+    "a_r_whole": [
+     "0.02561564251079749754219638",
+     "0.02769978811067137517908144"
+    ],
+    "a_whole": [
+     "-0.1080579269309080796520391",
+     "-0.1035948907796911480396082"
+    ],
+    "dl_whole_width": "0.00932",
+    "dl_sub_hull": [
+     "-0.001794332724549846269840165",
+     "0.005333640889736403178674123"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.007128",
+    "dl_end": [
+     "0.0002198189349410499833575779",
+     "0.003477807973171816228264148"
+    ],
+    "dl_end_sign": "pos",
+    "dl_end_width": "0.003258"
+   }
+  },
+  {
+   "step": 433,
+   "frozen": {
+    "q_width": "0.024322",
+    "w_width": "0.030101",
+    "dl_whole": [
+     "-0.01358020786601646062551554",
+     "0.01722244382369119138430877"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1229898310801816160020153",
+     "-0.1000018606046027292563649"
+    ],
+    "a_r_whole": [
+     "0.02482938921192833498321086",
+     "0.02986806841443179091449336"
+    ],
+    "a_whole": [
+     "-0.1133680436933108734686333",
+     "-0.1009270562535058229087852"
+    ],
+    "dl_whole_width": "0.030803",
+    "dl_sub_hull": [
+     "-0.01226013238316939967800932",
+     "0.0160632931452343055812043"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.028323",
+    "dl_end": [
+     "-0.004467393492381895907594445",
+     "0.008484862930041931320474309"
+    ],
+    "dl_end_sign": "und",
+    "dl_end_width": "0.012952"
+   },
+   "recon": {
+    "q_width": "0.0034939",
+    "w_width": "0.0015812",
+    "dl_whole": [
+     "-0.002824308354678946871935808",
+     "0.006633009921012767120362399"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1128700895436041233189126",
+     "-0.109214435191295553911359"
+    ],
+    "a_r_whole": [
+     "0.02620253406357077815226027",
+     "0.02831037589264085400983281"
+    ],
+    "a_whole": [
+     "-0.1092048690271684607453271",
+     "-0.1046775916927202442181283"
+    ],
+    "dl_whole_width": "0.0094573",
+    "dl_sub_hull": [
+     "-0.001686571446534067831237588",
+     "0.005558320342994575680349165"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.0072449",
+    "dl_end": [
+     "0.0003679838946762586990292738",
+     "0.003670553582006891950462046"
+    ],
+    "dl_end_sign": "pos",
+    "dl_end_width": "0.0033026"
+   }
+  },
+  {
+   "step": 434,
+   "frozen": {
+    "q_width": "0.024625",
+    "w_width": "0.030486",
+    "dl_whole": [
+     "-0.01374947632479852612122117",
+     "0.01769841300618008029625568"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1231061996218416433366064",
+     "-0.09985984094239046674596976"
+    ],
+    "a_r_whole": [
+     "0.02538423941748648450599553",
+     "0.03052144221372101519695387"
+    ],
+    "a_whole": [
+     "-0.1146532765374423710414406",
+     "-0.1019246543888172173845988"
+    ],
+    "dl_whole_width": "0.031448",
+    "dl_sub_hull": [
+     "-0.01238942858073618416152409",
+     "0.01652902469565903031946281"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.028918",
+    "dl_end": [
+     "-0.004431865062407792063335139",
+     "0.008803225193386019689892873"
+    ],
+    "dl_end_sign": "und",
+    "dl_end_width": "0.013235"
+   },
+   "recon": {
+    "q_width": "0.0035097",
+    "w_width": "0.0015877",
+    "dl_whole": [
+     "-0.002704450190709352419425727",
+     "0.006848313200065898885239008"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1128624162412512036753677",
+     "-0.1091815630246547312951079"
+    ],
+    "a_r_whole": [
+     "0.02679315608307107326766299",
+     "0.0289215436066820774141319"
+    ],
+    "a_whole": [
+     "-0.1103681902193098301469891",
+     "-0.1057777970218314070240376"
+    ],
+    "dl_whole_width": "0.0095528",
+    "dl_sub_hull": [
+     "-0.001557359701309234212920838",
+     "0.00576440378250077840405564"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.0073218",
+    "dl_end": [
+     "0.0005211582143675098875464654",
+     "0.003863507321437168789027245"
+    ],
+    "dl_end_sign": "pos",
+    "dl_end_width": "0.0033423"
+   }
+  },
+  {
+   "step": 435,
+   "frozen": {
+    "q_width": "0.024932",
+    "w_width": "0.030878",
+    "dl_whole": [
+     "-0.01391029065162902488153465",
+     "0.01820154660647717102081029"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1232220845946903077678666",
+     "-0.0997126533540606666267766"
+    ],
+    "a_r_whole": [
+     "0.02593891475086709609874033",
+     "0.03117758837764611259212092"
+    ],
+    "a_whole": [
+     "-0.1159599482765770292682087",
+     "-0.1029340027042399487275904"
+    ],
+    "dl_whole_width": "0.032112",
+    "dl_sub_hull": [
+     "-0.01254684790480664370994429",
+     "0.01700816589428933593157742"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.029555",
+    "dl_end": [
+     "-0.004422554889634753859862931",
+     "0.009108221092053748000411969"
+    ],
+    "dl_end_sign": "und",
+    "dl_end_width": "0.013531"
+   },
+   "recon": {
+    "q_width": "0.0035256",
+    "w_width": "0.0015936",
+    "dl_whole": [
+     "-0.002605973452474631642889097",
+     "0.007087844741927154468586839"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1128550207212183904503478",
+     "-0.1091450677944757583948338"
+    ],
+    "a_r_whole": [
+     "0.02738441544136294353334157",
+     "0.02953721348900976983925566"
+    ],
+    "a_whole": [
+     "-0.1115517243269212537751544",
+     "-0.1068939094349244111345185"
+    ],
+    "dl_whole_width": "0.0096938",
+    "dl_sub_hull": [
+     "-0.001445857750640169560074474",
+     "0.005994447303870645234081425"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.0074403",
+    "dl_end": [
+     "0.0006530860273907266032563615",
+     "0.004062677476499760564234428"
+    ],
+    "dl_end_sign": "pos",
+    "dl_end_width": "0.0034096"
+   }
+  },
+  {
+   "step": 436,
+   "frozen": {
+    "q_width": "0.025243",
+    "w_width": "0.031277",
+    "dl_whole": [
+     "-0.01409517858946911018681055",
+     "0.01869735343640245108691264"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1233396484215391422302605",
+     "-0.09956316974796509613067242"
+    ],
+    "a_r_whole": [
+     "0.02649632215494721515383349",
+     "0.03183867893386203354801469"
+    ],
+    "a_whole": [
+     "-0.1172906090573743428811939",
+     "-0.1039585051910565837341846"
+    ],
+    "dl_whole_width": "0.032793",
+    "dl_sub_hull": [
+     "-0.01269198729189908940775276",
+     "0.01748419062597287861386444"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.030176",
+    "dl_end": [
+     "-0.004392939284266927687924895",
+     "0.009431703258895013299159984"
+    ],
+    "dl_end_sign": "und",
+    "dl_end_width": "0.013825"
+   },
+   "recon": {
+    "q_width": "0.0035416",
+    "w_width": "0.0015996",
+    "dl_whole": [
+     "-0.002485391855699970867752089",
+     "0.007305570916010100148949516"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1128440166198324227058292",
+     "-0.1091087596571244046456148"
+    ],
+    "a_r_whole": [
+     "0.02797992986390383857154582",
+     "0.03015373631660078510968754"
+    ],
+    "a_whole": [
+     "-0.1127516664641710604027606",
+     "-0.1080278834204226925538058"
+    ],
+    "dl_whole_width": "0.009791",
+    "dl_sub_hull": [
+     "-0.001316871380510701145803084",
+     "0.006202645106889686515338188"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.0075195",
+    "dl_end": [
+     "0.0008079158430221866433984755",
+     "0.004251079691121588408659169"
+    ],
+    "dl_end_sign": "pos",
+    "dl_end_width": "0.0034432"
+   }
+  },
+  {
+   "step": 437,
+   "frozen": "absent",
+   "recon": {
+    "q_width": "0.0035576",
+    "w_width": "0.0016056",
+    "dl_whole": [
+     "-0.002388841807912707937804255",
+     "0.007546572214722175348690537"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1128336983146594996833172",
+     "-0.109069208659440799198334"
+    ],
+    "a_r_whole": [
+     "0.02857651577913549954537734",
+     "0.03077522541693827560493272"
+    ],
+    "a_whole": [
+     "-0.1139722181278999142914051",
+     "-0.1091780873679494633572254"
+    ],
+    "dl_whole_width": "0.0099354",
+    "dl_sub_hull": [
+     "-0.00120765685366982910442234",
+     "0.006434410948517555945610453"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.0076421",
+    "dl_end": [
+     "0.0009378126399656855784681013",
+     "0.0044590677453191519176045"
+    ],
+    "dl_end_sign": "pos",
+    "dl_end_width": "0.0035213"
+   }
+  },
+  {
+   "step": 438,
+   "frozen": "absent",
+   "recon": {
+    "q_width": "0.0035737",
+    "w_width": "0.0016119",
+    "dl_whole": [
+     "-0.002267846916659141880465018",
+     "0.007768831971300062752193369"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1128195464499690724940571",
+     "-0.1090291101158221997204159"
+    ],
+    "a_r_whole": [
+     "0.02917686967142398915970844",
+     "0.0313971944230532909120164"
+    ],
+    "a_whole": [
+     "-0.115209902067929874668809",
+     "-0.1103467050953689687219413"
+    ],
+    "dl_whole_width": "0.010037",
+    "dl_sub_hull": [
+     "-0.001078219199517762899348785",
+     "0.006648050553137789885833739"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.0077263",
+    "dl_end": [
+     "0.001093861153208336348959195",
+     "0.004648121999654362120198835"
+    ],
+    "dl_end_sign": "pos",
+    "dl_end_width": "0.0035543"
+   }
+  },
+  {
+   "step": 439,
+   "frozen": "absent",
+   "recon": {
+    "q_width": "0.0035898",
+    "w_width": "0.0016187",
+    "dl_whole": [
+     "-0.002147063752194462255408067",
+     "0.008007110604439665593477653"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1128039022045729169945658",
+     "-0.1089865504605536770614827"
+    ],
+    "a_r_whole": [
+     "0.02977911516977625706218914",
+     "0.0320219990236489231696776"
+    ],
+    "a_whole": [
+     "-0.1164670933782634953136018",
+     "-0.1115327613876956389740927"
+    ],
+    "dl_whole_width": "0.010154",
+    "dl_sub_hull": [
+     "-0.0009458813477575907892765767",
+     "0.006878565869934367035075239"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.0078244",
+    "dl_end": [
+     "0.001227854473295884068274238",
+     "0.004860292813606216280773247"
+    ],
+    "dl_end_sign": "pos",
+    "dl_end_width": "0.0036324"
+   }
+  },
+  {
+   "step": 440,
+   "frozen": "absent",
+   "recon": {
+    "q_width": "0.003606",
+    "w_width": "0.001626",
+    "dl_whole": [
+     "-0.002050159144799007449524368",
+     "0.008237761901900468801487215"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1127889833795807022383141",
+     "-0.1089416423571612881427155"
+    ],
+    "a_r_whole": [
+     "0.03038355267923819097733938",
+     "0.03265172290163132797762023"
+    ],
+    "a_whole": [
+     "-0.1177452930851637178809493",
+     "-0.1127362268764807637489163"
+    ],
+    "dl_whole_width": "0.010288",
+    "dl_sub_hull": [
+     "-0.0008364087738094890537794446",
+     "0.007096857041644824513434665"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.0079333",
+    "dl_end": [
+     "0.001381948956834408404280567",
+     "0.005050517577335922658386619"
+    ],
+    "dl_end_sign": "pos",
+    "dl_end_width": "0.0036686"
+   }
+  }
+ ],
+ "wall_s": 44.29645276069641
+}

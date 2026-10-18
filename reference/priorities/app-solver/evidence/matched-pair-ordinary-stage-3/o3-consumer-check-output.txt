@@ -1,0 +1,29 @@
+Known cases, before any target
+PASS  known: every retained v2 evolution view, Surface included, is byte-identical under the new projection  [8 of 8]
+PASS  known: the Surface stage E fixture view assertions hold  []
+PASS  known: an error document passes through unchanged  []
+
+Targets
+PASS  eom_inspection/v2 passes through unchanged  []
+PASS  eom_inspection/v3 passes through unchanged  []
+PASS  eom_equation_capabilities/v1 passes through unchanged  []
+PASS  eom_cancel_request/v2 passes through unchanged  []
+PASS  an unknown evolution schema is refused, raw evidence retained  [record_projection_unsupported]
+PASS  v3 view: the attempt log is a stride sample of original rows, never interpolated, last row kept, count recorded  [256 rows, 129 shown, stride 2]
+PASS  v3 view: under 12 MiB, v2 ledgers projected away and counted, ledger totals kept  [4159656 bytes]
+PASS  v3 view of a 200000-row log stays bounded and keeps the last row  [129 rows shown]
+PASS  binding: the genuine v3 response binds, including the server digest recomputed in Node  []
+PASS  binding: a changed executionDigest is refused  []
+PASS  binding: a changed reported execution is refused  []
+PASS  binding: a different declared limit is refused  []
+PASS  binding: a v2 response to a v3 request is refused  []
+PASS  binding: a v3 response to a v2 request is refused  []
+PASS  binding: v2 traffic is untouched  []
+PASS  browser: a v3 run with matching inspection and response is accepted  []
+PASS  browser: a v3 response with another executionDigest is refused  []
+PASS  browser: a v2 response to a v3 request is refused  []
+PASS  browser: a v3 request with a v2 inspection is refused  []
+PASS  browser: a v2 run is still accepted as before  []
+PASS  browser: a v3 response to a v2 request is refused  []
+
+24 of 24 checks passed.

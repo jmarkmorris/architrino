@@ -1,0 +1,3 @@
+KNOWN genuine ordinary checkpoint creation and restart PASS
+TARGET different-origin certificate refused=checkpoint_origin_mismatch: the generating record's origin is not the original request's
+TARGET changed public certificate histories refused=checkpoint_claim_mismatch: the certificate's histories are not the sealed accepted boundary's

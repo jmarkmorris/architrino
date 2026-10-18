@@ -1,0 +1,542 @@
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o1-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp .tmp/eom-ordinary-integration-2026-10-14/o1v2-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o1-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp	2026-10-14 06:21:31
++++ .tmp/eom-ordinary-integration-2026-10-14/o1v2-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp	2026-10-14 06:47:49
+@@ -41,19 +41,26 @@
+ 
+ // Runs a selected request that passed the ordinary admission through the
+ // driver, with `memory_estimate_bytes` the ordinary estimate of the
+-// supplied population. validated_run holds the driver's full certificate;
+-// validated_continuation the boundary to resume from, when one was
+-// admitted. When the estimate with growth exceeds the memory budget, the
+-// population is still admitted by a zero-length driver run, so an
+-// unsupported population is refused rather than reported as a resource
+-// halt; an admitted one returns halted with memory_budget_exhausted, no
+-// step and no continuation.
++// supplied population. In order, before any early return:
++//   1. a finite working-set bound, or EquationAdmissionError
++//      validated_resource_bound_unavailable;
++//   2. at the start of a run that is not resuming, the validated owner's
++//      own step hypotheses at the shortest step the controller can attempt,
++//      or EquationAdmissionError unsupported_validated_domain naming the
++//      producer's code; a population the driver's admission refuses is
++//      left to the driver;
++//   3. the memory budget: over it, a zero-length driver run reports a
++//      population the driver refuses as that refusal, and an admitted one
++//      returns halted with memory_budget_exhausted, no step and no
++//      continuation;
++//   4. the driver, with its own admission before its early returns.
++// validated_run holds the driver's full certificate; validated_continuation
++// the boundary to resume from, when one was admitted.
+ [[nodiscard]] NativeCoupledEvolutionCertificate
+ evolve_native_validated_histories(
+     const NativeCoupledEvolutionRequest& request,
+     std::uint64_t memory_estimate_bytes);
+ 
+-
+ // The admitted accepted boundary of a selected run: the driver's sealed
+ // continuation and the run's cumulative rejected-step count. Sealed like the
+ // driver's: only the bridge constructs one, so in this process it is always
+@@ -104,10 +111,17 @@
+ [[nodiscard]] ValidatedEvolutionRequest native_validated_request(
+     const NativeCoupledEvolutionRequest& request);
+ 
+-// The bridge's working-set estimate for a selected request: the ordinary
+-// estimate of the supplied population plus the evidence and ledger, and the
+-// growth of retained attempts and published histories that this invocation
+-// can reach. An admission estimate, not a measured resident-set bound.
++// The bridge's bound on the working set this invocation can add to the
++// ordinary estimate of the supplied population, from the shapes the driver
++// and the bridge actually retain: per reachable attempt, the attempt record
++// and three atomic-step copies; per reachable accepted step and path, one
++// history version with its copied tail block and block index. Reachable
++// steps and attempts, and time-token lengths, use exact decimal arithmetic;
++// coefficient and radius tokens are charged at the 1076-character maximum
++// of an exact binary64 expansion. Throws EquationAdmissionError
++// validated_resource_bound_unavailable when no finite bound can be
++// established. An admission bound with stated allowances, not a measured
++// resident-set cost.
+ [[nodiscard]] std::uint64_t estimate_native_validated_growth_bytes(
+     const NativeCoupledEvolutionRequest& request);
+ 
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o1-tree/src/eom/native/eom_validated_ordinary_fixture_cli.cpp .tmp/eom-ordinary-integration-2026-10-14/o1v2-tree/src/eom/native/eom_validated_ordinary_fixture_cli.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o1-tree/src/eom/native/eom_validated_ordinary_fixture_cli.cpp	2026-10-14 06:29:23
++++ .tmp/eom-ordinary-integration-2026-10-14/o1v2-tree/src/eom/native/eom_validated_ordinary_fixture_cli.cpp	2026-10-14 06:48:12
+@@ -771,21 +771,49 @@
+     refused_evolve("N-restart-count-without-continuation", fresh);
+     (void)second;
+   }
+-  // Admission of an unsupported carrier precedes every early return.
+-  ordinary_case("N-above-wake-speed",
+-                selected("o-fast", above_wake_speed(), "0.015625"));
++  // Unsupported origins are refused by the validated owner's own step
++  // hypotheses before every early return (O1-R1): a source above wake
++  // speed, a receiver above wake speed, coincident paths, and controls whose
++  // increment budget admits no step at all.
+   {
+-    Ordinary tiny = selected("o-fast-tiny", above_wake_speed(), "0.015625");
+-    tiny.memory_budget_bytes = 1;
+-    ordinary_case("N-above-wake-speed-tiny-memory", tiny);
+-    Ordinary cancelled = selected("o-fast-cancel", above_wake_speed(),
+-                                  "0.015625");
+-    cancelled.cancellation_requested = [] { return true; };
+-    ordinary_case("N-above-wake-speed-cancelled", cancelled);
+-    Ordinary limited = selected("o-fast-limit", above_wake_speed(),
+-                                "0.015625");
+-    limited.diagnostic_maximum_accepted_steps = 1;
+-    ordinary_case("N-above-wake-speed-limit", limited);
++    struct Origin {
++      std::string name;
++      Ordinary request;
++    };
++    Ordinary moving_receiver = selected("o-r125", receding(), "0.0078125");
++    moving_receiver.paths[0] = {
++        "receiver", "1",
++        eom::RetainedHistory("receiver-history",
++                             {eom::CubicHistorySegment("-20", "0",
++                                                       on_z("0", "1.25"))})};
++    Ordinary coincident = selected("o-coincident", static_pair("0"),
++                                   "0.0078125");
++    coincident.minimum_step = "0.00000095367431640625";
++    std::vector<Origin> origins{
++        {"source-above-wake-speed",
++         selected("o-fast", above_wake_speed(), "0.015625")},
++        {"receiver-above-wake-speed", moving_receiver},
++        {"coincident-paths", coincident},
++        {"budget-admits-no-step",
++         grouped(selected("o-tight", three_static(), "0.03125"))}};
++    for (auto& [name, base] : origins) {
++      refused_evolve("N-origin-" + name, base);
++      Ordinary cancelled = base;
++      cancelled.cancellation_requested = [] { return true; };
++      refused_evolve("N-origin-" + name + "-cancelled", cancelled);
++      Ordinary tiny = base;
++      tiny.memory_budget_bytes = 1;
++      refused_evolve("N-origin-" + name + "-tiny-memory", tiny);
++      Ordinary limited = base;
++      limited.diagnostic_maximum_accepted_steps = 1;
++      refused_evolve("N-origin-" + name + "-limit", limited);
++    }
++  }
++  // A working-set bound that cannot be established is refused.
++  {
++    Ordinary huge = selected("o-no-bound", three_static(), "1",
++                             "0.000000000000000000000000000000000000000000001");
++    refused_evolve("N-no-finite-resource-bound", huge);
+   }
+   // The driver's own admission through the ordinary entry: evidence issued
+   // for another population, and a continuation whose declaration differs.
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o1-tree/src/eom/src/ValidatedOrdinaryBridge.cpp .tmp/eom-ordinary-integration-2026-10-14/o1v2-tree/src/eom/src/ValidatedOrdinaryBridge.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o1-tree/src/eom/src/ValidatedOrdinaryBridge.cpp	2026-10-14 06:21:15
++++ .tmp/eom-ordinary-integration-2026-10-14/o1v2-tree/src/eom/src/ValidatedOrdinaryBridge.cpp	2026-10-14 06:47:36
+@@ -8,6 +8,8 @@
+ #include <cmath>
+ #include <limits>
+ #include <memory>
++#include <optional>
++#include <string>
+ #include <utility>
+ 
+ namespace architrino::eom {
+@@ -46,21 +48,6 @@
+   return value;
+ }
+ 
+-std::uint64_t add(std::uint64_t a, std::uint64_t b) {
+-  return a > std::numeric_limits<std::uint64_t>::max() - b
+-      ? std::numeric_limits<std::uint64_t>::max() : a + b;
+-}
+-
+-std::uint64_t multiply(std::uint64_t a, std::uint64_t b) {
+-  return a != 0U && b > std::numeric_limits<std::uint64_t>::max() / a
+-      ? std::numeric_limits<std::uint64_t>::max() : a * b;
+-}
+-
+-std::size_t saturating_sum(std::size_t a, std::size_t b) {
+-  return a > std::numeric_limits<std::size_t>::max() - b
+-      ? std::numeric_limits<std::size_t>::max() : a + b;
+-}
+-
+ }  // namespace
+ 
+ bool native_validated_method_selected(
+@@ -292,58 +279,230 @@
+   return out;
+ }
+ 
++namespace {
++
++// A plain decimal token as an exact scaled integer, when it has at most 36
++// significant digits after scaling; otherwise empty.
++struct Scaled {
++  unsigned __int128 digits = 0;
++  std::size_t scale = 0;
++};
++
++std::optional<Scaled> scaled_decimal(const std::string& token) {
++  if (token.empty() || token[0] == '-' || token[0] == '+') return std::nullopt;
++  Scaled out;
++  bool point = false;
++  std::size_t significant = 0;
++  for (char c : token) {
++    if (c == '.') {
++      if (point) return std::nullopt;
++      point = true;
++      continue;
++    }
++    if (c < '0' || c > '9') return std::nullopt;
++    if (out.digits != 0 || c != '0') ++significant;
++    if (significant > 36) return std::nullopt;
++    out.digits = out.digits * 10U + static_cast<unsigned>(c - '0');
++    if (point) ++out.scale;
++  }
++  return out;
++}
++
++std::optional<unsigned __int128> rescaled(const Scaled& value, std::size_t scale) {
++  unsigned __int128 out = value.digits;
++  for (std::size_t i = value.scale; i < scale; ++i) {
++    if (out > (~static_cast<unsigned __int128>(0)) / 10U) return std::nullopt;
++    out *= 10U;
++  }
++  return out;
++}
++
++std::size_t fraction_digits(const std::string& token) {
++  const auto point = token.find('.');
++  return point == std::string::npos ? 0U : token.size() - point - 1U;
++}
++
++std::size_t integer_digits(const std::string& token) {
++  const auto point = token.find('.');
++  return point == std::string::npos ? token.size() : point;
++}
++
++// Heap bytes a std::string of `length` characters can hold, with allocator
++// overhead: an upper allowance, not a measurement.
++std::uint64_t string_allowance(std::uint64_t length) {
++  return length + 48U;
++}
++
++[[noreturn]] void no_bound(const std::string& why) {
++  throw EquationAdmissionError(
++      "validated_resource_bound_unavailable",
++      "no finite working-set bound can be established: " + why);
++}
++
++}  // namespace
++
+ std::uint64_t estimate_native_validated_growth_bytes(
+     const NativeCoupledEvolutionRequest& request) {
+   const ValidatedEvolutionRequest translated =
+       native_validated_request(request);
+-  const std::uint64_t path_count = request.paths.size();
+-  // Longest token and segment count of the supplied population, as the
+-  // allowance for each future segment.
+-  std::uint64_t longest_token = 64U;
+-  std::uint64_t supplied_segments = 0U;
++  using U = unsigned __int128;
++  const U limit = std::numeric_limits<std::uint64_t>::max();
++  const auto checked = [&](U value, const char* what) {
++    if (value > limit) no_bound(what);
++    return value;
++  };
++  // Reachable accepted steps: every step except the last is at least the
++  // minimum step, so at most floor(span / minimum) + 1, within the
++  // per-invocation accepted-step limit. Exact decimal arithmetic.
++  const std::string span = validated_evolution_difference(
++      translated.end_time, translated.start_time);
++  const auto span_scaled = scaled_decimal(span);
++  const auto minimum_scaled = scaled_decimal(translated.minimum_step);
++  if (!span_scaled || !minimum_scaled || minimum_scaled->digits == 0U) {
++    no_bound("the span or minimum step is not a short positive decimal");
++  }
++  const std::size_t scale = std::max(span_scaled->scale, minimum_scaled->scale);
++  const auto span_int = rescaled(*span_scaled, scale);
++  const auto minimum_int = rescaled(*minimum_scaled, scale);
++  if (!span_int || !minimum_int) no_bound("span / minimum step overflows");
++  const U steps = std::min<U>(*span_int / *minimum_int + 1U,
++                              translated.max_accepted_steps);
++  // Attempts per accepted step: each retry halves the step, starting no
++  // longer than the initial step, and a half below the minimum halts, so at
++  // most one more than the number of exact halvings of the initial step that
++  // stay at or above the minimum, within the per-step attempt limit.
++  std::size_t halvings = 0;
++  for (std::string h = translated.initial_step;;) {
++    h = validated_evolution_half(h);
++    if (compare_exact_decimal_tokens(h, translated.minimum_step) < 0) break;
++    if (++halvings > 4096U) no_bound("too many halvings to the minimum step");
++  }
++  const U per_step =
++      std::min<U>(halvings + 1U, translated.max_attempts_per_step);
++  // One more step's attempts for a run that halts without accepting it.
++  const U attempts = checked((steps + 1U) * per_step, "attempt count");
++  // Restart counters must not overflow.
++  const auto& resumed = request.validated.continuation;
++  if (resumed &&
++      (U(resumed->accepted_step_count()) + steps >
++           std::numeric_limits<std::size_t>::max() ||
++       U(resumed->rejected_step_count()) + attempts >
++           std::numeric_limits<std::size_t>::max())) {
++    no_bound("cumulative step counters would overflow");
++  }
++  // Token lengths. Time tokens are exact decimal sums of the start and
++  // steps that are halvings of the initial step: at most one more fraction
++  // digit per halving. Coefficient and radius tokens are exact binary64
++  // expansions, at most 1076 characters.
++  std::size_t fraction = std::max({fraction_digits(translated.start_time),
++                                   fraction_digits(translated.end_time),
++                                   fraction_digits(translated.initial_step),
++                                   fraction_digits(translated.minimum_step)});
++  fraction += halvings + 1U;
++  const std::size_t whole = std::max(integer_digits(translated.start_time),
++                                     integer_digits(translated.end_time)) + 1U;
++  const U time_token = string_allowance(whole + 2U + fraction);
++  const U number_token = string_allowance(1076U);
++  // A published segment: 2 time tokens and 20 number tokens.
++  const U segment = checked(sizeof(CubicHistorySegment) + 2U * time_token +
++                                20U * number_token, "segment");
++  const U n = request.paths.size();
++  const U groups = translated.groups.size();
++  std::size_t longest_id = 0;
+   for (const auto& path : request.paths) {
+-    supplied_segments =
+-        std::max<std::uint64_t>(supplied_segments, path.history.segments().size());
+-    for (const auto& segment : path.history.segments()) {
+-      for (const auto& axis : segment.coefficient_tokens()) {
+-        for (const auto& token : axis) {
+-          longest_token = std::max<std::uint64_t>(longest_token, token.size());
+-        }
+-      }
++    longest_id = std::max({longest_id, path.path_id.size(),
++                           path.history.history_id().size()});
++  }
++  const U id = string_allowance(longest_id);
++  const U digest = string_allowance(64U);
++  // Retained per attempt, as the driver and the bridge hold it: the attempt
++  // record with its producer certificate (paths with one segment each, every
++  // ordered pair, every group, local errors, evidence) and ledger; three
++  // copies of the atomic step (the attempt's, the driver run's and the
++  // ordinary view's), each with every path's published history object,
++  // input fingerprint and local error. History contents are shared between
++  // these copies and counted once, per accepted step, below.
++  const U per_path_atomic = sizeof(NativePublishedPath) + 2U * id +
++      digest + 256U + sizeof(NativeHistoryFingerprint) + id + digest +
++      sizeof(NativePathLocalError) + id;
++  const U per_attempt = checked(
++      sizeof(ValidatedEvolutionAttempt) +
++          2U * sizeof(NativeAtomicStepCertificate) + 3U * 4096U +
++          n * (sizeof(ValidatedFarStepPathResult) + id + segment +
++               sizeof(NativePathLocalError) + id +
++               sizeof(ValidatedPathLedger) + id +
++               sizeof(ValidatedPopulationEvidence::Member) + 2U * id +
++               2U * digest) +
++          n * (n - 1U) * (sizeof(ValidatedFarStepPairInfo) + 3U * id) +
++          n * groups * (sizeof(ValidatedFarStepGroupInfo) + 4U * id + 64U) +
++          3U * n * per_path_atomic + sizeof(ValidatedPopulationEvidence),
++      "attempt");
++  U bytes = checked(attempts * per_attempt, "attempts");
++  // Retained per accepted step and path: a new history version, sharing all
++  // full blocks, holding a copied tail block of up to 64 segments and an
++  // index of one slot per block.
++  for (const auto& path : request.paths) {
++    const U s0 = path.history.segments().size();
++    // Sum over j = 1..steps of ((s0 + j - 1) mod 64) + 1, exactly.
++    const U cycles = steps / 64U;
++    U tail = cycles * 2080U;
++    for (U j = 0, c = s0 % 64U; j < steps % 64U; ++j) {
++      tail += ((c + j) % 64U) + 1U;
+     }
++    // Sum over j of ceil((s0 + j) / 64) <= steps * (s0 + steps + 63) / 64.
++    const U slots = (steps * (s0 + steps + 63U)) / 64U + steps;
++    bytes = checked(bytes + tail * segment + slots * 72U + steps * 1024U,
++                    "history versions");
+   }
+-  const std::uint64_t segment_bytes = add(
+-      sizeof(CubicHistorySegment) + 256U, multiply(30U, longest_token));
+-  // Evidence and ledger of the population.
+-  std::uint64_t bytes = multiply(
+-      path_count, sizeof(ValidatedPopulationEvidence::Member) +
+-                      sizeof(ValidatedPathLedger) + 1024U);
+-  // Accepted steps this invocation can reach: one per minimum step, plus
+-  // the final short step, within the accepted-step limit.
+-  const double span = parse_finite_double(request.end_time, "end time") -
+-      parse_finite_double(request.start_time, "start time");
+-  const double minimum =
+-      parse_finite_double(request.minimum_step, "minimum step");
+-  const double ratio = std::ceil(span / minimum) + 1.0;
+-  const std::uint64_t steps = ratio >= static_cast<double>(
+-                                           translated.max_accepted_steps)
+-      ? translated.max_accepted_steps
+-      : static_cast<std::uint64_t>(ratio);
+-  const std::uint64_t attempts =
+-      multiply(steps, translated.max_attempts_per_step);
+-  // Every retained attempt holds its producer certificate with one segment
+-  // per path, and two copies of the published histories, each with up to
+-  // the supplied segments plus one per reachable step.
+-  const std::uint64_t histories = multiply(
+-      path_count, multiply(add(supplied_segments, steps), segment_bytes));
+-  const std::uint64_t per_attempt = add(
+-      add(sizeof(ValidatedEvolutionAttempt),
+-          multiply(path_count, add(segment_bytes,
+-                                   sizeof(ValidatedPathLedger) + 512U))),
+-      multiply(2U, histories));
+-  return add(bytes, multiply(attempts, per_attempt));
++  // Evidence and ledger of the supplied population.
++  bytes = checked(bytes + n * (sizeof(ValidatedPathLedger) +
++                               sizeof(ValidatedPopulationEvidence::Member) +
++                               2U * digest + id) +
++                      sizeof(ValidatedPopulationEvidence),
++                  "population");
++  return static_cast<std::uint64_t>(bytes);
+ }
+ 
++namespace {
++
++// The validated owner's own step hypotheses, applied once at the start of a
++// run that is not resuming: the producer must certify a step of the
++// shortest length the controller can attempt from this origin. Every
++// hypothesis is easier to satisfy on a shorter step, so an origin refused
++// here cannot take any step. A population the driver's own admission
++// refuses is left to the driver, which reports it before any early return.
++// A resumed boundary is not reexamined: it was accepted.
++void require_native_validated_origin(const NativeCoupledEvolutionRequest& request,
++                                     const ValidatedEvolutionRequest& translated) {
++  if (request.validated.continuation != nullptr) return;
++  if (!ValidatedFarStepProducer::admission_refusal(
++           translated.paths, translated.evidence, translated.start_time,
++           translated.coupling, translated.groups)
++           .empty()) {
++    return;
++  }
++  std::string step = translated.minimum_step;
++  const std::string span = validated_evolution_difference(
++      translated.end_time, translated.start_time);
++  if (compare_exact_decimal_tokens(span, step) < 0) step = span;
++  ValidatedFarStepProducer producer(translated.worker_count);
++  const ValidatedFarStepCertificate probe = producer.step(
++      translated.paths, translated.evidence, translated.start_time, step,
++      translated.coupling, translated.increment_budget,
++      translated.total_budget, kValidatedFarStepEnclosureIterations,
++      translated.groups);
++  if (probe.status != "certified") {
++    throw EquationAdmissionError(
++        "unsupported_validated_domain",
++        "the validated method cannot step from this origin: at the shortest"
++        " step " + step + " the producer refuses " + probe.code +
++            (probe.cause.empty() ? "" : " (" + probe.cause + ")") + ": " +
++            probe.reason);
++  }
++}
++
++}  // namespace
++
+ NativeCoupledEvolutionCertificate evolve_native_validated_histories(
+     const NativeCoupledEvolutionRequest& request,
+     std::uint64_t memory_estimate_bytes) {
+@@ -355,8 +514,14 @@
+   const std::size_t base_rejected =
+       resumed ? resumed->rejected_step_count() : 0U;
+   translated.continuation = resumed ? resumed->driver() : nullptr;
+-  const std::uint64_t estimate = add(
+-      memory_estimate_bytes, estimate_native_validated_growth_bytes(request));
++  // Order: a finite bound, then the origin's domain, then the budget, then
++  // the driver with its own admission and early returns.
++  const std::uint64_t growth = estimate_native_validated_growth_bytes(request);
++  if (growth > std::numeric_limits<std::uint64_t>::max() - memory_estimate_bytes) {
++    no_bound("the population and growth estimates overflow together");
++  }
++  const std::uint64_t estimate = memory_estimate_bytes + growth;
++  require_native_validated_origin(request, translated);
+   const auto finish = [&](NativeCoupledEvolutionCertificate out) {
+     out.memory_budget_bytes = request.memory_budget_bytes;
+     out.memory_estimate_bytes = estimate;
+@@ -366,25 +531,23 @@
+   };
+ 
+   if (estimate > request.memory_budget_bytes) {
+-    // Admission without a step and without callables, so that an
+-    // unsupported population is refused rather than reported as a
+-    // resource halt.
++    // Admission without a step and without callables, so that a population
++    // the driver refuses is reported as that refusal.
+     translated.end_time = translated.start_time;
+-    const ValidatedEvolutionCertificate admitted =
+-        evolve_validated_far_step_histories(translated);
+-    if (admitted.continuation == nullptr) {
+-      NativeCoupledEvolutionCertificate out = admitted.run;
++    auto admitted = std::make_shared<ValidatedEvolutionCertificate>(
++        evolve_validated_far_step_histories(translated));
++    if (admitted->continuation == nullptr) {
++      NativeCoupledEvolutionCertificate out = admitted->run;
+       out.requested_end_time = request.end_time;
+       out.accepted_step_count = base_accepted;
+       out.rejected_step_count = base_rejected;
+-      out.validated_run =
+-          std::make_shared<const ValidatedEvolutionCertificate>(admitted);
++      out.validated_run = std::move(admitted);
+       return finish(std::move(out));
+     }
+     // Admitted, but over budget: no step, and nothing to resume from that
+     // the caller does not already hold.
+     NativeCoupledEvolutionCertificate out;
+-    out.schema = admitted.run.schema;
++    out.schema = admitted->run.schema;
+     out.status = "halted";
+     out.run_id = request.run_id;
+     out.start_time = request.start_time;
+@@ -395,7 +558,7 @@
+     }
+     out.accepted_step_count = base_accepted;
+     out.rejected_step_count = base_rejected;
+-    out.controller_step_size = admitted.run.controller_step_size;
++    out.controller_step_size = admitted->run.controller_step_size;
+     out.halt_code = "memory_budget_exhausted";
+     out.evidence_status = "failed";
+     out.all_steps_atomic = true;
+@@ -412,33 +575,31 @@
+           callback(ordinal + 1U, time);
+         };
+   }
+-  const ValidatedEvolutionCertificate run =
+-      evolve_validated_far_step_histories(translated);
++  // Moved, not copied, into the shared certificate.
++  auto run = std::make_shared<ValidatedEvolutionCertificate>(
++      evolve_validated_far_step_histories(translated));
+ 
+-  NativeCoupledEvolutionCertificate out = run.run;
+-  out.accepted_step_count =
+-      saturating_sum(base_accepted, run.run.accepted_step_count);
+-  out.rejected_step_count =
+-      saturating_sum(base_rejected, run.run.rejected_step_count);
+-  const std::size_t base_attempts = saturating_sum(base_accepted, base_rejected);
++  NativeCoupledEvolutionCertificate out = run->run;
++  out.accepted_step_count = base_accepted + run->run.accepted_step_count;
++  out.rejected_step_count = base_rejected + run->run.rejected_step_count;
++  const std::size_t base_attempts = base_accepted + base_rejected;
+   for (std::size_t i = 0; i < out.steps.size(); ++i) {
+-    out.steps[i].step_index = saturating_sum(base_attempts, i);
++    out.steps[i].step_index = base_attempts + i;
+   }
+-  if (run.run.status == "cancelled") {
++  if (run->run.status == "cancelled") {
+     out.status = "halted";
+     out.halt_code = "cancelled_at_accepted_boundary";
+-  } else if (run.run.halt_code == "step_limit_exhausted" &&
++  } else if (run->run.halt_code == "step_limit_exhausted" &&
+              request.diagnostic_maximum_accepted_steps != 0U) {
+     out.halt_code = "diagnostic_accepted_step_limit_reached";
+   }
+-  out.validated_run =
+-      std::make_shared<const ValidatedEvolutionCertificate>(run);
+-  if (run.continuation != nullptr) {
++  if (run->continuation != nullptr) {
+     out.validated_continuation =
+         std::shared_ptr<const NativeValidatedContinuation>(
+             new NativeValidatedContinuation(
+-                run.continuation, out.rejected_step_count));
++                run->continuation, out.rejected_step_count));
+   }
++  out.validated_run = std::move(run);
+   return finish(std::move(out));
+ }
+ 

@@ -1,0 +1,5 @@
+# Independent low-angular-momentum arithmetic — October 14
+
+The [reference](lowj_reference.py) imports no peer code and uses a decimal integer square root to bound the sole irrational input. Integer-root and hand coefficient controls pass before target admission. One short foreground run uses the shared venv and exits zero. It checks all four rows' five conservative decimal directions, closest-approach and uniform error constants, the zero-product size display, and D at two endpoints with both upper and lower enclosures. No trajectory or prescribed path is evaluated.
+
+The [review](../../analysis/saturday-low-angular-momentum-codex-review-2026-10-14.md) supplies separate hand derivations of the Cartesian/time-period bounds and zero-rate identity and an analytic monotonicity proof for D. The arithmetic of the size display establishes no crossing direction. Current subject/README preimages, frozen input/instrument/output identities and the original reference pass are retained in `.local-data/aaa-work-threads/saturday-breathing-lattice-low-angular-momentum-2026-10-14/codex-lowj-review/`. This checks declared formulas, not a solution history or general periodicity.

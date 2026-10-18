@@ -1,0 +1,198 @@
+diff --git a/src/eom/CMakeLists.txt b/src/eom/CMakeLists.txt
+index b1406d7c8..6d0596df5 100644
+--- a/src/eom/CMakeLists.txt
++++ b/src/eom/CMakeLists.txt
+@@ -64,6 +64,7 @@ add_library(eom_native STATIC
+   src/ValidatedFarStep.cpp
+   src/ValidatedEvolution.cpp
+   src/ValidatedRunRecord.cpp
++  src/ValidatedOrdinaryBridge.cpp
+ )
+ target_include_directories(eom_native
+   PUBLIC include
+@@ -216,3 +217,11 @@ set_tests_properties(
+   eom_borg_shadow_protocol_version
+   PROPERTIES PASS_REGULAR_EXPRESSION "^EOM_BORG_NATIVE_V11"
+ )
++
++# Focused fixture for gate O1 of the ordinary integration; no recurring
++# suite enrollment.
++add_executable(eom_validated_ordinary_fixture_cli
++  native/eom_validated_ordinary_fixture_cli.cpp)
++target_link_libraries(eom_validated_ordinary_fixture_cli PRIVATE eom_native)
++target_compile_options(eom_validated_ordinary_fixture_cli
++  PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+diff --git a/src/eom/include/architrino/eom/CoupledEvolution.hpp b/src/eom/include/architrino/eom/CoupledEvolution.hpp
+index e21c7590c..11d54850f 100644
+--- a/src/eom/include/architrino/eom/CoupledEvolution.hpp
++++ b/src/eom/include/architrino/eom/CoupledEvolution.hpp
+@@ -21,6 +21,34 @@
+ 
+ namespace architrino::eom {
+ 
++class NativeValidatedContinuation;
++struct ValidatedEvolutionCertificate;
++
++// Integration-method selection on the ordinary request. "ordinary" is the
++// corrector controller, whose certificates name their own variant through
++// integration_method. The one other admitted value is the validated
++// far-step policy token, canonical_validated_far_step_evolution/v1, which
++// routes evolution through the validated driver; see
++// ValidatedOrdinaryBridge.hpp. Any other value is refused.
++inline constexpr const char* kOrdinaryIntegrationSelection = "ordinary";
++
++// Controls that only the validated method has, at the driver's defaults.
++// Every field must stay at its default unless the validated method is
++// selected. Declared pairs name two different paths each and are disjoint.
++struct NativeValidatedExecution {
++  std::string pair_policy = "disabled";
++  std::vector<std::pair<std::string, std::string>> groups;
++  // Both present or both absent: a declared total budget, decimal tokens.
++  std::optional<std::string> total_position_budget;
++  std::optional<std::string> total_velocity_budget;
++  std::size_t max_attempts_per_step = 64;
++  std::size_t max_lower_sign_retries = 4;
++  std::size_t growth_cooldown_steps = 4;
++  // The sealed continuation of the selected run being resumed, as returned
++  // in validated_continuation. Null for a new run.
++  std::shared_ptr<const NativeValidatedContinuation> continuation;
++};
++
+ inline constexpr const char* kNativeIntegrationMethod =
+     "coupled_cubic_corrector_with_pinned_fold_onset/v1";
+ inline constexpr const char* kLegacyNativeIntegrationMethod =
+@@ -80,6 +108,12 @@ struct NativeCoupledEvolutionRequest {
+   // points refuse every grouped policy and never read it.
+   std::shared_ptr<const ValidatedPopulationEvidence>
+       validated_population_evidence = {};
++  // "ordinary", or the validated far-step policy token. Under the validated
++  // method the ordinary controls with no meaning there must stay at their
++  // defaults; validated_population_evidence is the evidence issued for the
++  // supplied paths, and thread_count is the worker count.
++  std::string integration_method = kOrdinaryIntegrationSelection;
++  NativeValidatedExecution validated;
+   std::string chart_policy = "sharp";
+   std::string causal_width = "0.2";
+   std::string core_scale = "0.2";
+@@ -707,8 +741,27 @@ struct NativeCoupledEvolutionCertificate {
+   std::uint64_t memory_estimate_bytes = 0;
+   bool all_steps_atomic;
+   NativeEvolutionTiming timing;
++  // Under the validated method: the driver's full certificate, with its
++  // evidence, ledger and sealed continuation. Null under the ordinary one.
++  std::shared_ptr<const ValidatedEvolutionCertificate> validated_run = {};
++  // Under the validated method, when the run reached an admitted accepted
++  // boundary: what a later invocation resumes from. Null otherwise.
++  std::shared_ptr<const NativeValidatedContinuation>
++      validated_continuation = {};
+ };
+ 
++// True when the request selects the validated method, false when it selects
++// the ordinary one. Throws EquationAdmissionError, unsupported_execution_
++// policy, for any other value, or when validated controls are set under the
++// ordinary method.
++[[nodiscard]] bool native_validated_method_selected(
++    const NativeCoupledEvolutionRequest& request);
++
++// Throws EquationAdmissionError, unsupported_execution_policy, naming
++// `entry`, unless the request selects the ordinary method.
++void require_native_ordinary_method(
++    const NativeCoupledEvolutionRequest& request, const char* entry);
++
+ [[nodiscard]] std::optional<std::string> native_nonretryable_halt_code(
+     const NativeAtomicStepCertificate& rejected_step);
+ 
+diff --git a/src/eom/src/Checkpoint.cpp b/src/eom/src/Checkpoint.cpp
+index c424e137f..01e8ffd21 100644
+--- a/src/eom/src/Checkpoint.cpp
++++ b/src/eom/src/Checkpoint.cpp
+@@ -669,6 +669,7 @@ std::string native_evolution_model_fingerprint(
+ NativeEvolutionCheckpoint create_native_evolution_checkpoint(
+     const NativeCoupledEvolutionRequest& request,
+     const NativeCoupledEvolutionCertificate& certificate) {
++  require_native_ordinary_method(request, "the v7 checkpoint");
+   require_legacy_checkpoint_equation(request);
+   if (certificate.schema == "eom_surface_coupled_evolution_certificate/v1" ||
+       certificate.evidence_status == "constrained_solution_enclosure" ||
+@@ -934,6 +935,7 @@ NativeCoupledEvolutionCertificate resume_native_coupled_histories(
+     const NativeCoupledEvolutionRequest& request_template,
+     const NativeEvolutionCheckpoint& checkpoint,
+     const std::string& requested_end_time) {
++  require_native_ordinary_method(request_template, "the v7 checkpoint");
+   require_legacy_checkpoint_equation(request_template);
+   require_checkpoint_consistency(checkpoint);
+   if (!checkpoint_model_matches(request_template, checkpoint)) {
+diff --git a/src/eom/src/CoupledEvolution.cpp b/src/eom/src/CoupledEvolution.cpp
+index 234b5a15d..0ce6f9131 100644
+--- a/src/eom/src/CoupledEvolution.cpp
++++ b/src/eom/src/CoupledEvolution.cpp
+@@ -1,4 +1,5 @@
+ #include "architrino/eom/CoupledEvolution.hpp"
++#include "architrino/eom/ValidatedOrdinaryBridge.hpp"
+ #include "architrino/eom/Decimal.hpp"
+ #include "architrino/eom/JointAccelerationSnapshot.hpp"
+ #include "architrino/eom/JointEndpointCorrector.hpp"
+@@ -7201,6 +7202,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
+     const NativeAccelerationSnapshotCertificate* warm_snapshot,
+     const std::vector<NativePublishedPath>* warm_histories,
+     bool defer_root_precision_escalation) {
++  require_native_ordinary_method(request, "an acceleration snapshot");
+   if (!request.surface_geometry && std::any_of(histories.begin(), histories.end(),
+       [](const auto& path) { return path.surface_evidence != nullptr; }))
+     throw EquationAdmissionError("unsupported_model_combination", "canonical evaluation cannot implicitly consume Surface continuation carriers");
+@@ -7590,6 +7592,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step(
+     const std::string& end_time,
+     const NativeAccelerationSnapshotCertificate* reusable_start_snapshot,
+     bool defer_endpoint_root_precision_escalation) {
++  require_native_ordinary_method(request, "the ordinary atomic step");
+   if (request.matched_pair_enclosure_policy != kMatchedPairPolicyDisabled) {
+     throw EquationAdmissionError(
+         "unsupported_execution_policy",
+@@ -7792,12 +7795,27 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
+     const NativeCoupledEvolutionRequest& request,
+     const NativeAccelerationSnapshotCertificate* reusable_initial_snapshot) {
+   const auto timing_start = SteadyClock::now();
++  // The validated method is refused here for every control it does not
++  // consume, then passes the ordinary admission below before it runs.
++  const bool validated_method = native_validated_method_selected(request);
++  if (validated_method) {
++    require_native_validated_controls(request);
++    if (reusable_initial_snapshot != nullptr) {
++      throw EquationAdmissionError(
++          "unsupported_execution_policy",
++          "the validated method does not consume a reusable start snapshot");
++    }
++  }
+   if (request.matched_pair_enclosure_policy != kMatchedPairPolicyDisabled) {
+     throw EquationAdmissionError(
+         "unsupported_execution_policy",
+         "matched-pair enclosure is qualified for acceleration snapshots only");
+   }
+   validate_request(request);
++  if (validated_method) {
++    return evolve_native_validated_histories(
++        request, estimate_coupled_working_set_bytes(request));
++  }
+   std::vector<NativePublishedPath> histories;
+   histories.reserve(request.paths.size());
+   for (const auto& path : request.paths) {
+diff --git a/src/eom/src/ProviderTransport.cpp b/src/eom/src/ProviderTransport.cpp
+index e60df2ecf..e5057f078 100644
+--- a/src/eom/src/ProviderTransport.cpp
++++ b/src/eom/src/ProviderTransport.cpp
+@@ -233,6 +233,7 @@ void cancel_signal(int){cancellation_flag=1;}
+ }
+ 
+ std::string create_provider_checkpoint(const NativeCoupledEvolutionRequest& r,const NativeCoupledEvolutionCertificate& c) {
++  require_native_ordinary_method(r, "the v8 provider checkpoint");
+   if(!r.joint_histories.empty() || !r.joint_root_point_states.empty())fail("unsupported_model_combination","v8 does not yet bind typed joint preparation; use its existing v7 owner within that owner's supported domain");
+   (void)require_equation_provider(r);
+   if(!c.all_steps_atomic || c.run_id!=r.run_id)fail("invalid_checkpoint","only matching atomic accepted history can be checkpointed");
+@@ -266,6 +267,7 @@ std::string create_provider_checkpoint(const NativeCoupledEvolutionRequest& r,co
+ }
+ 
+ NativeCoupledEvolutionCertificate resume_provider_checkpoint(const NativeCoupledEvolutionRequest& r,const std::string& text,const std::string& end) {
++  require_native_ordinary_method(r, "the v8 provider checkpoint");
+   if(!r.joint_histories.empty() || !r.joint_root_point_states.empty())fail("unsupported_model_combination","v8 does not yet bind typed joint preparation");
+   if(r.paths.empty())fail("invalid_checkpoint","restart requires a nonempty population");
+   const auto cp=sealed_checkpoint(text);

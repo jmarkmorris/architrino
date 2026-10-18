@@ -1,0 +1,83 @@
+{
+ "controls": [
+  {
+   "name": "(C1) KNOWN dependent data (shared latent e1, e2 for receiver and sources; clock e3): CORR (latent subdivision) contains all 42 truths and is not wider than BOX for r, l, l'; matched widths and cost",
+   "BOX": {
+    "r": [
+     "-0.016596472619845756878",
+     "-0.0098187168372178984025"
+    ],
+    "l": [
+     "-0.047694210501337557498",
+     "-0.038258540066741487222"
+    ],
+    "lp": [
+     "-0.029308488362449654104",
+     "-0.020140411457324885995"
+    ],
+    "widths": [
+     "0.0067778",
+     "0.0094357",
+     "0.0091681"
+    ],
+    "cost_s": 0.015
+   },
+   "CORR": {
+    "r": [
+     "-0.015719131771633418277",
+     "-0.010699295408223800466"
+    ],
+    "l": [
+     "-0.046812352905282686546",
+     "-0.039137130049905016934"
+    ],
+    "lp": [
+     "-0.02660724499934882953",
+     "-0.022442653443609113072"
+    ],
+    "widths": [
+     "0.0050198",
+     "0.0076752",
+     "0.0041646"
+    ],
+    "cost_s": 0.653
+   },
+   "truth_range_lp": [
+    "-0.0253157276813133",
+    "-0.0236391238281086"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(C2) independent versus shared: with SEPARATE latent parameters for receiver and sources (truth at the 16 corners), the evaluator with separate parameters contains every truth",
+   "enc_lp": [
+    "-0.041733964015203108939",
+    "-0.013353384203650684611"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(N1) negative, lost-correlation in its dangerous form: tying the separate receiver and source parameters to ONE shared parameter misses some truth of the independent model",
+   "enc_lp": [
+    "-0.03245483938204928279",
+    "-0.018918514143930907623"
+   ],
+   "pass": false
+  },
+  {
+   "name": "(N2) negative: CORR intersected with a shifted box NOT proved to contain the truth is empty or misses the truth; CORR intersected with BOX (both proved) keeps every truth",
+   "pass": true
+  },
+  {
+   "name": "(N3) negative: the source-history sensitivity entered with the swapped sign misses some truth (or the contraction empties)",
+   "pass": true
+  },
+  {
+   "name": "(N4) negative/known: an independent source-history remainder (+-5e-3; v1 used +-2e-4, too small to be missed) present in the truth: omitted by the evaluator -> misses some truth; kept as an interval remainder -> contains every truth",
+   "pass": false
+  }
+ ],
+ "n": 3,
+ "controls_all_pass": false,
+ "wall_s": 7.961971998214722
+}

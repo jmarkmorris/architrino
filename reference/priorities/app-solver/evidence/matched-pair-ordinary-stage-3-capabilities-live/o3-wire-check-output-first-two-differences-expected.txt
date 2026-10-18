@@ -1,0 +1,5 @@
+Known cases, before any target
+FAIL  known: frozen defaults differ only at reviewed paths, plus the declared v3-rejection envelope  [72 identical, 9 projected, different: outputs/inspect-capabilities.stdout,wire-outputs/capabilities.stdout,wire-outputs/reject-request-v3.stdout]
+PASS  known: the declared change is the old v3 envelope now refused for lacking execution  [invalid_request: v3 requires an execution object]
+PASS  known: capabilities differ from O3 live exactly in build identity and the added executionMethods member  [build,executionMethods]
+KNOWN CASE FAILED

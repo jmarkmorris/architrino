@@ -1,0 +1,66 @@
+# OPS-031 — Euclidean Void review, 2026-10-18
+
+## Disposition and preserved source
+
+**Whole-chapter review complete; no new actionable correction or repair regression identified.** The report-only second-cycle review read all 598 lines of [Euclidean Void](../../../../content/markdown/aaa/foundations/euclidean-void.md), including all 37 displayed equations and the observational source note. This is a bounded judgment about this chapter and the inspected direct dependencies, not physical recovery, a corpus-wide correctness certificate, or completion of the monthly cycle. No reader-facing source or shared control record was edited. CRW-005 remains closed.
+
+Measured by `shasum -a 256`, the source SHA-256 before review was `1b561ec1b1ad6ebbe40533b262c3c584abc5ac1813cb874dbcfa94d035022a02`; the preserved copy is `.tmp/ops-031-oct18/euclidean-void.md`. It matches the inspected version in the [September 23 receipt](ops-031-euclidean-void-review-2026-09-23.md). End-of-review hash and byte comparison are recorded below. The startup AGENTS, generated router, review skill owner, corpus-reviewer procedure, periodic-review procedure and relevant style/notation authorities were consulted. Reviewer: delegated Codex agent `ops_031_euclidean_void_oct18`, continuing the existing review lineage; no materially different model was adopted or evaluated, and no model-superiority claim is made.
+
+## Two accepted repairs and one previous no-change recheck
+
+The historical source changes were inspected with `git show b97703d98 -- content/markdown/aaa/foundations/euclidean-void.md`, not inferred from the commit subject. Its parent chapter hash, measured using `git show b97703d98^:content/markdown/aaa/foundations/euclidean-void.md | shasum -a 256`, is `8271a58af882afa153a92d29789be3fa36f787f161c7da5f7e398d2a240a3acb`. The existing [corpus owner](../../aaa-corpus-rewrite/work-queue.md) retains the original findings, acceptances and intermediate versions.
+
+### F2-2 — a specified directional average does not identify a physical observable
+
+Historical before: “When a tensorial response is retained, the familiar single-number version is its trace”. Current after, lines 513–529: “For the decomposition below, suppose a selected dimensionless response admits the symmetric quadratic representation” followed by the definition $R(\mathbf n)=a_{\mathrm{eff},ij}n^in^j$, a common reference chart, the trace average and explicit unclosed cosmological/apparatus maps.
+
+**Derived independent mathematical reference:** uniform directional measure on a reference sphere is unchanged by coordinate reflections and rotations. Consequently the off-diagonal means of $n^in^j$ vanish in an orthonormal frame, the diagonal means are equal, and their sum is one. Thus $\langle n^in^j\rangle=h^{ij}/3$ in any common regular chart and $\langle R\rangle=h^{ij}a_{\mathrm{eff},ij}/3$. Contracting the declared remainder gives $h^{ij}(a_{\mathrm{eff},ij}-a_0h_{ij})=3a_0-3a_0=0$. This uses geometry alone, not a model-generated expected answer or a constitutive law.
+
+The physical distinction survives independently: an isotropic positive linear stretch $a$ and the associated squared-length tensor have trace means $a$ and $a^2$, respectively. Directional averaging cannot choose which measured quantity was intended. Nor does a response coefficient determine a calibrated clock frequency without an apparatus map.
+
+**Three-part verdict:** mathematical correctness survives; the intended directional-summary meaning is preserved; explanatory usefulness survives because the assumptions and missing physical maps remain visible. Falsifier: lines 513–529 omit the common-chart/quadratic-response conditions, fail the contraction identity, or again identify this trace or its remainder directly with a cosmological scale or laboratory frequency residual. No such regression was found by the complete source read and the algebra above.
+
+### F2-5 — the displayed frame bundle has a chosen orientation
+
+Historical before, line 137: “Its bundle of orthonormal frames”. Current after, lines 137–145: “After choosing a reference spatial orientation, its oriented orthonormal frame bundle”, with the full $O(3)$ bundle identified separately from the displayed $SO(3)$ fiber.
+
+**Derived independent reference:** the columns of an orthonormal frame form a matrix $Q$ satisfying $Q^{\mathsf T}Q=I$, hence $(\det Q)^2=1$. The example $Q=\operatorname{diag}(-1,1,1)$ is orthogonal and has determinant $-1$; it belongs to the full frame fiber but not to $SO(3)$. Fixing handedness selects determinant $+1$. The global Cartesian basis supplies a trivialization over every point of $\mathbb R^3$. Triviality alone would not imply a flat connection; this chapter separately supplies the flat Euclidean Levi-Civita connection.
+
+**Three-part verdict:** the bundle statement is mathematically correct; the global reference-frame meaning is preserved; the added orientation language remains useful because it prevents a naming/domain mismatch without introducing physical parity preference. Falsifier: both handedness classes are again identified with $SO(3)$, or conventional orientation is claimed to select physical weak-sector handedness. Neither occurs in the inspected chapter.
+
+### Previous no-change — invariant scalar Laplacian, lines 361–385
+
+The September 23 receipt and the historical whole-chapter disposition retained the Cartesian and regular-curvilinear scalar operators without correction. Before and current after both use $\Delta f=(\det h)^{-1/2}\partial_i((\det h)^{1/2}h^{ij}\partial_jf)$, with a separate Cartesian second-derivative expression. The current chapter retains the explicit regular-chart restrictions introduced by F2-6.
+
+**Derived independent analytical case:** take $f=X^2-Y^2$. Cartesian differentiation gives $2-2=0$. On a regular cylindrical chart, $f=\rho^2\cos(2\phi)$ and $\sqrt{\det h}=\rho$. The radial contribution is $\rho^{-1}\partial_\rho(\rho\partial_\rho f)=4\cos(2\phi)$; the angular contribution is $\rho^{-2}\partial_\phi^2f=-4\cos(2\phi)$; the axial contribution vanishes. They cancel exactly. At the excluded axis the Cartesian expression remains regular. This angularly varying example supplements the prior radial $r^2$ check and tests a different component of the invariant expression.
+
+**Three-part verdict:** correctness, equivalence of the two coordinate descriptions and explanatory usefulness survive for this claim. Falsifier: a changed volume or inverse-metric factor produces a nonzero value in this known case, or the formula is applied at a degenerate cylindrical chart. This analytical check does not certify a numerical differential-operator implementation.
+
+## Whole-chapter coverage and dependencies
+
+| Lines | Review disposition and independent reasoning |
+| --- | --- |
+| 1–131 | No correction. The fixed Euclidean metric makes fixed-point distance time independent; the effective-curvature expression is explicitly schematic and carries no constitutive derivation. Ontology and observer-level reconstruction remain distinct. |
+| 133–187 | No correction. Contractibility and the Cartesian frame establish the declared global topology and trivial frame bundles. The stated flat connection, rather than bundle triviality alone, gives zero holonomy and straight geodesics. Assembly protection remains a separate dynamical question. |
+| 189–283 | No correction. A fixed translation cancels from delayed source/receiver differences, and an orthogonal matrix preserves their norm. Spherical determinant $r^4\sin^2\theta$ and cylindrical determinant $\rho^2$ vanish only outside the declared regular domains; overlaps and Cartesian replacements are explained. |
+| 285–387 | No correction. Raising/lowering equalities are Cartesian-specific; invariant volume, divergence and Laplacian retain the metric factors. The independent harmonic example above preserves the earlier no-change claim. |
+| 389–439 | No correction. Under an orthogonal transformation, both delayed unit direction and transmitter velocity transform together; their scalar product and the transmitter-side weight are invariant, while acceleration transforms as a vector. This establishes covariance of the declared kernel, not parity selection of a retained assembly or weak-interaction recovery. Conservation statements retain their action/channel provisos. |
+| 441–483 | No correction. Zero arriving acceleration integrates to an affine trajectory. Under $\mathbf X'=\mathbf X-\mathbf U T$, the source/receiver difference acquires $-\mathbf U(T_r-T_t)$, so preserving slices is not invariance of isotropic wake propagation. Native and effective transformations remain separate. |
+| 485–553 | No correction. The F2-2 trace interpretation remains properly conditional. The observer comparisons do not become substrate premises. Global scale and apparatus maps remain open. |
+| 555–598 | No correction. The source-event set adds no independent field state. A homogeneous source shell has population proportional to $r^2dr$, so absolute inverse-square contributions scale as $dr$ before cancellation; decay alone does not prove unlimited-population convergence. The final postulate is an ontology commitment with a replacement criterion. |
+
+Scoped dependency reads covered the additional-connection, inertial-coordinate and boost passages of [Absolute Timespace](../../../../content/markdown/aaa/foundations/absolute-timespace.md), the discrete-symmetry section of [Coincident-Axis Three-Binary Symmetry](../../../../content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md), the transmitter-side weight of [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md), and the physical-response boundaries in [Cosmology Ontology](../../../../content/markdown/aaa/cosmology/cosmology-ontology.md) and [Lorentz Kinematics](../../../../content/markdown/aaa/spacetime/lorentz-kinematics.md). These are claim-specific checks, not whole-chapter coverage of those dependencies. `shasum -a 256` measured the first two dependencies as `6dfc68496c19792463d3093f1f160ebd519496e4149190bcded0c971c3d7c603` and `b90b6f4e77bf5fe0ad1c3fb80b37ed002617acd0458188c11030c10381aea981`, matching their prior bounded review versions.
+
+## Structural checks and limits
+
+The existing instrument `node .tmp/ops-031-effective-proposal-oct12/validate.mjs content/markdown/aaa/foundations/euclidean-void.md` passed its known math/code/blockquote/fenced-link and valid/invalid-TeX controls before the target run, then measured 140 mathematical spans accepted by vendored KaTeX, 37 display equations, 37 equation-viewer links and 53 local file-link occurrences with existing targets. Output is retained at `.tmp/ops-031-oct18/euclidean-void-structural-check.out`. These are syntax and local-path checks; URL anchors, external-site availability, browser appearance and physical correctness are outside this instrument's reach.
+
+The observational source note is unchanged at this source hash. This pass reuses the September 23 receipt's bounded author-abstract inspection for the four cited comparisons; it performs no new external verification, data reanalysis, literature update or latest-bound claim. In particular the Planck-related reference remains a method/sensitivity forecast rather than a completed observational recovery, and the Fermi example remains a declared-source-model bound. Reuse does not upgrade the prior source scope.
+
+No new owner correction, disputed claim or substantive regression is proposed. Existing constitutive, summability, preferred-frame and physical-recovery obligations remain open with their current owners. The judgment would be overturned by a concrete counterexample within a stated mathematical domain, a changed direct dependency contradicting these passages, or primary-source evidence contradicting a bounded attribution. No solver, broad regression suite, generator write, publication or rendered-page audit was performed. The coordinator owns the coverage-state cursor and next reservation; this receipt supplies only the assigned chapter's disposition.
+
+End-of-review `shasum -a 256` again measured `1b561ec1b1ad6ebbe40533b262c3c584abc5ac1813cb874dbcfa94d035022a02`; `cmp` against the preserved source returned exit 0. The same known-case-first validator accepted all 33 mathematical spans and all 8 local link targets in this receipt. Receipt-only `git diff --no-index --check /dev/null reference/priorities/aaa-operations/evidence/ops-031-euclidean-void-review-2026-10-18.md` emitted no whitespace diagnostic (exit 1 denotes the added file in no-index comparison).
+
+## Coordinator coverage update
+
+The [October 18 inventory](ops-031-coverage-state-2026-10-18.json) preserves the same 199 live corpus paths and hashes after known inventory-difference/SHA controls, and credits this completed path as the fourth of fifteen in the second early cycle. Eleven remain, next Absolute Timespace October 21, due November 13. Core October 19 plus October 23, supporting October 20 and validation October 22 retain their uncovered paths and previously reported capacity risks. No whole-cycle completion or reader-facing repair follows. OPS-032 has its own separate weekly closeout and dates; CRW-005 stays closed.

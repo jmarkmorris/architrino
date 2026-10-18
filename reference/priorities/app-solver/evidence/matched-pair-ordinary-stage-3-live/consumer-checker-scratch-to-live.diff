@@ -1,0 +1,15 @@
+--- .tmp/eom-ordinary-integration-2026-10-14/o3v3-js/check-o3-consumers.mjs	2026-10-14 10:12:30
++++ .tmp/eom-ordinary-integration-2026-10-14/live-o3-js/check-o3-consumers.mjs	2026-10-14 11:02:31
+@@ -6,9 +6,9 @@
+ import assert from 'node:assert/strict';
+ import fs from 'node:fs';
+ import path from 'node:path';
+-import * as live from '../../../scripts/eom/EomResponseRecord.mjs';
+-import * as next from './scripts/eom/EomResponseRecord.mjs';
+-import { createEomV2HttpClient } from './src/apps/shared/EomV2HttpClient.js';
++import * as live from './head/EomResponseRecord.mjs';
++import * as next from '../../../scripts/eom/EomResponseRecord.mjs';
++import { createEomV2HttpClient } from '../../../src/apps/shared/EomV2HttpClient.js';
+ const dir = process.argv[2];
+ const rows = [];
+ let ok = true;

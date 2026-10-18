@@ -70,3 +70,7 @@ a36dc65479f6d008b88e5c04d22206b8b47aff45822c5a112119b4f7d71c78f9  tests/prescrib
 0d6e65b5b59f2eaba5359ee9408b3bb595b74d3887502ad4dfa9564ef3ee7f12  reference/priorities/master-equation-closure/photon-research/evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json
 
 ```
+
+## Subsequent disposition — October 14, 2026
+
+The operator approved the bounded repair proposed here. Implementation and separate verification are complete in the [combined closure](ops-031-032-approved-repairs-2026-10-14.md). The original observations and source identities above remain historical evidence.

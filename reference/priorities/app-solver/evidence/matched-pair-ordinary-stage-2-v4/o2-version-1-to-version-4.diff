@@ -1,0 +1,519 @@
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/include/architrino/eom/ProviderTransport.hpp .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/include/architrino/eom/ProviderTransport.hpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/include/architrino/eom/ProviderTransport.hpp	2026-10-14 07:26:50
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/include/architrino/eom/ProviderTransport.hpp	2026-10-14 08:13:34
+@@ -23,7 +23,11 @@
+ // count included, and the binding over it are written and compared byte for
+ // byte. The certificate must come from that run, and its continuation must
+ // carry a complete generating record, which exists only for a run that
+-// started at an exact origin.
++// started at an exact origin. Before any bytes are returned, the original
++// request's controls, origin time and exact origin members must be the
++// generating record's, and every persisted claim is the sealed accepted
++// boundary's: its time, counts and controller step, and histories whose
++// digests are the sealed continuation's members, in order.
+ [[nodiscard]] std::string create_validated_provider_checkpoint(
+     const NativeCoupledEvolutionRequest& original,
+     const NativeCoupledEvolutionCertificate& certificate);
+@@ -35,10 +39,11 @@
+   NativeCoupledEvolutionRequest request;
+   // The resumed invocation, as the ordinary entry returns it.
+   NativeCoupledEvolutionCertificate run;
+-  // From the replay: expected_controls (the caller's controls and origin,
+-  // which any genuine record of that origin and those controls satisfies) or
+-  // expected_record (one complete record identity, chosen by the caller);
+-  // the identity of the record actually read; the fields compared.
++  // From the replay. The caller's controls and exact origin are always
++  // compared. expected_controls: nothing more, so any genuine record of that
++  // origin and those controls satisfies it; expected_record: in addition,
++  // the complete record identity the caller named. Then the identity of the
++  // record actually read and the fields compared.
+   std::string identity_basis;
+   std::string record_identity;
+   std::vector<std::string> compared_fields;
+@@ -47,15 +52,20 @@
+   std::size_t replayed_rejected_steps = 0;
+   // The worker count the replay and the new invocation used.
+   std::size_t worker_count = 1;
++  // The resource bound admitted before replay: the accepted steps the
++  // record's legs can reach under their enforced limits, and the bytes.
++  std::uint64_t replay_step_bound = 0;
++  std::uint64_t replay_bound_bytes = 0;
+ };
+ 
+ // Restores by complete replay of the checkpoint's record and continues to
+ // `requested_end_time`. In order: stored digest (corruption only); the
+ // caller's original request against the execution, binding, resolved model,
+ // preparation and run identity; the worker count, `worker_override` or the
+-// original's, at least 1 and at most 32; a resource bound for replay from
+-// the origin to the requested end, refused before any replay when over the
+-// original's memory budget; replay under the caller's expectation; then
++// original's, at least 1 and at most 32; a named record identity against
++// the record's bytes; a resource bound from the record's enforced leg
++// limits, refused before any replay when over the original's memory budget;
++// replay under the caller's controls and exact origin; then
+ // every envelope claim (accepted time, counts, controller step, histories,
+ // record identity) against replay. Every failure throws
+ // EquationAdmissionError, so no partial state is returned.
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp	2026-10-14 07:23:41
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp	2026-10-14 08:13:24
+@@ -66,10 +66,12 @@
+     std::uint64_t memory_estimate_bytes);
+ 
+ // The continuation of a run restored by complete replay of its generating
+-// record: restore_validated_run's result, status "restored", with its
+-// replayed continuation, record and replayed rejected-step total. Throws
+-// std::invalid_argument for any other result, so no partial or refused
+-// restore yields a continuation.
++// record. The result must carry the sealed replay boundary that
++// restore_validated_run issues on a complete replay, and every public field
++// it reports (status, continuation, replayed rejected-step total, record,
++// record identity) must equal that boundary's; the continuation is built
++// from the boundary alone. Throws std::invalid_argument otherwise, so no
++// refused, partial, edited or recombined result yields a continuation.
+ [[nodiscard]] std::shared_ptr<const NativeValidatedContinuation>
+ native_validated_continuation_from_replay(
+     const ValidatedRestoreResult& restored);
+@@ -164,6 +166,20 @@
+ // established. An admission bound with stated allowances, not a measured
+ // resident-set cost.
+ [[nodiscard]] std::uint64_t estimate_native_validated_growth_bytes(
++    const NativeCoupledEvolutionRequest& request);
++
++// The same bound with the quantities it is built from: the accepted steps
++// this invocation can reach, at most floor(span / minimum_step) + 1 within
++// the accepted-step limit; the attempts it can make; the allowance charged
++// for one published segment; and the growth in bytes, which includes a
++// stack allowance of 8 MiB for each of the worker_count - 1 helper threads.
++struct NativeValidatedBound {
++  std::uint64_t reachable_steps = 0;
++  std::uint64_t attempts = 0;
++  std::uint64_t segment_bytes = 0;
++  std::uint64_t growth_bytes = 0;
++};
++[[nodiscard]] NativeValidatedBound native_validated_bound(
+     const NativeCoupledEvolutionRequest& request);
+ 
+ }  // namespace architrino::eom
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp	2026-10-14 07:22:49
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/include/architrino/eom/ValidatedRunRecord.hpp	2026-10-14 08:13:24
+@@ -189,6 +189,44 @@
+   std::optional<std::vector<ValidatedRunOriginMember>> origin = std::nullopt;
+ };
+ 
++// Sealed: only a complete replay constructs one, holding exactly the
++// continuation, rejected-step total, rebuilt record and record identity that
++// replay produced. A restore result is plain, mutable data; issuing an
++// ordinary continuation from one authenticates it against this boundary.
++class ValidatedReplayBoundary {
++ public:
++  [[nodiscard]] const std::shared_ptr<const ValidatedEvolutionContinuation>&
++  continuation() const noexcept {
++    return continuation_;
++  }
++  [[nodiscard]] std::size_t replayed_rejected_steps() const noexcept {
++    return replayed_rejected_steps_;
++  }
++  [[nodiscard]] const std::shared_ptr<const ValidatedRunRecord>& record()
++      const noexcept {
++    return record_;
++  }
++  [[nodiscard]] const std::string& record_identity() const noexcept {
++    return record_identity_;
++  }
++
++ private:
++  friend struct ValidatedRunRecordAccess;
++  ValidatedReplayBoundary(
++      std::shared_ptr<const ValidatedEvolutionContinuation> continuation,
++      std::size_t replayed_rejected_steps,
++      std::shared_ptr<const ValidatedRunRecord> record,
++      std::string record_identity)
++      : continuation_(std::move(continuation)),
++        replayed_rejected_steps_(replayed_rejected_steps),
++        record_(std::move(record)),
++        record_identity_(std::move(record_identity)) {}
++  std::shared_ptr<const ValidatedEvolutionContinuation> continuation_;
++  std::size_t replayed_rejected_steps_ = 0;
++  std::shared_ptr<const ValidatedRunRecord> record_;
++  std::string record_identity_;
++};
++
+ struct ValidatedRestoreResult {
+   // restored | refused
+   std::string status = "refused";
+@@ -216,6 +254,8 @@
+   std::vector<ValidatedPathLedger> ledger;
+   // The rebuilt record, to which further legs can be appended.
+   std::optional<ValidatedRunRecord> record = std::nullopt;
++  // Set only when restored: the sealed boundary of this replay.
++  std::shared_ptr<const ValidatedReplayBoundary> boundary = nullptr;
+ };
+ 
+ // Restores against an expectation supplied from outside the record. The
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/native/eom_validated_persistence_fixture_cli.cpp .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/native/eom_validated_persistence_fixture_cli.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/native/eom_validated_persistence_fixture_cli.cpp	2026-10-14 07:39:12
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/native/eom_validated_persistence_fixture_cli.cpp	2026-10-14 08:13:56
+@@ -900,7 +900,19 @@
+             << ",\"resumed_from\":" << quoted(r.request.start_time)
+             << ",\"initial_accepted\":" << r.request.initial_accepted_step_count
+             << ",\"initial_rejected\":" << r.request.initial_rejected_step_count
+-            << "}\n";
++            << ",\"replay_step_bound\":" << r.replay_step_bound
++            << ",\"replay_bound_bytes\":" << r.replay_bound_bytes
++            << ",\"legs\":[";
++  const auto claims = eom::read_validated_run_record(record_of(text));
++  for (std::size_t i = 0; claims.record && i < claims.record->legs().size(); ++i) {
++    const auto& leg = claims.record->legs()[i];
++    std::cout << (i ? "," : "") << "[" << quoted(leg.end_time) << ","
++              << leg.max_accepted_steps << "]";
++  }
++  std::cout << "],\"origin_time\":"
++            << quoted(claims.record ? claims.record->origin_time() : "")
++            << ",\"minimum_step\":" << quoted(original.minimum_step)
++            << ",\"requested_end\":" << quoted(end) << "}\n";
+   emit_ordinary(label, r.request, r.run, out.callbacks);
+   return out;
+ }
+@@ -960,8 +972,10 @@
+   const std::string at_two = checkpoint("P-two-v9", original, cut.run);
+   const auto from_two = resume("P-from-two", original, at_two, kEnd);
+   // Changed runtime workers: the override is not part of the preparation.
+-  resume("P-from-two-workers", original, at_two, kEnd,
+-         g_workers == 1U ? 4U : 1U);
++  const auto from_two_workers = resume("P-from-two-workers", original, at_two,
++                                       kEnd, g_workers == 1U ? 4U : 1U);
++  // Creation after a worker-changed resume keeps working.
++  checkpoint("P-after-worker-resume-v9", original, from_two_workers.result.run);
+   // A stale but genuine checkpoint: resuming from two again is valid.
+   resume("P-from-two-again", original, at_two, kEnd);
+   // The next v9 written after a resumed leg keeps the original preparation.
+@@ -1153,6 +1167,82 @@
+     const std::string at_three = checkpoint("P-three-v9", original, three.run);
+     resume_refused("N-three-record-in-two-envelope", original,
+                    with_record(at_two, record_of(at_three)), kEnd);
++  }
++
++  // O2-R2: a genuine record of another origin or other controls, with its
++  // own consistent claims, inside the caller's resealed envelope, is refused
++  // whether or not the caller names its complete identity.
++  {
++    const auto foreign = [&](const std::string& name, Ordinary other) {
++      const auto run = run_emit("P-foreign-" + name, cancelled_after(other, 2));
++      const std::string theirs = checkpoint("P-foreign-" + name + "-v9", other, run.run);
++      json::object mine = envelope(at_two);
++      const json::object their = envelope(theirs);
++      for (const char* key : {"providerState", "acceptedTime", "acceptedCount",
++                              "rejectedCount", "controllerStep", "histories"}) {
++        mine[key] = their.at(key);
++      }
++      // O2-R3: the foreign certificate cannot be checkpointed under the
++      // caller's original request.
++      refused("N-R3-" + name + "-certificate", [&] {
++        (void)eom::create_validated_provider_checkpoint(original, run.run);
++      });
++      const std::string swapped = reseal(mine);
++      const std::string identity = eom::validated_run_record_identity(record_of(theirs));
++      resume_refused("N-R2-" + name + "-under-expected-record", original, swapped,
++                     kEnd, std::nullopt, identity);
++      resume_refused("N-R2-" + name + "-under-expected-controls", original, swapped,
++                     kEnd);
++    };
++    Ordinary moved = original;
++    moved.paths[1] = {"plus", "1", static_path("plus", "1", "12").history};
++    foreign("changed-origin", moved);
++    Ordinary charged = original;
++    charged.paths[0] = {"receiver", "2", charged.paths[0].history};
++    foreign("changed-charge", charged);
++    Ordinary coupled = original;
++    coupled.coupling = "0.002";
++    foreign("changed-scalar", coupled);
++    Ordinary policy = original;
++    policy.validated = {};
++    foreign("changed-policy", policy);
++    // Every history keeps one common start, as the producer requires.
++    Ordinary ancestry = original;
++    ancestry.paths = {
++        {"receiver", "1", static_path("receiver", "1", "0", "-30").history},
++        {"plus", "1", static_path("plus", "1", "10", "-30").history},
++        {"minus", "-1", static_path("minus", "-1", "11", "-30").history}};
++    foreign("changed-ancestry", ancestry);
++  }
++
++  // O2-R3: a genuine certificate whose public histories were replaced by
++  // another genuine boundary's cannot be checkpointed.
++  {
++    OrdinaryRun changed = cut.run;
++    changed.histories = whole.run.histories;
++    refused("N-R3-changed-public-histories", [&] {
++      (void)eom::create_validated_provider_checkpoint(original, changed);
++    });
++    OrdinaryRun recounted = cut.run;
++    recounted.accepted_step_count += 1U;
++    refused("N-R3-changed-public-count", [&] {
++      (void)eom::create_validated_provider_checkpoint(original, recounted);
++    });
++  }
++
++  // Many short legs: ten invocations, each ending at a clipped final step
++  // shorter than the minimum step, then one more from v9.
++  {
++    const Ordinary first =
++        selected("p-short", static_pair(), "0.001", kStep, kRoomyToken);
++    auto leg = run_emit("P-short-leg-1", first);
++    for (int k = 2; k <= 10; ++k) {
++      Ordinary next = resumed("p-short", leg.run, first);
++      next.end_time = "0.0" + std::string(k < 10 ? "0" : "") + std::to_string(k);
++      leg = run_emit("P-short-leg-" + std::to_string(k), next);
++    }
++    const std::string text = checkpoint("P-short-v9", first, leg.run);
++    resume("P-short-resumed", first, text, "0.011");
+   }
+ 
+   // Resources and size.
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/src/ProviderTransport.cpp .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/src/ProviderTransport.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/src/ProviderTransport.cpp	2026-10-14 07:26:50
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/src/ProviderTransport.cpp	2026-10-14 08:13:25
+@@ -393,11 +393,37 @@
+   if (!k) fail("checkpoint_origin_required", "the run returned no accepted boundary to persist");
+   if (k->record_status() != "recorded" || !k->record()) fail("checkpoint_origin_required", "the run has no complete generating record: " + k->record_status());
+   const auto& sealed = k->driver()->state();
++  const ValidatedRunRecord& generating = *k->record();
++  // The original request must be the generating record's: its controls,
++  // origin time and exact origin members.
++  {
++    const std::string difference = validated_run_controls_difference(validated_controls(r), generating.controls());
++    if (!difference.empty()) fail("checkpoint_origin_mismatch", "the generating record's control differs from the original request: " + difference);
++    if (compare_exact_decimal_tokens(generating.origin_time(), r.start_time) != 0)
++      fail("checkpoint_origin_mismatch", "the generating record's origin time is not the original request's start");
++    const auto members = generating.origin_members();
++    bool same = members.size() == r.paths.size();
++    for (std::size_t i = 0; same && i < members.size(); ++i)
++      same = members[i].path_id == r.paths[i].path_id && members[i].charge == r.paths[i].charge &&
++             members[i].chain == validated_history_digest(r.paths[i].history);
++    if (!same) fail("checkpoint_origin_mismatch", "the generating record's origin is not the original request's");
++  }
++  // Every persisted claim is the sealed accepted boundary's: the scalar
++  // claims are read from it, and the certificate's histories must be the
++  // ones its members name, in order.
+   if (sealed.accepted_time != c.accepted_end_time || k->accepted_step_count() != c.accepted_step_count ||
+       k->rejected_step_count() != c.rejected_step_count || sealed.controller_step_size != c.controller_step_size ||
+-      k->record()->final_state().accepted_time != c.accepted_end_time ||
+-      k->record()->final_state().accepted_step_count != c.accepted_step_count)
++      generating.final_state().accepted_time != sealed.accepted_time ||
++      generating.final_state().accepted_step_count != sealed.accepted_step_count ||
++      generating.final_state().controller_step_size != sealed.controller_step_size)
+     fail("checkpoint_controller_mismatch", "the certificate, its continuation and its record disagree");
++  {
++    bool same = sealed.members.size() == c.histories.size();
++    for (std::size_t i = 0; same && i < c.histories.size(); ++i)
++      same = sealed.members[i].path_id == c.histories[i].path_id &&
++             sealed.members[i].history_digest == validated_history_digest(c.histories[i].history);
++    if (!same) fail("checkpoint_claim_mismatch", "the certificate's histories are not the sealed accepted boundary's");
++  }
+   const auto execution = validated_execution(r);
+   const auto execution_digest = equation_identity_sha256(canonical(execution));
+   const Object preparation{{"request", encode_request(r)}, {"execution", execution}};
+@@ -410,11 +436,11 @@
+              {"binding", validated_binding(r, execution_digest)},
+              {"resolvedModel", parse(inspect_equation_model(r).canonical_json)},
+              {"preparation", preparation},
+-             {"acceptedTime", c.accepted_end_time},
+-             {"runId", c.run_id},
+-             {"controllerStep", c.controller_step_size},
+-             {"acceptedCount", c.accepted_step_count},
+-             {"rejectedCount", c.rejected_step_count},
++             {"acceptedTime", sealed.accepted_time},
++             {"runId", r.run_id},
++             {"controllerStep", sealed.controller_step_size},
++             {"acceptedCount", k->accepted_step_count()},
++             {"rejectedCount", k->rejected_step_count()},
+              {"histories", published(c.histories)},
+              {"providerState", Object{{"schema", kValidatedProviderState},
+                                       {"record", record},
+@@ -461,24 +487,53 @@
+   const std::size_t workers = worker_override.value_or(r.thread_count);
+   if (workers == 0U || workers > 32U) fail("request_budget_exhausted", "the worker count must be between 1 and 32");
+   if (compare_exact_decimal_tokens(end, token(cp.at("acceptedTime"))) <= 0) fail("invalid_request", "the requested end must follow the accepted time");
+-  // Resources, before any replay: replay reruns every step from the origin,
+-  // so the bound is for one run from the origin to the requested end, plus
+-  // the envelope and record copies.
++  // A complete record identity named by the caller selects these bytes; it
++  // adds to the caller's controls and origin below, never replaces them.
++  if (expected_record_identity && *expected_record_identity != validated_run_record_identity(record))
++    fail("checkpoint_replay_refused", "expectation: the record's bytes are not the expected record");
++  // Resources, before any replay, from the record read as plain claims.
++  // Replay passes each leg's requested end and accepted-step limit to the
++  // driver, which enforces them, so a leg reaches at most the steps those
++  // allow from the origin, and one clipped final step each, which the
++  // per-leg bound counts. Replay holds one leg's attempts at a time, the
++  // whole retained history, and the record and envelope copies; the new leg
++  // follows with the caller's own limit.
++  const ValidatedRunRecordClaims claims = read_validated_run_record(record);
++  if (claims.status != "read" || !claims.record) fail("checkpoint_replay_refused", "read: " + claims.reason);
++  std::uint64_t replay_steps = 0;
++  std::uint64_t replay_bytes = 0;
+   {
+-    auto bound = r;
+-    bound.end_time = end;
+-    bound.diagnostic_maximum_accepted_steps = std::numeric_limits<std::size_t>::max();
+-    const std::uint64_t replay = estimate_native_validated_growth_bytes(bound);
+-    const std::uint64_t copies = 4U * static_cast<std::uint64_t>(text.size());
+-    if (replay > r.memory_budget_bytes || copies > r.memory_budget_bytes - replay)
+-      fail("checkpoint_resource_refused", "the replay bound of " + std::to_string(replay) + " bytes and " +
+-           std::to_string(copies) + " bytes of copies exceed the memory budget of " + std::to_string(r.memory_budget_bytes));
++    using U = unsigned __int128;
++    auto origin = r;
++    origin.thread_count = workers;
++    U steps = 0, peak = 0, segment = 0;
++    for (const auto& leg : claims.record->legs()) {
++      auto bound = origin;
++      bound.end_time = leg.end_time;
++      bound.diagnostic_maximum_accepted_steps = leg.max_accepted_steps;
++      const NativeValidatedBound b = native_validated_bound(bound);
++      steps += b.reachable_steps;
++      peak = std::max<U>(peak, b.growth_bytes);
++      segment = std::max<U>(segment, b.segment_bytes);
++    }
++    auto next = origin;
++    next.end_time = end;
++    const NativeValidatedBound b = native_validated_bound(next);
++    segment = std::max<U>(segment, b.segment_bytes);
++    const U bytes = peak + b.growth_bytes + (steps + b.reachable_steps) * U(r.paths.size()) * segment +
++                    4U * U(record.size()) + 4U * U(text.size());
++    if (bytes > std::numeric_limits<std::uint64_t>::max())
++      fail("validated_resource_bound_unavailable", "no finite replay bound can be established");
++    replay_steps = static_cast<std::uint64_t>(steps);
++    replay_bytes = static_cast<std::uint64_t>(bytes);
++    if (replay_bytes > r.memory_budget_bytes)
++      fail("checkpoint_resource_refused", "the replay bound of " + std::to_string(replay_bytes) +
++           " bytes for " + std::to_string(replay_steps) + " reachable replayed steps exceeds the memory budget of " +
++           std::to_string(r.memory_budget_bytes));
+   }
+   ValidatedRestoreExpectation expectation;
+-  if (expected_record_identity) {
+-    expectation.record_identity = *expected_record_identity;
+-  } else {
+-    expectation.controls = validated_controls(r);
++  expectation.controls = validated_controls(r);
++  {
+     std::vector<ValidatedRunOriginMember> origin;
+     for (const auto& p : r.paths) origin.push_back({p.path_id, p.charge, validated_history_digest(p.history)});
+     expectation.origin = std::move(origin);
+@@ -510,9 +565,12 @@
+   ValidatedProviderResume out;
+   out.request = resumed;
+   out.run = evolve_native_coupled_histories(resumed);
+-  out.identity_basis = restored.identity_basis;
++  out.identity_basis = expected_record_identity ? "expected_record" : restored.identity_basis;
+   out.record_identity = restored.record_identity;
+   out.compared_fields = restored.compared_fields;
++  if (expected_record_identity) out.compared_fields.emplace_back("record_identity");
++  out.replay_step_bound = replay_steps;
++  out.replay_bound_bytes = replay_bytes;
+   out.replayed_legs = restored.replayed_legs;
+   out.replayed_steps = restored.replayed_steps;
+   out.replayed_rejected_steps = restored.replayed_rejected_steps;
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/src/ValidatedOrdinaryBridge.cpp .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/src/ValidatedOrdinaryBridge.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/src/ValidatedOrdinaryBridge.cpp	2026-10-14 07:23:41
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/src/ValidatedOrdinaryBridge.cpp	2026-10-14 08:13:24
+@@ -344,6 +344,11 @@
+ 
+ std::uint64_t estimate_native_validated_growth_bytes(
+     const NativeCoupledEvolutionRequest& request) {
++  return native_validated_bound(request).growth_bytes;
++}
++
++NativeValidatedBound native_validated_bound(
++    const NativeCoupledEvolutionRequest& request) {
+   const ValidatedEvolutionRequest translated =
+       native_validated_request(request);
+   using U = unsigned __int128;
+@@ -477,7 +482,16 @@
+                                2U * digest + id) +
+                       sizeof(ValidatedPopulationEvidence),
+                   "population");
+-  return static_cast<std::uint64_t>(bytes);
++  // Helper threads: worker_count - 1, each charged an 8 MiB stack.
++  bytes = checked(
++      bytes + U(translated.worker_count - 1U) * 8U * 1024U * 1024U,
++      "worker stacks");
++  NativeValidatedBound out;
++  out.reachable_steps = static_cast<std::uint64_t>(steps);
++  out.attempts = static_cast<std::uint64_t>(attempts);
++  out.segment_bytes = static_cast<std::uint64_t>(segment);
++  out.growth_bytes = static_cast<std::uint64_t>(bytes);
++  return out;
+ }
+ 
+ namespace {
+@@ -562,17 +576,33 @@
+ std::shared_ptr<const NativeValidatedContinuation>
+ native_validated_continuation_from_replay(
+     const ValidatedRestoreResult& restored) {
+-  if (restored.status != "restored" || restored.continuation == nullptr ||
+-      !restored.record.has_value()) {
++  if (restored.status != "restored" || restored.boundary == nullptr) {
+     throw std::invalid_argument(
+         "only a complete replay of a generating record issues a "
+         "continuation");
+   }
++  const ValidatedReplayBoundary& boundary = *restored.boundary;
++  if (boundary.continuation() == nullptr || boundary.record() == nullptr ||
++      restored.continuation != boundary.continuation() ||
++      restored.replayed_rejected_steps != boundary.replayed_rejected_steps() ||
++      restored.record_identity != boundary.record_identity() ||
++      !restored.record.has_value() ||
++      restored.record->serialize() != boundary.record()->serialize()) {
++    throw std::invalid_argument(
++        "the restore result differs from the replay that issued it");
++  }
++  const ValidatedEvolutionState& sealed = boundary.continuation()->state();
++  const ValidatedRunFinalState& final_state = boundary.record()->final_state();
++  if (sealed.accepted_time != final_state.accepted_time ||
++      sealed.accepted_step_count != final_state.accepted_step_count ||
++      sealed.controller_step_size != final_state.controller_step_size) {
++    throw std::invalid_argument(
++        "the replayed continuation and record disagree");
++  }
+   return std::shared_ptr<const NativeValidatedContinuation>(
+       new NativeValidatedContinuation(
+-          restored.continuation, restored.replayed_rejected_steps,
+-          std::make_shared<const ValidatedRunRecord>(*restored.record),
+-          "recorded"));
++          boundary.continuation(), boundary.replayed_rejected_steps(),
++          boundary.record(), "recorded"));
+ }
+ 
+ NativeCoupledEvolutionCertificate evolve_native_validated_histories(
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/src/ValidatedRunRecord.cpp .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/src/ValidatedRunRecord.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o2-tree/src/eom/src/ValidatedRunRecord.cpp	2026-10-14 07:22:55
++++ .tmp/eom-ordinary-integration-2026-10-14/o2v4-tree/src/eom/src/ValidatedRunRecord.cpp	2026-10-14 08:13:24
+@@ -23,6 +23,16 @@
+ // construct a record's private state.
+ struct ValidatedRunRecordAccess {
+   static ValidatedRunRecord empty() { return ValidatedRunRecord(); }
++  static std::shared_ptr<const ValidatedReplayBoundary> boundary(
++      std::shared_ptr<const ValidatedEvolutionContinuation> continuation,
++      std::size_t replayed_rejected_steps,
++      std::shared_ptr<const ValidatedRunRecord> record,
++      std::string record_identity) {
++    return std::shared_ptr<const ValidatedReplayBoundary>(
++        new ValidatedReplayBoundary(std::move(continuation),
++                                    replayed_rejected_steps, std::move(record),
++                                    std::move(record_identity)));
++  }
+   static ValidatedRunControls& controls(ValidatedRunRecord& r) {
+     return r.controls_;
+   }
+@@ -807,6 +817,9 @@
+   }
+   result.status = "restored";
+   result.replayed_rejected_steps = rejected;
++  result.boundary = ValidatedRunRecordAccess::boundary(
++      continuation, rejected, std::make_shared<const ValidatedRunRecord>(*rebuilt),
++      result.record_identity);
+   result.paths = std::move(paths);
+   result.evidence = std::move(evidence);
+   result.continuation = std::move(continuation);

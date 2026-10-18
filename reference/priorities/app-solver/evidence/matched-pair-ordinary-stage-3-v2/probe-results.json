@@ -1,0 +1,1204 @@
+{
+  "request": {
+    "schema": "eom_evolution_request/v3",
+    "runId": "o3-run",
+    "model": {
+      "fieldSpeed": "1",
+      "coupling": "0.001"
+    },
+    "interval": {
+      "start": "0",
+      "end": "0.0625"
+    },
+    "paths": [
+      {
+        "pathId": "receiver",
+        "charge": "1",
+        "history": {
+          "kind": "cubic",
+          "segments": [
+            {
+              "start": "-20",
+              "end": "0",
+              "coefficients": [
+                [
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "positionErrors": [
+                "0",
+                "0",
+                "0"
+              ],
+              "velocityErrors": [
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "pathId": "plus",
+        "charge": "1",
+        "history": {
+          "kind": "cubic",
+          "segments": [
+            {
+              "start": "-20",
+              "end": "0",
+              "coefficients": [
+                [
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "10",
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "positionErrors": [
+                "0",
+                "0",
+                "0"
+              ],
+              "velocityErrors": [
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "pathId": "minus",
+        "charge": "-1",
+        "history": {
+          "kind": "cubic",
+          "segments": [
+            {
+              "start": "-20",
+              "end": "0",
+              "coefficients": [
+                [
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "11",
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "positionErrors": [
+                "0",
+                "0",
+                "0"
+              ],
+              "velocityErrors": [
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "numerics": {
+      "initialStep": "0.0078125",
+      "minimumStep": "0.0078125"
+    },
+    "execution": {
+      "method": "canonical_validated_far_step_evolution/v1",
+      "positionIncrementBudget": "0.000001",
+      "velocityIncrementBudget": "0.000001",
+      "pairPolicy": "canonical_whole_step_piecewise_tube/v1",
+      "groups": [
+        [
+          "plus",
+          "minus"
+        ]
+      ],
+      "maximumAcceptedSteps": 8
+    }
+  },
+  "rows": [
+    {
+      "name": "v2 inspection on v3 request launches before refusal",
+      "accepted": false,
+      "error": "EOM inspection is not the v3 execution this request declares; nothing was launched.",
+      "code": "execution_binding_mismatch",
+      "calls": [
+        {
+          "url": "/api/eom/v2/inspect",
+          "body": {
+            "schema": "eom_evolution_request/v3",
+            "runId": "o3-run",
+            "model": {
+              "fieldSpeed": "1",
+              "coupling": "0.001"
+            },
+            "interval": {
+              "start": "0",
+              "end": "0.0625"
+            },
+            "paths": [
+              {
+                "pathId": "receiver",
+                "charge": "1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "pathId": "plus",
+                "charge": "1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "10",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "pathId": "minus",
+                "charge": "-1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "11",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "numerics": {
+              "initialStep": "0.0078125",
+              "minimumStep": "0.0078125"
+            },
+            "execution": {
+              "method": "canonical_validated_far_step_evolution/v1",
+              "positionIncrementBudget": "0.000001",
+              "velocityIncrementBudget": "0.000001",
+              "pairPolicy": "canonical_whole_step_piecewise_tube/v1",
+              "groups": [
+                [
+                  "plus",
+                  "minus"
+                ]
+              ],
+              "maximumAcceptedSteps": 8
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "request disables grouping but inspection and response both group",
+      "accepted": false,
+      "error": "EOM inspection is not the v3 execution this request declares; nothing was launched.",
+      "code": "execution_binding_mismatch",
+      "calls": [
+        {
+          "url": "/api/eom/v2/inspect",
+          "body": {
+            "schema": "eom_evolution_request/v3",
+            "runId": "o3-run",
+            "model": {
+              "fieldSpeed": "1",
+              "coupling": "0.001"
+            },
+            "interval": {
+              "start": "0",
+              "end": "0.0625"
+            },
+            "paths": [
+              {
+                "pathId": "receiver",
+                "charge": "1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "pathId": "plus",
+                "charge": "1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "10",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "pathId": "minus",
+                "charge": "-1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "11",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "numerics": {
+              "initialStep": "0.0078125",
+              "minimumStep": "0.0078125"
+            },
+            "execution": {
+              "method": "canonical_validated_far_step_evolution/v1",
+              "positionIncrementBudget": "0.000001",
+              "velocityIncrementBudget": "0.000001",
+              "pairPolicy": "disabled",
+              "groups": [],
+              "maximumAcceptedSteps": 8
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "request declares two but inspection and response declare eight",
+      "accepted": false,
+      "error": "EOM inspection is not the v3 execution this request declares; nothing was launched.",
+      "code": "execution_binding_mismatch",
+      "calls": [
+        {
+          "url": "/api/eom/v2/inspect",
+          "body": {
+            "schema": "eom_evolution_request/v3",
+            "runId": "o3-run",
+            "model": {
+              "fieldSpeed": "1",
+              "coupling": "0.001"
+            },
+            "interval": {
+              "start": "0",
+              "end": "0.0625"
+            },
+            "paths": [
+              {
+                "pathId": "receiver",
+                "charge": "1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "pathId": "plus",
+                "charge": "1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "10",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "pathId": "minus",
+                "charge": "-1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "11",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "numerics": {
+              "initialStep": "0.0078125",
+              "minimumStep": "0.0078125"
+            },
+            "execution": {
+              "method": "canonical_validated_far_step_evolution/v1",
+              "positionIncrementBudget": "0.000001",
+              "velocityIncrementBudget": "0.000001",
+              "pairPolicy": "canonical_whole_step_piecewise_tube/v1",
+              "groups": [
+                [
+                  "plus",
+                  "minus"
+                ]
+              ],
+              "maximumAcceptedSteps": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "matching uncomputed digest in inspection and response",
+      "accepted": false,
+      "error": "EOM inspection is not the v3 execution this request declares; nothing was launched.",
+      "code": "execution_binding_mismatch",
+      "calls": [
+        {
+          "url": "/api/eom/v2/inspect",
+          "body": {
+            "schema": "eom_evolution_request/v3",
+            "runId": "o3-run",
+            "model": {
+              "fieldSpeed": "1",
+              "coupling": "0.001"
+            },
+            "interval": {
+              "start": "0",
+              "end": "0.0625"
+            },
+            "paths": [
+              {
+                "pathId": "receiver",
+                "charge": "1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "pathId": "plus",
+                "charge": "1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "10",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "pathId": "minus",
+                "charge": "-1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "11",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "numerics": {
+              "initialStep": "0.0078125",
+              "minimumStep": "0.0078125"
+            },
+            "execution": {
+              "method": "canonical_validated_far_step_evolution/v1",
+              "positionIncrementBudget": "0.000001",
+              "velocityIncrementBudget": "0.000001",
+              "pairPolicy": "canonical_whole_step_piecewise_tube/v1",
+              "groups": [
+                [
+                  "plus",
+                  "minus"
+                ]
+              ],
+              "maximumAcceptedSteps": 8
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "runtime override option on browser resume",
+      "accepted": true,
+      "schema": "eom_evolution_response/v3",
+      "calls": [
+        {
+          "url": "/api/eom/v2/inspect",
+          "body": {
+            "schema": "eom_evolution_request/v3",
+            "runId": "o3-run",
+            "model": {
+              "fieldSpeed": "1",
+              "coupling": "0.001"
+            },
+            "interval": {
+              "start": "0",
+              "end": "0.0625"
+            },
+            "paths": [
+              {
+                "pathId": "receiver",
+                "charge": "1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "pathId": "plus",
+                "charge": "1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "10",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "pathId": "minus",
+                "charge": "-1",
+                "history": {
+                  "kind": "cubic",
+                  "segments": [
+                    {
+                      "start": "-20",
+                      "end": "0",
+                      "coefficients": [
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "0",
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        [
+                          "11",
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      ],
+                      "positionErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "velocityErrors": [
+                        "0",
+                        "0",
+                        "0"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "numerics": {
+              "initialStep": "0.0078125",
+              "minimumStep": "0.0078125"
+            },
+            "execution": {
+              "method": "canonical_validated_far_step_evolution/v1",
+              "positionIncrementBudget": "0.000001",
+              "velocityIncrementBudget": "0.000001",
+              "pairPolicy": "canonical_whole_step_piecewise_tube/v1",
+              "groups": [
+                [
+                  "plus",
+                  "minus"
+                ]
+              ],
+              "maximumAcceptedSteps": 8
+            }
+          }
+        },
+        {
+          "url": "/api/eom/v2/resume",
+          "body": {
+            "operation": "resume",
+            "request": {
+              "schema": "eom_evolution_request/v3",
+              "runId": "o3-run",
+              "model": {
+                "fieldSpeed": "1",
+                "coupling": "0.001"
+              },
+              "interval": {
+                "start": "0",
+                "end": "0.0625"
+              },
+              "paths": [
+                {
+                  "pathId": "receiver",
+                  "charge": "1",
+                  "history": {
+                    "kind": "cubic",
+                    "segments": [
+                      {
+                        "start": "-20",
+                        "end": "0",
+                        "coefficients": [
+                          [
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          [
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          [
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ]
+                        ],
+                        "positionErrors": [
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        "velocityErrors": [
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "pathId": "plus",
+                  "charge": "1",
+                  "history": {
+                    "kind": "cubic",
+                    "segments": [
+                      {
+                        "start": "-20",
+                        "end": "0",
+                        "coefficients": [
+                          [
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          [
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          [
+                            "10",
+                            "0",
+                            "0",
+                            "0"
+                          ]
+                        ],
+                        "positionErrors": [
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        "velocityErrors": [
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "pathId": "minus",
+                  "charge": "-1",
+                  "history": {
+                    "kind": "cubic",
+                    "segments": [
+                      {
+                        "start": "-20",
+                        "end": "0",
+                        "coefficients": [
+                          [
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          [
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          [
+                            "11",
+                            "0",
+                            "0",
+                            "0"
+                          ]
+                        ],
+                        "positionErrors": [
+                          "0",
+                          "0",
+                          "0"
+                        ],
+                        "velocityErrors": [
+                          "0",
+                          "0",
+                          "0"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "numerics": {
+                "initialStep": "0.0078125",
+                "minimumStep": "0.0078125"
+              },
+              "execution": {
+                "method": "canonical_validated_far_step_evolution/v1",
+                "positionIncrementBudget": "0.000001",
+                "velocityIncrementBudget": "0.000001",
+                "pairPolicy": "canonical_whole_step_piecewise_tube/v1",
+                "groups": [
+                  [
+                    "plus",
+                    "minus"
+                  ]
+                ],
+                "maximumAcceptedSteps": 8
+              }
+            },
+            "checkpoint": {
+              "schema": "probe-checkpoint"
+            },
+            "endTime": "0.0625",
+            "runtime": {
+              "threadCount": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "process binding accepts nondefault undeclared grouping",
+      "accepted": false,
+      "code": "execution_binding_mismatch",
+      "message": "EOM execution binding: the reported execution is not the normalized execution the request declares."
+    },
+    {
+      "name": "binding admits unknown successful response schema",
+      "accepted": false,
+      "code": "execution_binding_mismatch",
+      "message": "EOM execution binding: a v3 request was answered by eom_evolution_response/v99."
+    },
+    {
+      "name": "nonretaining process client admits unknown successful evolution schema",
+      "accepted": false,
+      "code": "unsupported_response_schema",
+      "message": "EOM response schema: a v3 evolve answered by eom_evolution_response/v99."
+    }
+  ]
+}

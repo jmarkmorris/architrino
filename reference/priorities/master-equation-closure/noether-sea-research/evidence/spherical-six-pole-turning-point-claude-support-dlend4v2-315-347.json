@@ -1,0 +1,77 @@
+{
+ "controls": [
+  {
+   "name": "(C1) EXACT static-source case (constant history q' = 0 as exact records; q = pi/3; w in [0.39, 0.41]): the n x n hull contains the exact range spanned by the w endpoints, exceeds it by less than 1e-12, and at w = 2/5 dl/dt + 2 w a equals the hand value -da_r/dt",
+   "hull": [
+    "-0.08179865226140463471004279",
+    "-0.07716229140448291452404846"
+   ],
+   "exact_range": [
+    "-0.08146748362876736898247177",
+    "-0.07749346003712018025161949"
+   ],
+   "hand_minus_dar": "0.02649349061098125820568188",
+   "pass": false
+  },
+  {
+   "name": "(C2) NUMERICAL grid case on the real end box of subject step 334: 9 direct evaluations at grid points of (q, w) (end time whole) lie inside the n x n hull",
+   "hull": [
+    "-0.008007050156292593740280457",
+    "-0.005861341729822376473330336"
+   ],
+   "grid": [
+    [
+     "-0.007442485722051841667218003",
+     "-0.006747709063043007802588472"
+    ],
+    [
+     "-0.007219052787372908943170926",
+     "-0.006519815851968148430433857"
+    ],
+    [
+     "-0.006995619852693976219123848",
+     "-0.006291922640893289058279242"
+    ],
+    [
+     "-0.007511034686471917480098439",
+     "-0.006815702881777247740283742"
+    ],
+    [
+     "-0.007287483376890204136853351",
+     "-0.006587697285599838763338121"
+    ],
+    [
+     "-0.007063932067308490793608263",
+     "-0.0063596916894224297863925"
+    ],
+    [
+     "-0.007580000953699238364400216",
+     "-0.006884092692954766391576121"
+    ],
+    [
+     "-0.007356332382251044494737272",
+     "-0.006655975725166140605642616"
+    ],
+    [
+     "-0.007132663810802850625074327",
+     "-0.006427858757377514819709111"
+    ]
+   ],
+   "pass": true
+  },
+  {
+   "name": "(N1) negative: the box shifted by three widths in w misses some true grid value (or is refused)",
+   "pass": true
+  },
+  {
+   "name": "(N2) negative: omitting the -2 w a term misses some true grid value",
+   "hull": [
+    "-0.04357868519370783630883005",
+    "-0.04214385789455943996283297"
+   ],
+   "pass": true
+  }
+ ],
+ "n": 4,
+ "controls_all_pass": false
+}

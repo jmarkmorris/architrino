@@ -1,0 +1,378 @@
+{
+  "captured": "2026-10-18",
+  "scope": "Weekly changed-control/version inventory; hashes identify source versions, not full mathematical review. Actual read scopes are in weekly receipt and child reports.",
+  "baseline": "6f869aaae4a62fcff8e11d957c8af0656c0a2a0b",
+  "head": "2a24acaca073d21a80b838654d159543f8220c8e",
+  "entries": [
+    {
+      "path": "reference/priorities/README.md",
+      "sha256": "08d1117de1c7f85686d465ab4928f8eb326716c41ba3d30aa85398a39016bf55",
+      "final_sha256": "08d1117de1c7f85686d465ab4928f8eb326716c41ba3d30aa85398a39016bf55"
+    },
+    {
+      "path": "reference/priorities/aaa-corpus-rewrite/corpus-review-status.md",
+      "sha256": "d7c44c4901db42ce356a554b864d3eb92c27b81bee5f1c483851c6b4af32727d",
+      "final_sha256": "d7c44c4901db42ce356a554b864d3eb92c27b81bee5f1c483851c6b4af32727d"
+    },
+    {
+      "path": "reference/priorities/aaa-corpus-rewrite/priorities.md",
+      "sha256": "aa5f5edd8f8bd3fa7da55f31ffb1df905d51c4aa0787f38edfdfd97d77c96738",
+      "final_sha256": "aa5f5edd8f8bd3fa7da55f31ffb1df905d51c4aa0787f38edfdfd97d77c96738"
+    },
+    {
+      "path": "reference/priorities/aaa-corpus-rewrite/work-queue.md",
+      "sha256": "dfec3f671e3e6cbd852f36463adeb9425ce0210ede044b4ea08837d4b35eaa03",
+      "final_sha256": "dfec3f671e3e6cbd852f36463adeb9425ce0210ede044b4ea08837d4b35eaa03"
+    },
+    {
+      "path": "reference/priorities/aaa-operations/priorities.md",
+      "sha256": "a76a8ae405c785a222b9d3f55f3052c10dcb8f1f7fb53bba8ee417eb4efd5b6c",
+      "final_sha256": "94adb72985f5da608b778183197b60a5da0307506cdf457adffbb5871a482444"
+    },
+    {
+      "path": "reference/priorities/aaa-operations/work-queue.md",
+      "sha256": "9329243997be8e51ffd834ea4d141411e064d43e622124b7f0f5bbe3bdfed915",
+      "final_sha256": "bc05ac1cf425b26b6f4b93e0251b6b7574c30198c6b58d546ec305b53699c252"
+    },
+    {
+      "path": "reference/priorities/aaa-work-threads/priorities.md",
+      "sha256": "609da2838a7e96bc54b162e2d59e0ce16bc05cdd15631e50cc8e3601a5ce1cff",
+      "final_sha256": "609da2838a7e96bc54b162e2d59e0ce16bc05cdd15631e50cc8e3601a5ce1cff"
+    },
+    {
+      "path": "reference/priorities/app-barnes-hut/README.md",
+      "sha256": "eb77e421213a5ea26fb64df9ff6e87cfe0ce8083a4ecd0743c58544e53357183",
+      "final_sha256": "eb77e421213a5ea26fb64df9ff6e87cfe0ce8083a4ecd0743c58544e53357183"
+    },
+    {
+      "path": "reference/priorities/app-barnes-hut/priorities.md",
+      "sha256": "985a446d362ef10238f040d75a07f6759a96eb32e0255d450895c6d5d9b943fb",
+      "final_sha256": "68483304d729e2610ae30eb7437f04a12ab41d4217f6ec002c5cc03069a42c6b"
+    },
+    {
+      "path": "reference/priorities/app-barnes-hut/work-queue.md",
+      "sha256": "4aa93f6448f53212d63d43ffc7dcdb120210784cc43aaa2c593e28e849c4d98b",
+      "final_sha256": "e5ccb7adf31ec19f861afe6162b6b1cff00d186f6f712dac2fccad6b697788be"
+    },
+    {
+      "path": "reference/priorities/app-photon/priorities.md",
+      "sha256": "6f9351bf4cd142d7e2abb1522686c7a4a73da657b707b8d2cd20c6b60603da57",
+      "final_sha256": "6f9351bf4cd142d7e2abb1522686c7a4a73da657b707b8d2cd20c6b60603da57"
+    },
+    {
+      "path": "reference/priorities/app-photon/work-queue.md",
+      "sha256": "c48510052888546cb9c7dc0ace0a0c211d322b7c4c25cac1a2dfdac87090b16c",
+      "final_sha256": "c48510052888546cb9c7dc0ace0a0c211d322b7c4c25cac1a2dfdac87090b16c"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-1-live/README.md",
+      "sha256": "cb1cdc951bae74ed96fd66591d75baf8b119d3eab83505f41ec1af2b42e98570",
+      "final_sha256": "cb1cdc951bae74ed96fd66591d75baf8b119d3eab83505f41ec1af2b42e98570"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-1-v2/README.md",
+      "sha256": "12daef39d64aa6be2703d14b5af363288d8741b3fcc47e11d3becae19f449ccc",
+      "final_sha256": "12daef39d64aa6be2703d14b5af363288d8741b3fcc47e11d3becae19f449ccc"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-1-v3/README.md",
+      "sha256": "fc7d6574ce06044ba5c17598eab953149f200efdfabafdfd545861f71b94f510",
+      "final_sha256": "fc7d6574ce06044ba5c17598eab953149f200efdfabafdfd545861f71b94f510"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-1/README.md",
+      "sha256": "ec45d7386e23e6682afbdef6c45eb9ebe274f5fe58d6941c469ee7ff064b03c8",
+      "final_sha256": "ec45d7386e23e6682afbdef6c45eb9ebe274f5fe58d6941c469ee7ff064b03c8"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-2-live/README.md",
+      "sha256": "792a4460829a89280808904d88fc61545498ba1acc117c0bdae7bcd71cacb499",
+      "final_sha256": "792a4460829a89280808904d88fc61545498ba1acc117c0bdae7bcd71cacb499"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-2-v2/README.md",
+      "sha256": "9effc0da9cc494a55fd0be961945c0748c722d1eb92b1dedbe574c3cd2600b0e",
+      "final_sha256": "9effc0da9cc494a55fd0be961945c0748c722d1eb92b1dedbe574c3cd2600b0e"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-2-v3/README.md",
+      "sha256": "cfc84db9819f1aa66f00ea79993808f0f9e6b527fde9629ce3ad61b2225cc2b9",
+      "final_sha256": "cfc84db9819f1aa66f00ea79993808f0f9e6b527fde9629ce3ad61b2225cc2b9"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-2-v4/README.md",
+      "sha256": "b75426d7aa7d7d9fa223aadeb5f6ecd3c3f9e73ad58c03b48f885d20a388413e",
+      "final_sha256": "b75426d7aa7d7d9fa223aadeb5f6ecd3c3f9e73ad58c03b48f885d20a388413e"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-2/README.md",
+      "sha256": "34f2ed4792970397ce114c389a3c9659e47a5d37d6df23eaa4014821c6cfe060",
+      "final_sha256": "34f2ed4792970397ce114c389a3c9659e47a5d37d6df23eaa4014821c6cfe060"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-3-v2/README.md",
+      "sha256": "5250b5f813bdb2d375e95cb9bbddccb74f1a4d0ddf0dd805d206d75c353bbff1",
+      "final_sha256": "5250b5f813bdb2d375e95cb9bbddccb74f1a4d0ddf0dd805d206d75c353bbff1"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-3/README.md",
+      "sha256": "aa7eca9991ad7170764e89cd34c3528917861015f2fda1d7399acce8b9911a06",
+      "final_sha256": "aa7eca9991ad7170764e89cd34c3528917861015f2fda1d7399acce8b9911a06"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-stage-3-increment-1-v3/README.md",
+      "sha256": "d81a630e4acf3b767695cb27ec2cb0fd476560a1df5f9a55d8b85a094fa8c9ca",
+      "final_sha256": "d81a630e4acf3b767695cb27ec2cb0fd476560a1df5f9a55d8b85a094fa8c9ca"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-stage-3-increment-1/README.md",
+      "sha256": "ba694e163f5bd4ca2f7be7ee85200b9709ee9a8f9d7586d356ab98aaf2e52ef9",
+      "final_sha256": "ba694e163f5bd4ca2f7be7ee85200b9709ee9a8f9d7586d356ab98aaf2e52ef9"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-stage-3-increment-2/README.md",
+      "sha256": "7f49b7817ae063bc4912d2264d96710a4339248f374864d4146b6c28243478e2",
+      "final_sha256": "7f49b7817ae063bc4912d2264d96710a4339248f374864d4146b6c28243478e2"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-stage-3-increment-3/README.md",
+      "sha256": "dee6fd5bdd4f660f7914af7ede48adc0c0d6d6e9efec3adae0e3226670d96c65",
+      "final_sha256": "dee6fd5bdd4f660f7914af7ede48adc0c0d6d6e9efec3adae0e3226670d96c65"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-stage-3-increment-4-v2/README.md",
+      "sha256": "57eaa2f2df12c229bba9229cd4de7046496b23b60cf7806e25a3e746bbecdf59",
+      "final_sha256": "57eaa2f2df12c229bba9229cd4de7046496b23b60cf7806e25a3e746bbecdf59"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-stage-3-increment-4/README.md",
+      "sha256": "32548f143f0f6aab2944e632f5516e7669f89f5d3a36f2f25dcb4e2b5d9d0975",
+      "final_sha256": "32548f143f0f6aab2944e632f5516e7669f89f5d3a36f2f25dcb4e2b5d9d0975"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/saturday-borg-six-path-2026-10-10/README.md",
+      "sha256": "0a5c83c74bb3a52a4d9bd2b32ca5989d8291546da3e75e1fe359fc57386a2287",
+      "final_sha256": "0a5c83c74bb3a52a4d9bd2b32ca5989d8291546da3e75e1fe359fc57386a2287"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/saturday-stationary-fixture-obligations-2026-10-11/README.md",
+      "sha256": "54e71af56375a57d72c3f529556af6a3f8f0ee4c71609bdc1d0d0f72f46ecd99",
+      "final_sha256": "54e71af56375a57d72c3f529556af6a3f8f0ee4c71609bdc1d0d0f72f46ecd99"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/saturday-stationary-frontier-2026-10-11/README.md",
+      "sha256": "4093eb7b147881bbd0598b16fe0bffbbacb2384ebaf6b9dc7add0684b0ee7c0d",
+      "final_sha256": "4093eb7b147881bbd0598b16fe0bffbbacb2384ebaf6b9dc7add0684b0ee7c0d"
+    },
+    {
+      "path": "reference/priorities/app-solver/priorities.md",
+      "sha256": "a615ec86622c00af46a42d84a247feb9a84c4e04ddb80b7cb1570f6a44c19d7b",
+      "final_sha256": "95c31749449df86298425b76a5a1c669469b1210d84be86fbdbbfc62bd6e458e"
+    },
+    {
+      "path": "reference/priorities/app-solver/work-queue.md",
+      "sha256": "920559fbe3f89b7d821b689ebb073cf8ac2d8280960beb3cc3df6d17a818b6bb",
+      "final_sha256": "f1f8106de65c763b041e254c44c864a3ec4d5e0dd8554afd0363837baa101947"
+    },
+    {
+      "path": "reference/priorities/app-surface/README.md",
+      "sha256": "410f1f10a51f99f26943a533d7e73486ae160cee43abdaa1a64bb90957dd0d9c",
+      "final_sha256": "410f1f10a51f99f26943a533d7e73486ae160cee43abdaa1a64bb90957dd0d9c"
+    },
+    {
+      "path": "reference/priorities/app-surface/priorities.md",
+      "sha256": "b786cf2491248d11890b955e2d54b2a353896faa6c6b5d04cfbf2ad1a4d79e8d",
+      "final_sha256": "b786cf2491248d11890b955e2d54b2a353896faa6c6b5d04cfbf2ad1a4d79e8d"
+    },
+    {
+      "path": "reference/priorities/app-surface/work-queue.md",
+      "sha256": "375f5920bffbc6a6fed2b650f7d27dfc11568d8971561ef5db042a8a161723d3",
+      "final_sha256": "375f5920bffbc6a6fed2b650f7d27dfc11568d8971561ef5db042a8a161723d3"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/README.md",
+      "sha256": "ee81d6c455ef05fac983c19ddfd43bc533ff835045976f54f886dfc953349528",
+      "final_sha256": "ae3802f4ff37b46f30878873055544cc94de1d5731f62fd934d0afe26f7b83d7"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/README.md",
+      "sha256": "ff27572b6e121c12e8aa2015fb7362b9d82ea5f32e20eb196e2ccaf9b36772b6",
+      "final_sha256": "ff27572b6e121c12e8aa2015fb7362b9d82ea5f32e20eb196e2ccaf9b36772b6"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-actual-common-motion-correlations-2026-10-17/README.md",
+      "sha256": "1f6c10200c4fcbbf1157f968bf329b8e3ee07a61c939b83a83e03ea9863d3c9f",
+      "final_sha256": "1f6c10200c4fcbbf1157f968bf329b8e3ee07a61c939b83a83e03ea9863d3c9f"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-combined-breathing-period-average-2026-10-12/README.md",
+      "sha256": "934da1125e251e63839467df57f67a466acce6f22f9da907f69422384848cbfd",
+      "final_sha256": "934da1125e251e63839467df57f67a466acce6f22f9da907f69422384848cbfd"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-common-motion-period-comparison-2026-10-12/README.md",
+      "sha256": "e7eb19b22cd884aaeffbb36eac759c3b4b8565a941434f20f3b70b177a9fe0f9",
+      "final_sha256": "e7eb19b22cd884aaeffbb36eac759c3b4b8565a941434f20f3b70b177a9fe0f9"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-correlations-codex-review-2026-10-18/README.md",
+      "sha256": "fb59cb964b050aec7274be4bbf7124456b644ba5859bb4da5da268107e73920c",
+      "final_sha256": "fb59cb964b050aec7274be4bbf7124456b644ba5859bb4da5da268107e73920c"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-curved-window-strength-difference-2026-10-11/README.md",
+      "sha256": "f42dd74f60e29bd4e8a892485b34319ad7d3b19f03e62c7f4a7c55ea5892cc79",
+      "final_sha256": "f42dd74f60e29bd4e8a892485b34319ad7d3b19f03e62c7f4a7c55ea5892cc79"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-low-angular-momentum-2026-10-14/README.md",
+      "sha256": "6b4d30e4d7e2a0362493ef20c486273a485922b9ace15ed70b9899a7982ec598",
+      "final_sha256": "6b4d30e4d7e2a0362493ef20c486273a485922b9ace15ed70b9899a7982ec598"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-lowj-codex-review-2026-10-14/README.md",
+      "sha256": "1802a8993d1a9895c0695cfd0a162e325f20a1e35150b7b3a447322e5bb8f67a",
+      "final_sha256": "1802a8993d1a9895c0695cfd0a162e325f20a1e35150b7b3a447322e5bb8f67a"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-nonmirror-periodicity-2026-10-11/README.md",
+      "sha256": "1e295280a76e4f132c3242ad80baa733d64db9eee892aa350d4405bd6fa096c2",
+      "final_sha256": "1e295280a76e4f132c3242ad80baa733d64db9eee892aa350d4405bd6fa096c2"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-signed-breathing-codex-review-2026-10-14/README.md",
+      "sha256": "ea443b9f410353416d47a1a5f49e794fc8ab63418bd242d8424e4092b8f2ecf0",
+      "final_sha256": "ea443b9f410353416d47a1a5f49e794fc8ab63418bd242d8424e4092b8f2ecf0"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-solution-weighted-geometry-codex-review-2026-10-12/README.md",
+      "sha256": "c5337cb3031113b151aae8e5a907c38a31d3647e9d241ed9c8f4ef015ad64911",
+      "final_sha256": "c5337cb3031113b151aae8e5a907c38a31d3647e9d241ed9c8f4ef015ad64911"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-straight-strength-period-average-2026-10-12/README.md",
+      "sha256": "af79988bb1ad87e2c1f673d3265d7662274507dae789684cb84a5a0fb84d4fd9",
+      "final_sha256": "af79988bb1ad87e2c1f673d3265d7662274507dae789684cb84a5a0fb84d4fd9"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/priorities.md",
+      "sha256": "c89d366e119d88a91fc4e9ba23f4212042d275ef1897b61049746186708a639f",
+      "final_sha256": "67bd3c2a8c361b296cb1fe2bb8836f42483f56b638ba4963974f106545c2801d"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/work-queue.md",
+      "sha256": "80c7204bb8da1bb8859d98b49985e446e13d763dd3d0ba7fbb21bf8aef2a0f80",
+      "final_sha256": "80c7204bb8da1bb8859d98b49985e446e13d763dd3d0ba7fbb21bf8aef2a0f80"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/priorities.md",
+      "sha256": "4a48e81f1f4ac377b90d89bb435a7de74ad68f319326507fa7ebbd92315f5ec6",
+      "final_sha256": "4a48e81f1f4ac377b90d89bb435a7de74ad68f319326507fa7ebbd92315f5ec6"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/work-queue.md",
+      "sha256": "58fd28e8afa52fb0d05b0cb8639add2d9d9b2ba54ad9b473a22d1da06c67b2ac",
+      "final_sha256": "58fd28e8afa52fb0d05b0cb8639add2d9d9b2ba54ad9b473a22d1da06c67b2ac"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/collinear-research/priorities.md",
+      "sha256": "8dee59e0f2db01df1944f8f7042ce61225e5b1f48fed992b56d207b2a4f2e098",
+      "final_sha256": "8dee59e0f2db01df1944f8f7042ce61225e5b1f48fed992b56d207b2a4f2e098"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/equation-variants/README.md",
+      "sha256": "b40f185f240df958751e3fe36ed8e74b0ac4729e02441fec0fcab1ce02a8425d",
+      "final_sha256": "b40f185f240df958751e3fe36ed8e74b0ac4729e02441fec0fcab1ce02a8425d"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/evidence/saturday-cross-geometry-2026-10-10/README.md",
+      "sha256": "18f96b9066f0a0de9efecc8e02da07730a547ccc68603dd578fdd7940eb28bad",
+      "final_sha256": "18f96b9066f0a0de9efecc8e02da07730a547ccc68603dd578fdd7940eb28bad"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/README.md",
+      "sha256": "11fe603362a80abaa3bd163a4be2611fc788607f0a801c96c85d04fdba4cb3d0",
+      "final_sha256": "11fe603362a80abaa3bd163a4be2611fc788607f0a801c96c85d04fdba4cb3d0"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-beyond-evolved-endpoint-2026-10-14/README.md",
+      "sha256": "88ff2c552e198079ebc13e2a621a2b2f7bb9970e8c566b270ae550aecb374550",
+      "final_sha256": "88ff2c552e198079ebc13e2a621a2b2f7bb9970e8c566b270ae550aecb374550"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-evolved-history-continuation-2026-10-12/README.md",
+      "sha256": "380567ff8370b22c0748ec7506d72793497ef448e68d8e76620c563e38a11b44",
+      "final_sha256": "380567ff8370b22c0748ec7506d72793497ef448e68d8e76620c563e38a11b44"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-evolved-history-continuation-codex-review-2026-10-12/README.md",
+      "sha256": "f2d5de6e7e84b6d4e65fddb12a1f08c33a0184a8197b7bfb043f9267a2163313",
+      "final_sha256": "f2d5de6e7e84b6d4e65fddb12a1f08c33a0184a8197b7bfb043f9267a2163313"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-followups-2026-10-11/README.md",
+      "sha256": "6c7f8646a6d774a40b2bd18b52f2a7c5b97a729e03a3d183128cdfebca30914f",
+      "final_sha256": "6c7f8646a6d774a40b2bd18b52f2a7c5b97a729e03a3d183128cdfebca30914f"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-forward-extension-2026-10-12/README.md",
+      "sha256": "aac4412a3246076e1475f5100c224d10a8fa59514893f2747d5554aef169fd10",
+      "final_sha256": "aac4412a3246076e1475f5100c224d10a8fa59514893f2747d5554aef169fd10"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-forward-quantification-2026-10-11/README.md",
+      "sha256": "7b70e507acf220b95d893f46960a7d2833a060eed73892d9618b14d6ed345a92",
+      "final_sha256": "7b70e507acf220b95d893f46960a7d2833a060eed73892d9618b14d6ed345a92"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-profile-barrier-codex-review-2026-10-14/README.md",
+      "sha256": "ae80feb8aa342d646a8f6fcc783e3ebcfe4b3aeb6959dd5d06bff7b5fbbe84ce",
+      "final_sha256": "ae80feb8aa342d646a8f6fcc783e3ebcfe4b3aeb6959dd5d06bff7b5fbbe84ce"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-summed-signed-lattice-codex-review-2026-10-18/README.md",
+      "sha256": "93ac394c84c803d02133c47554afc7c3f0b54970c8f59221f3da90bf1af600fe",
+      "final_sha256": "93ac394c84c803d02133c47554afc7c3f0b54970c8f59221f3da90bf1af600fe"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-summed-signed-lattice-remainder-2026-10-18/README.md",
+      "sha256": "4fc34dadfea68445f75c27cb5e49ae3bc29167d9fdfca08f5b356884ab66d414",
+      "final_sha256": "4fc34dadfea68445f75c27cb5e49ae3bc29167d9fdfca08f5b356884ab66d414"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/priorities.md",
+      "sha256": "cc904613a3d9d5c1ce953f534540cf0e5486d79c215673dec4b2bcbe2829a2a1",
+      "final_sha256": "4d63ecaa9f12637257141ba8de61eddb42aed99110cdf9529753d7e65eafe1c3"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/work-queue.md",
+      "sha256": "3ff9f19765a4b12873ab5161eb7a6aacfb7bbfa5614bb1606e101c85789f268a",
+      "final_sha256": "3ff9f19765a4b12873ab5161eb7a6aacfb7bbfa5614bb1606e101c85789f268a"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/noether-sea-research/priorities.md",
+      "sha256": "6a0603c21e3d03d12f9b7322a092d4d662806bca0eb1d70554ca8feab74fb821",
+      "final_sha256": "6a0603c21e3d03d12f9b7322a092d4d662806bca0eb1d70554ca8feab74fb821"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/noether-sea-research/work-queue.md",
+      "sha256": "92a4eda11ad0fd2e569ca06619c0529a93344b9d2b39445554ae0c9e9a0288a6",
+      "final_sha256": "92a4eda11ad0fd2e569ca06619c0529a93344b9d2b39445554ae0c9e9a0288a6"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/work-queue.md",
+      "sha256": "5005b15d836ee626cf994d8e9b6829be1cb27b1c0b0ce39dd8fa30330208c18a",
+      "final_sha256": "5005b15d836ee626cf994d8e9b6829be1cb27b1c0b0ce39dd8fa30330208c18a"
+    }
+  ],
+  "rotation": {
+    "directory": "app-simulation",
+    "scope": "full tracker and queue plus canonical routing index; no full scientific packet review",
+    "next_candidate": "app-topo"
+  },
+  "next": {
+    "weekly": "2026-10-25",
+    "monthly": "2026-11-13",
+    "evaluation": "2026-12-12"
+  }
+}

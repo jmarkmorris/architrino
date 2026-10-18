@@ -1,0 +1,21 @@
+PID 41530
+K1 table 324 exact resume-string joins 21 first-reading records [('w16-1', ['unlike']), ('w17-1', ['like']), ('ant-b3-13', ['antipode'])]
+K2 True ['0.401200769746683166266666996002', '0.401200799786666666666669670665'] negatives {'N1_dropped_remainder': True, 'N2_origin_uncertainty_dropped': True, 'N3_wrong_start_state': True, 'N4_wrong_start_acceleration': True, 'N5_gap': True, 'N6_uncertified': True, 'N7_beyond_coverage': True, 'N7b_window_read': True}
+K3 True 323 max endpoint difference 1.804e-8 | W2 shifted table detected on 322 of 322
+KD1 True KD2 True {'4.9': {'U': ('6.0e-23', '2.2e-23', '1.2006609'), 'L': ('9.3e-23', '9.2e-23', '0.89098756'), 'A': ('2.6e-27', '1.6e-27', '1.1071221')}, '5.1': {'U': ('7.7e-24', '1.9e-23', '1.2219361'), 'L': ('2.2e-22', '2.0e-22', '0.85764961'), 'A': ('4.1e-28', '1.2e-27', '1.1183649')}} WD True
+KO omission True {'U': '0.00237', 'L': '0.00129', 'A': '0.00377'}
+event controls {'E1_maximum_detected': True, 'E2_minimum_not_a_maximum': True, 'E3_zero_box_undecided_no_event': True, 'E4_bracket_spans_undecided_step': True, 'E5_no_classification_without_positive_qdot': True, 'E6_no_uniqueness_without_rate_sign': True, 'T1_wrong_boundaries_not_target2': True, 'T2_L_crossing_is_target2': True}
+K4' True fails 0 events 2.8067 [[192, 193]] as target 2: [] | W3 True
+KOE own end evaluation True {'s2w-192': ('0.05272767', '0.05297109', '1.0'), 's2w-193': ('0.05159090', '0.05183771', '1.0'), 's3w-213': ('0.02818654', '0.02849943', '1.0'), 's3w-214': ('0.02701745', '0.02733355', '1.0')} | WOE True
+H w17-1 ['like'] ap 0.00362297 0.00720005 | pre 0.00618453 0.00655674 in ap True meets True | post 0.00420498 0.00475218 in ap True meets True | classes ['like', 'unlike']
+H ant-b3-13 ['antipode'] ap 0.00468337 0.00751372 | pre 0.00565583 0.00651218 in ap True meets True | post 0.00560646 0.00648693 in ap True meets True | classes ['antipode', 'like', 'unlike']
+KR True True {'U': ('0.0', '0.007709', '0.1519'), 'L': ('3.08e-32', '0.02022', '0.1664'), 'A': ('4.62e-33', '0.01725', None)}
+ORACLE True True
+KOE2 True {'273': ('-0.0176394', '-0.0158465', '-0.019300', '-0.014530'), '274': ('-0.0173321', '-0.0155063', '-0.018989', '-0.014184')} WOE2 True
+event controls {'P1_path_turn_detected_not_speed_max': True, 'P2_reversed_crossing_reported_as_q_minimum': True, 'P3_zero_containing_w_undecided': True, 'S1_neg_to_pos_is_support_minimum': True, 'S2_pos_to_neg_is_support_maximum': True, 'S3_support_zero_not_a_turn': True, 'S4_zero_of_a_not_a_support_turn': True, 'S5_undecided_dl_undecided': True, 'S6_seam_one_sided': True}
+JET exact True {'U': '1.08e-32', 'L': '4.62e-33', 'A': '6.16e-33'} numerical True {'4.9': {'U': '2.77e-18', 'L': '3.21e-19', 'A': '1.39e-23', 'l': '2.45e-19'}, '5.1': {'U': '1.37e-18', 'L': '4.93e-19', 'A': '1.65e-23', 'l': '8.74e-20'}} negatives True {'4.9': ('0.004376', '0.001947', '0.01373'), '5.1': ('0.004213', '0.001659', '0.01145')}
+own appended 162 guaranteed end 6.226684593623649597167969
+centred K0 affine flow True
+centred K1 True K2 True N2 True N3 True N5 True
+K3 True {'a': ['4.23e-18', '0.0'], 'a_r': ['1.72e-19', '0.0'], 'l': ['1.72e-19', '1.28e-24'], 'dl': ['2.45e-18', '2.3e-25']} K4 True {'a': ('0.0060373', '0.012222', 'negative'), 'a_r': ('0.0044768', '0.005282', 'positive'), 'l': ('0.023342', '0.023169', 'negative'), 'dl': ('0.015004', '0.033562', 'UNDECIDED')}
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-review-centred-v4-C10-controls.json

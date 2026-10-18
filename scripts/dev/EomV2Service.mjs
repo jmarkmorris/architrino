@@ -29,7 +29,7 @@ export function createEomV2Service(options) {
     const path = url.pathname;
     if (!path.startsWith('/api/eom/v2/')) return false;
     try {
-      const checked=path.match(/^\/api\/eom\/v2\/qualified-(sphere|oblate|sphere-latitude)(\/raw)?$/);
+      const checked=path.match(/^\/api\/eom\/v2\/qualified-(sphere|oblate|sphere-latitude|torus-outer|torus-inner)(\/raw)?$/);
       if (request.method === 'GET' && checked) {
         if (!options.repoRoot) throw new Error('Checked record unavailable on this host.');
         const selection=checked[1];

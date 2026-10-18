@@ -22,16 +22,11 @@ This is the canonical execution ledger for remaining Photon work. [priorities.md
 
 No rows.
 
-## Proposed review follow-ups
+<a id="proposed-review-follow-ups"></a>
 
-**○ Proposed — not accepted for implementation.** The [October 13 monthly review](../aaa-operations/evidence/ops-032-photon-substantive-review-2026-10-13.md) reports two related admission-classifier findings for the app software owner. They form one bounded repair scope under the existing PHO-004 contract, not a new physical research assignment.
+## Review follow-ups
 
-| Finding | Severity | Proposed bounded correction |
-| --- | --- | --- |
-| OPS032-PHO13-01 | Medium | Reject missing, null or nonfinite certification status on the public adapter diagnostic path instead of treating it as successful status zero; retain certified, failed, singular and below-floor behavior. |
-| OPS032-PHO13-02 | Low | Distinguish null factor evidence from a measured zero and preserve the declared fallback/provenance contract rather than manufacture a singular measurement. |
-
-The known-case-first public-path reproduction admits twelve of twelve above-floor rows with each malformed status; explicit success and failure controls behave as required. The companion null-factor case rejects safely but reports the wrong evidence/reason. Acceptance may authorize the classifier correction and bounded assertions in the existing fixture, followed by separate verification; this review authorizes no implementation, new transmitter family, sweep or PHO-009 activation. The receipt preserves exact sources, input cases, observed results and falsifiers.
+No open rows. The operator-approved OPS032-PHO13-01 and OPS032-PHO13-02 classifier repair is implemented and separately verified in the [October 14 repair record](../aaa-operations/evidence/ops-031-032-approved-repairs-2026-10-14.md). Historical findings remain in the [October 13 review](../aaa-operations/evidence/ops-032-photon-substantive-review-2026-10-13.md).
 
 ## Deferred / blocked
 

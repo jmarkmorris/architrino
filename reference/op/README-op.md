@@ -23,6 +23,8 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Efficiency
 
+- [ ] Make browser download/file-chooser timeouts bound the actual tool call; preserve the [Surface torus observed delays](../priorities/app-surface/evidence/torus-app-delivery-2026-10-15.md#actual-file-round-trip-and-operational-delay) and route the issue to the browser-tool owner without treating elapsed tool latency as app performance.
+
 - [*] Run only agreed testing under the [testing philosophy and process](testing-regime.md); require concrete value, timing, trigger and blocking-status agreement before adding or expanding regular local or PR checks.
 - [*] Complete larger connected development batches per turn, including routine dependent repairs and validation, instead of returning after each small step (operator direction, 2026-09-07).
 - [*] Keep substantial sessions centered on one core geometrical closure target before app, prose, presentation, or infrastructure work.

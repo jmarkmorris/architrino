@@ -1,0 +1,107 @@
+--- v2/scripts/eom/EomResponseRecord.mjs
++++ v3/scripts/eom/EomResponseRecord.mjs
+@@ -1,6 +1,6 @@
+ // Presentation projection of a retained EOM result. No numerical evolution.
+ import { createHash } from 'node:crypto';
+-import { EOM_V3_REQUEST, canonicalJson, expectedEomExecution } from '../../src/apps/shared/EomExecutionIdentity.js';
++import { EOM_V3_REQUEST, canonicalJson, eomRequestVersion, expectedEomExecution } from '../../src/apps/shared/EomExecutionIdentity.js';
+ export const EOM_RECORD_VIEW_LIMIT = 12 * 1024 * 1024;
+ // Supported documents that are not evolution responses pass through
+ // unchanged. Any other schema is refused; its raw bytes stay retained.
+@@ -43,9 +43,10 @@
+   const operation = envelope?.operation;
+   if (operation === 'capabilities') { if (payload?.schema !== 'eom_equation_capabilities/v1') fail(`capabilities answered by ${payload?.schema}`); return; }
+   if (operation === 'validate-cancel') { if (payload?.schema !== 'eom_cancel_request/v2') fail(`cancel validation answered by ${payload?.schema}`); return; }
+-  const version = envelope?.request?.schema === EOM_V3_REQUEST ? 'v3' : 'v2';
++  if (!['evolve', 'resume', 'inspect'].includes(operation)) fail(`unsupported operation ${operation}`);
++  let version;
++  try { version = eomRequestVersion(envelope?.request); } catch (error) { fail(error.message); }
+   const expected = EOM_RESPONSE_SCHEMAS[version][operation];
+-  if (!expected) fail(`unsupported operation ${operation}`);
+   if (payload?.schema !== expected) fail(`a ${version} ${operation} answered by ${payload?.schema}`);
+ }
+ // A v3 evolution or inspection must report exactly the normalized execution
+@@ -54,7 +55,9 @@
+ export function assertEomExecutionBinding(rawRequest, payload) {
+   const fail = message => { throw Object.assign(new Error(`EOM execution binding: ${message}.`), { code: 'execution_binding_mismatch' }); };
+   let request;
+-  try { request = JSON.parse(rawRequest)?.request; } catch { fail('the request is not readable JSON'); }
++  let operation;
++  try { const envelope = JSON.parse(rawRequest); request = envelope?.request; operation = envelope?.operation; } catch { fail('the request is not readable JSON'); }
++  if (['evolve', 'resume', 'inspect'].includes(operation)) { try { eomRequestVersion(request); } catch (error) { fail(error.message); } }
+   const v3Response = payload?.schema === 'eom_evolution_response/v3' || payload?.schema === 'eom_inspection/v3';
+   if (request?.schema !== EOM_V3_REQUEST) { if (v3Response) fail('a v3 document answers a request that is not v3'); return; }
+   if (payload?.schema === 'eom_error/v2') return;
+--- v2/src/apps/shared/EomV2HttpClient.js
++++ v3/src/apps/shared/EomV2HttpClient.js
+@@ -1,5 +1,5 @@
+ import { postEomJson } from './EomJsonHttp.js';
+-import { EOM_V3_REQUEST, canonicalJson, checkedEomRuntime, eomExecutionDigest, expectedEomExecution } from './EomExecutionIdentity.js';
++import { canonicalJson, checkedEomRuntime, eomExecutionDigest, eomRequestVersion, expectedEomExecution, refuseEomRuntimeOnEvolve } from './EomExecutionIdentity.js';
+ 
+ export function createEomV2HttpClient({ endpoint = '/api/eom/v2', fetchImpl = globalThis.fetch } = {}) {
+   if (typeof fetchImpl !== 'function') throw new TypeError('EOM client requires fetch.');
+@@ -13,7 +13,9 @@
+   async function run(request, body, route, { expectedModelDigest, signal, onProgress } = {}) {
+     // A v3 request's normalized execution and its digest are fixed before
+     // anything is sent; inspection and result must both be that execution.
+-    const v3 = request?.schema === EOM_V3_REQUEST;
++    // Only v2 and v3 requests are admitted; anything else is refused before
++    // any call.
++    const v3 = eomRequestVersion(request) === 'v3';
+     const expected = v3 ? expectedEomExecution(request) : null;
+     const expectedDigest = v3 ? await eomExecutionDigest(expected.execution) : null;
+     const boundTo = document => document.executionDigest === expectedDigest && canonicalJson(document.execution) === canonicalJson(expected.execution)
+@@ -48,16 +50,19 @@
+     } catch (error) { complete({ error }); throw error; }
+     finally { clearInterval(progressTimer); clearInterval(cancellationTimer); active.delete(request.runId); signal?.removeEventListener('abort', abort); }
+   }
++  // A control refused before any request is returned as a rejection, as
++  // every other client failure is.
++  const refusedBeforeLaunch = check => { try { check(); return null; } catch (error) { return Promise.reject(error); } };
+   return Object.freeze({
+     inspect, cancel,
+     async capabilities() { const response = await fetchImpl(`${endpoint}/capabilities`); if (!response.ok) throw new Error('EOM capabilities unavailable.'); return response.json(); },
+     async readCheckpoint(id) { const response = await fetchImpl(`${endpoint}/checkpoints/${encodeURIComponent(id)}`); if (!response.ok) throw new Error('EOM checkpoint unavailable.'); return response.json(); },
+-    evolveRecord(request, options) { return run(request, request, 'evolve-record', options); },
++    evolveRecord(request, options = {}) { return refusedBeforeLaunch(() => refuseEomRuntimeOnEvolve(options)) ?? run(request, request, 'evolve-record', options); },
+     // options.runtime = {threadCount} is the v3 resume worker override; it is
+     // refused for any other request rather than dropped.
+-    resumeRecord(request, checkpoint, endTime, options = {}) { const runtime = checkedEomRuntime(request, options.runtime); return run(request, { operation: 'resume', request, checkpoint, endTime, ...(runtime ? { runtime } : {}) }, 'resume-record', options); },
+-    evolve(request, options) { return run(request, request, 'evolve', options); },
+-    resume(request, checkpoint, endTime, options = {}) { const runtime = checkedEomRuntime(request, options.runtime); return run(request, { operation: 'resume', request, checkpoint, endTime, ...(runtime ? { runtime } : {}) }, 'resume', options); },
++    resumeRecord(request, checkpoint, endTime, options = {}) { let runtime; const refused = refusedBeforeLaunch(() => { runtime = checkedEomRuntime(request, options.runtime); }); if (refused) return refused; return run(request, { operation: 'resume', request, checkpoint, endTime, ...(runtime ? { runtime } : {}) }, 'resume-record', options); },
++    evolve(request, options = {}) { return refusedBeforeLaunch(() => refuseEomRuntimeOnEvolve(options)) ?? run(request, request, 'evolve', options); },
++    resume(request, checkpoint, endTime, options = {}) { let runtime; const refused = refusedBeforeLaunch(() => { runtime = checkedEomRuntime(request, options.runtime); }); if (refused) return refused; return run(request, { operation: 'resume', request, checkpoint, endTime, ...(runtime ? { runtime } : {}) }, 'resume', options); },
+     async dispose() {
+       disposing = true;
+       const states = [...active]; for(const [,state] of states)state.requestCancellation();
+--- v2/src/apps/shared/EomExecutionIdentity.js
++++ v3/src/apps/shared/EomExecutionIdentity.js
+@@ -2,6 +2,13 @@
+ // clients. The normalized execution is the one the service resolves and
+ // digests: every control with its default filled in, nothing else.
+ export const EOM_V3_REQUEST = 'eom_evolution_request/v3';
++export const EOM_V2_REQUEST = 'eom_evolution_request/v2';
++// Scientific operations admit exactly these request schemas.
++export function eomRequestVersion(request) {
++  if (request?.schema === EOM_V2_REQUEST) return 'v2';
++  if (request?.schema === EOM_V3_REQUEST) return 'v3';
++  throw Object.assign(new Error(`Unsupported EOM request schema ${JSON.stringify(request?.schema)}; only ${EOM_V2_REQUEST} and ${EOM_V3_REQUEST} are admitted.`), { code: 'unsupported_request_schema' });
++}
+ const EXECUTION_KEYS = ['method', 'positionIncrementBudget', 'velocityIncrementBudget', 'totalBudget', 'maxAttemptsPerStep',
+   'maxLowerSignRetries', 'growthCooldownSteps', 'pairPolicy', 'groups', 'maximumAcceptedSteps'];
+ const mismatch = message => Object.assign(new Error(`EOM execution binding: ${message}.`), { code: 'execution_binding_mismatch' });
+@@ -41,6 +48,12 @@
+   return [...new Uint8Array(hash)].map(b => b.toString(16).padStart(2, '0')).join('');
+ }
+ 
++// A runtime override belongs to a resume only; evolve refuses one rather
++// than disregard it.
++export function refuseEomRuntimeOnEvolve(options) {
++  if (options?.runtime !== undefined) throw Object.assign(new Error('A runtime override is supported only on a v3 resume, not on evolve.'), { code: 'unsupported_runtime_override' });
++}
++
+ // The runtime override a v3 resume may carry: {threadCount} from 1 to 32.
+ export function checkedEomRuntime(request, runtime) {
+   if (runtime === undefined) return undefined;

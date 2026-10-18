@@ -1,0 +1,27 @@
+--- .tmp/eom-ordinary-integration-2026-10-14/o3-wire/check-v3-wire.mjs	2026-10-14 09:51:24
++++ .tmp/eom-ordinary-integration-2026-10-14/o3cap-wire/check-v3-wire.mjs	2026-10-14 11:31:01
+@@ -11,13 +11,20 @@
+ const summary = JSON.parse(comparison.slice(comparison.indexOf('{'), comparison.lastIndexOf('}') + 1));
+ console.log('Known cases, before any target');
+ const known = check('known: frozen defaults differ only at reviewed paths, plus the declared v3-rejection envelope',
+-  /PASS  known: a file against itself is identical/.test(comparison) && summary.identical === 72 && summary.projected.length === 11 && summary.missing.length === 0
+-  && summary.different.length === 1 && summary.different[0].file === 'wire-outputs/reject-request-v3.stdout',
++  /PASS  known: a file against itself is identical/.test(comparison) && summary.identical === 72 && summary.projected.length === 9 && summary.missing.length === 0
++  && summary.different.length === 3 && summary.different.map(d => d.file).sort().join() === 'outputs/inspect-capabilities.stdout,wire-outputs/capabilities.stdout,wire-outputs/reject-request-v3.stdout',
+   `${summary.identical} identical, ${summary.projected.length} projected, different: ${summary.different.map(d => d.file)}`);
+ const v3reject = JSON.parse(fs.readFileSync(path.join(dir, 'wire-outputs/reject-request-v3.stdout'), 'utf8'));
+ check('known: the declared change is the old v3 envelope now refused for lacking execution', v3reject.code === 'invalid_request' && /execution object/.test(v3reject.error), v3reject.error);
+-const caps = summary.projected.find(p => p.file === 'wire-outputs/capabilities.stdout');
+-check('known: capabilities differ only by build identity; nothing new is advertised', caps && caps.removed.every(p => p.startsWith('/build/')), caps?.removed);
++// Capabilities: the second declared difference, compared member by member with the O3 live document.
++const capsNow = JSON.parse(fs.readFileSync(path.join(dir, 'wire-outputs/capabilities.stdout'), 'utf8').trim().split('\n').pop());
++const capsBefore = JSON.parse(fs.readFileSync('.local-data/eom-matched-pair/2026-10-14/ordinary-integration/o3-live/wire-outputs/capabilities.stdout', 'utf8').trim().split('\n').pop());
++const changed = [...new Set([...Object.keys(capsNow), ...Object.keys(capsBefore)])].filter(k => JSON.stringify(capsNow[k]) !== JSON.stringify(capsBefore[k])).sort();
++check('known: capabilities differ from O3 live exactly in build identity and the added executionMethods member', changed.join() === 'build,executionMethods' && !('executionMethods' in capsBefore), changed);
++const inspectNow = JSON.parse(fs.readFileSync(path.join(dir, 'default-outputs/inspect-capabilities.stdout'), 'utf8').trim().split('\n').pop());
++const inspectBefore = JSON.parse(fs.readFileSync('.local-data/eom-matched-pair/2026-10-14/ordinary-integration/o3-live/default-outputs/inspect-capabilities.stdout', 'utf8').trim().split('\n').pop());
++const inspectChanged = [...new Set([...Object.keys(inspectNow), ...Object.keys(inspectBefore)])].filter(k => JSON.stringify(inspectNow[k]) !== JSON.stringify(inspectBefore[k])).sort();
++check('known: the inspect CLI capabilities document differs from O3 live exactly the same way, with the same member', inspectChanged.join() === 'build,executionMethods' && JSON.stringify(inspectNow.executionMethods) === JSON.stringify(capsNow.executionMethods), inspectChanged);
+ if (!known) { console.log('KNOWN CASE FAILED'); process.exit(2); }
+ console.log('\nTargets');
+ const r = Object.fromEntries(fs.readFileSync(path.join(dir, 'wire-v3.jsonl'), 'utf8').trim().split('\n').map(l => JSON.parse(l)).map(x => [x.case, x]));

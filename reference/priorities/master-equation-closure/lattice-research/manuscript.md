@@ -1412,6 +1412,72 @@ On the complete interval all-label displacement is at most .027072, speed at mos
 
 These are derived sufficient bounds for the original complete nonlinear family, conditional on the accepted primitive enclosures. The independent reference checks expanded-polynomial arithmetic and margins, not a numerically evolved history or recomputed lattice sums. A sampled chart search establishes no ceiling for this method. Further continuation may use a signed bound for the whole seed-dependent linear remainder, including receiver/source, source/correction and cubic receiver contributions; no stated improvement is proved sufficient at a larger seed size. Broader fate and wake-speed arrival remain open.
 
+#### A forward-envelope refinement and the next interval
+
+The [forward-profile theorem](analysis/saturday-localized-beyond-evolved-endpoint-2026-10-14.md) refines the same actual-history barrier at delayed sources. The contour edges satisfy $\lambda_+=a+.2<2.8953$. With $L=1-2\rho$, $t\ge L$ and relative source time $T'\le-L$, the two accepted seed envelopes, for times before and after zero respectively, imply
+
+$
+\frac{|\varepsilon\phi_j^{(n)}(t+T')|}{a^n\Delta(t)e^{aT'}}\le e^{-.2L}=\mu\qquad(n\le2).
+$
+
+For $t+T'\ge0$, the ratio is bounded by $e^{(\lambda_+-2.8953)t}e^{.2T'}$; for $t+T'<0$, by $e^{(a-2.8953)t}$. Both are at most the displayed factor. This normalizes an upper envelope and asserts no actual fastest growth rate. The receiver retains its original bound, the correction retains rate $2a$, and every delayed source/intermediate time lies at most $-L$. The resulting polynomial $F_\mu$ multiplies only source-seed factors by $\mu$, retains nonnegative coefficients and satisfies $F_1=F$.
+
+On chart $\rho=1/20$, $\mu\le.83528$, $d=.0211$ and $y=32d^2=.01424672$, separate expanded-coefficient exact arithmetic gives
+
+$
+C_LF_\mu(d,y)=.0142447155478929\ldots<y,
+\qquad d+2y=.04959344<.05.
+$
+
+At $T_E$ the former correction barrier lies strictly inside the new one, and the earliest $T_E$ in the admitted amplitude class exceeds 1.1, above L=.9. Nonnegative-polynomial scaling and first-crossing contradiction therefore continue the SAME solution through
+
+$
+T_S(\varepsilon)=\frac{\ln[.0211/(.1144\varepsilon)]}{2.8953}\ge T_E(\varepsilon)+.0548,
+\qquad |u-\varepsilon\phi|<32\Delta^2\quad(T_E\le T\le T_S).
+$
+
+The full interval retains displacement at most .035347, speed at most .13367, acceleration at most .56728, transmitter factor at least .86633, separation at least .929306 and delay deviation from each anchor distance at most .070694. Each distinct ordered pair has exactly one causal root and each own-path positive-delay root set is empty. Qualitative rapid spatial localization persists. At amplitude $10^{-4}$, $T_S\ge2.597$; the specific contour-minus-correction growth lower bound is empty at $T_S$ throughout the admitted amplitude range. No actual nongrowth, global fate or wake-speed arrival is inferred.
+
+The same note identifies an exact signed refinement for a later argument. Simultaneous row reflection gives $f_{-\ell}(\beta,Y)=-f_\ell(-\beta,-Y)$. Adding and subtracting rows at the two-source averaged seed decomposes each pair into two source-history differences and one reflected odd row. On the local supported Fourier chart $q=k-Q$, $|e^{iq\cdot x}-e^{iq\cdot x'}|\le|x-x'|/20$ bounds the seed-envelope difference. For temporal derivative three the contour normalization is $\bar\Lambda_3\le.1144\,(2.8953/2.6952)<.1229$, rather than the two-derivative .1144. Along a smooth pure-seed amplitude line the anchor subtractions remove the linear term and the quadratic term is even; the odd row starts locally at cubic order. A uniform summable cubic bound and complete source-difference constants are not established. The stationary receiver contribution still uses its original eight-source block prescription. Pair orientation figures prove neither a complete barrier improvement nor an optimal method ceiling.
+
+The [final independent disposition](analysis/saturday-localized-beyond-evolved-endpoint-codex-review-2026-10-14.md#final-corrected-byte-disposition--october-14) reconstructs the envelope, continuation and pair algebra and retains a separately authored Fraction/Taylor reference. Its known controls precede all targets and it imports no peer code; declared primitive sums and inverse norms remain inputs with their accepted conditionality. No history is evaluated. Failure of a declared correction, root, matching or tail bound overturns the corresponding result; finite-onset linear data remain a different preparation. Larger continuation requires a complete admitted estimate at a new declared endpoint.
+
+#### A summed signed remainder and continuation beyond the profile interval
+
+The [summed signed-remainder theorem](analysis/saturday-summed-signed-lattice-remainder-2026-10-18.md), accepted by its [final independent review](analysis/saturday-summed-signed-lattice-remainder-codex-review-2026-10-18.md#final-corrected-byte-disposition--october-18), supplies the uniform estimate left open above. It concerns the same complete ancient nonlinear localized family at $g=16$, unit spacing and normalized wake speed $c_f=1$, with every label dynamical, original eight-source stationary blocks, complete roots and tails, radius-$1/10$ contour and normalized real/even/nonnegative smooth seed supported within $1/20$ of the staggered wavevector. The admitted amplitudes remain $0<\varepsilon\le.00646$. No finite-time linear-seed replacement is made.
+
+Third derivatives of the canonical received-hit row bound the reflected odd cubic uniformly, retaining a decaying source factor in each monomial. The two causal-delay shifts cancel to first order; the seed's third derivative uses the accepted normalization below .1229. Each source-history-difference bracket is bounded with the receiver fixed, including envelope variation and the actual source correction. Only the first two derivatives of that correction are required. Summing both brackets and half the all-offset odd bound, together with the separate receiver cubic, gives the complete derived estimate
+
+$$
+\|\mathcal N\|_{0,2a}\le F_{\mathrm{sgn}}(d,y)
+=g\left[c_{E3}(d+y)^3+\Sigma_{\mathrm{br}}(d+y,\mu d,y)+\frac12\mathcal O(d+y,\mu d)\right]
+$$
+
+Here d bounds the seed, y bounds the translated correction history norm, and $\mu$ is the forward source-envelope factor. The factor one half accounts for counting each reflected pair twice. Pairing rearranges only an absolutely convergent source-dependent residual; the stationary receiver field still uses the original eight-source prescription. Every monomial has nonnegative coefficient and degree at least two, and the source-correction coefficient is retained rather than reduced by pairing.
+
+On chart $\rho=1/16$, start at the accepted time $T_s$ where $\Delta=.012$ and the full translated history norm satisfies $y(T_s)<22.5\Delta^2$. The earliest such start exceeds .962709, hence exceeds $1-2\rho=.875$, so the forward source bound applies. The new first-crossing argument runs on the already existing solution through $T_S$, improves its containing norm bound there to $.010017225=22.5(.0211)^2$, and continues that same history beyond it. At $d=.0277$ and $y=22.5d^2$, the separate exact-arithmetic reference gives
+
+$$
+C_LF_{\mathrm{sgn}}(d,y)=.013073846585386796\ldots<.017264025=y,
+\qquad d+2y=.06222805<1/16
+$$
+
+Nonnegative-polynomial scaling keeps the barrier strict at every smaller seed bound. The continuation alternative therefore supplies
+
+$$
+T_N(\varepsilon)=\frac{\ln[.0277/(.1144\varepsilon)]}{2.8953}
+\ge T_S(\varepsilon)+.0940,
+\qquad y(T)<22.5\Delta(T)^2\quad(T_s\le T\le T_N)
+$$
+
+In plain language, the accepted interval is longer for the original nonlinear solution, not for a newly initialized approximation. Through $T_N$, all-label displacement is at most .044965, speed at most .16773, acceleration at most .70290 and separation at least .910071. Positive transmitter margins, one causal root per distinct ordered pair, no positive-delay own-path root and qualitative spatial localization persist. The earlier estimates remain valid on their stated intervals.
+
+The endpoint's three bounded contributions are approximately .00327551 from the receiver cubic, .00422838 from the source-difference brackets and .00556996 from half the odd sum. The half-odd contribution is largest. The chart slack .00027195 is small for these declared choices, but neither an optimal method ceiling nor a physical event follows. The barrier itself retains margin above .00419017.
+
+The particular contour-minus-correction growth lower bound is empty for every admitted amplitude, not merely the tabulated examples. Indeed its positive term is proportional to $\varepsilon^{1-a/2.8953}$, which increases with amplitude; at the largest admitted amplitude it is below .014770, whereas the correction allowance is .017264025. This proves neither actual nongrowth nor continued growth. Order-one evolution, global fate and wake-speed arrival remain unresolved.
+
+The independent review reconstructs the row, pairing, bracket and history-norm arguments and checks the displayed margins with separately authored sparse algebra and rational enclosures after known controls. Declared lattice sums, inverse and contour inputs retain their accepted primitive-enclosure conditionality; no solution is numerically evaluated. A failed uniform row/bracket estimate, an omitted remainder contribution, an invalid declared enclosure, or an admitted complete history violating the continuation/root bounds would withdraw the affected result. A finite-onset simulation is a different preparation and does not test this theorem.
+
 ## 2. Cubic backgrounds: exact facts and finite failures
 
 ### 2.1. Stationary inversion cancellation

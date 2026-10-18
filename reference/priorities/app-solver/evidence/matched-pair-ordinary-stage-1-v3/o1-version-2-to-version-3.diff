@@ -1,0 +1,80 @@
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o1v2-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp .tmp/eom-ordinary-integration-2026-10-14/o1v3-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o1v2-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp	2026-10-14 06:47:49
++++ .tmp/eom-ordinary-integration-2026-10-14/o1v3-tree/src/eom/include/architrino/eom/ValidatedOrdinaryBridge.hpp	2026-10-14 07:04:43
+@@ -44,11 +44,14 @@
+ // supplied population. In order, before any early return:
+ //   1. a finite working-set bound, or EquationAdmissionError
+ //      validated_resource_bound_unavailable;
+-//   2. at the start of a run that is not resuming, the validated owner's
+-//      own step hypotheses at the shortest step the controller can attempt,
+-//      or EquationAdmissionError unsupported_validated_domain naming the
+-//      producer's code; a population the driver's admission refuses is
+-//      left to the driver;
++//   2. at the start of a run that is not resuming, a conservative origin
++//      preflight: the validated producer must certify one discarded step of
++//      length min(minimum_step, remaining span), or the request is refused
++//      with EquationAdmissionError unsupported_validated_domain naming the
++//      producer's code. Certification there is a sufficient positive
++//      admission check, not a statement about other step lengths; every
++//      step the driver takes is certified separately. A population the
++//      driver's admission refuses is left to the driver;
+ //   3. the memory budget: over it, a zero-length driver run reports a
+ //      population the driver refuses as that refusal, and an admitted one
+ //      returns halted with memory_budget_exhausted, no step and no
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o1v2-tree/src/eom/native/eom_validated_ordinary_fixture_cli.cpp .tmp/eom-ordinary-integration-2026-10-14/o1v3-tree/src/eom/native/eom_validated_ordinary_fixture_cli.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o1v2-tree/src/eom/native/eom_validated_ordinary_fixture_cli.cpp	2026-10-14 06:48:12
++++ .tmp/eom-ordinary-integration-2026-10-14/o1v3-tree/src/eom/native/eom_validated_ordinary_fixture_cli.cpp	2026-10-14 07:04:43
+@@ -771,10 +771,10 @@
+     refused_evolve("N-restart-count-without-continuation", fresh);
+     (void)second;
+   }
+-  // Unsupported origins are refused by the validated owner's own step
+-  // hypotheses before every early return (O1-R1): a source above wake
+-  // speed, a receiver above wake speed, coincident paths, and controls whose
+-  // increment budget admits no step at all.
++  // Origins whose conservative preflight is not certified are refused
++  // before every early return (O1-R1): a source above wake speed, a
++  // receiver above wake speed, coincident paths, and an increment budget
++  // the preflight step exceeds.
+   {
+     struct Origin {
+       std::string name;
+diff -ruN .tmp/eom-ordinary-integration-2026-10-14/o1v2-tree/src/eom/src/ValidatedOrdinaryBridge.cpp .tmp/eom-ordinary-integration-2026-10-14/o1v3-tree/src/eom/src/ValidatedOrdinaryBridge.cpp
+--- .tmp/eom-ordinary-integration-2026-10-14/o1v2-tree/src/eom/src/ValidatedOrdinaryBridge.cpp	2026-10-14 06:47:36
++++ .tmp/eom-ordinary-integration-2026-10-14/o1v3-tree/src/eom/src/ValidatedOrdinaryBridge.cpp	2026-10-14 07:04:43
+@@ -465,13 +465,17 @@
+ 
+ namespace {
+ 
+-// The validated owner's own step hypotheses, applied once at the start of a
+-// run that is not resuming: the producer must certify a step of the
+-// shortest length the controller can attempt from this origin. Every
+-// hypothesis is easier to satisfy on a shorter step, so an origin refused
+-// here cannot take any step. A population the driver's own admission
+-// refuses is left to the driver, which reports it before any early return.
+-// A resumed boundary is not reexamined: it was accepted.
++// A conservative origin preflight, applied once at the start of a run that
++// is not resuming: the validated producer, with its own hypotheses and the
++// run's controls, must certify one discarded step of length
++// min(minimum_step, remaining span) from the origin. Certification is a
++// sufficient positive admission check. A refusal does not prove that no
++// other length could be certified, and minimum_step need not be a length
++// the controller would actually try; such an origin is refused rather than
++// admitted. Every step the driver takes is still certified separately. A
++// population the driver's own admission refuses is left to the driver,
++// which reports it before any early return. A resumed boundary is not
++// reexamined: it was accepted.
+ void require_native_validated_origin(const NativeCoupledEvolutionRequest& request,
+                                      const ValidatedEvolutionRequest& translated) {
+   if (request.validated.continuation != nullptr) return;
+@@ -494,8 +498,8 @@
+   if (probe.status != "certified") {
+     throw EquationAdmissionError(
+         "unsupported_validated_domain",
+-        "the validated method cannot step from this origin: at the shortest"
+-        " step " + step + " the producer refuses " + probe.code +
++        "the validated origin preflight is not certified: at step " + step +
++            " the producer refuses " + probe.code +
+             (probe.cause.empty() ? "" : " (" + probe.cause + ")") + ": " +
+             probe.reason);
+   }

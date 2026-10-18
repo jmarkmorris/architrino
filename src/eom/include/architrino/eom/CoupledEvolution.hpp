@@ -21,6 +21,34 @@
 
 namespace architrino::eom {
 
+class NativeValidatedContinuation;
+struct ValidatedEvolutionCertificate;
+
+// Integration-method selection on the ordinary request. "ordinary" is the
+// corrector controller, whose certificates name their own variant through
+// integration_method. The one other admitted value is the validated
+// far-step policy token, canonical_validated_far_step_evolution/v1, which
+// routes evolution through the validated driver; see
+// ValidatedOrdinaryBridge.hpp. Any other value is refused.
+inline constexpr const char* kOrdinaryIntegrationSelection = "ordinary";
+
+// Controls that only the validated method has, at the driver's defaults.
+// Every field must stay at its default unless the validated method is
+// selected. Declared pairs name two different paths each and are disjoint.
+struct NativeValidatedExecution {
+  std::string pair_policy = "disabled";
+  std::vector<std::pair<std::string, std::string>> groups;
+  // Both present or both absent: a declared total budget, decimal tokens.
+  std::optional<std::string> total_position_budget;
+  std::optional<std::string> total_velocity_budget;
+  std::size_t max_attempts_per_step = 64;
+  std::size_t max_lower_sign_retries = 4;
+  std::size_t growth_cooldown_steps = 4;
+  // The sealed continuation of the selected run being resumed, as returned
+  // in validated_continuation. Null for a new run.
+  std::shared_ptr<const NativeValidatedContinuation> continuation;
+};
+
 inline constexpr const char* kNativeIntegrationMethod =
     "coupled_cubic_corrector_with_pinned_fold_onset/v1";
 inline constexpr const char* kLegacyNativeIntegrationMethod =
@@ -80,6 +108,12 @@ struct NativeCoupledEvolutionRequest {
   // points refuse every grouped policy and never read it.
   std::shared_ptr<const ValidatedPopulationEvidence>
       validated_population_evidence = {};
+  // "ordinary", or the validated far-step policy token. Under the validated
+  // method the ordinary controls with no meaning there must stay at their
+  // defaults; validated_population_evidence is the evidence issued for the
+  // supplied paths, and thread_count is the worker count.
+  std::string integration_method = kOrdinaryIntegrationSelection;
+  NativeValidatedExecution validated;
   std::string chart_policy = "sharp";
   std::string causal_width = "0.2";
   std::string core_scale = "0.2";
@@ -707,7 +741,26 @@ struct NativeCoupledEvolutionCertificate {
   std::uint64_t memory_estimate_bytes = 0;
   bool all_steps_atomic;
   NativeEvolutionTiming timing;
+  // Under the validated method: the driver's full certificate, with its
+  // evidence, ledger and sealed continuation. Null under the ordinary one.
+  std::shared_ptr<const ValidatedEvolutionCertificate> validated_run = {};
+  // Under the validated method, when the run reached an admitted accepted
+  // boundary: what a later invocation resumes from. Null otherwise.
+  std::shared_ptr<const NativeValidatedContinuation>
+      validated_continuation = {};
 };
+
+// True when the request selects the validated method, false when it selects
+// the ordinary one. Throws EquationAdmissionError, unsupported_execution_
+// policy, for any other value, or when validated controls are set under the
+// ordinary method.
+[[nodiscard]] bool native_validated_method_selected(
+    const NativeCoupledEvolutionRequest& request);
+
+// Throws EquationAdmissionError, unsupported_execution_policy, naming
+// `entry`, unless the request selects the ordinary method.
+void require_native_ordinary_method(
+    const NativeCoupledEvolutionRequest& request, const char* entry);
 
 [[nodiscard]] std::optional<std::string> native_nonretryable_halt_code(
     const NativeAtomicStepCertificate& rejected_step);

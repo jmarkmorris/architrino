@@ -1,0 +1,27 @@
+# Review of P1 tail sharpening and serial-loop admission
+
+## Accepted mathematical component
+
+The complete v5 source `a7a7c2f2…02bc`, final 214-line v4-to-v5 diff, Section 7 at report `d0c24fe1…0c6d` and Claude's 11:05:59Z return are reviewed. All ten repository-relative source and eighteen owner-relative output entries verify by `shasum -a 256 -c`. Fifteen known controls rerun PASS in the executable shared venv, before any new physical target. Original v4, evaluator, data and earlier receipts remain unchanged. RSC-05 is resolved by the exact degree-four/five-term formula and retained reviewed bytes; prior transcript wording remains historical.
+
+The new remote bound directly implements the independently derived [positive shell majorant](staggered-cell-independent-s1-review-2026-10-14.md). Its exact-rational comparison exponent/amplitude, rigorous negative-exponential caps, domain and positive-denominator refusals and one outward final conversion are appropriate. The finite 400-shell known case is an implementation control, while the independent infinite-series derivation supplies the omitted remainder argument. The old-versus-new numerical comparison is diagnostic only. The new cell-0 remote bound near $3.30\times10^{-27}$ is a computed cap; no new complete cell is measured during P1. Source acceleration/error propagation remains outside v5's admitted orders.
+
+## RSC-06 — resumed receipt integrity
+
+**Status: ✓ Resolved by accepted v6; original finding below preserved.** `run_cells()` decides whether an existing receipt is completed using only equality of its `loop_identity` value. It does not authenticate the receipt's result bytes or require a completed result for the requested cell. Before resuming, it also replaces the old summary, so that summary cannot currently authenticate previously recorded receipt digests.
+
+A known-first synthetic audit first verifies exact JSON row parsing and changed-byte hash detection, then calls the subject loop on a synthetic completed cell. It preserves the identity label but changes the result to `failed`, cell identity to 999 and bound to -1. A second subject call returns completed [0], resumed [0] and never evaluates cell 0. This is a measured admission defect on synthetic data, not corruption of physical evidence or a counterexample to the tail mathematics. Its sources/output and planted synthetic receipt are retained under `codex-p1-review/`.
+
+Resolve it in new preserved-version bytes before target use. The smallest adequate route for the already selected fresh packets is to disable target resumption and refuse a pre-existing target output directory. If resumption remains enabled, retain the prior summary's receipt digests before writing a new summary; authenticate exact receipt bytes against the retained digest, validate result/cell/endpoints/subdivisions against the requested row and refuse missing/mismatched binding. Control same-identity altered content, wrong/failed cell and missing binding, alongside the existing valid resume and failure controls. Do not rewrite or delete original receipts to test negatives. A crash between receipt and digest capture must yield an honest incomplete checkpoint; it must not promote an unauthenticated existing result.
+
+Restrict “every stop” to handled stops: process termination or abrupt host loss may leave a running checkpoint until the supervisor status is reconciled. That operational limit does not undermine the math, and no new watcher or permission expansion is requested. No packet needs resumption to be scientifically valid; explicitly refusing it is sufficient within the current fresh-packet scope.
+
+## Ready selected continuation
+
+After corrected-byte acceptance, packet A is selected next: cells 0 through 143 at 512 pieces, one supervised owned job of at most 1,800 seconds, a fresh output owner, full identity and source/root/tail evidence, exact completed/failed/unreviewed list and clear closeout. Other packets stay unreleased until A's independent review. The six-hour window, fixed ancient branch, $a=2^{-40}$, $c_f=1$, $g=16$, original infinite grouping and pre-global-event law equivalence remain unchanged. No Saturday/1-mec write, new law/participant/worktree or publication is selected.
+
+## Corrected-byte acceptance and packet A — 11:13Z
+
+The final v6 source `f16930d8…5774`, Section 8 at report `2697bd4a…e7b8` and complete final 158-line diff are reviewed; ten source/thirty-two output entries verify with `shasum -a 256 -c`, and sixteen controls rerun PASS in the shared venv. The target command binds its passing exact-byte known receipt and passes the actual enclosure routine into `cells_core`. The serial loop creates a fresh directory, writes receipts exclusively and refuses all existing directories, including the planted corrupted same-identity receipt. W7 reaches the complete command and final progress path with a stand-in; it establishes glue and pilot exclusion, not physics. RSC-06 is resolved. No resumption is accepted, and abrupt stop remains an operational reconciliation obligation. Earlier review bytes are retained separately to preserve the historical source binding.
+
+Packet A is now released: cells 0..143 at 512 pieces, one supervised job of at most 1,800 seconds, a fresh owner/output directory, return by 11:47:42Z. The 657 complementary cell identities remain scientifically unreviewed until their computed artifacts pass review. Later packets and new propagation/extraction remain unreleased. No scientific arithmetic or frozen input changed in v6.

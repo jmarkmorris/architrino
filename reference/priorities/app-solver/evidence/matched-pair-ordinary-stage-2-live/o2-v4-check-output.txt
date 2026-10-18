@@ -1,0 +1,76 @@
+Known cases, before any target
+Known cases, before any target
+  PASS  exact halving: 0.00390625 1 0.00014935 5
+  PASS  exact difference: 0.0002987 0.004375
+  PASS  K1 static run completes at the exact end: 0.015625
+  PASS  K1 step 1: both paths' tubes contain the closed-form brackets: receiver velocity [-7.812500000e-08, -7.812499999e-08]
+  PASS  K1 step 2: both paths' tubes contain the closed-form brackets: receiver velocity [-1.562500000e-07, -1.562500000e-07]
+  PASS  K2 t = 1/128: reviewer's position and velocity brackets for all three paths inside the tubes: step ends at 0.0078125
+  PASS  K2 t = 1/64: reviewer's position and velocity brackets for all three paths inside the tubes: step ends at 0.015625
+  PASS  K2 t = 1/32: reviewer's position and velocity brackets for all three paths inside the tubes: step ends at 0.03125
+PASS  known: the ordinary-view predicates hold on the ordinary controller's own row  [callbacks [1, 2]]
+PASS  known: the fixture's reseal routine reproduces a written v9 checkpoint byte for byte  [so every resealed target is a genuine reseal]
+PASS  known: every written v9 reseals to itself and holds no evidence or continuation key  [20 checkpoints]
+PASS  known: durable write with the shared writer reads back byte-identical  [d60e41bf8ef4f65b]
+
+Known cases passed before any target.
+
+Accepted bookkeeping over every run, including every resumed leg
+
+Exact time, atomic shape, ledger, evidence and callbacks
+  PASS  a refused initial population or continuation returns no accepted time, evidence, ledger or continuation: 0 runs
+  PASS  every admitted run returns a continuation equal to its accepted state: time, ordinal, controller step, content chains, ledger: 46 runs
+  PASS  accepted steps sum exactly to the accepted end, and completed runs end exactly at the requested end: 46 runs
+  PASS  every attempt has the validated step shape: no substeps, no snapshot, atomic; refusals publish their inputs: 642 emitted attempts
+  PASS  ledger: totals equal the published radius tokens, never below the inherited radius, and each step inherits the previous total: per path and per axis
+  PASS  debit (I1-R4): inherited + increment is never below the published total, exactly: 7398 path-axis records; smallest margin 4.941e-324
+  PASS  debit (I1-R4): every charged increment is within the run's increment budget: 7398 path-axis records
+  PASS  debit (I1-R4): the driver's ledger is the producer's record, and the two reported parts together cover the charge: declared, growth, section allowance and step growth
+  PASS  every published segment covers the theorem's sets over the whole step, exactly: exact Bernstein coefficients
+  PASS  each accepted step starts at the previous end and is generated from its published content: time and digest chains
+  PASS  returned state is the accepted boundary: histories, evidence and ledger agree, or all equal the inputs when nothing was accepted: 46 runs
+  PASS  one callback per accepted step, in order, with the accepted time: 46 runs
+
+Ordinary view
+PASS  ordinary view of every run and resumed leg: cumulative counts, attempt numbering, callback counts and times, status, halt code, continuation counters  [43 runs; {}]
+
+Frozen containment
+PASS  frozen brackets inside P-uninterrupted  [t = 1/128, 1/64, 1/32]
+PASS  frozen brackets inside P-from-two  [t = 1/32]
+PASS  frozen brackets inside P-from-zero  [t = 1/128, 1/64, 1/32]
+PASS  frozen brackets inside P-fine-resumed  [t = 1/32]
+PASS  frozen brackets inside P-alt-under-expected-controls  [t = 1/32]
+
+Round trips
+PASS  every round trip through v9 equals the uninterrupted run: content chains, ledger, sealed continuation, end states, cumulative counts  [10 round trips; []]
+PASS  the per-invocation diagnostic limit across checkpoints: 3, 6, then completed  [cumulative counts]
+PASS  the finer grouped round trip equals the O1 fixture's uninterrupted finer grouped run  [h = 1/256 to 1/32]
+PASS  rejection chain: the resumed run equals the uninterrupted one, with the cumulative rejected count confirmed by replay  [7 rejections replayed, 42 in all]
+
+Identity
+PASS  every resume reports the identity of the record it actually read  [13 resumes]
+PASS  identity basis: expected_record only where the caller named a complete record, expected_controls otherwise  []
+PASS  a genuine alternate record (same origin and controls, other legs) restores under expected_controls and is reported as itself, not as the original  []
+PASS  a complete record identity named by the caller refuses the genuine alternate  []
+PASS  the changed runtime worker count is reported and changes nothing  []
+PASS  the v9 written after a resumed leg keeps the original preparation  []
+PASS  record statuses: recorded for exact origins, not_an_origin for a run seeded with evidence, which has no v9  []
+
+Refusals
+PASS  every foreign, stale-claim, corrupted, resealed-false, resource, size and domain case is refused with its expected code  [28 cases; {}]
+PASS  the resealed leg and step falsifications are refused by replay, not by the digest  []
+PASS  a refused restore holds no paths, evidence, continuation or record, and no replayed rejected count  [['expectation', 'replay']]
+
+Version 3 additions
+PASS  O2-R2: a genuine foreign record (origin, charge, coupling, pair policy, prehistory) in the caller's resealed envelope is refused before replay, also when its complete identity is named  [10 requests]
+PASS  many short legs: the replayed steps exceed the whole-span count, and the reported per-leg bound equals an exact recomputation from the record's leg ends and limits and covers them  [10 replayed in 10 legs; whole-span count 2; per-leg bound 13]
+PASS  the replay bound charges the admitted worker override: one versus four workers differ by three 8 MiB stacks in the replayed and the new leg  [11864860 and 62196508]
+
+Version 4 additions
+PASS  O2-R3: creation binds the original request's controls and exact origin to the generating record, and the persisted claims to the sealed boundary  [7 creation requests]
+PASS  creation after a worker-changed resume works and keeps the original preparation's run  []
+PASS  storage failure is reported, never durable  [checkpoint temporary open failed: No such file or directory]
+PASS  one and four workers agree on every row apart from the reported runtime worker count and the checkpoint file hash  [820 rows]
+PASS  the written v9 files of one and four workers differ only in the bound original threadCount, the binding over it and the digest  [['/binding', '/digest', '/preparation/request/numerics/threadCount']]
+
+52 of 52 assertions passed.
